@@ -1,142 +1,171 @@
-Return-Path: <devicetree+bounces-235726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 330BBC3BF56
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:09:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48185C3BFD0
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:17:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 166334FA536
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:04:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C2F7D343D1F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD551346E66;
-	Thu,  6 Nov 2025 15:03:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5270253B40;
+	Thu,  6 Nov 2025 15:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iwFkRku4"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="H3PJOxvt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDCC4346E59
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 15:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BAA924E4BD;
+	Thu,  6 Nov 2025 15:17:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762441438; cv=none; b=CWGW/Y8kTCpQWEVQLa3sQ5oD426FbuOHIkxv2S0FBqfyrgs4tQaJ+fu+UV0JRIxmstHLxgE7nuDM6UOE+twgzuErEsrWiyiAQFIeSwvbihtmMZB2EbAbKKwbuxBORKvl3Q6eYidj9DDoACqjxywOgbl9iglkcOpO6MDk5tEcPh0=
+	t=1762442270; cv=none; b=idVzcSdarxvOIDWuuNbLQd/m9Pca92C17fDSTJuBrFtQAvrTFLjMZ9/OsY2U6lv8DMpL1FNecKT4lWUXgDOETC8OZgN+pL/v6yraPQJvRIBRTLjaNjVgu5fCRNxDpzlu6rgUyKVBuN5cITFjbUTTWHi7P9+LJY/IoEHnuweaEIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762441438; c=relaxed/simple;
-	bh=55SSt3Gkzzq+ugMem0J0DiZiyJVQiw2q4O9Mf2FxiCg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=SdM8DrcTRXkvqraiS3Uic0zOXIoILkGH9DFvRuVsz9ajR9l0wnvjGItK555Z3tEgl9KMQMVkTod3ylLkH7y3gNeA+xfDqQzfMBi0Avr2ybsKf3BYBfoHPCmWVVtjPZgSMAhbDGlfX+w4PhSDzjhwdJQnd01DEhRKSo0JRLdaRhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iwFkRku4; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b725ead5800so154921366b.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 07:03:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762441435; x=1763046235; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XRLohXtRGatztz+SeKrGjSMg+wc0GgYqEIBKdX3UGlY=;
-        b=iwFkRku4ZHQoUii0hAfzcDfN+Oantsrl1dAT1m2gtYw4IHxGaH2g6XrhQGeiOFvtj6
-         ynLGMhB2QPKm0YD5kwnR0nBEGFLgfGWlk5U4HhgzNRHjRTOYyDKGuh6op0pevAjuiV8I
-         uVn/OfeAwNX5IxkINWKrC+T7CIGroq5L4AdAFIA+a2B9AnqiXeI7TEAc6mfgv93HudQl
-         UGHMcqkOtiDlgsa1mhfGUYiUkdbWmCUXjJzn9iCYhNMCBf8fRteTTTdg20qnOo1xyFCb
-         7KPTBroBYPe6H1LgwlDjvcaLw+vyn1gRRoJ6oUs8hCtSb49z/DojYJMXLYlKZebMzyAE
-         FYfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762441435; x=1763046235;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XRLohXtRGatztz+SeKrGjSMg+wc0GgYqEIBKdX3UGlY=;
-        b=sSGMqlW2o2NGxvZY58SpjsQYwGPguBW8Z9P9LGjy4nvliBMi1otTTqlm7AVrUrHUWU
-         3HYzIWBE9uRkowq594lhcuPp8i5flVA08GxSHh2dEK81dxieqjS5ihJZrinXC0STzZs3
-         hRVyEKvix838kmX04+x6YGZ40NvJBNtFFTZ9iLbQESrBIJfJiypBoUQ8Mepm4RBiQor4
-         lIrTNURwPXXuJWfyyMeEpCmzcsjqRCpRNEDttYkZhfx3Xvg+LVW+zaZbsuvzD8zKoIXK
-         D0y9T5G24ZZb79piHO/jQdE01FqNYsKfEwhUKBpwT/O7axbLF0f3uXVUph7x+yq1svDD
-         TmXw==
-X-Forwarded-Encrypted: i=1; AJvYcCXKjPgz3u4ZBXV3wMSq3W1IoYGGOKDfiZI4qxpNkfd5xpXUyrHXg4N3rdf2gRvy7wU+ulbZjAS4zmpq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfYgMau+K+N5PRLESqtW/E85KVlMe6pkisB705LLqTBnu8uK/A
-	vtor9c1pXOrzN47CiwfMG09vJEbbOGWz/NGDmFEryx75QO0nZRjt1XfHw0qSP1K26bQ=
-X-Gm-Gg: ASbGncv1ZzRJE+UE02/RWuBEhiAZiMA1M+CxjedFD/DUysYYJUscpenRHx96G4i4s+F
-	UGSDM2P27Aabk6ztzvVHN7+XfN5ql5PakEVtvEndf3h+M7UmyTrOqwbg1U7df1SesRa/H89TnS/
-	5SmzX3TJJQlRy8l33YXx7aH3ozxdSAU81w3A+6Na8VaFFAKeurE+Q8SIaGjCMQol+ndDy4e3bI3
-	Vt4ii1PbvzhhtHwz4l7RQKyLX8Be5bPuOcMx2/4fmvgVlI5LrmPKUHQgXK6uETVtBZ3YDbqAhSc
-	ehkv0F1Lvrqj6p0lV4ijiWexevBXyhUXwJ1aw/qSaERVS0dJiuS2772d0vGphwlA8SFaPKd0Y30
-	q4CiLXfsAdy4vaW8Jg3AkE5upMNh6H3c4s27yxM2EuGZDINyPVAubq0ChH8LAQN61+w9cM8SDSJ
-	sCCq2va964/AnJ
-X-Google-Smtp-Source: AGHT+IFnv2kR+7AyxozjbIcjjKi77N+kW4qDPXl6xjDKudbBmTU0vSNFCi9nDzLNKrbJlFvId55g3g==
-X-Received: by 2002:a17:907:7b88:b0:b70:a9fd:1170 with SMTP id a640c23a62f3a-b72656112a3mr832404066b.65.1762441434963;
-        Thu, 06 Nov 2025 07:03:54 -0800 (PST)
-Received: from localhost ([87.213.113.147])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7289377c0dsm238249566b.20.2025.11.06.07.03.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 07:03:54 -0800 (PST)
-Date: Thu, 6 Nov 2025 18:03:52 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
-	Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
-	robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
-	robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-	konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
-	bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-	saravanak@google.com, prakash.gupta@oss.qualcomm.com,
-	vikash.garodia@oss.qualcomm.com
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-Subject: Re: [PATCH 5/6] of: add infra to parse iommu-map per IOMMU cell count
-Message-ID: <3fc0cd48-91d3-401b-9102-ebc77de731c4@suswa.mountain>
+	s=arc-20240116; t=1762442270; c=relaxed/simple;
+	bh=DRgu+1zEiLJzFvpqNcYywnec1hhXYCa75y4/TrlRBwg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=tXY2dtWvDIfkKR7p+FyWXgbcdeCZQSPRXcPaboBfSwEqS/iNfhpc6M38P6dG7rvlv23lYCSfoh3XoTTXKsVa+zvPULzQ1ZCdIg69ieeUe+0Yehr68LhMLtYmnvB9EnXakDZLTLlgcg7LsREPOXln6c3Aqg0Qe2O+8Z+8snxYC7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=H3PJOxvt; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762442266;
+	bh=DRgu+1zEiLJzFvpqNcYywnec1hhXYCa75y4/TrlRBwg=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=H3PJOxvtqbQ72kA29/dtPRySRy3X/JZY1JnX8vB8mMpkAnGTDMeazey1oWJ2Ho9bt
+	 zeyRgpkd6g8h6igHZu13qSn79r4sGm7JHTfoDCk8iAX1CHOFL+AxPlO4inD6jJ1QqB
+	 uPQrJdaTa1qv33cFL6/UrVxby54yqTFa+ngnn6rQ5plXOROKyynfxGemVj56YAIDCt
+	 D/evrmMFyB4XrDTUjJMYmLQiugeCmw2UdOWrpJPgLxqjgs5wRcuGmlmi52GRaxxVHg
+	 8LUUNLXrhQl8bSoRw4FfLkKQW4xHjNzNSlBQJ/s523TL00QFWSRe4L5hYjAft+T3LG
+	 eXeZ4etQ4nneA==
+Received: from [IPv6:2606:6d00:11:ef24::c41] (unknown [IPv6:2606:6d00:11:ef24::c41])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CFAF817E090D;
+	Thu,  6 Nov 2025 16:17:43 +0100 (CET)
+Message-ID: <bd2f63265df829ec9bb3498c83126827415c2ebf.camel@collabora.com>
+Subject: Re: [PATCH v5 5/8] media: mediatek: vcodec: fix vp9 4096x2176 fail
+ for profile2
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
+ <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Hans Verkuil
+ <hverkuil@xs4all.nl>,  Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
+ <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>,  George Sun
+ <george.sun@mediatek.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org,
+ Yilong Zhou <yilong.zhou@mediatek.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+	 <andrzejtp2010@gmail.com>
+Date: Thu, 06 Nov 2025 10:17:42 -0500
+In-Reply-To: <20251106061323.2193-6-kyrie.wu@mediatek.com>
+References: <20251106061323.2193-1-kyrie.wu@mediatek.com>
+	 <20251106061323.2193-6-kyrie.wu@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-p4Bu9/Ayloxs70Y/YXH1"
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <74d4ddf90c0fb485fda1feec5116dc38e5fd23cf.1762235099.git.charan.kalla@oss.qualcomm.com>
 
-Hi Charan,
 
-kernel test robot noticed the following build warnings:
+--=-p4Bu9/Ayloxs70Y/YXH1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hi,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Charan-Teja-Kalla/of-create-a-wrapper-for-of_map_id/20251104-170223
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/74d4ddf90c0fb485fda1feec5116dc38e5fd23cf.1762235099.git.charan.kalla%40oss.qualcomm.com
-patch subject: [PATCH 5/6] of: add infra to parse iommu-map per IOMMU cell count
-config: hexagon-randconfig-r072-20251105 (https://download.01.org/0day-ci/archive/20251105/202511051256.fSouTFuY-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project d2625a438020ad35330cda29c3def102c1687b1b)
+Le jeudi 06 novembre 2025 =C3=A0 14:13 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
+> The dram addr of vp9 decoder tile number, which use dram mode
+> to set tile information, may reach to 36bits for 4096x2176.
+> It needs to get the highest 4bit of tile buffer address to
+> set tile buffer address.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202511051256.fSouTFuY-lkp@intel.com/
+An after thought, I don't see any call to vb2_dma_contig_set_max_seg_size()=
+ or
+dma_set_coherent_mask() with DMA_BIT_MASK(32)/DMA_BIT_MASK(36) in this driv=
+er.
+How do you control this ?
 
-smatch warnings:
-drivers/of/base.c:2130 of_iommu_map_id_cell_count() error: uninitialized symbol 'legacy_iommu_cells'.
+Nicolas
 
-vim +/legacy_iommu_cells +2130 drivers/of/base.c
+>=20
+> Fixes: 5d418351ca8f1 ("media: mediatek: vcodec: support stateless VP9
+> decoding")
+>=20
+> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com>
+> ---
+> =C2=A0.../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 5 ++++-
+> =C2=A01 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git
+> a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if=
+.c
+> b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if=
+.c
+> index d966914db4b9..91c563c049bd 100644
+> ---
+> a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if=
+.c
+> +++
+> b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if=
+.c
+> @@ -1156,7 +1156,10 @@ static int vdec_vp9_slice_setup_tile_buffer(struct
+> vdec_vp9_slice_instance *inst
+> =C2=A0			tiles->size[i][j] =3D size;
+> =C2=A0			if (tiles->mi_rows[i]) {
+> =C2=A0				*tb++ =3D (size << 3) + ((offset << 3) & 0x7f);
+> -				*tb++ =3D pa & ~0xf;
+> +				*tb =3D pa & ~0xf;
+> +				if (IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT))
+> +					*tb |=3D (pa >> 32) & 0xf;
+> +				tb++;
+> =C2=A0				*tb++ =3D (pa << 3) & 0x7f;
+> =C2=A0				mi_row =3D (tiles->mi_rows[i] - 1) & 0x1ff;
+> =C2=A0				mi_col =3D (tiles->mi_cols[j] - 1) & 0x3f;
 
-5288ad2aeeeb419 Charan Teja Kalla 2025-11-04  2123  static int of_iommu_map_id_cell_count(const __be32 *map, int map_len, u32 cells)
-c74d6f4acf99ef3 Charan Teja Kalla 2025-11-04  2124  {
-5288ad2aeeeb419 Charan Teja Kalla 2025-11-04  2125  	u32 legacy_iommu_cells;
-5288ad2aeeeb419 Charan Teja Kalla 2025-11-04  2126  
-c74d6f4acf99ef3 Charan Teja Kalla 2025-11-04  2127  	if (map_len % 4 != 0)
-5288ad2aeeeb419 Charan Teja Kalla 2025-11-04  2128  		legacy_iommu_cells = of_iommu_map_id_legacy_cell_count(map, map_len);
+--=-p4Bu9/Ayloxs70Y/YXH1
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-legacy_iommu_cells uninitialize on else path
+-----BEGIN PGP SIGNATURE-----
 
-c74d6f4acf99ef3 Charan Teja Kalla 2025-11-04  2129  
-5288ad2aeeeb419 Charan Teja Kalla 2025-11-04 @2130  	return legacy_iommu_cells ? : of_iommu_map_id_actual_cell_count(map, map_len, cells);
-c74d6f4acf99ef3 Charan Teja Kalla 2025-11-04  2131  }
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQy8FgAKCRDZQZRRKWBy
+9NPSAP4g8gTapYL8m2LxcUUuZCeWMhCOGTCX8BR5UqAbTL8qfwD/WKrYbiY+6bxl
+DWa6+3ECPDXoTJi+A2WmiP1MGLhfOQc=
+=PEsx
+-----END PGP SIGNATURE-----
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+--=-p4Bu9/Ayloxs70Y/YXH1--
 
