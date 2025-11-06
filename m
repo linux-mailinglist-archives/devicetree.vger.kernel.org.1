@@ -1,160 +1,201 @@
-Return-Path: <devicetree+bounces-235844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 859A4C3D57A
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 21:26:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E89FC3D595
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 21:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 366FE3B8EB1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 20:26:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C038818905AB
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 20:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED0502F7AC3;
-	Thu,  6 Nov 2025 20:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BC112FB61C;
+	Thu,  6 Nov 2025 20:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="VpjqOZeo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R3Cblq2R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-20.smtpout.orange.fr [80.12.242.20])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B512F7AAD;
-	Thu,  6 Nov 2025 20:26:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AFAB23D297
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 20:27:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762460799; cv=none; b=dq8VNRR6LLazgZoincjTeqMB+kSU8o9e81AkPEP1e5cy38KtJ8XYdj7MjvMWa8YiIFIzF7UnVUr0CuDknx7ytSeuM+c0wUzQM5JFBU52z1H9KwVlGhnfARw2fkVgutjfk9dRLPwKYXRtn2fOEtV4pmM7p9v+m/GS1WndSafZIsg=
+	t=1762460879; cv=none; b=HlVCMzsYKfyCCGdPxtkHHjYMxXi+OsghWuVzgmx9wu09i6yM6RZJhT+wacyH9Rt3LGjjPnIsBqV9DJFChUY804dFGvVUe138DNj/jfrApoQTjDwU+sKPa1exfVB45ClE62cExA84GT5ubpxkiJNYaaUX1ZPiCEOq8De764QCDq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762460799; c=relaxed/simple;
-	bh=XZAtY+Rd14/2cybaJxKcM5kD5I/W2njZtjsegKIfEcA=;
-	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
-	 In-Reply-To:Content-Type; b=cMi8chAi/oAeeV642RFdexq8CJ4/0Mgrcg8VJYvHhLbTK5iytFA0mIgm7K/4Mj+tsH62edLXx6zxWoP/TcnemS3wD3VWV3+C82mblVdVo7RQlfLlGhwjom6/7FHQC7C+ynysDJIxzf0cS0/O9H70GgqkOqD8zsjljKR0nCWPrkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=VpjqOZeo; arc=none smtp.client-ip=80.12.242.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
-	by smtp.orange.fr with ESMTPA
-	id H6XrvyPdL8BgRH6XrvECBk; Thu, 06 Nov 2025 21:25:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1762460725;
-	bh=NQMjb3iEHPYWazi+q361lmQ6S9XwgUIL/XHW25HFaI8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To;
-	b=VpjqOZeo7T+Xk9AVJm9oZCR/KNJFfABW2xmLNx2EosNbSObH5FLDZFdRP8JxJPrnw
-	 zdhH+CRI2IqrVFVYWtbnjoLnZQsYkrOQrXNN3hdUu69AlzNvFSKZNI/pdRsSisFS/V
-	 nJouBMLdPT5WHZ6k/ZZt3mfONtIhqdCEo+11DbuFvxUzvemZCzEL6aumNyeyv9Wq/O
-	 14VfheJAGE+KYIF7mr67smSQa4OBQwDyJaxtkDOTLBd+AXpNYfsFw1W901XHJkFVNq
-	 ppXUxW1RHmgJgCcPoJcaS/YnYTKbWcBAY+JyNO7c71pElGQuJdRRl9U4QlfBuqCWYn
-	 tPvBDAX5ZsLhw==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 06 Nov 2025 21:25:25 +0100
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <bc9074b9-27b5-4a31-ab85-ef7fcc309523@wanadoo.fr>
-Date: Thu, 6 Nov 2025 21:25:23 +0100
+	s=arc-20240116; t=1762460879; c=relaxed/simple;
+	bh=0t6MlGhVM0XL2fZZuOAF1ghwnWWRlF6HQII+byj8QnE=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d2SQek6L17cyJOthYIdTLD8hyCopMchp0aFnzYrhPJEg+THrK/x/cDZKG02LiE2sU7eNXEbx7gCFLeyrdVJz4mwiv9WzbV+gM+o8Agyi0fZ505quUNoH0lnDaBT/bSIeO8M7NHNR515o59f+Pxbc0O6GvvfYNW2HV2N1R9H42YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R3Cblq2R; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47114a40161so253705e9.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 12:27:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762460876; x=1763065676; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1z2wjiHhvsejiQn/+tOEpXB/N3K2BinmsJSUyaKjfEc=;
+        b=R3Cblq2Rgj4Z5SJ5m5pLvvpB01wYiiu1oGpnbvR1GiSq7p0R3aa9+bkVF0b5p+aIfn
+         kEa7Bw59OcJ0+2rXR+rNywOL9rgkb2gsJQlOv0cRMzb2pD0QXZeGL2va+wjAGDwOS4e7
+         Mb54PQeZjRsNbs2H8CdKGEOyaj6b4eKPa+kiNUfdrd7d/CCuRTFbP5S+I1mBw0Eyhnzx
+         6jFmGs/SMDPPOtzH0c+6GbSdD0YokzbEJVUx3ZX/23ErKK5CfmxToQi1hrFqU5jySmfq
+         /rh/sOS++A8xI1MymlGzAb0s/GNe5Mw9U3VEY/uEfUZh22WRFYxlFhqz2OfQXmAMLT4Y
+         0IKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762460876; x=1763065676;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1z2wjiHhvsejiQn/+tOEpXB/N3K2BinmsJSUyaKjfEc=;
+        b=gAxyUutvOZMFwa7+MITz4VZk0R8uMZpYa1otT/M9GQcECBuTvaZBb0iqNUS/8jOZ44
+         PpPmlKXjZsDm61dG323W9mrL63aT+v7EWaVzOZg1xuLxSYinfu8Ht2OaEb5dC6LScixK
+         tFd3k7o7HKO1MqqhsBxYJEH33w+NXAs1Y4oFydjtDe0in4z7Z7KNkxglck40tbGfAU3j
+         /Y4xLodJKHUe68QfFmvWwLXauaIhwczwiFGgmbP9sOqAY3Qc5g+nY9dD/HJ1FsoWpQPT
+         /104K/tNXEGBEiopcEqU8C8ZDez6I5P7ZO8vUt/IQRA9185jHF4rTAf6+1p4bxp6ei/3
+         2TqA==
+X-Forwarded-Encrypted: i=1; AJvYcCXfpYCgQLqLIb3jfSu8azMAlxmLoSpSoMXtuuTPgIZCAitsjMg7zSBexV/O5s8S6qyd7jM9D80ZJvHO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNPkrmnd7XfVyoSAU3xKQiN1bcgN2WT8Evyzxv29mOjYqJE5uV
+	gUeje503K73HfZzZB5mGsAle/3dodmmR5Q2LNLBBTlDUKbkgSEorLDj7
+X-Gm-Gg: ASbGncu4TPipwOkoORMzZyR17GvBl75nA/f2pi4vm8uSMo5QkfvRjfEjETN8RECmrpR
+	gLE/Ycc8pxMlLy8M3QcuOrhr6cpeo3T0qkrbOEhSwekHSmAfw/YkvCmFzdR7eRgp38Ys7b4bBQq
+	UEesBbB0FyPugVJ5RhFYPaGIsdGO4zIMLVaNyrDzIX0g5PoWSPO2lQN6SpMoj2gGHgoy07BH5/T
+	ciVzAXFPpskFfwnRS7EtqGGlJ7vd+Q+51BnphVWOFvZFRmAoS4FLRqnVKnCT0v1KyEBTSa4sCYj
+	WKQ/SEMO8ucg3unTnUe/LtJy4xf+nF6ZK9y3XRnqk9FV0Uj3Indct/HlwOLoiuMxsvBGxC58ud/
+	xxbGPxqlJqqD+XoupUdNCIUACKHogvB1+1mY+vtiFngb7tMaXJgWc2ciRXRJwAvYkFq0bkKmSv4
+	X1x+w59iFzB6MGOSQOM7/bVqPqzg8h
+X-Google-Smtp-Source: AGHT+IHdBsgSQPK7gktxEdVBPh+hNOGF+tzMsBrl2JJsqB6qaGdVHc6sEdU0SVSxEKKOa2H7wzBBRg==
+X-Received: by 2002:a05:600c:4e88:b0:46e:4b79:551 with SMTP id 5b1f17b1804b1-4776bcc34d8mr5465515e9.31.1762460875637;
+        Thu, 06 Nov 2025 12:27:55 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4775ce32653sm125100735e9.13.2025.11.06.12.27.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Nov 2025 12:27:55 -0800 (PST)
+Message-ID: <690d04cb.050a0220.1f914.57e6@mx.google.com>
+X-Google-Original-Message-ID: <aQ0EyPS8NmP2gehc@Ansuel-XPS.>
+Date: Thu, 6 Nov 2025 21:27:52 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] clk: en7523: generalize register clocks function
+References: <20251106195935.1767696-1-ansuelsmth@gmail.com>
+ <20251106195935.1767696-3-ansuelsmth@gmail.com>
+ <bc9074b9-27b5-4a31-ab85-ef7fcc309523@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] clk: en7523: generalize register clocks function
-References: <20251106195935.1767696-1-ansuelsmth@gmail.com>
- <20251106195935.1767696-3-ansuelsmth@gmail.com>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Content-Language: en-US, fr-FR
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20251106195935.1767696-3-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <bc9074b9-27b5-4a31-ab85-ef7fcc309523@wanadoo.fr>
 
-Le 06/11/2025 Ã  20:59, Christian Marangi a Ã©critÂ :
-> Generalize register clocks function for Airoha EN7523 and EN7581 clocks
-> driver. The same logic is applied for both clock hence code can be
-> reduced and simplified by putting the base_clocks struct in the soc_data
-> and passing that to a generic register clocks function.
+On Thu, Nov 06, 2025 at 09:25:23PM +0100, Christophe JAILLET wrote:
+> Le 06/11/2025 à 20:59, Christian Marangi a écrit :
+> > Generalize register clocks function for Airoha EN7523 and EN7581 clocks
+> > driver. The same logic is applied for both clock hence code can be
+> > reduced and simplified by putting the base_clocks struct in the soc_data
+> > and passing that to a generic register clocks function.
+> > 
+> > While at it rework some function to return error and use devm variant
+> > for clk_hw_regiser.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >   drivers/clk/clk-en7523.c | 148 +++++++++++++++++----------------------
+> >   1 file changed, 66 insertions(+), 82 deletions(-)
 > 
-> While at it rework some function to return error and use devm variant
-> for clk_hw_regiser.
+> ...
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->   drivers/clk/clk-en7523.c | 148 +++++++++++++++++----------------------
->   1 file changed, 66 insertions(+), 82 deletions(-)
+> > +static int en75xx_register_clocks(struct device *dev,
+> > +				  const struct en_clk_soc_data *soc_data,
+> > +				  struct clk_hw_onecell_data *clk_data,
+> > +				  struct regmap *map, struct regmap *clk_map)
+> > +{
+> > +	struct clk_hw *hw;
+> > +	u32 rate;
+> > +	int i;
+> > +
+> > +	for (i = 0; i < soc_data->num_clocks - 1; i++) {
+> > +		const struct en_clk_desc *desc = &soc_data->base_clks[i];
+> > +		u32 val, reg = desc->div_reg ? desc->div_reg : desc->base_reg;
+> > +		int err;
+> > +
+> > +		err = regmap_read(map, desc->base_reg, &val);
+> > +		if (err) {
+> > +			pr_err("Failed reading fixed clk rate %s: %d\n",
+> 
+> Would it be better to use dev_err()? (here and in other places)
+>
 
-...
+Yes but I wanted to limit the changes. Is it possible to do it later?
 
-> +static int en75xx_register_clocks(struct device *dev,
-> +				  const struct en_clk_soc_data *soc_data,
-> +				  struct clk_hw_onecell_data *clk_data,
-> +				  struct regmap *map, struct regmap *clk_map)
-> +{
-> +	struct clk_hw *hw;
-> +	u32 rate;
-> +	int i;
-> +
-> +	for (i = 0; i < soc_data->num_clocks - 1; i++) {
-> +		const struct en_clk_desc *desc = &soc_data->base_clks[i];
-> +		u32 val, reg = desc->div_reg ? desc->div_reg : desc->base_reg;
-> +		int err;
-> +
-> +		err = regmap_read(map, desc->base_reg, &val);
-> +		if (err) {
-> +			pr_err("Failed reading fixed clk rate %s: %d\n",
+> > +			       desc->name, err);
+> > +			return err;
+> > +		}
+> > +		rate = en7523_get_base_rate(desc, val);
+> > +
+> > +		err = regmap_read(map, reg, &val);
+> > +		if (err) {
+> > +			pr_err("Failed reading fixed clk div %s: %d\n",
+> > +			       desc->name, err);
+> > +			return err;
+> > +		}
+> > +		rate /= en7523_get_div(desc, val);
+> > +
+> > +		hw = clk_hw_register_fixed_rate(dev, desc->name, NULL, 0, rate);
+> 
+> I think that the issue was already there before, but should we have a
+> corresponding clk_hw_unregister_fixed_rate() somewhere in this driver?
+> 
+> I've not seen any.
+> 
+> Or use devm_clk_hw_register_fixed_rate()?
+> 
 
-Would it be better to use dev_err()? (here and in other places)
+Well yes, I didn't move to devm as it's already planned to move to full
+clk with .set_rate and realtime .get_rate. Is it possible to also delay
+this in a later series?
 
-> +			       desc->name, err);
-> +			return err;
-> +		}
-> +		rate = en7523_get_base_rate(desc, val);
-> +
-> +		err = regmap_read(map, reg, &val);
-> +		if (err) {
-> +			pr_err("Failed reading fixed clk div %s: %d\n",
-> +			       desc->name, err);
-> +			return err;
-> +		}
-> +		rate /= en7523_get_div(desc, val);
-> +
-> +		hw = clk_hw_register_fixed_rate(dev, desc->name, NULL, 0, rate);
+(thanks for the review)
 
-I think that the issue was already there before, but should we have a 
-corresponding clk_hw_unregister_fixed_rate() somewhere in this driver?
+> > +		if (IS_ERR(hw)) {
+> > +			pr_err("Failed to register clk %s: %ld\n",
+> > +			       desc->name, PTR_ERR(hw));
+> > +			return PTR_ERR(hw);
+> > +		}
+> > +
+> > +		clk_data->hws[desc->id] = hw;
+> > +	}
+> > +
+> > +	hw = en7523_register_pcie_clk(dev, clk_map);
+> > +	if (IS_ERR(hw))
+> > +		return PTR_ERR(hw);
+> > +
+> > +	clk_data->hws[EN7523_CLK_PCIE] = hw;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >   static int en7581_pci_is_enabled(struct clk_hw *hw)
+> >   {
+> >   	struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
+> 
+> ...
+> 
+> CJ
 
-I've not seen any.
-
-Or use devm_clk_hw_register_fixed_rate()?
-
-> +		if (IS_ERR(hw)) {
-> +			pr_err("Failed to register clk %s: %ld\n",
-> +			       desc->name, PTR_ERR(hw));
-> +			return PTR_ERR(hw);
-> +		}
-> +
-> +		clk_data->hws[desc->id] = hw;
-> +	}
-> +
-> +	hw = en7523_register_pcie_clk(dev, clk_map);
-> +	if (IS_ERR(hw))
-> +		return PTR_ERR(hw);
-> +
-> +	clk_data->hws[EN7523_CLK_PCIE] = hw;
-> +
-> +	return 0;
-> +}
-> +
->   static int en7581_pci_is_enabled(struct clk_hw *hw)
->   {
->   	struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
-
-...
-
-CJ
+-- 
+	Ansuel
 
