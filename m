@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-235820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E579C3D2BC
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 20:09:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C094C3D2D7
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 20:10:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A1073AE569
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 19:09:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4B1D18839B3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 19:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217D1357729;
-	Thu,  6 Nov 2025 19:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7D7357A4C;
+	Thu,  6 Nov 2025 19:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aQqMdFnZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ur2QlCq0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE68E3570D5
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 19:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D770357A27
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 19:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762456108; cv=none; b=Yh1ECEn43Hzo4pF9lg92G+tvNwaob0jas+tOc60SxaCrRWxRNlzlPhZvjKIeF0Ck7+hZYa3CMlEJ/y5WBu7Iewd3WAPTa6M+ihB1Y28gZC7J2vQDcxu4pj/7rFQh0UbeVuOw+FMKZOLqUmX+ILOfPZh07wojShJAAWynUVKV218=
+	t=1762456110; cv=none; b=cR5UwLXV9Ab+pNXotKj0O2+ImkE50QzcPTkGDEDtSk3vaJHZGXnhGD+PiHxd6slo5W9f4vAiI2Dzbt54f2bugDv4giY32Zq2itMmg9cCNdAfjshqUDN4AKvtcK43t4YK/tdjSixESX84Cf3pu3HL4dwdCKI/+EAE6OxcTsY4IlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762456108; c=relaxed/simple;
-	bh=mMs+/htGtXYGsIA71gg7FmYxj0Ux55LRPjq4c7c7iAM=;
+	s=arc-20240116; t=1762456110; c=relaxed/simple;
+	bh=em6T/0hfaUrxxPHQSOCVHJqt17fZcoSzBpufVPMk75E=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n/JYZpm9klxUAIVaBOslaDmOwRfOKErcm/0/zrYEeMOQi/75GKp5DglD6BFpZzLtr9NUfKCpGfXxSf8v0XL0+kJpH6YMwG5iO9OO8JONNiLZ0h945gwjBvPVZQHcq9PXTmDbpgC31miUxNdLdBIMnpRBTamolzU+t84LPIfY4Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aQqMdFnZ; arc=none smtp.client-ip=209.85.208.45
+	 In-Reply-To:To:Cc; b=esye7+OhwgzoHApFT0RBxnCituDHxF5MkfldqTjRSeR/jkNz7rI4UOwRpndhEIWXYSgcsWQj3xl9/eidB+mc3X1rBWxAIJlnE8bjMvp/MxvtgGnK0I/q+IyRHDL0BJ7TJtteoEcYdXqNKf4aZbAG8KSrRBFL8c0uBUjESZjhNds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ur2QlCq0; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-633b4861b79so268863a12.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 11:08:25 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6411f1c4b4fso231891a12.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 11:08:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762456104; x=1763060904; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1762456107; x=1763060907; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PBDauKoKfPD4CnZZWtWcSb53n04sjO6bQK2uW89yUaA=;
-        b=aQqMdFnZ/EDbn5WdteambA+Xc3GQlyI8b7m8ylszwSPejK+NiQFn7rcT+7F24nrY/H
-         5fzrZKogx9kbUl6gwFkr5vQZzq66EfoB82318oCRTbWOmt7gQu8Wii70ZcEfOfn7krES
-         XM8j7l0WEa2tACzmLoeDIKMWSu2bUaRaz3RB/h7cS2vAkgQ3dK3H6e3RFnXSYBfDR3lS
-         OYtBw4QHPF7r5yCyXY56UTk37K4UiC+rYNqMHhHmyRJYhXBZ6N3tMAjS7DE+ShBBZs7V
-         nnDiGh4m+bC5D5Wa9UrSeQpKVgIPu3HRDGJywX6an6ET8UQg43BnhDIYIhAtDFsdx9a5
-         7IQg==
+        bh=eFhUWdS232/zvQ5zx8YGxHTaYNY9a/jDdBok4SLTbUo=;
+        b=Ur2QlCq0ik29I9065yrZX8pGcAy4KLJfXQcFRn0IllUo1D+SF98qQ+QnVFdRCi6cFl
+         2mAM8N7jvIdZAA97AlUZU4ll5Bu/OFJx+IYTkptxqv1A4dnMwLJ12PMyFfT8Ol8Fh9UG
+         kCMlk/hiY2R65TKOp9ROfIsKUJ0n/u4FkAUm7jiwtLd09a48ccspztfEgjg1CW1jtEuS
+         AXgOID7XiciDjMC/nMt9wKRFOYCBjuO+zmh5YO2YZFpB5YpZsIuKZdXsuSfAPU+pDZ/t
+         K1tdaFWDECiQdPmRcjS0sraSvMHRaciRa3Y8e/O/34dgDeKzr9txD8DxfgHwXaqU35nE
+         RyOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762456104; x=1763060904;
+        d=1e100.net; s=20230601; t=1762456107; x=1763060907;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=PBDauKoKfPD4CnZZWtWcSb53n04sjO6bQK2uW89yUaA=;
-        b=qAlDOQhtA4Yt/D5d5Op81vW0zV0mRz30uTEn6iAlpOCoRRDKQAuhFf2lv4HbQZWLLi
-         VwgIVt8EpOBPwIJkLTQT6j0aOJaSxh8TVy0SrUpOj6txnnHFP7Qjhc6VZjMO45G0Ck8N
-         yFlXtn8E5/zJpDzPS+mEty7OmhOiFZMObkg7YEenrBhhiKA8jnCvwOLZMDXbO5F+LSg8
-         oJ1FFdaA+67fFpwIG7TeAf5lB712dB3uMuwKUa9bMPJGUVeXV4FD96yzOUFaVKNM+pJn
-         pOGmvD+TKzYirVvYUT0ArHB+zvB6Bz2T2i9JW/PHZVdnC7A0oEUVcx8RagdsAOXFI3eu
-         Y9Zw==
-X-Gm-Message-State: AOJu0Yw+ch3tcI+jBppSqFZj73Xo6JuEJpc0aOm7QsN88OkEvEjRpJbZ
-	s7JL0vXIot8yOqNa9n/dlZ18W7z9XUL9Lu+64lunqAvr7Oo2A1BTbqM6V2CEYuAgkrM=
-X-Gm-Gg: ASbGnctNX77gL+cM/fR7g8j+IMR6c6a3pkx7yCvQD695YZ/FfjOB0mBlGE6qaYJT6MS
-	a+GIwbJMPc/nKQPxEtIWg7sexY+Evr6i5SgX7iN1D9On9YK+Z+p8QZ0cTWVYXtUGcTMwmTBlSiw
-	fh8RhxD9mvLkIqIGdLbeVuFdvs2eKCf+fFqUmsbZZieqA1wrVEZDeBkiDMZI3B4NHaL0WGhYOCK
-	4XUN+BuzbTSRk6UZmkmlb96A02JUfZFWtlEerJ/lG8Uu73PiJ9b02D/otIicMSmjL5N96EU4ji1
-	0B7gOd09S9PQst8/scK0M8/Br5Pv3GW9sQLmvilA+uqUwRaBJSGeDGJ/1sbXB20spD6+dQGWSFO
-	Brt1y0NFu/WbjgMvssWXE2C2YZbV2ZWyJtCI2h0ypdAlfA+sZe1Z8Zq86DeojeCnp/jikgK6iBo
-	NczYMThORLCuIlZcsFJcnr3SZztGI=
-X-Google-Smtp-Source: AGHT+IG+hyJMTcEGj5iy777lLiyM71Dn2jw/AE3Pf8p7sH3RSp5ANpEt8SWqIzbEh+pnzhio1EyGSQ==
-X-Received: by 2002:a17:907:6ea0:b0:b70:bb39:6f34 with SMTP id a640c23a62f3a-b72c085cb83mr16365766b.1.1762456104130;
-        Thu, 06 Nov 2025 11:08:24 -0800 (PST)
+        bh=eFhUWdS232/zvQ5zx8YGxHTaYNY9a/jDdBok4SLTbUo=;
+        b=AngcK+ts3EkI0rRB1bzJY3wNcyF344RnJFxY2fPNsvmne4TyLm5zcvEroBz/l7R1r0
+         4LjKrmJSxiV6mmWZxGLVLU06GIT+AOTGoqQXYbmJ0WCNVGsQYx44ys8/SIAJbunu82rg
+         ZpQLS7qObefb2fI2wJzcD89BC0t0q8CGyX8MLsNFk+/LPobV5/HoxQcLsbtIUzvgZm+o
+         8GzMuB2Eb/iTdlWctZha0q7oJeGduXfC1GhMo5kbfsUh9k4yeNGi0pyyJb8Vac4l9IJo
+         o13EgD/y0ne9D3u7ZKr6jnH9qy5d7l9omxBKVYjr9W6wHDhKHGBZgZ/kwIjA6utadcZZ
+         vQQA==
+X-Gm-Message-State: AOJu0YxSHgVMRpHPjSVXGkju8bZvN+ZfvIeO1KD0uJ+lnoLIEOeP6WuT
+	cRkxymL9JsXMKRLpGa7R8Dvpf7VQQPRyAC+zeturEwJ3jezHYvO7yQYHiVVUByTBHuA=
+X-Gm-Gg: ASbGncuxKGuXj92qBtzhVMklzYeifc9AMUbF/s9Wv/id2JeDOJuidDZPqyCFaDOE+Cb
+	TQCdkX1eRYBifUNQvhYc8qCgC2e0LYC759VI0xyxvcRcFryDLLa74vAEp/22/VYXXwGhwZoemUq
+	1tSPtLzXdbGHS1193dCpOfhQtUgtR4GG+cCf3oXBfu+P/ZYzT9znNz2LvkDyE2Eo9XNeNysbTEb
+	aQJo5Rod2bs1gmErroqiaPy7PJsL9k64bB7Yj2QZJzR+gEKxal80LOVze/57mDtyMh8u4p8T3Rb
+	7atE/KX0wl+aNdm6LNrJCCVCTekeNeaPZU4fgF7pAqxln8/v2lFAM5lprlj3t2bgw7MGn+0gA/B
+	uxUGQ8mK6wWGuuAyZGtNuozv929P+/ZTR8GhrqRa6J149keUg74l/5H3TIBggyN4oYdsU7iDYRP
+	RBQTFqLTIc8aLjhQ6jCdSaBfZ4bkYdni+XhwXvTA==
+X-Google-Smtp-Source: AGHT+IHV0gcmtT5dHOFz2RWdjjPo4Ym0Dxek/nZLw6T0N6UfI+vf5qBD6z9VCh47UKxNTUDt+Fg2GA==
+X-Received: by 2002:a05:6402:1d4c:b0:641:2a32:b8bd with SMTP id 4fb4d7f45d1cf-6413f062ecfmr273551a12.1.1762456106689;
+        Thu, 06 Nov 2025 11:08:26 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bfa2510esm26739566b.72.2025.11.06.11.08.21
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bfa2510esm26739566b.72.2025.11.06.11.08.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 11:08:23 -0800 (PST)
+        Thu, 06 Nov 2025 11:08:26 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Thu, 06 Nov 2025 20:07:14 +0100
-Subject: [PATCH 07/13] firmware: qcom: scm: Simplify with
- of_machine_device_match()
+Date: Thu, 06 Nov 2025 20:07:15 +0100
+Subject: [PATCH 08/13] irqchip/atmel-aic: Simplify with
+ of_machine_get_match_data()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251106-b4-of-match-matchine-data-v1-7-d780ea1780c2@linaro.org>
+Message-Id: <20251106-b4-of-match-matchine-data-v1-8-d780ea1780c2@linaro.org>
 References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
 In-Reply-To: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
 To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
@@ -116,26 +116,26 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-tegra@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1409;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1193;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=mMs+/htGtXYGsIA71gg7FmYxj0Ux55LRPjq4c7c7iAM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpDPIPnieH16c8d60rwZIiX6haowTgQtMDdTNgc
- Nt9m3EGIpqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQzyDwAKCRDBN2bmhouD
- 15MND/9iEN4qP+PowaIfKdmRXiKRnNXohM8G8jgJAet6APPR2LlkfxfOSySgRZDLKCKTj6THV0b
- 7S1uNUEDLipfAfqOyb2ES/O3p5hOdH+NaiNLbJNFfvKNEVsn1979VTOkhpl0yR8E/eLVMk6Rb4v
- 3BjFCTTZSlOxYovGcx2SaB8PFO7Mb0UJEj9+6dJqeF+WyC1jWN89UziF9Aa9kShSX7nhipdwh3e
- ZvzDbpiCfcqIJ1oAWBlOLSkYTWAVyHAxnH07HvL+u3MaiynTgwewgye1+rFCFDZXCord4VxYgJi
- r/pAXsBB7P8GdbQ/0tzWWixP0N5XIW+p1fW23ZI7sp7IeSI/y8IOHHtzb3RfzN5z0cL89NB31Ld
- ZMzeoYy4VMqJsWvzxzO5H04KoDvuG8++JeHBB7TFbaBpwfMXXF/fhWawgvSGfvGlQVMHPkvwQzT
- pm/KFaHtPyRmeKO7mf/wyxYMOHlJWUFo5HgpPwzSKC/wTylBSMjmlVio4ZGFJeLMvA1hFqKE1md
- ncgtRPz3+HXM4i3pKZ1yCq3ECTajGjpZ/G0S8kFfY7AEKZlPseRRXMisGjDhnEibdRTOVnsmjBs
- vG5FsRPbRPg/s0BYkgUIUEREnc9tP+jJ3rCqmA4Bd4DOr284xpS3Rd+NkltT1CfIkfO1IRPgHtH
- WEqN666U3/TfL2Q==
+ bh=em6T/0hfaUrxxPHQSOCVHJqt17fZcoSzBpufVPMk75E=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpDPIQPP9Q0idGJx68rbMt6LPDzi2dtyc+qS5Mu
+ 2MGYLCnw72JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQzyEAAKCRDBN2bmhouD
+ 19RJD/0S4D7rWxJnMM5I0ZYvnbWMyO/Pj+zZl5eFKXP8jMODrKLvsKA6Fg3LnSAdO8L+5R5rOrn
+ 4EUnjlQYlM54t/RRDk+Nzjd/KH48/DE/2WCAFiGImlDsuBP056TT98RR3yrY4NzyX24N/8z3ax3
+ 8GZFPox1BIaAcX+3EomDyR36I+92AkCvbnhnFPDKUTooHlSVWPX+K3FdtM//a58/chL6TZ86jq6
+ 1SgBn6KYSc22lQ59475GTGt4ta3S+5ZvHrQi2366EGm69VLEQq9Ysm+AGe/x12eHW53kGE9p0AM
+ wapt3PIh/Lvpie5yT6jh7TtmdKuIaka3XM6EOgFwnkDLzsSGOZCBPg2Rcpos//m5AjddN2J1KGl
+ 0EZJIVYOqxPDRKY61SJacWclPPPmdC+hJOMGk4tr4v3b3IMuXPSQOSyZSkCuum4QMkPYk7LPZO/
+ MVGJ3XH65qFgUsUwv7MGHHUkz2dgMMvzpi2oFBbsriL+FY82SE0gsjda3sfKcjj4IKMEEb5wCRu
+ jHeDHhMGRpgqfbXiosWKNkJQpOp4gHIsuCueX40vRwcWy89afIZXxJ9cyXTBcyDrzOQVF6NovFl
+ 9Nz4nRsyPVVgw3gPqrDfWqzQlrFQeSwu5UTDL0iIWxTLElBqYmjApnQ6PvZPKC1N8OTCYhLlGUy
+ JC6bgRbAddOP0nw==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Replace open-coded getting root OF node and matching against it with
-new of_machine_device_match() helper.
+Replace open-coded getting root OF node, matching against it and getting
+the match data with new of_machine_get_match_data() helper.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -143,44 +143,37 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Depends on the first OF patch.
 ---
- drivers/firmware/qcom/qcom_scm.c | 17 +----------------
- 1 file changed, 1 insertion(+), 16 deletions(-)
+ drivers/irqchip/irq-atmel-aic-common.c | 15 +++------------
+ 1 file changed, 3 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-index e777b7cb9b12..1a6f85e463e0 100644
---- a/drivers/firmware/qcom/qcom_scm.c
-+++ b/drivers/firmware/qcom/qcom_scm.c
-@@ -2018,21 +2018,6 @@ static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
- 	{ }
- };
+diff --git a/drivers/irqchip/irq-atmel-aic-common.c b/drivers/irqchip/irq-atmel-aic-common.c
+index 3cad30a40c19..e68853815c7a 100644
+--- a/drivers/irqchip/irq-atmel-aic-common.c
++++ b/drivers/irqchip/irq-atmel-aic-common.c
+@@ -187,20 +187,11 @@ void __init aic_common_rtt_irq_fixup(void)
  
--static bool qcom_scm_qseecom_machine_is_allowed(void)
--{
--	struct device_node *np;
--	bool match;
--
--	np = of_find_node_by_path("/");
--	if (!np)
--		return false;
--
--	match = of_match_node(qcom_scm_qseecom_allowlist, np);
--	of_node_put(np);
--
--	return match;
--}
--
- static void qcom_scm_qseecom_free(void *data)
+ static void __init aic_common_irq_fixup(const struct of_device_id *matches)
  {
- 	struct platform_device *qseecom_dev = data;
-@@ -2064,7 +2049,7 @@ static int qcom_scm_qseecom_init(struct qcom_scm *scm)
+-	struct device_node *root = of_find_node_by_path("/");
+-	const struct of_device_id *match;
++	void (*fixup)(void);
  
- 	dev_info(scm->dev, "qseecom: found qseecom with version 0x%x\n", version);
+-	if (!root)
+-		return;
+-
+-	match = of_match_node(matches, root);
+-
+-	if (match) {
+-		void (*fixup)(void) = match->data;
++	fixup = of_machine_get_match_data(matches);
++	if (fixup)
+ 		fixup();
+-	}
+-
+-	of_node_put(root);
+ }
  
--	if (!qcom_scm_qseecom_machine_is_allowed()) {
-+	if (!of_machine_device_match(qcom_scm_qseecom_allowlist)) {
- 		dev_info(scm->dev, "qseecom: untested machine, skipping\n");
- 		return 0;
- 	}
+ struct irq_domain *__init aic_common_of_init(struct device_node *node,
 
 -- 
 2.48.1
