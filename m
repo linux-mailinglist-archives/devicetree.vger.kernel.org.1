@@ -1,201 +1,102 @@
-Return-Path: <devicetree+bounces-235533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF17C39AB8
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:54:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08637C39AD0
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:55:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2A623BB6B9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:54:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9D1E3BBF23
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D6AF3093A7;
-	Thu,  6 Nov 2025 08:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 836403093AE;
+	Thu,  6 Nov 2025 08:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="RCCrVAXs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SS40bEUp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED840305044;
-	Thu,  6 Nov 2025 08:54:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB983093A6;
+	Thu,  6 Nov 2025 08:55:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762419281; cv=none; b=aYCcQijYoRxcSuF+nS2nY22b6erABK+BFk/BJLvcUhjNqiMrTgqY2Uf1PSxBhLr257IhJ4w1AR8IGufXHXhWx7aYPzHsLbeLRkAbreHZJNWoqNDyPgRzGyGqF4nUmAQ+3NwiYhcCivMsjSMeqASuOjha+m1sP2j+Je0bLOlXyrU=
+	t=1762419320; cv=none; b=Dbt9CjCB9DtxSDv4NM/9Na/nmdOcw8yiBjNypOOaGWWYecyq1b0C4ItFQtd1EPQfdf2wEK17A27KvaPG2MIXh9mRzkBLBgyuD7aHJhR7werRckFWpZbUBc2k6mg/gsoxXNoB+qBw+1VBzX2D3tBzL3p8RCdeBdpKdSAo+6W6aY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762419281; c=relaxed/simple;
-	bh=52Jbx77qx5qHac0X+nosmXiiY8Z3RnLgLjZ4/YwILqI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dXxu8lqwIM1HR5oR2P2P+XWX0MkRXNrb+e6W4RhmewVoSiaPlNuqEUOZ5/IO3623I8DaC/n3P2X0d08xk2/pIK4LftC6d5nvfDxrSQQXZMk5+mBzwkH9WFPbULlYeilXdM8zVzr6P3MXx2mZ83d+XYUXFWmBBt+bPH4DvDVKo3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=RCCrVAXs; arc=none smtp.client-ip=81.19.3.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-	s=20160406-ysoft-com; t=1762419278;
-	bh=ps9vapSiAzSq7ACg34jfzO+hmVnf1lnwCkq+2yxADxI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RCCrVAXsfNWWNFeUTsJakZslb2RIyjlHueShOvolNDa1nC9IMyK4QQEj4a9M8JifO
-	 tAT74X+npT5u1WlYz/CqthNGAVkYYvBlm7i2zbuyrQURGfWNwJ6wHYi1DZktN6zGs/
-	 nN0lfgeFbXMV/MdnPWbVNDphXaBjydKscAfNkxw4=
-Received: from vokac-nb.ysoft.local (unknown [10.1.8.111])
-	by uho.ysoft.cz (Postfix) with ESMTP id 11537A0534;
-	Thu,  6 Nov 2025 09:54:38 +0100 (CET)
-From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To: Shawn Guo <shawnguo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-Subject: [PATCH v2 2/2] ARM: dts: imx6dl-yapp4: Model the RGB LED as a single multi-led part
-Date: Thu,  6 Nov 2025 09:54:29 +0100
-Message-ID: <20251106085429.2067699-2-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251106085429.2067699-1-michal.vokac@ysoft.com>
-References: <20251106085429.2067699-1-michal.vokac@ysoft.com>
+	s=arc-20240116; t=1762419320; c=relaxed/simple;
+	bh=eTn5QPja5NrAhV8JqfC0hiE3iscC1h08zfLZuhblRmI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lSKLjvjS81Xero2JUngrkFSGR7CDLLbBRQbR+intCV8vPxf2jqC5Kc3JGL181hyj393zPe/CM1P/2s6aioFV4X6pNEdZ9SoDDhbvRlVc/uFdABz5G7lAF/u2wjNxMwzO39xoOl2Fu+xO+1zOBCpeedBZgIXmD0bk0V1IpHSjUs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SS40bEUp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BC98C16AAE;
+	Thu,  6 Nov 2025 08:55:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762419319;
+	bh=eTn5QPja5NrAhV8JqfC0hiE3iscC1h08zfLZuhblRmI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SS40bEUpF/m+ZGjrRg7HIMgt34VuoX6zT/bTzevK+98TnoCw2xl36zwc4RCoTDjmx
+	 xkxRNY6oguADuY5pZFvseYqivGr49DXX5WBg9no057TxlxBPPYrvnhJd79C8Bss0k5
+	 fbwHMJj4useMfhIQdF13ZpRwyiXQC8iIxXV27T/hQKjs07VEH/Y4uul1P1GHF8IPUT
+	 pcqesW99qc9MTMsl4HfaptzBoRSpp4d5OpDUm6V8vbLQ2REWTA/EY2MmYpDjX2+Tv/
+	 yYzi3e97M1lNTvIeH+NaebLz6Q8RMry9D7BK5kB2MPyKkz7GzVG8qY7WIlVzwIqEMr
+	 Nwecj39toUxrw==
+Date: Thu, 6 Nov 2025 09:55:17 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Enlin Mu <enlin.mu@linux.dev>
+Cc: robh@kernel.org, saravanak@google.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, enlin.mu@unisoc.com
+Subject: Re: [PATCH] of: print warning when cmdline overflows from bootargs
+Message-ID: <20251106-kiwi-of-total-valor-b27f5d@kuoka>
+References: <20251105082717.4040-1-enlin.mu@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251105082717.4040-1-enlin.mu@linux.dev>
 
-Describe the RGB LED indicator according to the reality - it is a single
-part containing all the three R,G and B LEDs in one package.
-With this description the chan-name property becomes useless, remove it.
+On Wed, Nov 05, 2025 at 04:27:17PM +0800, Enlin Mu wrote:
+> From: Enlin Mu <enlin.mu@uisoc.com>
+> 
+> add debug info. sometimes cmdline in dts is too long,
 
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
-changes in v2: Removed reference to internal issue tracker from commit message.
+I don't see debug info here.
 
- .../boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi | 44 ++++++++++---------
- .../dts/nxp/imx/imx6dl-yapp43-common.dtsi     | 44 ++++++++++---------
- 2 files changed, 48 insertions(+), 40 deletions(-)
+Please use full sentences, starting with capital letter and ending with
+full stop.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-index 8bc6376d0dc1..4a5736526927 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-@@ -279,28 +279,32 @@ leds: led-controller@30 {
- 		#size-cells = <0>;
- 		status = "disabled";
- 
--		led@0 {
--			chan-name = "R";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
--			reg = <0>;
--			color = <LED_COLOR_ID_RED>;
--		};
-+		multi-led@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_INDICATOR;
-+
-+			led@0 {
-+				led-cur = /bits/ 8 <0x20>;
-+				max-cur = /bits/ 8 <0x60>;
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
- 
--		led@1 {
--			chan-name = "G";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
--			reg = <1>;
--			color = <LED_COLOR_ID_GREEN>;
--		};
-+			led@1 {
-+				led-cur = /bits/ 8 <0x20>;
-+				max-cur = /bits/ 8 <0x60>;
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
- 
--		led@2 {
--			chan-name = "B";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
--			reg = <2>;
--			color = <LED_COLOR_ID_BLUE>;
-+			led@2 {
-+				led-cur = /bits/ 8 <0x20>;
-+				max-cur = /bits/ 8 <0x60>;
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
- 		};
- 	};
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-index 6f9bd163ffbe..6e49e1ccf6fc 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-@@ -278,28 +278,32 @@ leds: led-controller@30 {
- 		#size-cells = <0>;
- 		status = "disabled";
- 
--		led@0 {
--			chan-name = "R";
--			led-cur = /bits/ 8 <0x6e>;
--			max-cur = /bits/ 8 <0xc8>;
--			reg = <0>;
--			color = <LED_COLOR_ID_RED>;
--		};
-+		multi-led@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_INDICATOR;
-+
-+			led@0 {
-+				led-cur = /bits/ 8 <0x6e>;
-+				max-cur = /bits/ 8 <0xc8>;
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
- 
--		led@1 {
--			chan-name = "G";
--			led-cur = /bits/ 8 <0xbe>;
--			max-cur = /bits/ 8 <0xc8>;
--			reg = <1>;
--			color = <LED_COLOR_ID_GREEN>;
--		};
-+			led@1 {
-+				led-cur = /bits/ 8 <0xbe>;
-+				max-cur = /bits/ 8 <0xc8>;
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
- 
--		led@2 {
--			chan-name = "B";
--			led-cur = /bits/ 8 <0xbe>;
--			max-cur = /bits/ 8 <0xc8>;
--			reg = <2>;
--			color = <LED_COLOR_ID_BLUE>;
-+			led@2 {
-+				led-cur = /bits/ 8 <0xbe>;
-+				max-cur = /bits/ 8 <0xc8>;
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
- 		};
- 	};
- 
--- 
-2.43.0
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+
+> developers are not aware of the length limit of the
+> cmdline, resulting in some misjudgments.
+> 
+> Signed-off-by: Enlin Mu <enlin.mu@uisoc.com>
+> ---
+>  drivers/of/fdt.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 0edd639898a6..077799b2f565 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1085,6 +1085,8 @@ int __init early_init_dt_scan_chosen(char *cmdline)
+>  	p = of_get_flat_dt_prop(node, "bootargs", &l);
+>  	if (p != NULL && l > 0)
+>  		strscpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
+> +	if (l > COMMAND_LINE_SIZE)
+> +		pr_warn("cmdline overflows from bootargs\n");
+
+Why only OF early should have this warning and cmdline passed via ATAGS
+or in ACPI system should not?
+
+Best regards,
+Krzysztof
 
 
