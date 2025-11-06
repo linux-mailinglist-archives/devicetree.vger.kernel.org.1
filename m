@@ -1,147 +1,229 @@
-Return-Path: <devicetree+bounces-235595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA6ABC3A4BF
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:36:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA67CC3A49B
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:34:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7F9E3BD9AD
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 10:30:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5D5F4350A13
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 10:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8938830C363;
-	Thu,  6 Nov 2025 10:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE6A45C0B;
+	Thu,  6 Nov 2025 10:34:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="dkEkU7Ja"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mvU43Pph"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B810E2E54B3;
-	Thu,  6 Nov 2025 10:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FBD2C11EA
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 10:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762425004; cv=none; b=gMmrjeGBk4Sg6t0HN88U5x5rO8ACMuhlSAZjjNWotFzEOg5SUs0B1SHwSNHLpXKf6Ydccf9nQ+A/EnGM8HWodJjGT7dfNhB53EvtSudwHonPuxEe4Qhv+CrtDg2kR8lzx1caY0XFyRYVgnIxwm2n71E4E5kd7G6SQY+naB9XyhQ=
+	t=1762425294; cv=none; b=U9CmqT78t5jkiDdj8qgrZhySScVmHRbmtfCS8J6NR5pf4SfNDKXhtLCdsvmnhkEPAhfX9jXzbz4CxqT5kFGqMn+pa2VVJpuJj2Y+IGNyK7AYyaiiv3YAzuuRn/QoHKO028PN55VgEqIAWn8AneYTTKiW3A9l1+uyh7b8jOy/SEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762425004; c=relaxed/simple;
-	bh=S8d208v7KwO2bC2BRknENvz61VCm94Mr4CCkvOwCpqg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iw2W8Sfh1Cwb08TrPVP83SsG22sRt1p+fEjkHtAypiREaCNrbvqBunTJ+aKOl73v9mxChUDuv0+BjFR9MBgBAqUj+4DCJVGmYu+St7t1hMcOuPd2TSRwZNSDJoJCK1re4mvF2zORvsS6eooGGPcOB+FArh76Ez1eU/6Bh2qwCZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=dkEkU7Ja; arc=none smtp.client-ip=157.90.84.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
-Received: from [192.168.178.76] (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
-	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
-	by mail.tuxedocomputers.com (Postfix) with ESMTPSA id EAD102FC0061;
-	Thu,  6 Nov 2025 11:29:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
-	s=default; t=1762424995;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=E9Z1g7F3htuTJawSZ6rLSCrH92LecAfB6vDwW5FqkjE=;
-	b=dkEkU7Ja5bqgzCo/vpeWolZBXPiwYX1LAs6RzqYZNiXoMUl8X3jylZFAjZDKlMMBFG3seJ
-	Z49tAZ9LYMHsPMyDFFiuKC2+Z8YrknjEFYyQNYv0AYfPwbJtva/ylSqHDdA7U31mNAjEiV
-	X747n86Tc3avsxB6QFjt1Cftg0yCm7k=
-Authentication-Results: mail.tuxedocomputers.com;
-	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=g.gottleuber@tuxedocomputers.com
-Message-ID: <c420e087-3cf5-4d36-adfe-045bd7eb7f7a@tuxedocomputers.com>
-Date: Thu, 6 Nov 2025 11:29:54 +0100
+	s=arc-20240116; t=1762425294; c=relaxed/simple;
+	bh=E2F1rxwXrrsb8NRrX5W8HOH3YovBH/tPEh/j8MJhtCQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=gRjzzyR7N+YjiUCb1lmF+u/mnKTBTFC3MWacfnDRl+LyQ1gw3qfS0sAdb3S4eiz66bhKKI3BaCOvlHw/zsMg1AyUbbSat1LhADomQaimbgiBHJ8IJARf9ieLgg/zRSz7SHhMIZj3oEb+3emCuRCj8bQBpS7B3DWlwMjrYdxauqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mvU43Pph; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4775895d69cso3884675e9.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 02:34:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762425291; x=1763030091; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=khqybK/xlzWlMQBHPxk0XD3yxDB1oxoxHdP7w8UG3E0=;
+        b=mvU43PphvIgMySWyEFNsIBTtsvbDmxhHPeQyC/o47R6ALrECAKACLJb1YTy1p8oSdV
+         9q5i/ByHz8lLHY6p6gCOh+Ia4SkEzLblR3G4tTEvx9amfRzcDp1lTDWKwc2Z5tDA29Kr
+         LpAo9Otnmlc8JClzu93JffeX2/0SjZi/x2Ay1lDAa0KXrC/BVJDr+CspG5yPNWpFvRQT
+         3nHr1D0g3k6VC8bEIyGBpLNgfo2AL0NSMRdcwPZcburI/wanD37mE68pFup30wPw5/j/
+         f/1SKB2RpDcg+CZg6LeLLXNFs8QaN4k0IGY8cIm92Md+b1U9l1ek+aIGULPGOG8Pb2dS
+         F01w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762425291; x=1763030091;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=khqybK/xlzWlMQBHPxk0XD3yxDB1oxoxHdP7w8UG3E0=;
+        b=WTJisdttSw6nIGW2HijQRS1JAHtpF6Hred2eKNZmoZ6f/LSbh4+OAPz/tf4cmLNgg0
+         HHIeKhHc5f08hK6YK4b/J1pa8/M8JEXizqgOFnMMKnvSvC20rEBloBxatMvA1HyXEVXI
+         0y5AhVhIj7whto9xRwbtUQoLxcmvEZoBLEEL1Ne5iHQsTozuVXOff6JvI26Kp3UPVQiV
+         i0/m+AOPB4TOHI23G/I7sCRHCZw8xgSuKD1Mra63PPMXuvYG9hxw+85F9hLjKtCodPDR
+         tG6b1seopaPhkXitJxUzcqV6Z8yrBjX5lYBkAQUWEduaASVg6FMvRrYCmuVfkkUcC+SM
+         ei5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVBEWLkbfhw5hKPcDsc8CWvkoFfN0bsFvsrZwKGgFRNVlx05YoxGu5+/FdAmG17ZFoL6qPl7iHrzhIq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyw99UjPxy5VYEMf/1kqoQei/UJevwXezedU24W6s+IAvtoWHeT
+	uGn7s4ERHJkRTIXVGnaNkFGmREWq6+chtFPH5inra4id4Axd5v/q4AKs
+X-Gm-Gg: ASbGncvPC6GEb38K8CJCUmqvAoOGu/QZV8tUSqnkBhhB4Eg/Z5C9vBv1DOoGltF2ez7
+	IA78aYoRMYtB3WiWI3Ejn9rCLKJp0aSu5nqCBCbiA5NOoXNxsqj617iobiJfxWV3BuKlhdDk2L+
+	JNCrO2UkWm7uh9npk1VilKmP4F5kPToMNE4Dik8mP/Gba62uJH4V1jJIos6dkK3Bw2VrWEWtHVP
+	VxF9e/hTQ/D4wrl37wRa0LR1IeazolqFPAHtacIORB4halLvLV5QUKvJBBG04qw0mhRaKKTqYjv
+	CFGXztOd0/WS88yoE9cIptSwR/VKmcGu+NvmCITVdIqK+I2prvKe7bZgR3EH3cTWYHOLGp77Yx4
+	qCHTZh8uYQ0Qk3OR7eXPZKeLQiy9DMospCFCVDfiucsCuR1Ip7tqwCM1bYa6PSSRnWcFvbJwPB+
+	YVcZVC2hn6smDoLHRWRXKmA9HuogUCCjxNrg==
+X-Google-Smtp-Source: AGHT+IHK/oWaeWq7uP78JwTb75evD9pbxUOakU4Fr3bQ3oQuz8S08wrBQPzwEF9doMfvThWNXoaycA==
+X-Received: by 2002:a05:600c:6388:b0:458:a7fa:211d with SMTP id 5b1f17b1804b1-4775ce1874bmr49277875e9.29.1762425290379;
+        Thu, 06 Nov 2025 02:34:50 -0800 (PST)
+Received: from localhost (a95-94-245-170.cpe.netcabo.pt. [95.94.245.170])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4775cdcc552sm107269485e9.6.2025.11.06.02.34.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Nov 2025 02:34:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: vendor-prefixes: Add ASL Xiamen
- Technology
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Georg Gottleuber <ggo@tuxedocomputers.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Ettore Chimenti <ettore.chimenti@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
- stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
-References: <20251105154107.148187-1-ggo@tuxedocomputers.com>
- <20251105154107.148187-2-ggo@tuxedocomputers.com>
- <20251106-utopian-malkoha-of-respect-9eee71@kuoka>
-Content-Language: en-US
-From: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>
-Autocrypt: addr=g.gottleuber@tuxedocomputers.com; keydata=
- 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
- bsxTTcOuRnk=
-In-Reply-To: <20251106-utopian-malkoha-of-respect-9eee71@kuoka>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Thu, 06 Nov 2025 10:34:48 +0000
+Message-Id: <DE1JMG95RZME.2YSV10RI9AME4@gmail.com>
+Cc: "Shawn Guo" <shawnguo@kernel.org>, "Sascha Hauer"
+ <s.hauer@pengutronix.de>, "Pengutronix Kernel Team"
+ <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>, "Martin
+ Kepplinger" <martink@posteo.de>, "Purism Kernel Team" <kernel@puri.sm>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, <linux-media@vger.kernel.org>,
+ <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, "Alice Yuan"
+ <alice.yuan@nxp.com>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>, "Robert Chiras" <robert.chiras@nxp.com>,
+ "Zhipeng Wang" <zhipeng.wang_1@nxp.com>, "Hans Verkuil"
+ <hans@jjverkuil.nl>, "Sakari Ailus" <sakari.ailus@iki.fi>, "Kieran Bingham"
+ <kieran.bingham@ideasonboard.com>
+Subject: Re: [PATCH v4 0/5] media: imx8qxp: add parallel camera support
+From: "Rui Miguel Silva" <rmfrfs@gmail.com>
+To: "Frank Li" <Frank.li@nxp.com>, "Laurent Pinchart"
+ <laurent.pinchart@ideasonboard.com>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>, "Hans Verkuil" <hverkuil+cisco@kernel.org>
+References: <20250729-imx8qxp_pcam-v4-0-4dfca4ed2f87@nxp.com>
+ <20250805010822.GC24627@pendragon.ideasonboard.com>
+ <aLbcpEZXm5G1Onq7@lizhi-Precision-Tower-5810>
+ <20250902123920.GM13448@pendragon.ideasonboard.com>
+ <aLhJDXnz9HPGrWcp@lizhi-Precision-Tower-5810>
+ <aQuDSROHLGHIhtlh@lizhi-Precision-Tower-5810>
+ <20251105171928.GB6046@pendragon.ideasonboard.com>
+ <aQul/VGG8e3MJxhx@lizhi-Precision-Tower-5810>
+In-Reply-To: <aQul/VGG8e3MJxhx@lizhi-Precision-Tower-5810>
 
+On Wed Nov 5, 2025 at 7:31 PM WET, Frank Li wrote:
 
-
-Am 06.11.25 um 09:07 schrieb Krzysztof Kozlowski:
-> On Wed, Nov 05, 2025 at 04:41:01PM +0100, Georg Gottleuber wrote:
->> From: Ettore Chimenti <ettore.chimenti@linaro.org>
+> On Wed, Nov 05, 2025 at 07:19:28PM +0200, Laurent Pinchart wrote:
+>> Hi Frank,
 >>
->> ASL Xiamen Technology Co. Ltd. is a Chinese high-speed interface and
->> display system chip design company. Adding it to the vendor prefixes.
+>> On Wed, Nov 05, 2025 at 12:03:05PM -0500, Frank Li wrote:
+>> > On Wed, Sep 03, 2025 at 09:56:29AM -0400, Frank Li wrote:
+>> > > On Tue, Sep 02, 2025 at 02:39:20PM +0200, Laurent Pinchart wrote:
+>> > > > On Tue, Sep 02, 2025 at 08:01:40AM -0400, Frank Li wrote:
+>> > > > > On Tue, Aug 05, 2025 at 04:08:22AM +0300, Laurent Pinchart wrote=
+:
+>> > > > > > Hi Frank,
+>> > > > > >
+>> > > > > > Thank you for the patches.
+>> > > > > >
+>> > > > > > I've quite busy these days, and I don't believe I will have ti=
+me to
+>> > > > > > review this series before coming back from OSS Europe at the b=
+eginning
+>> > > > > > of September. Let's see if anyone on CC could volunteer.
+>> > > > >
+>> > > > > Laurent Pincha
+>> > > > > 	I hope you have good time at OSS.
+>> > > > >
+>> > > > > 	Do you have chance to review this patch?
+>> > > >
+>> > > > I'm going through my mail backlog, which is really big at the mome=
+nt.
+>> > >
+>> > > Understand.
+>> > >
+>> > > > I'd like someone else to volunteer to review this series. It won't=
+ scale
+>> > > > if I have to review all NXP media patches in my spare time :-/
+>> > >
+>> > > Yes, but none volunteer review this in passed months. Expecially key
+>> > > reviewer. I am reviewing i3c patches. but Not familiar v4l system ye=
+t. It
+>> > > need scalable solution. I can help filter some common and simple pro=
+blem
+>> > > from beginning.
+>> >
+>> > Laurent Pinchart:
+>> >
+>> > 	Do you have chance to check this serise? this one should be related s=
+imple.
+>> > 	This one sent at 7/29. Still not any volunteer to review it.
 >>
->> Link: https://www.asl-tek.com/
+>> I'm afraid I won't have time to review this for the time being. My spare
+>> time is already exhausted by all the other drivers I maintain upstream.
 >>
->> Signed-off-by: Ettore Chimenti <ettore.chimenti@linaro.org>
-> 
-> Also, incomplete DCO.
+>> > 	How do we move forward?
+>>
+>> I think this is a question for the subsystem maintainers. Hans, Mauro ?
+>
+> Mauro Carvalho Chehab and Hans Verkuil:
+>
+> 	Laurent provided great help about review and land i.MX related
+> patches in past, who are quite famillar with i.MX chips. But he is quite
+> busy. So the whole reviews cycles takes quite long time and offten cross
+> some merge windows.
+>
+> 	In pull requests for 6.19:
+> https://lore.kernel.org/all/4989c563-47f4-478c-80c4-41f7e98597e4@kernel.o=
+rg/
+> only 10 patches, and 4 patches is trivial clean up.
+>
+> 	In reviewing patch queue, there are
+> 	1: media: nxp: imx8-isi: Add ISI support for i.MX95
+> 	   https://lore.kernel.org/imx/20251105-isi_imx95-v3-0-3987533cca1c@nxp.=
+com/T/#t
+> 	   This one already review, but I am not sure if it capture 6.19 cycle b=
+ecause
+> PULL-request already sent.
+>
+> 	2: Add MIPI CSI-2 support for i.MX8ULP
+> 	   https://lore.kernel.org/imx/20251023-csi2_imx8ulp-v7-0-5ecb081ce79b@n=
+xp.com/
+>
+> 	3: media: add imx93 mipi/controller csi support
+> 	   https://lore.kernel.org/imx/20250821-95_cam-v3-0-c9286fbb34b9@nxp.com=
+/
+> 	   This one is quite big, but first 10 patches is simple trivial cleanup=
+ patches.
+> 	   I post at 8/27, but get first feedback around 10/27, I am not
+> 	   sure if missing somethings.
+>
+> 	4: This series, laurent already said no time review it.
+>
+> 	5: ap1302 sensor patches
+>            https://lore.kernel.org/imx/20250811-ap1302-v4-0-80cc41b91662@=
+nxp.com/
+>            binding already ACK, most maintainer want to pick binding with
+> 	   driver together, but not an feedback since 8/11.
+>
+> 	I jump into and help do some review.
+>
+> 	The questions is how to move forward pending patches, like [3], [4],
+> [5]. How to keep good community channel to avoid long time pending?
 
-Sorry, I forgot to add my signed-off line to all patches from Ettore.
+Sorry, but like Laurent I am really without spare cycles to go over the
+patch series that have arrived in media (also I do not have any hw anymore)=
+.
+So, Frank or maybe Laurent knows someone that would like to be add also as
+maintainer of this drivers for me would be great, that would also help to
+avoid such bottlenecks.
 
-> Please read submittng patches.
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Thanks in advance,
+Cheers,
+    Rui
+>
+> Best regards
+> Frank Li
 
