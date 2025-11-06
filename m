@@ -1,254 +1,225 @@
-Return-Path: <devicetree+bounces-235716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D559C3BC28
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:32:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F86AC3BCB8
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:38:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2616E1B22320
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:30:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 913503B8D8C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E64331A48;
-	Thu,  6 Nov 2025 14:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3084C334392;
+	Thu,  6 Nov 2025 14:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X6YkEiQJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bJX7t4pg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8449A2343B6;
-	Thu,  6 Nov 2025 14:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19781E3DE8;
+	Thu,  6 Nov 2025 14:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762439359; cv=none; b=Yh/6lCGcdi4r1rvrKG6HoyL+OqOll/JK7s1XTu1KK6E29ISYK/tGD4oXbjFClySyJGqiI4EY8Ys2tsysyMm+bzt5EAufjFi25HjWVB0qxuVe06KHigLECBXWAaidg91DMJ/Gzw8gLB+fZcXeCIqmjBhH7hj2ldaPDW1Kd+dwUS8=
+	t=1762439534; cv=none; b=vCkR7pURWsMe81G9BSbXUAIHtUR3WGrP/yz5MhAmoUSdGxWE09KlmJClU1t+JZ/2qPRqBtPGFGwFDQO1ACxGFUcNHiTUTSzx5gnUPxE0Mvo1uUY37WGfbiE1xJdc3sFjuwzf65ixqEa80NtLKx4OhI02tJhkpoRq+6izJeCngAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762439359; c=relaxed/simple;
-	bh=V144ITPhJaheSq6B4sSkjanob0iMvCwByWKwZnn8vVw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AE5YWjgUspXpbdHRKhiJK7xxuS4lM7hizPloU2aMoz6DTsMpqct3/8BjlkVRArt6MCkzfIZId7mihlTh3nTPyliNpIA/DfKkJnpMObIAD2PeaDBFACSMPNzUi9ehCMl8QwAO7T4MFeM/HNugZMdJZJad+4/dEZZzhXpEGjVT7Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=X6YkEiQJ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1762439355;
-	bh=V144ITPhJaheSq6B4sSkjanob0iMvCwByWKwZnn8vVw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=X6YkEiQJfoguC+wfJWLl+scVfOt+2BoboFhF58RJ+alMJ4GUR2Vdx+lDly6tm4VgK
-	 rHtU0GhiHNskumXYJWcQX2/Jbplhmlhypv1gfS6bN/C7/Yt14dYC7hobmYOvLtRpo1
-	 JhR+GbWromFuLorTVZBoD1aYamepfJ9KllMKxykYjEBIQApOBSR9GrE5jZe9uspPsF
-	 0ho/FgxfUIOVmnsXByjnP4zw7lWO58a2Z0p8a8vPC8aOdLl4veltCZWSnBX8hO/fgL
-	 gpBGlhRehaozRgIDWekWlXmK5ew/BhN4K+5y9bakveGYamaP6xcbWhbLYSZ4ooHud/
-	 El0bRpp2Loakg==
-Received: from [IPv6:2606:6d00:11:ef24::c41] (unknown [IPv6:2606:6d00:11:ef24::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3E43E17E0E63;
-	Thu,  6 Nov 2025 15:29:13 +0100 (CET)
-Message-ID: <5834fe661f38462d65795a20b5a4f9d2a12d3b35.camel@collabora.com>
-Subject: Re: [PATCH v5 4/8] media: mediatek: vcodec: Add single core VP9
- decoding support for MT8189
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Hans Verkuil
- <hverkuil@xs4all.nl>,  Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
- <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>,  George Sun
- <george.sun@mediatek.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org,
- Yilong Zhou <yilong.zhou@mediatek.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	 <andrzejtp2010@gmail.com>
-Date: Thu, 06 Nov 2025 09:29:12 -0500
-In-Reply-To: <20251106061323.2193-5-kyrie.wu@mediatek.com>
-References: <20251106061323.2193-1-kyrie.wu@mediatek.com>
-	 <20251106061323.2193-5-kyrie.wu@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-wlcyIPJc95NX9hPSGVRO"
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1762439534; c=relaxed/simple;
+	bh=smxgPni+XOx0Jk4VOOGxnMqDJbqmptrO8uIANUW5hTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GNEc8PVwtDrz1oSN8+ctfc9VqQP43apy1nnL/xxkQDGq9K4iiYhnq+EDeZFszBMthUf8QuS15Gmgda9f3dxCTiySbEdRQo1385TJKTfZedFba8Ts8wnLthHYgxWTpNnPlEdVepj/AgnXOXbDRw/NniiZyK+PtmHHaBLNogSUMto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bJX7t4pg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59C30C4CEFB;
+	Thu,  6 Nov 2025 14:32:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762439533;
+	bh=smxgPni+XOx0Jk4VOOGxnMqDJbqmptrO8uIANUW5hTY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bJX7t4pg/WECd8xf1IbVsO8VZ1eDnUzlNB0hmqShiM/x27ndGfn7cho4Hx06zPu0x
+	 7b+AJBpRegoceGugk00Ui/ZlHDNxbgIMedoMSLRaYfrc2Swqsx+0vk/5JMw6QtaCC/
+	 WOiW3HINNKJ5NMPBMwTpjDxUfdWQiX4iN0JUOkd47XFH6Awl3CguDmCeAbcGvekSPv
+	 o8KR2ruASPDQpxP1Ghahhhk3y97WpVakDpKmhP3v/h/lIRdXgZkLqhoqW3LG1OlmYC
+	 Kp5U6ynuEXElDHuW1UYIGkrBlnue6gx/YgOjyGESRV3M1GeVRFg2OTe8G1WJNe9nfP
+	 b1LvApkuH+Wqg==
+Date: Thu, 6 Nov 2025 20:02:01 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH 4/4] power: sequencing: Add the Power Sequencing driver
+ for the PCIe M.2 connectors
+Message-ID: <5wbwpr7ivnvpttacyl7b5fsexfda2uvoqau7yaaxuavskka4z6@vvntbnakzrjb>
+References: <20251105-pci-m2-v1-0-84b5f1f1e5e8@oss.qualcomm.com>
+ <20251105-pci-m2-v1-4-84b5f1f1e5e8@oss.qualcomm.com>
+ <CAMRc=McB4Zk8WuSPL=7+7kX4RJbdFBNReWZyiFnH8vfVx3DxAg@mail.gmail.com>
+ <tc2r2mme4wtre7vb7xj22vz55pks4fbdabyl62mgutyhcjxnlx@qn4jvx3jqhie>
+ <CAMRc=McDYL_B+hFtLekevtB2XpUkaMN1dsDNeefvR+ppj4whFg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=McDYL_B+hFtLekevtB2XpUkaMN1dsDNeefvR+ppj4whFg@mail.gmail.com>
 
+On Thu, Nov 06, 2025 at 10:53:05AM +0100, Bartosz Golaszewski wrote:
+> On Wed, Nov 5, 2025 at 6:46 PM Manivannan Sadhasivam <mani@kernel.org> wrote:
+> >
+> > On Wed, Nov 05, 2025 at 05:21:46PM +0100, Bartosz Golaszewski wrote:
+> > > On Wed, Nov 5, 2025 at 10:17 AM Manivannan Sadhasivam
+> > > <manivannan.sadhasivam@oss.qualcomm.com> wrote:
+> > > >
+> > > > This driver is used to control the PCIe M.2 connectors of different
+> > > > Mechanical Keys attached to the host machines and supporting different
+> > > > interfaces like PCIe/SATA, USB/UART etc...
+> > > >
+> > > > Currently, this driver supports only the Mechanical Key M connectors with
+> > > > PCIe interface. The driver also only supports driving the mandatory 3.3v
+> > > > and optional 1.8v power supplies. The optional signals of the Key M
+> > > > connectors are not currently supported.
+> > > >
+> > >
+> > > I'm assuming you followed some of the examples from the existing WCN
+> > > power sequencing driver. Not all of them are good or matching this
+> > > one, please see below.
+> > >
+> > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > > > ---
+> > > >  MAINTAINERS                               |   7 ++
+> > > >  drivers/power/sequencing/Kconfig          |   8 ++
+> > > >  drivers/power/sequencing/Makefile         |   1 +
+> > > >  drivers/power/sequencing/pwrseq-pcie-m2.c | 138 ++++++++++++++++++++++++++++++
+> > > >  4 files changed, 154 insertions(+)
+> > > >
+> > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > index 46126ce2f968e4f9260263f1574ee29f5ff0de1c..9b3f689d1f50c62afa3772a0c6802f99a98ac2de 100644
+> > > > --- a/MAINTAINERS
+> > > > +++ b/MAINTAINERS
+> > > > @@ -20474,6 +20474,13 @@ F:     Documentation/driver-api/pwrseq.rst
+> > > >  F:     drivers/power/sequencing/
+> > > >  F:     include/linux/pwrseq/
+> > > >
+> > > > +PCIE M.2 POWER SEQUENCING
+> > > > +M:     Manivannan Sadhasivam <mani@kernel.org>
+> > > > +L:     linux-pci@vger.kernel.org
+> > > > +S:     Maintained
+> > > > +F:     Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
+> > > > +F:     drivers/power/sequencing/pwrseq-pcie-m2.c
+> > > > +
+> > > >  POWER STATE COORDINATION INTERFACE (PSCI)
+> > > >  M:     Mark Rutland <mark.rutland@arm.com>
+> > > >  M:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+> > > > diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
+> > > > index 280f92beb5d0ed524e67a28d1c5dd264bbd6c87e..f5fff84566ba463b55d3cd0c07db34c82f9f1e31 100644
+> > > > --- a/drivers/power/sequencing/Kconfig
+> > > > +++ b/drivers/power/sequencing/Kconfig
+> > > > @@ -35,4 +35,12 @@ config POWER_SEQUENCING_TH1520_GPU
+> > > >           GPU. This driver handles the complex clock and reset sequence
+> > > >           required to power on the Imagination BXM GPU on this platform.
+> > > >
+> > > > +config POWER_SEQUENCING_PCIE_M2
+> > > > +       tristate "PCIe M.2 connector power sequencing driver"
+> > > > +       depends on OF || COMPILE_TEST
+> > >
+> > > The OF dependency in the WCN driver is there because we're doing some
+> > > phandle parsing and inspecting the parent-child relationships of the
+> > > associated nodes. It doesn't look like you need it here. On the other
+> > > hand, if you add more logic to the match() callback, this may come
+> > > into play.
+> > >
+> >
+> > For sure the driver will build fine for !CONFIG_OF, but it is not going to work.
+> > And for the build coverage, COMPILE_TEST is already present. Maybe I was wrong
+> > to enforce functional dependency in Kconfig.
+> >
+> 
+> Given what you said below for the regulator API, let's keep it as is.
+> 
+> > > > +
+> > > > +static int pwrseq_pcie_m2_match(struct pwrseq_device *pwrseq,
+> > > > +                                struct device *dev)
+> > > > +{
+> > > > +       return PWRSEQ_MATCH_OK;
+> > >
+> > > Eek! That will match any device we check. I'm not sure this is what
+> > > you want. Looking at the binding example, I assume struct device *
+> > > here will be the endpoint? If so, you should resolve it and confirm
+> > > it's the one referenced from the connector node.
+> > >
+> >
+> > I was expecting this question, so returned PWRSEQ_MATCH_OK on purpose. I feel it
+> > is redundant to have match callback that just does link resolution and matches
+> > the of_node of the caller. Can't we have a default match callback that does just
+> > this?
+> >
+> 
+> To be clear: the above is certainly wrong. Any power sequencing
+> consumer would match against this device.
+> 
+> To answer your question: sure, there is nothing wrong with having a
+> default match callback but first: I'd like to see more than one user
+> before we generalize it, and second: it still needs some logic. What
+> is the relationship between the firmware nodes of dev and pwrseq here
+> exactly?
+> 
 
---=-wlcyIPJc95NX9hPSGVRO
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The 'dev' belongs to the PCIe Root Port node where the graph port is defined:
 
-Le jeudi 06 novembre 2025 =C3=A0 14:13 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
-> 1. add config to support 4K prob size;
-> 2. Previously, calling vdec_vp9_slice_setup_single_from_src_to_dst
-> with v4l2_m2m_next_src_buf to obtain both buffers resulted in -EINVAL,
-> interrupting the decoding process. To resolve this,
-> the interface should be updated to set both src and dst buffers
-> for metadata configuration.
+&pcie6_port0 {
+	...
+	port {
+		pcie6a_port0_ep: endpoint {
+			remote-endpoint = <&m2_pcie_ep>;
+		};
+	};
+};
 
-Please avoid using bullets in commit messages. Everyone will assume that if=
- you
-have two bullets, you should have two patches. And I think they would be ri=
-ght
-for this patch.
+So I have to do remote-endpoint lookup from the pwrseq and compare the of_node
+of the parent with 'dev->of_node', I believe. If so, this looks like a common
+pattern.
 
->=20
-> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
-> ---
-> =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 43 ++++++++++++++--=
----
-> =C2=A01 file changed, 32 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9=
-_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp=
-9_req_lat_if.c
-> index fa0f406f7726..d966914db4b9 100644
-> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_la=
-t_if.c
-> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_la=
-t_if.c
-> @@ -23,6 +23,7 @@
-> =C2=A0
-> =C2=A0#define VP9_TILE_BUF_SIZE 4096
-> =C2=A0#define VP9_PROB_BUF_SIZE 2560
-> +#define VP9_PROB_BUF_4K_SIZE 3840
-> =C2=A0#define VP9_COUNTS_BUF_SIZE 16384
-> =C2=A0
-> =C2=A0#define HDR_FLAG(x) (!!((hdr)->flags & V4L2_VP9_FRAME_FLAG_##x))
-> @@ -542,6 +543,23 @@ static int vdec_vp9_slice_init_default_frame_ctx(str=
-uct vdec_vp9_slice_instance
-> =C2=A0	return ret;
-> =C2=A0}
-> =C2=A0
-> +static size_t mtk_vcodec_get_vp9_prob_size(enum mtk_vcodec_dec_chip_name=
- chip_name)
-> +{
-> +	size_t prob_size;
-> +
-> +	switch (chip_name) {
-> +	case MTK_VDEC_MT8189:
-> +	case MTK_VDEC_MT8196:
-> +		prob_size =3D VP9_PROB_BUF_4K_SIZE;
-> +		break;
-> +	default:
-> +		prob_size =3D VP9_PROB_BUF_SIZE;
-> +		break;
-> +	}
-> +
-> +	return prob_size;
-> +}
+> > > > +       if (!ctx->pdata)
+> > > > +               return dev_err_probe(dev, -ENODEV,
+> > > > +                                    "Failed to obtain platform data\n");
+> > > > +
+> > > > +       ret = of_regulator_bulk_get_all(dev, dev_of_node(dev), &ctx->regs);
+> > >
+> > > Same here, you already have the device, no need to get the regulators
+> > > through the OF node. Just use devm_regulator_bulk_get()
+> > >
+> >
+> > I used it on purpose. This is the only regulator API that just gets all
+> > regulators defined in the devicetree node without complaining. Here, 3.3v is
+> > mandatory and 1.8v is optional. There could be other supplies in the future and
+> > I do not want to hardcode the supply names in the driver. IMO, the driver should
+> > trust devicetree to supply enough supplies and it should just consume them
+> > instead of doing validation. I proposed to add a devm_ variant for this, but
+> > Mark was against that idea.
+> >
+> 
+> What was the reason for being against it?
 
-This is another example of something that could be in the static compatible
-data.
+Mark doesn't want the drivers to trust DT for regulators. It was an IRC
+discussion and the conclusion was the drivers had to specify the supplies
+manually and not trust DT to provide required regulators. But then we already
+have this API that does the same.
 
-> +
-> =C2=A0static int vdec_vp9_slice_alloc_working_buffer(struct vdec_vp9_slic=
-e_instance *instance,
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct vdec_vp9_slice_vsi=
- *vsi)
-> =C2=A0{
-> @@ -616,7 +634,9 @@ static int vdec_vp9_slice_alloc_working_buffer(struct=
- vdec_vp9_slice_instance *i
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	if (!instance->prob.va) {
-> -		instance->prob.size =3D VP9_PROB_BUF_SIZE;
-> +		instance->prob.size =3D
-> +			mtk_vcodec_get_vp9_prob_size(ctx->dev->chip_name);
-> +
-> =C2=A0		if (mtk_vcodec_mem_alloc(ctx, &instance->prob))
-> =C2=A0			goto err;
-> =C2=A0	}
-> @@ -696,21 +716,22 @@ static int vdec_vp9_slice_tile_offset(int idx, int =
-mi_num, int tile_log2)
-> =C2=A0	return min(offset, mi_num);
-> =C2=A0}
-> =C2=A0
-> -static
-> -int vdec_vp9_slice_setup_single_from_src_to_dst(struct vdec_vp9_slice_in=
-stance *instance)
-> +static int vdec_vp9_slice_setup_single_from_src_to_dst(struct vdec_vp9_s=
-lice_instance *instance,
-> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct mtk_vcodec_mem *bs,
-> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct vdec_fb *fb)
-> =C2=A0{
-> -	struct vb2_v4l2_buffer *src;
-> -	struct vb2_v4l2_buffer *dst;
-> +	struct mtk_video_dec_buf *src_buf_info;
-> +	struct mtk_video_dec_buf *dst_buf_info;
-> =C2=A0
-> -	src =3D v4l2_m2m_next_src_buf(instance->ctx->m2m_ctx);
-> -	if (!src)
-> +	src_buf_info =3D container_of(bs, struct mtk_video_dec_buf, bs_buffer);
-> +	if (!src_buf_info)
-> =C2=A0		return -EINVAL;
-> =C2=A0
-> -	dst =3D v4l2_m2m_next_dst_buf(instance->ctx->m2m_ctx);
-> -	if (!dst)
-> +	dst_buf_info =3D container_of(fb, struct mtk_video_dec_buf, frame_buffe=
-r);
-> +	if (!dst_buf_info)
-> =C2=A0		return -EINVAL;
-> =C2=A0
-> -	v4l2_m2m_buf_copy_metadata(src, dst, true);
-> +	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &dst_buf_info->m2=
-m_buf.vb, true);
-> =C2=A0
-> =C2=A0	return 0;
-> =C2=A0}
-> @@ -1800,7 +1821,7 @@ static int vdec_vp9_slice_setup_single(struct vdec_=
-vp9_slice_instance *instance,
-> =C2=A0	struct vdec_vp9_slice_vsi *vsi =3D &pfc->vsi;
-> =C2=A0	int ret;
-> =C2=A0
-> -	ret =3D vdec_vp9_slice_setup_single_from_src_to_dst(instance);
-> +	ret =3D vdec_vp9_slice_setup_single_from_src_to_dst(instance, bs, fb);
+> Anyway: in that case, would
+> you mind adding a comment containing what you wrote here so that
+> people don't mindlessly try convert it to the regular variant in the
+> future?
+> 
 
-I don't see a direct correlation betwen the buffer size change and this cha=
-nge.
-Please split. Changes looks good, the commit message isn't very clear thoug=
-h.
+Sure.
 
-Nicolas
+- Mani
 
-> =C2=A0	if (ret)
-> =C2=A0		goto err;
-> =C2=A0
-
---=-wlcyIPJc95NX9hPSGVRO
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQywuAAKCRDZQZRRKWBy
-9K5IAQCXlmAAzl+iCuLAYIlMe0L1aV3/vtGJvQ4QmLxUy0BkRgEA89XXHgOE2Ewx
-OrW4Z94rpraxJcv92KTX7rtrXRkmkw4=
-=qhRy
------END PGP SIGNATURE-----
-
---=-wlcyIPJc95NX9hPSGVRO--
+-- 
+மணிவண்ணன் சதாசிவம்
 
