@@ -1,216 +1,258 @@
-Return-Path: <devicetree+bounces-235582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812D9C3A354
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:24:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA21C3A2F4
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:20:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3E4E7502B46
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 10:11:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 755AF425A51
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 10:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCB730F520;
-	Thu,  6 Nov 2025 10:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87B230F7FD;
+	Thu,  6 Nov 2025 10:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="kbHDPJkf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IrnOchfJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012046.outbound.protection.outlook.com [40.107.209.46])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE162848A7;
-	Thu,  6 Nov 2025 10:04:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762423490; cv=fail; b=myHGjdVkmPF+lvpClf0oM+NQYI8y/rTMbeVLfBXpe70099drAYRMjxy0VuPbZzdD2duq//ECT/ilmO+hoNt2UAPflyx82A2RGgqiW4abgl6ty0bhMOhJ0XeKe0btNWPliNm38VD+jfVvjSh1CkvPRrLZ2pN+7qWUet8G/W9u3BI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762423490; c=relaxed/simple;
-	bh=LhvTA0CvwA2RpP7Y7JFF/t7+gcH63VHwbYYElStrBW8=;
-	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=b7KgVqNtxG32NI1WpIra6fRSnL9wrORx1gSNZAb+DUOSS4ZC8lyjkDpB0mwot/boACM1C4IVcBczdoIZbFNgRRFmyH28uDtVcGoQ+LvhwnG8E6XH1QpCuej8wME2zN/zsDaSQQSLt1BBZ1hlYdrUq+4C6jjuAUjrBG4QveqUABE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=kbHDPJkf; arc=fail smtp.client-ip=40.107.209.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pupQ7Fl4Zzqtp40KMFNiQ6m786hbFhHEBk9IJXM2vA8Vf4mSeSh+XFDPOEhMjbvjeGOSDjXiFAWgDH7DU/b3JOGcpWYetIxeI5Hbh5paYcDEmOP78yAPOQ+YkY7uJdGCtBqcZGVsfzLzK9nD78cGq05gBg2Iqi1aiMmW9fyNmwDeAEJjfN/6TKcfo3Kp/juIFSa2B0CWvYbw54+do/mEjHsmaCIirg79QUJZwhbdK+cZUcXlJfbQGLzrkJriGP6m+0/kR/avL89yb+WgM62cyFuwpqYKnTTrGdMeTgEc+x6YLask+lB9cJ3u73kIQ0kulscQp+ZBR8oQX3E5+GhwNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=krlpna0Qn+4uminHHhzSyaip6TaOGfUlENv3MM1AYX8=;
- b=pSoP5bn5s+6HJ7oZ+RRToJHJyPDpbbctl/wFv3DoLF9LAjx8UCGfIZ4QwucLNrz1M3RxHjExhp4ce7/45bYnoOvXVren5uFijIyr2W4CChvFutW59fjxYh1qN6/AwfHYqwyQebqd17JeaIitoDN/MseZvYqJnxcsyXb3FZbr/Z8cCBjr+3jXQ25hVf8AazTiD3x8BVrPpOwxat1QHFwj38Dkf/NRlb9OtLJsomqLobcbN7ybJe06BtQCGH6Lxqy83vv3QFfhwa9qaR9Gv01k5XR6zThrNalkPvK4qxfZnHtcjruc8zYalQZuEqLWGdNDJzzgTetEFTFvskJO1m/Vaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=krlpna0Qn+4uminHHhzSyaip6TaOGfUlENv3MM1AYX8=;
- b=kbHDPJkf1BymYUykZwV4mvd4Yxim9xB8zaUV+UelLNvjGu6A1kN9NoYlcdyIv1/haFHxplITBOt2XjV9yjTOG+QgqgSKuw/6W+9JHrQkvvFJnd8DI5otO4N9zqUSIzLrZOYk881DDhNhMpbeRkN8ihUgmhT12mogQdGbRprEoYyPJrKRevYoZsWNwUqify9VMlJoKQ1rNeyPG225F91mTYqU3RfukDM2t8pi5Lm5ZUL39qwP1lDUUrzh7zKnuUrfE2cbWNqkUzJmTVLVxbAHjTpfwteiE7fPm21+rsreIzneYPBAH3+lfog0wr8/ChLJeYIPZBOCNIqYcymVdrZN1A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
- by DS7PR12MB5862.namprd12.prod.outlook.com (2603:10b6:8:79::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.15; Thu, 6 Nov 2025 10:04:44 +0000
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9%4]) with mapi id 15.20.9298.007; Thu, 6 Nov 2025
- 10:04:44 +0000
-Message-ID: <423cac10-849b-4fb3-a092-ef50cd9846f9@nvidia.com>
-Date: Thu, 6 Nov 2025 10:04:38 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/4] Add NVIDIA VRS RTC support
-From: Jon Hunter <jonathanh@nvidia.com>
-To: Shubhi Garg <shgarg@nvidia.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rtc@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20251007135738.487694-1-shgarg@nvidia.com>
- <bd7d8771-e063-4f03-9b0f-bc6ad95adb3d@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <bd7d8771-e063-4f03-9b0f-bc6ad95adb3d@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: LO4P123CA0290.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:196::7) To SJ2PR12MB8784.namprd12.prod.outlook.com
- (2603:10b6:a03:4d0::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A2D30E848;
+	Thu,  6 Nov 2025 10:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762423519; cv=none; b=VwUriHR074Lb01Rithzsm6XEwujiUAwPPbFhOi0J1w4tTM4CCfwyGuVOdJC59iq5FnU6nOKlBjuwMpPYlaGeyp+uOljDjMVpMJvYqhGVHoAUe1HDi3KBYmOwJTWvBmfJWqho6NzYkkks9EWKZ8n5lNFq3/Sfbhldb6HeIxrg6wk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762423519; c=relaxed/simple;
+	bh=YWfPD6ERS7CRZ4S7egpNwL4TQ7anww/3U8sL9Mazjg8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qWulj9bjvnLjY48ZkGoj7lpafW1apHh+1qxhOuMkZcVqb8MFB4ifGo6bS84HbCJRPSnlI2vn2I/sC044ct1UCAYw3y0m9YwoUtViYZYfOOnuuNAGC6FJc8qchWxcA2YppxNyIK2GqnqVL02yS/Jvh4J2ZbZ5i1FdqX10tZJ+sP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IrnOchfJ; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762423518; x=1793959518;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YWfPD6ERS7CRZ4S7egpNwL4TQ7anww/3U8sL9Mazjg8=;
+  b=IrnOchfJsuEBdiJI+3Qp8Z/fuW6T4i1EZKq99ORFsC4xHQbEQzdNvrwo
+   F+ffjufiGcmoA5tDCB4WM283hJ4U80C6sGdNCb6DI4MrRJtotglk5QJ7L
+   AxXsuCzYdJLRAVIvd9tACWTsql+3bTFR/4yqYFQqQGqSOg1Nsu/GhuwG5
+   uyck8BhP299738oS6sOh1ndM4g+r6nCDIJg36rJqWv1WiGtzSHnrdxP7b
+   NRzSo6s9GR2a20M/2RIDD1potNWMhAuyE6sHPq7papQqc0o3UQHPwhc1L
+   mrNMX276/5D3+oMvfckjkYqcmBe5CagGp75q7IqJy6XyUgnFwxRzwCycS
+   Q==;
+X-CSE-ConnectionGUID: CM0SWtTlTJW2kvSH9Tf83g==
+X-CSE-MsgGUID: jelJfvwkTo+CFxJ6hD4zIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="67168873"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
+   d="scan'208";a="67168873"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 02:05:17 -0800
+X-CSE-ConnectionGUID: YX33hdY5TbmcTJAfU86JYA==
+X-CSE-MsgGUID: A/A8oXilRGq1wZ0TAEdPLw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
+   d="scan'208";a="187383441"
+Received: from aschofie-mobl2.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.221.236])
+  by fmviesa007.fm.intel.com with SMTP; 06 Nov 2025 02:05:13 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 06 Nov 2025 12:05:12 +0200
+Date: Thu, 6 Nov 2025 12:05:12 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID
+ pin state
+Message-ID: <aQxyfjYosVd_kPKC@kuha.fi.intel.com>
+References: <20251102164819.2798754-1-krishna.kurapati@oss.qualcomm.com>
+ <20251102164819.2798754-3-krishna.kurapati@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|DS7PR12MB5862:EE_
-X-MS-Office365-Filtering-Correlation-Id: b4d59333-df5a-4f95-46c7-08de1d1be8a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|10070799003|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZTVXMDJiTjE2L0UrMVJPTnBtZlZkYjR4L1BON053L1dHRkJEdENNc1pGejhR?=
- =?utf-8?B?R042TkJoa1pJWENBTkFzZGhZbTB3dzBZaGViMjk4a3haUVpMbkZxald2V0ZE?=
- =?utf-8?B?MGV2U0RadzN3YVZTSmloK2xucWFKejdjVlVRNlF1T2Z0SlpJL0lISmdrQWRE?=
- =?utf-8?B?K24xWFlLZkpjdHpEWEo5aTgxd2pDTkhGb0pNbjlsQXlwSml6THRlTG5ucnVM?=
- =?utf-8?B?ZW9aOENSaXE4eEhnR25IRlNSYkU4RktqK0IrNlJVS1ZVbkJTeFc5SjJkdFFT?=
- =?utf-8?B?UDFUMmthNG9CVWRvOWVFQVNFRFdJZE5NUDFGYUdFQVZuWVR2dDY5S0VSemgx?=
- =?utf-8?B?enBTRTZqaGdwbkdmSWIyb0FtYzlHd2xCdlNXRnNSZnVFQ1NZVGFxMXBqNnV0?=
- =?utf-8?B?RlFCbFNHZmZXTEFKdGpFaDJtNXFoclFvRWV2TDRMRWE5cHIwSWdiVjU5OWhV?=
- =?utf-8?B?M3d6aTFuZmpOb1hpN0VIdHF1bnFLMzJtaVBvOUlnbG1yYWtYb2tudTlxVjNX?=
- =?utf-8?B?YjNWMGNIeTZUcDNkZU5hMk9FSlBuVmRWMzNWeWtQV3FJTVRuV1dUL3ZlZGJ2?=
- =?utf-8?B?eUU4bzNYZXVSZTBuUkRTcmNYbTI5OWdWMlJHeTd0REFRVCtvaWRlUmtTZDFi?=
- =?utf-8?B?eDhBb1NsREFJanR2dnhtLytOcEM4OVgrTFBWdU9idG5ETHhxak5Bdm12WkRT?=
- =?utf-8?B?MEZ4V0V4NmM2blpOUDU4QmN5VTA2Q2wwMHJ1SWlrSGkyZ2g0NTl3S25NMzkr?=
- =?utf-8?B?aUljc2wrdTNnQ0FNUjNUbjZMbGhvWXdZaXdqZXQ3QnJocEk2Qm51NGNKYXZv?=
- =?utf-8?B?WDNQT3VBc1RLOGp2Z1R2QjZ5Ky9nNUhPc3o2V1EzaEpvZ2orWGlXUzgrRFNy?=
- =?utf-8?B?bG1wazZQTmpwSjlVemxzMU5UK1J0VGVnUXloWGRLSEV6UmhESmhTQlY0R3Jp?=
- =?utf-8?B?bUNFSDJOR1FBS2tNN1owNlJkYklkNElEbjFmbmEvNFlDSUM5ejk4U3I2ZWFM?=
- =?utf-8?B?RVM3L1BaQTZpbitkck9qK0hZSG5wcG5WSmFnbGZETEpleFRlOTRyeFgzemY2?=
- =?utf-8?B?TVkrUDV3cjRNKytsaFBDNmpWOFV3ck80YnduV1FMMkVySmZCZVA3L0pNb3Fa?=
- =?utf-8?B?dG1xMVdCZ1U5VHZWalpTOURJVG1ueWdjQ3Q3dzdvejFvVWNKcGErUExuZGZK?=
- =?utf-8?B?R3FTSW5JenZacm1PYUExY24zbkFTRVcyYTRkbCtFU0J4ZVExNDZ3MWlHVzFX?=
- =?utf-8?B?SmJmYWlhK1F3UkttWUxaVkxCWGJpTDAzdllERlBsTmFReGRKejJnYjNKWDE3?=
- =?utf-8?B?UytTZlBFVGltTVFXR3JiVHYxb3F6S0t3Y080bGVxRDF1Ri9TekhMUDV5SUYx?=
- =?utf-8?B?dzRiN2dKdGJKOHJScTMrdlBRNEVBSGdvV3F1SjdVd2dxcUlHZ015dG5NNGpm?=
- =?utf-8?B?ZEJ2d2tQNTdOczNhQ2kyT1F2WDY4QmVRcGhDN2YvdElwMUZIVXQrWnoxSDlU?=
- =?utf-8?B?QUdBN1hlenJReGxGcjhYUi9CVkpNOXppQnk0VVB6TVhaZ29id3hHKzlwMXZ1?=
- =?utf-8?B?TEpkL1d5ekErdEs5VkdWZXEvUFcyZ0crYU1BSUF1SXhrS3poeEw1bnR2N2kr?=
- =?utf-8?B?am4vOUlDM1duRmh3U1BOOFBjbGo3bW11SDRGRXdFUEFoN0l1akxsYmcwMDcz?=
- =?utf-8?B?N2twcGwwRWxHRlBuRWZaM3ZVSVdHclMxbXEvMU1CaGNMNUF2YzdWQU9KcXZI?=
- =?utf-8?B?SnBhZ0JBcVNnRUxvWlBuRytJU1lwNndISW0zdWhSdzJBNzI1eEw1YXRDaDlY?=
- =?utf-8?B?Zzl0aHN0dHB4SGIrVVhjVnRjcDZaUi9lMU5FWmpYUzBrUHU1ZkExTHpiYVZp?=
- =?utf-8?B?T0hsNmQwNncvNm9wQzJSaHpJb2ZKS2hGcVFqTW9teUx0b3RYT1UwU3B0WjR3?=
- =?utf-8?Q?XIRiCiKoe908YPy1m4UPPuZPFOoZSwGQ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?S29hSjhReXljaUYxcGpmZVBMZ25VdkpYWUkwNTQ2c2NDdTBiTGZPTUdCcDYv?=
- =?utf-8?B?a0dIazVlWWZvK2t5a0grS0RwY2RYbmpUK2l3aTJxL242eHZhY3VWeGtHcERs?=
- =?utf-8?B?RmVnNGNPTDBqc3FLZnV6Q3BrUUdlK0NuR3UrMFZuTnRsWnZKTW11S1U5dWQw?=
- =?utf-8?B?VmVsaG1iQUlaTXhwbU1aQ3ZGTVVlYkc5Y1B5NFk2TFdWbE9iMG00ZXY0dm1F?=
- =?utf-8?B?czQvYjBLcEtOOGtNTVhjbnNDdHQyU3FIWURxTVFXMVRmeU9aWjFjdnJ6cXlD?=
- =?utf-8?B?a1BpWkVWNE0wSm92MGsrY3BycFZTeE5Ta1NjNVV1eDk3Z2FHRHRDTm1qRGhr?=
- =?utf-8?B?MlpFbXcvSEkvcnIwSDdBU0FRbEsrcFNqKzBDQTgvUE0xSk9LZ3EvYmVWbGVq?=
- =?utf-8?B?c0tUeTB1N3gzUk11THMySmM0d2JiNGlKakhlRWpDN1hkR0w3eWFSbU0rUXVV?=
- =?utf-8?B?MEZIMmJEU1E3WkRzdlZuNFRySXhVZGN1WlE5REM5eU15UjVxT2h5ZGh3eFBT?=
- =?utf-8?B?anNXOXRiM3h5NWFIQkNQNG5FejJ4S2RPYWNCWmRMWnZXTU04cWt6aTFEWGtV?=
- =?utf-8?B?UHVWMkpRWEphTFQ3NHZRa2d2U1FwTGlTVVI1S0g0eDVadzNKV1pnMStZYUln?=
- =?utf-8?B?MVVtLzd1NVJuaUJuTG91Z29rcUlTNDRIOThYRnNla0llK3N0cDBZRDJjUnFo?=
- =?utf-8?B?UnRDbklCUk9XQVFQY0IyY3A5ZElVdjBoMUR4eFAwbmRhenZaZlhyZjZONTJ1?=
- =?utf-8?B?L0xzcWxmejJ4eVVRdHprTVpwT040R3FhUTZYWmJUaExMUjNxVEt2elFrTm9k?=
- =?utf-8?B?QnJqVDd4SGRQTCtGb0dFMkdKQndxclBHdW1vS1NGaklOTS83YUhDM2pYbUhD?=
- =?utf-8?B?SjA3M1dIS25SbERKNE1Kd0g5TldLVTBQS3pqZ0F0aGJOZEl4d0w0SGdyRDhp?=
- =?utf-8?B?K3lvZWtKWDV5aGRWaC9KZ3lOaVZDMlV6UkFsUGZPZFFqdlcyclZOS2p2eXlu?=
- =?utf-8?B?d0ZvZTFKdkdnN3c2QURTVHB5NmZqN0kvVGV3STQxMHI0Umd1endVYzFKTk5u?=
- =?utf-8?B?WE9Gc1hQV0JWOHNwdWFKTUtVUlNtUUd1bEE3R2dxY0dXblVObUVQcXhva2VE?=
- =?utf-8?B?N2hvTm9IZFJQRENSdGlXUUxLN3Bvd01ab0t1TWhBcmxIV1haRjB2NlVoaVpW?=
- =?utf-8?B?Nm10Mys1ZXRuU2ltT0pjUTN4ZDE4d1Nibnowb1BMaUNodThZaU9xNU5ycy9V?=
- =?utf-8?B?VER2Y2dQeVlsNllDeERWeWFJNHVua0grVCs0M05BRTNJbDkza1l2UEI2aTRD?=
- =?utf-8?B?OUxyRnpFQjgrM3pjbkpsYjFJNzJWL0xmaGVjQUFPOWVCOExCTHJ4YjN3OTAw?=
- =?utf-8?B?VGpMb2lEMVRlSkpNLzhIQWdhZXpBWHlmR0djOS91QVR1ampocjNUU3lZUnh2?=
- =?utf-8?B?dDVsMTZVbEdZMHpZeHZtVWdBaDNQaklnOWpCZlBUc0VYc2p1Yi9BOGg5M20z?=
- =?utf-8?B?OUV4QzV5NXUwaUpKQWNFMXNUU3EvWk9aYUFaTkxaUHI2U1VaZHQ0Sys1R1p4?=
- =?utf-8?B?L0xrMEJqY2NRN1ZiSCswWGVkVzd2czlJR2lHU0lpZHdLS0t3R0Q0VHZ2aE4y?=
- =?utf-8?B?VXdFcERHQ3R5TlRWSUw0cGxjQ1ZiY3BzNnJLd3pka3l0Yk9TZ2V6SGJrVVJt?=
- =?utf-8?B?VDVodnhlbU9RemZMODNWNi82WjlBeHZqSXphUnE3YVRET3F1Y0FVb0ZhUVk2?=
- =?utf-8?B?SGp2UmhWRTBteDdyWXdXK0ZTMEZ4ZlVZekRWQWtmekEvQU9NdHEveWJxTHlx?=
- =?utf-8?B?b2plMEpFbGdVRGdzdUUwQU9UcFVYNUQwcGVsWVRoUno1RWVXVTMyQm9DMVd2?=
- =?utf-8?B?aWc5ZlNPd3JabnZBVFZtSXppZnduRTNYZDh4T0ZFY2dSTmZBS1JnZG9FRUpt?=
- =?utf-8?B?cUIrK2krZkI1cDcxSWx3akVMTkFtUTNlRWNrRGlldHlhc3RMSk12RE8vdkJX?=
- =?utf-8?B?OFYwSFRDQWpCd0puUjlwRVQ5WHJ5TlYvMEt1Ykw4eGVlZXpKb0M5VS9IUHdz?=
- =?utf-8?B?RjRnN0paTGE0bVBlRjBYRUtBYUlwemNGQml2QXpheStlYmRCbElsNmZqdWNt?=
- =?utf-8?B?bTNnZ1k0ZG5VYVpaK3RTTlQrNEFtK01hb0VmL2hWR0JOcm9LSWY3ZUdFWlQ2?=
- =?utf-8?B?NHNzYXdHanZoUUZpclFnMkdnQkNDdjlIL3JxcFJOemF4TEtvTkJpMll3SjM2?=
- =?utf-8?B?UFlwS1Y2RmJMNkp1N1hNc1NXZGtRPT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4d59333-df5a-4f95-46c7-08de1d1be8a7
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2025 10:04:44.1036
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3KzJ2TZVHWm2e7g8xpkt/j5Hrmh/I77N4UBAlT1VqtiKx1hJuE/ws3duZuptxu233U/rZ/XaL/mynD5sgfup2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5862
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251102164819.2798754-3-krishna.kurapati@oss.qualcomm.com>
 
-Hi Alexandre,
+Hi Krishna,
 
-On 29/10/2025 12:49, Jon Hunter wrote:
+Sun, Nov 02, 2025 at 10:18:19PM +0530, Krishna Kurapati kirjoitti:
+> There is a ID pin present on HD3SS3220 controller that can be routed
+> to SoC. As per the datasheet:
 > 
-> On 07/10/2025 14:57, Shubhi Garg wrote:
->> This patch series adds support for NVIDIA's Voltage Regulator 
->> Specification
->> (VRS) RTC device. It provides following features:
->> - read/set system time
->> - 32kHz clock support with backup battery input to retain system time
->>    across boot
->> - alarm functionality to wake system from suspend and shutdown state
->>
->> The series includes:
->> - Device tree bindings for the VRS RTC
->> - VRS device tree nodes for NVIDIA platforms
->> - VRS RTC device driver
->> - Configuration updates to enable the driver
+> "Upon detecting a UFP device, HD3SS3220 will keep ID pin high if VBUS is
+> not at VSafe0V. Once VBUS is at VSafe0V, the HD3SS3220 will assert ID pin
+> low. This is done to enforce Type-C requirement that VBUS must be at
+> VSafe0V before re-enabling VBUS"
 > 
+> Add support to read the ID pin state and enable VBUS accordingly.
 > 
-> For the series ...
+> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> ---
+>  drivers/usb/typec/hd3ss3220.c | 72 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
 > 
-> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
-> Tested-by: Jon Hunter <jonathanh@nvidia.com>
+> diff --git a/drivers/usb/typec/hd3ss3220.c b/drivers/usb/typec/hd3ss3220.c
+> index 3ecc688dda82..75fbda42eaf4 100644
+> --- a/drivers/usb/typec/hd3ss3220.c
+> +++ b/drivers/usb/typec/hd3ss3220.c
+> @@ -15,6 +15,9 @@
+>  #include <linux/usb/typec.h>
+>  #include <linux/delay.h>
+>  #include <linux/workqueue.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/of_graph.h>
+>  
+>  #define HD3SS3220_REG_CN_STAT		0x08
+>  #define HD3SS3220_REG_CN_STAT_CTRL	0x09
+> @@ -54,6 +57,11 @@ struct hd3ss3220 {
+>  	struct delayed_work output_poll_work;
+>  	enum usb_role role_state;
+>  	bool poll;
+> +
+> +	struct gpio_desc *id_gpiod;
+> +	int id_irq;
+> +
+> +	struct regulator *vbus;
+>  };
+>  
+>  static int hd3ss3220_set_power_opmode(struct hd3ss3220 *hd3ss3220, int power_opmode)
+> @@ -319,6 +327,44 @@ static const struct regmap_config config = {
+>  	.max_register = 0x0A,
+>  };
+>  
+> +static irqreturn_t hd3ss3220_id_isr(int irq, void *dev_id)
+> +{
+> +	struct hd3ss3220 *hd3ss3220 = dev_id;
+> +	int ret;
+> +	int id;
+> +
+> +	if (!hd3ss3220->vbus)
+> +		return IRQ_HANDLED;
 
+If you don't need this routine unless there is a vbus regulator, then
+don't register it at all if there is no vbus regulator.
 
-Are you OK to pick up the driver changes? We would like to get this into 
--next unless you have any objections.
+> +	id = hd3ss3220->id_gpiod ? gpiod_get_value_cansleep(hd3ss3220->id_gpiod) : 1;
 
-Thanks
-Jon
+You still don't need to check for hd3ss3220->id_gpiod - this function
+will not get called unless it's there.
+
+        if (gpiod_get_value_cansleep(hd3ss3220->id_gpiod))
+                ret = regulator_disable(hd3ss3220->vbus);
+        else
+                ret = regulator_enable(hd3ss3220->vbus);
+
+Note:
+
+If you are concerned that the reference to the id_gpiod may be
+released before this routine is unregistered, then that condition will
+not help. The hd3ss3220->id_gpiod member is _not_ NULL after the
+reference is released.
+
+If you need a specific order in which the references are released,
+then you can't use the resource management (devm_*) to automate things
+for you.
+
+> +	if (!id) {
+> +		ret = regulator_enable(hd3ss3220->vbus);
+> +		if (ret)
+> +			dev_err(hd3ss3220->dev, "enable vbus regulator failed\n");
+> +	} else {
+> +		regulator_disable(hd3ss3220->vbus);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int hd3ss3220_get_vbus_supply(struct hd3ss3220 *hd3ss3220,
+> +				     struct fwnode_handle *connector)
+> +{
+> +	int ret  = 0;
+> +
+> +	hd3ss3220->vbus = devm_of_regulator_get_optional(hd3ss3220->dev,
+> +							 to_of_node(connector),
+> +							 "vbus");
+> +	if (PTR_ERR(hd3ss3220->vbus) == -ENODEV)
+> +		hd3ss3220->vbus = NULL;
+> +	else if (IS_ERR(hd3ss3220->vbus))
+> +		ret = PTR_ERR(hd3ss3220->vbus);
+
+So the regulator API's optional functions return -ENODEV instead of NULL :(
+In any case, don't double assign the member. Use local variable.
+
+        struct regulator *vbus;
+
+        vbus = devm_of_regulator_get_optional(...
+        if (IS_ERR(vbus) && vbus != ERR_PTR(-ENODEV))
+                return PTR_ERR(vbus);
+
+        hd3ss3220->vbus = vbus;
+        return 0;
+
+I don't think you need this function - just do that in the probe function.
+
+> +	return ret;
+> +}
+> +
+>  static int hd3ss3220_probe(struct i2c_client *client)
+>  {
+>  	struct typec_capability typec_cap = { };
+> @@ -354,11 +400,37 @@ static int hd3ss3220_probe(struct i2c_client *client)
+>  		hd3ss3220->role_sw = usb_role_switch_get(hd3ss3220->dev);
+>  	}
+>  
+> +	hd3ss3220->id_gpiod = devm_gpiod_get_optional(hd3ss3220->dev, "id", GPIOD_IN);
+> +	if (IS_ERR(hd3ss3220->id_gpiod))
+> +		return PTR_ERR(hd3ss3220->id_gpiod);
+> +
+> +	if (hd3ss3220->id_gpiod) {
+> +		hd3ss3220->id_irq = gpiod_to_irq(hd3ss3220->id_gpiod);
+> +		if (hd3ss3220->id_irq < 0)
+> +			return dev_err_probe(hd3ss3220->dev, hd3ss3220->id_irq,
+> +					     "failed to get ID gpio\n");
+> +
+> +		ret = devm_request_threaded_irq(hd3ss3220->dev,
+> +						hd3ss3220->id_irq, NULL,
+> +						hd3ss3220_id_isr,
+> +						IRQF_TRIGGER_RISING |
+> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> +						dev_name(hd3ss3220->dev), hd3ss3220);
+> +		if (ret < 0)
+> +			return dev_err_probe(hd3ss3220->dev, ret, "failed to get ID irq\n");
+> +	}
+> +
+>  	if (IS_ERR(hd3ss3220->role_sw)) {
+>  		ret = PTR_ERR(hd3ss3220->role_sw);
+>  		goto err_put_fwnode;
+>  	}
+>  
+> +	ret = hd3ss3220_get_vbus_supply(hd3ss3220, connector);
+> +	if (ret) {
+> +		dev_err(hd3ss3220->dev, "failed to get vbus: %d\n", ret);
+> +		goto err_put_fwnode;
+> +	}
+> +
+>  	typec_cap.prefer_role = TYPEC_NO_PREFERRED_ROLE;
+>  	typec_cap.driver_data = hd3ss3220;
+>  	typec_cap.type = TYPEC_PORT_DRP;
+> -- 
+> 2.34.1
+
+thanks,
 
 -- 
-nvpublic
-
+heikki
 
