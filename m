@@ -1,259 +1,404 @@
-Return-Path: <devicetree+bounces-235469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46DF2C39277
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 06:26:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7150DC39292
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 06:29:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3A1C3B50D9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 05:25:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D02301A200F0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 05:29:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E822D12E7;
-	Thu,  6 Nov 2025 05:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9222D8384;
+	Thu,  6 Nov 2025 05:29:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="P0IFWugs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AwEiKKl3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022074.outbound.protection.outlook.com [52.101.126.74])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBF11F03D9;
-	Thu,  6 Nov 2025 05:25:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762406755; cv=fail; b=BacM33wbQa5560KURokSGDtdVzV9kp1Ff1rC5qvV90hb7mQFsxhzVIsMD3V0a53UgoDg6/DH+KNWevQ0/yXd+gM66+N/brBqrqODR9ak3UaJv7RzrKChUY9zuUm2W8Fys+WWvv0Hs0XMSlEmqYanjB/bkiZSO5rVQTtw3hFQcz0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762406755; c=relaxed/simple;
-	bh=izebTBtMP4WCdYxyYBUHwEAXybLSvjjxkC5EHGCLm9M=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=rMM8R21B1AR3RjCN81BBygvgxHiUcEVaG6dPv5ncihSgc5xUA7Uw5y0ONVrOIa3AAimACSa9PqTrL9s5NkLVGyBwSr3sdOm9i9P8KZyblfKuLCZHcSvVEzuck3/S/uIK7TWR+MYwEmrj8E9wiUxBzI3A4fdgtkaC23zuRFJiBEU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=P0IFWugs; arc=fail smtp.client-ip=52.101.126.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AtI9xFS4Bz2KdQ6Joxozb8ddfagu0YPQbLYsw1Aixp802ytgZwu1PY9U9DLB7djsgglZa4usp4YYDODCH1TXM86+2rjQ8S6C2YjRTqXumAbaPcGo9cF5+egSntLLYX4ggcZAaJxDHPiDH+f1Fea+PkzRNerudwPzKeHyM/TkYP40yXPuPVxYewpCDajoZUKDkZAAEi8pA8CjFnphgIwAa/r1JOHoHvJoo5d/p302kUpm+G8rX7viIH5D5dMS2txJ7fY9i6jLqysCPaanbiyMZ9g5GHg2SsL13gNyYnZQTpmQ+kr7FrIAths/C5oNoFmBl9pFuDtirZ7kyDl8tforqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jc0hgzNsCUrlypGoz6xaylxgITXf8AZbeIzxe8ltDBQ=;
- b=ayJgBYLrt6TOPAzznFmjr0OyDyaV2OTVtUwV29ebrtB43d4cnqcJHkcIMXtHqJY6iqYC+wk6ONIE3WHMdVzodsQkWQPW9/t64zkxKRfm+fBUbJEv2DdoQYHbwk/WRVg5mXGkZUQlzcjjaCqqLjUOsyhShQy46LVU1kwHOGbZRV74w86fJKDMoOyx4iemtVCDF0fCK5efMZOZjnw3LvgELpfr9K9xm2eEwYo497QyIL2aKnj6FVC5tyW0ydA6cuq+tVT47mhKVW5GERcmzrrUlBcPMCPjT9MrJXSOmc3Ocw/o2jBKI1921TYFYWgE1Si+U+wy9pLNVSFO7N3XfBCxqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jc0hgzNsCUrlypGoz6xaylxgITXf8AZbeIzxe8ltDBQ=;
- b=P0IFWugsHMvQ/F94AUwONFBkMp4xdmT3jEFXRauzxpmQSnbKtKEm1vUN+wob3GmA5ir2UWN1y6YZlqvDWz3XV8kcScF9kjycameX3jcGKL91bo90/Ilw8cEXkPqfR/yYsHKFj26h1duWuI/+z9DlwMNVeziX4KxN66QHZzwcKhKiWVQZXTS4GOn7Nb1O8CntFO7MK11JbRb1FNxAFkjGOT/8Nb31z2d/QmAcmawh0R+uH2gCCHPmEicHvQvDsLSffeF19jmCRhDLAHEe1pEHq4z/3HFKSotI20rW/pwy0DRx/YWJBRuiMmLJxJQTA37qmF9A529oBb98xgi6298QqQ==
-Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
- by SEYPR06MB5208.apcprd06.prod.outlook.com (2603:1096:101:88::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.8; Thu, 6 Nov
- 2025 05:25:49 +0000
-Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
- ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
- ([fe80::6b58:6014:be6e:2f28%6]) with mapi id 15.20.9298.007; Thu, 6 Nov 2025
- 05:25:49 +0000
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Po-Yu Chuang <ratbert@faraday-tech.com>, Joel Stanley
-	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "taoren@meta.com" <taoren@meta.com>
-Subject: [PATCH net-next v3 1/4] dt-bindings: net: ftgmac100: Add delay
- properties for AST2600
-Thread-Topic: [PATCH net-next v3 1/4] dt-bindings: net: ftgmac100: Add delay
- properties for AST2600
-Thread-Index: AQHcTJUB+TmCwKSgIEaeQsrh+oaRd7ThzyYAgAAnFuCAAJHDAIACl+pQ
-Date: Thu, 6 Nov 2025 05:25:48 +0000
-Message-ID:
- <SEYPR06MB5134524038F2FFEA3009AA209DC2A@SEYPR06MB5134.apcprd06.prod.outlook.com>
-References: <20251103-rgmii_delay_2600-v3-0-e2af2656f7d7@aspeedtech.com>
- <20251103-rgmii_delay_2600-v3-1-e2af2656f7d7@aspeedtech.com>
- <2424e7e9-8eef-43f4-88aa-054413ca63fe@lunn.ch>
- <SEYPR06MB5134AB242733717317AAEDEA9DC4A@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <d7b08607-73a3-4f6b-ab8b-3eb4ff8b8647@lunn.ch>
-In-Reply-To: <d7b08607-73a3-4f6b-ab8b-3eb4ff8b8647@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|SEYPR06MB5208:EE_
-x-ms-office365-filtering-correlation-id: 9f2de97b-bb93-4ffb-ff89-08de1cf4f1d2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?Km1iDnzQryRl05lw2FF6gZaq9BhQUzYIQj1Q2pX6cBprxFuxFIF2CMG9ztE4?=
- =?us-ascii?Q?g9AxtVBak4Hccigeki+YYCJnxmcn+hkQXZagmYikShEypIIp0QDCovw88wY5?=
- =?us-ascii?Q?nq4qwhXr8qRGr263FeXyKolFDzHlshDiZjdKhqidt5tmaHm2T6okd3Wd2R7K?=
- =?us-ascii?Q?RZPaHFui86Sa1HyBP/mM97ASpJDli4M2C+pE7ydbz/dvGyM5eG7jzwYNffnl?=
- =?us-ascii?Q?Q/8fwY/Us53AIzNi2rAJWeKkey4TdXGJsl1ADbRQ+PmO8vhJKJdnVZ/Iovon?=
- =?us-ascii?Q?BRnUQUzng3LzpG/YzXuom/YUoGLmqN2qBOK/pW0eCaNgXoo0Ez9z1yRC/hFr?=
- =?us-ascii?Q?6C8qTTMjbrgslj9T8f32E0CplY0zbbGuuh4DMy3ZPhsQuRozMTekbv7mVnqN?=
- =?us-ascii?Q?VSYHbcztbC2HU6atOCsVqIVzzWGdS6V1xrjOV++0zXzhGCLzdUVC/6vXeXrQ?=
- =?us-ascii?Q?FLOZxXjhHwi5l0nhvKrXBF80ciVI8fkgi9xErBISekAYDtmvpfRuGgmYrApa?=
- =?us-ascii?Q?vWIKolcAZKSKzTCHHAUKvHVbbc7sUbXF25KIJdm005/LS61+Bn9UYAYxpqWO?=
- =?us-ascii?Q?cnGolYV139mC0wTSD5XDzRH0/Z5TkG8yXG+0TMB6MauKD/w6md659HrckXln?=
- =?us-ascii?Q?3//BXHMl2V0BnZ3mHstUUmGAvgC+/NTibO2bc+B2HzjDlZxKTfQAmvae+ylH?=
- =?us-ascii?Q?QxderDFMqiqjsioxM64+ns6R9u1c//Pz83YnLAVXcS1w1aTlgTJMcVz5wsEO?=
- =?us-ascii?Q?GYgX/LNK8XuMmHKPU5ULHorxjupAWMCE6UM99KXci2wHB1DC1G7VOT0c8CCh?=
- =?us-ascii?Q?aQx2w/8b/kq+mqn4V8/OYYt1Y1Gx31PmWDaZFSV6y2HKKKEHiihVM5nlWTnU?=
- =?us-ascii?Q?ZRR7lYCAD0LR3os8x4/FOxHOy9w583Ksc+UEjNLyVCvZTVE/5EB6DkJAS2jf?=
- =?us-ascii?Q?jviWXvGbcw4wgz9Uv+DaOhP4WJIDhAQmgYaMh14P9S1liXWI0qe1uztLIiy3?=
- =?us-ascii?Q?gtIPEhmjkBCBQbLQ/9P55+5g5NygUli2E2ErHf2CAvvTrLiVIzo7BcaTcV8N?=
- =?us-ascii?Q?AsdqbQgyGZoCHsYjnPich5w9btX0Va64+J7+OujZRslyqtbUnrRPmf7F669x?=
- =?us-ascii?Q?4VrbhVntv/wJbCfQuyNfC/CupC309RU/ZioTaXMoTV9Q4pVrhHtwiKPYKg/y?=
- =?us-ascii?Q?J0l2Emj8ArRi1P1ec44l5YWiy8Skq7hAwiiJgbcBopTOyMsqcCSDfarpN/eK?=
- =?us-ascii?Q?LUb6Zp7pGxJX44jXEBauCMYIU8A0erl6mZqBMpJsBcJdG5iwgvDJt1Se2ONF?=
- =?us-ascii?Q?R676puA3T9x5b92FO22e90Cs1xeDhWt8UqlQcL9j0uAE8qQ0hb/SJIf5Hx1K?=
- =?us-ascii?Q?Kt3Rs4rYEuMJwSpsLfATYs/94uOmBsg9DEx/Mo3MbrR/4jjom6fnf3KcCVfC?=
- =?us-ascii?Q?Y8vgZksD4S8hYi1SMjycKugMKgH06RkbU9rGN8aTeDNGnZ6rbCLJs7njspow?=
- =?us-ascii?Q?tTPeX4ey1At8aWCWVHhLfAoYVMp6p4/b6ELB?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?+jml/Y2nxQY0AH/H2i9ARJtW+uJjGiocDBRXiCXd93IjmNEJ1KBbRf/wrSsQ?=
- =?us-ascii?Q?nCaiwbWO3R9ZRxio/CFU8RMPce7ZSprG6YgYD2RWcIDEgLIykQHhqScV1f2L?=
- =?us-ascii?Q?Kt2nzUR/n/NS+Cl5uObgfyYy7F4TjiMM9PZdEK4JQCr6yZ7zvXz2LziUFJHc?=
- =?us-ascii?Q?JcpULEkOaSPm5huArWemjh7d/nVoATBJbVK5nemqlYVQHWMb/YlbI3E7Lljm?=
- =?us-ascii?Q?3CXkUMmClAws17TI2r4QeGYJ4h+dqsdcOWepjayCSgJk/yweTsde23JjcGTt?=
- =?us-ascii?Q?naTEH9bBlbg06CQxnPNo8pqCTuI0Xp17leTXw3VbYkqjUgLrbJ+qRwvCobuR?=
- =?us-ascii?Q?r8y0b6goEVSgWIKRvy7Pipa93xtJAPD6WEXN2f8RarXOt8Pc/KrfoJCdBkdu?=
- =?us-ascii?Q?D3sDhiYHJoFuSOGnbQxt+3HvJlF8oceJaxWMCW43A1k51j5c6mq3GH89wGON?=
- =?us-ascii?Q?WabdDrJBPfdck7ABFUgpj/8Z8/5DyyTIPfdTZpq4uPTfsT9JzrjwNCrjvP4/?=
- =?us-ascii?Q?0+hSMn+SKbWGeDY5F8ooGYAOhAMcDOjMF9+161Ocwq/Qmkh9D17iM3ipqLyR?=
- =?us-ascii?Q?V8LUzaKf1R68WlsYif9KHDyeFt5J9m/cA4w+EZed3QnViqcZIzcbCHfy4V0t?=
- =?us-ascii?Q?L7vxJLP7ab+9DCskCwLLmXyrCo5XP9oSquELNI+4ochMx0x88n8y6P6ufBSv?=
- =?us-ascii?Q?sJP07EecdbgDnEIXn0F8oLKn3NI+Vx/kWYMyBVV5mLxS4ZeVrEEq+s6Ti7fX?=
- =?us-ascii?Q?+yyI6YadEnHxiTp77xa0fmmXeltgU9obGtIb9VpTbENvLV69iC6FYlrtUcRH?=
- =?us-ascii?Q?F8OSmE/lB+h/3q5O5OcuuWeVDsVTag5+rdz1pM2u5nVvv/SbnODKzhcTetw1?=
- =?us-ascii?Q?uI2uJph6ELaQUH8NrDrf3CLEN9OiS5f8l0kkS0uQ9bJHZrTNmm49AcGww4xD?=
- =?us-ascii?Q?7LYAlEFad16iNcoOYujZQ/XYoL1K22tWWp0yGG2KCffcKmdVZziP0B0br8Q1?=
- =?us-ascii?Q?qtfYT/lEj0jMhB4vkbP+kCAzfUmuDKb720W29GT5JAEKSjBke5gCS9EPNdDb?=
- =?us-ascii?Q?wXUtA7g7XR/Nbsz7BZV7y44doFDzC7DPKSQ3O9TDlBGOQG/9G2wgUFCXpSZi?=
- =?us-ascii?Q?rtFN2FZpClylABKP/hWLbSNQHT/69ZIxmK6FBrSfeRUgr0DTWgyZ0L529bA0?=
- =?us-ascii?Q?cRp4VtTUnpWEd7hXcaNErlH/7oX4fmmnsQwr6C1c638cc0e0ZpGDlJ5ig50m?=
- =?us-ascii?Q?zdG2qO/ITmZ/i8aLFInZin/P1aQaC7tBOz/Mw12ui7T0eO9EqTw2JInQkDFP?=
- =?us-ascii?Q?7kec1VUcsPwQMHk098aoWZBSwVUattXMuoxCNn7sM2Xc+I1UIrXMRi784/Sb?=
- =?us-ascii?Q?TDkChcD+Xm6+/TfmMeLUXmQniyUxjlPP62+nXjCLuR6vnMXJjN0LNWPfrcr0?=
- =?us-ascii?Q?7ddsSxTulo4LjrJQt93mThfxEanH6WGHQ+QAzwaqahtHQ0i8oIeRft17rS+c?=
- =?us-ascii?Q?/mCIcCsWrsrpu/V+dJAaqVCqdm3Ft/CYEhD8klNeU/kgOb3b2n8GpeKt/BIY?=
- =?us-ascii?Q?StR9VC9TiN7jpFMJ6CloFSvB3oerloHIJ+6j+cC3?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 633EC25C6F1
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 05:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762406954; cv=none; b=R0mhc/18JwkgILsKZls84JpTxHH7b5GMmQEd5OnPwQxJoUrH6ah9WXvteM7RkrSNMJmUY+NZqfaW2aNE1UzcoJ8xZWSkuev9UtrnEsqdXez/bAvuE4uxH6URNEKAf3SmbzkVjSHOPA3/ev1YmkTbsTzOAw+j6cs8pvHhd/jesE4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762406954; c=relaxed/simple;
+	bh=n2loI6PnkdWc/Xcsx1+XnYItNZkmsLD8O+LWC/I7LuA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MkiYzk5D1DWEK4v3dk6Dgf7Z/NgagPXVOnbMtdSNabLQPffRnWT4ZywJ8krNDh36p3FHR46SIxEbpg2sbJjh4kPOFNnJ819N7adQzeJ5mjcwCe8DRbCkfJwXXnwCDr6D5JZiXaWVFoMqaZpfobixKkFXC+AqmpWdkTuZ5Fru6gc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AwEiKKl3; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b9ef786babcso384299a12.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 21:29:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762406950; x=1763011750; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QZf7nzpvEhPnYK8e5saXeTYFZVlI/+ZhnP5xGtJSFjQ=;
+        b=AwEiKKl3Uh6ce1TvXL2K5/nOxtXeCC65A1/CK6q+OfQXN/Gc81rR/FVprSdyyrLWme
+         wZmhlX65bcQqvJlLC6679l8HuEZjhkeckj1Uj7ndeqt0Qae/QoIpeY+RifVv1OjRw5pE
+         uclIaeJCbsINjfploePwQx9mFaBvSKjf5oyxA+i7vj5ef7IH9dRsj61D6AZi60SVyKwH
+         jCWDUY1R+4pOZXllED+UzVJUdI0LXlCKh8jwoyTHE1rwKqcOnDCcD5C8qNsxatLyc5vY
+         FAXCuu5kGkUjP17l8M/ypstSSe4DW05n05oMPPbVdxZ5Rn9aK5XdD/aPEY4JXVry3ylk
+         130A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762406950; x=1763011750;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QZf7nzpvEhPnYK8e5saXeTYFZVlI/+ZhnP5xGtJSFjQ=;
+        b=uRIEZT2kXzrFYSxmPZpIQ31qtEXFCyejKl7MIpRAqj6fUsXNWS5zkXkYRuiGohwFDl
+         VWHHOBxnOTbQypfzD8ZSUqxZobNs4D4w+WOjQpCLWLG445YisYx7emwch4y56b0RlBDq
+         L7o+EaSkkePr94JIKIEIpHNBPTZcy0mYAB/SYZqouHPR1+My6fu0cfK++IvM002zKaBQ
+         2vWfOaBSnTM387pUJqvPix9PLwU82kU8W0IeCn2mUnH+Zk6fIGfsQ/wDRx2bvVDf9PP0
+         cpdzzPB1/d51F9YhuOozDyUv9jOHDHAkLTeHQkYWz+kn2mSOI2FL1HvgRUzsu2MKgUr4
+         DhDA==
+X-Forwarded-Encrypted: i=1; AJvYcCVqBlNwW2PAjcHJbmcsQqb3+NTncTOPie/vGE8glllIaAZrTRJYnJW/VemBM4XJSPxjvIu/iDiVMnE7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9WjCyuAHpfvCep7C9q7U8Kzgqu0eVw/CDmlyWBxwaL408J/QN
+	us9ofQnW4NEqsvIzUjXNvE12jGngTEzsYIJsSVKT6RA9jpXfU4BlnTbP
+X-Gm-Gg: ASbGncvJQ3bFtxMRArUXEMZ1Rc+ZNdVAc8wF7jYkv+sAac5VntXmbq+CFZPzI1bzV1J
+	ghwUp7PqXQOMkoOSzVjo5/3soogO1GBtSjWhwcTC5IhbcpCHPIb/cT/gO3s1jDLWZuVy+vcvyE8
+	KQSrOQZBoIgjrHY3zWuEXKVYP1VIM3795AbyUDKm003dG2kOSMML67tUpL18Q3gfsw70xDuisc6
+	Pwfzi4/28HPRjPZMJkLZ6D2+xxIgqt1G6H3bXuE6+Glsxp89/fm3zSGsgpAOlbDIAMVpuIs2Fv7
+	99K27kIOT6kZWAtuumgq/qCqlU1RC1vVqWX9hJ6idDNIG7Rvvo9/pyOZLUaNKNnKmaIdcc1uaxh
+	406Mc6jpFlhb9KWtIZ7vPmDTkUc5T4VAk2yqFYQ+zHwfCO4r03KqrV1qgApzGISlMygRFmll24B
+	BKH7iPpQ5qwrLk9/U6Nw3K+aadocxIK5WccRrjwaU=
+X-Google-Smtp-Source: AGHT+IFT+jrjXMaHwGsQ6O7aIkM6xiLZOEWqOora2R1jFqITYFI+TEHDGkIN0NlaP9WS2/NVUzFxrQ==
+X-Received: by 2002:a17:902:ce04:b0:295:54cb:a8df with SMTP id d9443c01a7336-2962ae4cc76mr83028555ad.36.1762406950342;
+        Wed, 05 Nov 2025 21:29:10 -0800 (PST)
+Received: from HYB-iPCgmhaB8Cy.ad.analog.com ([59.9.235.253])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-296509683easm13781345ad.15.2025.11.05.21.29.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 21:29:09 -0800 (PST)
+Date: Thu, 6 Nov 2025 14:29:03 +0900
+From: Joan Na <joan.na.devcode@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: regulator: Add MAX77675 regulator
+ binding
+Message-ID: <aQwyH4rYlcWNxGxI@HYB-iPCgmhaB8Cy.ad.analog.com>
+References: <20251014053142.15835-1-joan.na@analog.com>
+ <20251014053142.15835-4-joan.na@analog.com>
+ <512ffe3d-5ab3-4e87-afd2-46f0005a8d17@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f2de97b-bb93-4ffb-ff89-08de1cf4f1d2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2025 05:25:48.7597
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /JOrobkDSc7CbfZU6yAu8MDx168r5/OiW+6UdAV8Z86nMc3pkwC5yfEFwR3cI7d2tLPyr3czwWxU/OyD57xlU88Qd9ZabgPqdyFvG+X2l1w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5208
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <512ffe3d-5ab3-4e87-afd2-46f0005a8d17@kernel.org>
 
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: aspeed,ast2600-mac01
-> > > > +    then:
-> > > > +      properties:
-> > > > +        rx-internal-delay-ps:
-> > > > +          minimum: 0
-> > > > +          maximum: 1395
-> > > > +          multipleOf: 45
-> > >
-> > > I would add a default: 0
-> > >
-> >
-> > Agreed.
-> > I will add it in next version.
-> >
-> > > > +        tx-internal-delay-ps:
-> > > > +          minimum: 0
-> > > > +          maximum: 1395
-> > > > +          multipleOf: 45
-> > >
-> > > and also here.
-> > >
-> >
-> > Agreed.
-> >
-> > > > +      required:
-> > > > +        - scu
-> > > > +        - rx-internal-delay-ps
-> > > > +        - tx-internal-delay-ps
-> > >
-> > > and then these are not required, but optional.
-> > >
-> >
-> > Configure the tx/rx delay in the scu register.
-> > At least, the scu handle must be required.
->=20
-> Sorry, i was unclear. By says 'and then', i was trying to chain it to the=
- previous
-> comment, that the delays should default to 0. With defaults set,
-> rx-internal-delay-ps and tx-internal-delay-ps become optional. I agree sc=
-u is
-> required.
->=20
-> > Here I have one question.
-> > In v3 patches series, if the ftgmac driver cannot find one of
-> > tx-internal-delay-ps and rx-internal-delay-ps, it will return error in
-> > probe stage.
-> > If here is optional, does it means that just add warning and not
-> > return error when lack one of them and use the default to configure?
-> > Or not configure tx/rx delay just return success in probe stage?
->=20
-> Once you add the default statement, it is clear what delay should be adde=
-d if
-> they property is not listed, 0. No warning is needed.
->=20
-> What you should find in the end is that most boards just set the new
-> compatible and 'rgmii-id', and need nothing else. Only badly designed boa=
-rds
-> tend to need tx-internal-delay-ps and rx-internal-delay-ps.
->=20
+On Tue, Oct 14, 2025 at 10:14:15AM +0200, Krzysztof Kozlowski wrote:
+> On 14/10/2025 07:31, Joan-Na-adi wrote:
+> > From: Joan Na <joan.na@analog.com>
+> > 
+> > Add device tree binding YAML schema for the Maxim MAX77675 PMIC regulator.
+> > This defines the node properties and supported regulator names for use
+> > in device tree sources.
 
-Thanks for the clarification and detailed explanation.
+Hello Krzysztof,
 
-In the next version, I'll mark "aspeed,ast2600-mac" as deprecated and conti=
-nue=20
-using "aspeed,ast2600-mac01" and "aspeed,ast2600-mac23".
-I'll also add the default delay values for tx/rx-internal-delay-ps.
+Thank you again for your helpful feedback.
 
-In the driver, if those properties are missing, it will use the default val=
-ues for configuration.
-Additionally, I'll treat aspeed-ast2600-evb.dts as a new board using the ne=
-w
-compatible and 'rgmii-id'.
+> 
+> A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+> prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
 
-Thanks again for your helpful feedback.
+I plan to update the patch subject to avoid redundancy. The new title is:
+dt-bindings: regulator: Add support for MAX77675 PMIC
 
-Thanks,
-Jacky
+
+> > 
+> > Fixed:
+> > - Missing explanation of `maxim,fps-slot` default value
+> > - Updated DT binding enums to use string values (e.g., "low", "high") instead of integers
+> > - Converted several binary properties to boolean type
+> > - Renamed time-based properties to use standard unit suffixes (e.g., "-sec", "-us")
+> > - Added default values for properties
+> 
+> 
+> Probably you wanted a changelog? Changelog goes to --- with details
+> against EACH version. Please start using b4 if canonical patch format is
+> tricky. b4 would help.
+>
+
+I have applied this from PATCH V4.
+
+> > 
+> > Signed-off-by: Joan Na <joan.na@analog.com>
+> > ---
+> >  .../bindings/regulator/maxim,max77675.yaml    | 205 ++++++++++++++++++
+> >  1 file changed, 205 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/regulator/maxim,max77675.yaml b/Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
+> > new file mode 100644
+> > index 000000000000..6be29eced039
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
+> > @@ -0,0 +1,205 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/maxim,max77675.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Maxim MAX77675 PMIC Regulator
+> > +
+> > +maintainers:
+> > +  - Joan Na <joan.na@analog.com>
+> > +
+> > +description: |
+> > +  The MAX77675 is a PMIC providing multiple switching buck regulators
+> > +  (SBB0–SBB3), accessible via I2C. Each SBB can be configured individually
+> > +  in the Device Tree. Additional PMIC settings can be configured through
+> > +  device-specific properties.
+> > +  Users should use the macros from dt-bindings/regulator/maxim,max77675-regulator.h
+> > +
+> > +allOf:
+> > +  - $ref: regulator.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: maxim,max77675
+> 
+> Please organize the patch documenting compatible (DT bindings) before
+> their user.
+> See also:
+> https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+> 
+
+I have changed the commit order starting from PATCH V5.
+
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  maxim,en-mode:
+> > +    description: |
+> > +      Enable mode configuration.
+> > +      "push-button"  - Push button
+> > +      "slide-switch" - Slide switch
+> > +      "logic" - Logic mode
+> 
+> You just repeat the name in the description. Say something useful.
+> 
+
+Updated the DT property description as follows:
+description: |
+      Enable mode configuration.
+      The debounce time set by 'adi,debounce-time-us' applies to
+      both push-button and slide-switch modes.
+      "push-button"  - A long press triggers power-on or power-down
+      "slide-switch" - Low level powers on, high level powers down
+      "logic"        - Low level powers on, high level powers down (no debounce time)
+
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    enum: ["push-button", "slide-switch", "logic"]
+> > +    default: "slide-switch"
+> > +
+> > +  maxim,latency-mode:
+> > +    description: |
+> > +      Latency mode for voltage transition:
+> > +      "high" - High latency (100μs)
+> > +      "low"  - Low latency (10μs)
+> 
+> So use values 100 or 10, and proper type (-us)
+> 
+>
+
+I have applied this from PATCH V5.
+
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    enum: ["high", "low"]
+> > +    default: "high"
+> > +
+> > +  maxim,drv-sbb-strength:
+> > +    description: |
+> > +      SIMO Buck-Boost Drive Strength Trim.
+> > +      Controls the drive strength of the SIMO regulator's power MOSFETs.
+> > +      This setting affects the switching speed, which impacts power efficiency and EMI.
+> > +      "max"  – Maximum drive strength (~0.6 ns transition time)
+> > +      "high" – High drive strength (~1.2 ns transition time)
+> > +      "low"  – Low drive strength (~1.8 ns transition time)
+> > +      "min"  – Minimum drive strength (~8 ns transition time)
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    enum: ["max", "high", "low", "min"]
+> > +    default: "max"
+> > +
+> > +  maxim,dvs-slew-rate-mv-per-us:
+> 
+> ... like here.
+> 
+> > +    description: |
+> > +      Dynamic rising slew rate for output voltage transitions, in mV/μs.
+> 
+> Except you said mv/us, not us. Confusing.
+> 
+
+Would it be acceptable to keep the current name "mv-per-us"?
+
+> > +      This setting is only used when 'maxim,fixed-slew-rate' is not present.
+> > +    enum: [5, 10]
+> > +    default: 5
+> > +
+> > +  maxim,en-debounce-time-us:
+> > +    description: |
+> > +      Debounce time for the enable pin, in microseconds
+> > +    enum: [100, 30000]
+> > +    default: 100
+> > +
+> > +  maxim,manual-reset-time-sec:
+> > +    description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+> 
+
+I have applied this from PATCH V5.
+
+> > +      Manual reset time in seconds:
+> > +    enum: [4, 8, 12, 16]
+> > +    default: 4
+> > +
+> > +  maxim,en-pullup-disable:
+> > +    type: boolean
+> > +    description: |
+> > +      Disable internal pull-up for EN pin.
+> > +      When set, the internal pull-up is disabled.
+> > +      Defaults to enabled if this property is not specified.
+> 
+> This and maybe few more properties look like pinctrl bindings. Maybe
+> properties from pincfg are applicable?
+> 
+
+The maxim,en-pullup-disable property disables the internal pull-up of the EN pin.
+While it looks similar to a pinctrl configuration,
+it is actually handled by a device-specific control in the max77675 register,
+not through the SoC’s pinctrl subsystem.
+So, would it be acceptable to keep the current naming and implementation?
+
+> > +    default: false
+> > +
+> > +  maxim,bias-low-power-request:
+> > +    type: boolean
+> > +    description: |
+> > +      Request low-power bias mode.
+> > +      When set, the device enters low-power bias mode.
+> > +      Defaults to normal bias mode if this property is not specified.
+> > +    default: false
+> > +
+> > +  maxim,simo-int-ldo-always-on:
+> > +    type: boolean
+> > +    description: |
+> > +      Set internal LDO to always supply 1.8V
+> > +      When set, the internal LDO always supplies 1.8V.
+> > +      By default, the SIMO internal channel supplies 1.8V during low-power mode
+> > +    default: false
+> > +
+> > +  regulators:
+> > +    type: object
+> > +    description: Regulator child nodes
+> > +    patternProperties:
+> > +      "^sbb[0-3]$":
+> > +        type: object
+> > +        $ref: regulator.yaml#
+> > +    properties:
+> > +      maxim,fps-slot:
+> 
+> That's not property of regulators. Totally messed indentation.
+> 
+>
+
+The maxim,fps-slot property is specific to the MAX77675 regulators 
+and is used to configure FPS slots individually for each regulator (e.g., sbb0–sbb3). 
+As this represents a device-specific extension rather than a generic regulator property, 
+it is defined under each regulator node.
+
+> > +        description: |
+> > +          FPS (Flexible Power Sequencer) slot selection.
+> > +          The Flexible Power Sequencer allows resources to power up under hardware or software control.
+> > +          Additionally, each resource can power up independently or among a group of other regulators
+> > +          with adjustable power-up and power-down slots.
+> > +          This device's regulators provide an additional property to configure the FPS parameters,
+> > +          allowing each regulator to be assigned to an FPS slot for proper power management control.
+> > +          "slot0"   - Assign to FPS Slot 0
+> > +          "slot1"   - Assign to FPS Slot 1
+> > +          "slot2"   - Assign to FPS Slot 2
+> > +          "slot3"   - Assign to FPS Slot 3
+> > +          "default" - Use the default FPS slot value stored in OTP and read from the register
+> > +        $ref: /schemas/types.yaml#/definitions/string
+> > +        enum: ["slot0", "slot1", "slot2", "slot3", "default"]
+> > +        default: default
+> > +
+> > +      maxim,fixed-slew-rate:
+> > +        type: boolean
+> > +        description: |
+> > +          Use fixed slew rate of 2 mV/μs for output voltage transitions.
+> > +          When this property is present, the device uses a constant 2 mV/μs slew rate
+> > +          and ignores any dynamic slew rate configuration.
+> > +          When absent, the device uses the dynamic slew rate specified
+> > +          by 'maxim,dvs-slew-rate-mv-per-us'
+> > +        default: true
+> > +
+> > +    additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - regulators
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/regulator/maxim,max77675-regulator.h>
+> > +
+> > +    i2c {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +
+> > +      max77675: pmic@44 {
+> > +        compatible = "maxim,max77675";
+> > +        reg = <0x44>;
+> > +
+> > +        maxim,en-mode = "slide-switch";
+> > +        maxim,latency-mode = "high";
+> > +        maxim,drv-sbb-strength = "max";
+> > +        maxim,dvs-slew-rate-mv-per-us = <5>;
+> > +        maxim,manual-reset-time-sec = <4>;
+> > +        maxim,en-debounce-time-us = <100>;
+> > +
+> > +        regulators {
+> > +          sbb0: sbb0 {
+> > +            regulator-name = "sbb0";
+> > +            regulator-min-microvolt = <500000>;
+> > +            regulator-max-microvolt = <5500000>;
+> > +            maxim,fps-slot = "default";
+> 
+> I don't think this was tested.
+> 
+> 
+> Best regards,
+> Krzysztof
+
+Testing on the actual EVKit has been conducted since PATCH V4
+
+-- 
+Best regards,
+Joan Na
 
 
