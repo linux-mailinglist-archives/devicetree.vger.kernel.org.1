@@ -1,154 +1,173 @@
-Return-Path: <devicetree+bounces-235534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 055F0C39AC1
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:55:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB41BC39A28
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:48:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A4ACF3506E6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:55:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9D0D54EE66B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0653090E6;
-	Thu,  6 Nov 2025 08:55:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0F341C4A13;
+	Thu,  6 Nov 2025 08:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tmDL8kr5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF4A305044
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 08:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EBBA3002C5;
+	Thu,  6 Nov 2025 08:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762419302; cv=none; b=VYkFj6yMrqfgqX8fZZ/XhhcCjbqzWxrItRqY/aeTTAAOHnyIgqyV0xiiuRA/YAVykvFIM6c3rzWdAlAHfaY5d4/ul2fInJtWUkXUTiQjsTCV3Zs9ODBWOiYKpUYJQmpJGYjMJwk84Y/NyKQZ+W1f70ho0yO2q+Tf7+OtYohQ3tA=
+	t=1762418902; cv=none; b=V5w2A1EGVJbCAXbNv+xo0Mx21Ycuhn+5I5ZyRI7B2oGmrLeKqoe4OQZ4TfEQEtIn3GhBw/OUBAmMaGX0f4FfSsi4lDUDmuUAM55N65gtpx/idA/8BAyYiZzQp63hLauFm+sZTZrV4CPU42NI93wc7llXZ3KDGAGX/lxzDd97Mu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762419302; c=relaxed/simple;
-	bh=r4WI112XNVPvAwbD+KTwJYuTD4uzGIUEVqXtqMZFfmI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FUvRfJYzv+gON9lPbWFVLu+LH7LeV1tcnVHwieqD/XxUThYkBZpJ/Kjo0BstX4e/DCl6FQuTa4vqh/lwyHAdYIVPkhs+aZU1suvlei+5bDCFMW4AmZFw1bb0H2vL1NJOSKEnUam9zntCr8B/bt2GRBytmrZ08FRIWUQBpak3q54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7c6d13986f8so630980a34.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 00:55:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762419300; x=1763024100;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zdhdbS5PtOsV4kjxfjLI8puwF2f4n5VCEZc3tH68S6k=;
-        b=Wyu5xIgzrRPMMSVcliMfzSNLzcX3laNp28vPj/YPJ3rgtVKNLfhuSSdAo4loThciVo
-         GWPVMB2fuPyIvCA6qiHR6ykXde4HWu0O85+siwJ/D+a826IJlBXtIwnbhDThgBToXmZ0
-         yQm9srS+D6IcULC+uxw4SS11mYcydVmYUUqvU5tu3kXdYl8oH2YrzLBVHuZGc7Td/l6X
-         SGbIaBfdr06pATdyxwqA/RxZSyN58QnEH8vKeLwOoL0hnghO+9mDhJUvUf9BelyGr7qk
-         64a/W5Sre4akGaNkOP61ED+iAIGtiKbEwyxoH+duJHleaZ2Iy7UpdiA67bJbYXsW9pHz
-         2d8w==
-X-Forwarded-Encrypted: i=1; AJvYcCXzEBezqW1fDH1OAzv5VQGVTKKjri9QR3YNNUxUGZyoeW40IJsndPJWtql5tTjIpsoLGLYHJ1ezCBvH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyifRwIXMorbITGW6CvVrDKxpJzJlsZuBMH7aDYCuYY1C3l1n8Q
-	d/nwEg+qTAuL2HDsUgaoTvnklE2wZ7V1D0gqbXYN5P5r2RaKa5z1bMaaXLS9IiYL
-X-Gm-Gg: ASbGncuKfcKGDfYSA38clwlfGmATSVeq+1gpdMsT9XmtEgrxso41SRUxEEYRS6jWven
-	eytxYztj05jDPJ+A0OLvfDFrefPCNdikwi3RPH0LCH9QYtf0MwYZ6VjjlhPe7YW2fDUL9+r6pQU
-	+jmSdIY28dQtqubvyrlqYbeBEeBVoFEa8ArAWQvAR4zDAplvWqGumSdhrJhm7E2rfIH5itl3bms
-	qNRY6AKBFgEGcPW3eGOclQDKblaYlY9h2acEhCnezYiWbyPgZd8fNaWjjt4Sun0nIufn490dKnf
-	ELCsx7DKMl5fss0Q+9MiLGR1Rhtong84SAxSH6T19Qaak3IVCF0WMXoR1TBawKz0eQrClFM2SII
-	TVduoSVdSyIF3TDHTyS0h8ybdUmvA4YaVNu6mEEumYWBRe3i/ODA5vsy2RRiKjbBKwOntecvKM9
-	xSQ7IFnXQGb/YBgAwubN+KZZoSa55Qxqg1qB4U4A==
-X-Google-Smtp-Source: AGHT+IE/bc79Uqbbotq5slytomdaQMIGxG2PZLRQUYUUNyWmH2nkWhJG4yiFTBhVXMtNe4lFGJwOoQ==
-X-Received: by 2002:a05:6830:6e42:b0:7c6:e8d7:3ac7 with SMTP id 46e09a7af769-7c6e8d73ccbmr354138a34.12.1762419299630;
-        Thu, 06 Nov 2025 00:54:59 -0800 (PST)
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com. [209.85.161.47])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c6e32d2177sm830361a34.17.2025.11.06.00.54.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Nov 2025 00:54:59 -0800 (PST)
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-656bf426c81so428894eaf.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 00:54:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW8bmLG/BMtU10LYC2SHLN2nNZM0FH9Jd0+H/ulN7IgId4+6NxksDvqb3oxFy02rDcDPxUWBXMGWbi9@vger.kernel.org
-X-Received: by 2002:a05:6102:3053:b0:5db:e179:1c2f with SMTP id
- ada2fe7eead31-5dd9feef219mr849186137.18.1762418859485; Thu, 06 Nov 2025
- 00:47:39 -0800 (PST)
+	s=arc-20240116; t=1762418902; c=relaxed/simple;
+	bh=zckLRNukcp03dx43dCWtDB8En+8nFsNdYJbK7sYTUZM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=reEWf5nRptwLUhwrLHuBEieiFGJkA/qo4lvWsztjfg0uQeTqXWBQqS+30PMkbsZe+u4hMT9zLEGdUE9WmUj26IM3UU38Wy/mi20iglDsNFUVC4SMljqIlg6i4PXjGeQt8EVcFRb8Qic0NUnfe3aM4OvNwqQhqIabLIuJn84YCQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tmDL8kr5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 870F6C116C6;
+	Thu,  6 Nov 2025 08:48:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762418902;
+	bh=zckLRNukcp03dx43dCWtDB8En+8nFsNdYJbK7sYTUZM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tmDL8kr51DyTy99fAvpjF42DJxyl9vb9C54R2cbSW/SrQCkL/yd26tEj/EqR5fJUg
+	 GBHKPly/rLMv1rz9xGwfnq1EIZGOty1sDFIzq5GJjH3MjsM6mkcgUXLwIK+eGnJimU
+	 4L+dI2D4MkmrqmigeBJbKcM1H4D6hs1lapYS61EYLJl2GdkBZjFjOieGcYW4UE+Z8n
+	 Jpl7mYbIC9qarWF7+lkGeyNPyAMrIijFJ01JyE23AtC3U+yYD234NQGhEN2j+NLw9W
+	 fWIcCkq/IHRZ4HzBSFFu0NwlMBxU38UlyGd0M7bvi36oiBo7EfRitObQbAy04zx329
+	 wKfQ72AQCzBww==
+Date: Thu, 6 Nov 2025 09:48:19 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: David Heidelberg <david@ixit.cz>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Casey Connolly <casey.connolly@linaro.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 01/12] dt-bindings: panel: Add Samsung SOFEF00 DDIC with
+ panel
+Message-ID: <20251106-enlightened-centipede-of-tempering-3cfa50@kuoka>
+References: <20251104-sofef00-rebuild-v1-0-dfcfa17eb176@ixit.cz>
+ <20251104-sofef00-rebuild-v1-1-dfcfa17eb176@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251021080705.18116-1-ovidiu.panait.rb@renesas.com> <20251021080705.18116-3-ovidiu.panait.rb@renesas.com>
-In-Reply-To: <20251021080705.18116-3-ovidiu.panait.rb@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Nov 2025 09:47:28 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUR=_5Ex57gvgFXyxhSDkqdd0DjcTqV0m59tquxKzQnNg@mail.gmail.com>
-X-Gm-Features: AWmQ_bkMn9K93ASfX-CEwYoeGvJMeNWd5c5VED4d6zuDLnmC2ge-cRo7TaazeRI
-Message-ID: <CAMuHMdUR=_5Ex57gvgFXyxhSDkqdd0DjcTqV0m59tquxKzQnNg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] dt-bindings: rtc: renesas,rz-rtca3: Add RZ/V2H support
-To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-Cc: claudiu.beznea.uj@bp.renesas.com, alexandre.belloni@bootlin.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	p.zabel@pengutronix.de, linux-rtc@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251104-sofef00-rebuild-v1-1-dfcfa17eb176@ixit.cz>
 
-Hi Ovidiu,
+On Tue, Nov 04, 2025 at 11:16:09PM +0100, David Heidelberg wrote:
+> Basic description for S6E3FC2X01 DDIC with attached panels
+> 
+>  - Samsung AMS601NT22 6.01 inch, 1080x2160 pixels, 18:9 ratio
+>  - Samsung AMS628NW01 6.28 inch, 1080x2280 pixels, 19:9 ratio
+> 
+> This panel has three supplies, while panel-simple-dsi is limited to one.
+> There is no user of this compatible, nor the compatible make sense.
 
-Sorry, I still had outstanding review comments I hadn't sent yet, as
-I hadn't finished my review yet.
+There are. git grep samsung,sofef00, gives me two users.
 
-On Tue, 21 Oct 2025 at 10:07, Ovidiu Panait
-<ovidiu.panait.rb@renesas.com> wrote:
-> The Renesas RZ/V2H RTC IP is based on the same RTCA3 IP as RZ/G3S
-> (r9a08g045), with the following differences:
-> - It lacks the time capture functionality
-> - The maximum supported periodic interrupt frequency is 128Hz instead
->   of 256Hz
-> - It requires two reset lines instead of one
->
-> Add new compatible string "renesas,r9a09g057-rtca3" for RZ/V2H and update
-> the binding accordingly:
-> - Allow "resets" to contain one or two entries depending on the SoC.
-> - Add "reset-names" property, but make it required only for RZ/V2H.
->
-> Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-> ---
-> v2 changes:
-> - Added "reset-names" property and made it required for RZ/V2H.
+> Remove it from simple DSI panel definitions.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-Thanks for the update!
+..
 
-> --- a/Documentation/devicetree/bindings/rtc/renesas,rz-rtca3.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/renesas,rz-rtca3.yaml
-
-> @@ -61,6 +63,39 @@ required:
->    - power-domains
->    - resets
->
-> +allOf:
-> +  - $ref: rtc.yaml#
+>  additionalProperties: false
+>  
+>  required:
+>    - compatible
+> +  - power-supply
+>    - reg
+>  
+>  examples:
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,sofef00.yaml b/Documentation/devicetree/bindings/display/panel/samsung,sofef00.yaml
+> new file mode 100644
+> index 0000000000000..527a10e3b798e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,sofef00.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/samsung,sofef00.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a08g045-rtca3
-> +    then:
-> +      properties:
-> +        resets:
-> +          items:
-> +            - description: VBATTB module reset
-> +        reset-names:
-> +          const: vbattb
+> +title: Samsung SOFEF00 AMOLED DDIC
+> +
+> +description: The SOFEF00 is display driver IC with connected panel.
 
-Please add this property to the example at the bottom, too.
+Description goes below maintainers, see example-schema.
 
-Gr{oetje,eeting}s,
+> +
+> +maintainers:
+> +  - David Heidelberg <david@ixit.cz>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +            # Samsung 6.01 inch, 1080x2160 pixels, 18:9 ratio
+> +          - samsung,sofef00-ams601nt22
+> +            # Samsung 6.28 inch, 1080x2280 pixels, 19:9 ratio
+> +          - samsung,sofef00-ams628nw01
 
-                        Geert
+These were not in the old binding, so please explain in the commit msg
+reasons for adding new front compatibles.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +      - const: samsung,sofef00
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios: true
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Drop, not needed. It can stay required, though.
+
+> +
+> +  port: true
+
+Drop
+
+> +
+> +  vddio-supply:
+> +    description: VDD regulator
+> +
+> +  vci-supply:
+> +    description: VCI regulator
+> +
+> +  poc-supply:
+> +    description: POC regulator
+
+1st poc, then vci then vddio to keep it more-or-less sorted. Same in
+required list.
+
+> +
+> +required:
+> +  - compatible
+> +  - reset-gpios
+> +  - vddio-supply
+> +  - vci-supply
+> +  - poc-supply
+> +
+> +unevaluatedProperties: false
+
+Best regards,
+Krzysztof
+
 
