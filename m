@@ -1,357 +1,140 @@
-Return-Path: <devicetree+bounces-235441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A84CFC38C62
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 02:59:33 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0194BC38CC8
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 03:07:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A95AF1A21221
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 01:59:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A6F274E0709
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 02:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D1C2494FF;
-	Thu,  6 Nov 2025 01:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5204221CC58;
+	Thu,  6 Nov 2025 02:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pmMGN/gk";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Nk1nEqwJ"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="Jz/mSUG8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A9B24676A
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 01:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC9FEDF6C;
+	Thu,  6 Nov 2025 02:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762394277; cv=none; b=NNnQeXjqXenFhclk9J9/uH200aXMtWXfDnlCFzYOmYY8wTXHjQ44HqCRM77iuxBznQcPFMmzmOXj8paU958qHO4W2RkUpRjqoXxA32VdYxRkq0GeUdKR+LuW4JcPPQ31sDtxndYeU9Mo2TaDXRr7+yNJBC8cVnzuQxCq4oUNyzU=
+	t=1762394870; cv=none; b=CENLxSh3NojiKr4EWY1FCyFG7bVddKkbiy+h72o4mw+4zsSt8XNaXtv33GxOYtUVtqBBLGgi4xb5LbOdUAYqtpnbN7JfKcxGLR0HNi5zWZ18mwdSFcchjd9Xa3GmNukIKPehhOVm0ySeEeu1MRBDGnEz3jdQ12vW0Yv2S0uFMRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762394277; c=relaxed/simple;
-	bh=7VSD4rZhCzv8NdJ8v+27nAr+/WtZ4IGwF8g9oS/Ek8Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BchHEjwza6vckaNGj3qLhr2XzuXsJMCnPXALAZjWL/ycz4RK7dWWjUgNDeaDF5+mIj1nL0ruG4IzHITaPZhrd7aFkIbZpAeRPC53TTk4yaSJS4uYOdZ2SIb4j04kvexf+PdEXYH5GGBX1udwtJBxgI1mdj3HYhF0QsyGy91Tt0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pmMGN/gk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Nk1nEqwJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A5KElWg1784441
-	for <devicetree@vger.kernel.org>; Thu, 6 Nov 2025 01:57:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5MkKiRXBbE3lf0Fpqo1FQcvBm1IsA+kYRCJdRWEmlHo=; b=pmMGN/gkSNpeK88B
-	kSQ/dL8SCuBFIM4feuq6o+y+nqZgxbKLExhojQBusMKDXaH/msiicV3GsqDEmnaZ
-	bz0VBHNmt02aOq9cJUAf6gfMIZ6mM5z2CuX2PUf7OwC4yyJA34MBVilSLPBKG30L
-	mbVsvvg9WIXYrigR0YobO5EyGsy0Lqny0hiHnWTtOqh/tuYRAorxilbSrnNoDUCK
-	JjvwBlvrUsxRN7KNSb4b/n/XKFzuyuQbFr9GS+jj1vM/ZbpffgQjrcAjjnJ1Cj8j
-	cykZGTLQevxIGR3rUSxVQBix0L0hICGZuz1tlgG8hAH9Vvv7Rp5hMy30dPUoE4m5
-	TWm7EQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8amx9cfx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 01:57:54 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-286a252bfbfso11960885ad.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 17:57:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762394274; x=1762999074; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5MkKiRXBbE3lf0Fpqo1FQcvBm1IsA+kYRCJdRWEmlHo=;
-        b=Nk1nEqwJcnY0wNxfxrEkSgQLlwMZTz2eooBs0wkGkepPr/u+9p1ruGWPSMBgYbS/S1
-         oaNiUHD0+xjTFqspQxGexYsnKxZJ7503KnX9d8vigFmQKwHW/8yjYPxYA8eDrY9kEcP9
-         5swOUv9xyAx/mkPCpHrOfZJfyOeOvf2pE87Pmqtg4+yny5i/NK6RhZjlpzc1fywz9JFU
-         NRQrcQkRx2V3i5F2FoCBuO+T6mvhPI0auWHHGV14X8ZI8jsz8MQXwABrTXCsxlL9VxVk
-         HSH0sOtszRRh1KTx1VXssl00x34msKY1UYgWj/8z5cqcITOcf5IWCG8ylrmfVw9LPiBe
-         SI6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762394274; x=1762999074;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5MkKiRXBbE3lf0Fpqo1FQcvBm1IsA+kYRCJdRWEmlHo=;
-        b=sA+F7MbdAvFokW9mvnFYt32dGvwDObWZHyaJZwX4sTJAWJFSpHL0xFbUiH4hnL1b9r
-         eX3m04Gow0Ri6iBHtM1nbm2ba5KKQfQjZqhpBXHs7ypigK+l0/g3vJdT5hZ5axwzB4O6
-         YziuJ5hHDMjK10mshxLAE5IlEjfrrWzUSurt3pIB/feAq6ho+DRQkMDWufgUHIkDHd8g
-         1EcemEWcvKYh09eIOnY598k/YrgLvmqOzS0hOHD6Lj5iYn5UUKem87ErqlhCOxKRT69s
-         8CRtqiFun8EUgdBfET26unTtISQE5I9qNg6gnTbiiwxyQh5jxnL6AZAh3hEMHLnqL+RQ
-         AxrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXxPJSoJMHdeDjqwF/R4JwhFH/HPTkdNY/MQf20oAzdQHx5gc46xD5K+fvau2MjchkT8X6Y52YpyIe6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2ePn9ErinQkWrNI4cSDYx9ws3U2rHLCYpZah9H1utLKKLfWTx
-	gAMr01nZDk/zktxezQcpdxnn8xl0XHlGBnQU4PFzayejAota6MqK5j2RfZpeAfidV3RTkBSFYGW
-	q1U2HL7qL77a0lNyBkxoHpTK5GV+zXmKu1EY/xokrqSW1s6acLf7uK3LmAn8smO+z
-X-Gm-Gg: ASbGnctxCbla7CR/HEzReXu3QECgloumKAS6p5teLu3Lm7zjWXnFyWK2E0LiX2EmDtI
-	4NMaPvDiW3YLDmOkyR5PxOCT/MNm72L1GAji19yGh1EzyytgcyvrW1IyULFvKokojoLoSkfk2gb
-	qw82FoaJ4LSgEjnezCWBQYrVFLGjZGaMIXIk4v+GJRx4dT3mKf0B3I2ApwjPHRKVaD9mbl+ketZ
-	HDjZufcp7//POHhZ3LTR2Z0792SqjGjj/nHQr4Ym0FwwqCtsAfT1VtvvCmYLiyQy/awv4VZ8Amj
-	GUQ9fG4e5MhDlovv/58ArATOjLgdX1EdmGkDE+npmD3UYW7+P8Nh7wS4tOXbpLBUSys9Rq6xomm
-	CpXA+A9ERoVaawdwHFkq3UChMyXn959aQfGr5HJ0Vx70QFG/ybla+dt1YKGy69A==
-X-Received: by 2002:a17:903:41ca:b0:26a:8171:dafa with SMTP id d9443c01a7336-2962ada5a6dmr73326005ad.21.1762394274082;
-        Wed, 05 Nov 2025 17:57:54 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHg3zuB8jhhHQtF3i/xJOL1T6MX0TBIHHOix2P4rEMcbSwlF46A8Upq6h35Ggl2Yj74pIMVyA==
-X-Received: by 2002:a17:903:41ca:b0:26a:8171:dafa with SMTP id d9443c01a7336-2962ada5a6dmr73325515ad.21.1762394273606;
-        Wed, 05 Nov 2025 17:57:53 -0800 (PST)
-Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29651c93e5dsm9115725ad.81.2025.11.05.17.57.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 17:57:53 -0800 (PST)
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-Date: Thu, 06 Nov 2025 09:57:26 +0800
-Subject: [PATCH v2 2/2] arm64: dts: qcom: hamoa: enable ETR and CTCU
- devices
+	s=arc-20240116; t=1762394870; c=relaxed/simple;
+	bh=8zF/BjHFJ1cgMuaYtAWliYOySD8GNNoeZhiCV/po144=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=CS5sk7KiwzTnxu4S9yBBEAXJLqqoXW1n/2BBjszOjD9PBMgjySFhCMkRuyIfrtx+dcDzXLyvWr6xIDXUH7n1Gr4c9A6mg847A4xrMAZgkk0NYbBWSGfaUHwBarOBTKDrrEQiOGOa4xXfxqU3Izzn4iZCS8gtxQUfqk2fo8MGz70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=Jz/mSUG8; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1762394802;
+	bh=VVl1Qjus8u0aUj8+6Bj8jBGW/g0TFXzsB/9E8b+TxZM=;
+	h=From:To:Subject:Date:Message-Id;
+	b=Jz/mSUG81JzjgYqtmrsoGxedEs9qCq/TV7Sc5FRXH49aYam1s9LeQZBgIZnnOflhh
+	 qPseJK8+qg1raZmWNV14RTkp5WXetzfinEneBxA7fTGOmK/nbrehIaVYAcDeSaWF5p
+	 PibFmGR/Ox+jwiA71qcpDSQ6Gjemx2ntXzwcJ+Eo=
+X-QQ-mid: esmtpgz15t1762394799t86ae74a2
+X-QQ-Originating-IP: yhNbobLVwNbY5V1jr9iOK5ifgRi7NiwMV1ECYKdCN10=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 06 Nov 2025 10:06:37 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 10766765311845532809
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sandy Huang <hjc@rock-chips.com>,
+	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Subject: [PATCH 0/9] drm/rockchip: Introduce Rockchip RK3506 VOP
+Date: Thu,  6 Nov 2025 10:06:23 +0800
+Message-Id: <20251106020632.92-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
+X-QQ-XMAILINFO: MaVe9I53f0M32r5fsRWj//W6nWaUspkMSaTtRW4c2N6Mdvr0+1ipAgD5
+	JUlOS2AFXv2TT5iyKkQofrVkr4B6nVpxXL6F80oenAcFfNT6ZYS9VfFPbTdzHbAPbxlLTFr
+	u3pn3DnIXAQoG4ecnn0xqL8Eh6kEScNs48pmFXkPacrGEJDKHpi+yv6oU/F8yyzEEWzdHNy
+	rUySAbLVGX2lD3J0qtmrKEVQOUKGgisz6cKeY0iB1erxFWa4hODg3J337bFzjADIJX6RiqL
+	IkssFhteJj/+JSxld1aapay3kY40f47vb0fRxFpqi3pYxrtg0wVEodRlDsNihgCmcYJKvDA
+	IiYCt1v6RpYoQOUB5q9j/A7Xkn+LrNzQQ1KcflGdcH1xIXZ8bAdkxXuJFR90SAGUGvcNBAD
+	2nbQf6qZtfHKSbEzEaj4wCg0QlTTm42p5wBkyjgYS6LMolsYav3Q6MYQ8LE/co0LVlFAuL4
+	nMVz4KyQwBPKb+dyswWvp/GHlbdYXKo/lwMUvMmjEYbppktIBc6r3UDUW2qh87xsRWzvVmZ
+	yrc0RIuEl6MP3dW9bjbSqcRrE4h/u/rOZRFDHEVxAWA2xioLfemSHgun52czZWwv+uKnFzx
+	r41bHUFf7TXnn9HsZqNd7C+9n8wtZNa90DhWZpYUOYwCt9L9KTlzg5nzHFxf48tI0oHn3S6
+	1K3P0HnVJeCZbZU2aAkEO6GNqUNjXIfvZ2bbkbpvC4qY773Ev1nh680PRo6ktxJ7sZ9s+w7
+	Dak34WJKt3Pa7zrKnNozVPoF8dqH7TqtgopT7Y8/mKkd3w9n3uTcDl587GR1yorc1+KF1p5
+	cVwFulLw8bk3SRXT2UktX9IVEeM6WLnWx9pAeS1Y1h0h+KDMaEpHiSQ1MspzojlC80Rkhxe
+	MAnG3q57lQjueLxu/ciFBE7zyVkCiM6Cu1pY2NoKvPtQnkUhuMW8VdzmsDi6bfB+7Trm0h9
+	R1rNpsQQ7Z51SMEVk8NCXUlrnT2Ylt9ZA5lQCCflYxPW4mg==
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251106-enable-etr-and-ctcu-for-hamoa-v2-2-cdb3a18753aa@oss.qualcomm.com>
-References: <20251106-enable-etr-and-ctcu-for-hamoa-v2-0-cdb3a18753aa@oss.qualcomm.com>
-In-Reply-To: <20251106-enable-etr-and-ctcu-for-hamoa-v2-0-cdb3a18753aa@oss.qualcomm.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-        Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jie Gan <jie.gan@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762394259; l=4204;
- i=jie.gan@oss.qualcomm.com; s=20250909; h=from:subject:message-id;
- bh=7VSD4rZhCzv8NdJ8v+27nAr+/WtZ4IGwF8g9oS/Ek8Q=;
- b=ZuaD9B46ChHvo6NySqR+CnBN7j1JzBkdCBeITt/n2oe7oA7RO5Gxz8SOPXD6rMdjZkEJLQbQO
- K3zkrTeM4kXBgrhlRXADkWVzxiIJy9RD+vFpE7aCw8KwdYKbKSsyCBe
-X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
- pk=3LxxUZRPCNkvPDlWOvXfJNqNO4SfGdy3eghMb8puHuk=
-X-Proofpoint-GUID: bQxCMWUYkHkwH5oBVLtbO0VZjt4X5rPQ
-X-Authority-Analysis: v=2.4 cv=P443RyAu c=1 sm=1 tr=0 ts=690c00a2 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=kFQAvpsttJVeTngcj60A:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDAxNSBTYWx0ZWRfXyRf4LWIMuebn
- 9j+N3F1CWaKOW77Wk54d3MGKtHlCwbDbWewYkGoD/syDp2Ws/YW+VxD72BWcJpVSZsB8/GDjk2r
- SrTK+Yiatt325AVzxIE86MDnzoM/yfvM7uw8I5Gm994UmaneqFRi66uBpvcBRgH9MJb3GPKJs4l
- Zd1UJYXV+uOyiFlvwAeZm7gC3x3oW+FgeS84yqisKGIp04v3xo8pyAXN6a7rICJVhh8NAre1kld
- Q83xVHESNcNEG+JTCXBKVK2EZelpcFg5Z7lSUHuKPk97ZYdsuJSonhEmgVtlS+wTOuIhG/FYT9m
- k8/bD+tBWwjEx50OPpeGO1qVSupPqfPhutHVfx8RMQZBL2VK5i+8cz6qKo2tMlZb43pGhNQhih9
- yH6l6yz+6CUNt0f9XTycZqt4e02N7A==
-X-Proofpoint-ORIG-GUID: bQxCMWUYkHkwH5oBVLtbO0VZjt4X5rPQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_09,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 adultscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
- phishscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511060015
 
-Embedded Trace Router(ETR) is working as a DDR memory sink to collect
-tracing data from source device.
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-The CTCU serves as the control unit for the ETR device, managing its
-behavior to determine how trace data is collected.
+The VOP on rk3506:
+- Support 2 lane MIPI DSI interface, 1.5Gbps/lane.
+- Support RGB interface.
+- Max output resolution is 1280x1280@60fps.
+- WIN1 layer support RGB888/ARGB8888/RGB565.
+- Support Gamma LUT.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/hamoa.dtsi | 160 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 159 insertions(+), 1 deletion(-)
+This series adds basic support for rk3506 VOP. And tested on the
+rk3506g-evb1-v10 board with a Wanchanglong W552946AAA DSI panel.
 
-diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-index a17900eacb20..3b90133da4e7 100644
---- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-+++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-@@ -6713,6 +6713,35 @@ data-pins {
- 			};
- 		};
- 
-+		ctcu@10001000 {
-+			compatible = "qcom,hamoa-ctcu", "qcom,sa8775p-ctcu";
-+			reg = <0x0 0x10001000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					ctcu_in0: endpoint {
-+						remote-endpoint = <&etr0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					ctcu_in1: endpoint {
-+						remote-endpoint = <&etr1_out>;
-+					};
-+				};
-+			};
-+		};
-+
- 		stm@10002000 {
- 			compatible = "arm,coresight-stm", "arm,primecell";
- 			reg = <0x0 0x10002000 0x0 0x1000>,
-@@ -6927,6 +6956,122 @@ qdss_funnel_out: endpoint {
- 			};
- 		};
- 
-+		replicator@10046000 {
-+			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-+			reg = <0x0 0x10046000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					qdss_rep_in: endpoint {
-+						remote-endpoint = <&swao_rep_out0>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					qdss_rep_out0: endpoint {
-+						remote-endpoint = <&etr_rep_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tmc_etr: tmc@10048000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0x0 0x10048000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			iommus = <&apps_smmu 0x04e0 0x0>;
-+
-+			arm,scatter-gather;
-+
-+			in-ports {
-+				port {
-+					etr0_in: endpoint {
-+						remote-endpoint = <&etr_rep_out0>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					etr0_out: endpoint {
-+						remote-endpoint = <&ctcu_in0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		replicator@1004e000 {
-+			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-+			reg = <0x0 0x1004e000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					etr_rep_in: endpoint {
-+						remote-endpoint = <&qdss_rep_out0>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					etr_rep_out0: endpoint {
-+						remote-endpoint = <&etr0_in>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					etr_rep_out1: endpoint {
-+						remote-endpoint = <&etr1_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tmc_etr1: tmc@1004f000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0x0 0x1004f000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+			iommus = <&apps_smmu 0x0500 0x0>;
-+
-+			arm,scatter-gather;
-+			arm,buffer-size = <0x400000>;
-+
-+			in-ports {
-+				port {
-+					etr1_in: endpoint {
-+						remote-endpoint = <&etr_rep_out1>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					etr1_out: endpoint {
-+						remote-endpoint = <&ctcu_in1>;
-+					};
-+				};
-+			};
-+		};
-+
- 		tpdm@10800000 {
- 			compatible = "qcom,coresight-tpdm", "arm,primecell";
- 			reg = <0x0 0x10800000 0x0 0x1000>;
-@@ -7240,7 +7385,20 @@ swao_rep_in: endpoint {
- 			};
- 
- 			out-ports {
--				port {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					swao_rep_out0: endpoint {
-+						remote-endpoint = <&qdss_rep_in>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
- 					swao_rep_out1: endpoint {
- 						remote-endpoint = <&eud_in>;
- 					};
+Chaoyi Chen (9):
+  dt-bindings: ili9881c: Add compatible string for Wanchanglong
+    w552946aaa
+  dt-bindings: phy: rockchip-inno-dsidphy: Add compatible for rk3506
+  dt-bindings: display: rockchip,dw-mipi-dsi: Add compatible for rk3506
+  dt-bindings: display: rockchip,vop: Add compatible for rk3506
+  drm/panel: ilitek-ili9881d: Add support for Wanchanglong W552946AAA
+    panel
+  phy: rockchip: inno-dsidphy: Add support for rk3506
+  drm/rockchip: dsi: Add support for rk3506
+  drm/rockchip: Drop ROCKCHIP_IOMMU depend for DRM_ROCKCHIP
+  drm/rockchip: vop: Add support for rk3506
+
+ .../display/panel/ilitek,ili9881c.yaml        |   1 +
+ .../rockchip/rockchip,dw-mipi-dsi.yaml        |   1 +
+ .../display/rockchip/rockchip-vop.yaml        |   1 +
+ .../bindings/phy/rockchip,px30-dsi-dphy.yaml  |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 225 ++++++++++++++++++
+ drivers/gpu/drm/rockchip/Kconfig              |   3 +-
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |  20 ++
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.c   |  57 +++++
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.h   |  14 ++
+ .../phy/rockchip/phy-rockchip-inno-dsidphy.c  |  91 ++++++-
+ 10 files changed, 410 insertions(+), 4 deletions(-)
 
 -- 
-2.34.1
+2.51.1
 
 
