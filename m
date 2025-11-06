@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-235515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75AA5C398A6
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:15:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52983C398D9
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:20:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 308F43B8C5D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:15:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 109A63BC53C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:20:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45CDF23236D;
-	Thu,  6 Nov 2025 08:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF44F24469E;
+	Thu,  6 Nov 2025 08:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vyy2cMUl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xi5Op1l0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188224CB5B;
-	Thu,  6 Nov 2025 08:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915121C1F02;
+	Thu,  6 Nov 2025 08:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762416954; cv=none; b=jdZI/VaGjq5hb4vn9l5Y0VA/mtEwzygexL59wjgL5xdKTzPcog6/JNMJKphXCBK8gW8DixS9gVebk0+LiXuVGWgfMazs0dBM9ZEuVrOjvsqP6/26UIj0ng+k8r5XMeUt7CKSeO2d4lpwkUnYVk7cK12yFq3gH/z1E4zAPY/uXik=
+	t=1762417210; cv=none; b=F+lxJZHyPnfc/QG6IlTggd+wGUFG16aNhGjhq2Jg9N92unEznvT1Eo+QfnMbdxVlFX4nkQPpHoRvP+d9cb8QXpFAc0o4KDmaybeK6DKkipt68eV+NGwS9gC1Wd2awpPd8l+1FHOQhcwGG+kCA2j3f88Swe0B9rdtOIquRiqfZ8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762416954; c=relaxed/simple;
-	bh=Wbvcl+WyB/sxQb3DW2pjtgUfuAvY6jRrgtA1fR2cvLM=;
+	s=arc-20240116; t=1762417210; c=relaxed/simple;
+	bh=qP9UCJhYMo+FOdLuzlEtgzqnFMsnydaJ9teE1Z25kAw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nQ5ts2VYPaDkAQWiUStkdFHtPcdhUzF9p5W7ykqAYeb5jMObjM1FRVyXE3bbjdtyMdsfa5YB9BL9268kP6RkLSJE0/YsjJQGkCCWsutBLN/ziYK8iRr8QJYXSUq2QakytlFuHal5cF0osQIXJod3bnfcrQP9NPXvYbcjFlinDdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vyy2cMUl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DACBC4CEFB;
-	Thu,  6 Nov 2025 08:15:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=avjmqXslpKPF5PhWgJ1smgAxiQSA8BPWgVyyAZ+fXjHyQ1zZPJa2BC3cHi8xLF4kGaTCaTFVbsGFXyUuhSKLQtsQZQtbUNxXJRdryrjDuCObXVvRdkFB+//RbBswBi/vayMYuliwiw394VdYPdGO8zklHGayB8+YIu7BDKWqExM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xi5Op1l0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16E49C4CEF7;
+	Thu,  6 Nov 2025 08:20:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762416953;
-	bh=Wbvcl+WyB/sxQb3DW2pjtgUfuAvY6jRrgtA1fR2cvLM=;
+	s=k20201202; t=1762417210;
+	bh=qP9UCJhYMo+FOdLuzlEtgzqnFMsnydaJ9teE1Z25kAw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Vyy2cMUlQ1XPYMeH1KovTYnI+pb1tGp8AGGvWOYc+t5tJlMms33oFrS6dxQiYvfrK
-	 DzQJLetNURzF1kJn7KKi0YfcPIL/lAnR8im7BqFOv/8ySIHSsbbBlKhHWlj8+aqTf/
-	 w3930abwHgXFu/MtEGMpLR3slXrtqY1v65qkFBWfOfKxABCxY51Wpu/PwUjjKXshCJ
-	 v/r/VfW7DzN50ld07hACulRvPd3ZUomacvKgiEn+1M4TIi63DZTj44O+emCwYYRW/2
-	 GhfotNATH3vF01O30acHG5tuL0nxrMXhtGms52D/eLG7Qyz7I0h2szBGKE7kjVjKaa
-	 gLRRcY/W7ZStg==
-Message-ID: <eccdb13b-e062-4106-8c79-ca57b6839a0e@kernel.org>
-Date: Thu, 6 Nov 2025 09:15:48 +0100
+	b=Xi5Op1l0MhplZ/A+t+GDX6TOXT2Bvos2rx4wnESLmGCC8yS0DG0lb8KrbEewv9eVC
+	 Mi6evwI3BomCs/AtbZCW3BryYisS+ITf9Wa1CAWNv76BKuFuJ49M7FRwYDFfAQ34lu
+	 vhJAWJH+sF2GftGip7cjqtDVKRu2DOsYrOYTzuYBUsMNPPlsL8WZWS2u26n5qE6aVI
+	 eiyyVpC9KIw8DUad0s/gOgT/MggDP0FB7+ksWzz71GG/nl/CijDyHZ+pbBMeX0hLYP
+	 NN+1+/vXR1MQmDPdufXHcxAsufzXveq4ejYRjSVUF8pEWYh5nNEhLBZ7tpK92o9wI6
+	 w3jMfu0yv7v7Q==
+Message-ID: <039a3a41-c60f-4296-afd9-2bf3467574ca@kernel.org>
+Date: Thu, 6 Nov 2025 09:20:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] Add TUXEDO Elite 14 Gen1 (X1E78100)
-To: Georg Gottleuber <ggo@tuxedocomputers.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ettore Chimenti <ettore.chimenti@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
- stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
-References: <20251105154107.148187-1-ggo@tuxedocomputers.com>
+Subject: Re: [PATCH v7 0/2] Add driver support for ESWIN eic700 SoC clock
+ controller
+To: Xuyang Dong <dongxuyang@eswincomputing.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+References: <20251023071658.455-1-dongxuyang@eswincomputing.com>
+ <1abb85b.c11.19a582bcbbc.Coremail.dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,41 +105,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251105154107.148187-1-ggo@tuxedocomputers.com>
+In-Reply-To: <1abb85b.c11.19a582bcbbc.Coremail.dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/11/2025 16:41, Georg Gottleuber wrote:
-> Initial support for TUXEDO Elite 14 Gen1 laptop. It is based on Qualcomm
-> Snapdragon X Elite SoC (X1E78100).
+On 06/11/2025 08:57, Xuyang Dong wrote:
+> Hi all,
 > 
-> Changes in v2:
-> - Rebase to v6.18-rc4/master
-> - Add support for accelerated video decoding
-> - Add support for audio (speakers, microphones, headset)
-> - Add support for Bluetooth
-> - Add support for camera
-> - Add support for fingerprint reader
-> - Add support for HDMI-A port
-> - Add support for QSEECOM
-> - Add support for USB Type-A
-> - Add support for USB-C DP altmode
-> - Add ASL Xiamen Technology Co. Ltd. vendor prefix
-> - Add TUXEDO vendor prefix
-> - Add cover letter
-> - Removal of pointless comments
-> - Coding style fixes
-> - Spell check
-> 
-> The device tree uses the dtschema from Linaro qcom-laptops [1].
+>   Gentle ping. Looking forward to your reply. Thank you very much!
 
-No, it cannot. You must work on mainline.
+Please do not top post.
 
-Specifically, you must use mainline dtschema and I do not understand why
-you choose it from some 3rd party repo. See writing-schema how to
-install main dtschema package.
+You did not add any maintainers of these drivers, so I would not put it
+high on our priority list.  Ask yourself - why would community
+maintainer like to take unmaintained driver? So the community maintainer
+would maintain, right? To add him more work? If that is the case, isn't
+better not to take the driver? You see where I am getting at?
 
-
+Also, I don't see any involvement in reviews from eswin. The only
+reviews here where from DT maintainers, Troy and Brian (I hope I did not
+miss anyone), so again - you just put all the effort on us and then ping
+us...
 
 Best regards,
 Krzysztof
