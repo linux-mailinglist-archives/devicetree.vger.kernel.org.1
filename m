@@ -1,109 +1,93 @@
-Return-Path: <devicetree+bounces-235748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2195EC3C560
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 17:18:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3DB7C3C662
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 17:27:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F3BE422D97
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 16:11:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E39C64F90F5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 16:19:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315C634A76F;
-	Thu,  6 Nov 2025 16:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC7A358D08;
+	Thu,  6 Nov 2025 16:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gAPB+iyQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OeCEa+aD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6530934A3CD;
-	Thu,  6 Nov 2025 16:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B9E358D04;
+	Thu,  6 Nov 2025 16:11:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762445427; cv=none; b=lioUJy9uz3u+hBfCAr+ECrNwF4+uzBIgJglEu3Mz93qI7u22S8ERjXqj4IaSOxmSmHKJ5hkxhM7tKprUWE/8xcWMs/PILlD61HwgdmJVR43OAltm4IDAqJcKYu6BjajZ2hZXo2i/O/pJYs+NkF/ZYu+SR8IQnGgxpjTwHFm/ups=
+	t=1762445516; cv=none; b=nQzVVPi6zdyHEXWxyBr3EHgJHQiTnMa+Z4aAjFx2MI8vKWmRyh4dok9ZGzEIKqPBYVOZrM1+AOL8p/TtxARXp6QkLpTntAGGiZkTi4u44mjEqfTmdftPzHv3/NmZUNjy32hyYdXVOnRKUPlaumpsZfJwBUfPxe1PY8Mj9bnjx48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762445427; c=relaxed/simple;
-	bh=Llc47k9a9TnaZH+5o6GJeioVsarqczKfv1LsFk7gtBQ=;
+	s=arc-20240116; t=1762445516; c=relaxed/simple;
+	bh=Wp6NdwsggFSpzb+dFMYQ9X2r0whMaKdMwlJTTWgTI0M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o2J2rg8AvWRp4RAd1EofZwqbvYLCcnypwmBHzTLozanUsiyaqosc5n0DDe8ErT6gxjLxVBwh8XNQLQeakFg6+oMsaN3lv/p4f6eHOAwMDMQV1mD55yZSEolTNoWb6lPZf+j78zWe8Qwe68X0RHbhlPFLcZbQ31OjKGT+25zshAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gAPB+iyQ; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762445425; x=1793981425;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Llc47k9a9TnaZH+5o6GJeioVsarqczKfv1LsFk7gtBQ=;
-  b=gAPB+iyQEtwqd044pOKIT+QJ8OVW7ob4GWX9B9fN7hEwc0hcfmBIXgNN
-   VYnjJrH+uN9l4y5GhpVeUO1k+9es6gfyUoajmXfadKsO0lnrSfQUNij4R
-   wBIgcmY7BkCtMINuUm3zelm04gO6bv9ji0+TQeLTpCfdbshYP3SD+V9Y7
-   DVSFGOstPfv1DqIFvg4Au8k2FTDQeAzIwU96SucUfpEA2vy5eQa9berMt
-   MUb4H5QTsxXwGP0+QwYVvGLEkjMux/I9+8rDkfhelUJrnsZcSUhdXf2O7
-   52w/GaW8JBFnMaaX50dJaCYdcrI3drtCFJyGIl/IdO6WmMP4PmXURbx3t
-   w==;
-X-CSE-ConnectionGUID: XjAcL7QJR7+3K7vO1qC4Rw==
-X-CSE-MsgGUID: AyPaW+eBT3qQsEfaEW23jA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="68446874"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
-   d="scan'208";a="68446874"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 08:10:25 -0800
-X-CSE-ConnectionGUID: 18epo9g/S/+XH0+8iF5hZg==
-X-CSE-MsgGUID: Yw6PxLOjQLqAALwiKX9jYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
-   d="scan'208";a="187637058"
-Received: from abityuts-desk.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.224])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 08:10:22 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vH2Z1-00000006Brb-0xHC;
-	Thu, 06 Nov 2025 18:10:19 +0200
-Date: Thu, 6 Nov 2025 18:10:18 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] iio: test: Add kunit tests for
- iio_divide_by_value()
-Message-ID: <aQzIavXYD7fUbrqc@smile.fi.intel.com>
-References: <20251106-ltm8054-driver-v3-0-fd1feae0f65a@bootlin.com>
- <20251106-ltm8054-driver-v3-3-fd1feae0f65a@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UnqWHWJLYSrL6V8p3vmuSdQ4g69X/xvPodWLJGrPV7lPeg60F66t8qDl9mytsXLgN+2DuSau7JtBoC457QM/Yvz6F2ucklDE3zL2CAbQkhHETfC939uDMd8tlLA+7mG1EUhTA2XtW6hr/p0YcXRYPmOL0mGnto6hv9Dg5mrXHP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OeCEa+aD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51D44C4CEF7;
+	Thu,  6 Nov 2025 16:11:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762445515;
+	bh=Wp6NdwsggFSpzb+dFMYQ9X2r0whMaKdMwlJTTWgTI0M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OeCEa+aDlWQ5u1cQUfOXi+ERK0SJ33/+W5IPmwxfaVVar2Q74v178OcPqMXqVExMU
+	 IHd6DTxKFMKcitwkI917TFx3tvCTjrW/52zos5eyychIJfljT841HirV5O3ONbWL2a
+	 8V/UXUkDYvJG8KYOHNYbir7F1TILDu7/B7T/kyr8ZFzQxxjnqIqgbd0fnifQ2IMYDy
+	 zl4LDBFHt4ImPFKl0HUvtk/HAkRAmeigzyqxzVV6Vxxik/kmqxXcZGNZxusw5P+m5T
+	 AoVopRgLYb4OpkTxH3cQZRjinOKgbsdQp4X9cSv07CQP8CRx4SRYIZSiTq5W1Sl1uM
+	 2RbeXbAYy0OXQ==
+Date: Thu, 6 Nov 2025 16:11:49 +0000
+From: Lee Jones <lee@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, wenst@chromium.org,
+	igor.belwon@mentallysanemainliners.org
+Subject: Re: [PATCH v11 0/9] Add support MT6316/6363/MT6373 PMICs regulators
+ and MFD
+Message-ID: <20251106161149.GU8064@google.com>
+References: <20251027110527.21002-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251106-ltm8054-driver-v3-3-fd1feae0f65a@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251027110527.21002-1-angelogioacchino.delregno@collabora.com>
 
-On Thu, Nov 06, 2025 at 03:11:48PM +0100, Romain Gantois wrote:
-> Add kunit tests for iio_divide_by_value(), these are similar to the
-> existing tests for iio_multiply_value(), but the operand values used differ
-> slightly.
+On Mon, 27 Oct 2025, AngeloGioacchino Del Regno wrote:
 
-When use abs() in the code, always add a check for the *_MIN.
-This will give you a few surprises.
+> Changes in v11:
+>  - Removed unnecessary #address-cells in all mt6316 bindings
+> 
+> Changes in v10:
+>  - Added "struct" prefix to structs kerneldoc
+>  - Renamed struct mtk_spmi_pmic_pdata to mtk_spmi_pmic_variant
+>  - Added "REG_" to MT6363/73 mfd register definitions to disambiguate
+>  - Expanded MTK_SPMI_PMIC_IRQ_GROUP macro parameter names as suggested
+>  - Some rewording of comments as suggested, addition of more comments
+>  - Refactored IRQ domain handling due to deprecation of function
+>    irq_domain_add_tree() to use the new irq_domain_create_tree()
+>  - Fixed to use generic_handle_domain_irq_safe() to avoid races
+>  - Added support for two interrupt cells in translation
+>  - Removed .irq_lock() and .irq_unlock() in favor of lockdep classes
+>  - Added support for handling PMICs without IRQ Group register for
+>    upcoming MT6685 implementation
+
+The MFD part looks okay.
+
+Let me know when you have all the Acks and the set is ready to be merged.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Lee Jones [李琼斯]
 
