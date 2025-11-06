@@ -1,97 +1,122 @@
-Return-Path: <devicetree+bounces-235867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AA4C3DAB9
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 23:47:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2DA3C3DAE3
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 23:50:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4FDAA34CB3C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 22:47:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A52DE3A9FFA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 22:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B760A307AC7;
-	Thu,  6 Nov 2025 22:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C877033F8C0;
+	Thu,  6 Nov 2025 22:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lzfrC05A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dqOa0gIg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7E2306497
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 22:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF7827CCEE;
+	Thu,  6 Nov 2025 22:50:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762469231; cv=none; b=WoiQ969Cfg5DoDBx5mMi4bACG5itJSmoSvgkYH9Ui8cwQCmsVMN9HAlGaPNno0KLFNjyXiA9htdEgeM0yNe1ZN/iPdA27dsM9mYkOM9fG3UgjA5p8vOarUqFJCV9kyIAtOioNXWitt5XHp0xsqnKE4JKj2AY9tHT7XVMCutRy9o=
+	t=1762469453; cv=none; b=CwVew4ch1aOnVJra9eAyzsbzk248W8ahygVxF9dJrf5UTgojCp76Nyld6X69RkbgKxMd0fq29fNr+mYgXGCpDDhDnx/xmNBptAT0rgPt34ZaE++MuuK8s2YvQpzaZH2gtVKmmWsErkzfdhHUCS5kyn4rQxzjUwHIeZSDYMCDVNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762469231; c=relaxed/simple;
-	bh=bxCK7Am/J/1Ddo7TSZsvpwD8cdBJyrYfhoG3eyACE28=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WdOG05XDcTU95C641rMGf4Z5lLaOA8EtWs1W9mW89zKcLlYDRrmhFnjh2bc+96wUhUO5FlzkXRqTNoPWWN9X/F0RhYvJSLb/u2rO6aGRnLU4goHNejH+yNMapwzXP7dCSbqt0ryF9mx8xgHhdaPZi59jzUgdT0dfp//QLt5CbGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lzfrC05A; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 3B9FDC0FA94;
-	Thu,  6 Nov 2025 22:46:47 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 54BC1606EE;
-	Thu,  6 Nov 2025 22:47:08 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 720C811851833;
-	Thu,  6 Nov 2025 23:47:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762469227; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=SPs8R+Z4eyPWDXZ8OJOkk6d7mA/bu9hQxInYciv//+A=;
-	b=lzfrC05AemjRCIC6Ku3CAja8qwjKogVYQ/w+c8EYAhIP/GI14XolTamie8Cf1In1gelr1E
-	f4I8sw0w3575yy1wI0YRlnd307ii3hDzhjmvtDeA/1Z92Ku96VmMGG11prrZ/5sWzQvgcZ
-	6yspWAUgPS53Rgfi2SV5nIkwn7c2Nz9C1oOHGDNeWAtXJ8ZkcBCEjNsIno0gkCbFzQUt3u
-	eR3OyIfQMtDKVf5Ua7ngabNWt5G2o+mauFonhhWwpWJtDsO8lOJh5DHMrs4aojM62QFV5F
-	k1+pcM5rQNHJm1yDrQOybBh3aWIV3ilgF7W+W80ORLWHCv/Qb1tfxnpFk3lQwQ==
-Date: Thu, 6 Nov 2025 23:47:05 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	CL Wang <cl634@andestech.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, tim609@andestech.com
-Subject: Re: [PATCH V6 0/3] rtc: atcrtc100: Add Andes ATCRTC100 RTC driver
-Message-ID: <176246750570.34507.967877032441742538.b4-ty@bootlin.com>
-References: <20250915031439.2680364-1-cl634@andestech.com>
+	s=arc-20240116; t=1762469453; c=relaxed/simple;
+	bh=WzRrllIQtbo+UJwad6wYd5Ami7Uha4tPFk5HLA8MubA=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=rkHPRAH9wvHtjF+vB7gpPsB/rxowRiwIv3nUBo/KcLkrD+y9RYi2UJmlw6g0PefcRBE2fbT8BAITTVfiRuF+CnSIYZd+4V8IhNJyvHukuILrBaaoUKwHwiEcdirz7HFA/bTmiIfRS36VWRi6y3t3lKxSLCbcnt2eQjxwRyLW3Y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dqOa0gIg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7209EC4CEF7;
+	Thu,  6 Nov 2025 22:50:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762469453;
+	bh=WzRrllIQtbo+UJwad6wYd5Ami7Uha4tPFk5HLA8MubA=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=dqOa0gIg6Mx/iP6+eMqN2y4hYLXmgbA+I4ChYOU7CYDJJxra3ykstpEKtVRhO62uW
+	 7DUIXPoqQ8hVGE0SZ+tba83MIeUACNhJrzFIN2ooV1II3rWipJUBgnbT8w21Pw0lZR
+	 +87yAYvnvpwlGxS4S/kxS15k7A7QTqfHQVfzWPqJlYtf8U295yh5c0PTScMgXHQKtn
+	 2Q4yMX0kiSqWdJ3G1J3j42m8z28S60sRsiuqaeHPm+9F63qVpE3xFCuMvDwjWq7sbL
+	 qE1rLtbShTvryBFvJbWCFRY0aGWpwgOFXDNSyZmtxzTFGDArB9YjT0t8tBoImPmBMu
+	 eipWvqnFme6XA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70FBA39EF96E;
+	Thu,  6 Nov 2025 22:50:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250915031439.2680364-1-cl634@andestech.com>
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v7 00/12] net: dsa: lantiq_gswip: Add support for
+ MaxLinear GSW1xx switch family
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176246942627.378775.17231043041165490395.git-patchwork-notify@kernel.org>
+Date: Thu, 06 Nov 2025 22:50:26 +0000
+References: <cover.1762170107.git.daniel@makrotopia.org>
+In-Reply-To: <cover.1762170107.git.daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: hauke@hauke-m.de, andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, horms@kernel.org,
+ linux@armlinux.org.uk, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, andreas.schirm@siemens.com,
+ lukas.stockmann@siemens.com, alexander.sverdlin@siemens.com,
+ peter.christen@siemens.com, ajayaraman@maxlinear.com, bxu@maxlinear.com,
+ lxu@maxlinear.com, jpovazanec@maxlinear.com, fchan@maxlinear.com,
+ yweng@maxlinear.com, lrosu@maxlinear.com, john@phrozen.org
 
-On Mon, 15 Sep 2025 11:14:36 +0800, CL Wang wrote:
-> This patch series adds support for the Andes ATCRTC100 Real-Time Clock.
-> 
-> The series is now based on the rtc-next branch from:
-> git://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git.
-> 
-> This V6 patch series is built upon the V5 series and has been rebased
-> exclusively onto the latest commit in the rtc-next branch, which
-> corresponds to rtc-6.17."
+Hello:
+
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon, 3 Nov 2025 12:16:57 +0000 you wrote:
+> This patch series extends the existing lantiq_gswip DSA driver to
+> support the MaxLinear GSW1xx family of dedicated Ethernet switch ICs.
+> These switches are based on the same IP as the Lantiq/Intel GSWIP found
+> in VR9 and xRX MIPS router SoCs which are currently supported by the
+> lantiq_gswip driver, but they are dedicated ICs connected via MDIO
+> rather than built-in components of a SoC accessible via memory-mapped
+> I/O.
 > 
 > [...]
 
-Applied, thanks!
+Here is the summary with links:
+  - [net-next,v7,01/12] net: dsa: lantiq_gswip: split into common and MMIO parts
+    https://git.kernel.org/netdev/net-next/c/322a1e6f3d68
+  - [net-next,v7,02/12] net: dsa: lantiq_gswip: support enable/disable learning
+    https://git.kernel.org/netdev/net-next/c/a7d4b05f9d74
+  - [net-next,v7,03/12] net: dsa: lantiq_gswip: support Energy Efficient Ethernet
+    https://git.kernel.org/netdev/net-next/c/9ec1fc0bf2b0
+  - [net-next,v7,04/12] net: dsa: lantiq_gswip: set link parameters also for CPU port
+    https://git.kernel.org/netdev/net-next/c/3e5ef3b1709a
+  - [net-next,v7,05/12] net: dsa: lantiq_gswip: define and use GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID
+    https://git.kernel.org/netdev/net-next/c/0c56a98560c1
+  - [net-next,v7,06/12] dt-bindings: net: dsa: lantiq,gswip: add MaxLinear RMII refclk output property
+    https://git.kernel.org/netdev/net-next/c/e836824116b5
+  - [net-next,v7,07/12] net: dsa: lantiq_gswip: add vendor property to setup MII refclk output
+    https://git.kernel.org/netdev/net-next/c/319fd7e9d446
+  - [net-next,v7,08/12] dt-bindings: net: dsa: lantiq,gswip: add support for MII delay properties
+    https://git.kernel.org/netdev/net-next/c/bea0c1778611
+  - [net-next,v7,09/12] net: dsa: lantiq_gswip: allow adjusting MII delays
+    https://git.kernel.org/netdev/net-next/c/cdef8e47b638
+  - [net-next,v7,10/12] dt-bindings: net: dsa: lantiq,gswip: add support for MaxLinear GSW1xx switches
+    https://git.kernel.org/netdev/net-next/c/e1bb4b36a7ae
+  - [net-next,v7,11/12] net: dsa: add tagging driver for MaxLinear GSW1xx switch family
+    https://git.kernel.org/netdev/net-next/c/c6230446b1a6
+  - [net-next,v7,12/12] net: dsa: add driver for MaxLinear GSW1xx switch family
+    https://git.kernel.org/netdev/net-next/c/22335939ec90
 
-[1/3] dt-bindings: rtc: Add support for ATCRTC100 RTC
-      https://git.kernel.org/abelloni/c/e1794c59730a
-[2/3] MAINTAINERS: Add entry for ATCRTC100 RTC driver
-      https://git.kernel.org/abelloni/c/a603092d5be1
-[3/3] rtc: atcrtc100: Add ATCRTC100 RTC driver
-      https://git.kernel.org/abelloni/c/7adca706fe16
-
-Best regards,
-
+You are awesome, thank you!
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
