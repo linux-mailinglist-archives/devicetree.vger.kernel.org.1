@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-235730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46ED6C3C13F
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:34:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83046C3C160
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:36:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E12F3BE6AC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:29:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 777273A6F43
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A33F2877F6;
-	Thu,  6 Nov 2025 15:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089B5286426;
+	Thu,  6 Nov 2025 15:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UcltzmXL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d38jJJ65"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0602877D7
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 15:27:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50904236454
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 15:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762442866; cv=none; b=aajlJVck2nzrbuiBQNC1WeP/W/nXAoBrY9MhiOWYTl/qCLn5FUpVAOIrPt85dllq4EUTQ9IL67h6oJl5Gsz79Hl1kl4UhqirkyRccUfU0R64pufFX5jfdp1rFwE8U3chRd3ScaAg0pChRzwIIkiuoCFWD/ccHFzy4zxNEp0Uh+s=
+	t=1762443047; cv=none; b=GdkTso8ivwYmwqbiKtCisP227v4D0W9p8VFrZBU+Co9Ga5kAvWACXqWAP9AYe4EajyQM0llCiuMiirW460JY2d2ZOANVJp/8ihlfcaFpqyD4FfpNUN9J1pSZZAEGZWz2xPfNcdxPV9Y8qejQ5uQ5rE6prgsKnT677DoXqJf+gq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762442866; c=relaxed/simple;
-	bh=oW9tvfSaR+x1UFogeZoBERZOmVcHYvyFEYruvk2oe6A=;
+	s=arc-20240116; t=1762443047; c=relaxed/simple;
+	bh=PO6dHZiI3iUO2Fk7I3+uF0XWuA9JROkT9V8qD1fjBlc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LUKe1wzK/pn6dCoRdxnl9OlHKNCGGqb3v2azcomXeej2mabnY8V6mJFClLxiby+aYC5G8W+6vRZh2ODu0AtHKNwOd8OwGOXky0rPEPvOiatDWbvf9xTZCFz7L5kkrR+WEUjRP9Kax6gErBAxW3xHS1qzxL/CLqfb9Oz/Y6ehsSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UcltzmXL; arc=none smtp.client-ip=209.85.128.54
+	 Content-Type:Content-Disposition:In-Reply-To; b=AF3qWotyhpm8UHFCRD7u7Jxe5DDzHRJ4+jS2TnBizKj6gkamWceY7iSnbE7oFIccSjQbxz6Rxe4pZ765nOoRLtbM2edPHAFQ3EMcAMjfh6dxIpijxdbt8NKtVQ5ldHJ/y3YcGiYb5tkG0368DZP07YxRPHa+AuDXS2NvRcsLxF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d38jJJ65; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-477563cb70aso893605e9.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 07:27:44 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-472cbd003feso871905e9.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 07:30:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762442863; x=1763047663; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762443045; x=1763047845; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NYN+3T29vDPQnHZypbeGR2Gd6Av+zqDSewkz4T8yjNs=;
-        b=UcltzmXLStgO1hGRNJtN1S/sndhf3Ba19BZnOoaq6cMqkQcLd0yh+ZVYEdYEd9mVrB
-         C4p/qbs2SY5zWYlQf3P1jqVhckmHQFlhuqtjWe1Shk3I2jY9rKrbm2QLHThMUFiknRpr
-         qHoTOzQCSO6UovDocbCluU0343pZOALQL6DotVminqbKJtB6/YXHbeGQ1FM6ANb4PNA+
-         o+VFr5lLLTVyOdZiAycEQMCgraWZO+NvyvVMLlfNHISuOLSffMYt+s9rlNDQk9+aaxjw
-         pEmwg+o6d9wU9OH5MlYpD0gb63+P5JLeXq9WGXm0C1oFwz+/3xVr1hva+j8THtzh0UP0
-         izdQ==
+        bh=ch2Eax89RB20s4DR1TXaJcyV6BYdXbU+N7gMw+0YTgc=;
+        b=d38jJJ65XfUZdbhYLC9GKBdE/9XFv5c35O4LHiRgQpEqNpYYqW4WdfJKraLdHKxNxs
+         pGVSVAS1cQng5aqa/tBEuM1lGIu5h4DWXW11sPsXwU4dVq7b7FIDK1Ur+DcKokjcxigl
+         y5cCHh9QtiW6dbIsAT4iWYSe6AUrTefSuqndyRQWu9Xbd+dGVRtR0XYHEB5J6+2tPbzx
+         Coypkc4Sab6SkkGufd1CXk8gUV0EOr1b5KUPFXDcAxteg/q76OPeqFBj1oFDkXDVKkdb
+         3Unkd0PI9DPl6FpPkLLACKdprY6BexEQUTFeque4etmBIYIDJ/nL2MYprFHy9t5bqJWY
+         4uEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762442863; x=1763047663;
+        d=1e100.net; s=20230601; t=1762443045; x=1763047845;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NYN+3T29vDPQnHZypbeGR2Gd6Av+zqDSewkz4T8yjNs=;
-        b=VMxovWugMK/jOASX4qyYnjEPg6fPXGZPJarZ1dyEpJp8MKgcrfVKGnkyhUK5xDvCd8
-         /iww98lSq9YB0VAKA6ntmFr2DLZNgnEimoQK0wsIRYbvXdCWk/4Y+CS+4U/qztwdqfEn
-         TkGIlRuKjN8iz7BUUekCJCFxisYzSVCZO+3+TQ9OxeHvzXS9NNjlafNlKg2nCG81Y0Ix
-         Q+jXuUKTZhMTmgt7G8LLsF7ZDRViPbomQFgNSe11PihKC/rxDt67CAPvZ9lU8r9dL4At
-         E9Vw0o7J6yV9imUW/jDvQfJOKJR9XPA2U+PmynBk9dOVeHVOx3y1lg7cffuuK5YRF8w0
-         Uwpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUUdYpdVo3im0Eq5bLXhxhVNeE9NU3028hI8FMWCgs+Iiaau1BtL/0hQ/pGqiOxRndkGOXBgKDI50UP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAX7eXHFV1BGPf0I3YiNIIa8B9XE5WHpVVoJfYnb4oKr3mQxI4
-	UXUhHJ8Oud2S4TOL62jGf8AqTtGschcbbYt2sXTZncT89kkQ5qgvXd0k
-X-Gm-Gg: ASbGncssWVyzy2Pwdu3zVy0qXvXWBUmlCT4AVAcd4+JWNL98VNtzAlsD5Or+EQER6jT
-	VvpNnJ6KLvwIFeLJBGziitZyBK5y+XYIqFNLy6HqofW35lYSFq/wGmGW4cUVAH+XBHeKPbG+zCf
-	8lxf3OLXKAvjfvidYz9PPJMwW48BkQlwPHycI/g4EjQ464t6DuZrzWQy8SPP//GjbDQ+1xuXEgw
-	9YuTn1XxytxiR/s9upVjPs4AkrqDfEO6REAg3K7DuDzFcDYJt6uA5rHMfajBeocxN8SDbPY435A
-	aWvnKYpRe9hYunbPNI0DJ4ERB7aFm/GEkzhO691WkI5xX8XevPFyXmvSNRFd2KCaKx0ucZ19ads
-	zrEg6aNgkrwxZC+AQ6+cBGVOtX/y0iMIo6+fAZAIpYk5GqoF1DqjuAdSfzijazNpQkA0Gmg==
-X-Google-Smtp-Source: AGHT+IFHmcjtoJWxn3PX8fbkmyn1EIfTbGFv4nNriBxGgz2uXAa8bfekUcn3LVX7XQvTnLy9gtQ3ww==
-X-Received: by 2002:a05:600c:358d:b0:477:598d:65e7 with SMTP id 5b1f17b1804b1-4775ce1e88emr40913285e9.4.1762442862460;
-        Thu, 06 Nov 2025 07:27:42 -0800 (PST)
+        bh=ch2Eax89RB20s4DR1TXaJcyV6BYdXbU+N7gMw+0YTgc=;
+        b=WwrogYz1laY6nNhNvsm8+gzpikTnvkIiKC6E9zQVbezHYcjT47DJtcxjnJobMZl9oi
+         Meif0VioUa6uCFYDdtpX3HBIjccGVcP/Kl4315EOE/3n7NPISBX13wTZYEp/G9SBRxmT
+         az2R5y3+Z+jfPYKhAxyuq2XynkPGKpzbznegOGSPrj34jnwOBWMnsZ6m68sxK0y4x+yU
+         1M4dpxNRYep6wSpyUZZvj4y0eDeLHWnpOflaes8vlyOycL0xoVif5Z7aACmsYBSjabqv
+         iuvbYcuvsDE/3La9a71syxdc9PzG2xJ8e1x69sSJK2Sj9ToOzGkZ2VBdezaVkG3h1BKA
+         gtWA==
+X-Forwarded-Encrypted: i=1; AJvYcCWUWuTxQsfS2rtH3UwDFYuj4t/5jeRI6wAT92It7SggdkIQa61s83ENr/E/3s2QEb95bLk45ygAYeTt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZAtaHw+RZ7AhuZaI+kvQLnwEg6jN6iad/zGtJ9ZHHnSRnwtSn
+	YkUopkWTOBLS5ajTMXPxWRM8K3fbMMlQEI+TFqe5VuIPE5aLSZsxAA/r
+X-Gm-Gg: ASbGncvWs2wuSXCtjQhj6Rz1s5CaYqnIa3eHV3sJynw7gw+3xTHJwl8SCgkzz+62/iG
+	spQUY8hJxKKNRd+PXveL7oKuBDDEpOa6o7AnJnXY0nF4aVk8bRbY+rgXUa/9ZyGhWDqsmMe0QZ9
+	QapW84jmK36IMD4tT4AnjYx1lSakpmHgNoe/o9EL0g+uOlH3gGp4TkFd1B/UjKIgoadJ+vvjF8r
+	/e8PXIolnLVFlY1KO9L4nQf07keFZ+hFXtzkovtcPM7iF9lezUCUxNO1jfy/qWwk+KdE3ECJxVP
+	5ZnJvZGRaua3HWrYOHBsEhPznTYV+M06HwmPs3KtDxv7SA8G180v1A94aqNKe/NdGSfpitOG70u
+	lvoX5VHE/mujzAnZk7MHnS/8lpjiuKijN14EYEFbTmqaQSZP/yl+NyS6F9tZq9paImgFo4A==
+X-Google-Smtp-Source: AGHT+IETjPi/syUrYuUHgX8SQG+xTr+eodzweo3dFQjAnqtz4bbr/W13GjAuzidsPI5Zi5wtliKfZg==
+X-Received: by 2002:a05:600c:3ba2:b0:477:5ca6:4d51 with SMTP id 5b1f17b1804b1-4775ce1e87fmr42655585e9.3.1762443044287;
+        Thu, 06 Nov 2025 07:30:44 -0800 (PST)
 Received: from skbuf ([2a02:2f04:d406:ee00:dfee:13dd:e044:2156])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4775ce329a4sm115564565e9.14.2025.11.06.07.27.40
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429eb4ad993sm5677289f8f.47.2025.11.06.07.30.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 07:27:41 -0800 (PST)
-Date: Thu, 6 Nov 2025 17:27:38 +0200
+        Thu, 06 Nov 2025 07:30:43 -0800 (PST)
+Date: Thu, 6 Nov 2025 17:30:40 +0200
 From: Vladimir Oltean <olteanv@gmail.com>
-To: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-Cc: "daniel@makrotopia.org" <daniel@makrotopia.org>,
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>,
+	"daniel@makrotopia.org" <daniel@makrotopia.org>,
 	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
 	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
 	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
@@ -87,7 +88,6 @@ Cc: "daniel@makrotopia.org" <daniel@makrotopia.org>,
 	"yweng@maxlinear.com" <yweng@maxlinear.com>,
 	"bxu@maxlinear.com" <bxu@maxlinear.com>,
 	"edumazet@google.com" <edumazet@google.com>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
 	"conor+dt@kernel.org" <conor+dt@kernel.org>,
 	"fchan@maxlinear.com" <fchan@maxlinear.com>,
 	"ajayaraman@maxlinear.com" <ajayaraman@maxlinear.com>,
@@ -99,10 +99,11 @@ Cc: "daniel@makrotopia.org" <daniel@makrotopia.org>,
 	"linux@armlinux.org.uk" <linux@armlinux.org.uk>
 Subject: Re: [PATCH net-next v7 12/12] net: dsa: add driver for MaxLinear
  GSW1xx switch family
-Message-ID: <20251106152738.gynuzxztm7by5krl@skbuf>
+Message-ID: <20251106153040.k7wnctqb6rcpafgs@skbuf>
 References: <cover.1762170107.git.daniel@makrotopia.org>
  <b567ec1b4beb08fd37abf18b280c56d5d8253c26.1762170107.git.daniel@makrotopia.org>
  <8f36e6218221bb9dad6aabe4989ee4fc279581ce.camel@siemens.com>
+ <df47ae11-5f54-4870-bea8-8392a7fa47de@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,75 +112,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8f36e6218221bb9dad6aabe4989ee4fc279581ce.camel@siemens.com>
+In-Reply-To: <df47ae11-5f54-4870-bea8-8392a7fa47de@redhat.com>
 
-On Tue, Nov 04, 2025 at 08:03:07AM +0000, Sverdlin, Alexander wrote:
-> The remaining failing test cases are:
-> TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
->         reception succeeded, but should have failed
-> TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
->         reception succeeded, but should have failed
+On Thu, Nov 06, 2025 at 03:38:04PM +0100, Paolo Abeni wrote:
+> On 11/4/25 9:03 AM, Sverdlin, Alexander wrote:
+> > The problems I had in the past were neither related to the GSW145 code,
+> > nor to am65-cpsw-nuss, but to the test itself:
+> > https://lore.kernel.org/all/20251104061723.483301-1-alexander.sverdlin@siemens.com/
+> > 
+> > The remaining failing test cases are:
+> > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
+> >         reception succeeded, but should have failed
+> > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
+> >         reception succeeded, but should have failed
+> > 
+> > So far I didn't notice any problems with untagged read-word IP traffic over
+> > GSW145 ports.
+> > 
+> > Do you have a suggestion what could I check further regarding the failing
+> > test cases? As I understood, all of them pass on your side?
 > 
-> So far I didn't notice any problems with untagged read-word IP traffic over
-> GSW145 ports.
+> Could be that due to different revisions of the relevant H/W?
 > 
-> Do you have a suggestion what could I check further regarding the failing
-> test cases? As I understood, all of them pass on your side?
+> I tend to think we are better off merging the series as-is, and handle
+> the above with follow-up, as needed. Any different opinions?
 
-These failures mean that the test thinks the port implements IFF_UNICAST_FLT,
-yet it doesn't drop unregistered traffic.
+Yeah, it's a problem with the test.
 
-	[ $no_unicast_flt = true ] && should_receive=true || should_receive=false
-	check_rcv $rcv_if_name "Unicast IPv4 to unknown MAC address" \
-		"$smac > $UNKNOWN_UC_ADDR1, ethertype IPv4 (0x0800)" \
-		$should_receive "$test_name"
-
-But DSA doesn't report IFF_UNICAST_FLT for this switch, because it doesn't fulfill
-the dsa_switch_supports_uc_filtering() requirements. So should_receive should have
-been true, and the question becomes why does this code snippet set no_unicast_flt=false:
-
-vlan_over_bridged_port()
-{
-	local no_unicast_flt=true
-	local vlan_filtering=$1
-	local skip_ptp=false
-
-	# br_manage_promisc() will not force a single vlan_filtering port to
-	# promiscuous mode, so we should still expect unicast filtering to take
-	# place if the device can do it.
-	if [ $(has_unicast_flt $h2) = yes ] && [ $vlan_filtering = 1 ]; then
-		no_unicast_flt=false
-	fi
-
-Because IFF_UNICAST_FLT is not a UAPI-visible property, has_unicast_flt() does
-an indirect check: it creates a macvlan upper with a different MAC address than
-the physical interface's, and this results in a dev_uc_add() in the kernel.
-If the unicast address is non-empty but the device doesn't have IFF_UNICAST_FLT,
-__dev_set_rx_mode() makes the interface promiscuous, which has_unicast_flt()
-then tests.
-
-Something along this path is going wrong, because $(has_unicast_flt $h2)
-returns yes, so $h2 didn't become promiscuous when adding the macvlan upper.
-
-Could it be that $h2 needs to be up for has_unicast_flt() to work, and it's not?
-I'm looking at __dev_set_rx_mode() in the kernel:
-
-	/* dev_open will call this function so the list will stay sane. */
-	if (!(dev->flags&IFF_UP))
-		return;
-
-	... the code below is skipped
-
-	if (!(dev->priv_flags & IFF_UNICAST_FLT)) {
-		/* Unicast addresses changes may only happen under the rtnl,
-		 * therefore calling __dev_set_promiscuity here is safe.
-		 */
-		if (!netdev_uc_empty(dev) && !dev->uc_promisc) {
-			__dev_set_promiscuity(dev, 1, false);
-			dev->uc_promisc = true;
-		} else if (netdev_uc_empty(dev) && dev->uc_promisc) {
-			__dev_set_promiscuity(dev, -1, false);
-			dev->uc_promisc = false;
-		}
-	}
+I too agree with merging as-is. I do have some nitpicks but they don't
+require resending the 12-patch series.
 
