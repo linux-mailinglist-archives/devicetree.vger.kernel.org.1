@@ -1,156 +1,192 @@
-Return-Path: <devicetree+bounces-235688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71873C3B948
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:09:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48EA8C3B8D8
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:04:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5515564935
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 13:49:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 513A36244C4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 13:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D713376AC;
-	Thu,  6 Nov 2025 13:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A83092309BE;
+	Thu,  6 Nov 2025 13:47:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LbI/LRLH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazhn15010019.outbound.protection.outlook.com [52.102.146.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F5CE3375AE
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 13:47:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762436867; cv=none; b=e5nvLoVyKA7chHvQdcBlNzVRVi8rBK7/png86Z4Y3HkOGLildVVkWMyOUzDKPLppXNE4a9Xdis0hSrKbqJu1zf5a3b/uVkJfSblnU36qLVjeHiq0V5m04ZWYD6dimBdEFBrn/d5QHSmm9BiThiUJ+Jv40fG0ywbJG6rKie5/CMI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762436867; c=relaxed/simple;
-	bh=I3VUE6vhtWsWrhjiq89donvlpgI2hn86BAEVlUadz4E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FCoqEInC6nW+kPmMYCSQmq/ZtxppCaA7ZSG7bE/yGVW+39e2Z3kO0mH2eVBClen97MIR1whBAchqFuK2fWL3Nr4yWSdo6prlxqQwz/ZRoVfhcmWESNIOUr+KiXkEQI8CdusijR4T2yrz2OU/qtBuJUKKFgiLkAOBLsIbz/DqhOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-341d07c020fso941695a91.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 05:47:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762436865; x=1763041665;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1zvXQzHMZF+ClpmnJuOqJcZtH05R/CK4p6fsF3c0XaE=;
-        b=OS5o6woFx6ImLtq5H1ZACRMCrLbX1qTM1uXxnuRlWa3/UJcIGRr/yivC+3cZSYWTdR
-         2bNR43usrr6bfc9TthT2VnqqXtNwsmWSF4ZrnEctx+cJU3zhrwAdfp/1KmFFygbZHxDv
-         VLMEpTWQFtghG4qS29+IRYX1tqKYnTPBXb4sTmHn865a3jjea8ZRn7S5IAPlJOjcwoKU
-         uoNL01fCCvRhUwqTGMBE28TjBR6767sDszV2nKE9cS0Inf5q0agJO7lB95romnvU2SzY
-         MQKfYkuL31DEVHCO5/mfX4EPc5LtxqQgzIbSp8+NqlAQFqJWnAd4ta/zOEjo9rxCuX/X
-         GusA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnh0iEUqUY/LmA+vn2fuAVQi+hbL1sOvHZiaF3vj/7cZIhGOCb589P2eBjBEGFtrxqH18UoBX9N7/6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUwH+Ter/DCTLs+LO4w3jDoGIFubpmSXbs7ViaGNgOJhHTydaT
-	ao/NvFkFULRqXPZ78aWGDpDodN63a/178l5DAmDoKY+mp7eWd7sWn6n471Utdj6J
-X-Gm-Gg: ASbGncuEGnk9hMxXdVQ/CrDNAyGBmkdAgirwX7uN8Y31J6KAl0n/SVuKBpUXWqtBLP2
-	cL6k/BjGU2C0Iavqrgwl9vjHLCGkjW1CDJt+mRMH3R0VuRybcuhcx8wbvdAj2rbupoKwpk6L8I+
-	ShoX56Xg6u0OgYVUX4uWXq0LoD+vckFQmqZFLZkGRyICrUUxJlPbQftDFY45ZGXiyWAayD5PlIl
-	famdMb5VQ77sm+zyvFtHcv7PAva4JFprCpiyO/3HrtHJoeg9bE3WwylMSZhV5APO8TDfcdx9fW0
-	/aPe76ZHG5Ag2Dus19wHdE03Li7vzKWLGiQWnBcx7Bqvsg5dAffjeGTQM1s0DfQeoBgvzd9jDAn
-	VTCoWp7pkibehLkxXyftepxehZFt6XkTq6AgtbPGbVtMTlv5R7eKEv9QCzOvnQjKaUFzdLu2bma
-	Fy25O+nEEoZVkNKrZlAzdkcRB7RYhIbdHc3FNb3W59T4ijw7hoymRG
-X-Google-Smtp-Source: AGHT+IFALhz3yKsGr9ReE1FKz7mka2z9CLE+IDRGWKwiO07yJ+c4vdprW4BS+cFECYQ8zCTTqJKlVQ==
-X-Received: by 2002:a17:90a:e7ca:b0:341:8c8b:b8e6 with SMTP id 98e67ed59e1d1-341a6c45f0dmr9810281a91.16.1762436864707;
-        Thu, 06 Nov 2025 05:47:44 -0800 (PST)
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com. [209.85.214.181])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7af82ce7e2fsm2832707b3a.68.2025.11.06.05.47.44
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Nov 2025 05:47:44 -0800 (PST)
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-294fb21b068so12194945ad.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 05:47:44 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVlVTYa787Dab9lLc24o1ZyJOhjyPZYUwgtogb8T6lakiATzeMkR7k1DxZPVtSqAJiTqIYlMe42IwcP@vger.kernel.org
-X-Received: by 2002:a05:6102:1620:b0:537:f1db:7695 with SMTP id
- ada2fe7eead31-5dd891f5d34mr2214888137.26.1762436493734; Thu, 06 Nov 2025
- 05:41:33 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4C2227BB9;
+	Thu,  6 Nov 2025 13:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.146.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762436830; cv=fail; b=AduEADISUtfvkyK4tah2zfio9qA6FRRb/qNUOlyeJ/mdhmmNRLcR85LA/cocNm1EOywjBo9yaCU82gwH/rjFH7EiQ4pDek8PmXcdh1rJGB3ElujBVxFWQZD49lR49rcVakB6v85RaAHnqp2lSRAtet8bOM+eamkwCbqRyDEp5K4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762436830; c=relaxed/simple;
+	bh=pbTy7jjrY8YE+E01rpKZPqBt3xyCxrWY5RCbz8srEYE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GP6LCHpnjJRZZlHpqibMj3yUn4NZQqakaUn5a9vFLhyoBxqZyAnigCkWs3B1yMi6yY8EwPvlYHlXfvpQKJIUiehzPG0UfENT+UvDGj43alEtC1EX3Zu+2EXGvYlll/0Z4lSXmvO26ofwoYkU9QJSvfEg0UKoUHYEC3wlRf/4KAc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LbI/LRLH; arc=fail smtp.client-ip=52.102.146.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SWJ5cud3siIRIPfeqqSaoRgrbrCS3oKf0mu58e/B7FpGAtdAn9ZS/X0SHGRMkn/3f245rZ7KC0YzV1EIkNF3AKtUX060UGCSO7UdGBSMQrLXXZXQ4c6Z0R/iibSKPzf4cGBHk7NZzjU+BxBKZabJqXvWUP4amZhZ5iCmA57215fBoIEUzlIjuvaE8bZ516wjRJl7sQEfw2fggBWAQEUN7Cm03nQyJGF3i3U9bVmDQztQQPtlxUL6qXyZrLTO2ajMW6if9B9WEP5XCJlVQPxxPbiPZr6ozhng9Bxn8dWrr0dUyfQ+O2Y7LemAwGiOSKZib4028wOlAVxbWoCsOuEI5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N+TlHiEnxW9jGZx72ciatQmh38sGCi822Wisx01uOwA=;
+ b=nLc6IvL4QnEde7acnsODf2gDVCGFZrhe01DtDhBDwYzDB8KNjZr5Omp4ci1km6xqgm8rEfN2mOfi3sbQmCj6de58TyQMIXGryAiPc9rsUkvX0F4e7wknYH9RCgcljkTaujhKw/ZwPd43MjlYqFqVhxAWO8ikgO53WBsOnrFzvXkE2G4UWbOCkZprlfpoEJBsPLm0uH+mwElDgbNZDWwlCBKaDmyk1zw0n3AwOmOpw3J+E0nBIMLWAsUA1cZ+qb9D1YBKa/2D35Nf8WrJmfooQPejNmRfG0Xl7xdNPA/mZkWmWcImYcV3N1c+DGHhcDQ3xMWYCmm5CDHazu55kwie3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N+TlHiEnxW9jGZx72ciatQmh38sGCi822Wisx01uOwA=;
+ b=LbI/LRLHhMkRkHfcCP8GbBQEDxu/oNFBE7xEq8X7cvvfHpKwNdHfOp3mNk+Ourc5tIhWFiQGagz/2IjFVpLhGt2e3jc5bZnau1WPFzQKA5YxS9uyYh1sRGtwTj9qXEO0g+rtros2nYlaBEPeBTEi+ANveyRKf8FeDHRF9EVn8Oo=
+Received: from CH0PR03CA0320.namprd03.prod.outlook.com (2603:10b6:610:118::25)
+ by CO1PR10MB4673.namprd10.prod.outlook.com (2603:10b6:303:91::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Thu, 6 Nov
+ 2025 13:47:06 +0000
+Received: from CH2PEPF0000009D.namprd02.prod.outlook.com
+ (2603:10b6:610:118:cafe::51) by CH0PR03CA0320.outlook.office365.com
+ (2603:10b6:610:118::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.12 via Frontend Transport; Thu,
+ 6 Nov 2025 13:46:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CH2PEPF0000009D.mail.protection.outlook.com (10.167.244.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9298.6 via Frontend Transport; Thu, 6 Nov 2025 13:47:03 +0000
+Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 6 Nov
+ 2025 07:46:59 -0600
+Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 6 Nov
+ 2025 07:46:58 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 6 Nov 2025 07:46:58 -0600
+Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5A6DkqDX1301720;
+	Thu, 6 Nov 2025 07:46:53 -0600
+From: Swamil Jain <s-jain1@ti.com>
+To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>, <nm@ti.com>,
+	<vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <lee@kernel.org>,
+	<louis.chauvet@bootlin.com>, <aradhya.bhatia@linux.dev>
+CC: <devarsht@ti.com>, <praneeth@ti.com>, <h-shenoy@ti.com>,
+	<dri-devel@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/5] drm/tidss: Fixes data edge sampling on AM62X and AM62A
+Date: Thu, 6 Nov 2025 19:16:47 +0530
+Message-ID: <20251106134652.883148-1-s-jain1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251106-add_l3_routing-v1-0-dcbb8368ca54@renesas.com> <20251106-add_l3_routing-v1-3-dcbb8368ca54@renesas.com>
-In-Reply-To: <20251106-add_l3_routing-v1-3-dcbb8368ca54@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Nov 2025 14:41:22 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVYzpJ8iqyPqbR7Bd=qpqDyV=GJ+Vw5fZ2G2S27gYO4+w@mail.gmail.com>
-X-Gm-Features: AWmQ_bk8o_RbFEO18v2EcWGSAt2mahWgELrgaPK-1AkGfKDcrGdbiBTIxT5Zu7E
-Message-ID: <CAMuHMdVYzpJ8iqyPqbR7Bd=qpqDyV=GJ+Vw5fZ2G2S27gYO4+w@mail.gmail.com>
-Subject: Re: [PATCH net-next 03/10] dt-bindings: net: renesas,r8a779f0-ether-switch.yaml:
- add optional property link-pin
-To: Michael Dege <michael.dege@renesas.com>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Richard Cochran <richardcochran@gmail.com>, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Paul Barker <paul@pbarker.dev>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, netdev@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Nikita Yushchenko <nikita.yoush@cogentembedded.com>, 
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000009D:EE_|CO1PR10MB4673:EE_
+X-MS-Office365-Filtering-Correlation-Id: c069da01-719e-4ac6-50d8-08de1d3af7e3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|34020700016|36860700013|82310400026|921020|12100799066;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?wCl8+lkBPH0y1uiq992dyuiT+Bzxbv9015NRp4iCTVP5oLdZCalr5FPWL1jL?=
+ =?us-ascii?Q?9kCYLEm9+7ZfSm9raSL+flPWYVwlQMhh13XX5sIO5kUMD0MIgKxANpsGKyCJ?=
+ =?us-ascii?Q?BCbye9dy0u1dxjOIfyqg1PDMAo7v5fQItwju0WtFAg+m8ar6gTWxO7h+h9+I?=
+ =?us-ascii?Q?mqlF4Ffpw/dLg9XI00ItKHq9ujIQKW1XGntE0HxSqBubicvghbwwoysYCuG4?=
+ =?us-ascii?Q?hIPk0X5GFY/BDcdvvVknY0LuFlO8VQOfL1jkXLWGU/9m/kGyZv6Howov3clf?=
+ =?us-ascii?Q?0xz4kl1GZL5n082dEbplQ6MehtU7Tmqmllt7KnPUc2HUKNHROnoUfdemBhlr?=
+ =?us-ascii?Q?IGL/ivJCvFviS7pdHED2VudZKVttwAz3BB1hbniHfS77XSczPXFYQdlz6EsJ?=
+ =?us-ascii?Q?/Tt5LMve5adYVAYr5RrJl8S4RO7o5dIttWSaRfeocGEVXbNBXylAOBGjs7Ft?=
+ =?us-ascii?Q?myFdc5Oan9bvXqrtwGsjXDoorie3//gvdiP9Ra3qh8c8amGlYa4HQs6uZBds?=
+ =?us-ascii?Q?DepxzL1z4+e04uFYPxlSuNeVLbauKGd7h3OP2kOZLbwRHDIUTLa2EMgUVROe?=
+ =?us-ascii?Q?RV7onHfpYMm2Ll9kxOzazdK+eKvyGZxA+zzobtSNVpvgucwAnJlFxPXQe6eP?=
+ =?us-ascii?Q?RGJbM/zB0dRc3csK21GDICarttAQur0ZVf65KbUvHsBiVfdl8AnCingFMSIJ?=
+ =?us-ascii?Q?xt9ouynaO4lmSXsdGgEfH1UgbqFZ5vQTaTooTOwJt0E1Qf0rQAQNAyPsykr/?=
+ =?us-ascii?Q?8KI9eUrf7ELdr+33CO1Ujd9CL8C0fKe2QeE+3VFVmqFa6fQQJkmJatGTg0w9?=
+ =?us-ascii?Q?sWM6tR+EnkYEO5odUKaqM4jVR5Qz+uyjz3nM/xGeCg1LBnjHdEfglYCchDH8?=
+ =?us-ascii?Q?/qacDK2J1m4dtt6uhLqs1qiMcdPlVOx+JahcvYHJ0RQsfurOTDwwgTqbcmcs?=
+ =?us-ascii?Q?a5WmzwMy751BA6XKmV0GCSdIUDgvSilA4Qp/LhKJ4jU9+5bOkBNhHr1x8WYC?=
+ =?us-ascii?Q?5KmfSE+rssD1ZPL2Jut8o9XAUtDRMG1vY9qBQ6KhrU3uW1mDpBV/SwLvyjcA?=
+ =?us-ascii?Q?+itHTaKmN1VPMWvG5g9McFVCvFzbHhhtObkYeKqA9UKQhDlA0/w8bRX5Tor8?=
+ =?us-ascii?Q?xfpIdt9GNWIc24JLTL5WRZYooQqahAS7/GgMDn/k6iDaXzq96uMFayckdi5O?=
+ =?us-ascii?Q?N7cUR++u+0kJaf5PqNppwQupEu+2PXvKMaoCqj0hDVFjGt67BnVnS2f4OX2o?=
+ =?us-ascii?Q?aLg1fBtx6sPF/hPk1SGgzeM8bpkyrQyUmWYh+vG/pMofnCOiUN6RBo3Iubep?=
+ =?us-ascii?Q?g98pZIjawoYrr2CEgAnbe4dDIv3IIvfQYyT8IpsJMBPLaf4kdVyHlP+t3rAu?=
+ =?us-ascii?Q?jAPJ81E3Dy8WfLN58OLnWtoxi0TB+ilGC5fQKeZibXugrhCyqhIAgLWGz/py?=
+ =?us-ascii?Q?XlAOU69u4ptKJubkQN7faui6dH++kBoySXzO0vQGVntRNuo4cBcLWgxMbreV?=
+ =?us-ascii?Q?P3ubHBzix11I0je2wWXvHPejvvgTpUFFvtVjQjsBf8qzzSY2fmBnYGaG3PVD?=
+ =?us-ascii?Q?29OmgMrbop+1hKmIYeJIbyrgdhtItDDiCMWqrxZo?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(34020700016)(36860700013)(82310400026)(921020)(12100799066);DIR:OUT;SFP:1501;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2025 13:47:03.6716
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c069da01-719e-4ac6-50d8-08de1d3af7e3
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH2PEPF0000009D.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR10MB4673
 
-Hi Michael,
+Currently the driver only configure the data edge sampling partially.
+AM62X, AM62A and AM62P require it to be configured in two distinct
+registers: one in tidss and one in the Control MMR registers.
 
-On Thu, 6 Nov 2025 at 13:56, Michael Dege <michael.dege@renesas.com> wrote:
-> Add optional ether-port property link-pin <empty>
->
-> Signed-off-by: Michael Dege <michael.dege@renesas.com>
+Introduce a new dt property to link the proper syscon node from the main 
+device registers into the tidss driver.
 
-Thanks for your patch!
+The series targets to fix the issue for AM62X and AM62A, later will add 
+the changes required for AM62P after DSS support gets upstreamed.
 
-> --- a/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
-> +++ b/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
-> @@ -126,6 +126,9 @@ properties:
->            - phys
->            - mdio
->
-> +       optional:
+Fixes: ad2ac9dc9426 ("drm/tidss: Add support for AM625 DSS")
+Fixes: 5cc5ea7b6d7b ("drm/tidss: Add support for AM62A7 DSS")
+---
+Cc: stable@vger.kernel.org
 
-Doesn't look like valid syntax to me...
+Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
+Signed-off-by: Swamil Jain <s-jain1@ti.com>
+---
 
-$ make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-/scratch/geert/linux/linux-renesas/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml:
-ignoring, error parsing file
-  CHKDT   /scratch/geert/linux/linux-renesas/Documentation/devicetree/bindings
-/scratch/geert/linux/linux-renesas/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml:129:1:
-found a tab character that violates indentation
-  LINT    /scratch/geert/linux/linux-renesas/Documentation/devicetree/bindings
-/scratch/geert/linux/linux-renesas/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml:129:1:
-[error] syntax error: found character '\t' that cannot start any token
-(syntax)
-  DTEX    Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.example.dts
-/scratch/geert/linux/linux-renesas/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml:129:1:
-found a tab character that violates indentation
+Louis Chauvet (4):
+  dt-bindings: display: ti,am65x-dss: Add clk property for data edge
+    synchronization
+  dt-bindings: mfd: syscon: Add ti,am625-dss-clk-ctrl
+  arm64: dts: ti: k3-am62-main: Add tidss clk-ctrl property
+  drm/tidss: Fix sampling edge configuration
 
-> +         - link-pin
+Swamil Jain (1):
+  arm64: dts: ti: k3-am62a-main: Add tidss clk-ctrl property
 
-What does this mean?
-Description?
+ .../bindings/display/ti/ti,am65x-dss.yaml          |  6 ++++++
+ Documentation/devicetree/bindings/mfd/syscon.yaml  |  3 ++-
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi           |  6 ++++++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi          |  7 +++++++
+ drivers/gpu/drm/tidss/tidss_dispc.c                | 14 ++++++++++++++
+ 5 files changed, 35 insertions(+), 1 deletion(-)
 
-> +
->  required:
->    - compatible
->    - reg
->
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
