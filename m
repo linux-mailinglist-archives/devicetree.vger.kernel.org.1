@@ -1,145 +1,166 @@
-Return-Path: <devicetree+bounces-235598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158BBC3A522
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:43:29 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D06FC3A4DA
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:37:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A23FE3A9100
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 10:36:45 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F34AA350876
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 10:37:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE942C236D;
-	Thu,  6 Nov 2025 10:36:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89A82DE200;
+	Thu,  6 Nov 2025 10:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5aAF7OO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V8yc6LZu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7056A8F7D;
-	Thu,  6 Nov 2025 10:36:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6E12DC339;
+	Thu,  6 Nov 2025 10:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762425402; cv=none; b=k68PFxkTjdv+VQIknLCve5UTItjbZB0fS1d46SF9Qk4wu16/nujrOBcksjrDXBt0Dv8t1rHEuAD8mTsqOAQPYhe5rk3YdTBPkbpHM2QMMDYrmHXtSfHLnzHpdYNE7GnfRi6NXHQAa0FxXKGQqKPC5coqFPFMBqp8q1C+D+jKONI=
+	t=1762425431; cv=none; b=VJQaVjuzb/f7U+dH54Kavq9pDD8CwET/z7SDZUJ4ilbF27/dAMB96tpOXWQ0C1hCwzKKzBUmDG1Tb/hBE0M3jt066Qe0k0JvLgqtoZZYkEnFVlNX/Zti42Z5Vhq7tq62C89OvMzAiLxY9n0sG1FvmbI3sfiDOgqE4bKEVftXLLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762425402; c=relaxed/simple;
-	bh=IqUf6qkQKfq5fny9enhHubGAZjcDXulMSoTtZTzFHLE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=npFz1O/BD+hyV123r1mllWD0TDd74eplso7rZHm4D/3XKFFr7jhjcVh1HLSwq9PxhHBD+D1+JE13vsgdY/6yScPD/nrUss9+USbtq83+fH6pdJ0KsnDHYRW6U/zCk2DP+elvVdPIc5AR4OZMYuvme16ua638PoXCzEEj0+wRbGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5aAF7OO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D28EC4CEF7;
-	Thu,  6 Nov 2025 10:36:37 +0000 (UTC)
+	s=arc-20240116; t=1762425431; c=relaxed/simple;
+	bh=oRcxtDkMnpRFX3GYMYD2PAG21EFt6th384KfP0a89wM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oFwybyszQq+l0DJ0a7h5AJ/lMY8xewlL+k7W/QMB+QERNKBa4LYPRaM1vX3t4rL0C5vPDD7lFRlvv/OSGiQGEeUykygsZk9zhsUK5UuKtIwflWog81HT6AfGEXj8DByexj0HqbEUvwj1QvvkywnDO6DyBfUJ20vMITIkSvbvy2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V8yc6LZu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EA153C4CEFB;
+	Thu,  6 Nov 2025 10:37:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762425401;
-	bh=IqUf6qkQKfq5fny9enhHubGAZjcDXulMSoTtZTzFHLE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U5aAF7OOMlACzVoJz1zKef0CnDsqXooQxn3sWO0CzNEr3IdeN4C+pr1INGZd/rnBj
-	 moXcvNZ70qKf/4SC80bcGfmd6Ne7Pw+gg0PucsAzllRfx4/d2kQ6U+/ogNHWgvT7uS
-	 wvAWWJ+h2qeq9Til7wYH/kQWkwO8UZLtlC4xOE8qg+E4a+s7thk6W6f7vINKg+2mHO
-	 lm/m5D6D2H9lg2LM0a0DNRH6mMqQ9i2RBlPSTkecAsdJGDeRcCAfBzTfZCFu5SZYZv
-	 im+i2y5kqHFP0MdOx/S9cRmt4ZB6U/JW6E6CkxESmM1r5gicTtfuwrEbSgtRfQ7m+q
-	 /WexKkL+1fk9A==
-Message-ID: <7aff5544-b250-47f6-aefe-25f513ac0663@kernel.org>
-Date: Thu, 6 Nov 2025 11:36:35 +0100
+	s=k20201202; t=1762425431;
+	bh=oRcxtDkMnpRFX3GYMYD2PAG21EFt6th384KfP0a89wM=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=V8yc6LZu5IJgjyn/Tp66dY+u63w0yeX12uAjeKd/F8MGPkqanTP9lfWtQIuDgy1gm
+	 vMlZ1wUJEZMJv5ECrtkDISygU1S7CMrKIvy32YzN3oPjW2ur2OCxd8tSZjyc4Ucwfi
+	 BGiLAdrr/WxAcRgUs3RY/BviekqZN6utdgmO1Q1j/JOwRTZd7Q6tkqTsrnYL5BgXFr
+	 1yRdLt/hF8ZLvyjvo8XElDN9C7WAA8wnNOG90LP3vaBPaQa1LZFABUj3TA+vdWhwbJ
+	 hvPP7qP85pt2X/5GrVaNPCWPDlMU+9mBHDorsAQHkYACOHPsjUFciYPRq/nWR6MslA
+	 MP5XnS6Vx5cnQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D551CCCFA05;
+	Thu,  6 Nov 2025 10:37:10 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Thu, 06 Nov 2025 11:36:59 +0100
+Subject: [PATCH] dt-bindings: panel: s6e3fc2x01: Sort and remove
+ unnecessary properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: i2c: dw: Add Mobileye I2C controllers
-To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev
-References: <20251031-i2c-dw-v2-0-90416874fcc0@bootlin.com>
- <20251031-i2c-dw-v2-1-90416874fcc0@bootlin.com>
- <20251031-segment-chance-40ba410eb55a@spud> <5005364.OV4Wx5bFTl@benoit.monin>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <5005364.OV4Wx5bFTl@benoit.monin>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251106-dt-s6e3fc2x01-v1-1-0479f2d8b53f@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIAEp6DGkC/x3MPQqAMAxA4atIZgNNxRa8ijj0J9UsKq1IQby7x
+ fEb3nugcBYuMHUPZL6lyLE3UN9B2Ny+MkpsBq30SKQMxguL4SEFXRVhtM7GwbAnH6A1Z+Yk9f/
+ Ny/t+ZW1ET18AAAA=
+X-Change-ID: 20251106-dt-s6e3fc2x01-d7a7d36eb1bc
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1829; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=1KDAH+YpEy+rZDz3Q9O9UwxUiZX+yY2cR18RR7GgY04=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpDHpVj6JEO0HK+rGxbwLrFh6Q5T+5Su7vWvL6Q
+ YB4nrdnyaCJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaQx6VQAKCRBgAj/E00kg
+ ctirD/sFPN0KSNSsj6NjI0HjAusuMkskUFWozdEH0DEJzGpPp5FXfvb1yiwv4TMxUXvIM7flRvF
+ z7y/NUWcL16HBT/UJlHMWMkcd+55OQd1VCysHfS7b1q1+KxQeO7y2EghSP84zxpP8/NR6rDJ4bg
+ lETYEbTkMNwNcqh1hWlUZ2gLgRmkQwf3TeoCoInrAL8AHgsU3Vtc4Ny6879DHE9+e4L5rLrE5EQ
+ lDp33CeG1S2/DzTBjhiBV8K4Oa+HL+CiQtDh6pWMTvn4LY1FRFLxUfpPTy+kbdKnK/xN7OYHXhn
+ t/4TPSH49yqSzyCHKLwnwi9RxC8jmgyVxBY5x6IloN3AJ29BTHY+kcaU03fK+0LC4rOL6HGguEW
+ muOErDYBn4LuLO6xVGqDZsSk3AsnLPTP7/ApvIkP/fBM+XUFLKmqqe4BllNPDjVCR7IYNRDyEfC
+ ai1Es6Oe50TOcI2vFEK6pabYAgKLC8JdaBUpHDNqX8uChHhqbmR8yyBsfgX0cZu7ph/kwJBqOSJ
+ Ogi3oRWErubwyxPvRvdLrZ3g/DJtCFdm+wfNW2lJysXMBRXyzm73HWI1yYe6SXv+ym6XU0o2zOr
+ SMFwtCsolWmapxkyeWAPn6hU0yeXrokWCNO504tYPXww9oRt1iCPH3LENGCIUnS/VFPm4fcmEOd
+ pfwfTRMsIP8v5Tw==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-On 06/11/2025 10:42, Benoît Monin wrote:
-> Hi Conor,
-> 
-> On Friday, 31 October 2025 at 15:58:49 CET, Conor Dooley wrote:
->> On Fri, Oct 31, 2025 at 03:35:39PM +0100, Benoît Monin wrote:
->>> Add compatible string for the I2C controllers present in Mobileye
->>> Eyeq6Lplus SoC. The same controllers are also present in the EyeQ7H.
->>
->> Then where is the compatible for the q7h?
->>
-> I had both entries in version 1 of the patch but Krzysztof told me to
-> avoid creating duplicated entries. Should I just drop the EyeQ7H
-> mention in the commit message?
-> 
+From: David Heidelberg <david@ixit.cz>
 
-I did not ask to drop the compatible. I asked to express the
-compatibility between two devices (see my talk for beginners about DTS
-or just read writing bindings).
+Properties are now sorted, reset-gpio and port property dropped.
+
+Fixes: 986f28f3a71e ("dt-bindings: panel: Add Samsung S6E3FC2X01 DDIC with panel")
+Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ .../bindings/display/panel/samsung,s6e3fc2x01.yaml   | 20 ++++++++------------
+ 1 file changed, 8 insertions(+), 12 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e3fc2x01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e3fc2x01.yaml
+index d48354fb52ea0..fd4388f5fb118 100644
+--- a/Documentation/devicetree/bindings/display/panel/samsung,s6e3fc2x01.yaml
++++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e3fc2x01.yaml
+@@ -6,11 +6,11 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Samsung S6E3FC2X01 AMOLED DDIC
+ 
+-description: The S6E3FC2X01 is display driver IC with connected panel.
+-
+ maintainers:
+   - David Heidelberg <david@ixit.cz>
+ 
++description: The S6E3FC2X01 is display driver IC with connected panel.
++
+ allOf:
+   - $ref: panel-common.yaml#
+ 
+@@ -25,25 +25,21 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  reset-gpios: true
+-
+-  port: true
+-
+-  vddio-supply:
+-    description: VDD regulator
++  poc-supply:
++    description: POC regulator
+ 
+   vci-supply:
+     description: VCI regulator
+ 
+-  poc-supply:
+-    description: POC regulator
++  vddio-supply:
++    description: VDD regulator
+ 
+ required:
+   - compatible
+   - reset-gpios
+-  - vddio-supply
+-  - vci-supply
+   - poc-supply
++  - vci-supply
++  - vddio-supply
+ 
+ unevaluatedProperties: false
+ 
+
+---
+base-commit: df5d79720b152e7ff058f11ed7e88d5b5c8d2a0c
+change-id: 20251106-dt-s6e3fc2x01-d7a7d36eb1bc
 
 Best regards,
-Krzysztof
+-- 
+David Heidelberg <david@ixit.cz>
+
+
 
