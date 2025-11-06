@@ -1,114 +1,254 @@
-Return-Path: <devicetree+bounces-235715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50202C3BC19
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:32:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D559C3BC28
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:32:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B7B934F3F95
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:29:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2616E1B22320
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB65E302CD1;
-	Thu,  6 Nov 2025 14:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E64331A48;
+	Thu,  6 Nov 2025 14:29:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X6YkEiQJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B4322A817
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 14:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8449A2343B6;
+	Thu,  6 Nov 2025 14:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762439355; cv=none; b=RMExtcG0ZJsqxJ4sSk95OBbrMqWhmwcpr/5zOUoE/Hiv3KtdYsGpSg2lvU2QMZGTMdlYOb3wTBHjT3eeOi6o8ccq+QBQ0p0fLTufzUCRI2pAmg68K3V/bLuZTE7mgIn8N8h0FEMjAJFYEKrcgn0O2FFLPMVqjj+Zl55U4E4ZbBk=
+	t=1762439359; cv=none; b=Yh/6lCGcdi4r1rvrKG6HoyL+OqOll/JK7s1XTu1KK6E29ISYK/tGD4oXbjFClySyJGqiI4EY8Ys2tsysyMm+bzt5EAufjFi25HjWVB0qxuVe06KHigLECBXWAaidg91DMJ/Gzw8gLB+fZcXeCIqmjBhH7hj2ldaPDW1Kd+dwUS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762439355; c=relaxed/simple;
-	bh=NdOeY7lnDOPuK6VEus4jY0bG+2eiDkIJXg9ctj3EdoA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RzLRDtyhMv1GqJDwVZZBdLK1eU9dm1i/EyeBFZItbjSCd6IbltCagfU/B43zs1IKQjyEXGeOtktf3qVJYA17Nv6oK/khsRaARU6HcJ60gIWDwhZasCtrX5XV6l25pJoFmZa3BUNfJqDx57FlIp/YeUXNwwo9W9mXAWD8BVtQpak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-640d0ec9651so1486705a12.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 06:29:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762439351; x=1763044151;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t3Qbwr2Y/2kUNO17tUXtWv3yos6fo6dQ6sGg+S6eon0=;
-        b=LnlQ47w3dKFTkRlcOWU4Ip4hFQO1AeF1IyHpUY9PdVditmTWCRqKNN7mER062WT1d+
-         r3QY03my+OFGjvlb0Ftyk41Q9sbkbkpTGCJiQ6p+zIBc39Z6hmAgpYbGV5WNwOwPMHqa
-         p8kzWfJ9/51XjUoAK2LR3yF0nEVHe6H7UxxZFENURhg/YorHQeADb+dAQaub9kAuhFbE
-         +8CeDLa9qio2/msgauYJZI6eZTcVyZeXV7wauNfVd0fScoqUEheAPBb7G1aFvAOPkFlB
-         QXYYIEh+zzivbZG24d2AJkZrLXwSNlCPd4z9vd5dellBUuggDrddTBqrcffPfZTWBFlw
-         /Qig==
-X-Forwarded-Encrypted: i=1; AJvYcCUkFZiMi+8l6jwsJ0TDwWc3+Q9+1gjsT7lGrbAa3w9/ohlGbWcQRmoJELflwoABDZ2ImMPKnmVbsOxK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHxqD1X6zbVJNuB9y4R7ynfsW45kEqkqPKGiiie0BceQnowss6
-	/s7mOUSb19Il65t979OymMgjyWR91NZ/gQEve7uNuAsg4ObmTL4OmmGcQxon1Gwdc7o=
-X-Gm-Gg: ASbGncsPyT535dSsgOShrl3Thy4cl3OYvX7FXJnQ5UicOJaWx+zrSa9brWUqQJPBL/N
-	DFPyl1TLsybN5/C8PZ5I34yj+eAQcPH8xHM5f4JatNTEnQ5TBivZkUfXMdV8h23gU275NhVStGD
-	o+zYyrmb8re6cfRhGHl1cD6kjTnjq6nCahRde6H5AV9gjVpAq2Rndy4G+OFWmeasz2BiDnxfkXm
-	gtTpZR8FaIwDzKS+AaH+wj7NwSAkVEJKq4B9zQk9WKPyYj8Gp7/kOO8FVOdVfUAjXMd941BLX5C
-	7WCNvMnsOcPOfNK5986mv4QP7V8Q0rOtkoJVdH2Fn985aghh7Xr0Fs7asFuAqYp48KWXnFsBHqE
-	Cx7Z4fsgUDf0uJmgrOJ5s+aOMDHlI71X44+bXGAccMsore0hK3sBkJmoE2EazlmUTIT74uY3gbs
-	abmoKgRblUgk62oqCA0HFj7Q0Y8BQLc5BCRN/RyQ==
-X-Google-Smtp-Source: AGHT+IHz/zZQCeKQEIMQKLBOZtzC0QFxY/7eoLhUxNMZVuVj/JEIvRRKc1w9+oDSbKWKtFd0SXGTqQ==
-X-Received: by 2002:a05:6402:20c4:20b0:640:6650:9173 with SMTP id 4fb4d7f45d1cf-64105b8f272mr5523080a12.33.1762439350637;
-        Thu, 06 Nov 2025 06:29:10 -0800 (PST)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com. [209.85.208.45])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6411f8578dfsm1945274a12.24.2025.11.06.06.29.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Nov 2025 06:29:07 -0800 (PST)
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-640d0ec9651so1486517a12.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 06:29:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV5EGAjeIG7tmHLbRQNYxmCI3zBh5C8Z7LdYS8tjOCGYOQGcUaAT8tR55MxWvfdQ9E31MYVo8wdNZW7@vger.kernel.org
-X-Received: by 2002:a05:6402:304d:20b0:63b:ee76:3f7a with SMTP id
- 4fb4d7f45d1cf-64105b6b3ecmr5978777a12.26.1762439345346; Thu, 06 Nov 2025
- 06:29:05 -0800 (PST)
+	s=arc-20240116; t=1762439359; c=relaxed/simple;
+	bh=V144ITPhJaheSq6B4sSkjanob0iMvCwByWKwZnn8vVw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=AE5YWjgUspXpbdHRKhiJK7xxuS4lM7hizPloU2aMoz6DTsMpqct3/8BjlkVRArt6MCkzfIZId7mihlTh3nTPyliNpIA/DfKkJnpMObIAD2PeaDBFACSMPNzUi9ehCMl8QwAO7T4MFeM/HNugZMdJZJad+4/dEZZzhXpEGjVT7Xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=X6YkEiQJ; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762439355;
+	bh=V144ITPhJaheSq6B4sSkjanob0iMvCwByWKwZnn8vVw=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=X6YkEiQJfoguC+wfJWLl+scVfOt+2BoboFhF58RJ+alMJ4GUR2Vdx+lDly6tm4VgK
+	 rHtU0GhiHNskumXYJWcQX2/Jbplhmlhypv1gfS6bN/C7/Yt14dYC7hobmYOvLtRpo1
+	 JhR+GbWromFuLorTVZBoD1aYamepfJ9KllMKxykYjEBIQApOBSR9GrE5jZe9uspPsF
+	 0ho/FgxfUIOVmnsXByjnP4zw7lWO58a2Z0p8a8vPC8aOdLl4veltCZWSnBX8hO/fgL
+	 gpBGlhRehaozRgIDWekWlXmK5ew/BhN4K+5y9bakveGYamaP6xcbWhbLYSZ4ooHud/
+	 El0bRpp2Loakg==
+Received: from [IPv6:2606:6d00:11:ef24::c41] (unknown [IPv6:2606:6d00:11:ef24::c41])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3E43E17E0E63;
+	Thu,  6 Nov 2025 15:29:13 +0100 (CET)
+Message-ID: <5834fe661f38462d65795a20b5a4f9d2a12d3b35.camel@collabora.com>
+Subject: Re: [PATCH v5 4/8] media: mediatek: vcodec: Add single core VP9
+ decoding support for MT8189
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
+ <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Hans Verkuil
+ <hverkuil@xs4all.nl>,  Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
+ <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>,  George Sun
+ <george.sun@mediatek.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org,
+ Yilong Zhou <yilong.zhou@mediatek.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+	 <andrzejtp2010@gmail.com>
+Date: Thu, 06 Nov 2025 09:29:12 -0500
+In-Reply-To: <20251106061323.2193-5-kyrie.wu@mediatek.com>
+References: <20251106061323.2193-1-kyrie.wu@mediatek.com>
+	 <20251106061323.2193-5-kyrie.wu@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-wlcyIPJc95NX9hPSGVRO"
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251105231815.1927239-1-niklas.soderlund+renesas@ragnatech.se> <20251105231815.1927239-3-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20251105231815.1927239-3-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 6 Nov 2025 15:28:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV0ydbmuQSi03Z+S-PDCfCniMEv8mJmyjTk+fow=psHoQ@mail.gmail.com>
-X-Gm-Features: AWmQ_blCLPFn8r02Z5U7Y2OzAl3U_Qf6uQ1OKqEvZIhri73Mjip1xcYunGdvcMY
-Message-ID: <CAMuHMdV0ydbmuQSi03Z+S-PDCfCniMEv8mJmyjTk+fow=psHoQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] clk: renesas: r8a779a0: Add 3dge module clock
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org
+
+
+--=-wlcyIPJc95NX9hPSGVRO
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 6 Nov 2025 at 00:18, Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Describe the 3DGE module clock needed to operate the PowerVR GPU.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
+Le jeudi 06 novembre 2025 =C3=A0 14:13 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
+> 1. add config to support 4K prob size;
+> 2. Previously, calling vdec_vp9_slice_setup_single_from_src_to_dst
+> with v4l2_m2m_next_src_buf to obtain both buffers resulted in -EINVAL,
+> interrupting the decoding process. To resolve this,
+> the interface should be updated to set both src and dst buffers
+> for metadata configuration.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Please avoid using bullets in commit messages. Everyone will assume that if=
+ you
+have two bullets, you should have two patches. And I think they would be ri=
+ght
+for this patch.
 
-Gr{oetje,eeting}s,
+>=20
+> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> ---
+> =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 43 ++++++++++++++--=
+---
+> =C2=A01 file changed, 32 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9=
+_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp=
+9_req_lat_if.c
+> index fa0f406f7726..d966914db4b9 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_la=
+t_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_la=
+t_if.c
+> @@ -23,6 +23,7 @@
+> =C2=A0
+> =C2=A0#define VP9_TILE_BUF_SIZE 4096
+> =C2=A0#define VP9_PROB_BUF_SIZE 2560
+> +#define VP9_PROB_BUF_4K_SIZE 3840
+> =C2=A0#define VP9_COUNTS_BUF_SIZE 16384
+> =C2=A0
+> =C2=A0#define HDR_FLAG(x) (!!((hdr)->flags & V4L2_VP9_FRAME_FLAG_##x))
+> @@ -542,6 +543,23 @@ static int vdec_vp9_slice_init_default_frame_ctx(str=
+uct vdec_vp9_slice_instance
+> =C2=A0	return ret;
+> =C2=A0}
+> =C2=A0
+> +static size_t mtk_vcodec_get_vp9_prob_size(enum mtk_vcodec_dec_chip_name=
+ chip_name)
+> +{
+> +	size_t prob_size;
+> +
+> +	switch (chip_name) {
+> +	case MTK_VDEC_MT8189:
+> +	case MTK_VDEC_MT8196:
+> +		prob_size =3D VP9_PROB_BUF_4K_SIZE;
+> +		break;
+> +	default:
+> +		prob_size =3D VP9_PROB_BUF_SIZE;
+> +		break;
+> +	}
+> +
+> +	return prob_size;
+> +}
 
-                        Geert
+This is another example of something that could be in the static compatible
+data.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> +
+> =C2=A0static int vdec_vp9_slice_alloc_working_buffer(struct vdec_vp9_slic=
+e_instance *instance,
+> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct vdec_vp9_slice_vsi=
+ *vsi)
+> =C2=A0{
+> @@ -616,7 +634,9 @@ static int vdec_vp9_slice_alloc_working_buffer(struct=
+ vdec_vp9_slice_instance *i
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	if (!instance->prob.va) {
+> -		instance->prob.size =3D VP9_PROB_BUF_SIZE;
+> +		instance->prob.size =3D
+> +			mtk_vcodec_get_vp9_prob_size(ctx->dev->chip_name);
+> +
+> =C2=A0		if (mtk_vcodec_mem_alloc(ctx, &instance->prob))
+> =C2=A0			goto err;
+> =C2=A0	}
+> @@ -696,21 +716,22 @@ static int vdec_vp9_slice_tile_offset(int idx, int =
+mi_num, int tile_log2)
+> =C2=A0	return min(offset, mi_num);
+> =C2=A0}
+> =C2=A0
+> -static
+> -int vdec_vp9_slice_setup_single_from_src_to_dst(struct vdec_vp9_slice_in=
+stance *instance)
+> +static int vdec_vp9_slice_setup_single_from_src_to_dst(struct vdec_vp9_s=
+lice_instance *instance,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct mtk_vcodec_mem *bs,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct vdec_fb *fb)
+> =C2=A0{
+> -	struct vb2_v4l2_buffer *src;
+> -	struct vb2_v4l2_buffer *dst;
+> +	struct mtk_video_dec_buf *src_buf_info;
+> +	struct mtk_video_dec_buf *dst_buf_info;
+> =C2=A0
+> -	src =3D v4l2_m2m_next_src_buf(instance->ctx->m2m_ctx);
+> -	if (!src)
+> +	src_buf_info =3D container_of(bs, struct mtk_video_dec_buf, bs_buffer);
+> +	if (!src_buf_info)
+> =C2=A0		return -EINVAL;
+> =C2=A0
+> -	dst =3D v4l2_m2m_next_dst_buf(instance->ctx->m2m_ctx);
+> -	if (!dst)
+> +	dst_buf_info =3D container_of(fb, struct mtk_video_dec_buf, frame_buffe=
+r);
+> +	if (!dst_buf_info)
+> =C2=A0		return -EINVAL;
+> =C2=A0
+> -	v4l2_m2m_buf_copy_metadata(src, dst, true);
+> +	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &dst_buf_info->m2=
+m_buf.vb, true);
+> =C2=A0
+> =C2=A0	return 0;
+> =C2=A0}
+> @@ -1800,7 +1821,7 @@ static int vdec_vp9_slice_setup_single(struct vdec_=
+vp9_slice_instance *instance,
+> =C2=A0	struct vdec_vp9_slice_vsi *vsi =3D &pfc->vsi;
+> =C2=A0	int ret;
+> =C2=A0
+> -	ret =3D vdec_vp9_slice_setup_single_from_src_to_dst(instance);
+> +	ret =3D vdec_vp9_slice_setup_single_from_src_to_dst(instance, bs, fb);
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+I don't see a direct correlation betwen the buffer size change and this cha=
+nge.
+Please split. Changes looks good, the commit message isn't very clear thoug=
+h.
+
+Nicolas
+
+> =C2=A0	if (ret)
+> =C2=A0		goto err;
+> =C2=A0
+
+--=-wlcyIPJc95NX9hPSGVRO
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQywuAAKCRDZQZRRKWBy
+9K5IAQCXlmAAzl+iCuLAYIlMe0L1aV3/vtGJvQ4QmLxUy0BkRgEA89XXHgOE2Ewx
+OrW4Z94rpraxJcv92KTX7rtrXRkmkw4=
+=qhRy
+-----END PGP SIGNATURE-----
+
+--=-wlcyIPJc95NX9hPSGVRO--
 
