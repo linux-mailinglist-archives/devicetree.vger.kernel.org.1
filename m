@@ -1,316 +1,154 @@
-Return-Path: <devicetree+bounces-236004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30C1C3F102
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 10:04:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5991C3F14E
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 10:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 53A854EBB16
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 09:03:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B91B188C08F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 09:08:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E6B3168FD;
-	Fri,  7 Nov 2025 09:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965F531690A;
+	Fri,  7 Nov 2025 09:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ANRzHrK6"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="0rzgYZsY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABBF3164DC
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 09:03:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E73A7212566;
+	Fri,  7 Nov 2025 09:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762506235; cv=none; b=q0QLkXXFthruQ4FFeHiA/EUyg6kX9FEcNg8fEprPVcTyHgcYmSPQtPwt85kDlKrdHidHNR79BdyJ0orzzRutjEa27CYVY0wd6K6SbL2loNlsK95TRoenS8H81BNKKjdHK90oyxfoBATC0DjVGmFB9SLvaK84B4rhCM/7kBSN7HM=
+	t=1762506457; cv=none; b=E14OLTcoyzwF/ZhCd8oL/+RTimkeLQnz1oH0i1vmhKHKHtqw5vmJON95dbtmIZyFmfr9ZtUCYYNPPdVMrJgsH1/kBbafkJ3qLwvckX3ug7izq7qlr4zr7vT3GRG/4W3rOMAdLTbEnMzwg0BPMqhnojBpTi2GnLPCd2vcm+MzVak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762506235; c=relaxed/simple;
-	bh=psFl+xnMnk37GhV4MnsouvK6LqIcE2gebJugzRUMVnQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j9AP6S+Y1DPbw5QAo4wPr5H0FKk3Ja7549ez4/vVIMGk3a9nDHzjKQvHLtphdedzfF+kHnVlWXb+YuNdR6XGo9pgx7eKVXkpc6ypDg3JwzpJ1nfxHxCCUpbJ9QujF8usEISEz6Fz10dVc1fbq5rqs/LCYrLo7F52q0sbn2I6REU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ANRzHrK6; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-7aace33b75bso592469b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 01:03:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762506233; x=1763111033; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tT7fj5k07gPftTXVwZkpdl1GWYGdXE6T7v4vJvy2kDw=;
-        b=ANRzHrK6x/mzdXoxlquIh4qO1v8hERckYZIvT6LHfL0GBSZBi67yGwOPaduYwQFUYs
-         qQP82OzJtzQXLC/0A83FNlB+IMUlwhqgkIij+F7rAwIVIMSHe/vVj5UKPtqAxbSWIjf3
-         Sp6dlRAgVrdxYMSznsVcJp2jcitBSYHyOfZuP1dWdif/cZKCMwWRL2hbqdMHirF1IhK6
-         2gRh/lOAcVk5LL5VW6j4uP0WMiA35W53O8gwLsVR6ZMBDJ6WQrNZLOg5bC8PqZOHnvX/
-         gA2p/BGvwYi77/dqsgv8yl9nzad/VSc3nb0LaZf1RPlXJYwwnNjIbVtclsuwFQJu/tJY
-         UCzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762506233; x=1763111033;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tT7fj5k07gPftTXVwZkpdl1GWYGdXE6T7v4vJvy2kDw=;
-        b=tcpRUppuqas5tMjyRLBC9AD19FlbQ81emOF1ipnPOvqz/YA3aqidQ5BRNsdymzPJg2
-         GCqmVyoECce/eX1VnRSw3rX2nbg4rooSpJtwRtIpsq9rFU5MFumuI0wNZvzf3rBUkq4p
-         wIBTTLObwyIPZVo6W/1mX90wGD43XrK1gammnikoLUn/JfgXOWBMhbDNR4KrMSTGBqdT
-         dyoOtb6ukk+4qJVr40yHX2hwOKYRoZgMtjRkB8osJh0i3xJFFyDWpe0+oq0CvxhzpgMh
-         ybj9QSFrkVeeZGGR1Q2GJZPDjzzcJLSh82kuT2n/NKVmEbM1brwm+y5Q/m+McIeRBuzZ
-         kGdw==
-X-Forwarded-Encrypted: i=1; AJvYcCXiPPIW3spsBKIVwRcUzRFKs/S/JMAX+aKGvrgU+4IrZoqujHnHNL3kwFfj/B3c9/KNOS+Fp3tGMmct@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9a+YlmzQPFzTxf9BRWLaoKjFunxVJXWoKnyJUPBXzPFKaackF
-	XL6vjHLgxw+TecaBrJLycHG0P3x2iX0SRe8yemXJXKw84nXBa9neqeUm
-X-Gm-Gg: ASbGnctCGHIes1x3QqRfU3xHw8c/4rdY1C82Gkoy32tS8btHHeYit1ozQy/Pn3QYrxe
-	OdkcHiK56kfDhiS1Q3Nx8X2RuAq42BkCKCOJ1W3ycXQvjcLi4Z9Y3S3DpK0pnvHFj5aISs6dI4i
-	kc9HCzXvxKd+VMVJdnGCS5DI/ivhnfe79q0bpwvh6hDc7FfM+pwAbqCN4r6Xm4ZtuhsHy7h/+jh
-	ZeXYN8jE9IanADO6QqzGA9o1MM4ZJoVe5r8pu+6x17BYFiVF9XOnZqNc70S6uCRLfeQI8Imzwox
-	pIMH87SbBQ/An5AZYab6P5y0Woancku1ibgDUssP6kPpO8y5gZRkn06MFT71iIy7lkpP3EK+RPx
-	32H/3gDue51W3VWee5XAnVjXKRpcE4rNKqf+xSkWE/EGvlrpMNZmLgj8RgXtkXCyiqdYy53uJ2r
-	GnmFHgeVo4FtfvSGK8qqI6y3K5qAYP
-X-Google-Smtp-Source: AGHT+IG5vR1egSvLYlpyAuLiB18qRbW6MOxx72JsnThhxgsoP3bPI7UP6infgwdQBZnUmskzoPWvRQ==
-X-Received: by 2002:a05:6a00:94f5:b0:7ab:fc99:d856 with SMTP id d2e1a72fcca58-7b0bd5a20f5mr3697022b3a.18.1762506233233;
-        Fri, 07 Nov 2025 01:03:53 -0800 (PST)
-Received: from HYB-iPCgmhaB8Cy.ad.analog.com ([59.9.235.253])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0cc179f77sm2181954b3a.34.2025.11.07.01.03.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 01:03:52 -0800 (PST)
-Date: Fri, 7 Nov 2025 18:03:46 +0900
-From: Joan Na <joan.na.devcode@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
-Subject: Re: [PATCH v3 3/3] dt-bindings: regulator: Add MAX77675 regulator
- binding
-Message-ID: <aQ218nXK0tMEsinu@HYB-iPCgmhaB8Cy.ad.analog.com>
-References: <20251014053142.15835-1-joan.na@analog.com>
- <20251014053142.15835-4-joan.na@analog.com>
- <512ffe3d-5ab3-4e87-afd2-46f0005a8d17@kernel.org>
- <aQwyH4rYlcWNxGxI@HYB-iPCgmhaB8Cy.ad.analog.com>
- <d700c50a-272d-4b6b-8c39-615d096ffed4@kernel.org>
+	s=arc-20240116; t=1762506457; c=relaxed/simple;
+	bh=0r3mLNCGrWE7hT6p6FJAIG3AhqSA9KylKzwdHZxUZpM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=j9eF/qu8ZxJg0e7c+8F1xxLlnlViB3NjzTOQgb+IcxNsF439++3UXKVFQMqCqHOK/Ne01/0oDTA7Rh5Mkllx1glBpm+ZkhcqCQyZcio7DWHq8ikhgXa9umAbEaseef41psaC8SCjQzAZlE3caz2Va1W+YgbLyByh/IWtjpmQzHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=0rzgYZsY; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id DACC8C0FA9E;
+	Fri,  7 Nov 2025 09:07:11 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id EC1B46070B;
+	Fri,  7 Nov 2025 09:07:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EA9AA11851DE5;
+	Fri,  7 Nov 2025 10:07:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762506451; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Sy63ZFPfLxeX+rkZOJprYwfHaS5jEGoCibkMAFJMUlc=;
+	b=0rzgYZsY73DyTeUngQTpshM2GBPYgAwxOp9qVrv8gZO96h4rFyI682/J7ahEUWaNzeuM9B
+	tJkWuSNE1n0ibZwbVBGXWKUpVjNcJSW3Aknslb/zrlqs/iw7h+P+t1v4uxvg1xkaglHBMQ
+	D0V7tRIG4q1UiPtBhiyqFYrlnQZvbt03vH+3LGrm+YYygSLwk9hecL0CKN1L4Ua1i/Xx4C
+	0E9RSPkqeqrwmsn1eAY17ZBAP80uozInu/RRnYqcfyWSqG4JX4ultmjT58SiAGhxUQDif/
+	2gKPHvhZm3CGlMFmzu6XjChJjyxxvhnw2BCO9Buq4zlUqrEMv1Be+AcJrkYqWA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d700c50a-272d-4b6b-8c39-615d096ffed4@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 07 Nov 2025 10:07:27 +0100
+Message-Id: <DE2CE3YY1Q9E.3HLFSD4K2CCGS@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v2 0/7] Add generic PHY driver used by MACB/GEM on EyeQ5
+Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <linux-clk@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
+ <benoit.monin@bootlin.com>, "Maxime Chevallier"
+ <maxime.chevallier@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Conor Dooley"
+ <conor.dooley@microchip.com>, "Jerome Brunet" <jbrunet@baylibre.com>,
+ "Andrew Lunn" <andrew@lunn.ch>
+To: "Philipp Zabel" <p.zabel@pengutronix.de>, =?utf-8?q?Th=C3=A9o_Lebrun?=
+ <theo.lebrun@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
+ <kishon@kernel.org>, "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Thomas Bogendoerfer"
+ <tsbogend@alpha.franken.de>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251101-macb-phy-v2-0-c1519eef16d3@bootlin.com>
+ <56a49462312d89fd0de6da273f698c0f89e73ada.camel@pengutronix.de>
+In-Reply-To: <56a49462312d89fd0de6da273f698c0f89e73ada.camel@pengutronix.de>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu, Nov 06, 2025 at 08:08:36AM +0100, Krzysztof Kozlowski wrote:
-> On 06/11/2025 06:29, Joan Na wrote:
-> >>> +  maxim,bias-low-power-request:
-> >>> +    type: boolean
-> >>> +    description: |
-> >>> +      Request low-power bias mode.
-> >>> +      When set, the device enters low-power bias mode.
-> >>> +      Defaults to normal bias mode if this property is not specified.
-> >>> +    default: false
-> >>> +
-> >>> +  maxim,simo-int-ldo-always-on:
-> >>> +    type: boolean
-> >>> +    description: |
-> >>> +      Set internal LDO to always supply 1.8V
-> >>> +      When set, the internal LDO always supplies 1.8V.
-> >>> +      By default, the SIMO internal channel supplies 1.8V during low-power mode
-> >>> +    default: false
-> >>> +
-> >>> +  regulators:
-> >>> +    type: object
-> >>> +    description: Regulator child nodes
-> >>> +    patternProperties:
-> >>> +      "^sbb[0-3]$":
-> >>> +        type: object
-> >>> +        $ref: regulator.yaml#
-> >>> +    properties:
-> >>> +      maxim,fps-slot:
-> >>
-> >> That's not property of regulators. Totally messed indentation.
-> >>
-> >>
-> > 
-> > The maxim,fps-slot property is specific to the MAX77675 regulators 
-> > and is used to configure FPS slots individually for each regulator (e.g., sbb0–sbb3). 
-> > As this represents a device-specific extension rather than a generic regulator property, 
-> > it is defined under each regulator node.
-> 
-> But you did not define it under each regulator node. That would be fine.
-> You defined it under regulators. So again that is not a property of
-> regulators. That's a property of each regulator.
-> 
-> If you bothered to test it, you would see warnings.
+On Thu Nov 6, 2025 at 11:51 AM CET, Philipp Zabel wrote:
+> On Sa, 2025-11-01 at 09:53 +0100, Th=C3=A9o Lebrun wrote:
+>> About merging, it'll probably be complex. I see no build dependencies,
+>> but the board will be in an odd state if only some patches are applied.
+>> Some dev_warn() at boot and dev->of_node refcounting issues at unload.
+>>=20
+>>  - [PATCH 1/7] dt-bindings: soc: mobileye: OLB is an Ethernet PHY provid=
+er on EyeQ5
+>>    We touch dt-bindings because OLB becomes a PHY provider.
+>>    =3D> linux-mips (?)
+>>=20
+>>  - [PATCH 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
+>>    We add the generic PHY driver in drivers/phy/phy-eyeq5-eth.c with the
+>>    usual Kconfig, Makefile and MAINTAINERS changes.
+>>    =3D> linux-phy (?)
+>>=20
+>>  - [PATCH 6/7] MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet contr=
+ollers
+>>    [PATCH 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet P=
+HYs
+>>    DTS patches to add both the #phy-cells of OLB and the MACB instances.
+>>    =3D> linux-mips
+>>=20
+>>  - [PATCH 4/7] clk: eyeq: add EyeQ5 children auxiliary device for generi=
+c PHYs
+>>    We must update clk-eyeq because it instantiates a new auxdev.
+>>    =3D> linux-clk
+>>=20
+>>  - [PATCH 3/7] clk: eyeq: use the auxiliary device creation helper
+>>    [PATCH 5/7] reset: eyeq: drop device_set_of_node_from_dev() done by p=
+arent
+>>    With the dev->of_node assignement, we must also correct reset-eyeq.
+>>    =3D> separate them into linux-clk and linux-reset?
 >
+> Since 3 and 4 should go via clk, and 5 has a dependency on 3, I would
+> suggest merging them all together.
 
-I am sorry if it seemed like I was suggesting no testing was done.
-I have now updated it under the regulator node as shown below.
+Thanks for the feedback Philipp, and the review on [5/7]. Getting it
+merged in linux-clk will ease the process and avoid breakage. Updated
+summary:
 
-  regulators:
-    type: object
-    description: Regulator child nodes
-    patternProperties:
-      "^sbb[0-3]$":
-        type: object
-        $ref: regulator.yaml#
-        properties:
-          adi,fps-slot:
-            description: |
-              FPS (Flexible Power Sequencer) slot selection.
-              The Flexible Power Sequencer allows resources to power up under
-              hardware or software control. Additionally, each resource can
-              power up independently or among a group of other regulators with
-              adjustable power-up and power-down slots.
-              "slot0"   - Assign to FPS Slot 0
-              "slot1"   - Assign to FPS Slot 1
-              "slot2"   - Assign to FPS Slot 2
-              "slot3"   - Assign to FPS Slot 3
-              "default" - Use the default FPS slot value stored in OTP and read from the register
-            $ref: /schemas/types.yaml#/definitions/string
-            enum: [slot0, slot1, slot2, slot3, default]
-            default: default
+ - [PATCH 1/7] dt-bindings: soc: mobileye: OLB is an Ethernet PHY provider =
+on EyeQ5
+   [PATCH 6/7] MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet controll=
+ers
+   [PATCH 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet PHYs
+   =3D> linux-mips
 
-          adi,fixed-slew-rate:
-            type: boolean
-            description:
-              When this property is present, the device uses a constant 2 mV/μs
-              slew rate and ignores any dynamic slew rate configuration.
-              When absent, the device uses the dynamic slew rate specified
-              by 'adi,dvs-slew-rate-mv-per-us'
-            default: true
+ - [PATCH 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
+   =3D> linux-phy
 
-> > 
-> >>> +        description: |
-> >>> +          FPS (Flexible Power Sequencer) slot selection.
-> >>> +          The Flexible Power Sequencer allows resources to power up under hardware or software control.
-> >>> +          Additionally, each resource can power up independently or among a group of other regulators
-> >>> +          with adjustable power-up and power-down slots.
-> >>> +          This device's regulators provide an additional property to configure the FPS parameters,
-> >>> +          allowing each regulator to be assigned to an FPS slot for proper power management control.
-> >>> +          "slot0"   - Assign to FPS Slot 0
-> >>> +          "slot1"   - Assign to FPS Slot 1
-> >>> +          "slot2"   - Assign to FPS Slot 2
-> >>> +          "slot3"   - Assign to FPS Slot 3
-> >>> +          "default" - Use the default FPS slot value stored in OTP and read from the register
-> >>> +        $ref: /schemas/types.yaml#/definitions/string
-> >>> +        enum: ["slot0", "slot1", "slot2", "slot3", "default"]
-> >>> +        default: default
-> >>> +
-> >>> +      maxim,fixed-slew-rate:
-> >>> +        type: boolean
-> >>> +        description: |
-> >>> +          Use fixed slew rate of 2 mV/μs for output voltage transitions.
-> >>> +          When this property is present, the device uses a constant 2 mV/μs slew rate
-> >>> +          and ignores any dynamic slew rate configuration.
-> >>> +          When absent, the device uses the dynamic slew rate specified
-> >>> +          by 'maxim,dvs-slew-rate-mv-per-us'
-> >>> +        default: true
-> >>> +
-> >>> +    additionalProperties: false
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +  - reg
-> >>> +  - regulators
-> >>> +
-> >>> +additionalProperties: false
-> >>> +
-> >>> +examples:
-> >>> +  - |
-> >>> +    #include <dt-bindings/regulator/maxim,max77675-regulator.h>
-> >>> +
-> >>> +    i2c {
-> >>> +      #address-cells = <1>;
-> >>> +      #size-cells = <0>;
-> >>> +
-> >>> +      max77675: pmic@44 {
-> >>> +        compatible = "maxim,max77675";
-> >>> +        reg = <0x44>;
-> >>> +
-> >>> +        maxim,en-mode = "slide-switch";
-> >>> +        maxim,latency-mode = "high";
-> >>> +        maxim,drv-sbb-strength = "max";
-> >>> +        maxim,dvs-slew-rate-mv-per-us = <5>;
-> >>> +        maxim,manual-reset-time-sec = <4>;
-> >>> +        maxim,en-debounce-time-us = <100>;
-> >>> +
-> >>> +        regulators {
-> >>> +          sbb0: sbb0 {
-> >>> +            regulator-name = "sbb0";
-> >>> +            regulator-min-microvolt = <500000>;
-> >>> +            regulator-max-microvolt = <5500000>;
-> >>> +            maxim,fps-slot = "default";
-> >>
-> >> I don't think this was tested.
-> >>
-> >>
-> >> Best regards,
-> >> Krzysztof
-> > 
-> > Testing on the actual EVKit has been conducted since PATCH V4
-> 
-> I have proofs this was not tested - see email from Rob.
-> 
-> But if you claim it was tested, then please explain me how can you
-> possible test a binding on EVKit (it is impossible) and how could your
-> testing miss such obvious errors?
-> 
-> 
-> > 
-> 
-> 
-> Best regards,
-> Krzysztof
+ - [PATCH 3/7] clk: eyeq: use the auxiliary device creation helper
+   [PATCH 4/7] clk: eyeq: add EyeQ5 children auxiliary device for generic P=
+HYs
+   [PATCH 5/7] reset: eyeq: drop device_set_of_node_from_dev() done by pare=
+nt
+   =3D> linux-clk
 
-I will do my best to prepare everything properly for the next version.
-In the meantime, I’d like to share the following test results that demonstrate the current behavior.
-Please let me know if you need any additional information or clarification.
+I might send V3 soon, with your trailers appended.
 
-[    3.527749] max77675 1-0044: max77675_parse_config : MAX77675 PMIC configuration:
-[    3.527753] max77675 1-0044:   en_mode                = 0
-[    3.527758] max77675 1-0044:   voltage_change_latency = 1
-[    3.527762] max77675 1-0044:   drv_sbb_strength     = 3
-[    3.527766] max77675 1-0044:   dvs_slew_rate        = 1
-[    3.527769] max77675 1-0044:   debounce_time        = 1 us
-[    3.527773] max77675 1-0044:   manual_reset_time    = 1 sec
-[    3.527776] max77675 1-0044:   en_pullup_disable    = true
-[    3.527779] max77675 1-0044:   bias_low_power_req   = true
-[    3.527782] max77675 1-0044:   simo_ldo_always  = true
-[    3.531250] max77675 1-0044: max77675_of_parse_cb() called for regulator: sbb0 (id=0)
-[    3.531265] max77675 1-0044:   DT node: /soc/i2c@7e804000/pmic@44/regulators/sbb0
-[    3.531281] max77675 1-0044:   Init data: (none)
-[    3.531286] max77675 1-0044:   Parsed 'adi,fps-slot' = 'slot0' (slot=0)
-[    3.531291] max77675 1-0044:   'adi,fixed-slew-rate' = 1
-[    3.531294] max77675 1-0044:   Applying parsed config for regulator id=0 (fps_slot=0, fixed_slew_rate=1)
-[    3.532553] sbb0: 500 <--> 4700 mV at 1800 mV, disabled
-[    3.545628] max77675 1-0044: max77675_of_parse_cb() called for regulator: sbb1 (id=1)
-[    3.545647] max77675 1-0044:   DT node: /soc/i2c@7e804000/pmic@44/regulators/sbb1
-[    3.545661] max77675 1-0044:   Init data: (none)
-[    3.545666] max77675 1-0044:   Parsed 'adi,fps-slot' = 'slot1' (slot=1)
-[    3.545670] max77675 1-0044:   'adi,fixed-slew-rate' = 0
-[    3.545674] max77675 1-0044:   Applying parsed config for regulator id=1 (fps_slot=1, fixed_slew_rate=0)
-[    3.546991] sbb1: 600 <--> 4800 mV at 1100 mV, disabled
-[    3.547235] max77675 1-0044: max77675_of_parse_cb() called for regulator: sbb2 (id=2)
-[    3.547245] max77675 1-0044:   DT node: /soc/i2c@7e804000/pmic@44/regulators/sbb2
-[    3.547258] max77675 1-0044:   Init data: (none)
-[    3.547263] max77675 1-0044:   Parsed 'adi,fps-slot' = 'slot2' (slot=2)
-[    3.547267] max77675 1-0044:   'adi,fixed-slew-rate' = 1
-[    3.547271] max77675 1-0044:   Applying parsed config for regulator id=2 (fps_slot=2, fixed_slew_rate=1)
-[    3.553864] sbb2: 700 <--> 4900 mV at 700 mV, disabled
-[    3.562943] max77675 1-0044: max77675_of_parse_cb() called for regulator: sbb3 (id=3)
-[    3.562965] max77675 1-0044:   DT node: /soc/i2c@7e804000/pmic@44/regulators/sbb3
-[    3.562979] max77675 1-0044:   Init data: (none)
-[    3.562984] max77675 1-0044:   Parsed 'adi,fps-slot' = 'slot3' (slot=3)
-[    3.562988] max77675 1-0044:   'adi,fixed-slew-rate' = 0
-[    3.562991] max77675 1-0044:   Applying parsed config for regulator id=3 (fps_slot=3, fixed_slew_rate=0)
-[    3.565702] sbb3: 800 <--> 5000 mV at 3300 mV, disabled
+Thanks,
 
-Thank you again for taking the time to review this.
-
--- 
-Best regards,
-Joan Na
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
