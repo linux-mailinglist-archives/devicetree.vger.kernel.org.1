@@ -1,207 +1,249 @@
-Return-Path: <devicetree+bounces-236252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D652C41C67
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 22:25:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D69C41C88
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 22:50:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC09A189CEC7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 21:25:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 63D934E14BD
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 21:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE552EFD90;
-	Fri,  7 Nov 2025 21:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB5930EF7F;
+	Fri,  7 Nov 2025 21:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dfkQqhzQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SLjmhy6e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011046.outbound.protection.outlook.com [52.101.62.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2157624DD1F;
-	Fri,  7 Nov 2025 21:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762550718; cv=fail; b=VAmx08JLpvwGJ0Pdi6VL2O1VnEaU3uKinjYSQr0b0oPT7fy9Z7qAKWYHTjadyv6HxGWtQOPwIq3UMmMICniZBWPlyxiN6/XEeG8+spLmsGDCMp8KPeAwvdHYTrd+jShbvobxGNP45xojLPRGD7Ecg8Xs1vnLpwthugCr6l6+lCQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762550718; c=relaxed/simple;
-	bh=KaO9vJ0vTzlZWgGZB3iWwMjx8FFGnPHH97qu1VoYD3w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=m7+x3jykWvHrrLZ3+Bxp10vfGXJZkXELDUrXATcRVb6E0nspUylDHe91jXO5R2D5jVmDqzt1tKrtbBPy486SYjYVsOByONdqrQeQptCjOZeGhiJAANfJtEnJVXfsLpHzRoVC7Ahzb7n5RI9WbM9waZVdZKI5i5KQYMBm3Qn21xc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dfkQqhzQ; arc=fail smtp.client-ip=52.101.62.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ovu2H2buTgWc4DkotrlVOt1sF16LbQ4ETHf5jW8zQLUhj7pLCVTnWygMGYjhP89dX39i4Z/LEgkizNXtCA6nGNE9wERyz0mXhIFGvgVLfnX9dvWDMRv+y0UrRf3NZ5eMLY/7QxWehJKm4H8vVciE8bFi43XJ3KchXxVBHRNE9rxtoyysbMEJAz79KaBw3HNDpR5fAmRXV9HBut5Z1HJ0Ml/WCECaoGMKQYqjGfCG7HlRxJJHydPSGNk2WMOPSZtgiPrjdrVmjkcRzRLj2AuIG+xYUz9hDpofHgK9sL4NGcYhc6vxIT4VDh0weEFNDLRRx0P4WDh7MsaSdsJGJvqC0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=49f/dsrE0aeRW4jFyUv4zhu7dsTAIMmUkRxf8KHWCuA=;
- b=fs39GV1WCB11jUtFFUrg2qGQB4IBlNrGX86e71T4gzSYaRxC4lH3GZxjQQvNlOpz1NbNNGGdWhhseuYKM553I199CPeZ/OQ7BeT20PuxY2GmbAR2TnwevqSlMZUzxFVs/vtAvVj8FBClWAGQOAX1pXl7AHG0Ro33fOjCGmyiO2FkFzG1jUVHnBDaGi/QoW61HrWB+SvyBjuXveOGSK6mHOCvSb3rdQJGyVoSHpY8lUrcqTgE5J0xWwtB0puSzLe95DE71e2Ctp4CAWuno0ImIMqL7G+CNcXDep/9ERtUXf7Pyw44XH2mRO35OLScJnN8YyraP8BAm+ecibCMCus2pA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=49f/dsrE0aeRW4jFyUv4zhu7dsTAIMmUkRxf8KHWCuA=;
- b=dfkQqhzQI4FhRcviJEB6c25BzUyljOLOxL4B6FiPKnKjKrJduNy1cPRQGuna405+ezoCW/3DmHCxl3Cp8onaaE8aEJtnU85dOZr8+OB1c1nJ9U4H8QnbLMLzOCOaBmNwXxy0z8K12mRBoCyczMegkgmQiV+rjfQegyLJbgoc3+M=
-Received: from DM6PR11CA0029.namprd11.prod.outlook.com (2603:10b6:5:190::42)
- by DM3PPFA09EE1970.namprd10.prod.outlook.com (2603:10b6:f:fc00::c3b) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Fri, 7 Nov
- 2025 21:25:12 +0000
-Received: from DS1PEPF0001709B.namprd05.prod.outlook.com
- (2603:10b6:5:190:cafe::7a) by DM6PR11CA0029.outlook.office365.com
- (2603:10b6:5:190::42) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.13 via Frontend Transport; Fri,
- 7 Nov 2025 21:25:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- DS1PEPF0001709B.mail.protection.outlook.com (10.167.18.105) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.6 via Frontend Transport; Fri, 7 Nov 2025 21:25:12 +0000
-Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 7 Nov
- 2025 15:25:07 -0600
-Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 7 Nov
- 2025 15:25:07 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 7 Nov 2025 15:25:07 -0600
-Received: from [10.249.35.170] ([10.249.35.170])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5A7LP6r73649310;
-	Fri, 7 Nov 2025 15:25:06 -0600
-Message-ID: <76078ce8-aec3-4a3c-b866-926fc284692e@ti.com>
-Date: Fri, 7 Nov 2025 15:25:06 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12EF263C8A
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 21:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762552204; cv=none; b=hCIgf3JupzL1B+Wull+49TDpcycjRH8v29cdpj96duHHlAdzD2UcCATj1XvANFe6WTktypFD8G/MX165dJ3Nt9QU+jvUTxKkFBbkjXMey7wispTg5Xztm78dn81Ej95rjGe947GILdNMJmlH0EyHZHulNfbIr6YK0oYa8/wI6fA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762552204; c=relaxed/simple;
+	bh=qb79iW8afe0JTZbfNAmSl9TXtDd3joDO1z7lXSTcy2Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ezqeFupWfyj8Sr08DdxjBl5BjW/tc0Ekh8PBMCG08GtMK/8y+Yr3eAvwgUVIMySdhAZACwXKWTsw4zNRqiXDXMWoWhUva8xSQAQad+R9uauL/YV8ClI7VHPfyZn63b4y5HSYzz2FSkUEyiDp6l2UzxgVo+E24JvhxlCqWR40AQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SLjmhy6e; arc=none smtp.client-ip=209.85.167.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-44fe6771b2dso205796b6e.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 13:50:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762552202; x=1763157002; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oruE4G6E0HzZ52urZnTY6HJtCupwgaLtwj8wmXDsPEg=;
+        b=SLjmhy6eZVLWQaUoS8naGM/4iqJqrxXbwG6VlUVoXurNcX74FX7Y1u5cqWJxVnYFeG
+         Cq93M6oTvphvEe4mdU9cTGFt4wA0iodzWAbXBKYHfY/14I+RvYS2Pccl6k49cxsCVp9t
+         m2cXnPu9oICVEakX04TyFiV7Tc3aLst4EukZqIZg26WH9+0Jn+TQ9fMioNMmJkFv3qq1
+         mMzBbzC7m+tPARwzoCdfvOFl2P0Da5TciCEEBMGPDQ5L8zOKZQMGbw7sQRDx46z6Lv97
+         /nyYyn4P3FTab4Hgdi91yg2Sy/hRpxdynrq5rYonaFun7HazAeDoKQGF8/9BJDmeZCXR
+         f0vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762552202; x=1763157002;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oruE4G6E0HzZ52urZnTY6HJtCupwgaLtwj8wmXDsPEg=;
+        b=XNkbHY3SXeEXRy5OPxsz0lWpZNshkeB7eRvHdFxSqVYX2dsrXFB6A7wO4ZCReEXajn
+         4tpw9L0w6W3gC4AgsT58cZW2mIKRk6scMH7UQpaugfKHgUcebA+BrjAL/Ej/BMHrVTFU
+         tQ4rjxS5GTM+iFHxxb5jTvU0kcwy0MBDXJ7JVEvzkYVsRcNGMZOfwZkRKPNFb2yzgMLM
+         6kV9cEo7yakXS6ERbpOvxv7e+hHA8HVs/MaBKPNSHZmbLt2C/m5HnawktwzB7yyFC8mb
+         v2S0gxsauyOqz7kqQDOLu4FeImQ2FtR3YbnE+gQbQkad1FcW3ksw9NJXsQ0TeRoLzLGy
+         JhYg==
+X-Gm-Message-State: AOJu0YyWOdYUDX+UAVJi97PM9RRb9Y5csbFxshQSLFujZr5YfxTLSnKC
+	scnULDTppnN5SpYqmLuxLzfaehd8nQw3jiKiDPbAmkB5So5HFSREKnMO
+X-Gm-Gg: ASbGncvTQssmr75d/2waEMYau3gDQ4gzGTq1ep7p4uh/Z5wnyy9bAwh2Zg1p68eqvT7
+	EisGv4oFw1vj1J5RqzNPqRwMsttY2j5HIZfkfXMMXgZzj8DBAQogJFlZhHbuj4nCrcM2C0ME0Ku
+	qnITPnd+p1WLSYnkEDiqEctti89iYkNpcJ7ig0TfbcjniYiKHKgx1g29Vc4H6hq7tC50BVht9aI
+	+HS1Gl7vT1AnHJXeysGkVxBOYpWoUJO1S3VpPg8cjSpkc1+1R96TlUShTz4cL8o1jE1tlZM3h/k
+	4MSgzBc3VkZPzE3BvELaQ6iNdT7WMjy5OBnF2gMrSC0AXzBqh0wHmOT42GSWmqHPsI04XELVPqM
+	fERoq4JOpTbMe23ROTpqpoDQIaEa4djLOjgxRW9WU2ZSHS/R1oN3DCS6Qwgr8Qk8pHuM1jFS0bg
+	==
+X-Google-Smtp-Source: AGHT+IGnHtoS06uKQp9OJNKvErPkxz4GM53Mjudicm/94eiXH2/xC5iIjNLtSgIiCihKYR+XercU0g==
+X-Received: by 2002:a05:6808:1b11:b0:44d:a817:2d72 with SMTP id 5614622812f47-4502a4028b6mr439896b6e.60.1762552201700;
+        Fri, 07 Nov 2025 13:50:01 -0800 (PST)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-450027a46bcsm2787517b6e.16.2025.11.07.13.50.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Nov 2025 13:50:00 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	damon.ding@rock-chips.com,
+	sebastian.reichel@collabora.com,
+	jbx6244@gmail.com,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Enable USB-C DP Alt for Indiedroid Nova
+Date: Fri,  7 Nov 2025 15:47:24 -0600
+Message-ID: <20251107214724.878955-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] Enable 1GHz OPP am335x-bonegreen-eco
-To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, Aaro Koskinen
-	<aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman
-	<khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
-	<tony@atomide.com>, Lee Jones <lee@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: Andrew Davis <afd@ti.com>, Bajjuri Praneeth <praneeth@ti.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, <linux-omap@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<stable@vger.kernel.org>
-References: <20251106-fix_tps65219-v2-0-a7d608c4272f@bootlin.com>
-Content-Language: en-US
-From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-In-Reply-To: <20251106-fix_tps65219-v2-0-a7d608c4272f@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0001709B:EE_|DM3PPFA09EE1970:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f2c3631-08e7-448e-ea15-08de1e4422d0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|82310400026|1800799024|36860700013|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?OFFIK3BKOEo0bnVyM3loUk03bVp5ZmFCdUZySHUrL3pGd3FUa3lYSndXY01M?=
- =?utf-8?B?ZXdFRDMyNXVxemdnVEFyOGhsbytWZzZ0eXFlT0pHYzhFYWZUcyt6QmxTeXRC?=
- =?utf-8?B?RXJLakNBaWFTVzlQZGtiSVRtOHNPYnprSmIvYmwyampxTzhuU00yN05rSElV?=
- =?utf-8?B?WXYza05ncDdmd01QSEo5VVdFYjNPV1dkcDBEalFJMU1qLyswaEtuTG9Kb2hp?=
- =?utf-8?B?NjRGeHR6bXpab1d2c0h0OGxGZTFIb2U5QmVaeHhWUUxZeDFySmtNTlB2NHVn?=
- =?utf-8?B?Ums1VlhVTlIycnphOVU2dytlWXBSbWhkbks1cmFvK00vSjlvYTkvZjU1Zm5x?=
- =?utf-8?B?ZytqRzVFNTU3UGlyTWZWTWdSUVJha0h5d015V25ndUpaMTlqSjY5cWNaamVP?=
- =?utf-8?B?OTZmUXplckNIRWN6MXpLUUkxMzhGS0I3L0pYTTVHakIzQ0UyZy9mWUc2NlUv?=
- =?utf-8?B?V1lETHZSUDBUMG9tekk0M2NTZm1Pa2l3VzNaWjhoRHM1WDlIZnlRSlNKL0JK?=
- =?utf-8?B?V0RGWGMvd0c1eUVQdkM1Q0QyWlZvZ2F1UDV2bE05K0hRSm1SbmcrRFBaRXE4?=
- =?utf-8?B?TzZrMVhPdWZET3h4SDRrSTcxaGZFL3V2NkN5dWVHbzVBcElmdERkTE9GSnht?=
- =?utf-8?B?RmNEUXg3VU9XSDBpTGVqakgrV2NmY3RyRGJDejdUM3JQc3dXZUJVdm4xNy83?=
- =?utf-8?B?Rlh6Z0cwT3ZkbHpFNmZSbUlCemZZbDN2SnMzQlV0U1IxcjVUZStYc1JoWUli?=
- =?utf-8?B?K3BFTFZ2b3h2aXE3SGk3S01aa3BVTnF0anN1ZG42Y01FQk1vT3ZvaEI0dWVk?=
- =?utf-8?B?akhnWTgxRUVpS042NTV2UjE4dXR3SXBTcXhkenVmYTFEUmRQUzNFMDhGangv?=
- =?utf-8?B?VWtOa3dFa1MrcE16c0tDT0VhWlBmcnoxQ1hOUGlPMU9hMnlXSTVTWjRTVi80?=
- =?utf-8?B?elluWXpIeDhvZElzSG52TmZsVHI5cEtkNzBEMjUvc09pTHZodUJGTm1xbWlF?=
- =?utf-8?B?RzZiazZjRlhNWEZxOFc2c3d0YXR5QWg1ZlJEekVKYm1iRlBJbW1ydHpRWUE5?=
- =?utf-8?B?Tk0wOWgyWnE4ZEwxV1ozRDlSL0JEdVhNeEVlVUdrNE1tdDVhWm13QmNtWHZN?=
- =?utf-8?B?V2pKUW9oUVpBUGswOVBhTnNrc3ZTMWxscjNTSnVOVlcva1NidTVkN0ZFNnJm?=
- =?utf-8?B?eGVaYVVWbGJoaDU2a1ZYNTRtbU1oTjVSYUY0ZHhFeFFEZ1EvZG1LKzFtQ2Zn?=
- =?utf-8?B?M0JYeU1hQ0ltVytGUlpXbG5HeWJOZTQ2K0pwVmJpSGFyM3RCVThPczNIeFEr?=
- =?utf-8?B?WVQ5dnNCUnRNSHVEekFoUGQveFdaS3RzRU1EY0lpVkplcVZZMnhScy80bHJv?=
- =?utf-8?B?NStzYWM1Z01zc1pDOHIzNGpMTlpjdXdlNkVoYVhMa2Zic1RNKzI1b1VDZUdz?=
- =?utf-8?B?UTcycVlTMUZVTkhOZXNzWUIzVllYeHBLL3d0MnpQcGMvbUI1TEhsY1lHK01w?=
- =?utf-8?B?Um00SmZYMmM2UEJpdVh2aCswUlpuUk5QMmhrYzZZN0JMb2JjcDBTY2NIU3o2?=
- =?utf-8?B?VENaTGZpQkFsVjBsb3pxMkkxTXhsYkdxUFRjZ2pIQy82UjJ0NlAzTDJRaXBy?=
- =?utf-8?B?eWVoTEo3aCtmS09LU0VPeGtNYUpXV0U5R3dTVHpBZDJ3ZWY1RGhrZ3F1aW1w?=
- =?utf-8?B?ODJnSmlneEJ5bGJrODFJN0R5bU95S3ZSV1N1dFk2bFBXTmlHRGpkNlYrVENz?=
- =?utf-8?B?amNpeDV4cGorTFZSekZtK2wyMmNpR1hZamN1dkZjZVJlam8zL3dnZ2lMc3Ix?=
- =?utf-8?B?ZVdSd1dRZmNISnlMdDhlcDI2UHJnY2dhQXR0R0tWUjFCZXVKZ0VidTNsdm55?=
- =?utf-8?B?N1ZCY3J1c2Vlay9NNGVMTVJUVDI1eU1JM2Zoa3AxNHFUeXNBREdkYm1MYm5l?=
- =?utf-8?B?N1BhbUVObWtId3dSWjY0Uk1vOVZDWmcrZzNaY2hMUDVVMkpyelpPTkRuNkRJ?=
- =?utf-8?B?QVROVEFITDROWXhWMzdYeVMxYkRFdmVXcnVHTjMwaHJRRW5lci94UHlEaTQr?=
- =?utf-8?B?YW1PckxnQmE5ckRYODlvd3pBRkMxWlg4N3AyeTVlVkZVQ2VnWG5URlpBZURD?=
- =?utf-8?Q?6Zk4HblER7cvLjjeDDgJHMEmZ?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(1800799024)(36860700013)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 21:25:12.3334
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f2c3631-08e7-448e-ea15-08de1e4422d0
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF0001709B.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFA09EE1970
+Content-Transfer-Encoding: 8bit
 
-Hi Kory,
+From: Chris Morgan <macromorgan@hotmail.com>
 
-On 11/6/2025 4:49 AM, Kory Maincent (TI.com) wrote:
-> The vdd_mpu regulator maximum voltage was previously limited to 1.2985V,
-> which prevented the CPU from reaching the 1GHz operating point. This
-> limitation was put in place because voltage changes were not working
-> correctly, causing the board to stall when attempting higher frequencies.
-> Increase the maximum voltage to 1.3515V to allow the full 1GHz OPP to be
-> used.
->
-> Add a TPS65219 PMIC driver fixes that properly implement the LOCK register
-> handling, to make voltage transitions work reliably.
->
-> Changes in v2:
-> - Setup a custom regmap_bus only for the TPS65214 instead of checking
->   the chip_id every time reg_write is called.
-> - Add the am335x-bonegreen-eco devicetree change in the same patch
->   series.
+Enable the Display Port alt-mode for the USB-C port on the Indiedroid
+Nova.
 
-Reviewed-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+Note that while ROCKCHIP_VOP2_EP_DP0 is defined as 10 we need to
+set the address to "a" or else we receive a dtc warning.
 
->
-> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
-> ---
-> Kory Maincent (TI.com) (2):
->       mfd: tps65219: Implement LOCK register handling for TPS65214
->       ARM: dts: am335x-bonegreen-eco: Enable 1GHz OPP by increasing vdd_mpu voltage
->
->  arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts |  2 +-
->  drivers/mfd/tps65219.c                             | 51 +++++++++++++++++++++-
->  include/linux/mfd/tps65219.h                       |  2 +
->  3 files changed, 53 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 1c353dc8d962de652bc7ad2ba2e63f553331391c
-> change-id: 20251106-fix_tps65219-dd62141d22cf
->
-> Best regards,
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 80 ++++++++++++++++---
+ 1 file changed, 67 insertions(+), 13 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
+index dee053afc6b6..174d299cc6bb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
+@@ -190,6 +190,22 @@ &cpu_b3 {
+ 	cpu-supply = <&vdd_cpu_big1_s0>;
+ };
+ 
++&dp0 {
++	status = "okay";
++};
++
++&dp0_in {
++	dp0_in_vp1: endpoint {
++		remote-endpoint = <&vp1_out_dp0>;
++	};
++};
++
++&dp0_out {
++	dp0_out_con: endpoint {
++		remote-endpoint = <&usbdp_phy0_dp_in>;
++	};
++};
++
+ /*
+  * Add labels for each GPIO pin exposed on the 40 pin header. Note that
+  * voltage of each GPIO pin could be either 3.3v or 1.8v (as noted by
+@@ -371,28 +387,36 @@ usb_con: connector {
+ 			sink-pdos = <PDO_FIXED(5000, 1000, PDO_FIXED_USB_COMM)>;
+ 			op-sink-microwatt = <1000000>;
+ 
++			altmodes {
++				displayport {
++					svid = /bits/ 16 <0xff01>;
++					vdo = <0xffffffff>;
++				};
++			};
++
++
+ 			ports {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 
+ 				port@0 {
+ 					reg = <0>;
+-					usbc0_orien_sw: endpoint {
+-						remote-endpoint = <&usbdp_phy0_orientation_switch>;
++					usbc0_hs: endpoint {
++						remote-endpoint = <&usb_host0_xhci_hs>;
+ 					};
+ 				};
+ 
+ 				port@1 {
+ 					reg = <1>;
+-					usbc0_role_sw: endpoint {
+-						remote-endpoint = <&dwc3_0_role_switch>;
++					usbc0_ss: endpoint {
++						remote-endpoint = <&usbdp_phy0_ss_out>;
+ 					};
+ 				};
+ 
+ 				port@2 {
+ 					reg = <2>;
+-					dp_altmode_mux: endpoint {
+-						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
++					usbc0_sbu: endpoint {
++						remote-endpoint = <&usbdp_phy0_dp_out>;
+ 					};
+ 				};
+ 			};
+@@ -973,9 +997,22 @@ &usb_host0_xhci {
+ 	usb-role-switch;
+ 	status = "okay";
+ 
+-	port {
+-		dwc3_0_role_switch: endpoint {
+-			remote-endpoint = <&usbc0_role_sw>;
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			usb_host0_xhci_hs: endpoint {
++				remote-endpoint = <&usbc0_hs>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			usb_host0_xhci_ss: endpoint {
++				remote-endpoint = <&usbdp_phy0_ss_in>;
++			};
+ 		};
+ 	};
+ };
+@@ -1004,14 +1041,24 @@ port {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+-		usbdp_phy0_orientation_switch: endpoint@0 {
++		usbdp_phy0_ss_out: endpoint@0 {
+ 			reg = <0>;
+-			remote-endpoint = <&usbc0_orien_sw>;
++			remote-endpoint = <&usbc0_ss>;
+ 		};
+ 
+-		usbdp_phy0_dp_altmode_mux: endpoint@1 {
++		usbdp_phy0_ss_in: endpoint@1 {
+ 			reg = <1>;
+-			remote-endpoint = <&dp_altmode_mux>;
++			remote-endpoint = <&usb_host0_xhci_ss>;
++		};
++
++		usbdp_phy0_dp_in: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&dp0_out_con>;
++		};
++
++		usbdp_phy0_dp_out: endpoint@3 {
++			reg = <3>;
++			remote-endpoint = <&usbc0_sbu>;
+ 		};
+ 	};
+ };
+@@ -1030,3 +1077,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+ 		remote-endpoint = <&hdmi0_in_vp0>;
+ 	};
+ };
++
++&vp1 {
++	vp1_out_dp0: endpoint@a {
++		reg = <ROCKCHIP_VOP2_EP_DP0>;
++		remote-endpoint = <&dp0_in_vp1>;
++	};
++};
+-- 
+2.43.0
+
 
