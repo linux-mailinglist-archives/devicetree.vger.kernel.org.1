@@ -1,179 +1,115 @@
-Return-Path: <devicetree+bounces-235987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852A4C3EEE8
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 09:20:33 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB45C3EEFA
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 09:22:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 041BD1881AFC
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 08:20:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 215BA4E07D2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 08:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1BA30F537;
-	Fri,  7 Nov 2025 08:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2E842E54AA;
+	Fri,  7 Nov 2025 08:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KN+jDjtG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MXEWRQoV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3C5295516
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 08:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DF21DE2A7
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 08:22:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762503628; cv=none; b=EHYRWMeuT5s3FefZbbNRGjLYTls2vVPzMap0AaANm/g7YUKRia5HYjohkeOEHNXSxVZSzN70Y7KaKCXjVZ41Zo8jelYsTcG2atz3xEKIAnP5jDJiNfjsbThEREDdhBhRUgn6MiksSIuNBcYX57ELPRfWSgj08gtx3LIvUD4caWg=
+	t=1762503752; cv=none; b=mxVfLJKnW5Nq77+Tw51f7vSF7Z9KDTPNUX9nKzTp1VfRT2rJ7Ibtug5c2anfrehhfsmBt5QY7DfO9g0FcWkk24JLvs9mnWNoL92aa8uDokHvsk9HQAxcLxWaeyloYFGZb0B/VK9srSiWwx8q4PVhaX93T833RRTi2DrPLlwM23U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762503628; c=relaxed/simple;
-	bh=gI7Fuup8i1amPEK0YbxklMM9F668JXoIpmY3C3wbz1w=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RQTgwgX3c3qvtOe/93/MaXLSdRQWXG4D/aY7gkZYBuLkPkxGXf8AzCu6uX7ZYdx3b79TIIsAl4fw7f8g+dpe1rHRAvFAXjmvMSnpSip0sE941NnPjyejlh2I8hQxoVjwhHj4nQBnPwMr7sRIwsnFCkD6W39BvrITRD61ZREYdu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KN+jDjtG; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1762503752; c=relaxed/simple;
+	bh=OMpWtxvVnB3sDu3M9k8udEVrpO3wTQipx27cDHb5FFw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=esOU7AMvUbTStRq5dQ9pol/R1m0PNFZjCIdYOg3Eg2i9H4nA8XmRGrCXUyRn0glpmu0FfAm0qaZskRIk4/dIH7xMgDJm5rp8bf17KUlIf25oq8baZZaOKJXdxoTsTkunFb8xLTcuuG/0j/CaF3D6oqag8Kd/4SKbmcOzOkRQDOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MXEWRQoV; arc=none smtp.client-ip=209.85.215.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4711b95226dso4172805e9.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 00:20:26 -0800 (PST)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b6329b6e3b0so299153a12.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 00:22:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762503625; x=1763108425; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vk1MffHR0aoVhf3k27Pk0Lpr77G2pGMlsaZ4lNRFHLQ=;
-        b=KN+jDjtGpuSjebdC9tHtkw4+Fs+1jV1c+sZAHsBRfBt++dKygtma4OmUoNDqTWw8Jr
-         kmKLmzGAr7Ap94QTl8WFlpphN8zi/+UhYMWkw7TAWmTVIZQmjVbweZm5deb037Dnud1P
-         IZ+uB3fWsowVUaVKClU+cxi2BuLjG6+7d+9u75bumiCeV9ck5502uZnODbfzx1FlfKhT
-         BuZjArNZTOPUdI1u7e/YTMIM+vCqcPeXPqQrzLwL/Rqc57KnE5ADme1es0aMVViPbKQt
-         Kv6KTpMgffAqu+KvwLukU+h7HU16jUj0jroqQ5IjnWv+lHyfsG10XIm9P7G2l8QqSvOq
-         luHQ==
+        d=gmail.com; s=20230601; t=1762503750; x=1763108550; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OMpWtxvVnB3sDu3M9k8udEVrpO3wTQipx27cDHb5FFw=;
+        b=MXEWRQoVo27dCrHV2PWe3aGzzaUjYXqEORXOAndtFLeiJjZr5AN9Osf1zdHpaB/lAc
+         oNjUgISXWII7rRtbN39yPpDUWx2HLawMm8mIRZsgIaZ6/pNcrBjThW7N6pusik2xvChw
+         q/IYeCmJQYdZWMY4sn8JMimeWIZiRlyamknEgNnDd8eYNFLJlb9LMW1kFX5m2X+NfVhF
+         +aMnWO4kfizmRrud3/Y45c1BVv71Bme5DluLX8NGvQ83a+8F3B57aMawARcRjhkP68cf
+         giOCQyF+aO2LGQvdt6L1ACkNhGzBX57Kk5x1qsA+66vKlZyG2R7Z1vm1cyowpUQQY2SR
+         hz1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762503625; x=1763108425;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vk1MffHR0aoVhf3k27Pk0Lpr77G2pGMlsaZ4lNRFHLQ=;
-        b=S+MWxd7CoVbZNxN+BvdY4za4OSZEgIl/+Gac8UhKzje9Uqz/xgyi+j+pzVQBi99baw
-         hhFFivBaBd2wb7jKkEnbetiUgsDhq6NkI9hUBTlRxmko2Z012cT3p6g7cPJODpSIbxr2
-         NXSmztLqCIo6HREEfc7CffiDizIxY7oCQ91bJ+lCdfozP41UdKEx33lZ04sGZc4kXqQR
-         LvzVQGi5M/dOFCH44xnnDy+V7vETUKUPLgTl+H1StF0EDwTd5VOewyGSmxjXlTTbwKlb
-         rJW06cVwjPQLGuZFmk9u2jpcSGXKk1KAYY5kyVi3GMKhzoQLA0bWumM1DeAKZmKXE4On
-         tEUg==
-X-Forwarded-Encrypted: i=1; AJvYcCVXiPYXi6B6Qc+p8k3eS4nbH5+oMQScc3mGmt5dzUiIg2wXfSnvc7SunBVZiHnhNlpeBXTyuwxxWJRb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6vYQXWn26vfxrTyqBfa4eXhwS+4FWFPfcM402p6FX9g9PXBt9
-	/iDunH495qa5Xt/VOaYHXz8nNwiJGuPQJ/Qj3BSkaKAoLKy4xe7sTCqZ
-X-Gm-Gg: ASbGncukLxYs6cMqev4l4Jv9ES0VyX8XJc7qoz6h//6CiYFXPuqY8cWgVNmmiBDKpmW
-	uYboXP4j7I5i5oMPq+uH8joIMDaZXLYkmTTz5enejiAV1Kg+Y4QcSUlrD2FjJXj5RUzYgUg3ZnG
-	RynpAF31UdU0iwzw06ixemCbLLUVn4mA+PPIIVA7hCUf0NSNOuU5z1Zukdtc4GrRe4ZT9rxMxrd
-	EhR1AhiarWTdtHOlOR8wQFc45YNrCpbQvJwTMOWa0gksgGo5yefBuC9CkrxuFVh/SjbLFYxOIYL
-	UyaTLsifa6KWwJt+AKii5l0NQmW5GNHFEcMwCSqsOuiYVjyrCJDD2onmtT2BoPWU21tm/+6ccpx
-	TJ065qUZGLVLdXSPNVoM+GvlRlkaSicna97Xyeqm4dlByWgyFIZxYOY0Sge0VEA4MvcaN15RtSP
-	0Yza0XX12iMBZr6OArwO6QMvUCMBFEQaYcMa/1IMk=
-X-Google-Smtp-Source: AGHT+IEVLaEMFOvPeZc0Oi0rUOFMOQBnNHP+rsaefCysI5BwrUTSziTcZsuRefMyYxTThj9ZiHILoA==
-X-Received: by 2002:a05:600c:4ba2:b0:477:4345:7c59 with SMTP id 5b1f17b1804b1-4776bcc9886mr12696425e9.40.1762503624631;
-        Fri, 07 Nov 2025 00:20:24 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47767749916sm70627205e9.4.2025.11.07.00.20.23
+        d=1e100.net; s=20230601; t=1762503750; x=1763108550;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=OMpWtxvVnB3sDu3M9k8udEVrpO3wTQipx27cDHb5FFw=;
+        b=cgJlHp17/XvC2XuvbStp3tdPKb3ELp7Sb3JZuEtRZNbXsuVyNrC12fI/AYmLZKv76L
+         s0/51oC8KMQzbOeu35NuxksWA18EcSP1IM4TPaEHrbU1RU7QQggRRO+h6hNzKyPCxi+I
+         xT8aZnZLhthm0cLzgl+m4hUa9uEaaQNFSItMf10QicLKKQZYgVQ+UvXbdqqcxwakc47p
+         N+Hp+ak8TSD8eke9Bt97oFl9+2tzEX3blVoA0EKIN17ZLL78IvBb0yvFTUlS/SqF3VX4
+         1MV71HYPHYYGx9P+PTWbmUon8xJqpzTO8pxo41+73igpBW5iuM2bppdk2QE4T2SK/lV+
+         J+SQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUb2ZvgPRSS2ckqbPgvWEW334bxbre9SVdmNRj6jeBxTVGGwc+a4g/ikXXoBNwaG3NqtzcgpvcfB1lE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmcUJdIkHO1rcRKEjkj6QQU9ydMW8Okb8hwnjq5Seo4G1tOpjX
+	ZY29cnnsyHRbu9aFN8FU63VrvBoDD+7a+LITOcvbMbNGxc1oTpqFaRDW
+X-Gm-Gg: ASbGncuVh9k10g4gGV7JhoSEta9rDx2ptZbsnCy4QX7esFNPCpCiWnnHQQLNZLIVCkX
+	KQ4+7OyhaM3l/p1nVRiaJTUZ3UPGqQ5izaXyoPGKz0VDVrjqSqRModnLjC19CJUoY1as1Cm3xId
+	XOe0sabcYdSNK/omFyw1aaqMbmlubRi4UpX4lmmQKO+Pkb+Di+zqYQ3cXi5vcpoGhcsGQfZ3bza
+	+OuyqWtganWv23VVudLdP0+Dw2/mjkOQx+trUWxGtiVtzdKRm5nL0pwjstJItqZvG0IRERc9CFW
+	0iN1m8u26NHNQApXp8Spmvm5hwJ0G+VcjZGumbGa4xPiQxSLKbGRAZz10nf1t1j66rUOTfBU04X
+	jpuDl2bLBLr0j8SzQwP3aCxy3UgjHXKKaDMZrJhMuRxk0tURjYOuYsvMrlhI/TP17WGw=
+X-Google-Smtp-Source: AGHT+IEjlE5AsnLv0b9J+7cxEwQxpex1D5LYp+e+gM7rZYr6pY5wGjltZgYlA4C4hvMPP7ucQVOe4g==
+X-Received: by 2002:a17:903:a90:b0:269:8ace:cd63 with SMTP id d9443c01a7336-297c95bb193mr13342035ad.30.1762503750491;
+        Fri, 07 Nov 2025 00:22:30 -0800 (PST)
+Received: from gmail.com ([218.32.81.133])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29650c5ce87sm51494325ad.29.2025.11.07.00.22.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 00:20:24 -0800 (PST)
-Message-ID: <690dabc8.7b0a0220.35db7d.1d97@mx.google.com>
-X-Google-Original-Message-ID: <aQ2rxvM3JXcFbuaF@Ansuel-XPS.>
-Date: Fri, 7 Nov 2025 09:20:22 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
+        Fri, 07 Nov 2025 00:22:29 -0800 (PST)
+From: Peter Shen <sjg168@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Cc: Peter Shen <sjg168@gmail.com>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Joel Stanley <joel@jms.id.au>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] dt-bindings: clock: airoha: Document support for
- AN7583 clock
-References: <20251106195935.1767696-1-ansuelsmth@gmail.com>
- <20251106195935.1767696-5-ansuelsmth@gmail.com>
- <20251107-fancy-premium-lynx-dc9bbd@kuoka>
- <690da391.5d0a0220.33eed5.80b7@mx.google.com>
- <ab520621-b11d-4763-a7b7-fe7dfafdca6c@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	peter.shen@amd.com
+Subject: [PATCH v5 0/2] ARM: dts: aspeed: Add Device Tree for Facebook Anacapa BMC
+Date: Fri,  7 Nov 2025 16:22:23 +0800
+Message-Id: <20251107-anacapa-v5-0-peter-shen@sjg168>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251104-mellow-denim-dogfish-4affdb@kuoka>
+References: <20251104-mellow-denim-dogfish-4affdb@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ab520621-b11d-4763-a7b7-fe7dfafdca6c@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 07, 2025 at 09:12:48AM +0100, Krzysztof Kozlowski wrote:
-> On 07/11/2025 08:45, Christian Marangi wrote:
-> > On Fri, Nov 07, 2025 at 08:42:15AM +0100, Krzysztof Kozlowski wrote:
-> >> On Thu, Nov 06, 2025 at 08:59:31PM +0100, Christian Marangi wrote:
-> >>> Document support for Airoha AN7583 clock based on the EN7523
-> >>> clock schema.
-> >>>
-> >>> Add additional binding for additional clock and reset lines.
-> >>>
-> >>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> >>> ---
-> >>>  .../bindings/clock/airoha,en7523-scu.yaml     |  5 +-
-> >>>  include/dt-bindings/clock/en7523-clk.h        |  3 +
-> >>>  .../dt-bindings/reset/airoha,an7583-reset.h   | 62 +++++++++++++++++++
-> >>>  3 files changed, 69 insertions(+), 1 deletion(-)
-> >>>  create mode 100644 include/dt-bindings/reset/airoha,an7583-reset.h
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> >>> index fe2c5c1baf43..2d53b96356c5 100644
-> >>> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> >>> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> >>> @@ -30,6 +30,7 @@ properties:
-> >>>    compatible:
-> >>>      items:
-> >>>        - enum:
-> >>> +          - airoha,an7583-scu
-> >>
-> >> That's random order. Keep it sorted.
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >>
-> > 
-> > Hi Krzysztof,
-> > 
-> > I was also not cetrain on the correct order.
-> 
-> Why? The rule was expressed on mailing list many, many times and only
-> Sunxi or maybe one more SoC does it differently.
-> 
-> > 
-> > We have En7523 and en7581 and then An7583.
-> > 
-> > So should I put it at last following the number order or the
-> > alphabetical order?
-> All such lists or enumerations are ordered alphanumerically.
->
+This patch series adds the device tree binding and the initial device tree
+source file for the Facebook Anacapa BMC, which utilizes the Aspeed AST2600
+SoC.
 
-Ok so I think the proposed order follows alphanumerically order.
+The patches configure the necessary platform peripherals and aliases for
+OpenBMC usage.
 
-           - airoha,An7583-scu
-           - airoha,En7523-scu
-           - airoha,En7581-scu
+---
+Changes in v5:
+- Fixed the final DCO mismatch (Broken DCO/email chain). The email sender address (From:) is now corrected to fully match the Signed-off-by: and Author: address (sjg168@gmail.com) to comply with DCO rules.
 
-Maybe the A vs E was confusing?
-
-The confusion was if I should have ordered for the number
-
-so
-
-- en7523
-- en7581
-- an7583
-
-or the normaly way
-
-- an7583
-- en7523
-- en7581
-
-But since it's alphanumerically, it should be correct.
-
--- 
-	Ansuel
+- (V4 Changelog) Corrected all previous style issues: fixed block comment styles, line length issues, and removed un-documented/unused device tree nodes (amd,helios_cpld and eeprom@53).
 
