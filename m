@@ -1,199 +1,180 @@
-Return-Path: <devicetree+bounces-236101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788F1C3FD3A
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:57:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDCFC3FC46
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:44:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01F47189393E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:58:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A15F64E63FD
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:44:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3347B31AF37;
-	Fri,  7 Nov 2025 11:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E10F3168FD;
+	Fri,  7 Nov 2025 11:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ee+M2woi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nAsxCuXa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A64F1277CA4
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 11:57:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AEA131A541;
+	Fri,  7 Nov 2025 11:44:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762516663; cv=none; b=eMloF84KqzuJLMF5JxcL+yH4GsF/2f8GiVwK2f3/KZwxG8JNUqu0l8+g+2JUm6BRVsXdd8luiX/7cUnmr8UGyFc/S/YLIF3qmjABbdAAD0KcPBVjTNG91cR4P4fvEBONAxvLxQH+QKLLSTxL9ZGdoPegaHzJ6pJyG7wShllr3yM=
+	t=1762515864; cv=none; b=Tr2YVsd971vB/ls1I3GtKRzOwhpbIq2I6S0XOUPoFvs/0t0gDQYK+Sau1AQOCT3OSDZaILRzt8AOI51H8/ZPnu18lacGMvyWV66CS/CcJ9uG0AXv9fCQ7BVniDnW5OJy39ZVJw+wx6v42j1Md7GTHKl+C7yMCPMfwToidLAmm9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762516663; c=relaxed/simple;
-	bh=V6i41dL8eu8FQb/kAEXtgcYlRbNtBOZAKd/lJ0lMtnw=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=Pi2CRrBPqKWSeX7Uu0JoLEJsGzkp2yCCqG2gv4zLCBLF587LUA3b37jywjgGciJq4/0Z/AjEMuKsmd4eZGPE69MJxTmXyh8db83mJHYtmHYEOSuKM/QjukiC76Lo1a4ozMyjYyZfy3U6sCIVDdHdljD+npZMs+/6d9xH+94PLW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ee+M2woi; arc=none smtp.client-ip=209.85.214.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-27d3540a43fso5914725ad.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:57:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762516661; x=1763121461; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=monGLLl72k03rW+XBHxv2n4ze7FfAMEbwcdE5Jp88/k=;
-        b=ee+M2woiouXgrySHJuE6/DQeBcQ4FGGGWqltl2spK44D5S7xUcyF642+G2UMP8Zip/
-         wiQBsSj3B1WinR2KLfl6aDrVNMMbMsBg25UCp7HCc1Sa1Yn4IuCj2ptJgtMAZJtuIXFj
-         FAPSaGjQwnsl7u3KFQnayPfYcUs9xzwVepq0lLLqpOqlgTZN+Np2aopTrkiE4CCAXGNv
-         2E4IEywS1W4nQ34jGqZBarIe9DR1bMzU4SOnywIKuphaf2+b1puO5SFg8+VFyVy2FY19
-         GZqiwOhkG1Fp9jztch8ruIJE1brEbH6exnHg1myv52XiuUkmWdxRX6olY9OCa4cJ4LSh
-         4QrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762516661; x=1763121461;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=monGLLl72k03rW+XBHxv2n4ze7FfAMEbwcdE5Jp88/k=;
-        b=GFa3kbFUbqCFbaIk3qhMHOG2aBFeXFSDWKl813KViI2IOyH7jYD9MyiuN7p4z6/jPv
-         cYVWLlSZb6Fiq5QEy1j/1RqROHriKTWL9utl+UV8are4i2EBZp3l5J5SQyO69Vq5TUjC
-         IYJArla5yo7FsJBJxZBzZO4TonLqc3zOlK2pBScbNS9OD7RBVH7JNOH6DNjDpe2mBofR
-         isJLOh2ujO9TlQInN5VrWgnHAPf/GN4/3+Jrlk9480fY+6aze72jcUgg3Icu5+d+ElMw
-         pKok2fVtmub4jOFmw1uxI7dBwxtd3u6kvycq7KYM8j5d3dwK7ov/xC+g1E8a1zSXx+/v
-         THrA==
-X-Forwarded-Encrypted: i=1; AJvYcCXFrHBMLTygtPY9n/ad3HXO01p6xOEV6pM5/s/aaUiEdOjTNGpQOLxT3NsxO+XDAxf/yUZFDqhPsTqr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzH6ezaG4DJVZWOnM5JvczatveaUu8Bq4NQRaNAz5eTpOoEFz9Y
-	qFxcybC7VEAxgBkW1cbTF2tdvagLffHEmg96Egdu58jGlholNOndxNVO
-X-Gm-Gg: ASbGncvlzWp/IwfglIem7bNDy/R2IyV2iNkfcRQOAFJ2D+PpI+Nki93uxe5Gw+DylYY
-	YtvItRGS1szukO2MFCKCuN7ZlT5BFCWXzeLn1IcrAl7jaP2EAnkYEGsYXv/15fJqWTIx4ybX/+p
-	SC/Bfl6WbKOuimmgZwUSVc2gBp+bx4K7F78Yd5LIIitt2lU4ICHgM1Yj/YCiitbXXPlqwyrFxXw
-	kyKs4qeaiG9gf+QTauNFmcW3j25PhbZN6qImuQtRGMR8f4QSLkPHbmc9lUKUhx2yUUrUmh5uXOj
-	yltPnp1I6Io6/WYirb8+L/PIQ/rZDHoVSwXDQidf+mSLHjOVopwf7FzeeUBAlJ4XPW5l2TE7U/1
-	mHkJSa8L+7FhzzTsn10z8+vKEWzPVBQrPauLnFErbzkni01G82FQ40YkM5/bUaaFTzy6VOvMo0v
-	+mGWELZ/10KbEkqCkEEUVuoJ+za6Uw0Lp8
-X-Google-Smtp-Source: AGHT+IG2JNYUVu7xIzD0M5+jz0kLb7Hm7r7y9xBYeK5/FwHh5dDyBrOGwBvYmi7VcMJsmKn3/mqWGw==
-X-Received: by 2002:a17:903:2284:b0:297:d6c2:d06 with SMTP id d9443c01a7336-297d6c20d85mr8354715ad.20.1762516660819;
-        Fri, 07 Nov 2025 03:57:40 -0800 (PST)
-Received: from ehlo.thunderbird.net ([150.230.217.250])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29651c9c2a2sm58337585ad.93.2025.11.07.03.57.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Nov 2025 03:57:40 -0800 (PST)
-Date: Fri, 07 Nov 2025 19:36:58 +0800
-From: Coia Prant <coiaprant@gmail.com>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-CC: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- robh@kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v5_3/3=5D_arm64=3A_dts=3A_rockchip=3A?=
- =?US-ASCII?Q?_Add_devicetree_for_the_9Tripod_X3568_v4?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20251107110020.226562-1-amadeus@jmu.edu.cn>
-References: <20251103171702.1518730-4-coiaprant@gmail.com> <20251107110020.226562-1-amadeus@jmu.edu.cn>
-Message-ID: <6F2972A5-047F-48A5-B409-C3F3E71643AD@gmail.com>
+	s=arc-20240116; t=1762515864; c=relaxed/simple;
+	bh=r8/pj/KN/8+FilylEfrnzaY5pwZnIr6KxYsofkXqxZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z8QbvdETjVraBV3D6rFcK4B3qIM8UPqxoCcuf4+yGM5KLcgYbYeCV4VHnD0xtw7od7SPpfWcvPLIZinac6fkzDEe6HFQl71RF7TKIsTkOk7NIdQWpl28TSNz4U5VGNXuXhCIyo8F1w9GZvk5LyIkdsEGBVP3OcqE6gbAyE8cnrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nAsxCuXa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D327C116C6;
+	Fri,  7 Nov 2025 11:44:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762515863;
+	bh=r8/pj/KN/8+FilylEfrnzaY5pwZnIr6KxYsofkXqxZo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nAsxCuXaRteTRWHGbVHTxWsDXv1YsNKTjT28AknYUqskWJp++FB1hmHft5i2H4kZw
+	 M6GQ8SA0os6BdcnNYZk9d/CHsNuYOnIDM3Jwei63V4KEdCQ5vtDZ798ek+OrNJuW2c
+	 yQTTsa/LboKiUjFtjZz4o0CC6nGbtIEfZq1UhIRp7Sz1ClDCQOzE6bPgnEzebfNvWr
+	 CHM12WlRgAm1nXUICtioOs5hbIxV45pLB6rYOJlNFQ5KOoJMcF8PatgRSTXTx8Nwce
+	 JhZdHaXQlbZrZhGjrVB7BcozKEJrZCvyvZQNeqoBZxsU0MN4rOWEecHc+y9VK/J33P
+	 IcTxjUJAslwcg==
+Date: Fri, 7 Nov 2025 17:14:04 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: vkoul@kernel.org
+Cc: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>, andersson@kernel.org, 
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	bhelgaas@google.com, johan+linaro@kernel.org, kishon@kernel.org, 
+	neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com, 
+	Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Subject: Re: [PATCH v14 0/5] pci: qcom: Add QCS8300 PCIe support
+Message-ID: <mmzrkh7nyjnrmymvtionsiv54nv7wgqx4l5d42g4yt6rjhtq4f@wnztvnzccv3n>
+References: <20251024095609.48096-1-ziyue.zhang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251024095609.48096-1-ziyue.zhang@oss.qualcomm.com>
 
-On November 7, 2025 7:00:20 PM GMT+08:00, Chukun Pan <amadeus@jmu=2Eedu=2Ec=
-n> wrote:
->Hi,
->
->> +++ b/arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-camera-demo=
-=2Edtso
->> @@ -0,0 +1,84 @@
->> +// SPDX-License-Identifier: (GPL-2=2E0-or-later OR MIT)
->> +
->> +// This is a sample reference, due to lack of hardware can not be test=
-ed, at your own risk
->
->> +++ b/arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-video-demo=
-=2Edtso
->> @@ -0,0 +1,154 @@
->> +// SPDX-License-Identifier: (GPL-2=2E0-or-later OR MIT)
->> +
->> +// This is a sample reference, due to lack of hardware can not be test=
-ed, at your own risk
->
->Why are these demo DT Overlays needed? Are these optional accessories?
->These untested DT Overlays should be removed=2E
->
->> +	vcc3v3_pcie: regulator-vcc3v3-pcie {
->> +		compatible =3D "regulator-gpio";
->
->This should use regulator-fixed=2E
->
->> +		regulator-name =3D "vcc3v3_pcie";
->> +		regulator-min-microvolt =3D <100000>;
->> +		regulator-max-microvolt =3D <3300000>;
->> +		pinctrl-names =3D "default";
->> +		pinctrl-0 =3D <&vcc3v3_pcie_en_pin>;
->
->Is this the name from the schematic?
->
->> +	pinctrl-names =3D "default";
->> +	pinctrl-0 =3D <&gmac0_miim
->> +			&gmac0_tx_bus2
->> +			&gmac0_rx_bus2
->> +			&gmac0_rgmii_clk
->> +			&gmac0_rgmii_bus
->> +			&gmac0_clkinout>;
->
->> +	pinctrl-names =3D "default";
->> +	pinctrl-0 =3D <&gmac1m1_miim
->> +			&gmac1m1_tx_bus2
->> +			&gmac1m1_rx_bus2
->> +			&gmac1m1_rgmii_clk
->> +			&gmac1m1_rgmii_bus
->> +			&gmac1m1_clkinout>;
->
->Align Indentation=2E
->
->> +		codec {
->> +			rockchip,mic-in-differential;
->> +		};
->
->Is it confirmed to be differential signaling?
->
->> +	pmic {
->> +		pmic_int: pmic_int {
->> +			rockchip,pins =3D
->> +				<0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
->
->No line break is needed here=2E
->
->> +/* Required remotectl for IR receiver */
->> +&pwm7 {
->> +	status =3D "disabled";
->> +};
->
->This should be replaced with gpio-ir-receiver=2E
->
->> +&sdmmc2 {
->> +	bus-width =3D <4>;
->> +	disable-wp;
->
->The disable-wp property does not apply to SDIO cards=2E
->
->> +	sd-uhs-sdr12;
->> +	sd-uhs-sdr25;
->> +	sd-uhs-sdr50;
->> +	sd-uhs-sdr104;
->
->Just declare the highest supported speed=2E
+On Fri, Oct 24, 2025 at 05:56:04PM +0800, Ziyue Zhang wrote:
+> This series depend on this patch
+> https://lore.kernel.org/all/20250826-pakala-v2-3-74f1f60676c6@oss.qualcomm.com/
+> 
+> This series adds document, phy, configs support for PCIe in QCS8300.
+> It also adds 'link_down' reset for sa8775p.
+> 
+> Have follwing changes:
+> 	- Add dedicated schema for the PCIe controllers found on QCS8300.
+> 	- Add compatible for qcs8300 platform.
+> 	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
+> 	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
 
-PCIe and MIC picked from OEM source codes=2E
+Hi Vinod,
 
-PMIC picked from RK3568-EVB=2E
+Could you please pick up the PHY DT binding patch?
 
-Since parts of the OEM source code are not available in mainline, I refer =
-to other boards (e=2Eg=2E RK3568-EVB or RK3568-ROC-PC), but I don't have a =
-camera or screen to test, so I mark them as demo=2E
+- Mani
 
-Do I need to release a new set of patches?
+> ---
+> Changes in v14:
+> - rebase patches
+> - Link to v13: https://lore.kernel.org/all/20250908073848.3045957-1-ziyue.zhang@oss.qualcomm.com/
+> 
+> Changes in v13:
+> - Fix dtb error
+> - Link to v12: https://lore.kernel.org/all/20250905071448.2034594-1-ziyue.zhang@oss.qualcomm.com/
+> 
+> Changes in v12:
+> - rebased pcie phy bindings
+> - Link to v11: https://lore.kernel.org/all/20250826091205.3625138-1-ziyue.zhang@oss.qualcomm.com/
+> 
+> Changes in v11:
+> - move phy/perst/wake to pcie bridge node (Mani)
+> - Link to v10: https://lore.kernel.org/all/20250811071131.982983-1-ziyue.zhang@oss.qualcomm.com/
+> 
+> Changes in v10:
+> - Update PHY max_items (Johan)
+> - Link to v9: https://lore.kernel.org/all/20250725104037.4054070-1-ziyue.zhang@oss.qualcomm.com/
+> 
+> Changes in v9:
+> - Fix DTB error (Vinod)
+> - Link to v8: https://lore.kernel.org/all/20250714081529.3847385-1-ziyue.zhang@oss.qualcomm.com/
+> 
+> Changes in v8:
+> - rebase sc8280xp-qmp-pcie-phy change to solve conflicts.
+> - Add Fixes tag to phy change (Johan)
+> - Link to v7: https://lore.kernel.org/all/20250625092539.762075-1-quic_ziyuzhan@quicinc.com/
+> 
+> Changes in v7:
+> - rebase qcs8300-ride.dtsi change to solve conflicts.
+> - Link to v6: https://lore.kernel.org/all/20250529035635.4162149-1-quic_ziyuzhan@quicinc.com/
+> 
+> Changes in v6:
+> - move the qcs8300 and sa8775p phy compatibility entry into the list of PHYs that require six clocks
+> - Update QCS8300 and sa8775p phy dt, remove aux clock.
+> - Fixed compile error found by kernel test robot
+> - Link to v5: https://lore.kernel.org/all/20250507031019.4080541-1-quic_ziyuzhan@quicinc.com/
+> 
+> Changes in v5:
+> - Add QCOM PCIe controller version in commit msg (Mani)
+> - Modify platform dts change subject (Dmitry)
+> - Fixed compile error found by kernel test robot
+> - Link to v4: https://lore.kernel.org/linux-phy/20241220055239.2744024-1-quic_ziyuzhan@quicinc.com/
+> 
+> Changes in v4:
+> - Add received tag
+> - Fixed compile error found by kernel test robot
+> - Link to v3: https://lore.kernel.org/lkml/202412211301.bQO6vXpo-lkp@intel.com/T/#mdd63e5be39acbf879218aef91c87b12d4540e0f7
+> 
+> Changes in v3:
+> - Add received tag(Rob & Dmitry)
+> - Update pcie_phy in gcc node to soc dtsi(Dmitry & Konrad)
+> - remove pcieprot0 node(Konrad & Mani)
+> - Fix format comments(Konrad)
+> - Update base-commit to tag: next-20241213(Bjorn)
+> - Corrected of_device_id.data from 1.9.0 to 1.34.0.
+> - Link to v2: https://lore.kernel.org/all/20241128081056.1361739-1-quic_ziyuzhan@quicinc.com/
+> 
+> Changes in v2:
+> - Fix some format comments and match the style in x1e80100(Konrad)
+> - Add global interrupt for PCIe0 and PCIe1(Konrad)
+> - split the soc dtsi and the platform dts into two changes(Konrad)
+> - Link to v1: https://lore.kernel.org/all/20241114095409.2682558-1-quic_ziyuzhan@quicinc.com/
+> 
+> 
+> Ziyue Zhang (5):
+>   dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
+>     for qcs8300
+>   arm64: dts: qcom: qcs8300: enable pcie0
+>   arm64: dts: qcom: qcs8300-ride: enable pcie0 interface
+>   arm64: dts: qcom: qcs8300: enable pcie1
+>   arm64: dts: qcom: qcs8300-ride: enable pcie1 interface
+> 
+>  .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  17 +-
+>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  84 +++++
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 310 +++++++++++++++++-
+>  3 files changed, 394 insertions(+), 17 deletions(-)
+> 
+> 
+> base-commit: 72fb0170ef1f45addf726319c52a0562b6913707
+> -- 
+> 2.34.1
+> 
 
-
-Thanks
+-- 
+மணிவண்ணன் சதாசிவம்
 
