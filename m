@@ -1,145 +1,110 @@
-Return-Path: <devicetree+bounces-236134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C58C402B9
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 14:44:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E82C402D7
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 14:47:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3E9114E9656
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 13:44:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9CE724E1FE5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 13:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1287D2F361F;
-	Fri,  7 Nov 2025 13:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F255B2F747D;
+	Fri,  7 Nov 2025 13:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fgloT27L"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hY76J/49"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE682F28EC
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 13:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2892EDD4F;
+	Fri,  7 Nov 2025 13:46:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762523047; cv=none; b=gcHH7Q+m9fDF6PzijdBHQ3YNO/eXti67nkdAgpPYnZj6bnjJp/Jb7WPP8xFDwV7nCwvUPAPUORG7pwS/la2UMdbwsDIf4B1LrSDnSykFhF8tEsuirsuTXXpprcc/lKxMro37/UyV4X3rewFKb4T1dL++6+QHjbD49YYsvM6Gmsk=
+	t=1762523219; cv=none; b=n/EilrRol6TZWQHvUV07Co/5V/LbcmIPLSQ3QfuExQXDGHMCg/Gaj/YFQppmHvNIAplVM16y22Q5A2SHjeMfw+ahKbZb5+hEABzeTGNlRJHqybI8gvdQ1mM9QRTwCK6AEe64n59a4VxhB1aWvcYuF+rMQAICr2b07fIq1hUqc5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762523047; c=relaxed/simple;
-	bh=Kek2ni9K7tlXAKMV2yxnaJRcPVXhJP6mmBKqRazXcxU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XLfIuFqZQanUOH/V0dZ4LccYogJr3pjvhW22rUfOurI3vYe/y2lPxDbFQ7cg2yYWwGKkYR79w/kTh164tzbXpECjyn5Kqa0oceQ28iyqzAG5J7H5ffmWPNTqAMKG1AuL77zthzuaDIEV192DE7t5MCVwXgeahjlW44RiiHewLSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fgloT27L; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b98983bae80so467053a12.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 05:44:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762523044; x=1763127844; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T51sKGmzO5ESwXBqJuoshtIPtbH/U8t3k8P6xn6hgWk=;
-        b=fgloT27LOWI0lrnwCSZ+TPo2ysIgzhsaJe7atO6MROOjr8STMdpBxA6hROblRwatJ1
-         PzATAik3H8QnSO3I7nLYMRQFZ6OrlP5PHC2LUBqj8YBGPgMu+QSOvUKZkWlDc0eZI+Eu
-         yAeXuoKv3zoibimpL6mBZMbOloF6dqLKNFeQCaA6291WUxD4iMe66JiO1XYm6czim2kq
-         jTFv4Y7Cx3rBTim5W/GElrvU1eD7hrix7CX+QSSi3T9tyRZSyBgEsSeLXD3q5ESO4Wmx
-         5brnhV/GAFs1TUyPJoCzoi0rG+dIt5fMt1FTqsvZRsAURbhYQfFxiKkSx9nhBD5OXhAt
-         9lWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762523044; x=1763127844;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T51sKGmzO5ESwXBqJuoshtIPtbH/U8t3k8P6xn6hgWk=;
-        b=FsNKo0Yr1iXdKEwX5zQ/55f5Gt32wz5Xx12ozK8brIJZHuSU2EpEV2PKgOEDAq4V86
-         b2XxWXnZQHIchq1j2lgRqR5jxBJWk5qQM3rjh83f410j+WrLNO7xaJ4lyw7YDOdfGwAa
-         Yez3o0CD6IHGR5kJtpHJLwianV2TySWSe9qcPekwtGXPkk7O3HH0oaD9AP2cAdWt/4u0
-         UUgr/p8m044xFPyGRt3wwzp2VJQNIUkrwuSc0v12UmymcXTWj0GaOH8Bu4aZ3IIiq4oo
-         iScUbSyyDy5BDHapGrz3OuMK3et7znl7Ex6hpnbpAQqAa6EuPISSzpvPKwAIpFE77nWL
-         wa1A==
-X-Forwarded-Encrypted: i=1; AJvYcCV3MD20Q88rvceIB/Z73H2axlt6oZVGPs3hAPg4GQ0MUetbIWwhiNAKUZE5LCXu8YZkh6uD74iIv4VP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5bZ09QbHRnSQIO9XAGH8YAUVMQEgOVSMrNUI7fVUgAXWuDL9i
-	08FhkarzCj8oAGA8M++Z5ltCUU3Az7fBFwcfnt/k/o3YzKoJaIMSLiycIWb9PhoXeP4=
-X-Gm-Gg: ASbGnct6/z4L/ZL8pvOqIi4jLVGdcaptnTgreqEnd5Esys+Rkv8iUeqKUk74TfvZYDZ
-	LBxqZUhj9lNMYgTWRyR2a6J5TQ7FSQK8fnr7cLqPs2/TRk23Uno8XJmLeBCNvo9mmYXuNC0jIZc
-	YFYFEsp8vWfX+GnDDfNMyKjMwa6JyWV0kAgWn1kcKrjCck+1IW8y7pp3unI9yL9QAQZFcUtU6HK
-	59fLmRdYyj4gMhwbLKJjcCSk5zMTRSyG42rGR5VJM3Se/ZY4cC08H4J5mcPR/FWViLiL5bv8YGm
-	bcK6JoI0AimyXJz5daTAsbwGoUt5xl2F1bJG5eXUTT+kX38k06JCVkBsyy06MjL6cAPRyCllI7L
-	KfLMWtSGOnDgo1IEnGrE/FD7BfQ77pkMXkMBhBH4+G6kg7EEu4yc/c0/XNFaMLzFqV/BVXjnk09
-	Ii4i6WXRLtyMNIHQlmZB+j/qzghnlTxMtbMZJs9ozCvdDUdKnjy7OGfGHx3hjc7mnIe80UtKpC9
-	omegLl7cfmlHPGTZPiVIvfF2FGbdPigN+MFl3IWDw4eJ00UIWIPuOTiu3Ly63BSQUdeqOazJ7kJ
-	YY7d1+ZF
-X-Google-Smtp-Source: AGHT+IEQTc9ird2Of3/UqLYc19J1u7EOVDH6cqhobpLuQc6M3Vc5JPZ+PlHeMA3ePxLyPNMmC8Ej7w==
-X-Received: by 2002:a17:903:287:b0:292:dca8:c140 with SMTP id d9443c01a7336-297c047a762mr40598415ad.44.1762523043769;
-        Fri, 07 Nov 2025 05:44:03 -0800 (PST)
-Received: from ?IPV6:2402:e280:21d3:2:b586:93ae:6db3:2abb? ([2402:e280:21d3:2:b586:93ae:6db3:2abb])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-296509683easm61055775ad.15.2025.11.07.05.43.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Nov 2025 05:44:03 -0800 (PST)
-Message-ID: <8ab11fa8-defa-47f5-a9cb-e3e95b5b32ca@gmail.com>
-Date: Fri, 7 Nov 2025 19:13:56 +0530
+	s=arc-20240116; t=1762523219; c=relaxed/simple;
+	bh=k0VYtxQ4PaLjvbUVZD+2TtBsLjcRNRLUmGTSWCXR+o8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cnWGOvUl6TNChgOMdPrEcT6V4dLW9h7s39Zi2JZA2lEl3+ivi/12osxzWlQv4eKyJ4eFgE4mE2iH4K81ESn56wMaOD+bB3qvK3gZoT9955v33St5FXui5VAChE13rjeoHjU2tDYxfVlSslLL0jrN4FSrt6ZP503VFPR6W0d9fb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=hY76J/49; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=aCx80GZnKiwHZMq1rbj1gG3c07DmcMmiYYKluNyIJx0=; b=hY76J/49CBXSHS6N3lORi1l3NJ
+	GclCFP9NQTLcfA/XzWFNSw3Z+k9MLOmp5yWJ9c9oK3BXG2EN8Fw1cti9DqLyMUT0xb0ZtBVIiA3p7
+	MJG4cOEX0qv34UvHQQXUgoyZ4cI8U9ZDAGRfhKDQa2xJy40iMdhN0ocZet1LPMWQPJ+8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vHMnc-00DER6-Ri; Fri, 07 Nov 2025 14:46:44 +0100
+Date: Fri, 7 Nov 2025 14:46:44 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Michael Dege <michael.dege@renesas.com>
+Cc: Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	"niklas.soderlund" <niklas.soderlund@ragnatech.se>,
+	Paul Barker <paul@pbarker.dev>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: Re: [PATCH net-next 09/10] net: renesas: rswitch: add simple l3
+ routing
+Message-ID: <4c93ea95-a601-4cf5-ba92-a5a0e672ab62@lunn.ch>
+References: <20251106-add_l3_routing-v1-0-dcbb8368ca54@renesas.com>
+ <20251106-add_l3_routing-v1-9-dcbb8368ca54@renesas.com>
+ <06213fb1-12dc-4045-803e-d2a65c7e9fc6@lunn.ch>
+ <03012c3b-ae9d-4591-8ac5-8cf302b794a5@cogentembedded.com>
+ <TY4PR01MB142826AEB522E9717D6B1E59B82C3A@TY4PR01MB14282.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/3] MAINTAINERS: Add entry for TI ADS1120 ADC driver
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: linux-iio@vger.kernel.org, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
- <20251030163411.236672-4-ajithanandhan0406@gmail.com>
- <20251030175510.00005af8@huawei.com>
-Content-Language: en-US
-From: Ajith Anandhan <ajithanandhan0406@gmail.com>
-In-Reply-To: <20251030175510.00005af8@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TY4PR01MB142826AEB522E9717D6B1E59B82C3A@TY4PR01MB14282.jpnprd01.prod.outlook.com>
 
-On 10/30/25 11:25 PM, Jonathan Cameron wrote:
-> On Thu, 30 Oct 2025 22:04:11 +0530
-> Ajith Anandhan <ajithanandhan0406@gmail.com> wrote:
->
->> Add a new MAINTAINERS entry for the Texas Instruments ADS1120
->> ADC driver and its device tree binding.
-> blank line before tag block.
-Noted.
->> Signed-off-by: Ajith Anandhan <ajithanandhan0406@gmail.com>
-> Just bring this in along with the code, it doesn't need a separate
-> commit.
->
-> Thanks,
->
-> Jonathan
+> > But, there is a more interesting question about this patchset (that actually stopped me from
+> > submitting
+> > it when it was originally developed).
+> >
+> > What do people thing about the entire approach used to detect streams to offload?
+> >
+> > The situation is:
+> > - hardware is capable of doing L3 routing, with some (limited) packet update capabilities - rewrite
+> > DST
+> > MAC, decrease TTL,
+> > - there is interest to use that, because software L3 routing even at 1Gbps consumes significant CPU
+> > load, and for 5Gbps will likely not keep the speed at all (we did not have hw to try),
+> > - but - given the capabilities of hw are incomparably weaker than capabilities of linux networking,
+> > which approach to take to detect streams for offloading?
+> >
+> > Second question - how exactly to get the routing decision from the kernel stack, to apply it in
+> > hardware? I was not able to find any existing implementations of something similar...
 
-I will add along with the code.
+You should probably look at how the mellanox switch does this. It is
+kind of the reference implementation. The sparx5 and prestera might
+have something, i don't remember their capabilities.
 
->> ---
->>   MAINTAINERS | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 3da2c26a7..1efe88fc9 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -25613,6 +25613,13 @@ S:	Maintained
->>   F:	Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
->>   F:	drivers/iio/adc/ti-ads1119.c
->>   
->> +TI ADS1120 ADC DRIVER
->> +M:	Ajith Anandhan <ajithanandhan0406@gmail.com>
->> +L:	linux-iio@vger.kernel.org
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
->> +F:	drivers/iio/adc/ti-ads1120.c
->> +
->>   TI ADS7924 ADC DRIVER
->>   M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
->>   L:	linux-iio@vger.kernel.org
+Some of the mediatek devices also do interesting things with flows,
+but that is more for NAT, not necessarily L3 routing.
 
-
+	Andrew
 
