@@ -1,188 +1,111 @@
-Return-Path: <devicetree+bounces-236073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0645C3FB3B
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:19:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A0AC3FB41
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:19:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C0CF3B2FA0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:18:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DC3C3B9701
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246B8325737;
-	Fri,  7 Nov 2025 11:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA2D31DD81;
+	Fri,  7 Nov 2025 11:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="efBVLnS6"
+	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="JJitGvot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CBD321420
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 11:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E51F31E10C;
+	Fri,  7 Nov 2025 11:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762514270; cv=none; b=D52W721m6OGxBcjb5ApYBRhssX4YixBJsKgru8HHuHtyIbcz4HAL22tKsg9oCqiAZWMlbiINgTS9iWgDHdB8MT8l5VSc52cl2YuJyDCC9vnPirtbmUTapqEiHysGoi6euWf0DFt66mxJZs/j7GptMz8WIYGSWOx5WdJO+0G/Xnc=
+	t=1762514378; cv=none; b=CW8CEs/S2A9dyQZc5gbD7acvueZaRmfQVtzYohzX+WoAs5r0hLMvAP5PZ9DErak5WM750iZQmd+ubUmhN8034WWkUywApzVBuizJVH3WZ2dAk+laVZrw5XpMxHCK3WWx87Gr6ew2mWcpP7HNRMcoYNk/2zfnvcYaSw3vd+RxeMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762514270; c=relaxed/simple;
-	bh=rxp/NrNnXrKf8e0GBNNTRnLO6fRnsXQEhl3HcuPYlQ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Q4EVQpuiGdC/VFNnzebrdp/sMneq6F5BcxB/tUNTayaIsxcUAKsxh5uudquXmZHelmZBS1fqBuKu8KpKCE7HOH1gXYdKUBXFZ8eYT3wT+zNUHTAFu48GA6ZRe6CuWLwSC5h9pjGCUMBXDQB0j0DN31IXS5V2TagmGLV7jn2nHbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=efBVLnS6; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b62e7221351so538691a12.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:17:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762514268; x=1763119068; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xpMkuoemEQ8nHGHR+sKpMED/PEl2v5+7S85Qkm8JY+4=;
-        b=efBVLnS6SwbR+yWZnzHbX4fAk5sX0yw9rH7JB41ZLG5iKJIf1m9SyRWyehl3fhkUlh
-         ZOhRo0z+ISXl0aAfHQXlkpcINoc+Be6vEhTsMoG7S5wC1tjfAlSbOOKw4VibmVT1hmsq
-         F7Tjd4oY9fY/YbMNx7ZPbsaWh/beFjaWbyz04ljl0nmu9C2uJmTsWMwd02pnOqjiISpU
-         KWxCVPWXmFpcS7EC1pkOWeomWVkr7yOQXOky9PoCXjR9Vc+Elzrxyq5MRQ23sA75Df2B
-         0WtFUmMd+JNDDEL8Ds0A3G5F+bVHVbfphvP5GMDeuTEtIRjJAe1y++Zmbl7eAMS/Xf/x
-         FaxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762514268; x=1763119068;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=xpMkuoemEQ8nHGHR+sKpMED/PEl2v5+7S85Qkm8JY+4=;
-        b=YVP+iMghM7vCCw77laB7UrjpppqMbawfgqjL6mwttM5ip9DNyMBDMx8qnTxBjRbpDv
-         pBbv6L/gisEQM7+KrgQCdpLwemmtDBbej9TbxJlHOA7LUN7Bpl8azkvP+LiH6aYr5Nam
-         yjbA9EXVqeODqD1weQVGCcqakqJHFuN1tE1U1rtjnFKmhsDKAqgtiOcqVdlM/nfN6zs5
-         EwFTlidE+RpzevWEJWX1o/1cdrZEj65BO8yfqNs891f3EhTthG3EZ/U9MCFWivncqz2w
-         LsLgvXWtkruFp29r+/Kfpr0hl4Dq5NrgCIQsnblg/Xnwc18aw048YOVsj/FuPyrUn2T5
-         ltYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXS339iEeu58en7mm0kV7Ds3IUPBnJKCXJNmDxcCKf5GzmxCEmEcEpKTpprlQjK/FzCYsfzr8/2T3BK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2rha2tWRkMdPXN3iUYByahusP3xqEyUdxe8lvChPTEv/WIRbA
-	BT73DvmSGRcDGmpWtN1VjgJP85MQRjkNrBFTgqsnBB9ghPtdbfmQHlZ/
-X-Gm-Gg: ASbGnctGyUX5x01P0+zKnP/UEyRTipSuArWOAI8GaQ4X/FxZ6RNF6Rh51LlHiG8U9Zh
-	qYSq80oOthQzP53qnRWOCQZ/XYh0kXFxjrIax9JH4uC2DE0lHwt63mGuAoQXIOrPww5em68zs37
-	W54V0Xoa51KSKdfOLfGzTVcCYRYYMB2ABrWuHdX5QfVozpoF60/LVS44cmaev/KhQWHoCCkIGTC
-	eYknL2+uRk2FyHJsk48rddqfqSEnw4NPvCIR5eDjJS9OqHr+vSNSGtVZ1wQYKsZUIAnsP7vVm6p
-	bsL/mkCuW8BhBob1PWZme6PiZcoLJDOfZraE5UaXdrksd4uH6/VqDGTaeKiLhjOqNN57jV9wz6o
-	9fk0nIWFqH3eac3yMTOnaasljKUD15rBIOtlDPM5akVAp1ripBmJQDzGtIEl9p1VRm+mtit3lk+
-	4=
-X-Google-Smtp-Source: AGHT+IH5sLTuwaNwygjS88Dd4DuKT5eyLF2e0aAe27R6LJvuFCPtCu+tqMNQVj8foqUaUxe+5POBzg==
-X-Received: by 2002:a17:902:f544:b0:295:9e4e:4092 with SMTP id d9443c01a7336-297c0485f18mr38236515ad.56.1762514267918;
-        Fri, 07 Nov 2025 03:17:47 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2965096825esm58574245ad.3.2025.11.07.03.17.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 03:17:47 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Han Gao <rabenda.cn@gmail.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Vivian Wang <wangruikang@iscas.ac.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v7 3/3] net: stmmac: dwmac-sophgo: Add phy interface filter
-Date: Fri,  7 Nov 2025 19:17:15 +0800
-Message-ID: <20251107111715.3196746-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251107111715.3196746-1-inochiama@gmail.com>
-References: <20251107111715.3196746-1-inochiama@gmail.com>
+	s=arc-20240116; t=1762514378; c=relaxed/simple;
+	bh=YF9z8cl/wXR6O1s7vIRCo3qMDvIvk0wpzaCNDVWcqvg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OJMJtPAPV2Q6ouqVv40mG4F+E0D/XQkGP4InNwsRKWiYL97ke4OHMN+uElfL7GmZHLFa2RHMWLlZc4fnvBwZWQi6aP9WQPCfylnHHQ6X8NcG7k4u/5YHAftL7aK/tkWwANM3HwC1jvl35Nb1Ol9eFgnAXkXyaahFLfeSRSWBP/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=JJitGvot; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
+	s=s2025; t=1762514342;
+	bh=lhFcy5Ig/Qga8G7LRC6PM1MhO7lb4A5TShXc2mRUdDM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JJitGvotvmm2lBkF0RwI16nnmDt+iJgwWH9S+fG0JcI0qrFPOxgNL08pwL5JhUdHJ
+	 X+KeMlZ0eFU0Sj5rPuPwpKiMBRUjz05NY2nbv5Dwpq5+qpIY1Ux00hwE6hYlgGOjO5
+	 I5Afy5iOdVim8lZ9s72EJ/7HKXi1fcWM+m33SYr6EZBrpajnU3z/G3R0fi3h3l0p7L
+	 QCf3AwiH+I822e8jhbnpdRtpSrKx8Fp4cdCSm6CaYwIWaGR0hVEWyhetCenJ+R7/DZ
+	 nl6yIeOmJVvcD24wDL892tXV8d3/1bYxJbtQkcI6CpWLDQ9JdFUvqRIRdi2hw9Q/Uu
+	 XxQ8myplwdK4w==
+Received: from [192.168.2.54] (unknown [143.105.119.212])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 5D427B22046F;
+	Fri,  7 Nov 2025 12:18:59 +0100 (CET)
+Message-ID: <4642392c-f44a-453f-992c-e28da67159aa@freeshell.de>
+Date: Fri, 7 Nov 2025 03:18:57 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/8] riscv: dts: starfive: Rename jh7110.dtsi to
+ jh711x.dtsi
+To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20251107095530.114775-1-hal.feng@starfivetech.com>
+ <20251107095530.114775-4-hal.feng@starfivetech.com>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20251107095530.114775-4-hal.feng@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-As the SG2042 has an internal rx delay, the delay should be removed
-when initializing the mac, otherwise the phy will be misconfigurated.
 
-Fixes: 543009e2d4cd ("net: stmmac: dwmac-sophgo: Add support for Sophgo SG2042 SoC")
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-Tested-by: Han Gao <rabenda.cn@gmail.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- .../ethernet/stmicro/stmmac/dwmac-sophgo.c    | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-index 3b7947a7a7ba..fcdda2401968 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-@@ -7,11 +7,16 @@
- 
- #include <linux/clk.h>
- #include <linux/module.h>
-+#include <linux/property.h>
- #include <linux/mod_devicetable.h>
- #include <linux/platform_device.h>
- 
- #include "stmmac_platform.h"
- 
-+struct sophgo_dwmac_data {
-+	bool has_internal_rx_delay;
-+};
-+
- static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
- 				    struct plat_stmmacenet_data *plat_dat,
- 				    struct stmmac_resources *stmmac_res)
-@@ -32,6 +37,7 @@ static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
- static int sophgo_dwmac_probe(struct platform_device *pdev)
- {
- 	struct plat_stmmacenet_data *plat_dat;
-+	const struct sophgo_dwmac_data *data;
- 	struct stmmac_resources stmmac_res;
- 	struct device *dev = &pdev->dev;
- 	int ret;
-@@ -50,11 +56,23 @@ static int sophgo_dwmac_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	data = device_get_match_data(&pdev->dev);
-+	if (data && data->has_internal_rx_delay) {
-+		plat_dat->phy_interface = phy_fix_phy_mode_for_mac_delays(plat_dat->phy_interface,
-+									  false, true);
-+		if (plat_dat->phy_interface == PHY_INTERFACE_MODE_NA)
-+			return -EINVAL;
-+	}
-+
- 	return stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
- }
- 
-+static const struct sophgo_dwmac_data sg2042_dwmac_data = {
-+	.has_internal_rx_delay = true,
-+};
-+
- static const struct of_device_id sophgo_dwmac_match[] = {
--	{ .compatible = "sophgo,sg2042-dwmac" },
-+	{ .compatible = "sophgo,sg2042-dwmac", .data = &sg2042_dwmac_data },
- 	{ .compatible = "sophgo,sg2044-dwmac" },
- 	{ /* sentinel */ }
- };
--- 
-2.51.2
+On 11/7/25 01:55, Hal Feng wrote:
+> JH7110S uses the same devices as JH7110. Rename jh7110.dtsi to jh711x.dtsi
+> for preparing to add JH7110S based board device trees.
+> 
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi           | 2 +-
+>  arch/riscv/boot/dts/starfive/{jh7110.dtsi => jh711x.dtsi} | 0
+>  2 files changed, 1 insertion(+), 1 deletion(-)
+>  rename arch/riscv/boot/dts/starfive/{jh7110.dtsi => jh711x.dtsi} (100%)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> index 083ec80b4e44..809274625615 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -5,7 +5,7 @@
+>   */
+>  
+>  /dts-v1/;
+> -#include "jh7110.dtsi"
+> +#include "jh711x.dtsi"
+>  #include "jh7110-pinfunc.h"
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/leds/common.h>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh711x.dtsi
+> similarity index 100%
+> rename from arch/riscv/boot/dts/starfive/jh7110.dtsi
+> rename to arch/riscv/boot/dts/starfive/jh711x.dtsi
 
+Reviewed-by: E Shattow <e@freeshell.de>
 
