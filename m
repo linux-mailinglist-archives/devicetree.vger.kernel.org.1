@@ -1,216 +1,224 @@
-Return-Path: <devicetree+bounces-236066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE243C3FAA4
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 264D3C3FAAD
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:12:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C0903B8442
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:09:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E8743B8D91
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DA8431B81C;
-	Fri,  7 Nov 2025 11:09:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793BA31E0E1;
+	Fri,  7 Nov 2025 11:10:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kTVL2uNA";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kesRY2/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2107.outbound.protection.partner.outlook.cn [139.219.146.107])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A31298CAB;
-	Fri,  7 Nov 2025 11:09:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.107
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762513788; cv=fail; b=Bu7CqNtsXp5wDb1Wk2oHGWHMt5927F9iZjv34fdXtVIkCqOVRvRKKZB1rfrSzuyg0ok46p9THUStWXPrhEQDrXD+k2MPp7zpcooUskiZanFB92s3Rjuyb2rjrDWWYiDhyRlgKylTqhGtUX8+KTUsVjrkuaTxxGVK95mgOWxJrOo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762513788; c=relaxed/simple;
-	bh=LdzGWsjgm4jXXnlQXRUj6UffMOY0qPHGD+wceV3zsmE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FQVfJPV8n4owNLxrgWNHHjsHgkrtJV9cfQPljBI9F+DAYVw5Brz/kllukQHDEmX+Zp1+df1ZVBkFH/LeQeJ3HW3baolTr1hzfqxDgAzNWYoFcbSo7yt2cwjgLvPSCn3BMw7uDmblZB51ubrRvYMpVt3qjUJgQeI1iWQzZrHQT8U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from ZQ2PR01MB1305.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:6::14) by ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:1b::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Fri, 7 Nov
- 2025 10:54:13 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I4fZs09Z/S5IBoSLEcoNwGacGAQyUV1pHoKLRsmthPpcSOroGWNJsBCmMjpSKZzut6/8GILdJ7/YbvS+/FpTSBNFcKAQW8qzIB1vnBN4vc83dPlBBhOAKQZfLTcvFrXYue1kIjUaSbtNVtms7ltUDnGtCA7ptAN0+uzNpLNcPf9ctlClPsn5tRok+/W7d0eTv66/Cj2znPZNh397nzz2o/LPRAD++R7VQR81+NTFLhD0I+na0pGazj5rMqCOSS0dLFE8r4VLMXFso3sCZsQNY9ur5lWvVZEGfX6KoBoh9RDcYqZcghLMBD4nQGDRgJ3PIn/cAZFt7jzYr7bVrqzA7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tf4kqQuHDbwJ71Sfz0JWkfJUsoJ8ZnctFfRDLAakt5c=;
- b=ZrNspswwWNVR0szaVgKOD1SAZq1V1Y6c+RCDS/hcMBd4jSn0xNsfth1n5vVr6Lzb4U/gRs0eH0y/XmnFWBda2GO84IrynmFuuP7wi9f/Lx0cdEmqztq6MT3Eiwx6Xyf5TGe0YStSFXFuXAgHVSX2t5E5FJSCTyg81jIUNN7cOYkUHJViYYrlx2vGC4P4DKiyyW6DXqNY2COAUbCayeVlruCFUjq3tlnd9kYiFYddiTi/t5h8c0DHMd1pQZYQ+MLYVRZSfP86GO4jMvdGB245xjOG0PhA8jEgEE8gZJjlLGQkyKGhZDLpi7k1rvrVxbQqrLsWkYHhQ4zRzInIAnBo0Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:7::14) by ZQ2PR01MB1305.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:6::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Fri, 7 Nov
- 2025 09:55:46 +0000
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7%6]) with mapi id 15.20.9298.010; Fri, 7 Nov 2025
- 09:55:46 +0000
-From: Hal Feng <hal.feng@starfivetech.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	E Shattow <e@freeshell.de>
-Cc: Hal Feng <hal.feng@starfivetech.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/8] riscv: dts: starfive: Add VisionFive 2 Lite board device tree
-Date: Fri,  7 Nov 2025 17:55:29 +0800
-Message-ID: <20251107095530.114775-8-hal.feng@starfivetech.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20251107095530.114775-1-hal.feng@starfivetech.com>
-References: <20251107095530.114775-1-hal.feng@starfivetech.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZQ0PR01CA0014.CHNPR01.prod.partner.outlook.cn (10.2.0.83)
- To ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn (10.2.1.78)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8F5931BC94
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 11:10:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762513815; cv=none; b=ZKZgCjd7S4rGlEAukl1KzkCcjwER+5OQ2BR+MOSwr5jMZZ+QJkMcfRmj9uqi4tOrcscB250bTpvceDg0MzreVUPMiQ2G7Kpu2K9ePrelYUeoG94qUIbZQVoT7tYVydpZamn8wda8TJWP8MQxSCnkYm9namLAZxNrmYashStstHo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762513815; c=relaxed/simple;
+	bh=uvdSLrRqeSgJ29fmx5TFOH169Lf+Eo9jUOrniAkdVq4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bj0CU3KjlbkPUwM/6QJtWgu/JY7xN/SDe0kSu3B29Y1bBsaDhve1sJIMbJBJQDz38YgmE8zVfAuWnn3XxayQcfAfNJQpRzS9jKnWQYcDKRoWd0XpWob0GwtQHu4ESV3W0eD8zJkzHMJPg60g9bKTuCBo1I24o8EXikGwUrFMFHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kTVL2uNA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kesRY2/m; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A7B2Tne3040932
+	for <devicetree@vger.kernel.org>; Fri, 7 Nov 2025 11:10:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vP5CsM5g0HeHOTSJ0OMxMqeLtmj8J5VZdu7ouInriPk=; b=kTVL2uNAU7+oNJ0t
+	NR/5a4pLbFGYY5wf72iiXu3Aa4fetjFKQ9zdlH8oYDu1NewO8kjuYZOdjhXjdvUv
+	bf9H5CrpXtD3FxEPcZGGEe/I7iM/0aRRpxXoXCHoPjp7StVXZ72j9UVDYvOKO9PK
+	dM6P/R36KX94fYH/c+vCqaqes2PvZ/LrkNM01vU7XAbdqPBV6FVSt3SDB1O09pk8
+	SELlf5XSIHWr6/eEojdjY43BaCIsGJtdJhRfz412+r7RW1eoyiS4nL6TQwJhxIf7
+	B3ni+nzSCZoHdKpoDZxL3P9Eh96zOXP7YNsyWVkUNd24P1KuGRuBYPvKnw4TQFFq
+	CgY3uQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a9fj080mm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 11:10:12 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e8934ae68aso1780621cf.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:10:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762513812; x=1763118612; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vP5CsM5g0HeHOTSJ0OMxMqeLtmj8J5VZdu7ouInriPk=;
+        b=kesRY2/m6/Ql5d99ElFud0oWw0VkJ5waHJ+m95Yknp5polEBeCjAFhrRUUJpzLV55I
+         4YyGYsI3GspN8ZWgBGHKG+pXFP6RUTDKgxXZl/D1ElccuIbKNdfJURsUEZVuloFXcxPO
+         iabWhHZIVHsTh+IIKlq/ecRv4x2XrwPpKTuPYLZove3XZY6JRAFs74gar3Yv31gJH/Aj
+         ufusMx9PGabtOiyP4YfT+sAJmn/fZaIT9yofNnte+loATYPysMwrsRYAYd4AeKwITkCl
+         t2w3QAkoCw00nl/NCNzwMJWV+gw5fOVXZNCPgZ9FS03OIY71gnKwmffWgRsp7hHyQQWR
+         iGdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762513812; x=1763118612;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vP5CsM5g0HeHOTSJ0OMxMqeLtmj8J5VZdu7ouInriPk=;
+        b=gLn64CBmBR077xyLoQPoB3LxyjqfI4uuzC3/OuT50CfHT2V6w2CoG4SlNQEuC8dsNQ
+         3XPpusExWIQH+wpFOsSUoZrS61rn9oajy1jqSwZXUl4+NqxHauDkAKzlTFummycNFgO5
+         MQ564cATFASUw5GMODKI75fb2B0qGpwKdXH4aAmGiEjjLkFBbpy9v/UUJOeNe2kuTKMJ
+         k+mQMsM7Ka2Qd+0Pdw+rbYgKfOu4XAJqBQlnF5TFsnQLTYBSdaYucZ7BKh3WpsB5Eg17
+         8Wto2NSs4FpisTSuHTd0CO1KkLj4cotmMc7soXwLnAOHKEBZNC8S9WxfqVHxniG9guLd
+         t2Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCWqJyU3XY3PR84hqofIcbxoH7CGKeUFyQchG2jyhf6OjGLZjs7V+0JEqpaJB1gKDV3WIiJN60/Z/Rth@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9wcZVXb2KCKX21ozDqZIkXajtcWckRkPSOsvioY0FBdeh3vh+
+	VNkbg5pvZygSVO/t7tQ6r0enOQIC/Ng8z/+o/fI0T+3Tak56Q+gEd8fikMm+giyeXYnsH9HrYmn
+	qUKBc0f+5nOhnJwu1cRnVdN2ZYmfi4jCLABMO/jk7koaB4Chs2qDS9ydhpECnZ5CY
+X-Gm-Gg: ASbGncvtKbURG3wdOQ2Ghj/sPg+mk0nWqtA74+83AcJ1XeERK2BDsIyQbU+7AOamNov
+	5NZu1miettsJ0sF4xchfKFFPp2qysva4yrvvCHEA9hRvKSXgZU0x/BSD6fH+f0SQO0BRMJ+DCr6
+	TOyolihe9WDaJo2kZNd7c5ztinOwd5sfBqnWWlGpTvIICmmfftiOWpTCKbeAOGpEo2aq3RLr/OV
+	3UbhTyRnIdt93JtvfZeRi8G7ezltZCxo7Zn4HJaPrA1cBPzlYvwl2zTF9Ha2J3r38DLg+qjA8nj
+	0Xi83vLacWvD1iQoBCt0HdyRe0WxlSursyUIwxkAJy3vvjSyQOStEYPzC3VlvplLIiO9XxANL8O
+	6BrwxRFqrJlaTnU+pCtzlVhiKoiPFIoWF7c8ibAMloNBcqvEhhTWYbMc8
+X-Received: by 2002:ac8:108f:0:b0:4ed:94e7:97bc with SMTP id d75a77b69052e-4ed94e79806mr13951811cf.3.1762513811876;
+        Fri, 07 Nov 2025 03:10:11 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG+oSsE67XF0MhznsqL3RMh0VmCG7Jg2iUSdY+a5r8YCwj9SfReJWThGgi5T1OFd6OFN1sfjw==
+X-Received: by 2002:ac8:108f:0:b0:4ed:94e7:97bc with SMTP id d75a77b69052e-4ed94e79806mr13951281cf.3.1762513811430;
+        Fri, 07 Nov 2025 03:10:11 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf31286esm217650966b.21.2025.11.07.03.10.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Nov 2025 03:10:10 -0800 (PST)
+Message-ID: <5fea976c-a047-43a4-a062-fee1d40447b4@oss.qualcomm.com>
+Date: Fri, 7 Nov 2025 12:10:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic:
-	ZQ2PR01MB1307:EE_|ZQ2PR01MB1305:EE_|ZQ0PR01MB1302:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0ac73d76-3dc9-4ac9-c9ef-08de1de3d2af
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|366016|7416014|52116014|1800799024|41320700013|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
- 63+yPJKYnf29w3HkUeosojTfLS/PhRe5CbHZ49jmYED6eQ1oMfuaIItG9g00wkz8R4pGpb7b3/nDbSkH5EqBgRdsZyzV845jmxtNNMKe+j6Kbg33dCGEtjcr5y4Pref+LDzmH2m/684VinuMmQzV6iFdK5c3GoTYAc9G/+vGHlJOcOOzfX39RK+oEeQVz6xmq7m4I7oNvjRsEUsT3mz0dTZKzEQXDz45HgvRh2j/xYPzDNXVdr3g40DZqP3otg8kVxC8JQsWgwv3cW6oLREHArC7sBKaPmDu3f74zE+0AhwfrK3dKsehe0cDYnknthZ5+Xl87UsiwR8DwGsNwPvgbGU8LfeRfIMaV9OqbfO3/6QjsvZQbxzDKvhyy+srdZJzgPq+wABRDnrwadEsRi1ZYAJ2o0lRV2HBE/Prc4BHkxJIL5A7/mvVwBMJKSsmHiPFHDswknBl7ip2fV500Jl5TcCfv0Pt36Y4vX8g73n7jvVNCMO3sMMRShZeSgo5yAEkRFU/bGnsbPWXLx4weEZmBDVYOzDNShodBBYQE0c8MIEIyvej4jbwX2TF8m1W6NUyezfZtl7+JKET7rbb2zVEEX3rpjx/oQqn7nUCEHPuS68=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(52116014)(1800799024)(41320700013)(38350700014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?5XTkhdGl0oeLjyh7tV3VO8UI1/rdE63susoZPjnfI2dgwG37QYDrvqGXMJaS?=
- =?us-ascii?Q?LcBhxrIZc5r9F7r1nZLGiTRm/P3IPwuixGqSt6Tg2LrobYjsyHpAAx6tPXG9?=
- =?us-ascii?Q?vNcfzQxsRXcNHnMNC11VFxbVFiz+b2S7BmoHE1UHKL5C43CHrbcOUCF2HKn8?=
- =?us-ascii?Q?SuQCnaqLYCjICgMLmjVPb/ivWLP63scnggsGxYMh32kWOE64eaLXFU4tsBYB?=
- =?us-ascii?Q?d62l2EOtS4oIwi0guSOMb/coCWbZc97ZMqxpBkG9rPqfKGTxl+Pn1P41CHT3?=
- =?us-ascii?Q?QRBu1Oopk2DKDeJY7yVdtS7HmQ/eZcgYRtQsRjuuYd/b18vtDggC8mXF4evA?=
- =?us-ascii?Q?UWClbnPYekOJDfgtHzVQFMCTvZXA1P2Z8pU+Fs4sf5rVHWxBOx36w0aI0zJm?=
- =?us-ascii?Q?Wz52DJLCJG10JxhZdML0N0bJZBX2+Mhy1PlzEXkJVB2yFtIfmJSyfG4MAe2I?=
- =?us-ascii?Q?4soCx7XMmsdy0VTu62JtJjrYQuxSPwVmd+E5KMvNO3+uvjMV8LFGxw5jxtBf?=
- =?us-ascii?Q?0AQN4TlXqn0NbaCdJZZpAJfp1pb+RKRjI5H3L32F+SndOoxxsc4XrTiyzGzt?=
- =?us-ascii?Q?Rzb5Qqbf74MJJ+fvpql1LHPB8R3CJYumxrr/yf+yHkYu8jyfgg/VWaVBpdl9?=
- =?us-ascii?Q?/1/+FXsIYiXvjjBZrUGKMLTsb6pIZ8f9QVktLr5CWUrMSBguBIUfMGJ5tJDE?=
- =?us-ascii?Q?Y3SX4dRSS6lKo8sZ5LkT6YL1xZ2x2Eq31ZZpiu+YicR7KIwklmA/4JOUlWMl?=
- =?us-ascii?Q?OFUSaQOxLzZe2OegicXzUVeJbRZ22Z0Ahzl11LvSXiJskJrovptb99E5OIKD?=
- =?us-ascii?Q?YA2BUOShO0AYkGyd/rNilr8N5O8tcj0zJP8obRsEWYMfgfRGjZ2h/KBXBTie?=
- =?us-ascii?Q?7k97OYRWPQh51jlSQhynY0n5mmXtYj0J6Q32a5z3/BGBCAwAFw/Nm3Gp3gyt?=
- =?us-ascii?Q?KPETA6Do5MtwFI0u5CpEilS4fFU3eVB0QLJbUGHm1IbJP9Z1WuRoqs+2V6HJ?=
- =?us-ascii?Q?ezBHQJw8o9I4wkxXqgpMah/DXCWEi3X4a35rVQRXmjXUbYPFmUKpx68q9QNu?=
- =?us-ascii?Q?wAnredAzTw5aD1WsjnCM8HtUH5n2XE32I9+NDnC/IChPcXrAmxt4+eCv18rc?=
- =?us-ascii?Q?tUY9Q00AGp3WhWkdX+YosfV4xRiFVmIPVO+3TWs4OROe1o47VBzjpfYPKzNy?=
- =?us-ascii?Q?dNRfexZiU5fNLOYfuJXjsS/VJ31Ipubb6ksbEu0cdZWXQhX77AbzTdOQKwrC?=
- =?us-ascii?Q?tpPta5kJ74klyRpcVgaFo4gorx9/9pOQHIpYn/f376ngiwtg5hNpXG483LBU?=
- =?us-ascii?Q?2/WrwRqbNQOODltCtftRXsqyWoWEOMMmtPDiqb4AfAfRMqm42nUqJTT4pGLc?=
- =?us-ascii?Q?8Lld1Y4O+jR9ehmMaS5Rw2v55ZErMNUPMBOFHJN70uq8qusrWNdwdd4SH6Tp?=
- =?us-ascii?Q?3FoGZ03JE9ersCGH20bi1JeMlw39vySxJHV4c+NSLHgsR0+41XDz9Dqqb9vZ?=
- =?us-ascii?Q?HrM5NSoSR373VPESigs3v9IQVT9+c3lLbI6apF2Tp47OljJ2qwpxMk8Y8fFK?=
- =?us-ascii?Q?k7yWYkO+0PULjnPIOQdH1/uATBa1lkUxKj5IKOsqvf9zxxlEDOds3/qLozdv?=
- =?us-ascii?Q?WA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ac73d76-3dc9-4ac9-c9ef-08de1de3d2af
-X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 09:55:46.4063
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: K6c+bSh2bncwuh/QB8Q7CYqtxr7z+wGqWNYgG+6fpdC7gK4iobDPz64HTk6295NnLZp2+qNKUT5lW+1z6SFv7IAYxbQQsIX41s9Kt0vdJbg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1305
-X-OriginatorOrg: starfivetech.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 8/8] net: stmmac: qcom-ethqos: add support for sa8255p
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+ <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Matthew Gerlach <matthew.gerlach@altera.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
+        Romain Gantois <romain.gantois@bootlin.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Heiko Stuebner <heiko@sntech.de>, Chen Wang <unicorn_wang@outlook.com>,
+        Inochi Amaoto <inochiama@gmail.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Minda Chen <minda.chen@starfivetech.com>,
+        Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Fu Wei <wefu@redhat.com>,
+        Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shuang Liang <liangshuang@eswincomputing.com>,
+        Zhi Li <lizhi2@eswincomputing.com>,
+        Shangjuan Wei <weishangjuan@eswincomputing.com>,
+        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+        Clark Wang <xiaoning.wang@nxp.com>, Linux Team <linux-imx@nxp.com>,
+        Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Swathi K S <swathi.ks@samsung.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Drew Fustini
+ <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+        imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
+        linux-riscv@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20251107-qcom-sa8255p-emac-v5-0-01d3e3aaf388@linaro.org>
+ <20251107-qcom-sa8255p-emac-v5-8-01d3e3aaf388@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251107-qcom-sa8255p-emac-v5-8-01d3e3aaf388@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=XZyEDY55 c=1 sm=1 tr=0 ts=690dd394 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=hDgXwu4zDwT_Ch0b-w8A:9
+ a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: TM-3hXrxpEYHFKRxBUOlY_u8ieva4sR7
+X-Proofpoint-GUID: TM-3hXrxpEYHFKRxBUOlY_u8ieva4sR7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA3MDA4OSBTYWx0ZWRfX/6Vy4Bq7RwHE
+ jW2xoGOyoJQjw4WdWfvSb9pgrAslSijJwWtHTATY3pBVANbCbVEUaRBhr2jVMPbsi2WS4Ll1Y9n
+ uIgTlI8I4XjVpQF8ucO3+L0SUd88zYj8Wdncl/3EbzPOGb4MWAgV7gE822TcHGEpvxJsYK7zQbU
+ FZG4gWDZjDccc6scbz2hFiQE50IoCTY5hgjwBh/4C4TVp+vEFE+8C7GsL5YYKj8p0Bcj1tQrtKA
+ q47p8t49+0Ky7wFxCECT35P1UbqAs1ZtONLz+gMznly8tOvzKrXbeF3eHbHiLbEVHplCUUp0DiW
+ isTxbqjjhx+QbN75o97h3nhy/SE+NJL9ElHBArS2QUdgsarF3C1axisth9ijQNRa8chA4sa1qMR
+ rgWnuQwV/qjCeAQDFAbAeWEyXmM4Cg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-07_02,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 spamscore=0 impostorscore=0
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 phishscore=0 bulkscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511070089
 
-VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S SoC.
+On 11/7/25 11:29 AM, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Extend the driver to support a new model - sa8255p. Unlike the
+> previously supported variants, this one's power management is done in
+> the firmware using SCMI. This is modeled in linux using power domains so
+> add support for them.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
 
-Board features:
-- JH7110S SoC
-- 4/8 GiB LPDDR4 DRAM
-- AXP15060 PMIC
-- 40 pin GPIO header
-- 1x USB 3.0 host port
-- 3x USB 2.0 host port
-- 1x M.2 M-Key (size: 2242)
-- 1x MicroSD slot (optional non-removable 64GiB eMMC)
-- 1x QSPI Flash
-- 1x I2C EEPROM
-- 1x 1Gbps Ethernet port
-- SDIO-based Wi-Fi & UART-based Bluetooth
-- 1x HDMI port
-- 1x 2-lane DSI
-- 1x 2-lane CSI
+[...]
+> +static void qcom_ethqos_pd_serdes_powerdown(struct net_device *ndev, void *priv)
+> +{
+> +	struct qcom_ethqos *ethqos = priv;
+> +
+> +	/* TODO set level */
+> +	qcom_ethqos_domain_off(ethqos, ETHQOS_PD_SERDES);
 
-VisionFive 2 Lite schematics: https://doc-en.rvspace.org/VisionFive2Lite/PDF/VF2_LITE_V1.10_TF_20250818_SCH.pdf
-VisionFive 2 Lite Quick Start Guide: https://doc-en.rvspace.org/VisionFive2Lite/VisionFive2LiteQSG/index.html
-More documents: https://doc-en.rvspace.org/Doc_Center/visionfive_2_lite.html
+dev_pm_opp_set_level(dev, 0);?
 
-Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/Makefile         |  2 ++
- .../jh7110s-starfive-visionfive-2-lite.dts    | 20 +++++++++++++++++++
- 2 files changed, 22 insertions(+)
- create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
+perhaps with _index?
 
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-index 62b659f89ba7..f53109253d41 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -15,3 +15,5 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-lite.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-+
-+dtb-$(CONFIG_ARCH_STARFIVE) += jh7110s-starfive-visionfive-2-lite.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts b/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
-new file mode 100644
-index 000000000000..ac5e66027bad
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 StarFive Technology Co., Ltd.
-+ * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>
-+ */
-+
-+/dts-v1/;
-+#include "jh7110s-starfive-visionfive-2-lite.dtsi"
-+
-+/ {
-+	model = "StarFive VisionFive 2 Lite";
-+	compatible = "starfive,visionfive-2-lite", "starfive,jh7110s";
-+};
-+
-+&mmc0 {
-+	bus-width = <4>;
-+	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_HIGH>;
-+	disable-wp;
-+	cap-sd-highspeed;
-+};
--- 
-2.43.2
-
+Konrad
 
