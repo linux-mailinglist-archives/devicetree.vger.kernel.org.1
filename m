@@ -1,100 +1,217 @@
-Return-Path: <devicetree+bounces-236119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F11CC400EA
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 14:12:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA9B1C40117
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 14:15:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D9C63AC5C6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 13:12:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 899314E4524
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 13:15:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4F72D4B71;
-	Fri,  7 Nov 2025 13:12:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0131946DA;
+	Fri,  7 Nov 2025 13:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VmUk856L"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pp4mOISA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011060.outbound.protection.outlook.com [52.101.52.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA2CF2D3732
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 13:12:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762521169; cv=none; b=KODVWuMeOZDSbGkapHrsViwy6qEDkqL0GQwmJ9ffvYZGCiZ8dbRTD6Ia7oTOnRUC4n7Gyqa8mXYglLe+yEhISMU54VlCIDLS47xykepGNeKUz4Be45/88+moqRWa0yzdz4reTZXcl/DlTRSs4d5aQMzGtesWJhcaX1b77jOxCAQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762521169; c=relaxed/simple;
-	bh=FWO/8gHk53RYXD8wsffSK2ke0SFZ1bG9gjIfGIFTJuI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EDFXPF1JrTqb/0FJMon/ix+V563vWr3VQsTsXbXc3tZTYogsTdYP0sLejb7JZIbq7qbiT4Knx9G1UB//W5IagxvwJjGwBW48+xoBr+5VW0pQO393ua3wOrlZ7HxhZ2cCNUDxAQNvosxAAeGeAEHK8sqyH66igQ8mmi/QyCw6HbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VmUk856L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780B0C2BCB4
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 13:12:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762521169;
-	bh=FWO/8gHk53RYXD8wsffSK2ke0SFZ1bG9gjIfGIFTJuI=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=VmUk856LB3Ktid9JTM1p/HRUccXaDtTvjP+q4dhPWT4wSln/qPkV/VQu6vernisKV
-	 TOiBfbwqozLZk5euuhK+PjZQPMezUhrIMdpfuKw2WKuqOZ9jIxlM+qYSwGmHlb53q7
-	 YFWTsYSshNNpUqj4G0nHtU6ckASu72pJffLn1WR8CTKW3neiXm4XGYq8wXTMRuiXF0
-	 YQTpO7XP/wsIoQ4PycZ9vGqeoMSSJWdUR0iew6wB1xUFKvfd1ZL3P5VabnSdmxy6IY
-	 Em8ZkCAL4zE8XdO+35qZJIBafvwOzJSsIhwygOORffdFKPGIo4jxcwhjKvwckqScZx
-	 kHA3V9Bh9hbtw==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-37a48fc48deso6842061fa.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 05:12:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWvYdMIm2/TjSRZDlNZmh6IdX1UEGoyQ+EUtBCHruFoIVm+pDCycSqncZuMM0UAeO2vgTI0WPYI7ps3@vger.kernel.org
-X-Gm-Message-State: AOJu0YywYLt0SkGbYe3JKNEvaP6DPsYvdE4Dk/1gAYC/oo4GRG1xtB9F
-	6txyaefgdyz52iTAF2JvT7GiCnZNfl7b3ZjfJn4j77MQRenGsFT5Da3wE9Ky0TMcqJpDEm76/kd
-	weOt7gdomuAJZQvEQAkRXxJvXcLt3qts=
-X-Google-Smtp-Source: AGHT+IEi60U+MS5fuwhOECte6O05g72+EAD4tfI6rsUD0G2v7W8zO7uqdgB+Fmi8wi+riCfy3k40Cuh7KGFUeVlePak=
-X-Received: by 2002:a05:651c:4014:b0:373:a675:cd5f with SMTP id
- 38308e7fff4ca-37a73335a70mr6546391fa.39.1762521167522; Fri, 07 Nov 2025
- 05:12:47 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C75A9288D6;
+	Fri,  7 Nov 2025 13:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762521352; cv=fail; b=QU0B/L/QWhWAU8Gq66YumxcGNNxypM9ZBWs74G5KlAyLBdIi+mhuVDDv879z7lDtyZ8gKtKvd2xS7ppRhsIsaXqWk3sAgQNpCyZaufkMOojuaMfDY1TzI7a53lY/xXC2faRIZdDxEllwwcfwMUE5pw8Wya24+HtCpgNXBWR+OSA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762521352; c=relaxed/simple;
+	bh=7pl6hnQnz5lYP/upmxopyLFzdpHYntofOYKni6YK7SM=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EBI1sXj39pbEhel/HWnj05EH9yG3yMdc51i85hcE290oePWPHCY1kAFSrg3vZxpPzbcl5lnl/Rflgeapiaid4ofAlh2/NTPu33jL5m/dD/0EV1X9SL2Y9CkaVBU2CKCZsd/eSCCJgiuoPxgs8+DJB4Wkz4edc6/UQUVJWOwlyuU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pp4mOISA; arc=fail smtp.client-ip=52.101.52.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BQO6oFW/fznTRmBOUJ9hyEZLc2bEKhe8Po3XG7SybHEIz2CR3F7LtOK2ZEc3K56IUfCGJzgZp6LMMBtYF6sDlh5p8k6cYYTnx7KO7dl9Rk/wdFXMkoYIp7nWN2hBlBH1urF3nyYoAT/jIwf/tY2PFfIwZBeCe9ukMtUMIVvJDaixfWZdDaB0I7TH6y6Xtyu4u6cmsZyoL52ixzSshLdF0Yjlq8IaSlAw1qIYndt69EpKkqSNcHDoYhnzpTyk1j9FxMaQVxqG5PYsksnfuSoRWyEfFTny108coFEE3gqIY5r7hAOIEka4maCF5NbOgjNlDWuYksWxOI6jtuUtjfDsrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mnur47W2Hj5Oc2O6hsEwu9MIE7LahAVQ9oHgH5oQGbc=;
+ b=yUW3zQbN/ROzE1d+Aw23VVLIc2dnSPjpf2zI6tGpw/s1JoyxHK7koWkzYHiMWjDabylJnRrqfBDF8Q4YOzo3RUbqDrScpc4o/nzIgU1PFVr6XUlX1rbSdIYJ0uFRhZPcl5rGyqvHj3g+wiULzJXFWNQzFBPDQJzmgATN4PFVkutui32pG9qztXhpOBgDaJAbQrYPBBf7E9GxFj0BjCGyPOfEZDrPr9D9QHkdFVEfPymupBKyj/8UpvKjfvLawj6IO2ug5kqDs0ougmIvbMq2ydbS2M259gkCUc7XMNe+T6Nje+4l6ztpRuz4KuuIQucMB0MxkDIN4g0VWDgvpdkbqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=cadence.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mnur47W2Hj5Oc2O6hsEwu9MIE7LahAVQ9oHgH5oQGbc=;
+ b=pp4mOISAIzE++t+1Am0Ca/6dhCcxDRv5jApL//zY7cXkd3mSl98iaI0ImbgIvdwomWlk8OI+TZhLDHDLhLeomtWdCfcBnHVkmiCY5myDA1uS0psvLZehNoLaqBNi+7BHsx/0XGPI7JsDXnLH3ZN4Wu++00+U2N8q+RZ6IBuqvgk=
+Received: from SJ0PR03CA0221.namprd03.prod.outlook.com (2603:10b6:a03:39f::16)
+ by DS4PPF376CF97B3.namprd10.prod.outlook.com (2603:10b6:f:fc00::d13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.10; Fri, 7 Nov
+ 2025 13:15:46 +0000
+Received: from SJ1PEPF00002312.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f:cafe::3e) by SJ0PR03CA0221.outlook.office365.com
+ (2603:10b6:a03:39f::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.12 via Frontend Transport; Fri,
+ 7 Nov 2025 13:15:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SJ1PEPF00002312.mail.protection.outlook.com (10.167.242.166) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9298.6 via Frontend Transport; Fri, 7 Nov 2025 13:15:46 +0000
+Received: from DLEE205.ent.ti.com (157.170.170.85) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 7 Nov
+ 2025 07:15:42 -0600
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 7 Nov
+ 2025 07:15:42 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 7 Nov 2025 07:15:42 -0600
+Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5A7DFZKs3021986;
+	Fri, 7 Nov 2025 07:15:36 -0600
+From: Harikrishna Shenoy <h-shenoy@ti.com>
+To: <robh@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+	<airlied@gmail.com>, <andrzej.hajda@intel.com>, <conor+dt@kernel.org>,
+	<devarsht@ti.com>, <devicetree@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <h-shenoy@ti.com>,
+	<jernej.skrabec@gmail.com>, <jonas@kwiboo.se>, <krzk+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
+	<s-jain1@ti.com>, <simona@ffwll.ch>, <sjakhade@cadence.com>,
+	<tzimmermann@suse.de>, <u-kumar1@ti.com>, <yamonkar@cadence.com>,
+	<pthombar@cadence.com>
+Subject: [PATCH] dt-bindings: drm/bridge: Update reg-name list for cdns,mhdp8546 compatible
+Date: Fri, 7 Nov 2025 18:45:35 +0530
+Message-ID: <20251107131535.1841393-1-h-shenoy@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org> <20251106-b4-of-match-matchine-data-v1-4-d780ea1780c2@linaro.org>
-In-Reply-To: <20251106-b4-of-match-matchine-data-v1-4-d780ea1780c2@linaro.org>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Fri, 7 Nov 2025 22:12:34 +0900
-X-Gmail-Original-Message-ID: <CAGb2v65fcCEqJEdSuH+n1BFtoBxSCxEXaxAk7norRWzpPoT2cg@mail.gmail.com>
-X-Gm-Features: AWmQ_bknqHyNaA5_RcBhQtheiViI_1Nkl4lCccfeS9SBJtkNwcoPaIb-tzaunfo
-Message-ID: <CAGb2v65fcCEqJEdSuH+n1BFtoBxSCxEXaxAk7norRWzpPoT2cg@mail.gmail.com>
-Subject: Re: [PATCH 04/13] cpufreq: sun50i: Simplify with of_machine_device_match()
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Yangtao Li <tiny.windzz@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Daniel Lezcano <daniel.lezcano@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002312:EE_|DS4PPF376CF97B3:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ca42073-fddb-4887-1408-08de1dffc33e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|7416014|376014|1800799024|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?BE8sy9rPgbZBgy9MYM88uQMpRmLxSB9+tDxcQFbq9l9SFoEBSW19uUrgbWwc?=
+ =?us-ascii?Q?B+RJl9+7dDcdb5UTHVHeFlmXJIehrYlU/6NxAiGfeOCSr4f7Qn6BuNse16iw?=
+ =?us-ascii?Q?c/Xsd3Vry4TuNCFCby0GXRzp6bY8lzs17ErJKl05W3RxCw23bVLpfZGy157O?=
+ =?us-ascii?Q?ZMpXadNLCU6haLIWtwQqy4mHWnLIAnhYN+awc2dn2zYYew68I9wklrfeTjAr?=
+ =?us-ascii?Q?8fDZ2k/Wgl/M/NT41dZpBLirnDLwuyO7TRwhmlT+WRk9v+o+5Fw0jPbvaEfK?=
+ =?us-ascii?Q?/tSf6xfSfLAA7tf3dHLB3reug/emf9LtSjXm7D1VA/Ytd9fxvlTnUflZvQ7Z?=
+ =?us-ascii?Q?UQ7MG1ieNPXXMqKnmr+7cALuKq+gonXKBnVdIMk6AtfJlpnhjhPSqJBGPigv?=
+ =?us-ascii?Q?TsuerhjZ2GFCWpu4jb49GaoxEj3dncfV/NukMbt3xm/ZHpFzJ/Tl4Ht9PVNZ?=
+ =?us-ascii?Q?YaWWHN2lIYUklSoUDQYxeBQGyv1CWLFV87UM4A5uNQcnt7MMgw6VnWlYYO0V?=
+ =?us-ascii?Q?3rq75rfzZLOofAl5Fx7TmhTv6HcGoTiisEFYa4fAoO6Nw8ykPDokVnItXS8E?=
+ =?us-ascii?Q?uzsj9uWXPVz8L1mvse4uh7CV5wf2sVWS5tI3wZdBfs4gEcukVmlQj0DbD3R2?=
+ =?us-ascii?Q?4fp0PeE6ZboKKLD5r1cR6S32wfyuzeNQUaMAqYK7e0H1W3uFNdvfKEdEugEI?=
+ =?us-ascii?Q?bxkSMs0BxuOjZ1tHB5L8+6tLlaMrfs0O1JZoxU9UaxooI1PYOQ0NgwmmoMWS?=
+ =?us-ascii?Q?HaESkJXy3toVcPqv28MmScdjwSwq/iGlgvE//HfcKp5YxjbEXZwu8B/Itqnl?=
+ =?us-ascii?Q?UBJRVWeVv6nSxNZwiO08fcsvC/c17rdLYOqO/VTsy9YdZdGa+d+dVPrpYHam?=
+ =?us-ascii?Q?O1itisw57Hv1Mt1H/awk5t9TNLXFFVgL8YNiFNctvPVr9R/A9i1wr49fhNXM?=
+ =?us-ascii?Q?bUPkKd4+RcdSubbm28to7dlVdpSBJQWQxlotf3gm+LmlqNLtv+6wUrj5pWnt?=
+ =?us-ascii?Q?8q44GF7YkamNyb2vlTpbO7N1HSUhywdUE4Wltn1ntGA+RsQWMJdpAb5xtfeg?=
+ =?us-ascii?Q?FJzMiqfqwoOr6ySCGlzjKbKdNwBDIMh5V5YI4jfzWhES6CFNlly1F7Ebbkto?=
+ =?us-ascii?Q?e0qL1Ou7cbvI5OgD9vKhCrYr1G8QzdZci3i3laBreoq+oPKhjyHYlr4oiECh?=
+ =?us-ascii?Q?rxyGiQKl01GPjzsAxZlbe167e5470XJAiG4BfKETpE2ag1hxXkm9cPoaMiy4?=
+ =?us-ascii?Q?248RkOBjo8+lX6H+AFxudKkuaMS5PHBzu02+y3wy3Trd1EfJwp7ud+XLqOu3?=
+ =?us-ascii?Q?q6F7heCQWsWlXM0/vf9fezWvMK8FYyG3kK1K3GPpxspIYN+jKsx+mLrObF2D?=
+ =?us-ascii?Q?9BcgsWsnVW0736uCmLrOx1yWoh31FslPbXxM0dRcgZjE7KJy43Cti+mEWjBP?=
+ =?us-ascii?Q?cZJTFhLy8X+IiHLjp3lPzmaWNSaiPwog39+4HYvegpqXFpxvNEJXT2X1rU66?=
+ =?us-ascii?Q?uN+yKVkql6rDVQDgnsphHUMlbSXAd8fhqrrikgXvhDmXX9uwXS8a1kPCm1el?=
+ =?us-ascii?Q?rMoIdsenhHjukrFzbRn4bjjqJQx0naNAZ3LicJob?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(7416014)(376014)(1800799024)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 13:15:46.1556
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ca42073-fddb-4887-1408-08de1dffc33e
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002312.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF376CF97B3
 
-On Fri, Nov 7, 2025 at 4:08=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Replace open-coded getting root OF node and matching against it with
-> new of_machine_device_match() helper.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Remove j721e-intg register name from reg-name list for cdns,mhdp8546
+compatible. The j721e-intg registers are specific to TI SoCs, so they
+are not required for compatibles other than ti,j721e-mhdp8546.
 
-Acked-by: Chen-Yu Tsai <wens@kernel.org>
+Move the register name constraints to the appropriate compatibility
+sections to ensure the correct register names are used with each
+compatible value.
+
+Fixes: 7169d082e7e6 ("dt-bindings: drm/bridge: MHDP8546 bridge binding changes for HDCP")
+Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+---
+
+Links to some discussions pointing to need for a fixes patch: 
+https://lore.kernel.org/all/20250903220312.GA2903503-robh@kernel.org/
+https://lore.kernel.org/all/d2367789-6b54-4fc2-bb7c-609c0fe084d3@ti.com/
+
+ .../bindings/display/bridge/cdns,mhdp8546.yaml      | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+index c2b369456e4e2..2fdb4f7108ed5 100644
+--- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+@@ -30,10 +30,6 @@ properties:
+ 
+   reg-names:
+     minItems: 1
+-    items:
+-      - const: mhdptx
+-      - const: j721e-intg
+-      - const: mhdptx-sapb
+ 
+   clocks:
+     maxItems: 1
+@@ -103,7 +99,10 @@ allOf:
+           maxItems: 3
+         reg-names:
+           minItems: 2
+-          maxItems: 3
++          items:
++            - const: mhdptx
++            - const: j721e-intg
++            - const: mhdptx-sapb
+     else:
+       properties:
+         reg:
+@@ -111,7 +110,9 @@ allOf:
+           maxItems: 2
+         reg-names:
+           minItems: 1
+-          maxItems: 2
++          items:
++            - const: mhdptx
++            - const: mhdptx-sapb
+ 
+ required:
+   - compatible
+-- 
+2.34.1
+
 
