@@ -1,80 +1,101 @@
-Return-Path: <devicetree+bounces-236198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEEFDC4109E
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 18:27:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C17AC410C5
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 18:32:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DDA3188D9F4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 17:28:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 016A33B0DB9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 17:32:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381D8334C05;
-	Fri,  7 Nov 2025 17:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B50A24677B;
+	Fri,  7 Nov 2025 17:32:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="gjE3elCV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UctZZkL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE011F03D2;
-	Fri,  7 Nov 2025 17:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2098331A79;
+	Fri,  7 Nov 2025 17:32:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762536467; cv=none; b=q6S91yRR3E006HauyKUOZY4whSCIC4bzfi4Osjqqh/Ewzu9hZnqGFxYU4JZ55VqCZhYvhnnb5WxnAwx4j8RynVMPTIQ5vi7/zeuGjohhzGIFf6kIcwJ9bJvpqvS4zqtCFD+Gi5CGDpMokvdcn0Ysnu9L596Rn8Lc8HVF5OGemM8=
+	t=1762536757; cv=none; b=osgJ7sDjY5K4HHd+SqowX39OXTjsAQuV5DKSGyLJuDCMjlUdsxhgFPhFiyoLm807CKSSQlPZjDSShK4sg0Mfd9LnXk7O5ZwBOz6EcNeGwI1i5pyVWKztfkaFsI6peI6qv3T45rkEVC24axQw0vuqS3dW8Q47ypk+NSOCbC0xCng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762536467; c=relaxed/simple;
-	bh=E74RBG0cAvccvJgzcVT8lXWEYJpmGIAhsol1RsQ57ao=;
+	s=arc-20240116; t=1762536757; c=relaxed/simple;
+	bh=br/yoQcXazpIhba0JM9br+2Xu+ekNSGhpyy+fjDbUQs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pnW5M2f1Ma+Swi94QxN4KsnEN7aDSTU/wfV9XeFtopFm8E8MePnZcUt3+6iEKABiRe925p7hbrM0Hh2qDQ3wt+p2ct32qpPiY2yJSCEm2lk53RJmEw1VEvB6qDjjNmtYl24drQA9AMhs9fMVW3yPUw9ELjkNeTsSauqGzMBDSag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=gjE3elCV; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=xK9cdU7Jd08ydspHZ/LYkJ6UQeomzAplwBThlP1vwpc=; b=gjE3elCVS4gAloZakaMWCavQF0
-	VVu0WRaiT/L3wbBnqluVfYLju8y6wohorJRj0IEcmb8E5DSUzE5LC0FFiLQqAz/pCdpm+tNEZ6ODD
-	oQ/M/uhYaW+ycEkvcICDP+IxH1BBnfOL2y1dxJBnHf+gFXwlgTxSiJ3HiXH3VxHRE2HY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vHQFI-00DFmK-VG; Fri, 07 Nov 2025 18:27:32 +0100
-Date: Fri, 7 Nov 2025 18:27:32 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Cc: Shenwei Wang <shenwei.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jnu6utkrpKfKtglZQySYvTrrjsse25X2C1J712qOK5ldmULGS/xLDRMJj2dkbgFlVrDMFwuk4EEYunUfLlJezhtA/6/UZ3raJpUbb3YTrcxfVXAKpGlHkVrhLXk91lZSyvSTq791bzApHrHfqETL/F6Oz4R0GHT6RkV09EMaqCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UctZZkL5; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762536756; x=1794072756;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=br/yoQcXazpIhba0JM9br+2Xu+ekNSGhpyy+fjDbUQs=;
+  b=UctZZkL5koKMojkM5bfVDVrOHTThROa/jxDccYX45TiHiq22QvoFrtIu
+   MzKauQ3A0Tr7N4dmYMq6aauDUEJXAcapnywnzNSNb4LjLQkykpuBvXkCQ
+   0FQHY7nKzyhuLmk3A+Mxwdr1C4QQxwiC9KLx7eFh+cf9d55Fdj6IcPzni
+   /fHD35ekTFitl8N1CpVespRvcc2kAUaExs7FCmV6b+nYEBmVc2uXdBUR2
+   6/zrGbfXReWcORw7cpxSSNSTcOywWPeIAx0vVGVq/7y7g33LX/i6kkxU/
+   0WvffRev8Solm01k9OX2F9SMUxoFKqis4VjSoYm05aTozRKM+M/yb1ynU
+   g==;
+X-CSE-ConnectionGUID: LolPIA3qQ6SrEyh14arZtA==
+X-CSE-MsgGUID: puYFi6/cQCOHLqRxIjSOeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64729508"
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; 
+   d="scan'208";a="64729508"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2025 09:32:35 -0800
+X-CSE-ConnectionGUID: olbkBok6TgOZIIyj+YRicw==
+X-CSE-MsgGUID: fEjkLyDgQ8C+BXPOdvpQGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; 
+   d="scan'208";a="192185843"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.117])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2025 09:32:26 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id D3FDF11FC72;
+	Fri, 07 Nov 2025 19:32:22 +0200 (EET)
+Date: Fri, 7 Nov 2025 19:32:22 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: michael.riesch@collabora.com
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Markus Elfring <Markus.Elfring@web.de>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	dl-linux-imx <linux-imx@nxp.com>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v5 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
-Message-ID: <7db35257-de36-4eb5-9205-ca7fb8343401@lunn.ch>
-References: <20251104203315.85706-1-shenwei.wang@nxp.com>
- <PAXPR04MB8459C54EAF106184E7A378D888C5A@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <05a0c630-3bd5-4307-8b94-1889ba191c33@foss.st.com>
- <PAXPR04MB91858EA1057672295ECF793889C5A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <aff734de-0d61-4239-9e67-78a4ab258c30@foss.st.com>
- <PAXPR04MB918581030A9FC05E13874BDB89C2A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <734f830c-947c-495b-ac9f-98d439e821f2@foss.st.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Collabora Kernel Team <kernel@collabora.com>,
+	Paul Kocialkowski <paulk@sys-base.io>,
+	Alexander Shiyan <eagle.alexander923@gmail.com>,
+	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Mehdi Djait <mehdi.djait@bootlin.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Bryan O'Donoghue <bod@kernel.org>, Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH v14 00/18] media: rockchip: add a driver for the rockchip
+ camera interface
+Message-ID: <aQ4tJg8r_j4NyKhv@kekkonen.localdomain>
+References: <20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,21 +104,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <734f830c-947c-495b-ac9f-98d439e821f2@foss.st.com>
+In-Reply-To: <20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com>
 
-> For your information, I'm facing a similar issue with my remoteproc_tee
-> series [1]. The advice I received was to look at the PCIe DT implementation
-> (I haven't had time to explore it yet). This advice also seems relevant to
-> your series.
+Hi Michael,
+
+On Fri, Oct 24, 2025 at 02:51:29PM +0200, Michael Riesch via B4 Relay wrote:
+> Habidere,
 > 
-> Do you also have a look to rpmsg_virtio_bus ? it seems a good candidate to
-> match the device tree properties with the rpmsg device?
-> 
-> In the end, this is my point of view. Perhaps it is better to wait for
-> others before deciding on the direction...
+> This series introduces support for the Rockchip Camera Interface (CIF),
+> which is featured in many Rockchip SoCs in different variations.
+> For example, the PX30 Video Input Processor (VIP) is able to receive
+> video data via the Digital Video Port (DVP, a parallel data interface)
+> and transfer it into system memory using a double-buffering mechanism
+> called ping-pong mode.
+> The RK3568 Video Capture (VICAP) unit, on the other hand, features a
+> DVP and a MIPI CSI-2 receiver that can receive video data independently
+> (both using the ping-pong scheme).
+> The different variants may have additional features, such as scaling
+> and/or cropping.
+> Finally, the RK3588 VICAP unit constitutes an essential piece of the
+> camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
+> units, and a data path multiplexer (to scaler units, to ISP, ...).
 
-There might also be some ideas which can be take from greybus. It also
-implements remote devices over a communication medium. 
+I understand both RK3568 and RK3588 include an ISP. Do you have insight on
+how would this work, should the support for the ISP be added later on?
 
-	Andrew
+-- 
+Kind regards,
+
+Sakari Ailus
 
