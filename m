@@ -1,99 +1,97 @@
-Return-Path: <devicetree+bounces-236170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514B8C40CCC
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 17:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 097A0C40D7E
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 17:20:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 515823A3DA9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 16:12:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBC0C3AE1FA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 16:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E802F549F;
-	Fri,  7 Nov 2025 16:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A384B261595;
+	Fri,  7 Nov 2025 16:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="yy2gdQ6o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lBAuiat4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DEC2E7F02
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 16:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F84258CE7
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 16:16:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762531948; cv=none; b=hAzIW0ABSv0T6YLtS2IGbF7sajv3rBMFekcV+TOVk24QqrCz+bF5r/UuCj3M8Y1ay9LDmzlyyFDuxg2Y5iamQWhaPccjguqXjn9HjSBhY2rYOOIDyaaoNUzgbSrdC0ZT2qGGntxZspqnpxNEsEuQiO6Q32EhnvJgDFJIOKP3Sc4=
+	t=1762532216; cv=none; b=M985IImGraHNII6eReJ7aQJWHFC4LhLAF093eW3zKsyem4E1NMYfq0Ym7YydN/x5Z5fkVoO7eXPlLoKhWzwVcak/xmOXzz/3tiMh07AxUdfuGMDIP0J0n6RH+TFv3ayVh7lqyhSZYYflzY5p2wlfuxTfbd6ePSidDJhLKUddv5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762531948; c=relaxed/simple;
-	bh=e1BqN2xUtIgwvbFQi+eIxxSm5aSMM2ruQwQa3oEQ9/s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DXg5nHQxBwsaz3cNJTGC8ZHwTgi7XHsKwBZg50lIGqUyO7XtlyGsAUt0Uc2sor5eHpS3qjDFbNl5akx4tB1NbR39wWIBJq1WvHAK363WlWn9QUpL9LXQ+7AflKsNuqFpamm31bIh181dNLkLSi1jLAk7DSDZZzLplbrl1i9xmpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=yy2gdQ6o; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-429eb7fafc7so720444f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 08:12:24 -0800 (PST)
+	s=arc-20240116; t=1762532216; c=relaxed/simple;
+	bh=m6h5md15vl7XA18igPsSaXDaZbae5jLpA/oiBVEflwY=;
+	h=Message-ID:Date:From:To:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oU9V/qbkT8TmTuJKXgRzxnEj/ZpK1zFtH60/eYDrKh51f/Hp50Nv9QgRb6YhwWm7q53IGtBMWTYi/nDI4zdEOFdF8NE9RsBNrpFT5FBMt+27feIHWD4sVXQ1fBFP51VFjDRy57YCyG09jki70o1rTyEJ8SJcudrBsA1biw1qNmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lBAuiat4; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-429bf011e6cso930544f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 08:16:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1762531943; x=1763136743; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4I9Nmi0x1XRh5MmNss3uO6kHDeCcgFZXdE1zsROAGYg=;
-        b=yy2gdQ6ok+pIyaUKSx4p1de4Yk4FihWddQn7zX1byh4z/5qez7TXR38W4i27pvMfkj
-         L/YXO7a8h7NNpfOTA0qCptZ8tJuM1C6mENr+D1So8loNIfIaJTG2HmVW9F8ITMuvELLN
-         EXX54gLWKwCaeikHAmDQ//mFExh7IlndKFASAWdv65PDVuIAgjTpxeFewNRbqX5AHEDL
-         6rIokXUZKyUgw6Ecl7dlbKo2mp2ypmJken2vkO5QJkZ9ZfgRvmkEnMxSZ2ZJmCl/u7yj
-         2TrqkjhYXHoPb+J6THq+zXFSJzzL8z2HF8hPcx0j31aPDI+A392JT55Cnl9BrE2QoOk1
-         RpXA==
+        d=gmail.com; s=20230601; t=1762532212; x=1763137012; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:to
+         :from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rq+cWEKtg2ZUTyxd/Vz8Kc9fcT1gEAUEGw1yp5hm07k=;
+        b=lBAuiat4NMzoJBjXdGf6qV7UglfWMm+nvXHO3L2Qt2rnXJ+qJG5BJEwl5MFGAaccCn
+         trEVCZTD8Vp4BKGuOOereI4JMkCdUQJXcC83WhEN+K6VnsZTeQA7RVicoGjWNk3LrU6Y
+         J5CNW3PTG/9RPOQnn9w8KZXDrCza8rlPA+GWrUdmJxrYI69XQuXhJPiaMEy5t2WrGZl7
+         JqZda9N09B23SRzFW9SEU7/0C65qQe4NGDf67EMXiac5wcZhzXMel+cXsw7Gy/xDSQ5I
+         7UzaHhqZgntXBo80wTCKt7UxHTRFPR18gAvDzPcVS8oKs1uBzTicON7OPR+s8FE4zWzb
+         U+JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762531943; x=1763136743;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4I9Nmi0x1XRh5MmNss3uO6kHDeCcgFZXdE1zsROAGYg=;
-        b=O6qUGfRKaq3WWy1jIdW9Puskwh20CKwKuabiYAzck8iPTO+NLPuwNsEeI5VGyJFDM1
-         5V0rp1tCn9g4r4sq2IRHkLGviG+LpjBHlmvAvBFhCYyHnbKMaR6GHlLc/rLpGxOqI4TB
-         V3pAewKkdJRquS08LvSiuIoJONQDyTY4wBF4mPrwQY/JwhTXBj6pgYUXTJswljAmywU3
-         Li3NfnOS0iIDa/4fQdXGTMU7oRdp0GTuoGAYdqMhRVggt3V9BsLhMXgjqLnXn/iuH/Co
-         DaJhQY49mG35l8ErR9W+yNiNkQiPN0jyVp07ZV9ilDOTOIjF36EzLb7tXqqJt77Ep1kK
-         uK7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXFV+0l3pH37kOgQIOZa0Ht1SMIdRac+VGVybGdfJQYnXfW8ei7fyHq3yWClq0BLkRTKh5JNXwVZ4x+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvLuPiUlFwOvSrRv1i5PY1h2BW2nCchnE3Fc19bfci+iIuWMqJ
-	Qfpmk41jPlF0kC8nKUFQBgkIpeusvOuW7vPzvE/wA5IlJHvTe9XQrw+L146PTFDswsc=
-X-Gm-Gg: ASbGnct/Unu1SwcMWs3UzWy8VAVz2krnyWOim8nvjxVE9MvTPK65IBHs2PfMefCUtXw
-	gNomUWYmwbY8HUT5QIoa7nJ/dflEJHjUI6YxApIGJKrpLb2kDwiuSkVRFgpcFhjAcgQVV6D/DU8
-	TumT4ULzplCrw9IsGWVfvLIbmECYw1Sx3DsDe/viS0pPxxXBwhYO90hUDHaQR+YjXnFRmfmffwo
-	CFOl/4ENnIcyneryd4rSj1TJtXI28cOT4+bNVLImWSIAxCjQVpZ3cj0hfLXX6SCTuoWw/g/uVlI
-	jnbF+UsQwAVI5F8NrxyXqLord+F6qH/Pju083c+2q/GDGlw+jisDlPRUlDqMzPrIQSGx9URQCPp
-	ExM5k2CfFoRlVcuQOdAjEvknRSvTpireg2fAuIMQ2gMRkYJDfBHhWSeqR8SHVmh0HfPfH4n64qE
-	2MxXA6IakAGo/9CNAwIGv5OaeI0aGEXPRMfsaADMwDLc++6RAFZzRSGJ3Kalg=
-X-Google-Smtp-Source: AGHT+IGHroTzRo1cJ44LOHTxL+NRy7sTi9c/ImeIIStaKdw3lsU0/qp1TjSL/vM3MWErBezrq59Q0A==
-X-Received: by 2002:a05:6000:1884:b0:429:cbba:b247 with SMTP id ffacd0b85a97d-42ae58d03b4mr3192709f8f.23.1762531942614;
-        Fri, 07 Nov 2025 08:12:22 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42abe62b23csm6015125f8f.10.2025.11.07.08.12.21
+        d=1e100.net; s=20230601; t=1762532212; x=1763137012;
+        h=in-reply-to:content-disposition:mime-version:references:subject:to
+         :from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Rq+cWEKtg2ZUTyxd/Vz8Kc9fcT1gEAUEGw1yp5hm07k=;
+        b=xUkettMrXA7hyWE2rKwidPPgewJGcoM/McXStUFULd0mhr4/ckxBCJsgN+ToYTDrx8
+         TljPX9TATg27Qw1fTZJvqVYEhWvcysQ6onwkhBjWQdmpnyj7ZqbQM1MdO2/sznLnUur0
+         o3TYMGw271NBYd8gcUv4eGs9tWWzfbImfhGZlE/9di0+xNRgKXbqiLm5MhzcOVgwLSaF
+         UH8K2+/ePBMYwqwbJ+fkFKSiQATC3xfL6OWilQ7BGo5KhRYRkk8pALvyagw+5AIAr/+i
+         HIU/l6jxRFhihwfL/tRIhb3Ex07MwSFReA5uKNU5hf5Kz4kF4+1Z1saFFzSt3EdoFSAt
+         OQTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWa1+3VEeuqG+5x1IQKhA/zsJ1j8tNO9/Y3iN+q5k1tbXTs0L/Wx2QbHZIQrRFdj5zGTRS84flgctXq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxqpl1K4bfyPCjVyF86aEmcmiBA9b6MIvOSjEV/49kyu1eICmCZ
+	+aykFRjE1LgiX39DHbXRBnNE/p8ikyoriLmN4FEN49BnQje7gbe2n2Rd
+X-Gm-Gg: ASbGncs4R9VpQYHtvJ3iCV3QLvd12nODpxLN7y+hy0qwyOs3I7J+Hvf+f1t66UJ81FD
+	v1XgJv+8NcD8aFd+JNtZf2UOFzHRzKYmig4UUgjy2doG/mLHb43Sx2LokiKNPOimsPCdc7PxTst
+	tPwE6uW6IjaElo3BN6b8ZCs2c5jMms23a+HljMUe0vfohFfbGDTMuS43SGI7Vh6bmOq6uITmt/Z
+	hW3VRYSZhH25V+c/bQURkaHcqdrAYMNBpogkHsflfxIbv/5pPjLO0BcSGjD0wEuNQD3RMz6nu1g
+	W7cCZCxqvegpa2KaWFSn+G5hIpS6ak2NaSXObpUNtnbT92uH7BrSNQT6qSfOcBn0ooHe6e9hK1D
+	JGIg2qXU38U1Zana23SuoUN8jXxvZsYpMIKVnMxYVY25nMAW2eeuQj5VY+DVnjUXuglGuJJySLN
+	NYI6S/CAUk/Lxah4Vvqqa2FojnoScF
+X-Google-Smtp-Source: AGHT+IGBls4w5DXj4dsI+iVzj/lD1T2JS8LC5CnrQ6tP++E+okDJx9McJEWsKb0hTWxZy1/eytT3yA==
+X-Received: by 2002:a05:6000:26c9:b0:429:cf03:8b1a with SMTP id ffacd0b85a97d-42ae5ae9995mr3350125f8f.45.1762532212275;
+        Fri, 07 Nov 2025 08:16:52 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42abe63e131sm6344445f8f.20.2025.11.07.08.16.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 08:12:21 -0800 (PST)
-Date: Fri, 7 Nov 2025 16:14:17 +0000
-From: Daniel Thompson <daniel@riscstar.com>
-To: maudspierings@gocontroll.com
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 2/4] backlight: add max25014atg backlight
-Message-ID: <aQ4a2SBDldYgQb56@aspen.lan>
-References: <20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com>
- <20251107-max25014-v5-2-9a6aa57306bf@gocontroll.com>
+        Fri, 07 Nov 2025 08:16:51 -0800 (PST)
+Message-ID: <690e1b73.df0a0220.312af7.18e3@mx.google.com>
+X-Google-Original-Message-ID: <aQ4bcJDWhgQINJry@Ansuel-XPS.>
+Date: Fri, 7 Nov 2025 17:16:48 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-crypto@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 0/4] arm64: Add AN7583 DTSI
+References: <20250929114917.5501-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,469 +100,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251107-max25014-v5-2-9a6aa57306bf@gocontroll.com>
+In-Reply-To: <20250929114917.5501-1-ansuelsmth@gmail.com>
 
-On Fri, Nov 07, 2025 at 01:49:59PM +0100, Maud Spierings via B4 Relay wrote:
-> From: Maud Spierings <maudspierings@gocontroll.com>
->
-> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
-> with integrated boost controller.
->
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
-> diff --git a/drivers/video/backlight/max25014.c b/drivers/video/backlight/max25014.c
-> new file mode 100644
-> index 000000000000..36bae508697e
-> --- /dev/null
-> +++ b/drivers/video/backlight/max25014.c
-> @@ -0,0 +1,409 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Backlight driver for Maxim MAX25014
-> + *
-> + * Copyright (C) 2025 GOcontroll B.V.
-> + * Author: Maud Spierings <maudspierings@gocontroll.com>
-> + */
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +
-> +#define MAX25014_ISET_DEFAULT_100 11
-> +#define MAX_BRIGHTNESS            100
-> +#define MIN_BRIGHTNESS            0
-> +#define TON_MAX                   130720 /* @153Hz */
-> +#define TON_STEP                  1307 /* @153Hz */
-> +#define TON_MIN                   0
-> +
-> +#define MAX25014_DEV_ID           0x00
-> +#define MAX25014_REV_ID           0x01
-> +#define MAX25014_ISET             0x02
-> +#define MAX25014_IMODE            0x03
-> +#define MAX25014_TON1H            0x04
-> +#define MAX25014_TON1L            0x05
-> +#define MAX25014_TON2H            0x06
-> +#define MAX25014_TON2L            0x07
-> +#define MAX25014_TON3H            0x08
-> +#define MAX25014_TON3L            0x09
-> +#define MAX25014_TON4H            0x0A
-> +#define MAX25014_TON4L            0x0B
-> +#define MAX25014_TON_1_4_LSB      0x0C
-> +#define MAX25014_SETTING          0x12
-> +#define MAX25014_DISABLE          0x13
-> +#define MAX25014_BSTMON           0x14
-> +#define MAX25014_IOUT1            0x15
-> +#define MAX25014_IOUT2            0x16
-> +#define MAX25014_IOUT3            0x17
-> +#define MAX25014_IOUT4            0x18
-> +#define MAX25014_OPEN             0x1B
-> +#define MAX25014_SHORT_GND        0x1C
-> +#define MAX25014_SHORT_LED        0x1D
-> +#define MAX25014_MASK             0x1E
-> +#define MAX25014_DIAG             0x1F
-> +
-> +#define MAX25014_IMODE_HDIM       BIT(2)
-> +#define MAX25014_ISET_ENABLE      BIT(5)
-> +#define MAX25014_ISET_PSEN        BIT(4)
-> +#define MAX25014_DIAG_HW_RST      BIT(2)
-> +#define MAX25014_SETTING_FPWM     GENMASK(6, 4)
-> +
-> +struct max25014 {
-> +	struct i2c_client *client;
-> +	struct backlight_device *bl;
-> +	struct regmap *regmap;
-> +	struct gpio_desc *enable;
-> +	struct regulator *vin; /* regulator for boost converter Vin rail */
-> +	uint32_t iset;
-> +	uint8_t strings_mask;
-> +};
-> +
-> +static const struct regmap_config max25014_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = MAX25014_DIAG,
-> +};
-> +
-> +/**
-> + * @brief control the brightness with i2c registers
-> + *
-> + * @param regmap trivial
-> + * @param brt brightness
-> + * @return int
-> + */
-> +static int max25014_register_control(struct regmap *regmap, uint32_t brt)
+On Mon, Sep 29, 2025 at 01:49:11PM +0200, Christian Marangi wrote:
+> Simple series to add initial AN7583 DTSI. More node will be
+> included as they will be supported.
+> 
+> Changes v4:
+> - Add review tag
+> - Fix alphabetical order in Makefile
+> - Move PSCI node after CPU node
+> Changes v3:
+> - Fix typo EN7583 -> AN7583
+> - Add specific compatible for watchdog and crypto engine
+> Changes v2:
+> - Fix DTB BOT warning (fix crypto compatible and OPP node name)
+> 
+> Christian Marangi (4):
+>   dt-bindings: crypto: Add support for Airoha AN7583 SoC
+>   dt-bindings: watchdog: airoha: Add support for Airoha AN7583 SoC
+>   dt-bindings: arm64: dts: airoha: Add AN7583 compatible
+>   arm64: dts: Add Airoha AN7583 SoC and AN7583 Evaluation Board
+> 
+>  .../devicetree/bindings/arm/airoha.yaml       |   4 +
+>  .../crypto/inside-secure,safexcel-eip93.yaml  |   4 +
+>  .../bindings/watchdog/airoha,en7581-wdt.yaml  |   6 +-
+>  arch/arm64/boot/dts/airoha/Makefile           |   1 +
+>  arch/arm64/boot/dts/airoha/an7583-evb.dts     |  22 ++
+>  arch/arm64/boot/dts/airoha/an7583.dtsi        | 283 ++++++++++++++++++
+>  6 files changed, 319 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/airoha/an7583-evb.dts
+>  create mode 100644 arch/arm64/boot/dts/airoha/an7583.dtsi
+> 
 
-This isn't a good name for a function. It doesn't really say what it
-does. Please find a more descriptive name.
+Any chance this can be picked? All the patch got a review tag I assume.
 
-
-> +{
-> +	uint32_t reg = TON_STEP * brt;
-> +	int ret;
-> +	/*
-> +	 * 18 bit number lowest, 2 bits in first register,
-> +	 * next lowest 8 in the L register, next 8 in the H register
-> +	 * Seemingly setting the strength of only one string controls all of
-> +	 * them, individual settings don't affect the outcome.
-> +	 */
-> +
-> +	ret = regmap_write(regmap, MAX25014_TON_1_4_LSB, reg & 0b00000011);
-> +	if (ret != 0)
-> +		return ret;
-> +	ret = regmap_write(regmap, MAX25014_TON1L, (reg >> 2) & 0b11111111);
-> +	if (ret != 0)
-> +		return ret;
-> +	return regmap_write(regmap, MAX25014_TON1H, (reg >> 10) & 0b11111111);
-> +}
-> +
-> +static int max25014_check_errors(struct max25014 *maxim)
-> +{
-> +	uint8_t i;
-> +	int ret;
-> +	uint32_t val;
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_OPEN, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +	if (val > 0) {
-> +		dev_err(&maxim->client->dev, "Open led strings detected on:\n");
-> +		for (i = 0; i < 4; i++) {
-> +			if (val & 1 << i)
-> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
-> +		}
-> +		return -EIO;
-> +	}
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_SHORT_GND, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +	if (val > 0) {
-> +		dev_err(&maxim->client->dev, "Short to ground detected on:\n");
-> +		for (i = 0; i < 4; i++) {
-> +			if (val & 1 << i)
-> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
-> +		}
-> +		return -EIO;
-> +	}
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_SHORT_GND, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +	if (val > 0) {
-> +		dev_err(&maxim->client->dev, "Shorted led detected on:\n");
-> +		for (i = 0; i < 4; i++) {
-> +			if (val & 1 << i)
-> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
-> +		}
-> +		return -EIO;
-> +	}
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_DIAG, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +	/*
-> +	 * The HW_RST bit always starts at 1 after power up.
-> +	 * It is reset on first read, does not indicate an error.
-> +	 */
-> +	if (val > 0 && val != MAX25014_DIAG_HW_RST) {
-> +		if (val & 0b1)
-> +			dev_err(&maxim->client->dev,
-> +				"Overtemperature shutdown\n");
-> +		if (val & 0b10)
-> +			dev_err(&maxim->client->dev,
-> +				 "Chip is getting too hot (>125C)\n");
-> +		if (val & 0b1000)
-> +			dev_err(&maxim->client->dev,
-> +				"Boost converter overvoltage\n");
-> +		if (val & 0b10000)
-> +			dev_err(&maxim->client->dev,
-> +				"Boost converter undervoltage\n");
-> +		if (val & 0b100000)
-> +			dev_err(&maxim->client->dev, "IREF out of range\n");
-> +		return -EIO;
-> +	}
-> +	return 0;
-> +}
-> +
-> +/*
-> + * 1. disable unused strings
-> + * 2. set dim mode
-> + * 3. set initial brightness
-
-How does this code set the initial brightness? It doens't set the
-MAX25014_TON* registers.
-
-
-> + * 4. set setting register
-> + * 5. enable the backlight
-> + */
-> +static int max25014_configure(struct max25014 *maxim)
-> +{
-> +	int ret;
-> +	uint32_t val;
-> +
-> +	ret = regmap_write(maxim->regmap, MAX25014_DISABLE,
-> +			   maxim->strings_mask);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(maxim->regmap, MAX25014_IMODE, MAX25014_IMODE_HDIM);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_SETTING, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(maxim->regmap, MAX25014_SETTING,
-> +			   val & ~MAX25014_SETTING_FPWM);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(maxim->regmap, MAX25014_ISET,
-> +			   maxim->iset | MAX25014_ISET_ENABLE |
-> +			   MAX25014_ISET_PSEN);
-> +	return ret;
-> +}
-> +
-> +static int max25014_update_status(struct backlight_device *bl_dev)
-> +{
-> +	struct max25014 *maxim = bl_get_data(bl_dev);
-> +
-> +	if (backlight_is_blank(maxim->bl))
-> +		bl_dev->props.brightness = 0;
-> +
-> +	return max25014_register_control(maxim->regmap,
-> +					 bl_dev->props.brightness);
-> +}
-> +
-> +static const struct backlight_ops max25014_bl_ops = {
-> +	.options = BL_CORE_SUSPENDRESUME,
-> +	.update_status = max25014_update_status,
-> +};
-> +
-> +static int max25014_parse_dt(struct max25014 *maxim,
-> +			     uint32_t *initial_brightness)
-> +{
-> +	struct device *dev = &maxim->client->dev;
-> +	struct device_node *node = dev->of_node;
-> +	struct fwnode_handle *child;
-> +	uint32_t strings[4];
-> +	int res, i;
-> +
-> +	if (!node) {
-> +		dev_err(dev, "no platform data\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	child = device_get_next_child_node(dev, NULL);
-> +	if (child) {
-> +		res = fwnode_property_count_u32(child, "led-sources");
-> +		if (res > 0) {
-> +			fwnode_property_read_u32_array(child, "led-sources",
-> +						       strings, res);
-> +
-> +			/* set all strings as disabled, then enable those in led-sources*/
-> +			maxim->strings_mask = 0xf;
-> +			for (i = 0; i < res; i++) {
-> +				if (strings[i] <= 4)
-> +					maxim->strings_mask &= ~BIT(strings[i]);
-> +			}
-> +		}
-> +
-> +		fwnode_property_read_u32(child, "default-brightness",
-> +					 initial_brightness);
-> +
-> +		fwnode_handle_put(child);
-> +	}
-> +
-> +	maxim->iset = MAX25014_ISET_DEFAULT_100;
-> +	of_property_read_u32(node, "maxim,iset", &maxim->iset);
-> +
-> +	if (maxim->iset < 0 || maxim->iset > 15) {
-> +		dev_err(dev,
-> +			"Invalid iset, should be a value from 0-15, entered was %d\n",
-> +			maxim->iset);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (*initial_brightness < 0 || *initial_brightness > 100) {
-> +		dev_err(dev,
-> +			"Invalid initial brightness, should be a value from 0-100, entered was %d\n",
-> +			*initial_brightness);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int max25014_probe(struct i2c_client *cl)
-> +{
-> +	struct backlight_device *bl;
-> +	const struct i2c_device_id *id = i2c_client_get_device_id(cl);
-> +	struct max25014 *maxim;
-> +	struct backlight_properties props;
-> +	int ret;
-> +	uint32_t initial_brightness = 50;
-> +
-> +	maxim = devm_kzalloc(&cl->dev, sizeof(struct max25014), GFP_KERNEL);
-> +	if (!maxim)
-> +		return -ENOMEM;
-> +
-> +	maxim->client = cl;
-> +
-> +	ret = max25014_parse_dt(maxim, &initial_brightness);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	maxim->vin = devm_regulator_get_optional(&maxim->client->dev, "power");
-
-I would have expected to see devm_regulator_get() here. Why do you care
-whether you get a real regulator or a dummy if you just NULL check
-maxim->vin everywhere?
-
-
-> +	if (IS_ERR(maxim->vin)) {
-> +		if (PTR_ERR(maxim->vin) == -EPROBE_DEFER)
-> +			return -EPROBE_DEFER;
-> +		maxim->vin = NULL;
-> +	}
-> +
-> +	if (maxim->vin) {
-
-If you had called devm_regulator_get() there would be no need for a NULL
-check here.
-
-
-> +		ret = regulator_enable(maxim->vin);
-> +		if (ret < 0) {
-> +			dev_err(&maxim->client->dev,
-> +				"failed to enable Vin: %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	maxim->enable = devm_gpiod_get_optional(&maxim->client->dev, "enable",
-> +						GPIOD_ASIS);
-> +	if (IS_ERR(maxim->enable)) {
-> +		ret = PTR_ERR(maxim->enable);
-> +		dev_err(&maxim->client->dev, "failed to get enable gpio: %d\n",
-> +			ret);
-> +		goto disable_vin;
-> +	}
-> +
-> +	if (maxim->enable)
-> +		gpiod_set_value_cansleep(maxim->enable, 1);
-
-No need for NULL pointer check here (see
-https://elixir.bootlin.com/linux/v6.18-rc4/source/drivers/gpio/gpiolib.c#L358-L363 ).
-
-
-> +
-> +	/* Enable can be tied to vin rail wait if either is available */
-> +	if (maxim->enable || maxim->vin) {
-> +		/* Datasheet Electrical Characteristics tSTARTUP 2ms */
-> +		usleep_range(2000, 2500);
-> +	}
-
-If you really want to keep the devm_regulator_get_optional() I guess
-maybe you could persuade me it's need to avoid this sleep... although
-I'd be fairly happy to remove the NULL checks here too!
-
-
-> +
-> +	maxim->regmap = devm_regmap_init_i2c(cl, &max25014_regmap_config);
-> +	if (IS_ERR(maxim->regmap)) {
-> +		ret = PTR_ERR(maxim->regmap);
-> +		dev_err(&maxim->client->dev,
-> +			"failed to initialize the i2c regmap: %d\n", ret);
-> +		goto disable_full;
-> +	}
-> +
-> +	i2c_set_clientdata(cl, maxim);
-> +
-> +	ret = max25014_check_errors(maxim);
-> +	if (ret) { /* error is already reported in the above function */
-> +		goto disable_full;
-> +	}
-> +
-> +	ret = max25014_configure(maxim);
-> +	if (ret) {
-> +		dev_err(&maxim->client->dev, "device config err: %d", ret);
-> +		goto disable_full;
-> +	}
-> +
-> +	memset(&props, 0, sizeof(props));
-> +	props.type = BACKLIGHT_PLATFORM;
-> +	props.max_brightness = MAX_BRIGHTNESS;
-> +	props.brightness = initial_brightness;
-> +	props.scale = BACKLIGHT_SCALE_LINEAR;
-> +
-> +	bl = devm_backlight_device_register(&maxim->client->dev, id->name,
-> +					    &maxim->client->dev, maxim,
-> +					    &max25014_bl_ops, &props);
-> +	if (IS_ERR(bl))
-> +		return PTR_ERR(bl);
-> +
-> +	maxim->bl = bl;
-> +
-> +	return 0;
-> +
-> +disable_full:
-> +	if (maxim->enable)
-> +		gpiod_set_value_cansleep(maxim->enable, 0);
-
-Again, NULL check isn't needed.
-
-> +disable_vin:
-> +	if (maxim->vin)
-> +		regulator_disable(maxim->vin);
-> +	return ret;
-> +}
-> +
-> +static void max25014_remove(struct i2c_client *cl)
-> +{
-> +	struct max25014 *maxim = i2c_get_clientdata(cl);
-> +
-> +	maxim->bl->props.brightness = 0;
-> +	max25014_update_status(maxim->bl);
-> +	if (maxim->enable)
-> +		gpiod_set_value_cansleep(maxim->enable, 0);
-
-Lose the NULL check.
-
-> +	if (maxim->vin)
-> +		regulator_disable(maxim->vin);
-> +}
-> +
-> +static const struct of_device_id max25014_dt_ids[] = {
-> +	{ .compatible = "maxim,max25014", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, max25014_dt_ids);
-> +
-> +static const struct i2c_device_id max25014_ids[] = {
-> +	{ "max25014" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, max25014_ids);
-> +
-> +static struct i2c_driver max25014_driver = {
-> +	.driver = {
-> +		.name = KBUILD_MODNAME,
-> +		.of_match_table = of_match_ptr(max25014_dt_ids),
-> +	},
-> +	.probe = max25014_probe,
-> +	.remove = max25014_remove,
-> +	.id_table = max25014_ids,
-> +};
-> +module_i2c_driver(max25014_driver);
-> +
-> +MODULE_DESCRIPTION("Maxim MAX25014 backlight driver");
-> +MODULE_AUTHOR("Maud Spierings <maudspierings@gocontroll.com>");
-> +MODULE_LICENSE("GPL");
-
-
-Daniel.
+-- 
+	Ansuel
 
