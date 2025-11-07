@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-236195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EADE7C41033
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 18:21:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B13FCC4108F
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 18:26:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D8FAB4E4A4F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 17:21:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF76B4279D9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 17:24:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 680572D7394;
-	Fri,  7 Nov 2025 17:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1ABA335076;
+	Fri,  7 Nov 2025 17:24:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PtZWpcp6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q5JY+NCA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B4B32BE658;
-	Fri,  7 Nov 2025 17:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754D8335064;
+	Fri,  7 Nov 2025 17:24:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762536062; cv=none; b=CxnGNmCZkYlCDAe3pX3Lr+gzM5WSjU/is1M23HzhqZN2NINA/8GNUIKGo3LPvcpUCDHmpHI3EG+J2D9huVY41WX25U5914H7EDqyzMvW5v4pZGBRjVcK0nw151FnR7b5B4hnPQ+FgUwfo4lsCGjSXW+tLZt/TGxClM/IN4SOJGM=
+	t=1762536267; cv=none; b=FiEfchROY902CiEXrtswZJ2Qa++NoO+p9Etyhweo5gdnfC23/eKwtuWl/CryDeqfw8sP/zfFmrIs5iZM+jCxK3tkZplu1ovTO82WnLrIZiwEWGxM5MlOTyHDYH7R6Pwun0HgzPwe3WcIdxqaMk8+3MBPS2YzvNKrwwZIrlUIZDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762536062; c=relaxed/simple;
-	bh=GvZYa5F5ySYoW05pxUy3AyDv6FWq9BSflVcoFS5vqck=;
+	s=arc-20240116; t=1762536267; c=relaxed/simple;
+	bh=iKWILkhz+c2dRe8cWkaxtQ3t5wgfEL4WzsX8PLBPxO8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EgV5XjTbRo/DATXrue9n/zuHmzlzcOwmSblVQ+lf2WW2FpKX6twfbyqKUg3ezPeAwjhuWwzDy2uXJUeQz5DZq5UY4TGkc+pMxrEZm6RM/wnTEJCUKIsX8md0qPOXtWro7uBNvvNLGFebMLG+b0hKho9/1LK1HpSvGa5c7iHxpoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PtZWpcp6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A55C4CEF8;
-	Fri,  7 Nov 2025 17:20:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=F+oHOhPEJmgUjESiHrsvv7RotVmd2dmrQORKymuqM/SriXAIArOX6H38P06WhzBtfgB40L26cuVdnwU8XQuNAXtV59YHTxPU3CbgbNJfM8EXWFBgcscUefxQfsfoTxoFBQI67iHAera4yt+yAbWrp+9HzadILHWhaUGjjl+QS7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q5JY+NCA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5846AC4CEF5;
+	Fri,  7 Nov 2025 17:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762536061;
-	bh=GvZYa5F5ySYoW05pxUy3AyDv6FWq9BSflVcoFS5vqck=;
+	s=k20201202; t=1762536267;
+	bh=iKWILkhz+c2dRe8cWkaxtQ3t5wgfEL4WzsX8PLBPxO8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PtZWpcp6S7pCvN2YBf8QF92ntcb6O70LvS12dppm4LaBzj5f1kKE9LEl/yue1fOSR
-	 UUHBsRCMTVFTjQt98QqX/u44BidjYP12wdZA/xOEPEvOSGXztnHhFa7s6alZui/QhQ
-	 PAnbiNcbv5DTaDKklm0pxbgPobHN4DYeV1ij2jNnBPPtClYMmXoe3t3JluSIM5judI
-	 GMb/KDGxDn42T5o9JUdSOBnc1Z5yQQtuxF3XPpH65gTjaBtBg6zv7FpMbkid5hdt6Z
-	 ngJo/RyBpZnJWeFZZ8nDERuVv0L1ZaZOyn8pckGalAS5kKfnpm7D6OpgYjzymMQtMc
-	 26JnvEZjgWbsg==
-Date: Fri, 7 Nov 2025 17:20:56 +0000
+	b=q5JY+NCAkOPWxby286M3HkgsYu4G15KonQq63w23Atx6Nw78U9GUMYD2eNoJqd7pu
+	 nQbCevLnAE0tJQA1si0J9mUvJ/xVu+FO+XxUDGLcAbFI72ttFugwr44zVrF0WLYUni
+	 PEdps4THg6M0PbBcvuRNVo38UFaF0msM6fcA7lCG01TrsEiBZJS/PxUPNWqfXzkSEu
+	 UFo7M5gw6+4Rj1gR83bWFSzejpfnNYBQKKJdsN+8ajDFz/6Qo9Pnk/oTw7LfhTKKHY
+	 rnlopPPCGRVlE+L20J5X/B82jECdS177dLuMUH+vhOSA8rSq5O2chyC+B2KyNhHbWh
+	 XFTTAXnzHCPXw==
+Date: Fri, 7 Nov 2025 17:24:21 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] dt-bindings: watchdog: loongson,ls1x-wdt: Add
- ls2k0300-wdt compatible
-Message-ID: <20251107-scandal-fifteen-5d11ebeea512@spud>
-References: <cover.1762482089.git.zhoubinbin@loongson.cn>
- <a1f64f3d3816620b690aaff7b87162ba9e5b155f.1762482089.git.zhoubinbin@loongson.cn>
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 4/5] dt-bindings: pinctrl: airoha: Document AN7583 Pin
+ Controller
+Message-ID: <20251107-washstand-motivator-c5e5e5d30dae@spud>
+References: <20251106235713.1794668-1-ansuelsmth@gmail.com>
+ <20251106235713.1794668-5-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,28 +66,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hXx4OH+R/PAhzxJP"
+	protocol="application/pgp-signature"; boundary="cXGsyKspLHvZR8fa"
 Content-Disposition: inline
-In-Reply-To: <a1f64f3d3816620b690aaff7b87162ba9e5b155f.1762482089.git.zhoubinbin@loongson.cn>
+In-Reply-To: <20251106235713.1794668-5-ansuelsmth@gmail.com>
 
 
---hXx4OH+R/PAhzxJP
+--cXGsyKspLHvZR8fa
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+On Fri, Nov 07, 2025 at 12:57:07AM +0100, Christian Marangi wrote:
+> Document Airoha AN7583 Pin Controller based on Airoha EN7581 with some
+> minor difference on some function group (PCM and LED gpio).
+>=20
+> To not bloat the EN7581 schema with massive if condition, use a
+> dedicated YAML schema for Airoha AN7583.
 
---hXx4OH+R/PAhzxJP
+You went to more effort than I would have here with that conditional!
+
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +
+> +    patternProperties:
+> +      '^mux(-|$)':
+> +        type: object
+
+What's up with this regex? Why does it allow either - or $?
+
+--cXGsyKspLHvZR8fa
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ4qeAAKCRB4tDGHoIJi
-0rcsAP4kyl9qKvFLpCvfCrj3UQUFnhCqaE277gT7JePNPQuDJQEA9TucVHY3R0j/
-59WO2zJGDl9XnrSUTTSyKXj8hs7s0AI=
-=U3mR
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ4rRQAKCRB4tDGHoIJi
+0m+6AP944+gmALtZGR1CkfB4zaT3eHH3sYRIpgbLLZY+u6lbaQD/ZB/xRj4VWjq4
+esQCRuxRKBz7tiNcleNfRyxChdSjJA8=
+=YhQN
 -----END PGP SIGNATURE-----
 
---hXx4OH+R/PAhzxJP--
+--cXGsyKspLHvZR8fa--
 
