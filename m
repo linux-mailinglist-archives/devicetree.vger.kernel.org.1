@@ -1,207 +1,117 @@
-Return-Path: <devicetree+bounces-236148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBFE0C408B3
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:09:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC8E4C408D1
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:11:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2C0B24E35D0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:09:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6A9114E4862
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A63B032B98D;
-	Fri,  7 Nov 2025 15:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95FB31AF09;
+	Fri,  7 Nov 2025 15:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="wcFXdihT"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="cJZE8GZg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1FD2DFA46
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 15:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE5B2E6CBC;
+	Fri,  7 Nov 2025 15:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762528181; cv=none; b=hnj9wohGvvy5ecoe8DGgXFpOfICGIC/roJv7nb8AZ1i7zGGFgNpO6prt85makmOARWvvbE8C0vmhwmFQcpyqQ9mLUxr6qhKW20qAZkkdqCUwS7NOgQzJir/NdxUShvin/E6rJ6T6pGi5Cr2u4jyYHu4B3w4JfT3DV7YMaHvFM7A=
+	t=1762528299; cv=none; b=cjjWZlr8SV2rG2KzdO96grxPgm/5lFrsx/mBQ4j1W9reqrOeyUWC0mk/N9rjn+vIoXVO0RRLLmh+oLgyf9qQh26QFiXbbm3JHO+JojUzqZgOXtHViXPAXJkN+0hJKhgLw3LtQNJRSMGXvryHvmljEOcpboWVatX9Njn6vRc7mtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762528181; c=relaxed/simple;
-	bh=ip6vY1YbgFNzJt16QLuYy3gdeQidUIDJGkzB1m/yE+Y=;
+	s=arc-20240116; t=1762528299; c=relaxed/simple;
+	bh=yJlWwZ3a12j7omKvOIsqDNOsBjKnkPkdtmc70OuHjRQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O1wZP099ptLFwfN0X/y4/Tw6JPtUnRyhGgV7mnRtn+XThNCQo0xYV56urSkFL42IcNUG5PHrKfLPn2qrN9OyFcPO9E2+EOk76L6Z7BeQ1qGK0Fi1xng6xLkAR1f3FQfFmNknr+iv09m+FnVpWhyzcacFgtC4Em/jADbNPqfVExg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=wcFXdihT; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1762528177;
- bh=JtrOP7D+6cn9NXpGOjOJ8EQlpfaQQ1W6MRTCW9ClTm4=;
- b=wcFXdihThdctWN+lvIfgAcgRJZTzBnla127xgzjKmBp6x6B1AjTdtDXwxsMrbBqqEdpE9ubh3
- Scujx3OuaTICSazdOmTXFvA3hOAqGPG7IE3fiitkDqqgjAgJKDl4QJYLPSKMLwzU4dFQuJXJB19
- rmPLjJlIxfIYvpkZUMs5UUop72CQkf7K6kfKELdY5iDJFaOraPDwOu04jNBtoSVAqI/4otnhx+4
- iR8NYVGfIVW0sjWw/9KSMWxwSdR9PqRWgrkxZLN8IUC2OI/keHocEyWi7NnnFPwQcBGLZ90WxLh
- EToFKF25Ddue0E/HAqDIN7cWqsvk4uRwcMduBNsFhdAQ==
-X-Forward-Email-ID: 690e094607551ffa40a0ed33
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.4.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <48108089-775a-428c-8dd1-a75344823ace@kwiboo.se>
-Date: Fri, 7 Nov 2025 15:59:12 +0100
+	 In-Reply-To:Content-Type; b=rhuUxhGlELHUK90jbXRzE7bvDJdkcjXJL7Rhcerxj0XcL3PPb+aoulSk5na+c81aI52v3foBEXD4Pey2Ixh+gPTQ0v/vpmXC1o0PLPX/XncDMKkzeNKS0LiPDWixO4q5LCxtjfmoGgWOgo2fU2GM7JkomAb9SwxTPV5l7leEl44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=cJZE8GZg; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4d32Zg6GRGz9tNR;
+	Fri,  7 Nov 2025 16:11:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1762528284;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Vy+NNLP394OwYxNRijQPvvDO7IMwiwg8RBHcds0M8FQ=;
+	b=cJZE8GZg+N198UtZfYrAVmdKAtJBrrVVkioaD4ZOc9/TDy1z63PTOeAv6j+SNs8/bPzYC9
+	JOs9bWu2tpIO6uuFgG6AKrXOPYr5cteqWw+aGCwS2s2/qWM3CU7j1k1wkKJXuRv2yIGHhU
+	DK4p0zb8zrtlKhxpafKd6RV9/K4EEpYV/ahYx5idiMrpFIddLaL+V5Q3V+Cc1RhUz4jGl/
+	E/AaRx5C1kIUJU1pS9Nn8HcZujIGvbsObt1nkRrcFHviOZLerSOkKniqitprQbzSq/oEDb
+	uS0DAVnEXSiH0xp/lumQsu6fIDy2GC3b8MMUDf+FwXsA4/0CnqCC1cLaUd6dbg==
+Message-ID: <d2c9cac9-17cc-4bc6-8322-bc43edbf45d1@mailbox.org>
+Date: Fri, 7 Nov 2025 16:11:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v6 4/5] dt-bindings: clock: rockchip: Add RK3506
- clock and reset unit
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, sugar.zhang@rock-chips.com,
- heiko@sntech.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- huangtao@rock-chips.com, finley.xiao@rock-chips.com
-References: <20251107013757.5013-1-zhangqing@rock-chips.com>
+Subject: Re: [PATCH v2 2/2] drm/bridge: add support for lontium lt9211c bridge
+To: Nilesh Laad <nilesh.laad@oss.qualcomm.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, venkata.valluru@oss.qualcomm.com,
+ jessica.zhang@oss.qualcomm.com, Yi Zhang <zhanyi@qti.qualcomm.com>,
+ Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
+References: <20251107-add-lt9211c-bridge-v2-0-b0616e23407c@oss.qualcomm.com>
+ <20251107-add-lt9211c-bridge-v2-2-b0616e23407c@oss.qualcomm.com>
+ <30b5f19b-1ce9-4239-bf0a-d83d647608ce@mailbox.org>
+ <aQ35tvwp90qm57Cl@hu-nlaad-hyd.qualcomm.com>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20251107013757.5013-1-zhangqing@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aQ35tvwp90qm57Cl@hu-nlaad-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: f902cdf5302f7a21187
+X-MBO-RS-META: ii1978emft34czfyu9hytrgg97y7df3e
 
-Hi Elaine,
+On 11/7/25 2:52 PM, Nilesh Laad wrote:
+> On Fri, Nov 07, 2025 at 02:20:58PM +0100, Marek Vasut wrote:
+>> On 11/7/25 2:02 PM, Nilesh Laad wrote:
+>>> From: Yi Zhang <zhanyi@qti.qualcomm.com>
+>>>
+>>> LT9211c is a Single/Dual-Link DSI/LVDS or Single DPI input to
+>>> Single-link/Dual-Link DSI/LVDS or Single DPI output bridge chip.
+>>> Add support for DSI to LVDS bridge configuration.
+>> How does this differ from existing drivers/gpu/drm/bridge/lontium-lt9211.c ?
+>> Can existing lt9211 driver be extended instead ? If not, why ? Details
+>> please ...
+> LT9211 and LT9211C differ completely in register programming sequences.
+> Even lontium mentioned that register configuration are different for lt9211 and lt9211c.
 
-On 11/7/2025 2:37 AM, Elaine Zhang wrote:
-> From: Finley Xiao <finley.xiao@rock-chips.com>
-> 
-> Add device tree bindings for clock and reset unit on RK3506 SoC.
-> Add clock and reset IDs for RK3506 SoC.
-> 
-> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> ---
->  .../bindings/clock/rockchip,rk3506-cru.yaml   |  51 ++++
->  .../dt-bindings/clock/rockchip,rk3506-cru.h   | 285 ++++++++++++++++++
->  .../dt-bindings/reset/rockchip,rk3506-cru.h   | 211 +++++++++++++
->  3 files changed, 547 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3506-cru.yaml
->  create mode 100644 include/dt-bindings/clock/rockchip,rk3506-cru.h
->  create mode 100644 include/dt-bindings/reset/rockchip,rk3506-cru.h
+Lontium seems to often suggest, that users should use their provided 
+register patches without thinking about the content at all.
 
-[snip]
+Do you have access to the register documentation, and can you compare 
+LT9211 and LT9211C register layout? Are they identical or do they differ?
 
-> diff --git a/include/dt-bindings/reset/rockchip,rk3506-cru.h b/include/dt-bindings/reset/rockchip,rk3506-cru.h
-> new file mode 100644
-> index 000000000000..f38cc066009b
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/rockchip,rk3506-cru.h
-> @@ -0,0 +1,211 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2023-2025 Rockchip Electronics Co., Ltd.
-> + * Author: Finley Xiao <finley.xiao@rock-chips.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_REST_ROCKCHIP_RK3506_H
-> +#define _DT_BINDINGS_REST_ROCKCHIP_RK3506_H
-> +
-> +/* CRU-->SOFTRST_CON00 */
-> +#define SRST_NCOREPORESET0_AC		0
-> +#define SRST_NCOREPORESET1_AC		1
-> +#define SRST_NCOREPORESET2_AC		2
-> +#define SRST_NCORESET0_AC		3
-> +#define SRST_NCORESET1_AC		4
-> +#define SRST_NCORESET2_AC		5
-> +#define SRST_NL2RESET_AC		6
-> +#define SRST_ARESETN_CORE_BIU_AC	7
-> +#define SRST_HRESETN_M0_AC		8
-> +
-> +/* CRU-->SOFTRST_CON02 */
-> +#define SRST_NDBGRESET			9
-> +#define SRST_PRESETN_CORE_BIU		10
-> +#define SRST_RESETN_PMU			11
-> +
-> +/* CRU-->SOFTRST_CON03 */
-> +#define SRST_PRESETN_DBG		12
-> +#define SRST_POTRESETN_DBG		13
-> +#define SRST_PRESETN_CORE_GRF		14
-> +#define SRST_RESETN_CORE_EMA_DETECT	15
-> +#define SRST_RESETN_REF_PVTPLL_CORE	16
-> +#define SRST_PRESETN_GPIO1		17
-> +#define SRST_DBRESETN_GPIO1		18
-> +
-> +/* CRU-->SOFTRST_CON04 */
-> +#define SRST_ARESETN_CORE_PERI_BIU	19
-> +#define SRST_ARESETN_DSMC		20
-> +#define SRST_PRESETN_DSMC		21
-> +#define SRST_RESETN_FLEXBUS		22
-> +#define SRST_ARESETN_FLEXBUS		23
-> +#define SRST_HRESETN_FLEXBUS		24
-> +#define SRST_ARESETN_DSMC_SLV		25
-> +#define SRST_HRESETN_DSMC_SLV		26
-> +#define SRST_RESETN_DSMC_SLV		27
-> +
-> +/* CRU-->SOFTRST_CON05 */
-> +#define SRST_ARESETN_BUS_BIU		28
-> +#define SRST_HRESETN_BUS_BIU		29
-> +#define SRST_PRESETN_BUS_BIU		30
-> +#define SRST_ARESETN_SYSRAM		31
-> +#define SRST_HRESETN_SYSRAM		32
-> +#define SRST_ARESETN_DMAC0		33
-> +#define SRST_ARESETN_DMAC1		34
-> +#define SRST_HRESETN_M0			35
-> +#define SRST_RESETN_M0_JTAG		36
-> +#define SRST_HRESETN_CRYPTO		37
+> Nearly every function would require duplicated logic with if (chip_type) branching,
+> as register sequence are completely different.
+> Having both sequences in single file is not looking good, hence want to merge as separate driver.
 
-My original question and your reply from v5 follow below.
+Can we somehow use regmap_register_patch() and register patches in 
+driver data to avoid duplication ?
 
-On 11/7/2025 2:24 AM, zhangqing wrote:
->> Is there a reason why this (and the RV1126B) reset names now include the
->> RESETN name in all reset constant?
->>
->> For RK3528 and prior mainline SoCs the RESETN part of the name has been
->> striped from the constant, suggest we also strip the RESETN part for
->> RK3506 and RV1126B for consistency with other RK SoCs.
->>
-> The current practice is to separate the reset id from the clk id.
-> 
-> Follow with others RK socs(RK3528、RK3588、RK3576.....)
-
-and
-
-On 11/7/2025 2:44 AM, zhangqing wrote:
-> The reset id and rst-rk3506.c were automatically generated from our trm 
-> using tools, while some of the previous chips were filled in manually.
-> 
-> It is not recommended to manually modify the content generated by the 
-> tool to avoid unnecessary errors.
-> 
-> It is not necessary to change SRST_HRESETN_CRYPTO to SRST_H_CRYPTO.
-
-Why do we now need to have two part of the indices name to represent it
-is a reset, i.e. the SRST_ prefix and the RESETN in middle of the name.
-
-	resets = <&cru SRST_ARESETN_MAC1>;
-
-The example above seem unnecessary verbose with 3x reset:
-- resets as prop name
-- SRST_ prefix (software? reset) in the indices name
-- RESETN in the indices name
-
-Maybe the SRST_ prefix could be dropped if we now have RESETN as part of
-the indices name?
-
-Your tool could be updated to strip the verbose naming. For RK3528 I
-used a small script/tool to strip away the RESETN name and to generate
-the macros used in rst driver.
-
-Regards,
-Jonas
-
-[snip]
+-- 
+Best regards,
+Marek Vasut
 
