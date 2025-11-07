@@ -1,163 +1,100 @@
-Return-Path: <devicetree+bounces-236118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1151AC400BE
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 14:10:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F11CC400EA
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 14:12:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B1B3634E0BA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 13:10:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D9C63AC5C6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 13:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C2F2D0622;
-	Fri,  7 Nov 2025 13:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4F72D4B71;
+	Fri,  7 Nov 2025 13:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ic3s8Zsr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VmUk856L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DEEC2C15A0
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 13:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA2CF2D3732
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 13:12:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762521050; cv=none; b=GbFfi3NCJYn3B3StdGP1y6jzeqSGDnFtjLMve2NfcGGwJbaCuiEC0xdi79tj5/BxW7E+tBNYtp7gYOpIsHnM6/CAccT+c01yYSHmJcjkMQucPwhu6oGyZWaOKUZOUCG8MIb8ZAWKKCwHL5F2AbGjwr0LuMLS6IronwZzx2H7Pjw=
+	t=1762521169; cv=none; b=KODVWuMeOZDSbGkapHrsViwy6qEDkqL0GQwmJ9ffvYZGCiZ8dbRTD6Ia7oTOnRUC4n7Gyqa8mXYglLe+yEhISMU54VlCIDLS47xykepGNeKUz4Be45/88+moqRWa0yzdz4reTZXcl/DlTRSs4d5aQMzGtesWJhcaX1b77jOxCAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762521050; c=relaxed/simple;
-	bh=X9iTnwju2qFdxCnEg0NR9GAe26HVn4rmc+Xg59b/xTQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CbVGG+LwCTXixEVcXRYQ6h1M/8So8EhxKk7Y0668/RppiAucOPAPI8hL38xww5eWDf+aQ4iuhBwU8ek2bFGaKLT/pMW1lk4BRv4ECKrGUifFM/pxUFANd+1wm54kY/NextAnieEfkPawwgb/bmLINlFbp5I3LCsokkrdW26tNj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ic3s8Zsr; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-6407e617ad4so775297a12.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 05:10:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762521047; x=1763125847; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gYHHRwUPFMx2o7hSDNrrgKGsA3wEJmqOL2og+5hJ+F4=;
-        b=ic3s8Zsrq/cpSWPimMQl7eXeyy7bURpkZUATf/NTYwHwXoHDzY5lr03vozTpwbOVFd
-         n84WUEsWfs+PSzjpBeJGdJcRmKb+t1fHx9jXXcoqfVGZ0WdYOnuG7UXxvoEDmWhBTiXY
-         zYjAbRzvKUkKKqDqVPZv6lSjRfVHAobhdj957364p4mtfXn9e79Scq4G4AlGVT5LBcE3
-         Hb5KdxI5WKe8TvkS6pvnv+3ci+FulVJK+FXNu8Chn3x1uR690jFaKrFkbQG1MGIzqghS
-         RxQ9emH7WgYdIIiHqNgcePT6jj6tl7aGpMhtuZ4u2WwaGMneJ7QTfDTYc4xJjkut4W34
-         Dm7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762521047; x=1763125847;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gYHHRwUPFMx2o7hSDNrrgKGsA3wEJmqOL2og+5hJ+F4=;
-        b=AZLDuWEW9BzQcpWb7JPZ3tFCq6bflL1lqQ2vg6jo8za95dxoY5WjicI6zflImsvtR6
-         GChlGg46/vMpBHyrTE9+g/sGro65HBKyKptBw1ym9ebFw80G3rUEtWjxydL22uo4d9mn
-         F+BYkYhcqQxBePHJ69hZJ0rrCfCsc/Rvod/Ee94H5oN/CNPLciGek8ZBaVCo6vChK19L
-         d9Np3Gnm6ghQtlhy7uhXqDfaUKUeBezEAEZaZkJUsgCQo3nUyjSM0L5IpuT9bvPXaDfV
-         X3F1pzRln90zZK6I01B9xSdoqUE3h/SgUFTogLE0FfJkZtl0AeHJcygmznw/V/WBxqR2
-         kUUw==
-X-Forwarded-Encrypted: i=1; AJvYcCVKhY9kihGKH/i5AYyOvZ1ImZonqtSGfnRS64dpdVt5ULg0Ro9IA6eCnRsSVFf/RdWgpeJKrSj7/ZBr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/P68GnRIRFbihbVthUHMweO/XUGFsqQQsgZBIcXGJYQbpwKEi
-	bEkhCpNbMPQIbPoCjIGdeldmvulVGN3qpkVB6nUHJyincbf6q91rF455Z9jjbvZp5BQqmSccJve
-	HfDnq
-X-Gm-Gg: ASbGncujNV+WPjr4ExlfZiJDJTaEKzk6u94feFKJDR36azgmHZzWbz/+a67fZnjAx+l
-	7mvHZe2oFwYAWigTounlYKAKKqtCvDLLLR59nSvVOjZtIVbI2AOEU4WSXxlREi9AHBxdmpOOrrt
-	YczZhXMyZDms/PXMpZkF6W9ny5htYe44bonlGe77hzi0VsbsJvaZ9wVtut5MBLJ2kTGp0SNpcVC
-	zFy+VSujOghRemPrFPr5oJv0QxoxA8KGtwneza4yafeknA50/rxB/27LJ004GNkvfNobMto/uZe
-	+8cATJgt41tpJfBkIMQwbRg3S7i2qqBnsb+6LmVwz1uOgJLZ1fG7V6rBXpPdIPlawFzCqOzzEH2
-	n48f5YMigVWQ6D6tkWpRG+CxpJy88RTTUOnKjaOFQnIz3jZDLgrqQ9UJQvjWE27SWCxrEe32APC
-	sRhEbiRWx6fGtS/eR7V1AkKPUG
-X-Google-Smtp-Source: AGHT+IGg1Zbnws8cxX7orORuWlbhSBF5v/XmuMbF1BaB1hdo3oYtaWYVQbZOezZs+ceawiJZq7x26A==
-X-Received: by 2002:a05:6402:461b:10b0:641:1cbe:a5bf with SMTP id 4fb4d7f45d1cf-64147094e1fmr1299694a12.9.1762521046750;
-        Fri, 07 Nov 2025 05:10:46 -0800 (PST)
-Received: from [172.20.148.153] ([87.213.113.147])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6411f813e9fsm3999374a12.16.2025.11.07.05.10.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Nov 2025 05:10:46 -0800 (PST)
-Message-ID: <db9ea6f8-810e-4143-9e09-84536145999a@linaro.org>
-Date: Fri, 7 Nov 2025 14:10:45 +0100
+	s=arc-20240116; t=1762521169; c=relaxed/simple;
+	bh=FWO/8gHk53RYXD8wsffSK2ke0SFZ1bG9gjIfGIFTJuI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EDFXPF1JrTqb/0FJMon/ix+V563vWr3VQsTsXbXc3tZTYogsTdYP0sLejb7JZIbq7qbiT4Knx9G1UB//W5IagxvwJjGwBW48+xoBr+5VW0pQO393ua3wOrlZ7HxhZ2cCNUDxAQNvosxAAeGeAEHK8sqyH66igQ8mmi/QyCw6HbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VmUk856L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780B0C2BCB4
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 13:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762521169;
+	bh=FWO/8gHk53RYXD8wsffSK2ke0SFZ1bG9gjIfGIFTJuI=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=VmUk856LB3Ktid9JTM1p/HRUccXaDtTvjP+q4dhPWT4wSln/qPkV/VQu6vernisKV
+	 TOiBfbwqozLZk5euuhK+PjZQPMezUhrIMdpfuKw2WKuqOZ9jIxlM+qYSwGmHlb53q7
+	 YFWTsYSshNNpUqj4G0nHtU6ckASu72pJffLn1WR8CTKW3neiXm4XGYq8wXTMRuiXF0
+	 YQTpO7XP/wsIoQ4PycZ9vGqeoMSSJWdUR0iew6wB1xUFKvfd1ZL3P5VabnSdmxy6IY
+	 Em8ZkCAL4zE8XdO+35qZJIBafvwOzJSsIhwygOORffdFKPGIo4jxcwhjKvwckqScZx
+	 kHA3V9Bh9hbtw==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-37a48fc48deso6842061fa.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 05:12:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWvYdMIm2/TjSRZDlNZmh6IdX1UEGoyQ+EUtBCHruFoIVm+pDCycSqncZuMM0UAeO2vgTI0WPYI7ps3@vger.kernel.org
+X-Gm-Message-State: AOJu0YywYLt0SkGbYe3JKNEvaP6DPsYvdE4Dk/1gAYC/oo4GRG1xtB9F
+	6txyaefgdyz52iTAF2JvT7GiCnZNfl7b3ZjfJn4j77MQRenGsFT5Da3wE9Ky0TMcqJpDEm76/kd
+	weOt7gdomuAJZQvEQAkRXxJvXcLt3qts=
+X-Google-Smtp-Source: AGHT+IEi60U+MS5fuwhOECte6O05g72+EAD4tfI6rsUD0G2v7W8zO7uqdgB+Fmi8wi+riCfy3k40Cuh7KGFUeVlePak=
+X-Received: by 2002:a05:651c:4014:b0:373:a675:cd5f with SMTP id
+ 38308e7fff4ca-37a73335a70mr6546391fa.39.1762521167522; Fri, 07 Nov 2025
+ 05:12:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] dt-bindings: panel: Add Samsung SOFEF00 DDIC with
- panel
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, David Heidelberg <david@ixit.cz>
-Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20251104-sofef00-rebuild-v1-0-dfcfa17eb176@ixit.cz>
- <20251104-sofef00-rebuild-v1-1-dfcfa17eb176@ixit.cz>
- <20251106-enlightened-centipede-of-tempering-3cfa50@kuoka>
- <be1b6e34-40ab-4587-8dbe-84e08bf83dcb@linaro.org>
- <108b8631-6d92-4b2f-a59d-3c9e0c607e5d@kernel.org>
-Content-Language: en-US, en-GB
-From: Casey Connolly <casey.connolly@linaro.org>
-In-Reply-To: <108b8631-6d92-4b2f-a59d-3c9e0c607e5d@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org> <20251106-b4-of-match-matchine-data-v1-4-d780ea1780c2@linaro.org>
+In-Reply-To: <20251106-b4-of-match-matchine-data-v1-4-d780ea1780c2@linaro.org>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Fri, 7 Nov 2025 22:12:34 +0900
+X-Gmail-Original-Message-ID: <CAGb2v65fcCEqJEdSuH+n1BFtoBxSCxEXaxAk7norRWzpPoT2cg@mail.gmail.com>
+X-Gm-Features: AWmQ_bknqHyNaA5_RcBhQtheiViI_1Nkl4lCccfeS9SBJtkNwcoPaIb-tzaunfo
+Message-ID: <CAGb2v65fcCEqJEdSuH+n1BFtoBxSCxEXaxAk7norRWzpPoT2cg@mail.gmail.com>
+Subject: Re: [PATCH 04/13] cpufreq: sun50i: Simplify with of_machine_device_match()
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Yangtao Li <tiny.windzz@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Nov 7, 2025 at 4:08=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Replace open-coded getting root OF node and matching against it with
+> new of_machine_device_match() helper.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-
-On 11/7/25 12:27, Krzysztof Kozlowski wrote:
-> On 07/11/2025 12:23, Neil Armstrong wrote:
->> On 11/6/25 09:48, Krzysztof Kozlowski wrote:
->>> On Tue, Nov 04, 2025 at 11:16:09PM +0100, David Heidelberg wrote:
->>>> Basic description for S6E3FC2X01 DDIC with attached panels
->>>>
->>>>    - Samsung AMS601NT22 6.01 inch, 1080x2160 pixels, 18:9 ratio
->>>>    - Samsung AMS628NW01 6.28 inch, 1080x2280 pixels, 19:9 ratio
->>>>
->>>> This panel has three supplies, while panel-simple-dsi is limited to one.
->>>> There is no user of this compatible, nor the compatible make sense.
->>>
->>> There are. git grep samsung,sofef00, gives me two users.
->>
->> Hmm, on -next I only see a single one:
->>
->> $ grep samsung,sofef00 arch/*/boot/dts/ -R
->> arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts:  compatible = "samsung,sofef00";
->>
-> 
-> These are the users:
-> 
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-> drivers/gpu/drm/panel/panel-samsung-sofef00.c
-> 
->>>
->>>> Remove it from simple DSI panel definitions.
->>
->> Can't you mark is deprecated at first ?
-> 
-> Not sure what would be the benefit here. There is no negative ABI impact
-> here.
-
-If we want to acknowledge the potential scenario where someone is 
-booting a newer kernel with an older DT then we should keep the old 
-compatible in the driver right? And marking it deprecated in bindings 
-would make sense.
-
-It could be removed from the driver in the future if there is another 
-variant of the panel added or we decide to cleanup.
-
-It's still not entirely clear to what extent we care about DT/kernel 
-backwards compatibility though.
-> 
-> Best regards,
-> Krzysztof
-
+Acked-by: Chen-Yu Tsai <wens@kernel.org>
 
