@@ -1,68 +1,71 @@
-Return-Path: <devicetree+bounces-236218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70510C41420
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 19:18:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22141C41450
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 19:21:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 286883AA3CF
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 18:18:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A71B018863C0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 18:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F4C3385A0;
-	Fri,  7 Nov 2025 18:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9529A3385B1;
+	Fri,  7 Nov 2025 18:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5ABhgdB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AHcqFUXu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6CC932E131;
-	Fri,  7 Nov 2025 18:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699372F83BC;
+	Fri,  7 Nov 2025 18:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762539502; cv=none; b=a67T0H4cmSYkqHvITcEjh9F8tDs8R35WkX5pKLCuSiJxnJD+8obsf2w/7yQRx2YZB9dvvWxA3VE+xjDrCQsJGPvHTy3TP4miAbClJkMQetwCGbZrdl0fG0GbUVkWhmJxwbj3qOOwRXtB8xpA+JFEMDfxQ6/Px0BIxZY28vn6qU4=
+	t=1762539657; cv=none; b=EaxOaQU+DuofxQtBq268ce5ECsGHIKtyLaqg1zNJ7oFB7qc1VFvZCTPjCnyGSxGJjAUo/QUIpvFUPp5YEY5LvrYJbdodfn645XapLCepoSHyjXe/c7NqoOksiE6K14K80ngTvVtxK9QooYQc8V0lmWGtglU/DLRGipkOhiwFAZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762539502; c=relaxed/simple;
-	bh=jaL7jopAFlRxmRbiqtgWDWMCdCil7su+tqIETM3BZ7c=;
+	s=arc-20240116; t=1762539657; c=relaxed/simple;
+	bh=XZ3GzvFfGFXlIB7TajdyAZQIUS5SDDqxmBn+AzTLv+M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vGba2jLcWjleISC5EYKwvUQEAIR6M+Q6f4fH/3masb7pCjFDRoIe2JTEu0wtIkRl8zR5s4JDbmQL87OPvlU2z+64269VkaU96AaTQBuX3FphheHZZKy5rdoB9uAE/lr3sZR7Tv6CyJ/AB6pOnnVOvYeT3lDAiFpdXY4dLFi4+ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5ABhgdB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39F5AC19423;
-	Fri,  7 Nov 2025 18:18:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PFX/D8Vq5/6aCtcJcCupEJCqZBRKcLTt1Dw5PZFQTbhkefeA4K/fV27f/lwKXc6C7ghUJ134FczNZTpLMaHCjFHP99bejUW3GOBfUxWadoI5p2fP6LVnlW2KXOklpw9nh+xtHXW5UR5S0T7jtsMRE1otLlSYbGiggIYtGtW3xZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AHcqFUXu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1A72C4CEF5;
+	Fri,  7 Nov 2025 18:20:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762539502;
-	bh=jaL7jopAFlRxmRbiqtgWDWMCdCil7su+tqIETM3BZ7c=;
+	s=k20201202; t=1762539657;
+	bh=XZ3GzvFfGFXlIB7TajdyAZQIUS5SDDqxmBn+AzTLv+M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U5ABhgdBgJ8xkku8oBI1QZi+g2rddDAUmX1HuVzsJzYtRZAuKHAcpYe65se/YObsr
-	 +2YdET6sMq/F0s//Nf+oZIxfcHkDGPzh5lgZgSbTxMgI0ngJLdp7rpHS6HYCVTxTyt
-	 T9YwgsSJ/T237E8l6wtjs1MeZrdBhQzboBi2VVFCxZTbSObV7IR1DZikAUEOFjP0HA
-	 19KN8TQdRTnGimBNtMQ2X5DDitkjiqtNJl55ZxcShALA1IIBs7YTsG64E7NNUxXQFA
-	 inkYobUD9mKpsKK12Qgz/qSRAP34nUGbX3Htj8Dv7HBQj++kHiq4M0DXvWTkZAy0Ev
-	 zJNnOkz4ySPBw==
-Date: Fri, 7 Nov 2025 18:18:17 +0000
+	b=AHcqFUXuzDR1EODPDxnZYlWVZSgOuuZQOxwdT/dxNUBqYTijNmpj3l07OV6gQA0Z6
+	 HkkjWId81zy5CeibiE/k1bZjL0LRBOhbUzNZ2gYk6I27drxEuWTf9PB1lOPMVh9HSV
+	 u6pCM7/XBm0P/aFrWwu3mD7ypKEjBRpg50ABGlnyWDLTQ6TYz+wuPPf6f9V79Eh6LF
+	 5bIy88gatlkmKLWRcfMCl1q+ryb/zU5Ud1bw7LFE8gL4Ym5sSpsJNXI79GpQ3KC1rM
+	 6G0KC924cDPQK3mzmjox2L1rnq25HbX/kjUzxxXfv2n1jQpUXPSEC4Kh5x2xpWfKFo
+	 3tic9dkDo2BIg==
+Date: Fri, 7 Nov 2025 18:20:51 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+To: Frank Li <Frank.li@nxp.com>
+Cc: Support Opensource <support.opensource@diasemi.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 4/5] dt-bindings: pinctrl: airoha: Document AN7583 Pin
- Controller
-Message-ID: <20251107-unvalued-fringe-96724cf9206c@spud>
-References: <20251106235713.1794668-1-ansuelsmth@gmail.com>
- <20251106235713.1794668-5-ansuelsmth@gmail.com>
- <20251107-washstand-motivator-c5e5e5d30dae@spud>
- <690e311d.5d0a0220.2f18f8.2b28@mx.google.com>
- <20251107-jasmine-unarmored-e3f5d544a1b7@spud>
- <690e3351.050a0220.15e225.cf82@mx.google.com>
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Wensheng Wang <wenswang@yeah.net>,
+	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Grant Peltier <grantpeltier93@gmail.com>,
+	Vasileios Amoiridis <vassilisamir@gmail.com>,
+	Dixit Parmar <dixitparmar19@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: mfd: Convert dlg,da9052-i2c.txt to yaml
+ format
+Message-ID: <20251107-matrimony-showdown-ba6ce6996b2f@spud>
+References: <20251106013358.421809-1-Frank.Li@nxp.com>
+ <20251106-hull-petri-42878717ee85@spud>
+ <aQz1Yt9lk+roRq9z@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,72 +73,201 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZQCrllx4ihXxMaJD"
+	protocol="application/pgp-signature"; boundary="Q9vuaJ9qjpbg+ZRK"
 Content-Disposition: inline
-In-Reply-To: <690e3351.050a0220.15e225.cf82@mx.google.com>
+In-Reply-To: <aQz1Yt9lk+roRq9z@lizhi-Precision-Tower-5810>
 
 
---ZQCrllx4ihXxMaJD
+--Q9vuaJ9qjpbg+ZRK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 07, 2025 at 06:58:38PM +0100, Christian Marangi wrote:
-> On Fri, Nov 07, 2025 at 05:55:43PM +0000, Conor Dooley wrote:
-> > On Fri, Nov 07, 2025 at 06:49:13PM +0100, Christian Marangi wrote:
-> > > On Fri, Nov 07, 2025 at 05:24:21PM +0000, Conor Dooley wrote:
-> > > > On Fri, Nov 07, 2025 at 12:57:07AM +0100, Christian Marangi wrote:
-> > > > > Document Airoha AN7583 Pin Controller based on Airoha EN7581 with=
- some
-> > > > > minor difference on some function group (PCM and LED gpio).
-> > > > >=20
-> > > > > To not bloat the EN7581 schema with massive if condition, use a
-> > > > > dedicated YAML schema for Airoha AN7583.
-> > > >=20
-> > > > You went to more effort than I would have here with that conditiona=
-l!
-> > > >
-> > >=20
-> > > Well it was suggested by Rob and it's honestly a copy paste of en7581
-> > > with the relevant thing changed.
-> > >=20
-> > > > > +patternProperties:
-> > > > > +  '-pins$':
-> > > > > +    type: object
-> > > > > +
-> > > > > +    patternProperties:
-> > > > > +      '^mux(-|$)':
-> > > > > +        type: object
-> > > >=20
-> > > > What's up with this regex? Why does it allow either - or $?
-> > >=20
-> > > It's to permit either mux-* or unique node name with mux. Pattern is
-> > > also used by mt7622 or other schema. Other use mux- to require a name
-> > > after the mux.
-> >=20
-> > Ah right, because you can have the config properties like drive
-> > strength in the mux node, so sometimes a -pins has one mux node (mux:) =
-if
-> > all pins share settings and sometimes there could be multiple, which
-> > requires a suffix.
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > pw-bot: not-applicable
+On Thu, Nov 06, 2025 at 02:22:10PM -0500, Frank Li wrote:
+> On Thu, Nov 06, 2025 at 05:39:47PM +0000, Conor Dooley wrote:
+> > On Wed, Nov 05, 2025 at 08:33:56PM -0500, Frank Li wrote:
+> > > Convert dlg,da9052-i2c.txt to yaml format.
+> > > Additional changes:
+> > > - compatible string fallback to dlg,da9052 to align existing dts file=
+s.
+> > > - Add interrupts property.
+> > > - Add ref to /schemas/spi/spi-peripheral-props.yaml#
+> > >
+> > > Remove dlg,da9053 from trivial-devices.yaml.
+> > >
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  .../devicetree/bindings/mfd/da9052-i2c.txt    | 67 -------------
+> > >  .../devicetree/bindings/mfd/dlg,da9052.yaml   | 93 +++++++++++++++++=
+++
+> > >  .../devicetree/bindings/trivial-devices.yaml  |  2 -
+> > >  3 files changed, 93 insertions(+), 69 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/mfd/da9052-i2c.=
+txt
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/dlg,da9052.=
+yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mfd/da9052-i2c.txt b/D=
+ocumentation/devicetree/bindings/mfd/da9052-i2c.txt
+> > > deleted file mode 100644
+> > > index 07c69c0c6624c..0000000000000
+> > > --- a/Documentation/devicetree/bindings/mfd/da9052-i2c.txt
+> > > +++ /dev/null
+> > > @@ -1,67 +0,0 @@
+> > > -* Dialog DA9052/53 Power Management Integrated Circuit (PMIC)
+> > > -
+> > > -Required properties:
+> > > -- compatible : Should be "dlg,da9052", "dlg,da9053-aa",
+> > > -			 "dlg,da9053-ab", or "dlg,da9053-bb"
+> > > -
+> > > -Optional properties:
+> > > -- dlg,tsi-as-adc : Boolean, if set the X+, X-, Y+, Y- touchscreen
+> > > -                    input lines are used as general purpose analogue
+> > > -					input.
+> > > -- tsiref-supply: Phandle to the regulator, which provides the refere=
+nce
+> > > -                 voltage for the TSIREF pin. Must be provided when t=
+he
+> > > -			     touchscreen pins are used for ADC purposes.
+> > > -
+> > > -Sub-nodes:
+> > > -- regulators : Contain the regulator nodes. The DA9052/53 regulators=
+ are
+> > > -  bound using their names as listed below:
+> > > -
+> > > -    buck1     : regulator BUCK CORE
+> > > -    buck2     : regulator BUCK PRO
+> > > -    buck3     : regulator BUCK MEM
+> > > -    buck4     : regulator BUCK PERI
+> > > -    ldo1      : regulator LDO1
+> > > -    ldo2      : regulator LDO2
+> > > -    ldo3      : regulator LDO3
+> > > -    ldo4      : regulator LDO4
+> > > -    ldo5      : regulator LDO5
+> > > -    ldo6      : regulator LDO6
+> > > -    ldo7      : regulator LDO7
+> > > -    ldo8      : regulator LDO8
+> > > -    ldo9      : regulator LDO9
+> > > -    ldo10     : regulator LDO10
+> > > -
+> > > -  The bindings details of individual regulator device can be found i=
+n:
+> > > -  Documentation/devicetree/bindings/regulator/regulator.txt
+> > > -
+> > > -Examples:
+> > > -
+> > > -i2c@63fc8000 { /* I2C1 */
+> > > -
+> > > -	pmic: dialog@48 {
+> > > -		compatible =3D "dlg,da9053-aa";
+> > > -		reg =3D <0x48>;
+> > > -
+> > > -		regulators {
+> > > -			buck1 {
+> > > -				regulator-min-microvolt =3D <500000>;
+> > > -				regulator-max-microvolt =3D <2075000>;
+> > > -			};
+> > > -
+> > > -			buck2 {
+> > > -				regulator-min-microvolt =3D <500000>;
+> > > -				regulator-max-microvolt =3D <2075000>;
+> > > -			};
+> > > -
+> > > -			buck3 {
+> > > -				regulator-min-microvolt =3D <925000>;
+> > > -				regulator-max-microvolt =3D <2500000>;
+> > > -			};
+> > > -
+> > > -			buck4 {
+> > > -				regulator-min-microvolt =3D <925000>;
+> > > -				regulator-max-microvolt =3D <2500000>;
+> > > -			};
+> > > -		};
+> > > -	};
+> > > -};
+> > > diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9052.yaml b/=
+Documentation/devicetree/bindings/mfd/dlg,da9052.yaml
+> > > new file mode 100644
+> > > index 0000000000000..4ecd498864e4e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mfd/dlg,da9052.yaml
+> > > @@ -0,0 +1,93 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mfd/dlg,da9052.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Dialog DA9052/53 Power Management Integrated Circuit (PMIC)
+> > > +
+> > > +maintainers:
+> > > +  - Frank Li <Frank.Li@nxp.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - dlg,da9053
+> >
+> > Should this actually exist? It was never in any drivers etc at all, and
+> > as far as I can tell any users use the -XX suffixed ones. Probably this
+> > is the only compatible that /should/ have been used, but it might be
+> > pointless to add now.
 >=20
-> Mhhh why not-applicable ? :(
+> A old dts arch/arm/boot/dts/nxp/imx/imx53-smd.dts use "dlg,da9053", "dlg,=
+da9052"
 
-That's just dt-binding patchwork stuff, it clears it from our queue
-since it'll be applied to pinctrl.
+Given my observations about the fallback below, I think this one should
+be changed in the dts to whatever dlg,da9053-XX variant it actually is.
 
---ZQCrllx4ihXxMaJD
+> > > +              - dlg,da9053-aa
+> > > +              - dlg,da9053-ab
+> > > +              - dlg,da9053-bb
+> >
+> > The driver also has a bc, I think that should be added.
+> >
+> > > +          - const: dlg,da9052
+> >
+> > Is this actually a correct fallback?
+> > I know it is being used, but looking at the drivers I see things like:
+> > 	/* Select the appropriate current limit range */
+> > 	if (regulator->da9052->chip_id =3D=3D DA9052)
+> > 		row =3D 0;
+> > 	else if (offset =3D=3D 0)
+> > 		row =3D 1;
+> > in both the battery and regulator drivers.
+> > Might actually be the devicetrees are wrong here?
+>=20
+> Ideally, not fallback to dlg,da9052, but need update old dts file to clean
+> up warning.
+>=20
+> If you prefer this way, I can remove fallback and update dts files.
+
+Yeah, I think so. If the things need different current limits I don't
+think that the fallback is really suitable.
+
+> > > +      - enum:
+> > > +          - dlg,da9052
+> > > +          - dlg,da9053-aa # Just for match existed old platform
+> >
+> > Could you just change that one old platform using it?
+>=20
+> Yes
+
+And since we are removing the da9052 fallback, this comment can be
+removed and the old platform can stay as it is.
+
+--Q9vuaJ9qjpbg+ZRK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ436AAKCRB4tDGHoIJi
-0u1rAP4+8ulSe9JeLCu3Gyu4scAX+ZVG1X8+tIGQbmjpnop6AwEAst9/qvwn3IEa
-sDwwxMVse34AsCQffwSceZT/1vAWjg0=
-=PDnc
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ44gwAKCRB4tDGHoIJi
+0ubIAP4l3CNYFcE166XUJIAGc9GKUzWC2GSixh4YFSNUt35QdgD7Bl4tH71Ban+S
+HuNOGWoZdjtoYu5iqu50nGvoTH9P9gA=
+=lM++
 -----END PGP SIGNATURE-----
 
---ZQCrllx4ihXxMaJD--
+--Q9vuaJ9qjpbg+ZRK--
 
