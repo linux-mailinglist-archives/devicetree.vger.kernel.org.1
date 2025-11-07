@@ -1,247 +1,169 @@
-Return-Path: <devicetree+bounces-236083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBCCC3FBF2
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:34:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03A15C3FC01
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:36:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 745554E257A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:34:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFD7F3B4257
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:36:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21332F549F;
-	Fri,  7 Nov 2025 11:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4E32EBB99;
+	Fri,  7 Nov 2025 11:36:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ipnMDxEZ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EFtO1X6V"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hMK24NHU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E1B259C92
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 11:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49858481CD
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 11:36:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762515294; cv=none; b=ueSr+jTPP0fBMIYefOENeaM/qtAuDPbdNuY9mHJOGrbIhGNIaydGdJ0CyaoEtn07N9Ss6xx140U7y5xLzwEIWkjS+qGv+EExrmNa6IP44OZ97VGhMgwi8Z3szEnijvs54y0GktFqywA2NNqj+4k4nIfV4vsQFq7C4kUYzbVE4sI=
+	t=1762515380; cv=none; b=lcwqnOpzZxbtT16Jbi4d8ASy31o9Lp+HJUUvl9Bw1EKvqAdQhll/KBWWBQSD1GtqjBZcjXM/xskZYEHOkAAP0ZQMowKIHCMPG5Ee/KxuC6+nTinLEkXR3E/FMAc/8LDsxBg1frKv04fndQnRAcc9MCIK1MmB8tfEmovwq7ouRW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762515294; c=relaxed/simple;
-	bh=MQXsnjnfIpZGCTh04vWN3x36IFSv+n8I/lg/WXT96n8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PqVayEfz8vKOJiG4mRxj/fT3QLXNTWu1CGNTwg6Ig0PwKkMRD1S92klg2B+IT3dO0VDUcCashQ+Td7/n9a9V1DdybLZoGA/+v+k+HXykK7e+vN1VYL/lb3fTlcrzBEEytTVf3pWI/IoCxAuosO/m2nTm5o9gQMUSm/wdSzUb6bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ipnMDxEZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EFtO1X6V; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A7BXMDe557134
-	for <devicetree@vger.kernel.org>; Fri, 7 Nov 2025 11:34:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=vZWka9X/5uROFI+18ZwN5+YD
-	qQ7ZdMbSuHHh59YqHZY=; b=ipnMDxEZnE5JiNDp8YepmzxOlukJiZSYRz79qfeh
-	gLM6COUIQkbBOGJ71uwZGXX+DIoTmwCoKskG57HIe+muhbday0Pz3qbU2c7Cm8GP
-	KbCk+1Zo0rptIh96XiTcTjJQujPW+EUCTwdwSu+vfKyTasxe7xVkVj8BYiTlw3WX
-	7GxUDBClAvg9ufmuDi/We2x792qmBP1JO6o6EQcukVPqejkI0hI+AVGGJYwYl1em
-	EcO4po2ex0hwJaMk5hs+pM6Kp5v2jy4n4mwWIAOyVl9mVhVTXWrdklLeCXOfWb/M
-	b1zhk2jE9frsvEbCzbKXjrB7CCqBL03jONwDTeexboNpIA==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8yr9tw4f-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 11:34:50 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7afd7789d4cso1043664b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:34:50 -0800 (PST)
+	s=arc-20240116; t=1762515380; c=relaxed/simple;
+	bh=zc7EQnNjmRr1XU6lGykGKLz8scv8SLWTjQFPhZxkdgc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sKF+e7zJgH+wdL4kRr87WZXheuo2RMSNfo4aq7rs5MIszPROQT86gfI7dvmFeAU8bGkpM5nRMNQu/zjoimU9ni1W8xWAJ2WKN2wWi97HBRT+xc8GYxsHfNlZA1LXSceQZj5rmvdwUrXsB45Dds9xC9JWAVftrKnyCDDv441HFQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hMK24NHU; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-429c7869704so517884f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:36:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762515290; x=1763120090; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vZWka9X/5uROFI+18ZwN5+YDqQ7ZdMbSuHHh59YqHZY=;
-        b=EFtO1X6VZCevJYpdLopzxYvLV4EuHZ0ROLHkeXQ6n1J/Y5z32l6RQDPUwn9kMFNQDg
-         B6Uo9A1u+EbqzKpGAayeWP0Q14DCEeRMZGN+m+80UMX4909CA3R+/HM4CFjgi/FiNDlN
-         raLw9vJ+yl8LlgnSa7VQ4hkzkFiBl0Dqa4LA1xBTdridCMJoI5JS8iKzRajM93c7UJRe
-         i5WZ5jn4rycqcaP3mCUUtKjGpJLKQIBm8ncA4wm0znVmlh/n/YKpbPdLU1BuvwmpXL/l
-         uQfl3d37LpWDdt1m2m/BXAel9BuP7FqvG3BEs+eXm6lm+MZamc99CWUEZFQlqQndyVVZ
-         dWZw==
+        d=linaro.org; s=google; t=1762515376; x=1763120176; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9JTGRP3Os3ULo6Z7owLq7b27T5LEh91I3qkDXn2bT8s=;
+        b=hMK24NHU9ASeLfzpQwXI3mQ8ZPbx7MZzgknsb9/jUcllKOnHSJMpNqq1Gutemwp9DL
+         IjTBCWNdyASJ+ZPC5Il0NrujHNNdbHBvUaI2DpY7scAH5L/GrH1H3P9mYQjocu49JrLK
+         rfYAsKcMGleMOQVdueBwIlwybFNIwHRzKFSD381oJHW9BEOqPnCEX4V22YOkPSY8+r/o
+         j8R932bX3JTTMvFJcbvOV72tDp/JwnhDp3ozgWthc6o81SyfIfvkdmIVc9XvoxPR6dIw
+         CEHa5yGtkSgDYxj2TV0qoiJ+7ngzujYV5NoH9cjeZdiDCrElDZK0YSlqA0/R2qSzws7V
+         TbLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762515290; x=1763120090;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vZWka9X/5uROFI+18ZwN5+YDqQ7ZdMbSuHHh59YqHZY=;
-        b=MFoYJSjLTyWw8aDaz5G1RSp5O5yEU74jz2/Ft1Fhw3psgQwpPpWopOl69t+JnvRutu
-         lGi6l5yBhlkdbGEuRb2YpTlmCNWXHzpviuivttXm/YW4s+s2U0jxGEneIceqxlQD15GL
-         dGwDHXvCU173BTsz8xKTLbG5KBprzBFGj1GeBqwH2UCV+6FQvV3iGk3KcFnEP6sQUs2x
-         bYSdfPLga1ALJMQiKWNfYWyCyg0/IVfa4NY5q48kvFko8/CRSe0+TDktBdTh9O2t6DKy
-         bAH1wrnuyQJnZk+AJ7pZsLDL5+ujnrdztYwmSfmUL3W/dYE4PZGz79gJkGPbceY5lHEc
-         sWrw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOb3qBzdAwI/c7q3cLFrRF82mo31vlN6QsRwiqhisKsLd0EFXITGo3cGSAlxlfnpkSpMIuGn8SVwa7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxlz3TAIdvMuR+HwRHJLws/UthsUTqEl2tiCdz6wC0vt04yMdTw
-	Jm5VZAfKJP+Th9gJojktIHbcwr/4YFfgK76R8OjSDFm0M6tuvItjLF3vxgnPEq+k/xT8VOlBqp2
-	YREVGvCtbXEhtKr+xVls8VZacNEYrYb1AZVbsS0bvqFK/UFYeypjvBVhGtxpTlJdH
-X-Gm-Gg: ASbGncvFydcuUOCXsHTykw/04Omq+AiSDg9RTgAgZMxxdfWwhbceEdabtv5DsSI+rFR
-	7B6YdquuPlGe4WBcRvLzQXW0VytauCWmoRaL9B0WdWOUCOOHTkFgzUK2sj5fNgP5jZxT0V9heYu
-	gPxn86etrMPkAEZKSlaZk3FnawosSbPfY9SgCwl6Rl4r7erQMh+lNH/TQ1XjS6haDD0maCbd5bJ
-	NBkqnz4dA2n30z/4zFPwtRZkdFnPoC2dXRULgMzqraLvv08Yid7fe/LBOEgtC/5hXHCCNfO9Jju
-	99dubdo/i05/LlqTVKzslsf257W4foFvsTUNUtcW+7XWHyWnbJ8tghTuqP8KyNFJ9KOFhC2tkoa
-	sbr2Darq1N85yWkd0ET34lklaEA==
-X-Received: by 2002:a05:6a00:1812:b0:7ab:f72e:8faa with SMTP id d2e1a72fcca58-7b0bdb873cdmr3778415b3a.27.1762515289749;
-        Fri, 07 Nov 2025 03:34:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFWwrPXDpHf0VORSSfbxDz+3mYFgZW9OhUNZ+39bE+mQIPXy5tKbSJ0RtFga+TqnfE2aoBL5Q==
-X-Received: by 2002:a05:6a00:1812:b0:7ab:f72e:8faa with SMTP id d2e1a72fcca58-7b0bdb873cdmr3778378b3a.27.1762515289047;
-        Fri, 07 Nov 2025 03:34:49 -0800 (PST)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0c9632e22sm2786673b3a.8.2025.11.07.03.34.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 03:34:48 -0800 (PST)
-Date: Fri, 7 Nov 2025 17:04:42 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 12/14] remoteproc: pas: Extend parse_fw callback to
- fetch resources via SMC call
-Message-ID: <20251107113442.e2qxn6ifmo2rprus@hu-mojha-hyd.qualcomm.com>
-References: <20251104-kvm_rproc_v6-v6-0-7017b0adc24e@oss.qualcomm.com>
- <20251104-kvm_rproc_v6-v6-12-7017b0adc24e@oss.qualcomm.com>
- <89e65adf-fdd4-4b98-a220-fb0f77dae7c6@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1762515376; x=1763120176;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9JTGRP3Os3ULo6Z7owLq7b27T5LEh91I3qkDXn2bT8s=;
+        b=qd373FqalODoOi85BINvTgzKCkOrR9byk0RzHRqnDHtqdRaqnWkHSi0Dr1RmBc6VH+
+         saZr9JZz1podTsjTgzukzAdCZfhuR4scJk+H6Eejtr90d+uer+jH5oLxrgZMt89/5bDL
+         tZam/Aya4UQKGaWnbkKMwGu5lxHddGQa3PDJ7It4GWmGV1nx/1kpuqIKRQDLoaozWlj8
+         6M3sn83Dp2KodZ5SeOT0O5CyeDcukRetPk36xMvZ47TNp1B4taVccP+bFU7E5+BFCXuT
+         PpaJXpaGaGj6lj2Lo5aKjyTFtt85TZ+NHenM+y5vroLUUXBtf3a2C19ka3/slOyaWb6D
+         uUew==
+X-Forwarded-Encrypted: i=1; AJvYcCXvWIh04KtmY2XsIavGoRzsr7PlMNfGJ6BEw7/toHa7jPPl65E8QHssbk4d2Gh0aNWbudeH5GY/x/aB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiRJ5RpVEE6A8XzoPLUfAEwcy4BJq1Kd8UqOteaL+p7IL1SQj2
+	HlWLt+JKypA5TmNwCI2DRbOHSjmF5xsPs4VBqkI9x/ebvBNHYdpn+tsX038ncg5hB3U=
+X-Gm-Gg: ASbGncvtO+0qATDQc8HBU++9Uk8DGaeGkZudOBy4ksh5jlyfv1HonhHK9THV3cVXxYH
+	QaBFdtNvaJcig/+WBosEuMz6o14DHHYKo0oQBk7a3dX4lrbVQdGYUpmW0sxKG5C+9rKU6nkYkqw
+	3gdkk4HvaeNmHjkDxJsd9pHQhTGXYLLJXThaPCgSXAQvMS+QUf7+jNm/waoJ5whtQt11BzmsWC8
+	290e7YICO+bO+FQpxUJp2RqljO2rAOEitQify/hCEvY8657ajt5to9eVdwsvMHvOetU98o9zXPM
+	HLtrZBPc5qbMyZb6SUnSk291oTmWx4HCnyflz17erzGc02KUgPwRRD4fzZV9NxYFNB99PdVHG6M
+	tz7UGcnTuM3E78SvacwXVVZZOyJ7IYmR+DN7J70iRp8jIM4EUx3v23MGCoCnyoYkeAxDNkj35ZJ
+	rgnxPinIrw4PA2ULDAlMY7AT+UyQCouuhvsHGS
+X-Google-Smtp-Source: AGHT+IG2dUCqDcfLmg6GQ5lAlXBIqxs9KWH+YNv4QsB30IZJTtg9NVCN7IdyFXcfIOHqLU7l2omYAg==
+X-Received: by 2002:a05:6000:184e:b0:429:f0a4:22e with SMTP id ffacd0b85a97d-42ae5ae9b17mr2326856f8f.54.1762515376522;
+        Fri, 07 Nov 2025 03:36:16 -0800 (PST)
+Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-42ac679c5dcsm5661874f8f.44.2025.11.07.03.36.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Nov 2025 03:36:16 -0800 (PST)
+Message-ID: <d783184f-6598-479a-99f3-e142e83bbb81@linaro.org>
+Date: Fri, 7 Nov 2025 12:36:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <89e65adf-fdd4-4b98-a220-fb0f77dae7c6@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=DrpbOW/+ c=1 sm=1 tr=0 ts=690dd95a cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=MZ-GuwlMPDuacp9TLA8A:9 a=CjuIK1q_8ugA:10
- a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-ORIG-GUID: re-JcdSACBbb4kKkLL8ej465JHKwyap8
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA3MDA5NCBTYWx0ZWRfXxmPf2oFLgFBO
- /V7H34lb41EulRC3ruKe+b+VPg8cIRHMeKswLlRG+X90UqkbIS6lHLyUuddZOqm9aav+5BhZn5V
- YCWCrAy2wstNgMVofV7yITu8moxfnY9+DIy7VfjDCdL/hfKieCiRnQE6FkBzTHdqZOlz7/yT/v1
- PzMNKxG9Cc8raf9lf+ovC00TpwTqpsnHMCaT8spw+T95QQPcPYbtb/MHZ0H80UTAT+BWuoctcXO
- pDHHbI8Y2FHBm5Fb0jEdhPTyun+LhPlLPOubuLR6cAyykBtg/ORC4AY8RiAWvTEJBDsMdLNrXlS
- 0hrWjryOwc8z7nlM2QN1WJZSMY23j372A9lvHvj13zCzDYAdW81lnJ2uXyJkcA8sEi2pQKl6Pp4
- 1V77spJm7po5OTD9hVbFW54GTKTB2A==
-X-Proofpoint-GUID: re-JcdSACBbb4kKkLL8ej465JHKwyap8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-07_02,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 adultscore=0 impostorscore=0 bulkscore=0
- clxscore=1015 priorityscore=1501 lowpriorityscore=0 malwarescore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511070094
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
+ ghennadi.procopciuc@oss.nxp.com
+References: <20251017164238.1908585-1-daniel.lezcano@linaro.org>
+ <20251017164238.1908585-3-daniel.lezcano@linaro.org>
+ <aPP0uVZu1T7tTQGo@ashevche-desk.local>
+ <050f96d5-e60c-4b33-b6d2-24fb3925e378@linaro.org>
+ <aQMvqHGN7r6babgw@smile.fi.intel.com>
+ <c4c14051-2ba2-4d80-a22d-4deb3709f727@linaro.org>
+ <aQSvZT73NBWZFVfk@smile.fi.intel.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <aQSvZT73NBWZFVfk@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 07, 2025 at 11:47:02AM +0100, Konrad Dybcio wrote:
-> On 11/4/25 8:35 AM, Mukesh Ojha wrote:
-> > Qualcomm remote processor may rely on static and dynamic resources for
-> > it to be functional. For most of the Qualcomm SoCs, when run with Gunyah
-> > or older QHEE hypervisor, all the resources whether it is static or
-> > dynamic, is managed by the hypervisor. Dynamic resources if it is
-> > present for a remote processor will always be coming from secure world
-> > via SMC call while static resources may be present in remote processor
-> > firmware binary or it may be coming from SMC call along with dynamic
-> > resources.
+On 10/31/25 13:45, Andy Shevchenko wrote:
+> On Fri, Oct 31, 2025 at 12:32:03PM +0100, Daniel Lezcano wrote:
+>> On 10/30/25 10:28, Andy Shevchenko wrote:
+>>> On Thu, Oct 30, 2025 at 09:27:21AM +0100, Daniel Lezcano wrote:
+>>>> On 10/18/25 22:12, Andy Shevchenko wrote:
+>>>>> On Fri, Oct 17, 2025 at 06:42:38PM +0200, Daniel Lezcano wrote:
 > 
-> [...]
+> [ ... ]
 > 
-> > +	/*
-> > +	 * Qualcomm remote processor may rely on static and dynamic resources for
-> > +	 * it to be functional. For most of the Qualcomm SoCs, when run with Gunyah
-> > +	 * or older QHEE hypervisor, all the resources whether it is static or dynamic,
-> > +	 * is managed by present hypervisor. Dynamic resources if it is present for
-> > +	 * a remote processor will always be coming from secure world via SMC call
-> > +	 * while static resources may be present in remote processor firmware binary
-> > +	 * or it may be coming from SMC call along with dynamic resources.
+>>>>>> +	dma_samples = (u32 *)dma_buf->buf;
+>>>>>
+>>>>> Is it aligned properly for this type of casting?
+>>>>
+>>>> TBH, I don't know the answer :/
+>>>>
+>>>> How can I check that ?
+>>>
+>>> Is buf defined as a pointer to u32 / int or bigger? or is it just byte buffer?
+>>> If the latter, how does the address of it being formed? Does it come from a heap
+>>> (memory allocator)? If yes, we are fine, as this is usually the case for all
+>>> (k)malloc'ed memory.
+>>
+>> buf is a byte buffer allocated with dmam_alloc_coherent(..., GFP_KERNEL)
 > 
-> How about:
+> We are fine :-)
 > 
-> """
-> The resources consumed by Qualcomm remote processors fall into two categories:
-> static (such as the memory carveouts for the rproc firmware) and dynamic (like
-> shared memory pools).
+> ...
 > 
-> Both are managed by a Qualcomm hypervisor (such as QHEE or Gunyah), if one is
-> present.
+>>>>>> +	dmaengine_tx_status(info->dma_chan, info->cookie, &state);
+>>>>>
+>>>>> No return value check?
+>>>>
+>>>> The return value is not necessary here because the caller of the callback
+>>>> will check with dma_submit_error() in case of error which covers the
+>>>> DMA_ERROR case and the other cases are not useful because the residue is
+>>>> taken into account right after.
+>>>
+>>> In some cases it might return DMA_PAUSE (and actually this is the correct way
+>>> to get residue, one needs to pause the channel to read it, otherwise it will
+>>> give outdated / incorrect information).
+>>
+>> But if the residue is checked in the callback routine without checking
+>> DMA_PAUSED, the result is the same no ?
 > 
-> Otherwise, a resource table must be retrieved via an SCM call. That table will
-> list all dynamic resources (if any) and possibly the static ones.
-> The static resources may also come from a resource table embedded in the rproc
-> firmware instead.
-> """
+> DMA in some corner cases might have already be charged for the next transfer.
+> Do you have a synchronisation between DMA start and residue check?
 > 
-> ?
-
-Concise, thanks for the effort.
-
-> 
-> > +	 *
-> > +	 * Here, we call rproc_elf_load_rsc_table() to check firmware binary has resources
-> > +	 * or not and if it is not having then we pass NULL and zero as input resource
-> > +	 * table pointer and size respectively to the argument of qcom_scm_pas_get_rsc_table()
-> > +	 * and this is even true for Qualcomm remote processor who does follow remoteproc
-> > +	 * framework.
-> > +	 */
-> > +	ret = qcom_scm_pas_get_rsc_table(pas->pas_ctx, table, table_sz, &output_rt,
-> > +					 &output_rt_size);
-> > +	if (ret) {
-> > +		dev_err(pas->dev, "Error in getting resource table: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	kfree(rproc->cached_table);
-> 
-> Would this not simply discard the firmware binary table in the "split case"?
+> I.o.w. this may work for your case, but in general it's not guaranteed. The proper
+> read of residue is to: pause DMA --> read residue --> resume DMA.
 > 
 
-For split case, it will have resource table from remote processor firmware,
-which we are passing as part of qcom_scm_pas_get_rsc_table(), TZ firmware
-will append dynamic one after authentication the static one and will copy
-the final table in output_rt and its total size in output_rt_size.
+I'll use the new callback function dma_async_tx_callback_result() which 
+should prevent that and allows to remove the spinlock at the same time
 
-> Konrad
-> 
-> > +	rproc->cached_table = output_rt;
-> > +	rproc->table_ptr = rproc->cached_table;
-> > +	rproc->table_sz = output_rt_size;
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >  static unsigned long qcom_pas_panic(struct rproc *rproc)
-> >  {
-> >  	struct qcom_pas *pas = rproc->priv;
-> > @@ -425,7 +481,7 @@ static const struct rproc_ops qcom_pas_ops = {
-> >  	.start = qcom_pas_start,
-> >  	.stop = qcom_pas_stop,
-> >  	.da_to_va = qcom_pas_da_to_va,
-> > -	.parse_fw = qcom_register_dump_segments,
-> > +	.parse_fw = qcom_pas_parse_firmware,
-> >  	.load = qcom_pas_load,
-> >  	.panic = qcom_pas_panic,
-> >  };
-> > @@ -435,7 +491,7 @@ static const struct rproc_ops qcom_pas_minidump_ops = {
-> >  	.start = qcom_pas_start,
-> >  	.stop = qcom_pas_stop,
-> >  	.da_to_va = qcom_pas_da_to_va,
-> > -	.parse_fw = qcom_register_dump_segments,
-> > +	.parse_fw = qcom_pas_parse_firmware,
-> >  	.load = qcom_pas_load,
-> >  	.panic = qcom_pas_panic,
-> >  	.coredump = qcom_pas_minidump,
-> > 
 
 -- 
--Mukesh Ojha
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
