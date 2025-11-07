@@ -1,55 +1,58 @@
-Return-Path: <devicetree+bounces-235980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D4AC3EDD6
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 09:04:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF76C3EE00
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 09:07:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A43284E1AB9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 08:03:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9326A3A5E6A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 08:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC68530EF63;
-	Fri,  7 Nov 2025 08:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BBFA30F555;
+	Fri,  7 Nov 2025 08:07:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a5gUzf3v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="akH+XDkX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B228526F29F;
-	Fri,  7 Nov 2025 08:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D32127494;
+	Fri,  7 Nov 2025 08:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762502636; cv=none; b=IPgpcOysVisOiLptE4oAC39tI14irTdh/UXif+GplD9ugUnX+BRfmYK8SZmCI4qzFF1ija/IZRfyYQYdefEt7ID11sQlCaO7RurQEeaqIbA6HLGOOgJkQ6dK42JBBkLIVYuMx2xJsMbxxU97UZ0WPQsBCg+LeEMUntjgJaIWdno=
+	t=1762502829; cv=none; b=SDD2Z/2xsZOJzQCk3p9QluvkhMISeSxscRJ4V0rexWUKjIdz6Wuy9i++pXv0G5XIgeRnFiyUMGlvAdvNoPOU5WY21YfO1BWWB93nl3WulOQgIY26+EC44tHddBJYVoW9wzWgeMFo1yWln7gqvIQwWVLS/PAUsVVkCGG35F5MhQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762502636; c=relaxed/simple;
-	bh=bGskAMY+uWAftqyTkJL9tBJ1uC8eJ0A3f7tgghA9lj8=;
+	s=arc-20240116; t=1762502829; c=relaxed/simple;
+	bh=HBIK1GiJMOogWFE7QnovK5jtCIImRIAOv5n/huCbSt0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SjZr7CnqzN0y/5zwtUTtRxLO89B/zU6ZrOchCZFg4YDxe8wGNsWJlD+brtculrQ4cv3hL2Dnk6jx/Z/Q6HIemfmLZ1CZhtyTsqmd370mnlD8yv2Z+LwknFf0fvbUDEzMAZcp8q2GDVAI1zKzuH1aMaj941KBBq5Yk7aiEyIVCIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a5gUzf3v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCFF3C4CEF8;
-	Fri,  7 Nov 2025 08:03:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dj5Fc9RqUapS3eGevrqtHrlGfH1KQlSFs3YaM3P7WBXeAcmU7fQtZd5a1oV+hU2faXcjM8vho7GI7LA1+yjcqGv/0WoBJeuFZjaWFJYcpa8Ju7jo0w39JzndYVfhEIh+yARi9IW40hXpkyPYIGhg6ka5NbJAVzwo73Z4kY2s+b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=akH+XDkX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4EF6C116B1;
+	Fri,  7 Nov 2025 08:07:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762502636;
-	bh=bGskAMY+uWAftqyTkJL9tBJ1uC8eJ0A3f7tgghA9lj8=;
+	s=k20201202; t=1762502828;
+	bh=HBIK1GiJMOogWFE7QnovK5jtCIImRIAOv5n/huCbSt0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a5gUzf3vLPucsJpiEye0JWTMa+WJISsiJ8JCKTWcgUmngBopdTPmbc+Mx3AQaRCV/
-	 Bo1VyLn0R9MutXwwZd9GbLwe6ibHFe096Ao9iFH9vcZSDJo1TZFe4Y6ZoAiYNA/ZVn
-	 gT5NGyv1UnbVrcFMUlB/TAyHKlCcc6JWa0Uay0rZlWG+i8uq8htNtqYcsCj/AxOvyc
-	 yAUolSP+EErGKkxuGaoa34pW8lxIu3REi2ioR6ArKfzyPVgypqYI3M0CnKseKoZNb6
-	 Z0iogIoFH6xsJnG4CcqAfNFDVhTFn/AQPbLRmrY1PY5fE7tPJXL7+K066I4t/+y91R
-	 5b2vKDDAjFdSQ==
-Date: Fri, 7 Nov 2025 09:03:54 +0100
+	b=akH+XDkXoTVbqWlRInUz6loheIC4pAhoEucFetdLhZ2KMww65IIvBFLlHYkUJbh6q
+	 jbZ7ETmrPkOdB9ah5Jz2OooWo9EoilXHUVBOh9cUu2MTdp61OCJF7HT+uSVnJpSVJ5
+	 qcDU5HqYog9rMy41ZAt3GlOMSPYomJ776izVRkTusMtF1xaDelE7WaRY8Yv43BU3a2
+	 VseZIZ4hHbZ27dj2HvZyXBD4n3PEvDIP6gvWRnO+fh717y4wMc4nOO97szersggjNP
+	 Y6o4OW0fnK7TEeasnHHpKVZGYnPRDxaMqjpgOnDB8HEIFakO+T7rdACGS/mFgmk8l0
+	 d7uWlbaIM/Pgg==
+Date: Fri, 7 Nov 2025 09:07:05 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, davidm@egauge.net, ~lkcamp/patches@lists.sr.ht, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: usb: maxim,max3421: convert to DT schema
-Message-ID: <20251107-agile-alligator-of-philosophy-03d923@kuoka>
-References: <20251107001812.10180-1-rodrigo.gobbi.7@gmail.com>
+To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+Cc: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org, 
+	robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com, 
+	konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com, bod@kernel.org, 
+	conor+dt@kernel.org, krzk+dt@kernel.org, saravanak@google.com, 
+	prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com, iommu@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/6] of: iommu-map parsing for multi-cell IOMMU
+Message-ID: <20251107-active-uber-impala-8d9118@kuoka>
+References: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,34 +61,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251107001812.10180-1-rodrigo.gobbi.7@gmail.com>
+In-Reply-To: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
 
-On Thu, Nov 06, 2025 at 09:06:22PM -0300, Rodrigo Gobbi wrote:
-> Convert legacy maxim,max3421.txt to proper format.
+On Tue, Nov 04, 2025 at 02:20:59PM +0530, Charan Teja Kalla wrote:
+> The iommu-map property has been defined for the PCIe usecase and has
+> been hardcoded to assume single cell for IOMMU specification, ignoring
+> the #iommu-cells completely. Since the initial definition the iommu-maps
+> property has been reused for other usecases and we can no longer assume
+> that the single IOMMU cell properly describes the necessary IOMMU
+> streams. Expand the iommu-map to take #iommu-cells into account, while
+> keeping the compatibility with the existing DTs, which assume single
+> argument. 
 > 
-> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-> ---
-> Hi, all
+> Unlike single iommu-cell, it is complex to establish a linear relation
+> between input 'id' and output specifier for multi iommu-cells. To handle
+> such cases, rely on arch-specific drivers called through
+> of_iommu_xlate() from of_iommu layer, aswell it is expected the 'len'
+> passed is always 1. In the of_iommu layer, the below relation is
+> established before calling into vendor specific driver: 
 > 
-> At this v2, I`m reverting my previous idea about documenting new properties
-> because this is just a conversion from txt file. At v1, a question
-> was raised about that:
+> a) For platform devices, 'rid' defined in the iommu-map tuple indicates
+> a function, through a bit position, which is compared against passed
+> input 'id' that represents a bitmap of functions represented by the
+> device.
 > 
-> On 10/9/25 22:34, Krzysztof Kozlowski wrote:
-> > maxim,vbus-en-pin, maxim,gpx-pin, reset pin and supplies. Also add a
-> > Why new properties? You must explain not only the difference but WHY you
-> > are doing this.
-> In this case, I`ve kept the maxim,vbus-en-pin prop because it was already
-> described in the legacy file and the driver expects that property according
-> to [1] and [2].
+> b) For others, 'rid' is compared against the input 'id' as an integer
+> value.
+> 
+> Thus the final representation when #iommu-cells=n is going to be,
+> iommu-map = <rid/functionid IOMMU_phandle cell0 .. celln len>;, where
+> len = 1.
+> 
+> The RFC for this patch set is found at [2].
 
-This is not a commit msg. Apply this patch from the lists and look
-whether the information is there.
+So that's a v2 or v3? Then number your patchsets correctly.
 
-So again:
+Try yourself -  b4 diff cover.1762235099.git.charan.kalla@oss.qualcomm.com
 
-You commit msg explain any unusual changes - like modifying binding
-while ONLY converting it - and WHY you are doing the unusual changes.
+Works? No.
+
+Where is the changelog?
 
 Best regards,
 Krzysztof
