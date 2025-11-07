@@ -1,105 +1,164 @@
-Return-Path: <devicetree+bounces-236145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D6BBC406BE
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 15:50:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDDAC407A9
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 15:58:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3490A1889A25
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 14:50:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 999A84F6CAF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 14:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252A92F1FCA;
-	Fri,  7 Nov 2025 14:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF153271E1;
+	Fri,  7 Nov 2025 14:54:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UabSgmvo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA0F02E172D
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 14:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7490D305079
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 14:54:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762526999; cv=none; b=bJV+VVGw4dk5HWsgp+oVuUFJgAf+o/1RT4+t2EGpt53qMuYiMas0m43q8Jquidc3R0GdGQC+UjExKJ3VkFktvPA6sGUFqtLecUpf+qSpsqifZzw9Y0upSNz/T4BtBJn63YbnvD6QLR5Oogh5xAo7ldr8morPaDORhE8DhF+BbjY=
+	t=1762527284; cv=none; b=Rcc3NohEaxGcDKDPqJ3ye1oWG2oAW/JeusQ9Iu63G4eLnfTbOybG+lDU7q0aoufyeUSVpk9Tk80Qf9pLTepTB0pMKEolw3a3o5yw8vp6kr688HmgYHJpK63V3FNQkTJ+LmotvfCTTitkRFPs1oqA2pSaAtkCFh+V66jarSDAtZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762526999; c=relaxed/simple;
-	bh=9xmlgYIcPDg2cJwx5uGKS37YQZiZmJHaREenlXSoNzY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nRBpFqfPxHog2E4LpduOJOUK42fd1dpMuXwHxIYTCIK2PVaK0fPW5uItHXFe2IKdJzdePOglFMxZzkSRj0180SPIauC2Swq+ReT3xs2l84g5wiWJmdzSHFxcOd64XQUPnGbw3vuXq+0Y8yaCTeznXQZ7NGHUfzyApxzl06O7lJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1vHNmh-0001Tb-JW; Fri, 07 Nov 2025 15:49:51 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Fri, 07 Nov 2025 15:49:52 +0100
-Subject: [PATCH 2/2] arm64: dts: imx8mp-skov: add Rev.C HDMI support
+	s=arc-20240116; t=1762527284; c=relaxed/simple;
+	bh=2Zfuuwknwc5hDDwag7QjI+SHOWoLDfi1+qT/MitF9Bg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rsk2U/hcAM6vw+2sV9t60Pa4zDPUinYRA3NLEACiajbLbOMWLb0dr+YBpCRx3FYORNoyTuEm4oIdrtwmSaIx7vI3XZvBYoCTS+bhI7ehOY9iSE7OPFvQLqrw5R8tbJFbCRcv9UOgGfcPa7PdKj042N0u+ANoQxheYj6ZgVgM3k0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UabSgmvo; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 6D35AC0FAA1;
+	Fri,  7 Nov 2025 14:54:18 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8851B606A6;
+	Fri,  7 Nov 2025 14:54:39 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6F2DA11852830;
+	Fri,  7 Nov 2025 15:54:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762527278; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=+RrXgoXV3dOkYMPWy7ye0LNIEtkAh8Hi3Fbrz8hJU1M=;
+	b=UabSgmvoubfdbwzci/9uOC7fJEPw6GOF8Fasdn8B7uOlMKhFhIM5ZwpUlN+9SDngbieIqZ
+	HQHt5My33IA6wAxM9AChk/cTQc0vjcq8kru7CSTvP4ecPMVY+EX8QTA0tNiEs7CrIxuU5T
+	3BJHFiZK5/VUQx/VQPU4tAIgOflU7D60845fS5V5KhnkUahbL3swn/7iK3VuKAFNQ3MKiO
+	hdaj+YbgBvcKKs/UPTR+z5IwSguHu3WyUuBVHTlKa3aQr/Gq4TBgZct//mvAcc0YYsptqF
+	i6Vl9Vkis8v3Eu5U0a5YeK1rEpnLD0miq1FgEIeFn3T6FWp0qxShSivDf+iJsg==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject:
+ Re: [PATCH v3 5/5] regulator: ltm8054: Support output current limit control
+Date: Fri, 07 Nov 2025 15:54:28 +0100
+Message-ID: <13882660.uLZWGnKmhe@fw-rgant>
+In-Reply-To: <aQzpvR-030zgA82E@smile.fi.intel.com>
+References:
+ <20251106-ltm8054-driver-v3-0-fd1feae0f65a@bootlin.com>
+ <20251106-ltm8054-driver-v3-5-fd1feae0f65a@bootlin.com>
+ <aQzpvR-030zgA82E@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251107-v6-18-skov-revc-hdmi-v1-2-595549e5b496@pengutronix.de>
-References: <20251107-v6-18-skov-revc-hdmi-v1-0-595549e5b496@pengutronix.de>
-In-Reply-To: <20251107-v6-18-skov-revc-hdmi-v1-0-595549e5b496@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Marco Felsch <m.felsch@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; boundary="nextPart3017360.e9J7NaK4W3";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
 
-From software perspective, Rev.C HDMI and Rev.B HDMI don't differ since
-the panel is connected via HDMI and the touchscreen is connected via
-USB. However, the bootloader firmware expects to find a dts with the
-correct revc-hdmi compatible.
+--nextPart3017360.e9J7NaK4W3
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Date: Fri, 07 Nov 2025 15:54:28 +0100
+Message-ID: <13882660.uLZWGnKmhe@fw-rgant>
+In-Reply-To: <aQzpvR-030zgA82E@smile.fi.intel.com>
+MIME-Version: 1.0
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/Makefile                  | 1 +
- arch/arm64/boot/dts/freescale/imx8mp-skov-revc-hdmi.dts | 8 ++++++++
- 2 files changed, 9 insertions(+)
+Hello Andy,
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 525ef180481d331e9c4decd092b7b831c497b67e..9da685641aa9e102a8566f0e58c0b57bb822c7d0 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -233,6 +233,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-mi1010ait-1cp1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-bd500.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-tian-g07017.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-toradex-smarc-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-hdmi.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-hdmi.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..c263e8fd048464df637604a8776aef345877e4f6
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revc-hdmi.dts
-@@ -0,0 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+
-+#include "imx8mp-skov-revb-hdmi.dts"
-+
-+/ {
-+	model = "SKOV IMX8MP CPU revC - HDMI";
-+	compatible = "skov,imx8mp-skov-revc-hdmi", "fsl,imx8mp";
-+};
+On Thursday, 6 November 2025 19:32:29 CET Andy Shevchenko wrote:
+> On Thu, Nov 06, 2025 at 03:11:50PM +0100, Romain Gantois wrote:
+> > The LTM8054 supports setting a fixed output current limit using a sense
+> > resistor connected to a dedicated pin. This limit can then be lowered
+> > dynamically by varying the voltage level of the CTL pin.
+...
+> > +	ctl_dac = devm_iio_channel_get(&pdev->dev, "ctl");
+> > +	if (IS_ERR(ctl_dac)) {
+> > 
+> > +		if (PTR_ERR(ctl_dac) == -ENODEV)
+> > +			return ERR_PTR(-EPROBE_DEFER);
+> 
+> Hmm... Are you sure about this?
+
+The only case where I want to defer is if the IO channel hasn't been created 
+yet. From what I've read in iio_channel_get(), -ENODEV is returned specifically 
+in this case. For example in fwnode_iio_channel_get_by_name() you have:
+
+```
+if (!IS_ERR(chan) || PTR_ERR(chan) != -ENODEV)
+		return chan;
+```
+
+> > 
+> >  	priv->rdesc.type = REGULATOR_VOLTAGE;
+> >  	priv->rdesc.owner = THIS_MODULE;
+> > 
+> > +	if (ctl_dac) {
+> > +		priv->ctl_dac = ctl_dac;
+> > 
+> > +		INIT_WORK(&priv->ctl_work.work, ltm8054_do_ctl_work);
+> > +		init_completion(&priv->ctl_rw_done);
+> 
+> Do devm-helpers.h APIs help with something here? Does
+> devm_add_action_or_reset() help with not covered cases?
+
+I could definitely use a cleanup action to flush the ctl pin work item instead 
+of doing it in a remove() function. It would also remove the gotos below.
+
+Thanks,
 
 -- 
-2.47.3
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart3017360.e9J7NaK4W3
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmkOCCQACgkQKCYAIARz
+eA4N4w//ZG1VoCZ4y9y5UR6dM4AuEhYD/K3kpUS7HDu/6tc4OXhOcyY0JiA/Ac+Y
+7F146YlRsdWF9djikBdjH7j4JYlioJ4VL68oSfHoQ2akSPDOzcGWWWEpJLAyLvqc
+Qincr9O2NRkEdB9mn7rza5I9o6/tQDw6ZSy4Qdy7PKLWRd579b72PUaUGCdHAD9F
+TWhdvOqpkC+Wzj7E5vF4sl62C7C3gn/Pf8JfLD6LVI1X9Wu4RyXDVfmotejBwZIO
+0XSlWCf851fKAsVr++aaz8oRAnHb3K0x3ix7nNu7Za5mI19Ur7ODGNoKfOcYHg3C
+VVQx1N6yBgZa9RSTNmmxj92AVNc/71oBuQiBt3c0VWv92VAmE7YudGRfCmXOZdix
+iDzuy0B/8C5GO+9TQnBkrz0RSzc7AAmi9hGCmYt8FHkmPBh94CBtshnyIcb7Lpqg
+NGc4AoNMXMFb1rJINlgtRIsdo14VMIOdUMGJELskYaOPwJns28UMblvDfGEKBZFE
+5MEPTQDE6QUBjTG2VzZRnWRPze0LrO5ZsQQFH55mTp8L8Kjvnpg7TxUJrpTB5LAJ
+zgPSpKju2Tz95hUFeQ7JXo8g2YfRsb3wsZQwwmaKpY8Xc2XnkwX62IHmlrRgmGhH
+N3+nEdXAYRL0zz6VGB612VYzp0PWOwfCSajMoLp6awsmqYr325s=
+=FJSm
+-----END PGP SIGNATURE-----
+
+--nextPart3017360.e9J7NaK4W3--
+
+
 
 
