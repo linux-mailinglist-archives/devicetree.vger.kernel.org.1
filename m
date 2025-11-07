@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-235946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E08C3EAD7
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:02:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 469F3C3EAF9
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:04:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 084801884E23
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:02:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCF4418845C9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0F0306B10;
-	Fri,  7 Nov 2025 07:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C8C3054EE;
+	Fri,  7 Nov 2025 07:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="binHR/LT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q9+0K/kb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B85D302774;
-	Fri,  7 Nov 2025 07:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4A418E1F;
+	Fri,  7 Nov 2025 07:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762498929; cv=none; b=bX6DvArsdu249hQPII3kQQB2QEZcnY7i6B7adPc/crmLg9feWx3R04iNLOn9Md2DRWCfwP15jeVajK7KHi3Ji2INJjzm9PfVnHYNw9VKCdpvIwWvOphym51JXTvR2Coxjmt8cZVxtYfTaM50TmTndbgjFl5ChkJTb0BEpLXy5xw=
+	t=1762499077; cv=none; b=EUeSfpSw9eJS11HUwTT8+oM2pO6Ls+zFD9OPVZmtsD0X086o+2qhsVc6WRpnPuHT99IQvl0ka7aJPQ35rpt/CJaKO+Kdwy8rFcO+MzJ36e6BjzkVMHAp0B8qnh90ZQwj6JneywZT5IO7j3BT2m7+gTb46eIfxFEcgeWHZuGcwQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762498929; c=relaxed/simple;
-	bh=G4CqDOtfxOKTgeFOtwIs7RbRKrnzGiTvRUcznIc1IJs=;
+	s=arc-20240116; t=1762499077; c=relaxed/simple;
+	bh=ZzdjrBBlMeSOGWdtx4G4ccZROK+5jV3t7rncDsjjWtE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oe4q9ezVVIZJEWPkMRHNJY8AMP0gmSEe/Ro/pwOG9nsqKfbu0ei1UC3C3a27f3De+4nasHeitHEzO+7VKjOmtUghez1xV1WKpa651UF2mEUECJNVeVgOotqwv4qCoF/JoVYOms2LXNG3+Am+sIDpawAVwafsYsHSqq5r9s6/pYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=binHR/LT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01BBDC4CEF8;
-	Fri,  7 Nov 2025 07:02:01 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JXoPQx/4Rdh2ESJ0PvpgSuzuZxWp+LU9IpNls6a9QipiweT2ofwRSHJdcUh3gwRbzmwa8wPG2exy1rYsVX9b4OprRHvOiqDY5Ch2vRpwHll+AZv47aKibWtnRO4Q1cvK/fsHj2V9ODRfpfUzsJzoeAuFbeGK8+wVYQWdzzgIAL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q9+0K/kb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 972DAC19421;
+	Fri,  7 Nov 2025 07:04:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762498928;
-	bh=G4CqDOtfxOKTgeFOtwIs7RbRKrnzGiTvRUcznIc1IJs=;
+	s=k20201202; t=1762499076;
+	bh=ZzdjrBBlMeSOGWdtx4G4ccZROK+5jV3t7rncDsjjWtE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=binHR/LTPx71bcgUOpp3wHw9VEYHZiJIYpwcCwT+C9Pwl26sij79RYSMEv0KrWSCI
-	 lYNKwlLw9+Pf487HDvLhCAk1IRxCqPT6sNSjOgFCiGoeBk6UHtNrH7hf7UnzuXepav
-	 FovCpkbsIUh3wPcVwMKKWCT/JpTkJv/jsRC4+WThT5aV6pVvWzD9CyiSc8BEbJK0Wx
-	 kqTRtjLEcgK5RF7LMY5KTNz78b0oeXC1QIY2iBZgQlM2hqU1NIk01RvCXZbwq26yCW
-	 Z7O63MTYVs4cMR5bP712CX0TQUkDXPPXjTFGEolrgnWI3dQOQLIGpYwXa4gkXD/k+A
-	 cr3ESFyspUD0Q==
-Message-ID: <a8952b46-94b6-4fe5-a5be-d69aa41d44cd@kernel.org>
-Date: Fri, 7 Nov 2025 08:02:00 +0100
+	b=q9+0K/kb3FFLYCDxlaZZTX2SnCgV7hnlANsa9go5j+9i2MaTV1CScM8NtiKi2u1PK
+	 jfF0khxhNaSmFz+oiX+jxXtoTMO1U/p5Zkw7bdbdtuXxVbCfYF6Mkg9OERGNCM/jVd
+	 so+2YaHzwplUxbsdpitEjRAixTXa0zbNzulMmDyRYmcQ8GhZXQKlFX+KOm5Ltx5z9O
+	 vmRSz4jUn/XcWTome9+m1hU1Y2elgzwSqEEaOK7cpyqWO2COFIx0ELlLuV16yFVKdm
+	 1H0rqXZ8UWF6xL1MzBKN54M6Dj0TkmI2Vu0o1QH/NYytpxMxUx3cPKVF8e279FjGJI
+	 gnFctuhjVOIbw==
+Message-ID: <fef8569d-0172-48a6-b2cb-0e9023589ced@kernel.org>
+Date: Fri, 7 Nov 2025 08:04:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,37 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/13] soc: qcom: Simplify with
- of_machine_get_match_data()
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Thomas Gleixner
- <tglx@linutronix.de>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Daniel Lezcano <daniel.lezcano@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
- <20251106-b4-of-match-matchine-data-v1-11-d780ea1780c2@linaro.org>
- <odmsib3dsxzzggq4gcx7gmh6vq3crlv25fz4z2l2ntezvx6gbi@uelqojwjjait>
+Subject: Re: [PATCH v7 0/2] Add driver support for ESWIN eic700 SoC clock
+ controller
+To: Xuyang Dong <dongxuyang@eswincomputing.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ bmasney@redhat.com, troy.mitchell@linux.spacemit.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+References: <20251023071658.455-1-dongxuyang@eswincomputing.com>
+ <1abb85b.c11.19a582bcbbc.Coremail.dongxuyang@eswincomputing.com>
+ <039a3a41-c60f-4296-afd9-2bf3467574ca@kernel.org>
+ <6d2d7ddb.cbd.19a5cf92465.Coremail.dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -126,67 +108,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <odmsib3dsxzzggq4gcx7gmh6vq3crlv25fz4z2l2ntezvx6gbi@uelqojwjjait>
+In-Reply-To: <6d2d7ddb.cbd.19a5cf92465.Coremail.dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/11/2025 04:19, Dmitry Baryshkov wrote:
-> On Thu, Nov 06, 2025 at 08:07:18PM +0100, Krzysztof Kozlowski wrote:
->> Replace open-coded getting root OF node, matching against it and getting
->> the match data with new of_machine_get_match_data() helper.
+On 07/11/2025 07:20, Xuyang Dong wrote:
+>>>
+>>>   Gentle ping. Looking forward to your reply. Thank you very much!
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Please do not top post.
 >>
->> ---
+>> You did not add any maintainers of these drivers, so I would not put it
+>> high on our priority list.  Ask yourself - why would community
+>> maintainer like to take unmaintained driver? So the community maintainer
+>> would maintain, right? To add him more work? If that is the case, isn't
+>> better not to take the driver? You see where I am getting at?
 >>
->> Depends on the first OF patch.
->> ---
->>  drivers/soc/qcom/qcom_pd_mapper.c | 17 ++---------------
->>  1 file changed, 2 insertions(+), 15 deletions(-)
+>> Also, I don't see any involvement in reviews from eswin. The only
+>> reviews here where from DT maintainers, Troy and Brian (I hope I did not
+>> miss anyone), so again - you just put all the effort on us and then ping
+>> us...
 >>
->> diff --git a/drivers/soc/qcom/qcom_pd_mapper.c b/drivers/soc/qcom/qcom_pd_mapper.c
->> index 1bcbe69688d2..07198d44b559 100644
->> --- a/drivers/soc/qcom/qcom_pd_mapper.c
->> +++ b/drivers/soc/qcom/qcom_pd_mapper.c
->> @@ -613,25 +613,12 @@ static void qcom_pdm_stop(struct qcom_pdm_data *data)
->>  static struct qcom_pdm_data *qcom_pdm_start(void)
->>  {
->>  	const struct qcom_pdm_domain_data * const *domains;
->> -	const struct of_device_id *match;
->>  	struct qcom_pdm_data *data;
->> -	struct device_node *root;
->>  	int ret, i;
->>  
->> -	root = of_find_node_by_path("/");
->> -	if (!root)
->> -		return ERR_PTR(-ENODEV);
->> -
->> -	match = of_match_node(qcom_pdm_domains, root);
->> -	of_node_put(root);
->> -	if (!match) {
->> -		pr_notice("PDM: no support for the platform, userspace daemon might be required.\n");
->> -		return ERR_PTR(-ENODEV);
->> -	}
->> -
->> -	domains = match->data;
->> +	domains = of_machine_get_match_data(qcom_pdm_domains);
->>  	if (!domains) {
->> -		pr_debug("PDM: no domains\n");
->> +		pr_notice("PDM: no support for the platform or no domains, userspace daemon might be required.\n");
->>  		return ERR_PTR(-ENODEV);
->>  	}
 > 
-> Here you are mixing two cases:
-> - There is not match in the table (in which case the driver should print
->   a notice)
+> Hello Krzysztof Brian Troy,
 > 
-> - There is a match in the table, but the data is NULL (the platform
->   doesn't have PDM domains). In this case there should be no notice.
+> Would you kindly review the updated v7 patches at your earliest convenience?
+> 
+> Thanks to Krzysztof for your reply.
+> 
+> These patches have already undergone review within our internal team. 
+> The reason for adding eswin maintainers to the mailing list is to ensure 
+> that these colleagues can promptly receive community feedback and stay 
+> informed of the discussions.
 
-
-Why? Existing code printed notice in both cases. Why refactoring which
-tries to keep code functionally equivalent should change it?
-
+Please really, really think through my first paragraph. It seems you did
+not get the point, but understanding the point is essential for all your
+future (and this) upstreaming efforts.
 
 Best regards,
 Krzysztof
