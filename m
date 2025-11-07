@@ -1,164 +1,105 @@
-Return-Path: <devicetree+bounces-235954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D80C3EBA8
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:20:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8175DC3EBCC
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:26:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 343F74E4122
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:20:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6CB204EB30A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:26:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFCE1242D97;
-	Fri,  7 Nov 2025 07:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A62B307AE3;
+	Fri,  7 Nov 2025 07:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BN3he29Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ihHs0DEL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CDB1DA60D;
-	Fri,  7 Nov 2025 07:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140FB302745;
+	Fri,  7 Nov 2025 07:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762499997; cv=none; b=J8PyGUQC1/VDbViPeAI74BCUhHKsdzzrKCZbEWIuUxBZHX+IhZo74v9flfZeNXwZdiyOR6l1E8SI2+oLEjPgRfuNHhvT2fFTXzFBEW8RzIVmMjlS34U0LTrGFDnQxpkUgRu9sXOim8Aglh14soDI8MO5Thcs2NxIprQYezjQmTs=
+	t=1762500397; cv=none; b=NpfHmd+jqE1tUQ11vrm0EwVo7HIU2uBxT5S8UpjbTyhKSPKmUOLFS9ybs1XYMa4+GQRH0xDJiXAYFK52PK63eabzJMh6hZw5amEW9zkIh2lp0pqG9/uv8fEjEZgaLXP7oBjU3PakpXtLjRn1AIAd39YWoIrModrIX/t53/+wbuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762499997; c=relaxed/simple;
-	bh=MZUadLgnrcIzLLSlwBtT4BlpZpL1e9kjawOscJDDXro=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NKQAtVYhgcIareGRC6t0f8gb0A0I4OCwZy4cVV0sXfapUrKJx9GkPRE0fD6tNjCZ8t4G+B5Hau+9MZKPMZBlc3pw1m7q8saYDE8drE0rRYDDQ3A5Sd6mX1GyKErBsvPqglEn6KIdVfc5IEAEwNBOQh+ULjhDVHDm0SAuJ7WM/3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BN3he29Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13DAAC113D0;
-	Fri,  7 Nov 2025 07:19:54 +0000 (UTC)
+	s=arc-20240116; t=1762500397; c=relaxed/simple;
+	bh=jIST4hjxq5HplSFzRwdaLH4nRDcRq+Ij0iiF33GFWmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F1/g0kG6kFtKSHSCAhKZwLyKN4H/Da7aMLcF4Cih0qDs0v1HMFsC/Jo6niWdUpyzAKDAZdGR1I1UELJ7uJwjUTAbiNV0KIBU0/IdUbhxKRrjXe6Uh1D7DrZnNQb+E+3lST43vuqH+j3v1fmeqR1sMrcGcbgnh/4g9ec1qbOQpFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ihHs0DEL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10497C113D0;
+	Fri,  7 Nov 2025 07:26:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762499997;
-	bh=MZUadLgnrcIzLLSlwBtT4BlpZpL1e9kjawOscJDDXro=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BN3he29Q5vCbeMkOnZTsHHSh+Lb08fGR7USWMTuSHbLKYGUHZ/HSkP+kLtlOopzs3
-	 vuyXlnHy8UBRXv/atyCIukNUFPOnbX51MblcDifBQJK2ZKUFHLITvmCaR6CybbGmWR
-	 v7ijpdVKmtV3f2VbEv+B4QZukvXHtxI3ftVQgcITLsipegPEsHFlZQHQTMVg+PCPg0
-	 CD1qPy2Hv03BIN6IGRNa3ErsLyJaphO7DUoDWWqo9t2cn/l9XgUuYMop5PtF3T5L8J
-	 2MnaOQ+pEwuVFcSY8N18dm4t86L70OXga+UnTkDugJ9tDDDYRJXSThEnkJNLI+P3YF
-	 oEw39qRaK3UBA==
-Message-ID: <d7770d3e-bc35-4539-a927-0387cdec2b2c@kernel.org>
-Date: Fri, 7 Nov 2025 08:19:53 +0100
+	s=k20201202; t=1762500396;
+	bh=jIST4hjxq5HplSFzRwdaLH4nRDcRq+Ij0iiF33GFWmg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ihHs0DELxwvTDxAejhC7XR/P/lOOp9kNziuIGKr0/hKdLMvVafh8sWYxq1aSBHsBM
+	 Ir5qPxk9ttx7nJXnowB3Fm5V8OU1Q7kLtLBxAgcCTdu89igvTwN8N9thlolYnOoAsm
+	 /Nb9fI7W0UGw6ZONWsmpwuGCZJFWuvMcrKnDfXTpaxyS8TkGVNZPc8ML6adS52xHnl
+	 vJgCvw+RoUgKqQ6H9GWgvZcpjlNNFa1X76UB04ocACm4X3jdxgwDL4rDBbfMwhubzE
+	 tFUqqen+YkPk7HMxNJdQErgBR4YckhJSxcBGeJr6fEz01PJOPxewe+t+GA9StzmMS3
+	 tkSPhTv2RLDyw==
+Date: Fri, 7 Nov 2025 08:26:34 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
+	"irving.ch.lin" <irving-ch.lin@mediatek.com>, linux-kernel@vger.kernel.org, sirius.wang@mediatek.com, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, netdev@vger.kernel.org, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Richard Cochran <richardcochran@gmail.com>, jh.hsu@mediatek.com, 
+	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	Qiqi Wang <qiqi.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	linux-arm-kernel@lists.infradead.org, Michael Turquette <mturquette@baylibre.com>, 
+	vince-wl.liu@mediatek.com, Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v3 02/21] dt-bindings: power: mediatek: Add MT8189 power
+ domain definitions
+Message-ID: <20251107-polar-satisfied-kestrel-8bd72b@kuoka>
+References: <20251106124330.1145600-1-irving-ch.lin@mediatek.com>
+ <20251106124330.1145600-3-irving-ch.lin@mediatek.com>
+ <176243607706.3652517.3944575874711134298.robh@kernel.org>
+ <20251106-spearhead-cornmeal-1a03eead6e8a@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dts: reset: add support for cix sky1 resets
-To: Gary Yang <gary.yang@cixtech.com>, p.zabel@pengutronix.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, cix-kernel-upstream@cixtech.com
-References: <20251107033819.587712-1-gary.yang@cixtech.com>
- <20251107033819.587712-4-gary.yang@cixtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251107033819.587712-4-gary.yang@cixtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251106-spearhead-cornmeal-1a03eead6e8a@spud>
 
-On 07/11/2025 04:38, Gary Yang wrote:
-> There are two reset conctrollers on Cix Sky1 Soc.
-> One is located in S0 domain, and the other is located
-> in S5 domain.
+On Thu, Nov 06, 2025 at 05:17:39PM +0000, Conor Dooley wrote:
+> On Thu, Nov 06, 2025 at 07:34:37AM -0600, Rob Herring (Arm) wrote:
+> > 
+> > On Thu, 06 Nov 2025 20:41:47 +0800, irving.ch.lin wrote:
+> > > From: Irving-CH Lin <irving-ch.lin@mediatek.com>
+> > > 
+> > > Add device tree bindings for the power domains of MediaTek MT8189 SoC.
+> > > 
+> > > Signed-off-by: Irving-CH Lin <irving-ch.lin@mediatek.com>
+> > > ---
+> > >  .../power/mediatek,power-controller.yaml      |  1 +
+> > >  .../dt-bindings/power/mediatek,mt8189-power.h | 38 +++++++++++++++++++
+> > >  2 files changed, 39 insertions(+)
+> > >  create mode 100644 include/dt-bindings/power/mediatek,mt8189-power.h
+> > > 
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > ./Documentation/devicetree/bindings/clock/mediatek,mt8189-clock.yaml:25:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 > 
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-> ---
->  arch/arm64/boot/dts/cix/sky1.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+> pw-bot: changes-requested
 
+I think this was bot's false positive - that's a different file, not
+changed here. The patch seems fine.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-Please start paying attention to this.
-
-> 
-> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-> index d21387224e79..fc68734f37c2 100644
-> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
-> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-> @@ -348,6 +348,13 @@ i3c1: i3c@4100000 {
->  			status = "disabled";
->  		};
->  
-> +		src_fch: reset-controller@4160000 {
-> +			compatible = "cix,sky1-rst-fch", "syscon";
-> +			reg = <0x0 0x04160000 0x0 0x90>;
-> +			#reset-cells = <1>;
-> +			status = "okay";
-Why?
-
-> +		};
-> +
->  		iomuxc: pinctrl@4170000 {
->  			compatible = "cix,sky1-iomuxc";
->  			reg = <0x0 0x04170000 0x0 0x1000>;
-> @@ -568,6 +575,13 @@ ppi_partition1: interrupt-partition-1 {
->  			};
->  		};
->  
-> +		src: reset-controller@16000000 {
-> +			compatible = "cix,sky1-rst", "syscon";
-> +			reg = <0x0 0x16000000 0x0 0x1000>;
-> +			#reset-cells = <1>;
-> +			status = "okay";
-
-No, really, why?
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
