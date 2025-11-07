@@ -1,308 +1,196 @@
-Return-Path: <devicetree+bounces-236181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B2EC40E11
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 17:29:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5557FC40E2F
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 17:30:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26C353B4363
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 16:26:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE55618870E8
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 16:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AEFF2848AF;
-	Fri,  7 Nov 2025 16:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A3932E73D;
+	Fri,  7 Nov 2025 16:30:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PzawPGQT"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="tSd55e3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com [209.85.222.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D96128003A;
-	Fri,  7 Nov 2025 16:26:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDF22777E0
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 16:30:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762532766; cv=none; b=E+MJfG9yeAnqd+KnOc4rid1Db1DWZvkYZ4TxAm0/0HsVHJpl29nAcGAsNvvrOJ/9h9luuS+uOceWAn8FAYghzffZDyI8rGt+PEh9T6wwc6QSIdIPhepEn4yzkKz44d6e1Ggx6w55EMD0A4s7fBuiVGftz2apwBSQQJkEsOgRYZ8=
+	t=1762533054; cv=none; b=cY54VwnoT0R+f7Z3FPMYPUC1aozjbxxS18wFE+k6Sh2p0Y06gnp/BDdS6U4sKDz0HTVF2y2a+zifYgWqNgakL1rTUqzbEkf/s8EcsZDvb9sD4laR04RNRvU7V3DdvBTNIv+duXJcW3dIymfLd7AXjXP/EoImMVN7YugxKvoomIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762532766; c=relaxed/simple;
-	bh=PHPATmNt8kaxQF+BqKnO/NhP4pQunc7NGKgbOLo/wkY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SabdYR+2uppQ0uh4389ciAN8TuzDhcq9vd6uU03TwakmszxD14OyEarKzpjSAwQmdJC9C21MwAzUv518u9+73XIGK6Ha+K6MGxyGx5NU8pfuscUPgiC/E/XFwK3uZHzR1OirfsAmBNiPx8Q/fYbi4HT5w1QpARnTrxV5ov2hnR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PzawPGQT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A7FkLLF630889;
-	Fri, 7 Nov 2025 16:25:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DB/UCOqHnpALAfKhtycs9LeBvRVIeZ8ZLA5pJK7PKaU=; b=PzawPGQT/C9LdZDC
-	400LrcMCSNX0kVC3b7+IpPDBLOg/WjaKG/VRAgBKutFdWGt8pn/0T1fv8NFq5qOU
-	jhMbVAthnUU7jFzWhPwVUlx/+cQXSrzRYmzxKmoZuDlWBfma1kHf01Px7xq3NIW0
-	3TnJB76sdhtOjV2Sca3eji+eurBxNyX8hQP6N8eNdSY846Qq4hBnE4ep/GXhaecw
-	2QKvhNVGRMS1lDuDU9nS7jVLXb4kfLxycjsd85OFScVegOtWija3mQdZD2nBf7cN
-	nqGSatbS94iWibDzuwTRYQfHnWDyo3v8gwAvcTULOX/liRl9L/BBfRXq5pIZBVaB
-	gpI2XA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a922337s0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 07 Nov 2025 16:25:52 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5A7GPp5t028644
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 7 Nov 2025 16:25:51 GMT
-Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.24; Fri, 7 Nov 2025 08:25:46 -0800
-From: Vikram Sharma <quic_vikramsa@quicinc.com>
-To: <bryan.odonoghue@linaro.org>, <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <quic_svankada@quicinc.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_nihalkum@quicinc.com>, <quic_vikramsa@quicinc.com>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v6 2/2] arm64: dts: qcom: qcs8300: Add support for camss
-Date: Fri, 7 Nov 2025 21:55:21 +0530
-Message-ID: <20251107162521.511536-3-quic_vikramsa@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251107162521.511536-1-quic_vikramsa@quicinc.com>
-References: <20251107162521.511536-1-quic_vikramsa@quicinc.com>
+	s=arc-20240116; t=1762533054; c=relaxed/simple;
+	bh=al2zZOjy1s9k9uG0J5tQ/tOLemu8rJl5iPBRWP7bhxU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=goMUfOuHCnabECzV3lLqZUIcIeDrxc7ToS7njVi59kiPwUf70cSUWiat5bS4gIMOuZODDOUJYdQzLsrv2CWAKmBTx/oYNfkZAY/ttgEyA3wo2P4ZVoT72TIE3OX6KKKg3pKJQ4g3suwpobtLouTU6XhxBn7NyrW0nYqOuUmwFIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=tSd55e3W; arc=none smtp.client-ip=209.85.222.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
+Received: by mail-qk1-f193.google.com with SMTP id af79cd13be357-8b22b1d3e7fso94654385a.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 08:30:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1762533051; x=1763137851; darn=vger.kernel.org;
+        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=AVrp19hgKD6fn901dtJIwIEFWrRkipQPPUAVv1GRELc=;
+        b=tSd55e3Ww1TieEAWlgavJ36jxccyWd1wLl+BhxPRIzihrjcOyKL//Et6/RzSn8lv7t
+         aMhsAzdBF0qsZoIOw1wmylm4Any9yuYWimY5q6BvTsltlpWLNvHfppEcoGnO+532r/XX
+         ctzZOLGjwHFzN398rhhAM5cotqNMh6XYdWEVlrTUCVgHAoBcKzZwLpICw1Qc5qasMLjo
+         AHcrDVhWf+gkIFwTDToXxs/kZ3gTtoOZKaBhjTg0AQl8Fx3Xg++6BR5hOK4QXffcZCOq
+         JwpCDJiDgG9HQP1nf5jdIkek/Zn1WaAPQpe3QBCajal/zFOUS1f5HWRJRuGfQk8PtIpw
+         9PwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762533051; x=1763137851;
+        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=AVrp19hgKD6fn901dtJIwIEFWrRkipQPPUAVv1GRELc=;
+        b=myJSEa/9T+wZwY9Bkf99wUQBLM1ygFB0C5PnNEhO/ZZMULyS6D7eUDjJtpgV4wfFke
+         jmPyHRdl8zWKTeIdPfJQZe0ZGlIJg+cGWeEEJuaAK9i5Zk1Wn6UfqT3OTFQ/KkN5ta32
+         5lUXpBKg4haJzxOiZGMf3Y5fEH3lbbj+Iga0qgoLA4m7JdPf0LluiS+UqqzvVMitMub7
+         znyU/8trY6ukW5ibgvRFs2tzXfPOtLWdYAvt8dkIFRan0hvZtjajXKXau8wYKosFaJSY
+         vwdhR0D/oGLRnDek/L3Za065fYNVmO0PA2bMiw2C35NjXP3aagNT42j16SFhAf0rjJ91
+         IJ/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWkw3R1eisIx+h2hnaIfQy7TGKUaFcgvntnIyWDYVye8L7mBG7NHxB0AcGobYABes7Yflg5cF7GQ48z@vger.kernel.org
+X-Gm-Message-State: AOJu0YwheBX5ddGvf4b21rTpyLgtv+zNFIkDJfGa5HUwT6q9q1syq+Op
+	8tl+ZP7MJzEd6KzqqUtr+Cjf2tZu+v+dOahJUMq664r/ZuHxUXuWhBJAhSGqsYlIGag=
+X-Gm-Gg: ASbGncv52mpgpmFDca81PCh6bONbJKw/dVkPOkzQOuXIrNP7z9DFIhbDSGWMw60VFCC
+	/OyfYjVQ5UGlwGHIV2sQ48/CEsx88oOcszoMBQ5pMSgYQEIkLfG1ZHl6Zct0ZuJHLFpDIjSowIP
+	MPAfWAU38AL0lEh2O15FirMEACET9+9VDez8n3W7CnhDcalQillFdbsPrmb0VJQv2a/JEILsvuc
+	+mtc2hP+eikvvivw44DgVXnyzLep5XdEkv+p0QPawhQ4bmhHWdj6jVK3rXEPZa5Miei0WaKANtP
+	yPnvtmCIis8HtzaW6WPGH/6tOCMz5VvtBW/jlTf0lGQ5KMCx9asQi0DG9JU/HMsmz/CWuQExzaV
+	s8mKElfz8SZRvuJtFWGfddt68N9fWziQM5bQPGlNXk1Lqz4bO0+/gHNrj21VkGScpm+G4T8vM27
+	BPZb03lg==
+X-Google-Smtp-Source: AGHT+IFz/UlnV0OMfhq87mlorD8XvK8vi/cdNG2hzp5O044mKb/ma/Fx+Ie3hyppzhpm+e9TfHmw3g==
+X-Received: by 2002:a05:620a:1a23:b0:89e:72fa:ba8b with SMTP id af79cd13be357-8b24529f1f3mr550636985a.34.1762533051280;
+        Fri, 07 Nov 2025 08:30:51 -0800 (PST)
+Received: from ?IPv6:2606:6d00:11:ef24::c41? ([2606:6d00:11:ef24::c41])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8b23580b649sm435035985a.48.2025.11.07.08.30.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Nov 2025 08:30:50 -0800 (PST)
+Message-ID: <e99ff4f12d52eee03075f911e6b904290b47a961.camel@ndufresne.ca>
+Subject: Re: [PATCH v4 2/5] media: ioctl: Add pixel formats NV12MT_COL128
+ and NV12MT_10_COL128
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>, Sakari Ailus	
+ <sakari.ailus@linux.intel.com>, Laurent Pinchart	
+ <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Florian Fainelli
+ <florian.fainelli@broadcom.com>, Broadcom internal kernel review list	
+ <bcm-kernel-feedback-list@broadcom.com>, John Cox
+ <john.cox@raspberrypi.com>,  Dom Cobley <dom@raspberrypi.com>, review list
+ <kernel-list@raspberrypi.com>, Ezequiel Garcia	
+ <ezequiel@vanguardiasur.com.ar>
+Cc: John Cox <jc@kynesim.co.uk>, Stefan Wahren <wahrenst@gmx.net>, 
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Date: Fri, 07 Nov 2025 11:30:48 -0500
+In-Reply-To: <20250701-media-rpi-hevc-dec-v4-2-057cfa541177@raspberrypi.com>
+References: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com>
+	 <20250701-media-rpi-hevc-dec-v4-2-057cfa541177@raspberrypi.com>
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-Q5o4lQgKYevCwoTHFi6w"
+User-Agent: Evolution 3.58.1 (3.58.1-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA3MDEzNSBTYWx0ZWRfX8eCnqWIAgY4D
- yn7ZOfJHWj9Gghvuqr3JPyABTfPdGG6xb+1NefCrQkiYPc0qstbIYH27433FNJCJTGnEEItTCcZ
- Lzr4t7G8vP9FUCyo2R/8uHdvHwo6EAbXh73BN0zzVWy0R53ns63ek/PN+Jazpbpki9GQ78/CMHv
- jV8yQD4htjW54FbIuNv1n8+Ht1gAWPkPbj1mYUNS/zT4doN9NVrGw3BObM1UeWke/VNrZ8wBY4f
- B4ayAbcbbtsLSXLD237BmH7GejVuto5S8qFhREFsW1JjRkuswDy3Nxuo/uPV1vLX1Xt0oOYbkdw
- dAEZaX6vFxHGJSY/nKYzrc358sbfATsqgsebCw8dkP8kwnxYSdMBE87Ht8CretsK40RCsyV4Cq8
- /HSIJofph4/qzxz9lXCmvKtLo1prxQ==
-X-Authority-Analysis: v=2.4 cv=Csmys34D c=1 sm=1 tr=0 ts=690e1d90 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=49fK2wAub7YDTLIv2YQA:9
- a=FOEl7-wtY1rPn7cj:21 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
- a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-GUID: IyYdVxUOFdEnPNvedShlfPek0n2dVHgo
-X-Proofpoint-ORIG-GUID: IyYdVxUOFdEnPNvedShlfPek0n2dVHgo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-07_04,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511070135
 
-Add changes to support the camera subsystem on the QCS8300.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
----
- arch/arm64/boot/dts/qcom/monaco.dtsi | 172 +++++++++++++++++++++++++++
- 1 file changed, 172 insertions(+)
+--=-Q5o4lQgKYevCwoTHFi6w
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/monaco.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
-index 816fa2af8a9a..774255c3f6fc 100644
---- a/arch/arm64/boot/dts/qcom/monaco.dtsi
-+++ b/arch/arm64/boot/dts/qcom/monaco.dtsi
-@@ -4776,6 +4776,178 @@ videocc: clock-controller@abf0000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		camss: isp@ac78000 {
-+			compatible = "qcom,qcs8300-camss";
-+
-+			reg = <0x0 0xac78000 0x0 0x1000>,
-+			      <0x0 0xac7a000 0x0 0xf00>,
-+			      <0x0 0xac7c000 0x0 0xf00>,
-+			      <0x0 0xac84000 0x0 0xf00>,
-+			      <0x0 0xac88000 0x0 0xf00>,
-+			      <0x0 0xac8c000 0x0 0xf00>,
-+			      <0x0 0xac90000 0x0 0xf00>,
-+			      <0x0 0xac94000 0x0 0xf00>,
-+			      <0x0 0xac9c000 0x0 0x2000>,
-+			      <0x0 0xac9e000 0x0 0x2000>,
-+			      <0x0 0xaca0000 0x0 0x2000>,
-+			      <0x0 0xacac000 0x0 0x400>,
-+			      <0x0 0xacad000 0x0 0x400>,
-+			      <0x0 0xacae000 0x0 0x400>,
-+			      <0x0 0xac4d000 0x0 0xf000>,
-+			      <0x0 0xac60000 0x0 0xf000>,
-+			      <0x0 0xac85000 0x0 0xd00>,
-+			      <0x0 0xac89000 0x0 0xd00>,
-+			      <0x0 0xac8d000 0x0 0xd00>,
-+			      <0x0 0xac91000 0x0 0xd00>,
-+			      <0x0 0xac95000 0x0 0xd00>;
-+			reg-names = "csid_wrapper",
-+				    "csid0",
-+				    "csid1",
-+				    "csid_lite0",
-+				    "csid_lite1",
-+				    "csid_lite2",
-+				    "csid_lite3",
-+				    "csid_lite4",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "csiphy2",
-+				    "tpg0",
-+				    "tpg1",
-+				    "tpg2",
-+				    "vfe0",
-+				    "vfe1",
-+				    "vfe_lite0",
-+				    "vfe_lite1",
-+				    "vfe_lite2",
-+				    "vfe_lite3",
-+				    "vfe_lite4";
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_CORE_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
-+				 <&camcc CAM_CC_CSID_CLK>,
-+				 <&camcc CAM_CC_CSIPHY0_CLK>,
-+				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY1_CLK>,
-+				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY2_CLK>,
-+				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
-+				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
-+				 <&gcc GCC_CAMERA_SF_AXI_CLK>,
-+				 <&camcc CAM_CC_ICP_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CLK>,
-+				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CLK>,
-+				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
-+			clock-names = "camnoc_axi",
-+				      "core_ahb",
-+				      "cpas_ahb",
-+				      "cpas_fast_ahb_clk",
-+				      "cpas_vfe_lite",
-+				      "cpas_vfe0",
-+				      "cpas_vfe1",
-+				      "csid",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer",
-+				      "csiphy_rx",
-+				      "gcc_axi_hf",
-+				      "gcc_axi_sf",
-+				      "icp_ahb",
-+				      "vfe0",
-+				      "vfe0_fast_ahb",
-+				      "vfe1",
-+				      "vfe1_fast_ahb",
-+				      "vfe_lite",
-+				      "vfe_lite_ahb",
-+				      "vfe_lite_cphy_rx",
-+				      "vfe_lite_csid";
-+
-+			interrupts = <GIC_SPI 565 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 564 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 359 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 759 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 758 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 604 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 545 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 546 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 547 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 360 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 761 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 760 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 605 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csid_lite0",
-+					  "csid_lite1",
-+					  "csid_lite2",
-+					  "csid_lite3",
-+					  "csid_lite4",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "tpg0",
-+					  "tpg1",
-+					  "tpg2",
-+					  "vfe0",
-+					  "vfe1",
-+					  "vfe_lite0",
-+					  "vfe_lite1",
-+					  "vfe_lite2",
-+					  "vfe_lite3",
-+					  "vfe_lite4";
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "ahb",
-+					     "hf_0";
-+
-+			iommus = <&apps_smmu 0x2400 0x20>;
-+
-+			power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
-+			power-domain-names = "top";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ade0000 {
- 			compatible = "qcom,qcs8300-camcc";
- 			reg = <0x0 0x0ade0000 0x0 0x20000>;
--- 
-2.34.1
+Hi Dave,
 
+sorry for the long delay.
+
+Le mardi 01 juillet 2025 =C3=A0 17:01 +0100, Dave Stevenson a =C3=A9crit=C2=
+=A0:
+> Add V4L2_PIXFMT_NV12MT_COL128 and V4L2_PIXFMT_NV12MT_10_COL128
+> to describe the Raspberry Pi HEVC decoder NV12 multiplanar formats.
+>=20
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> ---
+> =C2=A0drivers/media/v4l2-core/v4l2-ioctl.c | 2 ++
+> =C2=A0include/uapi/linux/videodev2.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+| 4 ++++
+> =C2=A02 files changed, 6 insertions(+)
+>=20
+> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-co=
+re/v4l2-ioctl.c
+> index 650dc1956f73..3bdcbb12bb30 100644
+> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
+> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+> @@ -1381,7 +1381,9 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *f=
+mt)
+> =C2=A0	case V4L2_PIX_FMT_NV16M:	descr =3D "Y/UV 4:2:2 (N-C)"; break;
+> =C2=A0	case V4L2_PIX_FMT_NV61M:	descr =3D "Y/VU 4:2:2 (N-C)"; break;
+> =C2=A0	case V4L2_PIX_FMT_NV12MT:	descr =3D "Y/UV 4:2:0 (64x32 MB, N-C)"; =
+break;
+> +	case V4L2_PIX_FMT_NV12MT_COL128: descr =3D "Y/CbCr 4:2:0 (128b cols)"; =
+break;
+> =C2=A0	case V4L2_PIX_FMT_NV12MT_16X16:	descr =3D "Y/UV 4:2:0 (16x16 MB, N=
+-C)"; break;
+> +	case V4L2_PIX_FMT_NV12MT_10_COL128: descr =3D "10-bit Y/CbCr 4:2:0 (128=
+b cols)"; break;
+> =C2=A0	case V4L2_PIX_FMT_P012M:	descr =3D "12-bit Y/UV 4:2:0 (N-C)"; brea=
+k;
+> =C2=A0	case V4L2_PIX_FMT_YUV420M:	descr =3D "Planar YUV 4:2:0 (N-C)"; bre=
+ak;
+> =C2=A0	case V4L2_PIX_FMT_YVU420M:	descr =3D "Planar YVU 4:2:0 (N-C)"; bre=
+ak;
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev=
+2.h
+> index 9e3b366d5fc7..f0934d647d75 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -697,6 +697,10 @@ struct v4l2_pix_format {
+> =C2=A0#define V4L2_PIX_FMT_NV12MT_16X16 v4l2_fourcc('V', 'M', '1', '2') /=
+* 12=C2=A0 Y/CbCr 4:2:0 16x16 tiles */
+> =C2=A0#define V4L2_PIX_FMT_NV12M_8L128=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 v4l2=
+_fourcc('N', 'A', '1', '2') /* Y/CbCr 4:2:0 8x128 tiles */
+> =C2=A0#define V4L2_PIX_FMT_NV12M_10BE_8L128 v4l2_fourcc_be('N', 'T', '1',=
+ '2') /* Y/CbCr 4:2:0 10-bit 8x128 tiles */
+> +#define V4L2_PIX_FMT_NV12MT_COL128 v4l2_fourcc('N', 'c', '1', '2') /* 12=
+=C2=A0 Y/CbCr 4:2:0 128 pixel wide column */
+> +#define V4L2_PIX_FMT_NV12MT_10_COL128 v4l2_fourcc('N', 'c', '3', '0')
+> +			/* Y/CbCr 4:2:0 10bpc, 3x10 packed as 4 bytes in a 128 bytes / 96 pix=
+el wide column */
+> +
+
+Nothing to report here, it looks good. I can't remember, was there a reason=
+ not
+to add this format to ./drivers/media/v4l2-core/v4l2-common.c ?
+
+Nicolas
+
+> =C2=A0
+> =C2=A0/* Bayer formats - see http://www.siliconimaging.com/RGB%20Bayer.ht=
+m=C2=A0*/
+> =C2=A0#define V4L2_PIX_FMT_SBGGR8=C2=A0 v4l2_fourcc('B', 'A', '8', '1') /=
+*=C2=A0 8=C2=A0 BGBG.. GRGR.. */
+
+--=-Q5o4lQgKYevCwoTHFi6w
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQ4euAAKCRDZQZRRKWBy
+9LGvAQCRyeU868ClTZ8TOWAm+66FB54e7PZmn1fgF9EQ0WmVqgD+OzrEF4eJkgtd
+36v1rz7DSr3XtmcoiIfkHMDBuatl4wA=
+=KmUC
+-----END PGP SIGNATURE-----
+
+--=-Q5o4lQgKYevCwoTHFi6w--
 
