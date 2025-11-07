@@ -1,117 +1,142 @@
-Return-Path: <devicetree+bounces-236149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8E4C408D1
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:11:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A442FC4093C
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:26:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6A9114E4862
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:11:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A717188294B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:27:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95FB31AF09;
-	Fri,  7 Nov 2025 15:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6E82DF13B;
+	Fri,  7 Nov 2025 15:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="cJZE8GZg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H9BfHPkM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE5B2E6CBC;
-	Fri,  7 Nov 2025 15:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93DDA221299;
+	Fri,  7 Nov 2025 15:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762528299; cv=none; b=cjjWZlr8SV2rG2KzdO96grxPgm/5lFrsx/mBQ4j1W9reqrOeyUWC0mk/N9rjn+vIoXVO0RRLLmh+oLgyf9qQh26QFiXbbm3JHO+JojUzqZgOXtHViXPAXJkN+0hJKhgLw3LtQNJRSMGXvryHvmljEOcpboWVatX9Njn6vRc7mtI=
+	t=1762529191; cv=none; b=ewNsSojXtptUts8y0ecWQZSbDqFtMVbUbHm99yiUwnwWq8ipJI21u7V2q8IuLGMcb2ZUVtTc4grJ0ZjnEdYlMByXVwmmnxdwLmfLcsfShwTwsrz5fCtxnp0nzjNUO6p9L0oFjxmt36DkVj9AwXtrxMciwheDf6KGp5wv5nm1pD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762528299; c=relaxed/simple;
-	bh=yJlWwZ3a12j7omKvOIsqDNOsBjKnkPkdtmc70OuHjRQ=;
+	s=arc-20240116; t=1762529191; c=relaxed/simple;
+	bh=baOzrg6WLDWZp9M79PyYQfB79ylAdrJWG+GiTqVGNNM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rhuUxhGlELHUK90jbXRzE7bvDJdkcjXJL7Rhcerxj0XcL3PPb+aoulSk5na+c81aI52v3foBEXD4Pey2Ixh+gPTQ0v/vpmXC1o0PLPX/XncDMKkzeNKS0LiPDWixO4q5LCxtjfmoGgWOgo2fU2GM7JkomAb9SwxTPV5l7leEl44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=cJZE8GZg; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4d32Zg6GRGz9tNR;
-	Fri,  7 Nov 2025 16:11:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762528284;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Vy+NNLP394OwYxNRijQPvvDO7IMwiwg8RBHcds0M8FQ=;
-	b=cJZE8GZg+N198UtZfYrAVmdKAtJBrrVVkioaD4ZOc9/TDy1z63PTOeAv6j+SNs8/bPzYC9
-	JOs9bWu2tpIO6uuFgG6AKrXOPYr5cteqWw+aGCwS2s2/qWM3CU7j1k1wkKJXuRv2yIGHhU
-	DK4p0zb8zrtlKhxpafKd6RV9/K4EEpYV/ahYx5idiMrpFIddLaL+V5Q3V+Cc1RhUz4jGl/
-	E/AaRx5C1kIUJU1pS9Nn8HcZujIGvbsObt1nkRrcFHviOZLerSOkKniqitprQbzSq/oEDb
-	uS0DAVnEXSiH0xp/lumQsu6fIDy2GC3b8MMUDf+FwXsA4/0CnqCC1cLaUd6dbg==
-Message-ID: <d2c9cac9-17cc-4bc6-8322-bc43edbf45d1@mailbox.org>
-Date: Fri, 7 Nov 2025 16:11:15 +0100
+	 In-Reply-To:Content-Type; b=YxGmvNMrtSnV463bDwRfnXbMGZUPEL1ruAptyW/QRI7C1RZRJPnFgiSdoJBRBpw77th/+ONY/kBuz4AoCqzg4BSTVDVu/N5wMT9+dONJidVWXCo0U6K5fxDPiDgSvGd2II+8e2/75Tk/s+M+FrzXUluclNmFhUMCpJ1/VxdNs4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H9BfHPkM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 822E9C16AAE;
+	Fri,  7 Nov 2025 15:26:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762529191;
+	bh=baOzrg6WLDWZp9M79PyYQfB79ylAdrJWG+GiTqVGNNM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=H9BfHPkMGdkEVn7Fp0J80Q+ABNz3swYxQUBPh3MIn4chNs+BiWUWENZbm0u076gh2
+	 GBDVIzm9hR4LhZ9CEww5s05K24kgFcH5Plpc87Q9HoGBJHhvo7183tpDbE9XhKZjQq
+	 3ZCEafO5smA0iCyAM+iuH1SoaRYjyLnFQEH5JKYSqszQJfbq2wNKEmzb/N5s95S9kj
+	 h7Facz9Jkzsxy4Zwj8GlnA2zA6j8plOxiHDwMH8ydo2TkGeSsKkXTGnLvCArSNHZNy
+	 EReNlB293NjzrIkkmUH1XQpupPu4QTRzy0GAbM77M/bj9MH0L4CxDly1WXmMk9OP2M
+	 4/+nmW4f0EXIw==
+Message-ID: <da878742-aefc-4cf2-be13-41b6e5f12eba@kernel.org>
+Date: Fri, 7 Nov 2025 16:26:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/2] drm/bridge: add support for lontium lt9211c bridge
-To: Nilesh Laad <nilesh.laad@oss.qualcomm.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, venkata.valluru@oss.qualcomm.com,
- jessica.zhang@oss.qualcomm.com, Yi Zhang <zhanyi@qti.qualcomm.com>,
- Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
-References: <20251107-add-lt9211c-bridge-v2-0-b0616e23407c@oss.qualcomm.com>
- <20251107-add-lt9211c-bridge-v2-2-b0616e23407c@oss.qualcomm.com>
- <30b5f19b-1ce9-4239-bf0a-d83d647608ce@mailbox.org>
- <aQ35tvwp90qm57Cl@hu-nlaad-hyd.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] memory: tegra: Add support for DBB clock on
+ Tegra264
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251105195342.2705855-1-thierry.reding@gmail.com>
+ <20251105195342.2705855-3-thierry.reding@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aQ35tvwp90qm57Cl@hu-nlaad-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251105195342.2705855-3-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: f902cdf5302f7a21187
-X-MBO-RS-META: ii1978emft34czfyu9hytrgg97y7df3e
 
-On 11/7/25 2:52 PM, Nilesh Laad wrote:
-> On Fri, Nov 07, 2025 at 02:20:58PM +0100, Marek Vasut wrote:
->> On 11/7/25 2:02 PM, Nilesh Laad wrote:
->>> From: Yi Zhang <zhanyi@qti.qualcomm.com>
->>>
->>> LT9211c is a Single/Dual-Link DSI/LVDS or Single DPI input to
->>> Single-link/Dual-Link DSI/LVDS or Single DPI output bridge chip.
->>> Add support for DSI to LVDS bridge configuration.
->> How does this differ from existing drivers/gpu/drm/bridge/lontium-lt9211.c ?
->> Can existing lt9211 driver be extended instead ? If not, why ? Details
->> please ...
-> LT9211 and LT9211C differ completely in register programming sequences.
-> Even lontium mentioned that register configuration are different for lt9211 and lt9211c.
+On 05/11/2025 20:53, Thierry Reding wrote:
 
-Lontium seems to often suggest, that users should use their provided 
-register patches without thinking about the content at all.
+> 
+> diff --git a/drivers/memory/tegra/tegra186-emc.c b/drivers/memory/tegra/tegra186-emc.c
+> index 74be09968baa..7a26d8830172 100644
+> --- a/drivers/memory/tegra/tegra186-emc.c
+> +++ b/drivers/memory/tegra/tegra186-emc.c
+> @@ -33,6 +33,7 @@ struct tegra186_emc {
+>  	struct tegra_bpmp *bpmp;
+>  	struct device *dev;
+>  	struct clk *clk;
+> +	struct clk *clk_dbb;
+>  
+>  	struct tegra186_emc_dvfs *dvfs;
+>  	unsigned int num_dvfs;
+> @@ -452,6 +453,13 @@ static int tegra186_emc_probe(struct platform_device *pdev)
+>  		return dev_err_probe(&pdev->dev, PTR_ERR(emc->clk),
+>  				     "failed to get EMC clock\n");
+>  
+> +	emc->clk_dbb = devm_clk_get_optional_enabled(&pdev->dev, "dbb");
+> +	if (IS_ERR(emc->clk_dbb)) {
+> +		err = PTR_ERR(emc->clk_dbb);
+> +		dev_err(&pdev->dev, "failed to get DBB clock: %d\n", err);
 
-Do you have access to the register documentation, and can you compare 
-LT9211 and LT9211C register layout? Are they identical or do they differ?
+Entire code was converted to dev_err_probe, see other clk_get() and
+similar in the driver. Please switch to that syntax, so dropping earlier
+line with assignment and printing 'err' in printk.
 
-> Nearly every function would require duplicated logic with if (chip_type) branching,
-> as register sequence are completely different.
-> Having both sequences in single file is not looking good, hence want to merge as separate driver.
 
-Can we somehow use regmap_register_patch() and register patches in 
-driver data to avoid duplication ?
 
--- 
 Best regards,
-Marek Vasut
+Krzysztof
 
