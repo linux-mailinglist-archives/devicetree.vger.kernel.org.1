@@ -1,220 +1,168 @@
-Return-Path: <devicetree+bounces-236158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB49C40B76
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:58:41 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B35C40BCA
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 17:03:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB2CF3A8CB8
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:58:39 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1F18834FFEA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 16:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD21832B9BA;
-	Fri,  7 Nov 2025 15:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD2D626B0AE;
+	Fri,  7 Nov 2025 16:03:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FxXdlNjf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G8QUOnoT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013036.outbound.protection.outlook.com [52.101.72.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A36CB29ACE5;
-	Fri,  7 Nov 2025 15:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.36
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762531117; cv=fail; b=UUp7aedkHqI40KN5VtXqyZCngQkhRIQAK/ZzPz4tVC2stigeXmjVipE7EBVvS9XvFSf/eSVBFQmZpQcfDihPLw/BM9D+L9Wo8Pw8+jCGqPL1X3r4Gpb8omhUwqChQZl2EfctL1r7nWKRJC+aKebnn556ieO8Hptx8d2Irv4l7Ow=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762531117; c=relaxed/simple;
-	bh=cKxTiXfEg26QanjWwlHBpdV9EjzkQzBWR7uDpptVGGQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=TBql6yySmGoKCOGraCjt1aPOG2JCW3a53Fy5iknJghbBLeL7l8JEd02wsx9z/DuoTvTEZJ3r3VsNecpWnzzyZv9JaWLQHsCR7f/lbfrgtjNG4S4kpXQAITQq2Xn5cBAP8MsYeuWHGmCrGtpZ9F8gxfqgcWIayhfwoSKLhEu2NvE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FxXdlNjf; arc=fail smtp.client-ip=52.101.72.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zGHAJ0FETQo6r96UbjA2VwMGb/JgEFTSuXI27wMhpm9AwnuvhLnbpS1XjcjyU2LnBKib0WnL9tvV0UZlQb50MJI69hBphFnyirwHJbKkZvmRTTGO0jEez9l4f5WRgDDCqBvhNTlletH0WrpiiiqrTXetxZLU4wPAOTtV32xJNR8DlYbyedWsd5UqIu8LUg9kC7vbf9CmnZ9QqVhnEGzQ9+TPCZzlSrCFSJAmZe48s8495y6+qpPowQl4V2smnxNvbfgmqg3hw6F8d0M3eRTcMgjZ+Tokg6y4VT8PaRsD6kAXbTKHL37U7mzW88FyCIYSUfoD8vynsU+ov5PsJEE+ig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a8arjA4Js81pjpng5838Gh/Pt8912EmX44lVjEzB8ZY=;
- b=YOBk9OA6le/BxK0O9Gm6hAxJ4hhdFr1mA2MkWU+oFl8ISnB/Ug1OHSZ9waDhicBM2qHWbuyhLaM25vdhnPkdvInErlMwtTHDift6UP/NE1ZI2VGWG+EHOS9700u9Sp2/eOwUnsC2v3tl7GYpAkn61xzelzpHODnKY094SF/hqMh/uCP1NyUXyQ+pLTfOEUKVgY8yUdgu8d5M4303NXpnRyxH+uSytsj5Jz0EORVNLol5+rKYXraSNBo9kjyMcWnVSYtbcgCbXvp+bHdEsds1GMCbsJ7aRvwy+hl7TJdo/w3AEQVNnA+rbCgSGIoRDOCjtRN7rjjeC4qai+dUnTu7eg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a8arjA4Js81pjpng5838Gh/Pt8912EmX44lVjEzB8ZY=;
- b=FxXdlNjf0MdrNZhNGlOrYVOC0NK2RQ1YOY1ZPY/y0D856+GNh1/pjKJL9iPfvVS0LHoMkfSuamnC6/qwDV5ntfaxxhrQLLgy6lSVgBW6+f2WCF4EIZtCMnM1MevGD1B4PlQ93Mo0MVf+PbC+zRbWLnFoaz2RxAL/I1PgxZtFQaS8M1bx6dXXuMBeX2qzxQyUO/A4pF8BYTWcPP52hUaewsd9bhd9fF9zTh40kVq3Li75rmruFusAFKRKDOxakwwVAL1QBX4qzu3cAG8aARH13C/m/JsZ3HehfWd7plyVNeAQ8cusvhBmdXevPIxlkn57kXLgwaajpHd/K9QgkkKfXQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by DB9PR04MB9673.eurprd04.prod.outlook.com (2603:10a6:10:305::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.9; Fri, 7 Nov
- 2025 15:58:31 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9298.010; Fri, 7 Nov 2025
- 15:58:31 +0000
-Date: Fri, 7 Nov 2025 10:58:21 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jon Nettleton <jon@solid-run.com>,
-	Mikhail Anikin <mikhail.anikin@solid-run.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 04/11] Input: ilitek_ts_i2c: fix warning with gpio
- controllers that sleep
-Message-ID: <aQ4XHWtxukLuSuuB@lizhi-Precision-Tower-5810>
-References: <20251107-imx8mp-hb-iiot-v2-0-d8233ded999e@solid-run.com>
- <20251107-imx8mp-hb-iiot-v2-4-d8233ded999e@solid-run.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251107-imx8mp-hb-iiot-v2-4-d8233ded999e@solid-run.com>
-X-ClientProxiedBy: PH8PR20CA0016.namprd20.prod.outlook.com
- (2603:10b6:510:23c::20) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB30E1DE8AE
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 16:03:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762531399; cv=none; b=KOc3n8S+kI9E0KMQegTWC17jmTYim/yVny3JJ0kzpDCjj2aIiKye2oCUvOpXvdIgHzAfvHXeCVTamoYk1vUeYcl0waafFjyjuISL0HWVLKPOjPMs4+7JuFkX/dxW04uDddye604YBK1nYTkiuSnHjdo0jCBqPL/Bq8MRteJqXQk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762531399; c=relaxed/simple;
+	bh=qCFwJ//QhW/B5vWuFPp8cHMYPh2YmCgeRVCEaVYhBjU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=Pw+eCj6h1nc3ViLYC3KdYlOwuKXv66VkJn/uPFVZrJSIapEiOGzIR2UeohCxFjWpb8k+enUzeFCpVJdG8iwsCT+JymS7XJRmiEqaypYHErjJBQcjCZuwuGG+OAruqxYslbJZG0AYlmpr9mGL90MhQOpLf0X43aJSzeIXOLGcFU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G8QUOnoT; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3ee64bc6b90so649885f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 08:03:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762531396; x=1763136196; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G0mDULtyLau81Hx7l19RN5NkHyi5+qJVHhgWHezFVzM=;
+        b=G8QUOnoT+WfrC+0mg3sxXah0Bi8dGewgekCyk/tQ3+xu3RMTYgkIPMDUdDc023EEyj
+         kT6bTofIVTSfqFy9J0WS+dPFWYLNtVD68NsfSXQbuoQ7AZWMtB95y/lxtq6V+ru0pwpP
+         EIxMkYDTLan405iz0OVjOOOVQOJ/c89FxE59bWkFxxMKXwwtI4tL/CNkcYDelcUhhnkr
+         cdSnqhnEcQ5yu+Exe2Ufpsz8PvsmQlmRF7Yii9Gz4RhBZzWtxHsVfg5r7n4ol34V/vEO
+         FZfOLgYsubyJ4E5BEItfgsepJKnGVd0fM0qwhCR0CXKIECg3mfvUQI9fYsp9pM/Pfk+X
+         aFCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762531396; x=1763136196;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G0mDULtyLau81Hx7l19RN5NkHyi5+qJVHhgWHezFVzM=;
+        b=dosf+eWH7JlHe2HW/FR/7IFK3+8KGJtgzjtNaqREeH+tH7kfNMUPuHsLGasH2WJkpO
+         qOWWOSIFMiJ+IBvC6oUXygOet1LDZ7VF4M7YmT6zejSqyhFDh1CkB0nCeb/Jj8W+azxW
+         JdZ6wLln6MJjE4+bKO0m/MDEj6AMALRQ7do6W/yn35hvYZas7GG+EwxVlDCRGEp1IEHl
+         4r3Ua7rPQJyilRNb7MsPvIBHNAJjgfYjD70rKWWXPn9IhUk6Jr0uzEwYmpM1gXvGxCGz
+         l4S5DbBojDPeWTk1dSaeHuSIKI+eheu7cvXN8jIAUggJJ+Mp5zMieOQCV2ZdSe9/iqte
+         h7IQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUfgh1qDJT2NwwHsS4UjCgqH3oy4IsWygNfvEz4KhvY5AnAPv+kjYMYdgnMhitGdvk5qf8OTYqKKQm1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyH86ca8DTkpbmj4jk085NOtldrMzrcYk2VJNxZqflDxl1htmas
+	IZ3ScGZ1syNt1bNPCViF5ohEZ5OEwTbdnzdNWZHqRh1r2/8KM6vIQY7Q
+X-Gm-Gg: ASbGncvCdhJXMY48GY12Ts+JRJJhBEcpq0ofTh2fEZotYqpxzKuek7Fcq0ZLl+Kud8O
+	qS0z32UMuEFsYYWoyKfuKZjg9fsjYBdnO8yYW+/ffMK6ZQ2gi7IvxTouBgv2ZhwBnG7hs/Z91Ay
+	FlE+izwrS1Ppv6efm+y+DbSOJKTAWw96MK67ee9B7lRuDoi9krf7vHwlBVOwonMGCicCzBKEVwL
+	2ZSaIqywLR6lIlY5trs5/XZ0XCGFYaTksvQuTiWe32MwVUFm+2GoaN+rFbeqCRgN1n67L5P/Kkp
+	v7/fl77zxlh8t3buC+j+GIYwBXIWniGm4vTjEXvtdEextjuuoniiORoMpAX497//hxqm0mebKs0
+	ZXTp/BB3XZa7VES6gq4pzMTZ9MvOrNXz5L719dbZeJrlZWNROksOFtosHKtg9LDr1BVeIVKndVd
+	3astfbiC6ILMleTaEGHcMiRmWKxKBMZQ==
+X-Google-Smtp-Source: AGHT+IGWPgmkF6Tn4YlpwmubMBI4eBl1r/OcD+5NjkjCWh9jwtlH3q0sR0Qg5xX/PiNPpj2joJCdKw==
+X-Received: by 2002:a05:6000:4409:b0:42b:2ac7:7939 with SMTP id ffacd0b85a97d-42b2ac787fcmr514536f8f.3.1762531395848;
+        Fri, 07 Nov 2025 08:03:15 -0800 (PST)
+Received: from Ansuel-XPS24 (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-42abe63e13csm6058016f8f.19.2025.11.07.08.03.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Nov 2025 08:03:15 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] airoha: an7581: USB support
+Date: Fri,  7 Nov 2025 17:02:42 +0100
+Message-ID: <20251107160251.2307088-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|DB9PR04MB9673:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7dc0552d-bf50-4a1b-ea1b-08de1e167fba
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|19092799006|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?VCc1rxOfGJGvCDVTm5h2glhSXcF6P7dmw9BPu6FnZiqVzXeb8uEgdekHe7IG?=
- =?us-ascii?Q?p5Q1IeVlGAFIeFIfxs8EaeSXXNDiRE/9MVYARpAtGHrQ944RgN8rbsEVZj4L?=
- =?us-ascii?Q?NZA+8KsMvxDz4reqaqBOzMTNZNwafZjWus6bSeVs7hQMVm12Tcje5fZrN3yk?=
- =?us-ascii?Q?oC2a9Za/aRvAsAj85fUK6AcEl1YAfMyZrp9URdw3QKEK2D611odRRQFDjF3H?=
- =?us-ascii?Q?PIlkMMoTxv/gYKUeWXcRrlYr+t9cK7me79mgdTtD+kRyJ/DFwpb1CTAItxae?=
- =?us-ascii?Q?ZOy0xwBLGqdVo7eKFoiIqbVMnTlDY6As6w1rDHGKy1HM1oB2H6NmG6ByfBTg?=
- =?us-ascii?Q?lo5BBDWW7KHIbHTmMh4vqGu8msVN1zJYn7qbh60djYAbra8CrRZEMP8f9uin?=
- =?us-ascii?Q?/CCMdOP3DU0KcK9Hh6pdFhl3+yEX1MPwaxEm19vHMPW5S4YkvvWuppd41Ou0?=
- =?us-ascii?Q?f5fNR1oYOo4j6mlflKKAF/VHheP1xIWkn2autZBSmvXvDwTs3Z1YfF7Zt7y8?=
- =?us-ascii?Q?r4texBmHohBGGuUDCDesmjFuWJLmWMQQy/prM60l3tC0A21P8u3LlriQzIbw?=
- =?us-ascii?Q?MiMJTX0eoukeklR0Jx3LQ/IGcRlramLjEN5Ikootfr327S9Qe+oP1sE3hOb8?=
- =?us-ascii?Q?YU3b67Uk6qDSVCVEoGZ0d1C5rofhXQ411fSv76g6R7hdnSW9SrOobCjblWva?=
- =?us-ascii?Q?P+tLM2dOg80flnipLeUkcja8dQGeEyrrYbPvFdajeOHFXFvCpFzwHWa8Ezb5?=
- =?us-ascii?Q?ct9xrI41Fl8uuIf/cc43RY0nJUcKBs5Mgl3eJfWvEZni+0aDA6xFGWY0BmIC?=
- =?us-ascii?Q?8ucFiiwGp/+RzOttuOAvTk9C14uWEBPhi7oKde+eggig71XpFBomz7+DJ5TA?=
- =?us-ascii?Q?KvRHVlV3HWlC9X16+CGdfQrIgsV1ABHBINJ294PS0YgUrmFl9k4udkZseRsg?=
- =?us-ascii?Q?mZznqIY/IryFQsqZzU5F00njE/Sd6SJv2AHo+l9amma/96jEmWyXkT7y4NIl?=
- =?us-ascii?Q?c3A2T1mMlNJ0yAWy/EdROjpkj/oExdBfHk7ZaVkizgbSYwMZDjR8oNlj7YQs?=
- =?us-ascii?Q?F1jyoudW9eXFNJauWbpHmG7y36eo9uC23LZ8w4zGogLQjuWDpn+0mKgyhuv7?=
- =?us-ascii?Q?Hrs5hfw96ePPjyJ6XfqrNwP0lp4R2Mts5bsqjwgHKFU4Q6zbOZq95WBRbrHZ?=
- =?us-ascii?Q?Kjd8qx6B1COPERKdWm4Td5ziawMLljgtmkk3xP2F9fZKYQHzv+gB3OkAawMr?=
- =?us-ascii?Q?XDmGmXaj87pio/yTCtUDNer2gsfDf+QW1RH4urlGUPCD5+4rZWUad7EEB2eO?=
- =?us-ascii?Q?rWUy0UJzyL5Vw/Lpy2CvAlWj9yINQPBnfud1Mmo9TQvKLOBhtqy5N4olin9b?=
- =?us-ascii?Q?EsfgtfmJnyp39SlZSj0yAck2igadlzEd0r9YL/s0+Y2mhH+31eDLYARf9L6Q?=
- =?us-ascii?Q?in2aoTPOHUc8AU3DyN9ZwGfZ3STGmxDYvcfjfh5JcH+82+OhZIoM5urK3aYs?=
- =?us-ascii?Q?zSCWny8kDJ6wzAC7IlQ1k/nD/icSJT/rNxAq?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?+WIfKWuMC/xllO8eqh23QKj06h/cwWrhQHVu0BLGGS+I0XgxQMf1G1b3JMJl?=
- =?us-ascii?Q?/Qrl8tiGL89oS17zkC7V5DcJgI1up3uLQ8uY3R6g+8yRXM47jCivBWpSlKl0?=
- =?us-ascii?Q?/egEeU3v44ptEG3AK/5ByuuzvGgO637YQeeYBPv8rBtkZqqqis8DoChLSKvC?=
- =?us-ascii?Q?Nw3Q+YWrL46kkAIvbOG2h2awpaNrFuCArubR0cY3p6mF+odryw13qSii5HBB?=
- =?us-ascii?Q?KxVq6+EU9EfBWXijVVSSHa7l8EOlrT27H0H/cVwQO9CnArv5Zr1Lj8C4nbDU?=
- =?us-ascii?Q?PSXtsuxG5mrlBNBB7SKqDKnx+BJpVltmjoQejpRGKCczkaVxqDAeyIh85zNG?=
- =?us-ascii?Q?bqSvmuyc4dw4D22sk6K+/x97LoVQRSYMgdhDlAmsrLRAdF/d/M8qnXRCcmmJ?=
- =?us-ascii?Q?i5DeYCNGHYWLRqCkLVdl9R6g+0OcUE5MNsyEHdOob2zzmSNP6TMXTOG++Q6D?=
- =?us-ascii?Q?f2XsLhVjBxI59Rdfw8uIz4Mgzh67LFk2LQJwIE7TQuEr02jstUnBC63WXY9J?=
- =?us-ascii?Q?3DAalnQLrJiIByDxsdqujPfFBL7KZkIBAC0yioSrOVRW/pJUpTra94XHEdNc?=
- =?us-ascii?Q?UaGJSZ8ygoUsZhJFBmClkDprHUiCcDnWu1xNq9RTiiu0dQZa8bEaKppDACUG?=
- =?us-ascii?Q?hKmVT0kNqzfONh26MObVhkH20v5vi31aH60bITQ+P5MAG1je8X4yfpdIKE7A?=
- =?us-ascii?Q?zaMAV6rGxwFxJTLTlUchuxPcoljFRTI1Xkf3H0o17S60gAQ5X+Sg4pqwNNH6?=
- =?us-ascii?Q?gWnGwv72RpozCftw+W1YpwcqHPKyFjUrTw/AtPKZHFVSXJPaJYJoGuYMIis4?=
- =?us-ascii?Q?gMOD3mXyUYiTC+GmZB95YPftZ1mzA1/Q6RyQUEqmRy5KUGrCfBFHhrMT8G+v?=
- =?us-ascii?Q?lOdO4+Rceg7eSwW+LvIwcdmB9QAFldJ0tMR+Hmuiy1k4j9mp+PQ9L6BnROcW?=
- =?us-ascii?Q?w2Gw1Ww9Z1hTE4Syo3ybmsoPBgw4Thl/U05RH/KN6Tkd6/tS2azhj6HgqEsH?=
- =?us-ascii?Q?UcvWLBZTH0JNrpoBQzVAUR+ygjSAL0216vXGVlJmAy8NMl+k914sG2aRX8gl?=
- =?us-ascii?Q?7nMpvh3k0Y5upPh7qb1FErEcsl3Omrqiah+DoPMjbfuCDg3E7IWpwyt7Nv1t?=
- =?us-ascii?Q?w4sNlnMsLTivG6BP7Fpn6WWWISeabQTVG9hr2UbCxUzBiA6vHRP87Uwl6xGX?=
- =?us-ascii?Q?yhoWge6GKu192czooaQ7Rlt6223+VxavvXHDNi0RohZn6owkqIZe2o7ER8Od?=
- =?us-ascii?Q?+FX4SP34vCAO4VxLkd5SdPfLiSPlP9BY73wDec3/nWbKs5ZUwnYNAXDSlhfQ?=
- =?us-ascii?Q?GC/ODqzQwT214Q/jxPkAX3idEVo4Knaq+wV+urZ1kaL6i2haLDBvMFnAFgL5?=
- =?us-ascii?Q?J5/Hqkggj/dG+7LAmTLsf/WO2wZE0W/UXRyo9S+j+paZbwEnNjD4qq2rf231?=
- =?us-ascii?Q?lXqzGSxlJIPKYvtk/NPTI14StD8u6SRMkGE7NYVWcdQr3g+BcfqutluMnM4V?=
- =?us-ascii?Q?lsX4LfkGGHV8MBLzqNES7CGcO3U10vFsRVE2wX2MRrC8gRNRor0ha4x3ox4S?=
- =?us-ascii?Q?uQX9JplZtSHmLc5qSWHklDG2PFzeb3SGTUECdlXk?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7dc0552d-bf50-4a1b-ea1b-08de1e167fba
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 15:58:31.6125
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FA4MaF1+GUMApkVoBgyRMOVgO5t5Pix5l7vgs2Zh6MrwhPOmhnHCoTINXa17PCDlhxKyKNh9NIq2+Pn3MWn9RA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9673
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 07, 2025 at 12:46:11PM +0100, Josua Mayer wrote:
-> The ilitek touchscreen driver uses the non-sleeping gpiod_set_value
-> function for reset.
->
-> When the connected gpio controller needs to sleep as is common for i2c
-> based expanders, this causes noisy complaints in kernel log.
->
-> Reset is not time-critical, switch to the gpiod_set_value_cansleep
-> variant.
+This is a major rework of the old v2 series.
 
-Suggest use simple words
+The SoC always support USB 2.0 but for USB 3.0 it needs additional
+configuration for the Serdes port. Such port can be either configured
+for USB usage or for PCIe lines or HSGMII and these are configured
+in the SCU space.
 
-Switch to using gpiod_set_value_cansleep() when controlling reset_gpio to
-support GPIO providers that may sleep, such as I2C GPIO expanders.
+The previous implementation of a dedicated SSR driver was too
+complex and fragile for the simple task of configuring a register
+hence it was dropped and the handling is entirely in the PHY driver.
 
-Frank
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
->  drivers/input/touchscreen/ilitek_ts_i2c.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/input/touchscreen/ilitek_ts_i2c.c b/drivers/input/touchscreen/ilitek_ts_i2c.c
-> index 0dd632724a003..8c5a54b336816 100644
-> --- a/drivers/input/touchscreen/ilitek_ts_i2c.c
-> +++ b/drivers/input/touchscreen/ilitek_ts_i2c.c
-> @@ -396,9 +396,9 @@ static const struct ilitek_protocol_map ptl_func_map[] = {
->  static void ilitek_reset(struct ilitek_ts_data *ts, int delay)
->  {
->  	if (ts->reset_gpio) {
-> -		gpiod_set_value(ts->reset_gpio, 1);
-> +		gpiod_set_value_cansleep(ts->reset_gpio, 1);
->  		mdelay(10);
-> -		gpiod_set_value(ts->reset_gpio, 0);
-> +		gpiod_set_value_cansleep(ts->reset_gpio, 0);
->  		mdelay(delay);
->  	}
->  }
->
-> --
-> 2.51.0
->
+Everything was reducted to the dt-bindings to describe the Serdes line.
+
+Also the property for the PHY are renamed to a more suitable name and
+everything is now mandatory to simplify the implementation.
+(the PHY are always present and active on the SoC)
+
+Also other unrelated patch are dropped from this series.
+
+Changes v4:
+- Rename PCIe and USB PHY to AN7581
+- Drop airoha,scu (handled directly in driver)
+- Drop dt-bindings for monitor clock in favor of raw values
+- Better describe the usage of airoha,usb3-serdes
+- Simplify values of dt-bindings SSR SERDES
+
+Changes v3:
+- Drop clk changes
+- Drop SSR driver
+- Rename property in Documentation
+- Simplify PHY handling
+- Move SSR handling inside the PHY driver
+  Link: https://lore.kernel.org/all/20251029173713.7670-1-ansuelsmth@gmail.com/
+
+Changes v2:
+- Drop changes for simple-mfd
+- Rework PHY node structure to single node
+- Drop port-id property in favor of serdes-port and
+  usb2-monitor-clock-sel
+- Make the SSR driver probe from the clock driver
+
+Christian Marangi (4):
+  dt-bindings: soc: Add bindings for Airoha SCU Serdes lines
+  dt-bindings: phy: Add documentation for Airoha AN7581 USB PHY
+  phy: move and rename Airoha PCIe PHY driver to dedicated directory
+  phy: airoha: Add support for Airoha AN7581 USB PHY
+
+ .../bindings/phy/airoha,an7581-usb-phy.yaml   |   71 +
+ MAINTAINERS                                   |   11 +-
+ drivers/phy/Kconfig                           |   11 +-
+ drivers/phy/Makefile                          |    5 +-
+ drivers/phy/airoha/Kconfig                    |   23 +
+ drivers/phy/airoha/Makefile                   |    4 +
+ drivers/phy/airoha/phy-an7581-pcie-regs.h     |  494 +++++++
+ drivers/phy/airoha/phy-an7581-pcie.c          | 1290 +++++++++++++++++
+ drivers/phy/airoha/phy-an7581-usb.c           |  614 ++++++++
+ include/dt-bindings/soc/airoha,scu-ssr.h      |   11 +
+ 10 files changed, 2520 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+ create mode 100644 drivers/phy/airoha/Kconfig
+ create mode 100644 drivers/phy/airoha/Makefile
+ create mode 100644 drivers/phy/airoha/phy-an7581-pcie-regs.h
+ create mode 100644 drivers/phy/airoha/phy-an7581-pcie.c
+ create mode 100644 drivers/phy/airoha/phy-an7581-usb.c
+ create mode 100644 include/dt-bindings/soc/airoha,scu-ssr.h
+
+-- 
+2.51.0
+
 
