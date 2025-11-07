@@ -1,132 +1,326 @@
-Return-Path: <devicetree+bounces-236151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D83C40957
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:28:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04317C409CC
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:35:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 29F3B4F12A4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:28:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9178B1A447BE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:36:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D853332C317;
-	Fri,  7 Nov 2025 15:28:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65DDC32D7FA;
+	Fri,  7 Nov 2025 15:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bpAAEzE6"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MEq4rgTh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013038.outbound.protection.outlook.com [40.107.162.38])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2AD1E9B0D
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 15:28:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762529329; cv=none; b=grRcXi6KxTFzFKHNkIsehFxrUY8c/XpJ77yjf+ZNxuRTaY7DrugkqIzEhhMv27idK0GpwtXc8zFsAI8RqQC5WgfCdSw4eGKgTELEunXA6UpBTze/W21AeNCdgjYFm/Ut/klDaLaDwcGA0dGYzUk8TpFDsbP6N3jFTPE22q0KZD0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762529329; c=relaxed/simple;
-	bh=on+0lfNYd2qRQ5EohElifDfUVwjZgh8Fp9lemjJw8Q8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Fvs50QOmuqPeOO9coT4nTkRbTDCEzLzHT3dUHa8QP0uoBH70RBWtuLn9yQdO0+Y0q1krkE2z8NLvruGhXB8wWGPUBjzmIGGzNnm9Z3/l1t3/d7lk6IAWB4ea5GosgOq0NaePeXWWPAzXli1sg9ttowOpppHw1henFTFvOwlFMvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bpAAEzE6; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-64034284521so1473181a12.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 07:28:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762529326; x=1763134126; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=om+pxjglHnG3GE2SnITLVrnlYEBEuJnFX0jyMAWe+ik=;
-        b=bpAAEzE6qugsHG/BSG5H8YDNfQdbVpYCURVVZFBpr0zX+VRrgykhf4a/mNpFwXdRKO
-         YJh93b4TumbET357txnsS8CfJ0JjnbG3XpAaQiJ5FDjmS8WE/Z1IcK42FX1dPtwVpw3K
-         g1vQrcNgge8sXiaYzION+suRV8WKwuWpkOwiH2FJ1P3FxyQ4zC7EAeN2zKgWj9hyOj0N
-         UF0IXTL6UKB/JO3nQuN91wTsXXnwnrGQ/Er5WdXCXy/C3ZBuW69xeGvJz3NVyYQ+fRQ0
-         LxFDU27vEbjDGgzK8RIJX14OPWEabCSlcWXvRlRdvhhrtyJBccJZLhBG+TSeCcXWj+vR
-         NtXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762529326; x=1763134126;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=om+pxjglHnG3GE2SnITLVrnlYEBEuJnFX0jyMAWe+ik=;
-        b=OuUEUQJuYz3vOJiWkwmh9VfpiF5n2ez3mr+Ovze0az2uKSd4oj3e1ImOHp1Lo7b0AU
-         sU+2yl90cwKCigHHWcOtSWZh9aOk9MJZjf4+2r/No8hMX5Es/5QWAiEWJE5hSHJ9xJTx
-         JIYSCR57jO1EG1EoZOELY6B8djJkk2czgPJWuoHPgSBT5aFclH9LChbupn7mY7qlStvQ
-         ObdiL/yts1COJZhYMcTxShZDosI5I0pgtddGncNSHw8wSuwmRxB6yxyf9p+/4DdCC0ib
-         0tXwDi8ng0HT/oly5T1wDvzfKPEheQfBHpSteh1/XbVnwnFOAn2oyS/PP4ueO7BOK8PF
-         XmQw==
-X-Forwarded-Encrypted: i=1; AJvYcCUXXLIDAUM3/EdEhLvLuC5WMFYFKphRVoHmBmUA7x7l6y7Yx47P8jd4JZ4iNOLvrazN/0HYX0LKZyb/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzceN7KKgVtVSjPoRPpzNwchAo+W645dp5TEzb+XV1mbz+BZ6Yf
-	z5pPuRkN5i0YrC4E9FWs73yXFFwYn4pl+9yZGp8aYplVSbvcRua1Cvm93Ql476lvjYi/5D8X0rs
-	71Rc/HnOnDOP13toRBP7YIEtoUFnGDb4=
-X-Gm-Gg: ASbGncsXuC3LNr8V5/lsrlpAT+exPj0wWliHC9+7RMohnLmDpHGDGcqkZvKIGusQ/zl
-	7HsPA5HXmB7mFhn6+tZ2s1SCNd4/L8P4UN+Fj4J313RnxY4enaWN3poyC8SpNXdalEz1X1ZeQTu
-	vqEDFIhcsA//pXqbap3PA60aTKunXirM9F5uSChuHyjzNNpejTAV+NxTGxILKANPGLXzTnoYMlV
-	ZaWn+4ybQME3zv6c/9bKw0nOU9vH5a1BLxv+huezdIClNja7Jmj/eEGwA79yA==
-X-Google-Smtp-Source: AGHT+IHmZEpx6M0+J5OC7HbsnR5hvwcdGVfSYgbkWyKHi0+xhyzqEEx/b9s9Gbx2PtIhusPWTRG7qVzmkQemfsoLTks=
-X-Received: by 2002:a17:907:7ba9:b0:b6d:a7ad:2fda with SMTP id
- a640c23a62f3a-b72c093316fmr378400366b.12.1762529326176; Fri, 07 Nov 2025
- 07:28:46 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0100832D45C;
+	Fri,  7 Nov 2025 15:35:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.38
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762529719; cv=fail; b=ErlxxXU1XYy5E8gXeCNL4x48LyGhozSs56R/k2iEQ1SI2g/xlXJ12eqjHI88Cyufyjnbid61hyWtHuyLgirUfCxziU6RDoGq3+MFciswZH6l5ZZFtJAfPb8jixhEIpfYNqMVaq6J73matQEHGQPEMHmm3UOe9VTFovLB70YkG28=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762529719; c=relaxed/simple;
+	bh=50hXVWS2cnKWlIdkes7/7HdouFNDbOoicEPEa7rrWgE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Rhh8lZ+muCn2QX2KrY5EjoCv/piRaEJ5aRSI/XJlFvB7fCrOFjyo6UKjKtPLO8jcdtPUaMlISarCi0MV1f7W/T25ZlFIxPmtvKnPxHKNPFbM8RRSsJZKfjmywv/+weyTrnI1I3m0hwoPEwveO8zdKWwdN4TwSZTY4YPhMgHUpNk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MEq4rgTh; arc=fail smtp.client-ip=40.107.162.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GxYgbaWsBffjhAKxZvEbIngCcQrCYzQisOsWVwQffPSIYMFGEz4wDztPXmzqka8YGx2AOktCNQ74qolDR6dAjzdXSNRjxXFvTQw8ehTmHAV0HnzLmxyV0YD6K/SwrhgANP4oPfZcs4PahDmwZvLmnzVYzTv50HMHXiZ9qcv+OMSQtkAfvFyuvvAWNnJnzPfXR8Vgz44WJMuqWuAZjRMpQlTs1di8DJODN677R2Y9hdD+aOL97MKz+6/uSO+pZiMFUfEvhsGFxQVhtrnzCq6YMs5r4p30r+CScyndB5QL805vKZXy3R+8W01ZIDiRD1iXcBIcX0nx8i232P+w1T05hA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fxdY7zx2Lcq6leZZ6u+7BHY3IvlcL6bHKJEGfWYK4jg=;
+ b=PZbEEY9+9cKp6lMOZfcZ3XoYJDVlJgix95vxP5Z6IgCHh2Co97mTxTj017rg8eJCk3HxR3FiJS1Ry251QIe1bPb2yUwGA5HQeClELNl+NDaq4xdhZa9NPiL5zUYYEthWVigOeMNoCpj+NiiJl+hT2XuZSUGpBn38SeKN5RfAR62bRjbJdwtDn5RY8EbfPVArQ1fOb1bLAv+RP/PNHMFn3SIf4Pr/G3H6OrHPN8x+WFd/BlZJJjNVhpFG6CRqSycrJrrXtMzaOTbjentaYy1/2T9OpH+8CirK4iyDSABnLkseX9wo7KpT1CwYxQRTVXHZtZf17th09R0EO+sDcEQqjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fxdY7zx2Lcq6leZZ6u+7BHY3IvlcL6bHKJEGfWYK4jg=;
+ b=MEq4rgTh7ppdfkph/GGngIGaJSFdJA0zGWiLwiXoTSojPZODhhql9etQY1QJgdKON0lYQIfoZDzMM8q4hHMwBP/hikUiaHmxDN0T/ZcB4c9JJCmLzmhgho6tN9Sn/ubx4FR0eUwUxItBp/GaPFRluQ7w8mUQ7kLFm+9YpNfGfZV7BlX3BzRb9tNfmHCp+Wt1XQG+V9rm0LVbqk2Z2BNYfmx9Z9+IW+8f+UWATU7LE7eh0+W09MVUiNNrKwDe7ksSL6SOyFuCLt3WupTQxeSM+qt4W0nNil9w3v9IhVW+Cj9r9+o4GYWi59gU7P3THSNMIA9U+Z8Ui1VPcW7eA38lpQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by DU2PR04MB8678.eurprd04.prod.outlook.com (2603:10a6:10:2dd::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Fri, 7 Nov
+ 2025 15:35:14 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9298.010; Fri, 7 Nov 2025
+ 15:35:14 +0000
+Date: Fri, 7 Nov 2025 10:35:04 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: maudspierings@gocontroll.com
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: backlight: Add max25014 supporty
+Message-ID: <aQ4RqNiGsngOWrV5@lizhi-Precision-Tower-5810>
+References: <20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com>
+ <20251107-max25014-v5-1-9a6aa57306bf@gocontroll.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251107-max25014-v5-1-9a6aa57306bf@gocontroll.com>
+X-ClientProxiedBy: PH7P221CA0009.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:32a::28) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251106-ltm8054-driver-v3-0-fd1feae0f65a@bootlin.com>
- <20251106-ltm8054-driver-v3-5-fd1feae0f65a@bootlin.com> <aQzpvR-030zgA82E@smile.fi.intel.com>
- <13882660.uLZWGnKmhe@fw-rgant>
-In-Reply-To: <13882660.uLZWGnKmhe@fw-rgant>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 7 Nov 2025 17:28:10 +0200
-X-Gm-Features: AWmQ_bnZqZC5EGS_uMqpAyoFV3kaYI0hktuWm533W__Dt4Ccx-T9uGAY1_3i4NQ
-Message-ID: <CAHp75VcxpoYOgMLOVZ6LvPNGrvws1vnL9gDPVuK=xJjLHsGJqw@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] regulator: ltm8054: Support output current limit control
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|DU2PR04MB8678:EE_
+X-MS-Office365-Filtering-Correlation-Id: b91d1534-99a9-46e3-485d-08de1e133ec7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|376014|19092799006|7416014|1800799024|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?1jjV/zd1wp+BAG12hsPVj2OBns4xmWKmaVt1g3Gt359ntAe0femZq/VJApd4?=
+ =?us-ascii?Q?3M/xFgCp0sj/ANlA5ljYlnnASKEkPRuy7krO1tsv8E/V9CCrgRwDjo+A6tSa?=
+ =?us-ascii?Q?P9O4rI1PbfhS81I3sD+7MruyCGVtJa0Gxag8l/XQ6CdWx7xJzED/NBJhlM0+?=
+ =?us-ascii?Q?zf1XqtGJlafp8o71XtipddFb9ed7UXMimzG0u9jR8TKG8J2KKD6l0jNP9TYO?=
+ =?us-ascii?Q?zUAMgZXKNY7VpjPy+L/AXfDHWMiiLXXNcB2c2QFH+ize5xCePoyPdmOsXk8o?=
+ =?us-ascii?Q?ed1tXzm0OcEZMdQutGLAayawAwoE2w/ug4jbG8asIZ1gMTfgJ6wfTb2QeRCi?=
+ =?us-ascii?Q?t3L0tQNKRJbMi7OJD74/DwqKn4XWfFy+F+A9OziTuy0v8jCp/ANfsTL70tkt?=
+ =?us-ascii?Q?pyFe/iQH1720syvGdN6SZDzzdPY6hQwcCMRZICz+sl44ORX5bYjuUj34m+1z?=
+ =?us-ascii?Q?ERZQUiwS8orogXeMGHL7/1qrbpa7xshfpYHwvUcOTsHnmXtoAV4DQXego9Kk?=
+ =?us-ascii?Q?uMB0iU7N4TIQxNx9E9mcvyaRAT/N385CrqIPX5O7CCzB7Ogow0Qb0kLU8NgJ?=
+ =?us-ascii?Q?eedffQKohEkdtBvVA3iZ1DMyW2A5RK4GvKOCWS8FTG4jVL8R9nv9suZfEvdv?=
+ =?us-ascii?Q?6aYJVuYBtLoEnheN51glabOvqqIxRb+IJP2x4IKhn16ItiPG1aTFN4ykNpow?=
+ =?us-ascii?Q?Fy7nIOcJF/R8aU9w4d2xvd53LtY3oLKFNmnTJoya0bIZ7Xxm9xpQbdMcG4OL?=
+ =?us-ascii?Q?A+nW8R8T5akr1upgU3iV4fUrvLdQW7ey34c7zOnQ9YyYzUjA9froqp78ER79?=
+ =?us-ascii?Q?j067vlRkMYwm6/PJpPuiiKH+M6RGUeux1ycMD9fO5GrcfaDPHBLEb8fhM2oy?=
+ =?us-ascii?Q?F1j22RgVtLYc7qut3j9NqT3ZLAwnKm8QX5r1+nmpgHnD5vlPjDRe/kP4ZOKk?=
+ =?us-ascii?Q?KfZiXs59m4qe78uR21qEFp58FEPigxm6mqhrOpEq+He4YhuPMaXoffEURcyC?=
+ =?us-ascii?Q?TRo9yrJpOY7cY9CRXDfJUXP5H13AwmKCAlkMdKV6QdSVHD5lM5Cz3OI1cyeg?=
+ =?us-ascii?Q?biY0e+MV/vOIVZuiur1S8bjPEal5OjsX+Sa99kzXiu/0uDrkFEyKkPkw0JNT?=
+ =?us-ascii?Q?HZoB4c7KCEdOpANGWIDyBsVunNbgq9vNmNzQpQKBsDFIeqD0GlEQtkQ05sTg?=
+ =?us-ascii?Q?sl9nWXSCLFN/wI7nH/5Y4yr4Phg3Xqvo/usmQGlvwbidRrNE5EH+Oj0fW+I+?=
+ =?us-ascii?Q?N9EtoBflIlLzka/HaUgFHz//kJPeDkQxflEC2dfOy3y8quE0BlNhJGr+TRPk?=
+ =?us-ascii?Q?keljw0u0VDYlOE/XZfF5V1AY+GF9mhXvbrcLV3A4Z+Ci/P1cbD3IQC1MP3DP?=
+ =?us-ascii?Q?ABXIvOZg24XXLA9ESol7a6WNCN7X+KxzYwojK+MMc4+enT3OemWKvIfa1RiO?=
+ =?us-ascii?Q?so+LVVtQuOGFgMZ8WlRNijeXMOJXYxvnlYVpoQZBEjDmV7uOArHJVQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(19092799006)(7416014)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?5yHpDm0E3kp9MZG/kEvQw+ByFUWCnpD/SLJQ//+2YgJTIqooR4e5XByiR8f0?=
+ =?us-ascii?Q?kHLyWFLgnW1HAnCQQbzuLBBlUSxgOLmBEyD8vnA8tYqa82KI9yf8X2enRVuz?=
+ =?us-ascii?Q?oerS5upgt50mLwgnU+WJq7EEs/+AAPlpIgUaHB0zbUEmVeKXNTmT9bNcaaKX?=
+ =?us-ascii?Q?XUIvS/039ZbBNLhd+jZiJmHU/34X+nzcN2Vk7jUFvGGX9P5Tnk9C0BrbAXY6?=
+ =?us-ascii?Q?29MdPSbW50UoBfQtqThF0CvESzM3LuVVNgXiea8YwsJ1MRuWcWM8tu+B5Yje?=
+ =?us-ascii?Q?mw7kQJfw0uWMnyyCeq1an26D6fM5zTn7NNc6cAe7jH5uxVsWXkgUcwj145oy?=
+ =?us-ascii?Q?8VYhh+u5Fb9M7yu6X3jytR+XvBTC0G+Um6517WCWwoqpHE9eA6jq1rpI28Ki?=
+ =?us-ascii?Q?k79t5YVCXWCYaLcbazvYfEJ0yFGzI48/oSRRCRcwNUIrI8yk90Gf8sLZChKw?=
+ =?us-ascii?Q?B10vpF/gmz9APy9DAq04cNFgYRn32w6/FmWqhY0qsOqvwq/536jOlOaeQ8F5?=
+ =?us-ascii?Q?Y/f8+RUaaWKOMq3obP1KcvGhHFl7DPlJMERqAunzUwXoUv4kTSbQma9at6pB?=
+ =?us-ascii?Q?buSBLGs7gHYIgrORTD6Bs32DuvecxWxzSbxmqSak2zYidehtW0V0paMvRDfE?=
+ =?us-ascii?Q?syaNiUkr0bPyhV/MGGUtltNj/LNNgqh+2mQ9YU1Fm2m1e0Jr22hhP2JEjSJJ?=
+ =?us-ascii?Q?LLbBYmJNP96yKtB/KUkaNcQ1+HbTQbQZrgTP3ceMBWfq5O92rdgMB4AodEXg?=
+ =?us-ascii?Q?SkGrnKnGuAIfgD4Y4lrYq/AYgl9UF5q4Bxrif11hiuz//Mb50UhG7zNm92ce?=
+ =?us-ascii?Q?kuT3U7sTDmYXZm5OLxEtbYg09fbKZJ+91ehkqIPh46qbNJG/ytJZvom7+yGd?=
+ =?us-ascii?Q?/JUmaN59PTbUvTsku1CZ2+8btpTUmEsZnnKdc38mhzBibEqNfJc/TIBmoa+5?=
+ =?us-ascii?Q?RQ9YWeZjPazeM6csXLY7ZCada4QjX1KYPBy7YeTM3BDCDYu2dpX+grV6wFIH?=
+ =?us-ascii?Q?0pdSJ20iWSCwxDGpk1LoRNne73S+iwxTjt90boa/3IzdP9ql3xC6VJAPlCbu?=
+ =?us-ascii?Q?m4oMdC7FGx8yHgc7CCul+DwwM3xhg3B37cbaQKqE+A9J7egy50erFtjjBUZW?=
+ =?us-ascii?Q?PBfktyyyw8qozfhJXeLUv62egX3AZ9fZNFNnCQEH74tP8dxySEotQO7jjkno?=
+ =?us-ascii?Q?oimfbQhf4EwMKc69kayN9qVw2/jJ+bmTLbYl+Vdl7Yq1bpVuYuAK9X7ZWi1O?=
+ =?us-ascii?Q?dW2DRtDNzBvYEdn1aeJl2E18tln2V5wldvLmnt0gDZp46KyoNqrUG7D7r/6m?=
+ =?us-ascii?Q?GGGzJ6b/h2Yz+y5HtsDzIlQ4gXKI81r6uRKElcyiykGgLhYQbpU2yLacxjBb?=
+ =?us-ascii?Q?tT+mP68vCy2ZQK5/IKU7JRKJHgSEYkOEDooSdP0dYlXLp5vOxa6YhfNVZA7W?=
+ =?us-ascii?Q?Ny3o9dc5FMKCuqsKoQ4prSW3DRweSSfKdm/oT4mg/0oDgwBDfahf57kvxSKs?=
+ =?us-ascii?Q?A8ex4sHsHg7VrjjIYzYOL0sSOzzhbxW86GZgXh1f7qf3bql3UdcbjLDxyXh1?=
+ =?us-ascii?Q?YXmt/8cedWSyCDzQDImpAmuJAJWj/Ek0c2xN1rej?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b91d1534-99a9-46e3-485d-08de1e133ec7
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 15:35:14.1050
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: i6FxjrVkt4O6LYxbvDIz+Bn6geZHK4ShUX47ySzRizXvGgtBO1c+xZe+d1NfnLaffJhHlda3znCkFn10eeG2Kg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8678
 
-On Fri, Nov 7, 2025 at 4:54=E2=80=AFPM Romain Gantois
-<romain.gantois@bootlin.com> wrote:
-> On Thursday, 6 November 2025 19:32:29 CET Andy Shevchenko wrote:
-> > On Thu, Nov 06, 2025 at 03:11:50PM +0100, Romain Gantois wrote:
-
-...
-
-> > > +   ctl_dac =3D devm_iio_channel_get(&pdev->dev, "ctl");
-> > > +   if (IS_ERR(ctl_dac)) {
-> > >
-> > > +           if (PTR_ERR(ctl_dac) =3D=3D -ENODEV)
-> > > +                   return ERR_PTR(-EPROBE_DEFER);
-> >
-> > Hmm... Are you sure about this?
+On Fri, Nov 07, 2025 at 01:49:58PM +0100, Maud Spierings via B4 Relay wrote:
+> From: Maud Spierings <maudspierings@gocontroll.com>
 >
-> The only case where I want to defer is if the IO channel hasn't been crea=
-ted
-> yet. From what I've read in iio_channel_get(), -ENODEV is returned specif=
-ically
-> in this case. For example in fwnode_iio_channel_get_by_name() you have:
+> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
+> with integrated boost controller.
 >
-> ```
-> if (!IS_ERR(chan) || PTR_ERR(chan) !=3D -ENODEV)
->                 return chan;
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+>
+> ---
+>
+> In the current implementation the control registers for channel 1,
+> control all channels. So only one led subnode with led-sources is
+> supported right now. If at some point the driver functionality is
+> expanded the bindings can be easily extended with it.
+> ---
+>  .../bindings/leds/backlight/maxim,max25014.yaml    | 107 +++++++++++++++++++++
+>  MAINTAINERS                                        |   5 +
+>  2 files changed, 112 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> new file mode 100644
+> index 000000000000..e83723224b07
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/backlight/maxim,max25014.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim max25014 backlight controller
+> +
+> +maintainers:
+> +  - Maud Spierings <maudspierings@gocontroll.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max25014
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-supply:
+> +    description: Regulator which controls the boost converter input rail.
+> +
+> +  pwms:
+> +    maxItems: 1
+> +
+> +  maxim,iset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 15
+> +    default: 11
+> +    description:
+> +      Value of the ISET field in the ISET register. This controls the current
+> +      scale of the outputs, a higher number means more current.
+> +
+> +  led@0:
+> +    type: object
+> +    description: Properties for a string of connected LEDs.
+> +    $ref: common.yaml#
+> +
+> +    properties:
+> +      reg:
+> +        const: 0
 
+If reg is const 0, why need use led@0?
 
-Yes, but my point is that -ENODEV !=3D -EPROBE_DEFER.
-The latter may create an unbound driver in some cases. This needs a
-very good justification explaining the metamorphoses.
+Frank
 
---=20
-With Best Regards,
-Andy Shevchenko
+> +
+> +      led-sources:
+> +        allOf:
+> +          - minItems: 1
+> +            maxItems: 4
+> +            items:
+> +              minimum: 0
+> +              maximum: 3
+> +            default: [0, 1, 2, 3]
+> +
+> +      default-brightness:
+> +        minimum: 0
+> +        maximum: 100
+> +        default: 50
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        backlight@6f {
+> +            compatible = "maxim,max25014";
+> +            reg = <0x6f>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            enable-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+> +            power-supply = <&reg_backlight>;
+> +            pwms = <&pwm1>;
+> +            maxim,iset = <7>;
+> +
+> +            led@0 {
+> +                reg = <0>;
+> +                led-sources = <0 1 2 3>;
+> +                default-brightness = <50>;
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 58c7e3f678d8..606ce086f758 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15261,6 +15261,11 @@ F:	Documentation/userspace-api/media/drivers/max2175.rst
+>  F:	drivers/media/i2c/max2175*
+>  F:	include/uapi/linux/max2175.h
+>
+> +MAX25014 BACKLIGHT DRIVER
+> +M:	Maud Spierings <maudspierings@gocontroll.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> +
+>  MAX31335 RTC DRIVER
+>  M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+>  L:	linux-rtc@vger.kernel.org
+>
+> --
+> 2.51.2
+>
+>
 
