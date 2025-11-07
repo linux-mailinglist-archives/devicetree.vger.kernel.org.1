@@ -1,165 +1,123 @@
-Return-Path: <devicetree+bounces-236009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF87C3F199
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 10:13:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF1CEC3F187
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 10:12:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EB593B0AA4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 09:12:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2EB7B4EE938
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 09:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2353195E2;
-	Fri,  7 Nov 2025 09:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE8A3161BD;
+	Fri,  7 Nov 2025 09:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZV4g5enh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AqCEyeX4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64FC8317704;
-	Fri,  7 Nov 2025 09:12:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36CA6316910
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 09:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762506739; cv=none; b=Mj2zws+iG0XLOYYbS8vsMTYvl7GXn+1L7EE8+AyfJqfpEcfOizhSMFt9WJZ6SK7vUb1K8Mvm0PSZBoIoWEt02fGo7gG5phsJcPV5EZZCQBHqJjbxN/puigPEy1jZ08nY1sU6BQTrXt1Qq2zItGy4uBjCfnQC5TsKIwYmE7bph0A=
+	t=1762506696; cv=none; b=ZyKjmSdh5A1bhfZGCcD1d5mbweazpknMYzqpt4rl693fbWE76yU8SuBA3U7T4w5jsbtdOc2MjZtot+8oYASQqW4nh6tPUtKDA79dsBEXj7LBrpNd7zqLw3trW9SrG+W1uiQ4Hkd3VfDMVu1OKaOG/IJLhf51AQwO755/A/72czU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762506739; c=relaxed/simple;
-	bh=i8bcLE32FSf57bRwMIQrvB0FS0CV25f/s7GHzJcLydY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j5J3g1Y73D/KN6v0CWw7TRG9wHGudLUC/xlInMK83SWep5+nJ/GivRNpBvLsAWKn6qZgXWErJQQppDgDBU8oyuCqz72ZWEvfGm45ZtN7YPlRd0IoqhsvuFq3zVQwaFHDaTcmwW1R2CJzb8Ae49YIl5+XWs7lU1ghaPCd9eAQ954=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZV4g5enh; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1762506735;
-	bh=i8bcLE32FSf57bRwMIQrvB0FS0CV25f/s7GHzJcLydY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZV4g5enhu7yMNXiqcYlHi5Uh8Ct+jfotnXthdw+buHcJBzmP79S01Qv14L4479JWS
-	 chqM3FT3ErebbYQ+XTWXCIK94+/zh40V7IRctnfNG+One7TnwGU9NbOjNfFRhbKc4w
-	 bB1VEhGgtS/Iqp5ripBmfz32PRC7ggxC6ax1NQ8kk28jIi4a2+MnIcBogtW5Vverum
-	 G6HcJHqBmyati/8X3w4V6TU6i2dIm/igLgYc2LhC8bKO3rWf7oqahRte1Lpc94d1qz
-	 lhZoLf26ODR+ipMc/Xsl8yUmLmWN1N69Y//kNWC7Pk4hU+CgU9yXX18OIKyqql2lbn
-	 wTlXeJc6o9IIw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7211717E12D5;
-	Fri,  7 Nov 2025 10:12:14 +0100 (CET)
-Message-ID: <7642d2bb-f246-41f9-bea8-6211fc2ad176@collabora.com>
-Date: Fri, 7 Nov 2025 10:12:13 +0100
+	s=arc-20240116; t=1762506696; c=relaxed/simple;
+	bh=Xm0T+ra2WFrzdRdP3JxtuaEukspvdWnhUZFpw+N+Mdo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CNFTF1GxrSaH/WN+raTtJ9XqnfisOCkfUpq6tbyGC3tzDr6VryXi2epKe+Q4P31EbwAuYMtNErm0T4lCuyUtxyRTmpyDdXV2fOuXq0jNwUnjicO5/dcRz5FhtSqLyHD0WlCfyVm+82q1KPzCAz1eY8ZhO9hIZl6XJDIJ7s3Zg50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AqCEyeX4; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2957850c63bso5489505ad.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 01:11:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762506694; x=1763111494; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hW8/cbGR87ObHsZ6SNcI+MXLmQ5paXElRz+RxrOT/SU=;
+        b=AqCEyeX4UpT/bc6Wv6wOYRUfMdrWzlrG37mKRQm5L+SZE5zXqeWEmLWJbONXLzH2Cg
+         qITjBji6ht78nTiCeatG/+BIZk/57dvHjxAIXIZDyTY/qablhIovDOrz6YEZYlARzIiC
+         fuwbx0Qhi7mbAUESRgFe2RuzDEX3ez4fpe/CBgmSW2JuDPM9JR5qBudqo5Zzg9sRtI3x
+         YCCjytUhqy3vlHoPDFTIbemvf2WIrGUjAq/Nksq8TItZPG5yodh9cinbF1JQIhXqai6W
+         hA/+pw2GI9Tv9LVSV6lQv38+4nz3C2YI5+ILpQazNCxTaVr9fFdoxnqsSHThnxBmEcvK
+         MSuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762506694; x=1763111494;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=hW8/cbGR87ObHsZ6SNcI+MXLmQ5paXElRz+RxrOT/SU=;
+        b=EuGRS5SLZTrpOLqPbf5SN2MmCxbBtgaVOwJE061yLea+6FjBG0josupMnX7Rs0XrIu
+         MTdhsv4Swc74BQqYsganW6MywzaUZF/2H2AxWzo8xqGtW6vCFWPi3MYHav9Cth2u+GwA
+         BedjU9Lxutd6Uekbx5B+A/EiIXrV3xKyPGe9Ef6/zbGaszQW3YOEFOqd6nNZVIGFIRef
+         0w5G8tOoOD2Ph1MOqjra09hcL1mbJuRq2oShaAIZ8tro+/mSCHQDZ11XS9ByrJgc3FuN
+         7Lsq8XpN9z9TVatwt+dVZE5XiumRRehehyMeYSTmG/rgVCwKIi+mDgl2Ru29oZ9NL1Do
+         2ufw==
+X-Forwarded-Encrypted: i=1; AJvYcCUND0w09YT39t8YQBJtN6RecsL061jP3LRVmg9YC7ZJpvyi0v6Jt1TZNcpGvPkTWWBrYgHx4+42UJ1+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBjMA+RWrcN9xE/QfK703I3O40G+K5lphCsyp3XW52b/0Fo53s
+	txIjBvvic/WSfl32YkpOmKaPccA/Ui/GMk0I8kXAhefSmBjvKjai/AaMG1s/SoWmxBctV7r7Ua/
+	Uab0KChpJstNcUKigZ1/qmrkjFUYL+tM=
+X-Gm-Gg: ASbGncv2wJ8S+yYt/i/n5hcQ2pIiIUga7I6qm0F0gzfl8HB50ifqvAIkHVt4aEZU4+r
+	MS4X9Wd4VWlqeXRTmmm+3ipymZ/DAJZIpH4SK0Yr1+P7pfSkiIjLRaL8T6BsIUhl+FhRP25HNuo
+	S+6PM5vnlKg1+wwR7R0pOoVynI0tuQ2KeH73gM+kk8srDRS2KuzXnq97+8edPtn9L4ZkLdo6liH
+	In3Fwelj/56Sfs26jG4Po0gkYU3058yW8/czKnNLTvJpiohOxFz1nFOqw==
+X-Google-Smtp-Source: AGHT+IFsw4Qh5yQvF8GQ7bDn+i+78HlvDDo9Xlss7dAXe32EJJ3DKG/FTpv0vFs5HihRB4beIyG1MovPvmR4t9DxwLk=
+X-Received: by 2002:a17:902:f705:b0:295:57f6:759 with SMTP id
+ d9443c01a7336-297c95acc53mr15301995ad.15.1762506694201; Fri, 07 Nov 2025
+ 01:11:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/13] of: Add wrappers to match root node with OF device
- ID tables
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Yangtao Li
- <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Thomas Gleixner
- <tglx@linutronix.de>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Daniel Lezcano <daniel.lezcano@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251031-imx95-rproc-2025-10-31-v2-0-758b2e547a55@nxp.com> <20251031-imx95-rproc-2025-10-31-v2-5-758b2e547a55@nxp.com>
+In-Reply-To: <20251031-imx95-rproc-2025-10-31-v2-5-758b2e547a55@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Fri, 7 Nov 2025 11:13:59 +0200
+X-Gm-Features: AWmQ_bkGy3n9ih8PCPlxo3uy5k4L6qRRgXRYWv7PUkhd8VPxIzhklJdDlhNWAZ4
+Message-ID: <CAEnQRZDcrWdAFqJkcbjy-jL=EczgmSM9grv5zp6bntWnqou_kQ@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] remoteproc: imx_rproc: Add support for i.MX95
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Frank Li <frank.li@nxp.com>, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 06/11/25 20:07, Krzysztof Kozlowski ha scritto:
-> Dependency/merging
-> ==================
-> All patches depend on the first patch, thus everything could go via
-> Rob's tree with people's acks.
-> 
-> Description
-> ===========
-> Several drivers duplicate same code for getting reference to the root
-> node, matching it against 'struct of_device_id' table and getting out
-> the match data from the table entry.
-> 
-> There is a of_machine_compatible_match() wrapper but it takes array of
-> strings, which is not suitable for many drivers since they want the
-> driver data associated with each compatible.
-> 
-> Add two wrappers, similar to existing of_device_get_match_data():
-> 1. of_machine_device_match() doing only matching against 'struct
->     of_device_id' and returning bool.
-> 2. of_machine_get_match_data() doing the matching and returning
->     associated driver data for found compatible.
-> 
-> Best regards,
-> Krzysztof
-> 
+On Fri, Oct 31, 2025 at 4:27=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
+>
+> Add imx_rproc_cfg_imx95_m7 and address(TCM and DDR) mapping.
+> Add i.MX95 of_device_id entry.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Makes sense. Whole series is
+With the minor comment below, you can add my:
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
-Cheers!
-Angelo
+<snip>
 
-> ---
-> Krzysztof Kozlowski (13):
->        of: Add wrappers to match root node with OF device ID tables
->        cpufreq: dt-platdev: Simplify with of_machine_get_match_data()
->        cpufreq: mediatek: Simplify with of_machine_get_match_data()
->        cpufreq: sun50i: Simplify with of_machine_device_match()
->        cpufreq: ti: Simplify with of_machine_device_match()
->        cpuidle: big_little: Simplify with of_machine_device_match()
->        firmware: qcom: scm: Simplify with of_machine_device_match()
->        irqchip/atmel-aic: Simplify with of_machine_get_match_data()
->        platform: surface: Simplify with of_machine_get_match_data()
->        powercap: dtpm: Simplify with of_machine_get_match_data()
->        soc: qcom: Simplify with of_machine_get_match_data()
->        soc: qcom: ubwc: Simplify with of_machine_get_match_data()
->        soc: tegra: Simplify with of_machine_device_match()
-> 
->   drivers/cpufreq/cpufreq-dt-platdev.c               | 15 ++-----
->   drivers/cpufreq/mediatek-cpufreq.c                 | 12 +-----
->   drivers/cpufreq/sun50i-cpufreq-nvmem.c             | 11 +----
->   drivers/cpufreq/ti-cpufreq.c                       | 13 +-----
->   drivers/cpuidle/cpuidle-big_little.c               | 11 +----
->   drivers/firmware/qcom/qcom_scm.c                   | 17 +-------
->   drivers/irqchip/irq-atmel-aic-common.c             | 15 ++-----
->   drivers/of/base.c                                  | 47 ++++++++++++++++++++++
->   .../platform/surface/surface_aggregator_registry.c | 13 +-----
->   drivers/powercap/dtpm.c                            | 16 +-------
->   drivers/soc/qcom/qcom_pd_mapper.c                  | 17 +-------
->   drivers/soc/qcom/ubwc_config.c                     | 14 ++-----
->   drivers/soc/tegra/common.c                         | 12 +-----
->   include/linux/of.h                                 | 13 ++++++
->   14 files changed, 82 insertions(+), 144 deletions(-)
-> ---
-> base-commit: e5efebeef746a24f45b98dbdfcf334285848b32a
-> change-id: 20251106-b4-of-match-matchine-data-4a64bf046814
-> 
-> Best regards,
+> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx95_m7 =3D {
+> +       .att            =3D imx_rproc_att_imx95_m7,
+> +       .att_size       =3D ARRAY_SIZE(imx_rproc_att_imx95_m7),
+> +       .ops            =3D &imx_rproc_ops_sm,
+> +       /* Must align with System Manager Firmware */
 
+I would add a comment here like this:
 
+> +       .cpuid          =3D 1, /* Use 1 as default cpu id for M7 core */
+> +       .lmid           =3D 1, /* Use 1 as default Logical Machine where =
+M7 resides */
+> +};
+> +
 
