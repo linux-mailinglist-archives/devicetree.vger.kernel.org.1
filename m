@@ -1,181 +1,167 @@
-Return-Path: <devicetree+bounces-236076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05B54C3FB56
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:21:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89DA1C3FABF
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:14:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F8244EA112
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:21:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4399A3AC516
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C6C2321F42;
-	Fri,  7 Nov 2025 11:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE4D31E0FB;
+	Fri,  7 Nov 2025 11:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="L0zzpVP4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="luiBTTBq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47CC321420;
-	Fri,  7 Nov 2025 11:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2BAD31DD91
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 11:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762514509; cv=none; b=iP7AaZcGXEMCU4EcWAgIF/Hu1llClagNtTje6/PdYpUuZQatGguvZJiNb2prF1ZMgWvm7h8dlIrCp/t/EhLNwEcUQP6nQoO61Spvf6xFW/wNFYfnlzaJTiLS6dvmGARsZIrWMizHNWJbW6DxygWdxdkkhLXiK37xWmI+HUPWZuM=
+	t=1762514053; cv=none; b=UfgTbAGYBs8LUESKOIuKH0fQBk6OSpOhqP7nPfl7JnSmK5zwAdZ9OhLZeU9SYU8uQcoo7/rfGFS6BmAp5zHorMQDu1XOJzNQUfrIAJvJ6I30lbL62nIG8S2q4nogql/ub+GfU+cE3Ln76vHSGkoTJuXSbpc7uUoQ4FVoSQoWxpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762514509; c=relaxed/simple;
-	bh=cwfXVQLfUYng/XGx9fuht2aqUV3fMBEEk3D8ZI1SS3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gHT6yvFBrMBB6XIxgF95btNsGn4W6i1tQRS4T5jx+OxRDnOaaeoZFB99jIWQU2h457fYDZlO/pJpauImZ+5mYZiVsiNRcadbTCXRCKu8qibyMO/fieA3LhMPeXzabKcjNoyDHnM4k5vr0sfYzuaxlG/dgdYGsw/QFtPO/dMEPbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=L0zzpVP4; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1762513876;
-	bh=Q3oEb6f1YkDfh3C3JNra6qEKnoR5mi2zvj3WcAJ7AnM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L0zzpVP4F2DO09o2xtnb1xnjoDDCXP/bVU25NfhXPiSFYh7gac8v6QqokhX0ws7Rn
-	 8w9pNWajTUZkTvxYDnPohlOtJNR96N3sQjkmz5J6d1cGmf5a4e1AIy9jj/i2M1A4is
-	 hy8ms81vqvlgXkBcY3WDbqtMDx+jXIxk76gGcvZU6xIE5Sdm0CK80q25pJMDOV+1k9
-	 YOM4nyOBMB/ZmK1kQRXdd03txIPGRUZe5vH0TWzB1itVQtjOqgyWU4MK/H8txZD/xg
-	 Wx8c6zlhKgma+NHDV1jlTH1ycAXTKIkNjO9SYsOJ5VnNe8HswNP5Qp1s2/s89ltVCf
-	 ixU8NLWdraw5g==
-Received: from [192.168.2.54] (unknown [143.105.119.212])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id A6F36B2201EE;
-	Fri,  7 Nov 2025 12:11:12 +0100 (CET)
-Message-ID: <c05d8bcc-3024-45cd-8630-b0595682e778@freeshell.de>
-Date: Fri, 7 Nov 2025 03:11:10 -0800
+	s=arc-20240116; t=1762514053; c=relaxed/simple;
+	bh=Z7IPw5CPkkm8JcNSROY9Rb8Po+uOfMzr3L63jIIDVFM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WIh4VobSKhx2QLcbjtF0OrzwjZ10A/l7H7EFcPoJ/6feTYsSdx0wKpf1cLbTkuhXQz5Q24cIzCFEj615a2FeMhIArIXq25zAkDpaWeJeRGB1cf87/rovzyk0VD21vizTlhphH+dI+r/X+HGzPlF+rkGqesHUqoCewX01IbtY474=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=luiBTTBq; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b3e7cc84b82so118866666b.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:14:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762514050; x=1763118850; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Z7IPw5CPkkm8JcNSROY9Rb8Po+uOfMzr3L63jIIDVFM=;
+        b=luiBTTBqWyYVxLyfjIjqWhL/TJ+aTGylHamIgM1BRtHW5ij3i3o5qpvRxapwh7561R
+         w4GRGBK1McbigXxWw+/q6TgbJYU/E3UViPtoXds9dTCc5575WylTzZcVG+/rCsYKnQTw
+         vSrNbf1MluN1tWVqTd+CNpC9Xpf1DUXSpmjY1X34V2ZVpnn/rvI+fbAOALIfHo0hV9Bj
+         9tGlvH6KP9jreduQoMZ5wtNRU45+XI/5DCPuUKvIWmRZ3xciAee9jK+MAvSR1V5b+6o4
+         D+v1nPgUb9YPcDqWNcIVJy2IwY1VCKPsJUjvsVbTtGlc4HSGP5HmTFOSzLnYYT5srUiO
+         Ah+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762514050; x=1763118850;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z7IPw5CPkkm8JcNSROY9Rb8Po+uOfMzr3L63jIIDVFM=;
+        b=K7TA/xBNYG91W8qmQGOSCmpvGHjJgUuFgpKOeL4zh4gfRLQ/Nomxf56WhZA7iJ8Jwi
+         r2/jMt/VTAA8wOLIBw5xg1L+G4K/rEuxCiGXGI+nYYKD9Xczw7U82aFWWXhEcjAP6sQf
+         tccO/ES4yvVjaruXoUlE0N2sQ/xn7EAUyfcDwu+lhKmbR7E1WOENGm61UNmhuz+K8HI8
+         qufBxGYkRG/Dv83sPFNZiktq81WQRW23aJXh6QfCeiFaOFh3DlF4cfDaLxn7P8CmcBLG
+         LBOCF/xXaEPrP/K8+By1O2C9Jz0snCpMipWuz++r0kVr6DT2i28cvd7n3h1BcINS7lp3
+         clTw==
+X-Forwarded-Encrypted: i=1; AJvYcCVXfcFzdcO8RgWuhWOKJBJZWudLz0P4a3YsLawcR3OIOXo9Fz+72tWodAYkTxv4JTl46U66cHfUwdG6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+Ux4Of8hfr0jcQtIE4Ja7eVdj3dsUeVkWqBUNhgR4WLZKvva5
+	xMb4nACUvpZfMLxcd0N0e2TA7PGtBQTo7vCPsXNCfCg6azJCHIdokc/8gnD5aG2juE4=
+X-Gm-Gg: ASbGncvFG3NpN7E8ZFV4eWdqxcQkJlw1PbQ6qqTVmQy0VGzNFRur2SX76JOe6S6lj6E
+	Nf32jhbXfZ1XbS1bbwOzRJgl8X7hPnQPZs7g5FHN9H1GU3rZ88oTDMlKFITrlh1LCcswylKoWwr
+	KDgb/DDRzA6pxwwN3UPSY4M61Cp4Dpni3m9EdHP82WZyiybeIcQXL50WwH4xXa0+ipesy4o/zuS
+	PO1bqqUj0RSruABTlC0OG9TbDJABcX6RMka1pN1eYdMhzA0600E/yqhVXeLTx2mpfsPZQO+WVsg
+	kqjeUu3dL3gT3/rCBbUiUsHLxw1U/eUjbReryWwY3ktkplH8ynNj+iyVvRMyhEDyrO7eB2IoEio
+	LlnTltIyoDG9id7H1ZM314CisTWuc7FOTbhbu359DrPK+bMX/f50SySuRf9NnFyB9lSYi2GwoKH
+	IULYs4FpYkKz3fACs8Lv8fNOatNC8BWPB8jA==
+X-Google-Smtp-Source: AGHT+IFXZ+Ksq+F4K5MrYL+0Ly42CejCgVP+A4n4kcnrW9kMuuDkI5VXyfDYyP5cJO6HwQMmVPf1ww==
+X-Received: by 2002:a17:907:3f28:b0:b3d:5088:213d with SMTP id a640c23a62f3a-b72c0cf643dmr254948266b.42.1762514049980;
+        Fri, 07 Nov 2025 03:14:09 -0800 (PST)
+Received: from [172.20.148.133] ([87.213.113.147])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf97e457sm212986366b.43.2025.11.07.03.14.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Nov 2025 03:14:09 -0800 (PST)
+Message-ID: <46b008c946e36ea0b317691356ff874c4a78882d.camel@linaro.org>
+Subject: Re: [PATCH v3 04/20] regulator: dt-bindings: add s2mpg11-pmic
+ regulators
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,  Lee Jones <lee@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Peter Griffin	 <peter.griffin@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, 	kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-gpio@vger.kernel.org
+Date: Fri, 07 Nov 2025 11:14:09 +0000
+In-Reply-To: <20251104-zircon-lobster-of-agility-cbcbb0@kuoka>
+References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
+	 <20251103-s2mpg1x-regulators-v3-4-b8b96b79e058@linaro.org>
+	 <20251104-zircon-lobster-of-agility-cbcbb0@kuoka>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] Add support for StarFive VisionFive 2 Lite board
-To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251107095530.114775-1-hal.feng@starfivetech.com>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20251107095530.114775-1-hal.feng@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
+On Tue, 2025-11-04 at 10:39 +0100, Krzysztof Kozlowski wrote:
+> On Mon, Nov 03, 2025 at 07:14:43PM +0000, Andr=C3=A9 Draszik wrote:
+> > +=C2=A0 The S2MPG11 PMIC provides 12 buck, 1 buck-boost, and 15 LDO reg=
+ulators.
+> > +
+> > +=C2=A0 See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.=
+yaml for
+> > +=C2=A0 additional information and example.
+> > +
+> > +definitions:
+>=20
+> defs:
 
+All existing bindings are using definitions, not defs. Shouldn't this stay
+consistent?
 
-On 11/7/25 01:55, Hal Feng wrote:
-> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S industrial
-> SoC which can run at -40~85 degrees centigrade and up to 1.25GHz.
-> 
-> Board features:
-> - JH7110S SoC
-> - 4/8 GiB LPDDR4 DRAM
-> - AXP15060 PMIC
-> - 40 pin GPIO header
-> - 1x USB 3.0 host port
-> - 3x USB 2.0 host port
-> - 1x M.2 M-Key (size: 2242)
-> - 1x MicroSD slot (optional non-removable 64GiB eMMC)
-> - 1x QSPI Flash
-> - 1x I2C EEPROM
-> - 1x 1Gbps Ethernet port
-> - SDIO-based Wi-Fi & UART-based Bluetooth
-> - 1x HDMI port
-> - 1x 2-lane DSI
-> - 1x 2-lane CSI
-> 
-> VisionFive 2 Lite schematics: https://doc-en.rvspace.org/VisionFive2Lite/PDF/VF2_LITE_V1.10_TF_20250818_SCH.pdf
-> VisionFive 2 Lite Quick Start Guide: https://doc-en.rvspace.org/VisionFive2Lite/VisionFive2LiteQSG/index.html
-> More documents: https://doc-en.rvspace.org/Doc_Center/visionfive_2_lite.html
-> 
-> Changes since v1:
-> - Drop patch 1 because it is applied.
-> - Rename jh7110.dtsi to jh711x.dtsi.
-> - Move the content of jh7110-common.dtsi to the new file
->   jh711x-common.dtsi and move opp table to jh7110-common.dtsi.
-> patch 4:
-> - Move the uncommon nodes to jh7110-common.dtsi instead of board dts.
-> patch 5:
-> - Add jh7110s-common.dtsi and include it in jh7110s-starfive-visionfive-2-lite.dtsi.
-> 
-> Changes since RFC:
-> - Add jh7110s compatible to the generic cpufreq driver.
-> - Fix the dtbs_check error by adding the missing "enable-gpios" property
->   in jh7110 pcie dt-bindings.
-> - Rebase on the latest mainline.
-> - Add VisionFive 2 Lite eMMC board device tree and add a common board dtsi
->   for VisionFive 2 Lite variants.
-> - Add usb switch pin configuration (GPIO62).
-> - Improve the commit messages.
-> 
-> History:
-> v1: https://lore.kernel.org/all/20251016080054.12484-1-hal.feng@starfivetech.com/
-> RFC: https://lore.kernel.org/all/20250821100930.71404-1-hal.feng@starfivetech.com/
-> 
-> Hal Feng (8):
->   dt-bindings: PCI: starfive,jh7110-pcie: Add enable-gpios property
->   dt-bindings: riscv: Add StarFive JH7110S SoC and VisionFive 2 Lite
->     board
->   riscv: dts: starfive: Rename jh7110.dtsi to jh711x.dtsi
->   riscv: dts: starfive: Split jh7110-common.dtsi and move opp table to
->     it
->   riscv: dts: starfive: jh711x-common: Move out some nodes to jh7110
->     common dtsi
->   riscv: dts: starfive: Add common board dtsi for JH7110s and VisionFive
->     2 Lite variants
->   riscv: dts: starfive: Add VisionFive 2 Lite board device tree
->   riscv: dts: starfive: Add VisionFive 2 Lite eMMC board device tree
-> 
->  .../bindings/pci/starfive,jh7110-pcie.yaml    |   4 +
->  .../devicetree/bindings/riscv/starfive.yaml   |   6 +
->  arch/riscv/boot/dts/starfive/Makefile         |   3 +
->  .../boot/dts/starfive/jh7110-common.dtsi      | 653 +----------------
->  .../boot/dts/starfive/jh7110s-common.dtsi     |  27 +
->  ...h7110s-starfive-visionfive-2-lite-emmc.dts |  22 +
->  .../jh7110s-starfive-visionfive-2-lite.dts    |  20 +
->  .../jh7110s-starfive-visionfive-2-lite.dtsi   | 126 ++++
->  .../boot/dts/starfive/jh711x-common.dtsi      | 656 ++++++++++++++++++
->  .../dts/starfive/{jh7110.dtsi => jh711x.dtsi} |  16 -
->  10 files changed, 879 insertions(+), 654 deletions(-)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-common.dtsi
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite-emmc.dts
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dts
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dtsi
->  create mode 100644 arch/riscv/boot/dts/starfive/jh711x-common.dtsi
->  rename arch/riscv/boot/dts/starfive/{jh7110.dtsi => jh711x.dtsi} (99%)
-> 
-> 
-> base-commit: df5d79720b152e7ff058f11ed7e88d5b5c8d2a0c
+[...]
 
-Small nit that "lite-emmc" is confusing together. In patches to U-Boot
-dev mailing list the EEPROM product id is demonstrated to be with "SL"
-suffix when compared to VisionFive 2 (JH7110) so I suggest avoid
-confusion in upstream and use for VisionFive 2 Lite (JH7110S) these
-compatible names:
+> > +patternProperties:
+> > +=C2=A0 # 12 bucks
+> > +=C2=A0 "^buck(([1-9]|10)s|[ad])$":
+> > +=C2=A0=C2=A0=C2=A0 type: object
+> > +=C2=A0=C2=A0=C2=A0 $ref: regulator.yaml#
+> > +=C2=A0=C2=A0=C2=A0 unevaluatedProperties: false
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Properties for a single buck regulator.
+> > +
+> > +=C2=A0=C2=A0=C2=A0 allOf:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - $ref: "#/definitions/s2mpg11-ext-cont=
+rol"
+>=20
+> defs
+>=20
+> > +
+> > +=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regulator-ramp-delay:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [6250, 12500, 25000]
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default: 6250
+> > +
+>=20
+> ....
+>=20
+>=20
+> > +=C2=A0=C2=A0=C2=A0 allOf:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - $ref: "#/definitions/s2mpg11-ext-cont=
+rol"
+> > +
+> > +=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regulator-ramp-delay:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [6250, 12500]
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default: 6250
+> > +
+> > +additionalProperties: false
+>=20
+> This goes to the end, after allOf, see example-schema.
 
-starfive,visionfive-2sl-lite
-starfive,visionfive-2sl-emmc
+Will fix.
 
-Also filenames:
+Thanks for your review Krzysztof.
 
-jh7110s-starfive-visionfive-2sl-lite.dts
-jh7110s-starfive-visionfive-2sl.dtsi
-jh7110s-starfive-visionfive-2sl-emmc.dts
-
-What do you think?
-
--E
+Cheers,
+A.
 
