@@ -1,94 +1,180 @@
-Return-Path: <devicetree+bounces-236121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 112F0C4012D
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 14:21:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35BBEC40148
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 14:22:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B2C864E606E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 13:21:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AD7D3B23A5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 13:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CD82C21EA;
-	Fri,  7 Nov 2025 13:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10B32D7DFF;
+	Fri,  7 Nov 2025 13:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Utrsb2Tw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hjE7+65T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177AD290D81;
-	Fri,  7 Nov 2025 13:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC3A290D81;
+	Fri,  7 Nov 2025 13:22:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762521671; cv=none; b=jaHqsQnsJWXn4m9N7bVbmgQFsRQMMdDN7U1a3kVZk2MNDy+KFQv9nY3t4Ny8Av4REElywDI7BamUasmb5l7/pSTuUPQGJEXfHVg2Fv+sTgeDwdqG+Ig0b6ACf6ltkazEFpUO80/VaKJT7f106nYsbieW+fhzwB0kB7J1mMAvOkg=
+	t=1762521752; cv=none; b=SRYyIT6AUE9X2Sa0udrtyRnlnaKVCzCcrEn8QylCBShQe/0WBtbI8Kng0SIt1nQLUhcwXnw5ejw6lJN8QqsiHQmTQU9BMY64SSja1tDhoClbKAI2lVq1hGnz/RGjpUA7ORl0/0Qo4/0G/K9EGTg6tgzjtKlgRb4Ak+xHzV2HDnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762521671; c=relaxed/simple;
-	bh=96E7URd/JBMmeOeSqdqyu1X4/m6NGu3byeNUEJcl/yk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SGkGThArr4kuH/vhWqcMU2DYPnlzrAKbJ0E/t/JcO+19pvxfIVMydeNgUr/OEB9zShEWpSPIydy2smQsUjaiFsKlk2MDgxRFT151injzgz7AvQrkSMkTVh1wapZF5fpORwKX69Mzkn/LZUR0pSVyPVA8u5Pnu8vkJMB6h7sQ5t4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Utrsb2Tw; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4d307N6kz7z9tGx;
-	Fri,  7 Nov 2025 14:21:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762521665;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Wx+vZv28+HE6MSimwPiuQydOQKun8ZFnuH4lyJBNIpU=;
-	b=Utrsb2Tw9ZLQ3r8Vb2EA+Xq+47eZ5XohMIgAjo9ut6h6voQqszZYotz00fVIF2CcLFp8lZ
-	OiGbgXwQsC9cbY5hPE5sw0j8m5rOPPBbMW02566fTPR6deKdt9yQO5KhofOY3ehxdZu+VZ
-	Q0T1OSPwPCB0gfjsdRaFfePuUg2NLd19v2Irv1YnzrmTyQuipe3sibBUfYn+XZXpxuoD7K
-	sB7dIi5A9QbUsG8Zqv1gJ9pajt4x7kVw2AyU0Ej1asC5m0FZ4XmpdEzqMTDYmW4G/jRskT
-	X9Ybwd3VONaPGSEbSsIJ2PZyz3DvAJJF3y0uo/B/zC8FRo76Z+FehBNJPU8cXw==
-Message-ID: <30b5f19b-1ce9-4239-bf0a-d83d647608ce@mailbox.org>
-Date: Fri, 7 Nov 2025 14:20:58 +0100
+	s=arc-20240116; t=1762521752; c=relaxed/simple;
+	bh=JPCwZc73Ez6KYYqoOUs01xAqhsP8w5dT71K55P50y+M=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=p8hMXk4LlRh5mRkzlk1uDZ0bT3AYcutLPZhKktBkCujMuLckS6YxjHu6tLtRvjvgAMnEVWdxvwMz3XYVw0cG7/Fjx2PBONhhFdtHx89IvRWz7SV8sCFi5+wyF3ng5Oe9CKOCVoTsD0XWJri+5bnlvyd6FEi2bdwINrt84mFsSNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hjE7+65T; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A7B5RaT3175381;
+	Fri, 7 Nov 2025 13:22:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=98URZ/cpJXW9rn2zuoqCwF
+	PwoXiSh4G9Lz7HidOJFoA=; b=hjE7+65TXp+y9nRW523UqFKurqYTRIE/f7noHQ
+	FXHcamKbPsdPMK8bJwSVtA9p3Ed5dvXN95i1yh1/Zedg5YZZYqCXQq0DCJ8iyWMW
+	+9/885/jtA7nQsuY62CqfF/M25SfkNQEGx5V+PclFBKQlWb5ZT2/FtRLnAAoi8C4
+	apx7i8jTaQsTen9XtGq9WZ14gUqfbpea4S92J/sI+PZfzqJKzVUUN7yWagdEnJ82
+	hX4vmfgf1KCDarfzK6/VGiprpPOGe0D0NeSJ75Ystse68voQA0Im05W6lu1xwFLk
+	jWEhlPrhU5S3CmmSbM4E6RQrb3l4ZASPMvSCst7MAigyhWkQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a9fk80ar7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 07 Nov 2025 13:22:19 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5A7DMHUd007636
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 7 Nov 2025 13:22:18 GMT
+Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.24; Fri, 7 Nov 2025 05:22:12 -0800
+From: Vikram Sharma <quic_vikramsa@quicinc.com>
+To: <bryan.odonoghue@linaro.org>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
+        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_svankada@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_nihalkum@quicinc.com>, <quic_vikramsa@quicinc.com>
+Subject: [PATCH v5 0/2] qcom: qcs8300: Add qcs8300 camss support
+Date: Fri, 7 Nov 2025 18:51:52 +0530
+Message-ID: <20251107132154.436017-1-quic_vikramsa@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/2] drm/bridge: add support for lontium lt9211c bridge
-To: Nilesh Laad <nilesh.laad@oss.qualcomm.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, venkata.valluru@oss.qualcomm.com,
- jessica.zhang@oss.qualcomm.com, Yi Zhang <zhanyi@qti.qualcomm.com>,
- Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
-References: <20251107-add-lt9211c-bridge-v2-0-b0616e23407c@oss.qualcomm.com>
- <20251107-add-lt9211c-bridge-v2-2-b0616e23407c@oss.qualcomm.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20251107-add-lt9211c-bridge-v2-2-b0616e23407c@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: c023b755a867ac5c4c7
-X-MBO-RS-META: kabyjstd7kknyaoc5reuyraju3n6868d
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: f_1oKXw3S4z_kdK8yB_M9eOm_017e-1G
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA3MDEwOSBTYWx0ZWRfX7X5enrP4+zTB
+ cs4AeL39Yieqd0pGd1kSzBOh+++/t2bx2mr7N+dxMDlMTZ38GqhLcat1NFMZP4W7Hzj2Yd6OHtd
+ JtkczR4CICoMvMvRkDQRY9zzA66RAyR78kx7BhWA4TQ5j92N2fdA8jSdEqmTD9kgndiFr3I7t+Y
+ Ltw0ryrMCHuP35FaVgk9lSZI2jCDDrUXBN5rNt8K+IhDuYPmqo7J9M76rF8YabvxkJ1JKxwaLpj
+ MP+lTGtsZ/yKS2ykBOewsj5MAHEVBvHLDsqF8s1Y5HCPqWprQghW/HniE3hicOxl/++DwSWJsjL
+ m4PoP7Njt6hcn+Fnapx9DqPWRPb+g4LwUzSiYGb2n1aivBOzHaNSdUyRWeubdcsdS9KVhMGEkwT
+ pmi/n/UavIAuZFR/aaliTvn+xD2nPQ==
+X-Proofpoint-GUID: f_1oKXw3S4z_kdK8yB_M9eOm_017e-1G
+X-Authority-Analysis: v=2.4 cv=CPAnnBrD c=1 sm=1 tr=0 ts=690df28b cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=0I1b_zmpnLY7N7-knUEA:9
+ a=TjNXssC_j7lpFel5tvFf:22 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-07_03,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 clxscore=1011 malwarescore=0 suspectscore=0 phishscore=0
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 impostorscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511070109
 
-On 11/7/25 2:02 PM, Nilesh Laad wrote:
-> From: Yi Zhang <zhanyi@qti.qualcomm.com>
-> 
-> LT9211c is a Single/Dual-Link DSI/LVDS or Single DPI input to
-> Single-link/Dual-Link DSI/LVDS or Single DPI output bridge chip.
-> Add support for DSI to LVDS bridge configuration.
-How does this differ from existing 
-drivers/gpu/drm/bridge/lontium-lt9211.c ? Can existing lt9211 driver be 
-extended instead ? If not, why ? Details please ...
+QCS8300 is a Qualcomm SoC. This series adds bindings and devicetree
+and driver changes to bring up CSIPHY, TPG, CSID, VFE/RDI interfaces
+in QCS8300.
+
+QCS8300 provides
+- 2 x VFE, 3 RDI per VFE
+- 5 x VFE Lite, 6 RDI per VFE
+- 2 x CSID
+- 5 x CSID Lite
+- 3 x TPG
+- 3 x CSIPHY
+
+Changes in v5:
+- Added Fixes: tag - Bryan
+- Removed empty lines between single properties - Vladimir
+- Modified binding phy supply description - Vladimir
+- Link to v4:
+  https://lore.kernel.org/all/8966ddaf-9c10-4626-a4cc-36efd3fc93e2@kernel.org
+
+Changes in v4 compared to v3:
+- Added supplies in bindings to enable camera sensor.
+  This change was earlier added as V3.1 of Binidings which was 
+  reviewed by Krzysztof and Bryan. Link to this discussion:
+  https://lore.kernel.org/all/20250910104915.1444669-1-quic_vikramsa@quicinc.com/
+- Droped the zero-prefix from the size field un DT patch - Konrad
+- Link to v3:
+  https://lore.kernel.org/all/20250813053724.232494-1-quic_vikramsa@quicinc.com/
+
+Changes in v3 compared to v2:
+- Bindings and Device Tree: Reordered csid_wrapper to appear first in the
+  register list (as suggested by Bryan).
+- CSIPHY Driver: Updated the commit message for the CSIPHY patch.
+- VFE/CSID Resource Data: Reused the same resource data as sa8775p for VFE
+  and CSID.
+- Patch Series Order: Rearranged the patch sequence and moved the DTSI
+  update to the final patch in the series.
+- Code Cleanup: Removed duplicate data structures and reused existing
+  ones.
+- Optimization: Simplified and optimized conditional checks.
+- Link to v2:
+  https://lore.kernel.org/linux-arm-msm/20250711131134.215382-1-quic_vikramsa@quicinc.com/
+
+Changes compared to v1:
+- Changed the order for register entries in bindings - Krzysztof
+- Changed the naming for interrupts for consistency - Krzysztof
+- Combined separate series for driver and dtsi into one.
+- Rebased on top of latest version of sa8775p camss patches.
+- Link to v1:
+  Driver: https://lore.kernel.org/all/20250214095611.2498950-1-quic_vikramsa@quicinc.com
+  DTSI: https://lore.kernel.org/all/20250214094747.2483058-1-quic_vikramsa@quicinc.com  
+
+We have tested this on qcs8300-ride board with 'Test Pattern Generator'
+https://lore.kernel.org/all/20250925-camss_tpg-v4-0-d2eb099902c8@oss.qualcomm.com/
+
+Used following tools for the sanity check of these changes.
+- make CHECK_DTBS=y W=1 DT_SCHEMA_FILES=media/qcom,qcs8300-camss.yaml
+  qcom/qcs8300-ride.dtb
+- make DT_CHECKER_FLAGS=-m W=1 DT_SCHEMA_FILES=media/qcom,qcs8300-camss.yaml
+  dt_binding_check
+- make -j32 W=1
+- checkpatch.pl
+
+Vikram Sharma (2):
+  dt-bindings: media: qcom,qcs8300-camss: Add missing power supplies
+  arm64: dts: qcom: qcs8300: Add support for camss
+
+ .../bindings/media/qcom,qcs8300-camss.yaml    |  13 ++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 170 ++++++++++++++++++
+ 2 files changed, 183 insertions(+)
+
+-- 
+2.34.1
+
 
