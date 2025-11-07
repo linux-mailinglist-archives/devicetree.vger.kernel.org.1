@@ -1,305 +1,120 @@
-Return-Path: <devicetree+bounces-235969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F17C3ED28
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FFBAC3ED19
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:51:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14C4A188D2D1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:54:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8719188A774
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2B030BB89;
-	Fri,  7 Nov 2025 07:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261F930DED5;
+	Fri,  7 Nov 2025 07:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s+tNtYA5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fwQEsdr8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7657E171C9
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 07:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D0E330BB89
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 07:51:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762502022; cv=none; b=BQFuHOI5qq24y/7agOzVdqM8lD8poVTO5oCVxiHaQgWTkVD54TZw7jCiTqYDGhbH2O4YENnfxnB9WyRBE2UC/RSuG9r2jsbriymqSzxn9WQa1LiiARezlVZ20iaNr0T+QR6MB2U6JncDSvTkbLEra0D1BBtwD5RlQ0mvwAu0W50=
+	t=1762501902; cv=none; b=MyW6FbDiz3QBeMO+fBRvABW72bo2ihLlNDBh3OBjhu22HEQubZtoIgXa7mzYpNR44yZ7JcAjU8W/rvqLEDaf3TG+ZKP+oP5bMSO6fB2++x+sm1egDINHHaL/PueH3CGfl4BF+5+vQ1fAlJNAD2dWStjIzWZUZj6/Rd8LvTp1RDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762502022; c=relaxed/simple;
-	bh=cO5NurIQl/eg1guBeVUIGQOMKGzKw8tKWWLvGRxepIk=;
+	s=arc-20240116; t=1762501902; c=relaxed/simple;
+	bh=m3vCS5fEBZTrIlk0oaQTEp9kJKU7A5DiAAXFXV5fdVI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uttCf8e2kYEOvmp5GsGtIdmWk8xp7RqUg09IBbiisXxC6KuxQD6O4OMJzb+vxVxAKguXDDHAJLdGjQxomVfPcvEEr8bc0HKrhPv2ddWuHk8Y0GSQ9tRQvJZYan4xxSrzK3o6DBq2YK8zbVHiGcIkuyfamDL6xRcuSx8GarEre1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s+tNtYA5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B2A2C19421
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 07:53:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762502022;
-	bh=cO5NurIQl/eg1guBeVUIGQOMKGzKw8tKWWLvGRxepIk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=s+tNtYA5jpaX/k3+dOqINj6hHQa0kd9DLlsWPH5Pe4IVa8ahVr/KrsMWRFMTDk8Y2
-	 rYKHeQ9848OBVVHtl9+f+2wkZTNSc1LAZpjDvUzksWfrqXQd8oxc7frPsjZQPGKn4G
-	 s3fexwxpCgtiTKcPauPysoBeXTv6s86xGgamh+/Q8Q/GHCy5/l+0u4xyTWdgPuRFAY
-	 2IHf1zNE9sYCFVUYMhRFxS5q9mijcp42MnRt21vH+fFogsIlxup+EI/DLSQF7G3kOa
-	 cyoOXaJc9ogGskkf9RDlnukPAe06xJ+lqOiIUXoYbJi3Yc1AqgXF+vqfy45NP3/c8C
-	 QJL2BmUn0uZ9A==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-640860f97b5so752031a12.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 23:53:42 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU9BPj2K4lbybBhfB5mxB9mC+Zzz6kQifviaFrN1MS+0zBjCFULBYetxup+J1KvwuARxZRGj7xTx7TL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyexQ1OoblK1/2NwtMEa2v+3eEILGwahuOudRqMRruPyCHH9a2w
-	/O5dUeLFtl2Ic9zFTxgRFhDMsFAS3JmbhtJ3w7GZXfcY9/0+6HriQjoJb36tcLZyad5OodHP8NT
-	Xzk9EsfH8aeUKIdScnozSZedBN4SdSHY=
-X-Google-Smtp-Source: AGHT+IG8+ZR32d5pvl05Gv3SN6BjCgKJ1SPjMwA8rRsKu7izp2GUQCkf8OZT7z+sE2pIiwUpKhvd7JFoU1rk3B6kW4k=
-X-Received: by 2002:a17:907:d07:b0:b72:afb1:fc4 with SMTP id
- a640c23a62f3a-b72c0e833a9mr167122166b.50.1762502020450; Thu, 06 Nov 2025
- 23:53:40 -0800 (PST)
+	 To:Cc:Content-Type; b=r98ejXeL2hb7caNx2wHowURyiLc7l9OOJbFTPqmgW/tZAU6Z1AAlmgQ+XvOwFuMKI6XW6opC841rgQ89WLVzClZpQfgYyRdQuT6S/ZSkSNjZrSrvhw7rO88wsMLV8ZvEiMyov+z/xY5pJEWE4WvmachXes7nPvG6BuXU26bZ3ZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fwQEsdr8; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-29470bc80ceso5049445ad.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 23:51:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762501900; x=1763106700; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m3vCS5fEBZTrIlk0oaQTEp9kJKU7A5DiAAXFXV5fdVI=;
+        b=fwQEsdr8HkxhXUpnLpI0r+sEsbQdiOjdeLGAwGNOSrSzRIW9mxnZZeXCAgTv/gKFWt
+         VKkRoY6+W53nh1HEaYWLAdKjR149whtnK5iwydZKkTi8BHj0z/48fDU/RvL3quSaR90T
+         gnv6W0dMcZJ1BlvZ2SWmvO6aslwIwKdgdLt6ycsynI5VdFDilMQWCoXvEUQmOIKtB5WB
+         cwv0wKPDuTX1sf51b9AaExExco6dk3rFBFYsFyYfpAjFqoWFt8fb8d+BJCtYouhH8AMH
+         QEXJSuAeM6CkJOAloy/Be7bWX6l7SxMtZG06uQS7P2zjIkbeE5cdUv5tOx+MIBgzKc66
+         HRmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762501900; x=1763106700;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=m3vCS5fEBZTrIlk0oaQTEp9kJKU7A5DiAAXFXV5fdVI=;
+        b=IIkAKUldXetzddHRRBS2eWXCHc7zP6JuFHOorVxQYKSXL8oywB7jt3lpTmAus/rpf2
+         CrS0qPhDreY+6btqQT60z3wTAQTfNxQFJ9sOZ4ebT/WsmxjKTS7JKSVnUnzfMZeHw5tP
+         LiSAPZ4l9ONuW8I9UBkQt8hbYm7paF5KgkWlYiL5qY5n+XbFO/Hi6+NgpsL9HcqnaBzL
+         x0oO6IDuq/CI56ybEaaSE9YuW0EKiKYp0+pueQG+J8ST7LcY7Vt6NsxEVEFuwGN+Y9L4
+         A74HJe8fFnl9Ld4q3bjQPgIxa2fa29gGZUIgYg27Z1U8j7nDH+/YXyQQzNXovdsHOt0b
+         IgRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUKQcWKYpWBZjPHpwuQku4FHFVOlzrtQHZfsVDQbOEAs1gu7N8yH1YI2LCzLbzfMKvMt9yoOo7ix+4w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6Xc/gU44HiTeG8bb/O8yhF5ezZAQEvQlxc/NXFn5fbJjsL2Pw
+	9tqCkNG4OedG0Z5Wd1ycropKOO59lJeR9tMzleqJYqnCQnwt9zpWfnNUnQ2/99alHJwItSzy4wU
+	ojlwC5a5ORJHcT5JVYH87qK1dRUiSqPICaw==
+X-Gm-Gg: ASbGncvID8jJNgikGFQtL0gdE3kArRwe5YkNOAeK6KcP8lGpOshoGIpRnVT+zlRdm3r
+	pjxBAhxYCRQTmGTK4a+SWiYT2ioBG9//Cp7OeLEklvhpwB675kS0HMa0NiOOIx3KbC/qbTJKumh
+	pf3fOoggduikyZaYDktnQSF/lRhiER7x7Bjfkbd3vIRzs5yWUiqTQGD4Q31tY04GPSUaZjd1uTq
+	BPSqqpTmf9cez/3NVUbnukrpNSTtFDokC1oqLqwv9KDCAI18eoF9cPzBQ==
+X-Google-Smtp-Source: AGHT+IFkh8XME/XKdmm+TIe47BXYcMMyHnwgbqIA5X6bAhqAdmw5d+3JqyQ85nbSaeZPIXV7fRyM4oESPwNxWKjSk8M=
+X-Received: by 2002:a17:902:e847:b0:292:9ac7:2608 with SMTP id
+ d9443c01a7336-297c94b32a9mr11604375ad.8.1762501899726; Thu, 06 Nov 2025
+ 23:51:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1762482089.git.zhoubinbin@loongson.cn> <d6153aa5457098cea388cff7ee2ceb43b207970b.1762482089.git.zhoubinbin@loongson.cn>
-In-Reply-To: <d6153aa5457098cea388cff7ee2ceb43b207970b.1762482089.git.zhoubinbin@loongson.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Fri, 7 Nov 2025 15:53:37 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H4HRQGU72_GkGabNDSKes77a+MNFNyZmwNvmb=aipT-9Q@mail.gmail.com>
-X-Gm-Features: AWmQ_blhGgHAd63exmNQLO3p8vxZuKSPJ7NjueR30OlqT6i6LS_ztlbCdfMYl5A
-Message-ID: <CAAhV-H4HRQGU72_GkGabNDSKes77a+MNFNyZmwNvmb=aipT-9Q@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] watchdog: loongson1: Add Loongson-2k0300 watchdog support
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, Xiaochuang Mao <maoxiaochuan@loongson.cn>
+References: <20251031-imx95-rproc-2025-10-31-v2-0-758b2e547a55@nxp.com> <20251031-imx95-rproc-2025-10-31-v2-2-758b2e547a55@nxp.com>
+In-Reply-To: <20251031-imx95-rproc-2025-10-31-v2-2-758b2e547a55@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Fri, 7 Nov 2025 09:54:06 +0200
+X-Gm-Features: AWmQ_bnGeOFtoZrRWw9KhEpAzRXkaZJvKZO7s-geVquRIrpRxLbcQTb4ng5zby8
+Message-ID: <CAEnQRZBJCZOO9yLr-T_DT_QYerKgRP9gdasmUK+WN+d8VJPV6w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] remoteproc: imx_rproc: Add runtime ops copy to
+ support dynamic behavior
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Frank Li <frank.li@nxp.com>, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi, Binbin,
+On Fri, Oct 31, 2025 at 4:27=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
+>
+> Structure imx_rproc_dcfg contains a const pointer to imx_rproc_plat_ops,
+> which defines the start/stop/detect_mode operations for a remote processo=
+r.
+> To preserve the const correctness of the static configuration while
+> allowing runtime modification of ops behavior, introduce a new
+> imx_rproc_plat_ops member in struct imx_rproc named `ops`.
+>
+> During initialization, dcfg->ops is assigned to priv->ops.
+> Enable the driver to safely override ops at runtime without affecting the
+> original const configuration.
+>
+> Improve flexibility for platforms that require dynamic operation switchin=
+g
+> (e.g. i.MX95 Logical Machine ops and CPU ops).
+>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-On Fri, Nov 7, 2025 at 2:02=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn>=
- wrote:
->
-> According to the manual, the Loongson-2K0300 watchdog is similar to the
-> Loongson-1, except for some register offsets and inconsistent register
-> bit definitions. Separate definitions via driver_data suffice.
->
-> Co-developed-by: Xiaochuang Mao <maoxiaochuan@loongson.cn>
-> Signed-off-by: Xiaochuang Mao <maoxiaochuan@loongson.cn>
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  drivers/watchdog/Kconfig         |  4 +-
->  drivers/watchdog/loongson1_wdt.c | 73 ++++++++++++++++++++++++++------
->  2 files changed, 62 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index 0c25b2ed44eb..002eb785ca1f 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -1965,10 +1965,10 @@ config LANTIQ_WDT
->
->  config LOONGSON1_WDT
->         tristate "Loongson1 SoC hardware watchdog"
-> -       depends on MACH_LOONGSON32 || COMPILE_TEST
-> +       depends on MACH_LOONGSON32 || MACH_LOONGSON64 || COMPILE_TEST
->         select WATCHDOG_CORE
->         help
-> -         Hardware driver for the Loongson1 SoC Watchdog Timer.
-> +         Hardware driver for the Loongson family Watchdog Timer.
->
->  config RALINK_WDT
->         tristate "Ralink SoC watchdog"
-> diff --git a/drivers/watchdog/loongson1_wdt.c b/drivers/watchdog/loongson=
-1_wdt.c
-> index 255198cbf5bf..2417519717cc 100644
-> --- a/drivers/watchdog/loongson1_wdt.c
-> +++ b/drivers/watchdog/loongson1_wdt.c
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-or-later
->  /*
->   * Copyright (c) 2016 Yang Ling <gnaygnil@gmail.com>
-> + * Copyright (C) 2025 Binbin Zhou <zhoubinbin@loongson.cn>
->   */
->
->  #include <linux/clk.h>
-> @@ -10,10 +11,8 @@
->  #include <linux/platform_device.h>
->  #include <linux/watchdog.h>
->
-> -/* Loongson 1 Watchdog Register Definitions */
-> +/* Loongson Watchdog Register Definitions */
->  #define WDT_EN                 0x0
-> -#define WDT_TIMER              0x4
-> -#define WDT_SET                        0x8
->
->  #define DEFAULT_HEARTBEAT      30
->
-> @@ -27,18 +26,37 @@ module_param(heartbeat, uint, 0);
->  MODULE_PARM_DESC(heartbeat, "Watchdog heartbeat in seconds. (default=3D"
->                  __MODULE_STRING(DEFAULT_HEARTBEAT) ")");
->
-> +struct ls1x_wdt_pdata {
-> +       u32 timer_offset;
-> +       u32 set_offset;
-> +       u32 wdt_en_bit;
-> +};
-> +
-> +static const struct ls1x_wdt_pdata ls1b_wdt_pdata =3D {
-> +       .timer_offset =3D 0x4,
-> +       .set_offset =3D 0x8,
-> +       .wdt_en_bit =3D BIT(0),
-> +};
-> +
-> +static const struct ls1x_wdt_pdata ls2k0300_wdt_pdata =3D {
-> +       .timer_offset =3D 0x8,
-> +       .set_offset =3D 0x4,
-> +       .wdt_en_bit =3D BIT(1),
-> +};
-> +
->  struct ls1x_wdt_drvdata {
->         void __iomem *base;
->         struct clk *clk;
->         unsigned long clk_rate;
->         struct watchdog_device wdt;
-> +       const struct ls1x_wdt_pdata *pdata;
->  };
->
->  static int ls1x_wdt_ping(struct watchdog_device *wdt_dev)
->  {
->         struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
->
-> -       writel(0x1, drvdata->base + WDT_SET);
-> +       writel(0x1, drvdata->base + drvdata->pdata->set_offset);
->
->         return 0;
->  }
-> @@ -53,7 +71,7 @@ static int ls1x_wdt_set_timeout(struct watchdog_device =
-*wdt_dev,
->         wdt_dev->timeout =3D timeout;
->
->         counts =3D drvdata->clk_rate * min(timeout, max_hw_heartbeat);
-> -       writel(counts, drvdata->base + WDT_TIMER);
-> +       writel(counts, drvdata->base + drvdata->pdata->timer_offset);
->
->         return 0;
->  }
-> @@ -62,7 +80,7 @@ static int ls1x_wdt_start(struct watchdog_device *wdt_d=
-ev)
->  {
->         struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
->
-> -       writel(0x1, drvdata->base + WDT_EN);
-> +       writel(drvdata->pdata->wdt_en_bit, drvdata->base + WDT_EN);
->
->         return 0;
->  }
-> @@ -70,8 +88,10 @@ static int ls1x_wdt_start(struct watchdog_device *wdt_=
-dev)
->  static int ls1x_wdt_stop(struct watchdog_device *wdt_dev)
->  {
->         struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
-> +       u32 val =3D readl(drvdata->base + WDT_EN);
->
-> -       writel(0x0, drvdata->base + WDT_EN);
-> +       val &=3D ~(drvdata->pdata->wdt_en_bit);
-> +       writel(val, drvdata->base + WDT_EN);
->
->         return 0;
->  }
-> @@ -81,9 +101,9 @@ static int ls1x_wdt_restart(struct watchdog_device *wd=
-t_dev,
->  {
->         struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
->
-> -       writel(0x1, drvdata->base + WDT_EN);
-> -       writel(0x1, drvdata->base + WDT_TIMER);
-> -       writel(0x1, drvdata->base + WDT_SET);
-> +       writel(drvdata->pdata->wdt_en_bit, drvdata->base + WDT_EN);
-> +       writel(0x1, drvdata->base + drvdata->pdata->timer_offset);
-> +       writel(0x1, drvdata->base + drvdata->pdata->set_offset);
->
->         return 0;
->  }
-> @@ -114,6 +134,8 @@ static int ls1x_wdt_probe(struct platform_device *pde=
-v)
->                 return -ENOMEM;
->         platform_set_drvdata(pdev, drvdata);
->
-> +       drvdata->pdata =3D of_device_get_match_data(dev);
-> +
->         drvdata->base =3D devm_platform_ioremap_resource(pdev, 0);
->         if (IS_ERR(drvdata->base))
->                 return PTR_ERR(drvdata->base);
-> @@ -142,9 +164,32 @@ static int ls1x_wdt_probe(struct platform_device *pd=
-ev)
->         return devm_watchdog_register_device(dev, &drvdata->wdt);
->  }
->
-> +static int ls1x_wdt_resume(struct device *dev)
-> +{
-> +       struct ls1x_wdt_drvdata *data =3D dev_get_drvdata(dev);
-> +
-> +       if (watchdog_active(&data->wdt))
-> +               ls1x_wdt_start(&data->wdt);
-> +
-> +       return 0;
-> +}
-> +
-> +static int ls1x_wdt_suspend(struct device *dev)
-> +{
-> +       struct ls1x_wdt_drvdata *data =3D dev_get_drvdata(dev);
-> +
-> +       if (watchdog_active(&data->wdt))
-> +               ls1x_wdt_stop(&data->wdt);
-> +
-> +       return 0;
-> +}
-We usually define suspend first and then resume, that looks more
-natural. But this is not a big deal.
 
-Others look good to me.
-
-For the whole series,
-Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
-
-Huacai
-
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(ls1x_wdt_pm_ops, ls1x_wdt_suspend, ls1x_=
-wdt_resume);
-> +
->  static const struct of_device_id ls1x_wdt_dt_ids[] =3D {
-> -       { .compatible =3D "loongson,ls1b-wdt", },
-> -       { .compatible =3D "loongson,ls1c-wdt", },
-> +       { .compatible =3D "loongson,ls1b-wdt", .data =3D &ls1b_wdt_pdata =
-},
-> +       { .compatible =3D "loongson,ls1c-wdt", .data =3D &ls1b_wdt_pdata =
-},
-> +       { .compatible =3D "loongson,ls2k0300-wdt", .data =3D &ls2k0300_wd=
-t_pdata },
->         { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, ls1x_wdt_dt_ids);
-> @@ -154,11 +199,13 @@ static struct platform_driver ls1x_wdt_driver =3D {
->         .driver =3D {
->                 .name =3D "ls1x-wdt",
->                 .of_match_table =3D ls1x_wdt_dt_ids,
-> +               .pm =3D pm_ptr(&ls1x_wdt_pm_ops),
->         },
->  };
->
->  module_platform_driver(ls1x_wdt_driver);
->
->  MODULE_AUTHOR("Yang Ling <gnaygnil@gmail.com>");
-> -MODULE_DESCRIPTION("Loongson1 Watchdog Driver");
-> +MODULE_AUTHOR("Binbin Zhou <zhoubinbin@loongson.cn>");
-> +MODULE_DESCRIPTION("Loongson Watchdog Driver");
->  MODULE_LICENSE("GPL");
-> --
-> 2.47.3
->
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
