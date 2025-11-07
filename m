@@ -1,146 +1,264 @@
-Return-Path: <devicetree+bounces-236216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610CCC413F5
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 19:16:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2981C41417
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 19:18:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 682CB4E50A0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 18:16:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D8F844F45DC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 18:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6B13346AB;
-	Fri,  7 Nov 2025 18:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E3033B951;
+	Fri,  7 Nov 2025 18:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UE6nluFp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PFNFhJgp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9946C326D4F
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 18:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CB6337BA7;
+	Fri,  7 Nov 2025 18:16:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762539384; cv=none; b=jNM2t9OblTRErSF4kmlsQCIRkr6pGyCIL3MxxjXj5YcDesXnLqyGEeZaDafcUFdFnl6icsL1Ah4rr9JdR3LqDT4YKdehwYTEmPIYfDAS1J+4utAsei/zEyQs6mUr45p+4G6eP1M7bjehTnyn2ITeM6UqVCl8IxW0Tgx9D3GXxLY=
+	t=1762539414; cv=none; b=PI3+rykFyJDyMqKlEPpfv5rWswVnhXRzVBBZ5GxBT98eVEVNKg2BGP7o8091F4E4eqtYhs30J6v98qHW6Ojfj3pcIFkCCLQ8X+vKDTVeFHwETjlsBnqxpkV0SLc+fMm8dHo0Q0TeWhG2aafCj/7JFmC/OsiP2lQ1brWOmSv0fco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762539384; c=relaxed/simple;
-	bh=7NAI5FTEyIjlm2QNRL+eBBHPdSk1Sz6seoRXTUUH+h0=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eAfBCy+EVKe9L+qq57Y9yQYnXjO485kQeV/oh1RfmQ8CnnLpmcufudhX0yMc7RjdpnvYWsUw2VAp4gkPECJhoiScDXvGCUFXlYTLekFwCRaAfxZjBuNKBYd9wMky74iU+sWGxs62YdOXsdvc3mA7PF2S24dGNTX6EWeycra+l5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UE6nluFp; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-429ce7e79f8so805623f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 10:16:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762539381; x=1763144181; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=tVJ2xtJlmj5EezO+VKSHrAcAYjS9yDJNYT/T6/c6kPg=;
-        b=UE6nluFpxEZoWh57vmSk/hMa4YWOQZv2LrubOYKt080kzcbRhfKlVsjzu527iAxx3f
-         i4jH6LbeBu+rWsarkhgvVO3Fel10ahN6nGkV4o6nCK4cmYMFaRyZcXhoqRTbbaB7xBST
-         D6eBLFK3/QwNtK/FqAsZN3sUMl+UgEsZDZr539IowhmAfqS5LmdLkOuZgoktAqg15upA
-         RbSxvNBGjyfaGHFTjZZTQbq8UDToxTj9JLKfn+xj/Ou4iSqgdiHP6lsSpwUGQ3cJnow9
-         NVdrrpysnFNCPzAs8U7Sdi7yHmCNmfpTVqvea2IGq8ioEoKIidmSlO7kfLQ//xlwTixq
-         li4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762539381; x=1763144181;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tVJ2xtJlmj5EezO+VKSHrAcAYjS9yDJNYT/T6/c6kPg=;
-        b=U+aFvbhtNJqdutLfOghpHlK/vsChjc8r4NJMh5zuu/Z82r7DHZHJwZovpp7JLKEAZT
-         l+CFoR7J6tXxzt9l6qy8eNtjLBHm9tGUQMp1y02FSXqdqW1XqJmiGKnu091X7qtYrgcG
-         Y2IY54tXxB2oXz1qB/bDhTURwZt6HSZXGTz4Wv0bLqvTP0KRCXnUWSZA2ZmDMW+a4IRc
-         aGcx+2uhaMXL/1KIPLhDL+CkLoH0WbJUkNB5n5Q/DCWQUBBxYtC0qQuTeA/H+GTOeuey
-         II0hVtJ4TZmLxRJ9UgSFz7UUykWah9HP3xIVn4l3XjM/02jjCcgTvFsqgNQiPHQNeqL0
-         t/wg==
-X-Forwarded-Encrypted: i=1; AJvYcCWb+Ijvt/RadAPjoi0PbQPbZ7o7/KXxDEbr+xOU8QqnPvwUkwJxW5r6FQxdSB1TXmcYlEGUscp7s9P1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfHtswbdPuNN8HtwGtHXzRI0iynbgaalCkwIcnYb2nOaBhoMIS
-	p09GnhAfvB8IpStTEalk/af0K4qdm66vvG86PZScd3cgOfSQIRr1VSNn
-X-Gm-Gg: ASbGncuejp9XDmS5hVFDGl2CUieD9vp32f/irXuMmY4r0Uz9yEp8ojumB/SR3Xv6XLi
-	cBHJsRjyyc9Hr5L0qI3tjodoPJDVKdKvKGaJKL2ShyPaX7dRl1hp86ioL67cfoRbUGnEbcTmzFh
-	5+gpWSGiXnM8WrfxM2D2LQmCWi78Itxma2/zm2SZc0X2cAnh780TN9JaV4m63idHDtMi7umwzlr
-	W4iZk/NvwN54MCPNFc2uUjDYvKcA+7LfEm3ibsFkHtAtDdRLVMa0SQWOQ64aHAdwsFWg4pTDGTU
-	bkJy1/5qJZ0XJaWlmY3r9AlSK7MmbQPo1Irbc+hb9WMaMnSvIN9A9Pf9rQ9qSjmp75fAjF9gFrC
-	RcVoJCJTFSEfEDJE2MOuy6Ve4r4IBMgtE/gBDCrdOPKQC+fJka0Nb2WPtFvWAjL6fe+jNOdQ4jS
-	PQbEK3D/4lHGUuYFOuiI1JsKkDADjzISD/fHp2bqI=
-X-Google-Smtp-Source: AGHT+IEp8RA70w6dQWLu5Sj+5AV/4tZ1eqge9CXFqZ79B7Chsq8jWBSCViddS2yq0HyDzJ/vWl+q5Q==
-X-Received: by 2002:a05:6000:25c3:b0:429:c851:69ab with SMTP id ffacd0b85a97d-42ae5af4abemr3058281f8f.55.1762539380754;
-        Fri, 07 Nov 2025 10:16:20 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42ac679c5dcsm8032998f8f.44.2025.11.07.10.16.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 10:16:20 -0800 (PST)
-Message-ID: <690e3774.5d0a0220.2246e9.71a5@mx.google.com>
-X-Google-Original-Message-ID: <aQ43cbO7Lu_IBJek@Ansuel-XPS.>
-Date: Fri, 7 Nov 2025 19:16:17 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+	s=arc-20240116; t=1762539414; c=relaxed/simple;
+	bh=+3LGRZ/i95R9G46DjnQ4oDzhvETIPYCKtlLIAK2PNBI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kdV5J0n0LtDuoelFfJdskM8Xyzc9jvpqUof2r25nY5cQvvoSAO7rOVcvyc47fLQqOA6w04dbg2Z0OSHQjND6z2qgeP4aapX8znoNQ8JE7qiPFypgJdDXJe9DiJbVrVf+0BVvW1gzsiXazhlrENt1AIBjjzpw6A7yxxL0vz5n8Ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PFNFhJgp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B05AC4CEF8;
+	Fri,  7 Nov 2025 18:16:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762539413;
+	bh=+3LGRZ/i95R9G46DjnQ4oDzhvETIPYCKtlLIAK2PNBI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PFNFhJgp1kZkEshiNLZQa1cH8HdVHFyKXEiX2/j3WpQOAshi2ICDcRGNrbQvnzZIu
+	 Ev1WbzWkDfvPNUzHcb4LcvA+ipD97IetYPlu+Bb/1dqxVuqvBFDJ0TR79zhIOy0Vu9
+	 6M0+Xp272845UHA5ZY1C92R9+tlxfcQg+IA7NhONIBlu+HLKAzySAQs1ZgZKmkrIAW
+	 nAx7tA+IWU5iFp+Stamqd8v3/LebxTy/Asu4r/w29O/xHPtjqKMr1d1eP4Xd2UO6Kk
+	 M84g2J9d8qCpEK3SHXStSFYcTiUKJWx9JKd1a9QHRZ4kfUrH3VuOINxiFdGueKP44C
+	 8MZdLTWnobWpA==
+Date: Fri, 7 Nov 2025 18:16:47 +0000
+From: Conor Dooley <conor@kernel.org>
+To: maudspierings@gocontroll.com
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: soc: Add bindings for Airoha SCU
- Serdes lines
-References: <20251107160251.2307088-1-ansuelsmth@gmail.com>
- <20251107160251.2307088-2-ansuelsmth@gmail.com>
- <20251107-crisping-doable-365d6b7d60a6@spud>
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: backlight: Add max25014 support
+Message-ID: <20251107-qualified-varsity-78953d06d7c6@spud>
+References: <20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com>
+ <20251107-max25014-v5-1-9a6aa57306bf@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8J53olo9onoOkYiP"
+Content-Disposition: inline
+In-Reply-To: <20251107-max25014-v5-1-9a6aa57306bf@gocontroll.com>
+
+
+--8J53olo9onoOkYiP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251107-crisping-doable-365d6b7d60a6@spud>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 07, 2025 at 06:14:31PM +0000, Conor Dooley wrote:
-> On Fri, Nov 07, 2025 at 05:02:43PM +0100, Christian Marangi wrote:
-> > The Airoha AN7581 SoC can configure the SCU serdes lines for multiple
-> > purpose. For example the Serdes for the USB1 port can be both
-> > used for USB 3.0 operation or for Ethernet. Or the USB2 serdes can both
-> > used for USB 3.0 operation or for PCIe.
-> > 
-> > The PCIe Serdes can be both used for PCIe operation or for Ethernet.
-> > 
-> > Add bindings to permit correct reference of the different ports in DT,
-> > mostly to differentiate the different supported modes internally to the
-> > drivers.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  include/dt-bindings/soc/airoha,scu-ssr.h | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >  create mode 100644 include/dt-bindings/soc/airoha,scu-ssr.h
-> > 
-> > diff --git a/include/dt-bindings/soc/airoha,scu-ssr.h b/include/dt-bindings/soc/airoha,scu-ssr.h
-> > new file mode 100644
-> > index 000000000000..a14cef465dad
-> > --- /dev/null
-> > +++ b/include/dt-bindings/soc/airoha,scu-ssr.h
-> > @@ -0,0 +1,11 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +
-> > +#ifndef __DT_BINDINGS_AIROHA_SCU_SSR_H
-> > +#define __DT_BINDINGS_AIROHA_SCU_SSR_H
-> > +
-> > +#define AIROHA_SCU_SERDES_PCIE1		0
-> > +#define AIROHA_SCU_SERDES_PCIE2		1
-> > +#define AIROHA_SCU_SERDES_USB1		0
-> > +#define AIROHA_SCU_SERDES_USB2		1
-> 
-> I'm going to assume that 01 01 is correct here.
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Fri, Nov 07, 2025 at 01:49:58PM +0100, Maud Spierings via B4 Relay wrote:
+> From: Maud Spierings <maudspierings@gocontroll.com>
+>=20
+> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
+> with integrated boost controller.
+>=20
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+>=20
+> ---
+>=20
+> In the current implementation the control registers for channel 1,
+> control all channels. So only one led subnode with led-sources is
+> supported right now. If at some point the driver functionality is
+> expanded the bindings can be easily extended with it.
 
-Yes the value are then translated in the driver internally.
+I'm sorry if I asked this before and forgot or w/e, but how backwards
+compatible is this? If they control all channels and it gets changed to
+only control channel one, how will a changed kernel understand the
+difference between a new devicetree that only wants to control channel 1
+and an old devicetree that is trying to use channel 1 to control all
+channels?
 
--- 
-	Ansuel
+Cheers,
+Conor.
+
+> ---
+>  .../bindings/leds/backlight/maxim,max25014.yaml    | 107 +++++++++++++++=
+++++++
+>  MAINTAINERS                                        |   5 +
+>  2 files changed, 112 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/maxim,max25=
+014.yaml b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.=
+yaml
+> new file mode 100644
+> index 000000000000..e83723224b07
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/backlight/maxim,max25014.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim max25014 backlight controller
+> +
+> +maintainers:
+> +  - Maud Spierings <maudspierings@gocontroll.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max25014
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-supply:
+> +    description: Regulator which controls the boost converter input rail.
+> +
+> +  pwms:
+> +    maxItems: 1
+> +
+> +  maxim,iset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 15
+> +    default: 11
+> +    description:
+> +      Value of the ISET field in the ISET register. This controls the cu=
+rrent
+> +      scale of the outputs, a higher number means more current.
+> +
+> +  led@0:
+> +    type: object
+> +    description: Properties for a string of connected LEDs.
+> +    $ref: common.yaml#
+> +
+> +    properties:
+> +      reg:
+> +        const: 0
+> +
+> +      led-sources:
+> +        allOf:
+> +          - minItems: 1
+> +            maxItems: 4
+> +            items:
+> +              minimum: 0
+> +              maximum: 3
+> +            default: [0, 1, 2, 3]
+> +
+> +      default-brightness:
+> +        minimum: 0
+> +        maximum: 100
+> +        default: 50
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        backlight@6f {
+> +            compatible =3D "maxim,max25014";
+> +            reg =3D <0x6f>;
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <0>;
+> +            enable-gpios =3D <&gpio1 4 GPIO_ACTIVE_HIGH>;
+> +            interrupt-parent =3D <&gpio1>;
+> +            interrupts =3D <2 IRQ_TYPE_EDGE_FALLING>;
+> +            power-supply =3D <&reg_backlight>;
+> +            pwms =3D <&pwm1>;
+> +            maxim,iset =3D <7>;
+> +
+> +            led@0 {
+> +                reg =3D <0>;
+> +                led-sources =3D <0 1 2 3>;
+> +                default-brightness =3D <50>;
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 58c7e3f678d8..606ce086f758 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15261,6 +15261,11 @@ F:	Documentation/userspace-api/media/drivers/max=
+2175.rst
+>  F:	drivers/media/i2c/max2175*
+>  F:	include/uapi/linux/max2175.h
+> =20
+> +MAX25014 BACKLIGHT DRIVER
+> +M:	Maud Spierings <maudspierings@gocontroll.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> +
+>  MAX31335 RTC DRIVER
+>  M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+>  L:	linux-rtc@vger.kernel.org
+>=20
+> --=20
+> 2.51.2
+>=20
+>=20
+
+--8J53olo9onoOkYiP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ43jwAKCRB4tDGHoIJi
+0tpBAP9NLDHquHkJaGHZdDJjqdtnkqN8QoB5tbL4dVfi7f3PDwD/aSxRFOqlWV2V
+MTS/83/dLZduN46XgS8bQuVOD/bkww8=
+=ExWz
+-----END PGP SIGNATURE-----
+
+--8J53olo9onoOkYiP--
 
