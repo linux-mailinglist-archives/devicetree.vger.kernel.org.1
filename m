@@ -1,326 +1,766 @@
-Return-Path: <devicetree+bounces-236152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04317C409CC
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:35:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6F12C40AC2
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:50:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9178B1A447BE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:36:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F4C91A452B1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65DDC32D7FA;
-	Fri,  7 Nov 2025 15:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C831329E7A;
+	Fri,  7 Nov 2025 15:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MEq4rgTh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ps29Tn3V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013038.outbound.protection.outlook.com [40.107.162.38])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0100832D45C;
-	Fri,  7 Nov 2025 15:35:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.38
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762529719; cv=fail; b=ErlxxXU1XYy5E8gXeCNL4x48LyGhozSs56R/k2iEQ1SI2g/xlXJ12eqjHI88Cyufyjnbid61hyWtHuyLgirUfCxziU6RDoGq3+MFciswZH6l5ZZFtJAfPb8jixhEIpfYNqMVaq6J73matQEHGQPEMHmm3UOe9VTFovLB70YkG28=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762529719; c=relaxed/simple;
-	bh=50hXVWS2cnKWlIdkes7/7HdouFNDbOoicEPEa7rrWgE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Rhh8lZ+muCn2QX2KrY5EjoCv/piRaEJ5aRSI/XJlFvB7fCrOFjyo6UKjKtPLO8jcdtPUaMlISarCi0MV1f7W/T25ZlFIxPmtvKnPxHKNPFbM8RRSsJZKfjmywv/+weyTrnI1I3m0hwoPEwveO8zdKWwdN4TwSZTY4YPhMgHUpNk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MEq4rgTh; arc=fail smtp.client-ip=40.107.162.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GxYgbaWsBffjhAKxZvEbIngCcQrCYzQisOsWVwQffPSIYMFGEz4wDztPXmzqka8YGx2AOktCNQ74qolDR6dAjzdXSNRjxXFvTQw8ehTmHAV0HnzLmxyV0YD6K/SwrhgANP4oPfZcs4PahDmwZvLmnzVYzTv50HMHXiZ9qcv+OMSQtkAfvFyuvvAWNnJnzPfXR8Vgz44WJMuqWuAZjRMpQlTs1di8DJODN677R2Y9hdD+aOL97MKz+6/uSO+pZiMFUfEvhsGFxQVhtrnzCq6YMs5r4p30r+CScyndB5QL805vKZXy3R+8W01ZIDiRD1iXcBIcX0nx8i232P+w1T05hA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fxdY7zx2Lcq6leZZ6u+7BHY3IvlcL6bHKJEGfWYK4jg=;
- b=PZbEEY9+9cKp6lMOZfcZ3XoYJDVlJgix95vxP5Z6IgCHh2Co97mTxTj017rg8eJCk3HxR3FiJS1Ry251QIe1bPb2yUwGA5HQeClELNl+NDaq4xdhZa9NPiL5zUYYEthWVigOeMNoCpj+NiiJl+hT2XuZSUGpBn38SeKN5RfAR62bRjbJdwtDn5RY8EbfPVArQ1fOb1bLAv+RP/PNHMFn3SIf4Pr/G3H6OrHPN8x+WFd/BlZJJjNVhpFG6CRqSycrJrrXtMzaOTbjentaYy1/2T9OpH+8CirK4iyDSABnLkseX9wo7KpT1CwYxQRTVXHZtZf17th09R0EO+sDcEQqjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fxdY7zx2Lcq6leZZ6u+7BHY3IvlcL6bHKJEGfWYK4jg=;
- b=MEq4rgTh7ppdfkph/GGngIGaJSFdJA0zGWiLwiXoTSojPZODhhql9etQY1QJgdKON0lYQIfoZDzMM8q4hHMwBP/hikUiaHmxDN0T/ZcB4c9JJCmLzmhgho6tN9Sn/ubx4FR0eUwUxItBp/GaPFRluQ7w8mUQ7kLFm+9YpNfGfZV7BlX3BzRb9tNfmHCp+Wt1XQG+V9rm0LVbqk2Z2BNYfmx9Z9+IW+8f+UWATU7LE7eh0+W09MVUiNNrKwDe7ksSL6SOyFuCLt3WupTQxeSM+qt4W0nNil9w3v9IhVW+Cj9r9+o4GYWi59gU7P3THSNMIA9U+Z8Ui1VPcW7eA38lpQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by DU2PR04MB8678.eurprd04.prod.outlook.com (2603:10a6:10:2dd::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Fri, 7 Nov
- 2025 15:35:14 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9298.010; Fri, 7 Nov 2025
- 15:35:14 +0000
-Date: Fri, 7 Nov 2025 10:35:04 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: maudspierings@gocontroll.com
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: backlight: Add max25014 supporty
-Message-ID: <aQ4RqNiGsngOWrV5@lizhi-Precision-Tower-5810>
-References: <20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com>
- <20251107-max25014-v5-1-9a6aa57306bf@gocontroll.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251107-max25014-v5-1-9a6aa57306bf@gocontroll.com>
-X-ClientProxiedBy: PH7P221CA0009.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:32a::28) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68AD3271E0
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 15:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762530625; cv=none; b=PKZ9cn1+ouRxuHFfmvbYLglxJ4KMsJevmSo0Ys5srDJJ2pwI8UtDcuBib2NT7hVIGdFr2cMV/pYQQmCKDR94NjiG8il5rjbPRl0hMMvnPIV1kO8RMYrIA0+4nIzT7YGs+ob5BKl7fPDY9BwxM5iWnpPiL2MJ0PxRmSU+83s3Nj0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762530625; c=relaxed/simple;
+	bh=1dwsTVWmMRDK3vxeeP+RLputdmrFNVHP5KdCZJvkp00=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uSJyUvI51fQDRIuY7cHWNkkZWEi3ARNTUCPtxalgPzHqbz6CC3zi4lQNckdLzv1Cuvm7zaukzXGFEQZqChbagWPKIT6ewISqWmpGylkJsuzzjA4A8fgYn4O2iHcESm2f4PreIjjD2IqwlitWNhMLqoAxLBCAocRMWAAHXH/0YhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ps29Tn3V; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7afd7789ccdso914024b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 07:50:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762530622; x=1763135422; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z7aKWcIRtw0mBLDCzirj/VREZIKj+alx7aY5vSqAVEo=;
+        b=Ps29Tn3VH680wdtFO9E8PMmgVSnQQUxrwwlcBHS5V5da21zSkINId7I3DxhPtuG6lG
+         kQ9tTMDzxShpLYFjKKczPVn9J/TP0pPytuVEeYqdzFMbCDaM17tWrLS40e9rzxm2/9eT
+         g13FBXryLt86/FE9Ay9OJB3hf20NPCkgJ8i1uArEk2AXAbUsdI8LbuA4XFKxoVt+/exn
+         Eawkp8soBWrhHS9Cf2QSCFa6PW2/4KWL/rv+jvPRf+nFfuoVMZ2IJm0DrkCSrtRiJF2X
+         rfKSAjDzxXqpHV1+RnUrYHvKOR7GrhLuirAhIN8jTulasfwKsKkox8jw3//sM5zgMz1H
+         kfZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762530622; x=1763135422;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z7aKWcIRtw0mBLDCzirj/VREZIKj+alx7aY5vSqAVEo=;
+        b=GzaeHlOnDcKPUL1fA/BB4Cj/hr7jM1MCsVadMUPydRwETpxJhs1ee7VZT85V4ueUDJ
+         Dre/OxgIR7GUAqcqfabm3VC62GYMzNEbG0BuYjDsi3JV2gAiPrTlmDhFbCvnV+MoDR0R
+         04ewwkNZdX6oe3ZtGEy9qFrRC+saVvuJsAKf1Z7NNNbPKiPAE/6b3X/Mr5sxEaYOLxQ4
+         0t3mJ//IVmtwdUFfEztQRKkk44x8CiHjoZBw2p9X1EHr0Yp+/8ns61mrlf96dcpqoUYa
+         /oHQpJwATP8O6a8XuwvKLTbbZkemVor4p21nCbVsqhixO2DI0HxdrwoELMW1ZRvJRGlh
+         BWOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVd/6D0t5GNirP/vCx0N0pE5cZlqc0yYXSu6jCZ6WFd2v9JFY3mz0ysTFwaJVRtG1n7cXBktajP76e7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoG7ZvWnLK7NKc0ooVJF6W6QSv57gZUPdFPzsqI1Fxnh2/4+Gh
+	2561rp9BgQBLDiCLTBf+fGTs5kXBSfs2/esvi8nBytHAzZhSV2yery5M
+X-Gm-Gg: ASbGncunS3RS8IbghyPLgcAk4IcY30uR1BzO717ItAzfGNXb7EeFC8Ievm0ZwhlNLUh
+	64obe1pIUScyYR4ZqVmEUSqD6sYO7GYNRZ8chV7P+uuR8HuFymdCYXbDMSTYl29KLMtadN5t3DE
+	o5CylW112M/hRcKtG1w/fJM+1rqmCaDr4bi+cnekIpHoARbFF0xFPYBrKMLSytYn4izMSXhzyPZ
+	DsbUZ9ckYGQ1q7Bbc/k7bY2E86oHhK6cXwRCqZcwqsrundabQ8v/LpKAvpmnFKPXiDaqkn7aSXP
+	Od7xWNSW8DkihkkRxH1MVc4FKJP3sOhsJFdSYK5ON9G94VgH7MRAv3IWbP3dD6/0U4Bn6sIOjTb
+	hMsxZlFrD2iD4yrtTiuvBchVlFzDypb3igcn+ep54jvTHhYtJzn/Gam+qUTsKhsaqT4r8hhqjI8
+	an4ClHDD9i/S5LXWmy37vdetLMu3ZJ9cnjSkteZxqTXVxJWTXaZA4laIp1LZaQlvPPYxLh+kCXu
+	L0nQUowRwc6M3Ix0by+Vg4B1DDUiUf4TVlBMZPf2ayOldNpFYSgBw9B/6Wg0+Ej01l0EJooKLUg
+	wN+lISB7
+X-Google-Smtp-Source: AGHT+IERuDnYCtH0BLviqQvBisoG8YxRs2scZIo0VvYaI6QL3bcDahJbhpzyq5o+Jsd8cnmvrF134w==
+X-Received: by 2002:a17:903:910:b0:295:888e:9fff with SMTP id d9443c01a7336-297c03e5453mr49622685ad.20.1762530621987;
+        Fri, 07 Nov 2025 07:50:21 -0800 (PST)
+Received: from ?IPV6:2402:e280:21d3:2:b586:93ae:6db3:2abb? ([2402:e280:21d3:2:b586:93ae:6db3:2abb])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29650967e11sm65901135ad.8.2025.11.07.07.50.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Nov 2025 07:50:21 -0800 (PST)
+Message-ID: <a7532aa1-2acb-4064-b10c-b1f7022d589b@gmail.com>
+Date: Fri, 7 Nov 2025 21:20:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|DU2PR04MB8678:EE_
-X-MS-Office365-Filtering-Correlation-Id: b91d1534-99a9-46e3-485d-08de1e133ec7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|376014|19092799006|7416014|1800799024|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?1jjV/zd1wp+BAG12hsPVj2OBns4xmWKmaVt1g3Gt359ntAe0femZq/VJApd4?=
- =?us-ascii?Q?3M/xFgCp0sj/ANlA5ljYlnnASKEkPRuy7krO1tsv8E/V9CCrgRwDjo+A6tSa?=
- =?us-ascii?Q?P9O4rI1PbfhS81I3sD+7MruyCGVtJa0Gxag8l/XQ6CdWx7xJzED/NBJhlM0+?=
- =?us-ascii?Q?zf1XqtGJlafp8o71XtipddFb9ed7UXMimzG0u9jR8TKG8J2KKD6l0jNP9TYO?=
- =?us-ascii?Q?zUAMgZXKNY7VpjPy+L/AXfDHWMiiLXXNcB2c2QFH+ize5xCePoyPdmOsXk8o?=
- =?us-ascii?Q?ed1tXzm0OcEZMdQutGLAayawAwoE2w/ug4jbG8asIZ1gMTfgJ6wfTb2QeRCi?=
- =?us-ascii?Q?t3L0tQNKRJbMi7OJD74/DwqKn4XWfFy+F+A9OziTuy0v8jCp/ANfsTL70tkt?=
- =?us-ascii?Q?pyFe/iQH1720syvGdN6SZDzzdPY6hQwcCMRZICz+sl44ORX5bYjuUj34m+1z?=
- =?us-ascii?Q?ERZQUiwS8orogXeMGHL7/1qrbpa7xshfpYHwvUcOTsHnmXtoAV4DQXego9Kk?=
- =?us-ascii?Q?uMB0iU7N4TIQxNx9E9mcvyaRAT/N385CrqIPX5O7CCzB7Ogow0Qb0kLU8NgJ?=
- =?us-ascii?Q?eedffQKohEkdtBvVA3iZ1DMyW2A5RK4GvKOCWS8FTG4jVL8R9nv9suZfEvdv?=
- =?us-ascii?Q?6aYJVuYBtLoEnheN51glabOvqqIxRb+IJP2x4IKhn16ItiPG1aTFN4ykNpow?=
- =?us-ascii?Q?Fy7nIOcJF/R8aU9w4d2xvd53LtY3oLKFNmnTJoya0bIZ7Xxm9xpQbdMcG4OL?=
- =?us-ascii?Q?A+nW8R8T5akr1upgU3iV4fUrvLdQW7ey34c7zOnQ9YyYzUjA9froqp78ER79?=
- =?us-ascii?Q?j067vlRkMYwm6/PJpPuiiKH+M6RGUeux1ycMD9fO5GrcfaDPHBLEb8fhM2oy?=
- =?us-ascii?Q?F1j22RgVtLYc7qut3j9NqT3ZLAwnKm8QX5r1+nmpgHnD5vlPjDRe/kP4ZOKk?=
- =?us-ascii?Q?KfZiXs59m4qe78uR21qEFp58FEPigxm6mqhrOpEq+He4YhuPMaXoffEURcyC?=
- =?us-ascii?Q?TRo9yrJpOY7cY9CRXDfJUXP5H13AwmKCAlkMdKV6QdSVHD5lM5Cz3OI1cyeg?=
- =?us-ascii?Q?biY0e+MV/vOIVZuiur1S8bjPEal5OjsX+Sa99kzXiu/0uDrkFEyKkPkw0JNT?=
- =?us-ascii?Q?HZoB4c7KCEdOpANGWIDyBsVunNbgq9vNmNzQpQKBsDFIeqD0GlEQtkQ05sTg?=
- =?us-ascii?Q?sl9nWXSCLFN/wI7nH/5Y4yr4Phg3Xqvo/usmQGlvwbidRrNE5EH+Oj0fW+I+?=
- =?us-ascii?Q?N9EtoBflIlLzka/HaUgFHz//kJPeDkQxflEC2dfOy3y8quE0BlNhJGr+TRPk?=
- =?us-ascii?Q?keljw0u0VDYlOE/XZfF5V1AY+GF9mhXvbrcLV3A4Z+Ci/P1cbD3IQC1MP3DP?=
- =?us-ascii?Q?ABXIvOZg24XXLA9ESol7a6WNCN7X+KxzYwojK+MMc4+enT3OemWKvIfa1RiO?=
- =?us-ascii?Q?so+LVVtQuOGFgMZ8WlRNijeXMOJXYxvnlYVpoQZBEjDmV7uOArHJVQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(19092799006)(7416014)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?5yHpDm0E3kp9MZG/kEvQw+ByFUWCnpD/SLJQ//+2YgJTIqooR4e5XByiR8f0?=
- =?us-ascii?Q?kHLyWFLgnW1HAnCQQbzuLBBlUSxgOLmBEyD8vnA8tYqa82KI9yf8X2enRVuz?=
- =?us-ascii?Q?oerS5upgt50mLwgnU+WJq7EEs/+AAPlpIgUaHB0zbUEmVeKXNTmT9bNcaaKX?=
- =?us-ascii?Q?XUIvS/039ZbBNLhd+jZiJmHU/34X+nzcN2Vk7jUFvGGX9P5Tnk9C0BrbAXY6?=
- =?us-ascii?Q?29MdPSbW50UoBfQtqThF0CvESzM3LuVVNgXiea8YwsJ1MRuWcWM8tu+B5Yje?=
- =?us-ascii?Q?mw7kQJfw0uWMnyyCeq1an26D6fM5zTn7NNc6cAe7jH5uxVsWXkgUcwj145oy?=
- =?us-ascii?Q?8VYhh+u5Fb9M7yu6X3jytR+XvBTC0G+Um6517WCWwoqpHE9eA6jq1rpI28Ki?=
- =?us-ascii?Q?k79t5YVCXWCYaLcbazvYfEJ0yFGzI48/oSRRCRcwNUIrI8yk90Gf8sLZChKw?=
- =?us-ascii?Q?B10vpF/gmz9APy9DAq04cNFgYRn32w6/FmWqhY0qsOqvwq/536jOlOaeQ8F5?=
- =?us-ascii?Q?Y/f8+RUaaWKOMq3obP1KcvGhHFl7DPlJMERqAunzUwXoUv4kTSbQma9at6pB?=
- =?us-ascii?Q?buSBLGs7gHYIgrORTD6Bs32DuvecxWxzSbxmqSak2zYidehtW0V0paMvRDfE?=
- =?us-ascii?Q?syaNiUkr0bPyhV/MGGUtltNj/LNNgqh+2mQ9YU1Fm2m1e0Jr22hhP2JEjSJJ?=
- =?us-ascii?Q?LLbBYmJNP96yKtB/KUkaNcQ1+HbTQbQZrgTP3ceMBWfq5O92rdgMB4AodEXg?=
- =?us-ascii?Q?SkGrnKnGuAIfgD4Y4lrYq/AYgl9UF5q4Bxrif11hiuz//Mb50UhG7zNm92ce?=
- =?us-ascii?Q?kuT3U7sTDmYXZm5OLxEtbYg09fbKZJ+91ehkqIPh46qbNJG/ytJZvom7+yGd?=
- =?us-ascii?Q?/JUmaN59PTbUvTsku1CZ2+8btpTUmEsZnnKdc38mhzBibEqNfJc/TIBmoa+5?=
- =?us-ascii?Q?RQ9YWeZjPazeM6csXLY7ZCada4QjX1KYPBy7YeTM3BDCDYu2dpX+grV6wFIH?=
- =?us-ascii?Q?0pdSJ20iWSCwxDGpk1LoRNne73S+iwxTjt90boa/3IzdP9ql3xC6VJAPlCbu?=
- =?us-ascii?Q?m4oMdC7FGx8yHgc7CCul+DwwM3xhg3B37cbaQKqE+A9J7egy50erFtjjBUZW?=
- =?us-ascii?Q?PBfktyyyw8qozfhJXeLUv62egX3AZ9fZNFNnCQEH74tP8dxySEotQO7jjkno?=
- =?us-ascii?Q?oimfbQhf4EwMKc69kayN9qVw2/jJ+bmTLbYl+Vdl7Yq1bpVuYuAK9X7ZWi1O?=
- =?us-ascii?Q?dW2DRtDNzBvYEdn1aeJl2E18tln2V5wldvLmnt0gDZp46KyoNqrUG7D7r/6m?=
- =?us-ascii?Q?GGGzJ6b/h2Yz+y5HtsDzIlQ4gXKI81r6uRKElcyiykGgLhYQbpU2yLacxjBb?=
- =?us-ascii?Q?tT+mP68vCy2ZQK5/IKU7JRKJHgSEYkOEDooSdP0dYlXLp5vOxa6YhfNVZA7W?=
- =?us-ascii?Q?Ny3o9dc5FMKCuqsKoQ4prSW3DRweSSfKdm/oT4mg/0oDgwBDfahf57kvxSKs?=
- =?us-ascii?Q?A8ex4sHsHg7VrjjIYzYOL0sSOzzhbxW86GZgXh1f7qf3bql3UdcbjLDxyXh1?=
- =?us-ascii?Q?YXmt/8cedWSyCDzQDImpAmuJAJWj/Ek0c2xN1rej?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b91d1534-99a9-46e3-485d-08de1e133ec7
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 15:35:14.1050
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i6FxjrVkt4O6LYxbvDIz+Bn6geZHK4ShUX47ySzRizXvGgtBO1c+xZe+d1NfnLaffJhHlda3znCkFn10eeG2Kg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8678
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/3] iio: adc: Add support for TI ADS1120
+To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org
+Cc: jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
+ <20251030163411.236672-3-ajithanandhan0406@gmail.com>
+ <fd432bbf-f6c8-441a-882f-f8e52aaca0e9@baylibre.com>
+Content-Language: en-US
+From: Ajith Anandhan <ajithanandhan0406@gmail.com>
+In-Reply-To: <fd432bbf-f6c8-441a-882f-f8e52aaca0e9@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 07, 2025 at 01:49:58PM +0100, Maud Spierings via B4 Relay wrote:
-> From: Maud Spierings <maudspierings@gocontroll.com>
+On 10/31/25 2:43 AM, David Lechner wrote:
+> On 10/30/25 11:34 AM, Ajith Anandhan wrote:
+>> Add driver for the Texas Instruments ADS1120, a precision 16-bit
+>> analog-to-digital converter with an SPI interface.
+>>
+>> The driver provides:
+>> - 4 single-ended voltage input channels
+>> - Programmable gain amplifier (1 to 128)
+>> - Configurable data rates (20 to 1000 SPS)
+> I don't think there is much point in having a configureble data rate
+> until we add buffered reads since direct mode is using single-shot
+> conversions. So we can save that for a later patch/series that also
+> implementes buffered reads based off of the DRDY interrupt.
 >
-> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
-> with integrated boost controller.
+> Maybe I'm wrong though and being able to specify the conversion
+> time for a single sample is still important. For example, if it
+> has some filtering effect.
 >
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
->
-> ---
->
-> In the current implementation the control registers for channel 1,
-> control all channels. So only one led subnode with led-sources is
-> supported right now. If at some point the driver functionality is
-> expanded the bindings can be easily extended with it.
-> ---
->  .../bindings/leds/backlight/maxim,max25014.yaml    | 107 +++++++++++++++++++++
->  MAINTAINERS                                        |   5 +
->  2 files changed, 112 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
-> new file mode 100644
-> index 000000000000..e83723224b07
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/backlight/maxim,max25014.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim max25014 backlight controller
-> +
-> +maintainers:
-> +  - Maud Spierings <maudspierings@gocontroll.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max25014
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  power-supply:
-> +    description: Regulator which controls the boost converter input rail.
-> +
-> +  pwms:
-> +    maxItems: 1
-> +
-> +  maxim,iset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maximum: 15
-> +    default: 11
-> +    description:
-> +      Value of the ISET field in the ISET register. This controls the current
-> +      scale of the outputs, a higher number means more current.
-> +
-> +  led@0:
-> +    type: object
-> +    description: Properties for a string of connected LEDs.
-> +    $ref: common.yaml#
-> +
-> +    properties:
-> +      reg:
-> +        const: 0
+> Otherwise, I would just set it to the "best" value for single-shot
+> mode (if there is one) and always use that one rate.
 
-If reg is const 0, why need use led@0?
+You're right. I'll remove the configurable data rate for now and
 
-Frank
+just use a fixed optimal rate (20 SPS as default since its highest 
+accuracy).
 
-> +
-> +      led-sources:
-> +        allOf:
-> +          - minItems: 1
-> +            maxItems: 4
-> +            items:
-> +              minimum: 0
-> +              maximum: 3
-> +            default: [0, 1, 2, 3]
-> +
-> +      default-brightness:
-> +        minimum: 0
-> +        maximum: 100
-> +        default: 50
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        backlight@6f {
-> +            compatible = "maxim,max25014";
-> +            reg = <0x6f>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            enable-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-> +            interrupt-parent = <&gpio1>;
-> +            interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-> +            power-supply = <&reg_backlight>;
-> +            pwms = <&pwm1>;
-> +            maxim,iset = <7>;
-> +
-> +            led@0 {
-> +                reg = <0>;
-> +                led-sources = <0 1 2 3>;
-> +                default-brightness = <50>;
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 58c7e3f678d8..606ce086f758 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15261,6 +15261,11 @@ F:	Documentation/userspace-api/media/drivers/max2175.rst
->  F:	drivers/media/i2c/max2175*
->  F:	include/uapi/linux/max2175.h
+We'll add this back when implementing buffered reads with DRDY interrupt
+
+support in a future patch series.
+
 >
-> +MAX25014 BACKLIGHT DRIVER
-> +M:	Maud Spierings <maudspierings@gocontroll.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
-> +
->  MAX31335 RTC DRIVER
->  M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
->  L:	linux-rtc@vger.kernel.org
+>> - Single-shot conversion mode
+>>
+>> Link: https://www.ti.com/lit/gpn/ads1120
+>> Signed-off-by: Ajith Anandhan <ajithanandhan0406@gmail.com>
+>> ---
+>>   drivers/iio/adc/Kconfig      |  10 +
+>>   drivers/iio/adc/Makefile     |   1 +
+>>   drivers/iio/adc/ti-ads1120.c | 509 +++++++++++++++++++++++++++++++++++
+>>   3 files changed, 520 insertions(+)
+>>   create mode 100644 drivers/iio/adc/ti-ads1120.c
+>>
+>> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+>> index 58a14e683..afb7895dd 100644
+>> --- a/drivers/iio/adc/Kconfig
+>> +++ b/drivers/iio/adc/Kconfig
+>> @@ -1655,6 +1655,16 @@ config TI_ADS1119
+>>            This driver can also be built as a module. If so, the module will be
+>>            called ti-ads1119.
+>>   
+>> +config TI_ADS1120
+>> +	tristate "Texas Instruments ADS1120"
+>> +	depends on SPI
+>> +	help
+>> +	  Say yes here to build support for Texas Instruments ADS1120
+>> +	  4-channel, 2kSPS, 16-bit delta-sigma ADC.
+>> +
+>> +	  This driver can also be built as module. If so, the module
+>> +	  will be called ti-ads1120.
+>> +
+>>   config TI_ADS124S08
+>>   	tristate "Texas Instruments ADS124S08"
+>>   	depends on SPI
+>> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+>> index d008f78dc..49c56b459 100644
+>> --- a/drivers/iio/adc/Makefile
+>> +++ b/drivers/iio/adc/Makefile
+>> @@ -144,6 +144,7 @@ obj-$(CONFIG_TI_ADC161S626) += ti-adc161s626.o
+>>   obj-$(CONFIG_TI_ADS1015) += ti-ads1015.o
+>>   obj-$(CONFIG_TI_ADS1100) += ti-ads1100.o
+>>   obj-$(CONFIG_TI_ADS1119) += ti-ads1119.o
+>> +obj-$(CONFIG_TI_ADS1120) += ti-ads1120.o
+>>   obj-$(CONFIG_TI_ADS124S08) += ti-ads124s08.o
+>>   obj-$(CONFIG_TI_ADS1298) += ti-ads1298.o
+>>   obj-$(CONFIG_TI_ADS131E08) += ti-ads131e08.o
+>> diff --git a/drivers/iio/adc/ti-ads1120.c b/drivers/iio/adc/ti-ads1120.c
+>> new file mode 100644
+>> index 000000000..07a6fb309
+>> --- /dev/null
+>> +++ b/drivers/iio/adc/ti-ads1120.c
+>> @@ -0,0 +1,509 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+> Prefer more specific GPL-2.0-only or GPL-2.0-or-later (your choice).
+Noted.
 >
-> --
-> 2.51.2
+>> +/*
+>> + * TI ADS1120 4-channel, 2kSPS, 16-bit delta-sigma ADC
+>> + *
+>> + * Datasheet: https://www.ti.com/lit/gpn/ads1120
+>> + *
+>> + * Copyright (C) 2025 Ajith Anandhan <ajithanandhan0406@gmail.com>
+>> + */
+>> +
+>> +#include <linux/delay.h>
+>> +#include <linux/device.h>
+>> +#include <linux/err.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/spi/spi.h>
+>> +
+>> +#include <linux/iio/iio.h>
+>> +
+>> +/* Commands */
+>> +#define ADS1120_CMD_RESET		0x06
+>> +#define ADS1120_CMD_START		0x08
+>> +#define ADS1120_CMD_PWRDWN		0x02
+>> +#define ADS1120_CMD_RDATA		0x10
+>> +#define ADS1120_CMD_RREG		0x20
+>> +#define ADS1120_CMD_WREG		0x40
+>> +
+>> +/* Registers */
+>> +#define ADS1120_REG_CONFIG0		0x00
+>> +#define ADS1120_REG_CONFIG1		0x01
+>> +#define ADS1120_REG_CONFIG2		0x02
+>> +#define ADS1120_REG_CONFIG3		0x03
+>> +
+>> +/* Config Register 0 bit definitions */
+>> +#define ADS1120_MUX_MASK		GENMASK(7, 4)
+>> +#define ADS1120_MUX_AIN0_AVSS		0x80
+>> +#define ADS1120_MUX_AIN1_AVSS		0x90
+>> +#define ADS1120_MUX_AIN2_AVSS		0xa0
+>> +#define ADS1120_MUX_AIN3_AVSS		0xb0
+>> +
+>> +#define ADS1120_GAIN_MASK		GENMASK(3, 1)
+>> +#define ADS1120_GAIN_1			0x00
+>> +#define ADS1120_GAIN_2			0x02
+>> +#define ADS1120_GAIN_4			0x04
+>> +#define ADS1120_GAIN_8			0x06
+>> +#define ADS1120_GAIN_16			0x08
+>> +#define ADS1120_GAIN_32			0x0a
+>> +#define ADS1120_GAIN_64			0x0c
+>> +#define ADS1120_GAIN_128		0x0e
+>> +
+>> +#define ADS1120_PGA_BYPASS		BIT(0)
+>> +
+>> +/* Config Register 1 bit definitions */
+>> +#define ADS1120_DR_MASK			GENMASK(7, 5)
+>> +#define ADS1120_DR_20SPS		0x00
+>> +#define ADS1120_DR_45SPS		0x20
+>> +#define ADS1120_DR_90SPS		0x40
+>> +#define ADS1120_DR_175SPS		0x60
+>> +#define ADS1120_DR_330SPS		0x80
+>> +#define ADS1120_DR_600SPS		0xa0
+>> +#define ADS1120_DR_1000SPS		0xc0
+>> +
+>> +#define ADS1120_MODE_MASK		GENMASK(4, 3)
+>> +#define ADS1120_MODE_NORMAL		0x00
+>> +
+>> +#define ADS1120_CM_SINGLE		0x00
+>> +#define ADS1120_CM_CONTINUOUS		BIT(2)
+>> +
+>> +#define ADS1120_TS_EN			BIT(1)
+>> +#define ADS1120_BCS_EN			BIT(0)
+>> +
+>> +/* Config Register 2 bit definitions */
+>> +#define ADS1120_VREF_MASK		GENMASK(7, 6)
+>> +#define ADS1120_VREF_INTERNAL		0x00
+>> +#define ADS1120_VREF_EXT_REFP0		0x40
+>> +#define ADS1120_VREF_EXT_AIN0		0x80
+>> +#define ADS1120_VREF_AVDD		0xc0
+>> +
+>> +#define ADS1120_REJECT_MASK		GENMASK(5, 4)
+>> +#define ADS1120_REJECT_OFF		0x00
+>> +#define ADS1120_REJECT_50_60		0x10
+>> +#define ADS1120_REJECT_50		0x20
+>> +#define ADS1120_REJECT_60		0x30
+>> +
+>> +#define ADS1120_PSW_EN			BIT(3)
+>> +
+>> +#define ADS1120_IDAC_MASK		GENMASK(2, 0)
+>> +
+>> +/* Config Register 3 bit definitions */
+>> +#define ADS1120_IDAC1_MASK		GENMASK(7, 5)
+>> +#define ADS1120_IDAC2_MASK		GENMASK(4, 2)
+>> +#define ADS1120_DRDYM_EN		BIT(1)
+>> +
+>> +/* Default configuration values */
+>> +#define ADS1120_DEFAULT_GAIN		1
+>> +#define ADS1120_DEFAULT_DATARATE	175
+>> +
+>> +struct ads1120_state {
+>> +	struct spi_device	*spi;
+>> +	struct mutex		lock;
+>> +	/*
+>> +	 * Used to correctly align data.
+>> +	 * Ensure natural alignment for potential future timestamp support.
+>> +	 */
+>> +	u8 data[4] __aligned(IIO_DMA_MINALIGN);
+>> +
+>> +	u8 config[4];
+>> +	int current_channel;
+>> +	int gain;
+> Since inputs are multiplexed, we can make this gain a per-channel value, no?
+
+Yes we can, However i want  to keep the initial version simple so would 
+it be
+
+fine to support per-channel gain configurationin upcoming patches?
+
+>
+> It also sounds like that certain mux input have to have the PGA bypassed
+> which means they are limited to only 3 gain values. So these would have
+> a different scale_available attribute.
+
+  Since, I'm gonna enable all the 15 channels. I believe we have to have 
+all
+
+gains(for differential channels). Correct me if i'm wrong.
+
+>
+>> +	int datarate;
+>> +	int conv_time_ms;
+>> +};
+>> +
+>> +struct ads1120_datarate {
+>> +	int rate;
+>> +	int conv_time_ms;
+>> +	u8 reg_value;
+>> +};
+>> +
+>> +static const struct ads1120_datarate ads1120_datarates[] = {
+>> +	{ 20,   51, ADS1120_DR_20SPS },
+>> +	{ 45,   24, ADS1120_DR_45SPS },
+>> +	{ 90,   13, ADS1120_DR_90SPS },
+>> +	{ 175,   7, ADS1120_DR_175SPS },
+>> +	{ 330,   4, ADS1120_DR_330SPS },
+>> +	{ 600,   3, ADS1120_DR_600SPS },
+>> +	{ 1000,  2, ADS1120_DR_1000SPS },
+>> +};
+>> +
+>> +static const int ads1120_gain_values[] = { 1, 2, 4, 8, 16, 32, 64, 128 };
+>> +
+>> +#define ADS1120_CHANNEL(index)					\
+>> +{								\
+>> +	.type = IIO_VOLTAGE,					\
+>> +	.indexed = 1,						\
+>> +	.channel = index,					\
+>> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
+>> +			      BIT(IIO_CHAN_INFO_SCALE),		\
+>> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+> 	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
+>
+> is also need to actually make use of the function you implemented. ;-)
+Sure. I'll fix.
+>
+>> +}
+>> +
+>> +static const struct iio_chan_spec ads1120_channels[] = {
+>> +	ADS1120_CHANNEL(0),
+>> +	ADS1120_CHANNEL(1),
+>> +	ADS1120_CHANNEL(2),
+>> +	ADS1120_CHANNEL(3),
+> The mux has 15 possible values, so I would expect 15 channels
+> to coorespond to all possible combinations. 8 differnetial
+> channels for the first 8, then these 4 single-ended channels.
+> Then a few more differential channels for the 3 diagnostic
+> inputs.
+Sure, I'll add all the 15 channels.
+>
+>> +};
+>> +
+>> +static int ads1120_write_cmd(struct ads1120_state *st, u8 cmd)
+>> +{
+>> +	st->data[0] = cmd;
+>> +	return spi_write(st->spi, st->data, 1);
+>> +}
+>> +
+>> +static int ads1120_write_reg(struct ads1120_state *st, u8 reg, u8 value)
+>> +{
+>> +	u8 buf[2];
+>> +
+>> +	if (reg > ADS1120_REG_CONFIG3)
+>> +		return -EINVAL;
+>> +
+>> +	buf[0] = ADS1120_CMD_WREG | (reg << 2);
+>> +	buf[1] = value;
+>> +
+>> +	return spi_write(st->spi, buf, 2);
+>> +}
+> Can we use the regmap framework instead of writing our own?
+
+I’d like to keep the first version simple so i will add the regmap 
+support in the
+
+later patch since the single ended has less spi transaction to handle.
+
+>
+>> +
+>> +static int ads1120_reset(struct ads1120_state *st)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = ads1120_write_cmd(st, ADS1120_CMD_RESET);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Datasheet specifies reset takes 50us + 32 * t(CLK)
+>> +	 * where t(CLK) = 1/4.096MHz. Use 200us to be safe.
+>> +	 */
+>> +	usleep_range(200, 300);
+> 	fsleep(200);
+I'll use fsleep instead of usleep_range.
+>
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ads1120_set_channel(struct ads1120_state *st, int channel)
+>> +{
+>> +	u8 mux_val;
+>> +	u8 config0;
+>> +
+>> +	if (channel < 0 || channel > 3)
+>> +		return -EINVAL;
+>> +
+>> +	/* Map channel to AINx/AVSS single-ended input */
+>> +	mux_val = ADS1120_MUX_AIN0_AVSS + (channel << 4);
+>> +
+>> +	config0 = (st->config[0] & ~ADS1120_MUX_MASK) | mux_val;
+>> +	st->config[0] = config0;
+>> +
+>> +	return ads1120_write_reg(st, ADS1120_REG_CONFIG0, config0);
+>> +}
+>> +
+>> +static int ads1120_set_gain(struct ads1120_state *st, int gain_val)
+>> +{
+>> +	u8 gain_bits;
+>> +	u8 config0;
+>> +	int i;
+>> +
+>> +	/* Find gain in supported values */
+>> +	for (i = 0; i < ARRAY_SIZE(ads1120_gain_values); i++) {
+>> +		if (ads1120_gain_values[i] == gain_val) {
+>> +			gain_bits = i << 1;
+>> +			goto found;
+>> +		}
+>> +	}
+>> +	return -EINVAL;
+>> +
+>> +found:
+>> +	config0 = (st->config[0] & ~ADS1120_GAIN_MASK) | gain_bits;
+>> +	st->config[0] = config0;
+>> +	st->gain = gain_val;
+>> +
+>> +	return ads1120_write_reg(st, ADS1120_REG_CONFIG0, config0);
+>> +}
+>> +
+>> +static int ads1120_set_datarate(struct ads1120_state *st, int rate)
+>> +{
+>> +	u8 config1;
+>> +	int i;
+>> +
+>> +	/* Find data rate in supported values */
+>> +	for (i = 0; i < ARRAY_SIZE(ads1120_datarates); i++) {
+>> +		if (ads1120_datarates[i].rate == rate) {
+>> +			config1 = (st->config[1] & ~ADS1120_DR_MASK) |
+>> +				  ads1120_datarates[i].reg_value;
+>> +			st->config[1] = config1;
+>> +			st->datarate = rate;
+>> +			st->conv_time_ms = ads1120_datarates[i].conv_time_ms;
+>> +
+>> +			return ads1120_write_reg(st, ADS1120_REG_CONFIG1,
+>> +						 config1);
+>> +		}
+>> +	}
+>> +
+>> +	return -EINVAL;
+>> +}
+>> +
+>> +static int ads1120_read_raw_adc(struct ads1120_state *st, int *val)
+>> +{
+>> +	u8 rx_buf[4];
+>> +	u8 tx_buf[4] = { ADS1120_CMD_RDATA, 0xff, 0xff, 0xff };
+>> +	int ret;
+>> +	struct spi_transfer xfer = {
+>> +		.tx_buf = tx_buf,
+>> +		.rx_buf = rx_buf,
+>> +		.len = 4,
+>> +	};
+> This should be split into two transfers (still only one SPI message).
+> Then we don't need to pad the buffers. Also, it seems to have one
+> more byte than needed. Only to to tx one byte then rx two bytes.
+Sure, I'll fix.
+>> +
+>> +	ret = spi_sync_transfer(st->spi, &xfer, 1);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Data format: 16-bit two's complement MSB first
+>> +	 * rx_buf[0] is echo of command
+>> +	 * rx_buf[1] is MSB of data
+>> +	 * rx_buf[2] is LSB of data
+>> +	 */
+>> +	*val = (s16)((rx_buf[1] << 8) | rx_buf[2]);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ads1120_read_measurement(struct ads1120_state *st, int channel,
+>> +				    int *val)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = ads1120_set_channel(st, channel);
+>> +	if (ret)
+>> +		return ret;
+>> +
 >
 >
+>> +	/* Start single-shot conversion */
+>> +	ret = ads1120_write_cmd(st, ADS1120_CMD_START);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Wait for conversion to complete */
+>> +	msleep(st->conv_time_ms);
+>> +
+>> +	/* Read the result */
+>> +	ret = ads1120_read_raw_adc(st, val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+> This could actually all be done in a single SPI message with 3
+> transers. The spi_transfer struct has delay fields that can
+> provide the delay instead of msleep().
+Good point. I'll defer this improvement to a subsequent patch.
+>
+>> +	st->current_channel = channel;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ads1120_read_raw(struct iio_dev *indio_dev,
+>> +			    struct iio_chan_spec const *chan,
+>> +			    int *val, int *val2, long mask)
+>> +{
+>> +	struct ads1120_state *st = iio_priv(indio_dev);
+>> +	int ret;
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		mutex_lock(&st->lock);
+>> +		ret = ads1120_read_measurement(st, chan->channel, val);
+>> +		mutex_unlock(&st->lock);
+>> +		if (ret)
+>> +			return ret;
+>> +		return IIO_VAL_INT;
+>> +
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		*val = st->gain;
+>> +		return IIO_VAL_INT;
+>> +
+>> +	case IIO_CHAN_INFO_SAMP_FREQ:
+>> +		*val = st->datarate;
+>> +		return IIO_VAL_INT;
+>> +
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +static int ads1120_write_raw(struct iio_dev *indio_dev,
+>> +			     struct iio_chan_spec const *chan,
+>> +			     int val, int val2, long mask)
+>> +{
+>> +	struct ads1120_state *st = iio_priv(indio_dev);
+>> +	int ret;
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		mutex_lock(&st->lock);
+>> +		ret = ads1120_set_gain(st, val);
+>> +		mutex_unlock(&st->lock);
+>> +		return ret;
+>> +
+>> +	case IIO_CHAN_INFO_SAMP_FREQ:
+>> +		mutex_lock(&st->lock);
+>> +		ret = ads1120_set_datarate(st, val);
+>> +		mutex_unlock(&st->lock);
+>> +		return ret;
+>> +
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +static int ads1120_read_avail(struct iio_dev *indio_dev,
+>> +			      struct iio_chan_spec const *chan,
+>> +			      const int **vals, int *type, int *length,
+>> +			      long mask)
+>> +{
+>> +	static const int datarates[] = { 20, 45, 90, 175, 330, 600, 1000 };
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		*vals = ads1120_gain_values;
+>> +		*type = IIO_VAL_INT;
+>> +		*length = ARRAY_SIZE(ads1120_gain_values);
+> Scale also depends on the reference voltage, so it isn't quite so simple.
+Yeah sure. I'll fix.
+>
+>> +		return IIO_AVAIL_LIST;
+>> +
+>> +	case IIO_CHAN_INFO_SAMP_FREQ:
+>> +		*vals = datarates;
+>> +		*type = IIO_VAL_INT;
+>> +		*length = ARRAY_SIZE(datarates);
+>> +		return IIO_AVAIL_LIST;
+>> +
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +static const struct iio_info ads1120_info = {
+>> +	.read_raw = ads1120_read_raw,
+>> +	.write_raw = ads1120_write_raw,
+>> +	.read_avail = ads1120_read_avail,
+>> +};
+>> +
+>> +static int ads1120_init(struct ads1120_state *st)
+>> +{
+>> +	int ret;
+>> +
+>> +	/* Reset device to default state */
+>> +	ret = ads1120_reset(st);
+>> +	if (ret) {
+>> +		dev_err(&st->spi->dev, "Failed to reset device\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	/*
+>> +	 * Configure Register 0:
+>> +	 * - Input MUX: AIN0/AVSS (updated per channel read)
+>> +	 * - Gain: 1
+>> +	 * - PGA bypassed (lower power consumption)
+> Should extend the comment to say that if gain is set higher than 4,
+> this value is ignored, so it is safe to leave it set all the time.
+Noted.
+>
+>> +	 */
+>> +	st->config[0] = ADS1120_MUX_AIN0_AVSS | ADS1120_GAIN_1 |
+>> +			ADS1120_PGA_BYPASS;
+>> +	ret = ads1120_write_reg(st, ADS1120_REG_CONFIG0, st->config[0]);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Configure Register 1:
+>> +	 * - Data rate: 175 SPS
+>> +	 * - Mode: Normal
+>> +	 * - Conversion mode: Single-shot
+>> +	 * - Temperature sensor: Disabled
+>> +	 * - Burnout current: Disabled
+>> +	 */
+>> +	st->config[1] = ADS1120_DR_175SPS | ADS1120_MODE_NORMAL |
+>> +			ADS1120_CM_SINGLE;
+>> +	ret = ads1120_write_reg(st, ADS1120_REG_CONFIG1, st->config[1]);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Configure Register 2:
+>> +	 * - Voltage reference: AVDD
+>> +	 * - 50/60Hz rejection: Off
+>> +	 * - Power switch: Off
+>> +	 * - IDAC: Off
+>> +	 */
+>> +	st->config[2] = ADS1120_VREF_AVDD | ADS1120_REJECT_OFF;
+>> +	ret = ads1120_write_reg(st, ADS1120_REG_CONFIG2, st->config[2]);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Configure Register 3:
+> 	 * - Internal voltage reference
+> 	 * - No FIR filter
+> 	 * - Power switch always open
+>
+>> +	 * - IDAC1: Disabled
+>> +	 * - IDAC2: Disabled
+>> +	 * - DRDY mode: DOUT/DRDY pin behavior
+>> +	 */
+>> +	st->config[3] = ADS1120_DRDYM_EN;
+> It doesn't make sense to enable the DRDY pin on the DOUT line unless
+> we know that it is wired up to an interrupt.
+
+Thanks for pointing it out. I'll address the this in V2 patch.
+
+>> +	ret = ads1120_write_reg(st, ADS1120_REG_CONFIG3, st->config[3]);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Set default operating parameters */
+>> +	st->gain = ADS1120_DEFAULT_GAIN;
+>> +	st->datarate = ADS1120_DEFAULT_DATARATE;
+>> +	st->conv_time_ms = 7; /* For 175 SPS */
+>> +	st->current_channel = -1;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ads1120_probe(struct spi_device *spi)
+>> +{
+>> +	struct iio_dev *indio_dev;
+>> +	struct ads1120_state *st;
+>> +	int ret;
+>> +
+>> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+>> +	if (!indio_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	st = iio_priv(indio_dev);
+>> +	st->spi = spi;
+>> +
+>> +	mutex_init(&st->lock);
+>> +
+>> +	indio_dev->name = "ads1120";
+>> +	indio_dev->modes = INDIO_DIRECT_MODE;
+>> +	indio_dev->channels = ads1120_channels;
+>> +	indio_dev->num_channels = ARRAY_SIZE(ads1120_channels);
+>> +	indio_dev->info = &ads1120_info;
+>> +
+>> +	ret = ads1120_init(st);
+>> +	if (ret) {
+>> +		dev_err(&spi->dev, "Failed to initialize device: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return devm_iio_device_register(&spi->dev, indio_dev);
+>> +}
+>> +
+>> +static const struct of_device_id ads1120_of_match[] = {
+>> +	{ .compatible = "ti,ads1120" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, ads1120_of_match);
+>> +
+>> +static const struct spi_device_id ads1120_id[] = {
+>> +	{ "ads1120" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(spi, ads1120_id);
+>> +
+>> +static struct spi_driver ads1120_driver = {
+>> +	.driver = {
+>> +		.name = "ads1120",
+>> +		.of_match_table = ads1120_of_match,
+>> +	},
+>> +	.probe = ads1120_probe,
+>> +	.id_table = ads1120_id,
+>> +};
+>> +module_spi_driver(ads1120_driver);
+>> +
+>> +MODULE_AUTHOR("Ajith Anandhan  <ajithanandhan0406@gmail.com>");
+>> +MODULE_DESCRIPTION("Texas Instruments ADS1120 ADC driver");
+>> +MODULE_LICENSE("GPL");
+
+
 
