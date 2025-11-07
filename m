@@ -1,247 +1,120 @@
-Return-Path: <devicetree+bounces-236102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D822C3FD5B
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 13:02:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E27C3FDEA
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 13:17:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35D5E3A6911
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 12:02:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11898188DACE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 12:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC35C2DEA8C;
-	Fri,  7 Nov 2025 12:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25DBF280A5C;
+	Fri,  7 Nov 2025 12:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="eTDNDJfg"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Lp/QnDRh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1E1207A22;
-	Fri,  7 Nov 2025 12:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDCC184540;
+	Fri,  7 Nov 2025 12:17:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762516956; cv=none; b=eNe3yAA4IE5emV+r8FYkHSfkexQVwMtCg9j0jBlJAp8644Fs0+CLSp22cAENWLpnGJCANKQkP+aJtXWTwQhF3l8RbbpSquj+J6jMrDPmbOKO/wm+pgS0iMb4hq9fzOeVW3zZ6L9qWhZovncdUknmbM4UC6ygCXjRwU5Hk3fL37Q=
+	t=1762517826; cv=none; b=H+ACTOronfuV7X37KSYNe86fottirmEYvu4dff/qTLHKJZlzJ0ph50FZ+jJ2IeNjQQVNzY4goriHe30TaZxHLaEJmlTMrKFV5hdqPCOgnqf9eIrj7kjgmFJTPoVzBSdIMcWfm6Pi5dLo98CozHgXXkPtdreKL8Mgl5wcZG5Ce/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762516956; c=relaxed/simple;
-	bh=JbUCEyNiriQipfbz/kl7+r7h4JVizyYf27cg7WFem3c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EgRFVZJrLLWI3R9Jv9lb3TE5AJJWgnSqORB7pPCl2JFTyBXUE5zdILOm4HIcC6068JWQiFi8J4KaIsP3LxWopc8o0RMEshysMWwP/mlwjtmH0kuDcUBHRfyvrmRwaQnQBymLltE3aeeVMlaYJV4lahwu/wTG+YYq1/evJ87IvG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=eTDNDJfg; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1762516917;
-	bh=CYUv/fsSN6bJHRZkRh9qSHvXD8+739BNv79//5iCjzk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eTDNDJfgysyJDzODXG83/IBDUbdQizQdZEhMGIUSLx/Whc3oqK+RU19b51VgNMzGh
-	 Ox9tuuuPO2P9JWWmAd1De4JDzCDEj8Lcx8ibm+jpdhQLF2EPyp9sUMxqk9BbJWPEBW
-	 D4H/fHHRB5UgwYkij5Nkbia/TCH1PzO0JHfVPhmoZLD6A7RAKjKrt/7eHK+xrs1XoP
-	 nEytMBvB99M1CyOmf+7aPAOGsHWqCsfj4U9OdOrFg9DdVjIUXmUiP1jL7fnegUM2aj
-	 GJl7ZeCepdh0S+KIuvHqP/WsYUm9jBurg1PP3qFwL2e1nQlWfmfB7+JMoBxDMvIma7
-	 v/Jy115vw52MQ==
-Received: from [192.168.2.54] (unknown [98.97.27.87])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 2FF12B220598;
-	Fri,  7 Nov 2025 13:01:54 +0100 (CET)
-Message-ID: <4b38ec00-dfc4-481b-8b8d-fa171ce8d12b@freeshell.de>
-Date: Fri, 7 Nov 2025 04:01:51 -0800
+	s=arc-20240116; t=1762517826; c=relaxed/simple;
+	bh=fKFaVGRCYqdZdfnsZlL0kIN99ZrW6FxHqWyJRYYzsyk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qYeJYmUUS0lpC/hqsyEhk39mUSUCgvTu6bg0w5OmO83ToFJ788bz1XSqFDOZN1n6PFpVRSrGfpnol26qsYeA2kVJqAHmK5j7KhuIt4hsOUU5fmIepCy+PPixU5UkABHCFQbe518LTijEqsc+FFJvL9X60WwqgFd1hdL5nE1G+nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Lp/QnDRh; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1762517824; x=1794053824;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=fKFaVGRCYqdZdfnsZlL0kIN99ZrW6FxHqWyJRYYzsyk=;
+  b=Lp/QnDRhmgz3x0DJz7ODMt9yL1lCy6bpB5t2H/f9KwC1tF3xkCXZd3nu
+   9dhcsmGlRfhM8cEHWWSmxgmMnOuume2ByYmur9ZRpM8AT2uvW1ZD/hTW3
+   u/Whkg8TxFAmEzUgzpuqZpY5epJ7TjTqxR5i40d1/icNnZFxoq7v8nGun
+   3PX1ZAeBlUDN3e6plJlJWqSN6Yhz3jnVwPYLtUyYIbqe2cpSj34p9T12E
+   LSQlptnVeChx/E52aHrl0EvR7r0iYI5s0wqanrJM9Kt9bkVKR8EK1J2xP
+   HAWYRvOpR+q0oqnKr5TunhpKNdSPXHCof3qGiN9SCs25jOPCpuYLAM2YT
+   A==;
+X-CSE-ConnectionGUID: BMvHhjAdT6y1+HEhZwPKDQ==
+X-CSE-MsgGUID: Ztzym4YlSXOXoPc+PKmwNg==
+X-IronPort-AV: E=Sophos;i="6.19,286,1754982000"; 
+   d="scan'208";a="55218261"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2025 05:17:03 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
+ chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Fri, 7 Nov 2025 05:16:34 -0700
+Received: from Lily.microchip.com (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Fri, 7 Nov 2025 05:16:32 -0700
+From: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
+To: Mark Brown <broonie@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Conor Dooley
+	<conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
+	Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>, "Cyril
+ Jean" <cyril.jean@microchip.com>, Prajna Rajendra Kumar
+	<prajna.rajendrakumar@microchip.com>
+Subject: [PATCH v3 0/3] Add support for Microchip CoreSPI Controller
+Date: Fri, 7 Nov 2025 12:21:01 +0000
+Message-ID: <20251107122104.1389301-1-prajna.rajendrakumar@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] Add support for StarFive VisionFive 2 Lite board
-To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, Hal Feng <hal.feng@starfivetech.com>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>
-References: <20251107095530.114775-1-hal.feng@starfivetech.com>
- <c05d8bcc-3024-45cd-8630-b0595682e778@freeshell.de>
- <6d0fb6aa-6d88-4069-a5e5-9e910523888e@canonical.com>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <6d0fb6aa-6d88-4069-a5e5-9e910523888e@canonical.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+This patch series adds support for the Microchip FPGA CoreSPI "soft" IP 
+and documents its device tree bindings.
 
-On 11/7/25 03:21, Heinrich Schuchardt wrote:
-> On 11/7/25 12:11, E Shattow wrote:
->>
->>
->> On 11/7/25 01:55, Hal Feng wrote:
->>> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S industrial
->>> SoC which can run at -40~85 degrees centigrade and up to 1.25GHz.
->>>
->>> Board features:
->>> - JH7110S SoC
->>> - 4/8 GiB LPDDR4 DRAM
->>> - AXP15060 PMIC
->>> - 40 pin GPIO header
->>> - 1x USB 3.0 host port
->>> - 3x USB 2.0 host port
->>> - 1x M.2 M-Key (size: 2242)
->>> - 1x MicroSD slot (optional non-removable 64GiB eMMC)
->>> - 1x QSPI Flash
->>> - 1x I2C EEPROM
->>> - 1x 1Gbps Ethernet port
->>> - SDIO-based Wi-Fi & UART-based Bluetooth
->>> - 1x HDMI port
->>> - 1x 2-lane DSI
->>> - 1x 2-lane CSI
->>>
->>> VisionFive 2 Lite schematics: https://doc-en.rvspace.org/
->>> VisionFive2Lite/PDF/VF2_LITE_V1.10_TF_20250818_SCH.pdf
->>> VisionFive 2 Lite Quick Start Guide: https://doc-en.rvspace.org/
->>> VisionFive2Lite/VisionFive2LiteQSG/index.html
->>> More documents: https://doc-en.rvspace.org/Doc_Center/
->>> visionfive_2_lite.html
->>>
->>> Changes since v1:
->>> - Drop patch 1 because it is applied.
->>> - Rename jh7110.dtsi to jh711x.dtsi.
->>> - Move the content of jh7110-common.dtsi to the new file
->>>    jh711x-common.dtsi and move opp table to jh7110-common.dtsi.
->>> patch 4:
->>> - Move the uncommon nodes to jh7110-common.dtsi instead of board dts.
->>> patch 5:
->>> - Add jh7110s-common.dtsi and include it in jh7110s-starfive-
->>> visionfive-2-lite.dtsi.
->>>
->>> Changes since RFC:
->>> - Add jh7110s compatible to the generic cpufreq driver.
->>> - Fix the dtbs_check error by adding the missing "enable-gpios" property
->>>    in jh7110 pcie dt-bindings.
->>> - Rebase on the latest mainline.
->>> - Add VisionFive 2 Lite eMMC board device tree and add a common board
->>> dtsi
->>>    for VisionFive 2 Lite variants.
->>> - Add usb switch pin configuration (GPIO62).
->>> - Improve the commit messages.
->>>
->>> History:
->>> v1: https://lore.kernel.org/all/20251016080054.12484-1-
->>> hal.feng@starfivetech.com/
->>> RFC: https://lore.kernel.org/all/20250821100930.71404-1-
->>> hal.feng@starfivetech.com/
->>>
->>> Hal Feng (8):
->>>    dt-bindings: PCI: starfive,jh7110-pcie: Add enable-gpios property
->>>    dt-bindings: riscv: Add StarFive JH7110S SoC and VisionFive 2 Lite
->>>      board
->>>    riscv: dts: starfive: Rename jh7110.dtsi to jh711x.dtsi
->>>    riscv: dts: starfive: Split jh7110-common.dtsi and move opp table to
->>>      it
->>>    riscv: dts: starfive: jh711x-common: Move out some nodes to jh7110
->>>      common dtsi
->>>    riscv: dts: starfive: Add common board dtsi for JH7110s and
->>> VisionFive
->>>      2 Lite variants
->>>    riscv: dts: starfive: Add VisionFive 2 Lite board device tree
->>>    riscv: dts: starfive: Add VisionFive 2 Lite eMMC board device tree
->>>
->>>   .../bindings/pci/starfive,jh7110-pcie.yaml    |   4 +
->>>   .../devicetree/bindings/riscv/starfive.yaml   |   6 +
->>>   arch/riscv/boot/dts/starfive/Makefile         |   3 +
->>>   .../boot/dts/starfive/jh7110-common.dtsi      | 653 +----------------
->>>   .../boot/dts/starfive/jh7110s-common.dtsi     |  27 +
->>>   ...h7110s-starfive-visionfive-2-lite-emmc.dts |  22 +
->>>   .../jh7110s-starfive-visionfive-2-lite.dts    |  20 +
->>>   .../jh7110s-starfive-visionfive-2-lite.dtsi   | 126 ++++
->>>   .../boot/dts/starfive/jh711x-common.dtsi      | 656 ++++++++++++++++++
->>>   .../dts/starfive/{jh7110.dtsi => jh711x.dtsi} |  16 -
->>>   10 files changed, 879 insertions(+), 654 deletions(-)
->>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-common.dtsi
->>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-
->>> visionfive-2-lite-emmc.dts
->>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-
->>> visionfive-2-lite.dts
->>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-
->>> visionfive-2-lite.dtsi
->>>   create mode 100644 arch/riscv/boot/dts/starfive/jh711x-common.dtsi
->>>   rename arch/riscv/boot/dts/starfive/{jh7110.dtsi => jh711x.dtsi} (99%)
->>>
->>>
->>> base-commit: df5d79720b152e7ff058f11ed7e88d5b5c8d2a0c
->>
->> Small nit that "lite-emmc" is confusing together. In patches to U-Boot
->> dev mailing list the EEPROM product id is demonstrated to be with "SL"
->> suffix when compared to VisionFive 2 (JH7110) so I suggest avoid
->> confusion in upstream and use for VisionFive 2 Lite (JH7110S) these
->> compatible names:
->>
->> starfive,visionfive-2sl-lite
->> starfive,visionfive-2sl-emmc
->>
->> Also filenames:
->>
->> jh7110s-starfive-visionfive-2sl-lite.dts
->> jh7110s-starfive-visionfive-2sl.dtsi
->> jh7110s-starfive-visionfive-2sl-emmc.dts
->>
->> What do you think?
->>
-> 
-> This is a serial number for the Lite board:
-> VF7110SL-2310-D002E000-xxxxxxxx
-> 
-> Here E000 encodes that we have no eMMC.
-> 
-> The S is part of 7110S which we already have in 'jh7110s'. And the L is
-> already decoded as 'lite' in this patch series. Duplicating this
-> information as 'sl' as you suggested provides no benefit.
+As preparation, the existing Microchip SPI driver is renamed to clearly
+indicate that it supports only the Microchip PolarFire SoC "hard" controller.
+Although it was originally named with the expectation that it might also
+cover the FPGA CoreSPI "soft" IP, the register layouts differ significantly, 
+so separate drivers are required.
 
-The convention in dts file names is CPU model first so that will be
-redundant or not redundant depending on the name of the product anyway;
-whether it is redundant or not is not the driver of whether it is
-confusing to have contradictory terminology in the product name and
-compatible names and dts filenames.
+changes in v3
+--------------
+- Renamed Kconfig symbol to SPI_MICROCHIP_CORE_SPI 
+- Renamed CoreSPI driver from spi-microchip-core.c to spi-microchip-core-spi.c to avoid confusion
 
-> 
-> Let's just stick with Hal's suggestion.
-> 
-> Best regards
-> 
-> Heinrich
+changes in v2
+--------------
+- Moved compatible strings into an enum and kept alphabetical order
+- Replaced .remove_new callback with .remove
+- Dropped unused variable reported by kernel test robot 
+- Updated CoreSPI drivers commit message to include the 8-bit frame size restriction
 
-The "lite" product name in similar products refers to non-populated emmc
-replaced by sd card, so there is benefit to choose a more concise name
-that is not confusing.
+Prajna Rajendra Kumar (3):
+  spi: microchip: rename driver file and internal identifiers
+  spi: dt-binding: document Microchip CoreSPI
+  spi: add support for microchip "soft" spi controller
 
-I did consider suggesting:
+ .../bindings/spi/microchip,mpfs-spi.yaml      |  70 ++-
+ drivers/spi/Kconfig                           |  28 +-
+ drivers/spi/Makefile                          |   3 +-
+ drivers/spi/spi-microchip-core-spi.c          | 442 ++++++++++++++++++
+ .../spi/{spi-microchip-core.c => spi-mpfs.c}  | 207 ++++----
+ 5 files changed, 635 insertions(+), 115 deletions(-)
+ create mode 100644 drivers/spi/spi-microchip-core-spi.c
+ rename drivers/spi/{spi-microchip-core.c => spi-mpfs.c} (68%)
 
-jh7110s-starfive-visionfive-2-lite.dts
-jh7110s-starfive-visionfive-2.dtsi
-jh7110s-starfive-visionfive-2-emmc.dts
+-- 
+2.25.1
 
-but this is a loss of information and does not help readability. By
-extension we're not duplicating information to be more descriptive with
-the product name. Sure I'd go along with:
-
-jh7110s-starfive-visionfive-2-lite-card.dts
-jh7110s-starfive-visionfive-2-lite.dtsi
-jh7110s-starfive-visionfive-2-lite-emmc.dts
-
-But my suggestion remains:
-
-jh7110s-starfive-visionfive-2sl-lite.dts
-jh7110s-starfive-visionfive-2sl.dtsi
-jh7110s-starfive-visionfive-2sl-emmc.dts
-
-for the reason that it's very clearly not the "non-emmc" version of the
-VisionFive 2. You can't mistake it if done the way I am suggesting.
-
--E
 
