@@ -1,161 +1,107 @@
-Return-Path: <devicetree+bounces-235972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B4DEC3ED46
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:56:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 709F8C3ED31
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:54:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DE65F34BD6C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:56:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09884188D1A4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56752D063C;
-	Fri,  7 Nov 2025 07:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E7E830E821;
+	Fri,  7 Nov 2025 07:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c+SSYVZK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dqmsZeXn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC452C0F6D;
-	Fri,  7 Nov 2025 07:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E942C11CF
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 07:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762502200; cv=none; b=rOkBx/3/FbsNVtyCT+/pg8aO8Eq/Wx++KMZwLvBktN+kzCtL9lpFP2Tn8Eeirz3T94zxW+Qcy9MkTpUZVGoPlnSJ/wmjv1Xo3G7uyUCU/9anb5B9dB65IueCs0+ec342DuiRL+NB5hwkwPm77Gsfg1+mRNCOHV5EFLAdAsxGNag=
+	t=1762502056; cv=none; b=CPRp4bFDj4vhEEallnPJGBiLBDo9ovk6FnS9uqB7XLRMmW2T2kKspxtsyY/0JYSrMTQhv3bD7dgJEEQ6FjdnEZ9bbsjkUNWkHHJu5pcNEXP5urmUnTnHK2jCbOBa8ijmAoJapxRwPoPl9NHYu7cQWRQhqYyGqClOo0ZaC2xxVD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762502200; c=relaxed/simple;
-	bh=7SeThI/GyvzdlsSjTq1A4LDVdLrB275PlAkljcI1F8g=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=oxYKMPemT8XPrcK5/MSua7DgEkvC5mtxSKIaXDkwoVAJ3qtO9Lhek367SYnBFMEN6UE6VO40GL9wCaxbwAcJ824c8pr1WP91Q5N08IFCXZQmdXLJSHdhJzYU2yDafp36G0QcKRHiB0bY+bsM1bFWkagpLhhptOCzz5f5p680HwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c+SSYVZK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B45C113D0;
-	Fri,  7 Nov 2025 07:56:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762502200;
-	bh=7SeThI/GyvzdlsSjTq1A4LDVdLrB275PlAkljcI1F8g=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=c+SSYVZKKVQjWz0shHKqp/MRoMngGuKuIqsxHpq5YCP6WDZ0BHE07qRBjQ2n52C3D
-	 x+de6YxrXksrrgPeGnBWMPSQKCfH0nEozamZa8do5pa7ez35oFCP/IV9+pK/ZvFR3D
-	 NKOElNukb0ayF0H8xhnbEunj9F1jjJPET7cewZOJ+SMfnnhDYqlbywiMyvRHjSPDrc
-	 tX40alCh4KvlBfawu5wOuEVw7kJW1z4gnBkHNUc7ztXfXZRRwXTpkpEw3Sd7msC1f9
-	 tbEebxYY7fHIQ9axTDXvWYRF2/AK/WFlqHAIyJ4vb0UPNBWKu+NBAx0b4F7n2VgLMu
-	 dLp+GJo0Qp49g==
-Message-ID: <4aa4f664-0dc4-4f7d-8ecb-f1602e5cbfcc@kernel.org>
-Date: Fri, 7 Nov 2025 08:56:33 +0100
+	s=arc-20240116; t=1762502056; c=relaxed/simple;
+	bh=hht2khT+M/paWxzoLF4glbCzxzDG6WfHD/Jh8JDmVm8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bWKVbCDOLphrnnPOTaN+bZEQOsJy/PR2+vNOP8jv1j620hj2vMNwOlWJZB6IH5DcYqeCyvOmlyJd2NDzIIVA5X9i7jPH2C+knZ/wB6vo7KJ+wLSU41f4zta9mUu6X7NvXhrn+84OZX8tLdM3orfJDsX5Rmd5VlNltPY347F30bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dqmsZeXn; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7afc154e411so341127b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 23:54:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762502054; x=1763106854; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hht2khT+M/paWxzoLF4glbCzxzDG6WfHD/Jh8JDmVm8=;
+        b=dqmsZeXnah3owgv9LU0TB/AZDmVzNCwm1AATRL8aG2Rur5PLhtJZ3sQkQl0W2DfAWy
+         71EPUf/DQ9ddYGflNciTusRdjd03tZ7fRBfVIvnyhQyiGsR2cnUMqp2RGzbbzKlKSXjq
+         Sm4CKgtEdn0iDEiW7E5oTc1i5PMgPvJzSewDHDRggUgpaymPyYz7695a/VzZrA7r719M
+         KghSiL10cU++5uhit8q2wd2pEQCOqGNI0JgCiHScV9+OntAuJU+/DZpLgNPzpHKmDtJE
+         uaVLMAEl9BQeiVi9wc+R9/PkymLZpCiz4auNfP64Q26UaovpfmX3Y4iFvK2Lm9x43r2m
+         xgtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762502054; x=1763106854;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=hht2khT+M/paWxzoLF4glbCzxzDG6WfHD/Jh8JDmVm8=;
+        b=fZtcGTa43vpzYv19ycNWkRtkZUDAimHiZ+ab/S0TJlXiFeV/xr1F/+j311eYDIOpls
+         sTw993GCW61gq2QFWKR1/PPDWN0rYOCuHCxm1Eet+/CAW5Hb7Dz4/qRaYjeF8h40xYpA
+         t6owqhP/7ygstWXAz+YSjnlRZ/no20g477rb1Y1LV6FqakgwxW4cv0nQHw33UrPgNwrv
+         GU1MuYa8VErxugpy8e8OQ/Y8+9NXnGidMT69fcgbXxI+Q42jz4nODSHiFJcAKqPMBHzj
+         z4eokuZ/BkC8gSbM5S2lZ/SiBFXIVuX5LYIAeZY8C00biW/N+Bu8xXeQM6oIFIQ27hex
+         yRvA==
+X-Forwarded-Encrypted: i=1; AJvYcCVE9lhAAvU1ZQgIBynPKCuKFF+KRzoW6lQJRuh8LBGHVZf2YMD1rHnnap6E8n2dp177LSVF8u7kmM6T@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYZ3DevtrUsqUTqwmJDVsE+zXv+m9YrATRjIEy+TFTh/3Zzpnj
+	5cLhdx7eZSNxptaeOtUUE4DjfDsn5v17FikaqBkX95+0/wYfgBQa815DnzRIiFSCnlAWnBuWR3m
+	xOfWm7Pq1IdwxgwBF0OXduxTix3MsTKU=
+X-Gm-Gg: ASbGncsucQoU3HOfHJ8qZgIz3IzbuIPmAjkyWaIpefqpZhNwbMNbIX53IYZ96MpcMsr
+	ud6dy0+/pNOo0Y03H/YhDZT3VClySymN26qsyBlDwsp49z9+biGZFa8GFi2xl8l+i2a+Exk5pzc
+	dqRUV3o3YoQoV0sff2Uxle2B2Km4QZoe5yHxgG/apbWLhE7ybjC5dkbdQdG25co4nqwYzIclM2G
+	33iGvY0P3+rlXiLwL6wPj94762+LkJy+DMMpCU0KvXDgTeaU4wAOFJwJQ==
+X-Google-Smtp-Source: AGHT+IHL0mKF9QQYctg7K2SDNNvhbCsy5jQOa37KMcgcdBvRiNDOg88v8nsypzK+cTSQzbs7MXiMalVatyoMujxAM6A=
+X-Received: by 2002:a05:6a20:914f:b0:334:8e2e:2c55 with SMTP id
+ adf61e73a8af0-35228572ba4mr3084918637.18.1762502054278; Thu, 06 Nov 2025
+ 23:54:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v2 1/5] dt-bindings: display: ti,am65x-dss: Add clk
- property for data edge synchronization
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Swamil Jain <s-jain1@ti.com>
-Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lee@kernel.org, louis.chauvet@bootlin.com, aradhya.bhatia@linux.dev,
- devarsht@ti.com, praneeth@ti.com, h-shenoy@ti.com,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251106141227.899054-1-s-jain1@ti.com>
- <20251106141227.899054-2-s-jain1@ti.com>
- <20251107-amaranth-platypus-from-betelgeuse-7673b9@kuoka>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251107-amaranth-platypus-from-betelgeuse-7673b9@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251031-imx95-rproc-2025-10-31-v2-0-758b2e547a55@nxp.com> <20251031-imx95-rproc-2025-10-31-v2-3-758b2e547a55@nxp.com>
+In-Reply-To: <20251031-imx95-rproc-2025-10-31-v2-3-758b2e547a55@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Fri, 7 Nov 2025 09:56:40 +0200
+X-Gm-Features: AWmQ_bldmBxOD-3eNLQss-begsdemT3T5zDmdImzkOkUALSL6znnWYvoGByIzsQ
+Message-ID: <CAEnQRZB4szsOxtP2QmRdpwR+ZJ+8ydGg8hGAo5DqHC=tw23M8A@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] remoteproc: imx_rproc: Introduce prepare ops for imx_rproc_dcfg
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Frank Li <frank.li@nxp.com>, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/11/2025 08:54, Krzysztof Kozlowski wrote:
-> On Thu, Nov 06, 2025 at 07:42:23PM +0530, Swamil Jain wrote:
->> From: Louis Chauvet <louis.chauvet@bootlin.com>
->>
->> The dt-bindings for the display, specifically ti,am65x-dss, need to
->> include a clock property for data edge synchronization. The current
-> 
-> clock properties are called "clocks". Please rephrase commit msg or use
-> proper clocks to indicate you access here a clock (if that's the case).
-> 
->> implementation does not correctly apply the data edge sampling property.
-> 
-> Where is "data edge sampling property"? I do not see it in this binding.
-> 
->>
->> To address this, synchronization of writes to two different registers is
-> 
-> How this binding achieves that "synchronization"? What are you even
-> describing here?
-> 
->> required: one in the TIDSS IP (which is already described in the tidss
->> node) and one is in the Memory Mapped Control Register Modules.
->>
->> As the Memory Mapped Control Register Modules is located in a different
-> 
-> And now another therm - MMCR...
-> 
-> This commit msg is barely parseable - language is correct but it is a
-> mix of completely wrong terms.
-> 
-> In case you used LLM to write this - don't. Ever.
-> 
->> IP, we need to use a phandle to write values in its registers.
->>
->> Fixes: ad2ac9dc9426 ("drm/tidss: Add support for AM625 DSS")
->> Fixes: 5cc5ea7b6d7b ("drm/tidss: Add support for AM62A7 DSS")
-> 
-> You still did not describe the actual bug being fixed here.
-> 
+On Fri, Oct 31, 2025 at 4:28=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
+>
+> Allow each platform to provide its own prepare operations, preparing
+> for i.MX95 LMM and CPU ops support.
+>
+> No functional changes.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-
-Actually, NAK, because you ignored entire previous feedback!
-
-Best regards,
-Krzysztof
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
