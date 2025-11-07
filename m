@@ -1,113 +1,218 @@
-Return-Path: <devicetree+bounces-235922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6EC9C3E5AD
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 04:36:43 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CD4C3E54D
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 04:19:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CFDE74E4B01
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 03:36:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 42F394E4F4E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 03:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1E21E32D3;
-	Fri,  7 Nov 2025 03:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712772E8B62;
+	Fri,  7 Nov 2025 03:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="N/AjtPdW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jBHaAfNA";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZNjE/cKF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m2412.xmail.ntesmail.com (mail-m2412.xmail.ntesmail.com [45.195.24.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C90413D891;
-	Fri,  7 Nov 2025 03:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.24.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E1D2836A6
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 03:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762486598; cv=none; b=aFYK4VISAStqmHkdIVTFLIssXym9RsOtHuKW71f9ZJ08bz1GTd+0VRNlx8lhWFOY5r31SoVGSD30vR8JkFq4fbdgz2Aeu6UD7UDq3fwIFgA2XM1MiD81IpOWjFC1+UsEm4XD6wNHbI57m78fktMIBOgSTW1lVdOJdsa9Cg2Gmt0=
+	t=1762485580; cv=none; b=LgcOg2H3y62k6OD1+TDNqqWXqD+2YPEMh5tfSDnUxxQtvpwYUyOYBzx7YzTHip2E3L421E/y2FuAYGx5Z/kNXHYmtNQCwV8pZmyOMlH9N7pwiqXH+X2KhntYB5rxqehnq94G8KXDK5Rp80v2d8ZsX7bVqcO1hXyVLjx8Dix+3IE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762486598; c=relaxed/simple;
-	bh=uhQp4XIMiDylw9wRBxbeocknEojR0/ndrfGwuOyRdX4=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=pF+VOv3j9sXPwhvExbxo1dQ71DPLPSzsyuzkhwjJw0tnfGOmLluRQ+OtJNizIVI0JSe90mmxBheSPnc192tSitiRU1mMdiguJvXM5fvQy5GIRs3WExyRvdhLaSsLdP2Pp1F6NFHTuXRHIzhHepCTlXETbd/D/NpYP1LK3riMauI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=N/AjtPdW; arc=none smtp.client-ip=45.195.24.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.129] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 28b7d0bc4;
-	Fri, 7 Nov 2025 11:01:05 +0800 (GMT+08:00)
-Message-ID: <d9e257bd-806c-48b4-bb22-f1342e9fc15a@rock-chips.com>
-Date: Fri, 7 Nov 2025 11:01:04 +0800
+	s=arc-20240116; t=1762485580; c=relaxed/simple;
+	bh=fJDNuwwAh57qHVcxO80jNFIvDtORwu03rxT7N4ZqhUw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sW9uKcw5EMkVuXfOjnPtpgEdvIwV6Zz0QW/WTzkwIM8LjWNYqW7Dqdku3P01tX+Zo54aTELJfVMTCF9VInEgJLzcoWLI2i/k6AER6ab/If976wS8SSR7/Sn30huw/HBqlBrgsjqE4QngOZV7gU6aRQUnktXjIpq2nLuOZ66i3eE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jBHaAfNA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZNjE/cKF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A6HUmCa643221
+	for <devicetree@vger.kernel.org>; Fri, 7 Nov 2025 03:19:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=BrpjAWiwCyBIR4NqBN1fG3lV
+	zpUvOEKnEsnydrbcid8=; b=jBHaAfNABCQzblEMPABGZ6Ayu8XrzJog5gBepCx+
+	d6vBKxEi9ASrvsstFwGiM5jziNcsyNixWVSXOvvfTqT2ssIzJ1xMbg4B4uJU1J2l
+	3rJlsUgyLpK7kqRPTn5mg3/au8PUDOZukxF49NQd8vt4crfiltFLpyghFZ5m+n+V
+	bqAjxvVeLlzX3R9hah2xXNkbxy6+D9AMOOKf7J54dQABmhEYA9XOeTuCmzzh2Dx3
+	d+iCR96epD5azDtJaj04sY+ClRIH5GN07VxSJ4AKVJYx2+7UOEX9y2nhXHxjyra9
+	IkhtI9n40Lm6Gicu8VxJXaAdE2+gprK5qZZp+m/mZ/DFvQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a904v1fk9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:19:38 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4eba1cea10dso12163721cf.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 19:19:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762485577; x=1763090377; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BrpjAWiwCyBIR4NqBN1fG3lVzpUvOEKnEsnydrbcid8=;
+        b=ZNjE/cKFT/tY9GF+mNcDe1QDhPGFj106d3oVjEk/FGhGtQAchV6spvjWupULmlwfVm
+         g0TesyFY7WBtchE3aP6Pz62mBsN/E2V2rnEUtAoP2yv8hi7AQYH8KppJAAkGJ84fbH6x
+         FiXq/uc84TDaiHc12IQOwpgk9ooK4d2xMzoMF8VPXGJnm6zhmrJeLfvTz4ZYRQBPB3dB
+         NCUeb6loNEAsx8EwPq3ZAQIny+eMQ0L2kuXRk+i4f41ThqldIWdqhezc27tMGvjOWe7Y
+         unmrR51xqfOV4kc3xkwB6xV7f//QlFWaSFicamPGhj+nbG5hnJwakRCLJgWX8GJJOZ4a
+         OF5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762485577; x=1763090377;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BrpjAWiwCyBIR4NqBN1fG3lVzpUvOEKnEsnydrbcid8=;
+        b=fOZn1XLpWFTFEbFL7nt9o/XtEeU64qevHTzni1MDyKzRJWP/HKBx5cp2Zau/9UecGH
+         ZRywCGW3i4GrgsLyI+XGJjYVs5z3SM9ie1RM/QYW45JJg2fbnUkUfst7FLaHcIPd+/fU
+         q2iEme9mbxo7qsrNfjwRdr9rnJaMR5P8G8yIb4EhIxdkFFIcUa1zAicYrkCAiKg9y5QA
+         JzEq0/zu2iiDekIjbsfmllk3+A6nyRJiNw8mHNXfroN/e13mNqn+O8TznGKhT5dRisXu
+         jO0gbU1UBdWIrS8mRPdWycKyW4NtsMhCx+oPtZG9kK9uh/7XhsWVsRr1//UvGvh+6KPA
+         MEbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWgd7xHXyijGBVooeZSvHNBX0O8CFB/Xas/e30B0SsuladEW4gxBLYI0iNKSGzwAPOvh6I0fbGMlCw5@vger.kernel.org
+X-Gm-Message-State: AOJu0YytTFcIv2+mKpca0JXpPHiH77MwIuvwYE/9znXpRxQIDlevfpRh
+	MCVXKR80aVd1S2RR9QMtJNlFl+tXRkG4CKEcTYKgzKh3MnjN4eQe7WKL/y/BBHETTu0iv/qFN9P
+	dFk60h8xrCKELWsouxBpb+K4Zjg/7hymvbGcAkE81KEQOPxreXIe6a4Se24yKnm3U
+X-Gm-Gg: ASbGncsg4GlOkbmQ5C619eT+xwXRl6M1Z/Sx+fcPYk3cCpCRt6n18v7zrbfJko73NR3
+	OnyU+cUFu/+AYvgqStf2NmdFt2/wrg/JUhCG98wMNUrJggnE+UOcutzKi8YxgTybF1ZCviJZYPe
+	+Cn0/AQOLGvYUGy92K4Xt0x3dMtTDvEfSsOq8w/9ggxyIxvpcCjxF3Ci94XQWI7+Gl91kSETVFK
+	VeWOaS3gLEHLp0lMqKhGgsOEF77DkfkBrh1DGdYp5gzfTQiGrDGybJUSjhQxRzdbGCwZFhaLHWz
+	BD0burXv4ZXV1Vk/D7PWNmubdLvejK2MRDTRzC3TFJOraSxAJjgu1duyPey73+rThtJuMCB2Mqb
+	vHFhPzcJ3Gz4uOel0wOZENwHSdMYg6XSHv8ddCZtegK0g0gDOeqJZiruxC9dyPQ7G08bfRX3byb
+	Dm+qC987Z/Y6l7
+X-Received: by 2002:a05:622a:11c7:b0:4ed:6746:5c3d with SMTP id d75a77b69052e-4ed949432cemr23756781cf.16.1762485576950;
+        Thu, 06 Nov 2025 19:19:36 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG/3FjNRKucfvNXkDZbeGXLag2dCvNMAIUYAMoAD/S9Y8MWbIoOna+co2re+tgJ+a1VvKEhZA==
+X-Received: by 2002:a05:622a:11c7:b0:4ed:6746:5c3d with SMTP id d75a77b69052e-4ed949432cemr23756521cf.16.1762485576496;
+        Thu, 06 Nov 2025 19:19:36 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5944a019f09sm1147166e87.31.2025.11.06.19.19.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Nov 2025 19:19:35 -0800 (PST)
+Date: Fri, 7 Nov 2025 05:19:33 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Hans de Goede <hansg@kernel.org>,
+        Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+        Daniel Lezcano <daniel.lezcano@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 11/13] soc: qcom: Simplify with
+ of_machine_get_match_data()
+Message-ID: <odmsib3dsxzzggq4gcx7gmh6vq3crlv25fz4z2l2ntezvx6gbi@uelqojwjjait>
+References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
+ <20251106-b4-of-match-matchine-data-v1-11-d780ea1780c2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: align bindings to PCIe spec
-To: Geraldo Nascimento <geraldogabriel@gmail.com>,
- Ye Zhang <ye.zhang@rock-chips.com>
-References: <4b5ffcccfef2a61838aa563521672a171acb27b2.1762321976.git.geraldogabriel@gmail.com>
- <ba120577-42da-424d-8102-9d085c1494c8@rock-chips.com>
- <aQsIXcQzeYop6a0B@geday>
- <67b605b0-7046-448a-bc9b-d3ac56333809@rock-chips.com>
- <aQ1c7ZDycxiOIy8Y@geday>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <aQ1c7ZDycxiOIy8Y@geday>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9a5c42adf909cckunmd8a05e02f6b7ea
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkIaTlYfTkwdH0JKSxgYSE1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=N/AjtPdWxmqb/pFSs6gykwYAJznoZ8eog/K1ggyHgiHswHpN2h06IuYOiipUjuL3fkrH9tNI7iUErn2M+xn58GJHlBeesAuUuwLcF7xohvnZc6VYwGmJh+ip2Ox71RepKsnJaUNoX4XVoE81ZYMa3tVHxJcOI2tPNeo7AAFKCxQ=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=zVsNu3y1SfXzBdfw48QrW2mnVPUuj41sgD9Q3ySf0jw=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251106-b4-of-match-matchine-data-v1-11-d780ea1780c2@linaro.org>
+X-Authority-Analysis: v=2.4 cv=RMK+3oi+ c=1 sm=1 tr=0 ts=690d654a cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=KKAkSRfTAAAA:8 a=e-unOtBAnIuy2i46bukA:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: n_h-b8Zhb20crSEjAAQUercbEL9x5QNW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA3MDAyNCBTYWx0ZWRfX0QN0l5XQTR8M
+ Sj+wguFdADw4EcZ37GgIFfXD7N9gT53N+CYmIFerk/8pMJzAqrzQ06rQbWGc9y5x/BryyCCJzLh
+ uYGeSoALxRhNUD08bqpYANajPNfp5SAGDFNUZqqargTWnKBd1giOdMXjT10Q8lI9P6IJFmTbAN7
+ zAXmpArOGGWrcAu13L9SV83WAzKAd7qHA6FuaTK0k04nevtKZZm6Bz/IqYqFbdjWZPSvaQ2+3ZV
+ O2GZDnSz3Me2Db51HzR8nibt1CoSb/1m9qiGTqoywGwUXHGt81Z8Ex7gsgQKvs0ccOMexpXSmMw
+ jLfMZC3KQuwYby4s9TE0gIINa1oGmzvKoGlusIBBWy6/uyioTjMiUx8Aa09s87uvhNCPFSJGfO3
+ oQRfxkSNgWU/fdBvyhA1iz6/y8KXPw==
+X-Proofpoint-GUID: n_h-b8Zhb20crSEjAAQUercbEL9x5QNW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-06_05,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 phishscore=0 impostorscore=0
+ clxscore=1015 adultscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511070024
 
-+ Ye Zhang
+On Thu, Nov 06, 2025 at 08:07:18PM +0100, Krzysztof Kozlowski wrote:
+> Replace open-coded getting root OF node, matching against it and getting
+> the match data with new of_machine_get_match_data() helper.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Depends on the first OF patch.
+> ---
+>  drivers/soc/qcom/qcom_pd_mapper.c | 17 ++---------------
+>  1 file changed, 2 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/qcom_pd_mapper.c b/drivers/soc/qcom/qcom_pd_mapper.c
+> index 1bcbe69688d2..07198d44b559 100644
+> --- a/drivers/soc/qcom/qcom_pd_mapper.c
+> +++ b/drivers/soc/qcom/qcom_pd_mapper.c
+> @@ -613,25 +613,12 @@ static void qcom_pdm_stop(struct qcom_pdm_data *data)
+>  static struct qcom_pdm_data *qcom_pdm_start(void)
+>  {
+>  	const struct qcom_pdm_domain_data * const *domains;
+> -	const struct of_device_id *match;
+>  	struct qcom_pdm_data *data;
+> -	struct device_node *root;
+>  	int ret, i;
+>  
+> -	root = of_find_node_by_path("/");
+> -	if (!root)
+> -		return ERR_PTR(-ENODEV);
+> -
+> -	match = of_match_node(qcom_pdm_domains, root);
+> -	of_node_put(root);
+> -	if (!match) {
+> -		pr_notice("PDM: no support for the platform, userspace daemon might be required.\n");
+> -		return ERR_PTR(-ENODEV);
+> -	}
+> -
+> -	domains = match->data;
+> +	domains = of_machine_get_match_data(qcom_pdm_domains);
+>  	if (!domains) {
+> -		pr_debug("PDM: no domains\n");
+> +		pr_notice("PDM: no support for the platform or no domains, userspace daemon might be required.\n");
+>  		return ERR_PTR(-ENODEV);
+>  	}
 
-在 2025/11/07 星期五 10:43, Geraldo Nascimento 写道:
-> On Wed, Nov 05, 2025 at 04:56:36PM +0800, Shawn Lin wrote:
->> 在 2025/11/05 星期三 16:18, Geraldo Nascimento 写道:
->>> Hi Shawn, glad to hear from you.
->>>
->>> Perhaps the following change is better? It resolves the issue
->>> without the added complication of open drain. After you questioned
->>> if open drain is actually part of the spec, I remembered that
->>> GPIO_OPEN_DRAIN is actually (GPIO_SINGLE_ENDED | GPIO_LINE_OPEN_DRAIN)
->>> so I decided to test with just GPIO_SINGLE_ENDED and it works.
-> 
-> Shawn,
-> 
-> I quote from the PCIe Mini Card Electromechanical Specification Rev 1.2
-> 
-> "3.4.1. Logic Signal Requirements
-> 
-> The 3.3V card logic levels for single-ended digital signals (WAKE#,
-> CLKREQ#, PERST#, and W_DISABLE#) are given in Table 3-7. [...]"
-> 
-> So while you are correct that PERST# is most definitely not Open Drain,
-> there's evidence on the spec that defines this signal as Single-Ended.
-> 
+Here you are mixing two cases:
+- There is not match in the table (in which case the driver should print
+  a notice)
 
-This's true. But I couldn't find any user in dts using either
-GPIO_SINGLE_ENDED or GPIO_OPEN_DRAIN for PCIe PERST#. I'm curious
-how these two flags affect actual behavior of chips. Ye, could you
-please help check it?
+- There is a match in the table, but the data is NULL (the platform
+  doesn't have PDM domains). In this case there should be no notice.
 
-> Thanks,
-> Geraldo Nascimento
-> 
-
+-- 
+With best wishes
+Dmitry
 
