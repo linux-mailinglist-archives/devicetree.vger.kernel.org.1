@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-236214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BFBC413DD
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 19:13:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FA4FC413E9
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 19:14:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 931084E2EDB
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 18:13:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 390C73BB13D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 18:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A5B212550;
-	Fri,  7 Nov 2025 18:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1510E329368;
+	Fri,  7 Nov 2025 18:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bi5QEyLr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nEg7c6eK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8062032D0E6;
-	Fri,  7 Nov 2025 18:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DB327145F;
+	Fri,  7 Nov 2025 18:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762539203; cv=none; b=NZmgRzqBddx4INyF9lpckVGoPv4HJTQl5mIijji34EgqCS+Zs/DwrHHoPWOJjx2url3oYkZFECQvhNMkceIy7SyHWZzgzr2XtLr9q3mnLGrhXbj5jxfDCBXpkBlsQbo7JYhPOraw0sp1nDvy3l4QfjpQjL5e7t08Ol11or6YC+o=
+	t=1762539276; cv=none; b=uD6/UEjNx6e88/gxcE90idXG1aChzzMGXD9FUG66NVEWngdNraCgO9ItwQ8s06CqwprsyACzho4/z7+3Fmvj30pMpqARTlPWPPFqU6WnRnR5g9mQ3JZdh2W3OoTMBwRoJoo5RmllIkgnhfMVw3+s3GAro07gGhcyBORgk+zWov0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762539203; c=relaxed/simple;
-	bh=/lgbv0xkkeEeyCFTxzletftyEsQCLKdX/zZrCKZT90Y=;
+	s=arc-20240116; t=1762539276; c=relaxed/simple;
+	bh=eM5ZneuspMh6fY9/LR7skAboL0fd0yKYb5cCgw95hAU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G8ck54xT82OdcV5Y6G66R8hLo/xsIcn7OMcDz1/XltNhv0LHqWniArhnbpsNs7+R11H72Tl8iqTUNZU+Qj2JFEKal+UyH1Tm4aok9u6arsBz6/OgRHBztu2ofA7jD4rXKYHarZ0Q3gk9p1mbrHw5rPD1fxwJQhX5EVzpBPUrUoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bi5QEyLr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD698C19423;
-	Fri,  7 Nov 2025 18:13:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SF/d1tdc4RyGZ16Ru0jBpOyQwMQMqQWQPXSz/O+L9LmTS1bIi1WYuzRp/mx7r9kRTYTf9UND4BxcxniwTTVHLvTlmoS0qoh8Rd7ADguyROlPLbdHrN7IP1wLDfkqmfXlXo9RnVx4YrccwLBYJtjxGbXKFtjiEehRPTNths4STbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nEg7c6eK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FE79C4CEF8;
+	Fri,  7 Nov 2025 18:14:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762539203;
-	bh=/lgbv0xkkeEeyCFTxzletftyEsQCLKdX/zZrCKZT90Y=;
+	s=k20201202; t=1762539275;
+	bh=eM5ZneuspMh6fY9/LR7skAboL0fd0yKYb5cCgw95hAU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bi5QEyLrlIvHfU1JgbyRk1+DvTo+x8gaYn8el+yDhjo+Q/r6xqEaJ1GCgrciPTGVz
-	 SDGNRXdUSm6u6gSKlv5ANzbyxkL566qHADV8aWXLnSTXztPC2ace9lwFA3XwRy8hcu
-	 ZqaImqFajA8peXiyJRkmBLtO8Kw5MlqcMjq/y7Y1hP4XdypVHjZougqdIRDW07JcRV
-	 lJujxFkBr5zwfNxCjBDfHpTV0MQmMhz7Yubh4LE2+LM7eeKKgzUFcAhiCqtMmP/Add
-	 Kvi6uavYpwPkMSnMwPTMnK5mwhWVqK6tSz4niZFIZ7uKbwLrZq7E8pJHcCWt6LUcGh
-	 h8QxbbxL00WBQ==
-Date: Fri, 7 Nov 2025 18:13:18 +0000
+	b=nEg7c6eKO3PokMvzhrEFP+XY4vIY2iKjkO80GM96kGs1U0+YMRWG3tSCi4XBPuX6T
+	 eUub83RPNHQBs4JkaQO2jysWe+i3nrm7BtZ+d9NMVvBrTRmDZGSl4FwkoRXNmbLISN
+	 G8Wpm2uFNFNkH8+4WOBPkKctxLPPzD4toZ2qxmfF3K2vkYntfzj8NmnFpWiiE90EAV
+	 hzaZeIDuc5zDGjnd9M5dMDnEdh0YEdbg7MddjZJ0L6CUemqf5Elgr9CNMCuIXywGQO
+	 Ty3EPWdUWY4yVenQh9DGpmI6NOn4/uuCUVLC4yqAlOEszIddU9fL191pPGfeGFzIan
+	 kFA6ZatjmFjYQ==
+Date: Fri, 7 Nov 2025 18:14:31 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Christian Marangi <ansuelsmth@gmail.com>
 Cc: Vinod Koul <vkoul@kernel.org>,
@@ -52,11 +52,11 @@ Cc: Vinod Koul <vkoul@kernel.org>,
 	Lorenzo Bianconi <lorenzo@kernel.org>,
 	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: phy: Add documentation for Airoha
- AN7581 USB PHY
-Message-ID: <20251107-marina-cramp-cf3d60a52524@spud>
+Subject: Re: [PATCH v4 1/4] dt-bindings: soc: Add bindings for Airoha SCU
+ Serdes lines
+Message-ID: <20251107-crisping-doable-365d6b7d60a6@spud>
 References: <20251107160251.2307088-1-ansuelsmth@gmail.com>
- <20251107160251.2307088-3-ansuelsmth@gmail.com>
+ <20251107160251.2307088-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,59 +64,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2fzr6I2tBaj3GaUW"
+	protocol="application/pgp-signature"; boundary="B39WCCiVv17+HjH0"
 Content-Disposition: inline
-In-Reply-To: <20251107160251.2307088-3-ansuelsmth@gmail.com>
+In-Reply-To: <20251107160251.2307088-2-ansuelsmth@gmail.com>
 
 
---2fzr6I2tBaj3GaUW
+--B39WCCiVv17+HjH0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 07, 2025 at 05:02:44PM +0100, Christian Marangi wrote:
-> Add documentation for Airoha AN7581 USB PHY that describe the USB PHY
-> for the USB controller.
+On Fri, Nov 07, 2025 at 05:02:43PM +0100, Christian Marangi wrote:
+> The Airoha AN7581 SoC can configure the SCU serdes lines for multiple
+> purpose. For example the Serdes for the USB1 port can be both
+> used for USB 3.0 operation or for Ethernet. Or the USB2 serdes can both
+> used for USB 3.0 operation or for PCIe.
 >=20
-> Airoha AN7581 SoC support a maximum of 2 USB port. The USB 2.0 mode is
-> always supported. The USB 3.0 mode is optional and depends on the Serdes
-> mode currently configured on the system for the relevant USB port.
+> The PCIe Serdes can be both used for PCIe operation or for Ethernet.
 >=20
-> To correctly calibrate, the USB 2.0 port require correct value in
-> "airoha,usb2-monitor-clk-sel" property. Both the 2 USB 2.0 port permit
-> selecting one of the 4 monitor clock for calibration (internal clock not
-> exposed to the system) but each port have only one of the 4 actually
-> connected in HW hence the correct value needs to be specified in DT
-> based on board and the physical port. Normally it's monitor clock 1 for
-> USB1 and monitor clock 2 for USB2.
->=20
-> To correctly setup the Serdes mode attached to the USB 3.0 mode, the
-> "airoha,usb3-serdes" property is required. This can be either
-> AIROHA_SCU_SERDES_USB1 or AIROHA_SCU_SERDES_USB2 and is used to identify
-> what modes support the PHY and what register to use to setup the
-> requested mode.
->=20
-> The first USB port on the SoC can be both used for USB 3.0 operation or
-> Ethernet (HSGMII).
-> The second USB port on the SoC can be both used for USB 3.0 operation or
-> for an additional PCIe line.
+> Add bindings to permit correct reference of the different ports in DT,
+> mostly to differentiate the different supported modes internally to the
+> drivers.
 >=20
 > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  include/dt-bindings/soc/airoha,scu-ssr.h | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>  create mode 100644 include/dt-bindings/soc/airoha,scu-ssr.h
+>=20
+> diff --git a/include/dt-bindings/soc/airoha,scu-ssr.h b/include/dt-bindin=
+gs/soc/airoha,scu-ssr.h
+> new file mode 100644
+> index 000000000000..a14cef465dad
+> --- /dev/null
+> +++ b/include/dt-bindings/soc/airoha,scu-ssr.h
+> @@ -0,0 +1,11 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +
+> +#ifndef __DT_BINDINGS_AIROHA_SCU_SSR_H
+> +#define __DT_BINDINGS_AIROHA_SCU_SSR_H
+> +
+> +#define AIROHA_SCU_SERDES_PCIE1		0
+> +#define AIROHA_SCU_SERDES_PCIE2		1
+> +#define AIROHA_SCU_SERDES_USB1		0
+> +#define AIROHA_SCU_SERDES_USB2		1
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+I'm going to assume that 01 01 is correct here.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks for the updates.
-
---2fzr6I2tBaj3GaUW
+--B39WCCiVv17+HjH0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ42vgAKCRB4tDGHoIJi
-0m0kAP4gAHkA1J0WWkcLSZGH7kvvrR6oW8Jlf337BzlRYd59+gEAy2sT0GPBd5a+
-zrhUJiag68MXCXu33BAdntJ5dD5L/wY=
-=VZaV
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ43BwAKCRB4tDGHoIJi
+0pVWAP9yALGNfDaXdkKA0VA1cacvoNV1NxfUwR0SjRIKBvFBMQD/VKW6hr/1aS99
+fczYQ2vBgCBT3a/Ft3Xpx4X/XlQ8kAU=
+=mERD
 -----END PGP SIGNATURE-----
 
---2fzr6I2tBaj3GaUW--
+--B39WCCiVv17+HjH0--
 
