@@ -1,83 +1,52 @@
-Return-Path: <devicetree+bounces-236079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14DDFC3FB86
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:23:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4ED8C3FB9E
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:25:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03F6C3B10BA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:23:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F94B1882EDA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F26320CD5;
-	Fri,  7 Nov 2025 11:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C8631BC90;
+	Fri,  7 Nov 2025 11:25:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="znqkUCDQ"
+	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="j/YUeIQc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A29C31CA54
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 11:23:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845DC2C9D;
+	Fri,  7 Nov 2025 11:24:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762514600; cv=none; b=A4U2WJqMChQZrZxcsB29MQx/nA/ByuXZtAlJK8IAW85peTZYbm6IeM9IfpP52qiwnZn9q/eMUgiWxjfyVLvj9CuUwqr1aznnCcF6O0cSzADVs0+utBeW+pR6mdzl7vuwcaAPNXjFihOCIPfQTo1UpPRzugv0rISa1GnFzaQMI0Q=
+	t=1762514700; cv=none; b=m0aBdyDBSorbxCxk6Zo5Y7nNiz3f98Z2vnFyEAcYPBlvDNxNzSuc+iQvtfG5QVBcQjxyyaOOvjNv9JFN08WiPqTrKRTB3TxWNX83w33XC1Fu1ADu+o8NQLsJcJwhmWm8wfMEXFf2R97lB5CoGShAXKFvyzY9icnHfyxYYeoRUsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762514600; c=relaxed/simple;
-	bh=hIRq1hBV/Vkm950YcOMj5joE3yzYwWC3jRnL3QIu1co=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=uB0kIpn+6UOgWoHSPLCKEdLqr/MOhbA5VLTjPZHkfWvxv/n/hPUPkcemHFf2mtIkTqJod0LiIi3loN0VXRjAnKFVXOlrpyMdUnJ4cmLIxaUjVxfiGd4bYD0/mIMTI2t/606CsFVjXdsyCI0RzHvWQdrCysOgjKM3JvAeivCt/dI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=znqkUCDQ; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-42b2a0c18caso15570f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:23:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762514596; x=1763119396; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VtAgMzQLUEkWjhbFNDOre6KPF58LB5AVVftjd0cwizQ=;
-        b=znqkUCDQLSWxn/zRRI8tJAE6+ovbPzdcdiExcTCmBWZ7QMMKP8g/UnTooL50B7BGMJ
-         lkDpP8i9xc8ftmkfK5Vf9A6g37rlUeaMFAJbu9SBgoy+zNnfrPMA/7Q3kkeyuL7d9a5w
-         E2In1UX6Ii6uHo/TvyWgjdcXo2YXzwKNxcvjAkXa2Oz4o9xRMiIDTSKi27RIkiyBEBZT
-         Pwqr2ZKVjGtTkpoYoETranZM/7z5bACrkF8vvPuEWRHISswJ2VkNZsUcJ/yIrtr8oLm/
-         UXz31fQgI5Wpg3pT6IdwwJajKS/yiCbFa78PNzd+yDKw/PyHsDVm9ydjen3mXUKBKb0B
-         eh7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762514596; x=1763119396;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VtAgMzQLUEkWjhbFNDOre6KPF58LB5AVVftjd0cwizQ=;
-        b=FBFaxqUvPi6VLrtC3jcRNE+BoJK0p3/t68p4QkLMTJpcD3Du+GspzxRpX94H7aYlrj
-         Oo6cXmjfgqIwnAeI4GlxBAiBnucAwf+kUL2jxtqjrCOUeSBT5dPalqCgEk4N2goGloNq
-         6Y+GRofrfUloXzzbVYjKg1wP7/r628Lyic1KPudNtgckQ2ZwLQ4tzk+RwcpXDouE7b1a
-         maSo2BgrcZbRndxQaXC/GkrHTy7sEwQ7R7h86GarBL8IwQ+LUBn7VUespCoFa87laD4k
-         cDQUAdm/wMtD3jKk/OcEdzGfng/32Ns+63tKc3mROwN9EXJWI0QM2dZebz5JrkaQQqRY
-         O1sA==
-X-Forwarded-Encrypted: i=1; AJvYcCWA16kCrLjivhj3YMzFRKfiZRt+3i3WsO/PRJOWx2HG9zAT23gRA0q75mEDj3mqyAPycsjB/Iv3HKhI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdgC9YlsD4bcXfKz061aQh/8FSexdaEQR+pGFfUSDV0NoaGUZp
-	QX0Ub8tLXy0irRYSqbhLSZY5LUKNfo6j4wi4SzQuGK7Xz4VoMk+pTp3CveGhLM6taJE=
-X-Gm-Gg: ASbGncvRm7JPbUgFHdcz5vCBsvam+ZdQ3Ts50UuYB/iLJygwzxAlrShiNgyh70TFK3K
-	8LQPXuRhC3mbgfGSq2to9NYmFfle+fDggefbqBRxriWoT8z+KtXpR+fR+ZV4zS95SaLWIkSsahh
-	MX7TKT5eCLYt9AZEuQvaB7AIz5O+i3xgSkQUjiw/8D4M/MMmSnkGKv2DL23+4fvFfZUJZiiE69a
-	eyNinycEZTF485J3k01qg5ygGjYZ37elErDuFCuJfkbdI991IOK0pPhEGamOKVgUWFBzzyZ93Ga
-	VN2JUCogBTrQESOR+lARMccRLDuMFHj/gcM6FQlkgtHnFsF2fqYf7tFzsb8yoWNnZes0Tgj3y3i
-	slXORiulTyZJY90AtNCxdr/1GoEWFsDcgRDLVgFvr6Y1FiTHXXdnKft8Pnk80i+EAtpkdTOUa5M
-	d/iPxSrDMWm0ZGj2hIg+NUsSXlK2xCSaFscdrBrPv0wYCu
-X-Google-Smtp-Source: AGHT+IFC6PS8CD4thOKnMt/0x6DHF4pMfb9zQG3hVlwbO9wPH+DcI/MNv2cBuknKQz9EdnzfI0iTFw==
-X-Received: by 2002:a05:6000:458f:b0:429:d66b:508f with SMTP id ffacd0b85a97d-42ae5ac408fmr1620035f8f.30.1762514596332;
-        Fri, 07 Nov 2025 03:23:16 -0800 (PST)
-Received: from [192.168.27.65] (home.rastines.starnux.net. [82.64.67.166])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42ac67921c3sm4745735f8f.40.2025.11.07.03.23.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Nov 2025 03:23:15 -0800 (PST)
-Message-ID: <be1b6e34-40ab-4587-8dbe-84e08bf83dcb@linaro.org>
-Date: Fri, 7 Nov 2025 12:23:13 +0100
+	s=arc-20240116; t=1762514700; c=relaxed/simple;
+	bh=ANs81aV/Ae12SW8xZAtD4FqwsvXxe9WMx3g7ou7OpUI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mar5mrG6m7j6HtI1LMp4wowUciy2XCeTDHjJMvE+cBMiKtAvzKNDbQ9LcY8XUMUZhxz+HpkbjVO77xPAK/6pavpUR7lE5uwhIHBoXKXnu5nsfvVHyXZet0aKcOUTrw9M3ABkT0wsyvAiN3jKPL0qzPb9SB+9QYNxPJMEFCsUM/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=j/YUeIQc; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
+	s=s2025; t=1762514669;
+	bh=HGs0/L8ncOabUNWXYKXnKsQ79vn23oo0qvYbvXQ7sWs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=j/YUeIQcHC8otLzqCl7XpD3lZAAcXH6zlMPgZl66YW+pPG648ixllD55b1yBs5jby
+	 venUESrF5aERiu2flcb/HktBi7fP3KD5YMLfjJc8qkyUHEAtDJS02U0RdV0ThSh1Fo
+	 5nL5lZht2VJuw/+8TeV+s6keLu1wciw09H/r8obnh2NZC8v58C66BQyLFjbpgD/J/m
+	 oB5mFvqsgqZs/2T97iGSasVF77dhqPiBpgLPZfo+teiJNHNF1qxEDIBbdsKwPDe8Ez
+	 bStr0/iUkeVznjhNx/pf2JCLh4NZuUs6SG84Q3N/0uhH0babn2t7fHFVirAEqTQ0Tt
+	 PTw/APnqFGJ2A==
+Received: from [192.168.2.54] (unknown [98.97.27.87])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id E2640B2201EE;
+	Fri,  7 Nov 2025 12:24:25 +0100 (CET)
+Message-ID: <5b7c7ecc-38db-483b-87fc-4199a8bd52c3@freeshell.de>
+Date: Fri, 7 Nov 2025 03:24:24 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,167 +54,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 01/12] dt-bindings: panel: Add Samsung SOFEF00 DDIC with
- panel
-To: Krzysztof Kozlowski <krzk@kernel.org>, David Heidelberg <david@ixit.cz>
-Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+Subject: Re: [PATCH v2 5/8] riscv: dts: starfive: jh711x-common: Move out some
+ nodes to jh7110 common dtsi
+To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor+dt@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Casey Connolly <casey.connolly@linaro.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20251104-sofef00-rebuild-v1-0-dfcfa17eb176@ixit.cz>
- <20251104-sofef00-rebuild-v1-1-dfcfa17eb176@ixit.cz>
- <20251106-enlightened-centipede-of-tempering-3cfa50@kuoka>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20251106-enlightened-centipede-of-tempering-3cfa50@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20251107095530.114775-1-hal.feng@starfivetech.com>
+ <20251107095530.114775-6-hal.feng@starfivetech.com>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20251107095530.114775-6-hal.feng@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/6/25 09:48, Krzysztof Kozlowski wrote:
-> On Tue, Nov 04, 2025 at 11:16:09PM +0100, David Heidelberg wrote:
->> Basic description for S6E3FC2X01 DDIC with attached panels
->>
->>   - Samsung AMS601NT22 6.01 inch, 1080x2160 pixels, 18:9 ratio
->>   - Samsung AMS628NW01 6.28 inch, 1080x2280 pixels, 19:9 ratio
->>
->> This panel has three supplies, while panel-simple-dsi is limited to one.
->> There is no user of this compatible, nor the compatible make sense.
-> 
-> There are. git grep samsung,sofef00, gives me two users.
 
-Hmm, on -next I only see a single one:
 
-$ grep samsung,sofef00 arch/*/boot/dts/ -R
-arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts:  compatible = "samsung,sofef00";
+On 11/7/25 01:55, Hal Feng wrote:
+> Some nodes in this file are not used by the upcoming VisionFive 2 Lite
+> board. Move them to the jh7110 common dtsi to prepare for adding the
+> new VisionFive 2 Lite device tree.
+> 
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 14 ++++++++++++++
+>  arch/riscv/boot/dts/starfive/jh711x-common.dtsi |  8 --------
+>  2 files changed, 14 insertions(+), 8 deletions(-)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> index dd5805ef70a1..cdc362b8d58b 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -25,3 +25,17 @@ opp-1500000000 {
+>  		opp-microvolt = <1040000>;
+>  	};
+>  };
+> +
+> +&mmc0 {
+> +	cap-mmc-highspeed;
+> +	cap-mmc-hw-reset;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +	vmmc-supply = <&vcc_3v3>;
+> +	vqmmc-supply = <&emmc_vdd>;
+> +};
+> +
+> +&mmc1 {
+> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
+> +	disable-wp;
+> +};
+> diff --git a/arch/riscv/boot/dts/starfive/jh711x-common.dtsi b/arch/riscv/boot/dts/starfive/jh711x-common.dtsi
+> index 809274625615..42b8f60725fb 100644
+> --- a/arch/riscv/boot/dts/starfive/jh711x-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh711x-common.dtsi
+> @@ -281,14 +281,8 @@ &mmc0 {
+>  	assigned-clock-rates = <50000000>;
+>  	bus-width = <8>;
+>  	bootph-pre-ram;
+> -	cap-mmc-highspeed;
+> -	mmc-ddr-1_8v;
+> -	mmc-hs200-1_8v;
+> -	cap-mmc-hw-reset;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&mmc0_pins>;
+> -	vmmc-supply = <&vcc_3v3>;
+> -	vqmmc-supply = <&emmc_vdd>;
+>  	status = "okay";
+>  };
+>  
+> @@ -298,8 +292,6 @@ &mmc1 {
+>  	assigned-clock-rates = <50000000>;
+>  	bus-width = <4>;
+>  	bootph-pre-ram;
+> -	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
+> -	disable-wp;
+>  	cap-sd-highspeed;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&mmc1_pins>;
 
-> 
->> Remove it from simple DSI panel definitions.
-
-Can't you mark is deprecated at first ?
-
->>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
-> 
-> ..
-> 
->>   additionalProperties: false
->>   
->>   required:
->>     - compatible
->> +  - power-supply
->>     - reg
->>   
->>   examples:
->> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,sofef00.yaml b/Documentation/devicetree/bindings/display/panel/samsung,sofef00.yaml
->> new file mode 100644
->> index 0000000000000..527a10e3b798e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/panel/samsung,sofef00.yaml
->> @@ -0,0 +1,83 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/panel/samsung,sofef00.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Samsung SOFEF00 AMOLED DDIC
->> +
->> +description: The SOFEF00 is display driver IC with connected panel.
-> 
-> Description goes below maintainers, see example-schema.
-> 
->> +
->> +maintainers:
->> +  - David Heidelberg <david@ixit.cz>
->> +
->> +allOf:
->> +  - $ref: panel-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +            # Samsung 6.01 inch, 1080x2160 pixels, 18:9 ratio
->> +          - samsung,sofef00-ams601nt22
->> +            # Samsung 6.28 inch, 1080x2280 pixels, 19:9 ratio
->> +          - samsung,sofef00-ams628nw01
-> 
-> These were not in the old binding, so please explain in the commit msg
-> reasons for adding new front compatibles.
-> 
->> +      - const: samsung,sofef00
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  reset-gpios: true
-> 
-> Drop, not needed. It can stay required, though.
-> 
->> +
->> +  port: true
-> 
-> Drop
-> 
->> +
->> +  vddio-supply:
->> +    description: VDD regulator
->> +
->> +  vci-supply:
->> +    description: VCI regulator
->> +
->> +  poc-supply:
->> +    description: POC regulator
-> 
-> 1st poc, then vci then vddio to keep it more-or-less sorted. Same in
-> required list.
-> 
->> +
->> +required:
->> +  - compatible
->> +  - reset-gpios
->> +  - vddio-supply
->> +  - vci-supply
->> +  - poc-supply
->> +
->> +unevaluatedProperties: false
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Reviewed-by: E Shattow <e@freeshell.de>
 
