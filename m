@@ -1,136 +1,131 @@
-Return-Path: <devicetree+bounces-236200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C17AC410C5
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 18:32:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A02DC4122D
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 18:45:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 016A33B0DB9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 17:32:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7CC11A43402
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 17:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B50A24677B;
-	Fri,  7 Nov 2025 17:32:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B8173358BB;
+	Fri,  7 Nov 2025 17:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UctZZkL5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nPyiuHMe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2098331A79;
-	Fri,  7 Nov 2025 17:32:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35528258CE7;
+	Fri,  7 Nov 2025 17:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762536757; cv=none; b=osgJ7sDjY5K4HHd+SqowX39OXTjsAQuV5DKSGyLJuDCMjlUdsxhgFPhFiyoLm807CKSSQlPZjDSShK4sg0Mfd9LnXk7O5ZwBOz6EcNeGwI1i5pyVWKztfkaFsI6peI6qv3T45rkEVC24axQw0vuqS3dW8Q47ypk+NSOCbC0xCng=
+	t=1762537460; cv=none; b=oOZQlURu2Cl3V8TvJr4LBcPfth3JQ90HNqte6AkNqJtB3FnGe3wBZCpknL9fRFQORTKPCx4HRLp/SbGcWz2hBtBXkfKqY14Jb85m1QOENKe2RYHUtd1ZG3cqQRtYtiDwBksTsxcWCOgz51xj84+gX8aA5DzyelHZBsES1P+OBa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762536757; c=relaxed/simple;
-	bh=br/yoQcXazpIhba0JM9br+2Xu+ekNSGhpyy+fjDbUQs=;
+	s=arc-20240116; t=1762537460; c=relaxed/simple;
+	bh=vUXVxSlqnlNC2tbqdDtNDX2ebfN1pxrOSHo7fEAw12Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jnu6utkrpKfKtglZQySYvTrrjsse25X2C1J712qOK5ldmULGS/xLDRMJj2dkbgFlVrDMFwuk4EEYunUfLlJezhtA/6/UZ3raJpUbb3YTrcxfVXAKpGlHkVrhLXk91lZSyvSTq791bzApHrHfqETL/F6Oz4R0GHT6RkV09EMaqCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UctZZkL5; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762536756; x=1794072756;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=br/yoQcXazpIhba0JM9br+2Xu+ekNSGhpyy+fjDbUQs=;
-  b=UctZZkL5koKMojkM5bfVDVrOHTThROa/jxDccYX45TiHiq22QvoFrtIu
-   MzKauQ3A0Tr7N4dmYMq6aauDUEJXAcapnywnzNSNb4LjLQkykpuBvXkCQ
-   0FQHY7nKzyhuLmk3A+Mxwdr1C4QQxwiC9KLx7eFh+cf9d55Fdj6IcPzni
-   /fHD35ekTFitl8N1CpVespRvcc2kAUaExs7FCmV6b+nYEBmVc2uXdBUR2
-   6/zrGbfXReWcORw7cpxSSNSTcOywWPeIAx0vVGVq/7y7g33LX/i6kkxU/
-   0WvffRev8Solm01k9OX2F9SMUxoFKqis4VjSoYm05aTozRKM+M/yb1ynU
-   g==;
-X-CSE-ConnectionGUID: LolPIA3qQ6SrEyh14arZtA==
-X-CSE-MsgGUID: puYFi6/cQCOHLqRxIjSOeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64729508"
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; 
-   d="scan'208";a="64729508"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2025 09:32:35 -0800
-X-CSE-ConnectionGUID: olbkBok6TgOZIIyj+YRicw==
-X-CSE-MsgGUID: fEjkLyDgQ8C+BXPOdvpQGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,287,1754982000"; 
-   d="scan'208";a="192185843"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.117])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2025 09:32:26 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id D3FDF11FC72;
-	Fri, 07 Nov 2025 19:32:22 +0200 (EET)
-Date: Fri, 7 Nov 2025 19:32:22 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: michael.riesch@collabora.com
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Markus Elfring <Markus.Elfring@web.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jaApRAzSSxEhrsL1q+U+X+LEa25xMlIfYK+o7KGgTh7WS8VLCXzlqP4GcRWnRgAi+PGsTn2vDZKCtWmaGgch977J4Q/nQCDil8TOmeAcoJT1ROKXmqcGF4GWo6++FuKKdgFRjx5JOFZBHQASm2J08/FjWJBaepyq37TMzyMJefQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nPyiuHMe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C74EC4CEF8;
+	Fri,  7 Nov 2025 17:44:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762537459;
+	bh=vUXVxSlqnlNC2tbqdDtNDX2ebfN1pxrOSHo7fEAw12Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nPyiuHMehYfo3g71SbYqe2NgLFsFFVMXj4vT7odT8obZ75hR69ps6sjFs7W80FROW
+	 hsZ6pFPi88FRX2UD5Cm6+HC771R2+6brdPgwss1tTPliJYG2gsSBF458IPzk2biX4F
+	 RNucbaE7viPNG0fA44kswLaF1vDw1xdcVm24mb9XAzFuUudPzZP2zjF7PkN8uRFPi3
+	 v/mOgSdMqYEV8CsIQEdTu+nRG2wJjym0S+q1IPuIpdL1evYiCtDNkU1SRaMYdZVVx9
+	 XorcU2JIf9Jvp9EVNM6QQghP36vq0hw9+ssncfOeRNtG4AI3En7iA7OjYAWpfAG3M0
+	 mh5MCTsRK1scA==
+Date: Fri, 7 Nov 2025 09:44:17 -0800
+From: Drew Fustini <fustini@kernel.org>
+To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Mehdi Djait <mehdi.djait@bootlin.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bryan O'Donoghue <bod@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH v14 00/18] media: rockchip: add a driver for the rockchip
- camera interface
-Message-ID: <aQ4tJg8r_j4NyKhv@kekkonen.localdomain>
-References: <20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com>
+	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
+	Adrien Ricciardi <aricciardi@baylibre.com>,
+	James Morse <james.morse@arm.com>,
+	Atish Kumar Patra <atishp@rivosinc.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Vasudevan Srinivasan <vasu@rivosinc.com>,
+	Conor Dooley <conor.dooley@microchip.com>, guo.wenjia23@zte.com.cn,
+	liu.qingtao2@zte.com.cn, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv <linux-riscv-bounces@lists.infradead.org>
+Subject: Re: [PATCH v4 3/3] RISC-V: Add support for srmcfg CSR from Ssqosid
+ ext
+Message-ID: <aQ4v8QhQjRYrxNK3@x1>
+References: <20251007-ssqosid-v4-0-e8b57e59d812@kernel.org>
+ <20251007-ssqosid-v4-3-e8b57e59d812@kernel.org>
+ <DDDL94HT7HYF.3VU2WQYU4WZY5@ventanamicro.com>
+ <aOqjggmTr4ioHwB/@x1>
+ <DDH2Q0N2HLKF.2QSW4DB5FTJI6@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DDH2Q0N2HLKF.2QSW4DB5FTJI6@ventanamicro.com>
 
-Hi Michael,
-
-On Fri, Oct 24, 2025 at 02:51:29PM +0200, Michael Riesch via B4 Relay wrote:
-> Habidere,
+On Mon, Oct 13, 2025 at 11:06:50AM +0200, Radim Krčmář wrote:
+> 2025-10-11T11:35:46-07:00, Drew Fustini <fustini@kernel.org>:
+> > On Thu, Oct 09, 2025 at 08:47:27AM +0200, Radim Krčmář wrote:
+> >> 2025-10-07T23:21:12-07:00, Drew Fustini <fustini@kernel.org>:
+> >> > diff --git a/arch/riscv/include/asm/qos.h b/arch/riscv/include/asm/qos.h
+> >> > +static inline void __switch_to_srmcfg(struct task_struct *next)
+> >> > +{
+> >> > +	u32 *cpu_srmcfg_ptr = this_cpu_ptr(&cpu_srmcfg);
+> >> > +	u32 thread_srmcfg;
+> >> > +
+> >> > +	thread_srmcfg = READ_ONCE(next->thread.srmcfg);
+> >> > +
+> >> > +	if (thread_srmcfg != *cpu_srmcfg_ptr) {
+> >> 
+> >> Wouldn't prev->thread.srmcfg have the value of CSR_SRMCFG when executing
+> >> switch_to?
+> >
+> > Thanks for reviewing. Yes, you are right that prev->thread.srmcfg should
+> > have same value as CSR_SRMCFG. Are you suggesting that the cpu_srmcfg is
+> > not necessary as prev->thread.srmcfg should have same value?
 > 
-> This series introduces support for the Rockchip Camera Interface (CIF),
-> which is featured in many Rockchip SoCs in different variations.
-> For example, the PX30 Video Input Processor (VIP) is able to receive
-> video data via the Digital Video Port (DVP, a parallel data interface)
-> and transfer it into system memory using a double-buffering mechanism
-> called ping-pong mode.
-> The RK3568 Video Capture (VICAP) unit, on the other hand, features a
-> DVP and a MIPI CSI-2 receiver that can receive video data independently
-> (both using the ping-pong scheme).
-> The different variants may have additional features, such as scaling
-> and/or cropping.
-> Finally, the RK3588 VICAP unit constitutes an essential piece of the
-> camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
-> units, and a data path multiplexer (to scaler units, to ISP, ...).
+> Yes, it would be more consistent with other context switched state.
+> I just wasn't sure if srmcfg doesn't have special race conditions.
 
-I understand both RK3568 and RK3588 include an ISP. Do you have insight on
-how would this work, should the support for the ISP be added later on?
+I did some testing and the per-cpu cache of CSR_SRMCFG is needed. This
+is because thread.srmcfg is changed asynchronously from when CSR_SRMCFG
+is updated in __switch_to_srmcfg.
 
--- 
-Kind regards,
+The srmcfg value for a thread is updated when a user writes the pid to a
+control group's tasks file in the resctrl virtual filesystem:
 
-Sakari Ailus
+void resctrl_arch_set_closid_rmid(struct task_struct *tsk, u32 closid, u32 rmid)
+{
+       u32 srmcfg;
+
+       WARN_ON_ONCE((closid & SRMCFG_RCID_MASK) != closid);
+       WARN_ON_ONCE((rmid & SRMCFG_MCID_MASK) != rmid);
+
+       srmcfg = rmid << SRMCFG_MCID_SHIFT;
+       srmcfg |= closid;
+       WRITE_ONCE(tsk->thread.srmcfg, srmcfg);
+}
+
+I'm getting a full patch series ready that has both the Ssqosid and the
+CBQRI resctrl patches, and I will post that soon. I'm also preparing
+a freshly rebased Qemu series that adds the CBQRI controllers.
+
+Thanks,
+Drew
 
