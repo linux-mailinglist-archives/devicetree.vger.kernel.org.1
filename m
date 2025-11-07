@@ -1,62 +1,56 @@
-Return-Path: <devicetree+bounces-235934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 408C4C3E8FB
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 06:57:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E47AC3E922
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 07:01:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 233FA4E1950
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 05:57:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E67593AE9C6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 06:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71CB2DF132;
-	Fri,  7 Nov 2025 05:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430BD26F2A7;
+	Fri,  7 Nov 2025 06:01:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E782D5950;
-	Fri,  7 Nov 2025 05:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090571E1A33;
+	Fri,  7 Nov 2025 06:01:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762495004; cv=none; b=jlbwMsw7CZ2ek7t7tzT+G0RWsSFuCGPnnTGh2pUQVQKrnpUBi2Vg3wHnj98LtSdezM4oYhjLO3H50oV0WI+ZvnBuGoUDhEvYt8rrH0on9+BoE2kHO1DoK62xB0jhbZosqHeUeSa3o7qK25S8c8hiYDn1L2jBMtOhBFv1Vz7I0aM=
+	t=1762495309; cv=none; b=qi5i0mOTHZY5SuUEPh3tztB7Yel2vTLct6vQ07jiW88au963xutpulxLOusQa1uFMHh09ZXPR7YSg9YTnffS9F79VQUmHSJZ2gXu6TC6zZix6YYhDubQUdG4w1nK+gi1NR+xaK9YfqyycwMFFz3nbHn8PFXSjQaqqfusHgWK9+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762495004; c=relaxed/simple;
-	bh=ny2XylRjq1EK6h3i/HZ7JxOmnPtg8Rs65J2/1rfDoY8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pZij61wcJDPRqhKUZ7SC2FYfV6bf66D2ArKsajVl/y5KoTDWmuw7X8OFBVFP7BgSskVevn8Wf54l7R81yXysnbIaE/L+oDaXZt/4pHFc7lIcOznNs8YhIKvgi+S/IBBTnb/yZHddSokTjB3lyQW3fJ2C3RoCVEiC1BnX9BD/Oeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 7 Nov
- 2025 13:56:30 +0800
-Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 7 Nov 2025 13:56:30 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: ryan_chen <ryan_chen@aspeedtech.com>, <bmc-sw@aspeedtech.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>, <jk@codeconstruct.com.au>, Lee Jones
-	<lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon
-	<will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson
-	<bjorn.andersson@oss.qualcomm.com>, Geert Uytterhoeven
-	<geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
-	<nfraprado@collabora.com>, Taniya Das <quic_tdas@quicinc.com>, Lad Prabhakar
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Kuninori Morimoto
-	<kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 5/5] arm64: configs: Update defconfig for AST2700 platform support
-Date: Fri, 7 Nov 2025 13:56:29 +0800
-Message-ID: <20251107055629.4075519-6-ryan_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251107055629.4075519-1-ryan_chen@aspeedtech.com>
-References: <20251107055629.4075519-1-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1762495309; c=relaxed/simple;
+	bh=BfTLJ8kFtXJeKZdKEmFicxlZaENNC9dVFN7w58zgIAk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ieCjJgkBZINSDB5kx+ryRDxrZcYD9jZJLBd4zwnFm53ceZ+mImfUBNWqmpBi8Hu+OM8T4UNFEcYc/HHFXlwZ/npvtvKww45rFrsxTK63MNPz+OHopQdbR7PcfhIq4jUpDrBfrgN+2C7axRFQS9f7ZHh33cUpc5KMh1Vr4UkSBGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.45])
+	by gateway (Coremail) with SMTP id _____8Dx+tFHiw1pliYgAA--.5055S3;
+	Fri, 07 Nov 2025 14:01:43 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.45])
+	by front1 (Coremail) with SMTP id qMiowJBxzsFCiw1pSJIqAQ--.32958S2;
+	Fri, 07 Nov 2025 14:01:40 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v2 0/5] Watchdog: Add Loongson-2K0300 watchdog support
+Date: Fri,  7 Nov 2025 14:01:26 +0800
+Message-ID: <cover.1762482089.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,29 +58,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-CM-TRANSID:qMiowJBxzsFCiw1pSJIqAQ--.32958S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgESCGkMOJMGSAADsa
+X-Coremail-Antispam: 1Uk129KBj9xXoW7JFyxJw4DKFW8Xr4kWr43XFc_yoWktFb_Ca
+	s29a4xGr1DWF13Ga40qw17urWrXrWjq3W8CF18KrWfZ34Iyr15KrZ7CrWjg3W7Za90yFn8
+	Ww4kuFsY9r97WosvyTuYvTs0mTUanT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUj1kv1TuYvT
+	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+	cSsGvfJTRUUUbf8YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0
+	oVCq3wAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa02
+	0Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1l
+	Yx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrw
+	CY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8
+	JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14
+	v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY
+	67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2
+	IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_
+	Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8HKZJUUUUU==
 
-Enable options for ASPEED AST2700 SoC.
+Hi all:
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+This patch set adds support for the Loongson-2K0300 watchdog driver.
+It's similar to the Loongson-1, except for some different register offsets.
+Therefore, I've merged it with the Loongson-1 watchdog driver.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e3a2d37bd104..ca2978dd1ccc 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -39,6 +39,7 @@ CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_APPLE=y
- CONFIG_ARCH_ARTPEC=y
-+CONFIG_ARCH_ASPEED=y
- CONFIG_ARCH_AXIADO=y
- CONFIG_ARCH_BCM=y
- CONFIG_ARCH_BCM2835=y
+In addition, I've simply fixed some minor issues with the previous driver.
+
+Thanks.
+
+-------
+V2:
+
+- Remove file and function renaming patch;
+Patch 4:
+  - Update commit message.
+
+Link to V1:
+https://lore.kernel.org/all/20251029020847.1946295-1-zhoubinbin@loongson.cn/
+https://lore.kernel.org/all/20251029020913.1946321-1-zhoubinbin@loongson.cn/
+
+Binbin Zhou (5):
+  watchdog: loongson1: Add missing MODULE_PARM_DESC
+  watchdog: loongson1: Simplify ls1x_wdt_probe code
+  watchdog: loongson1: Drop CONFIG_OF
+  dt-bindings: watchdog: loongson,ls1x-wdt: Add ls2k0300-wdt compatible
+  watchdog: loongson1: Add Loongson-2k0300 watchdog support
+
+ .../bindings/watchdog/loongson,ls1x-wdt.yaml  |  3 +-
+ drivers/watchdog/Kconfig                      |  4 +-
+ drivers/watchdog/loongson1_wdt.c              | 89 ++++++++++++++-----
+ 3 files changed, 69 insertions(+), 27 deletions(-)
+
+
+base-commit: c64c2a50cdd487e2270c875c1770cd55705d75ff
 -- 
-2.34.1
+2.47.3
 
 
