@@ -1,124 +1,121 @@
-Return-Path: <devicetree+bounces-236033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCBE3C3F6E9
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 11:29:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB77C3F6F5
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 11:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 413223B4F00
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 10:28:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A26954EEF21
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 10:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B2C3054D9;
-	Fri,  7 Nov 2025 10:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="LTXY4niJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2FC3054E5;
+	Fri,  7 Nov 2025 10:29:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE4D23054E9
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 10:28:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01EAB302153
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 10:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762511288; cv=none; b=Dq7JIAcnKRI2ZcZ0h5hVIoSJXjhIq4zvjM4PpgbnRoc8wVvCgOTSFQNilgC7lfK+uDajJ6fYhZcyl8m6uvNGEok+UAcM/7txjCEe5J/RCe2HxxW+8Fem172q6nkyMg67bc06exaaru6KZeJOXSj6UfhUE097JTnwDXbNXlqG7DM=
+	t=1762511372; cv=none; b=LWUA7BnMnKsGFnutyfL9YQ9AaVtdqj4RzCxGKo2X9n/ut6acckQJh4KCMvNL4xFZnG4JaOu7WbxhICb+syVXnBRSV30tW1uHPAiP5H24U/pOpc9BTFf8kql60RT9Fcq613hPjoWpUaVwC4CMbwnUYIS2frIu2rGG7mYS0lgsODw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762511288; c=relaxed/simple;
-	bh=TP2dy+fVEjwce+7ZoFimG80olGzbpEy03H4vsRCTukg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=k1qODwFXdu87D+UDEQJ6W0zwGcx7cWOmflfT2iLcBLSZQpSdlcpSwuEbRdtJL+v0L5tNDPxkDVcjSTxwSd5+nAYyUxnqipTIr2+Dw/7aHgCsnZW0OKna1J5qRA4ID1zGK5N0pssRwYmZ4A18TD959sxFFQxn4tdECir92EGtOzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=LTXY4niJ; arc=none smtp.client-ip=95.215.58.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+	s=arc-20240116; t=1762511372; c=relaxed/simple;
+	bh=un5jB38nNfcxcQCZhGvBHLmnuv1wxPpeWfZ8V/nLx9g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lXs37vWLbuRSsti1IUzneRIIa8ZRvzzogoNh0NRfR7o3NVlE59GT3wRoQ0pKCmtlSeeIN7HS2KWht7nV5RiNrb6DHGbJ+r8IPZznO5VVjMf0Tg8TAiY2fkSPyc0sxzkR0jAj8eA/rBcHvH6p0xWdp4n4tVOXsjXIRLk3Lhn86ZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vHJiZ-0005vM-Kg; Fri, 07 Nov 2025 11:29:19 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vHJiY-007Vqn-2Q;
+	Fri, 07 Nov 2025 11:29:18 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vHJiY-006lnh-24;
+	Fri, 07 Nov 2025 11:29:18 +0100
+Date: Fri, 7 Nov 2025 11:29:18 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Jander <david@protonic.nl>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: Add TI ADS131M0x ADC driver
+Message-ID: <aQ3J_rJV-hB2nh91@pengutronix.de>
+References: <20251105143814.1807444-1-o.rempel@pengutronix.de>
+ <20251105143814.1807444-3-o.rempel@pengutronix.de>
+ <5c618c00-f7f1-4260-8970-7c493d50315e@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1762511271;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WXxxLdb7XheOy75RFTu6qpzQ1CR6/qzHUiLBzTJbIfo=;
-	b=LTXY4niJ2Q4v9blFZDDIDMhmT6YuANss37XVrUPjaWkBRYbGPvukGIrKWMjfMtjCz9X4y2
-	D0icX131qTv+kScD53gosbMyEh9nKGD7IdwIhnbkx9kmiVcrc3fXJVV8w0StZO3YlSuV6u
-	N0fDkWwwzBQPhuNam3hUStygGtLEykiDTBETx/DGwquha8F2AIUK55iJQQjrfXkvH8ri19
-	JWvm9c3kuu8nOS8c0V9jSfOMNKS9NziiYCuireCSED3VE6TV87pkiPaoZ/tU7QArHk1qe1
-	UkRkKnx8n4UE05b8wzlOpUbvsSK+LAJmaMEErMTaPXGlZ7HCyBphXEv2Ab2MQw==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 07 Nov 2025 11:27:45 +0100
-Message-Id: <DE2E3LND1O81.25N3JM01890FT@cknow-tech.com>
-Cc: "Bjorn Helgaas" <helgaas@kernel.org>,
- <linux-rockchip@lists.infradead.org>, "Shawn Lin"
- <shawn.lin@rock-chips.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan
- Sadhasivam" <mani@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn
- Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>,
- <linux-pci@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Johan Jonker" <jbx6244@gmail.com>
-Subject: Re: [RFC PATCH 2/2] PCI: rockchip-host: drop wait on PERST# toggle
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "Geraldo Nascimento" <geraldogabriel@gmail.com>
-References: <d3d0c3a387ff461e62bbd66a0bde654a9a17761e.1762150971.git.geraldogabriel@gmail.com> <20251103181038.GA1814635@bhelgaas> <aQrKtFT0ldc70gKj@geday> <DE0N4LA8MOJD.236O12UZ3I3C4@cknow-tech.com> <aQu_-JDy7qqeviUm@geday>
-In-Reply-To: <aQu_-JDy7qqeviUm@geday>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <5c618c00-f7f1-4260-8970-7c493d50315e@baylibre.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Geraldo,
+Hi David,
 
-On Wed Nov 5, 2025 at 10:22 PM CET, Geraldo Nascimento wrote:
-> On Wed, Nov 05, 2025 at 10:06:53AM +0100, Diederik de Haas wrote:
->> I have a Samsung PM981 (without the 'a') and AFAICT it works fine.
->> I had noticed that the PERST# (pinctrl) was missing, but 'ep-gpios'
->> was/is new to me and I hadn't had time to research that properly yet.
->> Good to see you already found it yourself :-)
->
-> Would you mind testing the following DT change to make sure your PM981
-> continues to work fine?
+On Thu, Nov 06, 2025 at 10:57:26AM -0600, David Lechner wrote:
+> ...
+> 
+> > +/**
+> > + * ads131m_rmw_reg - Reads, modifies, and writes a single register.
+> 
+> Any reason we couldn't turn the read/write into a regmap and avoid
+> implementing extras like this?
 
-I just learned the the PCIe system on rk3399 is indeed different from
-the systems where I use it with (rk3568 & rk3588). And 'ep-gpios' is
-only used with rk3399 based devices (in the Rockchip dts tree), which
-explains why I hadn't seen that before.
-Which in turn means I can't test your proposed change.
+I thought about regmap, but it is a poor fit for this chip.
 
-I guess I was triggered by RFC patch 2 which said 'a known quirky
-device' while my Samsung PM981's are working fine ... but with DW based
-IP. You did specify in your cover letter the connection with Rockchip
-PCI IP, which apparently can make a (lot of?) difference.
-Me finding the PERST# pinctrl in a few minutes and we finding
-improvements in RockPro64's PCI 'config' recently, indicated to me that
-a new look into the dts definition may be warranted, before changing
-``drivers/pci/controller/pcie-rockchip-host.c`` for everyone.
+The problem is the device protocol. It is not a simple register-based device;
+it is a frame-based protocol that uses opcodes.
 
-Cheers,
-  Diederik
+-  Hot Path (Data Read): The main data read (in read_raw) does not access
+registers. It sends a NULL opcode frame to read all channel data at once.
 
-> Thank you,
-> Geraldo Nascimento
->
-> ---
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi b/arch=
-/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-> index aa70776e898a..b3d19dce539f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-> @@ -383,7 +383,7 @@ &pcie_phy {
->  };
-> =20
->  &pcie0 {
-> -	ep-gpios =3D <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
-> +	ep-gpios =3D <&gpio0 RK_PB4 (GPIO_ACTIVE_HIGH | GPIO_SINGLE_ENDED)>;
->  	num-lanes =3D <4>;
->  	pinctrl-0 =3D <&pcie_clkreqnb_cpm>;
->  	pinctrl-names =3D "default";
+-  Cold Path (Setup): Register access (RREG/WREG) is a complex, stateful
+3-cycle operation. It is only used in probe for setup.
 
+This leaves two (bad?) options for regmap:
+
+- Mixed Access: Use regmap only for the cold path (probe) and use raw
+for the hot path (read_raw). This is messy because we mix two access methods.
+
+- Virtual Registers: Try to model all opcodes (NULL, RREG, WREG) as virtual
+registers. This is a very unnatural abstraction for this chip.
+
+Using the regmap dependency just to replace one rmw function that runs only
+once at probe seemed like the overkill.
+
+Best Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
