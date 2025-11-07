@@ -1,48 +1,82 @@
-Return-Path: <devicetree+bounces-235947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 469F3C3EAF9
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:04:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87800C3EB2F
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:08:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCF4418845C9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:05:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27BC23AE5C2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C8C3054EE;
-	Fri,  7 Nov 2025 07:04:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 317662FCC01;
+	Fri,  7 Nov 2025 07:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q9+0K/kb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w3PA2YOQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4A418E1F;
-	Fri,  7 Nov 2025 07:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93F8307ADA
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 07:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762499077; cv=none; b=EUeSfpSw9eJS11HUwTT8+oM2pO6Ls+zFD9OPVZmtsD0X086o+2qhsVc6WRpnPuHT99IQvl0ka7aJPQ35rpt/CJaKO+Kdwy8rFcO+MzJ36e6BjzkVMHAp0B8qnh90ZQwj6JneywZT5IO7j3BT2m7+gTb46eIfxFEcgeWHZuGcwQg=
+	t=1762499317; cv=none; b=QydNtUS7VOj/1/a9w/UcTJzj2ZdL5n1DUGboQJ0uqDDeSsW7LU7QXCJr6fdGpBV62tUUY92k1RUNBzLlt/9M8UBe0u7CfYq9VinHIi194q5a12yrmzuWu61VkbMjJlEH/wZXvkbMo8TK6X+PUAkHroif5rpWPeHpFGLT0U2XfcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762499077; c=relaxed/simple;
-	bh=ZzdjrBBlMeSOGWdtx4G4ccZROK+5jV3t7rncDsjjWtE=;
+	s=arc-20240116; t=1762499317; c=relaxed/simple;
+	bh=md0Aa/YTnfNW4R97P4UMHUVOISoMcFKjUWy0BEnbyH4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JXoPQx/4Rdh2ESJ0PvpgSuzuZxWp+LU9IpNls6a9QipiweT2ofwRSHJdcUh3gwRbzmwa8wPG2exy1rYsVX9b4OprRHvOiqDY5Ch2vRpwHll+AZv47aKibWtnRO4Q1cvK/fsHj2V9ODRfpfUzsJzoeAuFbeGK8+wVYQWdzzgIAL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q9+0K/kb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 972DAC19421;
-	Fri,  7 Nov 2025 07:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762499076;
-	bh=ZzdjrBBlMeSOGWdtx4G4ccZROK+5jV3t7rncDsjjWtE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q9+0K/kb3FFLYCDxlaZZTX2SnCgV7hnlANsa9go5j+9i2MaTV1CScM8NtiKi2u1PK
-	 jfF0khxhNaSmFz+oiX+jxXtoTMO1U/p5Zkw7bdbdtuXxVbCfYF6Mkg9OERGNCM/jVd
-	 so+2YaHzwplUxbsdpitEjRAixTXa0zbNzulMmDyRYmcQ8GhZXQKlFX+KOm5Ltx5z9O
-	 vmRSz4jUn/XcWTome9+m1hU1Y2elgzwSqEEaOK7cpyqWO2COFIx0ELlLuV16yFVKdm
-	 1H0rqXZ8UWF6xL1MzBKN54M6Dj0TkmI2Vu0o1QH/NYytpxMxUx3cPKVF8e279FjGJI
-	 gnFctuhjVOIbw==
-Message-ID: <fef8569d-0172-48a6-b2cb-0e9023589ced@kernel.org>
-Date: Fri, 7 Nov 2025 08:04:31 +0100
+	 In-Reply-To:Content-Type; b=NuZKdcWsdjdoIdnQJ8TdtNSUtsnxuWccMhES9uv4sETGVZUIonv/2R1qSl4y7RSQDwBV8qXcUFMii7j76tuvv9kGRYhsWTFRYA1BJ51hOPfBCl1azFaWKVQua2H4x7jeHiMg7SCTf1sfBbVTMJ4jGJBs1cmel1cAlXTGtthy8YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w3PA2YOQ; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-429c743e701so58284f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 23:08:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762499312; x=1763104112; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=qtwNZ51TOe1KmMbJGFmq0uDZnSOTzBAwW5XE8OEKres=;
+        b=w3PA2YOQBeQnIJJFJ7xkBLlS+Ghvl743UPYVYkkReKHF9Di1zG3Z/rNq1ZC0xwBxyT
+         Mor0eG9CoB6rzW4+nXpRvVR+RMBXZ52DzSo+I6riuqmucRDFZTCJxH03jS4jcYcPHobn
+         h7TqvpYvcdw/D3ZDbQPKIgZwgmz/FHpmz/Xf2WNRpdzGopd9mSPlNih3ucbLTNXpU4bP
+         a82IX4TY5V7I4bK0MWRPGUY6nI3QsGnwF2hv8+plEaISH9RVhvGLw5E/JtuOoJU69gtl
+         Kc1Z/sXTOn8gjBpZR8blKJirwebi/PY5+5U2JXPJNqcNIrwTmMsV6h37s8E1A8i3MeTT
+         Zrow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762499312; x=1763104112;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qtwNZ51TOe1KmMbJGFmq0uDZnSOTzBAwW5XE8OEKres=;
+        b=YBwBvA+yCUgqDKhxNveLavFUixA2m5iNk2qiCXB47uc0CfpMRL+ZhAse+c6zvxR2BG
+         odve1O78UzGAUs8bqCMHtDSZIgGxipfc/YkzBR61JeS0EPm0kdeApeUBO0q3efsWYmA3
+         3fzMJYy+533aanvyIIpRvSBBenNBcFQLIvQ8C6TaFxkuPR/hv3TFrYdEEQVMarqHVpGz
+         YmN1fNRLeiSdwoB+p7C/uZ4+v1HQXAmx6CArJM6FdGVevbQUSPGgCvchjw8ev1TSU/Ua
+         jELX4NGtEhOWaCXCUMgJhqIlyNP3V88NQKtQ70QZ3dH2jjbGDOjwVZa25qWj03qYedT/
+         GSiw==
+X-Forwarded-Encrypted: i=1; AJvYcCWauceQXrr7KM9QC/rcnklPC+T+oAEelMqEt1YdXK/jDhoEac3+WZUjuHcND5SDiSopyp/VcIQFvacT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgKa3Y4kwxAJJYX18f4ZRf9CCk1prdM9UKmB1M50pqC+8LqMsf
+	C1mNjEvyUKUgkgTjSRWkb8FFq9RVO/xDYZ8efsGGMI/hp4FiqdufJnzLmaYevpU39mI=
+X-Gm-Gg: ASbGncvsiz2iYNq/OVGqLqr/JI6aJaBFUJACM+2gDtKiV4MrbujrqQXjx5b8jdwP7vs
+	wbEBkkArnmOOJoZYtBC8k+z94y8fNXQsaryeAiRTbrt1AbdfSUXwkPkiQ9Ffi6mtTvDqTRE8/jV
+	Kb7ICfGxnJ/zAiKi0RLmQNp1RjCHi9wbxhN8pLCidZWyXYAAqe3txOaOOlnXtWtzVTrPJ2GZHNq
+	sj5iHvVEU+VAP2YgV7DF0cuLJH3BDTn2mUeK/QDntTMJPJu5MsIuMlTuROheYY4e41SYnUTKMiB
+	M1h4ALh06rmNj7+j9H5MODfGnn44DWxvTXX5MEWYZFd9AAO/nJgNA1IN6PpjBzu3Wo27K+MPlL5
+	XSx9poHnfMmKWIDc1NWkg9rAcr8E//ouaWCa8YmZXIgjgolbu3GAK0hq2GkoFmslEpnsQ+oMQGM
+	/BXom71eTx9qnlF16rP4+GR6ceQkP+N7A=
+X-Google-Smtp-Source: AGHT+IE77T5dGr6wx+Zi4AgBBU0bj3shUSkAGD10kNklEOoD/4TJ7x49hYuoTtpTUQ6bFauuSPanLw==
+X-Received: by 2002:a05:600c:46c6:b0:477:54cd:2019 with SMTP id 5b1f17b1804b1-4776bc81647mr9463155e9.1.1762499312082;
+        Thu, 06 Nov 2025 23:08:32 -0800 (PST)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42abe62bf40sm3513388f8f.9.2025.11.06.23.08.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Nov 2025 23:08:31 -0800 (PST)
+Message-ID: <a06ed143-c497-4141-8b4d-98fcb322e130@linaro.org>
+Date: Fri, 7 Nov 2025 08:08:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +84,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] Add driver support for ESWIN eic700 SoC clock
- controller
-To: Xuyang Dong <dongxuyang@eswincomputing.com>, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- bmasney@redhat.com, troy.mitchell@linux.spacemit.com,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-References: <20251023071658.455-1-dongxuyang@eswincomputing.com>
- <1abb85b.c11.19a582bcbbc.Coremail.dongxuyang@eswincomputing.com>
- <039a3a41-c60f-4296-afd9-2bf3467574ca@kernel.org>
- <6d2d7ddb.cbd.19a5cf92465.Coremail.dongxuyang@eswincomputing.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 11/13] soc: qcom: Simplify with
+ of_machine_get_match_data()
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Thomas Gleixner
+ <tglx@linutronix.de>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
+ <20251106-b4-of-match-matchine-data-v1-11-d780ea1780c2@linaro.org>
+ <odmsib3dsxzzggq4gcx7gmh6vq3crlv25fz4z2l2ntezvx6gbi@uelqojwjjait>
+ <a8952b46-94b6-4fe5-a5be-d69aa41d44cd@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -75,75 +128,110 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 a/A=
-In-Reply-To: <6d2d7ddb.cbd.19a5cf92465.Coremail.dongxuyang@eswincomputing.com>
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <a8952b46-94b6-4fe5-a5be-d69aa41d44cd@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 07/11/2025 07:20, Xuyang Dong wrote:
+On 07/11/2025 08:02, Krzysztof Kozlowski wrote:
+> On 07/11/2025 04:19, Dmitry Baryshkov wrote:
+>> On Thu, Nov 06, 2025 at 08:07:18PM +0100, Krzysztof Kozlowski wrote:
+>>> Replace open-coded getting root OF node, matching against it and getting
+>>> the match data with new of_machine_get_match_data() helper.
 >>>
->>>   Gentle ping. Looking forward to your reply. Thank you very much!
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>> ---
+>>>
+>>> Depends on the first OF patch.
+>>> ---
+>>>  drivers/soc/qcom/qcom_pd_mapper.c | 17 ++---------------
+>>>  1 file changed, 2 insertions(+), 15 deletions(-)
+>>>
+>>> diff --git a/drivers/soc/qcom/qcom_pd_mapper.c b/drivers/soc/qcom/qcom_pd_mapper.c
+>>> index 1bcbe69688d2..07198d44b559 100644
+>>> --- a/drivers/soc/qcom/qcom_pd_mapper.c
+>>> +++ b/drivers/soc/qcom/qcom_pd_mapper.c
+>>> @@ -613,25 +613,12 @@ static void qcom_pdm_stop(struct qcom_pdm_data *data)
+>>>  static struct qcom_pdm_data *qcom_pdm_start(void)
+>>>  {
+>>>  	const struct qcom_pdm_domain_data * const *domains;
+>>> -	const struct of_device_id *match;
+>>>  	struct qcom_pdm_data *data;
+>>> -	struct device_node *root;
+>>>  	int ret, i;
+>>>  
+>>> -	root = of_find_node_by_path("/");
+>>> -	if (!root)
+>>> -		return ERR_PTR(-ENODEV);
+>>> -
+>>> -	match = of_match_node(qcom_pdm_domains, root);
+>>> -	of_node_put(root);
+>>> -	if (!match) {
+>>> -		pr_notice("PDM: no support for the platform, userspace daemon might be required.\n");
+>>> -		return ERR_PTR(-ENODEV);
+>>> -	}
+>>> -
+>>> -	domains = match->data;
+>>> +	domains = of_machine_get_match_data(qcom_pdm_domains);
+>>>  	if (!domains) {
+>>> -		pr_debug("PDM: no domains\n");
+>>> +		pr_notice("PDM: no support for the platform or no domains, userspace daemon might be required.\n");
+>>>  		return ERR_PTR(-ENODEV);
+>>>  	}
 >>
->> Please do not top post.
+>> Here you are mixing two cases:
+>> - There is not match in the table (in which case the driver should print
+>>   a notice)
 >>
->> You did not add any maintainers of these drivers, so I would not put it
->> high on our priority list.  Ask yourself - why would community
->> maintainer like to take unmaintained driver? So the community maintainer
->> would maintain, right? To add him more work? If that is the case, isn't
->> better not to take the driver? You see where I am getting at?
->>
->> Also, I don't see any involvement in reviews from eswin. The only
->> reviews here where from DT maintainers, Troy and Brian (I hope I did not
->> miss anyone), so again - you just put all the effort on us and then ping
->> us...
->>
+>> - There is a match in the table, but the data is NULL (the platform
+>>   doesn't have PDM domains). In this case there should be no notice.
 > 
-> Hello Krzysztof Brian Troy,
 > 
-> Would you kindly review the updated v7 patches at your earliest convenience?
-> 
-> Thanks to Krzysztof for your reply.
-> 
-> These patches have already undergone review within our internal team. 
-> The reason for adding eswin maintainers to the mailing list is to ensure 
-> that these colleagues can promptly receive community feedback and stay 
-> informed of the discussions.
+> Why? Existing code printed notice in both cases. Why refactoring which
+> tries to keep code functionally equivalent should change it?
 
-Please really, really think through my first paragraph. It seems you did
-not get the point, but understanding the point is essential for all your
-future (and this) upstreaming efforts.
+Ah, you mean there was a debug before. Well, then I am a bit confused
+because table has entries without data (so expected condition) but old
+code returned ERRNO in such case - so unexpected condition.
+
+Wail failing the probe on expected condition?
+
+Unless it is not really expected and notice in second case is valid as well.
+
 
 Best regards,
 Krzysztof
