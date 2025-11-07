@@ -1,141 +1,116 @@
-Return-Path: <devicetree+bounces-235989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E39C3EFB9
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 09:38:27 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 027AFC3F006
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 09:44:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D09F8188C5F1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 08:38:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B8B294E7E53
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 08:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935A4310768;
-	Fri,  7 Nov 2025 08:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pm75rkJX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71AB1311964;
+	Fri,  7 Nov 2025 08:44:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6820C2C1580;
-	Fri,  7 Nov 2025 08:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E673631077A
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 08:44:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762504703; cv=none; b=grvFlNyuFjf5EjTBjYxmfnbs977Jjtmr8tCQBDMt7ZObRDnaiUrrV5GVIHMAcdANH5J/bQkCGxg2mNOGSXykk5BGq1C15x8iFgwP1LW8YAj9/0UNPmFQ66s5Zc9+TQAtRUeX/8Tk7QoJ5w4f361+nxunSEImaS7V0DXiDwauNZA=
+	t=1762505085; cv=none; b=heXXZOBhUVXbU1gZKjPJaoBwlk4z29s5jRHxJWSYSt13vdc20VY1yLupoXf4wCsaKT3hZhUBsyCCGkMhq/E0OmKsveydBHuJyrrDi2RhsWF3w6XRjsIsGI1ooFWRNFeWGdJ5aV+n8SBcNrnOzcrFMym5gnaMTAL4+Bc4JlYPaOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762504703; c=relaxed/simple;
-	bh=JSm9N8W6LxkBD3EWf57DWL/gIR024e3vR+Q1Vh4FnsQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IaLOKMCnJq63eoVsAEMiaGGLa6gS1/qIw2afRXZttRLw33EXwMscRkimSGAqgZorxUHCrIN0plLOfUU5tiMow2vfTJx2cqBf/PDduAY3arJ3OiKPQFcHgDB28CtY/c9RJNmf+u6iv/J4QRTsOnm8a8VcafRWMR37FBFR2RH7rXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pm75rkJX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 573F6C113D0;
-	Fri,  7 Nov 2025 08:38:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762504702;
-	bh=JSm9N8W6LxkBD3EWf57DWL/gIR024e3vR+Q1Vh4FnsQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Pm75rkJX6YeFv6qEGJEVQD9KdwOJw5eh5HcTNGTv+Ue1tdoMuasUjMa01NdHtEi+G
-	 f5cl+yeLQYBopjGmFaQ2ozU0sOj9glIsHhtdzuUp8cz5r/iotW92/f2DcLQCQJBuod
-	 91ZA5b7Nl1w5s4iulQmHRQH09WyEzJZPSwTk0XlZ+79Tn9TPCAfD32drTLmJyV0CI0
-	 NYN9q97oDSM8laopD6MTBqc94kxJ5+w7mIHD5lzJSYTnK0cJBiYY/1Zby5QhKIsZLO
-	 Pcglitk6rHG2frI6wOYxeSZW1dZ1NrEBbBGB/JFJlAeGqwatsLGptstmqPHdsNkhzG
-	 YnGQw2RXmoZAg==
-Message-ID: <20dbf272-b5a0-4fc6-b5c7-54fdaa05173d@kernel.org>
-Date: Fri, 7 Nov 2025 09:38:18 +0100
+	s=arc-20240116; t=1762505085; c=relaxed/simple;
+	bh=N6xgWoHDs7XMDSylQ0aZJ9sOOduQO7UazwaRI4anKug=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WlI1+/qDWfylUlNYrO3DJ/nOM1tfPrgrCWc7CG+Nx0lA0TDAHlPzdmSeoBrdY+kJ8OqoBNtzvsmDKCFnivlhUB1rt6D0JMeINnkwfuIe5PI8N+Zf23FBwnN3bXHv9NgekwLOi7EifUbZC/7YYKrTQ/tbybx8v6UPHEHbLDH6KpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-559a849bfe6so135586e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 00:44:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762505083; x=1763109883;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=67Ay+8Yya5LB9/YiJJ49ptEwAOu7ahTc/J+O60ROzS4=;
+        b=g7WQdHnoYoIRUhN/AmbvsklJjYX2hhBcmAh7EiRJ3KHQCnllZjwiDinhqlOpkOOY3V
+         jc/pfXAkNt2ImJGNuGKGvUCO6pRK52oArWoC2Aa63EkzK06iZrpKkvN2G6In/jr8ty8t
+         WycA4dnkmLEvPNyXV9ds22YKF1ANj+nGHRoN45j+EBsFnL/5gQNARFof+x0/xf7Uda/+
+         gdUomfR4kCid53KfbKzv0b1srhVLEvs/Iph5b//MpRO8vowkkXtA7pk9axY4hPRnmHl/
+         rAMjvd+SOH4XPNq9P1yLINXymaURxlxJNbImvXg3zb8koTBacnIG/laCL38JJiIoUXOd
+         dIjg==
+X-Forwarded-Encrypted: i=1; AJvYcCUT3FL4K0ULeNUmlak1+vKDAMRhyCRe19RxmYjRlTQXrUGBcuyrfJLZTa45PD+NUA5XSoGAv1OLijge@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUHhEh3Lf5FBHLNUGrpYjOIwnD3tABI+K8joc4CNie1gyUSI60
+	Tyt79o0XdGRGKOtuz6Br9OfL6LMV4TrWwgAlZdiopKkAvhbl0rZ+5FkXxn1+/oEqFJg=
+X-Gm-Gg: ASbGncu4vb/qFq3avXVJcLXrvhXZex5D+NjoxGLdPGi7Jn+YXSrlUnli7k5I3OhoTgE
+	kslo82ynHxO5NZ440ZGd5Ex/oZCv3NbZuKtYdQRD1pNzbpd2NDLWZlzMj8TytBkiw3PIAumhSPw
+	4sXTfFU6vrih9SEcUQmJnlTeKTua4zAsx1bXU3FK0KxzyyCp1xxNLvggvHEZ7oGvrrvvyRa2Q6T
+	7saklF/0LIOla/mocoAlzgSqE0Y+bAO3Yk8vBZ714EJst7bBUcazKv+UppPRSUxWB5EuDmj+7EW
+	GZlZviASMPggL7rAUq2cnVdiAbJcVrMxYo1sZwwwx+4J6VSsWqv6y0X66iU+fh6kvufMnxAcwDW
+	u6VUwwtvwsi9PtLttiF0rq9P4y/4ru9lE5fLAr+cwm5WyrCjBTME134UWdz65uO2hGQPhdIHQ01
+	OAL7ax+/AProamEqAtSp8XUXiX9sAVw4ORBr01ZE4KI/MwaH/Ptj07
+X-Google-Smtp-Source: AGHT+IGjWv/rIDp50KlJM3pIH+4ZFrYvAvcNBx89qq8q6adWGBlGkBCWczcqd3SvUVccd9iy2x6gXA==
+X-Received: by 2002:a05:6122:2a12:b0:559:5dbe:fe12 with SMTP id 71dfb90a1353d-559a3c01342mr902143e0c.14.1762505082606;
+        Fri, 07 Nov 2025 00:44:42 -0800 (PST)
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55995863b6dsm2687567e0c.22.2025.11.07.00.44.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Nov 2025 00:44:41 -0800 (PST)
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-559a849bfe6so135575e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 00:44:41 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVu7njVXmFEApUpGIDM6uX3yr4FcfzcWYjfDgVc4EwXcTj0fCUB2d/4sNWTKKasKZdhN+ZMgzRHTfso@vger.kernel.org
+X-Received: by 2002:a05:6122:200a:b0:54a:87d3:2f09 with SMTP id
+ 71dfb90a1353d-559a3a111a3mr827903e0c.2.1762505081472; Fri, 07 Nov 2025
+ 00:44:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/2] ARM: dts: aspeed: Add Device Tree for Facebook
- Anacapa BMC
-To: Peter Shen <sjg168@gmail.com>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>,
- Joel Stanley <joel@jms.id.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, peter.shen@amd.com
-References: <20251104-mellow-denim-dogfish-4affdb@kuoka>
- <20251107-anacapa-v5-0-peter-shen@sjg168>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251107-anacapa-v5-0-peter-shen@sjg168>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251106211604.2766465-1-niklas.soderlund+renesas@ragnatech.se> <20251106211604.2766465-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20251106211604.2766465-2-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 7 Nov 2025 09:44:30 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV4gFjba2jPEp65HwvvB3OH_jWkXhurTWFYCk6QiA1FJg@mail.gmail.com>
+X-Gm-Features: AWmQ_blrrptFzMWpvu6Y-7pL5-tJ_1h0P3WXNduygzU8YG1UWYjXmC7OG5BpV9c
+Message-ID: <CAMuHMdV4gFjba2jPEp65HwvvB3OH_jWkXhurTWFYCk6QiA1FJg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: r8a779a0: Add ZG core clock
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/11/2025 09:22, Peter Shen wrote:
-> This patch series adds the device tree binding and the initial device tree
-> source file for the Facebook Anacapa BMC, which utilizes the Aspeed AST2600
-> SoC.
-> 
-> The patches configure the necessary platform peripherals and aliases for
-> OpenBMC usage.
-> 
-> ---
-> Changes in v5:
-> - Fixed the final DCO mismatch (Broken DCO/email chain). The email sender address (From:) is now corrected to fully match the Signed-off-by: and Author: address (sjg168@gmail.com) to comply with DCO rules.
-> 
-> - (V4 Changelog) Corrected all previous style issues: fixed block comment styles, line length issues, and removed un-documented/unused device tree nodes (amd,helios_cpld and eeprom@53).
+On Thu, 6 Nov 2025 at 22:16, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add the core clock used by the GPU on the Renesas R-Car V3U
+> (R8A779A0) SoC.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-Please stop. You already sent v4, then immediately v5. All patches are
-missing and cover letters are incorrectly threaded.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in a branch shared by clock driver and DTS source files.
 
-Can you please slow down and look at commands you are typing (e.g. look
-in manual for explanation of --dry-run).
+Gr{oetje,eeting}s,
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets. See also:
-https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Best regards,
-Krzysztof
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
