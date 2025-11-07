@@ -1,57 +1,62 @@
-Return-Path: <devicetree+bounces-236213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BBAC412FC
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 19:02:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09BFBC413DD
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 19:13:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 013054EDA0F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 18:02:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 931084E2EDB
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 18:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311B6338F36;
-	Fri,  7 Nov 2025 18:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A5B212550;
+	Fri,  7 Nov 2025 18:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lZTC95pI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bi5QEyLr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0393C338920;
-	Fri,  7 Nov 2025 18:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8062032D0E6;
+	Fri,  7 Nov 2025 18:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762538521; cv=none; b=Xuy79W8tWpRKPLPorr3ylkbFkbzbVY5YhHj8FfuTpL5mnKcEiUQXH2aV5/4l2KB4e1336qse8Mb83PTzg3MXwLG576+6ZlOwfvTcAs8Sbj/LLB4IsZmHFy3kUNo+xL30G1gJkie/QA9FEcvRxU7epgru8k+UhE+VZZu8yPnVks8=
+	t=1762539203; cv=none; b=NZmgRzqBddx4INyF9lpckVGoPv4HJTQl5mIijji34EgqCS+Zs/DwrHHoPWOJjx2url3oYkZFECQvhNMkceIy7SyHWZzgzr2XtLr9q3mnLGrhXbj5jxfDCBXpkBlsQbo7JYhPOraw0sp1nDvy3l4QfjpQjL5e7t08Ol11or6YC+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762538521; c=relaxed/simple;
-	bh=YkRmQIYkcTprlgy67p/k7ehs0uFagTPL+8qBO3Jnixw=;
+	s=arc-20240116; t=1762539203; c=relaxed/simple;
+	bh=/lgbv0xkkeEeyCFTxzletftyEsQCLKdX/zZrCKZT90Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=be16aADsgvgGiIq5daJ0ZzvBHQRf6agiIEgevVU8XX6UY/m+jZUE6ZreYa9PUN0IZAav0AzkBMxc36KHc3gV3JcRFDVKARDyqmYjRxZsKh06H6M6uXJ9IulnaacTC776UwkoTc/fQfk934rEXNhGQcb6SKYJRngVc1MTU94Dopg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lZTC95pI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B8E5C16AAE;
-	Fri,  7 Nov 2025 18:01:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G8ck54xT82OdcV5Y6G66R8hLo/xsIcn7OMcDz1/XltNhv0LHqWniArhnbpsNs7+R11H72Tl8iqTUNZU+Qj2JFEKal+UyH1Tm4aok9u6arsBz6/OgRHBztu2ofA7jD4rXKYHarZ0Q3gk9p1mbrHw5rPD1fxwJQhX5EVzpBPUrUoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bi5QEyLr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD698C19423;
+	Fri,  7 Nov 2025 18:13:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762538520;
-	bh=YkRmQIYkcTprlgy67p/k7ehs0uFagTPL+8qBO3Jnixw=;
+	s=k20201202; t=1762539203;
+	bh=/lgbv0xkkeEeyCFTxzletftyEsQCLKdX/zZrCKZT90Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lZTC95pIJhDjFKpoNrpd2RebkiH3ND0VrNDzjymooGUxxMX8zyVaoEWGMNbH80kIJ
-	 Tqnu0MN9bqGpG8vI0GXO4owhvBU2Poz7i2YAfnD0dCak4lOWte94w8NFB8cNPB6Xvp
-	 pbp5vodn7e+B+x/04zoNsYQwIUbHHs9B9QtPjECKpins4wWUgvsC5cWtP9H0STJRHd
-	 xbE6TpVRHlbLiG49DCk48b+WPLtXL+Hw+1P2emiQP+5bI3cGxrqyKn77seXnuUb/Bt
-	 L6Y6hFnXvtUKrjLqaD97mSNCOlnqPlCxs8OGDdaazTcNoN3WvLqyOWQDFN9d9fj9jO
-	 zt+SHjMyLE4rQ==
-Date: Fri, 7 Nov 2025 18:01:56 +0000
+	b=Bi5QEyLrlIvHfU1JgbyRk1+DvTo+x8gaYn8el+yDhjo+Q/r6xqEaJ1GCgrciPTGVz
+	 SDGNRXdUSm6u6gSKlv5ANzbyxkL566qHADV8aWXLnSTXztPC2ace9lwFA3XwRy8hcu
+	 ZqaImqFajA8peXiyJRkmBLtO8Kw5MlqcMjq/y7Y1hP4XdypVHjZougqdIRDW07JcRV
+	 lJujxFkBr5zwfNxCjBDfHpTV0MQmMhz7Yubh4LE2+LM7eeKKgzUFcAhiCqtMmP/Add
+	 Kvi6uavYpwPkMSnMwPTMnK5mwhWVqK6tSz4niZFIZ7uKbwLrZq7E8pJHcCWt6LUcGh
+	 h8QxbbxL00WBQ==
+Date: Fri, 7 Nov 2025 18:13:18 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Lakshay Piplani <lakshay.piplani@nxp.com>
-Cc: alexandre.belloni@bootlin.com, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	pankit.garg@nxp.com, vikash.bansal@nxp.com, priyanka.jain@nxp.com,
-	shashank.rebbapragada@nxp.com
-Subject: Re: [PATCH v5 1/2] dt-bindings: rtc: Add pcf85053 support
-Message-ID: <20251107-pediatric-disarray-606e4ed1f0f6@spud>
-References: <20251107132618.2246407-1-lakshay.piplani@nxp.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] dt-bindings: phy: Add documentation for Airoha
+ AN7581 USB PHY
+Message-ID: <20251107-marina-cramp-cf3d60a52524@spud>
+References: <20251107160251.2307088-1-ansuelsmth@gmail.com>
+ <20251107160251.2307088-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,41 +64,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BD6S94VbneSRHgST"
+	protocol="application/pgp-signature"; boundary="2fzr6I2tBaj3GaUW"
 Content-Disposition: inline
-In-Reply-To: <20251107132618.2246407-1-lakshay.piplani@nxp.com>
+In-Reply-To: <20251107160251.2307088-3-ansuelsmth@gmail.com>
 
 
---BD6S94VbneSRHgST
+--2fzr6I2tBaj3GaUW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 07, 2025 at 06:56:17PM +0530, Lakshay Piplani wrote:
-> +  nxp,write-access:
-> +    type: boolean
-> +    description: |
-> +      Request the driver to claim write ownership at probe time by setting
-> +      CTRL.TWO=1. This property is only valid when nxp,interface="primary".
-> +      The driver will not modify any other CTRL bits (HF/DM/etc.) and will not
-> +      clear any status/interrupt flags at probe.
+On Fri, Nov 07, 2025 at 05:02:44PM +0100, Christian Marangi wrote:
+> Add documentation for Airoha AN7581 USB PHY that describe the USB PHY
+> for the USB controller.
+>=20
+> Airoha AN7581 SoC support a maximum of 2 USB port. The USB 2.0 mode is
+> always supported. The USB 3.0 mode is optional and depends on the Serdes
+> mode currently configured on the system for the relevant USB port.
+>=20
+> To correctly calibrate, the USB 2.0 port require correct value in
+> "airoha,usb2-monitor-clk-sel" property. Both the 2 USB 2.0 port permit
+> selecting one of the 4 monitor clock for calibration (internal clock not
+> exposed to the system) but each port have only one of the 4 actually
+> connected in HW hence the correct value needs to be specified in DT
+> based on board and the physical port. Normally it's monitor clock 1 for
+> USB1 and monitor clock 2 for USB2.
+>=20
+> To correctly setup the Serdes mode attached to the USB 3.0 mode, the
+> "airoha,usb3-serdes" property is required. This can be either
+> AIROHA_SCU_SERDES_USB1 or AIROHA_SCU_SERDES_USB2 and is used to identify
+> what modes support the PHY and what register to use to setup the
+> requested mode.
+>=20
+> The first USB port on the SoC can be both used for USB 3.0 operation or
+> Ethernet (HSGMII).
+> The second USB port on the SoC can be both used for USB 3.0 operation or
+> for an additional PCIe line.
+>=20
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-I'm sorry for not noticing this before, can you please remove the
-commentary about linux driver specific stuff from here? Probably needs
-to be something like "Indicates that write ownership of the RTC can be
-should be claimed by setting CTRL.TWO. This property is only valid when
-acting as the primary interface (nxp,interface = "primary")" or
-something along those lines.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---BD6S94VbneSRHgST
+Thanks for the updates.
+
+--2fzr6I2tBaj3GaUW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ40EwAKCRB4tDGHoIJi
-0i8wAQDIikffREGZeQeAj0d/sZ+0WN4ou57bbo7efjcuc9eP3QEAszEjP1LQ5L4Y
-1qoHuWUmjSagI126w/dnUIVsMsLkrQQ=
-=THb7
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ42vgAKCRB4tDGHoIJi
+0m0kAP4gAHkA1J0WWkcLSZGH7kvvrR6oW8Jlf337BzlRYd59+gEAy2sT0GPBd5a+
+zrhUJiag68MXCXu33BAdntJ5dD5L/wY=
+=VZaV
 -----END PGP SIGNATURE-----
 
---BD6S94VbneSRHgST--
+--2fzr6I2tBaj3GaUW--
 
