@@ -1,589 +1,170 @@
-Return-Path: <devicetree+bounces-236018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79A6C3F432
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 10:51:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7ABAC3F755
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 11:31:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0AE734ECB01
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 09:51:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BAA994F01E9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 10:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2549E3191D6;
-	Fri,  7 Nov 2025 09:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EUHsAkLa";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FGm8nkhk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604CD3195F3;
+	Fri,  7 Nov 2025 10:30:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2098.outbound.protection.partner.outlook.cn [139.219.17.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E873C3191C9
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 09:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762509030; cv=none; b=BzThP2ssBzNlnZx9zBx+SRMOXklPLhslQWhpiR/xWUA0lzQtLKAV/spl2jz0QzbwAQj95UO0pUYwwz70QfeyxBh0B6pYcO28Cr2l8+qd2vh9RHvfiBJO/k5bqXVAndAQTJZeJnMJdRZxKnC4FYj1Y/vsTEGBt1lq2kJTIpgzF0Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762509030; c=relaxed/simple;
-	bh=v2/eQttuoX1rwE/rswcTbvQkFFgVuyGsREbMQwuAxs4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IGImLGDquR/r9JQn/CuNU/KqolRkxPxMiBobeiSshq3MVFlZNsHXjx0715gmGuj9/6e1uw+b9xQsmmN3Dft+UwQt+Hl6z0i/k+cf+NGkPT2/w02Xnins7MJZeXPQj4M1Y72uXy6Yg61RA3A98knL3wAb4mURx1w/4VG9x86UOmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EUHsAkLa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FGm8nkhk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A753f8j2280846
-	for <devicetree@vger.kernel.org>; Fri, 7 Nov 2025 09:50:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5IlwSvYdDB64FR4vxCrxBJvjL/o+hpUr0AMtnRKvU9Q=; b=EUHsAkLad8eREiPj
-	ObZZyfaDftUwSD+xFtgr7U5bh/CLpTOaG0ApvC2CUkvzFxPH6RpIsChJSNCh3MDT
-	cioAqT9TVfwYcgHlNRfH7kthiSmkhUivX/W1ohQyJsqwMtQnbtKRfJH0LYaPD0U9
-	pRqxAUJCqYUQEQooMJuahDwOVnvufFqw7XuIS08NmN5khxjoM15wFWChFuYjDtC8
-	LWRsEt5Sbq0Sr18a1qTQrbhVDF5zHA5zPpXW0MwyB75VHkCebdaUEcCUPW88JM4o
-	U7zJ/0i8p9eAy5CUWSGSzrbRJYLHomP+7dCySeD4Vl0cwYHFcsQtqFtzUCqsPG5E
-	rnzjTw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a9a9sgsrk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 09:50:26 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-290ab8f5af6so7150845ad.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 01:50:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762509026; x=1763113826; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5IlwSvYdDB64FR4vxCrxBJvjL/o+hpUr0AMtnRKvU9Q=;
-        b=FGm8nkhkyL639p7BhtlnaV/BZyOlzC1Her5cT77goL08O9XN97MUFdrox7i3IJV3B2
-         JytLNXdoAy3KCfXRZC5aEfuT+tLfhEZ0n4tSzWY5bCNT0sJT0vNNtlqXINW0oQDTaQ5A
-         CM2cMU46j7HuPipyD2m39dawHTCl3ay/gZUG9j44TpRJZdloJ9sNLW6uWS1ogp8iC/gy
-         L2mrTfIO0a4PCD9PPjzuIRyfz4pSbfht6ijyWXgL3FHJb3YmJDGmTeXStF0FZtfhMMe3
-         Wr7i/e5y6Rjm1Y0XS+6ASY32PJL/SGcP1c7qtdrlRiuIY2xAxkCk8KgUAsrNIelzWXqO
-         z5XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762509026; x=1763113826;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5IlwSvYdDB64FR4vxCrxBJvjL/o+hpUr0AMtnRKvU9Q=;
-        b=iNKJP7rMXk0gnO7EIdyMAN//Vzo8B4X//JRSWhNxB071rzC2WVOl9YJrnr0NOiBDLz
-         zOl4lFuD0UxNt9Ocqo2FDpHfRb2im++5LL9eLNWQa5TgmHEcfHpvkbO02Ay87DOKEE6V
-         beH3NfYw+krVdQFInR5xZdhyzfAiw0j61LxYogk10zS4aveP7LvJ8XiYu5qzJPWcTHFu
-         b1UAlo7tO+nWNoI57wd2ZanQ5OZn+Xa+/TCbMd6S1n9qszRBPyq9I5YCpCstMbYVX/ZI
-         dsH9/yJXhoN0MdkvjhcPcEE0idKL9JmY2pAydPRJ62Vw1eZOf3+SdbNYVV7fs96MQqzj
-         SoRA==
-X-Forwarded-Encrypted: i=1; AJvYcCWNNCAiKhvaq05FzT3g993D/phwQdJnlR7XIbpRwftIPXaSTJulA7mZ8SLJe39FqURfZC4vTlGiBdjf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxrg6t7u3cN51YRHS1WED/QEtyNv5S7Ima8k3o3pfqNwVyrQ8vs
-	WrwtxGHPYirIAY1RXkEGevIKHpi7D8LXE+a+gz1Cvvz6WlR9pYzsyH5Mzuk9B7pXN5aQaFZq/Ed
-	ldT0ScHAZvnrUMo5/bqB3kuZ8wPrLgoWzT4U8uyxIMY9IetKjBXeQ2S/4sMUpXZh2bNtfmZxm
-X-Gm-Gg: ASbGncspJx5w6XX4SxzMR94BNKzFG91xrJa0sp82Dy0zYY1LGbpVz0wWFj4jUuuGYyR
-	fE5y6RDp1ARvyh6E6eUfjo1m1YAdJrPcKivFziuEcybDQBbhUzuSf0O2rySmULme0NmjuESUKm2
-	2EZoeUfWDQzkmj6S1UNTR7ve5JsWfSkJqRbJd0q7QFWhNB9QBpkfvfw1Q7hHQXFVyqkNwetr1mU
-	aDqoxe83ushGumgF5T0OrdGgkMV/7NS0RW7RdoMG0A4LtJXEVS1k2CsYvAo1t3jobXGZSVn23/T
-	sgZu/QNR3086/PzRT02EixUHDX9aFIVnmqsh/0bS8KND7QsZaaJZD/euue4IjlP6pJz91GC4aEn
-	Ail+XOhHYPAo9tLQSSeB9MhJGjMCEggQ6vg==
-X-Received: by 2002:a17:903:19c7:b0:295:4251:838d with SMTP id d9443c01a7336-297c04a60camr38224905ad.55.1762509025630;
-        Fri, 07 Nov 2025 01:50:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEwg1aILLEMlKRqLcW6UJkFuYJnFT1aKQZlvTwiWFG5CH5t14GfvhRBM/fy1t44DccFRt/K7A==
-X-Received: by 2002:a17:903:19c7:b0:295:4251:838d with SMTP id d9443c01a7336-297c04a60camr38224545ad.55.1762509025077;
-        Fri, 07 Nov 2025 01:50:25 -0800 (PST)
-Received: from hu-vgarodia-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29650c5f011sm54975895ad.25.2025.11.07.01.50.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 01:50:24 -0800 (PST)
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-Date: Fri, 07 Nov 2025 15:19:41 +0530
-Subject: [PATCH v3 6/6] media: iris: Introduce vpu ops for vpu4 with
- necessary hooks
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080463115B5;
+	Fri,  7 Nov 2025 10:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.98
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762511412; cv=fail; b=LxvjQGL0cYkoZyvv94wIaf/f09S7o4YYkmOB/FGEIEnNxaiNq3HlHunXH3g7g2gLKCPrvZpDSb3tBDYPwnfbzmvkKoxm9FvAylyHW26olq1soJaLTTFNYyRu9k6qkIcQh3z9AM6CJAwQ9iqVo20EZDBjd542hQTsVz51Ni26quA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762511412; c=relaxed/simple;
+	bh=dZvdAOKsKn4xUz6m9MEOpO0j6/uJ8VN0HQy5nJL/ABo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=EdSr6QmByv8imGISxGbp8HERbaN4hii/wrKMkhx4e7tlzgspfuIKm/HgGlDp3Z0EEMuxRtcaBUGE8nBwFMB9CDRNcuw0nyB3K5356nGpDBxRa1vZE0Lbh/iGdSX4XGbRHCq4EcXvTO9Dmar32TG7Qp2SaAXzMU/Crbx63JdYznQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=duBQ2ge1405dCHHZPQ93zIn9xuVIP2E+yTqtpWIRh+OgMVufsAKw2RRfqJkq0vMlixu6pQVLlg0LpzHgpvJSNphnt/LtUMI1dTbt4k/Ik9NLrj78pyicPW91kUFGnc7ynSJ+QK48l3qgRz4/TJXKr1dEsF5LIjaUYBsU8glLAsZzLXVRqLG0nUCfZinD2do7wYCwizyChu4Payg2u0e0oXyGlH4fmfwZF3Rnz60uSfxxdqPAR3H7CxRqoVRGg9FJm4YQELMOqh8sCPkMh7GbuLkkGAqnGLA3glDz6WE3eQq3bnpI5NXjmOYIE5Vyp0QVpeIVkGgjHrSobyzivG7QmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RopYT9nzxjAG1AgJJOfzvjsouzhfjUNUpcWgGKqJh5Q=;
+ b=EcAtN3MxqSX/J4l1MHCzXg6LCnw5MsdhWEUyKts1NUAN2lHII0dDAhc3SHX5oIrH4mSbiwLvsCafVcGnQjH59i6NmiyoeeQ+IzTYy9zTW19Ddp1HNFMp/jjPWTT34lTZSfP+4Y42S1gkprGHjrLHTSzYkTTyv1IrE25K3VHqvJaVbiVr3m+/RLn688L2oIf68cMVsseB4HSpZwJsjXR7bWugqEZvSjN0SqpqcIlnLxzfP30m1OMfHkJiTOJGzELM917NQy5Jp+K8hUHaN+sN8hfcYQrTORbt0CYItl2DddAZzD06sG0vpcn6v+japaLI7kc3lSM/cGY1LohrbWp1tA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1305.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:6::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Fri, 7 Nov
+ 2025 09:55:39 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7%6]) with mapi id 15.20.9298.010; Fri, 7 Nov 2025
+ 09:55:39 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	E Shattow <e@freeshell.de>
+Cc: Hal Feng <hal.feng@starfivetech.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/8] dt-bindings: PCI: starfive,jh7110-pcie: Add enable-gpios property
+Date: Fri,  7 Nov 2025 17:55:23 +0800
+Message-ID: <20251107095530.114775-2-hal.feng@starfivetech.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20251107095530.114775-1-hal.feng@starfivetech.com>
+References: <20251107095530.114775-1-hal.feng@starfivetech.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZQ0PR01CA0014.CHNPR01.prod.partner.outlook.cn (10.2.0.83)
+ To ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn (10.2.1.78)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251107-knp_video-v3-6-50c86cbb0eb8@oss.qualcomm.com>
-References: <20251107-knp_video-v3-0-50c86cbb0eb8@oss.qualcomm.com>
-In-Reply-To: <20251107-knp_video-v3-0-50c86cbb0eb8@oss.qualcomm.com>
-To: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762508991; l=14963;
- i=vikash.garodia@oss.qualcomm.com; s=20241104; h=from:subject:message-id;
- bh=v2/eQttuoX1rwE/rswcTbvQkFFgVuyGsREbMQwuAxs4=;
- b=SOA8387XS8MUGZHze/KlhLJsUDv6YUmjn6xTjneGwAiASS3nHXUkHbaB0tfyNaOjRiEMp3gTq
- MiFRonGxtHECt3qHNfNJ1KDB4nA+Fm7UPlLvNzFBT1Et06BrND09saT
-X-Developer-Key: i=vikash.garodia@oss.qualcomm.com; a=ed25519;
- pk=LY9Eqp4KiHWxzGNKGHbwRFEJOfRCSzG/rxQNmvZvaKE=
-X-Authority-Analysis: v=2.4 cv=CdgFJbrl c=1 sm=1 tr=0 ts=690dc0e2 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=V7PGPLsNbH-VDMjO_1gA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA3MDA3OCBTYWx0ZWRfX8lqx1pWBBW0b
- c+kH4VnOFaDo/AMFlPPXIvytY6es+Dwr78jkq1zzfIiC0MRfCS0dS9mkyhQFwnUK3sVtLpXAR96
- gmoW8ZREuZ2UcuV4DFFMWP+JfRnPK8Q40kA6yAp3h4RirlMBrjpDjp3ShgKhD7U9kGTCdOsLFRj
- QV4cuMRS912iBR/yAi0vRdCuUC2LOVy5jUtaITmj+lVClszDv5OxjMqUjrgFqg4MxzufdWM377r
- dbK5xgIV27LOz5kZSa8y7Z4A7lMSQBi2OGqjolO3TVfNCLVIZiv/igVenTLBoObSHJ9XvzvD3KF
- kWNY90O9zt3Fp6eriUQaJ4K7I8IxgHETAed/v5UF1tTQEZHN517cLRQylGowgle/l33H/sbYx04
- 0sMPJwJL5vQeJcZ88lIB45bZZBsW4g==
-X-Proofpoint-ORIG-GUID: b0cqu_swutIg3VcAYIIZMTS0Z2muFTIH
-X-Proofpoint-GUID: b0cqu_swutIg3VcAYIIZMTS0Z2muFTIH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-07_02,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 malwarescore=0 spamscore=0 bulkscore=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511070078
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1305:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7aa2df87-424e-47ad-9324-08de1de3ce5e
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|7416014|52116014|1800799024|41320700013|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	bmPYnsQGobFnS83YzdcFKYph65yqnS7rsljac/Ik7NqUvJrqjKMnrDUJTbBDF9VzGSyPl/lKoTSTSj8KKyEmfB+CsHr0Kv5CQu8cHqFdbhAS3oU44t38fP+FW7LpCpqdH43PdyQz8oI3h5/0DXCaffT6s0YO05dVYR33LCU3u+22WnlRndRPBwKqfxPClgygAAcuZ7PWjAubWvh2idvJXshX0YMIsplfjxmI0RtlmNXNqIw31D7LgspjfTPzyAt23T+vjYoOCKIpAzPXwQtQYAXD+0KLETn/avl3SunNbQzkcWLafvdtbDaZUux0TndSQqarGNfq25r3HszJK0KwcFPl2qG62RHs6DgtFBTC5HVc5Qjx/AKnLON9kIdyuf21MvDajOSJZWlMwSMoI03yNb2lyM0gbnDx3CxO8omPSonIrjTGB3NDQgGHt2ENwRINHiF8OMCqIuDSM6Vbn9v4WvdBIjggIG0EHq61ZEDIQP1LarZLiV3H4yLtLzFcKbIHMwJVtQCj0inVokMf7NIEu8ayWwUXRWZg96CSiK83okkqorOuohFXL7IhK4wJljPijSZIaMQq3tplOh58G7OsAYHqt5r8mYhBA590QU5Jl2U=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(52116014)(1800799024)(41320700013)(38350700014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?mGLWjjd3DdEM5AQ7kYolD2QuxGvjjmFwmkNfMymG9MHnrE/FhbrdSy6uHWRf?=
+ =?us-ascii?Q?m6alxPT3VqJXPi+SYgGCJIEWS2RTN55ukVkx0gyN8jlJGwgTBacsTn4spR1n?=
+ =?us-ascii?Q?a9a3NeuecJHZgRke6H+uVxffu9xGg7OdAT2T9ngmIgr+vbcC1bnsgQ3Ah+Iq?=
+ =?us-ascii?Q?cn2mFi+UDTfsF+jOSsia4pmAik1f/Md2hL8VtRFEZhiB7r6iLceTQcGg/359?=
+ =?us-ascii?Q?UNG3NODERpsnGGpxiBkMnnfTRreG/jW25Z7OlPHyrPab0ZOxpBQAn2oVc3tS?=
+ =?us-ascii?Q?uTYm/e5tmeZUYUG0deexeq2ptHwzAreH6Zu+iCWys72/rYkaur72CIz5dlfd?=
+ =?us-ascii?Q?c+v6aUsMe9bTFCk9qpt6rCMTGH+6x1CZ4/kB3Bm5wNiHnepQjD/azTT6Lk9x?=
+ =?us-ascii?Q?5J43/nCG1jkLfRKe8+pGs1mYoIciH3fvvQX7gmQzVZdUoMJ9/62sXlEZ4y45?=
+ =?us-ascii?Q?NyTM1A8wl7qs59w3/cHcYLWTIP8m22vlmZz2CqQgTaBTFeJOCHrclEecjCvT?=
+ =?us-ascii?Q?8opWj3U8hprSYKUbxjqfalA+4RHcTcWmsdLsCAelP7hdDidxBGDjops4rxLS?=
+ =?us-ascii?Q?n4bkGfKW8YOJcZxjjsoziekfxnTsuNKKCmI6UO+fDmUG/FuDkamBSxJVSNQI?=
+ =?us-ascii?Q?Eeh4DTtJAh4iiYzgRzeNMnrBDHq6hAR1D9p3YfzwmBFvtzTPP2+wAogxkuVT?=
+ =?us-ascii?Q?rznFrrUzXKEPqmkZyNkriZM9NfuhWfiRi4jPJR2Hea45nTwzOm4LoZj2DeVN?=
+ =?us-ascii?Q?Nyjp87coVOUpp/YSIiDiw4WQKs5cuBA2S47atNc8eV1jYWNPm4Lh3ZKjTmo1?=
+ =?us-ascii?Q?lSotHmZhQ90l0d3p56Bg8PoeAwhRVN5f0E86V/E/td0Qf6roaWIBXPGIgSTe?=
+ =?us-ascii?Q?smwP+tnvtOlO16gTF3Dkp/2NZhBBIksDDiak2F7rrHcnnx4JBbyX38YxcaPI?=
+ =?us-ascii?Q?pCJFGO7jDtiWWaDlGYQSD7WK2iwv1d+SmXky7GugUTAAG4GQFrLnVHK7bDyD?=
+ =?us-ascii?Q?bNl3NdMAP+JqndWLdjZaDNy0cJHXylMw2FJ0SktL0gueQWr9v7aIIofxmTyU?=
+ =?us-ascii?Q?DPLjbzOuvP2ZUX3u19L6zmd572XgdadXoi8hL1d5cRX6kCFcCPlvSPh17+IO?=
+ =?us-ascii?Q?7zIb1vN99UUO/Y9jd8BjW+MujnpQfbheX/1mnuOqNotQ7EcxovOcFxtBlmfQ?=
+ =?us-ascii?Q?JXhdkYmhpALAwdPA9eX8KEO+0jo+zqkZvXeWavYbvu1qHWhjtYLhbG9hSAPv?=
+ =?us-ascii?Q?P8YG1dHR2MzA8GzcX9/GE0tAbTSO9SG1jwdSMHD8zBLelyTYW2AyIiQUN5Ve?=
+ =?us-ascii?Q?OGK0FzIPGYGiBaK+dHR0Sdo/skBZtcqZxXSie10cZtL2PJ0zEXpc8/MSEMvY?=
+ =?us-ascii?Q?4VI+gh42cYTQ4yc+6qcibxF57fQUoLMN1n0JgJmEp3ixWRelyoSP9C0egCJE?=
+ =?us-ascii?Q?BF8OQNlf4G8iFlbyCuqiDDec/IDcK1xY8N1kkA9GslRa+YwMSduIZ7U3ay26?=
+ =?us-ascii?Q?59jUxH5JrEVG1A6uR/a5S4Cy/Oq3GAIVpIIjBs+Kn1cbLaPqmSlJF/4aKvET?=
+ =?us-ascii?Q?L0e0LJoE/+/inRxVzHn1JwOeQvndqOMo5GVt5fK0g5XHv/fZDIV7Yk1rK+No?=
+ =?us-ascii?Q?WA=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7aa2df87-424e-47ad-9324-08de1de3ce5e
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 09:55:39.1241
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I9mGPjD4rU54fTz1U1tzYZOUydLohxXqMOfNv0I0eU4gXxRH6YGyshwpv8pdtRebQ4JcBBqrjGRg2opApP+obzzaA9rqWCkJ53BRdkOUs3k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1305
 
-Add power sequence for vpu4 by reusing from previous generation wherever
-possible. Hook up vpu4 op with vpu4 specific implemtation or resue from
-earlier generation wherever feasible, like clock calculation in this
-case.
+Add enable-gpios property for controlling the PCI bus device power.
+This property had been supported in the driver but not added in the
+dt-bindings.
 
-Co-developed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Fixes: 22fe32239770 ("dt-bindings: PCI: Add StarFive JH7110 PCIe controller")
+Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 ---
- drivers/media/platform/qcom/iris/Makefile          |   1 +
- .../platform/qcom/iris/iris_platform_common.h      |   7 +
- drivers/media/platform/qcom/iris/iris_vpu4x.c      | 358 +++++++++++++++++++++
- drivers/media/platform/qcom/iris/iris_vpu_common.h |   1 +
- 4 files changed, 367 insertions(+)
+ .../devicetree/bindings/pci/starfive,jh7110-pcie.yaml         | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
-index 13270cd6d899852dded675b33d37f5919b81ccba..1446f5732ab51db85ea4f52636d29e36d82b7a8f 100644
---- a/drivers/media/platform/qcom/iris/Makefile
-+++ b/drivers/media/platform/qcom/iris/Makefile
-@@ -22,6 +22,7 @@ qcom-iris-objs += iris_buffer.o \
-              iris_venc.o \
-              iris_vpu2.o \
-              iris_vpu3x.o \
-+             iris_vpu4x.o \
-              iris_vpu_buffer.o \
-              iris_vpu_common.o \
+diff --git a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+index 33c80626e8ec..1e36f92ec852 100644
+--- a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+@@ -59,6 +59,10 @@ properties:
+     description:
+       The phandle to System Register Controller syscon node.
  
-diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-index ae49e95ba2252fc1442f7c81d8010dbfd86da0da..d6d4a9fdfc189797f903dfeb56d931741b405ee2 100644
---- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-+++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-@@ -54,6 +54,10 @@ enum platform_clk_type {
- 	IRIS_AXI1_CLK,
- 	IRIS_CTRL_FREERUN_CLK,
- 	IRIS_HW_FREERUN_CLK,
-+	IRIS_BSE_HW_CLK,
-+	IRIS_VPP0_HW_CLK,
-+	IRIS_VPP1_HW_CLK,
-+	IRIS_APV_HW_CLK,
- };
- 
- struct platform_clk_data {
-@@ -188,6 +192,9 @@ struct icc_vote_data {
- enum platform_pm_domain_type {
- 	IRIS_CTRL_POWER_DOMAIN,
- 	IRIS_HW_POWER_DOMAIN,
-+	IRIS_VPP0_HW_POWER_DOMAIN,
-+	IRIS_VPP1_HW_POWER_DOMAIN,
-+	IRIS_APV_HW_POWER_DOMAIN,
- };
- 
- struct iris_platform_data {
-diff --git a/drivers/media/platform/qcom/iris/iris_vpu4x.c b/drivers/media/platform/qcom/iris/iris_vpu4x.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..fa72f16ac38dcbc061698e3d496a1d2bbf17be27
---- /dev/null
-+++ b/drivers/media/platform/qcom/iris/iris_vpu4x.c
-@@ -0,0 +1,358 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#include <linux/iopoll.h>
-+#include <linux/reset.h>
-+
-+#include "iris_instance.h"
-+#include "iris_vpu_common.h"
-+#include "iris_vpu_register_defines.h"
-+
-+#define AON_WRAPPER_MVP_NOC_RESET_SYNCRST	(AON_MVP_NOC_RESET + 0x08)
-+#define CPU_CS_APV_BRIDGE_SYNC_RESET		(CPU_BASE_OFFS + 0x174)
-+#define MVP_NOC_RESET_REQ_MASK			0x70103
-+#define VPU_IDLE_BITS				0x7103
-+#define WRAPPER_EFUSE_MONITOR			(WRAPPER_BASE_OFFS + 0x08)
-+
-+#define APV_CLK_HALT		BIT(1)
-+#define CORE_CLK_HALT		BIT(0)
-+#define CORE_PWR_ON		BIT(1)
-+#define DISABLE_VIDEO_APV_BIT	BIT(27)
-+#define DISABLE_VIDEO_VPP1_BIT	BIT(28)
-+#define DISABLE_VIDEO_VPP0_BIT	BIT(29)
-+
-+static int iris_vpu4x_genpd_set_hwmode(struct iris_core *core, bool hw_mode, u32 efuse_value)
-+{
-+	int ret;
-+
-+	ret = dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN], hw_mode);
-+	if (ret)
-+		return ret;
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP0_BIT)) {
-+		ret = dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs
-+					      [IRIS_VPP0_HW_POWER_DOMAIN], hw_mode);
-+		if (ret)
-+			goto restore_hw_domain_mode;
-+	}
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP1_BIT)) {
-+		ret = dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs
-+					      [IRIS_VPP1_HW_POWER_DOMAIN], hw_mode);
-+		if (ret)
-+			goto restore_vpp0_domain_mode;
-+	}
-+
-+	if (!(efuse_value & DISABLE_VIDEO_APV_BIT)) {
-+		ret = dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs
-+					      [IRIS_APV_HW_POWER_DOMAIN], hw_mode);
-+		if (ret)
-+			goto restore_vpp1_domain_mode;
-+	}
-+
-+	return 0;
-+
-+restore_vpp1_domain_mode:
-+	if (!(efuse_value & DISABLE_VIDEO_VPP1_BIT))
-+		dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs[IRIS_VPP1_HW_POWER_DOMAIN],
-+					!hw_mode);
-+restore_vpp0_domain_mode:
-+	if (!(efuse_value & DISABLE_VIDEO_VPP0_BIT))
-+		dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs[IRIS_VPP0_HW_POWER_DOMAIN],
-+					!hw_mode);
-+restore_hw_domain_mode:
-+	dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN], !hw_mode);
-+
-+	return ret;
-+}
-+
-+static int iris_vpu4x_power_on_apv(struct iris_core *core)
-+{
-+	int ret;
-+
-+	ret = iris_enable_power_domains(core,
-+					core->pmdomain_tbl->pd_devs[IRIS_APV_HW_POWER_DOMAIN]);
-+	if (ret)
-+		return ret;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_APV_HW_CLK);
-+	if (ret)
-+		goto disable_apv_hw_power_domain;
-+
-+	return 0;
-+
-+disable_apv_hw_power_domain:
-+	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_APV_HW_POWER_DOMAIN]);
-+
-+	return ret;
-+}
-+
-+static void iris_vpu4x_power_off_apv(struct iris_core *core)
-+{
-+	bool handshake_done, handshake_busy;
-+	u32 value, count = 0;
-+
-+	value = readl(core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
-+
-+	if (value & APV_CLK_HALT)
-+		writel(0x0, core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
-+
-+	do {
-+		writel(REQ_POWER_DOWN_PREP, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
-+		usleep_range(10, 20);
-+		value = readl(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_STATUS);
-+
-+		handshake_done = value & NOC_LPI_STATUS_DONE;
-+		handshake_busy = value & (NOC_LPI_STATUS_DENY | NOC_LPI_STATUS_ACTIVE);
-+
-+		if (handshake_done || !handshake_busy)
-+			break;
-+
-+		writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
-+		usleep_range(10, 20);
-+
-+	} while (++count < 1000);
-+
-+	if (!handshake_done && handshake_busy)
-+		dev_err(core->dev, "LPI handshake timeout\n");
-+
-+	writel(0x080200, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
-+	readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
-+			   value, value & 0x080200, 200, 2000);
-+
-+	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_SYNCRST);
-+	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
-+	readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
-+			   value, value == 0x0, 200, 2000);
-+
-+	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base +
-+	       CPU_CS_APV_BRIDGE_SYNC_RESET);
-+	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_APV_BRIDGE_SYNC_RESET);
-+	writel(0x0, core->reg_base + CPU_CS_APV_BRIDGE_SYNC_RESET);
-+
-+	iris_disable_unprepare_clock(core, IRIS_APV_HW_CLK);
-+	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_APV_HW_POWER_DOMAIN]);
-+}
-+
-+static void iris_vpu4x_ahb_sync_reset_apv(struct iris_core *core)
-+{
-+	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base +
-+	       CPU_CS_APV_BRIDGE_SYNC_RESET);
-+	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_APV_BRIDGE_SYNC_RESET);
-+	writel(0x0, core->reg_base + CPU_CS_APV_BRIDGE_SYNC_RESET);
-+}
-+
-+static void iris_vpu4x_ahb_sync_reset_hardware(struct iris_core *core)
-+{
-+	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base +
-+	       CPU_CS_AHB_BRIDGE_SYNC_RESET);
-+	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-+	writel(0x0, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-+}
-+
-+static int iris_vpu4x_enable_hardware_clocks(struct iris_core *core, u32 efuse_value)
-+{
-+	int ret;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_AXI_CLK);
-+	if (ret)
-+		return ret;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_HW_FREERUN_CLK);
-+	if (ret)
-+		goto disable_axi_clock;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_HW_CLK);
-+	if (ret)
-+		goto disable_hw_free_run_clock;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_BSE_HW_CLK);
-+	if (ret)
-+		goto disable_hw_clock;
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP0_BIT)) {
-+		ret = iris_prepare_enable_clock(core, IRIS_VPP0_HW_CLK);
-+		if (ret)
-+			goto disable_bse_hw_clock;
-+	}
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP1_BIT)) {
-+		ret = iris_prepare_enable_clock(core, IRIS_VPP1_HW_CLK);
-+		if (ret)
-+			goto disable_vpp0_hw_clock;
-+	}
-+
-+	return 0;
-+
-+disable_vpp0_hw_clock:
-+	if (!(efuse_value & DISABLE_VIDEO_VPP0_BIT))
-+		iris_disable_unprepare_clock(core, IRIS_VPP0_HW_CLK);
-+disable_bse_hw_clock:
-+	iris_disable_unprepare_clock(core, IRIS_BSE_HW_CLK);
-+disable_hw_clock:
-+	iris_disable_unprepare_clock(core, IRIS_HW_CLK);
-+disable_hw_free_run_clock:
-+	iris_disable_unprepare_clock(core, IRIS_HW_FREERUN_CLK);
-+disable_axi_clock:
-+	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
-+
-+	return ret;
-+}
-+
-+static void iris_vpu4x_disable_hardware_clocks(struct iris_core *core, u32 efuse_value)
-+{
-+	if (!(efuse_value & DISABLE_VIDEO_VPP1_BIT))
-+		iris_disable_unprepare_clock(core, IRIS_VPP1_HW_CLK);
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP0_BIT))
-+		iris_disable_unprepare_clock(core, IRIS_VPP0_HW_CLK);
-+
-+	iris_disable_unprepare_clock(core, IRIS_BSE_HW_CLK);
-+	iris_disable_unprepare_clock(core, IRIS_HW_CLK);
-+	iris_disable_unprepare_clock(core, IRIS_HW_FREERUN_CLK);
-+	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
-+}
-+
-+static int iris_vpu4x_power_on_hardware(struct iris_core *core)
-+{
-+	u32 efuse_value = readl(core->reg_base + WRAPPER_EFUSE_MONITOR);
-+	int ret;
-+
-+	ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-+	if (ret)
-+		return ret;
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP0_BIT)) {
-+		ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs
-+						[IRIS_VPP0_HW_POWER_DOMAIN]);
-+		if (ret)
-+			goto disable_hw_power_domain;
-+	}
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP1_BIT)) {
-+		ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs
-+						[IRIS_VPP1_HW_POWER_DOMAIN]);
-+		if (ret)
-+			goto disable_vpp0_power_domain;
-+	}
-+
-+	ret = iris_vpu4x_enable_hardware_clocks(core, efuse_value);
-+	if (ret)
-+		goto disable_vpp1_power_domain;
-+
-+	if (!(efuse_value & DISABLE_VIDEO_APV_BIT)) {
-+		ret = iris_vpu4x_power_on_apv(core);
-+		if (ret)
-+			goto disable_hw_clocks;
-+
-+		iris_vpu4x_ahb_sync_reset_apv(core);
-+	}
-+
-+	iris_vpu4x_ahb_sync_reset_hardware(core);
-+
-+	ret = iris_vpu4x_genpd_set_hwmode(core, true, efuse_value);
-+	if (ret)
-+		goto disable_apv_power_domain;
-+
-+	return 0;
-+
-+disable_apv_power_domain:
-+	if (!(efuse_value & DISABLE_VIDEO_APV_BIT))
-+		iris_vpu4x_power_off_apv(core);
-+disable_hw_clocks:
-+	iris_vpu4x_disable_hardware_clocks(core, efuse_value);
-+disable_vpp1_power_domain:
-+	if (!(efuse_value & DISABLE_VIDEO_VPP1_BIT))
-+		iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs
-+						[IRIS_VPP1_HW_POWER_DOMAIN]);
-+disable_vpp0_power_domain:
-+	if (!(efuse_value & DISABLE_VIDEO_VPP0_BIT))
-+		iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs
-+						[IRIS_VPP0_HW_POWER_DOMAIN]);
-+disable_hw_power_domain:
-+	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-+
-+	return ret;
-+}
-+
-+static void iris_vpu4x_power_off_hardware(struct iris_core *core)
-+{
-+	u32 efuse_value = readl(core->reg_base + WRAPPER_EFUSE_MONITOR);
-+	bool handshake_done, handshake_busy;
-+	u32 value, count = 0;
-+
-+	iris_vpu4x_genpd_set_hwmode(core, false, efuse_value);
-+
-+	if (!(efuse_value & DISABLE_VIDEO_APV_BIT))
-+		iris_vpu4x_power_off_apv(core);
-+
-+	value = readl(core->reg_base + WRAPPER_CORE_POWER_STATUS);
-+
-+	if (!(value & CORE_PWR_ON))
-+		goto disable_clocks_and_power;
-+
-+	value = readl(core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
-+
-+	if (value & CORE_CLK_HALT)
-+		writel(0x0, core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
-+
-+	readl_poll_timeout(core->reg_base + VCODEC_SS_IDLE_STATUSN, value,
-+			   value & VPU_IDLE_BITS, 2000, 20000);
-+
-+	do {
-+		writel(REQ_POWER_DOWN_PREP, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
-+		usleep_range(10, 20);
-+		value = readl(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_STATUS);
-+
-+		handshake_done = value & NOC_LPI_STATUS_DONE;
-+		handshake_busy = value & (NOC_LPI_STATUS_DENY | NOC_LPI_STATUS_ACTIVE);
-+
-+		if (handshake_done || !handshake_busy)
-+			break;
-+
-+		writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
-+		usleep_range(10, 20);
-+
-+	} while (++count < 1000);
-+
-+	if (!handshake_done && handshake_busy)
-+		dev_err(core->dev, "LPI handshake timeout\n");
-+
-+	writel(MVP_NOC_RESET_REQ_MASK, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
-+	readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
-+			   value, value == MVP_NOC_RESET_REQ_MASK, 200, 2000);
-+
-+	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_SYNCRST);
-+	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
-+	readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
-+			   value, value == 0x0, 200, 2000);
-+
-+	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base +
-+	       CPU_CS_AHB_BRIDGE_SYNC_RESET);
-+	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-+	writel(0x0, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-+
-+disable_clocks_and_power:
-+	iris_vpu4x_disable_hardware_clocks(core, efuse_value);
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP1_BIT))
-+		iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs
-+					   [IRIS_VPP1_HW_POWER_DOMAIN]);
-+
-+	if (!(efuse_value & DISABLE_VIDEO_VPP0_BIT))
-+		iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs
-+					   [IRIS_VPP0_HW_POWER_DOMAIN]);
-+
-+	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-+}
-+
-+const struct vpu_ops iris_vpu4x_ops = {
-+	.power_off_hw = iris_vpu4x_power_off_hardware,
-+	.power_on_hw = iris_vpu4x_power_on_hardware,
-+	.power_off_controller = iris_vpu35_vpu4x_power_off_controller,
-+	.power_on_controller = iris_vpu35_vpu4x_power_on_controller,
-+	.program_bootup_registers = iris_vpu35_vpu4x_program_bootup_registers,
-+	.calc_freq = iris_vpu3x_vpu4x_calculate_frequency,
-+};
-diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.h b/drivers/media/platform/qcom/iris/iris_vpu_common.h
-index 7cf4304604cca590544a938c7e811c202cea3d93..f6dffc613b822341fb21e12de6b1395202f62cde 100644
---- a/drivers/media/platform/qcom/iris/iris_vpu_common.h
-+++ b/drivers/media/platform/qcom/iris/iris_vpu_common.h
-@@ -12,6 +12,7 @@ extern const struct vpu_ops iris_vpu2_ops;
- extern const struct vpu_ops iris_vpu3_ops;
- extern const struct vpu_ops iris_vpu33_ops;
- extern const struct vpu_ops iris_vpu35_ops;
-+extern const struct vpu_ops iris_vpu4x_ops;
- 
- struct vpu_ops {
- 	void (*power_off_hw)(struct iris_core *core);
-
++  enable-gpios:
++    description: GPIO used to enable the PCI bus device power
++    maxItems: 1
++
+   perst-gpios:
+     description: GPIO controlled connection to PERST# signal
+     maxItems: 1
 -- 
-2.34.1
+2.43.2
 
 
