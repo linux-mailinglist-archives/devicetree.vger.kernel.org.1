@@ -1,214 +1,247 @@
-Return-Path: <devicetree+bounces-236100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A851C3FD0A
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 12:50:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D822C3FD5B
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 13:02:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B76543BD99B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 11:50:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35D5E3A6911
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 12:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB55E322A21;
-	Fri,  7 Nov 2025 11:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC35C2DEA8C;
+	Fri,  7 Nov 2025 12:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ncQf/rj+";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Q0R1m5kW"
+	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="eTDNDJfg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A67322524
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 11:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1E1207A22;
+	Fri,  7 Nov 2025 12:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762516208; cv=none; b=TqARRNyjYbvPqaq7mY3ERMru/TiVJ8yrnUGtOaGf1zBnqJV08UYQqz9VU47l4dvUwNv5x6MuLjtmA82xePaIVWxp5p5FVHXkmFcAKwdxMyDuFtVLX3UYXpSYMjmh4yIO9szhvDHFodu1XTW9x2ZDbBKOsHAw6HjcwIcdEkPBA8k=
+	t=1762516956; cv=none; b=eNe3yAA4IE5emV+r8FYkHSfkexQVwMtCg9j0jBlJAp8644Fs0+CLSp22cAENWLpnGJCANKQkP+aJtXWTwQhF3l8RbbpSquj+J6jMrDPmbOKO/wm+pgS0iMb4hq9fzOeVW3zZ6L9qWhZovncdUknmbM4UC6ygCXjRwU5Hk3fL37Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762516208; c=relaxed/simple;
-	bh=9zKjZpUIYk+itNggUJ5MlXLhe3sBQBIWHa35miBX6W0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tYqQZ1scirwcGk7iTXdj4GX8ngc+a7sd2Gy/ysWBYxEZRLYSP6mwNr6v6m9nOR8VB4S9wit5Jhdun1MVueuzuIVJppAziyi9vksw2fpuyR5uhDxjjMeMJAPvW+65jI2ExXAplC1FGaR1BKPyyxJcB+kD89wPXdc8gm54a1O6Il0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ncQf/rj+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Q0R1m5kW; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A7B2UNM3041120
-	for <devicetree@vger.kernel.org>; Fri, 7 Nov 2025 11:50:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=dMrXAflLekSr2reWqAqWS0yB
-	ySzoUwcO6ionW8M4Tzc=; b=ncQf/rj+sIhsA9BrBH/ZggfgAEiW/UZekYS7yKHN
-	ojUvgTNPnIUixJvdLfDOzi1ht0SF46BR7ysoEvXFivkG+H8HVtpIMu0SH/emDGyH
-	Ofd2ID5ytSt0xD+ExRDAVwG3XJMP6szhnHM/vW+KRcOD73Qj/XRu3qBwZPv+HKGM
-	teW5F+LdC3DlEzzK45+FCOIGh/o99jX02KRhcB2G8sxPXr7XXVzk4ZMV0lw1LYU6
-	+mB9fj/AyXUuu+xEkNLlNAqAhDT3qBcq/9KaGr0JWvYZjEERdrsV8gdl1SC3Sx33
-	50yHxSA/31sAmJ4Dzba4UDCPCtjYTP/a7kkSyX+Wh0q/ow==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a9fj083ma-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 11:50:05 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b99763210e5so684912a12.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 03:50:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762516205; x=1763121005; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dMrXAflLekSr2reWqAqWS0yBySzoUwcO6ionW8M4Tzc=;
-        b=Q0R1m5kW6mvk1HP+IDu/LJmSdt/PGqMeSR1ZEpXFVAeRfJJhSUREy6drB2D5hpoUqB
-         QMiezWFZEyENMDXTF/5LZ8S3Mh/K0CzkveE90x1BHqs0Es0PZatCgW84U0LBTIS5ojvU
-         M4SFtTkYMKaneU7Ej+5MxJR+X+7uxdTbCWw6Y965LKFk7EdzUfgarCwCw06QBdWRW9NR
-         jtfG2hf3KMed478eKg1vz4++3muSBkU4sEKoy3ZYTCvsZuXv9awucnMk4Y/LJYnTD7iY
-         RbNEeOZrsS99kmLpebSKhhm0XizyN8KIPZ+uQGvHxL9wNvMtsrOpHvL9VuJhqoACU/gW
-         YSGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762516205; x=1763121005;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dMrXAflLekSr2reWqAqWS0yBySzoUwcO6ionW8M4Tzc=;
-        b=iXVC1DiCuLFPkhEL1hpLhLB1j0wV16i4/AEO1BWupNVZeRjiPfakLmDy52ZfSpHhSR
-         MK6Hp4EqZ/OzfKA2YBvfh180LPZSMNk6vta9I+hvEtI6wtcHP4C0ey3Ha32A0Kj14QzE
-         9hPvNuhAp6UBKng3tbuS/De5a4sPmXA7909FerxcdIkpXF8tz5qoBvpNlPaI+W8GvXTj
-         qtUAQNEveWeO/cHbj8UwcbIwqgc//xensGQkNzOoA0vAmqpv9JKj9s+x5+bayLdpqIoE
-         x+Gy4NluSMq/qbDXKA3WmrGDb55EAkxxoTgtqSC1A8viP4nj6XUK/B9XkDklRHzQgZCt
-         pcBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZNg/MgB79rTmrqbg8hsV7MpJbUvKvXqJxfXFBkwfK1j0PonjkVHdmmrWDCwIOEIzD17jUqRJPnwdY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzr+ncGFX4E6RnfPmtPUaK68+fj+quRep2AgK35bESN7ZvRXk7W
-	ztoQ/GDkPCBo5LusmLxSPs+CUL4631kitimxm0w6Kwf4ATVFhrkJLLy9v5VTAtwwnqthdXsLxcE
-	ErXUPIc8C36vRLaluSt8iDl/hgvUamIjjBI7G6G7xamaTQ0g72mgiPumtgmm4WmAM
-X-Gm-Gg: ASbGncsMq0cRnPCzhSY9/7Utw6IEqgJhx1PlzOkdyzyEeLDmu4DJ6QsDu7pgwknCJ54
-	do7ZdjmW9/Z35Gk+SGLqb4nxj0bpJpcIr42ebmPsD3ZKRdmtOgUg1J2I93rM/Q9viDj5L/5rjEj
-	DpeZsllyGh/jX3vh6L3MUoIZvJ5L99o1dmVsW0hfQIse+snShW+kKwOBdQGjc+031lvizgymdr7
-	FIXd6y5luEPA7cZ+NFHDTI3Ekiu5+uLUyqhgxZ5DAtLQP+Da4XARnAIgDIMNcCn2xIlYcpj7YDI
-	jEJ1TGmqqJPfokBaNIdEPy3MFvW70ENY/qluaGmckmhmtrsylWUfBX2es38ZC3bw89lrH7HX6SH
-	vQGwKTjca9BgEH8WhxnmZHt2n2Q==
-X-Received: by 2002:a17:902:ea05:b0:295:73f:90d0 with SMTP id d9443c01a7336-297c04931d3mr39770285ad.50.1762516203100;
-        Fri, 07 Nov 2025 03:50:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFhNAjO6ANvx/Ku1ZgGqWvUkOpsCN5R864El2BfAS5aa0p1YaTkf88N9laM4ZHwBOWafYkMdA==
-X-Received: by 2002:a17:902:ea05:b0:295:73f:90d0 with SMTP id d9443c01a7336-297c04931d3mr39769635ad.50.1762516202345;
-        Fri, 07 Nov 2025 03:50:02 -0800 (PST)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29651cc1907sm58007315ad.99.2025.11.07.03.49.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 03:50:02 -0800 (PST)
-Date: Fri, 7 Nov 2025 17:19:55 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 11/14] firmware: qcom_scm: Add
- qcom_scm_pas_get_rsc_table() to get resource table
-Message-ID: <20251107114955.zprgt2peq34im3ji@hu-mojha-hyd.qualcomm.com>
-References: <20251104-kvm_rproc_v6-v6-0-7017b0adc24e@oss.qualcomm.com>
- <20251104-kvm_rproc_v6-v6-11-7017b0adc24e@oss.qualcomm.com>
- <5239980b-f74c-4458-a7e3-a5e7f6927449@oss.qualcomm.com>
+	s=arc-20240116; t=1762516956; c=relaxed/simple;
+	bh=JbUCEyNiriQipfbz/kl7+r7h4JVizyYf27cg7WFem3c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EgRFVZJrLLWI3R9Jv9lb3TE5AJJWgnSqORB7pPCl2JFTyBXUE5zdILOm4HIcC6068JWQiFi8J4KaIsP3LxWopc8o0RMEshysMWwP/mlwjtmH0kuDcUBHRfyvrmRwaQnQBymLltE3aeeVMlaYJV4lahwu/wTG+YYq1/evJ87IvG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=eTDNDJfg; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
+	s=s2025; t=1762516917;
+	bh=CYUv/fsSN6bJHRZkRh9qSHvXD8+739BNv79//5iCjzk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eTDNDJfgysyJDzODXG83/IBDUbdQizQdZEhMGIUSLx/Whc3oqK+RU19b51VgNMzGh
+	 Ox9tuuuPO2P9JWWmAd1De4JDzCDEj8Lcx8ibm+jpdhQLF2EPyp9sUMxqk9BbJWPEBW
+	 D4H/fHHRB5UgwYkij5Nkbia/TCH1PzO0JHfVPhmoZLD6A7RAKjKrt/7eHK+xrs1XoP
+	 nEytMBvB99M1CyOmf+7aPAOGsHWqCsfj4U9OdOrFg9DdVjIUXmUiP1jL7fnegUM2aj
+	 GJl7ZeCepdh0S+KIuvHqP/WsYUm9jBurg1PP3qFwL2e1nQlWfmfB7+JMoBxDMvIma7
+	 v/Jy115vw52MQ==
+Received: from [192.168.2.54] (unknown [98.97.27.87])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 2FF12B220598;
+	Fri,  7 Nov 2025 13:01:54 +0100 (CET)
+Message-ID: <4b38ec00-dfc4-481b-8b8d-fa171ce8d12b@freeshell.de>
+Date: Fri, 7 Nov 2025 04:01:51 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5239980b-f74c-4458-a7e3-a5e7f6927449@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=XZyEDY55 c=1 sm=1 tr=0 ts=690ddced cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=g61vSUFNigzP7AYlN20A:9 a=CjuIK1q_8ugA:10
- a=_Vgx9l1VpLgwpw_dHYaR:22
-X-Proofpoint-ORIG-GUID: N3gKQ0gc5oTV6EtTYpZqa91ExVTXM97W
-X-Proofpoint-GUID: N3gKQ0gc5oTV6EtTYpZqa91ExVTXM97W
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA3MDA5NiBTYWx0ZWRfX1wPFhqaNtFPn
- qJYfd/CP7JCjx1c6SiYJ6NPLIVtzhyBxw5cqV3UJphf9Zx3uRoj+BLlJI57hD7LSnIjPbRLYCgj
- xkAqCT1bkRqCL3piLeWLEyhf2aaCQm4g8xb039gOMxIbHAvuNZaBPMDQqgbPDGjEUmSwjCRO8Az
- CHyOx+mwARRvOE+7wz2+MgcqSiv/BkKw+MjMcmzwvW7yWSdeoaH53yEWQlSG6VnAmj+IK+DZiSE
- ZrEgEqrkw0bS0CypLOre1KsPWGhuWZzDVE1ZewKKYhouzW0m1goR7rzXK1d7+tpBWwl3Sgg6txV
- +E6Z8iCWHI5+79q7i6BaCSVyzt9hzqSSs4CUaz9Zj8XbDOfMUZ9pZysDnuk5gaOBsiE8EEF2JcX
- Xxbz6mPHzhkOm8DmMN9j+9HmtKFzBg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-07_02,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 spamscore=0 impostorscore=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 phishscore=0 bulkscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511070096
-
-On Fri, Nov 07, 2025 at 11:20:20AM +0100, Konrad Dybcio wrote:
-> On 11/4/25 8:35 AM, Mukesh Ojha wrote:
-> > Qualcomm remote processor may rely on Static and Dynamic resources for
-> > it to be functional. Static resources are fixed like for example,
-> > memory-mapped addresses required by the subsystem and dynamic
-> > resources, such as shared memory in DDR etc., are determined at
-> > runtime during the boot process.
-> > 
-> > For most of the Qualcomm SoCs, when run with Gunyah or older QHEE
-> > hypervisor, all the resources whether it is static or dynamic, is
-> > managed by the hypervisor. Dynamic resources if it is present for a
-> > remote processor will always be coming from secure world via SMC call
-> > while static resources may be present in remote processor firmware
-> > binary or it may be coming qcom_scm_pas_get_rsc_table() SMC call along
-> > with dynamic resources.
-> 
-> [...]
-> 
-> 
-> > +	/*
-> > +	 * TrustZone can not accept buffer as NULL value as argument Hence,
-> > +	 * we need to pass a input buffer indicating that subsystem firmware
-> > +	 * does not have resource table by filling resource table structure.
-> > +	 */
-> > +	if (!input_rt)
-> > +		input_rt_size = sizeof(*rsc);
-> 
-> Would the expected size of the received data ever be any different
-> than sizeof(*rsc) anyway?
-
-input_rt_size != 0 and input_rt = NULL as input to this SCM call are 
-invalid scenario.
-
-Expected input_rt_size would be greater than sizeof(*rsc) if remote
-processor firmware will have resource table section.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/8] Add support for StarFive VisionFive 2 Lite board
+To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Hal Feng <hal.feng@starfivetech.com>,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>
+References: <20251107095530.114775-1-hal.feng@starfivetech.com>
+ <c05d8bcc-3024-45cd-8630-b0595682e778@freeshell.de>
+ <6d0fb6aa-6d88-4069-a5e5-9e910523888e@canonical.com>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <6d0fb6aa-6d88-4069-a5e5-9e910523888e@canonical.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
+On 11/7/25 03:21, Heinrich Schuchardt wrote:
+> On 11/7/25 12:11, E Shattow wrote:
+>>
+>>
+>> On 11/7/25 01:55, Hal Feng wrote:
+>>> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S industrial
+>>> SoC which can run at -40~85 degrees centigrade and up to 1.25GHz.
+>>>
+>>> Board features:
+>>> - JH7110S SoC
+>>> - 4/8 GiB LPDDR4 DRAM
+>>> - AXP15060 PMIC
+>>> - 40 pin GPIO header
+>>> - 1x USB 3.0 host port
+>>> - 3x USB 2.0 host port
+>>> - 1x M.2 M-Key (size: 2242)
+>>> - 1x MicroSD slot (optional non-removable 64GiB eMMC)
+>>> - 1x QSPI Flash
+>>> - 1x I2C EEPROM
+>>> - 1x 1Gbps Ethernet port
+>>> - SDIO-based Wi-Fi & UART-based Bluetooth
+>>> - 1x HDMI port
+>>> - 1x 2-lane DSI
+>>> - 1x 2-lane CSI
+>>>
+>>> VisionFive 2 Lite schematics: https://doc-en.rvspace.org/
+>>> VisionFive2Lite/PDF/VF2_LITE_V1.10_TF_20250818_SCH.pdf
+>>> VisionFive 2 Lite Quick Start Guide: https://doc-en.rvspace.org/
+>>> VisionFive2Lite/VisionFive2LiteQSG/index.html
+>>> More documents: https://doc-en.rvspace.org/Doc_Center/
+>>> visionfive_2_lite.html
+>>>
+>>> Changes since v1:
+>>> - Drop patch 1 because it is applied.
+>>> - Rename jh7110.dtsi to jh711x.dtsi.
+>>> - Move the content of jh7110-common.dtsi to the new file
+>>>    jh711x-common.dtsi and move opp table to jh7110-common.dtsi.
+>>> patch 4:
+>>> - Move the uncommon nodes to jh7110-common.dtsi instead of board dts.
+>>> patch 5:
+>>> - Add jh7110s-common.dtsi and include it in jh7110s-starfive-
+>>> visionfive-2-lite.dtsi.
+>>>
+>>> Changes since RFC:
+>>> - Add jh7110s compatible to the generic cpufreq driver.
+>>> - Fix the dtbs_check error by adding the missing "enable-gpios" property
+>>>    in jh7110 pcie dt-bindings.
+>>> - Rebase on the latest mainline.
+>>> - Add VisionFive 2 Lite eMMC board device tree and add a common board
+>>> dtsi
+>>>    for VisionFive 2 Lite variants.
+>>> - Add usb switch pin configuration (GPIO62).
+>>> - Improve the commit messages.
+>>>
+>>> History:
+>>> v1: https://lore.kernel.org/all/20251016080054.12484-1-
+>>> hal.feng@starfivetech.com/
+>>> RFC: https://lore.kernel.org/all/20250821100930.71404-1-
+>>> hal.feng@starfivetech.com/
+>>>
+>>> Hal Feng (8):
+>>>    dt-bindings: PCI: starfive,jh7110-pcie: Add enable-gpios property
+>>>    dt-bindings: riscv: Add StarFive JH7110S SoC and VisionFive 2 Lite
+>>>      board
+>>>    riscv: dts: starfive: Rename jh7110.dtsi to jh711x.dtsi
+>>>    riscv: dts: starfive: Split jh7110-common.dtsi and move opp table to
+>>>      it
+>>>    riscv: dts: starfive: jh711x-common: Move out some nodes to jh7110
+>>>      common dtsi
+>>>    riscv: dts: starfive: Add common board dtsi for JH7110s and
+>>> VisionFive
+>>>      2 Lite variants
+>>>    riscv: dts: starfive: Add VisionFive 2 Lite board device tree
+>>>    riscv: dts: starfive: Add VisionFive 2 Lite eMMC board device tree
+>>>
+>>>   .../bindings/pci/starfive,jh7110-pcie.yaml    |   4 +
+>>>   .../devicetree/bindings/riscv/starfive.yaml   |   6 +
+>>>   arch/riscv/boot/dts/starfive/Makefile         |   3 +
+>>>   .../boot/dts/starfive/jh7110-common.dtsi      | 653 +----------------
+>>>   .../boot/dts/starfive/jh7110s-common.dtsi     |  27 +
+>>>   ...h7110s-starfive-visionfive-2-lite-emmc.dts |  22 +
+>>>   .../jh7110s-starfive-visionfive-2-lite.dts    |  20 +
+>>>   .../jh7110s-starfive-visionfive-2-lite.dtsi   | 126 ++++
+>>>   .../boot/dts/starfive/jh711x-common.dtsi      | 656 ++++++++++++++++++
+>>>   .../dts/starfive/{jh7110.dtsi => jh711x.dtsi} |  16 -
+>>>   10 files changed, 879 insertions(+), 654 deletions(-)
+>>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-common.dtsi
+>>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-
+>>> visionfive-2-lite-emmc.dts
+>>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-
+>>> visionfive-2-lite.dts
+>>>   create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-
+>>> visionfive-2-lite.dtsi
+>>>   create mode 100644 arch/riscv/boot/dts/starfive/jh711x-common.dtsi
+>>>   rename arch/riscv/boot/dts/starfive/{jh7110.dtsi => jh711x.dtsi} (99%)
+>>>
+>>>
+>>> base-commit: df5d79720b152e7ff058f11ed7e88d5b5c8d2a0c
+>>
+>> Small nit that "lite-emmc" is confusing together. In patches to U-Boot
+>> dev mailing list the EEPROM product id is demonstrated to be with "SL"
+>> suffix when compared to VisionFive 2 (JH7110) so I suggest avoid
+>> confusion in upstream and use for VisionFive 2 Lite (JH7110S) these
+>> compatible names:
+>>
+>> starfive,visionfive-2sl-lite
+>> starfive,visionfive-2sl-emmc
+>>
+>> Also filenames:
+>>
+>> jh7110s-starfive-visionfive-2sl-lite.dts
+>> jh7110s-starfive-visionfive-2sl.dtsi
+>> jh7110s-starfive-visionfive-2sl-emmc.dts
+>>
+>> What do you think?
+>>
 > 
-> [...]
+> This is a serial number for the Lite board:
+> VF7110SL-2310-D002E000-xxxxxxxx
 > 
-> > +int qcom_scm_pas_get_rsc_table(struct qcom_scm_pas_context *ctx, void *input_rt,
-> > +			       size_t input_rt_size, void **output_rt,
-> > +			       size_t *output_rt_size)
-> > +{
-> > +	int ret;
-> > +
-> > +	do {
-> > +		*output_rt = kzalloc(*output_rt_size, GFP_KERNEL);
-> > +		if (!*output_rt)
-> > +			return -ENOMEM;
-> > +
-> > +		ret = __qcom_scm_pas_get_rsc_table(ctx->pas_id, input_rt,
-> > +						   input_rt_size, output_rt,
-> > +						   output_rt_size);
-> > +		if (ret)
-> > +			kfree(*output_rt);
-> > +
-> > +	} while (ret == -EAGAIN);
+> Here E000 encodes that we have no eMMC.
 > 
-> This should at the very least be limited to a number of retries
+> The S is part of 7110S which we already have in 'jh7110s'. And the L is
+> already decoded as 'lite' in this patch series. Duplicating this
+> information as 'sl' as you suggested provides no benefit.
 
-Sure, how about 5 ?
+The convention in dts file names is CPU model first so that will be
+redundant or not redundant depending on the name of the product anyway;
+whether it is redundant or not is not the driver of whether it is
+confusing to have contradictory terminology in the product name and
+compatible names and dts filenames.
 
 > 
-> Konrad
+> Let's just stick with Hal's suggestion.
+> 
+> Best regards
+> 
+> Heinrich
 
--- 
--Mukesh Ojha
+The "lite" product name in similar products refers to non-populated emmc
+replaced by sd card, so there is benefit to choose a more concise name
+that is not confusing.
+
+I did consider suggesting:
+
+jh7110s-starfive-visionfive-2-lite.dts
+jh7110s-starfive-visionfive-2.dtsi
+jh7110s-starfive-visionfive-2-emmc.dts
+
+but this is a loss of information and does not help readability. By
+extension we're not duplicating information to be more descriptive with
+the product name. Sure I'd go along with:
+
+jh7110s-starfive-visionfive-2-lite-card.dts
+jh7110s-starfive-visionfive-2-lite.dtsi
+jh7110s-starfive-visionfive-2-lite-emmc.dts
+
+But my suggestion remains:
+
+jh7110s-starfive-visionfive-2sl-lite.dts
+jh7110s-starfive-visionfive-2sl.dtsi
+jh7110s-starfive-visionfive-2sl-emmc.dts
+
+for the reason that it's very clearly not the "non-emmc" version of the
+VisionFive 2. You can't mistake it if done the way I am suggesting.
+
+-E
 
