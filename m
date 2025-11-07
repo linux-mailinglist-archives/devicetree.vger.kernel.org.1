@@ -1,64 +1,57 @@
-Return-Path: <devicetree+bounces-235956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B54C3EBD5
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:27:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 689B6C3EC3E
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 08:35:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 492FF4E4C42
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:27:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B9F1188CAE6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 07:36:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4077307AFA;
-	Fri,  7 Nov 2025 07:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D006030B522;
+	Fri,  7 Nov 2025 07:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B77wSxCE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZuRf2HUU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E87926462E;
-	Fri,  7 Nov 2025 07:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81EB30ACEA;
+	Fri,  7 Nov 2025 07:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762500435; cv=none; b=VbSiIos3aTQ85C+pWfF3UOnLDOqphR2BWAkKcw3IhBSY56XowqSoqq/Pjbye9QZVbwecS8tpJDnlRyzFmQL226fBCrNjLpLVFX3M5xNOCDuSeuPc9LxdX7vYXv0IKkwo26FKRvHOiahxXqfV6Vg2Vcu3l1Cvg/BET9N56ttCyBg=
+	t=1762500949; cv=none; b=AhqROGR2grzpKumYr9HMDWj5hGa37M7TejN4W0YxURLg+HKjTDkwv7lykPvGkL6nL/e4ac2L4n+BpBmCsc9TaZ/MDBfrEG3PHGYuGtub3wGN4VgzD6tDIM3dSF34rX59MyMz5juTDUG/ph7zi6F9i4HEjTO0LyLxtFYbiZQoqSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762500435; c=relaxed/simple;
-	bh=gXGpZa9uWm0bQqtVqxWjBvVDTcrH0MAmYNONlowLZEw=;
+	s=arc-20240116; t=1762500949; c=relaxed/simple;
+	bh=S+9jgR0gLcX7zeS2sNqAiZSSiCFj0wAjTaZG4yrgN2A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s9mQFvyLxpHxENuBvnyFIOJSfwV0GyQI9sfFK0/srfO7U5gN5RyMlsL/uRCbZO5ENhpHExCnC1fJIjMvzWXdsocuG3BKP+e19SY7r1qKOIll13bIqig6DUZS85t5dKplTPYiL/DI/lvCAT5p/s7Cn9CJvpsykBCUf4m+GGEFZSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B77wSxCE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0DF0C4CEF8;
-	Fri,  7 Nov 2025 07:27:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SrUgqCYYzw4fJvsMVZ5ggPbA2cZyFU4exYg0iyJUR1II9RVOr2aZk6mqWMyRcpNVgZZJ4kRQGlGKkZHyXCnpKhLIxm/F4vUPsEb9v30S+q8zzKA9nQ77Jm9QRkUUnDa6PwYwX1WXhPHk0CnMCdlAx3hv0JqhQukjYh2Z1glE6rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZuRf2HUU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFA0EC116B1;
+	Fri,  7 Nov 2025 07:35:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762500435;
-	bh=gXGpZa9uWm0bQqtVqxWjBvVDTcrH0MAmYNONlowLZEw=;
+	s=k20201202; t=1762500948;
+	bh=S+9jgR0gLcX7zeS2sNqAiZSSiCFj0wAjTaZG4yrgN2A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B77wSxCEFnZz8RglgJn1dvttGvTASh129gGwtPt4uS/iSM2d2FidrLULS8egkjuGm
-	 UElZi/4gAqXDWBnKavjQD/+j5u03LXouNyybz+vW5CNfb7VS1S9rXdA1ho2Rt4eWC2
-	 Q6Ymv30aWHLJTf/IiXKX5uceIVQL8NobFNkry9RLjkYpnG6pL/ml+SyuGQZGan4YbE
-	 S2y8sXhJxHVP6MlAx6qISoJ92BDqopd6Rn0g4A0qmhHEvxMIAa5nsn1maTvRVc4XUD
-	 WWpYcbSdX7CTTfQLMiSS9rPfBX86GrB5TpNAzYabLl/2YESjst83rs1NT7N3yFkQ2B
-	 MRcVVSuwgylsA==
-Date: Fri, 7 Nov 2025 08:27:12 +0100
+	b=ZuRf2HUUBXRVyF7nxDv2yk7pgRD0vS3lVOXJxOU0r3VU9sUfdvptmu7EDHG99pk33
+	 cgvfBlQuQ1ryzT8bVTApAgLD2FOWPeG28FesBdtyvHaJ4+Fsmf499+ROCA7RRCavLw
+	 NyhG7T3UD0DF3qvpQLUTYU2MLPwjmt4lYsKMOeZp6b9Jc6e/k8hSZrqYkwkCkmZNIM
+	 cKU7Zn99O/DgIR+kE2QLoIchKLHlyda5IwHk1dD6+a4zY+5njuCa2QvPs1pRnoZsiw
+	 umQmXE0zgYZinQ3n26TXbhj17UPCJuKRRTZpNgwqBpLyk9gVZcMZVhXzvVDGDbg5Wr
+	 2MPsLHc9zBz4g==
+Date: Fri, 7 Nov 2025 08:35:45 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "irving.ch.lin" <irving-ch.lin@mediatek.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Richard Cochran <richardcochran@gmail.com>, Qiqi Wang <qiqi.wang@mediatek.com>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
-	netdev@vger.kernel.org, Project_Global_Chrome_Upstream_Group@mediatek.com, 
-	sirius.wang@mediatek.com, vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-Subject: Re: [PATCH v3 01/21] dt-bindings: clock: mediatek: Add MT8189 clock
- definitions
-Message-ID: <20251107-hidden-idealistic-bullfrog-8f0c91@kuoka>
-References: <20251106124330.1145600-1-irving-ch.lin@mediatek.com>
- <20251106124330.1145600-2-irving-ch.lin@mediatek.com>
+	Mahesh Rao <mahesh.rao@altera.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: firmware: svc: Add IOMMU support for
+ Agilex5
+Message-ID: <20251107-enthusiastic-mouflon-of-experience-5aea2f@kuoka>
+References: <cover.1762387665.git.khairul.anuar.romli@altera.com>
+ <dc40029c970d33b433e763202e6622a0a2f12d72.1762387665.git.khairul.anuar.romli@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +60,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251106124330.1145600-2-irving-ch.lin@mediatek.com>
+In-Reply-To: <dc40029c970d33b433e763202e6622a0a2f12d72.1762387665.git.khairul.anuar.romli@altera.com>
 
-On Thu, Nov 06, 2025 at 08:41:46PM +0800, irving.ch.lin wrote:
-> From: Irving-CH Lin <irving-ch.lin@mediatek.com>
+On Fri, Nov 07, 2025 at 07:35:25AM +0800, Khairul Anuar Romli wrote:
+> In Agilex5, the TBU (Translation Buffer Unit) can now operate in non-secure
+> mode, enabling Linux to utilize it through the IOMMU framework. This allows
+> improved memory management capabilities in non-secure environments. With
+> Agilex5 lifting this restriction, we are now extending the device tree
+> bindings to support IOMMU for the Agilex5 SVC.
 > 
-> Add device tree bindings for the clock of MediaTek MT8189 SoC.
-> 
-> Signed-off-by: Irving-CH Lin <irving-ch.lin@mediatek.com>
+> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 > ---
->  .../bindings/clock/mediatek,mt8189-clock.yaml |  90 +++
->  .../clock/mediatek,mt8189-sys-clock.yaml      |  58 ++
->  .../dt-bindings/clock/mediatek,mt8189-clk.h   | 580 ++++++++++++++++++
 
-This one was not tested, though, so dropping from patchwork...
+<form letter>
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
