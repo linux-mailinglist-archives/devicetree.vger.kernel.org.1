@@ -1,154 +1,421 @@
-Return-Path: <devicetree+bounces-236005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5991C3F14E
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 10:07:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22002C3F15A
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 10:07:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B91B188C08F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 09:08:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E95D9188D7C7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 09:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965F531690A;
-	Fri,  7 Nov 2025 09:07:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2DB31690A;
+	Fri,  7 Nov 2025 09:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="0rzgYZsY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SkCR7XI7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E73A7212566;
-	Fri,  7 Nov 2025 09:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6955D316912
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 09:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762506457; cv=none; b=E14OLTcoyzwF/ZhCd8oL/+RTimkeLQnz1oH0i1vmhKHKHtqw5vmJON95dbtmIZyFmfr9ZtUCYYNPPdVMrJgsH1/kBbafkJ3qLwvckX3ug7izq7qlr4zr7vT3GRG/4W3rOMAdLTbEnMzwg0BPMqhnojBpTi2GnLPCd2vcm+MzVak=
+	t=1762506472; cv=none; b=BOTn0gkQTwLutsGoXovs1BrcfXHqoFcUfOOe+8SWzSvvCznxuf4Fh994QtIMuwxxXmFfZ8qQIPAmudglCGlkiYT0xJ/z1nuPtYgfoNObiumfNPksrQaLXpmv0WuVc2BjNyPghUJuuPL3T9bIHn4mhBzY8TOvrCfQtgf3q2R0tvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762506457; c=relaxed/simple;
-	bh=0r3mLNCGrWE7hT6p6FJAIG3AhqSA9KylKzwdHZxUZpM=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=j9eF/qu8ZxJg0e7c+8F1xxLlnlViB3NjzTOQgb+IcxNsF439++3UXKVFQMqCqHOK/Ne01/0oDTA7Rh5Mkllx1glBpm+ZkhcqCQyZcio7DWHq8ikhgXa9umAbEaseef41psaC8SCjQzAZlE3caz2Va1W+YgbLyByh/IWtjpmQzHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=0rzgYZsY; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id DACC8C0FA9E;
-	Fri,  7 Nov 2025 09:07:11 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id EC1B46070B;
-	Fri,  7 Nov 2025 09:07:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EA9AA11851DE5;
-	Fri,  7 Nov 2025 10:07:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762506451; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Sy63ZFPfLxeX+rkZOJprYwfHaS5jEGoCibkMAFJMUlc=;
-	b=0rzgYZsY73DyTeUngQTpshM2GBPYgAwxOp9qVrv8gZO96h4rFyI682/J7ahEUWaNzeuM9B
-	tJkWuSNE1n0ibZwbVBGXWKUpVjNcJSW3Aknslb/zrlqs/iw7h+P+t1v4uxvg1xkaglHBMQ
-	D0V7tRIG4q1UiPtBhiyqFYrlnQZvbt03vH+3LGrm+YYygSLwk9hecL0CKN1L4Ua1i/Xx4C
-	0E9RSPkqeqrwmsn1eAY17ZBAP80uozInu/RRnYqcfyWSqG4JX4ultmjT58SiAGhxUQDif/
-	2gKPHvhZm3CGlMFmzu6XjChJjyxxvhnw2BCO9Buq4zlUqrEMv1Be+AcJrkYqWA==
+	s=arc-20240116; t=1762506472; c=relaxed/simple;
+	bh=Gv5JOojsJfcbiL7SWyqUiiv0JhQhaw+H+fix2oqXz7s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CeAm1lz6YfV06+LjLcZkkwaX5EvmPFRTod5Fo6VClTHpp2As5qw4TMHFySwYQsPLCpxhGfVRJi7C2c3doDhFzBr+5xmYCRCf3Tv+jM2d9rGer8T40PT62bvmlPAAs3EDrXzTCUJXL7yraKeHqH0ljPU93Qf9rnla/NIsfq3+nMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SkCR7XI7; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7a9c64dfa8aso408463b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 01:07:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762506470; x=1763111270; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DYs/QBXCZvq/660ODvJ+tef1LDCFmdxZ+HXurvTN9is=;
+        b=SkCR7XI7Yxo7WvmZMyW0n4nrQxc72acfXbr0ly1onB5XZlkI22Y8W/2Ebi9mQiiyaK
+         A9WgK4yWkWOiJW+kJylSq0wRmcJDIzic1MCd19R2JegYQYGuvMaNy4Zx9vihwPswxsZQ
+         0RVvYNQTrAngaKXT9g54QaD+WZaEieWG2bKzhfFShE39KjTpbQ+exDW5HBcYMwRM4Wo8
+         8GQtWiu+fSHovv/a+bZn1BbzfT3FKR9NEPe17YHs1k43KNSGCfsKBVrT7Jz7XgMrrwRH
+         yEFxaxILWYo6bxSVvjao9jHOHAVWAI7DJECWk1FmWvWzdSp5tpkQ+qlajY6fk12aROoI
+         4E7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762506470; x=1763111270;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=DYs/QBXCZvq/660ODvJ+tef1LDCFmdxZ+HXurvTN9is=;
+        b=s26APUZrjj/vfxuCgetdUHT9hBXK/+wR+P00IH+p1WSipJt35HdqT+H33fAqzfGnbO
+         LDyv/Dhue0ORobcyJQaHLMeRFrd0NLGwUuxTFjKQ920y4fzmzrkx1XllgHYeuwSBr8v9
+         eGpsAcFccaT8q4Z4hEv8wypHDxhlnYXKUs8mZndDA/FLOjMGjd1EZLZJOpoUuCDGK3ZP
+         OOcOvHvtI8hUlosvn3S+xPlBtShWuTadJzSgXGx61A7A27fAxNuX1xi9Pu4Ql7cGXdNn
+         t9/awiyqtlj3N0QVbjNJ+zOc9BHYo/g9EVOqHP3ooDDLeGoP5/2zjFGEsPXddrqAc6nZ
+         USvw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDHiG/7MA1T8tugeXtFVZ2gDPpG5mP41YSmqMbAXAeA+ZW7K5S7pVwbgEKuGpB/UGA+GjFWGQva0rn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7Zxz3DZmrCZw4Ihk/+cbR1FvfvieD1E2gvbybR1kM1LdbUy8X
+	lVKOGKTJk8baZzL0Wv3ioMyKWro/aIU0JnQgXKScj8B1mNeJel9k5i8+rWUd1/8YwumEIX35tc/
+	fCqD0G8EA1MCUa73AXV3qDsX6gLdT6Lo=
+X-Gm-Gg: ASbGncsdEPCFEX8hrYQOktI7ooanKq2PyLHaFegEPXsqdepD7wKzcZdos2kKUY0g+Sn
+	DzA2NzsVII2PHZOleAd1GLLuj29qDIOB2dRFgBsQK8OIRTZsSchyBsTuwUsI2lt1ZNmSG0pLbVT
+	QlGpGf+qmRkEewT02S10PPlXnsur3dNU/hCVX6RciJez2U0DbTYdTcvDGY7ByUzQdAvzf6JfsMT
+	Ul9V4MJv1hlzAGdRactxY00IAXkEy8X/hqArhFjOIywyuPBRQRiUnZHUg==
+X-Google-Smtp-Source: AGHT+IHqvZ536/L69mxHkhuF11bfPojcxN3OKrIi8t8i0qaWQH5JkzQzoCPgXqiKJrVEEFwXuBfxc+8S2r0QzJL31A8=
+X-Received: by 2002:a17:903:41ce:b0:295:bba:9734 with SMTP id
+ d9443c01a7336-297c0403d70mr38962925ad.24.1762506469467; Fri, 07 Nov 2025
+ 01:07:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20251031-imx95-rproc-2025-10-31-v2-0-758b2e547a55@nxp.com> <20251031-imx95-rproc-2025-10-31-v2-4-758b2e547a55@nxp.com>
+In-Reply-To: <20251031-imx95-rproc-2025-10-31-v2-4-758b2e547a55@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Fri, 7 Nov 2025 11:10:15 +0200
+X-Gm-Features: AWmQ_bm9Zcfpruky9KY1PgELNLr_sZHGvJRfTN76y_f7sFmTI8iuqFJ9SjSqPuM
+Message-ID: <CAEnQRZC8PTbzNM056WUSR-kYqdf4Sgkr88z3S87ZFk+rc=q3=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] remoteproc: imx_rproc: Add support for System
+ Manager API
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Frank Li <frank.li@nxp.com>, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 07 Nov 2025 10:07:27 +0100
-Message-Id: <DE2CE3YY1Q9E.3HLFSD4K2CCGS@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 0/7] Add generic PHY driver used by MACB/GEM on EyeQ5
-Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
- <linux-clk@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
- <benoit.monin@bootlin.com>, "Maxime Chevallier"
- <maxime.chevallier@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Conor Dooley"
- <conor.dooley@microchip.com>, "Jerome Brunet" <jbrunet@baylibre.com>,
- "Andrew Lunn" <andrew@lunn.ch>
-To: "Philipp Zabel" <p.zabel@pengutronix.de>, =?utf-8?q?Th=C3=A9o_Lebrun?=
- <theo.lebrun@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
- <kishon@kernel.org>, "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251101-macb-phy-v2-0-c1519eef16d3@bootlin.com>
- <56a49462312d89fd0de6da273f698c0f89e73ada.camel@pengutronix.de>
-In-Reply-To: <56a49462312d89fd0de6da273f698c0f89e73ada.camel@pengutronix.de>
-X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu Nov 6, 2025 at 11:51 AM CET, Philipp Zabel wrote:
-> On Sa, 2025-11-01 at 09:53 +0100, Th=C3=A9o Lebrun wrote:
->> About merging, it'll probably be complex. I see no build dependencies,
->> but the board will be in an odd state if only some patches are applied.
->> Some dev_warn() at boot and dev->of_node refcounting issues at unload.
->>=20
->>  - [PATCH 1/7] dt-bindings: soc: mobileye: OLB is an Ethernet PHY provid=
-er on EyeQ5
->>    We touch dt-bindings because OLB becomes a PHY provider.
->>    =3D> linux-mips (?)
->>=20
->>  - [PATCH 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
->>    We add the generic PHY driver in drivers/phy/phy-eyeq5-eth.c with the
->>    usual Kconfig, Makefile and MAINTAINERS changes.
->>    =3D> linux-phy (?)
->>=20
->>  - [PATCH 6/7] MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet contr=
-ollers
->>    [PATCH 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet P=
-HYs
->>    DTS patches to add both the #phy-cells of OLB and the MACB instances.
->>    =3D> linux-mips
->>=20
->>  - [PATCH 4/7] clk: eyeq: add EyeQ5 children auxiliary device for generi=
-c PHYs
->>    We must update clk-eyeq because it instantiates a new auxdev.
->>    =3D> linux-clk
->>=20
->>  - [PATCH 3/7] clk: eyeq: use the auxiliary device creation helper
->>    [PATCH 5/7] reset: eyeq: drop device_set_of_node_from_dev() done by p=
-arent
->>    With the dev->of_node assignement, we must also correct reset-eyeq.
->>    =3D> separate them into linux-clk and linux-reset?
+Hi Peng,
+
+Some comments inline to make this easier to understand:
+
+On Fri, Oct 31, 2025 at 4:26=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
 >
-> Since 3 and 4 should go via clk, and 5 has a dependency on 3, I would
-> suggest merging them all together.
+> i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
+> one Cortex-M7 core. The System Control Management Interface(SCMI)
+> firmware runs on the M33 core. The i.MX95 SCMI firmware named System
+> Manager(SM) includes vendor extension protocols, Logical Machine
+> Management(LMM) protocol and CPU protocol and etc.
+>
+> There are three cases for M7:
 
-Thanks for the feedback Philipp, and the review on [5/7]. Getting it
-merged in linux-clk will ease the process and avoid breakage. Updated
-summary:
+Here we should specify how M7 gets into these three situations, is it
+via the ATF configuration?
 
- - [PATCH 1/7] dt-bindings: soc: mobileye: OLB is an Ethernet PHY provider =
-on EyeQ5
-   [PATCH 6/7] MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet controll=
-ers
-   [PATCH 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet PHYs
-   =3D> linux-mips
+e.g
 
- - [PATCH 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
-   =3D> linux-phy
+Depending on ATF configuration, M7 can be used as follows:
 
- - [PATCH 3/7] clk: eyeq: use the auxiliary device creation helper
-   [PATCH 4/7] clk: eyeq: add EyeQ5 children auxiliary device for generic P=
-HYs
-   [PATCH 5/7] reset: eyeq: drop device_set_of_node_from_dev() done by pare=
-nt
-   =3D> linux-clk
+>  (1) M7 in a separate Logical Machine(LM) that Linux can't control it.
 
-I might send V3 soon, with your trailers appended.
+Here we should make it clear from who is M7 separate.
 
-Thanks,
+e.g
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+(1) M7 in a separate Logical Machine (LM) from A55 cores, that Linux
+can't control
 
+>  (2) M7 in a separate Logical Machine that Linux can control it using
+>      LMM protocol
+
+(2) M7 in a separate LM from A55 cores that Linux can control using
+LMM protocol.
+
+>  (3) M7 runs in same Logical Machine as A55, so Linux can control it
+>      using CPU protocol
+>
+
+
+> So extend the driver to using LMM and CPU protocol to manage the M7 core.
+
+
+>  - Compare linux LM ID(got using scmi_imx_lmm_info) and M7 LM ID(the ID
+>    is fixed as 1 in SM firmware if M7 is in a seprate LM),
+
+s/seprate/separate
+
+One question here: Is it OK to call scmi_imx_lmm_info no matter the
+context are we in?
+
+If this call fails is it safe to assume that we are in the case (1)
+describe above? E.g Linux
+cannot reach the M7 core through LMM protocol  or CPU protocol?
+
+
+
+>    if Linux LM ID equals M7 LM ID(linux and M7 in same LM), use CPU
+>    protocol to start/stop. Otherwise, use LMM protocol to start/stop.
+>    Whether using CPU or LMM protocol to start/stop, the M7 status
+>    detection could use CPU protocol to detect started or not. So
+>    in imx_rproc_detect_mode, use scmi_imx_cpu_started to check the
+>    status of M7.
+>  - For above case (1) and (2), Use SCMI_IMX_LMM_POWER_ON to detect whethe=
+r
+>    the M7 LM is under control of A55 LM.
+>  - For above case , after using SCMI_IMX_LMM_POWER_ON to check
+>    permission, SCMI_IMX_LMM_SHUTDOWN API should be called to shutdown
+>    the M7 LM to save power only when M7 LM is going to be started by
+>    remoteproc framework. Otherwise bypass SCMI_IMX_LMM_SHUTDOWN API if
+>    M7 LM is started before booting Linux.
+>
+> Current setup relies on pre-Linux software(U-Boot) to do M7 TCM ECC
+> initialization. In future, we could add the support in Linux to decouple
+> U-Boot and Linux.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/remoteproc/Kconfig     |   2 +
+>  drivers/remoteproc/imx_rproc.c | 192 +++++++++++++++++++++++++++++++++++=
+++++++
+>  drivers/remoteproc/imx_rproc.h |   3 +
+>  3 files changed, 197 insertions(+)
+>
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index 48a0d3a69ed08057716f1e7ea950899f60bbe0cf..ee54436fea5ad08a9c198ce74=
+d44ce7a9aa206de 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -27,6 +27,8 @@ config IMX_REMOTEPROC
+>         tristate "i.MX remoteproc support"
+>         depends on ARCH_MXC
+>         depends on HAVE_ARM_SMCCC
+> +       depends on IMX_SCMI_CPU_DRV || !IMX_SCMI_CPU_DRV
+> +       depends on IMX_SCMI_LMM_DRV || !IMX_SCMI_LMM_DRV
+>         select MAILBOX
+>         help
+>           Say y here to support iMX's remote processors via the remote
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rpro=
+c.c
+> index 232eb91e0b5dc2432131b1c140d6688b073fea1d..1fb17701964ca4ee4b73d343b=
+5ec1be8e2ee5fda 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/clk.h>
+>  #include <linux/err.h>
+>  #include <linux/firmware/imx/sci.h>
+> +#include <linux/firmware/imx/sm.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+>  #include <linux/mailbox_client.h>
+> @@ -22,6 +23,7 @@
+>  #include <linux/reboot.h>
+>  #include <linux/regmap.h>
+>  #include <linux/remoteproc.h>
+> +#include <linux/scmi_imx_protocol.h>
+>  #include <linux/workqueue.h>
+>
+>  #include "imx_rproc.h"
+> @@ -92,8 +94,12 @@ struct imx_rproc_mem {
+>  #define ATT_CORE_MASK   0xffff
+>  #define ATT_CORE(I)     BIT((I))
+>
+> +/* Linux has permission to handle the Logical Machine of remote cores */
+> +#define IMX_RPROC_FLAGS_SM_LMM_AVAIL   BIT(0)
+> +
+>  static int imx_rproc_xtr_mbox_init(struct rproc *rproc, bool tx_block);
+>  static void imx_rproc_free_mbox(void *data);
+> +static int imx_rproc_sm_detect_mode(struct rproc *rproc);
+>
+>  struct imx_rproc {
+>         struct device                   *dev;
+> @@ -117,6 +123,8 @@ struct imx_rproc {
+>         u32                             core_index;
+>         struct dev_pm_domain_list       *pd_list;
+>         const struct imx_rproc_plat_ops *ops;
+> +       /* For i.MX System Manager based systems */
+> +       u32                             flags;
+
+<snip>
+
+>  static int imx_rproc_prepare(struct rproc *rproc)
+>  {
+>         struct imx_rproc *priv =3D rproc->priv;
+> @@ -994,6 +1090,102 @@ static int imx_rproc_scu_api_detect_mode(struct rp=
+roc *rproc)
+>         return 0;
+>  }
+>
+> +static const struct imx_rproc_plat_ops imx_rproc_ops_sm =3D {
+
+I think this should be called imx_rproc_ops_sm_lmm.
+
+> +       .detect_mode    =3D imx_rproc_sm_detect_mode,
+> +       .prepare        =3D imx_rproc_sm_lmm_prepare,
+> +       .start          =3D imx_rproc_sm_lmm_start,
+> +       .stop           =3D imx_rproc_sm_lmm_stop,
+> +};
+> +
+> +static const struct imx_rproc_plat_ops imx_rproc_ops_sm_cpu =3D {
+> +       .detect_mode    =3D imx_rproc_sm_detect_mode,
+> +       .start          =3D imx_rproc_sm_cpu_start,
+> +       .stop           =3D imx_rproc_sm_cpu_stop,
+> +};
+> +
+> +static int imx_rproc_sm_lmm_check(struct rproc *rproc, bool started)
+> +{
+> +       struct imx_rproc *priv =3D rproc->priv;
+> +       const struct imx_rproc_dcfg *dcfg =3D priv->dcfg;
+> +       struct device *dev =3D priv->dev;
+> +       int ret;
+> +
+> +       /*
+> +        * Use power on to do permission check. If rproc is in different =
+LM,
+> +        * and linux has permission to handle the LM, set IMX_RPROC_FLAGS=
+_SM_LMM_AVAIL.
+> +        */
+> +       ret =3D scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_POWER_ON,=
+ 0);
+
+I wonder if there is a better call to check if Linux has permissions
+to handle to other LMM. This is a bit
+strange but if no other option we can go witi it.
+> +       if (ret !=3D 0) {
+> +               if (ret =3D=3D -EACCES) {
+> +                       /* Not under Linux Control, so only do IPC betwee=
+n rproc and Linux */
+> +                       dev_info(dev, "lmm(%d) not under Linux Control\n"=
+, dcfg->lmid);
+
+Would this be an error? So if Linux cannot interact with the other LMM
+via LMM API how IPC is possible?
+via CPU protocol?
+
+Maybe we need a better explanation here.
+
+
+> +                       return 0;
+> +               }
+
+
+> +
+> +               dev_info(dev, "power on lmm(%d) failed: %d\n", dcfg->lmid=
+, ret);
+> +               return ret;
+> +       }
+> +
+> +       priv->flags |=3D IMX_RPROC_FLAGS_SM_LMM_AVAIL;
+> +
+> +       /* rproc was started before boot Linux and under control of Linux=
+, directly return */
+> +       if (started)
+> +               return 0;
+> +
+> +       /* else shutdown the LM to save power */
+> +       ret =3D scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_SHUTDOWN,=
+ 0);
+> +       if (ret) {
+> +               dev_err(dev, "shutdown lmm(%d) failed: %d\n", dcfg->lmid,=
+ ret);
+
+do we care to restore the flags field here on case of error?
+
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int imx_rproc_sm_detect_mode(struct rproc *rproc)
+> +{
+
+<snip>
+
+> +
+> +       ret =3D scmi_imx_cpu_started(dcfg->cpuid, &started);
+
+Is this CPU protocol call? So we can still use this even if Host core
+and remote core are in different LMMs?
+
+> +       if (ret) {
+> +               dev_err(dev, "Failed to detect cpu(%d) status: %d\n", dcf=
+g->cpuid, ret);
+> +               return ret;
+> +       }
+> +
+> +       if (started)
+> +               priv->rproc->state =3D RPROC_DETACHED;
+> +
+> +       /* Get current Linux Logical Machine ID */
+> +       ret =3D scmi_imx_lmm_info(LMM_ID_DISCOVER, &info);
+> +       if (ret) {
+> +               dev_err(dev, "Failed to get current LMM ID err: %d\n", re=
+t);
+> +               return ret;
+> +       }
+> +
+> +       /*
+> +        * Check whether remote processor is in same Logical Machine as L=
+inux.
+
+Is in same -> is in the same. We need to always try to be consistent.
+
+Remote processor is a hardware part while Linux is a software part.
+
+So always use the same object types: e.g /*check whether remote
+processor is in the same LM as host core (running Linux) */
+
+> +        * If yes, use CPU protocol API to manage remote processor.
+> +        * If no, use Logical Machine API to manage remote processor.
+> +        */
+> +       is_cpu_ops =3D dcfg->lmid =3D=3D info.lmid;
+
+No need for is_cpu_ops.
+
+Just go if(dcfg->lmid =3D=3D info.lmid)
+
+
+> +
+> +       if (is_cpu_ops) {
+> +               priv->ops =3D &imx_rproc_ops_sm_cpu;
+> +               dev_info(dev, "Using CPU Protocol OPS\n");
+
+I'm not sure we want to go with dev_info here. It it pollute the log
+and at least confuse people.
+But if you feel a strong need for this you can keep it.
+
+Also, shouldn't be here an else case where priv->ops gets set to LMM ops?
+
+> +               return 0;
+> +       }
+> +
+> +       dev_info(dev, "Using LMM Protocol OPS\n");
+> +
+> +       return imx_rproc_sm_lmm_check(rproc, started);
+
+If this check fails is the info message above still valid? It will
+confuse people.
+
+<snip>
+
+> @@ -52,6 +52,9 @@ struct imx_rproc_dcfg {
+>         enum imx_rproc_method           method;
+>         u32                             flags;
+>         const struct imx_rproc_plat_ops *ops;
+> +       /* For System Manager(SM) based SoCs, the IDs are from SM firmwar=
+e */
+
+Keep here:
+
+/* For System Manager(SM) based SoCs */
+
+Then comment for each of the fields:
+> +       u32                             cpuid; /* TODO.... CPU Id of the =
+remote core? */
+
+> +       u32                             lmid;
+
+But how these fields are set? Are they the cpuid and lmid of the
+remote core or local core (a55)?
 
