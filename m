@@ -1,132 +1,247 @@
-Return-Path: <devicetree+bounces-236155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C60C40AE0
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:52:22 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A46FC40AF2
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 16:53:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BB13034F023
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:52:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 70A1134F1C0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 15:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77D3232C930;
-	Fri,  7 Nov 2025 15:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5955E32E15B;
+	Fri,  7 Nov 2025 15:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="JprloZHT"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fP2Jadg9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011047.outbound.protection.outlook.com [52.101.65.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7372F9DAF;
-	Fri,  7 Nov 2025 15:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762530737; cv=none; b=P7kiSA0jEJ3nMVhcOCZpWUUE/ttIOtVv1jw6L9uv6tG6LPhJoRV5djRrB8APoHHkzkvE1C4wyE5SzfUhU/7D1bDZtoXgRq9xLUaFPK6qunVK8Ko6bBZTlunivkKCamdc+CbgpztBs0MK4BvU+Q3JFo+JnLAyDL/JUqOtQjXgUEA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762530737; c=relaxed/simple;
-	bh=VfqiXVnXHsweixRlwrrt3c7A8wz6SyMBDBW8vTeLdVI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=li98oWPhLrEHzhQpgkqO1K9dZXZjXpFzhx41nNeA3bLJDWqY90OUd8jAeRA/9vFaTdPJIYIxfbFH3vh/aEECTrSmvFVlFxqTyhzQnN+0i7qRBbXr+VAoWVKenUcMimExrZH4N1BR9fLKoVRZBQEScgySbjE1WiDg8vTY7+jLXE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=JprloZHT; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 5A60C1FB9A;
-	Fri,  7 Nov 2025 16:52:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1762530725;
-	bh=c3Vswpijn/fHcEJQO2VeGXkaT5nX/VaBE7KE0Jscnuo=; h=From:To:Subject;
-	b=JprloZHT7cxN62EH9YL28KwyMi9OOie063qzgXzS36wpar25HfqyxOOX+bR3nMlLi
-	 g6K7xSOrvpSaxY0kCOl1mkA+3OaI3bBxmF75qVYIKSbRMKXPZTLXHk5SnfNEgnMMhm
-	 oMKpvibF5zXZqXEaRZwsyRxtveBhFHMJ1ZeRQGCNHoNm6QnRczJd1QB67uWhavVr4x
-	 jr3kRrML1EuSIJ3NE1PCs6cvxQU5+W97VcivX17XzEqfsEuejwlQy3h1T16mo1Or/s
-	 RK5lOTyQ4eg6lxWqljiMOSwSRD9WFy8HV0151pUYcp5gMfhLIf3fOsVi6/ScDUXKng
-	 lvvLxEB8VOjUw==
-Date: Fri, 7 Nov 2025 16:52:01 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 606B032E15D;
+	Fri,  7 Nov 2025 15:53:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762530828; cv=fail; b=MKtVXIloMZ5RSv36RFXdjiQUzoEGQbrPUgRQIOubdhf6uv4AdHFOvqI0TJay5CaokB8H9NfTf2FtkghjkucO4vUikmhgJyO/jlr8wm6StQ/KgE27B0P+/tAdMREa35S0Pq0nEBiJ4uyLIe2XZ2Vp6WQp4Zn5m6+YAsE56cW2GMc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762530828; c=relaxed/simple;
+	bh=lasBFFMbPj0NVvjPzL0jtqYy4LpZ6NLkEA3N0WfjPyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ez0EjYUTCjeBEQ/N6BHbL0Sx9UqsQpKMwfTxaMJQz/htpUy14g64kSP/TDE+NmXbpUtXvo6HY1SDvurQldnjxmfWYrpmqz0T5yagkBn4N68h/cYQLfhGyKXW5r/83GybTRr5Fi0qBMP0VNq9eGvz//te3tl8iBM+le8kbbZDl2g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fP2Jadg9; arc=fail smtp.client-ip=52.101.65.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zV8WEsTm2AP8dW0kc3/5BNnfDFmO+7kJNsBIbYtG9r5BftVGMcIB7FcXQBCH0XDjZxsUrwCwuyIkYXaJhH/Th9jKrFm7ti1lB7FwQulRK7jO+gaaV751vdEsmuHQLTsJlYic182JwJUfBHYNR0hBmLNLWjH/Z4IiUHw3LifSepDsSKM2ifEdxUvezQPXYP73K5wcZDGhpZaGoltmLEnyCPEAG6n+hYBp3Dn5s+8LoosgRPLWg5kZBQ8P94i5yO4iBAvt0d0KzEzl5t1FMTEMpkymifaCFljv1MRjiKB2YA89FLmUQCBmOv6aRs0OOavRknyI3UaAqF6sJKL1DucKHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZxJ41yeq/l2XIXDmYkUxV8mMQ2xwrHY8KVDenWfIoiU=;
+ b=rw+PWpIADI6UUOuvEjO8bpsKANJ/BCN2JUpplpz//j9shOHaDYmbQxeAH17WfA6p2EThkWPEFpOenm+kofsyQ77ZCkRa5MNI2HISrF89WYWMM2NtO1QwwMIOUDD1Nhb8pMqEHUviH7o0bWtTBDpi7g/z9Ftfv8swbb2IlwEZX/A2BGsq3OpNrEjxwch7MUnoAua1h27zr+/U7oJEM96JhhUopRZSP/JWgH8VOlDS0nYqtkCa1f/kJhsFHQzZ1BAq1eqmf0szlwgEUV14MmuvZA85qmZXi8CwG/eivZKAsvV6uXxdZ5vLyJqooG/DXzdzUSohD3wnVSi1Dlr8vKHRGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZxJ41yeq/l2XIXDmYkUxV8mMQ2xwrHY8KVDenWfIoiU=;
+ b=fP2Jadg9P7t5ZZcBm/RN/r+dPa2ZTPhKsWGjGOFmXoFzaRuE+igyLqzpYFUWZsc2F9HNyTmuQOubu1amkuM382NmKtStunyHMoBNJYgTC5NfC/NJL9QcGVmTBndIl6v/ETDkUlJh/0epGBrEI0B+yEziaUng2gZhrEzDAkT0sDkj+3E3mcDH2OnCsFFMrJpTjSMwofV79Mwje7d9HWDBjPMpOoWzQSD+ty8rc7zc9qkNm4wgvbxW0rztHUck8t7kTlAh4f8TXSr1fIB2yQcNE2C7G5dRqH9Dtgl6t30iEcFW+l04QJ7qPSpeS0ECSeV/t69lvW8+K6ffEcf41cB/2w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by DB9PR04MB9673.eurprd04.prod.outlook.com (2603:10a6:10:305::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.9; Fri, 7 Nov
+ 2025 15:53:41 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9298.010; Fri, 7 Nov 2025
+ 15:53:41 +0000
+Date: Fri, 7 Nov 2025 10:53:29 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] ARM: dts: imx: move nand related property under
- nand@0
-Message-ID: <20251107155201.GA119737@francesco-nb>
-References: <20251104-gpmi_dts-v1-0-886865393d0f@nxp.com>
- <20251104-gpmi_dts-v1-3-886865393d0f@nxp.com>
- <20251105115538.GA17091@francesco-nb>
- <aQttQb5GesjUtBw6@lizhi-Precision-Tower-5810>
+	Fabio Estevam <festevam@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jon Nettleton <jon@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 02/11] dt-bindings: display: panel: ronbo,rb070d30:
+ panel-common ref
+Message-ID: <aQ4V+QW8l4X5yEV2@lizhi-Precision-Tower-5810>
+References: <20251107-imx8mp-hb-iiot-v2-0-d8233ded999e@solid-run.com>
+ <20251107-imx8mp-hb-iiot-v2-2-d8233ded999e@solid-run.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251107-imx8mp-hb-iiot-v2-2-d8233ded999e@solid-run.com>
+X-ClientProxiedBy: BYAPR07CA0085.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::26) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aQttQb5GesjUtBw6@lizhi-Precision-Tower-5810>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|DB9PR04MB9673:EE_
+X-MS-Office365-Filtering-Correlation-Id: e5668ea7-7b8b-4a1c-cc3d-08de1e15d29c
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|19092799006|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?67zou6KwctBiUqSfuvR9r9rdYwY3+ZfN2Vc2oInUeoeK6TnKSetcpnLCK74Z?=
+ =?us-ascii?Q?dSMD4D2U44qlzUF66PK2Xw0St2Qnyss1LEvf1OHyDRgluUU6yuIvuiRtO53K?=
+ =?us-ascii?Q?0p1yY4isfLQWTVgDsZkD8hdoJvqSCWjbo7HaJz/htFQiCOPedq6NBpdhKiLc?=
+ =?us-ascii?Q?yUMg7cFUIoVhfuYK+JJxScAiSyWhzJe+lu5zZ7kdKvGI+/cZ0aHpfTQOGhd7?=
+ =?us-ascii?Q?Y1J7iYD3dB3zhu4VD6Xc8tHzKcfhaJbKFXLU/Gvm2K2rypkdAczqYiawQJ8m?=
+ =?us-ascii?Q?/UHrZyw49X4Ed/O/w6jlk66JP9A+MyoY3c4vnR4olBl01t9V1KJlTZzhizTO?=
+ =?us-ascii?Q?76PGAb5Y2IjazhO4dysefuWdR9mQA01d5jS2iSUJby5izWFfsMbc0sKdzdnq?=
+ =?us-ascii?Q?8GpTMUkyn/fSDieunis5A6646v5MJ01EXl4v6CgO+raGDTvGjFPZlCPLmdWk?=
+ =?us-ascii?Q?FIPjdapPU7LXkrVtZNJGyu8SzpcZ7G3f9uht1azB5DMDaijARYzkoacl5Mpa?=
+ =?us-ascii?Q?Ys7Mlt3U2MQcxpxRbwn4ecHq0eBoCamGH/zcpzHOWssjzm7HkMTPIFlfYPlu?=
+ =?us-ascii?Q?erfST9PDNxpxa/OqzVf7Ckp55NwQYbfyBw3kMfjSMedbEZjVZoTblsxgCWEJ?=
+ =?us-ascii?Q?ydh/iMoW4qUDjYoJpP2SFK/fW4LkRjWRKj/DawTp29VH7l5fUbhzCHS6lrZb?=
+ =?us-ascii?Q?Dmh0xxU/8aeE8iG4P1Z90vT5jAv/2BypXOwfsGqqwx1miKZEXdhHxKhttVzK?=
+ =?us-ascii?Q?PCOpz7TrBTeQgKrjGTlkBtqjWhgDSdBvbxiCQcNXrJ46vs07Ml7tcpti9rii?=
+ =?us-ascii?Q?ZLyWrzdOaZuRbEC0hLM0ayQnN1XpfC/pEQ5BCepzoISKsToRsTOyG0E3R71x?=
+ =?us-ascii?Q?yymveEpdQgn/XZd4nwkug8KU4psmAazIwc17tlJadSFckNjL4VNmj4SXfgYj?=
+ =?us-ascii?Q?Qzhahh8PztbC6ojeTEbY0L9zJP7yOlG/GYEO82seWgzDztY8XnkTRKMSu7kN?=
+ =?us-ascii?Q?URn0lId0ormCIRNfIKYg78MLvTBpbFdfMoGDC/vLJ1dNy8PA67iE6DyTXx3K?=
+ =?us-ascii?Q?9vYB53Es1DKXcKAM2We0d8910TiLcFkF2pSVy/AdA6BV4S4pGoVeED8AeDHi?=
+ =?us-ascii?Q?oF9eunH1tdye7q2mZH85EmObKEP+sTKMh7gG+ncblFsUPpk3n5g4g4xG2K+E?=
+ =?us-ascii?Q?zmVzGO8KRvbbgCj1mjiLZHuqu1QIXxfbDGLFWgu69uMKMLLDxHe51COCB85U?=
+ =?us-ascii?Q?RE0H3Pir6bLe8NxHiBxEo7WWS5dgDhmzYWUbfOgpHbGyX16/QO2OCVD0pY8E?=
+ =?us-ascii?Q?MBOxJ+3fAHmmGBFo2gKTizLqIFm1XoSX69z8ev6I9wRj/jvpcWantKJ3ze4z?=
+ =?us-ascii?Q?QUurB0THLAwYleqKKRucq8GTNQ4tj38xNpHtnlgV4Yw2Wm/OEXcK0zuNxyac?=
+ =?us-ascii?Q?+3UQFNaZJwQBgQKratAgzcTOsJr+6pPjkfXmZuq4RGt8Jbt9UIP6PsILj784?=
+ =?us-ascii?Q?iyYmw54qBR326AEZ5nMOvfeouNomj6KLIBaX?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?NFH4bL56ZnRZ72WNE6A1oWSxYfcirWDJ1YZVntUiBvXFtxtV4341q8HwOi90?=
+ =?us-ascii?Q?NnlkbIZvjFi2dNQ1FWRHVg5bDKIjzP8M4exgPNbOrDnIFWjisXgp0PhE067y?=
+ =?us-ascii?Q?u83+cHekcOATRQJmdWP1EkM+ExjIZDs/Y4He6Zsg1KVOXKyy9RpxLWs2vMQd?=
+ =?us-ascii?Q?AyiuNgTSR367OQgjPLaXLhNDvJZ7SwgLE/CW2//Svf66KDgp5LrvV9+vzKG1?=
+ =?us-ascii?Q?abdTEfaXFHT01+3l+FOWvg0LQekXdxAGIQaLIhi0Ac0nexPrD9XGqOcyMddR?=
+ =?us-ascii?Q?YWmoSF12rvWLjIwf4yhgtNYKVzahLsCjO7D7Qa+wg6cHM4VtqMpOBB0+WEIQ?=
+ =?us-ascii?Q?CHj3uXBET3q6PQdwHBdEGumC3JbhybROZcVV74Up0aw9isct37hCZTkQPzKx?=
+ =?us-ascii?Q?GczilkIX5RTxh1SVGgBLJ5zEN+FCaaJ4AQDP/VG4oCtvJ+fVRzYGuLS4Ff9N?=
+ =?us-ascii?Q?RjLqIqzVGVIjwggJO+jURKTyz8XFRX2WKaNnCDPQHd+MCwbOA8dUHEPum4hm?=
+ =?us-ascii?Q?xLqN/lwVo1+4qAB0cpdEyaygOMCgnGMgfJK9YDNNXsNZSAnY+NLugCU7ds+4?=
+ =?us-ascii?Q?cz528NPedXVVley+60snHO8V+T71LUGDOGirdElzfSqWmiyKECaKn/0EJG2p?=
+ =?us-ascii?Q?QEZsptkYti2h8xoDDrE44zVA4i9jk0o/qvncmKj+3612uuo1tZPcQxbAmwFJ?=
+ =?us-ascii?Q?Y5hmEdebVKiQdNOYbhelnkYiCAw5iPvqPdc1M4NnFarYwLcg4maoqyPxQaeC?=
+ =?us-ascii?Q?gHffiqND5Zl/Zl0sASn3fWMK8Whg2MShz4NICHpK3OOoYEIL06ZBK4EAS+uK?=
+ =?us-ascii?Q?GK8Uk72EaLiuvOQ7BjqIGGkoiHwZRkWiN0TTrxAGHo8tGtcoBug47VGGFpbX?=
+ =?us-ascii?Q?3f99IdSU+0ZqJKROt2LZ8QbZhIRn1+nZrsrM4qGQkG9Nrjw5KPXJ8yY2f+EO?=
+ =?us-ascii?Q?MgUCrMpZMpiMIbUTAF9+5vBBCqKZBP69C/vEyYvXjv0bGfSYNyYXoZUem4qK?=
+ =?us-ascii?Q?r39ffRzV6AzNghggYLMKCLATGVO4kNTKp01qRCMiKacjq/33gu1YTJBWDXrV?=
+ =?us-ascii?Q?kBU82vQGWQQhSc3sHNgHhv046TKvn9z0zFdrldIODMYPaNbPR0onMtkaDwVQ?=
+ =?us-ascii?Q?hTlzxoUx32i8My1UMVLr4kd03CLf9RLtrrS1fjpDMgGx3LtiDoq1llCIHI2+?=
+ =?us-ascii?Q?YpiuKqai3zNgO6iHTltLn9UQPkKVopnZJUmj+ECq+2WZpbFg9m/fafoJ4tyD?=
+ =?us-ascii?Q?/w8eDVw5Y7Y0CssHeKK+ZuwnUj3inuyESlstYGlNjwYTPmzdgnlWkRYMGv+v?=
+ =?us-ascii?Q?5ndtcF24wYvGI0EGGyikKRW4vH67TfAWsEt7qqXl2hQrvL0uRhHcs3T8mYDc?=
+ =?us-ascii?Q?r4N8sK6Q/5pUW0zLXykZyYzN/ZpbF5tPDeDyIywh2ekNi9WIsGmy81unjKnG?=
+ =?us-ascii?Q?/Z8pIRGil2rLSArqpIfolHY5nMRUnVzU8rFAGyNlzsa0VuTerKCaijPvyyeo?=
+ =?us-ascii?Q?rhsjVLqaEG0hnSaXK24boZdg7RuSCNa/HCnyxPpUD+i08TZfiY3uXKNImF6f?=
+ =?us-ascii?Q?Dl8tRNgQx9WFmtWIy27KR9MgMCsYrCHSsQU5koUD?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5668ea7-7b8b-4a1c-cc3d-08de1e15d29c
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2025 15:53:41.1172
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vTaXvSk/yiDmJQ++bAAdbIEv3r1wrYjTQl1CVqVOjGmgVkfeVj2Ae/SdUdrZqf+5gJ6e5bOBX/3LtqKzCr4aDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9673
 
-Hello Frank,
+On Fri, Nov 07, 2025 at 12:46:09PM +0100, Josua Mayer wrote:
+> Add missing ref on panel-common.yaml for this dsi panel so that common
+> properties can be shared.
+>
+> Drop reset-gpios and backlight as they are already in panel-common.
+>
+> Switch from additionalProperties to unevaluatedProperties so that common
+> panel properties are available without repeating them in this binding.
+>
+> Notably panel-common defines the "port" property for linking panels to a
+> source - which was missing from this panel. Mark it as required.
+>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
+>  .../devicetree/bindings/display/panel/ronbo,rb070d30.yaml  | 14 +++++---------
+>  1 file changed, 5 insertions(+), 9 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml b/Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
+> index 04f86e0cbac91..6940373015833 100644
+> --- a/Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
+> @@ -9,6 +9,9 @@ title: Ronbo RB070D30 DSI Display Panel
+>  maintainers:
+>    - Maxime Ripard <mripard@kernel.org>
+>
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
 
-On Wed, Nov 05, 2025 at 10:29:05AM -0500, Frank Li wrote:
-> On Wed, Nov 05, 2025 at 12:55:38PM +0100, Francesco Dolcini wrote:
-> > On Tue, Nov 04, 2025 at 05:27:14PM -0500, Frank Li wrote:
-> > > Add child node nand@0 and move NAND related property under it to align
-> > > modern nand-controller.yaml.
-> > >
-> > > Fix below CHECK_DTBS warnings:
-> > >   arch/arm/boot/dts/nxp/imx/imx6ull-colibri-aster.dtb: nand-controller@1806000 (fsl,imx6q-gpmi-nand): Unevaluated properties are not allowed ('nand-ecc-mode', 'nand-ecc-step-size', 'nand-ecc-strength', 'nand-on-flash-bbt' were unexpected)
-> > >         from schema $id: http://devicetree.org/schemas/mtd/gpmi-nand.yaml#
-> > >
-> > > Since 2019 year, commit
-> > > (212e496935929 dt-bindings: mtd: Add YAML schemas for the generic NAND options)
-> > > NAND related property is preferred located under nand@<n> even though only
-> > > one NAND chip supported.
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi           |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi              |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi      |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi           |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi                |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts                 |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi               |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi  |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi               |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi            | 12 ++++++++----
-> > >  arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi   | 12 ++++++++----
-> > >  arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi      |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts          |  6 +++++-
-> > >  arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi               |  8 ++++++--
-> > >  15 files changed, 82 insertions(+), 22 deletions(-)
-> > >
-> >
-> > Was any of these changes tested? Is the driver able to cope with the
-> > binding change?
-> 
-> I have not board to do direct test. This format is used at imx8 platform,
-> which use the same gpmi driver.
-> 
-> This properties are parsed at mtd common part
-> drivers/mtd/nand/raw/nand_base.c
-> 
-> If you have one of above board to test it, it will be appericated.
+Can you move allof after required incase add if-else branch later.
 
-I did a minimal boot test, on colibri-imx6ull, and the board was booting
-fine, with Linux 6.18.0-rc4 and this patch applied.
-
-I am wondering if there is any impact with the bootloader, this DT is
-used as it is also in U-Boot, and there the NAND driver is for sure
-different. Any comment on this? I was not able to test this combination.
-
-Francesco
-
-
+Frank
+>  properties:
+>    compatible:
+>      const: ronbo,rb070d30
+> @@ -20,10 +23,6 @@ properties:
+>      description: GPIO used for the power pin
+>      maxItems: 1
+>
+> -  reset-gpios:
+> -    description: GPIO used for the reset pin
+> -    maxItems: 1
+> -
+>    shlr-gpios:
+>      description: GPIO used for the shlr pin (horizontal flip)
+>      maxItems: 1
+> @@ -35,10 +34,6 @@ properties:
+>    vcc-lcd-supply:
+>      description: Power regulator
+>
+> -  backlight:
+> -    description: Backlight used by the panel
+> -    $ref: /schemas/types.yaml#/definitions/phandle
+> -
+>  required:
+>    - compatible
+>    - power-gpios
+> @@ -47,5 +42,6 @@ required:
+>    - shlr-gpios
+>    - updn-gpios
+>    - vcc-lcd-supply
+> +  - port
+>
+> -additionalProperties: false
+> +unevaluatedProperties: false
+>
+> --
+> 2.51.0
+>
 
