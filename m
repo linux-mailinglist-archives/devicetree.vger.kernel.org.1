@@ -1,140 +1,170 @@
-Return-Path: <devicetree+bounces-236174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 097A0C40D7E
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 17:20:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7989BC40D60
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 17:19:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBC0C3AE1FA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 16:17:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00F6A188A490
+	for <lists+devicetree@lfdr.de>; Fri,  7 Nov 2025 16:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A384B261595;
-	Fri,  7 Nov 2025 16:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7732226E6E5;
+	Fri,  7 Nov 2025 16:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lBAuiat4"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="DVgU43yO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F84258CE7
-	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 16:16:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BB3264634
+	for <devicetree@vger.kernel.org>; Fri,  7 Nov 2025 16:18:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762532216; cv=none; b=M985IImGraHNII6eReJ7aQJWHFC4LhLAF093eW3zKsyem4E1NMYfq0Ym7YydN/x5Z5fkVoO7eXPlLoKhWzwVcak/xmOXzz/3tiMh07AxUdfuGMDIP0J0n6RH+TFv3ayVh7lqyhSZYYflzY5p2wlfuxTfbd6ePSidDJhLKUddv5s=
+	t=1762532326; cv=none; b=GbS4iKphySmgNr5YLnw/ONY6UxvqnO8rlrt/30GDLkAEIwH3f5RQnTZJqxZo1D81vYUXXyHGdzhMznGi2aOV+2sLrxWPX7HwZ34KDpe66BPYfTHJPUwBlR9nsW2MlNg/6XkcBh58oKQ20PjCvY57j+EQSnHyuCkVcfGr5M0qkXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762532216; c=relaxed/simple;
-	bh=m6h5md15vl7XA18igPsSaXDaZbae5jLpA/oiBVEflwY=;
-	h=Message-ID:Date:From:To:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oU9V/qbkT8TmTuJKXgRzxnEj/ZpK1zFtH60/eYDrKh51f/Hp50Nv9QgRb6YhwWm7q53IGtBMWTYi/nDI4zdEOFdF8NE9RsBNrpFT5FBMt+27feIHWD4sVXQ1fBFP51VFjDRy57YCyG09jki70o1rTyEJ8SJcudrBsA1biw1qNmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lBAuiat4; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-429bf011e6cso930544f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 08:16:53 -0800 (PST)
+	s=arc-20240116; t=1762532326; c=relaxed/simple;
+	bh=MFFadW4AJeEGGVRTkSO2f2472oOyet6bJ32MOkismQA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y+qzkw6Aw1GomPNASQXjjGdyv6qFbSB+RUyd5I+2WHXmDxA0fPDSMyOHQF/hUc2Alo6EV8RbNz60ioQp5pVjpILVQI1ygMCt7p9Bi576ZWw0feVoM0Qsypg74SRg9U1S4o4yQgn1wwgbxUoUf5RxLrvTs0SwnyCD6Mim0vYoX84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=DVgU43yO; arc=none smtp.client-ip=209.85.161.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-65677b3aa4bso367611eaf.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 08:18:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762532212; x=1763137012; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:to
-         :from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rq+cWEKtg2ZUTyxd/Vz8Kc9fcT1gEAUEGw1yp5hm07k=;
-        b=lBAuiat4NMzoJBjXdGf6qV7UglfWMm+nvXHO3L2Qt2rnXJ+qJG5BJEwl5MFGAaccCn
-         trEVCZTD8Vp4BKGuOOereI4JMkCdUQJXcC83WhEN+K6VnsZTeQA7RVicoGjWNk3LrU6Y
-         J5CNW3PTG/9RPOQnn9w8KZXDrCza8rlPA+GWrUdmJxrYI69XQuXhJPiaMEy5t2WrGZl7
-         JqZda9N09B23SRzFW9SEU7/0C65qQe4NGDf67EMXiac5wcZhzXMel+cXsw7Gy/xDSQ5I
-         7UzaHhqZgntXBo80wTCKt7UxHTRFPR18gAvDzPcVS8oKs1uBzTicON7OPR+s8FE4zWzb
-         U+JA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1762532323; x=1763137123; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pKxzSH4u8vYUIO96ehvgaJl4xECRM9a2L3UtEyYYLt0=;
+        b=DVgU43yOEFrCihnj8pHxL1vfuce44aeZPsvS+cyySmIejZhiQvljERQgeblGp9IEoI
+         VIxdCMpxE3Yp5kTx0WdrzCCurkLI86X+4fpNbXO2VvrvBDidTlkgtyCtfbKGm/yWysIA
+         FQz9hCFzDkM1dhvdrhCC/wdmNmdSTk3vR7h+zIj74znkmuvc5IcJM1xczehVIW/F8tbn
+         VqxMg8VRNPGisLyJeaA6oXg3bNGi8xCITQLQPXdyOP5GiP1pDQBs5jZo89MMrzkJ8oBG
+         V57DM3L74T27D7JhDOjQLFeV/+ukhFaSYsObrB2f1DnfQGjUXi5zdyRpPKY1M9MpZKNk
+         HH9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762532212; x=1763137012;
-        h=in-reply-to:content-disposition:mime-version:references:subject:to
-         :from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Rq+cWEKtg2ZUTyxd/Vz8Kc9fcT1gEAUEGw1yp5hm07k=;
-        b=xUkettMrXA7hyWE2rKwidPPgewJGcoM/McXStUFULd0mhr4/ckxBCJsgN+ToYTDrx8
-         TljPX9TATg27Qw1fTZJvqVYEhWvcysQ6onwkhBjWQdmpnyj7ZqbQM1MdO2/sznLnUur0
-         o3TYMGw271NBYd8gcUv4eGs9tWWzfbImfhGZlE/9di0+xNRgKXbqiLm5MhzcOVgwLSaF
-         UH8K2+/ePBMYwqwbJ+fkFKSiQATC3xfL6OWilQ7BGo5KhRYRkk8pALvyagw+5AIAr/+i
-         HIU/l6jxRFhihwfL/tRIhb3Ex07MwSFReA5uKNU5hf5Kz4kF4+1Z1saFFzSt3EdoFSAt
-         OQTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWa1+3VEeuqG+5x1IQKhA/zsJ1j8tNO9/Y3iN+q5k1tbXTs0L/Wx2QbHZIQrRFdj5zGTRS84flgctXq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxqpl1K4bfyPCjVyF86aEmcmiBA9b6MIvOSjEV/49kyu1eICmCZ
-	+aykFRjE1LgiX39DHbXRBnNE/p8ikyoriLmN4FEN49BnQje7gbe2n2Rd
-X-Gm-Gg: ASbGncs4R9VpQYHtvJ3iCV3QLvd12nODpxLN7y+hy0qwyOs3I7J+Hvf+f1t66UJ81FD
-	v1XgJv+8NcD8aFd+JNtZf2UOFzHRzKYmig4UUgjy2doG/mLHb43Sx2LokiKNPOimsPCdc7PxTst
-	tPwE6uW6IjaElo3BN6b8ZCs2c5jMms23a+HljMUe0vfohFfbGDTMuS43SGI7Vh6bmOq6uITmt/Z
-	hW3VRYSZhH25V+c/bQURkaHcqdrAYMNBpogkHsflfxIbv/5pPjLO0BcSGjD0wEuNQD3RMz6nu1g
-	W7cCZCxqvegpa2KaWFSn+G5hIpS6ak2NaSXObpUNtnbT92uH7BrSNQT6qSfOcBn0ooHe6e9hK1D
-	JGIg2qXU38U1Zana23SuoUN8jXxvZsYpMIKVnMxYVY25nMAW2eeuQj5VY+DVnjUXuglGuJJySLN
-	NYI6S/CAUk/Lxah4Vvqqa2FojnoScF
-X-Google-Smtp-Source: AGHT+IGBls4w5DXj4dsI+iVzj/lD1T2JS8LC5CnrQ6tP++E+okDJx9McJEWsKb0hTWxZy1/eytT3yA==
-X-Received: by 2002:a05:6000:26c9:b0:429:cf03:8b1a with SMTP id ffacd0b85a97d-42ae5ae9995mr3350125f8f.45.1762532212275;
-        Fri, 07 Nov 2025 08:16:52 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42abe63e131sm6344445f8f.20.2025.11.07.08.16.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 08:16:51 -0800 (PST)
-Message-ID: <690e1b73.df0a0220.312af7.18e3@mx.google.com>
-X-Google-Original-Message-ID: <aQ4bcJDWhgQINJry@Ansuel-XPS.>
-Date: Fri, 7 Nov 2025 17:16:48 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-crypto@vger.kernel.org, linux-watchdog@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 0/4] arm64: Add AN7583 DTSI
-References: <20250929114917.5501-1-ansuelsmth@gmail.com>
+        d=1e100.net; s=20230601; t=1762532323; x=1763137123;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pKxzSH4u8vYUIO96ehvgaJl4xECRM9a2L3UtEyYYLt0=;
+        b=ttvtZXyaB1PAfsc/7paSmLsqrT9S88e7ZOD+iQfBwNiUYxpVyOpKrjBsr6aZbXESL9
+         gxx+PxOT63c2MlpRc7AzU5RO6IEMnf78EQ5sWFTVnSyH/047wn+Ve2OFKsvV7ebSioS0
+         +2u1DLfH/ywExdo58PxodjNzxbDf7AxEg8IXeWgceTnVuHTTYBRuEAeJ9dBY88IhYeHI
+         WRJRMovJok1H9C1H3R9Ilw5JYGuYq9myosXDP2KK+ZHHAQGzwqdLrsphcWjayKofUepS
+         zgIjGbCWJM5ikNpbPBuYoac2iFF4ezsbqNII3XUG2VdTR9SaCpRLLfMay4Vd9UcLeRNS
+         67bg==
+X-Forwarded-Encrypted: i=1; AJvYcCXjB9QJP5hAyVU4tVC2nQMoPte+yekD8vtD66Qk4VlzzpIIwrUM3CSh4FugpE9HjdV2ys5lUP1vY+be@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywvcw5WHOgq+hthacSHbGMc2dAXepzCnQ7bDpfdpINp/Xtt6h+4
+	6IWjAdYGrSPnpwhQhr0RrISWJ6o0Zs3FLMZxR9GiTD9KnIqw0teAkZduOjy8WsdvAoE=
+X-Gm-Gg: ASbGncv6nA7hvjIaf/IEkbpFXRkSqRndEqvkr7cPpnYKwI2fw+ka2Qe206DXr9d2L0V
+	xHK6pYNl7qVtEMTJ/TinmYDks0+VnZQHARIHRmYHaWOoECEP51O6qf7CVDnXJteLb5dLwPghymQ
+	uI2dRE1feKcGyqQ7O8vvOIOQE79cTuGvUcdQl9O/QbmrgOKxlgpgcjZKslqWh06unfZIdQ5ViWa
+	6z88P99Y15Vs7YI+vtnawhltr0B3VSIg8VGJUign1BsyKGyIll1J2weLcW9Yy4SFDis5jiCIOxN
+	Y4qLjyuJ98bddxll3AKFYpwKVfP9rvXLkqXkZr5OGvYGUG0iV53pEeU3wxism2PBdiE+yTPaFXT
+	b8GOPm5mryjLIncQAdSnj/sIr0ftHIJmGD/HsaoJPH9g4P7oA7QG5/+lfGORztvlMKPXbyd9KYs
+	ncoT8Q5gHZsTANOrAgCWZUnzuaeu/qfYUpfKfl2nTj4b/2ExWt2Es+vcny9/QT
+X-Google-Smtp-Source: AGHT+IE2+yDv7v36BhseMR5mBBfzrZuo9RFPzh74b5U7OD0iR5I9ldD4Wg4txKPbQueeWlJzRoQklQ==
+X-Received: by 2002:a05:6808:2226:b0:450:d0c:50d9 with SMTP id 5614622812f47-45015ecf630mr1798144b6e.40.1762532322867;
+        Fri, 07 Nov 2025 08:18:42 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:7bb8:950b:327d:4ba4? ([2600:8803:e7e4:500:7bb8:950b:327d:4ba4])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-656c57d63adsm2528160eaf.14.2025.11.07.08.18.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Nov 2025 08:18:42 -0800 (PST)
+Message-ID: <de424e9d-95cd-4a42-8f1a-97ad04f5f9ef@baylibre.com>
+Date: Fri, 7 Nov 2025 10:18:41 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250929114917.5501-1-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/3] iio: adc: Add support for TI ADS1120
+To: Ajith Anandhan <ajithanandhan0406@gmail.com>, linux-iio@vger.kernel.org
+Cc: jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
+ <20251030163411.236672-3-ajithanandhan0406@gmail.com>
+ <fd432bbf-f6c8-441a-882f-f8e52aaca0e9@baylibre.com>
+ <a7532aa1-2acb-4064-b10c-b1f7022d589b@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <a7532aa1-2acb-4064-b10c-b1f7022d589b@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Sep 29, 2025 at 01:49:11PM +0200, Christian Marangi wrote:
-> Simple series to add initial AN7583 DTSI. More node will be
-> included as they will be supported.
-> 
-> Changes v4:
-> - Add review tag
-> - Fix alphabetical order in Makefile
-> - Move PSCI node after CPU node
-> Changes v3:
-> - Fix typo EN7583 -> AN7583
-> - Add specific compatible for watchdog and crypto engine
-> Changes v2:
-> - Fix DTB BOT warning (fix crypto compatible and OPP node name)
-> 
-> Christian Marangi (4):
->   dt-bindings: crypto: Add support for Airoha AN7583 SoC
->   dt-bindings: watchdog: airoha: Add support for Airoha AN7583 SoC
->   dt-bindings: arm64: dts: airoha: Add AN7583 compatible
->   arm64: dts: Add Airoha AN7583 SoC and AN7583 Evaluation Board
-> 
->  .../devicetree/bindings/arm/airoha.yaml       |   4 +
->  .../crypto/inside-secure,safexcel-eip93.yaml  |   4 +
->  .../bindings/watchdog/airoha,en7581-wdt.yaml  |   6 +-
->  arch/arm64/boot/dts/airoha/Makefile           |   1 +
->  arch/arm64/boot/dts/airoha/an7583-evb.dts     |  22 ++
->  arch/arm64/boot/dts/airoha/an7583.dtsi        | 283 ++++++++++++++++++
->  6 files changed, 319 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/airoha/an7583-evb.dts
->  create mode 100644 arch/arm64/boot/dts/airoha/an7583.dtsi
-> 
+On 11/7/25 9:50 AM, Ajith Anandhan wrote:
+> On 10/31/25 2:43 AM, David Lechner wrote:
+>> On 10/30/25 11:34 AM, Ajith Anandhan wrote:
+>>> Add driver for the Texas Instruments ADS1120, a precision 16-bit
+>>> analog-to-digital converter with an SPI interface.
+>>>
 
-Any chance this can be picked? All the patch got a review tag I assume.
+One note about the review process. Any suggestions you agree with, you
+don't need to reply to specifically. You can trim out those parts in
+your reply. It saves time for those reading the replies.
 
--- 
-	Ansuel
+>>> +struct ads1120_state {
+>>> +    struct spi_device    *spi;
+>>> +    struct mutex        lock;
+>>> +    /*
+>>> +     * Used to correctly align data.
+>>> +     * Ensure natural alignment for potential future timestamp support.
+>>> +     */
+>>> +    u8 data[4] __aligned(IIO_DMA_MINALIGN);
+>>> +
+>>> +    u8 config[4];
+>>> +    int current_channel;
+>>> +    int gain;
+>> Since inputs are multiplexed, we can make this gain a per-channel value, no?
+> 
+> Yes we can, However i want  to keep the initial version simple so would it be
+> 
+> fine to support per-channel gain configurationin upcoming patches?
+
+Absolutely. I really appreciate splitting things up like that as it makes
+it much easier to review.
+
+> 
+>>
+>> It also sounds like that certain mux input have to have the PGA bypassed
+>> which means they are limited to only 3 gain values. So these would have
+>> a different scale_available attribute.
+> 
+>  Since, I'm gonna enable all the 15 channels. I believe we have to have all
+> 
+> gains(for differential channels). Correct me if i'm wrong.
+
+Yes, that is how I understood the datasheet. Differential channels have all
+gains. Single-ended channels and diagnostic channels only get the low gains
+(1, 2, 4).
+
+
+>>> +static int ads1120_write_reg(struct ads1120_state *st, u8 reg, u8 value)
+>>> +{
+>>> +    u8 buf[2];
+>>> +
+>>> +    if (reg > ADS1120_REG_CONFIG3)
+>>> +        return -EINVAL;
+>>> +
+>>> +    buf[0] = ADS1120_CMD_WREG | (reg << 2);
+>>> +    buf[1] = value;
+>>> +
+>>> +    return spi_write(st->spi, buf, 2);
+>>> +}
+>> Can we use the regmap framework instead of writing our own?
+> 
+> I’d like to keep the first version simple so i will add the regmap support in the
+> 
+> later patch since the single ended has less spi transaction to handle.
+
+It would be less churn to implement the regmap right away. Typically
+we try to avoid churn if we can help it. So this would be an exception
+to the general suggestion that splitting things up is better.
 
