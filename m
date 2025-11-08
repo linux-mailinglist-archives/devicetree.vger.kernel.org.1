@@ -1,171 +1,147 @@
-Return-Path: <devicetree+bounces-236321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31439C42E0E
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 15:09:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8FFC42E2A
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 15:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E592188F6C7
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 14:09:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 94F7D4E7507
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 14:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A80720FAB2;
-	Sat,  8 Nov 2025 14:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF151CAA7D;
+	Sat,  8 Nov 2025 14:21:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bw2oL8Nx"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="rx+uvZ3B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7155C481CD
-	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 14:08:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A4E1C84DF;
+	Sat,  8 Nov 2025 14:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762610938; cv=none; b=sOBZ7DdA4WtWQl8a4sIUV2ZQu0c8U+fE/Akky5F5l6LIrAEod+wbxeD4w/DS3/ZWhwPcXIQmx/p/Cminnm1XGFKcZIUUJMxyVtHhJWd6TqqFHOohx2oQOdrWF3Muj7hE71SxB4qTn1fBIey7ercSbsmVZIWBK1L89kT4BKSYjoc=
+	t=1762611683; cv=none; b=qK0rDH+BK5KCuHSmtuM+/wOcevaaGXlNbccW/vs/miWozU6kNh3/QaGP+CAsVnPWECYVfBcgUaCHwE2elMKAgFDVGcQmkNrQddxUJcv5NvTUrDhX0aen9KhaPcDSh8vPTmOBfCb/PDL6ZINkmZS3UEduEziSEYkKQLQRYimaLxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762610938; c=relaxed/simple;
-	bh=88SK9HlF8ID4j2mgeXZK5r75pqvAiovy9hjLKXg2mUA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rJBh8PyrHZFQkYUpD1++uAEJ96+6PAfcuxV5EzlP/q5QUHppHWO8klkCPKDtwf+ezQN9wP2R5Q95LQOORWPT5u7intBHqp82RNmzePZeczDvXEygl+JyQLkq+fiRbLnu/RWev3ErUpu/yGkQpIl6Ffi5DA5jStS2Jamq5BDn6A4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bw2oL8Nx; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b64cdbb949cso306271466b.1
-        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 06:08:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762610934; x=1763215734; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=88SK9HlF8ID4j2mgeXZK5r75pqvAiovy9hjLKXg2mUA=;
-        b=Bw2oL8Nx5pdDvt2hub1vX/LWOr0w5YNESA2TcldKBBsBsyJmr2aV47BBk8BqOB/BDH
-         z+AL9mKc17uEccImArnb/6hesdfBqfowvxh+YT4ZVviQm8yaMuwYVB3hgf4zyst+uiJZ
-         H0MQPNbnehx4A3pb1DtFJNcuOTWcuM4HkJuxv1QONrNzrZVTmVkhtoi2uYtBxHfsPFqD
-         wY8JIzCk6siJ+d6FXP/ZcUaoypqsv8TF9BmUy5uZweW1KbvcTTdStBXgqS9OEt+0xA89
-         zcg2+McMY+QsKfyL/SjGMJuZSsmlPF4q1/ff1A0sVPpCLbXoLOR/g5vUpIOMKN8Oedvt
-         Xy9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762610934; x=1763215734;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=88SK9HlF8ID4j2mgeXZK5r75pqvAiovy9hjLKXg2mUA=;
-        b=PYIQ7dKDek/q4CqiPdeHeQR0S/iGbYxz4xgSvd/LwxXpIkeH55mQ8xI4HOtz7ku87B
-         ilGPHRPdaSNuMGby+NaTRaZ5WjDTsvOmQ/svxLhGkyt5fBO8EJN2hD2B1mtoK7KvdFOG
-         19btMyJE5vCNqtB15mwhj9IJAbvzq3Fws4vpH+KB/1T/umKq+Zj6YIzHeU8XJPIUypQy
-         GB1hp0Oq99XfVGVlTHO7zxg1y22kfkadGlsugZfSZiZHpDz27lmQVyaocq59TlMOLxAX
-         TiMqOl3t4zZ6GkJvdQCEcC/dqWmmd66CPTBfUvM0ExZCeiKBiiqguhjZfn4uhTGtaB+U
-         V3Mg==
-X-Forwarded-Encrypted: i=1; AJvYcCXJV7wPWXuyJ8CKCynvVOr1hn0svYVpUgBEh9QQvtkTUmXp0DVcfegQbwVLPUmYoY4WkfhTnbcFivAS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyyb1oAowfVwX4rrjYaB05abbCtlqw75kBTmW/6IaOUvEC94VS3
-	rsMr5/DBo7rTslgSmQFyMdTlBxRhBFwwTk8aGER+wKNpvksbBk8kr4p8skk+88eXH+M=
-X-Gm-Gg: ASbGncskav5ioP5E3Gd8Civ/ZX13clsueanXxLnV/hmh92z2MfJnzH1zpFF66BXeUVK
-	zCnaPEqzFakDpmf/UiMakCXBvGXmEfoSz9S7+s5eEZ4qysDKQRI4EL7vd1XVb7BkzgWMjf3tFeC
-	GKsi36gLfoFW2guG9c0uxSyRv1rF7yeUaFVymMxQBRcnh/AP3yZy8vlzgrxmTrgcEEuuBBdKgqH
-	ZrAYqLviB5wZt7vnE7MbpQQYzY+d3eY4uSu/tFfOhhzIVjmezxcvDVedLSwP4BTAnKPymIqiA+U
-	AsC5VrqDn+p4DRETT2l1GxMWUTWF2tt1NqLVbDVbL2eAW2RO1OflWJ923Igna1Ft1wbY0XBiZIA
-	HMU9Ya6vyOA7Q3eu+IPisye9qbQMALn0e3D0aKKcjMkzSjhWJw3HubT/ELMj/Tyd12qr6XvYRr1
-	kAhbDYmbn+A4SXTgiZypPg
-X-Google-Smtp-Source: AGHT+IEU8px863DOF0SHJM2dOiCgYfSF7uWOZKjlSkmUmm2odBp/m7f85l+VxG8z6Xkcbao4KUCsgQ==
-X-Received: by 2002:a17:907:7ba4:b0:b72:26ec:c8db with SMTP id a640c23a62f3a-b72e04e2c4emr263436466b.30.1762610933770;
-        Sat, 08 Nov 2025 06:08:53 -0800 (PST)
-Received: from [10.41.228.128] ([77.241.232.5])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf97e447sm577021766b.42.2025.11.08.06.08.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Nov 2025 06:08:52 -0800 (PST)
-Message-ID: <fa2e704a2f295f2c9b2c7811e8ca89972554ff7e.camel@linaro.org>
-Subject: Re: [PATCH v3 07/20] dt-bindings: firmware: google,gs101-acpm-ipc:
- update PMIC examples
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+	s=arc-20240116; t=1762611683; c=relaxed/simple;
+	bh=PXg7E1CyCSktm5smzwdhzbzx/0EVSt3oxzgJwWhcu0o=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cT2FfgCA7/go4PI+eDhVC9qo+JWWkYRV+LTO69eg+fIA56hlWfans/F7MpvpNLpNircPugBLwjL/Ob9lk7TyYkkiumjGQxILhv2/K/Kx/RfjOJPt9NPj5cSiijVto9fJDmQISMBygqLymS5PjWBTENmYR7bDfS0jsOjiVP/KGT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=rx+uvZ3B; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=yY/Mw/fA6kA1tDgGp7D6XVfmNBQBiknCOSNWaztlke0=; b=rx+uvZ3BNntqZcdm1nm4mz20cj
+	UXhcEa37E/wxuHfnmWmyQWb0OEKp/jWuHN9B4g5I6vQ/QjnUDKrcS1DdGwNRdsYU6qHQvJhpT5x6h
+	3A44EtJyjwdKZrAQBqZ0PEx8XK4I5I1xsyHpPkYmw8ua9cnVR24+izd4mE3zig8xYv1ABmbc4TZEp
+	KMJlmDgTFTauVo57gMknIYQtfNJxtLd7o+4KXnqEqGBBDXMqM9ekFXrl3oxIWO2wRQQkuz6fgbToN
+	dFJnwNoe5LFgOFs2G4yujvMprvl04Bvjv0S5hsaE3KE5lF8DyvZ1IiTem4b0XL4uc1mDr2xh/tMt0
+	uQLcVUOQ==;
+Date: Sat, 8 Nov 2025 15:21:14 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,  Lee Jones <lee@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Peter Griffin	 <peter.griffin@linaro.org>,
- Will McVicker <willmcvicker@google.com>, 	kernel-team@android.com,
- linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-gpio@vger.kernel.org
-Date: Sat, 08 Nov 2025 14:08:52 +0000
-In-Reply-To: <20251104-awesome-tacky-magpie-bacd9f@kuoka>
-References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
-	 <20251103-s2mpg1x-regulators-v3-7-b8b96b79e058@linaro.org>
-	 <20251104-awesome-tacky-magpie-bacd9f@kuoka>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add Fitipower FP9931/JD9930
+Message-ID: <20251108152114.53422ea6@kemnade.info>
+In-Reply-To: <20251108-vagabond-lyrical-hawk-ad3490@kuoka>
+References: <20251107-fp9931-submit-v1-0-aa7b79d9abb6@kemnade.info>
+	<20251107-fp9931-submit-v1-2-aa7b79d9abb6@kemnade.info>
+	<20251108-vagabond-lyrical-hawk-ad3490@kuoka>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
+On Sat, 8 Nov 2025 13:17:31 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Thanks for your review!
+> On Fri, Nov 07, 2025 at 09:06:45PM +0100, Andreas Kemnade wrote:
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: fiti,fp9931
+> > +
+> > +      - items:
+> > +          - const: fiti,jd9930
+> > +          - const: fiti,fp9931
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#thermal-sensor-cells':  
+> 
+> Why is this a thermal zone sensor? Aren't you mixing temperature
+> reading with soc? For temperature reading you can use hwmon, for
+> example.
+> 
+well, I just took the SY7636A as reference. Is there any document describing
+the terme "thermal zone sensor". I would define a thermal zone as an area
+with things influencing each other thermically. These things are
+sensors, heat sources and sinks. Well, the panel typically does not produce
+much heat.
+But I do not insist on having that property here. As far as I understand,
+the hwmon uses this property as an indication to also create a thermal zone
+sensor.
 
-On Tue, 2025-11-04 at 09:31 +0100, Krzysztof Kozlowski wrote:
-> On Mon, Nov 03, 2025 at 07:14:46PM +0000, Andr=C3=A9 Draszik wrote:
-> > In a typical system using the Samsung S2MPG10 PMIC, an S2MPG11 is used
-> > as a sub-PMIC.
-> >=20
-> > The interface for both is the ACPM firmware protocol, so update the
-> > example here to describe the connection for both.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> > ---
-> > =C2=A0.../bindings/firmware/google,gs101-acpm-ipc.yaml=C2=A0=C2=A0 | 40=
- ++++++++++++++++++++--
-> > =C2=A01 file changed, 37 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/firmware/google,gs101-ac=
-pm-ipc.yaml
-> > b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
-> > index 4a1e3e3c0505aad6669cadf9b7b58aa4c7f284cb..c25e155926e5f44bd74f195=
-cdbff3672c7499f8e 100644
-> > --- a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.=
-yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.=
-yaml
-> > @@ -45,6 +45,15 @@ properties:
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: samsung,s2mpg10=
--pmic
-> > =C2=A0
-> > +=C2=A0 pmic2:
->=20
-> pmic-2
->=20
-> Are there more pmics? Bindings are supposed to be complete (see writing
-> bindings) and if you did follow this approach earlier, you would nicely
-> call first "pmic-1" (instead of "pmic") and then "pmic-2".
+> > +    const: 0
+> > +
+> > +  enable-gpios:
+> > +    maxItems: 1
+> > +
+> > +  pg-gpios:
+> > +    maxItems: 1
+> > +
+> > +  ts-en-gpios:  
+> 
+> It's called EN_TS, so en-ts-gpios.
+> 
+ok
+> 
+> > +    maxItems: 1
+> > +
+> > +  xon-gpios:  
+> 
+> That's powerdown-gpios, see gpio-consumer-common.
+> 
+looking a bit around: powerdown-gpios e.g. in the MCP4801
+describe an *input*, which should be connected to an output of the SoC. 
+Looking at the datasheet, I see "XON Open Drain N-MOS On-Resistance" so it is
+an *output* (same as for PG). So it is something different then the
+powerdown-gpios in e.g. the MCP4801.
+So it is a signal coming from the JD9930 after EN goes low in the power down
+sequence.
 
-There aren't any more PMICs on ACPM, no. At the time 'pmic' was added, it w=
-asn't clear
-unfortunately that two nodes would be needed in the end.
+> > +    maxItems: 1
+> > +
+> > +  vin-supply:
+> > +    description:
+> > +      Supply for the whole chip. Some vendor kernels and devicetrees
+> > +      declare this as a non-existing GPIO named "pwrall".
+> > +
+> > +  fiti,tdly:  
+> 
+> No, look at datasheet. What values are there? ms.
+> 
+Hmm, no to what? I do not understand your comment.
+So I guess a bit what might be options to discuss here:
+- put raw value for the bitfield here (what is currently done).
+- put the ms values here (then I would expect a suffix in the property name)
+  We have the mapping 0ms - 0, 1ms - 1, 2ms - 2, 4ms - 3, so it is
+  not identical.
 
-See also https://lore.kernel.org/all/963bbf8db71efc0d729bb9141c133df2c56881=
-fc.camel@linaro.org/
-
-That said, I believe we can change the existing node name from pmic to pmic=
--1 without
-any driver breaking. The sysfs path would change, but I don't think anybody=
- cares about
-it at this stage, so I think such a change would be fine. The ACPM driver d=
-oesn't care
-about node names and instantiates all children regardless of name.
-
-I propose to update the binding (and DTS subsequently) to add pmic-1, to al=
-low 'pmic' as
-a legacy fallback (i.e. to not issue errors during validation of existing D=
-TSs until
-they're updated) and to use pmic-2 for the 2nd pmic.
-
-OK?
-
-
-Cheers,
-Andre'
+Regards,
+Andreas
 
