@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-236323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB6E0C42E54
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 15:38:28 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D88AC42E72
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 15:46:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 641D83AFA0E
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 14:38:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EF5574E3EF0
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 14:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DBA1FECCD;
-	Sat,  8 Nov 2025 14:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1E73D561;
+	Sat,  8 Nov 2025 14:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QT7EnM/G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RA70Cds9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813981D61A3
-	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 14:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D014A07;
+	Sat,  8 Nov 2025 14:46:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762612705; cv=none; b=Ynv+hOZ8tlHjnFK0vYQYgUG0xvxYMNvkHG+BdCu9AJWULCwLM6vAFGRdIYlB/uICMBoHK/YnTe7scRph9uNS9EJUqDcCAGaZvIA4YpHB//a8x5dzvUnfW0fZRpr7qVbJ8wtwyYsnpl+cd7kV1Gd5N9C+Ju/2II3ri9d3lZENj8Y=
+	t=1762613168; cv=none; b=KIqxNeHa+Hi0lLqaOHwot1/slKoKV2VEDLAkfshoVd+Syad1w3gbJ0Fxhfebna6r7sEeAiQjgDmG9bhqDIHtB7haOgnTicik57rvCMqdJuGbSvCAwC5o9Cdzk0TzGFHY+aB7+dF5Dih98IxErmA66LBowGcDmFtrf45cBwQxQ/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762612705; c=relaxed/simple;
-	bh=cvwRyGoCNZb0l5Vkp0pBpQx4b8i+JQ5q1UuAHIXap0c=;
+	s=arc-20240116; t=1762613168; c=relaxed/simple;
+	bh=4xr81XznMx3JxZ2PiBSb4F7WXSBRzdh4HzfJfDT1/sM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t+IG0WjQZ7DHAk7MxcSmEBCAqJQlQjvZXiDv6ugkVSSkUVrVDRJjAhNvZ2BnR3O3MJ8dGsFBIB0/JH0AkKZrsT0b8Zw829/TYOgUvWYi8pz8VlHWAKhbk74wEKbW32UkWEXoYiN1Ahxc7CCkAxkbkrA55Ic44yLsDoFcrctoN3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QT7EnM/G; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-42b3298502cso8085f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 06:38:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762612702; x=1763217502; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CjskvN6jH7m+Duu1eq+hr6O2GRgMWF9LB47syyf4F5w=;
-        b=QT7EnM/GZuEExeh23wss394j1sChWEkQDOwj0Wv2YvhVCBXmVZySghX9dEjHVZRtXu
-         UccGkzVXKEr0J1viKmtSdOHoYE9YKsXUUgBAZUoEoYSXVouYCUHqM+Kth7OsSJmPpoLC
-         4khBt3zsMjXOYf9eNBwfjNxdwonfnU5dai0IqOT+adRXWXMLNgJUK4ds/M+VjwXv3ytD
-         lPJEjEdeLPUzvHfZ+E91UqCP8RcmJjnLcv9CIwf6dpRyXguQwsAMyz/Jv7xZ4Kbdik6A
-         6D6EOjUsuUIo4yK5dwzelSJ3uxOcnkXxiVk28h6OeMZl88w52m1zR1dtOlUNdBl1jkZH
-         AGpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762612702; x=1763217502;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CjskvN6jH7m+Duu1eq+hr6O2GRgMWF9LB47syyf4F5w=;
-        b=JOgWH2q7pjUzGTsoNXsDRr7BPFFEfZQDukbV4nxP16NnmPR3GSbZS1tEWI98Ug0ZyK
-         A+G+w2x926hD9NUvnTjHBnYF06N4HGxnwAzO6QoW5P+d6wfCrVAOq/caaNpJYshZ38ME
-         mG1v62HvmSU1mHF3Tie23W8qUEc/iEdqvE4O4gRuLF6LguYNFBtnqRtRNjWAISue3P9i
-         HIAYcnZ4nL2wC4UarISeEzAW+ZkhWFJfr8aWrkrTJPvh/CG4oUSvSiIO1IWqTki30DK6
-         ZIb9NtETtGgHJ2gey75Gw7U6LXTyPcCCHbfSy8jh0oxBKbah9eQ/2vbWShBcYCBPxFaU
-         GKfg==
-X-Gm-Message-State: AOJu0Yw0qACRsb/kQbDymwFTZkX35YMR4DFEj5zZsIQ4uprgCHzel0TV
-	MQzDGM3uXcLSFjYITxG3gxsSpMLFF16WMxceta7Rn28H9dHvHTRzuV5svTr4ty9tAvM=
-X-Gm-Gg: ASbGncsiZAw2u+T9OkpBBNAAglwyVJ1w6ezcX9+TXmVvqZ56u0uOWg4oXIP0CwLoPX2
-	VK2Gwv8oRHoe8kylQCaXlJ/d54YYOwU4hVE4UHOQGg1GQ2pB4djFiGchxJs/0ZsiRXl7c3dV4Gq
-	XchB0z48UZ5mnZnxRscMXmb+txvoYJU5p46N+u9EohvGihljttbEnGyTfScTz/gHTu4J6gO45My
-	P9iEYubGHJQL4LKqsXShXrP2vFTFG0EKnvGJvHkdn3Q3zyjW+F7P2zB2ToofMLC4h/4wJ6+lGHS
-	kEwvJF3M9USK4Ec57c1gI23qXNoCb3CR0osCYrpcBzB6BZ+NEO0vFAaqjIZscjdNHpnuwMePZ+J
-	MUKuQnHnoIkFooskmzG0cfwbyv1u/k1tn5Jt2Lz4+t/oOJe/tq4QzF70TGOPODdIKoeYG94AqNn
-	sGHBlyOxFYBGFEAFkA7cNS8cE2UB8BQv8=
-X-Google-Smtp-Source: AGHT+IFiBiRhpsly3YGEqjvxj+Py3Q4DK+JCa0siSF6z5aJmBhaLltU7plhNOwZpv/U5i5Vxxf3qew==
-X-Received: by 2002:a05:600c:4ed1:b0:477:bb0:5e13 with SMTP id 5b1f17b1804b1-477732aa00amr11266585e9.8.1762612701759;
-        Sat, 08 Nov 2025 06:38:21 -0800 (PST)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4776a278a32sm56562505e9.12.2025.11.08.06.38.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Nov 2025 06:38:20 -0800 (PST)
-Message-ID: <07cbc020-ece3-4483-b078-c265e3400d2b@linaro.org>
-Date: Sat, 8 Nov 2025 15:38:18 +0100
+	 In-Reply-To:Content-Type; b=B1BHkhnd3GgZsTnAFsSx55N8ovvSNBuGSZFbB1RXxtuGD2n6hTirHHai8sO6YYjBLW1nvaUpxGeNq2H1ieD0sFgpauUaa77TB8N6UdH9wgauzm0DuhI7oRVbgzfqR/be2WkQxEnjkDLgm7y8lB5aT0fjJwRS45gKXKrsKwuMfE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RA70Cds9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0831AC116D0;
+	Sat,  8 Nov 2025 14:46:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762613166;
+	bh=4xr81XznMx3JxZ2PiBSb4F7WXSBRzdh4HzfJfDT1/sM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RA70Cds9k9kY/4VsrrHOMAD7mgqWhN36Dnw86ZcSEVBMRvLKPVE34vuiO7/RXfvxg
+	 ttmAEYGw89v/BY4VWUnClgJHHMFDC7ekDP3ET03RIXjKfqtzGp8KbKGfl78OqXe6qY
+	 6SA8hJImkXv9gkB42PT/r6abGa1doZ1xFvYdanBaTeE7RXjAEIUhoOlk8fymgFZzjS
+	 PVl2IDWWGCHzpJNKFxSMlvCrQrNZluc/QSrLWkRFDmt509wdhy975gQkY+ME00L8sa
+	 ALFsaLxATvB9wcyFXfBaA9s9UIpoMkWQkjthwLUdQSDP86pIIxjQ3rRa3A3iJyFkER
+	 UtVgN9zDj1PjQ==
+Message-ID: <aa330123-e6d9-44ce-b030-b266cba1df9c@kernel.org>
+Date: Sat, 8 Nov 2025 15:46:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,38 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] cpufreq: ti: Simplify with
- of_machine_device_match()
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Thomas Gleixner
- <tglx@linutronix.de>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Daniel Lezcano <daniel.lezcano@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
- <20251106-b4-of-match-matchine-data-v1-5-d780ea1780c2@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add Fitipower FP9931/JD9930
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+References: <20251107-fp9931-submit-v1-0-aa7b79d9abb6@kemnade.info>
+ <20251107-fp9931-submit-v1-2-aa7b79d9abb6@kemnade.info>
+ <20251108-vagabond-lyrical-hawk-ad3490@kuoka>
+ <20251108152114.53422ea6@kemnade.info>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -124,59 +73,137 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20251106-b4-of-match-matchine-data-v1-5-d780ea1780c2@linaro.org>
+ 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 a/A=
+In-Reply-To: <20251108152114.53422ea6@kemnade.info>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/11/2025 20:07, Krzysztof Kozlowski wrote:
->  static int ti_cpufreq_probe(struct platform_device *pdev)
->  {
->  	u32 version[VERSION_COUNT];
-> @@ -564,8 +554,7 @@ static int __init ti_cpufreq_init(void)
->  	const struct of_device_id *match;
->  
->  	/* Check to ensure we are on a compatible platform */
-> -	match = ti_cpufreq_match_node();
-> -	if (match)
-> +	if (of_machine_device_match(ti_cpufreq_of_match))
->  		platform_device_register_data(NULL, "ti-cpufreq", -1, match,
->  					      sizeof(*match));
+On 08/11/2025 15:21, Andreas Kemnade wrote:
+> On Sat, 8 Nov 2025 13:17:31 +0100
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On Fri, Nov 07, 2025 at 09:06:45PM +0100, Andreas Kemnade wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - const: fiti,fp9931
+>>> +
+>>> +      - items:
+>>> +          - const: fiti,jd9930
+>>> +          - const: fiti,fp9931
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  '#thermal-sensor-cells':  
+>>
+>> Why is this a thermal zone sensor? Aren't you mixing temperature
+>> reading with soc? For temperature reading you can use hwmon, for
+>> example.
+>>
+> well, I just took the SY7636A as reference. Is there any document describing
+> the terme "thermal zone sensor". I would define a thermal zone as an area
+> with things influencing each other thermically. These things are
+> sensors, heat sources and sinks. Well, the panel typically does not produce
+> much heat.
+> But I do not insist on having that property here. As far as I understand,
+> the hwmon uses this property as an indication to also create a thermal zone
+> sensor.
 
-This is obviously wrong patch... weird my W=1 builds did not flag it.
+That's Linux detail, but anyway you don't need it. This device does not
+look like a part of thermal zones.
+
+> 
+>>> +    const: 0
+>>> +
+>>> +  enable-gpios:
+>>> +    maxItems: 1
+>>> +
+>>> +  pg-gpios:
+>>> +    maxItems: 1
+>>> +
+>>> +  ts-en-gpios:  
+>>
+>> It's called EN_TS, so en-ts-gpios.
+>>
+> ok
+>>
+>>> +    maxItems: 1
+>>> +
+>>> +  xon-gpios:  
+>>
+>> That's powerdown-gpios, see gpio-consumer-common.
+>>
+> looking a bit around: powerdown-gpios e.g. in the MCP4801
+> describe an *input*, which should be connected to an output of the SoC. 
+> Looking at the datasheet, I see "XON Open Drain N-MOS On-Resistance" so it is
+> an *output* (same as for PG). So it is something different then the
+> powerdown-gpios in e.g. the MCP4801.
+> So it is a signal coming from the JD9930 after EN goes low in the power down
+> sequence.
+
+OK, I just briefly skimmed through datasheet.
+
+> 
+>>> +    maxItems: 1
+>>> +
+>>> +  vin-supply:
+>>> +    description:
+>>> +      Supply for the whole chip. Some vendor kernels and devicetrees
+>>> +      declare this as a non-existing GPIO named "pwrall".
+>>> +
+>>> +  fiti,tdly:  
+>>
+>> No, look at datasheet. What values are there? ms.
+>>
+> Hmm, no to what? I do not understand your comment.
+
+Please use proper units for the field expressed in the property name
+suffix and possible values (enum).
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+
+You also need default.
+
+> So I guess a bit what might be options to discuss here:
+> - put raw value for the bitfield here (what is currently done).
+> - put the ms values here (then I would expect a suffix in the property name)
+>   We have the mapping 0ms - 0, 1ms - 1, 2ms - 2, 4ms - 3, so it is
+>   not identical.
+I don't know what has to be identical. You want here 0, 1, 2 or 4 ms.
+BTW, if you speak about driver complexity, getting register value out of
+above is absolutely trivial, so not a suitable argument.
 
 Best regards,
 Krzysztof
