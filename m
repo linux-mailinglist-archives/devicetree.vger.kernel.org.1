@@ -1,140 +1,112 @@
-Return-Path: <devicetree+bounces-236289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3738DC42B58
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 11:28:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AB24C42B6A
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 11:40:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6E4E3B2D88
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 10:28:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DD60E4E2C9B
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 10:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D232FD1C1;
-	Sat,  8 Nov 2025 10:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9284F2FFFB6;
+	Sat,  8 Nov 2025 10:40:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dCOJkNNa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ydn3h6FH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081A0189BB0
-	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 10:28:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60F432D63FF;
+	Sat,  8 Nov 2025 10:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762597705; cv=none; b=LsglxrATmOyNenykWKtXBFJ80fzmbbNF45UMr7DaIy3UGi7+Af0lQnqBW6BExffB18l0HhbpScpJrOfiNE54RP5Xrvn/efh7aa+jyWmBQpoC11WSkfYtPHCw+CEIdxhqbkml8wLSQL7bc7V/dIV+TwuthWr8ZFnQ7OXil+ali08=
+	t=1762598422; cv=none; b=bKSxCYVPXG+vUXX7wrgiv+BL7Vxg9RljBVHWtsk+Bli5cOrSxtaiJqvSkx+uzvkuTnZbUtx7SLsOFz1FlBHfF8BSO2dbRL4xd/F1qQ8+J2iNicouh76blqQtPNDw9ijw/D+4smBjK1ZugASjnvjBi3G9pzxAwZLxm0wEH5m08I0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762597705; c=relaxed/simple;
-	bh=12f7GILPUkXCDP8tGHXH7ltT0vBUKfdqmW/twThO/0I=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G0018dYiH8UhEr2q38o3AFi1i8OHci7zSSUaMWbJvMefsTay4s7YfyZc61NKPGGi5IpbaauZMpsV2teKTZUAAki/MV5vdksj5CmCg0MUeGV6S3OdkHaWhUxlJsmI3kUYCNNMyVuAhBxLBjRe2yIvAc8MVJqHxk5Ll/S537iKbSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dCOJkNNa; arc=none smtp.client-ip=209.85.166.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-940d9772e28so53803639f.2
-        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 02:28:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762597702; x=1763202502; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+TuTLhzgnX5Pfkj0imA6DgDfaCJeQjdc19ou/wTAVkI=;
-        b=dCOJkNNaj6msls4EFNBb389OxjvTww4cPtQaxayJYmZ10mxKsnqCa4CUIXDwDYOxji
-         bP/3CcaggZ+ONtWlh3xO4O9iSW47cXbP3T0wBdeRZIg5/DO0XYVcO+FfGNKEITmVZV0U
-         77am3M4fFIlvQEqtrzNI8gHiYjAW20us+OZL+4LHrglT6wmyN9DTvYldvpSoc9PQHM2Q
-         uw+Fz5n1a+ZMrsqkblGbSj4nc2bwOruSqj9NP6nMElJ8SqTAb7qRDI8+fFcbKjFAy3On
-         6XxYYO2nci8iaWqximzh6r+4Vd/sCX37qCwreYsAeDhspqhbfLL4B+SWySxNlvcgT7Bj
-         Ja8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762597702; x=1763202502;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+TuTLhzgnX5Pfkj0imA6DgDfaCJeQjdc19ou/wTAVkI=;
-        b=knjxDbh+VWIE53xvP0RL6bpuxDUrDynN4as1ce4lANefpHXxjjsmetTO78fjZfZ09Y
-         /95HFJxN3XQXeHjWgG7warzU5p9uYvj7P0Nf5PmE6/o8s5cBOLFe2euBy1fp1woJTiPd
-         OnKz8BwlYgGMt8FvR7ylPxH2Gv99XJm6ikW5xiiQeaxpmJHVL9RPx2b+zdseu9g08QZn
-         rWulZT7SfVzBWerYUEyXaiQzdmE8s0xMSYHsqAQ0Fgq0a+w7Zaw8lMfncVUmqdUwDb3o
-         DV94MRM43+EmLhZ8n5l7pdmAgYdinVhXya/WjDiaSEE0W3FnMEZS0RGOm0e3B9TsQyg9
-         b5sg==
-X-Forwarded-Encrypted: i=1; AJvYcCX3FJkIIaaehgAam7TZA8G8sfRwbHyayZIm5dkW3Ef5u6goA+ZGhTF+jpkWhwvibfTozVAk014XjomU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmaIxqc+6eDXRLTz0UDhCSuit5mbXicgTBaCTFvMBF4lKf6/mb
-	6WGmooM6AezVfwXOnergtzqNa8S8mgLBWAPN7AgQNPEQvaPMpc2yVxCz
-X-Gm-Gg: ASbGncs4If1ycvqOomO1ZZtt/69UMeliUjgSZkq+qGfmJi1f33WNoSZInll6IVPg924
-	4rzURXMAsE2fAzT7xHdIeCFWtdfwBYF7la/YzKe3932w9kt/pyvxTQaFmj3XqH2FltU1JIEmD5/
-	Kga5louNSBF2/pI+vC2RLqRqiwFWS/hm4TRoPMLNAAmbVbrxjjqP8VI0RSa/Ifap9R68ae56k0v
-	0TCQNGD/yD6pZcmEmgiVX/8ytNuikDPlZf809kj6IzB7810PM2OTKImWssCpp5A4zFO0DoVbKYN
-	W++QfAINC4fXpD0LMD1mZlUZwc/lbuQyl6+P41U94NgqpApbX+oFnk6nGnfnFmjX4vJtWb+6mzj
-	lrqCCbMhGE+HX0gqtiAH6CJ/RcBaWiuN+wcK4IcudQSnwKH7kljjBVsBN9lNI4LYkUeZu2SUvcH
-	Oi/tsBYqCGViCP2w==
-X-Google-Smtp-Source: AGHT+IHJQ2fl+UoiHF4mPlmvFSjl+F0j04tbYDfTx7zB3y716ahbTwMpXNlaun5Mwk6isZ1YqsGJpA==
-X-Received: by 2002:a05:6602:1609:b0:945:a16a:c7f8 with SMTP id ca18e2360f4ac-94895f98e51mr294678839f.6.1762597702060;
-        Sat, 08 Nov 2025 02:28:22 -0800 (PST)
-Received: from p15.. ([2600:1007:b0b8:8420:9895:3669:27c4:c1d6])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5b74698d5bdsm2954694173.61.2025.11.08.02.28.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Nov 2025 02:28:21 -0800 (PST)
-From: George Kelly <george.kelly1097@gmail.com>
-To: Tony Lindgren <tony@atomide.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	George Kelly <george.kelly1097@gmail.com>
-Subject: [PATCH] ARM: dts: ti/omap: fix incorrect compatible string in internal eeprom node
-Date: Sat,  8 Nov 2025 05:27:41 -0500
-Message-ID: <20251108102741.47628-1-george.kelly1097@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1762598422; c=relaxed/simple;
+	bh=zmpl9/6Gu+ycYJXFFYRN3iGuNWhx7bx2ECgx8oeCqZ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LsZdcLwzTYJ/7wFuGTaFDDAWLtcyYDWVDPYNgMZEJGjKHPo66dC2WAcGdjETJ/YUL3oEAZusvLG4Lk9ljagYMB+gkmZ2nBvm3Wve2Nr/9ymH6Z67VCviqiNvq11CHSGRy/pKWEnG5IfR+SSQy9aadR9FpCKo+WjLExteEsFgcqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ydn3h6FH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62C53C19421;
+	Sat,  8 Nov 2025 10:40:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762598421;
+	bh=zmpl9/6Gu+ycYJXFFYRN3iGuNWhx7bx2ECgx8oeCqZ0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ydn3h6FHAWaeJdaQAb7LKY8bkJ2Mzixlyje4BUsl/nYnrBA9rZZmCGsNE6Tk9n4gW
+	 NSTC+0wmoI2jU+cAywXO3Bi2C0fsrqOKmjwLYyEaw41Xx1WpXTNHQpIDwKcpr3oaJQ
+	 r3vU26WNXYw14T3NfYYqu3unBjRRLUBJJVbhIISBjVg9kF4TSzcnVmBvjp21jnpt8t
+	 xpRL7SqKni70GZMh+S+QHk8RtOZ4G981Sg8nCtc7iRNCc3L8E4hSM/wye60LIx5+Vx
+	 st1xJe6fkLBLmGi57Sh99sl27+0qJKtO5oJBCASrJYYIHG0c+8t5+34jivkn9CIHMG
+	 l2pVhVle6XvAg==
+Date: Sat, 8 Nov 2025 16:10:11 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hanjie Lin <hanjie.lin@amlogic.com>, Yue Wang <yue.wang@amlogic.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Andrew Murray <amurray@thegoodpenguin.co.uk>, 
+	Jingoo Han <jingoohan1@gmail.com>, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH RESEND 1/3] dt-bindings: PCI: amlogic: Fix the register
+ name of the DBI region
+Message-ID: <65hstqcfcca7xj3cdtq7iikcdojbltfu42zlfdelskakesu3cd@hl3kydp6dw2t>
+References: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
+ <20251101-pci-meson-fix-v1-1-c50dcc56ed6a@oss.qualcomm.com>
+ <31271df3-73e1-4eea-9bba-9e5b3bf85409@linaro.org>
+ <rguwscxck7vel3hjdd2hlkypzdbwdvafdryxtz5benweduh4eg@sny4rr2nx5aq>
+ <20251106-positive-attractive-tiger-ec9c1c@kuoka>
+ <lsue7hlgybqpru3qfetlpee2mswnycvhxjffwyxtplmpqved2u@aohtwjtxesr4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <lsue7hlgybqpru3qfetlpee2mswnycvhxjffwyxtplmpqved2u@aohtwjtxesr4>
 
-While the Beaglebone capes have the Atmel AT24C256 chip (256kbit or 32kB),
-the internal Beaglebone eeprom chip (i2c bus 0, addr 0x50), is an AT24C32
-(32kbit or 4kB). Yet the device tree lists AT24C256 as the compatible chip
-prior to this patch. You can confirm this by running
-`sudo hexdump -C /sys/bus/nvmem/devices/0-00500/nvmem`. You can see the
-factory data is repeated every 0x1000 addresses (every 4096 bytes or 32768
-bits). This is because the read command wraps around to reading 0x0000 when
-a user requests address 0x1000.
+On Thu, Nov 06, 2025 at 02:37:17PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Nov 06, 2025 at 09:30:15AM +0100, Krzysztof Kozlowski wrote:
+> > On Mon, Nov 03, 2025 at 03:42:58PM +0530, Manivannan Sadhasivam wrote:
+> > > On Mon, Nov 03, 2025 at 10:47:36AM +0100, Neil Armstrong wrote:
+> > > > Hi Mani,
+> > > > 
+> > > > On 11/1/25 05:29, Manivannan Sadhasivam wrote:
+> > > > > Binding incorrectly specifies the 'DBI' region as 'ELBI'. DBI is a must
+> > > > > have region for DWC controllers as it has the Root Port and controller
+> > > > > specific registers, while ELBI has optional registers.
+> > > > > 
+> > > > > Hence, fix the binding. Though this is an ABI break, this change is needed
+> > > > > to accurately describe the PCI memory map.
+> > > > 
+> > > > Not fan of this ABI break, the current bindings should be marked as deprecated instead.
+> > > > 
+> > > 
+> > > Fair enough. Will make it as deprecated.
+> > 
+> > The true question is what value was being passed as that item (ELBI)?
+> > Because if this was always DBI - device has DBI there - then what
+> > deprecation would change?
+> 
+> Nothing, except not breaking old DTs with the binding check. That's why I
+> decided to remove it in the first place.
+> 
 
-This is not a huge issue for reading, but it is for writing to the EEPROM
-for two reasons:
+Neil, do you still insist on marking the 'elbi' region deprecated than removing
+it?
 
-1) If a user writes to addresses 0x1000 - 0x104e, they'll accidentally
-overwrite the factory data stored at 0x0000 - 0x104e. This also is an issue
-for writing to 0x2000 - 0x204e, and so on.
-2) AT24C256 has 64-byte pages, but AT24C32 only has 32 byte pages. Thus, if
-you attempt to write more than 32 bytes, bytes 32-64 will wrap around. This
-causes your data in the actual EEPROM chip's bytes 0-32 to be overwritten by
-the data in your request's bytes 32-64, while the EEPROM chip's bytes 32-64
-remain 0xFF (unwritten). Lastly, the Beaglebone Black's user manual does
-correctly mention that the internal EEPROM is 4kB (while capes are 32kB or
-256kbit). It's just this bit of code that does not match.
+- Mani
 
-Signed-off-by: George Kelly <george.kelly1097@gmail.com>
----
- arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
-index ad1e60a9b6fde..73a571c135f81 100644
---- a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
-@@ -217,7 +217,7 @@ tps: pmic@24 {
- 	};
-
- 	baseboard_eeprom: eeprom@50 {
--		compatible = "atmel,24c256";
-+		compatible = "atmel,24c32";
- 		reg = <0x50>;
- 		vcc-supply = <&ldo4_reg>;
-
---
-2.43.0
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
