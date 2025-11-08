@@ -1,234 +1,171 @@
-Return-Path: <devicetree+bounces-236318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F732C42DC9
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 15:03:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31439C42E0E
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 15:09:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A567A4E77B1
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 14:03:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E592188F6C7
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 14:09:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD082264C0;
-	Sat,  8 Nov 2025 14:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A80720FAB2;
+	Sat,  8 Nov 2025 14:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bw2oL8Nx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023086.outbound.protection.outlook.com [52.101.127.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779DF212568;
-	Sat,  8 Nov 2025 14:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762610597; cv=fail; b=EkAMKI/r1Q5P14vxZCYMhY6N7WCyWxvD9OL4qr4OVZxNQ2SbjOHDoWF+yjJHuxUJytBZneLLpH/6SFnjaaQlLZ/Ba5jm/GpKoE3cZj8H/bWsPnxIUMm21K5ytFRvsQw/N2p/c7j9wltSFPOVC7Hy4VYUxCZkxT+FkSPF7XMJd1s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762610597; c=relaxed/simple;
-	bh=xSRoZQb2UNYT+aOEzubP77z2bAgIJyDldNsTSU/nhN4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=knFoNWY3LOu/feR7O8tSv8B25hqSZeZM6UNDKjDp8/gAIkzdTk2vG2DJ/3taunnmqRGQ1x+PCbv25kGYl9jsGao9tJAVsk7nyPRN0qZEe8ToCBlnpsAUK41F5GmrleURQe64PaLCgRbL+YoDQZr33mig6BJz+sRVTHX2F3D8K8c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dkeujA4ukNj8at67aVpwOPTm6IxFbdvNkqsC0GrXan7U48fcoLGMZEpx6ZV430+4kwYuWce78XXZ8oTFZ8txVaM4pZA7m3VZ64oN6im7dcqZtjFfBPgi+dLyPgXk1g0FPcKy2R9g5Y7GSb3A8mNI/q1QGFEl/rKg+Vl5F9zAZO6PUiAE1Fbo0d+ko9Tk6I3ycxSDEZCoHuq098IGmfHvGCEZWZExU4/S1+Z9g0G6NN+WzbHYdxsRVODy6IzGugsNS3fi+5HPYcUbvJd+nhIg86o3JTjchyy5T1VFu2VS4RfuoGR5sf1wpYJWFPsD6kYrtsxfR35iiLqkxbkLSXypPA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nfKn7gVBO7GcjBMV8RC+LeGUQKD4zN506MIzDLFeQNk=;
- b=HNBf04tgsfn5UGdH8USR/InETYQEB1eb9NX4V/jlxykblBJLbrOgy/v0W+tdISP2UB5+9pgcAppGupyuOOhx/iwOidO9C9pSf/96gplzmWa5EG2p1lxU370mmcLYQskActI2Q24z4pVgkVMQVy9zEwnSg/eoaX3qNT0QKL0DHwzOTDGfzfeHrSMuuoEM1xzlUxeYyMKo/9CZ6J2azbZBesQsLu3fA9If9Bk2PmZXd/S4nrLoT2vbTk6fQjfJJvjv+G5spS+Tp2/NVTCrNwLOcW93cnK8DalRpkax3mdyE8uWcAEgnuIA1+7Qd8h+VnzzQUrPd+ztk+UbO7g5I+dt3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR01CA0121.apcprd01.prod.exchangelabs.com
- (2603:1096:4:40::25) by TY2PPF7E205D1F6.apcprd06.prod.outlook.com
- (2603:1096:408::799) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Sat, 8 Nov
- 2025 14:03:11 +0000
-Received: from SG2PEPF000B66C9.apcprd03.prod.outlook.com
- (2603:1096:4:40:cafe::47) by SG2PR01CA0121.outlook.office365.com
- (2603:1096:4:40::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.15 via Frontend Transport; Sat,
- 8 Nov 2025 14:02:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66C9.mail.protection.outlook.com (10.167.240.20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Sat, 8 Nov 2025 14:03:09 +0000
-Received: from hans.. (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 720224143A8E;
-	Sat,  8 Nov 2025 22:03:06 +0800 (CST)
-From: hans.zhang@cixtech.com
-To: bhelgaas@google.com,
-	helgaas@kernel.org,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	mani@kernel.org,
-	robh@kernel.org,
-	kwilczynski@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: mpillai@cadence.com,
-	fugang.duan@cixtech.com,
-	guoyin.chen@cixtech.com,
-	peter.chen@cixtech.com,
-	cix-kernel-upstream@cixtech.com,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hans Zhang <hans.zhang@cixtech.com>
-Subject: [PATCH v11 10/10] arm64: dts: cix: Enable PCIe on the Orion O6 board
-Date: Sat,  8 Nov 2025 22:03:05 +0800
-Message-ID: <20251108140305.1120117-11-hans.zhang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251108140305.1120117-1-hans.zhang@cixtech.com>
-References: <20251108140305.1120117-1-hans.zhang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7155C481CD
+	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 14:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762610938; cv=none; b=sOBZ7DdA4WtWQl8a4sIUV2ZQu0c8U+fE/Akky5F5l6LIrAEod+wbxeD4w/DS3/ZWhwPcXIQmx/p/Cminnm1XGFKcZIUUJMxyVtHhJWd6TqqFHOohx2oQOdrWF3Muj7hE71SxB4qTn1fBIey7ercSbsmVZIWBK1L89kT4BKSYjoc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762610938; c=relaxed/simple;
+	bh=88SK9HlF8ID4j2mgeXZK5r75pqvAiovy9hjLKXg2mUA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=rJBh8PyrHZFQkYUpD1++uAEJ96+6PAfcuxV5EzlP/q5QUHppHWO8klkCPKDtwf+ezQN9wP2R5Q95LQOORWPT5u7intBHqp82RNmzePZeczDvXEygl+JyQLkq+fiRbLnu/RWev3ErUpu/yGkQpIl6Ffi5DA5jStS2Jamq5BDn6A4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bw2oL8Nx; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b64cdbb949cso306271466b.1
+        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 06:08:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762610934; x=1763215734; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=88SK9HlF8ID4j2mgeXZK5r75pqvAiovy9hjLKXg2mUA=;
+        b=Bw2oL8Nx5pdDvt2hub1vX/LWOr0w5YNESA2TcldKBBsBsyJmr2aV47BBk8BqOB/BDH
+         z+AL9mKc17uEccImArnb/6hesdfBqfowvxh+YT4ZVviQm8yaMuwYVB3hgf4zyst+uiJZ
+         H0MQPNbnehx4A3pb1DtFJNcuOTWcuM4HkJuxv1QONrNzrZVTmVkhtoi2uYtBxHfsPFqD
+         wY8JIzCk6siJ+d6FXP/ZcUaoypqsv8TF9BmUy5uZweW1KbvcTTdStBXgqS9OEt+0xA89
+         zcg2+McMY+QsKfyL/SjGMJuZSsmlPF4q1/ff1A0sVPpCLbXoLOR/g5vUpIOMKN8Oedvt
+         Xy9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762610934; x=1763215734;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=88SK9HlF8ID4j2mgeXZK5r75pqvAiovy9hjLKXg2mUA=;
+        b=PYIQ7dKDek/q4CqiPdeHeQR0S/iGbYxz4xgSvd/LwxXpIkeH55mQ8xI4HOtz7ku87B
+         ilGPHRPdaSNuMGby+NaTRaZ5WjDTsvOmQ/svxLhGkyt5fBO8EJN2hD2B1mtoK7KvdFOG
+         19btMyJE5vCNqtB15mwhj9IJAbvzq3Fws4vpH+KB/1T/umKq+Zj6YIzHeU8XJPIUypQy
+         GB1hp0Oq99XfVGVlTHO7zxg1y22kfkadGlsugZfSZiZHpDz27lmQVyaocq59TlMOLxAX
+         TiMqOl3t4zZ6GkJvdQCEcC/dqWmmd66CPTBfUvM0ExZCeiKBiiqguhjZfn4uhTGtaB+U
+         V3Mg==
+X-Forwarded-Encrypted: i=1; AJvYcCXJV7wPWXuyJ8CKCynvVOr1hn0svYVpUgBEh9QQvtkTUmXp0DVcfegQbwVLPUmYoY4WkfhTnbcFivAS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyyb1oAowfVwX4rrjYaB05abbCtlqw75kBTmW/6IaOUvEC94VS3
+	rsMr5/DBo7rTslgSmQFyMdTlBxRhBFwwTk8aGER+wKNpvksbBk8kr4p8skk+88eXH+M=
+X-Gm-Gg: ASbGncskav5ioP5E3Gd8Civ/ZX13clsueanXxLnV/hmh92z2MfJnzH1zpFF66BXeUVK
+	zCnaPEqzFakDpmf/UiMakCXBvGXmEfoSz9S7+s5eEZ4qysDKQRI4EL7vd1XVb7BkzgWMjf3tFeC
+	GKsi36gLfoFW2guG9c0uxSyRv1rF7yeUaFVymMxQBRcnh/AP3yZy8vlzgrxmTrgcEEuuBBdKgqH
+	ZrAYqLviB5wZt7vnE7MbpQQYzY+d3eY4uSu/tFfOhhzIVjmezxcvDVedLSwP4BTAnKPymIqiA+U
+	AsC5VrqDn+p4DRETT2l1GxMWUTWF2tt1NqLVbDVbL2eAW2RO1OflWJ923Igna1Ft1wbY0XBiZIA
+	HMU9Ya6vyOA7Q3eu+IPisye9qbQMALn0e3D0aKKcjMkzSjhWJw3HubT/ELMj/Tyd12qr6XvYRr1
+	kAhbDYmbn+A4SXTgiZypPg
+X-Google-Smtp-Source: AGHT+IEU8px863DOF0SHJM2dOiCgYfSF7uWOZKjlSkmUmm2odBp/m7f85l+VxG8z6Xkcbao4KUCsgQ==
+X-Received: by 2002:a17:907:7ba4:b0:b72:26ec:c8db with SMTP id a640c23a62f3a-b72e04e2c4emr263436466b.30.1762610933770;
+        Sat, 08 Nov 2025 06:08:53 -0800 (PST)
+Received: from [10.41.228.128] ([77.241.232.5])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf97e447sm577021766b.42.2025.11.08.06.08.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Nov 2025 06:08:52 -0800 (PST)
+Message-ID: <fa2e704a2f295f2c9b2c7811e8ca89972554ff7e.camel@linaro.org>
+Subject: Re: [PATCH v3 07/20] dt-bindings: firmware: google,gs101-acpm-ipc:
+ update PMIC examples
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,  Lee Jones <lee@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Peter Griffin	 <peter.griffin@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, 	kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-gpio@vger.kernel.org
+Date: Sat, 08 Nov 2025 14:08:52 +0000
+In-Reply-To: <20251104-awesome-tacky-magpie-bacd9f@kuoka>
+References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
+	 <20251103-s2mpg1x-regulators-v3-7-b8b96b79e058@linaro.org>
+	 <20251104-awesome-tacky-magpie-bacd9f@kuoka>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66C9:EE_|TY2PPF7E205D1F6:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 458b4679-3264-4cd1-da85-08de1ecf8c67
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|376014|7416014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?xTfG4LTJQbtbtDap6JyOQJsaYGEy9KE2H/iXAr2c/T69YGo5UTtBE2XJeqly?=
- =?us-ascii?Q?0lw4fwJPjdZZ/tes8TauVwrBbbbnqffpsrL4JFwqnuMIa7LVQBbOlDbLHpPV?=
- =?us-ascii?Q?C7ujpxoiwGiQMRkDwBzUbKV3eYHgoMCHMTcM+6kN+Pn2VWjDaAAWGkIeTWgK?=
- =?us-ascii?Q?GO80vjzc7ARNS5uroFtN+uS+/8axlU5D7w473VQxX3jhz25ZmxztbzZX03OX?=
- =?us-ascii?Q?jPPFoibA8GDVCI2EZh4IcnWmrQFJRZmJaqYavVK9SPUXV64KTcNDKSSsnrsO?=
- =?us-ascii?Q?8KW/FJ1PUHPJ7U0W7XXwVNwN78jP+ezCpXLs0CJdJBejLveR22p0Nbqxg63l?=
- =?us-ascii?Q?ui4DQmpp4NfLZ8zelusiAgM8fuBspbDGUMk1M+B078BAK1UyiCVxrVhB2baP?=
- =?us-ascii?Q?pj6a0AwGPqkj3I8Vew884IesWyAx9GdNSyvsHKZ/wjEOA9/7Mnu+vVzbA3O+?=
- =?us-ascii?Q?eOH7f9vlphmEbJfq8z1LxvPn8bilZYtai+7COZ/fGU6b9H0e/gJlIoAgOUwx?=
- =?us-ascii?Q?/fnCRMA+rmLqz6yMQTNaSp178H3x6BlZi32U+FZwhHcU4z6vCdyXlKT3UgNU?=
- =?us-ascii?Q?UcQ2YILCE/QNpN9oTztA9Aalu62lzZwXWHovnRfs9V6aurjdu2DsRTDbiCJb?=
- =?us-ascii?Q?G3C4AmxCy9TEHad7LC7F4PR/T/AxfzTlfFNolAoCxE5xWI2xxWMTQ5M9TsnK?=
- =?us-ascii?Q?qV+gMyyknOUwk+Tqww2d6IEki3Ovtmvb2jJlmH+uA7DJWqlkujggWFnlswKL?=
- =?us-ascii?Q?gvXuNxJuNxcZ9QO+ajJ/L8MSN99RuI8Xweg41gepB0HHhFrs8WSCOGKhNv3n?=
- =?us-ascii?Q?03XJ+SoK8Y8jTmEbUGwis0cpQbGLgt1L+HwhrSvXi1AukCQb0pPdnee0mTBO?=
- =?us-ascii?Q?U1sJvkNSmY6vTa1Z9Vhu2IJPlJcHNByjXrXn0dmptX6+0SKpk0KWLZl2SSlq?=
- =?us-ascii?Q?jqu7eTgZ9HODiaEIQApXER9gDd7EK8wt3bhTUoIqEy62whgMagZgh9wjwszO?=
- =?us-ascii?Q?FIiQqEBBm1uXwEyq6VX/SqrnNMIrjPiYcR/ojRpi+PFAjNLOs01Mn31EQaKx?=
- =?us-ascii?Q?1FNOfvm2cDGYcofHxS9e6Y/RcJtFH1KEtdqQcpfqksowe4HR5pEy6UyxNo4x?=
- =?us-ascii?Q?yf4y0ig9EZVdqvYcaCYt5+ip0dV82pmzJHf90Z1Ncu1tbbryuwBdF6m16S0a?=
- =?us-ascii?Q?fhHDs2KtI6tba/1hdDyZWFSA6LRPYh0F2j4rF32lSeMWUKNr4yKkizFNFLR+?=
- =?us-ascii?Q?TRegRsW1fw8KdMVUof8diY5E7eorpkkwDf8cna9ettJjtQXLNc4OHK8PC9dl?=
- =?us-ascii?Q?8lMGYdZ54IShP6AMGFNHtcp4wSB6OJ5ijwNEarVNAx9gZ+/UoSfTP+8rglkM?=
- =?us-ascii?Q?BDc7wTKqbCLpJVE3LrUJoUdBVaaMR40RNbpGotjkdIBJXMBfTWdHjpSmfndq?=
- =?us-ascii?Q?o8W5z3LCPSTRlFq4UZnl2JbVn+SrajI+f8G2MF7PYQvu1gO5U36ws2ac6mmf?=
- =?us-ascii?Q?an50yUuUp07ewgtlVaIHx184a5SpUf1hSt4nWoheDuaMHxj6m0gztG2ssxai?=
- =?us-ascii?Q?jFeF6G9sfSFUthEi20U=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(7416014)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2025 14:03:09.4182
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 458b4679-3264-4cd1-da85-08de1ecf8c67
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66C9.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PPF7E205D1F6
 
-From: Hans Zhang <hans.zhang@cixtech.com>
+Hi Krzysztof,
 
-Add PCIe RC support on Orion O6 board.
+Thanks for your review!
 
-The Orion O6 board includes multiple PCIe root complexes. The current
-device tree configuration enables detection and basic operation of PCIe
-endpoints on this platform.
+On Tue, 2025-11-04 at 09:31 +0100, Krzysztof Kozlowski wrote:
+> On Mon, Nov 03, 2025 at 07:14:46PM +0000, Andr=C3=A9 Draszik wrote:
+> > In a typical system using the Samsung S2MPG10 PMIC, an S2MPG11 is used
+> > as a sub-PMIC.
+> >=20
+> > The interface for both is the ACPM firmware protocol, so update the
+> > example here to describe the connection for both.
+> >=20
+> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> > ---
+> > =C2=A0.../bindings/firmware/google,gs101-acpm-ipc.yaml=C2=A0=C2=A0 | 40=
+ ++++++++++++++++++++--
+> > =C2=A01 file changed, 37 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/firmware/google,gs101-ac=
+pm-ipc.yaml
+> > b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
+> > index 4a1e3e3c0505aad6669cadf9b7b58aa4c7f284cb..c25e155926e5f44bd74f195=
+cdbff3672c7499f8e 100644
+> > --- a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.=
+yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.=
+yaml
+> > @@ -45,6 +45,15 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: samsung,s2mpg10=
+-pmic
+> > =C2=A0
+> > +=C2=A0 pmic2:
+>=20
+> pmic-2
+>=20
+> Are there more pmics? Bindings are supposed to be complete (see writing
+> bindings) and if you did follow this approach earlier, you would nicely
+> call first "pmic-1" (instead of "pmic") and then "pmic-2".
 
-GPIO and pinctrl subsystems for this platform are not yet ready for
-upstream inclusion. Consequently, attributes such as reset-gpios and
-pinctrl configurations are temporarily omitted from the PCIe node
-definitions.
+There aren't any more PMICs on ACPM, no. At the time 'pmic' was added, it w=
+asn't clear
+unfortunately that two nodes would be needed in the end.
 
-Endpoint detection and functionality are confirmed to be operational with
-this basic configuration. The missing GPIO and pinctrl support will be
-added incrementally in future patches as the dependent subsystems become
-available upstream.
+See also https://lore.kernel.org/all/963bbf8db71efc0d729bb9141c133df2c56881=
+fc.camel@linaro.org/
 
-Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
----
-Dear Krzysztof and Mani,
+That said, I believe we can change the existing node name from pmic to pmic=
+-1 without
+any driver breaking. The sysfs path would change, but I don't think anybody=
+ cares about
+it at this stage, so I think such a change would be fine. The ACPM driver d=
+oesn't care
+about node names and instantiates all children regardless of name.
 
-Due to the fact that the GPIO, PINCTRL and other modules of our platform are
-not yet ready for upstream. Attributes that PCIe depends on, such as reset-gpios
-and pinctrl*, have not been added for the time being. It will be added gradually
-in the future.
+I propose to update the binding (and DTS subsequently) to add pmic-1, to al=
+low 'pmic' as
+a legacy fallback (i.e. to not issue errors during validation of existing D=
+TSs until
+they're updated) and to use pmic-2 for the 2nd pmic.
 
-The following are Arnd's previous comments. We can go to upsteam separately.
-https://lore.kernel.org/all/422deb4d-db29-48c1-b0c9-7915951df500@app.fastmail.com/
+OK?
 
 
-The following are the situations of five PCIe controller enumeration devices.
-
-root@cix-localhost:~# uname -a
-Linux cix-localhost 6.18.0-rc4-00010-g0f5b0f23abef #237 SMP PREEMPT Sat Nov  8 21:47:44 CST 2025 aarch64 GNU/Linux
-root@cix-localhost:~#
-root@cix-localhost:~# lspci
-0000:c0:00.0 PCI bridge: Device 1f6c:0001
-0000:c1:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
-0001:90:00.0 PCI bridge: Device 1f6c:0001
-0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller S4LV008[Pascal]
-0002:60:00.0 PCI bridge: Device 1f6c:0001
-0002:61:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8852BE PCIe 802.11ax Wireless Network Controller
-0003:00:00.0 PCI bridge: Device 1f6c:0001
-0003:01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
-0004:30:00.0 PCI bridge: Device 1f6c:0001
-0004:31:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
----
- arch/arm64/boot/dts/cix/sky1-orion-o6.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-index d74964d53c3b..be3ec4f5d11e 100644
---- a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-+++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-@@ -34,6 +34,26 @@ linux,cma {
- 
- };
- 
-+&pcie_x8_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x4_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x2_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x1_0_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x1_1_rc {
-+	status = "okay";
-+};
-+
- &uart2 {
- 	status = "okay";
- };
--- 
-2.49.0
-
+Cheers,
+Andre'
 
