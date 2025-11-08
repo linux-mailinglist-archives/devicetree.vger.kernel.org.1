@@ -1,394 +1,225 @@
-Return-Path: <devicetree+bounces-236279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A1BAC42603
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 04:25:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37BB0C42628
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 04:47:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1FA11893D8F
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 03:25:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDB6F3B2363
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 03:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4CAC2D5A07;
-	Sat,  8 Nov 2025 03:24:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03AAE227BB9;
+	Sat,  8 Nov 2025 03:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YddkaI5C";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GnWyJf/g"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="cSEOen9Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023094.outbound.protection.outlook.com [40.107.44.94])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F307B2D9491
-	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 03:24:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762572243; cv=none; b=QCZjqGx1qe5TO88i6hKYspDW3RKqHg3H8zb7F3rPxxswLiFx/BWE9aoeA/LAmhiLxUQKz1dMr+k5vc3dXTtfCaaMxDKds/wIh1ueC+GjND+Rpb/t2h2RRf1WOj7JWt61lKHDtnaP+jCY3iA3bFHlvEidgtvcS7D8MZBpQpCTrLI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762572243; c=relaxed/simple;
-	bh=OVN34xQvWdQnzMzIUanYNvprU+WPc4hLhYjzqjWZYe4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=o34u7YVvVcNlVKEnsCaaAvcgFubcVAUXOGO2f0QbVQ3xjcCKmaB4l70Xlg3bd1bxOrZa0fJ00WQ0bGTz7OY8aWWlHjVFhfav1YyNbq9B1gL7m+G1/5mhfPzQcK1t7ZTjrNx/IYn4nijVeTIAQhxB/RLcSpeAEzsSWP780FQlswE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YddkaI5C; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GnWyJf/g; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A7LrlM34129116
-	for <devicetree@vger.kernel.org>; Sat, 8 Nov 2025 03:24:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BaTV6fSJpghkMj44xjyrxIVyvBhGm3h7M0nGxOIbQk8=; b=YddkaI5CHnfKvASt
-	EkizRxRGDNN6yXKl0yrdid+Hqu2ankNm3IGK1CRQ9AnqhMq6bVHM/mXYbGVHw7cM
-	4ZmksXyCFIx6t/IQ1e8IEp7GwaoPYiqqTAPtApN7E+/xggacEbL9wGgSrR/myrGt
-	0+6tURjCVA3A/CW/SCfifdlZjLtn56UhuB6jqRc5LVCRI3gyhJYpCTQiRJ9uF5PN
-	a+gxlmHZQYNL3hD20aHpaTzNfIu35nMg4XQ+WCiT3lJsdk1mzhq8Aqqi8JWI/lmj
-	qGZai6Afag1pQ30HtXZ3h41zAAtc57hl2ehobJYcYwEZwYTZ44ESkkDyzl2HDfv/
-	5ri9Bg==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a9s37gfv7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 03:24:01 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b630b4d8d52so1260109a12.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Nov 2025 19:24:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762572241; x=1763177041; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BaTV6fSJpghkMj44xjyrxIVyvBhGm3h7M0nGxOIbQk8=;
-        b=GnWyJf/gE0qk9B4vyjT6VxcZrK00juiKpIJYkIRUgwLF5jy4pPq0oC+Il+RtmCxfRm
-         kirsRI6zgJfBMYigUeC5dTUO909i/Pi+ZMFyPORp0+KEViz3OYhsStLWzzOP7QYXJpw8
-         wl5koUT9wD1C58dOffZY4NDAD3leOXtvGeW0SmyGSt9ikv0KttbvjD6B6CDXe6QOvIlq
-         4wYjXKc+lfPR7+jJm8gU9an3PRUIQR1OwcMWQktjtktntJte36mH8yNzrluLLYqikAov
-         0pnz+rcAIPoulGJ8mGvolxeXGDMj3gNdOHr6Tu8euyLS5r1lgUWOVVd9Cj2sPjR1MDdx
-         G9ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762572241; x=1763177041;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BaTV6fSJpghkMj44xjyrxIVyvBhGm3h7M0nGxOIbQk8=;
-        b=EFNmy7cwZ4QFfDMaYN5ouVeisGywavXQ/4XVNy/ZXC5lbDU8BPC/WguV0qUSUrU2mx
-         SWeH6Jc3Fud0319+NKPhH8g0ZFzAs0soU0c4A6wSI8QTOvI4IjcQFcg9saFMk42vzgJc
-         Y3wMuCpXNBeLlRGffrWR+LNq1xtrzOWGARYMIkTk4ob5vDK01j/bBcsjEVyXFNuRpvml
-         Cy/zNKNx5Emz46CveG9Hk9WHtedhECbzVhqNjv65wo3+w5OjABvuhOyfTnal1sKNxI3a
-         SPJsv3l9K6p1b8ijobCIvYATTE8gp5kFWa45HgcwPTsbZbMVK8ugo4Lyo9Hb8PODZcmh
-         RLvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXTeaSvEcfZ3KTzn1+Q6KHBKKRCQxNxp+jP7sPasmcyl1jtP2k1JSOSF7egJfMQmC5hyOsvCi4LgqAG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1Hmj7CvHTTQA0vAM95XeA7y5DiX6GKr4LeCwLLKI9KoBoUId0
-	HdPppUkN3oluL7d9IxieMHaF0I1rc9rvM1EDZxTQTsVtPM6wDEpNWlXOwUD+0Y81fDjeVYh6iJd
-	z+ng+mouzWUcDKbm3C4JiQwt9U0nUmHDnEMJLMx8YBI4JA2FcDG5flo4MkjDHcH9p
-X-Gm-Gg: ASbGncsbEd4fNhaXiOFcQzIfRH28PhPan1VkD8jQ7zGTWBoHosWC9Ae3f/CRXktprL5
-	TG1YqMxneYv1SEgmoEoZ96t3uatKjRgLomt5GHQ0IyF4T6w1xbji4eDYR3nISnvcoVpy+rjNYa/
-	Sim/JB8fHeavxnX9rQZ4NCjlPNGoRfUi4ABTGA9Ljahh7CDWZpcB3dfCIRBt4tK9kSFdhocPVjE
-	lF0KFPt4HOFm/c1lyFG/7EEvXdjCq3mrEwBNjPzW88gcH9W6eO2uyGMQYdhixVm62JHu2qV7mz9
-	4r+HVOyBOTx7iPMyj3FOckB4zX2sM3LJGxIZaputaJ33HmlsOAzyWf5gMhAlskK3OtHLmcIBtVw
-	I8Bdq7tiwiILGe8P0ghKBz0VaAGmF8RM=
-X-Received: by 2002:a17:902:cf42:b0:295:3d5d:fe57 with SMTP id d9443c01a7336-297e5654e0bmr16448035ad.21.1762572240471;
-        Fri, 07 Nov 2025 19:24:00 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG18eBJDNlQTKlU/W8HVbHalpdek9IgvR5aIZVa3oaBqvh3+zMvUcV20Fucl157NbrPRftPrw==
-X-Received: by 2002:a17:902:cf42:b0:295:3d5d:fe57 with SMTP id d9443c01a7336-297e5654e0bmr16447775ad.21.1762572239947;
-        Fri, 07 Nov 2025 19:23:59 -0800 (PST)
-Received: from [192.168.0.104] ([106.219.179.230])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-297d83c941esm19942445ad.44.2025.11.07.19.23.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 19:23:59 -0800 (PST)
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Date: Sat, 08 Nov 2025 08:53:22 +0530
-Subject: [PATCH v2 4/4] power: sequencing: Add the Power Sequencing driver
- for the PCIe M.2 connectors
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B1B1E49F;
+	Sat,  8 Nov 2025 03:47:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.94
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762573658; cv=fail; b=MC99ji+m/ly73kMdswIB9KTK4FuYUMxQcW6d3SDVpIRxz+QE3OY4+3+Xjm2AYprSZV05S0xdzCXyyC08HTv0d17bNf7MVtEfUsxdmdOccRz0DMfO6gOj/BidKYjSu8OCvPVYVZeT01aW7nwxJ9eyZYyaN97yCVLUma5sxVI23MQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762573658; c=relaxed/simple;
+	bh=8Hl8NQQvqyG0TfXa4rU30iVoWbfi9mk4jEugPjtok0I=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=PiSEJVKq8snbI/qoI14mgMuJCe8HH7fMovT0+tlr0ad48NS/CGQMpt70p7z76xJVU52W+WwPxII0QG+FS1KpEkw82xJ/dvc9x18nelbnb9DnXyTNCW/W1g+UVu+iK2mNTQk9+wlOiyO51nn5yPkAyqid3csA9z2T/BUBzgoGubU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=cSEOen9Z; arc=fail smtp.client-ip=40.107.44.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OneHZ9KSMyFyjlp8GMvOJhxR9upAZgGrA4DuWYw01Ize2bLgWumHNeDXYvXwnVCq9SFg8JL/ZMkAgu+Fr5UwC9bsu6DilvehpUPxw4D4sh4iwS///dlXE5hav0oIBnZFNonoiTpTLxTlJgFoybhpTyS1EXRXXZrDLE+rWlRoLNPp6jvIoeWwM1IGlW9HuuEON1SnsUC4JyH9INWYygsv/J3+8aAHZuMAu4Ce6OMgIdyVwVEKjFd/sHCIlBbJRoWJsUR0OO+7jdbIHwRN7A8tAANyUiRquJfxjVtd52MtR8GNE/rIA30XbKc131lskNXrH7QP0ykKcaBjRYmVvRjrcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KhoN+xy44sAwoZVICwUOZbM4+lzMfNhyouoaSK+C8RQ=;
+ b=DGaBim7oG0/vQdhsf/eeeMDAUST4Ly96tWR34D3UHFgCpf+iPN/g61SaJAD6Px8pAcP8zKG33Csx66xsCmyaiZbJOEMES53Ud24Rwr183EgI35UW66p/WBW2sAmqHkVbghjnsHsobcT4n3QSz0Ttosp9vtQen8aJh0oEmxCw/GMC1nC9LWqF0NNCfX8x5CotDTNt08RXitqByBCZDjX/GMtGHG7BNijUQiYcNnHGF/gSb0/k9pd0Dz1nGkXxagRL/SVT8O4Hclvs5lP8Lbu9JvlGY6KMyAP0e3KY6VNvJE6ex+5E3Livjc4KFIsT/z/9513hqpvFlWl2ln1PoQIWpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KhoN+xy44sAwoZVICwUOZbM4+lzMfNhyouoaSK+C8RQ=;
+ b=cSEOen9Z85X41NyQm34h2aj2W4I5cWRpV7UBT/uNMW788e5TqhLZAzj8/DpHdD3DLwezi8HCnXcM7U+Irmbmu/IzdFvJWcGImbVyq5oZ59kmJLdw5G+iX4jpA+DwXRYWsgziDamfXCNN3IGrOIDoSqdMQCEJ9YqmuspAP70aBaZ4rNNM9cJE+GtlJswy8FDmXQ2dnM/NCQM/PCWyc9k/6cxoIJm+olOEr8emIaIeOLYKZSzHCXYQX353eiLU140Xfb7U3uDn77BsLUnHVOJApK/vuIS5Unfehc8Cjyyep8HgVt17HcE9AWgiBc0bm78VVGR1eZiv6aKH1PvM+H/cUQ==
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
+ by TYZPR06MB6048.apcprd06.prod.outlook.com (2603:1096:400:343::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Sat, 8 Nov
+ 2025 03:47:31 +0000
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80%7]) with mapi id 15.20.9298.010; Sat, 8 Nov 2025
+ 03:47:31 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>,
+	"benh@kernel.crashing.org" <benh@kernel.crashing.org>, "joel@jms.id.au"
+	<joel@jms.id.au>, "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"jk@codeconstruct.com.au" <jk@codeconstruct.com.au>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "andrew@codeconstruct.com.au"
+	<andrew@codeconstruct.com.au>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "naresh.solanki@9elements.com"
+	<naresh.solanki@9elements.com>, "linux-i2c@vger.kernel.org"
+	<linux-i2c@vger.kernel.org>, "openbmc@lists.ozlabs.org"
+	<openbmc@lists.ozlabs.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v21 3/4] i2c: ast2600: Add controller driver for new
+ register layout
+Thread-Topic: [PATCH v21 3/4] i2c: ast2600: Add controller driver for new
+ register layout
+Thread-Index: AQHcRwi5PyFo05/UVU+zKir4RznKX7TWYJ2AgBBvTECAADe7gIABLuQA
+Date: Sat, 8 Nov 2025 03:47:31 +0000
+Message-ID:
+ <TY2PPF5CB9A1BE6B128FE8388B5152B5752F2C0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20251027061240.3427875-1-ryan_chen@aspeedtech.com>
+ <20251027061240.3427875-4-ryan_chen@aspeedtech.com>
+ <f08b1078-fc8c-4834-984c-813e01291033@kernel.org>
+ <TY2PPF5CB9A1BE64FEBCCCDC7631B355135F2C3A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <aQ2_D6vs4m1brNk0@smile.fi.intel.com>
+In-Reply-To: <aQ2_D6vs4m1brNk0@smile.fi.intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|TYZPR06MB6048:EE_
+x-ms-office365-filtering-correlation-id: caa1343d-6fa3-4619-03cb-08de1e798b8d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?ZZugjxEsoNDXotgYEBRrnb9GRmqiiEKE+uhXeJnKvEULcKXM6/09nOHMB1s2?=
+ =?us-ascii?Q?FkgwhrxDgdVPXn6cqWaxYLb4zzDXyTLwlx3T43yaFFTmgMi4+7eE2dIpYkbN?=
+ =?us-ascii?Q?aeEjj4MM4Pb0GlD9xhG/jpzUheC/jNsTRx3uVFMbwAC6OUOi2fgrjCFQVcMn?=
+ =?us-ascii?Q?XHfyhSFeIfheZYy1Y2XK5UroKtd89SUHIUw+CH87WVV1qFVTiwYl2D7oElDA?=
+ =?us-ascii?Q?bNDt6XwQntqQshZyE73qg8JY1hKPNu3M0qyUy4GFeGZmW5WfjD508N8FSpT+?=
+ =?us-ascii?Q?4EKrd2tLQ7TrO8PoLCERrCClNhFgXExlKjqdpIEXuoI/XTR3YDGHmEqrvV0Z?=
+ =?us-ascii?Q?slJyYIifJCUqB3ZwCWKB9ZhW0D35BwjXinlX3ziVgFfDAgDwykA23aY0e6ui?=
+ =?us-ascii?Q?s79VMIlCbVWtms8vyazD5P3TnttVaREoqtyYAwbCbXqdmb+mI3aOqldHkd9q?=
+ =?us-ascii?Q?J07/dsJGQqBBIzIeAMJnYcinxRblubC2HTedVded6gDiaF6ZkfRNXK7SMifU?=
+ =?us-ascii?Q?rUaw8ir2FIJtKOqgeyLeJR5eq2uc2QceUY7Jwmkm3bzg8ez4rV5Bg3hCiLWZ?=
+ =?us-ascii?Q?uZBxmpfYVvw0RHLMIWUGtUHTqPkMx8v7RpLlHr8QMmTR/lqDYKKk170tlMR+?=
+ =?us-ascii?Q?lh/P6zFrnSS659yY5JsDSsn8ygsoRjnZn6Z3X1mh2X5xqSa21Bm8tOFOorMC?=
+ =?us-ascii?Q?gNp0U+DNcx3sy0oLmzVK7sdpf1u0yZibYHeu8vlFTucQcTVX2EQLGWCK389a?=
+ =?us-ascii?Q?dN2Xjj3jYOXtMGEPuJqHu49wnNqnaUJzBsCgCwG7xmvEeiL1zgMsj2HYmBU5?=
+ =?us-ascii?Q?1zvUMB8ZOMg1rhs/T4jETDlOVaNq0Tvmt1YfHrSQAcH9RO7Z8GHP8/hmr0p6?=
+ =?us-ascii?Q?oEPQ5CM7ZapSpizvSlIJFY8YXVBYdrWjB3je66egLJAe+jgQ4foxgGvM+0Kt?=
+ =?us-ascii?Q?3tHzCblz2LP78yWtrAZwsYjUUVb3LKMPzGHBNTtTEOP0p/aRkjFbLMWcSwSO?=
+ =?us-ascii?Q?p8R4X9gFBX3QQEHyDJiOo6ni8RJqfPdfc1MgdeuUSEhlSdUgl37h3cfpPGjS?=
+ =?us-ascii?Q?IpGFLPudoJBTRq3Vji/TBtfsvDNCRchDYMour/sa3AYyqlV0bq+WfHxkJhj0?=
+ =?us-ascii?Q?WgEy7rbgz3ZP8kG+CWYVUI93e/xLrgfFp23tcfuPEZDqBD6VkDJsD6sqciyx?=
+ =?us-ascii?Q?Kyfq1+9XKfYJ+MPnlbJ4j5yPp6pO4jt+lNxEFo8t9ZNvjEgF2obffTIrwyYI?=
+ =?us-ascii?Q?2Q8+3b5AEggzTuuUEO29G+NZ7v+W6fKypyIBlo53RBmm8IxuHNYCwnwtQ3vT?=
+ =?us-ascii?Q?leKH8Mdm0uM1dcksC5Ct/Yz/Ls++WlFYOGuF3ShaHplX0897wURlkC1zh4rv?=
+ =?us-ascii?Q?98dXqEjhM5/iRNFLgQrTDiWSjEfh1lwpZsodTLMIWo9lZjfsw7n0bt8RXX1f?=
+ =?us-ascii?Q?SycF25b+6dgNxbfOU9/YOTl0UVQZlCt1VYtQRXai9qAweZqW3XzU2jrf4YSO?=
+ =?us-ascii?Q?VQtMVwmRdcJn8kW9bnZyEvuPts1cgUFxAh3R?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?QrTgJrnDUgjWGonfB1mZdFw5DieM51QVm8eaOQLPndnVV9u7OBZVakvqIa6c?=
+ =?us-ascii?Q?nqIIzQC5Hrw6Tr9dv04Z/Jvg62HuI4O+CgbITY6WSJuXyEzexUIfRmxMN1vb?=
+ =?us-ascii?Q?8skLi78+eGmQn7pgCpDSgqH0bqAM4/EAXvC8K+mGCpwibpVYvI56ZCyaB+Bp?=
+ =?us-ascii?Q?aiu50kZ5dPWyELeYRrKyJ/koGz0i6KMeHuooqExMtxKu3OQMDVBHCKyyduId?=
+ =?us-ascii?Q?zrwBhp5Bvi0if2Qcwm5HvpAR5f2ccbYVdLE5QljgLyKKMoCakfIJ0ksVDMn2?=
+ =?us-ascii?Q?grXcfKn6q3OiJ2gYW0xcQFR53jTqfHEt+QYPxq9w6xFesYrdN+ySHRkd+VBB?=
+ =?us-ascii?Q?MLJjsE5RwmrvSieBqy8Mtk53dcUT7s6nynIPSt8jLYVVQs2xaWti/HmdDnHq?=
+ =?us-ascii?Q?Jtdt+wCrQMXDbgpcuNNtvPweBYAtnOs4rU83mqgSKWXHQXlgLsOdHv4jsHiv?=
+ =?us-ascii?Q?xreMIBp9tjZHWmLenkLkkOv1ZvYzip0By58ULTOToX9a2jSxXbrNiEg+ukuY?=
+ =?us-ascii?Q?sXEtuCA8ziTTOQBZBcg4iC5fTnP8XvYktR0ES+oDlREjfDbePzLQJ/385Ng4?=
+ =?us-ascii?Q?OtvERVcwHe2oJpDCyyArXA3HekcMCq6o57nwSVAsnCmcKePh6+4XjYo89EUg?=
+ =?us-ascii?Q?8h4mUulTSyQSYvR4Ing25N23PD3enV9lx2tuxFmcfhCBxhgLhIlXtB3V/fpt?=
+ =?us-ascii?Q?/DaCKhabyMi1OZcWsQknuaH56ItaPRAAiYYp7pIN6QyS6OzM3qB4C3npZEul?=
+ =?us-ascii?Q?tXzG4vj7yIOWFZD0r4B4yEBDIXVFG0b/MO09cFJEG2TjWvqCHT/7d0y8CVqF?=
+ =?us-ascii?Q?DmOldHa37JinlQbnV73GqtV0MYqAxZSqdUd+cchuX5UsYVeSkQ24/Esj2A5B?=
+ =?us-ascii?Q?IAEpSYx72qTsDgbpJNXnv1kruGJwZC/QkODE7+8NHYvcirmqs8siLXZC3bOQ?=
+ =?us-ascii?Q?TUJGPmU2TVFy6uFCGMBSvhWGZECRifSSmLsLHUqTiYkFs03GAHZI5oCrkAwG?=
+ =?us-ascii?Q?duHtaX6wWFgE/q6W2lptFJ5n1q9mcWc+BqhPyd7DSGqNgeWAt3WZfkf3kpxI?=
+ =?us-ascii?Q?rgs0MAjsbQUYnvKC4cOt0xL8eYs7ii01lyoKEU75CdlSO2TmtAo6tFut5+fe?=
+ =?us-ascii?Q?P1W0sC0+K9n12p79llthXCYIZDDvcNKfz7Xcntr/cl19NHo21ETXisRpTXNs?=
+ =?us-ascii?Q?pvRtdfCrGRabm0MMIbktm/BVgN7UxqJFnds/ZXQrkCYnDzMcpNRqVw00oi7B?=
+ =?us-ascii?Q?zB/Z/uZELPUXAWCeHXgFZiPMcK8UGFSG6mNBBhO2OrHYjY18J4qrd2JkA8rl?=
+ =?us-ascii?Q?RxqVwOTbmP7rTWS8zacYjLyzZuocCqsIc1+sVROFrDepXPPS2X0a6rfDlJ9F?=
+ =?us-ascii?Q?27sxxysxz513k0z0d0r1nVaOQX36MITIARpvwqjECe/i/mHBWgxM/119JIDW?=
+ =?us-ascii?Q?qcHwjqQgGFp59QqNV6FeGTfxIpyPa2ulxFsXyTI6/O3+ERjOvp2xVWjeAaE8?=
+ =?us-ascii?Q?r3hzYgtenopfUyTtKcjrjytzfiKXUrFoYarrpV8oHIDi4guHRTe7Dkc28CVb?=
+ =?us-ascii?Q?6OEVu1xNeT8VSgt4CCLDT9Qf6Qdh0RvxneW33CL4?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251108-pci-m2-v2-4-e8bc4d7bf42d@oss.qualcomm.com>
-References: <20251108-pci-m2-v2-0-e8bc4d7bf42d@oss.qualcomm.com>
-In-Reply-To: <20251108-pci-m2-v2-0-e8bc4d7bf42d@oss.qualcomm.com>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7872;
- i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=OVN34xQvWdQnzMzIUanYNvprU+WPc4hLhYjzqjWZYe4=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpDre2e1ol23eCJhpZHZQlupKAi1D9Fm3P/fwh8
- VtpWH6qOKOJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaQ63tgAKCRBVnxHm/pHO
- 9TmVB/96wWPF84FNah50vmYOPwtXOxkcaBWx630Xv2S7ArFVwWcK5E1VikWnRtFIAtWvg9EgRsE
- baeRH3wRl3fHLbNvgq7+wtJv/ONcUaAu5q5nF9rMn5ckGpN7ZWFus0d4QCQ+xFxAUNP5CEtehHw
- 0Bjv2nxKfEuYbs2eSPjd0akHjO8cco1o5xF9BDADMJw+TJRHiZvVIZDDe7cN7y8Z31FtN4MpEZJ
- m4v7zA8DmJYttjtsAu0yL97RhT1WVSWt3uyfwaT26RL2RQ/jy3swgSQxX/Z2PIbtKHHgFWxgUjH
- oIj9SKvN3zlJM6r5V+YUVhd2zLMpKyxOowcKebMxdZ93f385
-X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
-X-Proofpoint-ORIG-GUID: BeJk8np1SlVCxRm9HYGSjAUhZh_BQLWn
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA4MDAyNyBTYWx0ZWRfXzLZXm7TZd8xA
- x/2Ri8Fne9F4tv1vuLRYs1GPs2WiwKhW5sxl+9RnOoJLFYCWnFKgkzQNGEuA+UShrsgIG2Ig57M
- wbpe5rE83O9Vq1EpdqIHKcEOIebIRL6fLLSJj+1SEortS87wVZiAM5EVQy5ZNRa0doUkrKCHG2C
- xPIkAjaBXtegUQhUoTmqbJeDwYesco6Jven95o3JDGZH9Q7j1h8FnfdilIsKop8FNkivKMisNbE
- 3/oySNBXILvRd/c9Eh9Q1BeaEBoefF+3D+0Wl5C+Miyo7sBPz1OeLFNSWs01ZSp9Sm0/J2MSAjJ
- ij8AxtT7QWJq9lBzrNMQ+g9g2dUggjyGwy4PMOqAoL+MRRygAo1EPYKwjrrj9faFOCg3TmSCuNM
- kEHSUfTxadENCpaWQvV8yOpGAxPqkA==
-X-Proofpoint-GUID: BeJk8np1SlVCxRm9HYGSjAUhZh_BQLWn
-X-Authority-Analysis: v=2.4 cv=caTfb3DM c=1 sm=1 tr=0 ts=690eb7d1 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=qronr9GGDLuyXDLutoyxMA==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=7CQSdrXTAAAA:8
- a=Mi8d0xCGeq3gkRWnbWsA:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
- a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-08_01,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
- clxscore=1015 adultscore=0 spamscore=0 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511080027
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: caa1343d-6fa3-4619-03cb-08de1e798b8d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2025 03:47:31.4266
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZTsxzxDBFLR3732qa5fXYlAOzBRE1L5Zh3v1YZXqlBniXpsWgvogCN16pc9zhNZJSNPD06aSftJmwv1wp+ZM5i66Q+2/iBgV02SzwzEmMYo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6048
 
-This driver is used to control the PCIe M.2 connectors of different
-Mechanical Keys attached to the host machines and supporting different
-interfaces like PCIe/SATA, USB/UART etc...
+> Subject: Re: [PATCH v21 3/4] i2c: ast2600: Add controller driver for new
+> register layout
+>=20
+> On Fri, Nov 07, 2025 at 06:26:39AM +0000, Ryan Chen wrote:
+> > > On 27/10/2025 07:12, Ryan Chen wrote:
+>=20
+> ...
+>=20
+> > Add new file i2c-aspeed-core.c to do legacy probe and i2c-ast2600 probe=
+.
+> >
+> > 	if (of_device_is_compatible(dev_of_node(dev), "aspeed,ast2600-i2c-bus"=
+)
+> &&
+>=20
+> 	if (device_is_compatible(dev, "aspeed,ast2600-i2c-bus") &&
+>=20
+> > 	    of_parse_phandle(dev_of_node(dev), "aspeed,global-regs", 0)) {
+>=20
+> Not sure why do you need this. Isn't it as simple as
+>=20
+> 	    device_property_present(dev, "aspeed,global-regs", 0)) {
+>=20
+> or something between these lines?
 
-Currently, this driver supports only the Mechanical Key M connectors with
-PCIe interface. The driver also only supports driving the mandatory 3.3v
-and optional 1.8v power supplies. The optional signals of the Key M
-connectors are not currently supported.
+Thanks Andy.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
----
- MAINTAINERS                               |   7 ++
- drivers/power/sequencing/Kconfig          |   8 ++
- drivers/power/sequencing/Makefile         |   1 +
- drivers/power/sequencing/pwrseq-pcie-m2.c | 163 ++++++++++++++++++++++++++++++
- 4 files changed, 179 insertions(+)
+I will update logic as:
+if (device_is_compatible(dev, "aspeed,ast2600-i2c-bus") &&
+    device_property_present(dev, "aspeed,global-regs"))
+	ret =3D ast2600_i2c_probe(pdev);
+else
+	ret =3D aspeed_i2c_probe(pdev);
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 46126ce2f968e4f9260263f1574ee29f5ff0de1c..9b3f689d1f50c62afa3772a0c6802f99a98ac2de 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20474,6 +20474,13 @@ F:	Documentation/driver-api/pwrseq.rst
- F:	drivers/power/sequencing/
- F:	include/linux/pwrseq/
- 
-+PCIE M.2 POWER SEQUENCING
-+M:	Manivannan Sadhasivam <mani@kernel.org>
-+L:	linux-pci@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
-+F:	drivers/power/sequencing/pwrseq-pcie-m2.c
-+
- POWER STATE COORDINATION INTERFACE (PSCI)
- M:	Mark Rutland <mark.rutland@arm.com>
- M:	Lorenzo Pieralisi <lpieralisi@kernel.org>
-diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
-index 280f92beb5d0ed524e67a28d1c5dd264bbd6c87e..f5fff84566ba463b55d3cd0c07db34c82f9f1e31 100644
---- a/drivers/power/sequencing/Kconfig
-+++ b/drivers/power/sequencing/Kconfig
-@@ -35,4 +35,12 @@ config POWER_SEQUENCING_TH1520_GPU
- 	  GPU. This driver handles the complex clock and reset sequence
- 	  required to power on the Imagination BXM GPU on this platform.
- 
-+config POWER_SEQUENCING_PCIE_M2
-+	tristate "PCIe M.2 connector power sequencing driver"
-+	depends on OF || COMPILE_TEST
-+	help
-+	  Say Y here to enable the power sequencing driver for PCIe M.2
-+	  connectors. This driver handles the power sequencing for the M.2
-+	  connectors exposing multiple interfaces like PCIe, SATA, UART, etc...
-+
- endif
-diff --git a/drivers/power/sequencing/Makefile b/drivers/power/sequencing/Makefile
-index 96c1cf0a98ac54c9c1d65a4bb4e34289a3550fa1..0911d461829897c5018e26dbe475b28f6fb6914c 100644
---- a/drivers/power/sequencing/Makefile
-+++ b/drivers/power/sequencing/Makefile
-@@ -5,3 +5,4 @@ pwrseq-core-y				:= core.o
- 
- obj-$(CONFIG_POWER_SEQUENCING_QCOM_WCN)	+= pwrseq-qcom-wcn.o
- obj-$(CONFIG_POWER_SEQUENCING_TH1520_GPU) += pwrseq-thead-gpu.o
-+obj-$(CONFIG_POWER_SEQUENCING_PCIE_M2)	+= pwrseq-pcie-m2.o
-diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/sequencing/pwrseq-pcie-m2.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..15659b009fb3e01227e40f26d633f675bc2af701
---- /dev/null
-+++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
-@@ -0,0 +1,163 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ * Author: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_graph.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwrseq/provider.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/slab.h>
-+
-+struct pwrseq_pcie_m2_pdata {
-+	const struct pwrseq_target_data **targets;
-+};
-+
-+struct pwrseq_pcie_m2_ctx {
-+	struct pwrseq_device *pwrseq;
-+	struct device_node *of_node;
-+	const struct pwrseq_pcie_m2_pdata *pdata;
-+	struct regulator_bulk_data *regs;
-+	size_t num_vregs;
-+	struct notifier_block nb;
-+};
-+
-+static int pwrseq_pcie_m2_m_vregs_enable(struct pwrseq_device *pwrseq)
-+{
-+	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-+
-+	return regulator_bulk_enable(ctx->num_vregs, ctx->regs);
-+}
-+
-+static int pwrseq_pcie_m2_m_vregs_disable(struct pwrseq_device *pwrseq)
-+{
-+	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-+
-+	return regulator_bulk_disable(ctx->num_vregs, ctx->regs);
-+}
-+
-+static const struct pwrseq_unit_data pwrseq_pcie_m2_vregs_unit_data = {
-+	.name = "regulators-enable",
-+	.enable = pwrseq_pcie_m2_m_vregs_enable,
-+	.disable = pwrseq_pcie_m2_m_vregs_disable,
-+};
-+
-+static const struct pwrseq_unit_data *pwrseq_pcie_m2_m_unit_deps[] = {
-+	&pwrseq_pcie_m2_vregs_unit_data,
-+	NULL
-+};
-+
-+static const struct pwrseq_unit_data pwrseq_pcie_m2_m_pcie_unit_data = {
-+	.name = "pcie-enable",
-+	.deps = pwrseq_pcie_m2_m_unit_deps,
-+};
-+
-+static const struct pwrseq_target_data pwrseq_pcie_m2_m_pcie_target_data = {
-+	.name = "pcie",
-+	.unit = &pwrseq_pcie_m2_m_pcie_unit_data,
-+};
-+
-+static const struct pwrseq_target_data *pwrseq_pcie_m2_m_targets[] = {
-+	&pwrseq_pcie_m2_m_pcie_target_data,
-+	NULL
-+};
-+
-+static const struct pwrseq_pcie_m2_pdata pwrseq_pcie_m2_m_of_data = {
-+	.targets = pwrseq_pcie_m2_m_targets,
-+};
-+
-+static int pwrseq_pcie_m2_match(struct pwrseq_device *pwrseq,
-+				 struct device *dev)
-+{
-+	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-+	struct device_node *remote, *endpoint;
-+
-+	/*
-+	 * Traverse the 'remote-endpoint' nodes and check if the remote node's
-+	 * parent matches the OF node of 'dev'.
-+	 */
-+	for_each_endpoint_of_node(ctx->of_node, endpoint) {
-+		remote = of_graph_get_remote_port_parent(endpoint);
-+		if (remote && (remote == dev_of_node(dev))) {
-+			of_node_put(remote);
-+			of_node_put(endpoint);
-+			return PWRSEQ_MATCH_OK;
-+		}
-+		of_node_put(remote);
-+	}
-+
-+	return PWRSEQ_NO_MATCH;
-+}
-+
-+static int pwrseq_pcie_m2_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct pwrseq_pcie_m2_ctx *ctx;
-+	struct pwrseq_config config = {};
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->of_node = dev_of_node(dev);
-+	ctx->pdata = device_get_match_data(dev);
-+	if (!ctx->pdata)
-+		return dev_err_probe(dev, -ENODEV,
-+				     "Failed to obtain platform data\n");
-+
-+	/*
-+	 * Currently, of_regulator_bulk_get_all() is the only regulator API that
-+	 * allows to get all supplies in the devicetree node without manually
-+	 * specifying them.
-+	 */
-+	ret = of_regulator_bulk_get_all(dev, dev_of_node(dev), &ctx->regs);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to get all regulators\n");
-+
-+	ctx->num_vregs = ret;
-+
-+	config.parent = dev;
-+	config.owner = THIS_MODULE;
-+	config.drvdata = ctx;
-+	config.match = pwrseq_pcie_m2_match;
-+	config.targets = ctx->pdata->targets;
-+
-+	ctx->pwrseq = devm_pwrseq_device_register(dev, &config);
-+	if (IS_ERR(ctx->pwrseq)) {
-+		regulator_bulk_free(ctx->num_vregs, ctx->regs);
-+		return dev_err_probe(dev, PTR_ERR(ctx->pwrseq),
-+				     "Failed to register the power sequencer\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id pwrseq_pcie_m2_of_match[] = {
-+	{
-+		.compatible = "pcie-m2-m-connector",
-+		.data = &pwrseq_pcie_m2_m_of_data,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, pwrseq_pcie_m2_of_match);
-+
-+static struct platform_driver pwrseq_pcie_m2_driver = {
-+	.driver = {
-+		.name = "pwrseq-pcie-m2",
-+		.of_match_table = pwrseq_pcie_m2_of_match,
-+	},
-+	.probe = pwrseq_pcie_m2_probe,
-+};
-+module_platform_driver(pwrseq_pcie_m2_driver);
-+
-+MODULE_AUTHOR("Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>");
-+MODULE_DESCRIPTION("Power Sequencing driver for PCIe M.2 connector");
-+MODULE_LICENSE("GPL");
-
--- 
-2.48.1
+>=20
+> > 		ret =3D ast2600_i2c_probe(pdev);
+> > 	} else {
+> > 		ret =3D aspeed_i2c_probe(pdev);
+> > 	}
+>=20
+> --
+> With Best Regards,
+> Andy Shevchenko
+>=20
 
 
