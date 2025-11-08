@@ -1,303 +1,175 @@
-Return-Path: <devicetree+bounces-236328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E05C42ECA
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 16:16:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60103C42FDB
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 17:24:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A684F3AFB89
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 15:16:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 194DF3AC18B
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 16:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 141E2156230;
-	Sat,  8 Nov 2025 15:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B5822538F;
+	Sat,  8 Nov 2025 16:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PqHMAxcW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R0w+fyRX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8440310F1;
-	Sat,  8 Nov 2025 15:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7846F78F4F;
+	Sat,  8 Nov 2025 16:24:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762614974; cv=none; b=EnLLBvxCIbEp8m+mN649m/AJlulHjRZLvgb8tRCYNhAkmkT/iUOJF+7XQtTZO6pkcn6KlINVRQxAYoIr9mEanyjogYpZg5Z5mPJimCWQF7UWcCa3MA9ERrPyxceNlPtyGzHu2i2nVWUxorq7YEiRPx+gb9mOkzlj9MSuUGrhlek=
+	t=1762619041; cv=none; b=cHPlQRKYh4w0uTTRrWZR46Jg41tLXPuiG+yJ31NHRsasDYK2GtQeEmqFcBySF3R4Ut8LqnroS2TI0N4T1XGhbZxUGD6cTNFdEk8GublLIsrYq8Z27S1mlf3wp7Dgbqb1MqnRnjKelNmyU//7AH9oXVb90Q22IvEMiXBd6/nEWCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762614974; c=relaxed/simple;
-	bh=3qjL7RCdBSO1FNRsQ4bSgdzjhQnDKxvb9nUhhd5pNvw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AKzj9E4OIrnv/0MiE10URgqovUBELWTF34vW1NGr/DVyOI/t5SNOj9BVbXFXopHHcjcCUs0v14SoFC8EmxLadpVI/dVOUgjBSOAmS2WI21Szx5nM8QvQfO8QGkTVt/IHhl/q2B8JH2r/QEdUb0HFyIQeT6FBDW89jjj/lcUJ2q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PqHMAxcW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ACE8ADD9;
-	Sat,  8 Nov 2025 16:14:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762614852;
-	bh=3qjL7RCdBSO1FNRsQ4bSgdzjhQnDKxvb9nUhhd5pNvw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PqHMAxcWSZxJKrfD9cbo5g0/XyiJdb0yD5qOcYcs/Mjtsb/95Ji9lLTjrtbglHIaL
-	 cSwDqSy/E7Nl/tVG4OLvwNKwP94wMG7RB2SeVawdmXUYPih4jWK1jotzU3XyzboHYG
-	 EwRhvkonof8JsrpXurRvEAhkuMcNLuzU1lQ3L6QE=
-Message-ID: <37015806-bf91-4e31-9550-50d17062b1e4@ideasonboard.com>
-Date: Sat, 8 Nov 2025 15:16:05 +0000
+	s=arc-20240116; t=1762619041; c=relaxed/simple;
+	bh=8xqsPy/8pD1oeGp2VPuCIqEvJBg7qqACdyqs52xqN6E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KavWRZg8o15X2uv0PklqkXTwbFffSGJtJeHSkNNTKcHZDUGrhgKwWl3wi7zAaPY3nIl/UDKE0vjMu5vJ51w2YNcuuVsO+5fmMIsh+tdt1VtOTce1EjJzn3kVK4nxNjFAEywLvyUIUSPQ/QcybZJHBHItqHtQecs5//ck1HEgFzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R0w+fyRX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D3B3C4CEFB;
+	Sat,  8 Nov 2025 16:23:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762619041;
+	bh=8xqsPy/8pD1oeGp2VPuCIqEvJBg7qqACdyqs52xqN6E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R0w+fyRXmNsZ8ePbH/yGTTzgTjPNUbhxtUeFJ++0E7FJCnAMxC7ry9r6Gs7j9F3SJ
+	 y5gStanuy804lxMfhMnpMV6aKJQk/M/JEzbC3SR0arexAXsELjpb42+xkDUFY6oncf
+	 LcEtfTs520zxEJ4zYty6e/HphgJ0RurYMWAfTJoGGHeJ9JtswdgDcfifJUhxroMfak
+	 apT4Z9g9V3u3cpfrtp6bGCDbeakyKwaJXkx6Ycij4DR9MB1eLba7+103VM0A1eJo5h
+	 7SDotm1e+kUqBZYfD8axcmds/B3mn6HPX5/5nlEd1tV4Dq2DPB6Id8b8Dho/vq8oLY
+	 HPh1bYIoyST3w==
+Date: Sat, 8 Nov 2025 16:23:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: revy <gaohan@iscas.ac.cn>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Rob Herring <robh@kernel.org>, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Yixun Lan <dlan@gentoo.org>,
+	Drew Fustini <fustini@kernel.org>, geert+renesas@glider.be,
+	Guodong Xu <guodong@riscstar.com>, Haylen Chu <heylenay@4d2.org>,
+	Joel Stanley <joel@jms.id.au>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	Han Gao <rabenda.cn@gmail.com>
+Subject: Re: [PATCH 1/3] riscv: soc: re-organized allwinner menu
+Message-ID: <20251108-hurler-clammy-0df5e778c04c@spud>
+References: <cover.1762588494.git.gaohan@iscas.ac.cn>
+ <d17a3a01e2b1297538c419b51953f9613426ba42.1762588494.git.gaohan@iscas.ac.cn>
+ <e98a1e59-f3ff-4e9f-a180-79aea9943236@kernel.org>
+ <43109A90-8447-4006-8E29-2D2C0866758F@iscas.ac.cn>
+ <287444fa-120c-42b4-9919-2f05ab1a2ab7@kernel.org>
+ <8ae5d81d-4869-4c39-9561-cb0f87da70fd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 03/15] dt-bindings: media: Add bindings for ARM
- mali-c55
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
- nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
- laurent.pinchart@ideasonboard.com,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20251002-c55-v12-0-3eda2dba9554@ideasonboard.com>
- <20251002-c55-v12-3-3eda2dba9554@ideasonboard.com>
- <CA+V-a8sg4c697WTS=wXoWvgc_UCFM3+Qjh1br=rMm4F84NVw-Q@mail.gmail.com>
- <8c5a4c68-8299-4d8f-96b2-8db232df70fe@ideasonboard.com>
- <CA+V-a8vey1y0QAxk7vYNHzPHrOrQ4uTpjf4LCb9wSRRCT3v3Qg@mail.gmail.com>
- <pwnwqoghzznwp5faozxhsjzfd6qx3xeqvwcmk4zpkcgmmbtetu@vafr5viwhizp>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-In-Reply-To: <pwnwqoghzznwp5faozxhsjzfd6qx3xeqvwcmk4zpkcgmmbtetu@vafr5viwhizp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Hi Jacopo, Prabhakar
-
-On 08/11/2025 13:07, Jacopo Mondi wrote:
-> Hi
-> 
-> On Wed, Nov 05, 2025 at 01:35:59PM +0000, Lad, Prabhakar wrote:
->> Hi Dan,
->>
->> On Mon, Nov 3, 2025 at 4:17 PM Dan Scally <dan.scally@ideasonboard.com> wrote:
->>>
->>> Hi Prabhakar
->>>
->>> On 28/10/2025 18:23, Lad, Prabhakar wrote:
->>>> Hi Daniel,
->>>>
->>>> Thank you for the patch.
->>>>
->>>> On Thu, Oct 2, 2025 at 11:19 AM Daniel Scally
->>>> <dan.scally@ideasonboard.com> wrote:
->>>>>
->>>>> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
->>>>>
->>>>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
->>>>> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>>>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->>>>> ---
->>>>> Changes in v12:
->>>>>
->>>>>           - _Actually_ dropped the arm,inline property mode, having forgotten to
->>>>>             do so in v11.
->>>>>
->>>>> Changes in v11:
->>>>>
->>>>>           - Dropped in arm,inline_mode property. This is now identical to the
->>>>>             reviewed version 8, so I have kept the tags on there.
->>>>>
->>>>> Changes in v10:
->>>>>
->>>>>           - None
->>>>>
->>>>> Changes in v9:
->>>>>
->>>>>           - Added the arm,inline_mode property to differentiate between inline and
->>>>>             memory input configurations
->>>>>
->>>>> Changes in v8:
->>>>>
->>>>>           - Added the video clock back in. Now that we have actual hardware it's
->>>>>             clear that it's necessary.
->>>>>           - Added reset lines
->>>>>           - Dropped R-bs
->>>>>
->>>>> Changes in v7:
->>>>>
->>>>>           - None
->>>>>
->>>>> Changes in v6:
->>>>>
->>>>>           - None
->>>>>
->>>>> Changes in v5:
->>>>>
->>>>>           - None
->>>>>
->>>>> Changes in v4:
->>>>>
->>>>>           - Switched to port instead of ports
->>>>>
->>>>> Changes in v3:
->>>>>
->>>>>           - Dropped the video clock as suggested by Laurent. I didn't retain it
->>>>>           for the purposes of the refcount since this driver will call .s_stream()
->>>>>           for the sensor driver which will refcount the clock anyway.
->>>>>           - Clarified that the port is a parallel input port rather (Sakari)
->>>>>
->>>>> Changes in v2:
->>>>>
->>>>>           - Added clocks information
->>>>>           - Fixed the warnings raised by Rob
->>>>> ---
->>>>>    .../devicetree/bindings/media/arm,mali-c55.yaml    | 82 ++++++++++++++++++++++
->>>>>    1 file changed, 82 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
->>>>> new file mode 100644
->>>>> index 0000000000000000000000000000000000000000..efc88fd2c447e98dd82a1fc1bae234147eb967a8
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
->>>>> @@ -0,0 +1,82 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: ARM Mali-C55 Image Signal Processor
->>>>> +
->>>>> +maintainers:
->>>>> +  - Daniel Scally <dan.scally@ideasonboard.com>
->>>>> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: arm,mali-c55
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  interrupts:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clocks:
->>>>> +    items:
->>>>> +      - description: ISP Video Clock
->>>>> +      - description: ISP AXI clock
->>>>> +      - description: ISP AHB-lite clock
->>>> As per RZ/V2H HW manual we have reg clock looking at the driver code
->>>> it does have readl. IVC has reg clock if IVC driver fails are you
->>>> still able to read/write regs from ISP driver?
->>>   >
->>>   > I think we do need to pass reg clock too.
->>>
->>> Yes - but I should clarify that the names are from the arm documentation that we had when we
->>> originally developed the ISP driver. The RZ/V2H documentation treats the ISP and IVC as one block
->>> that shares 4 clocks and resets, but when we originally developed the ISP driver the platform we
->>> used had the ISP implemented as an inline configuration (taking data directly from a csi-2 receiver
->>> without an IVC equivalent), and the documentation detailed just the three clocks and resets. The
->>> dtsi changes for the RZ/V2H(P) [1] assign clocks 226, 228 and 229 to the ISP which are named
->>> reg_aclk, vin_aclk and isp_sclk in the renesas documentation.
->>>
->>> The IVC gets pclk, vin_aclk and isp_sclk.
->>>
->>> [1] https://lore.kernel.org/linux-renesas-soc/20251010-kakip_dts-v1-1-64f798ad43c9@ideasonboard.com/
->>>
->> Thanks for the info.
-> 
-> I won't question the Mali clock assignment as I don't have the
-> documentation you mentioned.
-> 
-> But looking at the patch you shared
-> 
-> IVC:
-> +			clocks = <&cpg CPG_MOD 0xe3>,
-> +				 <&cpg CPG_MOD 0xe4>,
-> +				 <&cpg CPG_MOD 0xe5>;
-> +			clock-names = "reg", "axi", "isp";
-> 
-> Mali:
-> +			clocks = <&cpg CPG_MOD 0xe2>,
-> +				 <&cpg CPG_MOD 0xe4>,
-> +				 <&cpg CPG_MOD 0xe5>;
-> +			clock-names = "vclk", "aclk", "hclk";
-> 
-> It seems the IVC-only clock is
-> 
->          <cpg CPG_MOD 0xe3> "reg"
-> 
-> trying to match the clocks here with the V2H documentation and the
-> above names
-> 
->          clk     IVC             Mali    RZ V2H Doc
->          0xe2                    vclk    vin_aclk   Video input data AXI bus clock
->          0xe3    reg                     pclk       Input Video Control block register access APB clock
->          0xe4    axi             aclk    reg_aclk   AXI to AHB bus bridge AXI slave cloc
->          0xe5    isp             hclk    isp_sclk   ISP system clock (pixel clock)
-
-No I think it's:
-
-clk	IVC	ISP	V2H doc		Desc
-0xe2		vclk	reg_aclk	AXI to AHB bus bridge AXI slave clock
-0xe3	reg		pclk		Input Video Control Block register access APB clock
-0xe4	axi	aclk	vin_aclk	Video input data AXI bus clock
-0xe5	isp	hclk	isp_sclk	ISP system clock (pixel clock)
-
-So the IVC needs 227, 228, 229 and the bindings name them reg, axi and isp. The ISP needs 226, 228 
-and 229 and the bindings name them vclk, aclk, hclk. If we want to rename the ISP's binding names 
-then 228 and 229 become "axi" and "isp", and we need a sensible name for the "reg_aclk" from the 
-Renesas documentation..."ahb"? or "reg"?
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zDi7HsMP+xaYfO8R"
+Content-Disposition: inline
+In-Reply-To: <8ae5d81d-4869-4c39-9561-cb0f87da70fd@kernel.org>
 
 
-> 
-> I would only question if the IVC shouldn't actually only get its reg
-> clock as the other 2 are mandatory for the ISP even when integrated
-> inline without an IVC.
+--zDi7HsMP+xaYfO8R
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-In my mind, given that we're treating them as separate devices, they ought to be fully (if 
-worthlessly) functional independently. If the IVC gets only its reg clock then it will not stream 
-until you power on the ISP separately, which does not seem right to me.>
-> I guess the question is if there are other IVC instances not paired
-> with a Mali ISP in other SoCs ?
+On Sat, Nov 08, 2025 at 03:48:18PM +0100, Krzysztof Kozlowski wrote:
+> On 08/11/2025 15:47, Krzysztof Kozlowski wrote:
+> > On 08/11/2025 14:59, revy wrote:
+> >>
+> >>
+> >>
+> >>> -----Original Messages-----
+> >>> From: "Krzysztof Kozlowski" <krzk@kernel.org>
+> >>> Sent Time: 2025-11-08 19:29:07 (Saturday)
+> >>> To: gaohan@iscas.ac.cn, "Paul Walmsley" <pjw@kernel.org>, "Palmer Dab=
+belt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre=
+ Ghiti" <alex@ghiti.fr>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlow=
+ski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Chen-Yu T=
+sai" <wens@csie.org>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Samuel =
+Holland" <samuel@sholland.org>, "Yixun Lan" <dlan@gentoo.org>, "Drew Fustin=
+i" <fustini@kernel.org>, "Geert Uytterhoeven" <geert+renesas@glider.be>, "G=
+uodong Xu" <guodong@riscstar.com>, "Haylen Chu" <heylenay@4d2.org>, "Joel S=
+tanley" <joel@jms.id.au>
+> >>> Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, de=
+vicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-sunxi=
+@lists.linux.dev, "Han Gao" <rabenda.cn@gmail.com>
+> >>> Subject: Re: [PATCH 1/3] riscv: soc: re-organized allwinner menu
+> >>>
+> >>> On 08/11/2025 09:20, gaohan@iscas.ac.cn wrote:
+> >>>> From: Han Gao <gaohan@iscas.ac.cn>
+> >>>>
+> >>>> Allwinner currently offers d1(s)/v821/v861/v881 on RISC-V,
+> >>>> using different IPs.
+> >>>>
+> >>>> d1(s): Xuantie C906
+> >>>> v821: Andes A27 + XuanTie E907
+> >>>> v861/v881: XuanTie C907
+> >>>>
+> >>>> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+> >>>> ---
+> >>>> arch/riscv/Kconfig.socs | 22 +++++++++++++++++-----
+> >>>> 1 file changed, 17 insertions(+), 5 deletions(-)
+> >>>>
+> >>>> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> >>>> index 848e7149e443..7cba5d6ec4c3 100644
+> >>>> --- a/arch/riscv/Kconfig.socs
+> >>>> +++ b/arch/riscv/Kconfig.socs
+> >>>> @@ -54,14 +54,26 @@ config SOC_STARFIVE
+> >>>> 	help
+> >>>> 	  This enables support for StarFive SoC platform hardware.
+> >>>>
+> >>>> -config ARCH_SUNXI
+> >>>> -	bool "Allwinner sun20i SoCs"
+> >>>> +menuconfig ARCH_SUNXI
+> >>>> +	bool "Allwinner RISC-V SoCs"
+> >>>> +
+> >>>> +if ARCH_SUNXI
+> >>>> +
+> >>>> +config ARCH_SUNXI_XUANTIE
+> >>>
+> >>>
+> >>> You should not get multiple ARCHs. ARCH is only one. There is also not
+> >>> much rationale in commit msg for that.
+> >>
+> >> The main goal is to avoid choosing multiple IP addresses for erreta.=
+=20
+> >> If using Andes IPs, I don't want to choose XuanTIe (T-Head) ERRETA.
+> >=20
+> > Not explained in commit msg but anyway not a good argument. It is some
+> > sort of micro optimization and you completely miss the point we target
+> > multiarch kernels.
+>=20
+> Heh, and I actually did not forbid or discourage choosing erratas per
+> your soc. I said you only get one top level ARCH. Look at all arm64
+> platforms. How many ARCHs are there per one vendor?
 
-Good question, I too would be interested to know.
 
+Yeah, it only allows you to enable the errata, it doesn't force any of
+them to "y". Some will get enabled by default when ARCH_SUNXI is
+enabled, but if someone is only targeting on device they can just turn
+them off... I'm pretty inclined to just NAK this unless there's some
+actual value.
 
->>
->>>> Also for IVC we do have a main clock (which is a system clock).  Can
->>>> you please educate me on what is the purpose of it. Just curious as we
->>>> pass to IVC and not ISP.
->>>
->>> The IVC uniquely gets the one called "pclk" in renesas documentation, with the description "Input
->>> Video Control block register access APB clock".
-> 
-> Let alone I find 'reg' better, but if the documentation uses 'pclk'
-> why has 'reg' been used ?
+--zDi7HsMP+xaYfO8R
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I used the documentation names for the ISP, but Krzysztof later convinced me that following the 
-documentation names isn't the best approach given it doesn't really tell us anything. The "reg" was 
-because the docs describe that one as the register access clock.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks
-Dan
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQ9ukwAKCRB4tDGHoIJi
+0qJsAP9PB5Qfwou9FktzjX1XPDGtvQx5CGiUMGnYmlQQvt7gAwD/YQjrczBDtE6G
+yftMBPxa/2JWp4I00u3RUCiy5yPmrwc=
+=Vu6g
+-----END PGP SIGNATURE-----
 
-> 
-> Thanks
->     j
-> 
->>>
->> Got you.
->>
->> Cheers,
->> Prabhakar
->>
-
+--zDi7HsMP+xaYfO8R--
 
