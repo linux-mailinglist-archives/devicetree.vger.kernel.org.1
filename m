@@ -1,123 +1,140 @@
-Return-Path: <devicetree+bounces-236288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB6FDC42AD0
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 10:50:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3738DC42B58
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 11:28:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99A6C188AF12
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 09:51:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6E4E3B2D88
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 10:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069CF214A8B;
-	Sat,  8 Nov 2025 09:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D232FD1C1;
+	Sat,  8 Nov 2025 10:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nVlWxY5Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dCOJkNNa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D267134AB;
-	Sat,  8 Nov 2025 09:50:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081A0189BB0
+	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 10:28:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762595438; cv=none; b=npo0S8kCGAMUJvdsmMAQmlYiOnyO1dg61ubILzRgwF1RSGZX7Mm6SQ0Rmid0dX+ttSc8WvLvEeTD8AW+8yX24kYqfD+HDgJOODOYbadsosl32sNvvJ6b9zfvFtSwMGYGO5f7w7YyV7H7jA0saGh6NrTPxN65AwiLVDo5VJhzqNA=
+	t=1762597705; cv=none; b=LsglxrATmOyNenykWKtXBFJ80fzmbbNF45UMr7DaIy3UGi7+Af0lQnqBW6BExffB18l0HhbpScpJrOfiNE54RP5Xrvn/efh7aa+jyWmBQpoC11WSkfYtPHCw+CEIdxhqbkml8wLSQL7bc7V/dIV+TwuthWr8ZFnQ7OXil+ali08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762595438; c=relaxed/simple;
-	bh=VYp6JlktlNtSBhhVtta20m+Ma5lCPncZPlU8aCP3RDw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IPkDgqelv/AK4RsSnSC5qviH6T7BJ6qwaPvYZNj+dZPZkum1+2urRGp9Gn6r3vA0s+lGXOzL+JH9sLoj97gAeac69FlATzji4KGEuH+pSc1CtDtA3SoSBl9dWd+08kDlDt7AotB6jh6qWlYLoKi1oD4RA9OlmoF3T8gHRSXPt/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nVlWxY5Q; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762595438; x=1794131438;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VYp6JlktlNtSBhhVtta20m+Ma5lCPncZPlU8aCP3RDw=;
-  b=nVlWxY5QhscQzoaYWQE1Mw4QGO09F0/7IBcbXc3Kq+alE8OYdzRBhv7J
-   rhjEpvmtD67cCvR9bApj2nhcdkbF/WogfXzPxZ6fX/Hv/QvpBEFRw1xpn
-   gg5Os1ET4fD6OLZpXkTLq+fagZprfh4wcgQhgVqVvAoCW1kojNhqQ7a0h
-   D6JVz4PTXOP5BcV8qGBnACYyRr8CH/7/MMnflmNoZ2N8nsaDw0x9RUR04
-   dkHH1xKmizPbA6OepDHVidTVYJNOtxT7DmnwBvfomtPs60vujeq7Q6+QY
-   mTLv6JhMK3dSka3wM1MNj2buTesNPdzvmM6sScDOy41xnVXTzZy0h5kF/
-   A==;
-X-CSE-ConnectionGUID: 4mcIaIReT0Sujoqi3O75VQ==
-X-CSE-MsgGUID: YQL4UxceTseJYDtPBwVyVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="64429181"
-X-IronPort-AV: E=Sophos;i="6.19,289,1754982000"; 
-   d="scan'208";a="64429181"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2025 01:50:37 -0800
-X-CSE-ConnectionGUID: uzSkh+E1QHW4nIWcYnNOAA==
-X-CSE-MsgGUID: yfE0iGB0TnO6fUV87FWs0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,289,1754982000"; 
-   d="scan'208";a="193274361"
-Received: from lkp-server01.sh.intel.com (HELO 6ef82f2de774) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 08 Nov 2025 01:50:33 -0800
-Received: from kbuild by 6ef82f2de774 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vHfaZ-0000sZ-0W;
-	Sat, 08 Nov 2025 09:50:31 +0000
-Date: Sat, 8 Nov 2025 17:49:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Hrishabh Rajput via B4 Relay <devnull+hrishabh.rajput.oss.qualcomm.com@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1762597705; c=relaxed/simple;
+	bh=12f7GILPUkXCDP8tGHXH7ltT0vBUKfdqmW/twThO/0I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G0018dYiH8UhEr2q38o3AFi1i8OHci7zSSUaMWbJvMefsTay4s7YfyZc61NKPGGi5IpbaauZMpsV2teKTZUAAki/MV5vdksj5CmCg0MUeGV6S3OdkHaWhUxlJsmI3kUYCNNMyVuAhBxLBjRe2yIvAc8MVJqHxk5Ll/S537iKbSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dCOJkNNa; arc=none smtp.client-ip=209.85.166.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-940d9772e28so53803639f.2
+        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 02:28:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762597702; x=1763202502; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+TuTLhzgnX5Pfkj0imA6DgDfaCJeQjdc19ou/wTAVkI=;
+        b=dCOJkNNaj6msls4EFNBb389OxjvTww4cPtQaxayJYmZ10mxKsnqCa4CUIXDwDYOxji
+         bP/3CcaggZ+ONtWlh3xO4O9iSW47cXbP3T0wBdeRZIg5/DO0XYVcO+FfGNKEITmVZV0U
+         77am3M4fFIlvQEqtrzNI8gHiYjAW20us+OZL+4LHrglT6wmyN9DTvYldvpSoc9PQHM2Q
+         uw+Fz5n1a+ZMrsqkblGbSj4nc2bwOruSqj9NP6nMElJ8SqTAb7qRDI8+fFcbKjFAy3On
+         6XxYYO2nci8iaWqximzh6r+4Vd/sCX37qCwreYsAeDhspqhbfLL4B+SWySxNlvcgT7Bj
+         Ja8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762597702; x=1763202502;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+TuTLhzgnX5Pfkj0imA6DgDfaCJeQjdc19ou/wTAVkI=;
+        b=knjxDbh+VWIE53xvP0RL6bpuxDUrDynN4as1ce4lANefpHXxjjsmetTO78fjZfZ09Y
+         /95HFJxN3XQXeHjWgG7warzU5p9uYvj7P0Nf5PmE6/o8s5cBOLFe2euBy1fp1woJTiPd
+         OnKz8BwlYgGMt8FvR7ylPxH2Gv99XJm6ikW5xiiQeaxpmJHVL9RPx2b+zdseu9g08QZn
+         rWulZT7SfVzBWerYUEyXaiQzdmE8s0xMSYHsqAQ0Fgq0a+w7Zaw8lMfncVUmqdUwDb3o
+         DV94MRM43+EmLhZ8n5l7pdmAgYdinVhXya/WjDiaSEE0W3FnMEZS0RGOm0e3B9TsQyg9
+         b5sg==
+X-Forwarded-Encrypted: i=1; AJvYcCX3FJkIIaaehgAam7TZA8G8sfRwbHyayZIm5dkW3Ef5u6goA+ZGhTF+jpkWhwvibfTozVAk014XjomU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmaIxqc+6eDXRLTz0UDhCSuit5mbXicgTBaCTFvMBF4lKf6/mb
+	6WGmooM6AezVfwXOnergtzqNa8S8mgLBWAPN7AgQNPEQvaPMpc2yVxCz
+X-Gm-Gg: ASbGncs4If1ycvqOomO1ZZtt/69UMeliUjgSZkq+qGfmJi1f33WNoSZInll6IVPg924
+	4rzURXMAsE2fAzT7xHdIeCFWtdfwBYF7la/YzKe3932w9kt/pyvxTQaFmj3XqH2FltU1JIEmD5/
+	Kga5louNSBF2/pI+vC2RLqRqiwFWS/hm4TRoPMLNAAmbVbrxjjqP8VI0RSa/Ifap9R68ae56k0v
+	0TCQNGD/yD6pZcmEmgiVX/8ytNuikDPlZf809kj6IzB7810PM2OTKImWssCpp5A4zFO0DoVbKYN
+	W++QfAINC4fXpD0LMD1mZlUZwc/lbuQyl6+P41U94NgqpApbX+oFnk6nGnfnFmjX4vJtWb+6mzj
+	lrqCCbMhGE+HX0gqtiAH6CJ/RcBaWiuN+wcK4IcudQSnwKH7kljjBVsBN9lNI4LYkUeZu2SUvcH
+	Oi/tsBYqCGViCP2w==
+X-Google-Smtp-Source: AGHT+IHJQ2fl+UoiHF4mPlmvFSjl+F0j04tbYDfTx7zB3y716ahbTwMpXNlaun5Mwk6isZ1YqsGJpA==
+X-Received: by 2002:a05:6602:1609:b0:945:a16a:c7f8 with SMTP id ca18e2360f4ac-94895f98e51mr294678839f.6.1762597702060;
+        Sat, 08 Nov 2025 02:28:22 -0800 (PST)
+Received: from p15.. ([2600:1007:b0b8:8420:9895:3669:27c4:c1d6])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5b74698d5bdsm2954694173.61.2025.11.08.02.28.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Nov 2025 02:28:21 -0800 (PST)
+From: George Kelly <george.kelly1097@gmail.com>
+To: Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+Cc: linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-Subject: Re: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog
- device
-Message-ID: <202511081706.0sVDjTBC-lkp@intel.com>
-References: <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
+	George Kelly <george.kelly1097@gmail.com>
+Subject: [PATCH] ARM: dts: ti/omap: fix incorrect compatible string in internal eeprom node
+Date: Sat,  8 Nov 2025 05:27:41 -0500
+Message-ID: <20251108102741.47628-1-george.kelly1097@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Hrishabh,
+While the Beaglebone capes have the Atmel AT24C256 chip (256kbit or 32kB),
+the internal Beaglebone eeprom chip (i2c bus 0, addr 0x50), is an AT24C32
+(32kbit or 4kB). Yet the device tree lists AT24C256 as the compatible chip
+prior to this patch. You can confirm this by running
+`sudo hexdump -C /sys/bus/nvmem/devices/0-00500/nvmem`. You can see the
+factory data is repeated every 0x1000 addresses (every 4096 bytes or 32768
+bits). This is because the read command wraps around to reading 0x0000 when
+a user requests address 0x1000.
 
-kernel test robot noticed the following build errors:
+This is not a huge issue for reading, but it is for writing to the EEPROM
+for two reasons:
 
-[auto build test ERROR on 6146a0f1dfae5d37442a9ddcba012add260bceb0]
+1) If a user writes to addresses 0x1000 - 0x104e, they'll accidentally
+overwrite the factory data stored at 0x0000 - 0x104e. This also is an issue
+for writing to 0x2000 - 0x204e, and so on.
+2) AT24C256 has 64-byte pages, but AT24C32 only has 32 byte pages. Thus, if
+you attempt to write more than 32 bytes, bytes 32-64 will wrap around. This
+causes your data in the actual EEPROM chip's bytes 0-32 to be overwritten by
+the data in your request's bytes 32-64, while the EEPROM chip's bytes 32-64
+remain 0xFF (unwritten). Lastly, the Beaglebone Black's user manual does
+correctly mention that the internal EEPROM is 4kB (while capes are 32kB or
+256kbit). It's just this bit of code that does not match.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Hrishabh-Rajput-via-B4-Relay/firmware-qcom-scm-Register-gunyah-watchdog-device/20251108-015559
-base:   6146a0f1dfae5d37442a9ddcba012add260bceb0
-patch link:    https://lore.kernel.org/r/20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17%40oss.qualcomm.com
-patch subject: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog device
-config: powerpc-randconfig-001-20251108 (https://download.01.org/0day-ci/archive/20251108/202511081706.0sVDjTBC-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251108/202511081706.0sVDjTBC-lkp@intel.com/reproduce)
+Signed-off-by: George Kelly <george.kelly1097@gmail.com>
+---
+ arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511081706.0sVDjTBC-lkp@intel.com/
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
+index ad1e60a9b6fde..73a571c135f81 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
+@@ -217,7 +217,7 @@ tps: pmic@24 {
+ 	};
 
-All errors (new ones prefixed by >>):
+ 	baseboard_eeprom: eeprom@50 {
+-		compatible = "atmel,24c256";
++		compatible = "atmel,24c32";
+ 		reg = <0x50>;
+ 		vcc-supply = <&ldo4_reg>;
 
-   powerpc-linux-ld: powerpc-linux-ld: DWARF error: could not find abbrev number 44
-   drivers/firmware/qcom/qcom_scm.o: in function `qcom_scm_probe':
->> qcom_scm.c:(.text+0x349c): undefined reference to `arm_smccc_hypervisor_has_uuid'
+--
+2.43.0
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
