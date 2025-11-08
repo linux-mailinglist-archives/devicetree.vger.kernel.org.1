@@ -1,315 +1,135 @@
-Return-Path: <devicetree+bounces-236307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4D8C42D38
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 14:14:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3738BC42D71
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 14:48:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B6B13ACB98
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 13:14:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EDD6F4E2BEC
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 13:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4351219AD90;
-	Sat,  8 Nov 2025 13:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B009C1DDC28;
+	Sat,  8 Nov 2025 13:48:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UlHCmjV3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I1cpfLKH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC2C1891AB;
-	Sat,  8 Nov 2025 13:14:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6AD17A31C
+	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 13:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762607685; cv=none; b=cW3zB36Wj0rBr76t5lqVoP+FXQbDNGROy2gw+JyGesZMI2RfZCVyhOYXAAFa1TKwD1Io0VYLwCiPMSR2rgHYvtH3HFTHhmNmqCFuzn0SVE27N6xUYQFU1FT+iEC5CNkdEkMjo6fnujrE/iS5Ht17ekS0BICNNAsXq7psNX3jv9s=
+	t=1762609687; cv=none; b=rdh87eTHI+nk5JBuuyGnwn074Ky/yETIpUpvergrgkbN9AC9mvNx3moigc1nXyrnIPfp+HBAft6ugD7yqVcAtP3ogB0uZld4yIruQt28cbgfIrecCjMfLwCfcx8bAGDRkFkl7Cp5MhueacmyzecoJfEDnYKYjo6vsAjS5uxpoPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762607685; c=relaxed/simple;
-	bh=R3wnSaG7ODcWrFSrMhjpTwiVXbEH/PcVAG4boiRksNk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rq/j5V2EZ4gSybFsQZVExd69+HOMK/9jZVG1ZpsoNG1Tf5N0wHOSuq+GVLNHHdFAbcwOjL3xKrcIfr8qxfxx9igtPrxTaUpRrNTPyODQWW0eXF9HNbcoyKOVO7uLXCgdTagwr4Zu0UTUt5Wf0q43LfP+eJ2rFRaB8Cbb5T5Gmw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=UlHCmjV3; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (mob-5-90-142-135.net.vodafone.it [5.90.142.135])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 31670DD9;
-	Sat,  8 Nov 2025 14:12:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762607564;
-	bh=R3wnSaG7ODcWrFSrMhjpTwiVXbEH/PcVAG4boiRksNk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UlHCmjV3nxg0T7e6FVLoqjSs4GT4fc/PA6tcxNFccxEBfev47tcnVj0/3LS5iwZZB
-	 6+nxXGt8px1la1L+wahqOg/zERZqKM7dJ8EcWs6pFOmxkTLnjwDv9MqDZr5OtHvFvE
-	 NeIPh6cknKHtC1Q6M6AS6Hjx+oGnu4gYqwJ1ss4A=
-Date: Sat, 8 Nov 2025 14:14:32 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Dan Scally <dan.scally@ideasonboard.com>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, 
-	robh+dt@kernel.org, mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v12 03/15] dt-bindings: media: Add bindings for ARM
- mali-c55
-Message-ID: <uxojb4xpict6ccxpgogzavufpx63uvqfpi6vrbllyr7jf3aga5@45c7i27yv2uh>
-References: <20251002-c55-v12-0-3eda2dba9554@ideasonboard.com>
- <20251002-c55-v12-3-3eda2dba9554@ideasonboard.com>
- <CA+V-a8sg4c697WTS=wXoWvgc_UCFM3+Qjh1br=rMm4F84NVw-Q@mail.gmail.com>
- <8c5a4c68-8299-4d8f-96b2-8db232df70fe@ideasonboard.com>
+	s=arc-20240116; t=1762609687; c=relaxed/simple;
+	bh=gpkOgQREkGfFyXdfZjUNhEXJXx0pJOMzthb8JAxDkkI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=QkWg8fz4rfn3V5t2ZQtx7Cfko5EfQcBxEEkJpkSiQ2LDeMr65Ghy0eTM6BETtbmGWHtu2M/dvzmVS6bWYWoehcpMq6OQw3fomD94UG3aunr9gIUvgcR9brD/3tpr9hm2ce2sCb0afyMOYd95yQdwVcouOaX5rlvUwdaGBV6fdDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=I1cpfLKH; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b626a4cd9d6so261101066b.3
+        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 05:48:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762609684; x=1763214484; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=gpkOgQREkGfFyXdfZjUNhEXJXx0pJOMzthb8JAxDkkI=;
+        b=I1cpfLKHP3n2H9I+dmfH2mk3W5X6Cvp93Ea8cY7gpCsacEWv4095ZU+ZT57CRAQCnI
+         wBgNdRxVu2Q5nbZ1lWQzlAbRYvsFmzl8xEmwsSnU1aBiE8osfP5xTRqS7JZw84bGNAAN
+         CNojY6UxqYIintgQY3xC5FmfvKBcvGu2nIpmYOCwqA5GPvK/BnHVSVpu2AQApJELQLm+
+         eJ0h/9dJQ/SnbZKk4rLJLywRkxyQJ7/EV4GIgs9kt2vcWNxV8eBKEbZXK19XGRkGYFd0
+         sngcOjFTHGc4BaC44nLcg+oHdBtovmngThsnn3khqSpzn3vBRrrRVUBy/1n+/b4p2D98
+         qmPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762609684; x=1763214484;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gpkOgQREkGfFyXdfZjUNhEXJXx0pJOMzthb8JAxDkkI=;
+        b=FY0aOH1DIxi0hyjF7RxJDPHCkHjvKemO+AxICwlBvMu07IhWWSrb8T4GsbUCjl7mqJ
+         PUz2MDQz+p1EE+JFEMXGWXEvL1S+Mc4Sw6q79SISQ0OIIFAHW7RQINo78mxhGyXkekm2
+         /E+rOV0mzLnH78saULCceoy051j8do8KrP1I0vziC9qeBF3zAgiVlpRZE9TFCSBgAEB/
+         8QkiDPcujw0SLGd7jOppcddAOZk71M+guQeWKKa7HFn5tfVk8x5XZk8SVEv0CORc5h5x
+         WhJF3BVI5jkahbL3OVSKFO+9B/bpkzmzRypI75Hzj+CTxTD9+3Kz4PsCSbxrSBSBDqve
+         +tRw==
+X-Forwarded-Encrypted: i=1; AJvYcCWg4eR9JNNHmd7i0j0x5pGgkPVw+7wZoJXW03SKmQV4klLKjXItFK35GRHHlaDDOQ7PPrVZTeX1KQMs@vger.kernel.org
+X-Gm-Message-State: AOJu0YwikTkuznANDan1XeYbod9oSZ8XgEBrLdAYNKRIfAQf6FUF9g3j
+	JLZ5C5IUYGnkoo9TFNbJmJkzZnIhTT4IRaqRY6we1Evku455Nd2a/3pWw7J+FRSPr00=
+X-Gm-Gg: ASbGnct1Nkd6uZOl4wP/h6UyzOWOHX9Te+UilWHq+tLGqUXhjYly/JE7mSrGLoERkBv
+	5r2EkjkTGn59zLYg/MSMlThAHZH5OvDeuCbdctbC45jORoY2h+ODAp9xi5NSYk5B4p9BNKjGhMe
+	+0YaAlsqzPJfG99fhqnviDx+Yr6+b0BzatxruzBbQKMOD8HQWc4rbuuA1XTNoKnBWh3f1qBMLrw
+	lYym8muNE37d4NxPfZejHHcK+LH0zKFaW7uhvGpEgzdM9oZdBOqkcvEFZ9y/AH57N2UU5bMMCZO
+	P6Pd2J45RQjk9Cucsc5oSy361TSyJU1cWg/PbSQ7KpudYltLiVZSguhjeH/NdUdYTCIjTOoDxve
+	kTwQH+0gCUHHJ/dvl2SHZnxnoJjpLB/PBCjK9NYi4vGKbBVirzWaoko8HLPPqsWMFoXlclD1lLR
+	hd7LYS7HHp7N8=
+X-Google-Smtp-Source: AGHT+IFBX/o+kgDdCkIA2bNZvHnORYARWl0wDAKEM8n2ULi1LZxfY2oyiaBV3uC93IjX5zqlQAABOg==
+X-Received: by 2002:a17:907:2d2c:b0:b04:274a:fc87 with SMTP id a640c23a62f3a-b72e02ca22amr246594766b.4.1762609683650;
+        Sat, 08 Nov 2025 05:48:03 -0800 (PST)
+Received: from [10.41.228.128] ([77.241.232.13])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf9be2eesm537562466b.63.2025.11.08.05.48.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Nov 2025 05:48:03 -0800 (PST)
+Message-ID: <74eda972e038b901b237f2d54f82866b31c5a3c7.camel@linaro.org>
+Subject: Re: [PATCH v3 05/20] dt-bindings: mfd: samsung,s2mpg10: Link
+ s2mpg10-pmic to its regulators
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,  Lee Jones <lee@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Peter Griffin	 <peter.griffin@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, 	kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-gpio@vger.kernel.org
+Date: Sat, 08 Nov 2025 13:48:02 +0000
+In-Reply-To: <20251104-elegant-imposing-boa-6279ca@kuoka>
+References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
+	 <20251103-s2mpg1x-regulators-v3-5-b8b96b79e058@linaro.org>
+	 <20251104-elegant-imposing-boa-6279ca@kuoka>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8c5a4c68-8299-4d8f-96b2-8db232df70fe@ideasonboard.com>
 
-Hi Dan
+Thanks Krzysztof for your review!
 
-On Mon, Nov 03, 2025 at 04:17:24PM +0000, Dan Scally wrote:
-> Hi Prabhakar
->
-> On 28/10/2025 18:23, Lad, Prabhakar wrote:
-> > Hi Daniel,
-> >
-> > Thank you for the patch.
-> >
-> > On Thu, Oct 2, 2025 at 11:19 AM Daniel Scally
-> > <dan.scally@ideasonboard.com> wrote:
-> > >
-> > > Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
-> > >
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> > > Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > > Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> > > ---
-> > > Changes in v12:
-> > >
-> > >          - _Actually_ dropped the arm,inline property mode, having forgotten to
-> > >            do so in v11.
-> > >
-> > > Changes in v11:
-> > >
-> > >          - Dropped in arm,inline_mode property. This is now identical to the
-> > >            reviewed version 8, so I have kept the tags on there.
-> > >
-> > > Changes in v10:
-> > >
-> > >          - None
-> > >
-> > > Changes in v9:
-> > >
-> > >          - Added the arm,inline_mode property to differentiate between inline and
-> > >            memory input configurations
-> > >
-> > > Changes in v8:
-> > >
-> > >          - Added the video clock back in. Now that we have actual hardware it's
-> > >            clear that it's necessary.
-> > >          - Added reset lines
-> > >          - Dropped R-bs
-> > >
-> > > Changes in v7:
-> > >
-> > >          - None
-> > >
-> > > Changes in v6:
-> > >
-> > >          - None
-> > >
-> > > Changes in v5:
-> > >
-> > >          - None
-> > >
-> > > Changes in v4:
-> > >
-> > >          - Switched to port instead of ports
-> > >
-> > > Changes in v3:
-> > >
-> > >          - Dropped the video clock as suggested by Laurent. I didn't retain it
-> > >          for the purposes of the refcount since this driver will call .s_stream()
-> > >          for the sensor driver which will refcount the clock anyway.
-> > >          - Clarified that the port is a parallel input port rather (Sakari)
-> > >
-> > > Changes in v2:
-> > >
-> > >          - Added clocks information
-> > >          - Fixed the warnings raised by Rob
-> > > ---
-> > >   .../devicetree/bindings/media/arm,mali-c55.yaml    | 82 ++++++++++++++++++++++
-> > >   1 file changed, 82 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..efc88fd2c447e98dd82a1fc1bae234147eb967a8
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> > > @@ -0,0 +1,82 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: ARM Mali-C55 Image Signal Processor
-> > > +
-> > > +maintainers:
-> > > +  - Daniel Scally <dan.scally@ideasonboard.com>
-> > > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: arm,mali-c55
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: ISP Video Clock
-> > > +      - description: ISP AXI clock
-> > > +      - description: ISP AHB-lite clock
-> > As per RZ/V2H HW manual we have reg clock looking at the driver code
-> > it does have readl. IVC has reg clock if IVC driver fails are you
-> > still able to read/write regs from ISP driver?
-> >
-> > I think we do need to pass reg clock too.
->
-> Yes - but I should clarify that the names are from the arm documentation
-> that we had when we originally developed the ISP driver. The RZ/V2H
-> documentation treats the ISP and IVC as one block that shares 4 clocks and
-> resets, but when we originally developed the ISP driver the platform we used
-> had the ISP implemented as an inline configuration (taking data directly
-> from a csi-2 receiver without an IVC equivalent), and the documentation
-> detailed just the three clocks and resets. The dtsi changes for the
-> RZ/V2H(P) [1] assign clocks 226, 228 and 229 to the ISP which are named
-> reg_aclk, vin_aclk and isp_sclk in the renesas documentation.
->
-> The IVC gets pclk, vin_aclk and isp_sclk.
->
-> [1] https://lore.kernel.org/linux-renesas-soc/20251010-kakip_dts-v1-1-64f798ad43c9@ideasonboard.com/
->
-> > Also for IVC we do have a main clock (which is a system clock).  Can
-> > you please educate me on what is the purpose of it. Just curious as we
-> > pass to IVC and not ISP.
->
-> The IVC uniquely gets the one called "pclk" in renesas documentation, with
-> the description "Input Video Control block register access APB clock".
->
-> Thanks
-> Dan
->
-> >
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: vclk
-> > > +      - const: aclk
-> > > +      - const: hclk
-> > Not sure if we want to have the same names as IVC or vice versa.
-> >
-> > > +
-> > > +  resets:
-> > > +    items:
-> > > +      - description: vclk domain reset
-> > > +      - description: aclk domain reset
-> > > +      - description: hclk domain reset
-> > Same query here, wrt register reset.
-> >
-> > > +
-> > > +  reset-names:
-> > > +    items:
-> > > +      - const: vresetn
-> > > +      - const: aresetn
-> > > +      - const: hresetn
-> > ditto naming.
-> >
-> > > +
-> > > +  port:
-> > > +    $ref: /schemas/graph.yaml#/properties/port
-> > > +    description: Input parallel video bus
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/graph.yaml#/properties/endpoint
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - port
-> > maybe also resets and rest-names should be part of required properties?
-> >
+On Tue, 2025-11-04 at 09:28 +0100, Krzysztof Kozlowski wrote:
+> On Mon, Nov 03, 2025 at 07:14:44PM +0000, Andr=C3=A9 Draszik wrote:
+> > =C2=A0required:
+> > =C2=A0=C2=A0 - compatible
+> > =C2=A0=C2=A0 - interrupts
+> > =C2=A0=C2=A0 - regulators
+> > =C2=A0
+> > =C2=A0additionalProperties: false
+> > +
+> > +allOf:
+> > +=C2=A0 - if:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 con=
+st: samsung,s2mpg10-pmic
+> > +=C2=A0=C2=A0=C2=A0 then:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+>=20
+> This is not correct now. You do not have other variants here and ref
+> should be directly in top level "regulators" part of schema.
 
-Have you missed this question from Prabhakar ? What do you think ?
+The commit message explains why, and with your comment on patch 6 I have ch=
+anged
+this now as you suggest.
 
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    mali_c55: isp@400000 {
-> > we could drop `mali_c55`
-> >
-
-I think we should
-
-> > > +      compatible = "arm,mali-c55";
-> > > +      reg = <0x400000 0x200000>;
-> > > +      clocks = <&clk 0>, <&clk 1>, <&clk 2>;
-> > > +      clock-names = "vclk", "aclk", "hclk";
-> > > +      resets = <&resets 0>, <&resets 1>, <&resets 2>;
-> > > +      reset-names = "vresetn", "aresetn", "hresetn";
-> > > +      interrupts = <0>;
-> > I would have a non-zero val here.
-
-With the right include you could even use the actual value from the
-dts:
-                interrupts = <GIC_SPI 859 IRQ_TYPE_LEVEL_HIGH>;
-
-Please make sure to run dt_bindings_check if you do so
-
-With a few questions clarified, if you resend and drop the label here
-(you can even resend this single patch as v12.1 if it's more
-convenient) I think this driver should be collected for v6.19.
-
-(Do you plan a v6 of the IVC with the small comments from Prabhakar
-addressed ? Ideally we want it to get in at the same time)
-
-Thanks
-  j
-
-> >
-> > Cheers,
-> > Prabhakar
-> >
-> > > +
-> > > +      port {
-> > > +        isp_in: endpoint {
-> > > +            remote-endpoint = <&csi2_rx_out>;
-> > > +        };
-> > > +      };
-> > > +    };
-> > > +...
-> > >
-> > > --
-> > > 2.43.0
-> > >
-> > >
->
->
+Thank you,
+Andre
 
