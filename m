@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-236324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D88AC42E72
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 15:46:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82687C42E81
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 15:47:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EF5574E3EF0
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 14:46:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 289D63A67C7
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 14:47:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1E73D561;
-	Sat,  8 Nov 2025 14:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BD01DE3AD;
+	Sat,  8 Nov 2025 14:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RA70Cds9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W7dvfHhK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D014A07;
-	Sat,  8 Nov 2025 14:46:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149CB1482F2;
+	Sat,  8 Nov 2025 14:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762613168; cv=none; b=KIqxNeHa+Hi0lLqaOHwot1/slKoKV2VEDLAkfshoVd+Syad1w3gbJ0Fxhfebna6r7sEeAiQjgDmG9bhqDIHtB7haOgnTicik57rvCMqdJuGbSvCAwC5o9Cdzk0TzGFHY+aB7+dF5Dih98IxErmA66LBowGcDmFtrf45cBwQxQ/U=
+	t=1762613243; cv=none; b=Ka6NOSSFSdnj9uogj23aYJnsocd7L8bjsvwVuBKGCGifV0bCj1SeCKLP16WbP9wNzjaEkxtXC4CjM39wgOrZkin0g+h5+pFMBcFwK3m5SplCxoaGmhmIGvJKzFp2c8Wud/wHmFaR3CrRzrHQEFoGdcsUa9QsXn6oJ8BcFsMz+KE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762613168; c=relaxed/simple;
-	bh=4xr81XznMx3JxZ2PiBSb4F7WXSBRzdh4HzfJfDT1/sM=;
+	s=arc-20240116; t=1762613243; c=relaxed/simple;
+	bh=seiWAXWA40Itm0WaQziqNpXmGAyxL/tF/QM25Q9yPaE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B1BHkhnd3GgZsTnAFsSx55N8ovvSNBuGSZFbB1RXxtuGD2n6hTirHHai8sO6YYjBLW1nvaUpxGeNq2H1ieD0sFgpauUaa77TB8N6UdH9wgauzm0DuhI7oRVbgzfqR/be2WkQxEnjkDLgm7y8lB5aT0fjJwRS45gKXKrsKwuMfE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RA70Cds9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0831AC116D0;
-	Sat,  8 Nov 2025 14:46:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DkWl5GoDkXbo8pKQYZdlfhuIwY3ubplL6tTH5B6YmhniP9uLmhAjoZDyYJmT2OfB6NTQ9yV4YzMauEGPWwnSbkFys0gCL5wVzE9qVf4AkDbYQadJGjjxLISrjZL9NEvu2ZhYJ66EKfCdwhkhrh7CI6qNeo/Xh4fHlfq+CQr4ExY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W7dvfHhK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE16C4CEFB;
+	Sat,  8 Nov 2025 14:47:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762613166;
-	bh=4xr81XznMx3JxZ2PiBSb4F7WXSBRzdh4HzfJfDT1/sM=;
+	s=k20201202; t=1762613242;
+	bh=seiWAXWA40Itm0WaQziqNpXmGAyxL/tF/QM25Q9yPaE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RA70Cds9k9kY/4VsrrHOMAD7mgqWhN36Dnw86ZcSEVBMRvLKPVE34vuiO7/RXfvxg
-	 ttmAEYGw89v/BY4VWUnClgJHHMFDC7ekDP3ET03RIXjKfqtzGp8KbKGfl78OqXe6qY
-	 6SA8hJImkXv9gkB42PT/r6abGa1doZ1xFvYdanBaTeE7RXjAEIUhoOlk8fymgFZzjS
-	 PVl2IDWWGCHzpJNKFxSMlvCrQrNZluc/QSrLWkRFDmt509wdhy975gQkY+ME00L8sa
-	 ALFsaLxATvB9wcyFXfBaA9s9UIpoMkWQkjthwLUdQSDP86pIIxjQ3rRa3A3iJyFkER
-	 UtVgN9zDj1PjQ==
-Message-ID: <aa330123-e6d9-44ce-b030-b266cba1df9c@kernel.org>
-Date: Sat, 8 Nov 2025 15:46:01 +0100
+	b=W7dvfHhKNsU2mj3j+TrfjRX13sG7PZgOKWXoqyHVzmFjOfSxG4gU7KsPOiXMfgXV+
+	 AJH5lZFoupvkTfXhrp8dRruIYrtm5ZQ3xSpMJIQeQRR0+N6wzC7t9VpsJ1ZFusIW2v
+	 cW+tm6YfbFbWIFHr9bMWroKU/WgzeYm18BkDEdk6oiAst/kT7D76HvAgPK7iFPa18d
+	 x3OquFQ3LvWgGKiJOuSD1fxykDRiXNVK5wJw+8Lf9cAiXJzPFWoyO1P243A91bXLuy
+	 +6xYwJVXNo92+1XTdLO3u+2bQnZ2Lg7P2lzrdJ7eb9pWs4S96T535g3thIXSOzJpvx
+	 zJpp/RItwSa/A==
+Message-ID: <287444fa-120c-42b4-9919-2f05ab1a2ab7@kernel.org>
+Date: Sat, 8 Nov 2025 15:47:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add Fitipower FP9931/JD9930
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20251107-fp9931-submit-v1-0-aa7b79d9abb6@kemnade.info>
- <20251107-fp9931-submit-v1-2-aa7b79d9abb6@kemnade.info>
- <20251108-vagabond-lyrical-hawk-ad3490@kuoka>
- <20251108152114.53422ea6@kemnade.info>
+Subject: Re: [PATCH 1/3] riscv: soc: re-organized allwinner menu
+To: revy <gaohan@iscas.ac.cn>
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, conor+dt@kernel.org,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Yixun Lan <dlan@gentoo.org>,
+ Drew Fustini <fustini@kernel.org>, geert+renesas@glider.be,
+ Guodong Xu <guodong@riscstar.com>, Haylen Chu <heylenay@4d2.org>,
+ Joel Stanley <joel@jms.id.au>, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ Han Gao <rabenda.cn@gmail.com>
+References: <cover.1762588494.git.gaohan@iscas.ac.cn>
+ <d17a3a01e2b1297538c419b51953f9613426ba42.1762588494.git.gaohan@iscas.ac.cn>
+ <e98a1e59-f3ff-4e9f-a180-79aea9943236@kernel.org>
+ <43109A90-8447-4006-8E29-2D2C0866758F@iscas.ac.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,104 +112,63 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251108152114.53422ea6@kemnade.info>
+In-Reply-To: <43109A90-8447-4006-8E29-2D2C0866758F@iscas.ac.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/11/2025 15:21, Andreas Kemnade wrote:
-> On Sat, 8 Nov 2025 13:17:31 +0100
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 08/11/2025 14:59, revy wrote:
 > 
->> On Fri, Nov 07, 2025 at 09:06:45PM +0100, Andreas Kemnade wrote:
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - const: fiti,fp9931
->>> +
->>> +      - items:
->>> +          - const: fiti,jd9930
->>> +          - const: fiti,fp9931
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  '#thermal-sensor-cells':  
->>
->> Why is this a thermal zone sensor? Aren't you mixing temperature
->> reading with soc? For temperature reading you can use hwmon, for
->> example.
->>
-> well, I just took the SY7636A as reference. Is there any document describing
-> the terme "thermal zone sensor". I would define a thermal zone as an area
-> with things influencing each other thermically. These things are
-> sensors, heat sources and sinks. Well, the panel typically does not produce
-> much heat.
-> But I do not insist on having that property here. As far as I understand,
-> the hwmon uses this property as an indication to also create a thermal zone
-> sensor.
-
-That's Linux detail, but anyway you don't need it. This device does not
-look like a part of thermal zones.
-
 > 
->>> +    const: 0
->>> +
->>> +  enable-gpios:
->>> +    maxItems: 1
->>> +
->>> +  pg-gpios:
->>> +    maxItems: 1
->>> +
->>> +  ts-en-gpios:  
->>
->> It's called EN_TS, so en-ts-gpios.
->>
-> ok
->>
->>> +    maxItems: 1
->>> +
->>> +  xon-gpios:  
->>
->> That's powerdown-gpios, see gpio-consumer-common.
->>
-> looking a bit around: powerdown-gpios e.g. in the MCP4801
-> describe an *input*, which should be connected to an output of the SoC. 
-> Looking at the datasheet, I see "XON Open Drain N-MOS On-Resistance" so it is
-> an *output* (same as for PG). So it is something different then the
-> powerdown-gpios in e.g. the MCP4801.
-> So it is a signal coming from the JD9930 after EN goes low in the power down
-> sequence.
-
-OK, I just briefly skimmed through datasheet.
-
 > 
->>> +    maxItems: 1
->>> +
->>> +  vin-supply:
->>> +    description:
->>> +      Supply for the whole chip. Some vendor kernels and devicetrees
->>> +      declare this as a non-existing GPIO named "pwrall".
->>> +
->>> +  fiti,tdly:  
+>> -----Original Messages-----
+>> From: "Krzysztof Kozlowski" <krzk@kernel.org>
+>> Sent Time: 2025-11-08 19:29:07 (Saturday)
+>> To: gaohan@iscas.ac.cn, "Paul Walmsley" <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Samuel Holland" <samuel@sholland.org>, "Yixun Lan" <dlan@gentoo.org>, "Drew Fustini" <fustini@kernel.org>, "Geert Uytterhoeven" <geert+renesas@glider.be>, "Guodong Xu" <guodong@riscstar.com>, "Haylen Chu" <heylenay@4d2.org>, "Joel Stanley" <joel@jms.id.au>
+>> Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, "Han Gao" <rabenda.cn@gmail.com>
+>> Subject: Re: [PATCH 1/3] riscv: soc: re-organized allwinner menu
 >>
->> No, look at datasheet. What values are there? ms.
+>> On 08/11/2025 09:20, gaohan@iscas.ac.cn wrote:
+>>> From: Han Gao <gaohan@iscas.ac.cn>
+>>>
+>>> Allwinner currently offers d1(s)/v821/v861/v881 on RISC-V,
+>>> using different IPs.
+>>>
+>>> d1(s): Xuantie C906
+>>> v821: Andes A27 + XuanTie E907
+>>> v861/v881: XuanTie C907
+>>>
+>>> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+>>> ---
+>>> arch/riscv/Kconfig.socs | 22 +++++++++++++++++-----
+>>> 1 file changed, 17 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+>>> index 848e7149e443..7cba5d6ec4c3 100644
+>>> --- a/arch/riscv/Kconfig.socs
+>>> +++ b/arch/riscv/Kconfig.socs
+>>> @@ -54,14 +54,26 @@ config SOC_STARFIVE
+>>> 	help
+>>> 	  This enables support for StarFive SoC platform hardware.
+>>>
+>>> -config ARCH_SUNXI
+>>> -	bool "Allwinner sun20i SoCs"
+>>> +menuconfig ARCH_SUNXI
+>>> +	bool "Allwinner RISC-V SoCs"
+>>> +
+>>> +if ARCH_SUNXI
+>>> +
+>>> +config ARCH_SUNXI_XUANTIE
 >>
-> Hmm, no to what? I do not understand your comment.
+>>
+>> You should not get multiple ARCHs. ARCH is only one. There is also not
+>> much rationale in commit msg for that.
+> 
+> The main goal is to avoid choosing multiple IP addresses for erreta. 
+> If using Andes IPs, I don't want to choose XuanTIe (T-Head) ERRETA.
 
-Please use proper units for the field expressed in the property name
-suffix and possible values (enum).
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
-
-You also need default.
-
-> So I guess a bit what might be options to discuss here:
-> - put raw value for the bitfield here (what is currently done).
-> - put the ms values here (then I would expect a suffix in the property name)
->   We have the mapping 0ms - 0, 1ms - 1, 2ms - 2, 4ms - 3, so it is
->   not identical.
-I don't know what has to be identical. You want here 0, 1, 2 or 4 ms.
-BTW, if you speak about driver complexity, getting register value out of
-above is absolutely trivial, so not a suitable argument.
+Not explained in commit msg but anyway not a good argument. It is some
+sort of micro optimization and you completely miss the point we target
+multiarch kernels.
 
 Best regards,
 Krzysztof
