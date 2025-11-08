@@ -1,178 +1,127 @@
-Return-Path: <devicetree+bounces-236273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E2E5C4244F
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 02:58:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62DBC425B2
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 04:21:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD1B71892DC6
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 01:58:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81944188C5C9
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 03:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BE72BEC28;
-	Sat,  8 Nov 2025 01:58:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8830D2D0C78;
+	Sat,  8 Nov 2025 03:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SiK1mj9Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e+SBLtMy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5671329B799;
-	Sat,  8 Nov 2025 01:58:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5496825DD1E;
+	Sat,  8 Nov 2025 03:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762567082; cv=none; b=nntltJYlijUDhBsRrrbecZZk8pxomA7wQKATdpo9blS15hU4kkYPY7etMq6bLOXDNHV1FK3MErZ7fZD2qCE1jv2s+BWLaoew6EBi3UO9Wb0ZRYRgm0/fsFXlF4wELyy9oWbcWCDll6nBBRZZHCnXFflOSdLLPe98PpI392jpg9Y=
+	t=1762572114; cv=none; b=sAsGO5tkfdo5dB1P2JEe2HBRCCql5I9aafFeNzA8nhHQB3e0l0MByT7AicU5azaoRtV1D7uuHUrwGR+HliiIOExjRypx7hfq0lI2q0iNZAaKj0N7lGD0wUe9DGtet5YXKUlh3UNP9jmr2PI++YB+31xTDoJkuhDCFCjnRRRUnrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762567082; c=relaxed/simple;
-	bh=CEDFMxYfpWpKEeZvHuIY1GU1d5cVnE9BuUKvjY0Shbg=;
+	s=arc-20240116; t=1762572114; c=relaxed/simple;
+	bh=Trogj8VamHHp9plhkDe9guXWe6JH2JI/+sIFCkZ0L9U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mzt+awDyCWrdcHMRhKjeP8PfxiRoVg8KrP2kaQWBhT1v5GHyCdbpSiTTAN/Kd77/LVz60cFUUUR5rB6RsLFrr/PDXvpjsffvIrwaHQaCIT1llOYUjHmZjd4OmeUinon/D/wMPbWuNyFrDSUWZnevEg6ZthajDOi5B8j6ogwuumM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SiK1mj9Z; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762567080; x=1794103080;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CEDFMxYfpWpKEeZvHuIY1GU1d5cVnE9BuUKvjY0Shbg=;
-  b=SiK1mj9ZhG9zauQQAv7tyEEB9No7AATIlSOB+SVGx8PSlcKfN+tTt8tD
-   8uktKW1oWiXidugO6ooB5Yxf3sUBan3paquQ/gIWkIOfSKQ72ZtDZ94Ev
-   d8m/V2HftiRm5lkQWxkfsQIwABslEd1/0NLzQYHq43Z3ZaiRqwvV8duqs
-   KJ/3us+yOJT5F9XHaTPqD24GikdvPy1s+zo7kLKfaZohZEU70suDAU0hm
-   AWtiEgjeJ9xVC4FBbRE0DrxeRM6jJje68xZcIyUH0jtJhAT2HWtnUAxMo
-   pqbg6y68WidzYUdGy1yjKEyROLwv4oA+fFY4GzGdaRujoK9ZAgHKajCvC
-   Q==;
-X-CSE-ConnectionGUID: hsfmDTSzSlKMgEpAfNjO2Q==
-X-CSE-MsgGUID: h+G2So0TRKmRmN/Oi9i3Qg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="67327065"
-X-IronPort-AV: E=Sophos;i="6.19,288,1754982000"; 
-   d="scan'208";a="67327065"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2025 17:58:00 -0800
-X-CSE-ConnectionGUID: fhd5po3kQQqI3uYkg2qquQ==
-X-CSE-MsgGUID: P0egOIl5Q4SssJqGD/40Yw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,288,1754982000"; 
-   d="scan'208";a="192290071"
-Received: from lkp-server01.sh.intel.com (HELO 6ef82f2de774) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 07 Nov 2025 17:57:54 -0800
-Received: from kbuild by 6ef82f2de774 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vHYDA-0000bT-0D;
-	Sat, 08 Nov 2025 01:57:52 +0000
-Date: Sat, 8 Nov 2025 09:57:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nilesh Laad <nilesh.laad@oss.qualcomm.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Nilesh Laad <nilesh.laad@oss.qualcomm.com>,
-	venkata.valluru@oss.qualcomm.com, jessica.zhang@oss.qualcomm.com,
-	Yi Zhang <zhanyi@qti.qualcomm.com>,
-	Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
-Subject: Re: [PATCH v2 2/2] drm/bridge: add support for lontium lt9211c bridge
-Message-ID: <202511080928.8r4OmyWW-lkp@intel.com>
-References: <20251107-add-lt9211c-bridge-v2-2-b0616e23407c@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=otT8B4dcB0LEtOFayFKU+H/xzrmV8pDO+ZPJEARxyjISwXiZQ6uCOv+ofuGu1yDgAn/nhSI2deYjuAS29hlxlDitp47/vkh34iW/80EuOD5nCGpEpZouVfM/DQR38oXqEWZRXU7CjwsMbxkFFXTpXD253P6GVI0UwdUAXLO/E+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+SBLtMy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21339C4CEF5;
+	Sat,  8 Nov 2025 03:21:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762572114;
+	bh=Trogj8VamHHp9plhkDe9guXWe6JH2JI/+sIFCkZ0L9U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e+SBLtMyyFoz+yvZCgpojZHM28OaeqVsPa4JiKI1IKoMc6Vxv0OPgn3p0A9vOx2tZ
+	 qJnQGe2I4ViO3qdC5F8f4jpO5njpHOnTQuqTjyZZxbeyIt3WzUeJ/7Uu2NuKWrCAq9
+	 aVN307fp1cnsaF9Fcza+7yjrMrX7etz2IXcbVt5+srG9hX79+SXP/0aHStEybHxbOE
+	 rYCUHUZherovMknSiBYPJFEP8Bg23kraGugR+c/CfQ9wo9Ato/ibbtG2bOmwW6Cb5q
+	 EjySuZljMKb750xbok4b0zZFGgzugo7zwEzQIkTtDR3NO1zkbhdf3wsnP/OkJkx1/s
+	 cOVEAQWyTjDIg==
+Date: Sat, 8 Nov 2025 08:51:43 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH 1/4] dt-bindings: connector: Add PCIe M.2 Mechanical Key
+ M connector
+Message-ID: <g6me3bgstp7pooylyiexv3u3gg7c6v4bbxuukjsqw6avd77ki3@usokcdmyl7i6>
+References: <20251105-pci-m2-v1-0-84b5f1f1e5e8@oss.qualcomm.com>
+ <20251105-pci-m2-v1-1-84b5f1f1e5e8@oss.qualcomm.com>
+ <20251106-legibly-resupply-1d3cef545229@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251107-add-lt9211c-bridge-v2-2-b0616e23407c@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251106-legibly-resupply-1d3cef545229@spud>
 
-Hi Nilesh,
+On Thu, Nov 06, 2025 at 05:57:17PM +0000, Conor Dooley wrote:
+> On Wed, Nov 05, 2025 at 02:45:49PM +0530, Manivannan Sadhasivam wrote:
+> > Add the devicetree binding for PCIe M.2 Mechanical Key M connector. This
+> > connector provides interfaces like PCIe and SATA to attach the Solid State
+> > Drives (SSDs) to the host machine along with additional interfaces like
+> > USB, and SMB for debugging and supplementary features. At any point of
+> > time, the connector can only support either PCIe or SATA as the primary
+> > host interface.
+> > 
+> > The connector provides a primary power supply of 3.3v, along with an
+> > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
+> > 1.8v sideband signaling.
+> > 
+> > The connector also supplies optional signals in the form of GPIOs for fine
+> > grained power management.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > ---
+> >  .../bindings/connector/pcie-m2-m-connector.yaml    | 121 +++++++++++++++++++++
+> >  1 file changed, 121 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..2db23e60fdaefabde6f208e4ae0c9dded3a513f6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
+> > @@ -0,0 +1,121 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/connector/pcie-m2-m-connector.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: PCIe M.2 Mechanical Key M Connector
+> > +
+> > +maintainers:
+> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > +
+> > +description:
+> > +  A PCIe M.2 M connector node represents a physical PCIe M.2 Mechanical Key M
+> > +  connector. The Mechanical Key M connectors are used to connect SSDs to the
+> > +  host system over PCIe/SATA interfaces. These connectors also offer optional
+> > +  interfaces like USB, SMB.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: pcie-m2-m-connector
+> 
+> Is this something generated from a standard that's going to be
+> practically identical everywhere, or just some qcom thing?
 
-kernel test robot noticed the following build errors:
+This is as per the PCI Express M.2 Specification, nothing Qcom specific.
 
-[auto build test ERROR on f50b969bafafb2810a07f376387350c4c0d72a21]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Nilesh-Laad/dt-bindings-bridge-lt9211c-Add-bindings/20251107-210546
-base:   f50b969bafafb2810a07f376387350c4c0d72a21
-patch link:    https://lore.kernel.org/r/20251107-add-lt9211c-bridge-v2-2-b0616e23407c%40oss.qualcomm.com
-patch subject: [PATCH v2 2/2] drm/bridge: add support for lontium lt9211c bridge
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20251108/202511080928.8r4OmyWW-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251108/202511080928.8r4OmyWW-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511080928.8r4OmyWW-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/gpu/drm/bridge/lontium-lt9211c.c: In function 'lt9211c_configure_rx':
->> drivers/gpu/drm/bridge/lontium-lt9211c.c:207:55: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
-     207 |         ret = regmap_write(ctx->regmap, 0x8180, (pval & 0xfc | 0x03));
-         |                                                  ~~~~~^~~~~~
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:227:55: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
-     227 |         ret = regmap_write(ctx->regmap, 0x8530, (pval & 0xf8 | 0x11));
-         |                                                  ~~~~~^~~~~~
-   drivers/gpu/drm/bridge/lontium-lt9211c.c: In function 'lt9211c_autodetect_rx':
->> drivers/gpu/drm/bridge/lontium-lt9211c.c:253:12: warning: unused variable 'bc' [-Wunused-variable]
-     253 |         u8 bc[3];
-         |            ^~
-   drivers/gpu/drm/bridge/lontium-lt9211c.c: In function 'lt9211c_configure_tx':
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:619:55: warning: suggest parentheses around arithmetic in operand of '|' [-Wparentheses]
-     619 |         ret = regmap_write(ctx->regmap, 0x8530, (pval & 0x3f | 0x40));
-         |                                                  ~~~~~^~~~~~
-   drivers/gpu/drm/bridge/lontium-lt9211c.c: At top level:
->> drivers/gpu/drm/bridge/lontium-lt9211c.c:918:35: error: initialization of 'int (*)(struct drm_bridge *, struct drm_encoder *, enum drm_bridge_attach_flags)' from incompatible pointer type 'int (*)(struct drm_bridge *, enum drm_bridge_attach_flags)' [-Wincompatible-pointer-types]
-     918 |         .attach                 = lt9211c_attach,
-         |                                   ^~~~~~~~~~~~~~
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:918:35: note: (near initialization for 'lt9211c_funcs.attach')
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:99:12: note: 'lt9211c_attach' declared here
-      99 | static int lt9211c_attach(struct drm_bridge *bridge,
-         |            ^~~~~~~~~~~~~~
->> drivers/gpu/drm/bridge/lontium-lt9211c.c:920:35: error: initialization of 'void (*)(struct drm_bridge *, struct drm_atomic_state *)' from incompatible pointer type 'void (*)(struct drm_bridge *, struct drm_bridge_state *)' [-Wincompatible-pointer-types]
-     920 |         .atomic_enable          = lt9211c_atomic_enable,
-         |                                   ^~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:920:35: note: (near initialization for 'lt9211c_funcs.atomic_enable')
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:777:13: note: 'lt9211c_atomic_enable' declared here
-     777 | static void lt9211c_atomic_enable(struct drm_bridge *bridge,
-         |             ^~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:921:35: error: initialization of 'void (*)(struct drm_bridge *, struct drm_atomic_state *)' from incompatible pointer type 'void (*)(struct drm_bridge *, struct drm_bridge_state *)' [-Wincompatible-pointer-types]
-     921 |         .atomic_disable         = lt9211c_atomic_disable,
-         |                                   ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:921:35: note: (near initialization for 'lt9211c_funcs.atomic_disable')
-   drivers/gpu/drm/bridge/lontium-lt9211c.c:857:13: note: 'lt9211c_atomic_disable' declared here
-     857 | static void lt9211c_atomic_disable(struct drm_bridge *bridge,
-         |             ^~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +918 drivers/gpu/drm/bridge/lontium-lt9211c.c
-
-   916	
-   917	static const struct drm_bridge_funcs lt9211c_funcs = {
- > 918		.attach			= lt9211c_attach,
-   919		.mode_valid		= lt9211c_mode_valid,
- > 920		.atomic_enable		= lt9211c_atomic_enable,
-   921		.atomic_disable		= lt9211c_atomic_disable,
-   922		.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-   923		.atomic_destroy_state	= drm_atomic_helper_bridge_destroy_state,
-   924		.atomic_get_input_bus_fmts = lt9211c_atomic_get_input_bus_fmts,
-   925		.atomic_reset		= drm_atomic_helper_bridge_reset,
-   926	};
-   927	
+- Mani
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+மணிவண்ணன் சதாசிவம்
 
