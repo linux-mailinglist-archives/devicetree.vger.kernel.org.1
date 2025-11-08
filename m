@@ -1,121 +1,266 @@
-Return-Path: <devicetree+bounces-236305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F85C42CD7
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 13:33:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76BCDC42D29
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 14:08:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C7D03349260
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 12:33:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A23D03B39F4
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 13:08:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C33821D3F4;
-	Sat,  8 Nov 2025 12:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C4018A6CF;
+	Sat,  8 Nov 2025 13:08:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U8Be14cR"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nBS2pzI2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459071C84C6;
-	Sat,  8 Nov 2025 12:33:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9081427470;
+	Sat,  8 Nov 2025 13:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762605231; cv=none; b=ETf1EbPMpFrUyh6utHslRn9cCWjUvlGycRFlqa4EN7ySfe71UGYpcTqfUFSxxRGZr+oxyMvUI6pKHXO08QPsnocP/ljg2hqMQ4b/dw1KHyNylQuDgW2Qv6QyXxuuUcKxCQAypUyOyweQ5Y1lTQV4p3y3GTAJyRQ5/IMYjfrFT7g=
+	t=1762607280; cv=none; b=cACbKSm6BAlhzfaqtTTPPMO6+b7eXj5t1+g/GPDMcLuem5kIe1bmJx0EEecwmZNJfQI1M4TeWtqUnp6Pz/9AbynLchekzUsR36WR8NE+C5Y0eWhpMBsQGpamooFxuuG78c8uK/cVtKFH2993scMkOQ90U1hzkdy7FZ+9CCeBC6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762605231; c=relaxed/simple;
-	bh=k8FeKKKyTWxMCzlO2ToUpsOqrl/hY0TIWxgnSQEIoUA=;
+	s=arc-20240116; t=1762607280; c=relaxed/simple;
+	bh=Agltm286LVN3B38VbQO6GIDUY2LSXlKpaLWufUO0ekU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j0QC1YwE9+TmKBeWyNgZww+VD9PdLnysGs+C1FrVh/RxyeC3t1sIRNG+wi1TRv2k7wGUrrKHFn+rjGlN5AbJFkHOrHFq/MN0+FA9g6FikhSuYYvVY3siFKHJi7mzQHU6oMdY2MFfRkp3yMHMCVUbmKtMTinbn8fc9ID6SLh9wV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U8Be14cR; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762605229; x=1794141229;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k8FeKKKyTWxMCzlO2ToUpsOqrl/hY0TIWxgnSQEIoUA=;
-  b=U8Be14cRlylqC+9Fd5k8sQ38K3+ya0OQ1CzH1sM9k160h0gWZwj9AWxu
-   DYxDRUlwGA1OkHN+/MCJm+ETvlYrbxi1eLFr+pbrSr5FPCbD7lLnECLxV
-   g9bMFOTmMQVVIHToy7Qa6AVgoXkqWzkA9rSxx93PWGE2SRzIYuBBpOaE/
-   aEMIpnpKLarEUQoFqscbT/TQ48wEQcj0aiXbPnNnQA2brm5PdjrRrVXuo
-   xT5mK+lnRi5zu7gpaIJwUKjxSzSVa4ZePddjC0FZ6eappLiq0jaugqOqJ
-   sZMnArpHE1oHptJLtcbXDjFr798PkIY999rejGTtYRjGOCB1BUvHa1qYG
-   w==;
-X-CSE-ConnectionGUID: xeWt/3L7SZyqIJb6m/coVA==
-X-CSE-MsgGUID: XTjx8tIrSmixhbfqnr0NyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="63942052"
-X-IronPort-AV: E=Sophos;i="6.19,289,1754982000"; 
-   d="scan'208";a="63942052"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2025 04:33:49 -0800
-X-CSE-ConnectionGUID: jE6zrHbmR/qUn7ucISj+GA==
-X-CSE-MsgGUID: P18hk1rQSByQeXvnGLKhcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,289,1754982000"; 
-   d="scan'208";a="187575201"
-Received: from lkp-server01.sh.intel.com (HELO 6ef82f2de774) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 08 Nov 2025 04:33:45 -0800
-Received: from kbuild by 6ef82f2de774 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vHi8U-0000v5-1l;
-	Sat, 08 Nov 2025 12:33:42 +0000
-Date: Sat, 8 Nov 2025 20:33:21 +0800
-From: kernel test robot <lkp@intel.com>
-To: Hrishabh Rajput via B4 Relay <devnull+hrishabh.rajput.oss.qualcomm.com@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-Subject: Re: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog
- device
-Message-ID: <202511082023.F71T0M1w-lkp@intel.com>
-References: <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TLw0gzeT/hLhs2kTas8rmmwfG69W//7j3VP5vj+m/gDr4LmFioBrqOpjnoYHMgqlpsd+hlGD0AZ/C/C4tS23YWmmy4tVVNo6bLwuKLrJyyuCJNqTTwiidavs9nNf+H/6luTKSdWB8Aku05E+9jFe4wzHKbD1E0hHwjj+FfFmnds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nBS2pzI2; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (mob-5-90-142-135.net.vodafone.it [5.90.142.135])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 90EB3A8F;
+	Sat,  8 Nov 2025 14:05:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1762607159;
+	bh=Agltm286LVN3B38VbQO6GIDUY2LSXlKpaLWufUO0ekU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nBS2pzI2jp1BqWQzSsPAzgdedoPJEXfWJib6vwKIjaevLkyalWX3BAJjsUiijN5ch
+	 vb+CtenC4iJGD5LUMDcQH19kDTNmRXQWrUNxk140t8Jz1/5gzMyZWfXXU9/muwQB21
+	 L/HX30vSzw30DVsC/C9bdMrrnXdukbfPVn1Hv3z0=
+Date: Sat, 8 Nov 2025 14:07:50 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Dan Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, 
+	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jerome.forissier@linaro.org, 
+	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v12 03/15] dt-bindings: media: Add bindings for ARM
+ mali-c55
+Message-ID: <pwnwqoghzznwp5faozxhsjzfd6qx3xeqvwcmk4zpkcgmmbtetu@vafr5viwhizp>
+References: <20251002-c55-v12-0-3eda2dba9554@ideasonboard.com>
+ <20251002-c55-v12-3-3eda2dba9554@ideasonboard.com>
+ <CA+V-a8sg4c697WTS=wXoWvgc_UCFM3+Qjh1br=rMm4F84NVw-Q@mail.gmail.com>
+ <8c5a4c68-8299-4d8f-96b2-8db232df70fe@ideasonboard.com>
+ <CA+V-a8vey1y0QAxk7vYNHzPHrOrQ4uTpjf4LCb9wSRRCT3v3Qg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+V-a8vey1y0QAxk7vYNHzPHrOrQ4uTpjf4LCb9wSRRCT3v3Qg@mail.gmail.com>
 
-Hi Hrishabh,
+Hi
 
-kernel test robot noticed the following build errors:
+On Wed, Nov 05, 2025 at 01:35:59PM +0000, Lad, Prabhakar wrote:
+> Hi Dan,
+>
+> On Mon, Nov 3, 2025 at 4:17 PM Dan Scally <dan.scally@ideasonboard.com> wrote:
+> >
+> > Hi Prabhakar
+> >
+> > On 28/10/2025 18:23, Lad, Prabhakar wrote:
+> > > Hi Daniel,
+> > >
+> > > Thank you for the patch.
+> > >
+> > > On Thu, Oct 2, 2025 at 11:19 AM Daniel Scally
+> > > <dan.scally@ideasonboard.com> wrote:
+> > >>
+> > >> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+> > >>
+> > >> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > >> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> > >> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > >> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > >> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> > >> ---
+> > >> Changes in v12:
+> > >>
+> > >>          - _Actually_ dropped the arm,inline property mode, having forgotten to
+> > >>            do so in v11.
+> > >>
+> > >> Changes in v11:
+> > >>
+> > >>          - Dropped in arm,inline_mode property. This is now identical to the
+> > >>            reviewed version 8, so I have kept the tags on there.
+> > >>
+> > >> Changes in v10:
+> > >>
+> > >>          - None
+> > >>
+> > >> Changes in v9:
+> > >>
+> > >>          - Added the arm,inline_mode property to differentiate between inline and
+> > >>            memory input configurations
+> > >>
+> > >> Changes in v8:
+> > >>
+> > >>          - Added the video clock back in. Now that we have actual hardware it's
+> > >>            clear that it's necessary.
+> > >>          - Added reset lines
+> > >>          - Dropped R-bs
+> > >>
+> > >> Changes in v7:
+> > >>
+> > >>          - None
+> > >>
+> > >> Changes in v6:
+> > >>
+> > >>          - None
+> > >>
+> > >> Changes in v5:
+> > >>
+> > >>          - None
+> > >>
+> > >> Changes in v4:
+> > >>
+> > >>          - Switched to port instead of ports
+> > >>
+> > >> Changes in v3:
+> > >>
+> > >>          - Dropped the video clock as suggested by Laurent. I didn't retain it
+> > >>          for the purposes of the refcount since this driver will call .s_stream()
+> > >>          for the sensor driver which will refcount the clock anyway.
+> > >>          - Clarified that the port is a parallel input port rather (Sakari)
+> > >>
+> > >> Changes in v2:
+> > >>
+> > >>          - Added clocks information
+> > >>          - Fixed the warnings raised by Rob
+> > >> ---
+> > >>   .../devicetree/bindings/media/arm,mali-c55.yaml    | 82 ++++++++++++++++++++++
+> > >>   1 file changed, 82 insertions(+)
+> > >>
+> > >> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> > >> new file mode 100644
+> > >> index 0000000000000000000000000000000000000000..efc88fd2c447e98dd82a1fc1bae234147eb967a8
+> > >> --- /dev/null
+> > >> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> > >> @@ -0,0 +1,82 @@
+> > >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > >> +%YAML 1.2
+> > >> +---
+> > >> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
+> > >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >> +
+> > >> +title: ARM Mali-C55 Image Signal Processor
+> > >> +
+> > >> +maintainers:
+> > >> +  - Daniel Scally <dan.scally@ideasonboard.com>
+> > >> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > >> +
+> > >> +properties:
+> > >> +  compatible:
+> > >> +    const: arm,mali-c55
+> > >> +
+> > >> +  reg:
+> > >> +    maxItems: 1
+> > >> +
+> > >> +  interrupts:
+> > >> +    maxItems: 1
+> > >> +
+> > >> +  clocks:
+> > >> +    items:
+> > >> +      - description: ISP Video Clock
+> > >> +      - description: ISP AXI clock
+> > >> +      - description: ISP AHB-lite clock
+> > > As per RZ/V2H HW manual we have reg clock looking at the driver code
+> > > it does have readl. IVC has reg clock if IVC driver fails are you
+> > > still able to read/write regs from ISP driver?
+> >  >
+> >  > I think we do need to pass reg clock too.
+> >
+> > Yes - but I should clarify that the names are from the arm documentation that we had when we
+> > originally developed the ISP driver. The RZ/V2H documentation treats the ISP and IVC as one block
+> > that shares 4 clocks and resets, but when we originally developed the ISP driver the platform we
+> > used had the ISP implemented as an inline configuration (taking data directly from a csi-2 receiver
+> > without an IVC equivalent), and the documentation detailed just the three clocks and resets. The
+> > dtsi changes for the RZ/V2H(P) [1] assign clocks 226, 228 and 229 to the ISP which are named
+> > reg_aclk, vin_aclk and isp_sclk in the renesas documentation.
+> >
+> > The IVC gets pclk, vin_aclk and isp_sclk.
+> >
+> > [1] https://lore.kernel.org/linux-renesas-soc/20251010-kakip_dts-v1-1-64f798ad43c9@ideasonboard.com/
+> >
+> Thanks for the info.
 
-[auto build test ERROR on 6146a0f1dfae5d37442a9ddcba012add260bceb0]
+I won't question the Mali clock assignment as I don't have the
+documentation you mentioned.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Hrishabh-Rajput-via-B4-Relay/firmware-qcom-scm-Register-gunyah-watchdog-device/20251108-015559
-base:   6146a0f1dfae5d37442a9ddcba012add260bceb0
-patch link:    https://lore.kernel.org/r/20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17%40oss.qualcomm.com
-patch subject: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog device
-config: riscv-randconfig-r063-20251108 (https://download.01.org/0day-ci/archive/20251108/202511082023.F71T0M1w-lkp@intel.com/config)
-compiler: riscv64-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251108/202511082023.F71T0M1w-lkp@intel.com/reproduce)
+But looking at the patch you shared
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511082023.F71T0M1w-lkp@intel.com/
+IVC:
++			clocks = <&cpg CPG_MOD 0xe3>,
++				 <&cpg CPG_MOD 0xe4>,
++				 <&cpg CPG_MOD 0xe5>;
++			clock-names = "reg", "axi", "isp";
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+Mali:
++			clocks = <&cpg CPG_MOD 0xe2>,
++				 <&cpg CPG_MOD 0xe4>,
++				 <&cpg CPG_MOD 0xe5>;
++			clock-names = "vclk", "aclk", "hclk";
 
->> ERROR: modpost: "arm_smccc_hypervisor_has_uuid" [drivers/firmware/qcom/qcom-scm.ko] undefined!
+It seems the IVC-only clock is
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+        <cpg CPG_MOD 0xe3> "reg"
+
+trying to match the clocks here with the V2H documentation and the
+above names
+
+        clk     IVC             Mali    RZ V2H Doc
+        0xe2                    vclk    vin_aclk   Video input data AXI bus clock
+        0xe3    reg                     pclk       Input Video Control block register access APB clock
+        0xe4    axi             aclk    reg_aclk   AXI to AHB bus bridge AXI slave cloc
+        0xe5    isp             hclk    isp_sclk   ISP system clock (pixel clock)
+
+I would only question if the IVC shouldn't actually only get its reg
+clock as the other 2 are mandatory for the ISP even when integrated
+inline without an IVC.
+
+I guess the question is if there are other IVC instances not paired
+with a Mali ISP in other SoCs ?
+
+
+>
+> > > Also for IVC we do have a main clock (which is a system clock).  Can
+> > > you please educate me on what is the purpose of it. Just curious as we
+> > > pass to IVC and not ISP.
+> >
+> > The IVC uniquely gets the one called "pclk" in renesas documentation, with the description "Input
+> > Video Control block register access APB clock".
+
+Let alone I find 'reg' better, but if the documentation uses 'pclk'
+why has 'reg' been used ?
+
+Thanks
+   j
+
+> >
+> Got you.
+>
+> Cheers,
+> Prabhakar
+>
 
