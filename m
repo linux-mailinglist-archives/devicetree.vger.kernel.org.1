@@ -1,192 +1,172 @@
-Return-Path: <devicetree+bounces-236331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516EAC42FFC
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 17:32:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C28EC4301A
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 17:52:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E9E604E2FF5
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 16:32:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 460DA4E1647
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 16:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41CC224AFA;
-	Sat,  8 Nov 2025 16:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01B8E1EEA55;
+	Sat,  8 Nov 2025 16:52:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="A/N5y4PY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA7F3A8F7;
-	Sat,  8 Nov 2025 16:32:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6A0158874;
+	Sat,  8 Nov 2025 16:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762619570; cv=none; b=dTe8NT8cqT3I4UPbTEd0POdK2ASi6BWDM3SQziCEW253rmW6VPaX4M9ZpNW/sFbHIuQ5nYrF7a4v1uyWZqqxHBZyFF57+t9rQtH3vA8qE3o75ZgV7CuuJPmxQFjuveHiEWJAUSshE9SbQTCTjNcvzSZfuVwsQQflPCdrG7MbhOE=
+	t=1762620773; cv=none; b=Zh01wtKyxlJ5VS5Ggy/x/rBYvVHT2ILRgirQpg+4DdhBF6K1cWyVtK1SH1pyT38IuhRM8exJO8qKG0w29nei/0jZL45Piil8Pul+MRrAZUS1wP3+u/Kr9ntSI41tZr880VtdO0xWdkby/v7YvpMM6M4B1bjTCAHbjK1jT1aCbkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762619570; c=relaxed/simple;
-	bh=uzRTbst0kgv2bSm318LSyNPj0nXrY4uFkeWkM/v6XeU=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=WRwB13R98w+Lm2KGRVROJzxWu9ZF9KVhEzrF4jM3YQg8F4eh7UuopTX150GWVSkluH5kDkn32+X3nB+eTPXWlsyRbAr4h0dydeihDfwclFlzHhsFp4i+GlFhkRTH/f2NuccIqekIFMWIYzMkAkKneiH3yRByEn8CJCjf8eLHHRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from smtpclient.apple (unknown [180.172.111.150])
-	by APP-01 (Coremail) with SMTP id qwCowAAnvs2PcA9pK68BAA--.352S2;
-	Sun, 09 Nov 2025 00:32:16 +0800 (CST)
-Content-Type: text/plain;
-	charset=us-ascii
+	s=arc-20240116; t=1762620773; c=relaxed/simple;
+	bh=ONTa+cHS9I/e+sqfzot1zE/bRY0nqRHXeJIm7rj1qSw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fuRgqwibCUD/pUoXfzxBOstUBVdbsQmwnU2fk+3xKjttRKvvt1xXF18idFAjSvpoB2LdTKw1APDNj3BNypbfslhirsh/JJu4mEkUZSh+N7ftegOLaAnYReW52q6DfFtnSUMA2xnX5qm7CVy+613SF+imB8urfIv5UDu37bbeBFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=A/N5y4PY; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=2pOc/mV98yYfx/itftIN+rSXJdRkRrRhjmWi04usANg=; b=A/N5y4PYErNcOGS55WXfq5Ajsx
+	KQngsaLMh1cvty9+1VzdScBf9EyEbIR+o8Z5JwAbfO1+YiHanli9sCAsShFRkj+MBD76LJFGU9bY8
+	mKt5SlYXm55bVVQ8N4rl3cRuMnKvP9o+5la/4AUGLgeIRqxVSIpauGL1pdZLu9bO4ON05Kr59J3o9
+	pySYo7zXOzivyhYZtErX+PQrKYJmoNYN69QWTO7iVMRycmIepERWamZn6kDc5WbukPw28ptxR6CmB
+	zQrlWhcHC6/0cJTSlYfCdxvm+jTolCOibtvq66R1Tim608x5XPfzxVA8ZY5SAf+y9z6zbb0DKlSEL
+	8f24ghGQ==;
+Date: Sat, 8 Nov 2025 17:52:44 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add Fitipower FP9931/JD9930
+Message-ID: <20251108175244.0b51fac6@kemnade.info>
+In-Reply-To: <aa330123-e6d9-44ce-b030-b266cba1df9c@kernel.org>
+References: <20251107-fp9931-submit-v1-0-aa7b79d9abb6@kemnade.info>
+	<20251107-fp9931-submit-v1-2-aa7b79d9abb6@kemnade.info>
+	<20251108-vagabond-lyrical-hawk-ad3490@kuoka>
+	<20251108152114.53422ea6@kemnade.info>
+	<aa330123-e6d9-44ce-b030-b266cba1df9c@kernel.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.100.1.1.5\))
-Subject: Re: [PATCH 1/3] riscv: soc: re-organized allwinner menu
-From: Han Gao <gaohan@iscas.ac.cn>
-In-Reply-To: <20251108-hurler-clammy-0df5e778c04c@spud>
-Date: Sun, 9 Nov 2025 00:32:01 +0800
-Cc: Han Gao <gaohan@iscas.ac.cn>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>,
- Rob Herring <robh@kernel.org>,
- krzk+dt@kernel.org,
- conor+dt@kernel.org,
- Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Yixun Lan <dlan@gentoo.org>,
- Drew Fustini <fustini@kernel.org>,
- geert+renesas@glider.be,
- Guodong Xu <guodong@riscstar.com>,
- Haylen Chu <heylenay@4d2.org>,
- Joel Stanley <joel@jms.id.au>,
- linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev,
- Han Gao <rabenda.cn@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <90B0751B-CEF0-4E73-B3B2-F20D5D055AC3@iscas.ac.cn>
-References: <cover.1762588494.git.gaohan@iscas.ac.cn>
- <d17a3a01e2b1297538c419b51953f9613426ba42.1762588494.git.gaohan@iscas.ac.cn>
- <e98a1e59-f3ff-4e9f-a180-79aea9943236@kernel.org>
- <43109A90-8447-4006-8E29-2D2C0866758F@iscas.ac.cn>
- <287444fa-120c-42b4-9919-2f05ab1a2ab7@kernel.org>
- <8ae5d81d-4869-4c39-9561-cb0f87da70fd@kernel.org>
- <20251108-hurler-clammy-0df5e778c04c@spud>
-To: Conor Dooley <conor@kernel.org>
-X-Mailer: Apple Mail (2.3864.100.1.1.5)
-X-CM-TRANSID:qwCowAAnvs2PcA9pK68BAA--.352S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxWFW5GFy3uw1xXr1xXF1UWrg_yoW5KF1fpr
-	4xCFsIka15ZryfKanrKr1UuFW5tw1kJr15Wr1DJ3y8Z34qvr4UXr1qqr4xWFyqqr1UWw42
-	vryDuF1293y5AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
-	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
-	0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
-	zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
-	4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
-	CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
-	nIWIevJa73UjIFyTuYvjTRRD7VDUUUU
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBg0ADGkPW4-QngAAs7
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+
+On Sat, 8 Nov 2025 15:46:01 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> >>> +  fiti,tdly:    
+> >>
+> >> No, look at datasheet. What values are there? ms.
+> >>  
+> > Hmm, no to what? I do not understand your comment.  
+> 
+> Please use proper units for the field expressed in the property name
+> suffix and possible values (enum).
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+> 
+> You also need default.
+> 
+> > So I guess a bit what might be options to discuss here:
+> > - put raw value for the bitfield here (what is currently done).
+> > - put the ms values here (then I would expect a suffix in the property name)
+> >   We have the mapping 0ms - 0, 1ms - 1, 2ms - 2, 4ms - 3, so it is
+> >   not identical.  
+> I don't know what has to be identical. You want here 0, 1, 2 or 4 ms.
+> BTW, if you speak about driver complexity, getting register value out of
+> above is absolutely trivial, so not a suitable argument.
+
+Ok, no problem with doing that trivial conversion in the driver.
+
+Playing around with dt-binding-check and add enums (and the -ms in a
+second step):
+  fitipower,tdlys:
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+    description:
+      Power up soft start delay settings tDLY1-4 bitfields in the
+      POWERON_DELAY register
+    default: <0 0 0 0>
+    items:
+      - enum:
+          - 0
+          - 1
+          - 2
+          - 4
+      - enum:
+          - 0
+          - 1
+          - 2
+          - 4
+      - enum:
+          - 0
+          - 1
+          - 2
+          - 4
+      - enum:
+          - 0
+          - 1
+          - 2
+          - 4
 
 
+dt-binding-check accepts this, including the example. But if I change it to -ms
+as you requested, I get
 
-> On Nov 9, 2025, at 00:23, Conor Dooley <conor@kernel.org> wrote:
->=20
-> On Sat, Nov 08, 2025 at 03:48:18PM +0100, Krzysztof Kozlowski wrote:
->> On 08/11/2025 15:47, Krzysztof Kozlowski wrote:
->>> On 08/11/2025 14:59, revy wrote:
->>>>=20
->>>>=20
->>>>=20
->>>>> -----Original Messages-----
->>>>> From: "Krzysztof Kozlowski" <krzk@kernel.org>
->>>>> Sent Time: 2025-11-08 19:29:07 (Saturday)
->>>>> To: gaohan@iscas.ac.cn, "Paul Walmsley" <pjw@kernel.org>, "Palmer =
-Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, =
-"Alexandre Ghiti" <alex@ghiti.fr>, "Rob Herring" <robh@kernel.org>, =
-"Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" =
-<conor+dt@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>, "Jernej Skrabec" =
-<jernej.skrabec@gmail.com>, "Samuel Holland" <samuel@sholland.org>, =
-"Yixun Lan" <dlan@gentoo.org>, "Drew Fustini" <fustini@kernel.org>, =
-"Geert Uytterhoeven" <geert+renesas@glider.be>, "Guodong Xu" =
-<guodong@riscstar.com>, "Haylen Chu" <heylenay@4d2.org>, "Joel Stanley" =
-<joel@jms.id.au>
->>>>> Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, =
-devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, =
-linux-sunxi@lists.linux.dev, "Han Gao" <rabenda.cn@gmail.com>
->>>>> Subject: Re: [PATCH 1/3] riscv: soc: re-organized allwinner menu
->>>>>=20
->>>>> On 08/11/2025 09:20, gaohan@iscas.ac.cn wrote:
->>>>>> From: Han Gao <gaohan@iscas.ac.cn>
->>>>>>=20
->>>>>> Allwinner currently offers d1(s)/v821/v861/v881 on RISC-V,
->>>>>> using different IPs.
->>>>>>=20
->>>>>> d1(s): Xuantie C906
->>>>>> v821: Andes A27 + XuanTie E907
->>>>>> v861/v881: XuanTie C907
->>>>>>=20
->>>>>> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
->>>>>> ---
->>>>>> arch/riscv/Kconfig.socs | 22 +++++++++++++++++-----
->>>>>> 1 file changed, 17 insertions(+), 5 deletions(-)
->>>>>>=20
->>>>>> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
->>>>>> index 848e7149e443..7cba5d6ec4c3 100644
->>>>>> --- a/arch/riscv/Kconfig.socs
->>>>>> +++ b/arch/riscv/Kconfig.socs
->>>>>> @@ -54,14 +54,26 @@ config SOC_STARFIVE
->>>>>> help
->>>>>>   This enables support for StarFive SoC platform hardware.
->>>>>>=20
->>>>>> -config ARCH_SUNXI
->>>>>> - bool "Allwinner sun20i SoCs"
->>>>>> +menuconfig ARCH_SUNXI
->>>>>> + bool "Allwinner RISC-V SoCs"
->>>>>> +
->>>>>> +if ARCH_SUNXI
->>>>>> +
->>>>>> +config ARCH_SUNXI_XUANTIE
->>>>>=20
->>>>>=20
->>>>> You should not get multiple ARCHs. ARCH is only one. There is also =
-not
->>>>> much rationale in commit msg for that.
->>>>=20
->>>> The main goal is to avoid choosing multiple IP addresses for =
-erreta.=20
->>>> If using Andes IPs, I don't want to choose XuanTIe (T-Head) ERRETA.
->>>=20
->>> Not explained in commit msg but anyway not a good argument. It is =
-some
->>> sort of micro optimization and you completely miss the point we =
-target
->>> multiarch kernels.
->>=20
->> Heh, and I actually did not forbid or discourage choosing erratas per
->> your soc. I said you only get one top level ARCH. Look at all arm64
->> platforms. How many ARCHs are there per one vendor?
->=20
->=20
-> Yeah, it only allows you to enable the errata, it doesn't force any of
-> them to "y". Some will get enabled by default when ARCH_SUNXI is
-> enabled, but if someone is only targeting on device they can just turn
-> them off... I'm pretty inclined to just NAK this unless there's some
-> actual value.
+/home/andi/old-home/andi/kobo/kernel/Documentation/devicetree/bindings/regulator/fitipower,fp9931.yaml: properties:fitipower,tdly-ms: 'anyOf' conditional failed, one must be fixed:
+	'maxItems' is a required property
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'$ref' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'default' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'items' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	Additional properties are not allowed ('$ref', 'default' were unexpected)
+		hint: Arrays must be described with a combination of minItems/maxItems/items
+	'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	'<0 0 0 0>' is not of type 'integer'
+	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/home/andi/old-home/andi/kobo/kernel/Documentation/devicetree/bindings/regulator/fitipower,fp9931.yaml: properties:fitipower,tdly-ms: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/home/andi/old-home/andi/kobo/kernel/Documentation/devicetree/bindings/regulator/fitipower,fp9931.yaml: properties:fitipower,tdly-ms: 'anyOf' conditional failed, one must be fixed:
+	'maxItems' is a required property
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'$ref' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'default' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'items' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	Additional properties are not allowed ('$ref', 'default' were unexpected)
+		hint: Arrays must be described with a combination of minItems/maxItems/items
+	'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+	'<0 0 0 0>' is not of type 'integer'
+	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/home/andi/old-home/andi/kobo/kernel/Documentation/devicetree/bindings/regulator/fitipower,fp9931.yaml: properties:fitipower,tdly-ms: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 
+Leaving out the type $ref does not improve things much.
+What is going on here?
 
-I understand. I'm going to abandon this patch and plan to resubmit a =
-patch=20
-that only modifies the description from sun20i to allwinnner.
-
+Regards,
+Andreas
 
