@@ -1,214 +1,121 @@
-Return-Path: <devicetree+bounces-236304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D470CC42CAD
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 13:22:05 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27F85C42CD7
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 13:33:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9BD3B4E21D1
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 12:22:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C7D03349260
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 12:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A4F12571D7;
-	Sat,  8 Nov 2025 12:22:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C33821D3F4;
+	Sat,  8 Nov 2025 12:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DmHlUETd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U8Be14cR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2DA1AB6F1;
-	Sat,  8 Nov 2025 12:22:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459071C84C6;
+	Sat,  8 Nov 2025 12:33:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762604520; cv=none; b=i0ilC89Y+mA+svpqls/P8V4/H6CiYu2+2Phjq++eV7xWghAhl52atNirHsMnbAnIkrfAkaBqu593MMUVzzPGVymtJ9NR+YPTGHXDhRDjVIS0YduIzwAxxgkE+XTtd7wCTEbjXEWkbGvLC7XAEXTugkpl6wzeKxj6VQcCSddc4fI=
+	t=1762605231; cv=none; b=ETf1EbPMpFrUyh6utHslRn9cCWjUvlGycRFlqa4EN7ySfe71UGYpcTqfUFSxxRGZr+oxyMvUI6pKHXO08QPsnocP/ljg2hqMQ4b/dw1KHyNylQuDgW2Qv6QyXxuuUcKxCQAypUyOyweQ5Y1lTQV4p3y3GTAJyRQ5/IMYjfrFT7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762604520; c=relaxed/simple;
-	bh=aRkrwHVAt4LiXOdamNP4if92d1A4vzcDb7Oq05C4vrg=;
+	s=arc-20240116; t=1762605231; c=relaxed/simple;
+	bh=k8FeKKKyTWxMCzlO2ToUpsOqrl/hY0TIWxgnSQEIoUA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OVKVihXTYwJxQFx72U2NjbA9RGHqkBTPDOA9A+cT0nM76wMDFqqmM+OwwbmgWVD1tfbs91o6zaQ/qmH1b6c+/+vihxvrbzFlz2ZXVzDxy5+B36sSZ8nJcHBw/J1ZPrsrjweao9pZGcyTVg5UncqbRxSAXyQh3wiDPjjjIP2rgNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DmHlUETd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD0AC4CEF5;
-	Sat,  8 Nov 2025 12:21:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762604519;
-	bh=aRkrwHVAt4LiXOdamNP4if92d1A4vzcDb7Oq05C4vrg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DmHlUETdAeugNDvV7MQsAk5jdwMTQWy0nQfc6BPOokaU9ARhOljuMIVwReNwqrxNO
-	 l6hJsAgFmznkB8yBqSZWbUiJSVjHD10Cjotd5rdi1sH3x7knpSR8MDIItVF+1r3ceV
-	 pdNGsc3JXn0rjyYF975OE8c/XOU2A2PooORcHXomzVzRRbdw+VOmjD0MDTkhgYSl3D
-	 CCNCwjI8VuYaliVHBDT9sEKwcXn8jSAGOur9ilLuOKk4JfrUMbbJilnpL34hiMh2b2
-	 4kk6EaTVC6m0Gox+OPZskdrgMSmPYB+oIMqtDd51eRZWsDctPyAd5vXV3rgvLpdYuK
-	 pLapu5OD/hRNQ==
-Date: Sat, 8 Nov 2025 13:21:57 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 3/3] regulator: Add FP9931/JD9930 driver
-Message-ID: <20251108-nebulous-cheetah-of-prowess-964be6@kuoka>
-References: <20251107-fp9931-submit-v1-0-aa7b79d9abb6@kemnade.info>
- <20251107-fp9931-submit-v1-3-aa7b79d9abb6@kemnade.info>
+	 Content-Type:Content-Disposition:In-Reply-To; b=j0QC1YwE9+TmKBeWyNgZww+VD9PdLnysGs+C1FrVh/RxyeC3t1sIRNG+wi1TRv2k7wGUrrKHFn+rjGlN5AbJFkHOrHFq/MN0+FA9g6FikhSuYYvVY3siFKHJi7mzQHU6oMdY2MFfRkp3yMHMCVUbmKtMTinbn8fc9ID6SLh9wV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U8Be14cR; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762605229; x=1794141229;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=k8FeKKKyTWxMCzlO2ToUpsOqrl/hY0TIWxgnSQEIoUA=;
+  b=U8Be14cRlylqC+9Fd5k8sQ38K3+ya0OQ1CzH1sM9k160h0gWZwj9AWxu
+   DYxDRUlwGA1OkHN+/MCJm+ETvlYrbxi1eLFr+pbrSr5FPCbD7lLnECLxV
+   g9bMFOTmMQVVIHToy7Qa6AVgoXkqWzkA9rSxx93PWGE2SRzIYuBBpOaE/
+   aEMIpnpKLarEUQoFqscbT/TQ48wEQcj0aiXbPnNnQA2brm5PdjrRrVXuo
+   xT5mK+lnRi5zu7gpaIJwUKjxSzSVa4ZePddjC0FZ6eappLiq0jaugqOqJ
+   sZMnArpHE1oHptJLtcbXDjFr798PkIY999rejGTtYRjGOCB1BUvHa1qYG
+   w==;
+X-CSE-ConnectionGUID: xeWt/3L7SZyqIJb6m/coVA==
+X-CSE-MsgGUID: XTjx8tIrSmixhbfqnr0NyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11606"; a="63942052"
+X-IronPort-AV: E=Sophos;i="6.19,289,1754982000"; 
+   d="scan'208";a="63942052"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2025 04:33:49 -0800
+X-CSE-ConnectionGUID: jE6zrHbmR/qUn7ucISj+GA==
+X-CSE-MsgGUID: P18hk1rQSByQeXvnGLKhcw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,289,1754982000"; 
+   d="scan'208";a="187575201"
+Received: from lkp-server01.sh.intel.com (HELO 6ef82f2de774) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 08 Nov 2025 04:33:45 -0800
+Received: from kbuild by 6ef82f2de774 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vHi8U-0000v5-1l;
+	Sat, 08 Nov 2025 12:33:42 +0000
+Date: Sat, 8 Nov 2025 20:33:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Hrishabh Rajput via B4 Relay <devnull+hrishabh.rajput.oss.qualcomm.com@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+Subject: Re: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog
+ device
+Message-ID: <202511082023.F71T0M1w-lkp@intel.com>
+References: <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251107-fp9931-submit-v1-3-aa7b79d9abb6@kemnade.info>
+In-Reply-To: <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
 
-On Fri, Nov 07, 2025 at 09:06:46PM +0100, Andreas Kemnade wrote:
-> +
-> +static int fp9931_probe(struct i2c_client *client)
-> +{
-> +	struct fp9931_data *data;
-> +	struct regulator_config config = { };
-> +	struct regulator_dev *rdev;
-> +	int ret = 0;
-> +	int i;
-> +
-> +	data = devm_kzalloc(&client->dev, sizeof(struct fp9931_data), GFP_KERNEL);
+Hi Hrishabh,
 
-sizeof(*)
+kernel test robot noticed the following build errors:
 
-> +	data->regmap = devm_regmap_init_i2c(client, &regmap_config);
-> +	if (IS_ERR(data->regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(data->regmap),
-> +				     "failed to allocate regmap!\n");
-> +
-> +	data->vin_reg = devm_regulator_get_optional(&client->dev, "vin");
-> +	if (IS_ERR(data->vin_reg))
-> +		return dev_err_probe(&client->dev, PTR_ERR(data->vin_reg),
-> +				     "failid to get vin regulator\n");
-> +
-> +	data->pgood_gpio = devm_gpiod_get(&client->dev, "pg",
-> +					  GPIOD_IN);
+[auto build test ERROR on 6146a0f1dfae5d37442a9ddcba012add260bceb0]
 
-Please wrap at 80, not 60. See Linux coding style.
+url:    https://github.com/intel-lab-lkp/linux/commits/Hrishabh-Rajput-via-B4-Relay/firmware-qcom-scm-Register-gunyah-watchdog-device/20251108-015559
+base:   6146a0f1dfae5d37442a9ddcba012add260bceb0
+patch link:    https://lore.kernel.org/r/20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17%40oss.qualcomm.com
+patch subject: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog device
+config: riscv-randconfig-r063-20251108 (https://download.01.org/0day-ci/archive/20251108/202511082023.F71T0M1w-lkp@intel.com/config)
+compiler: riscv64-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251108/202511082023.F71T0M1w-lkp@intel.com/reproduce)
 
-> +	if (IS_ERR(data->pgood_gpio))
-> +		return dev_err_probe(&client->dev,
-> +				     PTR_ERR(data->pgood_gpio),
-> +				     "failed to get power good gpio\n");
-> +
-> +	data->pgood_irq = gpiod_to_irq(data->pgood_gpio);
-> +	if (data->pgood_irq < 0)
-> +		return data->pgood_irq;
-> +
-> +	data->en_gpio = devm_gpiod_get(&client->dev, "enable", GPIOD_OUT_LOW);
-> +	if (IS_ERR(data->en_gpio))
-> +		return dev_err_probe(&client->dev,
-> +				     PTR_ERR(data->en_gpio),
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511082023.F71T0M1w-lkp@intel.com/
 
-No need to break line.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-> +				     "failed to get en gpio\n");
-> +
-> +	data->ts_en_gpio = devm_gpiod_get_optional(&client->dev, "ts-en", GPIOD_OUT_LOW);
-> +	if (IS_ERR(data->ts_en_gpio))
-> +		return dev_err_probe(&client->dev,
-> +				     PTR_ERR(data->ts_en_gpio),
-> +				     "failed to get en gpio\n");
-> +
-> +	data->dev = &client->dev;
-> +	i2c_set_clientdata(client, data);
-> +
-> +	init_completion(&data->pgood_completion);
-> +
-> +	ret = devm_request_threaded_irq(&client->dev, data->pgood_irq, NULL,
-> +					pgood_handler,
-> +					IRQF_TRIGGER_RISING | IRQF_ONESHOT,
-> +					"PGOOD", data);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "failed to request irq\n");
-> +
-> +	if (IS_ENABLED(CONFIG_PM)) {
-> +		devm_pm_runtime_enable(&client->dev);
-> +		pm_runtime_set_autosuspend_delay(&client->dev, 4000);
-> +		pm_runtime_use_autosuspend(&client->dev);
-> +	} else {
-> +		ret = fp9931_runtime_resume(&client->dev);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		devm_add_action_or_reset(&client->dev, disable_nopm, data);
-> +	}
-> +
-> +	ret = setup_timings(data);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret, "failed to setup timings\n");
-> +
-> +	config.driver_data = data;
-> +	config.dev = &client->dev;
-> +	config.regmap = data->regmap;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(regulators); i++) {
-> +		rdev = devm_regulator_register(&client->dev,
-> +					       &regulators[i],
-> +					       &config);
+>> ERROR: modpost: "arm_smccc_hypervisor_has_uuid" [drivers/firmware/qcom/qcom-scm.ko] undefined!
 
-Please wrap according to Linux coding style.
-
-> +		if (IS_ERR(rdev))
-> +			return dev_err_probe(&client->dev, PTR_ERR(rdev),
-> +					     "failed to register %s regulator\n",
-> +					     regulators[i].name);
-> +	}
-> +
-> +	if (IS_REACHABLE(CONFIG_HWMON)) {
-> +		struct device *hwmon_dev;
-> +
-> +		hwmon_dev = devm_hwmon_device_register_with_info(&client->dev, "fp9931", data,
-> +								 &fp9931_chip_info, NULL);
-
-So you use hwmon, then why binding said this is a thermal zone sensor?
-
-> +		if (IS_ERR(hwmon_dev))
-> +			dev_err(&client->dev, "failed to register hwmon\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops fp9931_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(fp9931_runtime_suspend, fp9931_runtime_resume, NULL)
-> +};
-> +
-> +static const struct of_device_id fp9931_dt_ids[] = {
-> +	{
-> +		.compatible = "fiti,fp9931",
-> +	}, {
-> +		.compatible = "fiti,fp9931", /* no night mode */
-
-Drop, it's the same compatible.
-
-> +	}, {
-> +		/* sentinel */
-> +	}
-> +};
-> +MODULE_DEVICE_TABLE(of, fp9931_dt_ids);
-> +
-> +static struct i2c_driver fp9931_i2c_driver = {
-> +	.driver = {
-> +		   .name = "fp9931",
-> +		   .owner = THIS_MODULE,
-
-Please do not send us 12 year old code... Drop and runstandard tools
-(smatch, sparse, cocci) at minimum.
-
-> +		   .of_match_table = fp9931_dt_ids,
-> +		   .pm = (&fp9931_pm_ops),
-
-No need for ()
-
-Best regards,
-Krzysztof
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
