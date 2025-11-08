@@ -1,207 +1,140 @@
-Return-Path: <devicetree+bounces-236336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E6DBC431CC
-	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 18:26:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E614AC43229
+	for <lists+devicetree@lfdr.de>; Sat, 08 Nov 2025 18:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A763F348E6B
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 17:26:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4DC63B079B
+	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 17:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C576257846;
-	Sat,  8 Nov 2025 17:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A308267AF2;
+	Sat,  8 Nov 2025 17:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EA51gMXP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="a2mhsTcC"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="kKYpcsWT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9878253F12
-	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 17:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840541448E0;
+	Sat,  8 Nov 2025 17:43:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762622813; cv=none; b=r6ocRBfuBAWBEeZ++pGKBvbHoCQk/Qf0ORh+GgkzhB5xCR3pf+pHesBdEEinpFk1zvIGN21Zp5J3Rm4ehgzNHgDVMLR76XjETXfwApG1rj0UoSGadRM7OwkgEw3xHrSR5bu6TbqzIXjMctkq78vYePHwYLNah83fGfhNtHpNfKM=
+	t=1762623786; cv=none; b=m4Zm41ZE7TWE2jeN4YBYgIQP1vjGn7zFjbIxknDaZcNjW8J5nPWpkWaGoHSm+HVm79M/+4ky/CuWgvNesfOGLJNL6TFGYMjiJNpQnW/rxmIaeSD/HvZdmm1weIIZ0RanYwO9/CAErNL0PJIL30xp/1QYkD801P+j7w/6zzQMUn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762622813; c=relaxed/simple;
-	bh=Hvpw+pRntckNWq+r2W3D6IoCt2L6QAauNS44X9epUro=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rt7fmH+nyZ9vv6gpg569o4uSb5rQdQhgpM/zXC7x4rQdEGatFHPQ7yX6DXLX0QF6/AaKZQRcFH35WF9TII1ld+aean9CYzh5kqT6DEbE7+4AQWQHqi7IsvZ+2fv/+mTsizB1bJ8uuHhuKtwwMXLv9Kljtx7qyYdTyg5QBCnmmGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EA51gMXP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=a2mhsTcC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A88PBEO1467097
-	for <devicetree@vger.kernel.org>; Sat, 8 Nov 2025 17:26:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=2umMsr4S5HW5lXJ3fQAZdAbM
-	0Mw1K+JPW/3AzeFNEq0=; b=EA51gMXPovcwpq9qK8cYNwZLshlbBjwspo/7m3Ll
-	uANgeVw/VlXUqn2ydVieNhIqD7MKH7kI1EHrIt8conl34UFFZtkZfWC8vmE46ekt
-	uWz8HfcPwz4ys3sb/oRKIrtL4yi8IdAskRLQl/KI6pTQDHeByOrwfa5GIKK8rVQE
-	tikjktwBN65v194ZI1r2oilp3Yi9TrLg9NQGa/hJJMpnsf6SnQ6L/TeB29H+TNSv
-	Sdm0EEr3LoYPQkm1BoNqnWTGEmJnPwNygNtSpTzMOkIxiDbWC/l/a54ImqV6q1A1
-	lHz8xKisS79LScPkMYf/DEitkDmcE6qURChTdHJhjTUUyA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a9xu2rx00-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 17:26:50 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4eda627f784so9783861cf.0
-        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 09:26:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762622810; x=1763227610; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2umMsr4S5HW5lXJ3fQAZdAbM0Mw1K+JPW/3AzeFNEq0=;
-        b=a2mhsTcCzgbgm2fXlvCJmWNr6IQfSEXasvbfUcUgKUeSXyZOHLeioN7aY6w6Lwtpni
-         srs4w17ujvyRC6jL0AmFqR4aLyKtmRk2mYsRJqzLV3fZnKN5XDwdeWgWy2qtDJNuYAw7
-         AeXcFxlH7SP5lBeqjVMTLD+t4Ehb51agkPZ4CLSAGWeUqe/A0uBDG9BNILJFQpNv5485
-         vc9+a1kEGlUF/TqH4oVygDgV9Px94ZTS7ZvXCCcR0Z9FfnXqcDbst0q1pjMqsBM4uIPR
-         U4Xn3S0Yb7kqhH8lwk81mCTyVuFS3ulfj8vPJCposzqHhilp5j08c/c29gX35hxQyMDa
-         RnNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762622810; x=1763227610;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2umMsr4S5HW5lXJ3fQAZdAbM0Mw1K+JPW/3AzeFNEq0=;
-        b=VtcRDN+ucUR/28djmIrJrqwZ03Tp2Q+NzdqEzfs7F6bPFfZGB35ifVxZl0zYYndHam
-         P3DmRUieleKL/wkV8rV1Zo4OvS9OlNk+UG4MlK4z0QD0dS67kRtANgJXnVPCfOtf0f4s
-         KAgL+ozjGn5Pg7W7PxD31AybKGweO/VdiqiRvOiHOo0oFACGKopM8o1vBOsQjo0TQJG+
-         xXGZjbsImFHcHZg/LTpFaojggVbpou2BwzFdgEbzEEUFnbbf/o6o5SRbhmMr59TbMYJY
-         DtFY/q4re8AnPPCPbD+Nt+LJWIU28w1jjqVVNq8rHG1Q9LDFmdSwb1yWR/GehIIITPiX
-         Qf6w==
-X-Forwarded-Encrypted: i=1; AJvYcCVEez+ralMSFoD8tc/wZgxjVx6GVHEFJE+bXT82Zanb3aDNveHDWSWBI7lt0he19lXPXhCZ2gYykJfI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFPv4jprSCFkzQBVcfIaSRT0kyvSNiHmbji4SgL4CbMy+ugE3X
-	XSlt9Ujtju9BepwydmMfkwYoIiG7WUN/S0suFjLGraRanMQKOjd9NfCy7kx9JG3yB4UrITVhoAJ
-	GO6SBGspZ9RgdXT/56smF1+XvGsX0hC+tpISfd7ItEMCyUGi+nuRgamGLJSecAk4y
-X-Gm-Gg: ASbGncsVpwsF2h6v4EYTXOmr8fWu71O/eJt1ZnkTYxlk9CFqrGaKSI+qwWm19TiLT2c
-	FonZ3/dpE4PdxrVf8+yVDXv3i4MM71tCaYN9jey+ZURH8dUFSkKU52A+qku+9ybqKuOKpmS0kk8
-	96m1l/mHpkjYY64j0saGEoTokOuNiuvpIL5CWnRQ+kYj45fnMw2zHredPbZrQ2uXzJtf8p1Npmw
-	avSqavPttu7SVopE1uB127ka08o+3TFsPerW6KscEcXnhbxTH9LaMR/QLZaUMDwLcxv/iAgEnW/
-	FOaoIkvpNcazUtYFzlOxJ9POkeLEzbCAErbqRGlt3xjeh6N6doaezArgvFEyQWq6qgkPRa07mtS
-	pzyPrqqoawh4o9/10/4sywLJ5/ivJBEbyK+Fk2mEKWMKXcs9JA5dN5gDo7DYM5mVYkKd+IJbE7n
-	P/DDf9wl5bVobb
-X-Received: by 2002:a05:622a:198e:b0:4ec:f2e9:493e with SMTP id d75a77b69052e-4ed998115a0mr78969191cf.34.1762622809646;
-        Sat, 08 Nov 2025 09:26:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFwezJQcmvFQWoTFXSG44miuWH+tCs9KRjF2cifamxToL082Jokif4YFw4V81sX3jhDzcu6dw==
-X-Received: by 2002:a05:622a:198e:b0:4ec:f2e9:493e with SMTP id d75a77b69052e-4ed998115a0mr78968951cf.34.1762622809169;
-        Sat, 08 Nov 2025 09:26:49 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5944a024f09sm2345136e87.41.2025.11.08.09.26.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Nov 2025 09:26:48 -0800 (PST)
-Date: Sat, 8 Nov 2025 19:26:46 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: hrishabh.rajput@oss.qualcomm.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog
- device
-Message-ID: <hbxtbaoavlsw7pbmg3cfkbyx4nacjfiikckhqgpvlggbh6hu5b@jyporqecfzni>
-References: <20251107-gunyah_watchdog-v5-0-4c6e3fb6eb17@oss.qualcomm.com>
- <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
+	s=arc-20240116; t=1762623786; c=relaxed/simple;
+	bh=hb7zQpliD7lIQ+rQmjC/FHvYdoMnJ1jrTB6R9cIuky4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YRxOV7sYGGv1VutCi6Ztl2q3W++vzK+YBEnJPw66xfpvPPfl423TPRUJDgbjxGhheTqpWiXY+LdlFyRAk6xAdAnlVPciISrYHu8vwvgYGdfY0ICCrYfwYk1Jw3elFTOmXSfDYt5eAatZux+EKbD896d8Xqq+qTqAnpjij7wvvq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=kKYpcsWT; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A8CMdLQ3114133;
+	Sat, 8 Nov 2025 12:42:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=48NWMNTjw/btD9iGtRYjnI8SD9a
+	wxYVduSmKN5jIfRQ=; b=kKYpcsWT9bj6VjSCAWpTxFVu3yRoH8MrrfdsEYp57ij
+	E8oGkF7YFiRaFJt6M2QWEuaI11eVNX9ZleinF2VGwUNA3Z2L88W5Z44khTL6W22G
+	PcP/Na3NAvfxr9q03wTeT9vPsMNJQQomWcxjytpByPWEut7CdoMIJvFpJueA2e21
+	lXYde0iEfgGuqG4TLTqvxEJk8QLCuuWEq/yTl2PwbhwIzXo3JoRKlwA03W4a3noj
+	PEXRGKz3hJvPJrNbGZ+5BDbJtFuagUpZBZXC8brBMspoRfXCmNoiys49T/J8lLb4
+	kCdqYeBSpvePpnXNB1aAVfhAqSF8H2VwpWpZn9563tQ==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4a9xtx29k3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 08 Nov 2025 12:42:48 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5A8Hgl6x010175
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 8 Nov 2025 12:42:47 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Sat, 8 Nov
+ 2025 12:42:47 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Sat, 8 Nov 2025 12:42:47 -0500
+Received: from Ubuntu.ad.analog.com ([10.32.15.145])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5A8HgarD028532;
+	Sat, 8 Nov 2025 12:42:38 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski
+	<brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v2 0/2] gpio: Add support for ADG1712 quad SPST switch
+Date: Sat, 8 Nov 2025 17:40:27 +0000
+Message-ID: <20251108174055.3665-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=dMWrWeZb c=1 sm=1 tr=0 ts=690f7d5a cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=YueeOpoQ0xcX2KNfXj8A:9 a=NqO74GWdXPXpGKcKHaDJD/ajO6k=:19
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: vEcUrp_cbVU0Eb3Dc74lcWG9Epk1jxyj
-X-Proofpoint-ORIG-GUID: vEcUrp_cbVU0Eb3Dc74lcWG9Epk1jxyj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA4MDE0MSBTYWx0ZWRfX4k5BXJdb4Vcy
- VpFFvTWYDlPrKztUHWh3Ex7nb0Sv/vn6Xh1PQiOs+oj/9ar69hlHXDJK3WSE67rM/stqLF3g6Py
- ZQLv20+p5CU3D9G9he5lSC6ZK6i+nmBC98LSf5z7POnh32nNTTQKnxfN+YP2fvvMbLxnb9Rs6Q1
- o6nFQSANdREzsyOUCJO1zq7yQ9HzCyhU44z7+aUjWHVLoNOErr7aJfQA2EY7BQ/oxEpyo1WsR+P
- PuXcGWpWULRgwy5KKFNrd29l4/B/TIFB9n7ymGWVyuqr1xHvHIUtkfRP+/EXu3CEPQBrREq3swq
- +jG7scR6MzBurd8Ws6Yoqn3Phzd7EiwsB4ImFmDK9OrYMuqQtzBRtSpp3ZG0S2h/nyOKpcL3Qla
- AjOQu69ra/bf5L8qE2stBpiCRYl3hw==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: _R43hDgVr2M0I3M7zUwhtxJyLRuI7KlW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA4MDE0MiBTYWx0ZWRfX7ByLCZTZX3gM
+ U+7tEO1jU7YNaT/b4Xc1NyFsWy2cbxd7+jOUva0nndSfvxQeLow8J36m5Z6P+rcnweVNfdPvDWa
+ gB6HxBJFMz3t6bhiOZhNR5cqsZJoGwDcTwSszI50eBOx85rCT49PIp2cILDT2rDpjM0yV6ZlGZX
+ 1mTcQXbENgIyZrjAkVc3Fc9muwIla3X8696B8WDmn/oZCryDL2/jWM7D89M+jx3toF0SQ/TFcfV
+ 9M2n/ZrOv8k+ZgVOdZ2b55yNkJW2dWwlKXNrIugTXuiaDgHuppNS5xrEzEUWk8pZJQGaFg7hsVv
+ iqLSCnRfbCWI/15oZ/IFpQXzgfVaJkXs+vSjBeZlfopHCX4QLHHqRuE1I13Kg7/uZ6binVw/y1G
+ u2jNrlsZqZT4HWx7zfrdX/UlHU6tTg==
+X-Authority-Analysis: v=2.4 cv=Ao/jHe9P c=1 sm=1 tr=0 ts=690f8118 cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=p9Z7yoRph7NKER1LKQcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: _R43hDgVr2M0I3M7zUwhtxJyLRuI7KlW
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-08_04,2025-11-06_01,2025-10-01_01
+ definitions=2025-11-08_05,2025-11-06_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 clxscore=1015 impostorscore=0 malwarescore=0 adultscore=0
- suspectscore=0 priorityscore=1501 bulkscore=0 phishscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511080141
+ clxscore=1015 priorityscore=1501 malwarescore=0 phishscore=0
+ lowpriorityscore=0 adultscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511080142
 
-On Fri, Nov 07, 2025 at 05:53:08PM +0000, Hrishabh Rajput via B4 Relay wrote:
-> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> 
-> To restrict Gunyah watchdog initialization to Qualcomm platforms running
-> under the Gunyah Hypervisor, register the watchdog device in the QCOM
-> SCM driver.
-> 
-> When Gunyah is not present or Gunyah emulates MMIO-based watchdog, we
-> expect Qualcomm watchdog or ARM SBSA watchdog device to be present in
-> the devicetree. First, we make sure we're running under the Gunyah
-> Hypervisor. Then we move to check if any of the above mentioned
-> watchdog device nodes are present, if not then we proceed to register
-> the SMC-based Gunyah watchdog device.
-> 
-> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> ---
->  drivers/firmware/qcom/qcom_scm.c | 51 ++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
-> 
-> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-> index e777b7cb9b12..71b79c0229da 100644
-> --- a/drivers/firmware/qcom/qcom_scm.c
-> +++ b/drivers/firmware/qcom/qcom_scm.c
-> @@ -2182,6 +2182,54 @@ int qcom_scm_qtee_callback_response(phys_addr_t buf, size_t buf_size,
->  }
->  EXPORT_SYMBOL(qcom_scm_qtee_callback_response);
->  
-> +static void qcom_scm_gunyah_wdt_free(void *data)
-> +{
-> +	struct platform_device *gunyah_wdt_dev = data;
-> +
-> +	platform_device_unregister(gunyah_wdt_dev);
-> +}
-> +
-> +static void qcom_scm_gunyah_wdt_init(struct qcom_scm *scm)
-> +{
-> +	struct platform_device *gunyah_wdt_dev;
-> +	struct device_node *np;
-> +	bool of_wdt_available;
-> +	int i;
-> +	uuid_t gunyah_uuid = UUID_INIT(0xc1d58fcd, 0xa453, 0x5fdb, 0x92, 0x65,
+This patch series adds support for the Analog Devices ADG1712 quad
+single-pole/single-throw (SPST) switch GPIO driver.
 
-static const?
+The ADG1712 contains four independent SPST switches and operates with a
+low-voltage single supply range from +1.08V to +5.5V or a low-voltage
+dual supply range from ±1.08V to ±2.75V. Each switch is controlled by
+a dedicated GPIO input pin.
 
-> +				       0xce, 0x36, 0x67, 0x3d, 0x5f, 0x14);
-> +	static const char * const of_wdt_compatible[] = {
-> +		"qcom,kpss-wdt",
-> +		"arm,sbsa-gwdt",
-> +	};
-> +
-> +	/* Bail out if we are not running under Gunyah */
-> +	if (!arm_smccc_hypervisor_has_uuid(&gunyah_uuid))
-> +		return;
+The driver provides a GPIO controller interface where each GPIO line
+controls one of the four independent analog switches on the ADG1712.
+This allows software to dynamically control signal routing through
+the analog switches.
 
-This rquires 'select HAVE_ARM_SMCCC_DISCOVERY'
+Patch 1 adds the device tree bindings documentation.
+Patch 2 adds the GPIO driver implementation.
 
-> +
+Antoniu Miclaus (2):
+  dt-bindings: gpio: adg1712: add adg1712 support
+  gpio: adg1712: add driver support
+
+ .../devicetree/bindings/gpio/adi,adg1712.yaml |  65 ++++++++++
+ drivers/gpio/Kconfig                          |   9 ++
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-adg1712.c                   | 119 ++++++++++++++++++
+ 4 files changed, 194 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/adi,adg1712.yaml
+ create mode 100644 drivers/gpio/gpio-adg1712.c
 
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
