@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-236442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F52C44340
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:06:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6BA8C44346
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:06:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1338B3B3706
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:06:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64CD7188C830
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F020304BA3;
-	Sun,  9 Nov 2025 17:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B113054D9;
+	Sun,  9 Nov 2025 17:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="UcpRSje6"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="mbp3x7HN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5D4883F
-	for <devicetree@vger.kernel.org>; Sun,  9 Nov 2025 17:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1721F30499B
+	for <devicetree@vger.kernel.org>; Sun,  9 Nov 2025 17:06:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762707969; cv=none; b=iMcBrIE7kyYEW3hzqM4usTxB3tn+3El2EF+zOH6NOVjSepdL1ZyYAwF32U5fRUeIRBHgPyTzPrjNDur4H2FA7Wa8HKaMM9NY7D12v2xmUFMTMGXgxxdIp+cJDW2NXwlNNdLpFjcBExUbqfbDeWb6ZHU8aVaZifpi71dLM3ZEH3g=
+	t=1762707971; cv=none; b=LAfxIm+VJmOcLbof3YT6JOOmRp+cD4GhpuKxgAY5B5q5nvst+UpZijaFu6FqZPdfy/JCY3c5bgQv8VkSCcQK67rl/MXu4WREWSmWs0ny/TzQuVFzi4s6kdVBN3xBOFqs6Xi8Qau+hAbykeZGygcegJLgtwUApZAZXIqUd2oI644=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762707969; c=relaxed/simple;
-	bh=BqSH1sGgWhPw1gfWfRVD15p+7RBCWiB0kCRAPxIY/aE=;
+	s=arc-20240116; t=1762707971; c=relaxed/simple;
+	bh=RhBkr40435qqQR7ennySLZHbqJD8qlvK6xOZ8kA4q/o=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RYJyCtbw4EclRHsbo0UnBqdUpsG73urdvvqJduKqDPmlrPtupH3RM+cOgahyCD3HPHxSYlVAspe7tRHKN34ZwlTpKhAeH96OXYYleOFEGUkGYutVbaTCl+b4szkuWZ1cOA5fzDheaxAVMiFo8TbTAtZj2ilK9by4IjgHwfRdZTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=UcpRSje6; arc=none smtp.client-ip=91.218.175.185
+	 In-Reply-To:To:Cc; b=RblZe+i14I8+YQKEuPF/UwUtaiV/0G8eYIkcbeoIxy8Pbm+PLQ/gfgwO7hbXssU3ICVvd7km1gGItUM9eCBaro+VOaLDV6hV7nlMuy7+hOPYDYYEJAfA4EiouUhklIA0nIZD0sUVJ6jAr/GjiCP1104Xw2DadaiGSn+AtSMQlj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=mbp3x7HN; arc=none smtp.client-ip=91.218.175.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1762707964;
+	s=key1; t=1762707965;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=aDs8kbwCuzv3Qb5BmYXwYP5JldsXD1hYrMKIH0qG1uI=;
-	b=UcpRSje6/RzpyOYo4IZVlmL2TUgeeFWnCvceLyMfVeHIEb4eBlwaR4CcWlVCWGoU5zu5AP
-	lWuWl/4+f8LkTxjsEXbKksxigl1NBB4uwVnjcrkbqn+RTZLiBdOxrk6lrzauFKc4UizPWV
-	FjTkOq0ruslJRee4zAL2oZIqjFYKEN4IKoL0O9GtL6mUvilEMEorHZ7siId2w1rf54CRA2
-	6zlFDjEDDuiNaqi9gaw5YaZRZis4jswAhpo7lK6PnLAw/RYNhPJ+KfkuiIvEMtACcPrGRE
-	ajwH+X7r3SPagdcLBbucKChCCcUjslodsqliwqcqD07DCVAwVF1A3sf0p+wjEQ==
+	bh=8+c2slFEzvpnuvBcD3m7Q9rIW5GkW6bzoQAArBwQCS8=;
+	b=mbp3x7HNQaUSE3tE8uuKBbakcDwLBufkUi3KvKZ96eOfRvOEvr1SMAq/aw+GpWfufFKohC
+	tnBVGD74pj3pgNji84zBhj5FgdFbSS20wUjFA++wdW9Ch/PRG/6YGQa2FLB0OjhDA6T3EF
+	jWDdAIh5076hTOJvyvoUOF8nqiP48m7TgN6jJslczwnSpzaEKynsj0Oegg+tN51CQRnRhV
+	iSrlnA8RrP08AHrq82oLIVjULKBAvykaeJJ+sTgUjyKdd9HfLA1X6sQ1a7riFeLZSyzn9Z
+	fQ/ppQp6PGIZUuBXXeHrckP483ZxmhSd7GYOXExVdF1TVLYpLG3OGEgAuvI2NA==
 From: Diederik de Haas <diederik@cknow-tech.com>
-Date: Sun, 09 Nov 2025 18:05:26 +0100
-Subject: [PATCH 1/2] arm64: dts: rockchip: Simplify usb-c-connector port on
+Date: Sun, 09 Nov 2025 18:05:27 +0100
+Subject: [PATCH 2/2] arm64: dts: rockchip: Move otg-port to controller on
  rk3566-pinenote
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -56,7 +56,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251109-rk3566-pinenote-dt-fixes-upstream-v1-1-ed38d200cc04@cknow-tech.com>
+Message-Id: <20251109-rk3566-pinenote-dt-fixes-upstream-v1-2-ed38d200cc04@cknow-tech.com>
 References: <20251109-rk3566-pinenote-dt-fixes-upstream-v1-0-ed38d200cc04@cknow-tech.com>
 In-Reply-To: <20251109-rk3566-pinenote-dt-fixes-upstream-v1-0-ed38d200cc04@cknow-tech.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -65,48 +65,71 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Cc: hrdl <git@hrdl.eu>, phantomas <phantomas@phantomas.xyz>, 
  Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>
+ linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>, 
+ stable@vger.kernel.org
 X-Migadu-Flow: FLOW_OUT
 
-The USB-C connector on the PineNote has only 1 port, so there's no need
-for a 'ports' node with address-/size-cells properties as a single
-'port' node suffices.
+The 'rockchip,inno-usb2phy' binding's otg-port node does not have a port
+node, so the current definition causes this DT validation issue:
 
-This fixes the following DT validation issue:
+  usb2phy@fe8a0000 (rockchip,rk3568-usb2phy): otg-port:
+    'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
 
-  Warning (graph_child_address): /i2c@fe5c0000/tcpc@60/connector/ports:
-    graph node has single child node 'port@0',
-    #address-cells/#size-cells are not necessary
+Its purpose was to define the other endpoint for the USB-C connector
+port. The 'snps,dwc3-common.yaml' DT binding does have a port node to
+connect the dwc3 to type C connector with the 'usb-role-switch'
+property. Therefore move the port node to the dwc3 node and add the
+'usb-role-switch' property to it.
+This fixes the above mention DT validation issue.
 
+The incorrect definition also caused these kernel errors:
+
+  rockchip-usb2phy fe8a0000.usb2phy: Failed to create device link (0x180) with supplier port0 for /usb2phy@fe8a0000/otg-port
+  rockchip-usb2phy fe8a0000.usb2phy: Failed to create device link (0x180) with supplier 3-0060 for /usb2phy@fe8a0000/otg-port
+
+With the changed definition, those errors are now also gone.
+
+While at it, remove the 'dr_mode' property as that's already defined in
+rk356x-base.dtsi and there's no point in redefining it.
+
+Fixes: 87a267b4af09 ("arm64: dts: rockchip: Add USB and TCPC to rk3566-pinenote")
+Cc: stable@vger.kernel.org
 Signed-off-by: Diederik de Haas <diederik@cknow-tech.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi | 13 +++----------
- 1 file changed, 3 insertions(+), 10 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-index 5c6f8cc401c9..7c65fe4900be 100644
+index 7c65fe4900be..be8076a8e30c 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-@@ -485,16 +485,9 @@ connector {
- 			typec-power-opmode = "default";
- 			pd-disable;
+@@ -694,8 +694,14 @@ &uart2 {
+ };
  
--			ports {
--				#address-cells = <0x1>;
--				#size-cells = <0x0>;
+ &usb_host0_xhci {
+-	dr_mode = "otg";
++	usb-role-switch;
+ 	status = "okay";
++
++	port {
++		usb2phy0_typec_hs: endpoint {
++			remote-endpoint = <&typec_hs_usb2phy0>;
++		};
++	};
+ };
+ 
+ &usb2phy0 {
+@@ -704,10 +710,4 @@ &usb2phy0 {
+ 
+ &usb2phy0_otg {
+ 	status = "okay";
 -
--				port@0 {
--					reg = <0x0>;
--
--					typec_hs_usb2phy0: endpoint {
--						remote-endpoint = <&usb2phy0_typec_hs>;
--					};
-+			port {
-+				typec_hs_usb2phy0: endpoint {
-+					remote-endpoint = <&usb2phy0_typec_hs>;
- 				};
- 			};
- 		};
+-	port {
+-		usb2phy0_typec_hs: endpoint {
+-			remote-endpoint = <&typec_hs_usb2phy0>;
+-		};
+-	};
+ };
 
 -- 
 2.51.0
