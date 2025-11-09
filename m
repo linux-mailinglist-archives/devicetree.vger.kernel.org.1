@@ -1,93 +1,96 @@
-Return-Path: <devicetree+bounces-236365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A89C4367B
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 00:32:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D822CC437EA
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 04:22:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D0D1188C2E6
-	for <lists+devicetree@lfdr.de>; Sat,  8 Nov 2025 23:32:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F8DF188CCAD
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 03:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D4F222599;
-	Sat,  8 Nov 2025 23:32:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79711FECD4;
+	Sun,  9 Nov 2025 03:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bVx2PyO+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GqoSpm3K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07B721F2382
-	for <devicetree@vger.kernel.org>; Sat,  8 Nov 2025 23:32:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA351FBEB0
+	for <devicetree@vger.kernel.org>; Sun,  9 Nov 2025 03:22:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762644738; cv=none; b=mLM8tp3tK3eg5PnmHN/BsrXC7T4gsk6hg5x7junkR7efcPUKNTAGRIsw4TY3rNUm4lvW3hxaAiPizKjGIosWHJgjn35RAG2Z+N6PSPeJZpXLCFHsC027xgdT4Mt5VMezx/l45Qhm9W8haZrgPHM6LkxC4FKqa1TpBha5UAstVns=
+	t=1762658570; cv=none; b=oq5wrmxPwKvXXsrcRuahOe9XCTzO92YgQFj9O99D4kHoRs4BCSV/C0Kf43moMWmJt9sxH3afrNASq/f7lpqqzyx+PB72YgqbS9WphRzira/FAmWaR3bKgHkdS+2ytsp3jY4SOumTqFSAxkWQ37EnvGwWfYZKp+sjPPxRIohTYuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762644738; c=relaxed/simple;
-	bh=xKs8wYkk+cdW/0EbGiN/udJKAvFLzY1GYmzjS/+rDlQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bEDvmpHr0loFaBEPMZ8C7492/koNxYgvw6D5t79ZXS37D9Y+lePqgA3lNpvE2ssmLoxJ87FT4lR6Lae7nQ5zshojs24nVhtgxoO9ujYpi2ipZ2MWSVzCb91nZLfZTB7g8clTi1s9OitWWVRYrKPwEzLNPSvYLop/HPiZgIqTnmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bVx2PyO+; arc=none smtp.client-ip=209.85.216.43
+	s=arc-20240116; t=1762658570; c=relaxed/simple;
+	bh=KRL39vgwT3XMUn3s5DtSCHjsPeAz1H7nQ2W0QFd1uB0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GCOOMaZK/xf7DXnTrW13wFT1vv+DPqFgl14zjX5X4Bn7Ivn/ozG0s3fFD8uIyJ4rwLrvAVW+CP1CTqc016PpBI2CDt/EpHfNVzZce4T+1Y3TZipnVTdl8DzY6jSJKXkiZDYG9vG1LG4QHw8cni86cRYzgDJgtizQINJ1MpWhP5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GqoSpm3K; arc=none smtp.client-ip=209.85.215.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-3410c86070dso1264050a91.1
-        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 15:32:16 -0800 (PST)
+Received: by mail-pg1-f194.google.com with SMTP id 41be03b00d2f7-b8c0c0cdd61so1656323a12.2
+        for <devicetree@vger.kernel.org>; Sat, 08 Nov 2025 19:22:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762644736; x=1763249536; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762658568; x=1763263368; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=S2fxYKfyTmTI/AxonjY+SqxajrG2P4Kjo61uGzKE6W8=;
-        b=bVx2PyO+GbGyv/co34eemITrgkf82Ln62iuzCZizLsMg24H5pBex2AdDJ5TqG3r2Si
-         KCvBDZRwHOHkDxwkVelYipdWzQzBHRfLfWEFEaJvzdUw5RHdcatL8OBfm6Ug7HtvMOmE
-         Dj2EuN0QdjTN9oq703vDEtQpe2zOLOd1KOLke4MFPE/k5z+uiAxcSqoNxw3Ej/9LnGyc
-         J+YHERMJzscwaDOxHApjMPjo04bq8M5r3okSo6e9S19B5M9trKDjm9Kv1fcwS0DxB3AI
-         +8iRlFgmkWHeumpAG1Y2g7/7vqDYCYKu4sJKHqeE/PlZJ9QRB0KEbl2mZUjWM/dGmKtg
-         3mhQ==
+        bh=309e2xiNVgkaFiSxGZQDDrS3Pr+1mEXfBB2ZrdJ+pPY=;
+        b=GqoSpm3KYYymnGbt3zlZ/+B9aHRDGop1QgWfvKx+2hvSGda/M9l9yEoreDG3HNLex+
+         1ROe3GCTUvbtJ/8YZJ6WgclsMQGhvvNp0Ii+N0MzKbPhbBroLLRdtRWETvoZbIg1YIZJ
+         wD2sFn3tN3yskjLj7vWZ1ry6yCnGNcssp3A4cw0n1YhEHqlbpqw16frBIFsdt2Dwl9EN
+         oSWo+ODkQa/y3vyxc3kLdp6N6Mc1tM37ZcmfFx65VDrpsMvI1u5OMi0BxpSoYpQcSwr1
+         oTpn+R7fxJDYsO70VTibsfGG5QukeKgNDf/l4tX9ligXveshQ0Pp9BvCc1Ef4ZYcg3g4
+         JLkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762644736; x=1763249536;
+        d=1e100.net; s=20230601; t=1762658568; x=1763263368;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=S2fxYKfyTmTI/AxonjY+SqxajrG2P4Kjo61uGzKE6W8=;
-        b=usMbP2ow7JeSfShW6Gc9+eeuWG3qBZV2s/sKaIKPsZsCM1gYHnYJlQ1Bcy8F1bIRSA
-         ItrxHKgkUJda2Jguzgk0KqADYBlmSbuzBQZfzuGLLO0qpZXgisoBssyGzlMVDFp7PJ99
-         kpF2IhYyTKBkuVgcXytVho9iCduJLwH0/3TaHaOPQ7Sd9pjwOJIv05XmJCT9EuPd+HPy
-         pQ6tjyPBcq0SUyhY+S+rM0svdEP58Y4jSZD+c8EbIJNvPT5MesNHPA2rEnaqtX3sXLGH
-         JRD12rqv/wpFJR1AE2VCYJJ32J4s9niYHqcly9pz7ZF5nZFEo6pTZ/FAXJhQm0LYSUd8
-         hTfg==
-X-Forwarded-Encrypted: i=1; AJvYcCVzCyRwar+28Tr52cnxmkK1FiHmaq3SqeSDslqztxod067IeWnh23jcscXieZE9t7GPePTEnlT3da8k@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfdpGG6lgNe8EIPfWPEoiMiXYV5M1QYuGkDNTEJnQ7vLK2XyOR
-	9/mx7mybFucoATaeq2JyWYEtDmY0kiqVe15WSnck4BZsxcX80KcBnbId
-X-Gm-Gg: ASbGnct6sJZGaCUG7Ge0d4izbmyVcNuIRwNtadYj6eYk+Ww8O5b25CKB+QrwxaSr5uB
-	rVDMfxnyoDMUMMi9msj/tH1QqOOnd7H3wMcoGm3IhlSAz2JdSZhWl9hL0zPBKSvDNfE2ArfeoVV
-	TKe4q9wdepFWH2wGc6YkWLro9HD+LHD0Mi33EMSRDe0+rv52woFrAG9w0/1pRaKTypFvfRGvuzH
-	HynNMZVwPir+qOjcNF+AzC9p0TveIZyY+bAFvcUxGMIo+aP2b283CQvOnQKSRPB85XFjIK8KVlQ
-	hs3QZfMpw03eOzPcuuI0pEmv+4L4uA7uCzGOzzKzWVaOI3TjkjL41YCMAcCJu1RUmVRvIvEyG5o
-	x9uc7Jb6nqoh9eB8tBlVkv3plmKnr0RHHm65NjKjWS11sL2pxoupJhExOBpCucw8m716bpLtZKE
-	Is
-X-Google-Smtp-Source: AGHT+IHt0Vn3SiG3I6Pw+8+ukG4cQ6WeXSBHOSQlHyfoi+jjU2LC0v/ov1yYPZ3yv8FjxrEwPlJ0Ug==
-X-Received: by 2002:a17:90b:5710:b0:32e:5d87:8abc with SMTP id 98e67ed59e1d1-3436cd0f1f0mr5195603a91.36.1762644736252;
-        Sat, 08 Nov 2025 15:32:16 -0800 (PST)
-Received: from fedora ([172.59.161.218])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3436d76d382sm1343594a91.0.2025.11.08.15.32.14
+        bh=309e2xiNVgkaFiSxGZQDDrS3Pr+1mEXfBB2ZrdJ+pPY=;
+        b=dWpxDb7zKf853arwiFfktvbCxY84e0nFGDuKwOuKZFvaPMBjddemlydIQ1ALdRZq8u
+         sAZFVxrQ70S9jyIh6it2VM7UAEhR7kOQhLcldoLFHG79gtex44gvuAbvbEsvhyyvlzWN
+         hwLLekWuZiz3AvAmZFAlvUBcF+3Mpo4gJp4vNPMfpoACusqCmJQkUyOjXHudMoyYXYXB
+         EU6NGO2t25hMWFaVbttn+IxEAYjB9e9JLx4GAUnDnGm+BLnRxPH6SuKloEolPX639P5h
+         omL/KrKYqw/wiEzkH1argnIrkIw03p7Y8ygJK6G9YISMuG+b8of1GSxzvHeikEt03SWY
+         +Ojg==
+X-Forwarded-Encrypted: i=1; AJvYcCVjKuKuQayh90F/tQ7yw+lSAzwcinssk5eLmaABr+5cUxeh3yWEexarhXZLIWRJ8TBBWwoqY3gNDc68@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6J2DO03wd+Zn8Ph6qCNzI/Kw50Djh88vSzA079iihnxQ5Te6k
+	vpHo0bNIgPNzetAgeWdcRanRpdJTdcr+OyA27VW+ydfSbfNAhkwI03rtwkBoqkBG/BG+4Q==
+X-Gm-Gg: ASbGnctGu1uuVjnbkwipDlhzeNsEyIOnBSGPnH1kVLYajQ+nhSq4PLZUixpgybfM7HZ
+	XI4EwqWp9KO4SQM7XGw0dPAbllO6JhCxPjJPBGv9ZH3SMqYcWRsFjvQgPGi+39OaIAaGU/cxZMF
+	WgWz17giKwtH9RfqlpX6k6ct5Me2CduoP/V01y9rx0dWkwmNCwph1W7lXhV0mMsTVykItNAbo5s
+	ofnftM87luV2DsZ5gp56TUzX1hdURMSB+wiBdkIlqx7HjXmVigGdBNEjHALmz7DIuCiJXjg+Mkw
+	WeplgVHMofX1YKljVnli86YRPOGuDRIA4gdY9kgUVuMB3vuKEjX7Qiup3JkbqodOLZWHfjPGRKO
+	nik4mZgwzlE5wqcUnSCP6MJhokiB31jo+hN6aoRU/CxLJh4G5HBn8j1gDKFRpLtiy1nASlg+9Qe
+	1SaL2jul3IIhsCcyjKxg==
+X-Google-Smtp-Source: AGHT+IG+NU2yi/NgsNSjZY0ObuL/1G3s3dBw0Ad9cUlsXl76c/IPuu1PQw3w7qQoYNY21AsMnNqtwQ==
+X-Received: by 2002:a17:903:94e:b0:264:70da:7a3b with SMTP id d9443c01a7336-297e570dd4bmr52150255ad.49.1762658568492;
+        Sat, 08 Nov 2025 19:22:48 -0800 (PST)
+Received: from VM-0-14-ubuntu.. ([43.134.26.72])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-296509682casm101941215ad.22.2025.11.08.19.22.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Nov 2025 15:32:16 -0800 (PST)
-From: Alex Tran <alex.t.tran@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sat, 08 Nov 2025 19:22:48 -0800 (PST)
+From: Junjie Cao <caojunjie650@gmail.com>
+To: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Hans Verkuil <hverkuil+cisco@kernel.org>,
-	linux-media@vger.kernel.org,
+	Helge Deller <deller@gmx.de>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Alex Tran <alex.t.tran@gmail.com>
-Subject: [PATCH v1 2/2] dt-bindings: media: i2c: et8ek8: document missing crc as optional property
-Date: Sat,  8 Nov 2025 15:32:00 -0800
-Message-ID: <20251108233200.2068334-1-alex.t.tran@gmail.com>
-X-Mailer: git-send-email 2.51.0
+	linux-fbdev@vger.kernel.org,
+	Junjie Cao <caojunjie650@gmail.com>
+Subject: [PATCH v3 0/2] backlight: aw99706: Add support for Awinic AW99706 backlight
+Date: Sun,  9 Nov 2025 11:22:38 +0800
+Message-ID: <20251109032240.3422503-1-caojunjie650@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,33 +99,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add the optional crc property to the endpoint node for the et8ek8 sensor.
-This property enables CRC checksums for the sensor bus and was added to
-match the new driver support for reading it from the device tree.
+Add support for Awinic AW99706 backlight, which can be found in
+tablet and notebook backlight, one case is the Lenovo Legion Y700
+Gen4. This driver refers to the official datasheets and android
+driver, they can be found in [1].
 
-Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
+[1] https://www.awinic.com/en/productDetail/AW99706QNR
+
+Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
 ---
- .../devicetree/bindings/media/i2c/toshiba,et8ek8.txt        | 6 ++++++
- 1 file changed, 6 insertions(+)
+base-commit: 72fb0170ef1f45addf726319c52a0562b6913707
+---
+Changes in v3:
+- remove the shift field (Daniel)
+- use FIELD_PREP() to replace FIELD_MODIFY() (Daniel)
+- include init table into aw99706_device (Daniel)
+- breaking a long line (Krzysztof)
+- rename backlight node (Krzysztof)
+- make aw99706_regs static (Krzysztof)
+- return -ENODEV if it is a unknown chip id (Krzysztof)
+- use __ffs() to handle shift, since mask is not compiletime in for loop
+- reorder functions and structs
+- Link to v2: https://lore.kernel.org/linux-leds/20251103110648.878325-1-caojunjie650@gmail.com
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.txt b/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.txt
-index 8d8e40c56..5fd30f59b 100644
---- a/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.txt
-+++ b/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.txt
-@@ -30,6 +30,12 @@ Endpoint node mandatory properties
- - remote-endpoint: A phandle to the bus receiver's endpoint node.
- 
- 
-+Endpoint node optional properties
-+---------------------------------
-+
-+- crc: Enable CRC checksums.
-+
-+
- Example
- -------
- 
+Changes in v2:
+- add handler for max-brightness and default-brightness
+- add properties(max-brightness, default-brightness) (Krzysztof)
+- use proper units for properties (Krzysztof)
+- drop non-fixed properties (Krzysztof)
+- include default values in the aw99706_dt_props table (Daniel)
+- warn when a property value from DT is invalid (Daniel)
+- drop warning when optional properties are missing (Daniel)
+- add a function pointer into the aw99706_dt_props table to handle lookup (Daniel)
+- use a lookup function instead of hardcoding the formula for the iLED max (Daniel)
+- move BL enalbe handler into aw99706_update_brightness (Daniel)
+- Link to v1: https://lore.kernel.org/linux-leds/20251026123923.1531727-3-caojunjie650@gmail.com
+
+Junjie Cao (2):
+  dt-bindings: leds: backlight: Add Awinic AW99706 backlight
+  backlight: aw99706: Add support for Awinic AW99706 backlight
+
+ .../leds/backlight/awinic,aw99706.yaml        | 101 ++++
+ MAINTAINERS                                   |   6 +
+ drivers/video/backlight/Kconfig               |   8 +
+ drivers/video/backlight/Makefile              |   1 +
+ drivers/video/backlight/aw99706.c             | 471 ++++++++++++++++++
+ 5 files changed, 587 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/awinic,aw99706.yaml
+ create mode 100644 drivers/video/backlight/aw99706.c
+
 -- 
-2.51.0
+2.51.1.dirty
 
 
