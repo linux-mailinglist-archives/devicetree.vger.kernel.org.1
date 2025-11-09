@@ -1,198 +1,105 @@
-Return-Path: <devicetree+bounces-236382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDEBC43E7A
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 14:16:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1BE0C43F4A
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 14:57:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D724D188BD53
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 13:16:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 697B64E3BC7
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 13:57:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAF92F6909;
-	Sun,  9 Nov 2025 13:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF952FABE3;
+	Sun,  9 Nov 2025 13:57:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQiplyU/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aCF42VMg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C367C8F7D;
-	Sun,  9 Nov 2025 13:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F13081CFBA;
+	Sun,  9 Nov 2025 13:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762694178; cv=none; b=mSl2LaBKggdTPTdZfyODjlKqSBv9bcb2bukMen8IbFA9CJ0ISAmbi06950fpyCtj0sdIrsTC+l6hu9wTSZPtNJuAF2WskkLIIgT0LPvKWi96uQUimhrIxIg6oIqRZRP2Hc6rHtoh1R2KeR2YqAw2VKZ9SBqC0oIbNtvnwYGO+Hk=
+	t=1762696658; cv=none; b=rx8BT+SWNkqUEgZSRvD9bODSlkbrno1IVjJWFFQc0TQFCz4vg+LXe2hbP2S5uwfnCbryqBVFepInVLRZVEkKyvHiT1fKte/IyDESJwxzBx58B+tNjbdUe2riN+e6CsIAHOEHY0Trvr0VmJOzSMBO6TC+N9nNrj6DI9fJMK4L7Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762694178; c=relaxed/simple;
-	bh=3KRQry2rN5yBVh+iljFYmxN/MaQaDt+KLgcTKHl1+9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KoIAIeKsGgHSTIn1Vz/SuvMNV8MT/8+TrzpJE8dNvY1F84CkOI40aVXAiZm++j7P7h4nB6BtKJj4pEJZPGheVbGEnVWd5LHFg7EWKICixohqUsDuz04O+kkkj2osi464rmRa2s6x1+PDdMO7VDRbM7Ktic672h/rm85XzDPhe9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQiplyU/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E491CC4CEF8;
-	Sun,  9 Nov 2025 13:16:16 +0000 (UTC)
+	s=arc-20240116; t=1762696658; c=relaxed/simple;
+	bh=sqCExe7TvzBIlrizfDnjeq9qTbAz4DDhCt3BiP31r3c=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BZBMNiUhPCN/OBjUoqLEq6azZnXI5SWq85IY9mogyoyLDEtsOvanUQYiMchi55PVUovJ0m9fu68mCPzye9dpGFtOgfU/F9M8Znf2Es0idzy3sGliGesg75ngkW5KowE9UjP7+HR7cubKKya5Bl5jyxuFbTsD8INWxWMYr/rLJjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aCF42VMg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F4CBC4CEFB;
+	Sun,  9 Nov 2025 13:57:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762694178;
-	bh=3KRQry2rN5yBVh+iljFYmxN/MaQaDt+KLgcTKHl1+9w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oQiplyU/LbwRxAbtCRePLvDcPxvLpQS2NfkS5btfCzb0bsuWcEEtiKySAoSA1WW8e
-	 0TNN6r5KqR/ObQrunoaH00KsxTgy4sZ0KRO1pVsuZ7jGPPsPtmceUkYzWxOYJQxPVD
-	 6uAslhPWfpwHneONieUUjT6k66NnZKuM7SavY0U/wsGUk1UFXhDLATtJE7XXx/pNuq
-	 7ag1MYZC05SiY92HQxeC4b8g3YK7lWRGU8N4yhCVcX13FdIfTa1OWiPTsZeTPJYfo5
-	 JiQe5iy0AlZj6f35/kqemnNLbA8z+9js+iE/lstC3Tzvi5pxXnTDQjErfVgoN6/Fh3
-	 8OSvTMlZiidzg==
-Date: Sun, 9 Nov 2025 13:16:14 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Lakshmi Patil <lakshmi16796@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] staging: Lakshmi Patil: dt-bindings: misc: Add Xilinx
- AXI FIFO MM S controller binding
-Message-ID: <20251109-annually-nifty-42c9530b4f07@spud>
-References: <20251109033751.334711-1-lakshmi16796@gmail.com>
+	s=k20201202; t=1762696657;
+	bh=sqCExe7TvzBIlrizfDnjeq9qTbAz4DDhCt3BiP31r3c=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=aCF42VMgrNTEJSwJI9nVyj1xVoa9C8Ec+DDNCfCCVvK2K2Hb02oAAdYyEU/c+N7Yo
+	 0WTZXStAS8Ac9tB1HMeeA55W61N7L1JuQlzfSuk3o4zaA/JdY8BVk2TYEMW3AqerZL
+	 /Cn0lzdAzictXV6gHm+jrUTcl1Rf1J/N3RCfdI/NeLle9maxwPjcOlj04S4XyJ0IIK
+	 6nk/7EceagZuwTL6FFJN3Pta384gOpOjA0T3wwM5KVL9ROaUxXKBCHyKTBzLRviK4D
+	 wQ6a+wdYk0EoOlMG9kiPpDHSomklmr/jSd0Z6a2yu6jJQQnILF7KOOThgrIq1sbX0i
+	 WGiAHXPaayIzA==
+Date: Sun, 9 Nov 2025 13:57:28 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+ devicetree@vger.kernel.org, linux@roeck-us.net, Carlos Song
+ <carlos.song@nxp.com>, Adrian Fluturel <fluturel.adrian@gmail.com>, Andy
+ Shevchenko <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v11 6/6] iio: magnetometer: Add mmc5633 sensor
+Message-ID: <20251109135728.223d3857@jic23-huawei>
+In-Reply-To: <20251106-i3c_ddr-v11-6-33a6a66ed095@nxp.com>
+References: <20251106-i3c_ddr-v11-0-33a6a66ed095@nxp.com>
+	<20251106-i3c_ddr-v11-6-33a6a66ed095@nxp.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="H86Bpw1wREfxQN0S"
-Content-Disposition: inline
-In-Reply-To: <20251109033751.334711-1-lakshmi16796@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Thu, 06 Nov 2025 12:36:05 -0500
+Frank Li <Frank.Li@nxp.com> wrote:
 
---H86Bpw1wREfxQN0S
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sun, Nov 09, 2025 at 09:07:49AM +0530, Lakshmi Patil wrote:
-> Warning found by checkpatch.pl script.
-
-What? This commit message and subject is so weird that it looks like it
-was generated by some of LLM hallucination.
-
->=20
-> Add the Device Tree binding documentation for the Xilinx AXI FIFO MM S
-> (AXI Memory Mapped to Stream) controller. The core provides a FIFO-based
-> interface between AXI Memory-Mapped and AXI-Stream domains and is used in
-> Xilinx SoC and FPGA designs to offload DMA-style data transfers.
-
-There's already a binding in text form for this device. Your binding
-below contains almost none of the required properties in the text
-binding, nor does it actually remove the existing text binding.
-
-Did you just not check to see if it was already documented, or what's
-going on here? I am very confused to be honest.
-
-pw-bot: changes-requested
-
-Cheers,
-Conor.
-
->=20
-> The binding describes the required properties such as compatible string,
-> register region, clock, reset, and interrupt line.
->=20
-> Signed-off-by: Lakshmi Patil <lakshmi16796@gmail.com>
+> Add mmc5633 sensor basic support.
+> - Support read 20 bits X/Y/Z magnetic.
+> - Support I3C HDR mode to send start measurememt command.
+> - Support I3C HDR mode to read all sensors data by one command.
+> 
+> Co-developed-by: Carlos Song <carlos.song@nxp.com>
+> Signed-off-by: Carlos Song <carlos.song@nxp.com>
+> Co-developed-by: Adrian Fluturel <fluturel.adrian@gmail.com>
+> Signed-off-by: Adrian Fluturel <fluturel.adrian@gmail.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../bindings/misc/xlnx,axi-fifo-mm-s.yaml     | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,axi-fifo-=
-mm-s.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.ya=
-ml b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
-> new file mode 100644
-> index 000000000000..d02a7cf9ac0f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/xlnx,axi-fifo-mm-s.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx AXI FIFO MM S Controller
-> +
-> +maintainers:
-> +  - Lakshmi lakshmi16796@gmail.com
-> +
-> +description: |
-> +  The Xilinx AXI FIFO Memory Mapped to Stream (MM2S / S2MM) core provides
-> +  a FIFO-based interface for moving data between AXI Memory-Mapped and
-> +  AXI-Stream domains. It supports both transmit and receive paths
-> +  and is typically used to offload DMA-style data transfers in
-> +  Xilinx SoCs or FPGA designs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - xlnx,axi-fifo-mm-s-4.1
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      Base address and size of the AXI FIFO MM S register space.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Interrupt line from the AXI FIFO block, if available.
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description:
-> +      Reference clock for the AXI FIFO interface.
-> +
-> +  clock-names:
-> +    const: s_axi_aclk
-> +
-> +  resets:
-> +    maxItems: 1
-> +    description:
-> +      Reset line for the AXI FIFO interface.
-> +
-> +  reset-names:
-> +    const: s_axi_aresetn
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    axi_fifo_mm_s@43c00000 {
-> +        compatible =3D "xlnx,axi-fifo-mm-s-4.1";
-> +        reg =3D <0x43c00000 0x10000>;
-> +        interrupts =3D <0 59 4>;
-> +        clocks =3D <&clkc 15>;
-> +        clock-names =3D "s_axi_aclk";
-> +        resets =3D <&rstc 0>;
-> +        reset-names =3D "s_axi_aresetn";
-> +    };
-> +
-> --=20
-> 2.34.1
->=20
+> change in v11
+> - add andy shevchenak's reviewed by tag
+> - use unsigned int for regmap
+> - compact mmc5633_read_avail arg list to few lines
+> - move check condition to one line for read_poll_timeout()
+> - leave i3c_xfer as size 1 array to align existed code style in kernel
+> tree, git grep -r i3c_priv_xfer drivers/, leave to jonathan to do decide.
+I don't feel strongly either way, so fine with just having it as
+you have it here.
 
---H86Bpw1wREfxQN0S
-Content-Type: application/pgp-signature; name="signature.asc"
+I'm assuming there will either be an immutable branch that I can
+pick up to get the i3c changes, or that we'll split this across cycles
+(so i3c bit goes in this cycle, driver next).
 
------BEGIN PGP SIGNATURE-----
+So I'll keep an eye open for how that part merges if everyone is happy
+with it.  Feel free to poke me if I look like I missed it.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRCT/gAKCRB4tDGHoIJi
-0qbhAQDVf3sKkI6hwzIWM62RyARJKS8IANDqSwipdXd4qDmtiwD+NhUFDv9mLofo
-Ls6JUBUdgFPO4W/AMduv3e/drTji4QU=
-=aB42
------END PGP SIGNATURE-----
-
---H86Bpw1wREfxQN0S--
+Jonathan
 
