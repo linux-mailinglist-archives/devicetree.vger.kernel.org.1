@@ -1,163 +1,113 @@
-Return-Path: <devicetree+bounces-236431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5545EC44231
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 17:18:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2CF1C44240
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 17:19:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 029C034726C
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 16:18:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9AC774E0200
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 16:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F3FB2FFF82;
-	Sun,  9 Nov 2025 16:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 209272FFF82;
+	Sun,  9 Nov 2025 16:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TjFVkM5d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hr/OZCxE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9005C96;
-	Sun,  9 Nov 2025 16:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3AB5C96;
+	Sun,  9 Nov 2025 16:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762705098; cv=none; b=khODiVjiUng32vlr8d1yRow8lvxBa9Rd+Ac7iXW4LZelFZQZNhZwtqnBcn4tzI41RlmuVPe7x3YL0T9Ouehjb3RApt76XIFYKD7Bm9JQo6TIpmGO/3bEdiDzos4DRvSFKrrbaC6K3cKqa0nQ4zEhGmcTrPOX8BFYTp9CSFk5kH4=
+	t=1762705182; cv=none; b=qbTlxuQqNnq1nQYBl58tJ4darI4Ma1D/Gwy2dO1ry+jBy/rHJwxwXr4cUP/sThTKPq5PSXmZQckigYCAQtEB4tIQLram4nlSTrEoeEo1q1QJi7dO6zmppVX/fQTsXFzximwFlqblv0uGslVlrhPkhdA2h04hjG62uUuKiz8jahE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762705098; c=relaxed/simple;
-	bh=NI6YboA8JS5E8R5DZqhB6Ej/6kcnfJbcc0r0CkZyfok=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DpiAb5Bq3unxJhzIXtXrPDPaobQrBCllw6v/PDcv7+vis1PoYuF9JV7nJNSZxCSyoZycd+32EqGP9+cxTGeBBRczSJUMono1DBxW5U5URfKf4oYh4bqJ4I7DcgYW1giPgay/do8fl3eynqnPWsOSv8hV6Y/Dmi+q/sF3OR6D0XI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TjFVkM5d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC341C19424;
-	Sun,  9 Nov 2025 16:18:08 +0000 (UTC)
+	s=arc-20240116; t=1762705182; c=relaxed/simple;
+	bh=2ppow4A47+wHLUX6xZe/3VqgZmxAer6B1Qvbvr0/ql0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TVxEFKc4OY6P5PmiqjLx6lqCgidza4qSdmvWPnRZ8vnhbn7LoabXaXB9QOxpN1vGeRfSxW3U8P5khD+S94gY2+y2SYpfW5BU88NbtcCTK0+uSWfAc8dZ1cORMcrv9ylgnEP6H9NdoHTjxaCtV97fApnW23jCvUEGg4p9zbgUnDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hr/OZCxE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 178B4C116B1;
+	Sun,  9 Nov 2025 16:19:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762705096;
-	bh=NI6YboA8JS5E8R5DZqhB6Ej/6kcnfJbcc0r0CkZyfok=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TjFVkM5dwPQ1+LU6/Gyv8cRk6zvs9gBLYbsCUO2a6AMcJp23CYQ38gZc6kZGZlyRV
-	 Z75IZLYokWkXIUgtvvrhCKo70x5gaCb7UEMZtpkOEGqToB8tKI7VWd+/2BS1lbpar1
-	 7wqC5epNF9G4fe+70Z6Jpatfo0fjAmQHtT2gySWQ2eF+aKRpAbFw91RfEYUQYRepiw
-	 wsO0FxDoYrkCJPCOgAYn7ag3USyEwBdw5JjwWxOpNiW8YOweAJMyKTRRHtM7FZk+iI
-	 gSkO/G03UuJsU1W4YtqGNlvhdI0M0WN1q8qIJbIIhuiZN6aT9HGF5GvMDHc9E9CT2q
-	 lkqVeGDsap4Uw==
-Date: Sun, 9 Nov 2025 21:48:02 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: connector: Add PCIe M.2 Mechanical
- Key M connector
-Message-ID: <qrgaulegz2tb7yzklyl7rpkgbf6ysx44bxtyn6n3tcyq4an4e5@bzngutkvfno3>
-References: <20251108-pci-m2-v2-0-e8bc4d7bf42d@oss.qualcomm.com>
- <20251108-pci-m2-v2-1-e8bc4d7bf42d@oss.qualcomm.com>
- <gmwg46c3za5z2ev34mms44gpq3sq7sb4jaozbdn5cejwbejbpo@wwr2j7dkjov4>
+	s=k20201202; t=1762705181;
+	bh=2ppow4A47+wHLUX6xZe/3VqgZmxAer6B1Qvbvr0/ql0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Hr/OZCxE3YsxVVwJunOnlOeep56JjZbmzU/bYm5C/dTu3XSxPCzTuR3nlfqRBDUeg
+	 rwd0vI/w3XiA50MpFMYcmxnFU7IRewXGxrvfClzY21i/7QOtdnNu0CBpViGpt4nxTS
+	 vDb9R3IeM478CLjgOFOWbZtkpGX24wlkyXvNW8uTGCEHx+j25XRSC7uytIu8L5arB/
+	 DwsI++wgRUZKziO70qX4LNFJG0OPU++LEsj0lUsVhLkv+Audt4kfRcVC3dMDAGVttc
+	 jo+SsO+aTe4VRiMspY8xac3PI7u106mtTL/24WOcFaLx+iOmIHT8V6MvT2jT/oSMME
+	 FrlTDKJ50U7fQ==
+Date: Sun, 9 Nov 2025 16:19:33 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v4 09/12] iio: dac: ad5446: Make use of the cleanup
+ helpers
+Message-ID: <20251109161933.001043ce@jic23-huawei>
+In-Reply-To: <aQpEjYRQTDolSIXO@smile.fi.intel.com>
+References: <20251104-dev-add-ad5542-v4-0-6fe35458bf8c@analog.com>
+	<20251104-dev-add-ad5542-v4-9-6fe35458bf8c@analog.com>
+	<aQpEjYRQTDolSIXO@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <gmwg46c3za5z2ev34mms44gpq3sq7sb4jaozbdn5cejwbejbpo@wwr2j7dkjov4>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 08, 2025 at 08:10:54PM +0200, Dmitry Baryshkov wrote:
-> On Sat, Nov 08, 2025 at 08:53:19AM +0530, Manivannan Sadhasivam wrote:
-> > Add the devicetree binding for PCIe M.2 Mechanical Key M connector defined
-> > in the PCI Express M.2 Specification, r4.0, sec 5.3. This connector
-> > provides interfaces like PCIe and SATA to attach the Solid State Drives
-> > (SSDs) to the host machine along with additional interfaces like USB, and
-> > SMB for debugging and supplementary features. At any point of time, the
-> > connector can only support either PCIe or SATA as the primary host
-> > interface.
-> > 
-> > The connector provides a primary power supply of 3.3v, along with an
-> > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
-> > 1.8v sideband signaling.
-> > 
-> > The connector also supplies optional signals in the form of GPIOs for fine
-> > grained power management.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> >  .../bindings/connector/pcie-m2-m-connector.yaml    | 122 +++++++++++++++++++++
-> >  1 file changed, 122 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..be0a3b43e8fd2a2a3b76cad4808ddde79dceaa21
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
-> > @@ -0,0 +1,122 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/connector/pcie-m2-m-connector.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: PCIe M.2 Mechanical Key M Connector
-> > +
-> > +maintainers:
-> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > +
-> > +description:
-> > +  A PCIe M.2 M connector node represents a physical PCIe M.2 Mechanical Key M
-> > +  connector. The Mechanical Key M connectors are used to connect SSDs to the
-> > +  host system over PCIe/SATA interfaces. These connectors also offer optional
-> > +  interfaces like USB, SMB.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: pcie-m2-m-connector
-> 
-> Is a generic compatible enough here? Compare this to the USB connectors,
-> which, in case of an independent USB-B connector controlled/ing GPIOs,
-> gets additional gpio-usb-b-connector?
-> 
+On Tue, 4 Nov 2025 20:23:09 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-I can't comment on it as I've not seen such usecases as of now. But I do think
-that this generic compatible should satisfy most of the design requirements. If
-necessity arises, a custom compatible could be introduced with this generic one
-as a fallback.
+> On Tue, Nov 04, 2025 at 03:35:14PM +0000, Nuno S=C3=A1 via B4 Relay wrote:
+>=20
+> > Use the auto unlocking helpers from cleanup.h. Allows for some code
+> > simplification.
+> >=20
+> > While at it, don't use the ternary operator in
+> > ad5446_write_dac_powerdown() and add an helper function to write the DAC
+> > code. The reason for the function was purely to avoid having to use
+> > unreachable(). =20
+>=20
+> ...
+>=20
+> > +static int ad5446_write_dac_raw(struct iio_dev *indio_dev,
+> > +				const struct iio_chan_spec *chan,
+> > +				int val)
+> > +{
+> > +	struct ad5446_state *st =3D iio_priv(indio_dev); =20
+>=20
+> > +	if (val >=3D (1 << chan->scan_type.realbits) || val < 0)
+> > +		return -EINVAL; =20
+>=20
+> BIT() ?
+> in_range() ?
+>=20
+It's a code move, so I'd rather that change if made is a separate patch.
+BIT() is fine, but in_range() is a bit odd when the start is 0.
 
+Hence applied this as it stands.
+> > +	val <<=3D chan->scan_type.shift;
+> > +	guard(mutex)(&st->lock);
 > > +
-> > +  vpcie3v3-supply:
-> > +    description: A phandle to the regulator for 3.3v supply.
+> > +	st->cached_val =3D val;
+> > +	if (st->pwr_down)
+> > +		return 0;
 > > +
-> > +  vio1v8-supply:
-> > +    description: A phandle to the regulator for VIO 1.8v supply.
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    description: OF graph bindings modeling the interfaces exposed on the
-> > +      connector. Since a single connector can have multiple interfaces, every
-> > +      interface has an assigned OF graph port number as described below.
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: PCIe/SATA interface
-> 
-> Should it be defined as having two endpoints: one for PCIe, one for
-> SATA?
-> 
+> > +	return st->chip_info->write(st, val);
+> > +} =20
+>=20
+>=20
 
-I'm not sure. From the dtschema of the connector node:
-
-"If a single port is connected to more than one remote device, an 'endpoint'
-child node must be provided for each link"
-
-Here, a single port is atmost connected to only one endpoint and that endpoint
-could PCIe/SATA. So IMO, defining two endpoint nodes doesn't fit here.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
