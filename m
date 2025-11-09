@@ -1,188 +1,181 @@
-Return-Path: <devicetree+bounces-236437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A026BC442D6
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 17:51:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2710BC44301
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1C261346EEA
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 16:51:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAFE518866EF
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 588DC3019C0;
-	Sun,  9 Nov 2025 16:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB1F2FF66C;
+	Sun,  9 Nov 2025 17:01:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sKqLlFY6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jKxieL0p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB541AA7BF;
-	Sun,  9 Nov 2025 16:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3AF2E173B;
+	Sun,  9 Nov 2025 17:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762707063; cv=none; b=nmsJVbdR1VKN+KsBlS0b+JeaVfMhRndYxVsQY+CTRJo0d9Xz7rY7EvRb56SLrCFpH0rJUvIQ83B32RBy6/IwknNBWrtfZwUxCRhT1i714B7t2oSgCwCMcO5h7xOjosRBjObv6VAIhb+tgEYY21t7+7qLh1pugFx/IpbHk6PGlHw=
+	t=1762707708; cv=none; b=n4urGldbQZ5NBZjUpFXol3rFkrsenHunReFRwOV9/wYLm5vsCWgMZeigw7jY3OrlWaFm90yNuno/3XMzFu5Cq1fBd/daM1ARg7t/MNw9xgqET/5Iq2PkKfwc7ro1LJzt1J1oLsjlBG5G6AlKeEP5DGe9mxIhXifjKAJyrCWX2gM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762707063; c=relaxed/simple;
-	bh=kh2HcZWxFtQ1ynTFpWR+bGwBRk8sdEv+XtPgpWe+6ZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fhh5mvnvjnkchDmnfvXXiHnn9Nd6AjqJHptJ+5o0Efsiq95S7Nqv6qfvhJgT+uJmP8pE88GK0persFSDqi9l8iHVHMcx8A2lr9pQzciCHMf0LOr7rwwaMC7mTBB7LEDKMRJ/lhMgs5hieJ/aLlB0gy08eNkmVmWAs+R79d4U6rg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sKqLlFY6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 277BEC4AF09;
-	Sun,  9 Nov 2025 16:50:58 +0000 (UTC)
+	s=arc-20240116; t=1762707708; c=relaxed/simple;
+	bh=fo6RnCcC6+xCBiWx8ezB7q67nBjsPLn9NX71+SjOlmI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DWsD3BdAOr4ivklSRIe73GEV2s3ZeUvxMiXyUpLq7AMjoJr+u0oSvie/IKr/ggY0yxcuiyhMrD7jmDrGCU7K0WJHV9Qsg4pWK9euqBgD7H4dnj07vbmMYhfM3SiIvaukP8ErOWKZMUQXf1u93LUAgYHvqG7LUL9kF7ua4gVPw5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jKxieL0p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3A75C116B1;
+	Sun,  9 Nov 2025 17:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762707062;
-	bh=kh2HcZWxFtQ1ynTFpWR+bGwBRk8sdEv+XtPgpWe+6ZU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=sKqLlFY6Cylhra5n55FxnldeN/3y1Mxn/b2Q/VBLJumDFH5Hx8r2VThpYW7gmgho/
-	 fEsy+VPAzfXdkm3O/JbWl+nRG21gXfcRMFo1TyMqxgd8imKc/isrRqL9CflcIQUatV
-	 rxeAOlvM0jQAdDNVypIc+TZ9XInUCS57cf8iWjrQy0tfqTHMQh6NPN12+P3QVEE1U8
-	 QI9s4mdupLwBaW4QDuybhoZTQ9ecisJNMh446Xv+GpEkBIFmeWUpbfAtP2LZVFITb4
-	 ZaRdoOTYmeqjb2sbawCkGaIG+uj95hJpS6eIF0a3wBC+UtdgLNMYwx8E1oOh/ex2i0
-	 oloS8upfu7OZw==
-Date: Sun, 9 Nov 2025 16:50:55 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <Michael.Hennerich@analog.com>,
- <ramona.gradinariu@analog.com>, <antoniu.miclaus@analog.com>,
- <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/2] iio: accel: adxl380: add support for ADXL318 and
- ADXL319
-Message-ID: <20251109165055.404d0417@jic23-huawei>
-In-Reply-To: <7d990c72acca31b2fe6c7685fd13ef5284c7646f.1762281527.git.Jonathan.Santos@analog.com>
-References: <2b8fc2ea006d06660c83f1e9e1ccfc865803dafb.1762281527.git.Jonathan.Santos@analog.com>
-	<7d990c72acca31b2fe6c7685fd13ef5284c7646f.1762281527.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1762707706;
+	bh=fo6RnCcC6+xCBiWx8ezB7q67nBjsPLn9NX71+SjOlmI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jKxieL0psnA3JStnPdJ0GRnPuUwFlUYceI8t3CyNv5+hRse7IA1a8Z0uVjZWbJyld
+	 bNn5B9Nj4/XVglF3vUC1cJDjrwDBq5F7wJlQahSMEHXUYYf8zh3HFpV+R1e0BnqfDd
+	 Bb0JKXemnCW0vyk/3R1k7bvh5tftzwg85NlnkJ5F5yn8uGh0FNIcMz/nxQsu+FmaNZ
+	 myCQxq6Hr4EcqgLFJJAm3TfkrirZ70nyVVUuNsyB6ZjSAxjeWElwJ/ubqWDAng2i+L
+	 CO6xsB4+NiSvjryeIytRcT4AGauG5LzUZfeL83SRqsDGwROKwWUyWLsVJUyB7ZxtxZ
+	 X1WLsHh6FunZQ==
+Date: Sun, 9 Nov 2025 22:31:29 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: kernel test robot <lkp@intel.com>
+Cc: hans.zhang@cixtech.com, bhelgaas@google.com, helgaas@kernel.org, 
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, kwilczynski@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, oe-kbuild-all@lists.linux.dev, 
+	mpillai@cadence.com, fugang.duan@cixtech.com, guoyin.chen@cixtech.com, 
+	peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 03/10] PCI: cadence: Move PCIe RP common functions to
+ a separate file
+Message-ID: <xiaf3qvskwrqr7riradv6jnt5jmwcgenfr6mss5wtlddmxuwoa@ke2kdaq6adqz>
+References: <20251108140305.1120117-4-hans.zhang@cixtech.com>
+ <202511092106.mkNV0iyb-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <202511092106.mkNV0iyb-lkp@intel.com>
 
-On Wed, 5 Nov 2025 09:40:34 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
-
-> The ADXL318 and ADXL319 are low noise density, low power, 3-axis
-> accelerometers based on ADXL380 and ADXL382, respectively. The main
-> difference between the new parts and the existing ones are the absence
-> of interrupts and events like tap detection, activity/inactivity, and
-> free-fall detection.
+On Sun, Nov 09, 2025 at 09:59:50PM +0800, kernel test robot wrote:
+> Hi,
 > 
-> Other differences in the new parts are fewer power modes, basically
-> allowing only idle and measurement modes, and the removal of the 12-bit
-> SAR ADC path for the 3-axis signals (known as lower signal chain),
-> being excluisive for the temperature sensor in the ADXL318/319.
+> kernel test robot noticed the following build warnings:
 > 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-Only comments are about numeric order, similar to the comments on
-the dt-binding.
-
-Thanks,
-
-Jonathan
-
-> ---
->  drivers/iio/accel/adxl380.c     | 134 ++++++++++++++++++++++----------
->  drivers/iio/accel/adxl380.h     |   4 +
->  drivers/iio/accel/adxl380_i2c.c |   4 +
->  drivers/iio/accel/adxl380_spi.c |   4 +
->  4 files changed, 107 insertions(+), 39 deletions(-)
+> [auto build test WARNING on 6146a0f1dfae5d37442a9ddcba012add260bceb0]
 > 
-> diff --git a/drivers/iio/accel/adxl380.c b/drivers/iio/accel/adxl380.c
-> index 0cf3c6815829..7733a0902afa 100644
-> --- a/drivers/iio/accel/adxl380.c
-> +++ b/drivers/iio/accel/adxl380.c
-> @@ -27,6 +27,8 @@
->  
->  #define ADXL380_ID_VAL				380
->  #define ADXL382_ID_VAL				382
-> +#define ADXL318_ID_VAL				380
-> +#define ADXL319_ID_VAL				382
+> url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/PCI-cadence-Add-module-support-for-platform-controller-driver/20251108-220607
+> base:   6146a0f1dfae5d37442a9ddcba012add260bceb0
+> patch link:    https://lore.kernel.org/r/20251108140305.1120117-4-hans.zhang%40cixtech.com
+> patch subject: [PATCH v11 03/10] PCI: cadence: Move PCIe RP common functions to a separate file
+> config: i386-randconfig-014-20251109 (https://download.01.org/0day-ci/archive/20251109/202511092106.mkNV0iyb-lkp@intel.com/config)
+> compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251109/202511092106.mkNV0iyb-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202511092106.mkNV0iyb-lkp@intel.com/
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>    drivers/pci/controller/cadence/pcie-cadence-host-common.c: In function 'cdns_pcie_host_bar_config':
+> >> drivers/pci/controller/cadence/pcie-cadence-host-common.c:188:23: warning: variable 'pci_addr' set but not used [-Wunused-but-set-variable]
+>      188 |         u64 cpu_addr, pci_addr, size, winsize;
+>          |                       ^~~~~~~~
+> 
+> 
 
-Similar to the binding.  Sort these by number.
+No need to repost the series, just to fix this warning. If there are no more
+comments, then I will fix it up while applying.
 
->  
->  #define ADXL380_DEVID_AD_REG			0x00
->  #define ADLX380_PART_ID_REG			0x02
-> @@ -178,41 +180,6 @@ enum adxl380_tap_time_type {
+- Mani
 
-> +
-> +const struct adxl380_chip_info adxl382_chip_info = {
-> +	.name = "adxl382",
-> +	.chip_id = ADXL382_ID_VAL,
-> +	.scale_tbl = {
-> +		[ADXL382_OP_MODE_15G_RANGE] = { 0, 4903325 },
-> +		[ADXL382_OP_MODE_30G_RANGE] = { 0, 9806650 },
-> +		[ADXL382_OP_MODE_60G_RANGE] = { 0, 19613300 },
-> +	},
-> +	.samp_freq_tbl = { 16000, 32000, 64000 },
-> +	/*
-> +	 * The datasheet defines an intercept of 570 LSB at 25 degC
-> +	 * and a sensitivity of 10.2 LSB/C.
-> +	 */
-> +	.temp_offset =  25 * 102 / 10 - 570,
-> +	.has_low_power = true,
-> +	.info = &adxl380_info,
-> +};
-> +EXPORT_SYMBOL_NS_GPL(adxl382_chip_info, "IIO_ADXL380");
-> +
-> +const struct adxl380_chip_info adxl318_chip_info = {
-> +	.name = "adxl318",
-> +	.chip_id = ADXL318_ID_VAL,
-> +	.scale_tbl = {
-> +		[ADXL380_OP_MODE_4G_RANGE] = { 0, 1307226 },
-> +		[ADXL380_OP_MODE_8G_RANGE] = { 0, 2615434 },
-> +		[ADXL380_OP_MODE_16G_RANGE] = { 0, 5229886 },
-> +	},
-> +	.samp_freq_tbl = { 8000, 16000, 32000 },
-> +	/*
-> +	 * The datasheet defines an intercept of 550 LSB at 25 degC
-> +	 * and a sensitivity of 10.2 LSB/C.
-> +	 */
-> +	.temp_offset =  25 * 102 / 10 - 550,
-> +	.info = &adxl318_info,
-> +};
-> +EXPORT_SYMBOL_NS_GPL(adxl318_chip_info, "IIO_ADXL380");
-> +
-> +const struct adxl380_chip_info adxl319_chip_info = {
-Numeric order preferred for these structures as well.
-There might have been some argument for grouping by ID but that
-doesn't seem to be the case either here.
+> vim +/pci_addr +188 drivers/pci/controller/cadence/pcie-cadence-host-common.c
+> 
+>    183	
+>    184	int cdns_pcie_host_bar_config(struct cdns_pcie_rc *rc,
+>    185				      struct resource_entry *entry,
+>    186				      cdns_pcie_host_bar_ib_cfg pci_host_ib_config)
+>    187	{
+>  > 188		u64 cpu_addr, pci_addr, size, winsize;
+>    189		struct cdns_pcie *pcie = &rc->pcie;
+>    190		struct device *dev = pcie->dev;
+>    191		enum cdns_pcie_rp_bar bar;
+>    192		unsigned long flags;
+>    193		int ret;
+>    194	
+>    195		cpu_addr = entry->res->start;
+>    196		pci_addr = entry->res->start - entry->offset;
+>    197		flags = entry->res->flags;
+>    198		size = resource_size(entry->res);
+>    199	
+>    200		while (size > 0) {
+>    201			/*
+>    202			 * Try to find a minimum BAR whose size is greater than
+>    203			 * or equal to the remaining resource_entry size. This will
+>    204			 * fail if the size of each of the available BARs is less than
+>    205			 * the remaining resource_entry size.
+>    206			 *
+>    207			 * If a minimum BAR is found, IB ATU will be configured and
+>    208			 * exited.
+>    209			 */
+>    210			bar = cdns_pcie_host_find_min_bar(rc, size);
+>    211			if (bar != RP_BAR_UNDEFINED) {
+>    212				ret = pci_host_ib_config(rc, bar, cpu_addr, size, flags);
+>    213				if (ret)
+>    214					dev_err(dev, "IB BAR: %d config failed\n", bar);
+>    215				return ret;
+>    216			}
+>    217	
+>    218			/*
+>    219			 * If the control reaches here, it would mean the remaining
+>    220			 * resource_entry size cannot be fitted in a single BAR. So we
+>    221			 * find a maximum BAR whose size is less than or equal to the
+>    222			 * remaining resource_entry size and split the resource entry
+>    223			 * so that part of resource entry is fitted inside the maximum
+>    224			 * BAR. The remaining size would be fitted during the next
+>    225			 * iteration of the loop.
+>    226			 *
+>    227			 * If a maximum BAR is not found, there is no way we can fit
+>    228			 * this resource_entry, so we error out.
+>    229			 */
+>    230			bar = cdns_pcie_host_find_max_bar(rc, size);
+>    231			if (bar == RP_BAR_UNDEFINED) {
+>    232				dev_err(dev, "No free BAR to map cpu_addr %llx\n",
+>    233					cpu_addr);
+>    234				return -EINVAL;
+>    235			}
+>    236	
+>    237			winsize = bar_max_size[bar];
+>    238			ret = pci_host_ib_config(rc, bar, cpu_addr, winsize, flags);
+>    239			if (ret) {
+>    240				dev_err(dev, "IB BAR: %d config failed\n", bar);
+>    241				return ret;
+>    242			}
+>    243	
+>    244			size -= winsize;
+>    245			cpu_addr += winsize;
+>    246		}
+>    247	
+>    248		return 0;
+>    249	}
+>    250	
+> 
+> -- 
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
+> 
 
-> +	.name = "adxl319",
-> +	.chip_id = ADXL319_ID_VAL,
-> +	.scale_tbl = {
-> +		[ADXL382_OP_MODE_15G_RANGE] = { 0, 4903325 },
-> +		[ADXL382_OP_MODE_30G_RANGE] = { 0, 9806650 },
-> +		[ADXL382_OP_MODE_60G_RANGE] = { 0, 19613300 },
-> +	},
-> +	.samp_freq_tbl = { 16000, 32000, 64000 },
-> +	/*
-> +	 * The datasheet defines an intercept of 550 LSB at 25 degC
-> +	 * and a sensitivity of 10.2 LSB/C.
-> +	 */
-> +	.temp_offset =  25 * 102 / 10 - 550,
-> +	.info = &adxl318_info,
-> +};
-> +EXPORT_SYMBOL_NS_GPL(adxl319_chip_info, "IIO_ADXL380");
-
-> diff --git a/drivers/iio/accel/adxl380.h b/drivers/iio/accel/adxl380.h
-> index a683625d897a..5d88c111d616 100644
-> --- a/drivers/iio/accel/adxl380.h
-> +++ b/drivers/iio/accel/adxl380.h
-
->  
->  extern const struct adxl380_chip_info adxl380_chip_info;
->  extern const struct adxl380_chip_info adxl382_chip_info;
-> +extern const struct adxl380_chip_info adxl318_chip_info;
-> +extern const struct adxl380_chip_info adxl319_chip_info;
-Sort numerically.
-
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
