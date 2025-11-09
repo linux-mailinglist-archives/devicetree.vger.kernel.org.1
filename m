@@ -1,69 +1,48 @@
-Return-Path: <devicetree+bounces-236460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (unknown [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 625ADC44635
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 20:33:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF758C44671
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 20:51:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68482188B24F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 19:33:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C2913AB2F9
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 19:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0719721FF26;
-	Sun,  9 Nov 2025 19:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E583B247289;
+	Sun,  9 Nov 2025 19:51:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eobL3wJ6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G4S99DiA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC22DF59;
-	Sun,  9 Nov 2025 19:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE40E23AB98;
+	Sun,  9 Nov 2025 19:51:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762716762; cv=none; b=qrwuJOx4OIHbD/ASoHgeYPGRPNQBTYrY9EVPwL8935Q9vaPBpclXEw8X4y9op7tdY+DgCmJfNOSSzSDXYM8SWf3zLPVM5htRMLJ2wgCFv/QyNYng2j2xcENJL/38kFs+UTthyq90DRLEEP06GPwQ1RxkcNMBN8gG3Wvx9/nni0Q=
+	t=1762717906; cv=none; b=aYNOfuV6N03a+CglZ5CgH2JM3ezvGLg6tTO0AkdwVpVOZA85HTOMmvei38Y8zEazfPwYWG0OFv8QeHoNWM5nR14IMOoK0ZUP3xsx/UcR3GpG/AUjF8oAbxg7gE6U4XwX+mmDeNQGdp5R/axDv1AXILy6j82mpJjIwJnrb57arB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762716762; c=relaxed/simple;
-	bh=sJzgtPFvQjRpLpM0+Gqo9kuddUb8FrK943SF6ziRE80=;
+	s=arc-20240116; t=1762717906; c=relaxed/simple;
+	bh=cpUCNfYH2ejYnsqjtHgdamX5IDnGs6bZ9FL6/y9aG30=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YtJflYFo4E+mNxcDg0t8fOv+UbikkxbQZoJlVFLDoXD+yyeY8onOpJDRHqUc3vBz7QQ+HPGlkJhdDIy6FslTQQ9j3kdAWavQAxKGazVBMrzCrS+de+DRLOGZFLZp/u2OftUb5/D9HfkTeZXWZO+nDc69DvF5saoFY5GeW7m9ZQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eobL3wJ6; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762716762; x=1794252762;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=sJzgtPFvQjRpLpM0+Gqo9kuddUb8FrK943SF6ziRE80=;
-  b=eobL3wJ6Goq4Iv/ifeup7eBAUjUGpGogBfmWXB4rEdiLJFSjg/bHY0nA
-   dqA1Sn5YVwRqHcKk/QDaWFdMeW+th/04ZQG8leM0gN7ntGaEsdx1pR1zD
-   PymNTBs3YiQLIymBneAyHRQ/gPNbl0Zs2oELwqibl11CvS39lCb0BubXU
-   tnJI+52+xd9V0hFx0XCaoQMBeixlr9+I3YTzde5VbQqqHcz2Vzy0Pkf/q
-   UH4rtJ16IYozUkL4RZsYJHCqDuCYaQTo5qgO/bxt2QCmx8r1E087YDW2p
-   MDW+IrymExbyJgDn81scOowrTI7t+ESLCrnxhnqv5JXnE5vFisFz4FxW7
-   Q==;
-X-CSE-ConnectionGUID: ebk9vL/HSqW1VUTV46rMPQ==
-X-CSE-MsgGUID: kg1dSI/QRcW4aCJiXVXOpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="75074618"
-X-IronPort-AV: E=Sophos;i="6.19,292,1754982000"; 
-   d="scan'208";a="75074618"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2025 11:32:41 -0800
-X-CSE-ConnectionGUID: rW+hxrOIRy2epnbSL9gzxw==
-X-CSE-MsgGUID: g3WUbtTwSmSbU6wSjUcXnA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,292,1754982000"; 
-   d="scan'208";a="187804207"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.185])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2025 11:32:38 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vIB9P-000000076dC-2Eh9;
-	Sun, 09 Nov 2025 21:32:35 +0200
-Date: Sun, 9 Nov 2025 21:32:35 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dA2REj3P/fpbae8I9S0V761/NiNexgoYSk+BBn1mOs/9Vpy1ctgBon9qIw8VnyI5y44grWe27luS+H2Lj6WGS7bpswR/GdLj0u1ncDnn8Pvq3LqwsWjdGuR50qFcwQP4vQeGnZtKDpz6bSjEQ9lMuAOgpWEYUMb0avCPPxChaf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G4S99DiA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D856C116B1;
+	Sun,  9 Nov 2025 19:51:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762717906;
+	bh=cpUCNfYH2ejYnsqjtHgdamX5IDnGs6bZ9FL6/y9aG30=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G4S99DiAKaOGJDoik1DlfliNsHNzBZouFg9TinauYhE7FygGD5TU8IA0oiHqw40eF
+	 i5Burlyy3eonAcPCt9ng0cjWw/yBwVxp1mNCXcHpqpDKR1Ffk6pcXwqOVpUQFLTRB2
+	 g1QhtkCcMz01sXTs+XFXnaje705mRcMiu3dwhlgbyoaKn4HeNrO+pYACcb4SdBXgMB
+	 Xb5HUqAzyDiFm2nnP/IqvT+4PbCYH7bHdjE9h6ddlSpVyyEGMy6rnvqT8omk1hs9v9
+	 dD+XLwywv5N9unWu2YRro3cGc2oDyZY94AuNLdV0XX/Plx/8BYfoQud7rEkYvDLNqA
+	 17NMQhHU4lMaw==
+Date: Sun, 9 Nov 2025 19:51:41 +0000
+From: Conor Dooley <conor@kernel.org>
 To: Jonathan Cameron <jic23@kernel.org>
 Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -73,82 +52,59 @@ Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
 	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4 10/12] iio: dac: ad5446: Refactor header inclusion
-Message-ID: <aRDsU-Zy49vm7N0R@smile.fi.intel.com>
+Subject: Re: [PATCH v5 6/7] dt-bindings: clock: rockchip: Add RK3506 clock
+ and reset unit
+Message-ID: <20251109-udder-powdering-d3cdd425105c@spud>
 References: <20251104-dev-add-ad5542-v4-0-6fe35458bf8c@analog.com>
- <20251104-dev-add-ad5542-v4-10-6fe35458bf8c@analog.com>
- <aQpE0_-YVeHmfL2v@smile.fi.intel.com>
- <20251109163030.66ad74fa@jic23-huawei>
+ <20251104-dev-add-ad5542-v4-1-6fe35458bf8c@analog.com>
+ <20251104-mutt-spleen-31e1569f1674@spud>
+ <20251109155757.087db448@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="DSLUTbOwO1FjvFPQ"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251109163030.66ad74fa@jic23-huawei>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-
-On Sun, Nov 09, 2025 at 04:30:30PM +0000, Jonathan Cameron wrote:
-> On Tue, 4 Nov 2025 20:24:19 +0200
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> > On Tue, Nov 04, 2025 at 03:35:15PM +0000, Nuno Sá via B4 Relay wrote:
-
-...
-
-> > > +#include <linux/export.h>
-> > >  #include <linux/iio/iio.h>
-> > > +#include <linux/kstrtox.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/mutex.h>
-> > > +#include <linux/regulator/consumer.h>
-> > > +#include <linux/sysfs.h>  
-> > 
-> > Most likely the types.h is missing and maybe more...
-> 
-> Looks like types.h belongs only in the header.
-
-Hmm... IIRC my suggestion was based on seeing one of uXX/sXX in the code,
-but now I lost the context and maybe I memorised that wrongly.
-
-> FWIW I ran iwyu against this with my usual iio.imp file
-> (shared previously on list)
-> 
-> drivers/iio/dac/ad5446.h should add these lines:
-> #include <linux/compiler.h>  // for __aligned
-> #include <linux/minmax.h>    // for __cmp_op_max
-> #include <linux/stddef.h>    // for NULL
-> 
-> drivers/iio/dac/ad5446.h should remove these lines:
-> 
-> The full include-list for drivers/iio/dac/ad5446.h:
-> #include <linux/bits.h>      // for BIT
-> #include <linux/compiler.h>  // for __aligned
-> #include <linux/iio/iio.h>   // for IIO_DMA_MINALIGN, iio_chan_spec
-> #include <linux/minmax.h>    // for __cmp_op_max
-> #include <linux/mutex.h>     // for mutex
-> #include <linux/stddef.h>    // for NULL
-> #include <linux/types.h>     // for __be16, u16, u8
-> struct device;  // lines 10-10
-> ---
-> 
-> So maybe those 3 extra in the header  but seem not much needed in the c file.
-> 
-> Hence applied with the compiler.h one added to the header.
-> Whereever that minmax is coming from is burried deep in macro
-> so probably isn't appropriate anyway
-
-If we use min()/max() or something from there it relies on the __cmp_op_max(),
-so probably it's needed.
-
-> and including stddef for NULL seems over the top.
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <20251109155757.087db448@jic23-huawei>
 
 
+--DSLUTbOwO1FjvFPQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Nov 09, 2025 at 03:57:57PM +0000, Jonathan Cameron wrote:
+> On Tue, 4 Nov 2025 17:51:25 +0000
+> Conor Dooley <conor@kernel.org> wrote:
+>=20
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > pw-bot: not-applicable
+>=20
+> Hi Conor,
+>=20
+> Strange email subject given you replied to:
+>=20
+> 20251104-dev-add-ad5542-v4-1-6fe35458bf8c@analog.com
+>=20
+> I'll assume intent was to Ack that.
+
+Bug in mutt I believe, not the first time it has happened recently.
+The rockchip patch did not get an ack from me, so this is where it was
+meant to go.
+
+--DSLUTbOwO1FjvFPQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRDwzQAKCRB4tDGHoIJi
+0n4XAQDkQmiq+DmPmtwE9OARvgyyK1Oyv+mBupmkvhp8+S1N3gEAhGld1J6Qhqj4
+AlS39Wf30DYlr3PHgDs6XoqJGnOnlQk=
+=X0wo
+-----END PGP SIGNATURE-----
+
+--DSLUTbOwO1FjvFPQ--
 
