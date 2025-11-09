@@ -1,181 +1,393 @@
-Return-Path: <devicetree+bounces-236438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2710BC44301
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:01:53 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD474C4430D
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAFE518866EF
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:02:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 466794E1157
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB1F2FF66C;
-	Sun,  9 Nov 2025 17:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BA02FFDC9;
+	Sun,  9 Nov 2025 17:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jKxieL0p"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VXS8QS+W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3AF2E173B;
-	Sun,  9 Nov 2025 17:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F4C883F;
+	Sun,  9 Nov 2025 17:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762707708; cv=none; b=n4urGldbQZ5NBZjUpFXol3rFkrsenHunReFRwOV9/wYLm5vsCWgMZeigw7jY3OrlWaFm90yNuno/3XMzFu5Cq1fBd/daM1ARg7t/MNw9xgqET/5Iq2PkKfwc7ro1LJzt1J1oLsjlBG5G6AlKeEP5DGe9mxIhXifjKAJyrCWX2gM=
+	t=1762707843; cv=none; b=C51koEtqnW8NyOBl7pVa195AQDwEV5Bj4/SfTNpRWrIwfmKJDBDKFI5uok7ehPqe25RPhanY6j1gG4O3r9JV2Kr1zGUg2+qSqw8Cd2NA7Et4IjIJtLtb8/YU1V7fMUiILBBtcMiX2kRV+cDy6g4j5ZrqXmsugzdJm+FbNBljGyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762707708; c=relaxed/simple;
-	bh=fo6RnCcC6+xCBiWx8ezB7q67nBjsPLn9NX71+SjOlmI=;
+	s=arc-20240116; t=1762707843; c=relaxed/simple;
+	bh=2SoqEBC5cVetOqljionOBfjcJgmVzVrriPxCpv+k60U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DWsD3BdAOr4ivklSRIe73GEV2s3ZeUvxMiXyUpLq7AMjoJr+u0oSvie/IKr/ggY0yxcuiyhMrD7jmDrGCU7K0WJHV9Qsg4pWK9euqBgD7H4dnj07vbmMYhfM3SiIvaukP8ErOWKZMUQXf1u93LUAgYHvqG7LUL9kF7ua4gVPw5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jKxieL0p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3A75C116B1;
-	Sun,  9 Nov 2025 17:01:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762707706;
-	bh=fo6RnCcC6+xCBiWx8ezB7q67nBjsPLn9NX71+SjOlmI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jKxieL0psnA3JStnPdJ0GRnPuUwFlUYceI8t3CyNv5+hRse7IA1a8Z0uVjZWbJyld
-	 bNn5B9Nj4/XVglF3vUC1cJDjrwDBq5F7wJlQahSMEHXUYYf8zh3HFpV+R1e0BnqfDd
-	 Bb0JKXemnCW0vyk/3R1k7bvh5tftzwg85NlnkJ5F5yn8uGh0FNIcMz/nxQsu+FmaNZ
-	 myCQxq6Hr4EcqgLFJJAm3TfkrirZ70nyVVUuNsyB6ZjSAxjeWElwJ/ubqWDAng2i+L
-	 CO6xsB4+NiSvjryeIytRcT4AGauG5LzUZfeL83SRqsDGwROKwWUyWLsVJUyB7ZxtxZ
-	 X1WLsHh6FunZQ==
-Date: Sun, 9 Nov 2025 22:31:29 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: kernel test robot <lkp@intel.com>
-Cc: hans.zhang@cixtech.com, bhelgaas@google.com, helgaas@kernel.org, 
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, kwilczynski@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, oe-kbuild-all@lists.linux.dev, 
-	mpillai@cadence.com, fugang.duan@cixtech.com, guoyin.chen@cixtech.com, 
-	peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fam9+mUaoSHvyLglW+jdznl/eRP1QpJDAV4DGUOFvPuVxQLzkigAavO7EJo8bJqWQOBkEe/utZvk4yVRvUvouSAhbx6EVJk6eOXajPa/rTDztKZv74uUPkFWLoXdLBtNfcL9n201gCEgatmTXHZSaunrps1x65DAPV3HAnao23E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VXS8QS+W; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762707842; x=1794243842;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2SoqEBC5cVetOqljionOBfjcJgmVzVrriPxCpv+k60U=;
+  b=VXS8QS+WUaSbbfMQ89sSw8kQqvDVL70loFultFIlewLNBov+jPiXK9/o
+   7fKey4LZQJPm9Rnpvp3/OS4V5cTo24RmmL6I5caX+EahoCbAPHsxI3er0
+   Lh7u7zKdksDvEU+kjBsEh1DSRwMxGC/1ZLAaAZ45kLqMX9J4uWxZ4vpe0
+   p1hHDnC6yUhLlJn/7sdM8eQtzYWug9WuU+l8uR1Gw5hyJ4jfub+X08yCf
+   iw6VFTia8zWy2ZFfeudI6MP2JPjlBNk3yFsl15nQPSt5TvQ7ONsMmtzZf
+   nFuKQDeUst9kc2+8vQyQe2XEhULD5sBikIKofkcnuxXG3VvB6aSqza86z
+   Q==;
+X-CSE-ConnectionGUID: dUHUEPbeR0eeESMlhjKh/Q==
+X-CSE-MsgGUID: kOT+Q7fXRA60rGyOHS120g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="75884742"
+X-IronPort-AV: E=Sophos;i="6.19,292,1754982000"; 
+   d="scan'208";a="75884742"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2025 09:04:02 -0800
+X-CSE-ConnectionGUID: WN+GQ+8+SXWKSDu3w2jueA==
+X-CSE-MsgGUID: 2MudgvCARauTHhahPgMC0g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,292,1754982000"; 
+   d="scan'208";a="187784274"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.185])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2025 09:03:58 -0800
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vI8pY-000000074hl-0p7G;
+	Sun, 09 Nov 2025 19:03:56 +0200
+Date: Sun, 9 Nov 2025 19:03:55 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Ajith Anandhan <ajithanandhan0406@gmail.com>
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 03/10] PCI: cadence: Move PCIe RP common functions to
- a separate file
-Message-ID: <xiaf3qvskwrqr7riradv6jnt5jmwcgenfr6mss5wtlddmxuwoa@ke2kdaq6adqz>
-References: <20251108140305.1120117-4-hans.zhang@cixtech.com>
- <202511092106.mkNV0iyb-lkp@intel.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: Add support for TI ADS1120
+Message-ID: <aRDJexPYkIDoE9nc@smile.fi.intel.com>
+References: <20251109141119.561756-1-ajithanandhan0406@gmail.com>
+ <20251109141119.561756-3-ajithanandhan0406@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <202511092106.mkNV0iyb-lkp@intel.com>
+In-Reply-To: <20251109141119.561756-3-ajithanandhan0406@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Sun, Nov 09, 2025 at 09:59:50PM +0800, kernel test robot wrote:
-> Hi,
+On Sun, Nov 09, 2025 at 07:41:19PM +0530, Ajith Anandhan wrote:
+> Add driver for the Texas Instruments ADS1120, a precision 16-bit
+> analog-to-digital converter with an SPI interface.
 > 
-> kernel test robot noticed the following build warnings:
-> 
-> [auto build test WARNING on 6146a0f1dfae5d37442a9ddcba012add260bceb0]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/PCI-cadence-Add-module-support-for-platform-controller-driver/20251108-220607
-> base:   6146a0f1dfae5d37442a9ddcba012add260bceb0
-> patch link:    https://lore.kernel.org/r/20251108140305.1120117-4-hans.zhang%40cixtech.com
-> patch subject: [PATCH v11 03/10] PCI: cadence: Move PCIe RP common functions to a separate file
-> config: i386-randconfig-014-20251109 (https://download.01.org/0day-ci/archive/20251109/202511092106.mkNV0iyb-lkp@intel.com/config)
-> compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251109/202511092106.mkNV0iyb-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202511092106.mkNV0iyb-lkp@intel.com/
-> 
-> All warnings (new ones prefixed by >>):
-> 
->    drivers/pci/controller/cadence/pcie-cadence-host-common.c: In function 'cdns_pcie_host_bar_config':
-> >> drivers/pci/controller/cadence/pcie-cadence-host-common.c:188:23: warning: variable 'pci_addr' set but not used [-Wunused-but-set-variable]
->      188 |         u64 cpu_addr, pci_addr, size, winsize;
->          |                       ^~~~~~~~
-> 
-> 
+> The driver supports:
+> - Differential and single-ended input channels
+> - Configurable gain (1-128 for differential, 1-4 for single-ended)
+> - Internal 2.048V reference
+> - Single-shot conversion mode
 
-No need to repost the series, just to fix this warning. If there are no more
-comments, then I will fix it up while applying.
+> Also update MAINTAINER document.
 
-- Mani
+Unneeded sentence in the commit message (may be located in the comment block,
+though).
 
-> vim +/pci_addr +188 drivers/pci/controller/cadence/pcie-cadence-host-common.c
-> 
->    183	
->    184	int cdns_pcie_host_bar_config(struct cdns_pcie_rc *rc,
->    185				      struct resource_entry *entry,
->    186				      cdns_pcie_host_bar_ib_cfg pci_host_ib_config)
->    187	{
->  > 188		u64 cpu_addr, pci_addr, size, winsize;
->    189		struct cdns_pcie *pcie = &rc->pcie;
->    190		struct device *dev = pcie->dev;
->    191		enum cdns_pcie_rp_bar bar;
->    192		unsigned long flags;
->    193		int ret;
->    194	
->    195		cpu_addr = entry->res->start;
->    196		pci_addr = entry->res->start - entry->offset;
->    197		flags = entry->res->flags;
->    198		size = resource_size(entry->res);
->    199	
->    200		while (size > 0) {
->    201			/*
->    202			 * Try to find a minimum BAR whose size is greater than
->    203			 * or equal to the remaining resource_entry size. This will
->    204			 * fail if the size of each of the available BARs is less than
->    205			 * the remaining resource_entry size.
->    206			 *
->    207			 * If a minimum BAR is found, IB ATU will be configured and
->    208			 * exited.
->    209			 */
->    210			bar = cdns_pcie_host_find_min_bar(rc, size);
->    211			if (bar != RP_BAR_UNDEFINED) {
->    212				ret = pci_host_ib_config(rc, bar, cpu_addr, size, flags);
->    213				if (ret)
->    214					dev_err(dev, "IB BAR: %d config failed\n", bar);
->    215				return ret;
->    216			}
->    217	
->    218			/*
->    219			 * If the control reaches here, it would mean the remaining
->    220			 * resource_entry size cannot be fitted in a single BAR. So we
->    221			 * find a maximum BAR whose size is less than or equal to the
->    222			 * remaining resource_entry size and split the resource entry
->    223			 * so that part of resource entry is fitted inside the maximum
->    224			 * BAR. The remaining size would be fitted during the next
->    225			 * iteration of the loop.
->    226			 *
->    227			 * If a maximum BAR is not found, there is no way we can fit
->    228			 * this resource_entry, so we error out.
->    229			 */
->    230			bar = cdns_pcie_host_find_max_bar(rc, size);
->    231			if (bar == RP_BAR_UNDEFINED) {
->    232				dev_err(dev, "No free BAR to map cpu_addr %llx\n",
->    233					cpu_addr);
->    234				return -EINVAL;
->    235			}
->    236	
->    237			winsize = bar_max_size[bar];
->    238			ret = pci_host_ib_config(rc, bar, cpu_addr, winsize, flags);
->    239			if (ret) {
->    240				dev_err(dev, "IB BAR: %d config failed\n", bar);
->    241				return ret;
->    242			}
->    243	
->    244			size -= winsize;
->    245			cpu_addr += winsize;
->    246		}
->    247	
->    248		return 0;
->    249	}
->    250	
-> 
-> -- 
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
-> 
+...
+
+Many are still missing... Please, follow IWYU principle.
+
+> +#include <linux/bitfield.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/delay.h>
+
+> +#include <linux/device.h>
+
+Not see why you need this and not
+
+dev_printk.h
+device/devres.h
+
+instead.
+
+> +#include <linux/err.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/unaligned.h>
+
+...
+
+> +/* Internal reference voltage in millivolts */
+> +#define ADS1120_VREF_INTERNAL_MV	2048
+
+_mV
+
+*Yes, it's okay to use small letter in this case (it's all about proper units).
+
+...
+
+> +struct ads1120_state {
+> +	struct spi_device	*spi;
+> +	struct regmap		*regmap;
+
+I'm not sure why do you need separate regmap and spi transactions at the same
+time. The commit message also kept silent about this. Needs a justification.
+
+In any case the spi device can be derived from regmap, so definitely you don't
+need both.
+
+> +	/*
+> +	 * Protects chip configuration and ADC reads to ensure
+> +	 * consistent channel/gain settings during conversions.
+> +	 */
+> +	struct mutex		lock;
+
+No header for this type.
+
+> +	int vref_mv;
+
+_mV
+
+> +	/* DMA-safe buffer for SPI transfers */
+> +	u8 data[4] __aligned(IIO_DMA_MINALIGN);
+
+No header for this type and __aligned attribute.
+
+> +};
+
+...
+
+> +	struct spi_transfer xfer[2] = {
+
+You may leave []
+
+> +		{
+> +			.tx_buf = st->data,
+> +			.len = 1,
+> +		}, {
+> +			.rx_buf = st->data,
+> +			.len = 2,
+> +		}
+> +	};
+> +
+> +	*val = sign_extend32(get_unaligned_be16(st->data), 15);
+
+No header for this API.
+
+> +	return 0;
+> +}
+
+...
+
+> +static int ads1120_read_measurement(struct ads1120_state *st,
+> +				    const struct iio_chan_spec *chan, int *val)
+> +{
+> +	int ret;
+> +
+> +	ret = ads1120_set_mux(st, chan->address);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ads1120_write_cmd(st, ADS1120_CMD_START);
+> +	if (ret)
+> +		return ret;
+
+Needs a comment explaining this rather big delay.
+
+> +	msleep(ADS1120_CONV_TIME_MS);
+> +
+> +	return ads1120_read_raw_adc(st, val);
+> +}
+
+...
+
+> +/* Regmap write function for ADS1120 */
+> +static int ads1120_regmap_write(void *context, const void *data, size_t count)
+> +{
+> +	struct ads1120_state *st = context;
+> +	const u8 *buf = data;
+> +
+> +	if (count != 2)
+> +		return -EINVAL;
+> +
+> +	/* WREG command: 0100rr00 where rr is register address */
+> +	st->data[0] = ADS1120_CMD_WREG | (buf[0] << 2);
+> +	st->data[1] = buf[1];
+> +
+> +	return spi_write(st->spi, st->data, 2);
+
+Wondering if there is a correlation between count == 2 and this 2. If it has
+1:1 relationship, perhaps use count directly here?
+
+> +}
+
+...
+
+> +static const struct regmap_config ads1120_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = ADS1120_REG_CONFIG3,
+
+> +	.cache_type = REGCACHE_FLAT,
+
+Why not MAPPLE? Or scattered FLAT?
+
+> +};
+
+...
+
+> +static int ads1120_init(struct ads1120_state *st)
+> +{
+> +	int ret;
+
+	struct device *dev = ... // from regmap
+
+> +	ret = ads1120_reset(st);
+> +	if (ret)
+> +		return dev_err_probe(&st->spi->dev, ret,
+> +					"Failed to reset device\n");
+
+		return dev_err_probe(dev, ret, "Failed to reset device\n");
+
+> +	/*
+> +	 * Configure Register 0:
+> +	 * - Input MUX: AIN0/AVSS
+> +	 * - Gain: 1
+> +	 * - PGA bypass enabled. When gain is set > 4, this bit is
+> +	 *   automatically ignored by the hardware and PGA is enabled,
+> +	 *   so it's safe to leave it set.
+> +	 */
+> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG0,
+> +			   FIELD_PREP(ADS1120_CFG0_MUX_MASK,
+> +				      ADS1120_CFG0_MUX_AIN0_AVSS) |
+
+I would do it on a single line...
+
+> +			   FIELD_PREP(ADS1120_CFG0_GAIN_MASK,
+> +				      ADS1120_CFG0_GAIN_1) |
+
+...and this despite being long, But it's up to you and maintainers.
+Same for all similar cases.
+
+> +			   ADS1120_CFG0_PGA_BYPASS);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Configure Register 1:
+> +	 * - Data rate: 20 SPS (for single-shot mode)
+> +	 * - Operating mode: Normal
+> +	 * - Conversion mode: Single-shot
+> +	 * - Temperature sensor: Disabled
+> +	 * - Burnout current: Disabled
+> +	 */
+> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG1,
+> +			   FIELD_PREP(ADS1120_CFG1_DR_MASK,
+> +				      ADS1120_CFG1_DR_20SPS) |
+> +			   FIELD_PREP(ADS1120_CFG1_MODE_MASK,
+> +				      ADS1120_CFG1_MODE_NORMAL) |
+> +			   FIELD_PREP(ADS1120_CFG1_CM_MASK,
+> +				      ADS1120_CFG1_CM_SINGLE) |
+> +			   FIELD_PREP(ADS1120_CFG1_TS_EN, 0) |
+> +			   FIELD_PREP(ADS1120_CFG1_BCS_EN, 0));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Configure Register 2:
+> +	 * - Voltage reference: Internal 2.048V
+> +	 * - 50/60Hz rejection: Off
+> +	 * - Power switch: Disabled
+> +	 * - IDAC current: Off
+> +	 */
+> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG2,
+> +			   FIELD_PREP(ADS1120_CFG2_VREF_MASK,
+> +				      ADS1120_CFG2_VREF_INTERNAL) |
+> +			   FIELD_PREP(ADS1120_CFG2_REJECT_MASK,
+> +				      ADS1120_CFG2_REJECT_OFF) |
+> +			   FIELD_PREP(ADS1120_CFG2_PSW_EN, 0) |
+> +			   FIELD_PREP(ADS1120_CFG2_IDAC_MASK,
+> +				      ADS1120_CFG2_IDAC_OFF));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Configure Register 3:
+> +	 * - IDAC1: Disabled
+> +	 * - IDAC2: Disabled
+> +	 * - DRDY mode: Only reflects data ready status
+> +	 */
+> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG3,
+> +			   FIELD_PREP(ADS1120_CFG3_IDAC1_MASK,
+> +				      ADS1120_CFG3_IDAC1_DISABLED) |
+> +			   FIELD_PREP(ADS1120_CFG3_IDAC2_MASK,
+> +				      ADS1120_CFG3_IDAC2_DISABLED) |
+> +			   FIELD_PREP(ADS1120_CFG3_DRDYM_MASK,
+> +				      ADS1120_CFG3_DRDYM_DRDY_ONLY));
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->vref_mv = ADS1120_VREF_INTERNAL_MV;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int ads1120_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev = &spi->dev;
+> +	struct iio_dev *indio_dev;
+> +	struct ads1120_state *st;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +	st->spi = spi;
+> +
+> +	ret = devm_mutex_init(dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->regmap = devm_regmap_init(dev, &ads1120_regmap_bus, st,
+> +				      &ads1120_regmap_config);
+> +	if (IS_ERR(st->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
+> +					"Failed to initialize regmap\n");
+> +
+> +	indio_dev->name = "ads1120";
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = ads1120_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(ads1120_channels);
+
+No header for ARRAY_SIZE().
+
+> +	indio_dev->info = &ads1120_info;
+> +
+> +	ret = ads1120_init(st);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +					"Failed to initialize device\n");
+
+Besides broken indentation this may be a single line.
+
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
 
 -- 
-மணிவண்ணன் சதாசிவம்
+With Best Regards,
+Andy Shevchenko
+
+
 
