@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-236421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AF1C441AA
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 16:58:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D63C441CE
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 17:04:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AD873B12DF
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 15:58:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DAE154E6FAF
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 16:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B44F2FF176;
-	Sun,  9 Nov 2025 15:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970F23002C2;
+	Sun,  9 Nov 2025 16:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L4ASnQ/H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mevB3RxU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137F613B7A3;
-	Sun,  9 Nov 2025 15:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DAAC2FFFBF;
+	Sun,  9 Nov 2025 16:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762703886; cv=none; b=ucrb90qSHXP/s/Z8vd8Ca/9QCPMJFslIK+M4zFD9x2zv2F5vQKmp4i2FwW8uTDxasNl8LZWTZDx++7AZyS99x9rpxGeL1pxH7qg+WHSajz+cIehOWUpCUwcyguNmGDYs2Vd+TSWozPNLHgVWTTROvBe6Hy0U4fL9JFPdpBy74jA=
+	t=1762704265; cv=none; b=u7cSnx5tBrBs7oKdapwghXwZ4dKFjnp+8jTLEwByA6YHbxJpsv/uK63jJoD85ccfRX/3AAG/NKoD32fTYMHQ8DY5LPIO4aEj5ePQPh3n1OT1c+SlJoSm0xxFFd7ETj0aMF/OtLNzAXpgp/uOXfQAlYgwHRAbK2c5Kq0POnD1BLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762703886; c=relaxed/simple;
-	bh=Q9b1mi9IhV/RUcZIVoj4qCTeXua2YVgEjqYXa+t8ycg=;
+	s=arc-20240116; t=1762704265; c=relaxed/simple;
+	bh=RQwvn8WRYaKj+tPXCnbYN2WFyV803ZvDilOGQVqmex4=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uWg6qoGGT6kWWJX/7SHKAvzRrd1aCTK+3AjdSAjckZk8SHtTr4gMVZD6uCRtaL89v+k7/2KquLxwzWaD/g9c7xVoug8a0Pa1pkAkOL5BlSgyHcxeIPZZ+nrb9ATE2XefQwbdRYPxw3wLCHldSZcXZDWRm731suJf/tkRx9O6u/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L4ASnQ/H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B46CDC4CEFB;
-	Sun,  9 Nov 2025 15:58:01 +0000 (UTC)
+	 MIME-Version:Content-Type; b=fjXFL5sP0wDXqppedBfQt9buguvgkrxuWcfUFPiHBGVf3Sdr/yhZeIr2lOp5htrYlTRzBAZTpETS0v3AQAp9aDZ3qRu9xKGo7Kvt9zRu+Jsu35c+70U5t3CNtIcrMlb97B1yc+ydFvI7y4bCis6OcXU7So/TJmyfxplvAUgSjEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mevB3RxU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ED65C2BC86;
+	Sun,  9 Nov 2025 16:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762703884;
-	bh=Q9b1mi9IhV/RUcZIVoj4qCTeXua2YVgEjqYXa+t8ycg=;
+	s=k20201202; t=1762704264;
+	bh=RQwvn8WRYaKj+tPXCnbYN2WFyV803ZvDilOGQVqmex4=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=L4ASnQ/Hn4qshJfmUYvJzV2eVoBnhBhEIszecDRX0amSe0Aufa1dlRwBXDqDD7nlA
-	 u9fuqbK6r/2hoWRGVDyGx24xSBL9lyDmVuzO59q38J2rStzNyjZPNX5RYSn3nAyckV
-	 jJhEz3PGTA3HTCLCkBzwEVyLmvqb5i16R2b0ceh5UWwCBYP7gNl//f+YRuQ8YAfJ67
-	 IkYxPr/0YYB2HQO8+Gnio7hJILCVeVRDShAlBjizy7MGaAaYckIooy9uWUkd52QgEA
-	 VXTrTl8ToDtPp7KHXdmixmjSgmnRJpKbNCRPBz7o90GJgoblCexYXYYHMhZQm/jlhc
-	 7xcxYZnfLQW2A==
-Date: Sun, 9 Nov 2025 15:57:57 +0000
+	b=mevB3RxUfW4R6aA3TBzYkzaLujAvgFjVbTpKkw0MZcFkRYcspY3GVUJ4PlW+NcsJn
+	 QOW6y9SGv1O7AxR1FrBIcwkniMuo6YhGfKDCNObLYN5VvbILTrliKLaordWulqblr0
+	 GBTlsCaLlPVIXiRxSVEhXZWNy7btCcFe9LUMS2H44SfSa5WBzpBoq2HT0DsSvwYtvo
+	 50ztRSIPEwGfbeazNRu7rctgJwDnLDU3zHSY5veXVtv6rbE6AlcGWXGf+Zjr+QxC0F
+	 tnqkwpQ39eR9YjmfxWhKB28HZIpHDtVFXXyob2prKZkATxAHnIY/2hKO4Vt7xKJeiW
+	 m3KiKE3dnDKug==
+Date: Sun, 9 Nov 2025 16:04:16 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
 Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, Michael Hennerich
  <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
  Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob
  Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
  Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v5 6/7] dt-bindings: clock: rockchip: Add RK3506 clock
- and reset unit
-Message-ID: <20251109155757.087db448@jic23-huawei>
-In-Reply-To: <20251104-mutt-spleen-31e1569f1674@spud>
+Subject: Re: [PATCH v4 02/12] iio: dac: ad5446: Use DMA safe buffer for
+ transfers
+Message-ID: <20251109160416.48497b3b@jic23-huawei>
+In-Reply-To: <aQozkdWtQxv15Umd@smile.fi.intel.com>
 References: <20251104-dev-add-ad5542-v4-0-6fe35458bf8c@analog.com>
-	<20251104-dev-add-ad5542-v4-1-6fe35458bf8c@analog.com>
-	<20251104-mutt-spleen-31e1569f1674@spud>
+	<20251104-dev-add-ad5542-v4-2-6fe35458bf8c@analog.com>
+	<aQozkdWtQxv15Umd@smile.fi.intel.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,20 +64,32 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 4 Nov 2025 17:51:25 +0000
-Conor Dooley <conor@kernel.org> wrote:
+On Tue, 4 Nov 2025 19:10:41 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> pw-bot: not-applicable
+> On Tue, Nov 04, 2025 at 03:35:07PM +0000, Nuno S=C3=A1 via B4 Relay wrote:
+> >=20
+> > Make sure to use DMA safe buffer. While for i2c we could be fine without
+> > them, we need it for spi anyways.
+> >=20
+> > As we now have DMA safe buffers, use i2c_master_send_dmasafe(). =20
+>=20
+> ...
+>=20
+> > -	put_unaligned_be24(val, &data[0]);
+> > +	put_unaligned_be24(val, &st->d24[0]); =20
+>=20
+> Now this &...[0] are redundant as you defined (by name) that the variable=
+ is to
+> be used as 24-bit one, i.o.w. as a whole.
+>=20
+> 	put_unaligned_be24(val, st->d24);
+>=20
 
-Hi Conor,
+Tweaked and add docs for be16 and be24 given rest of the structure has docs.
 
-Strange email subject given you replied to:
-
-20251104-dev-add-ad5542-v4-1-6fe35458bf8c@analog.com
-
-I'll assume intent was to Ack that.
+J
 
