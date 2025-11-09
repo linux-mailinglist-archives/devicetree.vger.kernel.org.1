@@ -1,393 +1,107 @@
-Return-Path: <devicetree+bounces-236439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD474C4430D
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:04:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5565BC44343
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:06:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 466794E1157
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:04:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44BAB3B3401
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BA02FFDC9;
-	Sun,  9 Nov 2025 17:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B8C304BCD;
+	Sun,  9 Nov 2025 17:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VXS8QS+W"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="PO3jGN4O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F4C883F;
-	Sun,  9 Nov 2025 17:04:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93132FFF8F;
+	Sun,  9 Nov 2025 17:06:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762707843; cv=none; b=C51koEtqnW8NyOBl7pVa195AQDwEV5Bj4/SfTNpRWrIwfmKJDBDKFI5uok7ehPqe25RPhanY6j1gG4O3r9JV2Kr1zGUg2+qSqw8Cd2NA7Et4IjIJtLtb8/YU1V7fMUiILBBtcMiX2kRV+cDy6g4j5ZrqXmsugzdJm+FbNBljGyg=
+	t=1762707970; cv=none; b=V/Do25m31E07uAJ7d3R7fL+SrZAMFjq4bKZh3qR5zan3OcOZqmrQFTXyc5UOTGs9q1oR95QTlCor1ouFB3Hb3W0RcHn/eX3zIEPrh+PlrTV6wLwRXMQNRzn0IbUv3Tig01JPyYbZPPlN49yjIiVVRsck476qt2Xoh9/01mHUvTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762707843; c=relaxed/simple;
-	bh=2SoqEBC5cVetOqljionOBfjcJgmVzVrriPxCpv+k60U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fam9+mUaoSHvyLglW+jdznl/eRP1QpJDAV4DGUOFvPuVxQLzkigAavO7EJo8bJqWQOBkEe/utZvk4yVRvUvouSAhbx6EVJk6eOXajPa/rTDztKZv74uUPkFWLoXdLBtNfcL9n201gCEgatmTXHZSaunrps1x65DAPV3HAnao23E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VXS8QS+W; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762707842; x=1794243842;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2SoqEBC5cVetOqljionOBfjcJgmVzVrriPxCpv+k60U=;
-  b=VXS8QS+WUaSbbfMQ89sSw8kQqvDVL70loFultFIlewLNBov+jPiXK9/o
-   7fKey4LZQJPm9Rnpvp3/OS4V5cTo24RmmL6I5caX+EahoCbAPHsxI3er0
-   Lh7u7zKdksDvEU+kjBsEh1DSRwMxGC/1ZLAaAZ45kLqMX9J4uWxZ4vpe0
-   p1hHDnC6yUhLlJn/7sdM8eQtzYWug9WuU+l8uR1Gw5hyJ4jfub+X08yCf
-   iw6VFTia8zWy2ZFfeudI6MP2JPjlBNk3yFsl15nQPSt5TvQ7ONsMmtzZf
-   nFuKQDeUst9kc2+8vQyQe2XEhULD5sBikIKofkcnuxXG3VvB6aSqza86z
-   Q==;
-X-CSE-ConnectionGUID: dUHUEPbeR0eeESMlhjKh/Q==
-X-CSE-MsgGUID: kOT+Q7fXRA60rGyOHS120g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="75884742"
-X-IronPort-AV: E=Sophos;i="6.19,292,1754982000"; 
-   d="scan'208";a="75884742"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2025 09:04:02 -0800
-X-CSE-ConnectionGUID: WN+GQ+8+SXWKSDu3w2jueA==
-X-CSE-MsgGUID: 2MudgvCARauTHhahPgMC0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,292,1754982000"; 
-   d="scan'208";a="187784274"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.185])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2025 09:03:58 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vI8pY-000000074hl-0p7G;
-	Sun, 09 Nov 2025 19:03:56 +0200
-Date: Sun, 9 Nov 2025 19:03:55 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Ajith Anandhan <ajithanandhan0406@gmail.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: Add support for TI ADS1120
-Message-ID: <aRDJexPYkIDoE9nc@smile.fi.intel.com>
-References: <20251109141119.561756-1-ajithanandhan0406@gmail.com>
- <20251109141119.561756-3-ajithanandhan0406@gmail.com>
+	s=arc-20240116; t=1762707970; c=relaxed/simple;
+	bh=hixGnyCiJkbLF2rf11XmLlhnL534vXHietAHClgNN5E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZyMp9FC9jvuMTgpbM4P1mnkELI83rgYcyHHi8l3whG2Qf8WLgHe9yWB26BEEquIiewT6bwdYJCRqbq2XNpD+kVA4VS1WLFyJraZxEJ3BIw0B7DrXH1hJ+2X/GyQYQzIAnp2hJZqokChyycDN+EKKKXBSfCv39uCwc6/1TpAU088=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=PO3jGN4O; arc=none smtp.client-ip=91.218.175.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1762707963;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ZGL6vN01C4fpVYtMS2FjDXAheoK7OIOq3/QZwzVz6I0=;
+	b=PO3jGN4Ozros9j3l2U07INj40Af2D4ml7LcHGzWPa7uIZ8xTXXkGjohxb2akm+VFyvrJKV
+	T9FM5+PSPHXFV2snPZ8DPCTCxbpj55UVzS2v90khbSFokWOK4+ObTg7FeKrcGQeFYmby3p
+	aVxoCpzYuQAZjF0wJZVsvbVlx75VKbbB7ulLGPJZNFuxcWcAJlZ7YDbs2hcmRkoac4nZEC
+	LWLIDcz6YaoPzzWqmjIN2JYid3HIvORz9/GrZmJT7W02h0BCL3QLHLF/PdqR7PO9I3v8G3
+	NvKb6mON2bwIVt/gwqYsERVbsNhLVnbcxB1O7AgglQC/tuv4Vg74yhHOVmXe7A==
+From: Diederik de Haas <diederik@cknow-tech.com>
+Subject: [PATCH 0/2] Fixes for PineNote DT validation issues
+Date: Sun, 09 Nov 2025 18:05:25 +0100
+Message-Id: <20251109-rk3566-pinenote-dt-fixes-upstream-v1-0-ed38d200cc04@cknow-tech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251109141119.561756-3-ajithanandhan0406@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANXJEGkC/x3MQQrCMBBG4auUWTvQJG1BryIuov2jg5iGmVSE0
+ rs3uPzg8TYyqMDo0m2k+IrJkhvcqaPHK+YnWOZm8r0fnevPrO8wThMXychLBc+Vk/xgvBarivh
+ hl+7BI6UhIFL7FMW/aJvrbd8PUHkyX3MAAAA=
+X-Change-ID: 20251109-rk3566-pinenote-dt-fixes-upstream-1fb32eff43ea
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Samuel Holland <samuel@sholland.org>
+Cc: hrdl <git@hrdl.eu>, phantomas <phantomas@phantomas.xyz>, 
+ Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>, 
+ stable@vger.kernel.org
+X-Migadu-Flow: FLOW_OUT
 
-On Sun, Nov 09, 2025 at 07:41:19PM +0530, Ajith Anandhan wrote:
-> Add driver for the Texas Instruments ADS1120, a precision 16-bit
-> analog-to-digital converter with an SPI interface.
-> 
-> The driver supports:
-> - Differential and single-ended input channels
-> - Configurable gain (1-128 for differential, 1-4 for single-ended)
-> - Internal 2.048V reference
-> - Single-shot conversion mode
+These patches fix the following DeviceTree validation issues on the
+PineNote dtb files:
 
-> Also update MAINTAINER document.
+    Warning (graph_child_address): /i2c@fe5c0000/tcpc@60/connector/ports:
+      graph node has single child node 'port@0', #address-cells/#size-cells
+      are not necessary
 
-Unneeded sentence in the commit message (may be located in the comment block,
-though).
+    usb2phy@fe8a0000 (rockchip,rk3568-usb2phy): otg-port: 'port' does not
+      match any of the regexes: '^pinctrl-[0-9]+$'
 
-...
+And with these 2 fixes, there are no more DT validation issues :-)
 
-Many are still missing... Please, follow IWYU principle.
+The fix for the 2nd issue also fix these kernel errors:
 
-> +#include <linux/bitfield.h>
-> +#include <linux/cleanup.h>
-> +#include <linux/delay.h>
+  rockchip-usb2phy fe8a0000.usb2phy: Failed to create device link (0x180) with supplier port0 for /usb2phy@fe8a0000/otg-port
+  rockchip-usb2phy fe8a0000.usb2phy: Failed to create device link (0x180) with supplier 3-0060 for /usb2phy@fe8a0000/otg-port
 
-> +#include <linux/device.h>
+Cheers,
+  Diederik
 
-Not see why you need this and not
+Signed-off-by: Diederik de Haas <diederik@cknow-tech.com>
+---
+Diederik de Haas (2):
+      arm64: dts: rockchip: Simplify usb-c-connector port on rk3566-pinenote
+      arm64: dts: rockchip: Move otg-port to controller on rk3566-pinenote
 
-dev_printk.h
-device/devres.h
+ arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi | 27 +++++++++--------------
+ 1 file changed, 10 insertions(+), 17 deletions(-)
+---
+base-commit: 6146a0f1dfae5d37442a9ddcba012add260bceb0
+change-id: 20251109-rk3566-pinenote-dt-fixes-upstream-1fb32eff43ea
 
-instead.
-
-> +#include <linux/err.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/unaligned.h>
-
-...
-
-> +/* Internal reference voltage in millivolts */
-> +#define ADS1120_VREF_INTERNAL_MV	2048
-
-_mV
-
-*Yes, it's okay to use small letter in this case (it's all about proper units).
-
-...
-
-> +struct ads1120_state {
-> +	struct spi_device	*spi;
-> +	struct regmap		*regmap;
-
-I'm not sure why do you need separate regmap and spi transactions at the same
-time. The commit message also kept silent about this. Needs a justification.
-
-In any case the spi device can be derived from regmap, so definitely you don't
-need both.
-
-> +	/*
-> +	 * Protects chip configuration and ADC reads to ensure
-> +	 * consistent channel/gain settings during conversions.
-> +	 */
-> +	struct mutex		lock;
-
-No header for this type.
-
-> +	int vref_mv;
-
-_mV
-
-> +	/* DMA-safe buffer for SPI transfers */
-> +	u8 data[4] __aligned(IIO_DMA_MINALIGN);
-
-No header for this type and __aligned attribute.
-
-> +};
-
-...
-
-> +	struct spi_transfer xfer[2] = {
-
-You may leave []
-
-> +		{
-> +			.tx_buf = st->data,
-> +			.len = 1,
-> +		}, {
-> +			.rx_buf = st->data,
-> +			.len = 2,
-> +		}
-> +	};
-> +
-> +	*val = sign_extend32(get_unaligned_be16(st->data), 15);
-
-No header for this API.
-
-> +	return 0;
-> +}
-
-...
-
-> +static int ads1120_read_measurement(struct ads1120_state *st,
-> +				    const struct iio_chan_spec *chan, int *val)
-> +{
-> +	int ret;
-> +
-> +	ret = ads1120_set_mux(st, chan->address);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ads1120_write_cmd(st, ADS1120_CMD_START);
-> +	if (ret)
-> +		return ret;
-
-Needs a comment explaining this rather big delay.
-
-> +	msleep(ADS1120_CONV_TIME_MS);
-> +
-> +	return ads1120_read_raw_adc(st, val);
-> +}
-
-...
-
-> +/* Regmap write function for ADS1120 */
-> +static int ads1120_regmap_write(void *context, const void *data, size_t count)
-> +{
-> +	struct ads1120_state *st = context;
-> +	const u8 *buf = data;
-> +
-> +	if (count != 2)
-> +		return -EINVAL;
-> +
-> +	/* WREG command: 0100rr00 where rr is register address */
-> +	st->data[0] = ADS1120_CMD_WREG | (buf[0] << 2);
-> +	st->data[1] = buf[1];
-> +
-> +	return spi_write(st->spi, st->data, 2);
-
-Wondering if there is a correlation between count == 2 and this 2. If it has
-1:1 relationship, perhaps use count directly here?
-
-> +}
-
-...
-
-> +static const struct regmap_config ads1120_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = ADS1120_REG_CONFIG3,
-
-> +	.cache_type = REGCACHE_FLAT,
-
-Why not MAPPLE? Or scattered FLAT?
-
-> +};
-
-...
-
-> +static int ads1120_init(struct ads1120_state *st)
-> +{
-> +	int ret;
-
-	struct device *dev = ... // from regmap
-
-> +	ret = ads1120_reset(st);
-> +	if (ret)
-> +		return dev_err_probe(&st->spi->dev, ret,
-> +					"Failed to reset device\n");
-
-		return dev_err_probe(dev, ret, "Failed to reset device\n");
-
-> +	/*
-> +	 * Configure Register 0:
-> +	 * - Input MUX: AIN0/AVSS
-> +	 * - Gain: 1
-> +	 * - PGA bypass enabled. When gain is set > 4, this bit is
-> +	 *   automatically ignored by the hardware and PGA is enabled,
-> +	 *   so it's safe to leave it set.
-> +	 */
-> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG0,
-> +			   FIELD_PREP(ADS1120_CFG0_MUX_MASK,
-> +				      ADS1120_CFG0_MUX_AIN0_AVSS) |
-
-I would do it on a single line...
-
-> +			   FIELD_PREP(ADS1120_CFG0_GAIN_MASK,
-> +				      ADS1120_CFG0_GAIN_1) |
-
-...and this despite being long, But it's up to you and maintainers.
-Same for all similar cases.
-
-> +			   ADS1120_CFG0_PGA_BYPASS);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Configure Register 1:
-> +	 * - Data rate: 20 SPS (for single-shot mode)
-> +	 * - Operating mode: Normal
-> +	 * - Conversion mode: Single-shot
-> +	 * - Temperature sensor: Disabled
-> +	 * - Burnout current: Disabled
-> +	 */
-> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG1,
-> +			   FIELD_PREP(ADS1120_CFG1_DR_MASK,
-> +				      ADS1120_CFG1_DR_20SPS) |
-> +			   FIELD_PREP(ADS1120_CFG1_MODE_MASK,
-> +				      ADS1120_CFG1_MODE_NORMAL) |
-> +			   FIELD_PREP(ADS1120_CFG1_CM_MASK,
-> +				      ADS1120_CFG1_CM_SINGLE) |
-> +			   FIELD_PREP(ADS1120_CFG1_TS_EN, 0) |
-> +			   FIELD_PREP(ADS1120_CFG1_BCS_EN, 0));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Configure Register 2:
-> +	 * - Voltage reference: Internal 2.048V
-> +	 * - 50/60Hz rejection: Off
-> +	 * - Power switch: Disabled
-> +	 * - IDAC current: Off
-> +	 */
-> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG2,
-> +			   FIELD_PREP(ADS1120_CFG2_VREF_MASK,
-> +				      ADS1120_CFG2_VREF_INTERNAL) |
-> +			   FIELD_PREP(ADS1120_CFG2_REJECT_MASK,
-> +				      ADS1120_CFG2_REJECT_OFF) |
-> +			   FIELD_PREP(ADS1120_CFG2_PSW_EN, 0) |
-> +			   FIELD_PREP(ADS1120_CFG2_IDAC_MASK,
-> +				      ADS1120_CFG2_IDAC_OFF));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Configure Register 3:
-> +	 * - IDAC1: Disabled
-> +	 * - IDAC2: Disabled
-> +	 * - DRDY mode: Only reflects data ready status
-> +	 */
-> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG3,
-> +			   FIELD_PREP(ADS1120_CFG3_IDAC1_MASK,
-> +				      ADS1120_CFG3_IDAC1_DISABLED) |
-> +			   FIELD_PREP(ADS1120_CFG3_IDAC2_MASK,
-> +				      ADS1120_CFG3_IDAC2_DISABLED) |
-> +			   FIELD_PREP(ADS1120_CFG3_DRDYM_MASK,
-> +				      ADS1120_CFG3_DRDYM_DRDY_ONLY));
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->vref_mv = ADS1120_VREF_INTERNAL_MV;
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int ads1120_probe(struct spi_device *spi)
-> +{
-> +	struct device *dev = &spi->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ads1120_state *st;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->spi = spi;
-> +
-> +	ret = devm_mutex_init(dev, &st->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->regmap = devm_regmap_init(dev, &ads1120_regmap_bus, st,
-> +				      &ads1120_regmap_config);
-> +	if (IS_ERR(st->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
-> +					"Failed to initialize regmap\n");
-> +
-> +	indio_dev->name = "ads1120";
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = ads1120_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(ads1120_channels);
-
-No header for ARRAY_SIZE().
-
-> +	indio_dev->info = &ads1120_info;
-> +
-> +	ret = ads1120_init(st);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +					"Failed to initialize device\n");
-
-Besides broken indentation this may be a single line.
-
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Diederik de Haas <diederik@cknow-tech.com>
 
 
