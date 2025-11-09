@@ -1,153 +1,116 @@
-Return-Path: <devicetree+bounces-236450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A356C4448E
-	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:32:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F65C4449A
+	for <lists+devicetree@lfdr.de>; Sun, 09 Nov 2025 18:36:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AEA424E7FCD
-	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:31:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCD6F3A1CB2
+	for <lists+devicetree@lfdr.de>; Sun,  9 Nov 2025 17:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEEDA30649C;
-	Sun,  9 Nov 2025 17:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E1C227BB5;
+	Sun,  9 Nov 2025 17:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMg8OIHE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nzcRUXNT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FCE305E3A;
-	Sun,  9 Nov 2025 17:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D1C2147E6;
+	Sun,  9 Nov 2025 17:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762708958; cv=none; b=lq8fBSR3uITXAsuCGIJGQnefgNgLiahzyGEN1y3FOUFrggY9/P0hwmHQj2AJ0zCSl44JaQzJBiWNSIrTQhYdA5Di6RKZ1j8qROZFyJkrDCBg08MEpJoH04UEg2cCKpkze4NRDDrACaPm/ZfGxsqL5YGvgXPaHqNeGNZKB8yAAlg=
+	t=1762709760; cv=none; b=PzyMKla6HpyY3B7uglsOm0VqIzylqVSXHffM1BhLupJcIbJ306HNl5zsyRLMujg3S2NBbK1RY5GyTt2NaqfljSuxAz8qWACrs8nJu29ZSu6tF9QJi90WMchQ3Ta0Hjw9rTa2pHmMtngIVJfd8tjPbTgNLPWfmKzI/HBGQJi2TtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762708958; c=relaxed/simple;
-	bh=A5s0fFD+mU9Sqbg0aCjZQdmRQywvhDPbuhdhAqZW0M8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eOuOrbKZWDDmlsbWSVUP9tJu4KHq1sRdFvktR8vFRCqKXf52vR17/Np95RViC2pHjoYJ43x/ryvOjalfGNxEh3pTGaiPPT1MCQ8/ll47QtRDXx11oGZ6dVhMmsQwsYDxpxHAInYueKEY6XJ2PQ4C2mRoOANybkhxAxEL/mma7+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMg8OIHE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03EE4C19422;
-	Sun,  9 Nov 2025 17:22:29 +0000 (UTC)
+	s=arc-20240116; t=1762709760; c=relaxed/simple;
+	bh=VeXIMFby4++o7k2a7+34n+EeWMLXw+AohCFf3biSWHg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HjxjINZXPRMdM0WUzh+G2ge2hh0dZtflyPqKKOTuTVSJmL0SHIe7qtJwMLVwhesxM7wVRt8a8nAhDah7/iuYyA76NN/qCumBpIb+jWwMzEYeIkgDvtdlCppBDjNM/vSqqPZyuyS74xRwqzs/jq+xVYwCVo4cyUdNEzBJeG5C6yQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nzcRUXNT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EE07C16AAE;
+	Sun,  9 Nov 2025 17:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762708958;
-	bh=A5s0fFD+mU9Sqbg0aCjZQdmRQywvhDPbuhdhAqZW0M8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nMg8OIHETRfRJCqRrZM7s3ady71xhe51nE75ZWQrOFvzgUH/yaUvNclveAa1wFTlc
-	 iv+0A577qnkCjH9N0OVOuGK9OGGyteBUYG2VApiBQSN/2VDxek0sI5rjZ2OTWz/deA
-	 U551xsJvzhm27drDNsSERlw3FhrCNtzTB2ljMZudj9Klisg956gwKYwXKiiyCcnzqn
-	 Cqn4pZd1zXnAMX90h0WCTJMjGUSGzy/5xcv/Cf0BHcu00xXe0f9ZGaQM26PxwkDpQH
-	 cJZm3Q5IHu4EOdZbaGg0eVOq0FhGT+NDApHNsxljG32NKLsKoAsAVMbbtXJmRBkBGU
-	 1qygTj7+NcX/Q==
-Date: Sun, 9 Nov 2025 17:22:13 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] iio: amplifiers: adl8113: add driver support
-Message-ID: <20251109172213.69d35297@jic23-huawei>
-In-Reply-To: <20251108174357.3748-3-antoniu.miclaus@analog.com>
-References: <20251108174357.3748-1-antoniu.miclaus@analog.com>
-	<20251108174357.3748-3-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1762709759;
+	bh=VeXIMFby4++o7k2a7+34n+EeWMLXw+AohCFf3biSWHg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nzcRUXNT9/f1tDKe4T6F42zpttJ/aX9MBiZ0jM74+dveROq+XbwX3UtiMCATmeKTf
+	 pjIXycds0QVgTvGCxyvIZsP4VATkS9eUX5UIEl0DHKGQhP6x9aRQORyAaRUMcpuD7y
+	 ymjXrKjvsPZV/l8CjSLfxXAGJ/3k1EXYUZR+EHFeM0nzpKdDlZ8Hcm0QED+Wd4p1XY
+	 UdYW5sG8XF3PsxYz1WECWTZWMIvVHok7/eH6feKhJNQ/bTwZrsE1SSVvjpus/BxHsl
+	 6MCMvLVfDQKMBSCjN2+mmAFDMbF5WiaTpPkInR3dcTYqhXlnvyJUdltoiZfs4E0JoW
+	 TW4t8VSHrHxQQ==
+Date: Sun, 9 Nov 2025 09:35:58 -0800
+From: Drew Fustini <fustini@kernel.org>
+To: soc@kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>, Jisheng Zhang <jszhang@kernel.org>,
+	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Yao Zi <ziyao@disroot.org>, Han Gao <rabenda.cn@gmail.com>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [GIT PULL] RISC-V T-HEAD Devicetrees for v6.19
+Message-ID: <aRDQ/sam60PIc557@x1>
+References: <aRDFOnmcW6GIJ6bt@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aRDFOnmcW6GIJ6bt@x1>
 
-On Sat, 8 Nov 2025 17:43:53 +0000
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-
-> Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
-> 10MHz to 14GHz bypass switches.
+On Sun, Nov 09, 2025 at 08:45:46AM -0800, Drew Fustini wrote:
+> The following changes since commit 3a8660878839faadb4f1a6dd72c3179c1df56787:
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Hi Antoniu
+>   Linux 6.18-rc1 (2025-10-12 13:42:36 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git tags/thead-dt-for-v6.19
+> 
+> for you to fetch changes up to d8a174babf649346b6dad6784ae1e9bc8417af71:
+> 
+>   riscv: dts: thead: Add reset controllers of more subsystems for TH1520 (2025-10-31 10:17:11 +0000)
+> 
+> ----------------------------------------------------------------
+> T-HEAD Devicetrees for v6.19
+> 
+> Add PWM controlled fan and it's associated thermal management for the
+> Lichee Pi 4A board.
+> 
+> Enable additional ISA extenstions supported by the T-Head C910 cores:
+> Zfh, Ziccrse, XTheadvector.
+> 
+> Add reset controllers of more TH1520 subsystems: AP, AO, DSP, MISC, VI.
+> 
+> Signed-off-by: Drew Fustini <fustini@kernel.org>
+> 
+> ----------------------------------------------------------------
+> Han Gao (3):
+>       riscv: dts: thead: add xtheadvector to the th1520 devicetree
+>       riscv: dts: thead: add ziccrse for th1520
+>       riscv: dts: thead: add zfh for th1520
+> 
+> Michal Wilczynski (2):
+>       riscv: dts: thead: Add PWM controller node
+>       riscv: dts: thead: Add PWM fan and thermal control
+> 
+> Yao Zi (1):
+>       riscv: dts: thead: Add reset controllers of more subsystems for TH1520
+> 
+>  arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 67 +++++++++++++++++++++
+>  arch/riscv/boot/dts/thead/th1520.dtsi             | 72 ++++++++++++++++++++---
+>  2 files changed, 131 insertions(+), 8 deletions(-)
 
-I think we need to come up with an innovative solution for the "mode".
-I'm not sure what it is yet though so very much looking for some discussion.
+I forgot to cc mailing lists...
 
-thanks,
++linux-riscv +devicetree +linux-kernel
 
-Jonathan
-
-> diff --git a/drivers/iio/amplifiers/adl8113.c b/drivers/iio/amplifiers/adl8113.c
-> new file mode 100644
-> index 000000000000..8c234f0a1b6a
-> --- /dev/null
-> +++ b/drivers/iio/amplifiers/adl8113.c
-> @@ -0,0 +1,213 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * ADL8113 Low Noise Amplifier with integrated bypass switches
-> + *
-> + * Copyright 2025 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/array_size.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-
-Not sure if this file is being used.  It is rare to see it needed in a modern drive.
-
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/slab.h>
-> +#include <linux/sysfs.h>
-
-> +
-> +static int adl8113_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan,
-> +			    int *val, int *val2, long mask)
-> +{
-> +	struct adl8113_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_HARDWAREGAIN:
-> +		switch (st->current_mode) {
-> +		case ADL8113_INTERNAL_AMPLIFIER:
-> +			*val = 14;
-> +			*val2 = 0;
-> +			ret = IIO_VAL_INT_PLUS_MICRO_DB;
-return ...
-
-> +			break;
-> +		case ADL8113_INTERNAL_BYPASS:
-> +			*val = 0;
-> +			*val2 = 0;
-gain of bypass = 1.0 rather than 0.0 which is open circuit gain.
-
-> +			ret = IIO_VAL_INT_PLUS_MICRO_DB;
-return IIO_VAL_INT...
-
-> +			break;
-> +		case ADL8113_EXTERNAL_BYPASS_A:
-> +		case ADL8113_EXTERNAL_BYPASS_B:
-> +		default:
-> +			ret = -EINVAL;
-return -EINVAL;
-
-Early returns save a line of code here and I general think make
-for much more readable code.
-
-> +		}
-> +		return ret;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
+Thanks,
+Drew
 
