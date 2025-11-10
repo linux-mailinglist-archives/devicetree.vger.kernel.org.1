@@ -1,196 +1,369 @@
-Return-Path: <devicetree+bounces-236563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98F90C4567B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:43:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D96DC45690
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:45:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 748164E6844
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:43:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9FAE3A4646
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B412FB97F;
-	Mon, 10 Nov 2025 08:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB0D2EBBB2;
+	Mon, 10 Nov 2025 08:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZtUO7Ng1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VlcVhNfb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B872727EB;
-	Mon, 10 Nov 2025 08:43:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EC02F39BF
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 08:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762764231; cv=none; b=GUkO0rckjkr9QUHrYW00QWpRmNaKR3eq7ZeCr7gR5w+YHWr+W/VuAB67MUUN71LfzhHoE5/Gd7HblRe99IgFDRUFSnV7jii8H7GZEqXilE0TUzbuXDTYGFS+/L4uzdrI1WvsKvrZxiXuxXLYG5/j/wl8NfMTviP0P8E7+FIIU/s=
+	t=1762764330; cv=none; b=N2skzCeTv/HwyiHXbplWx42FokJOKv/TTuWWsSKClBytXmTEiwdI5g8R/EIQqvLVUZJUuoaG6NNeKsfEDa42lC2wHEH3XCKW26M2TzcMfscsXdZI3P0xvs8DHdxlQvlGJd7NURbFo2m3LgM2rTbapzvpaoUQLiAxCY12f7R/Ohc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762764231; c=relaxed/simple;
-	bh=BZIz3Z5lFEoz3mPVfqf21yTcEuTnJH/qD2n8KFXgBnw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KFmey80+mQz1yuU9l3fDW1t+DDANrF48jQ6wDY9w/yGFKj+BvYx8m40arUK9pwebrbvcEwjlDhMbvF1XmCpHGv54cTLPCa9lPSb24pPw2VJlhLKP03E01vmtpYTc1KTMyBrkYrZNrN65QNYc57Wr5zFXMQpLuv+chZr3Nhn3iYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZtUO7Ng1; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762764230; x=1794300230;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BZIz3Z5lFEoz3mPVfqf21yTcEuTnJH/qD2n8KFXgBnw=;
-  b=ZtUO7Ng10cizJ0IG+ALYwMt5uV6KezW/m0tSzdisz5ophl6z7C1MDeaB
-   Om3A7c0VnqbAd96I/aUyhi45mJ5hcOr109l9XcEhO2pAY5CXDffdv0v+Y
-   qGhVCT6mwAQOsEkw2d68OMdDjgyp9RsvG69s6IsmRbjAJ/hR6xTJ1BAl1
-   dHCrJrPKBTre4ijBo81fNhsvjzG5YCnrrq0syxGJ7bAnsms8JmwkM7l3V
-   HVKPWtFdKXL7fyNQsCiCcvvABzvTzN0Sj+g2eYikxE4Ew2ZSzt0X9BbGv
-   ofmWuqsto15YfJGG/5NArCn389H6Fo0TCzmC7Xe29ce2SUTIqxomGKnAt
-   Q==;
-X-CSE-ConnectionGUID: FPaPhBe+RgmFqy57RWM24Q==
-X-CSE-MsgGUID: nLjgBoflSHa3848cDQSamQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="75421180"
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="75421180"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 00:43:48 -0800
-X-CSE-ConnectionGUID: sNsYiFy4T+uyIn2RzpR7ZQ==
-X-CSE-MsgGUID: maDAue3fSwqWlY0B6+ZFow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="188455479"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.238])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 00:43:42 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id A55521205FC;
-	Mon, 10 Nov 2025 10:43:41 +0200 (EET)
-Date: Mon, 10 Nov 2025 10:43:41 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Markus Elfring <Markus.Elfring@web.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Mehdi Djait <mehdi.djait@bootlin.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bryan O'Donoghue <bod@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH v14 00/18] media: rockchip: add a driver for the rockchip
- camera interface
-Message-ID: <aRGlvQRVoQs0WjyA@kekkonen.localdomain>
-References: <20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com>
- <aQ4tJg8r_j4NyKhv@kekkonen.localdomain>
- <074cd08e-0412-49f9-8dd9-b1f96eb11717@collabora.com>
- <20251107185441.GG5558@pendragon.ideasonboard.com>
- <13c43edb-9592-4779-a39a-7856bb0f964d@collabora.com>
+	s=arc-20240116; t=1762764330; c=relaxed/simple;
+	bh=zqKdTXLiwN0fcb7WkcsKTjqpng93a7VC/tOEh4dTlmU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cEpIHyeVxVaP46jy4QqsibbtadPw10XitJgqahQBGU4esxhuY2vbTooPzPfThrDnIlFTSqYJN3iJnxNHj7iVUrDy6AwlqMP+putfuwcydANYQUEdP/GlFx1/+uEDaF5c948dJNo9fNiTTwKppb9mjEBs83qum5237ypU7gFhjlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VlcVhNfb; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-786a822e73aso28475657b3.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 00:45:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762764327; x=1763369127; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QzsbNcBLm2Xpzoo9GhZtU8EgZBenA7zGN5vz1SKOorc=;
+        b=VlcVhNfbwG02XDd8pIzOT6lfy9kujYyzs49ItLwNIvOamRGuW39FihYbmOdps3lctC
+         kcfVt+xREl3/X7t8UEhsyDcP6BJcVC9ts1csu8a7RlTTzYoP2LJZAEZKQY1a0WWh5JQ5
+         Z/hhUgJs1Ofz6r96/QC6HkV6IoAe7rgEQCu/ukcksqJk55C725VVAa2uGBVI1b2GweXS
+         FYiNPot8wRmd1/q3QWV1cL7loI/RwO4nJ+Kmui9HhxOJCO3y6lST1Gye7x0hPqArEo+y
+         hxPP97+Y5pxPpsTaqE3eJs+RIWvW3RQqu5ev1FzV57kh9ZDVTMX4m5uw+dFndoI4WbXF
+         bxng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762764327; x=1763369127;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=QzsbNcBLm2Xpzoo9GhZtU8EgZBenA7zGN5vz1SKOorc=;
+        b=YouhRKUnJXNJTXQraYGo8HP5YhsbwBV94p9ADwgqhJPDL8n1HRg+0uGfrg8JdhQiRJ
+         xrLi1MRzCgA0cQ7grZZRoUgDEJVk7DuclaxeKiALACoSZGBmjQ4FBz//zOeZ7IQHvY/m
+         pFpwkj8CTulodfD+0xKArlH7lRPM/30g7ADy1C7bGuWIJoMwT1IrWNfrRtIRmSHWPPO1
+         tWsV7bWDe3Ce0mSx6f3dPN2wQ+4FMiGml/ok8JjwDfj7lQEYccBdvSTpzX/qPrMvhg9p
+         C6AtXAtUf1WySMetGqMUe18+zrxQARR9o/59iTVphhCksEM2GAGr1T1S/lVkU83OA+TW
+         X+lg==
+X-Forwarded-Encrypted: i=1; AJvYcCVDo6i11yIAIVOKDbTq37uQNv+5XnEm7OP29t9oDU30wZZ9OfsB+yjvYXoX8i4Jxl6b7qI9jHIH44Nm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/yJuJOau+faJ1OS7CrP2e874S7fu0gXB6YZ3/xzwsNFPRjQaK
+	cBOhW9nEZIj3fx1rcUWBRYdr8q8iGocEV4Ik4qZficth9pvF2o4b9864fEPNrAuFWWLOCEqZqp/
+	18H9pST8qVjtFsLAuiese/CJfXD+YF24=
+X-Gm-Gg: ASbGnctHMLUqA1UhrzVCBq6MXz+wjIRtFPGusw/v9vQvV89N3oKHYbTwup6PWsjlXV3
+	o6XTUIpfHiYla4RWrQwJWsLlg3fniSmELzvQwVk9/PL1VeqLnFqNbGfMjgiQwlLhBFyizB3nRp9
+	RE+u2C9l51A45JPHdSzBPHFBFW7VDeq1JToDdIpjnK43HmlNrXVtdrXfCuvzKwMQiMiUVXS7Cth
+	tgwwhsNt0VZMVQGjqKhqf15Udqz0NumRMrJc+PlHeIn5J8tsePWGmZiOvb8Kw==
+X-Google-Smtp-Source: AGHT+IEuMmt95Cqu+sfIrJi6S6D7HS6xkJqyIluRYQtiIAhynzSXoHyExqFSloU7VZgk7jYy2QP8ya0HfQIfaqMhb1o=
+X-Received: by 2002:a05:690c:4d41:b0:786:9774:a39c with SMTP id
+ 00721157ae682-787d5376709mr69585247b3.9.1762764326984; Mon, 10 Nov 2025
+ 00:45:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13c43edb-9592-4779-a39a-7856bb0f964d@collabora.com>
+References: <20251015-tja1145-support-v4-0-4d3ca13c8881@liebherr.com> <20251015-tja1145-support-v4-2-4d3ca13c8881@liebherr.com>
+In-Reply-To: <20251015-tja1145-support-v4-2-4d3ca13c8881@liebherr.com>
+From: Luoxi Li <lee.lockhey@gmail.com>
+Date: Mon, 10 Nov 2025 16:45:15 +0800
+X-Gm-Features: AWmQ_bkMNQv3RkM-zo57uNjTl11Gs6OZU97cOXivYKBV4sePGC3_nO_h8CxXLhE
+Message-ID: <CAL7siYPsuB3g1-KRkjJx00Yhg6ZjOvyvv5H=8bo53bV9N21E3g@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] phy: add basic support for NXPs TJA1145 CAN transceiver
+To: dimitri.fedrau@liebherr.com
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>, Marc Kleine-Budde <mkl@pengutronix.de>, linux-can@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Michael, Laurent,
+I tested in ST platform. Now everything works. Thank you!
 
-On Fri, Nov 07, 2025 at 09:51:37PM +0100, Michael Riesch wrote:
-> Hi Laurent,
-> 
-> On 11/7/25 19:54, Laurent Pinchart wrote:
-> > On Fri, Nov 07, 2025 at 07:41:59PM +0100, Michael Riesch wrote:
-> >> On 11/7/25 18:32, Sakari Ailus wrote:
-> >>> On Fri, Oct 24, 2025 at 02:51:29PM +0200, Michael Riesch via B4 Relay wrote:
-> >>>> Habidere,
-> >>>>
-> >>>> This series introduces support for the Rockchip Camera Interface (CIF),
-> >>>> which is featured in many Rockchip SoCs in different variations.
-> >>>> For example, the PX30 Video Input Processor (VIP) is able to receive
-> >>>> video data via the Digital Video Port (DVP, a parallel data interface)
-> >>>> and transfer it into system memory using a double-buffering mechanism
-> >>>> called ping-pong mode.
-> >>>> The RK3568 Video Capture (VICAP) unit, on the other hand, features a
-> >>>> DVP and a MIPI CSI-2 receiver that can receive video data independently
-> >>>> (both using the ping-pong scheme).
-> >>>> The different variants may have additional features, such as scaling
-> >>>> and/or cropping.
-> >>>> Finally, the RK3588 VICAP unit constitutes an essential piece of the
-> >>>> camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
-> >>>> units, and a data path multiplexer (to scaler units, to ISP, ...).
-> >>>
-> >>> I understand both RK3568 and RK3588 include an ISP. Do you have insight on
-> >>> how would this work, should the support for the ISP be added later on?
-> >>
-> >> Short answer: Yes and yes.
-> >>
-> >> Long answer:
-> >>
-> >> The patch series at hand adds support for the PX30 VIP and the RK3568
-> >> VICAP. I cannot really say something about the PX30, but on the RK3568
-> >> VICAP and ISP are orthogonal (the ISP features its own MIPI CSI-2
-> >> receiver, different from that introduced in this series). Thus, ISP
-> >> support can be introduced anytime (whenever someone is motivated ;-)).
-> > 
-> > Won't they both be connected to the same sensor though, and probably the
-> > same D-PHY in the SoC ? They don't seem entirely separate to me.
-> 
-> The MIPI CSI-2 DPHY is shared, indeed. Thus, they *maybe technically
-> could be* connected to the same sensor, but I don't know whether that
-> works and fail to see why anyone would to such a thing (if it is about
-> raw capture, the MIPI CSI-2 receiver in the ISP can do that on its own).
-> 
-> The DPHY can be operated in split mode, with two lanes for VICAP and two
-> lanes for ISP. This is not implemented yet, but can be done at a later
-> stage on PHY level (not media related). In this case, ISP and VICAP can
-> receive data from different subdevices via CSI-2.
+Tested-By: <lee.lockhey@gmail.com>
 
-The two would be part of the same media graph in that case and as there are
-two CSI-2 receivers and a single PHY, the PHY would probably need to have a
-sub-device as well, to allow link configuration to be used to select where
-the PHY is connected.
+    --
+    With Best Regards,
+    Lockhey Lee
 
-I don't think we have such a setup elsewhere, and supporting this would
-require changes in the MC framework.
+On Wed, Oct 15, 2025 at 3:37=E2=80=AFPM Dimitri Fedrau via B4 Relay
+<devnull+dimitri.fedrau.liebherr.com@kernel.org> wrote:
+>
+> From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+>
+> Add basic driver support for NXPs TJA1145 CAN transceiver which brings th=
+e
+> PHY up/down by switching to normal/standby mode using SPI commands.
+>
+> Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> ---
+>  drivers/phy/Kconfig           |  10 +++
+>  drivers/phy/Makefile          |   1 +
+>  drivers/phy/phy-nxp-tja1145.c | 184 ++++++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 195 insertions(+)
+>
+> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> index 678dd0452f0aa0597773433f04d2a9ba77474d2a..2f2c8f29cce2beb20c584adfe=
+8acfe23de14e128 100644
+> --- a/drivers/phy/Kconfig
+> +++ b/drivers/phy/Kconfig
+> @@ -101,6 +101,16 @@ config PHY_NXP_PTN3222
+>           schemes. It supports all three USB 2.0 data rates: Low Speed, F=
+ull
+>           Speed and High Speed.
+>
+> +config PHY_NXP_TJA1145
+> +       tristate "NXP TJA1145 CAN transceiver PHY"
+> +       select GENERIC_PHY
+> +       select REGMAP_SPI
+> +       depends on SPI
+> +       help
+> +         This option enables support for NXPs TJA1145 CAN transceiver as=
+ a PHY.
+> +         This driver provides function for putting the transceiver in va=
+rious
+> +         functional modes using SPI commands.
+> +
+>  source "drivers/phy/allwinner/Kconfig"
+>  source "drivers/phy/amlogic/Kconfig"
+>  source "drivers/phy/broadcom/Kconfig"
+> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
+> index bfb27fb5a494283d7fd05dd670ebd1b12df8b1a1..48eac644d1e2b20f986f80de9=
+5b40c26d080358b 100644
+> --- a/drivers/phy/Makefile
+> +++ b/drivers/phy/Makefile
+> @@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)          +=3D phy-snps-eus=
+b2.o
+>  obj-$(CONFIG_USB_LGM_PHY)              +=3D phy-lgm-usb.o
+>  obj-$(CONFIG_PHY_AIROHA_PCIE)          +=3D phy-airoha-pcie.o
+>  obj-$(CONFIG_PHY_NXP_PTN3222)          +=3D phy-nxp-ptn3222.o
+> +obj-$(CONFIG_PHY_NXP_TJA1145)          +=3D phy-nxp-tja1145.o
+>  obj-y                                  +=3D allwinner/   \
+>                                            amlogic/     \
+>                                            broadcom/    \
+> diff --git a/drivers/phy/phy-nxp-tja1145.c b/drivers/phy/phy-nxp-tja1145.=
+c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..56b5b47f6eb23945d9116c41a=
+25d9b6daccdcefa
+> --- /dev/null
+> +++ b/drivers/phy/phy-nxp-tja1145.c
+> @@ -0,0 +1,184 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2025 Liebherr-Electronics and Drives GmbH
+> + */
+> +#include <linux/bitfield.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <linux/phy/phy.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#define TJA1145_MODE_CTRL              0x01
+> +#define TJA1145_MODE_CTRL_MC           GENMASK(2, 0)
+> +#define TJA1145_MODE_CRTL_STBY         BIT(2)
+> +#define TJA1145_MODE_CRTL_NORMAL       TJA1145_MODE_CTRL_MC
+> +
+> +#define TJA1145_CAN_CTRL               0x20
+> +#define TJA1145_CAN_CTRL_CMC           GENMASK(1, 0)
+> +#define TJA1145_CAN_CTRL_ACTIVE                BIT(1)
+> +
+> +#define TJA1145_IDENT                  0x7e
+> +#define TJA1145_IDENT_TJA1145T         0x70
+> +
+> +#define TJA1145_SPI_READ_BIT           BIT(0)
+> +#define TJA1145T_MAX_BITRATE           1000000
+> +
+> +static int tja1145_phy_power_on(struct phy *phy)
+> +{
+> +       struct regmap *map =3D phy_get_drvdata(phy);
+> +       int ret;
+> +
+> +       /*
+> +        * Switch operating mode to normal which is the active operating =
+mode.
+> +        * In this mode, the device is fully operational.
+> +        */
+> +       ret =3D regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_C=
+TRL_MC,
+> +                                TJA1145_MODE_CRTL_NORMAL);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /*
+> +        * Switch to CAN operating mode active where the PHY can transmit=
+ and
+> +        * receive data.
+> +        */
+> +       return regmap_update_bits(map, TJA1145_CAN_CTRL, TJA1145_CAN_CTRL=
+_CMC,
+> +                                 TJA1145_CAN_CTRL_ACTIVE);
+> +}
+> +
+> +static int tja1145_phy_power_off(struct phy *phy)
+> +{
+> +       struct regmap *map =3D phy_get_drvdata(phy);
+> +
+> +       /*
+> +        * Switch to operating mode standby, the PHY is unable to transmi=
+t or
+> +        * receive data in standby mode.
+> +        */
+> +       return regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_CT=
+RL_MC,
+> +                                 TJA1145_MODE_CRTL_STBY);
+> +}
+> +
+> +static const struct phy_ops tja1145_phy_ops =3D {
+> +       .power_on =3D tja1145_phy_power_on,
+> +       .power_off =3D tja1145_phy_power_off,
+> +};
+> +
+> +static const struct regmap_range tja1145_wr_holes_ranges[] =3D {
+> +       regmap_reg_range(0x00, 0x00),
+> +       regmap_reg_range(0x02, 0x03),
+> +       regmap_reg_range(0x05, 0x05),
+> +       regmap_reg_range(0x0b, 0x1f),
+> +       regmap_reg_range(0x21, 0x22),
+> +       regmap_reg_range(0x24, 0x25),
+> +       regmap_reg_range(0x30, 0x4b),
+> +       regmap_reg_range(0x4d, 0x60),
+> +       regmap_reg_range(0x62, 0x62),
+> +       regmap_reg_range(0x65, 0x67),
+> +       regmap_reg_range(0x70, 0xff),
+> +};
+> +
+> +static const struct regmap_access_table tja1145_wr_table =3D {
+> +       .no_ranges =3D tja1145_wr_holes_ranges,
+> +       .n_no_ranges =3D ARRAY_SIZE(tja1145_wr_holes_ranges),
+> +};
+> +
+> +static const struct regmap_range tja1145_rd_holes_ranges[] =3D {
+> +       regmap_reg_range(0x00, 0x00),
+> +       regmap_reg_range(0x02, 0x02),
+> +       regmap_reg_range(0x05, 0x05),
+> +       regmap_reg_range(0x0b, 0x1f),
+> +       regmap_reg_range(0x21, 0x21),
+> +       regmap_reg_range(0x24, 0x25),
+> +       regmap_reg_range(0x30, 0x4a),
+> +       regmap_reg_range(0x4d, 0x5f),
+> +       regmap_reg_range(0x62, 0x62),
+> +       regmap_reg_range(0x65, 0x67),
+> +       regmap_reg_range(0x70, 0x7d),
+> +       regmap_reg_range(0x7f, 0xff),
+> +};
+> +
+> +static const struct regmap_access_table tja1145_rd_table =3D {
+> +       .no_ranges =3D tja1145_rd_holes_ranges,
+> +       .n_no_ranges =3D ARRAY_SIZE(tja1145_rd_holes_ranges),
+> +};
+> +
+> +static const struct regmap_config tja1145_regmap_config =3D {
+> +       .reg_bits =3D 8,
+> +       .reg_shift =3D -1,
+> +       .val_bits =3D 8,
+> +       .wr_table =3D &tja1145_wr_table,
+> +       .rd_table =3D &tja1145_rd_table,
+> +       .read_flag_mask =3D TJA1145_SPI_READ_BIT,
+> +       .max_register =3D TJA1145_IDENT,
+> +};
+> +
+> +static int tja1145_check_ident(struct device *dev, struct regmap *map)
+> +{
+> +       unsigned int val;
+> +       int ret;
+> +
+> +       ret =3D regmap_read(map, TJA1145_IDENT, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (val !=3D TJA1145_IDENT_TJA1145T) {
+> +               dev_err(dev, "Expected device id: 0x%02x, got: 0x%02x\n",
+> +                       TJA1145_IDENT_TJA1145T, val);
+> +               return -ENODEV;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int tja1145_probe(struct spi_device *spi)
+> +{
+> +       struct phy_provider *phy_provider;
+> +       struct device *dev =3D &spi->dev;
+> +       struct regmap *map;
+> +       struct phy *phy;
+> +       int ret;
+> +
+> +       map =3D devm_regmap_init_spi(spi, &tja1145_regmap_config);
+> +       if (IS_ERR(map))
+> +               return dev_err_probe(dev, PTR_ERR(map), "failed to init r=
+egmap\n");
+> +
+> +       ret =3D tja1145_check_ident(dev, map);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "failed to identify device=
+\n");
+> +
+> +       phy =3D devm_phy_create(dev, dev->of_node, &tja1145_phy_ops);
+> +       if (IS_ERR(phy))
+> +               return dev_err_probe(dev, PTR_ERR(phy), "failed to create=
+ PHY\n");
+> +
+> +       phy->attrs.max_link_rate =3D TJA1145T_MAX_BITRATE;
+> +       phy_set_drvdata(phy, map);
+> +       phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple=
+_xlate);
+> +
+> +       return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +static const struct spi_device_id tja1145_spi_id[] =3D {
+> +       { "tja1145" },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(spi, tja1145_spi_id);
+> +
+> +static const struct of_device_id tja1145_of_match[] =3D {
+> +       { .compatible =3D "nxp,tja1145" },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, tja1145_of_match);
+> +
+> +static struct spi_driver tja1145_driver =3D {
+> +       .driver =3D {
+> +               .name =3D "tja1145",
+> +               .of_match_table =3D tja1145_of_match,
+> +       },
+> +       .probe =3D tja1145_probe,
+> +       .id_table =3D tja1145_spi_id,
+> +};
+> +module_spi_driver(tja1145_driver);
+> +
+> +MODULE_DESCRIPTION("NXP TJA1145 CAN transceiver PHY driver");
+> +MODULE_AUTHOR("Dimitri Fedrau <dimitri.fedrau@liebherr.com>");
+> +MODULE_LICENSE("GPL");
+>
+> --
+> 2.39.5
+>
+>
+>
 
-How does the media graph look like for the device at the moment?
 
-> 
-> BTW the ISP is able to process the data captured by VICAP, but
-> apparently this includes a RAM round trip (VICAP captures to memory, ISP
-> operates in mem2mem mode).
-> 
-> > A block diagram that shows connections between the CSI-2 pins, D-PHY,
-> > CSI-2 receivers, VICAP and ISP could help.
-> > 
-> >> Once this patch series is merged, I'll push out changes that introduce
-> >> support for the RK3588 VICAP. We can discuss the integration of any
-> >> RK3588 ISP in this scope then -- and there may be some things to discuss
-> >> as there the VICAP and the ISP(s) are directly connected by means of a
-> >> MUX unit in the VICAP.
-> >>
-> >> Alright?
-> > 
-
--- 
-Kind regards,
-
-Sakari Ailus
+--
 
