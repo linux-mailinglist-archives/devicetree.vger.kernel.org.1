@@ -1,256 +1,115 @@
-Return-Path: <devicetree+bounces-236939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23594C497C3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 23:07:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9DFC49932
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 23:32:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 213D74EE071
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:06:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 95D6F4F2986
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090522F693C;
-	Mon, 10 Nov 2025 22:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30373019CE;
+	Mon, 10 Nov 2025 22:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="Z1NBuBm8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NGE+TXPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rusty.tulip.relay.mailchannels.net (rusty.tulip.relay.mailchannels.net [23.83.218.252])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5BA42F291B;
-	Mon, 10 Nov 2025 22:06:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.252
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762812417; cv=pass; b=LX9n1KAmKhjcDoklL5ANrjobsUdQUkmqZWBEKeokgfFQyXxvM7z54ECAwpbjcRQCoXwrOBIQrGPGH3fuzRqjtXudOiqZC8UAdyVfCxJTkYPENUf2twhOUI1zq0qFFGsr11UGTvzEADB3NwvTIM9/IylvdZLEeagDwvTdJa8k1NA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762812417; c=relaxed/simple;
-	bh=LScC7KbySktlhyWc8QzWuaJL1BV1VNB3Fzub7Zg8vxA=;
-	h=From:To:Cc:Subject:Message-ID:In-Reply-To:References:MIME-Version:
-	 Date; b=NinTF0onVkwkH66cvxbTfjK/l1bVKiNT5nuh3zX0KGYYjCQKtdymbzKD1U6wMpH6NgL1nzp7hZYMaQxE1fbNRxsCC5OZoFLUGSAALgrO6ahT2vFge5N1MztrnVV0HQJRHjokuAScKGA2z1yHvj/eY3sANlDe5TJNZW2mwkpoq/g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=Z1NBuBm8; arc=pass smtp.client-ip=23.83.218.252
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 207CD161A51;
-	Mon, 10 Nov 2025 22:06:55 +0000 (UTC)
-Received: from fr-int-smtpout26.hostinger.io (trex-green-9.trex.outbound.svc.cluster.local [100.124.161.181])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id B1083161925;
-	Mon, 10 Nov 2025 22:06:52 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1762812414; a=rsa-sha256;
-	cv=none;
-	b=jNJG1q+L+SRks5GOz39k67OP4yFJT94cFmPAG5lAtKULpaF6+5ggXv1TQGW2syQUk30qvk
-	J6iI9KBzFxkqynyV96wTDzZESrBgJf6q0pemz8xdZ4AS2hS8F7+UxUyaQQLYEiU3vDaOO6
-	LK3i+TjF82vU2hwvrbGqH5Lsft5PnoF5XWgfvnVSlY0Ziux5AokW7uoVV4xafw1HGIqBdK
-	ctrvro9gHSlpfm5JSDRcshMTOWp7Sx+lkSKJatl10+HWqZev8oh2HYnERn9wdkNvVyLuGd
-	FJ0uBgMlqn0hnELDn3T6FCdNltVH+Ixy84OM9QGTDnjyAifAGJra/h+tkd7o6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1762812414;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Mg5JZD6BNpU/K0I63m6EJYff359L/0jj4o7n86WLhVI=;
-	b=A/VurjAqFrBSjb531ID2BFrwUzAzdevDmP4R196Q11ezyUPcw91e7luNTXoiQXwbqaWK60
-	wK/q0I/j/2IJsmsMJGWV0HTL/lNFqks0jPEuomPUlFh/TaiQyLJVQSfomtO15DrU+mM2vs
-	wKvF9j33KR4GzQAmz2GRlGesI/wZgNXBDELAbmRk/vDwqfhGs0+TqwuzrdvlBGqEWCQPFz
-	MmXzHt0aTl9eZkvxbJAkcQXjoEEEAUWF+r2r/h5rSlhnuujA5BVX0YWOCTfC0r/LS4sAUG
-	LdqTZZczjR+ubS1eEv0JO1b85VMXLtapCKa15s9opJlxopqcgpu6jh6PVIPISA==
-ARC-Authentication-Results: i=1;
-	rspamd-77bb85d8d5-8r9nj;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Trail-Squirrel: 5496329a39398fab_1762812415040_2059087144
-X-MC-Loop-Signature: 1762812415040:854549598
-X-MC-Ingress-Time: 1762812415040
-Received: from fr-int-smtpout26.hostinger.io (fr-int-smtpout26.hostinger.io
- [148.222.54.11])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.124.161.181 (trex/7.1.3);
-	Mon, 10 Nov 2025 22:06:55 +0000
-Received: from localhost.localdomain (unknown [IPv6:2001:861:4450:d360:31e9:b9de:fe42:7704])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d53ff2Zb5z1yQg;
-	Mon, 10 Nov 2025 22:06:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1762812410;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mg5JZD6BNpU/K0I63m6EJYff359L/0jj4o7n86WLhVI=;
-	b=Z1NBuBm8Oyu3ZPQe3iqQErofO1s0BGgoQf+Kq3Q/gyM5N2sJvy1/YetaMDKhpelU4o6Z+U
-	9/eONoj0wGBnn9AIrnz/TW/kLsxj42x7+OP7f8YTevuIa44TGB+pjX9vvdlm0PJ+viiJ9J
-	OhEvx6J0hzh7xI2Fk5lKzvUEKv9uIFPPHSXnVLbKKjfcIAIHUk0ZCiMYXKcRfKHIhSCk5Q
-	dpa2k9UpQINSlOCnu+PMNDE7wp8puzM+1FSBNQj+Um+XhY4d8gdMWsEH5r9Ictt8o22l+/
-	H8VbN3VFQ8kb23zoPBzlpT0kkLlhWX0wgPDf7foROuvRCp3pGkF5P52dNF4Qwg==
-From: michael.opdenacker@rootcommit.com
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] riscv: dts: spacemit: Add OrangePi R2S board device tree
-Message-ID: <20251110220641.1751392-3-michael.opdenacker@rootcommit.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251110220641.1751392-1-michael.opdenacker@rootcommit.com>
-References: <20251110220641.1751392-1-michael.opdenacker@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C072F659C
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 22:25:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762813507; cv=none; b=QgnEaHne8g3gZwIUXjTFojOvdd2umF6aAP7M/1zgazpMRgDB9+1E/Pjhf0O8fxs35Q9Za0pnl/G6fge3fXq59otix6BXi1hA39gLCjjdj/mqwNuyFZbzohws2Hc8hfKtkbaIEUeoB3tpofH5eJkBsB95cqjGd7etLCX4vMJvSOM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762813507; c=relaxed/simple;
+	bh=lbYOlnC3WJYLBwDfb+oYRZV/rKekA5V2jSftip3URFc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mUbuuhCTkSnBvK2Ur/miLbxlnPpb+8FDwAdLKIzq++43kZFdsgqXt0vvze1/5mBVKGJywf796NFA1XNuLjlk1HyFFUiKATdyF99AWEvDGqus5DFM0kRIeBx/wOg6x+GN3GFOdFLRV7OCuCOdGFkvDQb6Hf/5+2qhLr7kOExRtJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NGE+TXPc; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5943b7bdc37so214719e87.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:25:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762813504; x=1763418304; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tkykz3S1CyycQbNzf0lzIqKhpFUnZB571m9tUf64HTs=;
+        b=NGE+TXPct30zyW7TAFUMXCRFW+JBU/5Nyd1usdotgrc/8g+kkFwv2wiOsh2VzadjtC
+         IDDhl69dnhFVPXphMxO6/Tat1Rj4WeqmvZeGSI/uf7G+hC1+rvp2RxzupvSVwLpnUXvr
+         xvqKv0ESYra6Unt5AzLLFRP7NHM/jJ49ko7VJSvn7x0+fONODNhOuxz8W57JpVLfxCpA
+         CdPukyJyGqqDzyjowjqJG5d8Sk5wIN7RmVi/6nxBrHkbHd1wnWMEQG8EVrEZaJFAvW5U
+         MrC2T4tVAoqU8DPGJqtaJ3O8NWIIJ0p8E91j6Unn8vLNRBWtrVQ5GZOfk6kEbDvKAUx/
+         nQLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762813504; x=1763418304;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tkykz3S1CyycQbNzf0lzIqKhpFUnZB571m9tUf64HTs=;
+        b=i1YtFoUehdUj8TOVY/WHC/WJSzJPlpQY9sip6tW6sNCycC7ppkIr8F3g/xJAtfosdy
+         O3Y2oqMS7F+KuKcmVSLgcv91mELPiYOtjHhGs0SBuoB3/VhxojuP3l0VvlAtdOWKzZl6
+         B0NSiAwGdrraUcbhM4SWFih1bRdFjULrflhJ6Coov2bZJkYGoSJ0JkZukR74iFb6MKrt
+         713fLPYnLy8PLOs+zKlH/6BsF7/LoITs1NiZciyPOHe59vIx9udRVDuY9XxCyc7jG8pX
+         8ni/LbSt2nPXFPftU28cJEI6l+1mXrGZoxj7gI8kGPLHf64dJigQNPbnKh2W8/qDPRrh
+         SSJg==
+X-Forwarded-Encrypted: i=1; AJvYcCU1Ek487S6YwpigSQKH/Y/5XvL/f6ujEJqU2IuRGnIZapYlpMSDuSWzbt+8KfyBeiAqKOHczga9bP+H@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmEPS3XCdNBR1sxlNwlqGF3CrL30m9/MWb0TKYMe6CpC1P1fYU
+	KVw5p1GafO5uDYm73mNoWEFYQL3dRT//77X0O+H8QJaoAH57DABakIc2jVl2oWVi92koM6O796A
+	v8kjzGUJiBLs9GPUG/YnCFIy60RvLKatozMTuUsr3gg==
+X-Gm-Gg: ASbGncvowof+vwaMQhRCZq3QGBvpMxo/D7093DGFYsS4Ej9FHZXDvMqTMeccIaBBgt6
+	ofHdcfoQYFdEjmBkqM+ZCtzrCoviJqZlUurNruSRhiL8ikW0CVoiesWW5+i0pghqM6GqDr27sjV
+	WekSzYNJp+eXmCpC2Im2aKwL+sDgx/Ezs/6F3LLz5PufEzchnREMnejE8MZ5k+lf09dKik46hWD
+	7bBPUGOi6n+QJipZax1HKE+2wX6+udrOZTp2Gz5h0wrUTK6JLRcUwxO3Kg4
+X-Google-Smtp-Source: AGHT+IH/bobBHFWFdtH9zZZK7pDa53PdeYG6iIiYCN8HDJy4OkCpiUpXjuiD4ZHFmsvNrZImVkrpEn3cIhnyZOsajDU=
+X-Received: by 2002:a05:6512:3408:b0:594:2c42:abd4 with SMTP id
+ 2adb3069b0e04-594745a4d40mr256456e87.5.1762813504005; Mon, 10 Nov 2025
+ 14:25:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Date: Mon, 10 Nov 2025 22:06:50 +0000 (UTC)
-X-CM-Envelope: MS4xfP3Q4WNBpiDRsdhHInwiObK+Gr6NxnwTGnrA5mZIDsJ87EnQeurXIuF3jEke7Nc3BM5GZHSZ/ZL9hsCzdSuNxeMwmrTB8CIwMABtH9GxFE2uR4zMZ8Aq /XsT29QMD7zcZn+x125X+x1/bSjMB0BluHq2vMBAg5g5/fNteP/NgSron+b8vw6yRghg4CHYSsJlQ7vGEP0OPm4C0IyY8iGJG/keS09ZE53gu+riim6jFyVk +OsgMEGXbuuc6Xs/DYqRPe5lDvGIeuKOIERGrlevVbtGUdom3ySitSCl8/JAYE2e66okR5aZFf4YN2YagtYkY0S05Sjew0JLBptkfEeHi/Fw6Db/tbiR5q4y IzsUyTBoU5SnPvW6cnETm2y6UDrVFESLZ2GIwHYBA4RgpB717sQnyz2GGX2lOTD6maTn47WaBmMgYYD7ymFOQkHBIS8GTlYKdyjuQgO5/BfjP95BZNHB88Ha U9EyR9z1ltYSE/4cH1rrW3rOunaVZAmQ94d5RsBTRat/lB65rm4y2ZpRYmQOCH3tIBnuFoSgsETaNH7NyZPHJm2AEvb5+k3kc3mwzRWruj04NiCAtgs0sZ9T L4cRJoR/SuNyHSM8HhzRrLL/95mljnxVRv5dQKF80VptXQhM6uq0Qgl92pJDshDOv2sS3Z3MvRrE8yhanlQWAwCgdoJ1K67jAX1G00kaNu5JIg==
-X-CM-Analysis: v=2.4 cv=Lflu6Sfi c=1 sm=1 tr=0 ts=691261fa a=6hOvbz5PeP13GDnUra1LTQ==:617 a=xqWC_Br6kY4A:10 a=5dAzR5NRAAAA:8 a=lv0vYI88AAAA:8 a=d70CFdQeAAAA:8 a=MVgXUy26Hj1uv-KAJh8A:9 a=9STjDIb-X-UA:10 a=ZKAZAlVgJm32z6MX8p4a:22 a=9qqun4PRrEabIEPCFt1_:22 a=NcxpMcIZDGm-g932nG_k:22
-X-AuthUser: michael.opdenacker@rootcommit.com
+References: <20251104021223.2375116-1-ye.zhang@rock-chips.com>
+In-Reply-To: <20251104021223.2375116-1-ye.zhang@rock-chips.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 10 Nov 2025 23:24:52 +0100
+X-Gm-Features: AWmQ_bnqL4tp4-XtSfjpF2SJDcbcu-l1tzSoL6TKzmSJf79bXaH7H2zLWLM2NeI
+Message-ID: <CACRpkdaR=_K-hewNne2fPN=RKu7iyOe0gLYhMEBfQVvemJJuoQ@mail.gmail.com>
+Subject: Re: [PATCH v1 0/3] pinctrl: rockchip: Add RK3506 pinctrl support
+To: Ye Zhang <ye.zhang@rock-chips.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	tao.huang@rock-chips.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+On Tue, Nov 4, 2025 at 3:12=E2=80=AFAM Ye Zhang <ye.zhang@rock-chips.com> w=
+rote:
 
-Add initial device tree support for the OrangePi RV2 board [1], which is
-marketed as using the Ky X1 SoC but has been confirmed to be
-identical to the SpacemiT K1 [2].
+> This series adds pinctrl support for the Rockchip RK3506 SoC.
+>
+> The series includes:
+> - RK3506 pinctrl driver implementation
+> - RMIO (Rockchip Matrix I/O) support for RK3506
+>
+> Ye Zhang (3):
+>   dt-bindings: pinctrl: Add rk3506 pinctrl support
+>   pinctrl: rockchip: Add rk3506 pinctrl support
 
-Enable UART0, to boot into a serial console
+Since we have consensus on these two patches I applied them!
 
-Two Gigabit Ethernet ports with RGMII interface standard support
-are enabled, each port is connected to an external
-Motorcomm YT8531C PHY chip which uses the GPIO for reset control.
+>   pinctrl: rockchip: add rk3506 rmio support
 
-Enable PDMA.
+Now you only need to discuss this with Heiko and iterate it.
 
-Enable 8 GB eMMC chip for storage.
-
-Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-R2S.html [1]
-Link: https://www.spacemit.com/en/key-stone-k1 [2]
-Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
----
- arch/riscv/boot/dts/spacemit/Makefile         |  1 +
- .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 90 +++++++++++++++++++
- 2 files changed, 91 insertions(+)
- create mode 100644 arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-
-diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-index 942ecb38bea0..96b3a13a3944 100644
---- a/arch/riscv/boot/dts/spacemit/Makefile
-+++ b/arch/riscv/boot/dts/spacemit/Makefile
-@@ -3,3 +3,4 @@ dtb-$(CONFIG_ARCH_SPACEMIT) += k1-bananapi-f3.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
-+dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-r2s.dtb
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-new file mode 100644
-index 000000000000..58098c4a2aab
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Michael Opdenacker <michael.opdenacker@rootcommit.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "k1.dtsi"
-+#include "k1-pinctrl.dtsi"
-+
-+/ {
-+	model = "OrangePi R2S";
-+	compatible = "xunlong,orangepi-r2s", "spacemit,k1";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &eth0;
-+		ethernet1 = &eth1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	phy-handle = <&rgmii1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <250>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(115) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii1: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&pdma {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_2_cfg>;
-+	status = "okay";
-+};
+Yours,
+Linus Walleij
 
