@@ -1,369 +1,233 @@
-Return-Path: <devicetree+bounces-236564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D96DC45690
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:45:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C887C456BD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:47:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9FAE3A4646
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:45:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3276B3A5527
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:47:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB0D2EBBB2;
-	Mon, 10 Nov 2025 08:45:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0512FCC06;
+	Mon, 10 Nov 2025 08:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VlcVhNfb"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="BDtCGnSP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EC02F39BF
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 08:45:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762764330; cv=none; b=N2skzCeTv/HwyiHXbplWx42FokJOKv/TTuWWsSKClBytXmTEiwdI5g8R/EIQqvLVUZJUuoaG6NNeKsfEDa42lC2wHEH3XCKW26M2TzcMfscsXdZI3P0xvs8DHdxlQvlGJd7NURbFo2m3LgM2rTbapzvpaoUQLiAxCY12f7R/Ohc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762764330; c=relaxed/simple;
-	bh=zqKdTXLiwN0fcb7WkcsKTjqpng93a7VC/tOEh4dTlmU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cEpIHyeVxVaP46jy4QqsibbtadPw10XitJgqahQBGU4esxhuY2vbTooPzPfThrDnIlFTSqYJN3iJnxNHj7iVUrDy6AwlqMP+putfuwcydANYQUEdP/GlFx1/+uEDaF5c948dJNo9fNiTTwKppb9mjEBs83qum5237ypU7gFhjlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VlcVhNfb; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-786a822e73aso28475657b3.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 00:45:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762764327; x=1763369127; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QzsbNcBLm2Xpzoo9GhZtU8EgZBenA7zGN5vz1SKOorc=;
-        b=VlcVhNfbwG02XDd8pIzOT6lfy9kujYyzs49ItLwNIvOamRGuW39FihYbmOdps3lctC
-         kcfVt+xREl3/X7t8UEhsyDcP6BJcVC9ts1csu8a7RlTTzYoP2LJZAEZKQY1a0WWh5JQ5
-         Z/hhUgJs1Ofz6r96/QC6HkV6IoAe7rgEQCu/ukcksqJk55C725VVAa2uGBVI1b2GweXS
-         FYiNPot8wRmd1/q3QWV1cL7loI/RwO4nJ+Kmui9HhxOJCO3y6lST1Gye7x0hPqArEo+y
-         hxPP97+Y5pxPpsTaqE3eJs+RIWvW3RQqu5ev1FzV57kh9ZDVTMX4m5uw+dFndoI4WbXF
-         bxng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762764327; x=1763369127;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=QzsbNcBLm2Xpzoo9GhZtU8EgZBenA7zGN5vz1SKOorc=;
-        b=YouhRKUnJXNJTXQraYGo8HP5YhsbwBV94p9ADwgqhJPDL8n1HRg+0uGfrg8JdhQiRJ
-         xrLi1MRzCgA0cQ7grZZRoUgDEJVk7DuclaxeKiALACoSZGBmjQ4FBz//zOeZ7IQHvY/m
-         pFpwkj8CTulodfD+0xKArlH7lRPM/30g7ADy1C7bGuWIJoMwT1IrWNfrRtIRmSHWPPO1
-         tWsV7bWDe3Ce0mSx6f3dPN2wQ+4FMiGml/ok8JjwDfj7lQEYccBdvSTpzX/qPrMvhg9p
-         C6AtXAtUf1WySMetGqMUe18+zrxQARR9o/59iTVphhCksEM2GAGr1T1S/lVkU83OA+TW
-         X+lg==
-X-Forwarded-Encrypted: i=1; AJvYcCVDo6i11yIAIVOKDbTq37uQNv+5XnEm7OP29t9oDU30wZZ9OfsB+yjvYXoX8i4Jxl6b7qI9jHIH44Nm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/yJuJOau+faJ1OS7CrP2e874S7fu0gXB6YZ3/xzwsNFPRjQaK
-	cBOhW9nEZIj3fx1rcUWBRYdr8q8iGocEV4Ik4qZficth9pvF2o4b9864fEPNrAuFWWLOCEqZqp/
-	18H9pST8qVjtFsLAuiese/CJfXD+YF24=
-X-Gm-Gg: ASbGnctHMLUqA1UhrzVCBq6MXz+wjIRtFPGusw/v9vQvV89N3oKHYbTwup6PWsjlXV3
-	o6XTUIpfHiYla4RWrQwJWsLlg3fniSmELzvQwVk9/PL1VeqLnFqNbGfMjgiQwlLhBFyizB3nRp9
-	RE+u2C9l51A45JPHdSzBPHFBFW7VDeq1JToDdIpjnK43HmlNrXVtdrXfCuvzKwMQiMiUVXS7Cth
-	tgwwhsNt0VZMVQGjqKhqf15Udqz0NumRMrJc+PlHeIn5J8tsePWGmZiOvb8Kw==
-X-Google-Smtp-Source: AGHT+IEuMmt95Cqu+sfIrJi6S6D7HS6xkJqyIluRYQtiIAhynzSXoHyExqFSloU7VZgk7jYy2QP8ya0HfQIfaqMhb1o=
-X-Received: by 2002:a05:690c:4d41:b0:786:9774:a39c with SMTP id
- 00721157ae682-787d5376709mr69585247b3.9.1762764326984; Mon, 10 Nov 2025
- 00:45:26 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D942E974D;
+	Mon, 10 Nov 2025 08:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=91.207.212.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762764427; cv=fail; b=a+HLpbEYIHdPF6FZw5KfJ2L+Hc8CCxVvafHki0BQ6ts46Gn6uQo1bGOwSawKwaOopapbDR5eDp0ZCIsJgCg+ExrzKtBsqATDVkwSbmLnebIV9+01qYzG0BkOo0aB3F2tWyxW2pBMtIFxwG8thOh3CloYQhVEFmoXupD1gYWBKLY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762764427; c=relaxed/simple;
+	bh=w22G7h2xzLA/FfwSvCys5p3ktaEkHOjxnVqFRjdigPA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Oi67AkK+gYk3LrigS7pMyVxYXvqFUD+7F3mH8T4+Wbp2A7f5SI+TiXxxtYuA8DKyiFCvliP+PHB+g5vAYNo+uLkVpCuRgAKz0CD4184bw0ySxL2X506l/RdPUfaVGMiPYidh24OY7HPlF3oRaJOIHuu4cgjYLUBgnF0canCoHOY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=BDtCGnSP; arc=fail smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA8gHNp2321066;
+	Mon, 10 Nov 2025 09:46:40 +0100
+Received: from db3pr0202cu003.outbound.protection.outlook.com (mail-northeuropeazon11010040.outbound.protection.outlook.com [52.101.84.40])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4a9xv65rs6-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 10 Nov 2025 09:46:40 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=u4DGpGk75nzJXSDOphGjKXR73MHc0FckstkCQ7dhkvb3E3LC3gu/C8OtNlXUv2ZLVPCpKJxfuxKLJR7dCrY5gLMLAuQdpui+EGfjB7LPKDITaUb3ge3rRTtVgBxaJzf7x7x+iwnOBBU075Cm0OBWVuBh5vqIQbwBXQG+TQFx7CXnfPeSS/9bhHiSrJPVJPUx8ge/rKQh7nMEM+MJZHEkQcffU3WxKdcDQyEh46YJDQNFwJE0ia5s2divFeTGfWFkJ6CHcVdt6k/MxDU8QwGg1miMAIU6y5KoY0HthGZLVIbIf/4+S4EPjTY0ft6Ns5+T+lecuYK6PkbQETZBELsvZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=59QjWHfgIxZm5zFNOoyFKRIRlaldWiYYqYPanGxjZRA=;
+ b=kt/nMLyXJ0jp1aBPUVASWfZAvPmzo2K6ZBbQlv2hbVxn4lwj9I+Qz1jQsFUEhYlX7tU6lChEUijA8Q+DWraiztnqwe4fSr3URbphlJ685XO4A5rrz5pZy/KxxmmX1bhtyzj9TM6xV5O+V0rMd+eeFR/2unlwSRoAAbX6olLcG/ezThXwmeq9lJuI2WBJj5RApJTBZjRyOqH0c6Pz4d6fEf9msqNUqzZIivvflcQptfQ5YFk7oNCl5raFBPfzckz+NLUFuJ9V1qkJH07LGg4WE7A6iJc+b54qAPNuxalJuzCNBcPG3y8BHqiuwUIF9UwjcBFV0ttRnMggJQ2OeaCMjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=gmail.com smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=59QjWHfgIxZm5zFNOoyFKRIRlaldWiYYqYPanGxjZRA=;
+ b=BDtCGnSPfdpD0eI4kp/yX8WLTpUgKY8REQxOn8WasBm00rnMey62NOjNzokM+BSD/UJ7YxoxbD+AIC+l4TckMl71XczFKhkKX8z+4RoWPchDoozCU+NyDpFHBj8ml7dtEl0I+6F9p9LpqOHybbCkNSLbVdweo6DejJZyzeRjJFRj1CQeng9J4whNbAuX0twcEAYiEtebLdPQdLk+/h6yfJCVXpk6CDnlV17xh6Yc2ibWWqClD423JlM1KwMp4V9/mMqpgkGbqdh57VmXnnAr7A1Jyv4o7wNrOfFgalCc2Lq+N1hsp7I6ZLNay7Xpml7kZMih/Wp464xI3K5XxWpt8w==
+Received: from DU2P250CA0026.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:231::31)
+ by DUZPR10MB8192.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:4d9::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
+ 2025 08:46:35 +0000
+Received: from DU2PEPF00028D11.eurprd03.prod.outlook.com
+ (2603:10a6:10:231:cafe::7c) by DU2P250CA0026.outlook.office365.com
+ (2603:10a6:10:231::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.16 via Frontend Transport; Mon,
+ 10 Nov 2025 08:46:24 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DU2PEPF00028D11.mail.protection.outlook.com (10.167.242.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9320.13 via Frontend Transport; Mon, 10 Nov 2025 08:46:35 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 10 Nov
+ 2025 09:46:41 +0100
+Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Mon, 10 Nov
+ 2025 09:46:33 +0100
+Message-ID: <2f987d78-6494-45d7-86cf-466785e2124f@foss.st.com>
+Date: Mon, 10 Nov 2025 09:46:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015-tja1145-support-v4-0-4d3ca13c8881@liebherr.com> <20251015-tja1145-support-v4-2-4d3ca13c8881@liebherr.com>
-In-Reply-To: <20251015-tja1145-support-v4-2-4d3ca13c8881@liebherr.com>
-From: Luoxi Li <lee.lockhey@gmail.com>
-Date: Mon, 10 Nov 2025 16:45:15 +0800
-X-Gm-Features: AWmQ_bkMNQv3RkM-zo57uNjTl11Gs6OZU97cOXivYKBV4sePGC3_nO_h8CxXLhE
-Message-ID: <CAL7siYPsuB3g1-KRkjJx00Yhg6ZjOvyvv5H=8bo53bV9N21E3g@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] phy: add basic support for NXPs TJA1145 CAN transceiver
-To: dimitri.fedrau@liebherr.com
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Dimitri Fedrau <dima.fedrau@gmail.com>, Marc Kleine-Budde <mkl@pengutronix.de>, linux-can@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: stm32mp157c-phycore: Fix STMPE811
+ touchscreen node properties
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, <mcoquelin.stm32@gmail.com>
+CC: <robh@kernel.org>, <s.trumtrar@pengutronix.de>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250915224611.169980-1-jihed.chaibi.dev@gmail.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250915224611.169980-1-jihed.chaibi.dev@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028D11:EE_|DUZPR10MB8192:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05894918-f43d-4892-ba50-08de2035a7ae
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|7416014|376014|82310400026|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eHoxalJRM1pwRm1QaEUza0RMOXlPSE51N2J1OGw5eW52SVFjVGFYSW45dGRj?=
+ =?utf-8?B?bFFHVTF4RXRiV1NEZ1J2WnFJU2NYUDgxc3B1TnliUHQ3NUNtZ015c2UxSUZh?=
+ =?utf-8?B?NUtHSVB5NHRMeW5vdFVwMEJmUnYvdTRIcjRManphNWtyWmhub0N6MFdud2Vu?=
+ =?utf-8?B?ZURrQXdNOFRnUmdBWGhHclpLd3VLV1JlU2tzNEh5Y1VFeldRTHkyMVZ3UHRT?=
+ =?utf-8?B?OEZHbmNEdjcyc3lEdWlMdGF0bTZLdXlxdmRPblhYZnF6SkZmdmt4a1dqZmQ5?=
+ =?utf-8?B?bE84ZXBIcHlnTVdCY1VlS2plbWRuRVpqc1o0OU82a0ZTb3E0K3lQK0M0QTRE?=
+ =?utf-8?B?L1dtcDBsU0Y5SWJzNS9wSVlyVnFVWmcrTWE4dFFTVC83RHorcUVyVXpHNktP?=
+ =?utf-8?B?bDA5RHV1ZjMxZE84TlVSZWt2aElRZW5SbXNuMDRVME9Zem5jMzIxenJhNmlF?=
+ =?utf-8?B?S1ZDRk5JTmdaV3VHSmVtMlc1RVlyYXhtYlg3K1AyR2xna2p2QzU2aFhVK0ky?=
+ =?utf-8?B?OU1XMVFjVVNDSWdwQ3Jya25hRGNOaEtYRkU4TmkxbEFiMEMxRUZzdmd3QzZq?=
+ =?utf-8?B?ekpFeDZsYncvd1EwbDN0dkFJaGEySklIeE96cjZiWnJiMnF6dVBpRVd2STR6?=
+ =?utf-8?B?RkpNdUJlc0REaTVNMkp2SjJhVWF3dEZEbW5EcWdxdDdpMjMrcEVGQSttdFh5?=
+ =?utf-8?B?Mm8xOFMxWnEzSWd6UVdrREp2MGpMRkVDREZpbkZLUDFaUHcyenhMd2NJVjU5?=
+ =?utf-8?B?Sno1TE5BbTZZQWxqeWdCV292K0t4REtpUm5SMHNPV1VQM1YxYzBJY0JmSmJE?=
+ =?utf-8?B?WHlJVHFmbXFGZlRJeWNIK2RyUDJyVmtGaGVkek80UXFqR3M4b2hld2dsS2xx?=
+ =?utf-8?B?VlNqRUhzNDVLTG1kVTBHREd2UktSbllGVGFuem5oSmV1Smdvek40OUhTMkJP?=
+ =?utf-8?B?OEhqSElKNWVhTjZWeDhzQk4waVE4VEMvU0ZrR1JldlErYUQ4bWRHSkQ1cG4r?=
+ =?utf-8?B?dVpXeUFaU054OWxKZEsrdm12VlhDTXVCK1dtcGpRMzZDTUlUWnJkdVVMMERx?=
+ =?utf-8?B?NlY4ZElaQ0FReStFY2x1SG1XQmhCcE05T25ybVpWUmtwYTYvb09oV1MrOXRj?=
+ =?utf-8?B?TkFueUhHU2FVQTNjN2Vjd1BvalNnWlZpSlZCdDJncWhTQ3l1TjhJMldVMldq?=
+ =?utf-8?B?dy9jNkw2VmpmdkJscC9oUTl2ZDNRamtwZ3J5L0VKcUd4OEtLcVVMMWwrTlp6?=
+ =?utf-8?B?T2hCZ3hlVy9PNmFoV2ZyQWduZlBQbUdVTmJMdkJTNzR4ekVKNENXZWtxNG0v?=
+ =?utf-8?B?UDZXVzl4QlhIRHIwZmZFV0RrYktzdmVja0lKbDZuQTZVQUVjNE91U1NUUDNR?=
+ =?utf-8?B?WWhVTkt3VDZzMUNkdndEK1QxYkkycDhWTkhpV1U5V204bUt3YkczOUZaNU1h?=
+ =?utf-8?B?a3Zad3ErVTVuSGRZQkxnUksvL0tFNDNTWnBRc3dtWTZuS3puZEhtNU1PbFZS?=
+ =?utf-8?B?ci9RWUNFNzh5V0tXVVJReXkwMkJJN0Y3K25oK3B5NTdYRnpwYW1QK3U4UEh6?=
+ =?utf-8?B?eTgvMjdjNTRjRG51U3RJQkdDM3lET085VzRIMzJERGgzYkNoOFFRcHg1blpi?=
+ =?utf-8?B?V2pqbGYzdmMvcFJnSlRwWFY0c0NzSjRpUWxLMU1yRU5CMVoyK1psT2ZNVXZQ?=
+ =?utf-8?B?Zm1SWkwzbEdnZzFiN3NtZndneDJrbDN4NHU3RjdFeTVoL25OQzN1MGo5T2c5?=
+ =?utf-8?B?N0lYZS80TW40dURXdVRDZXZUZXNHZitKRXNVOU5PYVR6VXhrN3hTTGxYakVB?=
+ =?utf-8?B?anFic05yWHQwOXc5S3Z5ekJoeG5scWlwa2p5enRCd05kbjZPbVM5anRiUHgv?=
+ =?utf-8?B?YzVOSGtaRWt0Z0xySitwUU1Yc0pEVm5wejhnUk5UYjY5QS96MDdjYmtJSEZh?=
+ =?utf-8?B?SlZya1lvUEpkZmFUaE5Dc0pYLzl6dnVTV2xqQVpXTGV3dmtuOEU5bkhidjhq?=
+ =?utf-8?B?U3R3YlhLeGdtNi9xVCtZSnF6Ykt3V2NSMW53TnBDRkcySU4rc1VZaW9TM1M2?=
+ =?utf-8?B?MzFpV0FCMGlGM0pkd0xCVzZkVDJqTGVjZ2FsSjRscmhSU0UyaHdLNEdGbDlD?=
+ =?utf-8?Q?hzHA=3D?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(7416014)(376014)(82310400026)(7053199007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 08:46:35.0715
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05894918-f43d-4892-ba50-08de2035a7ae
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF00028D11.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR10MB8192
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDA3NiBTYWx0ZWRfX2b37+MJr4+N2
+ NYs+0/+iMB8F/fOnJ1EiCl/4bOL7aQSGUd7d9h9jXw5OuDkVDAM+ihT1OOUtLzhI+FYtU6qtsuL
+ 8aGibSQZ2MMCgw14SCrIozvARh3E/YFNrd6rt6tciUi1ck0G4+513YjqiBfCnU7GY1mHHkFzz3B
+ RGSrwS7O4EB+Qk1yn1JIzfDqxjL5xVgnoTuUMkUjhpS/Jq31NL+8cgs/ioYtEVJ/CYygoyqz4nd
+ /R0+tS2vLy0305N8a52tIrw149POW6Eeny8rxxe1IQj5bXQnJPfBYjle+W7iipMpAPav6BRZLEo
+ BTQZrj/ysG7RhRgxTmPKogVROztSMwPfRZ7EP4b6b2lVEqY000TTWK9u0PjWGWwtjhBFGA9AyBy
+ XygbVjvJNWAz6iYZ24qxcUbS8eSpdQ==
+X-Authority-Analysis: v=2.4 cv=OuZCCi/t c=1 sm=1 tr=0 ts=6911a670 cx=c_pps
+ a=2DzPM8fQPN4EfAmge14Bmw==:117 a=d6reE3nDawwanmLcZTMRXA==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=TP8aPCUxYTYA:10 a=IkcTkHD0fZMA:10
+ a=6UeiqGixMTsA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8 a=PYVhz2m5A5KxUzFyFHcA:9
+ a=QEXdDO2ut3YA:10 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: vEtP1TnqV2Pu2tE4nc8N017w4zZqnGR2
+X-Proofpoint-ORIG-GUID: vEtP1TnqV2Pu2tE4nc8N017w4zZqnGR2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_03,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ bulkscore=0 spamscore=0 suspectscore=0 clxscore=1011 phishscore=0
+ adultscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100076
 
-I tested in ST platform. Now everything works. Thank you!
+Hi Jihed
 
-Tested-By: <lee.lockhey@gmail.com>
-
-    --
-    With Best Regards,
-    Lockhey Lee
-
-On Wed, Oct 15, 2025 at 3:37=E2=80=AFPM Dimitri Fedrau via B4 Relay
-<devnull+dimitri.fedrau.liebherr.com@kernel.org> wrote:
->
-> From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
->
-> Add basic driver support for NXPs TJA1145 CAN transceiver which brings th=
-e
-> PHY up/down by switching to normal/standby mode using SPI commands.
->
-> Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+On 9/16/25 00:46, Jihed Chaibi wrote:
+> Move st,adc-freq, st,mod-12b, st,ref-sel, and st,sample-time properties
+> from the touchscreen subnode to the parent touch@44 node. These properties
+> are defined in the st,stmpe.yaml schema for the parent node, not the
+> touchscreen subnode, resolving the validation error about unevaluated
+> properties.
+> 
+> Fixes: 27538a18a4fcc ("ARM: dts: stm32: add STM32MP1-based Phytec SoM")
+> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
 > ---
->  drivers/phy/Kconfig           |  10 +++
->  drivers/phy/Makefile          |   1 +
->  drivers/phy/phy-nxp-tja1145.c | 184 ++++++++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 195 insertions(+)
->
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index 678dd0452f0aa0597773433f04d2a9ba77474d2a..2f2c8f29cce2beb20c584adfe=
-8acfe23de14e128 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -101,6 +101,16 @@ config PHY_NXP_PTN3222
->           schemes. It supports all three USB 2.0 data rates: Low Speed, F=
-ull
->           Speed and High Speed.
->
-> +config PHY_NXP_TJA1145
-> +       tristate "NXP TJA1145 CAN transceiver PHY"
-> +       select GENERIC_PHY
-> +       select REGMAP_SPI
-> +       depends on SPI
-> +       help
-> +         This option enables support for NXPs TJA1145 CAN transceiver as=
- a PHY.
-> +         This driver provides function for putting the transceiver in va=
-rious
-> +         functional modes using SPI commands.
-> +
->  source "drivers/phy/allwinner/Kconfig"
->  source "drivers/phy/amlogic/Kconfig"
->  source "drivers/phy/broadcom/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index bfb27fb5a494283d7fd05dd670ebd1b12df8b1a1..48eac644d1e2b20f986f80de9=
-5b40c26d080358b 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)          +=3D phy-snps-eus=
-b2.o
->  obj-$(CONFIG_USB_LGM_PHY)              +=3D phy-lgm-usb.o
->  obj-$(CONFIG_PHY_AIROHA_PCIE)          +=3D phy-airoha-pcie.o
->  obj-$(CONFIG_PHY_NXP_PTN3222)          +=3D phy-nxp-ptn3222.o
-> +obj-$(CONFIG_PHY_NXP_TJA1145)          +=3D phy-nxp-tja1145.o
->  obj-y                                  +=3D allwinner/   \
->                                            amlogic/     \
->                                            broadcom/    \
-> diff --git a/drivers/phy/phy-nxp-tja1145.c b/drivers/phy/phy-nxp-tja1145.=
-c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..56b5b47f6eb23945d9116c41a=
-25d9b6daccdcefa
-> --- /dev/null
-> +++ b/drivers/phy/phy-nxp-tja1145.c
-> @@ -0,0 +1,184 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2025 Liebherr-Electronics and Drives GmbH
-> + */
-> +#include <linux/bitfield.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <linux/phy/phy.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#define TJA1145_MODE_CTRL              0x01
-> +#define TJA1145_MODE_CTRL_MC           GENMASK(2, 0)
-> +#define TJA1145_MODE_CRTL_STBY         BIT(2)
-> +#define TJA1145_MODE_CRTL_NORMAL       TJA1145_MODE_CTRL_MC
-> +
-> +#define TJA1145_CAN_CTRL               0x20
-> +#define TJA1145_CAN_CTRL_CMC           GENMASK(1, 0)
-> +#define TJA1145_CAN_CTRL_ACTIVE                BIT(1)
-> +
-> +#define TJA1145_IDENT                  0x7e
-> +#define TJA1145_IDENT_TJA1145T         0x70
-> +
-> +#define TJA1145_SPI_READ_BIT           BIT(0)
-> +#define TJA1145T_MAX_BITRATE           1000000
-> +
-> +static int tja1145_phy_power_on(struct phy *phy)
-> +{
-> +       struct regmap *map =3D phy_get_drvdata(phy);
-> +       int ret;
-> +
-> +       /*
-> +        * Switch operating mode to normal which is the active operating =
-mode.
-> +        * In this mode, the device is fully operational.
-> +        */
-> +       ret =3D regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_C=
-TRL_MC,
-> +                                TJA1145_MODE_CRTL_NORMAL);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /*
-> +        * Switch to CAN operating mode active where the PHY can transmit=
- and
-> +        * receive data.
-> +        */
-> +       return regmap_update_bits(map, TJA1145_CAN_CTRL, TJA1145_CAN_CTRL=
-_CMC,
-> +                                 TJA1145_CAN_CTRL_ACTIVE);
-> +}
-> +
-> +static int tja1145_phy_power_off(struct phy *phy)
-> +{
-> +       struct regmap *map =3D phy_get_drvdata(phy);
-> +
-> +       /*
-> +        * Switch to operating mode standby, the PHY is unable to transmi=
-t or
-> +        * receive data in standby mode.
-> +        */
-> +       return regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_CT=
-RL_MC,
-> +                                 TJA1145_MODE_CRTL_STBY);
-> +}
-> +
-> +static const struct phy_ops tja1145_phy_ops =3D {
-> +       .power_on =3D tja1145_phy_power_on,
-> +       .power_off =3D tja1145_phy_power_off,
-> +};
-> +
-> +static const struct regmap_range tja1145_wr_holes_ranges[] =3D {
-> +       regmap_reg_range(0x00, 0x00),
-> +       regmap_reg_range(0x02, 0x03),
-> +       regmap_reg_range(0x05, 0x05),
-> +       regmap_reg_range(0x0b, 0x1f),
-> +       regmap_reg_range(0x21, 0x22),
-> +       regmap_reg_range(0x24, 0x25),
-> +       regmap_reg_range(0x30, 0x4b),
-> +       regmap_reg_range(0x4d, 0x60),
-> +       regmap_reg_range(0x62, 0x62),
-> +       regmap_reg_range(0x65, 0x67),
-> +       regmap_reg_range(0x70, 0xff),
-> +};
-> +
-> +static const struct regmap_access_table tja1145_wr_table =3D {
-> +       .no_ranges =3D tja1145_wr_holes_ranges,
-> +       .n_no_ranges =3D ARRAY_SIZE(tja1145_wr_holes_ranges),
-> +};
-> +
-> +static const struct regmap_range tja1145_rd_holes_ranges[] =3D {
-> +       regmap_reg_range(0x00, 0x00),
-> +       regmap_reg_range(0x02, 0x02),
-> +       regmap_reg_range(0x05, 0x05),
-> +       regmap_reg_range(0x0b, 0x1f),
-> +       regmap_reg_range(0x21, 0x21),
-> +       regmap_reg_range(0x24, 0x25),
-> +       regmap_reg_range(0x30, 0x4a),
-> +       regmap_reg_range(0x4d, 0x5f),
-> +       regmap_reg_range(0x62, 0x62),
-> +       regmap_reg_range(0x65, 0x67),
-> +       regmap_reg_range(0x70, 0x7d),
-> +       regmap_reg_range(0x7f, 0xff),
-> +};
-> +
-> +static const struct regmap_access_table tja1145_rd_table =3D {
-> +       .no_ranges =3D tja1145_rd_holes_ranges,
-> +       .n_no_ranges =3D ARRAY_SIZE(tja1145_rd_holes_ranges),
-> +};
-> +
-> +static const struct regmap_config tja1145_regmap_config =3D {
-> +       .reg_bits =3D 8,
-> +       .reg_shift =3D -1,
-> +       .val_bits =3D 8,
-> +       .wr_table =3D &tja1145_wr_table,
-> +       .rd_table =3D &tja1145_rd_table,
-> +       .read_flag_mask =3D TJA1145_SPI_READ_BIT,
-> +       .max_register =3D TJA1145_IDENT,
-> +};
-> +
-> +static int tja1145_check_ident(struct device *dev, struct regmap *map)
-> +{
-> +       unsigned int val;
-> +       int ret;
-> +
-> +       ret =3D regmap_read(map, TJA1145_IDENT, &val);
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (val !=3D TJA1145_IDENT_TJA1145T) {
-> +               dev_err(dev, "Expected device id: 0x%02x, got: 0x%02x\n",
-> +                       TJA1145_IDENT_TJA1145T, val);
-> +               return -ENODEV;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int tja1145_probe(struct spi_device *spi)
-> +{
-> +       struct phy_provider *phy_provider;
-> +       struct device *dev =3D &spi->dev;
-> +       struct regmap *map;
-> +       struct phy *phy;
-> +       int ret;
-> +
-> +       map =3D devm_regmap_init_spi(spi, &tja1145_regmap_config);
-> +       if (IS_ERR(map))
-> +               return dev_err_probe(dev, PTR_ERR(map), "failed to init r=
-egmap\n");
-> +
-> +       ret =3D tja1145_check_ident(dev, map);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "failed to identify device=
-\n");
-> +
-> +       phy =3D devm_phy_create(dev, dev->of_node, &tja1145_phy_ops);
-> +       if (IS_ERR(phy))
-> +               return dev_err_probe(dev, PTR_ERR(phy), "failed to create=
- PHY\n");
-> +
-> +       phy->attrs.max_link_rate =3D TJA1145T_MAX_BITRATE;
-> +       phy_set_drvdata(phy, map);
-> +       phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple=
-_xlate);
-> +
-> +       return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct spi_device_id tja1145_spi_id[] =3D {
-> +       { "tja1145" },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(spi, tja1145_spi_id);
-> +
-> +static const struct of_device_id tja1145_of_match[] =3D {
-> +       { .compatible =3D "nxp,tja1145" },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, tja1145_of_match);
-> +
-> +static struct spi_driver tja1145_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "tja1145",
-> +               .of_match_table =3D tja1145_of_match,
-> +       },
-> +       .probe =3D tja1145_probe,
-> +       .id_table =3D tja1145_spi_id,
-> +};
-> +module_spi_driver(tja1145_driver);
-> +
-> +MODULE_DESCRIPTION("NXP TJA1145 CAN transceiver PHY driver");
-> +MODULE_AUTHOR("Dimitri Fedrau <dimitri.fedrau@liebherr.com>");
-> +MODULE_LICENSE("GPL");
->
-> --
-> 2.39.5
->
->
->
+>   .../boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi    | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi b/arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi
+> index bf0c32027ba..370b2afbf15 100644
+> --- a/arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi
+> @@ -185,13 +185,13 @@ touch@44 {
+>   		interrupt-parent = <&gpioi>;
+>   		vio-supply = <&v3v3>;
+>   		vcc-supply = <&v3v3>;
+> +		st,sample-time = <4>;
+> +		st,mod-12b = <1>;
+> +		st,ref-sel = <0>;
+> +		st,adc-freq = <1>;
+>   
+>   		touchscreen {
+>   			compatible = "st,stmpe-ts";
+> -			st,sample-time = <4>;
+> -			st,mod-12b = <1>;
+> -			st,ref-sel = <0>;
+> -			st,adc-freq = <1>;
+>   			st,ave-ctrl = <1>;
+>   			st,touch-det-delay = <2>;
+>   			st,settling = <2>;
 
+Applied on stm32-next.
 
---
+Thanks
+Alex
 
