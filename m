@@ -1,179 +1,387 @@
-Return-Path: <devicetree+bounces-236672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C731C4662A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:51:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB48C46669
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DE2F189656F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:51:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06A5718830BD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F1D30C348;
-	Mon, 10 Nov 2025 11:50:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="g1ooUKB7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5C5309EFF;
+	Mon, 10 Nov 2025 11:55:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85B2430BF4B;
-	Mon, 10 Nov 2025 11:50:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18712FFFA4;
+	Mon, 10 Nov 2025 11:55:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762775441; cv=none; b=TDkQSSGOK01oh4nqd7nZG7FoHqx0l4bm5QdEq3rPDG7QWt1bqfiuZ77LyY4Erf+IDP0mANdBC5p0n748ndrgbuNgF6bbDzX4eOcbHm+E9x19OT68iT/mqURCRTEEhme2QP61oknXZtraQ+ciXiTWM+Mn8SLsBdUDg+BNuljamjI=
+	t=1762775713; cv=none; b=lKxuPR/1qHl6yzT1xGpp8T6WsorJLkdt+u9+xrrG088TDOw4KImcxbRkkfyRqQBf8e3tAFQOL+s8Ja1iB/wqKqNLMW0Hlnbsb65qz3PPw6/obGsznLmfyjm+Ly4tLalLIbDcEDaK1tf3hc5AnGkPOuSinASE6wiC8X4CVPzGdMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762775441; c=relaxed/simple;
-	bh=COHPV+omRxA1EPYbJaNEmdQNtAPu/fCYGXW93KqGFoI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Q9Ocy70Q94QpHIDsx5lK7L743TEt18liTu8KqD2svVaODxhV/hC6OttX1Vn+jmmsu9/En2jxbG3pAoAOV7z2COcH9p8czAAOg2mq5dLLmEiq13dAnE00yourYK/ShGCJGcKOXG07nOvF9p6MfQkJFLtDdWrWDCQT3Vv/gLZHTzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=g1ooUKB7; arc=none smtp.client-ip=157.90.84.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
-Received: from [192.168.178.76] (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
-	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
-	by mail.tuxedocomputers.com (Postfix) with ESMTPSA id B3E622FC005B;
-	Mon, 10 Nov 2025 12:50:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
-	s=default; t=1762775431;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=DuD0TL8oqAmbLAwRJ96vdYeE8dWYXSklWg5pfSS2mBc=;
-	b=g1ooUKB7+I46ZyuasRTtpI/HZIanAtvTWu00VYCrzZoqLZ+zzcdILJgY3zQeQP40XBx64c
-	pPmNXuI5yV1i0NcfiAHDc+t3Vae42Y5L3MnpOk7/ZdWauBYB5KfekEgtiomm4xxN8iwWO/
-	J3bpxm2H5weeYwuYOE0LNEoi+ZHw708=
-Authentication-Results: mail.tuxedocomputers.com;
-	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=g.gottleuber@tuxedocomputers.com
-Message-ID: <d71bae83-039e-4d03-8b77-2af9a8ab255c@tuxedocomputers.com>
-Date: Mon, 10 Nov 2025 12:50:30 +0100
+	s=arc-20240116; t=1762775713; c=relaxed/simple;
+	bh=SEGGQCraDKkaakuOL1qELKnn7n3IsPKHAFteZ3/gqQE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
+	 In-Reply-To:Content-Type; b=RTn1t05AON/qaID7nP0bnNIunov7Bg0NMzloZXYZZE4GwTaxpiEpeUZQSf6eJNPbY3Wp9dEJd0FtC9jDELyDwXzynuM47Y6smptz+gYm7kD31TnImur8TorWHfFhEU3Eh2JfOevpjFKibovdJOfo361/9Xf6LngQP0OYqU7/Vf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4d4p4m4JkWz9t8S;
+	Mon, 10 Nov 2025 12:55:04 +0100 (CET)
+Message-ID: <a7dffb1f-1545-413b-99ee-421dc6e9f63a@timmermann.space>
+Date: Mon, 10 Nov 2025 12:55:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] Add TUXEDO Elite 14 Gen1 (X1E78100)
-From: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Georg Gottleuber <ggo@tuxedocomputers.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ettore Chimenti <ettore.chimenti@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
- stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
-References: <20251105154107.148187-1-ggo@tuxedocomputers.com>
- <eccdb13b-e062-4106-8c79-ca57b6839a0e@kernel.org>
- <a3b26b2f-3f23-4a1a-87ef-0f5631e96ce7@tuxedocomputers.com>
-Content-Language: en-US
-Autocrypt: addr=g.gottleuber@tuxedocomputers.com; keydata=
- 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
- bsxTTcOuRnk=
-In-Reply-To: <a3b26b2f-3f23-4a1a-87ef-0f5631e96ce7@tuxedocomputers.com>
-Content-Type: text/plain; charset=UTF-8
+From: Lukas Timmermann <linux@timmermann.space>
+Subject: Re: [PATCH v9 2/2] leds: as3668: Driver for the ams Osram 4-channel
+ i2c LED driver
+To: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251014152604.852487-1-linux@timmermann.space>
+ <20251014152604.852487-3-linux@timmermann.space>
+ <20251023141844.GP475031@google.com>
+Content-Language: en-US, de-DE
+In-Reply-To: <20251023141844.GP475031@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-
-Am 06.11.25 um 13:56 schrieb Georg Gottleuber:
+Am 23.10.25 um 16:18 schrieb Lee Jones:
+> On Tue, 14 Oct 2025, Lukas Timmermann wrote:
 > 
-> 
-> Am 06.11.25 um 09:15 schrieb Krzysztof Kozlowski:
->> On 05/11/2025 16:41, Georg Gottleuber wrote:
->>> Initial support for TUXEDO Elite 14 Gen1 laptop. It is based on Qualcomm
->>> Snapdragon X Elite SoC (X1E78100).
->>>
->>> Changes in v2:
->>> - Rebase to v6.18-rc4/master
->>> - Add support for accelerated video decoding
->>> - Add support for audio (speakers, microphones, headset)
->>> - Add support for Bluetooth
->>> - Add support for camera
->>> - Add support for fingerprint reader
->>> - Add support for HDMI-A port
->>> - Add support for QSEECOM
->>> - Add support for USB Type-A
->>> - Add support for USB-C DP altmode
->>> - Add ASL Xiamen Technology Co. Ltd. vendor prefix
->>> - Add TUXEDO vendor prefix
->>> - Add cover letter
->>> - Removal of pointless comments
->>> - Coding style fixes
->>> - Spell check
->>>
->>> The device tree uses the dtschema from Linaro qcom-laptops [1].
+>> Since there were no existing drivers for the AS3668 or related devices,
+>> a new driver was introduced in a separate file. Similar devices were
+>> reviewed, but none shared enough characteristics to justify code reuse.
+>> As a result, this driver is written specifically for the AS3668.
 >>
->> No, it cannot. You must work on mainline.
+>> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+>> ---
+>>   MAINTAINERS                |   1 +
+>>   drivers/leds/Kconfig       |  13 +++
+>>   drivers/leds/Makefile      |   1 +
+>>   drivers/leds/leds-as3668.c | 188 +++++++++++++++++++++++++++++++++++++
+>>   4 files changed, 203 insertions(+)
+>>   create mode 100644 drivers/leds/leds-as3668.c
 >>
->> Specifically, you must use mainline dtschema and I do not understand why
->> you choose it from some 3rd party repo. See writing-schema how to
->> install main dtschema package.
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 091206c54c63..945d78fef380 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
+>>   L:	linux-leds@vger.kernel.org
+>>   S:	Maintained
+>>   F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
+>> +F:	drivers/leds/leds-as3668.c
+>>   
+>>   ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
+>>   M:	Tianshu Qiu <tian.shu.qiu@intel.com>
+>> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+>> index a104cbb0a001..8cfb423ddf82 100644
+>> --- a/drivers/leds/Kconfig
+>> +++ b/drivers/leds/Kconfig
+>> @@ -100,6 +100,19 @@ config LEDS_ARIEL
+>>   
+>>   	  Say Y to if your machine is a Dell Wyse 3020 thin client.
+>>   
+>> +config LEDS_AS3668
 > 
-> I am building and testing with mainline dtschema, but checking this dts
-> with 'make CHECK_DTBS=y qcom/x1e80100-tuxedo-elite-14-gen1.dtb' has
-> revealed that one property was unevaluated (output: 'data-lanes' was
-> unexpected [see line 1461]).
+> LEDS_OSRAM_AMS_AS3668
 > 
-> This data-lane property is described in the following commit
-> https://gitlab.com/Linaro/arm64-laptops/linux/-/commit/3d106a8ac261f81e48e4ee2a31b7484d863e0a4a
+>> +	tristate "LED support for AMS AS3668"
 > 
-> Due to the warning from the check tool, I just wanted to point out this
-> commit.
+> "Osram"
+Thanks. Makes sense.
+>> +	depends on LEDS_CLASS
+>> +	depends on I2C
+>> +	help
+>> +	  This option enables support for the AMS AS3668 LED controller.
+> 
+> "Osram"
+Same.>> +	  The AS3668 provides up to four LED channels and is 
+controlled via
+>> +	  the I2C bus. This driver offers basic brightness control for each
+>> +	  channel, without support for blinking or other advanced features.
+>> +
+>> +	  To compile this driver as a module, choose M here: the module
+>> +	  will be called leds-as3668.
+>> +
+>>   config LEDS_AW200XX
+>>   	tristate "LED support for Awinic AW20036/AW20054/AW20072/AW20108"
+>>   	depends on LEDS_CLASS
+>> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+>> index 2f170d69dcbf..983811384fec 100644
+>> --- a/drivers/leds/Makefile
+>> +++ b/drivers/leds/Makefile
+>> @@ -14,6 +14,7 @@ obj-$(CONFIG_LEDS_ADP5520)		+= leds-adp5520.o
+>>   obj-$(CONFIG_LEDS_AN30259A)		+= leds-an30259a.o
+>>   obj-$(CONFIG_LEDS_APU)			+= leds-apu.o
+>>   obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
+>> +obj-$(CONFIG_LEDS_AS3668)		+= leds-as3668.o
+>>   obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
+>>   obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
+>>   obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
+>> diff --git a/drivers/leds/leds-as3668.c b/drivers/leds/leds-as3668.c
+>> new file mode 100644
+>> index 000000000000..2b7b776fe2f5
+>> --- /dev/null
+>> +++ b/drivers/leds/leds-as3668.c
+>> @@ -0,0 +1,188 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>> +/*
+>> + *  Osram AMS AS3668 LED Driver IC
+>> + *
+>> + *  Copyright (C) 2025 Lukas Timmermann <linux@timmermann.space>
+>> + */
+>> +
+>> +#include <linux/bitfield.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/leds.h>
+>> +#include <linux/module.h>
+>> +#include <linux/uleds.h>
+>> +
+>> +#define AS3668_MAX_LEDS			4
+>> +#define AS3668_EXPECTED_I2C_ADDR	0x42
+>> +
+>> +/* Chip Ident */
+>> +
+>> +#define AS3668_CHIP_ID1_REG		0x3e
+>> +#define AS3668_CHIP_ID			0xa5
+>> +
+>> +/* Current Control */
+>> +
+>> +#define AS3668_CURRX_CONTROL_REG	0x01
+>> +#define AS3668_CURR1_REG		0x02
+>> +#define AS3668_CURR2_REG		0x03
+>> +#define AS3668_CURR3_REG		0x04
+>> +#define AS3668_CURR4_REG		0x05
+>> +#define AS3668_CURRX_MODE_ON		0x1
+>> +#define AS3668_CURRX_CURR1_MASK		GENMASK(1, 0)
+>> +#define AS3668_CURRX_CURR2_MASK		GENMASK(3, 2)
+>> +#define AS3668_CURRX_CURR3_MASK		GENMASK(5, 4)
+>> +#define AS3668_CURRX_CURR4_MASK		GENMASK(7, 6)
+>> +
+>> +struct as3668_led {
+>> +	struct led_classdev cdev;
+>> +	struct as3668 *chip;
+>> +	struct fwnode_handle *fwnode;
+>> +	int led_id;
+>> +};
+>> +
+>> +struct as3668 {
+>> +	struct i2c_client *client;
+>> +	struct as3668_led leds[AS3668_MAX_LEDS];
+>> +};
+>> +
+>> +static enum led_brightness as3668_brightness_get(struct led_classdev *cdev)
+>> +{
+>> +	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
+>> +
+>> +	return i2c_smbus_read_byte_data(led->chip->client, AS3668_CURR1_REG + led->led_id);
+>> +}
+>> +
+>> +static void as3668_brightness_set(struct led_classdev *cdev, enum led_brightness brightness)
+>> +{
+>> +	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
+>> +
+>> +	int err = i2c_smbus_write_byte_data(led->chip->client,
+>> +					    AS3668_CURR1_REG + led->led_id,
+>> +					    brightness);
+>> +
+>> +	if (err)
+>> +		dev_err(&led->chip->client->dev, "error writing to reg 0x%02x, returned %d\n",
+> 
+> The user isn't going to care about this stuff.
+> 
+> "Failed to set brightness: %d"
+> 
+>> +			AS3668_CURR1_REG + led->led_id, err);
+>> +}
+>> +
+>> +static int as3668_dt_init(struct as3668 *as3668)
+>> +{
+>> +	struct device *dev = &as3668->client->dev;
+>> +	struct as3668_led *led;
+>> +	struct led_init_data init_data = {};
+>> +	int err;
+>> +	u32 reg;
+>> +
+>> +	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
+>> +		err = of_property_read_u32(child, "reg", &reg);
+>> +		if (err)
+>> +			return dev_err_probe(dev, err, "'reg' property missing from %s\n",
+> 
+> "Failed to read 'reg' property"
+> 
+Thanks
+>> +					     child->name);
+>> +
+>> +		if (reg < 0 || reg > AS3668_MAX_LEDS)
+>> +			return dev_err_probe(dev, -EOPNOTSUPP,
+>> +					     "'reg' property in %s is out of scope: %d\n",
+> 
+> "Unsupported LED: %d"
+> 
+I understand now that should be user facing messages... Thanks.
+>> +					     child->name, reg);
+>> +
+>> +		led = &as3668->leds[reg];
+>> +		led->fwnode = of_fwnode_handle(child);
+>> +
+>> +		led->led_id = reg;
+>> +		led->chip = as3668;
+>> +
+>> +		led->cdev.max_brightness = U8_MAX;
+>> +		led->cdev.brightness_get = as3668_brightness_get;
+>> +		led->cdev.brightness_set = as3668_brightness_set;
+>> +
+>> +		init_data.fwnode = led->fwnode;
+>> +		init_data.default_label = ":";
+>> +
+>> +		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
+>> +		if (err)
+>> +			return dev_err_probe(dev, err, "failed to register LED %d\n", reg);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int as3668_probe(struct i2c_client *client)
+>> +{
+>> +	struct as3668 *as3668;
+>> +	int err;
+>> +	u8 chip_id;
+>> +
+>> +	if (client->addr != AS3668_EXPECTED_I2C_ADDR)
+> 
+> Expected is weird.
+> 
+> Why are we trying to catch-out the consumer?
+> 
+> If you already know what the I2C address is, just use that.
+> 
+Okay, I will do that instead.
+I aim to fail early in my code and double check everything.
+Drivers shouldn't error check the device tree, if I understand you 
+correctly.
+>> +		return dev_err_probe(&client->dev, -EFAULT,
+>> +				     "expected i2c address 0x%02x, got 0x%02x\n",
+>> +				     AS3668_EXPECTED_I2C_ADDR, client->addr);
+>> +
+>> +	/* Read identifier from chip */
+> 
+> This comment is superfluous IMHO.
+> 
+> The register name should tell us everything.
+> 
+>> +	chip_id = i2c_smbus_read_byte_data(client, AS3668_CHIP_ID1_REG);
+>> +
+> 
+> Remove this line.
+> 
+>> +	if (chip_id != AS3668_CHIP_ID)
+>> +		return dev_err_probe(&client->dev, -ENODEV,
+>> +				     "expected chip id 0x%02x, got 0x%02x\n",
+> 
+> "ID"
+> 
+>> +				     AS3668_CHIP_ID, chip_id);
+>> +
+>> +	as3668 = devm_kzalloc(&client->dev, sizeof(*as3668), GFP_KERNEL);
+>> +	if (!as3668)
+>> +		return -ENOMEM;
+>> +
+>> +	as3668->client = client;
+>> +
+>> +	err = as3668_dt_init(as3668);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	/* Set all four channel modes to 'on' */
+> 
+> Even if a specific LED wasn't requested?
+> 
+> Are you sure that this doesn't have any drawbacks (power perhaps)?
+> 
+After reading through downstream code and it's datasheet, this actually 
+might result in higher power consumption than switching it off.
+I suppose we could enable and disable a specific channel when setting 
+the brightness. I will add that in my next patch version.
+>> +	err = i2c_smbus_write_byte_data(client, AS3668_CURRX_CONTROL_REG,
+>> +					FIELD_PREP(AS3668_CURRX_CURR1_MASK, AS3668_CURRX_MODE_ON) |
+>> +					FIELD_PREP(AS3668_CURRX_CURR2_MASK, AS3668_CURRX_MODE_ON) |
+>> +					FIELD_PREP(AS3668_CURRX_CURR3_MASK, AS3668_CURRX_MODE_ON) |
+>> +					FIELD_PREP(AS3668_CURRX_CURR4_MASK, AS3668_CURRX_MODE_ON));
+>> +
+>> +	/* Set initial currents to 0mA */
+>> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR1_REG, 0);
+>> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR2_REG, 0);
+>> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR3_REG, 0);
+>> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR4_REG, 0);
+>> +
+>> +	if (err)
+>> +		return dev_err_probe(&client->dev, -EIO, "failed to write to the device\n");
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void as3668_remove(struct i2c_client *client)
+>> +{
+>> +	int err;
+> 
+> '\n' here.
+> 
+Okay
+>> +	err = i2c_smbus_write_byte_data(client, AS3668_CURRX_CONTROL_REG, 0);
+>> +	if (err)
+>> +		dev_err(&client->dev, "couldn't remove the device\n");
+> 
+> This does not remove the device.
+> 
+> "Failed to turn off the LEDs"
+> 
+Obviously, now that I see it. Thanks
+>> +}
+>> +
+>> +static const struct i2c_device_id as3668_idtable[] = {
+>> +	{ "as3668" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(i2c, as3668_idtable);
+>> +
+>> +static const struct of_device_id as3668_match_table[] = {
+>> +	{ .compatible = "ams,as3668" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, as3668_match_table);
+>> +
+>> +static struct i2c_driver as3668_driver = {
+>> +	.driver = {
+>> +		.name = "leds_as3668",
+>> +		.of_match_table = as3668_match_table,
+>> +	},
+>> +	.probe = as3668_probe,
+>> +	.remove = as3668_remove,
+>> +	.id_table = as3668_idtable,
+>> +};
+>> +module_i2c_driver(as3668_driver);
+>> +
+>> +MODULE_AUTHOR("Lukas Timmermann <linux@timmermann.space>");
+>> +MODULE_DESCRIPTION("AS3668 LED driver");
+>> +MODULE_LICENSE("GPL");
+>> -- 
+>> 2.51.0
+>>
+> 
 
-Sorry for not getting that right in my first reply. This commit from
-Linaro was also posted to the lkml:
-
-https://lore.kernel.org/all/20251006-topic-x1e80100-hdmi-v5-1-c006311d59d7@linaro.org/
-
-I will include this requirement in the cover letter.
-Thanks for the review.
-
-Regards,
-Georg
 
