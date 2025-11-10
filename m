@@ -1,247 +1,89 @@
-Return-Path: <devicetree+bounces-236793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00BAC4794A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:37:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F93CC4792F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:36:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6E6542272D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:20:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05AB33AB58E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A75D2405E7;
-	Mon, 10 Nov 2025 15:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5FC82236EB;
+	Mon, 10 Nov 2025 15:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="aEij+ROR"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ztiH7bgv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DEAD23F26A
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 15:20:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9453318A956;
+	Mon, 10 Nov 2025 15:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762788019; cv=none; b=kHld/ucnIqnKQIhjQfj3Mlvu8C4p+iKcsv0HGnxg/Dh2A2S78tdao0sc/yFJ3fhbu63IFJMAPaMMMiEAHquidBOqNPOAf2HLVHv5fVzw4lNeZLwuAD6MwuTbFHG62lEY3AtR9+J9lEZZp3INH1XLKQ45B8I+L0szqsX17QdK2ME=
+	t=1762788136; cv=none; b=L059sldZ6RVdpX6lsWoVPX+sthblU+e3Gd5PsoQDLcw7x6q6+fYYjIYH5u0a/Vu5TrWxTjfO7CqNbX7HsHWWoe1h6g94l8Ig0Fk8l9wug+3QKAnkr01Ns4cQ4XfpOHVTANYl6ut+joYaHGED7jMpf9T1+pck8OP0J3CeqSgTMR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762788019; c=relaxed/simple;
-	bh=sO2EwoD/iYNjfdcI7NveTHw7NYQaesuq9uoAsC4fvXY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=kVpTWK6qsGKqBh4UuMY0TcTnrb0W6iorF7UTYg0oQqBZh7u1MqwVeyDrbRw/Oi/xaT2ONaoY9/YJbdiQ6u0fd+HvzUqEHI6kTet8X+EUZM7Evn8iu1ruvdxDxLsi1sdjvX59Wn6cNMpyKHI8PMUAS5uwkbsnAe2tv5O34gL1Zpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=aEij+ROR; arc=none smtp.client-ip=209.85.166.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-43320651e53so26789595ab.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 07:20:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1762788016; x=1763392816; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=wHqCJdsR7z6UGezYu2PLRy2EX3z1OohmVvws0HQYrFQ=;
-        b=aEij+RORaRMFW8ONPGQ9MWQ2SIC99rnZNqHsx0buzMifST7WGMnZpAxk9MePnIjJAm
-         z0Rk4mmyamAHdCvYKqA8ylg2mfS4aKsJ/rwSfqXDuQ0L1cPLsKVA43GTTTfSCR6xpqbR
-         t1HLDL6Y2SkQGWyktQeaC0YOwa84kAizkyOKAsNGvicI9iaH4urPRZrVo8+FsCIDfTiO
-         1P38R0DXg/HLhF6roXQbQxV/FuNuIaUEBlPrxshNCjcNbih4K1hSnyAwHuEolAMFRcqY
-         rF+bFBf/XV4kL+gxrJKUuUgG59wW59TccqLxz0SO+BqLpBxD2G1LCVgI68AwKcn1YdUB
-         bFyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762788016; x=1763392816;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wHqCJdsR7z6UGezYu2PLRy2EX3z1OohmVvws0HQYrFQ=;
-        b=teZ8y5JmUiG1tlqJ/zCTa6CkpC5GguTGtFoogs8AaIzI73Sp7SbLYgsRQkbZOFIwGA
-         VgRnG8nBSIM4zPOChapxcoHL9bl/etM/vWR7Vs8oEKuzIm8DzFS6Qe1HlYU9HW8PJUEH
-         Ebmy9KSA7IJQnnLBGzeWa/rPs2YtmiLZ/oJH08oEm0FhnwTn6Y3LIPw59bsk+sl4fgVQ
-         Els9GLRSZf2gpi90QM6tNar5qRRT3V4nqPcItXiAAyITUjveketvxHsZbNYn4JRWz7tA
-         dct9zEkwsUcmoRWI+y8nymTj65xPpXA4vHjud38X+lgoFKmMqNdhPQ6hy/tLJKjRJB2u
-         MQRw==
-X-Forwarded-Encrypted: i=1; AJvYcCU6G9NePnP9+bzkrV8tyIYywFLnleWHTymbE7KshRWvKDQdRsJZL/OqIx/CwY37jbzX2To+97DLzaf5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyD3ISczX1K0wZ+sJYEV9is7dN27iCWjN37w4CKn6iwGcuLHFLo
-	HgnSgevzS4RBDTGtxt707jnOSzTlfQAYnakw8QzZuza2goIMZrm/jxVSYrcKsi+c7yM=
-X-Gm-Gg: ASbGncsc+C4yZ/UQ0P9zKJu/6mt/FvRh8adlvwoAMjBBOBEfzgDjexxZ5cLzrVxzIQ4
-	GAPVio78W8CR8YM5TLqa9XtLdVdq7K8p9IWaLCwNSQ1So6Fxd6sfFi1O1rT/rLKRoW28G9iBPQU
-	2pA58SK5QPCDMZ1u5aYzIcOktikvCNL8cAePCJ52ueLuOrZeVasv8Il2QAqVlvwecAQmVsjP9fr
-	V6zAmONHegKYOjWLSSI9pCw8krLvNloMZfkX8brnc1I/AhbVgL+WLr14JGipo3yNTFhBOqm2h1a
-	ElXbt1twUDSCowNe6FPI+UGJRBVkw/nYwbVLu22jvTJx2S4gEhlkpDRD+m5Ga6jMPAS+f/64QO5
-	DeTq/uhwlO1E6NbsKRpt1Yix7ewAqjjNugnVX0pKB59j3HxiWy/84t8YPo8TEOfNEpCDw1Pb9xz
-	/5wuhWVnySOxv+DPweUDv2oGrLtzzgkOn0Bnl+YwY=
-X-Google-Smtp-Source: AGHT+IEbu7UkRnaq1HAZF7KJE8mC7YX4IT4qsm04tHRZF/RRVkDmdBo8SVYWqOjog8FiLYEn3hk8pw==
-X-Received: by 2002:a05:6e02:1aa2:b0:433:3034:e88 with SMTP id e9e14a558f8ab-43367e48c8bmr107760915ab.21.1762788016218;
-        Mon, 10 Nov 2025 07:20:16 -0800 (PST)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-4334f4f5b90sm56357735ab.33.2025.11.10.07.20.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Nov 2025 07:20:15 -0800 (PST)
-Message-ID: <66ab3a48-5d5a-47c7-b8eb-b477fd987314@riscstar.com>
-Date: Mon, 10 Nov 2025 09:20:13 -0600
+	s=arc-20240116; t=1762788136; c=relaxed/simple;
+	bh=TsRwq4alRiMLTUSP+TQrXROO+fIY++fmtBgUt7JZMfI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MM+cBIaHGzuuo06IQ7H/IPh7Sgm+DzXSxNOuQO1kj69pa/8UefGX9P9VTQWlJ5/TKLGNb/TbmP0Ah4SjbYnpD+dXqF7PBIlh2AsT5lSo5Ppn2bHe7vQPVjfo6Nwe+MNKvv8sLmnHe3OWZNoKRulL2Guljt5fZuAwWfE1017Xoyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ztiH7bgv; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Awr+81kQsRnEBxn06SpEGdo1D44sv/W67zP5wVfdji8=; b=ztiH7bgviNzNanjroR1I3K9ala
+	g4VP79+oXXvnv4jp8O3mC+I7CpuE7e3ZyKbul3ax9mvMQ6uF7ZgjsEZNlsmW9dsatq3/x3Y8DcaYg
+	mJNFvp8XO6OaYEG83DMlc/K8uhCnXFrzIYQ4gaGxb/KYyaWvHCnkNFd/0FERfx4c+qj4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vITi7-00DX2g-4E; Mon, 10 Nov 2025 16:21:39 +0100
+Date: Mon, 10 Nov 2025 16:21:39 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, taoren@meta.com
+Subject: Re: [PATCH net-next v4 1/4] dt-bindings: net: ftgmac100: Add delay
+ properties for AST2600
+Message-ID: <aeb5d294-d8c7-4dbb-a159-863963d38059@lunn.ch>
+References: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
+ <20251110-rgmii_delay_2600-v4-1-5cad32c766f7@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/7] Introduce SpacemiT K1 PCIe phy and host controller
-To: dlan@gentoo.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
- bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- mani@kernel.org, ziyao@disroot.org, johannes@erdfelt.com,
- mayank.rana@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
- shradha.t@samsung.com, inochiama@gmail.com, pjw@kernel.org,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- p.zabel@pengutronix.de, christian.bruel@foss.st.com,
- thippeswamy.havalige@amd.com, krishna.chundru@oss.qualcomm.com,
- guodong@riscstar.com, devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251107191557.1827677-1-elder@riscstar.com>
- <aQ8kqIljwGZfkF8M@aurel32.net>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <aQ8kqIljwGZfkF8M@aurel32.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251110-rgmii_delay_2600-v4-1-5cad32c766f7@aspeedtech.com>
 
-On 11/8/25 5:08 AM, Aurelien Jarno wrote:
-> Hi Alex,
-> 
-> Thanks for this new version.
-> 
-> On 2025-11-07 13:15, Alex Elder wrote:
->> This series introduces a PHY driver and a PCIe driver to support PCIe
->> on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
->> Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
->> PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
->> one PCIe lane, and the other two ports each have two lanes.  All PCIe
->> ports operate at 5 GT/second.
->>
->> The PCIe PHYs must be configured using a value that can only be
->> determined using the combo PHY, operating in PCIe mode.  To allow
->> that PHY to be used for USB, the needed calibration step is performed
->> by the PHY driver automatically at probe time.  Once this step is done,
->> the PHY can be used for either PCIe or USB.
->>
->> This initial version of the driver supports 32 MSIs, and does not
->> support PCI INTx interrupts.  The hardware does not support MSI-X.
->>
->> Version 5 of this series incorporates suggestions made during the
->> review of version 4.  Specific highlights are detailed below.
->>
->> Note:
->> Aurelien Jarno and Johannes Erdfelt have reported seeing ASPM errors
->> accessing NVMe drives when using earlier versions of this series.
->> The Kconfig files they used were very different from the RISC-V
->> default configuration.
->>
->> Aurelien has since reported the errors do not occur when using
->> defconfig.  Johannes has not reported back about this.
-> 
-> Unfortunately, while it is true with v4, this is not the case with v5
-> anymore :(
+> Add the new property, "aspeed,rgmii-delay-ps", to specify per step of
+> RGMII delay in different MACs. And for Aspeed platform, the total steps
+> of RGMII delay configuraion is 32 steps, so the total delay is
+> "apseed,rgmii-delay-ps' * 32.
 
-That's too bad, but thank you for reporting it.
+You already have hard coded base addresses to identify the MAC
+instances. So i don't see the need for this in DT. Just extend the
+switch statement with the delay step.
 
-> Fundamentally in the generic designware driver, post_init (which is used
-> to disable L1 support on the controller side) is called after starting
-> the link. The comparison of the capabilities is done in
-> pcie_aspm_cap_init when the link is up, which happens a tiny bit after
-> starting it.
-> 
-> In practice with v4, the link is started, ASPM L1 is disabled and the
-> link becomes up. With v5, the move of the code getting and enabling the
-> regulator changed the timing, and ASPM L1 is now disabled on the
-> controller 2-3 ms after the link is up, which is too late.
+    Andrew
 
-Yes in v4, we relied on the root port driver to enable the
-regulator, but (on my system anyway) that happened too late,
-*after* the PCIe controller driver held PERST# asserted for
-100 msec.  PERST# is not supposed to be de-asserted until
-power is known to be stable.  So v5 went back to having
-the controller get the regulator in k1_pcie_probe().
-
-I am supposed to receive the WD Blue SN570 on Wednesday, and
-when I get that I'll have a chance to try to reproduce at
-least one of these problems, and can ensure there are no
-timing-related issues like this.
-
-Thank you for your continued testing and feedback about this.
-
-					-Alex
-
-> I have added a call to pci_info to display the moment where ASPM is
-> disabled. This is without the regulator change:
-> 
-> [    0.386730] spacemit-k1-pcie ca400000.pcie: host bridge /soc/pcie-bus/pcie@ca400000 ranges:
-> [    0.386970] spacemit-k1-pcie ca800000.pcie: host bridge /soc/pcie-bus/pcie@ca800000 ranges:
-> [    0.387017] spacemit-k1-pcie ca800000.pcie:       IO 0x00b7002000..0x00b7101fff -> 0x0000000000
-> [    0.387047] spacemit-k1-pcie ca800000.pcie:      MEM 0x00a0000000..0x00afffffff -> 0x00a0000000
-> [    0.387062] spacemit-k1-pcie ca800000.pcie:      MEM 0x00b0000000..0x00b6ffffff -> 0x00b0000000
-> [    0.400109] spacemit-k1-pcie ca400000.pcie:       IO 0x009f002000..0x009f101fff -> 0x0000000000
-> [    0.490101] spacemit-k1-pcie ca800000.pcie: iATU: unroll T, 8 ob, 8 ib, align 4K, limit 4G
-> [    0.494195] spacemit-k1-pcie ca400000.pcie:      MEM 0x0090000000..0x009effffff -> 0x0090000000
-> [    0.850344] spacemit-k1-pcie ca400000.pcie: iATU: unroll T, 8 ob, 8 ib, align 4K, limit 4G
-> [    0.950133] spacemit-k1-pcie ca400000.pcie: PCIe Gen.1 x2 link up
-> [    1.129988] spacemit-k1-pcie ca400000.pcie: PCI host bridge to bus 0000:00
-> [    1.335482] pci_bus 0000:00: root bus resource [bus 00-ff]
-> [    1.340946] pci_bus 0000:00: root bus resource [io  0x100000-0x1fffff] (bus address [0x0000-0xfffff])
-> [    1.350181] pci_bus 0000:00: root bus resource [mem 0x90000000-0x9effffff]
-> [    1.358734] pci_bus 0000:00: resource 4 [io  0x100000-0x1fffff]
-> [    1.362033] pci_bus 0000:00: resource 5 [mem 0x90000000-0x9effffff]
-> [    1.368289] spacemit-k1-pcie ca400000.pcie: pcie_aspm_override_default_link_state
-> [    1.375967] pci 0000:00:00.0: [1e5d:3003] type 01 class 0x060400 PCIe Root Port
-> [    1.383043] pci 0000:00:00.0: BAR 0 [mem 0x00000000-0x000fffff]
-> [    1.388927] pci 0000:00:00.0: BAR 1 [mem 0x00000000-0x000fffff]
-> [    1.394826] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
-> [    1.400061] pci 0000:00:00.0:   bridge window [io  0x100000-0x100fff]
-> [    1.406460] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
-> [    1.413245] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
-> [    1.421012] pci 0000:00:00.0: supports D1
-> [    1.424948] pci 0000:00:00.0: PME# supported from D0 D1 D3hot D3cold
-> [    1.432718] pci 0000:01:00.0: [1987:5015] type 00 class 0x010802 PCIe Endpoint
-> [    1.438698] pci 0000:01:00.0: BAR 0 [mem 0x00000000-0x00003fff 64bit]
-> [    1.445426] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 2.5 GT/s PCIe x2 link at 0000:00:00.0 (capable of 31.504 Gb/s with 8.0 GT/s PCIe x4 link)
-> [    1.464897] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
-> 
-> And this is with the regulator change:
-> 
-> [    0.410796] spacemit-k1-pcie ca400000.pcie: host bridge /soc/pcie-bus/pcie@ca400000 ranges:
-> [    0.410836] spacemit-k1-pcie ca800000.pcie: host bridge /soc/pcie-bus/pcie@ca800000 ranges:
-> [    0.410889] spacemit-k1-pcie ca800000.pcie:       IO 0x00b7002000..0x00b7101fff -> 0x0000000000
-> [    0.410917] spacemit-k1-pcie ca800000.pcie:      MEM 0x00a0000000..0x00afffffff -> 0x00a0000000
-> [    0.410932] spacemit-k1-pcie ca800000.pcie:      MEM 0x00b0000000..0x00b6ffffff -> 0x00b0000000
-> [    0.424651] spacemit-k1-pcie ca400000.pcie:       IO 0x009f002000..0x009f101fff -> 0x0000000000
-> [    0.436446] spacemit-k1-pcie ca400000.pcie:      MEM 0x0090000000..0x009effffff -> 0x0090000000
-> [    0.513897] spacemit-k1-pcie ca800000.pcie: iATU: unroll T, 8 ob, 8 ib, align 4K, limit 4G
-> [    0.559595] spacemit-k1-pcie ca400000.pcie: iATU: unroll T, 8 ob, 8 ib, align 4K, limit 4G
-> [    0.839412] spacemit-k1-pcie ca400000.pcie: PCIe Gen.1 x2 link up
-> [    0.847078] spacemit-k1-pcie ca400000.pcie: PCI host bridge to bus 0000:00
-> [    0.857600] pci_bus 0000:00: root bus resource [bus 00-ff]
-> [    0.868702] pci_bus 0000:00: root bus resource [io  0x100000-0x1fffff] (bus address [0x0000-0xfffff])
-> [    1.146409] pci_bus 0000:00: root bus resource [mem 0x90000000-0x9effffff]
-> [    1.373742] pci 0000:00:00.0: [1e5d:3003] type 01 class 0x060400 PCIe Root Port
-> [    1.380963] pci 0000:00:00.0: BAR 0 [mem 0x00000000-0x000fffff]
-> [    1.386883] pci 0000:00:00.0: BAR 1 [mem 0x00000000-0x000fffff]
-> [    1.392808] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
-> [    1.395394] pci 0000:00:00.0:   bridge window [io  0x100000-0x100fff]
-> [    1.401811] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
-> [    1.408583] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
-> [    1.416354] pci 0000:00:00.0: supports D1
-> [    1.420294] pci 0000:00:00.0: PME# supported from D0 D1 D3hot D3cold
-> [    1.428220] pci 0000:01:00.0: [1987:5015] type 00 class 0x010802 PCIe Endpoint
-> [    1.434034] pci 0000:01:00.0: BAR 0 [mem 0x00000000-0x00003fff 64bit]
-> [    1.440772] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 2.5 GT/s PCIe x2 link at 0000:00:00.0 (capable of 31.504 Gb/s with 8.0 GT/s PCIe x4 link)
-> [    1.463390] pci 0000:01:00.0: pcie_aspm_override_default_link_state
-> [    1.467000] pci 0000:01:00.0: ASPM: default states L1
-> [    1.472093] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
-> 
-> Note how the line pcie_aspm_override_default_link_state arrives too
-> late.
-> 
-> Regards
-> Aurelien
-> 
-
+---
+pw-bot: cr
 
