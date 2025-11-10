@@ -1,477 +1,328 @@
-Return-Path: <devicetree+bounces-236937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB57C496EE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:39:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B078C49754
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:55:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B752918842EF
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:39:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A5931888491
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A452832ED35;
-	Mon, 10 Nov 2025 21:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381C732AAD4;
+	Mon, 10 Nov 2025 21:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O0M0zD4y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G5Mg0PhK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABB12C08BF
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 21:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3082F6582
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 21:55:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762810738; cv=none; b=XyZuceAzDR89enTovKxy/59GOhvm6Jwvk9GN4+IUtgFy4VpqWmoz+5Xye3JOnXMpoAuJGk0I7XZxmDPDISlkeNTJHS3XOnskDG2GGLs4/f7F0rjnOCRRs9xdPMyuurQme32mn1g3f8PpA+inuxlZPimVhGbztk42ggwKugdD1Ms=
+	t=1762811734; cv=none; b=ZihWPywh3y5nqOKziGFFdHmpdkMd3vtH64sQci9OY7FhRdBun9IX8d5ORBOxCMPCd1fbdO9gnl9z6+n3Aem5N3d9lJr8NnkJuF2Fq5n94EnJVLee+BCfCp+F+QGZqCKFAWgDNi6mzVWIpzIRtQGmoDm1H50sev0ouicoVczeQ/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762810738; c=relaxed/simple;
-	bh=cTdgEbBzQVj0+Jsk5gVE414ysvFa19EZPgFiisqpJ5M=;
+	s=arc-20240116; t=1762811734; c=relaxed/simple;
+	bh=ObSsB7738pOMEqJYJlXGe5i/m6TYZQwPOJNWMg4oBrc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IftA2e4JaVwQsySDeEmXrN7dsHcc+cdd7WRQwRuXaakcaffPspPUwWIoBExA/oM7mOKydCD8YxTBGqpASmgnJZoh+YbDZpoTyb3TxYtsDyQJM3Gq+giDz0XwK4mhejXbEdkiWF0GzrA/JPuU5jFEhlWRfNE/+bwsaTXolLsFwco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O0M0zD4y; arc=none smtp.client-ip=209.85.221.54
+	 To:Cc:Content-Type; b=KdKR2V2kEQybBcuAlp1LtRimW+HZkzV3KMSrsV5wJbmct6cIlAmJvTgIYmYp7dOXcSeahZKIHP/zR50GsSIIcl0aaYteTah0cA6y4BB/ByRR6h39v8pLZbOjbWSjY7qlOCkJIAABaznLKVUGNwmqmb5xhVeBLc4qMJvCE/3K1OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G5Mg0PhK; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-42b2a0c18caso2539705f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:38:56 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-594259bc5f1so2628450e87.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:55:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762810735; x=1763415535; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762811730; x=1763416530; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gKeG3s/W/qSrdcqT78Gs/bWuaBXLVMnbI+0M79sKo3Y=;
-        b=O0M0zD4yMInmGF4eOihyFDaAgWyYoOc27QE4JrLLkCp+3LXrp3NR8P8KAz9Zwbu4sz
-         CvCce64n+UxDj+WzS81orgUR/dP7R0YQbkocflym6zejHQ6Zr3+gTYURyW8DD0jzPac9
-         sgGAD9j57W05FcB7zR+k6fWQSZ8mGrRY9Q/akuHecCXjDZZw4w8IakgVK3zaJHv8S0fI
-         pkW4Lf7Jj7D0Pl++zllNNOZ4vt5FNmBwng1jHsAT//tdOo9nUusm0Uy8v9ENXaIk0LIe
-         kr69PjaTMNu9eFN26yE/83INQBKP0/kKgQocIDM9JmJJ31Ot/wxffS9qCNeenM/rQ/Ug
-         mpYg==
+        bh=75zkR/UZ6TOt6Wc437IRuw+KGuA25dggT8vLsbM0934=;
+        b=G5Mg0PhKFXkSttuyCwB4VSyZZdz7nMIyOX8q0lK8/IYRc2QZ0anF/vook14ra5TbNu
+         7KtV4wBBq/GF+WXZGCHPxwBewqjAUUxVZXc1GTTGbInUTpzGYIEntbwl7iFUV96hj8YB
+         7Q0+R5Zb1+zpElLkzTAT/qmsKPRIG/d0Au8IXeRIEJ7lZwwk15G62t0g0FhB+Hx5nDzg
+         cEasd1LFE40kUiiXMSLkkK4K3Z688ibhKeWKxYx5EYvu1DliCvQL+uBEDShxvwKddbdS
+         b8FjRVfxxKSDGZM8MCpIsariSSisU9+7C1a7Rci30YYSjcaaHwGgNKPVSiIl55bFTmT0
+         xAmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762810735; x=1763415535;
+        d=1e100.net; s=20230601; t=1762811730; x=1763416530;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=gKeG3s/W/qSrdcqT78Gs/bWuaBXLVMnbI+0M79sKo3Y=;
-        b=ini+VXuA8Qm1qTf99VGhsmhpp2SjAaOs8KJMJmOtZWAHnj8WeAg9Iwwnf0ShL4toe9
-         YQo87SLjgc84f5fODwQzOf7cSt72NBr0FPbWBcuva94QJS2BHVhay/D3Lh/9mvjUvz8g
-         e0xj+JYvAKXMLxTn/IBHQhR8fdkaKtbWTajp/9SEzKU55zq8bFtZ5ajlOXeyhZvBmcoI
-         KqPWAbZAtOdhWmq7LVXMj63i7mve8OqpvtA4b6oJVbuamx/Dg5sdMRTPMiX1P6HPhXYR
-         CQ5y+77QfoYoKBcmO6iVxmK2geTuwLydq+kB7sFlp94/0+9qqij8PeQ+U2joMLMI9Ncn
-         hF5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUNPHKjVHHDEq16C3g13Bm50clIjAlc0qE1rGcrH21da8ewWUNfnlYxEeCsVopqxp17Zaz85yHtwGSD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/akJEWDIUIHxIhePPEPJZjgPh08LRxM/8YyCwWnq2nCnXnnYp
-	JRPVZDhehAqo2LDuzp/YZyPV50cDdUUVY4N3APSvVhmGpOyQdQnA3NIhzA7Bsi+8Gtqy/0RDBmc
-	I52yTulPr29lpsJqHjcefRujguOtj7Ck=
-X-Gm-Gg: ASbGncv45n5Ml4H+rGiWlJvTLo9MZhvbH3GwqoVH+29QIQgNc0DtpCAHx2owXqVJ+AB
-	ktsu7Za0rnJ7AXrc4XWZJt+VeXR8YWGpqwI7naAHdlNhjT//ggwGlGafOIDOap7/2XXKiBdu3vI
-	WZFTtX8TpA04WNRfTuMIx5I4QsH4r2xb3rTj6xcB4nGFYONGm2OwYCl8jJI5XC8L31pCXGBcY5K
-	1j5kSCgk6+apzwOe/EZqogXW+vSAb50hNS3BfHiMnqMJHb8KJ8DVEt8iWpGEw==
-X-Google-Smtp-Source: AGHT+IEkjjibfkmx2CZAzFzB++b/Z6pjVW3//MbnY2TuzRb79D5BUaXVRojqYqi9CAVOksR9Vhda87sXtYzfjBEJpEA=
-X-Received: by 2002:a05:6000:200e:b0:427:9d7:86f9 with SMTP id
- ffacd0b85a97d-42b2dca3f67mr8790808f8f.47.1762810734542; Mon, 10 Nov 2025
- 13:38:54 -0800 (PST)
+        bh=75zkR/UZ6TOt6Wc437IRuw+KGuA25dggT8vLsbM0934=;
+        b=UJbALM+XL5EgHQtbAAlt763rKcMg7aKJD84o2Cpx0WEf5A7C6XD2uekmuiEsqseL2S
+         r4F3HfBoxr9iDB9u7N3ftrIFzGk1rPEAf4WHwSOmF0iAPOkoBZYhuovkPzybDfs17cLn
+         wnz+mnmYrfxvT7Z6Y63+cgnircE9WJkjEVHbwiGi5GHVBUVLiWhmN9TZaCQQEaFck2Z4
+         v2d9bstqYROfDOo9aLi7JyYRheLzkoM3zbJLZaOFSFozK2H91Tm2icOZeH7FJI6AYzfO
+         0wLUEYGgg4dMtKZXB84S7iSX6VAiK1w7/vlqa8mJJL9+6EdOT0I7uZqcGAl8DXE9fHmY
+         Twzw==
+X-Forwarded-Encrypted: i=1; AJvYcCX+g0WYVL5kznGwAvzmENnog6T6obG7ne4xVMxALGuRGlaabryV9CuUy6elFS+KjZZthgcaQ6sYYrOd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0z25ZRc/O44EII4tqVM9hPiMoKG2Ri0dqgmtLtZj/fXeO5Rd4
+	ISJfuKNFowb5k3/B3w/bQB5SjvvTcjp95OEB+0hNgop48zHwuzoNoBN4WbyTjiW7AfkpoOtBBEW
+	2T1AnLwNVVV0x7jyrInR8pF+i+CQQi0YFJg==
+X-Gm-Gg: ASbGncvBEKXOBrlC0aimJfAd9UKvoCkzZvRk2DC4mdGLNDycbNWgzrLfzE7WVUeQf/n
+	L/4mK54zT07K9ZJwePtc/1Xl399w81yvG4YMRfDMI4KoCSq9GpAv3LR6zXTNW+Oq9XuuU9TFA1b
+	9eNjURynWWpYrN44dp0xsgH8c5nzfbUe5UqjGO+FqrNj6txj+KviDN4KJ5NQNU36/DMzvaQ+FTQ
+	dewmOFz21KGWMDNiaUTcNYzET1eaYpmZNMgLDMITnZE2Nkx2liqZmhxieMa
+X-Google-Smtp-Source: AGHT+IHGiQpBuoltSAmsRa5cYFCPTxfS3hi7kI1V+OfnP7UhcRFGs7NRrD6L+fCJ0Ns0YLNDxAqXXNnXTspeBlSNLa8=
+X-Received: by 2002:a05:6512:239a:b0:594:18cf:14c6 with SMTP id
+ 2adb3069b0e04-5945f15c1b6mr2432185e87.21.1762811730218; Mon, 10 Nov 2025
+ 13:55:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251028165127.991351-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251028165127.991351-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWSB4OvS5AeWqOBQPNG2J9VMYe9YUeXAp9kPjcJEQm3+g@mail.gmail.com>
-In-Reply-To: <CAMuHMdWSB4OvS5AeWqOBQPNG2J9VMYe9YUeXAp9kPjcJEQm3+g@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 10 Nov 2025 21:38:28 +0000
-X-Gm-Features: AWmQ_bkBTTeO5RvxzqkAQX0F83hRREO1oo07OyPg6IEMnJcpjj4Wjh6daMvSTc4
-Message-ID: <CA+V-a8sC44HeShCFdk2xwTHMdcOo+8btNh9i0hthTEUMdnhqAQ@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] clk: renesas: r9a09g077: Add xSPI core and module clocks
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+ <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com> <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
+In-Reply-To: <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Mon, 10 Nov 2025 15:55:17 -0600
+X-Gm-Features: AWmQ_bmCgGj-BBdH4Veqo9w6LfhIAvjjDwwgCxeeYiZ0ZFChwSDrN20zwBdXnlQ
+Message-ID: <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Geert,
-
-Thank you for the review.
-
-On Mon, Nov 10, 2025 at 1:48=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
+On Mon, Nov 10, 2025 at 3:25=E2=80=AFPM Jon Hunter <jonathanh@nvidia.com> w=
+rote:
 >
-> Hi Prabhakar,
 >
-> On Tue, 28 Oct 2025 at 17:52, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> On 27/10/2025 18:55, Aaron Kling via B4 Relay wrote:
+> > From: Aaron Kling <webgeek1234@gmail.com>
 > >
-> > Add core clocks and module clock definitions required by the xSPI
-> > (Expanded SPI) IP on the R9A09G077 SoC.
+> > This adds support for dynamic frequency scaling of external memory on
+> > devices with bpmp firmware that does not support bwmgr.
 > >
-> > Define the new SCKCR fields FSELXSPI0/FSELXSPI1 and DIVSEL_XSPI0/1 and
-> > add two new core clocks XSPI_CLK0 and XSPI_CLK1. The xSPI block uses
-> > PCLKH as its bus clock (use as module clock parent) while the operation
-> > clock (XSPI_CLKn) is derived from PLL4. To support this arrangement
-> > provide mux/div selectors and divider tables for the supported
-> > XSPI operating rates.
-> >
-> > Add CLK_TYPE_RZT2H_FSELXSPI to implement a custom divider/mux clock
-> > where the determine_rate() callback enforces the hardware constraint:
-> > when the parent output is 600MHz only dividers 8 and 16 are valid,
-> > whereas for 800MHz operation the full divider set (6,8,16,32,64) may
-> > be used. The custom determine_rate() picks the best parent/divider pair
-> > to match the requested rate and programs the appropriate SCKCR fields.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 > > ---
-> > v1->v2:
-> > - Added custom divider clock type for XSPI clocks to enforce hardware
-> >   constraints on supported operating rates.
->
-> Thanks for the update!
->
-> > --- a/drivers/clk/renesas/r9a09g077-cpg.c
-> > +++ b/drivers/clk/renesas/r9a09g077-cpg.c
->
-> > @@ -54,12 +56,19 @@
-> >  #define DIVSCI3ASYNC   CONF_PACK(SCKCR3, 12, 2)
-> >  #define DIVSCI4ASYNC   CONF_PACK(SCKCR3, 14, 2)
+> >   drivers/memory/tegra/tegra186-emc.c | 132 +++++++++++++++++++++++++++=
+++++++++-
+> >   1 file changed, 130 insertions(+), 2 deletions(-)
 > >
-> > +#define FSELXSPI0      CONF_PACK(SCKCR, 0, 3)
-> > +#define FSELXSPI1      CONF_PACK(SCKCR, 8, 3)
-> > +#define DIVSEL_XSPI0   CONF_PACK(SCKCR, 6, 1)
-> > +#define DIVSEL_XSPI1   CONF_PACK(SCKCR, 14, 1)
-> >  #define SEL_PLL                CONF_PACK(SCKCR, 22, 1)
+> > diff --git a/drivers/memory/tegra/tegra186-emc.c b/drivers/memory/tegra=
+/tegra186-emc.c
+> > index 9959ad5804b444b269456d1fbae87b4bc111661b..74be09968baa7a0fbdce435=
+9f470ce56b18acb10 100644
+> > --- a/drivers/memory/tegra/tegra186-emc.c
+> > +++ b/drivers/memory/tegra/tegra186-emc.c
+> > @@ -18,6 +18,17 @@ struct tegra186_emc_dvfs {
+> >       unsigned long rate;
+> >   };
 > >
-> > +#define DIVSELXSPI_RATE_600MHZ         600000000UL
-> > +#define DIVSELXSPI_RATE_800MHZ         800000000UL
->
-> I find it a bit weird that the name of the define includes its value.
-> Perhaps just use "600 * MEGA" resp. "800 * MEGA" in the code instead?
-OK.
-
-> But see below...
->
-> > @@ -154,6 +180,15 @@ static const struct cpg_core_clk r9a09g077_core_cl=
-ks[] __initconst =3D {
-> >         DEF_DIV(".sci5async", CLK_SCI5ASYNC, CLK_PLL4D1, DIVSCI5ASYNC,
-> >                 dtable_24_25_30_32),
-> >
-> > +       DEF_FIXED(".pll4d1_div3", CLK_PLL4D1_DIV3, CLK_PLL4D1, 3, 1),
-> > +       DEF_FIXED(".pll4d1_div4", CLK_PLL4D1_DIV4, CLK_PLL4D1, 4, 1),
->
-> Please move these two just below the existing entry for ".pll4d1".
->
-Ok, I will move it below .pll4d1
-
-> > +       DEF_MUX(".divselxspi0", CLK_DIVSELXSPI0_SCKCR, DIVSEL_XSPI0,
-> > +               sel_clk_pll4d1_div3_div4,
-> > +               ARRAY_SIZE(sel_clk_pll4d1_div3_div4), 0),
-> > +       DEF_MUX(".divselxspi1", CLK_DIVSELXSPI1_SCKCR, DIVSEL_XSPI1,
-> > +               sel_clk_pll4d1_div3_div4,
-> > +               ARRAY_SIZE(sel_clk_pll4d1_div3_div4), 0),
+> > +enum emc_rate_request_type {
+> > +     EMC_RATE_DEBUG,
+> > +     EMC_RATE_ICC,
+> > +     EMC_RATE_TYPE_MAX,
+> > +};
 > > +
-> >         /* Core output clk */
-> >         DEF_DIV("CA55C0", R9A09G077_CLK_CA55C0, CLK_SEL_CLK_PLL0, DIVCA=
-55C0,
-> >                 dtable_1_2),
->
-> > @@ -264,6 +305,116 @@ r9a09g077_cpg_mux_clk_register(struct device *dev=
-,
-> >         return clk_hw->clk;
-> >  }
+> > +struct emc_rate_request {
+> > +     unsigned long min_rate;
+> > +     unsigned long max_rate;
+> > +};
+> > +
+> >   struct tegra186_emc {
+> >       struct tegra_bpmp *bpmp;
+> >       struct device *dev;
+> > @@ -33,8 +44,90 @@ struct tegra186_emc {
+> >       } debugfs;
 > >
-> > +static int r9a09g077_cpg_fselxspi_determine_rate(struct clk_hw *hw,
-> > +                                                struct clk_rate_reques=
-t *req)
+> >       struct icc_provider provider;
+> > +
+> > +     /*
+> > +      * There are multiple sources in the EMC driver which could reque=
+st
+> > +      * a min/max clock rate, these rates are contained in this array.
+> > +      */
+> > +     struct emc_rate_request requested_rate[EMC_RATE_TYPE_MAX];
+> > +
+> > +     /* protect shared rate-change code path */
+> > +     struct mutex rate_lock;
+> >   };
+> >
+> > +static void tegra186_emc_rate_requests_init(struct tegra186_emc *emc)
 > > +{
-> > +       struct clk_divider *divider =3D to_clk_divider(hw);
-> > +       unsigned long parent_rate, best =3D 0, now;
-> > +       const struct clk_div_table *clkt;
-> > +       unsigned long rate =3D req->rate;
-> > +       int div =3D 0;
->
-> unsigned int
->
-Ok.
-
+> > +     unsigned int i;
 > > +
-> > +       if (!rate)
-> > +               rate =3D 1;
+> > +     for (i =3D 0; i < EMC_RATE_TYPE_MAX; i++) {
+> > +             emc->requested_rate[i].min_rate =3D 0;
+> > +             emc->requested_rate[i].max_rate =3D ULONG_MAX;
+> > +     }
+> > +}
 > > +
-> > +       for (clkt =3D divider->table; clkt->div; clkt++) {
-> > +               parent_rate =3D clk_hw_round_rate(req->best_parent_hw, =
-rate * clkt->div);
->
-> I had expected the use of some *_determinate_rate_*() helper, as the
-> parent can be changed to find a better clock rate?
-> Perhaps you should use a composite clock for that?
->
-> > +               /*
-> > +                * DIVSELXSPIx supports 800MHz and 600MHz operation.
-> > +                * When the parent_rate is 600MHz, only dividers of 8 a=
-nd 16
-> > +                * are supported otherwise dividers of 6, 8, 16, 32, 64=
- are supported.
-> > +                * This check ensures that FSELXSPIx is set correctly.
-> > +                */
-> > +               if (parent_rate =3D=3D DIVSELXSPI_RATE_600MHZ &&
->
-> Does this actually work as expected? I doubt parent_rate is guaranteed
-> to be exactly 600 or 800 MHz, and expect it can differ slightly due
-> to rounding.  Hence I would look at clk_fixed_factor.div instead.
->
-With below diff, Ive got the below results for the various freqs
-requested where appropriate parent and divider clocks are picked.
-
-@@ -317,6 +317,7 @@ static int
-r9a09g077_cpg_fselxspi_determine_rate(struct clk_hw *hw,
-
-        for (clkt =3D divider->table; clkt->div; clkt++) {
-                parent_rate =3D clk_hw_round_rate(req->best_parent_hw,
-rate * clkt->div);
-+               pr_err("parent_rate=3D%lu, req-rate=3D%lu div=3D%u\n",
-parent_rate, rate, clkt->div);
-                /*
-                 * DIVSELXSPIx supports 800MHz and 600MHz operation.
-                 * When the parent_rate is 600MHz, only dividers of 8 and 1=
-6
-
-Logs:
----------
-
-Case 0# assigned-clock-rates =3D <133333334>;
-[   15.419300] parent_rate=3D800000000, req-rate=3D133333334 div=3D64
-[   15.437698] parent_rate=3D800000000, req-rate=3D133333334 div=3D32
-[   15.455224] parent_rate=3D800000000, req-rate=3D133333334 div=3D16
-[   15.501291] parent_rate=3D800000000, req-rate=3D133333334 div=3D8
-[   15.507801] parent_rate=3D800000000, req-rate=3D133333334 div=3D6
-[   15.519221] parent_rate=3D800000000, req-rate=3D133333334 div=3D64
-[   15.525789] parent_rate=3D800000000, req-rate=3D133333334 div=3D32
-[   15.549625] parent_rate=3D800000000, req-rate=3D133333334 div=3D16
-[   15.556120] parent_rate=3D800000000, req-rate=3D133333334 div=3D8
-[   15.564110] parent_rate=3D800000000, req-rate=3D133333334 div=3D6
-
-root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-"xspi0" -e "XSPI_CLK0" -e "divselxspi0"
-                .divselxspi0         1       1        0
-800000000   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   XSPI_CLK0         1       1        0
-133333334   0          0     50000      Y
-801c0000.spi                    spi
-             xspi0                   0       1        0
-250000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-root@rzt2h-evk:~#
-
-Case 1# assigned-clock-rates =3D <100000000>;
-[   15.496291] parent_rate=3D800000000, req-rate=3D100000000 div=3D64
-[   15.510068] parent_rate=3D800000000, req-rate=3D100000000 div=3D32
-[   15.517142] parent_rate=3D800000000, req-rate=3D100000000 div=3D16
-[   15.524047] parent_rate=3D800000000, req-rate=3D100000000 div=3D8
-[   15.533174] parent_rate=3D600000000, req-rate=3D100000000 div=3D6
-[   15.540096] parent_rate=3D800000000, req-rate=3D100000000 div=3D64
-[   15.548135] parent_rate=3D800000000, req-rate=3D100000000 div=3D32
-[   15.555119] parent_rate=3D800000000, req-rate=3D100000000 div=3D16
-[   15.562395] parent_rate=3D800000000, req-rate=3D100000000 div=3D8
-[   15.573521] parent_rate=3D600000000, req-rate=3D100000000 div=3D6
-
-root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-"xspi0" -e "XSPI_CLK0" -e "divselxspi0"
-                .divselxspi0         1       1        0
-800000000   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   XSPI_CLK0         1       1        0
-100000000   0          0     50000      Y
-801c0000.spi                    spi
-             xspi0                   0       1        0
-250000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-root@rzt2h-evk:~#
-
-
-Case 2# assigned-clock-rates =3D <75000000>;
-[   12.288507] parent_rate=3D800000000, req-rate=3D75000000 div=3D64
-[   12.310528] parent_rate=3D800000000, req-rate=3D75000000 div=3D32
-[   12.318426] parent_rate=3D800000000, req-rate=3D75000000 div=3D16
-[   12.326361] parent_rate=3D600000000, req-rate=3D75000000 div=3D8
-[   12.341540] parent_rate=3D0, req-rate=3D75000000 div=3D6
-[   12.347546] parent_rate=3D800000000, req-rate=3D75000000 div=3D64
-[   12.357593] parent_rate=3D800000000, req-rate=3D75000000 div=3D32
-[   12.367148] parent_rate=3D800000000, req-rate=3D75000000 div=3D16
-[   12.418871] parent_rate=3D600000000, req-rate=3D75000000 div=3D8
-[   12.433560] parent_rate=3D0, req-rate=3D75000000 div=3D6
-
-root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-"xspi0" -e "XSPI_CLK0" -e "divselxspi0"
-                .divselxspi0         1       1        0
-600000000   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   XSPI_CLK0         1       1        0
-75000000    0          0     50000      Y
-801c0000.spi                    spi
-             xspi0                   0       1        0
-250000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-root@rzt2h-evk:~#
-
-Case 3# assigned-clock-rates =3D <50000000>;
-[   15.240214] parent_rate=3D800000000, req-rate=3D50000000 div=3D64
-[   15.253498] parent_rate=3D800000000, req-rate=3D50000000 div=3D32
-[   15.261521] parent_rate=3D800000000, req-rate=3D50000000 div=3D16
-[   15.272941] parent_rate=3D0, req-rate=3D50000000 div=3D8
-[   15.280532] parent_rate=3D0, req-rate=3D50000000 div=3D6
-[   15.289979] parent_rate=3D800000000, req-rate=3D50000000 div=3D64
-[   15.298745] parent_rate=3D800000000, req-rate=3D50000000 div=3D32
-[   15.309879] parent_rate=3D800000000, req-rate=3D50000000 div=3D16
-[   15.319881] parent_rate=3D0, req-rate=3D50000000 div=3D8
-[   15.327977] parent_rate=3D0, req-rate=3D50000000 div=3D6
-
-root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-"xspi0" -e "XSPI_CLK0" -e "divselxspi0"
-                .divselxspi0         1       1        0
-800000000   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   XSPI_CLK0         1       1        0
-50000000    0          0     50000      Y
-801c0000.spi                    spi
-             xspi0                   0       1        0
-250000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-root@rzt2h-evk:~#
-
-
-Case 4# assigned-clock-rates =3D <37500000>;
-[   71.710064] parent_rate=3D800000000, req-rate=3D37500000 div=3D64
-[   71.718567] parent_rate=3D800000000, req-rate=3D37500000 div=3D32
-[   71.725137] parent_rate=3D600000000, req-rate=3D37500000 div=3D16
-[   71.731550] parent_rate=3D0, req-rate=3D37500000 div=3D8
-[   71.740622] parent_rate=3D0, req-rate=3D37500000 div=3D6
-[   71.746376] parent_rate=3D800000000, req-rate=3D37500000 div=3D64
-[   71.752887] parent_rate=3D800000000, req-rate=3D37500000 div=3D32
-[   71.767422] parent_rate=3D600000000, req-rate=3D37500000 div=3D16
-[   71.778671] parent_rate=3D0, req-rate=3D37500000 div=3D8
-[   71.790895] parent_rate=3D0, req-rate=3D37500000 div=3D6
-
-root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-"xspi0" -e "XSPI_CLK0" -e "divselxspi0"
-                .divselxspi0         1       1        0
-600000000   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   XSPI_CLK0         1       1        0
-37500000    0          0     50000      Y
-801c0000.spi                    spi
-             xspi0                   0       1        0
-250000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-root@rzt2h-evk:~#
-
-
-Case 5# assigned-clock-rates =3D <25000000>;
-[   12.411660] parent_rate=3D800000000, req-rate=3D25000000 div=3D64
-[   12.429285] parent_rate=3D800000000, req-rate=3D25000000 div=3D32
-[   12.436144] parent_rate=3D0, req-rate=3D25000000 div=3D16
-[   12.448110] parent_rate=3D0, req-rate=3D25000000 div=3D8
-[   12.458785] parent_rate=3D0, req-rate=3D25000000 div=3D6
-[   12.465401] parent_rate=3D800000000, req-rate=3D25000000 div=3D64
-[   12.482547] parent_rate=3D800000000, req-rate=3D25000000 div=3D32
-[   12.497126] parent_rate=3D0, req-rate=3D25000000 div=3D16
-[   12.509619] parent_rate=3D0, req-rate=3D25000000 div=3D8
-[   12.518212] parent_rate=3D0, req-rate=3D25000000 div=3D6
-
-root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-"xspi0" -e "XSPI_CLK0" -e "divselxspi0"
-                .divselxspi0         1       1        0
-800000000   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   XSPI_CLK0         1       1        0
-25000000    0          0     50000      Y
-801c0000.spi                    spi
-             xspi0                   0       1        0
-250000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-root@rzt2h-evk:~#
-
-Case 6# assigned-clock-rates =3D <12500000>;
-[   87.409877] parent_rate=3D800000000, req-rate=3D12500000 div=3D64
-[   87.470663] parent_rate=3D0, req-rate=3D12500000 div=3D32
-[   87.485940] parent_rate=3D0, req-rate=3D12500000 div=3D16
-[   87.492760] parent_rate=3D0, req-rate=3D12500000 div=3D8
-[   87.498313] parent_rate=3D0, req-rate=3D12500000 div=3D6
-
-
-root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-"xspi0" -e "XSPI_CLK0" -e "divselxspi0"
-                .divselxspi0         1       1        0
-800000000   0          0     50000      Y                  deviceless
-                    no_connection_id
-                   XSPI_CLK0         1       1        0
-12500000    0          0     50000      Y
-801c0000.spi                    spi
-             xspi0                   0       1        0
-250000000   0          0     50000      N               deviceless
-                 of_clk_get_from_provider
-root@rzt2h-evk:~#
-
-Looking at the logs I think I could optimize the code to continue when
- parent_rate =3D=3D 0
-
-Based on the above logs, would you prefer me to represent it as a
-composite clock?
-
-> > +                   (clkt->div !=3D 8 && clkt->div !=3D 16))
-> > +                       continue;
-> > +               now =3D DIV_ROUND_UP_ULL((u64)parent_rate, clkt->div);
->
-> No need to cast to u64 (DIV_ROUND_*_ULL() handle this internally).
->
-> > +               if (abs(rate - now) < abs(rate - best)) {
-> > +                       div =3D clkt->div;
-> > +                       best =3D now;
-> > +                       req->best_parent_rate =3D parent_rate;
-> > +               }
-> > +       }
+> > +static int emc_request_rate(struct tegra186_emc *emc,
+> > +                         unsigned long new_min_rate,
+> > +                         unsigned long new_max_rate,
+> > +                         enum emc_rate_request_type type)
+> > +{
+> > +     struct emc_rate_request *req =3D emc->requested_rate;
+> > +     unsigned long min_rate =3D 0, max_rate =3D ULONG_MAX;
+> > +     unsigned int i;
+> > +     int err;
 > > +
-> > +       if (!div) {
-> > +               u8 maxdiv =3D 0;
+> > +     /* select minimum and maximum rates among the requested rates */
+> > +     for (i =3D 0; i < EMC_RATE_TYPE_MAX; i++, req++) {
+> > +             if (i =3D=3D type) {
+> > +                     min_rate =3D max(new_min_rate, min_rate);
+> > +                     max_rate =3D min(new_max_rate, max_rate);
+> > +             } else {
+> > +                     min_rate =3D max(req->min_rate, min_rate);
+> > +                     max_rate =3D min(req->max_rate, max_rate);
+> > +             }
+> > +     }
 > > +
-> > +               req->best_parent_rate =3D clk_hw_round_rate(req->best_p=
-arent_hw, 1);
-> > +               /*
-> > +                * If DIVSELXSPIx is set to 800MHz set the maximum divi=
-der
-> > +                * or else fall back to divider of 16 which is a maximu=
-m
-> > +                * supported divider for 600MHz operation.
-> > +                */
-> > +               if (req->best_parent_rate =3D=3D DIVSELXSPI_RATE_800MHZ=
-) {
-> > +                       for (clkt =3D divider->table; clkt->div; clkt++=
-) {
-> > +                               if (clkt->div > maxdiv)
-> > +                                       maxdiv =3D clkt->div;
-> > +                       }
-> > +                       div =3D maxdiv;
->
-> Why not hardcode the divider, like in the else branch?
->
-Agreed.
-
-> > +               } else {
-> > +                       div =3D 16;
-> > +               }
-> > +       }
+> > +     if (min_rate > max_rate) {
+> > +             dev_err_ratelimited(emc->dev, "%s: type %u: out of range:=
+ %lu %lu\n",
+> > +                                 __func__, type, min_rate, max_rate);
+> > +             return -ERANGE;
+> > +     }
 > > +
-> > +       req->rate =3D DIV_ROUND_UP_ULL((u64)req->best_parent_rate, div)=
-;
+> > +     err =3D clk_set_rate(emc->clk, min_rate);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     emc->requested_rate[type].min_rate =3D new_min_rate;
+> > +     emc->requested_rate[type].max_rate =3D new_max_rate;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int emc_set_min_rate(struct tegra186_emc *emc, unsigned long ra=
+te,
+> > +                         enum emc_rate_request_type type)
+> > +{
+> > +     struct emc_rate_request *req =3D &emc->requested_rate[type];
+> > +     int ret;
+> > +
+> > +     mutex_lock(&emc->rate_lock);
+> > +     ret =3D emc_request_rate(emc, rate, req->max_rate, type);
+> > +     mutex_unlock(&emc->rate_lock);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static int emc_set_max_rate(struct tegra186_emc *emc, unsigned long ra=
+te,
+> > +                         enum emc_rate_request_type type)
+> > +{
+> > +     struct emc_rate_request *req =3D &emc->requested_rate[type];
+> > +     int ret;
+> > +
+> > +     mutex_lock(&emc->rate_lock);
+> > +     ret =3D emc_request_rate(emc, req->min_rate, rate, type);
+> > +     mutex_unlock(&emc->rate_lock);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> >   /*
+> >    * debugfs interface
+> >    *
+> > @@ -107,7 +200,7 @@ static int tegra186_emc_debug_min_rate_set(void *da=
+ta, u64 rate)
+> >       if (!tegra186_emc_validate_rate(emc, rate))
+> >               return -EINVAL;
+> >
+> > -     err =3D clk_set_min_rate(emc->clk, rate);
+> > +     err =3D emc_set_min_rate(emc, rate, EMC_RATE_DEBUG);
+> >       if (err < 0)
+> >               return err;
+> >
+> > @@ -137,7 +230,7 @@ static int tegra186_emc_debug_max_rate_set(void *da=
+ta, u64 rate)
+> >       if (!tegra186_emc_validate_rate(emc, rate))
+> >               return -EINVAL;
+> >
+> > -     err =3D clk_set_max_rate(emc->clk, rate);
+> > +     err =3D emc_set_max_rate(emc, rate, EMC_RATE_DEBUG);
+> >       if (err < 0)
+> >               return err;
+> >
+> > @@ -217,6 +310,12 @@ static int tegra186_emc_get_emc_dvfs_latency(struc=
+t tegra186_emc *emc)
+> >       return 0;
+> >   }
+> >
+> > +static inline struct tegra186_emc *
+> > +to_tegra186_emc_provider(struct icc_provider *provider)
+> > +{
+> > +     return container_of(provider, struct tegra186_emc, provider);
+> > +}
+> > +
+> >   /*
+> >    * tegra186_emc_icc_set_bw() - Set BW api for EMC provider
+> >    * @src: ICC node for External Memory Controller (EMC)
+> > @@ -227,6 +326,33 @@ static int tegra186_emc_get_emc_dvfs_latency(struc=
+t tegra186_emc *emc)
+> >    */
+> >   static int tegra186_emc_icc_set_bw(struct icc_node *src, struct icc_n=
+ode *dst)
+> >   {
+> > +     struct tegra186_emc *emc =3D to_tegra186_emc_provider(dst->provid=
+er);
+> > +     struct tegra_mc *mc =3D dev_get_drvdata(emc->dev->parent);
+> > +     unsigned long long peak_bw =3D icc_units_to_bps(dst->peak_bw);
+> > +     unsigned long long avg_bw =3D icc_units_to_bps(dst->avg_bw);
+> > +     unsigned long long rate =3D max(avg_bw, peak_bw);
+> > +     const unsigned int ddr =3D 2;
+> > +     int err;
+> > +
+> > +     /*
+> > +      * Do nothing here if bwmgr is supported in BPMP-FW. BPMP-FW sets=
+ the final
+> > +      * Freq based on the passed values.
+> > +      */
+> > +     if (mc->bwmgr_mrq_supported)
+> > +             return 0;
+> > +
+> > +     /*
+> > +      * Tegra186 EMC runs on a clock rate of SDRAM bus. This means tha=
+t
+> > +      * EMC clock rate is twice smaller than the peak data rate becaus=
+e
+> > +      * data is sampled on both EMC clock edges.
+> > +      */
+> > +     do_div(rate, ddr);
+> > +     rate =3D min_t(u64, rate, U32_MAX);
+> > +
+> > +     err =3D emc_set_min_rate(emc, rate, EMC_RATE_ICC);
+> > +     if (err)
+> > +             return err;
+> > +
+> >       return 0;
+> >   }
+> >
+> > @@ -329,6 +455,8 @@ static int tegra186_emc_probe(struct platform_devic=
+e *pdev)
+> >       platform_set_drvdata(pdev, emc);
+> >       emc->dev =3D &pdev->dev;
+> >
+> > +     tegra186_emc_rate_requests_init(emc);
+> > +
+> >       if (tegra_bpmp_mrq_is_supported(emc->bpmp, MRQ_EMC_DVFS_LATENCY))=
+ {
+> >               err =3D tegra186_emc_get_emc_dvfs_latency(emc);
+> >               if (err)
+> >
 >
-> No need to cast to u64.
 >
-Ok.
+> FYI, this patch is causing a boot regression on Tegra194 devices. I
+> noticed that tegra194-p2972-0000 and tegra194-p3509-0000+p3668-0000 are
+> no longer booting and bisect is pointing to this. I will have a closer
+> look and try to see why this is.
 
-Cheers,
-Prabhakar
+Interesting. Both were booting for me during my verification, though
+my use case involves the dt changes that I don't believe have been
+picked up yet. Thought I had explicitly verified without the dt
+changes too, though. Since I was asked to do so on this or one of the
+other similar series. I will try to check linux-next as-is soon.
+
+Aaron
 
