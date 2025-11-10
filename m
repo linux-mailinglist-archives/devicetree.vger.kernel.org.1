@@ -1,103 +1,204 @@
-Return-Path: <devicetree+bounces-236480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7EF9C44B49
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 02:05:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D4CC44B89
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 02:25:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E14264E4263
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 01:05:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9676B4E040B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 01:25:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361AE1EEA31;
-	Mon, 10 Nov 2025 01:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n0N9pJjZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69113594A;
+	Mon, 10 Nov 2025 01:25:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023129.outbound.protection.outlook.com [40.107.44.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095A2286A4;
-	Mon, 10 Nov 2025 01:05:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762736702; cv=none; b=QUp9xWk3chmWCmQ3myWtAQJH7Mkbr5RzcPQwM5W0WNJS2Lsb7xJp2uHcY4iN/DKmQEiRZ5rCADpsc56QXAY4WezCLssgLzG6jlcldNVSxLmKptUxCJANB+Bj77/DhCL/1pO+M/P6UjQ9EmKQEvaUP2PSfMA0xnh1NZHhqk0qDxA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762736702; c=relaxed/simple;
-	bh=R+V0Hzfys57c/aQcKhl9q24jMrKAlHVuduRLA5/ZiLE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZZh+v1m2xjbTkJjYNe4CUlVMMvnw0LKrXT4dyEvS31SHXfJalJa7e3qVg4FMdzy6/GuAM6XyQ2b3awqhu62sD+8psRwFDjH9I3llQhHT3o82zcoLqmCAquTFxqUbKDESjUZLklFYGlh2HlS/wLFItbhxayxMkqLzC0fg/4v4Ljw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n0N9pJjZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53C90C19425;
-	Mon, 10 Nov 2025 01:05:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762736701;
-	bh=R+V0Hzfys57c/aQcKhl9q24jMrKAlHVuduRLA5/ZiLE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n0N9pJjZ/8zU6/P8tjKKBuajJf66vBAcxWFkn9koV7rQ5sKBvcmlApWCng0YiO9p5
-	 AmWae1thEFPP86hhlLmPptwWeg37FqRJShgWPW7JijzH+bSEbLDQ9KUBXEwgI9CkrP
-	 JVuSuXH7WGrmr+4fRQqBPt8d/vLR3RoE5PRALHLuB+BQxVQt+hMy6XLXHpgx0EniRG
-	 6Dtg9nCSFrAJfRphcPKwqnA7P/2cJP8E7LpXE/6W7hqmKocGwbA2RMgeDhCYjIfRKz
-	 kCaE+ySbbZ4Kp9wgNzs4kFaiCW2k9gre5jtNZw0/pa4/A5uuWwMI1mZil/I3KiUB74
-	 SnhSxlO32qdOQ==
-Date: Sun, 9 Nov 2025 19:04:59 -0600
-From: Rob Herring <robh@kernel.org>
-To: Rogerio Pimentel <rpimentel.silva@gmail.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	alexander.stein@ew.tq-group.com,
-	dario.binacchi@amarulasolutions.com, marex@denx.de,
-	Markus.Niebel@tq-group.com, y.moog@phytec.de,
-	joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
-	josua@solid-run.com, francesco.dolcini@toradex.com,
-	primoz.fiser@norik.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: fsl: Add i.MX8MP FRDM board
-Message-ID: <20251110010459.GA2481668-robh@kernel.org>
-References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF3341448E3;
+	Mon, 10 Nov 2025 01:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762737924; cv=fail; b=b7L+fNbkMjFYHvc2Ya/pSxTLNNMQ9a8JkwmkPHJ/zqTi6hvfHu/OyJDxanX25vYG975wiHr8HpAulaUoAQTEbQg8XnKNDve9Xomyz6kW1DDox7JEZcrM0P9VhgzZly9RVwzzcooiyAkSvatrE5ls8Ihq8KEY45GbSdukDLfR7/M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762737924; c=relaxed/simple;
+	bh=158+CvfCjyJbDrUkksgqu8oTRlHVfZoK5R//+/DH6YE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aM58m3fIDeKWBE3Z2zcuUpoG3rly7dytVc7N5qQnba5PFGsQhSGSXJ9+wEi5hZ6DFeX0U8ErzCYU0phw7jOZDfx5tqOiif2OOiW+UgeR9gAKV7fMU5rW1/yvpo6dw/AbSZlWRPX8H8+w7tb0ZCT/303COMuYeuW8Wh/8NhrzrqU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oKtIZXFO8dxq+093f7nzYOqWzGdMuttPwwKdVINpV3Z3xyxsdUo01qk7RbEOWzLhW+6Jhm6IcejeLmPisy/A9BRxqkpO91VG5/hz9lL9T+FvIeDJx9oj8MdwXgQVdeurFzNiLSHqv0zBG9yhWIwxEjPGH5hcIChJ9k1fm1hzpeZAIcOpyayW6ZbgaIUcFA0cneTQTwjyG5d+wd+KD7UHtoR86NqZQL16FL6HsLVC0gt/xTf2I/HATLsT6HYm5oACCE4NKxTmkRwStT6d2QsH8Uosoq8lqZI4suIDUvyfYX2WaT5yAJFlWCJhLW4Vkv35vdRkXSrzl9XDp6U0jeEcdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KWjPOyH7amipU1r6BzVCjG82zpKGj3ajdiX9K6C3qX8=;
+ b=pQmiFcJZ5RDRulZDYaMLyT1Ii5rWliuxKwxrb+8qVTKZT49WxSCT6ihafwaGrj69bwMP8xb5PuBqRpVnQQyHV3frP7EpdHi3sVbVOEHPj4u95K/Zm0xvvcqeSfgxqO9ZtbqVKG8kizKxaD1u2iBvdo3uJbmEYByosCH769vmlR8tK+Jz37RpoHjDxUCtU8L2euIiokW00QK8uMnqpcVsHDeQVQlPwXSAbx7OI65edcpqDQkrDNBacEmLkNty0zAZBJzRAH2evWZivDUYwFtPjEEAuxVVot1aV4MpdU1nNu/XugwGYyPFl7Tyc62/m9gHH+UV3a+LDNRsStqU7ihDpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PSBPR02CA0009.apcprd02.prod.outlook.com (2603:1096:301::19) by
+ PUZPR06MB6066.apcprd06.prod.outlook.com (2603:1096:301:113::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
+ 2025 01:25:14 +0000
+Received: from OSA0EPF000000CB.apcprd02.prod.outlook.com
+ (2603:1096:301:0:cafe::6) by PSBPR02CA0009.outlook.office365.com
+ (2603:1096:301::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.16 via Frontend Transport; Mon,
+ 10 Nov 2025 01:25:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000CB.mail.protection.outlook.com (10.167.240.57) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9320.13 via Frontend Transport; Mon, 10 Nov 2025 01:25:13 +0000
+Received: from [172.16.96.116] (unknown [172.16.96.116])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 236E740A5BD4;
+	Mon, 10 Nov 2025 09:25:12 +0800 (CST)
+Message-ID: <8f24da57-9700-4429-8947-36b27211476a@cixtech.com>
+Date: Mon, 10 Nov 2025 09:25:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251109214515.121742-1-rpimentel.silva@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 03/10] PCI: cadence: Move PCIe RP common functions to
+ a separate file
+To: Manivannan Sadhasivam <mani@kernel.org>, kernel test robot <lkp@intel.com>
+Cc: bhelgaas@google.com, helgaas@kernel.org, lpieralisi@kernel.org,
+ kw@linux.com, robh@kernel.org, kwilczynski@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, oe-kbuild-all@lists.linux.dev, mpillai@cadence.com,
+ fugang.duan@cixtech.com, guoyin.chen@cixtech.com, peter.chen@cixtech.com,
+ cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251108140305.1120117-4-hans.zhang@cixtech.com>
+ <202511092106.mkNV0iyb-lkp@intel.com>
+ <xiaf3qvskwrqr7riradv6jnt5jmwcgenfr6mss5wtlddmxuwoa@ke2kdaq6adqz>
+Content-Language: en-US
+From: Hans Zhang <hans.zhang@cixtech.com>
+In-Reply-To: <xiaf3qvskwrqr7riradv6jnt5jmwcgenfr6mss5wtlddmxuwoa@ke2kdaq6adqz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CB:EE_|PUZPR06MB6066:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6677bd3-035e-4cf9-658d-08de1ff7ff4a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|7416014|376014|36860700013|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SG0rMWRKc3VNNUxCZERLWVkyaFhFQmZwZ2ZVelZuKzAxaGt2M0h2cmYzY3Zq?=
+ =?utf-8?B?SVB2dUhYeU1RT0N2bDE4b0lWVjhpNW1HK3BvWUtyVThyMExjNkJpVytndHJm?=
+ =?utf-8?B?dXk1Vk9FUFBlSVYyOUtmbEJYZW5tSjBXRVVwWEl4VVZ4am1pKzhqT0hFU3RX?=
+ =?utf-8?B?Y0hnQm56UjhTd3U3TTJsVytSMzd3eTFiZ0pVYU9pZy81VGVqUDBoa2hRZUpY?=
+ =?utf-8?B?bmtmWitHS3BCaFB1RTFrcysxVHM2elFaVkJJWTE2S1NVMWR5dmZCZk94TElu?=
+ =?utf-8?B?TGU1M2NocityeWlaRG9IT1hNd0dGT1Z0MTVPbW9IdGNVMVRTWi96YnhER09Z?=
+ =?utf-8?B?UTFVYzlyM1g5NzRaQXJReXRvcHpaYVIrQzlMVTJrYlRramxoZXBOM29Ybmk0?=
+ =?utf-8?B?YWhkLytRYWhSekFWRXEvS1RNMXRLWHV4cU9HSW16eFpOcHNmaWtFTTZYbnpH?=
+ =?utf-8?B?dlpoQlZPaVIvNmMxQ2lEZ3djamVyMEpmaWkvTGdkVVNGZUw4MjUvNXRMMkRB?=
+ =?utf-8?B?dmFoR3VDcVIwMFh6MXl4cWt4WXVyUmFJREVWcDF1TWZPK2hFYUYraTJ1NmpK?=
+ =?utf-8?B?bHdnSk0wQnA0V3pXa3VMRmF5cE04RU9seUZqdmhuUURtczdjZzd1d1B1V1Ra?=
+ =?utf-8?B?dHdOeHVlbHlQZWRBNDFnY0FuY3R1S1dpNUVGaFdWOEVlS1JCeExmUnRNRVF3?=
+ =?utf-8?B?Y015K3NISEVzTnVvSEV3QmFXZVdOcHNiZ1NYUko3YW50K3puYU1tK2FrSFB1?=
+ =?utf-8?B?ajArTGJSWGV6dHZ1S2xQOWhseS93M1JoN3Q3cjNKUEVrY0FJdmttYjExOGhn?=
+ =?utf-8?B?YlhNNGo3ejhDOU03eHlJOFRGTWsvK1IvOWRFd29neUZITWJDOWxlck9odHEy?=
+ =?utf-8?B?elpmNWhOTjlYNkQ0bXZBYXlnN0NabjkzcVV3cEpRc09BZmtoNnlOQmdqOHE5?=
+ =?utf-8?B?TTEwWk40TWhUKzhLd2xVMDdCSWY5WEU3KzN5a28zYXNBNEpCOTJNSUpkQmhp?=
+ =?utf-8?B?c3dZWEVaRlk3dTBUUERzdGI3aXhHRU0vU0ZlNm1kemV1VE1TeTJUNkdBRXZj?=
+ =?utf-8?B?bTlmbGlBSDBFNWlXYXA0UnBqYk5Cd0FnK1MxZytPNUlVNlFkdHNVTFJnNTE1?=
+ =?utf-8?B?UklRSnlmRmtlM0JYNTBLVWMzSURZM3hacEFjSEg4U251M3prOWZZSlF0bGtv?=
+ =?utf-8?B?aU41YjBmdjZ5YlYySHpNbU1PTkRsc0ZtbDBnblVyS084N2JyTjVwR21wQmdS?=
+ =?utf-8?B?TW5pYXdqRzk0RENXZDkvTGUxc1lhbWF1ZENYWEVpZDlSNGZYVndkTFBiQWRY?=
+ =?utf-8?B?Z0RSMzFaT3ZGeE4vd1BlaWxIY1l2YU5vUFIycWlqNjBDQ0JuVy80UWVHWHVl?=
+ =?utf-8?B?MzZhTmcxY205Mm04REFMbUljbTF1eWVwN2RDcFArcC9JQ3ZOWC9yRk00bFdE?=
+ =?utf-8?B?YVhNQ1p1eWx5OXYxYk1oOG80Q2JyVDhjeDhBK2t5SS9SK1BLYnNva1UySXN6?=
+ =?utf-8?B?Uis2TCtqSUF0MmxCcEMwUVNsdjFSQnVMVEFHTC9HRFB2TWVqTjR0d1VINmNY?=
+ =?utf-8?B?TUhsWWEzNHNiVERrOWliNGtCNEh4cEg2UVF6WkJWRzNMUWt4ZEpLUnZyVVFV?=
+ =?utf-8?B?SmFsWXVockFZRW1nN0t1RG4ram5NdWxyQ1U2WTY5U1E1UjNSLzMxN3cwSlR1?=
+ =?utf-8?B?Qk13WllNUGhKdHozZm80R3N2RHJrR0JHMVlTQUdvRU5paUV1cDhKVUs1MG5p?=
+ =?utf-8?B?UXVxOTFmVXZuYlF6aHRneWROVHJmdVUrajRXTFZTclh3bVFEWUc0ajNwUmFv?=
+ =?utf-8?B?b3VpV1AybVVvNHkzRFFCOFZkcjNhV3FTSFZra3AycE9FM1hNR1lVTlhVTy8z?=
+ =?utf-8?B?c1hFV2lnL3NOZlJoUXlMQVcrbzdTZ1YxckhsaHRXeFgrODlkTktkWEdiZVAx?=
+ =?utf-8?B?OXN3Ym14QWM2TEY3MHV1QkFmVEFlRzFhQlUrVytPcW9VVkVWb0Y4WWdLNnIz?=
+ =?utf-8?B?QnRNelJpa29jck15NzM1Y3dPUmxNcWdhdXBVMVZvVlBEbm5WbjZwMXZDRnpw?=
+ =?utf-8?B?cmxhNDBKM2Z3bGpiSGZTeDI1Q3FkcC9wdUZYS2JBeS92akR4N1FUWmRUSmlz?=
+ =?utf-8?Q?PL43XcXVOeVfTlqqvbWLJICoS?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(7416014)(376014)(36860700013)(13003099007);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 01:25:13.1281
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6677bd3-035e-4cf9-658d-08de1ff7ff4a
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000CB.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB6066
 
-On Sun, Nov 09, 2025 at 04:45:14PM -0500, Rogerio Pimentel wrote:
-> Add device tree compatible string for the i.MX8MP FRDM board.
-> 
-> Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
-> ---
-> 
-> No changes in v4
 
-Missing Conor's ack.
 
+On 11/10/2025 1:01 AM, Manivannan Sadhasivam wrote:
+> EXTERNAL EMAIL
 > 
-> No changes in v3
+> On Sun, Nov 09, 2025 at 09:59:50PM +0800, kernel test robot wrote:
+>> Hi,
+>>
+>> kernel test robot noticed the following build warnings:
+>>
+>> [auto build test WARNING on 6146a0f1dfae5d37442a9ddcba012add260bceb0]
+>>
+>> url:https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/ 
+>> PCI-cadence-Add-module-support-for-platform-controller- 
+>> driver/20251108-220607
+>> base:   6146a0f1dfae5d37442a9ddcba012add260bceb0
+>> patch link:https://lore.kernel.org/r/20251108140305.1120117-4- 
+>> hans.zhang%40cixtech.com
+>> patch subject: [PATCH v11 03/10] PCI: cadence: Move PCIe RP common functions to a separate file
+>> config: i386-randconfig-014-20251109 (https://download.01.org/0day-ci/ 
+>> archive/20251109/202511092106.mkNV0iyb-lkp@intel.com/config)
+>> compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+>> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/ 
+>> archive/20251109/202511092106.mkNV0iyb-lkp@intel.com/reproduce)
+>>
+>> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+>> the same patch/commit), kindly add following tags
+>> | Reported-by: kernel test robot<lkp@intel.com>
+>> | Closes:https://lore.kernel.org/oe-kbuild-all/202511092106.mkNV0iyb-lkp@intel.com/
+>>
+>> All warnings (new ones prefixed by >>):
+>>
+>>     drivers/pci/controller/cadence/pcie-cadence-host-common.c: In function 'cdns_pcie_host_bar_config':
+>>>> drivers/pci/controller/cadence/pcie-cadence-host-common.c:188:23: warning: variable 'pci_addr' set but not used [-Wunused-but-set-variable]
+>>       188 |         u64 cpu_addr, pci_addr, size, winsize;
+>>           |                       ^~~~~~~~
+>>
+>>
+> No need to repost the series, just to fix this warning. If there are no more
+> comments, then I will fix it up while applying.
 > 
-> No changes in v2
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 21b7168d61f5..f46cf6d1f502 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1099,6 +1099,7 @@ properties:
->                - emcraft,imx8mp-navqp      # i.MX8MP Emcraft Systems NavQ+ Kit
->                - fsl,imx8mp-evk            # i.MX8MP EVK Board
->                - fsl,imx8mp-evk-revb4      # i.MX8MP EVK Rev B4 Board
-> +              - fsl,imx8mp-frdm           # i.MX8MP Freedom Board
->                - gateworks,imx8mp-gw71xx-2x # i.MX8MP Gateworks Board
->                - gateworks,imx8mp-gw72xx-2x # i.MX8MP Gateworks Board
->                - gateworks,imx8mp-gw73xx-2x # i.MX8MP Gateworks Board
-> -- 
-> 2.25.1
-> 
+
+Hi Mani,
+
+Thank you very much.
+
+
+Best regards,
+Hans
+
+
+> - Mani
+
 
