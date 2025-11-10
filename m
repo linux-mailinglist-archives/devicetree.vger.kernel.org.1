@@ -1,89 +1,111 @@
-Return-Path: <devicetree+bounces-236862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9C9C487F2
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:12:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67DFBC4882C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:17:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 417FE1884585
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 18:12:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E4C794E5507
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 18:17:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2152B31A05E;
-	Mon, 10 Nov 2025 18:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9548329C66;
+	Mon, 10 Nov 2025 18:17:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DFyXs1Td"
 X-Original-To: devicetree@vger.kernel.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9914315D44;
-	Mon, 10 Nov 2025 18:11:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.95.11.211
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F1D318146;
+	Mon, 10 Nov 2025 18:17:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762798321; cv=none; b=r5icXLU1XCdfjP+HRn4CJhLgHLq+YNicfsqT0T5drcI8ClhmlnLtO1hIcqP4pZ51vb2xMOY/eBX11AMiFNfv4V9Jrx4Z9s3KcDVcTaq6fHmGNd4HxmhPoScGen5RJJphAPeLXR1BAp5R/aiLxM3VBJyjYa0Z0tz561gSZ8DmaR0=
+	t=1762798657; cv=none; b=lY2X0Ni0uJ7pJ+rk7L3ujkdaFDZEZS3mCfxoiEPBcSShtvy3RpU5s8F8E9lrbHJd1EeC8Kmkki6PTNCRvG+XsNvp2CzsEuz0u5Uqh/LbdQbtm1oJIUaw4UhJ5S3PTHiiH8fCZSNZ78iNurrP0bjYD3+SY0NVd/tIE9b+OPigZ0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762798321; c=relaxed/simple;
-	bh=rGfCgVL9ZJldBhkZ4lO+foI46AXWNIP+YjE+vFy6v7s=;
-	h=From:To:Cc:Subject:Message-Id:Date; b=NBUXGYlbxPgxTWOO6KhBzthS98lGbessS5v4EYUtFzcsS+zSpv6ZkgfBn1tdkAw5yL4t2pmNr8su2FwpGpMfAV2x0QDIeBvkZyb7zaWwESnkl1KRq4VfJck1ZHALNDQmJBTW5dHa0JOXzjxM/rK3Mrr7d8bwxMgQbJvZ8YXKaME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lst.de; spf=pass smtp.mailfrom=lst.de; arc=none smtp.client-ip=213.95.11.211
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lst.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lst.de
-Received: by verein.lst.de (Postfix, from userid 2005)
-	id CC62B6732A; Mon, 10 Nov 2025 19:11:53 +0100 (CET)
-From: Torsten Duwe <duwe@lst.de>
-To: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-    Rob Herring <robh@kernel.org>, Jianfeng Liu <liujianfeng1994@gmail.com>, Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
-    linux-kernel@vger.kernel.org
-Subject: [PATCH] devicetree rk3588: enable HDMI audio on Rock 5 ITX
-Message-Id: <20251110181153.CC62B6732A@verein.lst.de>
-Date: Mon, 10 Nov 2025 19:11:53 +0100 (CET)
+	s=arc-20240116; t=1762798657; c=relaxed/simple;
+	bh=TkDygIMReA0SstkB5OvgzehqDlcij0Z0ZMvUqL6Rj74=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hPjj1ow8gPDNhWW1+gryN0kezikFUae0DLBC4IRLFrtZulLPNTxtalhvaRl8s7xYP/ByqIPuwQOaYD+rpoS2dFrlcSLRhc36tIJVosomsJzCf1tVoqmTL57kZ4Zm0fKu8TesTCLakP8fsBr1VRgT31A0H1C/wHfZIeqbKV8DOjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DFyXs1Td; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B0E5C4CEFB;
+	Mon, 10 Nov 2025 18:17:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762798657;
+	bh=TkDygIMReA0SstkB5OvgzehqDlcij0Z0ZMvUqL6Rj74=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DFyXs1Td95alAV9mBklla3aaLsx4v3Zb0tF2w/SldWPWrmvaZwljumavflQt/+pJS
+	 /78H7RWWWx9eK3Y1Vr5qr3Pilt/9rVcdguILnUC3c5kAUqeANq/U6wfqWVRBRRYbaB
+	 ksiKkzM88zCFbEoJtaDQUztIGco4nsjm0JGV5YLvg09vYCxntLJWnr1qz8/VhRg7iH
+	 no31Y0kixnMoaHlZcfic5LQ1OCKI7vTH6tfFq9pM9SktkHcjlDMzkizEVqQkYQ3Qos
+	 bW7YzVRByJuvxQbg8C77SYSe1V0gpcqk5biJUkJnMEY+kb9jQm4GyWaQa0ri1Afwpg
+	 qYCdQmSeVbvjA==
+Date: Mon, 10 Nov 2025 12:21:43 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com, mmareddy@quicinc.com, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v8 0/5] PCI: dwc: Add ECAM support with iATU
+ configuration
+Message-ID: <zovd3p46jmyitqyr5obsvvmxj3sa3lcaczmnv4iskhos44klhk@gk6c55ndeklr>
+References: <20250828-ecam_v4-v8-0-92a30e0fa02d@oss.qualcomm.com>
+ <176160465177.73268.9869510926279916233.b4-ty@kernel.org>
+ <e9306983-e2df-4235-a58b-e0b451380b52@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e9306983-e2df-4235-a58b-e0b451380b52@oss.qualcomm.com>
 
-The Rock 5 ITX only needs enablement for 2 nodes in order to send audio
-on HDMI1, the connector closer to the 12V barrel jack and farther from
-S/PDIF.  It is sufficient to declare the audio injection as okay, and
-to activate I2S6.
+On Tue, Oct 28, 2025 at 11:12:23PM +0530, Krishna Chaitanya Chundru wrote:
+> 
+> On 10/28/2025 4:07 AM, Bjorn Andersson wrote:
+> > On Thu, 28 Aug 2025 13:04:21 +0530, Krishna Chaitanya Chundru wrote:
+> > > The current implementation requires iATU for every configuration
+> > > space access which increases latency & cpu utilization.
+> > > 
+> > > Designware databook 5.20a, section 3.10.10.3 says about CFG Shift Feature,
+> > > which shifts/maps the BDF (bits [31:16] of the third header DWORD, which
+> > > would be matched against the Base and Limit addresses) of the incoming
+> > > CfgRd0/CfgWr0 down to bits[27:12]of the translated address.
+> > > 
+> > > [...]
+> > Applied, thanks!
+> > 
+> > [1/5] arm64: dts: qcom: sc7280: Increase config size to 256MB for ECAM feature
+> >        commit: 03e928442d469f7d8dafc549638730647202d9ce
+> 
+> Hi Bjorn,
+> 
+> Can you revert this change, this is regression due to this series due to
+> that we have change the logic,
 
-Note that for the other HDMI output it is not that trivial, as the video
-data there originates from the SoC's DisplayPort output DP1 and is only
-converted to HDMI in U7 (an RA620).
+How is that possible? This is patch 1 in the series, by definition it
+doesn't have any outstanding dependencies.
 
-Signed-off-by: Torsten Duwe <duwe@lst.de>
 
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts |    9 +++++++++
- 1 file changed, 9 insertions(+)
+I've reverted the change.
 
-diff --git a/src/arm64/rockchip/rk3588-rock-5-itx.dts b/src/arm64/rockchip/rk3588-rock-5-itx.dts
-index bc8140883d..c824727cf4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-@@ -345,6 +345,10 @@
- 	};
- };
- 
-+&hdmi1_sound {
-+	status = "okay";
-+};
-+
- &hdptxphy1 {
- 	status = "okay";
- };
-@@ -546,6 +550,11 @@
- 	};
- };
- 
-+/* HDMI1 ("HDMI TX1 8K") audio */
-+&i2s6_8ch {
-+	status = "okay";
-+};
-+
- &package_thermal {
- 	polling-delay = <1000>;
- 
+Regards,
+Bjorn
+
+> we need to update the dtsi accordingly, I will send a separate for all
+> controllers to enable this ECAM feature.
+> 
+> - Krishna Chaitanya.
+> 
+> 
+> > Best regards,
 
