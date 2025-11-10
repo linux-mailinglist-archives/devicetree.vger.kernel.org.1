@@ -1,62 +1,58 @@
-Return-Path: <devicetree+bounces-236869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18C5C48988
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:37:32 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFB88C489EB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:43:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D78261888B5E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 18:36:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A5B124E0126
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 18:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EF02DECC2;
-	Mon, 10 Nov 2025 18:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3390031B138;
+	Mon, 10 Nov 2025 18:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHjgQXbi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+1XNQ0g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A17242925;
-	Mon, 10 Nov 2025 18:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 077692E9EAE;
+	Mon, 10 Nov 2025 18:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762799788; cv=none; b=VGyhPOKqXewDbljNCDIKAIuCuzfVYF+ZBMMqualfwykAH2798XVQT8oung++V2efaCtUQL9rLs6OYusOVtMKQ3EqN3tQYM5+WAZr+Pv82Jkrkkye0ZSy3GPRX94v0DF2yCCeMUqqb+EiKlgVTahOcgtRDWEB7LyhTwTXvbJMcqg=
+	t=1762800222; cv=none; b=oieMzv8XTSkwiGOsdzDezmqzcPPsT02tbX0a2VTUXSIrOdMAM57Jz3U2NGzk5QS1GfNpr/RyypL4x7iIMmNrS9w63OxjhyET2jdLz7DqUJYRAFGwFg5+uozZucmgTulPFdpt0lVDorSXEK6LxL70GYY1z1CHTSjyl9ofE8ermUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762799788; c=relaxed/simple;
-	bh=X2UMR+ek8t4dC9FVAihJ8te21o4CcIV3uaXVHjtVgcI=;
+	s=arc-20240116; t=1762800222; c=relaxed/simple;
+	bh=DeBRnakymlJYR9KcihKOhaSs1gCeYKGx3st1JOBt6L0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aChs30n3E2AhK+AAntc/VWrGXRy2Bgs8f1eKOfqlHUH/hifohQ47C8Jp8rYE+7XPfFDNDyOY0lIjPAU9VSTfDwYSZnFD9Y0e3q1qYlAJsQKPfvyrMOaw9iS9SHOjlEdDc5yoqyQdZZUFNLqS0Me4vk6PSx2k/yk69RSEduBSI+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHjgQXbi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6263C116B1;
-	Mon, 10 Nov 2025 18:36:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=E1JYtpNhmgyTJT/ys8LiTdKJafqHfV8o4NzMNNmM5Ld83WUTm+UXy6Uyo9WwHcgtRc6pzDBlQTX/wYF4y1bJCreuK6dNh8wH0NFET/+4nTSVqIkRQqk5ncLpf1EcHUPEWDIfMf0MNpEroFPsPO9BUSxkud3TcjQD5QCW3qRU1TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+1XNQ0g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2DBEC16AAE;
+	Mon, 10 Nov 2025 18:43:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762799787;
-	bh=X2UMR+ek8t4dC9FVAihJ8te21o4CcIV3uaXVHjtVgcI=;
+	s=k20201202; t=1762800221;
+	bh=DeBRnakymlJYR9KcihKOhaSs1gCeYKGx3st1JOBt6L0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qHjgQXbiAMJaLpbNPCzTNjHjQvoLTAlkmWF++9regAa9FjAr6Zu6vqf7TY/j0EJTl
-	 iGiOQpzp0AnQMKNXY6qj+2KPgHeiceemXV8Up9jDQe3GfrfYsaKWN7Og/6TUQKFFrR
-	 C7JuU/vC5nfFRY7jnEH202SPLeFN0sbaCwwbC8F5O8VdLzL5g1lRhOsf3hu2IBsoNw
-	 ZkQQKXckpe7gyO/9uUQlZm9s1pZ34252/byXsxLdczV5Ez1OCWBgCDiZQSROTnPTJy
-	 fooEUE8E7vlmmo4H/j+LtSMMPVe6N0WoC4iyEN7g8v6OlCm26TbVtzCmU359R2ixV/
-	 pwCqNZMVW0Akw==
-Date: Mon, 10 Nov 2025 19:36:21 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Baruch Siach <baruch@tkos.co.il>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Devi Priya <quic_devipriy@quicinc.com>, 
-	Baruch Siach <baruch.siach@siklu.com>, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v18 1/6] dt-bindings: pwm: add IPQ6018 binding
-Message-ID: <tqbdvt2yj2e7ycxiu7nlvwgeh4cf7em6n7gia7cd4f7lsqjdeg@ksyfpy63laop>
-References: <20251029-ipq-pwm-v18-0-edbef8efbb8e@outlook.com>
- <20251029-ipq-pwm-v18-1-edbef8efbb8e@outlook.com>
- <gkvbziqeae53bunqd556r4swaye4s4lcnwthryouynwfwqrnsi@6o4cjgxiwxco>
- <lkbwgakmqknqptsjrb7hvxv3bxi3fo62vml7tmf4avo7nr7cue@dwsovmchu2pp>
- <DS7PR19MB88832537DA9998530BAAC9C39DCEA@DS7PR19MB8883.namprd19.prod.outlook.com>
+	b=O+1XNQ0gCyIQm7z/Ot/HsJS1Wblv3dMU9feJOgYdjO746WBpTEKhJMnpsWnc4lR9F
+	 t16MONTXdyF0V3HUmsOaLQIchNEXVgr013xYDlzA53CUsjwsBZcZk40dJBh4XvkZ3S
+	 1bvOXLvzinRyVjWcTbhsNyqqpit00UnGmPE7b98aPvgeHhpHGrdzRoaBd0rJjh7taN
+	 iWAwuw70sf4f+DxqMigT9VdVh71BIkPx/jFOGiVe7GzPt/+EIO8gZGNHbFHXSZfG5c
+	 9yt/78OLUya7/Rr+wCO5JgYRxLVpJidG5mJeIDgxk/F5B9kYh6oIvAWtLwTrTeTrXn
+	 iPA43mwiXAVWA==
+Date: Mon, 10 Nov 2025 18:43:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: phy: lan966x: Add optional
+ microchip,sx-tx/rx-inverted
+Message-ID: <20251110-unwound-award-a11d69b9da4f@spud>
+References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
+ <20251110110536.2596490-3-horatiu.vultur@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,56 +60,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s5dbfl4angh7vjuo"
+	protocol="application/pgp-signature"; boundary="rzGVrB2TxiTooTzC"
 Content-Disposition: inline
-In-Reply-To: <DS7PR19MB88832537DA9998530BAAC9C39DCEA@DS7PR19MB8883.namprd19.prod.outlook.com>
+In-Reply-To: <20251110110536.2596490-3-horatiu.vultur@microchip.com>
 
 
---s5dbfl4angh7vjuo
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+--rzGVrB2TxiTooTzC
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v18 1/6] dt-bindings: pwm: add IPQ6018 binding
-MIME-Version: 1.0
 
-Hello George,
+On Mon, Nov 10, 2025 at 12:05:36PM +0100, Horatiu Vultur wrote:
+> This allows to invert the N and P signals of the RX and TX Serdes
+> signals. This option allows the board designer to trace their signals
+> easier on the boards.
 
-On Mon, Nov 10, 2025 at 03:41:49PM +0400, George Moussalem wrote:
-> On 11/10/25 15:32, Uwe Kleine-K=F6nig wrote:
-> >>> +  "#pwm-cells":
-> >>> +    const: 2
-> >=20
-> > Please use 3 here.
+Why can't this just be done in software, debugfs or something like that?
+Maybe it's just your description is poor, but sounds like the intention
+here is to just switch things around for debug purposes.
+
 >=20
-> The driver doesn't support polarity and I don't know whether the HW even
-> supports it. Hence, I kept it as 2 as originally submitted by qcom
-> (Devi). I don't have access to the datasheets. Would you like me to
-> resubmit a new version anyways or keep as is?
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> ---
+>  .../phy/microchip,lan966x-serdes.yaml         | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/microchip,lan966x-serd=
+es.yaml b/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.ya=
+ml
+> index 6e914fbbac567..21b19e06a75aa 100644
+> --- a/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
+> +++ b/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
+> @@ -41,6 +41,30 @@ properties:
+>        - The macro to be used. The macros are defined in
+>          dt-bindings/phy/phy-lan966x-serdes.
+> =20
+> +  microchip,s0-tx-inverted:
+> +    type: boolean
+> +    description: Invert the TX N and P signals for Serdes 0
+> +
+> +  microchip,s1-tx-inverted:
+> +    type: boolean
+> +    description: Invert the TX N and P signals for Serdes 1
+> +
+> +  microchip,s2-tx-inverted:
+> +    type: boolean
+> +    description: Invert the TX N and P signals for Serdes 2
+> +
+> +  microchip,s0-rx-inverted:
+> +    type: boolean
+> +    description: Invert the RX N and P signals for Serdes 0
+> +
+> +  microchip,s1-rx-inverted:
+> +    type: boolean
+> +    description: Invert the RX N and P signals for Serdes 1
+> +
+> +  microchip,s2-rx-inverted:
+> +    type: boolean
+> +    description: Invert the RX N and P signals for Serdes 2
+> +
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.34.1
+>=20
 
-I want all new drivers use 3 pwm-cells for consistency even if the
-hardware doesn't support the (currently) only flag. Additionally this
-simplifies things like pwm nexus nodes (see
-e71e46a6f19c46b38983bebde8bfac1c04968fdf).
-
-So yes, please change to 3.
-
-Best regards
-Uwe
-
---s5dbfl4angh7vjuo
+--rzGVrB2TxiTooTzC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmkSMKMACgkQj4D7WH0S
-/k6MvwgAmAv345GS0OBmiRO1V+Um4ZZv+MMGog8wAp4dG4wNqRSfg+bJcDwN/11Z
-4yRhFo26C4hVPPs5JYHOx178k2EwvOtphK1flrb9r91w+24ySpvPDHhOzbOlk91M
-sVhXrVXHAUaVxZS+2lbyqXzWptistZhDfLGMso0s1M20vVYsmdMJkF7Z0N5OSzhW
-qplkJltikAmqaqYr8SPAVbH/a0mtPKProR/WPrV64gf9PFo6LwIpD9julJiJLlMB
-Ke//T2lvmH3YJwOov7UfszhXp7+TA8yKhwmxePPGcag7JIycFKsanR04XwvpB6JQ
-ADIY4Fd/OKtJZVbiAUf27scd1cMV0g==
-=XKuc
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRIyWQAKCRB4tDGHoIJi
+0ouDAPwJpjpkFjLf661KEAYdqJLgHmRtuR95WHAIW2ybif5l3AEAvATKO3J4SKQD
+OIlE+Ps8vHUA9TAlvEeK+8+lNgi0zw4=
+=hZdA
 -----END PGP SIGNATURE-----
 
---s5dbfl4angh7vjuo--
+--rzGVrB2TxiTooTzC--
 
