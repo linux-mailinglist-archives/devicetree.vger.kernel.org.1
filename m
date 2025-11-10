@@ -1,316 +1,175 @@
-Return-Path: <devicetree+bounces-236647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7075C46287
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:12:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 131FCC46296
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:13:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CCBC3AF631
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:11:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEA0E3B7ABC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:11:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C10B930C616;
-	Mon, 10 Nov 2025 11:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19960308F3A;
+	Mon, 10 Nov 2025 11:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EPINLj1j";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FubAiSLU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8461630BB8F;
-	Mon, 10 Nov 2025 11:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659B03081B7
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762773016; cv=none; b=krhPY4LiiO9d+1kXdgA3x1xcjVmo5fx0KuPFDmZRvJBT5g1ICXmpvosgEE5WbBrlnGnC05z4KG1lF+1ApJ62PnHNYce7lAMLxYbL63joma8IPYlHf6kevEuFLTx6JSH3SLcYjhMLQmURntI/8r82oEG97yIr5vWWPrFCmJw4qFs=
+	t=1762773057; cv=none; b=GWkPoCykX1F6aStxsrqcaZc5dSSj44aTwvmd6SgiBmROfdFbUL/1QfbOvFpcJ8OJGlUJBf7AuAxLXFQQMSZmNhYDgaZnmmMpa/yDU0suR+ywC2wPdnnRJeXNTXYDZ5BKurEPWg0zcXP9gCzmbLbZZfwOOdTd7qCctIBkIUzWsbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762773016; c=relaxed/simple;
-	bh=86E1tmDnqxW676P46rlqb0ZTP5Jjau+psLSHnvkWES8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Boo8zuH/awJG4bZVlKyYw3UkdvvhXN/6Q8n3Aqrsis5sg3JoF79mVEy8xIH3+BjY0bDjgTDdLmU30QyfUBTTyTZc06ibubaPwtM0k/3M0icsdTtKbfnO9DR6Z/XhViVCDbn5qIteA391ZqPhMcJrDkrmcTy0MaNaTB3TjoOO528=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 10 Nov
- 2025 19:09:56 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Mon, 10 Nov 2025 19:09:56 +0800
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-Date: Mon, 10 Nov 2025 19:09:28 +0800
-Subject: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support
- for AST2600
+	s=arc-20240116; t=1762773057; c=relaxed/simple;
+	bh=yO77kwBGZo7GfxU02vl61rDFI9SWDoQ8KYXb0fdAB+c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TQtHp3RkVTI1QIaYWKkHhKtgCZ8osAHXEphc3KkLihThFeCJnOg7KXPjRAh4rtvezLLniTW8GBziLiGv3wyXX9Mkhe2XzFLq2qOKWn6pNPgK5ysa2Du1TJF0Rw2SJC5mT62gtPNnxqDb2JIS1VyHY6BZu5N11afi2GnxAx+9zUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EPINLj1j; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FubAiSLU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA9Ch7q3146440
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:10:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ybEh9EFc/k/OEFrYVPKW0AEC0K4ZVsg0OtLxn2/42jg=; b=EPINLj1j6GgstPbx
+	EjcOg6UjpKrFUYhA8RYbB6DrKy12ikq8bgeLM3PTbAfswMaq4+O/Ca44BVa7rEsX
+	QU8uxAE0NAyZ9RKHifJj6S3gze3r5/BhE6PFpLi+Np/nE7SubUI0B4mCk7YVziyG
+	ywhFO8n911i4X5pqXKnNbJyjSuzLf5JDRWvZfZnXHYySaTRILme/MwWeM51Ja1uw
+	pSZNWM+kuo5UpOR8wLplKTPpEr1Ut1JNHvjFAuNaRU1OlkJBRyD54L/RcRNeJTfx
+	nMsZ/wFMnzgBb3MSFzUTvx9TzoK6jWQlMc2BroZfL3CcIHnWGcuMTCjbLTRZRKIa
+	Rcnpiw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abd7hrc5f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:10:54 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8b184fa3ffbso124564185a.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 03:10:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762773054; x=1763377854; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ybEh9EFc/k/OEFrYVPKW0AEC0K4ZVsg0OtLxn2/42jg=;
+        b=FubAiSLUwB2NCc6DTzTmHSvEfFQiTX/VumqkzruDI0v7v88rnt2BvGzfUCwa/8QkP7
+         nc2QOfaEThIuiOaxlPk9Zv9FL1J4T1Ypqitv5UDIjsq8EXeevTiOFK3j9wMAMc24xQEz
+         JL70MqPCHNNB7yRO+ZpPGnoWTs1iik66FI79uYi4ZS8e7Jt9zZp8e5Ey7xkIelrofo8A
+         FBDVAct0W5gZKXbY79QNWuZJEgYP08kPkGcOPUHUdSozpE+6PM2gs9iqdBt5XoI4rja7
+         OD0O6wUxNKeSHt9WhRdbBmhJ5EeW5uwqdCG0/YsEiPXZuQZ6tOTJDBrJ5qarWtv7ZYv7
+         uyLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762773054; x=1763377854;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ybEh9EFc/k/OEFrYVPKW0AEC0K4ZVsg0OtLxn2/42jg=;
+        b=vPP/UuY71m4fvAp74d64zpBY278j2UoMnX6EjVTVcRMcYZBZncOA4rW3LjpugPJdn3
+         q4zZ/v73bDtIdUVxU+9m4cor8eKOfE6yhy9AHjs5kKdZPQFc63gAq7asduVmfVNmCMll
+         WfTWR/TqjT8KxUbXnty3tnluCtta2+Oe3zDmV91Lmm7Tz5K5v31vkA1pnmPNbc17c3cm
+         8s2gbH9AFxMk4m96uhSWLA98wFODwB+uZI+pQ+8xwhtw4GMXbJ0ldZqwy4aI/ocJRBzD
+         Jsk0zTy1748YBfUUQwZuXoULB5fsmivsNR7C9LWFuiWls+1nOjgJNT8Me4HVpWfxj1lX
+         c2xg==
+X-Forwarded-Encrypted: i=1; AJvYcCWoLUnv5FsO9xBR0ieYFTFnydl3KHbS2qyCRWLOS4oMGbwtISKOl58S7UX6VzZXPoFgd+v5MmPdY6d5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQQe8CAir8nSsoE5MUXLXHuAKqimnaGzerxd8IFvgvpnaXaw1v
+	RUyS8nTjkyBB8QgUPCv20/iK+O3fe2Iuw337Fdwo6JGCYpKJfgHrfCKGY39Sj57idc23o/rdhLc
+	GtsJnejQyM+UImi02IXxui/zDxfSbn52CCNSjnzFd+5+HeL1NgV5DFmj6xlJguLiQ
+X-Gm-Gg: ASbGnctugocaG19+5AZktyzRs/cyKoa7fGAZPXVO2RuYyGWExyrBa1KqrUKiAli4enR
+	lcNXesvwwkILzH/k3sOTpNIiNelFJsZQntzkldyl3e6vzFrtKyPLoAFNRnVVYFH8o2ANBEpJj1/
+	Jxs1kh5XpIsEYVBvKDPaoIlVfboVu4vfFQ5+fTNO7rMKmu3WTioqzHX81EURtwE7FmpyWrinrvx
+	vhvmbcw2CGRAF3gIheS4hgg91JcsLxGcSJOwNmLhDHTPfDDZkI6eFYVw4yksAhHacqwIUrO+fm8
+	JrbnXsTE5LtQYp+yShKMFB4ZYy3XJXpYOaxR9Sf3/3UgYYNEllaJMNeysTcclpxEBn6gIVgfzPb
+	OokTdiKKR9s+5emCwu5Jql5uk8qu2Y3VVOW9sv7VIDAUC4mHUoLHjw3ap
+X-Received: by 2002:a05:622a:24a:b0:4ec:f7e4:8a0e with SMTP id d75a77b69052e-4eda4f9a9bbmr68189971cf.9.1762773053485;
+        Mon, 10 Nov 2025 03:10:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHQu4fNZk2qrYjwhHpbxn0AAwOS/Kjp/AlwHX5/cKYvrUDHHZLvsGb09MZi5m64KKoPHWj67g==
+X-Received: by 2002:a05:622a:24a:b0:4ec:f7e4:8a0e with SMTP id d75a77b69052e-4eda4f9a9bbmr68189481cf.9.1762773052978;
+        Mon, 10 Nov 2025 03:10:52 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6417b28a73esm3989933a12.35.2025.11.10.03.10.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 03:10:52 -0800 (PST)
+Message-ID: <fbd241d2-d383-4476-8e2e-0f9dd9dae484@oss.qualcomm.com>
+Date: Mon, 10 Nov 2025 12:10:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/4] arm64: dts: qcom: qrb2210-rb1: Fix UART3 wakeup
+ IRQ storm
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-serial@vger.kernel.org, alexey.klimov@linaro.org,
+        krzk@kernel.org, bryan.odonoghue@linaro.org,
+        jorge.ramirez@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com
+Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+        quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+        quic_shazhuss@quicinc.com, quic_cchiluve@quicinc.com
+References: <20251110101043.2108414-1-praveen.talari@oss.qualcomm.com>
+ <20251110101043.2108414-2-praveen.talari@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251110101043.2108414-2-praveen.talari@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20251110-rgmii_delay_2600-v4-4-5cad32c766f7@aspeedtech.com>
-References: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
-In-Reply-To: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Po-Yu Chuang <ratbert@faraday-tech.com>, Joel Stanley
-	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <taoren@meta.com>, Jacky Chou
-	<jacky_chou@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762772996; l=8377;
- i=jacky_chou@aspeedtech.com; s=20251031; h=from:subject:message-id;
- bh=86E1tmDnqxW676P46rlqb0ZTP5Jjau+psLSHnvkWES8=;
- b=r8e9agtlYPZOR9Iz4O2IGKSeJbhLQRq18IOsxKQeLXKYnb84azuu3jZdwOdDhVHfZU5J60eg/
- VP5/pAt6HQdCvTHqNSo3Mdu/ZeXcdEo4MYs3Dd1OPt0e5Nu9IIb83HL
-X-Developer-Key: i=jacky_chou@aspeedtech.com; a=ed25519;
- pk=8XBx7KFM1drEsfCXTH9QC2lbMlGU4XwJTA6Jt9Mabdo=
+X-Proofpoint-GUID: YVSSWxrBMU6gUSXcOH6AGH5n_Ck9a2K6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDA5NyBTYWx0ZWRfX2Uyffz02qNQL
+ 8GJabWkME/bfv4kFfzzNLbPUbiFi0Io/Q9rZSq5i1jn7rPJy7w45Vb2weha7OH8wniOoEAFILG2
+ 2uZJj9jjQ75VHaxzxWoskonMwXflaTZYqESlU6BeYbvp/sNc3yu9/wq5NZiVIHKWQZE7zcSXEQZ
+ EVl1JzByzlE1sVBWcADa50rtZCQLpfITooickD/9WFJnd0T/oTQdA084Slc9sOPHNEI8Rq8Gs3O
+ ZDQImkGcLOynxHeRuzQt1/GeJi+s/WC4tJXiy2PvkEd+vxLQoqwcY+ZmjjyZinN6/iENxxXz0P7
+ 3cs2rcY9PxxmGdDvd8jMLZiMGeeArSxiBkEYRqIsflTfLpXH7A+9BBt6PoJW/dQXXEcXWAJ7ft5
+ YyzlXFnTJ3XGMfw2aun2PBhDhz15HA==
+X-Proofpoint-ORIG-GUID: YVSSWxrBMU6gUSXcOH6AGH5n_Ck9a2K6
+X-Authority-Analysis: v=2.4 cv=Yt4ChoYX c=1 sm=1 tr=0 ts=6911c83e cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=jiGHEdQAExhvJ1pZOisA:9
+ a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_04,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 spamscore=0 phishscore=0 malwarescore=0
+ impostorscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511100097
 
-On the AST2600 platform, the RGMII delay is controlled via the
-SCU registers. The delay chain configuration differs between MAC0/1
-and MAC2/3, even though all four MACs use a 32-stage delay chain.
-+------+----------+-----------+-------------+-------------+
-|      |Delay Unit|Delay Stage|TX Edge Stage|RX Edge Stage|
-+------+----------+-----------+-------------+-------------+
-|MAC0/1|     45 ps|        32 |           0 |           0 |
-+------+----------+-----------+-------------+-------------+
-|MAC2/3|    250 ps|        32 |           0 |          26 |
-+------+----------+-----------+-------------+-------------+
-For MAC2/3, the "no delay" condition starts from stage 26.
-Setting the RX delay stage to 26 means that no additional RX
-delay is applied.
-Here lists the RX delay setting of MAC2/3 below.
-26 -> 0   ns, 27 -> 0.25 ns, ... , 31 -> 1.25 ns,
-0  -> 1.5 ns, 1  -> 1.75 ns, ... , 25 -> 7.75 ns
+On 11/10/25 11:10 AM, Praveen Talari wrote:
+> For BT use cases, pins are configured with pull-up state in sleep state
+> to avoid noise. If IRQ type is configured as level high and the GPIO line
+> is also in a high state, it causes continuous interrupt assertions leading
+> to an IRQ storm when wakeup irq enables at system suspend/runtime suspend.
+> 
+> Switching to edge-triggered interrupt (IRQ_TYPE_EDGE_FALLING) resolves
+> this by only triggering on state transitions (high-to-low) rather than
+> maintaining sensitivity to the static level state, effectively preventing
+> the continuous interrupt condition and eliminating the wakeup IRQ storm.
+> 
+> Fixes: 9380e0a1d449 ("arm64: dts: qcom: qrb2210-rb1: add Bluetooth support")
+> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+> ---
 
-Therefore, we calculate the delay stage from the
-rx-internal-delay-ps of MAC2/3 to add 26. If the stage is equel
-to or bigger than 32, the delay stage will be mask 0x1f to get
-the correct setting.
-The delay chain is like a ring for configuration.
-Example for the rx-internal-delay-ps of MAC2/3 is 2000 ps,
-we will get the delay stage is 2.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Strating to this patch, driver will remind the legacy dts to update the
-"phy-mode" to "rgmii-id, and add the corresponding rgmii delay with
-"rx-internal-delay-id" and "tx-internal-delay-id".
-If lack these properties, driver will configure the default rgmii delay,
-that means driver will disable the TX and RX delay in MAC side.
-
-Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
----
- drivers/net/ethernet/faraday/ftgmac100.c | 148 +++++++++++++++++++++++++++++++
- drivers/net/ethernet/faraday/ftgmac100.h |  20 +++++
- 2 files changed, 168 insertions(+)
-
-diff --git a/drivers/net/ethernet/faraday/ftgmac100.c b/drivers/net/ethernet/faraday/ftgmac100.c
-index a863f7841210..5cecdd4583f6 100644
---- a/drivers/net/ethernet/faraday/ftgmac100.c
-+++ b/drivers/net/ethernet/faraday/ftgmac100.c
-@@ -26,6 +26,9 @@
- #include <linux/if_vlan.h>
- #include <linux/of_net.h>
- #include <linux/phy_fixed.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
- #include <net/ip.h>
- #include <net/ncsi.h>
- 
-@@ -1833,6 +1836,146 @@ static bool ftgmac100_has_child_node(struct device_node *np, const char *name)
- 	return ret;
- }
- 
-+static int ftgmac100_set_ast2600_rgmii_delay(struct ftgmac100 *priv,
-+					     u32 rgmii_tx_delay,
-+					     u32 rgmii_rx_delay)
-+{
-+	struct device *dev = priv->dev;
-+	struct device_node *np;
-+	u32 rgmii_delay_unit;
-+	u32 rx_delay_index;
-+	u32 tx_delay_index;
-+	struct regmap *scu;
-+	int dly_mask;
-+	int dly_reg;
-+	int mac_id;
-+	int ret;
-+
-+	np = dev->of_node;
-+
-+	/* Add a warning to notify the existed dts based on AST2600. It is
-+	 * recommended to update the dts to add the rx/tx-internal-delay-ps to
-+	 * specify the RGMII delay and we recommend using the "rgmii-id" for
-+	 * phy-mode property to tell the PHY enables TX/RX internal delay and
-+	 * add the corresponding rx/tx-internal-delay-ps properties.
-+	 */
-+	if (priv->netdev->phydev->interface != PHY_INTERFACE_MODE_RGMII_ID)
-+		dev_warn(dev, "Update the phy-mode to 'rgmii-id'.\n");
-+
-+	scu = syscon_regmap_lookup_by_phandle(np, "aspeed,scu");
-+	if (IS_ERR(scu)) {
-+		dev_err(dev, "failed to get aspeed,scu");
-+		return PTR_ERR(scu);
-+	}
-+
-+	ret = of_property_read_u32(np, "aspeed,rgmii-delay-ps",
-+				   &rgmii_delay_unit);
-+	if (ret) {
-+		dev_err(dev, "failed to get aspeed,rgmii-delay-ps value\n");
-+		return -EINVAL;
-+	}
-+
-+	/* According to the register base address to specify the corresponding
-+	 * values.
-+	 */
-+	switch (priv->res->start) {
-+	case AST2600_MAC0_BASE_ADDR:
-+		mac_id = 0;
-+		break;
-+	case AST2600_MAC1_BASE_ADDR:
-+		mac_id = 1;
-+		break;
-+	case AST2600_MAC2_BASE_ADDR:
-+		mac_id = 2;
-+		break;
-+	case AST2600_MAC3_BASE_ADDR:
-+		mac_id = 3;
-+		break;
-+	default:
-+		dev_err(dev, "Invalid mac base address");
-+		return -EINVAL;
-+	}
-+
-+	if (mac_id == 0 || mac_id == 1) {
-+		if (rgmii_delay_unit != AST2600_MAC01_CLK_DLY_UNIT) {
-+			dev_err(dev, "aspeed,rgmii-delay-ps %u is invalid\n",
-+				rgmii_delay_unit);
-+			return -EINVAL;
-+		}
-+		dly_reg = AST2600_MAC01_CLK_DLY;
-+	} else {
-+		if (rgmii_delay_unit != AST2600_MAC23_CLK_DLY_UNIT) {
-+			dev_err(dev, "aspeed,rgmii-delay-ps %u is invalid\n",
-+				rgmii_delay_unit);
-+			return -EINVAL;
-+		}
-+		dly_reg = AST2600_MAC23_CLK_DLY;
-+	}
-+
-+	tx_delay_index = DIV_ROUND_CLOSEST(rgmii_tx_delay, rgmii_delay_unit);
-+	if (tx_delay_index >= 32) {
-+		dev_err(dev, "The %u ps of TX delay is out of range\n",
-+			rgmii_tx_delay);
-+		return -EINVAL;
-+	}
-+
-+	rx_delay_index = DIV_ROUND_CLOSEST(rgmii_rx_delay, rgmii_delay_unit);
-+	if (rx_delay_index >= 32) {
-+		dev_err(dev, "The %u ps of RX delay is out of range\n",
-+			rgmii_rx_delay);
-+		return -EINVAL;
-+	}
-+
-+	/* Due to the hardware design reason, for MAC2/3 on AST2600, the zero
-+	 * delay ns on RX is configured by setting value 0x1a.
-+	 * List as below:
-+	 * 0x1a -> 0   ns, 0x1b -> 0.25 ns, ... , 0x1f -> 1.25 ns,
-+	 * 0x00 -> 1.5 ns, 0x01 -> 1.75 ns, ... , 0x19 -> 7.75 ns, 0x1a -> 0 ns
-+	 */
-+	if (mac_id == 2 || mac_id == 3)
-+		rx_delay_index = (AST2600_MAC23_RX_DLY_0_NS + rx_delay_index) &
-+				 AST2600_MAC_TX_RX_DLY_MASK;
-+
-+	if (mac_id == 0 || mac_id == 2) {
-+		dly_mask = ASPEED_MAC0_2_TX_DLY | ASPEED_MAC0_2_RX_DLY;
-+		tx_delay_index = FIELD_PREP(ASPEED_MAC0_2_TX_DLY, tx_delay_index);
-+		rx_delay_index = FIELD_PREP(ASPEED_MAC0_2_RX_DLY, rx_delay_index);
-+	} else {
-+		dly_mask = ASPEED_MAC1_3_TX_DLY | ASPEED_MAC1_3_RX_DLY;
-+		tx_delay_index = FIELD_PREP(ASPEED_MAC1_3_TX_DLY, tx_delay_index);
-+		rx_delay_index = FIELD_PREP(ASPEED_MAC1_3_RX_DLY, rx_delay_index);
-+	}
-+
-+	regmap_update_bits(scu, dly_reg, dly_mask, tx_delay_index | rx_delay_index);
-+
-+	return 0;
-+}
-+
-+static int ftgmac100_set_internal_delay(struct ftgmac100 *priv)
-+{
-+	struct device_node *np = priv->dev->of_node;
-+	u32 rgmii_tx_delay;
-+	u32 rgmii_rx_delay;
-+	int err;
-+
-+	if (!(of_device_is_compatible(np, "aspeed,ast2600-mac")))
-+		return 0;
-+
-+	if (of_property_read_u32(np, "tx-internal-delay-ps", &rgmii_tx_delay))
-+		/* Default to 0 ps delay */
-+		rgmii_tx_delay = 0;
-+
-+	if (of_property_read_u32(np, "rx-internal-delay-ps", &rgmii_rx_delay))
-+		/* Default to 0 ps delay */
-+		rgmii_rx_delay = 0;
-+
-+	err = ftgmac100_set_ast2600_rgmii_delay(priv,
-+						rgmii_tx_delay,
-+						rgmii_rx_delay);
-+
-+	return err;
-+}
-+
- static int ftgmac100_probe(struct platform_device *pdev)
- {
- 	struct resource *res;
-@@ -2004,6 +2147,11 @@ static int ftgmac100_probe(struct platform_device *pdev)
- 		if (of_device_is_compatible(np, "aspeed,ast2600-mac"))
- 			iowrite32(FTGMAC100_TM_DEFAULT,
- 				  priv->base + FTGMAC100_OFFSET_TM);
-+
-+		/* Configure RGMII delay if there are the corresponding compatibles */
-+		err = ftgmac100_set_internal_delay(priv);
-+		if (err)
-+			goto err_phy_connect;
- 	}
- 
- 	/* Default ring sizes */
-diff --git a/drivers/net/ethernet/faraday/ftgmac100.h b/drivers/net/ethernet/faraday/ftgmac100.h
-index 4968f6f0bdbc..d19d44d1b8e0 100644
---- a/drivers/net/ethernet/faraday/ftgmac100.h
-+++ b/drivers/net/ethernet/faraday/ftgmac100.h
-@@ -271,4 +271,24 @@ struct ftgmac100_rxdes {
- #define FTGMAC100_RXDES1_UDP_CHKSUM_ERR	(1 << 26)
- #define FTGMAC100_RXDES1_IP_CHKSUM_ERR	(1 << 27)
- 
-+/* Aspeed SCU */
-+#define AST2600_MAC01_CLK_DLY	0x340
-+#define AST2600_MAC23_CLK_DLY	0x350
-+#define AST2600_MAC01_CLK_DLY_UNIT	45	/* ps */
-+#define AST2600_MAC01_TX_DLY_0_NS	0
-+#define AST2600_MAC01_RX_DLY_0_NS	0
-+#define AST2600_MAC23_CLK_DLY_UNIT	250	/* ps */
-+#define AST2600_MAC23_TX_DLY_0_NS	0
-+#define AST2600_MAC23_RX_DLY_0_NS	0x1a
-+#define AST2600_MAC_TX_RX_DLY_MASK	0x1f
-+#define ASPEED_MAC0_2_TX_DLY		GENMASK(5, 0)
-+#define ASPEED_MAC0_2_RX_DLY		GENMASK(17, 12)
-+#define ASPEED_MAC1_3_TX_DLY		GENMASK(11, 6)
-+#define ASPEED_MAC1_3_RX_DLY		GENMASK(23, 18)
-+
-+#define AST2600_MAC0_BASE_ADDR		0x1e660000
-+#define AST2600_MAC1_BASE_ADDR		0x1e680000
-+#define AST2600_MAC2_BASE_ADDR		0x1e670000
-+#define AST2600_MAC3_BASE_ADDR		0x1e690000
-+
- #endif /* __FTGMAC100_H */
-
--- 
-2.34.1
-
+Konrad
 
