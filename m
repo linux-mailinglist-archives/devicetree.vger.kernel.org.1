@@ -1,246 +1,182 @@
-Return-Path: <devicetree+bounces-236499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C92C44E49
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 05:05:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3906C44E63
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 05:14:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 337C33AAE95
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 04:05:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58BCB188D94B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 04:14:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792F515ECD7;
-	Mon, 10 Nov 2025 04:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CB38285042;
+	Mon, 10 Nov 2025 04:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="UK+sfK3b"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pmQud2Is";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="brZtqK2t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023072.outbound.protection.outlook.com [52.101.127.72])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 508464369A;
-	Mon, 10 Nov 2025 04:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.72
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762747529; cv=fail; b=N8UIcEw6Vzh4zo09mWLeCZDK7ZNG/7hpzVYhBbfjj9HBg15pn9+Gg7si86Pcz8se4tmR+Zw7QPm3rx1sTyltk0a0oSJAYY/OhjZf2yCzzcX4I/ttdQa3X5SV8VzbUmIgFDGt6wdjO0AnMHiwzqPOY1dmNDbnz/4r0+MZDSofHyU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762747529; c=relaxed/simple;
-	bh=CJtIA/kDivjR27PTSyynDhBdvQXaPKmbWJqFsKR25As=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=orQ+Gj88fmmCDkLNw0lilxAnF70AnXOpBKPZOcWoIoWg7f8fv1qi+Q1zWmQwcwmKjI3NJzfUN4xHGTUgJX+SXO9MtUI1XadXMYbsj/DfR3g5dfRK2cUuMGj/fJJ0WmkVn9VOha0qc1o+qv+bVqBwqx0JBbDZebUbAGVuwURAf/4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=UK+sfK3b; arc=fail smtp.client-ip=52.101.127.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Gy66GcJBlyGFi1Yo5Kvj+ilNTM3Ab8r8EZbV1KrAtT8Y/krAWPOykrV6+dAqCoopZ5mqxFe1Y5e97HPqzsgJtdz0ZQJmjKYLOX9ASpqWAywiVGEJlZ6ACXRfxSBl06PZYNxspxQuFzZXK/yo2q/SPb6uMb1P4JNDh7VMxkmZPXVjY0iaJLabq5eASKhAwbEY2256+M0RwktAL8ed7WayguZVsM2u50UAJnHoFr0HJjpQTzPAG4UuUV08GRJPulQVEeWxKl6PT1A9kxrv+6Dl1dhI9VvTk3uXSlS8z8BTYX9r3fTFTPcVo94Y1Nk4/1AEfG1Cn5u0S1DHjyqM4vGgJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rsSCaaiJR1tn9nPg2L4vWhKa5HHmyrMz2mChlJgFSdo=;
- b=QrsuiHv3PG8W36ougWcFvc7uDIt90THUftu7invJDETu54mWP9bCyyCHHmkyU2o3IN/rn6F5NeMYg9Rmur+msynZZlMbDojvIYTukP/G9OQq1IpNuRYmANHottrbOFCLQ//Tx9yVB0eFSIJXvC0Y81EbAuQh/S6MYeFEh6tU9XtQ5dV0zCc/WpEe86pypg/inV24uAHBVb6fl/QJKBNStteNcZKQwcMCpH4vB8VT3fUcaNFHK6OzRaBiPCbutVsVvl+HBaP8udEGGLap2BxJOyfak3jFHYNi025L4dbHi0wUWynE7fX7rQEMh41tHPMg4x/+kasM1uDC7N6nCu1MpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rsSCaaiJR1tn9nPg2L4vWhKa5HHmyrMz2mChlJgFSdo=;
- b=UK+sfK3bvbOWMDh82VqvFYiTFY0i66BJ8x0suYhxSDDMxsZ3QyzCz0BIC02qMeoIQwpWeBr+aPNGYi+o+rgghyDi/U12yfILGAB90L5XmOKlhTpo/eSQEMNuoBTGkSPA+oHlhcO8QPTVd3IIHURgHmsYFcBYfwTt/K8rafpM8Cs5KXB+xbhsGZstBRfsnpS252jDhSviEYSCJsj3fCNMm9LUI9Ls1QB8NtQYrd++V4Q0iGk72V13YOzcCwcpgBVOn2SwcB+finaNfJUXyyWY6A98+wjzhzQCyRl3bd9mYUbpZ8OwUFxkZkoI65KpVuEWemZc023SVlC0L0xlYFiCCQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
- by KU2PPFD33A87D41.apcprd03.prod.outlook.com (2603:1096:d18::427) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Mon, 10 Nov
- 2025 04:05:24 +0000
-Received: from KL1PR03MB5521.apcprd03.prod.outlook.com
- ([fe80::f12b:85e:f95c:191e]) by KL1PR03MB5521.apcprd03.prod.outlook.com
- ([fe80::f12b:85e:f95c:191e%4]) with mapi id 15.20.9298.015; Mon, 10 Nov 2025
- 04:05:24 +0000
-Message-ID: <56b943f0-d6d4-4210-8fb5-453326f277ba@amlogic.com>
-Date: Mon, 10 Nov 2025 12:05:19 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] decoder: Add V4L2 stateless H.264 decoder driver
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com>
- <20251027-b4-s4-vdec-upstream-v1-3-620401813b5d@amlogic.com>
- <CAFBinCBy7vPq0oX0PQ=yC5E3Mx3sv6qdVHsMh-NQQzAkbDuvRQ@mail.gmail.com>
-From: Zhentao Guo <zhentao.guo@amlogic.com>
-In-Reply-To: <CAFBinCBy7vPq0oX0PQ=yC5E3Mx3sv6qdVHsMh-NQQzAkbDuvRQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2P153CA0036.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:190::11) To KL1PR03MB5521.apcprd03.prod.outlook.com
- (2603:1096:820:51::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFB28272E45
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:14:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762748043; cv=none; b=gaaT9A4zN2Z66kOtHaLr+U5yO+2DB6dDy6zZU7awqC6oYLlrjIPQBdWCEduMYubh/KGgccsv6r7Y9qRmQefb3wku+IxPGdPifviZtLbjPLXOKyMxWsDxqX7YxJpAbIXmNITq4zkCH9pPpOfVUe7Ae5GoZ31Ld7oKw9oxqp8V94Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762748043; c=relaxed/simple;
+	bh=OvMIL+Ag7ao+WlmXilMCYV3oFt3WYL+b4oSFg7J9BrA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RGGNra71jNml4LAULYgQOeiUe1TtkgnbzBXidb7OxqzsxpvZo+ahhc4cJvKwWK1TmBq63ul4GhtvV4/gh/FIiX1JnQROs2kYe1tOmRfnjn7kvZo3NUirIWgs95iszQDotoa4c5vFjh+0xIfSIhilc4H9wyq1YWENy9iRouWXT8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pmQud2Is; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=brZtqK2t; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA37bdD2166675
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:14:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=63Ba7zBrKoiAWfSOSCfa4uld
+	py/JAKEBPUMVKa6S/Es=; b=pmQud2IsyJ6DYawFZ2q2ryuvuOploLX0UuLFG/LW
+	ZVeLDF7PypHqPjgpgFTFPG+OLf+0ck9VkRP6bYasoj9oZ60qH/r07cKGMO+OPF5Z
+	aw842KDcatU2CaoLRYS29YhnrkzuaWz604Fbr/BBpfpWRRnOjOZsQL7GlHOH32n+
+	nAqadAjO5gWqn8Pnplkr3Yx+pZHw18rbyynGESLjejNbB8NhZFg2znuHJyhl+sG6
+	I2aCrGrGKwifnNotkvuMkatb1Ss+la/7MAUGo5YvAEwtnr6Il6ObHFkWd3Sdm+NI
+	WOJMbNtnnmIZm+L3jWRctqcGVOEJs/RvAsfsIshmsjohIg==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ab7vcr4hp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:14:01 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3439fe6229aso560547a91.1
+        for <devicetree@vger.kernel.org>; Sun, 09 Nov 2025 20:14:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762748040; x=1763352840; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=63Ba7zBrKoiAWfSOSCfa4uldpy/JAKEBPUMVKa6S/Es=;
+        b=brZtqK2tI9dnUw4e0B17aEqXjttyzPjoobTe2R+HIm/epkvu9+NZZIseGJIjGrDomA
+         qpEIjDPMYDqe/VdO/pOA12XnS7p1LKo4YIDwrwzANxYVDr7UWErZ7p4VAjwLEl/P597V
+         rCkUFKfaI2Whn2VCSq2xixBnVpNPrf/efeR4DDCsx8ykWOBRnyt/mE2++3Z2lvgbGd0c
+         f68B0BmgR2mV2h87WdZSUdadg8/95jk9KB+LQbm+rQ7hWQ31KuXmPWREyzBDj0U/CARU
+         LOhACW/RZt7e/Fwpb11ToZI1A5MRdln8IGTPFeG7Zne8Novpdt0WMQcAEoTzo4aUp7tT
+         WFaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762748040; x=1763352840;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=63Ba7zBrKoiAWfSOSCfa4uldpy/JAKEBPUMVKa6S/Es=;
+        b=WToK7NJsd5QT3PpMwOziNabbfWK5lUJpqMmBIIlbZSWNb2Gm+IRWXMp75mJvIrs+6O
+         sI6mDvTVDvEOeRj6L02+6OcsinBnbw7ry76MxhbYuaKTGWj9upsaam7zlxVoRUEDrdR1
+         eTEwkgnCzwzfuQOp/GqKjOMIrXg+HVr8uWaRzFS1kSmLjaN0iic+LoHXnRd1Y19kOoDK
+         QaiuSbSyP7QZ4fbINtL06QrNnXrYY5Yl/ot9eJomt/5XX4udj21emBOd19SKoKiS9+cA
+         l/m2dRUijGz0x5X5BaTKC+EFE1MAZWHRPV0PgYXCzIB1WZu9KdoeC6pASkC18nT45tFT
+         UbZA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZ9QD9F6nOJMwDJtFdV5kjUSTsMQxR1pfCn/cJ+53ppkspCZMbxQu+PQNyA58aau9ZWAzcrsc0ZMzs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7vsFTTehrFAS5qsPuMViMaZZ766Lnsx88aNJzSfAdXCHf5iBV
+	l8vfvzaojJBOzSmBdlQhNfSeAKLLpnsnh/qWuH0JZGx4SCLAEkQ6SEkYCSeQLfUAC1p+LLN15Y7
+	vo5893aujhfcT9smZoTnL7CdmLhEi0QqPGXeVrja4QNhQ+MqHRKWwKpnHFeAccqWf0ZHcip7vvK
+	M=
+X-Gm-Gg: ASbGncuk9HCQJKCZwA/fQGZqCUo/gibvEYLH7mAIYAiFJaLa1kYh9kCXng5wK/0MZYa
+	qMUa32qzjbrMpIrFDtor0/ffhhXRhfhcquPo0GE1DTSz3b3pZ5lwIaBWpkh9OZAixwCTbvnlLwm
+	9T5c/RQoMdfuMT5PrAT0f43LkAi6u4273Bf8Z+GmY0hCpJxWvdstdS2w0rzsli1wLoEiZ15voB7
+	3mYPyPF/wtxeoZkmjn+qOI3fZhkz2ZjNyoPyvlwD2YbjGJmxwkU9IGuTpYnckYV2IwoSFD1/8uW
+	83ssIgG6vLHa8n8n0SAYB/jj97YMBY1naADmexrk68sDc62jnYMTvbwJV2XyoFavRxCTw4AYR3K
+	/7WpCHj3q+fJIo4Um9WCyBXZQPBex02E4
+X-Received: by 2002:a17:90b:3f85:b0:343:6a63:85d5 with SMTP id 98e67ed59e1d1-3436accd340mr8908388a91.16.1762748040216;
+        Sun, 09 Nov 2025 20:14:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFTZ3wFWABMsdQEIncQiC52zmOKq5UOdMUvgom5QS8xesVHXQPctEzv5PL538yn87n1udFPDQ==
+X-Received: by 2002:a17:90b:3f85:b0:343:6a63:85d5 with SMTP id 98e67ed59e1d1-3436accd340mr8908348a91.16.1762748039722;
+        Sun, 09 Nov 2025 20:13:59 -0800 (PST)
+Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0c9635007sm10178757b3a.2.2025.11.09.20.13.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Nov 2025 20:13:59 -0800 (PST)
+Date: Mon, 10 Nov 2025 09:43:53 +0530
+From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog
+ device
+Message-ID: <263d1390-eff5-4846-b2c2-31f96fc3248e@quicinc.com>
+References: <20251107-gunyah_watchdog-v5-0-4c6e3fb6eb17@oss.qualcomm.com>
+ <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
+ <hbxtbaoavlsw7pbmg3cfkbyx4nacjfiikckhqgpvlggbh6hu5b@jyporqecfzni>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5521:EE_|KU2PPFD33A87D41:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40e5dfde-cc8b-42d5-ae42-08de200e5f94
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?U0p2UHZQSDBPdWVKVXdpL0ZqTUswd0piam1qcmduRmpsdDlleWFBOGNzOCtz?=
- =?utf-8?B?VTBWOEF6Yml1eGhQYzdLbkdSTkordEhzS2hPNEZtOHlaMzZrcHROcTRyVDZ4?=
- =?utf-8?B?c29IZUg4UStkcE1teWkrUzZRVS9ZZ3JqeHhXckFFckpNQzluTG9kbXBCY2R0?=
- =?utf-8?B?VHNGNkZPbFJVaGNHaVp2SG9wS0swbDRyaHMwZ2tBS0J5TlBwanNHeEVDVWRa?=
- =?utf-8?B?Y212UUl3ZG9qaFFFTG5zL29GWTNkc0Yyc0g5MVFCU0lRNFJpK1N0OW9CUjZY?=
- =?utf-8?B?NkhZMFhVcjk4cDRjaWtwTHF6ZnRjVU81bHNQNjN0SDRxVi9FN0xMTWt4TUxv?=
- =?utf-8?B?Rnp1RHc2ckV0R005Szg2VFl3T0FycnFSMGgzOStzUTBTY216MGc4MGpVTzNj?=
- =?utf-8?B?bnNwSjJsYS95OERsa0laQ0diVHN0Q0Izc0ZER1MvQ0IzRm9kNFN6Z25Mc01E?=
- =?utf-8?B?bzZadmxOMDllZENOTzVsUU1XQ3JYY0VPcGx5UGVmTWlpSGdvVjB4YUxEdkhw?=
- =?utf-8?B?SmdUSHRZQmZnN3JyUlBTVll3VHpxNC90SnZ0Y1RoUzdnNUFmNEtZN2I4Q0tB?=
- =?utf-8?B?NWhBdWl0eXlPNUxRdXBQREgzVzVlTjExRTlpeXU2cFh3VjFlYjVJS1hoYVo3?=
- =?utf-8?B?eUJTbUYwRzhUQTU4aEJrMVhvRWpxM3hub1U5TmpaUHBHU2hsZnNYK3U3Q3I2?=
- =?utf-8?B?QVMwb282WVl1L1drbml3RUVpbmVXbU1UWDQyaVFHUXF0b21udXBYbktpSWM5?=
- =?utf-8?B?MWJjQnBoUUNFRDVDZ0ZXMlRmeTVTY1RpWURCbFZVc0VUZ1QyRnBjTjhCa2hE?=
- =?utf-8?B?d1l2bFUyNTFlcVZhSW1BUjVmd2ZrZ0k3ZktqbnA0NkFFcCtvemxpL0FUVFVu?=
- =?utf-8?B?czQ3R0dnTTg1ekpQNUlBdlFGd0VjQ3JRd3llNHJGS0dlb2lwQy81T3hCc0lE?=
- =?utf-8?B?T0xTK1JSSGJwakJBVFRVd3ZQUW5yTlY3eGxtMHk1emxRdmVOUDdGN1FzUzYy?=
- =?utf-8?B?S0IwaDRmeTlVVUF2dnRqSHNCQ3B5WWlPZ0IwL1JSNDBNdFpPU2ZCV3NiRXhM?=
- =?utf-8?B?RW1Mc2ZWWi9YVnZ6ejZpQTdmYXl5RUQ3TlovZERIT1FUVFZScnRlaXVZSkxH?=
- =?utf-8?B?ZUdDVysxcmtOdlpKa0s1RDdxUVE1WnNCT3I0dEZVdCtDOWsvd2lJQnltc2F6?=
- =?utf-8?B?azhrb2Yva1dLNzJyV25KQkp1S2M1TFdFdnhWUlN2cFVXSTNwdzc5R0c4SVlB?=
- =?utf-8?B?UEp2SVNSdWlCVkFvcERzWEhMZ200QUxYdGpYSjlIdXBQbXZ2ZFNGQlE5TSsy?=
- =?utf-8?B?MnhYOWd3YUJMdTFMUXhUclkzUkZXK3hwbURZQVlwbC9Va05TSURuNEVrNk1k?=
- =?utf-8?B?My9UTmtySzhFM2R2MGFFc1FMdEQyR2Y5cUNOK2J5cWQyQ3dsRHZyQTlzY0Rz?=
- =?utf-8?B?UUVoZnhyUjhYWng1b05EaEErUkozQ2xtSUx1SWlOTS8wcXlCUm5BR0t6Qmh0?=
- =?utf-8?B?d3ZCSjZ3WEd5T2VqdlNpcnFjRk1ZZVdYOW0yM1FkaDUyZVV1UVg0QXJmNUho?=
- =?utf-8?B?R0V3R0daR1libVJMWGRIOFowWFRwRHg5d1FMVjEyVEtVdGsyNWZHQVVBNDdT?=
- =?utf-8?B?ZW9MZGtTUVd2SHRLU1BvVlpqaUFjdWNWc1NEcVByS0NrdDBZZktHdXVWTzhD?=
- =?utf-8?B?bjRqeitRQ210cUNSU1FnTmxZMWloNHYxcEYrcktxbGhDU2cveDBSZjVaL2p6?=
- =?utf-8?B?SUNLenB5MjNvTml5QlB5Sk1TQTY1T2RKODFhcjlaQnNpMUJhMlh3SXMxWFV1?=
- =?utf-8?B?bU4veG1vd01XS0tBNHFWSEdPVjg5Y3lMMGdFMWgydkxLeU12YWJwMC90TG9o?=
- =?utf-8?B?U0ZVY0MyV2hrZmdkUm90OWh2MUlacWVGcE92Y1RvWlJtRDNINThJOWU4K1ll?=
- =?utf-8?Q?Fay6/usCqYqoeYzd7+1bNXM2AgL6vLBe?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5521.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?V2dYMEZlUHFDNWkyeGw5WVN0dE90SUpNeERkdHhUVEszNUpLM1l6NzBVRXBP?=
- =?utf-8?B?QkZTaXpKUTJxL2NSNFBlamdKRkhkUTB4VnJEVi9kTXZQcytBRHBjbTQ4K2VI?=
- =?utf-8?B?REVwZTJVSnJCZmJGUk0ydHpROXZVaFV6Z0hxeDBvR3pQbDFtTys5ZVB1Rnlh?=
- =?utf-8?B?YnZhU1pVRG04QlVtWXc5bnBDUGpWbFVMVHNhb29iVWxGckk4bHBLT3lXZzls?=
- =?utf-8?B?K0tCV2NIajN6SGdLbnliOHh6RkFTNGZ6Z1JMSlBuL3pZUkl5c2ZJTUtFTTds?=
- =?utf-8?B?WG9Pb1daM1ZWSjNXNWVDc1VocDU5TlBNUHR4VklFZ2pTZHVSMWNrTWl0MHpW?=
- =?utf-8?B?QjBwbFRuU2VScGNwK215MUh5Y1BERmNiTGJNeTg1VmF0SjNJakdNTzh4L2kv?=
- =?utf-8?B?MDZ0ZWpNejFOaE9pVjZyREF0RUszSzR0ekdUdWhPcGp6cXVvelRVb0YzazdI?=
- =?utf-8?B?RW95TjRuMGVVWGJ4bk55eDVXWStCYTJtNitpR2p0ZXBxSkc0OXJTenZGbllr?=
- =?utf-8?B?clhvVUZBVWo4YlN1SWFmcUhhcEh2T3g0Z1BjaUNubDM4S0lZSERpUjQ4SjFK?=
- =?utf-8?B?elkrV2VWRVdPUWtYK2czSVRxUXRUL3hZcXdVWkhNb2VvQ2NaQkIvMGxCZDYr?=
- =?utf-8?B?a2FuejhPSGEvRVhFUzV3Vm13Vlc5RGxhcGVOcEtLZHF4MXFKRW44KzdpNHpH?=
- =?utf-8?B?RnRUbklxWllYdGhWcWZUa2Z2ajlDd0R6YzZwWjBpcUlnRHRmcDc0NnpSRmhY?=
- =?utf-8?B?V2wvcmN0a3JOZFNLZXFpZ2ZVcWV3WUZualVwaUdiSnEvS2xpNERqa1B1UUZO?=
- =?utf-8?B?VlA3czkxS1BnTnQwdmNaSzMrN1pCeGdXMll1b1VERS9ubTRHTHJKbkkrdW5r?=
- =?utf-8?B?b0poZDIybGFwVkZ3cHlyV3U0aWpiS3dLdkNrYzNQRGxpRlhQNWtTTGozSUlJ?=
- =?utf-8?B?cDlIb0hFazBuUGp5MU9oeDdVY3V5SXRxaE4ydXVvMFNkbjBsM08ySXByQTla?=
- =?utf-8?B?MDlmTFM2OHR4TjVjL3F2cWYxWEE4UjhjWXhiM3p4TDE2WXAvcm1wQlpscUJw?=
- =?utf-8?B?c2RoUHdOV3BzbUJjU1J5VDJPMXBVR2wwRkxvNFlHYjd5blpjK0VCT0lwTlpw?=
- =?utf-8?B?NTJBOWl5TG5ja24yT2FtS3YvNkFLQ2p5MjFSUG83ZUhCOGNJelN4QWhlQldO?=
- =?utf-8?B?dG9OZFhuWlQrRU1zaURIUFZDVUFOblE2SGprSXlRaWVrTWM2Mk5kSTB3UFVQ?=
- =?utf-8?B?RFkwbEN6ZnRQR3AyM0RIc3JnWHJQUk83dUhQdHRxUW0rUmtpWjgrMUlLYzhN?=
- =?utf-8?B?ek8wZHhJQjYwSUhoRVNOdk1sVWFQNUxoWHV3aHdGTWk0bG1xdWpSZlc0TzNU?=
- =?utf-8?B?NkVzZHplNUlRTFdrb3hYRVZVNk9pTmdKQ3FRRXZMcGRJVGtoMDV5dW1mQnBC?=
- =?utf-8?B?UFpWZ2I1Q3BpdXJLdGIrT01NRXdrSDJVdzh0NnF5UU8yakVjZ3ZoU1R3UDd0?=
- =?utf-8?B?Q1dnZ0xBTm8yeWRoM0c5K2xKREtZZ2JtdzJlZXZJam9EREt2U3N2SktUM1JE?=
- =?utf-8?B?eVhpdFJreFhOSHp2SFJDZW1ZcFJYbGdHMllQR2s0NUZ0VWswZ0RuYzREVnQv?=
- =?utf-8?B?N0hoaHYwL0VTUmhNVjBwMlFlbWVSQllZQSsvNWxKdFZVbnZldUxzaVM4MElx?=
- =?utf-8?B?VDNkUDlrSHFueGcrbXlLczV2VUdHNzBDTWNtVWh6VGVKY3NEYVRLSkZWc2ZX?=
- =?utf-8?B?YXhrN2NRTllzY3FYaVA4dittYTlsNTZyaHcwc2RXdS9NcmdMcFVyU1BoTllF?=
- =?utf-8?B?dzd5YVcrZmFhZUg2M2EvYkY3Si82c1M2NldMdG9XeXNJR3pCRko1MWYrMnJU?=
- =?utf-8?B?aFcyMzRZek1JNTJNcGFDbGJCNmo1blFxa1FtRHZldzUvUERWL3VRUzJkQXY5?=
- =?utf-8?B?NUE4dVNLT0hFbGtXZEYyUWtpa2RFZ3JjbHhyUm1sdHN1cFFtOGM4UGZ5WWcy?=
- =?utf-8?B?MnBvNDNYTVRCRVA1WFBQanN4eENMQUoxbEtjTlRqQ3MwYWtaZ1cwamJ2OVkw?=
- =?utf-8?B?TGtYcUF2WTdYMjZNQmg3eHFKcFdEblBocnRXYURLK0QrTk9NWFpGaE9oZU9s?=
- =?utf-8?B?RFJXSGtDbkdFNEN6U2ZwRjBzZWNEVHAzZWZvQ0wwMW16ekVjMzhRVWtOLzhi?=
- =?utf-8?B?ZlE9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40e5dfde-cc8b-42d5-ae42-08de200e5f94
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5521.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 04:05:24.1229
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +US+0ovlp/1sRDvjzg5bbLqwuUGgMju9q0S8A1AjRM8mIBZSwrqKrt9F9zV+cSr/cv6gXnEZaneYKScY4ppxAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KU2PPFD33A87D41
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <hbxtbaoavlsw7pbmg3cfkbyx4nacjfiikckhqgpvlggbh6hu5b@jyporqecfzni>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDAzMyBTYWx0ZWRfX36RvqyPlk96m
+ VdBCiAcnhB+1rUWbwwaJldGT2Ipa1HIXT+v/xzYQ1GPa30UbnWyLSrQn8emCbEZNzxIbjQeBEeX
+ AMo4i8pGQxIq1msbEavY4h6lbhrHLeXu+nSPJ2bG4y9JbOspP6HOQ9yRZfP7rbjdDSMXvBkJWIu
+ lsNAkn0nWHNrM89hXcwMK5eG7pkn16l4SYpV2J6yN6qzQ5j7ZMhablIFubg2kWt5euXr/sj9Zi9
+ uAQhaA3vyV7rxLnMeiEp5uBSnAnXWV46yDVGCFzdXBjXoyK7JCeGniThxd70Vrl2dcWlPCb7KMm
+ JowAgttV7kCyYihCWMhqOE6FLrBPTDHCJtI3YGmyK/nrQ3jvusX808d+GGTityI/cfnhoNmz1RZ
+ g5fC2omZfRalUFWpUayGrfELHRg5jQ==
+X-Proofpoint-GUID: gm5FBldp-R1cFefZzGl-ir1W6JFYjdw5
+X-Authority-Analysis: v=2.4 cv=E8HAZKdl c=1 sm=1 tr=0 ts=69116689 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=5liKcR6gdwzQ9ZU9jv4A:9
+ a=NqO74GWdXPXpGKcKHaDJD/ajO6k=:19 a=CjuIK1q_8ugA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-ORIG-GUID: gm5FBldp-R1cFefZzGl-ir1W6JFYjdw5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_01,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 impostorscore=0 malwarescore=0 adultscore=0
+ bulkscore=0 clxscore=1015 spamscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100033
 
-Hi
+On Sat, Nov 08, 2025 at 07:26:46PM +0200, Dmitry Baryshkov wrote:
+> > +static void qcom_scm_gunyah_wdt_free(void *data)
+> > +{
+> > +	struct platform_device *gunyah_wdt_dev = data;
+> > +
+> > +	platform_device_unregister(gunyah_wdt_dev);
+> > +}
+> > +
+> > +static void qcom_scm_gunyah_wdt_init(struct qcom_scm *scm)
+> > +{
+> > +	struct platform_device *gunyah_wdt_dev;
+> > +	struct device_node *np;
+> > +	bool of_wdt_available;
+> > +	int i;
+> > +	uuid_t gunyah_uuid = UUID_INIT(0xc1d58fcd, 0xa453, 0x5fdb, 0x92, 0x65,
+> 
+> static const?
+> 
+> > +				       0xce, 0x36, 0x67, 0x3d, 0x5f, 0x14);
+> > +	static const char * const of_wdt_compatible[] = {
+> > +		"qcom,kpss-wdt",
+> > +		"arm,sbsa-gwdt",
+> > +	};
+> > +
+> > +	/* Bail out if we are not running under Gunyah */
+> > +	if (!arm_smccc_hypervisor_has_uuid(&gunyah_uuid))
+> > +		return;
+> 
+> This rquires 'select HAVE_ARM_SMCCC_DISCOVERY'
+> 
 
-在 2025/11/9 6:53, Martin Blumenstingl 写道:
-> [ EXTERNAL EMAIL ]
->
-> Hello,
->
-> thank you for your work on this!
->
-> On Mon, Oct 27, 2025 at 6:42 AM Zhentao Guo via B4 Relay
-> <devnull+zhentao.guo.amlogic.com@kernel.org> wrote:
-> [...]
-> +/**
-> + * enum aml_power_type_e - Type of decoder power.
-> + */
-> +enum aml_power_type_e {
-> +       AML_PM_PD = 0,
-> +};
-> Are there any other power types that you are already aware of - or is
-> this added "just in case" an additional type is needed in future?
-Currently, this is the only type on S4 platform. The additional type is 
-needed ih the future.
->> +/**
->> + * struct gate_switch_node - clock node definition
->> + * @clk: Pointer to clk instance.
->> + * @name: Clock name used.
->> + * @mutex: Mutex lock for multi decoder instance.
->> + * @ref_count: Curr clk instance ref count.
->> + */
->> +struct gate_switch_node {
->> +       struct clk *clk;
->> +       const char *name;
->> +       struct mutex mutex;
->> +       int ref_count;
->> +};
-> Generally I'm not sure if the whole struct is needed as I think the
-> common clock framework has everything we need.
-> There's struct clk_bulk_data which allows mapping clocks from
-> device-tree to an array in the code.
->
-> drivers/staging/media/starfive/camss/stf-camss.h for defines an enum
-> (stf_clk) to access each of the clocks by it's index in the array.
-> You even seem to have an enum (clk_type_e) which you could use to
-> simplify the code.
->
-> My understanding is that one can call clk_prepare_enable() and
-> clk_disable_unprepare() as often as you'd like and these functions
-> will do the ref-counting internally.
-> So I think the ref_count is not explicitly needed, as that's managed
-> by the common clock framework.
+Probably `depends on HAVE_ARM_SMCCC_DISCOVERY` is correct here.
 
-Thanks for reminding me of this, I'll check it. The field ref_count is 
-desigend for multi-instance decoding. More than one driver instance 
-reuse one decoder hardware. So we think this maybe still needed. Anyway, 
-we will take this into consideration.
-
->
-> Best regards,
-> Martin
-
-Thanks
-
-Zhentao
-
+Thanks,
+Pavan
 
