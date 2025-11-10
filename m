@@ -1,143 +1,87 @@
-Return-Path: <devicetree+bounces-236534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 777CCC45375
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:30:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75260C45393
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:35:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 616193AAB3D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 07:30:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 63CA64E29E6
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 07:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614862E8B8A;
-	Mon, 10 Nov 2025 07:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A3D12E6CBB;
+	Mon, 10 Nov 2025 07:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G5wTaWfV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hAvEf1F9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3217022A1D4;
-	Mon, 10 Nov 2025 07:30:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D4B223D7C8;
+	Mon, 10 Nov 2025 07:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762759846; cv=none; b=XVuDyjYj3NZXfR3aKHrxmhPXJrXAIDwn6KoPSgrG/7E72+rlWCyzy9V3Zphe5u5k+9+j4Z8jzl+HAxoGPim9n1HOe20FSDaDZrji4MiY8CtcUc/t3e/BeXNAVRneHKqYHljc0+qdNQpNax9wl0s7qshrdJta/Jnhf+JGOZsOkFA=
+	t=1762760123; cv=none; b=c8iut3SrnjZuf+dvuFp6fuAXvHd/VbIY+7pG+k5ELbffI4a96LN4DoQVss32zKi9PB1UglFyT1wtPgmBWeowWwO+cX4Fyq71mgCiKv7m1X9h2c/Jnk4RTKqAojQ+VJ5cXfxLBt+3OUqOx3qa49wN3ay0lGCWTO2kp3EoO+HmDbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762759846; c=relaxed/simple;
-	bh=4xslD6BDGHYGuPZJ1zAw4ssu77FJ6xR1d8cCxP9DLhY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pekTT9prIy+UwiNbjonN/cJ8HtmqBfSvEmT4qlFo+YHQpCzeXSQOgMawp6dKIVTxLnAK58VddiKXBK1Le4fdcucyc0vnNfTB86fIVdBpbc27/RsAhzSeVH28VLeOec7S6u1h1oFYIqe6oBL1X7C5IwgLJNMEC/8aA+OgDvMOcyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G5wTaWfV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5192DC4AF09;
-	Mon, 10 Nov 2025 07:30:43 +0000 (UTC)
+	s=arc-20240116; t=1762760123; c=relaxed/simple;
+	bh=NioE0z/TnHHLeHRbGr40HQ1hYEJFopqzR/g2NIkYDvw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=aCV9nSmWr4Aqf+WPihv2Hv1DOEtmGbdQfSeyelluyyBM/Dmx+PLe/ejmhuvimEJ8+gYI+V6Iek3rBbWiW8t5B20LmLYMVpbv2KXUqLJwAeputo9DlFdRBUGdUfvXAgVWLYBgfH3ldrjh6JFCBOI7tdSFGPFil0I5KBo1+9hTySs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hAvEf1F9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFF5DC19422;
+	Mon, 10 Nov 2025 07:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762759845;
-	bh=4xslD6BDGHYGuPZJ1zAw4ssu77FJ6xR1d8cCxP9DLhY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G5wTaWfVlNUktljmwf21w29gxj9RXO+P+pWWdGztes8UBvL6o0TuQ9/VXJ2YOGdwt
-	 hF7JOVTEY9cSXbgr70vmcA24NX4NLTfYoKrE9x8UJnOJKQ9kb1rp1qej1KVWM59UUA
-	 XHZ0M/d9RcCzbDapTyu/1087dAD/1oeQtJr7o67Od+7PjVd/xdESbouzUUYfUEmYz+
-	 TU77iQmpRsMqtZ85AkZCymO6FhtUxeJBqG1YyL9SdjQRBWc2DJdpSvxv9mKcTTWmSH
-	 M7P2q/ixxA0AJC7bYleg3zJ4QJrTS+p9PyIskhjY39w56mklOU0FDrTys3w9htAl3V
-	 J1jpo2BYyOXqw==
-Message-ID: <83b3dbf4-0916-432b-b46f-bf459ce264f3@kernel.org>
-Date: Mon, 10 Nov 2025 08:30:41 +0100
+	s=k20201202; t=1762760121;
+	bh=NioE0z/TnHHLeHRbGr40HQ1hYEJFopqzR/g2NIkYDvw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=hAvEf1F9glU6ESW3a/tF6Yd9Y7k3raLKGNukaO7J5YGk06h87G/GyX+bl1HScxYJr
+	 M7d9PZG4jocPTZkzqx5JWk7l+gv37304W/fPpqjQ98DbXDegLjT9y3MdjZEdaLhBwR
+	 VHK3+/S2sjCg9fApVvlNQ3EcsoLt93lKS5LH3ECLD/48iAtH0OaGfi9pBeZoDB8Ycg
+	 YDtSsBYiDj/C5l/dEd5KyMg6ztQ0TNQV99moKM2g1NP97xafEvL/U+H7niYrThSbiF
+	 wH81hhFLNE1YCAH307X1tg3qJ5sSh8nqzyMxdOeLIIPeZ5JX/r5OWzd4kJH8E2eByF
+	 hl3wNEkxg4EgQ==
+From: Srinivas Kandagatla <srini@kernel.org>
+To: =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Jascha Sundaresan <flizarthanon@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20251022230740.200742-1-flizarthanon@gmail.com>
+References: <20251022230740.200742-1-flizarthanon@gmail.com>
+Subject: Re: [PATCH v2] nvmem: layouts: u-boot-env: add optional "env-size"
+ property
+Message-Id: <176276011747.17393.17343678369277763827.b4-ty@kernel.org>
+Date: Mon, 10 Nov 2025 07:35:17 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add Fitipower FP9931/JD9930
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20251107-fp9931-submit-v1-0-aa7b79d9abb6@kemnade.info>
- <20251107-fp9931-submit-v1-2-aa7b79d9abb6@kemnade.info>
- <20251108-vagabond-lyrical-hawk-ad3490@kuoka>
- <20251108152114.53422ea6@kemnade.info>
- <aa330123-e6d9-44ce-b030-b266cba1df9c@kernel.org>
- <20251108175244.0b51fac6@kemnade.info>
- <aa54cf7c-cabd-490b-9bdd-a7a077ced35c@kernel.org>
- <20251109221212.182d7862@kemnade.info>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251109221212.182d7862@kemnade.info>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-On 09/11/2025 22:12, Andreas Kemnade wrote:
->>
->> You must drop ref. That's the entire point of common unit suffix.
->>
-> I tried without it:
+
+On Thu, 23 Oct 2025 03:07:41 +0400, Jascha Sundaresan wrote:
+> Some devices reserve a larger NVMEM region for the U-Boot environment
+> than the actual environment data length used by U-Boot itself. The CRC32
+> in the U-Boot header is calculated over the smaller data length, causing
+> CRC validation to fail when Linux reads the full partition.
 > 
->   fitipower,tdly-ms:
->     description:
->       Power up soft start delay settings tDLY1-4 bitfields in the
->       POWERON_DELAY register
->     default: <0 0 0 0>
+> Allow an optional device tree property "env-size" to specify the
+> environment data size to use for CRC computation.
+> 
+> [...]
 
-Arrays are in [] (see also some examples of arrays in the example-schema).
-[0, 0, 0, 0]
+Applied, thanks!
 
-And then it should work, but does not which I think is bug in dtschema.
-I think it works fine when you drop the "default:" completely, so please
-do so. I'll take a look at the issue.
-
-enum should be in one line, btw.
-
-Your patchset has also blank line warnings.
-
+[1/1] nvmem: layouts: u-boot-env: add optional "env-size" property
+      commit: 06e92afca89075628b12c9b4085b4cc7320081ac
 
 Best regards,
-Krzysztof
+-- 
+Srinivas Kandagatla <srini@kernel.org>
+
 
