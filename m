@@ -1,65 +1,72 @@
-Return-Path: <devicetree+bounces-236757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CD6C471EC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:15:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9264C4720E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:19:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E402A4E290E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:15:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 982C13BC764
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5093126BD;
-	Mon, 10 Nov 2025 14:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A4130F538;
+	Mon, 10 Nov 2025 14:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="12U+tPHJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="tGk9KTsQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538C6238C3B;
-	Mon, 10 Nov 2025 14:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38381397;
+	Mon, 10 Nov 2025 14:19:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762784112; cv=none; b=N2IiqbLEeyoBVTODYFP1g021W4r6/HLmPx2bs47Lf9F9Q7ZN4f+R1l3uUT1n7ePWtYYWb0K1pxuiyWHwIcop9Bp7sllbP5PaediTv39L2wx+10XJYw/VOjG+zpfYVkoVuLcQm57lwzJkb2wTKyEAu4SHfS3jXl3whr2XD/f1epI=
+	t=1762784371; cv=none; b=phcHcQSe1Z+BQJkSxuAmXSsr0G0WjtBUvAnRsvVk/3L2HOLgVodOI3dvZcu8ig6/LmlYXnaGVqp34laRXbA2jTSH0GnGWbYZX8X+KM+uiMCtsWtHfgLPqVhN9IGeaZPVB6+Lnu4SwuSc05T8ir15TnRZXfDzwfL5aYJFZfBGnuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762784112; c=relaxed/simple;
-	bh=lCUcxcMpT5U7cRzym3W6q8PWmYJA+8R051GDyQCfm9s=;
+	s=arc-20240116; t=1762784371; c=relaxed/simple;
+	bh=CZjpfv7ugZLpQEjHOI/k47q3vnyfBFO3OcNKUMEYJr0=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=jO2ND8siKfi6fzZ4ehHRF9Oia/CYI2d7kLBYMh+lL901zAWd9kQL1lOaX7krObbCFsLXGCMpkSAbRcJIvbyvXt4uUi/gKeLPMqiOqJWX66k57qT/8C0aAEibGqpsESad/Bnufs0p02A6zjXo1VAUDX/zf53OeWv90FUSuswXpxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=12U+tPHJ; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version:Content-Type; b=H2JHAQ8b/FYAeVJMuX08f+QtgnDO/e+z4mQBxSXp5PaW56bGGnXduH3sp6UfNGBaU2zwWu5Z/jZrOt818I4PGFRAFeNdxmSNs+JiZJ9cJTTXccIdNTp5Veei5mmNf3zdJRSew5k69mcmQPRbffowQcvOT5E2fyQ9R7yHw2mu6+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=tGk9KTsQ; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 7613B4E41608;
-	Mon, 10 Nov 2025 14:15:07 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 29A7C1A19AE;
+	Mon, 10 Nov 2025 14:19:27 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3CF98606F5;
-	Mon, 10 Nov 2025 14:15:07 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AE0C7103718E3;
-	Mon, 10 Nov 2025 15:15:04 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E8E9E606F5;
+	Mon, 10 Nov 2025 14:19:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B459D1037176A;
+	Mon, 10 Nov 2025 15:19:23 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762784106; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1762784365; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=r0RTs0mLiJP0YQJOpjwgxtc67UqnKyOdkCbLOvFlNsA=;
-	b=12U+tPHJOwgSLsSFcsdUd0sMClp8mXzd6YcFS4JdNX3QesCpTtjGA03ZAvPtDPQOgo3sFK
-	3MUKa5P/j8g0WG4cuGamytrO40gDSMlT3at4Hhof7kMgd5LvPTTBh1foHQiTOa0pCh+M7P
-	z0qfUHul3B9v/7LoaxFn1p+iSs8tDqPJU5xAY5qa1DApfp82VAPmLSlLRDS6SRkazF53T4
-	1zCKsRdr7ttupzVzAPJdSX4qqvHqnvpg3YqSNAqG9O+oAkl3BVWInxJwlwoV0KG8Yf4otZ
-	V8Q9LODADlr0VPYpYRkOY18K+zc9KDXUPAKIyoQjgJv15otqp/AS/F9HRLp92A==
+	bh=AixT7Oh+5FxWWMEZrxu1kDjvQPH8JSRwqc8kK2kvJaU=;
+	b=tGk9KTsQI2Q65bzJrFFGVZMBlqJL0S5t7NCc7oHdD3VkJ7+4DvdWCQ1H+fAUPwNSCCkKTo
+	mb4cak229bqD5R2nYdIofNZNfCwEYFNwjrDP2XMzY4gRkKtvgxHNNDrEpzrh+F7s+3tohi
+	IF88La9EBzOBGWNmzeDbgNfVvwUMISSod2H02ulMO04OGgjoqPISyStUXuj5kb6RpzzPfx
+	u3G2MpuRo2y5hlF0j1NqsgamhemSCsrxPqK4Z/TgsRHzg6He2ENBbGaz16F4XH62zhf7nz
+	ypVF6xKKeHJphkB1yWfga+Le2zF3iBCyw2R7QXAhmJKB/9bIEv/riz+QGqXDXQ==
 From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64/arm: dts: marvell: Rename "nand-rb" pinctrl node
- names
-In-Reply-To: <20251029153927.1065446-1-robh@kernel.org>
-References: <20251029153927.1065446-1-robh@kernel.org>
-Date: Mon, 10 Nov 2025 15:15:04 +0100
-Message-ID: <87seemrn2v.fsf@BLaptop.bootlin.com>
+To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>
+Cc: Rabeeh Khoury <rabeeh@solid-run.com>, Yazan Shhady
+ <yazan.shhady@solid-run.com>, Mikhail Anikin
+ <mikhail.anikin@solid-run.com>, Jon Nettleton <jon@solid-run.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, Josua Mayer
+ <josua@solid-run.com>
+Subject: Re: [PATCH 1/2] Revert "arm64: dts: marvell: cn9132-clearfog: fix
+ multi-lane pci x2 and x4 ports"
+In-Reply-To: <20251030-cn913x-pci-clk-v1-1-e034d5903df1@solid-run.com>
+References: <20251030-cn913x-pci-clk-v1-0-e034d5903df1@solid-run.com>
+ <20251030-cn913x-pci-clk-v1-1-e034d5903df1@solid-run.com>
+Date: Mon, 10 Nov 2025 15:19:23 +0100
+Message-ID: <87pl9qrmvo.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,12 +77,22 @@ Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Last-TLS-Session-Version: TLSv1.3
 
-"Rob Herring (Arm)" <robh@kernel.org> writes:
+Josua Mayer <josua@solid-run.com> writes:
 
-> Update the "nand-rb" pinctrl child node names to use the defined "-pins"
-> suffix fixing DT schema warnings.
+> This reverts commit 794a066688038df46c01e177cc6faebded0acba4 because it
+> misunderstood interworking between arm trusted firmware and the common
+> phy driver, and does not consistently resolve the issue it was intended
+> to address.
 >
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Further diagnostics have revealed the root cause for the reported system
+> lock-up in a race condition between pci driver probe and clock core
+> disabling unused clocks.
+>
+> Revert the wrong change restoring driver control over all pci lanes.
+> As a temporary workaround for the original issue, users can boot with
+> "clk_ignore_unused".
+>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
 
 Applied on mvebu/dt64
@@ -86,83 +103,47 @@ Gregory
 
 
 > ---
->  arch/arm/boot/dts/marvell/armada-38x.dtsi         | 2 +-
->  arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi | 2 +-
->  arch/arm64/boot/dts/marvell/armada-70x0.dtsi      | 2 +-
->  arch/arm64/boot/dts/marvell/armada-80x0.dtsi      | 2 +-
->  arch/arm64/boot/dts/marvell/cn9130-db.dtsi        | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
+>  arch/arm64/boot/dts/marvell/cn9132-clearfog.dts | 16 ++--------------
+>  1 file changed, 2 insertions(+), 14 deletions(-)
 >
-> diff --git a/arch/arm/boot/dts/marvell/armada-38x.dtsi b/arch/arm/boot/dt=
-s/marvell/armada-38x.dtsi
-> index 1181b13deabc..1d616edda322 100644
-> --- a/arch/arm/boot/dts/marvell/armada-38x.dtsi
-> +++ b/arch/arm/boot/dts/marvell/armada-38x.dtsi
-> @@ -247,7 +247,7 @@ nand_pins: nand-pins {
->  					marvell,function =3D "dev";
->  				};
+> diff --git a/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts b/arch/arm64=
+/boot/dts/marvell/cn9132-clearfog.dts
+> index 5cf83d8ca1f59..2507896d58f9b 100644
+> --- a/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
+> +++ b/arch/arm64/boot/dts/marvell/cn9132-clearfog.dts
+> @@ -413,13 +413,7 @@ fixed-link {
+>  /* SRDS #0,#1,#2,#3 - PCIe */
+>  &cp0_pcie0 {
+>  	num-lanes =3D <4>;
+> -	/*
+> -	 * The mvebu-comphy driver does not currently know how to pass correct
+> -	 * lane-count to ATF while configuring the serdes lanes.
+> -	 * Rely on bootloader configuration only.
+> -	 *
+> -	 * phys =3D <&cp0_comphy0 0>, <&cp0_comphy1 0>, <&cp0_comphy2 0>, <&cp0=
+_comphy3 0>;
+> -	 */
+> +	phys =3D <&cp0_comphy0 0>, <&cp0_comphy1 0>, <&cp0_comphy2 0>, <&cp0_co=
+mphy3 0>;
+>  	status =3D "okay";
+>  };
 >=20=20
-> -				nand_rb: nand-rb {
-> +				nand_rb: nand-rb-pins {
->  					marvell,pins =3D "mpp41";
->  					marvell,function =3D "nand";
->  				};
-> diff --git a/arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi b/arch/arm=
-/boot/dts/marvell/armada-xp-98dx3236.dtsi
-> index 7a7e2066c498..a9a71326aafc 100644
-> --- a/arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi
-> +++ b/arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi
-> @@ -322,7 +322,7 @@ nand_pins: nand-pins {
->  		marvell,function =3D "dev";
->  	};
+> @@ -481,13 +475,7 @@ &cp1_eth0 {
+>  /* SRDS #0,#1 - PCIe */
+>  &cp1_pcie0 {
+>  	num-lanes =3D <2>;
+> -	/*
+> -	 * The mvebu-comphy driver does not currently know how to pass correct
+> -	 * lane-count to ATF while configuring the serdes lanes.
+> -	 * Rely on bootloader configuration only.
+> -	 *
+> -	 * phys =3D <&cp1_comphy0 0>, <&cp1_comphy1 0>;
+> -	 */
+> +	phys =3D <&cp1_comphy0 0>, <&cp1_comphy1 0>;
+>  	status =3D "okay";
+>  };
 >=20=20
-> -	nand_rb: nand-rb {
-> +	nand_rb: nand-rb-pins {
->  		marvell,pins =3D "mpp19";
->  		marvell,function =3D "nand";
->  	};
-> diff --git a/arch/arm64/boot/dts/marvell/armada-70x0.dtsi b/arch/arm64/bo=
-ot/dts/marvell/armada-70x0.dtsi
-> index 293403a1a333..df939426d258 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-70x0.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-70x0.dtsi
-> @@ -56,7 +56,7 @@ nand_pins: nand-pins {
->  			marvell,function =3D "dev";
->  		};
->=20=20
-> -		nand_rb: nand-rb {
-> +		nand_rb: nand-rb-pins {
->  			marvell,pins =3D "mpp13";
->  			marvell,function =3D "nf";
->  		};
-> diff --git a/arch/arm64/boot/dts/marvell/armada-80x0.dtsi b/arch/arm64/bo=
-ot/dts/marvell/armada-80x0.dtsi
-> index ee67c70bf02e..fb361d657a77 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-80x0.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-80x0.dtsi
-> @@ -89,7 +89,7 @@ nand_pins: nand-pins {
->  			marvell,function =3D "dev";
->  		};
->=20=20
-> -		nand_rb: nand-rb {
-> +		nand_rb: nand-rb-pins {
->  			marvell,pins =3D "mpp13", "mpp12";
->  			marvell,function =3D "nf";
->  		};
-> diff --git a/arch/arm64/boot/dts/marvell/cn9130-db.dtsi b/arch/arm64/boot=
-/dts/marvell/cn9130-db.dtsi
-> index 50e9e0724828..3cc320f569ad 100644
-> --- a/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
-> @@ -379,7 +379,7 @@ nand_pins: nand-pins {
->  				       "mpp27";
->  			marvell,function =3D "dev";
->  		};
-> -		nand_rb: nand-rb {
-> +		nand_rb: nand-rb-pins {
->  			marvell,pins =3D "mpp13";
->  			marvell,function =3D "nf";
->  		};
+>
 > --=20
 > 2.51.0
 >
