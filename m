@@ -1,197 +1,561 @@
-Return-Path: <devicetree+bounces-236911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BB3C492DA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:05:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B696BC49316
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:09:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 022623ABBCB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:04:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5B7774E2BC3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:09:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C10B33F395;
-	Mon, 10 Nov 2025 20:04:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70D7133F8C3;
+	Mon, 10 Nov 2025 20:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iHZoEb+7";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Z0QGnCEN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jOcnhNRO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9C832E6A7
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:04:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B25337B80
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762805076; cv=none; b=JgititiZgvW1cdcILcIT9sN5fWsZafb12TyhYYzbplx9dwj6b0mEZ9kV0C54a5dUfWCNCAR8TEsnRSDMbRZSSRQ5ldO9KvX4RkKmuk+tB9QGanKxcnKHlqb3Q+KOdC4JR3T1ql9kzx6rC66Kw58LXy4GnCWeNo8vLX1uyVzFZfs=
+	t=1762805358; cv=none; b=MleAL3GNKGr9Wj6aaPIO09BhL26FUUBoSgVMzec6GvY2xopeu26NFTLbnKVKAtmZjJgA9+7Zgumt7gf6Vmzl7wwAHnrwsRaxvoVRntGrYNBCaYF+gvW1LTgxuIc2AaApAYg6k+td2Yyu8Kx9VWCBPSSOBpwt9RoohZ8Vym2PEgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762805076; c=relaxed/simple;
-	bh=Fkcw2qew7eVStl/+jGAeuW+KaRb7Jjz96jXXyII4x7E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qd1cjZhKDKtssV19Y/cCQEw0FDKA92+A6ZVmR2wMypxWSF+Lrmkm6fdR9n6HVPPqeOTRg7V7CzdVESJeUMrnxhoqLzHWRLvlUPkZZEb5Hh4ykXG0mzXIwrkdlr798NI0Y9cfnLBZAH4TaIW/2nw/kXr24PRPDhMIxpojloHm9Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iHZoEb+7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Z0QGnCEN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AAK19WA411865
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:04:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wywLQuZS84UaCfivN9hBRyvo1mTqLh2yeP1DKGiRq6I=; b=iHZoEb+7rvrtIGQY
-	ZdifNm7zQg6ObBnG36sLNVmkMToc6JglIPMxJy+j4phnAhWq8JdOK3rZqcOuCjsE
-	DiVo5rYj7xi8eg/Un7A7vRRh3TM1+tSH2+nAdhMWS+qF28anMvbdkLpLngazP6wI
-	E+diKjovVkFr9MyuLeBfj3Bei45WdSbnWWoJKu/cK0vruY7q/cX1DJpClJfaiUOh
-	c95agm6xEj3zDG/f3oVL9T6UfIDhxsUFJ8oi6otHx0T0ttsMtMP4LFNPElBZx/MP
-	21YUa7uKEC1qe8PF+x8gaiT8YwV8G/kYqHSFY0UlOInvwhnVsdGaVd/A0146OewZ
-	NO3//g==
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abppu007h-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:04:34 +0000 (GMT)
-Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b55735710f0so5966424a12.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:04:34 -0800 (PST)
+	s=arc-20240116; t=1762805358; c=relaxed/simple;
+	bh=Fc12/PvrBIndR8B2bwS9iElumVgvnnraspp7fohP1eE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PlTesP8r3RF//xIU9fYOtm1vaDsKM0OTA3hndLjPs87yqrbi76GTPk3Fgejfhv4/wSdfak4sczWjdEj1dWYvEX58wUmvkYsSaZfgzILXgBQ7t7wk8RCFZd7Rq0OqCTNA+7+P+1ZD/Ln3mPWkyl2m5GDnBKi9M7PSCPikKtgBdlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jOcnhNRO; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42b39d51dcfso745317f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:09:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762805073; x=1763409873; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wywLQuZS84UaCfivN9hBRyvo1mTqLh2yeP1DKGiRq6I=;
-        b=Z0QGnCENeqnBC1x4msz9V78SSG1mSFNbdjn/kmikSlDnYlnXKm8Aeqhw/9OdMPFs1z
-         iTL1zaCInEyALdqvLpeesmCfr9xuvI2sxrSou8koyUZdfkzGJjm/BYtvXgw/2w9pKgWZ
-         pX0MORfru/gJqioEwgfyADXh3k4s9rdBmzOKiWfImfzBVtGZ0BKvdcSJu38zaJBWJpeN
-         6yZto2mZCne0+LYE8r8QyGACS3KyRgUvpdmOpDnvJ7ZlyvYVLj7mHNJfojwk258c5TGe
-         fhIkb3sNQUgnt9TXeglsBlvsk/yKEEuP/ahqh7Uu4isJZbt857fl1fXo2pVxSQykJrDm
-         GMpQ==
+        d=gmail.com; s=20230601; t=1762805353; x=1763410153; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kx/DMsheXfsMCLg+vEWvxZbWK5CKrTYS3PL9Y+pjYdA=;
+        b=jOcnhNROXssdfC2RFYFuRNvXg1UeMThd62KkXo+kcX5kuwFlYWqQ7Yw+Viy/e6MqN3
+         AckquExersxlDvxy3xxH+xkh7Mr8I9ZJIyEmBGknqo5E5TZsjrzLX2EHwQET/2KPPUx+
+         oHUgtCKUmhyVB04EUzKIq+fEJq4uEOcNEobgdNBLIciwxo6eb0H5YFLgdvd29FAaNy+P
+         LBTHgi1KlO9ei3k40VOJ6aXUCfGNtc0RDQQSJ6oSZ7t7Z4HCZYL2unLpPXA6Jgx1/5p4
+         Qj9hVx2znLg7vmuLckdSKEx1b6MnnQMk0q9kwVezQcvsZ5+f6upBJZa0Ig6FwzYopGeO
+         +JvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762805073; x=1763409873;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wywLQuZS84UaCfivN9hBRyvo1mTqLh2yeP1DKGiRq6I=;
-        b=D4zWV7WeF//GZsAmoku2mcW6CBUaTN0jf9G8CDBeIEwOdNQp+rQxhpUp2qi/gR0xxA
-         VqgRqe27bZL+/X/KMcdgX85PToDiRTUR4er2SCoa5TWyO9awXUIsdvozb70B1c4ccilR
-         ocZACMD3dnnOKDWTMGLut+ccEsDDmSXf3Vfq5Sx31eI5FmjcdORDkeYSRYTa5owOhM34
-         pPTr43/1dS3/DMyeIjmjr8qbdnh3lp9rlKlOwDut485urUEMxemtvU0behueZO6CnE7z
-         1TNcUFGfH2OSPDttmxrV1x/TTYoxbCMsdZR93ICQffPyuL+2gYGKHJvd76sLPSrDZIHM
-         /9gA==
-X-Forwarded-Encrypted: i=1; AJvYcCWDCq4ft51e+20JpqyM/Js1RGIPIel/2lYifpyIoZ/vov/t21PvhHiGGALq7vdsyyfZFG2QNcTvfzFr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yym/tL+9HeDtE6F+LTc9Fg6pgWshqi+Hd+mex4p+E98nvobROXq
-	djMtMGXbGYxOoLpxg5AZdo94Dqw3QamDOoT6qLvAQH5cnDiChb0hgHambhfg3VLAMQifo0aVb3E
-	RnBI25Z/7hKdLuupvm+GvOTVR7abcQgU+sAgDw+j/emXvj/gjQb2q7LJW8v+GK0/j
-X-Gm-Gg: ASbGnct0lTCaYPVWxWbEkZ/mjA3WTrrW8TWQaSQklUrR10rVL2977EC/zLhcDDnzjHT
-	seGwU/jbapVW6+7MOH5DwsXHCqfme56tThDR90OFg+ZTjTquCpn/M8QLZrnirO5qKDzC7OAd+5t
-	/FV5I40EK3LVg3szMYj5Q7ftU8lDjWUZbQElHapYbQmlUWobil3ip96NSuS0/LTwJQor0kEdKbb
-	AEQ1EiY5CmO2wE+56HU+CCSfhiwXrP8EO7GCeNZ9FqkcV2ogpTd3pzNrJ+g/eG1jQGYgZ7DUSte
-	FkV6p6sEVK4XbWsywiXvk93bDnFsNtpmwdMP7tWFiNMDTC9CfHksKpsaXeNut2U/pOexagYuuED
-	qLZ5s+wfc1VNSErPjWwU88tg1s9m3DgWbuo1d7B39NXcxxgFkP3s4tqh8YNC+2vDwDQ==
-X-Received: by 2002:a17:902:c94b:b0:294:9813:4512 with SMTP id d9443c01a7336-297e540dd6fmr127849665ad.3.1762805073101;
-        Mon, 10 Nov 2025 12:04:33 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGgRlu+QHDT2qRkN8FN4ZfcELPFfekO3p0qsOXqvaypumnws68i1D7DWIV/z8geDOvCYuPmxQ==
-X-Received: by 2002:a17:902:c94b:b0:294:9813:4512 with SMTP id d9443c01a7336-297e540dd6fmr127849065ad.3.1762805072440;
-        Mon, 10 Nov 2025 12:04:32 -0800 (PST)
-Received: from [192.168.1.3] (c-24-130-122-79.hsd1.ca.comcast.net. [24.130.122.79])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-297ed6808ddsm81285505ad.17.2025.11.10.12.04.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Nov 2025 12:04:32 -0800 (PST)
-Message-ID: <2b34ceae-5e31-4dba-93e5-3fa35754fab6@oss.qualcomm.com>
-Date: Mon, 10 Nov 2025 12:04:30 -0800
+        d=1e100.net; s=20230601; t=1762805353; x=1763410153;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Kx/DMsheXfsMCLg+vEWvxZbWK5CKrTYS3PL9Y+pjYdA=;
+        b=vNN1XfCS5P32H1AJUlDIYAIpL4ctQpRtgzWQ8ewxJNAhpht0VMNoXqmVZdctIr/wCY
+         vR5Mmoi4a4dOucNGYSicV00dNPaq85QI0RQMEtVxAE8/lYpQtmwYfQavAhuSafnRAFeP
+         hCGI4kK8eQrL/5OGbWhay2kmyIcCWv+HowwrmZDlMTKrJ2VqcgoLWlXKxpIls0yz1z+N
+         RBv227SHOLTcmvnPaJJ+Kll+kRa2+8jkX1RRk3mAxuti1lnXIfIKrMxIZrEk9OHMCMT9
+         UwhxpaWav4yJdBY7dieqzMGjYTt1DbrC+TNGm5GUeD/K6VqRsIgSIXlxrBRR0Tk6/R2l
+         g7dg==
+X-Forwarded-Encrypted: i=1; AJvYcCXd6tVL4ZRXnrmBQX0UK0C1xbD0He/Ay3JNvNAiOefHxU5RjUaZw6aQIcbciNOWrSk2rXrtxmMJgq/O@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMR9xaiIyQrbBjh66NzGmr48UDcaE/ehXA+7ewfB9QPuNdA+pP
+	7CfT4fV28h79sHPlkcF6Us4qf/87aj7nVzazfllKo/+RrG8Z53xCKOlz0SLfL8WejkQgBYaf2UJ
+	rw91rfrjI1fo372h3Ah+ugVu7kylzvdI=
+X-Gm-Gg: ASbGncsIFjVFaCvQEsqavGqiSobOhhd2jpySfH3/mxC7Q8lldwGX0nMVghHNqj7OmXi
+	pg3daOnAHOEj/YbbJMzt/EGpYEqF1TSPvyniDx3mZ+R60SGvdg3Fqfqtdswr94+WCbtGDyHYvSC
+	7CTH0wvtdaoRVssOLT39qXMoIUT/mATw50+TGg4Pso+VUDrUk3+bNMAwgDeQ+aMzckpvCijD+Mj
+	BeEDYzxddrajnZAphaYDvV88EPmOw/wY7kCxE9WQwj0btUx+YLDFLPvfLeJQHS7hyC5T9oZN3n4
+	kZd/9PQAw5iNppWGie365T0r9QZGXA==
+X-Google-Smtp-Source: AGHT+IFlYn4KFkQSyIizO8diBMDui/BV07pQfNCqUTgDlQGOdyL0HmF4jakyIcSmVMP9Fn8WSGY2xIiXKL0V5omOYII=
+X-Received: by 2002:a05:6000:2109:b0:42b:3e60:189d with SMTP id
+ ffacd0b85a97d-42b3e601c46mr2041495f8f.24.1762805352991; Mon, 10 Nov 2025
+ 12:09:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] ath10k: Introduce a devicetree quirk to skip host
- cap QMI requests
-To: david@ixit.cz, Johannes Berg <johannes@sipsolutions.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        ath10k@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        Amit Pundir <amit.pundir@linaro.org>
-References: <20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=TNVIilla c=1 sm=1 tr=0 ts=69124552 cx=c_pps
- a=rz3CxIlbcmazkYymdCej/Q==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=p0WdMEafAAAA:8
- a=V89vUnNgf5GAzAs4dTEA:9 a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
- a=poXaRoVlC6wW9_mwW8W4:22 a=pHzHmUro8NiASowvMSCR:22 a=n87TN5wuljxrRezIQYnT:22
-X-Proofpoint-ORIG-GUID: fNqPxCy7RbwI2cH2NcMk5D0A5e1jZhNo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDE3MCBTYWx0ZWRfXzRvEUWbNY/rV
- Xlhu7JQhfnYIlD7ueT0PSEq1IATckqfzponrAWX4zF9DiBRI8TtMoR5NBaOFSNyX/hUOui/I3vI
- bNGi/gfh2nptsZgY/V9GsWjhthfUNVnhstrtYJa7Bq6ERCKmlSRVN6E1o2fMhixTYGpAqexfP+C
- OZNLjqu9pK02jEaHNRph685UM36TzPiFYT1vxx6uao7MihdxUI1JNgtxogRb73guobcGhVYy+mC
- 8BDIGutMKABtnxqag+HTT8KcthdMjtctSBEDmJQ4tTMy5foR077aFtIt8AWOXXoTm4NjzZJ/3Er
- wAscEXrkWEElukqmYTk8u5kS0hPn0LgxOnVQx/lKTUqDFdoABWWkwUInoQiVaI+DVyPWe2t3rm2
- y3KRgp8/EZymNfPvDnv//Y0o5yPing==
-X-Proofpoint-GUID: fNqPxCy7RbwI2cH2NcMk5D0A5e1jZhNo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-10_07,2025-11-10_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 clxscore=1011 impostorscore=0 lowpriorityscore=0
- bulkscore=0 suspectscore=0 phishscore=0 adultscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100170
+References: <20251028175458.1037397-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251028175458.1037397-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdU4YTdy7zCiTyYbTY_t84q_xjjf0+XpDcyuGqB-zv6r5g@mail.gmail.com>
+In-Reply-To: <CAMuHMdU4YTdy7zCiTyYbTY_t84q_xjjf0+XpDcyuGqB-zv6r5g@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 10 Nov 2025 20:08:46 +0000
+X-Gm-Features: AWmQ_blSw-Bz5GnFYdwi3E_cFTFesOknzU5H16d_6ZzXlB09aokgn6pNHqxUXQQ
+Message-ID: <CA+V-a8td-QKOYAG-uuu1kN9TE3ZhquQHXFDGpy-c5iDr179WvQ@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: renesas: rzt2h-n2h-evk: Enable
+ Ethernet support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/10/2025 6:26 AM, David Heidelberg via B4 Relay wrote:
-> This quirk is used so far for Xiaomi Poco F1.
-> 
-> I'm resending it after ~ 4 years since initial send due to Snapdragon
-> 845 being one of best supported platform for mobile phones running
-> Linux, so it would be shame to not have shiny support.
-> 
-> I'm very much open to suggestions how to solve this in a different way,
-> as the original discussion thread got quiet, see
->   https://lore.kernel.org/all/b796bfee-b753-479a-a8d6-ba1fe3ee6222@ixit.cz/
-> 
-> There could be other devices in need of this quirk, but if they're not,
-> we could make it compatible specific quirk.
-> 
-> Until merged, available also at:
->   https://gitlab.com/dhxx/linux/-/commits/b4/skip-host-cam-qmi-req
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> Amit Pundir (3):
->       dt-bindings: wireless: ath10k: Introduce quirk to skip host cap QMI requests
->       ath10k: Introduce a devicetree quirk to skip host cap QMI requests
->       arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable ath10k host-cap skip quirk
-> 
->  .../devicetree/bindings/net/wireless/qcom,ath10k.yaml       |  6 ++++++
->  .../arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi |  2 ++
->  drivers/net/wireless/ath/ath10k/qmi.c                       | 13 ++++++++++---
->  drivers/net/wireless/ath/ath10k/snoc.c                      |  3 +++
->  drivers/net/wireless/ath/ath10k/snoc.h                      |  1 +
->  5 files changed, 22 insertions(+), 3 deletions(-)
-> ---
-> base-commit: ab40c92c74c6b0c611c89516794502b3a3173966
-> change-id: 20251110-skip-host-cam-qmi-req-e155628ebc39
-> 
-> Best regards,
+Hi Geert,
 
-The original thread predates me becoming an ath.git maintainer.
-Just for my information, is the firmware and board files for this platform
-available in linux-firmware? Or does it leverage the files already present
-from the original (Android?) installation?
+Thank you for the review.
 
-I ask because the alternative solution suggested by Kalle would require
-modification of the board file on the device, and that seems more of a hassle
-than just modifying the DT.
+On Mon, Nov 10, 2025 at 4:16=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, 28 Oct 2025 at 18:55, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Enable Ethernet support on the RZ/T2H and RZ/N2H EVKs.
+> >
+> > Configure the MIIC converter in mode 0x6:
+> >   Port 0 <-> ETHSW Port 0
+> >   Port 1 <-> ETHSW Port 1
+> >   Port 2 <-> GMAC2
+> >   Port 3 <-> GMAC1
+> >
+> > Enable the ETHSS, GMAC1 and GMAC2 nodes. ETHSW support will be added
+> > once the switch driver is available.
+> >
+> > Configure the MIIC converters to map ports according to the selected
+> > switching mode, with converters 0 and 1 mapped to switch ports and
+> > converters 2 and 3 mapped to GMAC ports.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> I found the mapping between GMACx, ETHy, PHYz, and board connector
+> rather hard to follow.  Some suggestions for improvement are included
+> below...
+>
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> > @@ -149,7 +149,77 @@ &i2c1 {
+> >         status =3D "okay";
+> >  };
+> >
+> > +&phy2 {
+> > +       /*
+> > +        * PHY2 Reset Configuration:
+> > +        *
+> > +        * SW6[1] =3D OFF; SW6[2] =3D ON; SW6[3] =3D OFF;
+> > +        * P17_5 is used as GMAC_RESETOUT2#
+> > +        */
+> > +       reset-gpios =3D <&pinctrl RZT2H_GPIO(17, 5) GPIO_ACTIVE_LOW>;
+> > +};
+> > +
+> > +&phy3 {
+> > +       reset-gpios =3D <&pinctrl RZT2H_GPIO(32, 3) GPIO_ACTIVE_LOW>;
+> > +};
+> > +
+> >  &pinctrl {
+> > +       /*
+> > +        * ETH2 Pin Configuration:
+> > +        *
+> > +        * SW2[6] =3D OFF: MDC and MDIO of Ethernet port 2 are connecte=
+d to GMAC2
+> > +        * SW2[7] =3D ON:  Pins P29_1-P29_7, P30_0-P30_4, and P31_2-P31=
+_5 are used for Ethernet port 2
+>
+> Please split this long line.
+>
+Ok, I will split it up.
 
-So I'm personally OK with this suggested approach.
+> > +        */
+> > +       eth2_pins: eth2-pins {
+>
+> Perhaps s/eth2/gmac2/, to make the mapping easier to follow?
+>
+Agreed.
 
-/jeff
+> > +               pinmux =3D <RZT2H_PORT_PINMUX(29, 1, 0xf)>, /* ETH2_TXC=
+LK */
+> > +                        <RZT2H_PORT_PINMUX(29, 2, 0xf)>, /* ETH2_TXD[0=
+] */
+> > +                        <RZT2H_PORT_PINMUX(29, 3, 0xf)>, /* ETH2_TXD[1=
+] */
+> > +                        <RZT2H_PORT_PINMUX(29, 4, 0xf)>, /* ETH2_TXD[2=
+] */
+> > +                        <RZT2H_PORT_PINMUX(29, 5, 0xf)>, /* ETH2_TXD[3=
+] */
+>
+> The documentation doesn't use square brackets in the signal names.
+>
+Ok I will drop the square brackets.
+
+> > +                        <RZT2H_PORT_PINMUX(29, 6, 0xf)>, /* ETH2_TXEN =
+*/
+> > +                        <RZT2H_PORT_PINMUX(29, 7, 0xf)>, /* ETH2_RXCLK=
+ */
+> > +                        <RZT2H_PORT_PINMUX(30, 0, 0xf)>, /* ETH2_RXD[0=
+] */
+> > +                        <RZT2H_PORT_PINMUX(30, 1, 0xf)>, /* ETH2_RXD[1=
+] */
+> > +                        <RZT2H_PORT_PINMUX(30, 2, 0xf)>, /* ETH2_RXD[2=
+] */
+> > +                        <RZT2H_PORT_PINMUX(30, 3, 0xf)>, /* ETH2_RXD[3=
+] */
+> > +                        <RZT2H_PORT_PINMUX(30, 4, 0xf)>, /* ETH2_RXDV =
+*/
+> > +                        <RZT2H_PORT_PINMUX(31, 2, 0xf)>, /* ETH2_TXER =
+*/
+> > +                        <RZT2H_PORT_PINMUX(31, 3, 0xf)>, /* ETH2_RXER =
+*/
+> > +                        <RZT2H_PORT_PINMUX(31, 4, 0xf)>, /* ETH2_CRS *=
+/
+> > +                        <RZT2H_PORT_PINMUX(31, 5, 0xf)>, /* ETH2_COL *=
+/
+> > +                        <RZT2H_PORT_PINMUX(30, 5, 0x10)>, /* ETH2_MDC =
+*/
+> > +                        <RZT2H_PORT_PINMUX(30, 6, 0x10)>, /* ETH2_MDIO=
+ */
+>
+> The documentation calls these GMAC2_{MDC,MDIO}.
+>
+Agreed, I will rename them.
+
+> > +                        <RZT2H_PORT_PINMUX(31, 0, 0x02)>; /* ETH2_REFC=
+LK */
+>
+> Please settle on a common convention for formatting pinmux settings:
+> either use 0x2 here (no leading zero), or 0x0f in the other entries.
+>
+Ok, I will drop the leading zero.
+
+> > +       };
+> > +
+> > +       /*
+> > +        * ETH3 Pin Configuration:
+> > +        *
+> > +        * SW2[8] =3D ON, P27_2, P33_2-P33_7, P34_0-P34_5, P34_7 and P3=
+5_0-P35_5
+>
+> P27_2 and P35_3-P35_5 don't seem to be muxed by SW2[8]?
+>
+Agreed, I will drop them (the EVK user manual had it).
+
+> > +        * are used for Ethernet port 3
+> > +        */
+> > +       eth3_pins: eth3-pins {
+> > +               pinmux =3D <RZT2H_PORT_PINMUX(33, 2, 0xf)>, /* ETH3_TXC=
+LK */
+> > +                        <RZT2H_PORT_PINMUX(33, 3, 0xf)>, /* ETH3_TXD[0=
+] */
+> > +                        <RZT2H_PORT_PINMUX(33, 4, 0xf)>, /* ETH3_TXD[1=
+] */
+> > +                        <RZT2H_PORT_PINMUX(33, 5, 0xf)>, /* ETH3_TXD[2=
+] */
+> > +                        <RZT2H_PORT_PINMUX(33, 6, 0xf)>, /* ETH3_TXD[3=
+] */
+> > +                        <RZT2H_PORT_PINMUX(33, 7, 0xf)>, /* ETH3_TXEN =
+*/
+> > +                        <RZT2H_PORT_PINMUX(34, 0, 0xf)>, /* ETH3_RXCLK=
+ */
+> > +                        <RZT2H_PORT_PINMUX(34, 1, 0xf)>, /* ETH3_RXD[0=
+] */
+> > +                        <RZT2H_PORT_PINMUX(34, 2, 0xf)>, /* ETH3_RXD[1=
+] */
+> > +                        <RZT2H_PORT_PINMUX(34, 3, 0xf)>, /* ETH3_RXD[2=
+] */
+> > +                        <RZT2H_PORT_PINMUX(34, 4, 0xf)>, /* ETH3_RXD[3=
+] */
+> > +                        <RZT2H_PORT_PINMUX(34, 5, 0xf)>, /* ETH3_RXDV =
+*/
+> > +                        <RZT2H_PORT_PINMUX(34, 7, 0xf)>, /* ETH3_TXER =
+*/
+> > +                        <RZT2H_PORT_PINMUX(35, 0, 0xf)>, /* ETH3_RXER =
+*/
+> > +                        <RZT2H_PORT_PINMUX(35, 1, 0xf)>, /* ETH3_CRS *=
+/
+> > +                        <RZT2H_PORT_PINMUX(35, 2, 0xf)>, /* ETH3_COL *=
+/
+> > +                        <RZT2H_PORT_PINMUX(26, 1, 0x10)>, /* ETH3_MDC =
+*/
+> > +                        <RZT2H_PORT_PINMUX(26, 2, 0x10)>, /* ETH3_MDIO=
+ */
+> > +                        <RZT2H_PORT_PINMUX(34, 6, 0x02)>; /* ETH3_REFC=
+LK */
+> > +       };
+> > +
+> >         /*
+> >          * I2C0 Pin Configuration:
+> >          * ------------------------
+> > diff --git a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts b/a=
+rch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> > index d698b6368ee7..7ebc89bafaf1 100644
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> > @@ -186,7 +186,86 @@ &i2c1 {
+> >         status =3D "okay";
+> >  };
+> >
+> > +&phy2 {
+> > +       /*
+> > +        * PHY2 Reset Configuration:
+> > +        *
+> > +        * DSW8[1] =3D ON; DSW8[2] =3D OFF
+> > +        * DSW12[7] =3D OFF; DSW12[8] =3D ON
+> > +        * P03_1 is used as GMAC_RESETOUT2#
+> > +        */
+> > +       reset-gpios =3D <&pinctrl RZT2H_GPIO(3, 1) GPIO_ACTIVE_LOW>;
+> > +};
+> > +
+> > +&phy3 {
+> > +       /*
+> > +        * PHY3 Reset Configuration:
+> > +        *
+> > +        * DSW12[5] =3D OFF; DSW12[6] =3D ON
+> > +        * P03_2 is used as GMAC_RESETOUT3#
+> > +        */
+> > +       reset-gpios =3D <&pinctrl RZT2H_GPIO(3, 2) GPIO_ACTIVE_LOW>;
+> > +};
+> > +
+> >  &pinctrl {
+> > +       /*
+> > +        * ETH2 Pin Configuration:
+> > +        *
+> > +        * DSW5[6] =3D OFF, P21_4-P21_5 are used for Ethernet port 2
+>
+> MDC and MDIO of Ethernet port 2 are connected to GMAC2
+>
+Ok, I will update it to `DSW5[6] OFF - connect MDC/MDIO of Ethernet
+port 2 to GMAC2`.
+
+> > +        * DSW5[7] =3D ON, P29_1-P29_7, P30_0-P30_4, P30_7, P31_2, P31_=
+4
+> > +        * and P31_5 are used for Ethernet port 2
+> > +        */
+> > +       eth2_pins: eth2-pins {
+>
+> Perhaps s/eth2/gmac2/, to make the mapping easier to follow?
+>
+Agreed.
+
+> > +               pinmux =3D <RZT2H_PORT_PINMUX(29, 1, 0xf)>, /* ETH2_TXC=
+LK */
+> > +                        <RZT2H_PORT_PINMUX(29, 2, 0xf)>, /* ETH2_TXD[0=
+] */
+> > +                        <RZT2H_PORT_PINMUX(29, 3, 0xf)>, /* ETH2_TXD[1=
+] */
+> > +                        <RZT2H_PORT_PINMUX(29, 4, 0xf)>, /* ETH2_TXD[2=
+] */
+> > +                        <RZT2H_PORT_PINMUX(29, 5, 0xf)>, /* ETH2_TXD[3=
+] */
+> > +                        <RZT2H_PORT_PINMUX(29, 6, 0xf)>, /* ETH2_TXEN =
+*/
+> > +                        <RZT2H_PORT_PINMUX(29, 7, 0xf)>, /* ETH2_RXCLK=
+ */
+> > +                        <RZT2H_PORT_PINMUX(30, 0, 0xf)>, /* ETH2_RXD[0=
+] */
+> > +                        <RZT2H_PORT_PINMUX(30, 1, 0xf)>, /* ETH2_RXD[1=
+] */
+> > +                        <RZT2H_PORT_PINMUX(30, 2, 0xf)>, /* ETH2_RXD[2=
+] */
+> > +                        <RZT2H_PORT_PINMUX(30, 3, 0xf)>, /* ETH2_RXD[3=
+] */
+> > +                        <RZT2H_PORT_PINMUX(30, 4, 0xf)>, /* ETH2_RXDV =
+*/
+> > +                        <RZT2H_PORT_PINMUX(31, 2, 0xf)>, /* ETH2_TXER =
+*/
+> > +                        <RZT2H_PORT_PINMUX(31, 3, 0xf)>, /* ETH2_RXER =
+*/
+>
+> 31, 1, 0xf
+>
+Agreed.
+
+> > +                        <RZT2H_PORT_PINMUX(31, 4, 0xf)>, /* ETH2_CRS *=
+/
+> > +                        <RZT2H_PORT_PINMUX(31, 5, 0xf)>, /* ETH2_COL *=
+/
+> > +                        <RZT2H_PORT_PINMUX(30, 5, 0x10)>, /* ETH2_MDC =
+*/
+> > +                        <RZT2H_PORT_PINMUX(30, 6, 0x10)>, /* ETH2_MDIO=
+ */
+>
+> The documentation calls these GMAC2_{MDC,MDIO}.
+>
+Agreed, I will switch to using GMACX_*.
+
+> > +                        <RZT2H_PORT_PINMUX(31, 0, 0x02)>; /* ETH2_REFC=
+LK */
+>
+> > +
+> > +       };
+> > +
+> > +       /*
+> > +        * ETH3 Pin Configuration:
+> > +        *
+> > +        * DSW5[8] =3D ON, P00_0-P00_2, P33_2-P33_7, P34_0-P34_6, are u=
+sed for Ethernet port 3
+> > +        * DSW12[1] =3D OFF;DSW12[2] =3D ON, P00_3 is used for Ethernet=
+ port 3
+> > +        */
+> > +       eth3_pins: eth3-pins {
+>
+> Perhaps s/eth3/gmac1/, to make the mapping easier to follow?
+>
+Agreed.
+
+> > +               pinmux =3D <RZT2H_PORT_PINMUX(33, 2, 0xf)>, /* ETH3_TXC=
+LK */
+> > +                        <RZT2H_PORT_PINMUX(33, 3, 0xf)>, /* ETH3_TXD[0=
+] */
+> > +                        <RZT2H_PORT_PINMUX(33, 4, 0xf)>, /* ETH3_TXD[1=
+] */
+> > +                        <RZT2H_PORT_PINMUX(33, 5, 0xf)>, /* ETH3_TXD[2=
+] */
+> > +                        <RZT2H_PORT_PINMUX(33, 6, 0xf)>, /* ETH3_TXD[3=
+] */
+> > +                        <RZT2H_PORT_PINMUX(33, 7, 0xf)>, /* ETH3_TXEN =
+*/
+> > +                        <RZT2H_PORT_PINMUX(34, 0, 0xf)>, /* ETH3_RXCLK=
+ */
+> > +                        <RZT2H_PORT_PINMUX(34, 1, 0xf)>, /* ETH3_RXD[0=
+] */
+> > +                        <RZT2H_PORT_PINMUX(34, 2, 0xf)>, /* ETH3_RXD[1=
+] */
+> > +                        <RZT2H_PORT_PINMUX(34, 3, 0xf)>, /* ETH3_RXD[2=
+] */
+> > +                        <RZT2H_PORT_PINMUX(34, 4, 0xf)>, /* ETH3_RXD[3=
+] */
+> > +                        <RZT2H_PORT_PINMUX(34, 5, 0xf)>, /* ETH3_RXDV =
+*/
+> > +                        <RZT2H_PORT_PINMUX(0, 0, 0xf)>, /* ETH3_TXER *=
+/
+> > +                        <RZT2H_PORT_PINMUX(0, 1, 0xf)>, /* ETH3_RXER *=
+/
+> > +                        <RZT2H_PORT_PINMUX(0, 2, 0xf)>, /* ETH3_CRS */
+> > +                        <RZT2H_PORT_PINMUX(0, 3, 0xf)>, /* ETH3_COL */
+> > +                        <RZT2H_PORT_PINMUX(26, 1, 0x10)>, /* ETH3_MDC =
+*/
+> > +                        <RZT2H_PORT_PINMUX(26, 2, 0x10)>, /* ETH3_MDIO=
+ */
+>
+> The documentation calls these GMAC1_{MDC,MDIO}.
+>
+Agreed.
+
+> > +                        <RZT2H_PORT_PINMUX(34, 6, 0x02)>; /* ETH3_REFC=
+LK */
+> > +       };
+> > +
+> >         /*
+> >          * I2C0 Pin Configuration:
+> >          * ------------------------
+> > diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/ar=
+ch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+> > index 924a38c6cb0f..c608d97586ff 100644
+> > --- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+> > @@ -7,10 +7,14 @@
+> >
+> >  #include <dt-bindings/gpio/gpio.h>
+> >  #include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/net/mscc-phy-vsc8531.h>
+> > +#include <dt-bindings/net/renesas,r9a09g077-pcs-miic.h>
+> >  #include <dt-bindings/pinctrl/renesas,r9a09g077-pinctrl.h>
+> >
+> >  / {
+> >         aliases {
+> > +               ethernet0 =3D &gmac1;
+>
+> Is this the port labeled "Ethernet(ETH3) Connector" in the Board's
+> User Manual?  Shouldn't that be "ethernet3"?
+>
+Yes this is labeled as ETH3, so I will update it to "ethernet3".
+
+> > +               ethernet1 =3D &gmac2;
+>
+> Is this the port labeled "Ethernet(ETH2) Connector" in the Board's
+> User Manual?  Shouldn't that be "ethernet2"?
+>
+Yes this is labeled as ETH2, so I will update it to "ethernet2".
+
+> >                 i2c0 =3D &i2c0;
+> >                 i2c1 =3D &i2c1;
+> >                 mmc0 =3D &sdhi0;
+> > @@ -70,10 +74,34 @@ &ehci {
+> >         status =3D "okay";
+> >  };
+> >
+> > +&ethss {
+> > +       status =3D "okay";
+> > +
+> > +       renesas,miic-switch-portin =3D <ETHSS_GMAC0_PORT>;
+> > +};
+> > +
+> >  &extal_clk {
+> >         clock-frequency =3D <25000000>;
+> >  };
+> >
+> > +&gmac1 {
+> > +       pinctrl-0 =3D <&eth3_pins>;
+> > +       pinctrl-names =3D "default";
+> > +       phy-handle =3D <&phy3>;
+> > +       phy-mode =3D "rgmii-id";
+> > +       pcs-handle =3D <&mii_conv3>;
+> > +       status =3D "okay";
+> > +};
+> > +
+> > +&gmac2 {
+> > +       pinctrl-0 =3D <&eth2_pins>;
+> > +       pinctrl-names =3D "default";
+> > +       phy-handle =3D <&phy2>;
+> > +       phy-mode =3D "rgmii-id";
+> > +       pcs-handle =3D <&mii_conv2>;
+> > +       status =3D "okay";
+> > +};
+> > +
+> >  &hsusb {
+> >         dr_mode =3D "otg";
+> >         status =3D "okay";
+> > @@ -87,6 +115,48 @@ eeprom: eeprom@50 {
+> >         };
+> >  };
+> >
+> > +&mdio1 {
+> > +       phy3: ethernet-phy@3 {
+>
+> Ah, the "3" corresponds to the PHY address in this mdio node...
+> Perhaps "mdio1_phy", to make it easier to match mdio and phy nodes?
+>
+Ok, I will use "mdio1_phy" for clarity.
+
+> > +               compatible =3D "ethernet-phy-id0007.0772", "ethernet-ph=
+y-ieee802.3-c22";
+> > +               reg =3D <3>;
+> > +               vsc8531,led-0-mode =3D <VSC8531_LINK_ACTIVITY>;
+>
+> VSC8531_ACTIVITY?
+>
+Agreed.
+
+> > +               vsc8531,led-1-mode =3D <VSC8531_LINK_ACTIVITY>;
+> > +               reset-assert-us =3D <2000>;
+> > +               reset-deassert-us =3D <15000>;
+> > +       };
+> > +};
+> > +
+> > +&mdio2 {
+> > +       phy2: ethernet-phy@2 {
+>
+> mdio2_phy?
+>
+OK.
+
+> > +               compatible =3D "ethernet-phy-id0007.0772", "ethernet-ph=
+y-ieee802.3-c22";
+> > +               reg =3D <2>;
+> > +               vsc8531,led-0-mode =3D <VSC8531_LINK_ACTIVITY>;
+>
+> VSC8531_ACTIVITY?
+>
+OK.
+
+Cheers,
+Prabhakar
 
