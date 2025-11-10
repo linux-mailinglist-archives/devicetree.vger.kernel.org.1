@@ -1,121 +1,197 @@
-Return-Path: <devicetree+bounces-236910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5F7C49208
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BB3C492DA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3983E3A42BB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:47:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 022623ABBCB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2362B33B6CE;
-	Mon, 10 Nov 2025 19:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C10B33F395;
+	Mon, 10 Nov 2025 20:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="HA/SzYiw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iHZoEb+7";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Z0QGnCEN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C58133893A;
-	Mon, 10 Nov 2025 19:47:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9C832E6A7
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:04:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762804034; cv=none; b=UX3g409shlRYAwsHmIsqm9yLQN9VlA9/4vFtn4b8COFTaT/1Kq6Ecm4z4cCRNFpRyOgMM8B0oNPuumoKC3NJWw3JjrhFjs7cv3ln2z7qQgxVqneqls2a5cuK7HQFov99BbpPjdBPLi+44IWK3X9i8YuCpvwq0IuRgUZS0hu4lhg=
+	t=1762805076; cv=none; b=JgititiZgvW1cdcILcIT9sN5fWsZafb12TyhYYzbplx9dwj6b0mEZ9kV0C54a5dUfWCNCAR8TEsnRSDMbRZSSRQ5ldO9KvX4RkKmuk+tB9QGanKxcnKHlqb3Q+KOdC4JR3T1ql9kzx6rC66Kw58LXy4GnCWeNo8vLX1uyVzFZfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762804034; c=relaxed/simple;
-	bh=KmjZ78nsrWv/j02vBIwvkqlGwBD+gAzgU0BeTi2yxzE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BjvDVvgKET9cOEaAANiWVYHhs1LcEHzHSMTFUZ7iaspDbFqUQL7ns50T2Ug5vXbxwgDCi0EjFfcFyMzIRmQuPzyk76ZuwUcaE4Nb8gnJSQRHtPHs9VZ74YqIxugwJLE5bub2gg+dQ2pFi06aFSXA/ST0fXWzc38LKERhq/mQROk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=HA/SzYiw; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id C299140E01CD;
-	Mon, 10 Nov 2025 19:47:09 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id BnmZnxbjy42f; Mon, 10 Nov 2025 19:47:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1762804025; bh=DKhR+niWCN3Dqf0WyDVm9n+ik8sZQsAGWmtpC3hq0y4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HA/SzYiw59J2DZ9NvjiTwgx2NerneQWVCKWzRJzpkzbOnbZbZYK2f7v6ti3sU+z/w
-	 +jWYXc4YiEVEJcgoyo6mavdrGLADxkB2hq6ir8VWZVmBh+DjlYDdCNLGT/eLB822FZ
-	 XGely4hbN05A+YNSDDAxhZnoxe5kqv0dl5hS1S1U9hW50mDwIB4ULyTxRYfcRy/VK8
-	 TXVd/MZ5eSrfyamMgnoUESGfZFGN22ZgMQtRqgI9E1O4Ul0/lZqRB5jc1XsdetmrxY
-	 QDFClkowRyjw57D7w7c6CI6ajLAdLCiEdtbUFj6jEyP1USefINRDKFuMso+5BBtqjI
-	 qLOvkSnCLNvGit5V4TX1m1CHL4jBHaIqDldmVwOW2XYSnlpwCI+TasmurM2WLVUOsr
-	 ntf0ztYaoVeHIfwpFpPKZgUHtYy7RaBsV6LwnMVKhOmnEl4BzUsv7Y2MiKWBeFFGxW
-	 NB6ztOMbk6CyLHRZXiiuGFoocs80hG42zUIEaPPaFmZR42se95zM8ZS831L8JAWrjX
-	 LbXMlwL//WPaB+yPrts1PgsuWBHEXLhKFc2bhJQM9H2N0sW4qB1Bsr92rqZwdp7iZ+
-	 1n4rXhnhV2cJTf72yHJGHdQgFl24Ifx58HRbWqc1pNvxQBFIJbeuJb2EO0edlRpNQV
-	 ms/s19Fv7BlPDufhuMBnaJks=
-Received: from zn.tnic (pd9530da1.dip0.t-ipconnect.de [217.83.13.161])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 415EF40E019F;
-	Mon, 10 Nov 2025 19:46:44 +0000 (UTC)
-Date: Mon, 10 Nov 2025 20:46:38 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>,
-	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ricardo Neri <ricardo.neri@intel.com>,
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>
-Subject: Re: [PATCH v6 02/10] x86/acpi: Move acpi_wakeup_cpu() and helpers to
- smpwakeup.c
-Message-ID: <20251110194638.GCaRJBHrJgwjRY5aQr@fat_crate.local>
-References: <20251016-rneri-wakeup-mailbox-v6-0-40435fb9305e@linux.intel.com>
- <20251016-rneri-wakeup-mailbox-v6-2-40435fb9305e@linux.intel.com>
- <20251027141835.GYaP9_O1C3cms6msfv@fat_crate.local>
- <20251027205816.GB14161@ranerica-svr.sc.intel.com>
- <20251029111358.GDaQH29lURT0p_WWsb@fat_crate.local>
- <20251030054350.GA17477@ranerica-svr.sc.intel.com>
- <20251103134037.GOaQiw1Y6Iu_ENu6ww@fat_crate.local>
- <20251110174938.GA26690@ranerica-svr.sc.intel.com>
+	s=arc-20240116; t=1762805076; c=relaxed/simple;
+	bh=Fkcw2qew7eVStl/+jGAeuW+KaRb7Jjz96jXXyII4x7E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Qd1cjZhKDKtssV19Y/cCQEw0FDKA92+A6ZVmR2wMypxWSF+Lrmkm6fdR9n6HVPPqeOTRg7V7CzdVESJeUMrnxhoqLzHWRLvlUPkZZEb5Hh4ykXG0mzXIwrkdlr798NI0Y9cfnLBZAH4TaIW/2nw/kXr24PRPDhMIxpojloHm9Ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iHZoEb+7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Z0QGnCEN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AAK19WA411865
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:04:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wywLQuZS84UaCfivN9hBRyvo1mTqLh2yeP1DKGiRq6I=; b=iHZoEb+7rvrtIGQY
+	ZdifNm7zQg6ObBnG36sLNVmkMToc6JglIPMxJy+j4phnAhWq8JdOK3rZqcOuCjsE
+	DiVo5rYj7xi8eg/Un7A7vRRh3TM1+tSH2+nAdhMWS+qF28anMvbdkLpLngazP6wI
+	E+diKjovVkFr9MyuLeBfj3Bei45WdSbnWWoJKu/cK0vruY7q/cX1DJpClJfaiUOh
+	c95agm6xEj3zDG/f3oVL9T6UfIDhxsUFJ8oi6otHx0T0ttsMtMP4LFNPElBZx/MP
+	21YUa7uKEC1qe8PF+x8gaiT8YwV8G/kYqHSFY0UlOInvwhnVsdGaVd/A0146OewZ
+	NO3//g==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abppu007h-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:04:34 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b55735710f0so5966424a12.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:04:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762805073; x=1763409873; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wywLQuZS84UaCfivN9hBRyvo1mTqLh2yeP1DKGiRq6I=;
+        b=Z0QGnCENeqnBC1x4msz9V78SSG1mSFNbdjn/kmikSlDnYlnXKm8Aeqhw/9OdMPFs1z
+         iTL1zaCInEyALdqvLpeesmCfr9xuvI2sxrSou8koyUZdfkzGJjm/BYtvXgw/2w9pKgWZ
+         pX0MORfru/gJqioEwgfyADXh3k4s9rdBmzOKiWfImfzBVtGZ0BKvdcSJu38zaJBWJpeN
+         6yZto2mZCne0+LYE8r8QyGACS3KyRgUvpdmOpDnvJ7ZlyvYVLj7mHNJfojwk258c5TGe
+         fhIkb3sNQUgnt9TXeglsBlvsk/yKEEuP/ahqh7Uu4isJZbt857fl1fXo2pVxSQykJrDm
+         GMpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762805073; x=1763409873;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wywLQuZS84UaCfivN9hBRyvo1mTqLh2yeP1DKGiRq6I=;
+        b=D4zWV7WeF//GZsAmoku2mcW6CBUaTN0jf9G8CDBeIEwOdNQp+rQxhpUp2qi/gR0xxA
+         VqgRqe27bZL+/X/KMcdgX85PToDiRTUR4er2SCoa5TWyO9awXUIsdvozb70B1c4ccilR
+         ocZACMD3dnnOKDWTMGLut+ccEsDDmSXf3Vfq5Sx31eI5FmjcdORDkeYSRYTa5owOhM34
+         pPTr43/1dS3/DMyeIjmjr8qbdnh3lp9rlKlOwDut485urUEMxemtvU0behueZO6CnE7z
+         1TNcUFGfH2OSPDttmxrV1x/TTYoxbCMsdZR93ICQffPyuL+2gYGKHJvd76sLPSrDZIHM
+         /9gA==
+X-Forwarded-Encrypted: i=1; AJvYcCWDCq4ft51e+20JpqyM/Js1RGIPIel/2lYifpyIoZ/vov/t21PvhHiGGALq7vdsyyfZFG2QNcTvfzFr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym/tL+9HeDtE6F+LTc9Fg6pgWshqi+Hd+mex4p+E98nvobROXq
+	djMtMGXbGYxOoLpxg5AZdo94Dqw3QamDOoT6qLvAQH5cnDiChb0hgHambhfg3VLAMQifo0aVb3E
+	RnBI25Z/7hKdLuupvm+GvOTVR7abcQgU+sAgDw+j/emXvj/gjQb2q7LJW8v+GK0/j
+X-Gm-Gg: ASbGnct0lTCaYPVWxWbEkZ/mjA3WTrrW8TWQaSQklUrR10rVL2977EC/zLhcDDnzjHT
+	seGwU/jbapVW6+7MOH5DwsXHCqfme56tThDR90OFg+ZTjTquCpn/M8QLZrnirO5qKDzC7OAd+5t
+	/FV5I40EK3LVg3szMYj5Q7ftU8lDjWUZbQElHapYbQmlUWobil3ip96NSuS0/LTwJQor0kEdKbb
+	AEQ1EiY5CmO2wE+56HU+CCSfhiwXrP8EO7GCeNZ9FqkcV2ogpTd3pzNrJ+g/eG1jQGYgZ7DUSte
+	FkV6p6sEVK4XbWsywiXvk93bDnFsNtpmwdMP7tWFiNMDTC9CfHksKpsaXeNut2U/pOexagYuuED
+	qLZ5s+wfc1VNSErPjWwU88tg1s9m3DgWbuo1d7B39NXcxxgFkP3s4tqh8YNC+2vDwDQ==
+X-Received: by 2002:a17:902:c94b:b0:294:9813:4512 with SMTP id d9443c01a7336-297e540dd6fmr127849665ad.3.1762805073101;
+        Mon, 10 Nov 2025 12:04:33 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGgRlu+QHDT2qRkN8FN4ZfcELPFfekO3p0qsOXqvaypumnws68i1D7DWIV/z8geDOvCYuPmxQ==
+X-Received: by 2002:a17:902:c94b:b0:294:9813:4512 with SMTP id d9443c01a7336-297e540dd6fmr127849065ad.3.1762805072440;
+        Mon, 10 Nov 2025 12:04:32 -0800 (PST)
+Received: from [192.168.1.3] (c-24-130-122-79.hsd1.ca.comcast.net. [24.130.122.79])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-297ed6808ddsm81285505ad.17.2025.11.10.12.04.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 12:04:32 -0800 (PST)
+Message-ID: <2b34ceae-5e31-4dba-93e5-3fa35754fab6@oss.qualcomm.com>
+Date: Mon, 10 Nov 2025 12:04:30 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251110174938.GA26690@ranerica-svr.sc.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] ath10k: Introduce a devicetree quirk to skip host
+ cap QMI requests
+To: david@ixit.cz, Johannes Berg <johannes@sipsolutions.net>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        ath10k@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        Amit Pundir <amit.pundir@linaro.org>
+References: <20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=TNVIilla c=1 sm=1 tr=0 ts=69124552 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=p0WdMEafAAAA:8
+ a=V89vUnNgf5GAzAs4dTEA:9 a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
+ a=poXaRoVlC6wW9_mwW8W4:22 a=pHzHmUro8NiASowvMSCR:22 a=n87TN5wuljxrRezIQYnT:22
+X-Proofpoint-ORIG-GUID: fNqPxCy7RbwI2cH2NcMk5D0A5e1jZhNo
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDE3MCBTYWx0ZWRfXzRvEUWbNY/rV
+ Xlhu7JQhfnYIlD7ueT0PSEq1IATckqfzponrAWX4zF9DiBRI8TtMoR5NBaOFSNyX/hUOui/I3vI
+ bNGi/gfh2nptsZgY/V9GsWjhthfUNVnhstrtYJa7Bq6ERCKmlSRVN6E1o2fMhixTYGpAqexfP+C
+ OZNLjqu9pK02jEaHNRph685UM36TzPiFYT1vxx6uao7MihdxUI1JNgtxogRb73guobcGhVYy+mC
+ 8BDIGutMKABtnxqag+HTT8KcthdMjtctSBEDmJQ4tTMy5foR077aFtIt8AWOXXoTm4NjzZJ/3Er
+ wAscEXrkWEElukqmYTk8u5kS0hPn0LgxOnVQx/lKTUqDFdoABWWkwUInoQiVaI+DVyPWe2t3rm2
+ y3KRgp8/EZymNfPvDnv//Y0o5yPing==
+X-Proofpoint-GUID: fNqPxCy7RbwI2cH2NcMk5D0A5e1jZhNo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_07,2025-11-10_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 malwarescore=0 clxscore=1011 impostorscore=0 lowpriorityscore=0
+ bulkscore=0 suspectscore=0 phishscore=0 adultscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100170
 
-On Mon, Nov 10, 2025 at 09:49:38AM -0800, Ricardo Neri wrote:
-> I apologize for my late reply. Also, I am sorry I was not clear. I needed to
-> consult with a few stakeholders whether they could live with the increase in
-> size resulting from having CONFIG_ACPI=y. They can.
+On 11/10/2025 6:26 AM, David Heidelberg via B4 Relay wrote:
+> This quirk is used so far for Xiaomi Poco F1.
 > 
-> If it is OK with Rafael, I plan to post a new version that drops this patch and
-> adds the necessary function stubs for the !CONFIG_ACPI case.
+> I'm resending it after ~ 4 years since initial send due to Snapdragon
+> 845 being one of best supported platform for mobile phones running
+> Linux, so it would be shame to not have shiny support.
+> 
+> I'm very much open to suggestions how to solve this in a different way,
+> as the original discussion thread got quiet, see
+>   https://lore.kernel.org/all/b796bfee-b753-479a-a8d6-ba1fe3ee6222@ixit.cz/
+> 
+> There could be other devices in need of this quirk, but if they're not,
+> we could make it compatible specific quirk.
+> 
+> Until merged, available also at:
+>   https://gitlab.com/dhxx/linux/-/commits/b4/skip-host-cam-qmi-req
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+> Amit Pundir (3):
+>       dt-bindings: wireless: ath10k: Introduce quirk to skip host cap QMI requests
+>       ath10k: Introduce a devicetree quirk to skip host cap QMI requests
+>       arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable ath10k host-cap skip quirk
+> 
+>  .../devicetree/bindings/net/wireless/qcom,ath10k.yaml       |  6 ++++++
+>  .../arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi |  2 ++
+>  drivers/net/wireless/ath/ath10k/qmi.c                       | 13 ++++++++++---
+>  drivers/net/wireless/ath/ath10k/snoc.c                      |  3 +++
+>  drivers/net/wireless/ath/ath10k/snoc.h                      |  1 +
+>  5 files changed, 22 insertions(+), 3 deletions(-)
+> ---
+> base-commit: ab40c92c74c6b0c611c89516794502b3a3173966
+> change-id: 20251110-skip-host-cam-qmi-req-e155628ebc39
+> 
+> Best regards,
 
-Sounds good to me.
+The original thread predates me becoming an ath.git maintainer.
+Just for my information, is the firmware and board files for this platform
+available in linux-firmware? Or does it leverage the files already present
+from the original (Android?) installation?
 
-It is the simplest thing to do. If the size increase bothers someone, we can
-always do the more involved refactoring later.
+I ask because the alternative solution suggested by Kalle would require
+modification of the board file on the device, and that seems more of a hassle
+than just modifying the DT.
 
-Thx.
+So I'm personally OK with this suggested approach.
 
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+/jeff
 
