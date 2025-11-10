@@ -1,328 +1,466 @@
-Return-Path: <devicetree+bounces-236814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D375C47CE6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 17:11:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DC6FC4812E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 17:45:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B68B334A198
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:11:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F18A3AF7AF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DE7279907;
-	Mon, 10 Nov 2025 16:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nI2bQjqY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21AA3279907;
+	Mon, 10 Nov 2025 16:16:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B1926FA77;
-	Mon, 10 Nov 2025 16:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9562D2798ED
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 16:16:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762791087; cv=none; b=GFhTQlUaD7KSi2C53CVDHZ72RuXXH/T+yBJ9m+1JMOhDELl71K6Hm9qgQoiplUq9YHbhEpE2DuegpfyjFTAU+Nkq7yhGeK4RWR2N+SQhFAcDyKaPUi00l0Xb7LbyEJ0vftY31y+mmQZ8jQCN53+JOeUJJsLZVAdnJoBAZ7I/Ffk=
+	t=1762791403; cv=none; b=DncxLMReg2Z+/rUNCSV8h4cXZvAfS8K0AqqMTyXN2C/v8sgcU/+yZbARfwS9If/upoIJwlsdXjDst/UmbjjIBxeXXbKW6PQJ7iC6fEnbY7VGY3L/dbv1JCdW2qBo8cddPmNn7QbtomhaRZuHhPYoqOqKTZfMlpIb+YN8NR6Xi1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762791087; c=relaxed/simple;
-	bh=KmpOICxoGbog03HrT+73C14r5/ttDHWLADzMXpIzHEI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ei00LEE8I5NIHknR8fKsC9zE74Du6y7AEuJple1ub9Ij3VwZ6WwXLnzbMcX/ZJLDGgoakVBTA6ECTvW+yfguTYFbPRJjjNi7oyFShoOWc0Lc8+tMocgEU900A4iKi15lZrMm5PP4ElLLrETF7cYBqLe3Bj68vUfOsdmq86voYBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nI2bQjqY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0C8AC113D0;
-	Mon, 10 Nov 2025 16:11:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762791087;
-	bh=KmpOICxoGbog03HrT+73C14r5/ttDHWLADzMXpIzHEI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nI2bQjqYTL36NWtatW8+wvLmtWv8gRbVpOP0oQOrTDXss61hhWO/148mMGpx1u3Po
-	 O0jIy3mEqPFqgXEz7e+w+qRmcUL6vFzgjke+FLKv7HGEPKVLUIazZbou2/8Rf4WIqw
-	 BicYEJ+Aa6LO06fejAkSRt3B2DsZAhyXdIRtK5YkRrdxGPL9cRoq291ROyqJU4wsYv
-	 9BCDaxN15BkuRoG2AmJPEPd7wB7uPx+S7+fMLe9THw7dvWuhafHytwxYQ2nYd9fv0n
-	 31UJ1gVjfbzVu37QJc+cxQkT5hiOmUhJIrF0Xba2EedDNsaVe1tB/cgIkyRxiZMF2P
-	 VF7e62Eqljnig==
-Date: Mon, 10 Nov 2025 10:15:32 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andy Yan <andy.yan@rock-chips.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Moritz Fischer <moritz.fischer@ettus.com>, John Stultz <john.stultz@linaro.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, 
-	Stephen Boyd <swboyd@chromium.org>, Andre Draszik <andre.draszik@linaro.org>, 
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, Elliot Berman <quic_eberman@quicinc.com>, 
-	Xin Liu <xin.liu@oss.qualcomm.com>, Srinivas Kandagatla <srini@kernel.org>
-Subject: Re: [PATCH v17 05/12] power: reset: reboot-mode: Expose sysfs for
- registered reboot_modes
-Message-ID: <qhlxxfsyc42xemerhi36myvil3bf45isgmpugkuqzsvgcc3ifn@njrtwuooij2q>
-References: <20251109-arm-psci-system_reset2-vendor-reboots-v17-0-46e085bca4cc@oss.qualcomm.com>
- <20251109-arm-psci-system_reset2-vendor-reboots-v17-5-46e085bca4cc@oss.qualcomm.com>
+	s=arc-20240116; t=1762791403; c=relaxed/simple;
+	bh=Oj+MACFttgL4DFd5A7ViUQbdwBnwgGwGclfbbcanDRc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b5mKyLpEOv5YzdAS0N8jh2/y52KA6OGyxP6ob2Gciukp5JkNhZugik3c6nRXyqdMC7i3arD59zFV6CU35bQpJ8soGlowdy9sQjnmk9LUT33vMvgRg2Br5IsXriOu7F8qzJl/Yz7p63qtx56q6SrMRWS/3PekAg3pL9954tFIxVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5563c36f5dfso832463e0c.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 08:16:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762791399; x=1763396199;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d/lLSXjoHK4s9dqtzRhXw91kDvxvE9lMfjhCOgxWsIE=;
+        b=Wpe5mTM6gANRm7wQSe79VKcWcpO8zcP0NH/da3w34JShmYs7YjyrGu9pUPFF/gXxgl
+         DWgirh2/ovGZ8YZYl1v+tTgPhecEqILtp5uZ6bUrXpjLUs/dNh7Tk0Vi4zozGEuY0MHl
+         +7YaGriGKNdOava7wQRG3i3axGDwy7DZm6nwunHFmWc6/IBrLo93Zy4bhmv+LD18r2E6
+         yIKm/kbiEAzc81grfXhT6svNEr6B1Iu20EfFrIAdzeuWD8arKgCnlo5HUr75rFT/CsWV
+         OUwk4lqvgUiQo/WxcVM+58oMPH7RduaMT/4ei+X1PHgsV/vVX27iwu3PJQ/6fRv/NEyg
+         Ubpw==
+X-Forwarded-Encrypted: i=1; AJvYcCUcZa4uL8Cwayjfhmy8TG4J/oFydD9qiK5S/M0yl4gFeaC6MpPpUkOjY5QlV7HnAI2Palj5Gb6KePDK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUUrELsRmOufH4Db1dsuj+FfLjCgK3QN/dylfTkwRPcM9XHUOq
+	Y67BgVc4cJfzsFPVm0bWLT235NTnJNiVKr2XFoqlwYQb4BXZlkqh9ud+E6yL7zF7
+X-Gm-Gg: ASbGnctnpUqvjkCHauWfimwPkeMufMY/iOKZlqv1aiiX1ECBmpKrol5ZLcqIAP2aKTr
+	jDO8prbStuDtS5vkySTiNKKBN3aUDHIKSA/ZL0RhBPR5Qsl8fbLJigfIiM1EejA0tQLJmgKiMDT
+	IF9wohVlWNh2iq/8wI6Y4cNKuy7rhYv4OqG9djxr3Qna9Qi12vKopQvOJRFdY4bw45ULvRll/Hs
+	90wPyuHJNvhQQvMZQbY0PRofnCzkoNkuNsueH4UltgEuizmzMVnyRz5n3dJ7Gxjm+hFZrDCURTK
+	mqVwuj6cORUWaLg9/onuRVPW5gVIwp248bjSnChdkGt+JiGaQo1frq1m9rou7ZU5np650+GaZCY
+	OsQ3eNQ7UgKNwEa67kawT4xM7twQrT+E6SklsmA8A+0xh893MsGzKglBYk/Dug2b7Kv839yFKXV
+	d2BNbSqukZlmTFh4EtOyxnIpzkFkZYcVBtdtPHOywzVvg5L3c9
+X-Google-Smtp-Source: AGHT+IE8vrBG+LKnj/wMMD80iC/zbtC5/QdbtVbCsSBztcikw45k8vi7NFkLJwB4DA1JNg5OYRuiJg==
+X-Received: by 2002:a05:6122:130b:b0:559:b2cb:5dae with SMTP id 71dfb90a1353d-559b32b72d3mr3072785e0c.11.1762791399037;
+        Mon, 10 Nov 2025 08:16:39 -0800 (PST)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-559968c29a1sm7137525e0c.3.2025.11.10.08.16.38
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 08:16:38 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-9372634aca2so468136241.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 08:16:38 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVhVACqWIBIOIhVzttZBwmZVr6j2CLwtRrbLH+ks4mP+1sgqmcnMggrKkrSpNo8cE35V32WoOeWS7hT@vger.kernel.org
+X-Received: by 2002:a05:6102:3706:b0:5db:debf:658f with SMTP id
+ ada2fe7eead31-5ddc4677cafmr2517889137.19.1762791398206; Mon, 10 Nov 2025
+ 08:16:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251109-arm-psci-system_reset2-vendor-reboots-v17-5-46e085bca4cc@oss.qualcomm.com>
+References: <20251028175458.1037397-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251028175458.1037397-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251028175458.1037397-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 10 Nov 2025 17:16:26 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU4YTdy7zCiTyYbTY_t84q_xjjf0+XpDcyuGqB-zv6r5g@mail.gmail.com>
+X-Gm-Features: AWmQ_bnUV9390k-yS-D893D2ukJvmbPbtHpKrPkw-Xw6URCIb2kBicAa71zpzl8
+Message-ID: <CAMuHMdU4YTdy7zCiTyYbTY_t84q_xjjf0+XpDcyuGqB-zv6r5g@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: renesas: rzt2h-n2h-evk: Enable
+ Ethernet support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Sun, Nov 09, 2025 at 08:07:18PM +0530, Shivendra Pratap wrote:
-> Currently, there is no standardized mechanism for userspace to
-> discover which reboot-modes are supported on a given platform.
-> This limitation forces tools and scripts to rely on hardcoded
-> assumptions about the supported reboot-modes.
-> 
-> Create a class 'reboot-mode' and a device under it to expose a
-> sysfs interface to show the available reboot mode arguments to
-> userspace. Use the driver_name field of the struct
-> reboot_mode_driver to create the device. For device-based
-> drivers, configure the device driver name as driver_name.
-> 
-> This results in the creation of:
->   /sys/class/reboot-mode/<driver>/reboot_modes
-> 
-> This read-only sysfs file will exposes the list of supported
-> reboot modes arguments provided by the driver, enabling userspace
-> to query the list of arguments.
-> 
+Hi Prabhakar,
 
-I like this addition, and your commit message reasoning about this
-addition. But, while touching upon the same subject, you've made this
-series add two separate things.
+On Tue, 28 Oct 2025 at 18:55, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable Ethernet support on the RZ/T2H and RZ/N2H EVKs.
+>
+> Configure the MIIC converter in mode 0x6:
+>   Port 0 <-> ETHSW Port 0
+>   Port 1 <-> ETHSW Port 1
+>   Port 2 <-> GMAC2
+>   Port 3 <-> GMAC1
+>
+> Enable the ETHSS, GMAC1 and GMAC2 nodes. ETHSW support will be added
+> once the switch driver is available.
+>
+> Configure the MIIC converters to map ports according to the selected
+> switching mode, with converters 0 and 1 mapped to switch ports and
+> converters 2 and 3 mapped to GMAC ports.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-So now this part can't be merged unless there's agreement on the PSCI
-SYSTEM_RESET2, and the PSCI SYSTEM_RESET2 can't be merged unless this
-sysfs interface is agreed upon.
+Thanks for your patch!
 
-Unless I'm missing some clear dependency here, it would have been better
-to keep these two topics in separate series, and drive them to
-conclusion independently.
+I found the mapping between GMACx, ETHy, PHYz, and board connector
+rather hard to follow.  Some suggestions for improvement are included
+below...
 
-> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-> ---
->  drivers/power/reset/reboot-mode.c | 62 ++++++++++++++++++++++++++++++++++++++-
->  include/linux/reboot-mode.h       |  2 ++
->  2 files changed, 63 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
-> index 873ac45cd7659b214b7c21958f580ca381e0a63d..582aa7f8ed7fa485c5a67877558c9b15d3600ef4 100644
-> --- a/drivers/power/reset/reboot-mode.c
-> +++ b/drivers/power/reset/reboot-mode.c
-> @@ -6,6 +6,7 @@
->  #define pr_fmt(fmt)	"reboot-mode: " fmt
->  
->  #include <linux/device.h>
-> +#include <linux/err.h>
->  #include <linux/init.h>
->  #include <linux/kernel.h>
->  #include <linux/list.h>
-> @@ -23,6 +24,8 @@ struct mode_info {
->  	struct list_head list;
+> --- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> @@ -149,7 +149,77 @@ &i2c1 {
+>         status = "okay";
 >  };
->  
-> +static struct class *rb_class;
+>
+> +&phy2 {
+> +       /*
+> +        * PHY2 Reset Configuration:
+> +        *
+> +        * SW6[1] = OFF; SW6[2] = ON; SW6[3] = OFF;
+> +        * P17_5 is used as GMAC_RESETOUT2#
+> +        */
+> +       reset-gpios = <&pinctrl RZT2H_GPIO(17, 5) GPIO_ACTIVE_LOW>;
+> +};
+> +
+> +&phy3 {
+> +       reset-gpios = <&pinctrl RZT2H_GPIO(32, 3) GPIO_ACTIVE_LOW>;
+> +};
+> +
+>  &pinctrl {
+> +       /*
+> +        * ETH2 Pin Configuration:
+> +        *
+> +        * SW2[6] = OFF: MDC and MDIO of Ethernet port 2 are connected to GMAC2
+> +        * SW2[7] = ON:  Pins P29_1-P29_7, P30_0-P30_4, and P31_2-P31_5 are used for Ethernet port 2
 
-Why not "static const struct class reboot_mode_class" and then a
-class_register() call? Why do you need the class dynamically allocated
-on the heap?
+Please split this long line.
+
+> +        */
+> +       eth2_pins: eth2-pins {
+
+Perhaps s/eth2/gmac2/, to make the mapping easier to follow?
+
+> +               pinmux = <RZT2H_PORT_PINMUX(29, 1, 0xf)>, /* ETH2_TXCLK */
+> +                        <RZT2H_PORT_PINMUX(29, 2, 0xf)>, /* ETH2_TXD[0] */
+> +                        <RZT2H_PORT_PINMUX(29, 3, 0xf)>, /* ETH2_TXD[1] */
+> +                        <RZT2H_PORT_PINMUX(29, 4, 0xf)>, /* ETH2_TXD[2] */
+> +                        <RZT2H_PORT_PINMUX(29, 5, 0xf)>, /* ETH2_TXD[3] */
+
+The documentation doesn't use square brackets in the signal names.
+
+> +                        <RZT2H_PORT_PINMUX(29, 6, 0xf)>, /* ETH2_TXEN */
+> +                        <RZT2H_PORT_PINMUX(29, 7, 0xf)>, /* ETH2_RXCLK */
+> +                        <RZT2H_PORT_PINMUX(30, 0, 0xf)>, /* ETH2_RXD[0] */
+> +                        <RZT2H_PORT_PINMUX(30, 1, 0xf)>, /* ETH2_RXD[1] */
+> +                        <RZT2H_PORT_PINMUX(30, 2, 0xf)>, /* ETH2_RXD[2] */
+> +                        <RZT2H_PORT_PINMUX(30, 3, 0xf)>, /* ETH2_RXD[3] */
+> +                        <RZT2H_PORT_PINMUX(30, 4, 0xf)>, /* ETH2_RXDV */
+> +                        <RZT2H_PORT_PINMUX(31, 2, 0xf)>, /* ETH2_TXER */
+> +                        <RZT2H_PORT_PINMUX(31, 3, 0xf)>, /* ETH2_RXER */
+> +                        <RZT2H_PORT_PINMUX(31, 4, 0xf)>, /* ETH2_CRS */
+> +                        <RZT2H_PORT_PINMUX(31, 5, 0xf)>, /* ETH2_COL */
+> +                        <RZT2H_PORT_PINMUX(30, 5, 0x10)>, /* ETH2_MDC */
+> +                        <RZT2H_PORT_PINMUX(30, 6, 0x10)>, /* ETH2_MDIO */
+
+The documentation calls these GMAC2_{MDC,MDIO}.
+
+> +                        <RZT2H_PORT_PINMUX(31, 0, 0x02)>; /* ETH2_REFCLK */
+
+Please settle on a common convention for formatting pinmux settings:
+either use 0x2 here (no leading zero), or 0x0f in the other entries.
+
+> +       };
+> +
+> +       /*
+> +        * ETH3 Pin Configuration:
+> +        *
+> +        * SW2[8] = ON, P27_2, P33_2-P33_7, P34_0-P34_5, P34_7 and P35_0-P35_5
+
+P27_2 and P35_3-P35_5 don't seem to be muxed by SW2[8]?
+
+> +        * are used for Ethernet port 3
+> +        */
+> +       eth3_pins: eth3-pins {
+> +               pinmux = <RZT2H_PORT_PINMUX(33, 2, 0xf)>, /* ETH3_TXCLK */
+> +                        <RZT2H_PORT_PINMUX(33, 3, 0xf)>, /* ETH3_TXD[0] */
+> +                        <RZT2H_PORT_PINMUX(33, 4, 0xf)>, /* ETH3_TXD[1] */
+> +                        <RZT2H_PORT_PINMUX(33, 5, 0xf)>, /* ETH3_TXD[2] */
+> +                        <RZT2H_PORT_PINMUX(33, 6, 0xf)>, /* ETH3_TXD[3] */
+> +                        <RZT2H_PORT_PINMUX(33, 7, 0xf)>, /* ETH3_TXEN */
+> +                        <RZT2H_PORT_PINMUX(34, 0, 0xf)>, /* ETH3_RXCLK */
+> +                        <RZT2H_PORT_PINMUX(34, 1, 0xf)>, /* ETH3_RXD[0] */
+> +                        <RZT2H_PORT_PINMUX(34, 2, 0xf)>, /* ETH3_RXD[1] */
+> +                        <RZT2H_PORT_PINMUX(34, 3, 0xf)>, /* ETH3_RXD[2] */
+> +                        <RZT2H_PORT_PINMUX(34, 4, 0xf)>, /* ETH3_RXD[3] */
+> +                        <RZT2H_PORT_PINMUX(34, 5, 0xf)>, /* ETH3_RXDV */
+> +                        <RZT2H_PORT_PINMUX(34, 7, 0xf)>, /* ETH3_TXER */
+> +                        <RZT2H_PORT_PINMUX(35, 0, 0xf)>, /* ETH3_RXER */
+> +                        <RZT2H_PORT_PINMUX(35, 1, 0xf)>, /* ETH3_CRS */
+> +                        <RZT2H_PORT_PINMUX(35, 2, 0xf)>, /* ETH3_COL */
+> +                        <RZT2H_PORT_PINMUX(26, 1, 0x10)>, /* ETH3_MDC */
+> +                        <RZT2H_PORT_PINMUX(26, 2, 0x10)>, /* ETH3_MDIO */
+> +                        <RZT2H_PORT_PINMUX(34, 6, 0x02)>; /* ETH3_REFCLK */
+> +       };
+> +
+>         /*
+>          * I2C0 Pin Configuration:
+>          * ------------------------
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> index d698b6368ee7..7ebc89bafaf1 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> @@ -186,7 +186,86 @@ &i2c1 {
+>         status = "okay";
+>  };
+>
+> +&phy2 {
+> +       /*
+> +        * PHY2 Reset Configuration:
+> +        *
+> +        * DSW8[1] = ON; DSW8[2] = OFF
+> +        * DSW12[7] = OFF; DSW12[8] = ON
+> +        * P03_1 is used as GMAC_RESETOUT2#
+> +        */
+> +       reset-gpios = <&pinctrl RZT2H_GPIO(3, 1) GPIO_ACTIVE_LOW>;
+> +};
+> +
+> +&phy3 {
+> +       /*
+> +        * PHY3 Reset Configuration:
+> +        *
+> +        * DSW12[5] = OFF; DSW12[6] = ON
+> +        * P03_2 is used as GMAC_RESETOUT3#
+> +        */
+> +       reset-gpios = <&pinctrl RZT2H_GPIO(3, 2) GPIO_ACTIVE_LOW>;
+> +};
+> +
+>  &pinctrl {
+> +       /*
+> +        * ETH2 Pin Configuration:
+> +        *
+> +        * DSW5[6] = OFF, P21_4-P21_5 are used for Ethernet port 2
+
+MDC and MDIO of Ethernet port 2 are connected to GMAC2
+
+> +        * DSW5[7] = ON, P29_1-P29_7, P30_0-P30_4, P30_7, P31_2, P31_4
+> +        * and P31_5 are used for Ethernet port 2
+> +        */
+> +       eth2_pins: eth2-pins {
+
+Perhaps s/eth2/gmac2/, to make the mapping easier to follow?
+
+> +               pinmux = <RZT2H_PORT_PINMUX(29, 1, 0xf)>, /* ETH2_TXCLK */
+> +                        <RZT2H_PORT_PINMUX(29, 2, 0xf)>, /* ETH2_TXD[0] */
+> +                        <RZT2H_PORT_PINMUX(29, 3, 0xf)>, /* ETH2_TXD[1] */
+> +                        <RZT2H_PORT_PINMUX(29, 4, 0xf)>, /* ETH2_TXD[2] */
+> +                        <RZT2H_PORT_PINMUX(29, 5, 0xf)>, /* ETH2_TXD[3] */
+> +                        <RZT2H_PORT_PINMUX(29, 6, 0xf)>, /* ETH2_TXEN */
+> +                        <RZT2H_PORT_PINMUX(29, 7, 0xf)>, /* ETH2_RXCLK */
+> +                        <RZT2H_PORT_PINMUX(30, 0, 0xf)>, /* ETH2_RXD[0] */
+> +                        <RZT2H_PORT_PINMUX(30, 1, 0xf)>, /* ETH2_RXD[1] */
+> +                        <RZT2H_PORT_PINMUX(30, 2, 0xf)>, /* ETH2_RXD[2] */
+> +                        <RZT2H_PORT_PINMUX(30, 3, 0xf)>, /* ETH2_RXD[3] */
+> +                        <RZT2H_PORT_PINMUX(30, 4, 0xf)>, /* ETH2_RXDV */
+> +                        <RZT2H_PORT_PINMUX(31, 2, 0xf)>, /* ETH2_TXER */
+> +                        <RZT2H_PORT_PINMUX(31, 3, 0xf)>, /* ETH2_RXER */
+
+31, 1, 0xf
+
+> +                        <RZT2H_PORT_PINMUX(31, 4, 0xf)>, /* ETH2_CRS */
+> +                        <RZT2H_PORT_PINMUX(31, 5, 0xf)>, /* ETH2_COL */
+> +                        <RZT2H_PORT_PINMUX(30, 5, 0x10)>, /* ETH2_MDC */
+> +                        <RZT2H_PORT_PINMUX(30, 6, 0x10)>, /* ETH2_MDIO */
+
+The documentation calls these GMAC2_{MDC,MDIO}.
+
+> +                        <RZT2H_PORT_PINMUX(31, 0, 0x02)>; /* ETH2_REFCLK */
 
 > +
->  static u64 get_reboot_mode_magic(struct reboot_mode_driver *reboot, const char *cmd)
->  {
->  	const char *normal = "normal";
-> @@ -65,6 +68,51 @@ static int reboot_mode_notify(struct notifier_block *this,
->  	return NOTIFY_DONE;
->  }
->  
-> +static ssize_t reboot_modes_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	struct reboot_mode_driver *reboot;
-> +	struct mode_info *info;
-> +	ssize_t size = 0;
+> +       };
 > +
-> +	reboot = (struct reboot_mode_driver *)dev_get_drvdata(dev);
-> +	if (!reboot)
-> +		return -ENODATA;
+> +       /*
+> +        * ETH3 Pin Configuration:
+> +        *
+> +        * DSW5[8] = ON, P00_0-P00_2, P33_2-P33_7, P34_0-P34_6, are used for Ethernet port 3
+> +        * DSW12[1] = OFF;DSW12[2] = ON, P00_3 is used for Ethernet port 3
+> +        */
+> +       eth3_pins: eth3-pins {
+
+Perhaps s/eth3/gmac1/, to make the mapping easier to follow?
+
+> +               pinmux = <RZT2H_PORT_PINMUX(33, 2, 0xf)>, /* ETH3_TXCLK */
+> +                        <RZT2H_PORT_PINMUX(33, 3, 0xf)>, /* ETH3_TXD[0] */
+> +                        <RZT2H_PORT_PINMUX(33, 4, 0xf)>, /* ETH3_TXD[1] */
+> +                        <RZT2H_PORT_PINMUX(33, 5, 0xf)>, /* ETH3_TXD[2] */
+> +                        <RZT2H_PORT_PINMUX(33, 6, 0xf)>, /* ETH3_TXD[3] */
+> +                        <RZT2H_PORT_PINMUX(33, 7, 0xf)>, /* ETH3_TXEN */
+> +                        <RZT2H_PORT_PINMUX(34, 0, 0xf)>, /* ETH3_RXCLK */
+> +                        <RZT2H_PORT_PINMUX(34, 1, 0xf)>, /* ETH3_RXD[0] */
+> +                        <RZT2H_PORT_PINMUX(34, 2, 0xf)>, /* ETH3_RXD[1] */
+> +                        <RZT2H_PORT_PINMUX(34, 3, 0xf)>, /* ETH3_RXD[2] */
+> +                        <RZT2H_PORT_PINMUX(34, 4, 0xf)>, /* ETH3_RXD[3] */
+> +                        <RZT2H_PORT_PINMUX(34, 5, 0xf)>, /* ETH3_RXDV */
+> +                        <RZT2H_PORT_PINMUX(0, 0, 0xf)>, /* ETH3_TXER */
+> +                        <RZT2H_PORT_PINMUX(0, 1, 0xf)>, /* ETH3_RXER */
+> +                        <RZT2H_PORT_PINMUX(0, 2, 0xf)>, /* ETH3_CRS */
+> +                        <RZT2H_PORT_PINMUX(0, 3, 0xf)>, /* ETH3_COL */
+> +                        <RZT2H_PORT_PINMUX(26, 1, 0x10)>, /* ETH3_MDC */
+> +                        <RZT2H_PORT_PINMUX(26, 2, 0x10)>, /* ETH3_MDIO */
+
+The documentation calls these GMAC1_{MDC,MDIO}.
+
+> +                        <RZT2H_PORT_PINMUX(34, 6, 0x02)>; /* ETH3_REFCLK */
+> +       };
 > +
-> +	list_for_each_entry(info, &reboot->head, list)
-> +		size += sysfs_emit_at(buf, size, "%s ", info->mode);
+>         /*
+>          * I2C0 Pin Configuration:
+>          * ------------------------
+> diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+> index 924a38c6cb0f..c608d97586ff 100644
+> --- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+> @@ -7,10 +7,14 @@
+>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/net/mscc-phy-vsc8531.h>
+> +#include <dt-bindings/net/renesas,r9a09g077-pcs-miic.h>
+>  #include <dt-bindings/pinctrl/renesas,r9a09g077-pinctrl.h>
+>
+>  / {
+>         aliases {
+> +               ethernet0 = &gmac1;
+
+Is this the port labeled "Ethernet(ETH3) Connector" in the Board's
+User Manual?  Shouldn't that be "ethernet3"?
+
+> +               ethernet1 = &gmac2;
+
+Is this the port labeled "Ethernet(ETH2) Connector" in the Board's
+User Manual?  Shouldn't that be "ethernet2"?
+
+>                 i2c0 = &i2c0;
+>                 i2c1 = &i2c1;
+>                 mmc0 = &sdhi0;
+> @@ -70,10 +74,34 @@ &ehci {
+>         status = "okay";
+>  };
+>
+> +&ethss {
+> +       status = "okay";
 > +
-> +	if (size) {
-> +		size += sysfs_emit_at(buf, size - 1, "\n");
-> +		return size;
-> +	}
+> +       renesas,miic-switch-portin = <ETHSS_GMAC0_PORT>;
+> +};
 > +
-> +	return -ENODATA;
-> +}
-> +static DEVICE_ATTR_RO(reboot_modes);
+>  &extal_clk {
+>         clock-frequency = <25000000>;
+>  };
+>
+> +&gmac1 {
+> +       pinctrl-0 = <&eth3_pins>;
+> +       pinctrl-names = "default";
+> +       phy-handle = <&phy3>;
+> +       phy-mode = "rgmii-id";
+> +       pcs-handle = <&mii_conv3>;
+> +       status = "okay";
+> +};
 > +
-> +static int create_reboot_mode_device(struct reboot_mode_driver *reboot)
-
-Note how (almost) all other function names in this file start with
-a "reboot_mode_" prefix.
-
-> +{
-> +	int ret = 0;
-
-First use is an assignment, no need for you to zero-initialize it here.
-
+> +&gmac2 {
+> +       pinctrl-0 = <&eth2_pins>;
+> +       pinctrl-names = "default";
+> +       phy-handle = <&phy2>;
+> +       phy-mode = "rgmii-id";
+> +       pcs-handle = <&mii_conv2>;
+> +       status = "okay";
+> +};
 > +
-> +	if (!rb_class) {
-> +		rb_class = class_create("reboot-mode");
-> +		if (IS_ERR(rb_class))
-> +			return PTR_ERR(rb_class);
-> +	}
+>  &hsusb {
+>         dr_mode = "otg";
+>         status = "okay";
+> @@ -87,6 +115,48 @@ eeprom: eeprom@50 {
+>         };
+>  };
+>
+> +&mdio1 {
+> +       phy3: ethernet-phy@3 {
+
+Ah, the "3" corresponds to the PHY address in this mdio node...
+Perhaps "mdio1_phy", to make it easier to match mdio and phy nodes?
+
+> +               compatible = "ethernet-phy-id0007.0772", "ethernet-phy-ieee802.3-c22";
+> +               reg = <3>;
+> +               vsc8531,led-0-mode = <VSC8531_LINK_ACTIVITY>;
+
+VSC8531_ACTIVITY?
+
+> +               vsc8531,led-1-mode = <VSC8531_LINK_ACTIVITY>;
+> +               reset-assert-us = <2000>;
+> +               reset-deassert-us = <15000>;
+> +       };
+> +};
 > +
-> +	reboot->reboot_dev = device_create(rb_class, NULL, 0, (void *)reboot, reboot->driver_name);
+> +&mdio2 {
+> +       phy2: ethernet-phy@2 {
 
-Every struct reboot_mode_driver is going to end up having one of these,
-so why not incorporate it into the reboot_mode_driver in the first
-place. It avoids the extra heap allocation, and you can use
-container_of() instead of drv_data to find your reboot_mode_driver in
-the reboot_modes_show() above.
+mdio2_phy?
 
+> +               compatible = "ethernet-phy-id0007.0772", "ethernet-phy-ieee802.3-c22";
+> +               reg = <2>;
+> +               vsc8531,led-0-mode = <VSC8531_LINK_ACTIVITY>;
 
-Just:
-  reboot->reboot_dev.class = &reboot_mode_class;
-  dev_set_name(&reboot->reboot_dev, reboot->driver_name);
-  ret = device_register(&reboot->reboot_dev);
+VSC8531_ACTIVITY?
 
-> +	if (IS_ERR(reboot->reboot_dev))
-> +		return PTR_ERR(reboot->reboot_dev);
+> +               vsc8531,led-1-mode = <VSC8531_LINK_ACTIVITY>;
+> +               reset-assert-us = <2000>;
+> +               reset-deassert-us = <15000>;
+> +       };
+> +};
 > +
-> +	ret = device_create_file(reboot->reboot_dev, &dev_attr_reboot_modes);
-
-Manually creating sysfs attributes is both error prone and racy, so if
-you can you should avoid it.
-
-Here you have the opportunity to just statically assign
-reboot_mode_class->dev_groups to an ATTRIBUTE_GROUP() with your
-attribute and it will all be handled for you.
-
-> +	if (ret) {
-> +		device_unregister(reboot->reboot_dev);
-> +		return ret;
-> +	}
+> +&mii_conv0 {
+> +       renesas,miic-input = <ETHSS_ETHSW_PORT0>;
+> +       status = "okay";
+> +};
 > +
-> +	return ret;
-> +}
+> +&mii_conv1 {
+> +       renesas,miic-input = <ETHSS_ETHSW_PORT1>;
+> +       status = "okay";
+> +};
 > +
->  /**
->   * reboot_mode_register - register a reboot mode driver
->   * @reboot: reboot mode driver
-> @@ -83,13 +131,17 @@ int reboot_mode_register(struct reboot_mode_driver *reboot, struct fwnode_handle
->  	u32 magic_arg2;
->  	int ret;
->  
-> -	if (!fwnode)
-> +	if (!fwnode || !reboot->driver_name)
->  		return -EINVAL;
->  
->  	np = to_of_node(fwnode);
->  	if (!np)
->  		return -EINVAL;
->  
-> +	ret = create_reboot_mode_device(reboot);
-> +	if (ret)
-> +		return ret;
+> +&mii_conv2 {
+> +       renesas,miic-input = <ETHSS_GMAC2_PORT>;
+> +       status = "okay";
+> +};
 > +
->  	INIT_LIST_HEAD(&reboot->head);
->  
->  	for_each_property_of_node(np, prop) {
-> @@ -142,6 +194,8 @@ int reboot_mode_register(struct reboot_mode_driver *reboot, struct fwnode_handle
->  		kfree(info);
->  	}
->  
-> +	device_remove_file(reboot->reboot_dev, &dev_attr_reboot_modes);
-> +	device_unregister(reboot->reboot_dev);
->  	return ret;
->  }
->  EXPORT_SYMBOL_GPL(reboot_mode_register);
-> @@ -155,6 +209,9 @@ int reboot_mode_unregister(struct reboot_mode_driver *reboot)
->  	struct mode_info *info;
->  	struct mode_info *next;
->  
-> +	if (!reboot->reboot_dev)
-> +		return -EINVAL;
+> +&mii_conv3 {
+> +       renesas,miic-input = <ETHSS_GMAC1_PORT>;
+> +       status = "okay";
+> +};
 > +
->  	unregister_reboot_notifier(&reboot->reboot_notifier);
->  
->  	list_for_each_entry_safe(info, next, &reboot->head, list) {
-> @@ -163,6 +220,8 @@ int reboot_mode_unregister(struct reboot_mode_driver *reboot)
->  		kfree(info);
->  	}
->  
-> +	device_remove_file(reboot->reboot_dev, &dev_attr_reboot_modes);
-> +	device_unregister(reboot->reboot_dev);
->  	return 0;
->  }
->  EXPORT_SYMBOL_GPL(reboot_mode_unregister);
-> @@ -192,6 +251,7 @@ int devm_reboot_mode_register(struct device *dev,
->  	if (!dr)
->  		return -ENOMEM;
->  
-> +	reboot->driver_name = reboot->dev->driver->name;
+>  &ohci {
+>         dr_mode = "otg";
+>         status = "okay";
 
-It seems unlikely that we will have multiple instances of the same
-driver influencing the actual reboot mode, but we could very well have
-multiple instances of the same driver calling
-devm_reboot_mode_register(). E.g. on a board two PMICs, both with PON
-blocks (but only one considered as the source for boot mode).
+Gr{oetje,eeting}s,
 
-In that case you will end up trying to create multiple devices with the
-name "qcom-pon", presumably that will fail and per your error handling
-you have now disabled the reboot-mechanism for all but the first pon
-instance that was registered.
+                        Geert
 
-It also creates some asymmetry between devm_reboot_mode_register() and
-reboot_mode_register(), in that the one API the client driver decides
-the name, in other it's hard coded to the driver name (and if the client
-did specify a name - which they should if they use the non-devm one- it
-will be overwritten).
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
-
-On that note, I would argue that aborting the registration of
-reboot-modes, just because we failed to create the convenient "debug"
-interface, doesn't make sense. I think it would be better to just
-continue even when create_reboot_mode_device() returns an error.
-
->  	rc = reboot_mode_register(reboot, of_fwnode_handle(reboot->dev->of_node));
->  	if (rc) {
->  		devres_free(dr);
-> diff --git a/include/linux/reboot-mode.h b/include/linux/reboot-mode.h
-> index e0d3e8a54050a76f26846f456120b4c7e371d284..81c149edf40fbcf0d3427c2e12eb415199cb153b 100644
-> --- a/include/linux/reboot-mode.h
-> +++ b/include/linux/reboot-mode.h
-> @@ -7,6 +7,8 @@
->  
->  struct reboot_mode_driver {
->  	struct device *dev;
-> +	struct device *reboot_dev;
-
-As suggested above:
-
-struct device reboot_dev;
-
-Regards,
-Bjorn
-
-> +	const char *driver_name;
->  	struct list_head head;
->  	int (*write)(struct reboot_mode_driver *reboot, u64 magic);
->  	struct notifier_block reboot_notifier;
-> 
-> -- 
-> 2.34.1
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
