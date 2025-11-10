@@ -1,177 +1,179 @@
-Return-Path: <devicetree+bounces-236630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4040DC45EF2
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:30:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7B5C45F1B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:32:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B568B3B4FF1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:29:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD735189295E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5D1303A12;
-	Mon, 10 Nov 2025 10:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EFE5307AF9;
+	Mon, 10 Nov 2025 10:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kqguwfo/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B624bR9R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85A422A4E1
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E885B3074AA;
+	Mon, 10 Nov 2025 10:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762770460; cv=none; b=ZFolAShCco+2rqdGTapvPFhXsqVwMI3bVgIG4+55md8sHP5cuKPgzAFeaWCq82zt+DZoSjpkLUEhYhY2Oyu2SRFbMSboMHRN+2ssdB9OFFyQunbE/I7yO+3UuGJTc7pBARjqLBIyWX3QB5/4pMkzE0KpwENFiB0RJ6IYqkD+yU0=
+	t=1762770569; cv=none; b=CEj2bvSjA+VxAHRDmNfxmfBXL0Iblihbth3It8WkP3482f8j1e59g4IJW9h56t+QN/L6oOOxiz+j1BHWRoMcu9DaG+vcwOirPFIL7eif2M6lipdf+X73QJAwbZBqKrEmgIFyOSps/1qZF/zhRv+o4loWnH9NK1qHUvrmkYj0tFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762770460; c=relaxed/simple;
-	bh=vHmidB3JYdOUlrmaPoEMyBdxapyGxcVzPk7ayQBh8IA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BRr2BS7SMJYTMN7ooNaLlNxvx8QYESHLxO/ggLmkMhVQX3rRd/Ssq3F3vhB/7it8DwNQuDDMqmoU/aI7rtDU09FQo7GYd+xTLeZDy9laxZOKqcfJzHuQbfsuxEN+skAYb/BM1uT5FSqDROxs/APRODP5JT93kJ8wWndifnN3zlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kqguwfo/; arc=none smtp.client-ip=74.125.224.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-63fca769163so2475553d50.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 02:27:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762770457; x=1763375257; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nVCYh3cOicnQPAZADw6na14qsKJaeo3pCqBgTcCqyAQ=;
-        b=Kqguwfo/iTUdmji6/BL9/F0DC/A//OS3Ad8TfxmwUK6sFzQ2GJAzdWis78YesV0y6m
-         3oi3af4ALbNT5/FJdUuUiKw38vTSA1SbpkgDNcK8rXWa6GTgH/Ubon6jH4Nop8cKz2sr
-         QSPs8hvaQBB2xi7U9PrVMV55G5cC4tkiRcnvye+8faCn5ejlg2m6EdLb/eQOnCKNRp1N
-         h9QH1robr8nxXZRaJaXSfSGUUOIaP9y/6Pw/UlwuyktdEFqcvz7pKS46ASuQt+ZpXYTk
-         Cq9m4PveYN+npCgj9iOP7Rc1kEGWMSKwVu8osvlpYO1iUFB04yiZ99v7OlYvYWzjw+T6
-         jiUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762770457; x=1763375257;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=nVCYh3cOicnQPAZADw6na14qsKJaeo3pCqBgTcCqyAQ=;
-        b=Jv92iiDlY3m0+9V7DCgloJVucu/02B5GG8OLFu9bTLDQaIMR3lAlA1ljGUqok+xFXS
-         XjXAZVqEUK31glvjuMkvkuut2nF4xWMqYQyiQeeLxy2ZILCs57nO5BpqCLCQT32cnhL6
-         zHZx39bu70AE8xw2EvKaIIyqsEi4Pg3rlKpAXA++SEvDebaokyEbfVahuTdIHcB2HSrM
-         oD+62h+CfxGCLjzcl6xoFotlMJqc2u3KYCpjaTl558v+uEklxYJFoa/O9y5cTvGCsEfa
-         ChmqnUsbAJ1VmgRDmyiC9OsPbApM/693BvDmGvMjmtL8vkX2+JrQQA+wCNkJ2LZvDI1d
-         hs1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXIFURI9m8ZKvBz3OhPq+dw+zyNotXWnQY4LsoX6QPKIOWbHsdoq5OPLP7IGxpnMOnGOgs3ZKaHwitj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxG0xzkm85/Dac+bN4Ar3stvQD239J8RWIhRtWm29HHfsiJX6aT
-	Gky9pmnnGwqoYZGaP9IpJjXMVzU9KyaSt1xlB0XeZnq5b+p51RRQUDpCQmuftCYzPvA4VnNUrlE
-	gmdpdCu/tR7YhVxbMSS829NxFWkvqmbN+A0/TgRJY5w==
-X-Gm-Gg: ASbGnct0ZTzz/6YvSo3eAXHnY7DMACvWNzz67rgw1R/JimnvG9b2LswMWI9+ml19b1t
-	cISGzx0C8ljE9ZEyhVFWkDx5YmMzIdBWQEv199mnk5i9aV36trpOYotpAxhCJZ65vxrzqLR1dFr
-	nzVEq2VXaeuWgld43ToPoJvIyIUqpWG0HlK2f53YKC/2u2Br7JuPX8mk+Vky38R1Krubk9nj1Gn
-	Dj7LhlV3+C8rmdyzfzRejmBXFdvKKT8R9gz7PBz11MxzJMwiwplrdwazGmXB2YbTSGOpVU=
-X-Google-Smtp-Source: AGHT+IFy7NetjpMNmDFBssokdBlYgtJrB1CLHXUC0uao2NpzAB1FWHhlXBZS+ZbRtp56BCz83WPIRmCOAMhfYJD6TgE=
-X-Received: by 2002:a05:690e:4191:b0:63f:beb2:952b with SMTP id
- 956f58d0204a3-640d4522d5fmr6227377d50.9.1762770457466; Mon, 10 Nov 2025
- 02:27:37 -0800 (PST)
+	s=arc-20240116; t=1762770569; c=relaxed/simple;
+	bh=ABWKO42uPzueqRpSjxTHFQd8ikHBkZ2+3doEw+bX6bc=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Iil7k6VOe5s+1dHLHcpSE+TUhCnlShT81JPcVpk8u3KlGsB9C8kcDKQKyhzibCmNpu+7PyjjDaYV8ZFfHZRUEbJV5bAd/1QEXH5j2Zs7IVfv1pt8HzMR4kqAyrEYpVX/+rYqryWqeMBOV3q17+lcSYp9Ks15YsAsMqACQSDUzqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B624bR9R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56BD2C16AAE;
+	Mon, 10 Nov 2025 10:29:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762770568;
+	bh=ABWKO42uPzueqRpSjxTHFQd8ikHBkZ2+3doEw+bX6bc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=B624bR9RdQgG/7X9fWVGi7Qunb/nIc7kWQb4hqVEmJvBF4pVhSfv9ca6O2u7FJEgS
+	 a+6Luwep2t+DtOEtqFHUfOuC1PbjKJeofZD1pK38w46lyQakT9Dl+jDGHwdpDlE0Dy
+	 Ms0lCxD0jtWqbkbTPZZror2jTapIExule+Eqo0HoY1CcMa17qrk6xTDFkj+CFKDY6s
+	 twnAS8tfmH3R6zNu6EiLSyxxoAkFoAfuoVVxljs1d5TaCnQ+WO9FV4q1VdrOOb100h
+	 sT9gE6YHj3T7+nzcnVp0vBQp7ZF/ZI2ZqceID1TZysfqsCB+CLiQVdSk21A+dbZ+1j
+	 rUGdCIIcwMsMQ==
+Date: Mon, 10 Nov 2025 04:29:27 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251031160710.13343-1-antoniu.miclaus@analog.com> <20251031160710.13343-2-antoniu.miclaus@analog.com>
-In-Reply-To: <20251031160710.13343-2-antoniu.miclaus@analog.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 10 Nov 2025 11:27:20 +0100
-X-Gm-Features: AWmQ_bnnEqKDQ_v4UfUWlBrt9G_CKxPBfs7G6bPAG1nsql-e1R9Rf9Z2Y73CBK4
-Message-ID: <CACRpkdaEq1cumg_z0A5LV=6nh5QqZ9x1_ZDuf8XTzgub4XVVqw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: adg1712: add adg1712 support
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Peter Rosin <peda@axentia.se>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Josua Mayer <josua@solid-run.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Ioana Ciornei <ioana.ciornei@nxp.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, linux-phy@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+In-Reply-To: <20251110092241.1306838-16-vladimir.oltean@nxp.com>
+References: <20251110092241.1306838-1-vladimir.oltean@nxp.com>
+ <20251110092241.1306838-16-vladimir.oltean@nxp.com>
+Message-Id: <176277056708.3414333.5403009680990856810.robh@kernel.org>
+Subject: Re: [PATCH v4 phy 15/16] dt-bindings: phy: lynx-28g: add
+ compatible strings per SerDes and instantiation
 
-Hi Antoniu,
 
-thanks for your patch!
+On Mon, 10 Nov 2025 11:22:40 +0200, Vladimir Oltean wrote:
+> The 28G Lynx SerDes is instantiated 3 times in the NXP LX2160A SoC and
+> twice in the NXP LX2162A. All these instances share the same register
+> map, but the number of lanes and the protocols supported by each lane
+> differs in a way that isn't detectable by the programming model.
+> 
+> Going by the generic "fsl,lynx-28g" compatible string and expecting all
+> SerDes instantiations to use it was a mistake that needs to be fixed.
+> 
+> The two major options considered are
+> (a) encode the SoC and the SerDes instance in the compatible string,
+>     everything else is the responsibility of the driver to derive based
+>     on this sufficient information
+> (b) add sufficient device tree properties to describe the per-lane
+>     differences, as well as the different lane count
+> 
+> Another important consideration is that any decision made here should
+> be consistent with the decisions taken for the yet-to-be-introduced
+> 10G Lynx SerDes (older generation for older SoCs), because of how
+> similar they are.
+> 
+> I've seen option (b) at play in this unmerged patch set for the 10G Lynx
+> here, and I didn't like it:
+> https://lore.kernel.org/linux-phy/20230413160607.4128315-3-sean.anderson@seco.com/
+> 
+> This is because there, we have a higher degree of variability in the
+> PCCR register values that need to be written per protocol. This makes
+> that approach more drawn-out and more prone to errors, compared to (a)
+> which is more succinct and obviously correct.
+> 
+> So I've chosen option (a) through elimination, and this also reflects
+> how the SoC reference manual provides different tables with protocol
+> combinations for each SerDes. NXP clearly documents these as not
+> identical, and refers to them as such (SerDes 1, 2, etc).
+> 
+> The per-SoC compatible string is prepended to the "fsl,lynx-28g" generic
+> compatible, which is left there for compatibility with old kernels. An
+> exception would be LX2160A SerDes #3, which at the time of writing is
+> not described in fsl-lx2160a.dtsi, and is a non-networking SerDes, so
+> the existing Linux driver is useless for it. So there is no practical
+> reason to put the "fsl,lynx-28g" fallback for "fsl,lx2160a-serdes3".
+> 
+> The specific compatible strings give us the opportunity to express more
+> constraints in the schema that we weren't able to express before:
+> - We allow #phy-cells in the top-level SerDes node only for
+>   compatibility with old kernels that don't know how to translate
+>   "phys = <&serdes_1_lane_a>" to a PHY. We don't need that feature for
+>   the not-yet-introduced LX2160A SerDes #3, so make the presence of
+>   #phy-cells at the top level be dependent on the presence of the
+>   "fsl,lynx-28g" fallback compatible.
+> - The modernization of the compatible string should come together with
+>   per-lane OF nodes.
+> - LX2162A SerDes 1 has fewer lanes than the others, and trying to use
+>   lanes 0-3 would be a mistake that could be caught by the schema.
+> 
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+> v3->v4:
+> - OF nodes per lane broken out as a separate "[PATCH v4 phy 01/16]
+>   dt-bindings: phy: lynx-28g: permit lane OF PHY providers"
+> - rewritten commit message
+> - s|"^phy@[0-9a-f]+$"|"^phy@[0-7]$"|g in patternProperties
+> - define "#address-cells" and "#size-cells" as part of common
+>   properties, only leave the part which marks them required in the allOf
+>   constraints area
+> v2->v3:
+> - re-add "fsl,lynx-28g" as fallback compatible, and #phy-cells = <1> in
+>   top-level "serdes" node
+> - drop useless description texts
+> - fix text formatting
+> - schema is more lax to allow overlaying old and new required properties
+> v1->v2:
+> - drop the usage of "fsl,lynx-28g" as a fallback compatible
+> - mark "fsl,lynx-28g" as deprecated
+> - implement Josua's request for per-lane OF nodes for the new compatible
+>   strings
+> 
+>  .../devicetree/bindings/phy/fsl,lynx-28g.yaml | 86 +++++++++++++++++--
+>  1 file changed, 79 insertions(+), 7 deletions(-)
+> 
 
-Add
-Datasheet: https://www.analog.com/media/en/technical-documentation/data-she=
-ets/adg1712.pdf
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Before signed-off-by, thanks.
+yamllint warnings/errors:
 
-On Fri, Oct 31, 2025 at 5:08=E2=80=AFPM Antoniu Miclaus
-<antoniu.miclaus@analog.com> wrote:
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/fsl,lynx-28g.example.dtb: serdes@1ea0000 (fsl,lx2160a-serdes1): '#phy-cells' does not match any of the regexes: '^phy@[0-7]$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/phy/fsl,lynx-28g.yaml
 
-> +title: Analog Devices ADG1712 quad SPST switch GPIO controller
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: |
-> +  Bindings for Analog Devices ADG1712 quad single-pole, single-throw (SP=
-ST)
-> +  switch controlled by GPIOs. The device features four independent switc=
-hes,
-> +  each controlled by a dedicated GPIO input pin.
-> +
-> +  Each GPIO line exposed by this controller corresponds to one of the fo=
-ur
-> +  switches (SW1-SW4) on the ADG1712. Setting a GPIO line high enables th=
-e
-> +  corresponding switch, while setting it low disables the switch.
+doc reference errors (make refcheckdocs):
 
-There are two unclarities here:
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251110092241.1306838-16-vladimir.oltean@nxp.com
 
-- I know what an SPST switch is, but how is that electrically controlled?
-  Is it actually a good old electro-magnetic relay? There are clearly
-  details missing here. When I look in the datasheet, a symbol for a
-  relay is present in the schematics. At least explain that they work
-  "as a relay replacement" (literal wording from the datasheet) so
-  we know what this is.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-- GPIO is general purpose input/output. This is a narrow fit with that
-  concept. This device is more of a general purpose mechanical
-  current switch. We need some motivation here, explaining why
-  GPIO is a good, operating system-neutral description of what this
-  device does.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Perhaps we need to create a new binding category
-dt-bindings/switch for this, even if in Linux specifically we chose
-to model this as a GPIO, it could just be something we do in
-Linux, Zephyr for example might want to have a dedicated driver
-for switches.
+pip3 install dtschema --upgrade
 
-Also I would like Peter Rosin's eye on this, as we have
-dt-bindings/mux which is selecting one analog line out of many
-and it's close enough.
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> +  switch1-gpios:
-> +    description: GPIO connected to the IN1 control pin (controls SW1)
-> +    maxItems: 1
-> +
-> +  switch2-gpios:
-> +    description: GPIO connected to the IN2 control pin (controls SW2)
-> +    maxItems: 1
-> +
-> +  switch3-gpios:
-> +    description: GPIO connected to the IN3 control pin (controls SW3)
-> +    maxItems: 1
-> +
-> +  switch4-gpios:
-> +    description: GPIO connected to the IN4 control pin (controls SW4)
-> +    maxItems: 1
-
-Why not just use an array of GPIOs? The property has the suffix "gpios"
-(pluralis) after all.
-
-I'd just use switch-gpios =3D <1, 2, 3, 4>...
-
-> +  gpio-controller: true
-
-So this switching capacity expose four new GPIOs, are these really
-GPIOs, that's the question. I think we might need a new binding
-category. Either this is switch, GPIO or some type of amplifier.
-
-Yours,
-Linus Walleij
 
