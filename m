@@ -1,258 +1,177 @@
-Return-Path: <devicetree+bounces-236629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E0EC45E80
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:24:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4040DC45EF2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:30:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89F111891B3A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:24:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B568B3B4FF1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F71306B12;
-	Mon, 10 Nov 2025 10:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5D1303A12;
+	Mon, 10 Nov 2025 10:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PYqRD8XT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kqguwfo/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010059.outbound.protection.outlook.com [40.93.198.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C13288520;
-	Mon, 10 Nov 2025 10:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762770229; cv=fail; b=GbH8hrCyYEM3rVlUpi7dqqXw0CF6X68IE3gSgTu0W6PVphp2IzBL2DxuYR6IydoVupKn+WYTNSjw8dx0lrXtMuO0nSFUqnzCa/h4cxoBEviig0SchfjxxlnsFeqXhfEbGJa3cqDyhGztp+UEOFjl2aDfFDsrhRgTVrczn6dM56Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762770229; c=relaxed/simple;
-	bh=KXdIs0evxgDvG0D4l/daWnQrCJ8KcM8fDtEvDzjkk0g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=MojCMF1rfU/9d/TehrvaTqJN6SmPWCeCgYiSg/KrO/rK/+yDE57ApBczi9kHA7SnB0Ua2+GdQ+O1Ax87A5xHe1AIWx86bRsxHIPPOmcyt8xFX1nx4D7e1qY//E1R5ah5lsAQrJ4Egp+2YYU2uPlN5Hg3Az2aIg6GYHjZ7Hbx8ME=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PYqRD8XT; arc=fail smtp.client-ip=40.93.198.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xo0qEqnUU84vnVukiVX9zhJ8EqanvxClrtOnIs9yi7iiUZd/zsc17LGTZ6hCrXAVwudGyQfcNmPL6HgdoWUnzPMTVEURK1kbAJELuSaO2X8EdKRrJwdKr7WtiGtIEP96JZ/GdEhXtfAMAnA/UQvQ4L4MzW7im5tdA0xrXJkn+QwhXWlj4EE8XOgxJCGsgsDAY5puB7x/+FQ0/UWqL8vAmn676QgEHpwPJfkxGWHMRc5EMEjOpgHHz2WThiYzYHchVV0foxpXWcg7KD2p/25Fq9P/pl7oqF4m6sNq0skmCMRzlrE6M8/EDsjADmkDJFPPJFzBOrcRJrGtY46qwXNm7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4W15p7EqUW1KYLNj+2vDKch75XkoOa2lrxI3zR1eWb4=;
- b=lZ+jsoR58MIhC8W6TlPyojQepnMe4sJRDugDyaSoQE8jKz1yTkxpP4F8alLVD+nG11MykbCPHdlAIaSbkwNURbyXdRqABrJkybhocYa4blxRlAsGgVis5NZ7qsa8cmCwHQ2QvEWgoD4iZuuvXAmpkSRjnBltH15pzadHrlZNT5c/wTii5QmpEZj7I/Ltgg3qnsr7q3eLK3Pbeh+j3U+hmsVuc55nKkIfzcWahycTV8+sa8Err0Q9JfZceSUouVHWsq2jgrAup1f5wnX+s86e2/iNlKSKYDG8tjrkMYHVClOKbH3/NlwlU8FL01yxbvp2QtTTIi7yBJtw5oM4PpsRXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=cadence.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4W15p7EqUW1KYLNj+2vDKch75XkoOa2lrxI3zR1eWb4=;
- b=PYqRD8XTPvVWIeHHx9LkkedhT/ndbZZQdI14Xj8c0aYQ9erHDWimbeH+zfPwP3it6Mz8CjqiPPnpbkLGzfp5VxMyNFfcWewfI/x6qsr044BKNxTxXM++hI7ykds+NsYLWsBseTXtG0Xoxe+Xg8jB04jDfE/E6lRmXjMdwKfy0k4=
-Received: from BN1PR14CA0017.namprd14.prod.outlook.com (2603:10b6:408:e3::22)
- by IA1PR10MB7333.namprd10.prod.outlook.com (2603:10b6:208:3fa::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
- 2025 10:23:42 +0000
-Received: from BN1PEPF00006003.namprd05.prod.outlook.com
- (2603:10b6:408:e3:cafe::b5) by BN1PR14CA0017.outlook.office365.com
- (2603:10b6:408:e3::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.16 via Frontend Transport; Mon,
- 10 Nov 2025 10:23:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BN1PEPF00006003.mail.protection.outlook.com (10.167.243.235) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Mon, 10 Nov 2025 10:23:41 +0000
-Received: from DLEE207.ent.ti.com (157.170.170.95) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 10 Nov
- 2025 04:23:38 -0600
-Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE207.ent.ti.com
- (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 10 Nov
- 2025 04:23:38 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 10 Nov 2025 04:23:38 -0600
-Received: from [172.24.235.208] (hkshenoy.dhcp.ti.com [172.24.235.208])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AAANVjC3251357;
-	Mon, 10 Nov 2025 04:23:32 -0600
-Message-ID: <9599e17c-96d5-448f-96a2-bbcfcc3657a2@ti.com>
-Date: Mon, 10 Nov 2025 15:53:31 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85A422A4E1
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:27:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762770460; cv=none; b=ZFolAShCco+2rqdGTapvPFhXsqVwMI3bVgIG4+55md8sHP5cuKPgzAFeaWCq82zt+DZoSjpkLUEhYhY2Oyu2SRFbMSboMHRN+2ssdB9OFFyQunbE/I7yO+3UuGJTc7pBARjqLBIyWX3QB5/4pMkzE0KpwENFiB0RJ6IYqkD+yU0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762770460; c=relaxed/simple;
+	bh=vHmidB3JYdOUlrmaPoEMyBdxapyGxcVzPk7ayQBh8IA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BRr2BS7SMJYTMN7ooNaLlNxvx8QYESHLxO/ggLmkMhVQX3rRd/Ssq3F3vhB/7it8DwNQuDDMqmoU/aI7rtDU09FQo7GYd+xTLeZDy9laxZOKqcfJzHuQbfsuxEN+skAYb/BM1uT5FSqDROxs/APRODP5JT93kJ8wWndifnN3zlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kqguwfo/; arc=none smtp.client-ip=74.125.224.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-63fca769163so2475553d50.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 02:27:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762770457; x=1763375257; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nVCYh3cOicnQPAZADw6na14qsKJaeo3pCqBgTcCqyAQ=;
+        b=Kqguwfo/iTUdmji6/BL9/F0DC/A//OS3Ad8TfxmwUK6sFzQ2GJAzdWis78YesV0y6m
+         3oi3af4ALbNT5/FJdUuUiKw38vTSA1SbpkgDNcK8rXWa6GTgH/Ubon6jH4Nop8cKz2sr
+         QSPs8hvaQBB2xi7U9PrVMV55G5cC4tkiRcnvye+8faCn5ejlg2m6EdLb/eQOnCKNRp1N
+         h9QH1robr8nxXZRaJaXSfSGUUOIaP9y/6Pw/UlwuyktdEFqcvz7pKS46ASuQt+ZpXYTk
+         Cq9m4PveYN+npCgj9iOP7Rc1kEGWMSKwVu8osvlpYO1iUFB04yiZ99v7OlYvYWzjw+T6
+         jiUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762770457; x=1763375257;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=nVCYh3cOicnQPAZADw6na14qsKJaeo3pCqBgTcCqyAQ=;
+        b=Jv92iiDlY3m0+9V7DCgloJVucu/02B5GG8OLFu9bTLDQaIMR3lAlA1ljGUqok+xFXS
+         XjXAZVqEUK31glvjuMkvkuut2nF4xWMqYQyiQeeLxy2ZILCs57nO5BpqCLCQT32cnhL6
+         zHZx39bu70AE8xw2EvKaIIyqsEi4Pg3rlKpAXA++SEvDebaokyEbfVahuTdIHcB2HSrM
+         oD+62h+CfxGCLjzcl6xoFotlMJqc2u3KYCpjaTl558v+uEklxYJFoa/O9y5cTvGCsEfa
+         ChmqnUsbAJ1VmgRDmyiC9OsPbApM/693BvDmGvMjmtL8vkX2+JrQQA+wCNkJ2LZvDI1d
+         hs1g==
+X-Forwarded-Encrypted: i=1; AJvYcCXIFURI9m8ZKvBz3OhPq+dw+zyNotXWnQY4LsoX6QPKIOWbHsdoq5OPLP7IGxpnMOnGOgs3ZKaHwitj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxG0xzkm85/Dac+bN4Ar3stvQD239J8RWIhRtWm29HHfsiJX6aT
+	Gky9pmnnGwqoYZGaP9IpJjXMVzU9KyaSt1xlB0XeZnq5b+p51RRQUDpCQmuftCYzPvA4VnNUrlE
+	gmdpdCu/tR7YhVxbMSS829NxFWkvqmbN+A0/TgRJY5w==
+X-Gm-Gg: ASbGnct0ZTzz/6YvSo3eAXHnY7DMACvWNzz67rgw1R/JimnvG9b2LswMWI9+ml19b1t
+	cISGzx0C8ljE9ZEyhVFWkDx5YmMzIdBWQEv199mnk5i9aV36trpOYotpAxhCJZ65vxrzqLR1dFr
+	nzVEq2VXaeuWgld43ToPoJvIyIUqpWG0HlK2f53YKC/2u2Br7JuPX8mk+Vky38R1Krubk9nj1Gn
+	Dj7LhlV3+C8rmdyzfzRejmBXFdvKKT8R9gz7PBz11MxzJMwiwplrdwazGmXB2YbTSGOpVU=
+X-Google-Smtp-Source: AGHT+IFy7NetjpMNmDFBssokdBlYgtJrB1CLHXUC0uao2NpzAB1FWHhlXBZS+ZbRtp56BCz83WPIRmCOAMhfYJD6TgE=
+X-Received: by 2002:a05:690e:4191:b0:63f:beb2:952b with SMTP id
+ 956f58d0204a3-640d4522d5fmr6227377d50.9.1762770457466; Mon, 10 Nov 2025
+ 02:27:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: drm/bridge: Update reg-name list for
- cdns,mhdp8546 compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>, <robh@kernel.org>,
-	<Laurent.pinchart@ideasonboard.com>, <airlied@gmail.com>,
-	<andrzej.hajda@intel.com>, <conor+dt@kernel.org>, <devarsht@ti.com>,
-	<devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-	<jernej.skrabec@gmail.com>, <jonas@kwiboo.se>, <krzk+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
-	<s-jain1@ti.com>, <simona@ffwll.ch>, <sjakhade@cadence.com>,
-	<tzimmermann@suse.de>, <u-kumar1@ti.com>, <yamonkar@cadence.com>,
-	<pthombar@cadence.com>
-References: <20251107131535.1841393-1-h-shenoy@ti.com>
- <eb86cb58-6520-4a24-9e04-f10e2466fac6@kernel.org>
-Content-Language: en-US
-From: Harikrishna shenoy <h-shenoy@ti.com>
-In-Reply-To: <eb86cb58-6520-4a24-9e04-f10e2466fac6@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00006003:EE_|IA1PR10MB7333:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9f6c8a4e-1daa-4ca7-323a-08de204338b7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?b0tjOEwySmFoWE5WMzN1NmZ5ZG9xR0xNTVBmU0w4YkJhazlhNWMxVW9XbjR3?=
- =?utf-8?B?V2ZRTjJncHFhMm5OT2lpQ00xaHhCcDQvVk9pMHhUektWZDNDTVdLOXNHeTJl?=
- =?utf-8?B?WGw0K0FHV2lmZjljMFVsUU1ibExBWGVVYjFoSUdRMW4zYVBIa2UwbkJINlRQ?=
- =?utf-8?B?Q3QwWi8rV3BxenJmbWJybG5SYlZyZGt0VWpXOUNpUjYyU2VvQWFsZWF4b3l6?=
- =?utf-8?B?WlNVYURoM2phWjEzdlVQMi93ODhIcklWZW9XK2hjcTd2VFJSTTdJbWhPY0Nw?=
- =?utf-8?B?OXQ4T2l4UEt6ZS9aZks5L24zWEgxZURYOXFxTlQvTmlmTU5PL0F3VS9GNE5O?=
- =?utf-8?B?TnczUVQ1Z2JKYlFKdUlKR2V0b1BTSlNQMlRpSTZ0Q2VtYlpUVjlvcGhXRnhw?=
- =?utf-8?B?Qm40L3J4QXNZRlAwc2dEaS9EVTNzL2JhN0VocVBQSVhBbmlNUDhmRlJURmN1?=
- =?utf-8?B?WGlLN01MaGdlc3E2czk5bFBPWmt1Mk4wOHp2aFNhcWVmdTdzUDhlcmc4Umpn?=
- =?utf-8?B?VU1LMG53NjRPVEpuS0lWQVNNOTRBYkI4Q1ZPdGJrSVlEZk9xU1NPZ282dGRX?=
- =?utf-8?B?VHZVNnFGUU1raHFOZ3ZiNVJCYmw4bm02aVFTSzBqOFhKT0NsbTF1MXlxRnZX?=
- =?utf-8?B?dXBTQVZ1ZzczR1pIaURxQUhtejg5a2x5T2ErNUR6T1ZhaWpmUTVFSW54eUhU?=
- =?utf-8?B?djd3NDJwdWdwMVNhSUpab0gyekQ0NUtTZE0zcE9kaHZNdm9tNDhaYUx1SzJz?=
- =?utf-8?B?ZTg3VHVlTmV3cUc3K3FwVVUrVnYzOUo1UVRHK1hxQVBQME1tSmdjTEo2Z295?=
- =?utf-8?B?Z3VZa1I0VGoyczFzeHg4eFVNWEttZHFDSHZYM2U5Q1BzY3g1V2JiMHV6WUhn?=
- =?utf-8?B?L011OGV6aGZUWWxqM0doQVNmTkVhd1piTHVlM1JNd3JtM3RIOTRNcXF6YXVO?=
- =?utf-8?B?K0RDYjRENUxFWmJDQkJYNGgzS2NqOW16WXRwUEk3dk1YcklsSUd6RzRjRXE1?=
- =?utf-8?B?R2w0YlFSbi85N3Z0ZjZtazlkSE5xQUVNaXk1aS9peXAxV0tzb2t3UTdBeE5J?=
- =?utf-8?B?WUVuMDMyc2JOZmFBM2Rpa1l5WlpLdnE1a0x2SCtmS0h1QXBQcVJMOGlkZGha?=
- =?utf-8?B?M1ZtQnZrbFBjYnhQRjduOHNyT3B2ZVdla2dNcnljTXhNNW1KamVYVjFaeUI0?=
- =?utf-8?B?amxnajI0aVlCY3lFRFFKRXdNZERiZFpzWEIwR3EyWCtoaTZ1MHRoaitRQnFJ?=
- =?utf-8?B?Z2hSVXBqWGtsckVaK1JFQlJoNWVHWlVUY3hoMVV6b1NNTjdjNmZuNUNNVmFz?=
- =?utf-8?B?L1A1NmpUb040eFB5VVQ5cUJEdFVUQ25jMWRxUkJDUGJPblBKQmJEYXNIbnF2?=
- =?utf-8?B?OW1XZ0dyNjdWNlh3M25UZmFzSDNyU0VBZExwQzM2NlpDcUF1SlhkY3BINHFt?=
- =?utf-8?B?a1dPcTF2QWtzZElXTlRlM0pwaEJDbmtNdmVSREtaQ1M0dlVpeWhwUkxsZUg3?=
- =?utf-8?B?ekVxVlFVVXN0R3hLSUw0a2NyRFpncDJqcGprUG9HWnhDWlJLdWg3endQZ1NW?=
- =?utf-8?B?cUpPWHhUUzZOMHB1MjVHY3d3bm5EVzFyTEdzUWROMGVvQkEvQ2liVTJvNXNu?=
- =?utf-8?B?OE1ZVEFtaDRXdCtMUTVaOXFuTFRWbDB5QVMyNmZFYU1vK2tkSkZLQVJlNzNH?=
- =?utf-8?B?ajB2M003UllBRk01cXV3Y0dueWhoZUYzcnJyRTE1ci9zdlJFaHJkOTNuNTFr?=
- =?utf-8?B?UTUwbTlIMUxTelFkL2tkNW44M3pVZzJIaXk2WExWOGlQemNDaXJyc3JpSWlj?=
- =?utf-8?B?MVpTKzBnQ1FsK1hDMWFQdVZCTWdSNHlObWFFS1JMeXUyaWdFRVRiTHQyTFBP?=
- =?utf-8?B?dEk5MVA2UHpkTkMyRWNyWVloWVRpQ0Vrc09QQloxODRhcmxzc05sV05zcUtU?=
- =?utf-8?B?ekJxMDZFZnBxb3VRZFN0d3pWd1ZmNzNHY3Z2ZVZiUXBrczVkenNLS1E5TXFP?=
- =?utf-8?B?QXRZU2RSL1VuRk9KM0oyVWtnY3VIcTdjdkdhekxJMFU3emcyR0lJNjFwZ0Nr?=
- =?utf-8?B?c1hqd1VQM0tTQ0hDb0E4ZVZ0blRWREhVUTIyRXFTV2phdTFHWU5XVDR2Smov?=
- =?utf-8?Q?CcPN5UYzxu/kTTrjFlB2aGAfq?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014)(7416014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 10:23:41.8464
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f6c8a4e-1daa-4ca7-323a-08de204338b7
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN1PEPF00006003.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB7333
+References: <20251031160710.13343-1-antoniu.miclaus@analog.com> <20251031160710.13343-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20251031160710.13343-2-antoniu.miclaus@analog.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 10 Nov 2025 11:27:20 +0100
+X-Gm-Features: AWmQ_bnnEqKDQ_v4UfUWlBrt9G_CKxPBfs7G6bPAG1nsql-e1R9Rf9Z2Y73CBK4
+Message-ID: <CACRpkdaEq1cumg_z0A5LV=6nh5QqZ9x1_ZDuf8XTzgub4XVVqw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: adg1712: add adg1712 support
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Peter Rosin <peda@axentia.se>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Antoniu,
 
+thanks for your patch!
 
-On 07/11/25 18:57, Krzysztof Kozlowski wrote:
-> On 07/11/2025 14:15, Harikrishna Shenoy wrote:
->> Remove j721e-intg register name from reg-name list for cdns,mhdp8546
->> compatible. The j721e-intg registers are specific to TI SoCs, so they
->> are not required for compatibles other than ti,j721e-mhdp8546.
->>
->> Move the register name constraints to the appropriate compatibility
->> sections to ensure the correct register names are used with each
->> compatible value.
->>
->> Fixes: 7169d082e7e6 ("dt-bindings: drm/bridge: MHDP8546 bridge binding changes for HDCP")
->> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
->> ---
->>
->> Links to some discussions pointing to need for a fixes patch:
->> https://lore.kernel.org/all/20250903220312.GA2903503-robh@kernel.org/
->> https://lore.kernel.org/all/d2367789-6b54-4fc2-bb7c-609c0fe084d3@ti.com/
->>
->>   .../bindings/display/bridge/cdns,mhdp8546.yaml      | 13 +++++++------
->>   1 file changed, 7 insertions(+), 6 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->> index c2b369456e4e2..2fdb4f7108ed5 100644
->> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->> @@ -30,10 +30,6 @@ properties:
->>   
->>     reg-names:
->>       minItems: 1
->> -    items:
->> -      - const: mhdptx
->> -      - const: j721e-intg
->> -      - const: mhdptx-sapb
->>   
->>     clocks:
->>       maxItems: 1
->> @@ -103,7 +99,10 @@ allOf:
->>             maxItems: 3
->>           reg-names:
->>             minItems: 2
->> -          maxItems: 3
->> +          items:
->> +            - const: mhdptx
->> +            - const: j721e-intg
->> +            - const: mhdptx-sapb
->>       else:
->>         properties:
->>           reg:
->> @@ -111,7 +110,9 @@ allOf:
->>             maxItems: 2
->>           reg-names:
->>             minItems: 1
->> -          maxItems: 2
->> +          items:
->> +            - const: mhdptx
->> +            - const: mhdptx-sapb
-> 
-> This does not match regs now. Look which entry is the second - it is
-> always DSS_EDP0_INTG_CFG_VP
-> Optional item should be the last, not the middle. That's why DT
+Add
+Datasheet: https://www.analog.com/media/en/technical-documentation/data-she=
+ets/adg1712.pdf
 
-Hi Krzysztof,
+Before signed-off-by, thanks.
 
-Thanks for the review, will update the reg-description for 
-ti,j721e-mhdp8546 j721e-intg is mandatory and for cdns,mhdp8546 
-j721e-intg is
-not needed, will update and separate the reg description list according
-to compatibles as well.
+On Fri, Oct 31, 2025 at 5:08=E2=80=AFPM Antoniu Miclaus
+<antoniu.miclaus@analog.com> wrote:
 
-> maintainers ask (and it is even documented) to post complete bindings.
-> Complete means all registers, entire address space.
->
+> +title: Analog Devices ADG1712 quad SPST switch GPIO controller
+> +
+> +maintainers:
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +description: |
+> +  Bindings for Analog Devices ADG1712 quad single-pole, single-throw (SP=
+ST)
+> +  switch controlled by GPIOs. The device features four independent switc=
+hes,
+> +  each controlled by a dedicated GPIO input pin.
+> +
+> +  Each GPIO line exposed by this controller corresponds to one of the fo=
+ur
+> +  switches (SW1-SW4) on the ADG1712. Setting a GPIO line high enables th=
+e
+> +  corresponding switch, while setting it low disables the switch.
 
-I understand the need to post complete bindings, but this is a fixes 
-patch which tries to address the concerns raised in previous 
-discussions, not sure if it would be appropriate to add other register
-in address space like DSC which have not been updated in binding?
+There are two unclarities here:
 
-Regards,
-Hari
+- I know what an SPST switch is, but how is that electrically controlled?
+  Is it actually a good old electro-magnetic relay? There are clearly
+  details missing here. When I look in the datasheet, a symbol for a
+  relay is present in the schematics. At least explain that they work
+  "as a relay replacement" (literal wording from the datasheet) so
+  we know what this is.
 
-> Best regards,
-> Krzysztof
+- GPIO is general purpose input/output. This is a narrow fit with that
+  concept. This device is more of a general purpose mechanical
+  current switch. We need some motivation here, explaining why
+  GPIO is a good, operating system-neutral description of what this
+  device does.
 
+Perhaps we need to create a new binding category
+dt-bindings/switch for this, even if in Linux specifically we chose
+to model this as a GPIO, it could just be something we do in
+Linux, Zephyr for example might want to have a dedicated driver
+for switches.
+
+Also I would like Peter Rosin's eye on this, as we have
+dt-bindings/mux which is selecting one analog line out of many
+and it's close enough.
+
+> +  switch1-gpios:
+> +    description: GPIO connected to the IN1 control pin (controls SW1)
+> +    maxItems: 1
+> +
+> +  switch2-gpios:
+> +    description: GPIO connected to the IN2 control pin (controls SW2)
+> +    maxItems: 1
+> +
+> +  switch3-gpios:
+> +    description: GPIO connected to the IN3 control pin (controls SW3)
+> +    maxItems: 1
+> +
+> +  switch4-gpios:
+> +    description: GPIO connected to the IN4 control pin (controls SW4)
+> +    maxItems: 1
+
+Why not just use an array of GPIOs? The property has the suffix "gpios"
+(pluralis) after all.
+
+I'd just use switch-gpios =3D <1, 2, 3, 4>...
+
+> +  gpio-controller: true
+
+So this switching capacity expose four new GPIOs, are these really
+GPIOs, that's the question. I think we might need a new binding
+category. Either this is switch, GPIO or some type of amplifier.
+
+Yours,
+Linus Walleij
 
