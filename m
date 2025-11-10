@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-236479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA95AC44B37
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 02:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7EF9C44B49
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 02:05:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A9ABB4E4993
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 01:03:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E14264E4263
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 01:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E051EEA31;
-	Mon, 10 Nov 2025 01:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361AE1EEA31;
+	Mon, 10 Nov 2025 01:05:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i6nNA9XW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n0N9pJjZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33DC8286A4;
-	Mon, 10 Nov 2025 01:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095A2286A4;
+	Mon, 10 Nov 2025 01:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762736588; cv=none; b=GZdm5uwFusb0n9fMQGz8anuDP0d5oR95UCQomJRzr6GP0gcmIFC9ZzcjBZpjlRd2uZHcAy9jgxJaU6LGmWaH5cjsI6y+Q9QGMXmVsycf2ubrMIfy5JxITD42UWhwF1OaptQSADL8mSeCPB170RPjB/PvQ/Is1NKkClkFZ8SE3xM=
+	t=1762736702; cv=none; b=QUp9xWk3chmWCmQ3myWtAQJH7Mkbr5RzcPQwM5W0WNJS2Lsb7xJp2uHcY4iN/DKmQEiRZ5rCADpsc56QXAY4WezCLssgLzG6jlcldNVSxLmKptUxCJANB+Bj77/DhCL/1pO+M/P6UjQ9EmKQEvaUP2PSfMA0xnh1NZHhqk0qDxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762736588; c=relaxed/simple;
-	bh=9gONua8THbFl1jXOVI3saF1mGxHRiv8WjayiJxmWh0w=;
+	s=arc-20240116; t=1762736702; c=relaxed/simple;
+	bh=R+V0Hzfys57c/aQcKhl9q24jMrKAlHVuduRLA5/ZiLE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dYj6S7y2SOMDP18r8fwme7S2s4dYzug7YSHzAfxjfxPZaFTb12/fw9DQpi7XdOvuFfU9/4oOdtHJszjvpLamZLjpaujkSE0W8PM/ziYNGy0wNTChJF2RZZWmQPaxtvIGcKK1nJ1e6AbHhwDQx4XjqzeG8SSyj0tA1PmJ961j8Gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i6nNA9XW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8766BC113D0;
-	Mon, 10 Nov 2025 01:03:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZZh+v1m2xjbTkJjYNe4CUlVMMvnw0LKrXT4dyEvS31SHXfJalJa7e3qVg4FMdzy6/GuAM6XyQ2b3awqhu62sD+8psRwFDjH9I3llQhHT3o82zcoLqmCAquTFxqUbKDESjUZLklFYGlh2HlS/wLFItbhxayxMkqLzC0fg/4v4Ljw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n0N9pJjZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53C90C19425;
+	Mon, 10 Nov 2025 01:05:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762736587;
-	bh=9gONua8THbFl1jXOVI3saF1mGxHRiv8WjayiJxmWh0w=;
+	s=k20201202; t=1762736701;
+	bh=R+V0Hzfys57c/aQcKhl9q24jMrKAlHVuduRLA5/ZiLE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i6nNA9XWvOuh6Sbtu4Famk+GcVbVSqCZp7CML7xvVZmLr7Y0KzarHk8eCM+9GuE7N
-	 4e0wQn+UkLo7FOpsYWBRCcoavfOr9WGqEn8uTcFXgeJX/KS1/kF2JydncDDifsceC2
-	 FwWuHXn8AByWTX4q19SFZIpEtMLu4i++JP05WZBx/Ueko7Pk1SNFv+AbpyUTfwNqLn
-	 DkQpmGj8Z/lyAer3l2htFq+PVYamNpA8Zac4K0/w2gPsp7FI6LFcsYvMd0UgAmaIot
-	 D/h4WhJintFsP2VqUZ6dUk4uOFyiEkP2iOzJT2rmDfOMKL3X67ae9rvaat3m2Hw607
-	 1RLmdoL33s7jg==
-Date: Sun, 9 Nov 2025 19:03:06 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Lukasz Luba <lukasz.luba@arm.com>, Zhang Rui <rui.zhang@intel.com>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: thermal: Drop db8500-thermal.txt
-Message-ID: <176273658529.2481060.8480391910495897172.robh@kernel.org>
-References: <20251030195234.439141-1-robh@kernel.org>
+	b=n0N9pJjZ/8zU6/P8tjKKBuajJf66vBAcxWFkn9koV7rQ5sKBvcmlApWCng0YiO9p5
+	 AmWae1thEFPP86hhlLmPptwWeg37FqRJShgWPW7JijzH+bSEbLDQ9KUBXEwgI9CkrP
+	 JVuSuXH7WGrmr+4fRQqBPt8d/vLR3RoE5PRALHLuB+BQxVQt+hMy6XLXHpgx0EniRG
+	 6Dtg9nCSFrAJfRphcPKwqnA7P/2cJP8E7LpXE/6W7hqmKocGwbA2RMgeDhCYjIfRKz
+	 kCaE+ySbbZ4Kp9wgNzs4kFaiCW2k9gre5jtNZw0/pa4/A5uuWwMI1mZil/I3KiUB74
+	 SnhSxlO32qdOQ==
+Date: Sun, 9 Nov 2025 19:04:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Rogerio Pimentel <rpimentel.silva@gmail.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	alexander.stein@ew.tq-group.com,
+	dario.binacchi@amarulasolutions.com, marex@denx.de,
+	Markus.Niebel@tq-group.com, y.moog@phytec.de,
+	joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
+	josua@solid-run.com, francesco.dolcini@toradex.com,
+	primoz.fiser@norik.com, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: fsl: Add i.MX8MP FRDM board
+Message-ID: <20251110010459.GA2481668-robh@kernel.org>
+References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,20 +65,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251030195234.439141-1-robh@kernel.org>
+In-Reply-To: <20251109214515.121742-1-rpimentel.silva@gmail.com>
 
-
-On Thu, 30 Oct 2025 14:52:33 -0500, Rob Herring (Arm) wrote:
-> The binding is already defined in mfd/stericsson,db8500-prcmu.yaml and none
-> of 'the tripN.*' properties appear to be in use.
+On Sun, Nov 09, 2025 at 04:45:14PM -0500, Rogerio Pimentel wrote:
+> Add device tree compatible string for the i.MX8MP FRDM board.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
 > ---
->  .../bindings/thermal/db8500-thermal.txt       | 44 -------------------
->  1 file changed, 44 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/thermal/db8500-thermal.txt
 > 
+> No changes in v4
 
-Applied, thanks!
+Missing Conor's ack.
 
+> 
+> No changes in v3
+> 
+> No changes in v2
+> 
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 21b7168d61f5..f46cf6d1f502 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1099,6 +1099,7 @@ properties:
+>                - emcraft,imx8mp-navqp      # i.MX8MP Emcraft Systems NavQ+ Kit
+>                - fsl,imx8mp-evk            # i.MX8MP EVK Board
+>                - fsl,imx8mp-evk-revb4      # i.MX8MP EVK Rev B4 Board
+> +              - fsl,imx8mp-frdm           # i.MX8MP Freedom Board
+>                - gateworks,imx8mp-gw71xx-2x # i.MX8MP Gateworks Board
+>                - gateworks,imx8mp-gw72xx-2x # i.MX8MP Gateworks Board
+>                - gateworks,imx8mp-gw73xx-2x # i.MX8MP Gateworks Board
+> -- 
+> 2.25.1
+> 
 
