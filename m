@@ -1,73 +1,68 @@
-Return-Path: <devicetree+bounces-236796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6443C478E4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:33:03 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6553C4797D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:40:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B33544EDE67
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:26:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D9B0C4EEAEE
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:35:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B97A241C8C;
-	Mon, 10 Nov 2025 15:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4647326461F;
+	Mon, 10 Nov 2025 15:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NEi3pw/N"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="B0vBeX50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591AC2264BA;
-	Mon, 10 Nov 2025 15:26:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5756D257841;
+	Mon, 10 Nov 2025 15:35:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762788382; cv=none; b=TN4vD6Qo83tQ5snpsPxEA/ITtRFGrMgQswCDoZ0z1Uvn40MNcHekEgv1fwBl/OPI3vaVhdEEPZ9ETQB+rcF1yy7Xf0fWvMlXfIXAegDQ+FpCXIacXkd0IhcUyXwD2UjGoE2o5126FbN/WT3Zn16E7BtMs6Pw7qJiaPvVwWR6E0M=
+	t=1762788932; cv=none; b=pRgHTotkPcF+V9Taj4gLtQLacrYp2aRclvxYd5dZXGFLPs2Yuo3//fJTOsXmZd028PopijEHGdxVwzG6UF9SNOkrjtoWCffnjIXLyn2dKqIOLQLJw3eRjXWDENReNanBMpAAehHQDcBoYIq9xlgro2hg17+bnXopreIVX/1uo7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762788382; c=relaxed/simple;
-	bh=oUgWF0RUu+mB1/5X7J8Lib1+YnLUj4YxOYKGEf0wWH0=;
+	s=arc-20240116; t=1762788932; c=relaxed/simple;
+	bh=G+azJXcP4oT7JjHwD0cX74wLwbf39y5vwRD/6ZACn5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UxGyNLLvNKFc6l6+BTlb3Q45AhFYOIgOG3YIRfIHYQtC1X1ycNtaQ8LMEB4OOTfOzAhKFtP9RXuL1vZSAn8XfSnYTd0dSQzPY/bE0PmvKSkI6UFzXYWxHm6TBjIhCDYcTtpgZ4ozy9vtwaZIe3zrJpsS7/9g2Ml4H2aIwSv6IB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NEi3pw/N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86160C4CEFB;
-	Mon, 10 Nov 2025 15:26:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762788381;
-	bh=oUgWF0RUu+mB1/5X7J8Lib1+YnLUj4YxOYKGEf0wWH0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NEi3pw/N8drkjbFObP4vqAMkSx9U17WFA1bbYOZYToSNXxmPQLzT6NXLMV/1G23X6
-	 QHehiRrMOiARo9hAnf9MGLSsJbV15Xs0N4T+ZACfLp/Vc9pUgUHiEGsG9krkL8k0q0
-	 5friH9S5o9xUQNXyiBEiTHPr6fytp1DjQld1K0wumVqmhFjOXTVxTqEcCj4ZMztsK5
-	 r8Xc+b8mVufve+txLpSjZFDpywY64xjKXsTG3g/+UmRWtFIGzHF0Iohlp5bwhAPq6J
-	 0jtFJFBVDOY2VkHF5hPZnqBsCJY2rcjXjgHQR8sfLT53f76cI7+MdGOxW0DPojdKMH
-	 39wTD61gcg0Kg==
-Date: Mon, 10 Nov 2025 09:30:26 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Sebastian Reichel <sre@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Souvik Chakravarty <Souvik.Chakravarty@arm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>, 
-	Mark Rutland <mark.rutland@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Moritz Fischer <moritz.fischer@ettus.com>, 
-	John Stultz <john.stultz@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Stephen Boyd <swboyd@chromium.org>, Andre Draszik <andre.draszik@linaro.org>, 
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, Elliot Berman <quic_eberman@quicinc.com>, 
-	Xin Liu <xin.liu@oss.qualcomm.com>, Srinivas Kandagatla <srini@kernel.org>, 
-	Elliot Berman <elliot.berman@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v17 09/12] arm64: dts: qcom: qcs6490-rb3gen2: Add PSCI
- SYSTEM_RESET2 types
-Message-ID: <btvknf3tcqhgxzf7ckyvfwix6hxle2bs4whyayan5haaejo3sm@gnbszdys32lm>
-References: <20251109-arm-psci-system_reset2-vendor-reboots-v17-0-46e085bca4cc@oss.qualcomm.com>
- <20251109-arm-psci-system_reset2-vendor-reboots-v17-9-46e085bca4cc@oss.qualcomm.com>
- <20251110122824.5je5jfoanivl6xrh@hu-mojha-hyd.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wjbseh4Yzz8JzF1mrYUwT7w1SUkR0PY59B3LGtJLO1fRxZmta8xLyQ5r0OoeZ9puDZ0Fo0neBggopc64B1Bxdb1z82H+eTqeseaVmVUj+ZYLUXU735cHq/iqtzCrF2HljpPkrtNEYprhA5hVcylT49o8TD3H1NWhkPBYNINNXEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=B0vBeX50; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=01rfLZwpM4pmMKU3kqbEEzw3i2BzLBr0hbB6YkfV3no=; b=B0vBeX50L5XIgkqjrniD4kQSsI
+	sbc+Q3WoA0Z19I03hXsGH6xMRB6yrOs2MvmnCW9nxDEe+IvAzmQts2rvB0n+uCUWjToSn28T/4WH4
+	O/jWqx8JNxLcvgL+fV9SkJhzTrr6bXtzXXOwU1KVkOKIvxJjUg8lIHcD16tWYd9XzuQU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vITvF-00DX7o-GK; Mon, 10 Nov 2025 16:35:13 +0100
+Date: Mon, 10 Nov 2025 16:35:13 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, taoren@meta.com
+Subject: Re: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support
+ for AST2600
+Message-ID: <68f10ee1-d4c8-4498-88b0-90c26d606466@lunn.ch>
+References: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
+ <20251110-rgmii_delay_2600-v4-4-5cad32c766f7@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,66 +71,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251110122824.5je5jfoanivl6xrh@hu-mojha-hyd.qualcomm.com>
+In-Reply-To: <20251110-rgmii_delay_2600-v4-4-5cad32c766f7@aspeedtech.com>
 
-On Mon, Nov 10, 2025 at 05:58:24PM +0530, Mukesh Ojha wrote:
-> On Sun, Nov 09, 2025 at 08:07:22PM +0530, Shivendra Pratap wrote:
-> > From: Elliot Berman <elliot.berman@oss.qualcomm.com>
-> > 
-> > Add support for SYSTEM_RESET2 vendor-specific resets in
-> > qcs6490-rb3gen2 as reboot-modes.  Describe the resets:
-> > "bootloader" will cause device to reboot and stop in the
-> > bootloader's fastboot mode. "edl" will cause device to reboot
-> > into "emergency download mode", which permits loading images via
-> > the Firehose protocol.
-> > 
-> > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > Signed-off-by: Elliot Berman <elliot.berman@oss.qualcomm.com>
-> > Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > index 721a26d49ccaeb1429e2cc1c3a5c8d9517da3be6..cebdedd5d614b9efb6dfbee91dd67f3c3e322a38 100644
-> > --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > @@ -935,6 +935,13 @@ &pon_resin {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&psci {
-> > +	reboot-mode {
-> > +		mode-bootloader = <0x10001 0x2>;
-> > +		mode-edl = <0 0x1>;
-> > +	};
-> > +};
-> > +
-> 
-> Make sense for this as it leverages sc7280 and adding it there would not
-> have made sense.
-> 
+> +	/* Add a warning to notify the existed dts based on AST2600. It is
+> +	 * recommended to update the dts to add the rx/tx-internal-delay-ps to
+> +	 * specify the RGMII delay and we recommend using the "rgmii-id" for
+> +	 * phy-mode property to tell the PHY enables TX/RX internal delay and
+> +	 * add the corresponding rx/tx-internal-delay-ps properties.
+> +	 */
 
-Why wouldn't it make sense?
+I would not say that exactly. Normally you don't need
+rx/tx-internal-delay-ps. It is only requires for badly designed boards
+where the designer did not correctly balance the line lengths.  So i
+would word this such that it is recommended to use "rgmii-id", and if
+necessary, add small "rx/tx-internal-delay-ps" values.
 
-> Acked-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> 
+> +	scu = syscon_regmap_lookup_by_phandle(np, "aspeed,scu");
+> +	if (IS_ERR(scu)) {
+> +		dev_err(dev, "failed to get aspeed,scu");
+> +		return PTR_ERR(scu);
+> +	}
 
-Please read submitting-patches.rst about Acked-by, and use Reviewed-by
-going forward.
+This is an optional property. If it does not exist, you have an old DT
+blob. It is not an error. So you need to do different things depending
+on what the error code is. If it does not exist, just return 0 and
+leave the hardware alone. If it is some other error report it, and
+abort the probe.
 
-Regards,
-Bjorn
+> +
+> +	ret = of_property_read_u32(np, "aspeed,rgmii-delay-ps",
+> +				   &rgmii_delay_unit);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get aspeed,rgmii-delay-ps value\n");
+> +		return -EINVAL;
+> +	}
 
-> >  &qup_uart7_cts {
-> >  	/*
-> >  	 * Configure a bias-bus-hold on CTS to lower power
-> > 
-> > -- 
-> > 2.34.1
-> > 
-> 
-> -- 
-> -Mukesh Ojha
-> 
+Again, optional.
+
+	Andrew
 
