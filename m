@@ -1,421 +1,275 @@
-Return-Path: <devicetree+bounces-236610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB3FC45CD7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:04:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74082C45D10
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:08:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 172A7189122E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:05:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9A7424E7DF1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75FF2FF661;
-	Mon, 10 Nov 2025 10:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5D6301474;
+	Mon, 10 Nov 2025 10:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b="5HLBTpOt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11023101.outbound.protection.outlook.com [52.101.83.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA32A2FE06C
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762769083; cv=none; b=TCvomwAvW9LeaHmauXcSqIMesCNrKTHGMRKTF0SMouAFnyIoHY+YKeZswa+vh8SM/c6qDWLg02d3ieSK26/Eq1tCKc5NvkKfWjbHLvfDGZmhQF3K4ygqm9ZEn3UqpSCOwKYr7+GIn5gjRw0jrm5j83eW9KG1RMXWkvWL2y62peM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762769083; c=relaxed/simple;
-	bh=G5RFqggw/8bQoz9YUTBWfs5kWiifPxldKwMslsX7Qb8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n/4+gJdxs4Vyh3oSgRm+JFeiVI12obzYXBADP/uSf4fUm7GnTk8zlgc7X/bbgglUbnrdhE3xA78fApvMNqM6wfXDA3fAoq3YgN5Yg+4zFB9knCMFYJu3tC4xAFL0bg1DxFZaalg7RQXFkKUqYHfjd7FEZxApDnzb2pm6TmUyFug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip3t1762768996t6564731f
-X-QQ-Originating-IP: iLVhDFTu6feuscF3wXTXlffxykCNUkLurP6W/VoU7XY=
-Received: from [IPV6:240f:10b:7440:1:64e0:6ba: ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 10 Nov 2025 18:03:13 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 3954833008606545328
-Message-ID: <860B315F1E384446+bead5cf3-487a-46e4-a7c1-aaa1020c967f@radxa.com>
-Date: Mon, 10 Nov 2025 19:03:13 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CBF22FF658;
+	Mon, 10 Nov 2025 10:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.101
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762769017; cv=fail; b=Pm2D2Z1vv74GA690PTk8KsmmhXxIu649jIoT8DVq8wbii6Icsam6jrm5eFbWs8y+zaYZA8i8+aGA7KJU/2WU8N3xoikTPfl3WKhrMF0Sf/FoTDR3MrUBWbZtu/2iakQCOzJlzGSAyOuCtE8+AcvJbtHmUd/39Tk8D3NB3DWYXXE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762769017; c=relaxed/simple;
+	bh=Ue+mTrK46xr4aW+Zmnr4KDdhjn7944gXsqLQLw+oic4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=LEfTYNeiAZLMt6xneVEuf3oMTlYA0xZxP67ZPlwL4PSrKtH3arP5IQtwVu8COKO5evAuBub7kcE9U7NfXY+LMYm8pUvxIQFINrLB4YXMJ85uGOcpSh2BLPbHiwiRehyGfi6eD9JHmpnzKwJiP79CnPTlxifkOLWnh6Cv6DuJdKg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com; spf=pass smtp.mailfrom=gocontroll.com; dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b=5HLBTpOt; arc=fail smtp.client-ip=52.101.83.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gocontroll.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ezaa3Dmm7ZgzyCxPTha+gg9/puW1KdCS4oIbUc76AL85hZxvx8fYNIgJPZhAABaobeTybdBgB30ZxqKMYNsh7dWDNx6Q0yMTSEaM8E6sc0QFmeyP+EWh0hK9W9Q8EkLjVbMbLmRZWYw4IsDfPqLTFW4iv7jb7CUVcmU1WVbyWbUrSZLw769BbgVumqRdAsUgMK1Rvf7yCWYxJbH6jAHoG1llT0pjSzMZdOU/yeuS1acOl7lQp3aKuAi42ykeyywzrRPuDMznyvU1bRACCeLosF6/fvi9/JNbtT4ifU7RZyyFjkaPefAg4Ft3G/heBaaD2dxCZbX5UmSseDHW0HlAhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UHIk90k0NZLsfLS2kFuNikfaxGt5MDeIpfx45IdwXWk=;
+ b=aBcVrv3BH6dAFr1JAzETcDolhNy0KDldAhxs9zTGp8FjsM/LoKKbRrOfRDRSxLEqkkzIfGHTQCec267HCXqFHLj63ntTwqTCfOeWxmmB5nLEEljbSEnm4nQl2TkJw2lmjG/thRNB6jy2yh5WQ3sOTTtWb1pe4XGohcUrCOX9vnueBqhW2/NdWreqZGl3Jm3KviDe8rFpdHRQmTV5QjIQbRZlzXRiLJEZAtp9UIFynThddpYVBs9kEH/LmDI8zC0WhHLqcDZEbhhNj6zQJGB0I619Fo+hI8aqiUagYGmyvaekol2pIXD3E5Hf1Swyq0atVSBN0Ct9hUwKiCrTc7wI8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gocontroll.com; dmarc=pass action=none
+ header.from=gocontroll.com; dkim=pass header.d=gocontroll.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gocontrollcom.onmicrosoft.com; s=selector1-gocontrollcom-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UHIk90k0NZLsfLS2kFuNikfaxGt5MDeIpfx45IdwXWk=;
+ b=5HLBTpOtFfbSVxYxn+r4TooKH7XR+z7Izf/PKsNTiLM9VbaItd04vmr5N+nZ9Cp2PvZuFcUOkw6kxb3fCkCoObgiDz8lg3CPPkVw5tb/429syz/NdpO1Vfn6w8nFIuSZVjRfslYwlytlEXXuGpnMEINTRIFwj0wykodm1usn36FhIcAjlExiODSvy3qk8p6byfPPX0L8ojULrH1hXAixifyldvDKYGUVjJstbUUIh9NDtiwA3KKS2bKWfp6ktGOFjAOzsPvcYzODYQ1svwl8URILg582IXiMlb1f1VqAAqFfv7LEAxyAnh+HAHpWjsmu8sKfFGV19EjwBHUnImkcrw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=gocontroll.com;
+Received: from AMBPR04MB11741.eurprd04.prod.outlook.com (2603:10a6:20b:6f3::7)
+ by VI0PR04MB10782.eurprd04.prod.outlook.com (2603:10a6:800:25d::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
+ 2025 10:03:29 +0000
+Received: from AMBPR04MB11741.eurprd04.prod.outlook.com
+ ([fe80::c39b:dab3:ae88:c5ba]) by AMBPR04MB11741.eurprd04.prod.outlook.com
+ ([fe80::c39b:dab3:ae88:c5ba%4]) with mapi id 15.20.9298.015; Mon, 10 Nov 2025
+ 10:03:29 +0000
+Message-ID: <59c36699-ee54-467f-9342-6756a0092a98@gocontroll.com>
+Date: Mon, 10 Nov 2025 11:03:27 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] backlight: add max25014atg backlight
+To: Daniel Thompson <daniel@riscstar.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com>
+ <20251107-max25014-v5-2-9a6aa57306bf@gocontroll.com>
+ <aQ4a2SBDldYgQb56@aspen.lan>
+ <f4e52cc1-9c5f-4069-9079-83be794ab2b3@gocontroll.com>
+ <aRG359gIeP48V2ZZ@aspen.lan>
+Content-Language: en-US
+From: Maud Spierings <maudspierings@gocontroll.com>
+In-Reply-To: <aRG359gIeP48V2ZZ@aspen.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS4P191CA0047.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:20b:657::22) To AMBPR04MB11741.eurprd04.prod.outlook.com
+ (2603:10a6:20b:6f3::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 11/14] arm64: dts: rockchip: Sort nodes/properties for
- Radxa ROCK 5C
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, alchark@gmail.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251109141859.206835-1-naoki@radxa.com>
- <20251109141859.206835-12-naoki@radxa.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20251109141859.206835-12-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: NDd9MucL1yTJl1FrNxHCKR9PTbGfRM37UKqjYKREDaHUHiKlRakjNaGl
-	kGMCLXyPdz+SI/w1mJVAXL57Xk/sdm7bixeynebbqyDQW60B8vIN3rnmzGti63DBG1P1uWK
-	5BllQVsomq2IjXh+MAjZm03WvurfZtWXHpdO07F1uafwp5A14CbxEDph2ArLfrg31RwpYP9
-	rxPNFaOagz4lGa2OBxhIGQDaWR+DXLuITmUGzSjvB1BeDUEGyitdwNSgeathDp1abdbCq5L
-	9EYhnxV5nOTvdN1lUjXQDdBNbIzgOQbiXOUZgBzOw2xVDauWtWMLsTMEFpo5XX9+8MCuXXm
-	ZFFk26txAp1ECVj179DKeXTzlfvNHGaMF/G9+1eHf6JcApbzvYSCXXO6DIb+RpcCXGWd+Vi
-	KCEBtYKHXTn4XwwI/BoK387RMYUCzoYMY3pM3cE/PJ30IYGL/b2hr0VC9h15aZ5Wv1PJAxs
-	dmCOA4Lpxufz5OAX6vZmC5EMJkO3fuxDf9FwchAjMZmH0M9qcj2jLlD5OtRzfzW6wrYrzVv
-	N0g6qLkK1USi/FxqQx0aVRiSWt2bzkZPQo5jlVEJufnEDmArBOx7M7zarA3FhLU9X2Mw5eC
-	miIgmqU8O/vRveVcmwz5s0+IpBXSF6mTT8Srf7jVFrZc0SIusXDbL7nxhvJHlc9y1FMYosb
-	6j7pNu6Gp++BBpLCrnsthMnZQn7nnHqXTNFtf3SFjT6uAyd8IQ7QtvbBxqt5Ug0K22TK99a
-	+bAlq/sksF1K7I3HA679shCtxG/9godpwAw6IBWq9BdKeV9XuKU3yiNmc/in1ArBhW4w1PM
-	omVmhkt7G7XcXRFszEym5q4nfE3PqUcYapeYq3HVPuzgy5T+yOs5BIJ0u6TR13QdPKV/C7Y
-	Qt9ynnuEBsuksUMrlv16ifDfemNnApgw3qRDC0jnVZHGGPFnhWYLJUTRAFh/5DJkzCbD+0G
-	c1iDyKpyJmpTlW0wjM562DIUuEkgtmeX2AG4=
-X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
-X-QQ-RECHKSPAM: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMBPR04MB11741:EE_|VI0PR04MB10782:EE_
+X-MS-Office365-Filtering-Correlation-Id: 602c95a2-a31d-4baf-e0cc-08de20406605
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|10070799003|1800799024|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?S2NLTmh2SEJFek50MHNOQytXVlNvRUs1d1JXZGNoM3hXOG5WR0I2NGgxSzFO?=
+ =?utf-8?B?RjVZYUpaUzlMZmdxRUZPL0phY0VtWGd3ZDc1RlgvKzFCK1NBc1Jnb2RmUk5z?=
+ =?utf-8?B?QnNkVnlDT0w4WHAxZlNDTEp3Q0k5YmYrTE9aSSsyZVQwZlk2K2E1alpUYVdB?=
+ =?utf-8?B?QVkySlo4Z1F0THFKSGtCOHdFbXlldjRlbGdJelE4RmM3U2Fyajh3cEc4TGtT?=
+ =?utf-8?B?VzFFY2FqTmFQS2F6NGpsS0tRUy9QV1R0Q1dMeDA1SlREMzYyTzIyRUwvY1Mr?=
+ =?utf-8?B?VFlqNjhuR0xXR3JoWUREVzRRSDFOVXdMT2hiUFJCS2xlR2dsWnpuU3pkYVgx?=
+ =?utf-8?B?TkFoYXdkNVBpd3ZHckpBM0RYWTJqaUt4YUxyNTVqV2lhS0xKcHJ6QlhqNDFv?=
+ =?utf-8?B?WEkvT2M3aTE4eTRXZUlVWlZueXNWTUo3UnhCU0ovaUE4RzV4ZTNXSlk2NC8x?=
+ =?utf-8?B?ei9iTy8zUXFoWG8rODZzZ3JSS3ZLTEh5NEtOWmVBbUM2eVBMTVZTMndOSlhJ?=
+ =?utf-8?B?dm9VK0JUa1ZhSkZPcHNUdkQ1dDk5bURYZmRSd2lidlpEQU9KRlBsdjUwLzdh?=
+ =?utf-8?B?aWVMbWpwWFpVQmNRdjlqYXlwUXVQQVoyOTJFQi9QNXlEYURnb0FLdURJU2d3?=
+ =?utf-8?B?dGpkcE8wZ2VkVzFFMDFGRDlXYzNjZzdoZGZocHVzNUcyL0MveWV1U3FOYnJp?=
+ =?utf-8?B?ZGV0SUViSXkvRTdNWm1aeHpPUHc2L0V2aWxwTkRwNmNNTW92c3VzWFpCYmVi?=
+ =?utf-8?B?ejdMbjA5YTgydXZOcGpVcmJuUzhWcmt5NFZ5K1E1a0gzd1h2R0ZaY2JKUWRW?=
+ =?utf-8?B?THNvZyttNEtnNDl0dlF1T0hEQVVaN041MWlzekxyeEt1TTEwTXdHeUZxRHZJ?=
+ =?utf-8?B?c283Vklsc3N5dzZReHZUSnV4NmdDSUhOY3hjb3JlS3RkZHYvZk1KczhTTkpN?=
+ =?utf-8?B?OHNoMGpOa2hWUEd1dVZHdUpnRFNPdlAxUUdrWDg2N1lZdnRaVjVLazhRdjFB?=
+ =?utf-8?B?VEx6TnQ0UWxDdEJocEJ4K3dZV2dRNC9OTEg4dkY1WDNDN2JOTjhMaFJMK3U5?=
+ =?utf-8?B?cWRvWmhEbkwzZTVlWTdyMGJOdk1OWCtXNDRFV0grRE9RRXNvUG1tNE5vU2Yr?=
+ =?utf-8?B?WlYxWHdkUjA1TWVEYStrc3NTRHkvOU1sWjVycG1pV21TNUpDaU51d0VGbFBR?=
+ =?utf-8?B?UjQ5ODZKOFVTLzhmWE95dlFQdnBEWXk5YVFld01DRDVOdHo5THFocktWdmxy?=
+ =?utf-8?B?NlByVjJJd2tUQk9NTkdWOWVFTlFXRUgxVE1KTXVHYlRHbHFSalVyN2xVWGZ3?=
+ =?utf-8?B?S05TcGxlaWtmM3B2TFV6Vk9qd2tpTW1MbUw0cDhzK0IvNS81WlViYVUxQVU5?=
+ =?utf-8?B?NFpQcjVjN3BUcmNVaEZ2NlRqZnU2RFBmN05nVG5lNzVmOGt6c05JNGpSbFZ1?=
+ =?utf-8?B?cExZK1BFckxmMDFETG9MSUJOZk4zaUVnUlZTdERLY0Nub242YW4wVUhVRklS?=
+ =?utf-8?B?S2xDNEQ0cUtrbjBMV0tTWEFpQmRwbjRsMFpVOUk5QVB4bjFHK05laG5vTXk1?=
+ =?utf-8?B?Tm5OaFNVWWZCTUZVZTRtNGpSTm9FQnlqTEpjTzRXRzJiMkFydVVTeFlBL1lk?=
+ =?utf-8?B?Vll0OE44R0pPb1BHL2NEQ2Q3SnNTc1ozUldIUElud1kzVDZyVDdsWFh4T2xR?=
+ =?utf-8?B?MDFUVm11U1Bya0d3QXlHR01jNXdZOVFIMlRNVCtDNk9ZV3FGMHh5a0Z1YWNB?=
+ =?utf-8?B?VURjTmdBT3QzaWZYUHhNZk1BVVp0SGxkL1VYbG84bk5ldUFTWFhrWHQ5akcy?=
+ =?utf-8?B?MGN4VVpndHV6KzZBemh6eGFaWERKek1JU1VnKzc4RGNQa0MweStUQmV6bDJN?=
+ =?utf-8?B?WXpPenpPay9LZFc2cmRtM2FpWllhZnkrcGw1L2hTSVEreUpNdW1PNjBYU0d6?=
+ =?utf-8?Q?8+6eVy94tzymNDc0NqQSHzJr/GXFKSTA?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AMBPR04MB11741.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(10070799003)(1800799024)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?eW5SNWd3SnpKQkxCNDNUZE56VXJxYTM0WEExeE1TODExc3ArYmtDNmU3aVRP?=
+ =?utf-8?B?dGEzU3htS0xuQlYrU3JNZnZ3ZmNmWnNvTjZlamMwcVI1TDR4ckc0dnk5bkJ6?=
+ =?utf-8?B?aXRxeDI5R0lvWm4vNzd2UTFTM3JwQjUzV3NVK3ZpTXhlU3ErZXVmVkhLMWZl?=
+ =?utf-8?B?S1RMTWROY2JYaXJKVWtpY1BvWVFCRkMxVTlCd2M3aS94NkZPdStkd2N5S2ow?=
+ =?utf-8?B?dnQ4ZXVTS3FLSnJheDMxK2hjNXdiQjZXRXNyb2VwQ0Mvc1poYVNzUzNaVWFN?=
+ =?utf-8?B?K1VkMGI0NDgvalI5eUE0MU5UVWh2cEhZN2NjQzh4Um9SNGovd0ZmRUVVeitR?=
+ =?utf-8?B?NHBWNzI2dks5UkFibmVQdEY3Q2plZlY5b1YwV01yc0gyOFlGZlo5K0dsWjhZ?=
+ =?utf-8?B?MUxIVThLWmhDeHhFcFU5V1hRL3lNTUlic1lRY1UwbGpIZ1lqTFliWUlnSnF3?=
+ =?utf-8?B?aEluSHJ2TG1NNEIrbUg1dDhrNGJEdS9pajhDUVBMdE15MnlOOGtDWDB5c1cr?=
+ =?utf-8?B?NEg5MkUyMm9NZW5UenhLdU1JaFJ6Y0ZOL0FRaFVodXpKL3ppSWhlc0JCcHhW?=
+ =?utf-8?B?UUJZYXpHeW8vL2E3UW5kT0tSb2ZFTDNJTmxpbXdDMStrdndMVUtFN2NjWDFL?=
+ =?utf-8?B?Q2psM05qc1ZRditlM3g2MlI3Nll3c2ZLUzQ2ck5VNlpEUGlObWV4RTd4bGtr?=
+ =?utf-8?B?Z2hVTXJha2tzOHFsNGZ5RjVlc25lWFIzVHNnSklIZlpKNUdhOWdQOCtaYnlp?=
+ =?utf-8?B?QlNJU3Rld2pBbjQzdHNsME9IbzRSMTVTWEs0QlpxNmF2WkhRV2Ntc3lGM3FT?=
+ =?utf-8?B?Wno2Q1U1dmdkT1plWU9XaFpoVUNoTENxWnEwY3FGdW9HSnhNckRmWlpmQlZQ?=
+ =?utf-8?B?V0hsU3Z5QnZwd3gxTldTZXpNRUZOME5ma0ZtVlJ6WDJDMzZ5RFVVOWY3dFRD?=
+ =?utf-8?B?RjJJK0xuTkVKMGxSTnZibmwvb2I3KzQwVDZ5bm5TbkpNZ1pnczNzVmZ3NGNt?=
+ =?utf-8?B?YTFpVnRFZEFPN3o4SGFjZmZvTUh6SitoVG0rcTdkVkZHTEpPN1lZdENZZVd6?=
+ =?utf-8?B?RFUyNVc2TTZpMjhvTHRTNk4xOWRZK2Y1cEZrL1poc1FycjJKN0JKTUtVQWxY?=
+ =?utf-8?B?TG41ZWtWV2h1UzNvZmtaTXpVNEFLdHcyV3ZnRjVPZWhsOHdUM1FMY29GeEJQ?=
+ =?utf-8?B?bnMvQ0F4dHNqcHBEUmFxMWtPdjh4Uy9xQnl2QmtYcnBqRmNBRUZNdFM0KytN?=
+ =?utf-8?B?Zi9vOVFSSmZsY3dBQmZ3dnI5Z1djRlROM2tPTzNicEtSQytWZ2lsaE1jVWR0?=
+ =?utf-8?B?ei9waGIvUzlJSkNDYWxoZlpjOXZBTkJ4dk90bEpiMG9rOXFQd2xFdzhlUGlh?=
+ =?utf-8?B?djByaXU1dElXK0RSdXh4b1dnNGV3dWxNYXZyRG1TNmg5amp5OEdGVUtGYjh3?=
+ =?utf-8?B?TUZqWHpIcTU0aHk4ZzRPd2diRXJtRkhCTHdNUU14QzZhVlNaSWNrTGVBcjFW?=
+ =?utf-8?B?L0laZFNrVjlCeEMvT1l3b2tEM21ISjlxdVBSY1dVVlRNOTgwU1VhVHhFWEFK?=
+ =?utf-8?B?SjJYOXVKSkYvSFc2cGVTVWdtNVdqbW8veGlUUTRsSU1KcitPd0hKcFFUMzk4?=
+ =?utf-8?B?RlNKUDY3ZzBxcEUxWVFNZmdWUEpBcjdzVmxiWTAvMXZSN0ZBNng3clRBdjZP?=
+ =?utf-8?B?UXZ1c1BHY1FxWSthWVlSaGNvZGhRbWxGcDdVakNLL2lMdVVzSkV0UlpxNDR2?=
+ =?utf-8?B?RndudVd3dVExYVJYcWFWd1Q0aDBQZ2dabHk4V2d1WlNSQTNERkk0dXZZR2x4?=
+ =?utf-8?B?QWF0UkR5R2k3dnJyc1RwOUtPRWI1UVVXcjFTV29qU2JvcFpmSkZlMUwrai92?=
+ =?utf-8?B?TnpkZ1A0azdvMlpOTVpaZ2N6T1l5U0RPbWJrQXVMcXBpQVRud3QzbnNNMW1R?=
+ =?utf-8?B?VnNhcDBWU1JoOUI3cmFvZDFMeSt6Zk14SHZ3RW1Uei83K29EQ0c4M1NzL1cz?=
+ =?utf-8?B?aXZWVGFIODRONmlDSXVwYkpzUUdSRm1KcnM4YW95ODI2WnZvUkJ0WlgyWFEw?=
+ =?utf-8?B?MTkrRFNKRzg2b1RhUHl0UXBhRDV0MkZWWnpEN1JkWStONGdkR3NvTi8vUjFT?=
+ =?utf-8?B?cExFQUNEVFJyc2t0Q2FpRXI3YUp3SHpMbUh2ekJ2TjFaSWljenBydVkwbEV4?=
+ =?utf-8?B?aSt0VmZ5OGpMUjNmMVFFZDRhQ2NiRzVPZmszQUJMK3ZVQ2srZUJMTWlieEhl?=
+ =?utf-8?B?WHlUbnlRZjFJV2F5dXp0OHlFbkl3PT0=?=
+X-OriginatorOrg: gocontroll.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 602c95a2-a31d-4baf-e0cc-08de20406605
+X-MS-Exchange-CrossTenant-AuthSource: AMBPR04MB11741.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 10:03:29.6099
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4c8512ff-bac0-4d26-919a-ee6a4cecfc9d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FYfSnpRhNaNVIsdF8ZZqrrrhDY83ZBIhpJXPNC9B8SF/FSd7m2rMMkEBz3Zeg7gIX9aUIylCnJkNQIShUCMxCx2pyPn8NB+7Ha4g9TOzAGg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10782
 
-Hi,
-
-On 11/9/25 23:18, FUKAUMI Naoki wrote:
-> Sort nodes/properties alphanumerically. No functional change.
+On 11/10/25 11:01, Daniel Thompson wrote:
+> On Mon, Nov 10, 2025 at 09:40:07AM +0100, Maud Spierings wrote:
+>> On 11/7/25 17:14, Daniel Thompson wrote:
+>>> On Fri, Nov 07, 2025 at 01:49:59PM +0100, Maud Spierings via B4 Relay wrote:
+>>>> +/**
+>>>> + * @brief control the brightness with i2c registers
+>>>> + *
+>>>> + * @param regmap trivial
+>>>> + * @param brt brightness
+>>>> + * @return int
+>>>> + */
+>>>> +static int max25014_register_control(struct regmap *regmap, uint32_t brt)
+>>>
+>>> This isn't a good name for a function. It doesn't really say what it
+>>> does. Please find a more descriptive name.
+>>
+>> Having a lot of difficulties find a succinct name that fits better,
+>> max25014_register_brightness_control()?
+>> max25014_i2c_brightness_control()?
 > 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
-> Changes in v7:
-> - Reflect other commits, no functional change
-> Changes in v6:
-> - Reflect other commits, no functional change
-> Changes in v5:
-> - Reword commit message
-> Changes in v4:
-> - Reflect other commits, no functional change
-> Changes in v3:
-> - None
-> Changes in v2:
-> - New
-> ---
->   .../boot/dts/rockchip/rk3588s-rock-5c.dts     | 162 +++++++++---------
->   1 file changed, 81 insertions(+), 81 deletions(-)
+> I'd focus on what it does rather than how it does it meaning something
+> like max25014_update_brightness() would work.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> index 4e15c28f8a5fa..6ef9a5d8cd9c1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> @@ -25,15 +25,12 @@ chosen {
->   		stdout-path = "serial2:1500000n8";
->   	};
->   
-> -	sound {
-> -		compatible = "audio-graph-card";
-> -		label = "rk3588-es8316";
-> -		dais = <&i2s0_8ch_p0>;
-> -		routing = "MIC2", "Mic Jack",
-> -			  "Headphones", "HPOL",
-> -			  "Headphones", "HPOR";
-> -		widgets = "Microphone", "Mic Jack",
-> -			  "Headphone", "Headphones";
-> +	fan: fan {
-> +		compatible = "pwm-fan";
-> +		#cooling-cells = <2>;
-> +		cooling-levels = <0 64 128 192 255>;
+> However, at present, this code is only called from
+> max25014_update_status() so the simplest thing to do is to move the
+> code into max25014_update_status() and remove this function entirely
+> (then it doesn't matter what it is called ;-) ).
+> 
 
-This should be
+Perhaps this could be seperated out if/when pwm functionality is 
+implemented. I believe the brightness may also be controlled that way in 
+hybrid mode, but I am not entirely sure.
 
-		cooling-levels = <0 24 44 64 128 192 255>;
+> 
+>>>> +/*
+>>>> + * 1. disable unused strings
+>>>> + * 2. set dim mode
+>>>> + * 3. set initial brightness
+>>>
+>>> How does this code set the initial brightness? It doens't set the
+>>> MAX25014_TON* registers.
+>>
+>> Yep forgot to remove that, I discovered the backlight core takes care of the
+>> default brightness, so I removed it from here.
+> 
+> What do you mean by this? Are you sure you aren't relying on another
+> driver to enable the backlight rather than the backlight core?
 
-I'll fix this in v8.
+Not that I know of, there is the systemd backlight service, but I am 
+pretty sure I can see it first turn on, then get switched to the old 
+value by the systemd service. Unless the simple-panel driver controls 
+it? The backlight is linked to that.
 
-Best regards,
+>>>> + * 4. set setting register
+>>>> + * 5. enable the backlight
+>>>> + */
+>>>> +static int max25014_configure(struct max25014 *maxim)
+> 
+> 
+>>>> +static int max25014_probe(struct i2c_client *cl)
+>>>> <snip>
+>>>> +
+>>>> +	/* Enable can be tied to vin rail wait if either is available */
+>>>> +	if (maxim->enable || maxim->vin) {
+>>>> +		/* Datasheet Electrical Characteristics tSTARTUP 2ms */
+>>>> +		usleep_range(2000, 2500);
+>>>> +	}
+>>>
+>>> If you really want to keep the devm_regulator_get_optional() I guess
+>>> maybe you could persuade me it's need to avoid this sleep... although
+>>> I'd be fairly happy to remove the NULL checks here too!
+>>
+>> Just wait unconditionally?
+> 
+> If you think it will be unusual for the driver to be used without enable
+> or regulator then it's ok to wait unconditionally (all examples you
+> have added so far have an enable pin).
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+I think it may actually be a very common implementation to have the 
+enable pin attached to Vin, we don't have it set up that way. But it is 
+displayed that way in an example schematic in the datasheet.
 
-> +		fan-supply = <&vcc_5v0>;
-> +		pwms = <&pwm3 0 60000 0>;
->   	};
->   
->   	hdmi0-con {
-> @@ -70,12 +67,14 @@ led-1 {
->   		};
->   	};
->   
-> -	fan: fan {
-> -		compatible = "pwm-fan";
-> -		#cooling-cells = <2>;
-> -		cooling-levels = <0 24 44 64 128 192 255>;
-> -		fan-supply = <&vcc_5v0>;
-> -		pwms = <&pwm3 0 60000 0>;
-> +	vcc_1v1_nldo_s3: regulator-1v1 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_1v1_nldo_s3";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <1100000>;
-> +		regulator-max-microvolt = <1100000>;
-> +		vin-supply = <&vcc_sysin>;
->   	};
->   
->   	vcc3v3_pcie2x1l2: regulator-3v3-0 {
-> @@ -90,6 +89,40 @@ vcc3v3_pcie2x1l2: regulator-3v3-0 {
->   		vin-supply = <&vcc_sysin>;
->   	};
->   
-> +	vcc_3v3_s0: regulator-3v3-1 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_3v3_s0";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_3v3_s3>;
-> +	};
-> +
-> +	vdd_3v3: regulator-3v3-2 {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_wifi_pwr>;
-> +		regulator-name = "vdd_3v3";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_3v3_s3>;
-> +	};
-> +
-> +	vcca: regulator-4v0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcca";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <4000000>;
-> +		regulator-max-microvolt = <4000000>;
-> +		vin-supply = <&vcc_sysin>;
-> +	};
-> +
->   	vcc5v_dcin: regulator-5v0-0 {
->   		compatible = "regulator-fixed";
->   		regulator-name = "vcc5v_dcin";
-> @@ -123,26 +156,6 @@ vcc5v0_usb_otg0: regulator-5v0-2 {
->   		vin-supply = <&vcc_sysin>;
->   	};
->   
-> -	vcc_1v1_nldo_s3: regulator-1v1 {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "vcc_1v1_nldo_s3";
-> -		regulator-always-on;
-> -		regulator-boot-on;
-> -		regulator-min-microvolt = <1100000>;
-> -		regulator-max-microvolt = <1100000>;
-> -		vin-supply = <&vcc_sysin>;
-> -	};
-> -
-> -	vcc_3v3_s0: regulator-3v3-1 {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "vcc_3v3_s0";
-> -		regulator-always-on;
-> -		regulator-boot-on;
-> -		regulator-min-microvolt = <3300000>;
-> -		regulator-max-microvolt = <3300000>;
-> -		vin-supply = <&vcc_3v3_s3>;
-> -	};
-> -
->   	vcc_5v0: regulator-5v0-3 {
->   		compatible = "regulator-fixed";
->   		enable-active-high;
-> @@ -165,28 +178,15 @@ vcc_sysin: regulator-5v0-4 {
->   		vin-supply = <&vcc5v_dcin>;
->   	};
->   
-> -	vcca: regulator-4v0 {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "vcca";
-> -		regulator-always-on;
-> -		regulator-boot-on;
-> -		regulator-min-microvolt = <4000000>;
-> -		regulator-max-microvolt = <4000000>;
-> -		vin-supply = <&vcc_sysin>;
-> -	};
-> -
-> -	vdd_3v3: regulator-3v3-2 {
-> -		compatible = "regulator-fixed";
-> -		enable-active-high;
-> -		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&usb_wifi_pwr>;
-> -		regulator-name = "vdd_3v3";
-> -		regulator-always-on;
-> -		regulator-boot-on;
-> -		regulator-min-microvolt = <3300000>;
-> -		regulator-max-microvolt = <3300000>;
-> -		vin-supply = <&vcc_3v3_s3>;
-> +	sound {
-> +		compatible = "audio-graph-card";
-> +		label = "rk3588-es8316";
-> +		dais = <&i2s0_8ch_p0>;
-> +		routing = "MIC2", "Mic Jack",
-> +			  "Headphones", "HPOL",
-> +			  "Headphones", "HPOR";
-> +		widgets = "Microphone", "Mic Jack",
-> +			  "Headphone", "Headphones";
->   	};
->   };
->   
-> @@ -399,27 +399,27 @@ &package_thermal {
->   
->   	trips {
->   		package_fan0: package-fan0 {
-> -			temperature = <55000>;
->   			hysteresis = <2000>;
-> +			temperature = <55000>;
->   			type = "active";
->   		};
->   
->   		package_fan1: package-fan1 {
-> -			temperature = <65000>;
->   			hysteresis = <2000>;
-> +			temperature = <65000>;
->   			type = "active";
->   		};
->   	};
->   
->   	cooling-maps {
->   		map0 {
-> -			trip = <&package_fan0>;
->   			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-> +			trip = <&package_fan0>;
->   		};
->   
->   		map1 {
-> -			trip = <&package_fan1>;
->   			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-> +			trip = <&package_fan1>;
->   		};
->   	};
->   };
-> @@ -437,6 +437,12 @@ &pd_gpu {
->   };
->   
->   &pinctrl {
-> +	ethernet {
-> +		gmac1_rstn: gmac1-rstn {
-> +			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
->   	leds {
->   		io_led: io-led {
->   			rockchip,pins = <3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-> @@ -447,12 +453,6 @@ power_led: power-led {
->   		};
->   	};
->   
-> -	ethernet {
-> -		gmac1_rstn: gmac1-rstn {
-> -			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
-> -		};
-> -	};
-> -
->   	pcie {
->   		pcie20x1_2_perstn_m0: pcie20x1-2-perstn-m0 {
->   			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
-> @@ -463,6 +463,12 @@ pow_en: pow-en {
->   		};
->   	};
->   
-> +	regulators {
-> +		vcc_5v0_pwren_h: vcc-5v0-pwren-h {
-> +			rockchip,pins = <4 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
->   	usb {
->   		usb_host_pwren_h: usb-host-pwren-h {
->   			rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-> @@ -476,12 +482,6 @@ usb_wifi_pwr: usb-wifi-pwr {
->   			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
->   		};
->   	};
-> -
-> -	regulators {
-> -		vcc_5v0_pwren_h: vcc-5v0-pwren-h {
-> -			rockchip,pins = <4 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
-> -		};
-> -	};
->   };
->   
->   &pwm3 {
-> @@ -500,8 +500,8 @@ &sdhci {
->   	cap-mmc-highspeed;
->   	mmc-hs400-1_8v;
->   	mmc-hs400-enhanced-strobe;
-> -	no-sdio;
->   	no-sd;
-> +	no-sdio;
->   	non-removable;
->   	vmmc-supply = <&vcc_3v3_s0>;
->   	vqmmc-supply = <&vccio_flash>;
-> @@ -514,8 +514,8 @@ &sdmmc {
->   	cap-sd-highspeed;
->   	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->   	disable-wp;
-> -	no-sdio;
->   	no-mmc;
-> +	no-sdio;
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd>;
->   	sd-uhs-sdr104;
-> @@ -538,12 +538,12 @@ flash@0 {
->   };
->   
->   &spi2 {
-> -	status = "okay";
->   	assigned-clocks = <&cru CLK_SPI2>;
->   	assigned-clock-rates = <200000000>;
->   	num-cs = <1>;
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
-> +	status = "okay";
->   
->   	pmic@0 {
->   		compatible = "rockchip,rk806";
-> @@ -898,10 +898,6 @@ &uart2 {
->   	status = "okay";
->   };
->   
-> -&usbdp_phy0 {
-> -	status = "okay";
-> -};
-> -
->   &usb_host0_ehci {
->   	status = "okay";
->   };
-> @@ -923,7 +919,7 @@ &usb_host2_xhci {
->   	status = "okay";
->   };
->   
-> -&vop_mmu {
-> +&usbdp_phy0 {
->   	status = "okay";
->   };
->   
-> @@ -931,6 +927,10 @@ &vop {
->   	status = "okay";
->   };
->   
-> +&vop_mmu {
-> +	status = "okay";
-> +};
-> +
->   &vp0 {
->   	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
->   		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
+Kind regards,
+Maud
 
 
