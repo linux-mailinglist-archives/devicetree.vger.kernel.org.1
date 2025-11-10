@@ -1,128 +1,120 @@
-Return-Path: <devicetree+bounces-236638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B901C4621B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:08:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4461C461DF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:07:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 109103B5219
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:08:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2E4E3A2377
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EA42EBB88;
-	Mon, 10 Nov 2025 11:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A89273F9;
+	Mon, 10 Nov 2025 11:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="RnLbc+Sa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pITaHv7F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D79C30596D;
-	Mon, 10 Nov 2025 11:07:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD05307AC5
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762772874; cv=none; b=a+5IUCKhj9shMMOR12zNAJJfHtu308PiF7AFNLcwuvCA5eWKSgK9d8F+ike9zlQxvC9wYfhccGzI2mnR8WD4a899tkNeEbvbcOgwynWpJe8waEHtdeK7cIqV+F+0ZjLC19pRz+1rZ3JQVpglEIUsSRZG4/CgY5vCuSEzU+ByCM4=
+	t=1762772837; cv=none; b=YO1ET8Nb5ioo9V1CsNYoBiIsC2L4TN6pr37l7DiifuUXlwE4lwvVqxQT/TFoM9mSkvFazZq1PoKelGHZwrN3LcHdFy3Vgkr5rK5gyUVc3iECLODp6HakMbPlI5O5C16TjTLpZ+5BzN6pOjlC623fTbWjYKKJ7PYrneopQlj8qWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762772874; c=relaxed/simple;
-	bh=SKw8CC1n2UF3Pi49EJY3Kpovsl0gwIppiQVUNgYN7ms=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oDlrp7eHoqd+JoLej84GWVQXRLCbPu4B1k/1FCY4A905PvCGye1lzeyHOsAsn0i3YRlJ/izS1+EvSNXVZ+eIGYWZjwcFfrlvGX3j1g/3Ek7dGYH+u3xZ8vjywKWuQW0aNFm6rVC3Rcp+tP9G/8y8xBzLGU5tuyL2Lmqv3ScUWbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=RnLbc+Sa; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1762772872; x=1794308872;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=SKw8CC1n2UF3Pi49EJY3Kpovsl0gwIppiQVUNgYN7ms=;
-  b=RnLbc+SaOegthGrC0G2o1auHyQaoFoPf3bC+ZhWWNEQO4H4ahAqtBgiu
-   oTe9ELpvJlM08vZk6sbiNf4nOZue+Ew6MJ+hrTaix1HelQOhrx39N606C
-   kGIizla8jj9djAfWknx32+sctaBFX6IM0L736wUARNcQAoWZ+9lziU8Da
-   bbrq5vF26fCDLXdfNnn+gIJxHUZwQuj94heSRocXR63lKQflGnwHUfcVT
-   gOaaxpI5NGojskHxsB5h2eV2Lli9Afqqs9i1jo06z3eyL/klRhdFfY+O+
-   7adAoa2TsnJ9xUOkWiTDfvTouMaVawsawiySxXZMLyY2HLqRgpIiq4SsG
-   w==;
-X-CSE-ConnectionGUID: 8SH01HuiQpObZsvMkVgz3A==
-X-CSE-MsgGUID: 46V5nKipS9ywXMWXczz15w==
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="55314297"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Nov 2025 04:07:45 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Mon, 10 Nov 2025 04:07:28 -0700
-Received: from DEN-DL-M31836.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Mon, 10 Nov 2025 04:07:26 -0700
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH 2/2] dt-bindings: phy: lan966x: Add optional microchip,sx-tx/rx-inverted
-Date: Mon, 10 Nov 2025 12:05:36 +0100
-Message-ID: <20251110110536.2596490-3-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
-References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
+	s=arc-20240116; t=1762772837; c=relaxed/simple;
+	bh=y9Rc2TSg2Orx+cZa9j2QdmCSgqy1wVj5vvqljCG9AMQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f2Uifnwfu8w0zpgR+0VNu1PrZjz0uEIU6h9X4MwtXNW9voo+qEdhOARQraARidV18R8DHlBqjfcelUnqcyjR+a+wHnHZP/KwLHNv4NwFL6GEkJDI++m7YyyCRwvEIZ/KATTR8gvKhJ5isW1HBou6pUgfq7h441kBQghIfaZqZcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pITaHv7F; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7a9c64dfa8aso2343141b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 03:07:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762772834; x=1763377634; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TZrYqw2/O2UZmuuLXYkU5bIjhuFDnuqQ3/E5dCC+u7U=;
+        b=pITaHv7FQd7Ixj+gmMcfdIpoCp452jsxe5wrcUQnPkmqLdRptFvnTrXkBLEmj1B3dY
+         8T9yTfQcHwQlEDmQgVFb+uYgN8AiJAeC2iB59o3D9AY8ZwfpNMKDvxDxp2L+iYYepaGE
+         7G+M4Fq0mSIte22N7kwZJot8nVqApdjdpAdrW+WeZ4TqOvNVJ978ZtDu6PIfo/s2Sbqp
+         vOuOTn/MdTjzOK+VLNxHxn5KGFq2MprbrWECDW0RGd9RTHUTbAUm8rCmmaCJC9v3mKJK
+         d8BJB9xKbSsLq5nXQEyu3sl6CEJpSZMvKsMe+ej0jRPga47fzdAS8+Vz7WyPiWkCzn2x
+         CAmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762772834; x=1763377634;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TZrYqw2/O2UZmuuLXYkU5bIjhuFDnuqQ3/E5dCC+u7U=;
+        b=POUC4eLUQ3UNVXAbnzh0vZOC9DGUXS6QQvYprEU42PlblswwYCNNvl9mn2pmkoSi7q
+         BiNoCWfR+erkYFHy0jc7uPo8J5mAD+l4nRkpclbp1NN2CC+K7ooGWwLbFmiym4aSzVFX
+         UocQfk4NhdSRgeDZ6ld1E1IpmvgtWA3M0XmkXap0Oh1exSRWOmzpICH8L0/mVBNjIWcH
+         GUElych/43vb8h0aXn1DRbk3PuBFjkGWv95RPuRaIEa5mzgTbCKNG69bnymRmt69Fu+C
+         4pzkaLm35jONH5qfphUyIEHVJDShyIVOPNDcOK5yj9RCvGmNb7m9N/vXZcaLdkr/wGfG
+         k0Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCVr3pcTK7+MHTfEFzI1yKlvr1JPJcCMdd5aI4UiwMPvpWbYZEFrcW/b3g/XaYEHef2Jr+w5kUKNcxec@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyj4RR01pgBaXvzZd7e9TSVQWnR7RXX4rLSK+fnTNYeNmiz23cp
+	mvYGKL+iFWNDTKzygIXJWdbfoFBmn490o8S8QiwND1WWl+Hp092LBMxxPJK3iHdris4=
+X-Gm-Gg: ASbGnctoTl3rbrjNkDfb7plg99jby5qyK0zm70xJAxhcqz6R3YXeqRahRoq0UFh66M0
+	sV1mWL87GgJ5ynIY2b10+KehUH5zMhJdwu/GKyxnk5+77jTBHru5u+HFQ1MCuzqsXy4EEmhPmTH
+	jUaBrjVEn8KZJKYK6QmUsFdnDqkTyweCUkFl+3gw0IwMHDu0/oCd538Etr43i34QYsrPfdBZ0Au
+	ZCMpzo/sUJvJ02aEQAgLvea6im3SpzWQSetIdLI2Fpuw2zm9lKi/+jjgX9LCqqP8P5AqOAaLPvE
+	tL9DXhDWTtyG0Z4UfCRvZqykCVq/6kK0vbPr1TA3gBhR7rCTHNiy4SooSUe5NTplKc6ykcO93rb
+	E9IGp9FsErJddYbg7OCakJiVKA3JfbU4mjUxByNUezx6fVtNCAgcbwTIhW3tIRbUtLMaY0xzFkJ
+	xfJA3ea9XGjnA=
+X-Google-Smtp-Source: AGHT+IEEBmMVZO0k0MIdHGG3oOt1wzE07GZr0Rosgte3T2/mK8NYjyyq/dXAAAQzolcEZu8MEC+rkQ==
+X-Received: by 2002:a05:6a20:12c1:b0:350:d523:80a4 with SMTP id adf61e73a8af0-353a314ff11mr11044525637.28.1762772834004;
+        Mon, 10 Nov 2025 03:07:14 -0800 (PST)
+Received: from localhost ([122.172.86.94])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0c953cf79sm11625705b3a.3.2025.11.10.03.07.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Nov 2025 03:07:13 -0800 (PST)
+Date: Mon, 10 Nov 2025 16:37:11 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Yangtao Li <tiny.windzz@gmail.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Maximilian Luz <luzmaximilian@gmail.com>, 
+	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 02/13] cpufreq: dt-platdev: Simplify with
+ of_machine_get_match_data()
+Message-ID: <qg6xxh3vwbfnl3z6otlr2bue2paig7w3agbpbauuzmppiof3q5@e4xjlcfu43cw>
+References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
+ <20251106-b4-of-match-matchine-data-v1-2-d780ea1780c2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251106-b4-of-match-matchine-data-v1-2-d780ea1780c2@linaro.org>
 
-This allows to invert the N and P signals of the RX and TX Serdes
-signals. This option allows the board designer to trace their signals
-easier on the boards.
+On 06-11-25, 20:07, Krzysztof Kozlowski wrote:
+> Replace open-coded getting root OF node, matching against it and getting
+> the match data with two new helpers: of_machine_get_match_data() and
+> of_machine_device_match().
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- .../phy/microchip,lan966x-serdes.yaml         | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
-index 6e914fbbac567..21b19e06a75aa 100644
---- a/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
-+++ b/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
-@@ -41,6 +41,30 @@ properties:
-       - The macro to be used. The macros are defined in
-         dt-bindings/phy/phy-lan966x-serdes.
- 
-+  microchip,s0-tx-inverted:
-+    type: boolean
-+    description: Invert the TX N and P signals for Serdes 0
-+
-+  microchip,s1-tx-inverted:
-+    type: boolean
-+    description: Invert the TX N and P signals for Serdes 1
-+
-+  microchip,s2-tx-inverted:
-+    type: boolean
-+    description: Invert the TX N and P signals for Serdes 2
-+
-+  microchip,s0-rx-inverted:
-+    type: boolean
-+    description: Invert the RX N and P signals for Serdes 0
-+
-+  microchip,s1-rx-inverted:
-+    type: boolean
-+    description: Invert the RX N and P signals for Serdes 1
-+
-+  microchip,s2-rx-inverted:
-+    type: boolean
-+    description: Invert the RX N and P signals for Serdes 2
-+
- required:
-   - compatible
-   - reg
 -- 
-2.34.1
-
+viresh
 
