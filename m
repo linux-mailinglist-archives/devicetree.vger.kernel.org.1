@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-236584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52DA5C4592D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:16:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94D07C45933
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:16:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6CB03B622E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:16:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA8383B5ECA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629C12FFDCA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD7F301005;
 	Mon, 10 Nov 2025 09:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jxKDIytR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="do95ZCBU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517642FF658
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 09:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5336C2FF670
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 09:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762766132; cv=none; b=JvruY6LOcyPDHYj0zAz5pn3QsjE9VNKkSYHOHYDKETZ+qBRBf012ZUiKrWXt7TflkVweNs1WDqqYfVCjRmNJKMft0T32G7/j3Bcf/zyENUIsoRll3QKdIXVpOHaaajJUi6iPyMH8FWOrn8PgOZ8RQum52DO1ISnqjjhXkn/XvXI=
+	t=1762766132; cv=none; b=jAHgaSpNTYFSGJdDN0eBSHhJ+28sAeyVICsotPVKNE3ZOsHwWPrRxmH3SrrEP+3awk1AIM9epZStfQtVBzAMI9TkivtEHNsnh0ONbKQHpJEPHHA+A4G/e7OOXtoADDbZOvg0CAojZHrriG5UbNmh6Ogj9CsYkTDWFBblbzYu0cU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1762766132; c=relaxed/simple;
-	bh=o0ADLZP20Gf+RaCUCo73PsEebUZu5lyI6twUNiTxrps=;
+	bh=Ubq1KrUSxqn44bDKjL0Tglob05w52CADvwCDYj5e0/0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SDk+4e04R3TsT5Lp1heTXv2Gu2+ihSlAPANvQ2tOutMrOguH2XiPK/W84H9SMx4W7LG7ANHqg4MAQ3g1/YlQDLDtztJc2QMdv0dIHAuLAtOhFYICkP8Ll2ZlQrox0att5HDIR00f8363ps2/fIT1VtEqdFCwM5tQ7PbAu2vaZ3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jxKDIytR; arc=none smtp.client-ip=209.85.167.50
+	 MIME-Version; b=JUi/nlrWs9TQI60LYWF9lKpVFJiFUGROtHCQg3Db0MObLGewoXhXj3BaxT5pF6HzHzBEdQp0NJN33EDM6nMpf8MH0fVCpCDCVYw25WiNb1I3ZvTrVS9Cz413CZcw4bECLx+18QBlXEC+lQQky9MTtjKyB4x2dYgNwAMHIyJgalU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=do95ZCBU; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-592f7e50da2so3348348e87.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 01:15:29 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5942ee7bc9dso2595892e87.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 01:15:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762766127; x=1763370927; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762766128; x=1763370928; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CS1qvZ66jY4Y+/VjejeV3GAhiKWhtdvuL8aLYEGuxs0=;
-        b=jxKDIytRPDugAQZqX2/1YEkQKz5ndm64a9UOrKEytDeoZ0cO58XY92GMvropUaVmJk
-         hGcTavO0IY/glgNYnryp4PhF/70sch3zZqSdcgvfJUHHyFwuLWuxYCWsypQxeXCxhaB7
-         kn85IfIjScyI7g8ftSjh8pf0PMKuSFF2P4SpUxNniKickmhn7VXbI2G7aTC0bbywb6W7
-         /UAzcIr3Ai2WMMn2sCXHvilRHGKGj+vmsR4KZL8CWNTh/WwV+x4DjXtMqQC2nZSTv2HP
-         al5qifP3PjUQUS6/I9zApAQqbnlmvFtxj+FoP84Y3s4wc83s86U31626s6/sHY2P9BJM
-         A3rA==
+        bh=0NlbLfnaH1AYI1Kzf2XAYKDUFV4VkFnG/ReSb+d8FKY=;
+        b=do95ZCBUgKdfnRF1yICsFR1eSv0ifgcM+yyf47RAnIecEPAB+Xdhvhx5OYpRUTdt3F
+         GH7jD03BE6wdIuCrkJFg7SnlVxE2wwiR1KPF5E+lzOLfsgOIuPBNeRPPb0Tiz2EFTEcb
+         UYa2vs1Yo11C7gg0/ZWYi+2bj7C1+aQXVHSbdWNra6TjdXh8yazJuwacXqHBtNK77PKF
+         GmY54aHLz0Sk23Da4sxF2IEWMmxcWQWfjrbZxEE9giZY0J84TZ6MiuiNO++LlymKS9YH
+         zIlzADt1WDZlbDHEu8GbwhkmVmAX9NNFvLbNLjlM4qhkzTCtOly7Yc2JYYMZCenAbG3F
+         RmmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762766127; x=1763370927;
+        d=1e100.net; s=20230601; t=1762766128; x=1763370928;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=CS1qvZ66jY4Y+/VjejeV3GAhiKWhtdvuL8aLYEGuxs0=;
-        b=pb6X/zMQhRgaPQhDhTdA46+KEQYA03MgiAu+YwXr62OxkKh5JmEOzGDJk9mZhqFNql
-         a8iD0XWOCSIQB6gSvXJcoIptoLzEU0VaHHFp/EKn+WAwAyIowuy8w4LdixzZiiN2LrhH
-         ZBp34z2kYxe0TWpsfbWQOpAC2XkxXQHRsOZkRcnBAcQOHxGoL3BhsMqGQyaWkbtqz61C
-         2ITVqbhmSVT6RFlzRYV8QHN8JhUVIP14QT02mhzMHiDFQ6OZgPr4kODN9/sYF2VcMzXr
-         fDkZwrjRjQYrXptxLg6a0ifSrk9k0xEGEuKcu+bn2HEkwC2TjaevHTCk+vnSvUgv7oEZ
-         z8Kw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMh61IhPd257ddDdwRodHohdq44Ux+P4OWHGBY0TOhzm+UGRbMqiuN/WvoXbWEE/nXo0Xc+j+uhOf1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgdvMtOLFbzSmsYwfwmAU36StXlxQp1dKxT+VL44Ob5Rh+a5Us
-	KjxrpB2W5U1TjJApG/hLAZ608WPRKstfOdb9YtV+CzSufG2oly/IwU20OYwisg==
-X-Gm-Gg: ASbGncs27a+n4iq9+rPu89ow26vVfAqiz6zJF9Yvj9elkg3g7BSLGuKlfZ9Kvmg7dzK
-	dzv3wW0CaK+UyjarRqc2vuKtV0TWSnR7sIveKFGsabRQ+Vxx8Aow1bUCW6S9WOKgeYyxbvSuXgB
-	XR9y9da2NagJGa/qg6/meF9TQSreqsiP55bLM3CLqb8WgL4qgFhdnwnBSmIRtg9BrHoENFHsshU
-	aHeU4/NqlcmtmFh9xZgJ5cU0doId6Q3/DAClLS5Zjxza9NoIsaKSY6yaooFiFe+mhoIHywrRxLV
-	g7ZD3UZvYwnwIpljY8nk3O3V8qxXtyN4cNtyYBHIKnBUIrQKaXQWCNt0D5EFZ5y3Ip72ry2APLL
-	v44gb7tuwZZIlZfuv7DuMupwpaJ+pmEUzGgNkFr6+BClMuioJTIcHYpBN1m7m8vIz
-X-Google-Smtp-Source: AGHT+IGg01NCiIGQo9N2wxV8aW1VWsEBMMCQPFsF2STXbWMO8Vd4nbT/5Lwb6SNxAC57s9F/DHJ/cQ==
-X-Received: by 2002:a05:6512:224d:b0:594:511f:f1f1 with SMTP id 2adb3069b0e04-594599999d3mr3496080e87.11.1762766127093;
-        Mon, 10 Nov 2025 01:15:27 -0800 (PST)
+        bh=0NlbLfnaH1AYI1Kzf2XAYKDUFV4VkFnG/ReSb+d8FKY=;
+        b=GozNpHcXiysqOEi4HokOK/6f8FuZqXs4cDz49pRjSNjYOk+v7l5eUdHHBlwubNXn2U
+         /9iiYaZB08wnZzj/gf6IFr0iruIpeb9KlcYqZcnpIwK5bvLwG215tz6WVkitVcmLgN0S
+         ojvUFNAa8kotCbfIHZIROIZZJ4gPgYouRA1k5YCk7yED6XEtGNxfElr3uTcBzPrS3oj2
+         etl6hsZpHd2IAvLMhGh8kqoeTawqaWfOUGpJaS/vTAkZXzNxK+0TGUNSwqSkkvBUzLUq
+         n8EY3hxWhgGL2GDSCDpJCaTFfzWpR7USf4xpxXWZSnNqJGCRcCJODmnTzk829tD8pkkt
+         Adsg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCLTIkLPecGNBXbJinZV+v3dzuSPHMZoNqK+H9vRqpSCgsBPtLu9b1XWMwrgP22jz0+8V1QuOe9633@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBw17SDsb0CiM6+r3KVbtGQThTWOevB2mSJiXIcjTQYPaRuvEc
+	lzLxia2AsmNK3+pqhRDb6pIqOQYgw9uWnScLKGT9YnD+8qLb1Yd8DUB2
+X-Gm-Gg: ASbGncsNn78clIYNIrpsOHzckiKQzuY9fpvDdtKayAUklG0GCQmYuRY8ooGLCbDEZ4P
+	oQkhX01Zszczoc3Q0H/pXADr/8PftZUi8dnSF0NJKdfwpJ5rHAEPHPYORJT27cRpV+6wCTecQyg
+	gFhSaqcdd4KQ5cnuENGh3DyNA0geJ3itNMVOIe67tcFpSyFKT4RA02UlG1vb61EI4z7Q1VE1xX2
+	wUxJ7r3sbl2uoD3dGozzZy7603gvGibOPnB6HsHG86G/daASPisOWuv4vuidPsxKzulPwDhMksY
+	E+GLqrgBTb2lcRbXQikGGNG3fjasyI/Tsf3FZbCEV3qmyRsTb9WXN29P4zIiGm2nBHK4BYY+rH3
+	zx9/L2+bDT/fBPQmatbEkwK1FpLsQszJhvZiljoeKEQ32fSu+ntbhG91MfQnMja+iEkDwTjVu8y
+	4=
+X-Google-Smtp-Source: AGHT+IHDS3A8pXlI+xOx72GoRTOq1E/nxmRQrFx2InRcqIyyMLoPJFpVA039XzbqYUYjEi5dGijE8Q==
+X-Received: by 2002:a05:6512:3a8f:b0:594:2f1a:6ff0 with SMTP id 2adb3069b0e04-5945f1653c4mr2154809e87.9.1762766128299;
+        Mon, 10 Nov 2025 01:15:28 -0800 (PST)
 Received: from xeon ([188.163.112.74])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5944a0b76f4sm3852006e87.73.2025.11.10.01.15.25
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5944a0b76f4sm3852006e87.73.2025.11.10.01.15.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Nov 2025 01:15:26 -0800 (PST)
+        Mon, 10 Nov 2025 01:15:27 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -92,9 +93,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-tegra@vger.kernel.org
-Subject: [PATCH v3 3/7 RESEND] ARM: tn7: adjust panel node
-Date: Mon, 10 Nov 2025 11:14:33 +0200
-Message-ID: <20251110091440.5251-4-clamor95@gmail.com>
+Subject: [PATCH v3 4/7 RESEND] dt-bindings: display: panel: document Samsung LTL106AL01 simple panel
+Date: Mon, 10 Nov 2025 11:14:34 +0200
+Message-ID: <20251110091440.5251-5-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251110091440.5251-1-clamor95@gmail.com>
 References: <20251110091440.5251-1-clamor95@gmail.com>
@@ -106,52 +107,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Adjust panel node in Tegra Note 7 according to the updated schema.
+Document Samsung LTL106AL01 simple LVDS panel.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm/boot/dts/nvidia/tegra114-tn7.dts | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra114-tn7.dts b/arch/arm/boot/dts/nvidia/tegra114-tn7.dts
-index bfbdb345575a..75fbafb4a872 100644
---- a/arch/arm/boot/dts/nvidia/tegra114-tn7.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra114-tn7.dts
-@@ -43,7 +43,9 @@ panel@0 {
- 				compatible = "lg,ld070wx3-sl01";
- 				reg = <0>;
- 
--				power-supply = <&vdd_lcd>;
-+				vdd-supply = <&avdd_lcd>;
-+				vcc-supply = <&dvdd_lcd>;
-+
- 				backlight = <&backlight>;
- 			};
- 		};
-@@ -101,11 +103,10 @@ smps45 {
- 						regulator-boot-on;
- 					};
- 
--					smps6 {
-+					avdd_lcd: smps6 {
- 						regulator-name = "va-lcd-hv";
--						regulator-min-microvolt = <3000000>;
--						regulator-max-microvolt = <3000000>;
--						regulator-always-on;
-+						regulator-min-microvolt = <3160000>;
-+						regulator-max-microvolt = <3160000>;
- 						regulator-boot-on;
- 					};
- 
-@@ -325,7 +326,7 @@ lcd_bl_en: regulator-lcden {
- 		regulator-boot-on;
- 	};
- 
--	vdd_lcd: regulator-lcd {
-+	dvdd_lcd: regulator-lcd {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VD_LCD_1V8";
- 		regulator-min-microvolt = <1800000>;
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 4a5ca013d0db..adb244460a09 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -274,6 +274,8 @@ properties:
+       - rocktech,rk043fn48h
+         # Samsung Electronics 10.1" WXGA (1280x800) TFT LCD panel
+       - samsung,ltl101al01
++        # Samsung Electronics 10.6" FWXGA (1366x768) TFT LCD panel
++      - samsung,ltl106al01
+         # Samsung Electronics 10.1" WSVGA TFT LCD panel
+       - samsung,ltn101nt05
+         # Satoz SAT050AT40H12R2 5.0" WVGA TFT LCD panel
 -- 
 2.48.1
 
