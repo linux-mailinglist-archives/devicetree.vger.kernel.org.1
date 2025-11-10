@@ -1,149 +1,139 @@
-Return-Path: <devicetree+bounces-236491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22974C44D2F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 04:19:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C359C44D2C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 04:18:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D35813AF840
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 03:19:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 586AD1888805
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 03:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868662773D8;
-	Mon, 10 Nov 2025 03:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 570D427703A;
+	Mon, 10 Nov 2025 03:18:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="YZjiaiJd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DBD27703A
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 03:19:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF9327603C
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 03:18:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762744787; cv=none; b=fniJkEnjkV6KLZ4+0hwEmfC9N3JAqAbRMZH/Gk9bkAoRhlfVYeTK9zgznU7/raqBBUq0rQTmOaxgBGHsPUE3V26sQ3s5HH8ROHSS59OO7DWK82LUw0yD9/8uX79BdYM2z4vHq7aEVbXZF7up4xkBJkeDaEbka1Wai+wuM9X9ocA=
+	t=1762744697; cv=none; b=NNVlhiIhMkLTRUPCW5WQjoiSI8VNYqZdAEM6xixBnCJ+eSeqezElbmE0ioqTYAfLOPFMl2Er6U5TL3hl80+n6VN5iUUPJ/mOwK5fUtJTWhoCiHQZjHh7K2N4h6zedE9iTSjpvvwbiSin+UNQuRX6bK56R7axa6h1MawXQEWbxd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762744787; c=relaxed/simple;
-	bh=cxxy+9G8zDwKqKaLUL74Xz3Lo6RrcTqTFrKsKRokBac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I+6jN5NzRmGKULlATHrwEiQHZwMK5bhlSnGLo+Dqbiuwou+e9D6EFSXtO4Xvyo8tlwlXdlRffMiel0ymS1g16TSFpqfGYp+yNQ+iZRtaj0Ll6A//lj8KszXMcK4gEktEZJj4vjV9iUWIX3soV34xWNTBwMl53Eo12B47mmK5TcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1762744600tf9445d23
-X-QQ-Originating-IP: owwxmhWvzJquoC49KOn5l2eFLSs+hUY9atpzzmoUgXY=
-Received: from [IPV6:240f:10b:7440:1:64e0:6ba: ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 10 Nov 2025 11:16:37 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 3529179017162153807
-Message-ID: <EECF7629320EEEDD+03c6ee06-4351-4150-b1b0-957d5cfc3d6d@radxa.com>
-Date: Mon, 10 Nov 2025 12:16:37 +0900
+	s=arc-20240116; t=1762744697; c=relaxed/simple;
+	bh=rP3Cj1XyOmMR69PUCnq8e0IQkTlY2z4XKBOAdg8FfL4=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=AVP7c6K/0eRVKfU48aIYHwxiZqTRcTsqFQWTKUj7jyysYVTxigfOHDUC8C+fR61G+GQb6OA+HGbdDT84TorgqRD7aTSTBcWglWpzWu34A53Y9ds3VUbCarql/wdISDSennKuIxykCEe7RawIVNytBObZlm0mk+hmelYJaOMmVKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=YZjiaiJd; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 05EDA40EC0;
+	Mon, 10 Nov 2025 04:18:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1762744689; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=LH1k1T7oTNXD8mQxm3nd393V6A/zbNo0/16PhRkMMbk=;
+	b=YZjiaiJdL2l/5iJDNM66wH6BzqWpmsoUXzT2XD6zVw5Mraeg5t3/J0zQWt8aMGF56knYXV
+	x+/x7ZG7rgo+8sQ4s36HCswa4SkQeUzmiSl+rM9CXdFNG/WcKKWr3PWfYlk8ptlp94ViBf
+	Wcokym2/RuH0h3uTk8htHF/xhuAzC6wD5MiDTpQ0/7sJmFvRUQCEqdwzmNI/HJ7bdJBoDx
+	lPWT27ExgG9F1piav2a74xCDbaY6SY08FhFjC1YGhqu0KgrvKkBNMHhH/vODqqrCtNjBzc
+	/sZv3JZrstyC+I0Hzo8Y/0gwM9QmESk0qhW+FJYBkjUVSLYpA5+vv8f0HWZbEQ==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <CALWfF7K3zNxSsXVpW8pLc_xWi793HG99OvbshtP-0=764JmPKw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20251105051335.17652-1-naoki@radxa.com> <20251105051335.17652-4-naoki@radxa.com>
+ <CALWfF7KyTfpXSyjVQaFzqtn6KyDxuyZOBpPR8y-jf6sduNxq5A@mail.gmail.com>
+ <1EE1A1D9D7C100DA+1b365782-98c4-4ee0-ab96-920990841903@radxa.com> <35ff8e6f-dd2b-d909-70c7-b19240e32ccf@manjaro.org> <CALWfF7K3zNxSsXVpW8pLc_xWi793HG99OvbshtP-0=764JmPKw@mail.gmail.com>
+Date: Mon, 10 Nov 2025 04:18:04 +0100
+Cc: "FUKAUMI Naoki" <naoki@radxa.com>, heiko@sntech.de, joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com, quentin.schulz@cherry.de, pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+To: "Jimmy Hon" <honyuenkwun@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Fix microSD card detect for
- Radxa ROCK 5 ITX
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andy.yan@rock-chips.com, dmitry.baryshkov@oss.qualcomm.com,
- sebastian.reichel@collabora.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251110030036.825150-1-naoki@radxa.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20251110030036.825150-1-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: Nt0knubC5sw3w+gZN9coIRRDP4taGYaL1KEMr7lxB6Ke7vuGCwNxP/+k
-	H5I4zO5zB3cV1vTndxCiJjt1KV5wMGd6UVzBBegPA1o6BgoqbyGLYyspPBEVcVUHWmwM9R+
-	UDa6V1mIZJ1EQTZ60SHK8IvgEkYUvP06orLkNIBzU31cpBA80Qxt3tARXYuiqJEQiZPqHBp
-	N+qss4LQ7bZJJ+fTITbwWcpz2LCGdUrfUxpLX1JexwT6hjaP2G8/tsVjiEFZuEaa92BmG/Y
-	kegqbkXCZKmb88xWmJ/15npoonT93m1tANOwoNIZngwW9kSUifgUbN+yZS6bC4DC3W5pd0N
-	ViAG2f1lOCFb5pRxJJwEEOmcTc6otvC00iNlnjqcCohuPygjpA+oGMxsw8h46g40CL0Lk5d
-	/Giiai8qwN8M299P1Wync255F5RjfE95GMjuvvKWml8YfqknncNCpBpY4WRLYBCaY5YRnq0
-	6k5eEsLlYKoAazueQjUFTatdvooQ30kBAXJ2+x4XUKHe85AWMG9yeKf4khBOVbas0vq0x/l
-	xQA78xXYakOdtjvbwU+tywn7xPeB4T1/l4UpYXh55V+hgq35au1jiTmXhj38JS13fiGL9YP
-	/dX4XdZYBcIlD8wIdXVNh+s2sBd5oiy7LvfTJbm03eQP45Ngq8swRo7diNogAwH7bgniK7H
-	23CuT7grLoYtfiRjCfUVwrVOlL1nfVt8C9TSzkUQPOtOFyal8eBGXejVdFiSMedjdpigdL6
-	ZASTpKwLj+0t/ryi41aSDiMK1sXhmExzGMlw+A7IZU+tc/Bidj9ihF81F+wcOnsXZsTII2E
-	WplYZYcZLiv8GjatW8PyZHqCHkYjSzY8vEna4u7mUs+plT2zcHhTGRAAM1FWD2s7Ef1m1AE
-	FcJbtZIpnq+yhmNzcMu33BhK/82FupSnW9s9gnQRYNIEJMQY/VhydnfLFzUw6QIgKIvXfk6
-	x35G4p3XNpSD3uRhKw03arh+uqKlxtyYXnFuHHoHgx9gCzrOK5innvZb7
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-RECHKSPAM: 0
+Message-ID: <fab774df-de59-f101-55ec-5d4f691955eb@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v6 3/3] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= Add Radxa CM5 IO Board
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-Hi,
+Hello Jimmy,
 
-On 11/10/25 12:00, FUKAUMI Naoki wrote:
-> Due to the discussion about cd-gpios and sdmmmc_det pin
-> functionality[1], it would be better to use cd-gpios for now.
-> 
-> [1] https://lore.kernel.org/linux-rockchip/20240912152538.1.I858c2a0bf83606c8b59ba1ab6944978a398d2ac5@changeid/T/#u
-> 
-> Fixes: 31390eb8ffbf2 ("arm64: dts: rockchip: add ROCK 5 ITX board")
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
->   arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 9 ++++++++-
->   1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> index bc8140883de47..391c6482e8ee3 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> @@ -670,6 +670,12 @@ led_pins: led-pins {
->   		};
->   	};
->   
-> +	mmc {
-> +		sdmmc_det_gpio: sdmmc-det-gpio {
-> +			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
+On Thursday, November 06, 2025 05:53 CET, Jimmy Hon <honyuenkwun@gmail.=
+com> wrote:
+> On Wed, Nov 5, 2025 at 9:31=E2=80=AFPM Dragan Simic <dsimic@manjaro.o=
+rg> wrote:
+> > With all that in mind, we should specify "no-mmc" here, because
+> > we're describing a microSD slot, instead of describing some hybrid
+> > MMC/microSD slot.  That also explains why the adapter sold by Radxa
+> > is described as not to be used with microSD card slots on SBCs.  I'=
+d
+> > also like to hear is this adapter/eMMC chip combo recognized by the
+> > kernel when "no-mmc" is specified; it should fail.
+> >
+> > Actually, not specifying "no-mmc" here may result in some unforesee=
+n
+> > issues with some (or perhaps many?) microSD cards, because the MMC
+> > drivers will treat them as MMC-capable devices and try to initializ=
+e
+> > them as such, which may cause all kinds of issues.  In fact, I'm no=
+t
+> > really sure that the MMC drivers are actually implemented in a way
+> > that avoids all possible issues with the storage controllers that
+> > are capable of both SD and MMC modes when neither of "no-sd" and
+> > "no-mmc" is specified in their DT nodes.
+>=20
+> Hybrid MMC and SD slots are pretty normal on USB card readers. So it'=
+s
+> normal for the host controller to figure out what kind of card is in
+> the slot.
+> https://uditagarwal.in/understanding-sd-sdio-and-mmc-interface/
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
+mmit/?id=3D6ae3e537eab9f560b516b001eb89f0cd568bdced
+> was the commit that introduced the device tree properties. By the
+> wording of the commit message, these device tree properties are used
+> to indicate to the driver if the host controller hardware is capable
+> of MMC initialization or SD initialization.
+>=20
+> Since the host controller in the RK3588 is capable of all the modes,
+> these properties do not need to be specified.
+>=20
+> Since Radxa has the eMMC to uSD adapter, it makes sense Radxa would
+> want to configure their microSD card slot on their boards to be a
+> hybrid SD/MMC slot.
 
-I got following error:
+Thanks for providing further insights!  After thinking a bit more
+about it and after remembering that HardKernel also offers a similar
+microSD-to-MMC adapter, [1] there should be very few roadblocks that
+may actually prevent us from defining physical microSD slots found
+on Rockchip boards as hybrid microSD/MMC slots wherever that's
+allowed by the slot implementation and tested to work as expected.
+Supporting more card standards is always good.
 
-$ make CHECK_DTBS=y rockchip/rk3588-rock-5-itx.dtb
-   UPD     include/config/kernel.release
-   DTC [C] arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dtb
-/home/radxa/linux/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dtb: 
-mmc: sdmmc-det-gpio: {'rockchip,pins': [[0, 4, 0, 270]], 'phandle': 145} 
-is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+This approach shouldn't be limited to Radxa (or HardKernel) boards
+only, because the available microSD-to-MMC adapters aren't designed
+specifically to fit some boards only.
 
-What's wrong?
+The possible roadblocks, as mentioned above, are some unexpected
+signal integrity issues that may prevent the MMC mode from working
+as expected on some boards, which Jonas pointed out already, [2][3]
+and any associated issues in the MMC drivers.
 
-Best regards,
+I'll keep checking the code of MMC drivers for the existence of any
+associated issues, and I'll possibly turn a few microSD-only slots
+into hybrid ones. :)
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
->   	pcie {
->   		pcie20x1_2_perstn: pcie20x1-2-perstn {
->   			rockchip,pins = <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-> @@ -795,12 +801,13 @@ &sdmmc {
->   	bus-width = <4>;
->   	cap-mmc-highspeed;
->   	cap-sd-highspeed;
-> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->   	disable-wp;
->   	max-frequency = <200000000>;
->   	no-sdio;
->   	no-mmc;
->   	pinctrl-names = "default";
-> -	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det>;
-> +	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det_gpio>;
->   	sd-uhs-sdr104;
->   	vmmc-supply = <&vcc_3v3_s3>;
->   	vqmmc-supply = <&vccio_sd_s0>;
-
+[1] https://www.hardkernel.com/shop/emmc-module-reader-board-for-os-upg=
+rade/
+[2] https://libera.catirclogs.org/linux-rockchip/2025-11-06#38976445;
+[3] https://libera.catirclogs.org/linux-rockchip/2025-11-07#38981060;
 
 
