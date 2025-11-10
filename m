@@ -1,159 +1,169 @@
-Return-Path: <devicetree+bounces-236662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E2CC4649C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:33:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07AC5C464A2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:33:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3538B4EC9B5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:30:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AFA93A6898
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3F3308F0B;
-	Mon, 10 Nov 2025 11:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BBF63081C5;
+	Mon, 10 Nov 2025 11:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="noVYNl7Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UNmq8akE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DED81D7E41;
-	Mon, 10 Nov 2025 11:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AD82255E43;
+	Mon, 10 Nov 2025 11:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762774239; cv=none; b=nYeKISX6buDCfGFjt1a4otoB2S+JNEkGissOh+fUImr6pg9ghgRWMwzz6SW1GuyYM5qB9soJYK81cbVE9o8GGViWRHccYJzGTvIqtbewhlJVHmGAR3Akqqbzzh/jr7CjEI4ULIApsbOPkwMXiAkozTUwIPOiJZnnzP73HDAGbrI=
+	t=1762774346; cv=none; b=Vglf3+v9vvT27IUNEMnJiMFOLwDX0M4IBfoM0YI8QafKuXRTEg+THh67qsWIStOfK8CFHIVxGq8/rw2MVqVuRYphxIBRpP94KvaehSAmwIe5RUxn9vnxPe0wZAShJbCnFqyjlaJ+ppjR9tlmnxNwQjSZkpeP9ocfq7w+WNeyjnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762774239; c=relaxed/simple;
-	bh=LGfNnwD/weg7hFUalWkhbY8vT84PU5rfjzkafeFhtu4=;
+	s=arc-20240116; t=1762774346; c=relaxed/simple;
+	bh=bMeE+5B5dtl5t9xya726sZPElWX+pnp2Rz6tIuzftiM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dMvsTYERPXspfKKtr0g5XIij76uvpqgLgUJdc2zCgC3pdyiATO9rslCGXKhQ+Rg50kq8p8A+y0xQVWMbtuOhOxfT8S+/9vF7HVv5R+9yaJaVhpGNAAzmQlK1/0vbwnLPEMTx94JwMTNwzwKNNfmBcAIPqU3MdtEWFpdPt3W5h9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=noVYNl7Q; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762774238; x=1794310238;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LGfNnwD/weg7hFUalWkhbY8vT84PU5rfjzkafeFhtu4=;
-  b=noVYNl7Qwu87W7kf1DbUS7ieSiaL+OxYduzLUrj1Gags2w2tSLljQNM+
-   dDznxz2hMsSdG2aaFNVzgZMfE2KOJWE9Gp+bwd8lqnlXLsEsOeSSn14RY
-   x6eL6pwy8xyg2rlsNhdiZw8JHYocunRpvUM3bhgevvD17bn3hwP4IiVLF
-   2p9cvFvtGOE+JgOBp+e7cU+OiBHOCbi5ncei7pJCEJE/dKEmAm+gfU7Co
-   lco7yP6dg5HWrnAe+d8s3hmuDZs9qA7rns0ryN+lehMz5IfHPXFtDJ1On
-   NL6qN8nyHjz+COtdfr7WcVKAxBbKGEUAD33q/RHKLECp+05Bzw2/xfCbc
-   Q==;
-X-CSE-ConnectionGUID: apiKMVMlSW28exSob0Ws8A==
-X-CSE-MsgGUID: 1JU15bnUQdq2F2teXXTS1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="64977655"
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="64977655"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 03:30:38 -0800
-X-CSE-ConnectionGUID: XYTUUqmxSIiAF3qeeyiawg==
-X-CSE-MsgGUID: /VNA7VkEQNCz1fIg1MqD/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="212047006"
-Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 10 Nov 2025 03:30:34 -0800
-Received: from kbuild by 7b01c990427b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vIQ6S-0000LJ-13;
-	Mon, 10 Nov 2025 11:30:32 +0000
-Date: Mon, 10 Nov 2025 19:29:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andreas Kemnade <andreas@kemnade.info>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Guenter Roeck <linux@roeck-us.net>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	Andreas Kemnade <andreas@kemnade.info>
-Subject: Re: [PATCH 3/3] regulator: Add FP9931/JD9930 driver
-Message-ID: <202511101911.sdETGGNC-lkp@intel.com>
-References: <20251107-fp9931-submit-v1-3-aa7b79d9abb6@kemnade.info>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kBDVpezyD8/il7gUdkUkSplufWmYLGVWOJoN16I7uzpyU2ou3d+zutY+JYUw9wapg0IFql6Dv/SDwiIE57/tJmUjLID1MGCuIses4888DQ+Kis4SLjmw7OqPY2G+g+UowBUS7EO/FNmxz8w0OSo0nHPtCKIRqIRWJ/bwqpXPVSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UNmq8akE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48E39C4CEFB;
+	Mon, 10 Nov 2025 11:32:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762774345;
+	bh=bMeE+5B5dtl5t9xya726sZPElWX+pnp2Rz6tIuzftiM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UNmq8akE3N8+6v6VBYH3+k0pevABP3qNlLemgnv1970X+/xMcEvz8QA4zgBSH8nst
+	 K5N8q/gYbJphoV1j2n2/Q0C3M48x1hD8ytNZ1i2kekooxnZFo3IuwUjiOzQAnnnotS
+	 LTq4riMmRydNWUyNLNHhmE5Pg4vNK054U+lc2du8zHGR9OL9Ry8LGI7dZft5nkif8q
+	 OUXK+NQVN85eDi8anfR2F4zc1l23t7aetctxD4k66D28wVJCvRPdJF5V7hwnfka00f
+	 GhHyDVYcuAjUBngz0k9pPiybOlDJIswTDrGhOnf3ZkEPqJ48m2EN3yGHXiDiDH8pkL
+	 +xQywMrEXy3aw==
+Date: Mon, 10 Nov 2025 12:32:23 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: george.moussalem@outlook.com, Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Baruch Siach <baruch@tkos.co.il>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Devi Priya <quic_devipriy@quicinc.com>, 
+	Baruch Siach <baruch.siach@siklu.com>, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v18 1/6] dt-bindings: pwm: add IPQ6018 binding
+Message-ID: <lkbwgakmqknqptsjrb7hvxv3bxi3fo62vml7tmf4avo7nr7cue@dwsovmchu2pp>
+References: <20251029-ipq-pwm-v18-0-edbef8efbb8e@outlook.com>
+ <20251029-ipq-pwm-v18-1-edbef8efbb8e@outlook.com>
+ <gkvbziqeae53bunqd556r4swaye4s4lcnwthryouynwfwqrnsi@6o4cjgxiwxco>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mwtelqqfu255nqhk"
 Content-Disposition: inline
-In-Reply-To: <20251107-fp9931-submit-v1-3-aa7b79d9abb6@kemnade.info>
+In-Reply-To: <gkvbziqeae53bunqd556r4swaye4s4lcnwthryouynwfwqrnsi@6o4cjgxiwxco>
 
-Hi Andreas,
 
-kernel test robot noticed the following build warnings:
+--mwtelqqfu255nqhk
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v18 1/6] dt-bindings: pwm: add IPQ6018 binding
+MIME-Version: 1.0
 
-[auto build test WARNING on dcb6fa37fd7bc9c3d2b066329b0d27dedf8becaa]
+Hello,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andreas-Kemnade/dt-bindings-vendor-prefixes-Add-Fitipower/20251108-040835
-base:   dcb6fa37fd7bc9c3d2b066329b0d27dedf8becaa
-patch link:    https://lore.kernel.org/r/20251107-fp9931-submit-v1-3-aa7b79d9abb6%40kemnade.info
-patch subject: [PATCH 3/3] regulator: Add FP9931/JD9930 driver
-config: mips-randconfig-r134-20251110 (https://download.01.org/0day-ci/archive/20251110/202511101911.sdETGGNC-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 93d445cba39f4dd3dcda4fa1433eca825cf8fc09)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251110/202511101911.sdETGGNC-lkp@intel.com/reproduce)
+On Wed, Oct 29, 2025 at 10:22:41AM -0500, Bjorn Andersson wrote:
+> On Wed, Oct 29, 2025 at 12:36:57PM +0400, George Moussalem via B4 Relay w=
+rote:
+> > From: Devi Priya <quic_devipriy@quicinc.com>
+> >=20
+> > DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+> > [George: added compatibles for IPQ5018, IPQ5332, and IPQ9574]
+> >=20
+> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
+> > Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
+> > Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>=20
+> This is where we expect the [George: ...] comment.
+>=20
+> I'll leave it up to Uwe to determine if he'd like you to resubmit this
+> or not though...
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511101911.sdETGGNC-lkp@intel.com/
+Don't resubmit because of that. BTW I only think this type of comment is
+important for changes that happen without involving the mailing list. A
+typical scenario is when a maintainer does some changes while applying
+the patch. In this case I'd say not mentioning the changes you did since
+you picked up the series is completely fine.
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/regulator/fp9931.c:402:18: sparse: sparse: Initializer entry defined twice
-   drivers/regulator/fp9931.c:409:18: sparse:   also defined here
+> > ---
+> >  .../devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml  | 51 ++++++++++++++=
+++++++++
+> >  1 file changed, 51 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yam=
+l b/Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..ca8e916f03276e93d755d57=
+4e2567b0e4b86a8ce
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml
+> > @@ -0,0 +1,51 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pwm/qcom,ipq6018-pwm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm IPQ6018 PWM controller
+> > +
+> > +maintainers:
+> > +  - George Moussalem <george.moussalem@outlook.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - qcom,ipq5018-pwm
+> > +              - qcom,ipq5332-pwm
+> > +              - qcom,ipq9574-pwm
+> > +          - const: qcom,ipq6018-pwm
+> > +      - const: qcom,ipq6018-pwm
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  "#pwm-cells":
+> > +    const: 2
 
-vim +402 drivers/regulator/fp9931.c
+Please use 3 here.
 
-   398	
-   399	static const struct regulator_desc regulators[] = {
-   400		{
-   401			.name = "V3P3",
- > 402			.of_match = of_match_ptr("V3P3"),
-   403			.id = 0,
-   404			.ops = &fp9931_v3p3ops,
-   405			.type = REGULATOR_VOLTAGE,
-   406			.owner = THIS_MODULE,
-   407			.enable_reg = FP9931_REG_CONTROL_REG1,
-   408			.enable_mask = BIT(1),
-   409			.of_match = of_match_ptr("v3p3"),
-   410			.n_voltages = 1,
-   411			.min_uV = 3300000
-   412		},
-   413		{
-   414			.name = "VPOSNEG",
-   415			.of_match = of_match_ptr("VPOSNEG"),
-   416			.id = 1,
-   417			.ops = &fp9931_vposneg_ops,
-   418			.type = REGULATOR_VOLTAGE,
-   419			.owner = THIS_MODULE,
-   420			.n_voltages = ARRAY_SIZE(VPOSNEG_table),
-   421			.vsel_reg = FP9931_REG_VPOSNEG_SETTING,
-   422			.vsel_mask = 0x3F,
-   423			.volt_table = VPOSNEG_table,
-   424		},
-   425		{
-   426			.name = "VCOM",
-   427			.of_match = of_match_ptr("VCOM"),
-   428			.id = 2,
-   429			.ops = &fp9931_vcom_ops,
-   430			.type = REGULATOR_VOLTAGE,
-   431			.owner = THIS_MODULE,
-   432			.n_voltages = 255,
-   433			.min_uV = 0,
-   434			.uV_step = 5000000 / 255,
-   435			.vsel_reg = FP9931_REG_VCOM_SETTING,
-   436			.vsel_mask = 0xFF
-   437		},
-   438	};
-   439	
+Best regards
+Uwe
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--mwtelqqfu255nqhk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmkRzUEACgkQj4D7WH0S
+/k681wf+KedyXgpShz7il9/w8yt94Dux1ecSUur+tzXHYf6YZ1FfkxM8fcwX2yBf
+3I2Nhfxx1s1Ga1Rm8sR89Jpy1P8mNkq5w4yaRViZvsXFxj8LIAvxveOEMe+K/pnK
+MYVtk1GXyWAl1dkQqC4R+NwohRH7eFWnFoEKzhx7VNvEH+ILuz2jGL2xrIDt3xyf
+DT1TE0op7ZitOrhXFGVqo3UQWGPeEtM/ScArBtCa74DNhLSYQR9Teu9qbzbLpxvf
+j6JjV6NFPIQ82N/YLOLDSHcOETVsIxXDHvnp08VyLJRDL11LEEipCmWkpgz6SG2u
+6rdlUm6trjmC0eEhTJ361cQt3e5QvA==
+=xn2Y
+-----END PGP SIGNATURE-----
+
+--mwtelqqfu255nqhk--
 
