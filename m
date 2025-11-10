@@ -1,113 +1,163 @@
-Return-Path: <devicetree+bounces-236788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E03FDC475D6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:54:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8717C47667
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:05:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6FF384ECCCB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:54:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C06218828B0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0133314A94;
-	Mon, 10 Nov 2025 14:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E30313E06;
+	Mon, 10 Nov 2025 15:05:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="POmX0mC5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gxjfSyKj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70262310647;
-	Mon, 10 Nov 2025 14:54:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6E2311957
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 15:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762786468; cv=none; b=f0A/FPAEscPG/vkYX9TFR6H6R8xOXr813iY21gQbAW0+4RKSrxWfFI6SRknSrlADsLewxropL7my0UWKMMuN+8aWABNCGV3Y5hTD6fRkNw+t++jE4sgQXzFC44kQhFDAU66RGXQjP08/kRRV+L7wHl6s9EASj93Q5tQh4O23KEw=
+	t=1762787139; cv=none; b=o3mgwP+l4Yh5xnPd2/rR2tTBd9/m7v4YLUYyyvpP7PGclU0foq7kimPpJR5vMFdx5ApiG5TP2CGRR6/TBjKDw/hN6NDMilhah6/4GISVG415vd5B1/MScvWIksuYPWVyyHB82giCRNQQtMgeMljBbdnijIdLuONjnwdFeq7WjlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762786468; c=relaxed/simple;
-	bh=mEjP87HZG7Mebgtk8XrHMqGp+mfebsTawJI6PaWKOrs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XhiUkFh0p2OdzboDUf1jAeH98NWjs1xKzWe9wIfPMAFo6QCB2FwIzx5fsOBnX04sOTPcQzKLfv/5ipubbPV8YiRwSmWbJVFIddjWjj42rtnKpA9sIHbaTMGkfdR5lae82AguEzM0Rdh2GTTtxYH8K4n6nEjMpvZfnn4KqFFGiwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=POmX0mC5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFB47C16AAE;
-	Mon, 10 Nov 2025 14:54:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762786468;
-	bh=mEjP87HZG7Mebgtk8XrHMqGp+mfebsTawJI6PaWKOrs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=POmX0mC5DyipsOptxWeb7toyp70bThIxLtmC93Mrhythx9+veMhRlhFCD/5K8MQRY
-	 KFw/7f4xWPlveqoNhWFmAp7r/gE2sdeqcI4YzlCzYTU2mRiPKO7k1Ang/itACssrqJ
-	 0VBq1zbFDJX7QzSnNIJ5PFvrqzwfOedgJBkpwunmyDPSoe691OSMqTrmgIkvy3R5se
-	 3YcLndelm0HkD6murQHD/r84VebHHgsXutIrvpiNTpLEm0b/C0rp/Rqu/+W6j936rG
-	 sX7RNOaGrtL/K5tKFVtAj6lhMC+Hdhuyvj0mkOesroZud8KXyNL8JG6JdMCp9jRpYN
-	 +iiAtEFOsGrhg==
-Date: Mon, 10 Nov 2025 08:58:33 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, quic_nguyenb@quicinc.com, 
-	quic_rampraka@quicinc.com, quic_pragalla@quicinc.com, quic_sayalil@quicinc.com, 
-	quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
-Subject: Re: [PATCH V3 1/4] dt-bindings: mmc: sdhci-msm: Add sm8750 compatible
-Message-ID: <77qbioe5jfu3pwlmsg5wve3twslurvldkw7xuo6dif5hrnu77s@rv7hgegh2ygx>
-References: <20251026111746.3195861-1-sarthak.garg@oss.qualcomm.com>
- <20251026111746.3195861-2-sarthak.garg@oss.qualcomm.com>
- <0c791304-928e-4075-87c0-bd37ebd8e351@kernel.org>
- <522f353b-7965-467c-9951-9829e58dc681@oss.qualcomm.com>
+	s=arc-20240116; t=1762787139; c=relaxed/simple;
+	bh=oX7KG6ZnAOmeMG7mP0nT2WTsvMrLHigm3CA6kTMfGZo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fNWWH2/0IjjFsH/EFkiQHOwU9O00yL/3pRv/gmTOvTBcPiLHcSGixN90wtS3SNb43bz0W6Pae/yEIyJGV42yiBmN9hDGfo+U43VOcMG5sj/g/B9AQIvDUJfU6tAy2BfReqtqk6YUv2lPnWumYlTxQJEIP3GkQpbojngL3m/JrzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gxjfSyKj; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b3d196b7eeeso470497266b.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 07:05:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762787136; x=1763391936; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FyWOi3lRqgHA6tp3HEA6JKNOCPHyopKIjea6wFDOAz4=;
+        b=gxjfSyKjjCWIG2Q+tnqyt/HgOR/teiig6XkKpUzV5BAghl+PM5dbHDTjHq9SmtFMvx
+         9+IQl61kUggbYyZej69lFqhU/6WllZd6AKoUScFjHvJChrRxnG7DmKMK3o3f+enth7oZ
+         kfkDqBgu8ZSl7GzGAc1MJBMce2fmBbN5ryBuNyklQ1v4FaCflHbQVudphibwr/Hrc0d0
+         NnaPjqOTpTILWKDBdszq55L9ptMFW8mEge5CNa/jAGewIZx/8NJV5c1Zy9euchLVzYwD
+         E6A+Dq90FMFPCZ7F4nF4WnxbKFlPt9Qc33WwM8j+BD93KJVp3ztcHM64bH7CQ8FITOzz
+         qQRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762787136; x=1763391936;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=FyWOi3lRqgHA6tp3HEA6JKNOCPHyopKIjea6wFDOAz4=;
+        b=bLIvf9VDYNRuibgCU4KCc3o/1dRBem3XHSn6OZM97dCr4Wu3bkYCx19I3+PYesZVOe
+         8L6JdG2GNRGjghG2lXoXMdTpJU06xZ2f9bzG4HaD9b1nqy9dLXFQruh9K5XJCir+LMnT
+         SpzEvKc0kxEbiG/sND8O0igjgpPsxxjk15E8kbF2m6ZMvL39tj6zWEGutLVSJM5U52ED
+         WwygjMoRtOiD64oFZSgNKb9M4gjvLqb2oxmIarvuboD19DVtqoEOf1MMQ6rB7fkKtHNu
+         TAWWK8IXx5nT/S5NiE9+jRaDwShHGOvWwDzfNYLLTbE75pGXh6ovGly/Y7jeDv0VRwCV
+         cx7w==
+X-Forwarded-Encrypted: i=1; AJvYcCWtFptfOCFoOOUtmSAefswP5p9lsCJx0aSwx7uUehbxfgK56zQSCCQP0o8B4t3Si3wjFSA0AZB9vEwf@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBddciFB3n4phjMiQTff9z9+vUSegudoxz0IiywsmZFoGuYsLz
+	Gxr71VQ8fqU6+CcA21lZJ9qgM93M7EVXc11x+XpuOoFelUbXrvIrJ04huYB5aEXJeObKBLB89kx
+	N28pO/K2/DWEnIiWssnQ8mBlo/kSQosg=
+X-Gm-Gg: ASbGnctWIfED2VbUX0kvJPw2gLAF3yutt7lVagS1XJyVax20JNR9GYOFLw4hPXETknu
+	IZoxOeCz/RsFxuEhJ7zbVFu2h9wbELlnl4ObJFOJRu4zVt5AWqB9ejdXRVfRbdcMnJgOOpu90sd
+	baPECTkDbB3kqZjy/gomnvz7e2Byya+I32fIodJhkztsyfUyHq23mRhil3DRBBs8ssiqc+w5CZI
+	TcwZkztOeLBSiu1CRjNKPCHV9KMxpp0k/BZUxvEL07HJ1OXTrhPrM3mFuJ2vMABLIQxS9iPe5eC
+	O+AM0XLiX/v/fC04V0I=
+X-Google-Smtp-Source: AGHT+IHeciyStpTuG5iYET+fyHTcJqtDM1+foUuR1aSu7JIqQM7u89xv+xjRaaVEyUz8OAeksl4hsRtVe5mFo0odlpw=
+X-Received: by 2002:a17:907:3e0a:b0:b70:ac7a:2a93 with SMTP id
+ a640c23a62f3a-b72e047b3d8mr883107266b.43.1762787135424; Mon, 10 Nov 2025
+ 07:05:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <522f353b-7965-467c-9951-9829e58dc681@oss.qualcomm.com>
+References: <20251028175458.1037397-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251028175458.1037397-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV1jaDDrAruoMK860UP7UXRBf88nY5rr9WaR8Nggy9yEw@mail.gmail.com>
+In-Reply-To: <CAMuHMdV1jaDDrAruoMK860UP7UXRBf88nY5rr9WaR8Nggy9yEw@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 10 Nov 2025 15:05:09 +0000
+X-Gm-Features: AWmQ_bkqzUyz7wVqjBdmxW16qEIhFvcCMuwmIBCywj4hEuL2egOBdkrWJgyZKWs
+Message-ID: <CA+V-a8uE4KMpWmaF5kBiMamXtTyDRaNOZR6eBajgBrCA9rOHGA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] arm64: dts: renesas: r9a09g077: Add GMAC nodes
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 10, 2025 at 12:17:51PM +0530, Sarthak Garg wrote:
-> 
-> On 10/27/2025 8:00 PM, Krzysztof Kozlowski wrote:
-> > On 26/10/2025 12:17, Sarthak Garg wrote:
-> > > Document the compatible string for the SDHCI controller on the
-> > > sm8750 platform.
-> > > 
-> > > Signed-off-by: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
-> > > Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> > > ---
-> > 
-> > 
-> > Why are you sending third time the same, even though this was applied
-> > long time ago at v1? Please do not send unnecessary patches, this just
-> > clutters people's mailboxes.
-> > 
-> > Best regards,
-> > Krzysztof
-> 
-> 
-> I had assumed that we need to repost the entire patch series regardless of
-> whether some patches were already ACKed or applied. I’ll make sure to avoid
-> resending already accepted patches in future submissions to keep the mailbox
-> clean.
-> 
+Hi Geert,
 
-In the end maintainers are going to merge your patches onto the tip of
-their branch(es).
+Thank you for the review.
 
-So, if you didn't rebase your changes past the merge of this binding,
-did you validate that the other changes in the series still applies? Do
-they still compile? Do they still work as intended?
+On Mon, Nov 10, 2025 at 2:53=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, 28 Oct 2025 at 18:55, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add Ethernet MAC (GMAC) device nodes to the RZ/T2H (R9A09G077) SoC DTSI=
+.
+> > The RZ/T2H integrates three GMAC interfaces based on the Synopsys
+> > DesignWare MAC (version 5.20).
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+>
+> > @@ -495,6 +933,13 @@ sdhi1_vqmmc: vqmmc-regulator {
+> >                 };
+> >         };
+> >
+> > +       stmmac_axi_setup: stmmac-axi-config {
+>
+> I will move this up while applying, to preserve sort order
+> (alphabetical).
+>
+Oops. Thank you for taking care of it (and also for patch 4/5)
 
-Regards,
-Bjorn
+Cheers,
+Prabhakar
 
-> 
-> Regards,
-> 
-> Sarthak
-> 
-> 
+> > +               snps,lpi_en;
+> > +               snps,wr_osr_lmt =3D <0xf>;
+> > +               snps,rd_osr_lmt =3D <0xf>;
+> > +               snps,blen =3D <16 8 4 0 0 0 0>;
+> > +       };
+> > +
+> >         timer {
+> >                 compatible =3D "arm,armv8-timer";
+> >                 interrupts =3D <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+>
+> The rest LGTM, so
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.19, with the above fixed.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
