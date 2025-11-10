@@ -1,79 +1,133 @@
-Return-Path: <devicetree+bounces-236730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A770C46B71
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:54:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02826C46BD8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CBB353420BB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:54:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EC3484E6924
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F3F309F00;
-	Mon, 10 Nov 2025 12:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB661E9905;
+	Mon, 10 Nov 2025 13:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O9NW65S6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d+q2Ky/t";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OcFosmK5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0CF28B415;
-	Mon, 10 Nov 2025 12:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587221A704B
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762779251; cv=none; b=h+34IX9hiVbILFePHUBGR/nuhbcHLK9YimaMZhj5zT/QO8zvfQ9gNsRiFDFf2Fx9B7UBT0zY1QPIbvFd8Ve76rEr9ZJ47KlAXZwWPIth9vnpobzmIWIbeKyNftNO80SA6Yt5mnPJpPvNGqICd2vdfsh4Y34Xvr4hE8HSRpQkn3Y=
+	t=1762779743; cv=none; b=GTKx2oCe0r9+xdQeAp9k7p/jOq5JjkvtJi590zs4tIzcGAjf6eVstyqVJY4n3w3RCE27WEd4y2TEVesrX7lqxIBeO4vlKnvgtfFy0h0pkPGlCh3oN7zQhXU9padfny69HDaAEpXvgsiz/I8qOqAy4DZum117ZpC31c5KP/yHZsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762779251; c=relaxed/simple;
-	bh=Z/w5BvGlJ6S3Y78v5wnf1cn1h8pvJ5oWK1cCIxL/Wzk=;
+	s=arc-20240116; t=1762779743; c=relaxed/simple;
+	bh=+4ZxlFrdzDO1qRTYzmjyUOh4/9jXixFylZZ+i7Vetns=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S8ekM1H2ik99tyY1EGt6EPskgBGI7VugiQOVshEWeqn6F1ho9czIZSNSFRrTnsqq+meqb9UHx7K7S0O3zdMDlxv8DIWukQ2j4XqxCEEeX6UKnyMxSkbDXpitl1UdPQEz+A3jNH9wkbo1D3oB1C6eSK0xVN7OMQWw6HNKUI0ts4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O9NW65S6; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762779250; x=1794315250;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Z/w5BvGlJ6S3Y78v5wnf1cn1h8pvJ5oWK1cCIxL/Wzk=;
-  b=O9NW65S6svWyiOrF+T8b/mhBZTUYoykncnt0xeB8KGkTfTAq+08HWb+u
-   omvY+UQktiykOUQc7Mqw73Jnm96LxAAhwpKGP+AJtNDvo1wYG0J3Nzviw
-   T+gY9JvhVCxmGBMfrL8jo5YgQUz13GOzBY4d3NN0UpmD4ODexkATwRiOn
-   UREPMRFMSoWc+/plCjvGHqv96FdZg2I6fDyRXEtw7ThfPwt7bpYo/Rcbg
-   sMBmDzQu1t4f/APdnMmXbwHObiGYQhGYasbPBzJ9tkd7niOhesym0BYPe
-   O14smIioGtnh0+nsjffBq0ztwf3bFM9Jd4G1hB8uoKRmtStVK4gJktvUd
-   w==;
-X-CSE-ConnectionGUID: J3EniCoqReCLo456qC1kmw==
-X-CSE-MsgGUID: ueXCOewiR8Sjhtmltz82jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82224960"
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="82224960"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 04:54:09 -0800
-X-CSE-ConnectionGUID: PLVia+OkQsaKhN9quXcB1A==
-X-CSE-MsgGUID: fxthXgjHSrGsTrJlNqurfg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="192777077"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.235])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 04:54:05 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vIRPF-00000007Snr-3tiy;
-	Mon, 10 Nov 2025 14:54:01 +0200
-Date: Mon, 10 Nov 2025 14:54:01 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jic23@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
-	andy@kernel.org, Michael.Hennerich@analog.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
-	cosmin.tanislav@analog.com, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v1 0/3] iio: adc: Add AD4134 minimum I/O support
-Message-ID: <aRHgaXxxnD5YsIQQ@smile.fi.intel.com>
-References: <cover.1762777931.git.marcelo.schmitt@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=S4Uo9M1kKhGBvYgGJkY/htKuWhBkhvxoCGliWSE3kRLJbGSJ1G9UQtPEDfmhg5ZnuUfJZmW1s1fcwChKqngRbixPmmMkU5aiZM6o15uPYfkOe2PamrlxKdUYQ2JezJ1MS6nL1F81CaUdWP9T2Qn3Dir5FxELfc7YgBHFr/uZrfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d+q2Ky/t; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OcFosmK5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AACGOwp2407319
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:02:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=hdAqq6gqBND8Fs3HbuhQPOwr
+	0iZNfL+XllM8w7ygkFY=; b=d+q2Ky/tFSl9HXhSKh09BtEuMStPhV34WMVQm4Sl
+	FVNfpC5SRisHInQYah49vUOz+IFeW7d+oC4fzAlffHNosnx2fMYvjpTujpYa27qb
+	hs2SUdA0SEkpgyBi5pvwixA7Ko1lTkwPVS4ArnB5mZi6eVuESyKqCwfc/Ce5v6+Y
+	bxNQW/nKjvhMggEU6mYVWMNr5pBv0kjOs9vwtxQjKhg4j3a6eAFvG7BolKBSmIX7
+	fgIYAV8Hbno/6ibkj25R6YcSGWDcGrZr9qHhhXoz2YHcAC0PMpid/VbJFwFNhSa1
+	P1Wwj5ywSJAgQXH1VlSUS+Bl9Dwxhc8FnmwdHIX5/8oQDQ==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abatd966x-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:02:21 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7a440d38452so5632784b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 05:02:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762779741; x=1763384541; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=hdAqq6gqBND8Fs3HbuhQPOwr0iZNfL+XllM8w7ygkFY=;
+        b=OcFosmK5fznaAytiL0QqbQ+TLVu8YyPdy7UEMT7k1CPfHw/bzZT6jXp0ax6mLCeEBf
+         mP4IVFmNQKcV60XB4XHEAXSCyehRo2jhU3cUQVl3KAcQasPiNXJpBgdCtMnQfzU8Nkdo
+         xt++qzDR2iVETA68qtxZFZSFeIGmPsqjhwkVGpPfhUtpcYuOif547FiW7iHu+QlMtF1S
+         gfozUGbRw7y1468tfwufbIzhDO9+Ea6tDuE3yhkL7P0CuYwHXKxrH5QwXuyQgte4Tq4F
+         W8rIlMASDoPd7p99NHLXF/a/hGYdJzBJ0MLbTwUduko3ep8ap9Fj6l/QWFCZgvL93qCQ
+         QJBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762779741; x=1763384541;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hdAqq6gqBND8Fs3HbuhQPOwr0iZNfL+XllM8w7ygkFY=;
+        b=NzjoyssfxaG6dUbHBe97CSYwKSKQIeKQdhVqXis4ZdoNblpVuGKHSEZ3rFYmceNHSC
+         qFhgRipFwdB+OmthziSbjHZsA+A93wajH5hEETvYEoVu9oYbT3gLx3xqp1RSCjFxuQG+
+         iLwLKqV4LF9474Fy/uVr+p7F821DSrnFcHnVNY3Twg1uS6Vuju8O8eBk9bi40WG1vsNH
+         DegSUn+oaZq8QbSqoMCbt7Gr2/7X3QtTrEY2yr9ixnSdx6fC/RnPQBE5g0P2TpXZ1TiH
+         fgY7ltXh5JxWFXNQHcmN40N1wvICjw9K/SwB5/0HAiM6OBmipX6f9oRDreIhgWONQyJo
+         JfeA==
+X-Forwarded-Encrypted: i=1; AJvYcCWNyS/gqcclODaEiOHSKeLPsAMZ+Ye9Xk747C4cEvi7zrPDFnrCIF5MVL2YwqxSE9tejwztli8BqeVj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9chHZXrIReKJRuyt4FMxIrmGh3cQ2Fy7mf4vyNTBlnCTCRUns
+	PMZaHTrS3ESnJlOteFbgknTS5K3NROhkA0+d7KuNaWlD8O7xFoc621cQHxgkftmA3beMV+ix0XP
+	KjfHRJqqWpekueolpQoPJ7dHOUA3PcF1dOefbY384lDFFqpcAsSNsWQ8Smnk8hwMt
+X-Gm-Gg: ASbGnctcoXLtLrw/TydRHZkApUKmLyGz41pMrdmH4NcfA9hbXEJoFc6308CtBeQn9Xt
+	Sd/7wYui83sGK3Epr2cqD28p9iIDTqtWCfXHWrnZEQP3qhT80Zc9Vc2lfbXTrWhCbisDY/ppeAC
+	7P6RmhAoKdjeNe1j+cdvKumq96/lLK1HMqHHfM85b9JXYvMJoHDBX7GqtzWn3ykGZkgz2oRHoSG
+	k1/R7GRV+h92VH+3yFv/MMGI70B2Ppf19XUuLdSjfRk5T5F+uT9k911b88hTvypC7xEZAfHqLh7
+	73nJlBrBODwgkIpgrXU5x/TvUk71T/VkeJtocgsQke0AjPP0vyMFV0vmwOeEUb1oZnxZtrR05xZ
+	8NchDyXWJbLLlpynAP3wKObdAPQ==
+X-Received: by 2002:a05:6a00:4b07:b0:771:fdd9:efa0 with SMTP id d2e1a72fcca58-7b22669dee0mr11189849b3a.15.1762779740428;
+        Mon, 10 Nov 2025 05:02:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEhpkm261mrE/5oxpuaFgBIprvalMVyj0gtY+UxkD+iayB45fXNN6yALoTWNcWUZ4aTaxY9NA==
+X-Received: by 2002:a05:6a00:4b07:b0:771:fdd9:efa0 with SMTP id d2e1a72fcca58-7b22669dee0mr11189754b3a.15.1762779739516;
+        Mon, 10 Nov 2025 05:02:19 -0800 (PST)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0c9ff8538sm11894371b3a.28.2025.11.10.05.02.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Nov 2025 05:02:11 -0800 (PST)
+Date: Mon, 10 Nov 2025 18:31:59 +0530
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andre Draszik <andre.draszik@linaro.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Xin Liu <xin.liu@oss.qualcomm.com>,
+        Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v17 01/12] power: reset: reboot-mode: Remove devres based
+ allocations
+Message-ID: <20251110130159.pzfmh7mr3p7xz5o7@hu-mojha-hyd.qualcomm.com>
+References: <20251109-arm-psci-system_reset2-vendor-reboots-v17-0-46e085bca4cc@oss.qualcomm.com>
+ <20251109-arm-psci-system_reset2-vendor-reboots-v17-1-46e085bca4cc@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,40 +136,147 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1762777931.git.marcelo.schmitt@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20251109-arm-psci-system_reset2-vendor-reboots-v17-1-46e085bca4cc@oss.qualcomm.com>
+X-Proofpoint-GUID: ffSY_kCTmoGq9A-eAUatspLPauh_j226
+X-Authority-Analysis: v=2.4 cv=eZowvrEH c=1 sm=1 tr=0 ts=6911e25d cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=zIWh1NZzt5suZCnL7JMA:9
+ a=CjuIK1q_8ugA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-ORIG-GUID: ffSY_kCTmoGq9A-eAUatspLPauh_j226
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDExNCBTYWx0ZWRfX9j0NNjr4ITm5
+ mQnzTCXTImAUjlMtiS9VeRZiPPx6TEXEWPg5MKGkAajWPqlu+uesPw1j+eGy0psgyardaf3G0cx
+ WkVZIqQdBEl3qnEZwz5EMqawdO93xY7chzKyRmHlTKRsyzB0YYFz+N1J+IUtgA90HSR1xu7uI4q
+ 75SjAiafHMU2v76zUgEEGkUU4iy031/NpPq5YOz1Sxnq640ApBEFMrtBStfEvU+bv3OkEnEjq8l
+ oxlVPsRiHqz6zMbbW8Yc7tqYTYoeoSdGqw2MybvbIRgcEDCFCzO+88ee0I1H3vrK11er8EMJvHh
+ cOl3y6cJrpIR5H75hHhiiorqflgjm3+thhjk/doqlXZ2JZrF+92Byd34c4yag9EWtLhTQZVzy/x
+ ciHVme4Mk9cDkm+YIrFV/dOwmoFbZw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_05,2025-11-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100114
 
-On Mon, Nov 10, 2025 at 09:44:56AM -0300, Marcelo Schmitt wrote:
-> This patch series adds basic support for ad4134. AD4134 is a very flexible
-> device that can be configured in many different ways. This series aims to
-> support the simplest way of interfacing with AD4134 which is called minimum I/O
-> mode in data sheet. This is essentially usual SPI with the addition of an ODR
-> (Output Data Rate) GPIO which functions as conversion start signal in minimum
-> I/O mode. The CS pin may be connected to a host controller CS pin or grounded.
+On Sun, Nov 09, 2025 at 08:07:14PM +0530, Shivendra Pratap wrote:
+> Devres APIs are intended for use in drivers, and they should be
+> avoided in shared subsystem code which is being used by multiple
+> drivers. Avoid using devres based allocations in the reboot-mode
+> subsystem and manually free the resources.
 > 
-> This set provides just one feature:
-> - Single-shot ADC sample read.
+> Replace devm_kzalloc with kzalloc and handle memory cleanup
+> explicitly.
 > 
-> [PATCH 1] Device tree documentation for AD4134.
-> [PATCH 2] IIO Linux driver for AD4134.
-> [PATCH 3] Initial IIO documentation.
+> Fixes: 4fcd504edbf7 ("power: reset: add reboot mode driver")
+> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+> ---
+>  drivers/power/reset/reboot-mode.c | 30 ++++++++++++++++++++----------
+>  1 file changed, 20 insertions(+), 10 deletions(-)
 > 
-> There is a driver by Cosmin on ADI Linux tree that supports AD4134 in wiring
-> configurations suited for high speed data transfers. Even though the minimum I/O
-> support was initialy based on that high speed transfer driver, the result ended
-> up becoming entirely different. Also, because the different wiring
-> configurations are likely going to use different resources and software
-> interfaces, the code for AD4134 support was split into ad4134-spi.c,
-> ad4134-common.h, and ad4134-common.c.
+> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
+> index fba53f638da04655e756b5f8b7d2d666d1379535..ac4223794083f36960b2bd37a601b7e1f1872de5 100644
+> --- a/drivers/power/reset/reboot-mode.c
+> +++ b/drivers/power/reset/reboot-mode.c
+> @@ -3,6 +3,8 @@
+>   * Copyright (c) 2016, Fuzhou Rockchip Electronics Co., Ltd
+>   */
+>  
+> +#define pr_fmt(fmt)	"reboot-mode: " fmt
+> +
+>  #include <linux/device.h>
+>  #include <linux/init.h>
+>  #include <linux/kernel.h>
+> @@ -71,6 +73,7 @@ static int reboot_mode_notify(struct notifier_block *this,
+>  int reboot_mode_register(struct reboot_mode_driver *reboot)
+>  {
+>  	struct mode_info *info;
+> +	struct mode_info *next;
+>  	struct property *prop;
+>  	struct device_node *np = reboot->dev->of_node;
+>  	size_t len = strlen(PREFIX);
+> @@ -82,29 +85,27 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+>  		if (strncmp(prop->name, PREFIX, len))
+>  			continue;
+>  
+> -		info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
+> +		info = kzalloc(sizeof(*info), GFP_KERNEL);
+>  		if (!info) {
+>  			ret = -ENOMEM;
+>  			goto error;
+>  		}
+>  
+>  		if (of_property_read_u32(np, prop->name, &info->magic)) {
+> -			dev_err(reboot->dev, "reboot mode %s without magic number\n",
+> -				info->mode);
+> -			devm_kfree(reboot->dev, info);
+> +			pr_err("reboot mode %s without magic number\n", info->mode);
+> +			kfree(info);
 
-The cover letter misses the answer to: "Why do we need a brand new driver?
-Don't we have anything similar already in IIO that can be expanded to cover
-this one?"
+This as well could be avoided if we move the above memory allocation
+after of_property_read_u32()
+
+>  			continue;
+>  		}
+>  
+>  		info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+>  		if (!info->mode) {
+>  			ret =  -ENOMEM;
+> -			goto error;
+> +			goto err_info;
+>  		} else if (info->mode[0] == '\0') {
+>  			kfree_const(info->mode);
+>  			ret = -EINVAL;
+> -			dev_err(reboot->dev, "invalid mode name(%s): too short!\n",
+> -				prop->name);
+> -			goto error;
+> +			pr_err("invalid mode name(%s): too short!\n", prop->name);
+> +			goto err_info;
+>  		}
+>  
+>  		list_add_tail(&info->list, &reboot->head);
+> @@ -115,9 +116,14 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+>  
+>  	return 0;
+>  
+> +err_info:
+
+free_info ?
+
+> +	kfree(info);
+>  error:
+> -	list_for_each_entry(info, &reboot->head, list)
+> +	list_for_each_entry_safe(info, next, &reboot->head, list) {
+> +		list_del(&info->list);
+>  		kfree_const(info->mode);
+> +		kfree(info);
+> +	}
+>  
+>  	return ret;
+>  }
+> @@ -130,11 +136,15 @@ EXPORT_SYMBOL_GPL(reboot_mode_register);
+>  int reboot_mode_unregister(struct reboot_mode_driver *reboot)
+>  {
+>  	struct mode_info *info;
+> +	struct mode_info *next;
+>  
+>  	unregister_reboot_notifier(&reboot->reboot_notifier);
+>  
+> -	list_for_each_entry(info, &reboot->head, list)
+> +	list_for_each_entry_safe(info, next, &reboot->head, list) {
+> +		list_del(&info->list);
+>  		kfree_const(info->mode);
+> +		kfree(info);
+> +	}
+>  
+>  	return 0;
+>  }
+> 
+> -- 
+> 2.34.1
+> 
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+-Mukesh Ojha
 
