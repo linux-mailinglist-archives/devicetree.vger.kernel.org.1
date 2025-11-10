@@ -1,183 +1,183 @@
-Return-Path: <devicetree+bounces-236484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25DB5C44C8D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 03:42:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5168C44C96
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 03:44:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D19AF3AF300
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 02:42:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B4F3B4E0759
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 02:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4481E32D3;
-	Mon, 10 Nov 2025 02:42:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ku5wY8+B";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GjoFKyRV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 335D21EB9E1;
+	Mon, 10 Nov 2025 02:44:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34D81553A3
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 02:42:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B7B1F16B;
+	Mon, 10 Nov 2025 02:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762742547; cv=none; b=bQWL3r54svTnlDwaWDKkQccV/pMHtwq7rmSuBHp+Q4MhH2vSViWR3hgAp8HNiC5yuMFWr+3oI0BkAXBwDDl4CO40eL9+XlXIr4vOj9oj5mMS4vrMvncOz8RjyqVrufCD8XrsCoz0Cq0F8xQOqI12hxSLTbYqI5217y389lWDwfo=
+	t=1762742664; cv=none; b=P7aul84nIDD14OWaDCL5ufyORGh9vSSswpIIC9ei/DbC4Aoukqd6Qdryi8QD+UsF0eO3agiIpER0wOt/HFPmHm5wiPlBrgAmjBv6GQpbaOBcVOrrr8hz5VFBaR7+c9McT0ifSnQeDd5EvUYN5+KFQRavzDG2DRdL5Wzp+IZO+vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762742547; c=relaxed/simple;
-	bh=jUY2UWKqbgiaiqlTpfs14wF15mfVG1aRriGhhiH8ST0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dI1fr8ef9zPFyLMVfhtDBBbPzrq3vPkRbyLZfmqSkHFMwF1efXU+MAf9HZlDpVErCGqklWSvRVOW91SOebl7imDvW8reeH20tO9p4TQngQYM2PYGXUYe3KBoPiVPsL1y3qxFRDD2gduLzzpplTrpk+NMP/ZWcpxF3eHl8CAZHCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ku5wY8+B; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GjoFKyRV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A9KOA101558322
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 02:42:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lsW9bulkHJOywC2vSc0zo/W2H3K/TyzL35br8IJ+ghE=; b=Ku5wY8+BGMALbOHr
-	IrFXDYaZQTwqNWl0rNbFmXBx2CICaPKs56QkhacrXlnQTU5uthXGxE/pIW2htvtr
-	m8OW19m37e84rtsTLKLJq9cl4GH3wxkECkyNxoB5fIF0kwY8Eij7N4lWaZajZlQj
-	l+WCAxArmlQDGYxrMza34QHtTTcssTR7t/9QJOfF53mh6eAc3RoWGLJkxRhyMwnz
-	F4o2cWxe9SAKdMqHXR8qWmqOqU/Z4jC4SKYkEuEAHGIRChCLSM5IyRORGiMmeQ3V
-	6ouA5Gz4N+p/iecfkRfe9L5rclZWsX8f917X5QYQ5DTkcc5XLNoHOUxNQtjHw20P
-	OK2VRQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a9xuek3tx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 02:42:24 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-297f3710070so37976215ad.2
-        for <devicetree@vger.kernel.org>; Sun, 09 Nov 2025 18:42:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762742543; x=1763347343; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lsW9bulkHJOywC2vSc0zo/W2H3K/TyzL35br8IJ+ghE=;
-        b=GjoFKyRV6az0IvPTu39Aklc/gCvsBCrweH2TZzH+6EQla2gxytJXzGLJhOtqn4aBet
-         18img9JSvvEPXPl/3YDIV+nRfkuuPQKnfBv5YRE0mZMmkE7mOqa+xJv+fjZYei2LLIt4
-         qqu1TtyW4GWdJsu6vvW49j7MHL20DXMRPQmBTFOEP9kVKqUF3kzjxKhYVaiU7sFI5kO/
-         kXqn9j1k33hyk4LkoyFmi7kUgFtpa3bLtF/iV4bHEwhwork6djoyOtXrv+mlt8S/DDEX
-         OK1nNIr+pUsAQGsFPq6JrTbaZVn5j7egXC84SjCUjUjUt1F3OdU7whKMbu+TksLlopEk
-         ibLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762742543; x=1763347343;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lsW9bulkHJOywC2vSc0zo/W2H3K/TyzL35br8IJ+ghE=;
-        b=ll02WRfJFSwDHaRMjY859FQk9z7dVjd6uSd4nHkGDN1xPQS8fHUgWXsJKifIZu0qmV
-         7XG2wBS/4Jgm2k/IVTosRuUPZ9m/+saPlYFgXlAHYx2zshAQvlwXwO2zlLK0RdLUTAxa
-         VafSGF391oyiwTDapq/NAXuPFJXBBL5LMuorWgV7IxYZinIuVnMKXCivmIxXp9sb+9hV
-         NSUCOhWlrAkEClYtE3BL6QUDCJKVCWjpn6ovg+J8NxSYjkMpa9VBJXjseLhM4sroKNVt
-         eAiFfkFlbVAwtE6nGP85JE9zKJ2wDOICWA+6msOrXw6tbea4zLiQRs3xiggG0P8krm3L
-         T5yA==
-X-Forwarded-Encrypted: i=1; AJvYcCVHPMJicy8B7N/dvAD1TrIaRw46XVC1alrS0m4RqleQZ6Hwfq/dDD97zsHefL+Y2aAWzsTs0rWkkteu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8jY2mbTxEGiccKpwuc+jGNhoOF1EP8Q63AeWTT4fQwqCyVLJK
-	Af8qUybZmWfUdjNUUpqgg/hlsg89tQBIZumwijXx/SgLvJA/HBvdwjKvY6t61L6AxYMzMjo/1u0
-	LH9AcJoigMkfSPKgiXkE5bnkG/PcEKMUufBnEeZmH6JNhvD67oDb37L8Y+lvydFQs
-X-Gm-Gg: ASbGncs/2Q8zd0hlkdSpcOctZ6SdvcNoC6NyYcONqgIm5fzuTuIuDdHUafOKTm9jHHV
-	AU/7emJtzFvIUNAeNjcd1c9cFRYKJ7La0OGMySOtoe/Rvo1ub6v0XbfsB6TpgB74xEW8A0Mvl9/
-	XOe5npsr3Bt5YIABtXfSmsIytJ/KdlGfIWIWqUCHconfsK/WUH9YLhrqGywaUyQOqYzW1ZAR4KN
-	wj3wocEe8A5HIDUeDhHfEm0eHdFtNZa9gzN3lYJLTylxravwBNiP2CIH6hP6FraDQwGvI+FV1YW
-	FZ1EbuH0VY2kfpNS2PuanBfLIEcSpVqskBu2J2aPVdLsnnKxHPBi1Noe5Ib3ENo5dRHWjo8E1Ck
-	g4B74UPD9WaWLyWw0VTTjf6qRP4ncsVrfihhhfwIdMq+4uulUF3a3LNwNAoQJbcby
-X-Received: by 2002:a17:902:d485:b0:294:fd3c:6de2 with SMTP id d9443c01a7336-297e5408d00mr89906645ad.12.1762742543497;
-        Sun, 09 Nov 2025 18:42:23 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF2NVHwCXqcL83f9zw0coAZMOtqfj0Uy6PSoNGjLNcOLPwcx3nLqWE6a1Jjg4u4EQJp4JwPEA==
-X-Received: by 2002:a17:902:d485:b0:294:fd3c:6de2 with SMTP id d9443c01a7336-297e5408d00mr89906185ad.12.1762742542978;
-        Sun, 09 Nov 2025 18:42:22 -0800 (PST)
-Received: from [10.133.33.229] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-297ddde1e7esm66639765ad.77.2025.11.09.18.42.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Nov 2025 18:42:22 -0800 (PST)
-Message-ID: <30cc9d63-72a2-4dbd-89c5-d3a84e5a36de@oss.qualcomm.com>
-Date: Mon, 10 Nov 2025 10:42:13 +0800
+	s=arc-20240116; t=1762742664; c=relaxed/simple;
+	bh=RVQQgCoaPsqrXBfn0t+evOz5/uWTb+eYqyU0YEs1OGE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FMp/JonAoB3BlTLN7hePnJulnn0CCVAsniA1fG0gi8c0BabahQO14paliPvjd3d+lB1CqzyoB5bNzIgE0b+VII7oo/6jWW6aXjHMDf3Jd8j/cmRA6FoiXnNyPu5NYx0VUaoUgm6fpiDb72th62O2Jjs9iVvmOGANVZ/4mXZaU0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0006493LT.eswin.cn (unknown [10.127.112.153])
+	by app1 (Coremail) with SMTP id TAJkCgB3fmtkURFpn2NuAA--.25641S4;
+	Mon, 10 Nov 2025 10:43:50 +0800 (CST)
+From: caohang@eswincomputing.com
+To: gregkh@linuxfoundation.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Thinh.Nguyen@synopsys.com,
+	p.zabel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Hang Cao <caohang@eswincomputing.com>
+Subject: [PATCH v7 0/2] Add driver support for ESWIN EIC7700 SoC USB controller
+Date: Mon, 10 Nov 2025 10:43:39 +0800
+Message-ID: <20251110024339.73-1-caohang@eswincomputing.com>
+X-Mailer: git-send-email 2.45.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/9] coresight: ctcu: Enable byte-cntr function for TMC
- ETR
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
-        Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
-        Jie Gan
- <quic_jiegan@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20251013-enable-byte-cntr-for-ctcu-v7-0-e1e8f41e15dd@oss.qualcomm.com>
-Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <20251013-enable-byte-cntr-for-ctcu-v7-0-e1e8f41e15dd@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDAyMCBTYWx0ZWRfX80G7lfI3DkIh
- /pNmwqEzimoYDetJmRnQzaeRBuUC1J4P00+J8CKTTjMTivCvIi0MP9a0wPe4pcQEAW+7mVip56T
- ktLeSbGsk12dp9AoF5OHHlwIRY2HxOCggiLKFKpGUrA6FntFABjwwb6SHtfx8zt+GtQSQfp1Ldc
- c9zHWTzLABTmtuNCgDc1Rb7iKp36HuvL0Vl0ih8JbVq8t3v37chkUPMwhzajYYrie8Ot6tVKZwU
- 6YWUOrL3WtaoUKAApVKuz2G6ICqtyAz2Bae6fUj7/5puKCeVX6WukKL7yGOCJ4TzCXUdauO6hsp
- 4PEgpMDVCJIRozcagRfgw7pmdJnc6ah/GRWeP82btqPZDchBeM0fdob+on12K1IUll+2evl2eVj
- uk9iEgxmiUH4wp7yL1aXEEl7j39yYA==
-X-Proofpoint-GUID: LiGoa_M-mwd73pOckE4yp3TalI8U8jWe
-X-Proofpoint-ORIG-GUID: LiGoa_M-mwd73pOckE4yp3TalI8U8jWe
-X-Authority-Analysis: v=2.4 cv=BOK+bVQG c=1 sm=1 tr=0 ts=69115110 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=DxhRIveLkXWR0EuVxScA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-10_01,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 clxscore=1015 suspectscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100020
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgB3fmtkURFpn2NuAA--.25641S4
+X-Coremail-Antispam: 1UD129KBjvJXoWxXrW5Xr4Dtr1fWw4DAw4fXwb_yoWrAFW8pa
+	ykKFW5GrZ5Jryxtan2qa4rKF4fGanrXFWUGr1Iqw1jvw4jg3W7JrWI9F4YyrWDCwn3Z3yY
+	yay3W39Yka4DA3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUmjgxUUUUU=
+X-CM-SenderInfo: xfdrxt1qj6v25zlqu0xpsx3x1qjou0bp/
 
+From: Hang Cao <caohang@eswincomputing.com>
 
+Add support for ESWIN EIC7700 USB driver controller.
 
-On 10/13/2025 1:49 PM, Jie Gan wrote:
-> The byte-cntr function provided by the CTCU device is used to count the
-> trace data entering the ETR. An interrupt is triggered if the data size
-> exceeds the threshold set in the BYTECNTRVAL register. The interrupt
-> handler counts the number of triggered interruptions.
-> 
+Changes in v7->v6:
+- Updates: dwc3-generic-plat.c
+  - Rename dwc3_plat_config to dwc3_generic_config.
+  - Refine the error message in probe function.
+- Link to V6:https://lore.kernel.org/all/20251106104938.1386-1-caohang@eswincomputing.com/
 
-<...>
+Changes in v6->v5:
+- Updates: dwc3-generic-plat.c
+  - Update commit message.
+  - Add dwc3_plat_config structure.
+  - Add dwc3_eic7700_init function.
+- Link to V5:https://lore.kernel.org/all/20251104065045.1464-1-caohang@eswincomputing.com/
 
-> Enable both ETR0 and ETR1:
-> echo 0x10000 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold
-> 
-> Reset the BYTECNTR register for etr0:
-> echo 0 > /sys/bus/coresight/devices/ctcu0/irq_threshold
-> 
+Changes in v5->v4:
+- Updates: eswin,eic7700-usb.yaml
+  -  Remove the unnecessary properties of quirk.
 
-Gentle reminder.
+- Updates: dwc3-generic-plat.c
+  - Rebase to usb-testing branch of gregkh/usb.git.
+  - Add eic7700 pre init in probe function.
 
-> Changes in V7:
-> 1. rebased on tag next-20251010
-> 2. updated info for sysfs node document
-> Link to V6 - https://lore.kernel.org/all/20250908-enable-byte-cntr-for-tmc-v6-0-1db9e621441a@oss.qualcomm.com/
-> 
-<...>
+Changes in v4->v3:
+- Updates:
+  - Removed config option patch dependency from cover letter, because the patch
+    was applied.
+  - Remove dwc3-eic7700.c instead of dwc3-generic-plat.c.
+
+- Updates: eswin,eic7700-usb.yaml
+  - Add usb_en clock.
+  - Add usb_rst reset.
+  - Update eswin,hsp-sp-csr description.
+  - Remove the last two unused items of eswin,hsp-sp-csr.
+
+- Updates: dwc3-generic-plat.c
+  - Add eswin,eic7700-dwc3 to the compatible table.
+  - Add the dwc3_generic_match_data structure.
+  - Add the eic7700_dwc3_bus_init function to initialize the bus.
+  - Add the init_ops callback in the probe function.
+- Link to V3: https://lore.kernel.org/all/20250915085329.2058-1-caohang@eswincomputing.com/
+
+Changes in v3->v2:
+- Updates: eswin,eic7700-usb.yaml
+  - Sort the attributes according to the DTS coding style.
+  - Remove the #address-cells and #size-cells attributes.
+  - Fold the child node into the parent.
+  - Update commit message.
+
+- Updates: dwc3-eic7700.c
+  - Use dwc3 core as a library.
+  - Add system and runtime pm.
+  - Use pm_ptr and remove the __maybe_unused tags.
+  - Add new author name
+  - Add prepare and complete function
+  - Update commit message.
+- Link to V2: https://lore.kernel.org/lkml/20250730073953.1623-1-zhangsenchuan@eswincomputing.com/
+
+Changes in v2->v1:
+- Updates: eswin,eic7700-usb.yaml
+  - Drop the redundant descriptions.
+  - Supplement the constraints of resets.
+  - Replace "eswin,hsp_sp_csr" with "eswin,hsp-sp-csr"
+    and add items description.
+  - Drop numa-node-id, This is not necessary.
+  - Add patternProperties and match the rules defined
+    in the "snps,dwc3.yaml" file.
+  - Add "#address-cells" "#size-cells".
+  - Update the space indentation, remove the redundant labels,
+    and sort the attributes according to the DTS encoding style.
+  - Drop the "status = "disabled" attribute.
+  - Update the common usb node names and fold the child
+    nodes into the parent nodes.
+  - The warning detected by the robot has been resolved.
+
+- Updates: dwc3-eic7700.c
+  - Remove dwc3_mode_show dwc3_mode_store dwc3_eswin_get_extcon_dev,
+    dwc3_eswin_device_notifier and dwc3_eswin_host_notifier, usb role
+    detection and switching are not supported.
+  - Remove the hub-rst attribute, remove the dwc3_hub_rst_show and
+    dwc3_hub_rst_store functions, this feature is not supported.
+  - Use syscon_regmap_lookup_by_phandle_args instead of the
+    syscon_regmap_lookup_by_phandle function.
+  - Use dev_err_probe in probe function.
+  - Drop mutex_lock, which is not required.
+  - Remove clk_prepare_enable and of_clk_get, and manage multiple
+    clocks using devm_clk_bulk_get_all_enabled.
+  - Remove the device_init_wakeup related functions, which were
+    used incorrectly.
+  - Remove MODULE_ALIAS, which is used incorrectly.
+  - The warning detected by the robot has been resolved.
+- Link to V1: https://lore.kernel.org/lkml/20250516095237.1516-1-zhangsenchuan@eswincomputing.com/
+
+Hang Cao (2):
+  dt-bindings: usb: Add ESWIN EIC7700 USB controller
+  usb: dwc3: eic7700: Add EIC7700 USB driver
+
+ .../bindings/usb/eswin,eic7700-usb.yaml       | 94 +++++++++++++++++++
+ drivers/usb/dwc3/dwc3-generic-plat.c          | 71 ++++++++++++--
+ 2 files changed, 158 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/eswin,eic7700-usb.yaml
+
+--
+2.34.1
+
 
