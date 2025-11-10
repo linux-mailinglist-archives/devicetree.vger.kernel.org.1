@@ -1,100 +1,271 @@
-Return-Path: <devicetree+bounces-236779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D605C473F4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:37:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED609C47406
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:38:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2D3D74E383D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:37:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BBEF3AE9F4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F03A2EBBB2;
-	Mon, 10 Nov 2025 14:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D52C31282D;
+	Mon, 10 Nov 2025 14:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="OyR0XTeP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fs/1mSr6";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Jn/8Yvrk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED7C303A14
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD99830F800
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:38:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762785471; cv=none; b=eslsk0V75/lFnx84WQm0sK5uWReeTs6XwCz1yZYM/pvEunzvmShWSa/qXt2GLbooTvePA31wEIcE9okLc4uLDPqYkgyEVfcBwvnIu2Uq5NqvlxBXK4x4aFs216THbvYYY6jImqPqrlEWhEX1P6iGqyJXwhkhuFk2YDj3CQF1DQI=
+	t=1762785510; cv=none; b=XOJR7xTArUAFWH3yIvXiO+arLRx6uWLLrYMxFPjkXg9DR+KnVT3pHJs+YNQwgJbg+J29I2cyRfYAJgNjw7bKLEjs+hux+VWswMmNrSxqpae78zfBTcMPJpZ9JyLTypVCB6tE/maYn8aB00GgFUQCC7FYL7kZ+qPnpKSwb7YJ1VQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762785471; c=relaxed/simple;
-	bh=A91zQvBNtapswLnXwmyN4buL3l0uVX+SJuJb9/6DQ9U=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=RidFzLYd+lugx8oh2MO7gYYe64SGmtYsHm4vG/HOVK2+ikVvOT0OpVRZz+sgOAaNo10KHB1NDZUlCKqGldsjeEBRBZRhKZN5HVG9JRraQHQFzB0PfnPhDKjEhXLznejmgUB4ryhjrT1U2UdfdRCoet5i4GSJa6MkmZzxH58+Yjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=OyR0XTeP; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 770AE40C84;
-	Mon, 10 Nov 2025 15:37:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1762785465; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=NvnxjYagnJWwFbZrINrJ0xDcFD7vKj/4jo+lxDZMAP8=;
-	b=OyR0XTePTdVFh6q+1sK55pSfSAuSwkwO2lPkD0Pm77zRvkBf/GRpebFMtVKx5V/TCmvY3U
-	DDlD0vYXTESmLHp9h3LCoWjK7qvDoxidjqBlg+jY3Pvf4VOtiTaZ9MzZVV1GJJKsYIeRh5
-	SMYeQda5+9oYz5XtfxtdG8wyaGOGgQR5zCDgNU/vg1DXwqR5ub67BguTSsBOnidB/gFjAC
-	Bws92sm2JHnPKvxdIzqOfglkzsBKrjim0SOTci4aVamMee7jNMS38SMmjMUH83v5bi3ynx
-	kKUu+Fx1Wn8Dg0ELCJOYkVBtE3WR+RXvjMfKX6tQCADoQ06VKDSGLn8i2JxDyQ==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <8934442FCE2020A5+855829eb-e783-4aa5-b4a1-13b0a519c46d@radxa.com>
-Content-Type: text/plain; charset="utf-8"
-References: <20251110035455.839863-1-naoki@radxa.com>
- <20251110035455.839863-2-naoki@radxa.com>
- <36843804-433a-5c0c-4961-451b44d70bc4@manjaro.org>
- <38861A00B4F4BA62+e3221913-43e5-4335-9aaf-9b9eed5834ac@radxa.com>
- <65f17890-c052-f303-4731-f882946df1f1@manjaro.org> <8934442FCE2020A5+855829eb-e783-4aa5-b4a1-13b0a519c46d@radxa.com>
-Date: Mon, 10 Nov 2025 15:37:42 +0100
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jbx6244@gmail.com, pbrobinson@gmail.com, kylepzak@projectinitiative.io, damon.ding@rock-chips.com, sebastian.reichel@collabora.com, amadeus@jmu.edu.cn, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-To: "FUKAUMI Naoki" <naoki@radxa.com>
+	s=arc-20240116; t=1762785510; c=relaxed/simple;
+	bh=Kv+GgVexbGopxr7yumqlBiancGmQZWWVjQWyj1jNkno=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f4F3NpTb/kPr9PUJq36rPrc0+rhyYnKO2GkTEMmgHeuRRtq0Q44YLgl8O8pnsuLc7GSXqhljywtBnx1Xlp3m7Ss0Fgb9timkj5x+vtMLwP3fYI4jfmzXszFG8YAgFY628P4qHYmhXr+cSbKhKEcG0wvQzahAyeQzvXjtQ2PWIrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fs/1mSr6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Jn/8Yvrk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AACAmbs4029952
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:38:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DjXlGf6kCK1SRmg1a5VtEsJaR1Zk+XRBUVbJsc742Xk=; b=Fs/1mSr6ibXTZsBm
+	K5ACt9BDv18vhbSavu73Iw/bUfBeSMqG7PKz/LE6fa3WvrCs53lpV5uD38jrsVYT
+	Lzpw3TaCvOuBJYvrK8X+QejBmwOf4xpqIIxkvBIuGFQQWx1iwazN731vOfPTfVDW
+	buOdmttgzcjg/yKdGIZsnELNhOAt7w095Q1A//CC1fIhwKZmZ25t1hY17sr/SX7t
+	k6haVM9zF1eFi4QBlG/VcSq2if1FrHkoGtm/w6qrY2XhWbhWyleUkZEKZLx1hflH
+	POTYPJ6J6MNQIMYGIiUF6Vr/7q92cffk777Huwd3iWZNwM24E8o92VkFv59jC6P7
+	x/DVOA==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a9xvjd2f0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:38:27 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-341aec498fdso4953248a91.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 06:38:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762785506; x=1763390306; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DjXlGf6kCK1SRmg1a5VtEsJaR1Zk+XRBUVbJsc742Xk=;
+        b=Jn/8YvrkizRMJyTkETr5o6pggtaQ/KMqLDmwX1QAudTOWslftxuGHCgYF36uQ91EHy
+         zEUJ3ckOexQOG4nV09RtiZVCtgBgYhHmGMXNLF97Jr1IykxoNSqRbIsOC5AjZIcSiUGd
+         o1ccuVdhdBrl6MIM3/MTDYNGo4/T1EwOBWhRh8ejzbJh0yfrTSlk/CgNcjGosODHv8UP
+         VgKDoDtiIeEF2pQWCO1iEIljWO9bhTz9OyooD6Rr8jGUKfIs/xRy42qWCOZxm9wzocG4
+         XAunKGg1LQH5nPQdPmwNL29uNCipIbRkaEjBLfshAWc8HqbqqYWWl2ghUmMF23c18yWd
+         4zvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762785506; x=1763390306;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DjXlGf6kCK1SRmg1a5VtEsJaR1Zk+XRBUVbJsc742Xk=;
+        b=sv5cm20ICJLza1M81DRmFhmLrQySdcZA3QdYsxIV2cMJiWZgzz5mx3oYzegGgIjFRq
+         TWM49cw2c2UTUWxNtiriizhhMR4QLTibGaiXCmTTJqUkBjIniBQwL4sUhnTgmPC5byoF
+         2xOTXP35ZcxJJUjxQ9G+OQp51FEbo8gkbBnHkQ56ngU9/S4vw8nQGCumyTJf0iu7XZQq
+         OqYW5tYSbI8kuW898/YjGLx384JJDEzY4oS8YKS0c8zMb9e1xOAXLs/PhKfnBc3pe+eG
+         A+BqjmtOyUmTSGKYJv4ZHJqUfEHkgLSriVQoUxyOmon0KNmW14VvnUTwHZI1+Ig23FUr
+         Zs+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWAs3yv9l2z4PQYZA6d3npBD6J24u678u8xTG0Sra3I/2pt+r0pgTMklKZyfQ5MWF+GEHKbjZaEY5al@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUQzsXymh/O9UJ2Jxkg931QcEQwP9HG4dTE+xK8oty3dlADpo3
+	OceILgVM/ul1dN003izv/aShV3s3ChJPSGB3yTeuxJA9SbB2eeKeYZsjW/cSVSn6ftOaqeKUhJG
+	oCGdrN3wBv55uUYtpzFFD+9F2kj7C+LbgOdSJSckYIw2zM3ni9kMb2SLh9GhE9NHk
+X-Gm-Gg: ASbGncuNd/wVHQbj2fqGt7DLPzO3ZvNXzSdWMMKXGsQTSoCMdDUAwlOuwSWIqNNuKBV
+	FGKOruVf5aKDp3JlfBfuVaRhDWY2nURIaKEnv5Hfgo33eREpcnjX6H4s+HYAGzx615PBTqjLx/y
+	2zmsRf0FHQ2Cq0OsIR5RePtHiAneF4yBhGm5VKwwW3Sr5JRPFFrBvSyTcXF3hmZRN77plIDDEnA
+	WtIXLLKQ/QcewgcQHtoTeyAGGLep1mfzKA+S5CUbsUbmE0aUgT/ZuNne2/dIwx9SzG+gZ/A0qUR
+	Bdu5MZEOc/mynFu9rfU7QkwVPmG3UTjdyBA/nfwTOPCKWBBbx9lyawiwAAYDtRPhhh/EY0jFNUR
+	wGHAVA1HbwrSCsmhT+7+YVbIk3boLYqF4
+X-Received: by 2002:a17:90a:ec84:b0:340:bde5:c9e3 with SMTP id 98e67ed59e1d1-3436cb91ec3mr10817664a91.23.1762785506394;
+        Mon, 10 Nov 2025 06:38:26 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFcDiYkW+6pedjCMiR1BaFljPhTaDiM32XOE7C47GkBGlZcqk0BMUcwHHXae+/cHPVW0xghTA==
+X-Received: by 2002:a17:90a:ec84:b0:340:bde5:c9e3 with SMTP id 98e67ed59e1d1-3436cb91ec3mr10817613a91.23.1762785505845;
+        Mon, 10 Nov 2025 06:38:25 -0800 (PST)
+Received: from [10.219.57.23] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-341d0aee149sm8431073a91.1.2025.11.10.06.38.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 06:38:25 -0800 (PST)
+Message-ID: <16521e84-9da6-53a7-febe-9decb6970c06@oss.qualcomm.com>
+Date: Mon, 10 Nov 2025 20:08:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <06218e17-0bbc-9606-46b4-9a50d1177170@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH 2/2] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= Make eeprom read-only for Radxa ROCK 5A
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v17 03/12] power: reset: reboot-mode: Add support for 64
+ bit magic
+Content-Language: en-US
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andre Draszik
+ <andre.draszik@linaro.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Xin Liu <xin.liu@oss.qualcomm.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Umang Chheda <umang.chheda@oss.qualcomm.com>,
+        Nirmesh Kumar Singh <nirmesh.singh@oss.qualcomm.com>
+References: <20251109-arm-psci-system_reset2-vendor-reboots-v17-0-46e085bca4cc@oss.qualcomm.com>
+ <20251109-arm-psci-system_reset2-vendor-reboots-v17-3-46e085bca4cc@oss.qualcomm.com>
+ <20251110134529.uljjqzb3vhda3vya@hu-mojha-hyd.qualcomm.com>
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+In-Reply-To: <20251110134529.uljjqzb3vhda3vya@hu-mojha-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=QuxTHFyd c=1 sm=1 tr=0 ts=6911f8e3 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=vG-lknqJ1RofaPO6YZUA:9 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: oUoMpUgtys_fBG8yFJMwpGB6zp3sUIxM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDEyNiBTYWx0ZWRfX6vFlzxKaDTqn
+ H1Z72oQj/EDJOsmPCZOOVjPl7srJz/4+t3ZJeYTZV5l5HDWfPzlRdvftCVFR2fhP8WChFaN8IpE
+ NeTLcXDx5DAW72RIoAnPsAHkHRg1iDBAOd1w09w0rlkibE7scEoYo0kbViTVrU2X+fnKoqZSm4f
+ HKLgk8gb4cjiWGG3PPZc19iXNcCD3VQk+9i8i/l8m78lvD26zRn42MpN1qO2lsIvwo9LrzoD/oD
+ TEVhQ8kWrY2n7WFEmr0vbrZFKE4Qs5vhynom3c94aKU/38pS0hUO5gEfbCwXlMMAUtfx3tKaVzI
+ E6CnWeeP5QS63Y96nDWMoCR4I2REdrNzzfYWb63RIuSPkoBfdJvf95Ac8u50lE2UTkkP/cwHW99
+ p3ZO9Zggm6XVaUStN8hH2SGvtZg95A==
+X-Proofpoint-GUID: oUoMpUgtys_fBG8yFJMwpGB6zp3sUIxM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_05,2025-11-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0
+ spamscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100126
 
-On Monday, November 10, 2025 10:44 CET, FUKAUMI Naoki <naoki@radxa.com>=
- wrote:
-> On 11/10/25 16:38, Dragan Simic wrote:
-> (snip)>>> Additionally, it would make sense to squash this patch and =
-your
-> >>> other patch that addresses the ROCK 5C together.  They're very
-> >>> similar and having them together in a single commit might actuall=
-y
-> >>> help the people browsing the repository understand it better.
-> >>
-> >> I'll drop eeprom patch from ROCK 5C v7 patch series, and squash ee=
-prom
-> >> patches for ROCK 3C/5A/5C.
-> >=20
-> > Thanks!
->=20
-> I'm preparing a patch series for Radxa ROCK 5A and I just remembered=20
-> that the eeprom node in 5a.dts is totally incorrect. The eeprom is on=20
-> i2c0, not on i2c2.
->=20
-> I'm planning to include this eeprom fix as a part of the patch series=20
-> for 5A.
 
-You're right, and I managed to miss that during my review. :/
 
-It would be good if you'd prepare and send a separate, two-patch
-series with just the I2C bus fix for the ROCK 5A and the squashed
-patch that makes the EEPROMs read-only on three boards.  Reviewing
-and accepting large changes split into smaller portions is always
-easier.
+On 11/10/2025 7:15 PM, Mukesh Ojha wrote:
+> On Sun, Nov 09, 2025 at 08:07:16PM +0530, Shivendra Pratap wrote:
+>> Current reboot-mode supports a single 32-bit argument for any
 
+[SNIP..]
+
+>>  
+>> -static int nvmem_reboot_mode_write(struct reboot_mode_driver *reboot,
+>> -				    unsigned int magic)
+>> +static int nvmem_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
+>>  {
+>> -	int ret;
+>>  	struct nvmem_reboot_mode *nvmem_rbm;
+>> +	u32 magic_32;
+>> +	int ret;
+>> +
+>> +	if (magic > U32_MAX)
+>> +		return -EINVAL;
+> 
+> 
+> I believe, we need a comment in all the client driver.. 
+
+Ack. Will add a comment.
+
+> 
+>> +
+>> +	magic_32 = magic;
+>>  
+>>  	nvmem_rbm = container_of(reboot, struct nvmem_reboot_mode, reboot);
+>>  
+>> -	ret = nvmem_cell_write(nvmem_rbm->cell, &magic, sizeof(magic));
+>> +	ret = nvmem_cell_write(nvmem_rbm->cell, &magic_32, sizeof(magic_32));
+>>  	if (ret < 0)
+>>  		dev_err(reboot->dev, "update reboot mode bits failed\n");
+>>  
+>> diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
+>> index 7e108982a582e8243c5c806bd4a793646b87189f..d0ed9431a02313a7bbaa93743c16fa1ae713ddfe 100644
+>> --- a/drivers/power/reset/qcom-pon.c
+>> +++ b/drivers/power/reset/qcom-pon.c
+>> @@ -27,17 +27,22 @@ struct qcom_pon {
+>>  	long reason_shift;
+>>  };
+>>  
+>> -static int qcom_pon_reboot_mode_write(struct reboot_mode_driver *reboot,
+>> -				    unsigned int magic)
+>> +static int qcom_pon_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
+>>  {
+>>  	struct qcom_pon *pon = container_of
+>>  			(reboot, struct qcom_pon, reboot_mode);
+>> +	u32 magic_32;
+>>  	int ret;
+>>
+> 
+> Since we are doing this change in reboot framework, client driver should know about
+> it too about this new check because of framework.
+
+ok.
+
+> 
+>> +	if (magic > U32_MAX || (magic << pon->reason_shift) > U32_MAX)
+> 
+> 
+> is this (magic << pon->reason_shift) > U32_MAX really needed ..?
+
+Can be omitted as we already checked magic > U32_MAX. Will
+remove it.
+
+> 
+
+[SNIP..]
+
+>> diff --git a/drivers/power/reset/syscon-reboot-mode.c b/drivers/power/reset/syscon-reboot-mode.c
+>> index e0772c9f70f7a19cd8ec8a0b7fdbbaa7ba44afd0..3cbd000c512239b12ec51987e900d260540a9dea 100644
+>> --- a/drivers/power/reset/syscon-reboot-mode.c
+>> +++ b/drivers/power/reset/syscon-reboot-mode.c
+>> @@ -20,16 +20,21 @@ struct syscon_reboot_mode {
+>>  	u32 mask;
+>>  };
+>>  
+>> -static int syscon_reboot_mode_write(struct reboot_mode_driver *reboot,
+>> -				    unsigned int magic)
+>> +static int syscon_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
+>>  {
+>>  	struct syscon_reboot_mode *syscon_rbm;
+>> +	u32 magic_32;
+>>  	int ret;
+>>
+> 
+> same here
+
+will add comment here.
+
+thanks,
+Shivendra
 
