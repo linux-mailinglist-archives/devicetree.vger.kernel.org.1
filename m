@@ -1,115 +1,194 @@
-Return-Path: <devicetree+bounces-236940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE9DFC49932
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 23:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 575FCC49968
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 23:33:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 95D6F4F2986
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:28:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3516E4F6621
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30373019CE;
-	Mon, 10 Nov 2025 22:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28E6332EAE;
+	Mon, 10 Nov 2025 22:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NGE+TXPc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HmA3EBBH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C072F659C
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 22:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419D83009FE
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 22:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762813507; cv=none; b=QgnEaHne8g3gZwIUXjTFojOvdd2umF6aAP7M/1zgazpMRgDB9+1E/Pjhf0O8fxs35Q9Za0pnl/G6fge3fXq59otix6BXi1hA39gLCjjdj/mqwNuyFZbzohws2Hc8hfKtkbaIEUeoB3tpofH5eJkBsB95cqjGd7etLCX4vMJvSOM=
+	t=1762813618; cv=none; b=lxaSKKAINUeAhKIwHLCTTEX9ZWeW5/S+Y5R/ql5/yCL3l5l9NJOevwkeZDQ1aNjTWImU6MDq4luAvUShHjKSa6gqmPfFHzIkE+4E+9iDfNTx8xSbx/HK3CAmk+TRlhmJzLSYwsM2YuN+GFrnvWrqkTXLr6zzKMvL4kv973E+ChE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762813507; c=relaxed/simple;
-	bh=lbYOlnC3WJYLBwDfb+oYRZV/rKekA5V2jSftip3URFc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mUbuuhCTkSnBvK2Ur/miLbxlnPpb+8FDwAdLKIzq++43kZFdsgqXt0vvze1/5mBVKGJywf796NFA1XNuLjlk1HyFFUiKATdyF99AWEvDGqus5DFM0kRIeBx/wOg6x+GN3GFOdFLRV7OCuCOdGFkvDQb6Hf/5+2qhLr7kOExRtJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NGE+TXPc; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5943b7bdc37so214719e87.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:25:05 -0800 (PST)
+	s=arc-20240116; t=1762813618; c=relaxed/simple;
+	bh=ga02Licy+YKpNgCmYN1YVytkG6Mk2o7Q83NArawwZFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O87XGFg6K4dCRF/6l18KVTjJaf5yBvNT1ySOWR++F1mzy9LSDNmy0JvhhAisQC2T2PimSSF+cimvJ3x+Z/pjOTSiyianyshXslULBDGTrVqtvtXS4SpK9o9ikLks+d7V1PKsUOWwhUygwgc1fzYS1i6gntD3Br09a5miFg3CFPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HmA3EBBH; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7a59ec9bef4so3880986b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:26:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762813504; x=1763418304; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tkykz3S1CyycQbNzf0lzIqKhpFUnZB571m9tUf64HTs=;
-        b=NGE+TXPct30zyW7TAFUMXCRFW+JBU/5Nyd1usdotgrc/8g+kkFwv2wiOsh2VzadjtC
-         IDDhl69dnhFVPXphMxO6/Tat1Rj4WeqmvZeGSI/uf7G+hC1+rvp2RxzupvSVwLpnUXvr
-         xvqKv0ESYra6Unt5AzLLFRP7NHM/jJ49ko7VJSvn7x0+fONODNhOuxz8W57JpVLfxCpA
-         CdPukyJyGqqDzyjowjqJG5d8Sk5wIN7RmVi/6nxBrHkbHd1wnWMEQG8EVrEZaJFAvW5U
-         MrC2T4tVAoqU8DPGJqtaJ3O8NWIIJ0p8E91j6Unn8vLNRBWtrVQ5GZOfk6kEbDvKAUx/
-         nQLg==
+        d=gmail.com; s=20230601; t=1762813616; x=1763418416; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xLyXGRaLm6sEsE+EXjhF05M8r/IYZLjTnBThGk29/Q8=;
+        b=HmA3EBBH2/+SlWRWgh3hYU2/fabIlEA8gbXOB53Z+AZeLZgpxpkEJOYXF9/XnHMPqS
+         j0MZJF606Z/NQdg+iVgPDXOx7R40y0tnpgdDgO0pcI9/JglG/09tMCO1tY52imkChHLa
+         D1DkPMKorBNdgxUY8A1F7fPRzdeHB/7oSpPOmgjR1BRKba2890IrcTKkhRAwH1vLFPTy
+         EsZPEcNzulrNpKSu6nI0n9NfHZkaZHxpmGW5HiuwsDUSiZ/op00pOxFQ2OYT3d0T7O5h
+         1KPF3AhYYf+f6jAL6Gs548yEWJ5IFcgCYarchv2ZjO+Zca6+TVLKLBEk1UXaEirwMLYX
+         O+wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762813504; x=1763418304;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=tkykz3S1CyycQbNzf0lzIqKhpFUnZB571m9tUf64HTs=;
-        b=i1YtFoUehdUj8TOVY/WHC/WJSzJPlpQY9sip6tW6sNCycC7ppkIr8F3g/xJAtfosdy
-         O3Y2oqMS7F+KuKcmVSLgcv91mELPiYOtjHhGs0SBuoB3/VhxojuP3l0VvlAtdOWKzZl6
-         B0NSiAwGdrraUcbhM4SWFih1bRdFjULrflhJ6Coov2bZJkYGoSJ0JkZukR74iFb6MKrt
-         713fLPYnLy8PLOs+zKlH/6BsF7/LoITs1NiZciyPOHe59vIx9udRVDuY9XxCyc7jG8pX
-         8ni/LbSt2nPXFPftU28cJEI6l+1mXrGZoxj7gI8kGPLHf64dJigQNPbnKh2W8/qDPRrh
-         SSJg==
-X-Forwarded-Encrypted: i=1; AJvYcCU1Ek487S6YwpigSQKH/Y/5XvL/f6ujEJqU2IuRGnIZapYlpMSDuSWzbt+8KfyBeiAqKOHczga9bP+H@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmEPS3XCdNBR1sxlNwlqGF3CrL30m9/MWb0TKYMe6CpC1P1fYU
-	KVw5p1GafO5uDYm73mNoWEFYQL3dRT//77X0O+H8QJaoAH57DABakIc2jVl2oWVi92koM6O796A
-	v8kjzGUJiBLs9GPUG/YnCFIy60RvLKatozMTuUsr3gg==
-X-Gm-Gg: ASbGncvowof+vwaMQhRCZq3QGBvpMxo/D7093DGFYsS4Ej9FHZXDvMqTMeccIaBBgt6
-	ofHdcfoQYFdEjmBkqM+ZCtzrCoviJqZlUurNruSRhiL8ikW0CVoiesWW5+i0pghqM6GqDr27sjV
-	WekSzYNJp+eXmCpC2Im2aKwL+sDgx/Ezs/6F3LLz5PufEzchnREMnejE8MZ5k+lf09dKik46hWD
-	7bBPUGOi6n+QJipZax1HKE+2wX6+udrOZTp2Gz5h0wrUTK6JLRcUwxO3Kg4
-X-Google-Smtp-Source: AGHT+IH/bobBHFWFdtH9zZZK7pDa53PdeYG6iIiYCN8HDJy4OkCpiUpXjuiD4ZHFmsvNrZImVkrpEn3cIhnyZOsajDU=
-X-Received: by 2002:a05:6512:3408:b0:594:2c42:abd4 with SMTP id
- 2adb3069b0e04-594745a4d40mr256456e87.5.1762813504005; Mon, 10 Nov 2025
- 14:25:04 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762813616; x=1763418416;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xLyXGRaLm6sEsE+EXjhF05M8r/IYZLjTnBThGk29/Q8=;
+        b=f7u98of0PjCnJ8hNvFKFLWowXTyswaHaPtzuT6K1kZ2f1ta9KaBfBJFXa9SQLjX7Nz
+         cHggohjqoQ6RHxlh24u04q32xOEzEzcGSTvBbV4rLJOgc4YYY9oTcdYquvJwZqUhtz5o
+         uGk+d3+yaeP/CVcFyIdVKXiMcn7pmaaGGRJ1i1Bjn+lmIy8ys4oKVaVMx1oh1p3969qs
+         /FRWCxlMTOi9BMY3B1TdGt9a/Mro4Sw0rM/YJQsqdwdnrz16G79quVNMLCuJ/6C9CUcw
+         UCCuJGa7Sv5KDzR52cUC+Bb1AvtvbBBlZdqFV1zClggjJE0soIndifu0mvDXgT+I9nli
+         CEqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW663pyZh+roupX+x6yBmTUg2T3Uk7VGOy9IrHGHp2sd4a5EG1PJd3eV5Wws3nsN+Mm2SLxOaQGUIDg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2FaY3K/loX91Lxi7UN1kp+gzRwSunqT4r/qiUiUGiFrVmKGe3
+	ddDy5i9rUkcH9Z1th3Vja/k5jJ9Wydqa9ajAh/rw8LHqa7V6PFZLwyWv3eDh9A==
+X-Gm-Gg: ASbGncs5OPrEuj4d5sam9EcQwAqxmeENbsHwc6JEsTSJe2SHzTYYDvTm9A5U7Vv5RjG
+	gNqq6gxP4vM3iNKRrsC8PsaaHJNoTOsbGfj4S5ZUypMNojGaO0Z7j0qxdnxPPkBT0WIr1JJDdmA
+	ZS/IcMExKms4JTWQvHG6W/XNqd309f6YdMKBwXIc8Vq7SYQFKBLEEguoEWNPEc6ToKUGO4r26Gk
+	KN4Y/PihmzOaKJtBwqvxEOwntA3PA696vXwydvtJyA/yIbaliUeIN6ttW9s4NfFhA6lvEbgWg9N
+	eLFJhQR51U0aYRrNpDuHcVoXcKvO/p+XQrcZvFwm2PgX5OJPfsvI+yfGeYKtSDmaAZdMR/1Kg3a
+	aPtf9zWrzxPgUwGfa9ufhWt6Yr4UqdHjvlFwDaD1PXrAOiJgGEtQwzFhcqnz1MISFj4NFaLs15V
+	X0mXqV4U4KFw==
+X-Google-Smtp-Source: AGHT+IEk3kYn28lJz/C+AXXcRWMVZ9b5FI05N3tJpVXS4fy3dE0avtehbQZNj/cOBXS8KtnzWEvWzw==
+X-Received: by 2002:a05:6a20:e605:b0:357:be83:d026 with SMTP id adf61e73a8af0-357be83d02fmr681099637.35.1762813616432;
+        Mon, 10 Nov 2025 14:26:56 -0800 (PST)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ba8f8c880c5sm13710401a12.6.2025.11.10.14.26.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Nov 2025 14:26:56 -0800 (PST)
+Date: Tue, 11 Nov 2025 06:26:32 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Simon Horman <horms@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Vivian Wang <wangruikang@iscas.ac.cn>, Yao Zi <ziyao@disroot.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v7 3/3] net: stmmac: dwmac-sophgo: Add phy interface
+ filter
+Message-ID: <g2tqvcw7ocewzbqy7txz6sumdxeelhl4jk2s3btnnijyt572di@nrfcac6grpvn>
+References: <20251107111715.3196746-1-inochiama@gmail.com>
+ <20251107111715.3196746-4-inochiama@gmail.com>
+ <aRJGZjgTgcjZgIqe@horms.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251104021223.2375116-1-ye.zhang@rock-chips.com>
-In-Reply-To: <20251104021223.2375116-1-ye.zhang@rock-chips.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 10 Nov 2025 23:24:52 +0100
-X-Gm-Features: AWmQ_bnqL4tp4-XtSfjpF2SJDcbcu-l1tzSoL6TKzmSJf79bXaH7H2zLWLM2NeI
-Message-ID: <CACRpkdaR=_K-hewNne2fPN=RKu7iyOe0gLYhMEBfQVvemJJuoQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/3] pinctrl: rockchip: Add RK3506 pinctrl support
-To: Ye Zhang <ye.zhang@rock-chips.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	tao.huang@rock-chips.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aRJGZjgTgcjZgIqe@horms.kernel.org>
 
-On Tue, Nov 4, 2025 at 3:12=E2=80=AFAM Ye Zhang <ye.zhang@rock-chips.com> w=
-rote:
+On Mon, Nov 10, 2025 at 08:09:10PM +0000, Simon Horman wrote:
+> On Fri, Nov 07, 2025 at 07:17:15PM +0800, Inochi Amaoto wrote:
+> > As the SG2042 has an internal rx delay, the delay should be removed
+> > when initializing the mac, otherwise the phy will be misconfigurated.
+> > 
+> > Fixes: 543009e2d4cd ("net: stmmac: dwmac-sophgo: Add support for Sophgo SG2042 SoC")
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > Tested-by: Han Gao <rabenda.cn@gmail.com>
+> > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> > ---
+> >  .../ethernet/stmicro/stmmac/dwmac-sophgo.c    | 20 ++++++++++++++++++-
+> >  1 file changed, 19 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
+> 
+> ...
+> 
+> > @@ -50,11 +56,23 @@ static int sophgo_dwmac_probe(struct platform_device *pdev)
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	data = device_get_match_data(&pdev->dev);
+> > +	if (data && data->has_internal_rx_delay) {
+> > +		plat_dat->phy_interface = phy_fix_phy_mode_for_mac_delays(plat_dat->phy_interface,
+> > +									  false, true);
+> > +		if (plat_dat->phy_interface == PHY_INTERFACE_MODE_NA)
+> > +			return -EINVAL;
+> 
+> I'm sorry if this is a false positive. Because, more so than Russell [1], I
+> confused about how about the treatment of phy_interface. But it seems that
+> there is a miss match between the use of phy_fix_phy_mode_for_mac_delays()
+> above and the binding.
+> 
+> The call to phy_fix_phy_mode_for_mac_delays() above will return
+> PHY_INTERFACE_MODE_NA unless phy_interface is PHY_INTERFACE_MODE_RGMII_ID
+> or PHY_INTERFACE_MODE_RGMII_RXID.
+> 
+>   phy_interface_t phy_fix_phy_mode_for_mac_delays(phy_interface_t interface,
+> 						bool mac_txid, bool mac_rxid)
+>   ...
+> 	if (mac_rxid) {
+> 		if (interface == PHY_INTERFACE_MODE_RGMII_ID)
+> 			return PHY_INTERFACE_MODE_RGMII_TXID;
+> 		if (interface == PHY_INTERFACE_MODE_RGMII_RXID)
+> 			return PHY_INTERFACE_MODE_RGMII;
+> 		return PHY_INTERFACE_MODE_NA;
+> 	}
+>   ...
+> 
+> Looking at phy_modes(), unsurprisingly, the following mappings occur:
+> * "rgmii" -> PHY_INTERFACE_MODE_RGMII
+> * "rgmii-id" -> PHY_INTERFACE_MODE_RGMII_ID
+> * "rgmii-rxid" -> PHY_INTERFACE_MODE_RGMII_RXID
+> * "rgmii-txid" -> PHY_INTERFACE_MODE_RGMII_TXID
+> 
+> And in the binding, patch 1/3 of this series, only phy-mode rgmii-txid or
+> rgmii-id is allowed.
+> 
 
-> This series adds pinctrl support for the Rockchip RK3506 SoC.
->
-> The series includes:
-> - RK3506 pinctrl driver implementation
-> - RMIO (Rockchip Matrix I/O) support for RK3506
->
-> Ye Zhang (3):
->   dt-bindings: pinctrl: Add rk3506 pinctrl support
->   pinctrl: rockchip: Add rk3506 pinctrl support
+rgmii-txid is a mistake and should be rgmii-rxid. This is because
+the mac of SG2042 add rx delay, and the phy can only add tx delay or
+no delay. So the phy-mode can only be rgmii-id or rgmii-rxid. I will
+fix it in the next version.
 
-Since we have consensus on these two patches I applied them!
+> But if rgmii-txid is used, PHY_INTERFACE_MODE_RGMII_TXID will be passed to
+> phy_fix_phy_mode_for_mac_delays(), which will return PHY_INTERFACE_MODE_NA.
+> 
+> Again, I'm confused about the mapping in phy_fix_phy_mode_for_mac_delays().
+> But there does seem to be some inconsistency between the binding and
+> the driver implementation here.
+> 
 
->   pinctrl: rockchip: add rk3506 rmio support
+I think this inconsistency begin with the change for ethernet-controller
+binding.
+https://lore.kernel.org/all/20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch/
 
-Now you only need to discuss this with Heiko and iterate it.
+And this function serves as an helper so the driver can only add
+the delay once.
 
-Yours,
-Linus Walleij
+> Flagged by Claude Code with https://github.com/masoncl/review-prompts/ 
+> 
+> [1] https://lore.kernel.org/all/aPSubO4tJjN_ns-t@shell.armlinux.org.uk/
+> 
+> ...
+
+Regards,
+Inochi
 
