@@ -1,328 +1,152 @@
-Return-Path: <devicetree+bounces-236938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B078C49754
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:55:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F61C49926
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 23:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A5931888491
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:56:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10E8E1883BB4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381C732AAD4;
-	Mon, 10 Nov 2025 21:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEEB334029E;
+	Mon, 10 Nov 2025 22:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G5Mg0PhK"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="sLaXz4b6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from skyblue.cherry.relay.mailchannels.net (skyblue.cherry.relay.mailchannels.net [23.83.223.167])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3082F6582
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 21:55:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762811734; cv=none; b=ZihWPywh3y5nqOKziGFFdHmpdkMd3vtH64sQci9OY7FhRdBun9IX8d5ORBOxCMPCd1fbdO9gnl9z6+n3Aem5N3d9lJr8NnkJuF2Fq5n94EnJVLee+BCfCp+F+QGZqCKFAWgDNi6mzVWIpzIRtQGmoDm1H50sev0ouicoVczeQ/M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762811734; c=relaxed/simple;
-	bh=ObSsB7738pOMEqJYJlXGe5i/m6TYZQwPOJNWMg4oBrc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KdKR2V2kEQybBcuAlp1LtRimW+HZkzV3KMSrsV5wJbmct6cIlAmJvTgIYmYp7dOXcSeahZKIHP/zR50GsSIIcl0aaYteTah0cA6y4BB/ByRR6h39v8pLZbOjbWSjY7qlOCkJIAABaznLKVUGNwmqmb5xhVeBLc4qMJvCE/3K1OQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G5Mg0PhK; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-594259bc5f1so2628450e87.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:55:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762811730; x=1763416530; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=75zkR/UZ6TOt6Wc437IRuw+KGuA25dggT8vLsbM0934=;
-        b=G5Mg0PhKFXkSttuyCwB4VSyZZdz7nMIyOX8q0lK8/IYRc2QZ0anF/vook14ra5TbNu
-         7KtV4wBBq/GF+WXZGCHPxwBewqjAUUxVZXc1GTTGbInUTpzGYIEntbwl7iFUV96hj8YB
-         7Q0+R5Zb1+zpElLkzTAT/qmsKPRIG/d0Au8IXeRIEJ7lZwwk15G62t0g0FhB+Hx5nDzg
-         cEasd1LFE40kUiiXMSLkkK4K3Z688ibhKeWKxYx5EYvu1DliCvQL+uBEDShxvwKddbdS
-         b8FjRVfxxKSDGZM8MCpIsariSSisU9+7C1a7Rci30YYSjcaaHwGgNKPVSiIl55bFTmT0
-         xAmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762811730; x=1763416530;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=75zkR/UZ6TOt6Wc437IRuw+KGuA25dggT8vLsbM0934=;
-        b=UJbALM+XL5EgHQtbAAlt763rKcMg7aKJD84o2Cpx0WEf5A7C6XD2uekmuiEsqseL2S
-         r4F3HfBoxr9iDB9u7N3ftrIFzGk1rPEAf4WHwSOmF0iAPOkoBZYhuovkPzybDfs17cLn
-         wnz+mnmYrfxvT7Z6Y63+cgnircE9WJkjEVHbwiGi5GHVBUVLiWhmN9TZaCQQEaFck2Z4
-         v2d9bstqYROfDOo9aLi7JyYRheLzkoM3zbJLZaOFSFozK2H91Tm2icOZeH7FJI6AYzfO
-         0wLUEYGgg4dMtKZXB84S7iSX6VAiK1w7/vlqa8mJJL9+6EdOT0I7uZqcGAl8DXE9fHmY
-         Twzw==
-X-Forwarded-Encrypted: i=1; AJvYcCX+g0WYVL5kznGwAvzmENnog6T6obG7ne4xVMxALGuRGlaabryV9CuUy6elFS+KjZZthgcaQ6sYYrOd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0z25ZRc/O44EII4tqVM9hPiMoKG2Ri0dqgmtLtZj/fXeO5Rd4
-	ISJfuKNFowb5k3/B3w/bQB5SjvvTcjp95OEB+0hNgop48zHwuzoNoBN4WbyTjiW7AfkpoOtBBEW
-	2T1AnLwNVVV0x7jyrInR8pF+i+CQQi0YFJg==
-X-Gm-Gg: ASbGncvBEKXOBrlC0aimJfAd9UKvoCkzZvRk2DC4mdGLNDycbNWgzrLfzE7WVUeQf/n
-	L/4mK54zT07K9ZJwePtc/1Xl399w81yvG4YMRfDMI4KoCSq9GpAv3LR6zXTNW+Oq9XuuU9TFA1b
-	9eNjURynWWpYrN44dp0xsgH8c5nzfbUe5UqjGO+FqrNj6txj+KviDN4KJ5NQNU36/DMzvaQ+FTQ
-	dewmOFz21KGWMDNiaUTcNYzET1eaYpmZNMgLDMITnZE2Nkx2liqZmhxieMa
-X-Google-Smtp-Source: AGHT+IHGiQpBuoltSAmsRa5cYFCPTxfS3hi7kI1V+OfnP7UhcRFGs7NRrD6L+fCJ0Ns0YLNDxAqXXNnXTspeBlSNLa8=
-X-Received: by 2002:a05:6512:239a:b0:594:18cf:14c6 with SMTP id
- 2adb3069b0e04-5945f15c1b6mr2432185e87.21.1762811730218; Mon, 10 Nov 2025
- 13:55:30 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93654333730;
+	Mon, 10 Nov 2025 22:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.167
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762813540; cv=pass; b=SF15kib+J1D3jqHRut2BtOZEtUAoS3wCYUWuHX1hfLF5fz/yREl4zuNfC/5Y36mTWXw/CsXeViU5+c0kz0Wq6cvDt61I044sQJrt9MHCOVaROoEVkv4VyTfSe4CCKxI1LK78kbQ/ClEMflKRTzY5QunD4I+Af8cb97yWTZge8e8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762813540; c=relaxed/simple;
+	bh=CiXjRnp4/+6UB9oDhNwLpZHPknYGlmH/xEkMUzF15NQ=;
+	h=From:To:Cc:Subject:Message-ID:In-Reply-To:References:MIME-Version:
+	 Date; b=N89ydReGhG5oDV5hzf3WGuBfLVHqVIziqkNUsbX+lyqANEawihFM/TAinKsJwqFQOEDWmF6Ay4cmxaR7CXrrod98MYQ1/oskrB39B2gOj2w7onXS1lIMqLVjDCmYrbrrJfDYE/vl3Fg9Y5YTDmgGw9voBljpJ9ebsjx8bLe8o9E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=sLaXz4b6; arc=pass smtp.client-ip=23.83.223.167
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 1586E721F04;
+	Mon, 10 Nov 2025 22:06:54 +0000 (UTC)
+Received: from fr-int-smtpout26.hostinger.io (100-123-217-111.trex-nlb.outbound.svc.cluster.local [100.123.217.111])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 5F9B3721F21;
+	Mon, 10 Nov 2025 22:06:51 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1762812413; a=rsa-sha256;
+	cv=none;
+	b=P0OmOKroYME9rn0jlx/I4YDK6spwy3J+RhPoAPcCUhRIHlq1iNPHQ1nG9xA1l43zShFBe9
+	K3vUrh92hKMOTvODFwwgITWMt5ELBu8ofKye78hJ5lIucFJ6AV6lWXHvntcCJ+sYx+oWfe
+	uuwGS/rs+V73IXEMP4WeuuDdCuvAUarvI0jhW2fweZfwlpKCa9DOugRcX9arP8DIDBf6le
+	UB78gDy0X+DOFuo/kpQPbSGZXtQI+JkEsf6jpzCoNnF+/8fPzYurRBGXKPA4qj9WIUY/SB
+	xAENP/ChDWyZ+HhJmuzMRPJwOjBm1OYQHy8jhV59HnW5ANucHU/TuDsioK9NBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1762812413;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=0Kc2cGqghawWgDT4UIWY86Y98oRPWDu+9tb+KQMDdQY=;
+	b=JQ4XtvB03vG/i0YphL04NoIYXtwQdZx9yRlxCHMbBtN9Vgz8lk8cDA9LErzoWQk6+Krm/O
+	6se5aoJZHWAgwNQeT+d7nn4tsFSM/ky4NPlQhiuTRi9Qpwf8gRoPLNZzP18x+vZiZCvrs/
+	Ir3Wfkho8NeUc4hU1B7REb6n7Kzc8QH2w2521zEVoD9Y2HwCQj5qdgp1OAQVItW1SgWDjW
+	nkCWQ3LHykS2MdBnqEA0VFJlF1IePm8wAhI9Tphq0SAL8wpG69OjvKgIC4HGGJ1sWfQ1NW
+	t88z+z0ab5HsG0RHd/4Zo4AyqiRg6zuVdUm+JnvF5pTrcfHbsCJAgma0M9+rFA==
+ARC-Authentication-Results: i=1;
+	rspamd-77bb85d8d5-srwqq;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Continue-Befitting: 0cab41722ae4e3b9_1762812413903_1501683741
+X-MC-Loop-Signature: 1762812413903:1491620757
+X-MC-Ingress-Time: 1762812413903
+Received: from fr-int-smtpout26.hostinger.io (fr-int-smtpout26.hostinger.io
+ [148.222.54.11])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.123.217.111 (trex/7.1.3);
+	Mon, 10 Nov 2025 22:06:53 +0000
+Received: from localhost.localdomain (unknown [IPv6:2001:861:4450:d360:31e9:b9de:fe42:7704])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d53fc6lmKz1y02;
+	Mon, 10 Nov 2025 22:06:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1762812409;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0Kc2cGqghawWgDT4UIWY86Y98oRPWDu+9tb+KQMDdQY=;
+	b=sLaXz4b6B5pmJ9QPNIOp4xc2yCHCIBis4XEMNHVhTwqQqXUaCF1U9VrTXdcDpseKurpuw/
+	cKDazQJMdsxOfr+N+ZED5mLk5UM2kU8cTznckQrDqwZSO0GzjTo5wz2ZCese+hICIe88KY
+	+TMw/eachL4HF2aOop9V5PwVPsy+kHsd6UVU9dJIOM8lyNipzn8eOX3WlvzStnnQCbD6xj
+	fhPFlRScRwHpF56SalcfIc1auFITj5MsQL3FR+Gu+/+4vmbVJRh63QY8flJiqTstoF0rlI
+	x4GK2aDeXIYHZDA/6xVG5fjErCLNeqqPHsYPuFtgUNROGHdZCMLqofWroLsexw==
+From: michael.opdenacker@rootcommit.com
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@gentoo.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Yangyu Chen <cyy@cyyself.name>
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: riscv: spacemit: Add OrangePi R2S board
+Message-ID: <20251110220641.1751392-2-michael.opdenacker@rootcommit.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251110220641.1751392-1-michael.opdenacker@rootcommit.com>
+References: <20251110220641.1751392-1-michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
- <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com> <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
-In-Reply-To: <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 10 Nov 2025 15:55:17 -0600
-X-Gm-Features: AWmQ_bmCgGj-BBdH4Veqo9w6LfhIAvjjDwwgCxeeYiZ0ZFChwSDrN20zwBdXnlQ
-Message-ID: <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Date: Mon, 10 Nov 2025 22:06:48 +0000 (UTC)
+X-CM-Envelope: MS4xfKP0gciVqc2IA6yni3wIkwZuDcNJkZbkAZhCjphAKff66NAq6961DC0WcO0J8Q8w9WXhOvqC7zYR0XKq53ctAvp9tvKLqhcHpsufdoY/LtCUzvmCUIUn Nu5qfkiSPtZfqI5k31+XZ+QRQ2lz81v+9WXYIKhpnhxuXIBd5i45VlZ5Vwlh/CB1XICBNylW7T05VlV9uYfnSorHDR7cken3E3F09gwXGttBJcJu0WbKa1qQ 1LPtmoLHQ3eWwB7DB2c5nRSHQHSzvb/mZYW9UxRCpiVVH9OEWhj9nDDEoOPd+d4N+VDl8m2WCf9xdHejyHzguM5V/47CithR1ph60gPYNxOW1DaPPwNUsm9t pfpDs4wkMiHPOWErEr2/gmDpSmL8uL/tJXaL5UJlXyBaV3RrBiLYahyXUMY3jH0thZrGXt7JULGH2Ea8BWyhZ+2HtbggE3ytxCsRtxWdllbXem5wsE5zS37+ jDvtCs1stNb8QvT9D4eYLTaRiT+pAn7qWG3SgqSR0raA5IZU+nXIojg0e2KZf4AQUUuvLzOOFBq6+XBdlYRkUE/GYd/X/P7/NDi+Lch/ddyvfTL7+TjrAIFz Cbiec333lkJhWK5bss1GXoBKEubuh3rOa13wa3/wv/CpSmhWQdPSmF6e75Hpj4zPKakZg/ZYOdUwgTKIbiP1Lc7aePzVTbOA5ZFSr3hoZfrEiN5RseS3UZ3w b0JDSZRW+lI=
+X-CM-Analysis: v=2.4 cv=NuiDcNdJ c=1 sm=1 tr=0 ts=691261f9 a=6hOvbz5PeP13GDnUra1LTQ==:617 a=xqWC_Br6kY4A:10 a=5dAzR5NRAAAA:8 a=lv0vYI88AAAA:8 a=d70CFdQeAAAA:8 a=ahLzFxuTVLoCwVWoPR8A:9 a=9STjDIb-X-UA:10 a=ZKAZAlVgJm32z6MX8p4a:22 a=9qqun4PRrEabIEPCFt1_:22 a=NcxpMcIZDGm-g932nG_k:22
+X-AuthUser: michael.opdenacker@rootcommit.com
 
-On Mon, Nov 10, 2025 at 3:25=E2=80=AFPM Jon Hunter <jonathanh@nvidia.com> w=
-rote:
->
->
-> On 27/10/2025 18:55, Aaron Kling via B4 Relay wrote:
-> > From: Aaron Kling <webgeek1234@gmail.com>
-> >
-> > This adds support for dynamic frequency scaling of external memory on
-> > devices with bpmp firmware that does not support bwmgr.
-> >
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > ---
-> >   drivers/memory/tegra/tegra186-emc.c | 132 +++++++++++++++++++++++++++=
-++++++++-
-> >   1 file changed, 130 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/memory/tegra/tegra186-emc.c b/drivers/memory/tegra=
-/tegra186-emc.c
-> > index 9959ad5804b444b269456d1fbae87b4bc111661b..74be09968baa7a0fbdce435=
-9f470ce56b18acb10 100644
-> > --- a/drivers/memory/tegra/tegra186-emc.c
-> > +++ b/drivers/memory/tegra/tegra186-emc.c
-> > @@ -18,6 +18,17 @@ struct tegra186_emc_dvfs {
-> >       unsigned long rate;
-> >   };
-> >
-> > +enum emc_rate_request_type {
-> > +     EMC_RATE_DEBUG,
-> > +     EMC_RATE_ICC,
-> > +     EMC_RATE_TYPE_MAX,
-> > +};
-> > +
-> > +struct emc_rate_request {
-> > +     unsigned long min_rate;
-> > +     unsigned long max_rate;
-> > +};
-> > +
-> >   struct tegra186_emc {
-> >       struct tegra_bpmp *bpmp;
-> >       struct device *dev;
-> > @@ -33,8 +44,90 @@ struct tegra186_emc {
-> >       } debugfs;
-> >
-> >       struct icc_provider provider;
-> > +
-> > +     /*
-> > +      * There are multiple sources in the EMC driver which could reque=
-st
-> > +      * a min/max clock rate, these rates are contained in this array.
-> > +      */
-> > +     struct emc_rate_request requested_rate[EMC_RATE_TYPE_MAX];
-> > +
-> > +     /* protect shared rate-change code path */
-> > +     struct mutex rate_lock;
-> >   };
-> >
-> > +static void tegra186_emc_rate_requests_init(struct tegra186_emc *emc)
-> > +{
-> > +     unsigned int i;
-> > +
-> > +     for (i =3D 0; i < EMC_RATE_TYPE_MAX; i++) {
-> > +             emc->requested_rate[i].min_rate =3D 0;
-> > +             emc->requested_rate[i].max_rate =3D ULONG_MAX;
-> > +     }
-> > +}
-> > +
-> > +static int emc_request_rate(struct tegra186_emc *emc,
-> > +                         unsigned long new_min_rate,
-> > +                         unsigned long new_max_rate,
-> > +                         enum emc_rate_request_type type)
-> > +{
-> > +     struct emc_rate_request *req =3D emc->requested_rate;
-> > +     unsigned long min_rate =3D 0, max_rate =3D ULONG_MAX;
-> > +     unsigned int i;
-> > +     int err;
-> > +
-> > +     /* select minimum and maximum rates among the requested rates */
-> > +     for (i =3D 0; i < EMC_RATE_TYPE_MAX; i++, req++) {
-> > +             if (i =3D=3D type) {
-> > +                     min_rate =3D max(new_min_rate, min_rate);
-> > +                     max_rate =3D min(new_max_rate, max_rate);
-> > +             } else {
-> > +                     min_rate =3D max(req->min_rate, min_rate);
-> > +                     max_rate =3D min(req->max_rate, max_rate);
-> > +             }
-> > +     }
-> > +
-> > +     if (min_rate > max_rate) {
-> > +             dev_err_ratelimited(emc->dev, "%s: type %u: out of range:=
- %lu %lu\n",
-> > +                                 __func__, type, min_rate, max_rate);
-> > +             return -ERANGE;
-> > +     }
-> > +
-> > +     err =3D clk_set_rate(emc->clk, min_rate);
-> > +     if (err)
-> > +             return err;
-> > +
-> > +     emc->requested_rate[type].min_rate =3D new_min_rate;
-> > +     emc->requested_rate[type].max_rate =3D new_max_rate;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int emc_set_min_rate(struct tegra186_emc *emc, unsigned long ra=
-te,
-> > +                         enum emc_rate_request_type type)
-> > +{
-> > +     struct emc_rate_request *req =3D &emc->requested_rate[type];
-> > +     int ret;
-> > +
-> > +     mutex_lock(&emc->rate_lock);
-> > +     ret =3D emc_request_rate(emc, rate, req->max_rate, type);
-> > +     mutex_unlock(&emc->rate_lock);
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int emc_set_max_rate(struct tegra186_emc *emc, unsigned long ra=
-te,
-> > +                         enum emc_rate_request_type type)
-> > +{
-> > +     struct emc_rate_request *req =3D &emc->requested_rate[type];
-> > +     int ret;
-> > +
-> > +     mutex_lock(&emc->rate_lock);
-> > +     ret =3D emc_request_rate(emc, req->min_rate, rate, type);
-> > +     mutex_unlock(&emc->rate_lock);
-> > +
-> > +     return ret;
-> > +}
-> > +
-> >   /*
-> >    * debugfs interface
-> >    *
-> > @@ -107,7 +200,7 @@ static int tegra186_emc_debug_min_rate_set(void *da=
-ta, u64 rate)
-> >       if (!tegra186_emc_validate_rate(emc, rate))
-> >               return -EINVAL;
-> >
-> > -     err =3D clk_set_min_rate(emc->clk, rate);
-> > +     err =3D emc_set_min_rate(emc, rate, EMC_RATE_DEBUG);
-> >       if (err < 0)
-> >               return err;
-> >
-> > @@ -137,7 +230,7 @@ static int tegra186_emc_debug_max_rate_set(void *da=
-ta, u64 rate)
-> >       if (!tegra186_emc_validate_rate(emc, rate))
-> >               return -EINVAL;
-> >
-> > -     err =3D clk_set_max_rate(emc->clk, rate);
-> > +     err =3D emc_set_max_rate(emc, rate, EMC_RATE_DEBUG);
-> >       if (err < 0)
-> >               return err;
-> >
-> > @@ -217,6 +310,12 @@ static int tegra186_emc_get_emc_dvfs_latency(struc=
-t tegra186_emc *emc)
-> >       return 0;
-> >   }
-> >
-> > +static inline struct tegra186_emc *
-> > +to_tegra186_emc_provider(struct icc_provider *provider)
-> > +{
-> > +     return container_of(provider, struct tegra186_emc, provider);
-> > +}
-> > +
-> >   /*
-> >    * tegra186_emc_icc_set_bw() - Set BW api for EMC provider
-> >    * @src: ICC node for External Memory Controller (EMC)
-> > @@ -227,6 +326,33 @@ static int tegra186_emc_get_emc_dvfs_latency(struc=
-t tegra186_emc *emc)
-> >    */
-> >   static int tegra186_emc_icc_set_bw(struct icc_node *src, struct icc_n=
-ode *dst)
-> >   {
-> > +     struct tegra186_emc *emc =3D to_tegra186_emc_provider(dst->provid=
-er);
-> > +     struct tegra_mc *mc =3D dev_get_drvdata(emc->dev->parent);
-> > +     unsigned long long peak_bw =3D icc_units_to_bps(dst->peak_bw);
-> > +     unsigned long long avg_bw =3D icc_units_to_bps(dst->avg_bw);
-> > +     unsigned long long rate =3D max(avg_bw, peak_bw);
-> > +     const unsigned int ddr =3D 2;
-> > +     int err;
-> > +
-> > +     /*
-> > +      * Do nothing here if bwmgr is supported in BPMP-FW. BPMP-FW sets=
- the final
-> > +      * Freq based on the passed values.
-> > +      */
-> > +     if (mc->bwmgr_mrq_supported)
-> > +             return 0;
-> > +
-> > +     /*
-> > +      * Tegra186 EMC runs on a clock rate of SDRAM bus. This means tha=
-t
-> > +      * EMC clock rate is twice smaller than the peak data rate becaus=
-e
-> > +      * data is sampled on both EMC clock edges.
-> > +      */
-> > +     do_div(rate, ddr);
-> > +     rate =3D min_t(u64, rate, U32_MAX);
-> > +
-> > +     err =3D emc_set_min_rate(emc, rate, EMC_RATE_ICC);
-> > +     if (err)
-> > +             return err;
-> > +
-> >       return 0;
-> >   }
-> >
-> > @@ -329,6 +455,8 @@ static int tegra186_emc_probe(struct platform_devic=
-e *pdev)
-> >       platform_set_drvdata(pdev, emc);
-> >       emc->dev =3D &pdev->dev;
-> >
-> > +     tegra186_emc_rate_requests_init(emc);
-> > +
-> >       if (tegra_bpmp_mrq_is_supported(emc->bpmp, MRQ_EMC_DVFS_LATENCY))=
- {
-> >               err =3D tegra186_emc_get_emc_dvfs_latency(emc);
-> >               if (err)
-> >
->
->
-> FYI, this patch is causing a boot regression on Tegra194 devices. I
-> noticed that tegra194-p2972-0000 and tegra194-p3509-0000+p3668-0000 are
-> no longer booting and bisect is pointing to this. I will have a closer
-> look and try to see why this is.
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
 
-Interesting. Both were booting for me during my verification, though
-my use case involves the dt changes that I don't believe have been
-picked up yet. Thought I had explicitly verified without the dt
-changes too, though. Since I was asked to do so on this or one of the
-other similar series. I will try to check linux-next as-is soon.
+Document the compatible string for the OrangePi R2S board [1], which
+is marketed as using the Ky X1 SoC but is in fact identical to
+the SpacemiT K1 SoC [2].
 
-Aaron
+Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-R2S.html [1]
+Link: https://www.spacemit.com/en/key-stone-k1 [2]
+Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+---
+ Documentation/devicetree/bindings/riscv/spacemit.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/riscv/spacemit.yaml b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+index 52fe39296031..9c49482002f7 100644
+--- a/Documentation/devicetree/bindings/riscv/spacemit.yaml
++++ b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+@@ -23,6 +23,7 @@ properties:
+               - bananapi,bpi-f3
+               - milkv,jupiter
+               - spacemit,musepi-pro
++              - xunlong,orangepi-r2s
+               - xunlong,orangepi-rv2
+           - const: spacemit,k1
+ 
 
