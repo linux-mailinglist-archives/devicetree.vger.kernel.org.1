@@ -1,213 +1,162 @@
-Return-Path: <devicetree+bounces-236728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48C89C46B26
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:50:01 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BED1C46B62
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:53:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2BFFD4E532C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:50:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 47C6D4E984B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7729B30E849;
-	Mon, 10 Nov 2025 12:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8623101BA;
+	Mon, 10 Nov 2025 12:53:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pHAuyUbP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B90D30C635
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:49:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DDE3064A6
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762778992; cv=none; b=K4UL33HM0rNj28786uxxyC3bbj3r866kqhHL/knfpDWg011MK/KMhcm7PyGRKC8pZ1+SkvfIYDrbnVu03w8gDjeF3PxF3iDBxKFbU0WDJ0I4pb5Fe5QJEWonIFrslZvziY/GMqtwR8GMd2MluM4wKCiRFJQoPVZ8tFENKkedA0I=
+	t=1762779186; cv=none; b=Rvc+XWY9PNWuT09MdNw25IzP0F5tF9N1O8DapqrkErmyo6YMn/Q+e5lPi9ajHh78yOLY4E6PwLZhiZ8rt4IlaMOWJhJhnWJ5PRY8Il7cgq+Lb4Hw99qoK2kMwQisL2n5sUJDcPb/aTpPCXet0DZ61je09ZEVmjqBX5JnwqsKy4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762778992; c=relaxed/simple;
-	bh=cAw6KDVicFMiZpuDduunfg3+w/yg4gN+HRNZWYDOi/o=;
+	s=arc-20240116; t=1762779186; c=relaxed/simple;
+	bh=lajD8QJElBkHp+szQMp4lvfntXaq7B2csoiFGrMzr/8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IcKEl9jwazG955YDJIgpV1tUFI8fhQ50/v4xHFvejl+SkHEx6PRCfWWZ6b4JEC5fjNcBilJnTsYhv+iKMGxtx34A0Pw8ZtxvD/1TQuyc4VIcs0pqb1/MtuDM2wEDr8u8gP+SzLaTVbpwtQU3nqIl9lpFLf85hb1dEUjLTJwUstM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5dd6fbe5091so1097029137.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:49:49 -0800 (PST)
+	 To:Cc:Content-Type; b=q4FuSu9/mR5B8yzfd9KJ5wwJS1NtoXzJO5JUCXWQi/WO4ne5oxjH24wA4kBgD6uPgsGX8BEgL12XAj7jqw3CjkcqoHUwpud8bXEWkOLwAFTyvZcXnu3xi9DiUD+IbBntDS6/Pws3EONWedZ1bl4dTR7mabsQBjaC2llU+Fkoukw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pHAuyUbP; arc=none smtp.client-ip=209.85.160.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-3c9859913d0so1684384fac.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:53:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762779183; x=1763383983; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lajD8QJElBkHp+szQMp4lvfntXaq7B2csoiFGrMzr/8=;
+        b=pHAuyUbPTRgXF6gAyhV8JVy7+EDCorUsZr9eGAo/TITyvpDhI1fXmNQU5oIzJlPQtl
+         +Tq+4arshPmQNek2fkonRGxqSqJYlhxpZ1TRy2SsyMwL6dwDtkkTIjCWJ6S9Nfq1C8xt
+         X5cSR6XyI+b+5nZSLyX9rqdq5a9VBpVp5BBIQQfnEX9fitosoxpIz24ADV3KXortYbl8
+         yxDdW1OYcSBH61IUagKk5zW4GjE5fxgf/hXxSJzyK8jVYPtsYf80RDMPb6WyaXfoJ5MV
+         a9Ku5JpyQZA66zbTkcPvsvG2WtvhaKtwRN4H80iw8QP9yYbSpIrk5Tl84oQF2a0gEG3i
+         8eOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762778988; x=1763383788;
+        d=1e100.net; s=20230601; t=1762779183; x=1763383983;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Fh17CiieclZAsVeAhUA/WaKqsZ8PVmhh++ya3iPI2Ik=;
-        b=A/8N1O8BjOY8oOcfgLRD2FF66VVxwMcnitrUR6ajcuRqkR3y0d3G0lX5bzul8L4z6S
-         jndXwJwi2Mt6A0rABr3D/fjO2NucX56X5PUfTvkISP6l+7sFUbI49icF75bLq6IiLknE
-         H30i8B0KYtuA5IZD+Gr+e+4Ax4cB/ai5hpDmO3BoeLDIB6bv2Tl19L8p1HPK0OHlLN/u
-         iTqqHwuZ+4CsT5oF7iZ3ADLfw+tS1JuIO6YXk5+I2Alude/Qz1AsEFloLWzWogaY8N3E
-         FMFNA49hPDA/ufaPrhf2Gu/2NHQKXGWfwRlkZlfxlcqZ+H/V2s/89aHWZMxHqrHKZ//D
-         dXVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWhGRh/1qyWrKcZ1hkb6jHIhsQFREngYd2Wq1cyzJWwlNSOd99Eut1YojO0J8H6RUd+Sk62bAC1Hh01@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3W2SVnE9NZSxKYElDM1LvACX9SLYMtRVKPKk0DHZ5rATd0i87
-	gx7zI6QZpYpij0uBuPjIkyv2eZfwcembgYcHm4TA4mvsQoptUUUl2UQ4I6sbkKVr
-X-Gm-Gg: ASbGnctlaOBJ2sVol+OA3YG/uQtH1vOG6wjXcE/SuBMJOboCfOphzUWp0oYka6x3DTe
-	wMS/L/+wvS3w0Cynjx/osts8O55ULx6NLpF2dZR0KSt9DPzadxZemSQK7Enj2YBaW91I2lDH5uv
-	rjDVi1DRXzpmVhUnxDad0B/r9KNRm9/FXfVp0pdoV95AjV6OVIp04ngott8NpcikZvPNKK/P0CY
-	unZ1Sp7kixiygoI+fYavOipW2Yp9RzoogQPfGqe2zAfsZwLOPP/+mwks5q84OCyuh+oLSL2+D4K
-	ORMoBDACPmFDPBHof7SqIgkmDI/qLSrvvc7Wj8aGKeFN9G+sp0zY5XdalXsQD6wPeB9VeSUB+0r
-	L9TxSpzcnhjfM5/wFHvj7Es4QnYVZ7S/eIl+elvYTPU4YTdTnSweNakXvt5affUUYvdsdRTq1GC
-	ibDWjHw+WmsxvZ9f6vStlors4oqyTJAcgSlqFaN08KsZAEJoM7
-X-Google-Smtp-Source: AGHT+IFXCTGRtFHbvHW9tx3hNmCiABWzrGiLV96/Tkl6Mz9+6QQCRSVr3bqR231gqNQMLLWIU3do2Q==
-X-Received: by 2002:a05:6102:418f:b0:5db:e1ad:770f with SMTP id ada2fe7eead31-5ddc467fa2cmr2260230137.2.1762778987849;
-        Mon, 10 Nov 2025 04:49:47 -0800 (PST)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9370898d9d1sm5797874241.12.2025.11.10.04.49.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Nov 2025 04:49:47 -0800 (PST)
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-9372410c6faso476088241.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:49:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXOWl2zjIvj0M6rhaXmYnGqQKpghy8odE6o5d7F3oznuf44wdo64xe+OKCY7ObVFAamtQd+xdx0OpLy@vger.kernel.org
-X-Received: by 2002:a05:6102:3a0a:b0:5db:f352:afbd with SMTP id
- ada2fe7eead31-5ddc467ebffmr2222725137.3.1762778986813; Mon, 10 Nov 2025
- 04:49:46 -0800 (PST)
+        bh=lajD8QJElBkHp+szQMp4lvfntXaq7B2csoiFGrMzr/8=;
+        b=RJSNMdGAx21M+27XVeTS0J13O6Cpp/nzZPLd0ppgJ2wj/6dkGKuUmXlfW2BlA6b/dP
+         0935e3vNgg7tkW8SeBYDehQJXEx0YLkjD0I4CoacgvESMazI71nFbPzFebsu4cAxUKCg
+         41D8LIdEI7vPCdYYymZTBMP3UW7qhaNKU3CMmSZWB8tF1LkdZ6lnjhkPmmA41whB5q96
+         AIG1LjMDhFIC1eSVp8pkgKgkPID7XAuBzsgOKQ4lVlARMno+LiQh7a8kmTTPDMMYuwnz
+         TOdwzr6mqHBM3x1iEsajvYHm+iRfC4O4YB/mR9YXnecsksALek7vdD3caDsgS/pEouGe
+         W0MA==
+X-Forwarded-Encrypted: i=1; AJvYcCWHdU94ShPNeqd9SStyxgHO+VtYlca81qk6NOeOVRaD//H9/7TdCp7Dp4A7uNOiuykbtxZvMMWU8eYk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDm3T6o5rEffelrjiYK8+QaLhzd3WYddcqbatDScwXrr4Hi4IB
+	GxMYWOCi8A+AsUmSaRrU0ajASm1pAmME7bzOJeVX82kPqZ9qg2ZeSVi5nzD5XTNC5fLEO59+7Kn
+	NmSYfxyw0NB9ISV2o9H6P69TOF1OB6Jn4U6vUAHCizg==
+X-Gm-Gg: ASbGncsjGgGLYbZ9ed8Hk/Jl+62hcfMQ7CfkKKDE4PdkqcIu/7QcgZk4ch7wEY9clUs
+	aUlaehFS01bnLsUS/sY94vZoMOBzfwgSLorJUdKQqiwlHqoHgytSAtnujjBSbc/4fkz7kSOmqHt
+	DDSJw7GxfgTYfmyJ0qWLTlS0qswX+TZ+ajmqjGlTeGSTYJGkNDnSQtwiOxZhqGe5CJp//RnaI7f
+	gpzohOPWsSq6zWxoFtlY9Q6XHpwSqN03ddeyMFpuy0ycLGZnGZYow8biLyF
+X-Google-Smtp-Source: AGHT+IHaOc9Hf++xJ77n1T9F3eaANxA6a255QvjbOAcsfDAumQrnMbLyVAX5itd8dNhL35m/2iP5WQb/9KW6fxXbd5k=
+X-Received: by 2002:a05:6871:60c:b0:3d2:fddc:862c with SMTP id
+ 586e51a60fabf-3e7c2452b4cmr4340908fac.7.1762779182758; Mon, 10 Nov 2025
+ 04:53:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251105104151.1489281-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251105104151.1489281-12-cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20251105104151.1489281-12-cosmin-gabriel.tanislav.xa@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 10 Nov 2025 13:49:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWTH_uuQURgqQrg1RGDMwzdDAWFk__mS9+Gc8mcESfUyA@mail.gmail.com>
-X-Gm-Features: AWmQ_bkfRzk8FN2qNNCBLlLG0XaTRUdRgwFG7IJoHivC4Q2Ld9wLwHCuz85ymR8
-Message-ID: <CAMuHMdWTH_uuQURgqQrg1RGDMwzdDAWFk__mS9+Gc8mcESfUyA@mail.gmail.com>
-Subject: Re: [PATCH v3 11/14] dt-bindings: spi: renesas,rzv2h-rspi: document
- RZ/T2H and RZ/N2H
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-spi@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+References: <20251102-automatic-clocks-v3-0-ff10eafe61c8@linaro.org>
+ <20251102-automatic-clocks-v3-1-ff10eafe61c8@linaro.org> <20251103-smoky-rustling-bloodhound-7590ce@kuoka>
+ <CADrjBPpjX_qSehbNkaAG03f=whs09qFzzgNiY3sztk7v0QeCFw@mail.gmail.com> <20251104-enthusiastic-cream-gibbon-0e7b88@kuoka>
+In-Reply-To: <20251104-enthusiastic-cream-gibbon-0e7b88@kuoka>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 10 Nov 2025 12:52:51 +0000
+X-Gm-Features: AWmQ_bmYJGLwRqlUrf73Sc1rVwj8QxtUbwqaYUkACotkTBe74SIkf0KWHru_6Ms
+Message-ID: <CADrjBPpGt3qBGucF1COWZT=OZ+8ithg6=-QefhKUiW4tkC=KrA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: google,gs101-clock: add
+ samsung,sysreg property as required
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
+	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>
+	kernel-team@android.com
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Cosmin,
+Hi Krzysztof,
 
-On Wed, 5 Nov 2025 at 11:44, Cosmin Tanislav
-<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have four SPI
-> peripherals.
+On Tue, 4 Nov 2025 at 08:11, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> Compared to the previously supported RZ/V2H, these SoCs have a smaller
-> FIFO, no resets, and only two clocks: PCLKSPIn and PCLK. PCLKSPIn,
-> being the clock from which the SPI transfer clock is generated, is the
-> equivalent of the TCLK from V2H.
+> On Mon, Nov 03, 2025 at 01:49:53PM +0000, Peter Griffin wrote:
+> > Hi Krzysztof,
+> >
+> > Thanks for the review feedback!
+> >
+> > On Mon, 3 Nov 2025 at 09:41, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > >
+> > > On Sun, Nov 02, 2025 at 08:27:14PM +0000, Peter Griffin wrote:
+> > > > Each CMU (with the exception of cmu_top) has a corresponding sysreg bank
+> > > > that contains the BUSCOMPONENT_DRCG_EN and MEMCLK registers.
+> > > >
+> > > > If present these registers need to be initialised
+> > >
+> > >
+> > > ... for what exactly? What would happen if this was not initialized?
+> >
+> > The BUSCOMPONENT_DRCG_EN register enables dynamic root clock gating of
+> > bus components. So it is related to the automatic clock gating feature
+> > that is being enabled in this series. Things still work without
+> > initializing this register, but the bus components won't be
+> > automatically clock gated leading to increased dynamic power
+> > consumption. Similarly the memclk register enables/disables sram clock
+> > gate. Up until now we've not been initializing the registers as
+> > everything from Linux PoV has been in manual clock gating mode and
+> > until starting to implement this I wasn't aware there were some clock
+> > related registers in the corresponding sysreg. Additionally with
+> > Andre's work enabling power domains it has become clear we should be
+> > saving/restoring these two sysreg clock registers when the power
+> > domain is turned off and on.
+> >
+> > > What is the exact justification for ABI break - wasn't this working
+> > > before? Or new feature will not work (thus no ABI break allowed)?
+> >
+> > No, automatic clocks and dynamic root clock gating were not working
+> > prior to this series. Currently power domains and system wide
+> > suspend/resume aren't enabled upstream either. As we work on enabling
+> > these features we are finding some things that in an ideal world we
+> > would have known about earlier. Unfortunately it's not so obvious just
+> > from studying the downstream code either as they rely heavily on
+> > CAL-IF layer that has peeks/pokes all over the memory map especially
+> > for power/clock related functionality.
+> >
+> > Whilst it is technically an ABI break, I've tried to implement it in a
+> > backwards compatible way (i.e. an old DT without the samsung,sysreg
+> > phandle specified) will just fallback to the current behavior of not
+> > initializing these registers. Things will still work to the extent
+> > they did prior to this series. With a new DT the registers will be
+> > initialized, and dynamic power consumption will be better.
 >
-> Document them, and use RZ/T2H as a fallback for RZ/N2H as the SPIs are
-> entirely compatible.
->
-> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> So explain that this is needed for proper and complete power management
+> solution on this SoC, however that is not an ABI break because Linux
+> driver will be stil backwards compatible.
 
-Thanks for your patch!
+I'll send a new version shortly with an updated commit message like you suggest.
 
-> --- a/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
-> @@ -9,12 +9,15 @@ title: Renesas RZ/V2H(P) Renesas Serial Peripheral Interface (RSPI)
->  maintainers:
->    - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
->
-> -allOf:
-> -  - $ref: spi-controller.yaml#
-> -
->  properties:
->    compatible:
-> -    const: renesas,r9a09g057-rspi # RZ/V2H(P)
-> +    oneOf:
-> +      - enum:
-> +          - renesas,r9a09g057-rspi # RZ/V2H(P)
-> +          - renesas,r9a09g077-rspi # RZ/T2H
-> +      - items:
-> +          - const: renesas,r9a09g087-rspi # RZ/N2H
-> +          - const: renesas,r9a09g077-rspi # RZ/T2H
->
->    reg:
->      maxItems: 1
-> @@ -36,13 +39,12 @@ properties:
->        - const: tx
->
->    clocks:
-> +    minItems: 2
->      maxItems: 3
->
->    clock-names:
-> -    items:
-> -      - const: pclk
-> -      - const: pclk_sfr
-> -      - const: tclk
-> +    minItems: 2
-> +    maxItems: 3
->
->    resets:
->      maxItems: 2
-> @@ -62,12 +64,55 @@ required:
->    - interrupt-names
->    - clocks
->    - clock-names
-> -  - resets
-> -  - reset-names
->    - power-domains
->    - '#address-cells'
->    - '#size-cells'
->
-> +allOf:
-> +  - $ref: spi-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a09g057-rspi
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 3
-> +          maxItems: 3
+Thanks,
 
-No need for maxItems here (already at 3 above).
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a09g077-rspi
-> +              - renesas,r9a09g087-rspi
-
-No need for renesas,r9a09g087-rspi, as it implies renesas,r9a09g077-rspi
-is present, too.
-
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-
-No need for minItems.
-
-> +          maxItems: 2
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Peter.
 
