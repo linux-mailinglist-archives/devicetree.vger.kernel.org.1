@@ -1,107 +1,134 @@
-Return-Path: <devicetree+bounces-236845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 350E4C4821A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 17:54:16 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B19EC482E7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 18:03:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F18081883362
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:52:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 979064FEF93
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8EA321F39;
-	Mon, 10 Nov 2025 16:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA623203A7;
+	Mon, 10 Nov 2025 16:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Er2YarxP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nV3j4stb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A180320A2E;
-	Mon, 10 Nov 2025 16:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F2831355A
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 16:45:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762792987; cv=none; b=gSlwI4SDII2WA59KysYBacxm65Q8Cndvo0sUT7QQXhV7hOPiffFq012y/Vz2pEVP6nSnfUx0UdspXw/elMY576XAhZFUAqfFMn89aJfQMKAkg9VGKgJS65KUSdKPMBHtgCycfd0KCmpnVAigYRzcEicShNNfPJVfm2+pn2RQ5+k=
+	t=1762793135; cv=none; b=RfQvxhK/83bJUpkeh1iuj7FsdFu4xRoigZNWCf2bk+dPuISOHFbIHCJHqG4ZdiimLHKva54rmNR/Gvdjyj8m+H5P6ax1U0cp/sbRtuv1PhXiEcKjjlYFeBEW8sd0UnLrLJTQqi+zEJ9UdgPsQJ0thfbdSschqCkBGpFlhxQHsFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762792987; c=relaxed/simple;
-	bh=lR5k0ffZ8jU4/Xw+VkRiv95+frEAZ5l2jlV2iWMLidk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=P/8Rd0VhEJnrMFOuvlCvw382fdfn26mbP98eFdHm4g5/dorySdoq0IXGYC8txtWLmyn4hfC/+Q6AAavp3p6eF5ePjtzNewIdlQq0vuehdFLOecTvSN8cZx7iKHG88CgbEnOWVvPpfWwSr53ge3R6DGZwOGcU6llMNQlwOKgSH+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Er2YarxP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548A5C4FF58;
-	Mon, 10 Nov 2025 16:43:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762792986;
-	bh=lR5k0ffZ8jU4/Xw+VkRiv95+frEAZ5l2jlV2iWMLidk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Er2YarxPLinUadkUzGyBawTFXFfv7TnAAmzSL2y2Ns40mv3lyWiafB1ZP3NZvr9Zt
-	 o67UqTfCydY9FAvsqH45OB/xESgrk5eEeYgIfI7TFJID/NcAByOwIf1CKbuQGTUzK/
-	 3E7kU/M75ts8ZlDGGrwQ8hIsigWPlDT/DJb2WPcxNWnG/0ePMy+eRLqwERXEsthnd3
-	 kf6KbMvHeI4FoIy+pl7DpXFmLQB/bgjySs+6MXVA3GSE0YGpYpqt50x7Ax1kb/77It
-	 z9iCu9kO330gouiYhnh4qpOUhXzrLOe2zZA0ozz7UgsMJFKO5PBbAeeF3GWNToa+E7
-	 CyPTJTluX2qaQ==
-From: Mark Brown <broonie@kernel.org>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
- Support Opensource <support.opensource@diasemi.com>, 
- Peter Rosin <peda@axentia.se>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- asahi@lists.linux.dev, patches@opensource.cirrus.com, 
- Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20251031144622.4033833-1-Frank.Li@nxp.com>
-References: <20251031144622.4033833-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: consolidate simple audio
- codec to trivial-codec.yaml
-Message-Id: <176279298201.56837.2266716224330450791.b4-ty@kernel.org>
-Date: Mon, 10 Nov 2025 16:43:02 +0000
+	s=arc-20240116; t=1762793135; c=relaxed/simple;
+	bh=bgCzKrhzMsbjtyucE9Wji1o3OOtYybWdKrlZ1ecTWTE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kUOU6+69ars5elKd2KG5soF8QDU+tn5vGxvw1jZAE9LYdaROVTEZUQv+mgMYo/lQ0y8TePwQPy54sE664pyXsUdb3W60atNfv33gtZaWaXCJv1qso8WINZACt11cNmqtLCmpdz8b3myr8bV1F/c4chkXYnfy1kx8o3IMPrVzZtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nV3j4stb; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b593def09e3so2011133a12.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 08:45:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762793133; x=1763397933; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ejgzWIAmMtwDeIAONVbXRMu0MknYB8VkcpRxQd2rWvU=;
+        b=nV3j4stbm+vcaGq0c5YHStIInJnhL8I54TPjZHDp6q0rY3KJdBeU2LdLBV+A8PMLNd
+         3UDAcZroJ2/4u1ohtPKCixAdo5DMgRp2pTa42z705lK6Wh1wbqoz5w7yKpZlwP+YwK1d
+         FXnwb72f4hCaWLFToIN26L5qlwRTbbqvPDgUPiPgNFY9ZFeg4nRg10UdtOeHyebrPBLV
+         hW8pIVyoJkAu/yL6AeYS3+gn9fIGyx3klbslQG0NE+ySA5owcPBHKAMKkJ6LUUbPA7hq
+         jyAh0y2ElV8g7ZXuLNUfRXPtZ5ThaRkUiYl0HTwaUGr+FTOUYjQdjLUJhmRyo5hoaOms
+         P+sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762793133; x=1763397933;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ejgzWIAmMtwDeIAONVbXRMu0MknYB8VkcpRxQd2rWvU=;
+        b=xMYjdgu7s/SEYdl7ilOVdAlAt1+6v0f2P6+PtYZ5eFtJUfEdueuv4GQwne4y/gdOG5
+         bRv1jwx0tSQNCy9j070nxfd638IrptX2HdnR96U5A16o95NKocT2qh/wp0WsXG7bFT5w
+         IbbivzmDid+XOwAUBQGIBBl45gOgVAsIkv9DYXcV/s9L1VgvlitAaMXx8V/MbkPDCSS5
+         7kKpk2DDftzQAvac/mXwH+hrVnp/WpqpqYdD/9D0HuXsMVUPCX+jQDoB69IeH+7fkDyn
+         rdVyWTlGx8qFdnMv8L8o0ALHlZUl00g4WGh1OxJQLivwmjM27cTyaq1Jg0Nk+oQEdPhI
+         s5oA==
+X-Forwarded-Encrypted: i=1; AJvYcCXETgtLfd52BXy79SBN19OF5Z164/ETlLtdxkaPR3ZRsGP9FNj/AMpIsjArfY+iWY47EFUs8+J8kYp4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXXJ5AVS/tiJbNcIbF1AGoFmM+s2u870JGxv1vrmAgSDEB27Yq
+	ZUWWgXhqUl7DW+1wXFbnh4cLrNS/IKWqSv6CxFPGaqLAYZYDn60x0wvY
+X-Gm-Gg: ASbGncu/45XLPE521BUtLZaCala/VNxoaDyYhg8FM9x/MJQlrIqFof+f2oI7lh2WKfk
+	1hY9FXFOlwTMoGsyfEup+idmkYt8ALa43Rc4ieqHBAde3jJkDU4NvBrKq03ESjT5AZOJ7KR1jEf
+	KPE1caJPkDefDuIiN1GbBFeGu0h/rS9CZ1nsCi4mZLnW1msxPzoWJL9wHcbeKf1NexiIInKYuRs
+	BRCvIiWILus9Zwg3K5TqxH61iycpXcTYLvZUEbexhV44pbmy+bHOUzoH8lCjuCUcXhE1jnTrFnl
+	z49BBOOQV/1tpF+whC35iizeJO2EbzeRd2yWsjGEvuhAwsMBs8HRX6ebGDpjJkQ5OE4GKaVrauZ
+	q5rB1CIRtnT7dTLxx3ib+ZhivbTp+e9Pfba1VLK2G1NYOKKf45rCWDd4yJsOMHOMm50IIZmoumg
+	ijh3zS4CXlWw==
+X-Google-Smtp-Source: AGHT+IHlDbq/FuhUx5b37jOHHuGk+B4j8Ue7lQztTGR+qjnK+j0oCN6+BEjfuAMoSyUWo5a31EZ/jA==
+X-Received: by 2002:a17:902:da4b:b0:295:24d7:3792 with SMTP id d9443c01a7336-297e54030a4mr120060845ad.1.1762793133088;
+        Mon, 10 Nov 2025 08:45:33 -0800 (PST)
+Received: from localhost ([2804:30c:1661:8a00:578a:911c:ac25:24a6])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-29651c7409esm150687835ad.64.2025.11.10.08.45.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Nov 2025 08:45:32 -0800 (PST)
+Date: Mon, 10 Nov 2025 13:46:50 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, andy@kernel.org,
+	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, corbet@lwn.net, cosmin.tanislav@analog.com
+Subject: Re: [PATCH v1 0/3] iio: adc: Add AD4134 minimum I/O support
+Message-ID: <aRIW-tksre10iB1v@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1762777931.git.marcelo.schmitt@analog.com>
+ <5e0ea52e6a77a1d6af861ba5aaeeea5c3d514705.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-a6db3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5e0ea52e6a77a1d6af861ba5aaeeea5c3d514705.camel@gmail.com>
 
-On Fri, 31 Oct 2025 10:46:19 -0400, Frank Li wrote:
-> Consolidate simple audio codec (one compatible string, one reg, one
-> optional reset-gpios and '#sound-dai-cells' 0) to a trivial-codec.yaml.
+Hi Nuno,
+
+On 11/10, Nuno Sá wrote:
+> On Mon, 2025-11-10 at 09:44 -0300, Marcelo Schmitt wrote:
+> > This patch series adds basic support for ad4134. AD4134 is a very flexible
+> > device that can be configured in many different ways. This series aims to
+> > support the simplest way of interfacing with AD4134 which is called minimum I/O
+> > mode in data sheet. This is essentially usual SPI with the addition of an ODR
+> > (Output Data Rate) GPIO which functions as conversion start signal in minimum
+> > I/O mode. The CS pin may be connected to a host controller CS pin or grounded.
+> > 
+> > This set provides just one feature:
+> > - Single-shot ADC sample read.
+> > 
+> > [PATCH 1] Device tree documentation for AD4134.
+> > [PATCH 2] IIO Linux driver for AD4134.
+> > [PATCH 3] Initial IIO documentation.
+> > 
+> > There is a driver by Cosmin on ADI Linux tree that supports AD4134 in wiring
+> > configurations suited for high speed data transfers. Even though the minimum I/O
+> > support was initialy based on that high speed transfer driver, the result ended
+> > up becoming entirely different. Also, because the different wiring
+> > configurations are likely going to use different resources and software
+> > interfaces, the code for AD4134 support was split into ad4134-spi.c,
+> > ad4134-common.h, and ad4134-common.c.
 > 
+> I'm familiar with the odd way this part is implemented in ADI tree :). Question is, are
+> you intending to support the high speed bits? I guess so, otherwise having the above split
+> would not make much sense.
 > 
-
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: dt-bindings: consolidate simple audio codec to trivial-codec.yaml
-      commit: 4acbfcf11cbe6c46c42091b49875c7002b0bff3d
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Yes, the intent is that the common parts may be reusable by the high speed
+driver when we get to upstream that. For now, this only supports conventional SPI.
+We may, at least, get some support for AD4134, though.
 
