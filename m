@@ -1,152 +1,610 @@
-Return-Path: <devicetree+bounces-236559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67BF7C45568
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6E1FC455E3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:26:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 007073B0B42
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:18:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C5B33AFC9F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0DE23D7C6;
-	Mon, 10 Nov 2025 08:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982BE2F83BB;
+	Mon, 10 Nov 2025 08:26:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hFR3FZ/x"
+	dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b="pv8d9WDm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11021106.outbound.protection.outlook.com [40.107.130.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F801397
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 08:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762762736; cv=none; b=SGj9r61TLRR09ex8MN056AGmxuFaIIkIPRl+VckHjXj5kY0ghiw60ZlV29mhBl/JzrTuVcThVDjq1y1hpD2GYrfx8zH1ZSrdlz8I8AeW5ROxyZPnBEz7KdSkR/WJTLjPKxnG0VIobL+UNnTx9KrBhKlAyN/4l+1ROvsGL4gy5bM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762762736; c=relaxed/simple;
-	bh=LUwREsvCB54P+nF2qMZzK2Xq5d8lmHU9Yu4Uy90Zjvo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=H5qUDlzb2dFsBclXT2f2AQ22IgGUYNR+4uqnGBVtNLOtsUk6kLvpgILkKd01PbQttpBTqvAUyg6GGIHgfwucWB1slHwHp82C6if4tQXhCIvHCCIyUjq1isy9vw6G1M+t0QBOnuMzVh5zZTUGAhqtkeL4tBpmG2HkbIgNrz4bex4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hFR3FZ/x; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47778b23f64so5282045e9.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 00:18:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E782F49E0;
+	Mon, 10 Nov 2025 08:26:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762763188; cv=fail; b=Tx6yP5bzHUQtl/uThnEMhrvqb1ORsaYguKzpHif4zcz0sZYk50WoZX/cWgh69H1r2U7mCxJJZFDvGxZmH/DE+bOMqbrwk7m3KonkDm/rCuhU0/cpTk2cOkPbs2NnKvkno8iLs1r4uptuGFgRuMMPRkFmyb7syrDHNOpgfOnqPg8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762763188; c=relaxed/simple;
+	bh=REdZ+D47O/8RUmIE9npXTc+Wam3xMd7xVxQDMxhisSk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=r59hEx9Ci+tis0osx1xbmsqugnZS6s4WxgTvORidO5BycJYUmtN3Y/4WPvwqIeV0tmjJxBsgHaJhR0wjFz+Zr8ip9E+oYaCU4T+MiUGyZNFod3Hx0Cm/6e41EjFjrUCbzh568lxEcIy1645wmWdHeO0O2rvT2oseOGyKzjGoRP0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com; spf=pass smtp.mailfrom=gocontroll.com; dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b=pv8d9WDm; arc=fail smtp.client-ip=40.107.130.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gocontroll.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rRDCUr7w1iPjQJWJN2FML4MUm632NKQQ+pz3c411rYHeXqscBTwcwZ8DCT+4IAY7ikOn8u6MRSUUL4f9+/ZWwzieNeo3I5AMPe6zaY8dL1XqUX3qcIRmgrssHniTEg4SwQnosFcR0yQcX9D/E8GH79u6FzlD48uC3bPLOVdxmlHzhjXQ02SY56lajpRjz24YrsjvuJjhFhK0u5os3s1xIgo51KG5LC0RjlTC/axcPEioldwhh6AZOlf1isuB1bM5qJ7n3XUt74/nJkNp1WLPQHcmM9HsKut0FLxwOmOMqMtuDiKojfp6vWZM7jZgqA5n80z/0suIJw10qPyxRKZEZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vgdjsAetF3A2UDbpwu2v5u8h2cmeGWymq/nnEdV0T6k=;
+ b=vhnyw7pZ8DCUlImkoev7E7o/uMrmQv7lJq/MEjHMTmKVs6XdHZSEPefq7vEt9lo9/gj2SVgA952qSYsglwghVS194otMj8iE+Fgiit/ZqfSLlzmJizQJSTKKg5Q/Vnf6Iw4i/yWb+R+DOJvkOom7pZc/r1NDMvKmtIAL2YZUTF1FE+GZlSBnOn0WgQtB611pclaPg4fedmvCA4Nlh/0/gNvtso3W+lQi4pE8Pi24ZWsAZ/0AucyY3eMsfK9kLwebY8xvH2SGRJ0zByDAJ/AJj14VFkpkUT3QiI4tAyLZLsOGnlcZ/RahBKHofIDQ67q6YDALexelLg3t1wyyfyQowQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gocontroll.com; dmarc=pass action=none
+ header.from=gocontroll.com; dkim=pass header.d=gocontroll.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762762733; x=1763367533; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+Ow0jXvjkh77pOXWIP6I5DYsF4xpz6igLz3RhPzX2Hc=;
-        b=hFR3FZ/xshkoNyuZt5jSfQ+VXYtbnH85AAMhNYL1vNq0ObRVZo3kqTd9pRB5ePgm/T
-         FK/fRHmQjsHC4g9/MseoRElf+XkPC0tJOTg8N/Stpjo8x5mUBUbqeCClPC+EbHH/6d8Q
-         SQL3RrYP+E0fGsZ9lWIamvwlL44kAdsxwcnpUdp/5jA07ytfRiCP5wS0vkoPV1hnmtSI
-         0Yx0waezk41ae0tqyTFN2nVywJslB8Ub5aJe21eISo5PoIqkd4T5OZ4nAVu6j3/DxHU6
-         Uqc8YpasHmX/uagAe4/oeprsq9vTZrCH8l8L4/syh0rxsCPEs6vULAysGDLK6y9YRHHC
-         /gGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762762733; x=1763367533;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+Ow0jXvjkh77pOXWIP6I5DYsF4xpz6igLz3RhPzX2Hc=;
-        b=ifxOggSPuyKnhIAsACqxhFg1WbbxyrP8L1fR7k/pYdQ9Tk0WclIqhWKi36OssnKJpe
-         bdZ7YsAuRcr/zkkf9XR39YujxpZZUB6xH4mw1zcywSbaI+TW645ID70P5tKQ9uGNQs1e
-         x0o4cj8n7YajgyUZUfNQ0JkrkcusW1AQM4zeIHmrpjwIe67yN9sADvHPODIrOAk/aTMc
-         JGIP+rAK5nY14kgJ5f3vk+MBWv5t/f3o4yF63oRqlOiOeLdd33uVngD++EP8DWs2pR3l
-         23INVBSQL2LqAzUOSVC213Be4j9Mt1yrH0PwwnZ8oQVKQbZ/DTJIigXf0R3rAf9D9vDA
-         iRZA==
-X-Forwarded-Encrypted: i=1; AJvYcCV7elpU+4CHaxR9J6gdmx87kS364w65eBo7//rG0MN9u4uAtCnqFGvbcwyZ24jvKx/+V6xsswLiQz7U@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkcaZB2rkZOWbhoomj170YPeL8/ZffIQLKijncARfBqCBvUdGF
-	XRMPEbu+yk5RSsqYAef1hPflOYERjlckvmHY3nWhBE9UgxN3aaji4g4I2zesM39YrlY=
-X-Gm-Gg: ASbGncsZWZHYTuELcqrv5mR8RT6oHeAWn+Jb9edHN6KglfCG4Xf5gWfMQuYT7gEaM+d
-	fpIfveKL3lajKb9Ds26SeZ6KZBhRkWzcVzTZ1Mw9DzkCcryb7WaQBrVeYP9geJm0Cf6za//xnRD
-	Wjqw1/LslW6o1/cjeRIE9R7LRkx3oIVSn6MW/p4dxyY0eWxxBC8Z0pZcLxnHHvoe6CKtburXFGU
-	ToUopGUTOwFRIwcNsJL+EvAxj/RLzI9qAru+YUmxleakUCOdeutIVnX1QqoCLc5nrs8KCuvRc2M
-	tSuIw6+BCeRwNQKRw0glTCcWW/ChCyZ/4CECKODOqBN5ev2m7kWuChUsHWkgaFXGFo7vp0X/67q
-	9u4COXRCUY0JMcDjH0vuWRoZlPo8zBPNyc+YB0vONg20xf0uzmlXlMNH3i2vAy/2mI/2G7mRizZ
-	/YGW30gI5Pf2X/1MHocyLa
-X-Google-Smtp-Source: AGHT+IFNAJ6Bn4FpyZtFF1NnxwYE2SjgYr7mpYVD4++XybQIbWpInXbD7iemC8JYoesp/8+j6x9DXg==
-X-Received: by 2002:a05:600c:4fc7:b0:477:6d96:b3dd with SMTP id 5b1f17b1804b1-47773236f6cmr51381675e9.1.1762762733314;
-        Mon, 10 Nov 2025 00:18:53 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4776bd08834sm192070105e9.15.2025.11.10.00.18.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Nov 2025 00:18:53 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>, 
- Yue Wang <yue.wang@amlogic.com>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Andrew Murray <amurray@thegoodpenguin.co.uk>, 
- Jingoo Han <jingoohan1@gmail.com>, 
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, stable+noautosel@kernel.org, 
- stable@vger.kernel.org, Linnaea Lavia <linnaea-von-lavia@live.com>
-In-Reply-To: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
-References: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH RESEND 0/3] PCI: meson: Fix the parsing of DBI
- region
-Message-Id: <176276273239.834148.1225755186046227156.b4-ty@linaro.org>
-Date: Mon, 10 Nov 2025 09:18:52 +0100
+ d=gocontrollcom.onmicrosoft.com; s=selector1-gocontrollcom-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vgdjsAetF3A2UDbpwu2v5u8h2cmeGWymq/nnEdV0T6k=;
+ b=pv8d9WDmRGDIDQfOlTQTBx1GpEyRwHWKog1Uod6JBwufqWye/FzsE7PpyBJzOqAYsJONrE9Emp26C+6cHT0bZCiB8cfhR6shElkqxFkifB59Ifi30eYttOnbGEPNiYeLfrOY3lJa+0MT48BxATvIcQVx1m7Bo6eJkx1LlHSM14AVIj+X3ZIpT0PUG8q2mqPtn/Bnf/9oV6p9ABlCjKOtfOxd1umojZZw9Lh1DjkRMizi9pPZ5U5ePRBxzH18Red7R2tpa+TtuA4ZHC2sKWVc2DItOutDwgSxU5yDoLDWFIHnIpPAF+Pv8pHHaeIWzTdrsPffzKi83FMQ1ogpI2aW5w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=gocontroll.com;
+Received: from AMBPR04MB11741.eurprd04.prod.outlook.com (2603:10a6:20b:6f3::7)
+ by AS1PR04MB9630.eurprd04.prod.outlook.com (2603:10a6:20b:475::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
+ 2025 08:26:20 +0000
+Received: from AMBPR04MB11741.eurprd04.prod.outlook.com
+ ([fe80::c39b:dab3:ae88:c5ba]) by AMBPR04MB11741.eurprd04.prod.outlook.com
+ ([fe80::c39b:dab3:ae88:c5ba%4]) with mapi id 15.20.9298.015; Mon, 10 Nov 2025
+ 08:26:20 +0000
+Message-ID: <5bb6c1aa-4462-4459-9198-5a85a7b439b0@gocontroll.com>
+Date: Mon, 10 Nov 2025 09:25:57 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] backlight: add max25014atg backlighty
+To: Frank Li <Frank.li@nxp.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com>
+ <20251107-max25014-v5-2-9a6aa57306bf@gocontroll.com>
+ <aQ4Vb4eUmSX0Nj6+@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Maud Spierings <maudspierings@gocontroll.com>
+In-Reply-To: <aQ4Vb4eUmSX0Nj6+@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS4P195CA0047.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:65a::24) To AMBPR04MB11741.eurprd04.prod.outlook.com
+ (2603:10a6:20b:6f3::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMBPR04MB11741:EE_|AS1PR04MB9630:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24a41aaf-daaa-428a-c9a0-08de2032d33a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|10070799003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?WTdsRWRLaFNveUdvQmd4NmFqVXEzTlBJQ2NKdnJEQUh6MU1BT0lYYzdHaUpy?=
+ =?utf-8?B?bTQ1bkVpSUZRYjVEMVlYSEpIUCtDT1pFRktXTVpKU3lJd2QrM0EvYXVQWUlw?=
+ =?utf-8?B?eUtERlBlZCt1R3NOcFRSTytxcWYyOC84YzBQRnB6ZmJVWFkxbmwxWmtGcCsr?=
+ =?utf-8?B?SXU2KzEwMGdCcDA2ZFNhVkI4bUgzU0prUnJuelN1Y09SRUpIVXdLR3NaYVFH?=
+ =?utf-8?B?SHVtUE9namdBWEdZb01nZEdIQlZ2UGJEWjc1Sm9kb0RLb2pZN3lTZGpFZjh5?=
+ =?utf-8?B?cG5xS2c4Tk5jbzF0N0JxWGdPdnBlcDJDYjNyczNQMUtBV0tOTnZyZjJkR25k?=
+ =?utf-8?B?SElWOGhtanF3SnpqeXY4L2JKZnZ1MGE5MkFHRjZncnpKQWNiQVJUeHI4b1lw?=
+ =?utf-8?B?OUNWVGpsaGVlblZka0lsV2FSck5hemN1ZUVzWGp3akM4c002WG1rbWtHck9H?=
+ =?utf-8?B?NGxDYTRDV0FQYVIxUENzNFhvaXRhZUFaNGhrbFIxUDdyS295MzNKRnl2cFo3?=
+ =?utf-8?B?NmNBeklnQlF3RE51YnE0T0lFYjlRUGQraEhCR3hCWGpxMDYrbkZjZGcxVUV6?=
+ =?utf-8?B?QzI3bktVandZTE8rWllQejVkbTBUVWJQWFNLQmdMTmd1MDJSVDNja045Ym0w?=
+ =?utf-8?B?bFB5Mk1KVDNjUmRqQ2NpUXRuaHBqODF1UXR2aDY5TDZIZEw4NEZCMEtuTWNV?=
+ =?utf-8?B?WEgrWUtaUzNqdzR2bXptZW1OVkl1VkQzM25ZN0o3b2Y1aTgvenl5UVdZdG0x?=
+ =?utf-8?B?YktaSUhkazJUYURoMEhVc05QRU1CeUtZMzgrTHBSNjgrR0hWVG5VdU5ia2Yr?=
+ =?utf-8?B?ZldQc1lpSFAwaFNZNWJqSXhkNVFWaDE5V3h0ckVFQU1KWVd1NlJUZjBiTVFS?=
+ =?utf-8?B?TS8xdlRIaThiakkyaXh4dkwxT2hCQU1XUG1PTEs4S3NsTHB4YUtjVmVEakdQ?=
+ =?utf-8?B?dENjK3diTUgrTGl1dGFMcVR4Zm5IaTluWTVVZGpFaDk4Y1RocnB1L2xzeC9j?=
+ =?utf-8?B?UGRiZEV6RkhYd3NMRzkza0lKMTRhUVRVNTdQUUlsUFhWb25nSm8wRnZPZldw?=
+ =?utf-8?B?ak1kS1dQWk5xOUtOdmFXWlRBQ0dYanFZaUtodjdLTjIyZmc3SWw2cFFPSXdR?=
+ =?utf-8?B?WU1qZVEzUXhVVEUvWUZadDZOcjJFNm41WGJuL2VZSUgwSFhqbTNGRHp4OXp0?=
+ =?utf-8?B?dXRNeERicm00VTMwRHYwYlJVMzhKdERXcHlUekUyWlFpcFN3NkhPNFgvTXB1?=
+ =?utf-8?B?ZUNqcGdzQWM5U1pDMlFMNFl4SVBzcmNPWEozaHRhSjA5Z0VhaUNRNVdBZy9D?=
+ =?utf-8?B?WUNIY0ZtbC9RK2NKU0pnM29mYnZFdlJmUFJNWkZ1dzY5eFJuV3JiQjF4ek0z?=
+ =?utf-8?B?eU5iVDdQQ2ZDa1A1bUlkU3pFeUhKRy9qR0s4ZUxIYXRMNTJ6TDA3OXZMWjRO?=
+ =?utf-8?B?RnhKdG5NSXRWN0h6U0xEbmlZSjVlelhDU2UvUjNEdWgwUUJEQnpsK3JKb2RQ?=
+ =?utf-8?B?VXZNb3JidWlDWTRGekFnN3REWnYza0ltQTJscERvbzNtUUFKb0MvYjNkZjE0?=
+ =?utf-8?B?SzdsbThaN2twaXc5cFF6SmRTYzREUFFIV09KOGVFM3NwUGtiek9xakVISFhE?=
+ =?utf-8?B?Zm5rQmJjb2JMaDBGbTVMOUNZc3lIZ0hYZC9na2ROTVhKbXh4YjVTYktHN0Zx?=
+ =?utf-8?B?ZmNoTTJISmhXWjBCbnlwN2Q1eWQrQWowNW1LRUFvSnE5RlEwVFk1Z3YxUFNw?=
+ =?utf-8?B?WFRvM29nVkh2bFBhdnVHdjRGSDkwWHY0V3dqR29NSElkMmZmenViVGtla1ZF?=
+ =?utf-8?B?SWJJcC9EKzc1bEcwTWMxQ0YvTE1PN0F5aUQxUmdVenJEekJDcGxZa29QRnJ2?=
+ =?utf-8?B?N1hTSFI2T2UwcWJHOWJzeG1kdVJpdjZQdnFINVU4U2tIcmNmOUd6MGUrVGZE?=
+ =?utf-8?Q?MWDaT50PQ7l98C7ULNhmTcficdLgEMcA?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AMBPR04MB11741.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(10070799003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OWVIRWxyK3dWRlpRMWFtYW1KQVhwQmxmcGpnSlpacWltcmNyNkdUaDdaYzBm?=
+ =?utf-8?B?SVBFejJCNHNqbXJMTkNtaXJ1ZE0yR2pFRS9EcHltY3VsYXZzdWRUZDBJb3J3?=
+ =?utf-8?B?VmVBenRnRTJVMDdSeWZWQTAvVXVwbytmZnh1MWlyY3RXcFhtUmQxZTRKdmJt?=
+ =?utf-8?B?UGErcXFRL1JqN2NOWEFJMlpoWkRFbzBRQ0liTnBiM1BLVURoS2hFbDVaMGQ1?=
+ =?utf-8?B?Z2p1VlhublBaV0J1SzJTbjh1ZXRteXhtSzBZNnRrdUxpNzFrcUVXcXlJeVhu?=
+ =?utf-8?B?MEF5SXJoTFpxek1ZT0V6RDRRTW9qa1dVTFFPeVR4WUpIajc0ZWxRTVc2cTI0?=
+ =?utf-8?B?RVM5K2pPMGZ5VHFGbGhZWFdwTWVaTnpIQnJRMVg0UjRqMmg4dFZNNEx3NjRl?=
+ =?utf-8?B?T2dyU21NbENZNFZIN0dEZWlEdjZGdkR5MDlsU2h6bGJXTkVsTFdQSFBBeW9E?=
+ =?utf-8?B?WFdMZE1OV3NsZUltWlNWTTBvWDNhV0MyUWpBU2oveEVHVFFYaXFEUnhrb05j?=
+ =?utf-8?B?NW1FQ1l3b0E0VFh5L20rZDRMRGc0RWp3MDczL3BGaVpCdkRiSWhjZGlEVEtj?=
+ =?utf-8?B?U3l0NjNMNkYrTlIraWh6T1RWaXBVWUFWWkV1Y24xb1AvWnoyWE5RTWlzYkFZ?=
+ =?utf-8?B?cWFyWEhPWlFIbnlndlpId0RUaXFiZjZRQU54QWkvTWVlUkxDa2E4NXE1dEJJ?=
+ =?utf-8?B?Z0ZFK0xUZ1d1YUZRZlk3QUhiOGFFTElaUytlWmYrbEd2TmdsMWZicHJZdEl6?=
+ =?utf-8?B?Vk1CRDBLNXF1YlFVRUFpTFdQZFhOV0p0UXhnbUpxcGkwa1lMN3B3Q0MrWGpW?=
+ =?utf-8?B?eFZqY0oyK0tFL2psUVpvYUwzU0RWODRGWnFqWjMwQ1NESENNNWtJOTRIVjNZ?=
+ =?utf-8?B?blZVeWVxNHpSV3E0MExkTzdhcURSVkJBTkJ3T0JuTW9kYWZVcDhNekY4aEZv?=
+ =?utf-8?B?UU5TdmJ6NG05S1ZvekhTckM1U3hVYUxqNTBhN0JQVjFpMUVtVDJ0UVU4REh5?=
+ =?utf-8?B?cEZDTVZqNnJpODNhUzl5SFFlUUN4U2NTZjRsUUZzaUEzT3pTMHpxZjd4R0NO?=
+ =?utf-8?B?RzBLVmUyRWJTeGRGNVpaS0lEZ3FaaUtSWTBkenJwQ0Y0ZmdwRWxNaFZNWjBI?=
+ =?utf-8?B?dVBydTRyZms1YlMxRVpzSENsUkN5aFBUVmJzYkVHTTllWWViOHEwKzFROGdE?=
+ =?utf-8?B?cTN2QmdzZVZON0R3REJYYjdxeENoUGJEMEZQVjM2VkU1dSt0QkIwVWpoVmZD?=
+ =?utf-8?B?T0NBeXVORlJrNVYyNzlQWmp1aFd5NWE2RW5STnJmRWFoaXNrTmhvQ0hneHhi?=
+ =?utf-8?B?bXlISjIyOWNzWElpUm43M3Y4cXRid3o4ZHBDbDgzeUV6bUZObFdKRHZnV3hm?=
+ =?utf-8?B?a3YwZUtWWWVEdGU3eFRiL3cyOUlOcnVpR241ejJKZkwzZlFuMmlMQzdMR1Bk?=
+ =?utf-8?B?N1M1UkNaUWpBZXhKelV2cWl2R2RtWTZ4RVJJRFRJRWg4cTNCdGNjTDVGdWdR?=
+ =?utf-8?B?SllxZ0pwaUFmV1Jpa2hCaG00YTNIR0FLQndGU0d0MzRSQXpEd01PdFo0aW9Z?=
+ =?utf-8?B?Y24vWThFWDNCYU9HN1dPSzVUSDBZSzdKU0lZRU9hZno4b1M5dEo5RDRSZVlH?=
+ =?utf-8?B?WVVDUzU2d2ZyTkY0RHhpanZPMGh1eDllNnVWZGpiSWlKbkI5SmIzVlArS2Ju?=
+ =?utf-8?B?SjVoRk9oRllaK29mdWUwR0owVng0VWlGRm8vb0pIZTZwYUcyQTd1Q0JubnZz?=
+ =?utf-8?B?NDkxVEdieFRrRDBIWHNoVW9IRnJCd1BNb2h4QmJXZ2h2dFQ4VjJQNmk3MGlu?=
+ =?utf-8?B?aThHY3NYY1BoN25xV2phRUV5SGZ2N0xXRU1YTDNpL1pLSjlSWmsveWxTMXBQ?=
+ =?utf-8?B?UEVYL1gwQUlTV0dDNmhiQnZseVlraUJzTjEvYXR4SzZRUktPR0NBMm1nNlBU?=
+ =?utf-8?B?U1NwOU10bXZmZG1KenV1QXFQalZWbWI1L1liVk1vdUhmQWVTMCtVZVJuSU82?=
+ =?utf-8?B?eklSdm05OXBkSXdxKzlMcEhVM0dHS3lQdHJmeFpSN1ROeTc0ZitDSHlBK2pR?=
+ =?utf-8?B?VE5ucUt5TUhiMlpRL2pjRTV1N01JSE5JU1RHNnBhYkZMYklUejRGQ216MHBX?=
+ =?utf-8?B?UW1XTlV4ckE3ejFlK2dGSGE0Wk5DSURTWXNwdy9GSXFqVzhtTXAybWtuNFNP?=
+ =?utf-8?B?NmllVnYvMGx5eUxXclpRdEJsUXlad25nWnZtNjVEcHZOVWc1UWR3MUhYcC9y?=
+ =?utf-8?B?eVRNcDVJR3hrVnIwb2l6TTUrd2VBPT0=?=
+X-OriginatorOrg: gocontroll.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24a41aaf-daaa-428a-c9a0-08de2032d33a
+X-MS-Exchange-CrossTenant-AuthSource: AMBPR04MB11741.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 08:26:20.0407
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4c8512ff-bac0-4d26-919a-ee6a4cecfc9d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ul4Mu7lPJDQudyHZedCy7/YHOQnPb9xt6rBALL48kQFkEzzUTkWS+6tfMKssiZF6PLlJd15z2+AGv92Y1w2dDVVf3P/Bz8GaOObc9hqhxm8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9630
 
-Hi,
-
-On Sat, 01 Nov 2025 09:59:39 +0530, Manivannan Sadhasivam wrote:
-> This compile tested only series aims to fix the DBI parsing issue repored in
-> [1]. The issue stems from the fact that the DT and binding described 'dbi'
-> region as 'elbi' from the start.
+On 11/7/25 16:51, Frank Li wrote:
+> On Fri, Nov 07, 2025 at 01:49:59PM +0100, Maud Spierings via B4 Relay wrote:
+>> From: Maud Spierings <maudspierings@gocontroll.com>
+>>
+>> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
+>> with integrated boost controller.
+>>
+>> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+>> ---
+>>   MAINTAINERS                        |   1 +
+>>   drivers/video/backlight/Kconfig    |   7 +
+>>   drivers/video/backlight/Makefile   |   1 +
+>>   drivers/video/backlight/max25014.c | 409 +++++++++++++++++++++++++++++++++++++
+>>   4 files changed, 418 insertions(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 606ce086f758..d082d3f8cfae 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -15265,6 +15265,7 @@ MAX25014 BACKLIGHT DRIVER
+>>   M:	Maud Spierings <maudspierings@gocontroll.com>
+>>   S:	Maintained
+>>   F:	Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+>> +F:	drivers/video/backlight/max25014.c
+>>
+>>   MAX31335 RTC DRIVER
+>>   M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+>> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+>> index d9374d208cee..d3bb6ccd4185 100644
+>> --- a/drivers/video/backlight/Kconfig
+>> +++ b/drivers/video/backlight/Kconfig
+>> @@ -262,6 +262,13 @@ config BACKLIGHT_DA9052
+>>   	help
+>>   	  Enable the Backlight Driver for DA9052-BC and DA9053-AA/Bx PMICs.
+>>
+>> +config BACKLIGHT_MAX25014
+>> +	tristate "Backlight driver for the Maxim MAX25014 chip"
+>> +	depends on I2C
+>> +	select REGMAP_I2C
+>> +	help
+>> +	  If you are using a MAX25014 chip as a backlight driver say Y to enable it.
+>> +
+>>   config BACKLIGHT_MAX8925
+>>   	tristate "Backlight driver for MAX8925"
+>>   	depends on MFD_MAX8925
+>> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
+>> index dfbb169bf6ea..1170d9ec40b8 100644
+>> --- a/drivers/video/backlight/Makefile
+>> +++ b/drivers/video/backlight/Makefile
+>> @@ -45,6 +45,7 @@ obj-$(CONFIG_BACKLIGHT_LOCOMO)		+= locomolcd.o
+>>   obj-$(CONFIG_BACKLIGHT_LP855X)		+= lp855x_bl.o
+>>   obj-$(CONFIG_BACKLIGHT_LP8788)		+= lp8788_bl.o
+>>   obj-$(CONFIG_BACKLIGHT_LV5207LP)	+= lv5207lp.o
+>> +obj-$(CONFIG_BACKLIGHT_MAX25014)	+= max25014.o
+>>   obj-$(CONFIG_BACKLIGHT_MAX8925)		+= max8925_bl.o
+>>   obj-$(CONFIG_BACKLIGHT_MP3309C)		+= mp3309c.o
+>>   obj-$(CONFIG_BACKLIGHT_MT6370)		+= mt6370-backlight.o
+>> diff --git a/drivers/video/backlight/max25014.c b/drivers/video/backlight/max25014.c
+>> new file mode 100644
+>> index 000000000000..36bae508697e
+>> --- /dev/null
+> ...
+>> +
+>> +struct max25014 {
+>> +	struct i2c_client *client;
+>> +	struct backlight_device *bl;
+>> +	struct regmap *regmap;
+>> +	struct gpio_desc *enable;
+>> +	struct regulator *vin; /* regulator for boost converter Vin rail */
+>> +	uint32_t iset;
+>> +	uint8_t strings_mask;
+>> +};
+>> +
+>> +static const struct regmap_config max25014_regmap_config = {
+>> +	.reg_bits = 8,
+>> +	.val_bits = 8,
+>> +	.max_register = MAX25014_DIAG,
+>> +};
+>> +
+>> +/**
+>> + * @brief control the brightness with i2c registers
+>> + *
+>> + * @param regmap trivial
+>> + * @param brt brightness
+>> + * @return int
+>> + */
+>> +static int max25014_register_control(struct regmap *regmap, uint32_t brt)
+>> +{
+>> +	uint32_t reg = TON_STEP * brt;
+>> +	int ret;
+>> +	/*
+>> +	 * 18 bit number lowest, 2 bits in first register,
+>> +	 * next lowest 8 in the L register, next 8 in the H register
+>> +	 * Seemingly setting the strength of only one string controls all of
+>> +	 * them, individual settings don't affect the outcome.
+>> +	 */
+>> +
+>> +	ret = regmap_write(regmap, MAX25014_TON_1_4_LSB, reg & 0b00000011);
+>> +	if (ret != 0)
 > 
-> Now, both binding and DTs are fixed and the driver is reworked to work with both
-> old and new DTs.
+> if (ret), check others regmap_*()
 > 
-> [...]
+>> +		return ret;
+>> +	ret = regmap_write(regmap, MAX25014_TON1L, (reg >> 2) & 0b11111111);
+>> +	if (ret != 0)
+>> +		return ret;
+>> +	return regmap_write(regmap, MAX25014_TON1H, (reg >> 10) & 0b11111111);
+>> +}
+>> +
+>> +static int max25014_check_errors(struct max25014 *maxim)
+>> +{
+>> +	uint8_t i;
+>> +	int ret;
+>> +	uint32_t val;
+>> +
+>> +	ret = regmap_read(maxim->regmap, MAX25014_OPEN, &val);
+>> +	if (ret != 0)
+>> +		return ret;
+>> +	if (val > 0) {
+> 
+> uint32 always >= 0
+> 
+> So
+> 	if (val)
+> 
+>> +		dev_err(&maxim->client->dev, "Open led strings detected on:\n");
+>> +		for (i = 0; i < 4; i++) {
+>> +			if (val & 1 << i)
+>> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
+>> +		}
+>> +		return -EIO;
+>> +	}
+>> +
+>> +	ret = regmap_read(maxim->regmap, MAX25014_SHORT_GND, &val);
+>> +	if (ret != 0)
+>> +		return ret;
+>> +	if (val > 0) {
+>> +		dev_err(&maxim->client->dev, "Short to ground detected on:\n");
+>> +		for (i = 0; i < 4; i++) {
+>> +			if (val & 1 << i)
+>> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
+>> +		}
+>> +		return -EIO;
+>> +	}
+>> +
+>> +	ret = regmap_read(maxim->regmap, MAX25014_SHORT_GND, &val);
+>> +	if (ret != 0)
+>> +		return ret;
+>> +	if (val > 0) {
+>> +		dev_err(&maxim->client->dev, "Shorted led detected on:\n");
+>> +		for (i = 0; i < 4; i++) {
+>> +			if (val & 1 << i)
+>> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
+>> +		}
+>> +		return -EIO;
+>> +	}
+>> +
+>> +	ret = regmap_read(maxim->regmap, MAX25014_DIAG, &val);
+>> +	if (ret != 0)
+>> +		return ret;
+>> +	/*
+>> +	 * The HW_RST bit always starts at 1 after power up.
+>> +	 * It is reset on first read, does not indicate an error.
+>> +	 */
+>> +	if (val > 0 && val != MAX25014_DIAG_HW_RST) {
+>> +		if (val & 0b1)
+> 
+> BIT(0)
+> 
+>> +			dev_err(&maxim->client->dev,
+>> +				"Overtemperature shutdown\n");
+>> +		if (val & 0b10)
+>> +			dev_err(&maxim->client->dev,
+>> +				 "Chip is getting too hot (>125C)\n");
+>> +		if (val & 0b1000)
+>> +			dev_err(&maxim->client->dev,
+>> +				"Boost converter overvoltage\n");
+>> +		if (val & 0b10000)
+>> +			dev_err(&maxim->client->dev,
+>> +				"Boost converter undervoltage\n");
+>> +		if (val & 0b100000)
+>> +			dev_err(&maxim->client->dev, "IREF out of range\n");
+>> +		return -EIO;
+>> +	}
+>> +	return 0;
+>> +}
+>> +
+> ...
+>> +static int max25014_parse_dt(struct max25014 *maxim,
+>> +			     uint32_t *initial_brightness)
+>> +{
+>> +	struct device *dev = &maxim->client->dev;
+>> +	struct device_node *node = dev->of_node;
+>> +	struct fwnode_handle *child;
+>> +	uint32_t strings[4];
+>> +	int res, i;
+>> +
+>> +	if (!node) {
+>> +		dev_err(dev, "no platform data\n");
+>> +		return -EINVAL;
+>> +	}
+> 
+> call from probe, check other place
+> 
+> 	return dev_err_probe()
+> 
+>> +
+>> +	child = device_get_next_child_node(dev, NULL);
+>> +	if (child) {
+>> +		res = fwnode_property_count_u32(child, "led-sources");
+>> +		if (res > 0) {
+>> +			fwnode_property_read_u32_array(child, "led-sources",
+>> +						       strings, res);
+>> +
+>> +			/* set all strings as disabled, then enable those in led-sources*/
+>> +			maxim->strings_mask = 0xf;
+>> +			for (i = 0; i < res; i++) {
+>> +				if (strings[i] <= 4)
+>> +					maxim->strings_mask &= ~BIT(strings[i]);
+>> +			}
+>> +		}
+>> +
+>> +		fwnode_property_read_u32(child, "default-brightness",
+>> +					 initial_brightness);
+>> +
+>> +		fwnode_handle_put(child);
+>> +	}
+>> +
+>> +	maxim->iset = MAX25014_ISET_DEFAULT_100;
+>> +	of_property_read_u32(node, "maxim,iset", &maxim->iset);
+>> +
+>> +	if (maxim->iset < 0 || maxim->iset > 15) {
+>> +		dev_err(dev,
+>> +			"Invalid iset, should be a value from 0-15, entered was %d\n",
+>> +			maxim->iset);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	if (*initial_brightness < 0 || *initial_brightness > 100) {
+>> +		dev_err(dev,
+>> +			"Invalid initial brightness, should be a value from 0-100, entered was %d\n",
+>> +			*initial_brightness);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int max25014_probe(struct i2c_client *cl)
+>> +{
+>> +	struct backlight_device *bl;
+>> +	const struct i2c_device_id *id = i2c_client_get_device_id(cl);
+>> +	struct max25014 *maxim;
+>> +	struct backlight_properties props;
+>> +	int ret;
+>> +	uint32_t initial_brightness = 50;
+> 
+> try keep reverise christmas order
+> 
+>> +
+>> +	maxim = devm_kzalloc(&cl->dev, sizeof(struct max25014), GFP_KERNEL);
+>> +	if (!maxim)
+>> +		return -ENOMEM;
+>> +
+>> +	maxim->client = cl;
+>> +
+>> +	ret = max25014_parse_dt(maxim, &initial_brightness);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	maxim->vin = devm_regulator_get_optional(&maxim->client->dev, "power");
+>> +	if (IS_ERR(maxim->vin)) {
+>> +		if (PTR_ERR(maxim->vin) == -EPROBE_DEFER)
+>> +			return -EPROBE_DEFER;
+>> +		maxim->vin = NULL;
+>> +	}
+>> +
+>> +	if (maxim->vin) {
+>> +		ret = regulator_enable(maxim->vin);
+>> +		if (ret < 0) {
+>> +			dev_err(&maxim->client->dev,
+>> +				"failed to enable Vin: %d\n", ret);
+>> +			return ret;
+>> +		}
+>> +	}
+> 
+> use devm_regulator_get_enable_optional() to combine devm_regulator_get_optional()
+> and regulator_enable() to one call.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.19/arm64-dt)
+This however does not return the regulator and will not allow further 
+potential power management, I did look into using that one but decided 
+against it. There is no runtime PM implemented right now so it wouldn't 
+really matter at this point. If it is desirable I will switch it, and it 
+will have to be switched back when PM gets implemented.
 
-[2/3] arm64: dts: amlogic: Fix the register name of the 'DBI' region
-      https://git.kernel.org/amlogic/c/8b983ae355aab50942c72096beba30254c5078bd
+>> +
+>> +	maxim->enable = devm_gpiod_get_optional(&maxim->client->dev, "enable",
+>> +						GPIOD_ASIS);
+>> +	if (IS_ERR(maxim->enable)) {
+>> +		ret = PTR_ERR(maxim->enable);
+>> +		dev_err(&maxim->client->dev, "failed to get enable gpio: %d\n",
+>> +			ret);
+>> +		goto disable_vin;
+>> +	}
+>> +
+>> +	if (maxim->enable)
+>> +		gpiod_set_value_cansleep(maxim->enable, 1);
+> 
+> gpiod_set_value_cansleep() tolerate NULL, so needn't if check here
+> 
+> and if you pass GPIOD_OUT_HIGH at devm_gpiod_get_optional(), needn't call
+> this function.
 
-These changes has been applied on the intermediate git tree [1].
+got it, changed.
 
-The v6.19/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+>> +
+>> +	/* Enable can be tied to vin rail wait if either is available */
+>> +	if (maxim->enable || maxim->vin) {
+>> +		/* Datasheet Electrical Characteristics tSTARTUP 2ms */
+>> +		usleep_range(2000, 2500);
+> 
+> now perfer use fsleep()
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+Ah didn't know of that, thanks!
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+Other small remarks have also been resolved.
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+Kind regards,
+Maud
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+>> +	}
+>> +
+>> +	maxim->regmap = devm_regmap_init_i2c(cl, &max25014_regmap_config);
+>> +	if (IS_ERR(maxim->regmap)) {
+>> +		ret = PTR_ERR(maxim->regmap);
+>> +		dev_err(&maxim->client->dev,
+>> +			"failed to initialize the i2c regmap: %d\n", ret);
+>> +		goto disable_full;
+>> +	}
+>> +
+>> +	i2c_set_clientdata(cl, maxim);
+>> +
+>> +	ret = max25014_check_errors(maxim);
+>> +	if (ret) { /* error is already reported in the above function */
+>> +		goto disable_full;
+>> +	}
+>> +
+>> +	ret = max25014_configure(maxim);
+>> +	if (ret) {
+>> +		dev_err(&maxim->client->dev, "device config err: %d", ret);
+>> +		goto disable_full;
+>> +	}
+>> +
+>> +	memset(&props, 0, sizeof(props));
+>> +	props.type = BACKLIGHT_PLATFORM;
+>> +	props.max_brightness = MAX_BRIGHTNESS;
+>> +	props.brightness = initial_brightness;
+>> +	props.scale = BACKLIGHT_SCALE_LINEAR;
+>> +
+>> +	bl = devm_backlight_device_register(&maxim->client->dev, id->name,
+>> +					    &maxim->client->dev, maxim,
+>> +					    &max25014_bl_ops, &props);
+>> +	if (IS_ERR(bl))
+>> +		return PTR_ERR(bl);
+>> +
+>> +	maxim->bl = bl;
+>> +
+>> +	return 0;
+>> +
+>> +disable_full:
+>> +	if (maxim->enable)
+>> +		gpiod_set_value_cansleep(maxim->enable, 0);
+>> +disable_vin:
+>> +	if (maxim->vin)
+>> +		regulator_disable(maxim->vin);
+>> +	return ret;
+>> +}
+>> +
+>> +static void max25014_remove(struct i2c_client *cl)
+>> +{
+>> +	struct max25014 *maxim = i2c_get_clientdata(cl);
+>> +
+>> +	maxim->bl->props.brightness = 0;
+>> +	max25014_update_status(maxim->bl);
+>> +	if (maxim->enable)
+>> +		gpiod_set_value_cansleep(maxim->enable, 0);
+>> +	if (maxim->vin)
+>> +		regulator_disable(maxim->vin);
+>> +}
+>> +
+>> +static const struct of_device_id max25014_dt_ids[] = {
+>> +	{ .compatible = "maxim,max25014", },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, max25014_dt_ids);
+>> +
+>> +static const struct i2c_device_id max25014_ids[] = {
+>> +	{ "max25014" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(i2c, max25014_ids);
+>> +
+>> +static struct i2c_driver max25014_driver = {
+>> +	.driver = {
+>> +		.name = KBUILD_MODNAME,
+>> +		.of_match_table = of_match_ptr(max25014_dt_ids),
+>> +	},
+>> +	.probe = max25014_probe,
+>> +	.remove = max25014_remove,
+>> +	.id_table = max25014_ids,
+>> +};
+>> +module_i2c_driver(max25014_driver);
+>> +
+>> +MODULE_DESCRIPTION("Maxim MAX25014 backlight driver");
+>> +MODULE_AUTHOR("Maud Spierings <maudspierings@gocontroll.com>");
+>> +MODULE_LICENSE("GPL");
+>>
+>> --
+>> 2.51.2
+>>
+>>
 
 
