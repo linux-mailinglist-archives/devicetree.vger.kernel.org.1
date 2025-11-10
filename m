@@ -1,404 +1,228 @@
-Return-Path: <devicetree+bounces-236921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7897DC494D9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:48:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2295CC49500
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:55:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ED713A7876
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:46:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8E7B188A401
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3257B2E8B83;
-	Mon, 10 Nov 2025 20:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E602F532B;
+	Mon, 10 Nov 2025 20:55:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eDCRbUjt"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RLX3E/QM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013013.outbound.protection.outlook.com [52.101.72.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F8E2C028D
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762807603; cv=none; b=d4naRKHG+waDDk8s+M6B48k56L1Q9W2KJ1JlSodDhUaneHrGwnRo7ABV7fzHDj8ilua14eu933T4NgWecWtka88OzEOwINDK7IGFtXJSaDf96id4P/MBlLjc2BR2EydTRh4MnD4+70gNeD/S0SvXXcSuzKnzC3LqvhNaA422qms=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762807603; c=relaxed/simple;
-	bh=V6et8XZiJmPajNXLpjiEYmS8e1Vn5RYYti7HnWvDPFE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EcAQjbBPpDpP1oRpqM5naryk2h45gh2wCBOTR2/iX1dA2ipy/ONxA2+g1B1wVXaDWMXFCh1tAUHC5Rx9sy6W+YfiaDuDyxl8FpfbSR8Y1IYLt5jDJCwqsQ2s7Oaw93NtNcx4gornNeW1YgjXRBZxIBpTU/i5EaaAZbYwPIpO8Zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eDCRbUjt; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b7260435287so519433966b.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:46:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762807599; x=1763412399; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Hx+3UErOC7a4/6wBfCIV+NGBUPJoJPn9KMJFM1rAmc=;
-        b=eDCRbUjtxdXCqL/poZO8/KqjwBz7KZYh47KyC0IdO17q+53irw6OhZrkJoi1oggTcI
-         4JxkTgLuhG4G6xCAtZLJfXyuo2Jz2OlxzSLT62Q7ARmhuLt8oMA21prPbhdcQTcUbKv4
-         6wRazD3LOcPaqd2F2itgKmuo+V5y4wHzf7NmylysAKblGSYQjIRr+c8R2I9R0DKzIw6y
-         Dh61g/9u0cQbrYtlOpe8QQv4+BDWBhKvDc+x0pg+WFSyCf208bJZt7QBT7+/q+ixVIxF
-         t5j8Kf0/5iKWwlcV2T4ngeqwSQAw5JQWbZFjI6vsz/ZXQbcdi9gVyUbsSmQ8f014TA4n
-         FAww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762807599; x=1763412399;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6Hx+3UErOC7a4/6wBfCIV+NGBUPJoJPn9KMJFM1rAmc=;
-        b=kEwHvTeDHvgfm8T6SKDEx3lBzQWdMcL6Sp6sc0qeiWD+ufxU/58CKlmJ2jUHhjGdk9
-         wv8+CqXLrkDhGEjpMDqBwIvIcCA46a+skkLoAGO6dYMfR+2NTjTTEOKWz2mtgnTG4IhS
-         qq0SZzdVJLPHh0OIZoeIclf7XulWaKRuiQY+TJV1wT/PG3PvtxiOklcKDssW5bsZ+vyg
-         zt19s+0QGthkoAgBKRs9XU5GJ2EMyfcQAHpRARG1pCsxYTxJqW6EAfNWE2luU6GRNhNA
-         XgCsJAgf2NxaMh6FW9A/WtGg0g52OfZW6Ylfjd+8jtj9y3peH4hBsV5PfmzDAn0RkSxl
-         b8gg==
-X-Forwarded-Encrypted: i=1; AJvYcCW15rMZhAPC+H5hBUAoyp2+sLMXqt3X5JStMOqCsvRPD8kCz/maGFK624qYYqqHGCEG5vszqZvnj2KD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0hsqLYZnoWd2Kgk0PDISMPiFalT1vcsOzYRWP3+BkIUMKKzUO
-	jHdPthYjwabJuKRCF2UlNbNMR8GJ/Sco8+l2jJ/buRbrxhxoz8OFrs0brQFiFkyV+eOFi7lxIC9
-	RD72ZDALbTAHWMu2cAFxYo0EJsfUttM8=
-X-Gm-Gg: ASbGncu+8vqVYAkUjc63Rt4hpd0AlGhxESejtvIGrpAb/l1qhqCDrDU2Z59pEafMEHG
-	WK4Y+EvAPcz6QMX3v1rqMaCWSOArG1HQ2SznA+hvfmsfkSyslycFw1cYlQNJLo4EP/ArykkZUVY
-	2mSc0J6wenP5UWw2C7h/ToMyvCzfewynizRQoZ45iFRSpFDB6HXGNcuaNCmEbcxMyKuAkB6WwH0
-	9ZgO8zgKn+zomdT/lVMpDY8tJ42BwUHQMEvbajlIjJEyWOggewsR+3TCixLgUDqyFJOQ9Fl
-X-Google-Smtp-Source: AGHT+IGPBuMN+yAFnF0ZR3EjG2yEc6dIK2mrlQzy7SywuR84/WsrDdt3Or9lcOFeDlZjj4YFPbgIjGqJ7P9gvWVC3s4=
-X-Received: by 2002:a17:907:d8e:b0:b6d:7f24:8428 with SMTP id
- a640c23a62f3a-b72e0587c83mr1036102966b.54.1762807599197; Mon, 10 Nov 2025
- 12:46:39 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1C32F28EC;
+	Mon, 10 Nov 2025 20:55:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762808110; cv=fail; b=BBHDyld8+HurG4OADChJ8HJQtCDqeBe05C1sTtMxuXtOMVachDHu+b3bYOneRXYPAUy+YDRRTyp7ajZ7b6D4y7ocUq2PPybLbB+DM1icwBUm8KZAuIv1vdfsXXa/QskPZ/og5HVS9XuWprxc2vDuMKSBVqVBHF6G8ERVebFn08M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762808110; c=relaxed/simple;
+	bh=J0D2qnkspe5RZJy0CfZJksKDysPrJjLRUSMOPZ0TBT0=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=qhqFzik7QoqWJyOjzwuOPhrsLmVj5LEdKMn/CCYLHp92Avr//OL5i3Hsp5uc9MXiFY+ZubpJtFm9X2iVHuerTJo8dIO7wkADRZGyVZxU2SmmymwrEZCMs4cd+jYqzrry1H/Ov0Q4K1fFRQ5dqygoHn7lSZHHOD8oeqDX5zILo00=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RLX3E/QM; arc=fail smtp.client-ip=52.101.72.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wAGOmJXAdz56NXYLUsasqJrOBbWb57iuIlImeFiQ2ZJBMk2G17FJ/EXYCfLW1CyIgP+OpXJ3+LyO07y92ChydYh+ACA/JZl5jwmrgTNixyqRZPKGoOBXQxotih1LD9Q/nP7ir7YC8OH0q6fDHFojXZpfmR3Ehn9+nMRQfE/W9qSIpOQOwtEcDzqnzLY8skyoF7rryRj5CN1RrtMgJ8YbRUidM209s/BIqo2BJVYV2pi5hzES5qGTFmmK2KENdGamZRBazXSxObI38IjWP+TTU4EJcsA2Sa1rqjor2++cUA0BRbvt8/GQmm08YWHHr4YSZcJRueJT8YRArtpjBfiBGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A/faaoNzPB9953pfRilV6n1dRUTX5kpC0aHb2cvknfo=;
+ b=MmJuKtBSxeJpLVI/MHEPwjG0f1ELPEZnKBNrZryjZmJ6Tw0I/J76tGGpfsmk0D8a09IXxjXrV+Sa1Ub67S7xUVLQN6LgJWUkuD2bd/wj+OqUiwO1Q6w1uJVLA75feqybBIsebbRyKhR9Vd59d1GBsaBwPOUiGtdmBdjo5dE1pnyCq6DrCdsgSGx7ZX32UsaOzno7+iQkQ7AQvkrvCBxQI+c0D9eY4HJI5e/ZvleavHURenMX3ZbifyRxaMuvGLNiXzDOqedzcFQA7xv/M3tAMZWXNHSro18OeVBKsomgjonJMM6J2/HZRHgeJDPMBOg/8YXNIp5R6+taMojJruvGVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A/faaoNzPB9953pfRilV6n1dRUTX5kpC0aHb2cvknfo=;
+ b=RLX3E/QMXAom66TfPIUTGTdDwDLeaAkQe0w1Kmyu5J1PlUsPAdQR522CAu+0T5G6QI2b50mTM1mOaAqOQMWCDBvLQqMx+56civS67pgSDurIoEdGQbcUv0H5NYfCQd+ZK/S0+cDqhxbs1YAo6p1+EshGhMHO88DHiNOHiOI6EXtMPwjmeVho7LVgWJ1TRWXv06knNezvAnPO/KHsxAqIkYGefeQ1cMWIPGSRVBF5Ijenpv8dBpX3ytrYBsYZjrZc7nJ0uL8vWc8xwHyeW6QzrvQrG1WtEoeVVROF7owXExAFpu+FH8yO6vtB0wkukmdYWtETukP8IyTFF0htnOkUWg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by PAXPR04MB9075.eurprd04.prod.outlook.com (2603:10a6:102:229::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.13; Mon, 10 Nov
+ 2025 20:55:02 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9298.015; Mon, 10 Nov 2025
+ 20:55:01 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH 0/9] arm64: dts: imx8m*: misc update
+Date: Mon, 10 Nov 2025 15:54:40 -0500
+Message-Id: <20251110-misc_dts-v1-0-7564b9f69a18@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABBREmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDQwNz3dzM4uT4lJJi3WST5GQLkzTDxFTTNCWg8oKi1LTMCrBR0bG1tQB
+ W0GUiWgAAAA==
+X-Change-ID: 20251107-misc_dts-c4cc84f1ae5f
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Nathan Chancellor <nathan@kernel.org>, 
+ Nicolas Schier <nsc@kernel.org>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-kbuild@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
+ Shengjiu Wang <shengjiu.wang@nxp.com>, Sherry Sun <sherry.sun@nxp.com>, 
+ Li Jun <jun.li@nxp.com>, Fugang Duan <fugang.duan@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762808097; l=1203;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=J0D2qnkspe5RZJy0CfZJksKDysPrJjLRUSMOPZ0TBT0=;
+ b=qTLSlEDKtXs3Q3MXGP4BHyiATobLj8hEvFxPoEYnYaFq5bM0vqQEfqMZyyFTGDgSEi5VIxyXv
+ XM27+BYonNyAgDzUC88NXgW0It6czTLUM+AYvkjzAsTTsAMLk8MlYZ2
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BY3PR05CA0046.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::21) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251110061409.726028-1-o.rempel@pengutronix.de> <20251110061409.726028-3-o.rempel@pengutronix.de>
-In-Reply-To: <20251110061409.726028-3-o.rempel@pengutronix.de>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 10 Nov 2025 22:46:02 +0200
-X-Gm-Features: AWmQ_blXIxlzHMJq1NdqVVn7zUANqYXxGQTtjIxHfdA-UtT59FQKa8nuqtp1fME
-Message-ID: <CAHp75Vd9WCXR_QmefqPhWO1niMnESq7LAcN=eYvSiqkWfFrNhA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: adc: Add TI ADS131M0x ADC driver
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Jander <david@protonic.nl>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|PAXPR04MB9075:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12fa737b-f50b-401b-3c75-08de209b6acd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|19092799006|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TWt4OXlDeFJqdkhLaGVzdk9aQTV5TDZJejhlYmVGN1NsOEw2Rzhsc2dRaE5v?=
+ =?utf-8?B?RUcvVC9PQ0FSS2p0aG9pdyttVzl4VWpaRndBbXQyNVdaMVl3dFUzaFZORlRj?=
+ =?utf-8?B?ZUQ0NHRocUJOd1RmTDNIZUhyTVlUOHZPVitLbENXMmtDYWdCRGVhU0RRSVdN?=
+ =?utf-8?B?cVRjckZiUXViOExQSDk1QWo5SHBpV2d2ZDdvaUZxZGUyQ1NsNnd1a2hJZFZi?=
+ =?utf-8?B?S2dINEFla1dkZzBQRHpoZ09EUG85ZWxmaVlFdHFPYThHVUREMkNVcVdkelgz?=
+ =?utf-8?B?Z2FDRkgzNEFLc2YxTTN2ZVVIZC91czA3YTJmVnRqM2YrYmtleHNjNXByL2Rr?=
+ =?utf-8?B?SlVET0RVdWhJWGk5Y1RzTTVTQ3I5U01xZDZVQ1NGT2xCT2pLeHVsbWFTL00r?=
+ =?utf-8?B?aGFrNU9NSEJ5NHRsaldTZVRoSkVGa01HL1NYRWdLVzAxUGNWSlZ0aTZra1Q1?=
+ =?utf-8?B?bW1FVFFzZWUyODVoY3gwQ3BGSTNxZUpGcDhBaGE0VlI4NjA2VGxEaXJhbGNm?=
+ =?utf-8?B?NDlucFVDSWtrYWpEZ3l1bFA1cko5d0swYmV3ZWNMOW0wWU1lV0ZwQzBjN2py?=
+ =?utf-8?B?cVFiVVJ6L1hoSjk1MTh4bk9Za0xUY0RKK2VuVitwcWpwV3JnZEpudnNhaFpO?=
+ =?utf-8?B?Z2NFWUt0Y0JPQU9VZDFhVmhwdmttZ1QrL2Vpak83blhvUlVwTEMrL0xFWDZ2?=
+ =?utf-8?B?VnpTdE1IWVhXSlpIRjdtM0hDU0d6ZmZteG1aLzdlVldHcE0zQjMzS0JFKy9T?=
+ =?utf-8?B?QThkZi96VjN2Zmw3YlgrdElKM2hUSlFzUjljak9lakdLaWdKWkMzRkVSdit5?=
+ =?utf-8?B?UklyUmZ4d0c4QVZabU5Ndzc4NEg5U2hRdHpZMTd2V3hVYVI0bmd6TXNtcER3?=
+ =?utf-8?B?eG1MR1NZTHdtb2RUQ3VlOWhILzZ4RjRnUFd3bGVKWldiYktGSVkxTEZUSG13?=
+ =?utf-8?B?YThSbVRSeHlEbGlZYU5Ra1EyckNzWnVoUG9IU1VndDhoL0xyeWl5RDBGMmhD?=
+ =?utf-8?B?WTFNUjMwbHBNSVlVNi8raXY2cnc2Qk9VODMrWUp0bklyTUZGM2dlbUhlVmQy?=
+ =?utf-8?B?K0g2OS9WdFpPMFlxZXBLMVRoQ2wycVE0VFdhbWRLWDdqRGhmOWQySjJaaUd0?=
+ =?utf-8?B?Y2p4OVdWbUcyK3dGRS90b3FhSVNneVdIR0U0WGEwNjBOK1JSd1B3eG5CUHc2?=
+ =?utf-8?B?Sjg1QUdSckEvZVdSenpETXJBdzgxZC9PWHJTZTVoNzhobktsQnR2ZDZXcDRl?=
+ =?utf-8?B?MEZubmZObzdMYjdQbGNIWG8vT2xiNXNRTW9ZR01tam8yTzB0LzlLR1JGd3pS?=
+ =?utf-8?B?c1JEWWUyMkdFQnk4cS9RVkRpb3R0SUVqVy82QTBnd1pRN1hkQTBxYnRlUE5T?=
+ =?utf-8?B?QUlUWVZvc3pEYnFVcDU3WjkwWk9TS0xwT0RqVkNBeWh4aU1MNGlGL01jM01G?=
+ =?utf-8?B?WnA2SEQ3bnNnV01yMmZlUXEzcERwS2szczgwanJmWU1tMW1VOGxBMlRqdVND?=
+ =?utf-8?B?WGlhYkMwblFQaXY2Z004VXNQYmdnN0pkbFJKSXVpVWs0ZGF3STVldmNGT1JR?=
+ =?utf-8?B?N1JaVnlJSjdYNnZoeTFTbmdNT3E4RzBJWlJDaXhoOW92U21ZSTFVL0pjQzlE?=
+ =?utf-8?B?eUJSbGxxSWxUREF1NTFlNE9xeVlpTTR6MmNJLzdoWGtmNk5uRmVXVjdDZzZx?=
+ =?utf-8?B?WFFmRmF6OXRITmE5d0VxVW1acXpscVB5OXVGQ1UzUDJhMVdnYzd4dE9hUEhh?=
+ =?utf-8?B?dlpSQjhmcnBSWHNuc2hyMnpyRzhRMlJnN1dNb1FLUWFOK0diUXlsdCtWSkJT?=
+ =?utf-8?B?U21nVTZva3liUVB4ZlZzNzRTcU5iVXVKL2owV3dWYnI3MVVRMHA5WTl2VjRv?=
+ =?utf-8?B?SDRseERVaDV5N1VDNE5OMHo5NnJYV2dOTmxQc3Awb3ZmZVZlUUZlQzBTY3Bt?=
+ =?utf-8?B?MTdUbHMzdjFRZkhxaElXWStNM0VaTFhmOWFzVWVmZ0RqZCtMaDdYaHg5eVky?=
+ =?utf-8?B?TWhjOVlOMkgvWE4rcjFQcFBKWjNMK0ZhbVliTzFQMEYvd3ZSRytVUE5NVGJp?=
+ =?utf-8?Q?Ny/sYN?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TldBRXZmRktEaVdRVStIdlgrWU1yZ2ZxeXlQcDRYbk5jQ0Uvd3FrKzZCTHpn?=
+ =?utf-8?B?RWZuN3JmK1Zqc1FRMERiUjZjTEM1RlM0ZUI5SEJHUXZYZHBURHpiay8vRzUv?=
+ =?utf-8?B?Qk0zZWFZNHNVVWN4Zy9sMmZJOHBDT0MwM29HV3UyOThEc0hYNnRxV0M0TDcz?=
+ =?utf-8?B?VCt2OW8vUGlORXFaSllRTlBPTng2TVl3TDlkVDVLZlFXdmpQeTRzMlV0c2dk?=
+ =?utf-8?B?RzRrWjU5TXRvVFRNTWRQeFQ5dzRLY05pV2VhYklpMGJmS2RGclIzakVONUt2?=
+ =?utf-8?B?V2JKTHE3emxyUk91UkxxSWxaVHpueUh6STFscC92TzZkVHFOd01PYW16eW8v?=
+ =?utf-8?B?L1BuQ1RtWlkzUCs5YUFGTnY4Ly83bW53czh4aUg1UnpLMTYyU29OOG1wQStn?=
+ =?utf-8?B?dXQyUHFBVVQzMlNjYU9VRitPMzN6WCtsbTJTWGNDQ2tyeHMxbUF5Z1V5UDVF?=
+ =?utf-8?B?QWdwcXRnTWQ3Zk93dm5qVmJBZVZaWFRYdzdqZVlvYkVPLzg0bFRiVzdPU1JG?=
+ =?utf-8?B?eDV0QkxaQUJzUTl3cnZ4SmI1YWRCRmloY0thbTNVS1hPcWJrNVNrQWZwbE5r?=
+ =?utf-8?B?cUROUHZjd3d1OEhiRE1JMjBZcFVGM3RFMXNuMm1NQWRRck40aXNqRDFibU1r?=
+ =?utf-8?B?d3cxZTRuTURYYVJXbG5wd1FXNkJiY3FOOHFya1FFZXdCWldXUFhRZTFsRkQr?=
+ =?utf-8?B?ajYyVU9mV3FxOTljMWhuWUtIaTF3cVVSUUkvQVFaenUwdmt4c2gvNFZ3RU05?=
+ =?utf-8?B?N0V0cjNiT2x0eEFWVkZOQmtHZkhFTnpUSjN2RTJLZG9wMldpSmlmeGRuK1hI?=
+ =?utf-8?B?M0pWTiszQmhzNk0xWkxMdUQwRExUUHlRdEdHZm9pNHNFWERlZ2VYeEg2TjRq?=
+ =?utf-8?B?ODR4WVBPSDEvVXJUZGFGTmovOXZJbHNUVW9ZYmpJN2dzYmhmcXhkZHE5cGlz?=
+ =?utf-8?B?a3NyeGU0QnF6VkVuVmpDWGM2czROZHVDNUZNQjRhV0FsZ3prZlZyeGd1WmFm?=
+ =?utf-8?B?M1RWZm1WcEt1eGFVdVpNcDZ4T09JamZ5TW9zTGp6S3VqOURtZVBmWWl3ZExQ?=
+ =?utf-8?B?bEFMV01BMEduZ2xWZEdMR1lUMXJWcStFdWhuUWxQcHFyYkF0ZVp2UmNSNHRE?=
+ =?utf-8?B?TlVtaU9tT2M1WEhEVEhBRWJhU01yWmxGYUtjdkNzRlUzMW4yeVFGcXQ5amJY?=
+ =?utf-8?B?RndyTkVTSHJOdzIzcWxuQUxDZ21uMVBVU1U5UHZXY1JmMUxENHlRdkpWelNN?=
+ =?utf-8?B?ODhUY2lrRnFydFlwQS95VlNsbkhJNFZlRjJKWE0zc1ArUUlERUhYV04zVFFB?=
+ =?utf-8?B?dis4SnVXaUxKZWYvc0RhQkhXNlFNVDlITTM0bkZPaUQyNVo3ekt1WGZ5ZTFa?=
+ =?utf-8?B?MWxPc0NlelhFVDZVSFhOcWdIeVpEUDVoRkFVbjJrSFg5ays1anRBd0hVb2FD?=
+ =?utf-8?B?MUJ6VTVianNERDFuSC8yYVdaM3BBMVBubXVNRmt0Ri90NThIcUhncGhMSUxp?=
+ =?utf-8?B?Ry9MOTlRRjNOTEFKYkhqN3lRSVc2Y1BIVVZpeVZlbmVzYnpjNUEzUURlMHh1?=
+ =?utf-8?B?bU1jQW9GMXlMRUxIaTdEbWlvYXNpdndyWXBCYTYrTy9xYUlTOEZvaGgyME5G?=
+ =?utf-8?B?YUpFL296dEMxV1Z6a2VjNTEwSFE1R2JkeERTOE1iZTZIWE5nN200Z0cxeWtK?=
+ =?utf-8?B?ekRhQ0ZBY0ZKTEt5WEhmcWhiT0hsaTA3cWFHZkNFc0g1b2trYWN5UkZZYTdB?=
+ =?utf-8?B?cjBEQm9yL1VuN1BBZm80SlBuVXBlSnhqTWhkb3BJTW5UY05pT1ZUcEQveGEx?=
+ =?utf-8?B?UnN4NFF5UlJFQ1BYTmprbUp6Q3hxVklwbXBwWFMyd2dNZndJUGJ0UEplTG9Q?=
+ =?utf-8?B?MzVZWEQrN1cxR1RyRFk2WldpRTFGbUJtenp0dXZqVkphallwbUw2Witvb05H?=
+ =?utf-8?B?anc0NkZBcXVQWUg1blBNZDNRL2hEdGVLOHJKU2tXdUtqQXVua2puME5ONWVh?=
+ =?utf-8?B?Mit1Rms1dmsxeXJtQzM0WDlKa2NUYWtDN2VDSXFLQlJJWEdwbUFWeUFocnJE?=
+ =?utf-8?B?NDV4bElCcHZ3SCt6cG81L1VOcEFwWFJKSmFFd0taZlJpZmtJVnNiaEwrZ21H?=
+ =?utf-8?Q?gofhyw4x4Qeb1B3WyPmkJzEgh?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12fa737b-f50b-401b-3c75-08de209b6acd
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 20:55:01.8674
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1CLQwzusjg/ZnYyhPi3Xj1SFwK/rG7VL5BHYYx2jJnbvRCXRIEzbdUIKKN154KSiZRthwxpoMOKTnLLTOzG4Zw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9075
+
+Some misc update for imx8m* dts
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Frank Li (2):
+      arm64: dts: imx8mm-evk: replace space with tab
+      arm64: dts: imx8mp-evk: replace space with tab
+
+Fugang Duan (1):
+      arm64: dts: imx8mm-evk: add uart3 port
+
+Li Jun (2):
+      arm64: dts: imx8mm-evk: add wakeup-source for usb phy
+      arm64: dts: imx8mn: add wakeup-source for usb phy
+
+Shengjiu Wang (1):
+      arm64: dts: imx8mm-evk: correct the spdif compatible string
+
+Sherry Sun (3):
+      arm64: dts: imx8mm-evk: add uart1 and bluetooth node
+      arm64: dts: imx8mn-evk: add bluetooth dts node
+      arm64: dts: imx8mp-evk: add bluetooth dts node
+
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 78 ++++++++++++++++++++-------
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  4 +-
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi |  4 ++
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     |  1 +
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts  | 32 ++++++-----
+ 5 files changed, 85 insertions(+), 34 deletions(-)
+---
+base-commit: b9e97ce705fb1873265ba0004041b55258d26dad
+change-id: 20251107-misc_dts-c4cc84f1ae5f
+
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
 
-On Mon, Nov 10, 2025 at 8:14=E2=80=AFAM Oleksij Rempel <o.rempel@pengutroni=
-x.de> wrote:
->
-> Add a new IIO ADC driver for Texas Instruments ADS131M0x devices
-> (ADS131M02/03/04/06/08). These are 24-bit, up to 64 kSPS, simultaneous-
-> sampling delta-sigma ADCs accessed via SPI.
->
-> Highlights:
-> - Supports 2/3/4/6/8-channel variants with per-channel RAW and SCALE.
-> - Implements device-required full-duplex fixed-frame transfers.
-> - Handles both input and output CRC; uses a non-reflected CCITT (0x1021)
->   implementation because the generic crc_ccitt helper is incompatible.
->
-> Note: Despite the almost identical name, this hardware is not
-> compatible with the ADS131E0x series handled by
-> drivers/iio/adc/ti-ads131e08.c.
-
-(Note, my address for IIO reviews is andy@kernel.org)
-
-...
-
-+ array_size.h
-+ bitops.h
-
-> +#include <linux/cleanup.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-
-+ dev_printk.h
-+ device/devres.h
-
-> +#include <linux/err.h>
-> +#include <linux/iio/iio.h>
-
-+ lockdep.h
-
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-
-+ mutex.h
-
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-
-+ string.h
-
-> +#include <linux/unaligned.h>
-
-+ types.h
-
-...
-
-> +#define ADS131M_CMD_RREG(a, n) \
-> +       (0xa000 | ((u16)(a & 0x1f) << 7) | (u16)(n & 0x7f))
-
-> +#define ADS131M_CMD_WREG(a, n) \
-> +       (0x6000 | ((u16)(a & 0x1f) << 7) | (u16)(n & 0x7f))
-
-These two suspiciously look like a reinvention of proper unaligned
-getters with the specific shift / GENMASK().
-
-...
-
-> +/* 1.2V internal reference, in millivolts, for IIO_VAL_FRACTIONAL_LOG2 *=
-/
-> +#define ADS131M_VREF_INTERNAL_MV       1200
-
-_mV
-
-...
-
-> +/* 24-bit resolution */
-> +#define ADS131M_RESOLUTION_BITS                24
-> +/* Divisor is 2^(Res - 1) for signed 2's complement */
-> +#define ADS131M_SCALE_DIVISOR          (1UL << (ADS131M_RESOLUTION_BITS =
-- 1))
-
-Why not BIT() here?
-
-...
-
-> +struct ads131m_configuration {
-
-Running `pahole` might give some hints on optimisation of the layout.
-
-> +       const struct iio_chan_spec *channels;
-> +       u8 num_channels;
-> +       u16 reset_ack;
-> +       bool supports_extref;
-> +       bool supports_xtal;
-> +       const char *name;
-> +};
-
-...
-
-> +static inline u16 ads131m_crc_ccitt_byte(u16 crc, u8 data)
-> +{
-> +       int i;
-> +
-> +       crc ^=3D ((u16)data << 8);
-> +       for (i =3D 0; i < 8; i++) {
-> +               if (crc & 0x8000)
-> +                       crc =3D (crc << 1) ^ 0x1021;
-> +               else
-> +                       crc =3D (crc << 1);
-> +       }
-> +
-> +       return crc & 0xFFFF;
-> +}
-> +
-> +/**
-> + * ads131m_crc_calculate - Calculate CRC-16-CCITT over a buffer
-> + * @buffer: The data buffer to process
-> + * @len: The length of the buffer
-> + *
-> + * This function processes a buffer with the CCITT algorithm required
-> + * by the device, using the 0xFFFF seed.
-> + *
-> + * Return: The final 16-bit CRC.
-> + */
-> +static u16 ads131m_crc_calculate(const u8 *buffer, size_t len)
-> +{
-> +       u16 crc =3D 0xFFFF;
-> +       size_t i;
-> +
-> +       for (i =3D 0; i < len; i++)
-> +               crc =3D ads131m_crc_ccitt_byte(crc, buffer[i]);
-> +
-> +       return crc;
-> +}
-
-Why CRC16 library can't be used here (crc_ccitt() one perhaps)?
-
-...
-
-> +static int ads131m_write_reg_unlocked(struct ads131m_priv *priv, u8 reg,
-> +                                     u16 val)
-
-I would go with a single line here.
-
-...
-
-> +               dev_err_ratelimited(dev,
-> +                                   "SPI error on WREG (cycle 1)\n");
-
-Ditto.
-
-...
-
-> +               dev_err_ratelimited(dev,
-> +                                   "SPI error on WREG ACK (cycle 2)\n");
-
-Ditto.
-
-...
-
-> +       /*
-> +        * Cycle 3: Check STATUS for Input CRC error.
-> +        * This is necessary even if ACK was wrong, to clear the CRC_ERR =
-flag.
-> +        */
-> +       ret =3D ads131m_check_status_crc_err(priv);
-> +
-> +       return ret < 0 ? ret : ret_crc_err;
-
-Use standard way of checking:
-
-  ret =3D ...(...);
-  if (ret)
-    return ret;
-
-  return ret_crc_err;
-
-...
-
-> +static int ads131m_rmw_reg(struct ads131m_priv *priv, u8 reg, u16 clear,
-> +                          u16 set)
-
-One line.
-
-> +{
-> +       u16 old_val, new_val;
-> +       int ret;
-> +
-> +       guard(mutex)(&priv->lock);
-> +
-> +       ret =3D ads131m_read_reg_unlocked(priv, reg, &old_val);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       new_val =3D (old_val & ~clear) | set;
-
-> +
-
-Unneeded blank line.
-
-> +       if (new_val =3D=3D old_val)
-> +               return 0;
-> +
-> +       return ads131m_write_reg_unlocked(priv, reg, new_val);
-> +}
-
-...
-
-> +       /*
-> +        * The received 16-bit CRC is MSB-aligned in the last 24-bit word=
-.
-> +        * We extract it from the first 2 bytes (BE) of that word.
-> +        */
-> +       received_crc =3D get_unaligned_be16(&priv->rx_buffer[data_len]);
-
-> +
-
-Unneeded blank line.
-
-> +       if (calculated_crc !=3D received_crc) {
-> +               dev_err_ratelimited(dev,
-> +                                   "Output CRC error. Got %04x, expected=
- %04x\n",
-> +                                   received_crc, calculated_crc);
-> +               return -EIO;
-> +       }
-
-...
-
-> +       struct device *dev =3D &priv->spi->dev;
-> +       int vref_uv;
-
-_uV
-
-> +       int ret;
-
-...
-
-> +#define ADS131M_VOLTAGE_CHANNEL(num)   \
-> +       { \
-> +               .type =3D IIO_VOLTAGE, \
-> +               .indexed =3D 1, \
-> +               .channel =3D (num), \
-> +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) | \
-> +                       BIT(IIO_CHAN_INFO_SCALE) \
-
-Leave trailing commas for non-terminating entries.
-
-> +       }
-
-...
-
-> +       /*
-> +        * Get the optional external reference. This schedules regulator_=
-put()
-> +        * automatically.
-> +        */
-> +       priv->refin_supply =3D devm_regulator_get_optional(dev, "refin");
-> +       if (IS_ERR(priv->refin_supply)) {
-> +               /* -ENODEV is fine, it just means we'll use the internal =
-ref */
-> +               if (PTR_ERR(priv->refin_supply) =3D=3D -ENODEV)
-> +                       priv->refin_supply =3D NULL;
-> +               else
-> +                       return dev_err_probe(dev, PTR_ERR(priv->refin_sup=
-ply),
-> +                                            "failed to get refin regulat=
-or\n");
-> +       }
-
-Can be untangled to
-
-  ... =3D devm_regulator_get_...
-  ret =3D PTR_ERR_OR_ZERO(...);
-  if (ret =3D=3D -ENODEV)
-    ... =3D NULL;
-  else if (ret)
-    return dev_err_probe(...);
-
-...
-
-> +               if (priv->config->supports_xtal) {
-> +                       if (!is_xtal) /* "clkin" */
-> +                               clk_set |=3D ADS131M_CLOCK_XTAL_DIS;
-> +               }
-
-if (foo) { if (bar) {...} } =3D=3D if (foo && bar) { ... }
-
-> +               if (priv->config->supports_extref) {
-> +                       if (!IS_ERR_OR_NULL(priv->refin_supply))
-> +                               clk_set |=3D ADS131M_CLOCK_EXTREF_EN;
-> +                       else
-> +                               clk_clear |=3D ADS131M_CLOCK_EXTREF_EN;
-
-Why not a positive check?
-
-> +               }
-
-...
-
-> +       ret =3D device_property_read_string(dev, "clock-names", &clock_na=
-me);
-> +       if (ret < 0)
-> +               return dev_err_probe(dev, ret,
-> +                                    "device property 'clock-names' not f=
-ound\n");
-> +       is_xtal =3D (strcmp(clock_name, "xtal") =3D=3D 0);
-
-Hmm... We have device_property_match_string().
-
-
---=20
-With Best Regards,
-Andy Shevchenko
 
