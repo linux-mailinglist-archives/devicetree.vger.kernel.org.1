@@ -1,154 +1,115 @@
-Return-Path: <devicetree+bounces-236884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B74EFC49014
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:26:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B39B5C49101
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:32:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6BBFA4EDF36
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:25:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B8F73A837F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:26:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD96329C4D;
-	Mon, 10 Nov 2025 19:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6933321BD;
+	Mon, 10 Nov 2025 19:26:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cpqC+x8V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e3ScSHHj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E578186294;
-	Mon, 10 Nov 2025 19:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C69431BCAE
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 19:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762802735; cv=none; b=kC5Q46DzcjdrVP5SkUebDSWsfFsAQWKlaOEF/Oh8YkPdwzlFfccvX4NbdMM+7WPJL8OB7dr0oeJeRiMJrn4C4qdiOJCfmASGBIiPLOKfOlQOHU4IlEcfj9AbMQDllETRsKMkaWku3+k7nbuiHKOtNG36nO14wrYvxvmJJ35qoAM=
+	t=1762802809; cv=none; b=ZAtUozzOhzjddDEVpcUJ92XJeJKvklL/HouilUm6PmU06ZPSghCC8/5PPhEiQiTQpLg+VYqVocr6gna1fywt/lK7OyIIRn1U+bixL4S3VpNgDysGs0oig/2I2Wd5HxmJzRpxlG8iXqc0INfyGmhsRTP7GtNKHguexf86xJEnd80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762802735; c=relaxed/simple;
-	bh=GrymXJeErTy9u70PVzPmfw43ubyTayEwBn+LiCzgBE4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lwidPniZDUEpXJSoBBNCvebIm4GHk9NH1eJ42d9k2I9XHLz3Wyq18xYiRx9tAcAsh7zJos2yLxCdcdujOaqcm5lb/YjA2TxqrSn8hyyIM+d9djiN5bws++IbDF5VL4NTqKOeCkjTGVVzTVuaUloVm513OF4iS12gpfJIFGMxC1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cpqC+x8V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17E9CC16AAE;
-	Mon, 10 Nov 2025 19:25:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762802735;
-	bh=GrymXJeErTy9u70PVzPmfw43ubyTayEwBn+LiCzgBE4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cpqC+x8V3BJ6v7fmFkIt+t3dVhDH0GKKdgDZh1nM0OX818sGDugtU8rjaIBwPdmKF
-	 QiEAvjcAlzFdMnYeBsYbJXlzbd53uuAdTpD+Si2EO8CF5/l2w6IkrAGj7h0drqhYHk
-	 zhs/qLZU8Ti3aUUAB6VDwUTDs4Yc2BpZCv3bMcgTEKKeKpHHPWiGfrGv1HUUY6bbaa
-	 8eiRsMGt3WbjCUNz2oUWjf+1KVcEWr4yHx07JgpWdX5GZ2IBw0Wn0s6pCx+ubse27h
-	 ay/YPZh79ewOXvUjiJMCAOmnLNtXfMj0c/YXq+74ER4kBPBH6xuu+hsRw8IefMlFcX
-	 kRcF6RUdPZdug==
-Date: Mon, 10 Nov 2025 19:25:25 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Xingyu Wu <xingyu.wu@starfivetech.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Maud Spierings <maudspierings@gocontroll.com>,
-	Andy Yan <andyshrk@163.com>, Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH RFC 08/13] soc: starfive: Add jh7110-vout-subsystem driver
-Message-ID: <20251110-acetone-slinky-0f8e81291371@spud>
-References: <20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
- <CGME20251108010504eucas1p26e8ee9aa88ab75bebd832eaea81720e9@eucas1p2.samsung.com>
- <20251108-jh7110-clean-send-v1-8-06bf43bb76b1@samsung.com>
+	s=arc-20240116; t=1762802809; c=relaxed/simple;
+	bh=g9bEAE/YGJuTa8tU+8eyGnc74pewsjnI08OQO2NlOwM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZdzWlZKPqD1Kyj3V8Lr3gGpw8p6TbPej32i/34BAmeSpDwQMWmcn2aR6FA33wkrAiS0zoO4nhXUIrueJz8KReXl+utAuOwiu3uJc1v5IyjKK7i1YgmE+eNZdzCBiySfwk3IrmdRqktnUYPfuL640J7wTjDZ2YVYIwpXH//G+Xxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e3ScSHHj; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5942a631c2dso3033989e87.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:26:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762802806; x=1763407606; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QGP8QREMcd/AaPsprMdpu0BolksBxlVcRR5B0xb1iVQ=;
+        b=e3ScSHHjL7mWpgKQgVhSixR+EXqOwb50+oatf4tuFs8/13Msp09y/jjl95IN4tuyHl
+         PLrY9Y1ywINDX5ttul4aZ6pk1/9I2wJK0uRG10IT65VLhHsKmw3JLX1J9t/DlVY5lXat
+         MEkDSVXGw+KiTXpa6UJXncvrxDrq4WhF+xI2QVGQLrE/h4DmuVAoFwnXFFEaIxKkWg65
+         oK748ppPGQsVXS73O7wy2bEOX7CdD14wpCu5G1nxoGHTb3FtA54hpXrosESTd902T7ad
+         7DyYjwtm6AH6ob/OfgytUlKQyML/eyQsPGIFxeWG/uNsKqFbiglaM2No27A6ZH+nbMKh
+         TUdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762802806; x=1763407606;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=QGP8QREMcd/AaPsprMdpu0BolksBxlVcRR5B0xb1iVQ=;
+        b=Ej7ic5jI/oG37vH2oSShjMeuDoI8fTSjF198PNoxeWJSN8umhfP6XT7K43O7ZXNcTw
+         pdQKI2cV8QjOv3DULan8c/j+PQVX5KuToxEE7Ar40yW8ImNkMX2BytMd2FJuGasWw0Fh
+         uL9J+l5olNU5TkwpEQV1qi/diicDoMFt7Ql4ItIVDrcG4El/Asv5r/MdO0R70QAfSZIg
+         S/INhR2aS6/DVuu56cc0lmbY7XUDItMvxRBScHWCZx7xnxR6k7QWEYiIWrQ6fpFKQz8b
+         SLLwPXy/J0eCfO0ytpGhntgWydzRKmsC6X34CCEIdVKVGAmI7YjYy1FuGRH/khjVvV/E
+         YYrA==
+X-Forwarded-Encrypted: i=1; AJvYcCXXheAmJDse/mKksJH8EToEK2hYWKAwonHivU10khhYJk8xzKeq9WMYjc0mpWpMsF/Vn1xC1JC5nYgO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSZx0nCDupGkG7nAIQCyo27d/HhgTFtRhwdL/SWOnHp+Qpteco
+	0xDl3RZlSlLKAJ+M7VTMCl99Nm9182fazgL9fSY30ovpWS2WK4P+rI0z+21Indtk+Q6tk/UES18
+	K6O0vviCl/flGK4K8bYexWN1l36MCaK0=
+X-Gm-Gg: ASbGncvMk3/MvgYhIH1gQ54AfDMPrEtkYWQkngBc4cp8ct9d/odrJQJLxmSH7MRevig
+	CIEtKkL2OLdBeg93xG4tIp1tjYBRpUe1dSNBuVo9Uml7fBWuxMwrIuyy/BEvEhlNmoupw8Zco3V
+	L7fjwm2adZM13a/hTBtmgqOG1OHvl76wl4LgkQNx3qIgutcxCJ8zNf0HUK7OhXWIHpMY798sVq6
+	rzTKO1bP8B7fwWJ40Aa2l/3J7Sx9inUNSk064BMqoI+Wc92dkAJT6KfFJ7P+g7JTLtdCcVCHk9/
+	eOYyWAUVTKI/zyzZ
+X-Google-Smtp-Source: AGHT+IE2w++hbFBecmu0ldyA3GzUU/nItyyDdlyoL3af2e2XPwUQ48QHaBgbQkhDEsXF284tkIFknJ3Bm82utQZyrag=
+X-Received: by 2002:a05:6512:3d9f:b0:592:f3ef:19ad with SMTP id
+ 2adb3069b0e04-5945f1c0a0cmr2748942e87.34.1762802806159; Mon, 10 Nov 2025
+ 11:26:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="d6w1nrcqngNa0tVG"
-Content-Disposition: inline
-In-Reply-To: <20251108-jh7110-clean-send-v1-8-06bf43bb76b1@samsung.com>
-
-
---d6w1nrcqngNa0tVG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
+ <20251109214515.121742-2-rpimentel.silva@gmail.com> <aRF0++cUigbETuPs@lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com>
+In-Reply-To: <aRF0++cUigbETuPs@lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 10 Nov 2025 16:26:34 -0300
+X-Gm-Features: AWmQ_bmb7MnvX9j071Ug1e9S416TAObVP1qyQuyove0FFDmd8l7EUQKS7aibrU8
+Message-ID: <CAOMZO5AdcR_fT_RV5-NWu7j51_TA_=Mzzi-Y3Y=HpH+pu=mrvQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
+To: Joseph Guo <qijian.guo@nxp.com>
+Cc: Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, alexander.stein@ew.tq-group.com, 
+	dario.binacchi@amarulasolutions.com, marex@denx.de, 
+	Markus.Niebel@tq-group.com, y.moog@phytec.de, joao.goncalves@toradex.com, 
+	frieder.schrempf@kontron.de, josua@solid-run.com, 
+	francesco.dolcini@toradex.com, primoz.fiser@norik.com, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Xiaofeng Wei <xiaofeng.wei@nxp.com>, 
+	Justin Jiang <justin.jiang@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 08, 2025 at 02:04:42AM +0100, Michal Wilczynski wrote:
-> Add the wrapper driver for the StarFive JH7110 VOUT subsystem.
->=20
-> This driver is responsible for managing the shared resources for all
-> video output devices. It enables the PD_VOUT power domain, enables the
-> top-level NoC bus clock, and deasserts the main bus reset.
->=20
-> Once these resources are active, it calls of_platform_populate() to
-> create and probe the child devices (DC8200, VOUTCRG, HDMI MFD) that
-> reside within this subsystem.
->=20
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  MAINTAINERS                                  |   1 +
->  drivers/soc/Kconfig                          |   1 +
->  drivers/soc/Makefile                         |   1 +
->  drivers/soc/starfive/Kconfig                 |  25 ++++++
->  drivers/soc/starfive/Makefile                |   2 +
->  drivers/soc/starfive/jh7110-vout-subsystem.c | 117 +++++++++++++++++++++=
-++++++
->  6 files changed, 147 insertions(+)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 052876c6538f980f75ff64e78b6ebea460307904..74e562a6b57ac9f776c4be2d6=
-f0977c62bc03d46 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -24051,6 +24051,7 @@ F:	Documentation/devicetree/bindings/display/brid=
-ge/starfive,jh7110-inno-hdmi-co
->  F:	Documentation/devicetree/bindings/mfd/starfive,jh7110-hdmi-mfd.yaml
->  F:	Documentation/devicetree/bindings/phy/starfive,jh7110-inno-hdmi-phy.y=
-aml
->  F:	Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-vout-s=
-ubsystem.yaml
-> +F:	drivers/soc/starfive/jh7110-vout-subsystem.c
+Hi Joseph,
 
-The parent directory that you've created here for the driver (or created
-in a different patch) should probably be added to the "RISC-V MISC SOC
-SUPPORT" entry, along with the binding directory. Otherwise I'm probably
-not going to see the patches for the former (Emil maintains the
-plarform, but for $reasons I'm the one who applies patches and sends the
-PRs to Arnd). Think it used to be there, but got removed when the last
-(only?) driver was moved out.
+On Mon, Nov 10, 2025 at 2:15=E2=80=AFAM Joseph Guo <qijian.guo@nxp.com> wro=
+te:
 
---d6w1nrcqngNa0tVG
-Content-Type: application/pgp-signature; name="signature.asc"
+> > +/ {
+> > +     model =3D "NXP i.MX8MPlus FRDM board";
+> > +     compatible =3D "fsl,imx8mp-frdm", "fsl,imx8mp";
+>         model =3D "NXP FRDM-IMX8MPLUS";
+>         compatible =3D "fsl,frdm-imx8mp", "fsl,imx8mp";
 
------BEGIN PGP SIGNATURE-----
+Why do you suggest changing the compatible string?
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRI8JQAKCRB4tDGHoIJi
-0iL7AQCiyLJiCSE3NKVn/dTVaRDq4/xjTR7nxORX6exO8YKwTAD/f4qo7cSk4n8+
-BG25eAfUyQihtYUjB8FnpYKCw2j6mQ8=
-=kAFU
------END PGP SIGNATURE-----
-
---d6w1nrcqngNa0tVG--
+"fsl,imx8mp-frdm", "fsl,imx8mp"; is correct.
 
