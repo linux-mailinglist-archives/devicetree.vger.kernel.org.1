@@ -1,146 +1,121 @@
-Return-Path: <devicetree+bounces-236874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EE9C48F4E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92BB7C48F60
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:19:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A20EA3BD155
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:02:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D83C63BFA7F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C8EB33436D;
-	Mon, 10 Nov 2025 18:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6E10338934;
+	Mon, 10 Nov 2025 18:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gLoVqT2g"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="tEZ2t2C5";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="kTb0P3x6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10085320A10;
-	Mon, 10 Nov 2025 18:54:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6CE32E6B3;
+	Mon, 10 Nov 2025 18:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762800882; cv=none; b=DMtziCqcWuj/SYlHwD1uT3UuBC4ULoCAGAJXoPFLBq/haxTxR/hKFV11/LnyM15yuzYHmMsZEJYMhLV3sXUblNPpUaBwZw/QvIW8V2LH++yiHAw86jx1uj2+uyoGPkXbTgsMNhiTFxx9tVNPVMdo4FEyi7aVOOCqWr/+JKA7NlM=
+	t=1762800969; cv=none; b=eF7Nefs/RP0socsKR3+O1lQT5b/sQ1aW1edvYS1TX9K/+l39JiDcG9FOCRHORgq033/gAyHM/vFPY5UnHm6ZUvfM9LfdI3+fEcl9igtGsIKMaPZBB5ZofZkEu8kv55HbABwEmCsA198gC6zwjGmCWgM3nqtCdFG7qBCDYFL71Hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762800882; c=relaxed/simple;
-	bh=H0v+OwJx0QjNHKVhVp7rC4x7aayHKNL5i+kxcvOuROE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PIlhf+pJcUaBXN6sHNPK2VhvaM8sAcU6mFiOmrIJm5FyW82b/IiEExNO8pAA8Qovhh0gIutb5FDkzWKIbiFsrS6WnB8XwZ48NL5EPX01erbjpQxsze87pLDHqbENJHIgfZ/32w1C8JZbybxeB9diUXd/jB3HwcUJEczxePOFyF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gLoVqT2g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2310C4CEFB;
-	Mon, 10 Nov 2025 18:54:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762800881;
-	bh=H0v+OwJx0QjNHKVhVp7rC4x7aayHKNL5i+kxcvOuROE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gLoVqT2gdZeJTE5wcBLE6E1+ccfqOXsNvEqBwy+2AyppmwOZV8bnnwaU41/02JcAx
-	 lx3opxKuzPXkuIBSHzJsoY2WwiqlgmCUqgAIZNx4FlKgTAtFK1SI8X4WpuvnhCYlqW
-	 X1k4eOEVsmXMfKiQN7rynVyLRNscOdJLrjZnSCe17akr/v0kq0pR6kLxrPH50Bxcr9
-	 aV9p6PWMKcTHhHE+P9S4PKFzf9T5ZN6LselMadIdrwovRxxpPHyuUYLDhPJqLQYyra
-	 n+ruvqeCAEZtmW3BIthhzNleMLi7ArGg1gB/X++bk7A1HAVak3h9EMKd2FXC1IRYKH
-	 HNv5BxGzKSdnQ==
-Date: Mon, 10 Nov 2025 18:54:35 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Rosin <peda@axentia.se>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 08/21] dt-bindings: phy: renesas,usb2-phy: Document
- mux-states property
-Message-ID: <20251110-outshine-smartly-881d231d644b@spud>
-References: <cover.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
- <bec1905bcee1a396f5b004611353af922e6d7b55.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+	s=arc-20240116; t=1762800969; c=relaxed/simple;
+	bh=AQE7U/VupyWZUQxlablk26n00PMnOjK4CR+gbSV5xL8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rcKht8itP40cJLn8uqkvTW7P+yeLnfJB9y/UCm5s66Ua8L83KHgUPQ9TZWfDO2yO2Cub3IUeYnODIQcusYZyhCfDN7+igr43LChWq8ChXnNMXwpMRv0YXl8/bs9RRKsG6eDdMjZIGfuX2uvO+VBLqV6rqqZo9DR8iOK0xgzJnyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=tEZ2t2C5; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=kTb0P3x6; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1762800909; bh=+kckv3x8ijHjyud85NatWZ4
+	deFyEZJKo9HcFG1Krlmc=; b=tEZ2t2C5ocZAgYLoFQhst1lceg3bzcb90lNvwfLw4J9KrNC1mt
+	TZA9515hjDln2qURVrru5DmezVUuhuVFfaOUotCRLG4YKtr0kabA1A/Xa0eBCaSyOVuCbPe3GMP
+	eCImUmndjMMpmM3vdb0hWxx6tJPTFBTprEC6koNF83jP3IdmRVmD6q0/4S446tAQtz8IsF2cLW7
+	8SXEZ0r7L2Un0CQb1yNMxiFujExOj/Y4dUK2PLCkQ0uG44q7DPVkPmlMSpKTnNLAZdbGQHcNKFJ
+	O02mIAFSmcF1joPQtkj+jF0IlL6XyfrNNS2Cfkw5PKCaFepY2qAYB8AqcyirvZdz5UA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1762800909; bh=+kckv3x8ijHjyud85NatWZ4
+	deFyEZJKo9HcFG1Krlmc=; b=kTb0P3x6WAoc6GJ13utAOiwsUv+sGp3o9Nhd8+i6v0qpBIWbp2
+	FqFVIn6U1izUgX3hrCIJYV1zaxBmwWMtshBw==;
+From: Nickolay Goppen <setotau@mainlining.org>
+Subject: [PATCH v3 0/3] arm64: dts: qcom: Add support for SDM660 CDSP and
+ ADSP FastRPC
+Date: Mon, 10 Nov 2025 21:55:05 +0300
+Message-Id: <20251110-qcom-sdm660-cdsp-adsp-dts-v3-0-d1f1c86e2e6d@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+RtN6zclkAwEkiig"
-Content-Disposition: inline
-In-Reply-To: <bec1905bcee1a396f5b004611353af922e6d7b55.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAo1EmkC/43QzWrEIBQF4FcJrmtRr4kmlNL3KF34c80ITTKja
+ WgZ8u41zqZ0oHQjngt+Hr2SjCliJkNzJQm3mOMylwAPDXEnM49Ioy+ZCCZaznhPL26ZaPZT1zH
+ qfD5Tcyx+zVQHY22nGIBGUs6fE4b4We3Xt1tOePkoV6y3IbEmIy3eFNeh6SGANVYCZ16GoIAJ5
+ ZwMWnElhZZe9koZFw56wpxN7TY0T7Ua5+y+2ga07Bw4UEIrVOJlMnF+j3Ocx8cljc/k6HWKeV3
+ SV/2Cjddi/3jtxovdG9sGobvWdPjLrvQmfnAC/uJE4XTfhoAtO9Q7bt/3bwaqWfauAQAA
+X-Change-ID: 20251019-qcom-sdm660-cdsp-adsp-dts-8fabb670338e
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux@mainlining.org, Nickolay Goppen <setotau@mainlining.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762800909; l=1761;
+ i=setotau@mainlining.org; s=20250815; h=from:subject:message-id;
+ bh=AQE7U/VupyWZUQxlablk26n00PMnOjK4CR+gbSV5xL8=;
+ b=Cv49/bPEsFgeDmq9STi9BQnq6Y09j+jJ5wSpxVA4LxmCTde2usRZOwJ8tlpHGdS98z+4AXOKP
+ P6F4W682f9fA2Rw0UBLp3mYQ5TPwUftYAAWq3tlk440hZbqc5G00q9b
+X-Developer-Key: i=setotau@mainlining.org; a=ed25519;
+ pk=Og7YO6LfW+M2QfcJfjaUaXc8oOr5zoK8+4AtX5ICr4o=
 
+This series adds support for SDM660 CDSP remoteproc and also adds
+FastRPC support for ADSP.
 
---+RtN6zclkAwEkiig
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+---
+Changes in v3:
+- As suggested by Konrad removed the qcom,non-secure-domain property from CDSP's fastrpc subnode.
+- Changed the label in the glink-edge subnode of remoteproc_cdsp to "cdsp"
+- Added R-b's.
+- Link to v2: https://lore.kernel.org/r/20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org
 
-On Mon, Nov 10, 2025 at 01:08:08PM +0100, Tommaso Merciai wrote:
-> Some Renesas SoCs, such as RZ/G3E, provide a USB2.0 OTG PHY with
-> configurable VBUS control through a multiplexed hardware register.
-> This register allows selecting the VBUS source via a mux control
-> line exposed by the PHY.
->=20
-> To represent this hardware configuration, support the standard
-> `mux-states` property in the Renesas USB2 PHY binding.
-> This allows the DeviceTree to model the VBUS source selection as
-> a mux, consistent with generic binding conventions.
->=20
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> ---
-> v2->v3:
->  - Improved commit body.
->  - Improved mux-states description.
->=20
-> v1->v2:
->  - New patch
->=20
->  Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml =
-b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> index 2cd0efa75f81..448da30757f2 100644
-> --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> @@ -102,6 +102,11 @@ properties:
-> =20
->    dr_mode: true
-> =20
-> +  mux-states:
-> +    description:
-> +      phandle to a mux controller node that select the source for USB VB=
-US.
-> +    maxItems: 1
+Changes in v2:
+- As suggested by Konrad reordered properties in the cdsp_smmu node.
+- Fixed indentations for interrupts property for the cdsp_smmu.
+- Fixed formatting for the CDSP node.
+- Splitted ADSP-related commit to separate ones.
+- Link to v1: https://lore.kernel.org/r/20251019-qcom-sdm660-cdsp-adsp-dts-v1-0-9ab5f2865a6e@mainlining.org
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+---
+Nickolay Goppen (3):
+      arm64: dts: qcom: sdm630/660: Add CDSP-related nodes
+      arm64: dts: qcom: sdm630: Add missing vote clock and GDSC to lpass_smmu
+      arm64: dts: qcom: sdm630: Add FastRPC nodes to ADSP
 
-> +
->  if:
->    properties:
->      compatible:
-> --=20
-> 2.43.0
->=20
+ arch/arm64/boot/dts/qcom/sdm630.dtsi |  40 ++++++++-
+ arch/arm64/boot/dts/qcom/sdm636.dtsi |  23 +++--
+ arch/arm64/boot/dts/qcom/sdm660.dtsi | 161 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 214 insertions(+), 10 deletions(-)
+---
+base-commit: 93f3bab4310d4ff73027cc4f87174284d4977acf
+change-id: 20251019-qcom-sdm660-cdsp-adsp-dts-8fabb670338e
+prerequisite-message-id: <20251110-qcom-sdm660-cdsp-v3-0-cc3c37287e72@mainlining.org>
+prerequisite-patch-id: a8c9703aec1663b8226556ba1770bd6c5b4ef060
+prerequisite-patch-id: 5a49b179c69e045e8003f28e8ef0e6e003c0064a
+prerequisite-patch-id: dd158e1214a7e73ac0a8f1da9d3face61ad7d5bd
 
---+RtN6zclkAwEkiig
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+-- 
+Nickolay Goppen <setotau@mainlining.org>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRI06wAKCRB4tDGHoIJi
-0v7OAP98vVeDC+kQ2uRRRDomYLClLg8a+azG/FWf4ni19mRfNwD+NeIi+aUxvEj0
-U9R7D1VMAjlKfmek+xh8OSHDKJcaCAc=
-=SmNm
------END PGP SIGNATURE-----
-
---+RtN6zclkAwEkiig--
 
