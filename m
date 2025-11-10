@@ -1,323 +1,200 @@
-Return-Path: <devicetree+bounces-236754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F029EC47119
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:01:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC690C4719A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:07:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 823963A5B4A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:57:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B09EA3B4AAD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:06:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773163126BD;
-	Mon, 10 Nov 2025 13:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 654E53128B5;
+	Mon, 10 Nov 2025 14:06:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="h6DFsJ4X"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gr/BdksQ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="G2wfs4g0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C64513112C4;
-	Mon, 10 Nov 2025 13:57:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE023128A9
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:06:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762783059; cv=none; b=sDGi0gzqbu/SbDC3PpIKawPq0Vs8IKOmJwSUiPYQaaitCYDS31jKMGZP7L+jg3Qo0Es3Ho/tP4FMSL284DnNIENhWM/CzgBQKoyzm7El8ddQ+xjM6dKJb/KcxXdsvSRKi//bcng2/PQEkQRVrwL0767D1kGMvhm454mLA+U9GhI=
+	t=1762783582; cv=none; b=iMKif5B5yqhov9dQhGTDSevXW+nITuobCfhFuVGQvZr/nzRvUF6ZEIsgTQNPiIYVrlyDaC5PZKin9cyLzFrN6RI2JPbJeW616JGHUMXJS8iYlR/s7pKErh2QsDc0qD+0zipkIHuLcWNaJOtYcVCmkrPV6D60J4bBv/DmsOF61nA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762783059; c=relaxed/simple;
-	bh=KKRgKuFzrzMKfhZwoLlMMqh/HMidHruZpOkU87ZuQX8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RpMUxR2LuSh7knhZSZcvysD0VeuvOR3SGil+doPWQn4O0zl54AJecCqgvf7j9YuUjtRYqNgxYnu7HLYOfCkaKvFNUVjnD29jpaPJ9PxEvp5TfmjKvdJnN7yP4R5HDklf9otZLJg2FUWXGmH+CE3yPDYEIMzip4V5Bh4HYmwmtF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=h6DFsJ4X; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1762783051;
-	bh=KKRgKuFzrzMKfhZwoLlMMqh/HMidHruZpOkU87ZuQX8=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=h6DFsJ4X6waWfhY3+YKw2XbcsEITbdvCaI7t6SQyO63CqQ2v7RT+/BgjWpLXVWbbJ
-	 jOMSwFyatiq0v5ccn8vslvqnFkhtRZMeGGyLVMyBX2WWLvOFokRpOL1U/wG/Dh+j9P
-	 AnLTP414aOhJLr5WUkC8YgOpP4az7amlae1b5g59Coun08z2ypdVpQXH8o9LooTpxO
-	 1hXBlflRgOWrpHpu+bxCmMTfHrvmBvR6KI+jkul9hmJTGyY06WdGcBvUmDSQktxeO9
-	 GUssCYfEMh4Pp9WeclYedwt0Z6fGNwiNeoYJyu6Lpvgjwu0Sh6AL6dZK+DpdLjt5Pm
-	 9+ooPKi8idFxg==
-Received: from [IPv6:2606:6d00:11:ef24::c41] (unknown [IPv6:2606:6d00:11:ef24::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2C9FD17E110D;
-	Mon, 10 Nov 2025 14:57:29 +0100 (CET)
-Message-ID: <f4fee7587d8e3e58bab39f1b3202b67f0f5c3e04.camel@collabora.com>
-Subject: Re: [PATCH v5 0/8] Enable video decoder & encoder for MT8189
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Kyrie Wu =?UTF-8?Q?=28=E5=90=B4=E6=99=97=29?= <Kyrie.Wu@mediatek.com>, 
- "linux-kernel@vger.kernel.org"	 <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org"	 <linux-mediatek@lists.infradead.org>,
- George Sun =?UTF-8?Q?=28=E5=AD=99=E6=9E=97=29?=	 <George.Sun@mediatek.com>,
- Tiffany Lin =?UTF-8?Q?=28=E6=9E=97=E6=85=A7=E7=8F=8A=29?=	
- <tiffany.lin@mediatek.com>, "nhebert@chromium.org" <nhebert@chromium.org>, 
- "linux-media@vger.kernel.org"	 <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org"	 <devicetree@vger.kernel.org>,
- "mchehab@kernel.org" <mchehab@kernel.org>,  "hverkuil@xs4all.nl"	
- <hverkuil@xs4all.nl>, Yunfei Dong
- =?UTF-8?Q?=28=E8=91=A3=E4=BA=91=E9=A3=9E=29?=	 <Yunfei.Dong@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,  Irui Wang
- =?UTF-8?Q?=28=E7=8E=8B=E7=91=9E=29?=	 <Irui.Wang@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>, 
- "linux-arm-kernel@lists.infradead.org"	
- <linux-arm-kernel@lists.infradead.org>, Yilong Zhou
- =?UTF-8?Q?=28=E5=91=A8=E6=98=93=E9=BE=99=29?=	 <Yilong.Zhou@mediatek.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,  "krzk+dt@kernel.org"	
- <krzk+dt@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>, Andrew-CT Chen
- =?UTF-8?Q?=28=E9=99=B3=E6=99=BA=E8=BF=AA=29?=	
- <Andrew-CT.Chen@mediatek.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>
-Cc: "andrzejtp2010@gmail.com" <andrzejtp2010@gmail.com>, 
- "neil.armstrong@linaro.org"
-	 <neil.armstrong@linaro.org>
-Date: Mon, 10 Nov 2025 08:57:26 -0500
-In-Reply-To: <09eb315e50aeaf865b093880aaaa5f2c9c0feba9.camel@mediatek.com>
-References: <20251106061323.2193-1-kyrie.wu@mediatek.com>
-		 <c49b979fd911f2587bbfed129b07065f1cd2a2db.camel@collabora.com>
-	 <09eb315e50aeaf865b093880aaaa5f2c9c0feba9.camel@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-QUHvuhjIUwreEvkskggy"
-User-Agent: Evolution 3.58.1 (3.58.1-1.fc43) 
+	s=arc-20240116; t=1762783582; c=relaxed/simple;
+	bh=L/CmvJYCyYfrJvD22vpA92Xdgu8gpWQ82QXdZUA9Vz4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TYQAcosnxElkT0COKsb6BpiqUfK/Ul01L8PCXZh4T9AvprL7LbpyptT7rx964URzsRhpwNl8n/crL8us0izNBpx0VU8U8DSryNnRZeQWbw4vttsSnGOpsaMFQS9+ZaUdSOGXuGZlUOKpHLThw3HTJFUWjR0qQkUjlfdppu1xC0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gr/BdksQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=G2wfs4g0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA9EjNW2992499
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:06:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PUXRgMzr0O6XUgHM9OyGr8SqbOOjNjkdqNOeZDXnadI=; b=gr/BdksQK+r5Br+N
+	S4urR3GLlEvoohCwwxlyiz1AVcTHVzu20BTfThsupKInBX1hT+Vri03YGUz5z+BH
+	X9k+wlHlRSPZFtLb7VvzcKQDXbEuSy7QsySywxs06qVdui7PYfmtbE8Khq90afVg
+	fwgfSRIYCrrG/jI1DyYlfVbE2zNcxrDoT6A4A49O0aXGt5RYbguaHKKuvKDadKB7
+	DpWRd9IGQgS4AnwvPbF4vI4+K7uCrWCj6NFdrRgfpAR/uU6GnR5gzdJZTNomvs9L
+	wwrZq8JxP1W2NNpGocNfbQFhBulX8DFEmyfBzKwYDopDkqfLB7qTXfOtkacs0L4Q
+	Wkx9HQ==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abd88rthy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:06:14 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3438744f11bso1812434a91.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 06:06:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762783574; x=1763388374; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PUXRgMzr0O6XUgHM9OyGr8SqbOOjNjkdqNOeZDXnadI=;
+        b=G2wfs4g0QnmH+BgKnZlEjVrT7JIW1UDCXs3ZjFz5okHuY+G0vYw7IhsJ8mf5RHQdYM
+         kYDE1rp6tPi5IirrqN9UfllIOKSURW03uaSCPG/aIsLRnLgIxy/8zCnH+HCXqSCEHFrt
+         moO0ADHPYh5FyyGXeb8Q+ZFwA0onjVsrZAR0EPI7bDrNZefE5JJg3xW0kE37ZNEDJdw1
+         mR2IYLjcpQgM25Pk/fYobRriPTnvT4qYZQ0bdePlLBYB3P3gdPQFwzCqAy05bofzydgT
+         0aXQ3Crx82/YYlJe1CenvVxOSTyy7GYrmru3Uu5izNfwePAWGyoskibfgIqVV+OQK9kp
+         7Lpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762783574; x=1763388374;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=PUXRgMzr0O6XUgHM9OyGr8SqbOOjNjkdqNOeZDXnadI=;
+        b=f+THG5zknfFkrM249VtgufS11JoV5KmcbG7+HvhGJHum9UeyOmpcpF0u7UKLUqIT7n
+         QQx9KWHytDxRA1im8KfMGPBhsQjBZnf4VGBSGgq/7CuFkWCzJmk7rqdeG3/RQV0vpHMg
+         z6hfYPajyS19ilY2sa1ZEP2RVR05aVU1MjqHpSN1QHtuJILaBmCZulypmbcFwx4e9JE2
+         u21T4QTimWdkMkt5rSbwGD/Mnj44MwydBA0uZnGtiVqAB1hrVY7j30oV9olE5Nx0VJFV
+         6yXqCLb6+0Rjpe03xZAkeLZfe9cWXGmpvsycoxsksKQrJZk+Q+tXtN3vYmh+ccBvI/2z
+         l+zA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1ahS+kD2j3ddoXkFnoVs+GhcsETf/RGLvtYkxNy2Qmz6BBA31p475VvNHSPz6EDhzQ7ZpNIlItZeL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHY1HA1fHeoWncT9/bqquyWGnPkBJQRQE/V4tFZrjmTll38YDi
+	IKoszilDXHqVoIITpQ+d5h0IGxaYOIqBJ5nIcu4o3nduY+nUFxXID99N9i0a313WZEz5dZxd4ml
+	V659fH4NCjkkkFJBnw8XhOOwalBqSpTs2RM8OkVpE4Ti7mS7A12t1vPdvM0qhpLpelzMgdQiTNH
+	H8T2CwMtV0iwi8MCUjv6HM0/pr1F3b8mLzSi5qct0=
+X-Gm-Gg: ASbGnct9hdsQzmNdcwKIVvgBKcJvNP5rQPgMuXBj1z9kJlKk4gsDP0MQnnPA3wbU+Ty
+	qhLRvOyBkbLv+MI6HbE5FtdePU0sTT1PZqXzbIZCDzFTc5o7lEyVQ1z6BnisAeMqMBRGVvPJm3V
+	zRdi+t944VEcwVSz9+eoFfrEnBeS/0IkHvFogOx9GVRYze4hn4lm2F/bP4L4qqRPCHLpvlgIFqW
+	AA+xcFvrM7KB2Qi
+X-Received: by 2002:a17:90a:e7ca:b0:340:f05a:3ebd with SMTP id 98e67ed59e1d1-3436ccfe431mr8790508a91.28.1762783573517;
+        Mon, 10 Nov 2025 06:06:13 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEcZK/I+Oqj7cXYIYbymAdZsmrBRsLxABQMipK9Bn1Ts4Upxyiuw930Gmr6hZFgRBDHnDCcsb3fu4H6bnas7ys=
+X-Received: by 2002:a17:90a:e7ca:b0:340:f05a:3ebd with SMTP id
+ 98e67ed59e1d1-3436ccfe431mr8790452a91.28.1762783573001; Mon, 10 Nov 2025
+ 06:06:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-QUHvuhjIUwreEvkskggy
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-18-24b601bbecc0@oss.qualcomm.com>
+ <09b2ee28-ee2b-46a8-b273-110fb0b4d8a7@oss.qualcomm.com> <064d2a33-22e7-446e-9831-a390510698cc@oss.qualcomm.com>
+ <20251103102651.ywxi7lqljsmjg7an@hu-kamalw-hyd.qualcomm.com>
+In-Reply-To: <20251103102651.ywxi7lqljsmjg7an@hu-kamalw-hyd.qualcomm.com>
+From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Date: Mon, 10 Nov 2025 19:36:01 +0530
+X-Gm-Features: AWmQ_bnH5-5jNfhWCOUYTXVu7I9tmNhczMz2vx19inA6uDgAVRKJo8Gomv4g6H4
+Message-ID: <CADhhZXaD=ut7MCQD_uEvY1ew7o=rqUUtviaXwQSkE-nmvCxMhg@mail.gmail.com>
+Subject: Re: [PATCH 18/24] arm64: dts: qcom: glymur: Add PMIC glink node
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: yoOsHSAj5mlKqC1ioWtdc7iDBJqXCuC5
+X-Authority-Analysis: v=2.4 cv=PL4COPqC c=1 sm=1 tr=0 ts=6911f156 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=_wFouAXmutvAtFiYnf4A:9 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDEyMiBTYWx0ZWRfX8LiTKvNaqJZF
+ ZpGeFll0sFASGkzsIBlqNpJQWrz8B0O4xr/i5cbZYFrACDg6lVlzaCCGSSSPuJ7UO3CcFtHfw4K
+ dYGZcPjwfHiv0r6tqSVJ/K6Q5+2kv0TwdL2w0oVTc5JYEpdMKZX85DPwAbC185WfTmVv6A5kmws
+ gvZRHVXQ6v/pgdjQ2n8ZqC9Mnz+rfpayIfEeieWUEoAZN6bInpRg40LyuPK7GblA63zfxc6sxzd
+ /6c8NvNq5G5EQduKW6ThY5u+7LC2Bl4NAJL7himbWDP88/0pNTaJYsJzxUR3E6xRweRBxtEr8Yy
+ I7gfbWketjbxnPDEf/rQUzcq89ndGdT1Zo24OBdBypOoqTcBoUNDGeuBAcwjGQrGnNDGYr0E9xL
+ 5t96xlSSk7KvF4ursga42vtxsYaeAg==
+X-Proofpoint-ORIG-GUID: yoOsHSAj5mlKqC1ioWtdc7iDBJqXCuC5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_05,2025-11-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 malwarescore=0 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 clxscore=1015 adultscore=0 bulkscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100122
 
-Le lundi 10 novembre 2025 =C3=A0 02:32 +0000, Kyrie Wu (=E5=90=B4=E6=99=97)=
- a =C3=A9crit=C2=A0:
->=20
-> On Thu, 2025-11-06 at 09:18 -0500, Nicolas Dufresne wrote:
-> > Hi,
-> >=20
-> > Le jeudi 06 novembre 2025 =C3=A0 14:13 +0800, Kyrie Wu a =C3=A9crit :
-> > > This series have the follow changing:
-> > > Firstly add mt8189 video decoder compatible, profile and level to
-> > > support
-> > > MT8189 kernel driver.
-> > > Secondly fix some bugs, including vp 4K profile2 and media device
-> > > node
-> > > number bug.
-> > > Lastly, add mt8189 video encoder compatible.
-> > >=20
-> > > This series has been tested with MT8189 tast test.
-> > > Encoding and decoding worked for this chip.
-> > >=20
-> > > Patches 1-2 Add decoder compatible.
-> > > Patches 3 Add profile and level supporting.
-> > > Patches 4 Add core-only VP9 decoding supporting.
-> > > Patches 5-6 fix some bugs.
-> > > Patches 7-8 Adds encoder compatible.
-> > >=20
-> > > ---
-> > > H264 test results:
-> > > ./fluster.py run -d GStreamer-H.264-V4L2SL-Gst1.0 -j2 -t 90
-> > > =C2=A0=C2=A0=C2=A0=C2=A0JVT-AVC_V1Ran 96/135 tests successfully
-> > >=20
-> > > VP9 test results:
-> > > ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0 -j2 -t 90
-> > > VP9-TEST-VECTORSRan 276/305 tests successfully
-> > >=20
-> > > v4l2-compliance test results:
-> > > Compliance test for mtk-vcodec-enc device /dev/video2:
-> > > Total for mtk-vcodec-enc device /dev/video2: 47, Succeeded: 46,
-> > > Failed: 1, Warnings: 0
-> >=20
-> > There is one fail, can you explain it ?
-> >=20
-> > Nicolas
->=20
-> Dear Nicolas,
->=20
-> The failure is caused by subscribed event/dqevent. Our encoder driver
-> didn't register those apis, which caused this failure.
-> Here is the fail log, which is samed as MT8196:
->=20
-> https://patchwork.linuxtv.org/project/linux-media/cover/20250528063633.14=
-054-1-irui.wang@mediatek.com/
->=20
-> Control ioctls:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_QUERY_EXT_CTR=
-L/QUERYMENU: OK
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_QUERYCTRL: OK
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_CTRL: OK
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S/TRY_EXT_C=
-TRLS: OK
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0fail: v4l2-test-controls.cpp(1171): node->codec_mas=
-k &
-> STATEFUL_ENCODER
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_(UN)SUBSCRIBE=
-_EVENT/DQEVENT: FAIL
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_JPEGCOMP:=
- OK (Not Supported)
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Standard Controls: 16 Pri=
-vate Controls: 0
+Hi Konrad,
 
+On Mon, Nov 3, 2025 at 3:56=E2=80=AFPM Kamal Wadhwa
+<kamal.wadhwa@oss.qualcomm.com> wrote:
+>
+> On Wed, Oct 08, 2025 at 05:25:39PM +0530, Pankaj Patil wrote:
+> > On 9/25/2025 4:02 PM, Konrad Dybcio wrote:
+> > > On 9/25/25 8:32 AM, Pankaj Patil wrote:
+> > >> From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > >>
+> > >> Add the pmic glink node with connectors.
+> > >>
+> > >> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > >> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> > >> ---
+> > >>  arch/arm64/boot/dts/qcom/glymur-crd.dts | 28 ++++++++++++++++++++++=
+++++++
+> > >>  1 file changed, 28 insertions(+)
+> > >>
+> > >> diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/bo=
+ot/dts/qcom/glymur-crd.dts
+> > >> index b04c0ed28468620673237fffb4013adacc7ef7ba..3f94bdf8b3ccfdff1820=
+05d67b8b3f84f956a430 100644
+> > >> --- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> > >> +++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> > >> @@ -79,6 +79,34 @@ key-volume-up {
+> > >>                    wakeup-source;
+> > >>            };
+> > >>    };
+> > >> +
+> > >> +  pmic-glink {
+> > >> +          compatible =3D "qcom,sm8550-pmic-glink",
+> > > You *must* include a glymur compatible
+> > >
+> > >> +                       "qcom,pmic-glink";
+> > > Are you sure this is still compatible with 8550 after this
+> > > series landed?
+> > >
+> > > https://lore.kernel.org/linux-arm-msm/20250917-qcom_battmgr_update-v5=
+-0-270ade9ffe13@oss.qualcomm.com/
+>
+> Sorry for late reply, earlier when we were sending this series our unders=
+tanding
+> was that we only need to support for usb shell, and anyway the device was=
+ on the
+> debug board so this feature(battery/charging) was not tested.
+>
+> However, after testing i found that the power supplies are getting regist=
+ered
+> properly however the data is not coming as expected. we are working to fi=
+x this
+> internally from the firmware guys.
 
-The spec says:
-  =20
-  =20
-   For backwards compatibility, the encoder will signal a V4L2_EVENT_EOS ev=
-ent when
-   the last frame has been encoded and all frames are ready to be dequeued.=
-=20
+As you had asked,  i was able to check with this patch (and firmware fixes)
+https://lore.kernel.org/linux-arm-msm/20250917-qcom_battmgr_update-v5-0-270=
+ade9ffe13@oss.qualcomm.com/
 
-In practice, we test for that on every m2m, see the test code:
-
-
-	if (node->is_m2m) {
-		node_m2m_cap->g_fmt(fmt_q, m2m_q.g_type());
-		if (node_m2m_cap->buftype_pixfmts[m2m_q.g_type()][fmt_q.g_pixelformat()] =
-&
-			V4L2_FMT_FLAG_COMPRESSED)
-			valid_output_flags =3D V4L2_BUF_FLAG_TIMECODE | V4L2_BUF_FLAG_TSTAMP_SRC=
-_MASK;
-
-		struct v4l2_event_subscription sub =3D { 0 };
-
-		sub.type =3D V4L2_EVENT_EOS;
-		if (node->codec_mask & (STATEFUL_ENCODER | STATEFUL_DECODER))
-			doioctl(node, VIDIOC_SUBSCRIBE_EVENT, &sub);
-	}
-
-please fix,
-Nicolas
-
->=20
-> Thanks.
->=20
-> Regards,
-> Kyrie.
->=20
-> >=20
-> > > Compliance test for mtk-vcodec-dec device /dev/video3:
-> > > Total for mtk-vcodec-dec device /dev/video3: 48, Succeeded: 48,
-> > > Failed: 0, Warnings: 0
-> > >=20
-> > > scp upstream link:
-> > >=20
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20250811015922.=
-32680-1-huayu.zong@mediatek.com/
-> > > dtsi upstream link:
-> > >=20
-> https://lore.kernel.org/linux-mediatek/20251030134541.784011-12-jh.hsu@me=
-diatek.com/T/#m847e35de0a5b18fac0ca0624a8559d84964ad5c7
-> > >=20
-> > > Changes compared with v4:
-> > > --update H264 & vp9 fluster test results
-> > > --update vp9 single core decoder prob size setting and commit
-> > > messages
-> > >=20
-> > > Changes compared with v3:
-> > > --add reviewer to commit messages
-> > > --Rebased on top of the latest media tree
-> > >=20
-> > > Changes compared with v2:
-> > > --add H264 fluster test results
-> > > --reorder compatible string for dt-bindings
-> > >=20
-> > > Changes compared with v1:
-> > > --add v4l2-compliance test results
-> > > --add scp upstream link
-> > > --add HW difference discriptions for dt-bindings commit messages
-> > >=20
-> > > This series patches dependent on:
-> > > [1]
-> > >=20
-> https://patchwork.linuxtv.org/project/linux-media/cover/20250510075357.11=
-761-1-yunfei.dong@mediatek.com/
-> > > [2]
-> > >=20
-> https://patchwork.linuxtv.org/project/linux-media/cover/20250814085642.17=
-343-1-kyrie.wu@mediatek.com/
-> > >=20
-> > > Kyrie Wu (8):
-> > > =C2=A0=C2=A0dt-bindings: media: mediatek: decoder: Add MT8189
-> > > =C2=A0=C2=A0=C2=A0=C2=A0mediatek,vcodec-decoder
-> > > =C2=A0=C2=A0media: mediatek: vcodec: add decoder compatible to suppor=
-t MT8189
-> > > =C2=A0=C2=A0media: mediatek: vcodec: add profile and level supporting=
- for
-> > > MT8189
-> > > =C2=A0=C2=A0media: mediatek: vcodec: Add single core VP9 decoding sup=
-port for
-> > > =C2=A0=C2=A0=C2=A0=C2=A0MT8189
-> > > =C2=A0=C2=A0media: mediatek: vcodec: fix vp9 4096x2176 fail for profi=
-le2
-> > > =C2=A0=C2=A0media: mediatek: vcodec: fix media device node number
-> > > =C2=A0=C2=A0dt-bindings: media: Add MT8189 mediatek,vcodec-encoder
-> > > =C2=A0=C2=A0media: mediatek: encoder: Add MT8189 encoder compatible d=
-ata
-> > >=20
-> > > =C2=A0.../media/mediatek,vcodec-encoder.yaml        |  2 +
-> > > =C2=A0.../media/mediatek,vcodec-subdev-decoder.yaml |  5 +-
-> > > =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.c       |  9 +++-
-> > > =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.h       |  1 +
-> > > =C2=A0.../vcodec/decoder/mtk_vcodec_dec_stateless.c |  4 ++
-> > > =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 48 ++++++++++++=
-++-
-> > > ----
-> > > =C2=A0.../vcodec/encoder/mtk_vcodec_enc_drv.c       | 14 ++++++
-> > > =C2=A07 files changed, 68 insertions(+), 15 deletions(-)
->=20
-> ************* MEDIATEK Confidentiality Notice
-> =C2=A0********************
-> The information contained in this e-mail message (including any=20
-> attachments) may be confidential, proprietary, privileged, or otherwise
-> exempt from disclosure under applicable laws. It is intended to be=20
-> conveyed only to the designated recipient(s). Any use, dissemination,=20
-> distribution, printing, retaining or copying of this e-mail (including it=
-s=20
-> attachments) by unintended recipient(s) is strictly prohibited and may=
-=20
-> be unlawful. If you are not an intended recipient of this e-mail, or beli=
-eve
-> =C2=A0
-> that you have received this e-mail in error, please notify the sender=20
-> immediately (by replying to this e-mail), delete any and all copies of=
-=20
-> this e-mail (including any attachments) from your system, and do not
-> disclose the content of this e-mail to any other person. Thank you!
-
---=-QUHvuhjIUwreEvkskggy
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaRHvRgAKCRDZQZRRKWBy
-9IodAP92sXKXxtzBgiSqcP5IWsLSfYE7FE4ekNtUGbBoWcArxAEAm5t9IiBp57Ej
-BAdduiviuXeRaE4BvqzLvLjiSOUUiAc=
-=JqZh
------END PGP SIGNATURE-----
-
---=-QUHvuhjIUwreEvkskggy--
+The qcom_battmngr driver is working fine with this patch included as well.
+(though i faced some conflicts which i had to manually fix when
+pulling this patch on latest linux-next tag)
 
