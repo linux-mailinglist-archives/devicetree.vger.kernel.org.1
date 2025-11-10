@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-236894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4297C49079
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:29:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF19C4906B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ECF8A34B193
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:29:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 620CB34B0F8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BD5339714;
-	Mon, 10 Nov 2025 19:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FDA338918;
+	Mon, 10 Nov 2025 19:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kAyJc5Jq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ms1jfwD7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698C43358BB
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 19:29:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70E43002A0
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 19:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762802949; cv=none; b=g1j1kGCKQ3mjsDpK5+IHSLk8g6qd7W5HQ1TZMJihR4VVFiVTyTgKqfoTFNf4gWC9oH7XL492ylxBnghexE/4FzREQUknjMbuQx88sXB1prJGFJnJ04+oHyEXGIlYwGPRN1Opyrrstm11PX4IcPj7SNuO2i+oC/HM/Dr9K6OpUiM=
+	t=1762802948; cv=none; b=fz/WK/8/keMrlXry/uDWjfOeV03qfZClZx6kxL7aHvKHnqisGYZGwjJKEBWnNm5qbuP7qYh3Hn+ikVIf01rlb6xNUNsHyKDJ/Hh68utqyAVjVVFqK6pKedEHqTGIzPR3Xkw87LleBhUjTfzR/Q5GUxA2WR1fwCIim/jISIHSryk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762802949; c=relaxed/simple;
-	bh=tg0hD3bAsokB+sNMkDp5zswpWKbl3nvQ7gPQzb6+rJc=;
+	s=arc-20240116; t=1762802948; c=relaxed/simple;
+	bh=vA2Gdm7YJ1N52sMK85uo/763rmuFf8U0qzGCGGyZPX4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Pbd9ytYRHXBC3o9XSyjHH6OX/fROOrhrojIYcFLcIPJoGLYgPeq/nuccziUJVC92O5umdHTWotAQeMBp1l3dJHL2qhw8I/3BWcBeearjqei0Yad3fBP3ci8CFsD4+RCPFkL5dX08hcu+ZtObyvhyhdi5bC249QO0LjXvShGp19o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kAyJc5Jq; arc=none smtp.client-ip=209.85.218.45
+	 In-Reply-To:To:Cc; b=GEnnmr6gVzHRcA6MxnIYJc2iyC0vy8Fh2mQ9nygAErtwRkBxTVexX9cBZ6soUbJiGHkxu1ltEeTskOwE/Hx9E9BUs0CCX1qfctBVP3zGSJxWvY5slmrEFuOCImjfUolyMPWGFGOfqwGVsLENZAnMJCzhIhbxUBDrTnpawSchAuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ms1jfwD7; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b472842981fso442151566b.1
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b72e43405e2so17266566b.0
         for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:29:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1762802943; x=1763407743; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uSZz9jWuIHisRe8wOS8N84JguuB1ECjaPpku1rLPAeE=;
-        b=kAyJc5JqGGwD2QVjoBUT1nEZXaei+kmyrrpA4TqIw8xXZLe+DEX9s4k58DZTpoX460
-         yfQCNR6XxvIjZ7NGczisyWde9wcjpT5TkV5IQDiA+Mmw7C4JnNraR3pg6lS2Ct/szyWv
-         FIDOa6Vt7sQ6O4NqfXeDC2jsp1FvBeYUv4wJ+Zd49NLCgPEG6O3xH2vWUw1GrKGyzmzV
-         L4ObZjZgVCld4BrYmG6k94XvX9SOoYEUYmrCQQPBeriCR9s6s9v0LfgbzRBHwDkiylRH
-         +gR9jivYs5F0uS4jGSy30+Nm65r0IRIFmdShLICPuGWuK60tJgdXV5hKMisUpKaC1yY8
-         s7fw==
+        bh=6p9Nm6sl12z8+Vy95pO/T4AqLaimc3KDyy2JPTrj88U=;
+        b=ms1jfwD7+L2vryKX055aXINMnOUX8Ko1EsBMt3PZIBQFDSRKtMGLlUjxf+7P4g1dad
+         wZWt0R98ZGWOy5407N7v3LYotx4oEtbddWR/PMU2sK+IM6mxXjluVWChwjlp4R2MhCfT
+         EoNg5hNTgBTEXwvBoh0os8F2uCbWUygKJ/a4xA01FqNAhMqAdNANOlMCtKbSoSinI/tM
+         V18Fa/lWfDcGumsh6vqVqUxblBbSJb8KTbI75j7iK5E3U77DIpRxe/MJ97Z0ztRQAEYj
+         7wgOa9SKD0whko1QJKD9Bd2DRDuALCRFE7r33bhfjhct8UWhfGGnzm+RDRG4BUoYmmY4
+         9fvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1762802943; x=1763407743;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=uSZz9jWuIHisRe8wOS8N84JguuB1ECjaPpku1rLPAeE=;
-        b=OsS3j41Cc689EToaHac1bLEwiuDYBc/MnlxQZn0b9OPE3U1KI8Cjr5IYaOzKRO0hDO
-         Kkfwd7HBcPXlz2yaZCWSfX3uffBFpz5y78rsOYrGWU/45n7hvwNjnR+6zsT/Iv3kXLwL
-         udiDK/ou/QzkPF5qtWm3O1C4A58EqQ5rnlVgziEfVM4KQTJ6qhm/1WrpPFUhCav6rXfR
-         nN1fbSgxw8/KK34fVLOVXtgYfyyaoSfhl4q+CI8mGTwcUHjpTt4pwCKjwoVZiruZvpV5
-         56UAGmjyuG+eV821ACpEvBz/t3ObpMgs2n3hX2mVozJ4tU2Or6m/GZY+iQQzac8/dCYA
-         T6ug==
-X-Forwarded-Encrypted: i=1; AJvYcCWKdue8xuX4C5QxtPK67WJjLMmgTPu+taFkQ6awd1NgthAnZT7KT8CTzhclmX/HbP7+/35+z4D3uM+c@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNDIvD049zVlxLMZd7O+NpeVKbfOIY0acN0G8BStBbE0r2SkIp
-	xlskZK//6YclnPbDI+psFC/a05Zs26cYztUPWS7B5YX1Mu9DtIzKs8SJXFyuB8qzeZI=
-X-Gm-Gg: ASbGncv9CCxPC2XqSaJTE4WEnS+IeNcBWlaasKULYe2oA/SbIyTygFGbPUnsgvdzX7i
-	GrV9xcLYbQpeCWrERTmN2+/EwGifDlDKJIsUy14Hx+s1A/3eOCzaufyYHmkkDtVVY6MPT++fp79
-	+GwIlqsG5bm1QLeWbmEZf94FJXSuiTxhyI21qPD/mRJXYsgvNVs2RZXpytSDWSOxryu5YhMyPmu
-	ZUGBgCdWrciNKNnPTFSmbMdtNcyJRzUSnuNWjhGMPtiZcRDOAT3H++20gSp1Nt0w2biGR4erxVz
-	4qB/7aHb7jxw9MQ5gmXq0Tutvz04Sg+g7LCrOaRgsPXEUTnpJ2ODHo96oCi+gKeayKgR2zjj7Np
-	gtAPPU/wcElr/eck+X/w+aScpvyVkXrDr/iqTJv0IUpNkgIkLjR9Bd3OgVN97jNRAkaDoYCdRL1
-	Ue6TdLN8MCd5iP8Krs/q5gur7st3vUloFe4yAvThjiCLxcOeN39akz4sx5GTnb
-X-Google-Smtp-Source: AGHT+IFp4Nb0Sqv+lUeapxXU50UZ70IvOd7/8OXWBTaTDcVRGEo2OioMu2sexdsxPqumNEOUbAc0JQ==
-X-Received: by 2002:a17:907:7206:b0:b6d:4fe5:ead8 with SMTP id a640c23a62f3a-b72e037b177mr1015877866b.25.1762802942524;
-        Mon, 10 Nov 2025 11:29:02 -0800 (PST)
+        bh=6p9Nm6sl12z8+Vy95pO/T4AqLaimc3KDyy2JPTrj88U=;
+        b=SQ4ncHHYUO0YTPk0peOHnY+9gjf8pR61baTRnW8a2cYowaZywAbuVQslO8GMyxgG+A
+         y2Yjd4XmnAKZYiWs3Zedfc8ZsqbmzDbPzn6XwM32pOVckSxeyqLhLyKOIAjQUfZ4SGPl
+         evJnHH0cRu7LZqN6OnDyTudfUGIWT0PwWTtjYnED6kTnv0XrJlARBrc4cWOmoL9WI5ny
+         omFu2Bpf5Ru4DDsgvdNOaM++HFXYvJ7agiHTW7y0t0PlkV//JQis6IPoSWfn/rz9g+CZ
+         JCWKEh7h/JONZXF9a/K8gsHvdXvdXgJwAnVgOf5PsojnjOsHCDJyyhPf8692kwMTsyvV
+         26Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCUtMtSq7kzN6iOWhtC6z9yqwATeeQ0QSEhA8AoO8H8kF/3JIQp4HK8p+JiMURoKYsxSe326jsXKKkyP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmhnDkPP7Qu1q4XBcesp8ruKar8MY9OOP7bVlOLNMFOnP7e2HQ
+	dAFIsmBC781Q/KE4xaSWklvWkeJoB3kIPZOI7KKP3EBS9qk3+hdEIzk27Ihm15kcCyo=
+X-Gm-Gg: ASbGncssnTfgZmgdIudb5u+uSZWR6fViR8z8mGYSNnnZTdS7/69Y817gOPhOxDZMITa
+	9+enCHdBm7zpf2bKa8Nzm+k9d06PNtE18xu124Ji7xnUj/gZm0sLuDOWQ94pq24sLtxk+s9MrJ2
+	AQx8WrlgUhlnclRtUFwxIyLRbaQmf4mtOfjX4GagZJSWPMs2AAKuJaOuLYWJ5+bS/dr6k+h2yTj
+	orBjydM01t+2LvXYFxZnEVShdm+XAXXsbkR7eH02LpgVHRlc+lfsdbirJqXFFEdj3xVksnHTc0W
+	J4qVvY28odg5FjZ1hQhr8ugXZea8N4OJz1MOKOzMeG18kWpDktKvCZR2GAN8SGvwkYQzdnojMVc
+	Q6bgRdc+JSc4ByvqJNTwYsq27KjdWGR7zOfu33qFzabo57kSxNBM1ZB/VZ18+pzPWpjImp+pfOT
+	cRtFLF+UwYGDq53ALZAsCWoPRvRMucRkSXnLI+Q0v4mEqI6fR+qfRl8Qb8Xu+K
+X-Google-Smtp-Source: AGHT+IEFnMd3Fb98EKBtO0Ewwd4iprmghYyLPzY9g3ZjE02anvmr6mJAUsdol+Fi0Pe+NsXFPJJNXA==
+X-Received: by 2002:a17:907:9405:b0:b73:158a:b4b7 with SMTP id a640c23a62f3a-b731d1c00bemr63920566b.10.1762802943068;
+        Mon, 10 Nov 2025 11:29:03 -0800 (PST)
 Received: from puffmais2.c.googlers.com (254.48.34.34.bc.googleusercontent.com. [34.34.48.254])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf97d16esm1168178166b.35.2025.11.10.11.29.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 10 Nov 2025 11:29:02 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Mon, 10 Nov 2025 19:28:49 +0000
-Subject: [PATCH v4 06/20] dt-bindings: mfd: Add samsung,s2mpg11-pmic
+Date: Mon, 10 Nov 2025 19:28:50 +0000
+Subject: [PATCH v4 07/20] dt-bindings: firmware: google,gs101-acpm-ipc: add
+ S2MPG11 secondary PMIC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251110-s2mpg1x-regulators-v4-6-94c9e726d4ba@linaro.org>
+Message-Id: <20251110-s2mpg1x-regulators-v4-7-94c9e726d4ba@linaro.org>
 References: <20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org>
 In-Reply-To: <20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org>
 To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
@@ -101,141 +102,129 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.14.2
 
-The Samsung S2MPG11 PMIC is similar to the existing S2MPG10 PMIC
-supported by this binding, but still differs enough from it to justify
-a separate binding.
+In a typical system using the Samsung S2MPG10 PMIC, an S2MPG11 is used
+as a sub-PMIC.
 
-It is a Power Management IC for mobile applications with buck
-converters, various LDOs, power meters, NTC thermistor inputs, and
-additional GPIO interfaces and typically complements an S2MPG10 PMIC in
-a main/sub configuration as the sub-PMIC.
+The interface for both is the ACPM firmware protocol, so update the
+binding to allow the relevant node and update the example here to
+describe the connection for both PMICs.
 
-Like S2MPG10, communication is via the Samsung ACPM firmware and it
-therefore needs to be a child of the ACPM firmware node.
+Since we have two PMICs here, but can not use the 'reg' property (as
+the addressing is based on software, i.e. the ACPM firmware), the node
+names reflect that with their respective suffix. The existing 'pmic'
+therefore becomes deprecated in favour of 'pmic-1'.
 
-Add the PMIC, the regulators node, and the supply inputs of the
-regulator rails, with the supply names matching the datasheet.
-
-Note: S2MPG11 is typically used as the sub-PMIC together with an
-S2MPG10 PMIC in a main/sub configuration, hence the datasheet and the
-binding both suffix the supplies with an 's'.
+While at it, update the example.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 
 ---
 v4:
 - Krzysztof:
-  - move to new separate binding samsung,s2mpg11-pmic.yaml
-  - add example
-
-v3:
-- move to new samsung,s2mpg10.yaml file
-- deny 'clocks' property
-- mention NTC thermistor inputs in commit message
-- move all patternProperties to top-level
-
-v2:
-- add | to vinb*-supply description for better formatting to mark as
-  literal style
-- mention GPIOs in commit message
+  - update commit message / subject
+  - pmic -> pmic-1, pmic2 -> pmic-2
 ---
- .../bindings/mfd/samsung,s2mpg11-pmic.yaml         | 88 ++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+ .../bindings/firmware/google,gs101-acpm-ipc.yaml   | 50 +++++++++++++++++++++-
+ 1 file changed, 48 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/samsung,s2mpg11-pmic.yaml b/Documentation/devicetree/bindings/mfd/samsung,s2mpg11-pmic.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..62cedbbd9d8c4cb7e9dfc039c1c747e334903b20
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/samsung,s2mpg11-pmic.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/samsung,s2mpg11-pmic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung S2MPG11 Power Management IC
-+
-+maintainers:
-+  - André Draszik <andre.draszik@linaro.org>
-+
-+description: |
-+  This is part of the device tree bindings for the S2MPG11 Power Management IC
-+  (PMIC).
-+
-+  The Samsung S2MPG11 is a Power Management IC for mobile applications with buck
-+  converters, various LDOs, power meters, NTC thermistor inputs, and additional
-+  GPIO interfaces and typically complements an S2MPG10 PMIC in a main/sub
-+  configuration as the sub-PMIC.
-+
-+properties:
-+  compatible:
-+    const: samsung,s2mpg11-pmic
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  regulators:
+diff --git a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
+index 4a1e3e3c0505aad6669cadf9b7b58aa4c7f284cb..e68f9c3ca5e2619bacc0c8d843ec4984c0947fd8 100644
+--- a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
++++ b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
+@@ -37,6 +37,7 @@ properties:
+     maxItems: 1
+ 
+   pmic:
++    deprecated: true
+     description: Child node describing the main PMIC.
+     type: object
+     additionalProperties: true
+@@ -45,6 +46,24 @@ properties:
+       compatible:
+         const: samsung,s2mpg10-pmic
+ 
++  pmic-1:
++    description: Child node describing the main PMIC.
 +    type: object
-+    $ref: /schemas/regulator/samsung,s2mpg11-regulator.yaml
-+    description:
-+      List of child nodes that specify the regulators.
++    additionalProperties: true
 +
-+  wakeup-source: true
++    properties:
++      compatible:
++        const: samsung,s2mpg10-pmic
 +
-+patternProperties:
-+  "^vinb(([1-9]|10)s|[abd])-supply$":
-+    description:
-+      Phandle to the power supply for each buck rail of this PMIC. There is a
-+      1:1 mapping of numbered supply to rail, e.g. vinb1s-supply supplies
-+      buck1s. The remaining mapping is as follows
-+        vinba - bucka
-+        vinbb - buck boost
-+        vinbd - buckd
++  pmic-2:
++    description: Child node describing the sub PMIC.
++    type: object
++    additionalProperties: true
 +
-+  "^vinl[1-6]s-supply$":
-+    description: |
-+      Phandle to the power supply for one or multiple LDO rails of this PMIC.
-+      The mapping of supply to rail(s) is as follows
-+        vinl1s - ldo1s, ldo2s
-+        vinl2s - ldo8s, ldo9s
-+        vinl3s - ldo3s, ldo5s, ldo7s, ldo15s
-+        vinl4s - ldo10s, ldo11s, ldo12s, ldo14s
-+        vinl5s - ldo4s, ldo6s
-+        vinl6s - ldo13s
++    properties:
++      compatible:
++        const: samsung,s2mpg11-pmic
 +
-+required:
-+  - compatible
-+  - interrupts
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
+   shmem:
+     description:
+       List of phandle pointing to the shared memory (SHM) area. The memory
+@@ -62,7 +81,9 @@ additionalProperties: false
+ 
+ examples:
+   - |
 +    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
+     #include <dt-bindings/interrupt-controller/irq.h>
 +    #include <dt-bindings/regulator/samsung,s2mpg10-regulator.h>
+ 
+     power-management {
+         compatible = "google,gs101-acpm-ipc";
+@@ -70,10 +91,12 @@ examples:
+         mboxes = <&ap2apm_mailbox>;
+         shmem = <&apm_sram>;
+ 
+-        pmic {
++        pmic-1 {
+             compatible = "samsung,s2mpg10-pmic";
+             interrupts-extended = <&gpa0 6 IRQ_TYPE_LEVEL_LOW>;
+ 
++            vinl3m-supply = <&buck8m>;
 +
-+    pmic {
-+        compatible = "samsung,s2mpg11-pmic";
-+        interrupts-extended = <&gpa0 7 IRQ_TYPE_LEVEL_LOW>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pmic_int>;
-+        wakeup-source;
+             regulators {
+                 ldo1m {
+                     regulator-name = "vdd_ldo1";
+@@ -82,7 +105,13 @@ examples:
+                     regulator-always-on;
+                 };
+ 
+-                // ...
++                ldo20m {
++                    regulator-name = "vdd_dmics";
++                    regulator-min-microvolt = <700000>;
++                    regulator-max-microvolt = <1300000>;
++                    regulator-always-on;
++                    samsung,ext-control = <S2MPG10_EXTCTRL_LDO20M_EN2>;
++                };
+ 
+                 buck8m {
+                     regulator-name = "vdd_mif";
+@@ -93,4 +122,21 @@ examples:
+                 };
+             };
+         };
 +
-+        vinl1s-supply = <&buck8m>;
-+        vinl2s-supply = <&buck6s>;
++        pmic-2 {
++            compatible = "samsung,s2mpg11-pmic";
++            interrupts-extended = <&gpa0 7 IRQ_TYPE_LEVEL_LOW>;
 +
-+        regulators {
-+            buckd {
-+                regulator-name = "vcc_ufs";
-+                regulator-ramp-delay = <6250>;
-+                enable-gpios = <&gpp0 1 GPIO_ACTIVE_HIGH>;
-+                samsung,ext-control = <S2MPG11_EXTCTRL_UFS_EN>;
++            vinl1s-supply = <&buck8m>;
++            vinl2s-supply = <&buck6s>;
++
++            regulators {
++                buckd {
++                    regulator-name = "vcc_ufs";
++                    regulator-ramp-delay = <6250>;
++                    enable-gpios = <&gpp0 1 GPIO_ACTIVE_HIGH>;
++                    samsung,ext-control = <S2MPG11_EXTCTRL_UFS_EN>;
++                };
 +            };
 +        };
-+    };
+     };
 
 -- 
 2.51.2.1041.gc1ab5b90ca-goog
