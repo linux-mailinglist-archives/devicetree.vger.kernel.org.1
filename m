@@ -1,162 +1,121 @@
-Return-Path: <devicetree+bounces-236729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BED1C46B62
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:53:21 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A770C46B71
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:54:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 47C6D4E984B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:53:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CBB353420BB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8623101BA;
-	Mon, 10 Nov 2025 12:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F3F309F00;
+	Mon, 10 Nov 2025 12:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pHAuyUbP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O9NW65S6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DDE3064A6
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0CF28B415;
+	Mon, 10 Nov 2025 12:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762779186; cv=none; b=Rvc+XWY9PNWuT09MdNw25IzP0F5tF9N1O8DapqrkErmyo6YMn/Q+e5lPi9ajHh78yOLY4E6PwLZhiZ8rt4IlaMOWJhJhnWJ5PRY8Il7cgq+Lb4Hw99qoK2kMwQisL2n5sUJDcPb/aTpPCXet0DZ61je09ZEVmjqBX5JnwqsKy4A=
+	t=1762779251; cv=none; b=h+34IX9hiVbILFePHUBGR/nuhbcHLK9YimaMZhj5zT/QO8zvfQ9gNsRiFDFf2Fx9B7UBT0zY1QPIbvFd8Ve76rEr9ZJ47KlAXZwWPIth9vnpobzmIWIbeKyNftNO80SA6Yt5mnPJpPvNGqICd2vdfsh4Y34Xvr4hE8HSRpQkn3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762779186; c=relaxed/simple;
-	bh=lajD8QJElBkHp+szQMp4lvfntXaq7B2csoiFGrMzr/8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q4FuSu9/mR5B8yzfd9KJ5wwJS1NtoXzJO5JUCXWQi/WO4ne5oxjH24wA4kBgD6uPgsGX8BEgL12XAj7jqw3CjkcqoHUwpud8bXEWkOLwAFTyvZcXnu3xi9DiUD+IbBntDS6/Pws3EONWedZ1bl4dTR7mabsQBjaC2llU+Fkoukw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pHAuyUbP; arc=none smtp.client-ip=209.85.160.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-3c9859913d0so1684384fac.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:53:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762779183; x=1763383983; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lajD8QJElBkHp+szQMp4lvfntXaq7B2csoiFGrMzr/8=;
-        b=pHAuyUbPTRgXF6gAyhV8JVy7+EDCorUsZr9eGAo/TITyvpDhI1fXmNQU5oIzJlPQtl
-         +Tq+4arshPmQNek2fkonRGxqSqJYlhxpZ1TRy2SsyMwL6dwDtkkTIjCWJ6S9Nfq1C8xt
-         X5cSR6XyI+b+5nZSLyX9rqdq5a9VBpVp5BBIQQfnEX9fitosoxpIz24ADV3KXortYbl8
-         yxDdW1OYcSBH61IUagKk5zW4GjE5fxgf/hXxSJzyK8jVYPtsYf80RDMPb6WyaXfoJ5MV
-         a9Ku5JpyQZA66zbTkcPvsvG2WtvhaKtwRN4H80iw8QP9yYbSpIrk5Tl84oQF2a0gEG3i
-         8eOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762779183; x=1763383983;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lajD8QJElBkHp+szQMp4lvfntXaq7B2csoiFGrMzr/8=;
-        b=RJSNMdGAx21M+27XVeTS0J13O6Cpp/nzZPLd0ppgJ2wj/6dkGKuUmXlfW2BlA6b/dP
-         0935e3vNgg7tkW8SeBYDehQJXEx0YLkjD0I4CoacgvESMazI71nFbPzFebsu4cAxUKCg
-         41D8LIdEI7vPCdYYymZTBMP3UW7qhaNKU3CMmSZWB8tF1LkdZ6lnjhkPmmA41whB5q96
-         AIG1LjMDhFIC1eSVp8pkgKgkPID7XAuBzsgOKQ4lVlARMno+LiQh7a8kmTTPDMMYuwnz
-         TOdwzr6mqHBM3x1iEsajvYHm+iRfC4O4YB/mR9YXnecsksALek7vdD3caDsgS/pEouGe
-         W0MA==
-X-Forwarded-Encrypted: i=1; AJvYcCWHdU94ShPNeqd9SStyxgHO+VtYlca81qk6NOeOVRaD//H9/7TdCp7Dp4A7uNOiuykbtxZvMMWU8eYk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDm3T6o5rEffelrjiYK8+QaLhzd3WYddcqbatDScwXrr4Hi4IB
-	GxMYWOCi8A+AsUmSaRrU0ajASm1pAmME7bzOJeVX82kPqZ9qg2ZeSVi5nzD5XTNC5fLEO59+7Kn
-	NmSYfxyw0NB9ISV2o9H6P69TOF1OB6Jn4U6vUAHCizg==
-X-Gm-Gg: ASbGncsjGgGLYbZ9ed8Hk/Jl+62hcfMQ7CfkKKDE4PdkqcIu/7QcgZk4ch7wEY9clUs
-	aUlaehFS01bnLsUS/sY94vZoMOBzfwgSLorJUdKQqiwlHqoHgytSAtnujjBSbc/4fkz7kSOmqHt
-	DDSJw7GxfgTYfmyJ0qWLTlS0qswX+TZ+ajmqjGlTeGSTYJGkNDnSQtwiOxZhqGe5CJp//RnaI7f
-	gpzohOPWsSq6zWxoFtlY9Q6XHpwSqN03ddeyMFpuy0ycLGZnGZYow8biLyF
-X-Google-Smtp-Source: AGHT+IHaOc9Hf++xJ77n1T9F3eaANxA6a255QvjbOAcsfDAumQrnMbLyVAX5itd8dNhL35m/2iP5WQb/9KW6fxXbd5k=
-X-Received: by 2002:a05:6871:60c:b0:3d2:fddc:862c with SMTP id
- 586e51a60fabf-3e7c2452b4cmr4340908fac.7.1762779182758; Mon, 10 Nov 2025
- 04:53:02 -0800 (PST)
+	s=arc-20240116; t=1762779251; c=relaxed/simple;
+	bh=Z/w5BvGlJ6S3Y78v5wnf1cn1h8pvJ5oWK1cCIxL/Wzk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S8ekM1H2ik99tyY1EGt6EPskgBGI7VugiQOVshEWeqn6F1ho9czIZSNSFRrTnsqq+meqb9UHx7K7S0O3zdMDlxv8DIWukQ2j4XqxCEEeX6UKnyMxSkbDXpitl1UdPQEz+A3jNH9wkbo1D3oB1C6eSK0xVN7OMQWw6HNKUI0ts4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O9NW65S6; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762779250; x=1794315250;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Z/w5BvGlJ6S3Y78v5wnf1cn1h8pvJ5oWK1cCIxL/Wzk=;
+  b=O9NW65S6svWyiOrF+T8b/mhBZTUYoykncnt0xeB8KGkTfTAq+08HWb+u
+   omvY+UQktiykOUQc7Mqw73Jnm96LxAAhwpKGP+AJtNDvo1wYG0J3Nzviw
+   T+gY9JvhVCxmGBMfrL8jo5YgQUz13GOzBY4d3NN0UpmD4ODexkATwRiOn
+   UREPMRFMSoWc+/plCjvGHqv96FdZg2I6fDyRXEtw7ThfPwt7bpYo/Rcbg
+   sMBmDzQu1t4f/APdnMmXbwHObiGYQhGYasbPBzJ9tkd7niOhesym0BYPe
+   O14smIioGtnh0+nsjffBq0ztwf3bFM9Jd4G1hB8uoKRmtStVK4gJktvUd
+   w==;
+X-CSE-ConnectionGUID: J3EniCoqReCLo456qC1kmw==
+X-CSE-MsgGUID: ueXCOewiR8Sjhtmltz82jg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82224960"
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
+   d="scan'208";a="82224960"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 04:54:09 -0800
+X-CSE-ConnectionGUID: PLVia+OkQsaKhN9quXcB1A==
+X-CSE-MsgGUID: fxthXgjHSrGsTrJlNqurfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
+   d="scan'208";a="192777077"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.235])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 04:54:05 -0800
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vIRPF-00000007Snr-3tiy;
+	Mon, 10 Nov 2025 14:54:01 +0200
+Date: Mon, 10 Nov 2025 14:54:01 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+	andy@kernel.org, Michael.Hennerich@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+	cosmin.tanislav@analog.com, marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v1 0/3] iio: adc: Add AD4134 minimum I/O support
+Message-ID: <aRHgaXxxnD5YsIQQ@smile.fi.intel.com>
+References: <cover.1762777931.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251102-automatic-clocks-v3-0-ff10eafe61c8@linaro.org>
- <20251102-automatic-clocks-v3-1-ff10eafe61c8@linaro.org> <20251103-smoky-rustling-bloodhound-7590ce@kuoka>
- <CADrjBPpjX_qSehbNkaAG03f=whs09qFzzgNiY3sztk7v0QeCFw@mail.gmail.com> <20251104-enthusiastic-cream-gibbon-0e7b88@kuoka>
-In-Reply-To: <20251104-enthusiastic-cream-gibbon-0e7b88@kuoka>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 10 Nov 2025 12:52:51 +0000
-X-Gm-Features: AWmQ_bmYJGLwRqlUrf73Sc1rVwj8QxtUbwqaYUkACotkTBe74SIkf0KWHru_6Ms
-Message-ID: <CADrjBPpGt3qBGucF1COWZT=OZ+8ithg6=-QefhKUiW4tkC=KrA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: google,gs101-clock: add
- samsung,sysreg property as required
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1762777931.git.marcelo.schmitt@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Krzysztof,
+On Mon, Nov 10, 2025 at 09:44:56AM -0300, Marcelo Schmitt wrote:
+> This patch series adds basic support for ad4134. AD4134 is a very flexible
+> device that can be configured in many different ways. This series aims to
+> support the simplest way of interfacing with AD4134 which is called minimum I/O
+> mode in data sheet. This is essentially usual SPI with the addition of an ODR
+> (Output Data Rate) GPIO which functions as conversion start signal in minimum
+> I/O mode. The CS pin may be connected to a host controller CS pin or grounded.
+> 
+> This set provides just one feature:
+> - Single-shot ADC sample read.
+> 
+> [PATCH 1] Device tree documentation for AD4134.
+> [PATCH 2] IIO Linux driver for AD4134.
+> [PATCH 3] Initial IIO documentation.
+> 
+> There is a driver by Cosmin on ADI Linux tree that supports AD4134 in wiring
+> configurations suited for high speed data transfers. Even though the minimum I/O
+> support was initialy based on that high speed transfer driver, the result ended
+> up becoming entirely different. Also, because the different wiring
+> configurations are likely going to use different resources and software
+> interfaces, the code for AD4134 support was split into ad4134-spi.c,
+> ad4134-common.h, and ad4134-common.c.
 
-On Tue, 4 Nov 2025 at 08:11, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Mon, Nov 03, 2025 at 01:49:53PM +0000, Peter Griffin wrote:
-> > Hi Krzysztof,
-> >
-> > Thanks for the review feedback!
-> >
-> > On Mon, 3 Nov 2025 at 09:41, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >
-> > > On Sun, Nov 02, 2025 at 08:27:14PM +0000, Peter Griffin wrote:
-> > > > Each CMU (with the exception of cmu_top) has a corresponding sysreg bank
-> > > > that contains the BUSCOMPONENT_DRCG_EN and MEMCLK registers.
-> > > >
-> > > > If present these registers need to be initialised
-> > >
-> > >
-> > > ... for what exactly? What would happen if this was not initialized?
-> >
-> > The BUSCOMPONENT_DRCG_EN register enables dynamic root clock gating of
-> > bus components. So it is related to the automatic clock gating feature
-> > that is being enabled in this series. Things still work without
-> > initializing this register, but the bus components won't be
-> > automatically clock gated leading to increased dynamic power
-> > consumption. Similarly the memclk register enables/disables sram clock
-> > gate. Up until now we've not been initializing the registers as
-> > everything from Linux PoV has been in manual clock gating mode and
-> > until starting to implement this I wasn't aware there were some clock
-> > related registers in the corresponding sysreg. Additionally with
-> > Andre's work enabling power domains it has become clear we should be
-> > saving/restoring these two sysreg clock registers when the power
-> > domain is turned off and on.
-> >
-> > > What is the exact justification for ABI break - wasn't this working
-> > > before? Or new feature will not work (thus no ABI break allowed)?
-> >
-> > No, automatic clocks and dynamic root clock gating were not working
-> > prior to this series. Currently power domains and system wide
-> > suspend/resume aren't enabled upstream either. As we work on enabling
-> > these features we are finding some things that in an ideal world we
-> > would have known about earlier. Unfortunately it's not so obvious just
-> > from studying the downstream code either as they rely heavily on
-> > CAL-IF layer that has peeks/pokes all over the memory map especially
-> > for power/clock related functionality.
-> >
-> > Whilst it is technically an ABI break, I've tried to implement it in a
-> > backwards compatible way (i.e. an old DT without the samsung,sysreg
-> > phandle specified) will just fallback to the current behavior of not
-> > initializing these registers. Things will still work to the extent
-> > they did prior to this series. With a new DT the registers will be
-> > initialized, and dynamic power consumption will be better.
->
-> So explain that this is needed for proper and complete power management
-> solution on this SoC, however that is not an ABI break because Linux
-> driver will be stil backwards compatible.
+The cover letter misses the answer to: "Why do we need a brand new driver?
+Don't we have anything similar already in IIO that can be expanded to cover
+this one?"
 
-I'll send a new version shortly with an updated commit message like you suggest.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Thanks,
 
-Peter.
 
