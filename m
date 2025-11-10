@@ -1,55 +1,60 @@
-Return-Path: <devicetree+bounces-236476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56659C44AE9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 01:52:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89210C44B22
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 02:02:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4014D4E0594
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 00:52:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5B66E4E16C1
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 01:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE091EB1AA;
-	Mon, 10 Nov 2025 00:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38C11A9F88;
+	Mon, 10 Nov 2025 01:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQigHvft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E376117B425;
-	Mon, 10 Nov 2025 00:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A2C286A4;
+	Mon, 10 Nov 2025 01:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762735946; cv=none; b=enXrdW3WI3zMgi2/msWFpr4ScmGrdEqzvDy2N9IBD/o0KkbsjQtvBjl3O5awGIBABL0F/I4377XTdrM+Mw+lGYcTcWGP/CxtSdHpUzRBPORM7Hh3seDSozjl/qpAI7umVTEuZrJNgjbKISceNoNBRYI0qIr/OA3Nf8rWG3QCXM4=
+	t=1762736535; cv=none; b=cKX6reHtV/bXMNBhJY3mrU+0XFQ1kTkRyzt0ghL3P7jac+0r4c1pNH2y9AnC9ZAaElSMEH+zZQNm/5ty/N+opuvvPkHMUrd/Ai3/h1dlT2irqZAfuDdKgv6ha9nkSaXXt+pFzIl2Sl/7lmrupvbUus4PD5p14NtMwkqXRTbzDmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762735946; c=relaxed/simple;
-	bh=zZRwUozaRUCWUZ0v/GY/IyfyzQ3GnP7Wcag8gu7TjFI=;
+	s=arc-20240116; t=1762736535; c=relaxed/simple;
+	bh=oBcaZh1qoZimXINdBHzXXdRQi11+sXet/4lLUm29sII=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ib/jofpkvy2ko/PeER5F07dJzmrzLZvDL6UMTmRG4pzHoW/dvJGpCzlefryPg7T/SsbuFfaYRe7v8wmqW98TSKp6/m4CCAT5/voGRaMwKltkZWP7nOn9vfVF1HPOECn3I98EB9wFHrhNv8zGmeNG2wWye3TYfnSwqV7pooi2bYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.48.119])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id D9DAC340FD9;
-	Mon, 10 Nov 2025 00:52:23 +0000 (UTC)
-Date: Mon, 10 Nov 2025 08:52:13 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: michael.opdenacker@rootcommit.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] riscv: dts: spacemit: add Gigabit Ethernet and PDMA
- to OrangePi R2S
-Message-ID: <20251110005213-GYA1651402@gentoo.org>
-References: <20251109222858.3085488-1-michael.opdenacker@rootcommit.com>
- <20251109222858.3085488-4-michael.opdenacker@rootcommit.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=R4tFfT9gIfVRAbAQ7Ql2d9Bs+2D2oCDvCREajefGhas6+DcgzTV7qzqpbUd0V6Ceh5qIezjcRBzC70qmftUxXb9w4J8sAQK7fKbstaWjPxh86NdKzCLDCodxC3SdoQIO+GAZUStGy8Ny9cPHoFCFuCFiKNa3lf24LPuHvo0C9Bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQigHvft; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCE79C113D0;
+	Mon, 10 Nov 2025 01:02:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762736535;
+	bh=oBcaZh1qoZimXINdBHzXXdRQi11+sXet/4lLUm29sII=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PQigHvft0XyaOg3B8fTi/gzcVUI2jWQ+uITPAV6ScJMOeMSFMQXlDS9acnhOMSaXs
+	 zGguu4ulo3EOlZMDW81H6dq5Sakz/SZXKKgq7c27fmMqmKMH6AJMuIZgmqbZm1ALsP
+	 5jJpEP0gPnonmw27jXcjtW76KsrNhaPLIomTgvxejyUZIGLHzB9wR+UEg3qVpdDICG
+	 pQlmUuBZnc2TenoYa7jCDWc4/YxWAneLs07oSNkqKpiJ+sdIOLEHVS/tYOlkOGUrpJ
+	 ZashiyUeNuBxWah1Kx9RWMFkRg5Qclvjqlshobpm8r1FlDmynTX3NYeIUqCCA9DYFH
+	 xjQP7i9cDCskQ==
+Date: Sun, 9 Nov 2025 19:02:13 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	Zhang Rui <rui.zhang@intel.com>, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Lukasz Luba <lukasz.luba@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Talel Shenhar <talel@amazon.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>
+Subject: Re: [PATCH] dt-bindings: thermal: Convert amazon,al-thermal to DT
+ schema
+Message-ID: <176273652966.2479173.17037713949403770424.robh@kernel.org>
+References: <20251013215820.783272-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,60 +63,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251109222858.3085488-4-michael.opdenacker@rootcommit.com>
+In-Reply-To: <20251013215820.783272-1-robh@kernel.org>
 
-Hi Michael,
 
-Please squash patch 2-4, see previous discussion here [1]
-Once you've done this, you could put additional info inside cover letter
-
-Link: https://lore.kernel.org/all/20251010-confider-raven-0ad7a810e5de@spud/ [1]
-
-On 22:30 Sun 09 Nov     , michael.opdenacker@rootcommit.com wrote:
-> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+On Mon, 13 Oct 2025 16:58:18 -0500, Rob Herring (Arm) wrote:
+> Convert amazon,al-thermal binding to DT schema format. It's a
+> straight-forward conversion.
 > 
-> The OrangePi R2S board includes two RGMII ethernet ports
-> supporting Gigabit Ethernet operation.
-> 
-> They have an external Motorcomm YT8531C PHY attached,
-> the PHY uses GPIO for reset pin control. 
-..
-> Their description
-> was reused from the DTS from the OrangePi RV2 board.
-Suggest to drop this, useless and even make people confused.
-
-> 
-> Enable PDMA for the SpacemiT K1-based SoC.
-> 
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
+>  .../bindings/thermal/amazon,al-thermal.txt    | 33 ------------
+>  .../bindings/thermal/amazon,al-thermal.yaml   | 50 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 51 insertions(+), 34 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/thermal/amazon,al-thermal.txt
+>  create mode 100644 Documentation/devicetree/bindings/thermal/amazon,al-thermal.yaml
 > 
-> tests on eth0
-> -------------
-> 
-> root@orangepi-rv2-mainline:~# iperf3 -c 172.24.0.1
-> Connecting to host 172.24.0.1, port 5201
-> [ 5] local 172.24.0.2 port 51354 connected to 172.24.0.1 port 5201
-> [ ID] Interval Transfer Bitrate Retr Cwnd
-> [ 5] 0.00-1.00 sec 113 MBytes 947 Mbits/sec 0 395 KBytes
-> [ 5] 1.00-2.00 sec 113 MBytes 945 Mbits/sec 0 395 KBytes
-> [ 5] 2.00-3.00 sec 112 MBytes 936 Mbits/sec 0 395 KBytes
-> [ 5] 3.00-4.00 sec 112 MBytes 942 Mbits/sec 0 395 KBytes
-> [ 5] 4.00-5.00 sec 112 MBytes 941 Mbits/sec 0 395 KBytes
-> [ 5] 5.00-6.00 sec 112 MBytes 940 Mbits/sec 0 409 KBytes
-> [ 5] 6.00-7.00 sec 113 MBytes 948 Mbits/sec 0 409 KBytes
-> [ 5] 7.00-8.00 sec 112 MBytes 940 Mbits/sec 0 409 KBytes
-> [ 5] 8.00-9.00 sec 112 MBytes 941 Mbits/sec 0 414 KBytes
-> [ 5] 9.00-10.03 sec 113 MBytes 919 Mbits/sec 0 414 KBytes
-> - - - - - - - - - - - - - - - - - - - - - - - - -
-> [ ID] Interval Transfer Bitrate Retr
-> [ 5] 0.00-10.03 sec 1.10 GBytes 940 Mbits/sec 0 sender
-> [ 5] 0.00-10.04 sec 1.10 GBytes 939 Mbits/sec receiver
-> 
-> iperf Done.
-..
 
--- 
-Yixun Lan (dlan)
+Applied, thanks!
+
 
