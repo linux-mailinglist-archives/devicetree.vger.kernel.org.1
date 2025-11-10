@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-236593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D9AFC459C4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:23:37 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C863C459FA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:26:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E1E23ADA7D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:23:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 892D34EB38F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BBE42FFFB6;
-	Mon, 10 Nov 2025 09:23:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F342C2FFDF4;
+	Mon, 10 Nov 2025 09:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kaYzo5LK"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="UmdEwmWg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013002.outbound.protection.outlook.com [40.107.159.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56CA82F7AB5;
-	Mon, 10 Nov 2025 09:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DE33019CE;
+	Mon, 10 Nov 2025 09:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.2
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762766584; cv=fail; b=VBOdBw0lKE6xo6LLKV4XqBeCM1SZKf20/nsGUPkUDhZMHf8Ix6FH2+kcXG6j8gkSUSD2+vJ+4ZUbtCOEzAcGWx3PUpSPg2UTpstOgwyzAiP3srckXe22AROQxAvV6lb8vF20QkUmma/SvsWRKDGGdG2tkJ6DuK6pv+UUUGUHmVQ=
+	t=1762766598; cv=fail; b=sIAdPX7zUGASRoYabg3l2kHL31pdoDUh84ujULR2AsUA5I3KOnVkFRURC91bB45dtLgBq4tFFCWm8RStqE0KZXiYjtHyBc6qNetX2jeS2RUencQJ3K8g2RAgBuAvmcFrarieB3ny5Tq1SYSKpcb6RDgiaJFu/3s7UgxeIOK/XXc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762766584; c=relaxed/simple;
-	bh=icunUZ7iDuwYLuXeFh7MvArubdIedPNTgaxNtTOrN7g=;
+	s=arc-20240116; t=1762766598; c=relaxed/simple;
+	bh=AMni4HWappnYh+HA1BwIgj5Z7MyDfBh+2X5F+UBs1n4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=fAX7N16gnUNlRKpkSQAUZ+q4HmtmUGYn7FMouiJpkgJ8B/bwocSFfc5Qmn5xgnUJTSMFm2I+qnesL3LpNWRYqH2/JHJU2YMQuG0pTpUuYS/62EdYxAFglkXs+OH77fi9jKDnSzckY/35gwql22PC8w9SyttikG678vP3wiydpS4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kaYzo5LK; arc=fail smtp.client-ip=40.107.159.2
+	 Content-Type:MIME-Version; b=spT40VVuYFLlTDwZCvgcm2HZWYLL/FFKGb4kZ7I2U/ssSTaZXyUMkA4YeTx8t3lpEYIfDK0b3r1z81GwMagcqWHNylL0vut0MXogemuOabwEAqXviGoqGTP/tgD08+sMJU7e4U/7SA3/TIooN6xI8B9WC/iTruzlg4O0ml8pElQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=UmdEwmWg; arc=fail smtp.client-ip=40.107.159.2
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bcCCHw9xT7iZ0PxlkiEvT+6HGmQKFsUXN6+3Q8tdA63A06VcQvNDr+/Y45QhjZwT0k9M8ovOuPjF9JFs/+wGI5Dnp3pccvFicG1RYOfVFqEhSke3mXVg8SvMWmNboeb9/MaJ404XNA7M1fBm1J3IsPzSDLd0hBo/2smjoInevMleeGQMm2XdJP5Q534hg/u1uik148qmtInWgBdfAsFk446m1CedOxHHliECylzv4aq4CtSX7/paLcg5MrCasGvhYSXnyAMB8aKMShpuF3GJzMuMeKcxC1tZNWPvf/sAxs9vM0KLuuWLV9nBsJgusj2HMa8BvI5pzPHt5wSHiAiffQ==
+ b=t2NyoGAgXtm0cdgb9mOJcpwr9mfck19xvc+EAbm+zkJ9nthTSkiD33Vc9Au42UjDLBV/ihG4gn81wQp1ej5XbUS5RC0wCn5ewK8/Hr5xQBbsX5McxSpl87lxsEs7tMNBjjML8IHIkH9tYbPf6deCIPff8eXNkXNsdgWBjOi9Yq1Eav0g2AA6XOSiEmChxxTlqKlidLYE4ctsF0WbZnXGiCSE0KiEsg2irh1cIAhrflV2Sqx2BvzAgo0ENkm3SQH3d6dDV4dtUFGMpNxP9LZMvC4QYWMkA7QPUmrj05RFnNxDEZ8oqY6TmAhWoNeGOBl+oSdlbuOkuxiucmlV79oqXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yJH7S921AnDuXVgkK05Ud9SrROp4capxQMhSxPtjys0=;
- b=QQJ9Cc6uQIAsK46VDFzzBE2QC8Dvh9ixSQMTdsNRvU6BheGVtIHVPYSqjdCr68u3OrfJsEefzNXl8GqWDgz4fonytYFWjiiN5DQVejaYMLaCd0MUdxYDGTZMO+uKJDLLuuo4PsRmZIrWavCpAksjCIjbGAj9Gec8uEZbXJJhMPqE8s7aA8rRG4dy4V2zM8553GggtgIWS4+Ygozzlt1PjlsphNmwF9E1yYt0KFFQPm3hG6gkoFwKOkH18qhVytL9I1vo6/l7T9gbA6vDl7ivbfbr/oqJworhNF3OZFY+2SR1ZDE9gGXn6kLYpC8sCTjHA6VcNWRmqoBJ0R+JUxF4jQ==
+ bh=dsM894J9dKPAdfZjtUcb8Og6CmYb222B0b42r5YLw/c=;
+ b=GeoU+Vpv+9vMiPv+tvdtUI/mL1b0P2NHOrtMVJwDPQsR20j2KGVNWGBxOiyUqPr60an+h63WMMcLFsnr+cU580H9jwuJ6r7vXDGDEJ8+/qs3SDVPYRKbWxZ0aP+ZKBXEOuI6LIN+yraHI3spmE3VNuZkXKU+ShkrgISOSSsPxQP6xFL89TbewSjabOZjWE87Wjw79aZ1X9fgg9XluT4jwYH3BY/Au1EYaaoeNxLCdmbEvLDB5GTW2u+djOYSj89tZQHJONaYwlfVp3O9ZBAuBpe5zOv7uDhRyDo4yarloiRtB+Tn41Ac+PEN5X/CaTuVGIwZBytZdPzHbGj7ykvubA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yJH7S921AnDuXVgkK05Ud9SrROp4capxQMhSxPtjys0=;
- b=kaYzo5LKUFqHd5h24lhKY3/7kaBYfxAQ5nd+AsmcdVgTDlUiYphoZ40smtgXUMpkK5a20wuN+ZEa4rcBSnmjP15iii8EDUDQdLkW5bv4MM6rCYFUrWqNqo1mb3Eq94k34WvpZtLemXM5qOcan286vauhQgvtVefD+OUOhXrH40fpMB7D7JlG44M7UX2OsTFgGFCZ9r9zdoSDeBvYXOzQqftYwhHCcE8FnvJOq3ktgEgc6uPj3tuXQ0ZTv4573D/PZF2sxM/EV4SbNm8DwQv1tYmaMja31daFT5sAhq1mGV5G3QMoX3zqffwFZK9dKlt/60jAWp5B4LyNgcbqaSxUbQ==
+ bh=dsM894J9dKPAdfZjtUcb8Og6CmYb222B0b42r5YLw/c=;
+ b=UmdEwmWglai76putBw0i1esQzc/8TOKc5cuImysutE8n6eh/WNUSC2TBCRwAuwyB7Xs4d30rmD81BsIpR+B5xEEBfsx3BWFMo4+CukxbSbuZF36RauoH8x0TKvqC0akScLg6P3lBiGqGW5sbGDlCj/tBQ10uAoNYGcz85TuAauiyNQhToZjgj/w0PelK4oKf7XOYKvOgG4HNKhpP1E23CVvZ7Bp6JtaGVvmDp6UEOKcZ7VARu3VnnH2di31AdjByHq9fldHPalLDTVWZOHPL1eDE2Y3HksIf4kc19Kxb2eGQ8ztVirfr439UrJIPeTm+m14VakXw5KZid4eDCNi34Q==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
  by PA1PR04MB10468.eurprd04.prod.outlook.com (2603:10a6:102:448::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
- 2025 09:22:57 +0000
+ 2025 09:23:14 +0000
 Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
  ([fe80::b067:7ceb:e3d7:6f93]) by AM8PR04MB7779.eurprd04.prod.outlook.com
  ([fe80::b067:7ceb:e3d7:6f93%5]) with mapi id 15.20.9298.010; Mon, 10 Nov 2025
- 09:22:57 +0000
+ 09:23:14 +0000
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 To: linux-phy@lists.infradead.org
 Cc: Ioana Ciornei <ioana.ciornei@nxp.com>,
@@ -66,11 +66,10 @@ Cc: Ioana Ciornei <ioana.ciornei@nxp.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH v4 phy 03/16] phy: lynx-28g: support individual lanes as OF PHY providers
-Date: Mon, 10 Nov 2025 11:22:28 +0200
-Message-Id: <20251110092241.1306838-4-vladimir.oltean@nxp.com>
+	devicetree@vger.kernel.org
+Subject: [PATCH v4 phy 15/16] dt-bindings: phy: lynx-28g: add compatible strings per SerDes and instantiation
+Date: Mon, 10 Nov 2025 11:22:40 +0200
+Message-Id: <20251110092241.1306838-16-vladimir.oltean@nxp.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251110092241.1306838-1-vladimir.oltean@nxp.com>
 References: <20251110092241.1306838-1-vladimir.oltean@nxp.com>
@@ -87,223 +86,282 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|PA1PR04MB10468:EE_
-X-MS-Office365-Filtering-Correlation-Id: e2f9c866-95da-4eca-77db-08de203abbe9
+X-MS-Office365-Filtering-Correlation-Id: ac2bd4f6-69e6-4e26-6ba2-08de203ac62c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|366016|19092799006|38350700014;
+	BCL:0;ARA:13230040|1800799024|52116014|376014|366016|19092799006|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?PcxpmZkzE+S7VRAQKbo5p3Ck4qhsVWqeHWlAbUAcFHOUNE+67FuEl8U2AHlp?=
- =?us-ascii?Q?D1abu+DLqrls9UtPkapqGk2Qup4s+n5CZICozvKp4eMGlElaU3CTrZl/RVUh?=
- =?us-ascii?Q?kvFbFNtGeo8jK8R+kR9D5ckE2WYVSS0WlGuCqfXLTT/rzjUfC5dsHqLLesuW?=
- =?us-ascii?Q?Qf8fCBPGTYeb/ITArGMTp6oOaTPJR4iqnBN3l5ZxTBm36Jxn2sRuANJIa5NS?=
- =?us-ascii?Q?xQjEmaQOHemuNupPKyMzX6I18rkyYZGcgzZgR40PweiA8Fvhpgjf+TQCwYZy?=
- =?us-ascii?Q?fidTYAp+IUAI51hJwro+WZCWQIz14cZjHJTOInQQ/bm1KjU73HVvtfxMHW/Y?=
- =?us-ascii?Q?nqL/eKtw1P7rdDsTVTjixoVzJMDiW4M+qv54ciu3Rz0Uwv6hFVdf6VUY2dTJ?=
- =?us-ascii?Q?z/bColbl48tXb9yjKvTcJscI6N9ZotoV2MwBrvuX3yncSoObIa4s7pbYZJaX?=
- =?us-ascii?Q?sjQS/x42I2OZy8ijWpAUT286h5QGDWl7VSlcvAYjPiA6s5j3mZ5V5U9pJa9g?=
- =?us-ascii?Q?BntkhuzhlQd55JeA6Zyp6Y+RF1ncnp/jypqmgOer26s8rCwBiZeoAPfM3dKT?=
- =?us-ascii?Q?W7D7rdD5jdbNzCjntp54+68/EZPwyUtcBJxVlP/vj+HDWvGnkRRkZb40CtCh?=
- =?us-ascii?Q?s8THDZj8j3lEDSLBmVNxZTby6+vnpe4+uUgUuZM65iAgzrQUUzuORggI8BNI?=
- =?us-ascii?Q?XAsjcJjFOXwikSTryPMCF9xffa/9v4ZPQgSpUB/v0poBQUBzP/Bswh4xt6EP?=
- =?us-ascii?Q?1lVC+vtsGEsZ2WgVMXnnkYGKxvUggQJiuP7HvBLq+Et5Xvuqz5ggDnRPtwYW?=
- =?us-ascii?Q?QM8kr3OKF7ARs1JKiuhMmU8b6EbJ8FPvaOOPj93plJDLR2M+9Jf5/1i01cl1?=
- =?us-ascii?Q?IJUcaQPuJ/NGnMwCBX1whPkFboc8NI0sZrqz7ynosFA/NS9+NrkaxC8IFijX?=
- =?us-ascii?Q?oeQOrfUutptUyDusFScjHZtJWuQ5BBCuyvuy5aTKchvCTH7Y6rmNU/Dd6FTY?=
- =?us-ascii?Q?FTXTC7BGtvHdk/7Zu6szVnUAzjn2giw4I4W+TGIbtyHJnLiQZzA8/Byub8Pv?=
- =?us-ascii?Q?WVVaXL/tPmPxlfEu/ksoCMURHiZhmOH4aUUjhMczgI09sk9Is/tvUXXhgsWP?=
- =?us-ascii?Q?20hA0a5HC+ovqmIxGvk/dwyD6wn3WaeYd/4CUyEGTngn3fOyozuDwyTjUkHN?=
- =?us-ascii?Q?iOCQupeD9wHBLB9wedGGqoOw81LRegXu+H/O1NSCk6vGqfPaRLoScUM9E5Wg?=
- =?us-ascii?Q?aoD/vlE/JlIFTHEl1ZWso5DKakbGDtAY8+h+LMHp38Gl9tyiE3j8pvUwLzwp?=
- =?us-ascii?Q?zZSs3SQv7lb+aj7KoLgzjd49Hu9066Fr9+0qT6W3FzXtP2KzsgHeI0X/hAMf?=
- =?us-ascii?Q?0hK3BA0lw5OJ2zRPN/QAQULUdeUykqgX7z8IzJf/QUG4JXDU3mdY0nF42f8f?=
- =?us-ascii?Q?wUAAKHjne59isTf7RcTq9M/FVG6/8shqm+3n7xiIdDeqM3rF+hkkboUBsZ68?=
- =?us-ascii?Q?R2B7pmEA2uWSYy57RiKfxbUBmdysY1M5ZuvM?=
+	=?us-ascii?Q?bLUYMpdwqYibDa4ysaW4Hd4nAlb5OXwbnvta83HcWojkkoWBof7BZwfShlhB?=
+ =?us-ascii?Q?Z2GjhsVBV2xE+TJ5WoIzMioDF9+CNIFu48ecAjZsg3nJzTYki7LzTti3A1Xd?=
+ =?us-ascii?Q?Hnpoe5qtc5RcmPcmTrTtTgyVpBlG3LCbTxmxqk/S+uFqRWSv4PopMSy9X/9i?=
+ =?us-ascii?Q?H/x2KZzBbzsejBvwB8dk5fFMnGMhWxERBtMNuYAXK5eZjhVCvjx4xJ0dXRvx?=
+ =?us-ascii?Q?F5Cg5T1jwp+nob0vWyDmrfpmlHqf11EQl1Tp189X8VdvStaLjxGY0jUpd4t3?=
+ =?us-ascii?Q?Gmi4wkvJ27p4VI/pEDQuDNETsJmXWUr0xhR9x83tMsgmmugBglnd7fdbFEHU?=
+ =?us-ascii?Q?sLD02K8kiy7BuXg5XacFeeV7h8KdVREKSRiJaLQ1RfAzB12M44MmnC+TGg9A?=
+ =?us-ascii?Q?+J/+63cQBVt1YZB7WKEyqX2RDyQdUbudgDGR4RYy2VbxzeDwnqL8A9EjjGZ5?=
+ =?us-ascii?Q?or2qOft7m+x1KPlwW2v8OjRJpX34N+LHeVPjSx7Ni7kePTG3Tv6IYAn+XSQ4?=
+ =?us-ascii?Q?JqzKkeu0Y/1b+Xsyie/LrCD/RtaIK0v1vhaqUQeGklxsxuSeYt9rUxIMdzKp?=
+ =?us-ascii?Q?oU/KBuJ4CGq92wDCQxPPh7keCzSbfAZIGsM5sCk3qv+qsdU0t1KJNMzHhm9M?=
+ =?us-ascii?Q?MIkwpvDJyEMGXxLxGX6wy07aQGemXdx+V3XYoCkp1zGo6jqju/TiSS5w91mS?=
+ =?us-ascii?Q?lgYRvT+If/p6mmljH9phm+pn4erx1Ytn5l3EGITEUL7LO6NT+hxnAC7wn/aM?=
+ =?us-ascii?Q?IExjlCqB8DljguFJ1vNE2KmekIvzpt4xm+8f2NTFuOzCIh6aHBliQMUIUW9/?=
+ =?us-ascii?Q?fWK+Yu2kn5z3Tm1Mkkt8cxb1PQF4USppLLSF+xQ7yKumTdEVkXxGiwADFR1+?=
+ =?us-ascii?Q?Bp52xtJJq8HikIp/t9W631ORdVXkoRMMQdDM9AlZuNXR16sfFto16QXxa7E0?=
+ =?us-ascii?Q?ZVj91Gj0bINqQ99aSlszi5HpUjAUrSrq6upSwV2uoSI91YKrq0WNgs3OtoF5?=
+ =?us-ascii?Q?QEvK+4tEe3gAag8Se0Hl1JoTjvGIPQTzlfYCZFymRhRbBGmFxYjJm+Eht6wH?=
+ =?us-ascii?Q?zrxOSEzJcHBLj9TXhfUKcPyUVyuDcIdAjuWmbkP8W/E8M1K+21YZ7TAG807y?=
+ =?us-ascii?Q?9ixcq3ezZFu0Du+Z51qMBlK9/nye1zW9/1Ufs/gkH6T/GCvLXfvrjSOmgdhQ?=
+ =?us-ascii?Q?lCAt8hSDKarH9KCpdGRjYRl3Vv8cnzAvJbj50vD/9ZVpN/3APfjQw0BLM4d2?=
+ =?us-ascii?Q?lEy/NTBsJRoFbONjBgfGdOqZ/bWk5tAiXkALYzgxCN6n9lQo7A/MnT6KJlcT?=
+ =?us-ascii?Q?fHO5lzLC4uB4ib7VpiRJriswuTDni6ASirJCMif7lb8IJtXWbqxdl6WkNNZC?=
+ =?us-ascii?Q?6IGoLWsM/Ruz97D8m1jePGuDraH4jasP9bxybTcn2Q6B0EVJ5EumeEeGLc0e?=
+ =?us-ascii?Q?eNvC0d7f+CHqEtQx9osSNs3mR3bqKkcC1F3if+B1kZX3kzKMBoUilqgHE//7?=
+ =?us-ascii?Q?CvsxKdM9m7QyxmgeywPt7d6D5DySS0xAcThV?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?kpyV04BhzWHPbPwIsQvq6lGJvJTH5ApU8f7JKpj8xvbHO9pMFIqe1Jp17MKp?=
- =?us-ascii?Q?FJBffjaYxezPyEhr0B9FfoerO3qBvrzjgqDU/763cfSwe+GznHvme7E6B/v4?=
- =?us-ascii?Q?uoscdbV7h3vXpOBwfhsnf/l3+0Lt82oWYmV2CACjRAYWM+bhLQu63+uEs8Tq?=
- =?us-ascii?Q?a0NYCEtY4WGHWgQ+lLicLsYwyjuJ/8GFm1T6HwUammZNsNG/8Fi/aX2B7M9T?=
- =?us-ascii?Q?1nfchXazizTOUmnsBD6TA9VI/Ader/U1ehEMijM+X7ejSXhybcUf3eNcvhq7?=
- =?us-ascii?Q?ZGkrwy4wIBA5V1T+kHf4gMjjW3pBsfvn1eAFLk7ZhlbPQFu22k2q9nSbEioa?=
- =?us-ascii?Q?nBex6atNYETDyeEtxWoWU9zsdRtsjxlMLW5bf+WPl2fcCcX56bpP6JDnwl9I?=
- =?us-ascii?Q?EJzEIFM7mp/j9vEOs1FARLNasFzHKFdoMvo7cpAiF/8LuBA3MDHvA7/lLr2q?=
- =?us-ascii?Q?iOuWa+c5gKUiOM+k2Bgu/6I/rlJA/8y5U5pYuvs0YdT0b/jUyX6hQVLxYdp8?=
- =?us-ascii?Q?pGnREUwFV+B8QPPwmG+OQF7mint90H8qzTNCmROkA/lO8TQXdanORkiq8vT/?=
- =?us-ascii?Q?d0zRm19DD2cF7aXvt6KAb2EzGNPlFViOAiyoWkw/+ftuYSOBCRt2bezShGG2?=
- =?us-ascii?Q?Ky7CKFI0tIvbKdcma9LbUK/kU4fGmK2zW6Ncui1C5RDHs4VaEjiir2smYy19?=
- =?us-ascii?Q?uQDH+UimMQ9G2o6JuDSXdGNNDuPII1pWUKQsHJJBnmcGFSV7GVpO5UTZhexc?=
- =?us-ascii?Q?o/IFmcirx2DUs9BUIj8hActAUGWWeSA/MYiaThI9c7V0QowxB9CkBMvEdQp9?=
- =?us-ascii?Q?7nogBMpqeRaH5QMz6qtKSwPq4W/fgbA2oIHco7x/ocUcFyXCN4KDoMz7uBuR?=
- =?us-ascii?Q?3hmWsdDzXOoI1RYqmeQSo69L2CjwYOQd9ofqGWrRnduJ74iTMkJWjybeBJLI?=
- =?us-ascii?Q?meKIeV+pQqm+nzDML4ITh9MRK4+sGal67HG/3sNxDOiDE+b6mJC9Puvhb2W5?=
- =?us-ascii?Q?6GxOXj3TNvwow3RW3mLsfv8IlxtpJALSE9sY2vxef8iVkcCcrd3VvNZK+Yul?=
- =?us-ascii?Q?MEmFz0GIOchd1qVCsVCsTLLDtKljntzMHnF5IE+XE7RtFSIdd6OWxi8bCcaZ?=
- =?us-ascii?Q?BP3G6nuqzNjPMKVqZJVQcBZlCeAyqwMMpQd+z+UtnGQAqF5V03jR+vIabtXw?=
- =?us-ascii?Q?yY6/tFB3XESJnvcVOTsfneIqalKhFejP07lmz8vv28eRtlEeZdiC/cGae7uD?=
- =?us-ascii?Q?ddc36yAg+FVLiVmAxz8g7dzNZmYJKVeIpCxkYK9yjEmG5nllEN77jt6DkRUu?=
- =?us-ascii?Q?Kl5v2erEp2YIWLmr1kQhoQJag5yH/U3Gmg412OqHFKSKw9QR9ln5BLQkMhDY?=
- =?us-ascii?Q?UCw9e2h5SEzKNi860abNXgDHtSy7uW4adPNkA9zFYN7jUAxCuBnc0ehI4Lqs?=
- =?us-ascii?Q?x2HGLKSHDH0dHTQiwQCGE5vJTWoiWtbWLM00Zq6Qq3kxKwz2cW2PCbwIdc3K?=
- =?us-ascii?Q?2VQ1qlOAU9cxJ92vkC2IgGGkVCi+QzjrkpbNgGc1vNWZm+7lIMZbV6kTYlFQ?=
- =?us-ascii?Q?SCMLIVC7BCQ0aeR7Yy5TcjSx43/45d+fq92MaLqWusEvutfU30HRcn+9dDv1?=
- =?us-ascii?Q?QA=3D=3D?=
+	=?us-ascii?Q?nsJMZbzYbx/VpE1yKmXfvg/4gxJHlfZZ5DsqCHzw62EppuVv83CdtsYHskL9?=
+ =?us-ascii?Q?JlPi27ZqeYPpKAvIPc0mhyjgll9WLyJXC8TOGoRK/hJKZWlWd8OIzUvWyHdV?=
+ =?us-ascii?Q?UoBv39t+hgEhmG1orSs7GohfegIbAwbDb+ROcyhhOoeuNaO3TiUW1S3POA//?=
+ =?us-ascii?Q?7Q2wdv36fWlzXg5blF6C1sL21wF9E6xfc1iLNne0DwLftjjsPjCo9derUQ2d?=
+ =?us-ascii?Q?PimYZ5IOGn7KBNkCJ/9Lhx08c0hnCZGRLiH6NYZgbdEqjF3MYfPwFn11e660?=
+ =?us-ascii?Q?K0przcwqz61LdEmUr2q9kcXR/sMm8i0UUpqGrtQ0C4o5/oTKC1VXXIlrsbRR?=
+ =?us-ascii?Q?iTJRDTPexm+1Rj6/c4Hrmpmt4N5i3Z6YIN6Ovtk4MLvlhM4K2OSSHruMbLGx?=
+ =?us-ascii?Q?dMEfix2oaAROuz2wip68dmOwruS67sy/+rKyUExzx5BsK4gKOGC35/0+O8Us?=
+ =?us-ascii?Q?1yOgpKXHLzWA/HXDd3o9P1r75FQ5PMqQy4YFiM6Su21z6DVafx5Dp/weR411?=
+ =?us-ascii?Q?lZmxb/GFop1Z+n8rdQc/nPeTXOoCnwCM+VmUMytuUpmv0tEcWbCn/+88S1a2?=
+ =?us-ascii?Q?NEKfBkLlUUCIbeRJE9wef9MXtWEdRIU38iQohI5Eyy/p/e4Hzt97saE3PQik?=
+ =?us-ascii?Q?ZXXGT7tj/vm1RuYKKKO0C7xUYJPWnlwNF7ceK0+s8HXqbqo/G9XNlFEF4c4G?=
+ =?us-ascii?Q?Ed6F049XtFlGGVLemP92CNqHKFOr5X9ma75wKz/30SA5ZtAfS9UV4U9N/HHD?=
+ =?us-ascii?Q?eTIQaOQt3aQvZo3e/gdxlO7BsmoF0YmUq2PqKq+/niw2luPtVdq/z9UAVqKl?=
+ =?us-ascii?Q?4gmZaCRt9HXM13L5Uqtg0ZvheMMOBDYj+lr+211btyOVEOwr3QsNmGjynSVr?=
+ =?us-ascii?Q?ivOD7jDRlOsYgFAjgf3Nuj+uVOGNWeGCN5hA/HN5JLT0JMfcdGJ1K+ZY6R6T?=
+ =?us-ascii?Q?a+lXreMsS9HYZV5RSEnxQVEIhPf2nWfqSrBGAPDf6jS2XLrviwhK2VOh2yl6?=
+ =?us-ascii?Q?KdtmHYy2gVfyW9XiKSFHMI8FZXI71Lj7+pm/fy5mUgmeMagGD1WmU3WrGaAt?=
+ =?us-ascii?Q?UIccwJmvWI8rVYA64zU3gIuhjbLpmx4j4jUFafBvqLs+CD/IkpFgLySjhM9o?=
+ =?us-ascii?Q?ftZNeyb6NxicFoLdDfqKskbMIMkwP5YmYuQccxnefnEs86RfUnJXNFaslFJc?=
+ =?us-ascii?Q?InQloHjNNHDFL6toYrDZmiRgyWBO47UNwWGHZO9wThfxojGPS/Q7OAqVpTTe?=
+ =?us-ascii?Q?GOgjI8BLsqzrD/lYEhlrEq7rv7qUE6FSi4bMVYQmPCB112q5an0A11NWh4SQ?=
+ =?us-ascii?Q?gCiyrIXnRQr4VHNigdVDKAYHYPTMvb+wnntS3/iChmVXpuN31HD7jaCJQm0e?=
+ =?us-ascii?Q?1QLf1MJDtTfeIJh9akt/OnvKrQ5+hYohceWvOM2H1RqDYvF50dktgfOBH/x8?=
+ =?us-ascii?Q?GnSSgrFYIqTJxGpaJRTGiIIEgTqOwUCWUYBC0T3aMHXB1qz9Yq6IyZuRsQXa?=
+ =?us-ascii?Q?Kkzg8vBH2Bz5krmRmNEnuZB5Ro7k+TQ/lP7bTrvleaVdYVbHs81jkLnTwYcm?=
+ =?us-ascii?Q?qbwyH8vB95VBl/FKczlw/L9A6l3q0jzpmi+skA9fmJVZZTj9vfnTogFwGPp/?=
+ =?us-ascii?Q?mw=3D=3D?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2f9c866-95da-4eca-77db-08de203abbe9
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac2bd4f6-69e6-4e26-6ba2-08de203ac62c
 X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 09:22:56.8642
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 09:23:14.0753
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: olW9OIIFP5dI2JzkHYuaoHzeuzdpkK/HK/fShP3TCPwjc1vJmDhYwb9xjYAwhGn30ApVyeoeKTW/RGpsczEV6g==
+X-MS-Exchange-CrossTenant-UserPrincipalName: mP/Qq18P9px18zpJPDYK3vi1EMtd/iQ4dQmHxBxH2tf4XcjfmCqLFg8OHMXl0x6nvuf6OoRZPNRx0L04a6YEjQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10468
 
-Currently, the bindings of this multi-lane SerDes are such that
-consumers specify the lane index in the PHY cell, and the lane itself is
-not described in the device tree.
+The 28G Lynx SerDes is instantiated 3 times in the NXP LX2160A SoC and
+twice in the NXP LX2162A. All these instances share the same register
+map, but the number of lanes and the protocols supported by each lane
+differs in a way that isn't detectable by the programming model.
 
-It is desirable to describe individual Lynx 28G SerDes lanes in the
-device tree, in order to be able to customize electrical properties such
-as those in Documentation/devicetree/bindings/phy/transmit-amplitude.yaml
-(or others).
+Going by the generic "fsl,lynx-28g" compatible string and expecting all
+SerDes instantiations to use it was a mistake that needs to be fixed.
 
-If each lane may have an OF node, it appears natural for consumers to
-have their "phys" phandle point to that OF node.
+The two major options considered are
+(a) encode the SoC and the SerDes instance in the compatible string,
+    everything else is the responsibility of the driver to derive based
+    on this sufficient information
+(b) add sufficient device tree properties to describe the per-lane
+    differences, as well as the different lane count
 
-The problem is that transitioning between one format and another is a
-breaking change. The bindings of the 28G Lynx SerDes can themselves be
-extended in a backward-compatible way, but the consumers cannot be
-modified without breaking them.
+Another important consideration is that any decision made here should
+be consistent with the decisions taken for the yet-to-be-introduced
+10G Lynx SerDes (older generation for older SoCs), because of how
+similar they are.
 
-Namely, if we have:
+I've seen option (b) at play in this unmerged patch set for the 10G Lynx
+here, and I didn't like it:
+https://lore.kernel.org/linux-phy/20230413160607.4128315-3-sean.anderson@seco.com/
 
-&mac {
-	phys = <&serdes1 0>;
-};
+This is because there, we have a higher degree of variability in the
+PCCR register values that need to be written per protocol. This makes
+that approach more drawn-out and more prone to errors, compared to (a)
+which is more succinct and obviously correct.
 
-we cannot update the device tree to:
+So I've chosen option (a) through elimination, and this also reflects
+how the SoC reference manual provides different tables with protocol
+combinations for each SerDes. NXP clearly documents these as not
+identical, and refers to them as such (SerDes 1, 2, etc).
 
-&mac {
-	phys = <&serdes1_lane_0>;
-};
+The per-SoC compatible string is prepended to the "fsl,lynx-28g" generic
+compatible, which is left there for compatibility with old kernels. An
+exception would be LX2160A SerDes #3, which at the time of writing is
+not described in fsl-lx2160a.dtsi, and is a non-networking SerDes, so
+the existing Linux driver is useless for it. So there is no practical
+reason to put the "fsl,lynx-28g" fallback for "fsl,lx2160a-serdes3".
 
-because old kernels cannot resolve this phandle to a valid PHY.
-
-The proposal here is to keep tolerating existing device trees, which are
-not supposed to be changed, but modify lynx_28g_xlate() to also resolve
-the new format with #phy-cells = <0> in the lanes.
-
-This way we support 3 modes:
-- Legacy device trees, no OF nodes for lanes
-- New device trees, OF nodes for lanes and "phys" phandle points towards
-  them
-- Hybrid device trees, OF nodes for lanes (to describe electrical
-  parameters), but "phys" phandle points towards the SerDes top-level
-  provider
+The specific compatible strings give us the opportunity to express more
+constraints in the schema that we weren't able to express before:
+- We allow #phy-cells in the top-level SerDes node only for
+  compatibility with old kernels that don't know how to translate
+  "phys = <&serdes_1_lane_a>" to a PHY. We don't need that feature for
+  the not-yet-introduced LX2160A SerDes #3, so make the presence of
+  #phy-cells at the top level be dependent on the presence of the
+  "fsl,lynx-28g" fallback compatible.
+- The modernization of the compatible string should come together with
+  per-lane OF nodes.
+- LX2162A SerDes 1 has fewer lanes than the others, and trying to use
+  lanes 0-3 would be a mistake that could be caught by the schema.
 
 Cc: Rob Herring <robh@kernel.org>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
 Cc: Conor Dooley <conor+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
-Cc: stable@vger.kernel.org
 Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 ---
 v3->v4:
-- patch is new, broken out from previous "[PATCH v3 phy 13/17] phy:
-  lynx-28g: probe on per-SoC and per-instance compatible strings" to
-  deal only with lane OF nodes, in a backportable way
-- contains a new idea to support phandles either to the SerDes or to
-  lane nodes, via a single xlate function that redirects to
-  of_phy_simple_xlate() if the phandle is to the lane, or is implemented
-  as before if the phandle is to the SerDes.
-- Compared to v3 where we decided based on the compatible string whether
-  to use lynx_28g_xlate() which expects the SerDes as PHY provider, or
-  of_phy_simple_xlate() which expects the lanes as PHY provider, here we
-  completely decouple those two concepts and patch lynx_28g_xlate() to
-  support both cases.
+- OF nodes per lane broken out as a separate "[PATCH v4 phy 01/16]
+  dt-bindings: phy: lynx-28g: permit lane OF PHY providers"
+- rewritten commit message
+- s|"^phy@[0-9a-f]+$"|"^phy@[0-7]$"|g in patternProperties
+- define "#address-cells" and "#size-cells" as part of common
+  properties, only leave the part which marks them required in the allOf
+  constraints area
+v2->v3:
+- re-add "fsl,lynx-28g" as fallback compatible, and #phy-cells = <1> in
+  top-level "serdes" node
+- drop useless description texts
+- fix text formatting
+- schema is more lax to allow overlaying old and new required properties
+v1->v2:
+- drop the usage of "fsl,lynx-28g" as a fallback compatible
+- mark "fsl,lynx-28g" as deprecated
+- implement Josua's request for per-lane OF nodes for the new compatible
+  strings
 
- drivers/phy/freescale/phy-fsl-lynx-28g.c | 49 +++++++++++++++++++++---
- 1 file changed, 44 insertions(+), 5 deletions(-)
+ .../devicetree/bindings/phy/fsl,lynx-28g.yaml | 86 +++++++++++++++++--
+ 1 file changed, 79 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/phy/freescale/phy-fsl-lynx-28g.c b/drivers/phy/freescale/phy-fsl-lynx-28g.c
-index 901240bbcade..61a992ff274f 100644
---- a/drivers/phy/freescale/phy-fsl-lynx-28g.c
-+++ b/drivers/phy/freescale/phy-fsl-lynx-28g.c
-@@ -571,7 +571,14 @@ static struct phy *lynx_28g_xlate(struct device *dev,
- 				  const struct of_phandle_args *args)
- {
- 	struct lynx_28g_priv *priv = dev_get_drvdata(dev);
--	int idx = args->args[0];
-+	int idx;
-+
-+	if (args->args_count == 0)
-+		return of_phy_simple_xlate(dev, args);
-+	else if (args->args_count != 1)
-+		return ERR_PTR(-ENODEV);
-+
-+	idx = args->args[0];
+diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+index e96229c2f8fb..114dbb32fe7f 100644
+--- a/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
++++ b/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+@@ -9,17 +9,41 @@ title: Freescale Lynx 28G SerDes PHY
+ maintainers:
+   - Ioana Ciornei <ioana.ciornei@nxp.com>
  
- 	if (WARN_ON(idx >= LYNX_28G_NUM_LANE))
- 		return ERR_PTR(-EINVAL);
-@@ -605,6 +612,7 @@ static int lynx_28g_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct phy_provider *provider;
- 	struct lynx_28g_priv *priv;
-+	struct device_node *dn;
- 	int err;
++description:
++  The Lynx 28G is a multi-lane, multi-protocol SerDes (PCIe, SATA, Ethernet)
++  present in multiple instances on NXP LX2160A and LX2162A SoCs. All instances
++  share a common register map and programming model, however they differ in
++  supported protocols per lane in a way that is not detectable by said
++  programming model without prior knowledge. The distinction is made through
++  the compatible string.
++
+ properties:
+   compatible:
+-    enum:
+-      - fsl,lynx-28g
++    oneOf:
++      - const: fsl,lynx-28g
++        deprecated: true
++        description:
++          Legacy compatibility string for Lynx 28G SerDes. Any assumption
++          regarding whether a certain lane supports a certain protocol may
++          be incorrect. Deprecated except when used as a fallback. Use
++          device-specific strings instead.
++      - items:
++          - const: fsl,lx2160a-serdes1
++          - const: fsl,lynx-28g
++      - items:
++          - const: fsl,lx2160a-serdes2
++          - const: fsl,lynx-28g
++      - items:
++          - const: fsl,lx2162a-serdes1
++          - const: fsl,lynx-28g
++      - items:
++          - const: fsl,lx2162a-serdes2
++          - const: fsl,lynx-28g
++      - const: fsl,lx2160a-serdes3
  
- 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-@@ -618,10 +626,41 @@ static int lynx_28g_probe(struct platform_device *pdev)
+   reg:
+     maxItems: 1
  
- 	lynx_28g_pll_read_configuration(priv);
+-  "#phy-cells":
+-    const: 1
+-
+   "#address-cells":
+     const: 1
  
--	for (int i = 0; i < LYNX_28G_NUM_LANE; i++) {
--		err = lynx_28g_probe_lane(priv, i, NULL);
--		if (err)
--			return err;
-+	dn = dev_of_node(dev);
-+	if (of_get_child_count(dn)) {
-+		struct device_node *child;
+@@ -49,7 +73,55 @@ patternProperties:
+ required:
+   - compatible
+   - reg
+-  - "#phy-cells"
 +
-+		for_each_available_child_of_node(dn, child) {
-+			u32 reg;
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,lynx-28g
++    then:
++      # Legacy case: parent is the PHY provider, cell encodes lane index
++      properties:
++        "#phy-cells":
++          const: 1
++      required:
++        - "#phy-cells"
 +
-+			/* PHY subnode name must be 'phy'. */
-+			if (!(of_node_name_eq(child, "phy")))
-+				continue;
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - fsl,lx2160a-serdes1
++              - fsl,lx2160a-serdes2
++              - fsl,lx2160a-serdes3
++              - fsl,lx2162a-serdes1
++              - fsl,lx2162a-serdes2
++    then:
++      # Modern binding: lanes must have their own nodes
++      required:
++        - "#address-cells"
++        - "#size-cells"
 +
-+			if (of_property_read_u32(child, "reg", &reg)) {
-+				dev_err(dev, "No \"reg\" property for %pOF\n", child);
-+				of_node_put(child);
-+				return -EINVAL;
-+			}
-+
-+			if (reg >= LYNX_28G_NUM_LANE) {
-+				dev_err(dev, "\"reg\" property out of range for %pOF\n", child);
-+				of_node_put(child);
-+				return -EINVAL;
-+			}
-+
-+			err = lynx_28g_probe_lane(priv, reg, child);
-+			if (err) {
-+				of_node_put(child);
-+				return err;
-+			}
-+		}
-+	} else {
-+		for (int i = 0; i < LYNX_28G_NUM_LANE; i++) {
-+			err = lynx_28g_probe_lane(priv, i, NULL);
-+			if (err)
-+				return err;
-+		}
- 	}
++  # LX2162A SerDes 1 has fewer lanes than the others
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,lx2162a-serdes1
++    then:
++      patternProperties:
++        "^phy@[0-7]$":
++          properties:
++            reg:
++              enum: [4, 5, 6, 7]
++    else:
++      patternProperties:
++        "^phy@[0-7]$":
++          properties:
++            reg:
++              enum: [0, 1, 2, 3, 4, 5, 6, 7]
  
- 	dev_set_drvdata(dev, priv);
+ additionalProperties: false
+ 
+@@ -60,7 +132,7 @@ examples:
+       #size-cells = <2>;
+ 
+       serdes@1ea0000 {
+-        compatible = "fsl,lynx-28g";
++        compatible = "fsl,lx2160a-serdes1", "fsl,lynx-28g";
+         reg = <0x0 0x1ea0000 0x0 0x1e30>;
+         #address-cells = <1>;
+         #size-cells = <0>;
 -- 
 2.34.1
 
