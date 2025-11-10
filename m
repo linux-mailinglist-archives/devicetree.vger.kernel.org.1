@@ -1,183 +1,115 @@
-Return-Path: <devicetree+bounces-236783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24995C4752E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:48:21 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id B91EDC4758B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:51:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DBE004E8709
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:48:19 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6341D349DD3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1C5313E0D;
-	Mon, 10 Nov 2025 14:48:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mrKtTsa/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 519C9314A67;
+	Mon, 10 Nov 2025 14:50:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B3B31353D
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862122D5A14
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:50:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762786094; cv=none; b=epHKpPzQtiCN0zc1HUbclGOwCsW2ewgmlP8czxDw8aiwd64qKDXbIylqQgJjPmApnubyYWYgkYtCtvDruoTGgvWBGsiFY0eMejQsZWE4H4pTfsEBir9fiGyQDTfdkU+TOTiVyuhuPxexrtoK4uoxaWjqm+aw7o8vzOaojp0FV+0=
+	t=1762786256; cv=none; b=dJxf+lb7nNqswXL8FOf+EOpvCgxL7mIAj77cHGtOLeb65viPKybZT2R0P0SH58saLEOijBz3zqpHC9cqnD2p76o0ASaHNK7yFKIT89IMjEEnX9Dn4P8Q0ojeoBPtE2ND5t8TiHPqPADW7BWtLp7p2i7PB2HH4E4ogiS+Mvmy8wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762786094; c=relaxed/simple;
-	bh=LPHuH34GPzz+FS33GWGiucjUVrgKTliQiQDa8mDrPto=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=H+kYXUoH6AxYnaxDoTcn9McFBf/kruJi/RiWwzNFTsbcBV6qFfrPHYtHTeeT9vXHruB+dz9tWx5/IN6O/zL8OfJWA9BQbj++RAUuFJ+/0Tu1nCQ1gf+aYAUQ5GtZfn69gh9y7XTJY2qteqhhvzgWla0mxWM+RfqtZse3SyU6qSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mrKtTsa/; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1762786256; c=relaxed/simple;
+	bh=IMhWei8UUtQyD2IeaxfNo1cout9WByPftYAKndZJ3d8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YbPE5CfDMRS7RFfqtPXl9LeBHmqKfPy/0uQeIbczIRd16j6K2ZG7S0K8G6N+zfRXGsJT5bzsE9kLQXI5CspCocUKXp8doDUAnAoEvYSuVYtppk9k0hvNiCWta3n+fhhh6rirMJy7JQMffVafmkI1CyNnltfuDCriFMCO3tPenxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-477563e28a3so21251045e9.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 06:48:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762786091; x=1763390891; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LPHuH34GPzz+FS33GWGiucjUVrgKTliQiQDa8mDrPto=;
-        b=mrKtTsa/Waj1IsC00cI2/hZIW3lo0cdVW7+7mKXNZtIH+0sINwOiud66lJSMlFl8Lu
-         NSegLjc9zyP/bcP4NLVFR+4+B28aocJbymeEVpNYIbBcsutZQCOQepec8dkpVYrvGMMg
-         vP+gWyegzSO6Zm46s12EwF/AS1aPcASDEhAbjNhtXu+VnvZIkkwucFIKSr53XwvFrGgv
-         NB4YEX7XTSmGkCo646UzXMp1x9zuSfLEZxGD6WKGX9nyKeuh5fRJodobCLquBl+JTgPp
-         wwdufxIdXyE5kBIOol8fdoGRNht5nrMPZLv/YUhJ44ekIqC0gx5/7SsFRRcZmrROyzsE
-         0Hiw==
+Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-54bc08ef45dso1810883e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 06:50:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762786091; x=1763390891;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LPHuH34GPzz+FS33GWGiucjUVrgKTliQiQDa8mDrPto=;
-        b=iv2wMrrenjOwyoZvgFWKChKJSc/qp+1GEzOR5Ybw9GayyyY0Syz/kOHVImf6iGRHz4
-         qzBvl4tqKLAguV16/m6InGlG+azRvgS/jD5uTlHH/fJ63W++Ncyc668JmWn2pklSQL+I
-         SpBtxXCFJbgEiQgMFInrkPwsP2nL/IRis4RQoRLsrHfhjQtB9PmPh6jrV4mu4+HV23yQ
-         5s1r0A8oBNNllL4+6Ar45veA2u2wEzNxDUn+JWZaEkfrC2fLMe84s7FdjpZEtbHyb+n7
-         7730FkD/DAxeHO5lP45i4D0pwjkM805JxQwyZ0ty6beFpxfODlVBPrIgCPLHxu7lzNzL
-         Q5jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXpd7ay2lZg+LB98gfP9LmClbvMakYHcuw2RPZ3E1erhzSpVKXAQHuxDjhTFYuNltgyrNTQPpJX64dc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4BfxSEmRO0PNhugoctzhs0ZDfZyxBKKWPt6KsihMoXcFhOsQH
-	sEGCwa5ZXd/BZk9gDPhNiLMJykjkE1u9PDHTmho4ZFYOpioJFjL80g1h
-X-Gm-Gg: ASbGnctMwebqApkdNI7UoctAGNOPmkUt/MdE+4fGmIKCLHFjDhvuGIbnbJP1vsuK3xd
-	notDG5C+oiRet5B0RET1yYT+PE1QH8olc78I7zmN8EQXK1CLbXsJ1p7lchrPnj1GNkVRsUqUw1g
-	lMI1R1mzjez91kPs2gwuFCpPRaFXHUXpDYtME8r1CmOTRNcxdFKGge4BavGWDBMxpCBljM0IKTu
-	8l/Vy8gAbrOE7r9LRJOyxtqoMJaM4ZM/JqxbLzyG3+5wzfsD0GYG4OmIYmrLbLEy/YQXsRqEr5P
-	FMpaJmphD071VDmsm+isYzGLQ5vS97wJwaK1jpf3S6IhSMpaIrmZB9Q70Cj1KNR86DiBp1Shy0J
-	s3yA3fXH+hfFNUhH/8V9kBH/hAyqHAJf2bWzY4h4yftZ7sRYL0d2zCAzqodLyTuA0+lU1r6g8Bh
-	HZOvC/CLDv2ZmPjFq8zWI=
-X-Google-Smtp-Source: AGHT+IFyyPGi2h2HdORU5Y7qZAm0mzvGdm657Ujj5pRLIdfkz1ikPx4AlWnK/vjsN3l+QNuYFG0dhA==
-X-Received: by 2002:a05:600c:a30d:b0:471:ea1:a460 with SMTP id 5b1f17b1804b1-4776dcbe68cmr86535255e9.11.1762786090588;
-        Mon, 10 Nov 2025 06:48:10 -0800 (PST)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b2e052f32sm15817388f8f.17.2025.11.10.06.48.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Nov 2025 06:48:10 -0800 (PST)
-Message-ID: <5e0ea52e6a77a1d6af861ba5aaeeea5c3d514705.camel@gmail.com>
-Subject: Re: [PATCH v1 0/3] iio: adc: Add AD4134 minimum I/O support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- 	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Cc: jic23@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
- andy@kernel.org, 	Michael.Hennerich@analog.com, robh@kernel.org,
- krzk+dt@kernel.org, 	conor+dt@kernel.org, corbet@lwn.net,
- cosmin.tanislav@analog.com, 	marcelo.schmitt1@gmail.com
-Date: Mon, 10 Nov 2025 14:48:46 +0000
-In-Reply-To: <cover.1762777931.git.marcelo.schmitt@analog.com>
-References: <cover.1762777931.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 
+        d=1e100.net; s=20230601; t=1762786253; x=1763391053;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r6W+AZvJNrL0mTuGS4dpQpITz95eoR4mgvv8GabBfNw=;
+        b=FANHFC2F0uDWG0bRyfz0AyxSbZBNfxIqimljxGBSaw7QL3OXIOWJ2FBCo5VumYxroM
+         ma9Ft/WV2XYhbauVSLR3qMAGaKcDI2SgfcDKS7E94/KkQL8W8I1Tes2czogEUBZNDR1k
+         1lIo+3ErV1WazB4BBhi4O69tynBOn0Q2ff7oBrD8e0HBf0vUOhHOYTVm81JOKalM14xf
+         6ZkNMRRO+KKeBpz3cRHuApz6gj/VEndaOjVhr+SlGHOlEAlMJvAExvmEXkVVXl9m24tx
+         XzjE39AkPWKAe8bLNNWcGL1I1Ev4GG1346LFJ0yidwITSHuwROnUorCBNv5GC9YXn30D
+         Jh/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWtWDaa0dDFIR3VVLfRzkjsh/6rrEe+vTkV9vOxtI7QfTFLUa+NJAUZGrJgq8p47uvkbtCqp6HsVdch@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU2bVvNsuTW01CJ0mBPghDNpiNfh/+EWeQ+sCR5Dbkix4kB68E
+	WaN33l/uFrPDsl13xAhDtwXTm6vEcJl0JmhBmMTDZOIsLLyn04QcJB3vspSjFPl/
+X-Gm-Gg: ASbGncv9B339myjDziqBCDHHF+bsEJJUUppudis3Sa/ud6y50Ou0FVdojnZ2Bxqn6qj
+	kyLoHU4jPKAmN9EIXVXsM8+4cq8ptps9iVxLsqXDvDeeF+1AJhKLGfvatilJmTbjD3UQo+he2SH
+	SHtdNFeOEEPvQ9dkwNpRATYbzXiPU4U+w9klgbe6DBlHwlrczWeDucAkYLdvpKGAMbiB1zXMFe5
+	g+pfX3g3UiyfJuAZQbK8Ma6tfTHo76hl2xUuPPZ8hKk02oMQiBnVa6stBSxidwVf1OwkCP0iW5l
+	A1OrWvqlAFCUBPdZU1EPc5OmWtIwDLri4BdqBAGplb/rIdvu/e8a2jOE8X05qgW6M/xAvTZvDnc
+	RprbXMERS1W41uiDAwKz9ef00Pl0tme7uJh9OeDgTIUYGDYyGUvmcXpX8eVvi8+cXxbd8cRaJlc
+	76LJnGcQ/01zGwepQDd8MTefcH5iBnehIXsgR1thEz5FyUpzUO
+X-Google-Smtp-Source: AGHT+IFVcSXHc033OHSkDLGMQsBKws9WQpVo4ifwoecAaKCl2eYLn/Iba8SDe4ex4eJuMdaxh/VuBg==
+X-Received: by 2002:a05:6122:2024:b0:557:98ab:8a27 with SMTP id 71dfb90a1353d-559b3207524mr2802178e0c.3.1762786253283;
+        Mon, 10 Nov 2025 06:50:53 -0800 (PST)
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-559956a5d68sm7238504e0c.9.2025.11.10.06.50.51
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 06:50:51 -0800 (PST)
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5ddaff87c82so2426930137.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 06:50:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVwDtImxe4CyUnxLBHOmvUJkCX9u7XJPMjeSvd4qYYKz6ZFalsd0ZrPtyl2CzG6DzfP+LjKSW1hOYi7@vger.kernel.org
+X-Received: by 2002:a05:6102:ccb:b0:5d5:f79b:e93b with SMTP id
+ ada2fe7eead31-5ddc4781079mr3199460137.32.1762786251015; Mon, 10 Nov 2025
+ 06:50:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251028175458.1037397-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251028175458.1037397-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251028175458.1037397-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 10 Nov 2025 15:50:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVyMZe_6tCBaWJrHm5oEnFmYQtYjeEw8-4T3KqZOSwdBA@mail.gmail.com>
+X-Gm-Features: AWmQ_bkDbMYfwCmJo4-5lhRxl2GtT1PU_uiGdBZlvXcWTikgK8Rjt2psKny3OQw
+Message-ID: <CAMuHMdVyMZe_6tCBaWJrHm5oEnFmYQtYjeEw8-4T3KqZOSwdBA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] arm64: dts: renesas: r9a09g077: Add ETHSS node
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 2025-11-10 at 09:44 -0300, Marcelo Schmitt wrote:
-> This patch series adds basic support for ad4134. AD4134 is a very flexibl=
-e
-> device that can be configured in many different ways. This series aims to
-> support the simplest way of interfacing with AD4134 which is called minim=
-um I/O
-> mode in data sheet. This is essentially usual SPI with the addition of an=
- ODR
-> (Output Data Rate) GPIO which functions as conversion start signal in min=
-imum
-> I/O mode. The CS pin may be connected to a host controller CS pin or grou=
-nded.
->=20
-> This set provides just one feature:
-> - Single-shot ADC sample read.
->=20
-> [PATCH 1] Device tree documentation for AD4134.
-> [PATCH 2] IIO Linux driver for AD4134.
-> [PATCH 3] Initial IIO documentation.
->=20
-> There is a driver by Cosmin on ADI Linux tree that supports AD4134 in wir=
-ing
-> configurations suited for high speed data transfers. Even though the mini=
-mum I/O
-> support was initialy based on that high speed transfer driver, the result=
- ended
-> up becoming entirely different. Also, because the different wiring
-> configurations are likely going to use different resources and software
-> interfaces, the code for AD4134 support was split into ad4134-spi.c,
-> ad4134-common.h, and ad4134-common.c.
+On Tue, 28 Oct 2025 at 18:55, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add an Ethernet Switch Subsystem (ETHSS) device node to the RZ/T2H
+> (R9A09G077) SoC. The ETHSS IP block is responsible for handling MII
+> pass-through or conversion to RMII/RGMII.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I'm familiar with the odd way this part is implemented in ADI tree :). Ques=
-tion is, are
-you intending to support the high speed bits? I guess so, otherwise having =
-the above split
-would not make much sense.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.19.
 
-- Nuno S=C3=A1
+Gr{oetje,eeting}s,
 
->=20
-> With best regards,
-> Marcelo
->=20
-> Marcelo Schmitt (3):
-> =C2=A0 dt-bindings: iio: adc: Add AD4134
-> =C2=A0 iio: adc: Initial support for AD4134
-> =C2=A0 Docs: iio: Add AD4134
->=20
-> =C2=A0.../bindings/iio/adc/adi,ad4134.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 209 +++++++++++++
-> =C2=A0Documentation/iio/ad4134.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 58 =
-++++
-> =C2=A0Documentation/iio/index.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 1 +
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0 9 +
-> =C2=A0drivers/iio/adc/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 15 +
-> =C2=A0drivers/iio/adc/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> =C2=A0drivers/iio/adc/ad4134-common.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 200 ++++++++++++
-> =C2=A0drivers/iio/adc/ad4134-common.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 132 ++++++++
-> =C2=A0drivers/iio/adc/ad4134-spi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 287 +++++=
-+++++++++++++
-> =C2=A09 files changed, 913 insertions(+)
-> =C2=A0create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad=
-4134.yaml
-> =C2=A0create mode 100644 Documentation/iio/ad4134.rst
-> =C2=A0create mode 100644 drivers/iio/adc/ad4134-common.c
-> =C2=A0create mode 100644 drivers/iio/adc/ad4134-common.h
-> =C2=A0create mode 100644 drivers/iio/adc/ad4134-spi.c
->=20
->=20
-> base-commit: c5411c8b9ed1caf53604bb1a5be3f487988efc98
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
