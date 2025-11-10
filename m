@@ -1,214 +1,213 @@
-Return-Path: <devicetree+bounces-236727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBCF0C46AFC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:46:32 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C89C46B26
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:50:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D97843B8A90
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:46:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2BFFD4E532C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:50:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E8930F819;
-	Mon, 10 Nov 2025 12:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="zadGmSc1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7729B30E849;
+	Mon, 10 Nov 2025 12:49:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367D630E838;
-	Mon, 10 Nov 2025 12:46:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B90D30C635
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:49:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762778777; cv=none; b=oId22TE8mxB/c2zsn8YRFu129/qeGyJlbzB/yHwWlhOXXasRa5CpXGviYg4EJKZNFNoAPP5g90yNFWgC37EXw1ZDn+1RuXC/i3KEcnw+Dr00GPAD4rI/iCAERSuKpUaQBVrAL/gAFH/VLY81/gsvAHWbcR4pfn3b/AYjHInv0oU=
+	t=1762778992; cv=none; b=K4UL33HM0rNj28786uxxyC3bbj3r866kqhHL/knfpDWg011MK/KMhcm7PyGRKC8pZ1+SkvfIYDrbnVu03w8gDjeF3PxF3iDBxKFbU0WDJ0I4pb5Fe5QJEWonIFrslZvziY/GMqtwR8GMd2MluM4wKCiRFJQoPVZ8tFENKkedA0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762778777; c=relaxed/simple;
-	bh=QrXgwkFS/QXGnT2RRbiuD6Jfv5jebHz15vjXJ4DILEg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p1/tnutWXngB0z438SOeMWMVXsGDDIK9n7XePksVA3ydkLc0oe3UoJilxSBQVRZBSMvefRrlO2KtM1pC1OtGn55psKUnuarsog6gSaJWm8YMYgmA+RnebSSd20cbOe7TwpstXmr/iRt4C2ZnpaEyUFwPcTC4keME0QCMWReXRDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=zadGmSc1; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA8cO8h541765;
-	Mon, 10 Nov 2025 07:46:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=QChb4
-	CWID+pQmW2BuYFVZhuMmp02Fb8hO9z5It3ks64=; b=zadGmSc1TGMBL1nCKpPHi
-	GWGJJCT7OiKSV589TEkr5FtKOKwJ2cH6WL7h8Ku+tugFXD+GKyEDy/PlNTeONAH0
-	tkLoAq+RkFFnboJzwqg25FNW91H02PHb2e1q5HvgvzQtiZLOV8p/GqL3ukt5PzUC
-	pRezVwCvBdDe1QVCWC7/mzG+5bH8+ZIfLGBcxGyE8/hsuBCgJ0XOmxJjjR7bTapB
-	WZTgfXINxtjmSG9dAf1VygFMuv9UfE/0zshLO4Qz+LqtWZELaYlqaLW8tbtVSEFu
-	7yEpTFjeNDChfbeONG1dWtZT2e9TNHxYcTwCguvYqF0zSsXKbZFlIRq7G6Kl//Jl
-	g==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4abcqf10gn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Nov 2025 07:46:11 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5AACkAUF064034
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 10 Nov 2025 07:46:10 -0500
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 10 Nov 2025 07:46:10 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 10 Nov 2025 07:46:09 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 10 Nov 2025 07:46:09 -0500
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AACjtQN000607;
-	Mon, 10 Nov 2025 07:45:58 -0500
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <nuno.sa@analog.com>, <dlechner@baylibre.com>,
-        <andy@kernel.org>, <Michael.Hennerich@analog.com>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <cosmin.tanislav@analog.com>, <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v1 3/3] Docs: iio: Add AD4134
-Date: Mon, 10 Nov 2025 09:45:55 -0300
-Message-ID: <bbb702b6e2cad4bf79b1490c4280ce998b46827b.1762777931.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1762777931.git.marcelo.schmitt@analog.com>
-References: <cover.1762777931.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1762778992; c=relaxed/simple;
+	bh=cAw6KDVicFMiZpuDduunfg3+w/yg4gN+HRNZWYDOi/o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IcKEl9jwazG955YDJIgpV1tUFI8fhQ50/v4xHFvejl+SkHEx6PRCfWWZ6b4JEC5fjNcBilJnTsYhv+iKMGxtx34A0Pw8ZtxvD/1TQuyc4VIcs0pqb1/MtuDM2wEDr8u8gP+SzLaTVbpwtQU3nqIl9lpFLf85hb1dEUjLTJwUstM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5dd6fbe5091so1097029137.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:49:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762778988; x=1763383788;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fh17CiieclZAsVeAhUA/WaKqsZ8PVmhh++ya3iPI2Ik=;
+        b=A/8N1O8BjOY8oOcfgLRD2FF66VVxwMcnitrUR6ajcuRqkR3y0d3G0lX5bzul8L4z6S
+         jndXwJwi2Mt6A0rABr3D/fjO2NucX56X5PUfTvkISP6l+7sFUbI49icF75bLq6IiLknE
+         H30i8B0KYtuA5IZD+Gr+e+4Ax4cB/ai5hpDmO3BoeLDIB6bv2Tl19L8p1HPK0OHlLN/u
+         iTqqHwuZ+4CsT5oF7iZ3ADLfw+tS1JuIO6YXk5+I2Alude/Qz1AsEFloLWzWogaY8N3E
+         FMFNA49hPDA/ufaPrhf2Gu/2NHQKXGWfwRlkZlfxlcqZ+H/V2s/89aHWZMxHqrHKZ//D
+         dXVg==
+X-Forwarded-Encrypted: i=1; AJvYcCWhGRh/1qyWrKcZ1hkb6jHIhsQFREngYd2Wq1cyzJWwlNSOd99Eut1YojO0J8H6RUd+Sk62bAC1Hh01@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3W2SVnE9NZSxKYElDM1LvACX9SLYMtRVKPKk0DHZ5rATd0i87
+	gx7zI6QZpYpij0uBuPjIkyv2eZfwcembgYcHm4TA4mvsQoptUUUl2UQ4I6sbkKVr
+X-Gm-Gg: ASbGnctlaOBJ2sVol+OA3YG/uQtH1vOG6wjXcE/SuBMJOboCfOphzUWp0oYka6x3DTe
+	wMS/L/+wvS3w0Cynjx/osts8O55ULx6NLpF2dZR0KSt9DPzadxZemSQK7Enj2YBaW91I2lDH5uv
+	rjDVi1DRXzpmVhUnxDad0B/r9KNRm9/FXfVp0pdoV95AjV6OVIp04ngott8NpcikZvPNKK/P0CY
+	unZ1Sp7kixiygoI+fYavOipW2Yp9RzoogQPfGqe2zAfsZwLOPP/+mwks5q84OCyuh+oLSL2+D4K
+	ORMoBDACPmFDPBHof7SqIgkmDI/qLSrvvc7Wj8aGKeFN9G+sp0zY5XdalXsQD6wPeB9VeSUB+0r
+	L9TxSpzcnhjfM5/wFHvj7Es4QnYVZ7S/eIl+elvYTPU4YTdTnSweNakXvt5affUUYvdsdRTq1GC
+	ibDWjHw+WmsxvZ9f6vStlors4oqyTJAcgSlqFaN08KsZAEJoM7
+X-Google-Smtp-Source: AGHT+IFXCTGRtFHbvHW9tx3hNmCiABWzrGiLV96/Tkl6Mz9+6QQCRSVr3bqR231gqNQMLLWIU3do2Q==
+X-Received: by 2002:a05:6102:418f:b0:5db:e1ad:770f with SMTP id ada2fe7eead31-5ddc467fa2cmr2260230137.2.1762778987849;
+        Mon, 10 Nov 2025 04:49:47 -0800 (PST)
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9370898d9d1sm5797874241.12.2025.11.10.04.49.47
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 04:49:47 -0800 (PST)
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-9372410c6faso476088241.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:49:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXOWl2zjIvj0M6rhaXmYnGqQKpghy8odE6o5d7F3oznuf44wdo64xe+OKCY7ObVFAamtQd+xdx0OpLy@vger.kernel.org
+X-Received: by 2002:a05:6102:3a0a:b0:5db:f352:afbd with SMTP id
+ ada2fe7eead31-5ddc467ebffmr2222725137.3.1762778986813; Mon, 10 Nov 2025
+ 04:49:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=GYsaXAXL c=1 sm=1 tr=0 ts=6911de93 cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8
- a=lO61LlJOqjs1HvH3lTEA:9 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDExMSBTYWx0ZWRfX9MUOWMbU5/UU
- Ndrjj68aS27eHuAfr91Wu+kGiJxVm3Dqdy4XrC+cOZZmqM79QLjwP733A0pjl1TjKHhQGtKvVI1
- Tc93fL6hG6WzOcaCHOTQCO0+jCAETsih21dz03pHe59RnkRT/FrO+68XEkptRB02HcuoNF2UKMe
- ulhL1FR3CO+/2yLUNrStXyOlThZ7s5VFHNoB9pOu9Ebtl31a52pqBcz9iPRM6yi3Ys7xg6bTH2G
- rL9OJVG/wko2ACDXF4kqKD/JHFt4Ss8JpCWYGMCzwcdRBgkBJADTBbdQf+WNbuW2NCuadn6sp4G
- DhFFCI2y82HKzCd1byJEgv+OPX031xducvLh++F4pAHLYnsFlO7NWKwR5tQnFS44Zmn8BsjWMVb
- ft3o00KM9eEn2nTkHEag50KyJs7lFQ==
-X-Proofpoint-ORIG-GUID: oL-94zI8_Pm-ADAd7lxRcVtJJrjDkwQt
-X-Proofpoint-GUID: oL-94zI8_Pm-ADAd7lxRcVtJJrjDkwQt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-10_05,2025-11-10_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
- impostorscore=0 priorityscore=1501 spamscore=0 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100111
+References: <20251105104151.1489281-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251105104151.1489281-12-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251105104151.1489281-12-cosmin-gabriel.tanislav.xa@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 10 Nov 2025 13:49:35 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWTH_uuQURgqQrg1RGDMwzdDAWFk__mS9+Gc8mcESfUyA@mail.gmail.com>
+X-Gm-Features: AWmQ_bkfRzk8FN2qNNCBLlLG0XaTRUdRgwFG7IJoHivC4Q2Ld9wLwHCuz85ymR8
+Message-ID: <CAMuHMdWTH_uuQURgqQrg1RGDMwzdDAWFk__mS9+Gc8mcESfUyA@mail.gmail.com>
+Subject: Re: [PATCH v3 11/14] dt-bindings: spi: renesas,rzv2h-rspi: document
+ RZ/T2H and RZ/N2H
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-spi@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Add initial documentation for the ad4134 IIO driver.
+Hi Cosmin,
 
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
- Documentation/iio/ad4134.rst | 58 ++++++++++++++++++++++++++++++++++++
- Documentation/iio/index.rst  |  1 +
- MAINTAINERS                  |  1 +
- 3 files changed, 60 insertions(+)
- create mode 100644 Documentation/iio/ad4134.rst
+On Wed, 5 Nov 2025 at 11:44, Cosmin Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have four SPI
+> peripherals.
+>
+> Compared to the previously supported RZ/V2H, these SoCs have a smaller
+> FIFO, no resets, and only two clocks: PCLKSPIn and PCLK. PCLKSPIn,
+> being the clock from which the SPI transfer clock is generated, is the
+> equivalent of the TCLK from V2H.
+>
+> Document them, and use RZ/T2H as a fallback for RZ/N2H as the SPIs are
+> entirely compatible.
+>
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/Documentation/iio/ad4134.rst b/Documentation/iio/ad4134.rst
-new file mode 100644
-index 000000000000..fe20ec6f2132
---- /dev/null
-+++ b/Documentation/iio/ad4134.rst
-@@ -0,0 +1,58 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+=============
-+AD4134 driver
-+=============
-+
-+Device driver for Analog Devices Inc. AD4134 and similar ADCs.
-+
-+Supported devices
-+=================
-+
-+* `AD4134 <https://www.analog.com/AD4134>`_
-+* `AD7134 <https://www.analog.com/AD7134>`_
-+
-+Wiring connections
-+------------------
-+
-+AD4134 and similar ADCs can operate in a few different wiring configurations.
-+
-+Minimum I/O mode (SPI control mode)
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+The minimum I/O mode wiring allows AD4134 register and data access with the
-+conventional set of SPI bus lines. The hardware configuration settings for using
-+AD4134 in minimum I/O mode are:
-+
-++----------------------------+----------------------+--------------------+
-+| Pin Function               |         Level        | Description        |
-++============================+======================+====================+
-+| PIN/SPI                    |         High         | SPI control mode   |
-++----------------------------+----------------------+--------------------+
-+| MODE                       |         Low          | ASRC slave mode    |
-++----------------------------+----------------------+--------------------+
-+| DCLKIO                     |         Low          | DCLK input         |
-++----------------------------+----------------------+--------------------+
-+| DCLKMODE                   |         Low          | Gated DCLK         |
-++----------------------------+----------------------+--------------------+
-+
-+A possible connection schema that sets AD4134 digital interface for minimum I/O
-+mode is:
-+
-+::
-+
-+                                 IOVDD
-+      +------------------------+   |
-+      |                PIN/SPI |<--+     +-------------+
-+      |                        |         |     HOST    |
-+      |                   DCLK |<--+     |             |
-+      |           FORMAT1/SCLK |<--+---- | SCLK        |
-+      |   AD4134      DEC2/SDI |<--------| SDO         |
-+      |               DEC3/SDO |-------->| SDI         |
-+      |                    ODR |<--------| GPIO        |
-+      |             FORMAT0/CS |<--+     |             |
-+      |                   MODE |<--+     +-------------+
-+      |            DEC0/DCLKIO |<--+
-+      |          DEC1/DCLKMODE |<--+
-+      +------------------------+   |
-+                                  GND
-diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-index 315ae37d6fd4..d4ed782c93a6 100644
---- a/Documentation/iio/index.rst
-+++ b/Documentation/iio/index.rst
-@@ -22,6 +22,7 @@ Industrial I/O Kernel Drivers
-    ad3552r
-    ad4000
-    ad4030
-+   ad4134
-    ad4695
-    ad7191
-    ad7380
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e709ec1d6717..80ae2fd4735c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1443,6 +1443,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad4134.yaml
-+F:	Documentation/iio/ad4134.rst
- F:	drivers/iio/adc/ad4134*
- 
- ANALOG DEVICES INC AD4170-4 DRIVER
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml
+> @@ -9,12 +9,15 @@ title: Renesas RZ/V2H(P) Renesas Serial Peripheral Interface (RSPI)
+>  maintainers:
+>    - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+>
+> -allOf:
+> -  - $ref: spi-controller.yaml#
+> -
+>  properties:
+>    compatible:
+> -    const: renesas,r9a09g057-rspi # RZ/V2H(P)
+> +    oneOf:
+> +      - enum:
+> +          - renesas,r9a09g057-rspi # RZ/V2H(P)
+> +          - renesas,r9a09g077-rspi # RZ/T2H
+> +      - items:
+> +          - const: renesas,r9a09g087-rspi # RZ/N2H
+> +          - const: renesas,r9a09g077-rspi # RZ/T2H
+>
+>    reg:
+>      maxItems: 1
+> @@ -36,13 +39,12 @@ properties:
+>        - const: tx
+>
+>    clocks:
+> +    minItems: 2
+>      maxItems: 3
+>
+>    clock-names:
+> -    items:
+> -      - const: pclk
+> -      - const: pclk_sfr
+> -      - const: tclk
+> +    minItems: 2
+> +    maxItems: 3
+>
+>    resets:
+>      maxItems: 2
+> @@ -62,12 +64,55 @@ required:
+>    - interrupt-names
+>    - clocks
+>    - clock-names
+> -  - resets
+> -  - reset-names
+>    - power-domains
+>    - '#address-cells'
+>    - '#size-cells'
+>
+> +allOf:
+> +  - $ref: spi-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,r9a09g057-rspi
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +          maxItems: 3
+
+No need for maxItems here (already at 3 above).
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,r9a09g077-rspi
+> +              - renesas,r9a09g087-rspi
+
+No need for renesas,r9a09g087-rspi, as it implies renesas,r9a09g077-rspi
+is present, too.
+
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+
+No need for minItems.
+
+> +          maxItems: 2
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.51.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
