@@ -1,194 +1,171 @@
-Return-Path: <devicetree+bounces-236669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E1B2C4656D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:42:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5BBC465F6
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:50:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36636188C4DD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:42:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52AF93A7A13
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B0B43081CE;
-	Mon, 10 Nov 2025 11:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B822730BF65;
+	Mon, 10 Nov 2025 11:49:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MF3PeftE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MybNDpjY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013014.outbound.protection.outlook.com [52.101.72.14])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473AB302743;
-	Mon, 10 Nov 2025 11:42:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762774946; cv=fail; b=LWoqkrB6/+iEIUH9fa6wHFVIRNyk1OKLdSQcbQ8JsBWaVUAhnPe+ecUUFEojbYeHSv3efw5gnYA2aHH+JC6xaaHcLyuYCmY2K9aoyOdJBvMyzK3XM0wnEuhOhQhPqT/9saARjQh0qFR4zV6A3wZsgvWF37QItYh/PpxCNxAZHyw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762774946; c=relaxed/simple;
-	bh=TB46P+sRVNQEoXyH3p5q9YLcyMdGhB9s28Nrdaa2PfQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=lz6cyaElYWn6EkDcSv0/FiAPSiGDVS2G237l2YwKL2veAdXq69HoqQDXgK3/NIlPW8Jq37+sVN8dmlBNQjbqdBpiZrR2qtj3OpcteCNqiTHkuhb+JcAbQY8BccRLFXUW0pMaCjSb5+3zRfFZ0CpsAdVgMandia0seYUxinpJvrU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MF3PeftE; arc=fail smtp.client-ip=52.101.72.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P/wGMPXjNPQWA4q+Z50z8881zoTUZPKV0z4q0QujfyP4TsVouZFH2zCZiqpZHRwivfn3BDF2gFTImHuQZp1JnCdRfT89D1LyiX+ZTkoBbjotID2GME/ZnvdTLqsE0cFFC4LNCJz6vF8nw82QPL+4AJczcCziV+ftrY2kZ13D9RqiwMjMM3s/8D5xZEhPAfA/LjZ0gTMb5H2xyKiD+ZK0EgVPoy6Z8FIaBQQPefmeW/VWGYtrb02Tyg1wPgYFOFg+d1Wv2UbIPk2zgJ0Jlrl29W6degxfUdA8VMH6CzqoZKbPxDDBAQnp4kaERDXsxYYsRF9PhUfyRAMhUdl2uruyLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xTxDeII4ezaQKtWd23/M1ql6FR1DsbR1sDDs63kyraE=;
- b=jr1t7DED5QD5A1Koef753HXKmw5TN+BePwGgF40VFSmat0GWXDiOzlvQmfxnpY2CBxU3UIe0SkWtR+tCdjBy6/oswrl0PwzjVj9SABOB/Ulr6Z9lqNkQSzDXTc1aA9TRWOgQ0ZTun/hp6Nx2utzAxe9zyTu3veGU2MZOeXfpCV5/mpwfKRVdewfBPM6it6Lr/LfLd+jCAj+jPUV5ek8LvhGow0nwQHW/Qn1MX7LmFQSVqKyrZMBkE3m9k2nzTvOXWXDssxkx4R4Ku5nXS/a7XOZbS4JM/eDtI1KO00hZeSLmlytvia8Qo3mep94i9LIEtLCRar/tEACyULwvefF1/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xTxDeII4ezaQKtWd23/M1ql6FR1DsbR1sDDs63kyraE=;
- b=MF3PeftErb/7dV5Jv22NBuxCFDBxqgKOPDq9J859IcyDYO7QZYqEiA6yFrZW+rGLkfIEAzdq+Dk1ZN6/ERy0Zz92p+6u4FEBXAMav+3+rZ+50ES39ThR/nvt53r0YAgu1RKQepS6ePWFD9bXEgAD9QsbPedxGcm+C2spvFT8OhDjb4ZcmVEeAzdEHwWzdHnD1aLkzBRzPtTgobLEbm9zJVokM2vXwqteEHdiQEqDPudsH7fBAK3NMxNaGmu2Vh3rlLDHgz+InuTXCfTquUEhTRUeusQEXCUNHcAz9xp9yvOi3VdbImG0tl8/dzB3Ko3ucOJDM9Nad0LYhyeW1jmq1w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
- by VE1PR04MB7278.eurprd04.prod.outlook.com (2603:10a6:800:1b1::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
- 2025 11:42:21 +0000
-Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
- ([fe80::b067:7ceb:e3d7:6f93]) by AM8PR04MB7779.eurprd04.prod.outlook.com
- ([fe80::b067:7ceb:e3d7:6f93%5]) with mapi id 15.20.9298.010; Mon, 10 Nov 2025
- 11:42:21 +0000
-Date: Mon, 10 Nov 2025 13:42:16 +0200
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH 0/2] phy: microchip: lan966x: Allow to invert N and P
- signals
-Message-ID: <20251110114216.r6zdgg4iky7kasut@skbuf>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
-X-ClientProxiedBy: VI1PR0502CA0013.eurprd05.prod.outlook.com
- (2603:10a6:803:1::26) To AM8PR04MB7779.eurprd04.prod.outlook.com
- (2603:10a6:20b:24b::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC19630ACEE;
+	Mon, 10 Nov 2025 11:49:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762775399; cv=none; b=HFCc6oLcin3sfiZUZi8V5EIBwePG5h4WESnUUJkoMGtSkCzPJG/VfZUAXIiPNf+BKwIm75tBrZ7hj3wD7ZIu6tlcbxeqUgd8jHJDzaNW2I9pU+/itc/gntVH3gARwEUky9i8It2mc6jjJ07H9ZtRB+uTDwc9RAdpvEroFwj8n64=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762775399; c=relaxed/simple;
+	bh=kgLvGqGW6Y2MVxPS0dVKx+QUBt0U5B7prEs50cqFkU4=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=cHchF+3SJs7n+nnBrL5JSJxU/LYj51e1j+Qc1y4n6t4WWiVQ05TcyGDM9JabhHMvvxvOxPpxfto4uETLWRiSjVwtqCKiHDnk4hfx6OuO6M5e5vqlAKPjbjt6mp2wFZGBjOnP3VrM1UrlSomBeCTWh3xpNaSg/iUHKbegrjZl5RI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MybNDpjY; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762775398; x=1794311398;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=kgLvGqGW6Y2MVxPS0dVKx+QUBt0U5B7prEs50cqFkU4=;
+  b=MybNDpjYgKJzlFJE1XlpRif5sw8WHu5Oa0DPp+7PPcrvsdcoEou2DCsA
+   nquc7AEVVNrIdcfV0p8X+fVSJJ2s5K6UjkbYi5X6xyb/iRbwnVjFLa2KX
+   mUbdG6XTlJgOz7H3b1N0+b1qfvHFcpVJ40pB0DS+RgzpZrYDR/A8Ui9Bi
+   E6FGEqNksD6qGPooTKNnZsSrn3UnlOn+SMCGgisksA9sl9etTKgVAbSR4
+   zEexw75QcZkFksiEb7l+GbvPSNiK2pN0yZC3uRMTGlyIGWjwacAWEoxQF
+   fuGD/FtPIFSgzt/kofTi1XRcIY+zeOz137dj9ZqKlbQTVUbDsyOVYq1z6
+   w==;
+X-CSE-ConnectionGUID: W1fT316HSnm/TQmGTWuvYw==
+X-CSE-MsgGUID: IrTEIptmT+C0026QS1VRsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11608"; a="52381235"
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
+   d="scan'208";a="52381235"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 03:49:57 -0800
+X-CSE-ConnectionGUID: Sj9MWXvmSo6S4AGtYTK6HQ==
+X-CSE-MsgGUID: q0aaSUIcTOWst/+WBvw2kg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
+   d="scan'208";a="193665319"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.13])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 03:49:46 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Mon, 10 Nov 2025 13:49:42 +0200 (EET)
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+    "Rafael J. Wysocki" <rafael@kernel.org>, 
+    Viresh Kumar <viresh.kumar@linaro.org>, 
+    Matthias Brugger <matthias.bgg@gmail.com>, 
+    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+    Yangtao Li <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@kernel.org>, 
+    Jernej Skrabec <jernej.skrabec@gmail.com>, 
+    Samuel Holland <samuel@sholland.org>, 
+    Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+    Daniel Lezcano <daniel.lezcano@linaro.org>, 
+    Bjorn Andersson <andersson@kernel.org>, 
+    Konrad Dybcio <konradybcio@kernel.org>, 
+    Thomas Gleixner <tglx@linutronix.de>, 
+    Nicolas Ferre <nicolas.ferre@microchip.com>, 
+    Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+    Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+    Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
+    Daniel Lezcano <daniel.lezcano@kernel.org>, 
+    Thierry Reding <thierry.reding@gmail.com>, 
+    Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+    LKML <linux-kernel@vger.kernel.org>, linux-pm@vger.kernel.org, 
+    linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+    linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+    platform-driver-x86@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 09/13] platform: surface: Simplify with
+ of_machine_get_match_data()
+In-Reply-To: <20251106-b4-of-match-matchine-data-v1-9-d780ea1780c2@linaro.org>
+Message-ID: <4986f752-ba21-6a5f-641a-e0dadb4abd11@linux.intel.com>
+References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org> <20251106-b4-of-match-matchine-data-v1-9-d780ea1780c2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|VE1PR04MB7278:EE_
-X-MS-Office365-Filtering-Correlation-Id: c643b81b-fe23-4989-6133-08de204e34b7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|7416014|376014|1800799024|10070799003;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?CVdZ5yUXIMM2sHb0E638BcWOkTqluSsphb6cO+DJ2xDoGLRTme8VOrFIGKKn?=
- =?us-ascii?Q?2gqbwlRHBsN7Ut5puGipEN0OkGzJYA7GyWoO3dxSebStKVc1YEzXNI/jVoQi?=
- =?us-ascii?Q?I2CYENdcN25SMmwnEXtuH+I6wLypI1hEEvL+tTPNnL/Au5i8XrBqjTC+cCp6?=
- =?us-ascii?Q?xIDssPdizzdx6QZSrOrjiRIBNsJLJTtKtYrLCVuQdbHrLPK6BWCJh2GyhZGF?=
- =?us-ascii?Q?KrZcPoDVxll15IbW+OduGXYCZS9ikhWrxLotfyNx0xxlRuhRPDQN5pJLCGC9?=
- =?us-ascii?Q?xGoxRWSfrwRThdHauSX3TxyOzVa7Fi2hjbAqiYBPVlNovQT35oJYTXlwkq8S?=
- =?us-ascii?Q?3MfZlVmWNPlwK5MYvpk9RG/hYbWwR1lExBt9VweTp0QllUb/dbiSl6LmPFdd?=
- =?us-ascii?Q?QwuDAplwijFksmmRx2xJ2sEk14CUFRHHY5tMAXP5HSQBlzyqWj5nq0ORYjgp?=
- =?us-ascii?Q?IxWMNOZxGki2Vk8xurQ6QpoVA+bbOtPo86vCpniAq66IUZ/f3EqKvqSjGTp5?=
- =?us-ascii?Q?yzhVR0DQea4OYdbfNUbl8hXbP5gmf9YcaZdZevYb9dXgmYW65nOnTo6Y7qo8?=
- =?us-ascii?Q?s66F69F6HFMTO9+M6IKxWhm1rqp9uX6gw5NIkc6NU5/RJAHW9ND9gNM5ETfb?=
- =?us-ascii?Q?3PzGYV+j8Hid887pI35RZjX1kRJmTHJHHItt2Xj08xw9svEyRvoWVh6ykBLg?=
- =?us-ascii?Q?nKW1D9+trzXfbseBK4Zb+YUCTj6MDkKG92RdpjowIFXnO+QWQ/kdsthrftcZ?=
- =?us-ascii?Q?1emhaQ0CPwSQ/QDZMqtyI3Nbf9jZxqANQqQ2W/dXsZaTtAoBJwsEO/UGqbIn?=
- =?us-ascii?Q?mKLi4r9AKvewdaHQ0eOqckCrMjFCMxO/nuCqX5bUpfPJc8cnhOXWJg3v2S1c?=
- =?us-ascii?Q?iRP1VAStPdJrsma8d+Yb1JaWNPRKfjrtF5VGh7l0dwfnH8Ci8anXuwvneHnM?=
- =?us-ascii?Q?E4XSWZIhE6Y+DSVAmyaGb6JR8EwmmJxdHl+DpoMhPi9TJtYg31i3caDlkFjr?=
- =?us-ascii?Q?gLYV+VTB8lk1AlFmu9OnEK+jok4yqbnxgaw2wHrOOSGBSPL9fdKIXd1bvjDE?=
- =?us-ascii?Q?ul3SMZxA8yqamd/Gz6LnrpUJqrXFis776XKNumDEa95gdg/TxywWCpDqiccy?=
- =?us-ascii?Q?rZVMBCQa8ZhMJV9YkEeLFuuaG6IGVLtwLWhOfp42qVgmEFxM7uWDZHbuZEQl?=
- =?us-ascii?Q?PAt9kRaWHrS0Atjrfb5gssZ7OuD9+ZXVFrSCfV4DA3zCkAsxbwUDOhFvcFIA?=
- =?us-ascii?Q?OhmODCe1F9z6S0f5WH+0tMGTab2NoKC0HvGaCn4yyXb+yrLDWX88Q4GW5Hei?=
- =?us-ascii?Q?i70lNVrsbbBAnPEPGVtt/24BLq+tc4kOlhqxt842ghvGhiCJS7irKdxyG0Vu?=
- =?us-ascii?Q?6dW83eBeUBM0CBXcwhM9jZ6ShvxXMrv6jz8lsjBBN6jp9y6ggw/HFj4NDC5w?=
- =?us-ascii?Q?G4Rn5OmHOSDgnm6fpzCVUSu+C/TI0upr?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(7416014)(376014)(1800799024)(10070799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ZIfnfIAoHB93MOvaStdJdbT1Eq8bxA2tDsix2Nq5sCJdF74sIJQbp/nSzAZE?=
- =?us-ascii?Q?SjyyDpjqO7pTVNtZSutV0btwKdSw0rh2EXFE32MevABHmKJGbkptEazweKN0?=
- =?us-ascii?Q?/Tj1MnqhSXI771HbQXYcd3mABCBWG982PD6mi5akcG2/ihYK5Aved2jsI6TC?=
- =?us-ascii?Q?49X4Z3SQctoaFT/080QDXUi7CHvByJIK//nFbSKHwo6bFRddAsgaTK/BV8pL?=
- =?us-ascii?Q?70TZSdIn+q8LdAPrajnvX3VBXZ28Uuwo/eE5KzsEyGi/ezCxTS6RDfJya7nn?=
- =?us-ascii?Q?n6OOY7f45ahfASoU26guDdz6Ef03UXOWo8Zun6cvWKPdF68xu+LUj5XZCl01?=
- =?us-ascii?Q?Vve/jVwAJgIhakU0gAW7LxFF+a6o2oZf520pC9O0ThUIUrNdR2j3XcA8GV0H?=
- =?us-ascii?Q?YHzLrm6i4Lem4EQyY/uuReivgkEZL1lGYREvtWQklTksJJ2RplMB7urlOW/j?=
- =?us-ascii?Q?/g4hrjNVkmsL7ac6B/+k7zbx7fsbj6eq6tX9tH+JdyL8pvc90+O+6QE+2zPZ?=
- =?us-ascii?Q?ugRTgxzlVc+7bnW5pUmS06yGhtyMmi2364wnniOgcK8NMt8Q4S3FuJLM3IVW?=
- =?us-ascii?Q?kYsS+yBlqgFnJQkyfRN/y2AVXuHCA13436sDg/UwTs0DB9TfN8fU2aC3EWHu?=
- =?us-ascii?Q?dEUeOc5NESIx9LnssLY2z5YlhKJ9LKid37HwTI6w2DXu+MZgaEiTLbjk6ZV0?=
- =?us-ascii?Q?mDU6sWNvQXfTtmKYoG5OYjWk4IrKGJX8Ekr+FOkzG84EV/ARWmm5Q4qIAP2z?=
- =?us-ascii?Q?c0wqoZO81J0rbSEHy9LL+Io/mnAVVoPPKZ4wjp1DQy9hj9/MFKOdeSugqx/C?=
- =?us-ascii?Q?Pe7/QDqGNngiKaVmxCsIvTyo7XlNb8lhR4uiNbovcD6aeA/hCXY/Wncis7EY?=
- =?us-ascii?Q?+dDBEUclGdwhmNLjnzojevMUve8zCZCDeOdYOa7IITenGHO2XQpM2L57pETs?=
- =?us-ascii?Q?WnQLd6gOqaIXSIUdyARfhfhO/336CXrJyYwCQ0M32yInGkzpZsLsJZpE9GtP?=
- =?us-ascii?Q?J3DYGHHEyEp5KpThx0QCBlDUnMMrD1xC89HyKFJ3IJAMyTSFZNpNMo1T6P1f?=
- =?us-ascii?Q?0YmquEs37x2XdiENWHAGfj4ili85Yn82y166jvFm3rPEwinXF1qoSlxwn8Qh?=
- =?us-ascii?Q?mwcLWnLKba/BqM4jJ4PELr7u6hGdllR6J6AJDGSW3JTYz/NDjnlA/I9YSIXh?=
- =?us-ascii?Q?s2yRQTQErTPLMpo2No7GKaDdxRArVIlzqB5cSazzIaiB6CHglyO0/coubwfa?=
- =?us-ascii?Q?P/XTmSL+YKGJXCVxDBd3T2m4AgufUrCUpIsUsuAxoNDqQEsorzSi94p6qgfd?=
- =?us-ascii?Q?1l9dU1J55pAiRW6/xeNUwHSb3lrTxu6trvkeUhEHid0EU7exYfVG/V4EHzN1?=
- =?us-ascii?Q?4OJfr8/P4kqoXmClbeu0UaQ1QmK5LjAnL3nxMyIgadWLywaCg0DQOYKqrd/+?=
- =?us-ascii?Q?EEn6qRRaaw/+O6ShJPsPWiLisEsn1KHZkMRzklojMANdQv2lYI01IHimGHW8?=
- =?us-ascii?Q?604tdR7sMuTQXYGQ0KCtymfllPv/Jj1em6GtEQUjAg6621AaeAgQDAsv322Z?=
- =?us-ascii?Q?HsAlV9RJzYty9Pa1f9m6x8ylRSY1bnGnmubRxEV26wP1DOUgH/fm6MQrp06w?=
- =?us-ascii?Q?Jfnjr6XIz/9Pawx3u8VcHwxGf9bF/3hpOqtKRr9KqwG8Pw+VAkWiv7vxZa5m?=
- =?us-ascii?Q?dLWw/A=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c643b81b-fe23-4989-6133-08de204e34b7
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 11:42:21.2777
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: htT8HLsyv/9gvcUKThqiGUpLTVEy64j9HqjGFq1IgDx7EYvayBbVv+B40C1mCIRFjOWD9qKQF+7060vOQl+c/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7278
+Content-Type: multipart/mixed; boundary="8323328-1580227820-1762775382=:1060"
 
-Hi Horatiu,
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-On Mon, Nov 10, 2025 at 12:05:34PM +0100, Horatiu Vultur wrote:
-> Allow to invert the N and P signals of the Serdes for both RX and TX. This
-> is used to allow the board designer to trace more easily the signals.
-> 
-> Horatiu Vultur (2):
->   phy: microchip: lan966x: Add support for inverting the rx/tx lanes
->   dt-bindings: phy: lan966x: Add optional microchip,sx-tx/rx-inverted
-> 
->  .../phy/microchip,lan966x-serdes.yaml         | 24 +++++++++++++++++++
->  drivers/phy/microchip/lan966x_serdes.c        | 23 ++++++++++++++++++
->  2 files changed, 47 insertions(+)
-> 
-> -- 
-> 2.34.1
+--8323328-1580227820-1762775382=:1060
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-For context, I am trying to describe the lane polarity property
-generically, and I've already blocked Daniel Golle's attempt to
-introduce the similar in intent "maxlinear,rx-inverted" and
-"maxlinear,tx-inverted".
-https://lore.kernel.org/netdev/20251028000959.3kiac5kwo5pcl4ft@skbuf/
+On Thu, 6 Nov 2025, Krzysztof Kozlowski wrote:
 
-I am trying to find out all there is to know in order about this
-feature, and I just noticed your patch, so I have to ask some questions
-in order to understand, had a generic property existed, whether you
-would have used it.
+Please change the prefixes to:
 
-So I see that you don't have OF nodes for individual SerDes lanes, so
-this makes your device tree structure incompatible with simple
-"tx-polarity"/"rx-polarity" properties. Are those something you're not
-willing to introduce? What about other stuff that's in
-Documentation/devicetree/bindings/phy/transmit-amplitude.yaml?
-You also won't be able to make use of the existing device tree
-properties if you don't have OF node containers for each lane.
+platform/surface: aggregator_registry: ...
+
+Once that is changed,
+
+Acked-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+
+--=20
+ i.
+
+> Replace open-coded getting root OF node, matching against it and getting
+> the match data with new of_machine_get_match_data() helper.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> ---
+>=20
+> Depends on the first OF patch.
+> ---
+>  drivers/platform/surface/surface_aggregator_registry.c | 13 +-----------=
+-
+>  1 file changed, 1 insertion(+), 12 deletions(-)
+>=20
+> diff --git a/drivers/platform/surface/surface_aggregator_registry.c b/dri=
+vers/platform/surface/surface_aggregator_registry.c
+> index a594d5fcfcfd..78ac3a8fbb73 100644
+> --- a/drivers/platform/surface/surface_aggregator_registry.c
+> +++ b/drivers/platform/surface/surface_aggregator_registry.c
+> @@ -491,24 +491,13 @@ static const struct of_device_id ssam_platform_hub_=
+of_match[] __maybe_unused =3D {
+>  static int ssam_platform_hub_probe(struct platform_device *pdev)
+>  {
+>  =09const struct software_node **nodes;
+> -=09const struct of_device_id *match;
+> -=09struct device_node *fdt_root;
+>  =09struct ssam_controller *ctrl;
+>  =09struct fwnode_handle *root;
+>  =09int status;
+> =20
+>  =09nodes =3D (const struct software_node **)acpi_device_get_match_data(&=
+pdev->dev);
+>  =09if (!nodes) {
+> -=09=09fdt_root =3D of_find_node_by_path("/");
+> -=09=09if (!fdt_root)
+> -=09=09=09return -ENODEV;
+> -
+> -=09=09match =3D of_match_node(ssam_platform_hub_of_match, fdt_root);
+> -=09=09of_node_put(fdt_root);
+> -=09=09if (!match)
+> -=09=09=09return -ENODEV;
+> -
+> -=09=09nodes =3D (const struct software_node **)match->data;
+> +=09=09nodes =3D (const struct software_node **)of_machine_get_match_data=
+(ssam_platform_hub_of_match);
+>  =09=09if (!nodes)
+>  =09=09=09return -ENODEV;
+>  =09}
+>=20
+>=20
+--8323328-1580227820-1762775382=:1060--
 
