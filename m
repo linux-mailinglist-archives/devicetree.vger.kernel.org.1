@@ -1,151 +1,181 @@
-Return-Path: <devicetree+bounces-236627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70376C45E5F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:23:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CADC45DF3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:17:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C2E754EC189
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:20:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91164188F791
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79144301010;
-	Mon, 10 Nov 2025 10:20:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E82305960;
+	Mon, 10 Nov 2025 10:17:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Bc/nggo4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD14E24BBE4
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B6C225409
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:17:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762770053; cv=none; b=NIitrW7HVLox7uZ/FlNBCgpTpeak7/hOAQErULn8xlLVKq77Sx2Fd95HK/Siq0/XtMyRXyktxGqL3iPCRaMI/MsIEG4l/36SRbtEz+Vj8Jm3OzQxagRkABr+rgpBlZ0rWLl+WQ8I5tRrCdR656/qSgD3GTPoRivOZ/1lbCeuy2A=
+	t=1762769872; cv=none; b=REgCvd9Rg7A85kRyA7U9yUoDA0ztoogw9mTkH13eGaxXYsQlAlzLJ7/JXjKsxDgf225h7yi1js0L6tw+AW1QTkvX/Ld8SxHtfY74T8GxwuOynYRYHEgf5q1Q/r873pMnrGA5nRmKrQuE5qzTHcBPqMxnZ/Yd0uQ1U58OAvl9Fq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762770053; c=relaxed/simple;
-	bh=f7A5KQf3lBwiyoJafcI4BnJts84BNYm7LE/aLTn7MWI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a/Ufuj3z9EBz8E4q2YBXrpY5AomlO9SEet626i8GSNFBl5yhdXGHwGQTiXsr74V/JDzPLZsRXlKiDr/XP40HIvSdo/AP/Kp3gtj/TN/FLoqebcpyNnK/ksMSur346x+tL+vx1v5lEjecT5AmGxXMHJBEz9UufpUWJxZZ/tg9tss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip3t1762769971t1b092a36
-X-QQ-Originating-IP: iFTO6SgugK5NI2gnIyOrbmy1WQoC/Gu/2N1bNXVyuH8=
-Received: from [IPV6:240f:10b:7440:1:64e0:6ba: ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 10 Nov 2025 18:19:28 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 4167295860379743796
-Message-ID: <5763F732CB44709F+2774ec07-a035-4a4c-81f5-1bcf603945c9@radxa.com>
-Date: Mon, 10 Nov 2025 19:19:26 +0900
+	s=arc-20240116; t=1762769872; c=relaxed/simple;
+	bh=ytVSzmYaDqD0qwMAifjOEvYSRHFoM76EE2Q+SxLmLnk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jBJ8SwHQrOvL/Xd+pL2Va7+A6JeUK1ktONKjr8snhluIzkPCIlZO1fyRo+PJjGLvtO4FAqH2Q+9gOI3yj6vLIfmotq4YnfAB2I+y8oejyVeyNHyc9HmzYfKVMG3nlpIfMMLJ/nr8WIuPpncMO2bx12nkJwpqypCF/CutAtnNBTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Bc/nggo4; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-42b3c965cc4so230231f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 02:17:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1762769866; x=1763374666; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+cGOOrdlJvwUvrBTIxkNqf0S9KSK2YAvxzQBiD0nhFs=;
+        b=Bc/nggo4DD+U+wO0qS71yHjtA7jHJNMLKFlQ4bOmL2fIOp2OT/FsuO1q66wZag0ZlS
+         wcGRYBnT0zqQSZfATNyZHGrhXwJ9vHIWfS3tmBd8371aRKOZY5AIqkF2ZeRKCcpeYDTW
+         0/L2STKrv2P9/MWfgqIb0Y7qwOO/pTN+17cn4GKmA4BrMh6Xv791vJS1GPyqzEfvuDQD
+         8nC/kdZdz4nuA0f4mHmT8cvBjvWg48bb4k/G06dwlRU8in5PqCdwgkl1zp9xQNRLrBoe
+         kROW6uuxpjM6Ta/EvddLHx+IRzoiDEs70lx4pWkFIciy5lo1qk0Ahddn4MN6rscJiDe7
+         MVDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762769866; x=1763374666;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+cGOOrdlJvwUvrBTIxkNqf0S9KSK2YAvxzQBiD0nhFs=;
+        b=u4Jkwo2nF1e8j1E8TEmSjczfj9KMPix7jC4eiFXw3o1HWlR0/FZdAbwJLXzrcWh3DC
+         TEmK4Ztspn0tq7v97heYt+4pzntTD/3//btqkhhn9zSOMnNH18FCoYYMbRJfyCzwVQ7p
+         rl6b0vlIPCIz47SugQEbgvIZZAk+LWjkXog/u6SwdPXf5fZYtsroxryGaHLT+W5ubLX0
+         0vu4S27jtIAfDcb3ULJ+xJmVQbdHqh/ZwNMkdignXYPSd28pDiCuffLfkKQe8hTNSlxf
+         hJmP7+16piRGsdTG2zI4+eRLsPX4NgNq2af0KNw4q00Vqhiiu2LaHR3bu/GEiGkDseRF
+         qwOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWgvw7zjSjsTx58PadaW2xVG5k5nkzEiwQUACw8CsAQx9NCcg+imxPUoZ7ybSy2xdNE2lC/g4EDkNCr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpfPV94Kuz2ikqBEYf+xjYjMyDUvc5ud8KGc7VbL7R9uxibH6q
+	9euPFcBq+Fk/aX870SN0qKKGiDKe2athpVnni1cN/5pzVYwU40eklDCCo16bCtsp/A4=
+X-Gm-Gg: ASbGncu22Axj6TmZ0phGs4J9lbUnuE6ljmK87IHZrZNuDWQQBpB4p9QYiufSgOJzhcw
+	vSH/BU7umRoSw1DuxSaa2n0+jYksZSwJzESaixYOOLVljrvdsXkSUUvxdiSEM2tumfJWe1v6FNN
+	auIWmh5kR+kXqkEia0s5v4/8o+yj+tuvmpblc0miIvkqk6lOPVj4e/B3mtKNOdMG8SzBuah+ZQ5
+	qdZb0KvkfHZOwQPgtcRccmXaBxJFs2IpiMkU66FJfmP5RASNgPuRNI9m/LcrYmfiU4IHuPhb566
+	lCL7+Jo4JxEbCZuIYVMT/P/41Z11GJc3DP/7iObWSSD9CYwiBb1rArRlr9R10AO7DdkK0IooOYX
+	RzpZuO9kb5Z8/7vZO/pZJli3/LnTg4KGv6Vd6S+ZnIXtls1gJad1qeVWOvyEgNg+ZjifxDQYkbd
+	lNtzp+PDl+5Ic+5LHkpIKM3QVFQ+Z9Pedgpqs5beDJcTv6cxhl+XjdbKCFMIs=
+X-Google-Smtp-Source: AGHT+IGUpHSfeagdIBM88vePaTs3yIVY9gCWpK2lN42s3k1Y6AfvZPuuxOVOOc+I4rI5U6e1xXLxSw==
+X-Received: by 2002:a05:6000:228a:b0:429:f088:7fb with SMTP id ffacd0b85a97d-42b2c655058mr7359131f8f.7.1762769866339;
+        Mon, 10 Nov 2025 02:17:46 -0800 (PST)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b2e96441dsm13918929f8f.23.2025.11.10.02.17.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Nov 2025 02:17:44 -0800 (PST)
+Date: Mon, 10 Nov 2025 10:19:56 +0000
+From: Daniel Thompson <daniel@riscstar.com>
+To: Maud Spierings <maudspierings@gocontroll.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/4] backlight: add max25014atg backlight
+Message-ID: <aRG8TMqehv-oR6v1@aspen.lan>
+References: <20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com>
+ <20251107-max25014-v5-2-9a6aa57306bf@gocontroll.com>
+ <aQ4a2SBDldYgQb56@aspen.lan>
+ <f4e52cc1-9c5f-4069-9079-83be794ab2b3@gocontroll.com>
+ <aRG359gIeP48V2ZZ@aspen.lan>
+ <59c36699-ee54-467f-9342-6756a0092a98@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Fix microSD card detect for
- Radxa ROCK 5 ITX
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andy.yan@rock-chips.com, dmitry.baryshkov@oss.qualcomm.com,
- sebastian.reichel@collabora.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251110030036.825150-1-naoki@radxa.com>
- <EECF7629320EEEDD+03c6ee06-4351-4150-b1b0-957d5cfc3d6d@radxa.com>
- <2242815.irdbgypaU6@diego>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <2242815.irdbgypaU6@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: N10mAYB91oMgvTLyy8U7YoBndI9Dvbb7VCD12B19aLYxtmWVBUv/5sAe
-	jtFgmRqhDAZu/4vtcvah/XH2WyjXeR3AWi6eozBYJSc/wxljIEqVCo4QxrhPQRile8by93E
-	cw9ZYF0hmDHaFlcxfOHE6qcHF8cVPa63bQ065w128sHtN34NiVolUy0n7JGpJPhAEufG3pe
-	2O3My4d3D8qlXBaGVkAHzRf54iq5p61IJHa3lKk10SY58+tTb1Lnx8DeJOZ3/6LXNsu25bZ
-	a1fX3PO1rUp/3fmD4yZhBK4jagkjic1VVtti8TqiKs7vYfchC/cXWjDecxSp/HiO8EZdsIS
-	N4eTWMX03ttOj1TClzbEwhhNxdGb9FmThHAu913OcgoVAbFjpcqhOp6M8AO0LwqcSYMC/Cl
-	MxGg/rbJpvCaIwTa22uIuiN55YtdznYjnl1wAah7c6H1qhF4ZM1cFpQu/vnZbJDZddezPzO
-	xFfV/PlvvOqsEGzDRUezyBCSGKKOsAu9Oc2lMx012iq5786/+Aflzc+CIuPSpXAA9WZKxbT
-	dQSm9gv08ryUxrNnRUacpyUGbthIj8ZjZTrF7zObwSwgYJepB+x7xSfAEyiBGfmIpRpkQrC
-	7QJnOWHB+BjzSw0WojtmT8UnRktjFld/yfPZh+abY4R2vqBh+tbyEx+xS0AecTNDbmoBYQR
-	1rA6FxpqkyFxfi0/omHHASO1/NM92z0DMlTiJTFAn6gkVtMfhg/iia6bI6+qfWNZihBFmew
-	jawaUCKYygrrXWJsT0Pat1er+H13g+/USAg8ow1yWFovELaKarfk7jjTeXNvPr6WozKjoFb
-	3v6IlK4aEKk/7SD6CHG/9GCATr1SiBKphNVNwD3pZtb8jDmHcwlRjCgKW38dPf83Kha9U1W
-	pHivUyB8rAm2kwnp3YzFMTj8HNwrMfMrxW14yxdkfxnC1BETLe1+XS1zcAgsd+9gSMJPbK7
-	PzZS+JHJ3HyfZf+Rqz+R28tw8xIFU7ESW0TrkgO5pSb834gISGjR62Yxydc+/0JCQRah7WN
-	o+rPfbyw==
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <59c36699-ee54-467f-9342-6756a0092a98@gocontroll.com>
 
-Hi Heiko,
+On Mon, Nov 10, 2025 at 11:03:27AM +0100, Maud Spierings wrote:
+> On 11/10/25 11:01, Daniel Thompson wrote:
+> > On Mon, Nov 10, 2025 at 09:40:07AM +0100, Maud Spierings wrote:
+> > > On 11/7/25 17:14, Daniel Thompson wrote:
+> > > > On Fri, Nov 07, 2025 at 01:49:59PM +0100, Maud Spierings via B4 Relay wrote:
+> > > > > +/*
+> > > > > + * 1. disable unused strings
+> > > > > + * 2. set dim mode
+> > > > > + * 3. set initial brightness
+> > > >
+> > > > How does this code set the initial brightness? It doens't set the
+> > > > MAX25014_TON* registers.
+> > >
+> > > Yep forgot to remove that, I discovered the backlight core takes care of the
+> > > default brightness, so I removed it from here.
+> >
+> > What do you mean by this? Are you sure you aren't relying on another
+> > driver to enable the backlight rather than the backlight core?
+>
+> Not that I know of, there is the systemd backlight service, but I am pretty
+> sure I can see it first turn on, then get switched to the old value by the
+> systemd service. Unless the simple-panel driver controls it? The backlight
+> is linked to that.
 
-On 11/10/25 19:05, Heiko Stübner wrote:
-> Hi,
-> 
-> Am Montag, 10. November 2025, 04:16:37 Mitteleuropäische Normalzeit schrieb FUKAUMI Naoki:
->> On 11/10/25 12:00, FUKAUMI Naoki wrote:
->>> Due to the discussion about cd-gpios and sdmmmc_det pin
->>> functionality[1], it would be better to use cd-gpios for now.
->>>
->>> [1] https://lore.kernel.org/linux-rockchip/20240912152538.1.I858c2a0bf83606c8b59ba1ab6944978a398d2ac5@changeid/T/#u
->>>
->>> Fixes: 31390eb8ffbf2 ("arm64: dts: rockchip: add ROCK 5 ITX board")
->>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>> ---
->>>    arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 9 ++++++++-
->>>    1 file changed, 8 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
->>> index bc8140883de47..391c6482e8ee3 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
->>> @@ -670,6 +670,12 @@ led_pins: led-pins {
->>>    		};
->>>    	};
->>>    
->>> +	mmc {
->>> +		sdmmc_det_gpio: sdmmc-det-gpio {
->>> +			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
->>> +		};
->>> +	};
->>> +
->>
->> I got following error:
->>
->> $ make CHECK_DTBS=y rockchip/rk3588-rock-5-itx.dtb
->>     UPD     include/config/kernel.release
->>     DTC [C] arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dtb
->> /home/radxa/linux/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dtb:
->> mmc: sdmmc-det-gpio: {'rockchip,pins': [[0, 4, 0, 270]], 'phandle': 145}
->> is not of type 'array'
->> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
->>
->> What's wrong?
-> 
-> the problem is the "-gpio" in the pinctrl node-name,which triggers
-> a pattern matching against a normal gpios property.
-> 
-> So ideally rename sdmmc-det-gpio to sdmmc-det-pin or so.
+I think you should look at the code. I think it's likely the backlight
+is only coming on due to the link to simple-panel.
 
-sdmmc-det-pin works! Thanks!
+Normal way to handle that case (if you want to avoid the backlight
+turning on "too early") is to set the power mode to BACKLIGHT_POWER_OFF
+if (and only off) the backlight is linked to a panel. See
+pwm_backlight_initial_power_state() for an example.
 
-I'll send v2 with this fix.
+If you are relying on "the backlight core [to take] care of the default
+brightness" then you have to request it in the driver (by calling
+backlight_update_status() after registering the backlight).
 
-Best regards,
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+> > > > > + * 4. set setting register
+> > > > > + * 5. enable the backlight
+> > > > > + */
+> > > > > +static int max25014_configure(struct max25014 *maxim)
+> >
+> >
+> > > > > +static int max25014_probe(struct i2c_client *cl)
+> > > > > <snip>
+> > > > > +
+> > > > > +	/* Enable can be tied to vin rail wait if either is available */
+> > > > > +	if (maxim->enable || maxim->vin) {
+> > > > > +		/* Datasheet Electrical Characteristics tSTARTUP 2ms */
+> > > > > +		usleep_range(2000, 2500);
+> > > > > +	}
+> > > >
+> > > > If you really want to keep the devm_regulator_get_optional() I guess
+> > > > maybe you could persuade me it's need to avoid this sleep... although
+> > > > I'd be fairly happy to remove the NULL checks here too!
+> > >
+> > > Just wait unconditionally?
+> >
+> > If you think it will be unusual for the driver to be used without enable
+> > or regulator then it's ok to wait unconditionally (all examples you
+> > have added so far have an enable pin).
+>
+> I think it may actually be a very common implementation to have the enable
+> pin attached to Vin, we don't have it set up that way. But it is displayed
+> that way in an example schematic in the datasheet.
 
-> Hope that helps
-> Heiko
-> 
-> 
-> 
+Your call.
 
+
+Daniel.
 
