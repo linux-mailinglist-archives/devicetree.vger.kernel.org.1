@@ -1,392 +1,450 @@
-Return-Path: <devicetree+bounces-236935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B68DC4965B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:25:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2867C496DC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 22:37:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B9EB1889193
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:25:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F4101884E71
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03292F6170;
-	Mon, 10 Nov 2025 21:25:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54AF032E148;
+	Mon, 10 Nov 2025 21:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="WuYUcCgS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZiNd8UTX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011037.outbound.protection.outlook.com [52.101.62.37])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70DA1FF61E;
-	Mon, 10 Nov 2025 21:25:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762809923; cv=fail; b=sB/m77IGf8HmjFfaZzZb+3zTmV0QW9L2YayflgXm4Dw9KxELQ8j90EADfvS2k/LFCFyzAhwT+Gq4qMowgYWLe3dh3utNsBk4lp/O3IUAfvdtQ1ABRmfwPyLpgvv/BnRJbn8oGk9oyHKe9JcFvAdFnRFd9e0VI7Zs54jkHFK7guE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762809923; c=relaxed/simple;
-	bh=E0L+eLa07i6HpRxGWbXYE9SthVPZlrPIZkKRc44H4yE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=S45joqqqP41pmyNtBCYjfLUZkYZaMbBHtRMul8ayyq8QsxsxCpUgvNxtOtCfGlMOQFz1ewbOR/NvZeO1PHEmpxU6+jEfqoKAVgvsvD2/w1oKniwJ2FsWLlXvOlxOwYCzLiwjJgdp4wivm+DGUfXPncuGAVxftSHh49KkJ/WwpJw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=WuYUcCgS; arc=fail smtp.client-ip=52.101.62.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Oa6h796+V6ZKY4tO+ZFXRK3Uz5E3Vip/Rvr7Iu3vVoRcDYwSBIF9mYlHrgH+v281zaOv2M2h/jWJMzszBe17E3thYTqxeoj8AxXqZrt2oWYvhulqndHY0fDkyRnU+h3YQZ+f8IHwAd4WMurMDWPMaSbzITZWTw6Itb1IK8PM3gaMzksljY7FpLhcAUURafJxidTC+AoezAAXZwPcIkrgyYzK57IO+5J26uOFbPW7cqHkrMIch0TDWMdk80Qg+rOhDYRZq/r5S1T+RJj2krCSGL9SzC25uue3/NpiHkkaCYjxSYZkGLQkAsbAUi0Peu4SEfetiemjhR/Yy5FsgkCBCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=awTg2qF9FkJR85l5vpJHdl/HwRbflk7wamYLXngGd2A=;
- b=zN1MyBkYUSom1X4tdMUMyvvAw69gfuzz6yW9AuqT7DFI/+5bmez5y++qKnaXjp59ESKmLRSYhldXghImUX/3Az7LayiUTh+1821SF6YrLX+pB0CU/aW2fEa71+sERtQREWkmgdkWZO0Vz7i4X/kBrWiGBaQfZoPzECFaLDLidTp1ls8eiXS+UDvjgsr2yXHkMpLrRAbyGf04JarXluNvGEEfg8UGBwDoTS1zlyWxZxKPMUFLlC2u/GrOiYbfdqjfj4hgZip5sDOWdRTKtU0EQDwTiw1p0ipL6wGRYr/E3l+2y05riJHUC63bH820uGLQUb8fdXqtI9x4fK6WCsLAIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=awTg2qF9FkJR85l5vpJHdl/HwRbflk7wamYLXngGd2A=;
- b=WuYUcCgS69rvEY5ECRth56UdSvQJCC87KkFM0v0t3SPsuhAEa+F3qTOJktvJG/VUMhlrgfgd1pQJ1TKfCBBaUTWSiS0iPqoy2/Ha9oj1UP1qDERiA5V+8boYjr+J/vitEkC3Xcztk1Y4YiLu7BkJhfIhcf+tnCOHxNkGgkAdvONDz40zf2hjbeHV4N/bhWPqM8n4CqWkxY65ldxlP66wUo2MCH7Jf3zNIxP8xUx+qRTiscIf414K8Vv5M3I5h9br2j8J7lLo3rR0JOVac2J0iWHxZmtbYPkzMtmdE52CWhihfVzm1GSAuAMvn3DnLSj7iUWhGl31wj35mU7EpE03SQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
- by SN7PR12MB6862.namprd12.prod.outlook.com (2603:10b6:806:265::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 10 Nov
- 2025 21:25:17 +0000
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9%4]) with mapi id 15.20.9298.015; Mon, 10 Nov 2025
- 21:25:17 +0000
-Message-ID: <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
-Date: Mon, 10 Nov 2025 21:25:12 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
-To: webgeek1234@gmail.com, Krzysztof Kozlowski <krzk@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
- <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0260.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:194::13) To SJ2PR12MB8784.namprd12.prod.outlook.com
- (2603:10b6:a03:4d0::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E0C23BCE4;
+	Mon, 10 Nov 2025 21:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762810608; cv=none; b=gA5C0s2vMdGIFnaAnDghs0dYul9dgGbRRhhBmBRUeHMXRJ0uOg8YiiLyRtWfKMmc3rNFZYjB9AJe67Skdt8y8+iqqcNUfmQzC65zY+OpaFMq5kmfUjfMhVT3i78BNyJnD9P79XoEdS4oJXE3mXba5Y3mOpyCHFgQ2muHY8fFc44=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762810608; c=relaxed/simple;
+	bh=j3UaS4z5achFCd1TKFwVa5PjZGFIfLaLy4y+1hRDMbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WGvggiEWp357yrOQgEZjAjQHZ4nTT8alO+f7uKiZj+l4IT8hhr2AK/iyl08mVHzWNb6uVWLq1ymWrMVPIQ4U22z6Zqiq1IN8e1vICeTuriki6O3N3zoKS/nq/Qm0vmcNlVjGGXxngCAxI3G0VorZ7J4Tmk/3XRqLMYQZfjJ77EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZiNd8UTX; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762810607; x=1794346607;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=j3UaS4z5achFCd1TKFwVa5PjZGFIfLaLy4y+1hRDMbk=;
+  b=ZiNd8UTXOyptlZjkQl2uqEs5Q3aLvnFO8OEi119uWad9m/3VYi3jJ93W
+   Qzb/xpIRULoPn0BCTpWnokmxG0YQTYuFK4LMIIsZtqWdrevxMxbswHOhY
+   j7JzzViSxe7XIAhEMAZwKNEzGDu+zbHtZZHltHJolKjJBf8XBxIG3OvNM
+   rmb5d9JdccyFZ0WE+HoBAEF/GM+ZOw+weplefkZs/aq9exUirIFR3hazJ
+   dP5RWtMzzCTdjQTf2qk9p4Cmw8oDSg4mmwpPptkHfQMFlUdut5XTJPVCp
+   YF5oNFpT5Ky2Y0rXyf+XJzg3ftzBamyfLSvtFRR8Lf4d/8gMO4EgPjtmB
+   g==;
+X-CSE-ConnectionGUID: YDzw3sQ7QeWbze4fgDKywQ==
+X-CSE-MsgGUID: /jE4LoR0SGOroJhMNcZgxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64781084"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="64781084"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 13:36:46 -0800
+X-CSE-ConnectionGUID: 6ibS5wYqRdCWoUEPO25vwQ==
+X-CSE-MsgGUID: QLfywHYeQhKPTRbzgEs1pw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; 
+   d="scan'208";a="219494766"
+Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 10 Nov 2025 13:36:42 -0800
+Received: from kbuild by 7b01c990427b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vIZZ1-00013B-29;
+	Mon, 10 Nov 2025 21:36:39 +0000
+Date: Tue, 11 Nov 2025 05:35:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: caohang@eswincomputing.com, gregkh@linuxfoundation.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, Thinh.Nguyen@synopsys.com,
+	p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Hang Cao <caohang@eswincomputing.com>,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: Re: [PATCH v7 2/2] usb: dwc3: eic7700: Add EIC7700 USB driver
+Message-ID: <202511110504.qfGuRVHY-lkp@intel.com>
+References: <20251110024500.104-1-caohang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|SN7PR12MB6862:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59b556f2-df38-46f5-29df-08de209fa4cf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|10070799003|366016|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?SnBTWHlFK3dmd0xxMjlpK2RtcWh2eXlSaVN1bVJqa0cxN2Y1Y3QrNmZpN0E2?=
- =?utf-8?B?QkFNMm8xWmtqQTkrbWl3Nzlmdko3MEVDZDVkSmRER0RUUkdzWmZ3cTREbm9X?=
- =?utf-8?B?MmJodWRwRlRBMGMxQ3MrcW1jakF1dWVoZ2JTOGRlTUZwZWx0dnFqVDN6MUpu?=
- =?utf-8?B?dWo5RzFvWlY3UHZjRkhkclhMV0RSU1JNRjdGdVcwUUIyN0x3QWFWdWVTZXF0?=
- =?utf-8?B?QWRtUkJEWFFweTVOekR4NVhsa1NjS2oxN1FGMFBMcVZtKzZLaDBKNEpRNVEy?=
- =?utf-8?B?OTN4WjJlOVpPMExGS3pYSHlKdXR1VmZNcmFxOW5LTS9sekJFV3dJVzJMUlo0?=
- =?utf-8?B?ZWhMWmIrY2dLRGw3NFpyRGczaWlGdFhUekxBVnlPbnJjVTY1NUdGRkNtMmJk?=
- =?utf-8?B?cVFxaFRqREtaWng3SE5tUFpMV0l6QWZ6TlpxQS9tVmlmZSswbWJCeG1qdzU2?=
- =?utf-8?B?YVc1QnduV25IdCtZcXR3Wm1Tbm9DbU5uYnhSSmpRUkZkdjVNMlZGcWtxQUVo?=
- =?utf-8?B?MDZUQ1dPUVpYdUhtQkZyaWhSb3VqYUN1aE4rU05WMVJJSDVESGUzM2R3bnkw?=
- =?utf-8?B?dXpOSjdSZzI3V1NRMjJXT2FHdHlRNWU0blhlUHRXSUdLUWZkSnlaYzV2WG0x?=
- =?utf-8?B?ZmJ2WGs0T09IRTRsY0wraTFzNWV4Yzg4N1duUnk4a2srNDU1TUV1bFo0dndm?=
- =?utf-8?B?aVRFT0xWeUh2VUllNTdoeVE3RWlMM2RubW5rVzhpWVg1VUUzM3VaV1hDUkJr?=
- =?utf-8?B?bUxSejBubnIyaWRQR2dUdytteUl1a3N2OW92cTcxWmRzb3pKSDlFMFJCdzBh?=
- =?utf-8?B?WlMvUGRPZUlpNmlNYmhHZnBzeU05c1lmTHNiclFabHhQMjgxL2NIcDZmRUNO?=
- =?utf-8?B?U2g3Q3lOajdHVHVYUGFyaVoyWGNSTVE1SHJYVEZmSDQ2alRpbXAvM3NUb21V?=
- =?utf-8?B?WTAra2pwaTN2QkUxY1crYkcwVHlJZVo3Zm0wanM0eGZYdnNnZzlNVlVrVzFO?=
- =?utf-8?B?QTlISktqNVFMK3YvQ1E0djM5S29pVmd3a3IxTzFBQVJXZ29mYk5aOEhqS21O?=
- =?utf-8?B?cjlQb01TU3VEaFBETkV4V2lUWWQyeXMrTmpaYnhHYmRYOEpWd2FmbXRWaXg0?=
- =?utf-8?B?aVl3OVZva3dQSk81YlMrN2M1U3UxYm1jRnNHcGViTm5mYy95eGZQNThIM3ZB?=
- =?utf-8?B?anVSdm5GcGlUeHQ0VlFOMTlHZ1NrRGtWNE1XSDEvVEIwOWtDTEp5VnV0Rk5n?=
- =?utf-8?B?T0RxcDlUSVBzTzdGZkRDZjhhTDdsS0M1NmxzbGdrdmFucTlIR0FWWU9oRitl?=
- =?utf-8?B?RkVjSGhUSkdYTFZ2dFhjNnA3VTBXQ0g0enJxcVMySHpvTGVTemI3eUQ3NWNj?=
- =?utf-8?B?TitIcHJwSTQ5WFZUU0lEUVNZeHFySXdSc2liaEdGNFZHNjNHa2phU2NCSkpT?=
- =?utf-8?B?NGFST3hZUGhkVDVPa0NuVlA5bnI4dzg4a0ZmbjNKdGZuVXZvZGdjS0xrSjRj?=
- =?utf-8?B?TTNhNEd1Yi9ETlRlSnRzUlpsS3RSMG8xTG5ZYjZEYlhkRUtMK3lQRUNNbUkx?=
- =?utf-8?B?elM1eE9mbGxpWVFmaVN4akRPcGJ3MlNqVGJINGRydkFWa2ZGWnd4Zkw4bENk?=
- =?utf-8?B?YVN3UjlXN0lSTUU0bzYyNklhQnRkUm9TTDh0WUgyNGQ0MUF1akF6Rnk2NVIr?=
- =?utf-8?B?MkNlMjExTVlKanVtc254MWo5ZWdhTFpuVVd5TjNUVkszMXJqN21CQlZPdjdt?=
- =?utf-8?B?M3JlTlZoaUtDWDVZVEtjUDRabWEyTGdBWmdYWXdMRCtqZmdLWGN0UnFodXBn?=
- =?utf-8?B?VDNkSHVhV1pFMWpCU2FOQzkyN3hJRTRyUmZPbGdFTHZUREVUM3crZEZIWFlN?=
- =?utf-8?B?OGorYXdHWHlQRmprZEtEcC9EMnZTREJEay9lTEEyelN3ODlQZ0N2RjJBM05U?=
- =?utf-8?Q?IsugMEPSmVUpz7dQQcHTMAEtFssx8bwZ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(10070799003)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?K2JmYktQek1hSHVZSUFwVVdGcWtsYVAyV0k3SDN6NGNlejAvSUpPZVN3UEVu?=
- =?utf-8?B?bEZwS2hUeXlqVjdqQVYxZG1TUS9LWE0zMUJ6SnhBU1djQW8yRVNTaTJuNUNk?=
- =?utf-8?B?eXNqZ3JTTk9xNWVRcDUxbG52NVdNNTJLTVZ2SE9kS1I5Wi8rMkZUcURWOUpm?=
- =?utf-8?B?ZDJzM1pwdVo2Y1c0MXl4SmE5UTdxWXZ0OGIweGhuejlreEVFK0Zld29USURJ?=
- =?utf-8?B?RjZLenhHdFNzeVR0VE5zQnBlTkk2czRjYTZISEJzV0ExMTNCMi9zRkJ4eXBw?=
- =?utf-8?B?U2FXeFpFUHZLYm9Rc3ovejNieEZWRzNIa2Npbi9tL1Z4SUVrNG1WanhMSGpK?=
- =?utf-8?B?RHVSOFBIWk9mSGtDbUNqcDhmWnNnSHRpVGRCTHhVT3FtS2NDd2I2MXYzUWdP?=
- =?utf-8?B?VjB1Uk4zNUNUNHBpcVhTem82Z1BlUDh2QStrVjh6N3BZT3VhbkxlVDV4UkV4?=
- =?utf-8?B?ZUp5NGIxU0szQkRXM0dzUEVCUDQ2MVZPWFp6aWoxei9mTXRSQk5EUHhhY1Nk?=
- =?utf-8?B?TnFKNXUxenUvTlFoRGdSK3lDZy9rWG5oS0xUQ1JyN1Z3Y0R4aGNsdklRalJ4?=
- =?utf-8?B?Mzh4SEU2Y1o3RXFkU2FxY2FuaUFBd0diNHBUd0tEOUhWbGZVRDIvamY0Q3cx?=
- =?utf-8?B?QW9TRENFcVpwU2dEQzl4NWpOWWdIVnVIQ1BXUDFPM1lEakJmVCtoVUVWU1lS?=
- =?utf-8?B?RmYxVm81NG9qeUJTK1RRREF5ME9hVldBVW96VjJUTUU3QW1OblRROHBzeCtU?=
- =?utf-8?B?NjA5alJHR3Q5ci96NXFxQ2dnQjhybnRRUHpiRDdub1ErcUhlVi9GZERidno4?=
- =?utf-8?B?Q3VuVmVnMlRDeHVXbDVadSt3WEw2QzYvUWo4K3VaMmFCS1ZYazNCQXRMU0c2?=
- =?utf-8?B?T09rZm1tdU9ET29MUzhhZGdhbHZ6YXB1bTNSYWZ3cG40MVdVOU5yWG92Njlj?=
- =?utf-8?B?L29rbngyN09XVVRvRzZpNVFQclFDNldFTFMzaWFUbFRhYzQrSjNpWUxVY1Bs?=
- =?utf-8?B?WmRBQ0QvVEQrUjJ0Z1g3MFVqUy9nMFk1MWtXdFp3RjJnQWtuUVFFdVk3cnJ6?=
- =?utf-8?B?U2w5NW9PcU9QaUVRMytwbFlVRzcxS1Y4S2tTS2pSNm52b3JpQWRCRGVpbll0?=
- =?utf-8?B?NWFZdkVmWHBJdHJjOGdlMDZLZjNOYWJpZkVuam8zMU9QelNXQWoxWDJQd215?=
- =?utf-8?B?YXI1UzBTYjAraWNQRmNQdWRKZUJscjNaRlRiY1I1cC93bGRuZzdzUUdVejl5?=
- =?utf-8?B?dEhkVEZRR1Y1YW1naERxK0Z1Z2gzSXZPVXg4cjNSSmxJMDVEaUtkS0sraHQr?=
- =?utf-8?B?ZXBJN3U3NkNiNDY1cFJFRTBoNmdCeXRmTjhEaFR0a1pEa2U5WHVsR2xTcHA4?=
- =?utf-8?B?YnR1MG55Mm9rWXcvaEx2WjVBZUlOVWZ4b1IyRElLbGE3ajdNZnFFMUVRUjRm?=
- =?utf-8?B?YmpBWnFJQ2NHc0dvMDJ4ZVZ2NEk5QlNkRytFVmk5eGhPUlpnbGxLYTRsb2dj?=
- =?utf-8?B?V2M4LzBWNkRqVmJURWVrT1ZBbDUyRDJiTFdiZWxFSGFlM2pkNUVsOXNHbW1M?=
- =?utf-8?B?Y0tlOFFrcW0zWm5uSFlRQkpvek82U0xLaFVEK2lhK0hwSDBPd1VwMUtvUGl5?=
- =?utf-8?B?QTUvMEdPNDNYQVNHNHQwSm1jaWVoU3lKcVE4SnFvVnRBN1Zna3I2VHhBNHFi?=
- =?utf-8?B?WHVKdml0ZTZvNTZMd081NC9NM2MzNUxDNCtncGd1Q2dZSEtkREhnaHhkR3cw?=
- =?utf-8?B?YlJkb0dEMEFJNEVtdVFQTTBsYm14VGNKWTU2R0Nlb2tPMEtOdlJpQXlqUjlj?=
- =?utf-8?B?ekJVRXZuWmdkNFR4VCtuQ2d2OHdXY0J5UU8wd2xIaWJqbkVZU1B5RTdFMGIw?=
- =?utf-8?B?b0ZkYmczbXppZmVpYmJmMWw5ZGM3eU8vT3NHWGJNOHFnb0NaaTB6Q0lQbEFt?=
- =?utf-8?B?REwrT1VqbWRmcGNJMXBHMFRUbU5TS1RQOXZuUEg0cEVwcFVlR1lkenFwVFVl?=
- =?utf-8?B?Mm5aNXZIazdEaEVpUHR5YVhyME5WWndZdkI4YW1XZ0ZiVHVMZE5wUFFMWVlq?=
- =?utf-8?B?bUNlR2ZTTklrRTJBbFZ3MzlYRVliSTdlNWc5WGRTNHZCc1IraEMxQnZENkRm?=
- =?utf-8?B?aXgzZzhpaFNaWC9ueFd5KzBHYU42SnNxaTZwL000SUFPMGRDVVd4WDZzUHRp?=
- =?utf-8?B?UERHMDExMEZBWWF1VlB1Ykt5V3lVRHRrSEtEdVVoOGhIaElCZ0JIWTI4blE0?=
- =?utf-8?B?TThwZTMxYnAwNmE2bVpHWTRQNVV3PT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59b556f2-df38-46f5-29df-08de209fa4cf
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2025 21:25:17.2495
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RYO0z6zA1dDCHZPyqyOCq5msTCLe3ecR7q+w/KMamQrjrlBK9x4077pw/tHgKMrXrvkzz4A+d9dq6V1OtkQy2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6862
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251110024500.104-1-caohang@eswincomputing.com>
+
+Hi,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on usb/usb-testing]
+[also build test ERROR on usb/usb-next next-20251110]
+[cannot apply to usb/usb-linus robh/for-next pza/reset/next pza/imx-drm/next linus/master v6.18-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/caohang-eswincomputing-com/dt-bindings-usb-Add-ESWIN-EIC7700-USB-controller/20251110-104957
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+patch link:    https://lore.kernel.org/r/20251110024500.104-1-caohang%40eswincomputing.com
+patch subject: [PATCH v7 2/2] usb: dwc3: eic7700: Add EIC7700 USB driver
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20251111/202511110504.qfGuRVHY-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 996639d6ebb86ff15a8c99b67f1c2e2117636ae7)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251111/202511110504.qfGuRVHY-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511110504.qfGuRVHY-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/usb/dwc3/dwc3-generic-plat.c:132:35: warning: missing terminating '"' character [-Winvalid-pp-token]
+     132 |                         return dev_err_probe(dev, ret, "failed to init
+         |                                                        ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:132:35: error: expected expression
+   drivers/usb/dwc3/dwc3-generic-plat.c:133:21: warning: missing terminating '"' character [-Winvalid-pp-token]
+     133 |                                              platform\n");
+         |                                                        ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:145:1: error: function definition is not allowed here
+     145 | {
+         | ^
+   drivers/usb/dwc3/dwc3-generic-plat.c:152:1: error: function definition is not allowed here
+     152 | {
+         | ^
+   drivers/usb/dwc3/dwc3-generic-plat.c:167:1: error: function definition is not allowed here
+     167 | {
+         | ^
+   drivers/usb/dwc3/dwc3-generic-plat.c:184:1: error: function definition is not allowed here
+     184 | {
+         | ^
+   drivers/usb/dwc3/dwc3-generic-plat.c:189:1: error: function definition is not allowed here
+     189 | {
+         | ^
+   drivers/usb/dwc3/dwc3-generic-plat.c:194:1: error: function definition is not allowed here
+     194 | {
+         | ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:199:22: error: use of undeclared identifier 'dwc3_generic_suspend'; did you mean 'pm_generic_suspend'?
+     199 |         SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+         |                             ^~~~~~~~~~~~~~~~~~~~
+         |                             pm_generic_suspend
+   include/linux/pm.h:314:26: note: expanded from macro 'SYSTEM_SLEEP_PM_OPS'
+     314 |         .suspend = pm_sleep_ptr(suspend_fn), \
+         |                                 ^~~~~~~~~~
+   include/linux/pm.h:473:65: note: expanded from macro 'pm_sleep_ptr'
+     473 | #define pm_sleep_ptr(_ptr) PTR_IF(IS_ENABLED(CONFIG_PM_SLEEP), (_ptr))
+         |                                                                 ^~~~
+   include/linux/util_macros.h:136:38: note: expanded from macro 'PTR_IF'
+     136 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                            ^~~
+   include/linux/pm.h:840:12: note: 'pm_generic_suspend' declared here
+     840 | extern int pm_generic_suspend(struct device *dev);
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:199:44: error: use of undeclared identifier 'dwc3_generic_resume'; did you mean 'pm_generic_resume'?
+     199 |         SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+         |                                                   ^~~~~~~~~~~~~~~~~~~
+         |                                                   pm_generic_resume
+   include/linux/pm.h:315:25: note: expanded from macro 'SYSTEM_SLEEP_PM_OPS'
+     315 |         .resume = pm_sleep_ptr(resume_fn), \
+         |                                ^~~~~~~~~
+   include/linux/pm.h:473:65: note: expanded from macro 'pm_sleep_ptr'
+     473 | #define pm_sleep_ptr(_ptr) PTR_IF(IS_ENABLED(CONFIG_PM_SLEEP), (_ptr))
+         |                                                                 ^~~~
+   include/linux/util_macros.h:136:38: note: expanded from macro 'PTR_IF'
+     136 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                            ^~~
+   include/linux/pm.h:843:12: note: 'pm_generic_resume' declared here
+     843 | extern int pm_generic_resume(struct device *dev);
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:199:22: error: use of undeclared identifier 'dwc3_generic_suspend'; did you mean 'pm_generic_suspend'?
+     199 |         SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+         |                             ^~~~~~~~~~~~~~~~~~~~
+         |                             pm_generic_suspend
+   include/linux/pm.h:316:25: note: expanded from macro 'SYSTEM_SLEEP_PM_OPS'
+     316 |         .freeze = pm_sleep_ptr(suspend_fn), \
+         |                                ^~~~~~~~~~
+   include/linux/pm.h:473:65: note: expanded from macro 'pm_sleep_ptr'
+     473 | #define pm_sleep_ptr(_ptr) PTR_IF(IS_ENABLED(CONFIG_PM_SLEEP), (_ptr))
+         |                                                                 ^~~~
+   include/linux/util_macros.h:136:38: note: expanded from macro 'PTR_IF'
+     136 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                            ^~~
+   include/linux/pm.h:840:12: note: 'pm_generic_suspend' declared here
+     840 | extern int pm_generic_suspend(struct device *dev);
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:199:44: error: use of undeclared identifier 'dwc3_generic_resume'; did you mean 'pm_generic_resume'?
+     199 |         SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+         |                                                   ^~~~~~~~~~~~~~~~~~~
+         |                                                   pm_generic_resume
+   include/linux/pm.h:317:23: note: expanded from macro 'SYSTEM_SLEEP_PM_OPS'
+     317 |         .thaw = pm_sleep_ptr(resume_fn), \
+         |                              ^~~~~~~~~
+   include/linux/pm.h:473:65: note: expanded from macro 'pm_sleep_ptr'
+     473 | #define pm_sleep_ptr(_ptr) PTR_IF(IS_ENABLED(CONFIG_PM_SLEEP), (_ptr))
+         |                                                                 ^~~~
+   include/linux/util_macros.h:136:38: note: expanded from macro 'PTR_IF'
+     136 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                            ^~~
+   include/linux/pm.h:843:12: note: 'pm_generic_resume' declared here
+     843 | extern int pm_generic_resume(struct device *dev);
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:199:22: error: use of undeclared identifier 'dwc3_generic_suspend'; did you mean 'pm_generic_suspend'?
+     199 |         SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+         |                             ^~~~~~~~~~~~~~~~~~~~
+         |                             pm_generic_suspend
+   include/linux/pm.h:318:27: note: expanded from macro 'SYSTEM_SLEEP_PM_OPS'
+     318 |         .poweroff = pm_sleep_ptr(suspend_fn), \
+         |                                  ^~~~~~~~~~
+   include/linux/pm.h:473:65: note: expanded from macro 'pm_sleep_ptr'
+     473 | #define pm_sleep_ptr(_ptr) PTR_IF(IS_ENABLED(CONFIG_PM_SLEEP), (_ptr))
+         |                                                                 ^~~~
+   include/linux/util_macros.h:136:38: note: expanded from macro 'PTR_IF'
+     136 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                            ^~~
+   include/linux/pm.h:840:12: note: 'pm_generic_suspend' declared here
+     840 | extern int pm_generic_suspend(struct device *dev);
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:199:44: error: use of undeclared identifier 'dwc3_generic_resume'; did you mean 'pm_generic_resume'?
+     199 |         SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+         |                                                   ^~~~~~~~~~~~~~~~~~~
+         |                                                   pm_generic_resume
+   include/linux/pm.h:319:26: note: expanded from macro 'SYSTEM_SLEEP_PM_OPS'
+     319 |         .restore = pm_sleep_ptr(resume_fn),
+         |                                 ^~~~~~~~~
+   include/linux/pm.h:473:65: note: expanded from macro 'pm_sleep_ptr'
+     473 | #define pm_sleep_ptr(_ptr) PTR_IF(IS_ENABLED(CONFIG_PM_SLEEP), (_ptr))
+         |                                                                 ^~~~
+   include/linux/util_macros.h:136:38: note: expanded from macro 'PTR_IF'
+     136 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                            ^~~
+   include/linux/pm.h:843:12: note: 'pm_generic_resume' declared here
+     843 | extern int pm_generic_resume(struct device *dev);
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:200:17: error: use of undeclared identifier 'dwc3_generic_runtime_suspend'; did you mean 'pm_generic_runtime_suspend'?
+     200 |         RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
+         |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |                        pm_generic_runtime_suspend
+   include/linux/pm.h:338:21: note: expanded from macro 'RUNTIME_PM_OPS'
+     338 |         .runtime_suspend = suspend_fn, \
+         |                            ^~~~~~~~~~
+   include/linux/pm_runtime.h:68:12: note: 'pm_generic_runtime_suspend' declared here
+      68 | extern int pm_generic_runtime_suspend(struct device *dev);
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:200:47: error: use of undeclared identifier 'dwc3_generic_runtime_resume'; did you mean 'pm_generic_runtime_resume'?
+     200 |         RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
+         |                                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |                                                      pm_generic_runtime_resume
+   include/linux/pm.h:339:20: note: expanded from macro 'RUNTIME_PM_OPS'
+     339 |         .runtime_resume = resume_fn, \
+         |                           ^~~~~~~~~
+   include/linux/pm_runtime.h:69:12: note: 'pm_generic_runtime_resume' declared here
+      69 | extern int pm_generic_runtime_resume(struct device *dev);
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:201:10: error: use of undeclared identifier 'dwc3_generic_runtime_idle'; did you mean 'dwc3_runtime_idle'?
+     201 |                        dwc3_generic_runtime_idle)
+         |                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+         |                        dwc3_runtime_idle
+   include/linux/pm.h:340:18: note: expanded from macro 'RUNTIME_PM_OPS'
+     340 |         .runtime_idle = idle_fn,
+         |                         ^~~~~~~
+   drivers/usb/dwc3/glue.h:74:5: note: 'dwc3_runtime_idle' declared here
+      74 | int dwc3_runtime_idle(struct dwc3 *dwc);
+         |     ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:201:10: error: incompatible function pointer types initializing 'int (*)(struct device *)' with an expression of type 'int (struct dwc3 *)' [-Wincompatible-function-pointer-types]
+     201 |                        dwc3_generic_runtime_idle)
+         |                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/usb/dwc3/dwc3-generic-plat.c:223:13: error: use of undeclared identifier 'dwc3_generic_remove'; did you mean 'dwc3_generic_probe'?
+     223 |         .remove         = dwc3_generic_remove,
+         |                           ^~~~~~~~~~~~~~~~~~~
+         |                           dwc3_generic_probe
+   drivers/usb/dwc3/dwc3-generic-plat.c:72:12: note: 'dwc3_generic_probe' declared here
+      72 | static int dwc3_generic_probe(struct platform_device *pdev)
+         |            ^
+>> drivers/usb/dwc3/dwc3-generic-plat.c:223:13: error: incompatible function pointer types initializing 'void (*)(struct platform_device *)' with an expression of type 'int (struct platform_device *)' [-Wincompatible-function-pointer-types]
+     223 |         .remove         = dwc3_generic_remove,
+         |                           ^~~~~~~~~~~~~~~~~~~
+   fatal error: too many errors emitted, stopping now [-ferror-limit=]
+   2 warnings and 20 errors generated.
 
 
-On 27/10/2025 18:55, Aaron Kling via B4 Relay wrote:
-> From: Aaron Kling <webgeek1234@gmail.com>
-> 
-> This adds support for dynamic frequency scaling of external memory on
-> devices with bpmp firmware that does not support bwmgr.
-> 
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
->   drivers/memory/tegra/tegra186-emc.c | 132 +++++++++++++++++++++++++++++++++++-
->   1 file changed, 130 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/memory/tegra/tegra186-emc.c b/drivers/memory/tegra/tegra186-emc.c
-> index 9959ad5804b444b269456d1fbae87b4bc111661b..74be09968baa7a0fbdce4359f470ce56b18acb10 100644
-> --- a/drivers/memory/tegra/tegra186-emc.c
-> +++ b/drivers/memory/tegra/tegra186-emc.c
-> @@ -18,6 +18,17 @@ struct tegra186_emc_dvfs {
->   	unsigned long rate;
->   };
->   
-> +enum emc_rate_request_type {
-> +	EMC_RATE_DEBUG,
-> +	EMC_RATE_ICC,
-> +	EMC_RATE_TYPE_MAX,
-> +};
-> +
-> +struct emc_rate_request {
-> +	unsigned long min_rate;
-> +	unsigned long max_rate;
-> +};
-> +
->   struct tegra186_emc {
->   	struct tegra_bpmp *bpmp;
->   	struct device *dev;
-> @@ -33,8 +44,90 @@ struct tegra186_emc {
->   	} debugfs;
->   
->   	struct icc_provider provider;
-> +
-> +	/*
-> +	 * There are multiple sources in the EMC driver which could request
-> +	 * a min/max clock rate, these rates are contained in this array.
-> +	 */
-> +	struct emc_rate_request requested_rate[EMC_RATE_TYPE_MAX];
-> +
-> +	/* protect shared rate-change code path */
-> +	struct mutex rate_lock;
->   };
->   
-> +static void tegra186_emc_rate_requests_init(struct tegra186_emc *emc)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < EMC_RATE_TYPE_MAX; i++) {
-> +		emc->requested_rate[i].min_rate = 0;
-> +		emc->requested_rate[i].max_rate = ULONG_MAX;
-> +	}
-> +}
-> +
-> +static int emc_request_rate(struct tegra186_emc *emc,
-> +			    unsigned long new_min_rate,
-> +			    unsigned long new_max_rate,
-> +			    enum emc_rate_request_type type)
-> +{
-> +	struct emc_rate_request *req = emc->requested_rate;
-> +	unsigned long min_rate = 0, max_rate = ULONG_MAX;
-> +	unsigned int i;
-> +	int err;
-> +
-> +	/* select minimum and maximum rates among the requested rates */
-> +	for (i = 0; i < EMC_RATE_TYPE_MAX; i++, req++) {
-> +		if (i == type) {
-> +			min_rate = max(new_min_rate, min_rate);
-> +			max_rate = min(new_max_rate, max_rate);
-> +		} else {
-> +			min_rate = max(req->min_rate, min_rate);
-> +			max_rate = min(req->max_rate, max_rate);
-> +		}
-> +	}
-> +
-> +	if (min_rate > max_rate) {
-> +		dev_err_ratelimited(emc->dev, "%s: type %u: out of range: %lu %lu\n",
-> +				    __func__, type, min_rate, max_rate);
-> +		return -ERANGE;
-> +	}
-> +
-> +	err = clk_set_rate(emc->clk, min_rate);
-> +	if (err)
-> +		return err;
-> +
-> +	emc->requested_rate[type].min_rate = new_min_rate;
-> +	emc->requested_rate[type].max_rate = new_max_rate;
-> +
-> +	return 0;
-> +}
-> +
-> +static int emc_set_min_rate(struct tegra186_emc *emc, unsigned long rate,
-> +			    enum emc_rate_request_type type)
-> +{
-> +	struct emc_rate_request *req = &emc->requested_rate[type];
-> +	int ret;
-> +
-> +	mutex_lock(&emc->rate_lock);
-> +	ret = emc_request_rate(emc, rate, req->max_rate, type);
-> +	mutex_unlock(&emc->rate_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int emc_set_max_rate(struct tegra186_emc *emc, unsigned long rate,
-> +			    enum emc_rate_request_type type)
-> +{
-> +	struct emc_rate_request *req = &emc->requested_rate[type];
-> +	int ret;
-> +
-> +	mutex_lock(&emc->rate_lock);
-> +	ret = emc_request_rate(emc, req->min_rate, rate, type);
-> +	mutex_unlock(&emc->rate_lock);
-> +
-> +	return ret;
-> +}
-> +
->   /*
->    * debugfs interface
->    *
-> @@ -107,7 +200,7 @@ static int tegra186_emc_debug_min_rate_set(void *data, u64 rate)
->   	if (!tegra186_emc_validate_rate(emc, rate))
->   		return -EINVAL;
->   
-> -	err = clk_set_min_rate(emc->clk, rate);
-> +	err = emc_set_min_rate(emc, rate, EMC_RATE_DEBUG);
->   	if (err < 0)
->   		return err;
->   
-> @@ -137,7 +230,7 @@ static int tegra186_emc_debug_max_rate_set(void *data, u64 rate)
->   	if (!tegra186_emc_validate_rate(emc, rate))
->   		return -EINVAL;
->   
-> -	err = clk_set_max_rate(emc->clk, rate);
-> +	err = emc_set_max_rate(emc, rate, EMC_RATE_DEBUG);
->   	if (err < 0)
->   		return err;
->   
-> @@ -217,6 +310,12 @@ static int tegra186_emc_get_emc_dvfs_latency(struct tegra186_emc *emc)
->   	return 0;
->   }
->   
-> +static inline struct tegra186_emc *
-> +to_tegra186_emc_provider(struct icc_provider *provider)
-> +{
-> +	return container_of(provider, struct tegra186_emc, provider);
-> +}
-> +
->   /*
->    * tegra186_emc_icc_set_bw() - Set BW api for EMC provider
->    * @src: ICC node for External Memory Controller (EMC)
-> @@ -227,6 +326,33 @@ static int tegra186_emc_get_emc_dvfs_latency(struct tegra186_emc *emc)
->    */
->   static int tegra186_emc_icc_set_bw(struct icc_node *src, struct icc_node *dst)
->   {
-> +	struct tegra186_emc *emc = to_tegra186_emc_provider(dst->provider);
-> +	struct tegra_mc *mc = dev_get_drvdata(emc->dev->parent);
-> +	unsigned long long peak_bw = icc_units_to_bps(dst->peak_bw);
-> +	unsigned long long avg_bw = icc_units_to_bps(dst->avg_bw);
-> +	unsigned long long rate = max(avg_bw, peak_bw);
-> +	const unsigned int ddr = 2;
-> +	int err;
-> +
-> +	/*
-> +	 * Do nothing here if bwmgr is supported in BPMP-FW. BPMP-FW sets the final
-> +	 * Freq based on the passed values.
-> +	 */
-> +	if (mc->bwmgr_mrq_supported)
-> +		return 0;
-> +
-> +	/*
-> +	 * Tegra186 EMC runs on a clock rate of SDRAM bus. This means that
-> +	 * EMC clock rate is twice smaller than the peak data rate because
-> +	 * data is sampled on both EMC clock edges.
-> +	 */
-> +	do_div(rate, ddr);
-> +	rate = min_t(u64, rate, U32_MAX);
-> +
-> +	err = emc_set_min_rate(emc, rate, EMC_RATE_ICC);
-> +	if (err)
-> +		return err;
-> +
->   	return 0;
->   }
->   
-> @@ -329,6 +455,8 @@ static int tegra186_emc_probe(struct platform_device *pdev)
->   	platform_set_drvdata(pdev, emc);
->   	emc->dev = &pdev->dev;
->   
-> +	tegra186_emc_rate_requests_init(emc);
-> +
->   	if (tegra_bpmp_mrq_is_supported(emc->bpmp, MRQ_EMC_DVFS_LATENCY)) {
->   		err = tegra186_emc_get_emc_dvfs_latency(emc);
->   		if (err)
-> 
+vim +132 drivers/usb/dwc3/dwc3-generic-plat.c
 
-
-FYI, this patch is causing a boot regression on Tegra194 devices. I 
-noticed that tegra194-p2972-0000 and tegra194-p3509-0000+p3668-0000 are 
-no longer booting and bisect is pointing to this. I will have a closer 
-look and try to see why this is.
-
-Jon
+    71	
+    72	static int dwc3_generic_probe(struct platform_device *pdev)
+    73	{
+    74		const struct dwc3_generic_config *plat_config;
+    75		struct dwc3_probe_data probe_data = {};
+    76		struct device *dev = &pdev->dev;
+    77		struct dwc3_generic *dwc3g;
+    78		struct resource *res;
+    79		int ret;
+    80	
+    81		dwc3g = devm_kzalloc(dev, sizeof(*dwc3g), GFP_KERNEL);
+    82		if (!dwc3g)
+    83			return -ENOMEM;
+    84	
+    85		dwc3g->dev = dev;
+    86	
+    87		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+    88		if (!res) {
+    89			dev_err(&pdev->dev, "missing memory resource\n");
+    90			return -ENODEV;
+    91		}
+    92	
+    93		dwc3g->resets = devm_reset_control_array_get_optional_exclusive(dev);
+    94		if (IS_ERR(dwc3g->resets))
+    95			return dev_err_probe(dev, PTR_ERR(dwc3g->resets), "failed to get resets\n");
+    96	
+    97		ret = reset_control_assert(dwc3g->resets);
+    98		if (ret)
+    99			return dev_err_probe(dev, ret, "failed to assert resets\n");
+   100	
+   101		/* Not strict timing, just for safety */
+   102		udelay(2);
+   103	
+   104		ret = reset_control_deassert(dwc3g->resets);
+   105		if (ret)
+   106			return dev_err_probe(dev, ret, "failed to deassert resets\n");
+   107	
+   108		ret = devm_add_action_or_reset(dev, dwc3_generic_reset_control_assert, dwc3g->resets);
+   109		if (ret)
+   110			return ret;
+   111	
+   112		ret = devm_clk_bulk_get_all_enabled(dwc3g->dev, &dwc3g->clks);
+   113		if (ret < 0)
+   114			return dev_err_probe(dev, ret, "failed to get clocks\n");
+   115	
+   116		dwc3g->num_clocks = ret;
+   117		dwc3g->dwc.dev = dev;
+   118		probe_data.dwc = &dwc3g->dwc;
+   119		probe_data.res = res;
+   120		probe_data.ignore_clocks_and_resets = true;
+   121	
+   122		plat_config = of_device_get_match_data(dev);
+   123		if (!plat_config) {
+   124			probe_data.properties = DWC3_DEFAULT_PROPERTIES;
+   125			goto core_probe;
+   126		}
+   127	
+   128		probe_data.properties = plat_config->properties;
+   129		if (plat_config->init) {
+   130			ret = plat_config->init(dwc3g);
+   131			if (ret)
+ > 132				return dev_err_probe(dev, ret, "failed to init
+   133						     platform\n");
+   134		}
+   135	
+   136	core_probe:
+   137		ret = dwc3_core_probe(&probe_data);
+   138		if (ret)
+   139			return dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
+   140	
+   141		return 0;
+   142	}
+   143	
+   144	static void dwc3_generic_remove(struct platform_device *pdev)
+ > 145	{
+   146		struct dwc3 *dwc = platform_get_drvdata(pdev);
+   147	
+   148		dwc3_core_remove(dwc);
+   149	}
+   150	
+   151	static int dwc3_generic_suspend(struct device *dev)
+   152	{
+   153		struct dwc3 *dwc = dev_get_drvdata(dev);
+   154		struct dwc3_generic *dwc3g = to_dwc3_generic(dwc);
+   155		int ret;
+   156	
+   157		ret = dwc3_pm_suspend(dwc);
+   158		if (ret)
+   159			return ret;
+   160	
+   161		clk_bulk_disable_unprepare(dwc3g->num_clocks, dwc3g->clks);
+   162	
+   163		return 0;
+   164	}
+   165	
+   166	static int dwc3_generic_resume(struct device *dev)
+   167	{
+   168		struct dwc3 *dwc = dev_get_drvdata(dev);
+   169		struct dwc3_generic *dwc3g = to_dwc3_generic(dwc);
+   170		int ret;
+   171	
+   172		ret = clk_bulk_prepare_enable(dwc3g->num_clocks, dwc3g->clks);
+   173		if (ret)
+   174			return ret;
+   175	
+   176		ret = dwc3_pm_resume(dwc);
+   177		if (ret)
+   178			return ret;
+   179	
+   180		return 0;
+   181	}
+   182	
+   183	static int dwc3_generic_runtime_suspend(struct device *dev)
+   184	{
+   185		return dwc3_runtime_suspend(dev_get_drvdata(dev));
+   186	}
+   187	
+   188	static int dwc3_generic_runtime_resume(struct device *dev)
+   189	{
+   190		return dwc3_runtime_resume(dev_get_drvdata(dev));
+   191	}
+   192	
+   193	static int dwc3_generic_runtime_idle(struct device *dev)
+   194	{
+   195		return dwc3_runtime_idle(dev_get_drvdata(dev));
+   196	}
+   197	
+   198	static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
+ > 199		SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+ > 200		RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
+ > 201			       dwc3_generic_runtime_idle)
+   202	};
+   203	
+   204	static const struct dwc3_generic_config fsl_ls1028_dwc3 = {
+   205		.properties.gsbuscfg0_reqinfo = 0x2222,
+   206	};
+   207	
+   208	static const struct dwc3_generic_config eic7700_dwc3 =  {
+   209		.init = dwc3_eic7700_init,
+   210		.properties = DWC3_DEFAULT_PROPERTIES,
+   211	};
+   212	
+   213	static const struct of_device_id dwc3_generic_of_match[] = {
+   214		{ .compatible = "spacemit,k1-dwc3", },
+   215		{ .compatible = "fsl,ls1028a-dwc3", &fsl_ls1028_dwc3},
+   216		{ .compatible = "eswin,eic7700-dwc3", &eic7700_dwc3},
+   217		{ /* sentinel */ }
+   218	};
+   219	MODULE_DEVICE_TABLE(of, dwc3_generic_of_match);
+   220	
+   221	static struct platform_driver dwc3_generic_driver = {
+   222		.probe		= dwc3_generic_probe,
+ > 223		.remove		= dwc3_generic_remove,
+   224		.driver		= {
+   225			.name	= "dwc3-generic-plat",
+   226			.of_match_table = dwc3_generic_of_match,
+   227			.pm	= pm_ptr(&dwc3_generic_dev_pm_ops),
+   228		},
+   229	};
+   230	module_platform_driver(dwc3_generic_driver);
+   231	
 
 -- 
-nvpublic
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
