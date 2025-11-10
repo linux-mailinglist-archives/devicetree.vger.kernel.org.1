@@ -1,295 +1,186 @@
-Return-Path: <devicetree+bounces-236736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0CCC46CEC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:14:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D85BAC46D10
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:15:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF5CE3A3FB0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:13:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC0CB3B1D28
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F548311C0C;
-	Mon, 10 Nov 2025 13:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BB23115BD;
+	Mon, 10 Nov 2025 13:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JC9gLDB5"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FnIKMiJ6";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="F7/DrDrT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23EDB24293C;
-	Mon, 10 Nov 2025 13:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6CA2F747F
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:13:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762780402; cv=none; b=MkZHdGmVKht6HbKwwv72kZR94/cevhWTdCZ5jPjwMSgr+5uwjHAFe4n31R9cnDDPds7N+IqEWXBh+sGc0wpbz47geVOajWKbA5nOEVAY2UgxM/A4DpW4dPcv76vqoDT5gEw+5MQXTGx7RsW68vmIkuFQpBczQI+uTUHbGYSrnXg=
+	t=1762780426; cv=none; b=rEZGYRez7Y9wbiVeRFZQWZEkaF4Z8uHIRJG7zjd21msaiPpPNREdXTGeOVCdPpKupOFplqsYkh46f2cgB7c+HZNVzs5xRmgxU4SnOaUcckkiMAq7QxBSYtQ7Q7q/BWX1yyVZirii/PXccVHpqOFn5xhRSXBBf0fjI5rDBl98S+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762780402; c=relaxed/simple;
-	bh=4BLOQZU0YLZMi/FlMwOE5oIZ4y6RDYik4LCwxFdXGiM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h+zDTVniGjyQEURounwsgpFDLoY4Qts82vER/5TR5yDxu8r2TIpPwu4SP6xlQjV9wg6JvPtARhCvhVnFqF9+viJ+BswXJ8rHpuCzWXs+/QxMQbXEz/wxK+CXdpw5mRtEBh8Zg2mWGVZYD9HQc9+SKD3y6eM1RHiRU8vaxQnVIxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JC9gLDB5; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762780400; x=1794316400;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4BLOQZU0YLZMi/FlMwOE5oIZ4y6RDYik4LCwxFdXGiM=;
-  b=JC9gLDB5os+2EfkabcsQNsiGpTyk8xM/jT7ORJL5Q7Qrj/lGNWhxQrRu
-   qJINsgbwIsLdOGd4OtgMp1wY9WqHVmiHmK4gwfoCR98LAtcQjNvT0d1RX
-   3sJ35DzM24UjgZ5lJkTFxSwLzrcIpfXO6/x5peR3PxPJPtHkfdYML9CPn
-   RxX0O2SXAyHOZVu9RYFBv0quOwPJgzf23Y4WHBUJN7Sp6IvWYPfhpj0v8
-   vaToA7p959DUSkk5EZYBbDWKuLiwFtjPqMkmTgqwxYsdl+enbG7qLo888
-   xldMW6J++qEugIN8SyQMwGbJCqbMArL0feK9GzI0boSLzZElsOeRspTue
-   g==;
-X-CSE-ConnectionGUID: Mq4NxTVcTpiq29bIauoG+g==
-X-CSE-MsgGUID: SCOB9gLxRK6kvBug1zpH1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="87459958"
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="87459958"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 05:13:19 -0800
-X-CSE-ConnectionGUID: cdSMeNQRTIqUNl5bfYgEog==
-X-CSE-MsgGUID: LanU0SlWSd2BApwi58ivWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,293,1754982000"; 
-   d="scan'208";a="193054409"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.235])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 05:13:15 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vIRho-00000007T58-3B51;
-	Mon, 10 Nov 2025 15:13:12 +0200
-Date: Mon, 10 Nov 2025 15:13:12 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jic23@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
-	andy@kernel.org, Michael.Hennerich@analog.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
-	cosmin.tanislav@analog.com, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v1 2/3] iio: adc: Initial support for AD4134
-Message-ID: <aRHk6KZqQP-PAFuY@smile.fi.intel.com>
-References: <cover.1762777931.git.marcelo.schmitt@analog.com>
- <86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1762780426; c=relaxed/simple;
+	bh=sAyJEnQpOE+CyoPsEVV52oBcegXRqpcGw3Hj73SO1gM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hYbJSN1fyan8BETrYUc4aXcsXYEphx8VOIywWO+eXJWxq72ErKamx2ejynWxDT8L4cXakHhrKzKSnkn3UE3ybxRX1Cis6J7dtM+a3pyMUcFqeu/K7ctPRRtYD0g708xlewMPiabTqW1irpNaiNRilTTbLPGL1N/o3vtyx8RgLvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FnIKMiJ6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=F7/DrDrT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA9Br6p2867914
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:13:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zf5by7v/g7p+dvGHpfj+j+RRTgR0OJ9Fd2rr/ysTKL4=; b=FnIKMiJ6Agw8Bw7d
+	D5l7XFqGN2+lHQ5BEbn0Fv4yo5kBF3fGxUt2j7XPo1HEj7tPwE0dJdcVtcFMsTqR
+	nB5DTif6JbwYoEPpvCgCRdhnA66hmCfwRCmYKd4ww+ToVJmDCyFipto/RkoVRccF
+	lYgdeyKMb7HCLa2kjMF/jzv9vtmKR772GjPLCZStXjLIoc1lJh9N0clrNKtRUtYI
+	R+/6O1HIJaS94oRRCigXi8mfz/Jf5oDKU9qWfrYGwaaU7WgxKPATGra8H1kqx+51
+	ZqATOwjTJi/hsTm+beLsCseKwe2j784oW8mFVWUqZ1VyschZpGpcUw9VTYUN1Oev
+	9AhXGw==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abd760qp1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:13:43 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b55283ff3fcso2233949a12.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 05:13:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762780423; x=1763385223; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zf5by7v/g7p+dvGHpfj+j+RRTgR0OJ9Fd2rr/ysTKL4=;
+        b=F7/DrDrTohOcSHx8oxMgWQV7l0XZ7Svv1IGwC0DJDJgAb+qdunIhWtq5qLQC05sYGY
+         GgdNoHyr36DyWyWAmhnw9BKxXThjvE3MuHnEOYA7ht+iAVAMaNN+Pc60scfGKz4Lf3h5
+         N3xBZH8ZSTaAvz56Y2/4SHi+UbMf2L3TcjC3IycIGHhNmIYXHM+JutlUj6IVL+Iwuibn
+         jVoEE7yoLRAABLybOHFoKuU7sMJ4hDYb2y/HHOFmAYEPa7RA5v4GZQyc6pHb+kYA/16H
+         8qW7ySCSHqBMRq/KnTPNjYqZO2vyydeO+K8EVt3oDAV83uWGhWs9rMSSDhHssJPogXoS
+         zYtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762780423; x=1763385223;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zf5by7v/g7p+dvGHpfj+j+RRTgR0OJ9Fd2rr/ysTKL4=;
+        b=JWTQVzn1UCnm32wozJD9txpwO6F1qMVyPD/sW2VRZZ//EATCDz8ahpl10Yced3LIp1
+         00SXO9ZfK30BMzphM4zgP/AXz+0Ii0fMb7XMftmcFgAUb3vG7PGEdU6fZXYmF47fkiGz
+         MA4B127YM1INn7GJRe1nPJ7+l37KnOVgjR6uobChomqSln0Ek7HZn5P2gF4Oqe4a+9/Q
+         rq/RJ8+JdCRtVy8DvDhdWcrGVXvryOaQIBDiqkuSCg4/gvxn7kWXMppvdpnKFUlFI1Yv
+         0ZI53/NPTHeroifrmzzo4c9Dk/RFlFug0dSXVHmomSwH+4VxQ78IPMVTY8eMduciq0Kl
+         erOA==
+X-Forwarded-Encrypted: i=1; AJvYcCWDKULQOlxgK1viOp7gE/+SG1zP4vbhllDsSHAs5rCA4wkSE9S+eIX/huyqInpfWQcwB/3xV0XfUWvD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxe7hYQU+WIPQZOXwgaVAjhppj7HRl2Jw5LIXEk7/+K08baq4lo
+	u562FaNxQ7J+ETnmUD/u1KZ2Rc1h5CqfcNLq20EenObVWqeI0TCMIqzMFCiuLlf4SzoUA6txtpa
+	i71mLHyB/AHNvCTynV5xdefU2KBd3lzj1k5h3RDpfmhNLspnQyaIPH9XpQU390RpL
+X-Gm-Gg: ASbGncvKOwyIxiWFmahNWlbXhKqrnaNWH//X/KCQmCdeY2IC/oYSJb6HF2jrkY9GhHi
+	HfbuooNn1AoxiNKm7k9bcPKUFr7Yde4QhoWkV7+vX4HEAYQs/NufquRl5O/5krGxdkex8HDGUaa
+	xh1Dk4EcyRZpmU6T8vNvVxHbqqFqDlvVQUIY+lXWuOrmVST+OsvYfWPDnJ96U3El9VzHTLYEfvP
+	2GlmdBAKnzBoZxy3tTDiy/mEal15HlZbyW3B7HROcFofIl0KfOwvP/A/Hwcsmnqd9Fdmtag+srd
+	+vQoLvHzRgfubCCuXAJpbXl4PArsHbN9dqLsGDfFiKLFqKZD8q3G7TbOK8LPdCOmXAGTUls0AaE
+	yQXnmlOG0usEKihzo751SXHe3u+DEtEs=
+X-Received: by 2002:a17:90a:e710:b0:340:ec3b:b587 with SMTP id 98e67ed59e1d1-3436cb7a93amr9070690a91.1.1762780422764;
+        Mon, 10 Nov 2025 05:13:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHpxzKYemCJDBtZNVtT/gk1VWfrU0u+FC6zzifoWeyFyq0P4Hf5egp7j8ghzn6uNZubwpXZ1w==
+X-Received: by 2002:a17:90a:e710:b0:340:ec3b:b587 with SMTP id 98e67ed59e1d1-3436cb7a93amr9070654a91.1.1762780422139;
+        Mon, 10 Nov 2025 05:13:42 -0800 (PST)
+Received: from [192.168.29.63] ([49.43.224.0])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0cc17a688sm12007008b3a.40.2025.11.10.05.13.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 05:13:41 -0800 (PST)
+Message-ID: <511ebf46-63ed-45af-9d66-ccd1d944763a@oss.qualcomm.com>
+Date: Mon, 10 Nov 2025 18:43:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-
-On Mon, Nov 10, 2025 at 09:45:40AM -0300, Marcelo Schmitt wrote:
-> AD4134 is a 24-bit, 4-channel, simultaneous sampling, precision
-> analog-to-digital converter (ADC). The device can be managed through SPI or
-> direct control of pin logical levels (pin control mode). The AD4134 design
-> also features a dedicated bus for ADC sample data output. Though, this
-> initial driver for AD4134 only supports usual SPI connections.
-> 
-> The different wiring configurations will likely require distinct software
-> to handle.
-
-> So, the code specific to SPI is enclosed in ad4134-spi.c, while
-> functionality that may be useful to all wiring configuration is set into
-> ad4134-common.h and ad4134-common.c.
-
-This part is good for comment or cover letter, I dunno what it gives to the Git
-history. Perhaps you want to rephrase it somehow?
-
-> Add basic support for AD4134 that allows single-shot ADC sample read.
-
-Below is my review based on the assumption that there is a good justification
-for a brand new driver.
-
-...
-
-> +obj-$(CONFIG_AD4134_SPI) += ad4134-spi.o
-
-This can be split also to the separate patch.
-
-...
-
-Please, follow IWYU principle, many are missing here.
-
-+ array_size.h
-+ bitfield.h
-
-> +#include <linux/clk.h>
-> +#include <linux/crc8.h>
-> +#include <linux/delay.h>
-
-> +#include <linux/device.h>
-
-I don't see the use of this, rather dev_printk.h should be put here.
-
-> +#include <linux/err.h>
-
-+ export.h
-
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/module.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-
-+ types.h
-
-...
-
-> +static const char * const ad4143_regulator_names[] = {
-> +	"avdd5", "dvdd5", "iovdd", "refin",	/* Required supplies */
-> +	"avdd1v8", "dvdd1v8", "clkvdd",		/* Required if ldoin not provided */
-> +	"ldoin",
-
-Make them equal in count (2 lines by 4 in each sounds really good choice
-to me).
-
-> +};
-
-...
-
-> +static const char *const ad4134_clk_sel[] = {
-> +	"xtal1-xtal2", "clkin"
-
-Leave trailing comma here.
-
-> +};
-
-...
-
-> +#define __DRIVERS_IIO_ADC_AD4134_COMMON_H__
-
-Do we need DRIVERS_ part?
-
-...
-
-> +#include <linux/array_size.h>
-> +#include <linux/bits.h>
-
-> +#include <linux/compiler_attributes.h>
-
-No need when we have types.h listed.
-
-> +#include <linux/crc8.h>
-
-Is this being used?
-
-> +#include <linux/iio/iio.h>
-
-+ regmap.h
-
-> +#include <linux/units.h>
-> +#include <linux/types.h>
-
-Again, follow IWYU.
-
-...
-
-> +#define AD4134_RESET_TIME_US			(10 * MICRO)
-
-We have USEC_PER_SEC (include time.h for that).
-
-...
-
-> +#define AD4134_EXT_CLOCK_MHZ			(48 * MEGA)
-
-We have HZ_PER_MHZ.
-
-...
-
-> +#define AD4134_SCAN_TYPE(_realbits, _storebits) {				\
-> +	.sign = 's',								\
-> +	.realbits = (_realbits),						\
-> +	.storagebits = (_storebits),						\
-> +	.shift = ((_storebits) - (_realbits)),					\
-> +	.endianness = IIO_BE							\
-
-Missing comma, this might make an addition churn in the future changes.
-
-> +}
-
-...
-
-> +struct device;
-
-What about struct gpio_desc?
-
-...
-
-
-> +#endif /* __DRIVERS_IIO_ADC_AD4134_COMMON_H__ */
-
-...
-
-+ array_size.h
-
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/bits.h>
-> +#include <linux/crc8.h>
-
-> +#include <linux/device.h>
-
-Is it being used? Perhaps dev_printk.h is enough?
-
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/types.h>
-> +#include <linux/module.h>
-
-+ mod_devicetable.h
-
-> +#include <linux/spi/spi.h>
-> +#include <linux/regmap.h>
-> +#include <linux/types.h>
-> +#include <linux/unaligned.h>
-
-...
-
-> +static int ad4134_calc_spi_crc(u8 inst, u8 data)
-> +{
-> +	u8 buf[] = {inst, data};
-
-Better
-
-	u8 buf[] = { inst, data };
-
-> +	return crc8(ad4134_spi_crc_table, buf, ARRAY_SIZE(buf),
-> +		    AD4134_SPI_CRC_INIT_VALUE);
-> +}
-
-...
-
-> +static const struct spi_device_id ad4134_id[] = {
-> +	{ "ad4134", (kernel_ulong_t)&ad4134_min_io_bus_info },
-> +	{ },
-
-No comma for the terminator entry. It's even inconsistent with the below ID
-table.
-
-> +};
-> +MODULE_DEVICE_TABLE(spi, ad4134_id);
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] schemas: pci: Document PCIe T_POWER_ON
+To: andersson@kernel.org, robh@kernel.org, manivannan.sadhasivam@linaro.org,
+        krzk@kernel.org, helgaas@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com
+References: <20251110112550.2070659-1-krishna.chundru@oss.qualcomm.com>
+Content-Language: en-US
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <20251110112550.2070659-1-krishna.chundru@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: IhuJSb6tQHsFkqii0tVLNe0mErU5daKE
+X-Authority-Analysis: v=2.4 cv=OK4qHCaB c=1 sm=1 tr=0 ts=6911e507 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=08Rv9HEMxtlCNW7Dos5SIA==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=SpA6wshyjLPcRYPzmHsA:9
+ a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDExNSBTYWx0ZWRfX49SlRU+6bP6f
+ 3gJVTGv3LBE+ZSuGN3ibgRHNjI3QGVaKx8xEzpTwPvWWUJprnRZmV6qRD/QrDmBywKQmfx27sas
+ rc2xs/233jgfCOZ4dPSJhJ8vZSEwzuI4RhHqil2jBaLN4OG870D8J/4Xl+sEwGxAj2UHe95OcYg
+ 3V5ytfCxvgTgWRwNt5kQjjRf0KlPiXEUDKMwd/Xae1swVNwGASsPaTX8brya9DDHAJw3B0KVQlA
+ kOqHo8L4nbiYqP0SlfaDlwYnn0wPisnA9k/h2JKyO9+1VQIS8N2jDVxJ89AkKy/qeR4OFu4umvX
+ pfaQfvkSa0vhxGjXy+8h3+YBSHPUhfTAx1p7j1VimMEzmfKb9RzaiyOsVGcx9zdjgocQKc3tHuF
+ T6M5L6Bwf+NLDgFOwQ7iuIMqDmDn1w==
+X-Proofpoint-GUID: IhuJSb6tQHsFkqii0tVLNe0mErU5daKE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_05,2025-11-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 suspectscore=0 bulkscore=0 impostorscore=0
+ adultscore=0 priorityscore=1501 spamscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100115
+
+Please ignore this patch, it has some mistakes which I have sent 
+accidentally.
+
+- Krishna Chaitanya.
+
+On 11/10/2025 4:55 PM, Krishna Chaitanya Chundru wrote:
+>  From PCIe r6, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
+> minimum amount of time(in us) that each component must wait in L1.2.Exit
+> after sampling CLKREQ# asserted before actively driving the interface to
+> ensure no device is ever actively driving into an unpowered component and
+> these values are based on the components and AC coupling capacitors used
+> in the connection linking the two components.
+>
+> This property should be used to indicate the T_POWER_ON for each Root Port.
+>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+> Changes in V1:
+> - Updated the commit text (Mani).
+>
+>   dtschema/schemas/pci/pci-bus-common.yaml | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+>
+> diff --git a/dtschema/schemas/pci/pci-bus-common.yaml b/dtschema/schemas/pci/pci-bus-common.yaml
+> index 5257339..bbe5510 100644
+> --- a/dtschema/schemas/pci/pci-bus-common.yaml
+> +++ b/dtschema/schemas/pci/pci-bus-common.yaml
+> @@ -152,6 +152,15 @@ properties:
+>         This property is invalid in host bridge nodes.
+>       maxItems: 1
+>   
+> +  t-power-on-us:
+> +    description:
+> +      The minimum amount of time that each component must wait in
+> +      L1.2.Exit after sampling CLKREQ# asserted before actively driving
+> +      the interface to ensure no device is ever actively driving into an
+> +      unpowered component. This value is based on the components and AC
+> +      coupling capacitors used in the connection linking the two
+> +      components(PCIe r6.0, sec 5.5.4).
 > +
-> +static const struct of_device_id ad4134_of_match[] = {
-> +	{ .compatible = "adi,ad4134", .data = &ad4134_min_io_bus_info },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ad4134_of_match);
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>     supports-clkreq:
+>       description:
+>         If present this property specifies that CLKREQ signal routing exists from
 
