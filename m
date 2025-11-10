@@ -1,117 +1,159 @@
-Return-Path: <devicetree+bounces-236748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA8CC4703E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:50:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13DCAC46FD5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB7883A7ED4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:42:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE8261889010
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D666921E098;
-	Mon, 10 Nov 2025 13:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C517F285C8E;
+	Mon, 10 Nov 2025 13:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BcM3pBk1"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="g2wP67Cz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F9F228CBC;
-	Mon, 10 Nov 2025 13:42:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762782148; cv=none; b=NoToLihSk3AUihuY/kXCH9e/M2L2WuDEnmVYLDWo2APqsZDbZ91hx6sREgAq/i8lvvcVEzSgi4f1Q2kazBr8KPdlwu5hjJNSJ5UyIterTjiYf0LfH4gj//RgNAcCBxUAA6Bg10AA995JNdvfrWLtqT91+9aQeT76voxIjGQrP8c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762782148; c=relaxed/simple;
-	bh=odW9RE5kXkX2DoPQTnJV7+yOA9qzBKlmq7olgQ28j3g=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A82121E098;
+	Mon, 10 Nov 2025 13:44:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762782252; cv=pass; b=lk2m7t+XCVnE0PllzMD99FoQj7m6byCP00DQzV/bn493ZTVvrm0Ji7wfw8pEyjGSUZ1ulr6TwpZy7jJE2tDS7indPY/Ysm32ezT31BLAAY6B2d9yzBXbmUucj8zqTYm+zURcf7O8ni1dJT12Znf/N59vdISmjx+WToeBPFUjHIk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762782252; c=relaxed/simple;
+	bh=wK41s9TTPsH+XSrQvGcL1ScrZIeDVdkh9D+PCpggJgk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YJGdALyxp1rlw20bS7x0ApS/fz4uhS7vGwZJFBtPeyDZgTQF+wP1NK6UE5c9EFhQfPqEQgUUFwU+mvI3qhMGRc5e1Ytae9qhHdkFJPA0v/nnH6Shdw6SR+gVI+qxhfP6wZkzpomicfQl7HEDEVhH8uOAqdaqTlyj2JAWxjOVNEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BcM3pBk1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27AC6C19422;
-	Mon, 10 Nov 2025 13:42:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762782148;
-	bh=odW9RE5kXkX2DoPQTnJV7+yOA9qzBKlmq7olgQ28j3g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BcM3pBk15O8CeNHJ6ZFU3yCzeMV4Y+gf/ucl4hMOp9TkHKM4w83754QMcY+eHCplJ
-	 VVvkxwiMOhYVejdAAQ9ZV0OPwuRx+XLt330hwDHRO4OHadL3UaBkhzHbMyi4EGaAgA
-	 u5Ole6i5YV13ByA1G8X61zv+qbe4FLEcet5D57A8PbObccoz9wMQKlAZnxxQRUaP69
-	 HlOhICvag0gpNdQs903tkSLBxBZOP8dCzqepwtV8tZ08Z6zy0iTTNtRqxegEK5SZaJ
-	 V1oWm0OMSRwIrHwH3HINjqk3Xv4PACI/el1NKNphPbwoV51TtN0A6IF4pyeatJz4Ww
-	 DOTd87ugiq7qg==
-Date: Mon, 10 Nov 2025 13:42:21 +0000
-From: Lee Jones <lee@kernel.org>
-To: kernel test robot <lkp@intel.com>
-Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	Shree Ramamoorthy <s-ramamoorthy@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, oe-kbuild-all@lists.linux.dev,
-	Andrew Davis <afd@ti.com>, Bajjuri Praneeth <praneeth@ti.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] mfd: tps65219: Implement LOCK register handling
- for TPS65214
-Message-ID: <20251110134221.GD1949330@google.com>
-References: <20251106-fix_tps65219-v2-1-a7d608c4272f@bootlin.com>
- <202511070607.Il9q9meO-lkp@intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=srTLTU7FhtgGobXN0hfmagaNUEVffu5ADinAFt/A3y3ibYBMoCSEoRRA0tuA5Gq5pPuomP2O6j07Wkni3uvw34wWf/JHSe/pwRgL+78ql/ZELpDvbO4gDaead6AYSWZt9I/VJfc4t/IeacJQiQfvatEP9faO9J7CJWcuYvESIyY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=g2wP67Cz; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1762782225; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=HSdRTwjaAi6bgsxuRDSbZsLF0DPeI+LOlnd1y9igvc4gNPWWf4KKlKpPdEAOfTaQstq/Elrkm4nlxsua8YS7r7TQxGzcIUoGFmye99W2XQCDmhFlZL65IHe2jlJ6uXaeHnPfVprdqTJExRxDG4IsmXGErXhcno5ygCrqceoO4G4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1762782225; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=NaQSEtGafus0sgJYl14H1AHyjnLimFCe/otE/1Mn3kw=; 
+	b=gSarWGs90VIKXpnYnCyXBQUZ1/4+5W7W9NV0vwShHeZv7ylmf6NpN8vejvFMXe7Umw9ZBIvlETJNJYjYD642RIKS5sf/TDqS8LPPdl19sj70wSBxCoL0kU0QFGdIfHpCshg5gxXEpjiT5BbV8kp7ycPF9soTskb2PS4EAzXMJ6w=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1762782225;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=NaQSEtGafus0sgJYl14H1AHyjnLimFCe/otE/1Mn3kw=;
+	b=g2wP67Cz3+CvMMmpD6hniCswHIQj5NnpT7xiqlt6FzX71FphZCGERnSiHweKixQ4
+	ws7tgOQ/wENJ3VHs3Ta3tls2Lw5z6dK6AoaEpYV26oedR9I5DvnUyCjreOa6+5cMfJf
+	Gpnsfu5X6FF82r/e8Vf5k0I6Bv8G3+gFJvTYmnXQ=
+Received: by mx.zohomail.com with SMTPS id 1762782223271450.25151316746724;
+	Mon, 10 Nov 2025 05:43:43 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id D8FC2180735; Mon, 10 Nov 2025 14:43:32 +0100 (CET)
+Date: Mon, 10 Nov 2025 14:43:32 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Adrian Hunter <adrian.hunter@intel.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, kernel@collabora.com, 
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: Re: [PATCH v2 1/2] mmc: sdhci-of-dwcmshc: Add command queue support
+ for rockchip SOCs
+Message-ID: <hjxwedwtwksog67mz4unm4jita2q5vvp4vkdrtpznc6mllz7q4@7a7nn3c5l7fv>
+References: <20251031-rockchip-emmc-cqe-support-v2-0-958171f5edad@collabora.com>
+ <20251031-rockchip-emmc-cqe-support-v2-1-958171f5edad@collabora.com>
+ <abb4a253-6f4b-4547-a238-db6f60ee3244@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ladnhwyx55vra2te"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <202511070607.Il9q9meO-lkp@intel.com>
+In-Reply-To: <abb4a253-6f4b-4547-a238-db6f60ee3244@intel.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.5.1/262.770.93
+X-ZohoMailClient: External
 
-On Fri, 07 Nov 2025, kernel test robot wrote:
 
-> Hi Kory,
-> 
-> kernel test robot noticed the following build warnings:
-> 
-> [auto build test WARNING on 1c353dc8d962de652bc7ad2ba2e63f553331391c]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Kory-Maincent-TI-com/mfd-tps65219-Implement-LOCK-register-handling-for-TPS65214/20251106-185551
-> base:   1c353dc8d962de652bc7ad2ba2e63f553331391c
-> patch link:    https://lore.kernel.org/r/20251106-fix_tps65219-v2-1-a7d608c4272f%40bootlin.com
-> patch subject: [PATCH v2 1/2] mfd: tps65219: Implement LOCK register handling for TPS65214
-> config: i386-buildonly-randconfig-003-20251107 (https://download.01.org/0day-ci/archive/20251107/202511070607.Il9q9meO-lkp@intel.com/config)
-> compiler: gcc-13 (Debian 13.3.0-16) 13.3.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251107/202511070607.Il9q9meO-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202511070607.Il9q9meO-lkp@intel.com/
-> 
-> All warnings (new ones prefixed by >>):
-> 
->    drivers/mfd/tps65219.c: In function 'tps65214_reg_write':
-> >> drivers/mfd/tps65219.c:479:26: warning: variable 'tps' set but not used [-Wunused-but-set-variable]
->      479 |         struct tps65219 *tps;
->          |                          ^~~
-> 
-> 
-> vim +/tps +479 drivers/mfd/tps65219.c
-> 
->    475	
->    476	static int tps65214_reg_write(void *context, unsigned int reg, unsigned int val)
->    477	{
->    478		struct i2c_client *i2c = context;
->  > 479		struct tps65219 *tps;
+--ladnhwyx55vra2te
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 1/2] mmc: sdhci-of-dwcmshc: Add command queue support
+ for rockchip SOCs
+MIME-Version: 1.0
 
-Please fix.
+Hi,
 
--- 
-Lee Jones [李琼斯]
+On Mon, Nov 10, 2025 at 09:58:24AM +0200, Adrian Hunter wrote:
+> On 31/10/2025 17:58, Sebastian Reichel wrote:
+> > This adds CQE support for the Rockchip RK3588 and RK3576 platform. To
+> > be functional, the eMMC device-tree node must have a 'supports-cqe;'
+> > flag property.
+> >=20
+> > As the RK3576 device-tree has been upstreamed with the 'supports-cqe;'
+> > property set by default, the kernel already tried to use CQE, which
+> > results in system hang during suspend. This fixes the issue.
+> >=20
+> > Co-developed-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>=20
+> One question below, otherwise:
+>=20
+> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+
+Thanks,
+
+[...]
+
+> > @@ -687,6 +757,9 @@ static void rk35xx_sdhci_reset(struct sdhci_host *h=
+ost, u8 mask)
+> >  	}
+> > =20
+> >  	sdhci_reset(host, mask);
+> > +
+> > +	/* Enable INTERNAL CLOCK */
+> > +	sdhci_writel(host, MISC_INTCLK_EN | extra, DECMSHC_EMMC_MISC_CON);
+>=20
+> rk35xx_sdhci_reset() is in sdhci_dwcmshc_rk35xx_ops.
+> sdhci_dwcmshc_rk3576_pdata also uses sdhci_dwcmshc_rk35xx_ops but isn't
+> supporting CQE ops.  Is this change OK for rk3576?
+
+How did you come to the conclusion, that rk3576 does not support CQE
+ops? Have you read the cover letter? :)
+
+Greetings,
+
+-- Sebastian
+
+--ladnhwyx55vra2te
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmkR7AAACgkQ2O7X88g7
++poq/g/6Av018KZfLynGwjZMNoFxVnLTbPCij+47pv7hWC/61IeB3Wo3ZKuWOZaT
+mJgj8ttbiE8caqUP8EusAjZpnLwmYIeoEfewsXr7mlhwzzKR1wR8xtKzkSYvSOPg
+2vjagIjI0QWubTnuyrvBihngKhpXjl9wSgWKBeY3o4PmYB5b9kHuqjBs1hoa8445
+fCu0u4zt+2BsxNQYFjCeGbM06pa4kzD00SyNW+Zl3uGPX64SaaUnGeo1k+GFyVzw
+h6Q7QmJFLY0kkXr5H5fysSQMWxuMgWyBp/hrcVrdYEx8/EaWddQVOXRIJHK7MVgB
+uTi3zilX/3+8Hx8ij+4k2Elp8ywBdoAL92ufUeaZm9va2r+iB1V0kO7YznDU4L3N
+AeDqFOG75McYdgKYD/HATaQ9gjut+13TBCvNmajPyFtu0iPww8Tg55lgvfBNOmxF
+ZTw2L3OAcfFiVpDzOZ2P5kzQ6S54yMHUE8El7OHQCvfRD3kaLXSJYBswahfh4hW6
+1Rq5uosLvZ/59EG6eGkA66xQLEam6Fgq+LmvS7XMagRZdR9EbdFHht5myxXF6lXs
+GWwqjJkHBaXFYdUa2jzF7hitnpJBMFOmwh9DjzbyVNPJKSG3504lOyb1UC+2L70R
+AMnnkw1ljj57dHDPZ+26sJZA3a37eaWbWjfPiTG/zavQCYzjaLw=
+=iosp
+-----END PGP SIGNATURE-----
+
+--ladnhwyx55vra2te--
 
