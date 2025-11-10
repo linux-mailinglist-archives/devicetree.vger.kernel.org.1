@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-236717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45D4CC46A1E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:36:58 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F69DC46A2D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:38:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FA53188D46B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:36:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 700E44EB2D8
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A57F30DEAD;
-	Mon, 10 Nov 2025 12:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE8B630F800;
+	Mon, 10 Nov 2025 12:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQnfRAJv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jm095596"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3287923EA88;
-	Mon, 10 Nov 2025 12:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D91230F7FE;
+	Mon, 10 Nov 2025 12:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762778167; cv=none; b=Mjjw+dRFxwYbJEXNQF2wHbp+1ExMhapGgcO6hCsEcdgMeNE2XeuRGKkFzj2zcZo8TTnl6pb6uVKl5ciHQ1Zqdx0Om3AjLkTb8MmLhSlHrQjNhkklK9KkmDSa1iPdX4RngGDME5UOhpBTuli7fTo+WUgFy/Xx/pPNEOy+uzn93SI=
+	t=1762778269; cv=none; b=alCKrCNcEwe//gJJ6oFHZX4WQisWOCq3Nm67SjdYtKIkk0y7daXtFjnPZpZTObHVIrLMpfRs52BGShwWPRq+S/bnrbKbfILbpSBN2bhhSA0Vj+Y3WDbQlFrW6rNsCQjZds9gq6N9RDPLC/6sYW1AgWwfP+mgp9el91ZqcIgI228=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762778167; c=relaxed/simple;
-	bh=5y8I8nhnPfdGddmx1zRY5sajFbNRe4oAnoyYuhJzI3s=;
+	s=arc-20240116; t=1762778269; c=relaxed/simple;
+	bh=vqDGpm5gNg5fuoe7yLw5cMGlNU6mi9cQ9ekmEb0LHiw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=kCSM3MOPHyLZvelpD5G4lak2JjXXioaStKFo2EeooAbLdJf1gdHN89dm2T5rE2fd0ShdEggVmB0A5W18WhVkwSW6WJ1HAYuboUulu7BWMDkN3Ia+x7VBFmcYwN81wecikKWrPhJzKUJAUFNUT05Zi0yziVgiYjZG8OIuQiy6iek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQnfRAJv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1932C116B1;
-	Mon, 10 Nov 2025 12:36:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Lszu1EkuCMWVQH9//OTFsA5g58je80zREv4uU1nq0Ao066426TDgqIVJYNSxjKjpJ5WFZBz9IPKnPWmikGkeOapQtbSWHUiII4bLjR4+DmvRHysjyTNdxp2JP/eS6GsKCWAKeGOqMgnqqAp5TfmZDvfbWqRUZWasxWDc4MoDXXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jm095596; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CA71C19422;
+	Mon, 10 Nov 2025 12:37:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762778165;
-	bh=5y8I8nhnPfdGddmx1zRY5sajFbNRe4oAnoyYuhJzI3s=;
+	s=k20201202; t=1762778269;
+	bh=vqDGpm5gNg5fuoe7yLw5cMGlNU6mi9cQ9ekmEb0LHiw=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=lQnfRAJvrLSkoAVLPppVyq53Ci6ucOj+dGozBajSsoqdRwKBj4ZOe57cbpl4mCToK
-	 vWBeE/v64Xeh0K8d19cNSPpknfpulCn78KVdWyLtYnoia2717P8xOUp4jLBSS6geGH
-	 wDkDr3hRkQaSSfhYk3Vpj8qhHz707Du8xm/B9WfbeNkhWJhC0osMbduWdil2J22Wao
-	 5K04yMEohCxk+a1QnvjJNqPjpW5eyOLLfxlDOJDle/poTQd3UZT45Ey8H94lqGNwIq
-	 K91TTSA64iV9bpocdVzVqzIv/hzTQ3yl6pYI00Hjh5AhiBYIrYiZ/jlKi8TAAUwgdr
-	 +7rzCUI2jNb6g==
-Message-ID: <03d6086f-0a84-4cca-b668-5b8902cd866f@kernel.org>
-Date: Mon, 10 Nov 2025 06:36:03 -0600
+	b=jm095596yTZQLOaIaLjM/s+bEHM56pm4Q9Gsuj4EZDJXzSjUYFge48abFnBbLhD81
+	 SmvHxBYOzdiDj3uQYOE+1WT+L1kL1PpYMC2Xcf4o/hGoaxaVLUpWuZlNHenqk3rhpB
+	 uZ5MrdoYnXPZLsj5fwHsMRfXRHh3SGagmnNsDV56PkIRppSOdEn3lMP96BQ3ZTF+sU
+	 QKvUr/1z2Bk4M7A+WoswG+R+ZIoqYfjymRPkSCEn1z2/4NrqUE+hQkMUwxVlMdVdZJ
+	 k9RWpGwiuaqc+RtlXQc6CMa3jgbxRBPYS6NCSkIv9aSSa9QK8a0X3tKFiMWTrkI6B8
+	 Gc+HciWNmI6CA==
+Message-ID: <b3ef901f-9efc-4847-afd7-70e9a5c35d80@kernel.org>
+Date: Mon, 10 Nov 2025 06:37:47 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,61 +50,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: intel: Add Agilex3 SoCFPGA board
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- niravkumarlaxmidas.rabara@altera.com, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 2/2] arm64: dts: socfpga: add Agilex3 board
+To: niravkumarlaxmidas.rabara@altera.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <cover.1762756191.git.niravkumarlaxmidas.rabara@altera.com>
- <51ecc7f4eb7e419c00ee51fc26156e25686dfece.1762756191.git.niravkumarlaxmidas.rabara@altera.com>
- <1c879d71-a4a5-4241-a0db-bfd2c61bf32c@kernel.org>
+ <aa19e005a2aa2aab63c8fe8cbaee7f59c416690f.1762756191.git.niravkumarlaxmidas.rabara@altera.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <1c879d71-a4a5-4241-a0db-bfd2c61bf32c@kernel.org>
+In-Reply-To: <aa19e005a2aa2aab63c8fe8cbaee7f59c416690f.1762756191.git.niravkumarlaxmidas.rabara@altera.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 
 
-On 11/10/25 01:53, Krzysztof Kozlowski wrote:
-> On 10/11/2025 07:47, niravkumarlaxmidas.rabara@altera.com wrote:
->> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
->>
->> Add compatible for Agilex3 SoCFPGA board.
-
->>
->> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
->> ---
->>   Documentation/devicetree/bindings/arm/intel,socfpga.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/intel,socfpga.yaml b/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
->> index cf7a91dfec8a..e706c4eff019 100644
->> --- a/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
->> +++ b/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
->> @@ -21,6 +21,11 @@ properties:
->>                 - intel,socfpga-agilex-n6000
->>                 - intel,socfpga-agilex-socdk
->>             - const: intel,socfpga-agilex
->> +      - description: Agilex3 boards
+On 11/10/25 00:47, niravkumarlaxmidas.rabara@altera.com wrote:
+> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
 > 
-> Agilex3?
+> Agilex3 SoCFPGA development kit is a small form factor board similar to
+> Agilex5 013b board.
+> Agilex3 SoCFPGA is derived from Agilex5 SoCFPGA, with the main difference
+> of CPU cores — Agilex3 has 2 cores compared to 4 in Agilex5.
 > 
-
- From what I understand, the Agilex3 is the same chip as the Agilex5, 
-minus 2 CPU cores. So I recommended to Nirav, just to add the binding in 
-the Agilex5 context.
-
->> +        items:
->> +          - enum:
->> +              - intel,socfpga-agilex3-socdk
->> +          - const: intel,socfpga-agilex5
+> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
+> ---
+> Note:
+> This patch depends on the series: "Add iommu supports"
+> https://lore.kernel.org/all/cover.1760486497.git.khairul.anuar.romli@altera.com/
 > 
-> Or Agilex5? Decide. Cannot be both.
+> Patch series "Add iommu supports" is applied to socfpga maintainer's tree
+> https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
 > 
- From the explanation above, could we document the agilex3 socdk this way?
+>   arch/arm64/boot/dts/intel/Makefile            |   1 +
+>   .../boot/dts/intel/socfpga_agilex3_socdk.dts  | 130 ++++++++++++++++++
+>   2 files changed, 131 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
+> 
+> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+> index 391d5cbe50b3..a117268267ee 100644
+> --- a/arch/arm64/boot/dts/intel/Makefile
+> +++ b/arch/arm64/boot/dts/intel/Makefile
+> @@ -2,6 +2,7 @@
+>   dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
+>   				socfpga_agilex_socdk.dtb \
+>   				socfpga_agilex_socdk_nand.dtb \
+> +				socfpga_agilex3_socdk.dtb \
+>   				socfpga_agilex5_socdk.dtb \
+>   				socfpga_agilex5_socdk_013b.dtb \
+>   				socfpga_agilex5_socdk_nand.dtb \
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
+> new file mode 100644
+> index 000000000000..3280bdd49faa
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
+> @@ -0,0 +1,130 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2025, Altera Corporation
+> + */
+> +#include "socfpga_agilex5.dtsi"
+> +
+> +/ {
+> +	model = "SoCFPGA Agilex3 SoCDK";
+> +	compatible = "intel,socfpga-agilex3-socdk", "intel,socfpga-agilex5";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		ethernet2 = &gmac2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led0 {
+> +			label = "hps_led0";
+> +			gpios = <&porta 1 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		led1 {
+> +			label = "hps_led1";
+> +			gpios = <&porta 12 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +	};
 
-Thanks,
+You need the :
+
+  cpus {
+         /delete-node/ cpu@2;
+         /delete-node/ cpu@3;
+     };
+
+
 Dinh
 
