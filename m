@@ -1,159 +1,385 @@
-Return-Path: <devicetree+bounces-236749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13DCAC46FD5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:44:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0EB4C46FED
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:45:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE8261889010
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:44:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D0A9188192C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C517F285C8E;
-	Mon, 10 Nov 2025 13:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D5F1EE7B7;
+	Mon, 10 Nov 2025 13:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="g2wP67Cz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="buUwUdVb";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iGKLGuxO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A82121E098;
-	Mon, 10 Nov 2025 13:44:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762782252; cv=pass; b=lk2m7t+XCVnE0PllzMD99FoQj7m6byCP00DQzV/bn493ZTVvrm0Ji7wfw8pEyjGSUZ1ulr6TwpZy7jJE2tDS7indPY/Ysm32ezT31BLAAY6B2d9yzBXbmUucj8zqTYm+zURcf7O8ni1dJT12Znf/N59vdISmjx+WToeBPFUjHIk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762782252; c=relaxed/simple;
-	bh=wK41s9TTPsH+XSrQvGcL1ScrZIeDVdkh9D+PCpggJgk=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E68A1448E3
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762782346; cv=none; b=JcjHY9se3PyCbHhoiwekBYSzp5h/m41l6NI4PByHx4ikotadxsaOrD7fenRixhFLLW9YDqubfF47moNv5IGY/tACKXk1UtlszfjkqlGCAmpyNKHIMmqp3Z6z9dUG+NovFVNNZ2KJ9WL0twQtmcunTs+OQxK9JYjl5v7kGxnyQj0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762782346; c=relaxed/simple;
+	bh=H6f8G2F54zA621dwndHMSg6QNIyKcA40Xj5J9hQ37Ks=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=srTLTU7FhtgGobXN0hfmagaNUEVffu5ADinAFt/A3y3ibYBMoCSEoRRA0tuA5Gq5pPuomP2O6j07Wkni3uvw34wWf/JHSe/pwRgL+78ql/ZELpDvbO4gDaead6AYSWZt9I/VJfc4t/IeacJQiQfvatEP9faO9J7CJWcuYvESIyY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=g2wP67Cz; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1762782225; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=HSdRTwjaAi6bgsxuRDSbZsLF0DPeI+LOlnd1y9igvc4gNPWWf4KKlKpPdEAOfTaQstq/Elrkm4nlxsua8YS7r7TQxGzcIUoGFmye99W2XQCDmhFlZL65IHe2jlJ6uXaeHnPfVprdqTJExRxDG4IsmXGErXhcno5ygCrqceoO4G4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1762782225; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=NaQSEtGafus0sgJYl14H1AHyjnLimFCe/otE/1Mn3kw=; 
-	b=gSarWGs90VIKXpnYnCyXBQUZ1/4+5W7W9NV0vwShHeZv7ylmf6NpN8vejvFMXe7Umw9ZBIvlETJNJYjYD642RIKS5sf/TDqS8LPPdl19sj70wSBxCoL0kU0QFGdIfHpCshg5gxXEpjiT5BbV8kp7ycPF9soTskb2PS4EAzXMJ6w=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1762782225;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=NaQSEtGafus0sgJYl14H1AHyjnLimFCe/otE/1Mn3kw=;
-	b=g2wP67Cz3+CvMMmpD6hniCswHIQj5NnpT7xiqlt6FzX71FphZCGERnSiHweKixQ4
-	ws7tgOQ/wENJ3VHs3Ta3tls2Lw5z6dK6AoaEpYV26oedR9I5DvnUyCjreOa6+5cMfJf
-	Gpnsfu5X6FF82r/e8Vf5k0I6Bv8G3+gFJvTYmnXQ=
-Received: by mx.zohomail.com with SMTPS id 1762782223271450.25151316746724;
-	Mon, 10 Nov 2025 05:43:43 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id D8FC2180735; Mon, 10 Nov 2025 14:43:32 +0100 (CET)
-Date: Mon, 10 Nov 2025 14:43:32 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Adrian Hunter <adrian.hunter@intel.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, kernel@collabora.com, 
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: Re: [PATCH v2 1/2] mmc: sdhci-of-dwcmshc: Add command queue support
- for rockchip SOCs
-Message-ID: <hjxwedwtwksog67mz4unm4jita2q5vvp4vkdrtpznc6mllz7q4@7a7nn3c5l7fv>
-References: <20251031-rockchip-emmc-cqe-support-v2-0-958171f5edad@collabora.com>
- <20251031-rockchip-emmc-cqe-support-v2-1-958171f5edad@collabora.com>
- <abb4a253-6f4b-4547-a238-db6f60ee3244@intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fd/2riBPUAbjecZYoK1g2OCYouJLUhvLPiz2y+werD/jkjeIjyko1AatwB2HW/vMjKHKGDC/ME11ZattGMLld5h8K3AT31Rv2+vlNx9uc+sj1LDt+Hj7+z5h+XBTx/I6RKAlalsPBdSis5CMxy7+UGIPg87fV1ByC9jmyFOKbow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=buUwUdVb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iGKLGuxO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AACMuAI3306799
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:45:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	O8mCZ2i/SwfCz8Y6dHfv1Z03BRuaemPsHfu8tHyYWV4=; b=buUwUdVbzeXlAURk
+	SuCksaVMl2U9A06IGjD1MZyq7quSX0tdtw0yK59FVwlgzihRMeQkLPt5dMCv44Fy
+	rNW0FMTerkbARkiqPei3t+v0lOV7UavpmtwoGH5inJqA5mw6Vt7VbZpLeh9dxWJX
+	Da5KOBgcZTqcxoeK9lVd/iyrjqXVfVpTXx465aOD/JZLR0jAUf+iGLYrtIlJxjb1
+	TrKZfsH1SlZ2PVsL+tUKcfb9vzlei81Mta6YX/bbPPNNCebCp/TkGxfS0uAEx7wJ
+	5F3Yn9M7C+FzGfZgkX6YzfVLEMEfq5yu9EDiomZkXIkAvAu94teyTEsnjVlnvz8u
+	F/efUQ==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abg0q872p-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 13:45:43 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-782063922ceso5439644b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 05:45:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762782343; x=1763387143; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=O8mCZ2i/SwfCz8Y6dHfv1Z03BRuaemPsHfu8tHyYWV4=;
+        b=iGKLGuxOi1CD1XiBNfvziQ/5iH9AM6SuNpRolLoHrEZ36Tvvayag1FMOJ20hCOlXZs
+         evC1npSjh3CdSfBir9s+Me+ET6n8Xr3fG5XbaGHo3UZys5Z7DJQzoEChTjAEb5FFHx5E
+         vNnS23ZJRpJ2Lq679yHMuTzzXYJekMVlmzWYgkAymRuM1N54yPHihmmLOEDfIna7+Tzd
+         +SFwkHCJQAWg05O1UeuL9rl3yzd6d3MPSHeREeNavMSA11grgj9byTw5oBPI5naf44yS
+         shoTJGdo+cyzvNjqr/+JJSKnKdU5lc8D4A6bz4f9O7pSVDNVK1syirCmh4AWHwBQ/5Zx
+         OhOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762782343; x=1763387143;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O8mCZ2i/SwfCz8Y6dHfv1Z03BRuaemPsHfu8tHyYWV4=;
+        b=OQMYKYJuPCNDS4ZX1cYnCIvC8Y3xP+Y8iW8Tmy1exyic8IdMRhal/NQdydMTKBaf7x
+         TPb5Mu9vOr2Ak5uzeGKUZhQMaZrmBz/QwK9FJrHK/dxpUA05y+4fDibuhFMLHURK7WTG
+         19Wx8IX9Cu+3Oj6AnreLzHlF7OO9M0kOMnE/qm6YdejmbdeRNUnZCdiGZfCbAbEwOIeE
+         YGKAUbdBZ/5kTWhRuYH5CAgUETxnUvhhB/LM5H0MkCNncY8GkpOMRIQxANDy7pAVzMoE
+         2KfnqZyxdorFuwSgkmPkUBbMVEuN+3zJjhJ1ugUmys7RPs5mQIrEiAt2hTu5M4bf9mAN
+         jN7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXvo5D2pD/FTNOZGOSEU2VQlORvBCfFyEQgdGnVvK/UjF3TJictgO3s1UvRI1Vm1u6RvSXJ2Cwp+y+b@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7V6ADRmArChMqwfQtaUj7W/HIi0ygWKBYt9q5sYKOtNnzUaC3
+	6kQ1yR5YGpelcMu+7MDAwxK3JYWrQQvvLx05Kwxd1YwxgeIHroBeRUvF1sgO5wqBm3rrUVByvbB
+	u28osfb5F5G5lv0luPAGjqDN+oqS9hjNOdZaAgWjz58XCTxABgogEZiYZ3HPcQiFY
+X-Gm-Gg: ASbGncv281H5KrqY+nFF+8ME3LV5aLCrCU+dyxbsRYYMGcMp3Huehg0Pqx48D8cGS6/
+	LB25gVh7rxtuvw2lrKrMG90JrBgTXAu0JEugO+gjGyVqPFfpwBEcGtsLt8QFhstpqgUS3JsMsaG
+	nGSXMWVHxacVZkzjYFZxBjSIGTTrZyFW8aaBLHyPJsNlgXKYOYiy2YjYK9mP4Ao3aLPpgnFmaFp
+	iXQVUNWHnVpQtWttYLbjfJkhpYXgYaB9LAI2H0STftRR3auE0QoRivojG20boEdX9yRFe9CuY0C
+	COrW1Z+04mzmXWQ5bF5x4VipPLNtsh9HwxXSitA6ydWcV+p+0DnUZkR8tfqbuJalK+tD1vtrIlT
+	yFDyxM7YX9JiBCCtgSGIRjhMvUg==
+X-Received: by 2002:a05:6a00:23c1:b0:781:1b5a:95b2 with SMTP id d2e1a72fcca58-7b22717bb94mr12240177b3a.28.1762782342798;
+        Mon, 10 Nov 2025 05:45:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGwTkVKCC8Im0eYgJqpdGEW0O85HjOMi5fKaAZ3Jnn0Gmv9OubICv0N6ZVNCMiI6Qbx9GYJBw==
+X-Received: by 2002:a05:6a00:23c1:b0:781:1b5a:95b2 with SMTP id d2e1a72fcca58-7b22717bb94mr12240084b3a.28.1762782341965;
+        Mon, 10 Nov 2025 05:45:41 -0800 (PST)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0ca1e7595sm11836585b3a.33.2025.11.10.05.45.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Nov 2025 05:45:41 -0800 (PST)
+Date: Mon, 10 Nov 2025 19:15:29 +0530
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andre Draszik <andre.draszik@linaro.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Xin Liu <xin.liu@oss.qualcomm.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Umang Chheda <umang.chheda@oss.qualcomm.com>,
+        Nirmesh Kumar Singh <nirmesh.singh@oss.qualcomm.com>
+Subject: Re: [PATCH v17 03/12] power: reset: reboot-mode: Add support for 64
+ bit magic
+Message-ID: <20251110134529.uljjqzb3vhda3vya@hu-mojha-hyd.qualcomm.com>
+References: <20251109-arm-psci-system_reset2-vendor-reboots-v17-0-46e085bca4cc@oss.qualcomm.com>
+ <20251109-arm-psci-system_reset2-vendor-reboots-v17-3-46e085bca4cc@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ladnhwyx55vra2te"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <abb4a253-6f4b-4547-a238-db6f60ee3244@intel.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.5.1/262.770.93
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251109-arm-psci-system_reset2-vendor-reboots-v17-3-46e085bca4cc@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=D6JK6/Rj c=1 sm=1 tr=0 ts=6911ec87 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=fKl0S-9-5daLM7QqcyEA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDEyMCBTYWx0ZWRfXw8CO6J/ba4b3
+ oo5H4yXugSL+oMm2E4vOgLcyy6Ka4yF4JF4m6qBHeSrwxrKg7IWCthVSlx0j5jsBnfSouRGfECT
+ VP2u0niZ1tFhU1b2webKyZcUZd++Cx/2QAKLWP9+0ASAq+57PPU8nDdUk9RrUDFMljUlx/HYiEw
+ DXFeoBgYbA46thMl/JBYZ0CrOFK5TyvC4SPrR5IgT6DCbpZrI3m7q3cTIpS4rT7/zpIv7sY/+qC
+ A+jtWCQG6Yd1CwOjCwuGF5vCt92NO4Mm7/URcjZejObA/bEx7URg+CJU/o6XCdLd9GU4DEwRtJp
+ 1G/DyAZwtur2mDnjQbPWSPxMykA3akZAjluK04DCf84FcUzpiKUGad+gsCtA+xOsqW+HP1gECFW
+ 3Xvw73CyIRWNa63mW5kzKxTtwjCJNA==
+X-Proofpoint-GUID: p2KF1X0MRwV8wtdFYyYkGHxjrldwn0xk
+X-Proofpoint-ORIG-GUID: p2KF1X0MRwV8wtdFYyYkGHxjrldwn0xk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_05,2025-11-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 bulkscore=0 malwarescore=0 phishscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1015 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100120
+
+On Sun, Nov 09, 2025 at 08:07:16PM +0530, Shivendra Pratap wrote:
+> Current reboot-mode supports a single 32-bit argument for any
+> supported mode. Some reboot-mode based drivers may require
+> passing two independent 32-bit arguments during a reboot
+> sequence, for uses-cases, where a mode requires an additional
+> argument. Such drivers may not be able to use the reboot-mode
+> driver. For example, ARM PSCI vendor-specific resets, need two
+> arguments for its operation – reset_type and cookie, to complete
+> the reset operation. If a driver wants to implement this
+> firmware-based reset, it cannot use reboot-mode framework.
+> 
+> Introduce 64-bit magic values in reboot-mode driver to
+> accommodate dual 32-bit arguments when specified via device tree.
+> In cases, where no second argument is passed from device tree,
+> keep the upper 32-bit of magic un-changed(0) to maintain backward
+> compatibility.
+> 
+> Update the current drivers using reboot-mode for a 64-bit magic
+> value.
+> 
+> Reviewed-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
+> Reviewed-by: Nirmesh Kumar Singh <nirmesh.singh@oss.qualcomm.com>
+> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+> ---
+>  drivers/power/reset/nvmem-reboot-mode.c  | 13 +++++++++----
+>  drivers/power/reset/qcom-pon.c           | 11 ++++++++---
+>  drivers/power/reset/reboot-mode.c        | 19 +++++++++++++------
+>  drivers/power/reset/syscon-reboot-mode.c | 11 ++++++++---
+>  include/linux/reboot-mode.h              |  3 ++-
+>  5 files changed, 40 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/power/reset/nvmem-reboot-mode.c b/drivers/power/reset/nvmem-reboot-mode.c
+> index 41530b70cfc48c2a83fbbd96f523d5816960a0d1..5d73dde585b1fd438b1847f884feb37cd9e4dd5c 100644
+> --- a/drivers/power/reset/nvmem-reboot-mode.c
+> +++ b/drivers/power/reset/nvmem-reboot-mode.c
+> @@ -16,15 +16,20 @@ struct nvmem_reboot_mode {
+>  	struct nvmem_cell *cell;
+>  };
+>  
+> -static int nvmem_reboot_mode_write(struct reboot_mode_driver *reboot,
+> -				    unsigned int magic)
+> +static int nvmem_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
+>  {
+> -	int ret;
+>  	struct nvmem_reboot_mode *nvmem_rbm;
+> +	u32 magic_32;
+> +	int ret;
+> +
+> +	if (magic > U32_MAX)
+> +		return -EINVAL;
 
 
---ladnhwyx55vra2te
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 1/2] mmc: sdhci-of-dwcmshc: Add command queue support
- for rockchip SOCs
-MIME-Version: 1.0
+I believe, we need a comment in all the client driver.. 
 
-Hi,
+> +
+> +	magic_32 = magic;
+>  
+>  	nvmem_rbm = container_of(reboot, struct nvmem_reboot_mode, reboot);
+>  
+> -	ret = nvmem_cell_write(nvmem_rbm->cell, &magic, sizeof(magic));
+> +	ret = nvmem_cell_write(nvmem_rbm->cell, &magic_32, sizeof(magic_32));
+>  	if (ret < 0)
+>  		dev_err(reboot->dev, "update reboot mode bits failed\n");
+>  
+> diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
+> index 7e108982a582e8243c5c806bd4a793646b87189f..d0ed9431a02313a7bbaa93743c16fa1ae713ddfe 100644
+> --- a/drivers/power/reset/qcom-pon.c
+> +++ b/drivers/power/reset/qcom-pon.c
+> @@ -27,17 +27,22 @@ struct qcom_pon {
+>  	long reason_shift;
+>  };
+>  
+> -static int qcom_pon_reboot_mode_write(struct reboot_mode_driver *reboot,
+> -				    unsigned int magic)
+> +static int qcom_pon_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
+>  {
+>  	struct qcom_pon *pon = container_of
+>  			(reboot, struct qcom_pon, reboot_mode);
+> +	u32 magic_32;
+>  	int ret;
+> 
 
-On Mon, Nov 10, 2025 at 09:58:24AM +0200, Adrian Hunter wrote:
-> On 31/10/2025 17:58, Sebastian Reichel wrote:
-> > This adds CQE support for the Rockchip RK3588 and RK3576 platform. To
-> > be functional, the eMMC device-tree node must have a 'supports-cqe;'
-> > flag property.
-> >=20
-> > As the RK3576 device-tree has been upstreamed with the 'supports-cqe;'
-> > property set by default, the kernel already tried to use CQE, which
-> > results in system hang during suspend. This fixes the issue.
-> >=20
-> > Co-developed-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->=20
-> One question below, otherwise:
->=20
-> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+Since we are doing this change in reboot framework, client driver should know about
+it too about this new check because of framework.
 
-Thanks,
+> +	if (magic > U32_MAX || (magic << pon->reason_shift) > U32_MAX)
 
-[...]
 
-> > @@ -687,6 +757,9 @@ static void rk35xx_sdhci_reset(struct sdhci_host *h=
-ost, u8 mask)
-> >  	}
-> > =20
-> >  	sdhci_reset(host, mask);
-> > +
-> > +	/* Enable INTERNAL CLOCK */
-> > +	sdhci_writel(host, MISC_INTCLK_EN | extra, DECMSHC_EMMC_MISC_CON);
->=20
-> rk35xx_sdhci_reset() is in sdhci_dwcmshc_rk35xx_ops.
-> sdhci_dwcmshc_rk3576_pdata also uses sdhci_dwcmshc_rk35xx_ops but isn't
-> supporting CQE ops.  Is this change OK for rk3576?
+is this (magic << pon->reason_shift) > U32_MAX really needed ..?
 
-How did you come to the conclusion, that rk3576 does not support CQE
-ops? Have you read the cover letter? :)
+> +		return -EINVAL;
+> +
+> +	magic_32 = magic << pon->reason_shift;
+> +
+>  	ret = regmap_update_bits(pon->regmap,
+>  				 pon->baseaddr + PON_SOFT_RB_SPARE,
+>  				 GENMASK(7, pon->reason_shift),
+> -				 magic << pon->reason_shift);
+> +				 magic_32);
+>  	if (ret < 0)
+>  		dev_err(pon->dev, "update reboot mode bits failed\n");
+>  
+> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
+> index eff60d6e04df2cb84ba59d38512654336f272f8a..873ac45cd7659b214b7c21958f580ca381e0a63d 100644
+> --- a/drivers/power/reset/reboot-mode.c
+> +++ b/drivers/power/reset/reboot-mode.c
+> @@ -19,12 +19,11 @@
+>  
+>  struct mode_info {
+>  	const char *mode;
+> -	u32 magic;
+> +	u64 magic;
+>  	struct list_head list;
+>  };
+>  
+> -static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+> -					  const char *cmd)
+> +static u64 get_reboot_mode_magic(struct reboot_mode_driver *reboot, const char *cmd)
+>  {
+>  	const char *normal = "normal";
+>  	struct mode_info *info;
+> @@ -56,7 +55,7 @@ static int reboot_mode_notify(struct notifier_block *this,
+>  			      unsigned long mode, void *cmd)
+>  {
+>  	struct reboot_mode_driver *reboot;
+> -	unsigned int magic;
+> +	u64 magic;
+>  
+>  	reboot = container_of(this, struct reboot_mode_driver, reboot_notifier);
+>  	magic = get_reboot_mode_magic(reboot, cmd);
+> @@ -80,6 +79,8 @@ int reboot_mode_register(struct reboot_mode_driver *reboot, struct fwnode_handle
+>  	struct device_node *np;
+>  	struct property *prop;
+>  	size_t len = strlen(PREFIX);
+> +	u32 magic_arg1;
+> +	u32 magic_arg2;
+>  	int ret;
+>  
+>  	if (!fwnode)
+> @@ -101,12 +102,18 @@ int reboot_mode_register(struct reboot_mode_driver *reboot, struct fwnode_handle
+>  			goto error;
+>  		}
+>  
+> -		if (of_property_read_u32(np, prop->name, &info->magic)) {
+> -			pr_err("reboot mode %s without magic number\n", info->mode);
+> +		if (of_property_read_u32(np, prop->name, &magic_arg1)) {
+> +			pr_err("reboot mode without magic number\n");
+>  			kfree(info);
+>  			continue;
+>  		}
+>  
+> +		if (of_property_read_u32_index(np, prop->name, 1, &magic_arg2))
+> +			magic_arg2 = 0;
+> +
+> +		info->magic = magic_arg2;
+> +		info->magic = (info->magic << 32) | magic_arg1;
+> +
+>  		info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+>  		if (!info->mode) {
+>  			ret =  -ENOMEM;
+> diff --git a/drivers/power/reset/syscon-reboot-mode.c b/drivers/power/reset/syscon-reboot-mode.c
+> index e0772c9f70f7a19cd8ec8a0b7fdbbaa7ba44afd0..3cbd000c512239b12ec51987e900d260540a9dea 100644
+> --- a/drivers/power/reset/syscon-reboot-mode.c
+> +++ b/drivers/power/reset/syscon-reboot-mode.c
+> @@ -20,16 +20,21 @@ struct syscon_reboot_mode {
+>  	u32 mask;
+>  };
+>  
+> -static int syscon_reboot_mode_write(struct reboot_mode_driver *reboot,
+> -				    unsigned int magic)
+> +static int syscon_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
+>  {
+>  	struct syscon_reboot_mode *syscon_rbm;
+> +	u32 magic_32;
+>  	int ret;
+>
 
-Greetings,
+same here
 
--- Sebastian
+> +	if (magic > U32_MAX)
+> +		return -EINVAL;
+> +
+> +	magic_32 = magic;
+> +
+>  	syscon_rbm = container_of(reboot, struct syscon_reboot_mode, reboot);
+>  
+>  	ret = regmap_update_bits(syscon_rbm->map, syscon_rbm->offset,
+> -				 syscon_rbm->mask, magic);
+> +				 syscon_rbm->mask, magic_32);
+>  	if (ret < 0)
+>  		dev_err(reboot->dev, "update reboot mode bits failed\n");
+>  
+> diff --git a/include/linux/reboot-mode.h b/include/linux/reboot-mode.h
+> index 22f707ade4ba93592823ea8718d467dbfc5ffd7c..e0d3e8a54050a76f26846f456120b4c7e371d284 100644
+> --- a/include/linux/reboot-mode.h
+> +++ b/include/linux/reboot-mode.h
+> @@ -3,11 +3,12 @@
+>  #define __REBOOT_MODE_H__
+>  
+>  #include <linux/fwnode.h>
+> +#include <linux/types.h>
+>  
+>  struct reboot_mode_driver {
+>  	struct device *dev;
+>  	struct list_head head;
+> -	int (*write)(struct reboot_mode_driver *reboot, unsigned int magic);
+> +	int (*write)(struct reboot_mode_driver *reboot, u64 magic);
+>  	struct notifier_block reboot_notifier;
+>  };
+>  
+> 
+> -- 
+> 2.34.1
+> 
 
---ladnhwyx55vra2te
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmkR7AAACgkQ2O7X88g7
-+poq/g/6Av018KZfLynGwjZMNoFxVnLTbPCij+47pv7hWC/61IeB3Wo3ZKuWOZaT
-mJgj8ttbiE8caqUP8EusAjZpnLwmYIeoEfewsXr7mlhwzzKR1wR8xtKzkSYvSOPg
-2vjagIjI0QWubTnuyrvBihngKhpXjl9wSgWKBeY3o4PmYB5b9kHuqjBs1hoa8445
-fCu0u4zt+2BsxNQYFjCeGbM06pa4kzD00SyNW+Zl3uGPX64SaaUnGeo1k+GFyVzw
-h6Q7QmJFLY0kkXr5H5fysSQMWxuMgWyBp/hrcVrdYEx8/EaWddQVOXRIJHK7MVgB
-uTi3zilX/3+8Hx8ij+4k2Elp8ywBdoAL92ufUeaZm9va2r+iB1V0kO7YznDU4L3N
-AeDqFOG75McYdgKYD/HATaQ9gjut+13TBCvNmajPyFtu0iPww8Tg55lgvfBNOmxF
-ZTw2L3OAcfFiVpDzOZ2P5kzQ6S54yMHUE8El7OHQCvfRD3kaLXSJYBswahfh4hW6
-1Rq5uosLvZ/59EG6eGkA66xQLEam6Fgq+LmvS7XMagRZdR9EbdFHht5myxXF6lXs
-GWwqjJkHBaXFYdUa2jzF7hitnpJBMFOmwh9DjzbyVNPJKSG3504lOyb1UC+2L70R
-AMnnkw1ljj57dHDPZ+26sJZA3a37eaWbWjfPiTG/zavQCYzjaLw=
-=iosp
------END PGP SIGNATURE-----
-
---ladnhwyx55vra2te--
+-- 
+-Mukesh Ojha
 
