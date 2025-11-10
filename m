@@ -1,70 +1,59 @@
-Return-Path: <devicetree+bounces-236879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BBE4C48EE1
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:14:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A6FC48F24
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:17:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2E513BD00D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:05:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A33A3A8A58
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32AF133C535;
-	Mon, 10 Nov 2025 18:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9384329399;
+	Mon, 10 Nov 2025 19:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W42E23mf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z8BofuqZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 033EA32BF20;
-	Mon, 10 Nov 2025 18:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A4C323ABA1;
+	Mon, 10 Nov 2025 19:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762800998; cv=none; b=Y+iJIX46pEcsrxfJe4dmu9t0iXR1Dsa3Ue3Qtkn8AZ6pBINGLTuqJoEsHWm4NvSyXURIL+5KLr+uRgY6Goi0fhGuXPqRW68SHjhotsrbTJXAP0UYf6mBSKmT/m57KJJgXmxPu54fy3CTp/HVlIlwReeQShFLFnvL8LO2Q1Y5d64=
+	t=1762801650; cv=none; b=FbgZy14Kg/YHka6c00NKdbNrP/5DiV9zxtEYre1oVjoONzVtZPjhlZYKaLGAGLH7kqkcoD528GEEzDVtl7fiMHOtg3kxi26legN3aAC3l3XQkpWONrVqGXc2MumDWJJJ8sLLXTizWHPRzmaS8UqwdVozNp4g0L80M6F2A4vX5js=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762800998; c=relaxed/simple;
-	bh=1wKoNGk3+neT78CBoHzPYh7DcF4v4Epl4oWHaKMfgHQ=;
+	s=arc-20240116; t=1762801650; c=relaxed/simple;
+	bh=gdMPSWFUx6fQxjEeg88AQCpfbokaGBVOZ3O5cWM3Xts=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gXHA9+iTJD2bJQYhZM9/UyRpuEAk2t7CP/TjsRydl21QGPbxovamO9qxQIgFotGDEwqTchF1F9VVzKq20Mzwp4k3f5KNjgZebs/lRb92murtGRMjZJfku0CCNrAuydHGjY1q1SZyDyxAKZ+u0048s4UP0weITYM6xEaNeBuChoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W42E23mf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF4C0C4CEF5;
-	Mon, 10 Nov 2025 18:56:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=O97/1+VOtg0iqj8tFRGgJutaz5I5Ce3D+ZLZZLjyynMJu/k8asnXC+vtu1pcJom9En09Fw9aHKi4yQo7TfSxVMDJq+aDCpR+hmF64/yAHO391lYZBsUbQpjaLIAhHXFKUAxoMD3w6QiQhZoWl1McxO8eOTtQDVJ6llo41Lmv5tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z8BofuqZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C83CC4CEF5;
+	Mon, 10 Nov 2025 19:07:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762800997;
-	bh=1wKoNGk3+neT78CBoHzPYh7DcF4v4Epl4oWHaKMfgHQ=;
+	s=k20201202; t=1762801650;
+	bh=gdMPSWFUx6fQxjEeg88AQCpfbokaGBVOZ3O5cWM3Xts=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W42E23mfndLfNxrsskmb6cNcDZyzYu/9d95uKO6GoGaHAnxrZ5x3HYCrGdmHJV250
-	 jIc+m/nOaJNdBjqwC4kRG3KwxePN1VafeP7sbXTOfc9dfNwZHlm8sJaMNAEjAAs1Y+
-	 NQv4EZSmbxBn3jMnXP1sMtn9PUjcO/Iq3IDYHjmQEVwstNiy3Iu3udpqijiUSWFxRX
-	 ouV/81ee0k5gOl+gTA705TQd9UxRCxSD4Zq0lFih7bFSmZ/p3zztbCW7pc0gtXOTRh
-	 O5s0++HcMMruK3B7OFMcc/Qcw6Rn4hNVBJLjJt/PduzTtiWP4Ct7Cq9Rq8uDM8C/iB
-	 aoRrBVzN7hDbA==
-Date: Mon, 10 Nov 2025 18:56:31 +0000
+	b=Z8BofuqZKxDxoVpIR4gMTKkobJ7QaF6zjZmN6oY9SWF1wnk3/nUCO1tVsXHeGeRu3
+	 F8X5wlX4tqmRBbxbMVAvXkz5zzDMbvTIo9BI5sLSbYTSv2tuNsLGo8Ky43OPPtdkqx
+	 bzrxwtuJFOFNKz6DcFe74hc4sRkm2fwFcgSRHFBjA0SKyca0TRKg/6O6yIzfpGSmsp
+	 7Xfec9U7HeRxJNJw/SLCR/YNxLf9+lcEPB4j8mZ7jpGKc5PIshX66ozUMceiWF/K8p
+	 0cpkNLprCSxaElJekdx2syr7EMObMmswk3KPNzEVvUwVnVVTJXAz+xUEg5xQC9ngbc
+	 hPzOHcsqMvJog==
+Date: Mon, 10 Nov 2025 19:07:24 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Rosin <peda@axentia.se>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/21] dt-bindings: reset: renesas,rzv2h-usb2phy:
- Document VBUS_SEL mux
-Message-ID: <20251110-resonate-strict-c3d6c42f3e0d@spud>
-References: <cover.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
- <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+	andy@kernel.org, Michael.Hennerich@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+	cosmin.tanislav@analog.com, marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v1 1/3] dt-bindings: iio: adc: Add AD4134
+Message-ID: <20251110-unsightly-blah-410539e95a18@spud>
+References: <cover.1762777931.git.marcelo.schmitt@analog.com>
+ <608ab00821af9f766c75d88f59940fed87cb6df7.1762777931.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,92 +61,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GT7BDuKQnZgPdsmF"
+	protocol="application/pgp-signature"; boundary="rJNX4uVi5xG0GC+z"
 Content-Disposition: inline
-In-Reply-To: <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <608ab00821af9f766c75d88f59940fed87cb6df7.1762777931.git.marcelo.schmitt@analog.com>
 
 
---GT7BDuKQnZgPdsmF
+--rJNX4uVi5xG0GC+z
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 10, 2025 at 01:08:04PM +0100, Tommaso Merciai wrote:
-> Document the 'mux-controller' child node in the Renesas RZ/V2H(P)
-> USB2PHY reset binding to support describing the USB VBUS_SEL
-> multiplexer as a mux-controller.
->=20
-> This is required to properly configure the USB PHY VBUS source on
-> RZ/V2H(P), RZ/G3E SoCs.
->=20
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> ---
-> v2->v3:
->  - Manipulate mux-controller as an internal node.
+On Mon, Nov 10, 2025 at 09:45:18AM -0300, Marcelo Schmitt wrote:
 
-Why is it a child node, rather than just putting the cell in the parent
-reset node?
+> +  adi,control-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Describes whether the device is wired to an SPI interface or not. The
 
->  - Improved commit body.
->=20
-> v1->v2:
->  - New patch
->=20
->  .../bindings/reset/renesas,rzv2h-usb2phy-reset.yaml   | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2ph=
-y-reset.yaml b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2ph=
-y-reset.yaml
-> index c1b800a10b53..03da74ff2d08 100644
-> --- a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset=
-=2Eyaml
-> @@ -37,6 +37,12 @@ properties:
->    '#reset-cells':
->      const: 0
-> =20
-> +  mux-controller:
-> +    $ref: /schemas/mux/mux-controller.yaml#
-> +    description: Mux controller for USB VBUS source selection.
-> +    type: object
-> +    unevaluatedProperties: false
+Can you explain how you don't automagically know this from what bus
+you're on?
+
+> +      PIN/SPI pin on the device must be set accordingly, i.e., PIN/SPI must be
+> +      set to logic high for SPI Control Mode, low for Pin Control Mode. When
+> +      absent, implies the SPI interface configuration.
+> +    enum: [ spi-control-mode, pin-control-mode ]
+> +    default: spi-control-mode
 > +
->  required:
->    - compatible
->    - reg
-> @@ -44,6 +50,7 @@ required:
->    - resets
->    - power-domains
->    - '#reset-cells'
-> +  - mux-controller
-> =20
->  additionalProperties: false
-> =20
-> @@ -58,4 +65,8 @@ examples:
->          resets =3D <&cpg 0xaf>;
->          power-domains =3D <&cpg>;
->          #reset-cells =3D <0>;
-> +
-> +        mux-controller {
-> +          #mux-state-cells =3D <1>;
-> +        };
->      };
-> --=20
-> 2.43.0
->=20
+> +  adi,asrc-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Asynchronous Sample Rate Converter (ASRC) operation mode control input.
+> +      Describes whether the MODE pin is set to a high level (for master mode
+> +      operation) or to a low level (for slave mode operation).
 
---GT7BDuKQnZgPdsmF
+I don't really get this one. If this is an input to the device that
+controls behaviour (master v slave) why is an option needed too? Clearly
+this is not a gpio but it seems like it could be one, in which case you'd
+need some sort of asrc-gpios property. Is it not possible to read the
+value of this setting out of the device's registers (maybe it's not when
+there's no spi interface connected?)?
+It's not used in your driver, so I can't look there easily to see what's
+going on.
+
+> +    enum: [ high, low ]
+> +    default: low
+
+--rJNX4uVi5xG0GC+z
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRI1XwAKCRB4tDGHoIJi
-0jXmAP4n8RG7YkgvdZEpvYgVEeHXPR/DEvUBIKbVbRYcDr7U2QEAjMx9z7JhWZxr
-9bdX7GIsYG0o5CLLuMge8tFJCnC2HQE=
-=x5t9
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRI37AAKCRB4tDGHoIJi
+0jIVAP9dkrrgzG/cSA6tOhSgQaiGaYLQh5ZGJauZzUJXnSJVPwD8Dugs/GOYERvs
+j5eJjvifsUN8QWWVuP2JQLxEV+Jnug8=
+=nHVh
 -----END PGP SIGNATURE-----
 
---GT7BDuKQnZgPdsmF--
+--rJNX4uVi5xG0GC+z--
 
