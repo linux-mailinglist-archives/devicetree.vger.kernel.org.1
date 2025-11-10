@@ -1,236 +1,111 @@
-Return-Path: <devicetree+bounces-236612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD27C45D0D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:08:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55540C45D21
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:09:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0BF4B3471C7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:08:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CB315347C4C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0506730275B;
-	Mon, 10 Nov 2025 10:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA944302CBD;
+	Mon, 10 Nov 2025 10:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F3IgI36c";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BeHTpw9H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j+2ybnZ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B12F288C20
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8944A33
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:09:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762769313; cv=none; b=DDT8DWGnh1a9HWkHkGP5YG0SfY1lb1pzvGGtJbLFXnYKSwOpbmuVWwQpSWCUIuj/siPepg8Azy0GOZIB1E3pPK0/aLhaC+Ym9i5OZFTK3AwtA+xt+iYPOIXlAu/C05i6Tsyg6mgTPmKgFCwYQu0f8fLOenEQEZ+WclCYY9a1ajw=
+	t=1762769385; cv=none; b=OwMv1DGKGvFXXEuJyqbo89klJQDRnCl5O0/pstnXhjHSiL83m+8lO+lL0EY4WkvSMw0Smy6+WfXQ+BwBljU9Y7B4IBXwPUNdNYylGRA7t1en9JNF435h0rkQ0il+pW1po8KLpOQb4b4sXOSIuijbogJLdQ55B8vzLLtZkLLGfZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762769313; c=relaxed/simple;
-	bh=0dbOoM1JgFEw8FONGDy+H2SN6rDl1TPboIDJvPZ2RZg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=on1EdfMGBy6kKs75hmBPMGaJ9FciUfoBJ+4aISjCjnlRgLjwybBH7rlITskI0pPvBxyMEmu5IQxdZuQiF/Ise6iEbklWotbllql8sldFybdcABz70Syo1q29Z76av4G8WEuaCL/UZgfr5gSgopt5WutE4HxF65/mkXpt2HKbVu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F3IgI36c; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BeHTpw9H; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA3kHN82547467
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:08:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	z3KAbPP/h+63EoRNBS2Ni6wBbFMkQ1zOPX3P54o6wtg=; b=F3IgI36cgE4ZJveP
-	6RqM7bB3ScGFaZBzdgUpY7E9W4zUIIAOHAJkL39s1F6BaecBQvwQQEhZVCtRsxyn
-	U98hIFKeNaEFCxcpuSJi/5GIeWh2XSH8YOPr6dI9/56/A58hOjs8e87ReC0JJUTB
-	D08ieNxQ4mXOerb+pbcK8Xlom8/gBpunMeeCjQdiLHKuSrC8u6vkoqN9dMi3TRNn
-	SP7v9535gIbMp1q+4qvV47Wo8GYUtr7EDPncBqQyDloJIo+9xOfYJBsxj5SuIAjM
-	0BmEurNNYL69GKw4FFmsY93gsJU/lOklJejP0oji6fqlwJdsDA0yaDvy3YV4K/kZ
-	oNFqPQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ab8ea91fa-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 10:08:30 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3438744f11bso1524776a91.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 02:08:30 -0800 (PST)
+	s=arc-20240116; t=1762769385; c=relaxed/simple;
+	bh=tDhf8qixrDvFldi5/wrQHvvbq/Y7Dz2jnieCvqBR5hg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=H819f/LhqsQwgtkBaU8I5aGLR2TK0105d/SoAeWWB/DSMXpz0FOJ4QVcnrIyZHCGTqV5btlIa9DKqo8s9Z73S+qXHjGXMTUR04G0zaH/a9SvkjaYuWgnK/D1G03EvxOpfqnX601dgsIyKtOU/8ow/I4a7GBx38OOkbdQCQweFyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j+2ybnZ1; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-594270ec7f9so2548519e87.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 02:09:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762769310; x=1763374110; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z3KAbPP/h+63EoRNBS2Ni6wBbFMkQ1zOPX3P54o6wtg=;
-        b=BeHTpw9HgXOl1iWo2PzWMRmPdZ/MIfx78AllhM+/Pg48ukksMAFsZKVFaHns0A77Uc
-         Ro6TCEGoRiR6HBXaICHUICVxrOUgBKQiFk1dsipNaX4f4CVX5/gK6xnAV6U3LEFFEgp/
-         wPEg45CBQTVx6zDLgN4AqIk0mBgkZRUX0NfaYJtv6O+3xCu31+uYKIuAHtMgfEuf0Zhb
-         zuxeLWBf8JmOrd8BDlk1e6actpZ+pjIN4bwo7DUli0OVqUZRasDL/6Ax+O02jO6EDwwH
-         wP67Ed0N29/HepJxPKxfIMl7jcRR9y+g+Ndmnf3xbHK+ZfqWeQpY56QqkltfjGZHlPY4
-         qPIA==
+        d=linaro.org; s=google; t=1762769381; x=1763374181; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tDhf8qixrDvFldi5/wrQHvvbq/Y7Dz2jnieCvqBR5hg=;
+        b=j+2ybnZ1I86i8SvXdiHb9YpvHS0baO0DllnCHI2/YHXyM6N/OyODyLVtZY299lmAoK
+         6TETXDVrhjrZ+TL6+k7GjVMiPF5gD3RptoH5dG7r8Zmxcvauv12mAG5Foowb5e+wRXRa
+         IyaHgaAZkKiZ4KT2io0lDcwtanQN3mBL8VkuYQeEZvk/oTTY7CDpaaL0qlgEoRITYh5X
+         trj6e4gE+KltwVxcyZyl2lgKcSpt+K1CzKcx8+R7k85aqtfhs8z7tQlDJK3k8fEjoQZP
+         JvIr9m+2O3DD3pPDLQ+ZwcRDFKhzQllIeR2OXrR+/oiKROz4RvID4cvupqJxrw1JXTFm
+         EGXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762769310; x=1763374110;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z3KAbPP/h+63EoRNBS2Ni6wBbFMkQ1zOPX3P54o6wtg=;
-        b=unvYyVeLW4FjlotL/HmPpV3FSWD6UxKfj2WT4MrcUZ48BWCLFwERldw2+ZZIAZW4l7
-         9p7sVRJLD7y2bFA3umczZUIHAkFRM7L5IyCRiw3DdvjrhZ73zbogMEN2O5MKmF2lGhAK
-         TB1WWW2kkvQx+11TqEv3utX3rrKIIwDDhhYupwPLXd/yrEcwqSzegdU80VXnIz8k49l1
-         iCfxBc81yP2jT65pR24kTZRpLBfVbskVH3D1tGuH/4IFEHqDONzhlR5XoLlXppwXv1ns
-         Mx/E9BeHF68lIKaW0QQaW9Yrd69wBFhIfU+bzuL0rEpk7GaRgCj4oVXNneoW9V+83brw
-         9iGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbIkC2Fw77I2IbqObP7io125r0xtuykU1/L/koiASRexr9Vi42dRJJ1g0H8nW+0gz3dsNgQd1Wnt5I@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA7P54HeYdjFFp4cuJmhpG+Z2pQg0ZBH5lavVnFNQHDITSRT0W
-	yCFIduZvZcRP71ATA4fqZQR8DrW1v8GJDCYqk0AycvHMQDSyYcuYtHr65YOd3NL047e2zr6UHRL
-	U2jakWGDA5KSrWqmastnmk7LAHIQY3WtsbdwgBjAh7B4cVpugi25c+zetxWywIRjB
-X-Gm-Gg: ASbGncsFRr+MBafAo13moXAS7r3O/lmbJiGeIrFT2BZJjf5nZZN7Jz/mek1w5BWV50d
-	FvugBE3Zv/Uth7eo6YzAF0W5MXXFaor9oGpy+8C2a0P+CYJpHXWV86ul5SoUQgxXKznTYNl1017
-	3u/oeEM9/sbjFq70zy7GeL5Y548VchFE8QfM/IIM3kHrvYoG7hFxLaWRSa3Hif/0fiYlaWT9pJe
-	NC8bfLVcmcUK49q9L+1EeSbDtRH0dncq+6v/bNngTc/LKGXZEhFJM6Yu7NBMUYlmcvcYFyR1cre
-	7/f5R93xfbHDq69Fr4LwSvHJZZavZGcbsvc3oGwgctn+gvoB/Ah5JrzA3nF6H4nIgRcqzW1fUKC
-	a5+B+FBqTevtTG/ew7vGNqL1nyA7QaKU=
-X-Received: by 2002:a17:903:40c9:b0:297:d741:d28a with SMTP id d9443c01a7336-297e56c9eb4mr84302415ad.31.1762769309724;
-        Mon, 10 Nov 2025 02:08:29 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHyXqPJFzXxIoU0geQ41zcRiNCHrftpqqkDVpgzXcbP6SifdSRX3i0G9WOKxg+fHf1fYfI9Hw==
-X-Received: by 2002:a17:903:40c9:b0:297:d741:d28a with SMTP id d9443c01a7336-297e56c9eb4mr84302105ad.31.1762769309152;
-        Mon, 10 Nov 2025 02:08:29 -0800 (PST)
-Received: from [10.218.4.221] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29651c93cebsm140244045ad.90.2025.11.10.02.08.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Nov 2025 02:08:28 -0800 (PST)
-Message-ID: <8776d2ca-90b9-7e14-a278-01f20e81297a@oss.qualcomm.com>
-Date: Mon, 10 Nov 2025 15:38:22 +0530
+        d=1e100.net; s=20230601; t=1762769381; x=1763374181;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tDhf8qixrDvFldi5/wrQHvvbq/Y7Dz2jnieCvqBR5hg=;
+        b=R0eR6lKBdA2MIAbPIbGgiD6iMLuTiRUS3s0h1reTBbP/Q8gJCYdoeHbeLcQrOHp0gH
+         ImzOSwBxTAlkLRlHcfDR8XxACQneEDmtLb6PDbpu46Aha8d5M02zFsh7sDqVfZlHcHpy
+         iYLj6EGwAaowa1+qe+9sjdXZ1AlsdYHzIAj3EojckRU3JM28HaggKAcfRzy5i1LiII1v
+         PZ/v+oka15L45aakRRNkbXTxO2dMgawussRIxUqevmFHDhwzPOBbVVT6hvwuiPhCka8l
+         +poS+KuP61prMi9+rfYI8AqMDLoEH0LpJsy5s8WZVcKOSKz4XKbbUXjic/McY2xpfQu+
+         hPxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZvMqW5GIst0d/n4m8ABdhJ4GJ3i7P6OGt/d7SjJIKO/oYws8HKC/EfCreIi7ahQfRNrhASxZAHMh0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5s/TnBtdlWW6MrOsQxP6masj9I2HsaL+aMJKX1lQsIm75YGkU
+	8h8FXcfcbSgLWIOZ/00MkfBXXRJ40tE9l9s2WiPzTZ4hHvJiQOaNFMAzmyyljwWzz8Su9j2c3tP
+	hwZLI2OQTIFn3fokVTND4sx8LehO2cqsuo3T4iyBrdw==
+X-Gm-Gg: ASbGnctM0iLgQ1XbtMSldwYV8e3P21UnaIsN6mAIls9v0zA+991ij1q48FQzUufoCqt
+	56AKm32OelEVVQtG4sxPo346ji1IwokZ2PH0conHskgp35we0WVU/t6+FP0ScQ2lTC8OQMebXds
+	jyrsRQIvL5VdqyG4p+joA/yvceGlZeJZKA4B6dVoX+Lf9tLzF6gGDHxNNNAT9geTJF3PWvSpCda
+	bZ3pyuvfx0F0hMXLWtDDDxdUD1cE8mN4zz7jBxnrFPhTOUWDhz5qJKdb04vvkF+Z7UffRk=
+X-Google-Smtp-Source: AGHT+IFGPVnaDRtv2gClXSnX0sH/hU/2tQYDsgz3FSsDzfiozT/9TYr3cARpl9kJdemTQgStsHfELCywzdcTfbAOhKg=
+X-Received: by 2002:a05:6512:1325:b0:594:4ef9:41f1 with SMTP id
+ 2adb3069b0e04-5945f1db816mr2146235e87.47.1762769380663; Mon, 10 Nov 2025
+ 02:09:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v6 0/6] can: mcp251xfd: add gpio functionality
-To: Manivannan Sadhasivam <mani@kernel.org>, mkl@pengutronix.de
-Cc: thomas.kopp@microchip.com, mailhol.vincent@wanadoo.fr, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
-        brgl@bgdev.pl, linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mukesh.savaliya@oss.qualcomm.com,
-        anup.kulkarni@oss.qualcomm.com
-References: <20251001091006.4003841-1-viken.dadhaniya@oss.qualcomm.com>
- <dvqn5hwvoi36djxkfte2sw2o2nnk7irh6tgt5vmtqgm6t2dbyc@snde7uwlzbia>
-Content-Language: en-US
-From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-In-Reply-To: <dvqn5hwvoi36djxkfte2sw2o2nnk7irh6tgt5vmtqgm6t2dbyc@snde7uwlzbia>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: BJNzzQodbHdXXPk60CWPSNUdO7n6Rw9G
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDA4OCBTYWx0ZWRfX6JySWOHRis5I
- A+SPw2Yt6eJSHnmAWrIBJec94UZD6FsS4bOEXA4074WIz8sBFqv8Tha8CJGHXopbKfBoWeqT+7W
- /9RyJ8PuAbZBQ+TZw3afMjwaKRwll6iK1uXqDlcxOnjU1mH4zksSw7dAcXUUV0BBRClw1lGIaMJ
- wHVM+3I5cBF0+hkJSMuQu89sp0AAyT+p9DWJRvg87cS/d1J3hbtW4dwIm+lU8q9BPTMVYYxaVrv
- aiN6f0bmdGgQPvIfPaiD3CLG8xPZJVHSZFkrXoV5MzP59FgO4r1tM95pn7DAoK6tzhhnBcYZpnC
- u1fLoVrLA3lrK23pE+nTwYVU7+BkhNuet1kXinBpiC8DTJFW5wrh9xsQf8o/hg2HWq4gt46z5vP
- 1GzsMt6BKls6wpKL6tDgiIgp9mwe9A==
-X-Proofpoint-ORIG-GUID: BJNzzQodbHdXXPk60CWPSNUdO7n6Rw9G
-X-Authority-Analysis: v=2.4 cv=QLxlhwLL c=1 sm=1 tr=0 ts=6911b99e cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=8f9FM25-AAAA:8
- a=JNVGp1IlC4mDD8BcjtkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=uSNRK0Bqq4PXrUp6LDpb:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-10_04,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 phishscore=0 bulkscore=0 impostorscore=0
- adultscore=0 lowpriorityscore=0 malwarescore=0 priorityscore=1501
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511100088
+References: <20251027212642.1710144-2-robh@kernel.org>
+In-Reply-To: <20251027212642.1710144-2-robh@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 10 Nov 2025 11:09:27 +0100
+X-Gm-Features: AWmQ_blogvQPPAETGlrOkDS77tME5aB-9Sv0mNqgOJbiE_S-LtUsi9rfJh-GT20
+Message-ID: <CACRpkdZTVaBeSPOFcVAwB1avUK21ftRrLGM=0bkBjvxOfo=XsA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: Convert sprd,sc9860-pinctrl to DT schema
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Marc
+On Mon, Oct 27, 2025 at 10:27=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org=
+> wrote:
 
-I wanted to follow up on this patch series. I noticed it hasn’t been picked up yet,
-so I wanted to check if there are any remaining concerns or comments that need to be addressed.
+> Convert the sprd,sc9860-pinctrl binding to DT schema format. What's
+> valid for the the sleep mode child nodes wasn't well defined. The schema
+> is based on the example (as there's no .dts with pin states) and the
+> driver's register definitions.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Thanks
-Viken Dadhaniya
+Patch applied!
 
-On 10/23/2025 10:46 AM, Manivannan Sadhasivam wrote:
-> On Wed, Oct 01, 2025 at 02:40:00PM +0530, Viken Dadhaniya wrote:
->> Hi all,
->>
->> The mcp251xfd allows two pins to be configured as GPIOs. This series
->> adds support for this feature.
->>
->> The GPIO functionality is controlled with the IOCON register which has
->> an erratum.
->>
->> Patch 1 from https://lore.kernel.org/linux-can/20240429-mcp251xfd-runtime_pm-v1-3-c26a93a66544@pengutronix.de/
->> Patch 2 refactor of no-crc functions to prepare workaround for non-crc writes
->> Patch 3 is the fix/workaround for the aforementioned erratum
->> Patch 4 only configure pin1 for rx-int
->> Patch 5 adds the gpio support
->> Patch 6 updates dt-binding
->>
->> As per Marc's comment on below patch, we aim to get this series into
->> linux-next since the functionality is essential for CAN on the RB3 Gen2
->> board. As progress has stalled, Take this series forward with minor code
->> adjustments. Include a Tested-by tag to reflect validation performed on the
->> target hardware.
->>
-> 
-> LGTM! For the series,
-> 
-> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> 
-> - Mani> 
->> https://lore.kernel.org/all/20240806-industrious-augmented-crane-44239a-mkl@pengutronix.de/
->> ---
->> Changes in v6:
->> - Simplified error handling by directly returning regmap_update_bits() result.
->> - Added Acked-By tag.
->> - Link to v5: https://lore.kernel.org/all/20250926133018.3071446-1-viken.dadhaniya@oss.qualcomm.com/
->>
->> Changes in v5:
->> - Removed #ifdef GPIOLIB and added select GPIOLIB in Kconfig
->> - Rebased patch on latest baseline
->> - Resolved Kernel Test Robot warnings
->> - Link to v4: https://lore.kernel.org/all/20250918064903.241372-1-viken.dadhaniya@oss.qualcomm.com/
->>
->> Changes in v4:
->> - Moved GPIO register initialization into mcp251xfd_register after enabling
->>   runtime PM to avoid GPIO request failures when using the gpio-hog
->>   property to set default GPIO state.
->> - Added Tested-by and Signed-off-by tags.
->> - Dropped the 1st and 2nd patches from the v3 series as they have already been merged.
->> - Link to v3: https://lore.kernel.org/linux-can/20240522-mcp251xfd-gpio-feature-v3-0-8829970269c5@ew.tq-group.com/
->>
->> Changes in v3:
->> - Implement workaround for non-crc writes
->> - Configure only Pin1 for rx-int feature
->> - moved errata check to .gather_write callback function
->> - Added MCP251XFD_REG_IOCON_*() macros
->> - Added Marcs suggestions
->> - Collect Krzysztofs Acked-By
->> - Link to v2: https://lore.kernel.org/r/20240506-mcp251xfd-gpio-feature-v2-0-615b16fa8789@ew.tq-group.com
->>
->> ---
->> Gregor Herburger (5):
->>   can: mcp251xfd: utilize gather_write function for all non-CRC writes
->>   can: mcp251xfd: add workaround for errata 5
->>   can: mcp251xfd: only configure PIN1 when rx_int is set
->>   can: mcp251xfd: add gpio functionality
->>   dt-bindings: can: mcp251xfd: add gpio-controller property
->>
->> Marc Kleine-Budde (1):
->>   can: mcp251xfd: move chip sleep mode into runtime pm
->>
->>  .../bindings/net/can/microchip,mcp251xfd.yaml |   5 +
->>  drivers/net/can/spi/mcp251xfd/Kconfig         |   1 +
->>  .../net/can/spi/mcp251xfd/mcp251xfd-core.c    | 273 +++++++++++++++---
->>  .../net/can/spi/mcp251xfd/mcp251xfd-regmap.c  | 114 ++++++--
->>  drivers/net/can/spi/mcp251xfd/mcp251xfd.h     |   8 +
->>  5 files changed, 335 insertions(+), 66 deletions(-)
->>
->> -- 
->> 2.34.1
->>
-> 
+> With this, all the pinctrl bindings used on arm64 are converted!
+
+Time to celebrate!!
+
+Yours,
+Linus Walleij
 
