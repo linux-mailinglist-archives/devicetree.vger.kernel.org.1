@@ -1,269 +1,182 @@
-Return-Path: <devicetree+bounces-236596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F5AC45A24
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:28:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7DF4C45A57
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:31:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4C5604EA11A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:25:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C09774ECBEF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 09:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88AA12FFDD9;
-	Mon, 10 Nov 2025 09:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EE7302CDF;
+	Mon, 10 Nov 2025 09:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="M0zedMx4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="De3hlYXT";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CQ70CQvT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAEF02FFDC9;
-	Mon, 10 Nov 2025 09:24:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762766692; cv=pass; b=njZIf4q5lAjmZpDQ3QEzKf0Jc1jH48IirIhgiMWE2Ph25yFWd6t9XnJRe5XqEnlX3PzSMNdDVesoGyARRPytYkFPjasGZi7G4gUqx01exG86F2aSSSUa3DVcK0/D7vHlfHGAc5xaEWFEjXjo9gNoS9B/QGVb5nMtvPX9F7KuWa0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762766692; c=relaxed/simple;
-	bh=/9IyHse28dhhfDUIv53BKo7Pw+5RouaKVxJ8DZ5TDsc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dZZ8ON8LJEwy9OmJTv+5KFGTV9MzfcetnYVcV9VlkI88Y3u2JLz/vLQLqEhHaVXgQ48lJEETaW1oCQEMAj0xLmpaErgDmN33z2O6YTkpzXjGOw/rXI3iokhNvhbtfODlQrfc2ONntBadcTHt7CxWuFZMOg/Umys32qM70rWoOYA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=M0zedMx4; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1762766633; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=VjrlaTXRT1DTspIRhNm8LqC+UeVeIz39ALeceKY8V7A5/ao3cVaWPJGQCtUJkoopAY3oEk19DUBQ5ibEOHjsNshLnbMXcJb7jHIVgj27JBHdSNW83mWJAtEyjqKUkU+70aUVA5OqDkOgeToKqF1ezdim2D85BEoTmgeE8g+8iMw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1762766633; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=VSfkaAkbqob94VjtZuefTP3rzVGvzkZ2PyLqZ5TTMEA=; 
-	b=XLMEUim6kByafUhy0mTCMpYnie0fvJC94Rlkmr9OvZoBM/BvE4A8qAyaZJ28JgXr5CMUUniOkUWEgT5jJKcEHivS6qOX4MtH7q2lmgiy0e6eGeOEQjX7p1tA7pKaMacSQhpY/rAvCpENb6KBfOD+Fn0GJelXd6Ekc/lXY/RIzCo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1762766633;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=VSfkaAkbqob94VjtZuefTP3rzVGvzkZ2PyLqZ5TTMEA=;
-	b=M0zedMx4CrQIdjkZsoQwJ8KticXzTN1x4GvoNv08cmSC0hYxvMv9qSGvBmrKDbyw
-	i03mA/4eYRl4HLbD6swqiUagf75i5IfHFPr9wXgIDK/4mT9WJ1C3K1oenQu1UUNzxrQ
-	/62gPcbfd3SJ2sYn/ob1aR6YI0N5+KdulfvauR6Y=
-Received: by mx.zohomail.com with SMTPS id 1762766632129188.4290479822298;
-	Mon, 10 Nov 2025 01:23:52 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Peter Wang =?UTF-8?B?KOeOi+S/oeWPiyk=?= <peter.wang@mediatek.com>,
- Chunfeng Yun =?UTF-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>,
- "kishon@kernel.org" <kishon@kernel.org>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "robh@kernel.org" <robh@kernel.org>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@hansenpartnership.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chaotian Jing =?UTF-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-Subject: Re: [PATCH v3 10/24] scsi: ufs: mediatek: Rework probe function
-Date: Mon, 10 Nov 2025 10:23:44 +0100
-Message-ID: <5025239.GXAFRqVoOG@workhorse>
-In-Reply-To: <90a10fba2e41db4df4c28a72d182c5f0df8c016d.camel@mediatek.com>
-References:
- <20251023-mt8196-ufs-v3-0-0f04b4a795ff@collabora.com>
- <20251023-mt8196-ufs-v3-10-0f04b4a795ff@collabora.com>
- <90a10fba2e41db4df4c28a72d182c5f0df8c016d.camel@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6043302CAC
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 09:25:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762766724; cv=none; b=ACp4cEhjYjsh6gDnh2x6JsRJ1yc5GXktnyjv7KnLLGN1zD4aP1INaWqINu4D34DPr1Drbi6NAzaV3d4hU7/R8hkrn+MiCdFd1S+IKuXr1rvHzjU9cZ/YoMqvY+ouHyvrjeTPykLeCwkp3jgeIioFIWnUZdSW0pARCEfdWFNnMV8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762766724; c=relaxed/simple;
+	bh=COyf3y4165U0Or1tBHla5IFTQQP+OVd+D2o972FPjOc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lOx+leSRzupdnd8DbmJIude+0KRJjr+w1a55ES+1Q2+4Pw51Q+DfB8taybEOhzvt+K3kf5PNFGlFHmRGf0TVmJVY+Drn2kv99IcQBfUy1+Lq0PeSrE4bbxzRgFdfOtzMWTFVi0EXwB7/njfi1QMTehflvl0dKRfwmqprNXp9mFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=De3hlYXT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CQ70CQvT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA88QH31635317
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 09:25:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	U3iwEuhqc+bI7sXi89DxMm3XXxk6P/2ZSBmsCLcSxb0=; b=De3hlYXTJX815q68
+	l/+QzQ2fH/XE7rLTP22wGBHzJQJWsGNAYpVtyb/uuLSZfTyd41L2bcEsBwjcWWaV
+	Ckba/GKSWEXwXm/hZtXkptD8jsBKxciL6wCWhxblVxeQ3Cceda0hJTutvF6GPnTB
+	ZMXGz/sy3dcu3+LUFqrm46I0AJWRZWzTzqLbw2FeG6b/OMhZYkFjC5mXHocgnOXY
+	5RAotxELpgokyTiMe9EIUQIvBRGeYbekiWyrtRMZvwKDuiu6EPvLThEPJWnXYk+i
+	G55vqwkNQAQfyW8nB+DoO5ZoQNl4IdfvqcMKZO6irYpZ8sZvcRdYL2cTOqhldFnz
+	t88cBw==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aaue0j1en-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 09:25:21 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-340ec9b90faso991656a91.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 01:25:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762766721; x=1763371521; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U3iwEuhqc+bI7sXi89DxMm3XXxk6P/2ZSBmsCLcSxb0=;
+        b=CQ70CQvTPgsIa8aevdLGHf8VYX3JjfbHOiPv6Q+Buo232OumQcsmiGDzt96xWzHqFH
+         wHELCJglpSWQnAY8ifysov0w+PFMJ+ec/ouUQx3knXyd7TDAvWR/O6hG4DIeN9FE1Sht
+         sQhqYSkp5x2GcHAsV3ixTOESnMGHyKhJ1SIgzPLBFLKAStxnwVO3VPslxqPoLYPu4jBv
+         mQ9euobhtQ2/6nWKJaURAG/m9neTuoZyZ1GmhPzUTQ8adpr4N4xAlD1mnY+lky+nnT5c
+         PPGls1mblJ22VYk5dlRVozkCwVc6KRmuCesYWbh1MXuEmgW2N1LlnOlNR8dgaRAMGr6l
+         IpPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762766721; x=1763371521;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U3iwEuhqc+bI7sXi89DxMm3XXxk6P/2ZSBmsCLcSxb0=;
+        b=le0GN9Grhx6IxKMTqNYIuQs01T4glKY97w2veTEyIob3qpuYiVpx4IXcjBuKCagQRV
+         OtyCkZhYifWocdSfoyki+EbvwQaAmCiFsNdqsbtprMkwnUHJheonNOHv/M8WmS4aydVQ
+         8tnulzEep7Mi07TBDoBas5Kz20JhP/zf9hCJ3R3NIYAZtieu76ptzq1Pt773sjfLHBME
+         DrLL712H6Nxyhwg/RriZ1Pj7gd5Vi7B+9RbgPxSqoqyzgd6S2vuKpbd0HJy6FMj0CdqM
+         vSekdX0Uo8wkbKPeuHRUbdS63rPWmgMx6/w/Zcsetw4dDgn6dvFDlgYC2fBHlxyUoL5R
+         YrEw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBs4FO52jmp3bnzGWBqoV6ew12ZYJ20AMNRHja2Rz44G5oTDCVqTe+c2a1LmC+Ps6O9UFckOm/ZfTa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiV/opIwS8EL58vS3tzTYerc7c8MNxDLBv7MHCTA/aQEC25LRT
+	acxg64OOvPraeXD3U5+qh9VFMgaB+9IiJJ75Ab/cpvThRggbgC756Ct3CLiYOrf/IFNGZqq6w35
+	P9gFNNiajpVBvXRe/QsWP6Tju01TnCJj506Ao+s/qa7BkXhtqgS4R4ip9kC2cA5Y=
+X-Gm-Gg: ASbGncs77VVTB9snezj0YLLnbe2B6iK0bUha2DL3GVbjSSRO8LvOVF8M62yq/9AeV0J
+	ccCs4pnM3+SOAcPiMQ87hSUP1eihzQQ3LDZD88JNvXLPEnacGVkCScUs7P5VtBjgvXnwFPyWqLp
+	EsoNK5KEVHQXHAOeGfrROFORq+EdGKfEuapXp2kFu0ndKItl+5yvbkN79rChKZ/jvGw63E/HOc7
+	cOUY1nH6pVFrTTIDCG/Tf0auaR32AodYzWtw2ro2CLYDPURZeEAvoAYJIIbmjayEZvlE+fPslki
+	bXKU0p88wuiCmMzTNWNYaC6P8HLJbDL31Fog21Vixcfq04oC1dj6uVvC+IwRkMM5WEqb/7anwSD
+	OZR5HX81ybPfPlM9O36AHv5Adn0vS
+X-Received: by 2002:a17:90b:380e:b0:340:dd41:df7d with SMTP id 98e67ed59e1d1-3436cbdb388mr5196363a91.3.1762766720763;
+        Mon, 10 Nov 2025 01:25:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEF6YvjN1MO27w0jr8y5nhHgQEsGq5JKghm93KJ5CAm3xZcf3PDc97izxyvMHS95tr8OFeHOA==
+X-Received: by 2002:a17:90b:380e:b0:340:dd41:df7d with SMTP id 98e67ed59e1d1-3436cbdb388mr5196327a91.3.1762766720171;
+        Mon, 10 Nov 2025 01:25:20 -0800 (PST)
+Received: from [10.217.216.168] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-341a68aa1edsm17045606a91.1.2025.11.10.01.25.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 01:25:19 -0800 (PST)
+Message-ID: <268122d1-d629-4d8c-b88c-2999c77a1a18@oss.qualcomm.com>
+Date: Mon, 10 Nov 2025 14:55:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-
-On Wednesday, 5 November 2025 07:28:39 Central European Standard Time Chaot=
-ian Jing (=E4=BA=95=E6=9C=9D=E5=A4=A9) wrote:
-> On Thu, 2025-10-23 at 21:49 +0200, Nicolas Frattaroli wrote:
-> > Remove the ti,syscon-reset cruft.
-> >=20
-> > Make PHY mandatory. All the compatibles supported by the binding make
-> > it
-> > mandatory.
-> >=20
-> why make the PHY mandatory ? note that not all of MediaTek SoCs have
-> the PHY node.
-
-Why don't they have the PHY node? Does the hardware not have a PHY?
-
-The mainline binding makes the phys property mandatory. If you have
-downstream device trees that don't have the PHY node properly
-described in the DT even though the PHY exists, then that is not a
-thing the mainline kernel should support.
-
-If the hardware really doesn't have a PHY, which would surprise me,
-then the binding should properly document this, so that the DT checks
-pass without warnings.
-
-> > Entertain this driver's insistence on playing with the PHY's RPM, but
-> > at
-> > least fix the part where it doesn't increase the reference count,
-> > which
-> > would lead to use-after-free.
-> >=20
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/ufs/host/ufs-mediatek.c | 87 +++++++++++++++--------------
-> > ------------
-> >  1 file changed, 32 insertions(+), 55 deletions(-)
-> >=20
-> > diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-
-> > mediatek.c
-> > index 9c0ac72d6e43..889a1d58a041 100644
-> > --- a/drivers/ufs/host/ufs-mediatek.c
-> > +++ b/drivers/ufs/host/ufs-mediatek.c
-> > @@ -2353,74 +2353,49 @@ MODULE_DEVICE_TABLE(of, ufs_mtk_of_match);
-> >   */
-> >  static int ufs_mtk_probe(struct platform_device *pdev)
-> >  {
-> > -	int err;
-> > -	struct device *dev =3D &pdev->dev, *phy_dev =3D NULL;
-> > -	struct device_node *reset_node, *phy_node =3D NULL;
-> > -	struct platform_device *reset_pdev, *phy_pdev =3D NULL;
-> > -	struct device_link *link;
-> > -	struct ufs_hba *hba;
-> > +	struct platform_device *phy_pdev;
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct device_node *phy_node;
-> >  	struct ufs_mtk_host *host;
-> > +	struct device *phy_dev;
-> > +	struct ufs_hba *hba;
-> > +	int err;
-> > =20
-> > -	reset_node =3D of_find_compatible_node(NULL, NULL,
-> > -					     "ti,syscon-reset");
-> > -	if (!reset_node) {
-> > -		dev_notice(dev, "find ti,syscon-reset fail\n");
-> > -		goto skip_reset;
-> > -	}
-> > -	reset_pdev =3D of_find_device_by_node(reset_node);
-> > -	if (!reset_pdev) {
-> > -		dev_notice(dev, "find reset_pdev fail\n");
-> > -		goto skip_reset;
-> > -	}
-> > -	link =3D device_link_add(dev, &reset_pdev->dev,
-> > -		DL_FLAG_AUTOPROBE_CONSUMER);
-> > -	put_device(&reset_pdev->dev);
-> > -	if (!link) {
-> > -		dev_notice(dev, "add reset device_link fail\n");
-> > -		goto skip_reset;
-> > -	}
-> > -	/* supplier is not probed */
-> > -	if (link->status =3D=3D DL_STATE_DORMANT) {
-> > -		err =3D -EPROBE_DEFER;
-> > -		goto out;
-> > -	}
-> > -
-> > -skip_reset:
-> >  	/* find phy node */
-> >  	phy_node =3D of_parse_phandle(dev->of_node, "phys", 0);
-> > +	if (!phy_node)
-> > +		return dev_err_probe(dev, -ENOENT, "No PHY node
-> > found\n");
-> > =20
-> > -	if (phy_node) {
-> > -		phy_pdev =3D of_find_device_by_node(phy_node);
-> > -		if (!phy_pdev)
-> > -			goto skip_phy;
-> > -		phy_dev =3D &phy_pdev->dev;
-> > +	phy_pdev =3D of_find_device_by_node(phy_node);
-> > +	of_node_put(phy_node);
-> > +	if (!phy_pdev)
-> > +		return dev_err_probe(dev, -ENODEV, "No PHY device
-> > found\n");
-> > =20
-> > -		pm_runtime_set_active(phy_dev);
-> > -		pm_runtime_enable(phy_dev);
-> > -		pm_runtime_get_sync(phy_dev);
-> > +	phy_dev =3D &phy_pdev->dev;
-> > =20
-> > -		put_device(phy_dev);
-> > -		dev_info(dev, "phys node found\n");
-> > -	} else {
-> > -		dev_notice(dev, "phys node not found\n");
-> > +	err =3D pm_runtime_set_active(phy_dev);
-> > +	if (err) {
-> > +		dev_err_probe(dev, err, "Failed to activate PHY
-> > RPM\n");
-> > +		goto err_put_phy;
-> > +	}
-> > +	pm_runtime_enable(phy_dev);
-> > +	err =3D pm_runtime_get_sync(phy_dev);
-> > +	if (err) {
-> > +		dev_err_probe(dev, err, "Failed to power on PHY\n");
-> > +		goto err_put_phy;
-> >  	}
-> > =20
-> > -skip_phy:
-> >  	/* perform generic probe */
-> >  	err =3D ufshcd_pltfrm_init(pdev, &ufs_hba_mtk_vops);
-> >  	if (err) {
-> > -		dev_err(dev, "probe failed %d\n", err);
-> > -		goto out;
-> > +		dev_err_probe(dev, err, "Generic platform probe
-> > failed\n");
-> > +		goto err_put_phy;
-> >  	}
-> > =20
-> >  	hba =3D platform_get_drvdata(pdev);
-> > -	if (!hba)
-> > -		goto out;
-> > =20
-> > -	if (phy_node && phy_dev) {
-> > -		host =3D ufshcd_get_variant(hba);
-> > -		host->phy_dev =3D phy_dev;
-> > -	}
-> > +	host =3D ufshcd_get_variant(hba);
-> > +	host->phy_dev =3D phy_dev;
-> > =20
-> >  	/*
-> >  	 * Because the default power setting of VSx (the upper layer of
-> > @@ -2429,9 +2404,11 @@ static int ufs_mtk_probe(struct
-> > platform_device *pdev)
-> >  	 */
-> >  	ufs_mtk_dev_vreg_set_lpm(hba, false);
-> > =20
-> > -out:
-> > -	of_node_put(phy_node);
-> > -	of_node_put(reset_node);
-> > +	return 0;
-> > +
-> > +err_put_phy:
-> > +	put_device(phy_dev);
-> > +
-> >  	return err;
-> >  }
-> > =20
-> >=20
->=20
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 1/3] arm64: dts: qcom: sm8750: Add SDC2 nodes for
+ sm8750 soc
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_nguyenb@quicinc.com,
+        quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
+        quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com,
+        quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
+References: <20251110085013.802976-1-sarthak.garg@oss.qualcomm.com>
+ <20251110085013.802976-2-sarthak.garg@oss.qualcomm.com>
+ <35e8ef89-3fbc-48ac-9b2b-10c2e95ab024@kernel.org>
+From: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
+In-Reply-To: <35e8ef89-3fbc-48ac-9b2b-10c2e95ab024@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: iZzSLU-_Lg_60-7F34XgZNbHAG3KGGT3
+X-Authority-Analysis: v=2.4 cv=BfDVE7t2 c=1 sm=1 tr=0 ts=6911af81 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=-MylOgvtSvH4J1e3t7sA:9
+ a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-GUID: iZzSLU-_Lg_60-7F34XgZNbHAG3KGGT3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDA4MiBTYWx0ZWRfXwTdEArMN6n7z
+ 7pZCl3y7eRDhcFEOop6zzrLfgrYU3PDyaW+Q8Qun9hCWa13kAQjk5o0cePNU2P6zU3k1E1hMx2q
+ ZRDsqYI6WavTCwUhn1QkapJuiKf9C4CaULVgPrU71Gy1GBw5XtLFeTvTB7Jtdw/S2OEZ4fI3J1I
+ HMaEMXACz8IMZnY8X725Vp4oT6yg577SOFfAjKsngXQ2N/+QuVSL5E2oyPeraqVeUocTWTbaH4h
+ REXM1k9CI5o9A7BmwrCSptf1xcpTpEI3oql99qJg/ZG7K6SpaP94nNN8mV+QJzfL/9XFj4dpp0I
+ C3KRcNmfg4lQrHETHtszZ3ZEHmLspcAtvCVclE9Pt2JtVZAVFUBAefWEo//xtBOzRPoh7/ts0SJ
+ B+jVNFlpCB+emh26tOeiN+HFJ+nscw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_03,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 malwarescore=0 impostorscore=0 spamscore=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100082
 
 
+On 11/10/2025 2:43 PM, Krzysztof Kozlowski wrote:
+> On 10/11/2025 09:50, Sarthak Garg wrote:
+>> Add SD Card host controller for sm8750 soc.
+>>
+>> Signed-off-by: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8750.dtsi | 54 ++++++++++++++++++++++++++++
+>>   1 file changed, 54 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> index a82d9867c7cb..95b210fbfead 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> @@ -3482,6 +3482,60 @@ pcie0_phy: phy@1c06000 {
+>>   			status = "disabled";
+>>   		};
+>>   
+>> +		sdhc_2: mmc@8804000 {
+> Nothing improved.
+>
+> Best regards,
+> Krzysztof
 
+
+I moved the sdhc_2 node to follow alphanumeric ordering and used hex in reg.
+What extra is needed ?
+
+
+Regards,
+Sarthak
 
 
