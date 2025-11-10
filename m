@@ -1,133 +1,143 @@
-Return-Path: <devicetree+bounces-236715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8B0C469A9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:31:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 093C8C469BB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 13:32:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DA123B4673
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:29:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5D0864E3960
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA483093D8;
-	Mon, 10 Nov 2025 12:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088EA30DD35;
+	Mon, 10 Nov 2025 12:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vojs3Ny7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bEbv6jB5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9F42FE585;
-	Mon, 10 Nov 2025 12:29:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B25130E858
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762777786; cv=none; b=bd60k5uwBmRF3qNf2q2tuH5jPb0iVo9TEABDPaerQQCMsBD4dzXMTZv+NKXVmh0j+ZYPnqUBqF/SjSOYXqzhhSHQ4G6YsducrGC8EBoOnY6vE/dKTyrExI18/xbJp0P3lLnwJBGC94miImfazq/Bag7BeRBUWH4c0b4H2rkzn/Y=
+	t=1762777932; cv=none; b=fV7pynfkoBXxth9gH6DhheuirEkNjuNcsZqs/avdf1giERFlOMOop06EDcFe7uxnxjoefOluf0LnQmcMzMYPVic4Y2pv3th+psqFe+r9w8o5QcBSzv+fQEC5fLBBlMipAbI5vJ0bTgULchXBdqGoMF8VOYt3XvPpdhA4jdkJYek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762777786; c=relaxed/simple;
-	bh=CHqHQvKuqRvxJRHlw0G9YM2cvk8+dDccmko+WcI99KA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ppM1OBJDbmTsEuOtQEURYcw4fAq0lVQiQO5SEDk7Dxke2h7/2GQn3GQwh1tJGBEcBOxOQ+3QTmc7h6wSCW+FmgquG8B3ISHLhvtp2VYAaLvcq3lEhuL8/tHaH+3z49mII3MiATS+fht15br6iemUwsU6CAZ1PnwZRCFvn/CwIZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vojs3Ny7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 384CFC16AAE;
-	Mon, 10 Nov 2025 12:29:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762777785;
-	bh=CHqHQvKuqRvxJRHlw0G9YM2cvk8+dDccmko+WcI99KA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Vojs3Ny7+r1bvs7xTzB+Em17tnHg4ejqwiAsKUBRNYBKq2ESJ8HM7869IXkyne2Ic
-	 kQYYlyBmu1zFWRa+XAKfg+syhhn8K7Ke/Aot2v11KTSHp0E+iUNBkh4cD9IDovyqLm
-	 I3qy+942BJ+DIqcDZ5xo75PyknQcArDRNJRFGjwoGZrHJkkyzGqNWYn6yS5v1Sfu+F
-	 T3edgQ6vZ1QXPQogA+ippFN1frbOwGnby77b3KjRDBEAT/mjKLLSmsiCAn4JPUwmez
-	 yfrUUnoHWOXIgAiE4QYBaHHoDbQ7usE/VbAQ4+F+cBaKnNnNbymnEDKXE29apneaw/
-	 xxSWFOH6NdReg==
-Date: Mon, 10 Nov 2025 06:29:43 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1762777932; c=relaxed/simple;
+	bh=xbn6RDPlAz1JBYaCMfNzcorMgqIxLXlfE2DgvYo/pIc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=dnr9/udVxvwufloMWKTBd4UO4sLo8v6aB0C0difAQBLAWDjdbtSyjOw4g1/bxsO5zYn67o2ILzpWKhhk3LDIHB5dB2ROJcMGG+rERcEGwKA14OgQvWDki9nEhZLE35VaNkwOwZsxFo8f4eMi/dn7HQXwCU8YrAnBeX1wVH/fKVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bEbv6jB5; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-477632d45c9so19578115e9.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 04:32:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762777926; x=1763382726; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=xbn6RDPlAz1JBYaCMfNzcorMgqIxLXlfE2DgvYo/pIc=;
+        b=bEbv6jB5OfPLMDJaO4TwA3DEv525aPXe4vHlZsC3Fnz4CBv+nrEha6tiuzCu7FvoTW
+         U4kwm0SiFUi2YKtt3+hQ5+UJd5PddicKITkipZM4fmp2gmNcJzSpqv/L8HoiEe88Y4ta
+         k7+Zi7vMJZiiGkH8WzvF6h7y7CxitWjtTAw/R92IckmpNTGrcixZuq0YIjYffl0LvEGW
+         Wzkf+JMvtpPeBmWSeqWK1QYqSjsgEwmqIWAwy/NxvBaVr3HFuoYirZ0hZY+KiFHRbj/8
+         37EQQeUBuhl5VFwLRyRzwSmJKG0L0XcPqvcMjNh3PLjd5iqJyb9UmYlEb5yoZ7Pxmt0I
+         NN3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762777926; x=1763382726;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xbn6RDPlAz1JBYaCMfNzcorMgqIxLXlfE2DgvYo/pIc=;
+        b=HUtHr88l8m3t7rpn5/K2w9p60BBB7nx7mbXCz8bQm63KZyGqh2MA6KF4StDnZ3dEdl
+         AiBjKqmH2/7QbfbIcXtecBoqgA2KCGb3Fo/6KVDg/GGjMPJ5AhR7EzhqQ6h1Pc6jsCD8
+         KrjF3dkzq4vJqUw/0oKa5AWocRKrFdckAiJOK99QxVdGJneBeUbnlei+JlX+agwijxZm
+         /AP7eS+4vaFEsp4ZMtJF/Ex+pwaFCAqDDxNV/2+MhPZS3EdO8cigUHBhIIDZ2mIPiGw4
+         MTGDuxI7ivTPzwUU5zMMiYV3NmHokIuOrdH41VB+YPwVbBp0MYXSiJ1H3c4t96s191wf
+         fa2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXiAi0YrVet87VGC435/xxbEofzE6C3YG9plSEvMvSpVK/52gSiQHkhm6l7WTAYdldi3HHgaGMF1auW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKxZUMh5JwoA1D1NjiCt0lyAS1nQSbfYQxoJf3zRtrK92KAFCG
+	TO4mGQskaVJAOps0PpyCRtyv5kWdb2g7FBBk/i27m76hKyhQ9/Tc7p+69EjYj8Y3
+X-Gm-Gg: ASbGncuyiL9OSmUudER2Ww5BiuVT6cqiylz2cA6pTLxWuaBpVZ7a7DOLlLkP9M3kzr9
+	/m+Go29CRrmunabjJmBVvqntcnHfN+tAAvXqGKZVDJpNWr2TwK0Zhyuk4lIlAjNXmvWOXMIt/Fp
+	iaWsBdFSu4PuttfgNbrIAPXmyp0syVCJwPaMzWnNjGcfFsAHJOiR+zUY1CorkzIEC+ChrCjafP2
+	UUunfzr+173VV1+IHDoOon4/ezDMgXF0rsKXc6Z6hn3Sd//vUVz5Bl3mTwzQiDDO7b1ZFriHvUN
+	m5C8IPGMv01VQPutCBat4AhDn5mu7Wy8SZGnQiWoI5kh1s76BbzUTC4nzm1LalKJhavvdMp7nKK
+	TjZDuqTPcBnlFUOXszw7qoPvoeg8rRHyxOk/cyOQNeg4EnVVb+P8aIqNoQGmnm4xvrrdRzgOU7O
+	EEE/HQ9dsr
+X-Google-Smtp-Source: AGHT+IGdjmBcJW+8X35ii7y+/PGwV34Q4JqH9e5PMe/Gj88DnW3qWYR3wQhKPBIE+gTXCpLrK7KBEA==
+X-Received: by 2002:a05:600c:1c1c:b0:475:dac3:699f with SMTP id 5b1f17b1804b1-4777322f0c4mr73804405e9.9.1762777925514;
+        Mon, 10 Nov 2025 04:32:05 -0800 (PST)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4776bd084d4sm249891675e9.14.2025.11.10.04.32.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Nov 2025 04:32:05 -0800 (PST)
+Message-ID: <3ead5d7aa5e6be2b6df3bb91b35fec37e23353f3.camel@gmail.com>
+Subject: Re: [PATCH 2/2] gpio: adg1712: add driver support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Antoniu Miclaus
+	 <antoniu.miclaus@analog.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Mon, 10 Nov 2025 12:32:42 +0000
+In-Reply-To: <CACRpkdYdtcnxyP4xVsqVK+geurEOEURqZO5eLC96YMqh1sE5Sw@mail.gmail.com>
+References: <20251031160710.13343-1-antoniu.miclaus@analog.com>
+	 <20251031160710.13343-3-antoniu.miclaus@analog.com>
+	 <CACRpkdYdtcnxyP4xVsqVK+geurEOEURqZO5eLC96YMqh1sE5Sw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>, netdev@vger.kernel.org, 
- Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- taoren@meta.com, Po-Yu Chuang <ratbert@faraday-tech.com>, 
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-aspeed@lists.ozlabs.org
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-In-Reply-To: <20251110-rgmii_delay_2600-v4-1-5cad32c766f7@aspeedtech.com>
-References: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
- <20251110-rgmii_delay_2600-v4-1-5cad32c766f7@aspeedtech.com>
-Message-Id: <176277778351.3693581.6347765163045847296.robh@kernel.org>
-Subject: Re: [PATCH net-next v4 1/4] dt-bindings: net: ftgmac100: Add delay
- properties for AST2600
+
+On Mon, 2025-11-10 at 11:30 +0100, Linus Walleij wrote:
+> Hi Antoniu,
+>=20
+> thanks for your patch!
+>=20
+> On Fri, Oct 31, 2025 at 5:08=E2=80=AFPM Antoniu Miclaus
+> <antoniu.miclaus@analog.com> wrote:
+>=20
+> > Add driver support for the ADG1712, which contains four independent
+> > single-pole/single-throw (SPST) switches and operates with a
+> > low-voltage single supply range from +1.08V to +5.5V or a low-voltage
+> > dual supply range from =C2=B11.08V to =C2=B12.75V.
+> >=20
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+>=20
+> So tying into the binding discussion:
+>=20
+> GPIO means "general purpose input/output".
+>=20
+> I am really confused as whether this is:
+>=20
+> - General purpose - seems to be for the purpose of switching
+> =C2=A0 currents and nothing else.
+>=20
+> - Input/Output - It's switching something else and not inputting
+> =C2=A0 or outputting anything and this makes the driver look strange.
+>=20
+>=20
+
+Not the first time a part like this pops up [1]. At the time, the final
+conclusion was to go with gpiolib. Naturally you can think otherwise now :)
+
+Also, it looks like that series did not went anywhere (I'll probably ping t=
+he author internally)
 
 
-On Mon, 10 Nov 2025 19:09:25 +0800, Jacky Chou wrote:
-> The AST2600 contains two dies, each with its own MAC, and these MACs
-> require different delay configurations.
-> Previously, these delay values were configured during the bootloader
-> stage rather than in the driver. This change introduces the use of the
-> standard properties defined in ethernet-controller.yaml to configure
-> the delay values directly in the driver.
-> 
-> Add the new property, "aspeed,rgmii-delay-ps", to specify per step of
-> RGMII delay in different MACs. And for Aspeed platform, the total steps
-> of RGMII delay configuraion is 32 steps, so the total delay is
-> "apseed,rgmii-delay-ps' * 32.
-> Default delay values are declared so that tx-internal-delay-ps and
-> rx-internal-delay-ps become optional. If these properties are not present,
-> the driver will use the default values instead.
-> Add conditional schema constraints for Aspeed AST2600 MAC controllers:
-> - For MAC0/1, aspeed,rgmii-delay-ps property is 45 ps
-> - For MAC2/3, aspeed,rgmii-delay-ps property is 250 ps
-> - Both require the "aspeed,scu" and "aspeed,rgmii-delay-ps" properties.
-> Other compatible values remain unrestricted.
-> 
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
-> ---
->  .../devicetree/bindings/net/faraday,ftgmac100.yaml | 35 ++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
-> 
+[1]:=C2=A0https://lore.kernel.org/linux-gpio/20250213-for_upstream-v2-2-ec4=
+eff3b3cd5@analog.com/
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml: properties:aspeed,rgmii-delay-ps: 'anyOf' conditional failed, one must be fixed:
-	'maxItems' is a required property
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	'type' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	Additional properties are not allowed ('type' was unexpected)
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	'type' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/cell.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml: properties:aspeed,rgmii-delay-ps:type: 'integer' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251110-rgmii_delay_2600-v4-1-5cad32c766f7@aspeedtech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+- Nuno S=C3=A1
 
 
