@@ -1,228 +1,176 @@
-Return-Path: <devicetree+bounces-236666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64F46C46501
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:38:03 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C9DC4653A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9106D4EE1DB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:34:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EA82A4E7CBA
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3B9A3074B7;
-	Mon, 10 Nov 2025 11:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF1B3093D8;
+	Mon, 10 Nov 2025 11:38:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EJaSqtLg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3549B1E0083
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4296309EF9;
+	Mon, 10 Nov 2025 11:38:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762774475; cv=none; b=X/p/mzr/4G1tkwsCXaqAwY/NGS5FGBgmovpSB2Dk/xpc0rHoyl8G1VWjBVtdhMZ0toOhfLY5vHbmrlr0Wld+ZriCYCs0FppEs3yQHm+0sIPgvwxyIhcsarImvXme0UQUZJxni5YSJokO9YMRrHjhOl7wJ/f4P8wVhHX6bTHISAI=
+	t=1762774733; cv=none; b=B25m6qX86xDtccCrRbmFD7qv1EIRkiz3jTJnNmWO9ijJ1UapZHb3xuHafxoOYUbVav/vMlQdhUh6UeQqHRM1QaY4jifdOTAlgMUYcjYLLbOYkJovIAwqlTjXyhNIJ9nzsGSmhgqyOzdpN0VLhODg0gXphEt4b9GgZqN+7zHeKok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762774475; c=relaxed/simple;
-	bh=BXjbksbjPHfdcqAMM/5e33b0GMABq+tYGnPW6uspEtc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TsSltwbDRt/g25V7dOVCcWId47roC8OjfyPbVhLC4LZ4u2I8z1Q4ewWra8soPbV0GuyQJLdOAnkWduHyE8H/krvVE183aBVaSpcWK9uMJffxbhc+FPDY4F1QHMm/o6S2yEU/VrSyP/qBH2mRRHfPuAlt8o69j9v1YIfy3HYxpCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vIQA5-00029j-Da; Mon, 10 Nov 2025 12:34:17 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vIQA5-0080xe-0H;
-	Mon, 10 Nov 2025 12:34:17 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vIQA4-000000009M4-4BQp;
-	Mon, 10 Nov 2025 12:34:17 +0100
-Message-ID: <2fabead977bee651800790f6b0d6323ffdc372c5.camel@pengutronix.de>
-Subject: Re: [PATCH v7 1/5] reset: mpfs: add non-auxiliary bus probing
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Conor Dooley <conor@kernel.org>, claudiu.beznea@tuxon.dev
-Cc: Conor Dooley <conor.dooley@microchip.com>, Daire McNamara
-	 <daire.mcnamara@microchip.com>, pierre-henry.moussay@microchip.com, 
-	valentina.fernandezalanis@microchip.com, Michael Turquette
-	 <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Mon, 10 Nov 2025 12:34:16 +0100
-In-Reply-To: <20251110-evict-gratified-bb816e2799a2@spud>
-References: <20251110-zookeeper-femur-68a0ae346397@spud>
-	 <20251110-evict-gratified-bb816e2799a2@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+deb13u1 
+	s=arc-20240116; t=1762774733; c=relaxed/simple;
+	bh=AgqRNHlM28QFo1a1gtxVwTp0nGA/pHQtS0abwMu9VOc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NHRu4JSUlicgqFKEJamTL/kuU9su4ljDZuM2gnq2C9y9N7hKpXd7HUvnRzXrNZ+p5yTkz+1cFwgxrBQIa1ZUFtwNl1ppEyfwjV+v4jT5P7mN68I5HTdCEUgVp0Ir/3K0YeZIfo1Kw+73W87jW79C0dGUsUVz/dXDm6QnCmJeDAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EJaSqtLg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01475C116D0;
+	Mon, 10 Nov 2025 11:38:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762774732;
+	bh=AgqRNHlM28QFo1a1gtxVwTp0nGA/pHQtS0abwMu9VOc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EJaSqtLgJoBnUagiGNQVs62D7nvbF1c6hPdzeseRRY0g4NowPmn0yP2ilFRqTGqUW
+	 sPzkkTwJN5cjPQUratvqSN/q4oUc88lzC+xgup0xuMr47TNPr85oYO4t0K8e79SH5D
+	 ruSwgoiq59BcaR0tj0vsS65NNiWAPw1gwHLyExzon9keUMMA8f+r7l7qifUYC2Gi+d
+	 mF3mBDe4tSInlDj1+LN0ADjIht/yti36STMl1jUDDEq6SDnTJNUFZbx59UwbDrMoig
+	 jdDJS0HlpPJS0ysSAD9mfFsm9LvUEmrRe1v7u9afR9zdxlTsvSINT1gbgQewAVAa26
+	 Shp8A7TPwDztQ==
+Message-ID: <6a57032b-3726-4074-9212-f0f16269f11c@kernel.org>
+Date: Mon, 10 Nov 2025 12:38:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTog5Zue5aSNOiBbUEFUQ0ggMi8zXSBSZXNldDogY2l4?=
+ =?UTF-8?Q?=3A_add_support_for_cix_sky1_resets?=
+To: Gary Yang <gary.yang@cixtech.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+References: <20251107033819.587712-1-gary.yang@cixtech.com>
+ <20251107033819.587712-3-gary.yang@cixtech.com>
+ <69efdb9a-c03a-42f4-a78e-18c8a2b29322@kernel.org>
+ <PUZPR06MB58875805D441AF3213189979EFCEA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+ <38e8e068-d06b-41f0-9cae-5dfdf0fcce6f@kernel.org>
+ <PUZPR06MB588726F24E6193ADD6CF224CEFCEA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <PUZPR06MB588726F24E6193ADD6CF224CEFCEA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mo, 2025-11-10 at 11:23 +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> While the auxiliary bus was a nice bandaid, and meant that re-writing
-> the representation of the clock regions in devicetree was not required,
-> it has run its course. The "mss_top_sysreg" region that contains the
-> clock and reset regions, also contains pinctrl and an interrupt
-> controller, so the time has come rewrite the devicetree and probe the
-> reset controller from an mfd devicetree node, rather than implement
-> those drivers using the auxiliary bus. Wanting to avoid propagating this
-> naive/incorrect description of the hardware to the new pic64gx SoC is a
-> major motivating factor here.
->=20
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> v7:
-> - move entirely to regmap
-> - use clear/set instead of update
->=20
-> v6:
-> - depend on MFD_SYSCON
-> - return regmap_update_bits() result directly instead of an additional
->   return 0
->=20
-> v4:
-> - Only use driver specific lock for non-regmap writes
->=20
-> v2:
-> - Implement the request to use regmap_update_bits(). I found that I then
->   hated the read/write helpers since they were just bloat, so I ripped
->   them out. I replaced the regular spin_lock_irqsave() stuff with a
->   guard(spinlock_irqsave), since that's a simpler way of handling the two
->   different paths through such a trivial pair of functions.
-> ---
->  drivers/clk/microchip/clk-mpfs.c |  4 +-
->  drivers/reset/Kconfig            |  1 +
->  drivers/reset/reset-mpfs.c       | 92 +++++++++++++++++++-------------
->  include/soc/microchip/mpfs.h     |  3 +-
->  4 files changed, 61 insertions(+), 39 deletions(-)
->=20
-> diff --git a/drivers/clk/microchip/clk-mpfs.c b/drivers/clk/microchip/clk=
--mpfs.c
-> index 484893e68b67..ee58304913ef 100644
-> --- a/drivers/clk/microchip/clk-mpfs.c
-> +++ b/drivers/clk/microchip/clk-mpfs.c
-> @@ -38,7 +38,7 @@ static const struct regmap_config mpfs_clk_regmap_confi=
-g =3D {
->  	.reg_stride =3D 4,
->  	.val_bits =3D 32,
->  	.val_format_endian =3D REGMAP_ENDIAN_LITTLE,
-> -	.max_register =3D REG_SUBBLK_CLOCK_CR,
-> +	.max_register =3D REG_SUBBLK_RESET_CR,
->  };
-> =20
->  /*
-> @@ -502,7 +502,7 @@ static inline int mpfs_clk_old_format_probe(struct mp=
-fs_clock_data *clk_data,
->  	if (IS_ERR(clk_data->regmap))
->  		return PTR_ERR(clk_data->regmap);
-> =20
-> -	return mpfs_reset_controller_register(dev, clk_data->base + REG_SUBBLK_=
-RESET_CR);
-> +	return mpfs_reset_controller_register(dev, clk_data->regmap);
->  }
-> =20
->  static int mpfs_clk_probe(struct platform_device *pdev)
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 78b7078478d4..0ec4b7cd08d6 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -200,6 +200,7 @@ config RESET_PISTACHIO
->  config RESET_POLARFIRE_SOC
->  	bool "Microchip PolarFire SoC (MPFS) Reset Driver"
->  	depends on MCHP_CLK_MPFS
-> +	depends on MFD_SYSCON
->  	select AUXILIARY_BUS
->  	default MCHP_CLK_MPFS
->  	help
-> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-> index f6fa10e03ea8..d00212450990 100644
-> --- a/drivers/reset/reset-mpfs.c
-> +++ b/drivers/reset/reset-mpfs.c
-> @@ -7,13 +7,16 @@
->   *
->   */
->  #include <linux/auxiliary_bus.h>
-> +#include <linux/cleanup.h>
+On 10/11/2025 12:32, Gary Yang wrote:
+> Hi krzysztof:
+> 
+>> -----邮件原件-----
+>> 发件人: Krzysztof Kozlowski <krzk@kernel.org>
+>> 发送时间: 2025年11月10日 19:22
+>> 收件人: Gary Yang <gary.yang@cixtech.com>; p.zabel@pengutronix.de;
+>> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org
+>> 抄送: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; cix-kernel-upstream
+>> <cix-kernel-upstream@cixtech.com>
+>> 主题: Re: 回复: [PATCH 2/3] Reset: cix: add support for cix sky1 resets
+>>
+>> EXTERNAL EMAIL
+>>
+>> On 10/11/2025 12:18, Gary Yang wrote:
+>>>>
+>>>>> +static struct platform_driver sky1_reset_driver = {
+>>>>> +     .probe  = sky1_reset_probe,
+>>>>> +     .driver = {
+>>>>> +             .name           = KBUILD_MODNAME,
+>>>>> +             .of_match_table = sky1_reset_dt_ids,
+>>>>> +     },
+>>>>> +};
+>>>>> +static int __init reset_sky1_init(void) {
+>>>>> +     return platform_driver_register(&sky1_reset_driver);
+>>>>> +}
+>>>>> +subsys_initcall(reset_sky1_init);
+>>>>
+>>>> This should be rather just module_platform_driver. Does not look like
+>>>> part of subsystem, but looks like regular driver.
+>>>>
+>>>
+>>> Some modules depend reset module. When boot system, these modules
+>> can't probe before register reset.
+>>
+>> Which modules? You statement is so imprecise that my only answer is:
+>> sorry, deferred probe is old thing now and everyone should use it.
+>>
+>>> To make these modules probe earlier, we use subsys_initcall() to
+>>> instead of module_platform_driver(). Do you have better suggestions?
+>>
+>> Look how deferred probe works.
+>>
+> 
+> Yes, you're right. But deferred probe needs to take more time on booting.
+> To make the boot faster, better experiences, we have to use subsys_initcall()
 
-Not used anymore.
+Again, imprecise statement. How faster? With such arguments - twice
+(first list of unspecified modules and now of unspecified boot faster)
+the answer is the same. And I will not wait for third imprecise
+argument, because this is not a ping pong game.
 
-[...]=20
-> @@ -176,12 +196,12 @@ static const struct auxiliary_device_id mpfs_reset_=
-ids[] =3D {
->  };
->  MODULE_DEVICE_TABLE(auxiliary, mpfs_reset_ids);
-> =20
-> -static struct auxiliary_driver mpfs_reset_driver =3D {
-> -	.probe		=3D mpfs_reset_probe,
-> +static struct auxiliary_driver mpfs_reset_aux_driver =3D {
-> +	.probe		=3D mpfs_reset_adev_probe,
->  	.id_table	=3D mpfs_reset_ids,
->  };
-> =20
-> -module_auxiliary_driver(mpfs_reset_driver);
-> +module_auxiliary_driver(mpfs_reset_aux_driver);
-> =20
->  MODULE_DESCRIPTION("Microchip PolarFire SoC Reset Driver");
->  MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
-> diff --git a/include/soc/microchip/mpfs.h b/include/soc/microchip/mpfs.h
-> index 0bd67e10b704..ec04c98a8b63 100644
-> --- a/include/soc/microchip/mpfs.h
-> +++ b/include/soc/microchip/mpfs.h
-> @@ -14,6 +14,7 @@
-> =20
->  #include <linux/types.h>
->  #include <linux/of_device.h>
-> +#include <linux/regmap.h>
+Anyway, manual core ordering is not the solution.
 
-You don't have to #include <linux/regmap.h> here, a forward declaration
-
-  struct regmap;
-
-would suffice.
-=20
->  struct mpfs_sys_controller;
-> =20
-> @@ -44,7 +45,7 @@ struct mtd_info *mpfs_sys_controller_get_flash(struct m=
-pfs_sys_controller *mpfs_
-> =20
->  #if IS_ENABLED(CONFIG_MCHP_CLK_MPFS)
->  #if IS_ENABLED(CONFIG_RESET_POLARFIRE_SOC)
-> -int mpfs_reset_controller_register(struct device *clk_dev, void __iomem =
-*base);
-> +int mpfs_reset_controller_register(struct device *clk_dev, struct regmap=
- *map);
->  #else
->  static inline int mpfs_reset_controller_register(struct device *clk_dev,=
- void __iomem *base) { return 0; }
->  #endif /* if IS_ENABLED(CONFIG_RESET_POLARFIRE_SOC) */
-
-With the superfluous cleanup include fixed.
-
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-
-and
-
-Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-
-to be merged with the reset of the series.
-
-regards
-Philipp
+Best regards,
+Krzysztof
 
