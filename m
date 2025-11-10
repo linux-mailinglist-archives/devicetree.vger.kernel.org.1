@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-236775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB73C473CD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:35:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92CCCC473C7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:35:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7C9B04ED1D5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:35:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C17743B1457
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 678B2315785;
-	Mon, 10 Nov 2025 14:34:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34657315D24;
+	Mon, 10 Nov 2025 14:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRpoc/yX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aZBkHe/p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433CC315769
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0101430C630;
+	Mon, 10 Nov 2025 14:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762785278; cv=none; b=UoWK4zEflZ0iS3DGr2WtrNi4r6OmEU1SVk7ZFfSxjDjKxci3oytAHCS1WfuFsniv56M4sy7GbmH498+MAPDmg01eIgI2m0DJTRxZ57fHLI8bzvSgkpJ5f17baEs2/x/ZjJ07VvU2WSJE3KBgB/nzqHeoHYEuJWUUp3hURjY9QBA=
+	t=1762785280; cv=none; b=ng5/iq7o7sX+O3cmA4AEc0/OsRYL2538R3JOjVxOMy2stLY+Us1RhZrv4PeWMTZFsRA8FYjqR5QdRRiGcR+OdmLNc8Z69klY3NhUDCkZe67TnQ4peGQnYT2rdLh3JHXKw+sMUcNx+hV2i3Iek1CaLOy1O0fKUd8kL43RSCZoZjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762785278; c=relaxed/simple;
-	bh=GSYmQ6+3w2F5Y2v3KL+tz1Yyiah/sIkt2T04Cg5nkCw=;
+	s=arc-20240116; t=1762785280; c=relaxed/simple;
+	bh=tbLSKTw5AUf6TNZDLnvM5iO0QJwGxY8JMEutVZVGHDU=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ClADJkAGRCD1GnNQ5HD8atXtN/LqaJSQMitxGtwYZsw38cypPGZKDqUOwsYIBJE2vcgng9ARp0T5Wrzp+iC4cIv7NJR2TK7r3ULbBKlUHg2i6yw0vdqkwSMtjebAOzD4rnDNNPgKLzqnht1gzH3/9gu45/HSgfB3LEkDOO2YOSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRpoc/yX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87809C2BCB4;
-	Mon, 10 Nov 2025 14:34:37 +0000 (UTC)
+	 Message-Id:Subject; b=uZpDDyuUTW8tFrv2DapYT0zO74XyPNUWKpYTszMFHKcKVt57SLrrnaA4jbOkurZ4v9954B+afHsE05sPg6urfX76o1F06PTG5q7wiqMPELYy1inaHz6WJK1c/nPe3DSIG173L0sfmG64TXUdZRfBfAvMulKc92+EVcPQqJOovb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aZBkHe/p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46ABEC116B1;
+	Mon, 10 Nov 2025 14:34:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762785277;
-	bh=GSYmQ6+3w2F5Y2v3KL+tz1Yyiah/sIkt2T04Cg5nkCw=;
+	s=k20201202; t=1762785279;
+	bh=tbLSKTw5AUf6TNZDLnvM5iO0QJwGxY8JMEutVZVGHDU=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=FRpoc/yXSsihGYhZUJKMkEG0SUuM626YAHJaSt896xzpksLSZ2ZB25SAwRwAOVwXg
-	 WY3cNYaRVo1AtSdXTJq0hbQozMOTa7Vhqg2sSXEYOJwObfKBljmBR9fUhyLeLgvp5u
-	 dw+75HhUekHd2ozjYd/8kL70gkvxaw0+0V8QryxL8zTT0G5alUhFLKRF/EqAIEmCg7
-	 vi0nhYAC5quPlgDBQ1scCQAKt3Dwq0KVcsOL2u7OLtEQMT9099qvhgzaHQUo/5aHGY
-	 GoKWSys3ZcBM4fguajAFSIiM/zjW5FNmEJzdnRbr8duD/qFBY2ouwRzTOPMkXbu2Jt
-	 dnyGd4exIAzqA==
-Date: Mon, 10 Nov 2025 08:34:36 -0600
+	b=aZBkHe/pxy0wOC+B2RVIw8KwW0hbyTXws6hnxhGsKBGdbUwkIvKSRe7dqMkQWPACP
+	 DWc/GhOMK0xu1w8a5Y4ztWPH2SVsWwf103ok2KOk0xRg/028U7RHD/pbJ2jYI5PGjB
+	 oxnnCs+YKWNat8TxOXCNxxJL47OzMo+xNoWCitzQyYlqLq6leE2UIcLtIm1uJzhMg1
+	 lov4m0m1PLwEd/0f5UOtKVrHHcdrmT7LO2ZHV/5K1r5wcuKl5X7FiHlcrVyG0ydYii
+	 eGvFeHlFRonezSSnJowJIul7cM+/3ubZak5mj2ES65BK5L/oQwIHkqBJF+dYgokdiE
+	 3oe4NJopE3qjA==
+Date: Mon, 10 Nov 2025 08:34:37 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,29 +51,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: andy.yan@rock-chips.com, dmitry.baryshkov@oss.qualcomm.com, 
- heiko@sntech.de, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, conor+dt@kernel.org, 
- sebastian.reichel@collabora.com
-To: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20251110030036.825150-1-naoki@radxa.com>
-References: <20251110030036.825150-1-naoki@radxa.com>
-Message-Id: <176278493435.154671.16126556415107681599.robh@kernel.org>
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Fix microSD card detect for
- Radxa ROCK 5 ITX
+Cc: linux-bluetooth@vger.kernel.org, cheng.jiang@oss.qualcomm.com, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ stable@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ quic_jiaymao@quicinc.com, linux-arm-msm@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, quic_shuaz@quicinc.com, 
+ quic_chezhou@quicinc.com, Konrad Dybcio <konradybcio@kernel.org>
+To: Wei Deng <wei.deng@oss.qualcomm.com>
+In-Reply-To: <20251110055709.319587-1-wei.deng@oss.qualcomm.com>
+References: <20251110055709.319587-1-wei.deng@oss.qualcomm.com>
+Message-Id: <176278493491.154705.438976021468566948.robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: lemans-evk: Enable Bluetooth support
 
 
-On Mon, 10 Nov 2025 03:00:36 +0000, FUKAUMI Naoki wrote:
-> Due to the discussion about cd-gpios and sdmmmc_det pin
-> functionality[1], it would be better to use cd-gpios for now.
+On Mon, 10 Nov 2025 11:27:09 +0530, Wei Deng wrote:
+> There's a WCN6855 WiFi/Bluetooth module on an M.2 card. To make
+> Bluetooth work, we need to define the necessary device tree nodes,
+> including UART configuration and power supplies.
 > 
-> [1] https://lore.kernel.org/linux-rockchip/20240912152538.1.I858c2a0bf83606c8b59ba1ab6944978a398d2ac5@changeid/T/#u
+> Since there is no standard M.2 binding in the device tree at present,
+> the PMU is described using dedicated PMU nodes to represent the
+> internal regulators required by the module.
 > 
-> Fixes: 31390eb8ffbf2 ("arm64: dts: rockchip: add ROCK 5 ITX board")
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> The 3.3V supply for the module is assumed to come directly from the
+> main board supply, which is 12V. To model this in the device tree, we
+> add a fixed 12V regulator node as the DC-IN source and connect it to
+> the 3.3V regulator node.
+> 
+> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/lemans-evk.dts | 115 ++++++++++++++++++++++++
+>  1 file changed, 115 insertions(+)
 > 
 
 
@@ -99,10 +108,14 @@ This patch series was applied (using b4) to base:
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20251110030036.825150-1-naoki@radxa.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251110055709.319587-1-wei.deng@oss.qualcomm.com:
 
-arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dtb: mmc: sdmmc-det-gpio: {'rockchip,pins': [[0, 4, 0, 270]], 'phandle': 145} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
+arch/arm64/boot/dts/qcom/lemans-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcielp3-supply', 'vddpcielp9-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
+arch/arm64/boot/dts/qcom/lemans-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p3-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
+arch/arm64/boot/dts/qcom/lemans-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p9-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
 
 
 
