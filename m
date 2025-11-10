@@ -1,129 +1,107 @@
-Return-Path: <devicetree+bounces-236824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6128BC480D0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 17:42:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 350E4C4821A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 17:54:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0D59934986F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:42:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F18081883362
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:52:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59097325717;
-	Mon, 10 Nov 2025 16:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8EA321F39;
+	Mon, 10 Nov 2025 16:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UDtuIYwE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Er2YarxP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83797305066;
-	Mon, 10 Nov 2025 16:38:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A180320A2E;
+	Mon, 10 Nov 2025 16:43:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762792703; cv=none; b=NpCS2oBUGM/XHPdxgYqYUzwdOUZaMF1RopzGgds0itq6ID0vZ6rJSFhYckUf0B9z+ET31UN+4kjw32Q/ct1kYU1Kwp9unFkKIqVw5xh+FMJw1L890L98EQz8R719GmS8IPNF/pf7tVnu1CZ17p5yvBxNSV9FZOt28nb3FKvYfzY=
+	t=1762792987; cv=none; b=gSlwI4SDII2WA59KysYBacxm65Q8Cndvo0sUT7QQXhV7hOPiffFq012y/Vz2pEVP6nSnfUx0UdspXw/elMY576XAhZFUAqfFMn89aJfQMKAkg9VGKgJS65KUSdKPMBHtgCycfd0KCmpnVAigYRzcEicShNNfPJVfm2+pn2RQ5+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762792703; c=relaxed/simple;
-	bh=fLzd+VRzKDe+3L+miM0mvnpuDsl++gErPafaJMrhHLs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RsqE7eryg5zp1T2+8EBICQBbaLPH/1QU5VR25jf5bOr59wUT/zeGl/QOTY8ziO0oXhazr0khKYkYaGEXQS9bRt0ireNNvP/ylBf3KO/WAucDTxScOcrcVdl/R0GdpWOj3lv9Wtj/Dk5Us+KniHHiy39/4zNl9P8O9EHH0djxkVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UDtuIYwE; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762792701; x=1794328701;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fLzd+VRzKDe+3L+miM0mvnpuDsl++gErPafaJMrhHLs=;
-  b=UDtuIYwEcifr2twarGZYdwjXXgdpQSe7fg4PiSJ1AukfXEOyJGHpY98+
-   k3Oljzk6cj94X6ohwKSZr93e/EXPh9C9ndo1cxEMnoIHsXT1hj8qrAv4u
-   Qwex6ecka3TZvMq09qdRpj+6kLFwFkPTbxh/9S3DRalrrnS6SpMnzW6GL
-   GTQp9oKxdlzDiE0mLAzg+63Lp6mG3ufntenQXUqDke/5R3M7/gGNrAqLP
-   smbd5yGJBj8X1Q8gtsEZFMWfwrZwa/5BfsjRxm6WtWjb4t9geR/HIwGtt
-   mv0+MaOiCMZCpqeW6wdjnJnlxlFIcFdQ1Rc5FAOl4Gg9uGnskwSUOWMMM
-   A==;
-X-CSE-ConnectionGUID: BotMA2rGTISWukGZuWf0Pg==
-X-CSE-MsgGUID: IkNlKB+cTVOLschNw71gHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="65002515"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; 
-   d="scan'208";a="65002515"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 08:38:21 -0800
-X-CSE-ConnectionGUID: 72YtJHcySWevO5D6mmsIlg==
-X-CSE-MsgGUID: idgDsCzOSomtSbUEqOFZ+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; 
-   d="scan'208";a="188669479"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.235])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 08:38:18 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vIUuF-00000007W0X-1St9;
-	Mon, 10 Nov 2025 18:38:15 +0200
-Date: Mon, 10 Nov 2025 18:38:15 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH 0/3] ADF41513/ADF41510 PLL frequency synthesizers
-Message-ID: <aRIU94elwpjiUDMc@smile.fi.intel.com>
-References: <20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com>
+	s=arc-20240116; t=1762792987; c=relaxed/simple;
+	bh=lR5k0ffZ8jU4/Xw+VkRiv95+frEAZ5l2jlV2iWMLidk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=P/8Rd0VhEJnrMFOuvlCvw382fdfn26mbP98eFdHm4g5/dorySdoq0IXGYC8txtWLmyn4hfC/+Q6AAavp3p6eF5ePjtzNewIdlQq0vuehdFLOecTvSN8cZx7iKHG88CgbEnOWVvPpfWwSr53ge3R6DGZwOGcU6llMNQlwOKgSH+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Er2YarxP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548A5C4FF58;
+	Mon, 10 Nov 2025 16:43:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762792986;
+	bh=lR5k0ffZ8jU4/Xw+VkRiv95+frEAZ5l2jlV2iWMLidk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Er2YarxPLinUadkUzGyBawTFXFfv7TnAAmzSL2y2Ns40mv3lyWiafB1ZP3NZvr9Zt
+	 o67UqTfCydY9FAvsqH45OB/xESgrk5eEeYgIfI7TFJID/NcAByOwIf1CKbuQGTUzK/
+	 3E7kU/M75ts8ZlDGGrwQ8hIsigWPlDT/DJb2WPcxNWnG/0ePMy+eRLqwERXEsthnd3
+	 kf6KbMvHeI4FoIy+pl7DpXFmLQB/bgjySs+6MXVA3GSE0YGpYpqt50x7Ax1kb/77It
+	 z9iCu9kO330gouiYhnh4qpOUhXzrLOe2zZA0ozz7UgsMJFKO5PBbAeeF3GWNToa+E7
+	 CyPTJTluX2qaQ==
+From: Mark Brown <broonie@kernel.org>
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+ Support Opensource <support.opensource@diasemi.com>, 
+ Peter Rosin <peda@axentia.se>, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ asahi@lists.linux.dev, patches@opensource.cirrus.com, 
+ Frank Li <Frank.Li@nxp.com>
+Cc: imx@lists.linux.dev
+In-Reply-To: <20251031144622.4033833-1-Frank.Li@nxp.com>
+References: <20251031144622.4033833-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: consolidate simple audio
+ codec to trivial-codec.yaml
+Message-Id: <176279298201.56837.2266716224330450791.b4-ty@kernel.org>
+Date: Mon, 10 Nov 2025 16:43:02 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-a6db3
 
-On Mon, Nov 10, 2025 at 03:44:43PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> This patch series adds support for the Analog Devices ADF41513 and ADF41510
-> ultralow noise PLL frequency synthesizers. These devices are designed for
-> implementing local oscillators (LOs) in high-frequency applications.
+On Fri, 31 Oct 2025 10:46:19 -0400, Frank Li wrote:
+> Consolidate simple audio codec (one compatible string, one reg, one
+> optional reset-gpios and '#sound-dai-cells' 0) to a trivial-codec.yaml.
 > 
-> The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41510
-> operates from 1 GHz to 10 GHz. Both devices feature exceptional phase noise
-> performance and flexible frequency synthesis capabilities.
 > 
-> Key features supported by this driver:
-> - Integer-N and fractional-N operation modes
-> - Ultra-low phase noise (-235 dBc/Hz integer-N, -231 dBc/Hz fractional-N)
-> - High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
-> - 25-bit fixed modulus or 49-bit variable modulus fractional modes
-> - Programmable charge pump currents with 16x range
-> - Digital lock detect functionality
-> - Phase resync capability for consistent output phase
-> - Clock framework integration for system clock generation
-> 
-> The series includes:
-> 1. Core driver implementation with full register programming support
-> 2. Device tree bindings documentation
-> 3. IIO subsystem documentation with usage examples
-> 
-> The driver integrates with both the IIO subsystem (for direct hardware control)
-> and the Linux clock framework (for use as a system clock source), providing
-> flexibility for different use cases.
 
-When cover letter is better than the commit message :-)
+Applied to
 
--- 
-With Best Regards,
-Andy Shevchenko
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/1] ASoC: dt-bindings: consolidate simple audio codec to trivial-codec.yaml
+      commit: 4acbfcf11cbe6c46c42091b49875c7002b0bff3d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
