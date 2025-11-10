@@ -1,288 +1,120 @@
-Return-Path: <devicetree+bounces-236819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3FCC47F1D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 17:30:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EABEBC48240
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 17:55:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2967B188C95E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:31:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A806424EFB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:33:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BA026C399;
-	Mon, 10 Nov 2025 16:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SJJxqtq2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B725C28136F;
+	Mon, 10 Nov 2025 16:32:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5132A24A047;
-	Mon, 10 Nov 2025 16:30:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A482749D2
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 16:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762792247; cv=none; b=nFTAwkr0MzOdNMWWv8Aw/559O7nhNvUEBX1dByVr9YS/OGXnpdlVmvzqkdLJf7kJ3RlT7+IZ932gURNrHVLE2VO7/3607p29ycSB97oAFzfuxGOvCEg6iKSH/uSwdDmEviUIXiHJPh5ig6c0t8FT9ol6NRR1FeJS14rsqnUd75U=
+	t=1762792377; cv=none; b=TJoYWfkVWZxfvcFZjNSaBXu7GCRXgn3f3ZatS//CTdfPCEUH+8hVXtx6oQGCSWZO6SFfUN0lzVx/HSdMwrM9mXvMfZuNORf6luxpU7SmeI69A5omRj0LXNvr58n3QmG2yQu+NbacZb6fKedJ4WfyBaIxUhMawK2LLHUrD81cutI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762792247; c=relaxed/simple;
-	bh=iK8XFCALGc6e4f7zZ9iu7zB1u7W0l9CGAnuy8SPnocM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=baexp9MpaJph+MaioHbvdKs+6JtXBk1nWb8eYnIdHyOOjpfl02occliRDcHDGOa8RQ72H7tIy0+4unyAcwmbmlyirpp4aLXVE6aSGt/uOI5TvEwVWXjLIwnB1fUplVvHvgkCBpzD4CLh7oCk69USU5NMqdMOWbvWq251p0W1duA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SJJxqtq2; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762792245; x=1794328245;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iK8XFCALGc6e4f7zZ9iu7zB1u7W0l9CGAnuy8SPnocM=;
-  b=SJJxqtq2aMgXfsOkyhJAGolSlw7Z9jVJAyslZvUnniEJe23HF3ZVnEY8
-   upC6NeFePMfWjnc8uPrWyRx2URGwJgP477hTSz7drY2h0Krwp+/sSzXlw
-   nG6f/DetcYfdRph5CUPETaesXuZxjiFjSzKNCUtq2InqhHv5OxVh+vIUt
-   U/1KDbBxZVxxAwHnVVZVbALR9FFqteuoYsv5cehovdccJMsWv4MzBu48x
-   JBBI1nMMDHd7ioWsm2jOSFVKUcwGX/RGKCbRyUi+O8YRYPxUu8lzaVIj8
-   J+mBtl7ismGgHRFmT5GeUh6NOfmq3l/TJ17RFnU1hnwoZtSnjW0zinq2x
-   Q==;
-X-CSE-ConnectionGUID: HblRJgNTT2O9Az3+se8UUA==
-X-CSE-MsgGUID: CiNx93ZOSQyY4rh4t5K0kQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="76295808"
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; 
-   d="scan'208";a="76295808"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 08:30:44 -0800
-X-CSE-ConnectionGUID: eSpEjy7KRDiex35tTq0k7Q==
-X-CSE-MsgGUID: pFUbbmtyStqKLqRsQ5KHXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,294,1754982000"; 
-   d="scan'208";a="189436364"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.235])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2025 08:30:40 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vIUms-00000007Vsw-0rMZ;
-	Mon, 10 Nov 2025 18:30:38 +0200
-Date: Mon, 10 Nov 2025 18:30:37 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH 1/3] iio: frequency: adf41513: driver implementation
-Message-ID: <aRITLaJir-2IoclU@smile.fi.intel.com>
-References: <20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com>
- <20251110-adf41513-iio-driver-v1-1-2df8be0fdc6e@analog.com>
+	s=arc-20240116; t=1762792377; c=relaxed/simple;
+	bh=vGMbit6ddUlwoxrUxi6IwHq4K44T3JViUun4qtrQOtk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KUxYmJkvIVNGsoocfKGldf3fuUTO6kK6W4uANNsX59wRHGZ6M7Welh4VB4tP3Nw0Ce4jGN4Ub5b65KRJ4w11NVSiTi5V1pZ0bcyBSFpOluKkCfF1nhAjo4vIcQtD19E0GxuFqT4Y+eK/9pXVrVVFzxDn54qC+W8f46g6lhiA6Fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-559966a86caso754690e0c.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 08:32:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762792374; x=1763397174;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dHzMucwowrWDP2Qt+Y+UWKgurmYAh4juIylWzobpf/s=;
+        b=NJTMRIAd+ARNZVzNWoMh2Oj6+pn3WgUOoF0rmkN7bD+9EFdtX1ohT9dy7X0RITnPnO
+         FkT8JlwSaFYeHT5TRJWeV+KQlSJjVn6t5cGKlYT1GZu8P7OmgU6Q6y/dRe2rc8+4DSxH
+         BDWKNNeIovEsYBI7o9XrA5CBAtqKkVgCy635eUaGKPn3G6O+38bYJ75NkmDkcrbnNq0k
+         FWFGqeyvCyKmHOZLuhetYerlbfrQ1T4WEl9twLdvaScFHolQlcqO7H17SGGPO8nb2QHf
+         BhHBQs+qLNj6hC0n1+ZclpKfFkWY01H9C9QiveO/NbMlhZomL7wad2sRA3i5ZyVN6HGx
+         D+iA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtyKrOfitWbDpuCe3ylI4pvNCRruSRSMPrs3CVnsx2m+gZPS4I0Q7PhppEXQ0E35+VyRx5SXHYD0Ej@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS9HFPanihbYIy/XcdE8cg1aDpiSH+vkYqIqnk/4L9g9zzjCo8
+	iKW2Ex3iLoZ45hcGtfnmAudFpNV2nw9o4RhUIeL5oQHhKQ/XN2vX8b/t+897yZ/I
+X-Gm-Gg: ASbGncs7PUeDnFDOv70B+ecO/kTpH/z7lfdcQBmbqSgzR0WayrsSh8OAp/fQf82+23E
+	TE6WGHrHGEowqd4LOpeRyZjkfc3ypCipRkRKKBi+YpZdBVQM+SZbq8eokKXmwfvjuSbcBS1makb
+	VqUEa14iuingNBWaOWeXGpW9DWcpFcnIZ4c4NwqFy1WfO5R67pS3nuDZWfAg8yoAASWgUEHukwD
+	WK8QCSLfq8TXtGTCk5AYit+pPMqb2UiGlpprhZHktrLf2C5a35h0Ywo0NuEtv2wk1RKolj+ro2B
+	EOF8DDZmYOL8K5IMm7k2LWmYjCJ67LAsR2frSISkO58AjjVGCpV9mct3CUEQPSkcT9KIt8YEBix
+	oRNkJAD49CACnucUvv2LM8wgyKBdVHelD8c1VYsASxjZS+51a8gvv1uoDRGcqzkR+C7nbfELhl5
+	5w1nqmn1ynk7gDsZHcImV6jl69CWjIVkkfaLbV+2lF8g9C2SI7
+X-Google-Smtp-Source: AGHT+IGf/ZltbX9qXfTI62zmFROZLGQmV9TApBC8x0l8RY77ghzzgh+9+yb1xTIQPpDfxVdLl9p33A==
+X-Received: by 2002:a05:6122:3120:b0:559:70bc:ca54 with SMTP id 71dfb90a1353d-559b32e27fcmr2816865e0c.14.1762792374414;
+        Mon, 10 Nov 2025 08:32:54 -0800 (PST)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55995829be0sm7427365e0c.19.2025.11.10.08.32.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 08:32:52 -0800 (PST)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5dbcc814b80so1309890137.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 08:32:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV/dhc92/M+OBLQdcjsrzkOQ6Uy/HmUy2t49j7stoFfT4iguILJAcjC12sVsNNHJFmSuKJNogFpVuLY@vger.kernel.org
+X-Received: by 2002:a05:6102:c8e:b0:519:534a:6c5e with SMTP id
+ ada2fe7eead31-5ddd57eb0b0mr1693520137.33.1762792372340; Mon, 10 Nov 2025
+ 08:32:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251110-adf41513-iio-driver-v1-1-2df8be0fdc6e@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20251103141834.71677-1-herve.codina@bootlin.com> <20251103141834.71677-4-herve.codina@bootlin.com>
+In-Reply-To: <20251103141834.71677-4-herve.codina@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 10 Nov 2025 17:32:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWFOQANqnBX7nNST+WRxYz2j3gznohEZXF1SC-GyjDuGw@mail.gmail.com>
+X-Gm-Features: AWmQ_bl9D3O0uVkd9QcrhvhsjRnIq7PDvVWO1-VB9dJdhU03nrwxJGeIcNitAIk
+Message-ID: <CAMuHMdWFOQANqnBX7nNST+WRxYz2j3gznohEZXF1SC-GyjDuGw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] ARM: dts: renesas: r9a06g032: Add the ADC device
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Nov 10, 2025 at 03:44:44PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> 
-> - ADF41513: 1 GHz to 26.5 GHz frequency range
-> - ADF41510: 1 GHz to 10 GHz frequency range
-> - Integer-N and fractional-N operation modes
-> - Ultra-low phase noise (-235 dBc/Hz integer-N, -231 dBc/Hz fractional-N)
-> - High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
-> - 25-bit fixed modulus or 49-bit variable modulus fractional modes
-> - Programmable charge pump currents with 16x range
-> - Digital lock detect functionality
-> - Phase resync capability for consistent output phase
-> - Clock framework integration for system clock generation
+On Mon, 3 Nov 2025 at 15:19, Herve Codina (Schneider Electric)
+<herve.codina@bootlin.com> wrote:
+> The ADC available in the r9a06g032 SoC can use up to two internal ADC
+> cores (ADC1 and ADC2) those internal cores are handled through ADC
+> controller virtual channels.
+>
+> Describe this device.
+>
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-It is like a list from the marketing material. Please
-1) make sure you are writing the commit message;
-2) implement minimum basic functionality and split features to the next
-patches, 1.5kLoCs is hard to review.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.19.
 
-...
+Gr{oetje,eeting}s,
 
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/math64.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-
-At least types.h is missing. Follow IWYU. Have you passed internal review? I
-believe we need to start asking Analog Devices to provide a Rb tag of known
-developers on the submitted code to make sure it was passed the internal
-review.
-
-...
-
-> +/* Specifications */
-> +#define ADF41513_MIN_RF_FREQ			1000000000ULL	/* 1 GHz */
-> +#define ADF41510_MAX_RF_FREQ			10000000000ULL	/* 10 GHz */
-> +#define ADF41513_MAX_RF_FREQ			26500000000ULL	/* 26.5 GHz */
-
-We have HZ_PER_MHZ, also you can move HZ_PER_GHZ to the units.h and use it here.
-
-> +
-> +#define ADF41513_MIN_REF_FREQ			10000000U	/* 10 MHz */
-> +#define ADF41513_MAX_REF_FREQ			800000000U	/* 800 MHz */
-> +#define ADF41513_MAX_REF_FREQ_DOUBLER		225000000U	/* 225 MHz */
-> +
-> +#define ADF41513_MAX_PFD_FREQ_INT_N_HZ		250000000U		/* 250 MHz */
-> +#define ADF41513_MAX_PFD_FREQ_FRAC_N_HZ		125000000U		/* 125 MHz */
-> +#define ADF41513_MAX_PFD_FREQ_INT_N_UHZ		250000000000000ULL	/* 250 MHz */
-> +#define ADF41513_MAX_PFD_FREQ_FRAC_N_UHZ	125000000000000ULL	/* 125 MHz */
-
-Ditto.
-
-...
-
-> +#define ADF41513_MIN_CP_VOLTAGE_MV		810
-> +#define ADF41513_MAX_CP_VOLTAGE_MV		12960
-
-_mV
-
-...
-
-> +#define ADF41513_MAX_LD_BIAS_UA			40
-> +#define ADF41513_LD_BIAS_STEP_UA		10
-
-_uA
-
-
-...
-
-> +#define ADF41513_MAX_MOD2			((1 << 24) - 1)	/* 2^24 - 1 */
-
-Why not BIT()?
-
-...
-
-> +/* Frequency conversion constants */
-> +#define ADF41513_HZ_TO_UHZ			1000000ULL	/* Convert Hz to uHz */
-
-Put it to units.h.
-
-...
-
-> +enum {
-> +	ADF41513_FREQ,
-> +	ADF41513_POWER_DOWN,
-> +	ADF41513_FREQ_RESOLUTION,
-> +	ADF41513_FREQ_REFIN
-
-Doesn't sound like a terminator to me, add a comma.
-
-> +};
-> +
-> +enum adf41513_pll_mode {
-> +	ADF41513_MODE_INTEGER_N,
-> +	ADF41513_MODE_FIXED_MODULUS,
-> +	ADF41513_MODE_VARIABLE_MODULUS,
-> +	ADF41513_MODE_INVALID
-
-Ditto.
-
-> +};
-
-...
-
-> +struct adf41513_data {
-
-Run `pahole` and act accordingly.
-
-> +	u64 power_up_frequency;
-> +
-> +	u8 ref_div_factor;
-> +	bool ref_doubler_en;
-> +	bool ref_div2_en;
-> +
-> +	u32 charge_pump_voltage_mv;
-> +	bool phase_detector_polarity;
-> +
-> +	u8 muxout_select;
-> +	bool muxout_1v8_en;
-> +
-> +	u8 lock_detect_precision;
-> +	u8 lock_detect_count;
-> +	u8 lock_detect_bias;
-> +	bool fast_lock_en;
-> +
-> +	u16 phase_resync_clk_div[2];
-> +	bool phase_resync_en;
-> +	bool load_enable_sync;
-> +
-> +	u64 freq_resolution_uhz;
-> +};
-> +
-> +struct adf41513_pll_settings {
-> +	enum adf41513_pll_mode mode;
-> +
-> +	u64 target_frequency_uhz;
-> +	u64 actual_frequency_uhz;
-> +	u64 pfd_frequency_uhz;
-> +
-> +	/* pll parameters */
-> +	u16 int_value;
-> +	u32 frac1;
-> +	u32 frac2;
-> +	u32 mod2;
-> +
-> +	/* reference path parameters */
-> +	u8 r_counter;
-> +	u8 ref_doubler;
-> +	u8 ref_div2;
-> +	u8 prescaler;
-> +};
-
-...
-
-> +static const u32 adf41513_cp_voltage_mv[] = {
-> +	810, 1620, 2430, 3240, 4050, 4860, 5670, 6480, 7290, 8100,
-> +	8910, 9720, 10530, 11340, 12150, 12960
-
-Make it power-of-two items per line, even with the comments to show
-the indexing, like
-
-	810, 1620, 2430, 3240, 4050, 4860, 5670, 6480,	/* 0 - 7 */
-
-> +};
-
-...
-
-> +static int adf41513_parse_uhz(const char *str, u64 *freq_uhz)
-
-My gosh, please, try to check what kernel already has. We try hard to avoid Yet
-Another Best Parser in the World to happen, really.
-
-...
-
-In any case, I stopped my review here, you have more than enough to fix.
-Please, come next time with a tag from one whose name is in the MAINTAINERS.
-From now on it will be my requirement as a reviewer of IIO subsystem.
+                        Geert
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
