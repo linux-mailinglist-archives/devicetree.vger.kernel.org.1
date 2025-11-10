@@ -1,116 +1,78 @@
-Return-Path: <devicetree+bounces-236620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F258C45DD6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 099EDC45DFC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:18:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F33804EEAF0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:12:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4FD724E9739
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 10:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B736A3054EE;
-	Mon, 10 Nov 2025 10:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 812F22FFDCC;
+	Mon, 10 Nov 2025 10:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="r67goI2W"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="pk5Rwci9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from siberian.tulip.relay.mailchannels.net (siberian.tulip.relay.mailchannels.net [23.83.218.246])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88A4303CBE;
-	Mon, 10 Nov 2025 10:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.246
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762769496; cv=pass; b=liCs83tVdARoYkK4dpgXCiXj0bleS1lNvEAfk8kwf5+Spz5hFT5h8qb7HpAn2/suP4I4gidjIqedkVme4f4qBR9DclVVeHwSayrQoaTbs5IDpKHyJjVa09Y+CQNpQk1KD8nvtmecVfhx2XuTJeCw4bMoDX4KlaJCyEB6JLEHqsQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762769496; c=relaxed/simple;
-	bh=YjrqpSZyUzBHbA3mjccVbn4n+V8LozphFrlQKfwL/oI=;
-	h=From:To:Cc:Subject:Message-ID:In-Reply-To:References:MIME-Version:
-	 Date; b=CccLYmO8tGn6/sqRlhfF/L5gmzSQXaQvrYejXM795QXxnNsw4QOxrhQuNF5/lSALGJRO9bJXanZOJe28jIqSYmD5fY7CNwqZUSnTCQDV8NQ2GQp873nBPZcE1+/VlvfjtjGBxOdS48GPNSMQwvS81Bsga7hO/xpdHAq45i4xjHA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=r67goI2W; arc=pass smtp.client-ip=23.83.218.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 1E1B34C20E8;
-	Mon, 10 Nov 2025 10:11:27 +0000 (UTC)
-Received: from fr-int-smtpout19.hostinger.io (trex-green-3.trex.outbound.svc.cluster.local [100.124.155.193])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 7E4EE4C160B;
-	Mon, 10 Nov 2025 10:11:24 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1762769486; a=rsa-sha256;
-	cv=none;
-	b=4XMHq6lEP1L4W+Uq31UEndziNpXM3z/BHY6sxe/t0xe4kxuINch9d391zYTD8HP/nO3gMy
-	0ynDQjDRvx/GaO5grHOThZUH81YSeBcwXvnfmSffcnl0QbZ+NTkTLQubsX3jokAT0xDBj3
-	xu32YzQULW2u1PGSlcVOi4u5dHi+P8qio91NISey/hqFIKFZrG/iucUu2CdumstdcECWyh
-	Ao2E9uTti47CMF0dQyLdxn+m9/G7SlColfT9RbjYhm4zWKwSbkkbPyRxzyIDNiubqPLM6t
-	FXAYJA421UYi0gdI709AdIbz1meomLsNm7WWGFSVRYdRWRf7REKNXBcBWM/Glg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1762769486;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Xv4qtdoTRgEtEjLgDMNE/Omj14M13wzp5a5JVmEglRk=;
-	b=Tbz67d2YfgIu5ItarAWWwbH2V2cFGKmbmy3A4JNsqRMyaEIJ1wLagjP78H1kN694f1XuBE
-	WWckedt0leQocISWpKx9iLFYR9l+3Tg2GJ4bEK11ne6aP0rvjVtBZGZxpIHB4pefiO/udu
-	vgOfAa/5Y4CK6FE4Et8S6FMY72DtJzCxs0iaEM27CZvw2bNZ21bbcjtqUxX0qqlMZ6x+fF
-	LJ4nWCyI8nHkdJE/YtDYbqLGawY313A8MQjIzuLlIC+T9TXU1Sx9PeklreSprqDPoqhcZc
-	sOUPaCFotWRT1ff6DvFkOkPJBoEBL+TYLBaQhzp+8j/mG9H47VTi1+j/54ZtCA==
-ARC-Authentication-Results: i=1;
-	rspamd-77bb85d8d5-r7qnn;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Sponge-Army: 13dc4e3f5c0efe05_1762769486916_4271747599
-X-MC-Loop-Signature: 1762769486916:2648717695
-X-MC-Ingress-Time: 1762769486915
-Received: from fr-int-smtpout19.hostinger.io (fr-int-smtpout19.hostinger.io
- [148.222.54.35])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.124.155.193 (trex/7.1.3);
-	Mon, 10 Nov 2025 10:11:26 +0000
-Received: from localhost.localdomain (unknown [IPv6:2001:861:4450:d360:7d90:b645:1639:d009])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d4ln62cQ6z1yFF;
-	Mon, 10 Nov 2025 10:11:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1762769482;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Xv4qtdoTRgEtEjLgDMNE/Omj14M13wzp5a5JVmEglRk=;
-	b=r67goI2WtwKWjRdB0dSsLUqcRVEl3aCwPydWJdSN5v/uU+ILENn7yUjqn9g62e/IlqP/7J
-	YvQdtWoV/nS8mcSFerJRDW0v7VXjSJID8/esPKFgTRU4a/emmWi5o+ecHiP8U+ppZ/QJbw
-	bM8TQ2rvfD3G8ixSaHIKB+JPpHar+mNbwYbVCLz4f8EHFtoKE1lgDB4otyvHrXTq01qSkG
-	xUxuGDtCqDfHCJrdtgS1XTAw1VZZRicrSErdsh4uwTvQ3e/PZt8q/Qfw6XRyTpWw8l/Vv1
-	YPtHz3nAjiB1T3eKndj2bBdlJu2UDD3ZqIutwEXDLj2eqMiQUwRLOcYZ7n0PfQ==
-From: michael.opdenacker@rootcommit.com
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] riscv: dts: spacemit: Add OrangePi R2S board device tree
-Message-ID: <20251110101110.948198-3-michael.opdenacker@rootcommit.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251110101110.948198-1-michael.opdenacker@rootcommit.com>
-References: <20251110101110.948198-1-michael.opdenacker@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65ED8305064;
+	Mon, 10 Nov 2025 10:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762769636; cv=none; b=N+2K5JI6ctvIprlF04UyCBzqkvjCgKOMyWRFWactZe+HmFJhET+XQSVFbN45W4+6yObWo8JIxEXVTcxN+YyGXroYcsZ4ZW/YuCiepVO0pNPRtehPohouHsptzTj6NPvcPB/s9EqaQCSVMR+7VJmHNI7fvql//SD/it9bSePHd54=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762769636; c=relaxed/simple;
+	bh=32LJX2VLqXeDA+NwDzryxUK5OVfSIb04Y5pgFBaY5Fo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GA+NNkCeomFPh1+cfXiAYy35vANt6lPhv4u2i/0NyQmXTEs2M+HMQZ1I6QzYJJzjOzXTfDRg1U7S3/ZFKTbPYzd1yOoUvpKeh5clJMWxHK/Tx4hQygkuaWahJAtWfgvI9yCpBSfEtRrroDFr1RyPb40lmReap4pHvOR/gVrTcjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=pk5Rwci9; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: f287af12be1d11f08ac0a938fc7cd336-20251110
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=EoD/aHhTgmIXFon5njzMGTKFSwgtLbPy4kqkBH4hVb4=;
+	b=pk5Rwci9z/+wDZH7jcJxxiN06ix9Q966gnCL4gWDuL56TJBlJUBtjWT/eitMpLgAMHltN98gPyRPv2mJKv3+t9vuyB4wN2Bz5VqIiPrE4PkJCydtziNiGC4j6PgBkqTeRfQQPFIvVCss4Y+bu6AtfwCkYssIhzFX13fX0LvIj7k=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:7be6c4e7-cd3d-45d8-9d9a-a32ec0374101,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:a9d874c,CLOUDID:40eaa1ba-0c02-41a0-92a3-94dc7dc7eeca,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
+	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: f287af12be1d11f08ac0a938fc7cd336-20251110
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+	(envelope-from <huayu.zong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1033637022; Mon, 10 Nov 2025 18:13:48 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Mon, 10 Nov 2025 18:13:46 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.26 via Frontend Transport; Mon, 10 Nov 2025 18:13:45 +0800
+From: Huayu Zong <huayu.zong@mediatek.com>
+To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"Matthias Brugger" <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Huayu Zong
+	<huayu.zong@mediatek.com>
+Subject: [PATCH v3 0/3] Add support for MT8189 SCP and device tree bindings
+Date: Mon, 10 Nov 2025 18:13:28 +0800
+Message-ID: <20251110101342.24261-1-huayu.zong@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -118,150 +80,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Date: Mon, 10 Nov 2025 10:11:22 +0000 (UTC)
-X-CM-Envelope: MS4xfCeK8aUdEUFri1FAtnPP6OhGpNiXrx/Ze5NW5ki3QmowvTEritrHWdGVijZwccCxiyziHh7W9/Xs1NJcUzH10Ts+lvJdqoTGSAy7KvchMNHtPq4xzBSm 4qSakyjdKPR14JMv5adGCNxIIliinDEBJRw0PylnmYWEx/zOOCIUcjLpvI84kwHgG9JxDdg9/G8DHwQmYYfFL/J3AYZAqhiy9FFMrIBCKpICVD5Ut5h3Ya8c xZR6LM6nva+hrFP27xXQ38rJW2RwPtNb8m95AXQhROfQ0IB+SZhoi6aDpX4oJQLj/Kj6HEnLNe3L7cCegKl8XQ7fWc8xQNhVBY9rlMuaIl6QyCjSn4Z+Z459 5Av/HbG5/jpWLuhwYeW23aDEFCnrS7KzNdhJgl5poS03D9xjwF4VLh2hQ1eRVsnlAQLzUPS5MiZfRkHugkDsa+aVUvG7l4W3Beup5mbe4MDR/sW3ksEXzF9c XGGqRLWVvp5V5nHqS9kgXEYeR9oLT4+5ZdXVzzdyhMn+9881HZTCDfu7lquWYlcC5wgbx9CVdiXyp/185FmY+CBl8JN0qyd6wP334EZOFWHYxjnM0kpTPjO/ QNQxjf9vPjJac7LthTYI28mVJSznW9GsHyDonMv7F3PCSCmlUuITBQw/ed94b5qjsBW0koFbq+UbHBIviOE5CcGgj3/xm13TgDkrTYcO9PNKjQ==
-X-CM-Analysis: v=2.4 cv=NuiDcNdJ c=1 sm=1 tr=0 ts=6911ba4a a=G6G7neK3IwemRqrlzYSHdw==:617 a=xqWC_Br6kY4A:10 a=5dAzR5NRAAAA:8 a=lv0vYI88AAAA:8 a=d70CFdQeAAAA:8 a=QbPVFpUTrLpRLxxKV0IA:9 a=9STjDIb-X-UA:10 a=ZKAZAlVgJm32z6MX8p4a:22 a=9qqun4PRrEabIEPCFt1_:22 a=NcxpMcIZDGm-g932nG_k:22
-X-AuthUser: michael.opdenacker@rootcommit.com
+Content-Type: text/plain
 
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+  This patch series adds support for the System Companion Processor (SCP)
+on MediaTek MT8189, including device tree bindings and driver support.
 
-Add initial device tree support for the OrangePi RV2 board [1], which is
-marketed as using the Ky X1 SoC but has been confirmed to be
-identical to the SpacemiT K1 [2].
+Huayu Zong (3):
+  remoteproc: mediatek: Support platform reg offsets in mtk_scp_of_data
+  remoteproc: mediatek: Add MT8189 SCP platform data
+  dt-bindings: remoteproc: mediatek: Add MT8189 SCP binding
 
-The device tree is similar to the OrangePi RV2 device tree
-(k1-orangepi-rv2.dts).
+ .../bindings/remoteproc/mtk,scp.yaml          |  2 ++
+ drivers/remoteproc/mtk_common.h               | 10 ++++++
+ drivers/remoteproc/mtk_scp.c                  | 36 +++++++++++++++++--
+ 3 files changed, 46 insertions(+), 2 deletions(-)
 
-This minimal device tree enables:
+-- 
+2.45.2
 
-- booting into a serial console with UART.
-
-- the two RGMII ethernet ports
-  supporting Gigabit Ethernet operation.
-
-  They have an external Motorcomm YT8531C PHY attached,
-  the PHY uses GPIO for reset pin control. Their description
-  was reused from the DTS from the OrangePi RV2 board.
-
-- PDMA for the SpacemiT K1-based SoC.
-
-- the 8 GB eMMC chip for storage.
-  It works fine with the same description as
-  on the BananaPi F3 board DTS.
-
-Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-R2S.html [1]
-Link: https://www.spacemit.com/en/key-stone-k1 [2]
-
-Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
----
- arch/riscv/boot/dts/spacemit/Makefile         |  1 +
- .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 90 +++++++++++++++++++
- 2 files changed, 91 insertions(+)
- create mode 100644 arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-
-diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-index 942ecb38bea0..96b3a13a3944 100644
---- a/arch/riscv/boot/dts/spacemit/Makefile
-+++ b/arch/riscv/boot/dts/spacemit/Makefile
-@@ -3,3 +3,4 @@ dtb-$(CONFIG_ARCH_SPACEMIT) += k1-bananapi-f3.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
-+dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-r2s.dtb
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-new file mode 100644
-index 000000000000..58098c4a2aab
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Michael Opdenacker <michael.opdenacker@rootcommit.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "k1.dtsi"
-+#include "k1-pinctrl.dtsi"
-+
-+/ {
-+	model = "OrangePi R2S";
-+	compatible = "xunlong,orangepi-r2s", "spacemit,k1";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &eth0;
-+		ethernet1 = &eth1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	phy-handle = <&rgmii1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <250>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(115) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii1: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&pdma {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_2_cfg>;
-+	status = "okay";
-+};
 
