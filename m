@@ -1,44 +1,102 @@
-Return-Path: <devicetree+bounces-236527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB6AC4529B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:05:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A70BAC452AD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:06:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E91C1882F0C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 07:05:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 79EB24E61D3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 07:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7BDE1A2C25;
-	Mon, 10 Nov 2025 07:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707362EA468;
+	Mon, 10 Nov 2025 07:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m2Gsn99O";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FkT8TYAu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.124.171])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345BE13FEE
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 07:05:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.124.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5212E92DA
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 07:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762758327; cv=none; b=d0WImHp4R4ViOkuZ8n4jPRUKhcs+9BBDpnrDEjgSBK+I2C84djDDychUdySe+ElGiO2UzZR/3PaglqXSU6Jiev+busuDp50mHOS/p+l3vJ6YtbZ87ApfoGUYlC/1fB/PzcQNTgbSebK9BxRA1tzolF5yget/a2Ik6tqbtAD7y+4=
+	t=1762758403; cv=none; b=VrAYKtCTZwAlAs7TvxmQFoRcJgsUB75aYGruZZzR4h/XO3VSZXdoZH/KzYBBZn4Lf3zFntzZzTLVqUu3pOvFa05b+uzdeyrvOUPTsEzp4VjAyTNTWj0LaoT+7Vwql9S/ruWMaC9sAVbpcVIrsYPdLn0FR/zI6QQkk98yzQUf1bc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762758327; c=relaxed/simple;
-	bh=/gFxPTS+i7b67P0aDVwCoI1sKcXlqsAvO0WtlcVKZUc=;
+	s=arc-20240116; t=1762758403; c=relaxed/simple;
+	bh=6y34u6RaT+nzg4b3hpOMmZhuhiFWojZouwS1Ayd8lEI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fT/LXDJzKazGTxMit+kO1+Gm+6BlfO+5otWKm/GU565rhAZcDPY6zaXosDqXU/sgg/LvPwv+zmiLofqfLWEpXMwUI2A1YzpyTc6V6wDdTuJu4/CxLmHAoMf41HVM/xfuh2BmUXt+rQjbt8TNMsfmq66nrbqWeplvxEjSnReC9a4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=114.132.124.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip2t1762758307t170ce2a4
-X-QQ-Originating-IP: bdtVB757foOqmjCihvLYgPahZweMunhtqgcvdcDazOw=
-Received: from [IPV6:240f:10b:7440:1:64e0:6ba: ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 10 Nov 2025 15:05:03 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13381450062030274218
-Message-ID: <38861A00B4F4BA62+e3221913-43e5-4335-9aaf-9b9eed5834ac@radxa.com>
-Date: Mon, 10 Nov 2025 16:05:02 +0900
+	 In-Reply-To:Content-Type; b=s8Lwro+TbJJqH97t4gRmWpFdYoDhzF1vHn43RLiPBqLU6vy/s30Vz9cfA2q7LKOuFnC+RaXp7fkjUniD3ei0GkepZsmIAtfjrtnwn8+5aP1HF8r519Uo43M3d7gCNVp6dC94YmuSHO3suQ7GHFYkkMoMPEDVJCD9MiFC924WqOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m2Gsn99O; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FkT8TYAu; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AA6Sdmh2408341
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 07:06:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gf7NF+ZMZboshilYBiH2BDV5pYgK67DxhrLWqZ1GGh0=; b=m2Gsn99Oi5j2J1qZ
+	j+4VeApgEfMTPwjRWrWNxg5OlsDtpbbAItb1F10p6YAV+gcUUR1iqOg+n3zZHx4/
+	3UEiSmoJOnm561wd5Kbd05175Sg5e+F8mcXOCLllbqc4CP1kWi3hBk0TDkFfsn/O
+	EHvWibt2T+kxibcfAEzGycKiYT/7cmvqEVRkRFuuxRwzqbvZag2xrwovE82u3UMh
+	FXAZmlFH7ERpyIjs7Gd+zIKK3+SiO94cFO5IsToB3rhoPVsVouq1y8wGuyWUAid1
+	+1/4ejoDHj7toQ+z3iHgZdywJWbNxwFCg9OpbSpbdQ0thz1JVapwOOaOPqkWKCK6
+	QatxWA==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abatd833y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 07:06:40 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7a97f36d280so400047b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 09 Nov 2025 23:06:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762758400; x=1763363200; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gf7NF+ZMZboshilYBiH2BDV5pYgK67DxhrLWqZ1GGh0=;
+        b=FkT8TYAuml3KdRFkxvEyhCC+BEVBfVVQYCe9hLarR/bJqMjIjjB75MFRAqmldy4Q5/
+         yvYPYUAuqeKiMNJgaRDlv4OWDoh9FS76VAZa3uQC12J7Lgw7HUy0jAwW0VCxvtXpBLVX
+         Qw/WcTL3wMrDqTULH4DSFqTcls/rQNsZBNHQi9T9ATdUJ8kbY3G6CAHUXxf3x0yLQBxY
+         pJnGZbj2m2ntTjKlTGK4mLlRTQsM4i/p4YxLWepgfY3kd+KPXhonZCrDVj9y/rGuciRk
+         rWw+NSk5N19TTnH7p9sRj8ci5NrtSVCq3Nq2ibFgebR3G5sQ8LWIwm7y/p/0pRo+0OAH
+         xYPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762758400; x=1763363200;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gf7NF+ZMZboshilYBiH2BDV5pYgK67DxhrLWqZ1GGh0=;
+        b=a95v5PaxfyPaQCeXzs9ivSUtLOYzFjnvkSqQzFxKm0RDUfTiPe1NWK8Te0QRHpKBKP
+         ADneqoB/zhw5nP6hQnMSIlN6IHZTJ38a8rRxLZCLh8e6pjQ12UsmAnIOA6ySZmgSdr1A
+         Oftl93QeOHHLEvBDJvEV5spnd6L3MFHjklqtUfSEhCRtVwIL1kfSxjzUrMgan4JxceFp
+         MG53TLZAx1EAX5WIwxFU2KcUraVXOrqtDFeSZbNYMx5oaimtQyM7xXmsfTVlKsD7VB56
+         RyZMLOUPOhN87WUQjh7TFR2PYpqK8QKoHgy0+rm4pVsk93+74FXMiVDeM47nZvmSxrQM
+         Y0NA==
+X-Forwarded-Encrypted: i=1; AJvYcCWqrSb6G9S2bmkDYyFZDBboVaeDFaDiLi+IohW9W1HzTRLiUe/Qy7f10hDX0IlkD0lio1VXu2ceE1Pk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxE/6sQR0GbRm6eIxSjYmNlmldxtB/9fWb/GEDBNwoIZ3juV+Ym
+	hDWhw6TNF9Z5PpGc9ejXMxxQkWOlNf1rcAUjTg2r2vtcDIob8M121ZA8F8Yq7HdQk9WfW1++1w2
+	gr/nuvQhvcy6aub8sJBVtFKeTrzi8Fm/uQpIpepyNVj3evzlVqARSIu+PJi3sjqw=
+X-Gm-Gg: ASbGncsc8ISxySSmrDkaBV1VS3S/WuRgv7Q7hWzV1LZXMh9aEBvtinj2BWC9uX2xNQU
+	eCogMR4sHA0/EA6UI4dUfukeYKVfliAtJVx3ESDOYG/raugvtKMmx9S+Yn1MN8tWlLa7u32Ux7V
+	vPHQCPvVgVYY7CZ104yiBt+KCEkFcTBdJBSdzkUkWZIxk6maLETE5vAomwKV3ZuefxwdXaj5WVw
+	VQ9w0SU+bepmwsZnU5mKjmfkwyYTX5FmupbmZZiL8dExO4pPS2FctP5zITxcOGPUe/EJ5VvqLjV
+	Od6+wlCGnfLTpIOJkL9Gibh5FLzz117CtvcK9afD9nXG39HmDtSmGqhR11Bc4d/YXxm0qpERW7l
+	Qb8YS+meOLKgJ9zAQ4pOIThYZ+7xv
+X-Received: by 2002:a05:6a00:805:b0:781:aad7:214b with SMTP id d2e1a72fcca58-7b225ae0732mr5584901b3a.2.1762758399950;
+        Sun, 09 Nov 2025 23:06:39 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHRFSS6GkwLPQNVWNZHwu5xq0XbLuutQ4cYKERNy84I+GMieGr3c1RjoF8alYPGi+2b9pwv8Q==
+X-Received: by 2002:a05:6a00:805:b0:781:aad7:214b with SMTP id d2e1a72fcca58-7b225ae0732mr5584875b3a.2.1762758399408;
+        Sun, 09 Nov 2025 23:06:39 -0800 (PST)
+Received: from [10.217.216.168] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0cc175d61sm10420472b3a.39.2025.11.09.23.06.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Nov 2025 23:06:38 -0800 (PST)
+Message-ID: <0fccd9f6-f833-4192-b7ac-cadc4a048cad@oss.qualcomm.com>
+Date: Mon, 10 Nov 2025 12:36:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,109 +104,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Make eeprom read-only for Radxa
- ROCK 5A
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jbx6244@gmail.com, pbrobinson@gmail.com,
- kylepzak@projectinitiative.io, damon.ding@rock-chips.com,
- sebastian.reichel@collabora.com, amadeus@jmu.edu.cn,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251110035455.839863-1-naoki@radxa.com>
- <20251110035455.839863-2-naoki@radxa.com>
- <36843804-433a-5c0c-4961-451b44d70bc4@manjaro.org>
+Subject: Re: [PATCH V3 2/4] arm64: dts: qcom: sm8750: Add SDC2 nodes for
+ sm8750 soc
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <36843804-433a-5c0c-4961-451b44d70bc4@manjaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com,
+        quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com,
+        kernel@oss.qualcomm.com
+References: <20251026111746.3195861-1-sarthak.garg@oss.qualcomm.com>
+ <20251026111746.3195861-3-sarthak.garg@oss.qualcomm.com>
+ <3170ad12-0d79-4cb1-aedc-d2c9f1da366f@kernel.org>
+From: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
+In-Reply-To: <3170ad12-0d79-4cb1-aedc-d2c9f1da366f@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: MbSuBwOrED9vhpvd87YXoEFp06L2JA/GOAa/n44Er4BcOaFiJaCFolVT
-	6wlg1cowQU4OvNp3tEWeCA9UfE1YZjBjGHXWSxalYawJx9dW3JpDqzXGO50oR2eUIA5ebHt
-	eVGEIxo2JvGdiWv89TvvSU7rOv9USh/ynH9ctFTf+VxwTBBUUSHQnRyfTX68/Cak/0oU5/R
-	ulsLsPEMNtmjZhcQ2Ffr3Ig4un9zueF8kdxrPfzv74dxBECyDMVWRvmntRIZ7dXutrmWJX/
-	ibDqJRopd3m/NoAnpfQLJldTuwmfMuUihkJMLHAe9I9R7neo0GcijfHInanytzhTSbLNmAC
-	+tKpnv+7wSU056TRreGBzoz9YMfM/RQHhQrBXGzmU1iybF4H3cNGvEc1ODh8whT1Rz/U8WG
-	F09fIyLd5fQ8HrwsMxPMaQdK0XTF//G97DePjhsM8otIUyIMG9GaXrHfwIR/QVItqDy7hcB
-	/YeO89oN0RFhMPlWDZqIonK31LYhPJyzlKovDhixiUqNqKJIMb+Cpwda4E0s0B0N2HsX8lZ
-	8kOhHs5ZUQR3VGoPaaADQ98YyH+yBvh1i4RR5K3wb9Y3ZFCbZOCzFEdfGtoRh34LQfRIGqF
-	l2l1g3eXB7vdUqzUTgVtwZkng++Rdr10WMOre1jmuMlvho0BhPNwaKNMfm1es/jnDmziKYu
-	K5XOdQYPrlWedCHGwaYSOAweIStGtXAIUX8MjVEqsAOLGOQL9PAIk6c3idHbm+8hcCc6C85
-	AcNiu4bdoSec7WZmXWPF49luL/SbTNXRUg6nbPJ7DWk3QXumA1WQJOF5ihwYqDICCmiVkAo
-	RMD+DSItR1nipgf7HhSldCtwWXbDYnWpBolOZm5MS7IeS4MKmjCw07+kEXFap5UfdsroNdW
-	3EZIMmEs7hThb7shNX+kHo+tPPucHtw1kkPvSXtw4yNo2+VHcplAOOEAA5htXWPsqw+6hEI
-	Q+KjuWOKZvQrfSWgBSnsHL2RYk4e7WYtZDDP/QyoSjmEa4Q==
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
+X-Proofpoint-GUID: g4DcIt8tnx_K0FWJ37PQsTTJfWdYFAps
+X-Authority-Analysis: v=2.4 cv=eZowvrEH c=1 sm=1 tr=0 ts=69118f00 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=JSWoISg-RgQ6qR-L2EQA:9
+ a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-ORIG-GUID: g4DcIt8tnx_K0FWJ37PQsTTJfWdYFAps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEwMDA2MCBTYWx0ZWRfXwW3NmVkfgmn7
+ gwdBozjNbxoaW778cVumD43ZPu2gsv20H+2JtT46jUVi2KCuk5/N2S8vT1YY3t9WiVphbZK9hl3
+ dXaJWC67DJ4s4A95ki+RkJGReSeSIGSTYUQGXYLfncDHBEeIQOAJl3aUxmnNBt7yr2GEM10p2Bb
+ 51EPkdieZbQdHbCn6/Eb39HOhzTOH6vjMlKIQl3rR/o5hh1uZH3NaIqY/TpmoOA9ns3YAvLUNyG
+ NxaDD6EZtAbSyJkSri3qhoyQ5WJ5RoOtu9Wr3tMT0sLAoPUQy1demQBsjwfP/1OPe1g5xHqI3BN
+ lzgDENC08ZaJmO27Z9tqZH+ccOnc7S+FamBZ9jEO2oEzjoj+iQLXJ4ftz2ToPI92Yz8+6bYsD6E
+ HjPZ0IQ4/rbI+NES/VJJJ4yUbV4KsA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-10_03,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511100060
 
-Hi Dragan,
 
-Thank you very much for your review!
-
-On 11/10/25 14:17, Dragan Simic wrote:
-> Hello Naoki,
-> 
-> On Monday, November 10, 2025 04:54 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
->> Make EEPROM read-only as it may contain factory-programmed
->> board-specific data.
+On 10/27/2025 8:02 PM, Krzysztof Kozlowski wrote:
+> On 26/10/2025 12:17, Sarthak Garg wrote:
+>> Add SD Card host controller for sm8750 soc.
 >>
->> Fixes: 89c880808cff8 ("arm64: dts: rockchip: add I2C EEPROM to rock-5a")
->> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>> Signed-off-by: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
 >> ---
->>   arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 1 +
->>   1 file changed, 1 insertion(+)
+>>   arch/arm64/boot/dts/qcom/sm8750.dtsi | 54 ++++++++++++++++++++++++++++
+>>   1 file changed, 54 insertions(+)
 >>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> index 19a08f7794e67..ae7b03488c9e7 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> @@ -254,6 +254,7 @@ eeprom: eeprom@50 {
->>   		compatible = "belling,bl24c16a", "atmel,24c16";
->>   		reg = <0x50>;
->>   		pagesize = <16>;
->> +		read-only;
->>   	};
->>   };
-> 
-> I've checked the board schematic and making this BL24C16 chip
-> read-only makes sense to me.  However, I think that the patch
-> description should be expanded to contain a better description
-> of what might be found in the chip, such as a factory-programmed
-> MAC address.  Also, providing a link to the board schematic, as
-> a reference, would be a good idea.
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> index a82d9867c7cb..50e1fa67c093 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> @@ -2060,6 +2060,60 @@ ice: crypto@1d88000 {
+>>   			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+>>   		};
+>>   
+>> +		sdhc_2: mmc@8804000 {
+> Completely messed ordering.
 
-----
-arm64: dts: rockchip: Make eeprom read-only for Radxa ROCK 3C/5A/5C
 
-Make the EEPROM[1][2][3] read-only. Board-specific data written to the 
-EEPROM at the factory includes, but is not limited to, the SKU (~ 
-product name), BOM version (~ board version), and MAC address.
+Do you mean the property order within the sdhc_2 device tree node ?
 
-[1] 
-https://dl.radxa.com/rock3/docs/hw/3c/v1400/radxa_rock_3c_v1400_schematic.pdf 
-p.13
-[2] https://dl.radxa.com/rock5/5a/docs/hw/radxa_rock5a_V1.1_sch.pdf p.19
-[3] 
-https://dl.radxa.com/rock5/5c/docs/hw/v1100/radxa_rock_5c_schematic_v1100.pdf 
-p.18
-----
+What ordering do we need to follow here ?
 
-> With these remarks addressed in a v2, please feel free to include
-> 
-> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-> 
-> Additionally, it would make sense to squash this patch and your
-> other patch that addresses the ROCK 5C together.  They're very
-> similar and having them together in a single commit might actually
-> help the people browsing the repository understand it better.
 
-I'll drop eeprom patch from ROCK 5C v7 patch series, and squash eeprom 
-patches for ROCK 3C/5A/5C.
+>
+>> +			compatible = "qcom,sm8750-sdhci", "qcom,sdhci-msm-v5";
+>> +			reg = <0 0x08804000 0 0x1000>;
+> Use hex everywhere in reg.
+>
+> Best regards,
+> Krzysztof
 
-Best regards,
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+Sure will update in V2.
+
+
 
