@@ -1,112 +1,114 @@
-Return-Path: <devicetree+bounces-236798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6553C4797D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:40:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0F3C47989
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:41:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D9B0C4EEAEE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:35:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 962C8188D5C3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:39:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4647326461F;
-	Mon, 10 Nov 2025 15:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D93318125;
+	Mon, 10 Nov 2025 15:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="B0vBeX50"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dpQ+tuTV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5756D257841;
-	Mon, 10 Nov 2025 15:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3ECF31691B;
+	Mon, 10 Nov 2025 15:37:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762788932; cv=none; b=pRgHTotkPcF+V9Taj4gLtQLacrYp2aRclvxYd5dZXGFLPs2Yuo3//fJTOsXmZd028PopijEHGdxVwzG6UF9SNOkrjtoWCffnjIXLyn2dKqIOLQLJw3eRjXWDENReNanBMpAAehHQDcBoYIq9xlgro2hg17+bnXopreIVX/1uo7g=
+	t=1762789067; cv=none; b=ju0wBqIhQU0B3F+3DAPJlGb+/pkrThHFM6e+eWR9rDc8r9El9gKh9EN+dnr8AA1IGnjyEBk3TiJKpgnkvZqgBOaJ6Qaph7JEePJITh3ZhUrwsvyqzzyXxuRw00pf3dFuE/hnABNtUTUhDvw/6idq7yh4yH3MuJRqTcsRwpzbj/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762788932; c=relaxed/simple;
-	bh=G+azJXcP4oT7JjHwD0cX74wLwbf39y5vwRD/6ZACn5c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wjbseh4Yzz8JzF1mrYUwT7w1SUkR0PY59B3LGtJLO1fRxZmta8xLyQ5r0OoeZ9puDZ0Fo0neBggopc64B1Bxdb1z82H+eTqeseaVmVUj+ZYLUXU735cHq/iqtzCrF2HljpPkrtNEYprhA5hVcylT49o8TD3H1NWhkPBYNINNXEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=B0vBeX50; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=01rfLZwpM4pmMKU3kqbEEzw3i2BzLBr0hbB6YkfV3no=; b=B0vBeX50L5XIgkqjrniD4kQSsI
-	sbc+Q3WoA0Z19I03hXsGH6xMRB6yrOs2MvmnCW9nxDEe+IvAzmQts2rvB0n+uCUWjToSn28T/4WH4
-	O/jWqx8JNxLcvgL+fV9SkJhzTrr6bXtzXXOwU1KVkOKIvxJjUg8lIHcD16tWYd9XzuQU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vITvF-00DX7o-GK; Mon, 10 Nov 2025 16:35:13 +0100
-Date: Mon, 10 Nov 2025 16:35:13 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Po-Yu Chuang <ratbert@faraday-tech.com>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, taoren@meta.com
-Subject: Re: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support
- for AST2600
-Message-ID: <68f10ee1-d4c8-4498-88b0-90c26d606466@lunn.ch>
-References: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
- <20251110-rgmii_delay_2600-v4-4-5cad32c766f7@aspeedtech.com>
+	s=arc-20240116; t=1762789067; c=relaxed/simple;
+	bh=SA6xGNbHN6b9mWUXMWX+xDVjRNsrYUlySOFnrE7Xc90=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=L3D6jWKz8j/u3siqFw25UXrESBIgSZUh5xvxbwFtzpR2eQde46wh/RInwV8Oioa4bBRZS/YDPV5jLvV5lHW1FvPsHlViP33t4BhsT5flXvbwHQh8o5lUAuZxpyaVVl98VOki/1DZ9YbT0NCqcoxQn0L66W7lvTTVWFIh6FUh4NQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dpQ+tuTV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2B1B4C19422;
+	Mon, 10 Nov 2025 15:37:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762789067;
+	bh=SA6xGNbHN6b9mWUXMWX+xDVjRNsrYUlySOFnrE7Xc90=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=dpQ+tuTVvkURZKNKhuG6lslngT94GQTL9iy17dngagaropX1IiecxKsAtN20HA5MW
+	 qig5fX0A7VDqKZW7KcQ++jlw9glpRzx+wCltKdMSM9n3oBTMMUZJKMfLQ+PXjmMjQM
+	 0FnVSJ5JQHeLEIJ7GjRBjfD1TIZ6ITI6KFCq7rsUYLNE75T0KTNAkelv8Jk18uzFlW
+	 xxTYBMtzC69EX8+36sLsUl7MKHJUl548QvOpUejnZbZXwHS6JZ9iDb1EDKrHIowbvu
+	 eF0K/NE+Y5H8lmWxhC+WJjPsZYmhxowwnOVSMwbVLAafXauY4JqLGHDOeNPdXiIEe9
+	 B1qhQdW5vvG+g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23723CCFA1A;
+	Mon, 10 Nov 2025 15:37:47 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH 0/3] ath10k calibration variants for sdm845 phones
+Date: Mon, 10 Nov 2025 16:37:45 +0100
+Message-Id: <20251110-sdm845-calibration-variants-v1-0-2c536ada77c2@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251110-rgmii_delay_2600-v4-4-5cad32c766f7@aspeedtech.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMkGEmkC/x3MQQqDQAxA0atI1g0YqzL0KtJFOpNpAzqVREQQ7
+ 96hyweff4KLqTg8mhNMdnX9lgq6NRA/XN6Cmqqha7uBiFr0tIR+wMizvoy3muPOplw2x3HkdKe
+ cQ4gM9bCaZD3+9+l5XT80qa2rbQAAAA==
+X-Change-ID: 20251110-sdm845-calibration-variants-66ad31ff88ca
+To: Dylan Van Assche <me@dylanvanassche.be>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=808; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=SA6xGNbHN6b9mWUXMWX+xDVjRNsrYUlySOFnrE7Xc90=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpEgbJg4ACLHbh+CbhUqCU1Iqlj6FH3DtSXLTrq
+ fQ3jFDg3mOJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaRIGyQAKCRBgAj/E00kg
+ clmpEACAIlVRtrvTyYZp+9rq6kTrYLEedExOTvk2bp+o5P41RWmS/9UPBatSv/Llu4740RzC4LM
+ Uod9xCjWeiiSHpGdmRSD4IBWI9eXofqAHBK+saxCYTB9j8DsgASFQkvcSl3bgkl4VTE8py3jN7n
+ mmX18oBN3AnEtRH0sa9btpNZExZHZtJNKQPdRqf/pCdxBaFYzdjS2OaOu6rnYdotONo/m85eQP2
+ fhcjq4/nhgX7ZM3OSaOLOEQ3SgJhjXnRSueHftxQNria+eI0XMbtDIGW+YYpvouB2x/R5t4NuZm
+ jCRNkxih6eaJitx3JHvLpO65wuyDaQafZ92+hJUGoM00k+50U8DBje/absmmoH/Zti0IhtTMLBf
+ q9DORt/Q0SAovdjlITnU8/Y/W61887SEwQZMEXiKFiFycygkjdJPUNqHZWassdhCq6Ids7OytwJ
+ dLY8HC0Nl2u+ADIsOUo8FQLC1EvmZtcBHXZkdSTsdD53iFt1Ke44lT7tqfAQ2wLUpnfbxwdqda2
+ nwtKrzeMiS1dQH7Oee7UZ/oo3ogyGL9AV+hPJxgMfbrozSunPI6mhqEGcAToDEEBXR2KrwIVjNA
+ RIo7NzFQnni8m2noT0iQNywfD0JYxB5vTHZSaw/iX41A/KTjS5Ix2WAqETaDeW4NCsa/Dya1mE3
+ a6TxPt8EfDfjShg==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-> +	/* Add a warning to notify the existed dts based on AST2600. It is
-> +	 * recommended to update the dts to add the rx/tx-internal-delay-ps to
-> +	 * specify the RGMII delay and we recommend using the "rgmii-id" for
-> +	 * phy-mode property to tell the PHY enables TX/RX internal delay and
-> +	 * add the corresponding rx/tx-internal-delay-ps properties.
-> +	 */
+Let's leaverage linux-firmware and use calibration from the board-2.bin.
 
-I would not say that exactly. Normally you don't need
-rx/tx-internal-delay-ps. It is only requires for badly designed boards
-where the designer did not correctly balance the line lengths.  So i
-would word this such that it is recommended to use "rgmii-id", and if
-necessary, add small "rx/tx-internal-delay-ps" values.
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Dylan Van Assche (3):
+      arm64: dts: qcom: sdm845-oneplus: add ath10k calibration variant
+      arm64: dts: qcom: sdm845-xiaomi-beryllium: Add ath10k calibration variant
+      arm64: dts: qcom: sdm845-shift-axolotl: Add ath10k calibration variant
 
-> +	scu = syscon_regmap_lookup_by_phandle(np, "aspeed,scu");
-> +	if (IS_ERR(scu)) {
-> +		dev_err(dev, "failed to get aspeed,scu");
-> +		return PTR_ERR(scu);
-> +	}
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi          | 1 +
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts            | 1 +
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 3 +++
+ 3 files changed, 5 insertions(+)
+---
+base-commit: ab40c92c74c6b0c611c89516794502b3a3173966
+change-id: 20251110-sdm845-calibration-variants-66ad31ff88ca
 
-This is an optional property. If it does not exist, you have an old DT
-blob. It is not an error. So you need to do different things depending
-on what the error code is. If it does not exist, just return 0 and
-leave the hardware alone. If it is some other error report it, and
-abort the probe.
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
 
-> +
-> +	ret = of_property_read_u32(np, "aspeed,rgmii-delay-ps",
-> +				   &rgmii_delay_unit);
-> +	if (ret) {
-> +		dev_err(dev, "failed to get aspeed,rgmii-delay-ps value\n");
-> +		return -EINVAL;
-> +	}
 
-Again, optional.
-
-	Andrew
 
