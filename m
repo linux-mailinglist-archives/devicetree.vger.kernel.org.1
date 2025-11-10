@@ -1,221 +1,95 @@
-Return-Path: <devicetree+bounces-236541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96541C45413
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:51:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA13C45426
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 08:53:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4127A3B2B5C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 07:51:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24C62188A504
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 07:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFCC25393B;
-	Mon, 10 Nov 2025 07:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6992EC0AD;
+	Mon, 10 Nov 2025 07:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="saykSZDd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hexuYCT4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23574218AB0;
-	Mon, 10 Nov 2025 07:51:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 826AB25334B;
+	Mon, 10 Nov 2025 07:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762761094; cv=none; b=DDFDbQw98RUxW7UXaJRwgefvInqqqQxzUQGFUWv9BHNc01QCV/Phwb3XDvwBGEWhKujIUXcQYYdcvCdvoDmF6DNS++0F0U0u+76lqKloXIZ1tb8vCuA6cDIP8IXcX5QeRDPlQ6f+ajZrXfNgASHCR+74NW+RMZgG5d+LMWGGucY=
+	t=1762761201; cv=none; b=tm5jzH+92LOEsmEH1RRC/Jy2weMAuAFEZNmKfvi1JgR02sFV3op0ezIXC9hc0rTM3u9vKP5ibhAnwv0hcaS22jlDhuImgfCDjz+kEbblVDYEON1yP5mjuRwnxBYQ0c42IZBzJ/pE+G15sZBxQ1groP+JlX7T1RlSFvJOETySMh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762761094; c=relaxed/simple;
-	bh=bApvZHKXsJmb8jKSRYJlnAZDkVWRrU6RYJOz67z8jh4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V6z7jyNHu6QWHbTpPNY74lFW98NR3eKnjs3iT514J2u2M90Di/5UN7vVe9OOfdM784F7UI3nQiy6KlKRaamcafj0E/vdbazcrpMcDDTpBhU77OJRxoPGN6p2UhXR0Wwwj9pqpyr16oZNn4LxEzrtga3tEN6VDdfTwBqqUovceCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=saykSZDd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18F6AC19422;
-	Mon, 10 Nov 2025 07:51:32 +0000 (UTC)
+	s=arc-20240116; t=1762761201; c=relaxed/simple;
+	bh=aD0bXMxM8CDFNwDaCde/4X7QKwASqM9PdFPOKWf2baY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=FODcfAa2Zq+BrwVcoTPmENiQYeAQ/iok27GLIf0KUTmPvqLYtNhqIDvLyqsqDTmGwPl2/WzuCITjaAW6r1JRvWJG8JQFPM269klo/yqzPs8kmfm8moRpVSjqLo9cr4GIYUNSiNs/JC73im68gsylqGomDMIy+E5Lu1XvnG6uc/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hexuYCT4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D485BC19421;
+	Mon, 10 Nov 2025 07:53:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762761093;
-	bh=bApvZHKXsJmb8jKSRYJlnAZDkVWRrU6RYJOz67z8jh4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=saykSZDddicJyqUayksM7BoUv/MK95zjeR+7tr7lepP5DNlF+8M7k76jyVEGNuuIF
-	 PH+4nK87M6C9hxH0MZsZml5b6PAf0bkfVXchXFWsYbkKU3o4shP/2dvCQM815j+KQ7
-	 4cHzbWYiT2iNjNkvi1tfSS9VXtFk2Noc9euXitXDf/SmcidC6JyOSwHwXjI4qxxQyz
-	 gvYJvNYgPbIigPqH7hsHDNpBDe9B/ypU5QZmBhrRnU3Lk90DGcXXlNSHmEaCv7WrDb
-	 TP3KusXOBuLV40OUaofnGIys5cnu0v9QugmEnJoXNw5PLJyESMoNUV6Qs+sV1gkVS/
-	 AaD0zOawyRd1A==
-Date: Mon, 10 Nov 2025 08:51:31 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Dan Carpenter <dan.carpenter@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Jie Zhang <jie.zhang@oss.qualcomm.com>
-Subject: Re: [PATCH v2 3/6] dt-bindings: display/msm/rgmu: Document A612 RGMU
-Message-ID: <20251110-persimmon-wombat-of-holiness-6b3f9c@kuoka>
-References: <20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com>
- <20251107-qcs615-spin-2-v2-3-a2d7c4fbf6e6@oss.qualcomm.com>
+	s=k20201202; t=1762761201;
+	bh=aD0bXMxM8CDFNwDaCde/4X7QKwASqM9PdFPOKWf2baY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=hexuYCT4AMkN1E6qvheK7tISxjHWRQ4H/TNG/8ZbbB+/RdyRFtKW9X5ECOzbZ9/6w
+	 dwPqPtFd4IcRWwiYZXfvrUFPg/8bmKLhS7A6fnyWMmulvoBl9KHF/k20dbmse+gp3H
+	 s8ojxcNbRZ8U1VTKpqZUM32zWNDYRVN5FlyxnM44duK8lcJCWmQjvWBdmKzU5annFb
+	 66geaZnQb2qxwDXwpq8OSQ7UB0pF2Ow6YUrXy/Gue+aZdyMhcoj5xidZYAhSVDlrCV
+	 S2c9KP2XfH2UMZYD5YjDXVU5I/8feh9AT+Tg4Txa86WhCToi3/FcrBVHOHYColYLyu
+	 TcQYEYc68EvFQ==
+From: Srinivas Kandagatla <srini@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, alice.guo@oss.nxp.com
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alice Guo <alice.guo@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>
+In-Reply-To: <20251020-imx94-v1-0-0b4b58a57bf9@nxp.com>
+References: <20251020-imx94-v1-0-0b4b58a57bf9@nxp.com>
+Subject: Re: (subset) [PATCH v2 0/3] Add i.MX94 OCOTP support
+Message-Id: <176276119135.18911.11093560408618836361.b4-ty@kernel.org>
+Date: Mon, 10 Nov 2025 07:53:11 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251107-qcs615-spin-2-v2-3-a2d7c4fbf6e6@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-On Fri, Nov 07, 2025 at 02:20:08AM +0530, Akhil P Oommen wrote:
-> From: Jie Zhang <jie.zhang@oss.qualcomm.com>
+
+On Mon, 20 Oct 2025 18:50:41 +0800, alice.guo@oss.nxp.com wrote:
+> This patch series adds support for the OCOTP controller on the i.MX94
+> SoC. The OCOTP controller provides access to eFuse regions.
 > 
-> RGMU a.k.a Reduced Graphics Management Unit is a small state machine
-> with the sole purpose of providing IFPC (Inter Frame Power Collapse)
-> support. Compared to GMU, it doesn't manage GPU clock, voltage
-> scaling, bw voting or any other functionalities. All it does is detect
-> an idle GPU and toggle the GDSC switch. As it doesn't access DDR space,
-> it doesn't require iommu.
+> Tested on an i.MX943 EVK board with successful NVMEM read access via
+> sysfs.
 > 
-> So far, only Adreno 612 GPU has an RGMU core. Document RGMU in the GMU's
-> schema.
+> Changes for v2:
+>  - improved commit messages for each patch
+>  - added Acked-by and Reviewed-by tags from reviewers
+>  - updated the efuse@47510000 node
 > 
-> Signed-off-by: Jie Zhang <jie.zhang@oss.qualcomm.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/display/msm/rgmu.yaml      | 131 +++++++++++++++++++++
->  MAINTAINERS                                        |   1 +
->  2 files changed, 132 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/rgmu.yaml b/Documentation/devicetree/bindings/display/msm/rgmu.yaml
-> new file mode 100644
-> index 000000000000..7621556477d0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/rgmu.yaml
+> [...]
 
-Filename matching compatible, so qcom,adreno-rgmu.yaml
+Applied, thanks!
 
-
-> @@ -0,0 +1,131 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/display/msm/rgmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RGMU attached to certain Adreno GPUs
-> +
-> +maintainers:
-> +  - Rob Clark <robin.clark@oss.qualcomm.com>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  RGMU (Reduced Graphics Management Unit) IP is present in some GPUs that
-> +  belong to Adreno A6xx family. It is a small state machine that helps to
-> +  toggle the GX GDSC (connected to CX rail) to implement IFPC feature and save
-> +  power.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,adreno-rgmu-612.0
-> +      - const: qcom,adreno-rgmu
-> +
-> +  reg:
-> +    items:
-> +      - description: Core RGMU registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: gmu
-
-Drop reg-names, useless for one entry with same name as the block name.
-
-> +
-> +  clocks:
-> +    items:
-> +      - description: GMU clock
-> +      - description: GPU CX clock
-> +      - description: GPU AXI clock
-> +      - description: GPU MEMNOC clock
-> +      - description: GPU SMMU vote clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: gmu
-> +      - const: cxo
-> +      - const: axi
-> +      - const: memnoc
-> +      - const: smmu_vote
-> +
-> +  power-domains:
-> +    items:
-> +      - description: CX GDSC power domain
-> +      - description: GX GDSC power domain
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: cx
-> +      - const: gx
-> +
-> +  interrupts:
-> +    items:
-> +      - description: GMU OOB interrupt
-> +      - description: GMU interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: oob
-> +      - const: gmu
-> +
-> +  operating-points-v2: true
-> +  opp-table:
-> +    type: object
-> +
-> +required:
-
-compatible
-
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - power-domain-names
-> +  - interrupts
-> +  - interrupt-names
-
-Keep the same order as in properties.
-
-> +  - operating-points-v2
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,qcs615-gpucc.h>
-> +    #include <dt-bindings/clock/qcom,qcs615-gcc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/qcom,rpmhpd.h>
-> +
-> +    rgmu: rgmu@506a000 {
-
-Drop label.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
+[1/3] dt-bindings: nvmem: imx-ocotp: Add support for i.MX94
+      commit: 294e0add7bb8eca991f7e8d064c71acfffd10462
+[2/3] nvmem: imx-ocotp-ele: Add i.MX94 OCOTP support
+      commit: 9e8d7c3115f4eceaae2d5282518be78bcb7ca188
 
 Best regards,
-Krzysztof
+-- 
+Srinivas Kandagatla <srini@kernel.org>
 
 
