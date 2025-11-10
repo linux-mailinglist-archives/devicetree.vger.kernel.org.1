@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-236774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02373C473B8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:35:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB73C473CD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:35:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 791253A3089
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:35:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7C9B04ED1D5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 14:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D870314B87;
-	Mon, 10 Nov 2025 14:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 678B2315785;
+	Mon, 10 Nov 2025 14:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ni9jDhqG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRpoc/yX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0578C314B76;
-	Mon, 10 Nov 2025 14:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433CC315769
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 14:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762785276; cv=none; b=EmlBADx2J8Hy9iOf5H/YmNgxfh55+KJbYdwGGTg4ZaLR6FSbtx9P7Jnhmw4e+xfUk5jtUUSBjO0a9vP0dJkcH3GG73fqYbXp5No9PlqaDJzn87hKwEmGj9uPArjKXoiuFAf4IRkt1GAn4bwI+Ep4mk/EtV/o9H86Uq7FWaMnW5Y=
+	t=1762785278; cv=none; b=UoWK4zEflZ0iS3DGr2WtrNi4r6OmEU1SVk7ZFfSxjDjKxci3oytAHCS1WfuFsniv56M4sy7GbmH498+MAPDmg01eIgI2m0DJTRxZ57fHLI8bzvSgkpJ5f17baEs2/x/ZjJ07VvU2WSJE3KBgB/nzqHeoHYEuJWUUp3hURjY9QBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762785276; c=relaxed/simple;
-	bh=m8gTUwErcvUiLoD21fSkXdLe/TPUchJWC+DOnE/nmic=;
+	s=arc-20240116; t=1762785278; c=relaxed/simple;
+	bh=GSYmQ6+3w2F5Y2v3KL+tz1Yyiah/sIkt2T04Cg5nkCw=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=RqW5VYa0/+ZK9OVUG9WZNcxZqMNOIwL4pPVKrnG9BdYok5TpVbUdRBQzkr8471iZvsyW6NmqPv1z6d2hNNzlJ3iB2SRWWIc9X0lSdfPzdA+wCQv6RIVvHBVpqN5PAjHssSVOTziIWCWc+C16CfWaPASeLnigNF+EG7xl8Fe8dak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ni9jDhqG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C4C8C2BC86;
-	Mon, 10 Nov 2025 14:34:35 +0000 (UTC)
+	 Message-Id:Subject; b=ClADJkAGRCD1GnNQ5HD8atXtN/LqaJSQMitxGtwYZsw38cypPGZKDqUOwsYIBJE2vcgng9ARp0T5Wrzp+iC4cIv7NJR2TK7r3ULbBKlUHg2i6yw0vdqkwSMtjebAOzD4rnDNNPgKLzqnht1gzH3/9gu45/HSgfB3LEkDOO2YOSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRpoc/yX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87809C2BCB4;
+	Mon, 10 Nov 2025 14:34:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762785275;
-	bh=m8gTUwErcvUiLoD21fSkXdLe/TPUchJWC+DOnE/nmic=;
+	s=k20201202; t=1762785277;
+	bh=GSYmQ6+3w2F5Y2v3KL+tz1Yyiah/sIkt2T04Cg5nkCw=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Ni9jDhqGDQszcc6X8xP6kCNgsY3pkLqyvvt3nY7zUGfJv+22tOmMr9dM0wKbPm+j2
-	 IU41u7pUlRJRySt/4TWVdKut8H2+rpqtQ27pb09TDhiRoq2qZbo0cxMFDz1iPL+7Fe
-	 nm8Gvx4TlOx3VCzWTvJYWt7FffLO8XaJvMF37dOBwbjjABojf5vieP3hvoHP07dN7g
-	 fxh7m1qEgS6dXsfT/ikz3bbb3OBjHroAE4lr9RE6SFDp0xOnsnQ27qZefYg6azy2Vj
-	 uLE1RdCuZ+vuQg47Z7lUa+b6wwQDVuCyBWXq63TO7IGZvKjzotc3rE+n01QVOnBoU5
-	 zGHca64JaUoJQ==
-Date: Mon, 10 Nov 2025 08:34:34 -0600
+	b=FRpoc/yXSsihGYhZUJKMkEG0SUuM626YAHJaSt896xzpksLSZ2ZB25SAwRwAOVwXg
+	 WY3cNYaRVo1AtSdXTJq0hbQozMOTa7Vhqg2sSXEYOJwObfKBljmBR9fUhyLeLgvp5u
+	 dw+75HhUekHd2ozjYd/8kL70gkvxaw0+0V8QryxL8zTT0G5alUhFLKRF/EqAIEmCg7
+	 vi0nhYAC5quPlgDBQ1scCQAKt3Dwq0KVcsOL2u7OLtEQMT9099qvhgzaHQUo/5aHGY
+	 GoKWSys3ZcBM4fguajAFSIiM/zjW5FNmEJzdnRbr8duD/qFBY2ouwRzTOPMkXbu2Jt
+	 dnyGd4exIAzqA==
+Date: Mon, 10 Nov 2025 08:34:36 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,62 +51,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Joel Stanley <joel@jms.id.au>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org
-To: Marc Olberding <molberding@nvidia.com>
-In-Reply-To: <20251108-msx1_devicetree-v3-0-c7cb477ade27@nvidia.com>
-References: <20251108-msx1_devicetree-v3-0-c7cb477ade27@nvidia.com>
-Message-Id: <176278493385.154655.886985963575839587.robh@kernel.org>
-Subject: Re: [PATCH v3 0/2] Add device tree for Nvidia BMC msx4 cx8
- switchboard
+Cc: andy.yan@rock-chips.com, dmitry.baryshkov@oss.qualcomm.com, 
+ heiko@sntech.de, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, conor+dt@kernel.org, 
+ sebastian.reichel@collabora.com
+To: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <20251110030036.825150-1-naoki@radxa.com>
+References: <20251110030036.825150-1-naoki@radxa.com>
+Message-Id: <176278493435.154671.16126556415107681599.robh@kernel.org>
+Subject: Re: [RFC PATCH] arm64: dts: rockchip: Fix microSD card detect for
+ Radxa ROCK 5 ITX
 
 
-On Sat, 08 Nov 2025 14:24:33 -0800, Marc Olberding wrote:
-> Patch 1 Adds the binding for the msx4 cx8 switchboard
-> Patch 2 Adds the device tree for the msx4 cx8 switchboard reference implementation.
+On Mon, 10 Nov 2025 03:00:36 +0000, FUKAUMI Naoki wrote:
+> Due to the discussion about cd-gpios and sdmmmc_det pin
+> functionality[1], it would be better to use cd-gpios for now.
 > 
-> This is an Aspeed AST2600 based reference implementation for a BMC
-> managing the nvidia mgx cx8 switchboard.
+> [1] https://lore.kernel.org/linux-rockchip/20240912152538.1.I858c2a0bf83606c8b59ba1ab6944978a398d2ac5@changeid/T/#u
 > 
-> Reference to Ast2600 Soc [1].
-> 
-> Link: https://www.aspeedtech.com/server_ast2600/ [1]
-> 
-> Signed-off-by: Marc Olberding <molberding@nvidia.com>
+> Fixes: 31390eb8ffbf2 ("arm64: dts: rockchip: add ROCK 5 ITX board")
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 > ---
-> Changes in v3:
-> - Removed mac and mdio node completely per Andrew Lunn's request. Will add back
->     once the mac driver is fixed
-> - Link to v2: https://lore.kernel.org/r/20251107-msx1_devicetree-v2-0-6e36eb878db2@nvidia.com
-> 
-> Changes in v2:
-> - Added ack by Conor Dooley on patch 1
-> - Changed phy-mode attribute after discussion with Andrew Jeffery and feedback from Andrew Lunn
->     and added a comment with a better explanation
-> - Link to v1: https://lore.kernel.org/r/20250918-msx1_devicetree-v1-1-18dc07e02118@nvidia.com
-> 
-> ---
-> Marc Olberding (2):
->       dt-bindings: arm: aspeed: Add Nvidia msx4 board
->       dts: aspeed: Add a dts for the nvidia msx4 hpm
-> 
->  .../devicetree/bindings/arm/aspeed/aspeed.yaml     |   1 +
->  arch/arm/boot/dts/aspeed/Makefile                  |   1 +
->  .../boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dts | 235 +++++++++++++++++++++
->  3 files changed, 237 insertions(+)
-> ---
-> base-commit: 38a2c275c3d3f7d7180d012386cd6fcf87854400
-> change-id: 20250908-msx1_devicetree-7af2c1fc15d0
-> 
-> Best regards,
-> --
-> Marc Olberding <molberding@nvidia.com>
-> 
-> 
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
 
 
@@ -125,31 +92,17 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
- Base: 38a2c275c3d3f7d7180d012386cd6fcf87854400 (use --merge-base to override)
+ Base: attempting to guess base-commit...
+ Base: tags/next-20251107 (exact match)
+ Base: tags/next-20251107 (use --merge-base to override)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20251108-msx1_devicetree-v3-0-c7cb477ade27@nvidia.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20251110030036.825150-1-naoki@radxa.com:
 
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: sdram@1e6e0000 (aspeed,ast2600-sdram-edac): compatible: ['aspeed,ast2600-sdram-edac', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/edac/aspeed,ast2400-sdram-edac.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dtb: mmc: sdmmc-det-gpio: {'rockchip,pins': [[0, 4, 0, 270]], 'phandle': 145} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml
 
 
 
