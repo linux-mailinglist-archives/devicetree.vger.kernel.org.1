@@ -1,133 +1,404 @@
-Return-Path: <devicetree+bounces-236923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B55FC494E8
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:49:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7897DC494D9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 21:48:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0C0B3B55C3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:46:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ED713A7876
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:46:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F75258ED1;
-	Mon, 10 Nov 2025 20:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3257B2E8B83;
+	Mon, 10 Nov 2025 20:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gv/lxDhG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eDCRbUjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D9A2F3C2C
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:46:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F8E2C028D
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 20:46:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762807611; cv=none; b=VKtYI1wrgKlcEqdSrrILReOunsAyh+axrO8JdQG0j8BtkVrtg4ZHU3MmuFq61QISJQ8v/pvWxuYJgZjzLA+n5r8N40S39CEdNqeqQMazi/pIWlCVBYvoQiTRATuQz39N4XiX6lF9Ks+V8e3JMCGCo1B1DfcnvQtYi9gx8Pdt2pQ=
+	t=1762807603; cv=none; b=d4naRKHG+waDDk8s+M6B48k56L1Q9W2KJ1JlSodDhUaneHrGwnRo7ABV7fzHDj8ilua14eu933T4NgWecWtka88OzEOwINDK7IGFtXJSaDf96id4P/MBlLjc2BR2EydTRh4MnD4+70gNeD/S0SvXXcSuzKnzC3LqvhNaA422qms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762807611; c=relaxed/simple;
-	bh=TCOQiF7Wl6musoZt1NXg/XuNGShNJ+PlUz3atHPrYYA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Vi5p7ttcS3/mi6sfhG/HmJRtpjppp3aF7yHZIo34irIFQkEqP1RY3vHp3fMTGGtpkMiCE8I3s6P3nvG0QAskatoBk6dUFJdFP4gNkAmhsyKBXgqLDYd9/kUpmitfx8WQJUMbTQWMV01+QZBXJbckBEk5/B1xpgfKJgar16N3r04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gv/lxDhG; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7b18c6cc278so3483676b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:46:48 -0800 (PST)
+	s=arc-20240116; t=1762807603; c=relaxed/simple;
+	bh=V6et8XZiJmPajNXLpjiEYmS8e1Vn5RYYti7HnWvDPFE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EcAQjbBPpDpP1oRpqM5naryk2h45gh2wCBOTR2/iX1dA2ipy/ONxA2+g1B1wVXaDWMXFCh1tAUHC5Rx9sy6W+YfiaDuDyxl8FpfbSR8Y1IYLt5jDJCwqsQ2s7Oaw93NtNcx4gornNeW1YgjXRBZxIBpTU/i5EaaAZbYwPIpO8Zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eDCRbUjt; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b7260435287so519433966b.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 12:46:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1762807608; x=1763412408; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1762807599; x=1763412399; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Qp58ASEtK8Ln4QwD3CPLPvKo2CrxmxJzZ9RPILDGftk=;
-        b=gv/lxDhGF0wWPDp3zZE83Y/Nn+XJuB4352MifhHcmaHgJedwWZEYde92GO9py+J/Eb
-         4xc5ZUixLPU8LZezRniusTZmJBIWGjoUs6xDNb5+Keg1+NB0VgEGQdVr5IttW4jUbnbA
-         zZiapBeu+JJEca/lXccqBNa/udg2RiGaETdYY=
+        bh=6Hx+3UErOC7a4/6wBfCIV+NGBUPJoJPn9KMJFM1rAmc=;
+        b=eDCRbUjtxdXCqL/poZO8/KqjwBz7KZYh47KyC0IdO17q+53irw6OhZrkJoi1oggTcI
+         4JxkTgLuhG4G6xCAtZLJfXyuo2Jz2OlxzSLT62Q7ARmhuLt8oMA21prPbhdcQTcUbKv4
+         6wRazD3LOcPaqd2F2itgKmuo+V5y4wHzf7NmylysAKblGSYQjIRr+c8R2I9R0DKzIw6y
+         Dh61g/9u0cQbrYtlOpe8QQv4+BDWBhKvDc+x0pg+WFSyCf208bJZt7QBT7+/q+ixVIxF
+         t5j8Kf0/5iKWwlcV2T4ngeqwSQAw5JQWbZFjI6vsz/ZXQbcdi9gVyUbsSmQ8f014TA4n
+         FAww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762807608; x=1763412408;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1762807599; x=1763412399;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Qp58ASEtK8Ln4QwD3CPLPvKo2CrxmxJzZ9RPILDGftk=;
-        b=PTNrV9a8xoXPcsmXU6gXGgfZ3un5yb12pe8Qj+sBGEYz6+gGSrF0jZWupEoF4h+es2
-         9F/hTDzsd6WgAT2MwdNMpThiKVd8Sz6gpzHsSZVKNCpD27kdim4maDNvOtW8dwQLuqG9
-         e8vFasZn+QkO01izxe/dIrc16QcO8H60+04pSQpxHVB8LOXzjuHpwaOZq4en34wQIoCh
-         we5Usb2oqVj4rbMRFsrPVlfXnvS0NTsJSaR7kYsX2PJSvHU5x1kmNzAdYr88PgFGYoqx
-         HWQszPriFR7DcJy+Je/WG+SQM64cyxJnEtZG/EMi80R00xS6YE2C+EbhBZjPXVynwuVl
-         FZSw==
-X-Gm-Message-State: AOJu0YzRcTOsyNacQGiOVteq18HkPJQX+9iM2q8hqzMXNJGzsI6ZnGdX
-	PuHa50h3as5OwPIjWkb+Gx7L+ZZ0AgqOpWztHx+WLz5JAAihzATxR5k9b4FXgiVlFZKN6uJe0VZ
-	pyE/e/A==
-X-Gm-Gg: ASbGncsWo0UzQ+6qkXKEE8TIh/zw0rc57gQYR8OWnUD1foQtGkGMMCF4wiGK96vvSKw
-	jgZ29m2TlTiqRbbnzSb4G1ztqzQlasDupxsK8OiGg8iie7QSs9lPHEj8gJCqgB/oj0XqwNZrQzM
-	ZUxKOX0FAyI6Qcay4X4TIyq2lIeK39iTwsUaHuA+uqdnMxJt/HuiqYterSvlDgts5/ne0VPDR9O
-	kLbCBo8MXsuQDNzkxIbrmgpQABWeJ6tUZ9xSIMtPi6HVQH9zVFSoPKdHF+G1LdqcJhirzrIL38C
-	xORtp/Vh22GiDoJiIc4vYtiwTu8reikXnUCsNf3FomtMtGEHFJM3nxWjcHmgv82AKGHWIIUyQ/6
-	ksfVm+ZL1hdJi92q5woWWnmf8+OOsZre/dDRscVg4qtTPDQ/DuXsNb+rGBO4cbcwxJPsziglqlJ
-	y3X9lt6Y3fADTPDx9697wLKNTX0LnPPOYZGcDGgmBbU4gowLNO5moNpV4XQOrxs/YNR73kLA==
-X-Google-Smtp-Source: AGHT+IHpNugVwhN66sp8s/fVAlqYJENh7+AbuxeoUCNsBciGIRGabou2bvWmDiCpMZvOkDMk9xeesA==
-X-Received: by 2002:a17:902:cec2:b0:298:1830:6ada with SMTP id d9443c01a7336-298183faee1mr58705175ad.30.1762807607740;
-        Mon, 10 Nov 2025 12:46:47 -0800 (PST)
-Received: from dianders.sjc.corp.google.com ([2a00:79e0:2e7c:8:51a0:4f1a:8141:37d3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29650c5e5bdsm154992935ad.39.2025.11.10.12.46.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Nov 2025 12:46:46 -0800 (PST)
-From: Douglas Anderson <dianders@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>
-Subject: [PATCH 2/2] checks: Allow "chosen" node under "__overlay__" for a DT fragment
-Date: Mon, 10 Nov 2025 12:45:27 -0800
-Message-ID: <20251110204529.2838248-2-dianders@chromium.org>
-X-Mailer: git-send-email 2.51.2.1041.gc1ab5b90ca-goog
-In-Reply-To: <20251110204529.2838248-1-dianders@chromium.org>
-References: <20251110204529.2838248-1-dianders@chromium.org>
+        bh=6Hx+3UErOC7a4/6wBfCIV+NGBUPJoJPn9KMJFM1rAmc=;
+        b=kEwHvTeDHvgfm8T6SKDEx3lBzQWdMcL6Sp6sc0qeiWD+ufxU/58CKlmJ2jUHhjGdk9
+         wv8+CqXLrkDhGEjpMDqBwIvIcCA46a+skkLoAGO6dYMfR+2NTjTTEOKWz2mtgnTG4IhS
+         qq0SZzdVJLPHh0OIZoeIclf7XulWaKRuiQY+TJV1wT/PG3PvtxiOklcKDssW5bsZ+vyg
+         zt19s+0QGthkoAgBKRs9XU5GJ2EMyfcQAHpRARG1pCsxYTxJqW6EAfNWE2luU6GRNhNA
+         XgCsJAgf2NxaMh6FW9A/WtGg0g52OfZW6Ylfjd+8jtj9y3peH4hBsV5PfmzDAn0RkSxl
+         b8gg==
+X-Forwarded-Encrypted: i=1; AJvYcCW15rMZhAPC+H5hBUAoyp2+sLMXqt3X5JStMOqCsvRPD8kCz/maGFK624qYYqqHGCEG5vszqZvnj2KD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0hsqLYZnoWd2Kgk0PDISMPiFalT1vcsOzYRWP3+BkIUMKKzUO
+	jHdPthYjwabJuKRCF2UlNbNMR8GJ/Sco8+l2jJ/buRbrxhxoz8OFrs0brQFiFkyV+eOFi7lxIC9
+	RD72ZDALbTAHWMu2cAFxYo0EJsfUttM8=
+X-Gm-Gg: ASbGncu+8vqVYAkUjc63Rt4hpd0AlGhxESejtvIGrpAb/l1qhqCDrDU2Z59pEafMEHG
+	WK4Y+EvAPcz6QMX3v1rqMaCWSOArG1HQ2SznA+hvfmsfkSyslycFw1cYlQNJLo4EP/ArykkZUVY
+	2mSc0J6wenP5UWw2C7h/ToMyvCzfewynizRQoZ45iFRSpFDB6HXGNcuaNCmEbcxMyKuAkB6WwH0
+	9ZgO8zgKn+zomdT/lVMpDY8tJ42BwUHQMEvbajlIjJEyWOggewsR+3TCixLgUDqyFJOQ9Fl
+X-Google-Smtp-Source: AGHT+IGPBuMN+yAFnF0ZR3EjG2yEc6dIK2mrlQzy7SywuR84/WsrDdt3Or9lcOFeDlZjj4YFPbgIjGqJ7P9gvWVC3s4=
+X-Received: by 2002:a17:907:d8e:b0:b6d:7f24:8428 with SMTP id
+ a640c23a62f3a-b72e0587c83mr1036102966b.54.1762807599197; Mon, 10 Nov 2025
+ 12:46:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251110061409.726028-1-o.rempel@pengutronix.de> <20251110061409.726028-3-o.rempel@pengutronix.de>
+In-Reply-To: <20251110061409.726028-3-o.rempel@pengutronix.de>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 10 Nov 2025 22:46:02 +0200
+X-Gm-Features: AWmQ_blXIxlzHMJq1NdqVVn7zUANqYXxGQTtjIxHfdA-UtT59FQKa8nuqtp1fME
+Message-ID: <CAHp75Vd9WCXR_QmefqPhWO1niMnESq7LAcN=eYvSiqkWfFrNhA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: Add TI ADS131M0x ADC driver
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	David Jander <david@protonic.nl>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-If a `dtso` file adds to the chosen node, a false warning will be reported:
-  Warning (chosen_node_is_root): /fragment@<num>/__overlay__/chosen: chosen node must be at root node
+On Mon, Nov 10, 2025 at 8:14=E2=80=AFAM Oleksij Rempel <o.rempel@pengutroni=
+x.de> wrote:
+>
+> Add a new IIO ADC driver for Texas Instruments ADS131M0x devices
+> (ADS131M02/03/04/06/08). These are 24-bit, up to 64 kSPS, simultaneous-
+> sampling delta-sigma ADCs accessed via SPI.
+>
+> Highlights:
+> - Supports 2/3/4/6/8-channel variants with per-channel RAW and SCALE.
+> - Implements device-required full-duplex fixed-frame transfers.
+> - Handles both input and output CRC; uses a non-reflected CCITT (0x1021)
+>   implementation because the generic crc_ccitt helper is incompatible.
+>
+> Note: Despite the almost identical name, this hardware is not
+> compatible with the ADS131E0x series handled by
+> drivers/iio/adc/ti-ads131e08.c.
 
-Allow the "chosen" node to be under the "__overlay__" node at the root
-of a fragment.
+(Note, my address for IIO reviews is andy@kernel.org)
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+...
 
- checks.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
++ array_size.h
++ bitops.h
 
-diff --git a/checks.c b/checks.c
-index 908df5b98ec5..d28e59494757 100644
---- a/checks.c
-+++ b/checks.c
-@@ -1371,8 +1371,17 @@ static void check_chosen_node_is_root(struct check *c, struct dt_info *dti,
- 	if (!streq(node->name, "chosen"))
- 		return;
- 
--	if (node->parent != dti->dt)
--		FAIL(c, dti, node, "chosen node must be at root node");
-+	if (dti->dtsflags & DTSF_PLUGIN) {
-+		const char *frag_path = get_fragment_relative_path(node->fullpath);
-+
-+		if (frag_path && streq(frag_path, "/__overlay__/chosen"))
-+			return;
-+	} else {
-+		if (node->parent == dti->dt)
-+			return;
-+	}
-+
-+	FAIL(c, dti, node, "chosen node must be at root node");
- }
- WARNING(chosen_node_is_root, check_chosen_node_is_root, NULL);
- 
--- 
-2.51.2.1041.gc1ab5b90ca-goog
+> +#include <linux/cleanup.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
 
++ dev_printk.h
++ device/devres.h
+
+> +#include <linux/err.h>
+> +#include <linux/iio/iio.h>
+
++ lockdep.h
+
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+
++ mutex.h
+
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+
++ string.h
+
+> +#include <linux/unaligned.h>
+
++ types.h
+
+...
+
+> +#define ADS131M_CMD_RREG(a, n) \
+> +       (0xa000 | ((u16)(a & 0x1f) << 7) | (u16)(n & 0x7f))
+
+> +#define ADS131M_CMD_WREG(a, n) \
+> +       (0x6000 | ((u16)(a & 0x1f) << 7) | (u16)(n & 0x7f))
+
+These two suspiciously look like a reinvention of proper unaligned
+getters with the specific shift / GENMASK().
+
+...
+
+> +/* 1.2V internal reference, in millivolts, for IIO_VAL_FRACTIONAL_LOG2 *=
+/
+> +#define ADS131M_VREF_INTERNAL_MV       1200
+
+_mV
+
+...
+
+> +/* 24-bit resolution */
+> +#define ADS131M_RESOLUTION_BITS                24
+> +/* Divisor is 2^(Res - 1) for signed 2's complement */
+> +#define ADS131M_SCALE_DIVISOR          (1UL << (ADS131M_RESOLUTION_BITS =
+- 1))
+
+Why not BIT() here?
+
+...
+
+> +struct ads131m_configuration {
+
+Running `pahole` might give some hints on optimisation of the layout.
+
+> +       const struct iio_chan_spec *channels;
+> +       u8 num_channels;
+> +       u16 reset_ack;
+> +       bool supports_extref;
+> +       bool supports_xtal;
+> +       const char *name;
+> +};
+
+...
+
+> +static inline u16 ads131m_crc_ccitt_byte(u16 crc, u8 data)
+> +{
+> +       int i;
+> +
+> +       crc ^=3D ((u16)data << 8);
+> +       for (i =3D 0; i < 8; i++) {
+> +               if (crc & 0x8000)
+> +                       crc =3D (crc << 1) ^ 0x1021;
+> +               else
+> +                       crc =3D (crc << 1);
+> +       }
+> +
+> +       return crc & 0xFFFF;
+> +}
+> +
+> +/**
+> + * ads131m_crc_calculate - Calculate CRC-16-CCITT over a buffer
+> + * @buffer: The data buffer to process
+> + * @len: The length of the buffer
+> + *
+> + * This function processes a buffer with the CCITT algorithm required
+> + * by the device, using the 0xFFFF seed.
+> + *
+> + * Return: The final 16-bit CRC.
+> + */
+> +static u16 ads131m_crc_calculate(const u8 *buffer, size_t len)
+> +{
+> +       u16 crc =3D 0xFFFF;
+> +       size_t i;
+> +
+> +       for (i =3D 0; i < len; i++)
+> +               crc =3D ads131m_crc_ccitt_byte(crc, buffer[i]);
+> +
+> +       return crc;
+> +}
+
+Why CRC16 library can't be used here (crc_ccitt() one perhaps)?
+
+...
+
+> +static int ads131m_write_reg_unlocked(struct ads131m_priv *priv, u8 reg,
+> +                                     u16 val)
+
+I would go with a single line here.
+
+...
+
+> +               dev_err_ratelimited(dev,
+> +                                   "SPI error on WREG (cycle 1)\n");
+
+Ditto.
+
+...
+
+> +               dev_err_ratelimited(dev,
+> +                                   "SPI error on WREG ACK (cycle 2)\n");
+
+Ditto.
+
+...
+
+> +       /*
+> +        * Cycle 3: Check STATUS for Input CRC error.
+> +        * This is necessary even if ACK was wrong, to clear the CRC_ERR =
+flag.
+> +        */
+> +       ret =3D ads131m_check_status_crc_err(priv);
+> +
+> +       return ret < 0 ? ret : ret_crc_err;
+
+Use standard way of checking:
+
+  ret =3D ...(...);
+  if (ret)
+    return ret;
+
+  return ret_crc_err;
+
+...
+
+> +static int ads131m_rmw_reg(struct ads131m_priv *priv, u8 reg, u16 clear,
+> +                          u16 set)
+
+One line.
+
+> +{
+> +       u16 old_val, new_val;
+> +       int ret;
+> +
+> +       guard(mutex)(&priv->lock);
+> +
+> +       ret =3D ads131m_read_reg_unlocked(priv, reg, &old_val);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       new_val =3D (old_val & ~clear) | set;
+
+> +
+
+Unneeded blank line.
+
+> +       if (new_val =3D=3D old_val)
+> +               return 0;
+> +
+> +       return ads131m_write_reg_unlocked(priv, reg, new_val);
+> +}
+
+...
+
+> +       /*
+> +        * The received 16-bit CRC is MSB-aligned in the last 24-bit word=
+.
+> +        * We extract it from the first 2 bytes (BE) of that word.
+> +        */
+> +       received_crc =3D get_unaligned_be16(&priv->rx_buffer[data_len]);
+
+> +
+
+Unneeded blank line.
+
+> +       if (calculated_crc !=3D received_crc) {
+> +               dev_err_ratelimited(dev,
+> +                                   "Output CRC error. Got %04x, expected=
+ %04x\n",
+> +                                   received_crc, calculated_crc);
+> +               return -EIO;
+> +       }
+
+...
+
+> +       struct device *dev =3D &priv->spi->dev;
+> +       int vref_uv;
+
+_uV
+
+> +       int ret;
+
+...
+
+> +#define ADS131M_VOLTAGE_CHANNEL(num)   \
+> +       { \
+> +               .type =3D IIO_VOLTAGE, \
+> +               .indexed =3D 1, \
+> +               .channel =3D (num), \
+> +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) | \
+> +                       BIT(IIO_CHAN_INFO_SCALE) \
+
+Leave trailing commas for non-terminating entries.
+
+> +       }
+
+...
+
+> +       /*
+> +        * Get the optional external reference. This schedules regulator_=
+put()
+> +        * automatically.
+> +        */
+> +       priv->refin_supply =3D devm_regulator_get_optional(dev, "refin");
+> +       if (IS_ERR(priv->refin_supply)) {
+> +               /* -ENODEV is fine, it just means we'll use the internal =
+ref */
+> +               if (PTR_ERR(priv->refin_supply) =3D=3D -ENODEV)
+> +                       priv->refin_supply =3D NULL;
+> +               else
+> +                       return dev_err_probe(dev, PTR_ERR(priv->refin_sup=
+ply),
+> +                                            "failed to get refin regulat=
+or\n");
+> +       }
+
+Can be untangled to
+
+  ... =3D devm_regulator_get_...
+  ret =3D PTR_ERR_OR_ZERO(...);
+  if (ret =3D=3D -ENODEV)
+    ... =3D NULL;
+  else if (ret)
+    return dev_err_probe(...);
+
+...
+
+> +               if (priv->config->supports_xtal) {
+> +                       if (!is_xtal) /* "clkin" */
+> +                               clk_set |=3D ADS131M_CLOCK_XTAL_DIS;
+> +               }
+
+if (foo) { if (bar) {...} } =3D=3D if (foo && bar) { ... }
+
+> +               if (priv->config->supports_extref) {
+> +                       if (!IS_ERR_OR_NULL(priv->refin_supply))
+> +                               clk_set |=3D ADS131M_CLOCK_EXTREF_EN;
+> +                       else
+> +                               clk_clear |=3D ADS131M_CLOCK_EXTREF_EN;
+
+Why not a positive check?
+
+> +               }
+
+...
+
+> +       ret =3D device_property_read_string(dev, "clock-names", &clock_na=
+me);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret,
+> +                                    "device property 'clock-names' not f=
+ound\n");
+> +       is_xtal =3D (strcmp(clock_name, "xtal") =3D=3D 0);
+
+Hmm... We have device_property_match_string().
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
