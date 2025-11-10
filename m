@@ -1,387 +1,133 @@
-Return-Path: <devicetree+bounces-236676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDB48C46669
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 919FBC4668A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 12:57:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06A5718830BD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:55:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 096151883BE4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 11:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5C5309EFF;
-	Mon, 10 Nov 2025 11:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0CA30C61B;
+	Mon, 10 Nov 2025 11:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yZ8sbvzu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18712FFFA4;
-	Mon, 10 Nov 2025 11:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1318F30C37D
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762775713; cv=none; b=lKxuPR/1qHl6yzT1xGpp8T6WsorJLkdt+u9+xrrG088TDOw4KImcxbRkkfyRqQBf8e3tAFQOL+s8Ja1iB/wqKqNLMW0Hlnbsb65qz3PPw6/obGsznLmfyjm+Ly4tLalLIbDcEDaK1tf3hc5AnGkPOuSinASE6wiC8X4CVPzGdMI=
+	t=1762775816; cv=none; b=h5N1xWvKl2rDN+On0zx4yvL/sOXT45XeVxlWAFjhWBZOHoIXIp+IHfHCpibUAGJkCJyKMszmxLxLUMOys00L77ajaTR6SGC0JZRxBvqXFhrlLa8rWcEQxP16u3MRAhWH9XaIvxaDFiOMOPen49dTIRC927vu+BJ/09C/9gsSSqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762775713; c=relaxed/simple;
-	bh=SEGGQCraDKkaakuOL1qELKnn7n3IsPKHAFteZ3/gqQE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=RTn1t05AON/qaID7nP0bnNIunov7Bg0NMzloZXYZZE4GwTaxpiEpeUZQSf6eJNPbY3Wp9dEJd0FtC9jDELyDwXzynuM47Y6smptz+gYm7kD31TnImur8TorWHfFhEU3Eh2JfOevpjFKibovdJOfo361/9Xf6LngQP0OYqU7/Vf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4d4p4m4JkWz9t8S;
-	Mon, 10 Nov 2025 12:55:04 +0100 (CET)
-Message-ID: <a7dffb1f-1545-413b-99ee-421dc6e9f63a@timmermann.space>
-Date: Mon, 10 Nov 2025 12:55:02 +0100
+	s=arc-20240116; t=1762775816; c=relaxed/simple;
+	bh=oUgierYSU3dRBhCJGCsjS3J9M3HkXvV59r1SNiAzvk0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kwXPk6y5wSU3De5GIJrEwborM9yxv48KeiGJV0T4iUDX/CgXZwB0YI3fDuaZzaX1UJEVeVCLRy/SkxwEYOkuvYTAvoSTVmbx70pTkPZbxekyOv4kqqmYkAnJmgxvMnRtiKD0MTUPyqshRnAjVDQlGIyFO4juCVCLrMr7DVBZbd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yZ8sbvzu; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42b3ad51fecso676980f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 03:56:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762775812; x=1763380612; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4g2z/CUdSCaQjy9LxpwOngAggO4WOQO9SBX2pApcNyk=;
+        b=yZ8sbvzuAGCw2mrF/znpax5qC41Ec7OITzSh/dmx2az4dedT5WWB6bpqwtSq1I4Nlr
+         oIpLrJxktDxHg06jbPw7jL2jKcc+0jSEAQd3c+S4v1KeOvQi/QSH90zJ/r6OyfXi506r
+         hmTKfE/X0/sdzVMa9BE+0dwJJQdEftjpNt6jt1tHT6/j6tfYT6HVn/algXMNXZKO3VB+
+         dRSM/3B6u/fUySKFFntvkD2WpNch/ElHnxg6XbZjgr8WjqdfdMpnrFgmL2piHu4dwSty
+         M8OWYVWlLYbBk3RJ3adi7uPuosp/yzM+ERCRJasi1lgQxCnJnXtKfsoEfV5hkEUCGeMw
+         hsWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762775812; x=1763380612;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4g2z/CUdSCaQjy9LxpwOngAggO4WOQO9SBX2pApcNyk=;
+        b=cSXDVggmOVl8Ci9Ly5cg7slhDbZ0gXXC/6VQOmokaFqGWAy/scoXFKMOaqpii8NUv5
+         dZ9jouyL7YDTN02E7q1b/bMZ8IZ2ZE+ItnEY51GcpPG0pinIbKIIAIwsEQsQ3MKrKAHg
+         p0MQpMKEfeGtaoMW0k6cp0Li64nScI36ouhkE40gsB2CQztHDoX471bnXRIB3HiCaBcx
+         DYTIv5ClFYg8YcdHvxrT6Cu5Aeg2VyLb0KJLK/YTu7NAByzrusLwtKP+slM4mWp0/j5f
+         LhJigGvm0HLy52rOVuzwk/znhcZD7+uGo/JUv+P8oJoLIUz1MesJnd06erUjfvHhpfx9
+         ksOA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5WkdDHh/qePdhD1YlVbUftcbVwve1G53tQEsmS01gStS6I0cxJmewvXEQbANvSa4nXLGcdKUaqdUg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSZolGzzlX70rGy3riJ9bvihsFcCdu+MSGapZ7FjHCAzJp8fq0
+	Ztqof8z1M4J7KV0ChWW2Sf32Y5rBxzpcRd2VOUgIQCxy8tDEjXA3c1TU0CkrK25YhDg=
+X-Gm-Gg: ASbGncvfxRW1TO2KJ/BufgD6hb1t/EH1Gnw/OrOr/PGmDlfOylFMZWN116r+gzYFXDY
+	aip88NWEitMA3aF2eDR6zpSSofL33qLzH8EdeGmhOzMsttFBUR+op276mML8W27Ss/ymmOPOPzB
+	0eNfCslSJviMcsyCu5x+w+eDjdC30T/PKL3E876DKFvBACjcMe4nqUFHsdECFc4wIpkUizh8AMF
+	LuFGnfjJ9jIaDOxw4Y0DYqMQ0Eo37s06tveT11veJ6NHPgMwR956WMF75PzTTRBFRZkeAUh52VB
+	PFC7EHmEHITPE84Z7Fy0DC3Mo+CvwtXptMzPw9Ehf971o8sSZnvmIdxishKhj7nuMYlCKqeXSnp
+	pLsej7CXESTDA7KMB9dWy4vuvXR2r2M5g56oQ6ovnfsUfIBj4UlhK+0H+edYE9gCNrHSizVHUEU
+	lNp8jfmA6JoN4bFMX4wVXEafQiHi0YeOitI3C/RWYl4ZNdkmgb59RHWRQ=
+X-Google-Smtp-Source: AGHT+IFbcw4K9ivqGLQddDZa5CrYY9iwv64S3IIlLZWbi+XRwqAEU+75TumzHzlJ4CnXK9gTK1CTaA==
+X-Received: by 2002:a5d:5f42:0:b0:429:bca4:6b44 with SMTP id ffacd0b85a97d-42b2dc1f4e9mr6741662f8f.13.1762775812360;
+        Mon, 10 Nov 2025 03:56:52 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:2b20:d700:6e9c:533c? ([2a05:6e02:1041:c10:2b20:d700:6e9c:533c])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-42ac679c5dcsm24735244f8f.44.2025.11.10.03.56.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 03:56:51 -0800 (PST)
+Message-ID: <d36f89d7-2d18-4c24-840c-243d4fa10de0@linaro.org>
+Date: Mon, 10 Nov 2025 12:56:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Lukas Timmermann <linux@timmermann.space>
-Subject: Re: [PATCH v9 2/2] leds: as3668: Driver for the ams Osram 4-channel
- i2c LED driver
-To: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251014152604.852487-1-linux@timmermann.space>
- <20251014152604.852487-3-linux@timmermann.space>
- <20251023141844.GP475031@google.com>
-Content-Language: en-US, de-DE
-In-Reply-To: <20251023141844.GP475031@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] dt-bindings: thermal: r9a09g047-tsu: Document
+ RZ/V2H TSU
+To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>,
+ john.madieu.xa@bp.renesas.com, rafael@kernel.org, rui.zhang@intel.com,
+ lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+ mturquette@baylibre.com, sboyd@kernel.org
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20251020143107.13974-1-ovidiu.panait.rb@renesas.com>
+ <20251020143107.13974-3-ovidiu.panait.rb@renesas.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20251020143107.13974-3-ovidiu.panait.rb@renesas.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Am 23.10.25 um 16:18 schrieb Lee Jones:
-> On Tue, 14 Oct 2025, Lukas Timmermann wrote:
+On 10/20/25 16:31, Ovidiu Panait wrote:
+> The Renesas RZ/V2H SoC includes a Thermal Sensor Unit (TSU) block designed
+> to measure the junction temperature. The device provides real-time
+> temperature measurements for thermal management, utilizing two dedicated
+> channels for temperature sensing.
 > 
->> Since there were no existing drivers for the AS3668 or related devices,
->> a new driver was introduced in a separate file. Similar devices were
->> reviewed, but none shared enough characteristics to justify code reuse.
->> As a result, this driver is written specifically for the AS3668.
->>
->> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
->> ---
->>   MAINTAINERS                |   1 +
->>   drivers/leds/Kconfig       |  13 +++
->>   drivers/leds/Makefile      |   1 +
->>   drivers/leds/leds-as3668.c | 188 +++++++++++++++++++++++++++++++++++++
->>   4 files changed, 203 insertions(+)
->>   create mode 100644 drivers/leds/leds-as3668.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 091206c54c63..945d78fef380 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
->>   L:	linux-leds@vger.kernel.org
->>   S:	Maintained
->>   F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
->> +F:	drivers/leds/leds-as3668.c
->>   
->>   ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
->>   M:	Tianshu Qiu <tian.shu.qiu@intel.com>
->> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
->> index a104cbb0a001..8cfb423ddf82 100644
->> --- a/drivers/leds/Kconfig
->> +++ b/drivers/leds/Kconfig
->> @@ -100,6 +100,19 @@ config LEDS_ARIEL
->>   
->>   	  Say Y to if your machine is a Dell Wyse 3020 thin client.
->>   
->> +config LEDS_AS3668
+> The Renesas RZ/V2H SoC is using the same TSU IP found on the RZ/G3E SoC,
+> the only difference being that it has two channels instead of one.
 > 
-> LEDS_OSRAM_AMS_AS3668
+> Add new compatible string "renesas,r9a09g057-tsu" for RZ/V2H and use
+> "renesas,r9a09g047-tsu" as a fallback compatible to indicate hardware
+> compatibility with the RZ/G3E implementation.
 > 
->> +	tristate "LED support for AMS AS3668"
-> 
-> "Osram"
-Thanks. Makes sense.
->> +	depends on LEDS_CLASS
->> +	depends on I2C
->> +	help
->> +	  This option enables support for the AMS AS3668 LED controller.
-> 
-> "Osram"
-Same.>> +	  The AS3668 provides up to four LED channels and is 
-controlled via
->> +	  the I2C bus. This driver offers basic brightness control for each
->> +	  channel, without support for blinking or other advanced features.
->> +
->> +	  To compile this driver as a module, choose M here: the module
->> +	  will be called leds-as3668.
->> +
->>   config LEDS_AW200XX
->>   	tristate "LED support for Awinic AW20036/AW20054/AW20072/AW20108"
->>   	depends on LEDS_CLASS
->> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
->> index 2f170d69dcbf..983811384fec 100644
->> --- a/drivers/leds/Makefile
->> +++ b/drivers/leds/Makefile
->> @@ -14,6 +14,7 @@ obj-$(CONFIG_LEDS_ADP5520)		+= leds-adp5520.o
->>   obj-$(CONFIG_LEDS_AN30259A)		+= leds-an30259a.o
->>   obj-$(CONFIG_LEDS_APU)			+= leds-apu.o
->>   obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
->> +obj-$(CONFIG_LEDS_AS3668)		+= leds-as3668.o
->>   obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
->>   obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
->>   obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
->> diff --git a/drivers/leds/leds-as3668.c b/drivers/leds/leds-as3668.c
->> new file mode 100644
->> index 000000000000..2b7b776fe2f5
->> --- /dev/null
->> +++ b/drivers/leds/leds-as3668.c
->> @@ -0,0 +1,188 @@
->> +// SPDX-License-Identifier: GPL-2.0-or-later
->> +/*
->> + *  Osram AMS AS3668 LED Driver IC
->> + *
->> + *  Copyright (C) 2025 Lukas Timmermann <linux@timmermann.space>
->> + */
->> +
->> +#include <linux/bitfield.h>
->> +#include <linux/i2c.h>
->> +#include <linux/leds.h>
->> +#include <linux/module.h>
->> +#include <linux/uleds.h>
->> +
->> +#define AS3668_MAX_LEDS			4
->> +#define AS3668_EXPECTED_I2C_ADDR	0x42
->> +
->> +/* Chip Ident */
->> +
->> +#define AS3668_CHIP_ID1_REG		0x3e
->> +#define AS3668_CHIP_ID			0xa5
->> +
->> +/* Current Control */
->> +
->> +#define AS3668_CURRX_CONTROL_REG	0x01
->> +#define AS3668_CURR1_REG		0x02
->> +#define AS3668_CURR2_REG		0x03
->> +#define AS3668_CURR3_REG		0x04
->> +#define AS3668_CURR4_REG		0x05
->> +#define AS3668_CURRX_MODE_ON		0x1
->> +#define AS3668_CURRX_CURR1_MASK		GENMASK(1, 0)
->> +#define AS3668_CURRX_CURR2_MASK		GENMASK(3, 2)
->> +#define AS3668_CURRX_CURR3_MASK		GENMASK(5, 4)
->> +#define AS3668_CURRX_CURR4_MASK		GENMASK(7, 6)
->> +
->> +struct as3668_led {
->> +	struct led_classdev cdev;
->> +	struct as3668 *chip;
->> +	struct fwnode_handle *fwnode;
->> +	int led_id;
->> +};
->> +
->> +struct as3668 {
->> +	struct i2c_client *client;
->> +	struct as3668_led leds[AS3668_MAX_LEDS];
->> +};
->> +
->> +static enum led_brightness as3668_brightness_get(struct led_classdev *cdev)
->> +{
->> +	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
->> +
->> +	return i2c_smbus_read_byte_data(led->chip->client, AS3668_CURR1_REG + led->led_id);
->> +}
->> +
->> +static void as3668_brightness_set(struct led_classdev *cdev, enum led_brightness brightness)
->> +{
->> +	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
->> +
->> +	int err = i2c_smbus_write_byte_data(led->chip->client,
->> +					    AS3668_CURR1_REG + led->led_id,
->> +					    brightness);
->> +
->> +	if (err)
->> +		dev_err(&led->chip->client->dev, "error writing to reg 0x%02x, returned %d\n",
-> 
-> The user isn't going to care about this stuff.
-> 
-> "Failed to set brightness: %d"
-> 
->> +			AS3668_CURR1_REG + led->led_id, err);
->> +}
->> +
->> +static int as3668_dt_init(struct as3668 *as3668)
->> +{
->> +	struct device *dev = &as3668->client->dev;
->> +	struct as3668_led *led;
->> +	struct led_init_data init_data = {};
->> +	int err;
->> +	u32 reg;
->> +
->> +	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
->> +		err = of_property_read_u32(child, "reg", &reg);
->> +		if (err)
->> +			return dev_err_probe(dev, err, "'reg' property missing from %s\n",
-> 
-> "Failed to read 'reg' property"
-> 
+> Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+
+Applied patch 2/3
+
 Thanks
->> +					     child->name);
->> +
->> +		if (reg < 0 || reg > AS3668_MAX_LEDS)
->> +			return dev_err_probe(dev, -EOPNOTSUPP,
->> +					     "'reg' property in %s is out of scope: %d\n",
-> 
-> "Unsupported LED: %d"
-> 
-I understand now that should be user facing messages... Thanks.
->> +					     child->name, reg);
->> +
->> +		led = &as3668->leds[reg];
->> +		led->fwnode = of_fwnode_handle(child);
->> +
->> +		led->led_id = reg;
->> +		led->chip = as3668;
->> +
->> +		led->cdev.max_brightness = U8_MAX;
->> +		led->cdev.brightness_get = as3668_brightness_get;
->> +		led->cdev.brightness_set = as3668_brightness_set;
->> +
->> +		init_data.fwnode = led->fwnode;
->> +		init_data.default_label = ":";
->> +
->> +		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
->> +		if (err)
->> +			return dev_err_probe(dev, err, "failed to register LED %d\n", reg);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int as3668_probe(struct i2c_client *client)
->> +{
->> +	struct as3668 *as3668;
->> +	int err;
->> +	u8 chip_id;
->> +
->> +	if (client->addr != AS3668_EXPECTED_I2C_ADDR)
-> 
-> Expected is weird.
-> 
-> Why are we trying to catch-out the consumer?
-> 
-> If you already know what the I2C address is, just use that.
-> 
-Okay, I will do that instead.
-I aim to fail early in my code and double check everything.
-Drivers shouldn't error check the device tree, if I understand you 
-correctly.
->> +		return dev_err_probe(&client->dev, -EFAULT,
->> +				     "expected i2c address 0x%02x, got 0x%02x\n",
->> +				     AS3668_EXPECTED_I2C_ADDR, client->addr);
->> +
->> +	/* Read identifier from chip */
-> 
-> This comment is superfluous IMHO.
-> 
-> The register name should tell us everything.
-> 
->> +	chip_id = i2c_smbus_read_byte_data(client, AS3668_CHIP_ID1_REG);
->> +
-> 
-> Remove this line.
-> 
->> +	if (chip_id != AS3668_CHIP_ID)
->> +		return dev_err_probe(&client->dev, -ENODEV,
->> +				     "expected chip id 0x%02x, got 0x%02x\n",
-> 
-> "ID"
-> 
->> +				     AS3668_CHIP_ID, chip_id);
->> +
->> +	as3668 = devm_kzalloc(&client->dev, sizeof(*as3668), GFP_KERNEL);
->> +	if (!as3668)
->> +		return -ENOMEM;
->> +
->> +	as3668->client = client;
->> +
->> +	err = as3668_dt_init(as3668);
->> +	if (err)
->> +		return err;
->> +
->> +	/* Set all four channel modes to 'on' */
-> 
-> Even if a specific LED wasn't requested?
-> 
-> Are you sure that this doesn't have any drawbacks (power perhaps)?
-> 
-After reading through downstream code and it's datasheet, this actually 
-might result in higher power consumption than switching it off.
-I suppose we could enable and disable a specific channel when setting 
-the brightness. I will add that in my next patch version.
->> +	err = i2c_smbus_write_byte_data(client, AS3668_CURRX_CONTROL_REG,
->> +					FIELD_PREP(AS3668_CURRX_CURR1_MASK, AS3668_CURRX_MODE_ON) |
->> +					FIELD_PREP(AS3668_CURRX_CURR2_MASK, AS3668_CURRX_MODE_ON) |
->> +					FIELD_PREP(AS3668_CURRX_CURR3_MASK, AS3668_CURRX_MODE_ON) |
->> +					FIELD_PREP(AS3668_CURRX_CURR4_MASK, AS3668_CURRX_MODE_ON));
->> +
->> +	/* Set initial currents to 0mA */
->> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR1_REG, 0);
->> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR2_REG, 0);
->> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR3_REG, 0);
->> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR4_REG, 0);
->> +
->> +	if (err)
->> +		return dev_err_probe(&client->dev, -EIO, "failed to write to the device\n");
->> +
->> +	return 0;
->> +}
->> +
->> +static void as3668_remove(struct i2c_client *client)
->> +{
->> +	int err;
-> 
-> '\n' here.
-> 
-Okay
->> +	err = i2c_smbus_write_byte_data(client, AS3668_CURRX_CONTROL_REG, 0);
->> +	if (err)
->> +		dev_err(&client->dev, "couldn't remove the device\n");
-> 
-> This does not remove the device.
-> 
-> "Failed to turn off the LEDs"
-> 
-Obviously, now that I see it. Thanks
->> +}
->> +
->> +static const struct i2c_device_id as3668_idtable[] = {
->> +	{ "as3668" },
->> +	{ }
->> +};
->> +MODULE_DEVICE_TABLE(i2c, as3668_idtable);
->> +
->> +static const struct of_device_id as3668_match_table[] = {
->> +	{ .compatible = "ams,as3668" },
->> +	{ }
->> +};
->> +MODULE_DEVICE_TABLE(of, as3668_match_table);
->> +
->> +static struct i2c_driver as3668_driver = {
->> +	.driver = {
->> +		.name = "leds_as3668",
->> +		.of_match_table = as3668_match_table,
->> +	},
->> +	.probe = as3668_probe,
->> +	.remove = as3668_remove,
->> +	.id_table = as3668_idtable,
->> +};
->> +module_i2c_driver(as3668_driver);
->> +
->> +MODULE_AUTHOR("Lukas Timmermann <linux@timmermann.space>");
->> +MODULE_DESCRIPTION("AS3668 LED driver");
->> +MODULE_LICENSE("GPL");
->> -- 
->> 2.51.0
->>
-> 
 
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
