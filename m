@@ -1,212 +1,247 @@
-Return-Path: <devicetree+bounces-236792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7963C477C7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:21:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E00BAC4794A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 16:37:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E12118832DB
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:17:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6E6542272D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 15:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259E231B101;
-	Mon, 10 Nov 2025 15:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A75D2405E7;
+	Mon, 10 Nov 2025 15:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t9Of1YLS"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="aEij+ROR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29C93128BF
-	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 15:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DEAD23F26A
+	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 15:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762787708; cv=none; b=atvMCT9rkj9Q02Qfoek03RQU1fV4/Sy6Uc1kk7UnYJhwQlIcKw11gcqk6apC82/hvwG5wRicRPgKKL9COZiP6y9YTyA17tr6y2lSZnRrkxrLEKuFGRYtVQV8kqNOMUw5GOHgbF3remwFAjAihPtjqjvT70pdCeTu0vIB/15hIuI=
+	t=1762788019; cv=none; b=kHld/ucnIqnKQIhjQfj3Mlvu8C4p+iKcsv0HGnxg/Dh2A2S78tdao0sc/yFJ3fhbu63IFJMAPaMMMiEAHquidBOqNPOAf2HLVHv5fVzw4lNeZLwuAD6MwuTbFHG62lEY3AtR9+J9lEZZp3INH1XLKQ45B8I+L0szqsX17QdK2ME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762787708; c=relaxed/simple;
-	bh=lhjELXmZSS3q6E2+rnaT59zCj87rpxz5eWYDWSZrjfo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hWKXqDJA+vX9oXFMNMKdDyZyG/0hGC2jims7xC5N9yFLGnI1uj5FCtSqsgHodwTXwZty/mapFLDU0DPRKvvy90OOQIJYxYq4mSPoIBZ/yWpjUrxjEcKBnw1/VfLs+vbRKqlsshUCOwOKar43ViH2xu4m+PDTYAlzd7jcjDv6Dw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t9Of1YLS; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-64165cd689eso2697308a12.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 07:15:05 -0800 (PST)
+	s=arc-20240116; t=1762788019; c=relaxed/simple;
+	bh=sO2EwoD/iYNjfdcI7NveTHw7NYQaesuq9uoAsC4fvXY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=kVpTWK6qsGKqBh4UuMY0TcTnrb0W6iorF7UTYg0oQqBZh7u1MqwVeyDrbRw/Oi/xaT2ONaoY9/YJbdiQ6u0fd+HvzUqEHI6kTet8X+EUZM7Evn8iu1ruvdxDxLsi1sdjvX59Wn6cNMpyKHI8PMUAS5uwkbsnAe2tv5O34gL1Zpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=aEij+ROR; arc=none smtp.client-ip=209.85.166.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-43320651e53so26789595ab.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 07:20:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762787704; x=1763392504; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tO2FkW94sB9AYPaQQFnYI79pge/7kyoIm3imhrG5Wd8=;
-        b=t9Of1YLS6U+pcaO1lkopLQkFhBLmH9l0uWwSzAO37O9OwEKWoVAk0T7b7V/5ceAfc0
-         eV/F6BPLuR/PVPNOpLDaCsvSmSNvFDEwdIRCEdtNacm6lr30BZNB73YmFn8JSMdb2iAx
-         2ICuvW4Kiimf2fQQTNXMd/lXOlkL80kv0DcdEvg6P6Ih56OQtFbeLkjgc7u3DZqERBV0
-         QiChfp3ux1mpfdu6dpRnDoHhqPhK5cquQWB/jZLnyVdGH8Hi7eM0pOK4bW+sOkn/ZU3I
-         jqQo8oBX7b/SHOHuh40Sr43KAOnh/qSUZ2pjUXwnf9E21wLy/64qoCSt9+xusxqYwRFA
-         dJWQ==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1762788016; x=1763392816; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=wHqCJdsR7z6UGezYu2PLRy2EX3z1OohmVvws0HQYrFQ=;
+        b=aEij+RORaRMFW8ONPGQ9MWQ2SIC99rnZNqHsx0buzMifST7WGMnZpAxk9MePnIjJAm
+         z0Rk4mmyamAHdCvYKqA8ylg2mfS4aKsJ/rwSfqXDuQ0L1cPLsKVA43GTTTfSCR6xpqbR
+         t1HLDL6Y2SkQGWyktQeaC0YOwa84kAizkyOKAsNGvicI9iaH4urPRZrVo8+FsCIDfTiO
+         1P38R0DXg/HLhF6roXQbQxV/FuNuIaUEBlPrxshNCjcNbih4K1hSnyAwHuEolAMFRcqY
+         rF+bFBf/XV4kL+gxrJKUuUgG59wW59TccqLxz0SO+BqLpBxD2G1LCVgI68AwKcn1YdUB
+         bFyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762787704; x=1763392504;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tO2FkW94sB9AYPaQQFnYI79pge/7kyoIm3imhrG5Wd8=;
-        b=ZaXFbxud2rwvNF7lnhmWBvWkv0aCnhjzRrbVyAoIIqpZ3HOeiZXOZnEicNaWIMdD0R
-         KErS1CyOqS4oQXUj80K4kPl6dCLYV1bjDaVonE9xR+1mAXlnhJIO1Te4iR1aej3/Z+Mj
-         Iyu6pKXmXwepsJlMGk7CdFSefssqL/+rIyg1eCrCkW0e8skv+msc1oD75yhFYPSLXpaJ
-         Wuwh6pOAeR5ic6kLQ/2H7nkLFb0ifoqvimWglN0fBvSoOAWH3UehHqHvlp/gkJquyYbF
-         gUTRsQEFueES+SoMYlK+ODf6enpGalJBV/lARyOjCXC95Ks6PXocwF/YIlFbt7ahhY0n
-         U0OA==
-X-Forwarded-Encrypted: i=1; AJvYcCX5H+//6PiXjPuHfinICrjTlTwZdRwl06CFajXRHxxa6NjXk2XqKraWqjeZyRZiQ8DRG4h2tXnLLXZo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrIUf7L3gGqcfw9SGBexxkQLGErk59P0GvKb1MVVXr3u49+Cdd
-	mXeePTCrBkSafOiId3zKiskXgANoM6OIIr/Bcy2DU0f3tNmuHbcaayUX14hMdnhB7hiikRxYCtS
-	LmHyuv2mxu42vNFtEnQ/SYeShQcmLm8R9OmliUy6Iwg==
-X-Gm-Gg: ASbGncvxTAVCvU5Pg/df67Fsd3VbIWpbbFOLZ6ueMauXvaIaowTJR+Rv8LZjj/1xhq0
-	ZOQmomc1isxmfMcsQ7TAyiO2B0QDhVU4g9dmBe7EpLrDL62pyqwbHNyFYKBqsKe75EKtGG3aqoK
-	aRrBTXeWYvceKWemuzxu3H8cEuWl+oRwg0MPd5HyUD5SCadJWxFlvh+i+7/3dgy+YvHNDUZmlHA
-	6E36x4xgaaZ152K9hKoafK7oexvRpVsTIawed7rgBe/b4cAzE84FR0LDS14aJC/Uic6Tyrd2CJ6
-	xfmCpTQp/Vf118Gk77Gr5U4XbKsgvALGugdAMg==
-X-Google-Smtp-Source: AGHT+IF0JiR17k2tNdQIY29GGeZp6tuwfTPaU+/ksYYCINL8GaZCSCzoJNug8wrqVngyVxyRmshkBrZF3f3+WWM6Cjg=
-X-Received: by 2002:a17:907:9408:b0:afa:1d2c:bbd1 with SMTP id
- a640c23a62f3a-b72dff5f6b2mr1002486166b.30.1762787704214; Mon, 10 Nov 2025
- 07:15:04 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762788016; x=1763392816;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wHqCJdsR7z6UGezYu2PLRy2EX3z1OohmVvws0HQYrFQ=;
+        b=teZ8y5JmUiG1tlqJ/zCTa6CkpC5GguTGtFoogs8AaIzI73Sp7SbLYgsRQkbZOFIwGA
+         VgRnG8nBSIM4zPOChapxcoHL9bl/etM/vWR7Vs8oEKuzIm8DzFS6Qe1HlYU9HW8PJUEH
+         Ebmy9KSA7IJQnnLBGzeWa/rPs2YtmiLZ/oJH08oEm0FhnwTn6Y3LIPw59bsk+sl4fgVQ
+         Els9GLRSZf2gpi90QM6tNar5qRRT3V4nqPcItXiAAyITUjveketvxHsZbNYn4JRWz7tA
+         dct9zEkwsUcmoRWI+y8nymTj65xPpXA4vHjud38X+lgoFKmMqNdhPQ6hy/tLJKjRJB2u
+         MQRw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6G9NePnP9+bzkrV8tyIYywFLnleWHTymbE7KshRWvKDQdRsJZL/OqIx/CwY37jbzX2To+97DLzaf5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyD3ISczX1K0wZ+sJYEV9is7dN27iCWjN37w4CKn6iwGcuLHFLo
+	HgnSgevzS4RBDTGtxt707jnOSzTlfQAYnakw8QzZuza2goIMZrm/jxVSYrcKsi+c7yM=
+X-Gm-Gg: ASbGncsc+C4yZ/UQ0P9zKJu/6mt/FvRh8adlvwoAMjBBOBEfzgDjexxZ5cLzrVxzIQ4
+	GAPVio78W8CR8YM5TLqa9XtLdVdq7K8p9IWaLCwNSQ1So6Fxd6sfFi1O1rT/rLKRoW28G9iBPQU
+	2pA58SK5QPCDMZ1u5aYzIcOktikvCNL8cAePCJ52ueLuOrZeVasv8Il2QAqVlvwecAQmVsjP9fr
+	V6zAmONHegKYOjWLSSI9pCw8krLvNloMZfkX8brnc1I/AhbVgL+WLr14JGipo3yNTFhBOqm2h1a
+	ElXbt1twUDSCowNe6FPI+UGJRBVkw/nYwbVLu22jvTJx2S4gEhlkpDRD+m5Ga6jMPAS+f/64QO5
+	DeTq/uhwlO1E6NbsKRpt1Yix7ewAqjjNugnVX0pKB59j3HxiWy/84t8YPo8TEOfNEpCDw1Pb9xz
+	/5wuhWVnySOxv+DPweUDv2oGrLtzzgkOn0Bnl+YwY=
+X-Google-Smtp-Source: AGHT+IEbu7UkRnaq1HAZF7KJE8mC7YX4IT4qsm04tHRZF/RRVkDmdBo8SVYWqOjog8FiLYEn3hk8pw==
+X-Received: by 2002:a05:6e02:1aa2:b0:433:3034:e88 with SMTP id e9e14a558f8ab-43367e48c8bmr107760915ab.21.1762788016218;
+        Mon, 10 Nov 2025 07:20:16 -0800 (PST)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-4334f4f5b90sm56357735ab.33.2025.11.10.07.20.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 07:20:15 -0800 (PST)
+Message-ID: <66ab3a48-5d5a-47c7-b8eb-b477fd987314@riscstar.com>
+Date: Mon, 10 Nov 2025 09:20:13 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251109-arm-psci-system_reset2-vendor-reboots-v17-0-46e085bca4cc@oss.qualcomm.com>
- <20251109-arm-psci-system_reset2-vendor-reboots-v17-5-46e085bca4cc@oss.qualcomm.com>
-In-Reply-To: <20251109-arm-psci-system_reset2-vendor-reboots-v17-5-46e085bca4cc@oss.qualcomm.com>
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date: Mon, 10 Nov 2025 16:14:53 +0100
-X-Gm-Features: AWmQ_bnHJgzy3SDXUbMU9BaI_OynoJofd0BXy7gUevgAAiWJJ2om5cI31VC5pf4
-Message-ID: <CACMJSesMK37D7Qy+rVq7w6bUt6bYGXykUid6bUKXvh7M9mntZA@mail.gmail.com>
-Subject: Re: [PATCH v17 05/12] power: reset: reboot-mode: Expose sysfs for
- registered reboot_modes
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andy Yan <andy.yan@rock-chips.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Moritz Fischer <moritz.fischer@ettus.com>, John Stultz <john.stultz@linaro.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Stephen Boyd <swboyd@chromium.org>, 
-	Andre Draszik <andre.draszik@linaro.org>, 
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
-	Elliot Berman <quic_eberman@quicinc.com>, Xin Liu <xin.liu@oss.qualcomm.com>, 
-	Srinivas Kandagatla <srini@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/7] Introduce SpacemiT K1 PCIe phy and host controller
+To: dlan@gentoo.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, ziyao@disroot.org, johannes@erdfelt.com,
+ mayank.rana@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
+ shradha.t@samsung.com, inochiama@gmail.com, pjw@kernel.org,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ p.zabel@pengutronix.de, christian.bruel@foss.st.com,
+ thippeswamy.havalige@amd.com, krishna.chundru@oss.qualcomm.com,
+ guodong@riscstar.com, devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251107191557.1827677-1-elder@riscstar.com>
+ <aQ8kqIljwGZfkF8M@aurel32.net>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <aQ8kqIljwGZfkF8M@aurel32.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, 9 Nov 2025 at 15:38, Shivendra Pratap
-<shivendra.pratap@oss.qualcomm.com> wrote:
->
-> Currently, there is no standardized mechanism for userspace to
-> discover which reboot-modes are supported on a given platform.
-> This limitation forces tools and scripts to rely on hardcoded
-> assumptions about the supported reboot-modes.
->
-> Create a class 'reboot-mode' and a device under it to expose a
-> sysfs interface to show the available reboot mode arguments to
-> userspace. Use the driver_name field of the struct
-> reboot_mode_driver to create the device. For device-based
-> drivers, configure the device driver name as driver_name.
->
-> This results in the creation of:
->   /sys/class/reboot-mode/<driver>/reboot_modes
->
-> This read-only sysfs file will exposes the list of supported
-> reboot modes arguments provided by the driver, enabling userspace
-> to query the list of arguments.
->
-> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-> ---
->  drivers/power/reset/reboot-mode.c | 62 ++++++++++++++++++++++++++++++++++++++-
->  include/linux/reboot-mode.h       |  2 ++
->  2 files changed, 63 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
-> index 873ac45cd7659b214b7c21958f580ca381e0a63d..582aa7f8ed7fa485c5a67877558c9b15d3600ef4 100644
-> --- a/drivers/power/reset/reboot-mode.c
-> +++ b/drivers/power/reset/reboot-mode.c
-> @@ -6,6 +6,7 @@
->  #define pr_fmt(fmt)    "reboot-mode: " fmt
->
->  #include <linux/device.h>
-> +#include <linux/err.h>
->  #include <linux/init.h>
->  #include <linux/kernel.h>
->  #include <linux/list.h>
-> @@ -23,6 +24,8 @@ struct mode_info {
->         struct list_head list;
->  };
->
-> +static struct class *rb_class;
-> +
+On 11/8/25 5:08 AM, Aurelien Jarno wrote:
+> Hi Alex,
+> 
+> Thanks for this new version.
+> 
+> On 2025-11-07 13:15, Alex Elder wrote:
+>> This series introduces a PHY driver and a PCIe driver to support PCIe
+>> on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
+>> Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
+>> PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
+>> one PCIe lane, and the other two ports each have two lanes.  All PCIe
+>> ports operate at 5 GT/second.
+>>
+>> The PCIe PHYs must be configured using a value that can only be
+>> determined using the combo PHY, operating in PCIe mode.  To allow
+>> that PHY to be used for USB, the needed calibration step is performed
+>> by the PHY driver automatically at probe time.  Once this step is done,
+>> the PHY can be used for either PCIe or USB.
+>>
+>> This initial version of the driver supports 32 MSIs, and does not
+>> support PCI INTx interrupts.  The hardware does not support MSI-X.
+>>
+>> Version 5 of this series incorporates suggestions made during the
+>> review of version 4.  Specific highlights are detailed below.
+>>
+>> Note:
+>> Aurelien Jarno and Johannes Erdfelt have reported seeing ASPM errors
+>> accessing NVMe drives when using earlier versions of this series.
+>> The Kconfig files they used were very different from the RISC-V
+>> default configuration.
+>>
+>> Aurelien has since reported the errors do not occur when using
+>> defconfig.  Johannes has not reported back about this.
+> 
+> Unfortunately, while it is true with v4, this is not the case with v5
+> anymore :(
 
-I know C is a spartan language but the rb_ prefix makes me think of
-the red-black tree. Please call it reboot_mode_class.
+That's too bad, but thank you for reporting it.
 
->  static u64 get_reboot_mode_magic(struct reboot_mode_driver *reboot, const char *cmd)
->  {
->         const char *normal = "normal";
-> @@ -65,6 +68,51 @@ static int reboot_mode_notify(struct notifier_block *this,
->         return NOTIFY_DONE;
->  }
->
-> +static ssize_t reboot_modes_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +       struct reboot_mode_driver *reboot;
-> +       struct mode_info *info;
-> +       ssize_t size = 0;
-> +
-> +       reboot = (struct reboot_mode_driver *)dev_get_drvdata(dev);
+> Fundamentally in the generic designware driver, post_init (which is used
+> to disable L1 support on the controller side) is called after starting
+> the link. The comparison of the capabilities is done in
+> pcie_aspm_cap_init when the link is up, which happens a tiny bit after
+> starting it.
+> 
+> In practice with v4, the link is started, ASPM L1 is disabled and the
+> link becomes up. With v5, the move of the code getting and enabling the
+> regulator changed the timing, and ASPM L1 is now disabled on the
+> controller 2-3 ms after the link is up, which is too late.
 
-No need for the cast.
+Yes in v4, we relied on the root port driver to enable the
+regulator, but (on my system anyway) that happened too late,
+*after* the PCIe controller driver held PERST# asserted for
+100 msec.  PERST# is not supposed to be de-asserted until
+power is known to be stable.  So v5 went back to having
+the controller get the regulator in k1_pcie_probe().
 
-> +       if (!reboot)
-> +               return -ENODATA;
-> +
-> +       list_for_each_entry(info, &reboot->head, list)
-> +               size += sysfs_emit_at(buf, size, "%s ", info->mode);
-> +
-> +       if (size) {
-> +               size += sysfs_emit_at(buf, size - 1, "\n");
-> +               return size;
-> +       }
+I am supposed to receive the WD Blue SN570 on Wednesday, and
+when I get that I'll have a chance to try to reproduce at
+least one of these problems, and can ensure there are no
+timing-related issues like this.
 
-This is a weird logic inversion. Just do:
+Thank you for your continued testing and feedback about this.
 
-if (!size)
-    return -ENODATA;
+					-Alex
 
-return size + sysfs_emit_at(buf, size - 1, "\n");
+> I have added a call to pci_info to display the moment where ASPM is
+> disabled. This is without the regulator change:
+> 
+> [    0.386730] spacemit-k1-pcie ca400000.pcie: host bridge /soc/pcie-bus/pcie@ca400000 ranges:
+> [    0.386970] spacemit-k1-pcie ca800000.pcie: host bridge /soc/pcie-bus/pcie@ca800000 ranges:
+> [    0.387017] spacemit-k1-pcie ca800000.pcie:       IO 0x00b7002000..0x00b7101fff -> 0x0000000000
+> [    0.387047] spacemit-k1-pcie ca800000.pcie:      MEM 0x00a0000000..0x00afffffff -> 0x00a0000000
+> [    0.387062] spacemit-k1-pcie ca800000.pcie:      MEM 0x00b0000000..0x00b6ffffff -> 0x00b0000000
+> [    0.400109] spacemit-k1-pcie ca400000.pcie:       IO 0x009f002000..0x009f101fff -> 0x0000000000
+> [    0.490101] spacemit-k1-pcie ca800000.pcie: iATU: unroll T, 8 ob, 8 ib, align 4K, limit 4G
+> [    0.494195] spacemit-k1-pcie ca400000.pcie:      MEM 0x0090000000..0x009effffff -> 0x0090000000
+> [    0.850344] spacemit-k1-pcie ca400000.pcie: iATU: unroll T, 8 ob, 8 ib, align 4K, limit 4G
+> [    0.950133] spacemit-k1-pcie ca400000.pcie: PCIe Gen.1 x2 link up
+> [    1.129988] spacemit-k1-pcie ca400000.pcie: PCI host bridge to bus 0000:00
+> [    1.335482] pci_bus 0000:00: root bus resource [bus 00-ff]
+> [    1.340946] pci_bus 0000:00: root bus resource [io  0x100000-0x1fffff] (bus address [0x0000-0xfffff])
+> [    1.350181] pci_bus 0000:00: root bus resource [mem 0x90000000-0x9effffff]
+> [    1.358734] pci_bus 0000:00: resource 4 [io  0x100000-0x1fffff]
+> [    1.362033] pci_bus 0000:00: resource 5 [mem 0x90000000-0x9effffff]
+> [    1.368289] spacemit-k1-pcie ca400000.pcie: pcie_aspm_override_default_link_state
+> [    1.375967] pci 0000:00:00.0: [1e5d:3003] type 01 class 0x060400 PCIe Root Port
+> [    1.383043] pci 0000:00:00.0: BAR 0 [mem 0x00000000-0x000fffff]
+> [    1.388927] pci 0000:00:00.0: BAR 1 [mem 0x00000000-0x000fffff]
+> [    1.394826] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+> [    1.400061] pci 0000:00:00.0:   bridge window [io  0x100000-0x100fff]
+> [    1.406460] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
+> [    1.413245] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+> [    1.421012] pci 0000:00:00.0: supports D1
+> [    1.424948] pci 0000:00:00.0: PME# supported from D0 D1 D3hot D3cold
+> [    1.432718] pci 0000:01:00.0: [1987:5015] type 00 class 0x010802 PCIe Endpoint
+> [    1.438698] pci 0000:01:00.0: BAR 0 [mem 0x00000000-0x00003fff 64bit]
+> [    1.445426] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 2.5 GT/s PCIe x2 link at 0000:00:00.0 (capable of 31.504 Gb/s with 8.0 GT/s PCIe x4 link)
+> [    1.464897] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+> 
+> And this is with the regulator change:
+> 
+> [    0.410796] spacemit-k1-pcie ca400000.pcie: host bridge /soc/pcie-bus/pcie@ca400000 ranges:
+> [    0.410836] spacemit-k1-pcie ca800000.pcie: host bridge /soc/pcie-bus/pcie@ca800000 ranges:
+> [    0.410889] spacemit-k1-pcie ca800000.pcie:       IO 0x00b7002000..0x00b7101fff -> 0x0000000000
+> [    0.410917] spacemit-k1-pcie ca800000.pcie:      MEM 0x00a0000000..0x00afffffff -> 0x00a0000000
+> [    0.410932] spacemit-k1-pcie ca800000.pcie:      MEM 0x00b0000000..0x00b6ffffff -> 0x00b0000000
+> [    0.424651] spacemit-k1-pcie ca400000.pcie:       IO 0x009f002000..0x009f101fff -> 0x0000000000
+> [    0.436446] spacemit-k1-pcie ca400000.pcie:      MEM 0x0090000000..0x009effffff -> 0x0090000000
+> [    0.513897] spacemit-k1-pcie ca800000.pcie: iATU: unroll T, 8 ob, 8 ib, align 4K, limit 4G
+> [    0.559595] spacemit-k1-pcie ca400000.pcie: iATU: unroll T, 8 ob, 8 ib, align 4K, limit 4G
+> [    0.839412] spacemit-k1-pcie ca400000.pcie: PCIe Gen.1 x2 link up
+> [    0.847078] spacemit-k1-pcie ca400000.pcie: PCI host bridge to bus 0000:00
+> [    0.857600] pci_bus 0000:00: root bus resource [bus 00-ff]
+> [    0.868702] pci_bus 0000:00: root bus resource [io  0x100000-0x1fffff] (bus address [0x0000-0xfffff])
+> [    1.146409] pci_bus 0000:00: root bus resource [mem 0x90000000-0x9effffff]
+> [    1.373742] pci 0000:00:00.0: [1e5d:3003] type 01 class 0x060400 PCIe Root Port
+> [    1.380963] pci 0000:00:00.0: BAR 0 [mem 0x00000000-0x000fffff]
+> [    1.386883] pci 0000:00:00.0: BAR 1 [mem 0x00000000-0x000fffff]
+> [    1.392808] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+> [    1.395394] pci 0000:00:00.0:   bridge window [io  0x100000-0x100fff]
+> [    1.401811] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
+> [    1.408583] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+> [    1.416354] pci 0000:00:00.0: supports D1
+> [    1.420294] pci 0000:00:00.0: PME# supported from D0 D1 D3hot D3cold
+> [    1.428220] pci 0000:01:00.0: [1987:5015] type 00 class 0x010802 PCIe Endpoint
+> [    1.434034] pci 0000:01:00.0: BAR 0 [mem 0x00000000-0x00003fff 64bit]
+> [    1.440772] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 2.5 GT/s PCIe x2 link at 0000:00:00.0 (capable of 31.504 Gb/s with 8.0 GT/s PCIe x4 link)
+> [    1.463390] pci 0000:01:00.0: pcie_aspm_override_default_link_state
+> [    1.467000] pci 0000:01:00.0: ASPM: default states L1
+> [    1.472093] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+> 
+> Note how the line pcie_aspm_override_default_link_state arrives too
+> late.
+> 
+> Regards
+> Aurelien
+> 
 
-> +
-> +       return -ENODATA;
-> +}
-> +static DEVICE_ATTR_RO(reboot_modes);
-> +
-> +static int create_reboot_mode_device(struct reboot_mode_driver *reboot)
-> +{
-> +       int ret = 0;
-> +
-> +       if (!rb_class) {
-> +               rb_class = class_create("reboot-mode");
-> +               if (IS_ERR(rb_class))
-> +                       return PTR_ERR(rb_class);
-> +       }
-
-Why the lazy initialization here? Is there any reason you can't
-statically define the class? Don't you need synchronization here if
-multiple drivers try to do this?
-
-Bart
 
