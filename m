@@ -1,82 +1,84 @@
-Return-Path: <devicetree+bounces-236886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D08FC49032
-	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:29:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8FDC49114
+	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 20:33:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E640E34AF8A
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87C1B3A84C3
 	for <lists+devicetree@lfdr.de>; Mon, 10 Nov 2025 19:29:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BB6335BAF;
-	Mon, 10 Nov 2025 19:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8AB336ECE;
+	Mon, 10 Nov 2025 19:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LojUZMT1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nm4pFbuo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E61F335060
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA75833556D
 	for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 19:29:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762802943; cv=none; b=CyE8AfTK9wXhvN1i5i/EPqZ8OXALXRbBWvZWgVxKhqj+6t8gRDL0vYOcw86/MV/c0utf3mbomKzCT9/EAxmZE+KmUVtfB1AmxcSEayI+JNj+YdNw1kweZbJxnMg0UaE+glBepamd9vjIwuBexGBfIIqvuP+V4OnEvTxEtFog+PQ=
+	t=1762802944; cv=none; b=WK9q/SKKeiQU5YeZLnn2KwJ4pK7OPcCYKnrebOk8q0onVek7bbKHSw6liP5m+SucShL4LunmuqkhSP0GF2wDIoZC/ibAnzGeSHxoxMWZytqQhUjzJ/EeVJgrkLqji37o2NuscAjfGUq4QSqnd+SA+0u31QZSH4vV+M7x/s1LFbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762802943; c=relaxed/simple;
-	bh=f3S1cKdht3kZHoel4MbQIxp/lZBX/mNmHWJDKrE9xDg=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aAq7XAknzZ1POdIe2CxZbwy7u6ZqZpOPOCqjvkkZjKPjLpc4LN+SwkKaPiY27EkBbRrscYuhKt/slYSDJCJgdoWhaGcfDSm/VES4LpHobR8fzFDDFqWP0Ms4xc91FKhrSz26YIuYFbvTIB93umE+QDvFOpMtCiupPMzb5r4ZP+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LojUZMT1; arc=none smtp.client-ip=209.85.218.51
+	s=arc-20240116; t=1762802944; c=relaxed/simple;
+	bh=83VsTolNJs8TOx5t5je1+Dgh3QeYaZvyttBMyQSF5Po=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=g8D0qU1C6d9iUvCIIGHTMxk/WQ45ioQ/XPHPjXiFeYV/pQOetTSvIJoaUJR4f18l6zPYLUmVyS79m5yI3bKqD4WowLggBI2A49RCQ9U5+Q4mRN8APzoEAuGgVQOIQBlQ+7Y6psAxQb/ZoppL+8N+6Mo3L/uy+GPtKLlcMAL7+1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nm4pFbuo; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b73161849e1so184291566b.2
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-6419aaced59so1916565a12.0
         for <devicetree@vger.kernel.org>; Mon, 10 Nov 2025 11:29:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1762802940; x=1763407740; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FKdZe89NorWwgJaIO/LXEozigX9tYIbwZu+kVWuAwYQ=;
-        b=LojUZMT1NhkfMwteUEb5Dfjb07Se00OplvN+9CyuCs5+3956L+4t1ajeLNkxsaga2S
-         xRLR62ROZAHPng1PBdIpI7MUsufRptZ5cvsjYRDm3YIWRnTV9qlOCSBRoivXDrslK4VN
-         LuKAcX58NAEkTE6FMdZQg+UzOFBHor0XshSctJ53m+4ccG3WqeSZ3oivVwWHXzPwbEHV
-         FoBN+Ua/0mxSRzojuvyzRMSMNqLlnjDH9Qqr8U/4KYPcEJlFe7FN/mnnuGEaNrBnJuui
-         JnvBJd/5Q1+hoj7b3sEPZwJ9aFefOnUBMrg/A4gyYR11EZFSmJWYaR/obQapm4UZVVnQ
-         aKag==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zfP9r+aA134P6xP9G9rUEiFSSucymGxSGs4llBYmBio=;
+        b=Nm4pFbuobOQlggfIxdgG6t7pEXdzGehMljmEWDoqJNDp+QFWnWVqI0BINvqnhO0Ixm
+         Sz5GSTFPiwTGdu25YcmYTpibFdkTE9Vfoh0bhjJgOyp0GVxoYGTRdl99V3eaioa5g0dg
+         Lyn3kuzKh1Dzb5lcFWoAgOy1X+NentNRezsjJuT2xkn2aXPPLrBPQgXMlTZrI+j6itPu
+         crZHd0e4kU1BwuMAr80Krxu8zQ1Ofmcd8HaU340O7KnkrR0XHGPfSYjpO0AAHaoD/Gsu
+         l2hfWybKMf28JMSb2GxS6auBSKS0mckMhtdDrVVZmJSZlfLXuuJQDCMiYTSjOB/+86iH
+         2znA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1762802940; x=1763407740;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FKdZe89NorWwgJaIO/LXEozigX9tYIbwZu+kVWuAwYQ=;
-        b=fjtIx8o/KTCqNCx8j62lHAXwL1kIGkL2UQOBIQThxt2VEzzLj4yQLsD338cxQIvZMU
-         eEh61i+t0U0M8r7cn5rd/wIFhp33S/UQaRPzLsBoxI2vMSEP3ftLfiHv73hr/8aW88BF
-         wgM+86aoZmn3zDFRhC6StpusEdiC3yAyek1WgqtvXbdPSAAMUbV9JKuQ7rMA5Jwba1f/
-         zXheeyB82yy5mODggGShFxbaLRvCemVClTVk+3Yu8OlzfbAggUECFGeYeu/KKI9gVZlY
-         KC4UmNsj5DxoobYZ5pjGSItPEaWN4hADMlBJsJ5C62/dwLxkVJPU6NK9ncYzJFEj4hda
-         5f5g==
-X-Forwarded-Encrypted: i=1; AJvYcCU5NpAFDpufpCdC+ruGNLMrC+aJV2wZ3OLhEyzIzxp8Gi/Y5AO+lzsxxz/8JQCSlotZvKakKCIOF4/4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTFM7ug3f+ygAh9+QpYarCbW+xei0NpC7P9bRSG7146oa/pO2q
-	mheuWYY5BVx1HGEuWgVTn56cgdJ6ha2qv1C4eMU1n0nFZMAtixPHBY582DA1dNcd3Ls=
-X-Gm-Gg: ASbGncsM59CHPHTfDhdWWxWHVW5hkboSCuJdHfCUgmZEtHPtGDq4HsYPwhLqnl43wc+
-	JP8f43Mvxf1tfweCgiT91aKDf0trBfXebSaaR+5jW90VtGPOXZmWMznWYQDusBQ9D5bvqcCC3AE
-	G2kUAjzoHmitVmcFqqj6shJwPl3eK8zM3tSaDFlhvg0GimuzcoVgZBQsm5OLOjrlGaZr6ghNfpa
-	JUSNeyZXMu4104dY8bR1Buxa19EBeOYLTzS7zeBOlwAf56mxLAAz9WYQV/HzN5SztBXaQ8eO681
-	o1wlMaHb32whVlZSGV/HVTlqR7Yhr+8lMXk2g9pZ3PNKDVMnu/r3FDsXJe10lSo40JKCeGQBC/D
-	+sQ86es/9vCGC/hNCyMqETxvJ0qovYdbk9INq3CmXCi67rZDRzODPAEsJt8RbIhZoMlCRwJexWM
-	liUDoDqo3astm1CmvVGZitEgJcPYonQ9H3DUcZAhuKEB6WR/ec5ZGguSg6fxpT
-X-Google-Smtp-Source: AGHT+IH2dqirFoLkavJGS5qBPbnJ9M5TyrEZS7O2lfAv2uox0RTpc8G99qEsSV1feTjCe5cuHy12Mw==
-X-Received: by 2002:a17:907:7b83:b0:b72:7dbd:3bf with SMTP id a640c23a62f3a-b72e045a604mr844093366b.43.1762802939607;
-        Mon, 10 Nov 2025 11:28:59 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zfP9r+aA134P6xP9G9rUEiFSSucymGxSGs4llBYmBio=;
+        b=HJTFrwSB5jMuIhsjyaagZ2CByeJcpy3f3Yh7EHb7ZBpATpp9XpNxYnU1pEzpkAB1LQ
+         6OzoJDAnwdKXQyJzCih57YmHjwmKcmIZpNtKcTlMnGm3ZEYs3uCdbqrmiBGFquGcgc6L
+         y2MzT9IpJRzWUH2K7M2tWxiAtsLuvUt2IMy6tZGZJg5+Q/8v/HDb3xFhmtZO6E6n27pl
+         TbBoH8BaLM4bV5zc8TTNH5U0jPq/fBfsvViPh+XJSy0J4noFnnLSzl4x2/R4G/vMMDZQ
+         ht2PdfKM+N75Codwj1SCYiEqcF7R/CsXgnUNUdCC+yXwXARqZaj7Pifmew0nwr94oQDo
+         pldA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbMiwlcZm6axg6NRp+1j0npPpk7OHZJKKPXRFqKvufZRbRbG8QEFPFWJM8lK/Lcbu8UKMihib+eMeA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9KioXNxxu8D/+eRcs5aBibJSl8Sugn1QwPBGtbLytWhFtz/CN
+	Xef+pKFVqkyCpvujgqCLTIrBi+s+FLSSf8B6h39a1NMLneUIUdTjLyCeqU9EIdEnaWo=
+X-Gm-Gg: ASbGncsGfBBjZOTeUAK32kySGPADVMt7fn5QZ8XIwwIFJanmy9rX+0rIE+qmctgqBNB
+	K/eHd0EKRbeg9hrtTy0y/DgbU2P6Hi61KYtraFsDTEpLzUzUGy3q8Z0Wm0zFV9bcsUoQPJkCaPA
+	s9JV4xgP5HNeKAl9uEgnnT/fQrZCWviYPQ6GDOfcfQNyapzIoa5i/tx353iZVZqvndBnQS/MVyP
+	HbXF0FrhUfP4BavUdNxhyFJeGxyGRCMoa9JV8lnO9E3XMEhynojAGCmqH1gZ0yf92ywEeU4fESi
+	VtTp/VT8Uu+/+Ev87RNTuEh3PchkvxQ1t60gvrNYkaSV6nJSW1KeS3yuISgj7nN++nmD2TjCiBz
+	FqHB239C/wavA6mWBh0YmKPkmRyO3e8ZEkarJRWd36T3C68XSKyvX8UpJB5Vq1jXPrHpZEtS6tv
+	veM6ZeCCpqvj5On789ZFsGwKPxxwJad+WDIwkQT1LFleIc95VvVlO5HrKk5jdwkhxuLLRzNW2mS
+	z6BBbLY8Q==
+X-Google-Smtp-Source: AGHT+IEZSSPtpeal08mT4JDkWnZNl6emyDrDOdTdmyu1o0WbaEe+XhWXtXX8M4p/UGGBXNH33FFv6g==
+X-Received: by 2002:a17:907:6e8f:b0:b6f:9da9:4b46 with SMTP id a640c23a62f3a-b72e056cc6dmr966964766b.43.1762802940115;
+        Mon, 10 Nov 2025 11:29:00 -0800 (PST)
 Received: from puffmais2.c.googlers.com (254.48.34.34.bc.googleusercontent.com. [34.34.48.254])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf97d16esm1168178166b.35.2025.11.10.11.28.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 10 Nov 2025 11:28:59 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Subject: [PATCH v4 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
- drivers
-Date: Mon, 10 Nov 2025 19:28:43 +0000
-Message-Id: <20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org>
+Date: Mon, 10 Nov 2025 19:28:44 +0000
+Subject: [PATCH v4 01/20] dt-bindings: firmware: google,gs101-acpm-ipc:
+ convert regulators to lowercase
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,11 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAOs8EmkC/23Pyw6CMBAF0F8hXVvTF4+68j+Mixam0AQpabXBE
- P7dQqLRyPJOZs7NzCiAtxDQKZuRh2iDdUMK4pChulNDC9g2KSNGWE4KwnFgt7GlE/bQPnp1dz7
- gUglaV1xKpQ1Kh6MHY6cNvVxT7mxIe8+tI9J1+ubEHhcpJjhVVaUgRkgF594Oyruj8y1avci+j
- WLXYMnQhBswpmEFo38G/xiU7r8V+WpUWha6lEDy6sdYluUFsL455T0BAAA=
-X-Change-ID: 20250603-s2mpg1x-regulators-7a41c8399abf
+Message-Id: <20251110-s2mpg1x-regulators-v4-1-94c9e726d4ba@linaro.org>
+References: <20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org>
+In-Reply-To: <20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org>
 To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -100,121 +100,46 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
  linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.14.2
 
-This series extends the existing S2MPG10 PMIC driver to add support for
-the regulators, and adds new S2MPG11 core and regulator drivers.
+Using lowercase for the buck and ldo nodenames is preferred, as
+evidenced e.g. in [1].
 
-This series must be applied in-order, due to the regulator drivers
-depending on headers & definitions added by the bindings and core
-drivers. I would expect them all to go via the MFD tree.
+Convert the example here to lowercase before we add any bindings
+describing the s2mpg1x regulators that will enforce the spelling.
 
-The patches are kept together in one series, due to S2MPG11 and its
-regulators being very similar to S2MPG10.
-
-The Samsung S2MPG11 PMIC is a Power Management IC for mobile
-applications with buck converters, various LDOs, power meters, and
-additional GPIO interfaces. It typically complements an S2MPG10 PMIC in
-a main/sub configuration as the sub-PMIC and both are used on the
-Google Pixel 6 and 6 Pro (oriole / raven).
-
-A DT update for Oriole / Raven to enable these is required which I will
-send out separately.
-
-Cheers,
-Andre'
-
+Link: https://lore.kernel.org/all/20250223-mysterious-infrared-civet-e5bcbf@krzk-bin/ [1]
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
-Changes in v4:
-- Krzysztof:
-  - s2mpg10-regulator.yaml: move additionalProperties to after allOf
-  - s2mpg10-regulator.yaml: use $defs, not definitions
-  - split samsung,s2mpg10-pmic.yaml and samsung,s2mpg11-pmic.yaml
-  - add full example for samsung,s2mpg10-pmic.yaml and 11
-  - acpm binding: commit message update
-  - acpm binding: pmic -> pmic-1, pmic2 -> pmic-2
-- ensure binding file names match bindings
-- fix typos in s2mpg11-regulator.yaml description text
-- collect tags
-- Link to v3: https://lore.kernel.org/r/20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org
+ Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Changes in v3:
-- Krzysztof:
-  - split s2mpg10 core binding into separate file
-  - drop PCTRLSEL values that can be described using standard
-    properties, and update remaining macro names (self)
-  - drop maxItems:1 where not needed (Krzysztof)
-  - samsung,ext-control-gpios -> enable-gpios
-- fix LDO20M_EN pin name -> VLDO20M_EN
-- move all binding patternProperties to top-level
-- one (driver) instance per actual rail, not per rail type (LDO or
-  buck)
-- new macro REGULATOR_LINEAR_VRANGE() (patch 10)
-- address some (pre-existing) checkpatch warnings
-- various updates to regulator driver (patch 16 & 19).See footer there
-- more descriptive commit messages
-- Link to v2: https://lore.kernel.org/r/20250606-s2mpg1x-regulators-v2-0-b03feffd2621@linaro.org
+diff --git a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
+index d3bca6088d128485618bb2b538ed8596b4ba14f0..4a1e3e3c0505aad6669cadf9b7b58aa4c7f284cb 100644
+--- a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
++++ b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
+@@ -75,7 +75,7 @@ examples:
+             interrupts-extended = <&gpa0 6 IRQ_TYPE_LEVEL_LOW>;
+ 
+             regulators {
+-                LDO1 {
++                ldo1m {
+                     regulator-name = "vdd_ldo1";
+                     regulator-min-microvolt = <700000>;
+                     regulator-max-microvolt = <1300000>;
+@@ -84,7 +84,7 @@ examples:
+ 
+                 // ...
+ 
+-                BUCK1 {
++                buck8m {
+                     regulator-name = "vdd_mif";
+                     regulator-min-microvolt = <450000>;
+                     regulator-max-microvolt = <1300000>;
 
-Changes in v2:
-- s2mpg11 also exposes additional GPIOs, update all relevant commit
-  messages (nevertheless, GPIOs are out of scope in this series)
-- fix some commit message typos: s2mp1 -> s2mpg1
-- patch2: drop | (literal style mark) from samsung,ext-control-gpios
-- patch5: add | to vinb*-supply description for better formatting
-- patch13: update ::of_parse_cb assignment
-- patch15: drop duplicated ::of_parse_cb assignment
-- Link to v1: https://lore.kernel.org/r/20250604-s2mpg1x-regulators-v1-0-6038740f49ae@linaro.org
-
----
-André Draszik (20):
-      dt-bindings: firmware: google,gs101-acpm-ipc: convert regulators to lowercase
-      regulator: dt-bindings: add s2mpg10-pmic regulators
-      regulator: dt-bindings: add s2mpg11-pmic regulators
-      dt-bindings: mfd: samsung,s2mps11: Split s2mpg10-pmic into separate file
-      dt-bindings: mfd: samsung,s2mpg10-pmic: Link to its regulators
-      dt-bindings: mfd: Add samsung,s2mpg11-pmic
-      dt-bindings: firmware: google,gs101-acpm-ipc: add S2MPG11 secondary PMIC
-      mfd: sec-common: Instantiate s2mpg10 bucks and ldos separately
-      mfd: sec: Add support for S2MPG11 PMIC via ACPM
-      regulator: add REGULATOR_LINEAR_VRANGE macro
-      regulator: s2mps11: drop two needless variable initialisations
-      regulator: s2mps11: use dev_err_probe() where appropriate
-      regulator: s2mps11: place constants on right side of comparison tests
-      regulator: s2mps11: update node parsing (allow -supply properties)
-      regulator: s2mps11: refactor handling of external rail control
-      regulator: s2mps11: add S2MPG10 regulator
-      regulator: s2mps11: refactor S2MPG10  ::set_voltage_time() for S2MPG11 reuse
-      regulator: s2mps11: refactor S2MPG10 regulator macros for S2MPG11 reuse
-      regulator: s2mps11: add S2MPG11 regulator
-      regulator: s2mps11: more descriptive gpio consumer name
-
- .../bindings/firmware/google,gs101-acpm-ipc.yaml   |   54 +-
- .../bindings/mfd/samsung,s2mpg10-pmic.yaml         |  120 ++
- .../bindings/mfd/samsung,s2mpg11-pmic.yaml         |   88 ++
- .../devicetree/bindings/mfd/samsung,s2mps11.yaml   |   29 +-
- .../regulator/samsung,s2mpg10-regulator.yaml       |  158 +++
- .../regulator/samsung,s2mpg11-regulator.yaml       |  136 +++
- MAINTAINERS                                        |    1 +
- drivers/mfd/sec-acpm.c                             |  213 +++-
- drivers/mfd/sec-common.c                           |   88 +-
- drivers/mfd/sec-irq.c                              |   67 +-
- drivers/regulator/s2mps11.c                        | 1193 ++++++++++++++++++--
- .../regulator/samsung,s2mpg10-regulator.h          |   53 +
- include/linux/mfd/samsung/core.h                   |    1 +
- include/linux/mfd/samsung/irq.h                    |   99 ++
- include/linux/mfd/samsung/s2mpg10.h                |   24 +
- include/linux/mfd/samsung/s2mpg11.h                |  434 +++++++
- include/linux/regulator/driver.h                   |    5 +
- 17 files changed, 2605 insertions(+), 158 deletions(-)
----
-base-commit: ab40c92c74c6b0c611c89516794502b3a3173966
-change-id: 20250603-s2mpg1x-regulators-7a41c8399abf
-
-Best regards,
 -- 
-André Draszik <andre.draszik@linaro.org>
+2.51.2.1041.gc1ab5b90ca-goog
 
 
