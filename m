@@ -1,207 +1,157 @@
-Return-Path: <devicetree+bounces-237198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E79C4E02C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:04:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C06F2C4E077
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:10:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 50DBB4E85B7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:57:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A0291887DD9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF6C3AA1B1;
-	Tue, 11 Nov 2025 12:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04ADA32825C;
+	Tue, 11 Nov 2025 13:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EyO5VqE5"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="2vioiRNQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f202.google.com (mail-pl1-f202.google.com [209.85.214.202])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F783AA190;
-	Tue, 11 Nov 2025 12:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BFF324705
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762865839; cv=none; b=VJhl10ftvuRKApCdtuMssw7RLkkEx5HT8kqKiXuqGEADbfjywO4gSby4iKZPf2FiwP8mKFC/tsyjWRt2Ck9B5tYzQg+RCT29b5Ovv6lahzHCgvhqSaSVtoECTRfl5/1fqk7p6xptqhO3oOeOfzT6lDTQPykvWbW5Y6e+P+SF6/4=
+	t=1762866398; cv=none; b=RT0XJNgZIKnCAS/hWrS1fjsC80L2esjbJdRy4kjy4Y8+yHQ790WIxatnamBagy8ZoCKZjRaJG/YidEYVdGWnetwo5ylb/4sPQnYcfcYRdLBZO+H/34N+DbIZOMNHkKRL34whL6e5k9C390eX8sLlPdJ8hW/kjqVSnkFCTxBGrZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762865839; c=relaxed/simple;
-	bh=MjH9p/+LiZ+r7NEuBOPrqSJjE3YW0uIHvCW2oADt5lE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IKMI6FoQ8DyQBAJR0tgw2UnYphgGo5dahiC/Dhs4Tnr/VpX7xiF0hVEwLctLKKkJHw+94uhrd5JX2aNWyQIMlCtiNuz29wikbwYvxQXYJZUqmI/RRLp7XW7bz5f5RA9TFty/LuZB6CT+Q/NSYZ4j6dA2jNtv3ZtSJBVofuUi+qU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EyO5VqE5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48115C4CEF7;
-	Tue, 11 Nov 2025 12:57:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762865838;
-	bh=MjH9p/+LiZ+r7NEuBOPrqSJjE3YW0uIHvCW2oADt5lE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EyO5VqE55DxGU9ycLNHGF0eZ/oY4Rm8O8YckXm94ZVwTfkv0ezSP8fBTsK1tPGp9R
-	 TFChE+UjyhNtFTRyHxm/EHpvHeHh4Z9XCgdBX0HuJhH9uiEMxEjDvNBbio0Kgs14X0
-	 iuQqZmisDC0Zg2oBpaHKqQnwBDZygj9C2wIZMBhqLlqmYOxCm52hJGJbOXQlgRi/EB
-	 FvbyeekYUT3bDEYa9J8YZniSpa3uRvkZibdN7fgyPB3nxzs1fKj5lKY5+TXBPeJsgg
-	 sW1ob78VeS6mHGuisfWX4UzemODQBDdrrpPK4gevs1Dn3yt9LBo2fHUZNEwKWdE0fY
-	 SWnlH9SvmkBcg==
-Date: Tue, 11 Nov 2025 06:57:16 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Richard <thomas.richard@bootlin.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: gpio: add gpio-line-mux controller
-Message-ID: <20251111125716.GA2560355-robh@kernel.org>
-References: <20251111092705.196465-1-jelonek.jonas@gmail.com>
- <20251111092705.196465-2-jelonek.jonas@gmail.com>
+	s=arc-20240116; t=1762866398; c=relaxed/simple;
+	bh=CThgWWPtEqJWZJez06Yg+7QIG9rxsQTAq9Wa52dMb1U=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=ZhMf0r56BtvqC5euVbX24zMyOtZu5qWvZV7qaO2AlrxWhpnbBRrOxaiP0DRKjKrqNcK6GJwXVj789LA2RRCKHSYXTFTiWCM5/kYssOyvVGQWPcBD7ix6+I8DmGeglgX8EnkC6MKviFsd2dJvfq6PTFILLmT71SmRRXkMUen2ViQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=2vioiRNQ; arc=none smtp.client-ip=209.85.214.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com
+Received: by mail-pl1-f202.google.com with SMTP id d9443c01a7336-297f587dc2eso37953495ad.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 05:06:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1762866396; x=1763471196; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HLA1a9NwMSaye0i3Nk+UwWtVJYN2Zgn27uLzKW7b1TM=;
+        b=2vioiRNQEvxQ7SWD7+KQOM6KjLEdP51J3M6K6s5Cx/ayU6hLDgQfP504QuOd0ddENr
+         XvWINyZpaUeIvVrW3ZWYCrQAssTnT/TXmLaBM4PhYZaZuua8Wv0cjLPS0c28IerYMDnc
+         OSuiI6mUZ+4hKqpXT/ULhnj/UaTuTsfH+JMXu9vUvJY/qkv/cDk9oQk5RQ7n295IJxdF
+         EB8XaSBk1ssLCI2zAXaMKZmRGWDMch8howANpaYcF4wOQPX/KAgaTCowYuYQ9ltQIbLd
+         KmCx8BXsXpAizTcL1tubLTsWVmMbN21DAImqu6B5IEKaQ4jtqxvT4PXqFCjO/EWccU+1
+         NzNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762866396; x=1763471196;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HLA1a9NwMSaye0i3Nk+UwWtVJYN2Zgn27uLzKW7b1TM=;
+        b=I5MTD9tVd7+mPblUp/GU5uZ1HXfed1pLYOq+ILHctGgXARWhfZ5AqE7kfDwLIv/yrQ
+         UIf2bRNFeuHAPWSDukdN1grzyqh5qBkQeOl0b57ArMtjpbMXwjhMDuzkmgpVBxk8G6d0
+         FXMvdQXl2k44ANEQDAsw5G4659QEgbU8jDw1btQ6avPmd2bNaFgku5PJIHuywq7w6hRN
+         va1Gl7TXrDGmHwX1orysjqbMBfyk2paiOUJr+UT3PkLTiR3K21yRyowOJ6zwzQ+Nvt65
+         EFh4AjdYuT4CFAx07zVChUEyjkIhDnw/lc6j8QMpbIH2ncZwxngk5SuO4j0fL6idL+Gm
+         OiOA==
+X-Forwarded-Encrypted: i=1; AJvYcCU5+/K1Iqh+LBF0c3/zjzgGMC6P7HGX2o6WDmFjjpC/ksR4VpPKyMqUGxUg4DICiowaOtsQ6njLKwSJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywvkq/mYX153f2y+YPlvE02kK6mqWOVBt2W5K/ntYLJChBr/aOM
+	qaKOYbzptj5ywPVm5MdscI9D53V3Mqod9ftUuhrXmB/SETSwaCpkkIYSgjjpO2v8RTf2QvdZe5v
+	KAAtSgA==
+X-Google-Smtp-Source: AGHT+IElmoSTCWhrtDQMxFiiHT8qX+5BcFGeEfnNbpvXgiMm/IRBQUBpX9auVk9JMiKJ6y0sU7Gv4vGyA/A=
+X-Received: from dlii28.prod.google.com ([2002:a05:7022:419c:b0:119:b185:ea6e])
+ (user=royluo job=prod-delivery.src-stubby-dispatcher) by 2002:a17:903:283:b0:295:32ea:4cf6
+ with SMTP id d9443c01a7336-297e540709cmr156079625ad.5.1762866395690; Tue, 11
+ Nov 2025 05:06:35 -0800 (PST)
+Date: Tue, 11 Nov 2025 13:06:22 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251111092705.196465-2-jelonek.jonas@gmail.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.51.2.1041.gc1ab5b90ca-goog
+Message-ID: <20251111130624.3069704-1-royluo@google.com>
+Subject: [PATCH v5 0/2] Add Google Tensor SoC USB controller support
+From: Roy Luo <royluo@google.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Peter Griffin <peter.griffin@linaro.org>, 
+	"=?UTF-8?q?Andr=C3=A9=20Draszik?=" <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, Roy Luo <royluo@google.com>, 
+	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Nov 11, 2025 at 09:27:03AM +0000, Jonas Jelonek wrote:
-> Add dt-schema for a gpio-line-mux controller which exposes virtual
-> GPIOs for a shared GPIO controlled by a multiplexer, e.g. a gpio-mux.
-> 
-> The gpio-line-mux controller is a gpio-controller, thus has mostly the
-> same semantics. However, it requires a mux-control to be specified upon
-> which it will operate.
-> 
-> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../bindings/gpio/gpio-line-mux.yaml          | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml b/Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-> new file mode 100644
-> index 000000000000..0228e9915b92
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO line mux
-> +
-> +maintainers:
-> +  - Jonas Jelonek <jelonek.jonas@gmail.com>
-> +
-> +description: |
-> +  A GPIO controller to provide virtual GPIOs for a 1-to-many input-only mapping
-> +  backed by a single shared GPIO and a multiplexer. A simple illustrated
-> +  example is
+This series introduces USB controller support for the Google Tensor G5
+SoC (codename: Laguna), a new generation of Google silicon first
+launched with Pixel 10 devices.
 
-colon on the end.
+The Tensor G5 represents a significant architectural overhaul compared
+to previous Tensor generations (e.g., gs101), which were based on Samsung
+Exynos IP. Although the G5 still utilizes Synopsys IP for the USB
+components, the custom top-level integration introduces a completely new
+design for clock, reset scheme, register interfaces and programming
+sequence, necessitating new drivers and device tree bindings.
 
-> +
-> +            +----- A
-> +    IN     /
-> +    <-----o------- B
-> +        / |\
-> +        | | +----- C
-> +        | |  \
-> +        | |   +--- D
-> +        | |
-> +       M1 M0
-> +
-> +    MUX CONTROL
-> +
-> +     M1 M0   IN
-> +      0  0   A
-> +      0  1   B
-> +      1  0   C
-> +      1  1   D
-> +
-> +  This can be used in case a real GPIO is connected to multiple inputs and
-> +  controlled by a multiplexer, and another subsystem/driver does not work
-> +  directly with the multiplexer subsystem.
-> +
-> +properties:
-> +  compatible:
-> +    const: gpio-line-mux
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-line-mux-states:
-> +    description: Mux states corresponding to the virtual GPIOs.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  gpio-line-names: true
-> +
-> +  mux-controls:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+The USB subsystem on Tensor G5 integrates a Synopsys DWC3 USB 3.1
+DRD-Single Port controller with hibernation support, and a custom PHY
+block comprising Synopsys eUSB2 and USB 3.2/DP combo PHYs. The PHY
+support is sent as a separate patch series.
 
-Already has a type. Drop the ref.
+Co-developed-by: Joy Chakraborty <joychakr@google.com>
+Signed-off-by: Joy Chakraborty <joychakr@google.com>
+Co-developed-by: Naveen Kumar <mnkumar@google.com>
+Signed-off-by: Naveen Kumar <mnkumar@google.com>
+Signed-off-by: Roy Luo <royluo@google.com>
+---
+Changes in v5:
+- Use syscon to access host_cfg and usbint_cfg MMIO space per
+  discussion in https://lore.kernel.org/linux-phy/89733ddf-8af3-42d0-b6e5-20b7a4ef588c@kernel.org
+- Make warn logs in dwc3_google_resume_irq() dev_dbg.
+Link to v4: https://lore.kernel.org/linux-usb/20251017233459.2409975-1-royluo@google.com
 
-> +    maxItems: 1
-> +    description:
-> +      Phandle to the multiplexer to control access to the GPIOs.
-> +
-> +  ngpios: false
+Changes in v4:
+- Separate controller and phy changes into two distinct patch series.
+- Rename dwc3 core interrupt as "core".
+- Remove u2phy_apb clk/reset (moved to PHY)
+- Configure usb2only mode when usb3 phy is not present.
+- Adopt pm_ptr PM macros to fix build warnings.
+Link to v3: https://lore.kernel.org/linux-usb/20251010201607.1190967-1-royluo@google.com
 
-No need for this.
+Changes in v3:
+- Align binding file name with the compatible string
+- Simplify the compatible property in binding to a single const value.
+- Add descriptive comments and use item list in binding.
+- Rename binding entries for clarity and brevity.
+Link to v2: https://lore.kernel.org/linux-usb/20251008060000.3136021-1-royluo@google.com
 
-> +
-> +  muxed-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO which is the '1' in 1-to-many and is shared by the virtual GPIOs
-> +      and controlled via the mux.
-> +
-> +required:
-> +  - compatible
-> +  - gpio-controller
-> +  - gpio-line-mux-states
-> +  - mux-controls
-> +  - muxed-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/mux/mux.h>
-> +
-> +    sfp_gpio_mux: mux-controller-1 {
-> +        compatible = "gpio-mux";
-> +        mux-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>,
-> +                    <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> +        #mux-control-cells = <0>;
-> +        idle-state = <MUX_IDLE_AS_IS>;
-> +    };
-> +
-> +    sfp1_gpio: sfp-gpio-1 {
-> +        compatible = "gpio-line-mux";
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +
-> +        mux-controls = <&sfp_gpio_mux>;
-> +        muxed-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-> +
-> +        gpio-line-names = "SFP1_LOS", "SFP1_MOD_ABS", "SFP1_TX_FAULT";
-> +        gpio-line-mux-states = <0>, <1>, <3>;
+Changes in v2:
+- Reorder patches to present bindings first.
+- Update dt binding compatible strings to be SoC-specific (google,gs5-*).
+- Better describe the hardware in dt binding commit messages and
+  descriptions.
+- Adjust PHY driver commit subjects to use correct prefixes ("phy:").
+- Move PHY driver from a subdirectory to drivers/phy/.
+Link to v1: https://lore.kernel.org/linux-usb/20251006232125.1833979-1-royluo@google.com/
+---
+Roy Luo (2):
+  dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+  usb: dwc3: Add Google Tensor SoC DWC3 glue driver
 
-gpio-line-names is defined to have an entry for all lines. So 
-gpio-line-mux-states is not necessary. You can just do:
+ .../bindings/usb/google,gs5-dwc3.yaml         | 140 ++++
+ drivers/usb/dwc3/Kconfig                      |  10 +
+ drivers/usb/dwc3/Makefile                     |   1 +
+ drivers/usb/dwc3/dwc3-google.c                | 628 ++++++++++++++++++
+ 4 files changed, 779 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
+ create mode 100644 drivers/usb/dwc3/dwc3-google.c
 
-gpio-line-names = "SFP1_LOS", "SFP1_MOD_ABS", "", "SFP1_TX_FAULT";
 
-Rob
+base-commit: e5f0a698b34ed76002dc5cff3804a61c80233a7a
+-- 
+2.51.2.1041.gc1ab5b90ca-goog
+
 
