@@ -1,121 +1,229 @@
-Return-Path: <devicetree+bounces-237234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01ECBC4EB18
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:10:41 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A01C4EB6B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:14:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 635A74FD480
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:00:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9D6B04F7CD1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F3B34887E;
-	Tue, 11 Nov 2025 15:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A33235B137;
+	Tue, 11 Nov 2025 15:06:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m3Js7F6M";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AejMw3fP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19600333759;
-	Tue, 11 Nov 2025 15:00:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF3E35B121
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 15:06:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762873244; cv=none; b=DFmq4nGB5lKCJqqNfQRJHIuTtnkqnLrowePfgAHKzSIccYLWsz482dfLWvv/eZKZr/qv96cpZ0A7F/smX/G6Q3xGJZbsHRRP90SY7EdLn91NsMocsbokZtR7iZD2dctBJmnIVNV5ieDDYf2FnHyu8nGgViplPwrtFAhXnYKwCcE=
+	t=1762873561; cv=none; b=tT5OGfyMGTYOOD27jbOQFCpHtuox++0hecW4aP+klEkMu9ngMY2/iqBv+j3p8o9hlhmxEmnNTwdcXOGMOi9HhL4b1/+zkRpjaoLqv2vnAEZg8lGYyusuVHxggtV/oLlZkj18rlnkt9H21XU2LKJNNVRiW68t+LxYSw3tz6Kjgns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762873244; c=relaxed/simple;
-	bh=HrCGAnADA84tzQ5+Lo3+CayeuJ+LB8eFol9AnK+Ndrk=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WlG0+iglS2+KIGjEn2IC2/kMKxpYxKxQFHTd6aUXeBn6UgzH0GZl9uwm7X/CEsQyqUoAZUY2XEJMGar9w4mcJl16RqP3MARf0u/OxnXXhGLbQsyddyRYr9i5kj28Q+hVGhiSZ9t9IMdC1KUN/7wRmHUvTK3bCIRiBxjDyrrgXGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4d5V863PSQzHnGhS;
-	Tue, 11 Nov 2025 23:00:22 +0800 (CST)
-Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
-	by mail.maildlp.com (Postfix) with ESMTPS id BB289140136;
-	Tue, 11 Nov 2025 23:00:39 +0800 (CST)
-Received: from localhost (10.203.177.99) by dubpeml500005.china.huawei.com
- (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 11 Nov
- 2025 15:00:38 +0000
-Date: Tue, 11 Nov 2025 15:00:33 +0000
-From: Alireza Sanaee <alireza.sanaee@huawei.com>
-To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <coresight@lists.linaro.org>, <dianders@chromium.org>,
-	<james.clark@linaro.org>, <jonathan.cameron@huawei.com>, <krzk@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
-	<mark.rutland@arm.com>, <mike.leach@linaro.org>, <robh@kernel.org>,
-	<ruanjinjie@huawei.com>, <saravanak@google.com>, <suzuki.poulose@arm.com>,
-	<sudeep.holla@arm.com>
-Subject: Re: [PATCH v4 2/6] arch_topology: drop the use of cpu_node in the
- pr_info
-Message-ID: <20251111150033.00002254.alireza.sanaee@huawei.com>
-In-Reply-To: <20250905161830.37-3-alireza.sanaee@huawei.com>
-References: <20250905161830.37-1-alireza.sanaee@huawei.com>
-	<20250905161830.37-3-alireza.sanaee@huawei.com>
-Organization: Huawei
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1762873561; c=relaxed/simple;
+	bh=cFy0eFg9xDDoKIoAJXk7rXcmERhFHYornb1ZkaEXq3Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mmh7zBbkhheJKJ+OpKR9x1olC6F+Ku60HWJCQreiXBqo3GDSlonRjE0MaiCbkheFbLWgv9suShHPUqlnZXnp2LPtz+s/rtHDUoFsPhM3G5E2kfenArwvCkAi017j7VwBIM6bZqMd/GJGLL+6Nrk7/8kiQdEzlGU9XFN7WoyrKoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m3Js7F6M; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AejMw3fP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABBGDY72049992
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 15:05:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=buvjHKf1PuojEb0LL8OChGCz
+	Fc+8Z+ETH0y8puXDv2E=; b=m3Js7F6MX4JTJ5p181DnQgJ5Cvhn/zG7DsTxhAeC
+	FxQm212gEw/Vsy8Pq0sEJekPimwf/841aal6eZeoKSX4cusDkYdwXMcYWJRPwIVJ
+	fi8nLd4KI7P2FA87Z+rdseDJen79CyFBYdVuzie7LlReZBnnXWPpnVjPYTaiHi9i
+	Zz3DCmEus7wv7r2AcpwHnazjYhPhqdcQ3Nwsf19z/yh+EeW89KY1x+gSRrEfOrrs
+	7G6wv4eqh4FxDnyLCgxjoBr774OethJDdoqt7w1ESKSud4RUqRGAIYiL+if5U7bS
+	fa6IS/HEWNLtKaPM7zMbNSN3ZobFxRZiBaMGXOXMZsD1gw==
+Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ac11x17sx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 15:05:59 +0000 (GMT)
+Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-9372401215fso5668311241.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 07:05:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762873558; x=1763478358; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=buvjHKf1PuojEb0LL8OChGCzFc+8Z+ETH0y8puXDv2E=;
+        b=AejMw3fPP4st2mxLvRxeJKF669vGIPYk/ifDgDlqD3vP4je+I6uPw54N01VMUEM/d/
+         bbJ2RGNhwKk8jzFcz0bsZhjq8Ka3ed/knd8ZFlQVwudpzq3EGwj5QhrZ+wwtTXLa5oj9
+         t2af0nKlf4ZfsAfNVJkL9cSHEQ1j5mx2JvfxwtNRPzW8cBonOEICBLH9uVEMb/zldRV/
+         FnHvGyoSd3/z9QA1nuPF8EM2uro38SJQyjHSOD8/Pyhd4IRCM9gw2YUBvuyNxM7gvtdj
+         +Qbq/KZFjliTlJbi/Ufz/9vDXkkDUPs30q5GAzYtfzBcmETFP4gzK22Mo+WCbG1E2qGX
+         w4UA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762873558; x=1763478358;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=buvjHKf1PuojEb0LL8OChGCzFc+8Z+ETH0y8puXDv2E=;
+        b=Ql2+sl9ec9YC4vlowqAanyzq4Ur7G2WjO9Dpf5HtYvUvJxCT/I5XSlotVbuWbqfgov
+         utp8XFc3eyHVBooWEhVJMxNH1HJE9SqNcBO10TUr/2+ihEVNAmBd6xFHx0mSfWuVSGjf
+         Y01JdVYgwEQSQUlInF15H5VicFz1jWvPr1R1PqjpmZQ7ymNq/mRX3poQBeZ78Lg7jbdS
+         K7RG4mT7ieKc+Av0JXv9bkE0FuNEe/S5W1S8eJoQRbN6mDDUiW9dBo8AsdFUaqY3CllX
+         r+abqINpBJubQw7kMy9sr2LZZn6+i05eM6PcP6ZUXLqbtSpThep5RuFHvFw/KzThPWsk
+         BgXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWwgmvt7QOLJcHX8du2G3LJsarmZgeWNFno1YsnDf+h8Ox5/9BD+rx9QB72NQhxouUJOU2eJpMLwwoo@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVhSeoqa8edPEzJEdAiwXO024COP69KE73VzVj/hWsc3v3yMQJ
+	987xC22ReC/q2GzSKqFOSIAQenwcMSKL2W5PfJnXw8imZjdKJ0qioGEBQkuqcEIPB/XbuOC6PfM
+	45Fp55FYHBOMkwi6EFy1kc3F70ddWpSNg/DFDbqWoLXeCkg4tbHW/ioVjBRqGHVTp
+X-Gm-Gg: ASbGncvvyE7ET+0+O0ftk/GMPBR7wX1KD1rszSU6mMVjjeBWey9H6dPZupjpesQhdGt
+	tCbmTw6Q0lTKzOqTI8xaLtT+repI1FZTi3IYxw4b6IZhXtwYFH8K7xaOlODWg2Q7U1kOeUm8FFV
+	oIGZw34DG5+vmlqg4bmQzMQUAj5GKab3lRJ9kD3tPBS80GLtYUoQvDGBJ0xCD6ojGj41kx7YjAb
+	gnc4hG9hSrQtoXHhRbV/Aw9YU8oM1UZfUMwheOIF2ci3shrtVy4KndN4Gl4DRpnIUlMBI+P9Kle
+	bxv3o9CXUuJSB90VifdGsULIJpmgLXLc2uZIgS9ioSFJ5iKuNn7QArQ+fyFt/VSxkkpYyhOAsJ8
+	t0KxZXNVS01Z7Vq14ADsRnQtXFZNV9bt+Y2PXXkvX4pdGh+wmdfbmu/y80okoGnASm5gREEExLS
+	nANQoOlPoqGOGK
+X-Received: by 2002:a05:6102:3049:b0:5db:f031:84c4 with SMTP id ada2fe7eead31-5ddc475a644mr4906832137.28.1762873558356;
+        Tue, 11 Nov 2025 07:05:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFBi5EEv+B0IsCeVwFzn6W4s25mfl4zEj5ZMKHk6DJoUZfUdNO357NnBjPHCLbXMVUYW8rT4w==
+X-Received: by 2002:a05:6102:3049:b0:5db:f031:84c4 with SMTP id ada2fe7eead31-5ddc475a644mr4906761137.28.1762873557845;
+        Tue, 11 Nov 2025 07:05:57 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5944faba465sm4795599e87.98.2025.11.11.07.05.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Nov 2025 07:05:57 -0800 (PST)
+Date: Tue, 11 Nov 2025 17:05:55 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog
+ device
+Message-ID: <nkh73mo4h5kj2lrz7paop7fn3ow2itxl5vh43muw6n5dxgmco3@tgvbmdxhbiqo>
+References: <20251107-gunyah_watchdog-v5-0-4c6e3fb6eb17@oss.qualcomm.com>
+ <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
+ <hbxtbaoavlsw7pbmg3cfkbyx4nacjfiikckhqgpvlggbh6hu5b@jyporqecfzni>
+ <263d1390-eff5-4846-b2c2-31f96fc3248e@quicinc.com>
+ <3794bb0e-5e2c-4d5e-8d81-d302fa36677c@quicinc.com>
+ <56aqammkwte3tcdzni2unufjp4t4yaqazzdkigrwqsxp3ghcqe@ppe2pjwg3hrl>
+ <60583236-692f-4605-9f56-f7dadb46558d@kernel.org>
+ <zbwcg5pkdspkcnvaitac6y5iko346qyuzuipqhkoedcaqm2dpa@zmszuwhm5q7z>
+ <6bebcf6c-9328-4cd6-b77c-a147338d607a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500011.china.huawei.com (7.191.174.215) To
- dubpeml500005.china.huawei.com (7.214.145.207)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6bebcf6c-9328-4cd6-b77c-a147338d607a@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDEyMSBTYWx0ZWRfX2zPTArQfxeW1
+ Yb2H9G1XaL9SZkyiKOgwpjvp3IP6UToc8WkJZUMy2tiLhmui7qmVvy/daD1Bjm2NA/9pKnP05Lx
+ Xq8c9zl6eXyEeVaN0rkT7EM83tNcMHjQl4ZA9b754gYY9nF3eNwuAPXeo9lj6ETWUzgrAEGyqAM
+ CX64Lra7FY3vyq25szQKWNqq90fZP4zrGgvUwFrEFI7zFyZX/A/oGReE0F+7RUGYmXnCzqkR9Rl
+ iryTNkTtCTv4apNplJ9+lFMNuIVNwRTY6Qx9ZX4dfl9DGU1rm8XkhdHILpR/aDp2CVmmrlVjufo
+ xUNlsO1zPOMrfvBBUcA21OmITMncYAB0NU1VFnpdTd4ci9inTbudE78j7+EcDj6hI4EPMcbaShy
+ xCnq/b4U7tAJHM+Q1zI7v0n6pS4Q0A==
+X-Proofpoint-ORIG-GUID: Dz8noAaBC06xnRZAApl2BDR_NArJOvaM
+X-Authority-Analysis: v=2.4 cv=L94QguT8 c=1 sm=1 tr=0 ts=691350d7 cx=c_pps
+ a=KB4UBwrhAZV1kjiGHFQexw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VuFkkUr2qAWs9GA4iUwA:9 a=CjuIK1q_8ugA:10 a=o1xkdb1NAhiiM49bd1HK:22
+X-Proofpoint-GUID: Dz8noAaBC06xnRZAApl2BDR_NArJOvaM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-11_02,2025-11-11_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 phishscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 malwarescore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110121
 
-On Fri, 5 Sep 2025 17:18:25 +0100
-Alireza Sanaee <alireza.sanaee@huawei.com> wrote:
-
-Hi everyone,
-
-+CC Sudeep.
-
-I checked the patchset related to this patch and it still applies.
-
-Just a reminder if case you think it is ready.
-
-Thanks,
-Alireza
-
-> Remove the use of cpu_node in the pr_info(). When of_cpu_node_to_id() fails,
-> it may set a pointer, cpu_node, and the get_cpu_for_node() function uses that
-> pointer to log further in the fail scenario.
+On Tue, Nov 11, 2025 at 07:30:59PM +0530, Hrishabh Rajput wrote:
 > 
-> Also, change the structure to exit early in fail scenarios which will
-> help enabling code unification that follows in this series.
+> On 11/11/2025 5:52 PM, Dmitry Baryshkov wrote:
+> > On Tue, Nov 11, 2025 at 11:41:51AM +0100, Krzysztof Kozlowski wrote:
+> > > On 11/11/2025 11:34, Dmitry Baryshkov wrote:
+> > > > On Tue, Nov 11, 2025 at 10:51:43AM +0530, Pavan Kondeti wrote:
+> > > > > On Mon, Nov 10, 2025 at 09:43:53AM +0530, Pavan Kondeti wrote:
+> > > > > > On Sat, Nov 08, 2025 at 07:26:46PM +0200, Dmitry Baryshkov wrote:
+> > > > > > > > +static void qcom_scm_gunyah_wdt_free(void *data)
+> > > > > > > > +{
+> > > > > > > > +	struct platform_device *gunyah_wdt_dev = data;
+> > > > > > > > +
+> > > > > > > > +	platform_device_unregister(gunyah_wdt_dev);
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > > +static void qcom_scm_gunyah_wdt_init(struct qcom_scm *scm)
+> > > > > > > > +{
+> > > > > > > > +	struct platform_device *gunyah_wdt_dev;
+> > > > > > > > +	struct device_node *np;
+> > > > > > > > +	bool of_wdt_available;
+> > > > > > > > +	int i;
+> > > > > > > > +	uuid_t gunyah_uuid = UUID_INIT(0xc1d58fcd, 0xa453, 0x5fdb, 0x92, 0x65,
+> > > > > > > static const?
+> > > > > > > 
+> > > > > > > > +				       0xce, 0x36, 0x67, 0x3d, 0x5f, 0x14);
+> > > > > > > > +	static const char * const of_wdt_compatible[] = {
+> > > > > > > > +		"qcom,kpss-wdt",
+> > > > > > > > +		"arm,sbsa-gwdt",
+> > > > > > > > +	};
+> > > > > > > > +
+> > > > > > > > +	/* Bail out if we are not running under Gunyah */
+> > > > > > > > +	if (!arm_smccc_hypervisor_has_uuid(&gunyah_uuid))
+> > > > > > > > +		return;
+> > > > > > > This rquires 'select HAVE_ARM_SMCCC_DISCOVERY'
+> > > > > > > 
+> > > > > > Probably `depends on HAVE_ARM_SMCCC_DISCOVERY` is correct here.
+> > > > > > 
+> > > > > Dmitry / Bjorn,
+> > > > > 
+> > > > > We are debating on this internally on how to resolve this dependency
+> > > > > 
+> > > > > - QCOM_SCM depends on HAVE_ARM_SMCCC_DISCOVERY which means restricting
+> > > > >    QCOM_SCM compilation than what it is today.
+> > > > > 
+> > > > > - Adding #ifdefry around arm_smccc_hypervisor_has_uuid usage in qcom scm driver
+> > > > > 
+> > > > > - Adding stub for `arm_smccc_hypervisor_has_uuid()` which is not done
+> > > > >    for any of the functions defined in drivers/firmware/smccc/smccc.c
+> > > > > 
+> > > > > We are trending towards the first option above. Please let us know if
+> > > > > you think otherwise.
+> > > > The same as before: 'select HAVE_ARM_SMCCC_DISCOVERY'.
+> > > HAVE_ARM_SMCCC_DISCOVERY has a dependency which is not always selected
+> > > (e.g. ARM32), thus selecting it might lead to warnings of unmet
+> > > dependencies.
+> > Then `if (!IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY))` might be a good
+> > option here (and depend on GICv3 selecting it).
 > 
-> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
-> Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> ---
->  drivers/base/arch_topology.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/base/arch_topology.c b/drivers/base/arch_topology.c
-> index 1037169abb45..6fafd86f608a 100644
-> --- a/drivers/base/arch_topology.c
-> +++ b/drivers/base/arch_topology.c
-> @@ -481,12 +481,13 @@ static int __init get_cpu_for_node(struct device_node *node)
->  		return -1;
->  
->  	cpu = of_cpu_node_to_id(cpu_node);
-> -	if (cpu >= 0)
-> -		topology_parse_cpu_capacity(cpu_node, cpu);
-> -	else
-> -		pr_info("CPU node for %pOF exist but the possible cpu range is :%*pbl\n",
-> -			cpu_node, cpumask_pr_args(cpu_possible_mask));
-> +	if (cpu < 0) {
-> +		pr_info("CPU node exist but the possible cpu range is :%*pbl\n",
-> +			cpumask_pr_args(cpu_possible_mask));
-> +		return cpu;
-> +	}
->  
-> +	topology_parse_cpu_capacity(cpu_node, cpu);
->  	return cpu;
->  }
->  
+> Thanks a lot Dmitry, wemade the change below and compile tested on various
+> architectures (ARM64, ARM32, x86, PowerPC, RISC-V and MIPS) and it was
+> success.
+> 
+> We will include it in our next patch version, if there are no further
+> concerns.
+> 
+> }; /* Bail out if we are not running under Gunyah */ - if
+> (!arm_smccc_hypervisor_has_uuid(&gunyah_uuid)) + if
+> (!IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY) || +
+> !arm_smccc_hypervisor_has_uuid(&gunyah_uuid)) return; /*
 
+Unreadable. Don't you read what you are sending?
+
+-- 
+With best wishes
+Dmitry
 
