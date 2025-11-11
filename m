@@ -1,156 +1,215 @@
-Return-Path: <devicetree+bounces-237061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDDC7C4C4C4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:13:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9FEEC4C4D0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:13:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83C6C3BCAFA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 08:08:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05065188506A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 08:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B563329E49;
-	Tue, 11 Nov 2025 08:06:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BDC12D6E53;
+	Tue, 11 Nov 2025 08:12:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="QK0SShaE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DjS5ATKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62783306B15;
-	Tue, 11 Nov 2025 08:06:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414C1231A30;
+	Tue, 11 Nov 2025 08:12:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762848419; cv=none; b=oKxt2prBnUU3P5joOOKvIMwUFscmDDNb64S/UO6jJfEaEa76DQ0aq8xdJng9Ih7KUCTJ4l+3uBsqclfh+UI9tdmjtvYZGZSZAiUPdyQ0Rb59d4u0+A/tKdPGGGj+u0gV0xM5zHIjMenUiVBHa3gFOV2f3g4xo42JeMS3Db5DUWk=
+	t=1762848724; cv=none; b=hk/ScuaI67Gv7TP/zwFx+GwqAcddjHe50ak2tVDQFsSHXh4lnDEqnlksffyOLMR9QNa57d/8SyQMuUFgZE33mpCyQbZC3hTAK6C/q6FX/ScewL1HoO2/+sqkur/KeYCv99KT0i/u/x9tvWPhxjQmzG6ITVC5F1SuChzmIGrI08g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762848419; c=relaxed/simple;
-	bh=1frv9Vbxrzynugn/w6Jazgis+04iL8+ywHcI/eXlcrU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=Qf6VFMU9/O59tXZFXt0PzlvoS2V1XyXcNGbSj3Xd3iGwATkwuwT35k3VHXSBwkaPKIUyKdXUz/I9YWAG61okHRQPk8LNsHaUGT+ezHEy/V7rostXnNKvYJavhnpY/i6VX3OQJU9yoCBTQUNxSh7aPLBMPu8F1581F3srtraQveA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=QK0SShaE; arc=none smtp.client-ip=117.135.210.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id; bh=k9WdnwaT6IcbCWY
-	uC+hGTHfHC9EqlI1hGdAkWWWRtRc=; b=QK0SShaE/I6tO1hHeU8PKDVbbwiHI1T
-	zWMgxNLgTVygpOM+LvwxYPOg3ukMfE48r5Mqq8TYa4FeJnDs7NuUR2MpzLJfdiD1
-	uByu7fjBbT+eoNiT1Uyt7OgRR+uvuonY+RqZC2DfnugbMnxcLQF4U3ZsTLjICGZv
-	3IGEVbZQUH88=
-Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wCnq6ln7hJpK0KCDA--.117S10;
-	Tue, 11 Nov 2025 16:06:17 +0800 (CST)
-From: Wenliang Yan <wenliang202407@163.com>
-To: linux@roeck-us.net,
-	Jean Delvare <jdelvare@suse.com>
-Cc: christophe.jaillet@wanadoo.fr,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	wenliang202407@163.com
-Subject: [PATCH 8/8] hwmon:(ina3221)Support read/write functions for current_lcrict attribute
-Date: Tue, 11 Nov 2025 03:05:46 -0500
-Message-Id: <20251111080546.32421-9-wenliang202407@163.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20251111080546.32421-1-wenliang202407@163.com>
-References: <20251111080546.32421-1-wenliang202407@163.com>
-X-CM-TRANSID:_____wCnq6ln7hJpK0KCDA--.117S10
-X-Coremail-Antispam: 1Uf129KBjvJXoWxCFWDAr1kGr1ftw18XrW8WFg_yoW5AF4rpw
-	43Gayrtr4Yq3WIg3ySkF4kXr98Jw4xXF12yr9Fk39Y9a15AryDWFy8G3Wq93yUGFyfXa17
-	JayIyr48ua1qvr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JUFZXrUUUUU=
-X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/xtbCwBm4jGkS7nkcBAAA3Z
+	s=arc-20240116; t=1762848724; c=relaxed/simple;
+	bh=4ZXwNEdFPGw7GT9HjFLGQbQOpg79yaQP7NEbItrxbUY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P0sIse7GFwtJ5p/3ybW/0UglNdfICOyBlj2CnVVctsCgYe1386xf4SPCyBQmjG0tInOBO4jkZSsn1xUnhRUTpbb1NouuPD23tbunRaZ/3XFv2nJdi8+Am92KRQpNQOaUaBL7jh9nV2SweY1/M/cnSmpGeyBLkNPPNvOHwb0lluA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DjS5ATKY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71204C116B1;
+	Tue, 11 Nov 2025 08:12:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762848722;
+	bh=4ZXwNEdFPGw7GT9HjFLGQbQOpg79yaQP7NEbItrxbUY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DjS5ATKYv15086zaWRU1IJZZxMePDSv63QCvJdbsIHKKXg0ZnyOX3yWze54eD+VtX
+	 Hg6EABbTS107eOnk6okFHIO8PGT2fEDUu+8bZCc0JIueK+mvvzCKCTdCFGTzl+zUef
+	 ixEXkRxPw3HKdmx6oFWyODYRPmg6Kf4YTbWVXqbH+4m7Djw4IUcG5IvYnNWbleoDHr
+	 I2npKp7xROwO89PYmgO4fAJvErqheFqF2wOeAoaMJJgbNO8sxV7+V4qt/A6yJoks0t
+	 ORJzBdwgmaylVoB+euWbf8xKKIFZyCYjZO6z8811fmR3mQWt/+LkoPrnLCrw2JaJT/
+	 nptYUCl7C94xg==
+Date: Tue, 11 Nov 2025 09:12:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: adrianhoyin.ng@altera.com
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, dinguyen@kernel.org, Thinh.Nguyen@synopsys.com, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: usb: dwc3-altera: Add binding for
+ Altera DWC3 wrapper
+Message-ID: <20251111-amiable-chicken-of-music-efe7dd@kuoka>
+References: <cover.1762839776.git.adrianhoyin.ng@altera.com>
+ <607dec2fdb41cba0220b7b9947e04651f51ff56e.1762839776.git.adrianhoyin.ng@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <607dec2fdb41cba0220b7b9947e04651f51ff56e.1762839776.git.adrianhoyin.ng@altera.com>
 
-Modify the read/write functions for current attributes.
-SQ52210 can directly use its internal current registers to compare
-with alert values for implementing curr_lcrit functionality.
+On Tue, Nov 11, 2025 at 02:18:45PM +0800, adrianhoyin.ng@altera.com wrote:
+> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+>=20
+> Add a device tree binding document for the Altera wrapper around the
+> Synopsys DesignWare USB3 (DWC3) controller. The wrapper manages
+> SoC-specific integration such as clock and reset control for the USB
+> subsystem.
+>=20
+> A parent=E2=80=93child node structure is used to comply with the generic =
+DWC3
 
-Signed-off-by: Wenliang Yan <wenliang202407@163.com>
----
- drivers/hwmon/ina3221.c | 34 ++++++++++++++++++++++++++++++++--
- 1 file changed, 32 insertions(+), 2 deletions(-)
+No, that's long time legacy. Use single node.
 
-diff --git a/drivers/hwmon/ina3221.c b/drivers/hwmon/ina3221.c
-index ea01687ad1fa..50916ce26cb3 100644
---- a/drivers/hwmon/ina3221.c
-+++ b/drivers/hwmon/ina3221.c
-@@ -488,8 +488,11 @@ static const u8 ina3221_curr_reg[][INA3221_NUM_CHANNELS + 1] = {
- 	[hwmon_curr_max] = { INA3221_WARN1, INA3221_WARN2, INA3221_WARN3, 0 },
- 	[hwmon_curr_crit] = { INA3221_CRIT1, INA3221_CRIT2,
- 			      INA3221_CRIT3, INA3221_CRIT_SUM },
-+	[hwmon_curr_lcrit] = { SQ52210_ALERT_LIMIT1, SQ52210_ALERT_LIMIT2,
-+						SQ52210_ALERT_LIMIT3, 0 },
- 	[hwmon_curr_max_alarm] = { F_WF1, F_WF2, F_WF3, 0 },
- 	[hwmon_curr_crit_alarm] = { F_CF1, F_CF2, F_CF3, F_SF },
-+	[hwmon_curr_lcrit_alarm] = { F_AFF1, F_AFF2, F_AFF3, 0 },
- };
- 
- static int ina3221_read_curr(struct device *dev, u32 attr,
-@@ -536,8 +539,20 @@ static int ina3221_read_curr(struct device *dev, u32 attr,
- 		/* Return current in mA */
- 		*val = DIV_ROUND_CLOSEST(voltage_nv, resistance_uo);
- 		return 0;
-+	case hwmon_curr_lcrit:
-+		if (!resistance_uo)
-+			return -ENODATA;
-+
-+		ret = ina3221_read_value(ina, reg, &regval);
-+		if (ret)
-+			return ret;
-+
-+		/* Return current in mA */
-+		*val = DIV_ROUND_CLOSEST(regval * ina->current_lsb_uA, 1000);
-+		return 0;
- 	case hwmon_curr_crit_alarm:
- 	case hwmon_curr_max_alarm:
-+	case hwmon_curr_lcrit_alarm:
- 		/* No actual register read if channel is disabled */
- 		if (!ina3221_is_enabled(ina, channel)) {
- 			/* Return 0 for alert flags */
-@@ -703,10 +718,9 @@ static int ina3221_write_chip(struct device *dev, u32 attr, long val)
- 	}
- }
- 
--static int ina3221_write_curr(struct device *dev, u32 attr,
-+static int ina3221_write_curr_shunt(struct ina3221_data *ina, u32 attr,
- 			      int channel, long val)
- {
--	struct ina3221_data *ina = dev_get_drvdata(dev);
- 	struct ina3221_input *input = ina->inputs;
- 	u8 reg = ina3221_curr_reg[attr][channel];
- 	int resistance_uo, current_ma, voltage_uv;
-@@ -749,6 +763,22 @@ static int ina3221_write_curr(struct device *dev, u32 attr,
- 	return regmap_write(ina->regmap, reg, regval);
- }
- 
-+static int ina3221_write_curr(struct device *dev, u32 attr,
-+			      int channel, long val)
-+{
-+	struct ina3221_data *ina = dev_get_drvdata(dev);
-+
-+	switch (attr) {
-+	case hwmon_curr_crit:
-+	case hwmon_curr_max:
-+		return ina3221_write_curr_shunt(ina, attr, channel, val);
-+	case hwmon_curr_lcrit:
-+		return sq52210_alert_limit_write(ina, attr, channel, val);
-+	default:
-+		return 0;
-+	}
-+}
-+
- static int ina3221_write_enable(struct device *dev, int channel, bool enable)
- {
- 	struct ina3221_data *ina = dev_get_drvdata(dev);
--- 
-2.17.1
+> binding, which restricts the core node to a single clock and reset.
+> The wrapper node provides the additional clocks, resets, and address
+> translation required for the Agilex5 integration.
+>=20
+> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> ---
+>  .../devicetree/bindings/usb/dwc3-altera.yaml  | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/dwc3-altera.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/dwc3-altera.yaml b/Doc=
+umentation/devicetree/bindings/usb/dwc3-altera.yaml
+> new file mode 100644
+> index 000000000000..c998d587723d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/dwc3-altera.yaml
+
+Filename matching compatible.
+
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/dwc3-altera.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Altera DWC3 USB Controller Wrapper
+> +
+> +maintainers:
+> +  - Adrian Ng <adrianhoyin.ng@altera.com>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  The Altera SoCFPGA wrapper around the Synopsys DesignWare USB3 (DWC3) =
+core.
+> +  The wrapper provides SoC-specific integration such as reset and clock =
+control.
+> +
+> +properties:
+> +  compatible:
+> +    const: altr,agilex5-dwc3
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+
+No, this cannot be flexible. Please do not write bindings completely
+different than everything else.
+
+List the items, fix size/length of the array.
+
+> +
+> +  resets:
+> +    minItems: 1
+> +    maxItems: 2
+
+Same problem,
+
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+
+No. Use single node.
+
+> +
+> +  ranges: true
+
+Drop
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ranges
+> +  - clocks
+> +  - resets
+> +
+> +patternProperties:
+> +  "^usb(@[0-9a-f]+)?$":
+> +    type: object
+> +    $ref: /schemas/usb/snps,dwc3.yaml#
+
+Drop
+
+> +
+> +unevaluatedProperties: false
+
+That's wrong in this context. Please read example-schema or writing
+schema.
+
+> +
+> +examples:
+> +  - |
+> +    usb@11000000 {
+> +        compatible =3D "altr,agilex5-dwc3";
+> +        reg =3D <0x11000000 0x100000>;
+> +        ranges =3D <0x0 0x11000000 0x100000>;
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +        clocks =3D <&clkmgr 54>, <&clkmgr 55>;
+> +        resets =3D <&rst 36>, <&rst 44>;
+> +
+> +        dwc3: usb@0 {
+> +            compatible =3D "snps,dwc3";
+> +            reg =3D <0x0 0x100000>;
+> +            interrupts =3D <0 94 4>;
+
+We don't use such code... Look at any decent DTS.
+
+> +            iommus =3D <&smmu 7>;
+> +            phys =3D <&usbphy0>, <&usbphy0>;
+> +            phy-names =3D "usb2-phy", "usb3-phy";
+> +            dr_mode =3D "host";
+> +            maximum-speed =3D "super-speed";
+> +            snps,dis_u2_susphy_quirk;
+> +            snps,dis_u3_susphy_quirk;
+> +            status =3D "okay";
+
+Drop
+
+This is a pretty poor binding. You just repeat basic mistakes, fixed in
+other NEW bindings. Last time few-line patch, with obvious issues, had
+two reviewed-by from Altera. This one - bigger patch - no one cared to
+review?
+
+Best regards,
+Krzysztof
 
 
