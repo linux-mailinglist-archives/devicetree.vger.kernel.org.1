@@ -1,129 +1,128 @@
-Return-Path: <devicetree+bounces-237113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40CF8C4D152
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:36:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F5D3C4D122
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:35:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D23F424804
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:20:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27E243BEB10
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959A634886A;
-	Tue, 11 Nov 2025 10:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DEBA34C804;
+	Tue, 11 Nov 2025 10:27:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NKPhZGHI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UnXOCB3n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB3634846A
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4957B34BA21
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:27:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762856427; cv=none; b=Rfo1AgLbc6XXEGI5I7hShiUnCJ1NuhlQlvbsU/zBN/9V+Sjqo4WXATeMd1uWyu8kf2zwOpqJKYhEUczE0BRw3GeppoY2mZS87IDQVP75Yxs1HKBk93cj3eujWaYnAkOV7KNMjVbcoxpVcG0xUkU/2zTSp/wPM5ftYn4u1jbUWok=
+	t=1762856858; cv=none; b=KzJdkRLTzy+CHlpxOkmTHIRA2pTkgD9yIAyLgEjEwUQZ06RSRTWjgWMOVNsZ5CWRq/BGYhsasMwo2W/X3wNgU2TdhdZJwOfzuGKKk+rJteMyjUO1sDnBSi4hMQt/pd0hT0/XPZZ03HtzdQ7dShW6nlAKdv4tQSHB+8zC3jhwEdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762856427; c=relaxed/simple;
-	bh=vFQCQTjKO8TNTzEmtlk+LvI6FcO3v/ubcdimd89KqZk=;
+	s=arc-20240116; t=1762856858; c=relaxed/simple;
+	bh=VZRK3bOsG28vtltYuXm2i797l0KnAcCOqsty2XViQ3k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KQFOF8D5g+ntDBEiT4x7MAL+LMUoTPyDTCVReFEPDGxoYRlvxI5quhio1FlnvKlXs6WdOvsKsKnm3MxnlxI1rOTQ8my3vCf3ytXFcRQ3aYLxuYnBvwMBnY6F61943y1Xz80foCOCJ7gFBLupHzJRZkCRKqap5JrUDrK7NydnxPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NKPhZGHI; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2956d816c10so43184485ad.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:20:25 -0800 (PST)
+	 To:Cc:Content-Type; b=iGxtiYdBIYbehI3dj3ViCbKtpyDaOPF0Ce7ZvHvkcgdi/WMZP2O1N/jeBl1Ln+j2xsErkVq03fZEz66foc8a7ihMTJso08lmsim2dU3m3wk96kyZQ1LeZkpXGr9LDDJmFW0UJsLBj2xf6jDN47Diblo+8/h1oKJ8TucQWZIrgoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UnXOCB3n; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-786a822e73aso43671657b3.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:27:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762856425; x=1763461225; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1762856855; x=1763461655; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=g2BNnZMONHx8/CvKkJxYxrwMB72hoWbxX7RGGc1E2Ds=;
-        b=NKPhZGHIRjBhb1KY7CHkJjdqggn/IOyIPdkU2nSG+qI3rMrsXb15grksl4teM0FnnY
-         O79Fx2kxGuEWmoYtfaQLG08dQa/p/xWnhbDOIWoEQ0EhtXLPRo57aTooALVN30O7GvXg
-         AojZyz2Cx6Q1A75fa4d5dfqii/qmQC4PnHiQ4e7XhSlCDGyh9qt289MZNQZmFxj83Tvz
-         HnVh7lMu8p+tLZJGqeZBaXIX8aCuJjl2eV7Ap6xYR2gLgAf8rEWUq/sitgLPJ5+aVAPT
-         CE2cblK2tyXKVZrH0rNKd/dwhz+g2O2Gy8ObXa4U2gk4dNjyne4zPUGwJ+o+0MHKRnAB
-         XVQQ==
+        bh=k7khBtzXIp0xZap226+h9tuV9rGquBxGHwh18nz6WYA=;
+        b=UnXOCB3nbrh5o6rQpnpZZdB7puAKAMqJbwVuncHooLP8MBfkQqVrEPwlWt8oo+/E80
+         VAzZ5GpSxZDl9P3C/Y0OUtrSX+kPrcUsfH2lZlGnq9J2wbiz/aUo7JYuCYHaezCvSBIj
+         fTdxxbgMQcwklpNLlNoGlybHiI7x/q6gXMX/N9Qxwa8/b2CW4+Y8ZHLHPP5ZZtJfuSB8
+         FOCXloufjsLfeoMZY4nYyZ11edNfmCc6azyW4acykw6NP+75daUIWx7FkpiLFU8CPB6y
+         CCwjdw5JGGvRzi9nLDVDjIx2mdp29+GKBcJKvn4d8/SM58fjUw63p/hqE3ZSsqcRVzIo
+         mPpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762856425; x=1763461225;
+        d=1e100.net; s=20230601; t=1762856855; x=1763461655;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=g2BNnZMONHx8/CvKkJxYxrwMB72hoWbxX7RGGc1E2Ds=;
-        b=mh0OiZflMm/YBxkxFxj9/KGbBoTtebhSb39kap/aRAX5m3GyqAI0nZFrFUBfdab4he
-         iM+fSu869pefF1+dODPG65XQihBbsKrQW+aMRNHoJgGriJ+MfodgERJGix6Ln48W79zZ
-         Jt9MW7DB1VD16R4444BN5ElzCJpDv2YJwLplJ6/a+ZjEzEKsTTz5vnWuZKBCbF1mjSaX
-         +QVsv+/lx4xAR3SqyepZYVeYSOstkiGRnrRL7I8MQ0bDS2+azyEejc63iHbMRfytkXW9
-         nhxH8PY3kDxw1XFkV0nEr0jki32tJLjTscrbaRm9xD3t0+Q5XhEatEEo8RCQJbKNwY+8
-         67aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVheftf50bW7ZOZSZ1sGgss6ZeX0R1JZS4Ie87pSRmKbN4ZO59+cHbytt1Es0nPAdCOAiGLhYSuXbH+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzREBhIqUj2nsA7nUPJrAWYGC/+QHhEfT4fZA1TSuMWzOjnmB4F
-	tOX/zhsNJ/HLoK/itiZLSMC7Y53LNlkIMMPrqit6ljH3RWTnMAAEBubXEv37vRVR6Y2jeNLbGxn
-	uZlX4onTDVPbjqnCHTxKuoOdtu3YvAgo=
-X-Gm-Gg: ASbGncvkyPgjFyvjmhA7F3Za7YGny4FpfWcEeSa3z4j9WvMlN7aKvza2Tb/w0nT3qW8
-	1EJyAPrabkZMjheZzECXcAxZ8MOFzqZF9IYfhYceqGdNTv40EfAMR0Bk1RjDpwYcmEnluvwgXLO
-	Z3TyU+E2szJq1xS2ycTtdjw59gW3OeuzKPhepybv8fokvLAwUHvb/MlkImXJzUrDLy+fVsvbPsy
-	kGC/Y2mr3SVuhzF9Qf/CQpul9rnrdLpGUhkfSpLIxYP5Po9vD90pjlE8Q==
-X-Google-Smtp-Source: AGHT+IGHeEc0tdcwN2CitYeC9X138lPaLhDv7imL1UBIrrtgzyaJrxx+3S5nCZWKtBm7wpPk+C2oztDUFMFw3MuqU3k=
-X-Received: by 2002:a17:903:a8b:b0:298:68e:405e with SMTP id
- d9443c01a7336-298068e42acmr127289735ad.59.1762856425272; Tue, 11 Nov 2025
- 02:20:25 -0800 (PST)
+        bh=k7khBtzXIp0xZap226+h9tuV9rGquBxGHwh18nz6WYA=;
+        b=YDS5QjhvIq+t3qI/d2C01BYZYM21jqq/2+FpSkWmsZTiK9isLLNt0aEmCUXZBeRETF
+         3hwXoF1rTTHWaKWSUlThgy8pKMZGS0VajeGCmSPQ2sUdvfx+1SBTnRfSHdi4G0CHw6Nv
+         qyBXQmRsr/sazV1Tpu8MZUn1lqDEedG+IQr+y5F5eUUQoCObEDz26VakNCpT667RDmMk
+         fvkbRormQNyGvdEJM5CGAwjEo987IRf9Q7nRM7jY+h7GYWmT8tTVRq0h/SbsFgln+1mR
+         VIMxaGU31oW96ZkChG/zS5BNJpWpEjMInbzWKqLISfOehBsfdlmHvcL3NYERToQFuPO1
+         7/1w==
+X-Forwarded-Encrypted: i=1; AJvYcCXbOIvzkwoCxbwgFGLj0+An+QqOG87UFe0rRHY36bVPEiLzngjet0xNhbeYRCgT8Cnihxw47hI9RbyV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrHrcVWLR+XoPYlPYguacuFAq9FcIu6KZ/w+hRDm1CULRC3vpr
+	1ulGrzlybaR3T0LnkSfVY/fiB7jOSuLy3QMKjYM31ADcj2fcUaD0L1qOkFrUNGZZF/z/8kPxCfw
+	c3ZKrRT/gbHqlArcrsyB4v0jvKBveQ0sbbxJ4UxOJlg==
+X-Gm-Gg: ASbGncsiWWhvEbLyAA/Qh5Oz7UZgSXSAraWrcqpU+SlclXO7Cy/KYM8BhVmzEHt/6jq
+	2Fso26lXltNZgqFPxlXfQwPY34i/AA5ue/niOIgXhvfe4+PBkDuMMQ9uarGYeWfxP/j723yWoEC
+	6LzCcXj5JapTVwEjJJqOdvi22xwKV7bxCaXhn9PUikA5U62FqmfQB13fSvWGphMW/XG+ntKJ5Hw
+	dsexBxZnNg0kWM4wJ0OBiaZ/u+excTYZc+lBsjJdGdiibYxccRirvlfEVnhXFarr4HurAk33ITV
+	k/SdOw==
+X-Google-Smtp-Source: AGHT+IEk2H2YEsL0xkuLYpOfGFRgLDQ2g6ngSvt7pmfpCRqNXC2Ha8alMkiTsvLp5xWvt7eGkkSPVDpfAeg1vJdOmAA=
+X-Received: by 2002:a05:690c:6ac9:b0:786:59d3:49e0 with SMTP id
+ 00721157ae682-787d53af614mr120208927b3.25.1762856855161; Tue, 11 Nov 2025
+ 02:27:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
- <20251109214515.121742-2-rpimentel.silva@gmail.com> <aRF0++cUigbETuPs@lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com>
- <CAOMZO5AdcR_fT_RV5-NWu7j51_TA_=Mzzi-Y3Y=HpH+pu=mrvQ@mail.gmail.com>
-In-Reply-To: <CAOMZO5AdcR_fT_RV5-NWu7j51_TA_=Mzzi-Y3Y=HpH+pu=mrvQ@mail.gmail.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 11 Nov 2025 12:22:49 +0200
-X-Gm-Features: AWmQ_blb19ig8nToRgjFSZoxZIb7WUT84e0ePG6rGqwjB44zvP8kQIVu2iX87yU
-Message-ID: <CAEnQRZBdqUQUahHcFO2W6yezonXdpFVT-G52rnda941+M=T93g@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Joseph Guo <qijian.guo@nxp.com>, Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com, 
-	marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de, 
-	joao.goncalves@toradex.com, frieder.schrempf@kontron.de, josua@solid-run.com, 
-	francesco.dolcini@toradex.com, primoz.fiser@norik.com, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Xiaofeng Wei <xiaofeng.wei@nxp.com>, 
-	Justin Jiang <justin.jiang@nxp.com>
+References: <20251108174055.3665-1-antoniu.miclaus@analog.com> <20251108174055.3665-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20251108174055.3665-2-antoniu.miclaus@analog.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 11 Nov 2025 11:27:17 +0100
+X-Gm-Features: AWmQ_blJ-ik6xUXE2LXYUaqjihmL45TeO1-cQ_uCDnErJH-waDrg2-SaMoDOhR4
+Message-ID: <CACRpkdZLK722xOMFxYhYyO9LudnKVgmeHNYBha0e-BoBo8sr1w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: adg1712: add adg1712 support
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Fabio, Rogerio,
+On Sat, Nov 8, 2025 at 6:43=E2=80=AFPM Antoniu Miclaus
+<antoniu.miclaus@analog.com> wrote:
 
-> On Mon, Nov 10, 2025 at 2:15=E2=80=AFAM Joseph Guo <qijian.guo@nxp.com> w=
-rote:
+> Add devicetree bindings for adg1712 SPST quad switch.
 >
-> > > +/ {
-> > > +     model =3D "NXP i.MX8MPlus FRDM board";
-> > > +     compatible =3D "fsl,imx8mp-frdm", "fsl,imx8mp";
-> >         model =3D "NXP FRDM-IMX8MPLUS";
-> >         compatible =3D "fsl,frdm-imx8mp", "fsl,imx8mp";
->
-> Why do you suggest changing the compatible string?
->
-> "fsl,imx8mp-frdm", "fsl,imx8mp"; is correct.
->
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 
-All NXP documentation refers to this as FRDM-IMX8MPLUS.
+My comment on v1 stands.
 
-But compatible strings have a certain pattern to be followed so
-we should really go with: "fsl,imx8mp-frdm",
+This is a switch controlled by a GPIO:
 
-But for model and all references in text and commit message
-we should follow the documentation and use  FRDM-IMX8MPLUS.
+-----/ -----
+      |
+    gpio
 
-So, model should be  model =3D "NXP FRDM-IMX8MPLUS";
+The resulting binding is not about GPIO, it is about a switch.
 
-Thanks,
-Daniel.
+There are similar things that have unique bindings already,
+for example:
+Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
+
+I think this needs a new binding folder in
+dt-bindings/switch/* and cannot be hidden away
+as "some kind of GPIO".
+
+Maybe it will be modeled as some GPIO in Linux, I don't
+know yet, but other operating systems use these bindings
+too, and they will be confused by this "GPIO" which is
+actually a switch.
+
+I don't like the idea of GPIO being used as a dumping
+ground for hardware that isn't properly modeled.
+
+Yours,
+Linus Walleij
 
