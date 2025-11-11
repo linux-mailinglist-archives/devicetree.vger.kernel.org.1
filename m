@@ -1,172 +1,199 @@
-Return-Path: <devicetree+bounces-237339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE43FC4F76B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:38:44 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8DD7C4F7D4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:47:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B94593AB201
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:37:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DDE7D4F3088
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D982836BE;
-	Tue, 11 Nov 2025 18:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D21A2C21CF;
+	Tue, 11 Nov 2025 18:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Td5CWsFi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cLbP5CED";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="N7dAEEvV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95EF627EFEF;
-	Tue, 11 Nov 2025 18:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C069A2777F9
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 18:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762886248; cv=none; b=RkKNzgEGeXalz5CEtA0JHZ5zOyjly9YhRJGtxV9amza2YVDLFaLxlyoFbqOia5z993I+FIrbqkUUEWrkTnQkK6b4jgRX/YazyxedE59u4KtziHCFZgDZMvDSYlwX1v8vJyGvBDQK43WINUgQuLJf7UlcArgBqXKf8gJIL2nlk0w=
+	t=1762886734; cv=none; b=qK4WK3o1NmihnPCafQ2sSr/1nnMjbs98F9InvzKbJ7f/kx3tONTV6902czthR3FfQZskotiF3yEx2HxRw7cEYJciJpFMSnGsdLp0SWe3x7RseDs9wpiQUyI4VMaep6+GoL3ZFjE8mY24sJFV2VRbSGiDKbpRjv9HxuPzu6b/qMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762886248; c=relaxed/simple;
-	bh=pgKLi07v3nAzgSWrbOhew+tkCftrGPnHwK+HWRmbZgY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lh672mAzq7P+NJmhBqbZL5/67OqpJTdhNeFQI/HrS2U6Hz2SJaTJlfy79szAhO7ZF4qedB0j8cVjbppojjjaGlc8LVe3sZXUUNUTBU7G6J/wA+cPpLobCLvb30kNHlAWdFwvfhERNRj8i4w3r97h+LNxAVWnaWhJPtHpTqmJoms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Td5CWsFi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A888C4CEF7;
-	Tue, 11 Nov 2025 18:37:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762886248;
-	bh=pgKLi07v3nAzgSWrbOhew+tkCftrGPnHwK+HWRmbZgY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Td5CWsFiCm4X1/AxMKmU39/vysxniGwqTFaV8jeP7qaIc3yIbF1rA/+YLuR6zMsf4
-	 TzZ7i3+8tluttQnfUp9v5hCiYFbUfU0MNj8NSDs8ANlJhbW4W1wJY+07jc+k52guAO
-	 tLNgouUqw99pq5Mv7o8Cs1G9BygfFX9HZXCykZdE6GK5yDbPMeX47V8ivCfBIFxsv3
-	 TL7BN7hwsQdaMGPH/4pVTNj9tPrV2p01diVJ3OygK6ut4ZJ7jQbmbEEeAoCcHctlDm
-	 aKX5cwajRuJEWXEH1AEUPJkIuxSttxv7QI5sfExLHhSH7t+d0CCfpkDGNvv+ag2N+K
-	 ObPnOLSezIrcQ==
-Date: Tue, 11 Nov 2025 18:37:19 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Xingyu Wu <xingyu.wu@starfivetech.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Maud Spierings <maudspierings@gocontroll.com>,
-	Andy Yan <andyshrk@163.com>, Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH RFC 00/13] drm: starfive: jh7110: Enable display subsystem
-Message-ID: <20251111-matriarch-diocese-b314e7bdaf81@spud>
-References: <CGME20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e@eucas1p1.samsung.com>
- <20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
- <20251110-clang-baking-b8b27730356e@spud>
- <00e897dc-9966-439b-a74a-7604a1870027@samsung.com>
- <20251111-footing-eclair-332f5f0769f2@spud>
+	s=arc-20240116; t=1762886734; c=relaxed/simple;
+	bh=m8HjbcXk11mq43CaUrlq93qQaoVQl7sLhwGwxLXplWc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TV/ynq7C1ekT6+MmA6Fm0HDwy3Cwq2HE7zH5Pm59tUBnPHpJe+knE2f0bBW6tsPkXjdzp0DuLv60NnbwjpUfcgZqbS2JbSmjP3vEagvF0/9TJh5oxcUsEjkEGDjDrl360U4jIgCgSoQWpvJuArqOWV794NhI4gMMrgzW5N2deNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cLbP5CED; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=N7dAEEvV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABH3v4k2810086
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 18:45:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iDRuZXkPS1qDYVh7sPEoO/kaONTCP3KF2c/Ipe9RM1w=; b=cLbP5CEDVgM+zFrH
+	cmt5HM3VJ2rL7/LLIMTq16a7sd1+NDO+WMSp0Ny7AODJ/zbQcQWGfHSGH0LC45mM
+	yQbYI8RCOQK85wMazVwoVdiu0otFp15A9CNsnzoZG1x9tGJldkuM3VV02LWnpBuH
+	knjKUhIjkmNkisGGjBpBFhpzK2Sr195QN5PhHplp9J76T04uNdfvzsGW9AXBh6AH
+	8i8h1++HnijD/2HTCFE+xY/FFsd/i2tEa5I5RkPNNCjm7xPNDBGtIAoEt2aYxC54
+	f0oYuP2B9PAzOp9zwBWB1rO2uUKHFG2tkRk6iJfUxnaH3Plkv+DKgbNaaCtITbE7
+	sZMwEA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ac11x1w8b-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 18:45:31 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-295915934bfso433465ad.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:45:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762886731; x=1763491531; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iDRuZXkPS1qDYVh7sPEoO/kaONTCP3KF2c/Ipe9RM1w=;
+        b=N7dAEEvVJIhBDjLRvR9hP93yV7JZCQEnvLN7SycnoXHREPlgxMdOIBPMr9vzbOyPdE
+         gUTyaQpJXKhl7RqjoxtOBx3dAdvo9WOy42ri7u8HcMNeGSKEBrSZOBxuwsGDY7bEi+R1
+         tklnR8KG23WyeJWK2fVJg2tED8HkedZBxdvGmod5KPw906ju4nNLrqfgsFqX2cwSOjCd
+         /D624J4wH5VCIMIeILsBq0WvEB6doe0ZNrMllvKnrUu2SQsz64GS6t1g70hHlB316VKw
+         jIpPkzTglLwA9SLEGgtojfEYyDgJe36LWdyyDtWLq4mVjCw0KvDjxDZD0guGoi6ZCKu5
+         3BZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762886731; x=1763491531;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iDRuZXkPS1qDYVh7sPEoO/kaONTCP3KF2c/Ipe9RM1w=;
+        b=wkJ2Lca8E83t3PKvSbb20LbpdCnj1RGPuDOUkX7qWi0RmFZ3f6/2rb5EbdS4VCqxLa
+         VN762aCv7bvPWxTziTow464jG3VY73F7UufD7Qt13KXAKrmkYyy9Zc0RHfU3bT0eUV2q
+         fzuaA2NuJ3hWkFNuehDIwAYRCMqvSCdknJtZQTHLhuzzOMrHtexsXEi3f6RtNhnfjl8V
+         qTBenKkpaifPrq6oxmjHxqqUEmxZDis3iUulE04g24E9je3yp0VrIY70RK5ewXzv1cHV
+         MXZC8dm6Z+gc3ffXajyPNuXmyx9TWvH9LXshYHVf+DEhfRqiFADMbpUqXselpwDtBYh4
+         Kz+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWLoiA0M3VVkW6yBNkmouuh65LtMOAcxEV2b05JR4zaQRRvdrGG0I8neQps1xH27nk4DtC8QJFJLAPo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2wzgDiG6+eF51JVW4D4x9pgYMy2GuoBaY+jlNZF0e/n7B6a7b
+	TfDnWkIQ5kKjPO/i2RdaMZiwYOt/XMjwNkFlGrZn++aZ3az7BfdSNfx8I7PdOZgbPZhWee7sz2Q
+	oF/0htgpyrqHNa5SZW74b2uwVF1+zUFPocJcP+0HBCZNWzCvdDfASXH8obFlqLvcM
+X-Gm-Gg: ASbGncsEIcGc9NtzrbM64+BygD34wW+Fkace3/39ZA5sE8AXzQgIVnRqr1SlrSlYV2G
+	QXJaeaJQ/6Pp1PIJPP9poCApxdenyesfBa7m5DS6OSuoLZPfoPQ/ceFmB3E531fBMO8mzuCp92g
+	LTEC5J0zAfb7QJWMYEQ/DmnCDyZWPlc4GaDpx7PZPr860RYt/2lVQAyaIhiwKs9Lu9ENFD+8AtX
+	bPUpuZX/pcCXpi6ChgkXTzzrMJEFkeTHQHZRgjB6FA1y6ig7s4zt/5F0RTVTp++GzxGlRt2eNmJ
+	qdCUPbcqZVoRaBeCG4vSb3CDeythS4sjw1uRyUByXVAdyhM+c3xWxWSE5EddoeuHRnDD5UoQ8x2
+	DP56sFFF+NRy5QaFrh20DDiahKzv4
+X-Received: by 2002:a17:903:1aed:b0:295:f1f:65f with SMTP id d9443c01a7336-2984edc8cd8mr3418795ad.31.1762886731098;
+        Tue, 11 Nov 2025 10:45:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHudt8EBpHs0AgGwqz9g1pHc97ezO6MMeauxnKj3D0cw/mrZhoZc8rx6PO+N69y8wHTbVSW5A==
+X-Received: by 2002:a17:903:1aed:b0:295:f1f:65f with SMTP id d9443c01a7336-2984edc8cd8mr3418365ad.31.1762886730501;
+        Tue, 11 Nov 2025 10:45:30 -0800 (PST)
+Received: from [192.168.1.5] ([106.212.255.55])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2984dca0ea1sm4232965ad.55.2025.11.11.10.45.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Nov 2025 10:45:30 -0800 (PST)
+Message-ID: <49339695-615c-4a89-974c-ecd4ea1b544a@oss.qualcomm.com>
+Date: Wed, 12 Nov 2025 00:15:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oEuULB+ZwvMAwWb+"
-Content-Disposition: inline
-In-Reply-To: <20251111-footing-eclair-332f5f0769f2@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/6] of: iommu-map parsing for multi-cell IOMMU
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org, robh@kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
+        bjorn.andersson@oss.qualcomm.com, bod@kernel.org, conor+dt@kernel.org,
+        krzk+dt@kernel.org, saravanak@google.com,
+        prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com,
+        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
+ <20251107-active-uber-impala-8d9118@kuoka>
+Content-Language: en-US
+From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+In-Reply-To: <20251107-active-uber-impala-8d9118@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDE1MSBTYWx0ZWRfX/SYrUfNZEeag
+ zXnKA/x+ym4u7I8wtRcs3q92xuyCJFHjwxAHtb/vt3oyCzRjQrnYy9YqrBvATflwfP0CCdSTwKG
+ yoXQ8qe0mQwSAlFE9y5HAiYfcJLVnFn76rxEsK7l+wemNM65cwtJg0Xl2ytwrpOEghWfUXapicP
+ Q+Hf9ro0os0pQofby9KM5Fk1fztkT8K9+2c78/cIa/Ir26/5o20f6VdMBmRlehE7iivOXO3Qun5
+ GCFxzKDT5Ba1L2E5yiufekQ6iL3LiyCF3m1Lq0THYeujDqoIz13amtBri7PSvoNsEQc/0zc+oqh
+ CmqUTfTl2ES00cvRO0uC6CzeeWidnWWbeRmlFf09YUNHMheg/nXf8up80eTdoviQj3xkLHLlknw
+ obY4AUzPks+kCA72KwLJ5CT2MHJjOw==
+X-Proofpoint-ORIG-GUID: Kkz7291lO7c0sy06oYvg9j5Nw_Z3C8nU
+X-Authority-Analysis: v=2.4 cv=L94QguT8 c=1 sm=1 tr=0 ts=6913844b cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=pJoDNl42m32kJ7anCML+mQ==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=yPCof4ZbAAAA:8 a=EUspDBNiAAAA:8
+ a=dasm5qW_s5I0UYHIXAEA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: Kkz7291lO7c0sy06oYvg9j5Nw_Z3C8nU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-11_03,2025-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 phishscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 malwarescore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110151
 
 
---oEuULB+ZwvMAwWb+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 11, 2025 at 06:14:48PM +0000, Conor Dooley wrote:
-> On Tue, Nov 11, 2025 at 04:33:28PM +0100, Michal Wilczynski wrote:
-> >=20
-> >=20
-> > On 11/10/25 20:35, Conor Dooley wrote:
-> > > On Sat, Nov 08, 2025 at 02:04:34AM +0100, Michal Wilczynski wrote:
-> > >> This series enables the display subsystem on the StarFive JH7110 SoC.
-> > >> This hardware has a complex set of dependencies that this series aim=
-s to
-> > >> solve.
-> > >>
-> > >> I believe this is a PHY tuning issue that can be fixed in the new
-> > >> phy-jh7110-inno-hdmi.c driver without changing the overall architect=
-ure.
-> > >> I plan to continue debugging these modes and will submit follow up f=
-ixes
-> > >> as needed.
-> > >>
-> > >> The core architectural plumbing is sound and ready for review.
-> > >>
-> > >> Notes:
-> > >> - The JH7110 does not have a centralized MAINTAINERS entry like the
-> > >>   TH1520, and driver maintainership seems fragmented. I have therefo=
-re
-> > >>   added a MAINTAINERS entry for the display subsystem and am willing=
- to
-> > >>   help with its maintenance.
-> > >=20
-> > > Yeah, bunch of different folks wrote the drivers, so lots of entries.
-> > > Pretty much all as you've done here, authors are responsible for the
-> > > individual components and Emil is the platform maintainer but
-> > > responsible for most drivers.
-> > >=20
-> > > Do you need any feedback dt wise on the RFC, or is it too likely that
-> > > we'll both waste our breath if the DRM folks don't approve of your
-> > > approach for the rest of this series?
-> >=20
-> > Hi Conor,
-> >=20
-> > Thank you for your response.
-> >=20
-> > That's a fair point about the risk of the DRM approach being rejected.
-> > While I can't be certain, I'm hopeful that part is relatively
-> > straightforward, as it primarily integrates other recently reviewed
-> > (though not yet merged) components like the inno-hdmi bridge and dc8200
-> > drivers.
-> >=20
-> > To be honest, I was more concerned that the DT part of the series would
-> > be more problematic. Given that, I would find it very helpful to get
-> > your feedback on the DT aspects now, if you have the time.
->=20
-> Right. You'll definitely want some actual DRM people to weigh in though
-> before making changes, I am really not familiar enough with this type of
-> hardware to know if the breakdown is correct.
+On 11/7/2025 1:37 PM, Krzysztof Kozlowski wrote:
+> On Tue, Nov 04, 2025 at 02:20:59PM +0530, Charan Teja Kalla wrote:
+>> The iommu-map property has been defined for the PCIe usecase and has
+>> been hardcoded to assume single cell for IOMMU specification, ignoring
+>> the #iommu-cells completely. Since the initial definition the iommu-maps
+>> property has been reused for other usecases and we can no longer assume
+>> that the single IOMMU cell properly describes the necessary IOMMU
+>> streams. Expand the iommu-map to take #iommu-cells into account, while
+>> keeping the compatibility with the existing DTs, which assume single
+>> argument. 
+>>
+>> Unlike single iommu-cell, it is complex to establish a linear relation
+>> between input 'id' and output specifier for multi iommu-cells. To handle
+>> such cases, rely on arch-specific drivers called through
+>> of_iommu_xlate() from of_iommu layer, aswell it is expected the 'len'
+>> passed is always 1. In the of_iommu layer, the below relation is
+>> established before calling into vendor specific driver: 
+>>
+>> a) For platform devices, 'rid' defined in the iommu-map tuple indicates
+>> a function, through a bit position, which is compared against passed
+>> input 'id' that represents a bitmap of functions represented by the
+>> device.
+>>
+>> b) For others, 'rid' is compared against the input 'id' as an integer
+>> value.
+>>
+>> Thus the final representation when #iommu-cells=n is going to be,
+>> iommu-map = <rid/functionid IOMMU_phandle cell0 .. celln len>;, where
+>> len = 1.
+>>
+>> The RFC for this patch set is found at [2].
+> So that's a v2 or v3? Then number your patchsets correctly.
 
-It looks generally sane to me chief, but as I said I am not really
-familiar enough with this sort of hardware to have a real take on it.
-Sorry, you'll need to get your affirmation about how you've laid stuff
-out elsewhere :/
+Is there any kernel guidelines that patchset should start at V2 after an
+RFC? I do see many patches are follwed by V1 after RFC. Eg: [1] is an
+RFC followed by [2] as V1 -- Or it is the maintainers preference and
+expectations?
 
---oEuULB+ZwvMAwWb+
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Try yourself -  b4 diff cover.1762235099.git.charan.kalla@oss.qualcomm.com
+> 
+> Works? No.
+> 
+> Where is the changelog?My bad. Will update the changelog from RFC in my next patchset posting
+as V2.
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaROCXwAKCRB4tDGHoIJi
-0lHNAP0VY2m9JP4EgIKWtYcUv/PdugQ015SJrRdoXUnsVhh14gEA7/E/wvGod2Wf
-uGM6z13gp3dI+KrJhyqfO1LThr8IXwE=
-=h9/B
------END PGP SIGNATURE-----
-
---oEuULB+ZwvMAwWb+--
+[1]
+https://lore.kernel.org/all/20250815191031.3769540-1-Liam.Howlett@oracle.com/
+[2]
+https://lore.kernel.org/all/20250909190945.1030905-1-Liam.Howlett@oracle.com/#t
 
