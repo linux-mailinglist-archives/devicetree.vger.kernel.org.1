@@ -1,138 +1,151 @@
-Return-Path: <devicetree+bounces-237206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0502C4E209
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:34:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBBFC4E21F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:35:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AAFE3ADB5C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:33:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6974F1885252
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118A333ADB8;
-	Tue, 11 Nov 2025 13:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53BD33ADBD;
+	Tue, 11 Nov 2025 13:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="ih6ybhPX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TogU5/CQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54191331229
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E93633121B
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:35:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762868006; cv=none; b=eKAUwwx7si6c+r05IGx8ekbtTdPcUexWIgIwus04FSShAInmteQwX7eHwcXXY0QgSmhMapiRCfDo4HtmgrkVSeXCW4SvKzElexXRe8OZFNo4F3LFMtWkZctSE/TNeU8DK9PMoNHvzWOnT3bY7mAaHzccXPA4hXPEW4OLyqePiy8=
+	t=1762868113; cv=none; b=go/s0z/mbfDNuWINOlDjsjqgQrLe4apqmfIrjQl/KWk+2nKVwF+COmGXa0m1Ef8CjeE0R0nIRfO0IP2ctDpTAAd83jASO8dIQMky0UAtzriZ6eq5hhXiK7ZvvQjIlSfjHUoF7xqj0NMcnqJ7tzkb38kvjtDpkLsMsEgWTWDZ6sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762868006; c=relaxed/simple;
-	bh=m/IDcbUYaTlqaJOcWar+0Jl6b6b2/gJXupbjxTarers=;
+	s=arc-20240116; t=1762868113; c=relaxed/simple;
+	bh=44f+GGBR2oWTuYZdNolnAn15TPhOowpsnt5jgSu+WJ8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BXBNLoe2weaqC3CRpScLdqdlxpG6+jGJttMPGwWrNbJvFBDzSLGx5WgdD168tvgHeBYfGH7epyHHB3QvFq6cybs4Nt506/CZSYFCsLRcIRA+g8VF0lFGxth5olegHxzdbNmuNR4dCQzkrIA+yjmPLwzNvGedU3YFa1RI5pINYUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=ih6ybhPX; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arduino.cc
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-37a48fc491aso40840991fa.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 05:33:23 -0800 (PST)
+	 To:Cc:Content-Type; b=hVZtar1l6avXOeFFOdVO/XAFfhHNxMnYXytzmcn6YRMLDq03peCeco25QMFVwwVAlH2t7iUakgh//M5wz4reJMO9SQe1bYLK4JsQOqTIigv/M/Gy8FsKcbGrIhih1Hg/6tkt925UOZW2fh/8p9SqL2+N7loP0AOg5K9j4d16cTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TogU5/CQ; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-42b38de7940so1388908f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 05:35:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arduino.cc; s=google; t=1762868001; x=1763472801; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762868109; x=1763472909; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2lY3yD/lWkhxBE38j+dUGeqe89ypJFm7YKL/U6lIARs=;
-        b=ih6ybhPXbqtT8us51h/YwWyVZ9wcl99rW3342DSYuZA6MsfWJX/+RTijmuAGgNOgr7
-         ZCLbtKuYI2jn8B38r3aHofSHCteMAzdlkJVisOuiy7yxJXiPI+HXxjcMbwG4RwMcclqm
-         bn1Wn7GNBYw9cX0I/OfJDZsoayVCsHR0qwVKE=
+        bh=0zh7RVlz9/fn4Pl4MaeRlvONIISFdEg92t4/EjrGZ5o=;
+        b=TogU5/CQKt3gFVpr3F5BucXjKpkgWAK5iPWPCtD5c+SGKmBXceOa3pxwlp6mGeju8Z
+         VkjaBrzEyP84kS/jKc630hRoTAHvWMiXg4jYqz16kjp1oLOM5JkT2u8CQ7v/zxH4u+2p
+         aPmEs9BxjT8kdmgBtDULJfiojnrmsO8koRiqbMAAvnA4+7cDbHTnGqbHHsUAgtGiaCdl
+         TOmlLtDue9102u3ob0RiyJckKsJ4Qa3sU6+2QtcWcjwQREn/km4n5eQVE0Fp469PIWu3
+         wd83UwFhJSqpu6e3D/DqOrrLIJ+XSixoVoSdl3fj5DgYODk/FJ5/YZp10D2YBQkPqueZ
+         9gYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762868001; x=1763472801;
+        d=1e100.net; s=20230601; t=1762868109; x=1763472909;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=2lY3yD/lWkhxBE38j+dUGeqe89ypJFm7YKL/U6lIARs=;
-        b=rishBgtDCHMBf2LlbVknGRu5a/GHgt5RuR3/hmXJRrScTdvv7ELS4DjEyiMhq8Wiy2
-         zeE26NqIEHUXQN7zmX/VcmFCsbh7gxSYoCH6hNssTaAeDhnh8bOx7EpUBRhg/Pa/Ka3r
-         rT+ssjn+1s3lBcGhWSMZRMzy7lb9iBa5rS2qZ8XI97fB+UCE125dMIrlBEv4EOU3Dhev
-         jHuDJtnGNxrmJsGuCVIeFHGJNEl5e6f2uGMR0n6sYl6wE6S9u6KEaYD171DON2YABXm0
-         x89WDCWjOO7hi/WqWGKmJXa4tXknGMcnVT1Nh9VgcLGP+XFOD8yEZkPbJ5nSki6Ql8WW
-         bC7g==
-X-Forwarded-Encrypted: i=1; AJvYcCUds8w2k/L4hyBKOvX9885EfP0jQ+0JHn/Hj2M4r6p6jNcso9i4u/AOh3BsGExVU3tUA8aPj10SnV/w@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4I9QuZbruq21E3Zqu9/OYjlUDxRihoF//qxHUGSEg1YhN6cOj
-	cKYA/ahBVCKxSUsGJ9fVr5i1JAcghd//n/21QhCIIVfaqJ6aGQOXj58N2C5X4x37PLEKLbVdYy/
-	n7LyT4fTX8iw0LOcLRFpjHRD/MyztBjR+EQGKKXu0mw==
-X-Gm-Gg: ASbGncv86mYSFKTij/EK1fMB+/nQlpDQV0irjLEvoVA5Mz/+hAqmTOzwbPMlf7/fV1s
-	YJzqkWSAqcbY5xlDtZtqx1RjJJmjUf678xy+8HYOXKdFGO4BRi/vHI29bZMLe3CYAV4ZS+gTEvP
-	uRN6s84yYrfsZwWZ879zBGoxx8qpc8HEi9nGNoreaYvNEoyl5hSdPzpmM+YUjfNpWetAfknk3aZ
-	TMM5IiXq/ZfFr63tNV/VMhN9dyU0fpQ/3LuM17stgGFagTWOxixgdU+Yackvg==
-X-Google-Smtp-Source: AGHT+IEa2+alpsV7yZo2MQ2zemGQSgaZflRIFnqWJ5eOZ/bg4aVTD1e/Z7u7RDia8HjsH2yeWCn923dhPxhZxjFLNYs=
-X-Received: by 2002:a05:6512:61a1:b0:594:51ac:138 with SMTP id
- 2adb3069b0e04-5945f165199mr3017960e87.2.1762868001402; Tue, 11 Nov 2025
- 05:33:21 -0800 (PST)
+        bh=0zh7RVlz9/fn4Pl4MaeRlvONIISFdEg92t4/EjrGZ5o=;
+        b=cJv2GL9cuLBZU6KpRzTVFZsM5kRoBrpV2aCisZAIAg4Ngt+/ml5pWxCqGz4r5EkFOt
+         t7KsLbmbzBT85M79/wXPGLRE6IGXZjAXXfNtjU/zJdgdBXk0Nf+51jx3/sSVhZce4eq+
+         PK0hlUlt02mRIRwgU7MwNES6CP2QRHsZg/Jct8tMhRrRrTqGMzIfBye+bhRmAjjEC2Nf
+         5xp7LjTWkrK58u6QK5p/iJT092h7Z7oif9DcaUaAUEBTrxb7sMOIcBzggs392eQuyuDP
+         TRnknOfUPwwrUAfCFaooTRVFRo8teyT4ZLBVfTlfrAVqrRzORWHh+7M9bGrC8DQHtHLJ
+         StUA==
+X-Forwarded-Encrypted: i=1; AJvYcCXEk+89gn2LARO2GR+4vyulx/VKsJDBX69pPo5uE5ZCwWIE77GduKsfQwPwW1vlyFjV3ULYWfGVYgMi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUfkEFCofAlb/5gNmdPqNpsXqTwzYdBNJgOs2JBX+PUQvKRX1I
+	EPwmrbca+zc8e32VnTK/z+nyECn6uZiORJ6b7ajzcf7CEiYz3l11RsO+f2BX1N7l04kmFHH+HeC
+	kuOliR24E8951hA07gGggtxYQThfXXvU=
+X-Gm-Gg: ASbGnctRxn7G0ULVJrUabDYjpyiOuQNde50aUMDgPrKSawDdkBxh0aRL0AuybgqZk18
+	JlGT0voZcf2WtFUyVaqEmYqcFzRpHvxOYCVtwotLBpODDRTiHL/gzw6zIJusaJgsxleUWEp6GyO
+	xXa89ltQfFWvmICw+hPwFTzMU3NZLrVHyiGjnwJfnylsVeIu0QRG+SM1UErCXeZ7s2BAs0UqX9z
+	My/FjYfu0vT+t24u6oKkBVDYJdluTVkz+ZAWqHnqfs4uv+99MQi+zjJD6GogQ==
+X-Google-Smtp-Source: AGHT+IEtivyRqo5lmF9BZUpAcCnMPsflKj+Yv2TwjeYH2DfqbpxfoITaNpUO+HHZcDmnNtTIfPFQUG2YLx/3HTHTlHw=
+X-Received: by 2002:a05:6000:2507:b0:429:c54d:8bd3 with SMTP id
+ ffacd0b85a97d-42b2dc3ea86mr11789923f8f.53.1762868109221; Tue, 11 Nov 2025
+ 05:35:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251106153119.266840-1-r.mereu@arduino.cc> <20251106153119.266840-3-r.mereu@arduino.cc>
- <84f0ed2f-bf51-4dd5-93f1-f26e077a2549@kernel.org>
-In-Reply-To: <84f0ed2f-bf51-4dd5-93f1-f26e077a2549@kernel.org>
-From: Riccardo Mereu Linux Kernel <r.mereu.kernel@arduino.cc>
-Date: Tue, 11 Nov 2025 14:33:09 +0100
-X-Gm-Features: AWmQ_bl9u7adnSSXNZGOLBBGiNfZ8y3mPpTDmoF7L_YWRx9FeA-avTcHCLCKRGM
-Message-ID: <CAKA1JhYTC5p_7Zj9b7g1YKZhjH0=tnnJkdW1rWv39L-SF-SDoA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] drivers: spi: spidev: add compatible for arduino spi
- mcu interface
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org, 
-	linux@roeck-us.net, Jonathan.Cameron@huawei.com, wenswang@yeah.net, 
-	naresh.solanki@9elements.com, michal.simek@amd.com, nuno.sa@analog.com, 
-	chou.cosmo@gmail.com, grantpeltier93@gmail.com, eajames@linux.ibm.com, 
-	farouk.bouabid@cherry.de, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-spi@vger.kernel.org, Riccardo Mereu <r.mereu@arduino.cc>, 
-	Martino Facchin <m.facchin@arduino.cc>
+References: <20250915080157.28195-1-clamor95@gmail.com> <20250915080157.28195-2-clamor95@gmail.com>
+ <3455911.aeNJFYEL58@senjougahara>
+In-Reply-To: <3455911.aeNJFYEL58@senjougahara>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Tue, 11 Nov 2025 15:34:57 +0200
+X-Gm-Features: AWmQ_blV6d3G7hE5fg-sUlAJ4jm_DAmDeF4LDT7xiVBDSmfK9MhRSP1-jMuZj_A
+Message-ID: <CAPVz0n3qXBLEVDKDDc6DRrN+WFiAdeL1wDaA94DkdST7NoRXyQ@mail.gmail.com>
+Subject: Re: [PATCH v3 01/11] devfreq: tegra30-devfreq: add support for Tegra114
+To: Mikko Perttunen <mperttunen@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <treding@nvidia.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Dmitry Osipenko <digetx@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 7, 2025 at 8:13=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
+=D0=B2=D1=82, 11 =D0=BB=D0=B8=D1=81=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 10:5=
+5 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
 >
+> On Monday, September 15, 2025 5:01=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > Lets add Tegra114 support to activity monitor device as a preparation t=
+o
+> > upcoming EMC controller support.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > > ---
-> >  drivers/spi/spidev.c | 2 ++
-> >  1 file changed, 2 insertions(+)
+> >  drivers/devfreq/tegra30-devfreq.c | 1 +
+> >  1 file changed, 1 insertion(+)
 > >
-> > diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
-> > index 5300c942a2a4..f0dd516c2083 100644
-> > --- a/drivers/spi/spidev.c
-> > +++ b/drivers/spi/spidev.c
-> > @@ -704,6 +704,7 @@ static const struct class spidev_class =3D {
-> >   */
-> >  static const struct spi_device_id spidev_spi_ids[] =3D {
-> >       { .name =3D /* abb */ "spi-sensor" },
-> > +     { .name =3D /* arduino */ "mcu" },
-> >       { .name =3D /* cisco */ "spi-petra" },
-> >       { .name =3D /* dh */ "dhcom-board" },
-> >       { .name =3D /* elgin */ "jg10309-01" },
-> > @@ -737,6 +738,7 @@ static int spidev_of_check(struct device *dev)
+> > diff --git a/drivers/devfreq/tegra30-devfreq.c b/drivers/devfreq/tegra3=
+0-devfreq.c
+> > index 8ea5b482bfb3..d976077d4757 100644
+> > --- a/drivers/devfreq/tegra30-devfreq.c
+> > +++ b/drivers/devfreq/tegra30-devfreq.c
+> > @@ -980,6 +980,7 @@ static const struct tegra_devfreq_soc_data tegra30_=
+soc =3D {
 > >
-> >  static const struct of_device_id spidev_dt_ids[] =3D {
-> >       { .compatible =3D "abb,spi-sensor", .data =3D &spidev_of_check },
-> > +     { .compatible =3D "arduino,mcu", .data =3D &spidev_of_check },
+> >  static const struct of_device_id tegra_devfreq_of_match[] =3D {
+> >       { .compatible =3D "nvidia,tegra30-actmon",  .data =3D &tegra30_so=
+c, },
+> > +     { .compatible =3D "nvidia,tegra114-actmon", .data =3D &tegra124_s=
+oc, },
+> >       { .compatible =3D "nvidia,tegra124-actmon", .data =3D &tegra124_s=
+oc, },
+> >       { },
+> >  };
+> >
 >
-> That's way too generic, IMO. First, I am not aware of Arduino boards
-> mounted on top of regular development boards, so basically you are not
-> describing actual hardware setup but what could be potentially plugged
-> into box with Linux... and then it is like saying "you can plug
-> anything" because MCU covers everything, like calling it "Raspberry
-> Pi-clone".
-
-This is used to describe one of the interfaces between the
-microcontroller and the microprocessor on the Arduino UnoQ board.
-Since this could be used in other layouts in the future, we thought to
-keep it generic enough to reuse it.
-If this isn't possible, do you have any suggestions?
-
+> Looking at my copy of L4T r21, the EMC count_weight should be 256 on Tegr=
+a114, while it is 4*256 on Tegra124, so different SoC data should be used. =
+(I haven't checked if anything else is different)
 >
-> Best regards,
-> Krzysztof
+
+You are correct, tegra114 seems to use 1 EMC clock per transaction. I
+will move and expand comment from tegra124 entry regarding
+count_weight to include info about all 3 supported entries if you
+don't mind.
+
+I have a question regarding tegra_devfreq_device_config to be used
+with tegra114. From tegratab kernel I have, existing
+tegra124_device_configs configuration seems to fit tegra114, may you
+confirm this? Or, if L4T r21 you use, uses different values, may you
+provide those to fill up tegra_devfreq_device_config for tegra114.
+
+> Cheers,
+> Mikko
+>
+>
 
