@@ -1,170 +1,219 @@
-Return-Path: <devicetree+bounces-236999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF82EC4B9A0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 07:05:43 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E60C4BA1F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 07:20:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5014F3B7F8A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 06:05:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D9B5B34E427
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 06:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A7ED299A87;
-	Tue, 11 Nov 2025 06:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154062D0C62;
+	Tue, 11 Nov 2025 06:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="gi2vh2zM"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="NCXBf/F6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011060.outbound.protection.outlook.com [40.107.208.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBC1299A84
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 06:04:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762841085; cv=none; b=d8AczkUFLwWLIU5wCKN3+bdK2t09hJi4NVHUvo4RcQBfUDjw6di96nEAYJrACqn41mpOctb199dTBFF9W3Z+WVfUoaW9UYWg6TQ3PI1rpEkxN+V/zn1jJ06b9ADSgTScVZGCqkTRv5sVxz6lPrqWuz1ncNoWttK9PnDuAVitWNw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762841085; c=relaxed/simple;
-	bh=2L8OdzSRMCDoPIS8HLzojViuGyhBmUN+vkAb3mtaA1s=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=I3Y5Ir+F5GfRsuGjxMaz5WFNXL9ztZKpTAx0LVVLRZdD8IRvFqUC1dx+Xcm/iIivbP35onW78FfMmhqOAJZFTenFJ+igt83w4gnnMOkJP05oHFuNGQv9W97s2hqfRJPE85CrlbinyJ6WOGzHkdWKu0pXSGl5QVM12GXL5Wgm4rE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=gi2vh2zM; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 5B3BE40EC0;
-	Tue, 11 Nov 2025 07:04:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1762841079; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=tFnWnYNonntnPyhOj8VV3+YkmvkZgjwIN8ZPTLl1dsw=;
-	b=gi2vh2zMks4g7JyO64IYCVBSn6oOhYDKqLDX/qUGie4S0xnBHA96bS6SYn8dIRuNz12SUY
-	ZVjYUiO657B+cY3NWhd7qXD3tcX84KCJ1iK6zpHn5iB//lA+2/MLCls8pe5zq2WEWk31Zj
-	B06alFTRveR3g1hZr+MEQKewNhoQqEhPWo8tZZQQykq7DP0LrvDvl1RDvBrrsYF6TJMdhZ
-	9QKBKzIvoMCvvYH37ndJTND4/bvolrgZNoK/10XiayFHQogBBnvmNRkf+iuMqEoocu8+0x
-	W9KTJg1UcxkEZV6xpuiNc9qyqVqBDcJPKjUMduKBSmcf0GHKo15vmVwUjTOfqw==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <20251111054112.55505-1-naoki@radxa.com>
-Content-Type: text/plain; charset="utf-8"
-References: <20251111054112.55505-1-naoki@radxa.com>
-Date: Tue, 11 Nov 2025 07:04:33 +0100
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jbx6244@gmail.com, pgwipeout@gmail.com, didi.debian@cknow.org, jonas@kwiboo.se, ziyao@disroot.org, amadeus@jmu.edu.cn, nicolas.frattaroli@collabora.com, pbrobinson@gmail.com, wens@kernel.org, detlev.casanova@collabora.com, stephen@radxa.com, sebastian.reichel@collabora.com, liujianfeng1994@gmail.com, andy.yan@rock-chips.com, damon.ding@rock-chips.com, kylepzak@projectinitiative.io, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-To: "FUKAUMI Naoki" <naoki@radxa.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D99F2882B6;
+	Tue, 11 Nov 2025 06:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.208.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762842001; cv=fail; b=ijJOHd8y74RKujIqXSVexWZIg0q+HHyrxgyelBUhwJyui3/niJRJi/SNa8y4xV4dqx3G8/GrNAKoQJfoJk/fATW77d58MgJPAzv48HMAhNkMu2xX6m7dBfYOcEyA8M8PVr7ObK579eie7HgBw3/+lDkRC34AglAZKbU99iNVzhA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762842001; c=relaxed/simple;
+	bh=i8VAhwcfB9HFO9pmQSO1AmzZGTiZWA9PCyEyyZYS4FM=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Gc1Ddb3dfI44OiyMXxj1vpbIMPltq+miA7pWEpHElG9CZZy7llN/30ELTP80WXVD4428REPjzAldQmPM8u6EDHw7Gdx9jypKBWC2Gn4mMtBsjzvF0ALW6YK0Ea0K7fyaAC/hPuGdRPnOxr26fcwpPGwBlMAAGUMAL5XBBdNy9GM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=NCXBf/F6; arc=fail smtp.client-ip=40.107.208.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Vi1YPBfkybqTO2kVWUO5Zg2wPS+nMqe3P8lBszeIK6VSM0XCQ5xtGcIBvPjG5y43E8UAfDllT9Qxn8munojIDFDGACj0eIXqIQMS2C6R6heysIOx9W2vbjG9NLt7yaPvr0okNSrsj6KGxazcxMLGAUlruIilRurj+2ncBroPjZD2R9Jv3nAVT0q86GzbNx+LJ+PEVAPJ+aEngfSxJDe97guXq5bkYvsQcoMx5pNXinkqwMH1Fdq8IsJXU3nuQqHg5lORh1kRm0HTn1I1xZyIo+Xqt5pIaJU1Tr6taYnFvJ4+t+xTIKrudBkXqD7pTaRkzXbkwGtPScfYFMBqWRjSrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r7bldBT+MTeV6DOsEhzg+a/fYx+XFUz11SN9DXNv7yQ=;
+ b=gzRxyOL/IuNDLapQGr2NnAPUIqLbixkgwZ82HlwvMmEPW11fre5E27jLnBS6xxKmVnWlnT0VMF1QtpVm/Fk/x9QbkvWrqzA9QMZBZWHm+fo/+U49npCF8MmITNHvJQFi9h14TG3UuCkLwWvI6Jc8g62umWg2KVEmNQbYuj+/IlL8Sqkna8svX7cFQy8lf8tX+XJ0JZkju5fA8WS4QIzSKUmWyMC7wMpEtpEiZV2Ct8pm5BtCwQyl0dODH8yZ5S6RpeFd6CyH9DEDzkquJlyl2YW6uZzHjMo3AYPcy52wv7HGrR26H8Hvu5MgXjNrUnbBM+sCLo17LP99ynUZqEF3ew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r7bldBT+MTeV6DOsEhzg+a/fYx+XFUz11SN9DXNv7yQ=;
+ b=NCXBf/F6OYfvqDKC9RPhrQg0OAxybwKlH9lIq5LBQo9+u3+qVUNJFUFT1tkT1Jin9Z/dncsdefNvwrk2ci78m9r+z/93FAva5n9n+EmzZivu+t/45z4htVM5l6hLUPtAuyPzf1cqtvpmFaEbFoM1X+Uu4OBUI+OFz8UVHcVB0FkHs42hYegM3SqGtZzMkkGjozoXNzcEkWXp2pMDCoAfY459s6dUGbnO7wskKatjNlV69LC8Jw2IlRdksaqHIf/6DcixevWTdXkPKhFbuFmCd1WqOGIj1bgriFEveNeR77CpQCShqHSn1CGah7mC/t4ufPA1JC5aPnlFMV7mZ+9sZQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from BL1PR03MB6037.namprd03.prod.outlook.com (2603:10b6:208:309::10)
+ by BY5PR03MB4968.namprd03.prod.outlook.com (2603:10b6:a03:1ed::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
+ 2025 06:19:56 +0000
+Received: from BL1PR03MB6037.namprd03.prod.outlook.com
+ ([fe80::9413:f1a2:1d92:93f1]) by BL1PR03MB6037.namprd03.prod.outlook.com
+ ([fe80::9413:f1a2:1d92:93f1%3]) with mapi id 15.20.9298.015; Tue, 11 Nov 2025
+ 06:19:56 +0000
+From: niravkumarlaxmidas.rabara@altera.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
+Subject: [PATCH v2 0/2] Add support for Agilex3 SoCFPGA board
+Date: Tue, 11 Nov 2025 14:17:37 +0800
+Message-Id: <cover.1762840092.git.niravkumarlaxmidas.rabara@altera.com>
+X-Mailer: git-send-email 2.25.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: KUZPR04CA0004.apcprd04.prod.outlook.com
+ (2603:1096:d10:32::6) To BL1PR03MB6037.namprd03.prod.outlook.com
+ (2603:10b6:208:309::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <959ed84f-f1bc-4606-4272-dcd7d853e86a@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v2] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= Turn all LEDs on at boot for Radxa boards
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR03MB6037:EE_|BY5PR03MB4968:EE_
+X-MS-Office365-Filtering-Correlation-Id: ebb92761-be60-48d9-cdf7-08de20ea557e
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?dVBiUGsyU053bHhRaXJpS000eWFiaUlSeGtwMEVaR1A3L0Z1N3JaaURjUVZM?=
+ =?utf-8?B?cVJhamVWUllUUHNJNjVVdThqczJmN1ByT3pQQzNOVUM3K3ZwV3JlZnFhZEVw?=
+ =?utf-8?B?Z1B6c3IvNEUwT3M4eFZMNkdCckNpbXFrRXRTd0k1STJXbmtDTHBEQ1MvQWdI?=
+ =?utf-8?B?Y3pua2lOQlBWTXZyajFQUHl4K2xaWUV5UVNMRHpWZTB4Z3l1ZFcvZVZiT0lY?=
+ =?utf-8?B?eXN1S1pDZVFJTENraGlHSVRkSWxLYzlPWTAvcHRsSDFCSkVDdWVlalhqbTBW?=
+ =?utf-8?B?Tll0WmsyZ1VFUlIvTTZJTXdlZ3lYaVpmZFFLdEg4eU56aEZXSHo3V1Z1a3lx?=
+ =?utf-8?B?WlY3NzhmZE1JYTdadG1IUWR6ZlNKNmhKODF0WkpWWHFBQkx6NjlZd1E2RWJm?=
+ =?utf-8?B?cm9uQnNDVFhZRWx2aGQxSVdTcytrdkhWdS9PYjUyK3U0S2tMditPVnhKOUZW?=
+ =?utf-8?B?emVGOE1nZlRYQVR3dklHdStyNTZTMWhOK2tNTkl5T0NVZEJFRDNXbUpYWVQ3?=
+ =?utf-8?B?RHBCdXJ2MGtxY29sR3FaRnMyb2JYVXJLeUlFbGlZc1dUYkxIakNGR3BZWGVh?=
+ =?utf-8?B?dHBzdFZuaVhlbkhPOSszaE13dko3MWpEbFYrMFJzWWQzUUJXVkN5MzNybk1r?=
+ =?utf-8?B?Nit1bE9abE1uc05vSFRqMTl0ZjNUdEFSL0RNSDRueDBpbEhuaGQ3VnBzNGIz?=
+ =?utf-8?B?ZU5wSkdVVkp2TVdYakhwZDNRUHNGVHBHYXBmMW1vMWozVFJIMmJTcys0UmRw?=
+ =?utf-8?B?cUMrdEFPWXVibXRYMVJ1bC9lM1lraUxkZmtVR3ZNZzkvRk5vZHZDZjdDRGhq?=
+ =?utf-8?B?aGdhVmEwYnJ1aDljNHFXK0pTVnRRZUFVNXFkVVA0Zm1KTGE1SWdUbjNCeEY3?=
+ =?utf-8?B?M3JsMnIrdG9vOXpYQmJhemVMaEN0bk9IdTNLVXVvSzRuYmZnNVJVelBNRVRG?=
+ =?utf-8?B?ak1pMEI1MEVvMlJtaUJ1YnNob3FzM0gwd3FrTHVBaTI3aDAzUlBGL1J5N0xW?=
+ =?utf-8?B?K0VJSjViUW55Rzl3SmZDallmcG16bXdyU0U5ZER1eXUzajVwUG1XZ2J4Mmhs?=
+ =?utf-8?B?WmdzWG85enUrSEZNekhGSVdVcFZid3NNSi94ME5wcmhpbmdSVDI1cHNoTk16?=
+ =?utf-8?B?WnBvSEptaC90T0dycE9wUE9ybVR1aVFmUThSUVNaejNHOHgwK2NNbjU4cE5o?=
+ =?utf-8?B?QTFLczdoSktjQ2wvYlVnNFh2T2Z2Q1MvWGl1MzVKRmd3Wkg2dXBRUllQQUsw?=
+ =?utf-8?B?UGQ4V2JmcUNXSmlYRXRUUHlJT291TDRCekZKdHNoMTV6NVBLZTluRnFVTzZD?=
+ =?utf-8?B?Rk92RnoxR09GS1pENzJUcmNzK0RNNE1rczJ4NC9MZGF4Mkl0bmFNcGhZeGdJ?=
+ =?utf-8?B?M0xIbFVoaEFmUDVrak1mcERjOWFzMXhIeXk0SGtOSjlaZ1pLeWFWd0Z1dW5k?=
+ =?utf-8?B?MmpuRXB0TDRQa3l6MkFwTFNUaDk5Q3FVNUdZNUJqb25qcVd3RHU1K29TeGxa?=
+ =?utf-8?B?VGNKSC9MMjQzY05kUUROditaWGtmcldtOHdVM3o0ckVmeTVVcXl1c0p4KzBD?=
+ =?utf-8?B?M29ZWmFSbDlkaThuWkNVZHZoNVlGT2tzbUZSbDE2QStMR2phNjNFMVk2WWZJ?=
+ =?utf-8?B?R09sa1RSaHluaFFqeXZHU1RNRExBNmlWcVJ1N1p4SHdTem00WTBqSlpOYXFV?=
+ =?utf-8?B?dkFkd2MvK20rMFNWQzFtQ3ZHK0taQXZIWGIwdXB5NDkwSHRXTXlFZjluZyt3?=
+ =?utf-8?B?cis0ZzJqTkdodjBCY29pRm1CYmVQWW5BalRZRmxGSWU5OXV4MGw0OFI5OW05?=
+ =?utf-8?B?SHpNR2d5b3YrNklTKzVUUXJrcy9MNTFORWY5RWhSTXF0UEV5c29zUzRQNWw3?=
+ =?utf-8?B?dWJjVE1MckIxK3JlcEswMmY1VnRrcjFCVGZNWU5PenVjVjJUMDNJRFZSTGZV?=
+ =?utf-8?Q?SdN5CpEw6Lg/yzhCEaDGPQyGCf/2ko6t?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR03MB6037.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MzBhUndXRk01bkxwZVFNNVBkQ0hkL01nRHFITjNxMjBWdDVWUDJldUF2RHhq?=
+ =?utf-8?B?RzhrOHNiQkdoNFp3K2hnQlRCWTFremJ0azM0UFJHRm1kK2JCMy9SN1JLZjBE?=
+ =?utf-8?B?OWUvcmF4OWpvMkEvQUUreExnR2VFSWkrVXhLM1dFSG84ZVowTGdsV2xXUmhC?=
+ =?utf-8?B?RzY1cVdkREpacnRmZndteWtrNTdjb3Fjck5TVTdBYU9QRUdQNEtwUWxrNTRa?=
+ =?utf-8?B?eU9WK2JKaVB2eFB4bkxMM2pQbTJYTFQ2S3lxVHNGQ3cxV2RreDJSMjhVTUFB?=
+ =?utf-8?B?VWNKLzBtY2I1SnkyZnRMWGMyWkRzZzZFaUgxc1Q0VE9yOVI2MTdkRklzRFFa?=
+ =?utf-8?B?QWYwWUM2K0ZkM1NKNyt2d0RSWGFSQkF3MU9DblFVV3NaQjY4RFFyeDZuTmlT?=
+ =?utf-8?B?ZGw0SUhDZ0p6amJob2x5MVpOZEp3Wmg5ek51ZzkzOE5zWWUvMG01bmdoeGlC?=
+ =?utf-8?B?ZTc0bTNmYktvTnlJRzRzSFIvWm5PVFNZWDRMV2luazU0Z0NJMVRkallrTmxq?=
+ =?utf-8?B?Q0RCUjdmWUxTMnRYUC9USCtYOWVsMjE4ZGo0ek9wOWxYOE9OczNKNnpMTEJZ?=
+ =?utf-8?B?R1ludmtCRFFwdjc4WVdPVnNuYzBWSGkwNWtTcGwrMGNMcERmb04zWnJLWC8z?=
+ =?utf-8?B?YnFnRk9JRHlVVzdNZEFUSHc2RFdiVXhtNXRLWGlsMERoZk0zeEUzb2hvT2N3?=
+ =?utf-8?B?cGI4aTBrNHBnZFRLN1lUZjVveTZVK0RWM3ZRdlJaRUFHS1l1WFlnYWJvMW9q?=
+ =?utf-8?B?UU10dkRaay8yOEFkSXJsNU5za0dHY0xpd1UvYkJzanBqOUxWOHF0REQ5UmUx?=
+ =?utf-8?B?Uk1QbnoxVVFGYlo4c1kwV0VaK215dTRDc0kvVWgwWTJBYjJrYkJEU2xxb1pQ?=
+ =?utf-8?B?cFZmZi9sa2JHSDJOQ21Sb29zeGRTd1FmYkZZME5oQy82N2toenE5ZWF1eXha?=
+ =?utf-8?B?Ymx3VUpTQ0ZxQ1ZMUCs5Q1NQKzd3c2IxeEUzZ0RzVUZ5WlgyRUJvemRuSU1j?=
+ =?utf-8?B?VHgrczdpSUVEVkpxZldLd3czbXUrankvdWVmRnhGZmxJU3I3VVh4YnIwc2hz?=
+ =?utf-8?B?NjQvdkZCSmxGVTUyaC9rT0FHNGsydm13VTVpamJzeko4b3NjYzRPQzQwTHNL?=
+ =?utf-8?B?Nld1dTQ5RWsrQ0JBa0RlbEJFaE04U1dqbkFFc0pUdW5WU2tEUXV5WWd4dXY0?=
+ =?utf-8?B?NEZhM2Q0MSsxTVh1WEFLRlhCS29jMGJYeVgwQXlIYXIyY095UnFjRDFqMmF3?=
+ =?utf-8?B?ZW9Rcm9GYm9vdzFPZXNITFp6enZTak91RTJHUXhpTGUzY0N3UkZYZUZJQm1J?=
+ =?utf-8?B?SVlISFNFNzczN1Vqcm9MWXhlRTZaY3RqQU1OdzVxeUhGVFNNTmNTNzVoU0Nr?=
+ =?utf-8?B?a1hvbnErdWZucGxYbEd5N280VUJIN3Q4VXdYTGdyaWlrcmhST3BwRzI1dHA4?=
+ =?utf-8?B?cG1PN2QxcnJJNVJKM2J4cVBRNWNIcjR3dkQrZmdldEZXakVtV3dwRWJxM0FU?=
+ =?utf-8?B?bHQ5VUU3MlorekNCejZXV3pxWXZPeEprVmc0RzVsOFFvdnFNalBmTXF0WThn?=
+ =?utf-8?B?b2dNay9iWDE4UU1CQzlIYUlnbnJoS3Z3MVROZ3RGZTNsNUZBdHE0eWVIZk5r?=
+ =?utf-8?B?MDZRQUxoSGNubXNPaExpdWlrekcwTkdPOFdhOS9sSUY5a3lXNDlxYUtRNWJ1?=
+ =?utf-8?B?amZncVZEaDZwMklGK1U3NGVpaTQ2MnJGNlkzc2hCbFJTM3BZWE1KUUtBYURa?=
+ =?utf-8?B?TFZFWUdwYktoU2Y1cWMvR1lmRlRIankwSVp6eVV5VVJFZzBQVERKTElnTjlZ?=
+ =?utf-8?B?cllEc1JUSXBYM0tBcVovVlFZcXUxdFE1Wk0wdHVRYXpkTVhFTW1wcEZ2RGx3?=
+ =?utf-8?B?OU5jUzRqWTkrTng0MHFEcnZSbzVUcmREUVZtRHVjSXBRMXR2a3l4UU9QOFVQ?=
+ =?utf-8?B?NU96bkxqRlpqNTJtc0dOMmpXa3Z2QXE4TU9qb3JuNktydVo4YjJHbHdxMjdr?=
+ =?utf-8?B?KzZSQktvV3VMNU1nUGdUZi9UL3UvMjZ6R2tWdHZ3MFovSUJvQzRQdndvWC9n?=
+ =?utf-8?B?T2V2UStYV0VHYmp2NC9vVkY0bVdFdWdzT0Y4anFPa1VIWGN0SHZEWlFVZ0ZZ?=
+ =?utf-8?B?MzRVVVg1UG5ETmdsZ3BqK2hkbE1hL0VERVJjVjJ5cWFDM3hrc0lQbEQwRno0?=
+ =?utf-8?Q?5uVRYi9jYTwoHRlLSTX0700C2DlxOmiw0dz8hsw3Mw6z?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ebb92761-be60-48d9-cdf7-08de20ea557e
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR03MB6037.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 06:19:56.4143
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CRKRbXgPjh1tFSi/CUo9S806oG9GlNWTUTQ3CloT8tumxsM6youAjIy7nMCbfqvA7naeMv9C80C350i5LuCf0DkSTiQmYPaA8ZyUXVzftzgN81UhWPYax4k2T7jYiZuR
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR03MB4968
 
-Hello Naoki,
+From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
 
-Thanks for the v2.  Please, see a couple of remarks below.
+Agilex3 SoCFPGA development kit is a low cost and small form factor
+development kit similar to Agilex5 013b board.
+Agilex3 SoCFPGA is derived from Agilex5 SoCFPGA, with the main difference
+being the number of CPU cores — Agilex3 has 2 cores compared to 4 in
+Agilex5.
 
-On Tuesday, November 11, 2025 06:41 CET, FUKAUMI Naoki <naoki@radxa.com=
-> wrote:
-> Radxa's boards turn all LEDs on at boot(loader), but some boards don'=
-t
+https://www.altera.com/products/devkit/a1jui000005pw9bmas/agilex-3-fpga-and-soc-c-series-development-kit
 
-s/Radxa's/Radxa/ -- because those are boards made by Radxa, not some
-boards belonging to Radxa;  if it were specifically about the board
-designs, the possessive form would be fine, for example
+This series includes:
+ - The addition of the Agilex3 compatible in DT bindings.
+ - The initial board device tree support for the Agilex3 SoCFPGA.
 
-> have `default-state` property in Linux kernel tree but have it in
-> U-Boot tree instead[1].
->=20
-> This patch adds `default-state =3D "on"` for (almost) all LEDs (with =
-a
-> few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
-> WAN LEDs on E20C/E52C).
->=20
-> Also, remove following redundant properties:
->  linux,default-trigger =3D "default-on"; // use default-state =3D "on=
-"
->  default-state =3D "off"; // default is "off"
->=20
-> [1]
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3328-rock-pi-e-base-u-boot.dtsi#L10-12
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3399-rock-4c-plus-u-boot.dtsi#L11-17
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3399-rock-pi-4-u-boot.dtsi#L11-13
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3566-radxa-cm3-io-u-boot.dtsi#L10-12
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3566-rock-3c-u-boot.dtsi#L14-16
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3568-radxa-e25-u-boot.dtsi#L7-24
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3568-rock-3a-u-boot.dtsi#L11-13
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3588-rock-5b-u-boot.dtsi#L11-13
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk=
-3588s-rock-5a-u-boot.dtsi#L10-12
+Note:
+The patch 2 depends on the series: "Add iommu supports"
+https://lore.kernel.org/all/cover.1760486497.git.khairul.anuar.romli@altera.com/
 
-Hmm, this particularly complex reference presents us with a somewhat
-interesting literary challenge. :)  There should be only one URL per
-reference, so one way to resolve this would be to reword the opening
-paragraph like this:
+Patch series "Add iommu supports" is applied to socfpga maintainer's tree
+https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
 
-  Radxa boards are intended to turn all their LEDs on at boot time,
-  as part of the intended visual feedback to the end users, but some
-  boards don't have the associated "default-state" LED properties
-  defined in the Linux kernel, yet they have them defined in U-Boot.
-  This includes ROCK Pi E, [1] ROCK 4C+, [2] ROCK Pi 4, [3] CM3, [4]
-  ROCK 3C, [5] E25, [6] ROCK 3A, [7] ROCK 5B, [8] and ROCK 5A. [9]
+v2 changes:
+ - Add separate agilex3 compatible.
+ - Use separate dtsi file for Agilex3.
 
-  [1] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3328-rock-pi-e-base-u-boot.dtsi#L10-12
-  [2] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3399-rock-4c-plus-u-boot.dtsi#L11-17
-  [3] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3399-rock-pi-4-u-boot.dtsi#L11-13
-  [4] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3566-radxa-cm3-io-u-boot.dtsi#L10-12
-  [5] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3566-rock-3c-u-boot.dtsi#L14-16
-  [6] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3568-radxa-e25-u-boot.dtsi#L7-24
-  [7] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3568-rock-3a-u-boot.dtsi#L11-13
-  [8] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3588-rock-5b-u-boot.dtsi#L11-13
-  [9] https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts=
-/rk3588s-rock-5a-u-boot.dtsi#L10-12
+v1 link:
+https://lore.kernel.org/all/cover.1762756191.git.niravkumarlaxmidas.rabara@altera.com/ 
 
-Of course, it would also make sense to order the list of boards and
-the associated references alphabetically, which would make the list
-more readable and is left as an exercise. :)
+Niravkumar L Rabara (2):
+  dt-bindings: intel: Add Agilex3 SoCFPGA board
+  arm64: dts: socfpga: add Agilex3 board
 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
-> Changes in v2:
-> - Add more URLs for reference
-> - Reword commit message
-> ---
->  arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts    | 1 -
->  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts    | 1 +
->  arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts | 3 ++-
->  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 1 +
->  arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts   | 2 --
->  arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts      | 1 -
->  arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts | 1 +
->  arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts      | 1 +
->  arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi  | 1 +
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts      | 1 +
->  arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts      | 3 ++-
->  arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts   | 2 --
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts   | 3 ++-
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi     | 1 +
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts      | 1 +
->  arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts     | 3 ++-
->  16 files changed, 16 insertions(+), 10 deletions(-)
+ .../bindings/arm/intel,socfpga.yaml           |   5 +
+ arch/arm64/boot/dts/intel/Makefile            |   1 +
+ .../arm64/boot/dts/intel/socfpga_agilex3.dtsi |  17 +++
+ .../boot/dts/intel/socfpga_agilex3_socdk.dts  | 126 ++++++++++++++++++
+ 4 files changed, 149 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex3.dtsi
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
+
+-- 
+2.25.1
 
 
