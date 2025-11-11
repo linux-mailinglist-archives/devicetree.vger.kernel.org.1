@@ -1,122 +1,99 @@
-Return-Path: <devicetree+bounces-237188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C53C4DE66
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:54:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE8DC4DA73
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:24:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38B5F18C3FF7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:48:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 788EB188AEAC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD8F36B065;
-	Tue, 11 Nov 2025 12:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386083563FA;
+	Tue, 11 Nov 2025 12:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pOiyXfTS";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JyK8nfge"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kdhIPBVK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60F723A1D1D
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:32:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047452737E7;
+	Tue, 11 Nov 2025 12:23:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762864350; cv=none; b=r0c3NLnZw+9ONCzhpV3ceYqr5A6Qn+duidjbd3aISBVepwAi+6+m1sW64/Tt0noXBxjeqXpwrc5HdWuALp7XfAugVjm0CpJoeum6xv2QEEmPftPPbjUWq2L4pizKOhLK85rgf4FolwFb7+P36nRp+V0Nn55DI22wSF03wOLBcv8=
+	t=1762863824; cv=none; b=fqH/I0ve6qsHS8DjvW7OQCHqO823UAxANAXlY6Ne/l3J7asWpJ+wPThN/5Rp0az0SFNE/fWwtnlVDP9GNO9Y1Y52y1Ht9Kdka/52AHT6mlCsfE08Bw8bu929x7KoJdF/W0950NEbXf7IsQHKGn7U0eTsaPzLKBW3GyYmAb6hkVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762864350; c=relaxed/simple;
-	bh=uMxXOjJXaWW5Jx0Nm2V04BCLZlkXJIu5lhGx0yBPCag=;
+	s=arc-20240116; t=1762863824; c=relaxed/simple;
+	bh=6EpV0VAnroljRKERj3Z2h5E1lc7vc1uC0tnqJCxs/Es=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J+Xpk35GaCwtDBHnupLihz47kG1JKnLlbkxVOhdoBOlIonqNdEnqXbN9F+wNJYs+QZL0bDQZGztSdnxyzPyJ+E4iEC96PC6WFPdd7NGZ7NI3WG4LpnSh01zljkOmR6rEvykY2qr/K+hbd6N8jDZqTuc9l6N7yuDGPTVz7g45AmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pOiyXfTS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JyK8nfge; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABBGBjm2048415
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:32:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=h8DUvR1H6dSsGWPpCOhKkZ2y
-	qS1zJBTq22Qwh3D/TRE=; b=pOiyXfTS4T80C9spBigWSNNHyC+MAApS9mtn03Xr
-	TkadIToCC9c01KmX65m9g+1i7iIJ7XfW9dGhcSZcYnyxLl3O9X3LdkHVsrh7xMU1
-	mKT3SDO3Fia3ohYjL12Xi4Gb6N6AFiy61zdF6dkptdx8x/Bq3Ni+ouvfXp8ttt3S
-	ifhPKNYphh84/LWarDEUabz3e6lQ/vOIS47t1nvuDDsc1h52SLA1Hr+y03uSA2sv
-	p4EQLxOKZ4GirWg7KNFjp026XcYwAb4l9ZSPIDFsUnusigwuln7OMX7URPCJauIQ
-	qF1rJmJQFyApPTLCvNxSpEB4+bCuPo4XBJwMvR8D8yDQwA==
-Received: from mail-oa1-f69.google.com (mail-oa1-f69.google.com [209.85.160.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ac11x0sqf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:32:28 +0000 (GMT)
-Received: by mail-oa1-f69.google.com with SMTP id 586e51a60fabf-3c966724910so6788055fac.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 04:32:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762864348; x=1763469148; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h8DUvR1H6dSsGWPpCOhKkZ2yqS1zJBTq22Qwh3D/TRE=;
-        b=JyK8nfge/pG97+0Ug9gqZZNA/PyXE6zQ2+t1qnkUAvibhkfR0BZ2wJ3j6TBWrb5Urw
-         reY3BNl04Njn4etkoQGbwpoWgcFKeeFk/kyhp7lIwwqBlDuoW7krnGtT2iyjE4nmHBQe
-         TL1FV/YcNhF94C/1kRRVXjbwtFDWwePdiBK3dP0bN5QGaEL3WxSXqV9BROfU9PFsruI1
-         AOnsJzWJVVrm0CxBQdvPQLby33VId1FflRfENhdqkI0DRVwyxDO2+Tkv3mO6+636LH96
-         GfGH2Db4nuU4wWhhrMXRDXRzfHuTn4GRRc2QQiQ3If60ZXMu1Aj5wLnzmTl5NlzRR95u
-         INZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762864348; x=1763469148;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h8DUvR1H6dSsGWPpCOhKkZ2yqS1zJBTq22Qwh3D/TRE=;
-        b=ncDGOAEJncXX8iNI4ugDbUG4aep7Jlg6JIZPq3oL0fmWYiIAIXRSDZ4/4lfsF8PE6s
-         6HCOAqj/AURd4lJpSWM3vy3KWVb9pI6a2c0tWlNRX7C2aV/aImiZhjk140+w3OjK0UcF
-         YrgvqunVmh4lDcU3eAoJ8tCWjQ0PrrYFtcQwQ50SJdHnqlYUnZeHZIxArKamHdIE5kpa
-         BafkLNoGrzE02R6GaJOrJuyI6Sr1lJxNGogfVG7k54NGsmBQP+ZxINrBQxCqjEGmLRB2
-         QSGCP+ekpSRQoUzkAiLFmw/fVwWXO/eNODUdT0AOV7ARrqfl/LnTBz0GR/1/DgIAydI5
-         znmg==
-X-Forwarded-Encrypted: i=1; AJvYcCXkKKFFWlaCnnRkvLdywQj/z21hCrm1nFAD9tdfO2NMlCysZP3dvexIGTpnAyEnBCsl/mVencR90tpv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIsWlAGh/2l/LN1nL58GdYb4orXqtfBBNaInrJy36P7X5FzW3v
-	meIye5k1ZNWeNqrTsUYsoSEKknAXqB5Hnz6eQz+dFe5cHbTd6/uVzS3GIPMqvUghsomiPNEtqD/
-	wE4e+kteTUZ/rArtzgSrkK59lR3ZVN0YEvM4CAZ62uAoa6quTGva7kq4gCwohDaEr
-X-Gm-Gg: ASbGncvAMyl6tO5P/aU78g9Z5NC+i1oUlGDOj3QW5pubqKEFNwFutedXyib/3zvgbxp
-	PXl6hwlVKRxW/XPnfnC8Md/7YVupAo1WDByVH3gAt4ncxBr1sRakixxn31kK4NPYVA9kRs5+cjx
-	r9xbGvI/uA8zo5o0Tl55QvZ5YUa6frVaxat6URqA6MXItpmmUgxsZ/P1Lp4w5VqCfQ+NJbJEAkK
-	HesPTTmNT6vmsljJuV4S7RrNdJkvYO4I9C+g0Rwko1vGrmcltvd4PfIDSVwPxM9BAk0Fbz7Z33c
-	8s2gz8/dLS2T8nNOGKHk3wkF7sNGPk1DvAEgez4V2DXl98LrC3wpIQjppC/stWhKsXYqYATjb9L
-	xn5j2jl5oDee36woUyQouIj+/zOAWX9k6siRecHY60zZIvTwGt4EQOqiNXxzan7mulSddBRkj1V
-	mHmtC78b1AvllV
-X-Received: by 2002:ac8:5808:0:b0:4ed:b06b:d6a5 with SMTP id d75a77b69052e-4edb06be774mr109131351cf.4.1762863740988;
-        Tue, 11 Nov 2025 04:22:20 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHqlE6SPjHtKXlVAFeEPtooYjb0zreq0QgU5VB8K6LLCKt/01Nkgp4mrx5FBdtNHHl5wrpKww==
-X-Received: by 2002:ac8:5808:0:b0:4ed:b06b:d6a5 with SMTP id d75a77b69052e-4edb06be774mr109130881cf.4.1762863740423;
-        Tue, 11 Nov 2025 04:22:20 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5944a019f8fsm4832974e87.33.2025.11.11.04.22.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Nov 2025 04:22:19 -0800 (PST)
-Date: Tue, 11 Nov 2025 14:22:17 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        hrishabh.rajput@oss.qualcomm.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog
- device
-Message-ID: <zbwcg5pkdspkcnvaitac6y5iko346qyuzuipqhkoedcaqm2dpa@zmszuwhm5q7z>
-References: <20251107-gunyah_watchdog-v5-0-4c6e3fb6eb17@oss.qualcomm.com>
- <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
- <hbxtbaoavlsw7pbmg3cfkbyx4nacjfiikckhqgpvlggbh6hu5b@jyporqecfzni>
- <263d1390-eff5-4846-b2c2-31f96fc3248e@quicinc.com>
- <3794bb0e-5e2c-4d5e-8d81-d302fa36677c@quicinc.com>
- <56aqammkwte3tcdzni2unufjp4t4yaqazzdkigrwqsxp3ghcqe@ppe2pjwg3hrl>
- <60583236-692f-4605-9f56-f7dadb46558d@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OSJaU99osQaQW64QFsWq3pTXd9hZcg4rz16HOVheRKEnkfRzq3HwWzNLfLtrxsmWcrJ7fELITZPdxuEbE9QZcXzUptj5FbuiB6scbW3Oyfd3zsppoYRK/8ToqLTBAAmx5DkFVhhW/F52V2+wif6jF55KGn6WGb93qkWKkx4QvVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kdhIPBVK; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762863821; x=1794399821;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6EpV0VAnroljRKERj3Z2h5E1lc7vc1uC0tnqJCxs/Es=;
+  b=kdhIPBVKmSMGCcrkPaG0iQP2qkmyrSRK+6GV4DbaLn0CxOz8eJnMLSd3
+   Mydg30SMAr36ZkmuvCKi/0XbTqjiTObnScWotgILD6aqg/hkg60TYZCGB
+   AXZQaDyHMEyMjkw3qmFAR/n3AiHJ2hRqOxUwuudT9oT5G+MIfHh3oNi3r
+   u+JV8H6QxYVkXBzD6Rb1ALFzSdBAdL/aGX6QEgUtC2H8iaZwoq1zBPg0X
+   zo2Ts0YuhbLlgMX/i/cRIRIfdIzaeG1nyp0ktOA+jHrPttQA7QVU/7XlO
+   /ox+LfTcldgSK7/69oxjvfPAyZi4DE/bsv/lAsIg6w5wfdJA6lsBFilh8
+   w==;
+X-CSE-ConnectionGUID: HXzZvTqAQQ2KswWG9jB98g==
+X-CSE-MsgGUID: LiItNI5cRk6oVNEnhJGoIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64957760"
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
+   d="scan'208";a="64957760"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 04:23:40 -0800
+X-CSE-ConnectionGUID: weIIScanQSar5TscP8ewSg==
+X-CSE-MsgGUID: +CZy5Gu6SiGJHJRCy6UfXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
+   d="scan'208";a="188716718"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.96])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 04:23:34 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 06B8711F983;
+	Tue, 11 Nov 2025 14:23:32 +0200 (EET)
+Date: Tue, 11 Nov 2025 14:23:31 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Matthias Fend <matthias.fend@emfend.at>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Alan Stern <stern@rowland.harvard.edu>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v5 2/2] media: i2c: add Himax HM1246 image sensor driver
+Message-ID: <aRMqw_yGMatKS5mY@kekkonen.localdomain>
+References: <20251104-hm1246-v5-0-97c8f25b5419@emfend.at>
+ <20251104-hm1246-v5-2-97c8f25b5419@emfend.at>
+ <aQn_lguAdP-ZwCzK@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -125,99 +102,480 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <60583236-692f-4605-9f56-f7dadb46558d@kernel.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDEwMCBTYWx0ZWRfX1uF15W3N8mCN
- NRS7Dm5Y7YY1HwCstvQWI+mL21o+vUae5Ux4i6ot4oAiVbvULPyiDgmrlk2H5pFm9zH8AJISGPv
- BFncjZxFGDwSuhYKtqn4iVyHtgmpSIsMu997stAWnzmUjrpodiq0x2+pOt2/3N7+zn4LRDfTEAf
- /U9kE/i5FVsE6tqwduajAdPnDu2+cNVnZu0VuKOLMpOQYDaGy4Qzpu4J3/eJMV5IB/csO0s84OM
- CxZXFM65nE5WbKcJRn+5N0pyT2kCFgrFXWLcpMKfGFHa1KS5Xh29jOxD+/Ehi4xG1xccv4EpFPc
- hkbd8yoP9PTXSjvKLWAYlOW48EpgZVh3NgWvQV9YJRiFU5gsAEAHlxh3X21RtRMwPqE4ovSaD+j
- GMROLYFT8DCg5pzP9ag1k2NG4h6Izg==
-X-Proofpoint-ORIG-GUID: Bz8vrfqYfczvjqWTQ-K4ByPT5icOau1L
-X-Authority-Analysis: v=2.4 cv=L94QguT8 c=1 sm=1 tr=0 ts=69132cdc cx=c_pps
- a=zPxD6eHSjdtQ/OcAcrOFGw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=mhC3O9B1GX6jFu3mhFkA:9 a=CjuIK1q_8ugA:10 a=y8BKWJGFn5sdPF1Y92-H:22
-X-Proofpoint-GUID: Bz8vrfqYfczvjqWTQ-K4ByPT5icOau1L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-11_02,2025-11-11_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 phishscore=0 suspectscore=0
- clxscore=1015 priorityscore=1501 malwarescore=0 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110100
+In-Reply-To: <aQn_lguAdP-ZwCzK@smile.fi.intel.com>
 
-On Tue, Nov 11, 2025 at 11:41:51AM +0100, Krzysztof Kozlowski wrote:
-> On 11/11/2025 11:34, Dmitry Baryshkov wrote:
-> > On Tue, Nov 11, 2025 at 10:51:43AM +0530, Pavan Kondeti wrote:
-> >> On Mon, Nov 10, 2025 at 09:43:53AM +0530, Pavan Kondeti wrote:
-> >>> On Sat, Nov 08, 2025 at 07:26:46PM +0200, Dmitry Baryshkov wrote:
-> >>>>> +static void qcom_scm_gunyah_wdt_free(void *data)
-> >>>>> +{
-> >>>>> +	struct platform_device *gunyah_wdt_dev = data;
-> >>>>> +
-> >>>>> +	platform_device_unregister(gunyah_wdt_dev);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void qcom_scm_gunyah_wdt_init(struct qcom_scm *scm)
-> >>>>> +{
-> >>>>> +	struct platform_device *gunyah_wdt_dev;
-> >>>>> +	struct device_node *np;
-> >>>>> +	bool of_wdt_available;
-> >>>>> +	int i;
-> >>>>> +	uuid_t gunyah_uuid = UUID_INIT(0xc1d58fcd, 0xa453, 0x5fdb, 0x92, 0x65,
-> >>>>
-> >>>> static const?
-> >>>>
-> >>>>> +				       0xce, 0x36, 0x67, 0x3d, 0x5f, 0x14);
-> >>>>> +	static const char * const of_wdt_compatible[] = {
-> >>>>> +		"qcom,kpss-wdt",
-> >>>>> +		"arm,sbsa-gwdt",
-> >>>>> +	};
-> >>>>> +
-> >>>>> +	/* Bail out if we are not running under Gunyah */
-> >>>>> +	if (!arm_smccc_hypervisor_has_uuid(&gunyah_uuid))
-> >>>>> +		return;
-> >>>>
-> >>>> This rquires 'select HAVE_ARM_SMCCC_DISCOVERY'
-> >>>>
-> >>>
-> >>> Probably `depends on HAVE_ARM_SMCCC_DISCOVERY` is correct here.
-> >>>
-> >>
-> >> Dmitry / Bjorn,
-> >>
-> >> We are debating on this internally on how to resolve this dependency
-> >>
-> >> - QCOM_SCM depends on HAVE_ARM_SMCCC_DISCOVERY which means restricting
-> >>   QCOM_SCM compilation than what it is today.
-> >>
-> >> - Adding #ifdefry around arm_smccc_hypervisor_has_uuid usage in qcom scm driver 
-> >>
-> >> - Adding stub for `arm_smccc_hypervisor_has_uuid()` which is not done
-> >>   for any of the functions defined in drivers/firmware/smccc/smccc.c
-> >>
-> >> We are trending towards the first option above. Please let us know if
-> >> you think otherwise.
+Hi Andy, Matthias,
+
+On Tue, Nov 04, 2025 at 03:28:54PM +0200, Andy Shevchenko wrote:
+> On Tue, Nov 04, 2025 at 11:31:34AM +0100, Matthias Fend wrote:
+> > Add a V4L2 sub-device driver for Himax HM1246 image sensor.
 > > 
-> > The same as before: 'select HAVE_ARM_SMCCC_DISCOVERY'.
+> > The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+> > array size of 1296 x 976. It is programmable through an I2C interface and
+> > connected via parallel bus.
+> > 
+> > The sensor has an internal ISP with a complete image processing pipeline
+> > including control loops. However, this driver uses the sensor in raw mode
+> > and the entire ISP is bypassed.
 > 
-> HAVE_ARM_SMCCC_DISCOVERY has a dependency which is not always selected
-> (e.g. ARM32), thus selecting it might lead to warnings of unmet
-> dependencies.
-
-Then `if (!IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY))` might be a good
-option here (and depend on GICv3 selecting it).
-
-> Whichever they choose here, they need to be sure to
-> actually compile test it, because existing patch lacks that and reports
-> are proving lack of building.
+> ...
 > 
-> Best regards,
-> Krzysztof
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/module.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/units.h>
+> 
+> This block is semi-random.
+> First of all, no new code must use gpio.h, use the proper one.
+> Second, many are missing, e.g., bits.h, regmap.h, types.h.
+> Please, follow IWYU principle (Include What You Use).
+> 
+> ...
+> 
+> > +static inline struct hm1246 *to_hm1246(struct v4l2_subdev *sd)
+> > +{
+> > +	return container_of_const(sd, struct hm1246, sd);
+> 
+> It's unclear and confusing that _const() variant is used here.
+> Either const qualifier is missed somewhere, or _const is redundant.
+> 
+> > +}
+> 
+> ...
+> 
+> > +	/*
+> > +	 * XSHUTDOWN to crystal clock oscillation:  tcrystal typ.  650us
+> > +	 * Sample bootstrap pin:                    tsample  max. 2000us
+> > +	 * Built in self test:                      tbist    max. 3000us
+> > +	 */
+> > +	fsleep(6000);
+> 
+> Also possible to write as 6 * USEC_PER_MSEC
+> 
+> ...
+> 
+> > +	format = v4l2_subdev_state_get_format(state, 0);
+> > +	mode = v4l2_find_nearest_size(hm1246_modes, ARRAY_SIZE(hm1246_modes),
+> > +				      width, height, format->width,
+> > +				      format->height);
+> > +
+> > +	switch (sel->target) {
+> > +	case V4L2_SEL_TGT_CROP:
+> > +		sel->r = *v4l2_subdev_state_get_crop(state, 0);
+> > +		return 0;
+> > +
+> > +	case V4L2_SEL_TGT_NATIVE_SIZE:
+> > +		sel->r.top = 0;
+> > +		sel->r.left = 0;
+> > +		sel->r.width = HM1246_NATIVE_WIDTH;
+> > +		sel->r.height = HM1246_NATIVE_HEIGHT;
+> > +		return 0;
+> > +
+> > +	case V4L2_SEL_TGT_CROP_DEFAULT:
+> > +	case V4L2_SEL_TGT_CROP_BOUNDS:
+> > +		sel->r.top = mode->top;
+> > +		sel->r.left = mode->left;
+> > +		sel->r.width = mode->width;
+> > +		sel->r.height = mode->height;
+> > +		return 0;
+> > +
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> 
+> > +	return 0;
+> 
+> Do we need this line?
+> 
+> ...
+> 
+> > +static int hm1246_calc_pll(struct hm1246 *hm1246, u32 xclk, u32 link_freq,
+> > +			   u32 clocks_per_pixel, u8 *pll1, u8 *pll2, u8 *pll3)
+> > +{
+> > +	const u8 pclk_div_table[] = { 4, 5, 6, 7, 8, 12, 14, 16 };
+> > +	const u8 sysclk_div_table[] = { 1, 2, 3, 4 };
+> > +	const u8 post_div_table[] = { 1, 2, 4, 8 };
+> > +	const int sysclk_pclk_ratio = 3; /* Recommended value */
+> > +	u32 pclk, vco_out, best_vco_diff;
+> > +	int pclk_div_index, sysclk_div_index, post_div_index;
+> > +	u8 pre_div = 0, multiplier_h = 0, multiplier_l = 0;
+> > +
+> > +	if (link_freq < HM1246_PCLK_MIN || link_freq > HM1246_PCLK_MAX)
+> > +		return -EINVAL;
+> > +
+> > +	/*
+> > +	 * In raw mode (1 pixel per clock) the pixel clock is internally
+> > +	 * divided by two.
+> > +	 */
+> > +	pclk = 2 * link_freq / clocks_per_pixel;
+> > +
+> > +	/* Find suitable PCLK and SYSCLK dividers. */
+> > +	for (pclk_div_index = 0; pclk_div_index < ARRAY_SIZE(pclk_div_table);
+> > +	     pclk_div_index++) {
+> > +		for (sysclk_div_index = 0;
+> > +		     sysclk_div_index < ARRAY_SIZE(sysclk_div_table);
+> > +		     sysclk_div_index++) {
+> > +			if (sysclk_div_table[sysclk_div_index] *
+> > +				    sysclk_pclk_ratio ==
+> > +			    pclk_div_table[pclk_div_index])
+> 
+> > +				goto sysclk_pclk_ratio_found;
+> 
+> > +		}
+> > +	}
+> 
+> And instead of this goto mess, factor out to a helper.
+
+I think the above looks fine as-is: it's easier to understand what it does
+when it's all in a single location. This isn't overly complicated, which
+would be another reason to do that.
+
+> 
+> > +	return -EINVAL;
+
+I'd do:
+
+	if (sysclk_div_index == ARRAY_SIZE(sysclk_div_table))
+		return -EINVAL;
+
+instead of using a goto.
+
+> 
+> > +sysclk_pclk_ratio_found:
+> > +
+> > +	/* Determine an appropriate post divider. */
+> > +	for (post_div_index = 0; post_div_index < ARRAY_SIZE(post_div_table);
+> > +	     post_div_index++) {
+> > +		vco_out = pclk * pclk_div_table[pclk_div_index] *
+> > +			  post_div_table[post_div_index];
+> > +
+> > +		if (vco_out >= HM1246_PLL_VCO_MIN &&
+> > +		    vco_out <= HM1246_PLL_VCO_MAX)
+> > +			break;
+> > +	}
+> > +	if (post_div_index >= ARRAY_SIZE(post_div_table))
+> > +		return -EINVAL;
+> > +
+> > +	/* Find best pre-divider and multiplier values. */
+> > +	best_vco_diff = U32_MAX;
+> > +	for (u32 div = DIV_ROUND_UP(xclk, HM1246_PLL_INCLK_MAX);
+> > +	     div <= xclk / HM1246_PLL_INCLK_MIN; div++) {
+> > +		u32 multi, multi_h, multi_l, vco, diff;
+> > +
+> > +		multi = DIV_ROUND_CLOSEST_ULL((u64)vco_out * div, xclk);
+> > +		if (multi < HM1246_PLL_MULTI_MIN ||
+> > +		    multi > HM1246_PLL_MULTI_MAX)
+> > +			continue;
+> > +
+> > +		multi_h = multi / (HM1246_PLL_MULTI_H_MIN *
+> > +				   HM1246_PLL_MULTI_L_MAX) +
+> > +			  2;
+> > +		multi_l = multi / multi_h;
+> > +		vco = div_u64((u64)xclk * multi_h * multi_l, div);
+> > +
+> > +		diff = abs_diff(vco_out, vco);
+> > +
+> > +		if (diff < best_vco_diff) {
+> > +			best_vco_diff = diff;
+> > +			pre_div = div;
+> > +			multiplier_h = multi_h;
+> > +			multiplier_l = multi_l;
+> > +		}
+> > +
+> > +		if (!diff)
+> > +			break;
+> > +	}
+> > +
+> > +	if (best_vco_diff == U32_MAX)
+> > +		return -EINVAL;
+> > +
+> > +	*pll1 = HM1246_PLL1CFG_MULTIPLIER(multiplier_l - 1);
+> > +	*pll2 = HM1246_PLL2CFG_PRE_DIV(pre_div - 1) |
+> > +		HM1246_PLL2CFG_MULTIPLIER(multiplier_h - 2);
+> > +	*pll3 = HM1246_PLL3CFG_POST_DIV(post_div_index) |
+> > +		HM1246_PLL3CFG_SYSCLK_DIV(sysclk_div_index) |
+> > +		HM1246_PLL3CFG_PCLK_DIV(pclk_div_index);
+> > +
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int hm1246_cci_write_pll(struct hm1246 *hm1246, u8 pll1, u8 pll2,
+> > +				u8 pll3)
+> > +{
+> > +	const struct cci_reg_sequence pll_regs[] = {
+> 
+> static ?
+> 
+> > +		{ HM1246_PLL1CFG_REG, pll1 },
+> > +		{ HM1246_PLL2CFG_REG, pll2 },
+> > +		{ HM1246_PLL3CFG_REG, pll3 },
+> > +		{ HM1246_SBC_CTRL_REG, HM1246_SBC_CTRL_PLL_EN },
+> > +	};
+> 
+> I would even move it outside the function. Note, static const maybe located in
+> ro memory while w/o static it's just a guarantee that compiler doesn't change
+> the values. Hence there is no guarantee it will be in ro memory.
+> 
+> > +	return cci_multi_reg_write(hm1246->regmap, pll_regs,
+> > +				   ARRAY_SIZE(pll_regs), NULL);
+> > +}
+> > +
+> > +static int hm1246_pll_check_locked(struct hm1246 *hm1246)
+> > +{
+> > +	u64 boot_ref2;
+> > +	int ret;
+> > +
+> > +	ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2,
+> > +		       NULL);
+> 
+> Despite being longer 80 I still would put it on one line. It will increase readability.
+
+I prefer it as-is.
+
+> 
+> 	ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2, NULL);
+> 
+> Another option is to define local regmap:
+> 
+> 	struct regmap *map = hm1246->regmap;
+> 	...
+> 	ret = cci_read(map, HM1246_SBC_BOOT_REF2_REG, &boot_ref2, NULL);
+> 
+> which will be most readable and satisfy 80 limit.
+> 
+> 
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return (boot_ref2 & HM1246_SBC_BOOT_REF2_PLL_LOCK) ? 0 : -EIO;
+> 
+> Think about similar improvements elsewhere in this driver.
+> 
+> > +}
+> 
+> ...
+> 
+> > +	/* PLL lock time: tpll typ. 100us */
+> 
+> It's not a variable name, use proper English.
+> 
+> > +	fsleep(200);
+> 
+> ...
+> 
+> > +static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode, u16 r,
+> > +					 u16 g, u16 b)
+> 
+> Use logical split.
+> 
+> static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode,
+> 					 u16 r, u16 g, u16 b)
+> 
+> This applies to other similar places in the code.
+> 
+> ...
+> 
+> > +static int hm1246_test_pattern(struct hm1246 *hm1246, u32 index)
+> > +{
+> > +	const u16 RGBMIN = 0x0, RGBMAX = 0x3ff;
+> 
+> 0 is enough (no need 0x).
+> 
+> 
+> So, the MAX is 10-bit, Can we use rather (BIT(10) - 1) to show this?
+
+The above value likely comes from a sensor datasheet; I think 0x3ff is fine
+as-is. If this was a bitmask with a row of bits set, I'd use GENMASK(), but
+not BIT(10) - 1.
+
+> 
+> > +	const struct tp {
+> > +		int pattern;
+> > +		u16 r, g, b;
+> > +	} tps[] = {
+> > +		/* 0 - Disabled */
+> 
+> Instead of indices in the comment, make the code robust
+> 
+> > +		{ .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> 
+> 		[0] = { .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> 
+> It even fit 80 characters.
+> 
+> > +		/* 1 - Checkboard pattern */
+> > +		{ .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> > +		/* 2 - Ramp */
+> > +		{ .pattern = 1, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> > +		/* 3 - Moving ones */
+> > +		{ .pattern = 2, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> > +		/* 4 - Blending color bars */
+> > +		{ .pattern = 3, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> > +		/* 5 - Color bars */
+> > +		{ .pattern = 4, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> > +		/* 6 - Solid white */
+> > +		{ .pattern = 15, .r = RGBMAX, .g = RGBMAX, .b = RGBMAX },
+> > +		/* 7 - Solid black */
+> > +		{ .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
+> > +		/* 8 - Solid red */
+> > +		{ .pattern = 15, .r = RGBMAX, .g = RGBMIN, .b = RGBMIN },
+> > +		/* 9 - Solid green */
+> > +		{ .pattern = 15, .r = RGBMIN, .g = RGBMAX, .b = RGBMIN },
+> > +		/* 10- Solid blue */
+> > +		{ .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMAX },
+> > +	};
+> > +	u8 mode;
+> > +
+> > +	if (index >= ARRAY_SIZE(tps))
+> > +		return -EINVAL;
+> > +
+> > +	mode = HM1246_TEST_PATTERN_MODE_MODE(tps[index].pattern);
+> > +	if (index)
+> > +		mode |= HM1246_TEST_PATTERN_MODE_ENABLE;
+> > +
+> > +	return hm1246_cci_write_test_pattern(hm1246, mode, tps[index].r,
+> > +					     tps[index].g, tps[index].b);
+> > +}
+> 
+> ...
+> 
+> > +static int hm1246_set_ctrl(struct v4l2_ctrl *ctrl)
+> > +{
+> > +	struct hm1246 *hm1246 = container_of_const(ctrl->handler, struct hm1246,
+> > +						   ctrls);
+> 
+> Why _const()?
+> Why not split it between lines like:
+> 
+> 	struct hm1246 *hm1246 =
+> 		container_of_const(ctrl->handler, struct hm1246, ctrls);
+> 
+> > +	struct v4l2_subdev_state *state;
+> > +	const struct v4l2_mbus_framefmt *format;
+> > +	u32 val;
+> > +	bool needs_cmu_update = true;
+> > +	int ret = 0;
+> > +
+> > +	state = v4l2_subdev_get_locked_active_state(&hm1246->sd);
+> > +	format = v4l2_subdev_state_get_format(state, 0);
+> > +
+> > +	if (ctrl->id == V4L2_CID_VBLANK) {
+> > +		s64 exposure_max;
+> > +
+> > +		exposure_max =
+> > +			format->height + ctrl->val - HM1246_COARSE_INTG_MARGIN;
+> > +		ret = __v4l2_ctrl_modify_range(hm1246->exposure_ctrl,
+> > +					       hm1246->exposure_ctrl->minimum,
+> > +					       exposure_max,
+> > +					       hm1246->exposure_ctrl->step,
+> > +					       exposure_max);
+> > +
+> > +		if (ret) {
+> > +			dev_err(hm1246->dev, "exposure ctrl range update failed\n");
+> > +			return ret;
+> > +		}
+> > +	}
+> 
+> > +	if (!pm_runtime_get_if_active(hm1246->dev))
+> > +		return 0;
+> 
+> Use ACQUIRE() and return directly where it makes sense.
+
+That's interesting.
+
+> 
+> > +	switch (ctrl->id) {
+> > +	case V4L2_CID_EXPOSURE:
+> > +		cci_write(hm1246->regmap, HM1246_COARSE_INTG_REG, ctrl->val,
+> > +			  &ret);
+> > +		break;
+> > +
+> > +	case V4L2_CID_ANALOGUE_GAIN:
+> > +		cci_write(hm1246->regmap, HM1246_ANALOG_GLOBAL_GAIN_REG,
+> > +			  ctrl->val, &ret);
+> > +		break;
+> > +
+> > +	case V4L2_CID_VBLANK:
+> > +		val = format->height + ctrl->val;
+> > +		cci_write(hm1246->regmap, HM1246_FRAME_LENGTH_LINES_REG, val,
+> > +			  &ret);
+> > +		break;
+> > +
+> > +	case V4L2_CID_HFLIP:
+> > +	case V4L2_CID_VFLIP:
+> > +		val = 0;
+> > +		if (hm1246->hflip_ctrl->val)
+> > +			val |= HM1246_IMAGE_ORIENTATION_HFLIP;
+> > +		if (hm1246->vflip_ctrl->val)
+> > +			val |= HM1246_IMAGE_ORIENTATION_VFLIP;
+> > +
+> > +		cci_write(hm1246->regmap, HM1246_IMAGE_ORIENTATION_REG, val,
+> > +			  &ret);
+> > +		break;
+> > +
+> > +	case V4L2_CID_TEST_PATTERN:
+> > +		ret = hm1246_test_pattern(hm1246, ctrl->val);
+> > +		needs_cmu_update = false;
+> 
+> Like here, and you won't need needs_cmu_update anymore.
+> 
+> > +		break;
+> > +
+> > +	default:
+> > +		ret = -EINVAL;
+> > +		needs_cmu_update = false;
+> > +		break;
+> > +	}
+> > +
+> > +	if (needs_cmu_update)
+> > +		cci_write(hm1246->regmap, HM1246_CMU_UPDATE_REG, 0, &ret);
+> > +
+> > +	pm_runtime_put(hm1246->dev);
+> > +
+> > +	return ret;
+> > +}
+> 
+> ...
+> 
+> > +static int hm1246_identify_module(struct hm1246 *hm1246)
+> 
+> This is a singleton function, right?
+> 
+> Check what once.h (or even once_lite.h) provides for you for such a case,
+> and drop unneeded "identified" variable.
+
+Once for every device, so I don't think this applies.
+
+> 
+> > +{
+> > +	u64 model_id;
+> > +	int ret;
+> > +
+> > +	if (hm1246->identified)
+> > +		return 0;
+> > +
+> > +	ret = cci_read(hm1246->regmap, HM1246_MODEL_ID_REG, &model_id, NULL);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (model_id != HM1246_MODEL_ID) {
+> > +		dev_err(hm1246->dev, "model id mismatch: 0x%llx!=0x%x\n",
+> > +			model_id, HM1246_MODEL_ID);
+> > +		return -ENXIO;
+> > +	}
+> > +
+> > +	hm1246->identified = true;
+> > +
+> > +	return 0;
+> > +}
 
 -- 
-With best wishes
-Dmitry
+Kind regards,
+
+Sakari Ailus
 
