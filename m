@@ -1,205 +1,318 @@
-Return-Path: <devicetree+bounces-237152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51047C4D66D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:28:17 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC34CC4D685
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:30:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F1E83A8F89
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:23:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AB9504F40E9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:25:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729BD355051;
-	Tue, 11 Nov 2025 11:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4119F34CFA6;
+	Tue, 11 Nov 2025 11:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RoBpfm4m"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="uqfKkqv6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012000.outbound.protection.outlook.com [40.93.195.0])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13BB30E82E;
-	Tue, 11 Nov 2025 11:22:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762860159; cv=none; b=fDg7MwbmsxDY+fuWOykgMUAKrL/NqTLq6qM5vPLxpRKee8gRKDK1gMtX93fIabWpQAIKOLwHT+Eeqwjt+qG0mMIs6W2X1+8LPdPaZq8clqqzfXcxqEKa3IXLOsBsuvx6YpqdDEL/06JX5gwL7PnvfKGMjch9NDReEwR++6UN9is=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762860159; c=relaxed/simple;
-	bh=Qqa7vlU2LmRoidNI3H+dtyzXwYS/YoqLxD8vZyRNneA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TdO/OrUe8P6PmuFIYxS5xEhCH6CyuRLBGqK+nrHsXoz0rbeaBjX1qzMbncAxqBI/JtkN4uS+gCMgMzJMcFDw0OxAFnYRHH0+8D0cMJM6pv4dNuAiN374yoPAWCKsyP3Rx3pGw6PMrdqP0Jfy4ohLtfIdHY4QUuaccPp3bEOnIRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RoBpfm4m; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762860157; x=1794396157;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Qqa7vlU2LmRoidNI3H+dtyzXwYS/YoqLxD8vZyRNneA=;
-  b=RoBpfm4mN3Ccq0oaYBH+DO1xHGTyxBATqmNpiysmawt3TZZzUgiXM+Ev
-   OKzxwa42NsK1nBIn15kz3nO1MOSC3/jK6ra7JqK0OICXz6K23dJ1ybyXP
-   pVWV3z7ulZQ+Utve6qSC5Kz/AHDvr7fBT6pPGNDBIfzHOoS2XxDgGXjvz
-   FTXEMEIP2yByXP8YFdZ2dsfcFfk7jldNzHd5lwlIonNZOQArHNbBSqCLY
-   0yq4puj35Z10gp64ioLGxXJdXrubhu503CMf1Af0QMzZ27sChB/C3jmCg
-   T4op95f832Y04ICgguHeLMnbTlP9DpYwUHADN47Pen1Lh9CGYRSWB9xm6
-   A==;
-X-CSE-ConnectionGUID: W4qDxJSHRBeAZayS9VJa/A==
-X-CSE-MsgGUID: 04ygD0CXSoO3k5qKSivwZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82317624"
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
-   d="scan'208";a="82317624"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 03:22:37 -0800
-X-CSE-ConnectionGUID: M2uXnUFfQjK85tdzgDm3Dg==
-X-CSE-MsgGUID: +qtUA1mmS5eAjAEeHoet1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
-   d="scan'208";a="193053753"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.96])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 03:22:31 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id DEC9011F983;
-	Tue, 11 Nov 2025 13:22:28 +0200 (EET)
-Date: Tue, 11 Nov 2025 13:22:28 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Tarang Raval <tarang.raval@siliconsignals.io>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v5 2/2] media: i2c: add Himax HM1246 image sensor driver
-Message-ID: <aRMcdD43ShUFQKkN@kekkonen.localdomain>
-References: <20251104-hm1246-v5-0-97c8f25b5419@emfend.at>
- <20251104-hm1246-v5-2-97c8f25b5419@emfend.at>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82BD12ECE93;
+	Tue, 11 Nov 2025 11:24:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762860297; cv=fail; b=nGXSZZLdLA3lh9oELRxguJYuXfEgbs5VBKIiVuh65UMI7BHgiAHPh/VLP660J7/ctHwRVOBLy2zt2A8V9dNsEgYHw+ea8DhhXAnZ9uaMjm6XCNfXGCJsJk3mE1tSJlzCN+/pIIw++EtE6yKdXWHbH/AQvFWDs46W/R9Ylorna0A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762860297; c=relaxed/simple;
+	bh=jwpMLjTcaarmSaK6woOXyv0mGXSlKdsvuW5vFKyP75Y=;
+	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=LFB/9HU4tmMCT16QHtcSoHO+run/HMMg7Gi4qNk20DgUmUkUwHdkOScpnFw8VnMEIEcqgIhNqwpEc6QlndwtRBURO0gGFWFqEzo5b9p8hJUEdH/PMmT0Fv9McORJ3M7OO1oK2anIRc4MoPXATKWCfXbq/QwI2QtZvH/pJo4P3lg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=uqfKkqv6; arc=fail smtp.client-ip=40.93.195.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UcfTMIknLy+fpTBS0SmxZ2Ly5TK1/RAAvOKwBF7aZ0f9lAFF8A7/phpTX3TWhbi2JtV7G4wjbvvDwo+YB0ycPCbW5/NbbaDsilvTUBXnAFP39u+DJcfqzfFOhhitJhs8/tuTDgjwU/NGVgFVKeq1HJ0YjP87I0RhsJgOFyvGGWVO0ExOLVK7sV12Z7aNpNMlqa4RPDuWXIZlyfFQsAKZIUzfUyU4Axqr3gsZAIDIvOW3uVPV/3x04YtQaXjEoiFvv+AGDqeI2w8bW+yFzmJHlZmmCWg0n1TH3UAUg07rQREMEASbGm2SjV1OfCuCDj2a2FlCrJ2xQdXYjbpjq8avXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bYRCBzNjx99Gx4YAWYBM8QReEbNi94jBE9/MGKFNvmg=;
+ b=t3W0YzG8z2pJsD2OmYo9UBgqNrPkZ96+BsdZteQ/2GX4dLHIuLXwMm5C1YuLtHeV1AsHqZdeRcprrQtmKh3DS6dsCB921gev3EWZTFVEkQQbcixaDbW0REx6Ks02DApv4CJel0bmI/WdZswGXHDh+Ua//Zu8BPdG2Cv/uSyHtecRavUnwwVt5/kbFs3gb6/vgW3CP65glnoZtIRE/Q8mNC3XDqd8HYprgBOoJjAjusQh7onKYLuF7K7mqgobDpVeO9VKXOncRclIudFs/0z3ab+gmt1TihSsD4RSyh4d88OI1QQQr20MkYwHc1SKmtsiDm3YepnSORkrlplSUZYInw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bYRCBzNjx99Gx4YAWYBM8QReEbNi94jBE9/MGKFNvmg=;
+ b=uqfKkqv6SiCQjBLLz3aIf6Xfm4SC1yLEmrShbL5ncESlptHsBig3gU0X33KyTIOBeis7VufX3p/gHJ9iqqQPdhlVVPEOCyKZQKAXcTckM529vFNalr4hqRmryWUcptRNQ18+vgsW6GBwlllN6z4yZ+xXvGD6a5OvzQye/2zz/jInhxv+kYGl3OsXhx4nWEg4NdD7K86y1H8INlcQgBH3kbqpQabGslYVbala5w+UbSjPFbXpbZRB2qTnxGEsyXXJ997d3DGTlxKlnZQ3bx2d94g7nnjUHf8Mal4kHeKp+Nu/vDfRK/Z70nj/Z7pOgVuA6BHX4G6/6emJ4IJR8G5sLg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
+ by DS7PR12MB8372.namprd12.prod.outlook.com (2603:10b6:8:eb::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9320.15; Tue, 11 Nov 2025 11:24:52 +0000
+Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
+ ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
+ ([fe80::1660:3173:eef6:6cd9%4]) with mapi id 15.20.9298.015; Tue, 11 Nov 2025
+ 11:24:52 +0000
+Message-ID: <83b76f45-e08f-4fc7-811c-647bac2c3d36@nvidia.com>
+Date: Tue, 11 Nov 2025 11:24:45 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 2/4] i2c: tegra: Add HS mode support
+To: Kartik Rajput <kkartik@nvidia.com>, akhilrajeev@nvidia.com,
+ andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, thierry.reding@gmail.com, ldewangan@nvidia.com,
+ digetx@gmail.com, smangipudi@nvidia.com, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251111091627.870613-1-kkartik@nvidia.com>
+ <20251111091627.870613-3-kkartik@nvidia.com>
+From: Jon Hunter <jonathanh@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <20251111091627.870613-3-kkartik@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO2P123CA0032.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600::20)
+ To SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251104-hm1246-v5-2-97c8f25b5419@emfend.at>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|DS7PR12MB8372:EE_
+X-MS-Office365-Filtering-Correlation-Id: 07cddfef-8134-4668-9f8e-08de2114ee5a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|366016|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?enlTRFJRbVpaYk5oc2RBN2ppS2RzcVdjbVQwMTV2aVFQblI2N1B2VWQrQmFD?=
+ =?utf-8?B?U1ZhQU9VUzBOMUR3QzBIay9jcEZZczhUaXBKV0c3MHJCYUxTUGxoR0NkbThx?=
+ =?utf-8?B?OVdtcHRVbnpad05DOWhpVWxWazZ1aGp3N21RaVV3R01Nak04M0RWOE1ubUtX?=
+ =?utf-8?B?RGZ6cTUzenFZWEk3cDg0Wk81KzhKOEtvRkJyT1FWM3ZQTUI0U2VCRVFyYmFt?=
+ =?utf-8?B?Q2NXZ3A5T0pqSjE4MitwcG9kTnRLS2wyWVBwYnVZeUJGM3Vta3FVa1dabzlQ?=
+ =?utf-8?B?Rzluc0hZYjZYODZrcEw3Vk1IelhlN1d6VmJIR2U1NDdoQkFyNDdqSjBEMVd5?=
+ =?utf-8?B?MzQ5NHpPUW5iYThOYmJnM2lveS9NN2N0bVQ5VTF2Rnc2RFpFWE9tZ0l2cEls?=
+ =?utf-8?B?czFvVU1sVXBVUmE3MFRJOUErRk0zUzZobjBralhTVkh6UEx4emNGWS96Z0Rh?=
+ =?utf-8?B?VkU4THY4ME1NbW5PSENRWWF1WUF4ZUpLWUNsQ1pDSmIzTTFrTm5VRGlLZUlY?=
+ =?utf-8?B?R0dXN09HSDlmMGltTmZSM3R5b2ZjZUVDRitOb2Z0bzNRNGJpYWo3OEoyVlgz?=
+ =?utf-8?B?SVdrZG40QmFZdVRYZVNFYTJVQUdCNlBqN3FPYWVyMFBrOTVYdjUrRkttNU5G?=
+ =?utf-8?B?SStQSk9jNkxpanZMdVlBL1NFV0dsVTdMclFMbE1aanJnY3hhSHdLdUllc0ZQ?=
+ =?utf-8?B?VUpUVWxEajUraEUwZVRETEx6NVNlVW9WTEJQNHJhVmdwYzVBQ0dsZG1DZG51?=
+ =?utf-8?B?NzVCam5CWmdkMk40SmpSRFBPNlB3Zno5S3luQkRDREtGaFBzUHZlSUdyb25G?=
+ =?utf-8?B?eSsyQ0xVazd0YnkzdjU3RjYyelJzbEJnTzlZNk5uVmxyWXkrTTdYV05TOU1k?=
+ =?utf-8?B?ZGFPcVVKZExMajNDaGt1OTJqZ0tMdlN0c0I2N3p6M2doQU0xdlc0WmlDS25D?=
+ =?utf-8?B?a1BkTWNrMFFsYW93bFMwUHFJajV1TFR5Yml5TkE4eS9CcWtiM0xvUFpHanRO?=
+ =?utf-8?B?ZHE2UWFUM3g5cnlxK0RLSjhHTkpadU8vT0NRRDBzWjRlSGlTSGQ3eU0rVGVQ?=
+ =?utf-8?B?R205bjNvZnNBUENXSXFxU1NnUnI3Nm5UdnhIem1HWFlHd3k1Q244R0dYMFdl?=
+ =?utf-8?B?TjVVOGljYnpIamJsMnVLZ2hZZkVoS281ZGNuS2F6SHZYL3lYUS9MTlBLQkJq?=
+ =?utf-8?B?cWdYSTVXK2x4YWNsQ0dIb0dPeEpNWFVFYzBhSHpoWm10SjgwbkpYRllUNUYv?=
+ =?utf-8?B?Y1lKSFpuc3NqTi90bmtOU2kySHJsWVB1RE9UMmFkczd3VWNFeXc1OWM1bUxj?=
+ =?utf-8?B?VVF5Tm56OWo2cStQajNFbHkyZWRncUw3ZkxJQU9ZL2hueXN4L0RkbW8wcU40?=
+ =?utf-8?B?UDAvNGNRWWYrTGhqL2NhcXdLYUZENXBDSWQ4aHBNYmxuUXJsbk9wZWoySGhy?=
+ =?utf-8?B?ZUxFUGZlaGp6UEZValNvdXJMS2VvZFlDcWhBTGY1SGFqZ1hyNTlDbDZhckRF?=
+ =?utf-8?B?NHRmemJHL3JiVWZhRGtGTWd2RDZFQUxXMDQrRTRzWGhCcXFTN3dLdkE5N1l4?=
+ =?utf-8?B?N1FBR0pabjNOU2xITnBabjBHVVlSMitJZjBlbEVjSjNuN05VempXOVlVOStS?=
+ =?utf-8?B?eElDRExNRExVVkRXQVdROG9EcFM2bzQ4YWhWTHBwOEpKRE0xYWZ3WFJSWHBt?=
+ =?utf-8?B?TWhRN1JDSk96a1dyUS9tRE1heEZzUXZmUHdwY0d4QXhjOTZoNWpiSFpLTkVZ?=
+ =?utf-8?B?QTJIRXkvMWtwcHhNSjhSWldlZ1YrVnlnUUhkN1ZtK2ZGbWlzQTI0WCs0c2dS?=
+ =?utf-8?B?VzJTdzhXZVhZNHFRbTRMcER2M0ZGemtFdTMxd3FIZWRLeXRnN3A2cExYQWFU?=
+ =?utf-8?B?U3IzeHIwSFF3NGtrSXJnYWZYYXZISEw3aU5aT0JOWnJqWmtWV1RXdFg1MTdM?=
+ =?utf-8?B?RDd1eXNhbGg1RlhiQXlEaGNCTzM5S2hWM1NzVmdNb05RdDBrblUvSmNDK29j?=
+ =?utf-8?B?T3lHamdtT2Q2WkczTC9OUmhXTEdFY1N0aFFMdVRIejB5UWQ3Rmg2SXpNcS8r?=
+ =?utf-8?Q?SZ/sgr?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OTcrVGZTMnRTNVNnRVI0YkpreWJvZWROL1Q2RmdIK1Q4ZmJKN2tYdzIwK0ZQ?=
+ =?utf-8?B?NlhoSkN1enh1NVJWTnUwelVxbVMrQmJESHpIcUdvWGJZVUNTRzFxalZlbmdC?=
+ =?utf-8?B?dlNCRFpZeDJmZENpUmplSm1TV2JQZk9ZOUdiT2JqaHBiMzN3ZHdvb2Y5OUUr?=
+ =?utf-8?B?NzlBVTFJQUZIT00rTCsrcFNkVEtHVVJyRFUxeHpEWXRUUDRXeFc3aGVqMm5S?=
+ =?utf-8?B?cnZjbXdVc3NJK05USW5NalNkTGVHaCswaFR2b09Yenp3a2syVVFDVS9icnZ1?=
+ =?utf-8?B?OXpkdW41SnVtTlU2TStaMFJWb2hJSVo0TS9sYkY4TjJiN1RNV0RQV2doSmxV?=
+ =?utf-8?B?N0drQTNuTEtYRk95c3JjY3pPUy9xMkhlV2t2TFltbHUwUGhvNnVlaDJEd20x?=
+ =?utf-8?B?QW51NWxrYjlKUGNMUXVnZCs2TVV1RjFkSzhrajZBT1FwUzBCcE1jU1lmM1o2?=
+ =?utf-8?B?VUJWdzR5SHY3dnRQTzdLcjRNL3dMbkhMNmppU1NTZkhLcnFlaHZudWlwaFdR?=
+ =?utf-8?B?aGhGYk54MmNOOWpEc1lmYUw4MG03TmFYdEExU3VUTTFWS0ExQkoyZllHYTlk?=
+ =?utf-8?B?WTcrYXc2S0dNQ3pDV1VLejBmMU03Qk5tTGIwSWxxMDY4OW02bFV6dTU5cmdB?=
+ =?utf-8?B?dHQ2WS85SlV2ejFVODY5WC9aZmtPdFlyakpBdFRNWWZSdE44SitVa3pVZzdP?=
+ =?utf-8?B?S0twZ0hLSWhUYjluTVRReWFVZVQ5MXF1K1FseTllSWUxVnhDd25vRGp0aDFK?=
+ =?utf-8?B?bnliR2N1NzBxbzV5cFhsUzNOdzI0cDJmaWlQNG93ZWlGNVQ1NUNsaGxjRlA2?=
+ =?utf-8?B?eWhSY1hZdWViZmxkUmozcFc3d2ZreTg1Tms3K3RuejFDTzVCYkl4TUVJTGpW?=
+ =?utf-8?B?UXN5M3Q3MW9ETmZseGt6ZmpxZWE1QVZaN3JaZE1pdU94bUlrVEVXdzVNR0dn?=
+ =?utf-8?B?UzE1T1FlUktxR1BhUlc4MXQxNm1TL3Y3RnRwRmhZVFpxb2RIRjVtL2llRGlN?=
+ =?utf-8?B?MkxrUXlXUGdLeFFra1VLRnFKWmp5NkFRa2lMcUxvVFc2dzlOcHE3TlhlWW1Q?=
+ =?utf-8?B?V0xwanRDNTJvODVFd3N4MG5XdlVmbTNkQ1ZzbXR0RVVURGxwYU1XUWpPSmhV?=
+ =?utf-8?B?L3pKSXlBTkdzS0dIa2oxb3BGY3dJL2NCUlBWb0hZRnNpS3pOdVNySGRnSVFr?=
+ =?utf-8?B?TE9MWmVBSmplK0NDbmZ4RkRTdldUUjZ6aHdrODR1T1hJeGNsMmE3U2hhUFZO?=
+ =?utf-8?B?TVQ2UGd6cVZhenB3cjdlR2NUc1krcStSMUV5QmtmSC9nYkFVOEpFWnFXQnc3?=
+ =?utf-8?B?SjcvdlJBQzVQR3IzWkZpY2VoK0JJbzE4cnRWSERXbit0TEFaWHh5aFc3RjNR?=
+ =?utf-8?B?ZWxHTytpaUtpaWdzcTZUa1UvRmw2MEEzQU9OczNueWc5QTZkb20rdEdMQlVU?=
+ =?utf-8?B?V01TMUVpQVMrM0p2L0JqMkNNczE4SUNLU0tjeGpRYUE5V1lHZFpmOFBMcWhK?=
+ =?utf-8?B?cHk4WTN3VW9pTDErNFVIcVlhaDJFWFJzZ1I2aUpJdjM4Q0NXNENXbUpiL1hw?=
+ =?utf-8?B?akIwd0xWaEYxemVveGlXekt5Wmt6Sm1ubU9BWXJzY1RIaWVrSWI1OUxTQkds?=
+ =?utf-8?B?UUlVOEs4QnhJRWZMSDR4bnBxRzJXV09sQlI4YVJiTUU4WWgvYk53ZlE1NXJF?=
+ =?utf-8?B?bWxySkZZNXYwMk5SN2QyenluWitkYkNwQTlmZGxaUWsrVmRzdmliSnNKZXVz?=
+ =?utf-8?B?V1VlY0h5dThLTk9YK3ZqNXFVczhCZ0lYWTVmcWM0djZqSmQzTVZsUmFrMFBT?=
+ =?utf-8?B?c3h0bGI4REkxVGxkVjZwWDVONDlPWUM1WUNlVWNoS2Uvd3ZPTmk0eDZ3ZXlw?=
+ =?utf-8?B?MzB3ZkVSS2loYWVuSjY0bjRNZXRkWHN1N3Q0bnk1OW1ELytqVEFJb0VQdGhQ?=
+ =?utf-8?B?YTZMU0FxUVNGK2hnR0ttZWV4cXRZT29lYmZnNmhpUWxXTk1COW9uWTdjYTdQ?=
+ =?utf-8?B?SzNoU1ZVOUlaTFp1ellnWVI0VDExQ0pPMUVkM3U5eXluMlN3bkxaUGtobW52?=
+ =?utf-8?B?Uy9jTHRGWEdaSXlPcVhXSUx3Wk9IdVNrVzVwVWZheGZXbU1USXNZU25YdnBZ?=
+ =?utf-8?Q?rHcfj5WiQdiv7v+p4CP4+sQ3R?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07cddfef-8134-4668-9f8e-08de2114ee5a
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 11:24:52.0983
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: F3IdVBFHgeMKquzrWlP1RkVdKawa7OUfQQiygDYkMB1vXtbLumgheNIErB53IR6YOjTU81sQugwYYDTkV+Fnyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8372
 
-Hi Matthias,
 
-On Tue, Nov 04, 2025 at 11:31:34AM +0100, Matthias Fend wrote:
-> +static int hm1246_init_controls(struct hm1246 *hm1246)
-> +{
-> +	const struct hm1246_mode *mode = &hm1246_modes[0];
-> +	struct v4l2_fwnode_device_properties props;
-> +	struct v4l2_ctrl_handler *ctrl_hdlr;
-> +	s64 pixel_rate, exposure_max, vblank_min, hblank;
-> +	int ret;
-> +
-> +	ctrl_hdlr = &hm1246->ctrls;
-> +	v4l2_ctrl_handler_init(ctrl_hdlr, 11);
-> +
-> +	hm1246->hflip_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
-> +					       V4L2_CID_HFLIP, 0, 1, 1, 0);
-> +	if (hm1246->hflip_ctrl)
-> +		hm1246->hflip_ctrl->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
-> +
-> +	hm1246->vflip_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
-> +					       V4L2_CID_VFLIP, 0, 1, 1, 0);
-> +	if (hm1246->vflip_ctrl)
-> +		hm1246->vflip_ctrl->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
-> +
-> +	v4l2_ctrl_cluster(2, &hm1246->hflip_ctrl);
-> +
-> +	hm1246->link_freq_ctrl =
-> +		v4l2_ctrl_new_int_menu(ctrl_hdlr, &hm1246_ctrl_ops,
-> +				       V4L2_CID_LINK_FREQ,
-> +				       ARRAY_SIZE(hm1246_link_freqs) - 1, 0,
-> +				       hm1246_link_freqs);
-> +	if (hm1246->link_freq_ctrl)
-> +		hm1246->link_freq_ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> +
-> +	pixel_rate = div_u64(hm1246_link_freqs[mode->link_freq_index],
-> +			     mode->clocks_per_pixel);
-> +	hm1246->pixel_rate_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
-> +						    V4L2_CID_PIXEL_RATE,
-> +						    pixel_rate, pixel_rate, 1,
-> +						    pixel_rate);
-> +
-> +	vblank_min = mode->vts_min - mode->height;
-> +	hm1246->vblank_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
-> +						V4L2_CID_VBLANK, vblank_min,
-> +						HM1246_VTS_MAX - mode->height,
-> +						1, vblank_min);
-> +
-> +	hblank = mode->hts - mode->width;
-> +	hm1246->hblank_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
-> +						V4L2_CID_HBLANK, hblank, hblank,
-> +						1, hblank);
-> +	if (hm1246->hblank_ctrl)
-> +		hm1246->hblank_ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> +
-> +	v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
-> +			  HM1246_ANALOG_GLOBAL_GAIN_MIN,
-> +			  HM1246_ANALOG_GLOBAL_GAIN_MAX,
-> +			  HM1246_ANALOG_GLOBAL_GAIN_STEP,
-> +			  HM1246_ANALOG_GLOBAL_GAIN_MIN);
-> +
-> +	exposure_max = mode->vts_min - HM1246_COARSE_INTG_MARGIN;
-> +	hm1246->exposure_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
-> +						  V4L2_CID_EXPOSURE,
-> +						  HM1246_COARSE_INTG_MIN,
-> +						  exposure_max,
-> +						  HM1246_COARSE_INTG_STEP,
-> +						  exposure_max);
-> +
-> +	v4l2_ctrl_new_std_menu_items(ctrl_hdlr, &hm1246_ctrl_ops,
-> +				     V4L2_CID_TEST_PATTERN,
-> +				     ARRAY_SIZE(hm1246_test_pattern_menu) - 1,
-> +				     0, 0, hm1246_test_pattern_menu);
-> +
-> +	ret = v4l2_fwnode_device_parse(hm1246->dev, &props);
-> +	if (ret)
-> +		goto err_v4l2_ctrl_handler_free;
+On 11/11/2025 09:16, Kartik Rajput wrote:
+> From: Akhil R <akhilrajeev@nvidia.com>
+> 
+> Add support for HS (High Speed) mode transfers, which is supported by
+> Tegra194 onwards. Also adjust the bus frequency such that it uses the
+> fast plus mode when HS mode is not supported.
+> 
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
+> ---
+> v10 -> v11:
+> 	* Update the if condition as per the comments received on:
+> 	  https://lore.kernel.org/linux-tegra/20251110080502.865953-1-kkartik@nvidia.com/T/#t
+> v9 -> v10:
+>          * Change switch block to an if-else block.
+> v5 -> v9:
+>          * In the switch block, handle the case when hs mode is not
+>            supported. Also update it to use Fast mode for master code
+>            byte as per the I2C spec for HS mode.
+> v3 -> v5:
+>          * Set has_hs_mode_support to false for unsupported SoCs.
+> v2 -> v3:
+>          * Document tlow_hs_mode and thigh_hs_mode.
+> v1 -> v2:
+>          * Document has_hs_mode_support.
+>          * Add a check to set the frequency to fastmode+ if the device
+>            does not support HS mode but the requested frequency is more
+>            than fastmode+.
+> ---
+>   drivers/i2c/busses/i2c-tegra.c | 62 ++++++++++++++++++++++++++--------
+>   1 file changed, 48 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
+> index bd26b232ffb3..2b18ceb837da 100644
+> --- a/drivers/i2c/busses/i2c-tegra.c
+> +++ b/drivers/i2c/busses/i2c-tegra.c
+> @@ -91,6 +91,7 @@
+>   #define I2C_HEADER_IE_ENABLE			BIT(17)
+>   #define I2C_HEADER_REPEAT_START			BIT(16)
+>   #define I2C_HEADER_CONTINUE_XFER		BIT(15)
+> +#define I2C_HEADER_HS_MODE			BIT(22)
+>   #define I2C_HEADER_SLAVE_ADDR_SHIFT		1
+>   
+>   #define I2C_BUS_CLEAR_CNFG			0x084
+> @@ -198,6 +199,8 @@ enum msg_end_type {
+>    * @thigh_std_mode: High period of the clock in standard mode.
+>    * @tlow_fast_fastplus_mode: Low period of the clock in fast/fast-plus modes.
+>    * @thigh_fast_fastplus_mode: High period of the clock in fast/fast-plus modes.
+> + * @tlow_hs_mode: Low period of the clock in HS mode.
+> + * @thigh_hs_mode: High period of the clock in HS mode.
+>    * @setup_hold_time_std_mode: Setup and hold time for start and stop conditions
+>    *		in standard mode.
+>    * @setup_hold_time_fast_fast_plus_mode: Setup and hold time for start and stop
+> @@ -206,6 +209,7 @@ enum msg_end_type {
+>    *		in HS mode.
+>    * @has_interface_timing_reg: Has interface timing register to program the tuned
+>    *		timing settings.
+> + * @has_hs_mode_support: Has support for high speed (HS) mode transfers.
+>    */
+>   struct tegra_i2c_hw_feature {
+>   	bool has_continue_xfer_support;
+> @@ -226,10 +230,13 @@ struct tegra_i2c_hw_feature {
+>   	u32 thigh_std_mode;
+>   	u32 tlow_fast_fastplus_mode;
+>   	u32 thigh_fast_fastplus_mode;
+> +	u32 tlow_hs_mode;
+> +	u32 thigh_hs_mode;
+>   	u32 setup_hold_time_std_mode;
+>   	u32 setup_hold_time_fast_fast_plus_mode;
+>   	u32 setup_hold_time_hs_mode;
+>   	bool has_interface_timing_reg;
+> +	bool has_hs_mode_support;
+>   };
+>   
+>   /**
+> @@ -677,25 +684,28 @@ static int tegra_i2c_init(struct tegra_i2c_dev *i2c_dev)
+>   	if (IS_VI(i2c_dev))
+>   		tegra_i2c_vi_init(i2c_dev);
+>   
+> -	switch (t->bus_freq_hz) {
+> -	case I2C_MAX_STANDARD_MODE_FREQ + 1 ... I2C_MAX_FAST_MODE_PLUS_FREQ:
+> -	default:
+> +	if (t->bus_freq_hz <= I2C_MAX_STANDARD_MODE_FREQ) {
+> +		tlow = i2c_dev->hw->tlow_std_mode;
+> +		thigh = i2c_dev->hw->thigh_std_mode;
+> +		tsu_thd = i2c_dev->hw->setup_hold_time_std_mode;
+> +		non_hs_mode = i2c_dev->hw->clk_divisor_std_mode;
+> +	} else {
+>   		tlow = i2c_dev->hw->tlow_fast_fastplus_mode;
+>   		thigh = i2c_dev->hw->thigh_fast_fastplus_mode;
+>   		tsu_thd = i2c_dev->hw->setup_hold_time_fast_fast_plus_mode;
+>   
+> -		if (t->bus_freq_hz > I2C_MAX_FAST_MODE_FREQ)
+> -			non_hs_mode = i2c_dev->hw->clk_divisor_fast_plus_mode;
+> -		else
+> +		/*
+> +		 * When HS mode is supported, the non-hs timing registers will be used for the
+> +		 * master code byte for transition to HS mode. As per the spec, the 8 bit master
+> +		 * code should be sent at max 400kHz. Therefore, limit the bus speed to fast mode.
+> +		 * Whereas when HS mode is not supported, allow the highest speed mode capable.
+> +		 */
+> +		if (t->bus_freq_hz < I2C_MAX_FAST_MODE_PLUS_FREQ ||
+> +		    (t->bus_freq_hz > I2C_MAX_FAST_MODE_PLUS_FREQ &&
+> +			i2c_dev->hw->has_hs_mode_support))
+>   			non_hs_mode = i2c_dev->hw->clk_divisor_fast_mode;
 
-If you move this to the beginning of the function, you can return if this
-fails.
+I am still not sure this is correct. Before we had ...
 
-> +
-> +	ret = v4l2_ctrl_new_fwnode_properties(ctrl_hdlr, &hm1246_ctrl_ops,
-> +					      &props);
-> +	if (ret)
-> +		goto err_v4l2_ctrl_handler_free;
+  if (t->bus_freq_hz > I2C_MAX_FAST_MODE_FREQ)
+      non_hs_mode = i2c_dev->hw->clk_divisor_fast_plus_mode;
 
-I'd omit the error check for this altogether. See also
-<20251111112057.95655-1-sakari.ailus@linux.intel.com> on LMML.
+Now we have ...
 
-> +
-> +	if (ctrl_hdlr->error) {
-> +		ret = ctrl_hdlr->error;
-> +		goto err_v4l2_ctrl_handler_free;
-> +	}
+  if (t->bus_freq_hz >= I2C_MAX_FAST_MODE_PLUS_FREQ)
+      non_hs_mode = i2c_dev->hw->clk_divisor_fast_plus_mode;
+
+Don't we want ...
+
+  if (t->bus_freq_hz <= I2C_MAX_FAST_MODE_FREQ)
+      non_hs_mode = i2c_dev->hw->clk_divisor_fast_mode;
+  else if (i2c_dev->hw->has_hs_mode_support)
+      non_hs_mode = i2c_dev->hw->clk_divisor_fast_mode;
+  else
+      non_hs_mode = i2c_dev->hw->clk_divisor_fast_plus_mode;
+
+Or
+
+  if (!i2c_dev->hw->has_hs_mode_support && t->bus_freq_hz > 
+I2C_MAX_FAST_MODE_FREQ)
+      non_hs_mode = i2c_dev->hw->clk_divisor_fast_plus_mode;
+  else
+      non_hs_mode = i2c_dev->hw->clk_divisor_fast_mode;
+
+Jon
 
 -- 
-Kind regards,
+nvpublic
 
-Sakari Ailus
 
