@@ -1,143 +1,130 @@
-Return-Path: <devicetree+bounces-237098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFDC4C4CC64
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:53:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5A8C4CE17
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:07:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9C53334EE95
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:53:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93ACE427E2C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 298442F693E;
-	Tue, 11 Nov 2025 09:53:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC552FD7B4;
+	Tue, 11 Nov 2025 09:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="WVN04Tna"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OvU9fWSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750AF2EDD51;
-	Tue, 11 Nov 2025 09:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 148C42FC030
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 09:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762854780; cv=none; b=CDkiD0TfbeXchs6Uf/dyYblaywnv/zp8sFvuhO6dezFGnN9vo0HMvzC+rmAYm+bKLa3X+jVjzGSV0hEkNF0SSVl/JWptUfpd/QHBP7Z972xCMlP5MSVnYg+tUic6ZPcRuF1HOokEdH/JWZXDwyPiaUnCgSBFhCK8e3btHtNK9cQ=
+	t=1762854855; cv=none; b=bR2siiU3Z/de7JeOGFcdUFo0mxPnt+SXww4udHB3RuYTFaJDAlmSnHgQEdsDGiMQMLQ1AbN7tKNMIpTsTQoOAkldgvXxr7wWWH4woIAi0sEckbRlezJwOzxP5BMMymDn8fzftOM/aN4qvFD8uN3ADY0+xXiyEpYgnzVQKp1wTGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762854780; c=relaxed/simple;
-	bh=Irzh1PTNsLt8R/60k1PuvPBimXLH1RDXRsIyuXJHTCg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hNNXF60h+dNMuLl8EpDUvp+VVvUosOoQfOqEJr4U1/3etl+VINqJ/Hfl87kmN2EAeBlqtOAb8s2RXHFHMIvfm2GrCmzGYHlsmoCoo0uDawZC8zJfizL6i72MMjeSt0GOervtTozZdgPkJEa9PsGKLQuvGX7rfmOQiTQlth0on54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=WVN04Tna; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1762854778; x=1794390778;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Irzh1PTNsLt8R/60k1PuvPBimXLH1RDXRsIyuXJHTCg=;
-  b=WVN04Tna99j/yUr93n177RcMQXG4B2KCZQoigfC2XHw+Jx/0nYuYOe9o
-   IcBFUlpoCgVGmR/evtuycVxF5Zd5sfx8iu9MmxJXGseJRJv+J3bvoSMqu
-   +JxPKsI5Z2mPHosaFIT9kCJzeB3M8odAOkVGxwMmDl2uqE15LutIErJiQ
-   UMyaUqu1R2V16aXJTBeYNsT197ycE/zoaQLK7w6XvVTvTwaldWYLRkjQA
-   /fULLt+Gactyl47BQbe6E79X0nijcvr77/WLinEuUIH+LHOKxm8DcZtZP
-   zAusqFFyvTZWPGaTz2iqhdfb0tS6cNelX/2X4jaAb1HROl7Q71ltVpxXW
-   A==;
-X-CSE-ConnectionGUID: 7IfXqfEJTEGKMKthwNbgEg==
-X-CSE-MsgGUID: mUYY+TfiREmm6rhAZ3a50Q==
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
-   d="scan'208";a="48307863"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Nov 2025 02:52:51 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 11 Nov 2025 02:51:47 -0700
-Received: from localhost (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Tue, 11 Nov 2025 02:51:47 -0700
-Date: Tue, 11 Nov 2025 10:50:16 +0100
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linux-phy@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Daniel Golle
-	<daniel@makrotopia.org>
-Subject: Re: [PATCH 0/2] phy: microchip: lan966x: Allow to invert N and P
- signals
-Message-ID: <20251111095016.42byrgj33lp4bouo@DEN-DL-M31836.microchip.com>
-References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
- <20251110114216.r6zdgg4iky7kasut@skbuf>
+	s=arc-20240116; t=1762854855; c=relaxed/simple;
+	bh=NmRrZd84HeJfVx5ulbp94fMcHAZINk/9ovlAxd4Q0nI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DsnUUGlbp+qJhd86t9tuTSz+p1ss/uyCy68cR7jqsuVD33YOaPR540LWNCbvVH/j1lnPUP1aGoRZjtDoh/l9hIdqmfumWcJYrHje0uVVdr/Sofz8Zipn+XlyjLitn6k5zQSn16PFfYnNo6OdqgSfdnbx+W1fe70tECs8r485Rhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OvU9fWSG; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-477632b0621so27214315e9.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 01:54:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762854852; x=1763459652; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1RcLpKAgVroVokPJ6qJZ8mFHk6ZFFVxhlD+S4Jv219I=;
+        b=OvU9fWSGPM2xDQ8BNPYyQ4X8z/zuENPNx5/sJJv6aEIk+lQL+DEiTQj03RPS559a7H
+         AqgY4dyY8GqdWZea6SvOQApjo6wwgoXqTouqB87E8ZdyI0ZfDXi2E+YMj1G8CpQEuAvr
+         QIjBRpBfAQrCqEaLKY22ypGGoKLkkkXYaxppE7RW9uSqt1Rqu50iAzCFq84TSW+M9ifO
+         +XKMDKVUfVKJRVKxSNM7Ydmc/MSOh2zR1o09OYfRPIZPYMpVci/SVlf7a72NSFri2bMc
+         ydS3eirwYKAZZ77fiSj5a+n0qaYb6KvgYqKSPwrneMkpc5+aAQ2KqdonBsXZm2MRBHXT
+         k97Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762854852; x=1763459652;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1RcLpKAgVroVokPJ6qJZ8mFHk6ZFFVxhlD+S4Jv219I=;
+        b=OmEAbg77yNDKLcL0E5oRcSu8+627IA/ZD3Apa1sXKF3sfFgDmK8ru+dk64c970qINh
+         QI/2ipaUi6il0xjNkUzVR2rqlpscxuP/bEBHXPw+tywyAO/w50NsqIDdStVHkFUGxcTy
+         buafDxuRt2Y61GwSNDy2UtKkeJ8zQ99oVSNbzKcoMhe1ib6iWW03FVp6LBAKouIGwYqt
+         a3w8KXFpF2c3jn0X5VnCsDR44psp+2oXuZuIlgLx0nhyRq9mXpXaMn0pH0yZ6joZB+Cu
+         kOX8eBlXjpiN1yerDHllIB/HiPaO4Sg8jJhrTepCJR156u5T1d4R/QYIv0UadW+JTVm6
+         1UmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUmMyS00GqasIKde70P+Nb3oRj1pvHmPw9HJN9JgvBSsCrp6YGSMD1tvjMD6suTjSEsQbGBzhOaGZq1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJwIknP4PmDIs3oki/kIemjUTg20Xceha49baPZO1YQF3AbH1S
+	wfAtLCUSo0S6MYoF8JBKoWt176vIz8yKOhivQ7bqti/U7VkSUrHPuY1/9qM7xfUPgNc=
+X-Gm-Gg: ASbGncudyEo8plAm3ydhZWJzo0oPBApHaak8aXGPuXI2kn00ZSkkbU2RL/tRJ8mQbI9
+	4lVVgZTFhb6bw5cWeiaCT0w7c+Gqh4Qx1PZJ8Spp8mwcaMdzGkPG/WbBjTYWDt3HOZk2gVHVrnG
+	Ru5P7GtjtiHN7/gMOrz1CWK1zxBhcZfpvEMuod4vBVNYU5PMIK5YTtlwuEck1/sqbY5VxZyJ/aD
+	0gCZGSJlw7wTHOE7/LLqqgGc8jeb0jyJjP6Pu/IgbeRP/6DpVS3IsvvXT/cbNHtzA1uqXhNVTvA
+	Bnmr3TKB7yKjFPXVoiVTribskN43FU3y5CjsMk7uWBqnS6uXALZn/GmKCJzCDBquVjMkyJLFuzF
+	2gB+imEsOHrxgiZpCvoctcr1xFGHsl5Xc2V7zOgL/bZUQtvVdqvT/uUbAu29fImWXVQxBNqZzjL
+	5LihvgdCiUYm6Cx1Di9XnQgW14QUj72TPzdg==
+X-Google-Smtp-Source: AGHT+IFL9npt8OanU5c12NGRVwnOxSJ1VHU8qFzZB0+lZ0yamOH0/N3ycPmTghVrBE6IWk6zyD+evw==
+X-Received: by 2002:a05:600c:4512:b0:477:c37:2ea7 with SMTP id 5b1f17b1804b1-4777327cb82mr105157595e9.21.1762854852310;
+        Tue, 11 Nov 2025 01:54:12 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff23:4430:b142:7c48:bde4:7b24])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4776bccd35asm242845145e9.1.2025.11.11.01.54.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Nov 2025 01:54:11 -0800 (PST)
+Date: Tue, 11 Nov 2025 10:54:06 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Georg Gottleuber <ggo@tuxedocomputers.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ettore Chimenti <ettore.chimenti@linaro.org>,
+	Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
+	wse@tuxedocomputers.com, cs@tuxedo.de
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: Add device tree for TUXEDO
+ Elite 14 Gen1
+Message-ID: <aRMHvhf77BgRvuAp@linaro.org>
+References: <20251105154107.148187-1-ggo@tuxedocomputers.com>
+ <20251105154107.148187-7-ggo@tuxedocomputers.com>
+ <aRHre28Nbyv6ShbU@linaro.org>
+ <r76wptwknylaxlkwmdkd4pinrzufnjiujrutj2q32lgt75x7ti@zibmax5uhwp5>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251110114216.r6zdgg4iky7kasut@skbuf>
+In-Reply-To: <r76wptwknylaxlkwmdkd4pinrzufnjiujrutj2q32lgt75x7ti@zibmax5uhwp5>
 
-The 11/10/2025 13:42, Vladimir Oltean wrote:
+On Mon, Nov 10, 2025 at 10:11:12PM -0600, Bjorn Andersson wrote:
+> On Mon, Nov 10, 2025 at 02:41:15PM +0100, Stephan Gerhold wrote:
+> > On Wed, Nov 05, 2025 at 04:41:06PM +0100, Georg Gottleuber wrote:
+> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> [..]
+> > > +x1e80100-tuxedo-elite-14-gen1-el2-dtbs	:=  x1e80100-tuxedo-elite-14-gen1.dtb x1-el2.dtbo
+> > > +dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-tuxedo-elite-14-gen1.dtb
+> > 
+> > Please also add x1e80100-tuxedo-elite-14-gen1-el2.dtb here (similar to
+> > the other lines), so that the EL2/KVM-specific DTB is automatically
+> > built and included in the installed DTBs.
+> > 
 > 
-> Hi Horatiu,
-
-Hi Vladimir,
-
+> Please confirm that this works before adding it.
 > 
-> On Mon, Nov 10, 2025 at 12:05:34PM +0100, Horatiu Vultur wrote:
-> > Allow to invert the N and P signals of the Serdes for both RX and TX. This
-> > is used to allow the board designer to trace more easily the signals.
-> >
-> > Horatiu Vultur (2):
-> >   phy: microchip: lan966x: Add support for inverting the rx/tx lanes
-> >   dt-bindings: phy: lan966x: Add optional microchip,sx-tx/rx-inverted
-> >
-> >  .../phy/microchip,lan966x-serdes.yaml         | 24 +++++++++++++++++++
-> >  drivers/phy/microchip/lan966x_serdes.c        | 23 ++++++++++++++++++
-> >  2 files changed, 47 insertions(+)
-> >
-> > --
-> > 2.34.1
-> 
-> For context, I am trying to describe the lane polarity property
-> generically, and I've already blocked Daniel Golle's attempt to
-> introduce the similar in intent "maxlinear,rx-inverted" and
-> "maxlinear,tx-inverted".
-> https://lore.kernel.org/netdev/20251028000959.3kiac5kwo5pcl4ft@skbuf/
-> 
-> I am trying to find out all there is to know in order about this
-> feature, and I just noticed your patch, so I have to ask some questions
-> in order to understand, had a generic property existed, whether you
-> would have used it.
 
-Yes, if there was something generic that would fit, I would like to use it.
+Yes, I tested it on the TUXEDO laptop a few weeks ago and it works fine.
 
-> 
-> So I see that you don't have OF nodes for individual SerDes lanes, so
-> this makes your device tree structure incompatible with simple
-> "tx-polarity"/"rx-polarity" properties. Are those something you're not
-> willing to introduce? 
+In general, I don't think we need to ask everyone submitting new X1E DTs
+to test the -el2.dtb separately - the hardware/firmware situation is
+similar enough on all the laptops that chances are very high that it
+will just work. There are not much device-specific aspects involved.
 
-Do you propose to change the device tree to describe each SerDes lane
-individualy?
-Apparently in the lan966x_serdes we have also the port muxing which I am
-not sure it should be there as it should be in the switch. I have done
-it this way because I have use the phy-ocelot-serdes.c as an example.
-If I change the device tree to describe each lane, then first I need to
-take the port muxing which is fine for me. But there might be a problem,
-if someone will use a newer kernel with an older device tree, it would
-break the things?
-
-> What about other stuff that's in
-> Documentation/devicetree/bindings/phy/transmit-amplitude.yaml?
-> You also won't be able to make use of the existing device tree
-> properties if you don't have OF node containers for each lane.
-
-To be honest, I haven't look at transmit-amplitude.yaml yet.
-
--- 
-/Horatiu
+Thanks,
+Stephan
 
