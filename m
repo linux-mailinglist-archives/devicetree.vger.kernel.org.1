@@ -1,306 +1,341 @@
-Return-Path: <devicetree+bounces-237337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EACCAC4F732
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:33:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFAE6C4F753
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:36:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A44F53B3BE2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:33:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54CD23BCC9F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361B0278E63;
-	Tue, 11 Nov 2025 18:33:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73CC428506F;
+	Tue, 11 Nov 2025 18:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="DZcPE8eb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FEv3k7ov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013013.outbound.protection.outlook.com [52.101.83.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89D52741A0
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 18:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762885985; cv=fail; b=jYFYQ1/UHxWWlgOw4xQ+2w4wjp6qW/T7gNZW9GoNLrth3oW++E0jymHxz5BXHm2SSwf+qae9ak18IuIWp5N0wqBHnX6V/MVUBqU1LP+3i+Y4Y5WUGTnuJ6P/D4MSOgAXDRKZIbYIm0eLjYBQ/ay6LPqUwBeXk7h1wm6lH3GfcjQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762885985; c=relaxed/simple;
-	bh=wk1HlT6FkXp1ROSNoVKB9sTLbMFm4w0UnDlZi8hjBVI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=VNqxGXkRrQb2QIY9LEAWNEN8eUKDIQ7igPPOedvL9/5G/MIriQedqwfdeR4XYNgbhcUp2P61/jDyxndLgiRvmw4Zohrin6uQ0u8r57cca7QSN+FcD69vgjppQeM3JTePGFraG4vWG/Ci3IHxg2D/7iNUsOvmasIcMqpLwIcApVE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=DZcPE8eb; arc=fail smtp.client-ip=52.101.83.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SyKPNbzd8mxYH6NqlxTUfN3hob/1zk7HZAw52/Oh/Vy0kq71WTkxvsWEYeUZJ1jlmDyxfpf6v6yDnzkqJ8sGXMM+4B/Zps+xwJEu+ZNH30Pd9iGeqTSjEP79/7FHLZFdwJ21kT8MshQra7mCBgB9VfMAUiVoj1uZi8xSHuigYlHW/WIPMCuv8uk0VKvaQdiJZORAMnZJ2u1Gp/THqV6wNafKAgQ2/RBGOxp68G7FVg5158aF+Z0y9BUs25zF+aUxod4l/G9yPEuC9blsQvdld2GIRp1RtnKCTqG+LjHKVg+C28U2YpnIy7uQW+h16G0QGw6xxj4oLF64KMkj9iyoeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cPg4y5W0EBErNPHCSj3jV0b9Qh8PXuL10NSMgij4uuY=;
- b=kz5WL0/wLnhGlrBKmUnR5/WuInTR88v/N1UvAUUFMTwrj3Vhe2HpU4C/1onFk1974L711Edu+uTZZuLM8FizItiJrMJrWYraFPGCfP4sfDaVZ5cZ8f2cmA4ZR0MwgArTE1wSWQIsJMojSNW+vmurVQZprQl707M61iHJcnUAo2wPJrdylX7t9BOweeFYZDetAcx3GD5/SUGJb4dSFtQWZEDNa1WPqlMd+yKMOiQGHvV1ZYsYWDwVkqAvsw4W+jR0vEYXkg+VqObThzZ/FBDR8b/UroM9a/UWftWQ1lkCewoOW7Iw89FZ6e/K5hVKbdQKMk5EGwBZZNsIkp3XKMKGdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cPg4y5W0EBErNPHCSj3jV0b9Qh8PXuL10NSMgij4uuY=;
- b=DZcPE8ebfXCvG6K6skcF8E9j5GBN2sZk4wqs1WQt95cPJ6QyasypQrVBcm/GPUBFo4Hu1LwsbQfSqkfQcVSR5ywLvjruxILLNG273cRopHjzgHrPgCWxnX9pHhexpv8qwlPC0PIQz0V4Ls1K8vRQQ2SkV1KTj1slYp9CQmAXx3w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by MRWPR04MB11997.eurprd04.prod.outlook.com (2603:10a6:501:9b::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 18:32:57 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::5ee:7297:93b4:a8d1]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::5ee:7297:93b4:a8d1%6]) with mapi id 15.20.9298.012; Tue, 11 Nov 2025
- 18:32:57 +0000
-Message-ID: <572f341f-a5fa-4f1c-ad60-a5fe3e046d6d@cherry.de>
-Date: Tue, 11 Nov 2025 19:32:55 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
- Radxa boards
-To: Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>
-Cc: Diederik de Haas <diederik@cknow-tech.com>, heiko@sntech.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jbx6244@gmail.com,
- pgwipeout@gmail.com, jonas@kwiboo.se, ziyao@disroot.org, amadeus@jmu.edu.cn,
- nicolas.frattaroli@collabora.com, pbrobinson@gmail.com, wens@kernel.org,
- detlev.casanova@collabora.com, stephen@radxa.com,
- sebastian.reichel@collabora.com, liujianfeng1994@gmail.com,
- andy.yan@rock-chips.com, damon.ding@rock-chips.com,
- kylepzak@projectinitiative.io, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251111054112.55505-1-naoki@radxa.com>
- <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
- <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
- <B0C8C5A69B9F465E+ba0ad139-d3d9-4492-ac9a-cc58f8f35074@radxa.com>
- <41275775-9e6e-9202-4c79-6140a56e41d5@manjaro.org>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <41275775-9e6e-9202-4c79-6140a56e41d5@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-ClientProxiedBy: WA2P291CA0037.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1f::17) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43EEB28468E;
+	Tue, 11 Nov 2025 18:36:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762886183; cv=none; b=c39nRoEVDEnDPMlFiFyZm0bClWNhldprzGNx+PqJ13TYNHKjHJLhU+SG9C20BTxzE205FLuqkbQiogj6sBoCyntrSCO89/ziON+4Y5V4/FpDBbgsnXFamZ60OWnWQQsebMnpAvzMeJ1JpxVXKGKqSqFSgsjdKxwH06D7LFKWe+A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762886183; c=relaxed/simple;
+	bh=MLA0kcDfWzKpCJ6CWESU5UcMSFv8Ue3BKYYBjOpvKVU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KTK0uxEQ5n0nnbX5QRheioE5VuiAaUhfU9b0bugfHTBXTDSEOXzoQKP5buaM08jzt7emnRztzE+wGssVMtc84dgW7vLvgMAe+QoAyiqLyh/TqSbdgD9bnskUPoG8Bcg1r8guBl27xYJVeI5bYmtEpi8NHkuVi9xag8ion00jB0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FEv3k7ov; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC58AC4CEFB;
+	Tue, 11 Nov 2025 18:36:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762886182;
+	bh=MLA0kcDfWzKpCJ6CWESU5UcMSFv8Ue3BKYYBjOpvKVU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FEv3k7ovvJHxbpWPTRea/2WRnxr5ExTq1wAZf1hHPKxbnACMrDeQmsw+KyWRRCnFU
+	 1Sjx4zy7Z+ObGPRJ0+65/kXkdEieSLkNd+zilAwCZL+5K9+ADdGnxpYjBt7QMXyuy+
+	 jWuxBxbBDQJ14uBIxgMa1sqQVbMLpH5V1j1lp9EFdNyw6ZN2BZAwQuSifluZYf7Dl0
+	 YE6MugGcUOJL6KelKgtRpb1+rO71WpGlQxBG4QmuVc3B4cwM2olVSsHvdMqfMuaBsI
+	 sfHLE6OgnWFyrKqx9WWtFmnMldl/6OHWqxngxGIzPVPBFp5EYBkT2avD86cyvv06ZB
+	 PPOn+VIxVpDyQ==
+Date: Tue, 11 Nov 2025 18:36:13 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Xingyu Wu <xingyu.wu@starfivetech.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Maud Spierings <maudspierings@gocontroll.com>,
+	Andy Yan <andyshrk@163.com>, Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH RFC 01/13] dt-bindings: soc: starfive: Add vout-subsystem
+ IP block
+Message-ID: <20251111-unsaid-rockslide-67b88b2e34bd@spud>
+References: <20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
+ <CGME20251108010453eucas1p2403ec0dd2c69ae7f3eabe19cf686f345@eucas1p2.samsung.com>
+ <20251108-jh7110-clean-send-v1-1-06bf43bb76b1@samsung.com>
+ <20251111-massager-twistable-1e88f03d82f8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|MRWPR04MB11997:EE_
-X-MS-Office365-Filtering-Correlation-Id: 41c45fa3-82c3-403b-10bc-08de2150bc4d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MjNFS3Vyelk0Qm5SbFNiNHNQR2tmcVBCY2wxZzA4NUlUTUZ4eWxVaERnRmdD?=
- =?utf-8?B?clo3Zk9icU9VVFgxZnhJeTJjR214ZEd2UUJCbnhISHY3ZlNkMFVPc1JLOGpj?=
- =?utf-8?B?a3c0WkRaaEZjUVRYU0xDODZTRndMNDdYZmpQa1BFZkc0dzlzbStXTlZnWkky?=
- =?utf-8?B?TXkvMXdVZmpkZW9BRm91VXBKUnRkV09PYkZzK3M1dmRmOEg2MWNKbEZBNGRq?=
- =?utf-8?B?dFNqVTMvOFlva3lhdlBpUWlubHZ5ajJFaWt0a1V3Qmo1NXE2M1lnVXlzcHBv?=
- =?utf-8?B?US9QRUNhWGxzaEluQmsrakYySXEyajVEWFo4TUthWDNKRVZBU1YrS3NqNDdV?=
- =?utf-8?B?alhQbURvWHg5SWRXM1E0RUQ0emUrT3grWlRHaXc4ZkxiZll0MmNWTkN1em5q?=
- =?utf-8?B?MkFLZkwraEM2MWVBN2lnMk94R0Z0TXRmaTc5MnRUQ0E0c1lFZUpFZTREMVZp?=
- =?utf-8?B?QlByWE1WdUxCc2VMUDdLS0VocUs3dW9BdVJTMDB5QTNOWGpLcnpkZWRLUytR?=
- =?utf-8?B?N3Z2S1l5dGtEYWsrQWM0UUQvbzRVNWJHeGlNZ2xrdnRlYUdvdmRZVUVRRlZI?=
- =?utf-8?B?QU9RajBrRFVDZmcyYzJrbWtvUjB6Q2daLzNSQnRCOTM1R3Y5M1kvTHo3NUhJ?=
- =?utf-8?B?QnRDT09NU1ZBUWlDM29pRmw3S1g4dHk2cno0Uk9kTVVSWTFaQzEwOS9IbUYz?=
- =?utf-8?B?VjZyK2FyeU95czYrU2ljTUt2UmNBL25GYkZYbFVHZDE4MVhCVVRCbC82RUtp?=
- =?utf-8?B?cmN3Um9JS2dVOEZubURlSVh4cjRaVWhmYllrbDdJa2MwN295eUlHZ0s4RWJK?=
- =?utf-8?B?a25GTVowVi85V0JZME5uMHdIbldNajBCNmNESnRSOFgrWVFwbUdXL2NuTnRo?=
- =?utf-8?B?L1R3WlhOUWFsVExvYXJFdXNqQkdhYmpNZ0pHSE9GNFd2M0VxYU5ZR0RjYTdv?=
- =?utf-8?B?OC91azl2cWZ3cjQyYnJCL2JOOXRreTlwSjJ0OUVTakdEK3lKWUhmWURLZnY1?=
- =?utf-8?B?dmY2dXZ4Wnp2bWJKaHYvdXFsTXJ4RGdkWWpWYjVWaDB2Sm5tL2lWcERyaTZt?=
- =?utf-8?B?MjgycDNaWThIRW55MVArYnI0QlR6bjltT3JPSlRYNUk4d0NLTUk5OUhTY0s4?=
- =?utf-8?B?SDhYdHhrajEwMEtXdGJzZk1WaTlQZ2lia1I5YS9TNmQvR3lFTStwdldTdlJ6?=
- =?utf-8?B?cjRlM3I5SUF6UGJ6aStLZXdtUlBvRDBIWkJmbjR2d3FjQm9mQS9XNFo4VHZH?=
- =?utf-8?B?WlVLZklGdHgySHJxSjZiekxPSi9pcGtITSs0OFhDQWxlQWpkbUxSL0NMWHE5?=
- =?utf-8?B?aVRVU29Pang4ODRuWjZiVUpMWVRlSHg3MnFtZndLbmJRSmFYYjB6TnFJbE54?=
- =?utf-8?B?RmRRMnAzYXd2SzNoV3dGelkydUhCeXR1ZWJEOThJdnRvaW4rUytVcjFNc2po?=
- =?utf-8?B?UGd5V1cvaVZaTUJaeW83MnVZQzVBd0sxMDh2bE5ybUZSRW4yUWw5UFBIZG5R?=
- =?utf-8?B?M0VtR3dTd0UvcmRRS1hBcW1mMmRsN2Z5SFR5REJjbGpEb3RPVFRBT1VGNncw?=
- =?utf-8?B?dTUrOHpnYUdHei9tZzBPQ1JUUkdBVDN2QzJVNWZhU3E2clF0QldhKzRHbTFU?=
- =?utf-8?B?SXoySHNQYmh3dnRlZld5SDdXaUg5K3Z4U1ZHYW5Yck9IZXNPZ3dEckphRjdS?=
- =?utf-8?B?Nk5lVDR4TGhuM2locllrR3lqdDd5TXdHM3FMNnNYaFFSeEJWV0IwNkMrTHEw?=
- =?utf-8?B?OCtldXlUSFhHMkZlYmF1NVpzUm9waFY1MXZlS0l3WTBuM3A0MTZueTFrT2Nr?=
- =?utf-8?B?dGFPOVZ0RDVOY2NaWm5XN0JTbjdTcWFGd1BqZGUrMlo3WjNZelZVWDJWdlZk?=
- =?utf-8?B?SWpRVG8zVWlBaTZWMU83cU9UcmJXSnZDM005T3dHR3NWWlE9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UHZhSVN4TXd1RkpYc2dYWkJxZi9oNDVTdGQrSTNzaURDbUhxVUIvVGwwSnpk?=
- =?utf-8?B?SGlRSGVYbGpKZU5sd1dNQlY0aE5xYUcxSDhWYk1SU1hvS2lKOU9WbnN0Qm9E?=
- =?utf-8?B?ekh4RnFzOUc0ajhKbUZsQWJqTkhBZ2owVXJqQlIvV1oyODFpV2s5U3BEbDc3?=
- =?utf-8?B?RUpCdysvRGdzNG56d0VjWDg5ZnFaZHRJdUFMTHRhT2JIeWhiMXJ5bm82TnV5?=
- =?utf-8?B?MUhtdWVodjQ0dVJkRlZhWDF1ckFDc0JISFV3dFpuV25CK1plY09kdFRGSUtv?=
- =?utf-8?B?SnZKaG5HMExTZUR1SXBHM0dnc2V2djFabjRMV09NOTcrSmN3K1NQQ0VuaE5P?=
- =?utf-8?B?ZWt3NHdBVkp4cldnajZFSUwzN0NxSmhqMjV2UDJLYkVMNkIzOXdETWd2ZkI0?=
- =?utf-8?B?dEh4cjg2WFlrTVhJMTNzbTVpYVZkOW5OOHZjeU5rNEtGSnBZS2wyU0xrN2pH?=
- =?utf-8?B?ZTZCS0VISUFXWHViTmxzaWNjU2pnMVpGazdsenJqc1EvdnhSaXJmTUt1SjQ4?=
- =?utf-8?B?NXZCaXZYUjRMVGJjdkxxSGFpRVVxY1c0TlN2Z09yUXA4Y1Uxazh5RUkrbEVL?=
- =?utf-8?B?MXRFZ21BaXdBNkRGTEo3cVpHTVlhWG9EK2xDM0xKN0toV25HVXJlT05sT3FS?=
- =?utf-8?B?TGYyMVpLUmlIZUpSSmpMckF1Q3pHdlE5a3g3Mmw1L0R3RksraWM0c3hoeXBk?=
- =?utf-8?B?UFF3b0JHVVJMQllURk02MlhPNkhIU2p3SjFGd0QydnlKVUxnZ2lhU2xRV0sw?=
- =?utf-8?B?WnZyODhKbmtocG1lWTYyaDNNNzZrZ082cnJuTDFxb3NqbjQrWVlKS2MzZFpQ?=
- =?utf-8?B?aGk0U0gzRFB6aEppdm9LNkRWb1FZQ3lYWGdFUTl2Qlh2Z0RrWnV2VEtnYWt2?=
- =?utf-8?B?UkFUa2xCUm5PWEdXb1lHN1ZuTHBkSkpSYk1HbTB2R2JITkhZRzFIS1IvSTJK?=
- =?utf-8?B?emFUV3FoQ3g2N1VGQXlIME0wa3FlVjl2c0NQUHFLQzRQc0k3L2F6Q1R2bnZP?=
- =?utf-8?B?TTVEK0E5MjZDbXlUWENJUk80MFFObVN1U2ZwRldZeTVhUnVFeWFsQzNObWN3?=
- =?utf-8?B?UDZhNURNUHRNRVJhY0tGV2xJeDJZTURWeHRSUS9WU2hPcVphdUd3Nm9DaVM2?=
- =?utf-8?B?OU5DcjJJUXFPcDI5aVhBSHBpSXI2NUhmdjQ2TkhhZ0pUK3d3OEhhenNXM1Rn?=
- =?utf-8?B?MGRTcm1sTFhpQnBuNDQ0eVhKSGlZK2tDOC9nYk5DdldsTlNnay9aNXAxQk13?=
- =?utf-8?B?d3VLK3BnWXdyU3BzSklKQTdxdFZjcFVjWEFnUFY3cWtwL0creWt4UW1TVGJv?=
- =?utf-8?B?TFhMaFZMYjJiU0JLT0Y4L25qVjFUT2tvWGVnclI5UENDU1FSZ1ZBTk1UdEd6?=
- =?utf-8?B?MDBVS1lJdlhmZG8zZndlYTZGcWNwenJQejBXMkdKTjh3SWpjYTNGVmQzU3lW?=
- =?utf-8?B?NFJIVmFyeSt3aFhsOG00SVBJUW81R3FYd3huVzIxUDRjZG9panhjMHpBcm9D?=
- =?utf-8?B?a1dMdVdTdkkzMEJKaVpDT0UzTlZGT0hnRDIxV1F5dURNMzkxa1NwQWltb2pl?=
- =?utf-8?B?VTdmVDZ6cGlWd1pyV1ArblU0YlpRUzdCOENHVDF5OTRGUzFNaVMxNHBEdm43?=
- =?utf-8?B?NGtjcUtjZDNuck1EK240dHE1NmlpdXR2V3RZYjF4TmN0bEhlSHhKVmdPWmlT?=
- =?utf-8?B?OFcwQnFYRXBobVk1WG9yVXRadTNHMjNiWnlOUnRMWXVrZk10dlcwbXk1anc5?=
- =?utf-8?B?T0drRm9LMW1na1VqTjZJSGdjQ2gyRWxzU3B1TmhJamlSdlFBcUJVUE9NQmtF?=
- =?utf-8?B?THNkR1k4L1pqTFUxeHJVeWQ4S3dnRTBFU3V3Y0U0ZGJjcG4yT0FaZGxtc1lZ?=
- =?utf-8?B?bTVxZ1R5M0haMWp3YjNJa1g5bGJTazFlS3BYTHpPQ3BIRFRCaldLQ1FubUxL?=
- =?utf-8?B?Sjc1MEJkRXVwb1ZFTllJNlM1SGVmV1c4Zm1Oc2hEWkFLRE1peGRhTCtsMm4r?=
- =?utf-8?B?OVlvOU1vak5SMFVHSGxLbTBiRVBrTUpqcGVCLzVLWjRNMUIrMTdwaDI5Mnpa?=
- =?utf-8?B?a0FwTXRVbkxqNVlkMmsyL3EzbnoxODI0elZFTWRjbHl4VnFWQzJJZ3I4MXd5?=
- =?utf-8?B?b2tRajNjb0QxbkowV2lMM3o2alhIN1FXUXFTb2FMRlBlaVBZd1gzS0xuekhB?=
- =?utf-8?B?aWc9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41c45fa3-82c3-403b-10bc-08de2150bc4d
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 18:32:57.5101
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6NRpkpK0ZsZ24r0ib90Y+/Kh8oGwzsjGvuS7GDFMIE9JcuX6pMd3aT/oZ09ZAgkjCtdZIatBQrWqnWO5Ka7POfmiXZ4JMHR0wcPtLKF3New=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRWPR04MB11997
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7Zn5DUxOsE/fr2EG"
+Content-Disposition: inline
+In-Reply-To: <20251111-massager-twistable-1e88f03d82f8@spud>
 
-Hi all,
 
-On 11/11/25 5:14 PM, Dragan Simic wrote:
-> Hello all,
-> 
-> (+ Quentin)
-> 
-> On Tuesday, November 11, 2025 16:32 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
->> On 11/11/25 23:46, Dragan Simic wrote:
->>> On Tuesday, November 11, 2025 14:07 CET, "Diederik de Haas" <diederik@cknow-tech.com> wrote:
->>>> On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
->>>>> Radxa's boards turn all LEDs on at boot(loader), but some boards don't
->>>>> have `default-state` property in Linux kernel tree but have it in
->>>>> U-Boot tree instead[1].
->>>>>
->>>>> This patch adds `default-state = "on"` for (almost) all LEDs (with a
->>>>> few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
->>>>> WAN LEDs on E20C/E52C).
->>>>
->>>> I'm missing the *why* these changes would be an improvement.
->>>>
->>>> Personally, for both 'heartbeat' and 'netdev' triggers, I want them to
->>>> be off by default and once it gets a 'heartbeat' or a 'netdev' trigger,
->>>> THEN I want the LED to be on/blinking.
->>>
->>> That's a good question for Naoki.  My own preference would also
->>> be to have the device's power LED turned on by U-Boot as quickly
->>> as possible after supplying power to the board or turning it on
->>> by pressing the power button.  I'm actually not a big fan of
->>> having all the LEDs shining for a couple of seconds or so, which
->>> may actually look like some error condition to me.
->>>
->>> Having all that in mind, I may suggest that just the U-Boot's
->>> behavior is changed to turn the power LEDs on only.
->>
->> I can't quite explain it, but...
->>
->> - 1st (Power) LED
->>
->> The 1st (power) LED turns on automatically/immediately without software
->> intervention. (On some boards, this LED cannot be controlled by software
->> at all.)
->>
->> In DTS, this should be described using `default-state = "on"`. The use
->> of the Linux-specific property `linux,default-trigger = "default-on"` is
->> unsuitable for non-Linux environments.
->>
->> - 2nd (Heartbeat) LED
->>
->> The 2nd (heartbeat) LED can be controlled by software. It should be lit
->> up as quickly as possible to indicate that the very first software
->> (e.g., the bootloader) is running.
->>
->> On Linux, usually this is used as `linux,default-trigger = "heartbeat"`.
->> It indicates that kernel is running (regardless of the `default-state`
->> setting), and its behavior can be modified in user space.
-> 
-> As discussed already in the #linux-rockchip IRC channel, [1] perhaps
-> the best option would be to have the power LEDs turned on as quickly
-> upon powering on the board as possible, and to have U-Boot pulsate
-> the heartbeat LEDs using the LED_BOOT feature.  In such a scenario,
-> no other LEDs would be turned on early, and the LED-related DT parts
-> specific to U-Boot would be migrated to the kernel DTs.
-> 
-> [1] https://libera.catirclogs.org/linux-rockchip/2025-11-11#38997824;
-> 
+--7Zn5DUxOsE/fr2EG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The LED_BOOT feature (guarded by the Kconfig symbol of the same name) in 
-U-Boot only applies if /options/u-boot/boot-led property is set.
+On Tue, Nov 11, 2025 at 06:18:16PM +0000, Conor Dooley wrote:
+> On Sat, Nov 08, 2025 at 02:04:35AM +0100, Michal Wilczynski wrote:
+> > Add the dt-binding documentation for the StarFive JH7110 Video Output
+> > (VOUT) subsystem.
+> >=20
+> > This node acts as a parent for all devices within the VOUT power domain,
+> > including the DC8200 display controller, the VOUTCRG clock generator,
+> > and the HDMI MFD block. Its driver is responsible for managing the
+> > shared power domain and top-level bus clocks for these children.
+> >=20
+> > It is a bit similar to the display subsystem qcom,sdm845-mdss DT node.
+> >=20
+> > Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> > ---
+> >  .../starfive/starfive,jh7110-vout-subsystem.yaml   | 156 +++++++++++++=
+++++++++
+> >  MAINTAINERS                                        |   5 +
+> >  2 files changed, 161 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh=
+7110-vout-subsystem.yaml b/Documentation/devicetree/bindings/soc/starfive/s=
+tarfive,jh7110-vout-subsystem.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..4ad9423ea139a537b4cfea2=
+6b0ed4ed263aa14a1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-vo=
+ut-subsystem.yaml
+> > @@ -0,0 +1,156 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-vout-s=
+ubsystem.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: StarFive JH7110 VOUT (Video Output) Subsystem
+> > +
+> > +maintainers:
+> > +  - Michal Wilczynski <m.wilczynski@samsung.com>
+> > +
+> > +description:
+> > +  The JH7110 video output subsystem is an IP block that contains
+> > +  the display controller (DC8200), HDMI controller/PHY, and VOUT
+> > +  clock generator (VOUTCRG).
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: starfive,jh7110-vout-subsystem
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  ranges: true
+> > +
+> > +  '#address-cells':
+> > +    const: 2
+> > +
+> > +  '#size-cells':
+> > +    const: 2
+> > +
+> > +patternProperties:
+> > +  "^display@[0-9a-f]+$":
+>=20
+> Personally I'd like to see these being regular properties, since there's
+> exactly one possible setup for this.
+>=20
+> > +    type: object
+> > +    description: Verisilicon DC8200 Display Controller node.
+>=20
+> Can you add the relevant references here instead of allowing any object?
 
-If the driver for the LED (typically a GPIO LED controller I guess, so 
-LED_GPIO symbol) is compiled in, then, as far as I could tell, the Boot 
-LED will be turned on right before entering the main loop of U-Boot.
+I don't think that if you did, this would pass the binding checks,
+because there's no "verisilicon,dc" binding. I think I saw one in
+progress, but without the soc-specific compatible that I am going to
+require here - if for no reason other than making sure that the clocks
+etc are provided correctly for this device.
 
-If LED_BLINK (if HW blinking is supported) or LED_SW_BLINK is enabled, 
-the Boot LED will be blinking some time after relocation but still 
-turned on soon after (if it reaches that part of the code). This means 
-it'll be on before the kernel starts.
+>=20
+> Cheers,
+> Conor.
+>=20
+> > +
+> > +  "^hdmi@[0-9a-f]+$":
+> > +    type: object
+> > +    description: StarFive HDMI MFD (PHY + Controller) node.
+> > +
+> > +  "^clock-controller@[0-9a-f]+$":
+> > +    type: object
+> > +    description: StarFive VOUT Clock Generator (VOUTCRG) node.
+> > +
+> > +  "^syscon@[0-9a-f]+$":
+> > +    type: object
+> > +    description: StarFive VOUT Syscon node.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - power-domains
+> > +  - clocks
+> > +  - resets
+> > +  - ranges
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
+> > +    #include <dt-bindings/power/starfive,jh7110-pmu.h>
+> > +    #include <dt-bindings/reset/starfive,jh7110-crg.h>
+> > +
+> > +    soc {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        vout_subsystem: display-subsystem@29400000 {
+> > +            compatible =3D "starfive,jh7110-vout-subsystem";
+> > +            reg =3D <0x0 0x29400000 0x0 0x200000>;
+> > +            #address-cells =3D <2>;
+> > +            #size-cells =3D <2>;
+> > +            ranges;
+> > +
+> > +            power-domains =3D <&pwrc JH7110_PD_VOUT>;
+> > +            clocks =3D <&syscrg JH7110_SYSCLK_NOC_BUS_DISP_AXI>;
+> > +            resets =3D <&syscrg JH7110_SYSRST_NOC_BUS_DISP_AXI>;
+> > +
+> > +            dc8200: display@29400000 {
+> > +                compatible =3D "verisilicon,dc";
+> > +                reg =3D <0x0 0x29400000 0x0 0x2800>;
+> > +                interrupts =3D <95>;
+> > +                clocks =3D <&voutcrg JH7110_VOUTCLK_DC8200_CORE>,
+> > +                         <&voutcrg JH7110_VOUTCLK_DC8200_AXI>,
+> > +                         <&voutcrg JH7110_VOUTCLK_DC8200_AHB>,
+> > +                         <&voutcrg JH7110_VOUTCLK_DC8200_PIX0>,
+> > +                         <&voutcrg JH7110_VOUTCLK_DC8200_PIX1>;
+> > +                clock-names =3D "core", "axi", "ahb", "pix0", "pix1";
+> > +                resets =3D <&voutcrg JH7110_VOUTRST_DC8200_AXI>,
+> > +                         <&voutcrg JH7110_VOUTRST_DC8200_AHB>,
+> > +                         <&voutcrg JH7110_VOUTRST_DC8200_CORE>;
+> > +                reset-names =3D "axi", "ahb", "core";
+> > +            };
+> > +
+> > +            hdmi_mfd: hdmi@29590000 {
+> > +                compatible =3D "starfive,jh7110-hdmi-mfd";
+> > +                reg =3D <0x0 0x29590000 0x0 0x4000>;
+> > +                interrupts =3D <99>;
+> > +
+> > +                hdmi_phy: phy {
+> > +                    compatible =3D "starfive,jh7110-inno-hdmi-phy";
+> > +                    clocks =3D <&xin24m>;
+> > +                    clock-names =3D "refoclk";
+> > +                    #clock-cells =3D <0>;
+> > +                    clock-output-names =3D "hdmi_pclk";
+> > +                    #phy-cells =3D <0>;
+> > +                };
+> > +
+> > +                hdmi_controller: controller {
+> > +                    compatible =3D "starfive,jh7110-inno-hdmi-controll=
+er";
+> > +                    interrupts =3D <99>;
+> > +                    clocks =3D <&voutcrg JH7110_VOUTCLK_HDMI_TX_SYS>,
+> > +                             <&voutcrg JH7110_VOUTCLK_HDMI_TX_MCLK>,
+> > +                             <&voutcrg JH7110_VOUTCLK_HDMI_TX_BCLK>,
+> > +                             <&hdmi_phy>;
+> > +                    clock-names =3D "sys", "mclk", "bclk", "pclk";
+> > +                    resets =3D <&voutcrg JH7110_VOUTRST_HDMI_TX_HDMI>;
+> > +                    reset-names =3D "hdmi_tx";
+> > +                    phys =3D <&hdmi_phy>;
+> > +                    phy-names =3D "hdmi-phy";
+> > +                };
+> > +            };
+> > +
+> > +            voutcrg: clock-controller@295c0000 {
+> > +                compatible =3D "starfive,jh7110-voutcrg";
+> > +                reg =3D <0x0 0x295c0000 0x0 0x10000>;
+> > +                clocks =3D <&syscrg JH7110_SYSCLK_VOUT_SRC>,
+> > +                         <&syscrg JH7110_SYSCLK_VOUT_TOP_AHB>,
+> > +                         <&syscrg JH7110_SYSCLK_VOUT_TOP_AXI>,
+> > +                         <&syscrg JH7110_SYSCLK_VOUT_TOP_HDMITX0_MCLK>,
+> > +                         <&syscrg JH7110_SYSCLK_I2STX0_BCLK>,
+> > +                         <&hdmi_phy>;
+> > +                clock-names =3D "vout_src", "vout_top_ahb",
+> > +                              "vout_top_axi", "vout_top_hdmitx0_mclk",
+> > +                              "i2stx0_bclk", "hdmitx0_pixelclk";
+> > +                resets =3D <&syscrg JH7110_SYSRST_VOUT_TOP_SRC>;
+> > +                reset-names =3D "vout_top";
+> > +                #clock-cells =3D <1>;
+> > +                #reset-cells =3D <1>;
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 348caaaa929a519bc0ec5c0c7b587468ef7532d5..99434e54dc39494153677a6=
+ca359d70f2ba2ddb3 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -24044,6 +24044,11 @@ S:	Maintained
+> >  F:	Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> >  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> > =20
+> > +STARFIVE JH7110 DISPLAY SUBSYSTEM
+> > +M:	Michal Wilczynski <m.wilczynski@samsung.com>
+> > +S:	Maintained
+> > +F:	Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-vout=
+-subsystem.yaml
+> > +
+> >  STARFIVE JH7110 DPHY RX DRIVER
+> >  M:	Jack Zhu <jack.zhu@starfivetech.com>
+> >  M:	Changhuang Liang <changhuang.liang@starfivetech.com>
+> >=20
+> > --=20
+> > 2.34.1
+> >=20
 
-I'm not sure there's a way to hook something *after* we've entered 
-U-Boot main-loop (read "call led_boot_blink() from some board file"), 
-aside from calling `led <led-name> blink <period>` from U-Boot CLI.
 
-I'm a bit bummed by this behavior, I would have preferred the ability to 
-have the Boot LED blink until the kernel starts. I could then have a 
-different period for U-Boot (50% duty cycle at 250ms period by default) 
-and for the kernel. Of course, if it's SW blinking, once exiting U-Boot 
-it won't blink anymore until the kernel takes over, but that's also a 
-nice information to have. Anyway, I'm not sure this is actually possible 
-with the LED_BOOT feature though one should be able to do this by 
-specifying the label of an LED node to fetch from DT and then calling 
-led_set_period(dev, period_ms); followed by led_set_state(dev, 
-LEDST_BLINK); in a board file, but this is also not so nice as it then 
-also requires some C board-specific code in U-Boot.
 
-In U-Boot, only LEDs which have a "default-state" properties will be 
-auto-configured, otherwise one needs to control them manually (e.g. via 
-the `led` CLI command).
+--7Zn5DUxOsE/fr2EG
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If one wants to detect via an LED the current boot stage (U-Boot 
-reached, kernel started), then we need to NOT use LED_BOOT feature and 
-have U-Boot set the "boot" LED the opposite state than the default HW 
-state, i.e. if the LED is on without any running SW (power applied to 
-the device, empty boot media), then U-Boot should set it to off. Then 
-the kernel simply needs to start the heartbeat mode whenever ready. If 
-the default HW state is off, then U-Boot should set it on. I haven't 
-looked into the kernel side of things, but there could be a window 
-during which default-state property is applied before the heartbeat is 
-actually started.
+-----BEGIN PGP SIGNATURE-----
 
-The logic exposed in the previous paragraph should provide visual cues 
-on the current boot stage.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaROCHQAKCRB4tDGHoIJi
+0scgAP9ALSAYikt1D0zcD9C01OSOyLuRvo0MJ3+AORXfCO3hLAD+PsNzAJIRhK0d
+u2VYjsrI+kH+0FPeeIuplTwwrNRkGgs=
+=BbDd
+-----END PGP SIGNATURE-----
 
-Note that LEDs with linux,default-trigger = "pattern" (with 
-default-state property) will be blinking once auto-configured in U-Boot 
-as well according to my reading of the led-uclass.c.
-
-Hope this helps.
-
-Cheers,
-Quentin
+--7Zn5DUxOsE/fr2EG--
 
