@@ -1,144 +1,105 @@
-Return-Path: <devicetree+bounces-237341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4300C4F97A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 20:25:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83DCEC4FA5C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 20:51:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 37DFC342BD8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:25:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 164733A6F28
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773BC2FE566;
-	Tue, 11 Nov 2025 19:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CDD13730F5;
+	Tue, 11 Nov 2025 19:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="InNmF67p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tcEq5p+u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D64D2F28EB;
-	Tue, 11 Nov 2025 19:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711CE350D6A;
+	Tue, 11 Nov 2025 19:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762889117; cv=none; b=fx4f20XHGFZiU07QPjany/LNWNuZc2xcnw+MxzhLuHm+BnrAl4nteX5my9CvDtQPbKpyf6n2shjttx/S/ERvk0WRgn+itWyKchiZ2B7ZHEJ2mmw27mtrjhhBlXHfLn2IaBe54W1mIKRjsNYaaYBKultqJIEMT5EuJvPSja/E700=
+	t=1762890678; cv=none; b=TH0l9nkSN56Ku/LZNNIEe63K4R6Igz1MNQGg3VbAOi938XLOcYe399ABqokJAh5gRPDo6AEzlzDVsTFEOlnAubZ1FRcOS5MNsqwXz6ej/4lCUEeiO/xlnV+8x8zlE0k2VLRgSe4GzHR6idqfn1ZNxRI3mguy6ftWJsAsXCtORXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762889117; c=relaxed/simple;
-	bh=IVQxVjxc4z1K0/u4zAAKxwl6Gk16icCKaP5SPNOFg7U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mp4pgq+UiZANqLx2jrc5lsq4utcGYqIuF5zjhtiLNgv4P8Z135blcVxM6K5Fd+lxZM9gcSbQyXHctlJWCqQl5HE8VEMM+60J7rzwC/GppKyqZIfZ6sHqC1bail3wXWhLIfbO8HDef6GslkQg2At6JsjPObNpGDs3j3gDDGTmc4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=InNmF67p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ED95C116D0;
-	Tue, 11 Nov 2025 19:25:13 +0000 (UTC)
+	s=arc-20240116; t=1762890678; c=relaxed/simple;
+	bh=+TkYWj2WP2rrXzlGB/5wpazuB3fEpfcGkYP/NTndZcY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PMonc/klNqFEShzMNMAxhUV6OmnpYsPyPb2ELuortj3D53duHS2rwq13m8cIbAPWEyGqm4KUeJC68fSv7I+U+VmX3aNJNI387yJNUX4EpMEkAYpaqFrtEkZymjvImQzgBMDs/0zvqGcmtkTB4vAO29ze2YcgV/KjoGHMZNR6zQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tcEq5p+u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45944C113D0;
+	Tue, 11 Nov 2025 19:51:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762889116;
-	bh=IVQxVjxc4z1K0/u4zAAKxwl6Gk16icCKaP5SPNOFg7U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=InNmF67phlhuM6WWZ4+J6R8uAQd81jpDlr+axxDpPgqIU9fLR7LDlKjYmLIDhRKWy
-	 hjIowlPR4d5CDJ9ppWpPMmAmbxyJDv4RNqZgrxyn3CGDRVtmwCyXRfmS1z/TYUIa6C
-	 DJ/agAs4n5OhsmL2nIayLm4q9tRDmozrb5DqdU23cuKR/YbHztfKzduf7jA2xssrS1
-	 UNIf/fznf8r3W+mYhBW3OiFojs1/tL/xCUuluOrhqLH9varbDw+4tW0G2shAVwugLk
-	 v3zxqRKsT1/XeKMVskHn3tM28wCvXOt9jbsNwwjUT5WHlYpn6P3793kDDdp4OQ504x
-	 GyLah0d2t0x4g==
-Date: Tue, 11 Nov 2025 19:25:10 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4 10/12] iio: dac: ad5446: Refactor header inclusion
-Message-ID: <20251111192510.15cedf67@jic23-huawei>
-In-Reply-To: <aRDsU-Zy49vm7N0R@smile.fi.intel.com>
-References: <20251104-dev-add-ad5542-v4-0-6fe35458bf8c@analog.com>
-	<20251104-dev-add-ad5542-v4-10-6fe35458bf8c@analog.com>
-	<aQpE0_-YVeHmfL2v@smile.fi.intel.com>
-	<20251109163030.66ad74fa@jic23-huawei>
-	<aRDsU-Zy49vm7N0R@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1762890678;
+	bh=+TkYWj2WP2rrXzlGB/5wpazuB3fEpfcGkYP/NTndZcY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tcEq5p+u6VsePX8Q44km3upZKJ8hxXdTv1IciZS+9UI+bZoSorNsgJ6H1grfIO7TG
+	 VPC0qBP8N+sMaq/kAa8Bee0VVqlMuJCIxIV1hE75WZeeY6+OjLJSa51PhcVFvR7bFi
+	 80Jq8H+v+6RDVG6x9jyOpCIeVKuaHqzgvHB+fB8iSvn6GqbsP60hJnAs2wccY5wwsw
+	 Rl61uFNCswLR+MRBviPWLr2zUGVjJK1Y2fGV0VgFqcVuZuvxxkIOIxyo79zWgGod54
+	 c1hX9jMlgvRotmGi1d0cVwFl3FaZvU9jmHj0BTHNo1Mlo9gUNU/9IpffmKmeGi12RF
+	 578DvrQ4Hh1Jw==
+Date: Tue, 11 Nov 2025 13:55:30 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, konrad.dybcio@oss.qualcomm.com, dmitry.baryshkov@linaro.org, 
+	mukesh.savaliya@oss.qualcomm.com
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: talos: Drop opp-shared from QUP
+ OPP table
+Message-ID: <ivinuu2ofm2hf7jvnw67gjfwo46bepunconf5g4kzdcaxs4jvm@6dm5btokf2zi>
+References: <20251111170350.525832-1-viken.dadhaniya@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251111170350.525832-1-viken.dadhaniya@oss.qualcomm.com>
 
-On Sun, 9 Nov 2025 21:32:35 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+On Tue, Nov 11, 2025 at 10:33:50PM +0530, Viken Dadhaniya wrote:
+> QUP devices are currently marked with opp-shared in their OPP table,
+> causing the kernel to treat them as part of a shared OPP domain. This
+> leads to the qcom_geni_serial driver failing to probe with error
+> -EBUSY (-16).
+> 
+> Remove the opp-shared property to ensure the OPP framework treats the
+> QUP OPP table as device-specific, allowing the serial driver to probe
+> successfully
+> 
+> Fixes: f6746dc9e379 ("arm64: dts: qcom: qcs615: Add QUPv3 configuration")
 
-> On Sun, Nov 09, 2025 at 04:30:30PM +0000, Jonathan Cameron wrote:
-> > On Tue, 4 Nov 2025 20:24:19 +0200
-> > Andy Shevchenko <andriy.shevchenko@intel.com> wrote: =20
-> > > On Tue, Nov 04, 2025 at 03:35:15PM +0000, Nuno S=C3=A1 via B4 Relay w=
-rote: =20
->=20
-> ...
->=20
-> > > > +#include <linux/export.h>
-> > > >  #include <linux/iio/iio.h>
-> > > > +#include <linux/kstrtox.h>
-> > > > +#include <linux/module.h>
-> > > > +#include <linux/mutex.h>
-> > > > +#include <linux/regulator/consumer.h>
-> > > > +#include <linux/sysfs.h>   =20
-> > >=20
-> > > Most likely the types.h is missing and maybe more... =20
-> >=20
-> > Looks like types.h belongs only in the header. =20
->=20
-> Hmm... IIRC my suggestion was based on seeing one of uXX/sXX in the code,
-> but now I lost the context and maybe I memorised that wrongly.
->=20
-> > FWIW I ran iwyu against this with my usual iio.imp file
-> > (shared previously on list)
-> >=20
-> > drivers/iio/dac/ad5446.h should add these lines:
-> > #include <linux/compiler.h>  // for __aligned
-> > #include <linux/minmax.h>    // for __cmp_op_max
-> > #include <linux/stddef.h>    // for NULL
-> >=20
-> > drivers/iio/dac/ad5446.h should remove these lines:
-> >=20
-> > The full include-list for drivers/iio/dac/ad5446.h:
-> > #include <linux/bits.h>      // for BIT
-> > #include <linux/compiler.h>  // for __aligned
-> > #include <linux/iio/iio.h>   // for IIO_DMA_MINALIGN, iio_chan_spec
-> > #include <linux/minmax.h>    // for __cmp_op_max
-> > #include <linux/mutex.h>     // for mutex
-> > #include <linux/stddef.h>    // for NULL
-> > #include <linux/types.h>     // for __be16, u16, u8
-> > struct device;  // lines 10-10
-> > ---
-> >=20
-> > So maybe those 3 extra in the header  but seem not much needed in the c=
- file.
-> >=20
-> > Hence applied with the compiler.h one added to the header.
-> > Whereever that minmax is coming from is burried deep in macro
-> > so probably isn't appropriate anyway =20
->=20
-> If we use min()/max() or something from there it relies on the __cmp_op_m=
-ax(),
-> so probably it's needed.
+This was merged 11 months ago, and Yu Zhang added bluetooth support 3
+months ago. What changed to break the QUP users? I think it's reasonable
+to use this "Fixes", but we should document - at least on the mailing
+list, where the regression happened.
 
-That was where I got stuck.  Neither min nor max is used in this file.
-Anyhow, I played guess where it might be.
-I think it is probablythe MAX() call in iio.h (which includes minmax.h)
-Hence I'm not bothered about that being included directly in this c file.
+Regards,
+Bjorn
 
-If anyone can spot a more direct use then shout and I'll be happy to add
-that include.
-
-Jonathan
-
-
->=20
-> > and including stddef for NULL seems over the top. =20
->=20
-
+> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/talos.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
+> index eb6f69be4a82..ed89d2d509d5 100644
+> --- a/arch/arm64/boot/dts/qcom/talos.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/talos.dtsi
+> @@ -536,7 +536,6 @@ cdsp_smp2p_in: slave-kernel {
+>  
+>  	qup_opp_table: opp-table-qup {
+>  		compatible = "operating-points-v2";
+> -		opp-shared;
+>  
+>  		opp-75000000 {
+>  			opp-hz = /bits/ 64 <75000000>;
+> -- 
+> 2.34.1
+> 
 
