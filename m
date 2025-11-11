@@ -1,48 +1,88 @@
-Return-Path: <devicetree+bounces-237095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57535C4CBD4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:44:38 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DC02C4CC9A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:55:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD1011888C73
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:44:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 88CE34F855B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:47:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDD42F290B;
-	Tue, 11 Nov 2025 09:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3F12E6CA0;
+	Tue, 11 Nov 2025 09:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fSTDKRfu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DhTVPyUX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013008.outbound.protection.outlook.com [40.93.201.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3603D2D7398;
-	Tue, 11 Nov 2025 09:43:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762854224; cv=none; b=agMm57MKvgtp3Lb0gS/pzb3KZHYEaITaULVHZwd7Te+aezP7B1f/vBAk7Fve8xUinlpASgpMmaM6fiCwkwWR26FfMEVn2dTAkvVEPtAg/xHSoMrvRXDi1NMPTUgGSP7lUB7LoKEI/QnNRrfFbvAXlC0WWcG1V3UfvL/MWfBsjeg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762854224; c=relaxed/simple;
-	bh=FAbNcGdRZ2BZlL+XAx4i735Jgte5T1dqnEhNRQbrtKg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nCSRPKgrS4fqX2nUvWuKtK/684cVPU2CeiYzWZrecDsBeUOfPFUjHPrcxazuA93QI+7YANOfpV/9wzCU9ln5V3qmN3UtzsdX+SLXy7dV6ces5OLEJb4cHD5zVmZRvoaomtZ85UxDzROjlbu5m8t5VDC7gBe0K/9KStHh9x3HbmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fSTDKRfu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6632CC2BCB2;
-	Tue, 11 Nov 2025 09:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762854223;
-	bh=FAbNcGdRZ2BZlL+XAx4i735Jgte5T1dqnEhNRQbrtKg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fSTDKRfuBoKKqQLAI4vv9CnzsAbsMMVdKlRVNShFLwRD6Lu/3UM7GgEwGKA6cG9oO
-	 jgVJ3d0PU3g+tIbuujq/XnNQTRLIAxBesPj+mtvUqoFZNUJBPWCCNYkFPgIf0W2NOP
-	 YV/wEKRbtVFZZoVKVyy7iT2yFHBlMhWjAcs3jcYQWXhPEMc6fHiCrVRijyZeZOPaK7
-	 SPdrD8fKGJO8b096aUTc1LMgHGrWucgoR9W2qazVqiJ29+fa/oa5OnHX7OzWlV6I0k
-	 wcdqSGruTUFH+wNUKzJwDy/VgsBdSpFMplFJrzsKoeIEX3f6/l2X80a7Rd93YV8Svw
-	 NpnPgdUV1GGsw==
-Message-ID: <d94dc0f4-5d81-4e95-b9e6-1c3940180c36@kernel.org>
-Date: Tue, 11 Nov 2025 10:43:38 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873DA21C9E5;
+	Tue, 11 Nov 2025 09:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762854400; cv=fail; b=dJR8FMJCQgk4JG+MTMIp4/+W0kWz9tqHM0en+PXeIaOmEKZZEtrWFm4IL5T7BHI4Cq/+n6SSgZlS8qT3qpz7TGPjWka4fpBGvp0tTSH0McxXnml1EOTEAKusEZexo3/hI1u6keDYVILbsifm4aLetG20UE6EZ4ZG7tGSneFsvGg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762854400; c=relaxed/simple;
+	bh=ys5SCvJW1ZVbW8ny+rFbVgqxWYeWOdLBa3UD87BCdwg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=pJtN8+7OWDNbHddqVw9F9dMlHoPbh+fxRFmFlhQ19hpLtnoQ8Z9e8+sjLUR+OXoCHEu5LcSHorKaBZr8c9KO23Y6sYWeBQGm31dvamEZrw+NDjH97Q7RpZrn2UuCBk5VUTjl+4hRfq8a8jcXSIyarM+WYfq4wAYCK5DHIv6EgwQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DhTVPyUX; arc=fail smtp.client-ip=40.93.201.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XOTZwkHVAP5OVHExcqaHcMaAG+zCrBz05Zcf2V1p+jg0G5/TWJ/xPzmAPZHVD+Bn3oLQ0hHWMR+trIGjdMASdNQjoQ+CBIPaiQ/p3GzWShUkQQy2t3ttYfKe7FDGehBtwl1lGIoQF+Hb2AMxxBPW7ASDML8ZWoP994ybDDMQ+lb+LtTTpp9F5l2bmjrgUureWyia0M3sFiI8erINFjRsHt3WGjyPFeQRgAohzuvcEP1mfECp/Wj71uSJlNENmyhB96gDKcLD42YdByloRSwc5QFEqrRw55QSidLeihLM84RhR2Ftx3G4v75RwDXbliy+55nDRGJtID0GonjR30Kpsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QXez4h61wsgwlcPmWXSRgrtHt/eIxpgTlgFDly5oIOI=;
+ b=Lt5COOS85iN/lzlEjTGLB4fDBL/FsTTtPlzLUnB5adNoLsedoJaqW7fwU9xARJBT8vzTLz+40t9WAcpFfSLEHKL6K5GVgQ9bfEhI4AIslTmwbyrQCCP6SQOozrQfjQTWr+ziK0xMt5p/yww0Q+GSwAM6NkYQ9HxExwhun7A8vz5vU2xI9z5qdMXXdoTuQ87ES43N8VUeh8qnROC8AhWeDRy7gExlpWl34wEXgUQt7nDenBWr1PjTF9AJLLMweOSQDUqDYRmn8GQBaosoodoSzlRK6I5qNCVEtQJdgB3wO9ZS3ErOuTQbJIeSlw2wA79t1N/x8A7DvVRdlH1xzWoCqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QXez4h61wsgwlcPmWXSRgrtHt/eIxpgTlgFDly5oIOI=;
+ b=DhTVPyUXi7sbbm53JgJFt6ZgSzQp5UEJkKYxNH7Qj2/J3EBMPdUftlHzIW9g/Pg7iGIdg0dXRNs0NmQZkAamXYC5HALFVXCdmg++GVtqP/v0w0ZG7Qgamvho3Bls97c42ZvOycGWFLs7w4CSURtvxFzs5dytAA1rxNSsOr5q8b0=
+Received: from SA9PR13CA0103.namprd13.prod.outlook.com (2603:10b6:806:24::18)
+ by IA1PR10MB7487.namprd10.prod.outlook.com (2603:10b6:208:450::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
+ 2025 09:46:36 +0000
+Received: from SN1PEPF000252A4.namprd05.prod.outlook.com
+ (2603:10b6:806:24:cafe::c3) by SA9PR13CA0103.outlook.office365.com
+ (2603:10b6:806:24::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.15 via Frontend Transport; Tue,
+ 11 Nov 2025 09:46:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SN1PEPF000252A4.mail.protection.outlook.com (10.167.242.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9320.13 via Frontend Transport; Tue, 11 Nov 2025 09:46:35 +0000
+Received: from DLEE200.ent.ti.com (157.170.170.75) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 11 Nov
+ 2025 03:46:32 -0600
+Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 11 Nov
+ 2025 03:46:32 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE203.ent.ti.com
+ (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 11 Nov 2025 03:46:32 -0600
+Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AB9kQdl714888;
+	Tue, 11 Nov 2025 03:46:27 -0600
+Message-ID: <7b4351bb-92ca-4cb7-b0d6-cc69feda7baa@ti.com>
+Date: Tue, 11 Nov 2025 15:16:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,159 +90,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clocksource: Add Realtek systimer as tick broadcast
- driver
-To: Hao-Wen Ting <haowen.ting@realtek.com>, daniel.lezcano@linaro.org,
- tglx@linutronix.de
-Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
- shawn.huang724@realtek.com, cy.huang@realtek.com, james.tai@realtek.com,
- cylee12@realtek.com, phinex@realtek.com, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251111092959.616089-1-haowen.ting@realtek.com>
- <20251111092959.616089-3-haowen.ting@realtek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v7 10/16] media: cadence: csi2rx: add multistream support
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <jai.luthra@linux.dev>,
+	<laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
+CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <s-jain1@ti.com>,
+	<vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
+	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
+	<jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
+	<jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
+	<hverkuil+cisco@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250911102832.1583440-1-r-donadkar@ti.com>
+ <20250911102832.1583440-11-r-donadkar@ti.com>
+ <364c3b35-81a0-4e93-ad3b-a0fff3a29365@ideasonboard.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251111092959.616089-3-haowen.ting@realtek.com>
-Content-Type: text/plain; charset=UTF-8
+From: Rishikesh Donadkar <r-donadkar@ti.com>
+In-Reply-To: <364c3b35-81a0-4e93-ad3b-a0fff3a29365@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-
-On 11/11/2025 10:29, Hao-Wen Ting wrote:
-> Add a tick broadcast timer driver for Realtek SoCs.
-> 
-> On Realtek platforms, CPUs can enter deep idle states (C-states) where
-> the local timer is stopped and powered off. Without a global tick
-> broadcast timer, one CPU must remain awake to wake up the others,
-> preventing all CPUs from entering deep idle simultaneously.
-> 
-> This driver provides a tick broadcast timer which remains active
-> during deep idle states. This allows all CPUs to enter power-cut
-> idle states simultaneously, significantly reducing overall power
-> consumption.
-> 
-> The timer operates at 1MHz and supports oneshot mode.
-> 
-> Signed-off-by: Hao-Wen Ting <haowen.ting@realtek.com>
-> ---
->  MAINTAINERS                         |   5 +
->  drivers/clocksource/Kconfig         |  10 ++
->  drivers/clocksource/Makefile        |   1 +
->  drivers/clocksource/timer-realtek.c | 173 ++++++++++++++++++++++++++++
->  4 files changed, 189 insertions(+)
->  create mode 100644 drivers/clocksource/timer-realtek.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index c7a116b795d5..59dfd7543c39 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -28395,3 +28395,8 @@ S:	Buried alive in reporters
->  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
->  F:	*
->  F:	*/
-> +
-> +REALTEK SYSTIMER DRIVER
-
-Why are you adding to the end of the file? Did you look at this file at
-all before changing this?
-
-> +M:	Hao-Wen Ting <haowen.ting@realtek.com>
-> +S:	Maintained
-> +F:	drivers/clocksource/timer-realtek.c
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index ffcd23668763..e86905378f82 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -782,4 +782,14 @@ config NXP_STM_TIMER
->            Enables the support for NXP System Timer Module found in the
->            s32g NXP platform series.
->  
-> +config RTK_SYSTIMER
-> +	bool "Realtek SYSTIMER support"
-> +	depends on OF
-Missing depends on ARCH. Please don't send drivers which do not have any
-possible user.
-
-> +	select TIMER_OF
-> +	help
-> +	  This enables the global tick-broadcast timer on Realtek platforms.
-> +	  If your Realtek platform supports power-cut level CPU idle states,
-> +	  enabling this timer allows all CPUs to enter power-cut simultaneously
-> +	  to achieve lower power consumption.
-> +
-
-...
-
-> +
-> +static int __init rtk_systimer_init(struct device_node *node)
-> +{
-> +	int ret;
-> +
-> +	ret = timer_of_init(node, &_to);
-> +	if (ret)
-> +		return ret;
-> +
-> +	systimer_base = timer_of_base(&_to);
-> +	clockevents_config_and_register(&_to.clkevt, SYSTIMER_RATE,
-> +					SYSTIMER_MIN_DELTA, SYSTIMER_MAX_DELTA);
-> +
-> +	pr_info("Realtek SYSTIMER registered\n");
-
-Drop.
-
-This does not look like useful printk message. Drivers should be silent
-on success:
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
-
-> +	return 0;
-> +}
-> +
-> +TIMER_OF_DECLARE(rtk_systimer, "realtek,systimer", rtk_systimer_init);
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A4:EE_|IA1PR10MB7487:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67c6e41e-2efd-4bf8-d617-08de21073447
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SlV5MkRQbEhuL3I0STByRlFVZ092Zkl0bmRTQkI4ekJsdS9BbUlkY2NDNnZK?=
+ =?utf-8?B?Qi9PSkNHZVBOUmM1Wm13cnArVm5wd2liTi8wQjl3V04vMEtHSElXMm4xMTU4?=
+ =?utf-8?B?Z3ZHRHJOVVN1Z2xZeTkrcFNJSnRSNzFOVi9CYXk5eG9oZHhVR0ZScjcvSFVW?=
+ =?utf-8?B?UC9LUmgvK1BzRTdMVGRnSUV5QTYrdVNMVjJNUXcxZko3Yk9sVWRIa1ZIQllO?=
+ =?utf-8?B?K04zRlZBcEQwcHg5S2dtUTJGV2duVWNpMXpyMlhtTG5xcG1aemdmV0N1NUl6?=
+ =?utf-8?B?Mk5nVjJSNVVKV0czcTI3c0MrZm0yNmdqejA1U0dkVFhRS0lkZkQyd25PTVJh?=
+ =?utf-8?B?WDZrbzM4ZjhjRHUwbGJyT0xmdE1rbllvQjhSbEJWWTE4bzVmcmFKMWk2alRN?=
+ =?utf-8?B?Sy9iaHpveEZjZDFGK2gwR2R3NllFY0dITzJudGJ2dDFpa0xhd0ZTdmtlSmZQ?=
+ =?utf-8?B?RXJxeVE2SW85Njg4R0hYSkhyOGFtZ3YzMlRqQUVhbHhXcWlQdmkyS2JQRE85?=
+ =?utf-8?B?UnFZOGNJK2ltNXp6L0I1VGI2bDZPUGtLQitsUlRnYXExNDVxTnBCVWI4Z1hr?=
+ =?utf-8?B?QmkrcDBjajBOMXBTRFdiNHE4d2Z4Q0RUb1ZhTEZTODJxNXNZWkcrb2xQYk9C?=
+ =?utf-8?B?Ni9HcS9VaDQxVFBBYSs2bXY5Q2NlTVhTekY5NzNrbVZYTGZRZlNDV0VtWDdZ?=
+ =?utf-8?B?RkgrdjBxbFQvK3gwS3ppajhxRm1udS9NNzM5ZGhaSVJUd1NSdHBLU08rdDVQ?=
+ =?utf-8?B?T1lXcHBHak9lVHlOVEg0ZHRDMXh4WVZwdkNVb1Q1YVBxYVNRZTNjb0oxSml2?=
+ =?utf-8?B?bDVTUVZ4MFFrQXE5eGdxZFF2NFdwL1VXWk5ZTFdZUW91VHc4V0JNRUxtQ1Rh?=
+ =?utf-8?B?UHFpOTBiaFJqRFNwaEl6OXA5RWJubjRrYUhlRlVteWc2YU1aMXlEcUJiUlhm?=
+ =?utf-8?B?R214V0xGOXhpRjBhbHM0bUczZjZPbTlBY0NBa3Zqbm9LbEp3d3pSa0RFSXp2?=
+ =?utf-8?B?YmlQbExFaGo2dXNYMkhvZFlrZG8rQy9QcVhhQ0VBWlpnRURWTDFFSitnUW5r?=
+ =?utf-8?B?Z3lzK3dEZ2ZSOWMvTXgzQnU3d0ZzWlpicjVhaDdwU203cDl5czFZY2lOK0tS?=
+ =?utf-8?B?YkNFTW9lSEN3ZCs1ZzdjSkJKYk9uTGVIWm9MQ0xTNFVGdmMyZGUvNy80UThz?=
+ =?utf-8?B?dlJLMitkeVV5MHJ6cHF1d3lSa29LdlVmc3E0NURhOW5FU2F1Z1RPeE1hRWF3?=
+ =?utf-8?B?WVo5eVpheGtBNUZ1MEFldjZWS1BtYnZVa05XOXNZR0RRVVE1cElmaUpGL2NP?=
+ =?utf-8?B?bFJlYkt3UVlSZkRXMXRYdnhMbFRYWm1HakRjempnaXdsNTlLRXRxdlJWem1x?=
+ =?utf-8?B?UnE0RVJEQUUyR1N3M3VnckI3VGdaZEtVNmJ6YkVBVlF5Nm1KOTdHckk5aXNF?=
+ =?utf-8?B?cGNIcFp4aGlVVWhTT3UyNE9DbkNHZ0RHS3V2dWZUeXh1ZUdIV3haNHpVVE1u?=
+ =?utf-8?B?bCtBamIvZFBrY2l3YzlLUEZLKzlqTXZsalVuU01XdVNCRDJUWXNYYzV1MXhz?=
+ =?utf-8?B?UlRlOTlwOUFWb1MwNTJDeldSRFFNWlVtRXBCWnR4KzNidnUzU3lzaFlic3Z4?=
+ =?utf-8?B?dGIxOStLL0g3ZVRGQ1BnNkwwam9IaFpTSzR5THlPOUxKOENzSlVrSVFRcUhL?=
+ =?utf-8?B?WGRSMEFxQmpGNXNHb3p1K2hTcmw2cFZSVVhPYnRzNDBnbW1WbE1YNGlwRnNz?=
+ =?utf-8?B?bkNPKytyNFA5MDMrUVMwSHhjcXQ3YndiWEF6dFU0RGhta05vQXBTSVJGZjMr?=
+ =?utf-8?B?dktrMkthNitkNDM1NWY3VE14NzlLY3FlaXhFbVpSZ2YxLzVVWmpZNWdOS2Nm?=
+ =?utf-8?B?cE1JR3hhOGs0WlNSZTBlYjluYTFrVGhzQTl5WTIzUzJlR0o2ODZvWTk4Ny9k?=
+ =?utf-8?B?MktLVFlYSWhJMUN6Yk1XUFRGNW9rTDRBc0VrenRJS1RDZkgwT3BVcnhBZGxY?=
+ =?utf-8?B?ZUc4RXFjeG9kZTlmT0NyZ0NMMm1kVXdKSkx4OFlVSmxTMksvcG4yS0FyVEYx?=
+ =?utf-8?B?S0RRam5OU2xLcFc3OG1zQ3lpd25nUVMrVERmQnozdHNFMDhJZlhkTGR0WDRx?=
+ =?utf-8?Q?5Tb8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 09:46:35.8343
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67c6e41e-2efd-4bf8-d617-08de21073447
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF000252A4.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB7487
 
 
-Best regards,
-Krzysztof
+On 25/09/25 18:14, Tomi Valkeinen wrote:
+> Hi,
+>
+> On 11/09/2025 13:28, Rishikesh Donadkar wrote:
+>> From: Jai Luthra <j-luthra@ti.com>
+>>
+>> Cadence CSI-2 bridge IP supports capturing multiple virtual "streams"
+>> of data over the same physical interface using MIPI Virtual Channels.
+>>
+>> While the hardware IP supports usecases where streams coming in the sink
+>> pad can be broadcasted to multiple source pads, the driver will need
+>> significant re-architecture to make that possible. The two users of this
+>> IP in mainline linux are TI Shim and StarFive JH7110 CAMSS, and both
+>> have only integrated the first source pad i.e stream0 of this IP. So for
+>> now keep it simple and only allow 1-to-1 mapping of streams from sink to
+>> source, without any broadcasting.
+>>
+>> The enable_streams() API in v4l2 supports passing a bitmask to enable
+>> each pad/stream combination individually on any media subdev. Use this
+>> API instead of  s_stream() API.
+>>
+>> Implement the enable_stream and disable_stream hooks in place of the
+>> stream-unaware s_stream hook.
+>>
+>> Implement a fallback s_stream hook that internally calls enable_stream
+>> on each source pad, for consumer drivers that don't use multi-stream
+>> APIs to still work. The helper function v4l2_subdev_s_stream_helper()
+>> form the v4l2 framework is not used here as it is meant only for the
+>> subedvs that have a single source pad and this hardware IP supports
+>> having multiple source pads.
+> <snip>
+>
+>> +static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
+>> +				 struct v4l2_subdev_state *state, u32 pad,
+>> +				 u64 streams_mask)
+>> +{
+>> +	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
+>> +	u64 sink_streams;
+>> +	int ret;
+>> +
+>> +	sink_streams = v4l2_subdev_state_xlate_streams(state, pad,
+>> +						       CSI2RX_PAD_SINK,
+>> +						       &streams_mask);
+>> +
+>> +	guard(mutex)(&csi2rx->lock);
+> This looks a bit odd too. With enable/disable_streams, the state is
+> already locked. What is the mutex protecting?
+>
+> j721e-csi2rx also has mutexes, and it's very unclear what they protect.
+> This should be described in the code.
+>
+> I think in csi2rx the whole mutex can be just dropped.
+>
+> j721e-csi2rx is a bit more complex, but there also I would consider if
+> and when the state lock protects the relevant parts already, and when
+> another lock is needed, what is the sequence to lock/unlock (e.g. always
+> csi->mutex first, then csi->subdev state lock), and make sure the code
+> follows that.
+
+
+Thanks for pointing out, Since enable/disable_streams() are protected by 
+the v4l2-core by taking the state lock, all the mutex protection inside 
+these functions in the j721e-csi2rx driver can also be removed.
+
+I will make sure that this order (csi->mutex followed by the 
+state->lock) is followed through out this driver.
+
+
+Regards,
+
+Rishikesh
+
+>
+>   Tomi
+>
 
