@@ -1,311 +1,166 @@
-Return-Path: <devicetree+bounces-237217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC78C4E4C4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 654A2C4E76F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:28:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94AC11883165
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:06:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 466091882D71
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8000E30AAC1;
-	Tue, 11 Nov 2025 14:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4106E223339;
+	Tue, 11 Nov 2025 14:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="rqgvLme0"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="i8ayxMi3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C440E239E70;
-	Tue, 11 Nov 2025 14:06:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.135.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762869976; cv=fail; b=JXNKexHfKYGhWGxy5NLUnhtyiCXVNOlVlsgOrQSmPt0cLh/LaHJ2uvYuXFlxncAPcN6HKa0SNOhCHLLhYRQgx9z6uNVGorrpkj1czCYpJvfXx697SVNI+KcJQBSGUek+gdDY1Au3As8BnY8AWOSW0PYZjcmkF786xzcu0CC8qIU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762869976; c=relaxed/simple;
-	bh=cbDQIhFUv2x0gT/5WajCbo9nygWLGG5wDbZ6H4/zvqk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=IwbCiEF62gj8KL9RgwXH6jqchTzGAphA+QZaFL/v7kiMHm+4NHDjQswrxo7u74xpmS/C3MmkSo/UjgOHURA/q5q5rR90t9LMlEyxKyLjWZ3R3q+/OataXo2o5W/altysB1up9v3mqdSQxrejdmACOOaDpEUVwJ1Az/ONL1GTXGw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=rqgvLme0; arc=fail smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABBZYYY2216927;
-	Tue, 11 Nov 2025 09:06:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=WOEX9
-	oJI2mmeSeIyElhxNmnm4vngr7VWn9chx5GjwU0=; b=rqgvLme0bXDNKpZPDhV/d
-	u2HY+zvrOHOOZvtr1iMUaX2JkUXJ8CUDZ2DRv6fuVBs9yKgTwGILyxmdlos+oXIY
-	uuZDhIK3gZD9RvOkMuVbgtN2eaLdFQ1YtpP/Nlkl1ZZSgkgzxxYU11Wn5vlPrm/s
-	vMsTsXdpejaTTQtWcfEV1UbAIBrSKF3kpnATS23WBoMB4/XZmjz67/qbR6UvOZAz
-	NS11zCwNjiP00lm6+FSNeDt3twax8/XWwsY0Dt/+OP/0FSlHPdttj4ocm0Yj1NSP
-	NUaSsHlUBSG6/omq8l6FFMJ9bcc8RwPyiFu4L3gbuMj+XPc/QgxrGZ2Z04ZwGVN3
-	Q==
-Received: from ch1pr05cu001.outbound.protection.outlook.com (mail-northcentralusazon11010015.outbound.protection.outlook.com [52.101.193.15])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4abp20vye1-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 11 Nov 2025 09:06:05 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EcuANNqtZTuYlkgSylef77/mdR8Xiq+GYpga0LCal5tdEAjYispJQ3pKP5b+BiuvIl1s08YMgN/x0aBVMEtmarR1gCgaRb7mF7ePbeA/aCQnPz4KkwhbSNWqVD4C+9RvVndIsE83C6GkQFlhz2VG8MZOfNWWQRVQQ37MbH5YYxbT9QNxNsnu5vdspuIGl16vDc89kyw68TjlOL4Wp4SqzS1M+uunF0WYJVuE4pLtJUNQk8ySOuC7Uy2sRc5f2Fu/AwV2u8NqE82oWWoKOaOpNW1pxREdB7zgryzbLGM6qNHD/2A7j41yAHLfl0qs/0n1Keo5929w4GVp4VdkQh/afg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WOEX9oJI2mmeSeIyElhxNmnm4vngr7VWn9chx5GjwU0=;
- b=oIFTAYMQEawQp6La1sREhjWGVEV8M8kHh/jQT0kig2VsNo/mkkENdcqhIx09lBhtCltoadOOVbjscPlu5q/mLKWAMiMlkvXrG0UNmBFWS5B64KgnNtJNpvMZ6DNSaQ6n+rukvctjxVGoWcW4K2ZTkPD4XZA8a/De80X8qIeOi4fmgU4B6gHlK0jyqNiKFGdHdjR/zjDZKZs/qyvdxK+WDlTGrNi3nV0c/ttOOgFMrzsPWmNN4XWmJ3tfoKOdMHY5Zi0iHd3nPJHntHV75iH86FBTiRKw5dk0KVgX9GfIKzCayTtn/U37DEQrB0trJgvxv/BUqsxNk1fJ8qnyabCkqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-Received: from CY4PR03MB3399.namprd03.prod.outlook.com (2603:10b6:910:57::13)
- by CH5PR03MB7791.namprd03.prod.outlook.com (2603:10b6:610:211::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 14:06:03 +0000
-Received: from CY4PR03MB3399.namprd03.prod.outlook.com
- ([fe80::1527:d313:16d4:2376]) by CY4PR03MB3399.namprd03.prod.outlook.com
- ([fe80::1527:d313:16d4:2376%6]) with mapi id 15.20.9253.011; Tue, 11 Nov 2025
- 14:06:02 +0000
-From: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-To: Jonathan Cameron <jic23@kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        "linux-iio@vger.kernel.org"
-	<linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: RE: [PATCH v2 2/3] iio: amplifiers: adl8113: add driver support
-Thread-Topic: [PATCH v2 2/3] iio: amplifiers: adl8113: add driver support
-Thread-Index: AQHcUNdQj3XZPqjGvUGLb5IyFqz4crTqmReAgALs0OA=
-Date: Tue, 11 Nov 2025 14:06:02 +0000
-Message-ID:
- <CY4PR03MB33991FC450F33126532B80C19BCFA@CY4PR03MB3399.namprd03.prod.outlook.com>
-References: <20251108174357.3748-1-antoniu.miclaus@analog.com>
-	<20251108174357.3748-3-antoniu.miclaus@analog.com>
- <20251109172213.69d35297@jic23-huawei>
-In-Reply-To: <20251109172213.69d35297@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY4PR03MB3399:EE_|CH5PR03MB7791:EE_
-x-ms-office365-filtering-correlation-id: 419f9ba9-0338-4c7a-947f-08de212b72cb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?gmwj1Ug7adbiw4ztiFKeL+8EaaOU7jnT/dhmnGKwBCGQpZKiay5V1pIyjsMe?=
- =?us-ascii?Q?SkaqDk4/CvxFkPhmMTgWpY2H74a7wMwivOcoXYrEp/F+KaRAfu9q8JRrQ9vW?=
- =?us-ascii?Q?8eHGp0X3daUG6fsY14nTfqvo6KC+nYi9V5sj0jSAXzWOYy3dVrfnR9JQBTt9?=
- =?us-ascii?Q?Mm00U+0GOynbifJYmkPW0+HaeMvxU4n7Ck6159XU7qN5FbBoDfs+LmdfKB+A?=
- =?us-ascii?Q?IBPA6gHjyOZNfLEpPWOaA7wwEWBiDvYI8bvd6oatm0L4N/YVRN0z0PuHcPej?=
- =?us-ascii?Q?/KT/OjenI2CmV9rJC719j8GkSq7GSeSzd/OIk5lc1udh9eHIif6axcZXUcvE?=
- =?us-ascii?Q?5O8tbK8yo8OX9L5F9WOgvBjDU5N6i4NNcOExiS3+yYcRkunGTCgcbu+vMbh1?=
- =?us-ascii?Q?406YHWD+bDKs6U1KtXdL8BwaIdYNopgUDn1J84zYIQgk+CmcFZWPioKVsfYP?=
- =?us-ascii?Q?i0lg5YyeKFbasXrDg34M49Ep1RRJ60ZRTWkQw9k0ulTITSqzaf22F2HKNDxS?=
- =?us-ascii?Q?/xVWS2PU/2/5tU5Cdnvm9qxzwOrXuQovyW+Y/nXhVCNbLEQ55MrVI3wBa28p?=
- =?us-ascii?Q?FtGvyX7v9/jwGoT2dbQqAwVN9j3L8YF2W3rLB6AzgspzrksiRbcyyQoF7Hhd?=
- =?us-ascii?Q?ealy0ZYVVdUTUPPWdPudEuDchTdg+/JedIHjsB9r2hnTduGlzgWm33gXS9nv?=
- =?us-ascii?Q?V0LZ+CFF3RlVwGLjDvHCJA9RSzWropWyBx/p+hiByvBLEOdIo/yMgiB2iD2C?=
- =?us-ascii?Q?eFKjIcdWWmvjAQ8+8PfKdYJjMhkWPHKwDodzqv7jWyY3m/AjDlqhbEw90Q1H?=
- =?us-ascii?Q?x+o+aeNhP3EqQwg6al44FZZlY5GyzEHr7Hp3LTq36VDhO0/6bSsonZEVs4sW?=
- =?us-ascii?Q?d6rInWzqEPArxHyzPM5pMyQ7zMUlCUrUhk+Di3abgl5aTC//z2+O/tSqXJX8?=
- =?us-ascii?Q?dclIV9kVGLS99wJRy5F73hZTvK/zbtwvSgFJtaZ352lA0ZuOFIe7rQt83t23?=
- =?us-ascii?Q?k5rW7cOe4FOLNXBm5TIyT56EivmJjUxA1MB++osdqGYvdpPE+1fb3blsjnKv?=
- =?us-ascii?Q?TrKeYMjz17/4HCovnH+8MyeZB/laN/hY6Zc6Fjjvm712ST3UpLIlIkZuk9T+?=
- =?us-ascii?Q?isfPOvuDR1yPiZjQ0wVJ5eVLCg5CoioXkOMX2Bek8LeuA6e0gQv92J2hGkRM?=
- =?us-ascii?Q?WBmjfVNfA1EqdxDJ3EYmohV8yC7z6OCCBbxstH9a7aGaKi4sqxWh1ZYQ2pWd?=
- =?us-ascii?Q?lwQnFtmyFD0MZTe1f/yEgMlH7+mtygmLm/yyO93LVfXGIohYjZ9izoHQNjX8?=
- =?us-ascii?Q?GRSw0XebRKeXNmbzwmobdVnfNlX1il6Cf7dzDF5ruM9sD/xBrLsKIumByvDk?=
- =?us-ascii?Q?hHw5HQzU7ftUYcYkEXzlrCvOvKM7IqaNvMYJGK1eWbc01HQQ31psgXur9/SI?=
- =?us-ascii?Q?uaFAXd39lRYqoVlOmvg4s/3infpYUM+UNSE410j7YrcZngqQAseUyIIej2H7?=
- =?us-ascii?Q?kInyICN5KTuHeNn1oX4LcV8QsNZJHW05zqxr?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR03MB3399.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?vEw5zFCfIEHBZWGg3bw+oDvmnDpQFC9vfmQ4G2MrV9hdxIY1la6ZPsQKIzZ6?=
- =?us-ascii?Q?0Kmvzw4PN0v3g8fbIJ4OPRgFuscIv0fhn59kKOJJuBzyPhd+13GYJLenXCy0?=
- =?us-ascii?Q?XN9PmToWVyxv37oYp1wQs6sxjc2u7k7G4qMx/pNadr6EfLIUrZycpY/WbhNA?=
- =?us-ascii?Q?aog2+3RIejIX3oBCb5eQ72fGomhY7kdCO67NnZzPmlCWpJWx2nPYX4rKMrDM?=
- =?us-ascii?Q?eHqPWuhLPT0rMbN/eQ0a2mjXh2JDcz4UMlIbyoJd+ir74+8ZXTW3xvaYAJRc?=
- =?us-ascii?Q?1mVG3knZ8fEjeYiLx2nSYl4j71uerPFUnn1qaccKHGN/bsgSTbNBGECV8Tsp?=
- =?us-ascii?Q?bHpfIOPwlXR4E79dvOFEtE3iSyxNd5r2L+C2atvCiYb/E0CTIbqTJ6gi5JqO?=
- =?us-ascii?Q?PyaPvcbeCWCGODlpcm26Q+ui4CrUfQ335t6DRJyG6pqtcbicPHlY9ydweRUW?=
- =?us-ascii?Q?TsYwGA+qSfz2sl2PyCK+bQXlxN0vzZmzJdS2hIzAwD9DuajPAWJQ73FsMELu?=
- =?us-ascii?Q?+Ibq1hmAf4GnG/8grmeJ/2Inoi/HzQwQnkYiJizeJ2dc5NY4sIVAImKpdXC9?=
- =?us-ascii?Q?G7mGYepeQQM8vu0TjEpPZ52FO5upVaktpEe5HxyWJgQzhD+9EjkzGIV/sMx9?=
- =?us-ascii?Q?w1SzJGvYazN0P1jgvJIyy2o7D6Sd51DW0V45eLvDlL7c9EtgqPaJIgDpAQL5?=
- =?us-ascii?Q?oXhL2uXF9yZBe0pdA4AFOGnnH5KTJ9ATLCrHN/twtunfxHNtVsmaQ8aZToVS?=
- =?us-ascii?Q?70NrAYvMKxBQVFx1cQzu5613OcEBbIYff/gAiOyLEK4FPt9oG75NBcLUu5IY?=
- =?us-ascii?Q?5FXHvV8+jUaDHSZUsjnuFGWghFlr86tgpEwrwzc71cVpa46a6fGNl4Ysryel?=
- =?us-ascii?Q?JQtescql0wFGyQ64MJepv8y1r0EoCDihDw2g+sot1pigji3dUcYO30s+SCy5?=
- =?us-ascii?Q?osxyi+6fu4bAfoY8yYrUbj+KNpXUIKIml3wd6qErAeEcyf0rXjQNS9OtaM+4?=
- =?us-ascii?Q?EuXvSf1OX9LXLmty90TWAbllKRGW4L4DAaxO6p0NLTY+RVAbF8uUCzybTxU+?=
- =?us-ascii?Q?VSmMnEdACYGcMsPcLaE/IZmZZXhtxUl1r6SvnjZKDbzXwFm0PlYreSqFxLkQ?=
- =?us-ascii?Q?jUT/Z4aR8SKzcHHUrRSQ0HjuCDTmQej82bUxKL69e5zcNmCnDTNZ11V7Hl7z?=
- =?us-ascii?Q?6swxCds+r5xaXZpRMX7TKEit8/9oppfIenXa9/H6SNULhYRcZ2J22N7jhMnI?=
- =?us-ascii?Q?DDaWF8TQzAaL9wx1S993PEZ3fzw5U6rMFzByLVeauPMJDdbxGMdTlCpQ21aS?=
- =?us-ascii?Q?k4s2+984BWsdCAlKZ1MWUUWk9bfufoIIcjiXZ+qDwpZ5F7o4B+GD5LNS8KFq?=
- =?us-ascii?Q?kSD3bFU+TzKJUG3PZYd3PLnXmJvGpwDtfkkNEme3e9PlWPiFLeEuxd4L0DfF?=
- =?us-ascii?Q?561DgWZl6n1sqQae3ZEtNXy2XhK2iMa2m4IPwkGcceP5nYPm5/yYiowBeC8J?=
- =?us-ascii?Q?22+KBuwppxm9UoM9jsqVnANCKQW5l9Tvsp9/QDXIsu/4nlCneVmC4WrShTQo?=
- =?us-ascii?Q?nHE8bpTrYGbJnG9TN7ZLmXLk2iv/IlF2LFxQI3M1utR3C4af7Y+SmW82fJdU?=
- =?us-ascii?Q?bg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5353C3AA188;
+	Tue, 11 Nov 2025 14:23:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762870992; cv=none; b=KJA01hVvX6OEJ4nq7D/Qb4W2mjIHOYNkQAAmD/A7TY0tzAk6uXKSatL92QWbICHMeCXpA0LmrA8zvxqFtg+nmw+48hjwXuAxY3TIdoDO5H/4uxSzZIpDV22lltOoMnIESJ1tm1p9ZfRzf9lH7dqHbT0nEeADhW908mA/2AnUMlA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762870992; c=relaxed/simple;
+	bh=JXf8KnlTQnnhWOmDcUTb33mz6JrZoKL/Nq7iglCzVL0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aJz2NO+GrzJ7BW8Maf6Ij8vxgaRfoUZPmBeFGBF4cIZ0bE2bB3iLKT6hdiAdcskQTgOI06LflReWRMxd2ii8i5NlHzMY6f08TF6ltvV/brF2d3WOxrcOQUT7pw5OdChx7BolAkFQZKH3ig8WH8mutzPdPOFCYzhX3yfxAWeE0rU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=i8ayxMi3; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 6E2605340EF2;
+	Tue, 11 Nov 2025 15:23:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1762870985;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Fdk0kWYHlnURAj9xQ3vEcSRUSriPwv1YtYVjEkVAE8c=;
+	b=i8ayxMi3ozUSGACtQIvkKQ0trLl18d0PTcM1AX1Ta2WLy6LUDsaRwN9eekEZuaW4YQIs66
+	1XkdTLitNYaZN+2k1C4fIzbMHwWx+V5qsrEyG+nCimi5RuqvnJ7sCnhUgFYlRwWKsxRSNv
+	uu4CgiCPkwp0BgB00328FoZj9G5eh0c=
+Message-ID: <5c6a1434-1f43-4434-b6ed-0c5b98ee8d2b@ixit.cz>
+Date: Tue, 11 Nov 2025 15:23:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR03MB3399.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 419f9ba9-0338-4c7a-947f-08de212b72cb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2025 14:06:02.5876
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mhFTnjXKDQQ5M4TUT94fT1/wsIPscJ4pN4FkMMy20ssaQ7QGi5MCL3tlTxYUx6Heoepa8WnAblvdyI4Dvj8m51sAeXG69VMDcGR8VJWxEoc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH5PR03MB7791
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDExMyBTYWx0ZWRfXwZ+lkFUvypwE
- pqxkzhMWMXb7BfR/3FZ2hyi+I2LnIj27AI3iSi7voAQBsNh3vtkaXjrgNDcsSxACF0h+4h67jRd
- lPuar4TLzusrEY9YXAoyS7j+Ck9bXpJQciIdHFlU5fiJDg7agTZU08Skxxk7t/f7TUDZIBbDEgD
- wBHAYlmwk2ISMMWqQAd7qHS1v8994aUiffB1Z6tp0gli+PKcgZNMMK5nkCxFQIA2f24T4aDbTiB
- /9XnZ66/TCHlDd7vKpkv+HPT4QR8u+FVyP3Elv22RIoB65i6ywAs+4IaVGRPi6yCDVz2nlonlBo
- Emd+I4Fz318HDaL1witpP+3jPP8CbT2i0Iyj829DYhN5Y2PbKiiebOXMJd+IiFFdeK6gWimX8h5
- N167VIiLqvz3WAQsLXuGbo3Lq3M4HQ==
-X-Proofpoint-ORIG-GUID: e8kf-H3Zfg4qCelxHIm_bj0NJQSXEXhe
-X-Authority-Analysis: v=2.4 cv=e9oLiKp/ c=1 sm=1 tr=0 ts=691342cd cx=c_pps
- a=7hCjIaGjES2TrnZcIlaVSg==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8
- a=rk2IJEayB13-zSkHiaMA:9 a=CjuIK1q_8ugA:10 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-GUID: e8kf-H3Zfg4qCelxHIm_bj0NJQSXEXhe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-11_02,2025-11-11_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0 spamscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 clxscore=1015 phishscore=0 lowpriorityscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511110113
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: xiaomi-beryllium: Add firmware-name
+ qualifier to WiFi node
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Selvaraj <foss@joelselvaraj.com>,
+ linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20251111-xiaomi-beryllium-firmware-v1-0-836b9c51ad86@ixit.cz>
+ <20251111-xiaomi-beryllium-firmware-v1-2-836b9c51ad86@ixit.cz>
+ <wxvtfyfdso3ngqvnhvryeo2w6udoolfp46smv2r3qny2cl7n4o@iawxfnj7qtrw>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <wxvtfyfdso3ngqvnhvryeo2w6udoolfp46smv2r3qny2cl7n4o@iawxfnj7qtrw>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 11/11/2025 13:46, Dmitry Baryshkov wrote:
+> On Tue, Nov 11, 2025 at 01:34:23PM +0100, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
+>>
+>> Add firmware-name property to the WiFi device tree node to specify
+>> board-specific lookup directory.
+>>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>> index 785006a15e979..9b0b0446f4ad3 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>> @@ -631,6 +631,8 @@ &wcd9340 {
+>>   &wifi {
+>>   	status = "okay";
+>>   
+>> +	firmware-name "sdm845/Xiaomi/beryllium";
+> 
+> This wasn't build-tested
 
+Sorry, I wanted to send it more like RFC to get initial feedback, I got 
+user with Foco F1 who is willing to test the changes, so I should have 
+new version with T-b until EOD.
 
-> -----Original Message-----
-> From: Jonathan Cameron <jic23@kernel.org>
-> Sent: Sunday, November 9, 2025 7:22 PM
-> To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
-> Cc: robh@kernel.org; conor+dt@kernel.org; linux-iio@vger.kernel.org; linu=
-x-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org
-> Subject: Re: [PATCH v2 2/3] iio: amplifiers: adl8113: add driver support
->=20
-> [External]
->=20
-> On Sat, 8 Nov 2025 17:43:53 +0000
-> Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
->=20
-> > Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
-> > 10MHz to 14GHz bypass switches.
-> >
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> Hi Antoniu
->=20
-> I think we need to come up with an innovative solution for the "mode".
-> I'm not sure what it is yet though so very much looking for some discussi=
-on.
->=20
-> thanks,
->=20
-> Jonathan
->=20
-> > diff --git a/drivers/iio/amplifiers/adl8113.c
-> b/drivers/iio/amplifiers/adl8113.c
-> > new file mode 100644
-> > index 000000000000..8c234f0a1b6a
-> > --- /dev/null
-> > +++ b/drivers/iio/amplifiers/adl8113.c
-> > @@ -0,0 +1,213 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * ADL8113 Low Noise Amplifier with integrated bypass switches
-> > + *
-> > + * Copyright 2025 Analog Devices Inc.
-> > + */
-> > +
-> > +#include <linux/array_size.h>
-> > +#include <linux/device.h>
-> > +#include <linux/err.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/iio/sysfs.h>
->=20
-> Not sure if this file is being used.  It is rare to see it needed in a mo=
-dern drive.
->=20
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> > +#include <linux/regulator/consumer.h>
-> > +#include <linux/slab.h>
-> > +#include <linux/sysfs.h>
->=20
-> > +
-> > +static int adl8113_read_raw(struct iio_dev *indio_dev,
-> > +			    struct iio_chan_spec const *chan,
-> > +			    int *val, int *val2, long mask)
-> > +{
-> > +	struct adl8113_state *st =3D iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	switch (mask) {
-> > +	case IIO_CHAN_INFO_HARDWAREGAIN:
-> > +		switch (st->current_mode) {
-> > +		case ADL8113_INTERNAL_AMPLIFIER:
-> > +			*val =3D 14;
-> > +			*val2 =3D 0;
-> > +			ret =3D IIO_VAL_INT_PLUS_MICRO_DB;
-> return ...
->=20
-> > +			break;
-> > +		case ADL8113_INTERNAL_BYPASS:
-> > +			*val =3D 0;
-> > +			*val2 =3D 0;
-> gain of bypass =3D 1.0 rather than 0.0 which is open circuit gain.
-Isn't this supposed to be a dB value since I am returning IIO_VAL_INT_PLUS_=
-MICRO_DB? Linear gain of 1 =3D 0dB.
->=20
-> > +			ret =3D IIO_VAL_INT_PLUS_MICRO_DB;
-> return IIO_VAL_INT...
->=20
-> > +			break;
-> > +		case ADL8113_EXTERNAL_BYPASS_A:
-> > +		case ADL8113_EXTERNAL_BYPASS_B:
-> > +		default:
-> > +			ret =3D -EINVAL;
-> return -EINVAL;
->=20
-> Early returns save a line of code here and I general think make
-> for much more readable code.
->=20
-> > +		}
-> > +		return ret;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +}
+David
+
+> 
+>> +
+>>   	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
+>>   	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
+>>   	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
+>>
+>> -- 
+>> 2.51.0
+>>
+>>
+> 
+
+-- 
+David Heidelberg
 
 
