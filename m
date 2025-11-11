@@ -1,65 +1,69 @@
-Return-Path: <devicetree+bounces-237325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEB5C4F599
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:00:21 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7766C4F5B7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:01:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A95318C2645
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:00:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 534AB34D55E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51D23A1D1B;
-	Tue, 11 Nov 2025 18:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2111927F163;
+	Tue, 11 Nov 2025 18:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZwY9UsEj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fMnkboKg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F6126657D;
-	Tue, 11 Nov 2025 18:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1671FC0ED;
+	Tue, 11 Nov 2025 18:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762884014; cv=none; b=m0DYf0kU6iMLQLte6N58loN8avz9aqkoQwj7rSJwWtGRSbNUREwVmJOnkNh8bWPiSq131QDSz447KeRV/bEmugTVob8ROFcMbvtXMartmzL7J23kIzcQHKDSa1YOcD3KUZkt0bY0BnLnGB1qRr0McKXd7VGk10pRHOClANESiVk=
+	t=1762884077; cv=none; b=h10T/uKQ32KYVczMsJgY43NmaNFSvcJDJQ/EoPy7dLCOI1rWNVRzAMIiogDJk+5i/9tHLH5/MhiDgjK2f7qeVAIVJ+Msq52AOqC2TRRFXsNv+cXeXcWtTujkPo+8Nd70//1JLFFbMl2/d6/9YHKz+dz5XlLQUzKoCdtPByJrV7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762884014; c=relaxed/simple;
-	bh=8EXIkw6/zRp9qTNsy3uSXwzG+vr+zTWHdU/ZYlli4rc=;
+	s=arc-20240116; t=1762884077; c=relaxed/simple;
+	bh=f1tQc9fKxPXjOAXomvZMDR+OXXQMQ2u54M9yxOwFvaQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BjQqZEjdTTRXldKEz3xZJrCi3kcivl/a41SYntzeSQ24RNZJRBfyelCeMaYjs4MeRStZGQGj03rU3Pj1bHITbNTe3z53DrHPmvbxfbCiZLKwdbgWwGnIqKl4twj0jZEgjaTysyLB//CDiSRYh9E7zfWOi5wo22EKDeKkSoSJaPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZwY9UsEj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F186C113D0;
-	Tue, 11 Nov 2025 18:00:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JN/s1b8iPFlRq0QyrGNC5ripWPJeAQZVfFg4HUJi+5eeHVlyaQcgBeu5k8EFA9JCy2z4fie9jfAmiuiiZb0ceXOhuOdBUZFYEyOwnY0mrSmX0IPfuzyAyrCB0+5e+ph1er6LsQflf7OgeOjnH4MiNJXUwdolC12pXQ062an45N8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fMnkboKg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 609F8C113D0;
+	Tue, 11 Nov 2025 18:01:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762884014;
-	bh=8EXIkw6/zRp9qTNsy3uSXwzG+vr+zTWHdU/ZYlli4rc=;
+	s=k20201202; t=1762884076;
+	bh=f1tQc9fKxPXjOAXomvZMDR+OXXQMQ2u54M9yxOwFvaQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZwY9UsEjkLEssUGiG3TVR4STNlZmyFEM3fzwil65N4ll3XIE5CYFJ9rBfHLbCa+KE
-	 j3xY5aEKSfatbeN6MWEIfytDLtIsylBSA7hPwAJxOB49pp6imk/tVWGpxl5BKaXg87
-	 6FhS6BCloP+y2BQ7nOKHtMfhoq9+UsrrMzKQdVHdta9b8jPlwFTv4OE87oSmKbOhUv
-	 o5IJo5Oh398H/VMOBRhOOXuzxQmIjvuF+uWRawFeKccubdQ7vlhP0QU5HXNWkSXasX
-	 jjYce/H4aFMiWqMrD4+rOc93dN4HCXw8/PjkCP+n3JTOXWVB+i6lffUtjTeSUoPwAp
-	 rbz1bJs9KwAHg==
-Date: Tue, 11 Nov 2025 18:00:08 +0000
+	b=fMnkboKgujlmFzn+1F12YPG0LrNsL91vnvn/TUaHmyNFFWL5O9ua8Vt0+9og4W4SD
+	 BBCkFndVJY/FAdIdXHQXE6w8eGcsHc2LUrZ4bFj3ascztlgJN7KftPO0B3TxD/R0mJ
+	 IYimW6mPvZwjTg+oxfVYA9OERnqCnrI6nVwyu8IibLiP6fX9/el1eW4d6S5qXDwDzK
+	 b7vto81dT3Fu1sK1LpH9Rdpxm91E2mhmKIbXEwmrhIgLPSmwkM2pxG9JMtrEql9Q11
+	 IdfxuLPKBWCFZiovJcrbeDfko2anZvHPKTe9vsZFm1ZF/YCTBHL+CZmEL55qjbdTei
+	 FY+9eoDAR1lZQ==
+Date: Tue, 11 Nov 2025 18:01:08 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Xu Yilun <yilun.xu@linux.intel.com>
-Cc: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
-	Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mahesh Rao <mahesh.rao@altera.com>,
-	Ho Yin <adrian.ho.yin.ng@altera.com>,
-	Niravkumar L Rabara <nirav.rabara@altera.com>,
-	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: fpga: stratix10: add support for Agilex5
-Message-ID: <20251111-skewer-sturdily-989457c9fa70@spud>
-References: <cover.1762835252.git.khairul.anuar.romli@altera.com>
- <0e3986dd9a2c4e46466a7430b2573d170d2a718a.1762835252.git.khairul.anuar.romli@altera.com>
- <aRL7/Hjb1Z/OrC91@yilunxu-OptiPlex-7050>
+To: Jack Hsu <jh.hsu@mediatek.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	andy@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, srini@kernel.org,
+	ukleinek@kernel.org, gregkh@linuxfoundation.org,
+	jirislaby@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de,
+	chunfeng.yun@mediatek.com, wim@linux-watchdog.org,
+	linux@roeck-us.net, sean.wang@mediatek.com,
+	zhiyong.tao@mediatek.com, andrew-ct.chen@mediatek.com,
+	lala.lin@mediatek.com, jitao.shi@mediatek.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pwm@vger.kernel.org,
+	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v7 5/9] dt-bindings: usb: Support MediaTek MT8189 xhci
+Message-ID: <20251111-ocelot-ipod-4d5f902b640b@spud>
+References: <20251111070031.305281-1-jh.hsu@mediatek.com>
+ <20251111070031.305281-6-jh.hsu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,92 +71,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="carrje968T1m2UPU"
+	protocol="application/pgp-signature"; boundary="mkp7Vm+0xTxl2wgI"
 Content-Disposition: inline
-In-Reply-To: <aRL7/Hjb1Z/OrC91@yilunxu-OptiPlex-7050>
+In-Reply-To: <20251111070031.305281-6-jh.hsu@mediatek.com>
 
 
---carrje968T1m2UPU
+--mkp7Vm+0xTxl2wgI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 11, 2025 at 05:03:56PM +0800, Xu Yilun wrote:
-> On Tue, Nov 11, 2025 at 03:48:31PM +0800, Khairul Anuar Romli wrote:
-> > The Agilex 5 SoC FPGA manager introduces updated hardware features and
-> > register maps that require explicit binding support to enable correct
-> > initialization and control through the FPGA manager subsystem.
-> >=20
-> > It allows FPGA manager drivers detect and configure Agilex 5 FPGA manag=
-ers
-> > properly. This changes also keep device tree bindings up to date with
-> > hardware platforms changes.
-> >=20
-> > Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> > ---
-> >  .../devicetree/bindings/fpga/intel,stratix10-soc-fpga-mgr.yaml   | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc=
--fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc=
--fpga-mgr.yaml
-> > index 6e536d6b28a9..b531522cca07 100644
-> > --- a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-m=
-gr.yaml
-> > +++ b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-m=
-gr.yaml
-> > @@ -23,6 +23,7 @@ properties:
-> >      enum:
-> >        - intel,stratix10-soc-fpga-mgr
-> >        - intel,agilex-soc-fpga-mgr
-> > +      - intel,agilex5-soc-fpga-mgr
+On Tue, Nov 11, 2025 at 02:59:19PM +0800, Jack Hsu wrote:
+> modify dt-binding for support mt8189 dts node of xhci
 >=20
-> I'm not quite familar about dt rules, but since these are all software
-> defined strings, do we really have to write down every version even if
-> they behave exactly the same? Seems a waste of time.
+> Signed-off-by: Jack Hsu <jh.hsu@mediatek.com>
 
-Sort of. You "have" to add a new string to the binding, because there
-may end up being bugs that only manifest in one SoC etc, and having the
-string pre-emptively is helpful. I'm not familiar with these particular
-fpga managers, but if it has some way of identifying it's own version,
-then doing that dynamically instead of having specific compatibles is
-often permitted.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-What is a waste of time is adding it to the driver. When the driver diff
-looks like:
-|--- a/drivers/fpga/stratix10-soc.c
-|+++ b/drivers/fpga/stratix10-soc.c
-|@@ -448,6 +448,7 @@ static void s10_remove(struct platform_device *pdev)
-| static const struct of_device_id s10_of_match[] =3D {
-|        {.compatible =3D "intel,stratix10-soc-fpga-mgr"},
-|        {.compatible =3D "intel,agilex-soc-fpga-mgr"},
-|+       {.compatible =3D "intel,agilex5-soc-fpga-mgr"},
-|        {},
-| };
-
-That's a solid indicator that there should be a fallback compatible used
-here, as the devices behave identically. A devicetree node would then
-contain
-compatible =3D "intel,agilex5-soc-fpga-mgr", "intel,agilex-soc-fpga-mgr";
-instead of
-compatible =3D "intel,agilex5-soc-fpga-mgr";
-and the driver would match on the second compatible in the list.
-
-pw-bot: changes-requested
-
-Cheers,
-Conor.
-
---carrje968T1m2UPU
+--mkp7Vm+0xTxl2wgI
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRN5qAAKCRB4tDGHoIJi
-0kkNAP92uSfOfJiT8nbwOb9bK75/kFtvXOM5RDHQGx4Gqlbc4QD/btSqX/CZOjsk
-lyWzwCIP9xoYU77H/6JOO7+GLkQ8kw4=
-=tBy/
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRN55AAKCRB4tDGHoIJi
+0nZ6AP46To/9lZ7sJV4I2ivoFKzECzpBwHjBzWlqIKPxNe0XpwEAoe7F6s2tr9ca
+hGvlAGOJEUCvxWDv5C09Q2U7m+8MuwI=
+=k5Lj
 -----END PGP SIGNATURE-----
 
---carrje968T1m2UPU--
+--mkp7Vm+0xTxl2wgI--
 
