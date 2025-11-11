@@ -1,259 +1,148 @@
-Return-Path: <devicetree+bounces-237101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF63FC4CD9F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:03:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73603C4CEBC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:12:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 698C84FCE09
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:56:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAA7A4222B0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF992FD695;
-	Tue, 11 Nov 2025 09:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F5C2FD7B4;
+	Tue, 11 Nov 2025 09:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="NKa8NKkh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BDnvbdt8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBC02FBE0E
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 09:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F281263F49
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 09:57:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762854929; cv=none; b=bif1DFn25Zw/C2lauTaPj8lNWmWZzmxxkCJ8qc3qq72A+EXMCcQ/CVQEvL17Ln5AP5fEgclgavJnCcBWGuN3d/66WxHU01Y5hOcqxSXIJ2BpS4MEFcwzFId54YeeQa4+mu6CqyddnYY4LusfuFFpLzgRuAPW445GkKxoRYgPe9k=
+	t=1762855070; cv=none; b=aVgcrvMGAhCER70jr5Pn9KKRWNwj9//GvC26YhnBpZ4AFn+KWZZiwZ0LgNl3lZSaAU/L3z/hBcq+Prf99KphNbCmnhpvZjSoG64TBoMrRrYXm7Vs0Oi0L5Vem0u55CSTv5EgqEmMMYgArdXvcXVJ+bhFJ8VIzOnwXqHK/yWgeVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762854929; c=relaxed/simple;
-	bh=ikmwxJCg1ZLSESW1vFDYmoPNouGfZa1iKRO+80wj/dI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=bmHGwhMoZyntA4zaLEMhOQRXVwF1rI7mMfCuCXm3xzOCXUDpMsIZV7MT4VyuhNdi8LmuGLt+52SYAVUU9oBJkqBjKPIGfisjS+1RGyc4O7wtaAKcrr0jxlUB0yMbUul9mpkre8ocB+jhr73rj5xDznL4P9rwwVqDbK67qJBDsZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=NKa8NKkh; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b729a941e35so513958966b.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 01:55:27 -0800 (PST)
+	s=arc-20240116; t=1762855070; c=relaxed/simple;
+	bh=A/FDcgEC0NqdGGYV5LPhCY8eQLNHWRRJowrE/ROA2P8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=NWCZpIxfrij51CH7VKfvNpQ0jEaPNfGK5Nnydh/2Vg8+9nSxIkMDavGsmJWs/6GAn4mFaDbbbmjCbbG0krqFZl52VOA41N5k/lgMk63n9kwb/5zv1M3FrjFxXFpBuln6OCR90k/9tCJ+2X+mwycg08eSa1UFGc7xxHJPO4MaUKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BDnvbdt8; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-471191ac79dso41273765e9.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 01:57:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1762854926; x=1763459726; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M2ATN+bGUhg0lzB7rPv/DY/EzdDRNtMpVBUFmN1EQDQ=;
-        b=NKa8NKkhV/aQr8RU2FU4ajOF1C1LYrn0mVMhMBWfMla72BJUwKGX/kmRC+YHRKU/v4
-         tUtmpnwhslkoiU8XivnpgDLO3Hmxj/QM6fINzPqH3RLvOJi4pjGVdwL0pnEUgNKEmwl/
-         7tbzu6MqQmLkaNdQHteRAlk6ID49fCZifrGchvtmw4BTIbjWcZ0dbkgggpmg7Sq/IiBN
-         ObR8ZLXHm9w/XPJ2pXQZr8tSWztIPTkZcUtSezYR04NWG5yHBW9vfDTbMtHyLeWvANh7
-         AWaa1QUBTgFWhm1GXgc7t+GkLfW1vPLSkBYzxgGEE4EQwwYPib9rsMzRYr4hcDFpVu9l
-         hPAQ==
+        d=linaro.org; s=google; t=1762855066; x=1763459866; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=A/FDcgEC0NqdGGYV5LPhCY8eQLNHWRRJowrE/ROA2P8=;
+        b=BDnvbdt8iSYN6bxwCsU4EDmY1GHOAcYRVvz+U3H9jx3pABSMYfbGSx7e4UTi4huSV/
+         9XAS5nzciGxhzKRcbEKMWqY5DRPjDJUgwdvYRLN7M9ysHRP5T0ne+Jt4qsaI1dnrQQQs
+         C5bxL+UhfluxUWO+LOFXeJd8VX/plVfE9j1wkoezNcGqES3aGHlM5411aSH8u+lufGZe
+         mEtoYElGp1glT+iVVOZ1hg+VERPjRBvSZ6sEwmhrgA4EkAen0N3m8wYOCnqTHvXuzr12
+         XvHmxn2I45PzjZCems0cO1lnWf/UPp9ZVusRwI33NHkEJ8s79DkDJyj0XDDop8sjtWUr
+         gyLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762854926; x=1763459726;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M2ATN+bGUhg0lzB7rPv/DY/EzdDRNtMpVBUFmN1EQDQ=;
-        b=ESAFlgpfvcDKtvGA2o60R2Re31h1zAVtLwRnpbFcl4HV8khsOsGgc5Py9M78SubaeI
-         R2zNYT67jfJYu8HOXC+6yt8IZy9Ewce2rKKQL7nR5M6LUfgYZtomNwmjcMlIex0mbBFL
-         N6bHrOBshC2HtEybhqU2Hc/gXdts+ObdvS5N0sJR56VLWlUXnTLzbcBWswCj8T8+RekR
-         jkBRu0tTOjRWdJsmZDTNQgPTHwzfkRBzChbIqMtmrvoEWiuwuJ2L6PY9+yx7QeDlt25q
-         D4ShbEhWmYuyfbmOvvrRpn47w4wsK4enFmsjgB7QA+QRPJisxn71hBHdrYYkSZu7QLM5
-         x6PA==
-X-Forwarded-Encrypted: i=1; AJvYcCVgVZbPjLRSPgiR1znRv/El6SumtfN55Jwq2dHsqKY+ptelAwhvb4VblKAy/cVhVTt9LA6DUz3bCPcv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzexMIhvXUcihxPfMdI4hHtb4kIc0aqxqMRpiE4IWTiypdOs6Ll
-	pwPfsE7yIf06cSqhvvWdAw+JctyJzNtCqtX6m/a4nrt8NcPwZ4MSsSGuFyPg/h/C6ew=
-X-Gm-Gg: ASbGncuMioD5/Ixm/QHefkgHDlmgxfnuc+ITCPsx3Rl8iufSWyYUFz3dTGb04CM0m7Q
-	AKOK5A19P8GI2goLe+z77DFuUU0/EBUczjEV32eOWiSUOiAzzSfnU/juAb/3O6xvoYRZzgFG/lV
-	LLYmmuo8qFUNa4ZLtU9aRuh1zuVxyuFAz4BL/0mYAbYweWLe8SsDYtXydKnxJkapL1jqwqsY7a3
-	Tk/Y3v15BG7F6vqJwgYzyv169LWIqhFB1H45HEz0nsrsfwDatbvkl6bugM6R1Nmfj9B24I2QDOh
-	Wyuzze4BdHH8oAGVkEiQnnQiGUolpkhV41CHita1DeSlk5azkCGd28m47yQi8qR1RMVtkQSHt4N
-	5pep6/TCK2yUUWZY8lk0N43EKoncMKFnDc5jVzpUPrmOFmoUri0bHIMpsudymoCgL+2Yv9NMF3r
-	S1fzvfyU2JQE5F/5tiVBHMFkZLiEAxajf9WzGuEp2TbeUd4Q==
-X-Google-Smtp-Source: AGHT+IFd7IWB5Eka+rG7ifQ3BCS7qWlZKrkijP0KIzSAfFqPdX40qriRD00IqCgbFvUrI4yU9T8osA==
-X-Received: by 2002:a17:907:a0c8:b0:b3f:9b9c:d49e with SMTP id a640c23a62f3a-b72e053f2b5mr1175658066b.57.1762854925879;
-        Tue, 11 Nov 2025 01:55:25 -0800 (PST)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bfa24d14sm1302472966b.74.2025.11.11.01.55.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Nov 2025 01:55:25 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762855066; x=1763459866;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A/FDcgEC0NqdGGYV5LPhCY8eQLNHWRRJowrE/ROA2P8=;
+        b=Xehlir6dyUoNyuC4e09oHRfSbyxfxJ4o4iJn8PA0UmcWbWk3Ep+3pybWVoJrow68yv
+         67IOtWjPkOT7S9gMaUm2LOBaQt6WfRQEjVliy3i+dMOqR97tvHrMzJkAOJ+tgFrxfQ9b
+         TVocA314LMsKJOCdat/1PEA3kxZ9aJ6JD30m1ufYYDNA4J5VHNRUYsDVlhzkCMeg8jNk
+         DlCw1JeF27ytHUAd03kR6xlAj9qyjqEPbDzrsnU0A0DLLbxMZGfrN18FpLE0n5eSKRdY
+         mDf9Ra9Fhby6ZwX6YWWfeOUxreiY1TWxAwirsbPp1xo8t+qH4mJfdS618BOAOEQBNTOK
+         UipA==
+X-Forwarded-Encrypted: i=1; AJvYcCWTrk4oiD1oBrHHD8NZb5q4YX6R0vsPli9v5PzwbzxqXBaTGijEfP1TgdIrIJFr1T2Iyrg6g4bGibiY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsfCEHIK6kDXXAs+vO5sB9yFBWnH09vriYA49wX+pZ1m8STszY
+	dSmDTezrQfI/ay3JyXv7LOTezOJoMGTfLMa9Sxe+S6xmssDzrWwoUAbpylm7xoP7XoI=
+X-Gm-Gg: ASbGncu/19+Ed/9gkL79ZlbF3kvr6fMAMIX4O8dQxJFydjmiItEdgIv+2qyb+Tpm7Qa
+	vXsa+u0n5TWdAwOpCSrzz8fFbm2wfQ0+eE0HEHfUhKGNbyfnUELuZMEn4WOS3fsmsDH9EiqRBjR
+	Gijm97P2+aqs/pdqOBJGSLIgNAHAT7ay85ruBKXwmYoasoZSU42EayWmKkVhAfjEZlg2U5SyAHM
+	xiDeFJEczsACV2ZM+qXKTNr8RuIHZTFylzBWI6RfD6YFpKzpBTHRewltLl4yqDd7bMD1UkTbvGg
+	6n1BechD8kg1IsGZOHjSriCmpqeNeNV5KTm5cc2rvoRSDzHWOOm6t5b6EjoS9ZgtM4xDOLvL9Ov
+	6JTwV/k7p//8Rur8dd+FnvqPP2bsBPZbtxq7FDioV671Y1tz/4p+o0XkiLDK7O5XnVPTpPS5VvL
+	BL/jlaTQ==
+X-Google-Smtp-Source: AGHT+IFx1tQhYEcMAjmeDGusVpDAcsUi3ywSe54TVsoxYy0zvPtJEA10WARNrOByXA/spkwUzB6jqA==
+X-Received: by 2002:a05:600c:1c08:b0:475:df91:de03 with SMTP id 5b1f17b1804b1-47773289066mr81723875e9.39.1762855066460;
+        Tue, 11 Nov 2025 01:57:46 -0800 (PST)
+Received: from draszik.lan ([212.129.83.89])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4775ce211d8sm380577775e9.11.2025.11.11.01.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Nov 2025 01:57:45 -0800 (PST)
+Message-ID: <9c344c5f43e71f30ccbd07b201eb470ed8e5fe35.camel@linaro.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: clock: google,gs101-clock: add
+ samsung,sysreg property as required
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Tudor
+ Ambarus <tudor.ambarus@linaro.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Sam Protsenko	
+ <semen.protsenko@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, Krzysztof Kozlowski	
+ <krzk@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ kernel-team@android.com
+Date: Tue, 11 Nov 2025 09:57:42 +0000
+In-Reply-To: <3bb47929b08370d9114ff1dd6b0d0f16d354d63b.camel@linaro.org>
+References: <20251110-automatic-clocks-v4-0-8f46929f50b7@linaro.org>
+		 <20251110-automatic-clocks-v4-1-8f46929f50b7@linaro.org>
+	 <3bb47929b08370d9114ff1dd6b0d0f16d354d63b.camel@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 11 Nov 2025 10:55:25 +0100
-Message-Id: <DE5RX0J5U1NY.UA143VCNT9IE@fairphone.com>
-Cc: "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Casey Connolly"
- <casey.connolly@linaro.org>, "Alexander Martinz"
- <amartinz@shiftphones.com>, <~postmarketos/upstreaming@lists.sr.ht>,
- <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Konrad
- Dybcio" <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: qcm6490-shift-otter: Add
- missing reserved-memory
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Bjorn Andersson" <andersson@kernel.org>, "Luca Weiss"
- <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251009-otter-further-bringup-v2-0-5bb2f4a02cea@fairphone.com>
- <20251009-otter-further-bringup-v2-3-5bb2f4a02cea@fairphone.com>
- <3ryhntdf52cukvcbfad5prlggqsee54nsf7us6hdd5h5f73pog@yrgo6o6j22gw>
-In-Reply-To: <3ryhntdf52cukvcbfad5prlggqsee54nsf7us6hdd5h5f73pog@yrgo6o6j22gw>
+MIME-Version: 1.0
 
-On Mon Oct 27, 2025 at 5:45 PM CET, Bjorn Andersson wrote:
-> On Thu, Oct 09, 2025 at 11:06:33AM +0200, Luca Weiss wrote:
->> From: Alexander Martinz <amartinz@shiftphones.com>
->>=20
->> It seems we also need to reserve a region of 81 MiB called "removed_mem"
->> otherwise we can easily hit memory errors with higher RAM usage.
->>=20
->
-> If you make sure CONFIG_MEMTEST is enabled, you can boot with memtest=3D1
-> on the command line to catch such issues, without relying on "higher RAM
-> usage" (or randomness).
-
-Good idea, ran it now and no issue seen.
-
-[    0.000000] Machine model: SHIFT SHIFTphone 8
-     <...>
-[    0.000000] early_memtest: # of tests: 1
-[    0.000000]   0x0000000080880000 - 0x0000000080884000 pattern 0000000000=
-000000
-[    0.000000]   0x0000000080894000 - 0x00000000808ff000 pattern 0000000000=
-000000
-[    0.000000]   0x0000000081800000 - 0x0000000086700000 pattern 0000000000=
-000000
-[    0.000000]   0x000000008ad00000 - 0x000000008b200000 pattern 0000000000=
-000000
-[    0.000000]   0x000000008b710000 - 0x000000008b71a000 pattern 0000000000=
-000000
-[    0.000000]   0x000000008b71c000 - 0x000000008b800000 pattern 0000000000=
-000000
-[    0.000000]   0x000000009c700000 - 0x00000000a0080000 pattern 0000000000=
-000000
-[    0.000000]   0x00000000a18b0000 - 0x00000000af41e000 pattern 0000000000=
-000000
-[    0.000000]   0x00000000af43fe53 - 0x00000000af61f000 pattern 0000000000=
-000000
-[    0.000000]   0x00000000affff000 - 0x00000000b7100000 pattern 0000000000=
-000000
-[    0.000000]   0x00000000c5100000 - 0x00000000e1000000 pattern 0000000000=
-000000
-[    0.000000]   0x00000000e3300000 - 0x00000000f8500000 pattern 0000000000=
-000000
-[    0.000000]   0x00000000f8b00000 - 0x000000037e857c78 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857ca7 - 0x000000037e857ca8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857cd7 - 0x000000037e857cd8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857d04 - 0x000000037e857d08 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857d34 - 0x000000037e857d38 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857d64 - 0x000000037e857d68 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857d94 - 0x000000037e857d98 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857dc4 - 0x000000037e857dc8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857df4 - 0x000000037e857df8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857e24 - 0x000000037e857e28 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857e54 - 0x000000037e857e58 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857e84 - 0x000000037e857e88 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857eb4 - 0x000000037e857eb8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857ee4 - 0x000000037e857ee8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857f14 - 0x000000037e857f18 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857f44 - 0x000000037e857f48 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857f74 - 0x000000037e857f78 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857fa4 - 0x000000037e857fa8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e857fd4 - 0x000000037e857fd8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858004 - 0x000000037e858008 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858034 - 0x000000037e858038 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858064 - 0x000000037e858068 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858094 - 0x000000037e858098 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e8580c4 - 0x000000037e8580c8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e8580f4 - 0x000000037e8580f8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858124 - 0x000000037e858128 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858154 - 0x000000037e858158 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858184 - 0x000000037e858188 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e8581b4 - 0x000000037e8581b8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e8581e4 - 0x000000037e8581e8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858214 - 0x000000037e858218 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858244 - 0x000000037e858248 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858274 - 0x000000037e858278 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e8582a4 - 0x000000037e8582a8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e8582d4 - 0x000000037e8582d8 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858304 - 0x000000037e858308 pattern 0000000000=
-000000
-[    0.000000]   0x000000037e858334 - 0x000000037e858338 pattern 0000000000=
-000000
-
-Regards
-Luca
-
->
-> Regards,
-> Bjorn
->
->> Fixes: 249666e34c24 ("arm64: dts: qcom: add QCM6490 SHIFTphone 8")
->> Signed-off-by: Alexander Martinz <amartinz@shiftphones.com>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 5 +++++
->>  1 file changed, 5 insertions(+)
->>=20
->> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts b/arch/arm=
-64/boot/dts/qcom/qcm6490-shift-otter.dts
->> index 0d331bda4a82..31650c29b1ca 100644
->> --- a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
->> @@ -118,6 +118,11 @@ cdsp_mem: cdsp@88f00000 {
->>  			no-map;
->>  		};
->> =20
->> +		removed_mem: removed@c0000000 {
->> +			reg =3D <0x0 0xc0000000 0x0 0x5100000>;
->> +			no-map;
->> +		};
->> +
->>  		rmtfs_mem: rmtfs@f8500000 {
->>  			compatible =3D "qcom,rmtfs-mem";
->>  			reg =3D <0x0 0xf8500000 0x0 0x600000>;
->>=20
->> --=20
->> 2.51.0
->>=20
+T24gVHVlLCAyMDI1LTExLTExIGF0IDA5OjU0ICswMDAwLCBBbmRyw6kgRHJhc3ppayB3cm90ZToK
+PiBIaSBQZXRlciwKPiAKPiBPbiBNb24sIDIwMjUtMTEtMTAgYXQgMTQ6MjEgKzAwMDAsIFBldGVy
+IEdyaWZmaW4gd3JvdGU6Cj4gPiBbLi4uXQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL2dvb2dsZSxnczEwMS1jbG9jay55YW1sCj4g
+PiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9nb29nbGUsZ3MxMDEt
+Cj4gPiBjbG9jay55YW1sCj4gPiBpbmRleCAzMWUxMDZlZjkxM2RlYWQ5YTAzOGIzYjZkOGI0M2I5
+NTA1ODdmNmFhLi41Y2U1YmE1MjMxMTBhZjNhMmE3NzQwYjhiYTI4ZTIyNzFjNzZiZGRiIDEwMDY0
+NAo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL2dvb2ds
+ZSxnczEwMS1jbG9jay55YW1sCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvY2xvY2svZ29vZ2xlLGdzMTAxLWNsb2NrLnlhbWwKPiA+IEBAIC01Miw2ICs1MiwxMSBA
+QCBwcm9wZXJ0aWVzOgo+ID4gwqDCoCByZWc6Cj4gPiDCoMKgwqDCoCBtYXhJdGVtczogMQo+ID4g
+wqAKPiA+ICvCoCBzYW1zdW5nLHN5c3JlZzoKPiA+ICvCoMKgwqAgJHJlZjogL3NjaGVtYXMvdHlw
+ZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZQo+ID4gK8KgwqDCoCBkZXNjcmlwdGlvbjoKPiA+
+ICvCoMKgwqDCoMKgIFBoYW5kbGUgdG8gc3lzdGVtIHJlZ2lzdGVycyBpbnRlcmZhY2UuCj4gPiAr
+Cj4gPiDCoHJlcXVpcmVkOgo+ID4gwqDCoCAtIGNvbXBhdGlibGUKPiA+IMKgwqAgLSAiI2Nsb2Nr
+LWNlbGxzIgo+ID4gQEAgLTE2Niw2ICsxNzEsMjIgQEAgYWxsT2Y6Cj4gPiDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgLSBjb25zdDogYnVzCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBj
+b25zdDogaXAKPiA+IMKgCj4gPiArwqAgLSBpZjoKPiA+ICvCoMKgwqDCoMKgIHByb3BlcnRpZXM6
+Cj4gPiArwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZToKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqAg
+Y29udGFpbnM6Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbnVtOgo+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIC0gZ29vZ2xlLGdzMTAxLWNtdS1hcG0KPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCAtIGdvb2dsZSxnczEwMS1jbXUtbWlzYwo+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIC0gZ29vZ2xlLGdzMTAxLWhzaTAKPiAKPiBTaG91bGRuJ3QgdGhpcyBi
+ZSBnb29nbGUsZ3MxMDEtY211LWhzaTA/Cj4gCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgLSBnb29nbGUsZ3MxMDEtY211LWhzaTIKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCAtIGdvb2dsZSxnczEwMS1jbXUtcGVyaWMwCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgLSBnb29nbGUsZ3MxMDEtY211LXBlcmljMQo+ID4gKwo+ID4gK8KgwqDCoCB0aGVuOgo+ID4g
+K8KgwqDCoMKgwqAgcmVxdWlyZWQ6Cj4gPiArwqDCoMKgwqDCoMKgwqAgLSBzYW1zdW5nLHN5c3Jl
+Zwo+IAo+IFRoZSBhYm92ZSBzdGlsbCBhbGxvd3MgKGJ1dCBkb2Vzbid0IGVuZm9yY2UpIHNhbXN1
+bmcsc3lzcmVnIG9uIGNtdS10b3AuCj4gCj4gTWF5YmUgaXQnZCBiZSBiZXR0ZXIgdG8gaW52ZXJ0
+IHRoZSB0ZXN0LCBhcyBjbXUtdG9wIGlzIHRoZSBvbmx5Cj4gb3V0bGllciwgYW5kIHRoZW4gdGhl
+IGJpbmRpbmcgZG9lc24ndCBuZWVkIHRvIGJlIHVwZGF0ZWQgd2hlbiBtb3JlCj4gQ01VcyBhcmUg
+YWRkZWQgKHVudGVzdGVkKToKPiAKPiDCoCAtIGlmOgo+IMKgwqDCoMKgwqAgcHJvcGVydGllczoK
+PiDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlOgo+IMKgwqDCoMKgwqDCoMKgwqDCoCBjb250YWlu
+czoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnN0OiBnb29nbGUsZ3MxMDEtY211LXRvcAo+
+IAo+IMKgwqDCoCB0aGVuOgo+IMKgwqDCoMKgwqAgcmVxdWlyZWQ6Cj4gwqDCoMKgwqDCoMKgwqAg
+LSBzYW1zdW5nLHN5c3JlZwo+IAo+IMKgwqDCoCBlbHNlOgo+IMKgwqDCoMKgwqAgcHJvcGVydGll
+czoKPiDCoMKgwqDCoMKgwqDCoCBzYW1zdW5nLHN5c3JlZzogZmFsc2UKCm9idmlvdXNseSB0aGVu
+OiBhbmQgZWxzZTogY2FzZXMgc2hvdWxkIGJlIHN3YXBwZWQuCgpBLgo=
 
 
