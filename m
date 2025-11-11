@@ -1,186 +1,119 @@
-Return-Path: <devicetree+bounces-237160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25726C4D8C5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:59:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C70B1C4D87D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5A0124F6AFA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:49:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC5E53ACD4D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86848302747;
-	Tue, 11 Nov 2025 11:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Hgy/cESx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C85734EEED;
+	Tue, 11 Nov 2025 11:54:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EBBB2FA0ED
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 11:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240343559D9
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 11:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762861765; cv=none; b=nLxPAyQnByEMRO83bZuSAy3nedH7tC3VZy+L6b6CYTt3gNPRQUj4d7I/MaXVn6YaCmzCZvGAbn/d5R7RE19vOnyrYp7N+SxxmF4IfoIoQ4jaEes2y9uOIZQmw62bs4OxwEhFFjGulECInb86EuobDHnojhD4sjVWG+z/ma6ozUQ=
+	t=1762862044; cv=none; b=lKoa9hIC2QbF/027ZoWUksDMNVldP2QrkTy/hgU2WMI4ZBcG0BVI5XO+UuXk7MA9LG0droGPPodscNS2lfQYSAVK3LtVeJhifySLwct29hUYwlNA/vgSnA5T/8b/cNcidewwQam3ZIMRsFwqNXmMjk78rKPh+73FbH3iNn8Kn20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762861765; c=relaxed/simple;
-	bh=lc2UdYjJR0sjNTBD2oKa4cB+uC349vhWvRxB6lMSxjE=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HhVHdXb5iWDixgsu/ETwV/eRO8b/Jo2I0fjiXZbQ8xSXR+QI9RZ+wvfotZNiPPedWZ2G5+s9onyrihI6sfsuLfjfIohnoLe6esqUNtw/objUj6iUxnCbDZM3Jthmz0MHUYMQ6TFHOf0wmTYa/p8tIUtjxMAuRuUiReVslyHlQ5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Hgy/cESx; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b72b495aa81so491492366b.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 03:49:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1762861761; x=1763466561; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NW0M5blI1g+flfpcZDgej7OD3G98bZF6Q7a2G0Rxs40=;
-        b=Hgy/cESxvhIMfJUSZcbzV7sQ4VvfqIKedfzurl+VrnVCJv0QfsS3rER1JFFvmqhLTX
-         k8mm0hFnENTVc6QbqbjNDDUSplhro6O7eDQtM9RfyJ2XAf0M9oIIXuVcNh8AEdGzm0Jj
-         qFMdZ96Onjb3T3ohZC/nT3VDMyqmpvoklxUvAwWlf532c8lg+OmgMdgpO6+aqMRA5jOU
-         r9Es/+79E1KWn1Z/iadfeNCRNoiZUSMLmFmH+LHHqsQo/C88W4uTLpc2oo0DupGRxiED
-         f+87qmu+nEznoVJ1NRzfZQLTZ40d+9Evqh92y7D00UT4beKh1smr4hegWU/Rf3jOxkN+
-         q4VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762861761; x=1763466561;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NW0M5blI1g+flfpcZDgej7OD3G98bZF6Q7a2G0Rxs40=;
-        b=MQytXcuWkg4ALo6W9TmjRQCcnPZ4rG0XFFZcvFFKx/LRfChtUIZHj/V9ZxfGCL7/SL
-         cCTs2ytoKoqWc0zyCdj5GDoEQzusQDb3p6GJ20dQhIzBpAXB7Ie8onxPicJF4F2ckvtR
-         WJ4gYOmN1ODn2umywe9/pgiZxAx9HQAQmDVzq/r2c+sXIovdeceutfZEtyM+u4X5PVyE
-         KLeUoYehf58OQoy/FmoPwf3qjOgB7ac60W5MN0MtAI1YPEhqPOaNU+mVYZwL8MoRl2/i
-         S+g5nalV8YyLi+LO0ahjFQmbyCl8fRc05gVUAZtg9VVsIOUE5dyFivrCco3Lki/Ic1jD
-         6sWw==
-X-Forwarded-Encrypted: i=1; AJvYcCVlFh7iSVUwB9ppdL1RY8ZCGzd9xhUj8lTPXniIZdiIo9qyCOrBG2AQ9JiEs4cT3fqN4oS8eYcpDOFI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgluAA/LONTRX/SEx1b4kLwe3QUh5N21qNDNRUdMbC2//x+pnR
-	ufanmpaiH7+bRC+N+bhcTp1Oy5YT6HX3e16paog8NXh2NLnEvUhVuz3IjbLoBMN1KUehFGYixDe
-	EsPbE
-X-Gm-Gg: ASbGncvO25AKGcyBeKyLLFtfuNNs6+5aWtJ4zkdTfrG1y1iVRkDIX9OvUlh/q8ya6yk
-	DDxnO0ZgQSRf/su/AZXqFrsTad+5A0cxC4N/wYD4HnOUPEe2fejRNXgCbfK6pB54HsPSJWHhbzx
-	9fQX25ON9bz1RSt0cz/1zeP/1engsD9GC0b66RRHVQ4uFwU3zsSQlXtoaHJSiacIr0WfsTp7gFc
-	nu4Ov+MzIAoxBb4mPr6gOG0US4qs6iM6GWRaEkATm2F7Q9AvL00BbB87vkl6V08+nA00Z5/mtJO
-	BIiBEY/8iYXYjDcNnoE8asb2vYjj985+Uoqc35Qf4vvY/2h7v61rD3HX8ZyA4b9C+8FP4XyQoo2
-	4SIJqJpmqFd8xm2YXI343cYOVS+AjbOI8at5Gg5krt3seUpNUbk5mwIPv6yrWjmfezIre+2+IFv
-	gn7rrHKKIkPfl1g5FfGIJ9H6OPiXVbpQwwOEo7l5+mWJg60Q==
-X-Google-Smtp-Source: AGHT+IEur0fUlJ4dCFXlsi8JzvD/wZ2A9nQhErrr7cgLwLwwk3uLtEzsliARx6fvO2CXD/kozSEzLQ==
-X-Received: by 2002:a17:907:9716:b0:b70:f2c4:bdf7 with SMTP id a640c23a62f3a-b72e04154acmr1265627866b.31.1762861761499;
-        Tue, 11 Nov 2025 03:49:21 -0800 (PST)
-Received: from localhost (host-79-49-235-115.retail.telecomitalia.it. [79.49.235.115])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bdbcea51sm1319505466b.4.2025.11.11.03.49.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Nov 2025 03:49:21 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Tue, 11 Nov 2025 12:51:40 +0100
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Lee Jones <lee@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Willow Cunningham <willow.e.cunningham@gmail.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH 1/4] pmdomain: bcm: bcm2835-power: Prepare to support
- BCM2712
-Message-ID: <aRMjTHnmsw98G4iX@apocalypse>
-References: <20250917063233.1270-1-svarbanov@suse.de>
- <20250917063233.1270-2-svarbanov@suse.de>
+	s=arc-20240116; t=1762862044; c=relaxed/simple;
+	bh=dR6nOi9qh4XRaLJGDlSnX5FCQnJVgXOp8XhLU5rdNB4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WqFjhRDlv0pFglJHCzSIE3zinWRaHGEUdyKqpNMcqLj84CFaOqbd6Map0SojmvMQLXrxHe5j3ax6fFrshozeREWUP7f2ci/w9v3TY0uXgvZqkJNMK/ZkM6nh21X/v1LlcnF9YylWILs3/a/lmI2JUiwopb6ZeA+z0pBOOnfllxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip3t1762861977teba315bb
+X-QQ-Originating-IP: 9hk3gt7N3vjJwmXMB16WeBR8MVSYirzN9zA3vngNTqw=
+Received: from [IPV6:240f:10b:7440:1:62e3:2c99 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 11 Nov 2025 19:52:54 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4277675725007631455
+Message-ID: <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
+Date: Tue, 11 Nov 2025 20:52:54 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250917063233.1270-2-svarbanov@suse.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
+To: Joseph Kogut <joseph.kogut@gmail.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
+ honyuenkwun@gmail.com, quentin.schulz@cherry.de, dsimic@manjaro.org,
+ pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
+ <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: N0JG5d2dvsRDzxh9BujXcIVpDp8VtwcUMvs3Intk2N3mRIGyInsL2y2j
+	FVm6lsUw5KU+/BVk+0KzOic5/0569mBOXju4/uvag6BNZBgrhUjQKECwc0dTnvKuXNUibpw
+	BvLjrcC0FEqU7mIVvfq18FBTlMawneSs5mWdCIgUjonlJv3r7Byw0tcuQmAoSQooJQEFGsl
+	SNOSnsm71Xr08gwboOH2VcZdLO3QeY7DgZLccjUG0zqaOnUdqoIU8Wls5QdNc3jOYRTis9l
+	cDScdlx0neSfD1i788BmTo4muOEqgo3F5b8Bxu86hLvLtGBwtEZ2wxc9ZCSyopNz+MF467q
+	SFYnzeK38LToGoTALE8CoVwL381HnxusnFJrHQ6MosEhlnR/lyl0kCEAIycSpPRDmXXCawK
+	M8IfSixwBsyqUTiRdwCB1uK3vQ1LPsvSTDz9y7sXTXfB1lZRV8C+3XAA6tTnpNbyHQwdT0B
+	QD3bTFO3Z+ZwMy7twMFb0bc3tIIqzPjp75+lz+2WUXRq02+xkwebVHZ+PmhPtu5WhfsiH0W
+	kEybpbGjQW3wEY2p4Tx/NmeZSCawcovFJcjgI9iPs3ybw8Ya3QGYPe9YFWo3I5VydS+bVfP
+	FrrK38jU7LMRA6yuha4RasvO6t6k2BZvsENYKBPmrwd7926xS0MFPpOX2ykyGrGAt0ga7/C
+	hzdOIGTB3lYHS9Y3aDQFHHEQZl2e9NyeGPBsBzlRE5lGM0V3ndH6hGmWHdNCQnepdfztJJl
+	T6rB2xyaLL6KOF14TwMx6yhmpENfUbMdjYThh77eddSO0Vo0KspbxQhl0mxO7pQwZ1XbWUR
+	KntBfGM6BikkYaKS6UQ0YX+e+a/u1I2l47WW0MbUvmbYaQDSCI6mfV/+nGAdJhuVF9AfQfq
+	uPtydyXyVTUdjGXtwhy4sHd4hNAFSI+6w5Ljez3Hc11YtAhEAMdlHpXqdcY5/2t1ST4UGl7
+	mhazgC9CCQq5itiYelnJXcZglzlxsHyZK3DOdUODAxsZfb49V24NZnXQxWBHIYRaeQwdogh
+	Aa0Qt+P5Q3Jk21xwAas3RQmeOL/ObTY5fG6y7prA==
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+X-QQ-RECHKSPAM: 0
 
-Hi Stan,
+Hi all,
 
-On 09:32 Wed 17 Sep     , Stanimir Varbanov wrote:
-> BCM2712 has a PM block but lacks asb and rpivid_asb register
-> spaces. To avoid unwanted results add a check for asb existence
-> during probe and also add a new register offset for bcm2712 to
-> control grafx_v3d power domain. The decision to use the new
-> register is implicit - if asb register base is null then the
-> driver is probed for bcm2712 (the other supported SoCs have
-> asb register space).
+On 11/6/25 02:48, Joseph Kogut wrote:
+> Hello all,
 > 
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> ---
->  drivers/pmdomain/bcm/bcm2835-power.c | 17 +++++++++++++----
->  1 file changed, 13 insertions(+), 4 deletions(-)
+> On Wed, Nov 5, 2025 at 4:15 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>
+>> I'd like to clarify the situation regarding the v6 patch series I submitted.
+>>
+>> The original device tree work for the Radxa CM5 and IO Board was
+>> authored by Joseph Kogut. I took over the responsibility of getting it
+>> upstreamed with his agreement.
 > 
-> diff --git a/drivers/pmdomain/bcm/bcm2835-power.c b/drivers/pmdomain/bcm/bcm2835-power.c
-> index f5289fd184d0..1d29addfe036 100644
-> --- a/drivers/pmdomain/bcm/bcm2835-power.c
-> +++ b/drivers/pmdomain/bcm/bcm2835-power.c
-> @@ -79,6 +79,7 @@
->  #define PM_IMAGE			0x108
->  #define PM_GRAFX			0x10c
->  #define PM_PROC				0x110
-> +#define PM_GRAFX_2712			0x304
->  #define PM_ENAB				BIT(12)
->  #define PM_ISPRSTN			BIT(8)
->  #define PM_H264RSTN			BIT(7)
-> @@ -381,6 +382,9 @@ static int bcm2835_power_pd_power_on(struct generic_pm_domain *domain)
->  		return bcm2835_power_power_on(pd, PM_GRAFX);
->  
->  	case BCM2835_POWER_DOMAIN_GRAFX_V3D:
-> +		if (!power->asb)
-> +			return bcm2835_asb_power_on(pd, PM_GRAFX_2712,
-> +						    0, 0, PM_V3DRSTN);
->  		return bcm2835_asb_power_on(pd, PM_GRAFX,
->  					    ASB_V3D_M_CTRL, ASB_V3D_S_CTRL,
->  					    PM_V3DRSTN);
-> @@ -447,6 +451,9 @@ static int bcm2835_power_pd_power_off(struct generic_pm_domain *domain)
->  		return bcm2835_power_power_off(pd, PM_GRAFX);
->  
->  	case BCM2835_POWER_DOMAIN_GRAFX_V3D:
-> +		if (!power->asb)
-> +			return bcm2835_asb_power_off(pd, PM_GRAFX_2712,
-> +						     0, 0, PM_V3DRSTN);
->  		return bcm2835_asb_power_off(pd, PM_GRAFX,
->  					     ASB_V3D_M_CTRL, ASB_V3D_S_CTRL,
->  					     PM_V3DRSTN);
-> @@ -635,10 +642,12 @@ static int bcm2835_power_probe(struct platform_device *pdev)
->  	power->asb = pm->asb;
->  	power->rpivid_asb = pm->rpivid_asb;
->  
-> -	id = readl(power->asb + ASB_AXI_BRDG_ID);
-> -	if (id != BCM2835_BRDG_ID /* "BRDG" */) {
-> -		dev_err(dev, "ASB register ID returned 0x%08x\n", id);
-> -		return -ENODEV;
-> +	if (power->asb) {
-> +		id = readl(power->asb + ASB_AXI_BRDG_ID);
-> +		if (id != BCM2835_BRDG_ID /* "BRDG" */) {
-> +			dev_err(dev, "ASB register ID returned 0x%08x\n", id);
-> +			return -ENODEV;
-> +		}
->  	}
->  
->  	if (power->rpivid_asb) {
-> -- 
-> 2.47.0
->
+> I'll confirm this. I've been in communication with Naoki. They made a
+> large number of revisions to my original patch series, which I think
+> have technical merit. I suggested they submit the patches themselves,
+> and gave them explicit permission to add my Signed-off-by and CC me.
+> 
+> I assume this was the correct way for them to continue the work I
+> started, but if not, please let us know the best way to proceed.
 
-Tested-by: Andrea della Porta <andrea.porta@suse.com>
+Can anyone help us?
 
-Cheers,
-Andrea 
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> Best,
+> Joseph
+> 
+
+
 
