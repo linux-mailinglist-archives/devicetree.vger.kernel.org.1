@@ -1,245 +1,85 @@
-Return-Path: <devicetree+bounces-237174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B59C4D985
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:08:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7364AC4DB9F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:31:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 801091882113
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:08:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76B553A3972
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47159357726;
-	Tue, 11 Nov 2025 12:08:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C1GuLTc6";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h4M76r5M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7C33590A0;
+	Tue, 11 Nov 2025 12:27:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E02F3559F8
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49E9358D28;
+	Tue, 11 Nov 2025 12:27:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762862909; cv=none; b=VDBptFdupIet1A4EDO3k3/81XfZxYIuA5kWi0cALGXqRzUiuO2BCuodAYQAQKar0FezKBiQjNKFccz4BC2VlnngZMeUiWMR3UOE7gB56JrUKpqrO8pkF7OHbsx6jF78r2zn182jhodF4VlOy6jt/bsz+0YSRsnVGx+amTGhwUKo=
+	t=1762864047; cv=none; b=JGnrvjTivU83Jv9u58RooNoOFxOCgphw7R7fOnzhKkJ9vL5D245QZJdztE+Vu3jwp3x1OhKNkBW1W2+Pu5H/CL7MEgN50gMVqlHYOgug1fDyGtnTkdthxEU1n/XjaaXprYT1tt/l55M7Ds4qxvOqktYtV2+8XNwql2G2DxbjfBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762862909; c=relaxed/simple;
-	bh=SvFR4SUGu4cW5ZbpMf/jcA/WbZaZCA9MAWJUXdtWZjw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iKoI6f7yAxXx6qbJcLunYj4uN66MPquZiMcJvBTcJ290asjr1taWMJf4oRIuXrfhdde9xsD9dXM1RJNmKEZl3QRxEpMK2PobWGpLNn+lhPROquHIpeVu+05C0/NuteBAECm8QGSb+G0Qe1y2VVkMEQKwNUIl7X8RzDeWchuvGHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C1GuLTc6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h4M76r5M; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABBGCMN2250261
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:08:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	T7CzdlMWQ+IeGEz4WMLKxRJB/ueCtsJyhlFl+aTvX9Y=; b=C1GuLTc6pr4lM+jT
-	NuhkcMQhSoYZdqY63tuc3bJAZgWB0WUF9VimdBenA0I0rqkvfzx0yOzemKFEjKzK
-	DM7r3LqHSxIBXRxaTmbhnJduZTbAMRgYZIxn6HJWb6nsv0HAXS1AB8TW8NMLvlR6
-	i9A7LF5RKvM8VIPyIChM1Je0ZNj3H5Z/xTKZYTCMNNda5CXB536l0CHtTioGoB1+
-	QtqfGgNWHIieJT7H/MgXFMV0ZTDPodqmxtwIsPNofxXlMWgaLMyuMGog9i23i4bl
-	v+rmuZgntnLDraA5zWnq4jbgZ2bULWO/yeN7s7in5hwpn5BIyVyw/fQDae4qLb8g
-	RWY7gQ==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abxxu9480-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:08:26 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7aa5e7452bcso1277610b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 04:08:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762862905; x=1763467705; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T7CzdlMWQ+IeGEz4WMLKxRJB/ueCtsJyhlFl+aTvX9Y=;
-        b=h4M76r5Mi12Y+bOHVZjHxHx+CGCCX/Xuy5iuxXG3+hIT87K5AihKs4gse1exhkQyJc
-         2FOZeaZe8JvZ5pPiyV1XkRsjZ1Erd0fIuTEtyCx7I1Odqyjw493EUTpzt87aSzk3Fq6Y
-         WnQNCfBRviEgOJyS3e7dCPK3A0VaSMdlUdTCtu/wqPM9FbKg9vw6UIbQfhbAjK38FMzP
-         EQnje8s0x5p7CVnglcGQ3G3PKsW/WF6RLVITDMP7H2qIzy0NgK/RtWztXAyufNCKdjwk
-         oflSIIuBydSOOEF8pf9he3tBoYxo9dSxk7987TEsQ/VMOQeG/6aTSzYLrPMRPaBOg1U5
-         +tEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762862905; x=1763467705;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T7CzdlMWQ+IeGEz4WMLKxRJB/ueCtsJyhlFl+aTvX9Y=;
-        b=K+wLumm7nihuJ/mImIWiqVuviAOtBR8GJYCEXXmx12vd/MUp685600RKnVPgHJdGPp
-         k8a1FJ46SYcp2w0CrnDV0YM4X2Yze183q8p/StItGtUs8vYRAFzMBfNMKQljTW3zvgpl
-         JxbTlrW79slX/Wcw8odrZlzZdfumHhEHJdN4XTZFkiXql8v8Q2yK+l8tdfgaspXeYy4R
-         wcqx9vmOKfYViWFOA6pUOfOqccY/dZAeeX/UemtvgRQFJSI2GW7iINuBUMA7SLFqao1l
-         kZDRGJHzUKhibdVoGj8uAguXTCYUivUifGYwEElrwJPhYf6YakeXWRnMhkFUCLtHaMGM
-         T3WQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUY1or2r0E34DAMaF4xRvbw+9luhYSk9lU0R8yhOWbOgdhilsCqsarV8BdfkWzjVm3j64t2HjoZ3cGy@vger.kernel.org
-X-Gm-Message-State: AOJu0YzviE2MoM7D+5PE8kERFq1OnrEYwuI7VWY7T40oWtppDYyiu0a4
-	dhQnprLQPOfY3sSLaEP1m8VNPiXzesgJpJHz4ZowQo+akYGkASiAaKdWrHsMjSsWoJCULTiVHlC
-	8zqcOwuQP4zEJwegfkF3srPE16YTQAkTJg3UlfHfF66J/nrqDIZOFYesoT+RAOJud
-X-Gm-Gg: ASbGncv19X9Cx8vLoPZKWdbKDlgkYT/FiNjq3G2DKrXxYaVRZV0v9fVt/TFPCwC/82w
-	XQ2DFO+7Et2MizSa7MIE1foYvpUrlIdO19nciOqayq6gLZfwr5o/Q3l6MQRPYSUYjHT4WWzd8OI
-	Obk1gkzHQAUglUQCxeP+oSBMvNFGWnFaBJq9+VCOx+cMLlzN7hjyQU6l+WJtkekPLfzzQo4JF48
-	9+ifUJAXm3bI0SXOjQXHsLT/lWzzoxeqbAOscj/2GPWDiFN8/b+fbJdA3zMmWIq51lhC7NH4MOi
-	C176TW/IC0ntV0GIoO9fs/CAq6Pd7Fmqfy1n2ycQhui3dgzwsi9cgbd7+4rOQrUHyLQTlk+Th64
-	hsEpTV5W7YT1rdCMFkkxyTeoKyz+xTm8Ngp9OAcLzGWr9hd9AfmbL8dacvRrTUkkT7w==
-X-Received: by 2002:a05:6a00:ac3:b0:7ad:386e:3b7d with SMTP id d2e1a72fcca58-7b61d28289fmr2184683b3a.3.1762862905314;
-        Tue, 11 Nov 2025 04:08:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHfLxpdZCrwEXh8MYxeokX8WrpMnxSbuXyqQunCLUDZW8namwwk6sJyWw1yxHcAu07O0ipKAw==
-X-Received: by 2002:a05:6a00:ac3:b0:7ad:386e:3b7d with SMTP id d2e1a72fcca58-7b61d28289fmr2184643b3a.3.1762862904654;
-        Tue, 11 Nov 2025 04:08:24 -0800 (PST)
-Received: from [10.133.33.249] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0f9aabfc0sm14680451b3a.13.2025.11.11.04.08.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Nov 2025 04:08:24 -0800 (PST)
-Message-ID: <e9f52ab2-747d-4893-849f-f9fbdc567f63@oss.qualcomm.com>
-Date: Tue, 11 Nov 2025 20:08:16 +0800
+	s=arc-20240116; t=1762864047; c=relaxed/simple;
+	bh=yLBDgpfb+ZWlt1wIEutyVTcYIut2GF1MDXmgRtt1ScU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uvz2EErHaVuUhnK6TT2yC5MWbdjqyd0kSf7+pkgPgbUwwygrVVlN6R+qL4wqZfaAMdWxIAWoYLD7E+/MvsTTtiN6cyjM5Vg9M/pVTAtrnmKokW9v5OYmx9K/COeMsJ7OfLdJcyaw4tEGta4dVCN4isGBF8mBj2F/uRkLgAgu6nQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1vInSx-0008Ku-00; Tue, 11 Nov 2025 13:27:19 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 04361C06A7; Tue, 11 Nov 2025 13:08:22 +0100 (CET)
+Date: Tue, 11 Nov 2025 13:08:21 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: jd@cjdns.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] mips: dts: econet: fix EN751221 core type
+Message-ID: <aRMnNcQw8IZvO5Vm@alpha.franken.de>
+References: <20251017180124.67687-1-olek2@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
- compatible
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251102-knp-soc-binding-v3-0-11255ec4a535@oss.qualcomm.com>
- <20251102-knp-soc-binding-v3-1-11255ec4a535@oss.qualcomm.com>
- <20251104-glaring-rebel-pillbug-a467ca@kuoka>
- <790ca394-cee2-412b-97d8-c6416b843010@oss.qualcomm.com>
- <b6717831-1840-4b9a-aade-ab2248e3f75d@kernel.org>
- <9ee07db9-508e-4c08-8f79-6ccfd9b646ab@oss.qualcomm.com>
- <6af33c1b-5b95-4efc-b429-5bfb9ee7caeb@kernel.org>
- <8cf870a8-706d-4514-a87a-a69b64521ab5@oss.qualcomm.com>
- <f539b21b-cfe8-4055-9620-4d5d8d108098@kernel.org>
- <9d80b581-5d3f-4b95-91e7-c73c113b0976@oss.qualcomm.com>
- <c2o4iouc6sm7frcq64jmvxopv3eqvrjxievwwhiwqw6ptwfok3@4qmpfy4yij4m>
- <5b1f8204-1f49-4061-aa4e-f6dfe5ae2a0a@oss.qualcomm.com>
-Content-Language: en-US
-From: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
-In-Reply-To: <5b1f8204-1f49-4061-aa4e-f6dfe5ae2a0a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDA5NiBTYWx0ZWRfX1X02tzFkgHM6
- 9s9+mK0m+Bt+9drDFLVGsMuwYHHwyV82yH68+8QFP+r5GMTJMI5C1FGGSjQoQbgLloxb/ieu8X5
- 4a98XCRCF4hX34//pydKxGr9bQ+q64TcCiCaiLY0z+sWmnjrnEZuAaVSYYLrA+AbRpVGykunZBU
- Z5r46Ppr5qflvkORuaD4dqtkQs6E9gSRuRS2MCEC1bz7V+hT0xgYYJNcoYEfgEgkYIJ9Ep4LRd1
- 6NNLVYe0t3zXJGxZ+bas2O8EmYwTKh+xfIqUFKZGxL/01svQkI6WXg9Bxvikkme01gWLY/it6pl
- NmTrTdNLl8ijoSByf+9ZLh/DrDWc1cd1dfB9yuEyAid19qBB0y0DcNHHqrS8r3nECthKnK/ARPx
- mfEqC6F9FmC7RxfvCEy/7DVSsNLAyg==
-X-Proofpoint-GUID: 7fJ6sWE_aBNhPVB8sdlNnYfG0z7e_yNe
-X-Proofpoint-ORIG-GUID: 7fJ6sWE_aBNhPVB8sdlNnYfG0z7e_yNe
-X-Authority-Analysis: v=2.4 cv=TfObdBQh c=1 sm=1 tr=0 ts=6913273a cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=eu2Mp1WK7IjEojur9rkA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-11_02,2025-11-11_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 clxscore=1015 bulkscore=0 phishscore=0
- impostorscore=0 adultscore=0 suspectscore=0 malwarescore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110096
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251017180124.67687-1-olek2@wp.pl>
 
-On 11/11/2025 4:29 PM, Kathiravan Thirumoorthy wrote:
+On Fri, Oct 17, 2025 at 08:01:19PM +0200, Aleksander Jan Bajkowski wrote:
+> In fact, it is a multi-threaded MIPS34Kc, not a single-threaded MIPS24Kc.
 > 
-> On 11/7/2025 1:54 AM, Bjorn Andersson wrote:
->> On Tue, Nov 04, 2025 at 03:58:27PM +0100, Konrad Dybcio wrote:
->>> On 11/4/25 3:52 PM, Krzysztof Kozlowski wrote:
->>>> On 04/11/2025 15:38, Konrad Dybcio wrote:
->>>>> On 11/4/25 3:37 PM, Krzysztof Kozlowski wrote:
->>>>>> On 04/11/2025 15:35, Konrad Dybcio wrote:
->>>>>>> On 11/4/25 3:26 PM, Krzysztof Kozlowski wrote:
->>>>>>>> This I got, but nothing here explains why you need generic
->>>>>>>> compatible.
->>>>>>>> To re-iterate: there was no generic compatible before, now there
->>>>>>>> is.
->>>>>>>> Writing bindings and numerous reviews from DT maintainers ask
->>>>>>>> not to use
->>>>>>>> generic compatibles.
->>>>>>> OK so let's not worry about a generic compatible. IMEM exists since
->>>>>>> MSM8974 and it only had major hw updates with SM8550. They don't
->>>>>>> impact the software interface though, so qcom,msm8974-imem is OK.
->>>>>>>
->>>>>>> There's a separate control/status register address space for each
->>>>>>> instance of this IP (usually far apart from the actual SRAM pool),
->>>>>>> which Linux doesn't have to care about.
->>>>>> Just use qcom,kaanapali-imem - that's the first device here
->>>>>> without syscons.
->>>>> So we don't want to move the existing ones over?
->>>> This was never discussed and this patch did not do it. You cannot move
->>>> them, that's ABI.
->>> I see, I implicitly assumed this would be a sweeping change.
->>>
->>> So should the Kaanapali submitters simply send a version of this
->>> patch with:
->>>
->>> - oneOf:
->>>    - const: qcom,kaanapali-imem
->>>    - items:
->>>      # existing big list
->>>
->>> ?
->> We have 33 cases of "this is just a generic Qualcomm IMEM block", could
->> we just make it "qcom,imem" until there's actually a sign that it's not
->> a platform-independent block?
-
-If it’s not platform-specific, why not use a common compatible here? I
-mean let's have a common "qcom,imem" start from kaanapali.
-
-What benefits would a platform-specific approach bring in this case? For
-newer platforms, we could simply adopt the common compatible and avoid
-adding a dedicated platform compatible name.
-
-Also, the old bootloader reboot-mode solution that uses the IMEM area as
-a magic syscon is deprecated for newer targets.
-
+> Fixes: 0ec488700972 ("mips: dts: Add EcoNet DTS with EN751221 and SmartFiber XP8421-B board")
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> ---
+>  arch/mips/boot/dts/econet/en751221.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> 
-> Any conclusion / further feedback on this would be helpful to move
-> things forward. Thanks in advance.
+> diff --git a/arch/mips/boot/dts/econet/en751221.dtsi b/arch/mips/boot/dts/econet/en751221.dtsi
+> index 66197e73d4f0..2abeef5b744a 100644
+> --- a/arch/mips/boot/dts/econet/en751221.dtsi
+> +++ b/arch/mips/boot/dts/econet/en751221.dtsi
+> @@ -18,7 +18,7 @@ cpus: cpus {
+>  
+>  		cpu@0 {
+>  			device_type = "cpu";
+> -			compatible = "mips,mips24KEc";
+> +			compatible = "mips,mips34Kc";
+>  			reg = <0>;
+>  		};
+>  	};
+> -- 
+> 2.47.3
 
+applied to mips-fixes
 
-Which platform are you waiting for as a reference? Or are you only
-focused on the current Kaanapali?
-By the way, great to see we share the same goal here.
-
-> 
-> 
->>
->> Regards,
->> Bjorn
->>
->>> I'm not a huge fan of using kaanapali as the fallback-going-forward
->>> since it's literally the newest platform on the shelves (or perhaps
->>> not even on the shelves yet..) so it's going to look funny when
->>> someone comes up with support for another 2013 soc.. but perhaps
->>> that's just how things are supposed to be
->>>
->>> Konrad
-
+Thomas.
 
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
