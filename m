@@ -1,88 +1,148 @@
-Return-Path: <devicetree+bounces-236965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F091C4B593
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 04:39:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 025E2C4B5C1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 04:49:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 08B5A34CAA4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 03:39:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8904B4E2315
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 03:49:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5770F3491D4;
-	Tue, 11 Nov 2025 03:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="iUGFXxSv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF522459EA;
+	Tue, 11 Nov 2025 03:49:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99298346E66
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 03:39:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
+Received: from zg8tmja2lje4os43os4xodqa.icoremail.net (zg8tmja2lje4os43os4xodqa.icoremail.net [206.189.79.184])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71FE18DB37;
+	Tue, 11 Nov 2025 03:49:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.79.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762832345; cv=none; b=BOptpRLEyb9WosbyrokBdIL7iSPwFU88Ks5iBp/7e/4G7PEK1CaAx/jzY/y1p6O1szaD7QJxy3RLzzrLDb5eBtia+XdA5IoutHSlb9CsbMm4WA8q6o7+Dxkoto6amO3LtVdOW37LVBPQK9TmmUS042wr7UDG6Uzbsl9OfEpQibY=
+	t=1762832994; cv=none; b=IkuTvAtbBCt/Jff49IZAz1LSAyO8m3oah+PMBrzbJciLrUMvTVmFSUpSw83RXlMNweEKNSyCdh/KRKfLMQ+UNo7R9s7X3X9fz5srVCTU20nNtoTu65n0urmEPg32pI9gr8L1iCskKzndl0x5LRMX/5PeNShEd28LFK/GcQn1VSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762832345; c=relaxed/simple;
-	bh=gqOCwtPQTZk3jpEdvZKI2Jr/kO5EH71V9WA5lAbRAuw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cx8Pjxcb1MvXPdLdgtJn/58JUsD0wGO1W5HT6O+OUSKKjUTK5vSy/h/5sLvvngrbj+7nwUj6tsDPgK2qbkm7enLkXlIZZp+GuOStJBX9FZPOUFeFgDpoc4eCHOYwTe9Z5qlzELivYVBiDzmMRUV5b00i7Z7Ldp1qJ2kZYA63180=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=iUGFXxSv; arc=none smtp.client-ip=95.215.58.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Tue, 11 Nov 2025 11:38:40 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1762832331;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ksG87ws8ce649q0qBeX08n/5lShn7Ts8Rh+qqZIQlp4=;
-	b=iUGFXxSvrGhyXJ0fgGLbylsJnJG9VaprjBi/297+63xAZqLtvM1oVmxkUHFZgv85Dw5LCy
-	NBENUVQcAo6G7lrseU9rT0S/ZNi/BH5LtWCQT4w5WkkmkAxdy4pdIypJAqPrKPR+6/XVZp
-	bJNPzjlOLF49UIltRIC5ZTD6ok2FS1w=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Troy Mitchell <troy.mitchell@linux.dev>
-To: Xuyang Dong <dongxuyang@eswincomputing.com>,
-	Troy Mitchell <troy.mitchell@linux.dev>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, bmasney@redhat.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v7 2/2] clock: eswin: Add eic7700 clock driver
-Message-ID: <aRKvwL-puEquiIOh@kernel.org>
-References: <20251023071658.455-1-dongxuyang@eswincomputing.com>
- <20251023071814.568-1-dongxuyang@eswincomputing.com>
- <aQ2jbf2k3rwOZDuB@kernel.org>
- <74be57c4.45.19a7080fca1.Coremail.dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1762832994; c=relaxed/simple;
+	bh=STHJLspIN9GMreqf9eZB/pVMf7p4s1+eyp3LDryWZUk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=mB6LduuaMFYHja+uFYej0HKvOdYSq2T7G8fej9zQPVkaLtyJLHU1rY9RhuP+y5ZtpY28ASda3jGJCBDTOUcEE2B1rWZre/v21MjOSKd8AN57HPZ/Yiq5ovafg24v9YE/5br3XYvGiYPwKN/2KGuN1hG/8kTFsT9KHjDUQCkdO0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.79.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
+ ajax-webmail-app2 (Coremail) ; Tue, 11 Nov 2025 11:49:24 +0800 (GMT+08:00)
+Date: Tue, 11 Nov 2025 11:49:24 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+To: "Frank Li" <Frank.li@nxp.com>, mani@kernel.org
+Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
+	p.zabel@pengutronix.de, jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+Subject: Re: Re: [PATCH v5 2/2] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <aRJBFoRC5rm+5rHa@lizhi-Precision-Tower-5810>
+References: <20251110090716.1392-1-zhangsenchuan@eswincomputing.com>
+ <20251110090953.1429-1-zhangsenchuan@eswincomputing.com>
+ <aRJBFoRC5rm+5rHa@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <74be57c4.45.19a7080fca1.Coremail.dongxuyang@eswincomputing.com>
-X-Migadu-Flow: FLOW_OUT
+Message-ID: <4f4d2055.77.19a71085b29.Coremail.zhangsenchuan@eswincomputing.com>
+X-Coremail-Locale: en_US
+X-CM-TRANSID:TQJkCgC3+q1EshJpOoR6AA--.605W
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgEDBmkSE
+	9sRjQAAsp
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
-On Tue, Nov 11, 2025 at 09:21:32AM +0800, Xuyang Dong wrote:
-> Hi Troy,
-> 
-> The link [1] provides the official documentation for the EIC7700. 
-> Section 3.2 covers the clock subsystem, where you can find detailed 
-> information about the clock-tree.
-Much clearer now. I suggest putting this link directly in the cover-letter
-in the next version.
-> 
-> [1] https://www.sifive.com/document-file/eic7700x-datasheet
-Thanks for your link.
-
-                                  - Troy
-> 
-> Regards,
-> Xuyang Dong
+CgoKPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2VzLS0tLS0KPiBGcm9tOiAiRnJhbmsgTGkiIDxGcmFu
+ay5saUBueHAuY29tPgo+IFNlbmQgdGltZTpUdWVzZGF5LCAxMS8xMS8yMDI1IDAzOjQ2OjMwCj4g
+VG86IHpoYW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tCj4gQ2M6IGJoZWxnYWFzQGdvb2ds
+ZS5jb20sIG1hbmlAa2VybmVsLm9yZywga3J6aytkdEBrZXJuZWwub3JnLCBjb25vcitkdEBrZXJu
+ZWwub3JnLCBscGllcmFsaXNpQGtlcm5lbC5vcmcsIGt3aWxjenluc2tpQGtlcm5lbC5vcmcsIHJv
+YmhAa2VybmVsLm9yZywgcC56YWJlbEBwZW5ndXRyb25peC5kZSwgamluZ29vaGFuMUBnbWFpbC5j
+b20sIGd1c3Rhdm8ucGltZW50ZWxAc3lub3BzeXMuY29tLCBsaW51eC1wY2lAdmdlci5rZXJuZWwu
+b3JnLCBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZywgbGludXgta2VybmVsQHZnZXIua2VybmVs
+Lm9yZywgY2hyaXN0aWFuLmJydWVsQGZvc3Muc3QuY29tLCBtYXlhbmsucmFuYUBvc3MucXVhbGNv
+bW0uY29tLCBzaHJhZGhhLnRAc2Ftc3VuZy5jb20sIGtyaXNobmEuY2h1bmRydUBvc3MucXVhbGNv
+bW0uY29tLCB0aGlwcGVzd2FteS5oYXZhbGlnZUBhbWQuY29tLCBpbm9jaGlhbWFAZ21haWwuY29t
+LCBuaW5neXVAZXN3aW5jb21wdXRpbmcuY29tLCBsaW5taW5AZXN3aW5jb21wdXRpbmcuY29tLCBw
+aW5rZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20sIG91eWFuZ2h1aUBlc3dpbmNvbXB1dGluZy5j
+b20KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY1IDIvMl0gUENJOiBlaWM3NzAwOiBBZGQgRXN3aW4g
+UENJZSBob3N0IGNvbnRyb2xsZXIgZHJpdmVyCj4gCj4gT24gTW9uLCBOb3YgMTAsIDIwMjUgYXQg
+MDU6MDk6NTNQTSArMDgwMCwgemhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20gd3JvdGU6
+Cj4gPiBGcm9tOiBTZW5jaHVhbiBaaGFuZyA8emhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5j
+b20+Cj4gPgo+ID4gQWRkIGRyaXZlciBmb3IgdGhlIEVzd2luIEVJQzc3MDAgUENJZSBob3N0IGNv
+bnRyb2xsZXIsIHdoaWNoIGlzIGJhc2VkIG9uCj4gPiB0aGUgRGVzaWduV2FyZSBQQ0llIGNvcmUs
+IElQIHJldmlzaW9uIDYuMDBhLiBUaGUgUENJZSBHZW4uMyBjb250cm9sbGVyCj4gPiBzdXBwb3J0
+cyBhIGRhdGEgcmF0ZSBvZiA4IEdUL3MgYW5kIDQgY2hhbm5lbHMsIHN1cHBvcnQgSU5UeCBhbmQg
+TVNJCj4gPiBpbnRlcnJ1cHRzLgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IFl1IE5pbmcgPG5pbmd5
+dUBlc3dpbmNvbXB1dGluZy5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBZYW5naHVpIE91IDxvdXlh
+bmdodWlAZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gU2lnbmVkLW9mZi1ieTogU2VuY2h1YW4gWmhh
+bmcgPHpoYW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gLS0tCj4gPiAgZHJpdmVy
+cy9wY2kvY29udHJvbGxlci9kd2MvS2NvbmZpZyAgICAgICAgfCAgMTEgKwo+ID4gIGRyaXZlcnMv
+cGNpL2NvbnRyb2xsZXIvZHdjL01ha2VmaWxlICAgICAgIHwgICAxICsKPiA+ICBkcml2ZXJzL3Bj
+aS9jb250cm9sbGVyL2R3Yy9wY2llLWVpYzc3MDAuYyB8IDQyMCArKysrKysrKysrKysrKysrKysr
+KysrCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCA0MzIgaW5zZXJ0aW9ucygrKQo+ID4gIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWVpYzc3MDAuYwo+ID4K
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9LY29uZmlnIGIvZHJp
+dmVycy9wY2kvY29udHJvbGxlci9kd2MvS2NvbmZpZwo+ID4gaW5kZXggMzQ5ZDQ2NTczOTNjLi42
+NjU2OGVmYjMyNGYgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9L
+Y29uZmlnCj4gPiArKysgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9LY29uZmlnCj4gPiBA
+QCAtOTMsNiArOTMsMTcgQEAgY29uZmlnIFBDSUVfQlQxCj4gPiAgCSAgRW5hYmxlcyBzdXBwb3J0
+IGZvciB0aGUgUENJZSBjb250cm9sbGVyIGluIHRoZSBCYWlrYWwtVDEgU29DIHRvIHdvcmsKPiA+
+ICAJICBpbiBob3N0IG1vZGUuIEl0J3MgYmFzZWQgb24gdGhlIFN5bm9wc3lzIERXQyBQQ0llIHY0
+LjYwYSBJUC1jb3JlLgo+ID4KPiAuLi4KPiA+ICsKPiA+ICtzdGF0aWMgdm9pZCBlaWM3NzAwX3Bj
+aWVfcG1lX3R1cm5fb2ZmKHN0cnVjdCBkd19wY2llX3JwICpwcCkKPiA+ICt7Cj4gPiArCXN0cnVj
+dCBkd19wY2llICpwY2kgPSB0b19kd19wY2llX2Zyb21fcHAocHApOwo+ID4gKwo+ID4gKwkvKgo+
+ID4gKwkgKiBIYXJkd2FyZSBkb2Vzbid0IHN1cHBvcnQgZW50ZXIgdGhlIEQzY29kZSBhbmQgTDIv
+TDMgc3RhdGVzLCBzZW5kCj4gPiArCSAqIFBNRV9UdXJuX09mZiBtZXNzYWdlLCB3aGljaCB3aWxs
+IHRoZW4gY2F1c2UgVm1haW4gdG8gYmUgcmVtb3ZlZCBhbmQKPiA+ICsJICogY29udHJvbGxlciBz
+dG9wIHdvcmtpbmcuCj4gPiArCSAqLwo+ID4gKwlkZXZfaW5mbyhwY2ktPmRldiwgIkNhbid0IHNl
+bmQgUE1FX1R1cm5fT2ZmIG1lc3NhZ2VcbiIpOwo+ID4gK30KPiAKPiBEZWZpbmUgYSBxdWlyayB0
+byBsZXQgZHdfcGNpZV9zdXNwZW5kX25vaXJxKCkgc2tpcCBjYWxsIHBtZV90dXJuX29mZigpCj4g
+aW5zdGVhZCBkbyBub3RoaW5nIGhlcmUuIFNvIG90aGVyIGRyaXZlciBjYW4gcmV1c2UgdGhpcyBx
+dWlyayBpZiBtZWV0IHRoZQo+IHNpbWlsYXIgc2l0dWF0aW9uLgoKSGksIEZyYW5rIE1hbmkKClBs
+YW7vvJoKSW4gdGhlIGR3X3BjaWVfc3VzcGVuZF9ub2lycSBmdW5jdGlvbiwgYWRkIHRoZSBub19z
+dXNwcG9ydF9MMjMgZmxhZyB0byAKZGV0ZXJtaW5lIHdoZXRoZXIgdG8gc2tpcCB0aGUgcG1lX3R1
+cm5fb2ZmIGFuZCByZWFkX3BvbGxfdGltZW91dCBmdW5jdGlvbnMuCgogICAgICAgICBzdHJ1Y3Qg
+ZHdfcGNpZSB7CiAgICAgICAgICAgICAgICAgLi4uLi4uLi4uLi4KICAgICAgICAgICAgICAgICBi
+b29sIG5vX3N1c3Bwb3J0X0wyMzsKICAgICAgICAgfQoKCWlmIChwY2ktPm5vX3N1c3Bwb3J0X0wy
+MykKCQlnb3RvIHNraXBfTDIzOwogICAgICAgICAKICAgICAgICAgICAgIC4uLi4uLi4KCiAgICAg
+c2tpcF9MMjM6CiAgICAgICAgZHdfcGNpZV9zdG9wX2xpbmsocGNpKTsKCWlmIChwY2ktPnBwLm9w
+cy0+ZGVpbml0KQoJCXBjaS0+cHAub3BzLT5kZWluaXQoJnBjaS0+cHApOwoKVGhpcyBzdWJtaXNz
+aW9uIGlzIGFsc28gc2tpcHBpbmcgcG1lX3R1cm5fb2ZmIGFuZCByZWFkX3BvbGxfdGltZW91dCwg
+dGhlIGFib3ZlIGFsc28gCmNvbnRyb2xzIHRoZSBzYW1lIGNvZGUuIENvdWxkIGl0IGJlIGNvbnNp
+ZGVyZWQgdG8gbWVyZ2UgdGhlIGFib3ZlIGNvZGUsIHNvIG90aGVyIApkcml2ZXIgY2FuIHJldXNl
+IHRoaXMgZmxhZyBpZiBtZWV0IHRoZSBzaW1pbGFyIHNpdHVhdGlvbi4gT3IgdGhlcmUgYXJlIG90
+aGVyIGJldHRlcgp3YXlzIHRvIHNvbHZlIHRoaXMgcHJvYmxlbT8KaHR0cHM6Ly9sb3JlLmtlcm5l
+bC5vcmcvbGludXgtcGNpL2FSSVNQZ0NaeUVaeFN0SU5AbGl6aGktUHJlY2lzaW9uLVRvd2VyLTU4
+MTAvI3QKCkxvb2tpbmcgZm9yd2FyZCB0byB5b3VyIHJlcGx5LiBUaGFuayB5b3UgdmVyeSBtdWNo
+IQoKS2luZCByZWdhcmRzLApTZW5jaHVhbiBaaGFuZwoKPiAKPiBBbmQgdXNlIHF1aXJrIHRvIGtu
+b3cgaGFyZHdhcmUgbGltaXN0aW9uIGVhc2lseS4KPiAKPiBEbyB5b3Uga25vdyB3aHkgY29udHJv
+bGxlciBzdG9wIHdvcmtpbmcgaWYgdm1haW4gYmUgcmVtb3ZlZC4gU3VwcG9zZSByZXN1bWUKPiB3
+aWxsIHJlaW5pdCBob3N0IGNvbnRyb2xsZXIgYXQgcmVzdW1lLgoKVGhyb3VnaCB0ZXN0aW5nLCBp
+ZiB2bWFpbiBiZSByZW1vdmVkIGFuZCBjb250cm9sbGVyIHN0b3Agd29ya2luZywgdGhlIGRiaSAK
+cmVnaXN0ZXIgc2hvd3MgdGhhdCBpdCBjYW5ub3QgYmUgYWNjZXNzZWRlZC4gVGhlIGxpbmsgc3Rh
+dGUgY2Fubm90IGJlIHJlYWQgCmluIHRoZSByZWFkX3BvbGxfdGltZW91dCBmdW5jdGlvbi4KCj4g
+Cj4gPiArCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBkd19wY2llX2hvc3Rfb3BzIGVpYzc3MDBf
+cGNpZV9ob3N0X29wcyA9IHsKPiA+ICsJLmluaXQgPSBlaWM3NzAwX3BjaWVfaG9zdF9pbml0LAo+
+ID4gKwkuZGVpbml0ID0gZWljNzcwMF9wY2llX2hvc3RfZGVpbml0LAo+ID4gKwkucG1lX3R1cm5f
+b2ZmID0gZWljNzcwMF9wY2llX3BtZV90dXJuX29mZiwKPiA+ICt9Owo+ID4gKwo+IC4uLgo+ID4g
+Mi4yNS4xCj4gPgo=
 
