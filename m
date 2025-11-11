@@ -1,138 +1,350 @@
-Return-Path: <devicetree+bounces-236995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4D3C4B8DA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 06:38:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0597C4B904
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 06:44:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3DBF3B1530
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 05:38:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 607373B3697
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 05:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C42E2874ED;
-	Tue, 11 Nov 2025 05:38:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="nEwfy34X"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF94B285CB4;
+	Tue, 11 Nov 2025 05:43:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E1E2C0F67
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 05:38:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2A81DE8AD
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 05:43:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762839518; cv=none; b=BV9nvgKKKzBpc6aq6r6onkhjFSZGl4760bvm213i9yEGV+sUWS0GrCg+EMwR8Gn/CiRgU0qhNFs0IAO/yWazQF3XtnLbuyVNViowhAGeCFxsj2ot6RBF7W1VeTzpQrQaOc3sLrJz6juLeW6mAhxeinfp0N6M5wMjmoFGa8dj7Oc=
+	t=1762839796; cv=none; b=GxLcZqziIF4olORIlK2b0L+KAYRwPV6vQ1dZYUtg8U0lXosoOuC2/2Q1kk6Q/S3W8NXg7R7ZQT1Z7ga9ZZ39eAgoLfeweUew01n8FTeVseqdc3+nFzNdmaW+DHJFA0R64TpvjYsa2czpo/fikd6vQgTpRt+KZPlkmJnjCSbBb+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762839518; c=relaxed/simple;
-	bh=RNSTiLNIaHMlg7Ya/0qb29+GDxElEFuhDiLB26st7VI=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=LLFrCP+RoKsyjfmIlZg67V6skCDCC3wU3UCfuMPegfSo0UElGq2pjYNskqHglf9pf7huZbf07cAPPo8ApJaX085+dpMvdtxKO/rtn0co3GdH/Y+Q9p+XfWsYmdcgozsL0+DMeg9r7Y9Fk7Qnu/G6fwcb6mPWGh+6SYeaFFw4VKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=nEwfy34X; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id B476B41031;
-	Tue, 11 Nov 2025 06:38:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1762839514; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Sh+zGugTaQu4fEYhd2YCRoL/l8/rF3Awiro9HJ/Zy+c=;
-	b=nEwfy34XKA3FaJEwXylFCoQBSevIQri0SnmMaem9tsKxSEIB5g2NVdX63BRhkOlYA964xZ
-	LKMQX71BSBlxsoxiAGfWKD9T0w/y5xJvipwYzUEmmCw/TStB6NYO1YAr44aL9kkhppsfQR
-	jtgRDagAy/3GvaJ7Rkip1lOw+NgVdO5TSjhyr0foLTz4MyytOZGK/NDzD4EjkPTIYLk0do
-	Z13lMFNhRU76Zi2jBhwPqkWsbJyKmmoAw5lMFfXQTRUpaz5I93RFm19yH8tQIXlKQOSf8H
-	Eq9cU1rbVuXfvPUssEN3e33azVMNQPF0R268mFVRXY9S9VsiptaA7ZhHug/Ptg==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <20251111050924.54880-5-naoki@radxa.com>
-Content-Type: text/plain; charset="utf-8"
-References: <20251111050924.54880-1-naoki@radxa.com> <20251111050924.54880-5-naoki@radxa.com>
-Date: Tue, 11 Nov 2025 06:38:32 +0100
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jbx6244@gmail.com, pbrobinson@gmail.com, damon.ding@rock-chips.com, sebastian.reichel@collabora.com, kylepzak@projectinitiative.io, alchark@gmail.com, amadeus@jmu.edu.cn, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-To: "FUKAUMI Naoki" <naoki@radxa.com>
+	s=arc-20240116; t=1762839796; c=relaxed/simple;
+	bh=FONTdFU0iSfu9WIPAfxN7hLgNgn0Bx8oIeUPojZAmKE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BLubXZYUTPfuZ69x6tPf2cXALKpnggA0KpsFEgwvlOmbAHKUNWEs9DTW/4LX2jZLho4OwWmerdyLTHLNjrPA1slk4Mv+JB0I4mW+93huoRUBripuhV9Sk+6jzZpvkLAUlEgYwmk3VqB6Q0ZyonAmgNjgWZSPGtYY3DfVcgDzPTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5AB5fHX8021951;
+	Tue, 11 Nov 2025 14:41:17 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        jbx6244@gmail.com, dsimic@manjaro.org, pgwipeout@gmail.com,
+        didi.debian@cknow.org, jonas@kwiboo.se, ziyao@disroot.org,
+        amadeus@jmu.edu.cn, nicolas.frattaroli@collabora.com,
+        pbrobinson@gmail.com, wens@kernel.org, detlev.casanova@collabora.com,
+        stephen@radxa.com, sebastian.reichel@collabora.com,
+        liujianfeng1994@gmail.com, andy.yan@rock-chips.com,
+        damon.ding@rock-chips.com, kylepzak@projectinitiative.io,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for Radxa boards
+Date: Tue, 11 Nov 2025 05:41:12 +0000
+Message-ID: <20251111054112.55505-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <4babaf00-19f5-1d0d-6359-7f98897ef18e@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH 4/4] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= Make eeprom read-only for Radxa ROCK 3C/5A/5C
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Content-Transfer-Encoding: 8bit
 
-Hello Naoki,
+Radxa's boards turn all LEDs on at boot(loader), but some boards don't
+have `default-state` property in Linux kernel tree but have it in
+U-Boot tree instead[1].
 
-Thanks for this patch.  Please, see one remark below.
+This patch adds `default-state = "on"` for (almost) all LEDs (with a
+few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
+WAN LEDs on E20C/E52C).
 
-On Tuesday, November 11, 2025 06:09 CET, FUKAUMI Naoki <naoki@radxa.com=
-> wrote:
-> Make the BL24C16 EEPROM chips found on Radxa ROCK 3C, 5A and 5C SBCs
-> read-only, because they contain factory-programmed data that isn't
-> supposed to be modified by the end users.
->=20
-> Fixes: ee219017ddb50 ("arm64: dts: rockchip: Add Radxa ROCK 3C")
-> Fixes: 89c880808cff8 ("arm64: dts: rockchip: add I2C EEPROM to rock-5=
-a")
-> Fixes: 3ddf5cdb77e6e ("arm64: dts: rockchip: add Radxa ROCK 5C")
-> Link: https://dl.radxa.com/rock3/docs/hw/3c/v1400/radxa=5Frock=5F3c=5F=
-v1400=5Fschematic.pdf p.13
-> Link: https://dl.radxa.com/rock5/5a/docs/hw/radxa=5Frock5a=5FV1.1=5Fs=
-ch.pdf p.19
-> Link: https://dl.radxa.com/rock5/5c/docs/hw/v1100/radxa=5Frock=5F5c=5F=
-schematic=5Fv1100.pdf p.18
-> Link: https://github.com/radxa/u-boot/blob/next-dev-v2024.10/drivers/=
-misc/radxa-i2c-eeprom.c
+Also, remove following redundant properties:
+ linux,default-trigger = "default-on"; // use default-state = "on"
+ default-state = "off"; // default is "off"
 
-The same suggestion about using explicitly placed references, from
-the patch 1/4 in this series, applies here as well.
+[1]
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3328-rock-pi-e-base-u-boot.dtsi#L10-12
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3399-rock-4c-plus-u-boot.dtsi#L11-17
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3399-rock-pi-4-u-boot.dtsi#L11-13
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3566-radxa-cm3-io-u-boot.dtsi#L10-12
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3566-rock-3c-u-boot.dtsi#L14-16
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3568-radxa-e25-u-boot.dtsi#L7-24
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3568-rock-3a-u-boot.dtsi#L11-13
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3588-rock-5b-u-boot.dtsi#L11-13
+ https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3588s-rock-5a-u-boot.dtsi#L10-12
 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts  | 1 +
->  arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 1 +
->  arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 1 +
->  3 files changed, 3 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts b/arch/a=
-rm64/boot/dts/rockchip/rk3566-rock-3c.dts
-> index 80ac40555e023..fa28b32f69108 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
-> @@ -466,6 +466,7 @@ eeprom: eeprom@50 {
->  		compatible =3D "belling,bl24c16a", "atmel,24c16";
->  		reg =3D <0x50>;
->  		pagesize =3D <16>;
-> +		read-only;
->  		vcc-supply =3D <&vcca1v8=5Fpmu>;
->  	};
->  };
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/=
-arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> index 041a0fff22ccb..d844a842d4cce 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> @@ -233,6 +233,7 @@ eeprom: eeprom@50 {
->  		compatible =3D "belling,bl24c16a", "atmel,24c16";
->  		reg =3D <0x50>;
->  		pagesize =3D <16>;
-> +		read-only;
->  		vcc-supply =3D <&vcc=5F3v3=5Fpmu>;
->  	};
->  };
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/=
-arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> index dd7317bab6135..665eecce063a8 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> @@ -325,6 +325,7 @@ eeprom@50 {
->  		compatible =3D "belling,bl24c16a", "atmel,24c16";
->  		reg =3D <0x50>;
->  		pagesize =3D <16>;
-> +		read-only;
->  		vcc-supply =3D <&vcc=5F3v3=5Fpmu>;
->  	};
->  };
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+---
+Changes in v2:
+- Add more URLs for reference
+- Reword commit message
+---
+ arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts    | 1 -
+ arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts    | 1 +
+ arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 1 +
+ arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts   | 2 --
+ arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts      | 1 -
+ arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts | 1 +
+ arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts      | 1 +
+ arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi  | 1 +
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts      | 1 +
+ arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts      | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts   | 2 --
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts   | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi     | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts      | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts     | 3 ++-
+ 16 files changed, 16 insertions(+), 10 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+index 7a32972bc2496..c1e3098b9a7bc 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+@@ -35,7 +35,6 @@ green-led {
+ 			function = LED_FUNCTION_POWER;
+ 			gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+ 			label = "rockpis:green:power";
+-			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		blue-led {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+index a4bdd87d0729f..d3d6f34b66fb0 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+@@ -59,6 +59,7 @@ leds {
+ 
+ 		led-0 {
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_LOW>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+index 962b8b231c960..a83ffbef22a7b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+@@ -39,14 +39,15 @@ leds {
+ 		led-0 {
+ 			function = LED_FUNCTION_POWER;
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "on";
+ 			gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_LOW>;
+-			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		/* USER_LED2 */
+ 		led-1 {
+ 			function = LED_FUNCTION_STATUS;
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+index 046dbe3290178..ef434c23fe85c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+@@ -35,6 +35,7 @@ leds {
+ 		led-0 {
+ 			function = LED_FUNCTION_STATUS;
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+index b324527561558..79d316a1d8495 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+@@ -62,7 +62,6 @@ leds {
+ 
+ 		led-lan {
+ 			color = <LED_COLOR_ID_GREEN>;
+-			default-state = "off";
+ 			function = LED_FUNCTION_LAN;
+ 			gpios = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "netdev";
+@@ -78,7 +77,6 @@ led-sys {
+ 
+ 		led-wan {
+ 			color = <LED_COLOR_ID_GREEN>;
+-			default-state = "off";
+ 			function = LED_FUNCTION_WAN;
+ 			gpios = <&gpio4 RK_PC0 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "netdev";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts b/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+index c03ae1dd34560..0b696d49b71fa 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+@@ -45,7 +45,6 @@ led-1 {
+ 		default-state = "on";
+ 		function = LED_FUNCTION_STATUS;
+ 		gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
+-		linux,default-trigger = "default-on";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
+index b5b253f04cdf5..9e7212b70e3f1 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
+@@ -46,6 +46,7 @@ leds {
+ 		led-1 {
+ 			gpios = <&gpio4 RK_PA4 GPIO_ACTIVE_LOW>;
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "on";
+ 			function = LED_FUNCTION_ACTIVITY;
+ 			linux,default-trigger = "heartbeat";
+ 			pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+index 6224d72813e59..3ec108bcf89a1 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+@@ -47,6 +47,7 @@ led-0 {
+ 			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
+ 			function = LED_FUNCTION_HEARTBEAT;
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			linux,default-trigger = "heartbeat";
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&user_led2>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
+index 729e38b9f620e..140582f8e1034 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
+@@ -23,6 +23,7 @@ led_user: led-0 {
+ 			gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+ 			function = LED_FUNCTION_HEARTBEAT;
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "on";
+ 			linux,default-trigger = "heartbeat";
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&led_user_en>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+index 44cfdfeed6681..e6c18df0fa582 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+@@ -47,6 +47,7 @@ led_user: led-0 {
+ 			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+ 			function = LED_FUNCTION_HEARTBEAT;
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			linux,default-trigger = "heartbeat";
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&led_user_en>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+index 9bc33422ced50..99d3a8be8f18c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+@@ -52,13 +52,14 @@ leds: leds {
+ 
+ 		power-led {
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "on";
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
+-			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		user-led {
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			function = LED_FUNCTION_HEARTBEAT;
+ 			gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
+ 			linux,default-trigger = "heartbeat";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+index 854c118418eb8..f737769d4a007 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+@@ -71,7 +71,6 @@ leds-1 {
+ 
+ 		led-1 {
+ 			color = <LED_COLOR_ID_GREEN>;
+-			default-state = "off";
+ 			function = LED_FUNCTION_LAN;
+ 			linux,default-trigger = "netdev";
+ 			pwms = <&pwm14 0 1000000 PWM_POLARITY_INVERTED>;
+@@ -80,7 +79,6 @@ led-1 {
+ 
+ 		led-2 {
+ 			color = <LED_COLOR_ID_GREEN>;
+-			default-state = "off";
+ 			function = LED_FUNCTION_WAN;
+ 			linux,default-trigger = "netdev";
+ 			pwms = <&pwm11 0 1000000 PWM_POLARITY_INVERTED>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+index bc8140883de47..86477346c3f5a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+@@ -88,11 +88,12 @@ gpio-leds {
+ 		pinctrl-0 = <&led_pins>;
+ 
+ 		power-led1 {
++			default-state = "on";
+ 			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+-			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		hdd-led2 {
++			default-state = "on";
+ 			gpios = <&gpio0 RK_PC0 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "disk-activity";
+ 		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
+index e5c474e4d02a6..8c4a4270f9f93 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
+@@ -30,6 +30,7 @@ leds {
+ 		led_rgb_b {
+ 			function = LED_FUNCTION_STATUS;
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
+index 0dd90c744380b..87e9d4b86dad4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
+@@ -33,6 +33,7 @@ leds {
+ 		led_rgb_b {
+ 			function = LED_FUNCTION_STATUS;
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+index 19a08f7794e67..46c81e796b100 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -54,6 +54,7 @@ leds {
+ 
+ 		io-led {
+ 			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+@@ -61,9 +62,9 @@ io-led {
+ 
+ 		power-led {
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "on";
+ 			function = LED_FUNCTION_POWER;
+ 			gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
+-			linux,default-trigger = "default-on";
+ 		};
+ 	};
+ 
+-- 
+2.43.0
 
 
