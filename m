@@ -1,157 +1,137 @@
-Return-Path: <devicetree+bounces-237204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB5CC4E17F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:23:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29927C4E1AF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:29:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D90934E18B4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:23:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A21E3A9F7F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6754533AD97;
-	Tue, 11 Nov 2025 13:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB096331212;
+	Tue, 11 Nov 2025 13:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iwrWKfIo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="biphaIgi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD31208994;
-	Tue, 11 Nov 2025 13:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1188D2BE03B
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762867408; cv=none; b=UZ3um6bb99nXtLXSO8vKhMPNHb6aRYjH+rt2UnO50ldIedUYHGrunpnFqXGjvRruc55pJlg1NStSC8yDQKqFIuA67kuMDr/vWJbrf/6KVOT1wFDJcyVN5i0y8Iay5165NvaR02oxS8SaC3DMSbtbKqartjcbgufVWZXVrVfzhX8=
+	t=1762867701; cv=none; b=bDDQo/Avz3TpxoRR24LbeVMVPuZpz+GYV5FJoy8OJKyZRi9+UCTJ7IDIw8buYxYj8m16YBnGCTVFIjkcoPqlsHAyc1kCfhN85EVoFzTC3wA0kvOJX6bH/NPzhNF17s1ffrCTOrBQ0TyAqFIKpttcYq8HIz1/d5N1QEjvbwfk314=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762867408; c=relaxed/simple;
-	bh=DtSUEqPHMcd37gn1UQ9cal9KTI0sqP0crp3DvNbS9qg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N/DXCBDWT23vdDYFqcuGrubZLu1U8Uw8W+auR6Zv7oUEVk/0SjKqG8+ejd97pZP6/FS7sMUN1AZW9F30yyJO9EGyn5Sy3wm8edCl2UPN5FyYAXj0FR1pokGH2/udl3mWJGeFKWq9Lyq7xfWAflBddRbjdy34laNAAoMTMruV/O4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iwrWKfIo; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762867406; x=1794403406;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=DtSUEqPHMcd37gn1UQ9cal9KTI0sqP0crp3DvNbS9qg=;
-  b=iwrWKfIonH0jo98765VtS3wBhrVSd9PN++EtQfpn8DhPjNs6ummDIIVA
-   YMN3xoniXHLvtQMRB5pIA0fgnAWxKy/oSIdZOoKRh5tzSyyiKaVmq7zCV
-   3JWLC47eM1YwbLJcuuzAOaRduuPR1mCpBiIt+rfPcVCN5YHp3nRDlsPiw
-   KgGRNHfq9R/IG3j0raLYcBdUnrVWbvlqCk2lTyziMcgJ6K//Pw/E79zCn
-   d03mP0pUqK7SG09ad9/F5RTo6xsF9EV/quqwbI99XgL6upZxibLxlBaZ8
-   Cs5u8zReCc2d0q83JQbZOeGTZ7v0+lWVfkHCYPt8O+kFViK4UqNfYilSs
-   A==;
-X-CSE-ConnectionGUID: fzgA9MaWRT6LYihRrah12A==
-X-CSE-MsgGUID: Q/tRxqbxQWCJiM4sM18aNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64628783"
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
-   d="scan'208";a="64628783"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 05:23:25 -0800
-X-CSE-ConnectionGUID: EmBczYoySjaVYg6v8qgVBg==
-X-CSE-MsgGUID: S+0Cr7irSLSB2/SIvvuigA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
-   d="scan'208";a="188218935"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.96])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 05:23:22 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 7FA5111F983;
-	Tue, 11 Nov 2025 15:23:19 +0200 (EET)
-Date: Tue, 11 Nov 2025 15:23:19 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Tarang Raval <tarang.raval@siliconsignals.io>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] media: i2c: add Sony IMX111 CMOS camera sensor
- driver
-Message-ID: <aRM4x7SbdbxMYLCi@kekkonen.localdomain>
-References: <20251103145629.21588-1-clamor95@gmail.com>
- <20251103145629.21588-3-clamor95@gmail.com>
- <aRMw_Qre1FY94soi@kekkonen.localdomain>
- <CAPVz0n1MokJq6d4s0cS3UdevRt2n-HaicPpwiBu=3HVSKfnzfg@mail.gmail.com>
+	s=arc-20240116; t=1762867701; c=relaxed/simple;
+	bh=Ps3gQmpslE/MDFfUlSXSWxtYwxFYzuGV/LZBPe3oXNg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vy8bE7XY0B8r99NM4ws6r8xfS+iyHBO82SOwLvGBiZW17xOOqvyMkey8j3I2PHSRqfmrMVLjArdzUQvtp97fQ3cZeZn8OruJcrZv6KIOquMX/UnHofgArj77GjN6pQvbtsqZP4k8TjPPfSa1Y1aMoGfio6SJfFPJ9iznI5DXDZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=biphaIgi; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6417313bddaso4430800a12.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 05:28:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762867698; x=1763472498; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1DsffIE3Ut5DM8ko3+QK0VsDuxwCG+5a0A0i4trOLW8=;
+        b=biphaIgiFboNYxuvMrpABotpYu2XtMn4dnngVvy+3IC0mUX5a9uNosPbxdc+eL5EAm
+         zcuRXVEeW6zL7UrJ8WlsqYETPeR7+fKFO+IGmbQ+112nAtWbQvBz0KpUV9goPqLMGHRI
+         uiJ4s8iiKUtmjBwCICwQb2AHuu27/YCfGGQQRyFu2TH/URHnFKmFf1td9Vwr3OK8ZvLh
+         XbWh4G9XQrn4D60ID4Vl0tFG1OLueFI5RZjCNQYnred9mv9EYTic0wdbM/FVXOJKMAmr
+         1gNrfiUstSF8Tg6jkOM9yc3An4goiwCIcu8K5ENXx8ruWnZiPhsiIHIXHF6f32FtZqdx
+         K0RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762867698; x=1763472498;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1DsffIE3Ut5DM8ko3+QK0VsDuxwCG+5a0A0i4trOLW8=;
+        b=s8nnnRaWn1wTgMAGOWPzq2+BazkJ6QB65M2ZzV+ePDPVWYDScH1mFzI0/LKita17UR
+         1BXzM3b78fbjeIvsTDthYhLiPL3pFR5qEy7kEz/QkGueUNMMG6nSICw078C+56H/nzq1
+         Mq8wSLKfjmimckuxWgNc3y7v2nJnTN0KzEhky+iWWtJuueCOKE65TOxtkLSVWaLurdr8
+         iSlvGaPWahOe93yRwasezeeTnCZVmUuzFJ+qnqKyPMGx0k6/bkjVQ2xhz+cUx4Dz6HcU
+         nwdAQaYYPg04V7olwKOf5/TfFHPmkyatWQd9A6Yy/ZKCTQpsxFbU0Xl48wpjgtDK0uyg
+         aQRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUEyoyUlS7alB29qTzq3AWKDfPjhzmZrFvqAZuYVLrQNP7twW3MW1Mn33o3j0l9TLBhT65m8FQxyDUM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDHRyN94y0H2lIGdiBp4QacOHIErjY81/XLZ2kjqSmYT7HuPWW
+	35g7491c/UKlO+9LgAyEA6P0LN1LaUNcnGNU5o4CF7ZBm4LU2fE3tIFc
+X-Gm-Gg: ASbGnctwG/E/N+zEoGHqgLN3mmbwC0z1Ee4JNMuilEmExi+ppS5daSKq0PbCAyI4tUF
+	VKoPnZV69W39USGLG9YqpmWUg99Z3xe+L4Yi5NLPnFBymFdwSRji8Lf343G0rF7WJonEPZ/3c+w
+	lg6qVR/+C5iHiqNfUm/Cu9mIztN7ZEDSf9oH5Vyc/1Bba8F038xIcl+cVPsdSgRDYmVa2LnBZqS
+	gsa4MFe/Kz3mqHxPimR92Vv4DGA+5XTobHp8u5svIqGjwe2hOi4+qx+DT8Zw5hah/OthZHleEc0
+	G+5kRgskrxRM6q+Ue19pmCkjRMCGg2UAtUvrN2j5aMnzjHyco7bgz63EiUTCCdxmzhZic44S8+5
+	IdVPSFmd5GPQjy0c5ff66m7OJyuCOXgNHSWnRpzKhaYZolROUo21E7Q88lVaN9EHKFrdV9SzWHB
+	R/D4OSNH4f0AbYjj5dcA+dV7As3UqAALgsT2Eridfv9au/3cmn0TTr4zW1HcNlKbyoZrmPFAaXL
+	qvGZeVlAtwu0Q==
+X-Google-Smtp-Source: AGHT+IF5Dj1MIXDn+W74uXHIewjQZN4zVvvvgRaDGdjD9YPnaJjpUwWG1pTssah7cODBcp1Kuh1Rkw==
+X-Received: by 2002:a17:907:7b96:b0:b72:b495:827a with SMTP id a640c23a62f3a-b72e041274amr1311048866b.38.1762867698259;
+        Tue, 11 Nov 2025 05:28:18 -0800 (PST)
+Received: from ?IPV6:2001:9e8:f12a:4201:6800:ff88:97b6:8eae? ([2001:9e8:f12a:4201:6800:ff88:97b6:8eae])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf9be184sm1334911266b.56.2025.11.11.05.28.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Nov 2025 05:28:17 -0800 (PST)
+Message-ID: <0c77dc63-7e85-4085-b48d-1885aa52bdd9@gmail.com>
+Date: Tue, 11 Nov 2025 14:28:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: gpio: add gpio-line-mux controller
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Peter Rosin <peda@axentia.se>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Richard <thomas.richard@bootlin.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20251111092705.196465-1-jelonek.jonas@gmail.com>
+ <20251111092705.196465-2-jelonek.jonas@gmail.com>
+ <20251111125716.GA2560355-robh@kernel.org>
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+In-Reply-To: <20251111125716.GA2560355-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPVz0n1MokJq6d4s0cS3UdevRt2n-HaicPpwiBu=3HVSKfnzfg@mail.gmail.com>
 
-On Tue, Nov 11, 2025 at 02:53:52PM +0200, Svyatoslav Ryhel wrote:
-> вт, 11 лист. 2025 р. о 14:50 Sakari Ailus <sakari.ailus@linux.intel.com> пише:
-> > I can make the two changes before applying, too, if that's ok.
-> 
-> If you don't mind adjusting commit on your own before applying I have
-> no objections. Thank you very much!
+Hi Rob,
 
-The diff is:
+On 11.11.25 13:57, Rob Herring wrote:
+> On Tue, Nov 11, 2025 at 09:27:03AM +0000, Jonas Jelonek wrote:
+>> +    maxItems: 1
+>> +    description:
+>> +      Phandle to the multiplexer to control access to the GPIOs.
+>> +
+>> +  ngpios: false
+> No need for this.
+(...)
+>> +        gpio-line-names = "SFP1_LOS", "SFP1_MOD_ABS", "SFP1_TX_FAULT";
+>> +        gpio-line-mux-states = <0>, <1>, <3>;
+> gpio-line-names is defined to have an entry for all lines. So 
+> gpio-line-mux-states is not necessary. You can just do:
+>
+> gpio-line-names = "SFP1_LOS", "SFP1_MOD_ABS", "", "SFP1_TX_FAULT";
 
-diff --git a/drivers/media/i2c/imx111.c b/drivers/media/i2c/imx111.c
-index c269e9fdcb0b..8eb919788ef7 100644
---- a/drivers/media/i2c/imx111.c
-+++ b/drivers/media/i2c/imx111.c
-@@ -1136,13 +1136,6 @@ static int imx111_set_format(struct v4l2_subdev *sd,
- 
- 	fmt = v4l2_subdev_state_get_format(state, format->pad);
- 
--	fmt->code = imx111_get_format_code(sensor, mbus_fmt->code, false);
--	fmt->width = mode->width;
--	fmt->height = mode->height;
--	fmt->colorspace = V4L2_COLORSPACE_RAW;
--
--	*mbus_fmt = *fmt;
--
- 	if (format->which == V4L2_SUBDEV_FORMAT_ACTIVE)	{
- 		int ret;
- 
-@@ -1183,6 +1176,13 @@ static int imx111_set_format(struct v4l2_subdev *sd,
- 			return ret;
- 	}
- 
-+	fmt->code = imx111_get_format_code(sensor, mbus_fmt->code, false);
-+	fmt->width = mode->width;
-+	fmt->height = mode->height;
-+	fmt->colorspace = V4L2_COLORSPACE_RAW;
-+
-+	*mbus_fmt = *fmt;
-+
- 	return 0;
- }
- 
-@@ -1542,9 +1542,9 @@ static int imx111_probe(struct i2c_client *client)
- 		goto error_pm;
- 	}
- 
--	pm_runtime_idle(dev);
- 	pm_runtime_set_autosuspend_delay(dev, 1000);
- 	pm_runtime_use_autosuspend(dev);
-+	pm_runtime_idle(dev);
- 
- 	return 0;
- 
-Hopefully that works!
+Not sure if I'm getting this wrong, but this ties the GPIO line index to the
+multiplexer state. Is that still the correct way if my multiplexer needs
+states '15', '17, '18'? Then I would need something like this:
 
--- 
-Regards,
+gpio-line-names = "", "", "", "", "", "", "", "", "", "", "", "", "", "", "A", "", "B", "C"; 
 
-Sakari Ailus
+And it would cause the virtual GPIO controller to provide more GPIO lines than
+desired/expected/needed.
+
+> Rob
+
+Best,
+Jonas
 
