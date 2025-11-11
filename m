@@ -1,136 +1,238 @@
-Return-Path: <devicetree+bounces-237104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1425C4CE2F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:08:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D7CC4CF55
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:16:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5D22A34F9D1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:08:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5FA554FC6CE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5A6335071;
-	Tue, 11 Nov 2025 10:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1984D2FF64F;
+	Tue, 11 Nov 2025 10:08:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/VhfSkz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kps+fY7F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101242F0C46;
-	Tue, 11 Nov 2025 10:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFE62F28EC;
+	Tue, 11 Nov 2025 10:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762855567; cv=none; b=mhprLjJyPFovJoDbf6iPKajSlNXsEhvtQszgmTs6akHP8zQ2hRxbj1EJcItCnponu0a+hZjy+rcTR5mO9MJ2aaAuS0IOy989rwEpz5S1hlOPZyqp0GqXsR1Wnl+iFQDi1wTV3tNqAc1DRPgrFvNMrTY8XK7WhTfRP4fqmgjo3Yk=
+	t=1762855716; cv=none; b=pEJRGSppgg2P3aGpFtFKPggHMA9B2YyLDKM+zktsP77772ofmBmQVXhj4QhwtYZ80ULU5ahVyAzECqLixW4Jv6I3E3a7iJNzy5HWwd1aWyOZUjIbwKtVNuNb9zcsBiJEhlS/Al62uWCDbTf3ZgWW1EmVJtIHalu1PrVH0AFSMhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762855567; c=relaxed/simple;
-	bh=8SNn1sc/qjsHJtmeS956ja5op53dmBnHINxulZL0Y6I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o1TfSIcelxDQolcqSjawC94X3omezTtFDWpXFzFbbAVtX9SjmSSzPkWL5s4udKL4OJ4wGqeZ5GCc6ElFCB4Q4vq9st3zmlChKMoDpWzmjR+7bWDESKDzeuPDy6ndgM0X0EimvHdTHPwRCBzdgT6Na3FgW5yTwAGOOw7HT3Aq6J0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/VhfSkz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D182C4CEF7;
-	Tue, 11 Nov 2025 10:06:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762855566;
-	bh=8SNn1sc/qjsHJtmeS956ja5op53dmBnHINxulZL0Y6I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q/VhfSkzPUGSOFnaRJQkhbDR7PhLyR/NeMcDTqx+OhMmieqBAgDEyFd0JhKVaxUxq
-	 /FuRujczW8EyA9qfWYF1XIXDOKIsQfFhfk1JIHuj5d61zho+RFf0qrW0qfEr9wvnN5
-	 mLigNaCGmCl91gmuqbyPpqfOr0nWLZOBtiBCxjNPfN0sHHzhVyk2FLgrhqnnrU9rGb
-	 6VBYo5XSIe4K0wJ12ILMm1QHLusdvrNvJA9ZCus/oSEgF8V1CPbUGXpsvYccMjnog4
-	 LTb94FHanqS6I1BqQ3NSDxkZgaCuPGyugGdyjUGxXae8bVGorqGfaNai5hbJcyZuDG
-	 yOFlA+IJeBOlA==
-Message-ID: <58b0d712-48a4-4490-a63f-404716844557@kernel.org>
-Date: Tue, 11 Nov 2025 11:06:02 +0100
+	s=arc-20240116; t=1762855716; c=relaxed/simple;
+	bh=7X+tQBa5o9+OpQ/P39mjVqCMoYP6HWTOSrThfQsEhbc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=gPno/XMFoV3gBlpBCuC2DHBg1JFR13zLakSfC9NtjApnXW3xjHaBHoOwBNfsPR52u/46SC1rMB4DrfQDwejMT+9BlihuETSjDj1L+lQDMyWr+6tRAUywZaeICl3K48AZolGFMfkigIJwPT60QYrSKUmFPfamYLfQuWNW/6xvbxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Kps+fY7F; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AB4Z4Dt4166506;
+	Tue, 11 Nov 2025 10:08:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=O8SwmBoVNsDi/IqYhcJbBd
+	vR4qNInoazAMTqO9e8Hw8=; b=Kps+fY7FS+U4Wkt7kwX9uW+fKc0CNvJcjJ2LRF
+	RI8kQmwhizbdfTC4GExmGzLIfHxHUwi05eAkAOhfsx25J/QBXBHzSkzp4phV9Huu
+	TXiPHWmWUl0NU2J2/H3KjTTI8XOUO8VYfVuqM1vHLn/TwVrfDHOkXCT7NYItFrMq
+	jL5WnfIWzkOoggHiaUHRsJ1VfQipFXtfnWJnHKDm75zsrYjOIqGd10ToTyXoR2Gm
+	Kn97Aem5zd9oPyf6klV7MytTt2NyreSzNQ+2/o6V37iJNukGgJDGbR9uNnTWkoXH
+	67ZgkPnWlmUKSTllE81GJBk6pfViEfzWI/opH/725/BKqi2A==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abm4a2jef-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Nov 2025 10:08:24 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5ABA8NC2025538
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 11 Nov 2025 10:08:23 GMT
+Received: from hu-sushruts-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.24; Tue, 11 Nov 2025 02:08:20 -0800
+From: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+Date: Tue, 11 Nov 2025 15:38:16 +0530
+Subject: [PATCH] arm64: dts: qcom: monaco-evk: Enable PCIe0 and PCIe1 on
+ monaco-evk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: phy: lan966x: Add optional
- microchip,sx-tx/rx-inverted
-To: Horatiu Vultur <horatiu.vultur@microchip.com>,
- Conor Dooley <conor@kernel.org>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
- <20251110110536.2596490-3-horatiu.vultur@microchip.com>
- <20251110-unwound-award-a11d69b9da4f@spud>
- <20251111095831.lp4kvdfcahtwgrqc@DEN-DL-M31836.microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251111095831.lp4kvdfcahtwgrqc@DEN-DL-M31836.microchip.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20251111-monaco-evk-pci-v1-1-8013d0d6a7ca@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAA8LE2kC/x3MQQqAIBBA0avErBtQSciuEi1kmmqINBQiEO+et
+ HyL/wtkTsIZpq5A4keyxNCg+w7o8GFnlLUZjDJWa63wisFTRH5OvElwtOQG64idN9CiO/Em7z+
+ cl1o/CIqmh2AAAAA=
+X-Change-ID: 20251110-monaco-evk-pci-85c9459ce9a2
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <ziyue.zhang@oss.qualcomm.com>,
+        <krishna.chundru@oss.qualcomm.com>,
+        Sushrut Shree Trivedi
+	<quic_sushruts@quicinc.com>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mDSVSKiWjznHGqSUvJ5M4rCXApifn358
+X-Authority-Analysis: v=2.4 cv=G6kR0tk5 c=1 sm=1 tr=0 ts=69130b18 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=4TjeMMSwllEyUDyrvMMA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: mDSVSKiWjznHGqSUvJ5M4rCXApifn358
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDA3OSBTYWx0ZWRfXyGYEvzmtf2YZ
+ hYVVrE21qoNxpC8A+Oue4Q/7v2Wl0AdJ+skaRGqNpTlIgeaPQIyAqL8cZzT/Vl3OieT5L4P9Kkr
+ bAjIaDk45d8MuPlCc1L2jvTqY2+6SPf5B9xI1TTLv+FqLBzliLxeAbqQF7cUvAqC7jXtePpURvp
+ W+Qh8yHa6t0PomFDnR0bxvlazN7v10R4hH6IxecdTCZZqYuxqOdwhvZVzYXz+wMsKhKThWF0DR0
+ ApuxhGbxGBmcGc577X23wRb+Fo8tDK2x0UvjKk2dx/tp98GO3ddZrbpBJ23cHbEvRFnHDKGeY9k
+ AJEkhr3dMEGjOV0U25faa4aeq7Z6iprlHVxfXg+FRFugbTvxcWuyq/nxHv9Ee+a2vooGgxQvHN0
+ bOLPghNCzyUxPh/XSx2HLGTxSMmlRA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-11_01,2025-11-11_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 spamscore=0 bulkscore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1011 malwarescore=0 impostorscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110079
 
-On 11/11/2025 10:58, Horatiu Vultur wrote:
-> The 11/10/2025 18:43, Conor Dooley wrote:
-> 
-> Hi Conor,
-> 
->> On Mon, Nov 10, 2025 at 12:05:36PM +0100, Horatiu Vultur wrote:
->>> This allows to invert the N and P signals of the RX and TX Serdes
->>> signals. This option allows the board designer to trace their signals
->>> easier on the boards.
->>
->> Why can't this just be done in software, debugfs or something like that?
->> Maybe it's just your description is poor, but sounds like the intention
->> here is to just switch things around for debug purposes.
-> 
-> I don't think it should be done through debugfs. As this describes the
-> board layout and I don't think someone will want to change it at
-> runtime to see how things behave. So maybe the description is poor.
+Enables PCIe0 and PCIe1 controller and phy-nodes.
 
-You said it is purely for hardware designer to trace signals, so sorry,
-but that's not DTs purpose.
+PCIe0 is routed to an m.2 E key connector on the mainboard for wifi
+attaches while PCIe1 routes to a standard PCIe x4 expansion slot.
+
+Signed-off-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+---
+This patch depends on the series:
+https://lore.kernel.org/all/20251024095609.48096-1-ziyue.zhang@oss.qualcomm.com/
+---
+ arch/arm64/boot/dts/qcom/monaco-evk.dts | 84 +++++++++++++++++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+index e72cf6725a52..70739f71dd5c 100644
+--- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
++++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+@@ -408,6 +408,44 @@ &qupv3_id_1 {
+ 	status = "okay";
+ };
+ 
++&pcie0 {
++	pinctrl-0 = <&pcie0_default_state>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
++&pcieport0 {
++	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
++	wake-gpios = <&tlmm 0 GPIO_ACTIVE_HIGH>;
++};
++
++&pcie0_phy {
++	vdda-phy-supply = <&vreg_l6a>;
++	vdda-pll-supply = <&vreg_l5a>;
++
++	status = "okay";
++};
++
++&pcie1 {
++	pinctrl-0 = <&pcie1_default_state>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
++&pcieport1 {
++	reset-gpios = <&tlmm 23 GPIO_ACTIVE_LOW>;
++	wake-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
++};
++
++&pcie1_phy {
++	vdda-phy-supply = <&vreg_l6a>;
++	vdda-pll-supply = <&vreg_l5a>;
++
++	status = "okay";
++};
++
+ &remoteproc_adsp {
+ 	firmware-name = "qcom/qcs8300/adsp.mbn";
+ 
+@@ -449,6 +487,52 @@ ethernet0_mdio: ethernet0-mdio-pins {
+ 		};
+ 	};
+ 
++	pcie0_default_state: pcie0-default-state {
++		wake-pins {
++			pins = "gpio0";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		clkreq-pins {
++			pins = "gpio1";
++			function = "pcie0_clkreq";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		perst-pins {
++			pins = "gpio2";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-down;
++		};
++	};
++
++	pcie1_default_state: pcie1-default-state {
++		wake-pins {
++			pins = "gpio21";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		clkreq-pins {
++			pins = "gpio22";
++			function = "pcie1_clkreq";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		perst-pins {
++			pins = "gpio23";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-down;
++		};
++	};
++
+ 	qup_i2c1_default: qup-i2c1-state {
+ 		pins = "gpio19", "gpio20";
+ 		function = "qup0_se1";
+
+---
+base-commit: b89214826b1ab0e527303464d6c90e53d290c4f1
+change-id: 20251110-monaco-evk-pci-85c9459ce9a2
 
 Best regards,
-Krzysztof
+-- 
+Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+
 
