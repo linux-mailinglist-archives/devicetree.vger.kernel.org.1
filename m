@@ -1,247 +1,244 @@
-Return-Path: <devicetree+bounces-237262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED12C4EECC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 17:04:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9B4C4EE78
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 17:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05EF418C1CAF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:04:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A7D7334C5C2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D47A36C5BB;
-	Tue, 11 Nov 2025 16:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F7C255248;
+	Tue, 11 Nov 2025 16:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="H9Uy1iMA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qV3GyQs8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011007.outbound.protection.outlook.com [52.101.65.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CE436C5A3;
-	Tue, 11 Nov 2025 16:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762876995; cv=fail; b=pbhas9976akVF8H9iKE9T4kaE9GgrfSZUkJD1vxKHoWZH+Ms21v6RVRU3n9UFq0zlFlIkoiYl7y0HCwni9coD+b/eq1smXWT/YrRPU7EiDq2WB/EZlZKcg1ExTqdlfByS0eJURtfXdXVQmFNcRdh3s5A6Z87eXH2flPf+AB0xZc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762876995; c=relaxed/simple;
-	bh=ndNIyg8uuaI0Q3uesCSCwm7BJ4er2u9EqvwZiD1ahoo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=orZLv2Z3Pf+6UeZI3hZUmWthAVGQ9xt9HKZgZb/oEdB9t6WmPmS7OJXkrSj9Y0d8+WUk7kyJCHNqd1lZgZLwQtZOAJTfKPOJIcjFnn0VHWrAvBGAr10GknUm4PrrBmP3aLg7moIfb9JAdk6Otl7NpLLgPQnCWJcIUpglwsuqAzg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=fail (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=H9Uy1iMA reason="signature verification failed"; arc=fail smtp.client-ip=52.101.65.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cdtGyinnsjszl3XFahuJNp0E4AH/XPUQkCnwQr6r+65ehVlHZvrwyXn1OioEm/ikdocIcOvFa/WgDzqn2UJAI+H8Dipiy5rNq/a+1+Yj4OfFmX0gVkc1Pdbb7oXGtnzHy3z6G9y/I6JDldJ0epU+xbKUhTuU3V8VWEQ5lnf/90qZaPWVMXvNeXGbkDZqpdQp591Uwe1HNn9nCdWcu6TL3SqmgKHjiu4AawHpS5OWTfUF17R0BVWeRiNiDXauLXY9+9fmwTxN4HDNZdvk6C1V92MBRRmPLKjV+GX+9qTecIAYq6KTegzeIciTJpBM3J3iC7XoKxqx4RRmLAsTbP+O+A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ogNWxD0w56Ya0Nkd4N669Yd6tyh0rkni3bAQUMP97MQ=;
- b=ppa8Od7VB7eQQx9BwcQKjgMCYVYqOUhEeV9QCvcrKQxy6Rj9NFiSDqw04YlmD52+lTV5jEgqVe9OSLzG7VwZv1ko/mbxlcQUX807YZr/knt957kGG6z/iassf1VohZS5GKETTmueyehjv/5pyhMgZzyHqMlrOhx+EHlfvbhL2zEsxHdIMVUihNbdxJr4korAYMCjDarqt0wkrJmXbjtIGczJo8TzsPgakdGcb1k0msnhOlO0f8mDuUNr9SVWjWdq9lft1BhYv+jRgjkSzwHbpGHr3/ADPhGTrDHOMTAlHU3sNAJaeD843EcIaPbKVFC6lbFGvLvkQA/k5uRmcTeDIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ogNWxD0w56Ya0Nkd4N669Yd6tyh0rkni3bAQUMP97MQ=;
- b=H9Uy1iMAfnKJBnF0AijLWCRZKNPhpVeh4Nh8g5i/g9dplVSIIofQ1Ruy6f2/Gc8Fb2lOiYz5vW0Rp8RX36klFMyTUk5gM9odPmurWz0rzJcQh2CIL9Da1WAW9HuUVoYOPrI9wC+89wRCnkQ7y7yPyPXa3/JsBoa7tejqhx7Vyn5UCVSvWgM7MxPLfNXk7nIVKrPw0CPuKQjKDvIFad0DLtTURRjM7BUW069IPREwSO7pCST9w1F29oDLowC7hxhdYq9IELIaC+bq4TAYkMaZ/5WPPKoznhzKxjQ2+hVrJh6gRYXdP3dW7Y8hyzphf9++WqDKYqNw/MGDwCYYbtJ7ug==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by AM8PR04MB7953.eurprd04.prod.outlook.com (2603:10a6:20b:246::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 16:03:09 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9298.015; Tue, 11 Nov 2025
- 16:03:09 +0000
-Date: Tue, 11 Nov 2025 11:02:56 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"Kirill A. Shutemov" <kas@kernel.org>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	Rick Edgecombe <rick.p.edgecombe@intel.com>,
-	Max Krummenacher <max.krummenacher@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	Vitor Soares <vitor.soares@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: add Toradex SMARC iMX95
-Message-ID: <aRNeMJWsCTRO3j6X@lizhi-Precision-Tower-5810>
-References: <20251111151618.70132-1-francesco@dolcini.it>
- <20251111151618.70132-3-francesco@dolcini.it>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251111151618.70132-3-francesco@dolcini.it>
-X-ClientProxiedBy: SJ0PR13CA0207.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::32) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1A02206B1;
+	Tue, 11 Nov 2025 16:01:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762876863; cv=none; b=k6nOrrsRF0MwSes658vmTJOszbe2EJ7ScRiHFnxsLvGcqvcp3cS0OpIz/XS9p38ROIC+wuYFX7rcjVmHWBqBsDunFhWDrYkNCwyPodWJcgtEeS1AA8/jdnEKWMoCRBdrazb2ZlLYvo4O5Sgts8LCLdlaOnIckUErlVBNervjvS0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762876863; c=relaxed/simple;
+	bh=x2LU0thFSSuPq/OjMolvm49WhjmuHNP9Ts4P8vdNtEM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aVAEpcVtFl/A3BXaUgrMkCgoCRCDWMGxFBCAaF7kk0+qMQhQsruQXwQzCfNvD3FR+UF0U6nrtqzPjoL0vOdcVC8u09tlVVrathK2/mVLwLKZ7pGhSbMu3QS5re7IIurY0O9ewpJPQR7fVeIcZ4nLbnUHKlPd3ozG+FjVqHzjNj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qV3GyQs8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20581C4CEF5;
+	Tue, 11 Nov 2025 16:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762876863;
+	bh=x2LU0thFSSuPq/OjMolvm49WhjmuHNP9Ts4P8vdNtEM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qV3GyQs81nb3kEPzLD+BOl5YmH4WVTLWWA0DCOIxJvb1U/r0mF8UyHXPxN61I+j9x
+	 ZNnp5biuZeXOY1pvKimSzKTfTvGOFu6aQDyJCWrQliD1kz0z9FGtN2SsZJsQMJyWbO
+	 f7Cjvz8h3WsmCuQogGbrsttvw6UdQL3N73rCBZil3gxmp+c1mTIzPz0F+83dIYYa8y
+	 dwFf2FPMW7t+Dy8X2FK+NmaEFzNm6ryn3InCnvKPYfIEuZSGisyvBebUrgwqcOaGPN
+	 SBMIEuB7NUpFhd595AYbyET+cg2eY2TU4X5VKowr1geMeN4Ghe4tD7uIf/SFsCn2hc
+	 wSAbL424Xbl+w==
+Date: Tue, 11 Nov 2025 10:05:14 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
+Subject: Re: [PATCH] dt-bindings: mfd: qcom,tcsr: Add compatible for Kaanapali
+Message-ID: <br3fmilhh7fihv4atnf4olvy4w66z4p7sh4ypicuc3766ky6tb@pppfdynfhfz7>
+References: <20250924-knp-mfd-v1-1-6c8a98760e95@oss.qualcomm.com>
+ <b623c7f6-f28f-49ba-b6f6-25084117a6b3@oss.qualcomm.com>
+ <l4mb5pi7kz7uuq6o3eueoxl2ngt2sdd6dv3kyudw6i54co5v5h@w6ya2nuas322>
+ <ad00835e-bc20-4f97-aba6-e1b4f5e97191@oss.qualcomm.com>
+ <f2q7a7r7quq6pplcn3kklwrhdc6hxa5zvc7osygshtyurwyvi4@t5iyragt7irh>
+ <b5ecf5e7-4dc4-41ac-9b56-7c52afacb950@oss.qualcomm.com>
+ <01de9616-825b-4fbb-83cf-e0bf91e8cf39@oss.qualcomm.com>
+ <81174278-c3c4-4dc6-856e-b58aa2cb6fea@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|AM8PR04MB7953:EE_
-X-MS-Office365-Filtering-Correlation-Id: 18164ec7-535e-4268-e5db-08de213bce9c
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|19092799006|366016|376014|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?iso-8859-1?Q?5MCb75bREi7mAljoAkj/1ssz6hQ3XAvwxGiGQ2R/y5UyZCNbpIr8/BiU7T?=
- =?iso-8859-1?Q?nMLqRzybfilTghTY0bJ3X5BypLIdgAmEY2mGk49q11JjAMO7fWgZ6Ceyxb?=
- =?iso-8859-1?Q?O8guWegSjzi1Jx0Iy72zpF42Y3upbZdycKClCDJtk3FMcl7Q/8D6syTRYu?=
- =?iso-8859-1?Q?33SufeklHnqXacjPcVqRq+5CfTL2JPQgrsylI+BwSgk9HzFl5R7HCgZ5xl?=
- =?iso-8859-1?Q?2eW70Oz5ZPF/AekkbaGXVw8meAJcTw1DpFF8vWQOH9K219XDfU6aQVY4ZS?=
- =?iso-8859-1?Q?1JCEOC0S3VOTiKMNCNIJiBH3miiXwkKRnwIq6SWpLf07eC53nsfX9f+8yh?=
- =?iso-8859-1?Q?SfotFQ+48Aq8GxLPHRZzcRmsi9UYBJN5IONEKScHhk18OLV+UMjfwkBmG7?=
- =?iso-8859-1?Q?Mg6PfbVUS1KOgtkyXW95p6Om/lekrNRQBptI7/6LfTc7DxlOLBdgUeITCU?=
- =?iso-8859-1?Q?2VxZNmjDtkMK1gc5i/9/jI9t6lcGMqosOk/FM6gkAS70vt8fNI9QAZ4uIm?=
- =?iso-8859-1?Q?GwE3Wp/c02vJpnPMQq8HP++Iy3iAWAoWesmXwI/wW0kQimziIVMpCPGx4R?=
- =?iso-8859-1?Q?ltmwuEO13FYXqLOXOmjA90ZlO0/NlWmPmV+elc4sjfW/FF80OZvbghK1XL?=
- =?iso-8859-1?Q?ul3kxQx8aYurVvvVNvh6ftQQsOLbS+x0KZv3LdIxzqXteurL4NBzl61Dja?=
- =?iso-8859-1?Q?JSh6gu/FypciTIZ7gCe3tqvqeizKLtcPxs42w1LlkaRs2cWn8rxejabzI8?=
- =?iso-8859-1?Q?dIV54UZ91M8t0cLUqhs49Tl3hFuYPs+pi8cizhvAfZ0QkV1vgaR5xNZr4k?=
- =?iso-8859-1?Q?5kmCe478N5CyVbxq2jS7w6hi1XcoQkuS5W9yM8jrSVV9u7T3L7BBILeZfU?=
- =?iso-8859-1?Q?oD66BLQQj7FBlImbiupDKkDPeIhW2SE3eIgzkpVOPts00ldMD9tSONZzny?=
- =?iso-8859-1?Q?DdOMZDodL0rsAPC0M2VoLKQKN5fteYnTme7BkkMaDUDj754DBx7kbqSbN7?=
- =?iso-8859-1?Q?KZ+BVY3W1HephkHwqU7W8eJCOeK2PdxPQQmpUl5nIQwGufAv6MRL94nbAD?=
- =?iso-8859-1?Q?uzKpgYnAwxr2IEfi6l6Cq8go1fOiIb5wnmgjrz6ZhU7cE7BuYMVKh2H4mk?=
- =?iso-8859-1?Q?C6As8FX0LAuzL5QclEc7LrzpZw7HLyjGsB1Vty/Y1OkOuYEDIRlvXxVxRW?=
- =?iso-8859-1?Q?b7kwi2fVIawBNbokSt3KmQtGVQXeMrKYXVkgjDSVdCzG2lv6iY33+/ut0E?=
- =?iso-8859-1?Q?2dD1pr6x/ZE7VTINV4upg0h7w7NeO/MDR1Rc5DW3g28dmhVGpATRUx/BoY?=
- =?iso-8859-1?Q?/ZnYHOuOfiyHXCOrvn34P/9LL5TUWA9bRfgsV/QR/bGQaPlasfmvBP0KM2?=
- =?iso-8859-1?Q?SXfqLlnlxUtpqIT14ehmyEyfNM5siNIpIjPYELDH4nMbChVMY4kHFjqL8a?=
- =?iso-8859-1?Q?nxLXt9S0Z5x3ZGKCR43335WyCHV7zfCyAL2qi7PCrjCqZAwH/Jgrz8unzy?=
- =?iso-8859-1?Q?fc8J5MtLkTdMFXrNZguc0ZDHr9Icp1rf3fHNBQ7qO9XNiAtpF5kTh9UqEn?=
- =?iso-8859-1?Q?KRmoTDuoeUXtvxXkGF4dPuwCo+4Y?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?iso-8859-1?Q?fB4xX2Q4/n8QfBw9c0uE924AC968jYwJXiP7Bde5UXOesMeWWOWrlHkYRs?=
- =?iso-8859-1?Q?Z03tQItlXHNzmlfc2ecwD7cW4dPQbqZGHn52M27En6fgQE+5TgqJHwSrIR?=
- =?iso-8859-1?Q?wjhbD1Z83qZ6GTxRAuafKlYzRKFnDDQX7pFl2mit1vav5LpDq32agWhcMs?=
- =?iso-8859-1?Q?GpAiCVSTPT6XmPXNGBBftC647MptuKPbvIleK/Qpn0btYUlfVJ5xgXDv40?=
- =?iso-8859-1?Q?tVlc9Vu1Gg5Jrb3PIfZt7sijFrSGZ26MtHX7lCg2uEQH37y4gbpYgVjfbA?=
- =?iso-8859-1?Q?jdweBppa0uO9/YqZaZzd7F4TYq/9Yi3j80LAYCFmoRus5ERO61RI/oHWA/?=
- =?iso-8859-1?Q?UC+mExj9Ij2QZSE/lbWJ6eEgN4H0Zt36Bl5IIu5XpOQJaBygyF2yg3y9oq?=
- =?iso-8859-1?Q?GERp7nFlrunpX9Xipv4o14PRTWs9vea4twDaIKMPF0NGeqRCMGMD9jkK/+?=
- =?iso-8859-1?Q?fSkmlYPcqjmRC43u5xtQVb2oCz7Duq4JmNUQLz1LLIJHKp8SLIgnqYuWZL?=
- =?iso-8859-1?Q?foEqVyqKwDlHtQhHQX6MnFm1cpzuR27HQ03caD9o0Df/N1eaorayKnesM2?=
- =?iso-8859-1?Q?wvVLefeG9wsdVtu4gpkxAkpVR631h43GrZ6GnbZgIBBqgAIEeLFHkcSRyQ?=
- =?iso-8859-1?Q?IWUHQp2wHwpXVAXRlA8uDk6Jw010qFfd8F7jleetVav0PKA4DKyColwacw?=
- =?iso-8859-1?Q?dOwATnHc5J8XSaOfb1s4ad7DGrVnRN8WQJUk56xlypk7OeXzZqg8FrtaTL?=
- =?iso-8859-1?Q?Xv5nqZ+9zUypS8RRIcFRJ+1GW3N2R/tlTtCGIZj/9CPogKmCwgPWtVYdfq?=
- =?iso-8859-1?Q?qBzhGaU861tVccRH5wNMxBuw2BoS7t1ycWlLJ2MBEQgnmv051XeuO36E0Q?=
- =?iso-8859-1?Q?7KK+R2DFWkJcaWT0rwklD8oRdUHCncgiWeWETYag+o80jLia+1q0Do8+uS?=
- =?iso-8859-1?Q?0RM21utQIEJ+Y/WNSJAdIUUla6dcktliSh89k7HtqKLoKJTcuv+U+6YU2L?=
- =?iso-8859-1?Q?En4LRKYeCFOU3RLTx3G8kVPTTHz45ubaCoNTQ7oPdtkH0ZcszrhYbYq0xz?=
- =?iso-8859-1?Q?3yLtX61Y+KfM9HawXQsadJovhLWmrtOwLYQykbyOe4oTP2/4g47nFaLufp?=
- =?iso-8859-1?Q?NPShu0/9fORLRYjiO2w8EMSRL9QbTAzGTEHOC+woFDAQCMYuxwe1f7o7x7?=
- =?iso-8859-1?Q?b/dUCla01iPD8APMaWK/VBPOyVZ1nwSuvlLHTxhH8h0+UztqBz8kZhmeCZ?=
- =?iso-8859-1?Q?MSROfS9h4DeQ9zr6A+6KrR7vvTrXvPvcbGko+qv4XUxxmg0RBuHobej7kE?=
- =?iso-8859-1?Q?GeO/ed/6MJVnh8+le6TOMmAkwhszHVXHium03Ovvtxm2OR2jPlmkiacCbJ?=
- =?iso-8859-1?Q?GptsT3vvEehhk+voIXbUNGX14PFhGTC1qdDJ+cd9KnMeBQx00HR22dIej8?=
- =?iso-8859-1?Q?0jBmzon63dms3osChD+vZNV0G6BdZFEM3hzdMzlqDPJXvsuc3yxJu39vZX?=
- =?iso-8859-1?Q?peydpx5bZ9lGv013kQTmJyXuNgbQl4Cxq9jbrc23J0A4cwWAAK+02uBxaz?=
- =?iso-8859-1?Q?my14bfzVe+MEJJXPA+TVAp/Ht+os1sBSBs3EV9FwoIGBF3pGroaoscmt5H?=
- =?iso-8859-1?Q?2i/ETqEg5Lpv3M46tk2ZOyDWCbfedOftMS?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18164ec7-535e-4268-e5db-08de213bce9c
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 16:03:08.9097
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TY4QImF3EGPGtbnON1Qb9prcfu7BZ9qky4XF+wjrWn/IeKVo/QhT4IC2KBFN+7GhWeItgOX0NbHqUwTK8z0fdw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7953
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <81174278-c3c4-4dc6-856e-b58aa2cb6fea@oss.qualcomm.com>
 
-On Tue, Nov 11, 2025 at 04:16:14PM +0100, Francesco Dolcini wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
->
-> Add DT support for Toradex SMARC iMX95 SoM and Development carrier
-> board.
->
-> The module consists of an NXP i.MX95 family SoC, up to 16GB of LPDDR5
-> RAM and up to 128GB of storage, a USB 3.0 Host Hub and 2.0 OTG, two
-> Gigabit Ethernet PHYs, a 10 Gigabit Ethernet interface, an I2C EEPROM
-> and Temperature Sensor, an RX8130 RTC, a Quad/Dual lane CSI interface,
-> and some optional addons: TPM 2.0, DSI, LVDS, DisplayPort (through a
-> DSI-DP bridge), and Wi-Fi/BT module.
->
-> Link: https://www.toradex.com/computer-on-modules/smarc-arm-family/nxp-imx95
-> Link: https://www.toradex.com/products/carrier-board/smarc-development-board-kit
-> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-> Co-developed-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> Co-developed-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> Co-developed-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-> Co-developed-by: Vitor Soares <vitor.soares@toradex.com>
-> Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
-> Co-developed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
-> v2:
->  - move enable-active-high after gpio
->  - add newline between properties and child node in som_dsi2dp_bridge
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |    1 +
->  .../dts/freescale/imx95-toradex-smarc-dev.dts |  277 ++++
->  .../dts/freescale/imx95-toradex-smarc.dtsi    | 1155 +++++++++++++++++
->  3 files changed, 1433 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx95-toradex-smarc-dev.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 75676b908299..28f8eaf18471 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -390,6 +390,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx943-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx95-toradex-smarc-dev.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx95-tqma9596sa-mb-smarc-2.dtb
->
-...
-> +
-> +/* SMARC PCIE_A / M2 Key B */
-> +&pcie0 {
-> +	status = "okay";
+On Tue, Nov 11, 2025 at 08:27:17PM +0800, Aiqun(Maria) Yu wrote:
+> On 11/7/2025 12:24 AM, Konrad Dybcio wrote:
+> > On 11/6/25 11:16 AM, Aiqun(Maria) Yu wrote:
+> >> On 11/6/2025 5:06 AM, Bjorn Andersson wrote:
+> >>> On Tue, Nov 04, 2025 at 01:35:01PM +0800, Jingyi Wang wrote:
+> >>>>
+> >>>>
+> >>>> On 11/4/2025 12:02 PM, Bjorn Andersson wrote:
+> >>>>> On Tue, Nov 04, 2025 at 11:34:25AM +0800, Aiqun(Maria) Yu wrote:
+> >>>>>> On 9/25/2025 7:23 AM, Jingyi Wang wrote:
+> >>>>>>> Document the qcom,tcsr-kaanapali compatible, tcsr will provide various
+> >>>>>>> control and status functions for their peripherals.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> >>>>>>> ---
+> >>>>>>>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+> >>>>>>>  1 file changed, 1 insertion(+)
+> >>>>>>>
+> >>>>>>> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> >>>>>>> index 14ae3f00ef7e..ae55b0a70766 100644
+> >>>>>>> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> >>>>>>> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> >>>>>>> @@ -48,6 +48,7 @@ properties:
+> >>>>>>>            - qcom,tcsr-ipq8064
+> >>>>>>>            - qcom,tcsr-ipq8074
+> >>>>>>>            - qcom,tcsr-ipq9574
+> >>>>>>> +          - qcom,tcsr-kaanapali
+> >>>>>>
+> >>>>>> It looks good to me. Glymur didn't have this functionality verified yet.
+> >>>>>
+> >>>>> You spelled Reviewed-by: Aiqun Yu <..> wrong.
+> >>>>>
+> >>>>>> Remind for review.
+> >>>>>
+> >>>>> No need for that, reviewers will review when they have time.
+> >>>>>
+> >>>>>>
+> >>>>
+> >>>> Hi Bjorn,
+> >>>>
+> >>>>>
+> >>>>> But that said, most modern additions to this binding follow the common
+> >>>>> format of qcom,<soc>-<block>.
+> >>>>>
+> >>>>> So I would prefer this to be qcom,kaanapali-tcsr.
+> >>>>>
+> >>>>> Regards,
+> >>>>> Bjorn
+> >>>>>
+> >>>>
+> >>>> qcom,tcsr-kaanapali is used to distinguish with binding for GCC:
+> >>>> https://lore.kernel.org/all/20251030-gcc_kaanapali-v2-v2-2-a774a587af6f@oss.qualcomm.com/
+> >>>>
+> >>>
+> >>> So, qcom,kaanapali-tcsr is the clock controller region of TCSR and
+> >>> qcom,tcsr-kaanapali is the non-clock controller region of TCSR?
+> >>>
+> >>> Sorry for not understanding that earlier, but this doesn't work for me.
+> >>>
+> >>> It's a bit of a lie that TCSR_MUTEX is a separate node in devicetree,
+> >>> but it's always an nice chunk of 256K in the beginning (or end in some
+> >>> cases?) of TCSR. But for the rest, there should be a single tcsr node in
+> >>> DeviceTree and that one node should be a syscon and a clock controller.
+> >>
+> >> I've been dive deeply on this tcsr block. And actually the tcsr clock
+> >> controller part is a very small trunk size(0x1c) of the tcsr block. And
+> >> this block have contain other multiple purposed sys registers. So maybe
+> >> we can have a more discussion on how to have device tree node describe
+> >> this situation? It is not straight forward that to have a non-tcsrcc
+> >> related area being described in tcsrcc.
+> >>
+> >> What about option 1 (tcsr_mutex + tcsr_dload_syscon + tcsrcc):>> tcsr_mutex: hwlock@1f40000 {
+> >> 	compatible = "qcom,tcsr-mutex";
+> >> 	reg = <0x0 0x01f40000 0x0 0x20000>;
+> >> 	#hwlock-cells = <1>;
+> >> };
+> >>
+> >> tcsr_dload: syscon@1fc0000 {
+> >> 	compatible = "qcom,tcsr-kaanapali", "syscon";
+> >> 	reg = <0x0 0x1fc0000 0x0 0x30000>;
+> >> };
+> >>
+> >> tcsrcc: clock-controller@1fd5044 {
+> >> 	compatible = "qcom,kaanapali-tcsr", "syscon";
+> 
+> Remove "syscon" here. Not need for tcsrcc fallback to "syscon".
+> 
+> >> 	reg = <0x0 0x01fd5044 0x0 0x1c>;
+> >> ...
+> >> };
+> >>
+> >> What about option 2 (tcsr whole block + tcsr_mutex  + tcsrcc):
+> >>
+> >> tcsr: syscon@1f40000 {
+> >> 	compatible = "qcom,tcsr-kaanapali", "syscon";
+> >> 	reg = <0x0 0x1f40000 0x0 0xC0000>; //align with the whole hardware
+> >> block design.
+> >> };
+> >>
+> >> tcsr_mutex: hwlock@1f40000 {
+> >> 	compatible = "qcom,tcsr-mutex";
+> >> 	reg = <0x0 0x01f40000 0x0 0x20000>;
+> >> 	#hwlock-cells = <1>;
+> >> };
+> >>
+> >> tcsrcc: clock-controller@1fd5044 {
+> >> 	compatible = "qcom,kaanapali-tcsr", "syscon";
+> 
+> Same here, don't need to have "syscon" here.
+> 
+> >> 	reg = <0x0 0x01fd5044 0x0 0x1c>;
+> >> ...
+> >> };
+> > 
+> > Is there anything wrong with what we have done for x1e80100?
+> > ______________________
+> > |             |       |
+> > | TCSR_MUTEX  | mutex |
+> > |_____________|_______|
+> > |	      |       |
+> > | RANDOM_REGS |       |
+> > |_____________|       |
+> > |	      |       |
+> > | TCSR_CLKS   | tcsr  |
+> > |_____________|       |
+> > |	      |       |
+> > | RANDOM_REGS |       |
+> > |_____________|_______|
+> > 
+> 
+> Second you! We can firstly have a option selected for kaanapali, and
+> then other platform can be followed or fixed afterwards.
+> 
+> Here suggest to have option 2 which is remove "syscon" from tcsr clocks,
+> and only add the whole "syscon" to "tcsr" whole block.
+> 
 
-Nit: if there are next version, please consider add supports-clkreq.
+I think you misunderstood Konrad, or perhaps I misunderstand you.
 
-I suppose Key B and E connect clkreq signal.
+This is what we have for Hamoa:
 
-Frank
-> +};
-> +
-> +/* SMARC PCIE_B /  M2 Key E */
-> +&pcie1 {
-> +	status = "okay";
-> +};
-> +
-> +/* SMARC I2S0 */
-...
-> --
-> 2.47.3
->
+tcsr_mutex: hwlock@1f40000 {
+        compatible = "qcom,tcsr-mutex";
+        reg = <0 0x01f40000 0 0x20000>;
+        #hwlock-cells = <1>;
+};
+
+tcsr: clock-controller@1fc0000 {
+        compatible = "qcom,x1e80100-tcsr", "syscon";
+        reg = <0 0x01fc0000 0 0x30000>;
+        clocks = <&rpmhcc RPMH_CXO_CLK>;
+        #clock-cells = <1>;
+        #reset-cells = <1>;
+};
+
+This is exactly what I suggested above and Konrad is asking you why
+this doesn't work for Kaanapali. The addresses are even the same, what
+is the problem?
+
+Regards,
+Bjorn
+
+> > 
+> > 8750 was different because someone decided to stick the "TCSR clocks"
+> > into the TLMM address space, but it was a one-off
+> > 
+> > Konrad
+> 
+> 
+> -- 
+> Thx and BRs,
+> Aiqun(Maria) Yu
 
