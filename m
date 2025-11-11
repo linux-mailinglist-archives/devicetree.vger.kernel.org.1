@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-237094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D56C4CB9E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:41:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57535C4CBD4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:44:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAB791884096
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:41:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD1011888C73
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD232EDD63;
-	Tue, 11 Nov 2025 09:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDD42F290B;
+	Tue, 11 Nov 2025 09:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rM7wlviz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fSTDKRfu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840C52EBBAF;
-	Tue, 11 Nov 2025 09:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3603D2D7398;
+	Tue, 11 Nov 2025 09:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762854081; cv=none; b=ateTgBJZ/y1PLAB4wjYM+96f/KnKqI1ra3G6aDgoDlNclSbS1qV6eL0xnxyu40bpHyQaXuQKUNDMJr72Zon3WbPRfoTDc8jfSOkbt6GN3u0x5fhHxWyLIaOj1W7veIX6dSbFKSNfvMPvY2GWp1nTpuxfPjmEmhr+EMGtNh+5uBs=
+	t=1762854224; cv=none; b=agMm57MKvgtp3Lb0gS/pzb3KZHYEaITaULVHZwd7Te+aezP7B1f/vBAk7Fve8xUinlpASgpMmaM6fiCwkwWR26FfMEVn2dTAkvVEPtAg/xHSoMrvRXDi1NMPTUgGSP7lUB7LoKEI/QnNRrfFbvAXlC0WWcG1V3UfvL/MWfBsjeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762854081; c=relaxed/simple;
-	bh=2i0hV2jgS6G4URPcDhKEjaK3KmOgwDs3Q6+MPXea1m0=;
+	s=arc-20240116; t=1762854224; c=relaxed/simple;
+	bh=FAbNcGdRZ2BZlL+XAx4i735Jgte5T1dqnEhNRQbrtKg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F+heYIE7LNwLor6rp/DSVvZ7PKmlxXqPbLIgDv4BHhjIhUQese9zfjHhoiSNtjmWcgKL6rlpwi7uUixb0dEBTGNiKwqDreKuFI/argNqGpNYhSsLBKUgir8uH2K+YIDqy9Zc+Wd+qDTmsfOQwbatw3r4zKu66bC9CXIoGOM8JT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rM7wlviz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7A81C4CEFB;
-	Tue, 11 Nov 2025 09:41:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nCSRPKgrS4fqX2nUvWuKtK/684cVPU2CeiYzWZrecDsBeUOfPFUjHPrcxazuA93QI+7YANOfpV/9wzCU9ln5V3qmN3UtzsdX+SLXy7dV6ces5OLEJb4cHD5zVmZRvoaomtZ85UxDzROjlbu5m8t5VDC7gBe0K/9KStHh9x3HbmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fSTDKRfu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6632CC2BCB2;
+	Tue, 11 Nov 2025 09:43:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762854081;
-	bh=2i0hV2jgS6G4URPcDhKEjaK3KmOgwDs3Q6+MPXea1m0=;
+	s=k20201202; t=1762854223;
+	bh=FAbNcGdRZ2BZlL+XAx4i735Jgte5T1dqnEhNRQbrtKg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rM7wlvizC3kIpozE93RQghnemvOqj2wv1CL6MBU8PFrIjJwXzt/eE2g+xi/jO1IlO
-	 XnmT1pFd2ut4IMg1Y12JRLdJr5aS/8VK0Gx3JuDrfuRlsK6x1ew0WuIkhP6JMN40Pf
-	 LLJ8QC7QmSq1nG5tGM6gk0BIlCUKFE2vWBKOYAd96o5TnD6o7fMWDjJM35Wd/TPH9q
-	 aR8Bxuxpvz1LTpKEe2QijnqQ2CbkXOYSNW9azFjqOLxqdDT08MLVq1gqUwQsEHLCXf
-	 uZWWEXCzXQjC1xf7/BwvVscxFfOIlz4UHcA+OK1KyNFaUufrvgmJasCCORlHeH+Xv2
-	 9GcKC+B2onyoQ==
-Message-ID: <cabb047c-7c58-407e-831e-72567937dd1c@kernel.org>
-Date: Tue, 11 Nov 2025 10:41:15 +0100
+	b=fSTDKRfuBoKKqQLAI4vv9CnzsAbsMMVdKlRVNShFLwRD6Lu/3UM7GgEwGKA6cG9oO
+	 jgVJ3d0PU3g+tIbuujq/XnNQTRLIAxBesPj+mtvUqoFZNUJBPWCCNYkFPgIf0W2NOP
+	 YV/wEKRbtVFZZoVKVyy7iT2yFHBlMhWjAcs3jcYQWXhPEMc6fHiCrVRijyZeZOPaK7
+	 SPdrD8fKGJO8b096aUTc1LMgHGrWucgoR9W2qazVqiJ29+fa/oa5OnHX7OzWlV6I0k
+	 wcdqSGruTUFH+wNUKzJwDy/VgsBdSpFMplFJrzsKoeIEX3f6/l2X80a7Rd93YV8Svw
+	 NpnPgdUV1GGsw==
+Message-ID: <d94dc0f4-5d81-4e95-b9e6-1c3940180c36@kernel.org>
+Date: Tue, 11 Nov 2025 10:43:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: timer: Add Realtek SYSTIMER binding
+Subject: Re: [PATCH 2/2] clocksource: Add Realtek systimer as tick broadcast
+ driver
 To: Hao-Wen Ting <haowen.ting@realtek.com>, daniel.lezcano@linaro.org,
  tglx@linutronix.de
 Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
@@ -59,7 +60,7 @@ Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
  krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20251111092959.616089-1-haowen.ting@realtek.com>
- <20251111092959.616089-2-haowen.ting@realtek.com>
+ <20251111092959.616089-3-haowen.ting@realtek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,113 +106,102 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251111092959.616089-2-haowen.ting@realtek.com>
+In-Reply-To: <20251111092959.616089-3-haowen.ting@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 11/11/2025 10:29, Hao-Wen Ting wrote:
-> Add device tree binding documentation for the Realtek SYSTIMER, a 64-bit
-> timer that can be used as a tick broadcast timer on multi-core Realtek
-> SoCs.
+> Add a tick broadcast timer driver for Realtek SoCs.
 > 
-> The SYSTIMER remains active during deep CPU idle states where local
-
-Systimer or SYSTIMER? What is this acronym about?
-
-> timers are powered off, allowing all CPUs to enter power-cut idle states
-> simultaneously for improved power efficiency. The timer operates at a
-> fixed 1MHz frequency and supports oneshot mode for tick broadcast
-> functionality.
+> On Realtek platforms, CPUs can enter deep idle states (C-states) where
+> the local timer is stopped and powered off. Without a global tick
+> broadcast timer, one CPU must remain awake to wake up the others,
+> preventing all CPUs from entering deep idle simultaneously.
 > 
-> This binding defines the required properties for memory-mapped register
-> access and interrupt configuration needed by the timer driver.
-Drop sentence, completely redundant. We can read the diff.
-
+> This driver provides a tick broadcast timer which remains active
+> during deep idle states. This allows all CPUs to enter power-cut
+> idle states simultaneously, significantly reducing overall power
+> consumption.
+> 
+> The timer operates at 1MHz and supports oneshot mode.
 > 
 > Signed-off-by: Hao-Wen Ting <haowen.ting@realtek.com>
 > ---
->  .../bindings/timer/realtek,systimer.yaml      | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/realtek,systimer.yaml
+>  MAINTAINERS                         |   5 +
+>  drivers/clocksource/Kconfig         |  10 ++
+>  drivers/clocksource/Makefile        |   1 +
+>  drivers/clocksource/timer-realtek.c | 173 ++++++++++++++++++++++++++++
+>  4 files changed, 189 insertions(+)
+>  create mode 100644 drivers/clocksource/timer-realtek.c
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/realtek,systimer.yaml b/Documentation/devicetree/bindings/timer/realtek,systimer.yaml
-> new file mode 100644
-> index 000000000000..28ab9b91f45d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/realtek,systimer.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/realtek,systimer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c7a116b795d5..59dfd7543c39 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -28395,3 +28395,8 @@ S:	Buried alive in reporters
+>  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+>  F:	*
+>  F:	*/
 > +
-> +title: Realtek SYSTIMER
-> +
-> +maintainers:
-> +  - Hao-Wen Ting <hao-wen.ting@realtek.com>
-> +
-> +description: |
-> +  The Realtek SYSTIMER is a 64-bit timer that can be used as a tick
-> +  broadcast timer on multi-core Realtek SoCs. It remains active during
-> +  deep CPU idle states where local timers are powered off, allowing all
-> +  CPUs to enter power-cut idle states simultaneously for better power
-> +  efficiency.
-> +
-> +  The timer operates at a fixed 1MHz frequency and supports oneshot mode
-> +  for tick broadcast functionality.
-> +
-> +properties:
-> +  compatible:
-> +    const: realtek,systimer
+> +REALTEK SYSTIMER DRIVER
 
-This is clearly wrong, please read writing bindings. You ALWAYS need SoC
-compatible.
+Why are you adding to the end of the file? Did you look at this file at
+all before changing this?
 
-See also guidelines for beginners in DTS.
+> +M:	Hao-Wen Ting <haowen.ting@realtek.com>
+> +S:	Maintained
+> +F:	drivers/clocksource/timer-realtek.c
+> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> index ffcd23668763..e86905378f82 100644
+> --- a/drivers/clocksource/Kconfig
+> +++ b/drivers/clocksource/Kconfig
+> @@ -782,4 +782,14 @@ config NXP_STM_TIMER
+>            Enables the support for NXP System Timer Module found in the
+>            s32g NXP platform series.
+>  
+> +config RTK_SYSTIMER
+> +	bool "Realtek SYSTIMER support"
+> +	depends on OF
+Missing depends on ARCH. Please don't send drivers which do not have any
+possible user.
 
+> +	select TIMER_OF
+> +	help
+> +	  This enables the global tick-broadcast timer on Realtek platforms.
+> +	  If your Realtek platform supports power-cut level CPU idle states,
+> +	  enabling this timer allows all CPUs to enter power-cut simultaneously
+> +	  to achieve lower power consumption.
+> +
+
+...
 
 > +
-> +  reg:
-> +    description: |
-> +      Physical base address and length of the timer's memory mapped
-> +      registers. The register range contains the 64-bit timestamp counter,
-> +      compare value registers, control and status registers.
-
-Drop. Please use recent bindings as your starting work. If you generated
-this with LLM, it would mean it is huge waste of our time.
-
-NAK
-
-> +    maxItems: 1
+> +static int __init rtk_systimer_init(struct device_node *node)
+> +{
+> +	int ret;
 > +
-> +  interrupts:
-> +    description: |
-> +      Timer interrupt specifier. This interrupt is triggered when the
-> +      timer compare value matches the current timestamp counter.
-> +    maxItems: 1
+> +	ret = timer_of_init(node, &_to);
+> +	if (ret)
+> +		return ret;
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
+> +	systimer_base = timer_of_base(&_to);
+> +	clockevents_config_and_register(&_to.clkevt, SYSTIMER_RATE,
+> +					SYSTIMER_MIN_DELTA, SYSTIMER_MAX_DELTA);
 > +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    systimer: systimer@89420 {
+> +	pr_info("Realtek SYSTIMER registered\n");
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
+Drop.
 
-Drop label, you do not use it.
+This does not look like useful printk message. Drivers should be silent
+on success:
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
+
+> +	return 0;
+> +}
+> +
+> +TIMER_OF_DECLARE(rtk_systimer, "realtek,systimer", rtk_systimer_init);
+
 
 Best regards,
 Krzysztof
