@@ -1,157 +1,305 @@
-Return-Path: <devicetree+bounces-237306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE221C4F2DE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:05:38 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6E4C4F306
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:08:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A51D53A5D22
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 17:04:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D5A304E43B7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 17:07:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B21377E8F;
-	Tue, 11 Nov 2025 17:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87CF32D7DD;
+	Tue, 11 Nov 2025 17:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AaOuoCkX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FVCHNL/S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACCE5377E82
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 17:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054CD3AA199
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 17:07:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762880694; cv=none; b=pjUBoSAdDjeCSJJ/mY6O4dZZgmvkLX6zzGlxoZV2LGJLllOBj9JAEiSxB9CAw223OyOcnRBMbBp8EqqH3dMo/58TxXk3DYU8NdFzZTh4WdVxSCSLi3owpim0pfwRxOUSRzNqWuGu3nZIOnG8mEdqCi20wqmFDVokKhHdV3L9ZiE=
+	t=1762880858; cv=none; b=Q32IrN0arlTk5OMnT2BO3Uht07SyHlGJhkJJM1XoM7viMOx5d9KzyAhpxJ3lzhS7fpNcmlVMCpGIhDjuhKiIIN90OqJCTAdBzobe5XpFlmYv0/BlN9WdUrQ34iB3Y2LZ+lLUtP9Sb7ELZK6eHJ3hIlzptJIM5at5KFkguRNsK5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762880694; c=relaxed/simple;
-	bh=YubFhKnH81TLGfMHxtluWgwaoXScPwc2G5XHJdHKjtw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V1guH4qSlTvDJXlQ0wxuSAORwaQukNXiBb1aQF9j+BF8loX39Bg34jNyt7Evp2s2rPJJCdpUT4Z7Me3yT9lK4EVnn6/AQNKRebT+9nAoVis823ay4XcmbwJU4QaUZvUkkjw1PQEn32sAy/lKHYgRNTp4hoOK/bVy02HEHzpeMvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AaOuoCkX; arc=none smtp.client-ip=209.85.167.53
+	s=arc-20240116; t=1762880858; c=relaxed/simple;
+	bh=VEsvXBuMJaslD78nHbemGjp1X8vOb2HF472M+Tj9XoI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=okqMDbVo2fJlSpj7VSgmOUxPYv2iH4X3yfz7dHVfc32YkxhfCGmIu366UYpJFV0Xb4kWGI2FTWeNmFq4ti+4B2tnFh0AA49Y8BQYACSJgQfxznQlEohVgbQ/e8HfzR8vBK/4KI62uYAcINX3UTorxur/Ymsbd9QiHNjPCWxVVXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FVCHNL/S; arc=none smtp.client-ip=209.85.216.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59469969bfeso2560606e87.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 09:04:52 -0800 (PST)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-3418ac74bffso3193368a91.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 09:07:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762880691; x=1763485491; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1762880856; x=1763485656; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YubFhKnH81TLGfMHxtluWgwaoXScPwc2G5XHJdHKjtw=;
-        b=AaOuoCkXjxB52QlvIj2bOAsEsuz1Aqp22e3xc9jQZs2a8JC1P0XD3DCdMVIK1UU+Go
-         Pu/yWivC9nAzzxvemn5iAcNRzxfBBRzMmmP6pFxopvI9OYDUdj9uqnSwan3yqQFRr6SZ
-         cHvJwQMgCQPmldu+Wpd/5mk2vvW8OuzDfXrWT/uqJpsMb1QanZj+dkoJRNNsayzjADJ7
-         gvUPuLWi4JSOvyK+A7VosMBmhwErY078GpMHiweF4fcWVn79ntC97z9U+fbgdxseZeW+
-         LPDATIpHxYcZvthdzwf19Y40WxMjWIaix7IF9RGbDE1qK+Ave5Nymt0l7awCMd+MroT4
-         7HOQ==
+        bh=HNfaH3hTQZnZSvGC8zp3FGczdnQaTGqYtT87SAfA22Q=;
+        b=FVCHNL/SsDBXoUFltlu1H4dom8QY5ltWh0i++BHLkDtP1uOirG5lWWFvEs6hajf83u
+         pwMKuPfOcU8FqjpSiuBRpPRkFFK4NM/rOMOJ35wRk0x7CznAQIIKId7Gso8tNF9oJ8+q
+         yUiF+5PdN0cgGFXnaP9k7bllTQDOtk2TmoZcO6/MZsXcQ/LMTQDYtJAq0Xm6RYRDv+Ko
+         3oCzo/ls07wScnhPiQJ6emBT8aGiJdnKzKw9r8NoGxuY+Ed0P6VefByvAKIaRTrtTQ8I
+         WH3RmXHB48mGrRXpuO1qpOrom0phn2XVgO+KUk8lHM4YZT/HE5PHPzCAs0/3tzzvf0+K
+         g4hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762880691; x=1763485491;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1762880856; x=1763485656;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=YubFhKnH81TLGfMHxtluWgwaoXScPwc2G5XHJdHKjtw=;
-        b=BqmBYn09HW0hkwxjKMpx1o7qv/g4jRLNn3w+kH4OinVXlyfR3vGQDDIapTn8yUavLD
-         UtyYw08Kv+7PdSbUP+CMCzGo8CbjZ8PHcYLp/TcFNeavMzcBmttzDFN5MkZitxYwXbbu
-         BnDvgdiFchu1pmyFNMqgBLywTzT6QitYY3TDM386uK9wVgYordeTPF0n51aMBU61jhLx
-         vEzIIj6cK15aZoaFC0Msf+Eob75aLqJxWL+DDQA0/Uu8VO4+azNYEYEOQ95mIVYhTxJu
-         KV/nJXDH9IHhV6oQ5/h05r6MdRolJbccc+Xtn/i3MaI1bAoYdJWIlnSWFkAwPsHN3nbS
-         Bibg==
-X-Forwarded-Encrypted: i=1; AJvYcCVHlP2MMqCBpghuhbXuTpuGZr5o7LH2zBb4Dwzx7Qg0ktxzHH7AGfk0RElGkh4KYrFlqsLpFg2KNAib@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxd4H81Z0Me1xi3NDv4cBHy7w8V1fdRtxpJl0k+3V3NHEJBUCIL
-	foer9gYJBEUoUyN5whDp/UGnOt6AJuH7qodno53HPnIjCTQLqDkoVPdTJm2mMhf4kBr2H5WQ6OE
-	HSvpx3d/jzCzhGOPuNNV4milxaBVF3fE=
-X-Gm-Gg: ASbGnct7ikEANSCTehOUAQOJB/1aXJInkBTckHP5nkcaVqvnOKm75e1s/QzXHzygsvj
-	vm9jz27MzWKvWTxTbHWOXpAOmPSc+i5UD4BME6bbnGf5KFcMopczG6J4ELz/QWxcjNvW7JtvcG9
-	goqBLoMvfnW8EyAuwl0es6oVv8+rmCdhZ9gLp+ZtS5bINWVUNVyDVNKAfYunp0RwCFKKY9D+38N
-	5bYzVKN7+JXzECUPn4LrqEID7trzGo/rIreHiYuWT5AM4EELiM1tvPvSVxfXHI7H1zN9Yw=
-X-Google-Smtp-Source: AGHT+IEZlH0mtpomAoYHWcXslTaT22aqDtc9zJerr/PD7lSoxf1ylVfrl0l274mOZbaW4dhFxUMeL2NxxO5NcXsCaD4=
-X-Received: by 2002:a05:6512:23a0:b0:594:7492:8ac9 with SMTP id
- 2adb3069b0e04-59576df8d16mr23940e87.24.1762880690492; Tue, 11 Nov 2025
- 09:04:50 -0800 (PST)
+        bh=HNfaH3hTQZnZSvGC8zp3FGczdnQaTGqYtT87SAfA22Q=;
+        b=ElUBPosHGH3U+LZOZW80JnipvrH3bOJx/wU7Tt6sMucIHa0QTJj9TuEClfb1XcS/jd
+         eqRZo6FMTHbwlfHl5hypHBc/V1c3aLt2MFrIXnwEavefh+3IBAUrmj/yyngdIq4KNyaB
+         MwQIl0zxzrQ2y5w0bxGZceSiRo+AnC9hs9HXLGDA+NR9HRpEfVDabL5OmesZU2XxbAEB
+         HITRp3kXZtbVPJeFJaQZIWv1ZR1VGsBvP1hMMvhV/hxRu6Y5G0Yx4hCdcwiUNGKhBDRi
+         8rCxZFGTGJdnXStWugcO1MazHs2DZQxCIaNUWExv7qoUXqI2Z3duduH6MlDY7NeePX7G
+         HWFg==
+X-Forwarded-Encrypted: i=1; AJvYcCX1vhyoCFv7QxcLrgMF278AL0iONzTC9GfPWy0BjncodjCKHiRLdBK3gDDcbuz+Tk9F/Vnl6twNSubU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIvUWbbLB/zQj0lGPiaPnYhFGc4BDjGNhUleydp0P6Oh2a9eha
+	XJvIkBnoZ76cuMeD8npyGbYA821kxmvxpmiFFbPI72L1Op7vWsBCrt/Z
+X-Gm-Gg: ASbGncuWaydUiAD+2/j7F+nUs8dWgMbZZrfBnlwP1G4BQkAO2KPtAama5LbihoU90pX
+	hMgRh3WWZHEo6ieQNuTO8vZ1lxgWPG9xjIliTwNtOD1CDaZCrAoWtiUIt3bC5YmO5sEFn2cVSk9
+	uWdTH32egn5EVZPfhbc36RVlHcxVZuYChdOwZPqwN4Uq56BZAJrsJzMILflTYp9AbyjzOPpCEoN
+	J0V0M29k88qGLs6NNEIz1HIX78Po+4xEeeYzUceifHWIa8yt3+0/t8pe/Pu4IAeZd3EyF5mlceU
+	TyWM6fKfU5xcIBTeuiFQvxtxOs/56VBysDdpw2X7LUZR/6n8TKfmTIZHlxynkQxGIFjdDO4Ai9B
+	5ZOf5D1FlDYBTt/+35tiXLigl3a0LKj+yvvynmuCJz5tMBz3r5CVnreE9qFKGGA2nhcsdfOgiDE
+	zO/0znNo0wceMSh44hyZMx
+X-Google-Smtp-Source: AGHT+IE1iOOpdC2mTa3BWXNPPiYY/mg6cjZa9GcGN6Tr3jFbChElH97v4yhJLq53JTXEL9sh5gITdw==
+X-Received: by 2002:a17:90b:384d:b0:32e:87fa:d975 with SMTP id 98e67ed59e1d1-343ddeec15amr32068a91.34.1762880856160;
+        Tue, 11 Nov 2025 09:07:36 -0800 (PST)
+Received: from DESKTOP-P76LG1N.lan ([42.116.146.63])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-341a699c98dsm21844080a91.17.2025.11.11.09.07.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Nov 2025 09:07:35 -0800 (PST)
+From: Nam Tran <trannamatk@gmail.com>
+To: lee@kernel.org
+Cc: gregkh@linuxfoundation.org,
+	pavel@kernel.org,
+	rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v17 2/3] leds: add basic support for TI/National Semiconductor LP5812 LED Driver
+Date: Wed, 12 Nov 2025 00:07:28 +0700
+Message-Id: <20251111170728.81552-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20251106155915.GT8064@google.com>
+References: <20251106155915.GT8064@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
- <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com> <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
- <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
- <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
- <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com> <99ca4992-5736-417d-854e-379542549bee@kernel.org>
- <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com> <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
-In-Reply-To: <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Tue, 11 Nov 2025 11:04:39 -0600
-X-Gm-Features: AWmQ_blP3BFSBsAjGIzab2QDvUj_EpEv05TJkH9xstMTHLX-1ZR-K3Sg-X-4BUw
-Message-ID: <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 11, 2025 at 8:35=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> w=
-rote:
->
->
-> On 11/11/2025 12:05, Jon Hunter wrote:
->
-> ...
->
-> >>> Thanks for testing. Something is not right because our boards are
-> >>> failing. So may be we are doing/testing something different. However,
-> >>> this should not break. So there is a problem here.
-> >>
-> >>
-> >> Did you meant: "So there is NO problem here"?
-> >
-> > Nope. I mean that this is a problem here.
-> >
-> >> I kept these for 10 days in linux-next and yesterday sent them in pull
-> >> request. If some patches are needed on top, they can still fit coming
-> >> merge window if sent soon.
-> >
-> > Looking back I see it started failing with next-20251103. next-20251031
-> > was fine. Reverting this commit on top of next-20251110 fixes the issue=
-.
-> >
-> > There may be a difference in the firmware being used. Our testing is
-> > based upon an older NVIDIA L4T r32.5.1 release but nonetheless, we
-> > should not break that.
->
->
-> OK, so I see what is happening here. The boot test that we are running
-> has a 2 minute timeout and the board is now failing to boot within that
-> time.
->
-> Adding some debug prints, I can see that initially the EMC clock
-> frequency is 1600MHz and now after this change, on boot the EMC clock
-> get set to 250MHz. Hence, the booting is now taking significantly longer
-> and the test times out.
->
-> We definitely don't want to increase the timeout of the test. Any thought=
-s?
+On Thu, 6 Nov 2025, Lee Jones wrote:
 
-My setup uses the boot stack from L4T r32.7.6, though cboot is source
-built and has had changes over time to support newer Android versions.
-There shouldn't be anything there that would affect emc clock, though.
+> On Tue, 21 Oct 2025, Nam Tran wrote:
+> 
+> > The LP5812 is a 4x3 matrix RGB LED driver with an autonomous animation
+> > engine and time-cross-multiplexing (TCM) support for up to 12 LEDs or
+> > 4 RGB LEDs. Each LED can be configured through the related registers
+> > to realize vivid and fancy lighting effects.
+> > 
+> > This patch adds minimal driver support for the LP5812, implementing
+> > only the essential functionality: I2C communication with the device,
+> > LED registration, brightness control in manual mode, and basic sysfs
+> > interfaces for LED configuration and fault monitoring.
+> > 
+> > Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> > ---
+> >  MAINTAINERS                    |   4 +
+> >  drivers/leds/rgb/Kconfig       |  13 +
+> >  drivers/leds/rgb/Makefile      |   1 +
+> >  drivers/leds/rgb/leds-lp5812.c | 730 +++++++++++++++++++++++++++++++++
+> >  drivers/leds/rgb/leds-lp5812.h | 197 +++++++++
+> >  5 files changed, 945 insertions(+)
+> >  create mode 100644 drivers/leds/rgb/leds-lp5812.c
+> >  create mode 100644 drivers/leds/rgb/leds-lp5812.h
+> 
+> Last go - just a few nits to fix-up.
 
-I'm seeing the emc clock stay at the boot value, namely 1600MHz. Per
-both debugfs clk/emc/clk_rate and bpmp/debug/clk/emc/rate. I don't
-even see 250MHz as an option. Debugfs emc/available_rates lists 204MHz
-as the closest entry.
+Thank you for the feedback.
+I'll address these minor issues and include the fixes in the next revision.
+But I have a few concerns about some of the nits.
 
-I'm trying to think what could cause a drop in the selected clock
-rate. This patch should only dynamically change the rate if the opp
-tables exist, enabling the cpufreq based scaling via icc. But those
-tables don't exist on linux-next right now. My test ramdisk does
-nothing except set up sysfs/procfs/etc just enough to run a busybox
-shell for debugging. Do the Nvidia regression testing boot scripts do
-anything to sysfs or debugfs that would affect emc?
+> > +static int lp5812_parse_led(struct device_node *np,
+> > +			    struct lp5812_led_config *cfg,
+> > +			    int led_index)
+> > +{
+> > +	int num_colors = 0, ret;
+> 
+> As above.
+> 
+> > +
+> > +	of_property_read_string(np, "label", &cfg[led_index].name);
+> 
+> Is this optional?
 
-Aaron
+The 'label' property is required for proper sysfs naming. Should I update the DT binding
+to mark it mandatory and adjust the driver accordingly? I'd like to confirm if this aligns
+with usual conventions for such properties.
+
+> > +static int lp5812_probe(struct i2c_client *client)
+> > +{
+> > +	struct lp5812_chip *chip;
+> > +	struct device_node *np = dev_of_node(&client->dev);
+> > +	struct lp5812_led *led;
+> 
+> This is all of the LEDs though, right.
+> 
+> So "leds" would be better.
+> 
+> > +	int ret;
+> > +
+> > +	if (!np)
+> > +		return -EINVAL;
+> > +
+> > +	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+> > +	if (!chip)
+> > +		return -ENOMEM;
+> > +
+> > +	chip->cfg = i2c_get_match_data(client);
+> > +	ret = lp5812_of_populate_pdata(&client->dev, np, chip);
+> 
+> That's not all this function does though.
+> 
+> And it's not pdata.
+> 
+> lp5812_of_probe() would probably be better.
+> 
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	led = devm_kcalloc(&client->dev, chip->num_channels, sizeof(*led), GFP_KERNEL);
+> > +	if (!led)
+> > +		return -ENOMEM;
+> > +
+> > +	chip->client = client;
+> > +	mutex_init(&chip->lock);
+> > +	i2c_set_clientdata(client, led);
+> 
+> If you're only using the chip, why not just save the chip?
+
+Just to confirm, you mean to store all LED instances inside the lp5812_chip struct and
+only save the chip in i2c_set_clientdata(), instead of allocating a separate leds array
+in probe()?
+
+I can update the code accordingly if that's the preferred approach.
+
+> > +/* Chip specific configurations */
+> > +static const struct lp5812_device_config lp5812_cfg = {
+> > +	.reg_reset = {
+> > +		.addr = LP5812_REG_RESET,
+> > +		.val  = LP5812_RESET
+> > +	},
+> > +	.reg_chip_en = {
+> > +		.addr = LP5812_REG_ENABLE,
+> > +		.val  = LP5812_ENABLE_DEFAULT
+> > +	},
+> > +	.reg_dev_config_0 = {
+> > +		.addr = LP5812_DEV_CONFIG0,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_dev_config_1 = {
+> > +		.addr = LP5812_DEV_CONFIG1,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_dev_config_2 = {
+> > +		.addr = LP5812_DEV_CONFIG2,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_dev_config_3 = {
+> > +		.addr = LP5812_DEV_CONFIG3,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_dev_config_4 = {
+> > +		.addr = LP5812_DEV_CONFIG4,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_dev_config_5 = {
+> > +		.addr = LP5812_DEV_CONFIG5,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_dev_config_6 = {
+> > +		.addr = LP5812_DEV_CONFIG6,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_dev_config_7 = {
+> > +		.addr = LP5812_DEV_CONFIG7,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_dev_config_12 = {
+> > +		.addr = LP5812_DEV_CONFIG12,
+> > +		.val  = LP5812_DEV_CONFIG12_DEFAULT
+> > +	},
+> > +	.reg_cmd_update = {
+> > +		.addr = LP5812_CMD_UPDATE,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_tsd_config_status = {
+> > +		.addr = LP5812_TSD_CONFIG_STATUS,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_led_en_1 = {
+> > +		.addr = LP5812_LED_EN_1,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_led_en_2 = {
+> > +		.addr = LP5812_LED_EN_2,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_fault_clear = {
+> > +		.addr = LP5812_FAULT_CLEAR,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_manual_dc_base  = {
+> > +		.addr = LP5812_MANUAL_DC_BASE,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_auto_dc_base  = {
+> > +		.addr = LP5812_AUTO_DC_BASE,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_manual_pwm_base  = {
+> > +		.addr = LP5812_MANUAL_PWM_BASE,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_lod_status_base  = {
+> > +		.addr = LP5812_LOD_STATUS,
+> > +		.val  = 0
+> > +	},
+> > +	.reg_lsd_status_base  = {
+> > +		.addr = LP5812_LSD_STATUS,
+> > +		.val  = 0
+> > +	}
+> > +};
+> 
+> This is an unusual way to set out a register map.
+> 
+> Where have you seen this done before?
+> 
+> > +static const struct of_device_id of_lp5812_match[] = {
+> > +	{ .compatible = "ti,lp5812", .data = &lp5812_cfg },
+> 
+> Seems odd to populate .data when you only have a single device.
+
+I followed the style used in the lp55xx series drivers for the register map and device
+config. I thought it makes sense to keep the same pattern to allow easier upgrade and
+maintenance in the future. But you expect a more typical approach, right?
+
+Thanks again for your review and support!
+
+Best regards,
+Nam Tran
 
