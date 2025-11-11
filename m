@@ -1,148 +1,134 @@
-Return-Path: <devicetree+bounces-236966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025E2C4B5C1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 04:49:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB1A7C4B5D6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 04:54:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8904B4E2315
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 03:49:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85D2B1891EAD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 03:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF522459EA;
-	Tue, 11 Nov 2025 03:49:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04862FE58C;
+	Tue, 11 Nov 2025 03:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NdhlIjcY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os43os4xodqa.icoremail.net (zg8tmja2lje4os43os4xodqa.icoremail.net [206.189.79.184])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71FE18DB37;
-	Tue, 11 Nov 2025 03:49:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.79.184
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C794266B6F;
+	Tue, 11 Nov 2025 03:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762832994; cv=none; b=IkuTvAtbBCt/Jff49IZAz1LSAyO8m3oah+PMBrzbJciLrUMvTVmFSUpSw83RXlMNweEKNSyCdh/KRKfLMQ+UNo7R9s7X3X9fz5srVCTU20nNtoTu65n0urmEPg32pI9gr8L1iCskKzndl0x5LRMX/5PeNShEd28LFK/GcQn1VSQ=
+	t=1762833252; cv=none; b=DQBJCQr3buGaIwNLlDgnZpKrD3f3DEXsumOGQWR8//qPaTs2M+l/uS+FfUC0V5V57eslPkrywrtEj3t8PC6eSbAq5VT4QF+y26q3plgHvqupWT7zIFdxVAC3KtXdk+bL+uIhoIhcKq8NDRlBIdnSmUW+IkGNyOustrcrxeV4qeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762832994; c=relaxed/simple;
-	bh=STHJLspIN9GMreqf9eZB/pVMf7p4s1+eyp3LDryWZUk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=mB6LduuaMFYHja+uFYej0HKvOdYSq2T7G8fej9zQPVkaLtyJLHU1rY9RhuP+y5ZtpY28ASda3jGJCBDTOUcEE2B1rWZre/v21MjOSKd8AN57HPZ/Yiq5ovafg24v9YE/5br3XYvGiYPwKN/2KGuN1hG/8kTFsT9KHjDUQCkdO0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.79.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
- ajax-webmail-app2 (Coremail) ; Tue, 11 Nov 2025 11:49:24 +0800 (GMT+08:00)
-Date: Tue, 11 Nov 2025 11:49:24 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-To: "Frank Li" <Frank.li@nxp.com>, mani@kernel.org
-Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
-	p.zabel@pengutronix.de, jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
-	thippeswamy.havalige@amd.com, inochiama@gmail.com,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: Re: [PATCH v5 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <aRJBFoRC5rm+5rHa@lizhi-Precision-Tower-5810>
-References: <20251110090716.1392-1-zhangsenchuan@eswincomputing.com>
- <20251110090953.1429-1-zhangsenchuan@eswincomputing.com>
- <aRJBFoRC5rm+5rHa@lizhi-Precision-Tower-5810>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1762833252; c=relaxed/simple;
+	bh=xG1D2/iIJr6gmPOw38mwNgX5wn6K9a2USlFYepCuMxU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MQf7s9n/4Aw8Pgc5JWBHyLFo4lh00tPiMLUJh0KxYkCGdqH/I4lSKEqjLG70MkJXv/RZmn1jXae6ElEGzN/w8qN5VFXg7E0ZISxgYp+cKVMsojM1q5RFdQnt5DwvGSjXH47ApWHeoJCfqtNsXP7vNIRRTLoIuIvqEX+gGkd65zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NdhlIjcY; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=h4kespPJAX780SRcbkhss/5F3BwJsDQHjd1c+gCxX18=; b=NdhlIjcYaZoiEC6QhpeYMvI82X
+	OLGLdJmjw2jTpUXThEJJqgXr21OzxIYhDvnrnzQe6hvmNvo61GWoQGeaXTcEDL/OwbH9chfIewjaL
+	MR+/cSqqChZcvgA1yoNrcqvQpd8swZ6MIcViFz6v5NtbrMtVrvG35X2J9BK70jjIKtZI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vIfS4-00DaTH-Mx; Tue, 11 Nov 2025 04:53:52 +0100
+Date: Tue, 11 Nov 2025 04:53:52 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject: Re: [PATCH net-next v15 03/15] net: phy: Introduce PHY ports
+ representation
+Message-ID: <fc89e17f-c6f5-4a84-8780-737969ed2e22@lunn.ch>
+References: <20251106094742.2104099-1-maxime.chevallier@bootlin.com>
+ <20251106094742.2104099-4-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <4f4d2055.77.19a71085b29.Coremail.zhangsenchuan@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TQJkCgC3+q1EshJpOoR6AA--.605W
-X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgEDBmkSE
-	9sRjQAAsp
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251106094742.2104099-4-maxime.chevallier@bootlin.com>
 
-CgoKPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2VzLS0tLS0KPiBGcm9tOiAiRnJhbmsgTGkiIDxGcmFu
-ay5saUBueHAuY29tPgo+IFNlbmQgdGltZTpUdWVzZGF5LCAxMS8xMS8yMDI1IDAzOjQ2OjMwCj4g
-VG86IHpoYW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tCj4gQ2M6IGJoZWxnYWFzQGdvb2ds
-ZS5jb20sIG1hbmlAa2VybmVsLm9yZywga3J6aytkdEBrZXJuZWwub3JnLCBjb25vcitkdEBrZXJu
-ZWwub3JnLCBscGllcmFsaXNpQGtlcm5lbC5vcmcsIGt3aWxjenluc2tpQGtlcm5lbC5vcmcsIHJv
-YmhAa2VybmVsLm9yZywgcC56YWJlbEBwZW5ndXRyb25peC5kZSwgamluZ29vaGFuMUBnbWFpbC5j
-b20sIGd1c3Rhdm8ucGltZW50ZWxAc3lub3BzeXMuY29tLCBsaW51eC1wY2lAdmdlci5rZXJuZWwu
-b3JnLCBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZywgbGludXgta2VybmVsQHZnZXIua2VybmVs
-Lm9yZywgY2hyaXN0aWFuLmJydWVsQGZvc3Muc3QuY29tLCBtYXlhbmsucmFuYUBvc3MucXVhbGNv
-bW0uY29tLCBzaHJhZGhhLnRAc2Ftc3VuZy5jb20sIGtyaXNobmEuY2h1bmRydUBvc3MucXVhbGNv
-bW0uY29tLCB0aGlwcGVzd2FteS5oYXZhbGlnZUBhbWQuY29tLCBpbm9jaGlhbWFAZ21haWwuY29t
-LCBuaW5neXVAZXN3aW5jb21wdXRpbmcuY29tLCBsaW5taW5AZXN3aW5jb21wdXRpbmcuY29tLCBw
-aW5rZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20sIG91eWFuZ2h1aUBlc3dpbmNvbXB1dGluZy5j
-b20KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY1IDIvMl0gUENJOiBlaWM3NzAwOiBBZGQgRXN3aW4g
-UENJZSBob3N0IGNvbnRyb2xsZXIgZHJpdmVyCj4gCj4gT24gTW9uLCBOb3YgMTAsIDIwMjUgYXQg
-MDU6MDk6NTNQTSArMDgwMCwgemhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20gd3JvdGU6
-Cj4gPiBGcm9tOiBTZW5jaHVhbiBaaGFuZyA8emhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5j
-b20+Cj4gPgo+ID4gQWRkIGRyaXZlciBmb3IgdGhlIEVzd2luIEVJQzc3MDAgUENJZSBob3N0IGNv
-bnRyb2xsZXIsIHdoaWNoIGlzIGJhc2VkIG9uCj4gPiB0aGUgRGVzaWduV2FyZSBQQ0llIGNvcmUs
-IElQIHJldmlzaW9uIDYuMDBhLiBUaGUgUENJZSBHZW4uMyBjb250cm9sbGVyCj4gPiBzdXBwb3J0
-cyBhIGRhdGEgcmF0ZSBvZiA4IEdUL3MgYW5kIDQgY2hhbm5lbHMsIHN1cHBvcnQgSU5UeCBhbmQg
-TVNJCj4gPiBpbnRlcnJ1cHRzLgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IFl1IE5pbmcgPG5pbmd5
-dUBlc3dpbmNvbXB1dGluZy5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBZYW5naHVpIE91IDxvdXlh
-bmdodWlAZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gU2lnbmVkLW9mZi1ieTogU2VuY2h1YW4gWmhh
-bmcgPHpoYW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gLS0tCj4gPiAgZHJpdmVy
-cy9wY2kvY29udHJvbGxlci9kd2MvS2NvbmZpZyAgICAgICAgfCAgMTEgKwo+ID4gIGRyaXZlcnMv
-cGNpL2NvbnRyb2xsZXIvZHdjL01ha2VmaWxlICAgICAgIHwgICAxICsKPiA+ICBkcml2ZXJzL3Bj
-aS9jb250cm9sbGVyL2R3Yy9wY2llLWVpYzc3MDAuYyB8IDQyMCArKysrKysrKysrKysrKysrKysr
-KysrCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCA0MzIgaW5zZXJ0aW9ucygrKQo+ID4gIGNyZWF0ZSBt
-b2RlIDEwMDY0NCBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWVpYzc3MDAuYwo+ID4K
-PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9LY29uZmlnIGIvZHJp
-dmVycy9wY2kvY29udHJvbGxlci9kd2MvS2NvbmZpZwo+ID4gaW5kZXggMzQ5ZDQ2NTczOTNjLi42
-NjU2OGVmYjMyNGYgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9L
-Y29uZmlnCj4gPiArKysgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9LY29uZmlnCj4gPiBA
-QCAtOTMsNiArOTMsMTcgQEAgY29uZmlnIFBDSUVfQlQxCj4gPiAgCSAgRW5hYmxlcyBzdXBwb3J0
-IGZvciB0aGUgUENJZSBjb250cm9sbGVyIGluIHRoZSBCYWlrYWwtVDEgU29DIHRvIHdvcmsKPiA+
-ICAJICBpbiBob3N0IG1vZGUuIEl0J3MgYmFzZWQgb24gdGhlIFN5bm9wc3lzIERXQyBQQ0llIHY0
-LjYwYSBJUC1jb3JlLgo+ID4KPiAuLi4KPiA+ICsKPiA+ICtzdGF0aWMgdm9pZCBlaWM3NzAwX3Bj
-aWVfcG1lX3R1cm5fb2ZmKHN0cnVjdCBkd19wY2llX3JwICpwcCkKPiA+ICt7Cj4gPiArCXN0cnVj
-dCBkd19wY2llICpwY2kgPSB0b19kd19wY2llX2Zyb21fcHAocHApOwo+ID4gKwo+ID4gKwkvKgo+
-ID4gKwkgKiBIYXJkd2FyZSBkb2Vzbid0IHN1cHBvcnQgZW50ZXIgdGhlIEQzY29kZSBhbmQgTDIv
-TDMgc3RhdGVzLCBzZW5kCj4gPiArCSAqIFBNRV9UdXJuX09mZiBtZXNzYWdlLCB3aGljaCB3aWxs
-IHRoZW4gY2F1c2UgVm1haW4gdG8gYmUgcmVtb3ZlZCBhbmQKPiA+ICsJICogY29udHJvbGxlciBz
-dG9wIHdvcmtpbmcuCj4gPiArCSAqLwo+ID4gKwlkZXZfaW5mbyhwY2ktPmRldiwgIkNhbid0IHNl
-bmQgUE1FX1R1cm5fT2ZmIG1lc3NhZ2VcbiIpOwo+ID4gK30KPiAKPiBEZWZpbmUgYSBxdWlyayB0
-byBsZXQgZHdfcGNpZV9zdXNwZW5kX25vaXJxKCkgc2tpcCBjYWxsIHBtZV90dXJuX29mZigpCj4g
-aW5zdGVhZCBkbyBub3RoaW5nIGhlcmUuIFNvIG90aGVyIGRyaXZlciBjYW4gcmV1c2UgdGhpcyBx
-dWlyayBpZiBtZWV0IHRoZQo+IHNpbWlsYXIgc2l0dWF0aW9uLgoKSGksIEZyYW5rIE1hbmkKClBs
-YW7vvJoKSW4gdGhlIGR3X3BjaWVfc3VzcGVuZF9ub2lycSBmdW5jdGlvbiwgYWRkIHRoZSBub19z
-dXNwcG9ydF9MMjMgZmxhZyB0byAKZGV0ZXJtaW5lIHdoZXRoZXIgdG8gc2tpcCB0aGUgcG1lX3R1
-cm5fb2ZmIGFuZCByZWFkX3BvbGxfdGltZW91dCBmdW5jdGlvbnMuCgogICAgICAgICBzdHJ1Y3Qg
-ZHdfcGNpZSB7CiAgICAgICAgICAgICAgICAgLi4uLi4uLi4uLi4KICAgICAgICAgICAgICAgICBi
-b29sIG5vX3N1c3Bwb3J0X0wyMzsKICAgICAgICAgfQoKCWlmIChwY2ktPm5vX3N1c3Bwb3J0X0wy
-MykKCQlnb3RvIHNraXBfTDIzOwogICAgICAgICAKICAgICAgICAgICAgIC4uLi4uLi4KCiAgICAg
-c2tpcF9MMjM6CiAgICAgICAgZHdfcGNpZV9zdG9wX2xpbmsocGNpKTsKCWlmIChwY2ktPnBwLm9w
-cy0+ZGVpbml0KQoJCXBjaS0+cHAub3BzLT5kZWluaXQoJnBjaS0+cHApOwoKVGhpcyBzdWJtaXNz
-aW9uIGlzIGFsc28gc2tpcHBpbmcgcG1lX3R1cm5fb2ZmIGFuZCByZWFkX3BvbGxfdGltZW91dCwg
-dGhlIGFib3ZlIGFsc28gCmNvbnRyb2xzIHRoZSBzYW1lIGNvZGUuIENvdWxkIGl0IGJlIGNvbnNp
-ZGVyZWQgdG8gbWVyZ2UgdGhlIGFib3ZlIGNvZGUsIHNvIG90aGVyIApkcml2ZXIgY2FuIHJldXNl
-IHRoaXMgZmxhZyBpZiBtZWV0IHRoZSBzaW1pbGFyIHNpdHVhdGlvbi4gT3IgdGhlcmUgYXJlIG90
-aGVyIGJldHRlcgp3YXlzIHRvIHNvbHZlIHRoaXMgcHJvYmxlbT8KaHR0cHM6Ly9sb3JlLmtlcm5l
-bC5vcmcvbGludXgtcGNpL2FSSVNQZ0NaeUVaeFN0SU5AbGl6aGktUHJlY2lzaW9uLVRvd2VyLTU4
-MTAvI3QKCkxvb2tpbmcgZm9yd2FyZCB0byB5b3VyIHJlcGx5LiBUaGFuayB5b3UgdmVyeSBtdWNo
-IQoKS2luZCByZWdhcmRzLApTZW5jaHVhbiBaaGFuZwoKPiAKPiBBbmQgdXNlIHF1aXJrIHRvIGtu
-b3cgaGFyZHdhcmUgbGltaXN0aW9uIGVhc2lseS4KPiAKPiBEbyB5b3Uga25vdyB3aHkgY29udHJv
-bGxlciBzdG9wIHdvcmtpbmcgaWYgdm1haW4gYmUgcmVtb3ZlZC4gU3VwcG9zZSByZXN1bWUKPiB3
-aWxsIHJlaW5pdCBob3N0IGNvbnRyb2xsZXIgYXQgcmVzdW1lLgoKVGhyb3VnaCB0ZXN0aW5nLCBp
-ZiB2bWFpbiBiZSByZW1vdmVkIGFuZCBjb250cm9sbGVyIHN0b3Agd29ya2luZywgdGhlIGRiaSAK
-cmVnaXN0ZXIgc2hvd3MgdGhhdCBpdCBjYW5ub3QgYmUgYWNjZXNzZWRlZC4gVGhlIGxpbmsgc3Rh
-dGUgY2Fubm90IGJlIHJlYWQgCmluIHRoZSByZWFkX3BvbGxfdGltZW91dCBmdW5jdGlvbi4KCj4g
-Cj4gPiArCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBkd19wY2llX2hvc3Rfb3BzIGVpYzc3MDBf
-cGNpZV9ob3N0X29wcyA9IHsKPiA+ICsJLmluaXQgPSBlaWM3NzAwX3BjaWVfaG9zdF9pbml0LAo+
-ID4gKwkuZGVpbml0ID0gZWljNzcwMF9wY2llX2hvc3RfZGVpbml0LAo+ID4gKwkucG1lX3R1cm5f
-b2ZmID0gZWljNzcwMF9wY2llX3BtZV90dXJuX29mZiwKPiA+ICt9Owo+ID4gKwo+IC4uLgo+ID4g
-Mi4yNS4xCj4gPgo=
+> +/**
+> + * phy_caps_medium_get_supported() - Returns linkmodes supported on a given medium
+> + * @supported: After this call, contains all possible linkmodes on a given medium,
+> + *	       and with the given number of lanes, or less.
+
+lanes -> pairs?
+
+> +	/* The PHY driver might have added, removed or set medium/lanes info,
+> +	 * so update the port supported accordingly.
+
+lanes -> pairs?
+
+> +struct phy_port *phy_of_parse_port(struct device_node *dn)
+> +{
+> +	struct fwnode_handle *fwnode = of_fwnode_handle(dn);
+> +	enum ethtool_link_medium medium;
+> +	struct phy_port *port;
+> +	const char *med_str;
+> +	u32 pairs = 0, mediums = 0;
+> +	int ret;
+> +
+> +	ret = fwnode_property_read_u32(fwnode, "pairs", &pairs);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+
+I think this needs to come later. It is not critical now, but when we
+come to add other medium, it will need moving. If we add say -K, and
+need lanes, we don't want to error out here because pairs is missing.
+
+> +	ret = fwnode_property_read_string(fwnode, "media", &med_str);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	medium = ethtool_str_to_medium(med_str);
+> +	if (medium == ETHTOOL_LINK_MEDIUM_NONE)
+> +		return ERR_PTR(-EINVAL);
+
+> +	if (pairs && medium != ETHTOOL_LINK_MEDIUM_BASET) {
+> +		pr_err("pairs property is only compatible with BaseT medium\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+
+This i think needs changing, if medium == ETHTOOL_LINK_MEDIUM_BASET
+then get pairs, and validate it. I would probably also test it is 1,
+2, or 4.
+
+	Andrew
 
