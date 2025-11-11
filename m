@@ -1,216 +1,157 @@
-Return-Path: <devicetree+bounces-237333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CE38C4F6DE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:25:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82816C4F6F6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:27:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46F623A85EE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:25:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A5E8188C65A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:27:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260D73A1CFB;
-	Tue, 11 Nov 2025 18:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179F833CEA1;
+	Tue, 11 Nov 2025 18:26:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="imoqJCvp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EB2mwsKZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4102EB5BA
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 18:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5C8265CA6;
+	Tue, 11 Nov 2025 18:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762885519; cv=none; b=WVCYbAh9i9rtRWbzpIFmTi3m/D0TPTWg8yd02/2H7j8wyN3Jm2hjunBFPMuX0vPSCyxMjhEFLOY2UzNSEUxdSm/Bfe2MkRyAqXcYP3ww+CRaw4FTz8jrweVniXpvHK09ATFssd50oa3ZMedo7UEhshNTbNaHSm3btTmdNW7OaUk=
+	t=1762885609; cv=none; b=C25V+Qbig6aSAP2aUuj03WzFb2xvBUQ9+puhUmwd8a8XkfUDQPtM7IzbKp8aL9teqQD7DhsQwLcDgeq+aZIqwV/OSjFFsrlW1Q3G9+G9xmtGdUW7josG59fRgpM8COuQ9kTZAIhNv4XnbYOPhyPO3UX0cYFqCqPSglDZxgHG3Sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762885519; c=relaxed/simple;
-	bh=uW3fdIJNojLg1+r7dEjr0CmWmSrdydlYHz/58yZZms0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Content-Type; b=BWxS2mYtRfqiiE4c2Zyv/mX1OVGG5x9xZZAXk9z8IHb9pwFmMIRGa+bfsx1b9ekKpIof3aERjI1VqJw1ozIfetwBPC7q+I63eROz0QnLmYavMeyYjg6NT7/KPntxa0lYcHdN8zFQkxzev/wIZRVnLrRb+wDapIbiJ7CKSkdNKc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=imoqJCvp; arc=none smtp.client-ip=74.125.224.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-63f96d5038dso41357d50.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:25:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1762885514; x=1763490314; darn=vger.kernel.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WbaypeAc+LAHLf1nSdqKLcHPmc0bIEfuTiR1igXjF8A=;
-        b=imoqJCvpoiAdl0EzWdphTSkKzxGeq2ss7g6JmYtimRnrOnq+5Ed+Xws7q6SAOLcHxq
-         huKZmH+ijTNRwSTtSA7+5iMW1ROGcOn3EUbjJ/FkfyOC5EVZMy5HvTaM0fN0BCWckLeV
-         TW5wE9JxVVsac6nE43Q8uJc0nMvRnARleDNVAfrmLwIO8oDSRRT1lDp6L4rTwa2qCH9O
-         wWidjI4c+IUrhFmPNECjZKSReVZJvWDIyiSlo+RXGzUfKoRGOUAzFGhWtpUY+ryNCTqu
-         qRLYX3/25rC88WbSX8j0V2rgwJWItINnuBwOEGg3+OCx0SnnczVRQIV8oIuF4Yy8iHTf
-         IKPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762885514; x=1763490314;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WbaypeAc+LAHLf1nSdqKLcHPmc0bIEfuTiR1igXjF8A=;
-        b=l6sUw+M+NA45U/v5zqb7chUsCB00t4gM4Cc6Hz9mPjIpshUKexifVQLLA0mV4/ZyAP
-         cuBCIohxrA+Vkrg2di7L9FEDzxj+Ps9sJYXOMLiYAx8bb+dyUdbv42teR4q7Y9gwIiSb
-         btmdk1Vaew4IVHhkqQo+zDR3V5Vm/uxey0aH93SKVDpv1J7+0YEBJaCcu22nuvogbMVN
-         Ygs0LY1yUTp5Fx5OfZgBTXncSWbadoPx1fQ5PmQw+eLASgrEN3Qy2jYyKgPddA45P/qf
-         yOl4V9te86iWM8w6BoUO3WpNV4DkJcSZnAWTc+nxW6wJHUxBjpB4MLI6hFrTNBOPSO6H
-         XX1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXrymbl0TkP04OOeBJ7lqNgEUgGnj/lgKhAz/QgCKoXXYFF52QohZjlmqOkZSXDUKfTsAsYwMMiQka1@vger.kernel.org
-X-Gm-Message-State: AOJu0YznLF/R0mH5VYAI/h6PGlXdZvKhftNrK+cjlUs55c0xz8ehINBW
-	mp3E3kzNi+xg3dQnLD2C3W8uwTZXKWTTDfP5YV5w0193URnvlWf2kwmVBC7jzyHjdEm0cgr7ZE7
-	i32yLALk3PaS1moBG7qaPa2eFooed1LNltejjdre7OQ==
-X-Gm-Gg: ASbGncu9tuOn4d3Mnw/NGwM2L8lREh4yiJS38pbLu50NvkWOW9gYM8ZpmaplB1nQBOx
-	3VsxUSA+23K8mjw5p3VRxVkr4lw5MmAdaHLoUzrYgcKzjnEneRpb9ejzl0/f8glos4vrw4gOmc6
-	3tN7RpRVAp1mL7xRZtYNe8YgGS/u3Wwi5Hf1VZmtMuvFNr44EjQBdHlxDSAT63CwF7J3nPWnCpy
-	pKm8gS1zd2/yhtgv4v3/x9mK4mytn8aabD7CJ2D+G4Kk0BuDacA8U8HC0Vy6HOkX4tHJVjm5ikq
-	bNTawp8cwo3S7VW/0256DSvComw=
-X-Google-Smtp-Source: AGHT+IH/WEZ5YOvre83bEWsrI64IAmk0Xmrg/suPeYhWUxruEL1V+Ky/0K3tNxGTbF2OBLUFVsPG8mza82okHXcaBGM=
-X-Received: by 2002:a05:690c:7108:b0:787:f5c5:c630 with SMTP id
- 00721157ae682-787f5c5ce8cmr58641017b3.41.1762885514479; Tue, 11 Nov 2025
- 10:25:14 -0800 (PST)
+	s=arc-20240116; t=1762885609; c=relaxed/simple;
+	bh=4blQyKrzAkck3w71C86EM4tTASTGHoqXfv8ZZdP8GD4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vo9ElGvzRvXiKble2hNV8S0/odNOEuuQu0MYkBPJs5EVitUHv8Hqpj9pQ8qjZ9akZ+4GuDFo88k/xtZhyEh5zztLBEkTXlml456Qbkg8XSt2AaI7i8GKdX5XBv35dsCCw4NPbiHW+efzUgD6bBrye2G+YivMTwCs2d1HNhE7oWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EB2mwsKZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F9E1C19425;
+	Tue, 11 Nov 2025 18:26:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762885608;
+	bh=4blQyKrzAkck3w71C86EM4tTASTGHoqXfv8ZZdP8GD4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EB2mwsKZOt26mhFmlqmAt9TTcx7m6KIb/2WmEWg5hTkTbVNjMZ68QCkYgdgAbKGaI
+	 SCUt+TbxjpFPqboSNBYoirqVLfH+IZOo4cEr62NOv0oTgrlMfn6xbWsJhnuvXeFLP6
+	 pv3/NlemTf6Woija8Glpv8xiia4HhybsEihrAeVOvKHggrgJ+l4moLeNc1dorNyypH
+	 CkTe4MkpfDXHl0UtVXcbUKBelzOp38ocz7DiPMTLpo941vemDQAxR+uKJbJhGIIosV
+	 YOmKRqVAh6U6SN5/qfjjLKdrNAWwd2wAIx2uwkS3DyVZxwmgiANwyOOftdkrNT4bdx
+	 ujiA35zkLOvug==
+Date: Tue, 11 Nov 2025 18:26:39 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Xingyu Wu <xingyu.wu@starfivetech.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Maud Spierings <maudspierings@gocontroll.com>,
+	Andy Yan <andyshrk@163.com>, Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH RFC 02/13] dt-bindings: clock: jh7110: Make power-domain
+ optional
+Message-ID: <20251111-brim-circling-0d5a364519a8@spud>
+References: <20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
+ <CGME20251108010454eucas1p103697b195125d853bd9f4d40662b681e@eucas1p1.samsung.com>
+ <20251108-jh7110-clean-send-v1-2-06bf43bb76b1@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de>
- <20251111-b4-adv7180-vpp-sub-device-v1-1-9877fe9f709b@pengutronix.de>
- <CAPY8ntAAbXq--N_=Lk-GeNMOt7Ucpm2zfkKOnvXB2bhY4i84zg@mail.gmail.com> <aRN039bNdqD8bySl@pengutronix.de>
-In-Reply-To: <aRN039bNdqD8bySl@pengutronix.de>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Tue, 11 Nov 2025 18:24:56 +0000
-X-Gm-Features: AWmQ_bnP3AdTyCu95ZcqXIRrbj6nzHhQqcYccZgtVweCzPdCw7EcgDuP6gytZ78
-Message-ID: <CAPY8ntDEdiYMPHgWcX_UkL_jEi=8kK+oT4R6C6kF6vnUgb17jg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] media: dt-bindings: adi,adv7180: add VPP and CSI
- register maps
-To: Michael Tretter <m.tretter@pengutronix.de>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, kernel@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="EoykeO/vcnmrhIyh"
+Content-Disposition: inline
+In-Reply-To: <20251108-jh7110-clean-send-v1-2-06bf43bb76b1@samsung.com>
 
-Hi Michael
 
-On Tue, 11 Nov 2025 at 17:39, Michael Tretter <m.tretter@pengutronix.de> wrote:
->
-> Hi Dave,
->
-> On Tue, 11 Nov 2025 16:02:26 +0000, Dave Stevenson wrote:
-> > On Tue, 11 Nov 2025 at 14:50, Michael Tretter <m.tretter@pengutronix.de> wrote:
-> > >
-> > > The ADV7280 and ADV7280-M have up to three register maps for the VPP and
-> > > CSI. The address of these register maps may be programmed via registers
-> > > in the main register map.
-> >
-> > AIUI all the ADV728x devices have at least 2 addresses, signified by
-> > the ADV7180_FLAG_MIPI_CSI2 and ADV7180_FLAG_I2P flags in their
-> > adv7180_chip_info structures.
-> > Is there a reason that you've restricted this to just the two chips?
->
-> I only have an ADV7280-M for testing. Thus, I restricted it to the chip
-> that I could test and the variant that's the same except for the CSI.
->
-> >
-> > adv7281 - CSI
-> > adv7281-m - CSI
-> > adv7281-ma - CSI
-> > adv7282 - VPP
-> > adv7282-m - VPP and CSI
-> >
-> > The adv7180 and adv7182 families are the only two which only have the
-> > single I2C address.
->
-> Are you suggesting to extend the binding to be able to specify the
-> addresses for the CSI and VPP for any of these chips?
+--EoykeO/vcnmrhIyh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Seeing as the driver change implements that, IMHO the binding ought to match.
-I can test adv7282-m for you if you want. I'd be very surprised if it
-didn't work with the entire family, and as setting the additional
-addresses is optional it's unlikely to cause an issue anyway.
+On Sat, Nov 08, 2025 at 02:04:36AM +0100, Michal Wilczynski wrote:
+> The voutcrg (Video Output Clock Generator) hardware resides within
+> the PD_VOUT power domain. In the new display subsystem model,
+> this power domain is managed by the top-level 'vout-subsystem'
+> parent driver.
+>=20
+> Because the parent driver now handles power management, the voutcrg
+> node in the device tree no longer needs a 'power-domains' property.
+> This patch updates the voutcrg binding to reflect this by removing
+> 'power-domains' from the list of required properties.
 
-  Dave
+I don't like how driver-centred your commit message is, but I think you
+can just explain this by saying that the appropriate place for this
+power domain is in the node that uses it, not some other supplier to the
+vout subsystem.
 
-> Michael
->
-> >
-> > Thanks.
-> >   Dave
-> >
-> > > Allow to specify the addresses of the VPP and CSI in the device tree to
-> > > solve address conflicts on a board level.
-> > >
-> > > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> > > ---
-> > >  .../devicetree/bindings/media/i2c/adi,adv7180.yaml | 44 ++++++++++++++++++++++
-> > >  1 file changed, 44 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> > > index dee8ce7cb7ba..4bbdc812442b 100644
-> > > --- a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> > > @@ -138,6 +138,31 @@ allOf:
-> > >        required:
-> > >          - ports
-> > >
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - adi,adv7280
-> > > +              - adi,adv7280-m
-> > > +    then:
-> > > +      properties:
-> > > +        reg:
-> > > +          minItems: 1
-> > > +          maxItems: 3
-> > > +          description:
-> > > +            The ADV7280 and ADV7280-M have up to three register maps, which can be
-> > > +            accessed via the I2C port. The main register map, the VPP register map,
-> > > +            and the CSI register map. The main register map is mandatory. The other
-> > > +            register maps are optional and the default is used unless specified.
-> > > +
-> > > +        reg-names:
-> > > +          minItems: 1
-> > > +          items:
-> > > +            - const: main
-> > > +            - enum: [ csi, vpp ]
-> > > +            - enum: [ csi, vpp ]
-> > > +
-> > >  examples:
-> > >    - |
-> > >      i2c {
-> > > @@ -187,3 +212,22 @@ examples:
-> > >                      };
-> > >              };
-> > >      };
-> > > +
-> > > +  - |
-> > > +    i2c {
-> > > +            #address-cells = <1>;
-> > > +            #size-cells = <0>;
-> > > +
-> > > +            composite-in@20 {
-> > > +                    compatible = "adi,adv7280-m";
-> > > +                    reg = <0x20>, <0x42>, <0x44>;
-> > > +                    reg-names = "main", "vpp", "csi";
-> > > +
-> > > +                    port {
-> > > +                            adv7280_out: endpoint {
-> > > +                                    bus-width = <8>;
-> > > +                                    remote-endpoint = <&vin1ep>;
-> > > +                            };
-> > > +                    };
-> > > +            };
-> > > +    };
-> > >
-> > > --
-> > > 2.47.3
-> > >
-> > >
-> >
+>=20
+> This fixes a dtbs_check warning that would be triggered by the
+> updated device tree.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml | 1=
+ -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-vout=
+crg.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.=
+yaml
+> index af77bd8c86b12e667b79ffbaeae5f8a82e6d3f37..deff69037e5072002e06aa5a8=
+99f4488b7264f47 100644
+> --- a/Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml
+> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml
+> @@ -61,7 +61,6 @@ required:
+>    - resets
+>    - '#clock-cells'
+>    - '#reset-cells'
+> -  - power-domains
+> =20
+>  additionalProperties: false
+> =20
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--EoykeO/vcnmrhIyh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRN/3wAKCRB4tDGHoIJi
+0jcGAQCm8zdZi4Rj0XsEx0Qzj/K0aGmz4WEQWzpBc5W/wiIwsQEAx+y3uu9T8sp/
+Aamgu97ttBdRylrGg+l4YxZE4C+V2wY=
+=l4qk
+-----END PGP SIGNATURE-----
+
+--EoykeO/vcnmrhIyh--
 
