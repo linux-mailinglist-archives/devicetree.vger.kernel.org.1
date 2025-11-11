@@ -1,146 +1,150 @@
-Return-Path: <devicetree+bounces-237247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023CAC4ECD0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:35:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79AE3C4ECCA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:35:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41E9518891A9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:34:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30CFA3B6EBF
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1586F36655C;
-	Tue, 11 Nov 2025 15:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A24A366545;
+	Tue, 11 Nov 2025 15:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Kfe+2Ek/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C3kE4ClJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0302F4A19;
-	Tue, 11 Nov 2025 15:33:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299A735F8D7;
+	Tue, 11 Nov 2025 15:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762875221; cv=none; b=mI1fnhUvttK3LuBCGZYtRLDNGglO+r6zlxSfNFC1CtOEAY1WWePlW8sR9xW9tSwHtB2YZXyGUtZhRJZIBUoO4NtVzza5aq49LDJD5Mbelf7PEo9ndSkee6f/vRVhlnfBbw+S4KWTyRg0bFGtFexqlUhHtElLP4XjXsvaxWbObe4=
+	t=1762875094; cv=none; b=GdmYsbYmvNSxh/bWYOSs3v1xL6F6hNZ4BEPprvdn1FvznUMjBtX3MeE3mg8pYWpziH7KV4g9YyJxMXi77ZNYIvI1bUZ2k8toZCmb9DtNttssO9Aas5wViPxxjRTKR/EX6zOD5vgzUJlqNalzyOfNpC6lt30nIo2A4yRiCuIQn0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762875221; c=relaxed/simple;
-	bh=7mK0LwpK4L3cDU88CKU+8pBhUXQzJOCLbWqWEmp0U+g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=o0DKxe/O1wIaj49qp0oo2GWUvDkFBeD6tgtD4+P9lZ+rbVoWMnhzpQNAT0Ol3IkRgMvaUpBm50ROMc+0xlka7IX5QLxGgRami0Im3U47FHHO5ubeMbfRtyxlKB7+5RLj5x6OAmGXGw8AAnFlQ1zfJuhb8jfiUGW79QYntJR2QyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Kfe+2Ek/; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20251111153330euoutp017494b02d40dededb563d4b1ef58097a0~2-aoKSf6x0077200772euoutp01-;
-	Tue, 11 Nov 2025 15:33:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20251111153330euoutp017494b02d40dededb563d4b1ef58097a0~2-aoKSf6x0077200772euoutp01-
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1762875210;
-	bh=sloWl4MVPqNxu4Lal6cMW3w9aEbG/4Pt1qYZPePhrtE=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=Kfe+2Ek/w+bUpLwTygBNEWcXj2/9RpeCAYPlT7bjoq9HA70uytTNDmVDA9tYZm8xn
-	 PjfXlhu7atr5sek/dPX6o47ChghH0J8IS0BtsFXtYrpuN/fnnz0AbmKOzh7YLkYBX9
-	 OkTday6AnTVrcPFQljKo3ZyNeUQFXkvGD25BUqsQ=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20251111153330eucas1p213a4f040efad6ebe0add9670332c93b9~2-anlypPk2653326533eucas1p2R;
-	Tue, 11 Nov 2025 15:33:30 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20251111153328eusmtip2a21c5725c16f8d6a9d517389e448b5f7~2-amHRvql2096320963eusmtip2G;
-	Tue, 11 Nov 2025 15:33:28 +0000 (GMT)
-Message-ID: <00e897dc-9966-439b-a74a-7604a1870027@samsung.com>
-Date: Tue, 11 Nov 2025 16:33:28 +0100
+	s=arc-20240116; t=1762875094; c=relaxed/simple;
+	bh=4UJ1g/RrS+1ok3QrqJbUIP9v0jFKaMDfl7/AKpbi0Ts=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rdV/0YnbJzIEyoKYl+XHqVzcF0xBHUbd8LRWNDvvecGMxeZTJqQtPOxRhLkYgygFYCViO9ZT+/6T5jzFkqjljyLKiHszhybGnFFMTHoawGeXyejt2Yyx+KysYQPmkGYtGdgfQ+wfmO0xI3AQeLU+4AfDt4tAsugH1FS9fpS6GKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C3kE4ClJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C218FC19422;
+	Tue, 11 Nov 2025 15:31:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762875092;
+	bh=4UJ1g/RrS+1ok3QrqJbUIP9v0jFKaMDfl7/AKpbi0Ts=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C3kE4ClJ9ge3PmupH8qGcfzs6GX2cnMkEQ+8Qe0tnSB90r6kana3akA4DX909CPnb
+	 Qxfy29plOEbifdRwWnq4a/Miy+W+AE8cvSmYGgoOw3ZKc9jfyl2npUUj1KS1PnD9f/
+	 qiP3BELSI5m2gMnBUZLr0XGw0m97s/6vSsefGggrgcOlA06SZMRR3eqrzIMn25/uOJ
+	 254AOx5GFlvZp9jY02BXzKXB0ZOBmP2qCZNqvmgql5TBET5sKpPiX3eFnAt0Gowecb
+	 RYEksejsE4tyfVECaDAZlbdKRt5BSs0Tgpz//Akil9t1xx5l2ifBjronUXeeYLpnzM
+	 5355npDMkjuOg==
+Date: Tue, 11 Nov 2025 09:35:43 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, alexey.klimov@linaro.org, 
+	krzk@kernel.org, bryan.odonoghue@linaro.org, jorge.ramirez@oss.qualcomm.com, 
+	dmitry.baryshkov@oss.qualcomm.com, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com, 
+	quic_vtanuku@quicinc.com, quic_arandive@quicinc.com, quic_shazhuss@quicinc.com, 
+	quic_cchiluve@quicinc.com, Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>
+Subject: Re: [PATCH v1 2/4] pinctrl: qcom: msm: Fix potential deadlock in
+ pinmux configuration
+Message-ID: <z2oh7r56b7w3genfbq4jj24nvjehmnncufwwp6oj6duhafdaja@f2dle7jfao7e>
+References: <20251110101043.2108414-1-praveen.talari@oss.qualcomm.com>
+ <20251110101043.2108414-3-praveen.talari@oss.qualcomm.com>
+ <l2jnveusblgo5cfou3mx3usn7qgenj65wfyrnycmaqamkvhkee@gy745hkc3poc>
+ <5cd78217-8da9-4290-b098-8210280e65d8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 00/13] drm: starfive: jh7110: Enable display
- subsystem
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>, Hal Feng
-	<hal.feng@starfivetech.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Xingyu
-	Wu <xingyu.wu@starfivetech.com>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
-	Abraham I <kishon@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
-	Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
-	<jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>, Philipp
-	Zabel <p.zabel@pengutronix.de>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Icenowy Zheng <uwu@icenowy.me>, Maud Spierings
-	<maudspierings@gocontroll.com>, Andy Yan <andyshrk@163.com>, Heiko Stuebner
-	<heiko@sntech.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20251110-clang-baking-b8b27730356e@spud>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20251111153330eucas1p213a4f040efad6ebe0add9670332c93b9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e
-X-EPHeader: CA
-X-CMS-RootMailID: 20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e
-References: <CGME20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e@eucas1p1.samsung.com>
-	<20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
-	<20251110-clang-baking-b8b27730356e@spud>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5cd78217-8da9-4290-b098-8210280e65d8@oss.qualcomm.com>
 
-
-
-On 11/10/25 20:35, Conor Dooley wrote:
-> On Sat, Nov 08, 2025 at 02:04:34AM +0100, Michal Wilczynski wrote:
->> This series enables the display subsystem on the StarFive JH7110 SoC.
->> This hardware has a complex set of dependencies that this series aims to
->> solve.
->>
->> I believe this is a PHY tuning issue that can be fixed in the new
->> phy-jh7110-inno-hdmi.c driver without changing the overall architecture.
->> I plan to continue debugging these modes and will submit follow up fixes
->> as needed.
->>
->> The core architectural plumbing is sound and ready for review.
->>
->> Notes:
->> - The JH7110 does not have a centralized MAINTAINERS entry like the
->>   TH1520, and driver maintainership seems fragmented. I have therefore
->>   added a MAINTAINERS entry for the display subsystem and am willing to
->>   help with its maintenance.
+On Tue, Nov 11, 2025 at 10:52:25AM +0530, Praveen Talari wrote:
+> Hi Bjorn,
 > 
-> Yeah, bunch of different folks wrote the drivers, so lots of entries.
-> Pretty much all as you've done here, authors are responsible for the
-> individual components and Emil is the platform maintainer but
-> responsible for most drivers.
+> Thank you for review.
 > 
-> Do you need any feedback dt wise on the RFC, or is it too likely that
-> we'll both waste our breath if the DRM folks don't approve of your
-> approach for the rest of this series?
+> On 11/11/2025 9:38 AM, Bjorn Andersson wrote:
+> > On Mon, Nov 10, 2025 at 03:40:41PM +0530, Praveen Talari wrote:
+> > > Replace disable_irq() with disable_irq_nosync() in msm_pinmux_set_mux()
+> > > to prevent potential deadlock when wakeup IRQ is triggered on the same
+> > 
+> > "potential"? In what case will calling disable_irq() from the irq
+> > handler of that irq not deadlock?
+> > 
+> > > GPIO being reconfigured.
+> > > 
+> > > The issue occurs when a wakeup IRQ is triggered on a GPIO and the IRQ
+> > > handler attempts to reconfigure the same GPIO's pinmux. In this scenario,
+> > > msm_pinmux_set_mux() calls disable_irq() which waits for the currently
+> > > running IRQ handler to complete, creating a circular dependency that
+> > > results in deadlock.
+> > > 
+> > > Using disable_irq_nosync() avoids waiting for the IRQ handler to
+> > > complete, preventing the deadlock condition while still properly
+> > > disabling the interrupt during pinmux reconfiguration.
+> > > 
+> > > Suggested-by: Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>
+> > 
+> > That's weird, I debugged your deadlock for you and told you to make this
+> > very change in:
+> > 
+> > https://lore.kernel.org/all/7sxsfyu2kqbycyfftwfhrncwk3dfnubmzhyi2rqi3jtvi5qsnh@bya3cii45zhn/
+> > 
+> > So I guess Prasad told you how to fix this issue before I invested the
+> > time helping you?
+> 
+> Yes, that’s correct. Prasad had suggested it earlier.
+> 
 
-Hi Conor,
+Okay, then this patch looks good.
 
-Thank you for your response.
+Regards,
+Bjorn
 
-That's a fair point about the risk of the DRM approach being rejected.
-While I can't be certain, I'm hopeful that part is relatively
-straightforward, as it primarily integrates other recently reviewed
-(though not yet merged) components like the inno-hdmi bridge and dc8200
-drivers.
-
-To be honest, I was more concerned that the DT part of the series would
-be more problematic. Given that, I would find it very helpful to get
-your feedback on the DT aspects now, if you have the time.
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+> Thanks,
+> Praveen Talari
+> 
+> > 
+> > 
+> > Change looks good, and description captures the problem.
+> > 
+> > Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> > > Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+> > > ---
+> > >   drivers/pinctrl/qcom/pinctrl-msm.c | 2 +-
+> > >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/pinctrl/qcom/pinctrl-msm.c b/drivers/pinctrl/qcom/pinctrl-msm.c
+> > > index 67525d542c5b..e99871b90ab9 100644
+> > > --- a/drivers/pinctrl/qcom/pinctrl-msm.c
+> > > +++ b/drivers/pinctrl/qcom/pinctrl-msm.c
+> > > @@ -189,7 +189,7 @@ static int msm_pinmux_set_mux(struct pinctrl_dev *pctldev,
+> > >   	 */
+> > >   	if (d && i != gpio_func &&
+> > >   	    !test_and_set_bit(d->hwirq, pctrl->disabled_for_mux))
+> > > -		disable_irq(irq);
+> > > +		disable_irq_nosync(irq);
+> > >   	raw_spin_lock_irqsave(&pctrl->lock, flags);
+> > > -- 
+> > > 2.34.1
+> > > 
 
