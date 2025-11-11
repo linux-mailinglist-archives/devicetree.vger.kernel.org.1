@@ -1,42 +1,41 @@
-Return-Path: <devicetree+bounces-237227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1AFCC4E9B2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:54:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 147ADC4E90D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:47:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B2A53AA7EE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:41:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29E40188A650
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E28328274;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A09328602;
 	Tue, 11 Nov 2025 14:36:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140FD2DECBA
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141642F8BEE
 	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 14:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762871806; cv=none; b=a1nY9kVMZbQxeTvtnPfCkK8PAy8vdd5IdHvzbEiA3Ql2p/CdFzKkT0fkfgaEj5BDr/IZFTVI75X3tmc7i1Pa/1oZHKgi9Ej0lBLi+mKBMPEIB5tT2wjeQhS8UOUsT3FMO6vYk1KqG1DslVz8rnHPY4QlsGElHhxK15X3ScsPAkY=
+	t=1762871806; cv=none; b=ehqBFBNqZHHF7wythQO5PzNap1b9ZYekcYWf+8yzje2G4ImeX01qrAqSE4ep3jwdkv8DErMawULHRzRaz0CwUk7unfkbkQQkhZL1C1EiO8ltZm3R4LE//Ki+TLpyvTEitCYTmUcapF4+T5vFs+SEzw07jH/8XkjP+5BHEDN973E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1762871806; c=relaxed/simple;
-	bh=MrA5Pm+bMe7Y1bUbUfwg73ko1PRGj7avWFqhiEsp8Dc=;
+	bh=ZNINTRuBxzHJb75+8FzrUSGXX8gBUjfqfGMhcBooRxs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ePkdGaEMc3ePV4uVVIVSjcVsJfTbQS+YMo/Y9WUcm23Hbq5mV1bb2Or2shBgElcJ7knwkkt2Qy/tm+8Nm5ecfGjC0WspHopor7Cy2CCHdkGD/8++UxTmfsDutr/91cz1Cn5/2OvYeEUq/wLSGoHv6aBaq3y7pH/dFAPX7PH3+cg=
+	 In-Reply-To:To:Cc; b=KuZH7EQWt9iUVpo73cYWpa84B/Az8b+JZJkPEkl3fnS6wjMPeuKA6F5HmDBInbwr/0ptsIxQGHZBlbvcKM7NJoBtZw6mZk+5fAMqpXgLUs3AIjcx7YA0Vjq3U4iPeGLgO+TDX+85wbflr68PIouSeG2qAnGFZM5a6ZZpwJSLvTo=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.tretter@pengutronix.de>)
-	id 1vIpU4-0004Ul-6V; Tue, 11 Nov 2025 15:36:36 +0100
+	id 1vIpU4-0004Ul-7x; Tue, 11 Nov 2025 15:36:36 +0100
 From: Michael Tretter <m.tretter@pengutronix.de>
-Date: Tue, 11 Nov 2025 15:36:14 +0100
-Subject: [PATCH 1/4] media: dt-bindings: adi,adv7180: add VPP and CSI
- register maps
+Date: Tue, 11 Nov 2025 15:36:15 +0100
+Subject: [PATCH 2/4] media: adv7180: add support for ancillary devices
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -45,7 +44,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251111-b4-adv7180-vpp-sub-device-v1-1-9877fe9f709b@pengutronix.de>
+Message-Id: <20251111-b4-adv7180-vpp-sub-device-v1-2-9877fe9f709b@pengutronix.de>
 References: <20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de>
 In-Reply-To: <20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de>
 To: Lars-Peter Clausen <lars@metafoo.de>, 
@@ -54,84 +53,75 @@ To: Lars-Peter Clausen <lars@metafoo.de>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>
+ kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>, 
+ Thorsten Schmelzer <tschmelzer@topcon.com>
 X-Mailer: b4 0.14.3
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
 X-SA-Exim-Mail-From: m.tretter@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The ADV7280 and ADV7280-M have up to three register maps for the VPP and
-CSI. The address of these register maps may be programmed via registers
-in the main register map.
+From: Thorsten Schmelzer <tschmelzer@topcon.com>
 
-Allow to specify the addresses of the VPP and CSI in the device tree to
-solve address conflicts on a board level.
+Depending on other devices on the i2c bus, using a non-default address
+for the CSI and VPP devices may be necessary.
 
+Replace calls to i2c_new_dummy_device with i2c_new_ancillary_device,
+which can directly use an i2c address from the device tree.
+
+Program the actual addresses of the sub-devices when configuring the
+chip.
+
+Signed-off-by: Thorsten Schmelzer <tschmelzer@topcon.com>
 Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 ---
- .../devicetree/bindings/media/i2c/adi,adv7180.yaml | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ drivers/media/i2c/adv7180.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-index dee8ce7cb7ba..4bbdc812442b 100644
---- a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-@@ -138,6 +138,31 @@ allOf:
-       required:
-         - ports
+diff --git a/drivers/media/i2c/adv7180.c b/drivers/media/i2c/adv7180.c
+index 378f4e6af12c..4152f2049a6d 100644
+--- a/drivers/media/i2c/adv7180.c
++++ b/drivers/media/i2c/adv7180.c
+@@ -1066,13 +1066,13 @@ static int adv7180_select_input(struct adv7180_state *state, unsigned int input)
  
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,adv7280
-+              - adi,adv7280-m
-+    then:
-+      properties:
-+        reg:
-+          minItems: 1
-+          maxItems: 3
-+          description:
-+            The ADV7280 and ADV7280-M have up to three register maps, which can be
-+            accessed via the I2C port. The main register map, the VPP register map,
-+            and the CSI register map. The main register map is mandatory. The other
-+            register maps are optional and the default is used unless specified.
-+
-+        reg-names:
-+          minItems: 1
-+          items:
-+            - const: main
-+            - enum: [ csi, vpp ]
-+            - enum: [ csi, vpp ]
-+
- examples:
-   - |
-     i2c {
-@@ -187,3 +212,22 @@ examples:
-                     };
-             };
-     };
-+
-+  - |
-+    i2c {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            composite-in@20 {
-+                    compatible = "adi,adv7280-m";
-+                    reg = <0x20>, <0x42>, <0x44>;
-+                    reg-names = "main", "vpp", "csi";
-+
-+                    port {
-+                            adv7280_out: endpoint {
-+                                    bus-width = <8>;
-+                                    remote-endpoint = <&vin1ep>;
-+                            };
-+                    };
-+            };
-+    };
+ static int adv7182_init(struct adv7180_state *state)
+ {
+-	if (state->chip_info->flags & ADV7180_FLAG_MIPI_CSI2)
++	if (state->csi_client)
+ 		adv7180_write(state, ADV7180_REG_CSI_SLAVE_ADDR,
+-			ADV7180_DEFAULT_CSI_I2C_ADDR << 1);
++			      state->csi_client->addr << 1);
+ 
+-	if (state->chip_info->flags & ADV7180_FLAG_I2P)
++	if (state->vpp_client)
+ 		adv7180_write(state, ADV7180_REG_VPP_SLAVE_ADDR,
+-			ADV7180_DEFAULT_VPP_I2C_ADDR << 1);
++			      state->vpp_client->addr << 1);
+ 
+ 	if (state->chip_info->flags & ADV7180_FLAG_V2) {
+ 		/* ADI recommended writes for improved video quality */
+@@ -1443,15 +1443,17 @@ static int adv7180_probe(struct i2c_client *client)
+ 		state->force_bt656_4 = true;
+ 
+ 	if (state->chip_info->flags & ADV7180_FLAG_MIPI_CSI2) {
+-		state->csi_client = i2c_new_dummy_device(client->adapter,
+-				ADV7180_DEFAULT_CSI_I2C_ADDR);
++		state->csi_client =
++			i2c_new_ancillary_device(client, "csi",
++						 ADV7180_DEFAULT_CSI_I2C_ADDR);
+ 		if (IS_ERR(state->csi_client))
+ 			return PTR_ERR(state->csi_client);
+ 	}
+ 
+ 	if (state->chip_info->flags & ADV7180_FLAG_I2P) {
+-		state->vpp_client = i2c_new_dummy_device(client->adapter,
+-				ADV7180_DEFAULT_VPP_I2C_ADDR);
++		state->vpp_client =
++			i2c_new_ancillary_device(client, "vpp",
++						 ADV7180_DEFAULT_VPP_I2C_ADDR);
+ 		if (IS_ERR(state->vpp_client)) {
+ 			ret = PTR_ERR(state->vpp_client);
+ 			goto err_unregister_csi_client;
 
 -- 
 2.47.3
