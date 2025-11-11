@@ -1,309 +1,187 @@
-Return-Path: <devicetree+bounces-237130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F051C4D36B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:55:44 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D9D2C4D2A2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:49:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 506B44E7DA5
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:49:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 22AB034EF17
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF722350D4D;
-	Tue, 11 Nov 2025 10:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16572350D6D;
+	Tue, 11 Nov 2025 10:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YWOzvPIp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="afUx8KGU";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DVIHF1mo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A689D350D47;
-	Tue, 11 Nov 2025 10:48:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C8434F49C
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762858112; cv=none; b=DsWL2MBKc66TOrLTWuLMvYMNjO8UFnsX1b3PssLiObCTskg5ViH8ZnHvOml15P+aNkxdY95xFbjtJwhRUVwVRBIde30dDA9V/MKtEiD3X19/tNMauMcMVOJ0EZLDGLaIADAadJ/bCQ7TAK/8OssUEP37nCbdhji1qkDfWE41InI=
+	t=1762858133; cv=none; b=n96LZ5CmFyI1xIu5lR9VGs58YcoRpxpzmkkLWp7DELkxpCasToJGnU7L78M11vo5MaAwFzl4bAjVvm00SVQQzzsIp05XP+z+GHIhIv7zrfsQBv71vEafL9CYOMh72JFqShfpOhXfyj4TBljc9PI9U1SDYkq/xADd3eyoVFxURB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762858112; c=relaxed/simple;
-	bh=9zZ23vt9sZdhE1zPEplVoCY2Fk6S00sT6kxcoy/iW0k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j54qNcynjxjCttACIb3QBr132+zetO6sewsjvYwlzEHKuGdqAwTjHIfObIbSMh/MYQhruF/U+/9fvrVrUhkFf9xjWlN+jB/wvvQaPIXH8KlEi04uEEFtzq6n2tome9mK8s16KCDvagHM5d3BmDBnJtUZloZGktjnYeZ2TWSp8L4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YWOzvPIp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A735AC116D0;
-	Tue, 11 Nov 2025 10:48:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762858112;
-	bh=9zZ23vt9sZdhE1zPEplVoCY2Fk6S00sT6kxcoy/iW0k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YWOzvPIpEXvj+Sq+tkuCqQ7wY8gF9t59GQorEA3Q0qbeqRdhKZ9QgJRXeFTfBdU4v
-	 30ao4sUM/qVsiPKwerKMsIXivQdWEuJQf0R96k+q9wBcc4c6zBsPzP5InCPozjkqDS
-	 L271g83K6CyKibXu0O46ATnj2NlXdYU+6fyDabdkIYRfrE98O8pTkEBFMUdRQ5sQev
-	 TtmTD5f+XpNi5cv7jUz/ioq1FjTSmob2ArIGhLa+9h7cMIFS+WEouHckcb/0XMvOj4
-	 aooILpos9YgvD7CYWTIKqWe2g676LJv8M22HR2b7jc/FIYI0gdt7Pzbtt7SiDzHE2t
-	 qeGZrYYR8bkFA==
-Message-ID: <c388696d-ecf6-4241-8c74-32cd32e12ea2@kernel.org>
-Date: Tue, 11 Nov 2025 11:48:27 +0100
+	s=arc-20240116; t=1762858133; c=relaxed/simple;
+	bh=Hw7WEkYyfmolBo/cx/Bi+H8d4M4g/yfHEl5/k5dvLtY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mkF/Zx2F0Qi805puKYPpnTbzwVHZelK2LkRqvde/tSvmLD6PUi/+KRIBA5lbUrxo193YpB6rEUZivYC590UsGh8GQgR86oTx4OwdY3mcOHKE6GtPIRtXJd15vaHvupTbHbkz0IGsD+liZK4YRTVQVElGqzRqi/xYoBH4xqlWFh4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=afUx8KGU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DVIHF1mo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABAARMi3985600
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:48:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=9EItJ5XOQftBUZ4p28CCb/my
+	3CzvSqKQjhyPpFTkDrc=; b=afUx8KGU6kXYU5/rvvCLhu9WrLAUTQTH88aJ5JpZ
+	eH8L4xr8lru7SjeZz+wvpJ48WZiqLElbeogEr3n74p4n4QU2MLK3Qg1cR+Rf8dmW
+	bnQEwS7Cw4dIdqd7DzHJMoLw/5VYByIKjcPJBhOdf14EHrZIUjc9tCO3tjRi/KGA
+	3bgzvfVKCVQ0vwbL2Ckedk2zX9UKtQnsb3rVs/1NqQGRyr733quGqd/LnE5pMlDM
+	yG5P7m6CcSdrnRBluTrpGOevABMdON3Qzqncl+V8hrLdDhZEP+5t4Q2DaH0f0eaX
+	gGomwojRaLAAAcepDPaWaj3DAIMEomERxn4puMN1/4iFog==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abjxqjxkr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:48:49 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-882529130acso50223966d6.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:48:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762858129; x=1763462929; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9EItJ5XOQftBUZ4p28CCb/my3CzvSqKQjhyPpFTkDrc=;
+        b=DVIHF1moRtJ5y0CIiFzGIYZSIQAmQ4nIRUbDEJLUN5DghRYsTPj6HI4fg2nSdQ2oZ1
+         m2V3rkFRRdqZEFv5mmsSHCJ7Oblzf8rXm4Y6dFqKGqcxrwS0PGEirzMY9SWqCTLT3O9e
+         kCu5uawIm7rdM5WtOmdREPLpIa2HfM/tD7tAjKNe7NyDds5h6r6nPdssib7nB1fRD8Dn
+         lQCct0gS0GXzOOD8dt3lGLqN0KbNhEEqJJbRMY1xbLO7uGwDBqqn354bhL9by6vHct5w
+         JXraEh9XPEDlv5jB6lc7xhcYPaoBukUdcyKLQCv/1bADOOD0ZKXqxutg91rb91lH3cxA
+         1Ndg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762858129; x=1763462929;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9EItJ5XOQftBUZ4p28CCb/my3CzvSqKQjhyPpFTkDrc=;
+        b=HieFFuySZIbwjW0Dvf/E3CpCorrjoeUyf41ieXNbemGsDma5A3wpqnnz2m1ImWImL1
+         tHP/6ZaWy9IgRwNxcn292/WVmeUcGewfJ/UwNpn89zvNj6RlCU9CnoqmT80crAkHb5Kk
+         JBGsZH+WzdS19nrYNuKOYKEEy9VSLLMbumt2zT+iw3VXMCGeS20koJJj40jbrV+NSRoP
+         AMa5MWxFiWzl6FSh+t5U8qyJWS64WDuz7Vv7EF0JQfAXfzIZFBSxGnTBmDieWxymxaL8
+         lQr+F0wePESZcuoz2ZyRzDpQYwoOG0Xxc3nYp2x/H1bvniSA+ic/QPcJOxz5FTQFgRxP
+         FDOg==
+X-Forwarded-Encrypted: i=1; AJvYcCWQCQgS8fR4j+l2Fp6Yq2YNhPDk8PedEScr42qee6AUCUMxpkMNAOfRCV/lNz9QywC0hvYBE9gWjRQF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yytadp3X+uz5VqpNGeO2tAasb29eh0rowwZmlI8UD/2qhQLAjkz
+	lNqe65q5A2cacl1JfH64/4l4ma35YeM41zuO5IyHrT0rCHaq4O5wRvfxAbUw4s81VweBT5h9W0Q
+	2iKl9uWFpQvv6u3HpXmesjflS2KHpca+CkSlaRFIvzdY6SJxKdFVTNsHIuVaLnw69
+X-Gm-Gg: ASbGncuLpYXnTWRnk0Hpm/2UugPvcghwxs05PpGTQSxCu6Jpmvd4PlBK2jqLCg/kCCZ
+	jrUDJdA2/NBEzJso32DJ/A7UxjxuSzXt+9bu4SA02WiNrK4p5S9HBw6Z23C7QaFtk8e6HfwnUDY
+	FH3K/tA3UOC4Ha327JX3MSG7Qg0yHJ4c01KQfXgLzWxUACljIHjsu8Jm96vh/L9XYloHbsoOu3h
+	eG6WE94fFYyPTfX3uIqalhlCybki72vWlkIxlYy9lIhaQra6Q0X9Ri+zCvQGgL0kravwbeqjoJF
+	4RuXGS+AIvSFl2y54RikPsi6oBLk9SMjnUkh9ybbIcNPNE8rg9LZhorTiidOcHWq+pw4BJ9ooko
+	O5oLnlPcftEiRNbIUJJfVvXIsj144WCdSG6QgMz81vpafDCX2RkphWx/1EcZ50E7Alfeo7JgKdx
+	4e6ONPXlOLKK8i
+X-Received: by 2002:a05:6214:1d0d:b0:882:4f53:ed3d with SMTP id 6a1803df08f44-8824f545e1emr99089146d6.36.1762858128902;
+        Tue, 11 Nov 2025 02:48:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF6DZK5HRkqdWLPvPXUjGlUQbBYjLyUgma8QBrsQcOxkXJuIWMYFM67iw5rk0NIzOjJScMNWw==
+X-Received: by 2002:a05:6214:1d0d:b0:882:4f53:ed3d with SMTP id 6a1803df08f44-8824f545e1emr99088906d6.36.1762858128460;
+        Tue, 11 Nov 2025 02:48:48 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37a5f0dd32csm45345661fa.35.2025.11.11.02.48.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Nov 2025 02:48:47 -0800 (PST)
+Date: Tue, 11 Nov 2025 12:48:46 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, jingyi.wang@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com, Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] clk: qcom: Add support for Global clock
+ controller on Kaanapali
+Message-ID: <vomgxeiqctbnezwunxovwznbepmhxbmixkcpi7qkmic4xhhm3t@fwc3rp7r7ylm>
+References: <20251030-gcc_kaanapali-v2-v2-0-a774a587af6f@oss.qualcomm.com>
+ <20251030-gcc_kaanapali-v2-v2-6-a774a587af6f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: qcom: Add waveshare MIPI-DSI
- panels support
-To: Sudarshan Shetty <tessolveupstream@gmail.com>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251111104245.3420041-1-tessolveupstream@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251111104245.3420041-1-tessolveupstream@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251030-gcc_kaanapali-v2-v2-6-a774a587af6f@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDA4NSBTYWx0ZWRfX/ZJ94DM+hCho
+ Lxsu5sR98gd8alid9Xat1R6tlyUsBAo8x0XVJahzlLX5csjuT63b61nHvqm4Hh1eV9imsS3J0FO
+ NxrLhYg7Uy3ruJqgsdWAtl6TciwEZ8OJLPAy+jXTkK7JVampZ5gH7QN8TQ2KVH+UZDaYTmmPLR8
+ ybd5SnBy6RAFLZb+oM+mcBmdcv7Fjp9b73gBiVXcsXtJo3plMvgMv6JgE/VfeD7HezWvIKtcxA6
+ KssoKQn1EydKcsRXJpUFvr+OBVF8rcM6OqD36LpZXuw0dZGEveOzONasE/0CYBLvX7gFWcwX37W
+ fCSNGVQCwRaBThmCoEiaeAzlgRC1rnW/rm2Na7D8YCGzEgJlaFatDfObuOQZ5uJc1FEDnd0sd5D
+ o2eMTX1XWKAgSMETIpRLW+xkxjSvog==
+X-Authority-Analysis: v=2.4 cv=CsKys34D c=1 sm=1 tr=0 ts=69131491 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=NTLD1hAujTJExawGBKAA:9 a=CjuIK1q_8ugA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-ORIG-GUID: qAOUWcn3G90HvY8X6jQXTaFe2n1DFdks
+X-Proofpoint-GUID: qAOUWcn3G90HvY8X6jQXTaFe2n1DFdks
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-11_01,2025-11-11_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 impostorscore=0 bulkscore=0 clxscore=1015 phishscore=0
+ adultscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110085
 
-On 11/11/2025 11:42, Sudarshan Shetty wrote:
-> Device tree bindings for Waveshare MIPI-DSI panels
-> of various sizes (5.0, 5.5, 7.0, 8.0, and 10.1).
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-> These panels require proper power sequencing via an external
-> regulator and a backlight node for brightness control.
+On Thu, Oct 30, 2025 at 04:39:09PM +0530, Taniya Das wrote:
+> Add support for Global clock controller for Kaanapali Qualcomm SoC.
 > 
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 > ---
->  .../display/panel/waveshare,dsi-panel.yaml    | 84 +++++++++++++++++++
->  ...waveshare,touchscreen-panel-regulator.yaml | 72 ++++++++++++++++
-
-Do not mix up patches from different subsystems into one patchset.
-
->  2 files changed, 156 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/waveshare,dsi-panel.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/waveshare,touchscreen-panel-regulator.yaml
+>  drivers/clk/qcom/Kconfig         |    9 +
+>  drivers/clk/qcom/Makefile        |    1 +
+>  drivers/clk/qcom/gcc-kaanapali.c | 3541 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 3551 insertions(+)
 > 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 8ec1803af76cb87da59ca3ef28127c06f3e26d2b..5289a3f07379f3cea6f6192bcb0d73117fe51a5b 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -46,6 +46,15 @@ config CLK_GLYMUR_TCSRCC
+>  	  Support for the TCSR clock controller on GLYMUR devices.
+>  	  Say Y if you want to use peripheral devices such as USB/PCIe/EDP.
+>  
+> +config CLK_KAANAPALI_GCC
+> +	tristate "KAANAPALI Global Clock Controller"
 
-
-> diff --git a/Documentation/devicetree/bindings/display/panel/waveshare,dsi-panel.yaml b/Documentation/devicetree/bindings/display/panel/waveshare,dsi-panel.yaml
-> new file mode 100644
-> index 000000000000..a42ce065124f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/waveshare,dsi-panel.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/waveshare,dsi-panel.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Waveshare 10.1" DSI Touch Display Panel
-> +
-> +maintainers:
-> +  - Sudarshan Shetty <tessolveupstream@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - waveshare,12.3-dsi-touch-a,4lane
-> +      - waveshare,10.1-dsi-touch-a
-> +      - waveshare,10.1-dsi-touch-a-4lane
-> +      - waveshare,10.1-dsi-touch-b
-> +      - waveshare,10.1-dsi-touch-b,4lane
-> +      - waveshare,9.0-dsi-touch-b
-> +      - waveshare,9.0-dsi-touch-b,4lane
-> +      - waveshare,8.8-dsi-touch-a
-> +      - waveshare,8.0-dsi-touch-a
-> +      - waveshare,8.0-dsi-touch-a-4lane
-> +      - waveshare,7.0-dsi-touch-a
-> +      - waveshare,7.0-dsi-touch-b
-> +      - waveshare,5.5-dsi-touch-a
-> +      - waveshare,5.0-dsi-touch-a
-> +      - waveshare,4.0-dsi-touch-c
-> +      - waveshare,3.4-dsi-touch-c
-
-None of these come with any reasonable model names? How so?
+Kaanapali?
 
 > +
-> +  reg:
-> +    description: DSI virtual channel
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: Power supply regulator for the panel
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: GPIO to control panel reset
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description: GPIO to control panel power enable
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +  - reset-gpios
-> +  - enable-gpios
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi@ae94000 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        panel@1 {
-> +            compatible = "waveshare,10.1-dsi-touch-a";
-> +            reg = <1>;
-> +            vdd-supply = <&vreg_l11a>;
-> +            reset-gpios = <&display_mcu 1 GPIO_ACTIVE_HIGH>;
-> +            enable-gpios = <&display_mcu 2 GPIO_ACTIVE_HIGH>;
-> +
-> +            port {
-> +                panel_in: endpoint {
-> +                    remote-endpoint = <&mdss_dsi0_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +    mdss_dsi0_out: endpoint {
-> +        remote-endpoint = <&panel_in>;
-> +    };
+> +MODULE_DESCRIPTION("QTI GCC KAANAPALI Driver");
 
-Drop node, not relevant here.
+Kaanapali?
 
-> diff --git a/Documentation/devicetree/bindings/regulator/waveshare,touchscreen-panel-regulator.yaml b/Documentation/devicetree/bindings/regulator/waveshare,touchscreen-panel-regulator.yaml
-> new file mode 100644
-> index 000000000000..be81be5d2d74
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/waveshare,touchscreen-panel-regulator.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/waveshare,touchscreen-panel-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Waveshare Touchscreen Panel Regulator
-> +
-> +maintainers:
-> +  - Sudarshan Shetty <tessolveupstream@gmail.com>
-> +
-> +description: |
+Is there a reason for keeping it in CAPITAL LETTERS?
 
-Do not need '|' unless you need to preserve formatting.
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.34.1
+> 
 
-> +  Regulator driver for Waveshare touchscreen display units.
-
-Driver as Linux driver?
-
-> +  This regulator enables and disables panel power and provides
-> +  backlight control over I2C.
-> +
-> +properties:
-> +  compatible:
-> +    const: waveshare,touchscreen-panel-regulator
-
-That's way too generic. Description doesn't tell me much more what is
-this hardware.
-
-How is so that a device with specific programming model over I2C has no
-name, no model, absolutely nothing which would identify that programming
-model?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C address of the regulator device
-
-Drop description, redundant.
-
-> +
-> +  vin-supply:
-> +    description: Input supply regulator for the panel
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description: GPIO to enable/disable regulator
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vin-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    /dts-v1/;
-> +    /plugin/;
-> +
-> +    / {
-
-Drop all this. Look at existing bindings first, how this is written.
-There is no single file like that. Please do not come up with your own
-style.
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
