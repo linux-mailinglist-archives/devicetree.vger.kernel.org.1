@@ -1,70 +1,84 @@
-Return-Path: <devicetree+bounces-237328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C232C4F5EA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:03:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6DDC4F666
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 19:17:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 681583A5BB9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:03:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFADB3BF1D6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41CF3385B9;
-	Tue, 11 Nov 2025 18:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53544393DED;
+	Tue, 11 Nov 2025 18:14:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UoxZ2qIT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PTyOuaBc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7FBD2798F8;
-	Tue, 11 Nov 2025 18:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247062D131D;
+	Tue, 11 Nov 2025 18:14:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762884232; cv=none; b=X2h1omWYUQsJt8X+MInld4L6Co7W7xU5uLq8LDpKMZ1ZEz0OsvHO7d/OXv7gRbhtjibccO9QdXskIG2PdwU0db8A12Nm4aM5LgghNfSwCIWgYQQtkTKpCTVLa5cj1BPlkmX1jeqv5woWu7npms1ET42suYvxh43VziTEsFK30OQ=
+	t=1762884898; cv=none; b=HgY6Kd19klFRdLycT/Tvrrn/pf/Tf90JUxSkQkZBgWCpdIsiuMbsoNzhPhDRJ8vhmHtNmZj/9vjUU7WuLyPYi0nQvzrs8uZbSYSrvhYCsyQHrUi8Pmn/V+E0o7glfULtTodvSSxNACeoV9Ne1vuBJAvXSqotqel5vyc6wVKkBHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762884232; c=relaxed/simple;
-	bh=mirE0FVC1aFCsQq2eMehFBIBONouR+WUmeEdSPLLXaU=;
+	s=arc-20240116; t=1762884898; c=relaxed/simple;
+	bh=YJZ2BYCy/RFNPtkZFsqxaPgXCs3zWEQSsNMKkzCW8hI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F4pbBvf6LnY9krM64BcUDBtxo/7m7TkG1kiVB0J4q8Nb5UTXwC5Kqd0t8fipX4KH8rARN6Xk3qno/CABi4mnsrT3i4cLgzfyc3OAbj6ZDvsGbiuwPbagfMyCbEX9b/NCdXTKFkdhhChuLtrZzcVC/1D3nlFYulHwLaeq7ZTL2cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UoxZ2qIT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21B8BC4CEF5;
-	Tue, 11 Nov 2025 18:03:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=u90JkIye0mpUrlYuLVxgoxQGzD6Ibrd7SNYSBzusrnMKktl9dNSLbl2Efutp2FFYMG8uaGyqxXvsr0ylVKjJe5HdXghqnLTmnN9WwG9haiVKLA0qcA0uiEU5yVGMZHyQc7yzCMEojcdvT86westRxBIiDW7y+Yc/WCKw6bE+Q1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PTyOuaBc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADF59C4CEF7;
+	Tue, 11 Nov 2025 18:14:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762884232;
-	bh=mirE0FVC1aFCsQq2eMehFBIBONouR+WUmeEdSPLLXaU=;
+	s=k20201202; t=1762884897;
+	bh=YJZ2BYCy/RFNPtkZFsqxaPgXCs3zWEQSsNMKkzCW8hI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UoxZ2qITmDCIv3Aw71Gtor6BXmxZ1wnoHiUP/IBntzbdAFxQ9XxovK8QSj2aDPfZf
-	 8IqPCAlCuq0F29Cbyszl60cwbOySqlX8Rj5fwBoLkDonymsRi7FtTTer6S+8EI4kqM
-	 /ut0BcYpYH4KdK4sZNYt0ARyTafsLbJsT2J1vKYwJE48dIlDpf49nt492SCsRajbeb
-	 N7w7bHAXlZp2gWqVuLabvi9TMqJAmHGuMrDDhb1WkFwSw2R9+XPQRX4y7EiAn/1Y0P
-	 pkrI36WZ83pDlW7P7nW0wY6+KaIUsVMglj8ztkQuZyvx7fRB8f45cARtGA3HLG7lmq
-	 XpVhTSucBjALg==
-Date: Tue, 11 Nov 2025 18:03:43 +0000
+	b=PTyOuaBcX/6ltywosBlk/NwujGRrcJfEf8qH4zrh95pJAt8KmLpY0rchl/8qtmmFz
+	 Qa8aDw06RDCss8Kjwi1Qe/onQEh5ofgzEewAcX+H2bNOc7Br0Em4wLlqP2YplseInE
+	 UU14ps8vqndAKHvQrGwOSZl4mE10pCFh2mkdJNjMIWPUkgxgVEyX4mwIdoMls+80we
+	 Hco0gmIy2hh/V6SIk7fVd1rSUqsggZXdtjysstDTlfkDjXZG/9OTl5AKEGRAb5K6lr
+	 BSDUwHwZplb8f+HiSYVis4M+DIzNyu2PPjkMhdxWTXnGXJ2ls1CidyEq6/oXFK1ICK
+	 2Xjdgg8pBJJqA==
+Date: Tue, 11 Nov 2025 18:14:48 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jack Hsu <jh.hsu@mediatek.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, srini@kernel.org,
-	ukleinek@kernel.org, gregkh@linuxfoundation.org,
-	jirislaby@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de,
-	chunfeng.yun@mediatek.com, wim@linux-watchdog.org,
-	linux@roeck-us.net, sean.wang@mediatek.com,
-	zhiyong.tao@mediatek.com, andrew-ct.chen@mediatek.com,
-	lala.lin@mediatek.com, jitao.shi@mediatek.com,
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Xingyu Wu <xingyu.wu@starfivetech.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Maud Spierings <maudspierings@gocontroll.com>,
+	Andy Yan <andyshrk@163.com>, Heiko Stuebner <heiko@sntech.de>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-pwm@vger.kernel.org,
-	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v7 8/9] arm64: dts: mediatek: update rtc properties for
- MT6359
-Message-ID: <20251111-heroism-greasily-fb01345ae609@spud>
-References: <20251111070031.305281-1-jh.hsu@mediatek.com>
- <20251111070031.305281-9-jh.hsu@mediatek.com>
+	linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH RFC 00/13] drm: starfive: jh7110: Enable display subsystem
+Message-ID: <20251111-footing-eclair-332f5f0769f2@spud>
+References: <CGME20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e@eucas1p1.samsung.com>
+ <20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
+ <20251110-clang-baking-b8b27730356e@spud>
+ <00e897dc-9966-439b-a74a-7604a1870027@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,67 +86,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wFCZWHo1MJf80ONG"
+	protocol="application/pgp-signature"; boundary="/gBidW5Sm+Kw8wVT"
 Content-Disposition: inline
-In-Reply-To: <20251111070031.305281-9-jh.hsu@mediatek.com>
+In-Reply-To: <00e897dc-9966-439b-a74a-7604a1870027@samsung.com>
 
 
---wFCZWHo1MJf80ONG
+--/gBidW5Sm+Kw8wVT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 11, 2025 at 02:59:22PM +0800, Jack Hsu wrote:
-> Update properties of rtc for mt6359 PMIC
+On Tue, Nov 11, 2025 at 04:33:28PM +0100, Michal Wilczynski wrote:
 >=20
-> Signed-off-by: Jack Hsu <jh.hsu@mediatek.com>
 >=20
-> ---
-> Changs in v7:
->  - remove mt635x-auadc.h
->  - remove fg nodes
+> On 11/10/25 20:35, Conor Dooley wrote:
+> > On Sat, Nov 08, 2025 at 02:04:34AM +0100, Michal Wilczynski wrote:
+> >> This series enables the display subsystem on the StarFive JH7110 SoC.
+> >> This hardware has a complex set of dependencies that this series aims =
+to
+> >> solve.
+> >>
+> >> I believe this is a PHY tuning issue that can be fixed in the new
+> >> phy-jh7110-inno-hdmi.c driver without changing the overall architectur=
+e.
+> >> I plan to continue debugging these modes and will submit follow up fix=
+es
+> >> as needed.
+> >>
+> >> The core architectural plumbing is sound and ready for review.
+> >>
+> >> Notes:
+> >> - The JH7110 does not have a centralized MAINTAINERS entry like the
+> >>   TH1520, and driver maintainership seems fragmented. I have therefore
+> >>   added a MAINTAINERS entry for the display subsystem and am willing to
+> >>   help with its maintenance.
+> >=20
+> > Yeah, bunch of different folks wrote the drivers, so lots of entries.
+> > Pretty much all as you've done here, authors are responsible for the
+> > individual components and Emil is the platform maintainer but
+> > responsible for most drivers.
+> >=20
+> > Do you need any feedback dt wise on the RFC, or is it too likely that
+> > we'll both waste our breath if the DRM folks don't approve of your
+> > approach for the rest of this series?
 >=20
-> ---
->  arch/arm64/boot/dts/mediatek/mt6359.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
+> Hi Conor,
 >=20
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt6359.dtsi
-> index 467d8a4c2aa7..fe737254c091 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-> @@ -302,6 +302,9 @@ mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub=
- {
-> =20
->  		mt6359rtc: rtc {
->  			compatible =3D "mediatek,mt6358-rtc";
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +			status =3D "disabled";
+> Thank you for your response.
+>=20
+> That's a fair point about the risk of the DRM approach being rejected.
+> While I can't be certain, I'm hopeful that part is relatively
+> straightforward, as it primarily integrates other recently reviewed
+> (though not yet merged) components like the inno-hdmi bridge and dc8200
+> drivers.
+>=20
+> To be honest, I was more concerned that the DT part of the series would
+> be more problematic. Given that, I would find it very helpful to get
+> your feedback on the DT aspects now, if you have the time.
 
-Okay, this looks a lot better now. Still missing an explanation of why
-it has been moved to disabled though, especially since you just go and
-re-enable it (without adding child devices that use the address/size
-cells).
-pw-bot: changes-requested
+Right. You'll definitely want some actual DRM people to weigh in though
+before making changes, I am really not familiar enough with this type of
+hardware to know if the breakdown is correct.
 
->  		};
->  	};
->  };
-> --=20
-> 2.45.2
->=20
-
---wFCZWHo1MJf80ONG
+--/gBidW5Sm+Kw8wVT
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRN6fwAKCRB4tDGHoIJi
-0uoFAQDNm4ule8p2MhE3JjSHzEvgFm4U+PmD7w7D5a6po+6lFQD+MjosiBlNJq1z
-mhXOc0fMS+qD6LGsDwugFT6pPQ4lzwA=
-=+aBt
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRN9GAAKCRB4tDGHoIJi
+0r8GAPkBsYDP7LLqp2+h6FYJs9F/YlRAnuueN9JB2on22suIYQEA03Yvk0N2Sfh+
+Ee2i/GJcLr7XOYAXK2mOE8f+CiHaLQU=
+=L7ty
 -----END PGP SIGNATURE-----
 
---wFCZWHo1MJf80ONG--
+--/gBidW5Sm+Kw8wVT--
 
