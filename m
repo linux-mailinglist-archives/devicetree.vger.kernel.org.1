@@ -1,224 +1,296 @@
-Return-Path: <devicetree+bounces-237121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF22C4D19A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:38:39 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A9CC4D24E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:46:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E017189E35A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:38:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 19C124FAD4E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D7B2FBDFA;
-	Tue, 11 Nov 2025 10:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10ABD2FA0F5;
+	Tue, 11 Nov 2025 10:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hxwI973J"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IUsEyqJB";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gt/3GH7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012056.outbound.protection.outlook.com [52.101.53.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C1B2F3C3F;
-	Tue, 11 Nov 2025 10:37:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.56
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762857479; cv=fail; b=Os16JdHlM8rLPotbGAmHkeZYAR8OZAY75wHNCThMPXs0GpoIckWg+lOOfPNJXlA+YPgVs16syKKCSrglLe0FEBUqxvz4Lpo2Z4ym+pMPgNxI7bA7lQdwIdCKA4wxhAaWrA1BeA+++nuxLXf0Ij6O5apP17UHiqZnPUYikL71OlI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762857479; c=relaxed/simple;
-	bh=mj0q0SnTkW02eP9ExxyFhZNUJ90oEVn+DZtgzBwS78s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=S0x2JL8D19TDKC1Qf6tSJSC0sCBWXBeo+4iAqW7ui2g6uY3JluOwgYLRoZLM9t8RQxgn4moZ/8WAWVNNY9iU4PaCEycVTWK2b5Y/C6CDhxBYKiYo68Bl7SaKzISIRV5y8aHVPFr5C/rQmEbobx6gwcnayKuY8tbl82Mczf3lia8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hxwI973J; arc=fail smtp.client-ip=52.101.53.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZChkAM3zfRq3HiA/3ZUOUKatpN6y4O+4AJwwZr75df1hPA9WdjxhCJBrEksdwMjcrDqYERkdpLPkrTfqagY+Rv9UysYYNLz3f1TXJaglB871PKWYLQQIyaa7AbuLBNfeYkkxhcysGe1GMyRXNDEUrUvke6YZW0NTyuxC6C3iDAQv6hnFkhDBKGkRQ7jyMeqsHhUTDvPgFENcgFwQa9FQkPA6c7QEUum+f6FPlJ4AUwpZ/DIt4pnBOerGfx7rgXQEV62VCOT41fLPpzL0p1udmem25Jn34FozbT7KyXlbrVEb+/a+SsM2YmaEPLuvyuuDq48rx3W3Cn3BiW2FCGRSKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eB+fhLcfB1i0mBadf1iV4l+D+XZbe35Q4EopZkorEw8=;
- b=rF2HTKQgqknbbNUpwpAubwxk+WUbvxpPCLnWCY+VcUlMjWQi9lZtREWASWIr6VChOeZVCI7w1aomiU2QqgN2032hcfSd1wkv8WY2rhKSQejbYXl6o7I8/HUtja18BBT22iAwkHiNYWl8GlaVn0PTR9fkaJwDvXNgFVrs5eYDYMIZa56cwx7CshehjZ+BljFAv+1CjjEQjizocl1wapV0V7q7Lbw3ydoSWhyts5YaFY6ocsWfwT8KTfjsSCPOwOf4A3KKcPehKvu2ttTt6pYv5BsRTOmpHIblkH7u5xCBGSfXxn6DTThRPML7F9bCx8soVyTAdaZsGGvZ98chgMhilg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eB+fhLcfB1i0mBadf1iV4l+D+XZbe35Q4EopZkorEw8=;
- b=hxwI973JBMl9RMGwyiLlY8vjWlqFrWxEMyuxkkGA8GoQ9QTrfUXHHY8R0nfH5EVDxpVTOP9uq2V9299F8FD9eEZgmuij5sB+ppdSBEDF1Y0kA93+8DccKPyZjYTTTPk/F0oZTIc4CDIy9etexgU/AXNeoco65JY27vrhx68eDLs=
-Received: from MW4PR03CA0225.namprd03.prod.outlook.com (2603:10b6:303:b9::20)
- by BY5PR10MB4164.namprd10.prod.outlook.com (2603:10b6:a03:210::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 10:37:53 +0000
-Received: from CO1PEPF000066E8.namprd05.prod.outlook.com
- (2603:10b6:303:b9:cafe::b6) by MW4PR03CA0225.outlook.office365.com
- (2603:10b6:303:b9::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.16 via Frontend Transport; Tue,
- 11 Nov 2025 10:37:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- CO1PEPF000066E8.mail.protection.outlook.com (10.167.249.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Tue, 11 Nov 2025 10:37:52 +0000
-Received: from DFLE211.ent.ti.com (10.64.6.69) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 11 Nov
- 2025 04:37:47 -0600
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE211.ent.ti.com
- (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 11 Nov
- 2025 04:37:47 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 11 Nov 2025 04:37:47 -0600
-Received: from localhost (dhcp-172-24-233-105.dhcp.ti.com [172.24.233.105])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ABAbkhm778082;
-	Tue, 11 Nov 2025 04:37:47 -0600
-From: Anshul Dalal <anshuld@ti.com>
-Date: Tue, 11 Nov 2025 16:07:32 +0530
-Subject: [PATCH RFC] dt-bindings: arm: keystone: add boot_* mailboxes
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DD234F461
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:38:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762857540; cv=none; b=MFm+OYxyU6sFEISSgg3rtZRsUJzL1Mh7MQCgb10jWgIjdGfgSaivFlwOCcYM1A0vOrgUpbUVEfqYwdMqMHYz+hNQTP7gH4t1uRTv6al8ZppqblCkVQy9RbnMr3/ZtPq7HxYG5G5xSkYwXzx/7iBXJrrHt/aHwDisA1QI+3CpVZk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762857540; c=relaxed/simple;
+	bh=A+acC3J962ujp7zmdIRESvKcu/fiPA9e1teWF7HgyAQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FScr/H5w8jXTMzSOi5FhTt7ZB3WWRr4e9tycHXfk9jM9uE26yp5LnYuzvt28qd9bOAxsjYNTFtB8VjjjgB83UN6nfy0gO5qML9N6DNdpnSYKPVfsTWbeYugheY96OAt3wF/z7q2y3VVkJJJpPvkpU326KyY67pWVp0JyDKV+rP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IUsEyqJB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gt/3GH7D; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AB76J2n411865
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:38:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=F0+rza3fzimpXJGQPolccb5l
+	BPiW/LZvLZ5Q3IvvlME=; b=IUsEyqJBiWb3apyJhcCNHd38hPZH9q7qA8sIwrd0
+	PSF9CYc7cFr3IjoRt7E2FWPsX4AT8H1TdidiTk3axYAuvXPB/mS4T8RkiyYc632H
+	cd9VjYrn8EFngiToGqRSiabI0HsjlGdata6YRC+OfHzp0iTh84Gy798pzTz/6NVY
+	+5ivDD8nTli+JSwvnZ58XRT8VZoHthoe+5JHPBKLLvbaSIvy/jd5f6cOHJz5G+Xd
+	mupEY4qDiJLDxd6rWUDmQxJmdZrrpcpVa4Mt0ZJQeWNCCJRZrMhwhSzCR59yM3lZ
+	cAszG0eOD1zUkTWTMhMqHdIRD4cOTCy9dKZx6T5oR6yQog==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abppu24hg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:38:56 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed7591799eso114826121cf.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:38:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762857536; x=1763462336; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=F0+rza3fzimpXJGQPolccb5lBPiW/LZvLZ5Q3IvvlME=;
+        b=gt/3GH7DFyv2rLyCFIlAaro4ZipkjieDq5CjJiZEt8FRNTrNxnc7QB3f9uMdkXvP7O
+         jxc6CWWCBKcvjxHbPPezc5koFWErRs3U8+3Qk3eMbvskO4QjhvfRFJVgjlm/fANOsiSH
+         h3fBYtGuT/e7iPaWu5p8u2aoZyNAe/79tz5+CUxUTy8ZSPmExjWTg3vGv5S0wPOvxrMj
+         xaBkwGRUb9wuIsVATsMdgUaTQWkC50IrS+faT0zkeISETkSnD3HdGfXW+zW1vqLg+6uN
+         J4TXF3ESv1Dt//58H2A2N9jRUfUuZLHZ6NtlmGexWqxCghHx7lqsZh7wbGabw3XYmAUq
+         IeFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762857536; x=1763462336;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=F0+rza3fzimpXJGQPolccb5lBPiW/LZvLZ5Q3IvvlME=;
+        b=PpWMarra7Mngdra7yDYpYnbaSuqwPV2hgWQ91929PPhqV34aGJGx67i7h277FypFes
+         hPNg+tdFa24XQbQmc5MTsIFnvolIY5SUYlMImYL4d5UmLEJb7qJQVHOBM3G0kxdv/kKi
+         g+DHsm7C0bP+qk0QaCtKqc6ZvWflYHHGIPW+c3vcdNZxRUtmkCcmYLcqXFy94A2Ay91/
+         r+gBav4t6jxOX5lhpPgIoXCWqJCYr1TJnuwrwjRW39jtsmCaf0nt5BQWPHB4FrN9eBWI
+         xF2hiqQjFGsX30fCq80U1SZ+4FgAgjLEGsXlMh8/Qd9WH/hnCzc5di5V5tiY+2OIxXro
+         viGA==
+X-Forwarded-Encrypted: i=1; AJvYcCWMKZSTW6/Jt0V9Ow0ynRs77qAfSxjAlnGIxDM9mBzKKlwAZ/TGPsVY3IFrtk0EBVcso06ELx91jbJy@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxvYhhOQCeOdqGHvV0LEk3s10OoFvDCcCLIui7GxR1rJaZtDH9
+	NdbiiHX+cYp3+GQ8K8EWISzaX5IoTsWUIi+iQedWw9MnMQaSfBOFqOYj/wux4Agl8L6rTapty6K
+	IEGTD9QkMzGupSV3QUFKWorpm6o/igQ7YcJx7N7kHDZaXUwgynkNI5H0o0l7r+vp/
+X-Gm-Gg: ASbGncvZ7tcHAY/078wtJs82XGS/F70IZpWr//hi+15ECBbcZCuBckX7IJVrOkylO+y
+	SC10exi5+Bvx0DFfvHrTXDtesj8x4DtlPztys4fgrn/WgWsVta/aHswYrqIu9866QQpdjB/I8MU
+	X59UEej4YdrwbfKrwWj8xY3VIR8b6/D5Dqzm0nZBsRWHnNcU3Gxjs7YxfBDn6qHcSsNycjUjovt
+	dTpSremROWHw+jiywP1nJLdfKkSIaOQIvqYJXg61kkg5n5wQbRWCiZYAvoFvFSsxi5dakuZvHTg
+	7IcPDh6eDKGXrguCMPqtIuwQBLusx6vPe/S3sBOeyxOFn3QNQgJlx+J0PZhcSpe7NokML6kGLcH
+	4MATKVLNDA4JSICxSs4FDVtIaqZ0P9RYaTDTrXZWRIFubSzkjEm/E9ugzvBFRCv0JsIU/2iYvR9
+	ZKCxbYs7Wc0Kjh
+X-Received: by 2002:ac8:5993:0:b0:4ed:7c9f:f2ef with SMTP id d75a77b69052e-4eda50259e3mr134140031cf.73.1762857535715;
+        Tue, 11 Nov 2025 02:38:55 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF92xBApQrRVXtA9xV5EKzBgmcrn6Mw/FV9vZg9iCa0pvrqRSHArrA0GbGMmcTUfzEYQ0ESvQ==
+X-Received: by 2002:ac8:5993:0:b0:4ed:7c9f:f2ef with SMTP id d75a77b69052e-4eda50259e3mr134139661cf.73.1762857535171;
+        Tue, 11 Nov 2025 02:38:55 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5944a59e54asm4787836e87.105.2025.11.11.02.38.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Nov 2025 02:38:54 -0800 (PST)
+Date: Tue, 11 Nov 2025 12:38:52 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vishnu Reddy <quic_bvisredd@quicinc.com>
+Subject: Re: [PATCH v3 0/6] media: iris: prepare support for video codecs on
+ Qcom vpu4 platform
+Message-ID: <3vbq76dpjnadfrnufojq4zqiv7p5p555rhxfx6yoncc354p3lk@ohcs3ldhuoao>
+References: <20251107-knp_video-v3-0-50c86cbb0eb8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251111-k3_syscon_add_boot_mailboxes-v1-1-529a27f21076@ti.com>
-X-B4-Tracking: v=1; b=H4sIAOsRE2kC/x3MwQrCMAwA0F8ZOVtYOyubV8EP8DqktEvUoDbSi
- EzG/t3i8V3eAkqFSWHfLFDow8qSK+ymgekW85UMYzW41nlrW2/uXdCvTpJDRAxJ5B2ekR9JZlL
- Tb71LiEM/7BzU4lXowvO/H+F0PMB5XX9gKwCHcwAAAA==
-X-Change-ID: 20251105-k3_syscon_add_boot_mailboxes-8452bdd98962
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, "Santosh
- Shilimkar" <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-	"Anshul Dalal" <anshuld@ti.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762857465; l=1731;
- i=anshuld@ti.com; s=20251022; h=from:subject:message-id;
- bh=mj0q0SnTkW02eP9ExxyFhZNUJ90oEVn+DZtgzBwS78s=;
- b=N395AF1oLLoFjT9c5dLzWgWB4HxJltMuVOdbZgTCSykhGvd83ZsrXP4pW1p1iDLwzatfkYKMo
- wSFWhMCQqtUATD727SQlxHzwDC7+hjON9SRFxuPNC4rXzOnXJNAz7JY
-X-Developer-Key: i=anshuld@ti.com; a=ed25519;
- pk=Kv8FlQElcrR6efyEHmjtE83y8e0HKvqPyvVY+PJ4UFw=
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066E8:EE_|BY5PR10MB4164:EE_
-X-MS-Office365-Filtering-Correlation-Id: c55d4f23-c200-4c10-d7d9-08de210e5dda
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dVhIVjIydFNJdDd0a1VZajdOWGRJZ3ZlYVhmUmc4U1dNY01vTFVoQ2RWWWd3?=
- =?utf-8?B?eGZzTC9hay9Jb25ZWWF1TDhqQ0N5TEdSM3I0bXI5dmtUWE5uUTBvc3d4WEw4?=
- =?utf-8?B?VkMzdC8vWjRNbDFpMFJ2aG11STBmVzdMTG92RXJiWnB1L09aeWw2RDNnenZO?=
- =?utf-8?B?d3QwYUNtQVVVTE0yU0Y5b3NiSUlsOEh2aDNTMUxMdWFpOTlpQlpHUFowWmpV?=
- =?utf-8?B?SWg0Y3VzUDhOOGs3bVE5WjVNVk5wdjgwRnRkTDIxVjBucnN0cEpZYnJjbngy?=
- =?utf-8?B?VHZKQzc4RTFOaGtYTGI0RFd5dTYxclNSYTR3d1cycTExZVZjRDM5ZjlMQW9k?=
- =?utf-8?B?d2EyczEzQ0xzQ0JZZWdMSklLVGlZWkhWWFRYOE1pTzhMUTBLTzZQQ1hBRnlE?=
- =?utf-8?B?dE5xcHVhU3k0ZWttQW9MTFlPSUZNOVdkT3lNSStZY1dJbCt0eUhma0VzSUli?=
- =?utf-8?B?d3l2Y1ErU2FwNkErQnhEMzJ1MWdrakcrYVNWL0VZc0JXblJqQmg5Q081bllu?=
- =?utf-8?B?cFFwSHlOaW04SlJKVHNraUVKbnJRMk5ZOUxwZUxOM3IzZU85alFBMlFBWnpt?=
- =?utf-8?B?dDV4SXlaR2luM1RXSHhZOUhsYVdZN2YybWFEWm81cml6c1BQMFduMmwrdU5r?=
- =?utf-8?B?bGYwNkZyQi9GKy9OMnM0Q29yVWh6S2hUa0tkZTZ1TzVRYW9EdVBEc0I5UU5F?=
- =?utf-8?B?WWU4dE1xSjR6MzNJYXZLVDRVeC9kWEk4TFFaZVk0OFA4SXJPMytIR0VuVU9s?=
- =?utf-8?B?R3ZFTGpUL282UTFxQVdRNHFHbnNZMlBqemNRUmxUY1ZIbTgwT0Fob0crWENT?=
- =?utf-8?B?eUpiN3JqaUVIN0N3clkwZGUrbnl4eVNRdlpQdVNpd3lReWgwWHdDbms0Z2FN?=
- =?utf-8?B?TFZ5b2l2dHk2YjNYWENReVhmVzh0aVh0RFNyOVJ3U3dDQjZSWTZPMVJWemFV?=
- =?utf-8?B?MjlYTEpNdnZMV3p0M3hQa2g0ck4rUFg5Y2w4UzZXVUVjMThWTCsrVmNpcDk0?=
- =?utf-8?B?M0MvSjJHemF0dXErZmhLUHNUckdwZDYveVJ0N2FlVW8ycGV1RHRCOE85Y2M4?=
- =?utf-8?B?bEpaRzlLd2VCK0FsVUJVS3lxZVEvem1MdGpjejc5OUZXNElXcG9DUVlWVUc4?=
- =?utf-8?B?OTRJdGNyeHZXODFYYjQ1c0hoUm9UcDdmOHlEaS9RYUp6c1l5R0hLdllYdGdw?=
- =?utf-8?B?QUlSVytTdExnbW9Rb2IyNldwUjNQSHpqRVdJYk9hRCtmcnBWaGUxMVVZbzRj?=
- =?utf-8?B?T1Rqd3dOVkhRMTVKeDJCcWRFRzRuMUZtSDFxa1ZmY29iWGFvd3RNR3g1TVJp?=
- =?utf-8?B?MnplT3JMaUlRUWZ6ZXhXMnZCZGVLb0ZzeEF0MU5JNHlVWHF1M2VydmVWUVgw?=
- =?utf-8?B?TU01SjhtRzZuYWJLbXltZ2xyNVhyOStzYmNBV0ptL0FZc1lYaE5iaFNXRXh2?=
- =?utf-8?B?aDdjcDVxVFF0RmxoV3hrMWIycXA0ZE1zZDFXSW1YeklxQ240d2xQU1ZpV1Vu?=
- =?utf-8?B?dHRWRzFNU3owTklTSGtjb3dJMFhsbjFvN0hOczJyRnFDdVg3K0pHRDZSYWpv?=
- =?utf-8?B?UUtKNlY1cVJuRTNoZnlZMjh5aThRUXNHU0pDcTc0REV3eWJnTi9kdHZGRzZl?=
- =?utf-8?B?MDlNUGVpVUNwZ0RMOWNlUHVoaHFSQkxmOGdFeGk4Z1lRNXNWT1hzRml4bTQ4?=
- =?utf-8?B?VHVRMDlrb0RIek16RFpGY3dVYWRuZVFQTFlCelNOUlBZTlZhR1ZuWlNDdDdU?=
- =?utf-8?B?aVhxeE5HeWFZRzIrWGFBcHg0WGJkRUViTnlZK1oyL3RKVFB1MGdYY0dQRWZh?=
- =?utf-8?B?UmdtNFB4WTdsaXEwQTcvazJrMHFhOVFEZWNnbjAxSjN0TFpFaUpySGdBOGw1?=
- =?utf-8?B?OXl6Q1VseUhGc2c1TkFDa05yZkdzcVVTbHFFTDI4SU81dmZBU21RNGxkc2ow?=
- =?utf-8?B?eGgveGhnSkZ4czJFRUo3cTlnVmxiSGJTMHVTMTJKYnU2WElFNGkzNFp4ZW85?=
- =?utf-8?B?RDh1VWxlWWIyTUdOVFg1QUdVdXBHdWYyZkhTLytTZWxFbjEzNjFOREluSDhM?=
- =?utf-8?B?VVNqYWN5cFZYK0Z6WnM0SGFFTllXWkpkak94TUx2T2pyMGZrKzhmR3dxM0p6?=
- =?utf-8?Q?vOt8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 10:37:52.0362
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c55d4f23-c200-4c10-d7d9-08de210e5dda
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000066E8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR10MB4164
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251107-knp_video-v3-0-50c86cbb0eb8@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=TNVIilla c=1 sm=1 tr=0 ts=69131240 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=FnzHA13sX9O2i_5sQrcA:9 a=CjuIK1q_8ugA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-ORIG-GUID: XDBdDWQ3M8ph2ErERKXrtajNMJR56LhA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDA4MyBTYWx0ZWRfX3V+92J1mNk/w
+ OrbO7WONK5vtBZD17b/8nA19XdfJz++cbzTFo3z+rIGw7QrqFO+xPhk29SN5xQiXIi26WTrwqvZ
+ dqluOJram0tPhr8NpgZNX46TZ9ZAOtbkFykHEiGsmuQ+4W1CWA3QeZX+KpfNfnPG5esFGNHDNJa
+ GclU1R/1wCs0ih0GQ/9GxClElaq6b5AudGiVRufIYhlgixiXl97F7mBrSGWN+sjuwlyxy/OaN3d
+ 8zk6e3hoYb01lj1/cF9PAONAcjLJFbRP0g6apZh+scTtQKNFuwco5h2YnZ1MDtiOLMYbjDJ2/GS
+ 63O4F59F8Q2D86Ed9+2fooHHLdNoG4sXcp6eYnCDYPCWR0T58YxuK8md80/JdQCP0OoAbAX71+z
+ eNx0aHpHZ87QQAWvt/QQPgNtsHL1vw==
+X-Proofpoint-GUID: XDBdDWQ3M8ph2ErERKXrtajNMJR56LhA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-11_01,2025-11-11_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 malwarescore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0
+ bulkscore=0 suspectscore=0 phishscore=0 adultscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110083
 
-The bootloader on K3 devices makes use of mailboxes as per the ROM spec
-which might be different than one's available to the kernel (firmware
-spec).
+On Fri, Nov 07, 2025 at 03:19:35PM +0530, Vikash Garodia wrote:
+> Upcoming Qualcomm kaanapali platform have a newer generation of video 
+> IP, iris4 or vpu4. The hardware have evolved mostly w.r.t higher number 
+> of power domains as well as multiple clock sources. It has support for 
+> new codec(apv), when compared to prior generation.
+> 
+> From previous version of this series, the kaanapali binding patch(#1/8) 
+> and the compatible patch(#8/8) have been dropped. The discussion for 
+> this is captured here [1].
+> The series introducs buffer calculation and power sequence for vpu4. It 
+> prepares for vpu4 when kaanapali is enabled after the binding discussion 
+> is concluded.
+> 
+> 
+> gstreamer test:
+> Decoders validated with below commands, codec specific:
 
-Therefore, this patch adds the missing mailbox entries to the DT binding
-to represent the mailboxes exposed by the hardware during boot for the
-purpose of loading the firmware.
+Why not just run the fluster testsuite?
 
-Signed-off-by: Anshul Dalal <anshuld@ti.com>
----
- Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+> gst-launch-1.0 multifilesrc location=<input_file.h264> stop-index=0 ! 
+> parsebin ! v4l2h264dec ! video/x-raw ! videoconvert dither=none ! 
+> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+> 
+> gst-launch-1.0 multifilesrc location=<input_file.hevc> stop-index=0 ! 
+> parsebin ! v4l2h265dec ! video/x-raw ! videoconvert dither=none ! 
+> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+> 
+> gst-launch-1.0 filesrc location=<input_file.webm> stop-index=0 ! 
+> parsebin ! vp9dec ! video/x-raw ! videoconvert dither=none ! 
+> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+> 
+> Encoders validated with below commands:
+> gst-launch-1.0 -v filesrc location=<input_file.yuv> ! rawvideoparse 
+> format=nv12 width=<width> height=<height> framerate=30/1 ! v4l2h264enc 
+> capture-io-mode=4 output-io-mode=4 ! filesink sync=true 
+> location=<output_file.h264>
+> 
+> gst-launch-1.0 -v filesrc location=<input_file.yuv> ! rawvideoparse 
+> format=nv12 width=<width> height=<height> framerate=30/1 ! v4l2h265enc 
+> capture-io-mode=4 output-io-mode=4 ! filesink sync=true 
+> location=<output_file.hevc>
+> 
+> ffmpeg test:
+> Decoders validated with below commands:
+> ffmpeg -vcodec h264_v4l2m2m -i <input_file.h264> -pix_fmt nv12 -vsync 0 
+> output_file.yuv -y
+> ffmpeg -vcodec hevc_v4l2m2m -i <input_file.hevc> -pix_fmt nv12 -vsync 0 
+> output_file.yuv -y
+> ffmpeg -vcodec vp9_v4l2m2m -i <input_file.webm> -pix_fmt nv12 -vsync 0 
+> output_file.yuv -y
+> 
+> v4l2-ctl test
+> Decoders validated with below commands:
+> v4l2-ctl --verbose --set-fmt-video-out=pixelformat=H264 
+> --set-fmt-video=pixelformat=NV12 --stream-mmap --stream-out-mmap 
+> --stream-from=<input_file.h264> --stream-to=<output_file.yuv>
+> 
+> v4l2-ctl --verbose --set-fmt-video-out=pixelformat=HEVC 
+> --set-fmt-video=pixelformat=NV12 --stream-mmap --stream-out-mmap 
+> --stream-from=input_file.bit --stream-to=<output_file.yuv>
+> 
+> v4l2-ctl --verbose --set-fmt-video-out=pixelformat=VP90 
+> --set-fmt-video=pixelformat=NV12 --stream-mmap --stream-out-mmap 
+> --stream-from-hdr=input_file.hdr  --stream-mmap 
+> --stream-to=<output_file.yuv>
+> 
+> Encoders validated with below commands:
+> v4l2-ctl --verbose 
+> --set-fmt-video-out=width=<width>,height=<height>,pixelformat=NV12 
+> --set-selection-output 
+> target=crop,top=0,left=0,width=<width>,height=<height> 
+> --set-fmt-video=pixelformat=H264 --stream-mmap --stream-out-mmap 
+> --stream-from=<input_file.yuv> --stream-to=<output_file.h264> -d 
+> /dev/video1
+> v4l2-ctl --verbose 
+> --set-fmt-video-out=width=<width>,height=<height>,pixelformat=NV12 
+> --set-selection-output 
+> target=crop,top=0,left=0,width=<width>,height=<height> 
+> --set-fmt-video=pixelformat=HEVC --stream-mmap --stream-out-mmap 
+> --stream-from=<input_file.yuv> --stream-to=<output_file.hevc> -d 
+> /dev/video1
+> 
+> Note: there is a crash observed while performing below sequence
+> rmmod qcom-iris
+> modprobe qcom-iris
+> The crash is not seen if ".skip_retention_level = true" is added to 
+> mmcx and mmcx_ao power domains in rpmhpd.c. This is under debug with 
+> rpmh module owner to conclude if it to be fixed differently.
+> 
+> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> ---
+> Changes in v3:
+> - Drop the binding and compat patch.
+> - Address comments related to variable handlings (Bryan)
+> - Pick the updates from Dmitry related to sort register #defines and 
+>   connecting register and their corresponding bits operation (Dmitry)
+> - Link to v2: https://lore.kernel.org/r/20251017-knp_video-v2-0-f568ce1a4be3@oss.qualcomm.com
+> 
+> Changes in v2:
+> - Dropped dependencies from binding (Dmitry).
+> - Dropped optional items from binding (Dmitry, Krzysztof, Konrad).
+> - Updated binding in sorted order and proper alignment (Krzysztof).
+> - Fixed order of newly introduced kaanapali struct (Dmitry, Bryan)
+> - Improved readability of buffer size calculation (Bryan)
+> - Optimized fuse register read (Konrad).
+> - Fixed order of vpu register defines (Dmitry).
+> - Addressed few other log and commit related comments (Bryan)
+> - Link to v1: https://lore.kernel.org/r/20250925-knp_video-v1-0-e323c0b3c0cd@oss.qualcomm.com
+> 
+> ---
+> Vikash Garodia (6):
+>       media: iris: Add support for multiple clock sources
+>       media: iris: Add support for multiple TZ content protection(CP) configs
+>       media: iris: Introduce buffer size calculations for vpu4
+>       media: iris: Move vpu register defines to common header file
+>       media: iris: Move vpu35 specific api to common to use for vpu4
+>       media: iris: Introduce vpu ops for vpu4 with necessary hooks
+> 
+>  drivers/media/platform/qcom/iris/Makefile          |   1 +
+>  drivers/media/platform/qcom/iris/iris_firmware.c   |  23 +-
+>  .../platform/qcom/iris/iris_platform_common.h      |  11 +-
+>  .../media/platform/qcom/iris/iris_platform_gen2.c  |  33 +-
+>  .../platform/qcom/iris/iris_platform_sm8250.c      |  21 +-
+>  drivers/media/platform/qcom/iris/iris_power.c      |   2 +-
+>  drivers/media/platform/qcom/iris/iris_probe.c      |  20 +-
+>  drivers/media/platform/qcom/iris/iris_resources.c  |  16 +-
+>  drivers/media/platform/qcom/iris/iris_resources.h  |   1 +
+>  drivers/media/platform/qcom/iris/iris_vpu3x.c      | 199 +-----------
+>  drivers/media/platform/qcom/iris/iris_vpu4x.c      | 358 +++++++++++++++++++++
+>  drivers/media/platform/qcom/iris/iris_vpu_buffer.c | 342 ++++++++++++++++++++
+>  drivers/media/platform/qcom/iris/iris_vpu_buffer.h |  24 ++
+>  drivers/media/platform/qcom/iris/iris_vpu_common.c | 188 ++++++++---
+>  drivers/media/platform/qcom/iris/iris_vpu_common.h |   5 +
+>  .../platform/qcom/iris/iris_vpu_register_defines.h |  61 ++++
+>  16 files changed, 1026 insertions(+), 279 deletions(-)
+> ---
+> base-commit: f215d17ddbe8502804ae65d8f855100daf347061
+> change-id: 20250924-knp_video-aaf4c40be747
+> 
+> Best regards,
+> -- 
+> Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> 
 
-diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-index 25a2b42105e541cb3c8ad12a0dfec1af038fa907..b5f48647a0f09bb930f052ea0f84a78525c925eb 100644
---- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-+++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-@@ -51,15 +51,23 @@ properties:
-     minItems: 1
- 
-   mbox-names:
-+    minItems: 2
-+    maxItems: 6
-     description: |
-       Specifies the mailboxes used to communicate with TI-SCI Controller
--      made available from TI-SCI controller.
-+      made available from TI-SCI controller. All boot_* mailboxes are used by
-+      the first stage bootloader to load firmware for the device.
-     items:
-       - const: rx
-       - const: tx
-+      - const: notify
-+      - const: boot_rx
-+      - const: boot_tx
-+      - const: boot_notify
- 
-   mboxes:
-     minItems: 2
-+    maxItems: 6
- 
-   ti,host-id:
-     $ref: /schemas/types.yaml#/definitions/uint32
-
----
-base-commit: 1c353dc8d962de652bc7ad2ba2e63f553331391c
-change-id: 20251105-k3_syscon_add_boot_mailboxes-8452bdd98962
-
-Best regards,
 -- 
-Anshul Dalal <anshuld@ti.com>
-
+With best wishes
+Dmitry
 
