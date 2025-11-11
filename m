@@ -1,428 +1,355 @@
-Return-Path: <devicetree+bounces-237236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23910C4EC0A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:20:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0CCDC4EC3D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:23:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12D253A2F63
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:11:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD7623B12E0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:15:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D4235F8AD;
-	Tue, 11 Nov 2025 15:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F8130E0F6;
+	Tue, 11 Nov 2025 15:14:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lK88oE4e"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dKOrlzau"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D8335BDDD
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 15:11:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74742361DB3
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 15:14:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762873899; cv=none; b=FWLUF12K67G6B7lXGwdK99fo5B/56RHfMiJfrUOgsvvuj4erYiEoQkNG9csoJCFhrW4FyhhCfi5AWIhYTcfvA79cDTZJCoVXPYTWHoFnRCtVmTaWFW26dePEpZEARKRDLQvXOU6jiJHP7C0Jlh8okVn7TxEmYXzbHYOj4po3F2M=
+	t=1762874072; cv=none; b=rGy+tF86RW/NG3iADcdcFLcgmwmkmy2UfFwR0H9WeYfZXJd1+U0gGacP7zYXoumIuYfazgPrJEwfX/ekCbpJU56qorcMDo9uACLPlPkFDWqWBMmG6pD58j5ZdNGtNdyFJ2pTouCPw/FGtLj456D/d3LECpQkbeI9DN+cBvp4Hm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762873899; c=relaxed/simple;
-	bh=cBvHiE3MTqLVsG6y+J/uHOAvi+GgMGuElM6WaC2JkxQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=apDAnXIqL5XlNOp74Dr/yoWnLzYuLbprFqPw0S7W12e8QNJXweG0t5T3159D5Yd3mTMGJyrpGWyepBCyTnAenGthhelRNrIQWeYQNfOsJYtnt8kiwjNVylhVQH5s9d/NgSrLPYUfGQVejw62v44/+wsJ9VJrE6ap5Kh/jechUCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lK88oE4e; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-3437af8444cso2543172a91.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 07:11:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762873896; x=1763478696; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=n7eTYb2wlhJyNuQSOocKUpulhkuV3RsO5wtmlgEoTf8=;
-        b=lK88oE4e9KtrSLYgwxqDlzjZODXegI6NHGChKNCfa90JZvP42NNDACmB+/B8Kl193C
-         q2s92M23fvvTfrtao9V94GwwHE/b5iecgc6KxCj6VJhMhP6AQ9l1UycOJ8bpu1LUaZLi
-         owOgyqsnSNlzIDeRmblI/ldTk1kgvt6v4HDLpLpamOoXZIu+J6QATBY4ORoj7B8LSli1
-         sh6MbQDHNu+f20ANL3hWsaukkiDVUYjSDIyitp5S6q5dpuvD+uOkUaBot05k8zoHaTtJ
-         L+dwoctgp3KVMxtguFgfU8cXfQ0VGe9jiSn0C1m2OlhQbf1fSIiAM9N8nBUHK4B9t0UE
-         gsaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762873896; x=1763478696;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n7eTYb2wlhJyNuQSOocKUpulhkuV3RsO5wtmlgEoTf8=;
-        b=t49LaAOnHOIRlaeJqBk/czikWBEeQqV9upgDNuYacmEbeo4Pi/4E/ERta/GGnpaX72
-         GViHZHsX9V0KB6x3Is/jruVB7tvX5jEaRxuWE/A6PBYA3XYBmTSlEiWkbiO1nGonTCRH
-         CuDQrzzwbfCty0M5Iep32xJXBq6Ey8vtjdp17jckRaqAq552V4R3g6NBPNy7dQbxjk5g
-         59wD4ffvfCgBeNR73dfko9Pqr+tKMCH2OzUs6nz9hxfRiKAbtnsbt77W2xsovgTNhOdP
-         oWHF7kNeiYt5ilw6IHg+jR5pZ0Ywgaeh1/Y7Mbt1a5edGYYPoINxfTggR5ACjVFitEga
-         /TRw==
-X-Forwarded-Encrypted: i=1; AJvYcCWRsDWMfSsGr8n83tvCynWriDjYtG9tdXXuo4qRZJxjxlizw+jh3O1FS2M70N3BorVWmVA818hpqr9+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyyf8HZ1+bUnSs1j27CkIRVZF6Q+uZImo/VaRyvK1ESHpVkKpjD
-	CGHQVFVCulUnt9ii1OLvFQzj+Z1UMsyTSf/XoT+ZHuaAsTnUNnFdgskr
-X-Gm-Gg: ASbGnctgOz0wcWReref0hKd7BXLCBkP+xeogS6+dldcw/S2KmX1YTCbhHbjLhgqlavc
-	FBZekChsBaLBjo4dMG3M6tFgEBs8HiWd/q9hiAq0Vq2U3nwKL9rG+JCCzDzPJnwM8SAgaaqVOfb
-	Nci3Geht22qB061N764ewU5JD00C1dqdA3lB1E+mmw04NLKBKV8JI1gZQnzui9i/SwqHvVhtM09
-	TuYN4q5h/XMciJG3+/lRupUvswMEUlmNgCoFWnfy8GVegszTWu3CYmLwPjJ2JvTBO3SZkunGgzb
-	meJfXaFFeBaY99FqFY7FNaIJApnQaCXrFnHEflS1C/iYrFTzacWT2U3a/Kw7d00syO5aokbe50v
-	Xq+hFR0oVJVvobH0qwC2i1eN5Yukahe1vmXfDhZndoTDrASvI/T7klZ05isVEZ9pmA4qcTVNp2e
-	ytktx5th3PVA==
-X-Google-Smtp-Source: AGHT+IEanSf8MNOoYPmR8r6QP42O+LoZWPLOQBKQDi9X75YOlY83hfm2jvOchw3UXfBmb7KUYvVt2A==
-X-Received: by 2002:a17:902:f601:b0:295:915d:1eed with SMTP id d9443c01a7336-297e56d0e7dmr168612555ad.47.1762873895461;
-        Tue, 11 Nov 2025 07:11:35 -0800 (PST)
-Received: from localhost ([2804:30c:1661:8a00:578a:911c:ac25:24a6])
-        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-ba901c3817csm15946063a12.30.2025.11.11.07.11.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Nov 2025 07:11:33 -0800 (PST)
-Date: Tue, 11 Nov 2025 12:12:51 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] spi: axi-spi-engine: support
- SPI_MULTI_BUS_MODE_STRIPE
-Message-ID: <aRNSc1GEz0UNx17i@debian-BULLSEYE-live-builder-AMD64>
-References: <20251107-spi-add-multi-bus-support-v2-0-8a92693314d9@baylibre.com>
- <20251107-spi-add-multi-bus-support-v2-4-8a92693314d9@baylibre.com>
+	s=arc-20240116; t=1762874072; c=relaxed/simple;
+	bh=H3MMpqivZZRwD2aYJhGyjecG0nGwMZpDn+02x79tScY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=h/SGdmtByhOkmBRoeJwZg9UmJUXxh0dBO9wEUwsndg2kGzmxbnM8pDkDMzb2nwQJ897y6e2EiT3wnzRIE6lKcFacatBSsFG0nNIUhy3MG1CbEpLYLvb2jW6XodgFZTigUl4m/J/R75YUPtQX1N+XGkmk9BDMrd5YoojQcIJ1a2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dKOrlzau; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id A92C91A19E0;
+	Tue, 11 Nov 2025 15:14:26 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6E0F9606FB;
+	Tue, 11 Nov 2025 15:14:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 92F4F102F24BC;
+	Tue, 11 Nov 2025 16:14:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762874064; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=7R5SuVHot9CpoTkFcfHq9Yksdnr2wM0VbRyDn5Qi10s=;
+	b=dKOrlzauhoCSJVUKuaP9oTCZn7a/MbZ2YlAMNvicAOTuUkcvvFhCxjLV+bx9T1URMFX9KD
+	Xv0onrlrf4j+WXvPuJI65WpdzhDi9F7tNHHVCXx0I93YgctmEO807WWW6869g4FZ+Ptvtw
+	KPo8GugnqzYO6yONmOELShTim5/a0xN+uAVWe82MhZ185fsCPlzyX3yaECJWYx+O5v1WJe
+	zBiYw+Ry4+/Um2fMV7bWNqIO4F9pMfjJkICfM1An54gPdE9T6KJNLMtgiJJa+RPW1F5ZDo
+	llG8ee1T2LOVJ9ZudBWCv3C/RK73b1m+u+qdGUOusNITg3cZ1M7nnnM6LYvWRg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251107-spi-add-multi-bus-support-v2-4-8a92693314d9@baylibre.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 11 Nov 2025 16:14:11 +0100
+Message-Id: <DE5YP3AVGOG3.OHP68Z0F6KBU@bootlin.com>
+Subject: Re: [PATCH v9 08/10] drm/rockchip: cdn-dp: Add multiple bridges to
+ support PHY port selection
+Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <dri-devel@lists.freedesktop.org>
+To: "Chaoyi Chen" <kernel@airkyi.com>, "Heikki Krogerus"
+ <heikki.krogerus@linux.intel.com>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Peter Chen" <hzpeterchen@gmail.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul"
+ <vkoul@kernel.org>, "Kishon Vijay Abraham I" <kishon@kernel.org>, "Heiko
+ Stuebner" <heiko@sntech.de>, "Sandy Huang" <hjc@rock-chips.com>, "Andy Yan"
+ <andy.yan@rock-chips.com>, "Yubing Zhang" <yubing.zhang@rock-chips.com>,
+ "Frank Wang" <frank.wang@rock-chips.com>, "Andrzej Hajda"
+ <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
+ <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Amit Sunil Dhamne"
+ <amitsd@google.com>, "Chaoyi Chen" <chaoyi.chen@rock-chips.com>, "Dragan
+ Simic" <dsimic@manjaro.org>, "Johan Jonker" <jbx6244@gmail.com>, "Diederik
+ de Haas" <didi.debian@cknow.org>, "Peter Robinson" <pbrobinson@gmail.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20251111105040.94-1-kernel@airkyi.com>
+ <20251111105040.94-9-kernel@airkyi.com>
+In-Reply-To: <20251111105040.94-9-kernel@airkyi.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi David,
+Hello Chaoyi,
 
-The updates to spi-engine driver look good.
-Only one comment about what happens if we have conflicting bus modes for the
-offload case. Just to check I'm getting how this is working.
+On Tue Nov 11, 2025 at 11:50 AM CET, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>
+> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
+> the CDN-DP can be switched to output to one of the PHYs. If both ports
+> are plugged into DP, DP will select the first port for output.
+>
+> This patch adds support for multiple bridges, enabling users to flexibly
+> select the output port. For each PHY port, a separate encoder and bridge
+> are registered.
+>
+> The change is based on the DRM AUX HPD bridge, rather than the
+> extcon approach. This requires the DT to correctly describe the
+> connections between the first bridge in bridge chain and DP
+> controller. For example, the bridge chain may be like this:
+>
+> PHY aux birdge -> fsa4480 analog audio switch bridge ->
+> onnn,nb7vpq904m USB reminder bridge -> USB-C controller AUX HPD bridge
+>
+> In this case, the connection relationships among the PHY aux bridge
+> and the DP contorller need to be described in DT.
+>
+> In addition, the cdn_dp_parse_next_bridge_dt() will parses it and
+> determines whether to register one or two bridges.
+>
+> Since there is only one DP controller, only one of the PHY ports can
+> output at a time. The key is how to switch between different PHYs,
+> which is handled by cdn_dp_switch_port() and cdn_dp_enable().
+>
+> There are two cases:
+>
+> 1. Neither bridge is enabled. In this case, both bridges can
+> independently read the EDID, and the PHY port may switch before
+> reading the EDID.
+>
+> 2. One bridge is already enabled. In this case, other bridges are not
+> allowed to read the EDID. So we will try to return the cached EDID.
+>
+> Since the scenario of two ports plug in at the same time is rare,
+> I don't have a board which support two TypeC connector to test this.
+> Therefore, I tested forced switching on a single PHY port, as well as
+> output using a fake PHY port alongside a real PHY port.
+>
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-On 11/07, David Lechner wrote:
-> Add support for SPI_MULTI_BUS_MODE_STRIPE to the AXI SPI engine driver.
-> 
-> The v2.0.0 version of the AXI SPI Engine IP core supports multiple
-> buses. This can be used with SPI_MULTI_BUS_MODE_STRIPE to support
-> reading from simultaneous sampling ADCs that have a separate SDO line
-> for each analog channel. This allows reading all channels at the same
-> time to increase throughput.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
-> v2 changes:
-> * Fixed off-by-one in SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK GENMASK
-> ---
->  drivers/spi/spi-axi-spi-engine.c | 128 +++++++++++++++++++++++++++++++++++++--
->  1 file changed, 124 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-axi-spi-engine.c b/drivers/spi/spi-axi-spi-engine.c
-> index e06f412190fd243161a0b3df992f26157531f6a1..c9d146e978b89abb8273900722ae2cfafdd6325f 100644
-> --- a/drivers/spi/spi-axi-spi-engine.c
-> +++ b/drivers/spi/spi-axi-spi-engine.c
-> @@ -23,6 +23,9 @@
->  #include <linux/spi/spi.h>
->  #include <trace/events/spi.h>
->  
-> +#define SPI_ENGINE_REG_DATA_WIDTH		0x0C
-> +#define   SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK	GENMASK(23, 16)
-> +#define   SPI_ENGINE_REG_DATA_WIDTH_MASK		GENMASK(15, 0)
->  #define SPI_ENGINE_REG_OFFLOAD_MEM_ADDR_WIDTH	0x10
->  #define SPI_ENGINE_REG_RESET			0x40
->  
-> @@ -75,6 +78,8 @@
->  #define SPI_ENGINE_CMD_REG_CLK_DIV		0x0
->  #define SPI_ENGINE_CMD_REG_CONFIG		0x1
->  #define SPI_ENGINE_CMD_REG_XFER_BITS		0x2
-> +#define SPI_ENGINE_CMD_REG_SDI_MASK		0x3
-> +#define SPI_ENGINE_CMD_REG_SDO_MASK		0x4
->  
->  #define SPI_ENGINE_MISC_SYNC			0x0
->  #define SPI_ENGINE_MISC_SLEEP			0x1
-> @@ -105,6 +110,10 @@
->  #define SPI_ENGINE_OFFLOAD_CMD_FIFO_SIZE	16
->  #define SPI_ENGINE_OFFLOAD_SDO_FIFO_SIZE	16
->  
-> +/* Extending SPI_MULTI_BUS_MODE values for optimizing messages. */
-> +#define SPI_ENGINE_MULTI_BUS_MODE_UNKNOWN	-1
-> +#define SPI_ENGINE_MULTI_BUS_MODE_CONFLICTING	-2
+[...]
+
+> @@ -966,28 +1084,16 @@ static int cdn_dp_pd_event(struct notifier_block *=
+nb,
+>  	return NOTIFY_DONE;
+>  }
+>
+> -static int cdn_dp_bind(struct device *dev, struct device *master, void *=
+data)
+> +static int cdn_bridge_add(struct device *dev,
+> +			  struct drm_bridge *bridge,
+> +			  struct drm_bridge *next_bridge,
+> +			  struct drm_encoder *encoder)
+>  {
+>  	struct cdn_dp_device *dp =3D dev_get_drvdata(dev);
+> -	struct drm_encoder *encoder;
+> +	struct drm_device *drm_dev =3D dp->drm_dev;
+> +	struct drm_bridge *last_bridge =3D NULL;
+>  	struct drm_connector *connector;
+> -	struct cdn_dp_port *port;
+> -	struct drm_device *drm_dev =3D data;
+> -	int ret, i;
+
+[...]
+
+> +	if (next_bridge) {
+> +		ret =3D drm_bridge_attach(encoder, next_bridge, bridge,
+> +					DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+> +		if (ret)
+> +			return ret;
 > +
->  struct spi_engine_program {
->  	unsigned int length;
->  	uint16_t instructions[] __counted_by(length);
-> @@ -142,6 +151,9 @@ struct spi_engine_offload {
->  	unsigned long flags;
->  	unsigned int offload_num;
->  	unsigned int spi_mode_config;
-> +	unsigned int multi_bus_mode;
-> +	u8 primary_bus_mask;
-> +	u8 all_bus_mask;
->  	u8 bits_per_word;
->  };
->  
-> @@ -165,6 +177,22 @@ struct spi_engine {
->  	bool offload_requires_sync;
->  };
->  
-> +static u8 spi_engine_primary_bus_flag(struct spi_device *spi)
-> +{
-> +	return BIT(spi->data_bus[0]);
+> +		last_bridge =3D next_bridge;
+> +		while (drm_bridge_get_next_bridge(last_bridge))
+> +			last_bridge =3D drm_bridge_get_next_bridge(last_bridge);
+
+DRM bridges are now refcounted, and you are not calling drm_bridge_get()
+and drm_bridge_put() here. But here you can use
+drm_bridge_chain_get_last_bridge() which will simplify your job.
+
+Don't forget to call drm_bridge_put() on the returned bridge when the
+bridge is not referenced anymore. This should be as easy as adding a
+cleanup action on the variable declaration above:
+
+-	struct drm_bridge *last_bridge =3D NULL;
++	struct drm_bridge *last_bridge __free(drm_bridge_put) =3D NULL;
+
+> @@ -1029,8 +1147,102 @@ static int cdn_dp_bind(struct device *dev, struct=
+ device *master, void *data)
+>  		return ret;
+>  	}
+>
+> +	if (last_bridge)
+> +		connector->fwnode =3D fwnode_handle_get(of_fwnode_handle(last_bridge->=
+of_node));
+> +
+>  	drm_connector_attach_encoder(connector, encoder);
+>
+> +	return 0;
 > +}
 > +
-> +static u8 spi_engine_all_bus_flags(struct spi_device *spi)
+> +static int cdn_dp_parse_next_bridge_dt(struct cdn_dp_device *dp)
 > +{
-> +	u8 flags = 0;
+> +	struct device_node *np =3D dp->dev->of_node;
+> +	struct device_node *port __free(device_node) =3D of_graph_get_port_by_i=
+d(np, 1);
+> +	struct drm_bridge *bridge;
+> +	int count =3D 0;
+> +	int ret =3D 0;
 > +	int i;
 > +
-> +	for (i = 0; i < spi->num_data_bus; i++)
-> +		flags |= BIT(spi->data_bus[i]);
-> +
-> +	return flags;
-> +}
-> +
->  static void spi_engine_program_add_cmd(struct spi_engine_program *p,
->  	bool dry, uint16_t cmd)
->  {
-> @@ -193,7 +221,7 @@ static unsigned int spi_engine_get_config(struct spi_device *spi)
->  }
->  
->  static void spi_engine_gen_xfer(struct spi_engine_program *p, bool dry,
-> -	struct spi_transfer *xfer)
-> +				struct spi_transfer *xfer, u32 num_lanes)
->  {
->  	unsigned int len;
->  
-> @@ -204,6 +232,9 @@ static void spi_engine_gen_xfer(struct spi_engine_program *p, bool dry,
->  	else
->  		len = xfer->len / 4;
->  
-> +	if (xfer->multi_bus_mode == SPI_MULTI_BUS_MODE_STRIPE)
-> +		len /= num_lanes;
-> +
->  	while (len) {
->  		unsigned int n = min(len, 256U);
->  		unsigned int flags = 0;
-> @@ -269,6 +300,7 @@ static int spi_engine_precompile_message(struct spi_message *msg)
->  {
->  	unsigned int clk_div, max_hz = msg->spi->controller->max_speed_hz;
->  	struct spi_transfer *xfer;
-> +	int multi_bus_mode = SPI_ENGINE_MULTI_BUS_MODE_UNKNOWN;
->  	u8 min_bits_per_word = U8_MAX;
->  	u8 max_bits_per_word = 0;
->  
-> @@ -284,6 +316,24 @@ static int spi_engine_precompile_message(struct spi_message *msg)
->  			min_bits_per_word = min(min_bits_per_word, xfer->bits_per_word);
->  			max_bits_per_word = max(max_bits_per_word, xfer->bits_per_word);
->  		}
-> +
-> +		if (xfer->rx_buf || xfer->offload_flags & SPI_OFFLOAD_XFER_RX_STREAM ||
-> +		    xfer->tx_buf || xfer->offload_flags & SPI_OFFLOAD_XFER_TX_STREAM) {
-> +			switch (xfer->multi_bus_mode) {
-> +			case SPI_MULTI_BUS_MODE_SINGLE:
-> +			case SPI_MULTI_BUS_MODE_STRIPE:
-> +				break;
-> +			default:
-> +				/* Other modes, like mirror not supported */
-> +				return -EINVAL;
-> +			}
-> +
-> +			/* If all xfers have the same multi-bus mode, we can optimize. */
-> +			if (multi_bus_mode == SPI_ENGINE_MULTI_BUS_MODE_UNKNOWN)
-> +				multi_bus_mode = xfer->multi_bus_mode;
-> +			else if (multi_bus_mode != xfer->multi_bus_mode)
-> +				multi_bus_mode = SPI_ENGINE_MULTI_BUS_MODE_CONFLICTING;
-
-Here we check all xfers have the same multi-bus mode and keep the mode that has
-been set. Otherwise, we set this conflicting mode and the intent is to generate
-SDI and SDO mask commands on demand on spi_engine_precompile_message(). OTOH,
-if all xfers have the same multi-bus mode, we can add just one pair of SDI/SDO
-mask commands in spi_engine_trigger_enable() and one pair latter in
-spi_engine_trigger_disable(). I guess this is the optimization mentioned in the
-comment.
-
+> +	/* If device use extcon, do not use hpd bridge */
+> +	for (i =3D 0; i < dp->ports; i++) {
+> +		if (dp->port[i]->extcon) {
+> +			dp->bridge_count =3D 1;
+> +			return 0;
 > +		}
->  	}
->  
->  	/*
-> @@ -297,6 +347,10 @@ static int spi_engine_precompile_message(struct spi_message *msg)
->  			priv->bits_per_word = min_bits_per_word;
->  		else
->  			priv->bits_per_word = 0;
+> +	}
 > +
-> +		priv->multi_bus_mode = multi_bus_mode;
-> +		priv->primary_bus_mask = spi_engine_primary_bus_flag(msg->spi);
-> +		priv->all_bus_mask = spi_engine_all_bus_flags(msg->spi);
->  	}
->  
->  	return 0;
-> @@ -310,6 +364,7 @@ static void spi_engine_compile_message(struct spi_message *msg, bool dry,
->  	struct spi_engine_offload *priv;
->  	struct spi_transfer *xfer;
->  	int clk_div, new_clk_div, inst_ns;
-> +	int prev_multi_bus_mode = SPI_MULTI_BUS_MODE_SINGLE;
->  	bool keep_cs = false;
->  	u8 bits_per_word = 0;
->  
-> @@ -334,6 +389,7 @@ static void spi_engine_compile_message(struct spi_message *msg, bool dry,
->  		 * in the same way.
->  		 */
->  		bits_per_word = priv->bits_per_word;
-> +		prev_multi_bus_mode = priv->multi_bus_mode;
->  	} else {
->  		spi_engine_program_add_cmd(p, dry,
->  			SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_CONFIG,
-> @@ -344,6 +400,24 @@ static void spi_engine_compile_message(struct spi_message *msg, bool dry,
->  	spi_engine_gen_cs(p, dry, spi, !xfer->cs_off);
->  
->  	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
-> +		if (xfer->rx_buf || xfer->offload_flags & SPI_OFFLOAD_XFER_RX_STREAM ||
-> +		    xfer->tx_buf || xfer->offload_flags & SPI_OFFLOAD_XFER_TX_STREAM) {
-> +			if (xfer->multi_bus_mode != prev_multi_bus_mode) {
-> +				u8 bus_flags = spi_engine_primary_bus_flag(spi);
 > +
-> +				if (xfer->multi_bus_mode == SPI_MULTI_BUS_MODE_STRIPE)
-> +					bus_flags = spi_engine_all_bus_flags(spi);
+> +	/* One endpoint may correspond to one next bridge. */
+> +	for_each_of_graph_port_endpoint(port, dp_ep) {
+> +		struct device_node *next_bridge_node __free(device_node) =3D
+> +			of_graph_get_remote_port_parent(dp_ep);
 > +
-> +				spi_engine_program_add_cmd(p, dry,
-> +					SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDI_MASK,
-> +							     bus_flags));
-> +				spi_engine_program_add_cmd(p, dry,
-> +					SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDO_MASK,
-> +							     bus_flags));
-> +			}
-> +			prev_multi_bus_mode = xfer->multi_bus_mode;
+> +		bridge =3D of_drm_find_bridge(next_bridge_node);
+> +		if (!bridge) {
+> +			ret =3D -EPROBE_DEFER;
+> +			goto out;
 > +		}
 > +
->  		new_clk_div = host->max_speed_hz / xfer->effective_speed_hz;
->  		if (new_clk_div != clk_div) {
->  			clk_div = new_clk_div;
-> @@ -360,7 +434,7 @@ static void spi_engine_compile_message(struct spi_message *msg, bool dry,
->  					bits_per_word));
->  		}
->  
-> -		spi_engine_gen_xfer(p, dry, xfer);
-> +		spi_engine_gen_xfer(p, dry, xfer, spi->num_data_bus);
->  		spi_engine_gen_sleep(p, dry, spi_delay_to_ns(&xfer->delay, xfer),
->  				     inst_ns, xfer->effective_speed_hz);
->  
-> @@ -394,6 +468,17 @@ static void spi_engine_compile_message(struct spi_message *msg, bool dry,
->  	if (clk_div != 1)
->  		spi_engine_program_add_cmd(p, dry,
->  			SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_CLK_DIV, 0));
+> +		dp->next_bridge_valid =3D true;
+> +		dp->next_bridge_list[count].bridge =3D bridge;
+
+You are storing a reference to a drm_bridge, so have to increment the
+refcount:
+
+		dp->next_bridge_list[count].bridge =3D drm_bridge_get(bridge);
+		                                     ^^^^^^^^^^^^^^
+
+FYI there is a plan to replace of_drm_find_bridge() with a function that
+increases the bridge refcount before returning the bridge, but it's not
+there yet. When that will happen, the explicit drm_bridge_get() won't be
+needed anymore and this code can be updated accordingly.
+
+Also you have to call drm_bridge_put() to release that reference when the
+pointer goes away. I guess that should happen in cdn_dp_unbind().
+
+> +static int cdn_dp_bind(struct device *dev, struct device *master, void *=
+data)
+> +{
+
+In this function you do:
+...(see below)...
+
+> +	struct cdn_dp_device *dp =3D dev_get_drvdata(dev);
+> +	struct drm_bridge *bridge, *next_bridge;
+> +	struct drm_encoder *encoder;
+> +	struct cdn_dp_port *port;
+> +	struct drm_device *drm_dev =3D data;
+> +	struct cdn_dp_bridge *dp_bridge;
+> +	int ret, i;
 > +
-> +	/* Restore single bus mode unless offload disable will restore it later. */
-> +	if (prev_multi_bus_mode == SPI_MULTI_BUS_MODE_STRIPE &&
-> +	    (!msg->offload || priv->multi_bus_mode != SPI_MULTI_BUS_MODE_STRIPE)) {
-> +		u8 bus_flags = spi_engine_primary_bus_flag(spi);
+> +	ret =3D cdn_dp_parse_dt(dp);
+> +	if (ret < 0)
+.> +		return ret;
 > +
-> +		spi_engine_program_add_cmd(p, dry,
-> +			SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDI_MASK, bus_flags));
-> +		spi_engine_program_add_cmd(p, dry,
-> +			SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDO_MASK, bus_flags));
+> +	ret =3D cdn_dp_parse_next_bridge_dt(dp);
+
+1. compute the next bridges and store them in dp->next_bridge_list[]
+...
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	dp->drm_dev =3D drm_dev;
+> +	dp->connected =3D false;
+> +	dp->active =3D false;
+> +	dp->active_port =3D -1;
+> +	dp->fw_loaded =3D false;
+> +
+> +	for (i =3D 0; i < dp->bridge_count; i++) {
+> +		dp_bridge =3D devm_drm_bridge_alloc(dev, struct cdn_dp_bridge, bridge,
+> +						    &cdn_dp_bridge_funcs);
+> +		if (IS_ERR(dp_bridge))
+> +			return PTR_ERR(dp_bridge);
+> +		dp_bridge->id =3D i;
+> +		dp_bridge->parent =3D dp;
+> +		if (!dp->next_bridge_valid)
+> +			dp_bridge->connected =3D true;
+> +		dp->bridge_list[i] =3D dp_bridge;
 > +	}
->  }
->  
->  static void spi_engine_xfer_next(struct spi_message *msg,
-> @@ -799,6 +884,17 @@ static int spi_engine_setup(struct spi_device *device)
->  	writel_relaxed(SPI_ENGINE_CMD_CS_INV(spi_engine->cs_inv),
->  		       spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
->  
-> +	if (host->num_data_bus > 1) {
-> +		u8 bus_flags = spi_engine_primary_bus_flag(device);
 > +
-> +		writel_relaxed(SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDI_MASK,
-> +						    bus_flags),
-> +			       spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
-> +		writel_relaxed(SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDO_MASK,
-> +						    bus_flags),
-> +			       spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
-> +	}
+> +	for (i =3D 0; i < dp->bridge_count; i++) {
+> +		encoder =3D &dp->bridge_list[i]->encoder.encoder;
+> +		bridge =3D &dp->bridge_list[i]->bridge;
+> +		next_bridge =3D dp->next_bridge_list[i].bridge;
+> +		ret =3D cdn_bridge_add(dev, bridge, next_bridge, encoder);
+
+...
+2. pass the dp->next_bridge_list[i].bridge to cdn_bridge_add
+3. not use  dp->next_bridge_list[i] elsewhere
+
+So you may want to change this function to parse into a local array, with
+function scope. If you do this, the drm_bridge_get/put() I mentioned above
+should still exist, but would be localized to this function, thus even
+easier to handle.
+
+Even better, you can parse the DT one bridge at a time inside the for loop,
+so you don't need to store any next_bridge pointer array. This will need a
+bit of rework of cdn_dp_parse_next_bridge_dt() though, and I haven't
+checked in detail so it might be not worth.
+
+[...]
+
+> +struct cdn_dp_bridge {
+> +	struct cdn_dp_device *parent;
+> +	struct drm_bridge bridge;
+> +	struct rockchip_encoder encoder;
+> +	bool connected;
+> +	bool enabled;
+> +	int id;
+> +};
 > +
->  	/*
->  	 * In addition to setting the flags, we have to do a CS assert command
->  	 * to make the new setting actually take effect.
-> @@ -902,6 +998,15 @@ static int spi_engine_trigger_enable(struct spi_offload *offload)
->  						    priv->bits_per_word),
->  			       spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
->  
-> +	if (priv->multi_bus_mode == SPI_MULTI_BUS_MODE_STRIPE) {
-> +		writel_relaxed(SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDI_MASK,
-> +						    priv->all_bus_mask),
-> +			       spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
-> +		writel_relaxed(SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDO_MASK,
-> +						    priv->all_bus_mask),
-> +			       spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
-> +	}
-> +
->  	writel_relaxed(SPI_ENGINE_CMD_SYNC(1),
->  		spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
->  
-> @@ -929,6 +1034,16 @@ static void spi_engine_trigger_disable(struct spi_offload *offload)
->  	reg &= ~SPI_ENGINE_OFFLOAD_CTRL_ENABLE;
->  	writel_relaxed(reg, spi_engine->base +
->  			    SPI_ENGINE_REG_OFFLOAD_CTRL(priv->offload_num));
-> +
-> +	/* Restore single-bus mode. */
-> +	if (priv->multi_bus_mode == SPI_MULTI_BUS_MODE_STRIPE) {
-> +		writel_relaxed(SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDI_MASK,
-> +						    priv->primary_bus_mask),
-> +			       spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
-> +		writel_relaxed(SPI_ENGINE_CMD_WRITE(SPI_ENGINE_CMD_REG_SDO_MASK,
-> +						    priv->primary_bus_mask),
-> +			       spi_engine->base + SPI_ENGINE_REG_CMD_FIFO);
-> +	}
->  }
->  
->  static struct dma_chan
-> @@ -973,7 +1088,7 @@ static int spi_engine_probe(struct platform_device *pdev)
->  {
->  	struct spi_engine *spi_engine;
->  	struct spi_controller *host;
-> -	unsigned int version;
-> +	unsigned int version, data_width_reg_val;
->  	int irq, ret;
->  
->  	irq = platform_get_irq(pdev, 0);
-> @@ -1042,7 +1157,7 @@ static int spi_engine_probe(struct platform_device *pdev)
->  		return PTR_ERR(spi_engine->base);
->  
->  	version = readl(spi_engine->base + ADI_AXI_REG_VERSION);
-> -	if (ADI_AXI_PCORE_VER_MAJOR(version) != 1) {
-> +	if (ADI_AXI_PCORE_VER_MAJOR(version) > 2) {
->  		dev_err(&pdev->dev, "Unsupported peripheral version %u.%u.%u\n",
->  			ADI_AXI_PCORE_VER_MAJOR(version),
->  			ADI_AXI_PCORE_VER_MINOR(version),
-> @@ -1050,6 +1165,8 @@ static int spi_engine_probe(struct platform_device *pdev)
->  		return -ENODEV;
->  	}
->  
-> +	data_width_reg_val = readl(spi_engine->base + SPI_ENGINE_REG_DATA_WIDTH);
-> +
->  	if (adi_axi_pcore_ver_gteq(version, 1, 1)) {
->  		unsigned int sizes = readl(spi_engine->base +
->  				SPI_ENGINE_REG_OFFLOAD_MEM_ADDR_WIDTH);
-> @@ -1097,6 +1214,9 @@ static int spi_engine_probe(struct platform_device *pdev)
->  	}
->  	if (adi_axi_pcore_ver_gteq(version, 1, 3))
->  		host->mode_bits |= SPI_MOSI_IDLE_LOW | SPI_MOSI_IDLE_HIGH;
-> +	if (adi_axi_pcore_ver_gteq(version, 2, 0))
-> +		host->num_data_bus = FIELD_GET(SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK,
-> +					       data_width_reg_val);
->  
->  	if (host->max_speed_hz == 0)
->  		return dev_err_probe(&pdev->dev, -EINVAL, "spi_clk rate is 0");
-> 
-> -- 
-> 2.43.0
-> 
-> 
+> +struct cdn_dp_next_bridge {
+> +	struct cdn_dp_device *parent;
+> +	struct drm_bridge *bridge;
+> +	int id;
+
+The @parent and @id fields are unused if I'm not mistaken.
+
+If it is the case then you can... (see below)
+
+>  struct cdn_dp_device {
+>  	struct device *dev;
+>  	struct drm_device *drm_dev;
+> -	struct drm_bridge bridge;
+> -	struct rockchip_encoder encoder;
+> +	int bridge_count;
+> +	struct cdn_dp_bridge *bridge_list[MAX_PHY];
+> +	struct cdn_dp_next_bridge next_bridge_list[MAX_PHY];
+
+...replace this line with:
+	struct drm_bridge *next_bridge[MAX_PHY];
+
+Unless of course you just don't store the next_bridge at all, as I
+suggested above, and which looks way easier and more efficient.
+
+Best regards,
+Luca
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
