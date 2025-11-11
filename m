@@ -1,153 +1,205 @@
-Return-Path: <devicetree+bounces-237150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC89C4D5F8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:19:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51047C4D66D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF1F81883F96
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:17:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F1E83A8F89
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FFE354AF2;
-	Tue, 11 Nov 2025 11:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729BD355051;
+	Tue, 11 Nov 2025 11:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+kHAFqw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RoBpfm4m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A276C346FCB;
-	Tue, 11 Nov 2025 11:16:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13BB30E82E;
+	Tue, 11 Nov 2025 11:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762859819; cv=none; b=oMtUYrlz2xqVwclDW8Fax3SyUyn+rrFvZ/7qZkEAWh+P2fEU35cW4XlgR3hZ9M0MXtDwYnz6ESA0AIM98e4ELaZKAL2s6MRVztgNM2TI+XrYRTm1zxAoQfdHr4hV9UU5wgBKpZe+8nUr6ZgBHpDwYXbZiUCmKlP7R7FQpbqmeoM=
+	t=1762860159; cv=none; b=fDg7MwbmsxDY+fuWOykgMUAKrL/NqTLq6qM5vPLxpRKee8gRKDK1gMtX93fIabWpQAIKOLwHT+Eeqwjt+qG0mMIs6W2X1+8LPdPaZq8clqqzfXcxqEKa3IXLOsBsuvx6YpqdDEL/06JX5gwL7PnvfKGMjch9NDReEwR++6UN9is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762859819; c=relaxed/simple;
-	bh=6GaXkqPrq2gZuZ0i7G8tPqJd3p8ZVkVq5GXwEApzHJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eLiAEUQ+sxDzhUGPbgoqQFqsvInr10bmTmadnaEmog0ECIG+82cc3xykEwVgzT984GCRA18P/fOPazAYjfCq1Jy2/Pm/whNzwzcS2TnMU9wqV87WCixy3GCLEUfIQU3F4QprdPBS3Y6gOvlZr6mHDSdNftuPBya0LUS3GV48V2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+kHAFqw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59F5FC116B1;
-	Tue, 11 Nov 2025 11:16:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762859819;
-	bh=6GaXkqPrq2gZuZ0i7G8tPqJd3p8ZVkVq5GXwEApzHJk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m+kHAFqwrLPohGYQLVCe3ybZXB4/IzDjklHStUvFB4kKT1/82fBi2P1LgYDY37XPS
-	 o0zr/G4t++pQgnX52oxJ1uOdM5xMrd5zJ1g11VQeSXPJc/WDW9mYt1IWB8cCdG9yY2
-	 25YF4wMc1om7bQ8mFDrprszK9Cz2e/6PQre2MQZ7Fe3lmp5Koz0ZKwZ8Jb3RMalkVe
-	 m63RY6jdJXq2PIkvEOB2oHl+ovMcwqA7QuQiY5vINMigyXSXLKwdQFgd5lMpbpAdWB
-	 WWJHVFVxNtrfimEX5b5YGn6vFf0kqTlRDHDpKUyrYahXzpjoxxCgRAMpP5Pp0vym1h
-	 S7LZpQwEpGAkA==
-Message-ID: <99ca4992-5736-417d-854e-379542549bee@kernel.org>
-Date: Tue, 11 Nov 2025 12:16:55 +0100
+	s=arc-20240116; t=1762860159; c=relaxed/simple;
+	bh=Qqa7vlU2LmRoidNI3H+dtyzXwYS/YoqLxD8vZyRNneA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TdO/OrUe8P6PmuFIYxS5xEhCH6CyuRLBGqK+nrHsXoz0rbeaBjX1qzMbncAxqBI/JtkN4uS+gCMgMzJMcFDw0OxAFnYRHH0+8D0cMJM6pv4dNuAiN374yoPAWCKsyP3Rx3pGw6PMrdqP0Jfy4ohLtfIdHY4QUuaccPp3bEOnIRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RoBpfm4m; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762860157; x=1794396157;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Qqa7vlU2LmRoidNI3H+dtyzXwYS/YoqLxD8vZyRNneA=;
+  b=RoBpfm4mN3Ccq0oaYBH+DO1xHGTyxBATqmNpiysmawt3TZZzUgiXM+Ev
+   OKzxwa42NsK1nBIn15kz3nO1MOSC3/jK6ra7JqK0OICXz6K23dJ1ybyXP
+   pVWV3z7ulZQ+Utve6qSC5Kz/AHDvr7fBT6pPGNDBIfzHOoS2XxDgGXjvz
+   FTXEMEIP2yByXP8YFdZ2dsfcFfk7jldNzHd5lwlIonNZOQArHNbBSqCLY
+   0yq4puj35Z10gp64ioLGxXJdXrubhu503CMf1Af0QMzZ27sChB/C3jmCg
+   T4op95f832Y04ICgguHeLMnbTlP9DpYwUHADN47Pen1Lh9CGYRSWB9xm6
+   A==;
+X-CSE-ConnectionGUID: W4qDxJSHRBeAZayS9VJa/A==
+X-CSE-MsgGUID: 04ygD0CXSoO3k5qKSivwZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="82317624"
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
+   d="scan'208";a="82317624"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 03:22:37 -0800
+X-CSE-ConnectionGUID: M2uXnUFfQjK85tdzgDm3Dg==
+X-CSE-MsgGUID: +qtUA1mmS5eAjAEeHoet1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
+   d="scan'208";a="193053753"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.96])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 03:22:31 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id DEC9011F983;
+	Tue, 11 Nov 2025 13:22:28 +0200 (EET)
+Date: Tue, 11 Nov 2025 13:22:28 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Alan Stern <stern@rowland.harvard.edu>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v5 2/2] media: i2c: add Himax HM1246 image sensor driver
+Message-ID: <aRMcdD43ShUFQKkN@kekkonen.localdomain>
+References: <20251104-hm1246-v5-0-97c8f25b5419@emfend.at>
+ <20251104-hm1246-v5-2-97c8f25b5419@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
-To: Jon Hunter <jonathanh@nvidia.com>, Aaron Kling <webgeek1234@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
- <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com>
- <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
- <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
- <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
- <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251104-hm1246-v5-2-97c8f25b5419@emfend.at>
 
-On 11/11/2025 12:13, Jon Hunter wrote:
->>>>> +
->>>>>        if (tegra_bpmp_mrq_is_supported(emc->bpmp, MRQ_EMC_DVFS_LATENCY)) {
->>>>>                err = tegra186_emc_get_emc_dvfs_latency(emc);
->>>>>                if (err)
->>>>>
->>>>
->>>>
->>>> FYI, this patch is causing a boot regression on Tegra194 devices. I
->>>> noticed that tegra194-p2972-0000 and tegra194-p3509-0000+p3668-0000 are
->>>> no longer booting and bisect is pointing to this. I will have a closer
->>>> look and try to see why this is.
->>>
->>> Interesting. Both were booting for me during my verification, though
->>> my use case involves the dt changes that I don't believe have been
->>> picked up yet. Thought I had explicitly verified without the dt
->>> changes too, though. Since I was asked to do so on this or one of the
->>> other similar series. I will try to check linux-next as-is soon.
->>
->> I just built next-20251110 using the standard arm64 defconfig and
->> flashed the resulting Image and dtb's to p2972 and p3518 (p3509+p3668)
->> and both booted to cli on a barebones busybox ramdisk. I do not see
->> any errors from tegra-mc, and the only error I see from tegra186-emc
->> is that it can't find the opp tables, which is expected without the dt
->> changes, and is not fatal.
-> 
-> Thanks for testing. Something is not right because our boards are 
-> failing. So may be we are doing/testing something different. However, 
-> this should not break. So there is a problem here.
+Hi Matthias,
 
+On Tue, Nov 04, 2025 at 11:31:34AM +0100, Matthias Fend wrote:
+> +static int hm1246_init_controls(struct hm1246 *hm1246)
+> +{
+> +	const struct hm1246_mode *mode = &hm1246_modes[0];
+> +	struct v4l2_fwnode_device_properties props;
+> +	struct v4l2_ctrl_handler *ctrl_hdlr;
+> +	s64 pixel_rate, exposure_max, vblank_min, hblank;
+> +	int ret;
+> +
+> +	ctrl_hdlr = &hm1246->ctrls;
+> +	v4l2_ctrl_handler_init(ctrl_hdlr, 11);
+> +
+> +	hm1246->hflip_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
+> +					       V4L2_CID_HFLIP, 0, 1, 1, 0);
+> +	if (hm1246->hflip_ctrl)
+> +		hm1246->hflip_ctrl->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
+> +
+> +	hm1246->vflip_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
+> +					       V4L2_CID_VFLIP, 0, 1, 1, 0);
+> +	if (hm1246->vflip_ctrl)
+> +		hm1246->vflip_ctrl->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
+> +
+> +	v4l2_ctrl_cluster(2, &hm1246->hflip_ctrl);
+> +
+> +	hm1246->link_freq_ctrl =
+> +		v4l2_ctrl_new_int_menu(ctrl_hdlr, &hm1246_ctrl_ops,
+> +				       V4L2_CID_LINK_FREQ,
+> +				       ARRAY_SIZE(hm1246_link_freqs) - 1, 0,
+> +				       hm1246_link_freqs);
+> +	if (hm1246->link_freq_ctrl)
+> +		hm1246->link_freq_ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> +
+> +	pixel_rate = div_u64(hm1246_link_freqs[mode->link_freq_index],
+> +			     mode->clocks_per_pixel);
+> +	hm1246->pixel_rate_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
+> +						    V4L2_CID_PIXEL_RATE,
+> +						    pixel_rate, pixel_rate, 1,
+> +						    pixel_rate);
+> +
+> +	vblank_min = mode->vts_min - mode->height;
+> +	hm1246->vblank_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
+> +						V4L2_CID_VBLANK, vblank_min,
+> +						HM1246_VTS_MAX - mode->height,
+> +						1, vblank_min);
+> +
+> +	hblank = mode->hts - mode->width;
+> +	hm1246->hblank_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
+> +						V4L2_CID_HBLANK, hblank, hblank,
+> +						1, hblank);
+> +	if (hm1246->hblank_ctrl)
+> +		hm1246->hblank_ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> +
+> +	v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
+> +			  HM1246_ANALOG_GLOBAL_GAIN_MIN,
+> +			  HM1246_ANALOG_GLOBAL_GAIN_MAX,
+> +			  HM1246_ANALOG_GLOBAL_GAIN_STEP,
+> +			  HM1246_ANALOG_GLOBAL_GAIN_MIN);
+> +
+> +	exposure_max = mode->vts_min - HM1246_COARSE_INTG_MARGIN;
+> +	hm1246->exposure_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
+> +						  V4L2_CID_EXPOSURE,
+> +						  HM1246_COARSE_INTG_MIN,
+> +						  exposure_max,
+> +						  HM1246_COARSE_INTG_STEP,
+> +						  exposure_max);
+> +
+> +	v4l2_ctrl_new_std_menu_items(ctrl_hdlr, &hm1246_ctrl_ops,
+> +				     V4L2_CID_TEST_PATTERN,
+> +				     ARRAY_SIZE(hm1246_test_pattern_menu) - 1,
+> +				     0, 0, hm1246_test_pattern_menu);
+> +
+> +	ret = v4l2_fwnode_device_parse(hm1246->dev, &props);
+> +	if (ret)
+> +		goto err_v4l2_ctrl_handler_free;
 
-Did you meant: "So there is NO problem here"?
+If you move this to the beginning of the function, you can return if this
+fails.
 
-I kept these for 10 days in linux-next and yesterday sent them in pull
-request. If some patches are needed on top, they can still fit coming
-merge window if sent soon.
+> +
+> +	ret = v4l2_ctrl_new_fwnode_properties(ctrl_hdlr, &hm1246_ctrl_ops,
+> +					      &props);
+> +	if (ret)
+> +		goto err_v4l2_ctrl_handler_free;
 
+I'd omit the error check for this altogether. See also
+<20251111112057.95655-1-sakari.ailus@linux.intel.com> on LMML.
 
-Best regards,
-Krzysztof
+> +
+> +	if (ctrl_hdlr->error) {
+> +		ret = ctrl_hdlr->error;
+> +		goto err_v4l2_ctrl_handler_free;
+> +	}
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
