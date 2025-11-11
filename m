@@ -1,98 +1,73 @@
-Return-Path: <devicetree+bounces-237089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B64C7C4CAAB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:31:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2986EC4CB05
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:34:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 09C584F154A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:27:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0A8FD4F9C27
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EB0E2F25E0;
-	Tue, 11 Nov 2025 09:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB962F1FF1;
+	Tue, 11 Nov 2025 09:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XQTtuPFH"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="o1M2zbtW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E8E2877CB
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 09:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCDF252917;
+	Tue, 11 Nov 2025 09:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762853235; cv=none; b=uzrKSiU3PCJLhwuv8bqo9x1OXG787g7F2u5jVJLJHrEgCazmnrHMeFFcffxLvQuJ6out4j5KpN51mf7JYgJMzHEUm6EzEhPnBojCtZhK9U4001gOLlx6nn+Eyu/TsKWYcxK+SjcyxgdG4zlz3J6CXSWxapkJsV3hK1et2/EWckg=
+	t=1762853428; cv=none; b=YGkIsm8QNDp9+kK+VXUtLv2KmhkAHKFZGEQmC8BD89kLuafQGE/x0shcDweN54rD9QC69odrKgbxi0smCgff+zJZDl4adKnsHTZjNJF8Yqsj12ikkM/RNZ3vXpLuSiUmEG52MPy7ZwwK+uQu2EtLDdYZgdj5ZvEacu93J5pp9Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762853235; c=relaxed/simple;
-	bh=+CVBWtoEqiNso8fK0OPIIuivfGYQiY/ibNKVSUF5xCU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rX2RAtmiOPA8xtZd+hAwQd99TFykQNFCikckCsYOnquLIKoUEBx4TpHJAo9R0y9zJiIysskT47RbN5Wz4yJBz1aaO8F7OuznkGGHZlkZgT68mXCVs2RxLNjyyX38OEJ1ZV2DTalKzX7Tk8Pt/Fi0QwzQnhArnAO7tnRidJ6XqsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XQTtuPFH; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42b3d4d9ca6so1251250f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 01:27:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762853232; x=1763458032; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UeKzbt40uI8Z6nTzEM4JNROnGsdZUz7mRBsaMfIaT7M=;
-        b=XQTtuPFHcf5HZLJYqOvQ4M8VRNHt8kUsZmrMjFr1ltqFJ6QYm0fhjEfFyGLQBTNMTP
-         8H1qOAX4m9R1OgTxp7ZvLb4NKp5PhN9NQoalGaa4X6gtRIokONND9xmtCwbyyvy+mNVM
-         pzInDigyawMRTHKvqHhA5G0yfdARLFSD76QSJKYooEESNRVW2Fqg4OliN+e9a4agyCSx
-         1l68YMesxw8GCktecGtc/OtT+DIagKFdaPJmIAY3P1k1pwxmnHxSf2koQgcm0GvFXCs3
-         icQikUC8OMc0ZZ28OwsoinWRnxmJaoWztSVUNDVDe5HKbzGSJGP60wtP2kvAgtOTXr5H
-         lXFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762853232; x=1763458032;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=UeKzbt40uI8Z6nTzEM4JNROnGsdZUz7mRBsaMfIaT7M=;
-        b=S9qNk2TUcB/TUGfQc4ZRenFCpcLOKHMBHOklOpn8PoeT24N0jJKBe5vfKvSehSExUR
-         eKtR7OK8JfQV3cI1OrFwQD61+MNodAGmzNPVGtAC3faqZG9MzJ+Eop/N1n67R6pqqJNf
-         CtL3LRolR4Hsbvbix64qWkz4pHCeBMBENqxWeX5ikDIgA8Ru6L1T6K7DMl4/yeDGkOkn
-         fVNDs/+TnHXJeUGLnMJXhf6ZH2hCtSH6IMM5DXjM4ftc9pDHf0EynvdpQoQLRX7gXEbT
-         /gaKq5XdMvU1FF0iKk0tRxW79wSj5v2rXIx6DB1T4QEoZ0g8W7thZd843QT8UPMAGixs
-         Ibnw==
-X-Forwarded-Encrypted: i=1; AJvYcCVqCJdFXMbEXc0NT1eRuuw9mSrM62y/hrcbSOXQnHKft7KFhlH7r8P6V5n9ve5hyA1i+2XO+LoylPaC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzu769xQIakhyaZKLZlZvKOzFfZI/Fz1C/Rfx3VbZSeupVCU00q
-	ChpkNqa++hh59Xnz4GADC4Rn2aveoLoBq3y95O6TYpIJ8ZXwLMLCmOka
-X-Gm-Gg: ASbGncvTQsnayzYhQXwEXK06w+AhJ90/MoPW/+anU58PXT+AtAbFEi5+y1BtbLi4Y7+
-	vl1DpmBHO1TeNe9gmVBH0kIxWeMXJXtxjopIiSFJqGHNZwznxtRb6kNj7dIdKPrczTPYJF6qUSy
-	NUZZ1v9zK4QqQVOuLrmKB7cI+cV7re+LQsxQFHf9vLHQmudq3ljF4n0hlhS7gRt6RvCZLo8jRFQ
-	zcyhDgQwFzBUrWwWSA8kPX1qov5SKDr5UiKIeDXUpeKaVrj9U4sQ01LurAGF+px/OceA8w8HLjY
-	ur7BYsnEmyeixjJPs6u57KrtwSwiPgFY7A8cmvnaI204bV8cUGbno6PKdPYH39RMZLq7oI0Qo3L
-	Rzk8wf0TJhOK8w3sAGXG6PDtz8uyzxlD3JQGy39tUnlTPeDF8Fpvyjtay1tJ7bPLkmGyrtPke8F
-	iXNRXrK5vqfau5VeUOHVNQdxp+
-X-Google-Smtp-Source: AGHT+IE9bVtPss6xMDYZ8Z9svDX3dsWvptBxWqqb99TTrnQYZhfM/ZD1vt3P+FWQVe7WddFS7DwtxA==
-X-Received: by 2002:a05:6000:3104:b0:429:ef82:585b with SMTP id ffacd0b85a97d-42b2dc16b17mr8823445f8f.9.1762853231629;
-        Tue, 11 Nov 2025 01:27:11 -0800 (PST)
-Received: from builder.. ([2001:9e8:f12a:4216:be24:11ff:fe30:5d85])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42ac67921c3sm27464641f8f.40.2025.11.11.01.27.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Nov 2025 01:27:11 -0800 (PST)
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Rosin <peda@axentia.se>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Richard <thomas.richard@bootlin.com>,
-	Jonas Jelonek <jelonek.jonas@gmail.com>
-Subject: [PATCH v6 2/2] gpio: add gpio-line-mux driver
-Date: Tue, 11 Nov 2025 09:27:04 +0000
-Message-ID: <20251111092705.196465-3-jelonek.jonas@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251111092705.196465-1-jelonek.jonas@gmail.com>
-References: <20251111092705.196465-1-jelonek.jonas@gmail.com>
+	s=arc-20240116; t=1762853428; c=relaxed/simple;
+	bh=wZlXKpo31e6AwXUa1PoRqZsQUj2wSTY2D7ak9f58Epw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bfDTptjSzQMC2M0EF9cnSZNlpQIqrDCIddX+NyZwUr6G42JhUsJmuYNAQifDZaYgdNgjDrHpZmg11WB29ZGibA/TXhlCUCvM54xdHtStlZlIyzt4OigRfpXEAS7ixFErbcBlXWjtFYRqrhM/AfSk/6Sbzl2ya3gtiGM9PS7K+3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=o1M2zbtW; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AB9Tx3123459970, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1762853399; bh=zeWT3GTJIw4w5COTfo8dZqC5rvaiOYf+o0PYphGr73M=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=o1M2zbtWcPQCoSDoG8Qv+TDygGAPd8fsew0wqyWi6KPFDY4XxBL25rq8GdhOUQKH/
+	 4hBqdC5SM26Gbgr0hkYFiBxHCXUuUOeVlCUx8V31xAJW6hwpNCMgNms3MPEdLaM9UT
+	 wyVN68JLGRC8UfFjwFHrqfx+S7558kU9kSpFYTxyPLDvKkqU1M6uPV50/SQ3A/shI5
+	 pybEiyewyk0aLGBeGEqs2mB1DEkxD4n5pA4i5BwG8CISabUgQOOFEdcNEao5BpOG7S
+	 7VuD0p5OztASMrR3/QaVM8XbdNnMK2OJN1ayVUpmGMUtO5WZgyFXhdsR7CfAfKAZup
+	 VgslO6r47+1nQ==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AB9Tx3123459970
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 11 Nov 2025 17:29:59 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Tue, 11 Nov 2025 17:30:00 +0800
+Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
+ RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Tue, 11 Nov 2025 17:29:59 +0800
+Received: from ww-haowen.ting (172.21.177.97) by RTKEXHMBS04.realtek.com.tw
+ (10.21.1.54) with Microsoft SMTP Server id 15.2.1544.27 via Frontend
+ Transport; Tue, 11 Nov 2025 17:29:59 +0800
+From: Hao-Wen Ting <haowen.ting@realtek.com>
+To: <daniel.lezcano@linaro.org>, <tglx@linutronix.de>
+CC: <jinn.cheng@realtek.com>, <edwardwu@realtek.com>, <phelic@realtek.com>,
+        <shawn.huang724@realtek.com>, <haowen.ting@realtek.com>,
+        <cy.huang@realtek.com>, <james.tai@realtek.com>, <cylee12@realtek.com>,
+        <phinex@realtek.com>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Add Realtek SYSTIMER driver
+Date: Tue, 11 Nov 2025 17:29:57 +0800
+Message-ID: <20251111092959.616089-1-haowen.ting@realtek.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,226 +75,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Add a new driver which provides a 1-to-many mapping for a single real
-GPIO using a multiplexer. Each virtual GPIO corresponds to a multiplexer
-state which, if set for the multiplexer, connects the real GPIO to the
-corresponding virtual GPIO.
+This patch series adds support for the Realtek SYSTIMER, a 64-bit timer
+that serves as a tick broadcast timer on Realtek SoCs.
 
-This can help in various usecases. One practical case is the special
-hardware design of the Realtek-based XS1930-10 switch from Zyxel. It
-features two SFP+ ports/cages whose signals are wired directly to the
-switch SoC. Although Realtek SoCs are short on GPIOs, there are usually
-enough the fit the SFP signals without any hacks.
+On Realtek platforms, CPUs can enter deep idle states (C-states) where
+local timers are stopped and powered off. Without a global tick broadcast
+timer, one CPU must remain awake to wake up the others, preventing all CPUs
+from entering deep idle simultaneously and limiting power savings.
 
-However, Zyxel did some weird design and connected RX_LOS, MOD_ABS and
-TX_FAULT of one SFP cage onto a single GPIO line controlled by a
-multiplexer (the same for the other SFP cage). The single multiplexer
-controls the lines for both SFP and depending on the state, the
-designated 'signal GPIO lines' are connected to one of the three SFP
-signals.
+The Realtek SYSTIMER remains active during deep idle states, allowing all
+CPUs to enter power-cut idle states simultaneously. This significantly
+reduces overall power consumption while maintaining proper tick broadcast
+functionality.
 
-Because the SFP core/driver doesn't support multiplexer but needs single
-GPIOs for each of the signals, this driver fills the gap between both.
-It registers a gpio_chip, provides multiple virtual GPIOs and sets the
-backing multiplexer accordingly.
+Technical details:
+- 64-bit timer operating at 1MHz fixed frequency
+- Supports oneshot mode for tick broadcast
+- Uses standard TIMER_OF framework and Device Tree integration
+- Remains active during CPU power-down states
 
-Due to several practical issues, this is input-only and doesn't support
-IRQs.
+Testing:
+- Tested on Realtek SoC platform in ChromiumOS environment
+- Power consumption reduction verified in deep idle scenarios
 
-Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
-Reviewed-by: Thomas Richard <thomas.richard@bootlin.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- MAINTAINERS                  |   6 ++
- drivers/gpio/Kconfig         |   9 +++
- drivers/gpio/Makefile        |   1 +
- drivers/gpio/gpio-line-mux.c | 126 +++++++++++++++++++++++++++++++++++
- 4 files changed, 142 insertions(+)
- create mode 100644 drivers/gpio/gpio-line-mux.c
+Patch organization:
+Patch 1/2: Device Tree binding documentation
+Patch 2/2: Clock source driver implementation
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3da2c26a796b..66f8706d9b4b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10653,6 +10653,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml
- F:	drivers/media/rc/gpio-ir-tx.c
- 
-+GPIO LINE MUX
-+M:	Jonas Jelonek <jelonek.jonas@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-+F:	drivers/gpio/gpio-line-mux.c
-+
- GPIO MOCKUP DRIVER
- M:	Bamvor Jian Zhang <bamv2005@gmail.com>
- L:	linux-gpio@vger.kernel.org
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index ce237398fa00..5f8082ae99cc 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1986,6 +1986,15 @@ config GPIO_LATCH
- 	  Say yes here to enable a driver for GPIO multiplexers based on latches
- 	  connected to other GPIOs.
- 
-+config GPIO_LINE_MUX
-+	tristate "GPIO line mux driver"
-+	depends on OF_GPIO
-+	select MULTIPLEXER
-+	help
-+	  Say Y here to support the GPIO line mux, which can provide virtual
-+	  GPIOs backed by a shared real GPIO and a multiplexer in a 1-to-many
-+	  fashion.
-+
- config GPIO_MOCKUP
- 	tristate "GPIO Testing Driver (DEPRECATED)"
- 	select IRQ_SIM
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index ee260a0809d3..6caee52b0356 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -89,6 +89,7 @@ obj-$(CONFIG_GPIO_IXP4XX)		+= gpio-ixp4xx.o
- obj-$(CONFIG_GPIO_JANZ_TTL)		+= gpio-janz-ttl.o
- obj-$(CONFIG_GPIO_KEMPLD)		+= gpio-kempld.o
- obj-$(CONFIG_GPIO_LATCH)		+= gpio-latch.o
-+obj-$(CONFIG_GPIO_LINE_MUX)		+= gpio-line-mux.o
- obj-$(CONFIG_GPIO_LJCA) 		+= gpio-ljca.o
- obj-$(CONFIG_GPIO_LOGICVC)		+= gpio-logicvc.o
- obj-$(CONFIG_GPIO_LOONGSON1)		+= gpio-loongson1.o
-diff --git a/drivers/gpio/gpio-line-mux.c b/drivers/gpio/gpio-line-mux.c
-new file mode 100644
-index 000000000000..a4f384306218
---- /dev/null
-+++ b/drivers/gpio/gpio-line-mux.c
-@@ -0,0 +1,126 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * GPIO line mux which acts as virtual gpiochip and provides a 1-to-many
-+ * mapping between virtual GPIOs and a real GPIO + multiplexer.
-+ *
-+ * Copyright (c) 2025 Jonas Jelonek <jelonek.jonas@gmail.com>
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/mux/consumer.h>
-+#include <linux/platform_device.h>
-+
-+#define MUX_SELECT_DELAY_US	100
-+
-+struct gpio_lmux {
-+	struct gpio_chip gc;
-+	struct mux_control *mux;
-+	struct gpio_desc *muxed_gpio;
-+
-+	u32 num_gpio_mux_states;
-+	unsigned int gpio_mux_states[] __counted_by(num_gpio_mux_states);
-+};
-+
-+static int gpio_lmux_gpio_get(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct gpio_lmux *glm = gpiochip_get_data(gc);
-+	int ret;
-+
-+	if (offset > gc->ngpio)
-+		return -EINVAL;
-+
-+	ret = mux_control_select_delay(glm->mux, glm->gpio_mux_states[offset],
-+				       MUX_SELECT_DELAY_US);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = gpiod_get_raw_value_cansleep(glm->muxed_gpio);
-+	mux_control_deselect(glm->mux);
-+	return ret;
-+}
-+
-+static int gpio_lmux_gpio_set(struct gpio_chip *gc, unsigned int offset,
-+			      int value)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static int gpio_lmux_gpio_get_direction(struct gpio_chip *gc,
-+					unsigned int offset)
-+{
-+	return GPIO_LINE_DIRECTION_IN;
-+}
-+
-+static int gpio_lmux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct gpio_lmux *glm;
-+	unsigned int ngpio;
-+	size_t size;
-+	int ret;
-+
-+	ngpio = device_property_count_u32(dev, "gpio-line-mux-states");
-+	if (!ngpio)
-+		return -EINVAL;
-+
-+	size = struct_size(glm, gpio_mux_states, ngpio);
-+	glm = devm_kzalloc(dev, size, GFP_KERNEL);
-+	if (!glm)
-+		return -ENOMEM;
-+
-+	glm->gc.base = -1;
-+	glm->gc.can_sleep = true;
-+	glm->gc.fwnode = dev_fwnode(dev);
-+	glm->gc.label = dev_name(dev);
-+	glm->gc.ngpio = ngpio;
-+	glm->gc.owner = THIS_MODULE;
-+	glm->gc.parent = dev;
-+
-+	glm->gc.get = gpio_lmux_gpio_get;
-+	glm->gc.set = gpio_lmux_gpio_set;
-+	glm->gc.get_direction = gpio_lmux_gpio_get_direction;
-+
-+	glm->mux = devm_mux_control_get(dev, NULL);
-+	if (IS_ERR(glm->mux))
-+		return dev_err_probe(dev, PTR_ERR(glm->mux),
-+				     "could not get mux controller\n");
-+
-+	glm->muxed_gpio = devm_gpiod_get(dev, "muxed", GPIOD_IN);
-+	if (IS_ERR(glm->muxed_gpio))
-+		return dev_err_probe(dev, PTR_ERR(glm->muxed_gpio),
-+				     "could not get muxed-gpio\n");
-+
-+	glm->num_gpio_mux_states = ngpio;
-+	ret = device_property_read_u32_array(dev, "gpio-line-mux-states",
-+					     &glm->gpio_mux_states[0], ngpio);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "could not get mux states\n");
-+
-+	ret = devm_gpiochip_add_data(dev, &glm->gc, glm);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add gpiochip\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id gpio_lmux_of_match[] = {
-+	{ .compatible = "gpio-line-mux" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, gpio_lmux_of_match);
-+
-+static struct platform_driver gpio_lmux_driver = {
-+	.driver = {
-+		.name = "gpio-line-mux",
-+		.of_match_table = gpio_lmux_of_match,
-+	},
-+	.probe = gpio_lmux_probe,
-+};
-+module_platform_driver(gpio_lmux_driver);
-+
-+MODULE_AUTHOR("Jonas Jelonek <jelonek.jonas@gmail.com>");
-+MODULE_DESCRIPTION("GPIO line mux driver");
-+MODULE_LICENSE("GPL");
+Best regards,
+Hao-Wen Ting
+
+Hao-Wen Ting (2):
+  dt-bindings: timer: Add Realtek SYSTIMER binding
+  clocksource: Add Realtek systimer as tick broadcast driver
+
+ .../bindings/timer/realtek,systimer.yaml      |  54 ++++++
+ MAINTAINERS                                   |   5 +
+ drivers/clocksource/Kconfig                   |  10 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-realtek.c           | 173 ++++++++++++++++++
+ 5 files changed, 243 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/realtek,systimer.yaml
+ create mode 100644 drivers/clocksource/timer-realtek.c
+
+
+base-commit: 948b99877bf5a1cd58bee930e455b7574daba5c3
 -- 
-2.48.1
+2.34.1
 
 
