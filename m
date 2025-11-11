@@ -1,277 +1,300 @@
-Return-Path: <devicetree+bounces-237071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60556C4C6EA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:40:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE597C4C6D2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:38:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E8F8A4F7687
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 08:35:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B8CF1881D27
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 08:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF85287505;
-	Tue, 11 Nov 2025 08:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FABE32AAAF;
+	Tue, 11 Nov 2025 08:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pegatroncorp.com header.i=@pegatroncorp.com header.b="hYi3fPI8"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Y+BeQ+50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ms.pegatroncorp.com (ms5.pegatroncorp.com [43.251.60.7])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20ED224B15;
-	Tue, 11 Nov 2025 08:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=43.251.60.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762850116; cv=fail; b=cNL9226MHlJyYjAMIMJGP3MVnoa9bnV2/yJIt5eWA/sFP4hZQ9ocEoLNyKcUqGztlCcjEk1sOofCuEVtATx0J2RxPUySxsYc5RRVJeObwVmyP9eHwg4XL2oSS361KdzDuiZCOlK07ldHerTDAiPk8RuTeWOTmxSAVNCLORjey1c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762850116; c=relaxed/simple;
-	bh=gFlyatsR0cjkNgHtWOOPqtkMINMQmWuVj3l3NZ0vVkg=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Y7PteoF3/TBJZIGTtpukQtg9JcAWVuSHroV57Kl/SN/PkE3ecmyx4uhq63ZCEorTkhZDVc/MS1/FEI2KXnt9O6YXoQ+pPrz+SaiLTg1nqJGSM9BdIR/BliGYhKbs2ZgTirirS1YOUFoIfQQr1LHDMbdommrCw57VkOdMG/qVsE4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pegatroncorp.com; spf=pass smtp.mailfrom=pegatroncorp.com; dkim=pass (2048-bit key) header.d=pegatroncorp.com header.i=@pegatroncorp.com header.b=hYi3fPI8; arc=fail smtp.client-ip=43.251.60.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pegatroncorp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pegatroncorp.com
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=pegatroncorp.com; i=@pegatroncorp.com; q=dns/txt;
-  s=pegatroncorp; t=1762850114; x=1794386114;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=gFlyatsR0cjkNgHtWOOPqtkMINMQmWuVj3l3NZ0vVkg=;
-  b=hYi3fPI8JrmAVhUdpn2Gsf5KgCSzlVZsTwvU1OmG3FGdFnqWBNqwgMtJ
-   z0n8yhzBEScBkn8yCyaft6tZAURYOJz9k+Df5d+lBRPulfkt8xYchHNbX
-   12l6wrEwDaGNKRAM/GjA3s5UV+OA0foMNboW9YKwFb63mOaP9tZGFeu8E
-   IxlEAIAFC31GeiDB+Xp77c3glyJL9YZpHZ0gpGqSm4YpH89m7h1NXddL4
-   EUWcW5KIoS/n8nqTUQ90+zja5Z3+5J0RXGjMZMPHmZJGUhVsy3MzlfNYc
-   j+sT0eW9Ng+BRecgHR7ONmMcXMxWlBGilYptmchqPAP30DueDm93wP8zC
-   Q==;
-Authentication-Results: ms.pegatroncorp.com; spf=SoftFail smtp.mailfrom=Daniel_Peng@pegatroncorp.com; spf=None smtp.helo=postmaster@PTW-MSE-AP03.pegatroncorp.com
-Received-SPF: SoftFail (ms.pegatroncorp.com: domain of
-  Daniel_Peng@pegatroncorp.com is inclined to not designate
-  172.18.226.177 as permitted sender) identity=mailfrom;
-  client-ip=172.18.226.177; receiver=ms.pegatroncorp.com;
-  envelope-from="Daniel_Peng@pegatroncorp.com";
-  x-sender="Daniel_Peng@pegatroncorp.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 ip4:218.104.34.192/28 ip4:60.250.88.199
-  ip4:60.250.88.200 ip4:60.250.88.201 ip4:60.250.88.202
-  ip4:60.250.88.203 ip4:60.250.88.204 ip4:203.69.6.13
-  ip4:203.69.6.14 ip4:203.69.6.15 ip4:203.69.6.16
-  ip4:203.69.6.17 ip4:203.69.6.18 ip4:58.211.157.0/29
-  ip4:58.240.231.120/30 ip4:124.9.5.0/26 ip4:43.251.60.0/22
-  ip4:192.72.126.0/24 ip4:58.211.157.0/30 ip4:221.224.25.136/30
-  ip4:210.80.80.195 include:spf.protection.outlook.com ~all"
-Received-SPF: None (ms.pegatroncorp.com: no sender authenticity
-  information available from domain of
-  postmaster@PTW-MSE-AP03.pegatroncorp.com) identity=helo;
-  client-ip=172.18.226.177; receiver=ms.pegatroncorp.com;
-  envelope-from="Daniel_Peng@pegatroncorp.com";
-  x-sender="postmaster@PTW-MSE-AP03.pegatroncorp.com";
-  x-conformance=spf_only
-Received: from unknown (HELO PTW-MSE-AP03.pegatroncorp.com) ([172.18.226.177])
-  by ms.pegatroncorp.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 16:35:11 +0800
-Received: from PTW-EX-DMBSC08.PEGA.CORP.PEGATRON (PTW-EX-DMBSC08.PEGA.CORP.PEGATRON [172.18.147.33])
-	by PTW-MSE-AP03.pegatroncorp.com with ESMTPS id 5AB8Z5sf018460
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-	Tue, 11 Nov 2025 16:35:05 +0800 (+08)
-	(envelope-from Daniel_Peng@pegatroncorp.com)
-Received: from PTW-EX-DMBSC12.PEGA.CORP.PEGATRON (172.18.147.36) by
- PTW-EX-DMBSC08.PEGA.CORP.PEGATRON (172.18.147.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.57; Tue, 11 Nov 2025 16:35:05 +0800
-Received: from SG2PR04CU009.outbound.protection.outlook.com (40.93.129.98) by
- PTW-EX-DMBSC12.PEGA.CORP.PEGATRON (172.18.147.36) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Tue, 11 Nov 2025 16:35:04 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gtB8PN5+M+cKwepMn0ulsSvgwwtTlBxTQJLKqoU0ZKraNB972NqOXXsh3u/W+MvZ/6NQS0N/UqeeX+0ySLLkuJ116iUt1C9ekkjyiuahrfOpNM0NoHN/z1QYuDqZe3BHauFH4kw79fhY+n9oh8C23XoierLyrp2GEY5PFH21WqVYzwTgWtJyCFmCLeNY3BKf1MKUjtbKI7fw/vuz/VKMbDznodiYfJ3Zx8Qd2DWLX5V3ZMVWu3rokafzvhiXrLHHGVqJ+UP38CAnb0xGH2PRL7+CQWILMvygEEBxbMA81BWWltkfhlCdCspZoY2+3AWAzqLIW4amtTdFibL0Wt4qcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gFlyatsR0cjkNgHtWOOPqtkMINMQmWuVj3l3NZ0vVkg=;
- b=sA/a53wuZrs9M9IuEeUKpvKPKJhkJvMce7wKTYjGlZECEIy29n+vhObAxx4vW93SIxdGV6ODj9Lat7LOmH1eTd0iwKP/MfziprRmyETkWQQ86W2/voV56O8V3NdQAqs3tDH8t2u3514LHoiksGkbuPclYH+aNxIyH7z39MvRVULP1xQgc8YXGaH6jyFTO7P9R1hyC2ibPyKQCjfRjEO0U0NUZDR+punEoUER7UdkQy5C+ZkrZQHFvw83R/RhqjAjIvWBEcaQbfElSHd1ULnEZJql6dSBCV0zuqDDdOziQVds29tVb/u/v5NmKMLoBegtgP9kh6h8geFgIRZUSwJEXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=pegatroncorp.com; dmarc=pass action=none
- header.from=pegatroncorp.com; dkim=pass header.d=pegatroncorp.com; arc=none
-Received: from SEZPR06MB6742.apcprd06.prod.outlook.com (2603:1096:101:183::9)
- by SE1PPFDC587DD38.apcprd06.prod.outlook.com (2603:1096:108:1::42c) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 08:35:01 +0000
-Received: from SEZPR06MB6742.apcprd06.prod.outlook.com
- ([fe80::7915:c9db:be14:6bc8]) by SEZPR06MB6742.apcprd06.prod.outlook.com
- ([fe80::7915:c9db:be14:6bc8%7]) with mapi id 15.20.9298.015; Tue, 11 Nov 2025
- 08:35:01 +0000
-From: =?utf-8?B?RGFuaWVsIFBlbmco5b2t5Y2a54WcX1BlZ2F0cm9uKQ==?=
-	<Daniel_Peng@pegatroncorp.com>
-To: "krzk@kernel.org" <krzk@kernel.org>
-CC: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        "linux-input@vger.kernel.org"
-	<linux-input@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "daniel_peng@pegatron.corp-partner.google.com"
-	<daniel_peng@pegatron.corp-partner.google.com>
-Subject: RE: [PATCH 1/2] dt-bindings: HID: i2c-hid: elan: Introduce FocalTech
- FT8112
-Thread-Topic: [PATCH 1/2] dt-bindings: HID: i2c-hid: elan: Introduce FocalTech
- FT8112
-Thread-Index: AQHcUttn8N3KJjLitkag/BW4IMO4TrTtFeiggAAMxICAAAJVgA==
-Date: Tue, 11 Nov 2025 08:35:01 +0000
-Message-ID: <SEZPR06MB67428F386E3E56D0710AC7EBE7CFA@SEZPR06MB6742.apcprd06.prod.outlook.com>
-References: <20251111093426.1.I76ee34ac45e1469dbeb11de0d1e47d794af7dc88@changeid>
- <CAEXTbpc9=Gt7QrFrtV60+EvKdmBGsVpJxg7yYaa6HfuGGB3OqQ@mail.gmail.com>
- <SEZPR06MB67427DD182968980F4C93C08E7CFA@SEZPR06MB6742.apcprd06.prod.outlook.com>
- <28eea826-09e4-4b0c-8845-50d4cf9bac7e@kernel.org>
-In-Reply-To: <28eea826-09e4-4b0c-8845-50d4cf9bac7e@kernel.org>
-Accept-Language: en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEZPR06MB6742:EE_|SE1PPFDC587DD38:EE_
-x-ms-office365-filtering-correlation-id: 5b7da269-d51f-4368-9c58-08de20fd34dd
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700021|7053199007;
-x-microsoft-antispam-message-info: =?utf-8?B?MTlYNU10L3pzeWxnU0FOQWR4MU14dHlESjlzVDdZZ2t0d1RjV1RtdHhXZ0hB?=
- =?utf-8?B?NnNGSlRmcW1RZ2g1TDd0MTBDc0NHT2drNjUraUJuaWpqU0szKytrNmhQMXhM?=
- =?utf-8?B?SjdtTzRDdlJnWXZtT1JlK0RKYmpxVktxa3pJTzc3VGV5cWNuaXlENVd3SUVM?=
- =?utf-8?B?T0pHZDVMRUUyTzNjVWp1aVNzTDh4VWtTWVNadzVNM2liKzFhaXpnalJPbU8w?=
- =?utf-8?B?dE9sbzRzOUlOWmxCcWtVZ2pIbE0wN1BQMDRiRVdGWGVRd3RWcjZnWHQ2dGhU?=
- =?utf-8?B?VWtZNllRNXcwb0FteXlLMi9PT0svclcvd25hMkZpbUx0d3JBejZOWmUxQjRv?=
- =?utf-8?B?dXFzbC9BZ2pMbGJIUFJCQUpSTGdGMFl0eUZ6UGk5WjJ3WWE2RTJQNzBhRWlC?=
- =?utf-8?B?NWdBZUZPd2NWcER1VDhHNU9INGpkUk1uaDhXd3BLN29SbGVacU1ua3E4Qlhu?=
- =?utf-8?B?NnVEdzNKZlF5KzZhQTdtMFBQZVIrdXZ4emFqMStLNlNPQldDcDdoVkdtZ2VC?=
- =?utf-8?B?d2daUHp1QWMrV2RJZ2F3RndWTjRDZTBCS2FQY3lJNXlkZXBvcHJNMWkyQUtQ?=
- =?utf-8?B?WkJSR2xPYTVlSkhXNEx6emk0TU03T29JOThVZm9iSWFGVFo0Tkpxak5Wc0Fo?=
- =?utf-8?B?K282ZVhhU1MxbXZOTmk5bzY2NktOVHJ3d1ZBcWJVa2VCNmNlUnVYajVBcnJE?=
- =?utf-8?B?bEtscFExbkk2V2trbnVNUWxpK2ZTdlB1aWYzN05IZStXQkZ3d214VU5ieHBD?=
- =?utf-8?B?enZveWYvNDYvMk10YXk1c1ArWGRRaityQ1lNL0gxU2tEYzdFSjNYQkRiUUdH?=
- =?utf-8?B?OWRycTFFalZjaGFaWjdmdFR5SkVQeW5BWmxvWnhOK1BBdlpuSlFwM2tBa0pa?=
- =?utf-8?B?ejM2elJWTmRYbWdlZHJhT0ljRjlkU2tPYUducWFLRkpnZXVVdlVWZkpkSjhn?=
- =?utf-8?B?aTJIVm1waFJzaEw4bkZrRTJWdUtSd1BkdmpFNDQ5Tnk0enNiRmY0Nm1JZzFq?=
- =?utf-8?B?YzRLUXNNRHh5eEo4bjRqT2FTaU9xWlpwa01QeVVhb21VcHVPdjZXRjZ3bXVK?=
- =?utf-8?B?dXg4bWEzZkZaMnNqN25zdldpWGpQQnU0cEhIbnF5WTZ2OXJnU0JKQ0d3NEcz?=
- =?utf-8?B?OW9wWjdSMzBYTU9tNjJId3NHY0FYV0hVWmROWEh3TnI1ckx3L1diT3N0VG1G?=
- =?utf-8?B?ZXRNWExXSC9CVGdJb3lrSy9JcytGbFdYV2todE9hQ0RVVlJlNkJCc3Jpdmxm?=
- =?utf-8?B?ZElrN2hiSHlsbGdjdWx5K1RDUEs0eVBtT0YxajdTTEI4L2wveHBNUjBwQTh0?=
- =?utf-8?B?YzJPSDgrc2N3UjhKdDd1SjMxam45UEJSZGMzNE4yNlBzTTI1dlN4VlhyUm44?=
- =?utf-8?B?V2NoTUpsSDdwc2txMlhjR2FQakJrN0FaNzRRNlhUY0VSSVB3aC9PY2xPL010?=
- =?utf-8?B?amYvTVROZ2loRXJlUU9wLy9uN2RoTU00bFNlSVBmak80UFhRMStLSHdpMDA2?=
- =?utf-8?B?VTRPWk1mWUlBd3c0cEYzUUNQakRnWENxenFOamNoeFoyRUtWc3VRdmNKQkNH?=
- =?utf-8?B?Z0xnMXFJOGNqMGlHdWxDWHZhVUtEeHNVUXZnUTREVXVlY01HRjBYcVJsbEkv?=
- =?utf-8?B?dW1USEFpYVorYVpCT1BDNXlqUm0za0VHSkRBN2lpTFgrSXhxYTZhZzVycU4r?=
- =?utf-8?B?TkcyTlNmdXdDTVJlNmk2MHN5U21nQmQrWXNvZlpoMTZGSkN0UUE5eHBNL3Ra?=
- =?utf-8?B?blVYb0g2VzlDWjZqVGczMTM1SHVxNXFXcSsxc1JCSklwd1VOOGN1WFU3L0I2?=
- =?utf-8?B?dTVzUThyVlMybWlreFBlalFSMmMwclAyUzVwSC9ZS3FFb3A5cWRpOGpuRDRK?=
- =?utf-8?B?L2xMQU1aMFlQc3pXUTZ2T0JIUkw4WjhXTmZNYVZ2cENUSUViYkZGYmEybGdp?=
- =?utf-8?B?OENHc210ejFaZXBZRGV1d3NQRjUvdmFmMzNsUXcwME1mdy9DNFR0a3NQY3lh?=
- =?utf-8?B?WDkwK1lIamI3bUNSSVRwcnZLMmRkS25ZZzlMM2dBbWkybHhwQ2tXZ0V0RWNp?=
- =?utf-8?Q?7miEqE?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR06MB6742.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(7053199007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Nm9BamdIWFRWUlNEcGpNbzQ1QTc4TmFSY1VRaWk2OXlEbXFnNlU1WFExMVND?=
- =?utf-8?B?eTJkT1FjNTRhL1FuclI2NEZubU5ycHhNTW1EblZoSlVoRjMrTnRHV3VqUXdl?=
- =?utf-8?B?TDVVbXZmNkgzdGVnNm9mZjF1NkJTSis5ZjZKWVlpUWZHVmRmNE1mTEw1RVlN?=
- =?utf-8?B?ckV5S1c1MmJaZTlMNFAvME9BSXUreVFhSUVmNDlFaEQ1VWJCUWxGK0g3dnlu?=
- =?utf-8?B?UzhkOFV2eEo5OXgyejFRbFBsVjVRTFZvS3hWbFJ2YTlPNFpiY1RvYjd0aWpQ?=
- =?utf-8?B?VXJXWEYrU1NnYzZQaXVhbU1qUlp6VzgwRGNyUDdxUkRwamFVNVIrWm1hN3FD?=
- =?utf-8?B?R201WmROR0lwWEMvcWVRY2RtN3o1MFIrb1JGNXg0b2haS2swUWg2WUJ4d3g2?=
- =?utf-8?B?WWcwSjBxT2UyV2ladldGOWsybDlPelpocHlTb3oyaFA3c3J5dHUzOGttaG15?=
- =?utf-8?B?Vnc5SVNRb2UrWmdiVXErL0o3RHJPbXA1YXdVNG85SkF0cDNJaHgvL1J1QmNj?=
- =?utf-8?B?UDBBdzZZQ1liRTB2MENEMkVCMkl2YlZBNTZZbE5PY1AxZDNYUnNpWGVpYjcw?=
- =?utf-8?B?VS9BUGpLU3J6YlJEV0FMZWVpb2RvcEtQcDQrOGZLeFIwRWZrTWJwOHZoTmJW?=
- =?utf-8?B?ODRVbVRkWlh3NGxQcS9pSG9OZTRZd2puMHVkTmVMUlJIbXhiYUZ1UHBZMHRl?=
- =?utf-8?B?dXZLc3VCM00wK1RHbXoxZHAyRVNyM1BKNnoxTW5aYnFDRXpIeEI4RElEQktp?=
- =?utf-8?B?V2o2MzN2N1dFQlNLcHFRT3NnQWIwOE1kbm9wd1ExZTNJendYeHIwenRCQ0I0?=
- =?utf-8?B?N05NSEc2NnlaclN4LzRwZVlIQVdVSGJrOXNDTjNzMkU5U3FjckFtMmNwY1Ns?=
- =?utf-8?B?TEQ0R2tycFpGcFk4NDVmb3J3a1hvV1htbkZWekx3NjBORWF3elU5ZVJZZlNz?=
- =?utf-8?B?QVluME1CZTlqN3dqM0hZQnFhaUdiWEFMU05ISlBYam5HRWxZanhBVWwyOTJH?=
- =?utf-8?B?a3RGYjJIVmp3NFYrYXNJSG1CNktDR2pSeGswUUtjSEZrNmV3YzNDcUhSNmtv?=
- =?utf-8?B?RUVJc1QxdnZUSGpWZ01KT2s0d3VtcTMyRnczTkpuZUdXK3FTeDZ0K0JvWkVP?=
- =?utf-8?B?Uk5pcXJ0c3ExamlNTUs1WTlDM29iQUkwREx5ZG1ndnlmMWsvNFJqbXBPSWY4?=
- =?utf-8?B?dlU0clM2Y2k1dHNMS3FwbXJkOFBKekIxUmxYSGw4cTB5VnlwcXlhK0ZFVEll?=
- =?utf-8?B?b1pPWDdVdTgvRDcrcXhNY2IySUNkcU1BeHhzV3AvZE1LK0RXckRXaytnZFps?=
- =?utf-8?B?TUFPOUdFRzlEZ2pMOFpYL1VoUmpuY09sdnJKVmd0MU1jOWxCT0xLbHRUb1Uw?=
- =?utf-8?B?U05WVE9JbkRRRFptdElzajkvTE1XeW14ZHp4SmxWald0enk0Y3RIUTIrN1Qw?=
- =?utf-8?B?TGhBTU5OdWtIVkRCelB5ZGdvWEtwZElhWi9XZWlIQ1lGZFJ1dkpTbEFaRnds?=
- =?utf-8?B?YVROWkxXSmdSV3NMUGNLcDE3RGl4bmpRQ1Q3VTJaTm9xQ01hYjdmMTU4WjFQ?=
- =?utf-8?B?bHZ3cUJDZm1iMEdQUFBJWDlFR2NtbVF5SVVZWnVyUVp0aVJsZ3lCdDZWdmFS?=
- =?utf-8?B?UzMySmhSTTNsSm1US2FSL1B1VzFab1dLSWxIK3ZZZmNjcm9qWU5DeUxvaGlM?=
- =?utf-8?B?YkFNOGpnNDVXNk5XdjlJTHhWZmk3WjdzOWZkOWpmSEZ2M3MySVlWd0ZUY3h5?=
- =?utf-8?B?cE53QTl3YmFpZ1lSdW9vQXJDV2pJaHc0WkVPOUpyQ2VXMk5xeWMwTkY1NzVw?=
- =?utf-8?B?VkEwOU9wWEd0WXZJZTZhWm42S2N5bE0vbVpmTm1LeHhxY21yRGt2d0h1ZG5n?=
- =?utf-8?B?UmZVOTJsa2RDQ0UvV25wVnhzaWJlZlJnOEQrVkNPZXA3OTAvdjArSlRFWkFT?=
- =?utf-8?B?dzJwR0k3R01rSDBUc05YaTZ3aXZYVjBXRXZ1cVAwYkpuYWxUcnlKdzZmS0hq?=
- =?utf-8?B?Q3RZcTREUko4d1ZFY043VkR4dWxvMjZ6SlV6ZEFHTTNnTXVOMVBKNzdORlRx?=
- =?utf-8?B?cW5QVmlxVXZrT0o4b0l6QURMejNLNDRKdlJ4RW5WL0tXQnBzQU9JQWoxY3dF?=
- =?utf-8?B?SnBsdHgxY0tBWWpFVHRrWEdLNVhwWEZwaWovNWY5WUVLWUR6ZjNISzdaTTMx?=
- =?utf-8?B?eWc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E08121FF30;
+	Tue, 11 Nov 2025 08:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762850256; cv=none; b=LeTRq1IwFsgueQo0KxdBJUx7dg2KUJyrk6nT66yBCu4UAWEZJPxyC30PDG8YKqKaKy+2VbjDrBdO5eThjAXjQyqew7q2TENROPdSXn8YVCc9GdUn7ovpAktxkLcDemrSwOk7VVoCFNpLmW+gLNxGBgwQ0HFSI4gktEOqp659HZI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762850256; c=relaxed/simple;
+	bh=eIneCGwWgW3wItlBDizl/HBWYB6NM2FWyR2b1JvEFfY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ef+77M+E6SNfehd9UqyNyYl+80UCCA2ygZ4ibio8aevxFwyEVh9EH2vNf5CCa6289hxQa81MkmZ+wREldC2gBUuxx7D7LTGQhOb/oo+5T4+nya/3Zzd5bVR0P8q0M2iWzI+7vCUVGa9fIghSVuHVNurQOdf0BuGxJP6tgBaejYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y+BeQ+50; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762850251;
+	bh=eIneCGwWgW3wItlBDizl/HBWYB6NM2FWyR2b1JvEFfY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y+BeQ+50gCXfVnZeiccuwfxAhWB1T8Um6v2BfyrDaa/1D2B7iyXiYe9Z2y7l0ZIdi
+	 0/fWF/Id+gr5YdZYnQYX2qOKsYYY72c87ERDt+LCqi7TPpL3scdjHl0XxIOQbM5MFF
+	 VEVvi63RfXl7KRorC3MuZuWQMtiJWk208TBT/Js5xAMCtEEJ8Of/CFX3GdNfG2pV7B
+	 mKASJJE2j9YRm4APHYw1ZlcBAU2GBmowAVlNjheapfYpmZkTgXSGoxX6604ISc+5rh
+	 kudXGknQioT9sRk/pDJR+JTKzKcK8MFQMi/zjYeUwOXxehSlkBqe4zVMXzG2AAanH8
+	 hNG8UoMfS/zow==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C40EE17E124A;
+	Tue, 11 Nov 2025 09:37:29 +0100 (CET)
+Message-ID: <7266245d-46b8-4355-a966-654e816ec93c@collabora.com>
+Date: Tue, 11 Nov 2025 09:37:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6742.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b7da269-d51f-4368-9c58-08de20fd34dd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2025 08:35:01.8449
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5ab9aaef-2fe6-4d66-a5f2-129a6671846b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ivZ+UepnJM1WDvE3l3wp7h3MyiHxJMnnIc9fjo9jM58m9SaYl2N8fGsjp0lJOQa0ObD5vkKZ/J1P3cgEwJSSyNuiApsOMqNtxo/m6mASdHg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE1PPFDC587DD38
-X-OriginatorOrg: pegatroncorp.com
-X-MAIL:PTW-MSE-AP03.pegatroncorp.com 5AB8Z5sf018460
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v14 00/18] media: rockchip: add a driver for the rockchip
+ camera interface
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Markus Elfring <Markus.Elfring@web.de>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Paul Kocialkowski <paulk@sys-base.io>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Mehdi Djait <mehdi.djait@bootlin.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bryan O'Donoghue <bod@kernel.org>, Chen-Yu Tsai <wens@csie.org>
+References: <20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com>
+ <aQ4tJg8r_j4NyKhv@kekkonen.localdomain>
+ <074cd08e-0412-49f9-8dd9-b1f96eb11717@collabora.com>
+ <20251107185441.GG5558@pendragon.ideasonboard.com>
+ <13c43edb-9592-4779-a39a-7856bb0f964d@collabora.com>
+ <aRGlvQRVoQs0WjyA@kekkonen.localdomain>
+ <b89746e1-4574-4b65-af69-c533576ed185@collabora.com>
+ <20251111000627.GA30837@pendragon.ideasonboard.com>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20251111000627.GA30837@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-UmVtb3ZlIGFkZGVkIG1lbWJlcnMuDQoNClNvcnJ5IHRvIHNlbmQgZHVwbGljYXRlZCB0aGVtLiBU
-aGlzIGlzIG15IGZpcnN0IHRpbWUgdG8gcHJvY2VzcyB0aGUgdXBzdHJlYW0uDQpDb3VsZCB5b3Ug
-aGVscCB0byBjb25maXJtIGhvdyB0byB2ZXJzaW9uIG15IHBhdGNoZXMgY29ycmVjdGx5Pw0KDQoN
-ClRoYW5rcy4NCg0KQmVzdCBSZWdhcmRzLg0KRGFuaWVsDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2Fn
-ZS0tLS0tDQpGcm9tOiBrcnprQGtlcm5lbC5vcmcgPGtyemtAa2VybmVsLm9yZz4gDQpTZW50OiBU
-dWVzZGF5LCBOb3ZlbWJlciAxMSwgMjAyNSA0OjIyIFBNDQpUbzogRGFuaWVsIFBlbmco5b2t5Y2a
-54WcX1BlZ2F0cm9uKSA8RGFuaWVsX1BlbmdAcGVnYXRyb25jb3JwLmNvbT47IHRyZWFwa2luZ0Bj
-aHJvbWl1bS5vcmcNCkNjOiBEbWl0cnkgVG9yb2tob3YgPGRtaXRyeS50b3Jva2hvdkBnbWFpbC5j
-b20+OyBsaW51eC1pbnB1dEB2Z2VyLmtlcm5lbC5vcmc7IExLTUwgPGxpbnV4LWtlcm5lbEB2Z2Vy
-Lmtlcm5lbC5vcmc+OyBDb25vciBEb29sZXkgPGNvbm9yK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0
-b2YgS296bG93c2tpIDxrcnprK2R0QGtlcm5lbC5vcmc+OyBSb2IgSGVycmluZyA8cm9iaEBrZXJu
-ZWwub3JnPjsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IEFzaGVyIEh1YW5nKOm7g+mAsuWN
-l19QZWdhdHJvbikgPEFzaGVyX0h1YW5nQHBlZ2F0cm9uY29ycC5jb20+OyBkYW5pZWxfcGVuZ0Bw
-ZWdhdHJvbi5jb3JwLXBhcnRuZXIuZ29vZ2xlLmNvbQ0KU3ViamVjdDogUmU6IFtQQVRDSCAxLzJd
-IGR0LWJpbmRpbmdzOiBISUQ6IGkyYy1oaWQ6IGVsYW46IEludHJvZHVjZSBGb2NhbFRlY2ggRlQ4
-MTEyDQoNCk9uIDExLzExLzIwMjUgMDg6NTAsIERhbmllbCBQZW5nKOW9reWNmueFnF9QZWdhdHJv
-bikgd3JvdGU6DQo+IEhpIFBpbi15ZW4sDQo+IA0KPiBJIGhhZCByZS1zdWJtaXR0ZWQgdGhlIDIg
-Q0xzIHRvIHVwc3RyZWFtLiBQbGVhc2UgcmVmZXIgdGhlIGF0dGFjaG1lbnRzLg0KDQpObywgeW91
-IGR1cGxpY2F0ZWQgdGhlbS4NCg0KUGxlYXNlIHZlcnNpb24geW91ciBwYXRjaGVzIGNvcnJlY3Rs
-eS4NCg0KDQoNCj4gDQo+PiArbWFpbnRhaW5lcnM6DQo+PiArICAtIERtaXRyeSBUb3Jva2hvdiA8
-ZG1pdHJ5LnRvcm9raG92QGdtYWlsLmNvbT4NCj4gDQo+IExpc3QgeW91cnNlbGYgYXMgdGhlIG1h
-aW50YWluZXIgb2YgdGhpcyBiaW5kaW5nIGZpbGUgaW5zdGVhZCBvZiB0aGUgc3Vic3lzdGVtIG1h
-aW50YWluZXIuDQo+IFtEYW5pZWxdIFdoYXQgeW91ciBtZWFuIGlzIG1haW50YWluZXJzIGluIHRo
-aXMgZmlsZSBzaG91bGQgYmUgTWUgDQo+IHJpZ2h0PyhhcyBiZWxvdykNCg0KSSBkb24ndCB1bmRl
-cnN0YW5kIHdoYXQgaXMgdGhlIHF1b3RlIGhlcmUgYW5kIHdoYXQgaXMgeW91ciByZXNwb25zZS4N
-Cg0KVGhpcyBpcyB1bnJlYWRhYmxlLg0KDQpQbGVhc2UgdXNlIFNUQU5EQVJEIEVNQUlMIGZvcm1h
-dCwgbm90IHNvbWUgb2RkIE91dGxvb2sgc3R5bGUuIFdlIGRvbid0IGFjY2VwdCBoZXJlIE91dGxv
-b2sgb3Igb3RoZXIgY3JhcHB5IHdlYmNsaWVudHMuDQoNCj4gDQo+IA0KPiBUaGlzIGUtbWFpbCBh
-bmQgaXRzIGF0dGFjaG1lbnQgbWF5IGNvbnRhaW4gaW5mb3JtYXRpb24gdGhhdCBpcyBjb25maWRl
-bnRpYWwgb3IgcHJpdmlsZWdlZCwgYW5kIGFyZSBzb2xlbHkgZm9yIHRoZSB1c2Ugb2YgdGhlIGlu
-ZGl2aWR1YWwgdG8gd2hvbSB0aGlzIGUtbWFpbCBpcyBhZGRyZXNzZWQuIElmIHlvdSBhcmUgbm90
-IHRoZSBpbnRlbmRlZCByZWNpcGllbnQgb3IgaGF2ZSByZWNlaXZlZCBpdCBhY2NpZGVudGFsbHks
-IHBsZWFzZSBpbW1lZGlhdGVseSBub3RpZnkgdGhlIHNlbmRlciBieSByZXBseSBlLW1haWwgYW5k
-IGRlc3Ryb3kgYWxsIGNvcGllcyBvZiB0aGlzIGVtYWlsIGFuZCBpdHMgYXR0YWNobWVudC4gUGxl
-YXNlIGJlIGFkdmlzZWQgdGhhdCBhbnkgdW5hdXRob3JpemVkIHVzZSwgZGlzY2xvc3VyZSwgZGlz
-dHJpYnV0aW9uIG9yIGNvcHlpbmcgb2YgdGhpcyBlbWFpbCBvciBpdHMgYXR0YWNobWVudCBpcyBz
-dHJpY3RseSBwcm9oaWJpdGVkLg0KDQpEb24ndCBldmVyIHNlbmQgc3VjaCBjb25maWRlbnRpYWwg
-ZGlzY2xhaW1lcnMuIFRoaXMgbWVhbnMgd2Ugc2hvdWxkIGJlIGlnbm9yaW5nIHlvdXIgbWVzc2Fn
-ZXMuIEFyZSB5b3Ugc3VyZSB5b3Ugd2FudCB0aGF0Pw0KDQoNCkJlc3QgcmVnYXJkcywNCktyenlz
-enRvZg0K
+Hi Laurent,
+
+On 11/11/25 01:06, Laurent Pinchart wrote:
+> On Mon, Nov 10, 2025 at 11:29:57AM +0100, Michael Riesch wrote:
+>> On 11/10/25 09:43, Sakari Ailus wrote:
+>>> On Fri, Nov 07, 2025 at 09:51:37PM +0100, Michael Riesch wrote:
+>>>> On 11/7/25 19:54, Laurent Pinchart wrote:
+>>>>> On Fri, Nov 07, 2025 at 07:41:59PM +0100, Michael Riesch wrote:
+>>>>>> On 11/7/25 18:32, Sakari Ailus wrote:
+>>>>>>> On Fri, Oct 24, 2025 at 02:51:29PM +0200, Michael Riesch via B4 Relay wrote:
+>>>>>>>> Habidere,
+>>>>>>>>
+>>>>>>>> This series introduces support for the Rockchip Camera Interface (CIF),
+>>>>>>>> which is featured in many Rockchip SoCs in different variations.
+>>>>>>>> For example, the PX30 Video Input Processor (VIP) is able to receive
+>>>>>>>> video data via the Digital Video Port (DVP, a parallel data interface)
+>>>>>>>> and transfer it into system memory using a double-buffering mechanism
+>>>>>>>> called ping-pong mode.
+>>>>>>>> The RK3568 Video Capture (VICAP) unit, on the other hand, features a
+>>>>>>>> DVP and a MIPI CSI-2 receiver that can receive video data independently
+>>>>>>>> (both using the ping-pong scheme).
+>>>>>>>> The different variants may have additional features, such as scaling
+>>>>>>>> and/or cropping.
+>>>>>>>> Finally, the RK3588 VICAP unit constitutes an essential piece of the
+>>>>>>>> camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
+>>>>>>>> units, and a data path multiplexer (to scaler units, to ISP, ...).
+>>>>>>>
+>>>>>>> I understand both RK3568 and RK3588 include an ISP. Do you have insight on
+>>>>>>> how would this work, should the support for the ISP be added later on?
+>>>>>>
+>>>>>> Short answer: Yes and yes.
+>>>>>>
+>>>>>> Long answer:
+>>>>>>
+>>>>>> The patch series at hand adds support for the PX30 VIP and the RK3568
+>>>>>> VICAP. I cannot really say something about the PX30, but on the RK3568
+>>>>>> VICAP and ISP are orthogonal (the ISP features its own MIPI CSI-2
+>>>>>> receiver, different from that introduced in this series). Thus, ISP
+>>>>>> support can be introduced anytime (whenever someone is motivated ;-)).
+>>>>>
+>>>>> Won't they both be connected to the same sensor though, and probably the
+>>>>> same D-PHY in the SoC ? They don't seem entirely separate to me.
+>>>>
+>>>> The MIPI CSI-2 DPHY is shared, indeed. Thus, they *maybe technically
+>>>> could be* connected to the same sensor, but I don't know whether that
+>>>> works and fail to see why anyone would to such a thing (if it is about
+>>>> raw capture, the MIPI CSI-2 receiver in the ISP can do that on its own).
+>>>>
+>>>> The DPHY can be operated in split mode, with two lanes for VICAP and two
+>>>> lanes for ISP. This is not implemented yet, but can be done at a later
+>>>> stage on PHY level (not media related). In this case, ISP and VICAP can
+>>>> receive data from different subdevices via CSI-2.
+>>>
+>>> The two would be part of the same media graph in that case and as there are
+>>> two CSI-2 receivers and a single PHY, the PHY would probably need to have a
+>>> sub-device as well, to allow link configuration to be used to select where
+>>> the PHY is connected.
+>>>
+>>> I don't think we have such a setup elsewhere, and supporting this would
+>>> require changes in the MC framework.
+>>
+>> What follows is a response that also addresses issues raised during our
+>> off-list discussion.
+>>
+>> First of all, I agree with you that the RK3568 HW is "a bit special" (to
+>> say the least) in that regard. Let's have an outlook to newer SoCs, such
+>> as the RK3588: Here, the MIPI CSI-2 DPHYs (there are two of them) with
+>> their split mode are present as well, but the assignment is fixed. For
+>> example, the RK3588 VICAP has six MIPI CSI-2 receiver units and six MIPI
+>> CSI-2 capture units. Units 1 and 2 handle a different MIPI PHY, units 3
+>> and 5 handle the DPHYs (without split mode), units 4 and/or 6 are active
+>> whenever DPHY 1 and/or 2 is in split mode.
+>>
+>> I would model this by adding support for more than one (logical) PHYs
+>> (phy-cells = <1>;) and assigning the logical PHYs to the MIPI CSI-2
+>> receivers. There is not really a possibility to route anything at this
+>> point (routing is done in a MUX unit that takes the different MIPI CSI-2
+>> receivers as inputs).
+>>
+>> Now back to the peculiar RK3568 situation: By default the split mode of
+>> the DPHY is off and both VICAP and ISP are able to receive the same data
+>> (from up to four lanes) with their MIPI CSI-2 receivers (not sure
+>> whether both can be active at the same time, though).
+> 
+> A common use case for capturing data from the same sensor through both
+> ISP and VICAP would be routing image data to the ISP and embedded data
+> to VICAP. Assuming the hardware is able to do this, there will be users
+> interested in this feature.
+
+VICAP and ISP would capture different CSI-2 links. AFAIK the embedded
+data is usually transmitted on the same CSI-2 link but on a different
+virtual channel. The MIPI CSI receiver in the ISP is capable of
+capturing (up to three, I think) virtual channels and passing e.g. one
+VC to the ISP and capturing another VC to memory.
+
+>> There are two bits
+>> in the GRF that define the lanes that ISP and VICAP receive in split
+>> mode (lane 0/1 or lane 2/3). Not sure whether these bits are supposed to
+>> be changed during runtime.
+>>
+>> I would suggest modelling this on PHY level in DT, e.g., by passing
+>> reasonable properties to the dphy node, such as
+>>     rockchip,dphy-split-mode;
+> 
+> Split mode should indeed be conveyed through DT, as it's a property of
+> the hardware.
+
+Ack!
+
+> 
+>>     rockchip,dphy-split-invert;
+>> where the former activates the split mode and assigns lanes 0/1 to the
+>> ISP and lanes 2/3 to the VICAP, and the latter inverts this assignment
+>> (lanes 2/3 to the ISP and lanes 0/1 to the VICAP). This would facilitate
+>> the reasonable use cases with reasonable effort.
+> 
+> This I'm less convinced about. The routing should be dynamic.
+
+Ack.
+
+> How do you envision the connections to the CSI-2 sources to be modelled
+> in DT ? We need ports and endpoints, and data-lanes properties. Where
+> would those reside on the RK3568 side ?
+
+Goto ASCII sketch below for that...
+
+>> Otherwise, to keep it perfectly general and most flexible and
+>> everything, we would have to introduce another subdevice indeed, which
+>> would be active on the RK3568 exclusively. Therefore, I don't see that
+>> the PHY driver introduces this subdevice, but a specialized (syscon?)
+>> MUX driver that deals with the RK3568 GRF bits. Something like this
+>>
+>>                            |----------------------|     |-------------|
+>>  Sensor A --- /2 lanes --- | lane 0/1      to ISP | --- | ISP MIPI RX |
+>>                            |                      |     |-------------|
+>>                            |                      |
+>>                            |                      |     |-------------|
+>>  Sensor B --- /2 lanes --- | lane 2/3    to VICAP | --- |VICAP MIPI RX|
+>>                            |----------------------|     |-------------|
+>>
+>> But IMHO this will be too much effort for corner use case that I doubt
+>> anyone will actually use.
+>>
+>> What do you think:
+>>  - Let's keep the PHYs out of V4L2/MC, ok?
+>>  - Let's model the reasonable use cases with device tree properties in
+>>    the dphy DT node, ok?
+> 
+> I think the routing should be dynamic.
+
+In this case, my suggestion would be the following:
+
+ - An additional MUX subdevice on the RK3568 only, see sketch above
+ - One or two input ports (depending on split mode being activated)
+ - Two output ports (to ISP MIPI RX, to VICAP MIPI RX)
+ - Routing possible 1:N (both input ports can be connected to one or two
+   output ports)
+ - The subdevice will have ports, endpoints, data-lanes properties on
+   both sides.
+
+The nice thing about it is that the current state can be extended once
+split mode is implemented, IOW patches 01/18 - 17/18 can be readily applied.
+
+Patch 18/18 must not be applied at this time, as this would be the first
+actual usage of the MIPI CSI-2 pipeline. I guess we need to implement
+and insert the new subdevice first for the sake of uAPI compatibility.
+
+So pretty-please-with-sugar-on-top can we merge 01-17 so that I don't
+have to drag these patches along anymore?
+
+Best regards,
+Michael
+
+> 
+>>> How does the media graph look like for the device at the moment?
+>>
+>> Please take a look at the media graph in the documentation patch (PATCH
+>> v14 01/18). This is without the ISP, but gives an overview of what the
+>> RK3568 VICAP is capable of.
+>>
+>> Best regards,
+>> Michael
+>>
+>>>> BTW the ISP is able to process the data captured by VICAP, but
+>>>> apparently this includes a RAM round trip (VICAP captures to memory, ISP
+>>>> operates in mem2mem mode).
+>>>>
+>>>>> A block diagram that shows connections between the CSI-2 pins, D-PHY,
+>>>>> CSI-2 receivers, VICAP and ISP could help.
+>>>>>
+>>>>>> Once this patch series is merged, I'll push out changes that introduce
+>>>>>> support for the RK3588 VICAP. We can discuss the integration of any
+>>>>>> RK3588 ISP in this scope then -- and there may be some things to discuss
+>>>>>> as there the VICAP and the ISP(s) are directly connected by means of a
+>>>>>> MUX unit in the VICAP.
+>>>>>>
+>>>>>> Alright?
+> 
+
 
