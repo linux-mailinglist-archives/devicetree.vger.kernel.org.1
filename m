@@ -1,40 +1,45 @@
-Return-Path: <devicetree+bounces-237244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EA0C4ECA0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:32:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 044ABC4ECFD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:39:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CC08188FFAB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:28:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76A3A3BC516
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD3AE33121B;
-	Tue, 11 Nov 2025 15:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B9936998E;
+	Tue, 11 Nov 2025 15:34:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21F5365A00
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 15:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED652F3C10
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 15:34:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762874888; cv=none; b=LGGWdWjlxrKslfkmHKBiVkTaa4Hj1UcCLWAVnrVJPyqZz3FKjDW+beynVWqiJnLETl3YEiOwpGXqOJ/N7jYwvUrHnalVRx7CGzJvp2lWrX96sgb1P/mXzRafA+CK6PMAYc3W7/XOafpJXSZr0axRel0pOjeblddaW9vxpQNSlaA=
+	t=1762875274; cv=none; b=MIwo5ZtgZIV3pZmSoETb8j8iuE/wZLIhHOrpMY5YRotB8QaNsXp8NfbO1c2fXJU49q4vBtR/TIjKjaVqLGNQfD/RW7zoZsrPxaJYnlXMZ89d9hLN4DZWuDT1TU98zooPoFVg9/o/JqNTZT6k/uj+mB/wpiPwesh7lfNZIDvj0lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762874888; c=relaxed/simple;
-	bh=HS28uWRoA/Dc+y57RgagT5fvXagXuKEY9Q/FLGYTUE0=;
+	s=arc-20240116; t=1762875274; c=relaxed/simple;
+	bh=8J0PkBxgB3ZhBtPj+G9LOp57uSCv4BWcp0FEe8a1/P0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iqEw/46AFWGqqf6qUu3/IMNRsoC1fmAZMzWBtFcxP5pDYQmHmnqDxYhyn9qHlYOTomc7FBN0b38kpQdLs0BavCb1FJwiW1yeZT65AHN1jr2AeGnnvHqz8SQu4DOwiiiM6dQPvaV++hTvR6V8J03yi14cCNqVpBDNnKj4FxraGYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1vIqHq-000536-7u; Tue, 11 Nov 2025 16:28:02 +0100
-Message-ID: <5f500a58-4ed4-47b7-80bf-3ad5b619d049@pengutronix.de>
-Date: Tue, 11 Nov 2025 16:28:00 +0100
+	 In-Reply-To:Content-Type; b=UKaoRNjsm+Dz63iJbHr1x4yIYpqz9Fl4u5B1SNleGTcBD22jr8CzarZsVD0vNMFKzSeVlEVbp/r7sleE9RAeaoiazKnPcGfdUxxM+KXj6UIs7GpnQgoZfJUUV3HC82K50+BR1PL0zF8+ZPT+Ea5GVkqIKmWyw5EQ4tKSBt/IgBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip3t1762875183td7307421
+X-QQ-Originating-IP: YibyIjh8rVjDnM8ye+fS4TkHJ33V/iHkoULZhIFa9Bc=
+Received: from [IPV6:240f:10b:7440:1:62e3:2c99 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 11 Nov 2025 23:32:57 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 14738721810001780121
+EX-QQ-RecipientCnt: 23
+Message-ID: <B0C8C5A69B9F465E+ba0ad139-d3d9-4492-ac9a-cc58f8f35074@radxa.com>
+Date: Wed, 12 Nov 2025 00:32:57 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,168 +47,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: DT compatibility break for am335x (Was: Re: [PATCH] ARM: dts:
- am33xx-l4: fix UART compatible)
-To: Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "kernel@pengutronix.de" <kernel@pengutronix.de>
-References: <20250721173741.6369-1-bruno.thomsen@gmail.com>
- <91f764ab-bec1-4791-b01b-3ba0803ce8f8@pengutronix.de>
- <CAH+2xPAEAfJW+yy-45Y8EpOWb-8vvaNf27GXe1Ch0Xj8ZuLZHA@mail.gmail.com>
-Content-Language: en-US, de-DE, de-BE
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <CAH+2xPAEAfJW+yy-45Y8EpOWb-8vvaNf27GXe1Ch0Xj8ZuLZHA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
+ Radxa boards
+To: Dragan Simic <dsimic@manjaro.org>,
+ Diederik de Haas <diederik@cknow-tech.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jbx6244@gmail.com, pgwipeout@gmail.com,
+ jonas@kwiboo.se, ziyao@disroot.org, amadeus@jmu.edu.cn,
+ nicolas.frattaroli@collabora.com, pbrobinson@gmail.com, wens@kernel.org,
+ detlev.casanova@collabora.com, stephen@radxa.com,
+ sebastian.reichel@collabora.com, liujianfeng1994@gmail.com,
+ andy.yan@rock-chips.com, damon.ding@rock-chips.com,
+ kylepzak@projectinitiative.io, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20251111054112.55505-1-naoki@radxa.com>
+ <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
+ <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: NojR6Ao/DkEDOzfxtENjUyR5ydpLQzDIDjVZNjyJyi1T78XT1dx4kcck
+	M4gPmeTpda1uX1OC5Y44hco3yIaC1D5uw9e1W6umQCmxqt+mb+XWxYz79Oqedh7ZZe5RQs7
+	oJyJCUD5TXifKHVm+W2ex9QtedlX8BAn7AcuMR32SwnbHOCdf90a7a9YuwoteHR5nUVqhtH
+	aIF5D9aGgErZNT68B0PRwotr4Svq/cno830kziRjXJPt3X7+H38QMEt5lQE+TA8KNQU8KrL
+	D6Ih2om751I4BClQ08I4RH6Kh+XUgyf82dJLQd2gDpiqJMRikvun0RarQIu4IbOVjMR927W
+	q9R19wJozLHghJhjHiPaNRCU8qvOPt62oRLp8Jud5lqi96HOb4kTbyt+zunxU42nW1o3QFc
+	FtGJfvT0cAWXxmRp0a1hKiWMB0s3Z/PVjjqksVil4ZyA05tb+f3BsJ5FsJXSLgyMm6DAPBp
+	20ljv4maxfJUz0PzkYcznrhRF1dl+5LBDFV2VpO+c65jJezlRPvJnq9AqVdOdTvyYBhXRba
+	IejIiP7MdIQeUe1Tx/0vk8n3b17UF4qfiu7mgmZOodxG0tmz6INl04aaeyUZOxovYZo/NC5
+	AeYqQUNGqbnXqjNeCt3RuOCHrfb24KtnocCpJBGv4/65Eoru0NhpHmeTs5q1i9vW01in8O1
+	NYNRjGRicpfIA7WtU0SNjytu7l0JecMlP6ObpKA8iMOJhoPMjt0lhkbJNmYz0YmHHHgTLym
+	/8Xqg736qvl/5EH96cvhsTQaiIxP98qtOf/i5vsnU56QTJ9G+sprLOue/RVezFnYLii35Kv
+	H+8dot27aa/gRfzuezs8SCrajlWHrQJKApDrkLlXqMtPf2UadX/5aRI5lJhHakMDKRX3VUD
+	jHNmEdbq+5tDsVSkc3E8qunSIoa4OJETJAG/iS8ZRtlsuPi3S9Bef93QY7OW0EIwjqA8vvT
+	Fd3RzxVQMC011YUNSrRG5mRpEGuxzdAZCGFrA9C2WVPDml9InhScwtbYbAfkx5HSf5Rc=
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+X-QQ-RECHKSPAM: 0
 
-Hello Bruno,
+Hi Diederik, Dragan,
 
-On 11/11/25 4:15 PM, Bruno Thomsen wrote:
-> Hi Ahmad,
+On 11/11/25 23:46, Dragan Simic wrote:
+> Hello Diederik,
 > 
-> Den fre. 7. nov. 2025 kl. 19.47 skrev Ahmad Fatoum <a.fatoum@pengutronix.de>:
->>
->> Hello Bruno,
->>
->> On 21.07.25 19:37, Bruno Thomsen wrote:
->>> Fixes the following dtschema check warning:
+> On Tuesday, November 11, 2025 14:07 CET, "Diederik de Haas" <diederik@cknow-tech.com> wrote:
+>> On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
+>>> Radxa's boards turn all LEDs on at boot(loader), but some boards don't
+>>> have `default-state` property in Linux kernel tree but have it in
+>>> U-Boot tree instead[1].
 >>>
->>> serial@0 (ti,am3352-uart): compatible: 'oneOf' conditional failed, one must be fixed:
->>>       ['ti,am3352-uart', 'ti,omap3-uart'] is too long
->>>       'ti,am3352-uart' is not one of ['ti,am64-uart', 'ti,j721e-uart']
->>>       'ti,am654-uart' was expected
->>>       from schema $id: http://devicetree.org/schemas/serial/8250_omap.yaml#
->>>
->>> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+>>> This patch adds `default-state = "on"` for (almost) all LEDs (with a
+>>> few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
+>>> WAN LEDs on E20C/E52C).
 >>
->> I tripped over this patch, because it broke the console in barebox after the
->> device tree sync with Linux v6.18-rc1, fortunately caught before release.
+>> I'm missing the *why* these changes would be an improvement.
+>>
+>> Personally, for both 'heartbeat' and 'netdev' triggers, I want them to
+>> be off by default and once it gets a 'heartbeat' or a 'netdev' trigger,
+>> THEN I want the LED to be on/blinking.
 > 
-> Sorry to have caused you issues in barebox, that was not my intention.
+> That's a good question for Naoki.  My own preference would also
+> be to have the device's power LED turned on by U-Boot as quickly
+> as possible after supplying power to the board or turning it on
+> by pressing the power button.  I'm actually not a big fan of
+> having all the LEDs shining for a couple of seconds or so, which
+> may actually look like some error condition to me.
 > 
->>
->> I believe the correct resolution for the DT binding warning would have been
->> to extend the compatible list in the binding with ti,omap3-uart if they are
->> indeed compatible.
-> 
-> I can see that I forgot to include the full reason for the change in the commit
-> message. We have some products based on ti,am33xx soc and the serial
-> the console had many quirks when using the ti,omap3-uart that we did not
-> see on other soc families. The console did not like opening vi or htop but
-> could only handle simple kernel log. Switching to ti,am3352-uart fixed these
-> issues, so that was why I changed the device trees and not the schema.
+> Having all that in mind, I may suggest that just the U-Boot's
+> behavior is changed to turn the power LEDs on only.
 
-Couldn't the same result have been achieved by disabling
-CONFIG_SERIAL_OMAP? The driver match logic should already have preferred
-the more specific compatible, so the problem is that two drivers are
-matching against the same compatible, right?
+I can't quite explain it, but...
 
+- 1st (Power) LED
 
->> I have submitted a patch to add the now sole compatible to the barebox driver[1],
->> but please keep DT compatibility in mind with similar changes in future.
-> 
-> Thank you for maintaining barebox. On our new platforms we only use barebox
-> as a bootloader as it provides a much easier board boot then u-boot.
+The 1st (power) LED turns on automatically/immediately without software 
+intervention. (On some boards, this LED cannot be controlled by software 
+at all.)
 
-Happy to hear. :-)
+In DTS, this should be described using `default-state = "on"`. The use 
+of the Linux-specific property `linux,default-trigger = "default-on"` is 
+unsuitable for non-Linux environments.
 
-Cheers,
-Ahmad
+- 2nd (Heartbeat) LED
 
+The 2nd (heartbeat) LED can be controlled by software. It should be lit 
+up as quickly as possible to indicate that the very first software 
+(e.g., the bootloader) is running.
 
-> 
-> /Bruno
-> 
->>
->> [1]: https://lore.kernel.org/barebox/20251107182805.3367244-1-a.fatoum@pengutronix.de/T/#u
->>
->> Thanks,
->> Ahmad
->>
->>
->>> ---
->>>  arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi | 12 ++++++------
->>>  1 file changed, 6 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
->>> index d6a143abae5f..cef24aafed1a 100644
->>> --- a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
->>> +++ b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
->>> @@ -200,7 +200,7 @@ SYSC_OMAP2_SOFTRESET |
->>>                       ranges = <0x0 0x9000 0x1000>;
->>>
->>>                       uart0: serial@0 {
->>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
->>> +                             compatible = "ti,am3352-uart";
->>>                               clock-frequency = <48000000>;
->>>                               reg = <0x0 0x1000>;
->>>                               interrupts = <72>;
->>> @@ -1108,7 +1108,7 @@ SYSC_OMAP2_SOFTRESET |
->>>                       ranges = <0x0 0x22000 0x1000>;
->>>
->>>                       uart1: serial@0 {
->>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
->>> +                             compatible = "ti,am3352-uart";
->>>                               clock-frequency = <48000000>;
->>>                               reg = <0x0 0x1000>;
->>>                               interrupts = <73>;
->>> @@ -1139,7 +1139,7 @@ SYSC_OMAP2_SOFTRESET |
->>>                       ranges = <0x0 0x24000 0x1000>;
->>>
->>>                       uart2: serial@0 {
->>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
->>> +                             compatible = "ti,am3352-uart";
->>>                               clock-frequency = <48000000>;
->>>                               reg = <0x0 0x1000>;
->>>                               interrupts = <74>;
->>> @@ -1770,7 +1770,7 @@ SYSC_OMAP2_SOFTRESET |
->>>                       ranges = <0x0 0xa6000 0x1000>;
->>>
->>>                       uart3: serial@0 {
->>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
->>> +                             compatible = "ti,am3352-uart";
->>>                               clock-frequency = <48000000>;
->>>                               reg = <0x0 0x1000>;
->>>                               interrupts = <44>;
->>> @@ -1799,7 +1799,7 @@ SYSC_OMAP2_SOFTRESET |
->>>                       ranges = <0x0 0xa8000 0x1000>;
->>>
->>>                       uart4: serial@0 {
->>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
->>> +                             compatible = "ti,am3352-uart";
->>>                               clock-frequency = <48000000>;
->>>                               reg = <0x0 0x1000>;
->>>                               interrupts = <45>;
->>> @@ -1828,7 +1828,7 @@ SYSC_OMAP2_SOFTRESET |
->>>                       ranges = <0x0 0xaa000 0x1000>;
->>>
->>>                       uart5: serial@0 {
->>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
->>> +                             compatible = "ti,am3352-uart";
->>>                               clock-frequency = <48000000>;
->>>                               reg = <0x0 0x1000>;
->>>                               interrupts = <46>;
->>>
->>> base-commit: 89be9a83ccf1f88522317ce02f854f30d6115c41
->>
->>
->> --
->> Pengutronix e.K.                           |                             |
->> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
->> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
->> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-> 
+On Linux, usually this is used as `linux,default-trigger = "heartbeat"`. 
+It indicates that kernel is running (regardless of the `default-state` 
+setting), and its behavior can be modified in user space.
 
--- 
-Pengutronix e.K.                  |                             |
-Steuerwalder Str. 21              | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
+Best regards,
 
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
 
