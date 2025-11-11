@@ -1,408 +1,335 @@
-Return-Path: <devicetree+bounces-237202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78EF6C4E05C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:07:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A54A3C4E12B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:15:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F3881348FEC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:07:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDA0A3A3D66
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6553246F4;
-	Tue, 11 Nov 2025 13:07:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="O0vbCUVv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3301233120C;
+	Tue, 11 Nov 2025 13:14:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163E9F513
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:07:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265F332827C
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:14:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762866457; cv=none; b=sC141mbNKC3YdWPKpc3U8KUqRtcmxHTC73sd+zEMIRR1ywYbMtbGznz7pjPRt8GHUawwBS35HGhPqjze1SXYCjAWjStXYIb10WlPOWMxBywqGXqcA02SDdwsw/jlKzodxoHvN1fIhu2HC9vS7aHDAlE1xrhMXQU5GC2HwUqP6r8=
+	t=1762866899; cv=none; b=I/tJ/6PJZk6HNeOcRjQRwy0ziFI8utv9i8FGd2qgy8D0/1fzsuFU+pJUk6FN0WwoeU/GBYhbF+I7m1jWKaoDT/jERyoe6jQnPXwNC1Xi5phLmTNUuJtJ96vPhwizud2TSVkj7n9Yfz8U7DEPDnxLtbST3yhjIOo+btcCQCQDMQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762866457; c=relaxed/simple;
-	bh=kl7qjafbhbvtodybLN8XmzLMryFLXxEFTiK0ACkcTig=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=TK1YM4W8pNmoizRH3dZJ1issEXtnODx1rM/kKBB0wkZFRrt6Rru+R289ITDsa+AqLL70uQOGUa/dpnuJqcNT1kVVD8rWJfJsZzFJ/Feud+pB7nkngBQ6g4GpLqawy3Am3RSraT0afUr4THrgUaMSTrHTyAi/EOUNXXfYuMPpPrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=O0vbCUVv; arc=none smtp.client-ip=91.218.175.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+	s=arc-20240116; t=1762866899; c=relaxed/simple;
+	bh=GN7fmS+BcfMHnCm95PcqkbpgkBF9dqX4+guaCrRt7vE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GuCn2xMjYYNNuzVNOIeAyc3yI0dtO63NQtM8+X2Q2iTJBEND52aDEzKBfKE1UMbqDHFQUdbsZ6BNuN5HcjAXtoDLhHVNFwc5RiZYimrCogoE2A25d6HIerJUVphK6Y551u5CqYmXdjlUnueW1YX6o/c5BwX9PlClViqZwxJAMvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vIoCo-00019I-NP; Tue, 11 Nov 2025 14:14:42 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vIoCo-008CyB-0n;
+	Tue, 11 Nov 2025 14:14:42 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vIoCo-00EV9P-0M;
+	Tue, 11 Nov 2025 14:14:42 +0100
+Date: Tue, 11 Nov 2025 14:14:42 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	Frank Li <frank.li@nxp.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXT] Re: [PATCH v19 0/7] firmware: imx: driver for NXP
+ secure-enclave
+Message-ID: <20251111131442.nddhk3475oapf2zh@pengutronix.de>
+References: <20250927-imx-se-if-v19-0-d1e7e960c118@nxp.com>
+ <20251016114151.jzmapaecsmmnkpt3@pengutronix.de>
+ <AM9PR04MB8604C2AAA70406883320C5C995FCA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <20251103190811.wp4o7hlnus6ynn32@pengutronix.de>
+ <AM9PR04MB8604AA80EC97E06AADBF334695C3A@AM9PR04MB8604.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1762866449;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hp9j1SamJ8X7GVph6JpG3EZJam2gMiRDcakI0IBlJ0g=;
-	b=O0vbCUVvvSCKSx+8Oo2TtZ3GndYBeySbL28Gm3Szor5oLFbeyKNRCHm0qnvLps7fgQhAdZ
-	NwAQFLj8RkSvepyetwvGrVWnVMXoAZvr6B1eZpRdprzAw6R/hLSN0GW8aC6+blEXDszr+z
-	5wg9/ATGIfWUQtwdZkeC1OGceZR51ObH+d59FuDCSQDldjNeFKwrZxvbmxF1F/vW/cPqfG
-	NP3vBbCPWqYEBFnaZCKDFdh10NEO+l+bgI54KH4OK6BK770k5BdjAgBo9RTtnk2AL7dLsp
-	5sy8T51w3hX1GhA+rX1tGMVSxnJS73tI2wkS8l14X+aQ8Eqa+Dq1bw7doBnlfg==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 11 Nov 2025 14:07:25 +0100
-Message-Id: <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
- Radxa boards
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "FUKAUMI Naoki" <naoki@radxa.com>, <heiko@sntech.de>
-Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <jbx6244@gmail.com>, <dsimic@manjaro.org>, <pgwipeout@gmail.com>,
- <jonas@kwiboo.se>, <ziyao@disroot.org>, <amadeus@jmu.edu.cn>,
- <nicolas.frattaroli@collabora.com>, <pbrobinson@gmail.com>,
- <wens@kernel.org>, <detlev.casanova@collabora.com>, <stephen@radxa.com>,
- <sebastian.reichel@collabora.com>, <liujianfeng1994@gmail.com>,
- <andy.yan@rock-chips.com>, <damon.ding@rock-chips.com>,
- <kylepzak@projectinitiative.io>, <devicetree@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>
-References: <20251111054112.55505-1-naoki@radxa.com>
-In-Reply-To: <20251111054112.55505-1-naoki@radxa.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM9PR04MB8604AA80EC97E06AADBF334695C3A@AM9PR04MB8604.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
-> Radxa's boards turn all LEDs on at boot(loader), but some boards don't
-> have `default-state` property in Linux kernel tree but have it in
-> U-Boot tree instead[1].
+On 25-11-07, Pankaj Gupta wrote:
+> >> On 25-10-27, Pankaj Gupta wrote:
+> >>> On 25-09-27, Pankaj Gupta wrote:
+
+...
+
+> > > It is not yet up-streamed to OPTEE-OS repo.
+> > 
+> > My intention of adding the above OP-TEE discussion link was to point 
+> > out that an ELE-FW bug exists which needs to be fixed.
+
+...
+
+> > This adapts the timeout value to 100ms and seems more like an workaround.
+> > 
+> There are additional fixes in OPTEE-OS, that will be part of LF Q4'25.
+
+Thanks for this info.
+
+> > However, can NXP confirm that the ELE concurrent access is possible 
+> > without a previous ELE FW update?
+> 
+> Fix in the ELE FW, released as part of LF Q3 2025,  is a must to
+> include. OPTEE fixes are also needed.  OPTEE fixes will be up-streamed
+> soon.
+
+Okay, so there are ELE-FW fixes too, thanks.
+
+...
+
+> > Does this mean that all i.MX9x, i.MX10x and so on do have the the 
+> > secure and non-secure MU setup? Or is it based on the SoC release date?
+> > Because regarding the datasheet the i.MX8ULP is newer than the i.MX93, 
+> > therefore I assumed that the i.MX8ULP has two MUs as well.
+> 
+> From i.MX93 and onward, there is only one RoT. Hence , it is designed
+> to have dedicated MU for each world.
+
+Okay.
+
+> > I checked the the NXP OP-TEE source code and found the following commit:
+> > 
+> > 8<----------------
+> > commit 44388d37e68000ee50a9b1d656e0a60ae6614977
+> > Author: Sahil Malhotra <sahil.malhotra@nxp.com>
+> > Date:   Tue Apr 1 20:04:44 2025 +0200
+> > 
+> >     core: imx: disable ELE on i.MX8ULP by default
+> > 
+> >     On i.MX8ULP, there is only one MU to communicate with ELE,
+> >     which cannot be dedicated on OP-TEE side all the time.
+> >     There may be ELE services running on Linux side, which can
+> >     cause conflict with OP-TEE, So disabling ELE by default.
+> >     Moreover i.MX8ULP also has CAAM, so HUK and Random number
+> >     are coming from CAAM.
+> > 
+> >     Signed-off-by: Sahil Malhotra <sahil.malhotra@nxp.com>
+> >     Acked-by: Jens Wiklander <jens.wiklander@linaro.org>
+> > 8<----------------
+> > 
+> > So it's possible to configure the XRDC (configured in the TF-A) in a 
+> > way to map the ELE access to the secure world. If I got the TF-A and OP-TEE commits right.
+> > 
+> > To me this sound more like a NXP design decision to move the ELE to 
+> > the non- secure and the CAAM to the secure world.
 >
-> This patch adds `default-state =3D "on"` for (almost) all LEDs (with a
-> few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
-> WAN LEDs on E20C/E52C).
-
-I'm missing the *why* these changes would be an improvement.
-
-Personally, for both 'heartbeat' and 'netdev' triggers, I want them to
-be off by default and once it gets a 'heartbeat' or a 'netdev' trigger,
-THEN I want the LED to be on/blinking.
-
-> Also, remove following redundant properties:
->  linux,default-trigger =3D "default-on"; // use default-state =3D "on"
->  default-state =3D "off"; // default is "off"
+> As per the i.MX8ULP boot-up sequence and ELE's initial role in
+> boot-up, with CAAM co-exists, ELE is logical to be with Linux.
 >
-> [1]
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3328=
--rock-pi-e-base-u-boot.dtsi#L10-12
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3399=
--rock-4c-plus-u-boot.dtsi#L11-17
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3399=
--rock-pi-4-u-boot.dtsi#L11-13
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3566=
--radxa-cm3-io-u-boot.dtsi#L10-12
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3566=
--rock-3c-u-boot.dtsi#L14-16
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3568=
--radxa-e25-u-boot.dtsi#L7-24
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3568=
--rock-3a-u-boot.dtsi#L11-13
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3588=
--rock-5b-u-boot.dtsi#L11-13
+> Another point here that CAAM has 4 JR(s) and hence CAAM can be shared
+> between Linux and OPTEE-OS.
 
-That the *bootloader* turns them on, is fine by me as it signals the
-board has received power and the bootloader has started.
-I don't think that that automatically means that Linux must do the same.
+Please see my answer below where you explained the ELE functions.
 
-Not a Radxa board, but the PineTab2's keyboard LEDs are turned on. I
-find that useful wrt the bootloader, but (actually) annoying that it is
-on by default with Linux. When I want/need backlight on the keyboard,
-I'll turn it on myself. Now I need to turn it off in 90% of cases.
+...
 
-My 0.02
+> > i.MX8ULP is getting really interesting, though.
+> > 
+> > May I ask what RoT is used by this SoC if there are two?
+> > 
+> ELE is Root of Trust during secure boot.
+> For OPTEE-OS, CAAM is RoT.
 
->  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3588=
-s-rock-5a-u-boot.dtsi#L10-12
+The i.MX8ULP is very interesting, since you also need to handle the
+SoC secure-state twice, right? However, this topic alone is worth it a
+standalone discussion thread, therefore no further comments.
+
+...
+
+> > How does the i.MX8ULP fuse flow work, after the LOCK_DOWN fuse is blown?
+> There is no such issue on i.MX8ULP
+> > 
+> > This was one of my main concers why having OP-TEE required in the 
+> > first place, because the i.MX93 requires the that the fuse-request 
+> > comes from the secure-world if the device is in LOCK_DOWN state.
+> > 
+> > Is this also the case for the i.MX8ULP?
+> > 
+> 
+> No, this is not a valid case for i.MX8ULP.
+
+Thanks for the input.
+
+> > > > Also according your IOCTL docuementation you want to expose the 
+> > > > whole device to the user-space?
+> > >
+> > > > | What:          /dev/<se>_mu[0-9]+_ch[0-9]+
+> > > > | Date:          Mar 2025
+> > > > | KernelVersion: 6.8
+> > > > | Contact:       linux-imx@nxp.com, pankaj.gupta@nxp.com
+> > > > | Description:
+> > > > |                NXP offers multiple hardware IP(s) for secure 
+> > > > | enclaves like
+> > EdgeLock-
+> > > > |                Enclave(ELE), SECO. The character device file descriptors
+> > > > |                /dev/<se>_mu*_ch* are the interface between 
+> > > > | userspace NXP's
+> > secure-
+> > > > |                enclave shared library and the kernel driver.
+> > > > |
+> > > > |                The ioctl(2)-based ABI is defined and documented in
+> > > > |                [include]<linux/firmware/imx/ele_mu_ioctl.h>.
+> > > > |                ioctl(s) are used primarily for:
+> > > > |                        - shared memory management
+> > > > |                        - allocation of I/O buffers
+> > > > |                        - getting mu info
+> > > > |                        - setting a dev-ctx as receiver to 
+> > > > | receive all the commands
+> > from FW
+> > > > |                        - getting SoC info
+> > > > |                        - send command and receive command 
+> > > > | response
+> > >                                 ^
+> > > > This is a rather uncommon approach. The kernel has interfaces to 
+> > > > abstract hardware. You completely bypass this if you expose 
+> > > > everything to the userspace.
+> > >
+> > > It is in-correct.
+> > > Not everything, just exposed file-operation. and ioctl(s) for 
+> > > DMA(eable)
+> > buffer allocation from reserved lower memory region.
+> > > Things managed by Kernel:
+> > > * Send/receive path to ELE, is managed by Kernel.
+> > > * Receive/send patch to the ELE's slave NVM-manager, is managed by kernel.
+> > > * Low power management handled by kernel driver. In case of 
+> > > low-power
+> > state, ELE driver re-init the V2X IP as part of resume.
+> > > * Other kernel management layers like NVMEM, kernel HWRNG, will use 
+> > > the
+> > api(s) exposed by this driver.
+> > 
+> > But you also expose an uAPI which allows the user to bypass everything 
+> > via sending arbitrary commands, right?
+> 
+> Yes. But it's not unusual at all. The pattern of userspace sending
+> commands directly to the kernel, is quite common
+
+Please see below.
+
+...
+
+> > Some features require the device to be in LOCK_DOWN mode, which 
+> > requires secure-world eFuse write path only afterwards. But it seems 
+> > like NXP really wants to maintain two write paths.
+> > 
+> > > * Low power management at Linux driver.
+> > 
+> > The power-modes are selected via the ELE?
+> 
 >
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
-> Changes in v2:
-> - Add more URLs for reference
-> - Reword commit message
-> ---
->  arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts    | 1 -
->  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts    | 1 +
->  arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts | 3 ++-
->  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 1 +
->  arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts   | 2 --
->  arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts      | 1 -
->  arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts | 1 +
->  arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts      | 1 +
->  arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi  | 1 +
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts      | 1 +
->  arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts      | 3 ++-
->  arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts   | 2 --
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts   | 3 ++-
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi     | 1 +
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts      | 1 +
->  arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts     | 3 ++-
->  16 files changed, 16 insertions(+), 10 deletions(-)
+> Voltage regulation for i.MX93 in Linux kernel, is done by ELE.
 >
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts b/arch/arm=
-64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-> index 7a32972bc2496..c1e3098b9a7bc 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-> @@ -35,7 +35,6 @@ green-led {
->  			function =3D LED_FUNCTION_POWER;
->  			gpios =3D <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
->  			label =3D "rockpis:green:power";
-> -			linux,default-trigger =3D "default-on";
->  		};
-> =20
->  		blue-led {
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm=
-64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> index a4bdd87d0729f..d3d6f34b66fb0 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> @@ -59,6 +59,7 @@ leds {
-> =20
->  		led-0 {
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			gpios =3D <&gpio3 RK_PA5 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger =3D "heartbeat";
->  		};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/=
-arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-> index 962b8b231c960..a83ffbef22a7b 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-> @@ -39,14 +39,15 @@ leds {
->  		led-0 {
->  			function =3D LED_FUNCTION_POWER;
->  			color =3D <LED_COLOR_ID_GREEN>;
-> +			default-state =3D "on";
->  			gpios =3D <&gpio3 RK_PD4 GPIO_ACTIVE_LOW>;
-> -			linux,default-trigger =3D "default-on";
->  		};
-> =20
->  		/* USER_LED2 */
->  		led-1 {
->  			function =3D LED_FUNCTION_STATUS;
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			gpios =3D <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger =3D "heartbeat";
->  		};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/ar=
-m64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> index 046dbe3290178..ef434c23fe85c 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> @@ -35,6 +35,7 @@ leds {
->  		led-0 {
->  			function =3D LED_FUNCTION_STATUS;
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			gpios =3D <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger =3D "heartbeat";
->  		};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-> index b324527561558..79d316a1d8495 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-> @@ -62,7 +62,6 @@ leds {
-> =20
->  		led-lan {
->  			color =3D <LED_COLOR_ID_GREEN>;
-> -			default-state =3D "off";
->  			function =3D LED_FUNCTION_LAN;
->  			gpios =3D <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger =3D "netdev";
-> @@ -78,7 +77,6 @@ led-sys {
-> =20
->  		led-wan {
->  			color =3D <LED_COLOR_ID_GREEN>;
-> -			default-state =3D "off";
->  			function =3D LED_FUNCTION_WAN;
->  			gpios =3D <&gpio4 RK_PC0 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger =3D "netdev";
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts b/arch/arm64=
-/boot/dts/rockchip/rk3528-rock-2a.dts
-> index c03ae1dd34560..0b696d49b71fa 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
-> @@ -45,7 +45,6 @@ led-1 {
->  		default-state =3D "on";
->  		function =3D LED_FUNCTION_STATUS;
->  		gpios =3D <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
-> -		linux,default-trigger =3D "default-on";
->  	};
->  };
-> =20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts b/arch/=
-arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
-> index b5b253f04cdf5..9e7212b70e3f1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
-> @@ -46,6 +46,7 @@ leds {
->  		led-1 {
->  			gpios =3D <&gpio4 RK_PA4 GPIO_ACTIVE_LOW>;
->  			color =3D <LED_COLOR_ID_GREEN>;
-> +			default-state =3D "on";
->  			function =3D LED_FUNCTION_ACTIVITY;
->  			linux,default-trigger =3D "heartbeat";
->  			pinctrl-names =3D "default";
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts b/arch/arm64=
-/boot/dts/rockchip/rk3566-rock-3c.dts
-> index 6224d72813e59..3ec108bcf89a1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
-> @@ -47,6 +47,7 @@ led-0 {
->  			gpios =3D <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
->  			function =3D LED_FUNCTION_HEARTBEAT;
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			linux,default-trigger =3D "heartbeat";
->  			pinctrl-names =3D "default";
->  			pinctrl-0 =3D <&user_led2>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi b/arch/a=
-rm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-> index 729e38b9f620e..140582f8e1034 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
-> @@ -23,6 +23,7 @@ led_user: led-0 {
->  			gpios =3D <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
->  			function =3D LED_FUNCTION_HEARTBEAT;
->  			color =3D <LED_COLOR_ID_GREEN>;
-> +			default-state =3D "on";
->  			linux,default-trigger =3D "heartbeat";
->  			pinctrl-names =3D "default";
->  			pinctrl-0 =3D <&led_user_en>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64=
-/boot/dts/rockchip/rk3568-rock-3a.dts
-> index 44cfdfeed6681..e6c18df0fa582 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> @@ -47,6 +47,7 @@ led_user: led-0 {
->  			gpios =3D <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
->  			function =3D LED_FUNCTION_HEARTBEAT;
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			linux,default-trigger =3D "heartbeat";
->  			pinctrl-names =3D "default";
->  			pinctrl-0 =3D <&led_user_en>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64=
-/boot/dts/rockchip/rk3576-rock-4d.dts
-> index 9bc33422ced50..99d3a8be8f18c 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-> @@ -52,13 +52,14 @@ leds: leds {
-> =20
->  		power-led {
->  			color =3D <LED_COLOR_ID_GREEN>;
-> +			default-state =3D "on";
->  			function =3D LED_FUNCTION_STATUS;
->  			gpios =3D <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
-> -			linux,default-trigger =3D "default-on";
->  		};
-> =20
->  		user-led {
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			function =3D LED_FUNCTION_HEARTBEAT;
->  			gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
->  			linux,default-trigger =3D "heartbeat";
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> index 854c118418eb8..f737769d4a007 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> @@ -71,7 +71,6 @@ leds-1 {
-> =20
->  		led-1 {
->  			color =3D <LED_COLOR_ID_GREEN>;
-> -			default-state =3D "off";
->  			function =3D LED_FUNCTION_LAN;
->  			linux,default-trigger =3D "netdev";
->  			pwms =3D <&pwm14 0 1000000 PWM_POLARITY_INVERTED>;
-> @@ -80,7 +79,6 @@ led-1 {
-> =20
->  		led-2 {
->  			color =3D <LED_COLOR_ID_GREEN>;
-> -			default-state =3D "off";
->  			function =3D LED_FUNCTION_WAN;
->  			linux,default-trigger =3D "netdev";
->  			pwms =3D <&pwm11 0 1000000 PWM_POLARITY_INVERTED>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> index bc8140883de47..86477346c3f5a 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> @@ -88,11 +88,12 @@ gpio-leds {
->  		pinctrl-0 =3D <&led_pins>;
-> =20
->  		power-led1 {
-> +			default-state =3D "on";
->  			gpios =3D <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
-> -			linux,default-trigger =3D "default-on";
->  		};
-> =20
->  		hdd-led2 {
-> +			default-state =3D "on";
->  			gpios =3D <&gpio0 RK_PC0 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger =3D "disk-activity";
->  		};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi b/arch/arm6=
-4/boot/dts/rockchip/rk3588-rock-5b.dtsi
-> index e5c474e4d02a6..8c4a4270f9f93 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
-> @@ -30,6 +30,7 @@ leds {
->  		led_rgb_b {
->  			function =3D LED_FUNCTION_STATUS;
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			gpios =3D <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger =3D "heartbeat";
->  		};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64=
-/boot/dts/rockchip/rk3588-rock-5t.dts
-> index 0dd90c744380b..87e9d4b86dad4 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-> @@ -33,6 +33,7 @@ leds {
->  		led_rgb_b {
->  			function =3D LED_FUNCTION_STATUS;
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			gpios =3D <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger =3D "heartbeat";
->  		};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm6=
-4/boot/dts/rockchip/rk3588s-rock-5a.dts
-> index 19a08f7794e67..46c81e796b100 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-> @@ -54,6 +54,7 @@ leds {
-> =20
->  		io-led {
->  			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
->  			function =3D LED_FUNCTION_STATUS;
->  			gpios =3D <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger =3D "heartbeat";
-> @@ -61,9 +62,9 @@ io-led {
-> =20
->  		power-led {
->  			color =3D <LED_COLOR_ID_GREEN>;
-> +			default-state =3D "on";
->  			function =3D LED_FUNCTION_POWER;
->  			gpios =3D <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-> -			linux,default-trigger =3D "default-on";
->  		};
->  	};
-> =20
+> During Linux suspend-resume, Secure-enclave (V2X on i.MX95) part of
+> wake-up domain, will be managed by secure-enclaves(ELE) part of
+> always-on domain.
 
+So to sum-up, please correct me if I got it wrong:
+
+ - NXP puts the ELE into the non-secure world, in case only one MU
+   exists. The reason for this is that the ELE is also used to handle
+   power-management.
+
+ - NXP exposes an uAPI which can be used to send arbitrary commands from
+   userspace to the ELE. (no filtering done yet)
+
+ --> Sounds to me that the userpace can influence the system behavior
+     very badly.
+
+> > > * Linux HWRNG.
+> > > * Loading the secondary runtime fw.
+> > 
+> > What is a secondary runtime-fw?
+> ELE FW size is larger than the size of ELE internal secure memory.
+> Hence FW is split into two.
+> 
+> Primary FW, is the FW, that enables features that helps for SoC boot-up.
+> Secondary runtime FW, is the FW, that enables features like HSM.
+
+Ah okay, thanks for the input.
+
+> > To conclude this longly discussion:
+
+...
+
+> > I still have mixed feeling about the fusing (including the 1-MU case), 
+> > since it requires a secure-world OS in place once the LOCK_DOWN fuse was burned.
+> > It's fine by me if NXP wants to have and wants to maintain a multi-path here.
+>
+> Write fuse API will be added, to allow writing fuses from secure world
+> too.
+
+This is a device life-cycle problem and if NXP decides to maintain
+multiple write paths, depending on the runtime-SoC state, this is fine
+by me.
+
+What needs to be ensured is, that the fuse-issue doesn't exist for the
+1-MU case (i.MX8ULP) as you said.
+
+> > Last but least, the uAPI which can be used to send arbitrary ELE 
+> > commands seems unusual. But I don't know how secure-enclaves are 
+> > abstracted within the kernel, so these are just my two cents.
+> 
+> it's not unusual at all. The pattern of userspace sending commands
+> directly to the kernel via a queue is quite common like:
+>
+> GPUs: As you mentioned, userspace drivers (like those in Vulkan or
+> CUDA) often build command buffers and submit them directly to the
+> kernel or hardware.
+
+That's right, but these drivers do at least some filtering on the OPs
+and check if they are allowed. According your patchset, you just write
+(se_if_fops_write()) the provided userspace buffer.
+
+> Secure Enclaves: In systems like Intel SGX or AMD SEV, userspace
+> applications interact with enclaves via ioctl or mmap interfaces,
+> often sending structured commands or messages.
+
+What I'm aware of is, that most secure-enclaves are switching to the
+standard TPM API. 
+
+Regards,
+  Marco
+
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
