@@ -1,81 +1,98 @@
-Return-Path: <devicetree+bounces-237115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AC57C4D16A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:36:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37655C4D083
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A92F3B27F1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:29:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B669634E7ED
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9FD264627;
-	Tue, 11 Nov 2025 10:29:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E118A34DB65;
+	Tue, 11 Nov 2025 10:30:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TLCrMhPQ"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="Y59Vz5Cy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from seashell.cherry.relay.mailchannels.net (seashell.cherry.relay.mailchannels.net [23.83.223.162])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177C334B683
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:29:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762856994; cv=none; b=ohlRmD+ssIJWRBajgKhRa5lFDMxVpPBTT+bYEPBgwBkCmXawWB/d7SZW/a2fmDv2AKmZYLKiEAxCFa6InhVSfHzXZCoxG/MnQ+VnBSn0x0JTiRhd2M39W3q7ojwh3HgaJqeGUU35XMExMRs5T0Ell873Q5hmpWdVeSnI1nhguCU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762856994; c=relaxed/simple;
-	bh=HLKGy0mKbpQ8h+3kSmFm7cUNZcoYemdFaDqBdUyA25s=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=t3310raX9OtOqbk1H14wQsupA2z+oGKaPMdvnmjYhitC+/1buozNosld1BSy0UF7PB/DPVMjzdouxeo7v3KgmJ+xbaZkYVTnMdMXIDz11au0c8TvJbqGoVhpCul6h9Z1ldP73v7VKuY0XeMMejC0Lr7x9whJG6g84Jcvthk4GT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TLCrMhPQ; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-477619f8ae5so30206685e9.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:29:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762856990; x=1763461790; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mA4OYGuehEdlKuRHHZkCIxOoAid/iNBTle5X4sDzSO8=;
-        b=TLCrMhPQRzB5j1v8TSW+sC6RojrdNXA+tcJLfzUaCy67lu0rwRNX671GZX7SEsO7VJ
-         jf0LIWKMK6zabvAzsT9FcnEJpS6oZPVF50f5PsBDi6j0i4NxgYvSVGc5GgyIyO22tZRw
-         TZwMmziLkzn5BPKWVbOdWRYwZjKSWuNpyjueKv7Kgatde6o7ePHyG5fcb/l9XGktgzlo
-         tWmxMNqjOEMdG8BmqKjM3lqwtnxvbQQiAiDM8u6IllVDiwPnGDAykBzVQ3FkrHsLXxwo
-         Yn/ZInsymFSXOIZiCtFurlKCJMRleUvC6//X8eCPEMGQYrLxeXbnQYNkF4S6ABIlVsLT
-         +e1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762856990; x=1763461790;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mA4OYGuehEdlKuRHHZkCIxOoAid/iNBTle5X4sDzSO8=;
-        b=Yi07R9Ez8QZliOZztAH/xEPlYCU2/3T3yCRpddmV3rhJpa6En04S0m6boVNHXHj4I/
-         y1bHBTwCYvm8fr3DwrbivCQ15h7UYExWSrHZbfh1+0b9/krdAroOzK8NIJFmpJXafB4z
-         ODXJh7EANBRNsnvx6ehIlt22Do4CKoh3x+kcj1YK0lTzwCBb9BWjjfyFjeag8sje7xqa
-         Iit7XFGFGBDFhnQXqvqmcemeTEHjqQrmvQplRfw5xWBWqy4i5xgqfLxSKLfLAUer8gYx
-         dON4ekFKBuiv/hUCG1gPNzDRIqU6rVtCR9H8RYLiANDcHoEmNzEkPUsWjWKEGPfKiDUB
-         UE2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWEHbs98JRQ2V4nhGmTeCW6x+yGhPEQT0SaxtbmF0DU5XTflwDsaMmQX4uCP6hWCpL9kP5W4XrBEemt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQa6+aonX9JUB9Dc+uH4Yp5+3Npvu6I+ztI8XeIttSjNIRvJMa
-	WFrZbOAjBA1BHmagYBxPwSU17rWHW7aC4+Ycs8etgfIucYoDgtU+f8XNA+rHyTRaPNw=
-X-Gm-Gg: ASbGnctz3v6xnQAIgb8ma2sZUUPSTwZwapt+k5y0wAmsttwEfvH8IpGLhPgQ86Ok6dc
-	pLcrjpva6JblEFCQ3NxGguSak2JEL1rG2iRsRTsFZRxwa7lB0bPRnc9boOKs7O6a29BCSXw5mEf
-	ohI0aZfDqI4lm6iwA/VoHZWx+5pFZMMoGx/y97rBtMLzh704dCx6lSSX+HD5gukAXy1BCnBA6gr
-	RZgIIR6reNqdcPYYxaUNULNiAfsKAmGwv3F2meNV2PieX2EsFYMHN7ef1nwNmgL8ufm5jpyEad5
-	1Y7CdddqAqNNNuinBujPwhsxFKp6fNrhjctXLi8Ewsi1Z1Wmc0yJF5ln3q5/UdCpsAwcGzb3l7F
-	GsMhYtMJROQG6V+XfR/LP/xC6O22LWU/wZ325/gRSWycmFzFXHo+CdIIc5uFO5mFKQ+tvFLbzHU
-	RZjoWPY+l82/uKq/8iBY6fiGSV40g=
-X-Google-Smtp-Source: AGHT+IEvLEjIZw4+8whQM79OrY00R9vJVyO1rxoxD4fhQm/KifAlq8r0yaMnGCz1oNKbvCj2h/xcDg==
-X-Received: by 2002:a05:600c:c4a3:b0:471:1774:3003 with SMTP id 5b1f17b1804b1-47773290e9dmr106627935e9.29.1762856990270;
-        Tue, 11 Nov 2025 02:29:50 -0800 (PST)
-Received: from [10.11.12.107] ([5.12.85.52])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42ac675caecsm27313955f8f.30.2025.11.11.02.29.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Nov 2025 02:29:49 -0800 (PST)
-Message-ID: <5eaaf3cf-a271-467f-b015-9cb9b49590f0@linaro.org>
-Date: Tue, 11 Nov 2025 12:29:44 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F6634D4D6;
+	Tue, 11 Nov 2025 10:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.162
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762857010; cv=pass; b=PYHtVhHr8ZUO5b8KAMo5YZqlxgzlakrXtcGqk/S1EeiaTLDiQ6jQxgIBihCCIITdROXUR95T332tR0+37gNNdIUUITh4F0EF9soLpdfPX80iGplEH7S7rU//5HIHxa0wv8QEnITBZszDo3lttizRVgft+L4YR2t1jrp+wZNfkAE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762857010; c=relaxed/simple;
+	bh=gryKLH1oBIJvs26Dicg2XpxMi5WNiOVrxPI0ZTiCAzo=;
+	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
+	 Content-Type:Date; b=LBve8zhDMwOnXHFkM1+XmrZG3xB+vM3IqRooJAwMh7JhD/Av1bbFPnBh4CVvKqKZ83anGzwGk+fd5mcNDNNOlayysD8/oTqzz7vbdfcwHRZ/RQE4mNR0Nr3B1HPXHgas5Zgy60rpySajsKog2nMXmEkA8q+1SzRvUeTROTZ+wRg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=Y59Vz5Cy; arc=pass smtp.client-ip=23.83.223.162
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 6DEBA18323B;
+	Tue, 11 Nov 2025 10:30:01 +0000 (UTC)
+Received: from de-fra-smtpout9.hostinger.io (100-121-222-5.trex-nlb.outbound.svc.cluster.local [100.121.222.5])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 65521183268;
+	Tue, 11 Nov 2025 10:29:58 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1762857001; a=rsa-sha256;
+	cv=none;
+	b=d21LOJ4Dg3a1WngEf80JJHMlfd61Kf611U3K9GVRm67Uzznnm92ca+4dFf5FBEnx9/IMRM
+	ZB0pUFwYvpDr3qj39y6xYt+GRjkFTkW5MOuQNNh39494/I+/2flAbURe5xdGRaBUm+PsqG
+	rqSmpow2dYOKd88Vwndoe9+ZWeCoTDwL6RievltMMxS2Upm2RI/JLfmmr1W2p8P11obveC
+	hmL5+Fl1FsipO3CnMqM6rXEUC5nAXJoiQMthyRdB8ZqwVUwjta/hBG/qljHxD2DJrRbCnK
+	0JS68H2KS5LW6bfx2gIi3QjbR6O+MsE8FraUT/ze43kbvuV+enSrZZmYktKLGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1762857001;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=2Qfd38hEYraSzh4msAcAjnFoyuX5aFZrJHQNeV8binU=;
+	b=e/pGXJ05WFdNTJUP1DvF4KYv8//2ScRqlXuL6v37OzsHq6krX4Np/JZQyydWNShErrD8Xl
+	wJ0cnw1fkBDQZl3KFMKDKWPzzjNMwuTAg5ZtPeWfrWwFprqFEl6UVMUAiUS4CgrRbWPkYH
+	pox+fb+1AMpb6oVd9AXGgtnjTGcXnsHh11VQuUeArLyiI0iVU7EbRo0MV9kM8tTmGuqQ13
+	sYZlM+EgufRkEmpMppDb3BsUWj3PtiSAApjIBlTWqiTYgb4HuhemNMAUTn7OVO55LDXNFf
+	joVY9UgDn0viIcc4zXj5nnMTYMzEJbkohTt9nZHsHYkkbpeTyTGRgoKvJAjGHg==
+ARC-Authentication-Results: i=1;
+	rspamd-768b565cdb-8vj2s;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Desert-Troubled: 6e166cee6faafddb_1762857001217_3440765751
+X-MC-Loop-Signature: 1762857001217:4042955906
+X-MC-Ingress-Time: 1762857001216
+Received: from de-fra-smtpout9.hostinger.io (de-fra-smtpout9.hostinger.io
+ [148.222.55.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.121.222.5 (trex/7.1.3);
+	Tue, 11 Nov 2025 10:30:01 +0000
+Received: from [IPV6:2001:861:4450:d360:3bc5:3dcd:eed2:25ed] (unknown [IPv6:2001:861:4450:d360:3bc5:3dcd:eed2:25ed])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d5N832hrhz3xFP;
+	Tue, 11 Nov 2025 10:29:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1762856996;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2Qfd38hEYraSzh4msAcAjnFoyuX5aFZrJHQNeV8binU=;
+	b=Y59Vz5Cy3h7ac5Q4a6xbqQW9AfpFBE0u1er116QmGuyswSnho5MmfyuUgpIXPj9pgYagrC
+	IWgn6V6ekxz0t2N6eWIqacQlLy6Ouj10vXWYxU9KJtGWDTLjqOLknF7exzLFUeFydMoSYf
+	0Cif2hJwkvmkXaiONmzTnBurJG7yNtq9GxiEmuohXfiK3kLQUErna5kdyTPZ6uAw7nneYf
+	4NnXAbKAhsUOvxxze9xRisDZUl29mmsBcOK5Aj0UmdwiOtGZGViUWlaeVuTgOVR4yZGIro
+	XUhcGoTUzpEYxOWK814cOmflyCdbUWSEt4IuGJb7ARy5ipVLAznAvRgfFDzgUQ==
+Message-ID: <1d469324-84c8-4b5d-ae68-d77e3c822656@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,116 +100,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] clk: samsung: add Exynos ACPM clock driver
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: Stephen Boyd <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>, Will Deacon <will@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
-References: <20251010-acpm-clk-v6-0-321ee8826fd4@linaro.org>
- <20251010-acpm-clk-v6-4-321ee8826fd4@linaro.org>
- <92f1c027-bacc-4537-a158-2e0890e2e8ee@kernel.org>
- <17695fcf-f33c-4246-8d5c-b2120e9e03b1@linaro.org>
- <176282517011.11952.1566372681481575091@lazor>
- <c5db97fa-8789-447f-909a-edbdb55383f8@linaro.org>
-Content-Language: en-US
-In-Reply-To: <c5db97fa-8789-447f-909a-edbdb55383f8@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Cc: michael.opdenacker@rootcommit.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: spacemit: Add OrangePi R2S
+ board
+To: Krzysztof Kozlowski <krzk@kernel.org>, Yixun Lan <dlan@gentoo.org>
+References: <20251110220641.1751392-1-michael.opdenacker@rootcommit.com>
+ <20251110220641.1751392-2-michael.opdenacker@rootcommit.com>
+ <20251111-inquisitive-ambrosial-chicken-861542@kuoka>
+ <20251111101149-GYE1651402@gentoo.org>
+ <af7bd4ab-38dd-4a5a-93e5-f457ae3460db@kernel.org>
+Content-Language: en-US, fr
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Organization: Root Commit
+In-Reply-To: <af7bd4ab-38dd-4a5a-93e5-f457ae3460db@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Date: Tue, 11 Nov 2025 10:29:55 +0000 (UTC)
+X-CM-Analysis: v=2.4 cv=Ceda56rl c=1 sm=1 tr=0 ts=69131024 a=sEYliDYKNDM94lrOIDkWOw==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=VwQbUJbxAAAA:8 a=d70CFdQeAAAA:8 a=KNP2rDlw_ukOLo_CF_YA:9 a=QEXdDO2ut3YA:10 a=NcxpMcIZDGm-g932nG_k:22
+X-CM-Envelope: MS4xfN2h32KLALFXb4b0pLM6SFdBF3o6GUHuwWdxBQSw3ik18v2CL3U/G5YljWmpHqb7vlHlv9CPM3OSsJw5V234IDod/ssdQyL+oVsHpxv7dNF9eoqAD4jl qswtwaw5T9T8i3aemvyemMYfMfDLwmQt5Amp02KRqc7L893wVTC6O7ZoV5uh+ZyOPMSayeQkzli5foipfpM9GTNGwiXUH+qxIPns71egEssC5TVNz+En2OmK UX9aE9ZXMDYdxzPhjWoM5953n+fHfLTz0QmsNUzOFkxfU4H+/kyQqw+oVMpSBSgFDT/6AtFPcfbzvKoZOwJx7h/eGp7pPnRstSaqIgQg1hRSuWtWMgOhR4tT hnNcAwi+b5o4a/KE+ZKmQ/ruc6Ze/mwUBzAGaJqnZm1MnclQRCtRcpZsnw0ixiE8t39OAbA/axCKEroDJVVGIP2rOQX+7YrIcgwJewWLMdPKQDfDYzTUP49L PzzNWx4fd+e/XlfN+8UCyvUzyCBk6+WmGVBtkeUCqgYlU4tQBqR/o0qB0cut7nOA9DR3Exty4PqNz127hg9Cn9lasLMFBW2puLuSKLkWbX/O0llzpu0C9vWX 3B+4JU/1R2rFIyelwn2quSse97GglE2bkTW2QvGf+6ZQcXZuHFrLsZAbV+e2zLgNCdE9IDdnKn6AlJWQ5cBNQZGBR/caiAPummppcs6F2R7Vg62sIEUqqyu5 1ZUOC587/Vc9I3vSSJ8R3Kgw9Kmyq/3teBQhQbLMVXTiBznq9ScE/BLk/YuT7kDjuRvupj1Gbt6BDj4O/xOKHuu33IvWlDlh5EK84UMdBwcYHv5sM9N1rg==
+X-AuthUser: michael.opdenacker@rootcommit.com
 
+Greetings
 
+Thanks one more time for the reviews!
 
-On 11/11/25 8:24 AM, Tudor Ambarus wrote:
-> 
-> 
-> On 11/11/25 3:39 AM, Stephen Boyd wrote:
-> 
-> Hi, Stephen!
-> 
->> Quoting Tudor Ambarus (2025-10-20 00:45:58)
->>>
->>>
->>> On 10/20/25 7:54 AM, Krzysztof Kozlowski wrote:
->>>>> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
->>>>> index 76a494e95027af26272e30876a87ac293bd56dfa..70a8b82a0136b4d0213d8ff95e029c52436e5c7f 100644
->>>>> --- a/drivers/clk/samsung/Kconfig
->>>>> +++ b/drivers/clk/samsung/Kconfig
->>>>> @@ -95,6 +95,16 @@ config EXYNOS_CLKOUT
->>>>>        status of the certains clocks from SoC, but it could also be tied to
->>>>>        other devices as an input clock.
->>>>>  
->>>>> +config EXYNOS_ACPM_CLK
->>>>> +    tristate "Clock driver controlled via ACPM interface"
->>>>> +    depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
->>>>
->>>> I merged the patches but I don't get why we are not enabling it by
->>>> default, just like every other clock driver. What is so special here?
->>>
->>> Thanks! Are you referring to the depends on line? I needed it otherwise
->>> on randconfigs where COMPILE_TEST=y and EXYNOS_ACPM_PROTOCOL=n I get:
->>>
->>> ERROR: modpost: "devm_acpm_get_by_node" [drivers/clk/samsung/clk-acpm.ko] undefined!
->>>
+On 11/11/25 11:13, Krzysztof Kozlowski wrote:
+> On 11/11/2025 11:11, Yixun Lan wrote:
+>> Hi Krzysztof,
 >>
->> I don't understand that part. The depends on statement "COMPILE_TEST &&
->> !EXYNOS_ACPM_PROTOCOL" is equivalent to COMPILE_TEST=y and
->> EXYNOS_ACPM_PROTOCOL=n, so are you trying to avoid
->> EXYNOS_ACPM_PROTOCOL=y when COMPILE_TEST=y?
-> 
-> My previous comment was misleading.
-> The depends on line allows CONFIG_EXYNOS_ACPM_CLK to be selected in two
-> main scenarios:
-> 1/ if EXYNOS_ACPM_PROTOCOL is enabled the clock driver that uses it can
->    be enabled (the normal case).
-> 2/ COMPILE_TEST is enabled AND EXYNOS_ACPM_PROTOCOL is NOT enabled. This
->    is the special scenario for build testing. I want to build test the
->    clock driver even if EXYNOS_ACPM_PROTOCOL is NOT enabled. For that I
->    also needed the following patch:
-> 
-> https://lore.kernel.org/linux-samsung-soc/20251021-fix-acpm-clk-build-test-v1-1-236a3d6db7f5@linaro.org/
-> 
+>> On 08:43 Tue 11 Nov     , Krzysztof Kozlowski wrote:
+>>> On Mon, Nov 10, 2025 at 10:06:48PM +0000, michael.opdenacker@rootcommit.com wrote:
+>>>> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+>>>>
+>>>> Document the compatible string for the OrangePi R2S board [1], which
+>>>> is marketed as using the Ky X1 SoC but is in fact identical to
+>> Maybe, just say it "same" to clarify the ambiguity?
+> What is exactly "same"? Same die? Or same blocks/pieces? Whichever you
+> choose please make it very explicit.
 
-What I described in 2/ EXYNOS_ACPM_PROTOCOL [=n] && EXYNOS_ACPM_CLK [=y] 
-can be achieved with a more relaxed:
-depends on EXYNOS_ACPM_PROTOCOL || COMPILE_TEST
-because of the stub (dummy method) that I referenced in the link above.
+Maybe Troy Mitchell from Spacemit can shed light on this question.
 
-It's really what Krzysztof explained in his reply, I wanted to avoid
-the link failure for COMPILE_TEST [=y] when
-EXYNOS_ACPM_PROTOCOL [=m] && EXYNOS_ACPM_CLK [=y].
+Anyway, I could use the same wording as in this commit introducing 
+"OrangePi RV2":
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch?id=bab8dea259100a99e047fd11a48940b229d30031
 
-We have the following possibilities with:
-depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
-1/ CONMPILE_TEST=n
-EXYNOS_ACPM_PROTOCOL=n EXYNOS_ACPM_CLK=n
-EXYNOS_ACPM_PROTOCOL=m EXYNOS_ACPM_CLK=n,m
-EXYNOS_ACPM_PROTOCOL=y EXYNOS_ACPM_CLK=n,m,y
+"The board is described as using the Ky X1 SoC, which, based on 
+available downstream sources and testing, appears to be identical or 
+very closely related to the SpacemiT K1 SoC".
 
-2/COMPILE_TEST=y
-EXYNOS_ACPM_PROTOCOL=n EXYNOS_ACPM_CLK=n,m,y
-EXYNOS_ACPM_PROTOCOL=m EXYNOS_ACPM_CLK=n,m
-EXYNOS_ACPM_PROTOCOL=y EXYNOS_ACPM_CLK=n,m,y
+What do you think?
 
-We have the following possibilities with:
-depends on EXYNOS_ACPM_PROTOCOL || COMPILE_TEST
-1/ CONMPILE_TEST=n
-EXYNOS_ACPM_PROTOCOL=n EXYNOS_ACPM_CLK=n
-EXYNOS_ACPM_PROTOCOL=m EXYNOS_ACPM_CLK=n,m
-EXYNOS_ACPM_PROTOCOL=y EXYNOS_ACPM_CLK=n,m,y
+Cheers,
+Michael
 
-2/COMPILE_TEST=y
-EXYNOS_ACPM_PROTOCOL=n EXYNOS_ACPM_CLK=n,m,y
-EXYNOS_ACPM_PROTOCOL=m EXYNOS_ACPM_CLK=n,m,y <- link failure when y
-EXYNOS_ACPM_PROTOCOL=y EXYNOS_ACPM_CLK=n,m,y
+-- 
+Michael Opdenacker
+Root Commit
+Yocto Project and OpenEmbedded Training course - Learn by doing:
+https://rootcommit.com/training/yocto/
 
-Thanks,
-ta
 
