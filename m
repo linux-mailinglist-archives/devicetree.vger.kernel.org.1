@@ -1,148 +1,150 @@
-Return-Path: <devicetree+bounces-237102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73603C4CEBC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:12:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3972C4CF7A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:17:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAA7A4222B0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:57:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56F514A3DD4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F5C2FD7B4;
-	Tue, 11 Nov 2025 09:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8016233469F;
+	Tue, 11 Nov 2025 10:01:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BDnvbdt8"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="MIGkoQtJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F281263F49
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 09:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E18335085;
+	Tue, 11 Nov 2025 10:01:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762855070; cv=none; b=aVgcrvMGAhCER70jr5Pn9KKRWNwj9//GvC26YhnBpZ4AFn+KWZZiwZ0LgNl3lZSaAU/L3z/hBcq+Prf99KphNbCmnhpvZjSoG64TBoMrRrYXm7Vs0Oi0L5Vem0u55CSTv5EgqEmMMYgArdXvcXVJ+bhFJ8VIzOnwXqHK/yWgeVc=
+	t=1762855267; cv=none; b=ARrKjDof2GNCz0EWKaKtieZxffzILi7sYzLcXzx//YThFtYUXM4AzfCClA7pj2S0wnGUFG95nZSCnE7EvwYy7B1BBS67fBC4p+iwAbO+LJQxA76o/8DM9RV1P7k4BlJmuKx8vm8xZdj9fmH5SLNV7RHQhfHPa4bMq1JOK6aScUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762855070; c=relaxed/simple;
-	bh=A/FDcgEC0NqdGGYV5LPhCY8eQLNHWRRJowrE/ROA2P8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NWCZpIxfrij51CH7VKfvNpQ0jEaPNfGK5Nnydh/2Vg8+9nSxIkMDavGsmJWs/6GAn4mFaDbbbmjCbbG0krqFZl52VOA41N5k/lgMk63n9kwb/5zv1M3FrjFxXFpBuln6OCR90k/9tCJ+2X+mwycg08eSa1UFGc7xxHJPO4MaUKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BDnvbdt8; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-471191ac79dso41273765e9.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 01:57:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762855066; x=1763459866; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=A/FDcgEC0NqdGGYV5LPhCY8eQLNHWRRJowrE/ROA2P8=;
-        b=BDnvbdt8iSYN6bxwCsU4EDmY1GHOAcYRVvz+U3H9jx3pABSMYfbGSx7e4UTi4huSV/
-         9XAS5nzciGxhzKRcbEKMWqY5DRPjDJUgwdvYRLN7M9ysHRP5T0ne+Jt4qsaI1dnrQQQs
-         C5bxL+UhfluxUWO+LOFXeJd8VX/plVfE9j1wkoezNcGqES3aGHlM5411aSH8u+lufGZe
-         mEtoYElGp1glT+iVVOZ1hg+VERPjRBvSZ6sEwmhrgA4EkAen0N3m8wYOCnqTHvXuzr12
-         XvHmxn2I45PzjZCems0cO1lnWf/UPp9ZVusRwI33NHkEJ8s79DkDJyj0XDDop8sjtWUr
-         gyLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762855066; x=1763459866;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A/FDcgEC0NqdGGYV5LPhCY8eQLNHWRRJowrE/ROA2P8=;
-        b=Xehlir6dyUoNyuC4e09oHRfSbyxfxJ4o4iJn8PA0UmcWbWk3Ep+3pybWVoJrow68yv
-         67IOtWjPkOT7S9gMaUm2LOBaQt6WfRQEjVliy3i+dMOqR97tvHrMzJkAOJ+tgFrxfQ9b
-         TVocA314LMsKJOCdat/1PEA3kxZ9aJ6JD30m1ufYYDNA4J5VHNRUYsDVlhzkCMeg8jNk
-         DlCw1JeF27ytHUAd03kR6xlAj9qyjqEPbDzrsnU0A0DLLbxMZGfrN18FpLE0n5eSKRdY
-         mDf9Ra9Fhby6ZwX6YWWfeOUxreiY1TWxAwirsbPp1xo8t+qH4mJfdS618BOAOEQBNTOK
-         UipA==
-X-Forwarded-Encrypted: i=1; AJvYcCWTrk4oiD1oBrHHD8NZb5q4YX6R0vsPli9v5PzwbzxqXBaTGijEfP1TgdIrIJFr1T2Iyrg6g4bGibiY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsfCEHIK6kDXXAs+vO5sB9yFBWnH09vriYA49wX+pZ1m8STszY
-	dSmDTezrQfI/ay3JyXv7LOTezOJoMGTfLMa9Sxe+S6xmssDzrWwoUAbpylm7xoP7XoI=
-X-Gm-Gg: ASbGncu/19+Ed/9gkL79ZlbF3kvr6fMAMIX4O8dQxJFydjmiItEdgIv+2qyb+Tpm7Qa
-	vXsa+u0n5TWdAwOpCSrzz8fFbm2wfQ0+eE0HEHfUhKGNbyfnUELuZMEn4WOS3fsmsDH9EiqRBjR
-	Gijm97P2+aqs/pdqOBJGSLIgNAHAT7ay85ruBKXwmYoasoZSU42EayWmKkVhAfjEZlg2U5SyAHM
-	xiDeFJEczsACV2ZM+qXKTNr8RuIHZTFylzBWI6RfD6YFpKzpBTHRewltLl4yqDd7bMD1UkTbvGg
-	6n1BechD8kg1IsGZOHjSriCmpqeNeNV5KTm5cc2rvoRSDzHWOOm6t5b6EjoS9ZgtM4xDOLvL9Ov
-	6JTwV/k7p//8Rur8dd+FnvqPP2bsBPZbtxq7FDioV671Y1tz/4p+o0XkiLDK7O5XnVPTpPS5VvL
-	BL/jlaTQ==
-X-Google-Smtp-Source: AGHT+IFx1tQhYEcMAjmeDGusVpDAcsUi3ywSe54TVsoxYy0zvPtJEA10WARNrOByXA/spkwUzB6jqA==
-X-Received: by 2002:a05:600c:1c08:b0:475:df91:de03 with SMTP id 5b1f17b1804b1-47773289066mr81723875e9.39.1762855066460;
-        Tue, 11 Nov 2025 01:57:46 -0800 (PST)
-Received: from draszik.lan ([212.129.83.89])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4775ce211d8sm380577775e9.11.2025.11.11.01.57.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Nov 2025 01:57:45 -0800 (PST)
-Message-ID: <9c344c5f43e71f30ccbd07b201eb470ed8e5fe35.camel@linaro.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: clock: google,gs101-clock: add
- samsung,sysreg property as required
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Tudor
- Ambarus <tudor.ambarus@linaro.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Sam Protsenko	
- <semen.protsenko@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, Krzysztof Kozlowski	
- <krzk@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- kernel-team@android.com
-Date: Tue, 11 Nov 2025 09:57:42 +0000
-In-Reply-To: <3bb47929b08370d9114ff1dd6b0d0f16d354d63b.camel@linaro.org>
-References: <20251110-automatic-clocks-v4-0-8f46929f50b7@linaro.org>
-		 <20251110-automatic-clocks-v4-1-8f46929f50b7@linaro.org>
-	 <3bb47929b08370d9114ff1dd6b0d0f16d354d63b.camel@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1762855267; c=relaxed/simple;
+	bh=e3fqwRbOVt7OA+FEvmyZw2a0p2NHT5gR8SasjQ8stTc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=COKgfF0EvW2LkbYhXoAifGJxJzHUrrKEjukZnjW2ZaIIi/xPQ9DbKsJ24g79EDf/BYyH282m9WlsXblqEQE1QGvrR/5OgeYi+7R0B+ofHPUpKBKXVTQHMGdSrXH96oSCOUzlm43QFccfEyMrO1wqbij0qIqD8p6pHIvfLGB6VAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=MIGkoQtJ; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1762855265; x=1794391265;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=e3fqwRbOVt7OA+FEvmyZw2a0p2NHT5gR8SasjQ8stTc=;
+  b=MIGkoQtJIBiYcX538TdOgPynowipdNxVP2IxNfCdnHTBhkkFWPywanTh
+   0s0LaIuS/XVS1QE/YJiCpcrBi/IXltd1FwCGkDwwxQ0sI85gqbqctnATI
+   zKuqgCgVAFD0+uMC2quab9/rRkfQ3E4PlgYYW4kYEyZnGKpSZXxCKgDYx
+   A4Qwq2YS2Qxkoygt4DWODWP1J05pHsNtWPK/9/J40x/A/jsBS37VfqEyJ
+   USTpOH2UZwoEwIEroMmNfa+6eNKq5JLfCEiIP/oEoBxNSMpwUHEn53/bY
+   aMvu/TXqjXzPUi1Wh0KDsQQJiIpnrSeMIJvS5UndYpfgcx+4h5zQ9IMyt
+   Q==;
+X-CSE-ConnectionGUID: 2dh2N22+RT2H7OEQxVeL+A==
+X-CSE-MsgGUID: DtILuQYCTuKnZZVhVVHmTw==
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
+   d="scan'208";a="216293010"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Nov 2025 03:01:04 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 11 Nov 2025 03:00:02 -0700
+Received: from localhost (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 11 Nov 2025 03:00:02 -0700
+Date: Tue, 11 Nov 2025 10:58:31 +0100
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: lan966x: Add optional
+ microchip,sx-tx/rx-inverted
+Message-ID: <20251111095831.lp4kvdfcahtwgrqc@DEN-DL-M31836.microchip.com>
+References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
+ <20251110110536.2596490-3-horatiu.vultur@microchip.com>
+ <20251110-unwound-award-a11d69b9da4f@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20251110-unwound-award-a11d69b9da4f@spud>
 
-T24gVHVlLCAyMDI1LTExLTExIGF0IDA5OjU0ICswMDAwLCBBbmRyw6kgRHJhc3ppayB3cm90ZToK
-PiBIaSBQZXRlciwKPiAKPiBPbiBNb24sIDIwMjUtMTEtMTAgYXQgMTQ6MjEgKzAwMDAsIFBldGVy
-IEdyaWZmaW4gd3JvdGU6Cj4gPiBbLi4uXQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL2dvb2dsZSxnczEwMS1jbG9jay55YW1sCj4g
-PiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9nb29nbGUsZ3MxMDEt
-Cj4gPiBjbG9jay55YW1sCj4gPiBpbmRleCAzMWUxMDZlZjkxM2RlYWQ5YTAzOGIzYjZkOGI0M2I5
-NTA1ODdmNmFhLi41Y2U1YmE1MjMxMTBhZjNhMmE3NzQwYjhiYTI4ZTIyNzFjNzZiZGRiIDEwMDY0
-NAo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL2dvb2ds
-ZSxnczEwMS1jbG9jay55YW1sCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvY2xvY2svZ29vZ2xlLGdzMTAxLWNsb2NrLnlhbWwKPiA+IEBAIC01Miw2ICs1MiwxMSBA
-QCBwcm9wZXJ0aWVzOgo+ID4gwqDCoCByZWc6Cj4gPiDCoMKgwqDCoCBtYXhJdGVtczogMQo+ID4g
-wqAKPiA+ICvCoCBzYW1zdW5nLHN5c3JlZzoKPiA+ICvCoMKgwqAgJHJlZjogL3NjaGVtYXMvdHlw
-ZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZQo+ID4gK8KgwqDCoCBkZXNjcmlwdGlvbjoKPiA+
-ICvCoMKgwqDCoMKgIFBoYW5kbGUgdG8gc3lzdGVtIHJlZ2lzdGVycyBpbnRlcmZhY2UuCj4gPiAr
-Cj4gPiDCoHJlcXVpcmVkOgo+ID4gwqDCoCAtIGNvbXBhdGlibGUKPiA+IMKgwqAgLSAiI2Nsb2Nr
-LWNlbGxzIgo+ID4gQEAgLTE2Niw2ICsxNzEsMjIgQEAgYWxsT2Y6Cj4gPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgLSBjb25zdDogYnVzCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBj
-b25zdDogaXAKPiA+IMKgCj4gPiArwqAgLSBpZjoKPiA+ICvCoMKgwqDCoMKgIHByb3BlcnRpZXM6
-Cj4gPiArwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZToKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqAg
-Y29udGFpbnM6Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbnVtOgo+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIC0gZ29vZ2xlLGdzMTAxLWNtdS1hcG0KPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCAtIGdvb2dsZSxnczEwMS1jbXUtbWlzYwo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIC0gZ29vZ2xlLGdzMTAxLWhzaTAKPiAKPiBTaG91bGRuJ3QgdGhpcyBi
-ZSBnb29nbGUsZ3MxMDEtY211LWhzaTA/Cj4gCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgLSBnb29nbGUsZ3MxMDEtY211LWhzaTIKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCAtIGdvb2dsZSxnczEwMS1jbXUtcGVyaWMwCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgLSBnb29nbGUsZ3MxMDEtY211LXBlcmljMQo+ID4gKwo+ID4gK8KgwqDCoCB0aGVuOgo+ID4g
-K8KgwqDCoMKgwqAgcmVxdWlyZWQ6Cj4gPiArwqDCoMKgwqDCoMKgwqAgLSBzYW1zdW5nLHN5c3Jl
-Zwo+IAo+IFRoZSBhYm92ZSBzdGlsbCBhbGxvd3MgKGJ1dCBkb2Vzbid0IGVuZm9yY2UpIHNhbXN1
-bmcsc3lzcmVnIG9uIGNtdS10b3AuCj4gCj4gTWF5YmUgaXQnZCBiZSBiZXR0ZXIgdG8gaW52ZXJ0
-IHRoZSB0ZXN0LCBhcyBjbXUtdG9wIGlzIHRoZSBvbmx5Cj4gb3V0bGllciwgYW5kIHRoZW4gdGhl
-IGJpbmRpbmcgZG9lc24ndCBuZWVkIHRvIGJlIHVwZGF0ZWQgd2hlbiBtb3JlCj4gQ01VcyBhcmUg
-YWRkZWQgKHVudGVzdGVkKToKPiAKPiDCoCAtIGlmOgo+IMKgwqDCoMKgwqAgcHJvcGVydGllczoK
-PiDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlOgo+IMKgwqDCoMKgwqDCoMKgwqDCoCBjb250YWlu
-czoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnN0OiBnb29nbGUsZ3MxMDEtY211LXRvcAo+
-IAo+IMKgwqDCoCB0aGVuOgo+IMKgwqDCoMKgwqAgcmVxdWlyZWQ6Cj4gwqDCoMKgwqDCoMKgwqAg
-LSBzYW1zdW5nLHN5c3JlZwo+IAo+IMKgwqDCoCBlbHNlOgo+IMKgwqDCoMKgwqAgcHJvcGVydGll
-czoKPiDCoMKgwqDCoMKgwqDCoCBzYW1zdW5nLHN5c3JlZzogZmFsc2UKCm9idmlvdXNseSB0aGVu
-OiBhbmQgZWxzZTogY2FzZXMgc2hvdWxkIGJlIHN3YXBwZWQuCgpBLgo=
+The 11/10/2025 18:43, Conor Dooley wrote:
 
+Hi Conor,
+
+> On Mon, Nov 10, 2025 at 12:05:36PM +0100, Horatiu Vultur wrote:
+> > This allows to invert the N and P signals of the RX and TX Serdes
+> > signals. This option allows the board designer to trace their signals
+> > easier on the boards.
+> 
+> Why can't this just be done in software, debugfs or something like that?
+> Maybe it's just your description is poor, but sounds like the intention
+> here is to just switch things around for debug purposes.
+
+I don't think it should be done through debugfs. As this describes the
+board layout and I don't think someone will want to change it at
+runtime to see how things behave. So maybe the description is poor.
+
+> 
+> > 
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  .../phy/microchip,lan966x-serdes.yaml         | 24 +++++++++++++++++++
+> >  1 file changed, 24 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
+> > index 6e914fbbac567..21b19e06a75aa 100644
+> > --- a/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
+> > @@ -41,6 +41,30 @@ properties:
+> >        - The macro to be used. The macros are defined in
+> >          dt-bindings/phy/phy-lan966x-serdes.
+> >  
+> > +  microchip,s0-tx-inverted:
+> > +    type: boolean
+> > +    description: Invert the TX N and P signals for Serdes 0
+> > +
+> > +  microchip,s1-tx-inverted:
+> > +    type: boolean
+> > +    description: Invert the TX N and P signals for Serdes 1
+> > +
+> > +  microchip,s2-tx-inverted:
+> > +    type: boolean
+> > +    description: Invert the TX N and P signals for Serdes 2
+> > +
+> > +  microchip,s0-rx-inverted:
+> > +    type: boolean
+> > +    description: Invert the RX N and P signals for Serdes 0
+> > +
+> > +  microchip,s1-rx-inverted:
+> > +    type: boolean
+> > +    description: Invert the RX N and P signals for Serdes 1
+> > +
+> > +  microchip,s2-rx-inverted:
+> > +    type: boolean
+> > +    description: Invert the RX N and P signals for Serdes 2
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > -- 
+> > 2.34.1
+> > 
+
+
+
+-- 
+/Horatiu
 
