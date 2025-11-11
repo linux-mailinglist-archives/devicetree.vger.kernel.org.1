@@ -1,112 +1,99 @@
-Return-Path: <devicetree+bounces-237226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16513C4EA06
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:57:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF66DC4E973
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:52:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A7ED3AA765
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:41:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F7B4189FBB7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:46:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C13C324707;
-	Tue, 11 Nov 2025 14:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951062DE707;
+	Tue, 11 Nov 2025 14:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="G3d0+EMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12073246F5
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 14:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880E41F874C
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 14:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762871806; cv=none; b=IePBss/9gZ6obElQ5YimYHcso48ICLra6uRLpV/LMjveq+Et/zOlmTPVZrvoY+EymNXoHqyM1r4FOD0pQPGrCqTirwmbxWpNGYggOCg68t0IgXKXsMvlPlV9mzwhOQD8LHluBUG2uKE/PoU03OW2J9NX6ROkSstrm9VNPLEqxBE=
+	t=1762872374; cv=none; b=ERu0LpNv8VzWikcpAKrc0lUaO2ruXzntFXh5HzAAFH8nXD2m2XlB8rGekmIurYfABgc+qPus3SlASdvVVYHD38s5Lgko3rGsQl6KYLXSmU/gT6nAp8IB2ayr0gl3myY9PTqQ+nzqjZXknu3Xsd68P0PXUX0HCAl2bk6mREktcDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762871806; c=relaxed/simple;
-	bh=rJFjSaWVvKo++wfTtlWEzrnXG3ul3yvXKa6GqQjo92s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ERRzouvWQf4HLbh/5VpCS1xJI+oKXS9kQn6a7/FEnMKXI1PUcGrjPyZb4S3gwpzfXqLfMrpLH+lDZxQnmfkBHkja1n4Lzq8nqLA5jk/uCffFCOiNam7zKXV6Cxqx6JS99rNcQVNfrAbC9pPvA7QWuBwg3Xofmr0A044joUJ4mqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.tretter@pengutronix.de>)
-	id 1vIpU4-0004Ul-Au; Tue, 11 Nov 2025 15:36:36 +0100
-From: Michael Tretter <m.tretter@pengutronix.de>
-Date: Tue, 11 Nov 2025 15:36:17 +0100
-Subject: [PATCH 4/4] media: adv7180: fix frame interval in progressive mode
+	s=arc-20240116; t=1762872374; c=relaxed/simple;
+	bh=Gg+KXoywckKnF5eYDudMEaq5Dvjmq+cwd1bLuQoVrD0=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=UdsCC4TGiYLV6I7JqqPLtE+fTCDQ9M+8ZIyG6x/2JIfAtoBIMfbuH+1HsOAzRU7nqfxp6NyMIGe9FejslJcm1dCmHg3b92XTnncGaduYojBr/lM0bD/9ROXmxfjy+dEwLUhT7uWzviLepvGV14cLJKPFhJHm5DTLJAPtQR0zeFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=G3d0+EMG; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 21E4840FD6;
+	Tue, 11 Nov 2025 15:46:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1762872368; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=/cagrh29ibSMDnOPkSSUd4ZdK21ny+AueZuffN/Jim0=;
+	b=G3d0+EMG73jPS0WH3iKtHHxP8zXOpKZrItjFxxZBUlONnVc00VCnmutHicq1znRNBrx0EG
+	DdK10bxJVcl0kNL/WbXzB07oGNW7ks3GAlEYkd2atKAZ3jvhp8qzJdYe2ns2BqFhYapxJn
+	pTEo9Hw2CCEtFl3LiUAUdfZmjgcmU1n3PeZYN4HnuFTTrLS62DQrJGxgDPnHw+CnXT6r4j
+	yt8q1L0ISDdjKXUMYMyr+QFWhVuHyCtzvm3lz1/52bklS8DQXL7YsbvyDxdkvT6kQhO2rA
+	h6uQ6wQCDv/N1LC+0tVg6ct+3HSD2CToSUThIrj8/6Qf5E13m02at8hPIS8UtQ==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20251111054112.55505-1-naoki@radxa.com> <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
+Date: Tue, 11 Nov 2025 15:46:04 +0100
+Cc: "FUKAUMI Naoki" <naoki@radxa.com>, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jbx6244@gmail.com, pgwipeout@gmail.com, jonas@kwiboo.se, ziyao@disroot.org, amadeus@jmu.edu.cn, nicolas.frattaroli@collabora.com, pbrobinson@gmail.com, wens@kernel.org, detlev.casanova@collabora.com, stephen@radxa.com, sebastian.reichel@collabora.com, liujianfeng1994@gmail.com, andy.yan@rock-chips.com, damon.ding@rock-chips.com, kylepzak@projectinitiative.io, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+To: "Diederik de Haas" <diederik@cknow-tech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251111-b4-adv7180-vpp-sub-device-v1-4-9877fe9f709b@pengutronix.de>
-References: <20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de>
-In-Reply-To: <20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>, 
- Thorsten Schmelzer <tschmelzer@topcon.com>
-X-Mailer: b4 0.14.3
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Message-ID: <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= Turn all LEDs on at boot for Radxa boards
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-From: Thorsten Schmelzer <tschmelzer@topcon.com>
+Hello Diederik,
 
-The ADV7280-M may internally convert interlaced video input to
-progressive video. If this mode is enabled, the ADV7280-M delivers
-progressive video at the full refresh rate of 50 FPS (PAL) or 60 FPS
-(NTSC).
+On Tuesday, November 11, 2025 14:07 CET, "Diederik de Haas" <diederik@c=
+know-tech.com> wrote:
+> On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
+> > Radxa's boards turn all LEDs on at boot(loader), but some boards do=
+n't
+> > have `default-state` property in Linux kernel tree but have it in
+> > U-Boot tree instead[1].
+> >
+> > This patch adds `default-state =3D "on"` for (almost) all LEDs (wit=
+h a
+> > few exceptions which should be "off" such as RGB LEDs on E25 and LA=
+N/
+> > WAN LEDs on E20C/E52C).
+>=20
+> I'm missing the *why* these changes would be an improvement.
+>=20
+> Personally, for both 'heartbeat' and 'netdev' triggers, I want them t=
+o
+> be off by default and once it gets a 'heartbeat' or a 'netdev' trigge=
+r,
+> THEN I want the LED to be on/blinking.
 
-Fix the reported frame interval if progressive video is enabled.
+That's a good question for Naoki.  My own preference would also
+be to have the device's power LED turned on by U-Boot as quickly
+as possible after supplying power to the board or turning it on
+by pressing the power button.  I'm actually not a big fan of
+having all the LEDs shining for a couple of seconds or so, which
+may actually look like some error condition to me.
 
-Signed-off-by: Thorsten Schmelzer <tschmelzer@topcon.com>
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
- drivers/media/i2c/adv7180.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/media/i2c/adv7180.c b/drivers/media/i2c/adv7180.c
-index d289cbc2eefd..3a5a0818bc5f 100644
---- a/drivers/media/i2c/adv7180.c
-+++ b/drivers/media/i2c/adv7180.c
-@@ -491,6 +491,7 @@ static int adv7180_get_frame_interval(struct v4l2_subdev *sd,
- 				      struct v4l2_subdev_frame_interval *fi)
- {
- 	struct adv7180_state *state = to_state(sd);
-+	bool progressive;
- 
- 	/*
- 	 * FIXME: Implement support for V4L2_SUBDEV_FORMAT_TRY, using the V4L2
-@@ -499,12 +500,14 @@ static int adv7180_get_frame_interval(struct v4l2_subdev *sd,
- 	if (fi->which != V4L2_SUBDEV_FORMAT_ACTIVE)
- 		return -EINVAL;
- 
-+	progressive = (state->field == V4L2_FIELD_NONE);
-+
- 	if (state->curr_norm & V4L2_STD_525_60) {
- 		fi->interval.numerator = 1001;
--		fi->interval.denominator = 30000;
-+		fi->interval.denominator = progressive ? 60000 : 30000;
- 	} else {
- 		fi->interval.numerator = 1;
--		fi->interval.denominator = 25;
-+		fi->interval.denominator = progressive ? 50 : 25;
- 	}
- 
- 	return 0;
-
--- 
-2.47.3
+Having all that in mind, I may suggest that just the U-Boot's
+behavior is changed to turn the power LEDs on only.
 
 
