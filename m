@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-237037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40AB8C4C222
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 08:37:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7A9C4C276
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 08:43:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B838D4E66A1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 07:37:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B9C2189E10B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 07:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A5E329C66;
-	Tue, 11 Nov 2025 07:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC89332EC5;
+	Tue, 11 Nov 2025 07:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="PWqLNck9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gztyeICj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314C3281341;
-	Tue, 11 Nov 2025 07:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2DCA32B99D;
+	Tue, 11 Nov 2025 07:43:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762846665; cv=none; b=DquNHm/qhBuqdEkG+YdLgJeXNkirXMuSsMy0I0iqbj0hAq29FfkdwFw7uQtHFmcqxQaj1mcWp6IacRx4R9uicuJvfO4GmsVlhWoAxalSxk4xmL+9FerLDGtXKyaQDSvsqZPlSfitLwPa9dH3dNZzTTF67Ru3mKFLjb+RKfTNSIE=
+	t=1762847032; cv=none; b=ugqSnSsr/IezvyUcn+Mdjf7w/Q9aKnwbaN2/OVHvcqHi06ZdicWUR1p7zTCDTRxH2GL+6gFL7vQJtDOh/QehswXedoLTemDMlR9/ZybiW8vvbV8VtLunW3yl2cZac6TyPcEJ2MCsy/6llDB9F7CQ9FSMrFw1BbPdOCzx2mU9hqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762846665; c=relaxed/simple;
-	bh=TMfjCCp9Vl1C+w/PH2HESmcjrVpVqcg2gmYMGqanOuo=;
+	s=arc-20240116; t=1762847032; c=relaxed/simple;
+	bh=XIv9q/YAhKheEKBaWPN6EMrhsiNlRb18dfmo/SehtNk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MjYjHZrr9aASl5IBLtW1CM4sZFTCXej0+ilrkNpzdiU2uNVbiJUEswKeOT+NZRbZvP8wmtcoh6BC6LL4cvL+zRRmsiriVveDi4wSWkOSiWdsEw0iJqHAsgvnmfdSrHz33H/mzLyYH531r+0ptosdkiD04MHxAlHh46D6vBJIUTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=PWqLNck9; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=jSCFmAGYJ/6nn3X8y2BV2I473qQwTQBsOPiyb3X/GTY=;
-	b=PWqLNck9KGbRwkR/sES7ueZrnA5LZNT3OVPkUI2EVxEc86cKHKBRnIx0UPASlk
-	9MW/rnmblg29iXEi5+dXOGvlkhWhYNW2H1SiGaWvEKBcWbQGD2zCHdJXOhInI5r8
-	3LGLOWVtKwJIxovzNMFo6iSjfjrenzjP8NeQPbQYeJ9z8=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAn_s2h5xJpBSnNAQ--.5214S3;
-	Tue, 11 Nov 2025 15:37:07 +0800 (CST)
-Date: Tue, 11 Nov 2025 15:37:05 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, frank.li@nxp.com, s.hauer@pengutronix.de,
-	festevam@gmail.com, kernel@pengutronix.de,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/7] arm64: dts: imx8dxl-evk: Add vpcie3v3aux
- regulator for PCIe M.2 connector
-Message-ID: <aRLnoXX54oG6erhW@dragon>
-References: <20251024073152.902735-1-hongxing.zhu@nxp.com>
- <20251024073152.902735-2-hongxing.zhu@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VOgsfoXWQ0qao3EGrTax2kfHeroG8KaZTfcR5MRxle7nOfsq/fSHmt6A7Ms/AG3qdJSmExJfmq0nOLGVRz9Ay6N7e8jRXRg97MssxQnWUrCpcrU+fmFa2gpTVWh+nfK0lLoP3+MSJdeIF3VfzN+bekArzgE/dFyGXmB6VGKYmDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gztyeICj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD707C19424;
+	Tue, 11 Nov 2025 07:43:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762847031;
+	bh=XIv9q/YAhKheEKBaWPN6EMrhsiNlRb18dfmo/SehtNk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gztyeICjwETc+OlGLVdWcmHw2w6UdifgGsZLo6PXsDC3frqxAWKLG2ui+0MXe9Jgp
+	 9gD4NgzAazwYh611kkaLMEZVQ0SdlJQCECDP+Nz4O5ZdN+QZT6Szm0vn/T5h1dwy+1
+	 2l1+35uXxTlSj/sEm1PGHOO48yZXiWjKwluQmfuv9Yq96uJioWWpI5putwtm69ClJJ
+	 xUVhNkZs8UKN4e4y0VifVmNOTpI0uKHcMSRTzC0kbB3+cGpoiQn+8jol58tC/b6CjR
+	 FWp+AvU7gNoUqebQghrhPqX51XTm/rHRcOu/3bZUujPzoymaySAzQP/2gPqqvr84uW
+	 v3/dUqMptxQKQ==
+Date: Tue, 11 Nov 2025 08:43:48 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: michael.opdenacker@rootcommit.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: spacemit: Add OrangePi R2S
+ board
+Message-ID: <20251111-inquisitive-ambrosial-chicken-861542@kuoka>
+References: <20251110220641.1751392-1-michael.opdenacker@rootcommit.com>
+ <20251110220641.1751392-2-michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,51 +63,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251024073152.902735-2-hongxing.zhu@nxp.com>
-X-CM-TRANSID:Ms8vCgAn_s2h5xJpBSnNAQ--.5214S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrZw1DXw47Cr1ftrWUJF47Arb_yoWkKrgEya
-	s7Ka45tFZ5Ar92qas8Ga1kX342939rKrWfXr18Xr4kGF9rZayvkrykGa4rWr13CrWIkrZx
-	CrsrJ3ZxXr9xCjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUU2jg7UUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiOAMBZmkS56Mm3gAA3b
+In-Reply-To: <20251110220641.1751392-2-michael.opdenacker@rootcommit.com>
 
-On Fri, Oct 24, 2025 at 03:31:46PM +0800, Richard Zhu wrote:
-> Refer to PCI Express M.2 Specification r5.1 sec3.1.1 Power Sources and
-> Grounds.
+On Mon, Nov 10, 2025 at 10:06:48PM +0000, michael.opdenacker@rootcommit.com wrote:
+> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
 > 
-> PCI Express M.2 Socket 1 utilizes a 3.3 V power source. The voltage
-> source, 3.3 V, is expected to be available during the system’s
-> stand-by/suspend state to support wake event processing on the
-> communications card.
-> 
-> Add vpcie3v3aux regulator to let this 3.3 V power source always on for
-> PCIe M.2 Key E connector on i.MX8DXL EVK board.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> index 25a77cac6f0b5..7704dba9e37c0 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> @@ -649,6 +649,7 @@ &pcie0 {
->  	pinctrl-names = "default";
->  	reset-gpio = <&lsio_gpio4 0 GPIO_ACTIVE_LOW>;
->  	vpcie-supply = <&reg_pcieb>;
-> +	vpcie3v3aux-supply = <&reg_pcieb>;
+> Document the compatible string for the OrangePi R2S board [1], which
+> is marketed as using the Ky X1 SoC but is in fact identical to
+> the SpacemiT K1 SoC [2].
 
-Is it a documented binding?
+Different SoC means different compatible. It is very, very unlikely that
+different vendor made same die, which would warrant same compatible.
+Identical does not mean the same die, so your explanation is not
+complete.
 
-Shawn
-
->  	status = "okay";
->  };
->  
-> -- 
-> 2.37.1
-> 
+Best regards,
+Krzysztof
 
 
