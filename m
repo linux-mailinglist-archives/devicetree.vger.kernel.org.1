@@ -1,212 +1,290 @@
-Return-Path: <devicetree+bounces-237356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74A2C4FCE2
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 22:11:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D35C4FCFA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 22:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 22F364EC6EE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 21:10:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7304C4E7341
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 21:12:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 756CF35CBDE;
-	Tue, 11 Nov 2025 21:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E0218A6B0;
+	Tue, 11 Nov 2025 21:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jT76vbs5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ej4+SPqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C6335CBD1;
-	Tue, 11 Nov 2025 21:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8EA135CBB9;
+	Tue, 11 Nov 2025 21:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762895437; cv=none; b=WpDrKWBfq5R9OEEynmvwPqorjQV43CVA/B9O29x9vHsr0H3snoAU5mmGb9J+XCrN7kl74Y1kONF8PM1fPtS0OlZailRAlfVBscn/FilzL6dyPXW0UHkmqPhpovu7scLmtHhBMeNNJtnT0RIFrsrNGeAFYcTf+Cv/vMtPCCooGII=
+	t=1762895517; cv=none; b=DgPDrNGfbyq4eFe4Jzg4nhi+BLvXzTGhzxVNLvJC8PLrvcyeG+Py8BBGIi4pOupBhkIWqaRy8Wtb18DS+vC8kTX7has6m4OkuIgaHLOBFHh0Yjmd4HI3rRf2cKpKJhHnE4P1hd4eZ90QSrkclAYmDXwRFRY+WjoxYOlXDr3wgXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762895437; c=relaxed/simple;
-	bh=ZJnPqy6rt4JkyACEYLFsrsiMs+h4L3/AcaMs5XAVPDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c7gMe1piAV3EhcJKFzXRuPisbDPPMvk11oBnzuQIxOXrB7DVmLR9uLsSdXuC5X7AzZR2F2/DOUCGI75F+U4jkfv6yJXDZrs+S16SHAgwIRunUzYhvnMRuSRlkpUGzmtNEkvoXYlNTuWqkrUv8pFF1ZBl53q5+DlarEiPUDzPbcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jT76vbs5; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (82-203-161-95.bb.dnainternet.fi [82.203.161.95])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id BFCC822B;
-	Tue, 11 Nov 2025 22:08:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762895313;
-	bh=ZJnPqy6rt4JkyACEYLFsrsiMs+h4L3/AcaMs5XAVPDk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jT76vbs53VCjgG63S5D9R7y0iPpHgrzLVxTtqaB4Zt46N0L5cOd7Zzh8pXJbchYoo
-	 9yk1uLktXbinrkbaHuDan8Nv7IDnemA6Htso7ey4RS3mjH4kI1ubZXcKNmYpxfQQaG
-	 VKOaUFMWQmFjGiRmqv1n/JaSGZAXN+M0nowVwKuU=
-Date: Tue, 11 Nov 2025 23:10:25 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Guoniu Zhou <guoniu.zhou@nxp.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v7 1/5] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8ULP compatible string
-Message-ID: <20251111211025.GA26805@pendragon.ideasonboard.com>
-References: <20251023-csi2_imx8ulp-v7-0-5ecb081ce79b@nxp.com>
- <20251023-csi2_imx8ulp-v7-1-5ecb081ce79b@nxp.com>
- <20251027000537.GM13023@pendragon.ideasonboard.com>
- <aROg99ryy6RTZZIx@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1762895517; c=relaxed/simple;
+	bh=3lyHQk+0PzRgbds35eaJRyIdDSi1lVrFMz7RE1ZSqws=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cmQc+OPnQl+btDTSSxo0H4uGO/oaXpIj+7yRGwnZFco61i6ExDFEHxaYietAzv/TVna0NXzCsxkdWWko5Y6qJF4lAaVqx5LMIT4aAkuM+JFi3W00bnzXjtzdJxDaVNDNqOgp+Bq0WTazDhq021M0fKukmnABgcTfyikvgZ64Nkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ej4+SPqC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C80FC4CEF5;
+	Tue, 11 Nov 2025 21:11:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762895517;
+	bh=3lyHQk+0PzRgbds35eaJRyIdDSi1lVrFMz7RE1ZSqws=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ej4+SPqCnxQFqkrgxlg+EOX/GriEHMHKiEQGTqk0VlHEBdp4MpgObRj0Br9mGmslR
+	 TZ2JwH91cvp/LgqtNKWSJtPziiqWygeuczj+PV+8qBERpepo9vKssbDG3BcHwZHvso
+	 bNOsgoV/rTtLJzHljjUpJQ57q4jUKOXsQmLcR4VbnQsvZ2VrIaC7ZNTAVv0DyFV6vc
+	 x73jcH+hoKtPMTfpEADif4X8+SmFVfHcEJfrGX+F0Nzsz6HLCQ4EuvBXAVqZESLQdW
+	 4zJGzfcPhJSmsHuPCJd7LFl3zUCOH10SL3S7NwbfLLC7tyaGr0xDI13W8hmONZN9+W
+	 dljQp0vn1hbtQ==
+Date: Tue, 11 Nov 2025 21:11:48 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <nuno.sa@analog.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
+ <Michael.Hennerich@analog.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <corbet@lwn.net>, <cosmin.tanislav@analog.com>,
+ <marcelo.schmitt1@gmail.com>
+Subject: Re: [PATCH v1 2/3] iio: adc: Initial support for AD4134
+Message-ID: <20251111211148.322e5aaf@jic23-huawei>
+In-Reply-To: <86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt@analog.com>
+References: <cover.1762777931.git.marcelo.schmitt@analog.com>
+	<86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aROg99ryy6RTZZIx@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 11, 2025 at 03:47:51PM -0500, Frank Li wrote:
-> On Mon, Oct 27, 2025 at 02:05:37AM +0200, Laurent Pinchart wrote:
-> > On Thu, Oct 23, 2025 at 05:19:42PM +0800, Guoniu Zhou wrote:
-> > > From: Guoniu Zhou <guoniu.zhou@nxp.com>
-> > >
-> > > The CSI-2 receiver in the i.MX8ULP is almost identical to the version
-> > > present in the i.MX8QXP/QM, but i.MX8ULP CSI-2 controller needs pclk
-> > > clock as the input clock for its APB interface of Control and Status
-> > > register(CSR). So add compatible string fsl,imx8ulp-mipi-csi2 and
-> > > increase maxItems of Clocks (clock-names) to 4 from 3.  And keep the
-> > > same restriction for existing compatible.
-> > >
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> > > ---
-> > >  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 41 ++++++++++++++++++++--
-> > >  1 file changed, 39 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > index 3389bab266a9adbda313c8ad795b998641df12f3..da3978da1cab75292ada3f24837443f7f4ab6418 100644
-> > > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > @@ -20,6 +20,7 @@ properties:
-> > >        - enum:
-> > >            - fsl,imx8mq-mipi-csi2
-> > >            - fsl,imx8qxp-mipi-csi2
-> > > +          - fsl,imx8ulp-mipi-csi2
-> > >        - items:
-> > >            - const: fsl,imx8qm-mipi-csi2
-> > >            - const: fsl,imx8qxp-mipi-csi2
-> > > @@ -39,12 +40,16 @@ properties:
-> > >                       clock that the RX DPHY receives.
-> > >        - description: ui is the pixel clock (phy_ref up to 333Mhz).
-> > >                       See the reference manual for details.
-> > > +      - description: pclk is clock for csr APB interface.
-> > > +    minItems: 3
-> > >
-> > >    clock-names:
-> > >      items:
-> > >        - const: core
-> > >        - const: esc
-> > >        - const: ui
-> > > +      - const: pclk
-> > > +    minItems: 3
-> > >
-> > >    power-domains:
-> > >      maxItems: 1
-> > > @@ -130,19 +135,51 @@ allOf:
-> > >          compatible:
-> > >            contains:
-> > >              enum:
-> > > -              - fsl,imx8qxp-mipi-csi2
-> > > +              - fsl,imx8ulp-mipi-csi2
-> > > +    then:
-> > > +      properties:
-> > > +        reg:
-> > > +          minItems: 2
-> > > +        resets:
-> > > +          minItems: 2
-> > > +          maxItems: 2
-> > > +        clocks:
-> > > +          minItems: 4
-> > > +        clock-names:
-> > > +          minItems: 4
-> >
-> > Do we need the clock-names constraint ? The DT schemas will enforce that
-> > clocks and clock-names always have the same number of elements.
+On Mon, 10 Nov 2025 09:45:40 -0300
+Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+
+> AD4134 is a 24-bit, 4-channel, simultaneous sampling, precision
+> analog-to-digital converter (ADC). The device can be managed through SPI or
+> direct control of pin logical levels (pin control mode). The AD4134 design
+> also features a dedicated bus for ADC sample data output. Though, this
+> initial driver for AD4134 only supports usual SPI connections.
 > 
-> clock-names list already restrict at top section
+> The different wiring configurations will likely require distinct software
+> to handle. So, the code specific to SPI is enclosed in ad4134-spi.c, while
+> functionality that may be useful to all wiring configuration is set into
+> ad4134-common.h and ad4134-common.c.
+
+'maybe' isn't usually a justification for a split.  If that code
+was on list even as an RFC before merging  I'd be fine with this, but if it is
+something we might never see upstream, then squash the abstractions for
+now. Those then end up being introduced as a precursor part of the patch
+set that gives them a reason to exist.
+
 > 
-> clock-names:
->   items:
->     - const: core
->     - const: esc
->     - const: ui
->     - const: pclk
->   minItems: 3
+> Add basic support for AD4134 that allows single-shot ADC sample read.
 > 
-> Here just restrict need 4 clocks, instead 3 clock for fsl,imx8ulp-mipi-csi2
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+A few other comments inline,
 
-I understand that. My point was that the dt-schema will always verify
-that the number of clocks items is equal to the number of clock-names
-items. That's a constraint enforced by the core schemas. As
-clocks: minItems is set to 4, the clock-names: minItems constraint is
-redundant.
+Thanks, J
+> diff --git a/drivers/iio/adc/ad4134-common.c b/drivers/iio/adc/ad4134-common.c
+> new file mode 100644
+> index 000000000000..05332a640926
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad4134-common.c
 
-> > > +
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: fsl,imx8qxp-mipi-csi2
-> > >      then:
-> > >        properties:
-> > >          reg:
-> > >            minItems: 2
-> > >          resets:
-> > >            maxItems: 1
-> > > -    else:
-> > > +        clocks:
-> > > +          maxItems: 3
-> > > +        clock-names:
-> > > +          maxItems: 3
-> > > +
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - fsl,imx8mq-mipi-csi2
-> > > +    then:
-> > >        properties:
-> > >          reg:
-> > >            maxItems: 1
-> > >          resets:
-> > >            minItems: 3
-> > > +        clocks:
-> > > +          maxItems: 3
-> > > +        clock-names:
-> > > +          maxItems: 3
-> > >        required:
-> > >          - fsl,mipi-phy-gpr
-> > >
-> >
-> > Could you please sort those conditional blocks by alphabetical order of
-> > the compatible strings ?
+> +
+> +static const char *const ad4134_clk_sel[] = {
+> +	"xtal1-xtal2", "clkin"
+> +};
+> +
+> +static int ad4134_clock_select(struct ad4134_state *st)
+> +{
+> +	struct device *dev = st->dev;
+> +	struct clk *sys_clk;
+> +	int ret;
+> +
+> +	ret = device_property_match_property_string(dev, "clock-names",
+> +						    ad4134_clk_sel,
+> +						    ARRAY_SIZE(ad4134_clk_sel));
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to find external clock\n");
+> +
+> +	sys_clk = devm_clk_get_enabled(dev, ad4134_clk_sel[ret]);
+> +	if (IS_ERR(sys_clk))
+> +		return dev_err_probe(dev, PTR_ERR(sys_clk),
+> +				     "failed to get %s external clock\n",
+> +				     ad4134_clk_sel[ret]);
+This is a somewhat unusual approach. More common to just trying getting
+an optional clock and if that fails try the other one.
 
--- 
-Regards,
+devm_clk_get_optional_enabled()
 
-Laurent Pinchart
+
+> +
+> +	st->sys_clk_rate = clk_get_rate(sys_clk);
+> +	if (st->sys_clk_rate != AD4134_EXT_CLOCK_MHZ)
+> +		dev_warn(dev, "invalid external clock frequency %lu\n",
+> +			 st->sys_clk_rate);
+> +
+> +	return 0;
+> +}
+
+> diff --git a/drivers/iio/adc/ad4134-common.h b/drivers/iio/adc/ad4134-common.h
+> new file mode 100644
+> index 000000000000..c0a553d827c9
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad4134-common.h
+
+> +
+> +#define AD4134_CH_VREG(x)			((x) + 0x50) /* chanX virtual register */
+> +#define AD4134_VREG_CH(x)			((x) - 0x50) /* chan of virtual reg X */
+
+Add a comment or two on what virtual registers are for.
+
+> +struct iio_scan_type ad4134_scan_types[] = {
+> +	AD4134_SCAN_TYPE(16, 16),
+> +	AD4134_SCAN_TYPE(16, 24),
+
+There are no buffer in here so can type ends up meaning little.
+If this eventually doesn't become useful, storage bits must be a power of 2 * 8
+So can't be 24.  
+
+> +	AD4134_SCAN_TYPE(24, 24),
+> +	AD4134_SCAN_TYPE(24, 32),
+> +};
+> +
+> +#define AD4134_CHANNEL(_index) {						\
+> +	.type = IIO_VOLTAGE,							\
+> +	.indexed = 1,								\
+> +	.channel = (_index),							\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),				\
+> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),			\
+> +	.scan_index = (_index),							\
+> +	.has_ext_scan_type = 1,							\
+> +	.ext_scan_type = ad4134_scan_types,					\
+> +	.num_ext_scan_type = ARRAY_SIZE(ad4134_scan_types)			\
+> +}
+
+> diff --git a/drivers/iio/adc/ad4134-spi.c b/drivers/iio/adc/ad4134-spi.c
+> new file mode 100644
+> index 000000000000..7d0749e5c084
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad4134-spi.c
+> @@ -0,0 +1,287 @@
+
+> +
+> +#include "ad4134-common.h"
+
+> +static int ad4134_reg_write(void *context, unsigned int reg, unsigned int val)
+> +{
+> +	struct ad4134_state *st = context;
+> +	struct spi_device *spi = to_spi_device(st->dev);
+> +	struct spi_transfer xfer = {
+> +		.tx_buf = st->tx_buf,
+> +		.rx_buf = st->rx_buf,
+> +		.len = AD4134_SPI_MAX_XFER_LEN,
+> +	};
+> +	int ret;
+> +
+> +	ad4134_prepare_spi_tx_buf(reg, val, st->tx_buf);
+> +
+> +	ret = spi_sync_transfer(spi, &xfer, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (st->rx_buf[2] != st->tx_buf[2])
+> +		dev_dbg(st->dev, "reg write CRC check failed\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad4134_data_read(struct ad4134_state *st, unsigned int reg,
+> +			    unsigned int *val)
+> +{
+> +	struct spi_device *spi = to_spi_device(st->dev);
+> +	struct iio_scan_type *scan_type = &ad4134_scan_types[st->current_scan_type];
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	/*
+> +	 * Data from all four channels is serialized and output on SDO. Read
+> +	 * them all but keep only the requested data.
+
+I'm failing to spot this mode described on the datasheet.  Could you
+provide a reference section?
+
+> +	 */
+> +	for (i = 0; i < ARRAY_SIZE(ad4134_chan_set); i++) {
+> +		ret = spi_write_then_read(spi, NULL, 0, st->rx_buf,
+> +					  BITS_TO_BYTES(scan_type->storagebits));
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (i != AD4134_VREG_CH(reg))
+> +			continue;
+> +
+> +		if (scan_type->realbits == 16)
+> +			*val = get_unaligned_be16(st->rx_buf);
+> +		else
+> +			*val = get_unaligned_be24(st->rx_buf);
+> +
+> +		*val >>= scan_type->shift;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad4134_reg_read(void *context, unsigned int reg, unsigned int *val)
+> +{
+> +	struct ad4134_state *st = context;
+> +	struct spi_device *spi = to_spi_device(st->dev);
+> +	struct spi_transfer xfer = {
+> +		.tx_buf = st->tx_buf,
+> +		.rx_buf = st->rx_buf,
+> +		.len = AD4134_SPI_MAX_XFER_LEN,
+> +	};
+> +	unsigned int inst;
+> +	int ret;
+> +
+> +	if (reg >= AD4134_CH_VREG(0))
+> +		return ad4134_data_read(st, reg, val);
+
+If you are going down this path the xfer isn't used.  To avoid that being
+a little confusing I'd factor out the rest of this function into a helper
+
+> +
+> +	inst = AD4134_REG_READ_MASK | reg;
+> +	ad4134_prepare_spi_tx_buf(inst, 0, st->tx_buf);
+> +
+> +	ret = spi_sync_transfer(spi, &xfer, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = st->rx_buf[1];
+> +
+> +	/* Check CRC */
+> +	if (st->rx_buf[2] != st->tx_buf[2])
+> +		dev_dbg(st->dev, "reg read CRC check failed\n");
+> +
+> +	return 0;
+> +}
+
+
+> +
+> +static const struct ad4134_bus_info ad4134_min_io_bus_info = {
+
+given it's a mix of bus specific and other stuff, I'm not sure 
+that calling this bus_info makes sense.  Maybe just ad4134_info?
+
+> +	.chip_info = &ad4134_chip_info,
+> +	.bops = &ad4134_min_io_bops,
+> +};
+
+
 
