@@ -1,135 +1,129 @@
-Return-Path: <devicetree+bounces-237112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD344C4D125
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:35:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40CF8C4D152
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:36:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FD8B426738
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:19:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D23F424804
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:20:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0543491F4;
-	Tue, 11 Nov 2025 10:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959A634886A;
+	Tue, 11 Nov 2025 10:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c4rMP1zd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NKPhZGHI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6564334886A
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:19:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB3634846A
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:20:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762856342; cv=none; b=b3trGbSwQ0GMsJbddEzFkSmS1HnxpVQZZEa2oAm+Rw4QQpphMK2PjCRI3Bs8mmkMtcdPboDO+9Zuq53JomQwulr9UDCKYgzIpcfGsfN+xfEpKJR3NJyivzJuxE5QJRMb4W+WkTUL9VEM/o1KkpYedbmDhUvxTFNB1TT1n+PBS+M=
+	t=1762856427; cv=none; b=Rfo1AgLbc6XXEGI5I7hShiUnCJ1NuhlQlvbsU/zBN/9V+Sjqo4WXATeMd1uWyu8kf2zwOpqJKYhEUczE0BRw3GeppoY2mZS87IDQVP75Yxs1HKBk93cj3eujWaYnAkOV7KNMjVbcoxpVcG0xUkU/2zTSp/wPM5ftYn4u1jbUWok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762856342; c=relaxed/simple;
-	bh=sD00pU9m45ar5Ai3zpltFpzvxBL4raSGmlVVUZkRQc4=;
+	s=arc-20240116; t=1762856427; c=relaxed/simple;
+	bh=vFQCQTjKO8TNTzEmtlk+LvI6FcO3v/ubcdimd89KqZk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A9GTxIBnV3PLXgbiW+UrB2zCXTFx23PrdS1GsYRm4Au2D2BMxz7SC/AG50zWA+6lcwfAHdIZT86UdG1niuN2YzqMrUZanF/QeB9YZgtG5kZ5NV3Nd9+nXTE8kuoIfrFGAvVb9bF7NVLCklVaHRCg/qW8dE2u2JecjWIQWeyilUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c4rMP1zd; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-656eb0b1294so1232684eaf.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:19:00 -0800 (PST)
+	 To:Cc:Content-Type; b=KQFOF8D5g+ntDBEiT4x7MAL+LMUoTPyDTCVReFEPDGxoYRlvxI5quhio1FlnvKlXs6WdOvsKsKnm3MxnlxI1rOTQ8my3vCf3ytXFcRQ3aYLxuYnBvwMBnY6F61943y1Xz80foCOCJ7gFBLupHzJRZkCRKqap5JrUDrK7NydnxPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NKPhZGHI; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2956d816c10so43184485ad.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:20:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762856339; x=1763461139; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sD00pU9m45ar5Ai3zpltFpzvxBL4raSGmlVVUZkRQc4=;
-        b=c4rMP1zd0R6QfymMZQTLwQOe4Wsw1fFq5AvCnd1LKNIRLcs2jPV4VJUrpeK33tYsrO
-         S9/VK2RWJAiUsCIuEtwe6whzRAxiBUTCqBLh1FUMXpWHCCijMq+ExydGhKBBqk8QdXRg
-         aWDI0C3OvfZNcKY4ot1QUlufdjXyEHPWtSvCyS/wMADYvuIoL9sWjpVNV1lTXl/y7FaX
-         mT9sT1hiq/mgyk2iHrdAJreBFMIZkEKIVUDIIhTSXn+TEyvLHUw6DZQHYXMYMIAepPRH
-         9UvaP+W2wEPAfxMZR2rg+Uk+xJAg1X9+SRaxOA4Zbwjeu+J3w4xVKUTif52lkqxsI4wf
-         nSlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762856339; x=1763461139;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1762856425; x=1763461225; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sD00pU9m45ar5Ai3zpltFpzvxBL4raSGmlVVUZkRQc4=;
-        b=L8zZSjum9kA1PwLWSPnKqdXn5kuXCOT8juE/4BElo55px7tvn+fO3RvLP/8nJP6EyX
-         uCilXVIMDx1jckt2n9yxVX+cLOug5radPfxtpz0NgEAmr0L+5Xq4VZxyQJhZrVy0T+uS
-         oTB1LvxhbifogaUphHlIG9YqTN1qL56NzDdKo162RbVMpRMgE6t1ZOa8T38LFixszaQ+
-         QSKv+4muiXuJqXcE88epfhe0Y+q0IvrOwOh+TEJ3D7U0495SruWB+6WJZA8+lvo6jqjE
-         85c96ADD67r7zbxRDu4wTiK1msvMS43stqXPZskrfueDSh8KvCF0t/V69qcKE53LlyA/
-         RTyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVgAAsftuyaYHu+RwB/QBD50aS9AJ4VF2WLU9XzfQYB1bL8pZI7x5GBFux4s8olnMl3U0gPS6jMFHnl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyd6d8D+m3X+ucP0t2+PbgcbgCbMXtYPg4hQKCgpC3DcNu7OjuS
-	+yHRDSFYXYfD1/AtVANTv6tP9qjA/ezMdxL/Yc3275UzyX6WKiPLxAwPl8Plz3Yvf7NRgfOjW1L
-	TCDIRFISgjNfNEbpgueuChwvxV7TjVgJNgrVKH2vs1A==
-X-Gm-Gg: ASbGncvPVqSc0sgRJVfBCQnTsP+QhLgGmew6Bzka+D4tC3U0ujTbzGdYd9NGKy7FtZJ
-	9MR1m0nb2IS/53XCeuOXZQ7c0AO2k/o6zL6uDm12H1TXf1jKeoPE9h+zQfSLoorOcK73OAAS71B
-	F8f2p5eFwmpy3sYjNTpFRwX96znwRVpO/M3GtumrYE3iQ5UgpFOxoKzzQa/YwMmm9GJevwuquHp
-	aD3j8odnOpgWLE/uRCJRpfBbUsDMI6CiVoCfy+RZs4qeKhGLMgvz6KMTMljbkwf4bKH1bI=
-X-Google-Smtp-Source: AGHT+IFKS2q0YYMWvzAONoaylj8ozlLuIkMm1yaexf13YEyXcWtqn/MOGkO+d0PlUIAQQu2z38TBPdf0/w+7VAh46B8=
-X-Received: by 2002:a05:6871:660d:b0:3d4:7d3d:be84 with SMTP id
- 586e51a60fabf-3e7c2865eb3mr6778775fac.23.1762856339399; Tue, 11 Nov 2025
- 02:18:59 -0800 (PST)
+        bh=g2BNnZMONHx8/CvKkJxYxrwMB72hoWbxX7RGGc1E2Ds=;
+        b=NKPhZGHIRjBhb1KY7CHkJjdqggn/IOyIPdkU2nSG+qI3rMrsXb15grksl4teM0FnnY
+         O79Fx2kxGuEWmoYtfaQLG08dQa/p/xWnhbDOIWoEQ0EhtXLPRo57aTooALVN30O7GvXg
+         AojZyz2Cx6Q1A75fa4d5dfqii/qmQC4PnHiQ4e7XhSlCDGyh9qt289MZNQZmFxj83Tvz
+         HnVh7lMu8p+tLZJGqeZBaXIX8aCuJjl2eV7Ap6xYR2gLgAf8rEWUq/sitgLPJ5+aVAPT
+         CE2cblK2tyXKVZrH0rNKd/dwhz+g2O2Gy8ObXa4U2gk4dNjyne4zPUGwJ+o+0MHKRnAB
+         XVQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762856425; x=1763461225;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=g2BNnZMONHx8/CvKkJxYxrwMB72hoWbxX7RGGc1E2Ds=;
+        b=mh0OiZflMm/YBxkxFxj9/KGbBoTtebhSb39kap/aRAX5m3GyqAI0nZFrFUBfdab4he
+         iM+fSu869pefF1+dODPG65XQihBbsKrQW+aMRNHoJgGriJ+MfodgERJGix6Ln48W79zZ
+         Jt9MW7DB1VD16R4444BN5ElzCJpDv2YJwLplJ6/a+ZjEzEKsTTz5vnWuZKBCbF1mjSaX
+         +QVsv+/lx4xAR3SqyepZYVeYSOstkiGRnrRL7I8MQ0bDS2+azyEejc63iHbMRfytkXW9
+         nhxH8PY3kDxw1XFkV0nEr0jki32tJLjTscrbaRm9xD3t0+Q5XhEatEEo8RCQJbKNwY+8
+         67aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVheftf50bW7ZOZSZ1sGgss6ZeX0R1JZS4Ie87pSRmKbN4ZO59+cHbytt1Es0nPAdCOAiGLhYSuXbH+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzREBhIqUj2nsA7nUPJrAWYGC/+QHhEfT4fZA1TSuMWzOjnmB4F
+	tOX/zhsNJ/HLoK/itiZLSMC7Y53LNlkIMMPrqit6ljH3RWTnMAAEBubXEv37vRVR6Y2jeNLbGxn
+	uZlX4onTDVPbjqnCHTxKuoOdtu3YvAgo=
+X-Gm-Gg: ASbGncvkyPgjFyvjmhA7F3Za7YGny4FpfWcEeSa3z4j9WvMlN7aKvza2Tb/w0nT3qW8
+	1EJyAPrabkZMjheZzECXcAxZ8MOFzqZF9IYfhYceqGdNTv40EfAMR0Bk1RjDpwYcmEnluvwgXLO
+	Z3TyU+E2szJq1xS2ycTtdjw59gW3OeuzKPhepybv8fokvLAwUHvb/MlkImXJzUrDLy+fVsvbPsy
+	kGC/Y2mr3SVuhzF9Qf/CQpul9rnrdLpGUhkfSpLIxYP5Po9vD90pjlE8Q==
+X-Google-Smtp-Source: AGHT+IGHeEc0tdcwN2CitYeC9X138lPaLhDv7imL1UBIrrtgzyaJrxx+3S5nCZWKtBm7wpPk+C2oztDUFMFw3MuqU3k=
+X-Received: by 2002:a17:903:a8b:b0:298:68e:405e with SMTP id
+ d9443c01a7336-298068e42acmr127289735ad.59.1762856425272; Tue, 11 Nov 2025
+ 02:20:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251103-remove-pmu-syscon-compat-v1-0-f2cb7f9ade6f@linaro.org>
- <20251103-remove-pmu-syscon-compat-v1-1-f2cb7f9ade6f@linaro.org> <20251105-guillemot-of-demonic-courtesy-6127ac@kuoka>
-In-Reply-To: <20251105-guillemot-of-demonic-courtesy-6127ac@kuoka>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 11 Nov 2025 10:18:47 +0000
-X-Gm-Features: AWmQ_bkZo0YG0fQozggW7w_kHLivwxPGKZYOmMZ80TBXcmQKFtFsfLDWdlG11ZY
-Message-ID: <CADrjBPog8u8sRsUjcgKNG87kdcF5HHx94tUXPdTrCUG-PxSXWg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: samsung: exynos-pmu: remove syscon
- for google,gs101-pmu
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dan.carpenter@linaro.org, 
-	kernel-team@android.com, willmcvicker@google.com, arnd@arndb.de
+References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
+ <20251109214515.121742-2-rpimentel.silva@gmail.com> <aRF0++cUigbETuPs@lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com>
+ <CAOMZO5AdcR_fT_RV5-NWu7j51_TA_=Mzzi-Y3Y=HpH+pu=mrvQ@mail.gmail.com>
+In-Reply-To: <CAOMZO5AdcR_fT_RV5-NWu7j51_TA_=Mzzi-Y3Y=HpH+pu=mrvQ@mail.gmail.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Tue, 11 Nov 2025 12:22:49 +0200
+X-Gm-Features: AWmQ_blb19ig8nToRgjFSZoxZIb7WUT84e0ePG6rGqwjB44zvP8kQIVu2iX87yU
+Message-ID: <CAEnQRZBdqUQUahHcFO2W6yezonXdpFVT-G52rnda941+M=T93g@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Joseph Guo <qijian.guo@nxp.com>, Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com, 
+	marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de, 
+	joao.goncalves@toradex.com, frieder.schrempf@kontron.de, josua@solid-run.com, 
+	francesco.dolcini@toradex.com, primoz.fiser@norik.com, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Xiaofeng Wei <xiaofeng.wei@nxp.com>, 
+	Justin Jiang <justin.jiang@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+Hello Fabio, Rogerio,
 
-On Wed, 5 Nov 2025 at 08:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On Mon, Nov 10, 2025 at 2:15=E2=80=AFAM Joseph Guo <qijian.guo@nxp.com> w=
+rote:
 >
-> On Mon, Nov 03, 2025 at 08:03:10AM +0000, Peter Griffin wrote:
-> > Since commit ba5095ebbc7a ("mfd: syscon: Allow syscon nodes without a
-> > "syscon" compatible") it is possible to register a regmap without the
-> > syscon compatible in the node.
-> >
-> > Update the bindings for google,gs101-pmu so that the syscon compatible is
+> > > +/ {
+> > > +     model =3D "NXP i.MX8MPlus FRDM board";
+> > > +     compatible =3D "fsl,imx8mp-frdm", "fsl,imx8mp";
+> >         model =3D "NXP FRDM-IMX8MPLUS";
+> >         compatible =3D "fsl,frdm-imx8mp", "fsl,imx8mp";
 >
-> That's an ABI break...
+> Why do you suggest changing the compatible string?
 >
-> > no longer required. As it isn't really correct to claim we are compatible with
-> > syscon (as a mmio regmap created by syscon will not work on gs101).
+> "fsl,imx8mp-frdm", "fsl,imx8mp"; is correct.
 >
-> ... with kind of a reason, but then the question I have: was the
-> standard MMIO regmap exposed via syscon ever working for any part of
-> this PMU?
->
-> Original posting here:
-> https://lore.kernel.org/all/20231209233106.147416-2-peter.griffin@linaro.org/
-> did not change PMU driver and did not express that the syscon is broken.
 
-With the benefit of hindsight, no, PMU write register access was never
-working for any part of the PMU.
+All NXP documentation refers to this as FRDM-IMX8MPLUS.
 
-On the initial posting I didn't hit this as we were only disabling the
-Watchdog on boot (which doesn't write any PMU registers). Once the
-issue with accessing PMU regs became clear, I first suspected some
-missing clock. Then later it became apparent we needed a SMC call and
-after some initial proposals the syscon driver was enhanced with the
-of_syscon_register_regmap() API in 769cb63166d9 ("mfd: syscon: Add
-of_syscon_register_regmap() API"). At the time that commit was merged,
-syscon driver required a "syscon" compatible, but since ba5095ebbc7a
-("mfd: syscon: Allow syscon nodes without a "syscon" compatible") that
-is no longer the case.
+But compatible strings have a certain pattern to be followed so
+we should really go with: "fsl,imx8mp-frdm",
 
-Peter.
+But for model and all references in text and commit message
+we should follow the documentation and use  FRDM-IMX8MPLUS.
+
+So, model should be  model =3D "NXP FRDM-IMX8MPLUS";
+
+Thanks,
+Daniel.
 
