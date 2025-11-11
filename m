@@ -1,132 +1,135 @@
-Return-Path: <devicetree+bounces-237110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7EFC4D01A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD344C4D125
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CBF6422AF1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:14:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FD8B426738
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1016E290DBB;
-	Tue, 11 Nov 2025 10:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0543491F4;
+	Tue, 11 Nov 2025 10:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MwJe5B6Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c4rMP1zd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0E52F7ADD
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6564334886A
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 10:19:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762856041; cv=none; b=aPL5cxf5Jo/7rEp4Gpzwt93n66OiopU8Lv5FxKrMtVAp0wR84lE08HcAe4I5ZVfSXa88AhOiyJF1QZPRMMnl5DdXl248FsmgTvrfzbMYat8d45zwXW2KruKjOApGGM/B+Q9rWbKk8nC67zHaOBCe/cPhj2S3k0GaV9ddB5yPzCM=
+	t=1762856342; cv=none; b=b3trGbSwQ0GMsJbddEzFkSmS1HnxpVQZZEa2oAm+Rw4QQpphMK2PjCRI3Bs8mmkMtcdPboDO+9Zuq53JomQwulr9UDCKYgzIpcfGsfN+xfEpKJR3NJyivzJuxE5QJRMb4W+WkTUL9VEM/o1KkpYedbmDhUvxTFNB1TT1n+PBS+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762856041; c=relaxed/simple;
-	bh=LeMwXNllT4LhHLeKTaFba9eFWNp9e0Refct3JU/EgW0=;
+	s=arc-20240116; t=1762856342; c=relaxed/simple;
+	bh=sD00pU9m45ar5Ai3zpltFpzvxBL4raSGmlVVUZkRQc4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G+hXBbbVUbiO5tWlbnvFjJbdMT/arRkUwKyKk/beBlAcY75S7dFEq+31P5onqygBy8THOKijB68cj0IpHUCUk0dgJXcYApKKa2EHeAenEVq2QPJ3utq9KMwlUPXUDQweRBJ1cmbAld9FeYfaI3EfPMq7w/jObwanysannHKo7XY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MwJe5B6Z; arc=none smtp.client-ip=209.85.128.169
+	 To:Cc:Content-Type; b=A9GTxIBnV3PLXgbiW+UrB2zCXTFx23PrdS1GsYRm4Au2D2BMxz7SC/AG50zWA+6lcwfAHdIZT86UdG1niuN2YzqMrUZanF/QeB9YZgtG5kZ5NV3Nd9+nXTE8kuoIfrFGAvVb9bF7NVLCklVaHRCg/qW8dE2u2JecjWIQWeyilUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c4rMP1zd; arc=none smtp.client-ip=209.85.161.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-787da30c53dso24203877b3.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:13:59 -0800 (PST)
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-656eb0b1294so1232684eaf.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 02:19:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762856038; x=1763460838; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LeMwXNllT4LhHLeKTaFba9eFWNp9e0Refct3JU/EgW0=;
-        b=MwJe5B6Z3IGeLMOqgsNvZFEjNRHUlq982uY7NL9wNNhyAt3zn8VRJep2I/v8PObOIT
-         8SwgHtTAiF6FSzh0YnA+HKuE2gnse+20y3qY1qmrkZ0Dla/+dKdVMqxpPQo8vBl65pl7
-         ZdxpZtX5sorSF6912jDSaSa/URTCIKwXJRTa4L1wMdev03/GmOlJkPLiUkKuIWGIQCgu
-         MI0O45RTPgla75V31QzMzwznVdkWxWmm/7d3qW/olHsUA6s3rfRuGwzmRmIsuhPINaHb
-         ZO8B3XOZgcm9zSRetSfGEx8UTqkQrk/33fumhD1XtHspiwQi/PQuraNStDSVzry3x3IZ
-         Wk3w==
+        d=linaro.org; s=google; t=1762856339; x=1763461139; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sD00pU9m45ar5Ai3zpltFpzvxBL4raSGmlVVUZkRQc4=;
+        b=c4rMP1zd0R6QfymMZQTLwQOe4Wsw1fFq5AvCnd1LKNIRLcs2jPV4VJUrpeK33tYsrO
+         S9/VK2RWJAiUsCIuEtwe6whzRAxiBUTCqBLh1FUMXpWHCCijMq+ExydGhKBBqk8QdXRg
+         aWDI0C3OvfZNcKY4ot1QUlufdjXyEHPWtSvCyS/wMADYvuIoL9sWjpVNV1lTXl/y7FaX
+         mT9sT1hiq/mgyk2iHrdAJreBFMIZkEKIVUDIIhTSXn+TEyvLHUw6DZQHYXMYMIAepPRH
+         9UvaP+W2wEPAfxMZR2rg+Uk+xJAg1X9+SRaxOA4Zbwjeu+J3w4xVKUTif52lkqxsI4wf
+         nSlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762856038; x=1763460838;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=LeMwXNllT4LhHLeKTaFba9eFWNp9e0Refct3JU/EgW0=;
-        b=CJHG3TXDqsPr6ppQhYSwvwVcXGkDTg5KcW5hsa1AfHzpJx/mLwjc8zdMslGmRslt7J
-         v2BRLOitbCMlxkFS9k7y5asCBeXiwvK9JS9lAns0mwDIqjHO/6osnDPbFYU74DDCmEUX
-         o7NWE7WbV0gDuW799t97sYLphaVZUGiF29EkKCNfCEhUhQmSxVioryArSrVB9uy7haT/
-         NpRg79I/9Cbgkdaqs6s0zq0H+l+Q8NCdUv3AIP6LBu0z02HbF8ArbwiJCLSjNK9FnDv2
-         BghQ7dJvRDvCZQSX+sfaMD6oXU+HlUrT5Z6zw1ody/IQG35+PIJN1juMyA0uqEK0Cb6R
-         oIUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUXyQV41RMsWCRuHqVhLZphw9imUvaey8LZuJN+XTZxzOlwx9BiHfbUlKTaQyuiFTa7R8W3juKJNvn5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnkhSHxNhO9whV32Wx8G93Y3SWByyS1XRnlALpDJZ1XWGgUxWb
-	cnCsdyAGxasc/r1qtdHEe1CMtWUbt3sX2LtjOmVrIWEYbGSx253ZjC63rZzwUPEWDcrJYmr1fZI
-	HqDQb9u+zkPFxmNWwrVFbqf5727TVgoorjI2u3HNSZA==
-X-Gm-Gg: ASbGncvYMuHf1bk/jteKHOPZHddi0phciBNUioTQrpRafsF7O8YsF16rMwJ4Femz5Q5
-	n3A6TdAThokyYFq8YUoJMu4HJ8dwhd/3+0MDuRo/BcccVncrqOTJoA1wj5kMh7WIAM9R/ij7JiL
-	gh9D8xa8wx42Be30lH6rFD/qyGLmZLZcPxLKtLH0aQBzqMl1Zu66EUxDk0IYVWsdXMIDP/pG9zr
-	L+SGnPxi6qO3h8FonYpsJ5c3RlkbToYanKTMS4WSWKHj2Sp2gvx78/a/889dU31RDpA/fg=
-X-Google-Smtp-Source: AGHT+IF9Qzu6zmE2Iio8Nz23xz7uKZaMMjTrJFnhpC9W7T174pmVZm6XJJz8JqOAQn21MLhQ4SKvuQGEPKenwCujUTM=
-X-Received: by 2002:a05:690e:dc4:b0:640:db91:33d4 with SMTP id
- 956f58d0204a3-640db915617mr7528496d50.26.1762856038239; Tue, 11 Nov 2025
- 02:13:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762856339; x=1763461139;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sD00pU9m45ar5Ai3zpltFpzvxBL4raSGmlVVUZkRQc4=;
+        b=L8zZSjum9kA1PwLWSPnKqdXn5kuXCOT8juE/4BElo55px7tvn+fO3RvLP/8nJP6EyX
+         uCilXVIMDx1jckt2n9yxVX+cLOug5radPfxtpz0NgEAmr0L+5Xq4VZxyQJhZrVy0T+uS
+         oTB1LvxhbifogaUphHlIG9YqTN1qL56NzDdKo162RbVMpRMgE6t1ZOa8T38LFixszaQ+
+         QSKv+4muiXuJqXcE88epfhe0Y+q0IvrOwOh+TEJ3D7U0495SruWB+6WJZA8+lvo6jqjE
+         85c96ADD67r7zbxRDu4wTiK1msvMS43stqXPZskrfueDSh8KvCF0t/V69qcKE53LlyA/
+         RTyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVgAAsftuyaYHu+RwB/QBD50aS9AJ4VF2WLU9XzfQYB1bL8pZI7x5GBFux4s8olnMl3U0gPS6jMFHnl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyd6d8D+m3X+ucP0t2+PbgcbgCbMXtYPg4hQKCgpC3DcNu7OjuS
+	+yHRDSFYXYfD1/AtVANTv6tP9qjA/ezMdxL/Yc3275UzyX6WKiPLxAwPl8Plz3Yvf7NRgfOjW1L
+	TCDIRFISgjNfNEbpgueuChwvxV7TjVgJNgrVKH2vs1A==
+X-Gm-Gg: ASbGncvPVqSc0sgRJVfBCQnTsP+QhLgGmew6Bzka+D4tC3U0ujTbzGdYd9NGKy7FtZJ
+	9MR1m0nb2IS/53XCeuOXZQ7c0AO2k/o6zL6uDm12H1TXf1jKeoPE9h+zQfSLoorOcK73OAAS71B
+	F8f2p5eFwmpy3sYjNTpFRwX96znwRVpO/M3GtumrYE3iQ5UgpFOxoKzzQa/YwMmm9GJevwuquHp
+	aD3j8odnOpgWLE/uRCJRpfBbUsDMI6CiVoCfy+RZs4qeKhGLMgvz6KMTMljbkwf4bKH1bI=
+X-Google-Smtp-Source: AGHT+IFKS2q0YYMWvzAONoaylj8ozlLuIkMm1yaexf13YEyXcWtqn/MOGkO+d0PlUIAQQu2z38TBPdf0/w+7VAh46B8=
+X-Received: by 2002:a05:6871:660d:b0:3d4:7d3d:be84 with SMTP id
+ 586e51a60fabf-3e7c2865eb3mr6778775fac.23.1762856339399; Tue, 11 Nov 2025
+ 02:18:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251105195007.199229-1-linux@fw-web.de> <20251105195007.199229-2-linux@fw-web.de>
- <5DB7D99D-A30D-42A1-8E3E-B0204A1E6E6D@public-files.de> <1af7077b-42a3-4efe-a8cb-6117136c8f2a@collabora.com>
- <20251106-strewn-carport-a33a8b812794@spud>
-In-Reply-To: <20251106-strewn-carport-a33a8b812794@spud>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 11 Nov 2025 11:13:43 +0100
-X-Gm-Features: AWmQ_blovY8iar-yYYC_DuviA6U5c_hbl8gXmu0oONH393Qf8f6FhAsUxk1NsNQ
-Message-ID: <CACRpkdYbcc_0=qwZgLhpTi1NNjkQ88JuOANqTqTfwMrUs_+OfQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: mt7988: allow gpio-hogs
-To: Conor Dooley <conor@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, frank-w@public-files.de, 
-	Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>, 
+References: <20251103-remove-pmu-syscon-compat-v1-0-f2cb7f9ade6f@linaro.org>
+ <20251103-remove-pmu-syscon-compat-v1-1-f2cb7f9ade6f@linaro.org> <20251105-guillemot-of-demonic-courtesy-6127ac@kuoka>
+In-Reply-To: <20251105-guillemot-of-demonic-courtesy-6127ac@kuoka>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 11 Nov 2025 10:18:47 +0000
+X-Gm-Features: AWmQ_bkZo0YG0fQozggW7w_kHLivwxPGKZYOmMZ80TBXcmQKFtFsfLDWdlG11ZY
+Message-ID: <CADrjBPog8u8sRsUjcgKNG87kdcF5HHx94tUXPdTrCUG-PxSXWg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: samsung: exynos-pmu: remove syscon
+ for google,gs101-pmu
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>, 
-	Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	AngeloGioacchino Del Regno <angelogiocchino.delregno@collabora.com>
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dan.carpenter@linaro.org, 
+	kernel-team@android.com, willmcvicker@google.com, arnd@arndb.de
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 6, 2025 at 6:43=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
+Hi Krzysztof,
 
-> > > Got error:
-> > > said: 550 5.1.1 User does not exist -
-> > > <angelogiocchino.delregno@collabora.com> (in reply to RCPT TO command=
-)
-> > >
-> > > maybe this can be fixed while applying?
-> > >
-> > > regards Frank
-> >
-> > Eh, have I typoed my own name?
-> >
-> > So cool. Lol
-> >
-> > Just in case it's needed:
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+On Wed, 5 Nov 2025 at 08:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> I have a vim macro to a) save my hands typing lots of tags b) make sure
-> I don't typo. ;)
+> On Mon, Nov 03, 2025 at 08:03:10AM +0000, Peter Griffin wrote:
+> > Since commit ba5095ebbc7a ("mfd: syscon: Allow syscon nodes without a
+> > "syscon" compatible") it is possible to register a regmap without the
+> > syscon compatible in the node.
+> >
+> > Update the bindings for google,gs101-pmu so that the syscon compatible is
+>
+> That's an ABI break...
+>
+> > no longer required. As it isn't really correct to claim we are compatible with
+> > syscon (as a mmio regmap created by syscon will not work on gs101).
+>
+> ... with kind of a reason, but then the question I have: was the
+> standard MMIO regmap exposed via syscon ever working for any part of
+> this PMU?
+>
+> Original posting here:
+> https://lore.kernel.org/all/20231209233106.147416-2-peter.griffin@linaro.org/
+> did not change PMU driver and did not express that the syscon is broken.
 
-Typos happen. Also for me.
+With the benefit of hindsight, no, PMU write register access was never
+working for any part of the PMU.
 
-A good idea is when you change mail address try to negotiate something
-simpler, this is one of the reasons a lot of maintainers have simple
-mail addresses such as linusw@kernel.org (which will be my next
-mail address the day it is needed).
+On the initial posting I didn't hit this as we were only disabling the
+Watchdog on boot (which doesn't write any PMU registers). Once the
+issue with accessing PMU regs became clear, I first suspected some
+missing clock. Then later it became apparent we needed a SMC call and
+after some initial proposals the syscon driver was enhanced with the
+of_syscon_register_regmap() API in 769cb63166d9 ("mfd: syscon: Add
+of_syscon_register_regmap() API"). At the time that commit was merged,
+syscon driver required a "syscon" compatible, but since ba5095ebbc7a
+("mfd: syscon: Allow syscon nodes without a "syscon" compatible") that
+is no longer the case.
 
-Yours,
-Linus Walleij
+Peter.
 
