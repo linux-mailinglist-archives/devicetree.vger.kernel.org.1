@@ -1,113 +1,162 @@
-Return-Path: <devicetree+bounces-236957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-236958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B6CC4B381
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 03:34:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E6FC4B432
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 03:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8D3524E4A16
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 02:31:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABFA41891C3B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 02:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BDD9347BA7;
-	Tue, 11 Nov 2025 02:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683A834A779;
+	Tue, 11 Nov 2025 02:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iEpdfLZ5"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="BCEcQnvZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m32100.qiye.163.com (mail-m32100.qiye.163.com [220.197.32.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FA1E3054CE;
-	Tue, 11 Nov 2025 02:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF302FB621;
+	Tue, 11 Nov 2025 02:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762828285; cv=none; b=EVjHNLlt8nsch/KdbHmfr9CIUCZeS5oX6kUG9reCSjTT2M0Vjffy8SnAZZv1/mfdNha0dinpWGWHFse/J7ZrZB2Dxx3eAIELf3Nd66QH0AliMl6KgdP4E+GqqbL5Ag1wgfjcDPtleHr3l8rwqgC8MxOMptzemkaHD+dI65d5L8E=
+	t=1762829873; cv=none; b=UMgIn1r7jQxDuYk1V8z5XwLsbRSwvH/LayL9d3scxv1H+TSTL3ADslHcT9uQxEKEfjBnPOUP/oHS0ImQzJg5hJG6FD9mKcv8buQu5y4cBLQVAkOSRxW+fu7SWL5f+bv2M8dLF25GEirkh236F4bLWC0DQehrSwmWoLel9QtBIZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762828285; c=relaxed/simple;
-	bh=IS6C6wNPv5uaZiVZqfJg8GnUvDAPgN7kUTq7DQhwLtg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=sGV7i/7N3gb+RpZRPfiREZ8KG1XBU/P+jjGfe9xBauMyO6a2xslKEmKJfx7l6C1mY74m2H/sr3PluCxMZEVedOsoeTHTIsA9P3FEiS+rpvSn66URI8sR6Wx+FVQZG9lUIn4EdjNhO6NriHTaciOosny9VYpsH3tVa9mKk4hvedQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iEpdfLZ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81A34C116B1;
-	Tue, 11 Nov 2025 02:31:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762828284;
-	bh=IS6C6wNPv5uaZiVZqfJg8GnUvDAPgN7kUTq7DQhwLtg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=iEpdfLZ5zGQ1xzW0xT82A2p1lELSA0L9VWxRMD5xj9UCHM9/1/6qKWif4iRqIK1hi
-	 zMgCdSKHVRwgSdrgoB3Zc4JTc3AV0ro6/mYYEeKnpWdIWE23Iv5UDC034ryWsBh1HP
-	 O2qX9eqRcQlu7cRWlM2Gf3E1rg4MkkOUROJrJiJ9qGMwT4ajh4YKmIkmWOCJix5Kr3
-	 1bZ3wRHVc/NVlfXwZYnJLl7iTMtnmK+qKHy/ruEtwV532sKXcrmb/zI+rikqetScuB
-	 w/4GtNGYws8ixTWPejpKhL3h0En8FrFXcqcJO1VCc2Or/3Hk0r5jIxFYuPFmP4LUZt
-	 KEY0anfY2wTiQ==
-Date: Mon, 10 Nov 2025 20:31:22 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1762829873; c=relaxed/simple;
+	bh=J6DVrhIu32a1DsL9j3pib7FJQ2rsiqZcz+UdUgKoBwM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KMOlySMkuy0/K/xr/HKDTG2ruAnq6ym4tKK+e71XcmytCCJvmvJYe1ej32GEIkrpMde6MDsEatuXsv607bGZAP0Euxq0U6AGXQFnENkgj6+4i1DmEIO0J2wJ925HqXN3reB3jwC4qVm+wr+2Yvt1aepD6kW57aWxViFm+Q8x2EA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=BCEcQnvZ; arc=none smtp.client-ip=220.197.32.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from rockchip.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 291f57b9a;
+	Tue, 11 Nov 2025 10:57:39 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	zhangqing@rock-chips.com,
+	heiko@sntech.de,
+	robh@kernel.org,
+	p.zabel@pengutronix.de,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	finley.xiao@rock-chips.com,
+	sugar.zhang@rock-chips.com
+Subject: [PATCH v7 0/5] clk: rockchip: Add clock controller for the
+Date: Tue, 11 Nov 2025 10:57:33 +0800
+Message-Id: <20251111025738.869847-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-input@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
- Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>
-To: daniel_peng@pegatron.corp-partner.google.com
-In-Reply-To: <20251111093426.1.I76ee34ac45e1469dbeb11de0d1e47d794af7dc88@changeid>
-References: <20251111093426.1.I76ee34ac45e1469dbeb11de0d1e47d794af7dc88@changeid>
-Message-Id: <176282828282.1500650.453785854206330008.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: HID: i2c-hid: elan: Introduce
- FocalTech FT8112
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a70d8fa7903a3kunmb98a0103a12c3
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUMdGlZPSxpOGEsaTE9LTUNWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=BCEcQnvZTFefkDLxzQaniJrq258kY0554HnhigINNs7nBJyYu3A2oWIE9PHJ8ZvA5l0JmdYw2ZGk/w0V/70KYnA+m8i+zklcnhGho1YnSUnrajnkirYkw5mql934QjVbXN0nEFpASFOvT4TfhNcVuUQ9DPAXs+QZ0rDet3ZcUew=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=pSFyV42fr1nsJZrV0lgQMM+Bu9D2LULWkHMNlTwXSkc=;
+	h=date:mime-version:subject:message-id:from;
+
+Add yaml and dt-bindings for the RV1126B and RK3506.
+RK3506 depend on patches 1/5, so it is merged and submitted.
+
+Change in V7:
+[PATCH v7 1/5]: No change
+[PATCH v7 2/5]: Redefine clk id(start at 0), drop RESETN for reset id.
+[PATCH v7 3/5]: Drop RESETN for reset id.
+[PATCH v7 4/5]: Fix "description: |", drop RESETN for reset id.
+[PATCH v7 5/5]: Drop RESETN for reset id.
+
+Change in V6:
+Drop pvtpll, others no change.
+There are many questions about pvtpll and have some dependency issues.
+They will be submitted separately later.
+
+Change in V5:
+[PATCH v5 1/7]: No change
+[PATCH v5 2/7]: No change
+[PATCH v5 3/7]: Drop RV1126B_GRF_SOC_STATUS0
+[PATCH v5 4/7]: Drop syscon
+[PATCH v5 5/7]: No change
+[PATCH v5 6/7]: Add clocks and clock-names, fix id define
+[PATCH v5 7/7]: Drop RK3506_GRF_SOC_STATUS
+
+Change in V4:
+[PATCH v4 1/7]: No change
+[PATCH v4 2/7]: remove label
+[PATCH v4 3/7]: No change
+[PATCH v4 4/7]: remove label,fix order
+[PATCH v4 5/7]: No change
+[PATCH v4 6/7]: Add yaml and dt-bindings for the RK3506
+[PATCH v4 7/7]: Add clock controller for the RK3506
+
+Change in V3:
+[PATCH v3 1/5]: No change
+[PATCH v3 2/5]: Fix define error
+[PATCH v3 3/5]: update driver,fix errir
+[PATCH v3 4/5]: fix error
+[PATCH v3 5/5]: No change
+
+Change in V2:
+[PATCH v2 1/5]: update commit message, rename v2 to multi_pll
+[PATCH v2 2/5]: Modify DT binding headers license
+[PATCH v2 3/5]: update driver
+[PATCH v2 4/5]: fix error
+[PATCH v2 5/5]: update commit message
+
+Elaine Zhang (4):
+  clk: rockchip: Implement rockchip_clk_register_armclk_multi_pll()
+  dt-bindings: clock, reset: Add support for rv1126b
+  clk: rockchip: Add clock controller for the RV1126B
+  clk: rockchip: Add clock and reset driver for RK3506
+
+Finley Xiao (1):
+  dt-bindings: clock: rockchip: Add RK3506 clock and reset unit
+
+ .../bindings/clock/rockchip,rk3506-cru.yaml   |   51 +
+ .../bindings/clock/rockchip,rv1126b-cru.yaml  |   52 +
+ drivers/clk/rockchip/Kconfig                  |   14 +
+ drivers/clk/rockchip/Makefile                 |    2 +
+ drivers/clk/rockchip/clk-cpu.c                |  165 +++
+ drivers/clk/rockchip/clk-rk3506.c             |  869 +++++++++++++
+ drivers/clk/rockchip/clk-rv1126b.c            | 1103 +++++++++++++++++
+ drivers/clk/rockchip/clk.c                    |   24 +
+ drivers/clk/rockchip/clk.h                    |   96 ++
+ drivers/clk/rockchip/rst-rk3506.c             |  226 ++++
+ drivers/clk/rockchip/rst-rv1126b.c            |  444 +++++++
+ .../dt-bindings/clock/rockchip,rk3506-cru.h   |  285 +++++
+ .../dt-bindings/clock/rockchip,rv1126b-cru.h  |  392 ++++++
+ .../dt-bindings/reset/rockchip,rk3506-cru.h   |  211 ++++
+ .../dt-bindings/reset/rockchip,rv1126b-cru.h  |  405 ++++++
+ 15 files changed, 4339 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3506-cru.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1126b-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3506.c
+ create mode 100644 drivers/clk/rockchip/clk-rv1126b.c
+ create mode 100644 drivers/clk/rockchip/rst-rk3506.c
+ create mode 100644 drivers/clk/rockchip/rst-rv1126b.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3506-cru.h
+ create mode 100644 include/dt-bindings/clock/rockchip,rv1126b-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rk3506-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rv1126b-cru.h
 
 
-On Tue, 11 Nov 2025 09:34:57 +0800, daniel_peng@pegatron.corp-partner.google.com wrote:
-> From: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
-> 
-> The FocalTech FT8112 touch screen chip same as Ilitek ili2901 controller
-> has a reset gpio. The difference is that they have different
-> post_gpio_reset_on_delay_ms.
-> FocalTech FT8112 also uses 3.3V power supply.
-> 
-> Signed-off-by: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
-> ---
-> 
->  .../bindings/input/focaltech,ft8112.yaml      | 66 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/input/focaltech,ft8112.example.dts:36.31-33 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:132: Documentation/devicetree/bindings/input/focaltech,ft8112.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1547: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251111093426.1.I76ee34ac45e1469dbeb11de0d1e47d794af7dc88@changeid
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+base-commit: fb0a581e0696ccd994e27287941a2a25c58b2ccd
+-- 
+2.34.1
 
 
