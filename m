@@ -1,264 +1,212 @@
-Return-Path: <devicetree+bounces-237355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC71C4FC88
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 22:04:35 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A74A2C4FCE2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 22:11:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 691864F08D8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 21:01:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 22F364EC6EE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 21:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89B132573D;
-	Tue, 11 Nov 2025 20:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 756CF35CBDE;
+	Tue, 11 Nov 2025 21:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wF2Vo+FZ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jT76vbs5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010053.outbound.protection.outlook.com [52.101.193.53])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33DD73624D6;
-	Tue, 11 Nov 2025 20:59:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762894778; cv=fail; b=McEUAs5/Zl6WH5aB/bjfRMZYUap8VujZ5fZ2NmQqyLAnG4PF+a3cSJ0CgYLKjLXFPVd0KUm3kZYtr7WDWEX/FkdjyvojiE3S6xRYX5r5Hwc7EXT2Bo/2yYNNyopPWrNHVXocuOmAythhp736uIN+oiYCvmboqRk+wR4v7Bx6pkM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762894778; c=relaxed/simple;
-	bh=oPxBxwOqZFsXlTGiR9/Yl7tM8jXlEeTBHxGFglLW8Ok=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tiTM2zPmMHzYyhL4PVKX1RHf/0+ODWeQzdapWwqxX3w+2Dvo9qtrLT2YP+gTSU38HXQrWXJKeWegHSJjPdCmpZSs1IVUirmmH/0tQLih0830DDvagwCbz2+cEWFR1rckdmItgg97VNNT36Yp8iIdqwDFLv3U7yfKonLfPsNFsBA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wF2Vo+FZ; arc=fail smtp.client-ip=52.101.193.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NHTiivqyNnUAQ5PyQUWLS1OfdSZW2+jqXcDhMiicchsBFVbcJmOjzUK6211DcvrRQCOWzwdQzYl/I8TB5pfUWHlKmfQevsM67mgiLH3lDI0cZVXLX+/f++Ji/zo0VO3dzIeIv+4Zij7SYB8bet7E2CP76nC5TeLkABTBqqgALTbZp9XXHsJvWX7CpjKuBvKlRkETKXaWSfe52ncA19olrtF3IxTMl14zU3gXWuTakMkZ0FOAoMc8/gOwajf0z9PjOMkhzreDQtZzypFf7avrTJVo/veU8g72AZMbXaL1BIuWKxh4qn48jtVg6RJJPvKqve7GnelMFz797gBxVfXPxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ri1rouVHKaiyVybKWhXGvEnSJJef/UKVI9Y7HLNUtX4=;
- b=gL7auab2jL+sA4uk8bLWc/sf5D6uLFj84gvxSmW02GbhM3sm24EJjWlm1c4ewmmbynZNzJew7JQl11aq6KCSAn8R6VYVPEuHO03Ysr45aA7r00E5pCxU82ehkhJ2pVqqTQn/QZUtjOG3CeyQo7kHJgr8a4nBecS7QWNKQ7jTn1cmSyGPnsuTmtT5rylzzm8vXdkGogbz6FezkTdv74xTpiBkLce0bnLRZsiQsuzzgbQQiA6pYaqs6OuqAyF83ZZsHyNEOr4Y0UBKTnuk+SD+l9GMpBzhTZvbCvo4WYVjhzHBNnuALdpgGRVVABS8mcsUwZjCpTd7jUabJzl9/fPFsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=baylibre.com smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ri1rouVHKaiyVybKWhXGvEnSJJef/UKVI9Y7HLNUtX4=;
- b=wF2Vo+FZGd5C/vzhlamlbbFTJvFGtS2ZpaJveYunGN+sFNEzIlu9vZRkbX9yjxVURiVeikZhEo3jR9GjRhRZkhP/baatL/B35laVro1aqn7oZKfTvoeYq0U4bUs9FCMZ/9JK3Z9YPu8yWTae98XrpbpxwIZM++Kn/5qeM500pgI=
-Received: from CH2PR12CA0005.namprd12.prod.outlook.com (2603:10b6:610:57::15)
- by LV3PR10MB8060.namprd10.prod.outlook.com (2603:10b6:408:288::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 20:59:32 +0000
-Received: from CH2PEPF00000145.namprd02.prod.outlook.com
- (2603:10b6:610:57:cafe::7) by CH2PR12CA0005.outlook.office365.com
- (2603:10b6:610:57::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.16 via Frontend Transport; Tue,
- 11 Nov 2025 20:59:31 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CH2PEPF00000145.mail.protection.outlook.com (10.167.244.102) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Tue, 11 Nov 2025 20:59:32 +0000
-Received: from DLEE207.ent.ti.com (157.170.170.95) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 11 Nov
- 2025 14:59:27 -0600
-Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE207.ent.ti.com
- (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 11 Nov
- 2025 14:59:27 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 11 Nov 2025 14:59:27 -0600
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ABKxQl21551676;
-	Tue, 11 Nov 2025 14:59:27 -0600
-Message-ID: <fd3a66bd-ef22-4270-b0c5-fdda2a9bb631@ti.com>
-Date: Tue, 11 Nov 2025 14:59:26 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C6335CBD1;
+	Tue, 11 Nov 2025 21:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762895437; cv=none; b=WpDrKWBfq5R9OEEynmvwPqorjQV43CVA/B9O29x9vHsr0H3snoAU5mmGb9J+XCrN7kl74Y1kONF8PM1fPtS0OlZailRAlfVBscn/FilzL6dyPXW0UHkmqPhpovu7scLmtHhBMeNNJtnT0RIFrsrNGeAFYcTf+Cv/vMtPCCooGII=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762895437; c=relaxed/simple;
+	bh=ZJnPqy6rt4JkyACEYLFsrsiMs+h4L3/AcaMs5XAVPDk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c7gMe1piAV3EhcJKFzXRuPisbDPPMvk11oBnzuQIxOXrB7DVmLR9uLsSdXuC5X7AzZR2F2/DOUCGI75F+U4jkfv6yJXDZrs+S16SHAgwIRunUzYhvnMRuSRlkpUGzmtNEkvoXYlNTuWqkrUv8pFF1ZBl53q5+DlarEiPUDzPbcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jT76vbs5; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (82-203-161-95.bb.dnainternet.fi [82.203.161.95])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id BFCC822B;
+	Tue, 11 Nov 2025 22:08:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1762895313;
+	bh=ZJnPqy6rt4JkyACEYLFsrsiMs+h4L3/AcaMs5XAVPDk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jT76vbs53VCjgG63S5D9R7y0iPpHgrzLVxTtqaB4Zt46N0L5cOd7Zzh8pXJbchYoo
+	 9yk1uLktXbinrkbaHuDan8Nv7IDnemA6Htso7ey4RS3mjH4kI1ubZXcKNmYpxfQQaG
+	 VKOaUFMWQmFjGiRmqv1n/JaSGZAXN+M0nowVwKuU=
+Date: Tue, 11 Nov 2025 23:10:25 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Guoniu Zhou <guoniu.zhou@nxp.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 1/5] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
+ i.MX8ULP compatible string
+Message-ID: <20251111211025.GA26805@pendragon.ideasonboard.com>
+References: <20251023-csi2_imx8ulp-v7-0-5ecb081ce79b@nxp.com>
+ <20251023-csi2_imx8ulp-v7-1-5ecb081ce79b@nxp.com>
+ <20251027000537.GM13023@pendragon.ideasonboard.com>
+ <aROg99ryy6RTZZIx@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/6] arm64: dts: ti: k3-am62-lp-sk: Set wakeup-source
- system-states
-To: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>, Nishanth Menon
-	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Vishal Mahaveer <vishalm@ti.com>, "Kevin
- Hilman" <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, Sebin Francis
-	<sebin.francis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>
-References: <20251103-topic-am62-dt-partialio-v6-15-v5-0-b8d9ff5f2742@baylibre.com>
- <20251103-topic-am62-dt-partialio-v6-15-v5-4-b8d9ff5f2742@baylibre.com>
-Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20251103-topic-am62-dt-partialio-v6-15-v5-4-b8d9ff5f2742@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000145:EE_|LV3PR10MB8060:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a0cdd9d-b532-441d-92d9-08de21653663
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Y3VYUElHcGlxS1pTOTBETkFmcUo0NUk2amVYeW1kT3pmZ0NaZGhZd2tuNVlG?=
- =?utf-8?B?Tm5xelhCTHpCWS9GOUFhY3VWY2RDOUdqRmJrNjViRXVzWEZhczVxcXg0Z09C?=
- =?utf-8?B?bkRCc3RwQTk2b0pDOU5MejIrSWNkNHNpUjhSRk5JS1JyRXhxd09CRG1Zc3lT?=
- =?utf-8?B?eXVTaDF0Yld2QVlmRjZ5b3laZ0hlK0s4OEhPUU1XdFBRVWo5VUxRMkpuMTBm?=
- =?utf-8?B?Qkt4MUYrNnIxV25MbDVWZi9hNGZEUnpCcHZRWTRWS0xEbkhmV2hRaUg3R3U4?=
- =?utf-8?B?N0dVTXJ0RE8wTDRRVTAwVFA1ZWhiUVpLTGsrL1NHcXV2QmtXVnBnbnJUZzRx?=
- =?utf-8?B?OFRXLzU0WWxzVG8rYzh0WGVKQUl1bFpBU2J6dklHS3ZBbm5qSExmV2k3RUNB?=
- =?utf-8?B?R0J5MTlaVlNUeE8vcXVmR0YxQWlKa0x0UXRBbFVIQ3VLZ0Ywa2x4bWdCTldC?=
- =?utf-8?B?MjRYRGJMN3hEWG5Ha0xEWEI1eGFhUGdGcHIwQnQ0L0p1ajFOVllzMHp0QXVK?=
- =?utf-8?B?WTlNT3JUczcxWm9QRmxHWXZyV2kxclZkM3pTbTdMZTdRekVWRHM1cHB3eFNT?=
- =?utf-8?B?MnI3ZVRsK1JOdHgyNVNZQVY2YTdVVHJXYUVUMVRnblZ1S3JxckVRaE1aRG90?=
- =?utf-8?B?K2E4RHJEVFY2N1BLUk5tcUtJaWYyWU83amlFZEpTN25VekduV2xzWmQxeHpk?=
- =?utf-8?B?YVI0S2RPY0Nqd2REaUFOQUJNSkloMVE1clBJQlVNeUIxY1RNVkpLTXgvZCsz?=
- =?utf-8?B?bmNDclNJNDE4WThvZWd3TFViR0FHemN2Zm5SbzZ3VVFFc0NiTnpNZUZNSm0x?=
- =?utf-8?B?THpqTU1VekhoMVhYM01vVnljYU0wUlU0dnVyUU1PbmVib0Z1SlRaUUUxbkFu?=
- =?utf-8?B?cGNPNjVIcm5Qc25iVk1lbytNZmtURTAxcU8zOGluOVhDTGx5VHBEMU5GWVlC?=
- =?utf-8?B?U3lOREdHVVJ1QkcvVU81R1NzS2crOU5MWm84b0tWZ0xIbFhXR0xDVjB2S251?=
- =?utf-8?B?SmxoWmpyUUdqUkp6VGljeVFSQk4yNTJSZ0lvcUFib0liUmVPUUlMdS9aeGR6?=
- =?utf-8?B?MmxJR1FlSUUyd1lCanFqNVRWU0VRSmFjRGdyWlJIMi8vSEVtSHlGUWRxNWxR?=
- =?utf-8?B?MkNwYzgreE91Y2NoQkVEWkhCY1dTWVJTZ3pyR0gzU3VzazAzbHVac3ZscmFG?=
- =?utf-8?B?NkU3Sm5QMDJZdmh1QUY5UUN0eXlxVmk0bGppZmgvUWh2L3ByRTNqVHBxY0t3?=
- =?utf-8?B?WVUvU0cyUGRPUkt0VzJBaVhlUFJwZEdpb29XY1RMS1hGZXg5dnNFdW9mdlFm?=
- =?utf-8?B?QzIyd21aS3hrUU5PTU9hTllmK1lpNzJRb1NqdmJjRzFjVFgvK0FiUVNBb01D?=
- =?utf-8?B?bDJvQ0NCaUJLdDdYN1o3UGkrQ0lIWHlmVlg2Y3hnUlR3Mk8wWnJMdk9wUFU2?=
- =?utf-8?B?Z0lqSk40d0dIdlNlMEVLWkFKaUp1aVdQcUhqbVJYdUl3R0VVdnByR0pXd1E0?=
- =?utf-8?B?K2Mwd3E5SnVGeHlPMEsvMDNqVytjc3pPc2lRV1o0REtuSEhhbmVyNUQ3aGdV?=
- =?utf-8?B?NUVVYzZ3OHQ2RWFTTkZnUmZvVThsVDAyZ3FKMFNGRG1xcXBqVEFYbHB4T3lZ?=
- =?utf-8?B?RmVxcHA0cVZ6cUREeWpoVjZoZmpFMld6UjI0SzFONnplMDJLQXIrZm01RmFH?=
- =?utf-8?B?M2tqdngzUXhYbWgwVWVUU0w2YUdtVCtrRWdNTGlsNkkxdFlRMmlsNUJlV2Rk?=
- =?utf-8?B?clVrUEFqTk1XaEFIUG1NLzkwV1VXS1B0ZUR0U3p4bUEyMDc0aHlsMmhZbU9C?=
- =?utf-8?B?WjlVL2hBM2p4ZVNPQmp4Q1c2VWl3VU01UmFuQ2pCZkhYb1ZjaHRvMFV5VU82?=
- =?utf-8?B?NHBkMmlGMWVZbTFVSU5MVGVsdExXR2FVRi9BNjFsUlkyOFRhVnczRTJ2YnF2?=
- =?utf-8?B?TEVNdFdZT2gzNFpxSFBIakJJcVVwS3RDMEJjUXpSZlFwZTN4M0l3L3lGNm5P?=
- =?utf-8?B?ZDR5cFYxaFNMdFQvb0t2L0NBT0gwQ2RaaVNKdmpUNGRrazQray9hRE81dFFo?=
- =?utf-8?B?RHUwTCtyWkF0bHduZHc3dHY3VTBOc0JwT29yYWxDcjNPZnliTWZGMkJ1S09m?=
- =?utf-8?Q?b+cY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 20:59:32.0073
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a0cdd9d-b532-441d-92d9-08de21653663
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH2PEPF00000145.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR10MB8060
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aROg99ryy6RTZZIx@lizhi-Precision-Tower-5810>
 
-On 11/3/25 06:39, Markus Schneider-Pargmann (TI.com) wrote:
-> The CANUART pins of mcu_mcan0, mcu_mcan1, mcu_uart0 and wkup_uart0 are
-> powered during Partial-IO and I/O Only + DDR and are capable of waking
-> up the system in these states. Specify the states in which these units
-> can do a wakeup on this board.
+On Tue, Nov 11, 2025 at 03:47:51PM -0500, Frank Li wrote:
+> On Mon, Oct 27, 2025 at 02:05:37AM +0200, Laurent Pinchart wrote:
+> > On Thu, Oct 23, 2025 at 05:19:42PM +0800, Guoniu Zhou wrote:
+> > > From: Guoniu Zhou <guoniu.zhou@nxp.com>
+> > >
+> > > The CSI-2 receiver in the i.MX8ULP is almost identical to the version
+> > > present in the i.MX8QXP/QM, but i.MX8ULP CSI-2 controller needs pclk
+> > > clock as the input clock for its APB interface of Control and Status
+> > > register(CSR). So add compatible string fsl,imx8ulp-mipi-csi2 and
+> > > increase maxItems of Clocks (clock-names) to 4 from 3.  And keep the
+> > > same restriction for existing compatible.
+> > >
+> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
+> > > ---
+> > >  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 41 ++++++++++++++++++++--
+> > >  1 file changed, 39 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> > > index 3389bab266a9adbda313c8ad795b998641df12f3..da3978da1cab75292ada3f24837443f7f4ab6418 100644
+> > > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> > > @@ -20,6 +20,7 @@ properties:
+> > >        - enum:
+> > >            - fsl,imx8mq-mipi-csi2
+> > >            - fsl,imx8qxp-mipi-csi2
+> > > +          - fsl,imx8ulp-mipi-csi2
+> > >        - items:
+> > >            - const: fsl,imx8qm-mipi-csi2
+> > >            - const: fsl,imx8qxp-mipi-csi2
+> > > @@ -39,12 +40,16 @@ properties:
+> > >                       clock that the RX DPHY receives.
+> > >        - description: ui is the pixel clock (phy_ref up to 333Mhz).
+> > >                       See the reference manual for details.
+> > > +      - description: pclk is clock for csr APB interface.
+> > > +    minItems: 3
+> > >
+> > >    clock-names:
+> > >      items:
+> > >        - const: core
+> > >        - const: esc
+> > >        - const: ui
+> > > +      - const: pclk
+> > > +    minItems: 3
+> > >
+> > >    power-domains:
+> > >      maxItems: 1
+> > > @@ -130,19 +135,51 @@ allOf:
+> > >          compatible:
+> > >            contains:
+> > >              enum:
+> > > -              - fsl,imx8qxp-mipi-csi2
+> > > +              - fsl,imx8ulp-mipi-csi2
+> > > +    then:
+> > > +      properties:
+> > > +        reg:
+> > > +          minItems: 2
+> > > +        resets:
+> > > +          minItems: 2
+> > > +          maxItems: 2
+> > > +        clocks:
+> > > +          minItems: 4
+> > > +        clock-names:
+> > > +          minItems: 4
+> >
+> > Do we need the clock-names constraint ? The DT schemas will enforce that
+> > clocks and clock-names always have the same number of elements.
 > 
-> Note that the UARTs are not capable of wakeup in Partial-IO because of
-> of a UART mux on the board not being powered during Partial-IO. As I/O
-> Only + DDR is not supported on AM62x, the UARTs are not added in this
-> patch.
+> clock-names list already restrict at top section
 > 
-> Add pincontrol definitions for mcu_mcan0 and mcu_mcan1 for wakeup from
-> Partial-IO. Add these as wakeup pinctrl entries for both devices.
+> clock-names:
+>   items:
+>     - const: core
+>     - const: esc
+>     - const: ui
+>     - const: pclk
+>   minItems: 3
 > 
-> Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts | 60 ++++++++++++++++++++++++++++++++
->   1 file changed, 60 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> index ecfba05fe5c273c671cd0968f3eceaf54d22ac7d..cb63db337b2bc4c83b48dde693b95dd9fd93cd26 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> @@ -276,3 +276,63 @@ &main_gpio1 {
->   &gpmc0 {
->   	ranges = <0 0 0x00 0x51000000 0x01000000>; /* CS0 space. Min partition = 16MB */
->   };
-> +
-> +&mcu_mcan0 {
-> +	pinctrl-names = "default", "wakeup";
-> +	pinctrl-0 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_default>;
-> +	pinctrl-1 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup>;
-> +	wakeup-source = <&system_partial_io>,
-> +			<&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
-> +	status = "okay";
-> +};
-> +
-> +&mcu_mcan1 {
-> +	pinctrl-names = "default", "wakeup";
-> +	pinctrl-0 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_default>;
-> +	pinctrl-1 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_wakeup>;
-> +	wakeup-source = <&system_partial_io>,
-> +			<&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
-> +	status = "okay";
-> +};
-> +
-> +&mcu_pmx0 {
-> +	mcu_mcan0_tx_pins_default: mcu-mcan0-tx-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan0_rx_pins_default: mcu-mcan0-rx-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan0_rx_pins_wakeup: mcu-mcan0-rx-wakeup-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x038, PIN_INPUT | PIN_WKUP_EN, 0) /* (B3) MCU_MCAN0_RX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_tx_pins_default: mcu-mcan1-tx-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x03c, PIN_OUTPUT, 0) /* (E5) MCU_MCAN1_TX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_rx_pins_default: mcu-mcan1-rx-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x040, PIN_INPUT, 0) /* (D4) MCU_MCAN1_RX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_rx_pins_wakeup: mcu-mcan1-rx-wakeup-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x040, PIN_INPUT | PIN_WKUP_EN, 0) /* (D4) MCU_MCAN1_RX */
-> +		>;
-> +	};
-> +};
-> 
+> Here just restrict need 4 clocks, instead 3 clock for fsl,imx8ulp-mipi-csi2
 
+I understand that. My point was that the dt-schema will always verify
+that the number of clocks items is equal to the number of clock-names
+items. That's a constraint enforced by the core schemas. As
+clocks: minItems is set to 4, the clock-names: minItems constraint is
+redundant.
 
-Reviewed-by: Kendall Willis <k-willis@ti.com>
+> > > +
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: fsl,imx8qxp-mipi-csi2
+> > >      then:
+> > >        properties:
+> > >          reg:
+> > >            minItems: 2
+> > >          resets:
+> > >            maxItems: 1
+> > > -    else:
+> > > +        clocks:
+> > > +          maxItems: 3
+> > > +        clock-names:
+> > > +          maxItems: 3
+> > > +
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - fsl,imx8mq-mipi-csi2
+> > > +    then:
+> > >        properties:
+> > >          reg:
+> > >            maxItems: 1
+> > >          resets:
+> > >            minItems: 3
+> > > +        clocks:
+> > > +          maxItems: 3
+> > > +        clock-names:
+> > > +          maxItems: 3
+> > >        required:
+> > >          - fsl,mipi-phy-gpr
+> > >
+> >
+> > Could you please sort those conditional blocks by alphabetical order of
+> > the compatible strings ?
 
-Best,
-Kendall Willis
+-- 
+Regards,
+
+Laurent Pinchart
 
