@@ -1,789 +1,408 @@
-Return-Path: <devicetree+bounces-237201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F42C4E0DA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:11:20 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78EF6C4E05C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:07:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5E96B4F22A4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:07:27 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F3881348FEC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C0E133122C;
-	Tue, 11 Nov 2025 13:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6553246F4;
+	Tue, 11 Nov 2025 13:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ZwAUgKZh"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="O0vbCUVv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f202.google.com (mail-pf1-f202.google.com [209.85.210.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 693CD32827B
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:06:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163E9F513
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:07:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762866408; cv=none; b=Pxy6AmjCoOP5KPxlxHCHhU91FQrO0F+JS3F7BOjSNKRX34E+FNFZt/9Na9KrqrELRHQ5kJpLY3bmuof8gmbtzHqmabtDy3mOwsI/ubRNjrn2403eTvB6R8YfnpnKqnMMu2WBcEdYMT4r3IOuWPd106Oq60f3WtPgCr34euwQd/Y=
+	t=1762866457; cv=none; b=sC141mbNKC3YdWPKpc3U8KUqRtcmxHTC73sd+zEMIRR1ywYbMtbGznz7pjPRt8GHUawwBS35HGhPqjze1SXYCjAWjStXYIb10WlPOWMxBywqGXqcA02SDdwsw/jlKzodxoHvN1fIhu2HC9vS7aHDAlE1xrhMXQU5GC2HwUqP6r8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762866408; c=relaxed/simple;
-	bh=Hlk3W+sWXkGnbANvrrQTeH85sz1zidopEMtk4xuZbOU=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=rU/IXeK/8iJkOZrQvh8lBmvpe7JqnosT/5NLCwKE8wRCMur+GeN+Vs3Bize+PRvEtQ1I4lLgUSe5eVHtEKAyllg9YN1WgMZMmWb5HsXieHa+VOBc5dpwBolmK/CzdBjuLU3sugS/pYy1DjBO8twpuCj17137m+gaLxk5yJnhGoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ZwAUgKZh; arc=none smtp.client-ip=209.85.210.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com
-Received: by mail-pf1-f202.google.com with SMTP id d2e1a72fcca58-7ae3e3e0d06so3426174b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 05:06:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1762866405; x=1763471205; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tXdP9C14rcW/CVdzQLL2YfuZtms7Jz1+zNKw+zRgioo=;
-        b=ZwAUgKZhF8E3adcLbpS+TFt6KBWUi27zAP7K3B1aW4WudaWZg5RDjRxHZ/HzFuYc24
-         Mq3MG49KusaEG3wDp62V7fwFXkl46FSwlD5V9cj0EmarGt7SDoOZUlcOcnGxUPKMEl1B
-         b681Ma2AMDGoHfitbA3RkFvbI4B7RKKZJs/pL/ueIYjKYJgxOHeIzqJaZvowLuV3nnKV
-         rSZll4nkOL3ds4RHhWxcUIUYuX2tjpNdPhFfPhD4MILFlnldkYnrf/bZsDilhk0tH4fn
-         uqjfoTHAeYIK+q1ZhxS+mgKwQrU4XpK6q79C50H/ujbEvc0TGIBR9dsR01voRvV9B0gp
-         fXCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762866405; x=1763471205;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tXdP9C14rcW/CVdzQLL2YfuZtms7Jz1+zNKw+zRgioo=;
-        b=c0Lpa6pZKPFQzN7Xdt8i8PbQzFC+XruLD3lnSgYD95ou31+obr8CqrSUM3E+8d4/9X
-         1/0Q7yLyRHNoQ7h1KY4RWL0kEWSvDF0zihpzHc/nhm8WO/p45J0Ko9F/VgSV0Zaek1as
-         szzSUvrIdthm48n+Oitq62O35pxv4jJ0tXaiAqa9ocBVLDOyybozs+mSqA0HolwWbNEF
-         IIG2hSqFWxpf4utuQ0NEdmfjEryEyTuQRo/5/50MVm82G5m5ydaYahGPuxeWof3DA41e
-         PbbXW6ISkez0zONxrmYgoNeebmMv1wvQ13cRueRVBCXlcoT9fDnGpCASVE1KnNzqH7jF
-         kpbA==
-X-Forwarded-Encrypted: i=1; AJvYcCWQLxBVTqWHJQ+rCwZQdE73AZ7W8dzagYmlULRR/YDGRP7DtQidd7WKraOHB8h3J5IKvpcIeakU+fNt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPVMvR4cdHNq+343ebIKiiDl7i0NrLvJhRCi7+/qoJ4cdNg4mi
-	PJP9+t6n9KbEh11xkgVpx17WfMNhLB9aw1nFHieQbIynP/y+JfGp/ylx2BickymR2ZWsSIf2+KJ
-	crdejPQ==
-X-Google-Smtp-Source: AGHT+IEV4sDYCgNO9EKqxon7XrYB6Ywu3cCTJb+GiDUt7dMox3u2fLXkzFmUtGks1yXlqp5wxkL/dRL782I=
-X-Received: from dyff14.prod.google.com ([2002:a05:693c:804e:b0:2a4:633b:7a61])
- (user=royluo job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6a20:939e:b0:350:f9c5:f90c
- with SMTP id adf61e73a8af0-353a23d44aemr15599886637.27.1762866404692; Tue, 11
- Nov 2025 05:06:44 -0800 (PST)
-Date: Tue, 11 Nov 2025 13:06:24 +0000
-In-Reply-To: <20251111130624.3069704-1-royluo@google.com>
+	s=arc-20240116; t=1762866457; c=relaxed/simple;
+	bh=kl7qjafbhbvtodybLN8XmzLMryFLXxEFTiK0ACkcTig=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=TK1YM4W8pNmoizRH3dZJ1issEXtnODx1rM/kKBB0wkZFRrt6Rru+R289ITDsa+AqLL70uQOGUa/dpnuJqcNT1kVVD8rWJfJsZzFJ/Feud+pB7nkngBQ6g4GpLqawy3Am3RSraT0afUr4THrgUaMSTrHTyAi/EOUNXXfYuMPpPrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=O0vbCUVv; arc=none smtp.client-ip=91.218.175.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
-References: <20251111130624.3069704-1-royluo@google.com>
-X-Mailer: git-send-email 2.51.2.1041.gc1ab5b90ca-goog
-Message-ID: <20251111130624.3069704-3-royluo@google.com>
-Subject: [PATCH v5 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
-From: Roy Luo <royluo@google.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Peter Griffin <peter.griffin@linaro.org>, 
-	"=?UTF-8?q?Andr=C3=A9=20Draszik?=" <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, Roy Luo <royluo@google.com>, 
-	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1762866449;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hp9j1SamJ8X7GVph6JpG3EZJam2gMiRDcakI0IBlJ0g=;
+	b=O0vbCUVvvSCKSx+8Oo2TtZ3GndYBeySbL28Gm3Szor5oLFbeyKNRCHm0qnvLps7fgQhAdZ
+	NwAQFLj8RkSvepyetwvGrVWnVMXoAZvr6B1eZpRdprzAw6R/hLSN0GW8aC6+blEXDszr+z
+	5wg9/ATGIfWUQtwdZkeC1OGceZR51ObH+d59FuDCSQDldjNeFKwrZxvbmxF1F/vW/cPqfG
+	NP3vBbCPWqYEBFnaZCKDFdh10NEO+l+bgI54KH4OK6BK770k5BdjAgBo9RTtnk2AL7dLsp
+	5sy8T51w3hX1GhA+rX1tGMVSxnJS73tI2wkS8l14X+aQ8Eqa+Dq1bw7doBnlfg==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 11 Nov 2025 14:07:25 +0100
+Message-Id: <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
+ Radxa boards
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "FUKAUMI Naoki" <naoki@radxa.com>, <heiko@sntech.de>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <jbx6244@gmail.com>, <dsimic@manjaro.org>, <pgwipeout@gmail.com>,
+ <jonas@kwiboo.se>, <ziyao@disroot.org>, <amadeus@jmu.edu.cn>,
+ <nicolas.frattaroli@collabora.com>, <pbrobinson@gmail.com>,
+ <wens@kernel.org>, <detlev.casanova@collabora.com>, <stephen@radxa.com>,
+ <sebastian.reichel@collabora.com>, <liujianfeng1994@gmail.com>,
+ <andy.yan@rock-chips.com>, <damon.ding@rock-chips.com>,
+ <kylepzak@projectinitiative.io>, <devicetree@vger.kernel.org>,
+ <linux-rockchip@lists.infradead.org>
+References: <20251111054112.55505-1-naoki@radxa.com>
+In-Reply-To: <20251111054112.55505-1-naoki@radxa.com>
+X-Migadu-Flow: FLOW_OUT
 
-Add support for the DWC3 USB controller found on Google Tensor G5.
-The controller features dual-role functionality and hibernation.
+On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
+> Radxa's boards turn all LEDs on at boot(loader), but some boards don't
+> have `default-state` property in Linux kernel tree but have it in
+> U-Boot tree instead[1].
+>
+> This patch adds `default-state =3D "on"` for (almost) all LEDs (with a
+> few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
+> WAN LEDs on E20C/E52C).
 
-The primary focus is implementing hibernation support in host mode,
-enabling the controller to enter a low-power state (D3). This is
-particularly relevant during system power state transition and
-runtime power management for power efficiency.
-Highlights:
-- Align suspend callback with dwc3_suspend_common() for deciding
-  between a full teardown and hibernation in host mode.
-- Integration with `psw` (power switchable) and `top` power domains,
-  managing their states and device links to support hibernation.
-- A notifier callback dwc3_google_usb_psw_pd_notifier() for
-  `psw` power domain events to manage controller state
-  transitions to/from D3.
-- Coordination of the `non_sticky` reset during power state
-  transitions, asserting it on D3 entry and deasserting on D0 entry
-  in hibernation scenario.
-- Handling of high-speed and super-speed PME interrupts
-  that are generated by remote wakeup during hibernation.
+I'm missing the *why* these changes would be an improvement.
 
-Co-developed-by: Joy Chakraborty <joychakr@google.com>
-Signed-off-by: Joy Chakraborty <joychakr@google.com>
-Co-developed-by: Naveen Kumar <mnkumar@google.com>
-Signed-off-by: Naveen Kumar <mnkumar@google.com>
-Signed-off-by: Roy Luo <royluo@google.com>
----
- drivers/usb/dwc3/Kconfig       |  10 +
- drivers/usb/dwc3/Makefile      |   1 +
- drivers/usb/dwc3/dwc3-google.c | 628 +++++++++++++++++++++++++++++++++
- 3 files changed, 639 insertions(+)
- create mode 100644 drivers/usb/dwc3/dwc3-google.c
+Personally, for both 'heartbeat' and 'netdev' triggers, I want them to
+be off by default and once it gets a 'heartbeat' or a 'netdev' trigger,
+THEN I want the LED to be on/blinking.
 
-diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-index 310d182e10b5..467515d5f937 100644
---- a/drivers/usb/dwc3/Kconfig
-+++ b/drivers/usb/dwc3/Kconfig
-@@ -189,4 +189,14 @@ config USB_DWC3_RTK
- 	  or dual-role mode.
- 	  Say 'Y' or 'M' if you have such device.
- 
-+config USB_DWC3_GOOGLE
-+	tristate "Google Platform"
-+	depends on OF && COMMON_CLK && RESET_CONTROLLER
-+	default n
-+	help
-+	  Support the DesignWare Core USB3 IP found on Google Tensor
-+	  SoCs, starting with the G5 generation. This driver includes
-+	  support for hibernation in host mode.
-+	  Say 'Y' or 'M' if you have one such device.
-+
- endif
-diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-index 830e6c9e5fe0..a94982630657 100644
---- a/drivers/usb/dwc3/Makefile
-+++ b/drivers/usb/dwc3/Makefile
-@@ -57,3 +57,4 @@ obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
- obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
- obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
- obj-$(CONFIG_USB_DWC3_RTK)		+= dwc3-rtk.o
-+obj-$(CONFIG_USB_DWC3_GOOGLE)		+= dwc3-google.o
-diff --git a/drivers/usb/dwc3/dwc3-google.c b/drivers/usb/dwc3/dwc3-google.c
-new file mode 100644
-index 000000000000..eb4d8ab6a604
---- /dev/null
-+++ b/drivers/usb/dwc3/dwc3-google.c
-@@ -0,0 +1,628 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dwc3-google.c - Google DWC3 Specific Glue Layer
-+ *
-+ * Copyright (c) 2025, Google LLC
-+ * Author: Roy Luo <royluo@google.com>
-+ */
-+
-+#include <linux/of.h>
-+#include <linux/bitfield.h>
-+#include <linux/irq.h>
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <linux/kernel.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+#include <linux/pm_domain.h>
-+#include <linux/iopoll.h>
-+#include <linux/regmap.h>
-+#include <linux/mfd/syscon.h>
-+#include "core.h"
-+#include "glue.h"
-+
-+/* HOST CFG registers */
-+#define HC_STATUS_OFFSET 0x0
-+#define HC_STATUS_CURRENT_POWER_STATE_U2PMU GENMASK(1, 0)
-+#define HC_STATUS_CURRENT_POWER_STATE_U3PMU GENMASK(4, 3)
-+
-+#define HOST_CFG1_OFFSET 0x4
-+#define HOST_CFG1_PME_EN BIT(3)
-+#define HOST_CFG1_PM_POWER_STATE_REQUEST GENMASK(5, 4)
-+#define HOST_CFG1_PM_POWER_STATE_D0 0x0
-+#define HOST_CFG1_PM_POWER_STATE_D3 0x3
-+
-+/* USBINT registers */
-+#define USBINT_CFG1_OFFSET 0x0
-+#define USBINT_CFG1_USBDRD_PME_GEN_U2P_INTR_MSK BIT(2)
-+#define USBINT_CFG1_USBDRD_PME_GEN_U3P_INTR_MSK BIT(3)
-+#define USBINT_CFG1_USBDRD_PME_GEN_U2P_INTR_INT_EN BIT(8)
-+#define USBINT_CFG1_USBDRD_PME_GEN_U3P_INTR_INT_EN BIT(9)
-+#define USBINT_CFG1_USBDRD_PME_GEN_U2_INTR_CLR BIT(14)
-+#define USBINT_CFG1_USBDRD_PME_GEN_U3_INTR_CLR BIT(15)
-+
-+#define USBINT_STATUS_OFFSET 0x4
-+#define USBINT_STATUS_USBDRD_PME_GEN_U2P_INTR_STS_RAW BIT(2)
-+#define USBINT_STATUS_USBDRD_PME_GEN_U3P_INTR_STS_RAW BIT(3)
-+
-+#define USBCS_TOP_CTRL_CFG1_OFFSET 0xc
-+#define USBCS_TOP_CTRL_CFG1_USB2ONLY_MODE BIT(5)
-+
-+#define DWC3_GOOGLE_MAX_RESETS	4
-+
-+struct dwc3_google {
-+	struct device		*dev;
-+	struct dwc3		dwc;
-+	struct clk_bulk_data	*clks;
-+	int			num_clks;
-+	struct reset_control_bulk_data rsts[DWC3_GOOGLE_MAX_RESETS];
-+	int			num_rsts;
-+	struct reset_control	*non_sticky_rst;
-+	struct device		*usb_psw_pd;
-+	struct device_link	*usb_psw_pd_dl;
-+	struct notifier_block	usb_psw_pd_nb;
-+	struct device		*usb_top_pd;
-+	struct device_link	*usb_top_pd_dl;
-+	struct regmap		*usb_cfg_regmap;
-+	unsigned int		host_cfg_offset;
-+	unsigned int		usbint_cfg_offset;
-+	int			hs_pme_irq;
-+	int			ss_pme_irq;
-+	bool			is_usb2only;
-+	bool			is_hibernation;
-+};
-+
-+#define to_dwc3_google(d) container_of((d), struct dwc3_google, dwc)
-+
-+static int dwc3_google_rst_init(struct dwc3_google *google)
-+{
-+	int ret;
-+
-+	google->num_rsts = 4;
-+	google->rsts[0].id = "non_sticky";
-+	google->rsts[1].id = "sticky";
-+	google->rsts[2].id = "drd_bus";
-+	google->rsts[3].id = "top";
-+
-+	ret = devm_reset_control_bulk_get_exclusive(google->dev,
-+						    google->num_rsts,
-+						    google->rsts);
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	google->non_sticky_rst = google->rsts[0].rstc;
-+
-+	return 0;
-+}
-+
-+static int dwc3_google_set_pmu_state(struct dwc3_google *google, int state)
-+{
-+	u32 reg;
-+	int ret;
-+
-+	regmap_read(google->usb_cfg_regmap,
-+		    google->host_cfg_offset + HOST_CFG1_OFFSET, &reg);
-+
-+	reg &= ~HOST_CFG1_PM_POWER_STATE_REQUEST;
-+	reg |= (FIELD_PREP(HOST_CFG1_PM_POWER_STATE_REQUEST, state) |
-+		HOST_CFG1_PME_EN);
-+	regmap_write(google->usb_cfg_regmap,
-+		     google->host_cfg_offset + HOST_CFG1_OFFSET, reg);
-+
-+	ret = regmap_read_poll_timeout(google->usb_cfg_regmap,
-+				       google->host_cfg_offset + HC_STATUS_OFFSET, reg,
-+				       (FIELD_GET(HC_STATUS_CURRENT_POWER_STATE_U2PMU,
-+						  reg) == state &&
-+					FIELD_GET(HC_STATUS_CURRENT_POWER_STATE_U3PMU,
-+						  reg) == state),
-+				       10, 10000);
-+
-+	if (ret)
-+		dev_err(google->dev, "failed to set PMU state %d\n", state);
-+
-+	return ret;
-+}
-+
-+/*
-+ * Clear pme interrupts and report their status.
-+ * The hardware requires write-1 then write-0 sequence to clear the interrupt bits.
-+ */
-+static u32 dwc3_google_clear_pme_irqs(struct dwc3_google *google)
-+{
-+	u32 irq_status, reg_set, reg_clear;
-+
-+	regmap_read(google->usb_cfg_regmap,
-+		    google->usbint_cfg_offset + USBINT_STATUS_OFFSET, &irq_status);
-+
-+	irq_status &= (USBINT_STATUS_USBDRD_PME_GEN_U2P_INTR_STS_RAW |
-+		       USBINT_STATUS_USBDRD_PME_GEN_U3P_INTR_STS_RAW);
-+	if (!irq_status)
-+		return irq_status;
-+
-+	regmap_read(google->usb_cfg_regmap,
-+		    google->usbint_cfg_offset + USBINT_CFG1_OFFSET, &reg_set);
-+
-+	reg_clear = reg_set;
-+	if (irq_status & USBINT_STATUS_USBDRD_PME_GEN_U2P_INTR_STS_RAW) {
-+		reg_set |= USBINT_CFG1_USBDRD_PME_GEN_U2_INTR_CLR;
-+		reg_clear &= ~USBINT_CFG1_USBDRD_PME_GEN_U2_INTR_CLR;
-+	}
-+	if (irq_status & USBINT_STATUS_USBDRD_PME_GEN_U3P_INTR_STS_RAW) {
-+		reg_set |= USBINT_CFG1_USBDRD_PME_GEN_U3_INTR_CLR;
-+		reg_clear &= ~USBINT_CFG1_USBDRD_PME_GEN_U3_INTR_CLR;
-+	}
-+
-+	regmap_write(google->usb_cfg_regmap,
-+		     google->usbint_cfg_offset + USBINT_CFG1_OFFSET, reg_set);
-+	regmap_write(google->usb_cfg_regmap,
-+		     google->usbint_cfg_offset + USBINT_CFG1_OFFSET, reg_clear);
-+
-+	return irq_status;
-+}
-+
-+static void dwc3_google_enable_pme_irq(struct dwc3_google *google)
-+{
-+	u32 reg;
-+
-+	regmap_read(google->usb_cfg_regmap,
-+		    google->usbint_cfg_offset + USBINT_CFG1_OFFSET, &reg);
-+	reg &= ~(USBINT_CFG1_USBDRD_PME_GEN_U2P_INTR_MSK |
-+		 USBINT_CFG1_USBDRD_PME_GEN_U3P_INTR_MSK);
-+	reg |= (USBINT_CFG1_USBDRD_PME_GEN_U2P_INTR_INT_EN |
-+		USBINT_CFG1_USBDRD_PME_GEN_U3P_INTR_INT_EN);
-+	regmap_write(google->usb_cfg_regmap,
-+		     google->usbint_cfg_offset + USBINT_CFG1_OFFSET, reg);
-+
-+	enable_irq(google->hs_pme_irq);
-+	enable_irq(google->ss_pme_irq);
-+	enable_irq_wake(google->hs_pme_irq);
-+	enable_irq_wake(google->ss_pme_irq);
-+}
-+
-+static void dwc3_google_disable_pme_irq(struct dwc3_google *google)
-+{
-+	u32 reg;
-+
-+	regmap_read(google->usb_cfg_regmap,
-+		    google->usbint_cfg_offset + USBINT_CFG1_OFFSET, &reg);
-+	reg &= ~(USBINT_CFG1_USBDRD_PME_GEN_U2P_INTR_INT_EN |
-+		 USBINT_CFG1_USBDRD_PME_GEN_U3P_INTR_INT_EN);
-+	reg |= (USBINT_CFG1_USBDRD_PME_GEN_U2P_INTR_MSK |
-+		USBINT_CFG1_USBDRD_PME_GEN_U3P_INTR_MSK);
-+	regmap_write(google->usb_cfg_regmap,
-+		     google->usbint_cfg_offset + USBINT_CFG1_OFFSET, reg);
-+
-+	disable_irq_wake(google->hs_pme_irq);
-+	disable_irq_wake(google->ss_pme_irq);
-+	disable_irq_nosync(google->hs_pme_irq);
-+	disable_irq_nosync(google->ss_pme_irq);
-+}
-+
-+static irqreturn_t dwc3_google_resume_irq(int irq, void *data)
-+{
-+	struct dwc3_google      *google = data;
-+	struct dwc3             *dwc = &google->dwc;
-+	u32 irq_status, dr_role;
-+
-+	irq_status = dwc3_google_clear_pme_irqs(google);
-+	dr_role = dwc->current_dr_role;
-+
-+	if (!irq_status || !google->is_hibernation ||
-+	    dr_role != DWC3_GCTL_PRTCAP_HOST) {
-+		dev_dbg(google->dev, "spurious pme irq %d, hibernation %d, dr_role %u\n",
-+			irq, google->is_hibernation, dr_role);
-+		return IRQ_HANDLED;
-+	}
-+
-+	if (dwc->xhci)
-+		pm_runtime_resume(&dwc->xhci->dev);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int dwc3_google_request_irq(struct dwc3_google *google, struct platform_device *pdev,
-+				   const char *irq_name, const char *req_name)
-+{
-+	int ret;
-+	int irq;
-+
-+	irq = platform_get_irq_byname(pdev, irq_name);
-+	if (irq < 0) {
-+		dev_err(google->dev, "invalid irq name %s\n", irq_name);
-+		return irq;
-+	}
-+
-+	irq_set_status_flags(irq, IRQ_NOAUTOEN);
-+	ret = devm_request_threaded_irq(google->dev, irq, NULL,
-+					dwc3_google_resume_irq,
-+					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-+					req_name, google);
-+	if (ret < 0) {
-+		dev_err(google->dev, "failed to request irq %s\n", req_name);
-+		return ret;
-+	}
-+
-+	return irq;
-+}
-+
-+static int dwc3_google_usb_psw_pd_notifier(struct notifier_block *nb, unsigned long action, void *d)
-+{
-+	struct dwc3_google *google = container_of(nb, struct dwc3_google, usb_psw_pd_nb);
-+	int ret;
-+
-+	if (!google->is_hibernation)
-+		return NOTIFY_OK;
-+
-+	if (action == GENPD_NOTIFY_OFF) {
-+		dev_dbg(google->dev, "enter D3 power state\n");
-+		dwc3_google_set_pmu_state(google, HOST_CFG1_PM_POWER_STATE_D3);
-+		ret = reset_control_assert(google->non_sticky_rst);
-+		if (ret)
-+			dev_err(google->dev, "non sticky reset assert failed: %d\n", ret);
-+	} else if (action == GENPD_NOTIFY_ON) {
-+		dev_dbg(google->dev, "enter D0 power state\n");
-+		dwc3_google_clear_pme_irqs(google);
-+		ret = reset_control_deassert(google->non_sticky_rst);
-+		if (ret)
-+			dev_err(google->dev, "non sticky reset deassert failed: %d\n", ret);
-+		dwc3_google_set_pmu_state(google, HOST_CFG1_PM_POWER_STATE_D0);
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+static void dwc3_google_pm_domain_deinit(struct dwc3_google *google)
-+{
-+	if (google->usb_top_pd_dl)
-+		device_link_del(google->usb_top_pd_dl);
-+
-+	if (!IS_ERR_OR_NULL(google->usb_top_pd)) {
-+		device_set_wakeup_capable(google->usb_top_pd, false);
-+		dev_pm_domain_detach(google->usb_top_pd, true);
-+	}
-+
-+	if (google->usb_psw_pd_dl)
-+		device_link_del(google->usb_psw_pd_dl);
-+
-+	if (!IS_ERR_OR_NULL(google->usb_psw_pd)) {
-+		dev_pm_genpd_remove_notifier(google->usb_psw_pd);
-+		dev_pm_domain_detach(google->usb_psw_pd, true);
-+	}
-+}
-+
-+static int dwc3_google_pm_domain_init(struct dwc3_google *google)
-+{
-+	int ret;
-+
-+	/*
-+	 * Establish PM RUNTIME link between dwc dev and its power domain usb_psw_pd,
-+	 * register notifier block to handle hibernation.
-+	 */
-+	google->usb_psw_pd = dev_pm_domain_attach_by_name(google->dev, "psw");
-+	if (IS_ERR_OR_NULL(google->usb_psw_pd)) {
-+		dev_err(google->dev, "failed to get psw pd");
-+		ret = google->usb_psw_pd ? PTR_ERR(google->usb_psw_pd) : -ENODATA;
-+		return ret;
-+	}
-+
-+	google->usb_psw_pd_nb.notifier_call = dwc3_google_usb_psw_pd_notifier;
-+	ret = dev_pm_genpd_add_notifier(google->usb_psw_pd, &google->usb_psw_pd_nb);
-+	if (ret) {
-+		dev_err(google->dev, "failed to add psw pd notifier");
-+		goto err;
-+	}
-+
-+	google->usb_psw_pd_dl = device_link_add(google->dev, google->usb_psw_pd,
-+						DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME |
-+						DL_FLAG_RPM_ACTIVE);
-+	if (!google->usb_psw_pd_dl) {
-+		dev_err(google->usb_psw_pd, "failed to add device link");
-+		ret = -ENODEV;
-+		goto err;
-+	}
-+
-+	/*
-+	 * usb_top_pd is the parent power domain of usb_psw_pd. Keeping usb_top_pd on
-+	 * while usb_psw_pd is off places the controller in a power-gated state,
-+	 * essential for hibernation. Acquire a handle to usb_top_pd and sets it as
-+	 * wakeup-capable to allow the domain to be left on during system suspend.
-+	 */
-+	google->usb_top_pd = dev_pm_domain_attach_by_name(google->dev, "top");
-+	if (IS_ERR_OR_NULL(google->usb_top_pd)) {
-+		dev_err(google->dev, "failed to get top pd");
-+		ret = google->usb_top_pd ? PTR_ERR(google->usb_top_pd) : -ENODATA;
-+		goto err;
-+	}
-+	device_set_wakeup_capable(google->usb_top_pd, true);
-+
-+	google->usb_top_pd_dl = device_link_add(google->dev, google->usb_top_pd,
-+						DL_FLAG_STATELESS);
-+	if (!google->usb_top_pd_dl) {
-+		dev_err(google->usb_top_pd, "failed to add device link");
-+		ret = -ENODEV;
-+		goto err;
-+	}
-+
-+	return 0;
-+
-+err:
-+	dwc3_google_pm_domain_deinit(google);
-+
-+	return ret;
-+}
-+
-+static void dwc3_google_program_usb2only(struct dwc3_google *google)
-+{
-+	u32 reg;
-+
-+	regmap_read(google->usb_cfg_regmap,
-+		    google->usbint_cfg_offset + USBCS_TOP_CTRL_CFG1_OFFSET, &reg);
-+	reg |= USBCS_TOP_CTRL_CFG1_USB2ONLY_MODE;
-+	regmap_write(google->usb_cfg_regmap,
-+		     google->usbint_cfg_offset + USBCS_TOP_CTRL_CFG1_OFFSET, reg);
-+}
-+
-+static int dwc3_google_probe(struct platform_device *pdev)
-+{
-+	struct dwc3_probe_data	probe_data = {};
-+	struct device		*dev = &pdev->dev;
-+	struct dwc3_google	*google;
-+	struct resource		*res;
-+	int			ret;
-+	u32			args[2];
-+
-+	google = devm_kzalloc(&pdev->dev, sizeof(*google), GFP_KERNEL);
-+	if (!google)
-+		return -ENOMEM;
-+
-+	google->dev = &pdev->dev;
-+
-+	ret = dwc3_google_pm_domain_init(google);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to init pdom\n");
-+
-+	google->usb_cfg_regmap =
-+		syscon_regmap_lookup_by_phandle_args(dev->of_node,
-+						     "google,usb-cfg-csr",
-+						     ARRAY_SIZE(args), args);
-+	if (IS_ERR(google->usb_cfg_regmap)) {
-+		return dev_err_probe(dev, PTR_ERR(google->usb_cfg_regmap),
-+				     "invalid usb cfg csr\n");
-+	}
-+
-+	google->host_cfg_offset = args[0];
-+	google->usbint_cfg_offset = args[1];
-+
-+	if (device_property_match_string(dev, "phy-names", "usb3-phy") < 0) {
-+		google->is_usb2only = true;
-+		dwc3_google_program_usb2only(google);
-+	}
-+
-+	ret = devm_clk_bulk_get_all_enabled(dev, &google->clks);
-+	if (ret < 0) {
-+		ret = dev_err_probe(dev, ret, "failed to get and enable clks\n");
-+		goto err_deinit_pdom;
-+	}
-+	google->num_clks = ret;
-+
-+	ret = dwc3_google_rst_init(google);
-+	if (ret) {
-+		ret = dev_err_probe(dev, ret, "failed to get resets\n");
-+		goto err_deinit_pdom;
-+	}
-+
-+	ret = reset_control_bulk_deassert(google->num_rsts, google->rsts);
-+	if (ret) {
-+		ret = dev_err_probe(dev, ret, "failed to deassert rsts\n");
-+		goto err_deinit_pdom;
-+	}
-+
-+	ret = dwc3_google_request_irq(google, pdev, "hs_pme", "USB HS wakeup");
-+	if (ret < 0) {
-+		ret = dev_err_probe(dev, ret, "failed to request hs pme irq");
-+		goto err_reset_assert;
-+	}
-+	google->hs_pme_irq = ret;
-+
-+	ret = dwc3_google_request_irq(google, pdev, "ss_pme", "USB SS wakeup");
-+	if (ret < 0) {
-+		ret = dev_err_probe(dev, ret, "failed to request ss pme irq");
-+		goto err_reset_assert;
-+	}
-+	google->ss_pme_irq = ret;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res) {
-+		ret = dev_err_probe(dev, -ENODEV, "invalid memory\n");
-+		goto err_reset_assert;
-+	}
-+
-+	device_init_wakeup(dev, true);
-+
-+	google->dwc.dev = dev;
-+	probe_data.dwc = &google->dwc;
-+	probe_data.res = res;
-+	probe_data.ignore_clocks_and_resets = true;
-+	ret = dwc3_core_probe(&probe_data);
-+	if (ret)  {
-+		ret = dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
-+		goto err_reset_assert;
-+	}
-+
-+	return 0;
-+
-+err_reset_assert:
-+	reset_control_bulk_assert(google->num_rsts, google->rsts);
-+
-+err_deinit_pdom:
-+	dwc3_google_pm_domain_deinit(google);
-+
-+	return ret;
-+}
-+
-+static void dwc3_google_remove(struct platform_device *pdev)
-+{
-+	struct dwc3 *dwc = platform_get_drvdata(pdev);
-+	struct dwc3_google *google = to_dwc3_google(dwc);
-+
-+	dwc3_core_remove(&google->dwc);
-+
-+	reset_control_bulk_assert(google->num_rsts, google->rsts);
-+
-+	dwc3_google_pm_domain_deinit(google);
-+}
-+
-+static int dwc3_google_suspend(struct dwc3_google *google, pm_message_t msg)
-+{
-+	if (pm_runtime_suspended(google->dev))
-+		return 0;
-+
-+	if (google->dwc.current_dr_role == DWC3_GCTL_PRTCAP_HOST) {
-+		/*
-+		 * Follow dwc3_suspend_common() guidelines for deciding between
-+		 * a full teardown and hibernation.
-+		 */
-+		if (PMSG_IS_AUTO(msg) || device_may_wakeup(google->dev)) {
-+			dev_dbg(google->dev, "enter hibernation");
-+			pm_runtime_get_sync(google->usb_top_pd);
-+			device_wakeup_enable(google->usb_top_pd);
-+			dwc3_google_enable_pme_irq(google);
-+			google->is_hibernation = true;
-+			return 0;
-+		}
-+	}
-+
-+	reset_control_bulk_assert(google->num_rsts, google->rsts);
-+	clk_bulk_disable_unprepare(google->num_clks, google->clks);
-+
-+	return 0;
-+}
-+
-+static int dwc3_google_resume(struct dwc3_google *google, pm_message_t msg)
-+{
-+	int ret;
-+
-+	if (google->is_hibernation) {
-+		dev_dbg(google->dev, "exit hibernation");
-+		dwc3_google_disable_pme_irq(google);
-+		device_wakeup_disable(google->usb_top_pd);
-+		pm_runtime_put_sync(google->usb_top_pd);
-+		google->is_hibernation = false;
-+		return 0;
-+	}
-+
-+	if (google->is_usb2only)
-+		dwc3_google_program_usb2only(google);
-+
-+	ret = clk_bulk_prepare_enable(google->num_clks, google->clks);
-+	if (ret)
-+		return ret;
-+
-+	ret = reset_control_bulk_deassert(google->num_rsts, google->rsts);
-+	if (ret) {
-+		clk_bulk_disable_unprepare(google->num_clks, google->clks);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int dwc3_google_pm_suspend(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_google *google = to_dwc3_google(dwc);
-+	int ret;
-+
-+	ret = dwc3_pm_suspend(&google->dwc);
-+	if (ret)
-+		return ret;
-+
-+	return dwc3_google_suspend(google, PMSG_SUSPEND);
-+}
-+
-+static int dwc3_google_pm_resume(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_google *google = to_dwc3_google(dwc);
-+	int ret;
-+
-+	ret = dwc3_google_resume(google, PMSG_RESUME);
-+	if (ret)
-+		return ret;
-+
-+	return dwc3_pm_resume(&google->dwc);
-+}
-+
-+static void dwc3_google_complete(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+
-+	dwc3_pm_complete(dwc);
-+}
-+
-+static int dwc3_google_prepare(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+
-+	return dwc3_pm_prepare(dwc);
-+}
-+
-+static int dwc3_google_runtime_suspend(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_google *google = to_dwc3_google(dwc);
-+	int ret;
-+
-+	ret = dwc3_runtime_suspend(&google->dwc);
-+	if (ret)
-+		return ret;
-+
-+	return dwc3_google_suspend(google, PMSG_AUTO_SUSPEND);
-+}
-+
-+static int dwc3_google_runtime_resume(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_google *google = to_dwc3_google(dwc);
-+	int ret;
-+
-+	ret = dwc3_google_resume(google, PMSG_AUTO_RESUME);
-+	if (ret)
-+		return ret;
-+
-+	return dwc3_runtime_resume(&google->dwc);
-+}
-+
-+static int dwc3_google_runtime_idle(struct device *dev)
-+{
-+	return dwc3_runtime_idle(dev_get_drvdata(dev));
-+}
-+
-+static const struct dev_pm_ops dwc3_google_dev_pm_ops = {
-+	SYSTEM_SLEEP_PM_OPS(dwc3_google_pm_suspend, dwc3_google_pm_resume)
-+	RUNTIME_PM_OPS(dwc3_google_runtime_suspend, dwc3_google_runtime_resume,
-+		       dwc3_google_runtime_idle)
-+	.complete = pm_sleep_ptr(dwc3_google_complete),
-+	.prepare = pm_sleep_ptr(dwc3_google_prepare),
-+};
-+
-+static const struct of_device_id dwc3_google_of_match[] = {
-+	{ .compatible = "google,gs5-dwc3" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, dwc3_google_of_match);
-+
-+static struct platform_driver dwc3_google_driver = {
-+	.probe		= dwc3_google_probe,
-+	.remove		= dwc3_google_remove,
-+	.driver		= {
-+		.name	= "google-dwc3",
-+		.pm	= pm_ptr(&dwc3_google_dev_pm_ops),
-+		.of_match_table	= dwc3_google_of_match,
-+	},
-+};
-+
-+module_platform_driver(dwc3_google_driver);
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("DesignWare DWC3 Google Glue Driver");
--- 
-2.51.2.1041.gc1ab5b90ca-goog
+> Also, remove following redundant properties:
+>  linux,default-trigger =3D "default-on"; // use default-state =3D "on"
+>  default-state =3D "off"; // default is "off"
+>
+> [1]
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3328=
+-rock-pi-e-base-u-boot.dtsi#L10-12
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3399=
+-rock-4c-plus-u-boot.dtsi#L11-17
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3399=
+-rock-pi-4-u-boot.dtsi#L11-13
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3566=
+-radxa-cm3-io-u-boot.dtsi#L10-12
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3566=
+-rock-3c-u-boot.dtsi#L14-16
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3568=
+-radxa-e25-u-boot.dtsi#L7-24
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3568=
+-rock-3a-u-boot.dtsi#L11-13
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3588=
+-rock-5b-u-boot.dtsi#L11-13
+
+That the *bootloader* turns them on, is fine by me as it signals the
+board has received power and the bootloader has started.
+I don't think that that automatically means that Linux must do the same.
+
+Not a Radxa board, but the PineTab2's keyboard LEDs are turned on. I
+find that useful wrt the bootloader, but (actually) annoying that it is
+on by default with Linux. When I want/need backlight on the keyboard,
+I'll turn it on myself. Now I need to turn it off in 90% of cases.
+
+My 0.02
+
+>  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3588=
+s-rock-5a-u-boot.dtsi#L10-12
+>
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+> Changes in v2:
+> - Add more URLs for reference
+> - Reword commit message
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts    | 1 -
+>  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts    | 1 +
+>  arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts | 3 ++-
+>  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 1 +
+>  arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts   | 2 --
+>  arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts      | 1 -
+>  arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts | 1 +
+>  arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts      | 1 +
+>  arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi  | 1 +
+>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts      | 1 +
+>  arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts      | 3 ++-
+>  arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts   | 2 --
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts   | 3 ++-
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi     | 1 +
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts      | 1 +
+>  arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts     | 3 ++-
+>  16 files changed, 16 insertions(+), 10 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts b/arch/arm=
+64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+> index 7a32972bc2496..c1e3098b9a7bc 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+> @@ -35,7 +35,6 @@ green-led {
+>  			function =3D LED_FUNCTION_POWER;
+>  			gpios =3D <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+>  			label =3D "rockpis:green:power";
+> -			linux,default-trigger =3D "default-on";
+>  		};
+> =20
+>  		blue-led {
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm=
+64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> index a4bdd87d0729f..d3d6f34b66fb0 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> @@ -59,6 +59,7 @@ leds {
+> =20
+>  		led-0 {
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			gpios =3D <&gpio3 RK_PA5 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger =3D "heartbeat";
+>  		};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/=
+arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+> index 962b8b231c960..a83ffbef22a7b 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+> @@ -39,14 +39,15 @@ leds {
+>  		led-0 {
+>  			function =3D LED_FUNCTION_POWER;
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> +			default-state =3D "on";
+>  			gpios =3D <&gpio3 RK_PD4 GPIO_ACTIVE_LOW>;
+> -			linux,default-trigger =3D "default-on";
+>  		};
+> =20
+>  		/* USER_LED2 */
+>  		led-1 {
+>  			function =3D LED_FUNCTION_STATUS;
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			gpios =3D <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "heartbeat";
+>  		};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/ar=
+m64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> index 046dbe3290178..ef434c23fe85c 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> @@ -35,6 +35,7 @@ leds {
+>  		led-0 {
+>  			function =3D LED_FUNCTION_STATUS;
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			gpios =3D <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "heartbeat";
+>  		};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/ar=
+m64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> index b324527561558..79d316a1d8495 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> @@ -62,7 +62,6 @@ leds {
+> =20
+>  		led-lan {
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> -			default-state =3D "off";
+>  			function =3D LED_FUNCTION_LAN;
+>  			gpios =3D <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "netdev";
+> @@ -78,7 +77,6 @@ led-sys {
+> =20
+>  		led-wan {
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> -			default-state =3D "off";
+>  			function =3D LED_FUNCTION_WAN;
+>  			gpios =3D <&gpio4 RK_PC0 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "netdev";
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts b/arch/arm64=
+/boot/dts/rockchip/rk3528-rock-2a.dts
+> index c03ae1dd34560..0b696d49b71fa 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+> @@ -45,7 +45,6 @@ led-1 {
+>  		default-state =3D "on";
+>  		function =3D LED_FUNCTION_STATUS;
+>  		gpios =3D <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
+> -		linux,default-trigger =3D "default-on";
+>  	};
+>  };
+> =20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts b/arch/=
+arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
+> index b5b253f04cdf5..9e7212b70e3f1 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts
+> @@ -46,6 +46,7 @@ leds {
+>  		led-1 {
+>  			gpios =3D <&gpio4 RK_PA4 GPIO_ACTIVE_LOW>;
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> +			default-state =3D "on";
+>  			function =3D LED_FUNCTION_ACTIVITY;
+>  			linux,default-trigger =3D "heartbeat";
+>  			pinctrl-names =3D "default";
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts b/arch/arm64=
+/boot/dts/rockchip/rk3566-rock-3c.dts
+> index 6224d72813e59..3ec108bcf89a1 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+> @@ -47,6 +47,7 @@ led-0 {
+>  			gpios =3D <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
+>  			function =3D LED_FUNCTION_HEARTBEAT;
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			linux,default-trigger =3D "heartbeat";
+>  			pinctrl-names =3D "default";
+>  			pinctrl-0 =3D <&user_led2>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi b/arch/a=
+rm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
+> index 729e38b9f620e..140582f8e1034 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi
+> @@ -23,6 +23,7 @@ led_user: led-0 {
+>  			gpios =3D <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+>  			function =3D LED_FUNCTION_HEARTBEAT;
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> +			default-state =3D "on";
+>  			linux,default-trigger =3D "heartbeat";
+>  			pinctrl-names =3D "default";
+>  			pinctrl-0 =3D <&led_user_en>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64=
+/boot/dts/rockchip/rk3568-rock-3a.dts
+> index 44cfdfeed6681..e6c18df0fa582 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+> @@ -47,6 +47,7 @@ led_user: led-0 {
+>  			gpios =3D <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+>  			function =3D LED_FUNCTION_HEARTBEAT;
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			linux,default-trigger =3D "heartbeat";
+>  			pinctrl-names =3D "default";
+>  			pinctrl-0 =3D <&led_user_en>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64=
+/boot/dts/rockchip/rk3576-rock-4d.dts
+> index 9bc33422ced50..99d3a8be8f18c 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+> @@ -52,13 +52,14 @@ leds: leds {
+> =20
+>  		power-led {
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> +			default-state =3D "on";
+>  			function =3D LED_FUNCTION_STATUS;
+>  			gpios =3D <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
+> -			linux,default-trigger =3D "default-on";
+>  		};
+> =20
+>  		user-led {
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			function =3D LED_FUNCTION_HEARTBEAT;
+>  			gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger =3D "heartbeat";
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts b/arch/ar=
+m64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+> index 854c118418eb8..f737769d4a007 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+> @@ -71,7 +71,6 @@ leds-1 {
+> =20
+>  		led-1 {
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> -			default-state =3D "off";
+>  			function =3D LED_FUNCTION_LAN;
+>  			linux,default-trigger =3D "netdev";
+>  			pwms =3D <&pwm14 0 1000000 PWM_POLARITY_INVERTED>;
+> @@ -80,7 +79,6 @@ led-1 {
+> =20
+>  		led-2 {
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> -			default-state =3D "off";
+>  			function =3D LED_FUNCTION_WAN;
+>  			linux,default-trigger =3D "netdev";
+>  			pwms =3D <&pwm11 0 1000000 PWM_POLARITY_INVERTED>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/ar=
+m64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> index bc8140883de47..86477346c3f5a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> @@ -88,11 +88,12 @@ gpio-leds {
+>  		pinctrl-0 =3D <&led_pins>;
+> =20
+>  		power-led1 {
+> +			default-state =3D "on";
+>  			gpios =3D <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+> -			linux,default-trigger =3D "default-on";
+>  		};
+> =20
+>  		hdd-led2 {
+> +			default-state =3D "on";
+>  			gpios =3D <&gpio0 RK_PC0 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "disk-activity";
+>  		};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi b/arch/arm6=
+4/boot/dts/rockchip/rk3588-rock-5b.dtsi
+> index e5c474e4d02a6..8c4a4270f9f93 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
+> @@ -30,6 +30,7 @@ leds {
+>  		led_rgb_b {
+>  			function =3D LED_FUNCTION_STATUS;
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			gpios =3D <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "heartbeat";
+>  		};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64=
+/boot/dts/rockchip/rk3588-rock-5t.dts
+> index 0dd90c744380b..87e9d4b86dad4 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
+> @@ -33,6 +33,7 @@ leds {
+>  		led_rgb_b {
+>  			function =3D LED_FUNCTION_STATUS;
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			gpios =3D <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "heartbeat";
+>  		};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm6=
+4/boot/dts/rockchip/rk3588s-rock-5a.dts
+> index 19a08f7794e67..46c81e796b100 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+> @@ -54,6 +54,7 @@ leds {
+> =20
+>  		io-led {
+>  			color =3D <LED_COLOR_ID_BLUE>;
+> +			default-state =3D "on";
+>  			function =3D LED_FUNCTION_STATUS;
+>  			gpios =3D <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "heartbeat";
+> @@ -61,9 +62,9 @@ io-led {
+> =20
+>  		power-led {
+>  			color =3D <LED_COLOR_ID_GREEN>;
+> +			default-state =3D "on";
+>  			function =3D LED_FUNCTION_POWER;
+>  			gpios =3D <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
+> -			linux,default-trigger =3D "default-on";
+>  		};
+>  	};
+> =20
 
 
