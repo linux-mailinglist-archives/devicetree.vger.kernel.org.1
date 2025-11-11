@@ -1,319 +1,121 @@
-Return-Path: <devicetree+bounces-237233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DE37C4E9EE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:56:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01ECBC4EB18
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:10:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4580E18C0CC0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:52:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 635A74FD480
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 15:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDC430FF3A;
-	Tue, 11 Nov 2025 14:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mywPlpaJ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FBtcegKL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F3B34887E;
+	Tue, 11 Nov 2025 15:00:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0041B30648C
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 14:52:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19600333759;
+	Tue, 11 Nov 2025 15:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762872733; cv=none; b=tTvB4UdtJf8skF1bFGmimnyg5i9vq4hHVKBlIxZWM0Zu2xdVX4moULVVMUh6ICo7Xxyh6+3fBrolKL8Hq+/Bkw1t0sqesytlKZ/SvhKKcs1TQhrFHeur/74EQvhTT7MAX2PcqDTKJZOR6XsPuXWB9nOcRdraEyid0knu/s2wn+U=
+	t=1762873244; cv=none; b=DFmq4nGB5lKCJqqNfQRJHIuTtnkqnLrowePfgAHKzSIccYLWsz482dfLWvv/eZKZr/qv96cpZ0A7F/smX/G6Q3xGJZbsHRRP90SY7EdLn91NsMocsbokZtR7iZD2dctBJmnIVNV5ieDDYf2FnHyu8nGgViplPwrtFAhXnYKwCcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762872733; c=relaxed/simple;
-	bh=+b1MljAj3XUhNIOhKIjBU6UNm1915Kq92GlNaJckOEQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mBWoGj7eNNikfCtQnJW2IxRnuVqgxdb8ZM/RUMJnBg/r15MU2o108u8WMTKD8fzzvlmE7zFb2TrzD5+tCjU7Cv8SuycYn21/ONcEIvHWvuNcaDln3oU913dQbl4/OTDQgtpO8jOak6+gzias0PGJ6cIWgPeAUl7zQA6gzX2IIwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mywPlpaJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FBtcegKL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABCm88x2540304
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 14:52:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wEL2b4o4woVn7YImhKI7d/0wBJBkLCWFh9YogBdPmPg=; b=mywPlpaJTknD9eFR
-	+LZImcREnhWYRLXEfPToGsGwF+OX/lSEIYYFEX4ZCBgozv8mys5+tpoLrHtN23rX
-	yuocgRqYDfskfiESTcAvUMwHLu+Da4kMP7BFLAAlG/MBrY8u15v55KkC8IhC2a7U
-	1mLFINtr7ag4I+cK0w5BNDaJ5paaPWsk4TaJARMw7lSyJ+wB5SYrtTcovu+tcyWH
-	W093cXvUH75aQi+Tg8ZXs5AJMyVg1RW//zs/60RvmiGwXwHRB66sjtN2+Bw2fGFQ
-	8ElNYuswumaNSu3zPjiUs70ea43SbokVgT44OrH4EcLqterb2AnMZtI56reQo8So
-	wGQIag==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ac5fggajm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 14:52:09 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3437f0760daso7419882a91.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 06:52:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762872729; x=1763477529; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wEL2b4o4woVn7YImhKI7d/0wBJBkLCWFh9YogBdPmPg=;
-        b=FBtcegKLLp9bKcDucXFAy6yefYWCwK1kUV48s46cUm1cNp9iqv2pZcc49IqiOEEIC0
-         svvYIgZlVMCdmiBRoZ56a9YI6+vYfVGzE6kyAlbu3SERPCPqWJ/R2/9YCUkgcBEU7A5L
-         sfbmQlTNcWA1YpFz++DAbgGJDFNq9uOT3mPP1g0TAuzlGlZh6VdQdDjzGGIc4AjgYWme
-         fz9muAnkETErZksJpGHmWMdf2oZPEVyBmv3DovmFnQlfcNUgF6GfhJEsTRIEZMUMR6nu
-         xauAhUPUFrSz4LWtODOkqeJwWvSKBqZJbZKGJnYjpl0Z/VYXv7YjYLJK6JkJ5XZvmPi4
-         I/fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762872729; x=1763477529;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wEL2b4o4woVn7YImhKI7d/0wBJBkLCWFh9YogBdPmPg=;
-        b=U+dTdDq7UuOqEeJIc33PXJM0O5KFUZ7BfyeQaCLTcfEbfOiwGrJ36g89gddLmO+4r2
-         DZYeatZJqKa+LMMJpR9TKSRf92GH1KyX6RTSPCC5OTf/2gN4DZ//ODTsC2MIUgPmmo61
-         ON2/5o/f/AKU/RxBPgIjdHwS0VPjjVCOUAMVaLQAAqDAB/iLmZ4f3pThpKXkiGUykA/G
-         bTe1O7GFBykx91C9oRHLJeDFe2AGevjOypGvGv1wVmYjaiCIMlLMnHfW85mYfdw1hnTm
-         u2quCAyPeZARU4VE70txa5O5o5Nm//9OOk0+lgJ57XoEFaVoFgGU25Cr6jWhG2vuAjpO
-         fJng==
-X-Forwarded-Encrypted: i=1; AJvYcCXWeqkrAXxUuBGxbtSxejsuU85UPy7oRlKBNt2Bh9ixBA3wxMl8cqRRX4VWwBjlL53zVdZ7blZBRAmz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4uulW+oyMw9zXbBhuX49jvt3nwDs6GxlJkKESJEcB9izmorNa
-	RcSYgdXyResVMejhBJrVDeIkN/mH3eDw3TTGzMoz5ySRCe8AuNTK4Kk7GWQYZn5Fd6VqXH8NFAw
-	Em9BC+3qRRWZAkorL4fTiUjdOy0Zio8MK+BpyaFQP9atHXPNa9n7K+Zv2MRv9CFqk
-X-Gm-Gg: ASbGncteJMVQJ3HRXr2zVrWMPtwvbfKAAAy+9svmml0CiM2CmiqfTDykFz/Fb0RVi9M
-	AytWHAZ94/RRkhdAjHzRl6hNIhgdTi+HzSprXh3v/05EK7dl02XFCCiscahmHF+OS2+WMylf0Da
-	2UX7YsyluwPs3DTAhbLNfuvWsblY/9bBF9cwWRQ21be0EVoLhYIhBUOAlOLFF1qgE1qm13ckSyc
-	6ocDwhLJZeuoUpyK5OFtAacGAkbEKC9swIqGiWpQIsMnylFekwjufDhJhlcbx+N4DtRQZJuWDe4
-	bmrylrX8qZMgd+RRpUTmB2SbGXWltS6btMLjt+Id5R2b1RwxDF8vptIJAhHf5JGIUHdE4K9xiTJ
-	TE1hSd7Sf1/XqR7r5So1R0w==
-X-Received: by 2002:a17:90b:4c8a:b0:340:fb6a:cb4c with SMTP id 98e67ed59e1d1-3436cd064efmr16227969a91.30.1762872728692;
-        Tue, 11 Nov 2025 06:52:08 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHPNkW8hxtm48MCmWzwGS5Xaut0loCR++uqJQRZWgnCErEm9erUxXbzVLKElqgpRN181cAIlQ==
-X-Received: by 2002:a17:90b:4c8a:b0:340:fb6a:cb4c with SMTP id 98e67ed59e1d1-3436cd064efmr16227916a91.30.1762872728121;
-        Tue, 11 Nov 2025 06:52:08 -0800 (PST)
-Received: from [10.206.103.12] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-343d0173239sm1432594a91.16.2025.11.11.06.52.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Nov 2025 06:52:07 -0800 (PST)
-Message-ID: <07221941-4546-4153-b845-594be006e79a@oss.qualcomm.com>
-Date: Tue, 11 Nov 2025 20:21:59 +0530
+	s=arc-20240116; t=1762873244; c=relaxed/simple;
+	bh=HrCGAnADA84tzQ5+Lo3+CayeuJ+LB8eFol9AnK+Ndrk=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WlG0+iglS2+KIGjEn2IC2/kMKxpYxKxQFHTd6aUXeBn6UgzH0GZl9uwm7X/CEsQyqUoAZUY2XEJMGar9w4mcJl16RqP3MARf0u/OxnXXhGLbQsyddyRYr9i5kj28Q+hVGhiSZ9t9IMdC1KUN/7wRmHUvTK3bCIRiBxjDyrrgXGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4d5V863PSQzHnGhS;
+	Tue, 11 Nov 2025 23:00:22 +0800 (CST)
+Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
+	by mail.maildlp.com (Postfix) with ESMTPS id BB289140136;
+	Tue, 11 Nov 2025 23:00:39 +0800 (CST)
+Received: from localhost (10.203.177.99) by dubpeml500005.china.huawei.com
+ (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 11 Nov
+ 2025 15:00:38 +0000
+Date: Tue, 11 Nov 2025 15:00:33 +0000
+From: Alireza Sanaee <alireza.sanaee@huawei.com>
+To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <coresight@lists.linaro.org>, <dianders@chromium.org>,
+	<james.clark@linaro.org>, <jonathan.cameron@huawei.com>, <krzk@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-perf-users@vger.kernel.org>,
+	<mark.rutland@arm.com>, <mike.leach@linaro.org>, <robh@kernel.org>,
+	<ruanjinjie@huawei.com>, <saravanak@google.com>, <suzuki.poulose@arm.com>,
+	<sudeep.holla@arm.com>
+Subject: Re: [PATCH v4 2/6] arch_topology: drop the use of cpu_node in the
+ pr_info
+Message-ID: <20251111150033.00002254.alireza.sanaee@huawei.com>
+In-Reply-To: <20250905161830.37-3-alireza.sanaee@huawei.com>
+References: <20250905161830.37-1-alireza.sanaee@huawei.com>
+	<20250905161830.37-3-alireza.sanaee@huawei.com>
+Organization: Huawei
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] dt-bindings: display/msm/rgmu: Document A612 RGMU
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Dan Carpenter <dan.carpenter@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jie Zhang <jie.zhang@oss.qualcomm.com>
-References: <20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com>
- <20251107-qcs615-spin-2-v2-3-a2d7c4fbf6e6@oss.qualcomm.com>
- <20251110-persimmon-wombat-of-holiness-6b3f9c@kuoka>
-Content-Language: en-US
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-In-Reply-To: <20251110-persimmon-wombat-of-holiness-6b3f9c@kuoka>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: YECe-TMU5map608E2zopT06CXX-stOpo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDEyMCBTYWx0ZWRfX3ASCGWxBwXgh
- tnQJ25UW3ahaAstFvutk/rRbeOGVeIaFkTrYh9cPucKwBpe4WlSoP23AFadKAEcdrC+tUZrMVyk
- 1Oaj+44fgc4gUcwaUXfFTNvV22Ia4vbQ+SiGgmcTxwVbDmhmoWVpTfKLP0zyWjEYSGo9+ROrTx3
- J96gB8FBX/8i9sdCgALJU5ajHg5U5pkA8qmY/MVICrsA2xatkLmL2lIToret/eOduzWME/bOPm/
- +uh0YcpuL2ZBMmjyW5yZl1X2AVDzWolwdyBx47PBV57Hf5RrWA1pWKn5yexUSMXjI0TRfyBh1di
- //gB8F9CVipvmBSac94x0Pecp/OduysuCx2jh46iNO1HPrfnKbLJ4NTAzm2D706vd8GAzT7w2X1
- 16Dk73qh2hJ813y6QWMmioqxSPssPw==
-X-Authority-Analysis: v=2.4 cv=B5u0EetM c=1 sm=1 tr=0 ts=69134d99 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=UXIAUNObAAAA:8 a=EUspDBNiAAAA:8
- a=9x9RmpQyoqOX9MKIOEcA:9 a=QEXdDO2ut3YA:10 a=bFq2RbqkfqsA:10
- a=rl5im9kqc5Lf4LNbBjHf:22 a=sptkURWiP4Gy88Gu7hUp:22 a=a1s67YnXd6TbAZZNj1wK:22
- a=poXaRoVlC6wW9_mwW8W4:22
-X-Proofpoint-GUID: YECe-TMU5map608E2zopT06CXX-stOpo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-11_02,2025-11-11_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 suspectscore=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 spamscore=0 impostorscore=0 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511110120
+X-ClientProxiedBy: lhrpeml500011.china.huawei.com (7.191.174.215) To
+ dubpeml500005.china.huawei.com (7.214.145.207)
 
-On 11/10/2025 1:21 PM, Krzysztof Kozlowski wrote:
-> On Fri, Nov 07, 2025 at 02:20:08AM +0530, Akhil P Oommen wrote:
->> From: Jie Zhang <jie.zhang@oss.qualcomm.com>
->>
->> RGMU a.k.a Reduced Graphics Management Unit is a small state machine
->> with the sole purpose of providing IFPC (Inter Frame Power Collapse)
->> support. Compared to GMU, it doesn't manage GPU clock, voltage
->> scaling, bw voting or any other functionalities. All it does is detect
->> an idle GPU and toggle the GDSC switch. As it doesn't access DDR space,
->> it doesn't require iommu.
->>
->> So far, only Adreno 612 GPU has an RGMU core. Document RGMU in the GMU's
->> schema.
->>
->> Signed-off-by: Jie Zhang <jie.zhang@oss.qualcomm.com>
->> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
->> ---
->>  .../devicetree/bindings/display/msm/rgmu.yaml      | 131 +++++++++++++++++++++
->>  MAINTAINERS                                        |   1 +
->>  2 files changed, 132 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/rgmu.yaml b/Documentation/devicetree/bindings/display/msm/rgmu.yaml
->> new file mode 100644
->> index 000000000000..7621556477d0
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/msm/rgmu.yaml
-> 
-> Filename matching compatible, so qcom,adreno-rgmu.yaml
-> 
-> 
->> @@ -0,0 +1,131 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->> +%YAML 1.2
->> +---
->> +
->> +$id: http://devicetree.org/schemas/display/msm/rgmu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: RGMU attached to certain Adreno GPUs
->> +
->> +maintainers:
->> +  - Rob Clark <robin.clark@oss.qualcomm.com>
->> +
->> +description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-> 
->> +  RGMU (Reduced Graphics Management Unit) IP is present in some GPUs that
->> +  belong to Adreno A6xx family. It is a small state machine that helps to
->> +  toggle the GX GDSC (connected to CX rail) to implement IFPC feature and save
->> +  power.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: qcom,adreno-rgmu-612.0
->> +      - const: qcom,adreno-rgmu
->> +
->> +  reg:
->> +    items:
->> +      - description: Core RGMU registers
->> +
->> +  reg-names:
->> +    items:
->> +      - const: gmu
-> 
-> Drop reg-names, useless for one entry with same name as the block name.
-> 
->> +
->> +  clocks:
->> +    items:
->> +      - description: GMU clock
->> +      - description: GPU CX clock
->> +      - description: GPU AXI clock
->> +      - description: GPU MEMNOC clock
->> +      - description: GPU SMMU vote clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: gmu
->> +      - const: cxo
->> +      - const: axi
->> +      - const: memnoc
->> +      - const: smmu_vote
->> +
->> +  power-domains:
->> +    items:
->> +      - description: CX GDSC power domain
->> +      - description: GX GDSC power domain
->> +
->> +  power-domain-names:
->> +    items:
->> +      - const: cx
->> +      - const: gx
->> +
->> +  interrupts:
->> +    items:
->> +      - description: GMU OOB interrupt
->> +      - description: GMU interrupt
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: oob
->> +      - const: gmu
->> +
->> +  operating-points-v2: true
->> +  opp-table:
->> +    type: object
->> +
->> +required:
-> 
-> compatible
-> 
->> +  - reg
->> +  - reg-names
->> +  - clocks
->> +  - clock-names
->> +  - power-domains
->> +  - power-domain-names
->> +  - interrupts
->> +  - interrupt-names
-> 
-> Keep the same order as in properties.
-> 
->> +  - operating-points-v2
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,qcs615-gpucc.h>
->> +    #include <dt-bindings/clock/qcom,qcs615-gcc.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/power/qcom,rpmhpd.h>
->> +
->> +    rgmu: rgmu@506a000 {
-> 
-> Drop label.
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> If you cannot find a name matching your device, please check in kernel
-> sources for similar cases or you can grow the spec (via pull request to
-> DT spec repo).
+On Fri, 5 Sep 2025 17:18:25 +0100
+Alireza Sanaee <alireza.sanaee@huawei.com> wrote:
 
-I guess we can use 'gmu' here as that name is already in use for other
-chipsets?
+Hi everyone,
 
-Ack for all other suggestions. Will update the patch.
++CC Sudeep.
 
--Akhil
+I checked the patchset related to this patch and it still applies.
 
+Just a reminder if case you think it is ready.
+
+Thanks,
+Alireza
+
+> Remove the use of cpu_node in the pr_info(). When of_cpu_node_to_id() fails,
+> it may set a pointer, cpu_node, and the get_cpu_for_node() function uses that
+> pointer to log further in the fail scenario.
 > 
-> Best regards,
-> Krzysztof
+> Also, change the structure to exit early in fail scenarios which will
+> help enabling code unification that follows in this series.
 > 
+> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+> Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
+> ---
+>  drivers/base/arch_topology.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/base/arch_topology.c b/drivers/base/arch_topology.c
+> index 1037169abb45..6fafd86f608a 100644
+> --- a/drivers/base/arch_topology.c
+> +++ b/drivers/base/arch_topology.c
+> @@ -481,12 +481,13 @@ static int __init get_cpu_for_node(struct device_node *node)
+>  		return -1;
+>  
+>  	cpu = of_cpu_node_to_id(cpu_node);
+> -	if (cpu >= 0)
+> -		topology_parse_cpu_capacity(cpu_node, cpu);
+> -	else
+> -		pr_info("CPU node for %pOF exist but the possible cpu range is :%*pbl\n",
+> -			cpu_node, cpumask_pr_args(cpu_possible_mask));
+> +	if (cpu < 0) {
+> +		pr_info("CPU node exist but the possible cpu range is :%*pbl\n",
+> +			cpumask_pr_args(cpu_possible_mask));
+> +		return cpu;
+> +	}
+>  
+> +	topology_parse_cpu_capacity(cpu_node, cpu);
+>  	return cpu;
+>  }
+>  
 
 
