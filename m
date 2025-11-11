@@ -1,115 +1,199 @@
-Return-Path: <devicetree+bounces-237314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9057C4F494
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:39:53 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 070E8C4F49D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 18:40:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ACAF3A4A05
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 17:39:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DCD514E1F57
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 17:40:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B05354ADF;
-	Tue, 11 Nov 2025 17:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j3X81y3t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26CF36C5A5;
+	Tue, 11 Nov 2025 17:40:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6643AA1BB;
-	Tue, 11 Nov 2025 17:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D98B365A13
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 17:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762882781; cv=none; b=Qk8Et+tFJ2VA72xfL+2JOHKzckTG+ID0lyWQdyUjOwqCRm2WSGI5datbDxizakYs87WNEz2Ne1EOXp5r7btfsls+Jtk+oSKMo1+idZ7Dwksv2AGfB/Yfo0+1o9SyrD9wPeCzjrZqBiKP2QEFtY/SUywEq+lmpphLLBoXW2gk8Yw=
+	t=1762882801; cv=none; b=sjRV6VNPthVYoSE7iB8nTfcUpnD4KAgqLC0kjbnwjTHFzq4/BFruYKjtT9bpRrVXfSOB3vn0hlTiTzPwenxjRZ5G9CGvxdVp956isN5OwiqvQNN9geiCvhMqizF2i5mweh40ErTHdkDR/jWSMVLswsywbnZE+ZAUnAS8wuh+IGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762882781; c=relaxed/simple;
-	bh=sseQu7nEnCDYeW52KYqIspyMDbjPaOYXv8zmuvR97Oc=;
+	s=arc-20240116; t=1762882801; c=relaxed/simple;
+	bh=8rWFm5kx0uCTaC5/KSK33hm+h+JDdRob+P3tgSHU7xY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I6Q13ptUtU4AasJY6oHXlHPJYqQtJhrMESSuw94ddfCRDbhQWvh7wUdab1c2e9gyii0c/1iomBGuDN2BztWHxwhT20s+dsV8dUE6Q7Ewm3ocPNe3LulLvuxE8RXXIfGYDhr81/wrjexxn4UzewCeTqF72Mx34uXqQX/o6HukygU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j3X81y3t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBED7C4AF09;
-	Tue, 11 Nov 2025 17:39:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762882781;
-	bh=sseQu7nEnCDYeW52KYqIspyMDbjPaOYXv8zmuvR97Oc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j3X81y3t3PaO98JTZFp4iznbfvlF++ownPmqswSJk4zRn457qMOpFJbmDRUtIL6NK
-	 2kFMgd/vm2S+qwDNe2cw3xN1ysTcAy2YewYBcvh5llUJyFAHEBeXVpi4n5uU54jzLG
-	 2hs6rb8Wpfhdv4uWIUh5A8QCKFYbYM+JsJVuikzTa2B67xzkAj+BW2AE6tk/NhoLiE
-	 MGgzDf9FdNGo2zizIl0T9345ljSVQbx3j+ubtSsk5jnvtoS/Yyds//K6c1ohU+mWts
-	 xq2LhorxwXt13x8u+sDQqQyezmEuBNWKrb2d/Lzc2yw6x6La5vghfyLxvhGFgpUqSj
-	 ldXqeobgZaslQ==
-Date: Tue, 11 Nov 2025 17:39:36 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Horatiu Vultur <horatiu.vultur@microchip.com>, vkoul@kernel.org,
-	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: phy: lan966x: Add optional
- microchip,sx-tx/rx-inverted
-Message-ID: <20251111-ploy-dispersal-164ae403df4d@spud>
-References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
- <20251110110536.2596490-3-horatiu.vultur@microchip.com>
- <20251110-unwound-award-a11d69b9da4f@spud>
- <20251111095831.lp4kvdfcahtwgrqc@DEN-DL-M31836.microchip.com>
- <58b0d712-48a4-4490-a63f-404716844557@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ISJCjLAHagSxVUUbF5a71DNjqOxLZ/8M6eKcHsGxZ1S+PKt66lMbUuEpGbnrykDLqbL7u6sq9kcopydXtYE+1Q8FB/uHeZgl3cAd24RBNWrVHPLMrVks7F4gJVaPNRpynEzzX/9dEcVIe3gywjQDUMioca7bOhfQ7aEK87qyrzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <m.tretter@pengutronix.de>)
+	id 1vIsLJ-0000lw-6q; Tue, 11 Nov 2025 18:39:45 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <m.tretter@pengutronix.de>)
+	id 1vIsLI-008EwL-05;
+	Tue, 11 Nov 2025 18:39:44 +0100
+Received: from mtr by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <m.tretter@pengutronix.de>)
+	id 1vIsLH-00EYen-2z;
+	Tue, 11 Nov 2025 18:39:43 +0100
+Date: Tue, 11 Nov 2025 18:39:43 +0100
+From: Michael Tretter <m.tretter@pengutronix.de>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 1/4] media: dt-bindings: adi,adv7180: add VPP and CSI
+ register maps
+Message-ID: <aRN039bNdqD8bySl@pengutronix.de>
+Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel@pengutronix.de
+References: <20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de>
+ <20251111-b4-adv7180-vpp-sub-device-v1-1-9877fe9f709b@pengutronix.de>
+ <CAPY8ntAAbXq--N_=Lk-GeNMOt7Ucpm2zfkKOnvXB2bhY4i84zg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5voBWClPfG+Dchvf"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <58b0d712-48a4-4490-a63f-404716844557@kernel.org>
+In-Reply-To: <CAPY8ntAAbXq--N_=Lk-GeNMOt7Ucpm2zfkKOnvXB2bhY4i84zg@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: m.tretter@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Dave,
 
---5voBWClPfG+Dchvf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 11 Nov 2025 16:02:26 +0000, Dave Stevenson wrote:
+> On Tue, 11 Nov 2025 at 14:50, Michael Tretter <m.tretter@pengutronix.de> wrote:
+> >
+> > The ADV7280 and ADV7280-M have up to three register maps for the VPP and
+> > CSI. The address of these register maps may be programmed via registers
+> > in the main register map.
+> 
+> AIUI all the ADV728x devices have at least 2 addresses, signified by
+> the ADV7180_FLAG_MIPI_CSI2 and ADV7180_FLAG_I2P flags in their
+> adv7180_chip_info structures.
+> Is there a reason that you've restricted this to just the two chips?
 
-On Tue, Nov 11, 2025 at 11:06:02AM +0100, Krzysztof Kozlowski wrote:
-> On 11/11/2025 10:58, Horatiu Vultur wrote:
-> > The 11/10/2025 18:43, Conor Dooley wrote:
-> >=20
-> > Hi Conor,
-> >=20
-> >> On Mon, Nov 10, 2025 at 12:05:36PM +0100, Horatiu Vultur wrote:
-> >>> This allows to invert the N and P signals of the RX and TX Serdes
-> >>> signals. This option allows the board designer to trace their signals
-> >>> easier on the boards.
-> >>
-> >> Why can't this just be done in software, debugfs or something like tha=
-t?
-> >> Maybe it's just your description is poor, but sounds like the intention
-> >> here is to just switch things around for debug purposes.
-> >=20
-> > I don't think it should be done through debugfs. As this describes the
-> > board layout and I don't think someone will want to change it at
-> > runtime to see how things behave. So maybe the description is poor.
->=20
-> You said it is purely for hardware designer to trace signals, so sorry,
-> but that's not DTs purpose.
+I only have an ADV7280-M for testing. Thus, I restricted it to the chip
+that I could test and the variant that's the same except for the CSI.
 
-If it is not purely some sort of debug helper, then please explain
-better in your commit message.
-pw-bot: changes-requested
+> 
+> adv7281 - CSI
+> adv7281-m - CSI
+> adv7281-ma - CSI
+> adv7282 - VPP
+> adv7282-m - VPP and CSI
+> 
+> The adv7180 and adv7182 families are the only two which only have the
+> single I2C address.
 
---5voBWClPfG+Dchvf
-Content-Type: application/pgp-signature; name="signature.asc"
+Are you suggesting to extend the binding to be able to specify the
+addresses for the CSI and VPP for any of these chips?
 
------BEGIN PGP SIGNATURE-----
+Michael
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRN02AAKCRB4tDGHoIJi
-0rtuAP4stxlbERYZwunofMFT0CVT0k9d3WxbTURjHCnGuuIivAEAgt0wZFJVzyEE
-m31MhjAt4FgLLZa2KMXLuaQ/YLV9nA0=
-=HEIc
------END PGP SIGNATURE-----
-
---5voBWClPfG+Dchvf--
+> 
+> Thanks.
+>   Dave
+> 
+> > Allow to specify the addresses of the VPP and CSI in the device tree to
+> > solve address conflicts on a board level.
+> >
+> > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> > ---
+> >  .../devicetree/bindings/media/i2c/adi,adv7180.yaml | 44 ++++++++++++++++++++++
+> >  1 file changed, 44 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> > index dee8ce7cb7ba..4bbdc812442b 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> > @@ -138,6 +138,31 @@ allOf:
+> >        required:
+> >          - ports
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - adi,adv7280
+> > +              - adi,adv7280-m
+> > +    then:
+> > +      properties:
+> > +        reg:
+> > +          minItems: 1
+> > +          maxItems: 3
+> > +          description:
+> > +            The ADV7280 and ADV7280-M have up to three register maps, which can be
+> > +            accessed via the I2C port. The main register map, the VPP register map,
+> > +            and the CSI register map. The main register map is mandatory. The other
+> > +            register maps are optional and the default is used unless specified.
+> > +
+> > +        reg-names:
+> > +          minItems: 1
+> > +          items:
+> > +            - const: main
+> > +            - enum: [ csi, vpp ]
+> > +            - enum: [ csi, vpp ]
+> > +
+> >  examples:
+> >    - |
+> >      i2c {
+> > @@ -187,3 +212,22 @@ examples:
+> >                      };
+> >              };
+> >      };
+> > +
+> > +  - |
+> > +    i2c {
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            composite-in@20 {
+> > +                    compatible = "adi,adv7280-m";
+> > +                    reg = <0x20>, <0x42>, <0x44>;
+> > +                    reg-names = "main", "vpp", "csi";
+> > +
+> > +                    port {
+> > +                            adv7280_out: endpoint {
+> > +                                    bus-width = <8>;
+> > +                                    remote-endpoint = <&vin1ep>;
+> > +                            };
+> > +                    };
+> > +            };
+> > +    };
+> >
+> > --
+> > 2.47.3
+> >
+> >
+> 
 
