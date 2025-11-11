@@ -1,290 +1,100 @@
-Return-Path: <devicetree+bounces-237357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D35C4FCFA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 22:12:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0774C4FD1B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 22:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7304C4E7341
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 21:12:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C7A21897283
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 21:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E0218A6B0;
-	Tue, 11 Nov 2025 21:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8240D221282;
+	Tue, 11 Nov 2025 21:14:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ej4+SPqC"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="QCMQr7hP";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="NWBf5/sd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8EA135CBB9;
-	Tue, 11 Nov 2025 21:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CD635CBDC;
+	Tue, 11 Nov 2025 21:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762895517; cv=none; b=DgPDrNGfbyq4eFe4Jzg4nhi+BLvXzTGhzxVNLvJC8PLrvcyeG+Py8BBGIi4pOupBhkIWqaRy8Wtb18DS+vC8kTX7has6m4OkuIgaHLOBFHh0Yjmd4HI3rRf2cKpKJhHnE4P1hd4eZ90QSrkclAYmDXwRFRY+WjoxYOlXDr3wgXk=
+	t=1762895649; cv=none; b=PxTjoOIbiX1DzS8d8c5QVxYRLEyrpjt88Oc2Pj8jYf9+uxoC4bddnHTb4yeeWupC1iKVaHbtXo1iUACxIWFVeH4K9PiuQyyixJlDf9ibLIGE9qrfTXHoDtuDPvWTTBYkKbmdOK86V2rumcAzupgFr5zDT6ODkdYKFsNCi3KZYiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762895517; c=relaxed/simple;
-	bh=3lyHQk+0PzRgbds35eaJRyIdDSi1lVrFMz7RE1ZSqws=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cmQc+OPnQl+btDTSSxo0H4uGO/oaXpIj+7yRGwnZFco61i6ExDFEHxaYietAzv/TVna0NXzCsxkdWWko5Y6qJF4lAaVqx5LMIT4aAkuM+JFi3W00bnzXjtzdJxDaVNDNqOgp+Bq0WTazDhq021M0fKukmnABgcTfyikvgZ64Nkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ej4+SPqC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C80FC4CEF5;
-	Tue, 11 Nov 2025 21:11:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762895517;
-	bh=3lyHQk+0PzRgbds35eaJRyIdDSi1lVrFMz7RE1ZSqws=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ej4+SPqCnxQFqkrgxlg+EOX/GriEHMHKiEQGTqk0VlHEBdp4MpgObRj0Br9mGmslR
-	 TZ2JwH91cvp/LgqtNKWSJtPziiqWygeuczj+PV+8qBERpepo9vKssbDG3BcHwZHvso
-	 bNOsgoV/rTtLJzHljjUpJQ57q4jUKOXsQmLcR4VbnQsvZ2VrIaC7ZNTAVv0DyFV6vc
-	 x73jcH+hoKtPMTfpEADif4X8+SmFVfHcEJfrGX+F0Nzsz6HLCQ4EuvBXAVqZESLQdW
-	 4zJGzfcPhJSmsHuPCJd7LFl3zUCOH10SL3S7NwbfLLC7tyaGr0xDI13W8hmONZN9+W
-	 dljQp0vn1hbtQ==
-Date: Tue, 11 Nov 2025 21:11:48 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <nuno.sa@analog.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
- <Michael.Hennerich@analog.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <corbet@lwn.net>, <cosmin.tanislav@analog.com>,
- <marcelo.schmitt1@gmail.com>
-Subject: Re: [PATCH v1 2/3] iio: adc: Initial support for AD4134
-Message-ID: <20251111211148.322e5aaf@jic23-huawei>
-In-Reply-To: <86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt@analog.com>
-References: <cover.1762777931.git.marcelo.schmitt@analog.com>
-	<86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1762895649; c=relaxed/simple;
+	bh=FkkC1Vko+WvOxUwHMvXg7IztDR/h0HWvV2LknFPdch4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=jA0OthLA/jeGJi8tfXIoDhg3m8/cczy4QZyLvufeu9fnP/N6riUnP1mnlSznQ4+QWXBjA/5uj9iRZBK4y01vul8iUCBjKA3zVoBcz/ls0jdewUSOxl0SlM4RLNvMlBbYIrgYngQ1a3Tyaf7TmBlRpmLzGPvfhI8SlOt+ehxuilk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=QCMQr7hP; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=NWBf5/sd; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1762895643;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FkkC1Vko+WvOxUwHMvXg7IztDR/h0HWvV2LknFPdch4=;
+	b=QCMQr7hPcgn6dCNJX98bU9IBPqeWfG3Ql1Mu6n4Y9LoOsmj13Etz6iojOHwYcweudjPD6n
+	SK/kCBfBz6KHrLyBW4voUWmuCls3bRLR2gEq423UrMYkvZdtVNxv7SvFOCAP3KCL+ZhPSo
+	Dh/VMTFWyHwCEmcQ3Z8Du+I1btcxjEpqUhRVsa7eN99ptH/HLbsRNisS0yihVrXlq0rGP8
+	hRsZYRDGXfgiJHTuKco1FN4OkNy+IONOBB7xByVDeUTKgENRw/W1pfx/4LJrIVjnP3S1Qz
+	mO56wI/bcpbDvixGbOZtVIv1bUZhfKw7uJGMp7CkplGZ5sr9XomnpaqRXhYcJA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1762895643;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FkkC1Vko+WvOxUwHMvXg7IztDR/h0HWvV2LknFPdch4=;
+	b=NWBf5/sdMIqLgR3LBr+nNke9DKJfpj5OuIHKoW7Yv0z8dk6zF4g7KO2sAVROMns0UW7FTe
+	1xvl6jVq0thmABAw==
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+ <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Yangtao Li
+ <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Lorenzo
+ Pieralisi <lpieralisi@kernel.org>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Nicolas Ferre
+ <nicolas.ferre@microchip.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Claudiu Beznea
+ <claudiu.beznea@tuxon.dev>, Maximilian Luz <luzmaximilian@gmail.com>, Hans
+ de Goede <hansg@kernel.org>, Ilpo =?utf-8?Q?J=C3=A4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>, Daniel Lezcano
+ <daniel.lezcano@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 08/13] irqchip/atmel-aic: Simplify with
+ of_machine_get_match_data()
+In-Reply-To: <20251106-b4-of-match-matchine-data-v1-8-d780ea1780c2@linaro.org>
+References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
+ <20251106-b4-of-match-matchine-data-v1-8-d780ea1780c2@linaro.org>
+Date: Tue, 11 Nov 2025 22:14:02 +0100
+Message-ID: <87cy5oxof9.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-On Mon, 10 Nov 2025 09:45:40 -0300
-Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+On Thu, Nov 06 2025 at 20:07, Krzysztof Kozlowski wrote:
+> Replace open-coded getting root OF node, matching against it and getting
+> the match data with new of_machine_get_match_data() helper.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> AD4134 is a 24-bit, 4-channel, simultaneous sampling, precision
-> analog-to-digital converter (ADC). The device can be managed through SPI or
-> direct control of pin logical levels (pin control mode). The AD4134 design
-> also features a dedicated bus for ADC sample data output. Though, this
-> initial driver for AD4134 only supports usual SPI connections.
-> 
-> The different wiring configurations will likely require distinct software
-> to handle. So, the code specific to SPI is enclosed in ad4134-spi.c, while
-> functionality that may be useful to all wiring configuration is set into
-> ad4134-common.h and ad4134-common.c.
-
-'maybe' isn't usually a justification for a split.  If that code
-was on list even as an RFC before merging  I'd be fine with this, but if it is
-something we might never see upstream, then squash the abstractions for
-now. Those then end up being introduced as a precursor part of the patch
-set that gives them a reason to exist.
-
-> 
-> Add basic support for AD4134 that allows single-shot ADC sample read.
-> 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-A few other comments inline,
-
-Thanks, J
-> diff --git a/drivers/iio/adc/ad4134-common.c b/drivers/iio/adc/ad4134-common.c
-> new file mode 100644
-> index 000000000000..05332a640926
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad4134-common.c
-
-> +
-> +static const char *const ad4134_clk_sel[] = {
-> +	"xtal1-xtal2", "clkin"
-> +};
-> +
-> +static int ad4134_clock_select(struct ad4134_state *st)
-> +{
-> +	struct device *dev = st->dev;
-> +	struct clk *sys_clk;
-> +	int ret;
-> +
-> +	ret = device_property_match_property_string(dev, "clock-names",
-> +						    ad4134_clk_sel,
-> +						    ARRAY_SIZE(ad4134_clk_sel));
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to find external clock\n");
-> +
-> +	sys_clk = devm_clk_get_enabled(dev, ad4134_clk_sel[ret]);
-> +	if (IS_ERR(sys_clk))
-> +		return dev_err_probe(dev, PTR_ERR(sys_clk),
-> +				     "failed to get %s external clock\n",
-> +				     ad4134_clk_sel[ret]);
-This is a somewhat unusual approach. More common to just trying getting
-an optional clock and if that fails try the other one.
-
-devm_clk_get_optional_enabled()
-
-
-> +
-> +	st->sys_clk_rate = clk_get_rate(sys_clk);
-> +	if (st->sys_clk_rate != AD4134_EXT_CLOCK_MHZ)
-> +		dev_warn(dev, "invalid external clock frequency %lu\n",
-> +			 st->sys_clk_rate);
-> +
-> +	return 0;
-> +}
-
-> diff --git a/drivers/iio/adc/ad4134-common.h b/drivers/iio/adc/ad4134-common.h
-> new file mode 100644
-> index 000000000000..c0a553d827c9
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad4134-common.h
-
-> +
-> +#define AD4134_CH_VREG(x)			((x) + 0x50) /* chanX virtual register */
-> +#define AD4134_VREG_CH(x)			((x) - 0x50) /* chan of virtual reg X */
-
-Add a comment or two on what virtual registers are for.
-
-> +struct iio_scan_type ad4134_scan_types[] = {
-> +	AD4134_SCAN_TYPE(16, 16),
-> +	AD4134_SCAN_TYPE(16, 24),
-
-There are no buffer in here so can type ends up meaning little.
-If this eventually doesn't become useful, storage bits must be a power of 2 * 8
-So can't be 24.  
-
-> +	AD4134_SCAN_TYPE(24, 24),
-> +	AD4134_SCAN_TYPE(24, 32),
-> +};
-> +
-> +#define AD4134_CHANNEL(_index) {						\
-> +	.type = IIO_VOLTAGE,							\
-> +	.indexed = 1,								\
-> +	.channel = (_index),							\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),				\
-> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),			\
-> +	.scan_index = (_index),							\
-> +	.has_ext_scan_type = 1,							\
-> +	.ext_scan_type = ad4134_scan_types,					\
-> +	.num_ext_scan_type = ARRAY_SIZE(ad4134_scan_types)			\
-> +}
-
-> diff --git a/drivers/iio/adc/ad4134-spi.c b/drivers/iio/adc/ad4134-spi.c
-> new file mode 100644
-> index 000000000000..7d0749e5c084
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad4134-spi.c
-> @@ -0,0 +1,287 @@
-
-> +
-> +#include "ad4134-common.h"
-
-> +static int ad4134_reg_write(void *context, unsigned int reg, unsigned int val)
-> +{
-> +	struct ad4134_state *st = context;
-> +	struct spi_device *spi = to_spi_device(st->dev);
-> +	struct spi_transfer xfer = {
-> +		.tx_buf = st->tx_buf,
-> +		.rx_buf = st->rx_buf,
-> +		.len = AD4134_SPI_MAX_XFER_LEN,
-> +	};
-> +	int ret;
-> +
-> +	ad4134_prepare_spi_tx_buf(reg, val, st->tx_buf);
-> +
-> +	ret = spi_sync_transfer(spi, &xfer, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (st->rx_buf[2] != st->tx_buf[2])
-> +		dev_dbg(st->dev, "reg write CRC check failed\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad4134_data_read(struct ad4134_state *st, unsigned int reg,
-> +			    unsigned int *val)
-> +{
-> +	struct spi_device *spi = to_spi_device(st->dev);
-> +	struct iio_scan_type *scan_type = &ad4134_scan_types[st->current_scan_type];
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	/*
-> +	 * Data from all four channels is serialized and output on SDO. Read
-> +	 * them all but keep only the requested data.
-
-I'm failing to spot this mode described on the datasheet.  Could you
-provide a reference section?
-
-> +	 */
-> +	for (i = 0; i < ARRAY_SIZE(ad4134_chan_set); i++) {
-> +		ret = spi_write_then_read(spi, NULL, 0, st->rx_buf,
-> +					  BITS_TO_BYTES(scan_type->storagebits));
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (i != AD4134_VREG_CH(reg))
-> +			continue;
-> +
-> +		if (scan_type->realbits == 16)
-> +			*val = get_unaligned_be16(st->rx_buf);
-> +		else
-> +			*val = get_unaligned_be24(st->rx_buf);
-> +
-> +		*val >>= scan_type->shift;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad4134_reg_read(void *context, unsigned int reg, unsigned int *val)
-> +{
-> +	struct ad4134_state *st = context;
-> +	struct spi_device *spi = to_spi_device(st->dev);
-> +	struct spi_transfer xfer = {
-> +		.tx_buf = st->tx_buf,
-> +		.rx_buf = st->rx_buf,
-> +		.len = AD4134_SPI_MAX_XFER_LEN,
-> +	};
-> +	unsigned int inst;
-> +	int ret;
-> +
-> +	if (reg >= AD4134_CH_VREG(0))
-> +		return ad4134_data_read(st, reg, val);
-
-If you are going down this path the xfer isn't used.  To avoid that being
-a little confusing I'd factor out the rest of this function into a helper
-
-> +
-> +	inst = AD4134_REG_READ_MASK | reg;
-> +	ad4134_prepare_spi_tx_buf(inst, 0, st->tx_buf);
-> +
-> +	ret = spi_sync_transfer(spi, &xfer, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = st->rx_buf[1];
-> +
-> +	/* Check CRC */
-> +	if (st->rx_buf[2] != st->tx_buf[2])
-> +		dev_dbg(st->dev, "reg read CRC check failed\n");
-> +
-> +	return 0;
-> +}
-
-
-> +
-> +static const struct ad4134_bus_info ad4134_min_io_bus_info = {
-
-given it's a mix of bus specific and other stuff, I'm not sure 
-that calling this bus_info makes sense.  Maybe just ad4134_info?
-
-> +	.chip_info = &ad4134_chip_info,
-> +	.bops = &ad4134_min_io_bops,
-> +};
-
-
+Acked-by: Thomas Gleixner <tglx@linutronix.de>
 
