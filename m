@@ -1,44 +1,45 @@
-Return-Path: <devicetree+bounces-237363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732F9C500C8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 00:27:38 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20B84C50154
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 00:43:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3D6954E187D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 23:27:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 88B9D34AF4A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 23:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE90F2F39BD;
-	Tue, 11 Nov 2025 23:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07022F39B1;
+	Tue, 11 Nov 2025 23:43:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF4D2D6E5B
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 23:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60122BCF6C
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 23:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762903653; cv=none; b=gr6cTwD6q99WE7iQUh1o41B2fGlGG5VkJ+B6H5K2cqyit40ooJrN/r70fM0YjRHD7h2aE84RKIHMtfwFdnF+J0aY4fHM/j14D/3RA3yvcLDMmEFP4Iz1MJqFTv9/uM9O4kzM4NzriCMV9igMv5E0LczOjHYTcwHmNI4+uUC9GLw=
+	t=1762904632; cv=none; b=ehLf0hmeXgPQ6Zz/JVf+pFcKkpTJfXLHGhPkDuA+BoB/vYSwgnez3HXlCj9eiy7a3wPDW9QZEFSZsuqQFRT9A/mTbZQC3aZ2cHOPCtVAmbEp4o2SQGYbFwkYP4KawejciEOVwKM9gt6bQtAoEmEUxI6/SouhD632REGCfAJxhSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762903653; c=relaxed/simple;
-	bh=8m7+lLxwK1jgMXxcjpi4/8w6gGpmXSjUb/55SFWQpN4=;
+	s=arc-20240116; t=1762904632; c=relaxed/simple;
+	bh=B3Dnut4fQJEwN7E5t5xea2YKLQFbYio9PBFTVtf0OEY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hfTpfyn9+eImKBiDFHdmXhR6xaT4qAtaxLAUfZt0cKbI72F3d+WwUux4/sDdjBsYjlPRhQVw38dbXTRAYhOUfsHIofp8CTCPWOT5gTTECuEJx/ybqfZ+sW3cB4CDGDFsm819QH+/+KfTmoeECKVMgx7G/9N09TlvbtkYTzt6r50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
+	 In-Reply-To:Content-Type; b=e2gdIanmYrvNzcItajuR7iBM+HlOreFg+WTj/ITZqTNfG4IJg4QfrVKCBaiFjJvCuqEroFFwC34OTzklOOFMfXzuhJm62Y//sFgg/CciPXA1RA9ISsLcfUSd+3aaBLC+zjdsGOQxXZdHjs8IP11uSIEiyf27YNBX5XLUXhoXqGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.34.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip3t1762903615t82afb619
-X-QQ-Originating-IP: GxSOz8m4pUuf5yJc/YFgisTpIHHzieLlbtJIzItwdMs=
+X-QQ-mid: zesmtpip2t1762904540t397faa64
+X-QQ-Originating-IP: 3dcZPtBgO74voEANBI/ulcXObdXebQI56V2G+7JYn5A=
 Received: from [IPV6:240f:10b:7440:1:16e6:e9c9 ( [localhost])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 12 Nov 2025 07:26:51 +0800 (CST)
+	id ; Wed, 12 Nov 2025 07:42:15 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 7311237971037193580
-Message-ID: <2892FE50237CD58E+0f15924c-a915-4446-954c-d81a782d23e9@radxa.com>
-Date: Wed, 12 Nov 2025 08:26:50 +0900
+X-BIZMAIL-ID: 6471954112606321515
+EX-QQ-RecipientCnt: 24
+Message-ID: <774C3AB9F17BAE47+14f8b8ba-ba78-410e-b44c-4d077585d05a@radxa.com>
+Date: Wed, 12 Nov 2025 08:42:15 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,111 +47,198 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Joseph Kogut <joseph.kogut@gmail.com>, heiko@sntech.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se,
- kever.yang@rock-chips.com, honyuenkwun@gmail.com, quentin.schulz@cherry.de,
- pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251105051335.17652-1-naoki@radxa.com>
- <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
- <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
- <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
- <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
+ Radxa boards
+To: Quentin Schulz <quentin.schulz@cherry.de>,
+ Dragan Simic <dsimic@manjaro.org>
+Cc: Diederik de Haas <diederik@cknow-tech.com>, heiko@sntech.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jbx6244@gmail.com,
+ pgwipeout@gmail.com, jonas@kwiboo.se, ziyao@disroot.org, amadeus@jmu.edu.cn,
+ nicolas.frattaroli@collabora.com, pbrobinson@gmail.com, wens@kernel.org,
+ detlev.casanova@collabora.com, stephen@radxa.com,
+ sebastian.reichel@collabora.com, liujianfeng1994@gmail.com,
+ andy.yan@rock-chips.com, damon.ding@rock-chips.com,
+ kylepzak@projectinitiative.io, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20251111054112.55505-1-naoki@radxa.com>
+ <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
+ <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
+ <B0C8C5A69B9F465E+ba0ad139-d3d9-4492-ac9a-cc58f8f35074@radxa.com>
+ <41275775-9e6e-9202-4c79-6140a56e41d5@manjaro.org>
+ <572f341f-a5fa-4f1c-ad60-a5fe3e046d6d@cherry.de>
 Content-Language: en-US
 From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
+In-Reply-To: <572f341f-a5fa-4f1c-ad60-a5fe3e046d6d@cherry.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-QQ-SENDSIZE: 520
 Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: MACXe2l6e7j9v35cxXlys+2Rt/Tfvmp+C/JDYstf5N1eJjSCrrzBpj2t
-	/+q2eErhxM3t02+A2KHIcK0kiGMXFdm9ds5wXpgtrLq46v6yR4bgasN2bSWf4AgCpGHn/TY
-	gtsQx3qlzNU/jYSBqGiElg40HfhHpByJ9ysIsfhBQKFGdBpn71JRF4dPnyWqJA2spYSx6hk
-	AZrNOswF2ewnfbAo1/ul0wXtaBKxUGmucs1XMazKjw7FfHjKGKsagIROa5I91ucHSHXfpHP
-	dI0e1OBXOutCA2bIFDIizWdmzaFJ7HtIcE4IXG2lLCcCAWfrPUkTbyGxkhL+dI9247S/l5y
-	8sf6tw3yA61ikdAMzGTDV0lVgt+nfGnh7uCGMeLSsLtBChumYDqzHvHHqbulKD3la5ee+qX
-	6RQjL1XoKvDF2tCw+q+z2b15mL6jCq1vggis3aBBfHLvLH7SW1Kh0ptZDkigicaDtOszkS1
-	5Olfn6RR0Mma4Cyo3kcOVupkAqeAw0w1XENgKaMQV7wmB4m6mM1D6HWz9Q/QdsRdSLumksD
-	lfPb+OpayuV4rr7QybPs36OCCWg+2WQl1ik3SyiIkSFLu9CE/zQWpDTKH5nI7Nwz4nkGf0K
-	cEoW2qScq9GMgT2KejteH3/9zKPF7ORXRz76EYiAm/QVoJ7DHt9ihk6KjpgF3J5wFRt0/Vx
-	tRME7IRke3W4xgWFxPXEX2tYLD3Qb03EZD8ml33uxytOSzJbWRqabHMI1oK0IsUNDzauZb+
-	pu6HmjByzdRiJnQACO8eL4eRcwEWd+TrdJhynO4dYjJOT1YdUpXoshziKXctMJJ64MsZIKA
-	RdDbzOmqKjySsFQSxKj4sQXEYh8ZzcGiU5yg+DrBt9StfSXJx0qgZeowHVRoh/3X6rxucVm
-	Xopi1va0hs5jwba/0k1GuPrRVcpUNhLBUlz/Pg2RKBgGHA8jvSREA84bW8HWTfix4RtHfDT
-	tMkxIpW6VY4JdWR7tqeSD9uUaf0aGlpNZygs8S99h6n6eQFB3Q+BwR0GQ
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+X-QQ-XMAILINFO: M1tjFO1fqc+0IfBo9l2tuQU3vy+iWq+8WnPAtaUAuOdXJkKN2Gd2jVhD
+	3oGBZgB1n9ZktmGoaJVVKDLwiSHWY4XEy8+VH2UH1uc9PwC/NUKvPM0D8R1MP0fqHHw5T8Z
+	Fg9kH3zMaV7qdK+LSjO4QZkXAH/rUsx0AeR2IUZzXRQq5bOGF/Un6ewVJ+wO3s43vIHiIp4
+	/6ySfUvPjc/sgdW9M3V5s3fmznNUm0luip6eST58WBO2v+vACqy7qXJWZ68HM1qJ9cgLg5N
+	T2MlSwWFl4JDi/blch0+xYBdMGsI/GbFDQNADtMVmty6bwEppBe+KLn/OWb64Mmdd01AF8V
+	3w30yaIoYEDpaWvqVqTUX4TXoSEx4obvJsLn/FQfJgu2sS+Lz0MGrRDatSLVMPCHLG07tgR
+	cXe2HWE0roeBcEVmrnz+wE6emSzB2TT7oXCMFnXEpGj0xFPGRabAKLlAqKdRgBjFyX3j5YF
+	KuFquD4i8qMI9FNwRPIe6G2tKGhpNpWSFQSZRarnU+HTGj1p7F9Jzq9emPzJaEZwM1/LN2b
+	LZqtghuLDMLnnKRg91wYEUcMF6Q1JEypHfWcC9jmHOx85zfdS7QKrsJTNUCSfmbBa6ofkTS
+	Zchpl/r9Ro7th5wKS85zKoU12lrcFliwUH34yO441KjkRrFv+LkUdYf5cGh86o6ADV/1Hxh
+	SQvdmUUMBxcdv6N+4fmmUJPq1DitgbKdzatEaTN1LSOi3vGRjha4Tg3vkRKoNephw8OMDaL
+	Jytq1St9UzDuSx/MatiV+kGG2DGN6PXn0Q5/C6EZPjOlCF8GizT9Bb0azRQh9Y2cyH8gJx0
+	WJe6jxqXMx/thmw7tV7Vflfl3Dj9c0vayfyfULWOlEuUlHexzIy7EbKwb1CdQ4gGZ6pxsO7
+	1a7Nm/CLfhziqiu2PfXcZrGlB2shSS47G3VJ26MhNBY3HLvn43owLcocqZxoss+dTzMQCj4
+	be6cNBUOeiXEsNWpLsPSMnNjZtD+2+Q8pdwKWVButu+DVvLWDvpNW2+OeVSEjK2NPdPbgX1
+	fq+NNC0A==
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
 X-QQ-RECHKSPAM: 0
 
-Hi Dragan, Joseph,
+Hi Quentin,
 
-On 11/11/25 23:33, Dragan Simic wrote:
-> Hello all,
+On 11/12/25 03:32, Quentin Schulz wrote:
+> Hi all,
 > 
-> On Tuesday, November 11, 2025 12:52 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
->> On 11/6/25 02:48, Joseph Kogut wrote:
->>> On Wed, Nov 5, 2025 at 4:15 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>> I'd like to clarify the situation regarding the v6 patch series I submitted.
->>>>
->>>> The original device tree work for the Radxa CM5 and IO Board was
->>>> authored by Joseph Kogut. I took over the responsibility of getting it
->>>> upstreamed with his agreement.
->>>
->>> I'll confirm this. I've been in communication with Naoki. They made a
->>> large number of revisions to my original patch series, which I think
->>> have technical merit. I suggested they submit the patches themselves,
->>> and gave them explicit permission to add my Signed-off-by and CC me.
->>>
->>> I assume this was the correct way for them to continue the work I
->>> started, but if not, please let us know the best way to proceed.
+> On 11/11/25 5:14 PM, Dragan Simic wrote:
+>> Hello all,
 >>
->> Can anyone help us?
+>> (+ Quentin)
+>>
+>> On Tuesday, November 11, 2025 16:32 CET, FUKAUMI Naoki 
+>> <naoki@radxa.com> wrote:
+>>> On 11/11/25 23:46, Dragan Simic wrote:
+>>>> On Tuesday, November 11, 2025 14:07 CET, "Diederik de Haas" 
+>>>> <diederik@cknow-tech.com> wrote:
+>>>>> On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
+>>>>>> Radxa's boards turn all LEDs on at boot(loader), but some boards 
+>>>>>> don't
+>>>>>> have `default-state` property in Linux kernel tree but have it in
+>>>>>> U-Boot tree instead[1].
+>>>>>>
+>>>>>> This patch adds `default-state = "on"` for (almost) all LEDs (with a
+>>>>>> few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
+>>>>>> WAN LEDs on E20C/E52C).
+>>>>>
+>>>>> I'm missing the *why* these changes would be an improvement.
+>>>>>
+>>>>> Personally, for both 'heartbeat' and 'netdev' triggers, I want them to
+>>>>> be off by default and once it gets a 'heartbeat' or a 'netdev' 
+>>>>> trigger,
+>>>>> THEN I want the LED to be on/blinking.
+>>>>
+>>>> That's a good question for Naoki.  My own preference would also
+>>>> be to have the device's power LED turned on by U-Boot as quickly
+>>>> as possible after supplying power to the board or turning it on
+>>>> by pressing the power button.  I'm actually not a big fan of
+>>>> having all the LEDs shining for a couple of seconds or so, which
+>>>> may actually look like some error condition to me.
+>>>>
+>>>> Having all that in mind, I may suggest that just the U-Boot's
+>>>> behavior is changed to turn the power LEDs on only.
+>>>
+>>> I can't quite explain it, but...
+>>>
+>>> - 1st (Power) LED
+>>>
+>>> The 1st (power) LED turns on automatically/immediately without software
+>>> intervention. (On some boards, this LED cannot be controlled by software
+>>> at all.)
+>>>
+>>> In DTS, this should be described using `default-state = "on"`. The use
+>>> of the Linux-specific property `linux,default-trigger = "default-on"` is
+>>> unsuitable for non-Linux environments.
+>>>
+>>> - 2nd (Heartbeat) LED
+>>>
+>>> The 2nd (heartbeat) LED can be controlled by software. It should be lit
+>>> up as quickly as possible to indicate that the very first software
+>>> (e.g., the bootloader) is running.
+>>>
+>>> On Linux, usually this is used as `linux,default-trigger = "heartbeat"`.
+>>> It indicates that kernel is running (regardless of the `default-state`
+>>> setting), and its behavior can be modified in user space.
+>>
+>> As discussed already in the #linux-rockchip IRC channel, [1] perhaps
+>> the best option would be to have the power LEDs turned on as quickly
+>> upon powering on the board as possible, and to have U-Boot pulsate
+>> the heartbeat LEDs using the LED_BOOT feature.  In such a scenario,
+>> no other LEDs would be turned on early, and the LED-related DT parts
+>> specific to U-Boot would be migrated to the kernel DTs.
+>>
+>> [1] https://libera.catirclogs.org/linux-rockchip/2025-11-11#38997824;
+>>
 > 
-> I'm not exactly sure how to resolve the current situation, but for
-> Signed-off-by tags to be present, in this case you'd need to have
-> Co-developed-by tags as well, because the final patch versions,
-> which would be submitted by Naoki, would differ significantly from
-> the versions that Joseph actively worked on, if I understood
-> everything correctly.  Though, for Joseph's Signed-off-by tags to
-> be included there, he would also need to participate actively in
-> the development of the final patch versions.
+> The LED_BOOT feature (guarded by the Kconfig symbol of the same name) in 
+> U-Boot only applies if /options/u-boot/boot-led property is set.
 
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
+For the default state of the heartbeat LED, I'm thinking of using 
+LED_BOOT (/options/u-boot/boot-led), but I'm concerned that this is 
+U-Boot-specific.
 
-If
-----
-From: Joseph Kogut <joseph.kogut@gmail.com>
+> If the driver for the LED (typically a GPIO LED controller I guess, so 
+> LED_GPIO symbol) is compiled in, then, as far as I could tell, the Boot 
+> LED will be turned on right before entering the main loop of U-Boot.
+> 
+> If LED_BLINK (if HW blinking is supported) or LED_SW_BLINK is enabled, 
+> the Boot LED will be blinking some time after relocation but still 
+> turned on soon after (if it reaches that part of the code). This means 
+> it'll be on before the kernel starts.
+> 
+> I'm not sure there's a way to hook something *after* we've entered U- 
+> Boot main-loop (read "call led_boot_blink() from some board file"), 
+> aside from calling `led <led-name> blink <period>` from U-Boot CLI.
+> 
+> I'm a bit bummed by this behavior, I would have preferred the ability to 
+> have the Boot LED blink until the kernel starts. I could then have a 
+> different period for U-Boot (50% duty cycle at 250ms period by default) 
+> and for the kernel. Of course, if it's SW blinking, once exiting U-Boot 
+> it won't blink anymore until the kernel takes over, but that's also a 
+> nice information to have. Anyway, I'm not sure this is actually possible 
+> with the LED_BOOT feature though one should be able to do this by 
+> specifying the label of an LED node to fetch from DT and then calling 
+> led_set_period(dev, period_ms); followed by led_set_state(dev, 
+> LEDST_BLINK); in a board file, but this is also not so nice as it then 
+> also requires some C board-specific code in U-Boot.
+> 
+> In U-Boot, only LEDs which have a "default-state" properties will be 
+> auto-configured, otherwise one needs to control them manually (e.g. via 
+> the `led` CLI command).
 
-<changelog>
+As you know, default "default-state" is "off".
+  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/common.yaml?h=v6.17#n74
 
-Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-----
-then I can submit my patch series?
+As far as I understand, there should not be any workarounds for specific 
+implementations.
+  https://lore.kernel.org/linux-rockchip/3389401.44csPzL39Z@phil/
 
-Or,
-
-> Another option, technically a bit simpler, would be to include just
-> Originally-by tags for Joseph, which would indicate that Joseph gave
-> up on the development of the patches and handed them over to Naoki
-> for future development and submission to the mailing lists. Though,
-> that would require Joseph to publicly state exactly that.
-
-I cannot find any documentation about "Originally-by".
-Is this correct?
-----
-<changelog>
-
-Originally-by: Joseph Kogut <joseph.kogut@gmail.com>
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-----
+So removing `default-state = "off"` is acceptable, right?
 
 Best regards,
 
 --
 FUKAUMI Naoki
 Radxa Computer (Shenzhen) Co., Ltd.
+
+> If one wants to detect via an LED the current boot stage (U-Boot 
+> reached, kernel started), then we need to NOT use LED_BOOT feature and 
+> have U-Boot set the "boot" LED the opposite state than the default HW 
+> state, i.e. if the LED is on without any running SW (power applied to 
+> the device, empty boot media), then U-Boot should set it to off. Then 
+> the kernel simply needs to start the heartbeat mode whenever ready. If 
+> the default HW state is off, then U-Boot should set it on. I haven't 
+> looked into the kernel side of things, but there could be a window 
+> during which default-state property is applied before the heartbeat is 
+> actually started.
+> 
+> The logic exposed in the previous paragraph should provide visual cues 
+> on the current boot stage.
+> 
+> Note that LEDs with linux,default-trigger = "pattern" (with default- 
+> state property) will be blinking once auto-configured in U-Boot as well 
+> according to my reading of the led-uclass.c.
+> 
+> Hope this helps.
+> 
+> Cheers,
+> Quentin
+> 
 
 
