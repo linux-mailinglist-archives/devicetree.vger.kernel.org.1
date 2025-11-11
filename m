@@ -1,295 +1,159 @@
-Return-Path: <devicetree+bounces-237176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D45DC4DA67
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:23:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D866C4DA88
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:25:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C42D44E221F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:16:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2590D3ACDAE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 12:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6362B3587A2;
-	Tue, 11 Nov 2025 12:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99851358D24;
+	Tue, 11 Nov 2025 12:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AFV17qS3";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AWzrCFeo"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="kk9PJUD4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2467357739
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7098E358D17;
+	Tue, 11 Nov 2025 12:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762863395; cv=none; b=X5zDc9rwRDI3K+na85hj+6k0iFS+i7JgusT6e0IlvnS/aFyKhbq4p8o34/2ZCdnpIs3cZbwjvRownszkTditg64KP8HKn8gn6cblQr1GqytpQl2x2IpdUw+VijHIvKDEa6EfSVP4EnGUWddju2hcy/oia9UBrzUcZSkBce3kcS0=
+	t=1762863750; cv=none; b=QF2VfvYXeTO2ubQWGXBlD+SWyRI5AigLoF01WCJ+geFchv74ECNpy2YriGvehx/2ldSjlhmZeF5WvIqKONElcpHtHX0TPHKRhxkrtMUacg08exzPpqIplPMnQLILPZ6Wz734g0Hd52Qdd/C+rw+hUSawEHzRRrDrXkzLyFNZhtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762863395; c=relaxed/simple;
-	bh=CiRvglEz9obpczRFYFCnvUegm9hz7KRAd0dcBoMgiIo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RhzpuSg871sM/t2lqxfDLvqYFF44OzK52egvWlAyC1adXVf59UKKWkV/YH+/0L72ILtx5wQ3bs4yoQhON9O0/y9QFeEpIR17ly4tY2b+BPbBWBCgMxxj0wwKEOukhXcSBVD/no9YQXGWiAGsXM/cY78xpIh2zDzTHKvsedIgaRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AFV17qS3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AWzrCFeo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABBGWW02027856
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:16:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=YPO+lkN1ZUT9aHfKkRZz4Gwg
-	81V38xdtB3mnx9BFJgM=; b=AFV17qS3+1H/L5MHE1t6a4QQT5YS9LjVhVsDOtOe
-	PWIgwBZjBaoQUY+YFQHYjeiRos/5mOHATtGiHwWYJv38CRgQIZb8HsZtCfOatfWG
-	Bi3z0awzFspJJIS5zueCNqSi6hDJZGRvR6fC61N7JkKtnJBcqp9lcmsNbwyKpXi9
-	fPXgSqkzCVm1NIhjIjYioXybuKLOhpD78MwkvhjXPINxF79kJBRk/10rzZTQe6Zd
-	STC9qIP6OSFNzmWI5ZsTKlEyTCnI8gqVL6jzzQexR/zcOPDkEv35ITOxii+w8l0M
-	6Q6Ts/h1CXpU4sNrpwOomKXlqTjEGrKNN4OG2CnaDBaJhQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abxqw16bf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 12:16:32 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-88041f9e686so130585166d6.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 04:16:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762863392; x=1763468192; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YPO+lkN1ZUT9aHfKkRZz4Gwg81V38xdtB3mnx9BFJgM=;
-        b=AWzrCFeoPskyVMp4x+51B9XTgBIgO3qFWQGyjy14SkoHxlpBvkZMYhYeX4/fUvXmvL
-         wJhhFmAcK2ieFd1SHcAd0RS7jcsKUNz7OMEi7TFWOZYAm1SNr6gfPpOAQSg+aLFt8pFP
-         N1ngn8540mN1nVFxQttgQdOon3DFQIcxNaRSyQXSej3/UBJqY43SpTENOHKyQNvLK8Pe
-         g7MtTuZ54XMA7zwur8bzYwQZOk+M2tZ7wWdWXlL+gw/7fQfJs25Yk06w/ZXoq3ZKl7pW
-         Le2c2v2TsmqMA9yuejf1GYaT1ZRzF8IPmMALeV5V6hHiM+PVG2cRGD4oc5WjlP8TK1a2
-         KI5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762863392; x=1763468192;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YPO+lkN1ZUT9aHfKkRZz4Gwg81V38xdtB3mnx9BFJgM=;
-        b=h2CR8r4/cr2QAph8loxHauyKgQ56iFVCbAMD1UlY8Bj12m09m0b2PHQYQM1DpM0BM2
-         yWGzjrZ/fSRFIUQkz1nL4Fz/MhvJfW5MTkBEMI2FPirByv0rYh6gyk8mtF1UDdyJW4Wa
-         xtvoGvXsSgpwahlpM1FXpltPLnVyerqq7fQqc83Po3i8hTTN1uJbzks7QvUfnFmnN+AQ
-         JY+uqCl9vNanZBQDz85WJ1yq9BOTae6MPyKfuFxNxNIBtcHDNRWXdNyd8uAX5JVSihpo
-         FAetLt6LuP8p5EBJHe8YbDdcm/9bHszeqnGvxNmTUjv7jilP74gbKg+Ui3zowfQLGYQc
-         94eA==
-X-Forwarded-Encrypted: i=1; AJvYcCXp1Hn36JTR0vU58N6ICocwD40IxSfcmKmbQaX26JE1ale0da/FwrjUbP1oMgtiC7Fldej3AaeBdVf3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvDsFJw+3TH8O0UTm6v9xBiNNLB/C/WSHrDpCmedUPUbjelnAb
-	s0Xk9Pz7xmWk+CLvZqtFZz405dVzzeJIRNXZhrtd42YOEDro/fM29wl1RkW0W6sdpxES1G7Gzye
-	Zsmi6xn3p+w5EfIzd0MSTf7BhO/OZS8o/piuhat5SmuUn9ELlzs3vfsKbevNjQCRm
-X-Gm-Gg: ASbGncvPyPdn3GECbPHS5ZiU4YvsZf75rGZbPXGYjM6O+lc1DwJNHABFNTBhJKNyd5e
-	ZNB0m0hKO6fUZ+eiFant7p6nxPK/P87DSK57BI9OLwb9JqDTOl4jykI+BgWxmt9G0oI59exXCGv
-	rRjrfNPB1FL/m54XSMc07Be18bgFC707vz+mQNkPktVdOxpvYU3iRFSpUIBFcL9wAp5XJ3U+CWz
-	BfxLg3k20jxxwNefwtj6SEn53xUaY42GNnWGstH82O3DQcUTl+w5+Og4L/VBW4xbZVPxZFgG2eQ
-	ZwriBTLyqTV5OF+7iTqipwfZMpbP0Kj0JUs5T3xSszleE3s9dyz8eYLHrsc1KTPmJthXLIzs8kP
-	tmQxqgdo7fgQu2bpfMii2vT3Cn2yFcLc7uUha+BLVIUfy43FaxSnQU7DG7K9rwfPpPlRW0mI0US
-	RBH9MJxlUrmZGh
-X-Received: by 2002:a05:6214:f03:b0:880:8600:efbf with SMTP id 6a1803df08f44-882386d5b99mr166814486d6.56.1762863391888;
-        Tue, 11 Nov 2025 04:16:31 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEIqLMQI26kS8Yvv7q+uFtZNNaKWnnzqEHGEoO7KaLW48CDb63G5eW64vATn4eGy4RIMOQajA==
-X-Received: by 2002:a05:6214:f03:b0:880:8600:efbf with SMTP id 6a1803df08f44-882386d5b99mr166813666d6.56.1762863391140;
-        Tue, 11 Nov 2025 04:16:31 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37a5f0edc2asm41895861fa.40.2025.11.11.04.16.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Nov 2025 04:16:30 -0800 (PST)
-Date: Tue, 11 Nov 2025 14:16:27 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
-Cc: Taniya Das <taniya.das@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, jingyi.wang@oss.qualcomm.com,
-        Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] clk: qcom: rpmh: Add support for Kaanapali rpmh
- clocks
-Message-ID: <42xj5qgoh3m26y4hmdck5hfyqaxncfaeugymrmrxb7tusxjvm2@wsjztnhbp5jf>
-References: <20251030-gcc_kaanapali-v2-v2-0-a774a587af6f@oss.qualcomm.com>
- <20251030-gcc_kaanapali-v2-v2-4-a774a587af6f@oss.qualcomm.com>
- <swma6lyjfmyhl5ookdzvpjn5qresgsze5wptg45jfgj7ub6a4t@bdgfstw6gzoq>
- <507b121b-98c0-4632-8a61-e9d7a6a13a3e@oss.qualcomm.com>
+	s=arc-20240116; t=1762863750; c=relaxed/simple;
+	bh=X6y6Se/nW/e277wYLxWrMYnRgi7gLDbMTLe9oGju5Js=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=DX3rBSaXVVczypii53uaTljCkENt4aUxFLJHsf6v9aNCfC7JGy2N000NcSAxyYkWeEHiK6IV9peMDDz9KpAjJ9KyAev/fYLT/cba1eACUK8STwNSI/NPp4+Ti0ptf3+IS9eJvh266R2vS8f8h3jXfnZRhjog1nu2TSy0O2NhnQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=kk9PJUD4; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5ABCJmNG23665349, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1762863588; bh=X6y6Se/nW/e277wYLxWrMYnRgi7gLDbMTLe9oGju5Js=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:MIME-Version;
+	b=kk9PJUD4sih1dwCMEHJvr3Sxns4rr21JT+uRagUTsogYBOxEaTMOkTbYrA4ooK+KI
+	 zuDk8qBgVv9X0c9zOXy9YXe/ATI0fXIvH9wcziShVCXget3Yx4L7MMNls/tSxwV3pP
+	 a9o0iD7rKOuCzWyVxDtCifSTSRXFupuLwdC5WbEvWF9ib8qxaIVkMZJtrB03x2OXvo
+	 xsjdo3seiNpdTkYvTWxOxY7OhQ6Z3Lx/OQX7HKLxZQWluocfB5xpy+PJhL/1Gu5E8k
+	 1/srdQP0Nhq+D7uMc0hi8NVtv74QddHr6nmMoaL2M/2QCqWkZOHx8jItXPs5Wz8gmY
+	 YZgwuJuWOI0Cg==
+Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5ABCJmNG23665349
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 11 Nov 2025 20:19:48 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Tue, 11 Nov 2025 20:19:48 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Tue, 11 Nov 2025 20:19:48 +0800
+Received: from RTKEXHMBS06.realtek.com.tw ([::1]) by
+ RTKEXHMBS06.realtek.com.tw ([fe80::744:4bc9:832c:9b7e%10]) with mapi id
+ 15.02.1544.027; Tue, 11 Nov 2025 20:19:48 +0800
+From: =?utf-8?B?RWxlYW5vciBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        "afaerber@suse.de"
+	<afaerber@suse.de>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "lee@kernel.org" <lee@kernel.org>,
+        =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?=
+	<james.tai@realtek.com>
+CC: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "linux-realtek-soc@lists.infradead.org"
+	<linux-realtek-soc@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        =?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?=
+	<cy.huang@realtek.com>,
+        =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?=
+	<stanley_chang@realtek.com>
+Subject: RE: [PATCH 2/3] dt-bindings: mfd: Add Realtek ISO system controller
+Thread-Topic: [PATCH 2/3] dt-bindings: mfd: Add Realtek ISO system controller
+Thread-Index: AQHcTkE4z87SosdXOU61jeE3W7fMtLTjY5SAgAoKXOA=
+Date: Tue, 11 Nov 2025 12:19:48 +0000
+Message-ID: <06078f60af0948d19b1abae53eeec7f6@realtek.com>
+References: <20251105104452.6336-1-eleanor.lin@realtek.com>
+ <20251105104452.6336-3-eleanor.lin@realtek.com>
+ <88d90e44-88d9-4b5c-ba76-1e27dd28f78b@kernel.org>
+In-Reply-To: <88d90e44-88d9-4b5c-ba76-1e27dd28f78b@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <507b121b-98c0-4632-8a61-e9d7a6a13a3e@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDA5NyBTYWx0ZWRfXyOwBrLkugAr7
- bPy1oYPbehdAIIu2mtreOYJfZFD0iGPshbxvdWi/06QtD3Xe4BHdC6BruJzOVfKr8tMITOhj4LA
- wbbFlMYB8Um7ylE25stKSbLjoeLYqjCCycsXuKNY9l50Y4ytqqeEoh7vsufBd3/SLqKpDuPn/Ji
- FOyX1Hc9PYlf0UsQdguQhWySrFP0iIrlTLKDqpg+SFDR7/ukdsuXjiz62OJxmR7otOId0QTwZC9
- 1azq2m+RWeJEouZyfWE7aokyqv/wF1hzh98uf0IXrAb8GSgPUtpTIb7Rv6qcwicksHvYys99pbs
- lxLIuw0LjUzFCovWrON8ba3lKTmr1S7g/ZLEjLgHVGQF/sWXIFma+XqhwJGRDMQ6Y4pQspJK4dq
- 8TAMEQ8nJeeZ1tuR6bnfnr3TIFAVXw==
-X-Proofpoint-GUID: i-_3U654BFMN5ZQeBw5_J8inNZRUw-21
-X-Proofpoint-ORIG-GUID: i-_3U654BFMN5ZQeBw5_J8inNZRUw-21
-X-Authority-Analysis: v=2.4 cv=CeIFJbrl c=1 sm=1 tr=0 ts=69132921 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=40rvkjjxWIT4wm9QV3sA:9 a=CjuIK1q_8ugA:10
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-11_02,2025-11-11_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- impostorscore=0 clxscore=1015 phishscore=0 malwarescore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511110097
 
-On Tue, Nov 11, 2025 at 07:44:36PM +0800, Aiqun(Maria) Yu wrote:
-> On 11/11/2025 6:46 PM, Dmitry Baryshkov wrote:
-> > On Thu, Oct 30, 2025 at 04:39:07PM +0530, Taniya Das wrote:
-> >> Add the RPMH clocks present in Kaanapali SoC.
-> >>
-> >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> >> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> >> ---
-> >>  drivers/clk/qcom/clk-rpmh.c | 42 ++++++++++++++++++++++++++++++++++++++++++
-> >>  1 file changed, 42 insertions(+)
-> >>
-> >> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> >> index 1a98b3a0c528c24b600326e6b951b2edb6dcadd7..fd0fe312a7f2830a27e6effc0c0bd905d9d5ebed 100644
-> >> --- a/drivers/clk/qcom/clk-rpmh.c
-> >> +++ b/drivers/clk/qcom/clk-rpmh.c
-> >> @@ -395,6 +395,19 @@ DEFINE_CLK_RPMH_VRM(clk4, _a, "C4A_E0", 1);
-> >>  DEFINE_CLK_RPMH_VRM(clk5, _a, "C5A_E0", 1);
-> >>  DEFINE_CLK_RPMH_VRM(clk8, _a, "C8A_E0", 1);
-> >>  
-> >> +DEFINE_CLK_RPMH_VRM(ln_bb_clk1, _a2_e0, "C6A_E0", 2);
-> >> +DEFINE_CLK_RPMH_VRM(ln_bb_clk2, _a2_e0, "C7A_E0", 2);
-> >> +DEFINE_CLK_RPMH_VRM(ln_bb_clk3, _a2_e0, "C8A_E0", 2);
-> 
-> 
-> Shall this suffix necessary to have e0?
-
-Can there be C6A_E1 at some point?
-
-> 
-> >> +
-> >> +DEFINE_CLK_RPMH_VRM(rf_clk1, _a_e0, "C1A_E0", 1);
-> >> +DEFINE_CLK_RPMH_VRM(rf_clk2, _a_e0, "C2A_E0", 1);
-> > 
-> > What is the difference between these clocks and clk[3458] defined few
-> > lines above? Why are they named differently? If the other name is
-> > incorrect, please fix it.
-> 
-> Good shot. Only now I can understand the previous comments.
-
-In future please ask questions instead of ignoring the comments that the
-engineer can understand.
-
-> IMO for kaanapali Taniya was addressed to have the right rf_clkN naming
-> here.
-> 
-> I think the point is glymur is not using "rf_clkN" for rf_clk, sm8750 is
-> not using "ln_bb_clkN" instead it is using clkN:
-
-I don't think it's that important. These clocks either should be handled
-similarly, or there should be a good reason not to do it.
-
-> 
-> static struct clk_hw *sm8750_rpmh_clocks[] = {
-> 	[RPMH_CXO_CLK]		= &clk_rpmh_bi_tcxo_div2.hw,
-> 	[RPMH_CXO_CLK_A]	= &clk_rpmh_bi_tcxo_div2_ao.hw,
-> 	[RPMH_LN_BB_CLK1]	= &clk_rpmh_clk6_a2.hw,
-> 	[RPMH_LN_BB_CLK1_A]	= &clk_rpmh_clk6_a2_ao.hw,
-> 	[RPMH_LN_BB_CLK3]	= &clk_rpmh_clk8_a2.hw,
-> 	[RPMH_LN_BB_CLK3_A]	= &clk_rpmh_clk8_a2_ao.hw,
-> 	[RPMH_RF_CLK1]		= &clk_rpmh_rf_clk1_a.hw,
-> 	[RPMH_RF_CLK1_A]	= &clk_rpmh_rf_clk1_a_ao.hw,
-> 	[RPMH_RF_CLK2]		= &clk_rpmh_rf_clk2_a.hw,
-> 	[RPMH_RF_CLK2_A]	= &clk_rpmh_rf_clk2_a_ao.hw,
-> 	[RPMH_RF_CLK3]		= &clk_rpmh_rf_clk3_a2.hw,
-> 	[RPMH_RF_CLK3_A]	= &clk_rpmh_rf_clk3_a2_ao.hw,
-> 	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
-> };
-> static struct clk_hw *glymur_rpmh_clocks[] = {
-> 	[RPMH_CXO_CLK]		= &clk_rpmh_bi_tcxo_div2.hw,
-> 	[RPMH_CXO_CLK_A]	= &clk_rpmh_bi_tcxo_div2_ao.hw,
-> 	[RPMH_RF_CLK3]		= &clk_rpmh_clk3_a.hw,
-> 	[RPMH_RF_CLK3_A]	= &clk_rpmh_clk3_a_ao.hw,
-> 	[RPMH_RF_CLK4]		= &clk_rpmh_clk4_a.hw,
-> 	[RPMH_RF_CLK4_A]	= &clk_rpmh_clk4_a_ao.hw,
-> 	[RPMH_RF_CLK5]		= &clk_rpmh_clk5_a.hw,
-> 	[RPMH_RF_CLK5_A]	= &clk_rpmh_clk5_a_ao.hw,
-> };
-> 
-> > 
-> >> +
-> >> +DEFINE_CLK_RPMH_VRM(rf_clk3, _a2_e0, "C3A_E0", 2);
-> >> +DEFINE_CLK_RPMH_VRM(rf_clk4, _a2_e0, "C4A_E0", 2);
-> >> +DEFINE_CLK_RPMH_VRM(rf_clk5, _a2_e0, "C5A_E0", 2);
-> >> +
-> >> +DEFINE_CLK_RPMH_VRM(div_clk1, _a4_e0, "C11A_E0", 4);
-> >> +
-> >>  DEFINE_CLK_RPMH_BCM(ce, "CE0");
-> >>  DEFINE_CLK_RPMH_BCM(hwkm, "HK0");
-> >>  DEFINE_CLK_RPMH_BCM(ipa, "IP0");
-> >> @@ -901,6 +914,34 @@ static const struct clk_rpmh_desc clk_rpmh_glymur = {
-> >>  	.num_clks = ARRAY_SIZE(glymur_rpmh_clocks),
-> >>  };
-> >>  
-> >> +static struct clk_hw *kaanapali_rpmh_clocks[] = {
-> >> +	[RPMH_CXO_CLK]		= &clk_rpmh_bi_tcxo_div2.hw,
-> >> +	[RPMH_CXO_CLK_A]	= &clk_rpmh_bi_tcxo_div2_ao.hw,
-> >> +	[RPMH_DIV_CLK1]		= &clk_rpmh_div_clk1_a4_e0.hw,
-> >> +	[RPMH_LN_BB_CLK1]	= &clk_rpmh_ln_bb_clk1_a2_e0.hw,
-> >> +	[RPMH_LN_BB_CLK1_A]	= &clk_rpmh_ln_bb_clk1_a2_e0_ao.hw,
-> >> +	[RPMH_LN_BB_CLK2]	= &clk_rpmh_ln_bb_clk2_a2_e0.hw,
-> >> +	[RPMH_LN_BB_CLK2_A]	= &clk_rpmh_ln_bb_clk2_a2_e0_ao.hw,
-> >> +	[RPMH_LN_BB_CLK3]	= &clk_rpmh_ln_bb_clk3_a2_e0.hw,
-> >> +	[RPMH_LN_BB_CLK3_A]	= &clk_rpmh_ln_bb_clk3_a2_e0_ao.hw,
-> >> +	[RPMH_RF_CLK1]		= &clk_rpmh_rf_clk1_a_e0.hw,
-> >> +	[RPMH_RF_CLK1_A]	= &clk_rpmh_rf_clk1_a_e0_ao.hw,
-> >> +	[RPMH_RF_CLK2]		= &clk_rpmh_rf_clk2_a_e0.hw,
-> >> +	[RPMH_RF_CLK2_A]	= &clk_rpmh_rf_clk2_a_e0_ao.hw,
-> >> +	[RPMH_RF_CLK3]		= &clk_rpmh_rf_clk3_a2_e0.hw,
-> >> +	[RPMH_RF_CLK3_A]	= &clk_rpmh_rf_clk3_a2_e0_ao.hw,
-> >> +	[RPMH_RF_CLK4]		= &clk_rpmh_rf_clk4_a2_e0.hw,
-> >> +	[RPMH_RF_CLK4]		= &clk_rpmh_rf_clk4_a2_e0_ao.hw,
-> >> +	[RPMH_RF_CLK5_A]	= &clk_rpmh_rf_clk5_a2_e0.hw,
-> >> +	[RPMH_RF_CLK5_A]	= &clk_rpmh_rf_clk5_a2_e0_ao.hw,
-> >> +	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
-> >> +};
-> >> +
-> >> +static const struct clk_rpmh_desc clk_rpmh_kaanapali = {
-> >> +	.clks = kaanapali_rpmh_clocks,
-> >> +	.num_clks = ARRAY_SIZE(kaanapali_rpmh_clocks),
-> >> +};
-> >> +
-> >>  static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
-> >>  					 void *data)
-> >>  {
-> >> @@ -991,6 +1032,7 @@ static int clk_rpmh_probe(struct platform_device *pdev)
-> >>  
-> >>  static const struct of_device_id clk_rpmh_match_table[] = {
-> >>  	{ .compatible = "qcom,glymur-rpmh-clk", .data = &clk_rpmh_glymur},
-> >> +	{ .compatible = "qcom,kaanapali-rpmh-clk", .data = &clk_rpmh_kaanapali},
-> >>  	{ .compatible = "qcom,milos-rpmh-clk", .data = &clk_rpmh_milos},
-> >>  	{ .compatible = "qcom,qcs615-rpmh-clk", .data = &clk_rpmh_qcs615},
-> >>  	{ .compatible = "qcom,qdu1000-rpmh-clk", .data = &clk_rpmh_qdu1000},
-> >>
-> >> -- 
-> >> 2.34.1
-> >>
-> > 
-> 
-> -- 
-> Thx and BRs,
-> Aiqun(Maria) Yu
-
--- 
-With best wishes
-Dmitry
+SGkgS3J6eXN6dG9mLA0KDQpTb3JyeSBmb3IgdGhlIGRlbGF5IGluIHJlc3BvbmRpbmcgdG8geW91
+Lg0KDQo+IE9uIDA1LzExLzIwMjUgMTE6NDQsIFl1LUNodW4gTGluIHdyb3RlOg0KPiA+IEFkZCBE
+VCBiaW5kaW5nIHNjaGVtYSBmb3IgUmVhbHRlayBzeXN0ZW0gY29udHJvbGxlci4NCj4gPg0KPiA+
+IFNpZ25lZC1vZmYtYnk6IFl1LUNodW4gTGluIDxlbGVhbm9yLmxpbkByZWFsdGVrLmNvbT4NCj4g
+PiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdzL21mZC9yZWFsdGVrLGlzby1zeXN0ZW0ueWFtbCAgICAg
+IHwgNjUNCj4gKysrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNjUgaW5z
+ZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gPiBEb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvbWZkL3JlYWx0ZWssaXNvLXN5c3RlbS55YW1sDQo+ID4NCj4gPiBk
+aWZmIC0tZ2l0DQo+ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3Jl
+YWx0ZWssaXNvLXN5c3RlbS55YW1sDQo+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvbWZkL3JlYWx0ZWssaXNvLXN5c3RlbS55YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2
+NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjZmYmRlZGQzZWU1Yg0KPiA+IC0tLSAvZGV2L251
+bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3JlYWx0
+ZWssaXNvLXN5c3RlbS55YW1sDQo+ID4gQEAgLTAsMCArMSw2NSBAQA0KPiA+ICsjIFNQRFgtTGlj
+ZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZSkgJVlBTUwgMS4y
+DQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL21mZC9y
+ZWFsdGVrLGlzby1zeXN0ZW0ueWFtbCMNCj4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUu
+b3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogUmVhbHRlayBJ
+U08gU3lzdGVtIENvbnRyb2xsZXINCj4gPiArDQo+ID4gK2Rlc2NyaXB0aW9uOiB8DQo+IA0KPiAN
+Cj4gRG8gbm90IG5lZWQgJ3wnIHVubGVzcyB5b3UgbmVlZCB0byBwcmVzZXJ2ZSBmb3JtYXR0aW5n
+Lg0KPiANCg0KSSB3aWxsIHJlbW92ZSBpdCBpbiBWMi4NCg0KPiA+ICsgIFRoZSBSZWFsdGVrIElT
+TyBTeXN0ZW0gQ29udHJvbGxlciBpcyBhIHJlZ2lzdGVyIGFyZWEgdGhhdCBjb250YWlucw0KPiA+
+ICsgbWlzY2VsbGFuZW91cyBzeXN0ZW0gcmVnaXN0ZXJzIGZvciB0aGUgU29DIGFuZCBzZXJ2ZXMg
+YXMgYSBwYXJlbnQNCj4gPiArIG5vZGUgIGZvciBvdGhlciBmdW5jdGlvbnMuDQo+ID4gKw0KPiA+
+ICttYWludGFpbmVyczoNCj4gPiArICAtIEphbWVzIFRhaSA8amFtZXMudGFpQHJlYWx0ZWsuY29t
+Pg0KPiA+ICsgIC0gWXUtQ2h1biBMaW4gPGVsZWFub3IubGluQHJlYWx0ZWsuY29tPg0KPiA+ICsN
+Cj4gPiArcHJvcGVydGllczoNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+ICsgICAgaXRlbXM6DQo+
+ID4gKyAgICAgIC0gZW51bToNCj4gPiArICAgICAgICAgIC0gcmVhbHRlayxpc28tc3lzdGVtDQo+
+IA0KPiBObyBjbHVlIHdoYXQgaXMgImlzbyBzeXN0ZW0iLCBuZWl0aGVyIGNvbW1pdCBtc2csIG5v
+ciB0aXRsZSBub3IgZGVzY3JpcHRpb24NCj4gZXhwbGFpbiBtZSB0aGF0LiBQbGVhc2UgYWRkIGZp
+cnN0IGJpbmRpbmdzIGZvciB0aGUgaXNvIHNvYyBvciBpZiB0aGlzIGlzIG5vdCBzb2MsDQo+IHRo
+ZW4gdXNlIG9ubHkgc29jLXNwZWNpZmljIGNvbXBhdGlibGVzIChzZWUgd3JpdGluZyBiaW5kaW5n
+cyBkb2MpLg0KPiANCg0KSSB3aWxsIHJlbmFtZSAncmVhbHRlayxtaXNjJyBmb3IgY2xhcml0eS4N
+Cg0KPiA+ICsgICAgICAtIGNvbnN0OiBzeXNjb24NCj4gPiArICAgICAgLSBjb25zdDogc2ltcGxl
+LW1mZA0KPiA+ICsNCj4gPiArICByZWc6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4g
+PiArICByYW5nZXM6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiArICAnI2FkZHJl
+c3MtY2VsbHMnOg0KPiA+ICsgICAgY29uc3Q6IDENCj4gPiArDQo+ID4gKyAgJyNzaXplLWNlbGxz
+JzoNCj4gPiArICAgIGNvbnN0OiAxDQo+ID4gKw0KPiA+ICsgIHJlZy1pby13aWR0aDoNCj4gPiAr
+ICAgIGNvbnN0OiA0DQo+ID4gKw0KPiA+ICtwYXR0ZXJuUHJvcGVydGllczoNCj4gPiArICAiXi4q
+QFswLTlhLWZdKyQiOg0KPiA+ICsgICAgdHlwZTogb2JqZWN0DQo+ID4gKyAgICBkZXNjcmlwdGlv
+bjogQ2F0Y2gtYWxsIGZvciBvdGhlciBzdWItZGV2aWNlcyBpbiB0aGUgSVNPIGFyZWEuDQo+IA0K
+PiBOb3BlLCBzb3JyeS4gRGVmaW5lIGV4YWN0IGNoaWxkcmVuLiBBbGwgb2YgdGhlbS4NCj4gDQoN
+CkdvdCBpdC4gSSB3aWxsIGV4cGxpY2l0bHkgZGVmaW5lIGNoaWxkIGZvciBWMi4NCg0KPiA+ICsN
+Cj4gPiArcmVxdWlyZWQ6DQo+ID4gKyAgLSBjb21wYXRpYmxlDQo+ID4gKyAgLSByZWcNCj4gPiAr
+ICAtIHJhbmdlcw0KPiA+ICsgIC0gJyNhZGRyZXNzLWNlbGxzJw0KPiA+ICsgIC0gJyNzaXplLWNl
+bGxzJw0KPiA+ICsgIC0gcmVnLWlvLXdpZHRoDQo+ID4gKw0KPiA+ICthZGRpdGlvbmFsUHJvcGVy
+dGllczogZmFsc2UNCj4gPiArDQo+ID4gK2V4YW1wbGVzOg0KPiA+ICsgIC0gfA0KPiA+ICsgICAg
+aXNvOiBzeXNjb25ANzAwMCB7DQo+IA0KPiBEcm9wIGxhYmVsLg0KPiANCg0KSSB3aWxsIHJlbW92
+ZSBpdCBpbiBWMi4NCg0KPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAicmVhbHRlayxpc28tc3lz
+dGVtIiwgInN5c2NvbiIsICJzaW1wbGUtbWZkIjsNCj4gPiArICAgICAgICByZWcgPSA8MHg3MDAw
+IDB4MTAwMD47DQo+ID4gKyAgICAgICAgcmFuZ2VzID0gPDB4MCAweDcwMDAgMHgxMDAwPjsNCj4g
+PiArICAgICAgICByZWctaW8td2lkdGggPSA8ND47DQo+ID4gKyAgICAgICAgI2FkZHJlc3MtY2Vs
+bHMgPSA8MT47DQo+ID4gKyAgICAgICAgI3NpemUtY2VsbHMgPSA8MT47DQo+IA0KPiBObyBjaGls
+ZHJlbiBoZXJlLCBzbyBkcm9wIHNpbXBsZS1tZmQgYW5kIGFsbCB0aGVzZSBmYWtlIGNoaWxkIHN0
+dWZmLg0KPg0KSSB3aWxsIHNob3cgaXRzIGNoaWxkIGluIGV4YW1wbGUgaW4gVjIuDQo+IA0KPiBC
+ZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0K
 
