@@ -1,335 +1,157 @@
-Return-Path: <devicetree+bounces-237203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A54A3C4E12B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:15:32 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB5CC4E17F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 14:23:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDA0A3A3D66
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:14:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D90934E18B4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3301233120C;
-	Tue, 11 Nov 2025 13:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6754533AD97;
+	Tue, 11 Nov 2025 13:23:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iwrWKfIo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265F332827C
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 13:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD31208994;
+	Tue, 11 Nov 2025 13:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762866899; cv=none; b=I/tJ/6PJZk6HNeOcRjQRwy0ziFI8utv9i8FGd2qgy8D0/1fzsuFU+pJUk6FN0WwoeU/GBYhbF+I7m1jWKaoDT/jERyoe6jQnPXwNC1Xi5phLmTNUuJtJ96vPhwizud2TSVkj7n9Yfz8U7DEPDnxLtbST3yhjIOo+btcCQCQDMQg=
+	t=1762867408; cv=none; b=UZ3um6bb99nXtLXSO8vKhMPNHb6aRYjH+rt2UnO50ldIedUYHGrunpnFqXGjvRruc55pJlg1NStSC8yDQKqFIuA67kuMDr/vWJbrf/6KVOT1wFDJcyVN5i0y8Iay5165NvaR02oxS8SaC3DMSbtbKqartjcbgufVWZXVrVfzhX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762866899; c=relaxed/simple;
-	bh=GN7fmS+BcfMHnCm95PcqkbpgkBF9dqX4+guaCrRt7vE=;
+	s=arc-20240116; t=1762867408; c=relaxed/simple;
+	bh=DtSUEqPHMcd37gn1UQ9cal9KTI0sqP0crp3DvNbS9qg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GuCn2xMjYYNNuzVNOIeAyc3yI0dtO63NQtM8+X2Q2iTJBEND52aDEzKBfKE1UMbqDHFQUdbsZ6BNuN5HcjAXtoDLhHVNFwc5RiZYimrCogoE2A25d6HIerJUVphK6Y551u5CqYmXdjlUnueW1YX6o/c5BwX9PlClViqZwxJAMvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vIoCo-00019I-NP; Tue, 11 Nov 2025 14:14:42 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vIoCo-008CyB-0n;
-	Tue, 11 Nov 2025 14:14:42 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vIoCo-00EV9P-0M;
-	Tue, 11 Nov 2025 14:14:42 +0100
-Date: Tue, 11 Nov 2025 14:14:42 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=N/DXCBDWT23vdDYFqcuGrubZLu1U8Uw8W+auR6Zv7oUEVk/0SjKqG8+ejd97pZP6/FS7sMUN1AZW9F30yyJO9EGyn5Sy3wm8edCl2UPN5FyYAXj0FR1pokGH2/udl3mWJGeFKWq9Lyq7xfWAflBddRbjdy34laNAAoMTMruV/O4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iwrWKfIo; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762867406; x=1794403406;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=DtSUEqPHMcd37gn1UQ9cal9KTI0sqP0crp3DvNbS9qg=;
+  b=iwrWKfIonH0jo98765VtS3wBhrVSd9PN++EtQfpn8DhPjNs6ummDIIVA
+   YMN3xoniXHLvtQMRB5pIA0fgnAWxKy/oSIdZOoKRh5tzSyyiKaVmq7zCV
+   3JWLC47eM1YwbLJcuuzAOaRduuPR1mCpBiIt+rfPcVCN5YHp3nRDlsPiw
+   KgGRNHfq9R/IG3j0raLYcBdUnrVWbvlqCk2lTyziMcgJ6K//Pw/E79zCn
+   d03mP0pUqK7SG09ad9/F5RTo6xsF9EV/quqwbI99XgL6upZxibLxlBaZ8
+   Cs5u8zReCc2d0q83JQbZOeGTZ7v0+lWVfkHCYPt8O+kFViK4UqNfYilSs
+   A==;
+X-CSE-ConnectionGUID: fzgA9MaWRT6LYihRrah12A==
+X-CSE-MsgGUID: Q/tRxqbxQWCJiM4sM18aNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11609"; a="64628783"
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
+   d="scan'208";a="64628783"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 05:23:25 -0800
+X-CSE-ConnectionGUID: EmBczYoySjaVYg6v8qgVBg==
+X-CSE-MsgGUID: S+0Cr7irSLSB2/SIvvuigA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,296,1754982000"; 
+   d="scan'208";a="188218935"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.96])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2025 05:23:22 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 7FA5111F983;
+	Tue, 11 Nov 2025 15:23:19 +0200 (EET)
+Date: Tue, 11 Nov 2025 15:23:19 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	Frank Li <frank.li@nxp.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v19 0/7] firmware: imx: driver for NXP
- secure-enclave
-Message-ID: <20251111131442.nddhk3475oapf2zh@pengutronix.de>
-References: <20250927-imx-se-if-v19-0-d1e7e960c118@nxp.com>
- <20251016114151.jzmapaecsmmnkpt3@pengutronix.de>
- <AM9PR04MB8604C2AAA70406883320C5C995FCA@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20251103190811.wp4o7hlnus6ynn32@pengutronix.de>
- <AM9PR04MB8604AA80EC97E06AADBF334695C3A@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] media: i2c: add Sony IMX111 CMOS camera sensor
+ driver
+Message-ID: <aRM4x7SbdbxMYLCi@kekkonen.localdomain>
+References: <20251103145629.21588-1-clamor95@gmail.com>
+ <20251103145629.21588-3-clamor95@gmail.com>
+ <aRMw_Qre1FY94soi@kekkonen.localdomain>
+ <CAPVz0n1MokJq6d4s0cS3UdevRt2n-HaicPpwiBu=3HVSKfnzfg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8604AA80EC97E06AADBF334695C3A@AM9PR04MB8604.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n1MokJq6d4s0cS3UdevRt2n-HaicPpwiBu=3HVSKfnzfg@mail.gmail.com>
 
-On 25-11-07, Pankaj Gupta wrote:
-> >> On 25-10-27, Pankaj Gupta wrote:
-> >>> On 25-09-27, Pankaj Gupta wrote:
-
-...
-
-> > > It is not yet up-streamed to OPTEE-OS repo.
-> > 
-> > My intention of adding the above OP-TEE discussion link was to point 
-> > out that an ELE-FW bug exists which needs to be fixed.
-
-...
-
-> > This adapts the timeout value to 100ms and seems more like an workaround.
-> > 
-> There are additional fixes in OPTEE-OS, that will be part of LF Q4'25.
-
-Thanks for this info.
-
-> > However, can NXP confirm that the ELE concurrent access is possible 
-> > without a previous ELE FW update?
+On Tue, Nov 11, 2025 at 02:53:52PM +0200, Svyatoslav Ryhel wrote:
+> вт, 11 лист. 2025 р. о 14:50 Sakari Ailus <sakari.ailus@linux.intel.com> пише:
+> > I can make the two changes before applying, too, if that's ok.
 > 
-> Fix in the ELE FW, released as part of LF Q3 2025,  is a must to
-> include. OPTEE fixes are also needed.  OPTEE fixes will be up-streamed
-> soon.
+> If you don't mind adjusting commit on your own before applying I have
+> no objections. Thank you very much!
 
-Okay, so there are ELE-FW fixes too, thanks.
+The diff is:
 
-...
-
-> > Does this mean that all i.MX9x, i.MX10x and so on do have the the 
-> > secure and non-secure MU setup? Or is it based on the SoC release date?
-> > Because regarding the datasheet the i.MX8ULP is newer than the i.MX93, 
-> > therefore I assumed that the i.MX8ULP has two MUs as well.
-> 
-> From i.MX93 and onward, there is only one RoT. Hence , it is designed
-> to have dedicated MU for each world.
-
-Okay.
-
-> > I checked the the NXP OP-TEE source code and found the following commit:
-> > 
-> > 8<----------------
-> > commit 44388d37e68000ee50a9b1d656e0a60ae6614977
-> > Author: Sahil Malhotra <sahil.malhotra@nxp.com>
-> > Date:   Tue Apr 1 20:04:44 2025 +0200
-> > 
-> >     core: imx: disable ELE on i.MX8ULP by default
-> > 
-> >     On i.MX8ULP, there is only one MU to communicate with ELE,
-> >     which cannot be dedicated on OP-TEE side all the time.
-> >     There may be ELE services running on Linux side, which can
-> >     cause conflict with OP-TEE, So disabling ELE by default.
-> >     Moreover i.MX8ULP also has CAAM, so HUK and Random number
-> >     are coming from CAAM.
-> > 
-> >     Signed-off-by: Sahil Malhotra <sahil.malhotra@nxp.com>
-> >     Acked-by: Jens Wiklander <jens.wiklander@linaro.org>
-> > 8<----------------
-> > 
-> > So it's possible to configure the XRDC (configured in the TF-A) in a 
-> > way to map the ELE access to the secure world. If I got the TF-A and OP-TEE commits right.
-> > 
-> > To me this sound more like a NXP design decision to move the ELE to 
-> > the non- secure and the CAAM to the secure world.
->
-> As per the i.MX8ULP boot-up sequence and ELE's initial role in
-> boot-up, with CAAM co-exists, ELE is logical to be with Linux.
->
-> Another point here that CAAM has 4 JR(s) and hence CAAM can be shared
-> between Linux and OPTEE-OS.
-
-Please see my answer below where you explained the ELE functions.
-
-...
-
-> > i.MX8ULP is getting really interesting, though.
-> > 
-> > May I ask what RoT is used by this SoC if there are two?
-> > 
-> ELE is Root of Trust during secure boot.
-> For OPTEE-OS, CAAM is RoT.
-
-The i.MX8ULP is very interesting, since you also need to handle the
-SoC secure-state twice, right? However, this topic alone is worth it a
-standalone discussion thread, therefore no further comments.
-
-...
-
-> > How does the i.MX8ULP fuse flow work, after the LOCK_DOWN fuse is blown?
-> There is no such issue on i.MX8ULP
-> > 
-> > This was one of my main concers why having OP-TEE required in the 
-> > first place, because the i.MX93 requires the that the fuse-request 
-> > comes from the secure-world if the device is in LOCK_DOWN state.
-> > 
-> > Is this also the case for the i.MX8ULP?
-> > 
-> 
-> No, this is not a valid case for i.MX8ULP.
-
-Thanks for the input.
-
-> > > > Also according your IOCTL docuementation you want to expose the 
-> > > > whole device to the user-space?
-> > >
-> > > > | What:          /dev/<se>_mu[0-9]+_ch[0-9]+
-> > > > | Date:          Mar 2025
-> > > > | KernelVersion: 6.8
-> > > > | Contact:       linux-imx@nxp.com, pankaj.gupta@nxp.com
-> > > > | Description:
-> > > > |                NXP offers multiple hardware IP(s) for secure 
-> > > > | enclaves like
-> > EdgeLock-
-> > > > |                Enclave(ELE), SECO. The character device file descriptors
-> > > > |                /dev/<se>_mu*_ch* are the interface between 
-> > > > | userspace NXP's
-> > secure-
-> > > > |                enclave shared library and the kernel driver.
-> > > > |
-> > > > |                The ioctl(2)-based ABI is defined and documented in
-> > > > |                [include]<linux/firmware/imx/ele_mu_ioctl.h>.
-> > > > |                ioctl(s) are used primarily for:
-> > > > |                        - shared memory management
-> > > > |                        - allocation of I/O buffers
-> > > > |                        - getting mu info
-> > > > |                        - setting a dev-ctx as receiver to 
-> > > > | receive all the commands
-> > from FW
-> > > > |                        - getting SoC info
-> > > > |                        - send command and receive command 
-> > > > | response
-> > >                                 ^
-> > > > This is a rather uncommon approach. The kernel has interfaces to 
-> > > > abstract hardware. You completely bypass this if you expose 
-> > > > everything to the userspace.
-> > >
-> > > It is in-correct.
-> > > Not everything, just exposed file-operation. and ioctl(s) for 
-> > > DMA(eable)
-> > buffer allocation from reserved lower memory region.
-> > > Things managed by Kernel:
-> > > * Send/receive path to ELE, is managed by Kernel.
-> > > * Receive/send patch to the ELE's slave NVM-manager, is managed by kernel.
-> > > * Low power management handled by kernel driver. In case of 
-> > > low-power
-> > state, ELE driver re-init the V2X IP as part of resume.
-> > > * Other kernel management layers like NVMEM, kernel HWRNG, will use 
-> > > the
-> > api(s) exposed by this driver.
-> > 
-> > But you also expose an uAPI which allows the user to bypass everything 
-> > via sending arbitrary commands, right?
-> 
-> Yes. But it's not unusual at all. The pattern of userspace sending
-> commands directly to the kernel, is quite common
-
-Please see below.
-
-...
-
-> > Some features require the device to be in LOCK_DOWN mode, which 
-> > requires secure-world eFuse write path only afterwards. But it seems 
-> > like NXP really wants to maintain two write paths.
-> > 
-> > > * Low power management at Linux driver.
-> > 
-> > The power-modes are selected via the ELE?
-> 
->
-> Voltage regulation for i.MX93 in Linux kernel, is done by ELE.
->
-> During Linux suspend-resume, Secure-enclave (V2X on i.MX95) part of
-> wake-up domain, will be managed by secure-enclaves(ELE) part of
-> always-on domain.
-
-So to sum-up, please correct me if I got it wrong:
-
- - NXP puts the ELE into the non-secure world, in case only one MU
-   exists. The reason for this is that the ELE is also used to handle
-   power-management.
-
- - NXP exposes an uAPI which can be used to send arbitrary commands from
-   userspace to the ELE. (no filtering done yet)
-
- --> Sounds to me that the userpace can influence the system behavior
-     very badly.
-
-> > > * Linux HWRNG.
-> > > * Loading the secondary runtime fw.
-> > 
-> > What is a secondary runtime-fw?
-> ELE FW size is larger than the size of ELE internal secure memory.
-> Hence FW is split into two.
-> 
-> Primary FW, is the FW, that enables features that helps for SoC boot-up.
-> Secondary runtime FW, is the FW, that enables features like HSM.
-
-Ah okay, thanks for the input.
-
-> > To conclude this longly discussion:
-
-...
-
-> > I still have mixed feeling about the fusing (including the 1-MU case), 
-> > since it requires a secure-world OS in place once the LOCK_DOWN fuse was burned.
-> > It's fine by me if NXP wants to have and wants to maintain a multi-path here.
->
-> Write fuse API will be added, to allow writing fuses from secure world
-> too.
-
-This is a device life-cycle problem and if NXP decides to maintain
-multiple write paths, depending on the runtime-SoC state, this is fine
-by me.
-
-What needs to be ensured is, that the fuse-issue doesn't exist for the
-1-MU case (i.MX8ULP) as you said.
-
-> > Last but least, the uAPI which can be used to send arbitrary ELE 
-> > commands seems unusual. But I don't know how secure-enclaves are 
-> > abstracted within the kernel, so these are just my two cents.
-> 
-> it's not unusual at all. The pattern of userspace sending commands
-> directly to the kernel via a queue is quite common like:
->
-> GPUs: As you mentioned, userspace drivers (like those in Vulkan or
-> CUDA) often build command buffers and submit them directly to the
-> kernel or hardware.
-
-That's right, but these drivers do at least some filtering on the OPs
-and check if they are allowed. According your patchset, you just write
-(se_if_fops_write()) the provided userspace buffer.
-
-> Secure Enclaves: In systems like Intel SGX or AMD SEV, userspace
-> applications interact with enclaves via ioctl or mmap interfaces,
-> often sending structured commands or messages.
-
-What I'm aware of is, that most secure-enclaves are switching to the
-standard TPM API. 
-
-Regards,
-  Marco
+diff --git a/drivers/media/i2c/imx111.c b/drivers/media/i2c/imx111.c
+index c269e9fdcb0b..8eb919788ef7 100644
+--- a/drivers/media/i2c/imx111.c
++++ b/drivers/media/i2c/imx111.c
+@@ -1136,13 +1136,6 @@ static int imx111_set_format(struct v4l2_subdev *sd,
+ 
+ 	fmt = v4l2_subdev_state_get_format(state, format->pad);
+ 
+-	fmt->code = imx111_get_format_code(sensor, mbus_fmt->code, false);
+-	fmt->width = mode->width;
+-	fmt->height = mode->height;
+-	fmt->colorspace = V4L2_COLORSPACE_RAW;
+-
+-	*mbus_fmt = *fmt;
+-
+ 	if (format->which == V4L2_SUBDEV_FORMAT_ACTIVE)	{
+ 		int ret;
+ 
+@@ -1183,6 +1176,13 @@ static int imx111_set_format(struct v4l2_subdev *sd,
+ 			return ret;
+ 	}
+ 
++	fmt->code = imx111_get_format_code(sensor, mbus_fmt->code, false);
++	fmt->width = mode->width;
++	fmt->height = mode->height;
++	fmt->colorspace = V4L2_COLORSPACE_RAW;
++
++	*mbus_fmt = *fmt;
++
+ 	return 0;
+ }
+ 
+@@ -1542,9 +1542,9 @@ static int imx111_probe(struct i2c_client *client)
+ 		goto error_pm;
+ 	}
+ 
+-	pm_runtime_idle(dev);
+ 	pm_runtime_set_autosuspend_delay(dev, 1000);
+ 	pm_runtime_use_autosuspend(dev);
++	pm_runtime_idle(dev);
+ 
+ 	return 0;
+ 
+Hopefully that works!
 
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+Regards,
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+Sakari Ailus
 
