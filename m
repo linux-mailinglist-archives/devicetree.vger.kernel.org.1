@@ -1,101 +1,218 @@
-Return-Path: <devicetree+bounces-237093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 138A5C4CB53
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:38:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01D56C4CB9E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 10:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CDEE04FB872
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:32:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAB791884096
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 09:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00DD02F5A30;
-	Tue, 11 Nov 2025 09:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD232EDD63;
+	Tue, 11 Nov 2025 09:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cADF7BZX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rM7wlviz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A9C2F1FF1;
-	Tue, 11 Nov 2025 09:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840C52EBBAF;
+	Tue, 11 Nov 2025 09:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762853540; cv=none; b=EJGH3++ZHfOGMn0y62zaw9w9B4Y3tqVmOGc2R8F57HcSPw0dzUrkaq+oMInmTLcxn4H0cnXYIy4I/85cM1Oebh3/fGlnaPBgd5kVy4WL13i0dS10+Z0bFcu7XTMGPf2lUPpVFwpkUZINY9x5P9hJDk5W0EWFNZyZoo77KTY20ow=
+	t=1762854081; cv=none; b=ateTgBJZ/y1PLAB4wjYM+96f/KnKqI1ra3G6aDgoDlNclSbS1qV6eL0xnxyu40bpHyQaXuQKUNDMJr72Zon3WbPRfoTDc8jfSOkbt6GN3u0x5fhHxWyLIaOj1W7veIX6dSbFKSNfvMPvY2GWp1nTpuxfPjmEmhr+EMGtNh+5uBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762853540; c=relaxed/simple;
-	bh=25mQWYoIA939ku80KYCjFSeypaIGXxI4UJxB/LY8o9M=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=VJADIEte28II37ysfny263D0tZj9iH8N4bacWi3Z+uJzTulkwYh6/NA0m7KNxtHu8mSv9VcGXNC3uKXSvV+GoSzLW/O/DbGhUzxs90DPAc1mbCNRuHnCWdXUp7sjBXQKDMZUJMgZ/VWkLjve4zx3Gx0QuMAzncuPYBrkEYNmuew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cADF7BZX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AF76C4CEF7;
-	Tue, 11 Nov 2025 09:32:19 +0000 (UTC)
+	s=arc-20240116; t=1762854081; c=relaxed/simple;
+	bh=2i0hV2jgS6G4URPcDhKEjaK3KmOgwDs3Q6+MPXea1m0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F+heYIE7LNwLor6rp/DSVvZ7PKmlxXqPbLIgDv4BHhjIhUQese9zfjHhoiSNtjmWcgKL6rlpwi7uUixb0dEBTGNiKwqDreKuFI/argNqGpNYhSsLBKUgir8uH2K+YIDqy9Zc+Wd+qDTmsfOQwbatw3r4zKu66bC9CXIoGOM8JT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rM7wlviz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7A81C4CEFB;
+	Tue, 11 Nov 2025 09:41:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762853540;
-	bh=25mQWYoIA939ku80KYCjFSeypaIGXxI4UJxB/LY8o9M=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=cADF7BZXi3wl835diwsLESno2PZDjDx73nIda1IeGOzPYFizM/7CwmCg5A72B3zsV
-	 P32UWuo7vJzoXYMqqyY7E9saZV28/lm2Rg4RrxmriLLd223AW79dGVfW8S7JBYVOwJ
-	 +aewyVPpH0PGfs/XxyAM7RrtX982GnJ3ZZ+4bCpAHoyN8QxQsorw5Wd2XLxS6LD9KV
-	 +zAjONBVlIPbqwfISk+keTTxBhchIwKXG1yulDAQCa0YkqHvCzFVh25KQN2ffPFeKn
-	 GNCv45UnWRDie+VqGhn+YW5maEQtIKYeU/BdGtW9uI1nmUI4Xz11INVNJUenGqPowc
-	 dk6zUhW9f02iA==
-Date: Tue, 11 Nov 2025 03:32:18 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=k20201202; t=1762854081;
+	bh=2i0hV2jgS6G4URPcDhKEjaK3KmOgwDs3Q6+MPXea1m0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rM7wlvizC3kIpozE93RQghnemvOqj2wv1CL6MBU8PFrIjJwXzt/eE2g+xi/jO1IlO
+	 XnmT1pFd2ut4IMg1Y12JRLdJr5aS/8VK0Gx3JuDrfuRlsK6x1ew0WuIkhP6JMN40Pf
+	 LLJ8QC7QmSq1nG5tGM6gk0BIlCUKFE2vWBKOYAd96o5TnD6o7fMWDjJM35Wd/TPH9q
+	 aR8Bxuxpvz1LTpKEe2QijnqQ2CbkXOYSNW9azFjqOLxqdDT08MLVq1gqUwQsEHLCXf
+	 uZWWEXCzXQjC1xf7/BwvVscxFfOIlz4UHcA+OK1KyNFaUufrvgmJasCCORlHeH+Xv2
+	 9GcKC+B2onyoQ==
+Message-ID: <cabb047c-7c58-407e-831e-72567937dd1c@kernel.org>
+Date: Tue, 11 Nov 2025 10:41:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
- linux@roeck-us.net, Jean Delvare <jdelvare@suse.com>, corbet@lwn.net, 
- christophe.jaillet@wanadoo.fr, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-To: Wenliang Yan <wenliang202407@163.com>
-In-Reply-To: <20251111080546.32421-2-wenliang202407@163.com>
-References: <20251111080546.32421-1-wenliang202407@163.com>
- <20251111080546.32421-2-wenliang202407@163.com>
-Message-Id: <176285353822.2206360.4224721052880001451.robh@kernel.org>
-Subject: Re: [PATCH 1/8] dt-binding:ti,ina3221:Add SQ52210
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: timer: Add Realtek SYSTIMER binding
+To: Hao-Wen Ting <haowen.ting@realtek.com>, daniel.lezcano@linaro.org,
+ tglx@linutronix.de
+Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
+ shawn.huang724@realtek.com, cy.huang@realtek.com, james.tai@realtek.com,
+ cylee12@realtek.com, phinex@realtek.com, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251111092959.616089-1-haowen.ting@realtek.com>
+ <20251111092959.616089-2-haowen.ting@realtek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251111092959.616089-2-haowen.ting@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Tue, 11 Nov 2025 03:05:39 -0500, Wenliang Yan wrote:
-> Add a compatible string for sq52210, sq52210 is forward compatible
-> with INA3221 and add alert register to implement four additional
-> alert function.
+On 11/11/2025 10:29, Hao-Wen Ting wrote:
+> Add device tree binding documentation for the Realtek SYSTIMER, a 64-bit
+> timer that can be used as a tick broadcast timer on multi-core Realtek
+> SoCs.
 > 
-> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+> The SYSTIMER remains active during deep CPU idle states where local
+
+Systimer or SYSTIMER? What is this acronym about?
+
+> timers are powered off, allowing all CPUs to enter power-cut idle states
+> simultaneously for improved power efficiency. The timer operates at a
+> fixed 1MHz frequency and supports oneshot mode for tick broadcast
+> functionality.
+> 
+> This binding defines the required properties for memory-mapped register
+> access and interrupt configuration needed by the timer driver.
+Drop sentence, completely redundant. We can read the diff.
+
+> 
+> Signed-off-by: Hao-Wen Ting <haowen.ting@realtek.com>
 > ---
->  .../devicetree/bindings/hwmon/ti,ina3221.yaml    | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
+>  .../bindings/timer/realtek,systimer.yaml      | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/realtek,systimer.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/timer/realtek,systimer.yaml b/Documentation/devicetree/bindings/timer/realtek,systimer.yaml
+> new file mode 100644
+> index 000000000000..28ab9b91f45d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/realtek,systimer.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/realtek,systimer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek SYSTIMER
+> +
+> +maintainers:
+> +  - Hao-Wen Ting <hao-wen.ting@realtek.com>
+> +
+> +description: |
+> +  The Realtek SYSTIMER is a 64-bit timer that can be used as a tick
+> +  broadcast timer on multi-core Realtek SoCs. It remains active during
+> +  deep CPU idle states where local timers are powered off, allowing all
+> +  CPUs to enter power-cut idle states simultaneously for better power
+> +  efficiency.
+> +
+> +  The timer operates at a fixed 1MHz frequency and supports oneshot mode
+> +  for tick broadcast functionality.
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,systimer
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This is clearly wrong, please read writing bindings. You ALWAYS need SoC
+compatible.
 
-yamllint warnings/errors:
+See also guidelines for beginners in DTS.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml: alert-type: missing type definition
 
-doc reference errors (make refcheckdocs):
+> +
+> +  reg:
+> +    description: |
+> +      Physical base address and length of the timer's memory mapped
+> +      registers. The register range contains the 64-bit timestamp counter,
+> +      compare value registers, control and status registers.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251111080546.32421-2-wenliang202407@163.com
+Drop. Please use recent bindings as your starting work. If you generated
+this with LLM, it would mean it is huge waste of our time.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+NAK
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: |
+> +      Timer interrupt specifier. This interrupt is triggered when the
+> +      timer compare value matches the current timestamp counter.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    systimer: systimer@89420 {
 
-pip3 install dtschema --upgrade
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Drop label, you do not use it.
 
+Best regards,
+Krzysztof
 
