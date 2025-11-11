@@ -1,192 +1,179 @@
-Return-Path: <devicetree+bounces-237258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06284C4EEBD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 17:04:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B41C4EEA8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 17:03:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97C723A6171
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:02:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 332404E1D25
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 16:03:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 774F1369969;
-	Tue, 11 Nov 2025 16:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C2A36A03F;
+	Tue, 11 Nov 2025 16:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="pz7LyHwH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BOVk0AgF";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TGswAheL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com [74.125.224.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0767082A
-	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 16:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F627082A
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 16:02:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762876967; cv=none; b=bL2i5euaFL5Mw9eYpx/WHnyc+E9mar2XWH/M5A0ESOzAkOlKYmeILGaJKr4bTZTFkFa6+Be0klePAXGyoH8Hx10r0oS3sfprxGM1ksfgnb7kkViPDMZPO7RP0uNd2UkYXOsUxLw6YkLyj1ghcUPUcI+ScuO7k0Bv4QrWj+cD0BE=
+	t=1762876978; cv=none; b=uu9q0AQm+uUXVSwUhN+h5ZJntFvhLBbiP4kINq39bd5Yd0q0daiprKGAeHX99bo/fPNz28DRiekWBULF2471xq8hBf5IHqh96to1BBsmeMUVsRG6F1o23iUb9p3rSSlLK0xEC+ig25pqXHkdO95MVQdYA4u+WKFYGV8gFbIBYWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762876967; c=relaxed/simple;
-	bh=MQijt4CwckEgJm6q4AxePYM79/LzCpf3iwRr0lRZsZ0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FPwGlA1WyCju9TUCgj0m8yPj303wr4WqEHl8LWCTTBMOoZqxEcuXhvGQXRwvgCQgo2KaapMR2c8g421Sc78blvjxaDKwpUkx7cznPfzKpQpgDfTDMZZdSfM6TtxUsE0iQgeq82bp6hE/36OcrjZKWifDjCjvorG+ZnmGskCC1QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=pz7LyHwH; arc=none smtp.client-ip=74.125.224.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-63e19642764so3678939d50.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 08:02:45 -0800 (PST)
+	s=arc-20240116; t=1762876978; c=relaxed/simple;
+	bh=Szl2H3XbsTdN5Hp3bW7dxEgQFIDzEkvs6uk8oNOn680=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UHqGwKz9tzmiNh8t1jKGB5fU+2rUly5h+UCH+Q/xz5HZQSjY7yLVERcqjrxnyX3rObeKiucGYd/6HGqfYj3tmv6Vq9i7GFLy2zwggZyvQ2a+YRaBosT7FoxqBC1x1P8Umx3ccajzalox9YULBVqRUAUYewh+LK857A9e5D0KENQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BOVk0AgF; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TGswAheL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABBGBx62165217
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 16:02:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=gEfAh6rp9MQrdIl36CEViA
+	ex1/8JADzaa0H1cCy8km0=; b=BOVk0AgFFoLyOKRL4VZ+PQrlRjq6nAAnI3yv/8
+	IC5lriuqI076jj+oMmU6AEiDDePtgCcO9XAL6PpeGuzzpMsUraBhVODh/5R8+VP1
+	WUx7hAZUIC7svqS0yBzXQcX0EPiXK7wsTeL0u7WM1Ol6CnR4sLM8+zXerKvHp7+W
+	BN/nUSum+Pa7adnPguFgbAnA1oPThI2zR5WQrlb+QyrApP5U3DbOrAWfpxhy+tCH
+	sjoG5QOUzfHkQjNFPieQSPXidvH/7JEfhGrLEl5IKngcVGXAwlAXYp2udepVZtrH
+	R9xymnzcC4gYTC1a2JIOYKd7S4JqHl4QtzMzE55lUzXMjnuA==
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com [209.85.166.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abxhhhuyw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 16:02:56 +0000 (GMT)
+Received: by mail-il1-f199.google.com with SMTP id e9e14a558f8ab-433795a26c5so33716995ab.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 08:02:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1762876964; x=1763481764; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7VGf93EH4RNxVnue1hBByCb93RrqwGsGg2pi+iF8gn8=;
-        b=pz7LyHwH4YJxk66i6NYCBO3VixcyIRjWatJYjkzHQNr5WpGZstcoHWiAYij83hbHvX
-         sSg2/gey/XNV60LGs4DMl2jkungdkJaBXZovX8UMfz1p0BSVkQaiuTYr3WS3toEH25j0
-         9SmBQirO9PZZxXq19or7i5YoHJ5pVjJJVmxnNiJhHi0N+sq5h8GVudE2ZigW1+1hQta/
-         EKzC7rpMf+jcGCXjoObIu3Hd5cnNWM+WhAV7hm1gQwmWUsHGg9/AvQIRB2kx8nf/mXs4
-         rNoJdjcLjCVz50auXyXjHiIZcA4h9pjJGVMXJrjcBjF601a7l7Qb3SMJgHjVUztwxjdH
-         +FOQ==
+        d=oss.qualcomm.com; s=google; t=1762876975; x=1763481775; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gEfAh6rp9MQrdIl36CEViAex1/8JADzaa0H1cCy8km0=;
+        b=TGswAheLulhJSA7MqkZa90AgFtD9Plu+5sIDEclJxn1vzLPNvHmJ3LNeBDhcsaxN50
+         oIlTq7CEPFb7hcGiaONSce7cvkEvDiXsT6avP1ChBVcpis0WZjQauJjTHWkj3GWS3Ozt
+         Oklv/GpRhIx4GN3MnziS15y7EZ/jiy5zCKBdFcL47rCM2g+yp64acFnj4S8wDxYiki5G
+         HYEooAsRtvgfVHSUt3TawSHW1gCK1mUP0/oA2R4ecvEyTf2p3iSwKg5FMF2rxZL9FO6y
+         eq9CG9+Tc7OkNtPhIKg87WQ4BAAlxW2wAQ8OfxHTINE2GZDhHTw+Y4PaSRg5L5FxxANV
+         BNqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762876964; x=1763481764;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1762876975; x=1763481775;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7VGf93EH4RNxVnue1hBByCb93RrqwGsGg2pi+iF8gn8=;
-        b=UleQuVhZA35bAh1mh+8ElqGK3zHOPd2S9OBlM+5h3VsCw5PuHnQTdALA+duuxT3Php
-         4DABE6t0F9QMnMrCiT+4tbiI07X/mV9YvLMaIn4oRxKRS2lOkvMSdon89zBUFMYP6kv9
-         8OX7sTarwhi9ufh8GwvZQRAKcvC/A8Y8RNaMtDIXbaSodh4mRkRUvs1/pG+lBYoVe+yF
-         NHUkx/o9UgbHFtdNVub1DQFpnOlik4e78vsVMvZkr8yPb29e4vRFO2W6CUAsynXA6UrV
-         /Xx3mthzzx+e0iwpNrUKOPwYaMnG5NOoz9FgCX3n9+4UAb6nWJJCICPYYVAsJqc5/VIX
-         RlYg==
-X-Forwarded-Encrypted: i=1; AJvYcCWyic8mOqyUyB4Dlp4clu5uCp5xY17SbykWg4LTaiJoFJqHlC8YWyuOawz/AVESOJOGo/+0W5/ZWJcj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzE6uGA85N6zsNnJ1Aja6rGHcKbhg4vj+JzJywwKzQUDt0H90O3
-	nAn/FYBtHpOCQM+6zI+d6s5eviZXvO96Pk2PoHLuNMXeqWtTY5DCF2L4VYogRwvCDxA5wlzgGM2
-	owlYoBXsfA/gKJ0Hxgzc2QdGuZQmqde7dzvgu+ExiVQ==
-X-Gm-Gg: ASbGnct03IBWhnfxYqPgeTi60fasjdvliinc3QKoGYe8jgVSo4Fb33uPtHRppOXxHJV
-	/XMmeAmf2frVPg4WZmz5qWN1s7xaqpHqP4MXooyDlQAv6et9lvWnpveS/cwqwUzBAnwc+Zip4dV
-	PwdQ4ImLfmEKwIaFcuFq6kgNIfslDFXZKmZlZhLLsmxlg0F8fp5bcio8jOPsT6GixnOEbCIxIza
-	4POAHQ/Bs0WOj7Chb/1qs7NglG6/lDCLTeK2kS+UG1tDkeFXRgINfRe7mUUAFQhFbkrC2j6f6ui
-	+mJ/kECWokmtKOe7/6cTN+lqqaA=
-X-Google-Smtp-Source: AGHT+IHxVfzcMnjoT9N0Epbh4e69UMgZVPS9gWPURg0lmuKfEkoOqup3rLUdLbDvLJaDIqxZPliyLE1m1nVnk7BWeFE=
-X-Received: by 2002:a05:690e:165a:b0:635:4ecd:5fcc with SMTP id
- 956f58d0204a3-640d45b7544mr8090631d50.41.1762876963963; Tue, 11 Nov 2025
- 08:02:43 -0800 (PST)
+        bh=gEfAh6rp9MQrdIl36CEViAex1/8JADzaa0H1cCy8km0=;
+        b=FSOrQ+AswMJoHrASV86zjcXZSm7+pbBc9O1T0MckzwE60+Fwvur7Lv35zKah9ck+OG
+         nv3kAiIf0NAuyzjZ3JvoEhcrbLLyyylvr0CEXfDk+KeT2Ca5YpLqp/L6/6UjJbjj93Ck
+         yiPbmDLUDOM46h0ZkAFZdOhUH4qAfF/V3EaKQ9GnJvKaOLecSd+4ziP/dfrp3OnjM1Lm
+         fmqI10/djNXuaOa9Du5pBz+Ig2KMOwNz6un+fi9xcMo6CVwqJUCP7JR3XcA0BvNYXH7Y
+         gzTf/uAiZu243tzutCbE2NWYuCEbttET2JzBsAytJbjkrR50acczCnICRXsNRSnMqcoQ
+         XmWg==
+X-Forwarded-Encrypted: i=1; AJvYcCVubtMp/7UbSQfZMlGEAAysgYJLDnsp552xHEV8O+ex+bH/9BGqvJIRdXKQQMQ49oMpuNNn80QqJead@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRs2t7h2kt3FTD2ui7KS+gjfK3J9rEyiXfOuFanOFuX9zadCdB
+	qDL3CPPKNJkNf8ouOAkBMYGJdQ1XB/As0a6wooBgTvvvSt0khgV1gWUs64nV1xSbPqfcJelA3uO
+	lCUm2MxUoWxwObpUb/MnWEyH2qpfPV9FQmuPwPsOSKEJaQZaeThbF4ZGO8XeWI1i9nFC2b5GH
+X-Gm-Gg: ASbGncuqpXYvRATTk2nrtTMJO4FnN6Px8MTAdS087KGUgJLwH16AaSVKaeGJavYXcge
+	mpGUOaz6xocJ6f+pk6gENPEr2FIuYs3QrQSKivHFV0UdZrMs4o9kmy5phFJrcnmDswOvA3iFY2g
+	Xg5px9HXjMiA8FiPuTLuJ7eAYXxkj10UWk+Odovvkwmzf/JErAI3ZtXg+UcTO6wgqpfnZjVsirP
+	GeHmIOFh/qq7r+H42p6XDO2D/YBy+AMVvS+bTap8zpnJrmBda/4YF/W6sQBqbFPOWTfE1j+V5Rl
+	FBvD/XNEEegVLKzJfN0CHj/lf1rDTWQx28GPeIlQ7kgandQB/F++gzqg6AZYZT3EyJ7Ts9JfAeU
+	W0BIvQNgGxgjKaJTdQ14PsrfnPRpFGn9xyc//CMS9DPcMTEgSUicle2N1VHRMBJ+YbmRMGQ/1eB
+	C2jmvGQiBuSPBT
+X-Received: by 2002:a05:6e02:741:b0:433:2341:bc13 with SMTP id e9e14a558f8ab-43367dde525mr202694975ab.11.1762876974720;
+        Tue, 11 Nov 2025 08:02:54 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEMeGuxuvNqNErBimtBnxbPGOE63puNynCAr2CwRbSYpmZTYmk56G2PXxE/3b2KkI1j7a5EoQ==
+X-Received: by 2002:a05:6e02:741:b0:433:2341:bc13 with SMTP id e9e14a558f8ab-43367dde525mr202694035ab.11.1762876973884;
+        Tue, 11 Nov 2025 08:02:53 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5944a1b231fsm5149139e87.74.2025.11.11.08.02.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Nov 2025 08:02:53 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH 0/2] arm64: dts: qcom: add AP8096SG variant of DB820c
+Date: Tue, 11 Nov 2025 18:02:50 +0200
+Message-Id: <20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de>
- <20251111-b4-adv7180-vpp-sub-device-v1-1-9877fe9f709b@pengutronix.de>
-In-Reply-To: <20251111-b4-adv7180-vpp-sub-device-v1-1-9877fe9f709b@pengutronix.de>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Tue, 11 Nov 2025 16:02:26 +0000
-X-Gm-Features: AWmQ_bmAIYxWZ7diJ1TLx2sT3u4adg74eDkUo7h0AihqpsN2m5_Gy1r6II0S33E
-Message-ID: <CAPY8ntAAbXq--N_=Lk-GeNMOt7Ucpm2zfkKOnvXB2bhY4i84zg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] media: dt-bindings: adi,adv7180: add VPP and CSI
- register maps
-To: Michael Tretter <m.tretter@pengutronix.de>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, kernel@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACpeE2kC/x2MQQqAIBAAvyJ7bkEXBOkr0cF0q72oKEQg/j1pb
+ nOY6dC4CjdYVYfKjzTJaYpZFITbp4tR4nQgTdZMMB6OdMBSMzoOkTw5S5phBqXyKe8/2/YxPnk
+ xIJ1cAAAA
+X-Change-ID: 20251111-db820c-pro-8ecd2a28520e
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1029;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=Szl2H3XbsTdN5Hp3bW7dxEgQFIDzEkvs6uk8oNOn680=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBpE14sngE6ezmNymcaCodRsu7ZVFgpxesv7SzLC
+ yz18p4mGuOJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaRNeLAAKCRCLPIo+Aiko
+ 1cGuB/9oW3olB+FSLNMWpFbbJTIz9oIMflBJ+LnyvqHVon4BgeSy5JA5lXCeXrhN6A/DdE21g2G
+ nR8C8d9euGSc7EdoW68MhyHIIYKlzDMjKCWP3Z2yn53OhG6LjShTQoZQ4rL3gecifl+7ueAXvN/
+ BRQRzPEZBRmF+rfw2204hLhPDDyie3lQrFA4j6y9Nn8Beur1yq6cxUq5eW5tBTflQZPMtJNjY3y
+ M2kL2glrSd/Vtb/tForC5N5WOwJeukMsaPI5DdT3Rd/dFJSg4tJU+g2Ydc9ObGZdmpKDjgdx0+6
+ 3zAgp4QHoutwYK8bQnV5iiTt10Y/xvKRICo76vVpWWH9MCnx
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Authority-Analysis: v=2.4 cv=Pc3yRyhd c=1 sm=1 tr=0 ts=69135e30 cx=c_pps
+ a=vy3nvQW9C2dqy/lMnN3IYg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=Hd9naEU_5ldSTe-YsNsA:9 a=QEXdDO2ut3YA:10
+ a=mHQ74H5e8mo-RpSg_uaF:22
+X-Proofpoint-ORIG-GUID: ycVgHEaowYQkTx1rWMWlwonvRhLA384E
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDEzMCBTYWx0ZWRfX1eZBwBWZ4TNr
+ mM5Zdj8B5XY4Vh1fwK4BGFGoDG1dPenZD470kGbTP0U8s3aY60On7Mn/zp/F1GqapxGpG67SGjk
+ nxD9fa5Ptb0Y2uGqlUMz7RZ4zoAWwbWfoNocFhmCIbq+5BrJXWmYi1zXj1Q5WChC6CByr06r53H
+ /OExT/lluEfkP32jZPwF5dalKPmf68IEPfzWjSJQTOU2ExOUCsiWHry/3Mx3rU4g7kPuV6pNYVp
+ L/U8xN1aVGRqbPAaHwEsWyeB15601DYT/UfGnDbWQafrHiQofhSHXxkYjOd8iqBsZJAG5+Qumra
+ aZUd+kSpAa7w5x9CtoezM9l5KZXqYHzAJybPtMi/DIEBXSZlpVQgdIYFXCHY33q3Xp5MsxY0Fe9
+ pN56lNLXVI5cqJtXBl3Xgg/D921o2A==
+X-Proofpoint-GUID: ycVgHEaowYQkTx1rWMWlwonvRhLA384E
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-11_02,2025-11-11_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ suspectscore=0 priorityscore=1501 bulkscore=0 adultscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110130
 
-Hi Michael
+While debugging a crash in the DRM CI setup I noticed that the kernel
+warns about the unsupported hardware in CPU OPP tables. After a small
+research I found that board indeed uses APQ8096SG rather than APQ8096.
+Add DT file for these boards.
 
-On Tue, 11 Nov 2025 at 14:50, Michael Tretter <m.tretter@pengutronix.de> wrote:
->
-> The ADV7280 and ADV7280-M have up to three register maps for the VPP and
-> CSI. The address of these register maps may be programmed via registers
-> in the main register map.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+---
+Dmitry Baryshkov (2):
+      dt-bindings: arm: qcom: add Dragonboard 820c using APQ8096SG SoC
+      arm64: dts: qcom: add apq8096sg-db820c, AP8096SG variant of DB820c
 
-AIUI all the ADV728x devices have at least 2 addresses, signified by
-the ADV7180_FLAG_MIPI_CSI2 and ADV7180_FLAG_I2P flags in their
-adv7180_chip_info structures.
-Is there a reason that you've restricted this to just the two chips?
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts        | 1126 +-------------------
+ .../{apq8096-db820c.dts => apq8096-db820c.dtsi}    |    5 -
+ arch/arm64/boot/dts/qcom/apq8096sg-db820c.dts      |   15 +
+ 5 files changed, 24 insertions(+), 1130 deletions(-)
+---
+base-commit: ab40c92c74c6b0c611c89516794502b3a3173966
+change-id: 20251111-db820c-pro-8ecd2a28520e
 
-adv7281 - CSI
-adv7281-m - CSI
-adv7281-ma - CSI
-adv7282 - VPP
-adv7282-m - VPP and CSI
+Best regards,
+-- 
+With best wishes
+Dmitry
 
-The adv7180 and adv7182 families are the only two which only have the
-single I2C address.
-
-Thanks.
-  Dave
-
-> Allow to specify the addresses of the VPP and CSI in the device tree to
-> solve address conflicts on a board level.
->
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> ---
->  .../devicetree/bindings/media/i2c/adi,adv7180.yaml | 44 ++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> index dee8ce7cb7ba..4bbdc812442b 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> @@ -138,6 +138,31 @@ allOf:
->        required:
->          - ports
->
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - adi,adv7280
-> +              - adi,adv7280-m
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 1
-> +          maxItems: 3
-> +          description:
-> +            The ADV7280 and ADV7280-M have up to three register maps, which can be
-> +            accessed via the I2C port. The main register map, the VPP register map,
-> +            and the CSI register map. The main register map is mandatory. The other
-> +            register maps are optional and the default is used unless specified.
-> +
-> +        reg-names:
-> +          minItems: 1
-> +          items:
-> +            - const: main
-> +            - enum: [ csi, vpp ]
-> +            - enum: [ csi, vpp ]
-> +
->  examples:
->    - |
->      i2c {
-> @@ -187,3 +212,22 @@ examples:
->                      };
->              };
->      };
-> +
-> +  - |
-> +    i2c {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            composite-in@20 {
-> +                    compatible = "adi,adv7280-m";
-> +                    reg = <0x20>, <0x42>, <0x44>;
-> +                    reg-names = "main", "vpp", "csi";
-> +
-> +                    port {
-> +                            adv7280_out: endpoint {
-> +                                    bus-width = <8>;
-> +                                    remote-endpoint = <&vin1ep>;
-> +                            };
-> +                    };
-> +            };
-> +    };
->
-> --
-> 2.47.3
->
->
 
