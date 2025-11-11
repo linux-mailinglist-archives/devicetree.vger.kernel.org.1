@@ -1,89 +1,111 @@
-Return-Path: <devicetree+bounces-237035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00505C4C1E9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 08:33:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40AB8C4C222
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 08:37:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E35AD3BE77D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 07:33:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B838D4E66A1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 07:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B57E33B973;
-	Tue, 11 Nov 2025 07:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A5E329C66;
+	Tue, 11 Nov 2025 07:37:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="pCGrPFo8"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="PWqLNck9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D903332ECC;
-	Tue, 11 Nov 2025 07:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314C3281341;
+	Tue, 11 Nov 2025 07:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762846412; cv=none; b=JI81qR4sfuSR3E1Omu3ybPFCC+NzQrdvvX0pZ5E+VT/NeERqvwgbPLDi1LneG7td7WaogJXFZMhNy3O5oUt73v07Bhy2OOpZg4kEf8MdHVfG6tdD4t4S4a6OJdyfk/aRLlWMpPF1rkB0OVTZbc6ruCBRu3mi/bY0RABwj/SS1SE=
+	t=1762846665; cv=none; b=DquNHm/qhBuqdEkG+YdLgJeXNkirXMuSsMy0I0iqbj0hAq29FfkdwFw7uQtHFmcqxQaj1mcWp6IacRx4R9uicuJvfO4GmsVlhWoAxalSxk4xmL+9FerLDGtXKyaQDSvsqZPlSfitLwPa9dH3dNZzTTF67Ru3mKFLjb+RKfTNSIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762846412; c=relaxed/simple;
-	bh=uplPXJMzKcAVAjzc8AdoyO3MKm4Opeor6rUmaY7BFP0=;
+	s=arc-20240116; t=1762846665; c=relaxed/simple;
+	bh=TMfjCCp9Vl1C+w/PH2HESmcjrVpVqcg2gmYMGqanOuo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fOZKMFZKsMLjQC9COymNXKOIX/X4/wuk8xeQvvC2Qx1kIMrcg/Vzv2mvaFI8SCViF+hpZ3PCG1qSgz5UpANr+MszxtbWRB6eApTtGikBIb36T6u/3Tg8S/7e4ouIaqbY7av2LC/vgvrSJuBQ+hWkHgnvooh0qDUR6mb0Uem+Vk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=pCGrPFo8; arc=none smtp.client-ip=1.95.21.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=MjYjHZrr9aASl5IBLtW1CM4sZFTCXej0+ilrkNpzdiU2uNVbiJUEswKeOT+NZRbZvP8wmtcoh6BC6LL4cvL+zRRmsiriVveDi4wSWkOSiWdsEw0iJqHAsgvnmfdSrHz33H/mzLyYH531r+0ptosdkiD04MHxAlHh46D6vBJIUTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=PWqLNck9; arc=none smtp.client-ip=1.95.21.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=A6MYlnhD622vn+jskvtP2u3P8TmkgrkKitICNkrmhfs=;
-	b=pCGrPFo8uuYBh8CwNEyIz8LkgTxF1S38/tKl8mkLe/rQnC/7CQYUhVlPCthal5
-	Y444dprs5ZCeKf2knL9EpU9B1bjhxloPOCCCvCnPUPKOux+XPpaSs/8Ug/mhfPnu
-	/UzJ+eSFO7gcOQoad+30bFkU4r/XwELH+eVZBtB5lQ+iE=
+	Content-Type; bh=jSCFmAGYJ/6nn3X8y2BV2I473qQwTQBsOPiyb3X/GTY=;
+	b=PWqLNck9KGbRwkR/sES7ueZrnA5LZNT3OVPkUI2EVxEc86cKHKBRnIx0UPASlk
+	9MW/rnmblg29iXEi5+dXOGvlkhWhYNW2H1SiGaWvEKBcWbQGD2zCHdJXOhInI5r8
+	3LGLOWVtKwJIxovzNMFo6iSjfjrenzjP8NeQPbQYeJ9z8=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDHDpuV5hJp_hnNAQ--.5255S3;
-	Tue, 11 Nov 2025 15:32:39 +0800 (CST)
-Date: Tue, 11 Nov 2025 15:32:37 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAn_s2h5xJpBSnNAQ--.5214S3;
+	Tue, 11 Nov 2025 15:37:07 +0800 (CST)
+Date: Tue, 11 Nov 2025 15:37:05 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-Subject: Re: [PATCH 0/2] dts: imx: cleanup warning cause by fsl,mpl3115
-Message-ID: <aRLmlQHs5tF2lBb7@dragon>
-References: <20251022-fsl-mpl3115-v1-0-93187d095efc@nxp.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, frank.li@nxp.com, s.hauer@pengutronix.de,
+	festevam@gmail.com, kernel@pengutronix.de,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/7] arm64: dts: imx8dxl-evk: Add vpcie3v3aux
+ regulator for PCIe M.2 connector
+Message-ID: <aRLnoXX54oG6erhW@dragon>
+References: <20251024073152.902735-1-hongxing.zhu@nxp.com>
+ <20251024073152.902735-2-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251022-fsl-mpl3115-v1-0-93187d095efc@nxp.com>
-X-CM-TRANSID:Ms8vCgDHDpuV5hJp_hnNAQ--.5255S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrGF17CF4xGFyrJF43uFWDXFb_yoWxWFcEk3
-	y8GFWkZ348Cw47K342kr1FvFWkG34UAw4qgryYg3y2vayI9rWxWrsrKFy3W34DGFW0vr4v
-	v348Kr4DXrW3KjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU86wZ3UUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNhe9I2kS5peamgAA31
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251024073152.902735-2-hongxing.zhu@nxp.com>
+X-CM-TRANSID:Ms8vCgAn_s2h5xJpBSnNAQ--.5214S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZw1DXw47Cr1ftrWUJF47Arb_yoWkKrgEya
+	s7Ka45tFZ5Ar92qas8Ga1kX342939rKrWfXr18Xr4kGF9rZayvkrykGa4rWr13CrWIkrZx
+	CrsrJ3ZxXr9xCjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUU2jg7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiOAMBZmkS56Mm3gAA3b
 
-On Wed, Oct 22, 2025 at 04:43:20PM -0400, Frank Li wrote:
-> After commit f11e4374b(dt-bindings: iio: pressure: add binding for mpl3115 )
-> vdd-supply and vddio-supply is required properties.
+On Fri, Oct 24, 2025 at 03:31:46PM +0800, Richard Zhu wrote:
+> Refer to PCI Express M.2 Specification r5.1 sec3.1.1 Power Sources and
+> Grounds.
 > 
-> thread:
-> https://lore.kernel.org/imx/0e00bb14-19c7-493a-9629-354bac3a273e@baylibre.com/T/#t
-> not prefer change both to optional. So update dts to fix CHECK_DTB
-> warnings for both ARM and ARM64 platform.
+> PCI Express M.2 Socket 1 utilizes a 3.3 V power source. The voltage
+> source, 3.3 V, is expected to be available during the system’s
+> stand-by/suspend state to support wake event processing on the
+> communications card.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Add vpcie3v3aux regulator to let this 3.3 V power source always on for
+> PCIe M.2 Key E connector on i.MX8DXL EVK board.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 > ---
-> Frank Li (2):
->       arm64: dts: imx8: add vdd-supply and vddio-supply for fsl,mpl3115
->       ARM: dts: imx: add vdd-supply and vddio-supply for fsl,mpl3115
+>  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> index 25a77cac6f0b5..7704dba9e37c0 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> @@ -649,6 +649,7 @@ &pcie0 {
+>  	pinctrl-names = "default";
+>  	reset-gpio = <&lsio_gpio4 0 GPIO_ACTIVE_LOW>;
+>  	vpcie-supply = <&reg_pcieb>;
+> +	vpcie3v3aux-supply = <&reg_pcieb>;
 
-Applied both, thanks!
+Is it a documented binding?
+
+Shawn
+
+>  	status = "okay";
+>  };
+>  
+> -- 
+> 2.37.1
+> 
 
 
