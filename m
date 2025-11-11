@@ -1,284 +1,180 @@
-Return-Path: <devicetree+bounces-237164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6894DC4D8D7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:00:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3059CC4D8E0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 13:00:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F024318943E1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:58:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D681A18964C7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Nov 2025 11:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537522DC77F;
-	Tue, 11 Nov 2025 11:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 384C03570D3;
+	Tue, 11 Nov 2025 11:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="b3CDMYOh"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="n349Cc3m";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="K4eXLc4T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013059.outbound.protection.outlook.com [40.93.201.59])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E3F2E6116;
-	Tue, 11 Nov 2025 11:57:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762862263; cv=fail; b=SAr7dgSaUwkCArR1UVcm+6tNcTsAArvG/MyZUh/07GlxS5zCyfY4/OUDLK5zDcDg47uIeHnj545QDY5puvLv5l/VGcN46rsbC7Nle5VIQKxN4Nl+odCMzNR6PCjp5QmR/GPslowJTOqRMOgqQilnvzoWZpvSLRrG6iDFJJdBPRg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762862263; c=relaxed/simple;
-	bh=tuINL1204aLA0U87P30t2uEfGr4xr8haaFF5FWN3BAg=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=YtIdIM/6oqPMKAh2QGojPiZukoFX1CgwZrzD3wJEldpRDMv6+5IWyIvzhkIs8Le1mFS7NgHWdSTwFpiaeMB0n20A+V1R0KtICZ/otSbTtmTbfXpl0bn+cseKzuvrHYOrNfmVNB1KdnOAc0ZsnJrOdpU4pU2L+FhCGGZjteoJoiw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=b3CDMYOh; arc=fail smtp.client-ip=40.93.201.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e6Sb27Nr7nE3HVJbPlgtjzEPG2ioxHvYM87fZk/y7imNNgnpAOJwVyqN1hRZ7G55R9IwINNr6q9QV4Sx/OIJhsQkbeIwxax4WNAkAX7BAjEvUJAA9LDRjnpGpqhr7Roolh1CV7URHQ0At4YcCVC43/hAQ4vNwvfOiwf39UhLkFIoOSVk+BFlPw7vyRtk2/gWPNyNOewB8EzxGK1ZG3+LFzp8o95sf05utzXq5tY+7OIWxH+5tQN/uWAZA8Xn4ifln6pL/Bkd04wIsJslgrGjKAVtLmYWXmlYEydj+BZ5ufjFw37i8aITFmnHjzeL2/HC8kmZ3jwdvHiTH/3Cf+ypvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n/+DpLeTqUhzHXwi6k7Py2elVbJHKKOt0rAE1jaDZVo=;
- b=DTBbixIyb256GxYq5pamEhD56AxEcnTkMZF/MrZCiwicZ3yKQZGrwEOs1Eox9FTqomairkXhDIZ8fsYOYvzI1yWIeSn7bD/0ljEbRUiqIPHaYMZLJ/efkV2Pr8AbC5prHHazowkjUi2aOdXHk2lPTCssangjCljuG2x1qUIf18qPtof+5+98M5NS2qFyAlO+i1y2mZifwWGlFCHjc/eA9k7c19wAMlXWUIx312Q/jpKGqRCVOyfb9zll7fOuosbTaXSgM13Mie9UiCZbTMK1q5qjTxE1HBLBq1eNq+4hscjTjVoqSO21UN33sgHV5Fv0C1D0BeqyqVTUSanoOg0RoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n/+DpLeTqUhzHXwi6k7Py2elVbJHKKOt0rAE1jaDZVo=;
- b=b3CDMYOh+SDg+TCUYgdhftpxCpo2See48D4KzbhoJpfRWBPczlKLWEb/77Ut3EnNagLlH5ROVl/WzEOgSP1b3i/wxf1OeVnnvU8mw+l5cMqQSubpwCUfxntt0Fl4XdOVRQEap6jbgFN4SmiO0Dr4rZYGxP0LTrCnliDIh2cPQjw=
-Received: from DS0PR12MB9345.namprd12.prod.outlook.com (2603:10b6:8:1a9::10)
- by PH7PR12MB6858.namprd12.prod.outlook.com (2603:10b6:510:1b4::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 11:57:33 +0000
-Received: from DS0PR12MB9345.namprd12.prod.outlook.com
- ([fe80::65ab:d63c:7341:edbb]) by DS0PR12MB9345.namprd12.prod.outlook.com
- ([fe80::65ab:d63c:7341:edbb%2]) with mapi id 15.20.9320.013; Tue, 11 Nov 2025
- 11:57:33 +0000
-From: "Jain, Harsh (AECG-SSW)" <h.jain@amd.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-CC: "davem@davemloft.net" <davem@davemloft.net>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "Botcha, Mounika"
-	<Mounika.Botcha@amd.com>, "Savitala, Sarat Chand"
-	<sarat.chand.savitala@amd.com>, "Simek, Michal" <michal.simek@amd.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "Buddhabhatti, Jay"
-	<jay.buddhabhatti@amd.com>
-Subject: RE: [PATCH 09/15] crypto: zynqmp-aes-gcm: Fix setkey operation to
- select HW keys
-Thread-Topic: [PATCH 09/15] crypto: zynqmp-aes-gcm: Fix setkey operation to
- select HW keys
-Thread-Index: AQHcSL4fwl9HB3A2vEaDmA0sI135SrTlG3sAgAhWX/A=
-Date: Tue, 11 Nov 2025 11:57:33 +0000
-Message-ID:
- <DS0PR12MB934525C9192C679D5AE681DD97CFA@DS0PR12MB9345.namprd12.prod.outlook.com>
-References: <20251029102158.3190743-1-h.jain@amd.com>
- <20251029102158.3190743-10-h.jain@amd.com>
- <aQwlEgMlYr8EPrTo@gondor.apana.org.au>
-In-Reply-To: <aQwlEgMlYr8EPrTo@gondor.apana.org.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-11-11T11:52:35.0000000Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB9345:EE_|PH7PR12MB6858:EE_
-x-ms-office365-filtering-correlation-id: 0d405bea-009b-4e26-86d4-08de21197fcd
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?0nso2AWOkKKY5z2+Iq/56q3DSkWGmqHWCBITLfFKuhasvoCqEjexoqVcbTbz?=
- =?us-ascii?Q?0FdNXBLlY6kj+Uht1yszNzYAHxeGMVsy+JvzGZq6p5TA/n31sad+DQkQBivd?=
- =?us-ascii?Q?yZrNnsDAJ2/eZJ70jY8JzQUP0BMa1ZG31pw8XFXYwcXn9D4aN/eP5xJ4iGsH?=
- =?us-ascii?Q?OBPEEKWYxh/MVrU8A55xFi3B1lgXsoiP3RjHzXiq6J8IM41ioH0QS37c3/JM?=
- =?us-ascii?Q?rSri8OwHB4wgYKE2Nr1yO/PNyIXK+9bZMG7CBWHIPTHCWc95oeNyHdWat/2M?=
- =?us-ascii?Q?+1fpeVJiV5Oq+EoB8vFKiS2UldSHHGWPHmlpyVHL9fMgrCft1qjxAtRDVsEo?=
- =?us-ascii?Q?nBvryGv/hg2KYF6aEd6TXITSlLy/RNT+3GG4RsEdRU/rLeu4rv5m4aAlEthS?=
- =?us-ascii?Q?u+BWmj+HbNbB55nRF2ulQrcveoD/ghwl6BrXilv76KZoX3scvP4t1LcYGXQh?=
- =?us-ascii?Q?NBe8EVkh9GTvMQh1lH19t7L/0Ge5j8X9X5ptZ2VhzsTBIjS0d6TrwlYjhWkp?=
- =?us-ascii?Q?3sj6TkiJvL3HyvOG4lyNwjKic4cc/fZIJkcHlEzYLgyimn8ttv1Vjk6KCC/E?=
- =?us-ascii?Q?8wbc+JlVG0Pl5Wg2Do4WWI5MBhDFjJ2v2tU954kJQckHZCgG8HuGQA9OeABd?=
- =?us-ascii?Q?GXCNuOD3OIiOvyRtt4oDWY8vol2cS3z5Wzk7SS1pT/kdF/J3wy4IUAg5UYoJ?=
- =?us-ascii?Q?cpjvKmm1InryoY+GJYo4uL9Lm1KqS/uRY+k9i1RiY6K/zy4SkIX7qAo7rHt8?=
- =?us-ascii?Q?lHCVuoVUUX9HRGp7lHN9Z9GGBOI8ufT/K2FO3hSeOMg0MC7AQr7R5AsaECZ+?=
- =?us-ascii?Q?1NBwY1xhohrgI3iliC6akMc+nDyrP56wdV6PB9GBAn5le/vCyepId5Q/VpEZ?=
- =?us-ascii?Q?4hOWQnt7oEBBant3s0einaEFu/D376YLSxpSoT458YzN3sIoPAJNc+NW+pB7?=
- =?us-ascii?Q?wSSUr/WTEXuhp95elrKji8J6m3344Gv4i6hcsyakZq+hRXav8NBBdfm9i4ef?=
- =?us-ascii?Q?yjvcv56yZDIRG9g3iZEE5VutTyeKdg0sDzQ7aEtBXVvvqq5Pk/+cL+ZrIBJE?=
- =?us-ascii?Q?86laPt3Z5bJFS8Wjgx9ZTxkofMrDh89xQ9O0S+fGwSwkjoV/qM1bMPF0Lumt?=
- =?us-ascii?Q?YgIy8gAcvff/tnXV7stmJiLfdtA3U/4FemSoUKrnDfpWZlsI87lS8pWHdE2y?=
- =?us-ascii?Q?8zr/AgJD+8yRVb4eIgBNv/NHJYN3sdGe/Bm8VUQvuh+XOYJWOYsgtLEYPjqH?=
- =?us-ascii?Q?32PCx0ZKjpP6WxekfB//K6OxX3pFTYGSeQd9mAb/VNpeq8qXy1PtO/Baek8m?=
- =?us-ascii?Q?RMa9Lh0wr/volp/Fw/ywJVsIC4z8pcse/qM49Wri4nUnKDzjJm7HF5JV4pye?=
- =?us-ascii?Q?c+sBkphez6nyBFAgJg2ZYXnE98RCduV7WgTyYJNLsGbkDUo6PelAwAlqbTB8?=
- =?us-ascii?Q?OehO/TsBxgGynmHliDvVCSggilvHq/miHUm97/JkqLjK5iyjO7dNbQ=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB9345.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?qoDcF9NqUbBF4unBTy4oOD5jFm7/gv9KKBYrqRNtIvyNEgVeLtpJqyiqsnrH?=
- =?us-ascii?Q?nRk9K0RA8uyXNQ3GKle7FhsopTTEgMgQaahq0MHSTOOntEgd4IsKx3mkQVFU?=
- =?us-ascii?Q?utrGEtc2zvMONKMZfYWRTcUTS2UkP3VCvKT+L1HNeD8YEuyh2KyyUgp6L+QW?=
- =?us-ascii?Q?C3UwSPY5TdDK4g74byFdeTVDHH76NWovL5itV83hRHBMryaHbDD/IHgDQehn?=
- =?us-ascii?Q?LnWcQ5oG7wjJzsN2fnV1V5MfQf5J3tAQl3yAGnQ2WAAqHf1Qe/W+rh2ORt1w?=
- =?us-ascii?Q?t+uVHy5f0/TxxiYZmvKuj5bylHCkxDQJyqEs7Tsu6qw1kbRCdAbdJKyoT9Mb?=
- =?us-ascii?Q?/iV9NxcIY6DnVqmVANWovWaAmjXwIXBL9qt4mbvjplFpE/hBoZ5/qpaobxCu?=
- =?us-ascii?Q?l2gTZ1fpTP4GoINBJI7AtAngmg6stvSI0TuJjx943j9zjMEjOIoNWUcQAGyf?=
- =?us-ascii?Q?Xnv132g1wNn8V1PBcAU97uFZAXS5PvQIXEY7JsLKrp/yH/RG/JFuniCFYS8X?=
- =?us-ascii?Q?FvokwR514UW3tCkZJQHq/HnEYK1m2Hxfoomd4i81D2srwh9ivNCI5L4bRlJJ?=
- =?us-ascii?Q?sNlZE/VbF/VTl+1JcTU/E6ttzLmus2gCKH72QGN111W5BWgXGT8+tkNrgT0g?=
- =?us-ascii?Q?qM4t0+DhqPg16/JRIL8IXnHeyE0ToJnHvX6umydod2zQwa68x6ibKW1UudKW?=
- =?us-ascii?Q?Kz2h48lew2cAzW71wP0RKCFm9svO1qU4np2z/bpb23sK2uwkHBbzA2W6pp8R?=
- =?us-ascii?Q?0hEm1EXQ1rf6/GXR3KvNnv4+onU4t2iaHE/2vC43+S+uquSoLebFNuE9362+?=
- =?us-ascii?Q?/u0lVLws6JSBP6TlUPt/BEbmsrydKQ+L0NgsrQUF9d93R6Xvgk/wiOVXA4jU?=
- =?us-ascii?Q?qZt/XcP7IRq6rAehqVyu8Zz89tNwkZ2JfOFG33DYyO73YsuOQhZr0yj6lnGq?=
- =?us-ascii?Q?+ZPaiZHPR59z5UoT7iiSPttHnnUxwPyVftcsvPU9Q8KlmChQcpX6uFrM7I2L?=
- =?us-ascii?Q?d5onfFJFchswkIHfVyU4zoDbr9KN8DjD/gO8Ys8kXVuoWVT9/HqNiST/U8W+?=
- =?us-ascii?Q?0tL1bJxMsPDhObW5oC5PA1ESbwFYQUw4rWEq/o32x/0MQ3lp3wTe98Ic5Jbh?=
- =?us-ascii?Q?VdfmHVZUcAo00IdM/Ruf7edX46Rn4N2xERpyfruXnLLMQRIq5BCImH0fj+r+?=
- =?us-ascii?Q?dSiy7wqU5jIeceJGJiGM39ol3aLOjseHwHcP37TaHyBKX8FBcADkiT5EZBkN?=
- =?us-ascii?Q?HFnthBWOepWKRoZ4HA/DE6a7aRgU1s3ndnG23oer8I2QbOTnRGfL2wDI4d4g?=
- =?us-ascii?Q?Nio488g1zzi2LqaiKFapPSiM9HclUEnOPJllByfRr+XqS6BwucS1CtIcXch5?=
- =?us-ascii?Q?ax7KzKajE6dd0+EK0t25d/TFmVW4jLGZiOiF/fnMVcb5+iJcBrXajd37uvIV?=
- =?us-ascii?Q?L7YwVeOTUHtPZ6SpdC/MyAT/h4TFKFslDKcGZa+7koGH5u4lQGa3yVxQe2M1?=
- =?us-ascii?Q?bTMOdH3WKFvhzMnXwF9ZmW+nQlO8Iacdj3uzo8Cz+OcDLmapxm8QA66Ugfif?=
- =?us-ascii?Q?F9FzWNIPDdpD/a6WuZI=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD00834F278
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 11:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762862353; cv=none; b=bKMVS2zhjxEFtPpA9PPi12Z6H+gPv3iVbsJEi2q5KZ4H1wdXbf+CxTa6ztuhaSavveMUoafvxnraZGUwK12dXDjdkHvZK3JJ0JxZFEnK96ZjtuAgs+cKmTOKXvE0r2hOUvkmO+M5Q5+lyyDutG8EklnxlI4kaLYrSshoWWmKpJk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762862353; c=relaxed/simple;
+	bh=2tyNmgAdN9f823e3Kz6GbzamElb/UkJnLrmBlr+APfo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Cp3i3zukk+eWQhtKp+a90FAxv4T/mplMnFP91S9rMCrJD3zxAvJj/F4ncGrzh7cqrY8TdBOR2ml+MxZ1Hj4j5l2IIwPJPq2IjZfiQJsC5wjQVe3FpETtxPQN2rtu9NsIjgJXlbBibjj0olr/FzzPKNMTivv+e9bUoXVBeR6ELQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=n349Cc3m; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=K4eXLc4T; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABBGINU2117334
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 11:59:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=7RDTG2+S5HXj9tZ0cdAAmx
+	3IwsRpLcACPoswBy3TaNc=; b=n349Cc3mZRZBcXFGNGX5bWc45WSPpnJbQPYsgB
+	9orl2kaUkPItVJBru6zG7KakuKsY+4X7oTdrSkBugHNw4dwCPdDXMgIFPbl76XQd
+	hHoFnj95k/+0YYn5y8VGJDt1GYUhsAfFFqAcyFDJoPzczsB+14iM8G3/jWty9T7G
+	tNlEtv80vru8lc+wN69a9ALHIhGT5NJUjKc05uo0i+W284oBvPk2pSgmmc+jh5rI
+	j06Y4GzyegQw3Td9bVoxyvJGOHPe0yU0V7VvGi7sk4TzVqxGiOlYN9myglngMYGF
+	XD9z3/SZhEsRWp8tKVumU+g3xCF5cSiCA2XlSrmTBdW/2Diw==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4abpy8j9sj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 11:59:10 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b92bdc65593so9236309a12.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 03:59:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762862350; x=1763467150; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7RDTG2+S5HXj9tZ0cdAAmx3IwsRpLcACPoswBy3TaNc=;
+        b=K4eXLc4TuOt5rdFHXK041RK3jNFPRd+8E/2W4lwQ1H2dt/znkRltaMlkdmfjFoR/cD
+         P0LQh1iRZ9plYkIrNpHqdxYL5slXswpiwjeFRdV5hCsBmzdJC/mX1BTlQ6u4LjnmLx+f
+         DNxj40mnGnpOlWNChOTcMGlV4krHniPDWnrIYFPVgXN4XZKAIFkpKjCrTSbW7skC6KXE
+         65RC+pPt8wiNn+r0T3rQCREznUzVeLggPqreqFZl1ubcKvIIIsUKrv5v8YSqnEmyQXnV
+         svgUmYtSSlcytDziQIjx7DlNCZghiCI7hAuDPYRnIgyuXaGuucrg+dl136xPSS1arcOg
+         EcvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762862350; x=1763467150;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7RDTG2+S5HXj9tZ0cdAAmx3IwsRpLcACPoswBy3TaNc=;
+        b=PTcrDTbJv74j9Ng2A8bgUHCj1gbXcrUa7FX6O3Jffhrp8r18O3S2s7UJIcKji0QXMN
+         cylZuK4RwyoazHGul5P1WXjiYbXQalH2o4Pj8W9s3gL3/kTO57M69LuPjrPrFPskGtux
+         8/U6/HunE7CzCq0/aUNmbXmF0tEzZv+wCZ8qeori6OJ3XraMKR+FHRJUKDfbsbCCSXB6
+         +aD0WWO1LY10MqlznO2lJQ8Qod8WP9nQ+3v/baEwnkyarR+78byQ8nuWS7CNKy11J7OZ
+         ePv2pr3lN1rF3WDTpdmQYOtJphzYokVSpUhn9bmXDNBvyw1bAxddws5IoRKoYFmVzMC1
+         wZ2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW3zzlqeJepSnhNigUyIHlLGhTljB4u0y/kAgpc/NyHAHFJ0jPa2Ye6LuNwVooQTH1/OWsb+So0B/PI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYmOJbO3urFURC5w90HCqp2eAL8vZnOXZG1c7xNYBwEFzBA11/
+	NxMoGP17jtQ2wmDGSHn1sGH5KamWV6dcA0+t9AAuOdG8LUUw/kecIgs3veRoqPe49dKE0JNU/m4
+	EMHSKcdJMDFsvcCaUYR1jlay63CKJrQ2hYtsEqKIw36YinF0PPOfJzm4JkQo3WcSk
+X-Gm-Gg: ASbGnctrpkBKkJOHMIhS6bRkur4G5zrhAlmEsu/VEU9e3GIxSwaNQ8K4RJNCKh8op/f
+	zwyqpitzc9/b4EI92izNDtJarh13lNbddZGiOylSOeVzaWVWEH1uIB27y2q91ZOb3s8KILIoItl
+	5bNmSiJxczfMCn4XXb80VJNOhs/JUUW/KJtjHJGiw/hBTFuee9vyES4uM9qklq3hftzcF+bUAOq
+	CjqihhfDbHB2UuZq0TfFCVlzkdXtT73OkAkVrYCKS2yMJuSR/kbp6u2J3M+Y+53L3t0nFwjtMVo
+	DpMFQGtOiePktKLKB5mE5FjrimkUF0zYeJZuPr9p4QfuZMaTqWzdNCeaTAEyEm1CNlpzCN5DPB9
+	6jHjGRGgJ1q0qIsY1zObp0vB21xmDLwM=
+X-Received: by 2002:a05:6a20:9154:b0:33b:f418:c3e8 with SMTP id adf61e73a8af0-353a3e627c7mr15119216637.60.1762862350201;
+        Tue, 11 Nov 2025 03:59:10 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHyj3231nwHcjE8XT4mfFz2IeVyZv/w/7ubdP8SQ82tm4GpYD/HYJbaWIPYq0StrErAwIULmQ==
+X-Received: by 2002:a05:6a20:9154:b0:33b:f418:c3e8 with SMTP id adf61e73a8af0-353a3e627c7mr15119189637.60.1762862349696;
+        Tue, 11 Nov 2025 03:59:09 -0800 (PST)
+Received: from hu-afaisal-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ba90307193fsm15420333a12.38.2025.11.11.03.59.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Nov 2025 03:59:09 -0800 (PST)
+From: Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
+Subject: [PATCH v2 0/2] arm64: dts: qcom: hamoa-iot-evk: Enable TPM (ST33)
+ on SPI11
+Date: Tue, 11 Nov 2025 17:28:54 +0530
+Message-Id: <20251111-arm64-dts-qcom-hamoa-iot-evk-enable-st33-tpm-on-spi11-v2-0-101a801974b6@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB9345.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d405bea-009b-4e26-86d4-08de21197fcd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2025 11:57:33.4676
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WEKrFCK1wuuDjMa9ku++pXCqzb/CvYcrLEge6zTzo8B3023CCCLdLM1j1OUHV944
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6858
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP4kE2kC/6WOQQ6DIBREr2JY9xuBWklXvUfjAvFbSUWUT0kb4
+ 91LvUI3k7xZvJmNEQaLxK7FxgImS9bPGcSpYGbU8wPB9pmZqETNedWADu5yhj4SrMY7GLXzGqy
+ PgOkJOOtuQqAoJcTFgZ+BFss5GCVr2TcDKoEsu5eAg30fu/c282gp+vA5biT+a/9dTBw4qE4r2
+ dVqMLq5eaJyfekpS1yZg7X7vn8B3zP7LwEBAAA=
+X-Change-ID: 20251107-arm64-dts-qcom-hamoa-iot-evk-enable-st33-tpm-on-spi11-c8353d7fe82e
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762862346; l=1138;
+ i=khalid.ansari@oss.qualcomm.com; s=20251105; h=from:subject:message-id;
+ bh=2tyNmgAdN9f823e3Kz6GbzamElb/UkJnLrmBlr+APfo=;
+ b=69/mc8QFmAtDzIvrBLeTbUZ+qd4GufAd+bTsdCkQukKR8GcuBYNgbcWF3fdQaq4sYUYt+8ZQw
+ LwFDyUblqbdAEXvri9/M5JqI74gRhVD8SJVCJ/tW0z5QpWeU3Z+OBjC
+X-Developer-Key: i=khalid.ansari@oss.qualcomm.com; a=ed25519;
+ pk=eBXrIUgTWV0cgG+GsNeZPPgvj1Tm6g9L2sfcoxMGrKo=
+X-Proofpoint-ORIG-GUID: lHFUYXtmqrLP_4I-T1f4GYIJUvg0c9TF
+X-Authority-Analysis: v=2.4 cv=AYW83nXG c=1 sm=1 tr=0 ts=6913250e cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=VnyvtZ2neWzYWFT5yUoA:9 a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTExMDA5NSBTYWx0ZWRfX3sgDjTpVv9xr
+ C9CwV7s8MHhA2XyUzuVXri/WR6kyTG4oxQqOmQftQXM6ADGQFXDVB6iDv97fRSfGOWFUX2CZVVl
+ vxenA0RPVAkcS8T8FK6LKBYMpYIFrtzXwEQ8u0Jlj6q1l7uUy7jBB7GIXrrjzd54PcNWwuoJnnr
+ xTg5cssrr9VHiGfUN5CFEPVgSyBpVRi6c8iIjID8dfurMkEUyZIioaCwikU2zTZU+LeFNv/5cAf
+ GMB+uCkD8dwgUjSJ7S4rVcYkGu1ZIr890F5bObeRNtNKiOkSW+4YjmJTUGBxfRzOnP1trGUHZ2X
+ yWyWO7TZnIzdldalB5GOf/y8mcmBmEyiATC61YvsTLSJ3ZbucAufTr/I8OsWYH0Nnw24NoPU64r
+ QRwza2SbuasCyo6nYMGm8ue/3OwX8A==
+X-Proofpoint-GUID: lHFUYXtmqrLP_4I-T1f4GYIJUvg0c9TF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-11_02,2025-11-11_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0 malwarescore=0 adultscore=0 clxscore=1015
+ suspectscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511110095
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+Testing:
+- TPM detected via tpm_tis_spi
+- Verified functionality using tpm2-tools (e.g. tpm2_getrandom, tpm2_rsadecrypt)
 
-> -----Original Message-----
-> From: Herbert Xu <herbert@gondor.apana.org.au>
-> Sent: Thursday, November 6, 2025 10:03 AM
-> To: Jain, Harsh (AECG-SSW) <h.jain@amd.com>
-> Cc: davem@davemloft.net; linux-crypto@vger.kernel.org;
-> devicetree@vger.kernel.org; robh@kernel.org; krzk+dt@kernel.org;
-> conor+dt@kernel.org; Botcha, Mounika <Mounika.Botcha@amd.com>; Savitala,
-> Sarat Chand <sarat.chand.savitala@amd.com>; Simek, Michal
-> <michal.simek@amd.com>; linux-arm-kernel@lists.infradead.org; Buddhabhatt=
-i, Jay
-> <jay.buddhabhatti@amd.com>
-> Subject: Re: [PATCH 09/15] crypto: zynqmp-aes-gcm: Fix setkey operation t=
-o select
-> HW keys
->
->
->
-> On Wed, Oct 29, 2025 at 03:51:52PM +0530, Harsh Jain wrote:
-> > Currently keylen 1 is used to select hw key. There are -ve self test
-> > which can fail for setkey length 1. Update driver to use 4 bytes
-> > with magic number to select H/W key type.
-> >
-> > Signed-off-by: Harsh Jain <h.jain@amd.com>
-> > ---
-> >  drivers/crypto/xilinx/zynqmp-aes-gcm.c | 94 ++++++++++++++++----------
-> >  1 file changed, 60 insertions(+), 34 deletions(-)
->
-> The hardware key support should be registered under the name paes
-> instead of aes.  Grep for paes in drivers/crypto for examples.
+Depends on:
+- <20251106102448.3585332-1-xueyao.an@oss.qualcomm.com>
+  Link: https://lore.kernel.org/linux-arm-msm/20251106102448.3585332-1-xueyao.an@oss.qualcomm.com/
 
-Sure, Will check and update the driver accordingly.
+Signed-off-by: Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
+---
+Changes in v2:
+- Use "tcg,tpm_tis-spi" compatible to satisfy dtbs_check (was vendor-only).
+- Add dependency change in cover letter.
+- Link to v1: https://lore.kernel.org/r/20251107-arm64-dts-qcom-hamoa-iot-evk-enable-st33-tpm-on-spi11-v1-1-8ba83b58fca7@oss.qualcomm.com
 
->
-> > @@ -218,32 +220,42 @@ static int zynqmp_aes_aead_setkey(struct
-> crypto_aead *aead, const u8 *key,
-> >                                 unsigned int keylen)
-> >  {
-> >       struct crypto_tfm *tfm =3D crypto_aead_tfm(aead);
-> > -     struct zynqmp_aead_tfm_ctx *tfm_ctx =3D
-> > -                     (struct zynqmp_aead_tfm_ctx *)crypto_tfm_ctx(tfm)=
-;
-> > +     struct zynqmp_aead_tfm_ctx *tfm_ctx =3D crypto_tfm_ctx(tfm);
-> > +     struct xilinx_hwkey_info hwkey;
-> >       unsigned char keysrc;
-> > +     int err;
-> >
-> > -     if (keylen =3D=3D ZYNQMP_KEY_SRC_SEL_KEY_LEN) {
-> > -             keysrc =3D *key;
-> > +     if (keylen =3D=3D sizeof(struct xilinx_hwkey_info)) {
-> > +             memcpy(&hwkey, key, sizeof(struct xilinx_hwkey_info));
-> > +             if (hwkey.magic !=3D XILINX_KEY_MAGIC)
-> > +                     return -EINVAL;
-> > +             keysrc =3D hwkey.type;
-> >               if (keysrc =3D=3D ZYNQMP_AES_KUP_KEY ||
-> >                   keysrc =3D=3D ZYNQMP_AES_DEV_KEY ||
-> >                   keysrc =3D=3D ZYNQMP_AES_PUF_KEY) {
-> > -                     tfm_ctx->keysrc =3D (enum zynqmp_aead_keysrc)keys=
-rc;
-> > -             } else {
-> > -                     tfm_ctx->keylen =3D keylen;
-> > +                     tfm_ctx->keysrc =3D keysrc;
-> > +                     tfm_ctx->keylen =3D sizeof(struct xilinx_hwkey_in=
-fo);
-> > +                     return 0;
-> >               }
-> > -     } else {
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     if (keylen =3D=3D ZYNQMP_AES_KEY_SIZE && tfm_ctx->keysrc =3D=3D
-> ZYNQMP_AES_KUP_KEY) {
-> >               tfm_ctx->keylen =3D keylen;
-> > -             if (keylen =3D=3D ZYNQMP_AES_KEY_SIZE) {
-> > -                     tfm_ctx->keysrc =3D ZYNQMP_AES_KUP_KEY;
-> > -                     memcpy(tfm_ctx->key, key, keylen);
-> > -             }
-> > +             memcpy(tfm_ctx->key, key, keylen);
-> > +     } else if (tfm_ctx->keysrc !=3D ZYNQMP_AES_KUP_KEY) {
-> > +             return -EINVAL;
-> >       }
-> >
-> >       tfm_ctx->fbk_cipher->base.crt_flags &=3D ~CRYPTO_TFM_REQ_MASK;
-> >       tfm_ctx->fbk_cipher->base.crt_flags |=3D (aead->base.crt_flags &
-> >                                       CRYPTO_TFM_REQ_MASK);
-> >
-> > -     return crypto_aead_setkey(tfm_ctx->fbk_cipher, key, keylen);
-> > +     err =3D crypto_aead_setkey(tfm_ctx->fbk_cipher, key, keylen);
-> > +     if (!err)
-> > +             tfm_ctx->keylen =3D keylen;
->
-> You can't have a fallback when there is a hardware key.  How did
-> the fallback not return an error here?
+---
+Khalid Faisal Ansari (2):
+      arm64: dts: qcom: hamoa-iot-evk: Enable TPM (ST33) on SPI11
+      arm64: dts: qcom: hamoa-iot-evk: Enable TPM (ST33) on SPI11
 
-We have two types of key registers
-1) Registers to save user supplied keys like ZYNQMP_AES_KUP_KEY
-2) Register Where H/W internally generates the keys like ZYNQMP_AES_DEV_KEY=
- and ZYNQMP_AES_PUF_KEY
+ arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+---
+base-commit: 9c0826a5d9aa4d52206dd89976858457a2a8a7ed
+change-id: 20251107-arm64-dts-qcom-hamoa-iot-evk-enable-st33-tpm-on-spi11-c8353d7fe82e
 
-Fallback is for 1), because driver has saved key in private ctx and can be =
-fallback to S/W.
-
->
-> Cheers,
-> --
-> Email: Herbert Xu <herbert@gondor.apana.org.au>
-> Home Page: http://gondor.apana.org.au/~herbert/
-> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Best regards,
+-- 
+Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
 
 
