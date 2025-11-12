@@ -1,259 +1,243 @@
-Return-Path: <devicetree+bounces-237481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91CC8C516AD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:44:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20939C516B0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:44:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E096418E0BDF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:41:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F39A18E0C02
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F372F9998;
-	Wed, 12 Nov 2025 09:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDAA22FDC26;
+	Wed, 12 Nov 2025 09:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="cqwbRrz5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ltg5lIfw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-176.mta1.migadu.com (out-176.mta1.migadu.com [95.215.58.176])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE742F90EA
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898652DC76C;
+	Wed, 12 Nov 2025 09:41:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762940444; cv=none; b=Z4Fh2vfXb/pYj/7IwqDa1IrwJZOYTaX4Z8Vx/2YZkrTWuBkq68fVZD66kLXHcca3qMihGUGdZ3wyxQI0+1NmlMVJW/yPyuWXFRIw22i8sHeEKS2pt2vLon+aJZhnvnx6cZjwnyLHIP+rlrbEhRl/6vcitIB8gA40SuzeKsuRBHQ=
+	t=1762940465; cv=none; b=F+EWgFwXnPmZqYUuPxq9Y4hIkRdd7wxKFpy1AhcIJRc4LrDy+Z8wLqp63hSF+a3SMmTCiXnAphSDs//FsqD3dsLDxK8w+DK3LTKHt8jUTxLCRp8OO8gf4f/jRDR9vnsYnu2wDroZSo2TBT3Ofc8yjpS5FoUOBuHf7Nk44EmVkqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762940444; c=relaxed/simple;
-	bh=Pq5nziBpcyMZbqg/K8AirlOTPdwVK67SFCIFBouK2bw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=CW0YqTpwNXVzLXskdzGYgEOcS+melrW8jPPrQ+ZqaFtp4nKW3il5N7C5DyI9hPZ4bRsYCAjkeaq8UswUbo01C/mLYXmbxOkLz6uuwPioCPIWjBZorzqY6zvSY38bxbAG4XlT44jf0/JQwKXb4Ml2gqms2H3rTo4k2u4kVRgQHnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=cqwbRrz5; arc=none smtp.client-ip=95.215.58.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+	s=arc-20240116; t=1762940465; c=relaxed/simple;
+	bh=aohnBiD8zjwta6/vj3ml+5jrDbZpsyfgY3SwEm9hV1Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZeKm1hCfzaJeuNoLPVYFiN8Fo0v3aPEfdtnWI9SZG8Xl/FJ1VrcuE9PC98YG6E71tVC8u0J7b7H0fl1OFNEsFj8NaElYEcb0j1ohuFUDmA1b9l8d1pT9Vuwa8fE1isVyV9ps0P9p3wA0ReuAtanR/Mr/B9BgEXI83uFJ+XaKOkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ltg5lIfw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF1BEC16AAE;
+	Wed, 12 Nov 2025 09:40:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762940465;
+	bh=aohnBiD8zjwta6/vj3ml+5jrDbZpsyfgY3SwEm9hV1Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ltg5lIfwiD3IiigrhFwiUF+6cj1rjzWbQeQ05SAKpgSXIBOCA+skvpx4VMQ9x9g1r
+	 8vUpX0AOhOEH60QfWSVCmWW99sIrbXHhLOPuthKr1OhQDrn8IuOe6BMU6+UKJH4qPT
+	 UP0WwXuL7QFh6gOeY7Qc4mtN4OA+XXwTksHYQ56/n2el0WeuR+EFcTzUNcT+iwoykW
+	 zlPncb0DgTiwUinaGa51JTl2SWOMsV/PCEYiJMahMRcVGHiUc/5HjOp32YYLyOJKi7
+	 jMQ3EFetI8D3WTqz2yLaQBU54IGSrMaqpaVajsmDX/+23sPSZR1wTtys8bOxCzTX6Z
+	 GoEacIpgYx92Q==
+Message-ID: <56530f64-6ddf-4d2a-a079-0578db260449@kernel.org>
+Date: Wed, 12 Nov 2025 10:40:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1762940439;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cjIJ3Hr5gDzDqpKoJFsw8cvAIeX6fqrfqTQKFoqT6p4=;
-	b=cqwbRrz5156KF/Ckf96aDJPtZZrUZAvJP7ea+jfRs3l/kp+IgmtpbE5XuTNez8FbDuhUYs
-	8XzBPSknlLYgZnP+rC62RvPGtZCmx7skZbM8pI9RH18as98VmnUy+TfpBZo/5ico06yut4
-	7YADeTXtJrbuV32fnBTKTigJ2PyFFccPAZWz7FgxEsR5tUxOPBd8ichka0f0TJ4O5gNJcM
-	RCpRTpjcp+rcCl1ae7ZpgIGNmNuEOimSfMD63/+7B8pkY4ctL+KPsU9HoWNbQLW0n1uNU0
-	Nb1Uzfoe89+VipS5HhVX5axlxKRnMiXpX8kdi3ZwfCCTvm6GkbROrYgGGSc/qg==
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Fabio Estevam <festevam@gmail.com>,
+ Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de,
+ alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com,
+ marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de,
+ joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
+ josua@solid-run.com, francesco.dolcini@toradex.com, primoz.fiser@norik.com,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Xiaofeng Wei <xiaofeng.wei@nxp.com>, Daniel Baluta <daniel.baluta@nxp.com>,
+ Joseph Guo <qijian.guo@nxp.com>
+References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
+ <20251109214515.121742-2-rpimentel.silva@gmail.com>
+ <9d48a54c-0585-4524-b9d5-30696f5ecc8b@kernel.org>
+ <CAEnQRZCvpXzGt=7NGv7-s+y0gvOg7Jx4OqbfbW3uv8jDp-jroQ@mail.gmail.com>
+ <CAOMZO5CU09fcBB8oUOO=qC=Du3Q9gnJOQacK=6v+pnSQViex3g@mail.gmail.com>
+ <CAEnQRZCHKemw2YVT=WVJvUMr9CCWoZ3MORt_mU1V-62C53n-3w@mail.gmail.com>
+ <CAEnQRZBBJ4PGDOk7hBP_qsk7bBiec8pHb0DYKs2mhOAahNyKww@mail.gmail.com>
+ <baafb460-fb65-4cd2-9911-89d828199d9b@kernel.org>
+ <2e160fe1-bcb2-41cf-817e-ac2a36959b16@kernel.org>
+ <CAEnQRZDg0yAjR-a-4J2ZKAjh3mm8NeQCA=o2kyNJtXMAFCMLAA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <CAEnQRZDg0yAjR-a-4J2ZKAjh3mm8NeQCA=o2kyNJtXMAFCMLAA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 12 Nov 2025 10:40:28 +0100
-Message-Id: <DE6M84A93WTV.O5IW3BG8TZRW@cknow-tech.com>
-Cc: "Diederik de Haas" <diederik@cknow-tech.com>, <heiko@sntech.de>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <jbx6244@gmail.com>, <pgwipeout@gmail.com>, <jonas@kwiboo.se>,
- <ziyao@disroot.org>, <amadeus@jmu.edu.cn>,
- <nicolas.frattaroli@collabora.com>, <pbrobinson@gmail.com>,
- <wens@kernel.org>, <detlev.casanova@collabora.com>, <stephen@radxa.com>,
- <sebastian.reichel@collabora.com>, <liujianfeng1994@gmail.com>,
- <andy.yan@rock-chips.com>, <damon.ding@rock-chips.com>,
- <kylepzak@projectinitiative.io>, <devicetree@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
- Radxa boards
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "FUKAUMI Naoki" <naoki@radxa.com>, "Quentin Schulz"
- <quentin.schulz@cherry.de>, "Dragan Simic" <dsimic@manjaro.org>
-References: <20251111054112.55505-1-naoki@radxa.com>
- <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
- <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
- <B0C8C5A69B9F465E+ba0ad139-d3d9-4492-ac9a-cc58f8f35074@radxa.com>
- <41275775-9e6e-9202-4c79-6140a56e41d5@manjaro.org>
- <572f341f-a5fa-4f1c-ad60-a5fe3e046d6d@cherry.de>
- <774C3AB9F17BAE47+14f8b8ba-ba78-410e-b44c-4d077585d05a@radxa.com>
-In-Reply-To: <774C3AB9F17BAE47+14f8b8ba-ba78-410e-b44c-4d077585d05a@radxa.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
 
-Hi Naoki,
-
-On Wed Nov 12, 2025 at 12:42 AM CET, FUKAUMI Naoki wrote:
-> On 11/12/25 03:32, Quentin Schulz wrote:
->> On 11/11/25 5:14 PM, Dragan Simic wrote:
->>> On Tuesday, November 11, 2025 16:32 CET, FUKAUMI Naoki=20
->>> <naoki@radxa.com> wrote:
->>>> On 11/11/25 23:46, Dragan Simic wrote:
->>>>> On Tuesday, November 11, 2025 14:07 CET, "Diederik de Haas"=20
->>>>> <diederik@cknow-tech.com> wrote:
->>>>>> On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
->>>>>>> Radxa's boards turn all LEDs on at boot(loader), but some boards=20
->>>>>>> don't have `default-state` property in Linux kernel tree but
->>>>>>> have it in U-Boot tree instead[1].
+On 12/11/2025 10:32, Daniel Baluta wrote:
+> On Wed, Nov 12, 2025 at 11:14 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 12/11/2025 10:08, Krzysztof Kozlowski wrote:
+>>> On 12/11/2025 09:15, Daniel Baluta wrote:
+>>>> On Tue, Nov 11, 2025 at 2:49 PM Daniel Baluta <daniel.baluta@gmail.com> wrote:
+>>>>>
+>>>>> On Tue, Nov 11, 2025 at 1:50 PM Fabio Estevam <festevam@gmail.com> wrote:
+>>>>>>
+>>>>>> Hi Daniel,
+>>>>>>
+>>>>>> On Tue, Nov 11, 2025 at 5:45 AM Daniel Baluta <daniel.baluta@gmail.com> wrote:
+>>>>>>
+>>>>>>> In addition to that, Rogerio please read:
 >>>>>>>
->>>>>>> This patch adds `default-state =3D "on"` for (almost) all LEDs (wit=
-h a
->>>>>>> few exceptions which should be "off" such as RGB LEDs on E25 and LA=
-N/
->>>>>>> WAN LEDs on E20C/E52C).
+>>>>>>> https://docs.kernel.org/process/submitting-patches.html
+>>>>>>>
+>>>>>>> At this moment I think you should keep the original author of the
+>>>>>>> patch.
 >>>>>>
->>>>>> I'm missing the *why* these changes would be an improvement.
->>>>>>
->>>>>> Personally, for both 'heartbeat' and 'netdev' triggers, I want them =
-to
->>>>>> be off by default and once it gets a 'heartbeat' or a 'netdev'=20
->>>>>> trigger, THEN I want the LED to be on/blinking.
+>>>>>> Right, but NXP makes a total mess with authorship.
 >>>>>
->>>>> That's a good question for Naoki.=C2=A0 My own preference would also
->>>>> be to have the device's power LED turned on by U-Boot as quickly
->>>>> as possible after supplying power to the board or turning it on
->>>>> by pressing the power button.=C2=A0 I'm actually not a big fan of
->>>>> having all the LEDs shining for a couple of seconds or so, which
->>>>> may actually look like some error condition to me.
->>>>>
->>>>> Having all that in mind, I may suggest that just the U-Boot's
->>>>> behavior is changed to turn the power LEDs on only.
+>>>>> I cannot disagree with you on this, let me clarify it internally with
+>>>>> NXP colleagues
+>>>>> and sort everything out.
 >>>>
->>>> I can't quite explain it, but...
+>>>> Hi Fabio & Rogerio,
 >>>>
->>>> - 1st (Power) LED
->>>>
->>>> The 1st (power) LED turns on automatically/immediately without softwar=
-e
->>>> intervention. (On some boards, this LED cannot be controlled by softwa=
-re
->>>> at all.)
->>>>
->>>> In DTS, this should be described using `default-state =3D "on"`. The u=
-se
->>>> of the Linux-specific property `linux,default-trigger =3D "default-on"=
-` is
->>>> unsuitable for non-Linux environments.
->>>>
->>>> - 2nd (Heartbeat) LED
->>>>
->>>> The 2nd (heartbeat) LED can be controlled by software. It should be li=
-t
->>>> up as quickly as possible to indicate that the very first software
->>>> (e.g., the bootloader) is running.
->>>>
->>>> On Linux, usually this is used as `linux,default-trigger =3D "heartbea=
-t"`.
->>>> It indicates that kernel is running (regardless of the `default-state`
->>>> setting), and its behavior can be modified in user space.
+>>>> Checked internally and to track the correct authorship and development work
+>>>> here is how NXP would prefer to get credit.
 >>>
->>> As discussed already in the #linux-rockchip IRC channel, [1] perhaps
->>> the best option would be to have the power LEDs turned on as quickly
->>> upon powering on the board as possible, and to have U-Boot pulsate
->>> the heartbeat LEDs using the LED_BOOT feature.=C2=A0 In such a scenario=
-,
->>> no other LEDs would be turned on early, and the LED-related DT parts
->>> specific to U-Boot would be migrated to the kernel DTs.
+>>> Sorry, but individual contributors do not need to give any credits to
+>>> NXP. If NXP wanted to sent the patches to have credit, they would do it.
 >>>
->>> [1] https://libera.catirclogs.org/linux-rockchip/2025-11-11#38997824;
->>=20
->> The LED_BOOT feature (guarded by the Kconfig symbol of the same name) in=
-=20
->> U-Boot only applies if /options/u-boot/boot-led property is set.
->
-> For the default state of the heartbeat LED, I'm thinking of using=20
-> LED_BOOT (/options/u-boot/boot-led), but I'm concerned that this is=20
-> U-Boot-specific.
+>>> Did sending happened?
+>>>
+>>> If not, then any contributor is rightful to take the patches from
+>>> downstream and send them only, ONLY with their authorship. That's what
+>>> DCO allows and that's what established practice as well.
+>>>
+>>> NXP had a chance to upstream. When they decided not to, they forfeit any
+>>> rights to claim they want any authorship.
+>>>
+>>>
+>>>>
+>>>> #Use git commit --amend --author="Xiaofeng Wei <xiaofeng.wei@nxp.com>"
+>>>
+>>> NAK, there is no single patch like that from above author:
+>>>
+>>> https://lore.kernel.org/all/?q=f%3Axiaofeng.wei%40nxp.com
+>>>
+>>> Remember, downstream code does not matter. Does not exist.
+>>>
+>>>
+>>
+>>
+>> ... and because last two months there were two or three cases where
+>> vendor companies bullied individual contributors, I will be quite strict
+>> about that. Vendor company does not receive any authorship on patches
+>> sent by independent contributors which the vendor NEVER submitted,
+>> unless author really wants that. But I will treat any such insisting on
+>> authorship by vendor like NXP as bullying and working AGAINST the community.
+> 
+> I'm sorry that people use "bully" in this context. We are just trying
+> to help with
+> the limited time we have and create a friendly environment around NXP
+> upstream support.
+> 
+> We (NXP) immensely  appreciate individual contributions from everyone.
+> 
+> We need to be fair, the v1 of this patchset was taken from NXP
+> downstream without
+> respecting the Developer Certificate of Origin.
 
-If U-Boot wants to use the heartbeat LED to signal the *bootloader* is
-running, I guess that's fine. And if you want to make it solid or
-blinking, that seems best discussed on the U-Boot ML.
+No, it wasn't. Please read carefully DCO. The chain here was not
+correct, but that's the only thing.
 
-I still consider the bootloader and the kernel stages separate.
-And I haven't seen an argument why I should change *my* opinion on the
-heartbeat and netdev triggers (default-state) wrt the kernel.
+> 
+> E.g there were commits pulled in from our internal tree without
+> keeping the S-o-B tags.
 
-I don't think that what U-Boot does or doesn't do, should determine what
-the Linux kernel does or doesn't do.
-I have no plans to use another bootloader then U-Boot, but it's possible
-that people do, so what the Linux kernel does should be independent from
-what the/a specific bootloader does.
+Read DCO, please. It is not mandatory to keep 3rd party SoB. It is
+perfectly fine to skip it, if needed according to (b) of DCO certifying.
 
-And as I said before, *I* want LEDs with netdev and heartbeat triggers,
-to be off (at the start, which is indeed the default value).
-I use the heartbeat trigger to:
-1) See the kernel has started (and has gotten to the point the heartbeat
-   'infrastructure' has been set up
-2) Wait for the blinking to slow down as that (generally) means it's
-   pretty much done with the boot process and the SSH server should
-   probably be running then, so I can login
-3) When the heartbeat LED is solid, that means the system has crashed
-   (f.e. due to overheating ...)
+Otherwise please point me which aspect of certification was not kept or
+was broken.
 
-And also, if you're going to change/override other people's choices, a
-motivation as to why would be 'nice'.
+> As I said keeping the original author is a sign of respecting the
+> initial work of NXP developers
+> and a recommendation from NXP.
 
->> <more discussion about LED functionality in U-Boot ...>
->
-> As you know, default "default-state" is "off".
->   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/leds/common.yaml?h=3Dv6.17#n74
->
-> As far as I understand, there should not be any workarounds for specific=
-=20
-> implementations.
->   https://lore.kernel.org/linux-rockchip/3389401.44csPzL39Z@phil/
->
-> So removing `default-state =3D "off"` is acceptable, right?
+Which is purely up to the author. The NXP made their choice by not ever
+sending it to upstream.
 
-I don't see/understand the connection with 'workarounds for specific
-implementations' with removing ``default-state =3D "off"``.
+> 
+> What is your suggestion on moving on with this? Would keeping the
+> authorship from Rogerio
+> and adding S-o-B and C-d-b tags as above work for everyone?
+To me it is pretty simple and that's what I commented on - I expect
+conforming to submitting patches and DCO, thus the sender's SoB MUST BE
+ALWAYS the last.
 
-IMO it's perfectly fine to remove ``default-state =3D "off"``, although
-having it explicitly may be useful, especially if the commit that set
-that property specified *why* it should be "off".
+This is the only issue with this patch.
 
-Relatedly, when a node does not have the 'default-state' property, I
-would _assume_ the author wanted/intended it to be "off". Ideally it
-would be described in the commit message, but that is optional.
-But if that is changed, then it should be motivated *why*.
+Now, whom Rogerio wants to make the author I really do not care.
+Although I care a lot about NXP coming to upstream and claiming they
+have any authorship of their downstream code.
 
-Cheers,
-  Diederik
+Assuming this was even taken from downstream, which was not proven yet,
+although does not matter.
 
->
-> Best regards,
->
-> --
-> FUKAUMI Naoki
-> Radxa Computer (Shenzhen) Co., Ltd.
->
->> If one wants to detect via an LED the current boot stage (U-Boot=20
->> reached, kernel started), then we need to NOT use LED_BOOT feature and=
-=20
->> have U-Boot set the "boot" LED the opposite state than the default HW=20
->> state, i.e. if the LED is on without any running SW (power applied to=20
->> the device, empty boot media), then U-Boot should set it to off. Then=20
->> the kernel simply needs to start the heartbeat mode whenever ready. If=
-=20
->> the default HW state is off, then U-Boot should set it on. I haven't=20
->> looked into the kernel side of things, but there could be a window=20
->> during which default-state property is applied before the heartbeat is=
-=20
->> actually started.
->>=20
->> The logic exposed in the previous paragraph should provide visual cues=
-=20
->> on the current boot stage.
->>=20
->> Note that LEDs with linux,default-trigger =3D "pattern" (with default-=
-=20
->> state property) will be blinking once auto-configured in U-Boot as well=
-=20
->> according to my reading of the led-uclass.c.
->>=20
->> Hope this helps.
->>=20
->> Cheers,
->> Quentin
->>=20
+Again, whatever you have downstream absolutely does not matter, EXCEPT
+THE LICENSE, for us.
 
+
+Best regards,
+Krzysztof
 
