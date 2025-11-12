@@ -1,282 +1,174 @@
-Return-Path: <devicetree+bounces-237776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7B1C53FA7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:48:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838F9C5404F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:54:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6F7B634E29B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:42:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5A3614E106A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5BE343D79;
-	Wed, 12 Nov 2025 18:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850A933AD81;
+	Wed, 12 Nov 2025 18:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fQXuK2XY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g3PAt5os"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C8433A016;
-	Wed, 12 Nov 2025 18:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596CB27FD49;
+	Wed, 12 Nov 2025 18:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762972888; cv=none; b=fZd/7JPYmSGN2r2yFUgwGs5kcfHMV3OsfAz2miqNtk6aDiYZXWkrkendjoh2YHt4N81ReYdk1xjhYTFARVxdfMdWUmfDu1Q3f7spwKCZvVAwDxJTpH3H0RVTT1TfsFShATbA65MXKUX3Vw+ZDdrC+SgIq4HSuhqYux/eW9rX954=
+	t=1762973302; cv=none; b=S+p88gfH3VXSM7sB/tfBuO8GYYLkzw4uJ4I6mP8W8QZ7oMt4Q7mxyrApR9ctEDNwcc209O3Y9X21XPjlhYOgZqr6HLqpusbF90jlCRz3wFarXNmbQVDJDLlFCl7viqStHBkrwBDqxkG22QB36xfLomrkyiJWaZAqgAOuCxULVro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762972888; c=relaxed/simple;
-	bh=KHFw9Fj0TSvi+G3yTQ4AOGjx13r1Cdtagbf3JpY/9Hg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=gXAzo+mOa7iSRrA/RwLcyXRf7SwR47GWJW1feLP6GuIlCZVBuqmK8a3K3GbvibkigN3LUU4vuoAe4kfaA1p5fVJ4BSt9QL7ghkMHQKAU+3NMGRf4VOMnuE5qA6jmQF09K7q3gC/ISR38h/Dc5E31T13AORJX2r3H0JJtr5AiQKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fQXuK2XY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37E8CC4CEF1;
-	Wed, 12 Nov 2025 18:41:27 +0000 (UTC)
+	s=arc-20240116; t=1762973302; c=relaxed/simple;
+	bh=dxUWBNjSHg2QdfgaDnXYT/JYX+mehzTGcs5DtsDTJ9g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K64x+pMAClkO0rkVL4beQVa+6h9ZVYeZSQnRqm9L2kCDuyOsQ1+nHeVol8rHJvPZv922zu3V6Qt4xPcmMmfZ/rWpMC3RnEWnYWYJxUqEBFjL4sQyV0D3AkpVKPt9Diwb5LF8LOu7qBHdvdctIbEFL2EqfLTWxiVTxCc2rFhwSFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g3PAt5os; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F897C4CEF7;
+	Wed, 12 Nov 2025 18:48:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762972888;
-	bh=KHFw9Fj0TSvi+G3yTQ4AOGjx13r1Cdtagbf3JpY/9Hg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=fQXuK2XYp3xTsoEOAnwtxwVXxwKYpeIg3zWGfnk83tVJapjtggCyEes9l6kJEZpzt
-	 fgCtyU5OA6D+zB5YHURrwF6BaubyZ+6LkINr/UKLNiEeS8pBh0ANpNKWl+smi4Yifb
-	 nOhpcG/cOyCyY1lrzx8IroceOEBWDIsE3widuegLPRa90erf7Pn3IKQnTBc7vmc+ug
-	 EkJvNBF1wZ2NctAqOsbXrV8237Ofoybgl95v+0B7lSpc5Jky7EUeqnznqH+GEX4mc0
-	 rLQdsp4tQrJcowC8NmhIxrVAIPycTu0ohy02xo/kEFIsny8z0PfRXfIhqVlxksfUp/
-	 ijpB8RXY9s3VQ==
-Message-ID: <95aaafe2-a362-4f55-9d38-c0d2dcb21cf0@kernel.org>
-Date: Wed, 12 Nov 2025 12:41:24 -0600
+	s=k20201202; t=1762973302;
+	bh=dxUWBNjSHg2QdfgaDnXYT/JYX+mehzTGcs5DtsDTJ9g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=g3PAt5osYgKijUL2pFo/OcQJcuo8aKl5jV/Ro3uEVCVlD5OzT7hsi0AgBnOqQmH93
+	 MuRxEyLqIgFC3RVgXpZ4r4sQT55Jd5ifjR8X9CiHVoxQE7GStm6zBj87jmCiZbwTUz
+	 Z2dn9tro+uFRIdPzYPLS3Mj2nGDhhl/F/FjdvKikjLlzrj2/IWB1/hVX0K476FtIDc
+	 N3pPQLOTKoMyP0B46dd3/S1sLGEt+qaBX5Fm5PKAu2wUvLLpOdqQmzQUySwi1iBX3i
+	 8GRhi6DpOyCQ0cNxPJmzoymZA8KAomNA8jhW93SeN9tLnuAcwtgTQJgWwhw/0t6Jq9
+	 kSe7689rBQsMQ==
+Date: Wed, 12 Nov 2025 18:48:16 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
+	biju.das.jz@bp.renesas.com, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Peter Rosin <peda@axentia.se>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 04/21] dt-bindings: reset: renesas,rzv2h-usb2phy:
+ Document VBUS_SEL mux
+Message-ID: <20251112-launch-overcoat-18c3924b9b3f@spud>
+References: <cover.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+ <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+ <20251110-resonate-strict-c3d6c42f3e0d@spud>
+ <aRJqfh7p9M3NHfCS@tom-desktop>
+ <20251111-character-catnip-0832956a3fb1@spud>
+ <20251112163712.GA1850277-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: socfpga: add Agilex3 board
-To: niravkumarlaxmidas.rabara@altera.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251112105657.1291563-1-niravkumarlaxmidas.rabara@altera.com>
- <20251112105657.1291563-3-niravkumarlaxmidas.rabara@altera.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20251112105657.1291563-3-niravkumarlaxmidas.rabara@altera.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Wi4VmUiHBPJH/1r5"
+Content-Disposition: inline
+In-Reply-To: <20251112163712.GA1850277-robh@kernel.org>
 
 
+--Wi4VmUiHBPJH/1r5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 11/12/25 04:56, niravkumarlaxmidas.rabara@altera.com wrote:
-> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
-> 
-> Agilex3 SoCFPGA development kit is a small form factor board similar to
-> Agilex5 013b board.
-> Agilex3 SoCFPGA is derived from Agilex5 SoCFPGA, with the main difference
-> of CPU cores — Agilex3 has 2 cores compared to 4 in Agilex5.
+On Wed, Nov 12, 2025 at 10:37:12AM -0600, Rob Herring wrote:
+> On Tue, Nov 11, 2025 at 05:49:24PM +0000, Conor Dooley wrote:
+> > Tommaso, Rob,
+> >=20
+> > On Mon, Nov 10, 2025 at 11:43:37PM +0100, Tommaso Merciai wrote:
+> > > Hi Conor,
+> > > Thanks for your comment!
+> > >=20
+> > > On Mon, Nov 10, 2025 at 06:56:31PM +0000, Conor Dooley wrote:
+> > > > On Mon, Nov 10, 2025 at 01:08:04PM +0100, Tommaso Merciai wrote:
+> > > > > Document the 'mux-controller' child node in the Renesas RZ/V2H(P)
+> > > > > USB2PHY reset binding to support describing the USB VBUS_SEL
+> > > > > multiplexer as a mux-controller.
+> > > > >=20
+> > > > > This is required to properly configure the USB PHY VBUS source on
+> > > > > RZ/V2H(P), RZ/G3E SoCs.
+> > > > >=20
+> > > > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> > > > > ---
+> > > > > v2->v3:
+> > > > >  - Manipulate mux-controller as an internal node.
+> > > >=20
+> > > > Why is it a child node, rather than just putting the cell in the pa=
+rent
+> > > > reset node?
+> > >=20
+> > > Getting "make dt_binding_check errors" [1] in v2
+> > > Adding #mux-state-cells =3D <1> into:
+> > >=20
+> > > 	usb20phyrst: reset-controller@15830000
+> > > 	usb21phyrst: reset-controller@15840000
+> > >=20
+> > > Nodes.
+> > >=20
+> > > Please correct me if I'm wrong.
+> >=20
+> > I think that that binding is not working as intended. Why require a
+> > node-name pattern, when it matches on other things too:
+> > select:
+> >   anyOf:
+> >     - properties:
+> >         $nodename:
+> >           pattern: '^mux-controller'
+> >     - required:
+> >         - '#mux-control-cells'
+> >     - required:
+> >         - '#mux-state-cells'
+> > if the node name always contained mux-controller, the second two here
+> > would not be needed. Looks to me like the intention was for it to allow
+> > putting these control/state-cells properties into mfd type nodes.
+> >=20
+> > I'd delete the node name property tbh. Rob, you converted this to
+> > schema, what do you think?
+>=20
+> Yeah, I'd probably just comment it out and drop the select.
 
-Please fix up the message's formatting a bit. I don't think you need the 
-additional newline.
+Is dropping the select okay to do, or should just the nodename portion
+go? I think there's a couple users that would need to be fixed up if the
+whole thing gets removed. E.g. gpio-mux and reg-mux bot rely on the
+schema being applied automagically AFAICT, and maybe there's some others.
+Although, 99% of mux-controllers seem to use gpio-mux, reg-mux and
+mmio-mux which are covered by those two files.
 
-> 
-> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
-> ---
-> v3 change:
->   - Add agilex5 fallback compatible string.
-> 
-> v2 link:
-> https://lore.kernel.org/all/97fea9a15bfe2a3d52d5b75bee6bda25615422e7.1762840092.git.niravkumarlaxmidas.rabara@altera.com/
-> 
-> v2 changes:
->   - Use separate dtsi file for agilex3 instead of using agilex5 dtsi.
-> 
-> v1 link:
-> https://lore.kernel.org/all/aa19e005a2aa2aab63c8fe8cbaee7f59c416690f.1762756191.git.niravkumarlaxmidas.rabara@altera.com/
-> 
->   arch/arm64/boot/dts/intel/Makefile            |   1 +
->   .../arm64/boot/dts/intel/socfpga_agilex3.dtsi |  17 +++
->   .../boot/dts/intel/socfpga_agilex3_socdk.dts  | 127 ++++++++++++++++++
->   3 files changed, 145 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex3.dtsi
->   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
-> 
-> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
-> index 391d5cbe50b3..a117268267ee 100644
-> --- a/arch/arm64/boot/dts/intel/Makefile
-> +++ b/arch/arm64/boot/dts/intel/Makefile
-> @@ -2,6 +2,7 @@
->   dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
->   				socfpga_agilex_socdk.dtb \
->   				socfpga_agilex_socdk_nand.dtb \
-> +				socfpga_agilex3_socdk.dtb \
->   				socfpga_agilex5_socdk.dtb \
->   				socfpga_agilex5_socdk_013b.dtb \
->   				socfpga_agilex5_socdk_nand.dtb \
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex3.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex3.dtsi
-> new file mode 100644
-> index 000000000000..4e55513d93c4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex3.dtsi
-> @@ -0,0 +1,17 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2025, Altera Corporation
-> + */
-> +
-> +/dts-v1/;
-> +#include "socfpga_agilex5.dtsi"
-> +
-> +/ {
-> +	compatible = "intel,socfpga-agilex3", "intel,socfpga-agilex5";
-> +
-> +/* Agilex3 has only 2 CPUs */
-> +&{/cpus} {
-> +	/delete-node/ cpu@2;
-> +	/delete-node/ cpu@3;
-> 
-There's no need for another dtsi if you're referencing the Agilex5 dtsi.
+> I'm not sure what to do here in general. Matching on node names was=20
+> useful early on, but that becomes less useful as we have schemas for=20
+> everything. I'd still like to document standard node names in schemas=20
+> somehow, but obviously we can't require a certain name when a node is=20
+> multiple providers. Ideally, every node name in the list in the DT spec=
+=20
+> would be in schemas and we could generate that list.
+>=20
+> Rob
 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
-> new file mode 100644
-> index 000000000000..76efaac82e27
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
-> @@ -0,0 +1,127 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2025, Altera Corporation
-> + */
-> +#include "socfpga_agilex3.dtsi"
+--Wi4VmUiHBPJH/1r5
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Include socfpga_agilex5.dtsi here.
+-----BEGIN PGP SIGNATURE-----
 
-> +
-> +/ {
-> +	model = "SoCFPGA Agilex3 SoCDK";
-> +	compatible = "intel,socfpga-agilex3-socdk", "intel,socfpga-agilex3",
-> +		     "intel,socfpga-agilex5";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		ethernet2 = &gmac2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTWbwAKCRB4tDGHoIJi
+0jBkAQD+fuaIvSWR60ndqX3CRSXBB7//qO2aOwu8ZSKwQj313gD/ebujckuMju4A
+5EbhixmUxssMpXa/u63PrjPIR9oGowI=
+=zSBW
+-----END PGP SIGNATURE-----
 
-Just add this here:
-
-+       cpus {
-+               /delete-node/ cpu@2;
-+               /delete-node/ cpu@3;
-+       };
-
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led0 {
-> +			label = "hps_led0";
-> +			gpios = <&porta 1 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led1 {
-> +			label = "hps_led1";
-> +			gpios = <&porta 12 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* We expect the bootloader to fill in the reg */
-> +		reg = <0x0 0x80000000 0x0 0x0>;
-> +	};
-> +};
-> +
-> +&gmac2 {
-> +	status = "okay";
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&emac2_phy0>;
-> +	max-frame-size = <9000>;
-> +
-> +	mdio0 {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		emac2_phy0: ethernet-phy@0 {
-> +			reg = <0>;
-> +			rxc-skew-ps = <0>;
-> +			rxdv-skew-ps = <0>;
-> +			rxd0-skew-ps = <0>;
-> +			rxd1-skew-ps = <0>;
-> +			rxd2-skew-ps = <0>;
-> +			rxd3-skew-ps = <0>;
-> +			txc-skew-ps = <0>;
-> +			txen-skew-ps = <60>;
-> +			txd0-skew-ps = <60>;
-> +			txd1-skew-ps = <60>;
-> +			txd2-skew-ps = <60>;
-> +			txd3-skew-ps = <60>;
-> +		};
-> +	};
-> +};
-> +
-> +&gpio0 {
-> +	status = "okay";
-> +};
-> +
-> +&gpio1 {
-> +	status = "okay";
-> +};
-> +
-> +&osc1 {
-> +	clock-frequency = <25000000>;
-> +};
-> +
-> +&qspi {
-> +	status = "okay";
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-
-You need a specific type of the qpsi memory here.
-
-> +		reg = <0>;
-> +		spi-max-frequency = <100000000>;
-> +		m25p,fast-read;
-> +		cdns,read-delay = <2>;
-> +		cdns,tshsl-ns = <50>;
-> +		cdns,tsd2d-ns = <50>;
-> +		cdns,tchsh-ns = <4>;
-> +		cdns,tslch-ns = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		spi-rx-bus-width = <4>;
-> +
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			qspi_boot: partition@0 {
-> +				label = "u-boot";
-> +				reg = <0x0 0x00600000>;
-> +			};
-> +
-> +			root: partition@4200000 {
-> +				label = "root";
-> +				reg = <0x00600000 0x03a00000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&smmu {
-> +	status = "okay";
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-
-No USB?
+--Wi4VmUiHBPJH/1r5--
 
