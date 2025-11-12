@@ -1,256 +1,243 @@
-Return-Path: <devicetree+bounces-237404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B553C509B8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 06:24:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADEFC50950
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 06:09:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3E00E4E382A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 05:24:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DD22E4E59FE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 05:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 765CD2D77F6;
-	Wed, 12 Nov 2025 05:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482D72D7397;
+	Wed, 12 Nov 2025 05:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="Uts+Wrhf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MHxs/Pnj";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZWs/Tl02"
 X-Original-To: devicetree@vger.kernel.org
-Received: from dog.elm.relay.mailchannels.net (dog.elm.relay.mailchannels.net [23.83.212.48])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31DC2D2384;
-	Wed, 12 Nov 2025 05:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.212.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762925058; cv=pass; b=VdW+EXzKaIjo+iWDC8ueo1JKd/NKWQ2WJt+mLFD9WhtMBSZf1jB4a/fKe+mHkxBnb7TlmYaIdRVVKuOHAGzJAb+uZWe9KK1HcT2Ro8KofVFigiunhau2XmU0BRrYXAzQYlN21QU6mJaYembhRFVUdgbLHSi87mQaZWxIxPaOBdk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762925058; c=relaxed/simple;
-	bh=oChWLPsQFmUOub4GztOaXtftqGbPBPBTmNQUNbRIu4I=;
-	h=From:To:Cc:Subject:Message-ID:In-Reply-To:References:MIME-Version:
-	 Date; b=jrum6KOxfvGOYJkthQZy2/Fatm0eqq6JYmw//IXMsI0cXv8Olj5a2ufICj6YW+pQW8TPPHMU4EoV1/fQ/xXm3CRrZtbHinNvNNgaQvVuBakhxSM6OkW0PuhFTpC3vLhkTczHgb7h8tG6ihAhh0H4YwyzWIeMLpfoJwRJ80/SzOc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=Uts+Wrhf; arc=pass smtp.client-ip=23.83.212.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id AFF44120D61;
-	Wed, 12 Nov 2025 04:44:46 +0000 (UTC)
-Received: from de-fra-smtpout9.hostinger.io (100-124-9-98.trex-nlb.outbound.svc.cluster.local [100.124.9.98])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 3D35A120702;
-	Wed, 12 Nov 2025 04:44:44 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1762922686; a=rsa-sha256;
-	cv=none;
-	b=s5hAP2gGaLMU5iwM1Q+OX6QaNopqW0Y6fF2pCdZ51pr1IN6SMsBuN7msVfUxDjR9nYbYbx
-	ed27ZHatMQg3bsNqTAzm9aw8eVNtlfkTCEnraCOIuAu2yX40c79R3BKAzku1vj2FeKWKcl
-	VcM/FCoIbrbbuuUYSGgAhqvXU9TxWm1Clsy0gbPj6/f3CFGbVe8UlBRzTpX+UFdIRQ8xAJ
-	zJnw1oEL+08zI161XAiYrPrtduXJZFrhzBhv3GFAQsdEcRhRzvvLV8ABc5EQw9fE9r20+g
-	CLmRqcG6vK8f1auzoqfk6DJz9WgNi6U3GsOopsa2F392JcRUKqbeA1kOvDnS4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1762922686;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=JmSvlEEsv1EZGdl+whPLN9xF82hq2ZE8qaSfdvPVZaY=;
-	b=gaohw1ZWqEEGUp/tV3BgJLkVzd8rjh5WBfISI90c1t/2vR8NGV9eyJHO93VVaeHySVoDe7
-	82zciRkSkLxCtSOByJgsF0z7EtsrAyaUjgwDLlmoEmyhLgBLnnDLdP7qqf96oFjA/9faqv
-	RLWvbdBa8vp58cP8KBeGGka4GvDn0QP5aGbVe1SanURLUVpTAMcFZqVC2P9NlWZN0auW1s
-	SNcdd2KoBF/4Vw3fNko02nnZoMHcUH4cNZrGMRWrN5yKKVU9FaIWQ2LA4X5WlMXAbwJakk
-	Wqk9A+DZ7nNfHUF76fqsaBIAoUv10QMYWRa2SyRr2UgCYjLscxtkD73SpQ037A==
-ARC-Authentication-Results: i=1;
-	rspamd-768b565cdb-dvdb4;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Keen-White: 096a509d1d464c59_1762922686615_3968737305
-X-MC-Loop-Signature: 1762922686615:293400609
-X-MC-Ingress-Time: 1762922686615
-Received: from de-fra-smtpout9.hostinger.io (de-fra-smtpout9.hostinger.io
- [148.222.55.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.124.9.98 (trex/7.1.3);
-	Wed, 12 Nov 2025 04:44:46 +0000
-Received: from localhost.localdomain (unknown [IPv6:2001:861:4450:d360:e24a:32fa:a400:91c])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d5rRG14J1z3yjX;
-	Wed, 12 Nov 2025 04:44:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1762922682;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JmSvlEEsv1EZGdl+whPLN9xF82hq2ZE8qaSfdvPVZaY=;
-	b=Uts+WrhfGoamV7XEfW+MF+gh4orOLYU/VhX9Fzi0b+UM39f1x016WIhXxcpg8vMV+VX211
-	ZmHpDhBEYIZaaslkBVBuNS/hd0U+aPV3CL0dA/IOLW8iwhNrcY1akQ+ZB0vjP/xxIEviQS
-	esX5Fv4S0pliwaKvH8FLWT2yFm74YI4nsXD9srmILiqOHNtb8zSjOoMsjv31Uw9lKFrhED
-	CRFSYr8PhVHwOZbVte7vMYrL9KiQiEQVECia23eFZsUXjST3DMkNbY+3B+g9j8znuZTZtb
-	3yczie7qu6i/o5PVFGd67yCs0nc01nAPvERT/CfSOEcwKY7AFtsg76fZfr7oqw==
-From: michael.opdenacker@rootcommit.com
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] riscv: dts: spacemit: Add OrangePi R2S board device tree
-Message-ID: <20251112044426.2351999-3-michael.opdenacker@rootcommit.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251112044426.2351999-1-michael.opdenacker@rootcommit.com>
-References: <20251112044426.2351999-1-michael.opdenacker@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B83262FF6
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 05:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762924167; cv=none; b=d/ePSJPdOYEEuUhPOxuc8mzECiRzBplvxBfvtXS/YSVGfKmZKvlooNSiUMsjMZPbsl/k11R6oPlOHmChyjStw/l6ACEDDA8S489BRXBCCUdqqoi4Vlq8qE9gE444GV09s77Q6sLSmkCBzYBpVYj/1AsNnHdfuRAIm//w1mh533E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762924167; c=relaxed/simple;
+	bh=yrQ4Wi+m86n4GhW05kI8lLRE5vTc1Qhg8tJHHH1/g9A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oHTHf0iq8MPJB1wghzoI8aRiuid+gS1sYsAl97L41gJigb5uAworFSvUtGhS6+cIbznQdWrymAdCONU98ToWnGIgM1v0qYjEpCDYrG7DcHm1C3UAFAgxBvC6D382FZu8eRkXjO0ZIR87Kwn7ivIQTVyY0vU4J/coCONDlY0XQLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MHxs/Pnj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZWs/Tl02; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC2WwRl2812894
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 05:09:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/kLpbA2BRvdnyHSbd+/l6+opzXnsjWoDr4jnoi0JXlQ=; b=MHxs/Pnj1KmtNL6q
+	0I45zBhV3sldHLuzrqzDUWAqt03f8SRWVFfMbx003SJKYQoCk8ataORPwG1B/wSn
+	dwhC8I4bZGAMnIFG3y1rQRYkrV6hhWfmvOs0DvFPell/ntdYewTech5hgGR4uibd
+	J6+QrvZvrGweK9t3GQCrABAUtG1Qh7xO/tFXJNmHEoGMnPBLzfmJo9WKr3P0J8VI
+	Kux8ooLxd6qIbcAu8vqVD92qjaUSwuP8+4XWbTLtx7rOVufYwDRKFEQWCOA842+C
+	7VEI43DHS/khobbcgn6jd03nlnZK0VFfqmY1yRe7zVpj8DMfR4WjdXw2MQ+qa9ts
+	QP7rMQ==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ac855hx4x-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 05:09:24 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b92bdc65593so1081688a12.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 21:09:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762924163; x=1763528963; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/kLpbA2BRvdnyHSbd+/l6+opzXnsjWoDr4jnoi0JXlQ=;
+        b=ZWs/Tl02+NSC9Nmcuufn2qwdEU+1DTD9PM4mWzsT5MH4Lse8K1Q4ERgP956UxnkacG
+         /6vayHyjaNsgxzSjT8K1Y9hDBwFM87QORENIwh4FQEh0g2DrVX2m7zJZA1HfNmKralzW
+         9QnwMoRwJyz5y/rGKlfcpL0OwlBjQrO6dNi4sOvDq29VaRgN+9CjfwE5+LBnuZ2IMfjl
+         swNP515J8TDN/DAZ//ASQ2bVGJ+TII6tUAyhhQmj7Cu2RRK2KthZzNP00MSL7o3X7+mf
+         KooQ/nJmlDEX9pHe3OFozLLwVfn3aiLhhMZkGWO/sdCPK7OcaUuCK0Vqi+r/2neRTf+A
+         tG9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762924163; x=1763528963;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/kLpbA2BRvdnyHSbd+/l6+opzXnsjWoDr4jnoi0JXlQ=;
+        b=AEMafvrvSeCIa8hzpb6NYfgJFPWmL+OhUqpYf8k8T+RWDTpOLV0l0gI+VnBv6X5A4e
+         mIv+qFD14dZakfu1Xandq6eWnhLdYc1G7rM/6lFShTtnKDDTB2U6HuD7uI3PUs/DjakL
+         uKJZ0a4eYb+k4cCq26KU5i3udGogs0CZuCjwDtSHcBlkA07XJQ5u4jqyPJp7Vae7uQ1X
+         D3PqZ2M0DJsd+1/SlXp/PtpVq9Xbbzy4q/uDXX+sqGo4pS5gsvaYwuckuoAP2tf0tpbu
+         AGCgbuAeyjkv0eY7aI2CFYrz8Ycss/hnoNRbYiq3pAp7lRZdilDjS3yy5EeI1YWeec5g
+         ulDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAjyHmACFjxttECYAhAvaL7K/ZrAGL9JccJDBokmajjxm6d/W5cvJw+bsfuiD8hYPxSKNH0IftMgyf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgP6aBF1prvCOETfPmbIzy0kPYrqp5/Ao4LQvCE1Y0X9hyqYNh
+	fKIb3UYRUeS2tdNEE0qh6goiLKPKU0xkybQvdhTRa23eviY/1tKYagfMsZI114eKmmlpbSoNXhg
+	rDG+T44L+JD84gZCLfPikf/WCjjOE01rz5DHz53e5e67NTTTBBZPV5OWniQtZjHhj
+X-Gm-Gg: ASbGncvkYWYRTf6RSR3th7ERdzp9rjcb6XPK3uLUSpZ2WufzLsJpS3/nOega6qH6dHB
+	YufzrRlG7FIERSvBGnPv+peqYpMI65IyRB3J3gxXy58OqqYt84KIl+V1HifTMTFihiPTxQsLgVL
+	Uv/krnPKT5Z1JJVeM3IiSjyQqpKPJXMzGU+p1gks0zaNu2kvSP7f1nZadtC7WG8CB5y3dNHm5eJ
+	3nu2gyUsL6zwtR1Fu+ir9i3lbUA6TjtUi/wyD+KdPxNWtKU/L2urElaAgaoZ/Zc2+l+I25/wVtl
+	aJbAbvwZdfW+e70O84v110lZjK9PKDs/Wpzg3LOoCtF8r6F/zDTJ87rKtBKM4gcD+h0T2B+vLi6
+	ZAmMiwqT+dcIxgnlEJSaWzY6nb48G+C7dzw==
+X-Received: by 2002:a17:903:988:b0:295:5a15:63db with SMTP id d9443c01a7336-2984ee03ba9mr22655575ad.61.1762924163365;
+        Tue, 11 Nov 2025 21:09:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGVrETxA1vmrXf2MXYfmlxs+jaaYYLcLll5MpiNC3cXmOxs4E0ag4D9YXDDr51YU14GMIQCXA==
+X-Received: by 2002:a17:903:988:b0:295:5a15:63db with SMTP id d9443c01a7336-2984ee03ba9mr22655245ad.61.1762924162841;
+        Tue, 11 Nov 2025 21:09:22 -0800 (PST)
+Received: from [192.168.0.171] ([49.205.253.130])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2984dbd8d63sm15569345ad.13.2025.11.11.21.09.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Nov 2025 21:09:22 -0800 (PST)
+Message-ID: <be157faa-b062-4726-83e2-ffdeaf792b50@oss.qualcomm.com>
+Date: Wed, 12 Nov 2025 10:39:16 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Date: Wed, 12 Nov 2025 04:44:42 +0000 (UTC)
-X-CM-Envelope: MS4xfNcQjoB4OUAYS+IINXIL/JUmHVWJokHEHYeKKdtgx/pB3y9ixCfqWGs2ITiK6mM6ompulTu4jLUvzR/dkUZleUOPJyWkE02yQLZR5WG5Y0m0I2UrU5jQ yn/7nJtdqZUI4IkZFm+AotrvmfYdu3jZMUgEtRB1Vxu1fMdxv+ZxJegfHihhXX3txa6JdtxLK6LWDXnubJdk0Bqc0go236vPkPDfpAQanoOcuwD8hh+eSKO8 4hjKPhQXoNtUTANl29yb1Yq5AwYpCjqgVKsnBqATGAln5sQYfSmppIfQj5Vl1/G0LSFJKducbyDJ4CliL/0H7GdaIPYF+PodMD4bmyJ+IiejGCIWprrY64JU kk4/3FPUYJ+xHRv9A8WSvwQpLB1sC0Xd+VRRDVTf7qAWlAj6klKIi7dZ5okzZAkyiuK4PlqKVsrFT2DU4Yoi5lgfV+q0rAsYaShiDE0fIT35tA4+6na+a7YS cunTH0GVu7yWLycCJAiXwYR6oQNDxnP4Z1i2hBbCBFX1klSudgeQ1VG++mk6oMvBNj7xTM4lq3rfxxqaBImTD9gkKjeV+pP9AYPeWEFhYpoU5Pv8ycxOntc6 C0Kd9RDUEivUiOIIUKWW5iWR8MkNvARG1WGK3SwfpePMddD33kAmEnedUKmA0ABxbXsJFKx6agBCeFz6eXIMC3q2ou8vs7CyOrP6MBlxV59wBw==
-X-CM-Analysis: v=2.4 cv=etGNzZpX c=1 sm=1 tr=0 ts=691410ba a=XVsSf4j1YTBLvHmD+RU1sw==:617 a=xqWC_Br6kY4A:10 a=5dAzR5NRAAAA:8 a=lv0vYI88AAAA:8 a=d70CFdQeAAAA:8 a=MVgXUy26Hj1uv-KAJh8A:9 a=9STjDIb-X-UA:10 a=ZKAZAlVgJm32z6MX8p4a:22 a=9qqun4PRrEabIEPCFt1_:22 a=NcxpMcIZDGm-g932nG_k:22
-X-AuthUser: michael.opdenacker@rootcommit.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] media: iris: prepare support for video codecs on
+ Qcom vpu4 platform
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vishnu Reddy <quic_bvisredd@quicinc.com>
+References: <20251107-knp_video-v3-0-50c86cbb0eb8@oss.qualcomm.com>
+ <3vbq76dpjnadfrnufojq4zqiv7p5p555rhxfx6yoncc354p3lk@ohcs3ldhuoao>
+ <2d56fc4b-6e3c-4f83-aab1-c48db3b8bb2d@oss.qualcomm.com>
+ <CAO9ioeXSXwm03e_j8TuXz2Sqr1J2n3uEFH6dJoKVyE+hJx+woQ@mail.gmail.com>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <CAO9ioeXSXwm03e_j8TuXz2Sqr1J2n3uEFH6dJoKVyE+hJx+woQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 0CM_QI_cV8SYzpFr0UyBC1ZRCqftFlo3
+X-Authority-Analysis: v=2.4 cv=DYwaa/tW c=1 sm=1 tr=0 ts=69141684 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=qKS+5dAnvCMTy05vH4hvkg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=uVA2hW3R18wvXXpizEIA:9
+ a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-ORIG-GUID: 0CM_QI_cV8SYzpFr0UyBC1ZRCqftFlo3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDAzOCBTYWx0ZWRfX5P9AV1fuAwmA
+ gGe2y9c4vaOGGdvODVsu3ezWlf3/Hltwf2N3L2mRX2ET4vlTlSksUdISCS4GOPyR93wK0xc/OIU
+ 0BGxKK2NJXiuNGuZ11tce+5LYdm8efKfQXutxvzshBYbcSdEECXeDRN9UDP/vWuymtg+T7C9d/E
+ LyOTni/kKIxPDnbx4RIsnCvcVZ/yTIlk4XjVIPoqWyNhkxcgSXRp86X3hyifsQ0lzTSdflyDKU1
+ KSuR11ydJIq9TnLztoV4bFemxuAO4zkUvOndCQPLYRwA3c8HBPg+IecvGxwWNU4UizNF6nH3hO5
+ o/O38AHgMZ2y35g+LiQgjQgMNNNeZpsLEnTj/uPPA0CqDR56vg5tzTit98XRuVAcgDrL6Ei/byg
+ ANlxZhVGOBIuAteFQa2goUBhGhzZBw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-12_01,2025-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0 suspectscore=0
+ priorityscore=1501 impostorscore=0 spamscore=0 clxscore=1015 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511120038
 
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
 
-Add initial device tree support for the OrangePi RV2 board [1], which is
-marketed as using the Ky X1 SoC but is identical in die and package
-to the SpacemiT K1 SoC [2].
+On 11/11/2025 7:09 PM, Dmitry Baryshkov wrote:
+> On Tue, 11 Nov 2025 at 14:43, Vikash Garodia
+> <vikash.garodia@oss.qualcomm.com> wrote:
+>>
+>>
+>> On 11/11/2025 4:08 PM, Dmitry Baryshkov wrote:
+>>> On Fri, Nov 07, 2025 at 03:19:35PM +0530, Vikash Garodia wrote:
+>>>> Upcoming Qualcomm kaanapali platform have a newer generation of video
+>>>> IP, iris4 or vpu4. The hardware have evolved mostly w.r.t higher number
+>>>> of power domains as well as multiple clock sources. It has support for
+>>>> new codec(apv), when compared to prior generation.
+>>>>
+>>>>   From previous version of this series, the kaanapali binding patch(#1/8)
+>>>> and the compatible patch(#8/8) have been dropped. The discussion for
+>>>> this is captured here [1].
+>>>> The series introducs buffer calculation and power sequence for vpu4. It
+>>>> prepares for vpu4 when kaanapali is enabled after the binding discussion
+>>>> is concluded.
+>>>>
+>>>>
+>>>> gstreamer test:
+>>>> Decoders validated with below commands, codec specific:
+>>> Why not just run the fluster testsuite?
+>>>
+>>
+>> yeah, fluster can also be executed. Individual codec commands were
+>> explicitly called out incase someone wants to run standalone gst pipeline.
+> 
+> Please switch to fluster (in addition to Gst), ideally running all
+> test cases for a codec. While enabling SC7280 support I found that
+> there are enough corner cases which are being ignored by the driver.
+> One additional bonus is that fluster runs several process in parallel
+> by default, catching issues caused by several decode threads running
+> in parallel.
+> 
 
-Enable UART0, to boot into a serial console
+multi process issue is due to below [1] (tried it on lemans). Due to 
+higher concurrency, we can see that the DMA buffer is mapped into 
+un-addressable range (0-0x25800000) i.e 0x24b00000, and leading to 
+global fault. This was the reason i was keeping 2 memory-region in 
+kaanapali binding, to restrict certain ranges of IOVA.
 
-Two Gigabit Ethernet ports with RGMII interface standard support
-are enabled, each port is connected to an external
-Motorcomm YT8531C PHY chip which uses the GPIO for reset control.
+Below solutions are being tried, again this is not limited to kaanapali 
+and applies to existing enabled SOCs as well.
 
-Enable PDMA.
+1. introduce dynamic device for output buffers which are big size 
+comparatively, via iommu-map
+2. introduce the restrictions to the addressable range.
 
-Enable 8 GB eMMC chip for storage.
+[1]
+157.511807:   SMMU_ERR_FATAL_NSEC_FAULT_NAME_REG : SMMU:>> 0x0x15000000 
+NonSec Global Fault: NSGFSR=0x80000002, NSGFAR1=0x00000000, 
+NSGFAR0=0x24b00000,  NSGFSYNR0=0x00000004,  NSGFSYNR1=0x08840884, 
+NSGFSYNR2=0x00000000,  NSCR0=0x00280406
 
-Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-R2S.html [1]
-Link: https://www.spacemit.com/en/key-stone-k1 [2]
-Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
----
- arch/riscv/boot/dts/spacemit/Makefile         |  1 +
- .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 90 +++++++++++++++++++
- 2 files changed, 91 insertions(+)
- create mode 100644 arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
+>>
+>>>> gst-launch-1.0 multifilesrc location=<input_file.h264> stop-index=0 !
+>>>> parsebin ! v4l2h264dec ! video/x-raw ! videoconvert dither=none !
+>>>> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+>>>>
+>>>> gst-launch-1.0 multifilesrc location=<input_file.hevc> stop-index=0 !
+>>>> parsebin ! v4l2h265dec ! video/x-raw ! videoconvert dither=none !
+>>>> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+>>>>
+>>>> gst-launch-1.0 filesrc location=<input_file.webm> stop-index=0 !
+>>>> parsebin ! vp9dec ! video/x-raw ! videoconvert dither=none !
+>>>> video/x-raw,format=I420 ! filesink location=<output_file.yuv>
+>>>>
+>>>> Encoders validated with below commands:
+>>>> gst-launch-1.0 -v filesrc location=<input_file.yuv> ! rawvideoparse
+>>>> format=nv12 width=<width> height=<height> framerate=30/1 ! v4l2h264enc
+>>>> capture-io-mode=4 output-io-mode=4 ! filesink sync=true
+>>>> location=<output_file.h264>
+>>>>
+>>>> gst-launch-1.0 -v filesrc location=<input_file.yuv> ! rawvideoparse
+>>>> format=nv12 width=<width> height=<height> framerate=30/1 ! v4l2h265enc
+>>>> capture-io-mode=4 output-io-mode=4 ! filesink sync=true
+>>>> location=<output_file.hevc>
+>>
+>> Regards,
+>> Vikash
+> 
+> 
+> 
 
-diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-index 942ecb38bea0..96b3a13a3944 100644
---- a/arch/riscv/boot/dts/spacemit/Makefile
-+++ b/arch/riscv/boot/dts/spacemit/Makefile
-@@ -3,3 +3,4 @@ dtb-$(CONFIG_ARCH_SPACEMIT) += k1-bananapi-f3.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
-+dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-r2s.dtb
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-new file mode 100644
-index 000000000000..58098c4a2aab
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Michael Opdenacker <michael.opdenacker@rootcommit.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "k1.dtsi"
-+#include "k1-pinctrl.dtsi"
-+
-+/ {
-+	model = "OrangePi R2S";
-+	compatible = "xunlong,orangepi-r2s", "spacemit,k1";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &eth0;
-+		ethernet1 = &eth1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	phy-handle = <&rgmii1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <250>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(115) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii1: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&pdma {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_2_cfg>;
-+	status = "okay";
-+};
 
