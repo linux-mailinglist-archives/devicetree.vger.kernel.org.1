@@ -1,199 +1,111 @@
-Return-Path: <devicetree+bounces-237476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7572C51621
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:37:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E8BC51773
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:52:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9371A4FA12A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:30:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6B0334FF533
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E66F24677D;
-	Wed, 12 Nov 2025 09:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253CB2FE582;
+	Wed, 12 Nov 2025 09:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Imk1G+ha"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4hiLWPd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E2F3D561
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:30:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF03C2FE050;
+	Wed, 12 Nov 2025 09:35:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762939826; cv=none; b=XNDIUlRnXxuE15jjB+LjrnylOYr+l1sS9apbvXEDnnUTfCZJ2nzlOonNjtSt1nM6ptMBJTDxlrKLJbQsUNpLFpgfTaG7BnYv5cGezhh7Svcy0lQKRh+mYh87lQ6XW6E5VqcM/4JjSLgd8gedLOJvQ1DsClWqKzHNszzSBc4Jzn8=
+	t=1762940114; cv=none; b=b8xiorRnCwTc5P0gK86xZulAtwAhT76jq3nSJg5QLuXBOyxH3T4tgKenFNSWodXX1nnxMH9dMMWkPhaC8YMOgYyvPYP7DSMmzzYK6Us0p3mQ6d9Am5x0WDpfF2mYRBRYmRZYCOx344JoCuTWp4teLdiGvrT4/dKosUzZfB9jQ9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762939826; c=relaxed/simple;
-	bh=Vfncq6F+5VOllwyvE5UQeZbhoDYhwTMEClEBA9ZFmkk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nVi1ak6HyF/T3pI+ZmuVhjnrgfMxyuZa10TKlo8GGsi54lJvDtbnGbTgo/sDZpyjv/lTGqxFL6xzniPkVRqT/8o6eflc+JssAXn5+ZlAQ92E3zdIMUB6Q0eEGxP1LltMN5EcVckWL6lCBHy5xZdl5HESHkJXWCCyUIlvzyQdq3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Imk1G+ha; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-6431b0a1948so1032830a12.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 01:30:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762939823; x=1763544623; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lqCuPp9H8HI1+6gmMgoIdl2q4ASSXdaZj3EL+jeW6CU=;
-        b=Imk1G+ha1V+N22lgUNL7mwfw6W8mfRBtlqowVk6j6mcvjabfhlWPJAwfEljIl92+YH
-         THH1lCOJVdPudSkULNvhnfSaGT4cjr4MCGn54bdEa5rY0B5DcBPzN1iwK7fFBssdQOXS
-         y30j2J2BZO+o5a8FPsmnYtBsqIZsAfwYR4evJiiS2a2xOlBJ6MPhmWcdPaQdFhGc934f
-         rz8TnFAF4/lfYlCwnf+NTtr8ACqPfFmyedBXBdCSb2+INbQB3BI/feHY04g96tH+PIeg
-         hSzaYD6jwYz7OgdHXQyf3oDT4AfJpMif/WmYohdO+8nI/ei8oJfdfcJIXt112sls4rrX
-         EabA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762939823; x=1763544623;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lqCuPp9H8HI1+6gmMgoIdl2q4ASSXdaZj3EL+jeW6CU=;
-        b=E9epYxoXH/Fyws7HCnlnSWvwhwrsXo1lgM33mw5hrHzmdcRSLCbROMms4ZcnruG6Xs
-         XMjuY5QrtyEawM5ibXimoN7C+l5+bK2XVMt8IJRYW6Jd/aUOWIcN3RkQ+EpUNFQi3zt6
-         mbZHbrHL7hj/2Rl+bwh6/csAsswRSZgweTBPeSyX2y2JEytpzU6sfSR+yHexQy5XE8Sw
-         VtSqVsztWBmywBgDlIRUa8/chnZZdU+y2ZhpEFKBXAAmNCRJ3n6u+X4l4T6Ldv3mJVRk
-         lXQ1FtnpBdp4tQP52Yf8JDFPNhRT/2PQmuiXurdmp+sWC/WfM6sz2cxTxj6D9+tSOUxL
-         gFMg==
-X-Forwarded-Encrypted: i=1; AJvYcCV0WzP9eEZ26Z6D+i2o060HM9xtQLP65VYla/ImAi//eqt3iIsdSBVH2MQ7cC64taEWA1WpAJeNdVtL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFB57gNLV5kgcK5x96+x4r7/uNUg7fPlAZPfMJO6Ka/KETYWGa
-	UPCCwmaIw9c0ku8AbTy1EEDXEq2xw/96VR2enk0yx3LU/OOCSIFgcFMNY6gky30THYOJTRrwJye
-	YIRzeSylN5a7j3gtiAKzV4eSrTx/jpFE=
-X-Gm-Gg: ASbGncsYrJwGhYB1RQfZGPthRHfgRcRObf24J5epKIUJA2H8XbZd9zGcS/tbWjwQJqC
-	hDCRjr6bXQrJUB4RdoD8QTy/5bzN/LQMhD2KvOI6C44TcrmeHwi1sRTgV12yurNJy4Y3F7n3RUC
-	Ec6pddes2TW9UQt0Yw2IMhlsHBUSktVq4TtXOKPq/f4q1UZCOsSBxifF7phy8AKLkH8gQsKgT4A
-	OM+TAt3dEvcgetnkcWcJ1IV/jzi4OhXFuoyqFFG8XLf6xshcOwZ6JWYKA==
-X-Google-Smtp-Source: AGHT+IGyBC+BBxL1KaIi5mi0ySnjGyT9eGbf3VfoXUYHbfCWS/PwYWYo/VnJObXv4/YPosnSNepi2Bx4++0gAs1GJ6k=
-X-Received: by 2002:a17:907:3f0b:b0:b73:2df0:9fa9 with SMTP id
- a640c23a62f3a-b7331aec6fcmr200176166b.59.1762939823249; Wed, 12 Nov 2025
- 01:30:23 -0800 (PST)
+	s=arc-20240116; t=1762940114; c=relaxed/simple;
+	bh=IOdEi/7nm6gSBW15F/BMgBUX9SN7wqTjO+nYOESPGFQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=h7ilUPtY2o6OzIkq7bPo9M4fZfqs1FB8Nrj3f5c8Qdb+iMS5eRNf9HtmBo99OWq84yNxe3Oi57VKyiGFp0ohqr4ZMRCQiHFb2vqZ/3wmImi63j/peSP4k/oGOx5vruYM+rgACM9QdOH/z6PcEIiHEfJTdJHEs81UtDigpH4Hg68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4hiLWPd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BBD8C16AAE;
+	Wed, 12 Nov 2025 09:35:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762940113;
+	bh=IOdEi/7nm6gSBW15F/BMgBUX9SN7wqTjO+nYOESPGFQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=B4hiLWPdZ/fueJdOAr9IS/urlVJh7yN5P0kCLtBPV9aDAvSeV/XJeWkQB46RNUP2G
+	 Pw/fPY5UyXbRDrb8qvfGG/b4EUiuugOKpmfPFPEJ/NYVE6gnsJj7zYeDENJFx2y33X
+	 R1DpIfXpL6asKQAQyEL+oDd1N7u0I/C3dJ7/TOnEqhjaGOVPyp60ZzepvU00kQiXpE
+	 DGsUQxTiAAOpspJtsnmTA6sHpzO6XsM+hmPLzVY8tTU4jBHYCCUQWbscl0oBvHYcOg
+	 gdshp+3bFlgkmNtKYox2uuUVVbKjn7MP17FCTKLrrH9W4eLK6c/D3MD5pKqzTvGMvb
+	 GaFFZOJlUuc1w==
+Date: Wed, 12 Nov 2025 03:35:11 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
- <20251109214515.121742-2-rpimentel.silva@gmail.com> <9d48a54c-0585-4524-b9d5-30696f5ecc8b@kernel.org>
- <CAEnQRZCvpXzGt=7NGv7-s+y0gvOg7Jx4OqbfbW3uv8jDp-jroQ@mail.gmail.com>
- <CAOMZO5CU09fcBB8oUOO=qC=Du3Q9gnJOQacK=6v+pnSQViex3g@mail.gmail.com>
- <CAEnQRZCHKemw2YVT=WVJvUMr9CCWoZ3MORt_mU1V-62C53n-3w@mail.gmail.com>
- <CAEnQRZBBJ4PGDOk7hBP_qsk7bBiec8pHb0DYKs2mhOAahNyKww@mail.gmail.com>
- <baafb460-fb65-4cd2-9911-89d828199d9b@kernel.org> <2e160fe1-bcb2-41cf-817e-ac2a36959b16@kernel.org>
-In-Reply-To: <2e160fe1-bcb2-41cf-817e-ac2a36959b16@kernel.org>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Wed, 12 Nov 2025 11:32:44 +0200
-X-Gm-Features: AWmQ_bk_gSFa8QTHeI1JrrzB0W9QZ2CPKTfJSvtyKPLDEFBLVYzLq3Nt1FpD5Yg
-Message-ID: <CAEnQRZDg0yAjR-a-4J2ZKAjh3mm8NeQCA=o2kyNJtXMAFCMLAA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>, Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com, 
-	marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de, 
-	joao.goncalves@toradex.com, frieder.schrempf@kontron.de, josua@solid-run.com, 
-	francesco.dolcini@toradex.com, primoz.fiser@norik.com, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Xiaofeng Wei <xiaofeng.wei@nxp.com>, 
-	Daniel Baluta <daniel.baluta@nxp.com>, Joseph Guo <qijian.guo@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Nov 12, 2025 at 11:14=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 12/11/2025 10:08, Krzysztof Kozlowski wrote:
-> > On 12/11/2025 09:15, Daniel Baluta wrote:
-> >> On Tue, Nov 11, 2025 at 2:49=E2=80=AFPM Daniel Baluta <daniel.baluta@g=
-mail.com> wrote:
-> >>>
-> >>> On Tue, Nov 11, 2025 at 1:50=E2=80=AFPM Fabio Estevam <festevam@gmail=
-.com> wrote:
-> >>>>
-> >>>> Hi Daniel,
-> >>>>
-> >>>> On Tue, Nov 11, 2025 at 5:45=E2=80=AFAM Daniel Baluta <daniel.baluta=
-@gmail.com> wrote:
-> >>>>
-> >>>>> In addition to that, Rogerio please read:
-> >>>>>
-> >>>>> https://docs.kernel.org/process/submitting-patches.html
-> >>>>>
-> >>>>> At this moment I think you should keep the original author of the
-> >>>>> patch.
-> >>>>
-> >>>> Right, but NXP makes a total mess with authorship.
-> >>>
-> >>> I cannot disagree with you on this, let me clarify it internally with
-> >>> NXP colleagues
-> >>> and sort everything out.
-> >>
-> >> Hi Fabio & Rogerio,
-> >>
-> >> Checked internally and to track the correct authorship and development=
- work
-> >> here is how NXP would prefer to get credit.
-> >
-> > Sorry, but individual contributors do not need to give any credits to
-> > NXP. If NXP wanted to sent the patches to have credit, they would do it=
-.
-> >
-> > Did sending happened?
-> >
-> > If not, then any contributor is rightful to take the patches from
-> > downstream and send them only, ONLY with their authorship. That's what
-> > DCO allows and that's what established practice as well.
-> >
-> > NXP had a chance to upstream. When they decided not to, they forfeit an=
-y
-> > rights to claim they want any authorship.
-> >
-> >
-> >>
-> >> #Use git commit --amend --author=3D"Xiaofeng Wei <xiaofeng.wei@nxp.com=
->"
-> >
-> > NAK, there is no single patch like that from above author:
-> >
-> > https://lore.kernel.org/all/?q=3Df%3Axiaofeng.wei%40nxp.com
-> >
-> > Remember, downstream code does not matter. Does not exist.
-> >
-> >
->
->
-> ... and because last two months there were two or three cases where
-> vendor companies bullied individual contributors, I will be quite strict
-> about that. Vendor company does not receive any authorship on patches
-> sent by independent contributors which the vendor NEVER submitted,
-> unless author really wants that. But I will treat any such insisting on
-> authorship by vendor like NXP as bullying and working AGAINST the communi=
-ty.
-
-I'm sorry that people use "bully" in this context. We are just trying
-to help with
-the limited time we have and create a friendly environment around NXP
-upstream support.
-
-We (NXP) immensely  appreciate individual contributions from everyone.
-
-We need to be fair, the v1 of this patchset was taken from NXP
-downstream without
-respecting the Developer Certificate of Origin.
-
-E.g there were commits pulled in from our internal tree without
-keeping the S-o-B tags.
-As I said keeping the original author is a sign of respecting the
-initial work of NXP developers
-and a recommendation from NXP.
-
-What is your suggestion on moving on with this? Would keeping the
-authorship from Rogerio
-and adding S-o-B and C-d-b tags as above work for everyone?
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, Nishanth Menon <nm@ti.com>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Santosh Shilimkar <ssantosh@kernel.org>, linux-kernel@vger.kernel.org, 
+ Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+To: Anshul Dalal <anshuld@ti.com>
+In-Reply-To: <20251112-k3_syscon_add_boot_mailboxes-v2-1-aebc1e47b391@ti.com>
+References: <20251112-k3_syscon_add_boot_mailboxes-v2-0-aebc1e47b391@ti.com>
+ <20251112-k3_syscon_add_boot_mailboxes-v2-1-aebc1e47b391@ti.com>
+Message-Id: <176294011177.754689.174685485920424984.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: keystone: add missing items
+ to mboxes
 
 
-Daniel.
+On Wed, 12 Nov 2025 14:00:53 +0530, Anshul Dalal wrote:
+> The mailboxes for the ti,sci node were not documented, this patch adds
+> the description for the two channel entries as per TI-SCI spec[1].
+> 
+> [1]:
+> https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x/sec_proxy.html
+> 
+> Signed-off-by: Anshul Dalal <anshuld@ti.com>
+> ---
+>  Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml: properties:mboxes: 'oneOf' conditional failed, one must be fixed:
+	False schema does not allow 2
+	[{'description': 'RX thread'}, {'description': 'TX thread'}] is too long
+	[{'description': 'RX thread'}, {'description': 'TX thread'}] is too short
+	1 was expected
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251112-k3_syscon_add_boot_mailboxes-v2-1-aebc1e47b391@ti.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
