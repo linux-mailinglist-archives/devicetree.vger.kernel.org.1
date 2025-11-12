@@ -1,73 +1,59 @@
-Return-Path: <devicetree+bounces-237750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA13C539C5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:14:13 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5022C53B41
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:34:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 507E25680FC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:37:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6BBA85000A1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084D333B6D8;
-	Wed, 12 Nov 2025 16:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DCB33FE09;
+	Wed, 12 Nov 2025 16:43:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C49xMFRc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DiaWGWTl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF02F2BF00B;
-	Wed, 12 Nov 2025 16:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0434933F8A4;
+	Wed, 12 Nov 2025 16:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762965435; cv=none; b=Vmlu7KTNZQG+5p1i+rToREEl9WNquDzY7+VLXH0gJQHQiaW6FQk95I5QCeGRUX5zjHyKx5GKim/JXxS/039YKcAUN1ce0gDLeH7eUABEQ+VhR6qkk5PDlrZR/ZXnK+T5PHwmQScl/EXQOOWB5DeBu73mZeUBtcabHJczcdoaVGY=
+	t=1762965788; cv=none; b=tnGmHkNvPxKTOMXPWix3ae2C+8lxx/OzW1P4L778tBCq9dS+hhPUSU7Ow+x4NrGtTWQDwd5oHu2X9onpxPfCOlBEntH/gGTtZGuM6ZkQeA+JZbc8kV1Q4avSQQOa7GaQL86xfLcdd7Wj+elZYsgA/rTvGyTywTLZrsXKeDLSC48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762965435; c=relaxed/simple;
-	bh=oowPZ540cX44zaHpABNfot6LitLXzhEHziYTiD86060=;
+	s=arc-20240116; t=1762965788; c=relaxed/simple;
+	bh=GOi+JsMJ/pQ09hki72GvXw/xvo34Pc/13UXaEh5uSTw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z3fH0jlhx/4DXiOccEnpCVZWhu3CIVOt9WV2JWl6Z0iM1VFxl3RttODLLqHlD9/e6k9ChEJtP6XuoacjT3ZKYG7Oe4dbgHZEmjT5urMPpJZ9LiZ4IulfViS28TrtHHHh8p9pIjjPCzW9YTPK1tDOR0qWKvv8MDxQ2CpXMSefdVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C49xMFRc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 496C3C4CEF5;
-	Wed, 12 Nov 2025 16:37:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eAJbhSS4wIJ+hLjP9AGW1/6cAxKyHzCp2bUIYICgh2FExr8joUmytsRNBAkosAaQUJttXwtOtV62Atro44N0poiNib6USSLRJFWfKd/4gLxd6sKUsJxOPD1VWoAjz/WHMJZNTRSRlWbJTs7mr9Bfqj9YRoSc5cGM98yN2iMlhII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DiaWGWTl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B313BC4AF09;
+	Wed, 12 Nov 2025 16:43:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762965434;
-	bh=oowPZ540cX44zaHpABNfot6LitLXzhEHziYTiD86060=;
+	s=k20201202; t=1762965787;
+	bh=GOi+JsMJ/pQ09hki72GvXw/xvo34Pc/13UXaEh5uSTw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C49xMFRcBVwukuEBj8w7WVJkJdl2b6q7XKOX7iyjoj46RwGJVJdZjGt4jvbUyfvH+
-	 pEho5CCRnuL3R712dZdjFptpRjKnPadSWo3NL2LuQ947HDE2J6L5IycFMYZm6N1N4I
-	 yHDN7Olr6pMhU5D0IoH/EUNJLbgzmKfHQoJeN2dMYVWgQyztFgvsXFgUv9V5Q5dXcO
-	 PSyJWnbufZdpOEJSo86sJgSCEr3dj8p2KaJ8i9ba6oDjKwphY8Hz7JH3EvmuLq7ISM
-	 N4Ms1vr+nJYY8nJyP/j9+lPVNygBhaE+l4NAwkv0DAjAsD2kXiit3ZenoD0WhtKqXV
-	 jCrsEHE2su+bA==
-Date: Wed, 12 Nov 2025 10:37:12 -0600
-From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Rosin <peda@axentia.se>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/21] dt-bindings: reset: renesas,rzv2h-usb2phy:
- Document VBUS_SEL mux
-Message-ID: <20251112163712.GA1850277-robh@kernel.org>
-References: <cover.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
- <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
- <20251110-resonate-strict-c3d6c42f3e0d@spud>
- <aRJqfh7p9M3NHfCS@tom-desktop>
- <20251111-character-catnip-0832956a3fb1@spud>
+	b=DiaWGWTlXYsgKdBzuFLjoR8m0LtgC0KVmDvotC+PjBGaL+V7AMHX7hhecobgVMHWh
+	 dY4nxynY1RocoyKFMiH1DAOfXEqMCVh/i1EcmiiCZ29RtLzgku3f6KOLPZm/Wt3vPu
+	 PrlXhRbtIAn4qWQShQ30eAQK4qjp4i3xY/Vh0M7PFCw8bFWQQwZvwR/G6hXea6Do0g
+	 SUQCoDfZIPdBNsMeDhnErT6R/ZEgDMbjqigLU3KzdgZQ/EyLPkx568BhFtMc+1gLgy
+	 JOEomJSAQd8uy1plRxqUOZCORQZG/dunZJqdqIVLfLe8xqayK02QC6m9MrOG3/J37o
+	 +Z6ha6Mua2N0g==
+Date: Wed, 12 Nov 2025 10:47:24 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	venkata.valluru@oss.qualcomm.com, jessica.zhang@oss.qualcomm.com, 
+	Yi Zhang <zhanyi@qti.qualcomm.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: Enable lvds panel-DV215FHM-R01 for
+ rb3gen2 industrial mezzanine
+Message-ID: <wzx5s6xlphwnmbkm2ef2yqhseecxnr6mcq7up6uwlz2jyc2cwp@lmttpwq6m7rw>
+References: <20251112-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v1-0-6eab844ec3ac@oss.qualcomm.com>
+ <20251112-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v1-1-6eab844ec3ac@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,68 +62,163 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251111-character-catnip-0832956a3fb1@spud>
+In-Reply-To: <20251112-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v1-1-6eab844ec3ac@oss.qualcomm.com>
 
-On Tue, Nov 11, 2025 at 05:49:24PM +0000, Conor Dooley wrote:
-> Tommaso, Rob,
+On Wed, Nov 12, 2025 at 08:18:11PM +0530, Gopi Botlagunta wrote:
+> Below is the routing diagram of dsi lanes from qcs6490 soc to
+> mezzanine.
 > 
-> On Mon, Nov 10, 2025 at 11:43:37PM +0100, Tommaso Merciai wrote:
-> > Hi Conor,
-> > Thanks for your comment!
-> > 
-> > On Mon, Nov 10, 2025 at 06:56:31PM +0000, Conor Dooley wrote:
-> > > On Mon, Nov 10, 2025 at 01:08:04PM +0100, Tommaso Merciai wrote:
-> > > > Document the 'mux-controller' child node in the Renesas RZ/V2H(P)
-> > > > USB2PHY reset binding to support describing the USB VBUS_SEL
-> > > > multiplexer as a mux-controller.
-> > > > 
-> > > > This is required to properly configure the USB PHY VBUS source on
-> > > > RZ/V2H(P), RZ/G3E SoCs.
-> > > > 
-> > > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> > > > ---
-> > > > v2->v3:
-> > > >  - Manipulate mux-controller as an internal node.
-> > > 
-> > > Why is it a child node, rather than just putting the cell in the parent
-> > > reset node?
-> > 
-> > Getting "make dt_binding_check errors" [1] in v2
-> > Adding #mux-state-cells = <1> into:
-> > 
-> > 	usb20phyrst: reset-controller@15830000
-> > 	usb21phyrst: reset-controller@15840000
-> > 
-> > Nodes.
-> > 
-> > Please correct me if I'm wrong.
+> DSI0 --> SW1403.4 --> LT9611uxc --> hdmi port
+>                  |
+>                   --> SW2700.1 --> dsi connector
+>                               |
+>                                --> LT9211c --> LVDS connector
 > 
-> I think that that binding is not working as intended. Why require a
-> node-name pattern, when it matches on other things too:
-> select:
->   anyOf:
->     - properties:
->         $nodename:
->           pattern: '^mux-controller'
->     - required:
->         - '#mux-control-cells'
->     - required:
->         - '#mux-state-cells'
-> if the node name always contained mux-controller, the second two here
-> would not be needed. Looks to me like the intention was for it to allow
-> putting these control/state-cells properties into mfd type nodes.
+> Disable hdmi connector for industrial mezzanine and enable
+> LT9211c bridge and lvds panel node.
+> LT9211c is powered by default with reset gpio connected to 117.
+
+This is much better than the previous description, but it still doesn't
+say when this happens. Are SW1403.4 and SW2700.1 two DIP switches?
+
+I guess this is a logical diagram, but it's not clear. Are the signals
+going through the DIP switches, or are the switches controlling some
+switches?
+
 > 
-> I'd delete the node name property tbh. Rob, you converted this to
-> schema, what do you think?
+> Signed-off-by: Yi Zhang <zhanyi@qti.qualcomm.com>
+> Signed-off-by: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
 
-Yeah, I'd probably just comment it out and drop the select.
+The first signed-off-by needs to match the author of the patch, and as
+Yi's isn't explicitly stated as author in your email, you're considered
+the author. Perhaps a co-developed-by?
 
-I'm not sure what to do here in general. Matching on node names was 
-useful early on, but that becomes less useful as we have schemas for 
-everything. I'd still like to document standard node names in schemas 
-somehow, but obviously we can't require a certain name when a node is 
-multiple providers. Ideally, every node name in the list in the DT spec 
-would be in schemas and we could generate that list.
+Regards,
+Bjorn
 
-Rob
+> ---
+>  .../qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso | 106 +++++++++++++++++++++
+>  1 file changed, 106 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+> index 619a42b5ef48..cc8ee1643167 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+> @@ -8,6 +8,112 @@
+>  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>  
+> +/ {
+> +
+> +	hdmi-connector {
+> +		status = "disabled";
+> +	};
+> +
+> +	panel_lvds: panel-lvds@0 {
+> +		compatible = "panel-lvds";
+> +		data-mapping = "vesa-24";
+> +		width-mm = <476>;
+> +		height-mm = <268>;
+> +
+> +		status = "okay";
+> +
+> +		panel-timing {
+> +			clock-frequency = <148500000>;
+> +			hactive = <1920>;
+> +			vactive = <1080>;
+> +			hfront-porch = <88>;
+> +			hback-porch = <148>;
+> +			hsync-len = <44>;
+> +			vfront-porch = <4>;
+> +			vback-porch = <36>;
+> +			vsync-len = <5>;
+> +			de-active = <1>;
+> +		};
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				dual-lvds-odd-pixels;
+> +				panel_in_lvds_odd: endpoint {
+> +					remote-endpoint = <&lt9211c_out_odd>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				dual-lvds-even-pixels;
+> +				panel_in_lvds_even: endpoint {
+> +					remote-endpoint = <&lt9211c_out_even>;
+> +				};
+> +
+> +			};
+> +		};
+> +	};
+> +
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +
+> +	lvds_bridge: lvds-bridge@29 {
+> +		compatible = "lontium,lt9211c";
+> +		reg = <0x29>;
+> +		reset-gpios = <&tlmm 117 1>;
+> +
+> +		status = "okay";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				lt9211c_in: endpoint {
+> +					data-lanes = <0 1 2 3>;
+> +					remote-endpoint = <&mdss_dsi0_out>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +
+> +				lt9211c_out_odd: endpoint {
+> +					remote-endpoint = <&panel_in_lvds_odd>;
+> +				};
+> +			};
+> +
+> +			port@3 {
+> +				reg = <3>;
+> +
+> +				lt9211c_out_even: endpoint {
+> +					remote-endpoint = <&panel_in_lvds_even>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +
+> +};
+> +
+> +&lt9611_codec {
+> +	status = "disabled";
+> +};
+> +
+> +&mdss_dsi0_out {
+> +	remote-endpoint = <&lt9211c_in>;
+> +};
+> +
+>  &spi11 {
+>  	#address-cells = <1>;
+>  	#size-cells = <0>;
+> 
+> -- 
+> 2.34.1
+> 
 
