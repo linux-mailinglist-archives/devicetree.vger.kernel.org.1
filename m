@@ -1,210 +1,141 @@
-Return-Path: <devicetree+bounces-237833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26CDFC54B5D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 23:26:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4561C54DA0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 00:53:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D379C3A7847
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 22:26:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ACD73B3A4E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 23:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2E42E6CA0;
-	Wed, 12 Nov 2025 22:26:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0452E54D7;
+	Wed, 12 Nov 2025 23:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EbrY+Mpq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FGt8fL5h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7251B2C029C
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 22:26:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B079A2BDC2B
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 23:53:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762986365; cv=none; b=qL9Ch7hBOHkhi/XlR11cOQKLmuWdUdB8QpNHSfRgdIp1BDtxsHjzx3kl6HOYvGT4aGK8pOFQG4LzzWnuRnnbxdvGqPZnld3L7STB3/nhWe7fSLvuJWcI9ADNXqQKyKueWc0nEuVEm48TziTljnqwP0Y6E49y/iGbJP1mom3gDo4=
+	t=1762991611; cv=none; b=spIDeQzK/8t/YP8vweZ8WrjYr3tiWFLEMy37sb6Vy3vx02tnIsYUU9oY/8DDd/YVUJvnGoTWE7KcGXR8XsUehVgRTWvEMuwWPl9XKYs5Nec2TZK60wrt4RznA3JdK1ThuyUKNBdNQKAbRdh2vh/VTBNSZs36hyIGj6zx0yO/Lhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762986365; c=relaxed/simple;
-	bh=PS8sGnEMqi/E524B9pETv/HzJCvpAyFaN2txZ357aEA=;
+	s=arc-20240116; t=1762991611; c=relaxed/simple;
+	bh=1oh4kdyHSPaK+b9pJi2NRh2Nd8VTsArQsjrm7EcUryE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AYvViPwy/F152d8TOy5mkMC7Onw4acuDfI71U9XtB3RCzj5+QwRrNYkyQphl8kZOuxu6jYjyAF0yim0QCoflhP8QUb2w9B7L8yFeNE2HJp1kpAlxvjoLi2LRWQferJlHDZerFNjtahVayKjr4Fu5PzHQ/fcYPE9Fvr2FX4IfB74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=EbrY+Mpq; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (82-203-161-95.bb.dnainternet.fi [82.203.161.95])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 6B94450A;
-	Wed, 12 Nov 2025 23:24:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762986240;
-	bh=PS8sGnEMqi/E524B9pETv/HzJCvpAyFaN2txZ357aEA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EbrY+MpqxgP0my+FG1nw9KYOLcsvUJ8X63WXyH4Q+dO0K1djc7/jt2IGx5PKGoDMD
-	 VhTAA6tRqmLwhLpmPZUp4CfNRbvh0IC+FCwHjiSlD+zj2s+A/LL8MlRz54mrcJvxK3
-	 WF0s3iTMKCckgyEMGmTbcMv4frBdzQH4U7YCXppg=
-Date: Thu, 13 Nov 2025 00:25:51 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=baVf/cds2Amj4qmfxkSTEb/3QGuIOsh2QKv+gFUvj9CTTUDA0x4XZoA3pPqZfD+UiXFkAYNjbxhJGyq44QuloSYWYTAllad2FNhnPXyKpB6tUX9uqjXgpqBYsB8bvGIfY7ZugzGFGCuTYPHkkDQi7j7Ln2TrVnomqalEfTDO3bI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FGt8fL5h; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7ad1cd0db3bso163337b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:53:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762991608; x=1763596408; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lmmNifhpcubbDE9dZKiYrF4P2VKB8IFtV9YZ7wRcTbI=;
+        b=FGt8fL5hWs9oN0fWW1GMskr3lGb16/Jr/VWopHPt1Gr9FJE/aXvBdzUmY3n34TEC1T
+         Vh565k4JoGV//TELlMhjWYb7Ch5yfDgfI8pH4KNKEfVUtbmeHg7YIxiXklJUUtHmRULQ
+         s0kD6cUsedhdqsuKyIBiG3+G2F+s0Bs0v2qruot8pRLcrQtwZ9GfPJGXGjqJMTGCmkbT
+         sX2SB6WGACeh7UFOwmSVLFvPaJBD61Ogtj0ceEJynJmBxL5BqKJWsdI5tbcstqUtyCvw
+         t/wSsVSAZ5Ma2mDUjBi8oP7SS88hKfeBxNj2Fx4c4eEEU3aJZ6p5m5rfKYjwGsEevq/n
+         7TDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762991608; x=1763596408;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lmmNifhpcubbDE9dZKiYrF4P2VKB8IFtV9YZ7wRcTbI=;
+        b=MGQDP68qjdRyXYvlCBsytdEIZks3dX2iN8WQWeLGIQqyOadEagQAuphWdsVgJbQco/
+         1ufTfyLjlNIvCCnBvFEskYnzY9owE8aznjW6ivD0FT0PtUEFwA801KXi2Ekx8MueN9AG
+         uc0G/gtvv2pRGl6+d5s0X1rvorva8tSaWcO9GZutpph5ipApbDp/QlLG0NAyPFAMk1d8
+         SF9eO/tLsjY8Uib/nmr+cmv4Aq7puz+jKmjVZq5BOj+mznYYu7XVt0D7o1pU9NuW8ihD
+         xVp02BtOV5qXPBCwTt2octK/lT2KYeAkh1D4Zwo2pMlvvIMXRFS2jNs16e9TO2rt98ZJ
+         yWfg==
+X-Forwarded-Encrypted: i=1; AJvYcCU6pWsZsfEetQwXqGKd9aXiuTTqCKQiGUGv2+cGqAeGjpPfugQNVC+F9NUw7eYcTCQ892ap/cvkwG/O@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVdnGB+Yno3WZvJKopU/zKU7GyKmSbA8Q48uvtqn3tM5i5SeRE
+	jrHH3J+u/fEpyu4Xoa9WKsJEvEv90E7XzupHMcCzjCY9Hrx9IGMF1FcR
+X-Gm-Gg: ASbGncvv51nQO5K0NrR30A7AIeVmpzfdfCCWnM1bM7s555zCz3PEZ7tqQCR7+Va+PnL
+	esgd+SjIeaFP8naNWBnUV61qCW+oLStzqXSuCmWoMYbBg9QY1J4ucnUEZVyipS75pwI4nY5510W
+	x5aCAX23FyzLOddgUYGGyjShh6m8ISiXC1HuE9zLF+CgwX6m6sJ86UkhUJH0Vo7X2OpHu2wKRSY
+	HAF48NrhC+jOCN0GJk0eKLlOlYyOxrOsL/ycXOh7DybKmfNfu3g4vbBSiS4zMjU+Rj6DA4MKOuJ
+	H6yEwb4JhFZnzyVklyJEL56R3G2tkxc0dHo9R1A55GQ9OUL6ic3ywUrk0CtR6OnuISel+iUZN9z
+	A8a0ZinbqWAys8cFvBrPTyy8NOl1EwHapSRvh9xSnTZMOnpcb+ZrcnTHP7hGL74lRx+1SH16OMd
+	SENafagyCU9ze5
+X-Google-Smtp-Source: AGHT+IFgjVC8Vixif7sXqQSZ4rTFRseItczPfc0Wpwx5dz8YYT2ndmfeYyeuO2aXuPaCsvXZJFRH2A==
+X-Received: by 2002:a05:6a00:1815:b0:781:17ee:602 with SMTP id d2e1a72fcca58-7b7a4edfca8mr6079755b3a.28.1762991607917;
+        Wed, 12 Nov 2025 15:53:27 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b924aee8afsm218358b3a.8.2025.11.12.15.53.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 15:53:27 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 12 Nov 2025 15:53:26 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <20251112222551.GB9135@pendragon.ideasonboard.com>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
- <20251027234648.GC24987@pendragon.ideasonboard.com>
- <aQAVE96NAD4Z4lgt@shell.armlinux.org.uk>
- <20251028071817.GX13023@pendragon.ideasonboard.com>
- <20251111235434.GA25874@pendragon.ideasonboard.com>
- <aRR3gVsZcr01zwzN@shell.armlinux.org.uk>
+	Conor Dooley <conor+dt@kernel.org>,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] watchdog: loongson1: Add missing MODULE_PARM_DESC
+Message-ID: <aa2ec413-628b-4690-84f3-03ac1c435ffc@roeck-us.net>
+References: <cover.1762482089.git.zhoubinbin@loongson.cn>
+ <707bfcf1a45008ecf5c8d517430332a66d4ee758.1762482089.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aRR3gVsZcr01zwzN@shell.armlinux.org.uk>
+In-Reply-To: <707bfcf1a45008ecf5c8d517430332a66d4ee758.1762482089.git.zhoubinbin@loongson.cn>
 
-On Wed, Nov 12, 2025 at 12:03:13PM +0000, Russell King (Oracle) wrote:
-> On Wed, Nov 12, 2025 at 01:54:34AM +0200, Laurent Pinchart wrote:
-> > On Tue, Oct 28, 2025 at 09:18:17AM +0200, Laurent Pinchart wrote:
-> > > I didn't notice it at the time because my board was connected to a
-> > > switch that didn't support EEE.
-> > 
-> > I can confirm that reverting that commit makes the issue disappear. So
-> > we're dealing with an interrupt storm that occurs when all three of the
-> > following conditions are true:
-> > 
-> > - cpu-pd-wait is enabled
-> > - EEE is enabled
-> > - the peer also supports EEE
+On Fri, Nov 07, 2025 at 02:01:27PM +0800, Binbin Zhou wrote:
+> Add documentation for module_param so that they're visible with
+> modinfo command.
 > 
-> Thanks - overall, please take the statistics and interrupt status bits
-> with a pinch of salt - I suspect there are cases where the interrupt
-> is not actually enabled, and the code doesn't take action to clear
-> down a set status bit, but _does_ count it - so every interrupt that
-> happens increments the counter.
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 
-True. To (partly) avoid that, I've dropped the line that discards
-disabled bits in dwmac4_irq_status():
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
- 	/* Discard disabled bits */
--	intr_status &= intr_enable;
-
-to ensure that all bits are processed and cleared. I then didn't see any
-high count of any of the GMAC_INT_STATUS interrupts. For
-MTL_INTERRUPT_STATUS it's a bit different, as by default only one queue
-is processed.
-
-> > Furthermore, I tried counting bits from all the interrupt status
-> > registers I could find. The count of MTL_INTERRUPT_STATUS Q0IS to Q4IS
-> > bits is very high, and so are the DMA_CH0_STATUS TBU and ETI bits.
+> ---
+>  drivers/watchdog/loongson1_wdt.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> TBU means that the transmitter found that the next buffer was owned by
-> the "application" rather than the hardware, which would be normal after
-> getting to the end of the queued packets.
+> diff --git a/drivers/watchdog/loongson1_wdt.c b/drivers/watchdog/loongson1_wdt.c
+> index 0587ff44d3a1..8502263b0d6f 100644
+> --- a/drivers/watchdog/loongson1_wdt.c
+> +++ b/drivers/watchdog/loongson1_wdt.c
+> @@ -18,10 +18,14 @@
+>  #define DEFAULT_HEARTBEAT	30
+>  
+>  static bool nowayout = WATCHDOG_NOWAYOUT;
+> -module_param(nowayout, bool, 0444);
+> +module_param(nowayout, bool, 0);
+> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
+> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+>  
+>  static unsigned int heartbeat;
+> -module_param(heartbeat, uint, 0444);
+> +module_param(heartbeat, uint, 0);
+> +MODULE_PARM_DESC(heartbeat, "Watchdog heartbeat in seconds. (default="
+> +		 __MODULE_STRING(DEFAULT_HEARTBEAT) ")");
+>  
+>  struct ls1x_wdt_drvdata {
+>  	void __iomem *base;
+> -- 
+> 2.47.3
 > 
-> ETI means that a packet has been transferred into MTL memory, and thus
-> would occur for every transmitted packet.
-> 
-> Having dug into the imx8m documentation and the driver this morning,
-> I don't think TBU and ETI are the source of the interrupt storm. Their
-> corresponding interrupt enable bits are DMA_CHAN_INTR_ENA_TBUE and
-> DMA_CHAN_INTR_ENA_ETE (driver names). Both of these only appear in a
-> header file - the code never enables these interrupts. So, TBU and ETI
-> should not be causing an interrupt storm.
-> 
-> As for QxIS, stmmac_common_interrupt() will iterate over the queues
-> in use, calling stmmac_host_mtl_irq_status() aka dwmac4_irq_mtl_status()
-> for each. Only if this happens will MTL_CHAN_INT_CTRL() be read which
-> clears the status bit. In other words, if e.g. Q1IS is set, but only
-> one queue is being used. dwmac4_irq_mtl_status() won't be called for
-> queue 1, and thus MTL_CHAN_INT_CTRL() won't be read to clear Q1IS.
-
-That's why I tried to enable all 5 queues in DT, but alas, it didn't
-help. I'll try again and count all possible interrupts.
-
-> > The debix board's DT doesn't specify a multi-queue setup, so only
-> > channel 0 gets processed in stmmac_dma_interrupt(). I thought that could
-> > explain why Q1IS to Q4IS stay set (but not why Q0IS also has a high
-> > count, or why Q1IS to Q4IS are set in the first place), and enabled
-> > multi-queue support in DT by copying the imx8mp-evk configuration. I
-> > then see lots of non-zero DMA_CH1_STATUS, DMA_CH2_STATUS and
-> > DMA_CH4_STATUS values (but DMA_CH3_STATUS stays 0 all the time), but
-> > sadly this doesn't fix the interrupt storm.
-> 
-> Now, a queue will only be enabled if stmmac_dma_rx_mode() /
-> stmmac_dma_tx_mode() is called, which only happens for queues that are
-> going ot be used. So, I think QxIS where x >= 1 is set is a red
-> herring.
-> 
-> Given that the driver does a software reset which clears out all the
-> registers, any stale configuration for queues e.g. from a boot loader
-> can't be preserved.
-
-I agree that it seems really weird. And why this would be related to
-cpuidle and EEE is also a mystery.
-
-> > I don't think I can debug this further and figure out the root cause
-> > unassisted in a reasonable amount of time, so I'd like to merge
-> > disabling EEE as a workaround for the time being, unless someone has any
-> > idea of what I could test next. I'll submit a v2 of this patch with an
-> > updated commit message.
-> 
-> I'm also not fully conversant with dwmac hardware, especially not the
-> v5.10 hardware that is in imx8m. All the above is stuff I've pieced
-> together this morning from reading the driver code and the imx8m
-> manual. I'm putting in effort here to try and get to the bottom of
-> your problem without hardware... it would be helpful if others could
-> do the same rather than throwing their hands up.
-
-More help would certainly be welcome. And I really appreciate your
-support Russell.
-
-> The driver is really crappy, and part of the reason its crappy is
-> because of this kind of "patch in a workaround because we can't be
-> bothered to do the research and fix problems properly" attitude.
-> 
-> I'm saying enough is enough. I'm saying no, not going to merge a
-> workaround for this problem. I want to see stmmac improve. I've
-> put in considerable effort over the last year or so sorting out
-> fundamental issues that others just can't be bothered to solve
-> properly (like the DMA reset failures on resume that has plagued
-> this driver which no one seems _capable_ of fixing, yet I, with no
-> experience of stmmac, was able to analyse the issue, read the
-> availble documentation, and fix the problem properly once and for
-> all.) Either I'm bloody good at what I do and everyone else is
-> useless, or it's laziness by others. It pisses me off that I seem
-> to be one of the few who is willing to put the effort in to stuff
-> in the kernel to see _improvement_. I don't _have_ to work on stmmac,
-> but me working on stmmac benefits a lot of people.
-> 
-> What I'm saying is, we need more people willing to put effort in
-> and less bodging.
-
-While I would like to merge a workaround and move on, I also understand
-your position, having had the exact same stance in other kernel areas
-and pushing for problems to be fixed correctly instead of worked around.
-The only argument I have to defend the workaround approach is that I'm
-putting a lot of hours trying to do the right things in other
-subsystems, and I can hardly scale that to networking. It's not a great
-argument though.
-
--- 
-Regards,
-
-Laurent Pinchart
 
