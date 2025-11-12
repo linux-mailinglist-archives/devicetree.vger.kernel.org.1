@@ -1,134 +1,178 @@
-Return-Path: <devicetree+bounces-237439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A69C51182
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:25:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8D4AC511AC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:29:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E33181895CD5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:25:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 732C418966C9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE1C2DC796;
-	Wed, 12 Nov 2025 08:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8E32F39CC;
+	Wed, 12 Nov 2025 08:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bk1nBRkn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a5Qp7bjd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E95D2D5C7A;
-	Wed, 12 Nov 2025 08:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB4821ABAA
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762935898; cv=none; b=hlpU8rvJCsps8XX8//ieVl1hV8MVN3dlUmofKJCjVSsbXzCPYorY9x57P0oRf1iuRhgxJwectWVbrBGchorBVa+5lOPWXRWbMvFpPadSg3icC5H87wBwiQkrEas5Si8KKWl8wj2c1lruUozHB+2YmXj2rnxWu0zrcPQHCyf67fE=
+	t=1762936157; cv=none; b=sswYFxa1D/pSj/7NgxZw2iwarlevJ+Y19YhHTptyShGYpx8UgoZbeu8hMYHJ2WaJI2meBgSiMy/e+NgeD16t1EDUI3jd5YZtPc7q0YRGs3W1xcXBodfc9elgJcNjsYhoZy6sawozNGBZ5Kbnmx5Ae1jt7NpHhjVeWILNxpI70jY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762935898; c=relaxed/simple;
-	bh=Q/QyHaLAgaVdBMtPSmk8J58WVVg01wAiuM4riboMwNE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NMK0XeMahHmKfwNmNMkKsc0gLL77i4zhi9eAR2mejNtCNPJyJW53aR4mgySmLj3Ev0khL6sgsL9rJOkUk75RSGJmEQJFkLCqOxGwBjJiGNEphvk8YHPSmHNQcEKz4jF7M/H+nLkIZ5NXMAsLMVZEsTZ661a5O+W01rw2hQWPj+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bk1nBRkn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E58ADC4CEF8;
-	Wed, 12 Nov 2025 08:24:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762935898;
-	bh=Q/QyHaLAgaVdBMtPSmk8J58WVVg01wAiuM4riboMwNE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Bk1nBRkn4iZ264APmYkNPG3UpTT+VxqzQ3S7XK0HGOv8tN2fl5iuotfFGjNHHW898
-	 PYj2AtbbPEHsRbc//iachZqeHCqk2H07y7dVUcD+rXeWdB9Ab9xACldsCWHm5AY9gn
-	 +8ZLOtLorSQs7FhWmeoZeGyFi4RxfTuqI5NpOYY3yISH9IJw+CpQ0cmq6crBLX2J31
-	 pvdkARjyVsyTZZk2bZKr/eQZS2wriMZhfYdgrYDN5hYN75//NTd8wXeefcHpFiiL6o
-	 HHSJbWw7Nvj0kX69kA/dOF1PAvzwyW/nXbakvp4DTTVnWFLMxpDS16Iy8kuopL/Kdf
-	 rYxhfJ8VtVqKQ==
-Message-ID: <177ca4e1-fa11-4b24-b72d-1af6c7c2f1c6@kernel.org>
-Date: Wed, 12 Nov 2025 09:24:52 +0100
+	s=arc-20240116; t=1762936157; c=relaxed/simple;
+	bh=op3wShXUu6uL2mvqV81fg417E/SMxbfH5zAglzBCAiM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lsMhpM5ESTWJUU/Ee3g43/OhEVOIkakjh5xYt8vMLTCXa/ubSYeJQ3KuGJ3v7R4jKq8TewauAeRY5Z/NW52gLN7wQ6AVl+QLyQuS287SXVPybmKKKIf3Ty3iKlZuB1geQkzrTD2ZzWyC4/aezAW+45IfkeU+6rw+shaDrRjKnIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a5Qp7bjd; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-42b3d7c1321so340520f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 00:29:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762936154; x=1763540954; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=y6H4fhzWNfAOw3fABnsgj+mVJVVC5fU8/bSjCOymm/4=;
+        b=a5Qp7bjd6d3LbF02EUzX6kvKWXXKRQ/grn2elmm1P2cUYhfbfYAN16zH/VnFHsUupx
+         evCOtH+LXAl4KXk3XRZwyYT5C15VPzlDphmwMytp/cziyde+iitzJVkE+GysDIldfFtI
+         hA6qv63qp0iZ9VJM/N0jPktVWycaAf52JUS63Ig4ezMhgtBoWVLQPN57+f2/yqThGe4q
+         DwrXn598wcG6KCSgOo79VtJF39h/7MB0eNkuMiCuzBA+0TvBxW/ri15v3G/i9y2XfH9b
+         O3Nnrh81ZRZI+EXIS8Smjvz8HYh65zYz4NcZ2p2Qln6qk9PoezhkdRgh4AGT8z8jvMFQ
+         wV7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762936154; x=1763540954;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y6H4fhzWNfAOw3fABnsgj+mVJVVC5fU8/bSjCOymm/4=;
+        b=jJr4sxlNgWcifpCPfxbPZmo8bkmtVH2yd/7qeGWQjusCSULZlCcTq0HpM1RD8erpoe
+         hGOU6XBnJEvZI09gMNjWzHmk+Qi1kmU3gZoQRzBPPyPRp7akQ7KCSq+Q25f9L3QVC1vF
+         Mqb0EX4sUmbxpal+GKG1tHXSsjATzDeCdlSwIpvcJd0RqzBWMcJBdKB+9mA6O5BzjZFF
+         /gcx5cbXY4B1Mt4kvBOIiLjvFCI53xSmE5AnTQKx3Xz1KUyhLOS2bTKXBScRPStJvfUo
+         fZt+ZfHMnlv07xYvNACTx3ZIeG4pwl7B9X3wDm7Cpawv1v2ZMqlK0TexD6vMLnurvhJK
+         B69w==
+X-Forwarded-Encrypted: i=1; AJvYcCUJl3Pgd02RzJfwWa0BaCleaCm8sOfvgbZ7TeEdi/OO3XntFM7/MnrlxYw7XrynWYgK0z5czeOTgHod@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQV3GZWLBiZbEtPiflMJmQQ6yNyyHFfBFsMhnDJpyiOCSNuSAv
+	NF8gTf8LfcApMnUE1KIQXgSqkMSQp8SbCEFYHznskRYSs3yhvb16rYL1+ponA5BRFbQ=
+X-Gm-Gg: ASbGncuI5a0Tm4WQKf5lj0qF8tl6Pr0D5HTcqstUjoHhGsSFvZQxGdGAKrNdJ6Mv3WJ
+	Z7i53PkuRsH+lYoF/asv3u8qlIhNHrOaxfvZanogRCtJIUPOUFhdSrdpduZB2naR7W2ZeoW9hL7
+	fwkOnHA2u36QEFmSFl79miT0CVhuw5gaLmY6Y/JqzAcC1Gdu85yDze3Pkc0nUWwyUZ+Zkxn9jbs
+	xLskQhA29O6V3y54l5Gt5WhIWaMIR8VYtn9djwmtl/n2mT3S2vt48lyccUXooxnLRLBpgfx/rvG
+	a3S4lvHK0IqaLqfD9V1ejS5Cd62G2SXIqxvOViqsy1YhW17LOuhHajcYGE1D6sq7gYu/qgqSpeQ
+	Irrm1acRyNbYgt0GlyM2O5nJ1uOcnDd0tYWcm9uQzDqg2OCUi/bGGH0d6MYrze9p6i74o2YYaYi
+	pSvsi0n8b+Vj1DPlVc60B5tL6J5Hi5fa8DdsQEnK+abNiQmgD19SY1phFdtj6H0nBeego=
+X-Google-Smtp-Source: AGHT+IFyADtGKTaC4hHQ7wRzm9vozoNXIQX3r0eJ6FRrtFXk82uJWL1huXSvsvBDb2sySH4eSjmtqw==
+X-Received: by 2002:a05:6000:2010:b0:42b:30f9:79c9 with SMTP id ffacd0b85a97d-42b4bdaed56mr1411001f8f.37.1762936154240;
+        Wed, 12 Nov 2025 00:29:14 -0800 (PST)
+Received: from ta2.c.googlers.com (17.83.155.104.bc.googleusercontent.com. [104.155.83.17])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42ac677ab75sm31571428f8f.35.2025.11.12.00.29.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 00:29:13 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v2 0/5] nvmem: add Samsung Exynos OTP support
+Date: Wed, 12 Nov 2025 08:29:04 +0000
+Message-Id: <20251112-gs101-otp-v2-0-bff2eb020c95@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v8 0/4] rockchip: add can for RK3576 Soc
-To: Elaine Zhang <zhangqing@rock-chips.com>, mkl@pengutronix.de,
- kernel@pengutronix.de, mailhol.vincent@wanadoo.fr, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, cl@rock-chips.com
-Cc: linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251112015940.3695638-1-zhangqing@rock-chips.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251112015940.3695638-1-zhangqing@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFBFFGkC/23MSwrCMBSF4a2UOzaSVx925D6kg6TepBekKUkJS
+ snejR07/A+H74CEkTDB2BwQMVOisNaQlwbmxaweGT1rg+SyFVwJ5pPggoV9Y9KpAQerbX9TUP9
+ bREfv03pMtRdKe4ifk87it/5TsmCcSdNq180ae9vdX7SaGK4hephKKV8ZD8GdowAAAA==
+X-Change-ID: 20251031-gs101-otp-2f38e8b4b793
+To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: semen.protsenko@linaro.org, willmcvicker@google.com, 
+ kernel-team@android.com, linux-kernel@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762936153; l=2360;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=op3wShXUu6uL2mvqV81fg417E/SMxbfH5zAglzBCAiM=;
+ b=/v1HWFyFoDLMFLrxpFMsj5XvuEdMXTb7Bt0vA9rXW3tVkGbR6OsfxxFh71dqUk9ijNk/Jh5ju
+ al1QkneDVcwDXa7k8uFqOIndACFX0Cn5p7qAkf1BFlUE5DacK2eX6Qi
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-On 12/11/2025 02:59, Elaine Zhang wrote:
-> rk3576 can is a new controller,new register layout and Bit position
-> definition:
-> Support CAN protocol.
-> Support Dma.
-> 
-> There are major differences from the previous rk3568.
-> All errata on the rk3568 have been fixed and redesigned.
-> 
-> RK3576 CANFD requires authorization and permission. The software
-> code is not open by default and needs to be authorized separately.
-> 
-> Change in V8:
-> [PATCH v8 1/4]: Drop CANFD, correction format warning.
-> [PATCH v8 2/4]: Drop fifo_setup of rkcanfd_devtype_data.
-> [PATCH v8 3/4]: Drop CANFD.
-> [PATCH v8 4/4]: Drop CANFD.
+Dependency
+==========
+Typical dependency of the DT patch depending on the bindings patch,
+thus the bindings patch could go via the Samsung SoC tree with
+Srinivas's ack.
 
+Description
+===========
+Add initial support for the Samsung Exynos OTP controller. Read the
+product and chip IDs from the OTP controller registers space and
+register the SoC info to the SoC interface.
 
-Please implement the feedback I asked at v8. Stop resending the same
-over and over, bypassing people's review.
+The driver can be extended to empower the controller become nvmem
+provider. This is not in the scope of this patch because it seems the
+OTP memory space is not yet used by any consumer, even downstream.
+
+Testing
+=======
+root@google-gs:~# cat /sys/devices/soc0/family
+Samsung Exynos
+root@google-gs:~# cat /sys/devices/soc0/machine
+Oriole
+root@google-gs:~# cat /sys/devices/soc0/revision
+11
+root@google-gs:~# cat /sys/devices/soc0/soc_id
+GS101
+
+Cheers,
+ta
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Changes in v2:
+- bindings:
+  - drop dependency on nvmem-deprecated-cells.yaml
+  - drop clock-names, otp label, child nodes
+  - add interrupts prop, make it required and add it in the example
+- driver:
+  - no longer a nvmem provider, register just to the soc interface
+  - update comment about the module name in Kconfig
+- dts: add interrupts, drop child nodes, drop otp label
+- Link to v1: https://lore.kernel.org/r/20251031-gs101-otp-v1-0-2a54f6c4e7b6@linaro.org
+
+---
+Tudor Ambarus (5):
+      dt-bindings: nvmem: add google,gs101-otp
+      nvmem: add Samsung Exynos OTP support
+      arm64: dts: exynos: gs101: add OTP node
+      arm64: defconfig: enable Samsung Exynos OTP controller
+      MAINTAINERS: add entry for the Samsung Exynos OTP controller driver
+
+ .../bindings/nvmem/google,gs101-otp.yaml           |  56 ++++++++
+ MAINTAINERS                                        |   8 ++
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       |   7 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/nvmem/Kconfig                              |  10 ++
+ drivers/nvmem/Makefile                             |   2 +
+ drivers/nvmem/exynos-otp.c                         | 160 +++++++++++++++++++++
+ 7 files changed, 244 insertions(+)
+---
+base-commit: 4b67e4c65c1e0740ac12bd0d790eb5a9d0091aaa
+change-id: 20251031-gs101-otp-2f38e8b4b793
 
 Best regards,
-Krzysztof
+-- 
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
