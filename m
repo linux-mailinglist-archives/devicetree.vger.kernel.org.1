@@ -1,209 +1,138 @@
-Return-Path: <devicetree+bounces-237741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE947C53732
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:39:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE445C53932
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:05:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7091834F5F0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:29:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 097AF4214EE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A2C33A026;
-	Wed, 12 Nov 2025 16:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3531934253C;
+	Wed, 12 Nov 2025 16:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Umd7piN3"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jO46oGgS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30FE02550AF;
-	Wed, 12 Nov 2025 16:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D21623B628
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 16:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762964982; cv=none; b=dHZsgFciV1oq73Wb+7di0ewfHM4Kk9m74/BnnvWCSY5m95m8xHHtSKtoaTjw4LORfZ0e/tzQtqkPg3wgTtzpeS19FvQ447hMV2ATIeE3gRBUHD5i0QuVLQoDedRnXf7uwseHXp+3Zp3HrBxynEYRpP7C5c9Rm++LQ3lHbfUHjGA=
+	t=1762966360; cv=none; b=KCyBripVsr46jsJSDvM5Bws2VSwDhZGkqiYAB8zO/t0ekWUlIBHdlyAeu0bB1pe6rjye4q0VXl7lh+QS6f4okMh1JLa8AlWG8JSLYZrr0vvRXj+HNwpyCSnytOpoyoGSmESApSYnY3CF1H3sq4WlPTCFdQrDj7kBVerYukrtY00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762964982; c=relaxed/simple;
-	bh=DP5D2zjQPq84AdGMdpDugauF+Uw5VjnEZ/jSz0bVjQU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bPA3xYsQ/qhnulSL7SrKJnZINOAfLWzqnFUusD2My+H3PfMj061FdAoKHuopk9MvyCES7OIhOwTdCTuWsjJBGiHDasnEkSFyvi3vhVxgBnX1MRFySJNgjbW8qeBieI2hhtG86sbQv/xYR+IQek3UdlGh8jY/fsLlL+w41k7LJys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Umd7piN3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39F77C4CEF1;
-	Wed, 12 Nov 2025 16:29:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762964981;
-	bh=DP5D2zjQPq84AdGMdpDugauF+Uw5VjnEZ/jSz0bVjQU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Umd7piN3+04i8gvUPVvGaPzCgGl9OYviITEvXRjtjkY1zWB08XfPwM596K5Xx+yTT
-	 6jlBuI7jmtuhSTV7HXyJghjYGq5GvSUuhsHoVQf8x7f6Efsa18iC+7AbtoXVU0DQ6u
-	 7BUti4EwiDji9mD8ATudxo8+lYjVmK1qJZxU6Ok6WQAjwL78NTMNsJg58rwKM9fp0X
-	 2n1VDrUQ4c6yPc2d25GV8oAYeb+103t3lBtA8GMELK9WhJ+C8+NnE2+2IHyfEW8YMy
-	 3I20JVe9pmiZnDbpF0qEFXF0ZvGvKvTeFJmY/VBdros8N5KrXxzSxt0pI09T3CsiQG
-	 aywUJlcTIjY8A==
-Date: Wed, 12 Nov 2025 10:33:58 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
-	krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add PCIe3 and PCIe5 regulators
- for HAMAO-IOT-EVK board
-Message-ID: <6iuuosajwue35goout6ohpdbmdoahc6f3gxicliiin6wq3ggjh@m7nkqnsxq63h>
-References: <20251112090316.936187-1-ziyue.zhang@oss.qualcomm.com>
- <20251112090316.936187-3-ziyue.zhang@oss.qualcomm.com>
+	s=arc-20240116; t=1762966360; c=relaxed/simple;
+	bh=vquyA6U0yVLVU87ffFxSvxSxY4DbgBQ5yYCH68Wc3l4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jRjG/kAYtmDzlm/7y1LOHEO5Y5tETgv6TejlRrlrbkZ9kfe+uNqjqN3hPbxgU6pNcZ81qcPj8uUIvucDfIpNRlF1Kr+BOdDCoH93c3OrLRpLmnE6m8AgVidt/d6Wei2l4lRZ6d43hajfnURH+yzRRI/E67uKrpD9LQAmiAplSsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jO46oGgS; arc=none smtp.client-ip=209.85.161.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-653652a4256so463321eaf.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:52:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1762966356; x=1763571156; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=otKN6HaBW7TeFZXmhol1N0rafttZcw0ehXIldHQZRQU=;
+        b=jO46oGgS/vM3MXXYczpi4QHmtXP4ZJ6G9q+Sfnq2whfaApDS5crM9wQfMGl7pYGSSF
+         kS5DX/Ko2AXyYeJ1cwm2qjGLv6RlMafrr5J1cXTVxvacrsR6SW2gT6knsOQdYZAO6zSY
+         d9Cgmf99MFjOpBDPnWQ8BW8GwOun1+B8s7WWmDVNjto8kTwxkkntu4+H/CsBP0F/arPK
+         2Ry3hfnAzVIGT8YeflrPx+6zEc3djCRx3Vonriz2hNiJKY9YXrPjki+5youDgXgRqU+L
+         twTzmcbLFregOVEXAm2a6AA1Vr0EaauKeBWqhA9Z1OTTlndzLeM2pdXl5x8Hz8/KaHQC
+         9JdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762966356; x=1763571156;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=otKN6HaBW7TeFZXmhol1N0rafttZcw0ehXIldHQZRQU=;
+        b=lr5q/nRRPFcr9ee+AcsqWdpzzShlgSk91yLVm9FzwQSLqRT8Yq4bw9NRRP05c7c+g+
+         BCPiYC18Dytgkn4nnM2J3Ot2YSkg7tNnSGiS5rBOrpeS0X7XzDQyqQZq06hvasfNLzty
+         cP/qkykZRSKuAL7XYEd39Z03TGhQXFPz1s2Z6aXhriUJ2xJ8C0UmIy3FId1b7DS8rJYU
+         YfAKibOhZnDeUkKaUGKJ794i9ohJIStwph1frqo3sAi4U5Mve5DO3G4IBfUDd7xNTsI1
+         GI/FAVexFsCT8K2no9bBAIpDvKOxz+TArKLXprszDd3j51vEIeP9kaOT9+7vfgxiL4Xf
+         2h9A==
+X-Forwarded-Encrypted: i=1; AJvYcCU8tnKxvIGIexdBiSYzyLa972k3f+753Ye1iXjfGZtyN3BmY3mV4k3xqg9LO8EuTPcFJAwI0WRScXPf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPP0RZzXgnS3209GJWmS6iLEtlDLeqioi2LIbvcNZB1Cuedp33
+	TsIq0MkS6aCHIGVgoMndGTkUigYlG97Q5u0YprMe8neaHc70oQICR8RbMCRDy/IosIM=
+X-Gm-Gg: ASbGnctPeyl9wVTukv8B0KftnpnaesmYhLWv+/i0mlZkdol/2pwa8Kl0JAxy/vTu3Kz
+	Lrbp6kD/MkbQtr7RFWNP2vM6aPYPbQSbPcffEdApcXfE/nzGxC4P8ULfFZvl8dfSwUZi0c2MBot
+	zKGXbJ8qsewtdwzJoWnbjRbGbLFBsl3qPRwuLqkWu10y5tobVTV9PHSubb77VlhteJgD7rhAIiQ
+	FPDuzs/1xqfFS6N61BlSifTP7jVT8c4sp7JtkP2pmrx/yrH04ZoABP9Wrm31zGxYgVwK/Bi475u
+	+V5iGMX3poLLIH3/l6/ioDhYWdU0Xdus98S5QlCDT51V+UaQT6W5N84Ysrb0f2FdkSNPj9OgFgT
+	vCic4HnECJ5wuKlSqP3YXlqkolNuAVQ4GfYLHiGJxRqAIup1CPPvw+n7YoukzMC+LCe1/Focc8L
+	GnMbT7GxwWsVrUjAO3Dx+b+I5u8dRzsLGZiMsdnsokZq3AuiaJWg==
+X-Google-Smtp-Source: AGHT+IEzlLhnjrljziZsPJD+6TFphu87RW7odVOmHqBJgKS1HNWc+2CO5ak3CF5B+KTraiO0uH2Sxw==
+X-Received: by 2002:a05:6808:1b07:b0:450:3c49:519 with SMTP id 5614622812f47-450743f38afmr1702472b6e.7.1762966355944;
+        Wed, 12 Nov 2025 08:52:35 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:d404:301b:b985:c499? ([2600:8803:e7e4:500:d404:301b:b985:c499])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-656c57ec231sm8495588eaf.17.2025.11.12.08.52.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 08:52:35 -0800 (PST)
+Message-ID: <b18db31d-47e5-44bb-a671-c8d8a9f2cd82@baylibre.com>
+Date: Wed, 12 Nov 2025 10:52:34 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251112090316.936187-3-ziyue.zhang@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: spi: Add spi-buses property
+To: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+ <20251014-spi-add-multi-bus-support-v1-1-2098c12d6f5f@baylibre.com>
+ <20251021142129.GA34073-robh@kernel.org>
+ <14ae0769-341b-4325-b925-7bba6d57bbdf@baylibre.com>
+ <20251030135126.GA3749313-robh@kernel.org>
+ <f731ebd7-6494-45f5-861d-05a2926cc5fa@baylibre.com>
+ <aRIbBVNzo-7EYJbl@finisterre.sirena.org.uk>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <aRIbBVNzo-7EYJbl@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 12, 2025 at 05:03:16PM +0800, Ziyue Zhang wrote:
-> HAMAO IoT EVK uses PCIe5 to connect an SDX65 module for WWAN functionality
-> and PCIe3 to connect a SATA controller. These interfaces require multiple
-> voltage rails: PCIe5 needs 3.3V supplied by vreg_wwan, while PCIe3 requires
-> 12V, 3.3V, and 3.3V AUX rails, controlled via PMIC GPIOs.
+On 11/10/25 11:04 AM, Mark Brown wrote:
+> On Thu, Oct 30, 2025 at 05:42:44PM -0500, David Lechner wrote:
+>> On 10/30/25 8:51 AM, Rob Herring wrote:
 > 
+>>> But it can't really be 2 independent buses/controllers unless the ADC 
+>>> has 2 completely independent interfaces, right?
+> 
+>> Correct.
+> 
+>> The proposed property really only concerns the data lines (tx/rx). It doesn't
+>> care if there is 1 or 2 SCLK lines and it doesn't care if there is only 1 CS
+>> line.
+> 
+>> So maybe spi-data-buses would be a better name for the property? Or
+>> spi-data-ports (using the NXP FlexSPI controller docs terminology)?
+>> Or spi-data-channels?
+> 
+> This bindings discussion seems to have stalled out?
 
-I love it! Thank you for the clear description.
+Yes, it seems so. I sent a v2 with with the property changed to "spi-data-buses"
+in hopes that that it would be good enough, or if not, get the conversation going
+again. [1]
 
-Regards,
-Bjorn
+[1]: https://lore.kernel.org/linux-iio/20251107-spi-add-multi-bus-support-v2-1-8a92693314d9@baylibre.com/
 
-> Add the required fixed regulators with related pin configuration, and
-> connect them to the PCIe3 and PCIe5 ports to ensure proper power for the
-> SDX65 module and SATA controller.
-> 
-> Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-> Reviewed-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 83 ++++++++++++++++++++++
->  1 file changed, 83 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> index 36dd6599402b..ac17f7cb8b3d 100644
-> --- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> @@ -199,6 +199,48 @@ vreg_nvme: regulator-nvme {
->  		regulator-boot-on;
->  	};
->  
-> +	vreg_pcie_12v: regulator-pcie-12v {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_PCIE_12V";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +
-> +		gpio = <&pm8550ve_8_gpios 8 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&pcie_x8_12v>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	vreg_pcie_3v3: regulator-pcie-3v3 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_PCIE_3P3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&pmc8380_3_gpios 6 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&pm_sde7_main_3p3_en>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	vreg_pcie_3v3_aux: regulator-pcie-3v3-aux {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_PCIE_3P3_AUX";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&pmc8380_3_gpios 8 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&pm_sde7_aux_3p3_en>;
-> +		pinctrl-names = "default";
-> +	};
-> +
->  	/* Left unused as the retimer is not used on this board. */
->  	vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
->  		compatible = "regulator-fixed";
-> @@ -844,6 +886,16 @@ &mdss_dp3_phy {
->  	status = "okay";
->  };
->  
-> +&pcie3_port {
-> +	vpcie12v-supply = <&vreg_pcie_12v>;
-> +	vpcie3v3-supply = <&vreg_pcie_3v3>;
-> +	vpcie3v3aux-supply = <&vreg_pcie_3v3_aux>;
-> +};
-> +
-> +&pcie5 {
-> +	vddpe-3v3-supply = <&vreg_wwan>;
-> +};
-> +
->  &pcie6a {
->  	vddpe-3v3-supply = <&vreg_nvme>;
->  };
-> @@ -868,6 +920,17 @@ usb0_3p3_reg_en: usb0-3p3-reg-en-state {
->  	};
->  };
->  
-> +&pm8550ve_8_gpios {
-> +	pcie_x8_12v: pcie-12v-default-state {
-> +		pins = "gpio8";
-> +		function = "normal";
-> +		output-enable;
-> +		output-high;
-> +		bias-pull-down;
-> +		power-source = <0>;
-> +	};
-> +};
-> +
->  &pm8550ve_9_gpios {
->  	usb0_1p8_reg_en: usb0-1p8-reg-en-state {
->  		pins = "gpio8";
-> @@ -879,6 +942,26 @@ usb0_1p8_reg_en: usb0-1p8-reg-en-state {
->  	};
->  };
->  
-> +&pmc8380_3_gpios {
-> +	pm_sde7_aux_3p3_en: pcie-aux-3p3-default-state {
-> +		pins = "gpio8";
-> +		function = "normal";
-> +		output-enable;
-> +		output-high;
-> +		bias-pull-down;
-> +		power-source = <0>;
-> +	};
-> +
-> +	pm_sde7_main_3p3_en: pcie-main-3p3-default-state {
-> +		pins = "gpio6";
-> +		function = "normal";
-> +		output-enable;
-> +		output-high;
-> +		bias-pull-down;
-> +		power-source = <0>;
-> +	};
-> +};
-> +
->  &pmc8380_5_gpios {
->  	usb0_pwr_1p15_reg_en: usb0-pwr-1p15-reg-en-state {
->  		pins = "gpio8";
-> -- 
-> 2.34.1
-> 
+
+
 
