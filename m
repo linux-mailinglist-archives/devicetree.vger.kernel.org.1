@@ -1,367 +1,475 @@
-Return-Path: <devicetree+bounces-237564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CC0C52117
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:48:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E300BC520BD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:44:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E1D4A4E81AE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:38:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25DCA3B0488
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:38:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04BA231196C;
-	Wed, 12 Nov 2025 11:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09FE2311951;
+	Wed, 12 Nov 2025 11:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="oQjhwHTd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011033.outbound.protection.outlook.com [40.107.130.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2259301473
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762947529; cv=none; b=HE63/zMadZgOh0ToAvkSq1uiyPeMIoRhM/TMjMPtiKu6UVeyCcwtD2YBEn6Cgi4kmTH0FtxMxyN1PTc91uckkDfaItCF+kjfh9KOW36NxbkzYFd2C9ofQi0cdllmoyluZP9+xzsS4g2PyynQ0KbIgLXrKBNqRwOwKastgvPFtSE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762947529; c=relaxed/simple;
-	bh=i1mNOEdla0owhqSY4cpG5QVw8fdornw/0LzKg06s0AI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pXntxJY7AN8aNnqSgBuw5MT09WP2p/GgSoewDtEwhBkFEke0QVa/aRBldLuSGYzsSc1zI3l+7JFFLGfwzKTxp3gZl3l0e7m2MWMznpsNxWwQcnYys19a2EiynnmWivVw8cTQ9qpdRDB1vjBWPDXyaae0kPdlSkntmkPn5IlluWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.16.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1762947421t8004729d
-X-QQ-Originating-IP: AlfjT3HVwUUl20kxauNyIhwqvosTtFn4z1+AG5RnyXs=
-Received: from [IPV6:240f:10b:7440:1:325d:36bf ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 12 Nov 2025 19:36:54 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 15779683235920526526
-EX-QQ-RecipientCnt: 24
-Message-ID: <B53A83D8C3B50A70+1b9d2253-6cf6-476f-b8f7-98552db461c7@radxa.com>
-Date: Wed, 12 Nov 2025 20:36:54 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CDE2E56A;
+	Wed, 12 Nov 2025 11:38:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.33
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762947496; cv=fail; b=qu0LW9YdTVbKEPL29BsjRKYAANossYP+PjVZdwIIrDxitcyPJBQIeERqvDyu6VTCdc/j0K/lrI0wuDDB7qjoQsvk3Sg4S2ORR/3LD1Yv10vXC6YxdyNWNxbgu7DerBKHoC2Q1swc9DPIF91I1TOpWOUkfw/vvxZQ6c6hRGUJ7/k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762947496; c=relaxed/simple;
+	bh=dadx+1xfvRn5ceuxZzOoJhrEQyl0oau6tpOO10/Iwbw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=nCT3ywra34cYHSffP1lViXJh/5bO5ScwxF2GNReKPoqNLDgSiRwZ4ZvNq6OWYgrBqDVxrNE54zsJp2vlWXJFkqzhzekFcT6JuuLmM8JUts8UWmPHwIIEGO9eIt9NaVsdsSDEqSc0NajfbCS0Z8mEXh7biH7F9KR4qeIiqa0Mk4Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=oQjhwHTd; arc=fail smtp.client-ip=40.107.130.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=t4zdK1RzQglNaJwSPeMjrYmS16XbNnmir3M1OnhLmyvbTAxhefm70GT6GbFdsnkH70qvYagavfG/0Cm3jpNqfMHOGDu7lhpZHXoJ8np9hG2fWRGB3HaJpjLjFvihnjDmqtJQua7y80ZWRkpy6nkeH26fCuh3km3OCxFKudKfahzk/yiMXIbD0KmKnmC9RRie9YnlK9QljZhdGlzqCCRKVw7bTD4GVUQ/J682WICGVyGUA0Pt4ce6lDbJpvyvbitBtcNPl4tv+zbV4wxLgpetv+XNcEqgceitncoZR2fOfrCsOpKP2Q3xXob83UOo1VVGbwZWXitEGC3S6FyeTde/VA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cucGafVCKh94xNHf3vtUH96WRUAfp6W3URky+uAgXJ8=;
+ b=wcKQzjkLqEc4ntXuKgPDb6AQ53TeN9f1b37s5Y0hIyn180aiyaqbPQqFOv17UkQXNKA941AGaNBKZ44yF5RJf6NxuEoXGAIkTbhpm8uDV50KzJuxx0izvVpcRj3Rds3lyyQmkzCPU4l9cnz/6ODfrHtZAIMCPqcHZs3zlbs8GIoEyWTcWlV8GZKD81iyYKCadTjuCMIXB2f5jlTRSU9jRfzNIxZU0VVu1yJ6a+9fVOheUNYcV/Ail7SFKbBVan02s0mvoF5PmnUmvJBaK7B/TD+QFghKjS8Wfm1NfmE0XK7cO7gSwd0W54T/hW3PLsUxZLRrVZzt7FJlZtY269NfFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cucGafVCKh94xNHf3vtUH96WRUAfp6W3URky+uAgXJ8=;
+ b=oQjhwHTd9xgXeNpKe/zs3ZgSutHsCKS3B3yUEWTvSa2ieZh7PN32JcffWDfqV2XmK1lZ30y02Kaakrcaup84PFtVl6E78x4D+X/8V6F+DCPmzuzv3d7B0dZhQ1z2g8wxl767LqXu/kfKnwH7VyJIy4Rlt+PAQvyEkt/q4NtMh0Rmum+zDmIRRRbwBZafj9mQBsS4oaOY4jlP2oOlOEsIP3Z0teFzjKehE0Ok6HB0oV7IBWcIefMe216TEBqfkeikInt5ymX2mA+IhKVz+ivB8ZNe9HLkforLP6ViHRa1yA3teKs9E018OREP966u0TMSTeMGksmw49Pewz3O28Znbg==
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
+ by DB9PR04MB8265.eurprd04.prod.outlook.com (2603:10a6:10:24f::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.15; Wed, 12 Nov
+ 2025 11:38:10 +0000
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827%3]) with mapi id 15.20.9320.013; Wed, 12 Nov 2025
+ 11:38:10 +0000
+From: Pankaj Gupta <pankaj.gupta@nxp.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+CC: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>, Frank Li <frank.li@nxp.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v19 0/7] firmware: imx: driver for NXP
+ secure-enclave
+Thread-Topic: [EXT] Re: [PATCH v19 0/7] firmware: imx: driver for NXP
+ secure-enclave
+Thread-Index:
+ AQHcLvztIykpoCx+vU2TOsTcO77HnbTExb+AgBDxjcGAC9UegIAFbnEAgAbBcwCAAR8p0A==
+Date: Wed, 12 Nov 2025 11:38:10 +0000
+Message-ID:
+ <AM9PR04MB86047231B5320C01759BFCAE95CCA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+References: <20250927-imx-se-if-v19-0-d1e7e960c118@nxp.com>
+ <20251016114151.jzmapaecsmmnkpt3@pengutronix.de>
+ <AM9PR04MB8604C2AAA70406883320C5C995FCA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <20251103190811.wp4o7hlnus6ynn32@pengutronix.de>
+ <AM9PR04MB8604AA80EC97E06AADBF334695C3A@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <20251111131442.nddhk3475oapf2zh@pengutronix.de>
+In-Reply-To: <20251111131442.nddhk3475oapf2zh@pengutronix.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|DB9PR04MB8265:EE_
+x-ms-office365-filtering-correlation-id: b7c94aaf-87af-4501-1827-08de21dff513
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|1800799024|7416014|366016|19092799006|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?X5/GfL4/1QjT1IOAnMbgYUtyFk0N/S8AAE5Yp0gyFZgpVNchaUd15NA/vrOD?=
+ =?us-ascii?Q?Qdi2XeMYqnpT0dLnB4IAXxFhYrzlgk5zXIAfuAX/puDvgUf+Kcic4AeL5IYl?=
+ =?us-ascii?Q?VnMzMd7BX2/wHZw1qHiFi2HHg7zfxkwVG9V0I9RVWHY4/15jCVqBnEgdykA3?=
+ =?us-ascii?Q?KHKkIXV+3/p4P5ldgtCxVtHmdNxEWy3nOWRdkvS7Wp1kViqqnHE60EATPn2t?=
+ =?us-ascii?Q?YpCOJTshDgsJHXgZqQnTEdUDtDa3w9euIFtbFYUoa/TCtvEPcQy1WrOL1WQ7?=
+ =?us-ascii?Q?m0yTDOe4ylszIXmfOFJ6woNnB/8gZRH23GP3ZDFzKv8OIk9n+BvY2xF2p+wE?=
+ =?us-ascii?Q?XdnZag381KWsWprLxIkIsjQFysB6PWNk60Jl8gqOUc5jzaQZMulZfV2thLBx?=
+ =?us-ascii?Q?pMc4P3DfvBIcKO0kcrpDuynl3upXB5oqj8s9ZPPmBcK/M4gjPNBr7vPe+GkA?=
+ =?us-ascii?Q?AOaGDYGUZ32bzXOCAz6EFdTAhbNN5sN1Ww2tqHeWBLpr0ZemiQL5kUnOkFzg?=
+ =?us-ascii?Q?3gz1PbYYOjIFvJTxoanEaZy1yL2QpXQlCpqKCkmsZNRdMj8S3M6vfqjxpCJV?=
+ =?us-ascii?Q?AmrIrjKR2uDgf/fAXo5VGACnQwUElQ34yLp68eMyprWBs03jIi7LEvgSSrny?=
+ =?us-ascii?Q?H/zZ2EkBfEO7a5MFBfmPRu35WNhnu2+hWkBPAbygrPEVPwdKZkS4z1k2U0Ef?=
+ =?us-ascii?Q?zV6GP6fRKzuuLDIi+bSTg79KdxhCh/5rzx27SCnn8NJgyaE3Rp86bdex+M5J?=
+ =?us-ascii?Q?o2D3hO2x1xouMip8kRKeExPbK5RXl7ubip9Swj8s3pJ7WUAQm20Vopb4fEWy?=
+ =?us-ascii?Q?6b8zYHgBVarsdMDxnUxZsjdVBkmJf3vFOTlFEvb3xgOfsAqisZ2JaKLvSyS8?=
+ =?us-ascii?Q?lm9cwix3phHXLlH3KX+rSSb4NqIDXIODrVsJe9XnQz2wrnTjdSyRcHbUNfI/?=
+ =?us-ascii?Q?5ms92o3W7mDAzrtLkt+GduZxBf0i0yz4fWhPChDBR6lrtozRU/9VRNDSEu+6?=
+ =?us-ascii?Q?ypYrQZeCEKqHag/9wJYFG/lL/0TH5qhi/H7+HbXisUFpqJRITO82AHNwpC0p?=
+ =?us-ascii?Q?Ll8RL7vqMKDvo8J9Oc2ZGFF3wZidZ2FaUrzfrrumd4Qw3T5jGynNQ1UakMx8?=
+ =?us-ascii?Q?vepx+USTZiTeh0b9IDkfdTBm3LxQeVtZ0+RdQ4O0BW4K0s9SJObhxnfeqWhy?=
+ =?us-ascii?Q?2XpfRgaOdV5V5EUGdJWYe0b4m+maIzAnqJvk9EWIcf/Q+ZCOURZUBv0lskFB?=
+ =?us-ascii?Q?p0jUZnC+3M9HnbfyU5HsEahRJZDn3HWAnHlXtw8EMOp846IoodQGZ0EE8Tfi?=
+ =?us-ascii?Q?gC8Nxek+q/NOE49JVwNmSkwVbPD9J6yknyrof8avcA5LQMY6mJOOgxVzfOeC?=
+ =?us-ascii?Q?xUku3b6sn9PCVUFHuUtyCsvtaXhChnQkaxG092ZaqCQFm3+RC8ssOZrRcewM?=
+ =?us-ascii?Q?ulE1NAxiET6UKxz6QSO9ZTX7D3eD851zbjAtrL6w2b4faoc+gTjPIg=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(19092799006)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?YKTo+m50ZcsfxrtJRssk1CAF7wJhYvQgy63IR77Jz0UY1dxIoluQkjs++POm?=
+ =?us-ascii?Q?Rpn1Rj/8PVXD0D/W927J+Z7SpZuvAB0wgIr81yJe1Syu6sw6KG+7UsK1SUqK?=
+ =?us-ascii?Q?ORCh49/gN0mU7bzO1/HjU7nSxu9GrUFsg10msjghtRwiknnBmPx2zaDo+Xdf?=
+ =?us-ascii?Q?7RX0Xoi0g6md0068TBu5R/PILv/gDQ/nNzDluu63mgMDtzN2Hy1Ng3b2Blca?=
+ =?us-ascii?Q?6bvMHeDZTc/jaI83bkekaaJ6/e010Uti1J4nBiuaeFVdCJXM20DaA49ta9Az?=
+ =?us-ascii?Q?ho4H2FW2IeWV/dKyPVoIFkeaH+18KRBCG0O05HdFk3qJT7m03dtFVrBv/vDT?=
+ =?us-ascii?Q?IBU+heyv64RUhmOoVkG//pDKsiSg1X8tm3WGWAYHHFHING4DOPaezVzdUHjl?=
+ =?us-ascii?Q?sEgmB72aXcTE2elTzlJ7Q1pnXzSqye1lPY9SyTp0gQOm4Ub7wDoc5YwiFX9R?=
+ =?us-ascii?Q?9snu9j+yR/Y2xUxggjY4hXnj2aKwdJSCjilT9/8/8VwiQ7EnABJdPGU+MbNq?=
+ =?us-ascii?Q?yEmboDjeXRP4XS91Gsu0AaEHkoVa2UCItjXtegCfvYTCYA0wqE5EsUVYGH+Q?=
+ =?us-ascii?Q?80cW2Ul1boaaFDZD6b+b0/F5AYSGiTWxeNOUVD8zIPZ/zgITazVoj4AMhu7v?=
+ =?us-ascii?Q?8gMPgaIhCK8QrPNVKKByMAAc2HSYYCfzkPHG+IHeDCdWf7fhmoh81/KWk13Z?=
+ =?us-ascii?Q?Cfboz1R/gtlKckCJMD/7PxY+70eC4/rdB49faHQYyesit2pPEYz4Ywcemgg3?=
+ =?us-ascii?Q?r5UoXIL6poG4+3L9rizjXapvjkc57z53IzQ6EHV9Eh0jSiBPUbUjt6u+B70g?=
+ =?us-ascii?Q?cH/18oeWrZMsl8c3o8RHgVt57H4AwbbkIqQebGUpMstychCtXHSW47cauyj/?=
+ =?us-ascii?Q?jbOYqv56e8tdhTmxlISiOYXHpYp7Yh2w/k8v1NE3clxEXYtztQFYbSdnTEa3?=
+ =?us-ascii?Q?lH8gjanC9u8nVb8hzwh0jZ1VjxJvKk04g4+XnwgcnSuijson6GLauVHNRdgQ?=
+ =?us-ascii?Q?OLdjT3BZF1kYLBkjyNLA0VDlSM4ZUl8gf+JDB8zBhgmtF9wMim82ooLXiEYl?=
+ =?us-ascii?Q?GI+6Z00jShkRGtFXm0H6cKcYisDXBS8ThuSKGnjjUnwFpQKpOU6Yssu8WaAh?=
+ =?us-ascii?Q?3iSbMEVl2Eaicz9LBxknW/Io2CB5ReMg42jibresASU+RvfjTYh4zuLefvfG?=
+ =?us-ascii?Q?JlbpRkhUC2AxiSFoGZZ0uunWKbqxRiAXpqHMmKHPd/BVJMOyQMTgAbYRfnt7?=
+ =?us-ascii?Q?Zs04FjcU4P7CJWMj6x/lmJU4IUBG8/C8goD4dn0CYK3HC+zUbI1Z0JcfQdg/?=
+ =?us-ascii?Q?yhhv8mSTp4pg+BvcXXLMG9TvYYZNKZCEyjyXudPOINEZAGRRfHykvRbnS5CX?=
+ =?us-ascii?Q?8sgsEVxAm7tgh1j/5I10ZDfyH6yKAvMzRJPqmsG6XCtl1RgDFb9K0Y/Nc/ad?=
+ =?us-ascii?Q?5OnkN+7Ahd/WLpafLyRdYNSfOsR6Iv+l1LRfAEpCGYDd60KQBANJL32+ot0C?=
+ =?us-ascii?Q?hjVibj8c97jnoTszuwH239ZlKIkWz9/tfP0ZBv+1MefEYH+DfyJvnBf2NkwR?=
+ =?us-ascii?Q?r9TPRKO1zsNfwtRE6zkFGDE2AOxBTRVYN0fec3ON?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
- Radxa boards
-To: Quentin Schulz <quentin.schulz@cherry.de>,
- Diederik de Haas <diederik@cknow-tech.com>, Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jbx6244@gmail.com, pgwipeout@gmail.com,
- jonas@kwiboo.se, ziyao@disroot.org, amadeus@jmu.edu.cn,
- nicolas.frattaroli@collabora.com, pbrobinson@gmail.com, wens@kernel.org,
- detlev.casanova@collabora.com, stephen@radxa.com,
- sebastian.reichel@collabora.com, liujianfeng1994@gmail.com,
- andy.yan@rock-chips.com, damon.ding@rock-chips.com,
- kylepzak@projectinitiative.io, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251111054112.55505-1-naoki@radxa.com>
- <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
- <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
- <B0C8C5A69B9F465E+ba0ad139-d3d9-4492-ac9a-cc58f8f35074@radxa.com>
- <41275775-9e6e-9202-4c79-6140a56e41d5@manjaro.org>
- <572f341f-a5fa-4f1c-ad60-a5fe3e046d6d@cherry.de>
- <774C3AB9F17BAE47+14f8b8ba-ba78-410e-b44c-4d077585d05a@radxa.com>
- <DE6M84A93WTV.O5IW3BG8TZRW@cknow-tech.com>
- <1459ebad-c087-49ac-a316-14436fac4bc6@cherry.de>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <1459ebad-c087-49ac-a316-14436fac4bc6@cherry.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: M/uzSWI+68vFDhiu/PSxDApAdnWGqEgUK9Ac0Y21/YM0gaMekme4j7NU
-	v33iLT/uTTVFO4o2A+j8M9z/HqS1qZu+HBlJvbpArTNCuRsyKcTgNJ+IWmERGjaBhb5WVMz
-	G1RRIjt/TRveRwcMrgiQ0tlmR5D/s8mcBviqx2hPiXMl0/WsCf4G+7z4KbZB6h5viMyYEPY
-	HUPHxhQbWOthNyQDwP8HbOsZ3WLwrbMgcsXwf2srqTR/LxvTdKEvP9xQTP2gv1/GUCLsrmt
-	sS+qm7+Lg6VAJntZDG4ZxqidClVsIga/Qk2z6QBMeAizmheWbqfjGneYu7vJLrPHFv/pBV0
-	sjH1zRha4aLiu3d+vTzupIpver6TYlSLANWX+vW521P9Bgwu3MVWwgJca9oEtPGrnHvXFPM
-	xffqcJq2nGyXU9Vc0gGB9VQ3sTQmp0eg4f8atLxrt4/r4ruPxchfRk9fVVQwFsWT/yWxdD6
-	tj8ud7MqvkwBeExUhkc/jlyd6oxzS9cnc0dxSdcXdpuoK9dFu2DaSpPwLxCRg2FmIU3jozA
-	BOv2AZrKq/CWTEiZM5NYU5aD8yBR/59xOSosVXNTgtDnoo+yu4coUPL0nbaIAEJ8+2hfSTA
-	z8Ni1Ibv3qgdQ5nw9xe56YGfM3gQ3tuBpdTSYkrpJsGqsHkGK5N71oTOf4l5g6so93p3n5Y
-	s/m4xq96o18m1QZiMNYrMHNEHPuRkzkz4pRyOrGpQ9zF/Y/sOC94srZ3DQRbwb2SskGtDEf
-	jd9gz9SSkLPTlf/+YKMZHz2/lgBJTtNau1S/X+HjGoMxjA8Iuq/y4YuXCOlN/lmnYzWqSBS
-	FBCIvrrtO4Dl0L/eRgFXaBKR3N+o2CFXrSKNiMlxYsOmLVr9epdHzTeNd2H8CDxEAjjsqg8
-	U3K5pj7kBa4dYUc8rZ2NXzh2jl45RV7G17HbCxIx5dqbFniB1phK9Uv8n2q4qul/XAJo9xC
-	yl69AyW/lKoDUgs4OwohlJgvldnehY0mAnXp4ESkZPRN5PfyLJXEzszC4OA+RiKQX87xkre
-	ShUC9ngUL4hM2lPQvsy9IhLpGzFVyQkWCD0PALfA==
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7c94aaf-87af-4501-1827-08de21dff513
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2025 11:38:10.5744
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: U3HBV7zMAT6wcHdlqlUhyEJHvhgFFTQgY99FMvNKJIEQGhLFgy1PuVTtQ4GG6PqvRwbrX/bHsnMuZM+7FA7lBQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8265
 
-Hi all,
+> On 25-11-07, Pankaj Gupta wrote:
+> > >> On 25-10-27, Pankaj Gupta wrote:
+> > >>> On 25-09-27, Pankaj Gupta wrote:
+>=20
+> ...
+>=20
+> > > > It is not yet up-streamed to OPTEE-OS repo.
+> > >
+> > > My intention of adding the above OP-TEE discussion link was to point
+> > > out that an ELE-FW bug exists which needs to be fixed.
+>=20
+> ...
+>=20
+> > > This adapts the timeout value to 100ms and seems more like an
+> workaround.
+> > >
+> > There are additional fixes in OPTEE-OS, that will be part of LF Q4'25.
+>=20
+> Thanks for this info.
+>=20
+> > > However, can NXP confirm that the ELE concurrent access is possible
+> > > without a previous ELE FW update?
+> >
+> > Fix in the ELE FW, released as part of LF Q3 2025,  is a must to
+> > include. OPTEE fixes are also needed.  OPTEE fixes will be up-streamed
+> > soon.
+>=20
+> Okay, so there are ELE-FW fixes too, thanks.
+>=20
+> ...
+>=20
+> > > Does this mean that all i.MX9x, i.MX10x and so on do have the the
+> > > secure and non-secure MU setup? Or is it based on the SoC release dat=
+e?
+> > > Because regarding the datasheet the i.MX8ULP is newer than the
+> > > i.MX93, therefore I assumed that the i.MX8ULP has two MUs as well.
+> >
+> > From i.MX93 and onward, there is only one RoT. Hence , it is designed
+> > to have dedicated MU for each world.
+>=20
+> Okay.
+>=20
+> > > I checked the the NXP OP-TEE source code and found the following
+> commit:
+> > >
+> > > 8<----------------
+> > > commit 44388d37e68000ee50a9b1d656e0a60ae6614977
+> > > Author: Sahil Malhotra <sahil.malhotra@nxp.com>
+> > > Date:   Tue Apr 1 20:04:44 2025 +0200
+> > >
+> > >     core: imx: disable ELE on i.MX8ULP by default
+> > >
+> > >     On i.MX8ULP, there is only one MU to communicate with ELE,
+> > >     which cannot be dedicated on OP-TEE side all the time.
+> > >     There may be ELE services running on Linux side, which can
+> > >     cause conflict with OP-TEE, So disabling ELE by default.
+> > >     Moreover i.MX8ULP also has CAAM, so HUK and Random number
+> > >     are coming from CAAM.
+> > >
+> > >     Signed-off-by: Sahil Malhotra <sahil.malhotra@nxp.com>
+> > >     Acked-by: Jens Wiklander <jens.wiklander@linaro.org>
+> > > 8<----------------
+> > >
+> > > So it's possible to configure the XRDC (configured in the TF-A) in a
+> > > way to map the ELE access to the secure world. If I got the TF-A and =
+OP-TEE
+> commits right.
+> > >
+> > > To me this sound more like a NXP design decision to move the ELE to
+> > > the non- secure and the CAAM to the secure world.
+> >
+> > As per the i.MX8ULP boot-up sequence and ELE's initial role in
+> > boot-up, with CAAM co-exists, ELE is logical to be with Linux.
+> >
+> > Another point here that CAAM has 4 JR(s) and hence CAAM can be shared
+> > between Linux and OPTEE-OS.
+>=20
+> Please see my answer below where you explained the ELE functions.
+>=20
+> ...
+>=20
+> > > i.MX8ULP is getting really interesting, though.
+> > >
+> > > May I ask what RoT is used by this SoC if there are two?
+> > >
+> > ELE is Root of Trust during secure boot.
+> > For OPTEE-OS, CAAM is RoT.
+>=20
+> The i.MX8ULP is very interesting, since you also need to handle the SoC
+> secure-state twice, right? However, this topic alone is worth it a standa=
+lone
+> discussion thread, therefore no further comments.
+>=20
+> ...
+>=20
+> > > How does the i.MX8ULP fuse flow work, after the LOCK_DOWN fuse is
+> blown?
+> > There is no such issue on i.MX8ULP
+> > >
+> > > This was one of my main concers why having OP-TEE required in the
+> > > first place, because the i.MX93 requires the that the fuse-request
+> > > comes from the secure-world if the device is in LOCK_DOWN state.
+> > >
+> > > Is this also the case for the i.MX8ULP?
+> > >
+> >
+> > No, this is not a valid case for i.MX8ULP.
+>=20
+> Thanks for the input.
+>=20
+> > > > > Also according your IOCTL docuementation you want to expose the
+> > > > > whole device to the user-space?
+> > > >
+> > > > > | What:          /dev/<se>_mu[0-9]+_ch[0-9]+
+> > > > > | Date:          Mar 2025
+> > > > > | KernelVersion: 6.8
+> > > > > | Contact:       linux-imx@nxp.com, pankaj.gupta@nxp.com
+> > > > > | Description:
+> > > > > |                NXP offers multiple hardware IP(s) for secure
+> > > > > | enclaves like
+> > > EdgeLock-
+> > > > > |                Enclave(ELE), SECO. The character device file de=
+scriptors
+> > > > > |                /dev/<se>_mu*_ch* are the interface between
+> > > > > | userspace NXP's
+> > > secure-
+> > > > > |                enclave shared library and the kernel driver.
+> > > > > |
+> > > > > |                The ioctl(2)-based ABI is defined and documented=
+ in
+> > > > > |                [include]<linux/firmware/imx/ele_mu_ioctl.h>.
+> > > > > |                ioctl(s) are used primarily for:
+> > > > > |                        - shared memory management
+> > > > > |                        - allocation of I/O buffers
+> > > > > |                        - getting mu info
+> > > > > |                        - setting a dev-ctx as receiver to
+> > > > > | receive all the commands
+> > > from FW
+> > > > > |                        - getting SoC info
+> > > > > |                        - send command and receive command
+> > > > > | response
+> > > >                                 ^
+> > > > > This is a rather uncommon approach. The kernel has interfaces to
+> > > > > abstract hardware. You completely bypass this if you expose
+> > > > > everything to the userspace.
+> > > >
+> > > > It is in-correct.
+> > > > Not everything, just exposed file-operation. and ioctl(s) for
+> > > > DMA(eable)
+> > > buffer allocation from reserved lower memory region.
+> > > > Things managed by Kernel:
+> > > > * Send/receive path to ELE, is managed by Kernel.
+> > > > * Receive/send patch to the ELE's slave NVM-manager, is managed by
+> kernel.
+> > > > * Low power management handled by kernel driver. In case of
+> > > > low-power
+> > > state, ELE driver re-init the V2X IP as part of resume.
+> > > > * Other kernel management layers like NVMEM, kernel HWRNG, will
+> > > > use the
+> > > api(s) exposed by this driver.
+> > >
+> > > But you also expose an uAPI which allows the user to bypass
+> > > everything via sending arbitrary commands, right?
+> >
+> > Yes. But it's not unusual at all. The pattern of userspace sending
+> > commands directly to the kernel, is quite common
+>=20
+> Please see below.
+>=20
+> ...
+>=20
+> > > Some features require the device to be in LOCK_DOWN mode, which
+> > > requires secure-world eFuse write path only afterwards. But it seems
+> > > like NXP really wants to maintain two write paths.
+> > >
+> > > > * Low power management at Linux driver.
+> > >
+> > > The power-modes are selected via the ELE?
+> >
+> >
+> > Voltage regulation for i.MX93 in Linux kernel, is done by ELE.
+> >
+> > During Linux suspend-resume, Secure-enclave (V2X on i.MX95) part of
+> > wake-up domain, will be managed by secure-enclaves(ELE) part of
+> > always-on domain.
+>=20
+> So to sum-up, please correct me if I got it wrong:
+>=20
+>  - NXP puts the ELE into the non-secure world, in case only one MU
+>    exists. The reason for this is that the ELE is also used to handle
+>    power-management.
+For NXP SoCs with multi-MU(s) too, NXP proposes to put ELE driver into non-=
+secure world.
 
-My goal is to minimize the DTS fragments 
-(u-boot/arch/arm/dts/*-u-boot.dtsi) in U-Boot, consolidate them 
-upstream, and improve clarity/visibility.
+>=20
+>  - NXP exposes an uAPI which can be used to send arbitrary commands from
+>    userspace to the ELE. (no filtering done yet)
+It is not correct to say that no filtering is done.
+Before sending as well as after receiving the message, the message header o=
+f the buffers
+are parsed to check:
+- TX-buffer with Command-tag is allowed to be sent, RX-buffer with response=
+-tag is allowed to be received, without logging errors.
+- TX buffer size & Rx-Buffer size should match the size mentioned in the bu=
+ffer.
+- FW version from the header is checked, if required secondary or runtime F=
+W Is loaded, before forwarding the request to ELE.
+- In certain cases especially for exceptions, the message IDs are also comp=
+ared.
 
-On 11/12/25 19:34, Quentin Schulz wrote:
-> Hi all,
-> 
-> On 11/12/25 10:40 AM, Diederik de Haas wrote:
->> [You don't often get email from diederik@cknow-tech.com. Learn why 
->> this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>
->> Hi Naoki,
->>
->> On Wed Nov 12, 2025 at 12:42 AM CET, FUKAUMI Naoki wrote:
->>> On 11/12/25 03:32, Quentin Schulz wrote:
->>>> On 11/11/25 5:14 PM, Dragan Simic wrote:
->>>>> On Tuesday, November 11, 2025 16:32 CET, FUKAUMI Naoki
->>>>> <naoki@radxa.com> wrote:
->>>>>> On 11/11/25 23:46, Dragan Simic wrote:
->>>>>>> On Tuesday, November 11, 2025 14:07 CET, "Diederik de Haas"
->>>>>>> <diederik@cknow-tech.com> wrote:
->>>>>>>> On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
->>>>>>>>> Radxa's boards turn all LEDs on at boot(loader), but some boards
->>>>>>>>> don't have `default-state` property in Linux kernel tree but
->>>>>>>>> have it in U-Boot tree instead[1].
->>>>>>>>>
->>>>>>>>> This patch adds `default-state = "on"` for (almost) all LEDs 
->>>>>>>>> (with a
->>>>>>>>> few exceptions which should be "off" such as RGB LEDs on E25 
->>>>>>>>> and LAN/
->>>>>>>>> WAN LEDs on E20C/E52C).
->>>>>>>>
->>>>>>>> I'm missing the *why* these changes would be an improvement.
->>>>>>>>
->>>>>>>> Personally, for both 'heartbeat' and 'netdev' triggers, I want 
->>>>>>>> them to
->>>>>>>> be off by default and once it gets a 'heartbeat' or a 'netdev'
->>>>>>>> trigger, THEN I want the LED to be on/blinking.
->>>>>>>
->>>>>>> That's a good question for Naoki.  My own preference would also
->>>>>>> be to have the device's power LED turned on by U-Boot as quickly
->>>>>>> as possible after supplying power to the board or turning it on
->>>>>>> by pressing the power button.  I'm actually not a big fan of
->>>>>>> having all the LEDs shining for a couple of seconds or so, which
->>>>>>> may actually look like some error condition to me.
->>>>>>>
->>>>>>> Having all that in mind, I may suggest that just the U-Boot's
->>>>>>> behavior is changed to turn the power LEDs on only.
->>>>>>
->>>>>> I can't quite explain it, but...
->>>>>>
->>>>>> - 1st (Power) LED
->>>>>>
->>>>>> The 1st (power) LED turns on automatically/immediately without 
->>>>>> software
->>>>>> intervention. (On some boards, this LED cannot be controlled by 
->>>>>> software
->>>>>> at all.)
+>=20
+>  --> Sounds to me that the userpace can influence the system behavior
+>      very badly.
+>=20
+Messages created and sent by User-space library(https://github.com/nxp-imx/=
+imx-secure-enclave), are scrutinized as stated above in the kernel driver.
 
-I'm not saying the DTS has anything about LEDs that can't be controlled 
-by software, nor am I trying to add such a thing to the DTS.
+Moreover,
+As part of this library, message creation, send-receive, IOCTLS etc. kernel=
+ interface implementation logic, is not exposed to users of this library.
+With the help of secure-boot and IMA-EVM, rootfs can be restricted to not a=
+llow any new application or modified userspace library, to execute.
+This way bad impact to the system behavior can be prevented.
 
-I'm just pointing out that the power LED is always on right after 
-power-up. This makes it useless for determining if the software is running.
+> > > > * Linux HWRNG.
+> > > > * Loading the secondary runtime fw.
+> > >
+> > > What is a secondary runtime-fw?
+> > ELE FW size is larger than the size of ELE internal secure memory.
+> > Hence FW is split into two.
+> >
+> > Primary FW, is the FW, that enables features that helps for SoC boot-up=
+.
+> > Secondary runtime FW, is the FW, that enables features like HSM.
+>=20
+> Ah okay, thanks for the input.
+>=20
+> > > To conclude this longly discussion:
+>=20
+> ...
+>=20
+> > > I still have mixed feeling about the fusing (including the 1-MU
+> > > case), since it requires a secure-world OS in place once the LOCK_DOW=
+N
+> fuse was burned.
+> > > It's fine by me if NXP wants to have and wants to maintain a multi-pa=
+th
+> here.
+> >
+> > Write fuse API will be added, to allow writing fuses from secure world
+> > too.
+>=20
+> This is a device life-cycle problem and if NXP decides to maintain multip=
+le write
+> paths, depending on the runtime-SoC state, this is fine by me.
+>=20
+> What needs to be ensured is, that the fuse-issue doesn't exist for the 1-=
+MU
+> case (i.MX8ULP) as you said.
+As said above "Write fuse API will be added, to allow writing fuses from se=
+cure world too."
+This will be true for 1 MU or multi-MU.
 
->>>>>> In DTS, this should be described using `default-state = "on"`. The 
->>>>>> use
->>>>>> of the Linux-specific property `linux,default-trigger = "default- 
->>>>>> on"` is
->>>>>> unsuitable for non-Linux environments.
->>>>>>
-> 
-> I think the wording in the binding can be understood two ways.
-> 
-> The binding says the following about the default-state property:
-> 
-> """
->        The initial state of the LED. If the LED is already on or off and 
-> the
->        default-state property is set the to same value, then no glitch 
-> should be
->        produced where the LED momentarily turns off (or on). The "keep" 
-> setting
->        will keep the LED at whatever its current state is, without 
-> producing a
->        glitch.
-> """
-> 
-> I think the issue here is around the meaning of "initial state". I 
-> believe Naoki is probably thinking about the **HW** initial state of the 
-> LED, which is whatever is the state of the LED without SW control. I 
-> think Diederik is thinking about this being the state of the LED right 
-> when the SW takes over and configures the LED before the trigger is setup.
-> 
-> In the first interpretation, there's no need for an "improvement" for 
-> the patches as they would just fix correctness of the DT wrt HW state at 
-> boot.
-> 
-> In the second interpretation, a change of this value must be justified 
-> as people will simply disagree forever and we could end up with people 
-> reverting other people's patches after each release. If it's just a 
-> matter of taste, I believe the typical answer is keeping the status quo.
-> 
-> We should find a way to make this binding not up to interpretation.
-> 
-> Additionally, if the LED cannot be controlled on some boards, I don't 
-> think it should be part of the DT.
-> 
->>>>>> - 2nd (Heartbeat) LED
->>>>>>
->>>>>> The 2nd (heartbeat) LED can be controlled by software. It should 
->>>>>> be lit
->>>>>> up as quickly as possible to indicate that the very first software
->>>>>> (e.g., the bootloader) is running.
->>>>>>
-> 
-> My understanding is Naoki wants to use default-state = on, for the 
-> bootloader to turn it on as soon as it takes over control of the LEDs.
-> 
->>>>>> On Linux, usually this is used as `linux,default-trigger = 
->>>>>> "heartbeat"`.
->>>>>> It indicates that kernel is running (regardless of the `default- 
->>>>>> state`
->>>>>> setting), and its behavior can be modified in user space.
->>>>>
->>>>> As discussed already in the #linux-rockchip IRC channel, [1] perhaps
->>>>> the best option would be to have the power LEDs turned on as quickly
->>>>> upon powering on the board as possible, and to have U-Boot pulsate
->>>>> the heartbeat LEDs using the LED_BOOT feature.  In such a scenario,
->>>>> no other LEDs would be turned on early, and the LED-related DT parts
->>>>> specific to U-Boot would be migrated to the kernel DTs.
->>>>>
->>>>> [1] https://libera.catirclogs.org/linux-rockchip/2025-11-11#38997824;
->>>>
->>>> The LED_BOOT feature (guarded by the Kconfig symbol of the same 
->>>> name) in
->>>> U-Boot only applies if /options/u-boot/boot-led property is set.
->>>
->>> For the default state of the heartbeat LED, I'm thinking of using
->>> LED_BOOT (/options/u-boot/boot-led), but I'm concerned that this is
->>> U-Boot-specific.
->>
->> If U-Boot wants to use the heartbeat LED to signal the *bootloader* is
->> running, I guess that's fine. And if you want to make it solid or
->> blinking, that seems best discussed on the U-Boot ML.
->>
-> 
-> The solution may still involve configuring the Device Tree, and we're 
-> trying to have U-Boot-specific changes to the Device Tree in U-Boot 
-> source tree to a minimum.
-> 
->> I still consider the bootloader and the kernel stages separate.
-> 
-> They do however share most of their Device Tree (for Rockchip at least) 
-> and the least (ideally no) changes we can have in U-Boot the better.
-> 
->> And I haven't seen an argument why I should change *my* opinion on the
->> heartbeat and netdev triggers (default-state) wrt the kernel.
->>
-> 
-> Device Tree is not kernel specific as you said already.
-> 
->> I don't think that what U-Boot does or doesn't do, should determine what
->> the Linux kernel does or doesn't do.
-> 
-> It shouldn't, but (most of) the Device Tree is shared, so you cannot 
-> just dismiss U-Boot behavior when talking about Linux behavior based on 
-> Device Tree interpretation. We may have a need for a bootloader-specific 
-> property. We have a Linux-specific one after all (linux,default- 
-> trigger). Though... that does seem to be on the edge of what the DT is 
-> made for (description of the HW, not logic/policy).
-> 
->> I have no plans to use another bootloader then U-Boot, but it's possible
->> that people do, so what the Linux kernel does should be independent from
->> what the/a specific bootloader does.
+>=20
+> > > Last but least, the uAPI which can be used to send arbitrary ELE
+> > > commands seems unusual. But I don't know how secure-enclaves are
+> > > abstracted within the kernel, so these are just my two cents.
+> >
+> > it's not unusual at all. The pattern of userspace sending commands
+> > directly to the kernel via a queue is quite common like:
+> >
+> > GPUs: As you mentioned, userspace drivers (like those in Vulkan or
+> > CUDA) often build command buffers and submit them directly to the
+> > kernel or hardware.
+>=20
+> That's right, but these drivers do at least some filtering on the OPs and=
+ check if
+> they are allowed. According your patchset, you just write
+> (se_if_fops_write()) the provided userspace buffer.
 
-Each software should be independent, but hardware (state) cannot be 
-independent.
+We are validating the buffer size against the size mentioned in the buffer =
+header.
+Refer above comments for more details.
 
-> Barebox also uses upstream DT as far as I know and supports some Radxa 
-> products (Rock 5B/5T/..., CM3, Rock (RK3188), Rock 3A from the arch/arm/ 
-> boards/radxa-* directories). Zephyr has support for RK3568, RK3588, and 
-> other SoCs, and uses upstream DT as well.
-> 
-> Again, we're talking about modifications of the Device Tree here, so 
-> typically I would expect all consumers of that DT to be interpreting the 
-> properties the same way, except if you have OS-specific properties/nodes 
-> (think u-boot,config-compatible nodes, linux, prefixed properties, 
-> bootph- properties, ...).
-> 
->> And as I said before, *I* want LEDs with netdev and heartbeat triggers,
->> to be off (at the start, which is indeed the default value).
+> > Secure Enclaves: In systems like Intel SGX or AMD SEV, userspace
+> > applications interact with enclaves via ioctl or mmap interfaces,
+> > often sending structured commands or messages.
+>=20
+> What I'm aware of is, that most secure-enclaves are switching to the stan=
+dard
+> TPM API.
+In case of NXP SoC with ELE HW IP, ELE is considered as on-SoC TPM. No addi=
+tional or external TPM is needed, if ELE is present on SoC.
 
-If you are using U-Boot, heartbeat LED is already on by U-Boot,
-e.g.
-  https://source.denx.de/u-boot/u-boot/-/blob/v2025.10/arch/arm/dts/rk3588s-rock-5a-u-boot.dtsi#L10-12
+>=20
+> Regards,
+>   Marco
+>=20
 
-But it's not visible in DTS in Linux,
-e.g.
-  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts?h=v6.17#n55
-
-I think this situation should be fixed.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
->> I use the heartbeat trigger to:
->> 1) See the kernel has started (and has gotten to the point the heartbeat
->>     'infrastructure' has been set up
->> 2) Wait for the blinking to slow down as that (generally) means it's
->>     pretty much done with the boot process and the SSH server should
->>     probably be running then, so I can login
->> 3) When the heartbeat LED is solid, that means the system has crashed
->>     (f.e. due to overheating ...)
->>
-> 
-> If the *HW* default state of the LED is off and the default-state 
-> property is off, then you won't be able to tell apart a completely 
-> bricked board and one that is stuck somewhere between U-Boot proper and 
-> the Linux kernel taking over that LED.
-> 
->> And also, if you're going to change/override other people's choices, a
->> motivation as to why would be 'nice'.
->>
->>>> <more discussion about LED functionality in U-Boot ...>
->>>
->>> As you know, default "default-state" is "off".
->>>    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/ 
->>> linux.git/tree/Documentation/devicetree/bindings/leds/common.yaml? 
->>> h=v6.17#n74
->>>
->>> As far as I understand, there should not be any workarounds for specific
->>> implementations.
->>>    https://lore.kernel.org/linux-rockchip/3389401.44csPzL39Z@phil/
->>>
->>> So removing `default-state = "off"` is acceptable, right?
->>
->> I don't see/understand the connection with 'workarounds for specific
->> implementations' with removing ``default-state = "off"``.
->>
->> IMO it's perfectly fine to remove ``default-state = "off"``, although
->> having it explicitly may be useful, especially if the commit that set
->> that property specified *why* it should be "off".
->>
-> 
-> The status property defaults to okay, and we do not want them to be 
-> listed explicitly. Not sure if there's consensus on applying this to all 
-> properties which have defaults, across all subsystems.
-> 
->> Relatedly, when a node does not have the 'default-state' property, I
->> would _assume_ the author wanted/intended it to be "off". Ideally it
->> would be described in the commit message, but that is optional.
-> 
-> The lack of a property doesn't necessarily mean it was forgotten, agreed.
-> 
->> But if that is changed, then it should be motivated *why*.
->>
-> 
-> Agreed.
-> 
-> Cheers,
-> Quentin
-> 
-
+Regards
+Pankaj
 
