@@ -1,84 +1,163 @@
-Return-Path: <devicetree+bounces-237497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901F3C519CC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:19:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F1EEC519E1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:21:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E2AF54F1D94
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:11:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 816053B68C2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:12:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E652F28F1;
-	Wed, 12 Nov 2025 10:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dsFw02eZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE082FF641;
+	Wed, 12 Nov 2025 10:12:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EF229A326;
-	Wed, 12 Nov 2025 10:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DB72E54CC;
+	Wed, 12 Nov 2025 10:11:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762942269; cv=none; b=FXjfH2ZIPgV/ZNqvqNgNYsdUrfExNtGKRIC4+xykiHcalLCadkVBhmYGjKMwoV3An/NKOdzuRrzwyuRazzE5f17+rb/ebQfuu7c3m3NJtZPDyKCv1VxE1r4sqfyMK9Auli9RRTInlVkgowHhhnTX7udTfVWLsR8BesO6Eb3ZbrE=
+	t=1762942321; cv=none; b=P64UbQ98qTVhnJNSY1Dgmruc0kRDqvRhqY6d34Gzy2w482gQVweZ9YZ/pAHfMdzxJQpwEKcpRTmqpkJdjkn1UgvnmURxN3tYlXRcq6QcPa9SMfVanIwZ1/MLtnzKZ7pUfcTzkpQjWY3+PkyGHVr32kwujwQvdNqa4Vc4kgjq+m4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762942269; c=relaxed/simple;
-	bh=67K+zUYP/aX07sPx28wY3sUmjVIxiApKZNs5WbP/U/E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lf/yJQwgE+HXmUST41i5+GqO9FlAVWgXAdpo/Gx2+Err4Re40rO/DXEhTvab0FCUxAn778wxgjGq0itMr9ElsG+ELJbKMZZ2gBDw3hcD5EFm9vd6wmC5OQiBmV58QE9MbPuB4ASkafUYyO0DSmkUn7StaBmfr+iRO+5huOVv3As=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dsFw02eZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24445C16AAE;
-	Wed, 12 Nov 2025 10:11:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762942268;
-	bh=67K+zUYP/aX07sPx28wY3sUmjVIxiApKZNs5WbP/U/E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dsFw02eZhsIPw+FfG11keYy8dCIECtSNGvyD+WPxdkQesFL6xRcwuaZ4wghA5HKT6
-	 LaSlvWi4cRWWWLMmgzqwOlqzVRzO7lZLLwofPFRej3C2JevpIiRqg3kPmc8UoX8vOJ
-	 XOJBPp4Bf42kezFpeQDGQYrGWjFnhAt/P9wReRuWGotHHidZASLq2m6ymwwAU2NaAW
-	 A8gzJ1aS5FNm+yMpaS1C95OCNLJkfrIdAetAvdGsv4rDTleZiOuZ4i2973aRiXPNTu
-	 WB0xggNCqMw+R6Y0P4VGJnUOwowBLdSGzCFJhUjQhr0npfC5qFTTR+8Aumke1zSV+s
-	 wZK3WwYSM2d9A==
-Date: Wed, 12 Nov 2025 11:11:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: michael.opdenacker@rootcommit.com
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: riscv: spacemit: Add OrangePi R2S
- board
-Message-ID: <20251112-devious-devout-urchin-86634a@kuoka>
-References: <20251112044426.2351999-1-michael.opdenacker@rootcommit.com>
- <20251112044426.2351999-2-michael.opdenacker@rootcommit.com>
+	s=arc-20240116; t=1762942321; c=relaxed/simple;
+	bh=zKIjlffmNPsp0FtH07se+tzuBVInathCYu6f8jnZvUY=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P76FUwrQ/BbHtdgnDiteg6fUgeSOP6BaplshhU7qD6A/5gO3xwxkP4TuGJP+WR2flo+PLEWf74NT/Hbj3icBpvE2rO9vI/hLaki2It11Ny0zln6ls2aLwl9mPpUN7KJ5kNK138Cd2JbFY/pifBGUpZ0Xlfc07al8QY1JZIl1xW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 12 Nov
+ 2025 18:11:57 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Wed, 12 Nov 2025 18:11:57 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, <bmc-sw@aspeedtech.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, <jk@codeconstruct.com.au>, Lee Jones
+	<lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon
+	<will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson
+	<bjorn.andersson@oss.qualcomm.com>, Geert Uytterhoeven
+	<geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
+	<nfraprado@collabora.com>, Taniya Das <quic_tdas@quicinc.com>, Lad Prabhakar
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Kuninori Morimoto
+	<kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v8 0/4] Introduce ASPEED AST27xx BMC SoC
+Date: Wed, 12 Nov 2025 18:11:53 +0800
+Message-ID: <20251112101157.2149169-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251112044426.2351999-2-michael.opdenacker@rootcommit.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, Nov 12, 2025 at 04:44:40AM +0000, michael.opdenacker@rootcommit.com wrote:
-> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> 
-> Document the compatible string for the OrangePi R2S board [1], which
-> is marketed as using the Ky X1 SoC but is in fact identical in die
-> and package to the SpacemiT K1 SoC [2].
-> 
-> Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-R2S.html [1]
-> Link: https://www.spacemit.com/en/key-stone-k1 [2]
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+This introduces initial support for the Aspeed AST27xx SoC and the AST2700
+Evaluation Board (EVB) to the Linux kernel. The AST27xx is the 8th
+generation Baseboard Management Controller (BMC) SoC from Aspeed,
+featuring improved performance, enhanced security, and expanded I/O
+capabilities compared to previous generations.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+AST27xx SOC Family
+ - https://www.aspeedtech.com/server_ast2700/
+ - https://www.aspeedtech.com/server_ast2720/
+ - https://www.aspeedtech.com/server_ast2750/
 
-Best regards,
-Krzysztof
+Bindings Dependencies:
+ check with "make CHECK_DTBS=y W=1 arch/arm64/boot/dts/aspeed/ dtbs"
+
+- scu/silicon-id: Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+- gpio: Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
+Binding dependency patch:
+- intc: Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml 
+ - https://lore.kernel.org/all/20251030060155.2342604-2-ryan_chen@aspeedtech.com/
+   (merged into the irq/drivers)
+
+v8:
+- Kconfig.platforms
+ - update commit message and help description.
+- aspeed-g7-a35.dtsi,aspeed-g7-common.dtsi,ast2700-evb.dts
+ - change license using a dual license of MIT + GPL2.0+
+ - add company copyright.
+- merge original v7 patch(3/5) and (4/5) to 1 v8patch(3/4)
+ - that can do build test with make CHECK_DTBS=y W=1 arch/arm64/boot/dts/aspeed/ dtbs
+
+v7:
+- remove aspeed,ast2x00-scu.yaml modify
+- separate aspeed-g7.dtsi to aspeed-g7-a35.dtsi and aspeed-g7-common.dtsi
+- move aliases to ast2700-evb.dts file
+
+v6:
+- rebased on v6.18-rc1
+- aspeed,ast2x00-scu.yaml
+ - fixed dt-binding yaml issuse report.
+
+v5:
+- modify ast27XX 7th generation description to 8th generation.
+- aspeed.yaml
+ - modify missing blank line.
+- Kconfig.platforms
+ - modify ast27XX 7th generation to 8th generation.
+
+v4:
+- make CHECK_DTBS=y arch/arm64/boot/dts/aspeed/ fix.
+- modify commit message remove itemlize.
+- remove modify aspeed,ast2700-intc.yaml patch.
+- aspeed.yaml
+ - Add AST2700 board compatible.
+- aspeed-g7.dtsi
+ - modify all size-cells from 1 to 2.
+ - add serial aliases, gpio, mdio, uart0 ~ 14.
+ - add firmware for optee, reserved memory for atf and optee.
+ - modify cpu@0 to cpu0: cpu@0.
+ - fix intc-ic for yaml dependency.
+- ast2700-evb.dts
+ - update stdout-path = "serial12:115200n8";
+
+v3:
+- https://lore.kernel.org/all/20241212155237.848336-1-kevin_chen@aspeedtech.com/
+- Split clk and reset driver to other commits, which are in series of
+  "Add support for AST2700 clk driver".
+- For BMC console by UART12, add uart12 using ASPEED INTC architecture.
+
+aspeed,ast2700-intc.yaml
+- Add minItems to 1 to fix the warning by "make dtbs_check W=1".
+- Add intc1 into example.
+
+Kconfig.platforms
+  - Remove MACH_ASPEED_G7.
+
+Ryan Chen (4):
+  dt-bindings: arm: aspeed: Add AST2700 board compatible
+  arm64: Kconfig: Add ASPEED SoC family Kconfig support
+  arm64: dts: aspeed: Add initial AST27xx SoC device tree
+  arm64: configs: Update defconfig for AST2700 platform support
+
+ .../bindings/arm/aspeed/aspeed.yaml           |   6 +
+ arch/arm64/Kconfig.platforms                  |   6 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/aspeed/Makefile           |   4 +
+ arch/arm64/boot/dts/aspeed/aspeed-g7-a35.dtsi | 154 ++++++++
+ .../boot/dts/aspeed/aspeed-g7-common.dtsi     | 351 ++++++++++++++++++
+ arch/arm64/boot/dts/aspeed/ast2700-evb.dts    |  31 ++
+ arch/arm64/configs/defconfig                  |   1 +
+ 8 files changed, 554 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/aspeed/Makefile
+ create mode 100644 arch/arm64/boot/dts/aspeed/aspeed-g7-a35.dtsi
+ create mode 100644 arch/arm64/boot/dts/aspeed/aspeed-g7-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/aspeed/ast2700-evb.dts
+
+-- 
+2.34.1
 
 
