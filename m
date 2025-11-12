@@ -1,111 +1,230 @@
-Return-Path: <devicetree+bounces-237714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B372CC530D9
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:32:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2512C5351B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:14:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BC4E5030D7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:16:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A8B3E506D60
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C986342175;
-	Wed, 12 Nov 2025 15:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBBF333B6E1;
+	Wed, 12 Nov 2025 15:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MRUJtnmY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nyOIr48c";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aPg9RSi1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5492133EAF8
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:14:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452B325F975
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:24:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762960480; cv=none; b=iMqc3ZJT982yc5OD01iBMwB/l+2p6IpIVLWa7J0O7i3T+G9wSHSDR7mKYijV2Wk47aINWKeRZ1Nk/edkbh1dykSsdsCj7o54LYDhtzvZeW1UNFlKf8I1+VMbimhzr5S+I9536bJCzs4yVbACuXONsY6B0jZxnu9kXybwxRm5lQQ=
+	t=1762961052; cv=none; b=mN3gtSHDjjzSxpamwHPQPpiNnNdPMI3Zakn5tFRLLCgjzb5AR57d5dYEfTF3wgQMQmSauJUAub+6P9lJ1wxsAWVzy7Hhk28DgHTLlRMLLTM4zosYPlAO/3Y29rlVfjMRdboojc5QXI8w+gWnnbvifPqJUBLiiV5kfTAGTvdHoC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762960480; c=relaxed/simple;
-	bh=hMJzIR4lZEcblXjR0I9hzQzbHScfcP0F6rIKaU7ffA4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R4kWchd6GjLlD+s/RPtuVL5ee4da9e/UGnndE23a+IWsHg5QCwjMITXkPuo7vUJ+XofRFflDnwlA4WZbNND2VTKrWNjVAvgm+mtMSx7SwRC8STKSWiOkFdgU7j1IFpgA75bgyD1SzcOWE89+GORaY5aJcmVLAspz2Ljr/w0v4NQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MRUJtnmY; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id F2894C0F563;
-	Wed, 12 Nov 2025 15:14:14 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8FAC560710;
-	Wed, 12 Nov 2025 15:14:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A9A4F102F1A2B;
-	Wed, 12 Nov 2025 16:14:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762960475; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Hi/5WmyJVI8+IqSzvn7iNXPzQu9SoH12tl/3+e8BE4I=;
-	b=MRUJtnmYyUioxknI08eCMhkw5KitvAMdyhFReE5y3ycgW3b8R8zwNXzJGidOWAcoDwmGp2
-	4LKspJ/prvz2mwNBddvkgxg4ucfmuQJJEShP0ZVEpRLROP85YtJYqFOp/SWBiR0/7dI+X/
-	Z5TU/LsW4RLUAxJeYAElocwS4p8p7y2aFXJjmKKwIglWZ3w+gksK67qt9UU34bi0FrtdaP
-	sB7QO3fPrEw6W0RNPcf6iAOo/NOsOF8pjube/ef5YHPgmjIPKwGrAGsaS/twIyr8mqE8sY
-	xQll78eaoWFuWPdSQYamn0EtdRbMI4K7Pf3bYk3q7h/OCVoL6hCXmL5Z0hcu+g==
-From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Date: Wed, 12 Nov 2025 16:14:21 +0100
-Subject: [PATCH v4 2/2] ARM: dts: am335x-bonegreen-eco: Enable 1GHz OPP by
- increasing vdd_mpu voltage
+	s=arc-20240116; t=1762961052; c=relaxed/simple;
+	bh=usTnuHJtz1Fz0mFW9SJRLD/bL8QQaZ1NZaYRGimhwQI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l8RmHx6H/9/Hyge2QXqvYluRRv6CcrJ/IPfXyCXh+751o8iySFtmFTIiqLmfO15lJeSD/VXrX3chpUEtaZOhl0UfXq/ZEavxRjjxg285K7tz12Pc73i5TO/r9nqXJX5seLPqCpTVJukWyu0j0dFyySwHrhXzPZXZVPpjRxet6ZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nyOIr48c; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aPg9RSi1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ACE2wKd1269962
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:24:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	qdkh9q01QZj84qM0SwA04CDi0gVaDSq5D6Z188vfTpI=; b=nyOIr48co+h+o1Cz
+	HygO/wJc8ZHCMfgKx0gjfjMvZHul+p0ZowGi/MoH24Y2jHUDNPCI67gh2tBExAuF
+	zCt45lyCHifL6newdSlmVb5C6hHIZx9XRuDwdYpXzAwKclPyQ6SQK6SuMQaz5AOj
+	9RWl78903N2EQZgofPPAQ+BHMQAG812EqO0GAtxRZ2NhNmmwSJHmBkxEWHRiJQhA
+	dK5/ThsHRIoL5lpUDve1VSYPl8ErEP5SHa44dvI1DFVAnU1GEMg78u5veAneg3ij
+	1/XsmUe/Lo/OHwk/SiHRuT3gv2JrcfCAWYDLzkoVLEpICMIXxQxArJ4LloMBjFl7
+	4KdzLQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acunm08x8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:24:10 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-341aec498fdso1451815a91.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:24:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762961050; x=1763565850; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qdkh9q01QZj84qM0SwA04CDi0gVaDSq5D6Z188vfTpI=;
+        b=aPg9RSi1P+6JJMt4Bha4hOnqc2YhxrhkDdada9z/AIaIu/0ZS10DxY8OocJfqTw/im
+         F0D12pqNdyAHcrtuKxytcfvUs5sXI/Pd2XlxQElC5i48Vlb7KHHHyiCMjYqM+k8CCBMs
+         KmktJ9lEbDUkZTR3Guywiz3sOaUaCPFRI3LuL8J2P1FzmxvHqkDOAM3MoxyP82TRn+T/
+         /NpHLvOt34rS9/qxL+DZkO/IVpw2U9CLx5YJJOX231XZbtKzz/gHWyfj35OKP8W3etrJ
+         hmfg/OjX6PLhP0j/ikEuDZzVeTwmWFadkbhc7XklRqNTlfE+AIuDUgD2q2lVinnb/P/s
+         QMwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762961050; x=1763565850;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qdkh9q01QZj84qM0SwA04CDi0gVaDSq5D6Z188vfTpI=;
+        b=F9rxcrIQQalUzclulQQ/9e6HQHpcFmdtoPqPIUwwgnbIhmquL0GSl9OPk/Y3SbHCvg
+         uIXELdMhk27YcDAUO3hHuzJ2MR39WAs3fGMcOEUsBA5SOxgKv6jLgZae3dTi3FgBTtr9
+         G0XerGFmZud6cTzuwNg4+NW9NHTnpzHkbAn4TMpx9VG4emyU7m1WJX94iNHL8ii0STRi
+         eyk7HFbDnASOecJHgbva9IjgF10HCSkT804MhxUpOQeN5MrXPjEKmvwuBa1zJJz00+Fq
+         tSrZU/XDX1u7vB7fvvHsTc3B/cAH0IOmqxZ5QBhdfW0s1c2Jsd+I+V0XRLUSDQQ2lZom
+         wPVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfElKqKlBMNWPeRD6aV4ChFy5g4j+Nxu54bjCuggSaOahSjIfMugKv0bYDgtAHro6OOQ2b5V5ezXMW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwdxigmWTRRZQaBUd/I2s9HhLUgKfvqVG1MV1UG+HG0NTDtwVc
+	MFIO0JDL/QcyhzSXFVOBnCcDSQ1M7RFN17YhfyKn7Q4lwHUikQwKzm7yoZEIfMME8VFwnDw4Olu
+	Xq4fDr80sXi7ageqGS7i7KGqOlsvGE5Y7Kzphgzh0D8A6Z6cjmLs7qbcofWn1zo/F
+X-Gm-Gg: ASbGncvKut2L7PfRUth65XZuOs+wF0nvuT9LlEQzitTPSFoFLCYzdpialoehSJX7CoU
+	Aj0yv/90vAEsgXRYRJ6KnOoSoL00rU9xyXjtiVUPQ2nmTMhLo4CN6XEdaDQ5f8XGRzSHagEX2JR
+	OdrdvDFGkyLyqdIh8CNA6KZvzkkvh+Svvsvj44rqEWFWiyefMJa5/l9tb4I5MGZDFZZ8t1gFVB9
+	F3OLsvcQ8iCAzclDjZQP0XerfLVEnJjwn0yYDlU9yKUf1zjzHUsxK72M808W+znQMc22Qs/NM3N
+	Czf+uP0LF0u8Z3sRD7+5rcxHk0s/fkXNnFoI9ho8N7FAOHGXwFPB+1HXcUrx1BFpIFiZZOYPac8
+	7aSQg0sYvRfrZeU6/wPLjGFkZq1yUfwls
+X-Received: by 2002:a17:90b:2dca:b0:340:b152:65c0 with SMTP id 98e67ed59e1d1-343dde8b78amr4377262a91.26.1762961049664;
+        Wed, 12 Nov 2025 07:24:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH8mVyyxybDIpgRW0JbU3tFRvdQFBdXI1yZP7qme4Gqt+0BL84cd+jtP2J4tTiW28FMBPTCrQ==
+X-Received: by 2002:a17:90b:2dca:b0:340:b152:65c0 with SMTP id 98e67ed59e1d1-343dde8b78amr4377207a91.26.1762961049087;
+        Wed, 12 Nov 2025 07:24:09 -0800 (PST)
+Received: from [10.219.49.108] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-343e07d2e4asm2944260a91.18.2025.11.12.07.24.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 07:24:08 -0800 (PST)
+Message-ID: <49fbb3f6-706d-40dc-a242-c3d6a57898eb@oss.qualcomm.com>
+Date: Wed, 12 Nov 2025 20:54:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251112-fix_tps65219-v4-2-696a0f55d5d8@bootlin.com>
-References: <20251112-fix_tps65219-v4-0-696a0f55d5d8@bootlin.com>
-In-Reply-To: <20251112-fix_tps65219-v4-0-696a0f55d5d8@bootlin.com>
-To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Lee Jones <lee@kernel.org>, Shree Ramamoorthy <s-ramamoorthy@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, Bajjuri Praneeth <praneeth@ti.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] dt-bindings: soundwire: qcom: Add SoundWire v2.2.0
+ compatible
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20251105-knp-audio-v2-v4-1-ae0953f02b44@oss.qualcomm.com>
+Content-Language: en-US
+From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+In-Reply-To: <20251105-knp-audio-v2-v4-1-ae0953f02b44@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDEyNCBTYWx0ZWRfX2+vJPod2c/Jt
+ Hr43MJOAaBRvcqUQQPoHYHWttej8e6ZewSEtB28yn+2KDhGeUampg2RrdDudqy+CNV8ddrXQaTc
+ jyV5dGVAOeE4sxrpmqAgXxZYhFYyyvgeTcvvSYo7rwq3kJYH7yZhuXqEeWVU4HuvYnv0o8jc70x
+ EirGG3KdLnLvQsKcrPHBumhhOb/Wsy7seLn5EFS/xJgfe9GkuM5qYxIS5Sdc8Zr7Lcw5fBjb1in
+ IsRWzyAGhu0qpz8UDwe9GRipv8I4MRAF3o/Jz1Ag+Q+U497NGOVqGk2WgCYAc/vC7biNdZc44tr
+ l6CgxcKdgHcOqVeVQ/j8fKdRjkfWTe6ieamYezza8De2SqOWyY2h/LeJhJNH0OlC/uD8GfDotud
+ ZCueMO5L1kvWrfdm6q/hIo7eODyIpQ==
+X-Authority-Analysis: v=2.4 cv=aLv9aL9m c=1 sm=1 tr=0 ts=6914a69a cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=x8bQnJUcN0kwi81saDsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: ffKnohDkZdWHa6iR3iMiEXvGvkvXA_iL
+X-Proofpoint-GUID: ffKnohDkZdWHa6iR3iMiEXvGvkvXA_iL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-12_05,2025-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 bulkscore=0 impostorscore=0
+ malwarescore=0 spamscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511120124
 
-The vdd_mpu regulator maximum voltage was previously limited to 1.2985V,
-which prevented the CPU from reaching the 1GHz operating point. This
-limitation was put in place because voltage changes were not working
-correctly, causing the board to stall when attempting higher frequencies.
+++ @Vinod,
 
-With the recent TPS65219 PMIC driver fixes that properly implement the
-LOCK register handling, voltage transitions now work reliably. Increase
-the maximum voltage to 1.3515V to allow the full 1GHz OPP to be used.
+Hi Vinod,
 
-Reviewed-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
----
- arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I missed including you in this change because,  some how your name 
+didn't auto add to the list when i tried with "b4 prep --auto-to-cc".
 
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts
-index d21118cdb6c2c..f00abfdd2cbd4 100644
---- a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts
-+++ b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts
-@@ -63,7 +63,7 @@ regulators {
- 			buck1: buck1 {
- 				regulator-name = "vdd_mpu";
- 				regulator-min-microvolt = <925000>;
--				regulator-max-microvolt = <1298500>;
-+				regulator-max-microvolt = <1351500>;
- 				regulator-boot-on;
- 				regulator-always-on;
- 			};
+As this is single change left over in this series and having reviewed 
+tag, Could you please help to pick it in the next merge cycle?
 
--- 
-2.43.0
+Thanks,
+Prasad
 
+On 11/5/2025 5:49 PM, Prasad Kumpatla via B4 Relay wrote:
+> From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+>
+> Add qcom,soundwire-v2.2.0 to the list of supported Qualcomm
+> SoundWire controller versions. This version falls back to
+> qcom,soundwire-v2.0.0 if not explicitly handled by the driver.
+>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+> ---
+> Add audio support for Kaanapali MTP boards. Introduces supporting
+> dependencies required to enable audio functionality on MTP platforms.
+> These changes have been validated on Kaanapali MTP hardware.
+>
+> Changes in [v4]:
+> 	- Dropped merged patches.
+> 	- Link to v3: https://lore.kernel.org/linux-arm-msm/20251015-knp-audio-v2-v3-0-e0e3e4167d87@oss.qualcomm.com/
+>
+> Changes in [v3]:
+> 	- Correct SoB chain, comments from Krzysztof.
+> 	- Link to v2: https://lore.kernel.org/linux-arm-msm/20251009143644.3296208-1-prasad.kumpatla@oss.qualcomm.com/
+>
+> Changes in [v2]:
+> 	- Addressed compilation issue for lpass version check patch.
+> 	- Sorted compatible string in machine driver.
+> 	- Link to v1: https://lore.kernel.org/linux-arm-msm/20250924-knp-audio-v1-0-5afa926b567c@oss.qualcomm.com/
+>
+> Konrad Dybcio (1):
+>    ASoC: codecs: va-macro: Rework version checking
+>
+> Prasad Kumpatla (4):
+>    ASoC: dt-bindings: qcom,sm8250: Add kaanapali sound card
+>    ASoC: qcom: sc8280xp: Add support for Kaanapali
+>    dt-bindings: soundwire: qcom: Add SoundWire v2.2.0 compatible
+>    ASoC: dt-bindings: qcom: Add Kaanapali LPASS macro codecs
+>
+>   .../bindings/sound/qcom,lpass-rx-macro.yaml   |  1 +
+>   .../bindings/sound/qcom,lpass-tx-macro.yaml   |  1 +
+>   .../bindings/sound/qcom,lpass-va-macro.yaml   |  1 +
+>   .../bindings/sound/qcom,lpass-wsa-macro.yaml  |  1 +
+>   .../bindings/sound/qcom,sm8250.yaml           |  1 +
+>   .../bindings/soundwire/qcom,soundwire.yaml    |  1 +
+>   sound/soc/codecs/lpass-va-macro.c             | 90 +++++++++++++------
+>   sound/soc/qcom/sc8280xp.c                     |  1 +
+>   8 files changed, 70 insertions(+), 27 deletions(-)
+>
+> --
+> 2.34.1
+> ---
+>   Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+> index 95d947fda6a7..1c4b0bdbb044 100644
+> --- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+> +++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+> @@ -26,6 +26,7 @@ properties:
+>         - items:
+>             - enum:
+>                 - qcom,soundwire-v2.1.0
+> +              - qcom,soundwire-v2.2.0
+>             - const: qcom,soundwire-v2.0.0
+>   
+>     reg:
+>
+> ---
+> base-commit: 2b763d4652393c90eaa771a5164502ec9dd965ae
+> change-id: 20251014-knp-audio-v2-9a37752cdc15
+>
+> Best regards,
 
