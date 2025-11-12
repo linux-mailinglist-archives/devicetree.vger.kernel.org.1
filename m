@@ -1,114 +1,134 @@
-Return-Path: <devicetree+bounces-237606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07570C5245E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:37:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29DC8C524A0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:42:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EDEB1885E30
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:36:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFDC7189E8E0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE58333455;
-	Wed, 12 Nov 2025 12:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BE7F335060;
+	Wed, 12 Nov 2025 12:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HS87xDT8"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="rleANA/U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF6C332F768
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 12:36:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB20334C28
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 12:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762950975; cv=none; b=rQwu7f5H9YxFjNu4KEGWALhE/3EVdOtyg1aY7mvUgQlLBgNxJBfwMXa++dHnMH5/dufE7RZfngK7PB7fHfE6kcWJtFA5KWWs9AiLOfg654BqOLhsL9fFt3V5aczgpWZ5sN9u23jlMyWjfwf2NM61Ma67/h7UhNX4osYjbQB3Yn0=
+	t=1762951317; cv=none; b=HfJHFFinOPv4znO7uP8PoVTqjnPjb3W8xUN7QUyNCySyFFehUsi5WBM5c2nTUd7XGUH2ie5+T2PCO7L3ZaKdJCzxNkcsWK+B6DCcHEeyUaELN0u0EOOxzbA6FMbylbrqp5yc8cbNko2abrlL8BgUNojlmDtxmZKOoZdvO1jRi40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762950975; c=relaxed/simple;
-	bh=+H8mi4wzWuOnGOUj+vry+C/RsrNVNIni+GZfNRFC6RQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=vERQQuvOcR/T+T45vmLx1pq5JAAMwjc/A3v8rpfWmUQyAFpjKJ/c2A06z2A02jqqh1beeaRKh/6xFpahgfo2dLP3KT9hKuTqX246RfUjAjMhasio5c/JsJ9xXolxAFxkfUqSFzEYd47d08hO7j6oaDXIXp74ByHl8PWGRrqSTq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HS87xDT8; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5930f751531so794028e87.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 04:36:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762950972; x=1763555772; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+H8mi4wzWuOnGOUj+vry+C/RsrNVNIni+GZfNRFC6RQ=;
-        b=HS87xDT8PEa/QupP0c9X7zCVhMNbcHHjXVhcTCYOEDHLj2zRjPZGoh0c/lHBV+M3x1
-         muIqy0huYSn/0x3Ur1jJDwZjiu09gpdvdDk7gfst4Rg7KmREjJfbZ2Y2uU8lD1/Dq5d2
-         KwMBUfqKrRexDDnrEPGdP+F1tvE2YM66SkevBQETEGoElaUvVi+XNTjH/X1I6ccqlPgD
-         ZE5Uf8qHhvLkWDqBNKgMKkTmdQmMKewh9C/lWNtrEyv72wILFSUh/1YqN4nHkIs8suOQ
-         3uWz5LT+S29EVLhk1nwZnxYSVjkpqemJRvo5+QcbEeNoR3OM72eEK3q+t5Y+8dsyAvLM
-         sBJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762950972; x=1763555772;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+H8mi4wzWuOnGOUj+vry+C/RsrNVNIni+GZfNRFC6RQ=;
-        b=hbdn/KMio7et+TObLnR3pAtGwWOTtqZL9Y1Bz9avSaLBJltZHnpz+EBvr9BcbU/xuv
-         WsnHkFF6iTChpkpPMgEtDClp+DxbdLF+BSSxdtQ+EmQ/sgKxiCORRJXSB9rxFxkSeyYb
-         HzFzrOkgTR+YO/AwAGoaiCT3HtiXXD0JTuDLOpBqQqlxQfNT9LuJ6jyMqD9hOwvcrYph
-         VbtFIVhaClXSeKxryAcMfVKKYPmcZ8TU/QPyVVzNNF54kEKEv4LUfsRi+EELT/FgtO3g
-         J8/h6ahMPMxzPwUMTbQU5Lq61AGtuHTQgc54u+E/uexXU1IE2EASrnmrZmCKEsWXhikd
-         +ZmA==
-X-Forwarded-Encrypted: i=1; AJvYcCV9/QW99wS1U2mjuG/oBAZ7FOTnwwzS3EdQCBLgNRRErEcUD2ii4DdeTIfeJ3ZhZsyyduUCW+X1yadz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy45tfG2WM5tNU7crj55b4AAe9GWaX0ROu40qqfDQy2mf8T0OlZ
-	g6u/KO/68gpLSfjhJZ9AEinHgYHrogZBD5Jg/9mV1aAWE9RzYzsyAITiK9ESTB0zYi8rz7MZKVZ
-	ClslpflL/dpYz5KDBqyFLmw+quQb8F8VJGlYZmvMWEA==
-X-Gm-Gg: ASbGncum4N5MGTlHdARVdyVbZhmcKkstVl9XpcCcF0A7VQQzUnNd1JNOZXfrhTDXaos
-	5/DT8+fAwYQtVclkHSi38i89GUvhzffqee5Y1DcnNlRZ63qOA0V0qA8uZEEOizgztjV88cFhfcM
-	X3GFK6J8c1DV3WBTuwDYG+wXee9SySMql8bVzV5maTTG0UtzVXkhMIvHjgbm8Laa5gQWCiiW3Lh
-	zUR7Rlao3VK8FV+CFx2tMmwOl7w3/hKbaXb7TwXXrQEQoBYuYepm0GtGsj8
-X-Google-Smtp-Source: AGHT+IF35xdCqK83Nq/ybJ3AbuqFKvL1x2W49echwpcmfLqDZKgxLvlKCL2HANZseQeKP1IlFhLxTXVM/a5c4VD3rP0=
-X-Received: by 2002:a05:6512:3089:b0:595:7dcc:3a8d with SMTP id
- 2adb3069b0e04-5957dcc3d9dmr101267e87.48.1762950971883; Wed, 12 Nov 2025
- 04:36:11 -0800 (PST)
+	s=arc-20240116; t=1762951317; c=relaxed/simple;
+	bh=LLQDTLZhEwI383p4au9J4JBzW8WMvm+21axEr2g03UE=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=Ug6wz/R5mYXIBN2mRMzDBOQ/IzJaAZWPvt/Mi138ZjhM8gAEZBIDpWO9ErUA+50MsPpIlDClKKeXntjNV7+Js+M7Hy9pepW+0h5IlZ5LNyWy2/27yORdNliCsfg769jbHmVHCQuPKtIP3GMFIhr1BE/yViyLBRn7lIBEr41mZfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=rleANA/U; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AF75CE77;
+	Wed, 12 Nov 2025 13:39:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1762951193;
+	bh=LLQDTLZhEwI383p4au9J4JBzW8WMvm+21axEr2g03UE=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=rleANA/UnZt2L8Q2lRInyqmF+bbyFtlm+o2pO4RCNJJ1SF8U5/+i1RPGtuyFSq8M2
+	 aFthXDSlJec4F1EAfuMfti3DJGll/kTTj/VkNaRg5Qa9ETOuATx2Ji8mM0uJWtaNSG
+	 Qzt6fvd5pP2QQnt3iLmjmY59GRgf75vrUnPlqdgU=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251111192422.4180216-1-dianders@chromium.org>
- <20251111112158.3.I35b9e835ac49ab408e5ca3e0983930a1f1395814@changeid>
- <b55d94f2-6b79-407f-af58-b9847db3c9a2@kernel.org> <CADrjBPpCKfd_0PY=DULnmqfb8veqH-SQ-kr5gC6Y28uBVo8iRA@mail.gmail.com>
-In-Reply-To: <CADrjBPpCKfd_0PY=DULnmqfb8veqH-SQ-kr5gC6Y28uBVo8iRA@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 12 Nov 2025 13:36:00 +0100
-X-Gm-Features: AWmQ_bnt3mMa52ZapQDOrQjKyBrrsOytzgBujrgqyXTEfoNcsLTSjhn-fe-x9cc
-Message-ID: <CACRpkdYN=FN92cuS3U-XBVoyD3DcKkfzEXYVNnQNK07rxJJZ=A@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: google: Add dts directory for
- Google-designed silicon
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Douglas Anderson <dianders@chromium.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, 
-	Roy Luo <royluo@google.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>, 
-	Julius Werner <jwerner@chromium.org>, William McVicker <willmcvicker@google.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Drew Fustini <fustini@kernel.org>, 
-	Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org, soc@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <aRR-6Nl3ELB2v8gV@shell.armlinux.org.uk>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com> <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch> <aP83bMDWCre7-Sjw@pengutronix.de> <aRR-6Nl3ELB2v8gV@shell.armlinux.org.uk>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Daniel Scally <dan.scally@ideasonboard.com>, Stefan Klug <stefan.klug@ideasonboard.com>, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>, Russell King (Oracle) <linux@armlinux.org.uk>
+Date: Wed, 12 Nov 2025 12:41:50 +0000
+Message-ID: <176295131007.567526.3395425614344577792@ping.linuxembedded.co.uk>
+User-Agent: alot/0.9.1
 
-On Wed, Nov 12, 2025 at 1:26=E2=80=AFPM Peter Griffin <peter.griffin@linaro=
-.org> wrote:
+Quoting Russell King (Oracle) (2025-11-12 12:34:48)
+> On Mon, Oct 27, 2025 at 10:12:12AM +0100, Oleksij Rempel wrote:
+> > Please note, RTL8211E PHY do use undocumented SmartEEE mode by default.
+>=20
+> Same as RTL8211F I believe (as used on the Jetson Xavier NX platform I
+> have.) I submitted commit bfc17c165835 ("net: phy: realtek: disable
+> PHY-mode EEE") to get EEE working on this platform.
+>=20
+> > It ignores RGMII LPI opcodes and doing own thing. It can be confirmed by
+> > monitoring RGMII TX and MDI lines with oscilloscope and changing
+> > tx-timer configurations. I also confirmed this information from other
+> > source. To disable SmartEEE and use plain MAC based mode, NDA documenta=
+tion
+> > is needed.
+>=20
+> What I saw there was similar to what you describe (although I have no
+> way to monitor these signals.) No interrupt storms, but while the
+> stmmac TX path would enter LPI mode (whether that provoked anything
+> in the PHY, I do not know), the RX path never entered LPI mode because
+> the PHY never forwarded that status.
+>=20
+> So, I don't think having SmartEEE enabled on the RTL8211E would cause
+> this interrupt storm that Laurent is reporting.
 
-> There will be some Laguna SoC
-> drivers for pinctrl, clocks etc,
+Perhaps further complicating matters.
 
-Oh new pin control, interesting!
+I have a Debix Model A as well ... I'm in a different office to Laurent
+- and I believe EEE is enabled on my board/network switch.
 
-Will you be doing the upstreaming of that?
+I do not get an interrupt storm.
 
-Yours,
-Linus Walleij
+I'm not sure how this helps yet, - I don't know what to debug as I can't
+reproduce the issue!
+
+I can provide remote access to the board with ssh if that helps anyone
+who wants to look at something specific about my setup or run anything
+if anyone has ideas of what to check my side.
+
+Perhaps we can find some subtle difference between a working case and a
+non-working case...
+
+--
+Kieran
+
+
+
+
+> In Emanuele's case, things are different. The TI PHY reports that EEE
+> is supported, implements the autoneg registers for EEE, but *doesn't*
+> implement the necessary hardware for detecting/entering/exiting LPI
+> mode. So, if EEE is negotiated, the remote end thinks it can enter
+> LPI mode... which likely causes the link to drop as the TI PHY can't
+> cope with that, and I suspect that's the cause of Emanuele's problem.
+>=20
+> I'm wondering why "arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait""
+> impacts this - could it be that entering the idle state does more than
+> just affecting the CPU domain, but interferes with the EQOS domain in
+> some way. Given that the entry/exit to this state is all buried in
+> PSCI stuff, without digging through the ATF implementation for this
+> platform and then cross-referencing the iMX8M documentation, I don't
+> know what effect this has on the system. Is it possible that PSCI is
+> messing with the EQOS?
+>=20
+> What about the clock tree? Is it possible that the stmmac and/or RGMII
+> clocks could be lost when cpu-pd-wait state is entered on all CPUs?
+>=20
+> Has anyone checked whether there's anything in the errata
+> documentation?
+>=20
+> --=20
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
