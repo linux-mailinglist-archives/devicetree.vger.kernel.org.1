@@ -1,250 +1,125 @@
-Return-Path: <devicetree+bounces-237711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E869C52F92
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:22:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFE09C53183
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:39:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CC9F635947D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:15:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 231AA624557
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:16:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723A333BBAD;
-	Wed, 12 Nov 2025 15:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670D633F8B1;
+	Wed, 12 Nov 2025 15:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KcidL/qM"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Mko/5yoV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C8933B977
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:09:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED75337BB3
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762960199; cv=none; b=m4hGf1gGHmbDEfjajwij99LSBSsTea23jl2BmYEUmfuxLXAwIpnR0zz3JeyLhv/4ytiKsaq/cn8wlvy7JWkNBmu0eEEnvIgbbmC/NEOqQKFQw87K+NvlXMbXS3hYaV5HESzcwDkRrK4MIRL+LI45+RgSG+eq4TKqK7GF2ZaO5ec=
+	t=1762960478; cv=none; b=VpS4GkO+PONBaDjDYjaytXeyQJ4Cya2IlhEqizY4qzJZS0NWlPDyCOQRynmFE7hyxtIikCZXrJ354Usm/nza4Y9tCLIGJDFE9SEdnhHxYXvheQ3Bn98YvL7cPaTc7PpaRpVOMLbe5hVxSul1ydXmEV6lYOYBzINTsp3nvyFQOUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762960199; c=relaxed/simple;
-	bh=aYSYBvNWA4f73tOvtgsvmHJY2eaF6RJXHjE/a9pxUbk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Dk/FkeTZycMuzNOZ7WKiQYvaqtWwKz93HQnThnALZ/2iko+zekU4DYJNnTl5PffVs3IJzK6vrKwo4lpeT055NKTNymgETJqV4B/hQ9qo2jdT88mBeZDwhKCBcVHQdmmfi2hDbdZd1feTl3/lLhyfhMGtJM/14HjkJjiC305UTWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KcidL/qM; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-477442b1de0so6815485e9.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:09:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762960196; x=1763564996; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DtGZMMsw8V99KZAgaHQJPZ8CoLj3tmmTUHgBPIq1Q90=;
-        b=KcidL/qMT0dse2e+jDaZ9VSnJ77dfInWu01TM40OzrPmjmDB60Tks7QjmccoIPwhtW
-         YVpuToj/1E7wlj3f5QtPTSztLLcMidcGvlaYLV2O8DHhCFSCO/LL9WD8ylLfzjpPFGa2
-         kteQEMRJSTkJAGYV1xn2am270/mE1uRfVA896jJuECLSUc0P2P8G3OxpEuzKF7dA/uCL
-         NcmtTtXHTZcbAxUKUK0jxkN4/vihQ8fU/de1EU81VyG/53wzpMTPyZkUGRlOq2kUGxkl
-         dfvo5HNRhMA+hjlkBoKCanWzH0dpBm+eqJU/vkXyWIIYsu0eqj32kjdC2Re5p7Eb8JEL
-         yAuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762960196; x=1763564996;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DtGZMMsw8V99KZAgaHQJPZ8CoLj3tmmTUHgBPIq1Q90=;
-        b=BsAoK0pIZyNeGppEUEniSAL5uil5JnTtLNzeCw1AxBly96u01QyLV0NwXIDKxhzYtF
-         m+D6X50j2vo46ZQ4biH9hcU1Fljlgw6yXEcf0DpkQ5bXT7ILW14TCjH1AVbeJI7j5wCI
-         mmpEZ1MLsh3YBTWvIyNN1Qx/nYqgBILuelRJz4SdLzZiXw6QO7nTvDEkrXBEUXci+ZOD
-         vTA2HhMcsnfRrOY57h8DHmFx3n+rEv8yZ+vjFJ8SlN3zvVf119ZLCqwMY9LnPJ4XSkOL
-         rNTxyK+5BCEIfaaNxPNhVmmiwHckoCMUhKYXWeseNf9s6PryuDq6ieyp+7FcjlSso9Dm
-         blQA==
-X-Forwarded-Encrypted: i=1; AJvYcCUT2CgCuP+Br/RroconL+bDRZXC972hXyyMIztiVqfU5JqllRsXfTy0eQGerMEpjj6Jo1KNJYE4AlR2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz760E+Y3SSrSJ7wx76cAeaq9qHnyPGaYhWoLucuCFhshxvbdU9
-	Eqtbi1PUG4/1vaUPfNHmOKNzy1D36ySjReNEkZKHmdXgCiufmXa2OpNb
-X-Gm-Gg: ASbGncuQkhDaU3KWwgH185dMykUblunDdmiPA0MR4bZvUQ2H1Pu3Q2DZvZFmpJHnvzT
-	UliVc+C+crZjq2Ir40U7KUmgCu3UNcE2VeIChlq5e0gbDiLDS68a7+ZHn75FmRnfnf0DuKzN1JK
-	s8i6ggFKupf8X/p+g/RAVFgbXgqxLjrV/4+t13vGmNqH8cG+Gj8e1YEfOOoC0zSo1t5NSN9m2EC
-	tnzKBAoBisLloNQoK+aG1kuPUxBi6run28D+BmldNIaF+OZlu0EtSVXZ/eIeIlDGpvQKjWs8+1g
-	krlzbYXaf+Row22M1mO99h5T3lz2UJXDSoLAQYotm6MUGBfd3YqjxkLHv0piydiFz1lSnVDp7D0
-	uG8RPC/SEA7IF1XZq+K8kYqpiAf+GbTPIt5UoPzTQ1nyesUJzBO/1EUqzpxcvn/yue61s7Ya73O
-	sGeu9IuOtfYOU=
-X-Google-Smtp-Source: AGHT+IGviozO1G+47njNKiErvjncEx+jjY7PIlVohsiPQB3KFMy0e3qBbtmFS5UVJasOoahpIh4XCg==
-X-Received: by 2002:a05:600c:3b11:b0:477:6b4f:3fbd with SMTP id 5b1f17b1804b1-477870b935dmr27381355e9.38.1762960195571;
-        Wed, 12 Nov 2025 07:09:55 -0800 (PST)
-Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42abe62bf40sm33272447f8f.9.2025.11.12.07.09.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Nov 2025 07:09:54 -0800 (PST)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	broonie@kernel.org,
-	avifishman70@gmail.com,
-	tali.perry1@gmail.com,
-	joel@jms.id.au,
-	venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com,
-	andrew@codeconstruct.com.au
-Cc: openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v2] spi: dt-bindings: nuvoton,npcm-pspi: Convert to DT schema
-Date: Wed, 12 Nov 2025 17:09:50 +0200
-Message-Id: <20251112150950.1680154-1-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1762960478; c=relaxed/simple;
+	bh=Jnp4IlflwgSMycJi01qBlU7Sv1wGXj0nFB6lrlCZrlE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rFge6az25UDj5TtjY/ibK+qmvVConDLswyPryOJnMVEb6+Hhsygr+JTEkwRpAZcYK0HBMOHRVuonr/CZ1rKc6TP4qvJ3Sgq17gELifdGo9RvUyxnb3Te9T5P0J1yqANxowNH5UmDhgnHmy4jYVRnPmsn7I33xH0XLT2cjok055U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Mko/5yoV; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 0E46F4E4165B;
+	Wed, 12 Nov 2025 15:14:33 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C0C806070B;
+	Wed, 12 Nov 2025 15:14:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 04983102F187F;
+	Wed, 12 Nov 2025 16:14:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762960471; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=TQgXjxSgHcT+NWP+SefXHNsxBqz2GVfd0mxc5Ppvkuw=;
+	b=Mko/5yoVvgtVcnpBGG/WcDNSfej+OFBndYnTCcBmVzaCvpL9kgreyq/JjmJCG8O8G8WVIR
+	poqxuoU/+AjIgK0jRbGdpzwzaqOUddETZIoXIBLC9+Vmsi9rFsmKn8s01Nm1IKDyABLqZ3
+	iTTZDUSjfdcyWn+430OGqt+e0zTSSxtH04/fSkv4GNdTvMQN5dijO604uxdG8M5NC46Nee
+	BYR9g892I6KeRqYta6RGkakg2W20T87V1S1GFIXi/BGV7bjo5FLytxZE2Pe/HvSA0gYOXg
+	Z/IX87MMXILW69Gcy/75DC8F3WIqnMqlsyvLN55v5BNEXGeZRnngR7OmF69Ueg==
+From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
+Subject: [PATCH v4 0/2] Enable 1GHz OPP am335x-bonegreen-eco
+Date: Wed, 12 Nov 2025 16:14:19 +0100
+Message-Id: <20251112-fix_tps65219-v4-0-696a0f55d5d8@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAEukFGkC/3WMwQ6CMBAFf4Xs2Zp2KUU8+R/GGGiLbKItaUmjI
+ fy7hZOaeJz3MjNDtIFshGMxQ7CJInmXQe4K0EPrbpaRyQzIsRKCK9bT8zqNUVUoGmaMQiGFQdQ
+ 9ZGUMNv9b7nzJPFCcfHht9YTr+ieUkHHW1kbxg5ZYY3/qvJ/u5PbaP2BNpfJDF/ijl1m3sunaT
+ moutP3Wl2V5A/X0fz7pAAAA
+X-Change-ID: 20251106-fix_tps65219-dd62141d22cf
+To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+ Lee Jones <lee@kernel.org>, Shree Ramamoorthy <s-ramamoorthy@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Andrew Davis <afd@ti.com>, Bajjuri Praneeth <praneeth@ti.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-Convert the Nuvoton NPCM PSPI binding to DT schema format.
+The vdd_mpu regulator maximum voltage was previously limited to 1.2985V,
+which prevented the CPU from reaching the 1GHz operating point. This
+limitation was put in place because voltage changes were not working
+correctly, causing the board to stall when attempting higher frequencies.
+Increase the maximum voltage to 1.3515V to allow the full 1GHz OPP to be
+used.
 
-Also update the binding to fix shortcoming:
- * Drop clock-frequency property: it is never read in the NPCM PSPI
-   driver and has no effect.
+Add a TPS65219 PMIC driver fixes that properly implement the LOCK register
+handling, to make voltage transitions work reliably.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+Changes in v4:
+- Move the registers unlock in the probe instead of a custom regmap write
+  operation.
+- Link to v3: https://lore.kernel.org/r/20251112-fix_tps65219-v3-0-e49bab4c01ce@bootlin.com
+
+Changes in v3:
+- Remove an unused variable
+- Link to v2: https://lore.kernel.org/r/20251106-fix_tps65219-v2-0-a7d608c4272f@bootlin.com
+
+Changes in v2:
+- Setup a custom regmap_bus only for the TPS65214 instead of checking
+  the chip_id every time reg_write is called.
+- Add the am335x-bonegreen-eco devicetree change in the same patch
+  series.
+
+Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
 ---
-Addressed comments from:
-	- Krzysztof Kozlowski: https://patchwork.ozlabs.org/project/openbmc/patch/20251110081457.1008316-1-tmaimon77@gmail.com/
+Kory Maincent (TI.com) (2):
+      mfd: tps65219: Implement LOCK register handling for TPS65214
+      ARM: dts: am335x-bonegreen-eco: Enable 1GHz OPP by increasing vdd_mpu voltage
 
-Changes since version 1:
-	- Fix commit subject and message.
-	- Drop unnecessary description.
-	- Use GPIO defines.
-	- Add clock-names property.
+ arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts | 2 +-
+ drivers/mfd/tps65219.c                             | 7 +++++++
+ include/linux/mfd/tps65219.h                       | 2 ++
+ 3 files changed, 10 insertions(+), 1 deletion(-)
+---
+base-commit: 1c353dc8d962de652bc7ad2ba2e63f553331391c
+change-id: 20251106-fix_tps65219-dd62141d22cf
 
- .../bindings/spi/nuvoton,npcm-pspi.txt        | 36 ----------
- .../bindings/spi/nuvoton,npcm-pspi.yaml       | 72 +++++++++++++++++++
- 2 files changed, 72 insertions(+), 36 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
- create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.yaml
-
-diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt b/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
-deleted file mode 100644
-index a4e72e52af59..000000000000
---- a/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
-+++ /dev/null
-@@ -1,36 +0,0 @@
--Nuvoton NPCM Peripheral Serial Peripheral Interface(PSPI) controller driver
--
--Nuvoton NPCM7xx SOC support two PSPI channels.
--
--Required properties:
-- - compatible : "nuvoton,npcm750-pspi" for Poleg NPCM7XX.
--				"nuvoton,npcm845-pspi" for Arbel NPCM8XX.
-- - #address-cells : should be 1. see spi-bus.txt
-- - #size-cells : should be 0. see spi-bus.txt
-- - specifies physical base address and size of the register.
-- - interrupts : contain PSPI interrupt.
-- - clocks : phandle of PSPI reference clock.
-- - clock-names: Should be "clk_apb5".
-- - pinctrl-names : a pinctrl state named "default" must be defined.
-- - pinctrl-0 : phandle referencing pin configuration of the device.
-- - resets : phandle to the reset control for this device.
-- - cs-gpios: Specifies the gpio pins to be used for chipselects.
--            See: Documentation/devicetree/bindings/spi/spi-bus.txt
--
--Optional properties:
--- clock-frequency : Input clock frequency to the PSPI block in Hz.
--		    Default is 25000000 Hz.
--
--spi0: spi@f0200000 {
--	compatible = "nuvoton,npcm750-pspi";
--	reg = <0xf0200000 0x1000>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pspi1_pins>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
--	clocks = <&clk NPCM7XX_CLK_APB5>;
--	clock-names = "clk_apb5";
--	resets = <&rstc NPCM7XX_RESET_IPSRST2 NPCM7XX_RESET_PSPI1>
--	cs-gpios = <&gpio6 11 GPIO_ACTIVE_LOW>;
--};
-diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.yaml b/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.yaml
-new file mode 100644
-index 000000000000..db0fb872020a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/nuvoton,npcm-pspi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton NPCM Peripheral SPI (PSPI) Controller
-+
-+maintainers:
-+  - Tomer Maimon <tmaimon77@gmail.com>
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+description:
-+  Nuvoton NPCM Peripheral Serial Peripheral Interface (PSPI) controller.
-+  Nuvoton NPCM7xx SOC supports two PSPI channels.
-+  Nuvoton NPCM8xx SOC support one PSPI channel.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,npcm750-pspi # Poleg NPCM7XX
-+      - nuvoton,npcm845-pspi # Arbel NPCM8XX
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+    description: PSPI reference clock.
-+
-+  clock-names:
-+    items:
-+      - const: clk_apb5
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - resets
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/nuvoton,npcm7xx-reset.h>
-+    #include "dt-bindings/gpio/gpio.h"
-+    spi0: spi@f0200000 {
-+        compatible = "nuvoton,npcm750-pspi";
-+        reg = <0xf0200000 0x1000>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pspi1_pins>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clk NPCM7XX_CLK_APB5>;
-+        clock-names = "clk_apb5";
-+        resets = <&rstc NPCM7XX_RESET_IPSRST2 NPCM7XX_RESET_PSPI1>;
-+        cs-gpios = <&gpio6 11 GPIO_ACTIVE_LOW>;
-+    };
-+
+Best regards,
 -- 
-2.34.1
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
 
