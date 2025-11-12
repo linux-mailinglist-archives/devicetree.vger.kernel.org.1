@@ -1,123 +1,119 @@
-Return-Path: <devicetree+bounces-237696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F46CC531E5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:42:38 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2597BC52FDD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:24:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8226A545C4D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:06:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 84C98356F43
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDA33491F3;
-	Wed, 12 Nov 2025 14:58:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A45134CFC0;
+	Wed, 12 Nov 2025 15:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="usqyh77u"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="X0NM6JoW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E2033D6FC
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 14:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC4134A796
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762959511; cv=none; b=BhNFYZ+xl+h/YRjusPvCjiWjUFrZFE7m0wZar3RyWbLLARv6DFR/X0KZfPvGkWN44AJCL2nge/0ISYdF2I/36bsMITGLcJO7F04c3qZlljbC79cTjnd8wIK0i2T2fDrrE2jEQCuN6DnsCQ2tUxAIAR2zEIUn8QBw9QSRvTFzGg4=
+	t=1762959610; cv=none; b=CSjDVJjyvm2+tfHzXew07lUtZSnL+bwwxEXA+It92Iv/w1so1Js/JPsUFgSozo9g+4SHF7yOD0K8QyE6QBEm+ZGxyNYcM461/7/fXbyjgb9LfF8APmo32Y8EbIosZlL1zZe5IgfNfyHiUDrzkuMfhpF2F6n8PbMY5kx8q3I69do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762959511; c=relaxed/simple;
-	bh=4eJT0qrbYtb3tygQi78gtUWgI3MFtLtKc3+1qUbZmWE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tYaebK6ji/SsyJFKduXMpuSuhVJJ/YpmytRRZLUGX2RSW+FKiA3VnQiBkPV0yjcOpK5JFPQAQytua2N1j7S35zvKnw/RaMJYSXZdUIdp8zi6luqzpfU3KJJxbRvm6YcbuIhMWtpmqVX0t+r9Mt9ZVN0v0oFYIES9qU7cad8yN1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=usqyh77u; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1762959506;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nDjgIBsyp+ARuuJZr3OZhF6O45jVd9KZ8isVUEf2PrI=;
-	b=usqyh77u1FXKT+x+f7SxohlrLK/h+RoZdAKZeQiCswd57L0xmFG+nciOJfdQiW0PR66IVk
-	g9lqgdxrGvv+rJXHQw/qzfzh4V65cCwQPc/G1MGD6v/sOkW0bM2Hm68jm8UueRjRGVZ29y
-	VAdj2mln2BWyAT5bcO9Vcw0rjQzyK+0=
-From: Yuntao Wang <yuntao.wang@linux.dev>
-To: robh@kernel.org
-Cc: devicetree@vger.kernel.org,
-	geert+renesas@glider.be,
-	geert@linux-m68k.org,
-	linux-kernel@vger.kernel.org,
-	saravanak@google.com,
-	yuntao.wang@linux.dev
-Subject: Re: [PATCH v2] of: fdt: Fix the len check in early_init_dt_check_for_elfcorehdr()
-Date: Wed, 12 Nov 2025 22:58:00 +0800
-Message-ID: <20251112145806.235845-1-yuntao.wang@linux.dev>
-In-Reply-To: <CAL_JsqJxar7z+VcBXwPTw5-Et2oC9bQmH_CtMtKhoo_-=zN2XQ@mail.gmail.com>
-References: <CAL_JsqJxar7z+VcBXwPTw5-Et2oC9bQmH_CtMtKhoo_-=zN2XQ@mail.gmail.com>
+	s=arc-20240116; t=1762959610; c=relaxed/simple;
+	bh=AitKwurl0RZQ42Z6io85kiDDF35RvnC+HaXcObo6dj0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JFeWW9gaXbHl4Nd06GhuWcZ2MNfapkUXbYbASqtvEajC9snz3eOj1ZZ98nPeXhCC/zk2BHrXXCawcmTtFdjWagAKr7Jh+/IESV46VNOjYOMqK92VLfMy0N0wKRxw95L7QLxJNMp3uvx0Dy0DnDvsS8mSc8w6Ess2sj6w9xcl/cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=X0NM6JoW; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5957d7e0bf3so396152e87.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:00:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1762959607; x=1763564407; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AitKwurl0RZQ42Z6io85kiDDF35RvnC+HaXcObo6dj0=;
+        b=X0NM6JoWO3vCIkMCOghqijtCg3SeWhol9lAhtWz18k6Sn8W3yt71kZD3JkmCK+4kR3
+         MUnCp18H92Z1iff18JrNUpN/Rd6S6Z5aP2p051Eb8FrVcBoX1s+8YFxP3NgtIb6SxRtk
+         k71ekbnddmkWRIJIThxNn3kGT37sYi5u+4eOYidWHisGrH8hJnOl4wlr1igPGFTgvamE
+         3zwAODUkvTa4xWIx5sVjvN6qMNLk3wbun6lLxuifjUTKI0eJ9jWpgD7ly5JdtM+kaivM
+         XLtdi7C74PsoMrI1aGGZWTI5aHDyXtgo15C8V834ysGrQepz0BMTRU1P4R76Py8iN3G6
+         aWQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762959607; x=1763564407;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=AitKwurl0RZQ42Z6io85kiDDF35RvnC+HaXcObo6dj0=;
+        b=FY5D369H9v417LxL3AaSiziZbI5DaXrCt9r+5PMS5XcdOrU6Co+3RIzCyZlUGnhYNX
+         o33LnaLX6k2NjEtcCVOrM/syKaFuIHzCh3VIymIUcTTsDGKCO+oOX6qSwPbdzt64SSrb
+         p1toPt2hX7r/g9bjbjmtfUAs2/dIxJozVtBVVKsIk6zwEnhFgig3kDtJpVqm787vjYzy
+         NPmR+70Yn4lhsLwCbuf5FCeqRN+sEa2TLp/0kImY1FuQ6y9WD+3L2OnowE6/sEWS1AI8
+         dzeWsMPbZJICi1gFQINIXbGF1C+uVi702D9ockrgj7j2niKTsFSycdCCvbgXuvZd3v3x
+         /GOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVqsFIsqKNxc8wBDAh37NJxfm3jtUuUiojOMV93iTzYyIdzzChqqzPg0ctlrtKFQ4SLKZihVQNEgR8C@vger.kernel.org
+X-Gm-Message-State: AOJu0YydxFfYXR4Q5gneDWTsjG1MsXnk8Cmir/vBLoBBSzYAvHQkZ3rk
+	CKXfupt7V/jd9YRQpZo/yBIhuWJkmpf4KqoCWoQuKDHdkXeqRkuQaYuPO9nYEq2XIaxxd2lsHSX
+	WKYkS5/AVSHqAz8Wx2mQmXyBZsDD/96TvguQxRdY3qQ==
+X-Gm-Gg: ASbGncvWkEap7Rg50BXrZ6CaywGShgjQ2dBzkkeYSxQ6kDw8MFdmmOAOYuIKYGDXfK+
+	zt6Lcgi1llrfl0lpmrdhAtkMrZFwF25kiey5wKnVCaHwXuQ7ipqSGzCl8L4OmOdOO2xR/xyWSY4
+	eUlDDWqVDROFDfwc4W+JHkWtKWAP8tO1Y76nTrRVr0FL+4b0l2tLf7cTAH6wMDcK81/OEAaehkX
+	xCcnSod4xFFQbCJOGkekiK2polViI/1zvxdRejTDWTLPgwTUWqikhcrm5yUvP62K2XX6QE22Fdw
+	CCnWNx4W/3O+
+X-Google-Smtp-Source: AGHT+IHJlMhc97BIbUXAmDMRKBFEzcYUIzG9wOUoHY7EvexUIuj9NB/ckjr2BS4pe1nb7zekpoNjYTR8GQ8gWpKStzg=
+X-Received: by 2002:a05:6512:12c5:b0:594:27de:77e7 with SMTP id
+ 2adb3069b0e04-59576e6adcbmr1074429e87.15.1762959606578; Wed, 12 Nov 2025
+ 07:00:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+References: <20251108-pci-m2-v2-0-e8bc4d7bf42d@oss.qualcomm.com> <20251108-pci-m2-v2-2-e8bc4d7bf42d@oss.qualcomm.com>
+In-Reply-To: <20251108-pci-m2-v2-2-e8bc4d7bf42d@oss.qualcomm.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 12 Nov 2025 15:59:53 +0100
+X-Gm-Features: AWmQ_bmPrX98SnIay2Tpg2LShNsYicURP0Ag78YAbsYoHwDKuqWeMRjHIudWFWg
+Message-ID: <CAMRc=Mcoi7koQBDyKPGet=FGX0emExRBhWMKW14fPmk217y2Ow@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] PCI/pwrctrl: Add support for handling PCIe M.2 connectors
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 11 Nov 2025 10:56:51 -0600, Rob Herring <robh@kernel.org> wrote:
+On Sat, Nov 8, 2025 at 4:23=E2=80=AFAM Manivannan Sadhasivam
+<manivannan.sadhasivam@oss.qualcomm.com> wrote:
+>
+> Add support for handling the PCIe M.2 connectors as Power Sequencing
+> devices. These connectors are exposed as the Power Sequencing devices
+> as they often support multiple interfaces like PCIe/SATA, USB/UART to the
+> host machine and each interfaces could be driven by different client
+> drivers at the same time.
+>
+> This driver handles the PCIe interface of these connectors. It first chec=
+ks
+> for the presence of the graph port in the Root Port node with the help of
+> of_graph_is_present() API, if present, it acquires/poweres ON the
+> corresponding pwrseq device.
+>
+> Once the pwrseq device is powered ON, the driver will skip parsing the Ro=
+ot
+> Port/Slot resources and registers with the pwrctrl framework.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.=
+com>
+> ---
 
-> On Wed, Nov 5, 2025 at 3:02 AM Yuntao Wang <yuntao.wang@linux.dev> wrote:
-> >
-> > The len value is in bytes, while `dt_root_addr_cells + dt_root_size_cells`
-> > is in cells (4 bytes per cell).
-> >
-> > Comparing them directly is incorrect. Convert units before comparison.
-> 
-> We have 3 copies of the same code. This one plus "linux,kho-fdt" and
-> "linux,kho-scratch". Please consolidate them. The few places we have
-> for this type of mismatch, the better.
-
-Hi Rob,
-
-The link to the new patch series:
-
-https://lore.kernel.org/linux-devicetree/20251112143520.233870-11-yuntao.wang@linux.dev/t/
-
-Thanks,
-Yuntao
-
-> > Fixes: f7e7ce93aac1 ("of: fdt: Add generic support for handling elf core headers property")
-> > Fixes: e62aaeac426ab1dd ("arm64: kdump: provide /proc/vmcore file")
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
-> > ---
-> > v1 -> v2: Add a new Fixes tag as suggested by Geert Uytterhoeven
-> >
-> >  drivers/of/fdt.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index 0edd639898a6..f79461f5cffc 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -812,6 +812,7 @@ static void __init early_init_dt_check_for_initrd(unsigned long node)
-> >   */
-> >  static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
-> >  {
-> > +       int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
-> >         const __be32 *prop;
-> >         int len;
-> >
-> > @@ -821,7 +822,7 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
-> >         pr_debug("Looking for elfcorehdr property... ");
-> >
-> >         prop = of_get_flat_dt_prop(node, "linux,elfcorehdr", &len);
-> > -       if (!prop || (len < (dt_root_addr_cells + dt_root_size_cells)))
-> > +       if (!prop || len < t_len)
-> >                 return;
-> >
-> >         elfcorehdr_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
-> > --
-> > 2.51.0
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
