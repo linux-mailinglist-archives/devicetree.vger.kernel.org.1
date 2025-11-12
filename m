@@ -1,261 +1,250 @@
-Return-Path: <devicetree+bounces-237709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BCAC531B5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:40:54 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E869C52F92
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:22:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C62B1622C65
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:12:51 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CC9F635947D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:15:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9EC9343D92;
-	Wed, 12 Nov 2025 15:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723A333BBAD;
+	Wed, 12 Nov 2025 15:09:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KcidL/qM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E0B343D66
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:05:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C8933B977
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 15:09:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762959919; cv=none; b=mf+LcD0yBjuyDafsFzlQlESA3myk5zy9KofqR27FJmcSHVbQw5Idjo+fxcmn4YnWaZp7YBqabvMbUX0Ik7niO3Hmd9WPSvXSkjGFg4qHX8VIyGHcjXutaS0BcpjPi+R3Gec3lBoZlV4kr/hq3Alj1b3qX9ws79lhcxhBIcuLO8Q=
+	t=1762960199; cv=none; b=m4hGf1gGHmbDEfjajwij99LSBSsTea23jl2BmYEUmfuxLXAwIpnR0zz3JeyLhv/4ytiKsaq/cn8wlvy7JWkNBmu0eEEnvIgbbmC/NEOqQKFQw87K+NvlXMbXS3hYaV5HESzcwDkRrK4MIRL+LI45+RgSG+eq4TKqK7GF2ZaO5ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762959919; c=relaxed/simple;
-	bh=Oiw3CxTvM1cncQ+TriE+d0MVdoOZK0B04yT6liE6dN4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FpxP6zyhI9aMQU6m3XquowKwM9rNFiwO/Tb/pMG2z9T9j+0pXBoV6Scu39Ios8VCP+m3Z6JZQjIPIGnX01Yi/6R7hit089hRo3+lfl/KYF4/uUNvI7VYaeOHckq6f5Y9eQdvFmcQ/qRlM7Mki7qJJ77zQFqcgy8qom1kWwd9Veo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vJCP7-0005AM-QV; Wed, 12 Nov 2025 16:05:01 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vJCP7-0006PJ-14;
-	Wed, 12 Nov 2025 16:05:01 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vJCP7-00GVCq-0g;
-	Wed, 12 Nov 2025 16:05:01 +0100
-Date: Wed, 12 Nov 2025 16:05:01 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	Frank Li <frank.li@nxp.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v19 0/7] firmware: imx: driver for NXP
- secure-enclave
-Message-ID: <20251112150501.qkjclsoq2bg75ed5@pengutronix.de>
-References: <20250927-imx-se-if-v19-0-d1e7e960c118@nxp.com>
- <20251016114151.jzmapaecsmmnkpt3@pengutronix.de>
- <AM9PR04MB8604C2AAA70406883320C5C995FCA@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20251103190811.wp4o7hlnus6ynn32@pengutronix.de>
- <AM9PR04MB8604AA80EC97E06AADBF334695C3A@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20251111131442.nddhk3475oapf2zh@pengutronix.de>
- <AM9PR04MB86047231B5320C01759BFCAE95CCA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1762960199; c=relaxed/simple;
+	bh=aYSYBvNWA4f73tOvtgsvmHJY2eaF6RJXHjE/a9pxUbk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Dk/FkeTZycMuzNOZ7WKiQYvaqtWwKz93HQnThnALZ/2iko+zekU4DYJNnTl5PffVs3IJzK6vrKwo4lpeT055NKTNymgETJqV4B/hQ9qo2jdT88mBeZDwhKCBcVHQdmmfi2hDbdZd1feTl3/lLhyfhMGtJM/14HjkJjiC305UTWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KcidL/qM; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-477442b1de0so6815485e9.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:09:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762960196; x=1763564996; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DtGZMMsw8V99KZAgaHQJPZ8CoLj3tmmTUHgBPIq1Q90=;
+        b=KcidL/qMT0dse2e+jDaZ9VSnJ77dfInWu01TM40OzrPmjmDB60Tks7QjmccoIPwhtW
+         YVpuToj/1E7wlj3f5QtPTSztLLcMidcGvlaYLV2O8DHhCFSCO/LL9WD8ylLfzjpPFGa2
+         kteQEMRJSTkJAGYV1xn2am270/mE1uRfVA896jJuECLSUc0P2P8G3OxpEuzKF7dA/uCL
+         NcmtTtXHTZcbAxUKUK0jxkN4/vihQ8fU/de1EU81VyG/53wzpMTPyZkUGRlOq2kUGxkl
+         dfvo5HNRhMA+hjlkBoKCanWzH0dpBm+eqJU/vkXyWIIYsu0eqj32kjdC2Re5p7Eb8JEL
+         yAuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762960196; x=1763564996;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DtGZMMsw8V99KZAgaHQJPZ8CoLj3tmmTUHgBPIq1Q90=;
+        b=BsAoK0pIZyNeGppEUEniSAL5uil5JnTtLNzeCw1AxBly96u01QyLV0NwXIDKxhzYtF
+         m+D6X50j2vo46ZQ4biH9hcU1Fljlgw6yXEcf0DpkQ5bXT7ILW14TCjH1AVbeJI7j5wCI
+         mmpEZ1MLsh3YBTWvIyNN1Qx/nYqgBILuelRJz4SdLzZiXw6QO7nTvDEkrXBEUXci+ZOD
+         vTA2HhMcsnfRrOY57h8DHmFx3n+rEv8yZ+vjFJ8SlN3zvVf119ZLCqwMY9LnPJ4XSkOL
+         rNTxyK+5BCEIfaaNxPNhVmmiwHckoCMUhKYXWeseNf9s6PryuDq6ieyp+7FcjlSso9Dm
+         blQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUT2CgCuP+Br/RroconL+bDRZXC972hXyyMIztiVqfU5JqllRsXfTy0eQGerMEpjj6Jo1KNJYE4AlR2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz760E+Y3SSrSJ7wx76cAeaq9qHnyPGaYhWoLucuCFhshxvbdU9
+	Eqtbi1PUG4/1vaUPfNHmOKNzy1D36ySjReNEkZKHmdXgCiufmXa2OpNb
+X-Gm-Gg: ASbGncuQkhDaU3KWwgH185dMykUblunDdmiPA0MR4bZvUQ2H1Pu3Q2DZvZFmpJHnvzT
+	UliVc+C+crZjq2Ir40U7KUmgCu3UNcE2VeIChlq5e0gbDiLDS68a7+ZHn75FmRnfnf0DuKzN1JK
+	s8i6ggFKupf8X/p+g/RAVFgbXgqxLjrV/4+t13vGmNqH8cG+Gj8e1YEfOOoC0zSo1t5NSN9m2EC
+	tnzKBAoBisLloNQoK+aG1kuPUxBi6run28D+BmldNIaF+OZlu0EtSVXZ/eIeIlDGpvQKjWs8+1g
+	krlzbYXaf+Row22M1mO99h5T3lz2UJXDSoLAQYotm6MUGBfd3YqjxkLHv0piydiFz1lSnVDp7D0
+	uG8RPC/SEA7IF1XZq+K8kYqpiAf+GbTPIt5UoPzTQ1nyesUJzBO/1EUqzpxcvn/yue61s7Ya73O
+	sGeu9IuOtfYOU=
+X-Google-Smtp-Source: AGHT+IGviozO1G+47njNKiErvjncEx+jjY7PIlVohsiPQB3KFMy0e3qBbtmFS5UVJasOoahpIh4XCg==
+X-Received: by 2002:a05:600c:3b11:b0:477:6b4f:3fbd with SMTP id 5b1f17b1804b1-477870b935dmr27381355e9.38.1762960195571;
+        Wed, 12 Nov 2025 07:09:55 -0800 (PST)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42abe62bf40sm33272447f8f.9.2025.11.12.07.09.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 07:09:54 -0800 (PST)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	broonie@kernel.org,
+	avifishman70@gmail.com,
+	tali.perry1@gmail.com,
+	joel@jms.id.au,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com,
+	andrew@codeconstruct.com.au
+Cc: openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v2] spi: dt-bindings: nuvoton,npcm-pspi: Convert to DT schema
+Date: Wed, 12 Nov 2025 17:09:50 +0200
+Message-Id: <20251112150950.1680154-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB86047231B5320C01759BFCAE95CCA@AM9PR04MB8604.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-On 25-11-12, Pankaj Gupta wrote:
+Convert the Nuvoton NPCM PSPI binding to DT schema format.
 
-...
+Also update the binding to fix shortcoming:
+ * Drop clock-frequency property: it is never read in the NPCM PSPI
+   driver and has no effect.
 
-> > > Voltage regulation for i.MX93 in Linux kernel, is done by ELE.
-> > >
-> > > During Linux suspend-resume, Secure-enclave (V2X on i.MX95) part of
-> > > wake-up domain, will be managed by secure-enclaves(ELE) part of
-> > > always-on domain.
-> > 
-> > So to sum-up, please correct me if I got it wrong:
-> > 
-> >  - NXP puts the ELE into the non-secure world, in case only one MU
-> >    exists. The reason for this is that the ELE is also used to handle
-> >    power-management.
->
-> For NXP SoCs with multi-MU(s) too, NXP proposes to put ELE driver into
-> non-secure world.
+Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+---
+Addressed comments from:
+	- Krzysztof Kozlowski: https://patchwork.ozlabs.org/project/openbmc/patch/20251110081457.1008316-1-tmaimon77@gmail.com/
 
-With the ELE-FW and OP-TEE OS fix applied both worlds can communicate.
-Therefore it doesn't matter and I didn't mentioned it explicit above.
+Changes since version 1:
+	- Fix commit subject and message.
+	- Drop unnecessary description.
+	- Use GPIO defines.
+	- Add clock-names property.
 
-That beeing said, with both worlds capable to talk to ELE and the ELE
-beeing very system critical, both worlds have to agree to the
-responsibilities, e.g. OP-TEE OS is not allow to manipulate the
-power-state behind the back of Linux.
+ .../bindings/spi/nuvoton,npcm-pspi.txt        | 36 ----------
+ .../bindings/spi/nuvoton,npcm-pspi.yaml       | 72 +++++++++++++++++++
+ 2 files changed, 72 insertions(+), 36 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.yaml
 
-> >  - NXP exposes an uAPI which can be used to send arbitrary commands from
-> >    userspace to the ELE. (no filtering done yet)
->
-> It is not correct to say that no filtering is done.
-> Before sending as well as after receiving the message, the message header of the buffers
-> are parsed to check:
-> - TX-buffer with Command-tag is allowed to be sent, RX-buffer with response-tag is allowed to be received, without logging errors.
-
-I really don't want to step to deep into this, but that beeing said. If
-you refer to cmd_tag, than this tag is used by your below mentioned
-library also for NVM access. NVM is clearly something we do have a
-linux-framework and uAPI for.
-
-> - TX buffer size & Rx-Buffer size should match the size mentioned in the buffer.
-> - FW version from the header is checked, if required secondary or runtime FW Is loaded, before forwarding the request to ELE.
-> - In certain cases especially for exceptions, the message IDs are also compared.
-> 
-> > 
-> >  --> Sounds to me that the userpace can influence the system behavior
-> >      very badly.
-> > 
->
-> Messages created and sent by User-space
-> library(https://github.com/nxp-imx/imx-secure-enclave), are
-> scrutinized as stated above in the kernel driver.
-
-This is uAPI which can be used by everyone and because your library may
-not implement access to power-managment calls doesn't mean that other
-libs do. I'm not sure if your proposed driver will block such attempts
-from userspace.
-
-> Moreover,
-> As part of this library, message creation, send-receive, IOCTLS etc.
-> kernel interface implementation logic, is not exposed to users of this
-> library.
-
-Your library is not the interface, the interface is the uAPI exposed by
-the kernel. This interface/your driver needs to handle valid and invalid
-access, e.g. hsm -> valid, nvm -> not valid since it is abstracted via
-NVMEM.
-
-> With the help of secure-boot and IMA-EVM, rootfs can be restricted to
-> not allow any new application or modified userspace library, to
-> execute.
->
-> This way bad impact to the system behavior can be prevented.
-
-Sorry but I really have to say that I have to NACK. Your interface is
-the kernel uAPI and not some NXP userspace library.
-
-An attacker could gain runtime system access and poke the ELE with
-arbitrary commands till he finds a fw-bug using the kernel uAPI (not
-your library of course).
-
-> > > > > * Linux HWRNG.
-> > > > > * Loading the secondary runtime fw.
-> > > >
-> > > > What is a secondary runtime-fw?
-> > > ELE FW size is larger than the size of ELE internal secure memory.
-> > > Hence FW is split into two.
-> > >
-> > > Primary FW, is the FW, that enables features that helps for SoC boot-up.
-> > > Secondary runtime FW, is the FW, that enables features like HSM.
-> > 
-> > Ah okay, thanks for the input.
-> > 
-> > > > To conclude this longly discussion:
-> > 
-> > ...
-> > 
-> > > > I still have mixed feeling about the fusing (including the 1-MU
-> > > > case), since it requires a secure-world OS in place once the LOCK_DOWN
-> > fuse was burned.
-> > > > It's fine by me if NXP wants to have and wants to maintain a multi-path
-> > here.
-> > >
-> > > Write fuse API will be added, to allow writing fuses from secure world
-> > > too.
-> > 
-> > This is a device life-cycle problem and if NXP decides to maintain multiple write
-> > paths, depending on the runtime-SoC state, this is fine by me.
-> > 
-> > What needs to be ensured is, that the fuse-issue doesn't exist for the 1-MU
-> > case (i.MX8ULP) as you said.
->
-> As said above "Write fuse API will be added, to allow writing fuses
-> from secure world too."
-> This will be true for 1 MU or multi-MU.
-
-In your previous mail you just said that there is no such issue with the
-write path. Now you say that the single-MU case needs the same
-workaround.. At least I have read it that way.
-
-> > > > Last but least, the uAPI which can be used to send arbitrary ELE
-> > > > commands seems unusual. But I don't know how secure-enclaves are
-> > > > abstracted within the kernel, so these are just my two cents.
-> > >
-> > > it's not unusual at all. The pattern of userspace sending commands
-> > > directly to the kernel via a queue is quite common like:
-> > >
-> > > GPUs: As you mentioned, userspace drivers (like those in Vulkan or
-> > > CUDA) often build command buffers and submit them directly to the
-> > > kernel or hardware.
-> > 
-> > That's right, but these drivers do at least some filtering on the OPs and check if
-> > they are allowed. According your patchset, you just write
-> > (se_if_fops_write()) the provided userspace buffer.
-> 
-> We are validating the buffer size against the size mentioned in the
-> buffer header.
-> Refer above comments for more details.
-> 
-> > > Secure Enclaves: In systems like Intel SGX or AMD SEV, userspace
-> > > applications interact with enclaves via ioctl or mmap interfaces,
-> > > often sending structured commands or messages.
-> > 
-> > What I'm aware of is, that most secure-enclaves are switching to the standard
-> > TPM API.
->
-> In case of NXP SoC with ELE HW IP, ELE is considered as on-SoC TPM. No
-> additional or external TPM is needed, if ELE is present on SoC.
-
-I said "TPM API" not "TPM device", may it be fTPM or dTPM. I think AMD
-switched to fTPM, so no special userspace-requirements must be
-fulfilled. However, this is also off-topic.
-
-Regards,
-  Marco
-
-
-> 
-> > 
-> > Regards,
-> >   Marco
-> > 
-> 
-> Regards
-> Pankaj
-> 
-
+diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt b/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
+deleted file mode 100644
+index a4e72e52af59..000000000000
+--- a/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-Nuvoton NPCM Peripheral Serial Peripheral Interface(PSPI) controller driver
+-
+-Nuvoton NPCM7xx SOC support two PSPI channels.
+-
+-Required properties:
+- - compatible : "nuvoton,npcm750-pspi" for Poleg NPCM7XX.
+-				"nuvoton,npcm845-pspi" for Arbel NPCM8XX.
+- - #address-cells : should be 1. see spi-bus.txt
+- - #size-cells : should be 0. see spi-bus.txt
+- - specifies physical base address and size of the register.
+- - interrupts : contain PSPI interrupt.
+- - clocks : phandle of PSPI reference clock.
+- - clock-names: Should be "clk_apb5".
+- - pinctrl-names : a pinctrl state named "default" must be defined.
+- - pinctrl-0 : phandle referencing pin configuration of the device.
+- - resets : phandle to the reset control for this device.
+- - cs-gpios: Specifies the gpio pins to be used for chipselects.
+-            See: Documentation/devicetree/bindings/spi/spi-bus.txt
+-
+-Optional properties:
+-- clock-frequency : Input clock frequency to the PSPI block in Hz.
+-		    Default is 25000000 Hz.
+-
+-spi0: spi@f0200000 {
+-	compatible = "nuvoton,npcm750-pspi";
+-	reg = <0xf0200000 0x1000>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pspi1_pins>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+-	clocks = <&clk NPCM7XX_CLK_APB5>;
+-	clock-names = "clk_apb5";
+-	resets = <&rstc NPCM7XX_RESET_IPSRST2 NPCM7XX_RESET_PSPI1>
+-	cs-gpios = <&gpio6 11 GPIO_ACTIVE_LOW>;
+-};
+diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.yaml b/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.yaml
+new file mode 100644
+index 000000000000..db0fb872020a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/nuvoton,npcm-pspi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton NPCM Peripheral SPI (PSPI) Controller
++
++maintainers:
++  - Tomer Maimon <tmaimon77@gmail.com>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++description:
++  Nuvoton NPCM Peripheral Serial Peripheral Interface (PSPI) controller.
++  Nuvoton NPCM7xx SOC supports two PSPI channels.
++  Nuvoton NPCM8xx SOC support one PSPI channel.
++
++properties:
++  compatible:
++    enum:
++      - nuvoton,npcm750-pspi # Poleg NPCM7XX
++      - nuvoton,npcm845-pspi # Arbel NPCM8XX
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++    description: PSPI reference clock.
++
++  clock-names:
++    items:
++      - const: clk_apb5
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/nuvoton,npcm7xx-reset.h>
++    #include "dt-bindings/gpio/gpio.h"
++    spi0: spi@f0200000 {
++        compatible = "nuvoton,npcm750-pspi";
++        reg = <0xf0200000 0x1000>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pspi1_pins>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clk NPCM7XX_CLK_APB5>;
++        clock-names = "clk_apb5";
++        resets = <&rstc NPCM7XX_RESET_IPSRST2 NPCM7XX_RESET_PSPI1>;
++        cs-gpios = <&gpio6 11 GPIO_ACTIVE_LOW>;
++    };
++
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+2.34.1
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
