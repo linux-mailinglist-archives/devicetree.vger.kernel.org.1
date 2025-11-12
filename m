@@ -1,104 +1,92 @@
-Return-Path: <devicetree+bounces-237593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773FBC52321
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:11:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87CD6C5234B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:13:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8FA294FD9AC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:01:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1588F4FE2B4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E006A3203BA;
-	Wed, 12 Nov 2025 11:57:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C6C315D2D;
+	Wed, 12 Nov 2025 11:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GEDuGhhc"
+	dkim=pass (2048-bit key) header.d=pegatron-corp-partner-google-com.20230601.gappssmtp.com header.i=@pegatron-corp-partner-google-com.20230601.gappssmtp.com header.b="WnhyXE4c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010015.outbound.protection.outlook.com [40.93.198.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96FD31D754;
-	Wed, 12 Nov 2025 11:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762948635; cv=fail; b=N5KV7LHOMmALuDYokHituJhzbNY1dfDmHi5aFi19aXY77VeXaeoY+7+Y2oolqBKdbDKGXkLSC5yWLR+jsxa6WmbyUwJL+tFhf+/a7YGsVGCTaPKRjDQDpftGbEU+x6N8J40lcojdF7xbB2dZIE/oMl9Ug7ZE+Xq+4gIg/FH+Tsc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762948635; c=relaxed/simple;
-	bh=Nr1PrbXwMuX0nSCp7TA9WI7crkAUq7SkOU9CyUX0UnY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Jm1AKnQB2jvhC0lon+ukK6JTBcQiYvgy5oGqwYLlyITia3dZyAfMvSiaCSNXUqhTVnuvuQMMcXLwLlZG3vBBGKq3YnHuIa+msqfhjcfU/Ko1y59zzfzQ05qVvcOKEC8SyvzD6p+QVzHVTff1hk1bZR/7NVdXTIAigPx3OC62s8s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GEDuGhhc; arc=fail smtp.client-ip=40.93.198.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RUgiG3UuQA+kUD0fsQJHF1l/vhl0nSj0yXSoxYSG+csq3Fb/h6Bs7v6O/V/lmJGZBTi0S1XzvGbXTaB2Zl+1TyeK9Y3Gl/TJH+UGaug2krV/QUoNTtQZc6/ANSE45IZaf1aCJ7xXfk9j8yBU3qzFF9xWM+sx8TmEGgk6qRETKJ7NnFzP3B/RY/Aw/lnxq2+OF+rqiIjr1GkD4Yp+DwcvrOYQi1r+3diqlSOvwU+y+EELmxUzLHE/q7t19AJ+5vwK/wOl9rNI22cXn8AxBchcsaqPsvbe7WwdhpBq5/6oc6J/icGux7T4vuCEKiJBXHO+GgsDINllepJfKMr2ao9QaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g0ywUqN8SSdsa3kItg25Z75RSMbsaix8dHLJhcXwP4E=;
- b=bLP7VttlMv6i4+U/v3x+vC8mdIUvRfkO8Yp6QrXTBXLHt7U2RxfKv/klLmYGRSmS5VYzxxxQzGUCviyASp1OaBTF2f1FiNpWJpLXpkZb5fkwplZAlanT0aHUuQ72SGL2pMnPV92sWOMUAhTV6kf17PWRdDIQMSWNPVnlKgvI4zhqhHpkcj7V3zakVlrXpmUfGKSZ6geK/svD3hmDy9O8SHKo/9azQYc8atPMJOKrrt6JqZiwopqFs8AO5r0sL/hvFRd9vga7nlpEka9+viLAIojkdA0495OaDYU9X26FN9rvjQu7Hnm0NEAA/YM7yI2POLfdQpHEpv6LJNiqENqsqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g0ywUqN8SSdsa3kItg25Z75RSMbsaix8dHLJhcXwP4E=;
- b=GEDuGhhcbeuP2Pqhik0r361/s49nT3N5dZSDjdGGdZBVYxTlU+W8vBeNUVP3znKpwPbv6J7vk1ZxXL/M/qPouzGuc10eQ3Mma+VG0k2YN6GPjRdf8s9YMBC/+156W0wuB4FzMDFq9tUnTtcZYYGWj7OAh77IhX4j/BvHtMbKINs=
-Received: from CH0PR03CA0262.namprd03.prod.outlook.com (2603:10b6:610:e5::27)
- by IA4PR10MB8588.namprd10.prod.outlook.com (2603:10b6:208:569::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.16; Wed, 12 Nov
- 2025 11:57:10 +0000
-Received: from CH2PEPF0000013D.namprd02.prod.outlook.com
- (2603:10b6:610:e5:cafe::de) by CH0PR03CA0262.outlook.office365.com
- (2603:10b6:610:e5::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.15 via Frontend Transport; Wed,
- 12 Nov 2025 11:57:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CH2PEPF0000013D.mail.protection.outlook.com (10.167.244.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Wed, 12 Nov 2025 11:57:09 +0000
-Received: from DLEE206.ent.ti.com (157.170.170.90) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 12 Nov
- 2025 05:57:06 -0600
-Received: from DLEE211.ent.ti.com (157.170.170.113) by DLEE206.ent.ti.com
- (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 12 Nov
- 2025 05:57:06 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE211.ent.ti.com
- (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 12 Nov 2025 05:57:06 -0600
-Received: from ws.dhcp.ti.com (ws.dhcp.ti.com [172.24.233.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ACBsxc82638977;
-	Wed, 12 Nov 2025 05:57:00 -0600
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-To: <jai.luthra@linux.dev>, <laurent.pinchart@ideasonboard.com>,
-	<mripard@kernel.org>
-CC: <r-donadkar@ti.com>, <y-abhilashchandra@ti.com>, <devarsht@ti.com>,
-	<s-jain1@ti.com>, <vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
-	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
-	<tomi.valkeinen@ideasonboard.com>, <jai.luthra@ideasonboard.com>,
-	<changhuang.liang@starfivetech.com>, <jack.zhu@starfivetech.com>,
-	<sjoerd@collabora.com>, <dan.carpenter@linaro.org>,
-	<hverkuil+cisco@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v8 18/18] media: ti: j721e-csi2rx: Support system suspend using pm_notifier
-Date: Wed, 12 Nov 2025 17:24:59 +0530
-Message-ID: <20251112115459.2479225-19-r-donadkar@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246342FD667
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762948757; cv=none; b=KKzLN5nZDrhh65zte8JcjPEQTFDRXIWr5oRblxPcIrYPIHG514NYaR8RtgCQol80Y31LoOeU6GijzGtUsEfGAq20RFHUJGZlcit98SgvLjMCAvXYuY4M0z5pXwsHREekzDlGA62CKttxZUjvGOYtfbveKCXuUvQCx9EZGwvpkeE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762948757; c=relaxed/simple;
+	bh=Y5lLKstGDY1Pc29kL/97w+SyWuyTuOT5IGfFDoH20aU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=b118CInC6EXTT8RLOdscjFyuaQYSNhUPENohG7CMPKsU6SCmQU1wYC5SJy4rOAkbYvsCUOfi1XvR2c41CGPnxL1B83zkrIpbL+TvOzTqU2bqPRXe5LHRNIZ/oxT9S8M0Oxdwf4aUeyIWM1H4NvfXSRkItIup4BhxGmqEgqOYIIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pegatron.corp-partner.google.com; spf=pass smtp.mailfrom=pegatron.corp-partner.google.com; dkim=pass (2048-bit key) header.d=pegatron-corp-partner-google-com.20230601.gappssmtp.com header.i=@pegatron-corp-partner-google-com.20230601.gappssmtp.com header.b=WnhyXE4c; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pegatron.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pegatron.corp-partner.google.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-343dfb673a8so626889a91.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 03:59:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pegatron-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1762948753; x=1763553553; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SiyOAeJRKTUJTKhEW85SIMSH5lByvfK0g14ZquI4Zkk=;
+        b=WnhyXE4cS+KrUFN6oKLxvqL1vu3lzZ17Q19eM/w/paLHfe22ndVA2iY16IXKW44LdR
+         d5kDrmTHqp/5Qfbn3w2YnNO2VyrV/vUOGRlmCe7Afmjl7NViyekmX6MWq7/sb8pkabvP
+         t5L3RPqA2Ga8W8NXWveFfYw5+1yAiDc6EAWJNnrVAtEjY8CmMUlgp4eJcqGGGaKf0Bwo
+         PZu9qMOaUGKTzpLySMhzGReZvwMMi144hbNMHJHzT/SspMXM1dTBug+FNYGHZ4PQ0B6s
+         8g6Wabi5ytfzM+ynCAcRvFo549Jo4u0eRVpaSK+6ahfghQatcn21MEJa0rRnQEAg3DFK
+         mqXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762948753; x=1763553553;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SiyOAeJRKTUJTKhEW85SIMSH5lByvfK0g14ZquI4Zkk=;
+        b=ww5ERGVwHTktWski7CIo/65GqKDVgNnQtHgnF18Oa8NwoP82QjkcJA6gTXQaQY0wr1
+         4d83nRdLm4jV7ntvl06nuPngY8l9gZ93x/CRjDsZ3o2/TZHUOPKUBTjB+TKmlemtyeWq
+         1vOwSxW2Qe93YijqIQfcmkecl3ccCs9nTWWMbR8M9EZlZ8k6U/iB1ZfTVDCgH9pi1QXk
+         QKlJ23uuqN9ye13v4PJgIddeV3yMIB6wfNFtB53OrPSledhb6hk6JbNFt7IxsqbaRRqW
+         7mlFZFx+65XzORZuuOD4x8svg1ZS/M/UI7Qm4+7QFF7+EErrhM8VZvENLsbx+2rYLNvl
+         d5ow==
+X-Forwarded-Encrypted: i=1; AJvYcCVhw7atlVAjLcfuFYiG0/34J5rYlEA+4ea0hDxqdaaZc8rb+Ny3+G2n51/GZCzaC6+xsZJSBuMezD6p@vger.kernel.org
+X-Gm-Message-State: AOJu0YzllvE9TH4743bKCqVid/IwaEb5/IJuQvNXFGsfStthHECE4y/a
+	XWt0n8M6Ia9V/ERtSRz3EM3EmflF8YfzThO8hTNBTQgNj29IAQz6ocWs35KgMubkjg==
+X-Gm-Gg: ASbGncs9NpMoLThw4PHOBeyu+FqchdH5du91i1L8IRFmSvF8/5KXVr1eS3ZdZX+LjsS
+	NzHW94j51LMaV7fYOonrpn13+qqpXqe7TJ3v5DwXG6loI27wNmSj35Bfrqho4b0zDMulQnuc6kM
+	JCjqv6Fc/usnZeMVUllLDg4tz6hLyhQTujYpNphphbCF4fUQGIg1hrzcgYlxZWb/KI+i2N+SX2N
+	edWK4fF2HqAPfxFPNu+oRFilrGz0gh++rYNVp85yvoniGIbXdtAhlt2ssbrRVICyMudYsNSHUyI
+	VlrgPzyV6hGbfLd6aP9Jn2pnNaRAnh/PZ0z+EAmgAFnmU0NESrUP70Jixbkhhx19IxcSnHFG95B
+	glgNzFNIdVDjKMMsEuP3/R1tfWckaRBhPbZb3D1gh3uxm8P0+V2UqMJIVhiueSk+L1LlBNuTgrB
+	o1jAJw/o7MdjdNFdiFX2J5qu5KRXo2HFp7K6+VI8uQrx4r16Oe/7m0c26NV9KG7MNQikj2g/R4y
+	6ZbOeEtA2M7Ht4nj2fN9DW17jQ4J6ROdki2qSsg0ARCsLwdCsiHrHxad6Y=
+X-Google-Smtp-Source: AGHT+IEPODYI5DGv5mdJrYei+FpqFhn1kolGZ3QnlSCdtH16SEj6/23l5FhErEzEnnmFa3KvBD4vgA==
+X-Received: by 2002:a17:90b:1808:b0:341:88ba:bdda with SMTP id 98e67ed59e1d1-343ddeccff4mr3337075a91.31.1762948753355;
+        Wed, 12 Nov 2025 03:59:13 -0800 (PST)
+Received: from sw-TUF-Gaming-FX505GU-FX505GU.. (2001-b400-e2ac-65d6-840d-05d3-e7aa-72e2.emome-ip6.hinet.net. [2001:b400:e2ac:65d6:840d:5d3:e7aa:72e2])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b2c83906e5sm14278922b3a.71.2025.11.12.03.59.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 03:59:13 -0800 (PST)
+From: daniel_peng@pegatron.corp-partner.google.com
+X-Google-Original-From: Daniel_Peng@pegatron.corp-partner.google.com
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-input@vger.kernel.org
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: input: i2c-hid: Introduce FocalTech FT8112
+Date: Wed, 12 Nov 2025 19:59:04 +0800
+Message-Id: <20251112195751.v3.1.I894dde5015f4acad94cb5bada61e5811c5142395@changeid>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251112115459.2479225-1-r-donadkar@ti.com>
-References: <20251112115459.2479225-1-r-donadkar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,250 +94,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000013D:EE_|IA4PR10MB8588:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4496a03-d470-4e85-1571-08de21e29bd9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|7416014|376014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?zirHu1hraz5Bf7h2gOH4qf2nNkHylwE2P9hV+0Q0L9Tdxy9Y9bqb+EjxTBj3?=
- =?us-ascii?Q?LVlipqyCTaOfXtCIjS0gTjFWRGvXLXsE0OASH/4RIDOEj6n9oix+GOPfp1QM?=
- =?us-ascii?Q?730AxYTQTM13qOfY5a7PmhAnCPT+sbs3/GPwU4YkHHLrvliBZ6qTa/ztXFwW?=
- =?us-ascii?Q?4sFMK8gQq38s7jWsT1WmZbsFK+8JEJ1P0ZVYeWppHjikGYnffBdzSb3oZeZZ?=
- =?us-ascii?Q?MTqmrdbKKZFQYGPm89EmaDHJg4i91178IUqUiBuN7/7VBRy2ewDFAMsrhhB8?=
- =?us-ascii?Q?M8oQC90vRpMOs/BuwZSaFlF4B0Y5itNzyeNMaZ/nfoBNod6UTF9zjDtTVMLx?=
- =?us-ascii?Q?TkBcjvzYXjYgm2cy3XUWZRCG2hPabECPeE1PuOMhe42LnCkoikcv/7RypFfe?=
- =?us-ascii?Q?6D9FdSXS5ON/Sio3VvMPPuTL7LTEYou8Nm9DsM9JMVRCz/Qc/FvKyyq1xH4D?=
- =?us-ascii?Q?rXBoDCyfeMO39jio+baPk4wrcicI9Wd62uyEXwfYYBc86WStQzVRrsENGwzX?=
- =?us-ascii?Q?RogKTZ9SVygFWn/wdz5WGgJy/Bvarr8mtLarbBIWlRIXdUHeHEDTcAElGGA3?=
- =?us-ascii?Q?4KNke9/dE9Sbeo/gNywDTu1q5ESeOYIk19G4tXHSkS7gpUFHQuOrLWjqQfCk?=
- =?us-ascii?Q?1uvsrSr4ti7V1dx9bhZw/sMhWL9h3HER0ADfpka2+fadO0/TTlXuqQYXFaVy?=
- =?us-ascii?Q?9rmksz40VDqOSqHDmINdqHsEW9cKpVgjwc5+c07v+o8X1SFAaLwWtoUFyrEf?=
- =?us-ascii?Q?wta3g9zkIb//VECbcNRIH8MO7AyE55ww299ERXRuY/PaZTLn9hKfYAdCZvgl?=
- =?us-ascii?Q?1rawPY10zpd5LR8HzEvX9CvpxONGM6lqJFPEQgOKMOtrgR6WqeqDcTtLPH65?=
- =?us-ascii?Q?/+i7terrwwmEJTJ70UEMzskHko723UH/rQC8Q9aerMNeQxAAZQKgT2iXMByV?=
- =?us-ascii?Q?73921chgXYpsFC/rMc3+9w+lDDMhpD7is/DECR/cZj7ojpTHT2G1Q/qdG2fs?=
- =?us-ascii?Q?UCnOHNwY3yneMH3wJqMUi7wIx7wXUFY0tCZCI/kV75IfpXJk9DGHX0a24BfZ?=
- =?us-ascii?Q?RB9jlTkbTayryo6AFP2TgJ4bkWwgZZ5QbqPJDPwrhgKIn9lRN3Xy1RRRNf5a?=
- =?us-ascii?Q?hn5eQGqTLLclLCCg1WAOsJJVNDPXuMoTVDR4Ogec+VIo3OIdCoLGStGPz2MM?=
- =?us-ascii?Q?bJdWawy8uqJ6P240JcormuIGLUttEk5uxMAwRqL734UK7a6RGiJotDkyX2lm?=
- =?us-ascii?Q?gnS2OV/Dviz4xUynBaTolLRbDrCnorg5QdBWIKKvao7Qtc8rteG5qIL4SSPG?=
- =?us-ascii?Q?taJc39gBrPTIDZ2gXYSoQfXd8zE1Nhg9IxZrmUvZ9QJQ/ca1a3ka2Hhebjxu?=
- =?us-ascii?Q?ZNzltE5oFPMmd+RwaVZJQNM+0DDIt3MVDBybTkHalO0q0W61wOJzPNFfZY30?=
- =?us-ascii?Q?L+JVY3KGc/N2kXrl6+axnwWcrEJdFdWIc31pI0NQEdcfnVNLJCKaKZ+KYO/g?=
- =?us-ascii?Q?Gj4VfsYUGH8k6yaCjrXuTVhPD7z2IRhYKfPGmWLXOFxQIYRWE1RpEnOc1+xz?=
- =?us-ascii?Q?j4FrEGxi05UnImx9704=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2025 11:57:09.3422
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4496a03-d470-4e85-1571-08de21e29bd9
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH2PEPF0000013D.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR10MB8588
 
-From: Jai Luthra <jai.luthra@ideasonboard.com>
+From: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
 
-As this device is the "orchestrator" for the rest of the media
-pipeline, we need to stop all on-going streams before system suspend and
-enable them back when the system wakes up from sleep.
+The FocalTech FT8112 touch screen chip same as Ilitek ili2901 controller
+has a reset gpio. The difference is that they have different
+post_gpio_reset_on_delay_ms.
+FocalTech FT8112 also uses 3.3V power supply.
 
-Using .suspend/.resume callbacks does not work, as the order of those
-callbacks amongst various devices in the camera pipeline like the sensor,
-FPD serdes, CSI bridge etc. is impossible to enforce, even with
-device links. For example, the Cadence CSI bridge is a child device of
-this device, thus we cannot create a device link with the CSI bridge as
-a provider and this device as consumer. This can lead to situations
-where all the dependencies for the bridge have not yet resumed when we
-request the subdev to start streaming again through the .resume callback
-defined in this device.
+Signed-off-by: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
+- Modified the subject description.
+- Modified maintainers to myself of this binding file.
+- Fixed the extra '>' on section of "interrupts = <15 IRQ_TYPE_LEVEL_LOW>;" and confirm command 'make dt_binding_check' correctly.
+- Restored MAINTAINERS file.
 
-Instead here we register a notifier callback with the PM framework
-which is triggered when the system is fully functional. At this point we
-can cleanly stop or start the streams, because we know all other devices
-and their dependencies are functional. A downside of this approach is
-that the userspace is also alive (not frozen yet, or just thawed), so
-the suspend notifier might complete before the userspace has completed
-all ioctls, like QBUF/DQBUF/STREAMON/STREAMOFF.
-
-Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
 ---
- .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 128 ++++++++++++++++++
- 1 file changed, 128 insertions(+)
 
-diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-index 21e032c64b901..dd47758d51a90 100644
---- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-+++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-@@ -131,6 +131,7 @@ struct ti_csi2rx_dev {
- 	struct v4l2_subdev		*source;
- 	struct v4l2_subdev		subdev;
- 	struct ti_csi2rx_ctx		ctx[TI_CSI2RX_MAX_CTX];
-+	struct notifier_block		pm_notifier;
- 	u8				pix_per_clk;
- 	/* Buffer to drain stale data from PSI-L endpoint */
- 	struct {
-@@ -1550,6 +1551,124 @@ static int ti_csi2rx_runtime_resume(struct device *dev)
- 	return 0;
- }
- 
-+static int ti_csi2rx_suspend(struct device *dev)
-+{
-+	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-+	enum ti_csi2rx_dma_state state;
-+	struct ti_csi2rx_ctx *ctx;
-+	struct ti_csi2rx_dma *dma;
-+	unsigned long flags = 0;
-+	int i, ret = 0;
+(no changes since v1)
+
+ .../bindings/input/focaltech,ft8112.yaml      | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/focaltech,ft8112.yaml b/Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
+new file mode 100644
+index 000000000000..197f30b14d45
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/focaltech,ft8112.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/* If device was not in use we can simply suspend */
-+	if (pm_runtime_status_suspended(dev))
-+		return 0;
++title: FocalTech FT8112 touchscreen controller
 +
-+	/*
-+	 * If device is running, assert the pixel reset to cleanly stop any
-+	 * on-going streams before we suspend.
-+	 */
-+	writel(0, csi->shim + SHIM_CNTL);
++maintainers:
++  - Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
 +
-+	for (i = 0; i < csi->num_ctx; i++) {
-+		ctx = &csi->ctx[i];
-+		dma = &ctx->dma;
++description:
++  Supports the FocalTech FT8112 touchscreen controller.
++  This touchscreen controller uses the i2c-hid protocol with a reset GPIO.
 +
-+		spin_lock_irqsave(&dma->lock, flags);
-+		state = dma->state;
-+		spin_unlock_irqrestore(&dma->lock, flags);
++allOf:
++  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
 +
-+		if (state != TI_CSI2RX_DMA_STOPPED) {
-+			/* Disable source */
-+			ret = v4l2_subdev_disable_streams(&csi->subdev,
-+							  TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-+							  BIT(0));
-+			if (ret)
-+				dev_err(csi->dev, "Failed to stop subdev stream\n");
-+		}
++properties:
++  compatible:
++    enum:
++      - focaltech,ft8112
 +
-+		/* Stop any on-going streams */
-+		writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
++  reg:
++    maxItems: 1
 +
-+		/* Drain DMA */
-+		ti_csi2rx_drain_dma(ctx);
++  interrupts:
++    maxItems: 1
 +
-+		/* Terminate DMA */
-+		ret = dmaengine_terminate_sync(ctx->dma.chan);
-+		if (ret)
-+			dev_err(csi->dev, "Failed to stop DMA\n");
-+	}
++  panel: true
 +
-+	return ret;
-+}
++  reset-gpios:
++    maxItems: 1
 +
-+static int ti_csi2rx_resume(struct device *dev)
-+{
-+	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-+	struct ti_csi2rx_ctx *ctx;
-+	struct ti_csi2rx_dma *dma;
-+	struct ti_csi2rx_buffer *buf;
-+	unsigned long flags = 0;
-+	unsigned int reg;
-+	int i, ret = 0;
++  vcc33-supply: true
 +
-+	/* If device was not in use, we can simply wakeup */
-+	if (pm_runtime_status_suspended(dev))
-+		return 0;
++  vccio-supply: true
 +
-+	/* If device was in use before, restore all the running streams */
-+	reg = SHIM_CNTL_PIX_RST;
-+	writel(reg, csi->shim + SHIM_CNTL);
++required:
++  - compatible
++  - reg
++  - interrupts
++  - vcc33-supply
 +
-+	for (i = 0; i < csi->num_ctx; i++) {
-+		ctx = &csi->ctx[i];
-+		dma = &ctx->dma;
-+		spin_lock_irqsave(&dma->lock, flags);
-+		if (dma->state != TI_CSI2RX_DMA_STOPPED) {
-+			/* Re-submit all previously submitted buffers to DMA */
-+			list_for_each_entry(buf, &ctx->dma.submitted, list) {
-+				ti_csi2rx_start_dma(ctx, buf);
-+			}
-+			spin_unlock_irqrestore(&dma->lock, flags);
++additionalProperties: false
 +
-+			/* Restore stream config */
-+			ti_csi2rx_setup_shim(ctx);
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
 +
-+			ret = v4l2_subdev_enable_streams(&csi->subdev,
-+							 TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-+							 BIT(0));
-+			if (ret)
-+				dev_err(ctx->csi->dev, "Failed to start subdev\n");
-+		} else {
-+			spin_unlock_irqrestore(&dma->lock, flags);
-+		}
-+	}
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
 +
-+	return ret;
-+}
++      touchscreen@38 {
++        compatible = "focaltech,ft8112";
++        reg = <0x38>;
 +
-+static int ti_csi2rx_pm_notifier(struct notifier_block *nb,
-+				 unsigned long action, void *data)
-+{
-+	struct ti_csi2rx_dev *csi =
-+		container_of(nb, struct ti_csi2rx_dev, pm_notifier);
++        interrupt-parent = <&pio>;
++        interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
 +
-+	switch (action) {
-+	case PM_HIBERNATION_PREPARE:
-+	case PM_SUSPEND_PREPARE:
-+	case PM_RESTORE_PREPARE:
-+		ti_csi2rx_suspend(csi->dev);
-+		break;
-+	case PM_POST_SUSPEND:
-+	case PM_POST_HIBERNATION:
-+	case PM_POST_RESTORE:
-+		ti_csi2rx_resume(csi->dev);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
- static const struct dev_pm_ops ti_csi2rx_pm_ops = {
- 	RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resume,
- 		       NULL)
-@@ -1622,6 +1741,13 @@ static int ti_csi2rx_probe(struct platform_device *pdev)
- 		goto err_notifier;
- 	}
- 
-+	csi->pm_notifier.notifier_call = ti_csi2rx_pm_notifier;
-+	ret = register_pm_notifier(&csi->pm_notifier);
-+	if (ret) {
-+		dev_err(csi->dev, "Failed to create PM notifier: %d\n", ret);
-+		goto err_notifier;
-+	}
-+
- 	pm_runtime_set_active(csi->dev);
- 	pm_runtime_enable(csi->dev);
- 	pm_request_idle(csi->dev);
-@@ -1652,6 +1778,8 @@ static void ti_csi2rx_remove(struct platform_device *pdev)
- 		ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
- 
- 	ti_csi2rx_cleanup_notifier(csi);
-+	unregister_pm_notifier(&csi->pm_notifier);
-+
- 	ti_csi2rx_cleanup_v4l2(csi);
- 	mutex_destroy(&csi->mutex);
- 	dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
++        reset-gpios = <&pio 126 GPIO_ACTIVE_LOW>;
++        vcc33-supply = <&pp3300_tchscr_x>;
++      };
++    };
 -- 
 2.34.1
 
