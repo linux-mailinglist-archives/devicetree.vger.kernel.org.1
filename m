@@ -1,132 +1,251 @@
-Return-Path: <devicetree+bounces-237463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 668A4C5147A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:09:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC01DC514C0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:13:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AD37F4EBAFD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:03:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B54C43BC6DC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1532B2FE048;
-	Wed, 12 Nov 2025 09:03:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B9D62FE58F;
+	Wed, 12 Nov 2025 09:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cafYFwJz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mpGYL0EE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7732FE045;
-	Wed, 12 Nov 2025 09:03:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 916102FDC39;
+	Wed, 12 Nov 2025 09:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762938200; cv=none; b=q4LC4B01NkhiXaOJXA8K8Rx9kH0ZgWar3hVT1gS4+SdntpABXZ3VqPQQt3ZBRAppayo9/1Wau0qPE3ymAUKDFCQh/3m3LM+wMutCBA219uNpABmjsdwUYVKQ/hvh5QaorjFIFk3gVsT241bjc2LI/AoSTnvNV4k0fhsDsl/Y7dA=
+	t=1762938217; cv=none; b=ZAVA9VQCpRRfGWYeiARBkxnuF0cjY+KrsIymYWZs9v/ur//VXJ+CzhfMU+3C+RVdA2T7KbUrnTSl4vO4IJyWP2Ooys4m1VNI5NcDsI4OjKNgfYLzQUJpB+ikF049Hde59msZ6YyQhJ6mWzri88R0KUO6EQOmg5d2fDImqSSILaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762938200; c=relaxed/simple;
-	bh=Z1rlKCk1Nhe5K59waoJFbh/idsdRsU7TIzVadeX5qdU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fh0+8Ll+zfZJ55i1tebESyzIRWMXZ0hUEfaCEww9JEU9tWkxD/c2TlUj1U/EITreduRyjoztY+gbcWk6FkVgQIZY99RvjuqpkUmUib0YTMuV/N9IrSJBS16AMoJ5L+r9HRG3GtXPltPBMRr39SCH/phSNWGs1oweSrHwuJx8oRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cafYFwJz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F38BFC4CEF7;
-	Wed, 12 Nov 2025 09:03:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762938199;
-	bh=Z1rlKCk1Nhe5K59waoJFbh/idsdRsU7TIzVadeX5qdU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cafYFwJzYP5/1Fu5Hx/SsZUQCu2JEhXDblxOClIhiZu7RiOotzbgpvcPVgvQ7I0GK
-	 JNxaPJAng8kO+nfWF3wuJyGAtgH/lzG0S6/cV6vughryDF4O+8io6cWtmS3okNnOlN
-	 PlocZLGs/NlqqidcLcDxi1bKli8gRSRa3LBY+T0jQnZe67BerUr/W7Rby4xCACPfZ/
-	 zj3WN1leOW4sRk3BxfOrmgVNzCw2T27OPv6xq/9+EdUt317zYr++DmbCNFuBdp8pvs
-	 SajREaQLjT/XW/EpN1IDuQwf+04HIakOplP5Dj45oziIcx5dFsDd12uczSaMZNe3HN
-	 Yu+kUUrhmMorA==
-Message-ID: <6ec14b05-4427-4bf0-9a19-1e22c4ae7176@kernel.org>
-Date: Wed, 12 Nov 2025 10:03:15 +0100
+	s=arc-20240116; t=1762938217; c=relaxed/simple;
+	bh=txFpmIdhDx/Q/DSrOD/q29y2aMbwAGswhKDCJZW9o0o=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=erB9ghDe80CFoYcLwyN0ngxoBtRhb561JENfS9ZgqW+YYwBBrcfGCE4Q3zzMsZjWIWBA+NPz8GsTdFGMfyKC5tlMT3NvWEW34LLUYG57nNkll2hbuE5lDyIieOn6Ax0kW52lLAMcgsxUUH2nWm8k238w1zxiyPuV8oFeZkVgNRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mpGYL0EE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC1iCbH4076902;
+	Wed, 12 Nov 2025 09:03:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=IUFT0z23+i3
+	ue8LqgRdaBNM5idwojLC1bky4XOv4j8I=; b=mpGYL0EEEnpCiLoxAGWJ2IaK6bJ
+	5+v1vVn+ToMpSgJITtB+x5r4Z4poML270IK/8y4zUIMSsjiD0UKnyN5rQZdnpSNv
+	ydhg/4TOBTwUgXuPS0+mcXWjaTFI1jRthMcAR1gKxyhoYxgGTtoBfJYhyeCaLU0y
+	gxmroYTTqaCsxluuQBoBNJ0MgsNomKKpI1fyVdNaClCV/58vLv7/leCdUvXz959Z
+	1OICr555vAKRIptXiTp5mQDBKYSxRCqbsyFWNroEv3tfgR2Cnb4qTpDVnEr4KQjh
+	ybDXJVuXyZWBh4X5sjzNtE/cU/lnRcs9I1SxmRT364UhceC/45Lgc6yfi9w==
+Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acguah4c0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Nov 2025 09:03:24 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5AC93L5h010909;
+	Wed, 12 Nov 2025 09:03:21 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 4a9xxmeqsb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Nov 2025 09:03:21 +0000
+Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5AC93LP4010903;
+	Wed, 12 Nov 2025 09:03:21 GMT
+Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 5AC93KMg010902
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 12 Nov 2025 09:03:21 +0000
+Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
+	id 7A309792; Wed, 12 Nov 2025 17:03:19 +0800 (CST)
+From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
+        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+        kw@linux.com
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
+        krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+        Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Subject: [PATCH v3 2/2] arm64: dts: qcom: Add PCIe3 and PCIe5 regulators for HAMAO-IOT-EVK board
+Date: Wed, 12 Nov 2025 17:03:16 +0800
+Message-Id: <20251112090316.936187-3-ziyue.zhang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251112090316.936187-1-ziyue.zhang@oss.qualcomm.com>
+References: <20251112090316.936187-1-ziyue.zhang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: keystone: add boot_* mboxes to
- ti,sci
-To: Anshul Dalal <anshuld@ti.com>, Nishanth Menon <nm@ti.com>,
- Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
-References: <20251112-k3_syscon_add_boot_mailboxes-v2-0-aebc1e47b391@ti.com>
- <20251112-k3_syscon_add_boot_mailboxes-v2-2-aebc1e47b391@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251112-k3_syscon_add_boot_mailboxes-v2-2-aebc1e47b391@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: N_y0qKtyRZlquWxBoVDhzcLz1ltm4V-j
+X-Authority-Analysis: v=2.4 cv=ao2/yCZV c=1 sm=1 tr=0 ts=69144d5d cx=c_pps
+ a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=qQkGquXN9PvF_GGjQ98A:9 a=nl4s5V0KI7Kw-pW0DWrs:22 a=pHzHmUro8NiASowvMSCR:22
+ a=xoEH_sTeL_Rfw54TyV31:22
+X-Proofpoint-ORIG-GUID: N_y0qKtyRZlquWxBoVDhzcLz1ltm4V-j
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDA3MCBTYWx0ZWRfXzBaDO2yB6HtN
+ +OMe3qhDT8IL8CaeJRQBY/GSLqJQZRMJsDhXDTsdNkmj5hBzG5hATKIcicGkDkxvP89Whc1d0OA
+ Uemk7IM0dVcnMfxMIq8WJ9RBz+EGSL1jALlkUIiBx6jMeLvloTaUo9fIGqogrDR9ZFooWbaTX3C
+ R0jAG60J/9yfoiRrnlvJ7aqHm1Ojv6eBuWXo44uZxmTjoCSWdS7gpDeSd0UqTAR6ogymX9WrTXP
+ 8cWRir1Eb2O/qpbGCfKdGWW9flF/01ygLXvPfhbZQO7ZlIavrp8/dMPlrgN2VrfpxNzWBQTQnyv
+ MdM+o38/xGi7Vbw1a45rQw5zlL61ykXPZl0PbrbGnQcKIvQmigXDyL8S94zN8igtMmOErPeO3qT
+ T8fc2EL1B/dU3YULqV2SLSDHCVhMiQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-12_03,2025-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 spamscore=0 phishscore=0 adultscore=0
+ priorityscore=1501 impostorscore=0 malwarescore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511120070
 
-On 12/11/2025 09:30, Anshul Dalal wrote:
->    ti,host-id:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> @@ -128,3 +137,14 @@ examples:
->          #reset-cells = <2>;
->        };
->      };
-> +
-> +  - |
-> +    sms: system-controller@44083000 {
-> +      compatible = "ti,am654-sci";
+HAMAO IoT EVK uses PCIe5 to connect an SDX65 module for WWAN functionality
+and PCIe3 to connect a SATA controller. These interfaces require multiple
+voltage rails: PCIe5 needs 3.3V supplied by vreg_wwan, while PCIe3 requires
+12V, 3.3V, and 3.3V AUX rails, controlled via PMIC GPIOs.
 
-I asked to update the example. THE example, existing example, not adding
-new example or examples.
+Add the required fixed regulators with related pin configuration, and
+connect them to the PCIe3 and PCIe5 ports to ensure proper power for the
+SDX65 module and SATA controller.
 
-You claim in this patch that EVERY device has 6 mailboxes, so I do not
-understand why you need new example.
+Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Reviewed-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 83 ++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+index 36dd6599402b..ac17f7cb8b3d 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
++++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+@@ -199,6 +199,48 @@ vreg_nvme: regulator-nvme {
+ 		regulator-boot-on;
+ 	};
+ 
++	vreg_pcie_12v: regulator-pcie-12v {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_PCIE_12V";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++
++		gpio = <&pm8550ve_8_gpios 8 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&pcie_x8_12v>;
++		pinctrl-names = "default";
++	};
++
++	vreg_pcie_3v3: regulator-pcie-3v3 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_PCIE_3P3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&pmc8380_3_gpios 6 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&pm_sde7_main_3p3_en>;
++		pinctrl-names = "default";
++	};
++
++	vreg_pcie_3v3_aux: regulator-pcie-3v3-aux {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_PCIE_3P3_AUX";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&pmc8380_3_gpios 8 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&pm_sde7_aux_3p3_en>;
++		pinctrl-names = "default";
++	};
++
+ 	/* Left unused as the retimer is not used on this board. */
+ 	vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
+ 		compatible = "regulator-fixed";
+@@ -844,6 +886,16 @@ &mdss_dp3_phy {
+ 	status = "okay";
+ };
+ 
++&pcie3_port {
++	vpcie12v-supply = <&vreg_pcie_12v>;
++	vpcie3v3-supply = <&vreg_pcie_3v3>;
++	vpcie3v3aux-supply = <&vreg_pcie_3v3_aux>;
++};
++
++&pcie5 {
++	vddpe-3v3-supply = <&vreg_wwan>;
++};
++
+ &pcie6a {
+ 	vddpe-3v3-supply = <&vreg_nvme>;
+ };
+@@ -868,6 +920,17 @@ usb0_3p3_reg_en: usb0-3p3-reg-en-state {
+ 	};
+ };
+ 
++&pm8550ve_8_gpios {
++	pcie_x8_12v: pcie-12v-default-state {
++		pins = "gpio8";
++		function = "normal";
++		output-enable;
++		output-high;
++		bias-pull-down;
++		power-source = <0>;
++	};
++};
++
+ &pm8550ve_9_gpios {
+ 	usb0_1p8_reg_en: usb0-1p8-reg-en-state {
+ 		pins = "gpio8";
+@@ -879,6 +942,26 @@ usb0_1p8_reg_en: usb0-1p8-reg-en-state {
+ 	};
+ };
+ 
++&pmc8380_3_gpios {
++	pm_sde7_aux_3p3_en: pcie-aux-3p3-default-state {
++		pins = "gpio8";
++		function = "normal";
++		output-enable;
++		output-high;
++		bias-pull-down;
++		power-source = <0>;
++	};
++
++	pm_sde7_main_3p3_en: pcie-main-3p3-default-state {
++		pins = "gpio6";
++		function = "normal";
++		output-enable;
++		output-high;
++		bias-pull-down;
++		power-source = <0>;
++	};
++};
++
+ &pmc8380_5_gpios {
+ 	usb0_pwr_1p15_reg_en: usb0-pwr-1p15-reg-en-state {
+ 		pins = "gpio8";
+-- 
+2.34.1
+
 
