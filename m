@@ -1,138 +1,149 @@
-Return-Path: <devicetree+bounces-237753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE445C53932
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:05:25 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B2EC5390B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:03:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 097AF4214EE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:52:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9A8F93427D2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:01:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3531934253C;
-	Wed, 12 Nov 2025 16:52:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jO46oGgS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E442D73B0;
+	Wed, 12 Nov 2025 17:01:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D21623B628
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 16:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86A228697
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 17:01:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762966360; cv=none; b=KCyBripVsr46jsJSDvM5Bws2VSwDhZGkqiYAB8zO/t0ekWUlIBHdlyAeu0bB1pe6rjye4q0VXl7lh+QS6f4okMh1JLa8AlWG8JSLYZrr0vvRXj+HNwpyCSnytOpoyoGSmESApSYnY3CF1H3sq4WlPTCFdQrDj7kBVerYukrtY00=
+	t=1762966876; cv=none; b=LYdLqkzneqkAVJMtWQqD3z/EB1MwnwFPWAIyTDMsM5xqaHyBBKKzVvTTjMRh3+8CV2+b+k3xI/DYhLEox8c4rllAgTf6NAAUvT8AJNt2CqHTlI65aw5WsjyZ7DzOSr6P3hBLdow0FzSmpqVNaXAJwfJ0i/dGZAjQcekNShPH9XU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762966360; c=relaxed/simple;
-	bh=vquyA6U0yVLVU87ffFxSvxSxY4DbgBQ5yYCH68Wc3l4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jRjG/kAYtmDzlm/7y1LOHEO5Y5tETgv6TejlRrlrbkZ9kfe+uNqjqN3hPbxgU6pNcZ81qcPj8uUIvucDfIpNRlF1Kr+BOdDCoH93c3OrLRpLmnE6m8AgVidt/d6Wei2l4lRZ6d43hajfnURH+yzRRI/E67uKrpD9LQAmiAplSsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jO46oGgS; arc=none smtp.client-ip=209.85.161.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-653652a4256so463321eaf.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:52:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1762966356; x=1763571156; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=otKN6HaBW7TeFZXmhol1N0rafttZcw0ehXIldHQZRQU=;
-        b=jO46oGgS/vM3MXXYczpi4QHmtXP4ZJ6G9q+Sfnq2whfaApDS5crM9wQfMGl7pYGSSF
-         kS5DX/Ko2AXyYeJ1cwm2qjGLv6RlMafrr5J1cXTVxvacrsR6SW2gT6knsOQdYZAO6zSY
-         d9Cgmf99MFjOpBDPnWQ8BW8GwOun1+B8s7WWmDVNjto8kTwxkkntu4+H/CsBP0F/arPK
-         2Ry3hfnAzVIGT8YeflrPx+6zEc3djCRx3Vonriz2hNiJKY9YXrPjki+5youDgXgRqU+L
-         twTzmcbLFregOVEXAm2a6AA1Vr0EaauKeBWqhA9Z1OTTlndzLeM2pdXl5x8Hz8/KaHQC
-         9JdA==
+	s=arc-20240116; t=1762966876; c=relaxed/simple;
+	bh=vKzJGeF4YKf07MSl7Wfxofmo26UplM6I0vKinTzU5Bk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e/ApniP4LIvdPVyDEIY4uHNpefxiwVLxZA5GTb1wzGKLw/XN4CY1VmE/22UcAln2qD9xbERLUJl13b0QtspEideZtZKs3wTwdKKAsEzzm5BTTMlA+RH/bA/Mt5VjPE+/BLt2bE67zfAM7aOJLNJSU+pvDiwz3g37ROoT8bg7XJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-559748bcf99so832739e0c.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:01:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762966356; x=1763571156;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=otKN6HaBW7TeFZXmhol1N0rafttZcw0ehXIldHQZRQU=;
-        b=lr5q/nRRPFcr9ee+AcsqWdpzzShlgSk91yLVm9FzwQSLqRT8Yq4bw9NRRP05c7c+g+
-         BCPiYC18Dytgkn4nnM2J3Ot2YSkg7tNnSGiS5rBOrpeS0X7XzDQyqQZq06hvasfNLzty
-         cP/qkykZRSKuAL7XYEd39Z03TGhQXFPz1s2Z6aXhriUJ2xJ8C0UmIy3FId1b7DS8rJYU
-         YfAKibOhZnDeUkKaUGKJ794i9ohJIStwph1frqo3sAi4U5Mve5DO3G4IBfUDd7xNTsI1
-         GI/FAVexFsCT8K2no9bBAIpDvKOxz+TArKLXprszDd3j51vEIeP9kaOT9+7vfgxiL4Xf
-         2h9A==
-X-Forwarded-Encrypted: i=1; AJvYcCU8tnKxvIGIexdBiSYzyLa972k3f+753Ye1iXjfGZtyN3BmY3mV4k3xqg9LO8EuTPcFJAwI0WRScXPf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPP0RZzXgnS3209GJWmS6iLEtlDLeqioi2LIbvcNZB1Cuedp33
-	TsIq0MkS6aCHIGVgoMndGTkUigYlG97Q5u0YprMe8neaHc70oQICR8RbMCRDy/IosIM=
-X-Gm-Gg: ASbGnctPeyl9wVTukv8B0KftnpnaesmYhLWv+/i0mlZkdol/2pwa8Kl0JAxy/vTu3Kz
-	Lrbp6kD/MkbQtr7RFWNP2vM6aPYPbQSbPcffEdApcXfE/nzGxC4P8ULfFZvl8dfSwUZi0c2MBot
-	zKGXbJ8qsewtdwzJoWnbjRbGbLFBsl3qPRwuLqkWu10y5tobVTV9PHSubb77VlhteJgD7rhAIiQ
-	FPDuzs/1xqfFS6N61BlSifTP7jVT8c4sp7JtkP2pmrx/yrH04ZoABP9Wrm31zGxYgVwK/Bi475u
-	+V5iGMX3poLLIH3/l6/ioDhYWdU0Xdus98S5QlCDT51V+UaQT6W5N84Ysrb0f2FdkSNPj9OgFgT
-	vCic4HnECJ5wuKlSqP3YXlqkolNuAVQ4GfYLHiGJxRqAIup1CPPvw+n7YoukzMC+LCe1/Focc8L
-	GnMbT7GxwWsVrUjAO3Dx+b+I5u8dRzsLGZiMsdnsokZq3AuiaJWg==
-X-Google-Smtp-Source: AGHT+IEzlLhnjrljziZsPJD+6TFphu87RW7odVOmHqBJgKS1HNWc+2CO5ak3CF5B+KTraiO0uH2Sxw==
-X-Received: by 2002:a05:6808:1b07:b0:450:3c49:519 with SMTP id 5614622812f47-450743f38afmr1702472b6e.7.1762966355944;
-        Wed, 12 Nov 2025 08:52:35 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:d404:301b:b985:c499? ([2600:8803:e7e4:500:d404:301b:b985:c499])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-656c57ec231sm8495588eaf.17.2025.11.12.08.52.34
+        d=1e100.net; s=20230601; t=1762966872; x=1763571672;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vKJeMRLbErvhNOYva0m4lCJv2yv5ZqWMM8uB7IOw7Lc=;
+        b=muS/+FiMGs5q7jcx05XTrSlDOvKJuDeQ29H4u7hyv1Gvg3Lju0cPcZ8h7cnIJOfxRw
+         x9NbrgGYv7ggCfG/6lpSdMgm7c33KdEAA2mey1SOsdEMXoPVO2p2PTurks3cQ7PCpfdd
+         3Ji9oBdbzMffNwpJCOo1462Ju8Xap9L4FKHeKLXQVz3bmI9wO7K+5GT/tUVpUDSz1fts
+         Fiz9XLYsasFSeJSXTCiJKp+3jBCvWxcIbFkPWFkb+Y1C/s9sdQQdWpCRlH8oZk6zTqy0
+         1g4b16qzvPkoVDPJr4l/YqHjKL6edVnmLC7EWBNFtdj2yNyx8Bsu5ybUZnN1XpPRoz5b
+         45NQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXIKAuQiwNS48oplcZ34+Gpu46kM3CyeqA5bd2wGNUcFjbyZHkZLAzdNKWMCi5PXKNnAWTcBU2HYrwS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyU+1wdaTkosRAXmXqZ7pb9XFbpKmSmind7waftVWptjC49VKt3
+	MNlGC96XBsl2krQF6+Uuhoy7eERK7Mie5FOpKKvblB3CFM7bASvFRJwn9gJH0KVQ
+X-Gm-Gg: ASbGncvps9Je0Vsxwu4dggzqAMr88El11inMh63RGYSisCC0UGFvZEeF/EeI+ACRqHX
+	M2BADtoKc0yjzywsvzYK5iAOiTIWSpMyZSEOvw2CFHg4ff7D3wSYsrFR2mxRM2W2k5BWrqNHUGG
+	kddcNBVoRSCf3gOkXTicWmcq9i0g/0jX7m+gX9SjVl384Vogk3t/LJSc73mgqkkp9KKJFoi+YGh
+	a1mfqFQ8+ybCVpwfIdysRPY2+ivs2iTeo9E4XMCGzO58+VRAVZMAG5RkJfQHSZ2xiZVNYBGxjvX
+	dn/3byXxJP6jHngzI+qnJTgoEk2WQ6bqi3EuGejbE7gxHE/kPI4thLeJ5uQEl7rCgTv/sQFNsSz
+	CLBz7uMNDXB7EN8gtxKrRlGZFd95d7Fzvm6S5yKsj+CYHvmGz3iDJTdSFnvF0CVbgpyUdUKpIDR
+	Thy8kxygCMC1bhGNDL0xkh1JRqQp3MWOtRqf4+jQ==
+X-Google-Smtp-Source: AGHT+IEIGW4o38QkD0NXtR0/tpqINHML7+ZjDagy4bFc+WkmrkdotlmH8eCZxL3Dx0d+8QKIsiSuyg==
+X-Received: by 2002:a05:6122:791:b0:559:3d59:1fdc with SMTP id 71dfb90a1353d-559e7d9dfbemr1718363e0c.14.1762966869437;
+        Wed, 12 Nov 2025 09:01:09 -0800 (PST)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-559957fb32csm9861512e0c.13.2025.11.12.09.01.09
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Nov 2025 08:52:35 -0800 (PST)
-Message-ID: <b18db31d-47e5-44bb-a671-c8d8a9f2cd82@baylibre.com>
-Date: Wed, 12 Nov 2025 10:52:34 -0600
+        Wed, 12 Nov 2025 09:01:09 -0800 (PST)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-5dbd3dbbde3so803451137.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:01:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUMjwY1EGvpRw59TDl8e7KlJv4OfAiaBjuCc5xWxQgEis4i5Jy4fVWDe1rMw/2buA0wybPFCTIvyNPT@vger.kernel.org
+X-Received: by 2002:a05:6102:d8a:b0:5db:f352:afbe with SMTP id
+ ada2fe7eead31-5de07ce4801mr1128306137.6.1762966481708; Wed, 12 Nov 2025
+ 08:54:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: spi: Add spi-buses property
-To: Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
- <20251014-spi-add-multi-bus-support-v1-1-2098c12d6f5f@baylibre.com>
- <20251021142129.GA34073-robh@kernel.org>
- <14ae0769-341b-4325-b925-7bba6d57bbdf@baylibre.com>
- <20251030135126.GA3749313-robh@kernel.org>
- <f731ebd7-6494-45f5-861d-05a2926cc5fa@baylibre.com>
- <aRIbBVNzo-7EYJbl@finisterre.sirena.org.uk>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aRIbBVNzo-7EYJbl@finisterre.sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251112143520.233870-1-yuntao.wang@linux.dev> <20251112143520.233870-10-yuntao.wang@linux.dev>
+In-Reply-To: <20251112143520.233870-10-yuntao.wang@linux.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 12 Nov 2025 17:54:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVpKC94_JPqp0foeeC9Uz8X6st8NLDryGkBqvCc=-CAdQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bl6HMrZVPynAla471JOudFytqZegXGmKBpcCj7HBFaIV3VakgXx4WEQtHs
+Message-ID: <CAMuHMdVpKC94_JPqp0foeeC9Uz8X6st8NLDryGkBqvCc=-CAdQ@mail.gmail.com>
+Subject: Re: [PATCH 09/10] of/fdt: Fix incorrect use of dt_root_addr_cells in early_init_dt_check_kho()
+To: Yuntao Wang <yuntao.wang@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, James Morse <james.morse@arm.com>, 
+	Baoquan He <bhe@redhat.com>, Zhen Lei <thunder.leizhen@huawei.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Changyuan Lyu <changyuanl@google.com>, 
+	Alexander Graf <graf@amazon.com>, "Mike Rapoport (Microsoft)" <rppt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/10/25 11:04 AM, Mark Brown wrote:
-> On Thu, Oct 30, 2025 at 05:42:44PM -0500, David Lechner wrote:
->> On 10/30/25 8:51 AM, Rob Herring wrote:
-> 
->>> But it can't really be 2 independent buses/controllers unless the ADC 
->>> has 2 completely independent interfaces, right?
-> 
->> Correct.
-> 
->> The proposed property really only concerns the data lines (tx/rx). It doesn't
->> care if there is 1 or 2 SCLK lines and it doesn't care if there is only 1 CS
->> line.
-> 
->> So maybe spi-data-buses would be a better name for the property? Or
->> spi-data-ports (using the NXP FlexSPI controller docs terminology)?
->> Or spi-data-channels?
-> 
-> This bindings discussion seems to have stalled out?
+Hi Yuntao,
 
-Yes, it seems so. I sent a v2 with with the property changed to "spi-data-buses"
-in hopes that that it would be good enough, or if not, get the conversation going
-again. [1]
+On Wed, 12 Nov 2025 at 15:38, Yuntao Wang <yuntao.wang@linux.dev> wrote:
+> When reading the fdt_size value, the argument passed to dt_mem_next_cell()
+> is dt_root_addr_cells, but it should be dt_root_size_cells.
+>
+> The same issue occurs when reading the scratch_size value.
+>
+> Fix these issues.
+>
+> Fixes: 274cdcb1c004 ("arm64: add KHO support")
+> Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
 
-[1]: https://lore.kernel.org/linux-iio/20251107-spi-add-multi-bus-support-v2-1-8a92693314d9@baylibre.com/
+Thanks for your patch!
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -894,14 +894,14 @@ static void __init early_init_dt_check_kho(void)
+>                 return;
+>
+>         fdt_start = dt_mem_next_cell(dt_root_addr_cells, &p);
+> -       fdt_size = dt_mem_next_cell(dt_root_addr_cells, &p);
+> +       fdt_size = dt_mem_next_cell(dt_root_size_cells, &p);
 
+I think it would be worthwhile to have separate dt_mem_next_addr_cell()
+and dt_mem_next_size_cell() helpers.  That would us bring a few steps
+closer to the following goal stated in <linux/of_fdt.h>:
+
+    /* TBD: Temporary export of fdt globals - remove when code fully merged */
+    extern int __initdata dt_root_addr_cells;
+    extern int __initdata dt_root_size_cells;
+
+>
+>         p = of_get_flat_dt_prop(node, "linux,kho-scratch", &l);
+>         if (l != dt_root_addr_size_bytes())
+>                 return;
+>
+>         scratch_start = dt_mem_next_cell(dt_root_addr_cells, &p);
+> -       scratch_size = dt_mem_next_cell(dt_root_addr_cells, &p);
+> +       scratch_size = dt_mem_next_cell(dt_root_size_cells, &p);
+>
+>         kho_populate(fdt_start, fdt_size, scratch_start, scratch_size);
+>  }
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
