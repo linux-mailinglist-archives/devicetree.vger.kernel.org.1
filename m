@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-237802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A27BC546CA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 21:23:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 857D7C546AC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 21:20:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1B4244E256C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:20:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 908863A7D0D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670C62C11C5;
-	Wed, 12 Nov 2025 20:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889032D193F;
+	Wed, 12 Nov 2025 20:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XYFvh+/o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kspnNGkv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE9BD2BE655
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 20:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F57D2C2357
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 20:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762978799; cv=none; b=HSVCriEsAOaDEHx/0xqS8Th+CtLEedqMRuw7q4Z+U1OFAKc9NWhlmGgqHTmrayZsscM7lC4W/WZlEckaF3DTxGKxg8bsj9SYwZjK/P5jRKS0FiCve+CTTpSeXfqPRJzqMmvZnwLfqIWTprC884HlkTmflOPxHhuQxoIqBqXJ0Rg=
+	t=1762978808; cv=none; b=ImjNnXqwTSenj6Uhs+UTUiNilB3S0VxoPro9cRltV3dmFQA26MyVLb4cN03jOxQbmLjlh3jGRWsyAQxlfMmlRKhzdXlK3Iox4ko8mIr33OYBeRWXsQ+rFKAmlI/FaOdjHJbsD2WJg+W4CgYye3Smywr42MmOIgSfS+aspxVksx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762978799; c=relaxed/simple;
-	bh=mXLUdMaeNsOsocpfIsU47VhtEmPcnzDzuj2QI3HCoVg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Kytpuz8r0DkaY1Aq038rvkEuvC2qWE/rXpHAX5xNQp8vTbrVZdD+wi0OdCMcuw9RZNTyOSO0JOn6CCVZ5K6xRdWPhdpWi3Oa6DszgvISFGHsJT762Qa4dXpMLBQTwTcqlnyDaqJGgjOwU0sygFuYLMPfKFTihHhxy09NEklk4Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XYFvh+/o; arc=none smtp.client-ip=209.85.214.176
+	s=arc-20240116; t=1762978808; c=relaxed/simple;
+	bh=/plj9fh/IZTy6oZAC8Dfhmcc4NUzFHy253uswukPQ7Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=XX/g7rh+JIL6RqStrTdQND4UNgCQnl6HPKFqKYC7MFBxO8Hp0E7LBBsVqmlw/El0L5LBm0BuSKRauHmGLYjmq+L6v+QujKc5WEGz2ErZBq3Xq6Tkjej/+pAFl4NNsTAI+2mo5W9ZRvkq8dLxVBIw/dampdyGRbvXdE5OxoLp/CU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kspnNGkv; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-297ef378069so292515ad.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 12:19:57 -0800 (PST)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2955623e6faso343595ad.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 12:20:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762978797; x=1763583597; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Ix38lM9kXoztkSDoiHdLhWVZujA0TOjZPfShJrrOb0=;
-        b=XYFvh+/ogcaKO/P36GiUxCEBwXR+FqcmnRcr4SMs8XnWGPDr4tfyMa/0Fcp6U05VN3
-         9Yh4fmYguEnPn+S2tm6oOTQQhZMGbR5YRHgW3MZ08g6jPWLQhPxJhCKjQ7W+JnVWMvTu
-         T6wzGxyZvQ53NcR1iNV9qsVe+PbAg5FTDsWO6GYppIAfire9/2na++ZjI4smd2kNyX59
-         IxWszrY+QUuLMDXbsdHRP2b8Sdg9xtJuhxyjz91M09PfNEngP/xwX6UnUdvgR8U2JBQF
-         6qs97h7qGyQKa+PuTukH/z7TTjLbJnezRjy/ma4Ed35edfxFJmulA/Nr6vOyaZgb6/GP
-         XPfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762978797; x=1763583597;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1762978804; x=1763583604; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5Ix38lM9kXoztkSDoiHdLhWVZujA0TOjZPfShJrrOb0=;
-        b=KyJ8kWiq29wWz+AOfujuAsHqx2YgYEfb6yQa+tW/zn3oxGYrICf7c67flTJNHp1ZTl
-         Bzi1KXvVDwvFJTZ4TzwdiAz7JA3JaO5rYhDn2uVQMNBxaBoaHTNfrBuAw5lIUNuxaJ4y
-         aIMDDskjH93zoDjTgJ0Xkb0kavsqen8YjpuXYUu4onl2VpBqnb8eL1axhwv771Fheo5K
-         ljk98utVx6K3pMy9OrGhC03Xj20vV4jeyZNXFYrH5UphFEQhTnzesyITFuvMgTFnzSmI
-         27FXa8VfbaTTff+w4oizk5RLC6FrQo67n0E+9ehhdreCrS1TuGDud/JQAg05ftfDo+DR
-         0WPg==
-X-Forwarded-Encrypted: i=1; AJvYcCVNqK0fgt93VJt77blP519VwSJ0Eo3ZMTIV+kGmQ632W5ePkJS1FZUFysGlW4ldLdHvRjxQKGih2AOn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0fJ4BtMur6lzeJM0LnRJOZnLYeH90quNjQOQNB8OfqQl2TT1D
-	Ba1XxqcY6gMdfpzq7pOW+elNuqCXOUBQk0XKzy5qVCVxRi1lE/Pc55EM
-X-Gm-Gg: ASbGncuqSbWhj0Pb4qrxOE/dlTyTk24JW9YKfOU73u/8xwhSHyUZfsjsyZnWJoX4ksP
-	SdIFPjFIt6gKQc4K0d4snxgec34buj0D6MeGmXpIKV33npJIo0U4XFJnon/gLCU5lv9Yl/E10hb
-	xR3UXE431IzV/IRqIRfc9vSI/CCnwtszYA8RoE2SjsIDp6epHpgrgPnlP8YAKk1oe5VALKW91yi
-	z2qyNlh6Ewoa2hDk1JeAw1nFUZSCq5Ir0L2/hotTUWmDD4Pqs+m2qQfZAVHNVh+2rNBRUOpqH5N
-	u6kjXtr6yN3bWl/lyCN7t7iUX9xstHpykZ+o21jyEOtNflOHhuocXkfSas/HurW6gw+sxrqgF2t
-	+dEvE8zeOIhPSc62Kht5FY/QkdxWNfDMcHI0x9UK+I3kLpamd/Z9c7Oj1xy88SqgrFg0t7HxGg1
-	mOPGTUR/q/0KBCiSzK93iaueEV1nMjtOhU
-X-Google-Smtp-Source: AGHT+IEdxgwGyfM1n1piNaZeQalD3y12iobhYBGRKPRDwAyJ8G9Oo2HW8iH8goas0/jcmlTS1F5TpA==
-X-Received: by 2002:a17:903:2385:b0:295:1a63:57b0 with SMTP id d9443c01a7336-2984ed9d5a9mr58544975ad.23.1762978797023;
-        Wed, 12 Nov 2025 12:19:57 -0800 (PST)
+        bh=I/vBXqyh3UPyAQ3zsAxz2ig4U3J84dfQKbNA3jaUdzo=;
+        b=kspnNGkvldDFU3englaHpott0zd5VPTj0s3hWJTLiLDhemBvyJPerksTmCMwBwjbKG
+         019SusppVMeq1Xh3ndVvsOtTaPsS/eYggoRrueYikBPcjjfOaJTv+pNX0wu31zNa6WyT
+         O53J/Ds676Nsdm1N7bfoSOaFMEbCu6P7bqVo6ppNKqjYGpH65bC58M+BJZSEtTlZigSH
+         KOg7RgLtEAfhTmUujMqOstB0+UmTZouZUi1NtGWsCpbUnaaFOoiZEqUq7Cs5oLYu/mo4
+         w20a9v7SvRa6yU9Hse4rgBfYtRtQgbLm6SQFa54l0l/9BSUZmJuvkptD5v0aoc+FUe8Y
+         JWXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762978804; x=1763583604;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=I/vBXqyh3UPyAQ3zsAxz2ig4U3J84dfQKbNA3jaUdzo=;
+        b=Lf+w47RbLWXY2gkY1UDZMg1uKW3kvOLY+GkgA/p7rfBImzub7M2Fp21NfczgsrfVP5
+         ZaOh/D3G06fiZUP8o2qoySQ035a0umhfKe1xhC9bnrI+XtSha/g1JhDbJPOsAOLWgSLI
+         Ds/ctrIUFPk2NSGwztTSQyB4hUuuniuTqKxJzG1tiWgCOz+Tjp1eLgaiX7/pqbbzVjv/
+         Ez4VaTdEsJZ52BwTp2c6qMVJLfR6rpbQUyhw32/K+/oT7YlZ2pMaZNrCebxecbuL/nyu
+         CEzDU0iJUd0wRN9qOlFfDhyVsiHH3LU7b2jrEYIU4hv+XDqh6i+U+Pftt0XbK7uuF5jk
+         on5w==
+X-Forwarded-Encrypted: i=1; AJvYcCXHGwTphJT08lyyNPsPVpvOS+igRIAXXQz/tHVFgR5eSO/JzwlQP+wVbq3Btz20nKdG6QVwfvEy15p7@vger.kernel.org
+X-Gm-Message-State: AOJu0YykV1SneJQTt0KCucOMKFiXGNQnotiRPjBxHOzK7TPxo1zv5uHj
+	9RjnlwsCyil5xvrjH9Liu9YO/ChCSyPLAshNcrH7IgNVdLG1gW6F30uZ
+X-Gm-Gg: ASbGncv3Fr/9ZjSxjYMHmpuUPuvj9rdmtTxKeEl3n/epikGDiHCfawL6Tr3r/cCaFrW
+	t4aqRvFsKr1P7peloPBUuAXJ5oMSHTCyfiD+Qrvaf+1/J7vzM4l2ydmwVZs7NwPYCpPJRP3ybBl
+	s5xZ30m7CDXtNQROkf6z1gisPXN7uI3MPGuywH4pPkbcLiXgRZp3jARele2P+76RqGmsWgJtA7T
+	YRorvRMhhHmudE9RyWymLHN4rPP1nCyz6FAmSpnVFs0Kt+QdWYCytKTjyl5Ep3yVNAYp3Z0546e
+	lClMtbDh7k/CKBFgkvZLTXAplShnZeJfK/T2k6PpFnbAT81/JYeBM82LewgIUIQrGTOErT6WCkI
+	op5WQaOWgn2J2zw/fx5Rs0FUqaJDVuWfSO/mj0p/C+T496jaQ8BRUy6HIUt6dR87TS9qGtr/Iu4
+	FJ+/cI/W6hSGlOwJM5oPgccg==
+X-Google-Smtp-Source: AGHT+IHD3owK8YXgdkefa4KWcxQZCFPmAJLbR/Dh5Q2mfLUiYfFz0jmPuayumGBai8cChDj7akOlAw==
+X-Received: by 2002:a17:903:244a:b0:295:54cb:a8df with SMTP id d9443c01a7336-2984edec25cmr53252665ad.36.1762978804106;
+        Wed, 12 Nov 2025 12:20:04 -0800 (PST)
 Received: from iku.. ([2401:4900:1c07:5748:721b:a500:103e:1bad])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2377e0sm261015ad.23.2025.11.12.12.19.49
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2377e0sm261015ad.23.2025.11.12.12.19.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Nov 2025 12:19:56 -0800 (PST)
+        Wed, 12 Nov 2025 12:20:03 -0800 (PST)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
@@ -95,10 +97,12 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH net-next 0/2] Add support for PHY link active-level configuration in RZN1 MIIC driver
-Date: Wed, 12 Nov 2025 20:19:35 +0000
-Message-ID: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next 1/2] dt-bindings: net: pcs: renesas,rzn1-miic: Add renesas,miic-phylink-active-low property
+Date: Wed, 12 Nov 2025 20:19:36 +0000
+Message-ID: <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,28 +113,49 @@ Content-Transfer-Encoding: 8bit
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi All,
+Add the boolean DT property `renesas,miic-phylink-active-low` to the RZN1
+MIIC binding schema. This property allows configuring the active level
+of the PHY-link signals used by the Switch, EtherCAT, and SERCOS III
+interfaces.
 
-This patch series introduces support for configuring the active level of
-the PHY-link signals in the Renesas RZN1 MIIC driver. The first patch adds
-a new device tree binding property `renesas,miic-phylink-active-low` to
-specify whether the PHY-link signals are active low. The second patch
-implements the logic in the driver to read this property and configure the
-MIIC_PHYLINK register accordingly.
+The signal polarity is controlled by fields in the MIIC_PHYLINK register:
+  - SWLNK[3:0]: configures the Switch interface link signal level
+      0 - Active High
+      1 - Active Low
+  - CATLNK[6:4]: configures the EtherCAT interface link signal level
+      0 - Active Low
+      1 - Active High
+  - S3LNK[9:8]: configures the SERCOS III interface link signal level
+      0 - Active Low
+      1 - Active High
 
-Cheers,
-Prabhakar
+When the `renesas,miic-phylink-active-low` property is present, the
+PHY-link signal is configured as active-low. When omitted, the signal
+defaults to active-high.
 
-Lad Prabhakar (2):
-  dt-bindings: net: pcs: renesas,rzn1-miic: Add
-    renesas,miic-phylink-active-low property
-  net: pcs: rzn1-miic: Add support for PHY link active-level
-    configuration
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ .../devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml     | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
- .../bindings/net/pcs/renesas,rzn1-miic.yaml   |   7 ++
- drivers/net/pcs/pcs-rzn1-miic.c               | 108 +++++++++++++++++-
- 2 files changed, 113 insertions(+), 2 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml b/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+index 3adbcf56d2be..825ae8a91e8b 100644
+--- a/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
++++ b/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+@@ -86,6 +86,13 @@ patternProperties:
+           and include/dt-bindings/net/renesas,r9a09g077-pcs-miic.h for RZ/N2H, RZ/T2H SoCs.
+         $ref: /schemas/types.yaml#/definitions/uint32
+ 
++      renesas,miic-phylink-active-low:
++        type: boolean
++        description: Indicates that the PHY-link signal provided by the Ethernet switch,
++          EtherCAT, or SERCOS3 interface is active low. When present, this property
++          sets the corresponding signal polarity to active low. When omitted, the signal
++          defaults to active high.
++
+     required:
+       - reg
+       - renesas,miic-input
 -- 
 2.43.0
 
