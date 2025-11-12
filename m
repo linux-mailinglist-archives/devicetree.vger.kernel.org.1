@@ -1,114 +1,209 @@
-Return-Path: <devicetree+bounces-237749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B73C537C3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:45:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE947C53732
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:39:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7EA0135C185
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:35:36 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7091834F5F0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841E03446AA;
-	Wed, 12 Nov 2025 16:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A2C33A026;
+	Wed, 12 Nov 2025 16:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Umd7piN3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA38342525
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 16:34:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30FE02550AF;
+	Wed, 12 Nov 2025 16:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762965256; cv=none; b=CIj76++kYRIyv9h/TDhTDyQrQ/wN0kiKUfhp+VpglFxUfJugBTZ1J+fLXyFtIgZ2DKhmXSy3MUcYdOWMK6x9IgPW5rZOOuyreixCI/NUqr3WRVXpAoGvkNy4Z5tuNAixU8it4h2+kfe5SLgkJndPNv/lEbfrCpKS4a+ilxhYrKM=
+	t=1762964982; cv=none; b=dHZsgFciV1oq73Wb+7di0ewfHM4Kk9m74/BnnvWCSY5m95m8xHHtSKtoaTjw4LORfZ0e/tzQtqkPg3wgTtzpeS19FvQ447hMV2ATIeE3gRBUHD5i0QuVLQoDedRnXf7uwseHXp+3Zp3HrBxynEYRpP7C5c9Rm++LQ3lHbfUHjGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762965256; c=relaxed/simple;
-	bh=Fk0J+zK46wIQApbBjlvq2ChgVdufMM6T9AYTaAjGlc0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qr27Q/QlxFoEmm8W3a36NlzxEMyP9jHK/Y8HuCslv/dXEqgNAGCkjQi/WDPpZknWu6EIkd2gRz1qk6ViPfHrxkI9TRmowWBP6m2xm3yNmgB9wqW3jwlxP36Tl8i1KeqRsuOlxAtSPaUWM3YuaNFQkR9y1/C9AycFrvtXqU3vgrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-9352980a4f2so357770241.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:34:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762965253; x=1763570053;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IDEEJFh8t7UvWDMq1bo6nlPggBAlwU9GoyBV8Ur7xmw=;
-        b=bc2UBQ/1az6dvTQl0UhBWQClFGdk3NGp9BPcl/eC/9pyphV8AV92kxyGbpZq0b6k2q
-         zG/Rh8qyJ72Ox2B+yPSaKZpr7wvi13d2iYRskTUgMaoQE7K3Hm++pbExvuncyB0Q5XlY
-         UWAJo1S209xKLHfz/4atAu4Za/GDFeKTuULOxGa1gBE317tLNKCTkp4SmD0+jpWxqJ6X
-         oOxizmBjJxS2vRHWEFZWhom/nYOC8p1ndVeSzU3NAYjAtQ7xFD7YC5qxg+o/Qv5cAYz1
-         0eQPNP+D9XosttQWYn2Gjy/ua+dmF+nhr4HUmhloKUFzHPrQ5Ltm8IUQQMGV60Aa0jjn
-         bXkw==
-X-Forwarded-Encrypted: i=1; AJvYcCX93/hq6YATfkchA3ZEDCmfq7mU9bmgy7WiCSHAEsttci4OstSWnrou35RMJ2YSgpQYqDP9b32N31A0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw39XU4rqHHkV51wN02/rHg3fOrqipQYEJ+mK0NJLcaCKlvsfW+
-	JUYSJ99HY/14TA/aSOLK/56+dUKuFF2W3mIu8hcTp6lbOuKA9WN5KwZ5lx29/2ac
-X-Gm-Gg: ASbGnct6frOyjkhAq8N0ZJJVwCvRMZgmv628dc2xoBVAZd3lcwPf8kYreJ0Zk0xcnhC
-	/XDvSV5skD4pX1H5RHm7W0RyFtowx4sKV7GpG/ArVs92rZlBIMFY84w7fWtUtkbkMDLKiRxdfhx
-	noBNJhOPTx3fW+sJdQNYZTGFqodYmZGYzdVRSf9DVJHLjpKeyxuOta2gL/0JmquL0C2EMjG4gMs
-	Vmf8EIvIbjCjUZE9bvGlxXPhqHs6a+QbybxMjw3zAhD/PaCEGwaTecmrk0NM05X6FqCG1wC80f4
-	PAURs8KNbxiplg8eeAfAPsQhLeSw9Kk4w7Onk0VEpqUrNyTmaULtUWRxuvHU7TcDEBsf8V+Xdd7
-	0vWW8ta1m4ylZxWRrEqid7xlK1s4a27PCYUcWOwB2LoKpG7IEeg3Zu+5on8jgQe7AGpx5zR/8mb
-	+cuI4lbqRzJzsu/8tXcQYGxOU/2crvJHKgOEFmIQ==
-X-Google-Smtp-Source: AGHT+IGlsm3aZ3MF43a/HOMVWODDzlqR2pD0W1E2TJxfTfMwyB+svkDT2U+lBo6uNriu/FLKY+BH9Q==
-X-Received: by 2002:a05:6102:374e:b0:5db:db1d:e1cb with SMTP id ada2fe7eead31-5de07e2b8f1mr1240872137.21.1762965252372;
-        Wed, 12 Nov 2025 08:34:12 -0800 (PST)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-937428c06b9sm2615425241.5.2025.11.12.08.34.11
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Nov 2025 08:34:12 -0800 (PST)
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-5dbddd71c46so416712137.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:34:11 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVNx7ovZ+6pE/EC8rcOVzzCfDZ1OVlXCxEMTaJNkcEUo2bUsbGNpvdicasp0d66DHkgB0zYQFdm0etn@vger.kernel.org
-X-Received: by 2002:a05:6102:508b:b0:4e6:a338:a421 with SMTP id
- ada2fe7eead31-5de07d0b089mr1033465137.6.1762965251527; Wed, 12 Nov 2025
- 08:34:11 -0800 (PST)
+	s=arc-20240116; t=1762964982; c=relaxed/simple;
+	bh=DP5D2zjQPq84AdGMdpDugauF+Uw5VjnEZ/jSz0bVjQU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bPA3xYsQ/qhnulSL7SrKJnZINOAfLWzqnFUusD2My+H3PfMj061FdAoKHuopk9MvyCES7OIhOwTdCTuWsjJBGiHDasnEkSFyvi3vhVxgBnX1MRFySJNgjbW8qeBieI2hhtG86sbQv/xYR+IQek3UdlGh8jY/fsLlL+w41k7LJys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Umd7piN3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39F77C4CEF1;
+	Wed, 12 Nov 2025 16:29:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762964981;
+	bh=DP5D2zjQPq84AdGMdpDugauF+Uw5VjnEZ/jSz0bVjQU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Umd7piN3+04i8gvUPVvGaPzCgGl9OYviITEvXRjtjkY1zWB08XfPwM596K5Xx+yTT
+	 6jlBuI7jmtuhSTV7HXyJghjYGq5GvSUuhsHoVQf8x7f6Efsa18iC+7AbtoXVU0DQ6u
+	 7BUti4EwiDji9mD8ATudxo8+lYjVmK1qJZxU6Ok6WQAjwL78NTMNsJg58rwKM9fp0X
+	 2n1VDrUQ4c6yPc2d25GV8oAYeb+103t3lBtA8GMELK9WhJ+C8+NnE2+2IHyfEW8YMy
+	 3I20JVe9pmiZnDbpF0qEFXF0ZvGvKvTeFJmY/VBdros8N5KrXxzSxt0pI09T3CsiQG
+	 aywUJlcTIjY8A==
+Date: Wed, 12 Nov 2025 10:33:58 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org, 
+	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
+	krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add PCIe3 and PCIe5 regulators
+ for HAMAO-IOT-EVK board
+Message-ID: <6iuuosajwue35goout6ohpdbmdoahc6f3gxicliiin6wq3ggjh@m7nkqnsxq63h>
+References: <20251112090316.936187-1-ziyue.zhang@oss.qualcomm.com>
+ <20251112090316.936187-3-ziyue.zhang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112143520.233870-1-yuntao.wang@linux.dev> <20251112143520.233870-9-yuntao.wang@linux.dev>
-In-Reply-To: <20251112143520.233870-9-yuntao.wang@linux.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 12 Nov 2025 17:33:58 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVNXqVXsDuMeExFn7AozDKu9GD99XMk7ux=Zuw4qvL_gA@mail.gmail.com>
-X-Gm-Features: AWmQ_bkkzAqLKDG_QzADFeNR5gEvcuVzXh2HazsgAbVtmvpBS87jteFgQs7jYog
-Message-ID: <CAMuHMdVNXqVXsDuMeExFn7AozDKu9GD99XMk7ux=Zuw4qvL_gA@mail.gmail.com>
-Subject: Re: [PATCH 08/10] of/fdt: Use dt_root_addr_size_bytes() instead of
- open-coding it
-To: Yuntao Wang <yuntao.wang@linux.dev>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, James Morse <james.morse@arm.com>, 
-	Baoquan He <bhe@redhat.com>, Zhen Lei <thunder.leizhen@huawei.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Changyuan Lyu <changyuanl@google.com>, 
-	Alexander Graf <graf@amazon.com>, "Mike Rapoport (Microsoft)" <rppt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251112090316.936187-3-ziyue.zhang@oss.qualcomm.com>
 
-On Wed, 12 Nov 2025 at 15:38, Yuntao Wang <yuntao.wang@linux.dev> wrote:
-> Use dt_root_addr_size_bytes() instead of open-coding it in
-> early_init_dt_check_kho() to improve code maintainability.
->
-> Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
+On Wed, Nov 12, 2025 at 05:03:16PM +0800, Ziyue Zhang wrote:
+> HAMAO IoT EVK uses PCIe5 to connect an SDX65 module for WWAN functionality
+> and PCIe3 to connect a SATA controller. These interfaces require multiple
+> voltage rails: PCIe5 needs 3.3V supplied by vreg_wwan, while PCIe3 requires
+> 12V, 3.3V, and 3.3V AUX rails, controlled via PMIC GPIOs.
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I love it! Thank you for the clear description.
 
-But please combine with the other patch with the same subject.
+Regards,
+Bjorn
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> Add the required fixed regulators with related pin configuration, and
+> connect them to the PCIe3 and PCIe5 ports to ensure proper power for the
+> SDX65 module and SATA controller.
+> 
+> Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+> Reviewed-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 83 ++++++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+> index 36dd6599402b..ac17f7cb8b3d 100644
+> --- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+> @@ -199,6 +199,48 @@ vreg_nvme: regulator-nvme {
+>  		regulator-boot-on;
+>  	};
+>  
+> +	vreg_pcie_12v: regulator-pcie-12v {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_PCIE_12V";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +
+> +		gpio = <&pm8550ve_8_gpios 8 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&pcie_x8_12v>;
+> +		pinctrl-names = "default";
+> +	};
+> +
+> +	vreg_pcie_3v3: regulator-pcie-3v3 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_PCIE_3P3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&pmc8380_3_gpios 6 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&pm_sde7_main_3p3_en>;
+> +		pinctrl-names = "default";
+> +	};
+> +
+> +	vreg_pcie_3v3_aux: regulator-pcie-3v3-aux {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_PCIE_3P3_AUX";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&pmc8380_3_gpios 8 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&pm_sde7_aux_3p3_en>;
+> +		pinctrl-names = "default";
+> +	};
+> +
+>  	/* Left unused as the retimer is not used on this board. */
+>  	vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
+>  		compatible = "regulator-fixed";
+> @@ -844,6 +886,16 @@ &mdss_dp3_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pcie3_port {
+> +	vpcie12v-supply = <&vreg_pcie_12v>;
+> +	vpcie3v3-supply = <&vreg_pcie_3v3>;
+> +	vpcie3v3aux-supply = <&vreg_pcie_3v3_aux>;
+> +};
+> +
+> +&pcie5 {
+> +	vddpe-3v3-supply = <&vreg_wwan>;
+> +};
+> +
+>  &pcie6a {
+>  	vddpe-3v3-supply = <&vreg_nvme>;
+>  };
+> @@ -868,6 +920,17 @@ usb0_3p3_reg_en: usb0-3p3-reg-en-state {
+>  	};
+>  };
+>  
+> +&pm8550ve_8_gpios {
+> +	pcie_x8_12v: pcie-12v-default-state {
+> +		pins = "gpio8";
+> +		function = "normal";
+> +		output-enable;
+> +		output-high;
+> +		bias-pull-down;
+> +		power-source = <0>;
+> +	};
+> +};
+> +
+>  &pm8550ve_9_gpios {
+>  	usb0_1p8_reg_en: usb0-1p8-reg-en-state {
+>  		pins = "gpio8";
+> @@ -879,6 +942,26 @@ usb0_1p8_reg_en: usb0-1p8-reg-en-state {
+>  	};
+>  };
+>  
+> +&pmc8380_3_gpios {
+> +	pm_sde7_aux_3p3_en: pcie-aux-3p3-default-state {
+> +		pins = "gpio8";
+> +		function = "normal";
+> +		output-enable;
+> +		output-high;
+> +		bias-pull-down;
+> +		power-source = <0>;
+> +	};
+> +
+> +	pm_sde7_main_3p3_en: pcie-main-3p3-default-state {
+> +		pins = "gpio6";
+> +		function = "normal";
+> +		output-enable;
+> +		output-high;
+> +		bias-pull-down;
+> +		power-source = <0>;
+> +	};
+> +};
+> +
+>  &pmc8380_5_gpios {
+>  	usb0_pwr_1p15_reg_en: usb0-pwr-1p15-reg-en-state {
+>  		pins = "gpio8";
+> -- 
+> 2.34.1
+> 
 
