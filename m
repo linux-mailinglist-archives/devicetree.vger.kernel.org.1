@@ -1,81 +1,162 @@
-Return-Path: <devicetree+bounces-237600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C59C5245B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:37:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 862C0C5247C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:39:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8337F4F5776
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:31:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10BC64E9614
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5BB35CBC6;
-	Wed, 12 Nov 2025 12:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E071333455;
+	Wed, 12 Nov 2025 12:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NUInCZxA"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="FYm7BLOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7940C331218;
-	Wed, 12 Nov 2025 12:31:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224DF33556A
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 12:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762950690; cv=none; b=o9xUxwZRfmyH8LHFJObxFxZ7uzsV4wAdjU8L9ya9UmFwvXpi/S1j34WugfUhSOb9dqAuPjR4qKK4Tt364mlKbu6diIMQA7ZMj3U7XRXma3oCYpvYTiUQJoo3vI80cpZKn3fOfBbv0bJ35tOBHnZGq7DSH8fiuM1ZT8DVUo5Cn58=
+	t=1762950818; cv=none; b=SZYMSRD7Z4+cPESUjpl0nNwB+BXOITpU+1JSLuiavwqZUp6KYsJ6UeXOgWhDlh1tUAZi+jQ5SFE9ZjcjPQ6f4vCCSaDJI+ep6j53UlUFOk6oAVEE+KNY27t3dTw0n56MIn0ffmAKumNo3xaOFAHO1ZBsR4bxND/j0kTGyDP7g48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762950690; c=relaxed/simple;
-	bh=GFIgkbh8zyxH+lroNfBGqOGojGkM4wtAAC30y5B+G7Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UCIwg1xmj/ZX3Frqp9dttp8/VIPOEJl041OG/KmYah24Gd4h78ANX+z37GqbF3J4KHXnQ7drmQ88eGQpVloS+NB/C0R4fHnJB2qSW8qG62OEj6TRJkuUd5nCbaHwhjLANn1JOdol0EkvFwtBE+KEv8UptMv7ljn5CGlqqF71wXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NUInCZxA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D40FC19421;
-	Wed, 12 Nov 2025 12:31:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762950689;
-	bh=GFIgkbh8zyxH+lroNfBGqOGojGkM4wtAAC30y5B+G7Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NUInCZxA0r2bB7/jsxmX9SGjQwYBp6nqHc083rgfLHwC6B0wLd1ee0o9m4zarsshf
-	 zPYnOo10yac/rmTNmhgTmyNValEhNHJrIRCK79CuPCX4u2hXWDSJHQkSxZ3NobQYR5
-	 3guO5Wtpq3uxnRGky8kbqnEAs/HBSrLlFj7QJZMwXdPhrzwxRYpiXvjOHSC3y5mdl9
-	 2drACOZl509Cnb04R93liFxm8YMvTsb3EQjFpRY6mLizSbF81ftsWJ6eUd15xQKqgl
-	 iqcnbCQ2cOBwWvFlxIwCsb8thEhmmcI1qEzxa1hEiAVtG17DeWDT9GNV55DeAry/5n
-	 V31RGkJ2vpIiw==
-Date: Wed, 12 Nov 2025 06:31:27 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dma: Convert apm,xgene-storm-dma to DT
- schema
-Message-ID: <176273672994.2489316.16085574040598987074.robh@kernel.org>
-References: <20251013213037.684981-1-robh@kernel.org>
+	s=arc-20240116; t=1762950818; c=relaxed/simple;
+	bh=eJGTRxnOGVlYO1XOKNxCxIlSAwDMsw++4ZlRAIAiDyU=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=ThFZJnoZgxHJ3I26Mp3i7yh/XJzcRTikI1ebQ15niupqQw79NmZs6HC3PObpUsvrrqDnHbj7c6DvmoXBTs53rN18cOytwLzFSlwbXLJfzN/7vt75zBH/3sNWXClI8i+R96GBLT90FrkidiFy0PeXcSKxlnaPoQdpmsfwpr3N2fY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=FYm7BLOr; arc=none smtp.client-ip=209.85.214.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com
+Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-2954d676f9dso7352605ad.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 04:33:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1762950815; x=1763555615; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=3lvK+uc33/YSncyDEJOxI3GlGodXaiJ9TvJi/yjxYBw=;
+        b=FYm7BLOrDMM4113BBGhall0SNW0H6Orc0Dsr9kKpDKla2moSkjbDEmMvq1eOv3NHpW
+         lRbz7cN5As8pHAja4yKW/Bj9LMj+pzFw5OF7t780XNbEGox8ZU5ctSmwD4q23jjvkGTO
+         XVjTUbtBtP2nwJhtWRmjcwcEkiQIQokySmceS+rnREV+SST4eiOZuLRD9JzUJlpVM+6y
+         QufdMyE4N0zm024f1v+YDhPW/De/mdRyYfrBgFPLynUQhpC5Ds4ZVZUidZ5tf8uxAM8L
+         oVwSmPheoOk50PJwZzmjnHbzbtao6uv6WxNdwHHLRZyyHxE0e/AAwkQTk04DJrO5I9Tp
+         t8UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762950815; x=1763555615;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3lvK+uc33/YSncyDEJOxI3GlGodXaiJ9TvJi/yjxYBw=;
+        b=J9eRtW7pQnBBMipxzGuBVfjRudM9BpOxIUlruWghSNytL6ln7A2IuCpMoZi1j8f+3z
+         lzt4OV4drirleJwClXB84fWnpRLyx/MGVk4tEQpZ3yUq21DvLTtSzWVtYtwDb+CJcgSw
+         Ib4s5vecChhTfNqh+QSCoK/vxnaOCs62te7IUlPil5n7ftHGL6M/0T8bFLXoFi8XsAVi
+         3XCpIvXUJsROxgAInnkh2yd6+b2LVzipBSsC5MadZbQY0Av0esZudXwcv3eTrZT+5T4b
+         yJGtqSB7uGK5fkN6t57fxTKVRUMyf7ZhPRHCDqU8GUVHv/7Hl4Ne8tSbEwhRrA1l70wF
+         780w==
+X-Forwarded-Encrypted: i=1; AJvYcCUb+BtReHA2tiTKt2EPr5x+fXMwU5N34pFDvYMliagCp1daRsGZGu/tn1fiR/zE0HCVSznNxJsXlu/y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7G39Rc6p/ND17ipAhWone55ZHiE+z8kw7PnVeFtPehq6mfs/T
+	aMYsOZComOc561u1JOF2ehFLMVeZvyf1IesdGNOWLXpZ3itwvyrGhjNf8nE9KIA02qnx0NVRm6p
+	wRtysBA==
+X-Google-Smtp-Source: AGHT+IFLqNhYrJ49MxXnkbzra9diXQg1Vv0DtfGNDDqWdo1vsY+CTaFtQqSWQk1ZZK+fvX+HgOTe5Uof+d0=
+X-Received: from dlbur6-n2.prod.google.com ([2002:a05:7022:ea46:20b0:119:78ff:fe15])
+ (user=royluo job=prod-delivery.src-stubby-dispatcher) by 2002:a17:903:286:b0:295:5972:4363
+ with SMTP id d9443c01a7336-2984ec8f54emr35613555ad.0.1762950815330; Wed, 12
+ Nov 2025 04:33:35 -0800 (PST)
+Date: Wed, 12 Nov 2025 12:32:55 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251013213037.684981-1-robh@kernel.org>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.51.2.1041.gc1ab5b90ca-goog
+Message-ID: <20251112123257.3755489-1-royluo@google.com>
+Subject: [PATCH v6 0/2] Add Google Tensor SoC USB controller support
+From: Roy Luo <royluo@google.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Peter Griffin <peter.griffin@linaro.org>, 
+	"=?UTF-8?q?Andr=C3=A9=20Draszik?=" <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, Roy Luo <royluo@google.com>, 
+	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+
+This series introduces USB controller support for the Google Tensor G5
+SoC (codename: Laguna), a new generation of Google silicon first
+launched with Pixel 10 devices.
+
+The Tensor G5 represents a significant architectural overhaul compared
+to previous Tensor generations (e.g., gs101), which were based on Samsung
+Exynos IP. Although the G5 still utilizes Synopsys IP for the USB
+components, the custom top-level integration introduces a completely new
+design for clock, reset scheme, register interfaces and programming
+sequence, necessitating new drivers and device tree bindings.
+
+The USB subsystem on Tensor G5 integrates a Synopsys DWC3 USB 3.1
+DRD-Single Port controller with hibernation support, and a custom PHY
+block comprising Synopsys eUSB2 and USB 3.2/DP combo PHYs. The PHY
+support is sent as a separate patch series.
+
+Co-developed-by: Joy Chakraborty <joychakr@google.com>
+Signed-off-by: Joy Chakraborty <joychakr@google.com>
+Co-developed-by: Naveen Kumar <mnkumar@google.com>
+Signed-off-by: Naveen Kumar <mnkumar@google.com>
+Signed-off-by: Roy Luo <royluo@google.com>
+---
+Changes in v6:
+- Use "lga" as SoC name instead of "gs5" to align with Tensor G5 device
+  tree https://lore.kernel.org/lkml/20251111192422.4180216-1-dianders@chromium.org
+Link to v5: https://lore.kernel.org/linux-usb/20251111130624.3069704-1-royluo@google.com
+
+Changes in v5:
+- Use syscon to access host_cfg and usbint_cfg MMIO space per
+  discussion in https://lore.kernel.org/linux-phy/89733ddf-8af3-42d0-b6e5-20b7a4ef588c@kernel.org
+- Make warn logs in dwc3_google_resume_irq() dev_dbg.
+Link to v4: https://lore.kernel.org/linux-usb/20251017233459.2409975-1-royluo@google.com
+
+Changes in v4:
+- Separate controller and phy changes into two distinct patch series.
+- Rename dwc3 core interrupt as "core".
+- Remove u2phy_apb clk/reset (moved to PHY)
+- Configure usb2only mode when usb3 phy is not present.
+- Adopt pm_ptr PM macros to fix build warnings.
+Link to v3: https://lore.kernel.org/linux-usb/20251010201607.1190967-1-royluo@google.com
+
+Changes in v3:
+- Align binding file name with the compatible string
+- Simplify the compatible property in binding to a single const value.
+- Add descriptive comments and use item list in binding.
+- Rename binding entries for clarity and brevity.
+Link to v2: https://lore.kernel.org/linux-usb/20251008060000.3136021-1-royluo@google.com
+
+Changes in v2:
+- Reorder patches to present bindings first.
+- Update dt binding compatible strings to be SoC-specific (google,gs5-*).
+- Better describe the hardware in dt binding commit messages and
+  descriptions.
+- Adjust PHY driver commit subjects to use correct prefixes ("phy:").
+- Move PHY driver from a subdirectory to drivers/phy/.
+Link to v1: https://lore.kernel.org/linux-usb/20251006232125.1833979-1-royluo@google.com/
+---
+Roy Luo (2):
+  dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+  usb: dwc3: Add Google Tensor SoC DWC3 glue driver
+
+ .../bindings/usb/google,lga-dwc3.yaml         | 140 ++++
+ drivers/usb/dwc3/Kconfig                      |  10 +
+ drivers/usb/dwc3/Makefile                     |   1 +
+ drivers/usb/dwc3/dwc3-google.c                | 628 ++++++++++++++++++
+ 4 files changed, 779 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/google,lga-dwc3.yaml
+ create mode 100644 drivers/usb/dwc3/dwc3-google.c
 
 
-On Mon, 13 Oct 2025 16:30:35 -0500, Rob Herring (Arm) wrote:
-> Convert APM X-Gene Storm DMA binding to DT schema format. It's a
-> straight-forward conversion.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/dma/apm,xgene-storm-dma.yaml     | 59 +++++++++++++++++++
->  .../devicetree/bindings/dma/apm-xgene-dma.txt | 47 ---------------
->  2 files changed, 59 insertions(+), 47 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/apm,xgene-storm-dma.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/apm-xgene-dma.txt
-> 
-
-Applied, thanks!
+base-commit: 24172e0d79900908cf5ebf366600616d29c9b417
+-- 
+2.51.2.1041.gc1ab5b90ca-goog
 
 
