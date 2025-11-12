@@ -1,122 +1,133 @@
-Return-Path: <devicetree+bounces-237608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA268C52501
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:48:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 162CDC5250D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:49:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 500B13A53E7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:43:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 799E43AC640
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C64334C36;
-	Wed, 12 Nov 2025 12:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B0E33509B;
+	Wed, 12 Nov 2025 12:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mX8DZZSG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uxo36mmt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88231331A73
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 12:43:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44425309F03
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 12:43:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762951407; cv=none; b=NUavm6r0H6ApQgXweHE2GPYzT5ScbUhMl5KQIj3LiMvzatYFkCPCLCGGOkfWLnSHwnji/c439/W/j/Np2+UZydaivrUAqnACcfRFq3IkZP05NyC2t+w68HtsO8TYJLM0ocxiDFJQZBdqRMkT4lTcTiulGNDGE0/OvEZx/gi/czo=
+	t=1762951428; cv=none; b=WYpFp5NHcdtf8VkuFUOq2mgtm6ZYIlpi/6+iaPwXS7jnNh23vrLgJfYfYpn0xyoUexCApUurhVjEz9cQIFFpvnvAsYgu5RnzehQatuCBRlxxcd0IvKmXbzbck98w3kzys+wXgp+6Pn2hQ161MAhd2NQVqRaBA7KkCg9PMmSik0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762951407; c=relaxed/simple;
-	bh=3nCLGdNg0B7kK9ihswq7fVace/Pjn+bodu3kR1lh3t8=;
+	s=arc-20240116; t=1762951428; c=relaxed/simple;
+	bh=oDG71wLkZH6zNZ8BBmCy1cYzzKvLo2hY7GqxG8NdDxk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Wn7kgbz/0ZMXEL22hcm2Neilxt5KMum5ce/FfsCvpDlr24Sb9HLAjPOnhuD99otiALnBShf3iCQMj0/DaurHA7enx2OKtCdPxWQvCaM6OPYjsE1u2P/xia2QHwcpirXI8nT3wonFR7+cWqrKzJuCPeLziw1V8VrHYhbTWbHvAek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mX8DZZSG; arc=none smtp.client-ip=209.85.161.44
+	 To:Cc:Content-Type; b=oXootcz+Tku8ViUE9DwYiZlQrzkvT1d2hygYnRlzD43teAG/hPcbDzhNZQBAEBdlQxUjxqmBTnfcXQ0E8IoAr6BJ8uaXunwMJgishy+N7qnlKt7bnFzh0YRkUspBgyx7BKRQKaC5Go99yMM73UF3u/1VOv3n2SUOQNnFH+7ZmW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uxo36mmt; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-65363319bacso303629eaf.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 04:43:25 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-594476f218fso561064e87.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 04:43:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762951404; x=1763556204; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1762951423; x=1763556223; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3nCLGdNg0B7kK9ihswq7fVace/Pjn+bodu3kR1lh3t8=;
-        b=mX8DZZSGiFmqWcfKLgsYJDP44Ga2DuJq9d6nzwjLltzH+hPrtGlWtbthL9NH6yynWj
-         Q19iZOsyg9SZOOl61OJMxM/OxyE6UiTkGsI1kCHqDW0fM79XcyEUfmesFew8lEo2nPuh
-         hmhD+1WdixoslUXxL5QKYlae1ReVuHlWAp4ufImR/SVo0ERu1usCDr4GHKT9jUmYveSx
-         P2WgBakSR6uCdlviVf15jwnTfEluATz2ncPbGNcprTxBidaT0QvgCIoeuYd2eqFF8qH2
-         Hn/WiEEKMIh8y71vjZ8xAhwicx3Q+2SqfvTRUmAkbj7ROkR0ZxJHYkB2HuICL3JjnR05
-         Ahvw==
+        bh=oDG71wLkZH6zNZ8BBmCy1cYzzKvLo2hY7GqxG8NdDxk=;
+        b=uxo36mmtj8Hh+wII3sTWzpG8uou1bkkJCbYDvyvOcxOOpzOUM7cmRMlItxiPTpT3lA
+         0G3JQ0olpAdjQaaMDHrN4TDKa9GjJx7tk6u6pd3Mc2Txjn7ROQuK4pSzF8Gq7fX4YyOk
+         MZjPar6m400HZLMhAqlqqVEBOJxUwcjMmfTtUkAK9CMhlolvzTw3+2VH+L4mzl1GdxMZ
+         qr8/FIgPcanmRg1Oen4DdUs9Iryg673YXkKnJj6U2FDyOB0MPjflGMfZpKyT9PHjSijc
+         u+lPz5943ICxpmNykEHYHxTVJeIAbR2JReXirkb5hro76hxAHTHg91ciWg2dX/tjksOM
+         AkWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762951404; x=1763556204;
+        d=1e100.net; s=20230601; t=1762951423; x=1763556223;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=3nCLGdNg0B7kK9ihswq7fVace/Pjn+bodu3kR1lh3t8=;
-        b=o1bturN9GWZPrjyZqMv0HePbEodhQTr3dddrIjvthZQlOG4jifOVlTLNWp+mhGVvtL
-         04gTrkb3Ald1CPfGv7oxbfj6xDes0uaxoFbhi5aVUz4dRU7pEBHMIoIljBFEh4KdueJ0
-         LDpBE62YsWl8bDJcdW/dOZt8E5Bey3bYhYlEVvoJsxIa1gaTO9rFjYEFVAnSoQbhX5Ty
-         xJxxxws9BGTe1d36EeMGGNifZhlxhnYEWfembp3JUg87dWzQCBstbnul1LR0DSQt/yVC
-         kw9ZiWqLUL3fgM0WzyoS2eVCDgslQzkwPqOy6ItDuwpXAX6wzpio6gANGhDiFOl2EMZD
-         D0DQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX0/nCNkO0LV3/uuLtoMAnzw3Ay6DBkn8kj26sOhB7qYO6zDHkCOpv2KSRjD9iQfFXhwikMz3T2DYDB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6W8OXIKlNtnDX+4//faXdk9c9C13A0aiDZCLvcqj0yKM7bl6q
-	1uhDihz5NSfw716do2hIQ+q/x67+ya1MgqPJJHLraGzAMtvnGR0Mge67oN+wTm/6wzqNfWjXrcs
-	GeLr5VmKTaqxoA8pXFJj9g+XQZhJigCPDzJKNre0mSA==
-X-Gm-Gg: ASbGncvGcFBYY26PMOb23SL4eJ/P6lQXhNwygyyNtXyLn1Y0K9VPWn6P4LktiNpscIL
-	3nRxss4xvdHpUeEplr2/ZFWG7BAiiNAOU3HLotfoswLsDx6tYAo5MJL9cyJ9UfdNJwD8q6/wmk0
-	y2OwVK286q8xPuP6g4RclHfHqHrKw3vt7KbHp+pRxVH8waxo6kqm5PqCmuRqqQWjmzKLmWlht/3
-	Y9kGbKUyjhcvB0yjM1i63jadyEERtq5gDiX1+HdDzA9zMHvpsScZhJUkrUrKw==
-X-Google-Smtp-Source: AGHT+IF56OFOYiIqZ0djA3ZvTwB3pXvmWTE2Y/2e47Acadn9UwrR6l4mgUbLbvMhjjLW0TKRt/QCjKhcWzj8fAK4e1A=
-X-Received: by 2002:a05:6870:b14a:b0:3d2:ed44:67b9 with SMTP id
- 586e51a60fabf-3e83416c4e5mr1230844fac.23.1762951404616; Wed, 12 Nov 2025
- 04:43:24 -0800 (PST)
+        bh=oDG71wLkZH6zNZ8BBmCy1cYzzKvLo2hY7GqxG8NdDxk=;
+        b=QmeNnkgmf5z4EYkH7yFKpQ5QCDbUfl/mCr9cAiHxkDu/gXNg2mffJnbYGBL1MU2W5j
+         jVKSmFaKVzaOjNpfx5a3uedK05DLryrmj2FoiGbgnrarQGAN012zx3MSrYa9Mhtkjym2
+         7aGiUOU1MvWrfXWDVgyET/9YG/CWgwkqGw57r9aBiefsDSF9ISyKurwhF5AUbTyM1V6s
+         UXe87h1/vjQpevTBC6ojEbfVEAXjwQldHwsqgaqs5fMsRnYDxc02R6hgongb057S9Sua
+         4NCYhO7W8V6o/zt+lIQ4K0EnsGzpETdbF4KlkqriGcsmpzc4qIIJ5Bp6qfiAbj12WHKY
+         +3lg==
+X-Forwarded-Encrypted: i=1; AJvYcCXnQWHHKJXUP2p25u6yR5QkrZkqVZv7YmQTTNWRnFMOdjzstBCzSQ4XmHwobBIIgkHuteIoBA2gdSQg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0QwVGV1R/TniL+Ye4Q/DatD9vb1ndHcsaZtZpafhlzmPDPvvI
+	eLSPOONlwboNct0VW2R1+JgniYGOhLrmu/ipy6ugC9/LTPTOmhB5NFgzuKkGy5/2+B+6025nJ2y
+	tsT6RqCqT3+zYdhU8+UlFbn8r7E/PBtUWfbIiqUOgJg==
+X-Gm-Gg: ASbGncsZ1RK3hPwm9203/LvlM1E2CiTMYjB6PndbSZSyONrIlIsz4/CzvKK0iO9n8fP
+	Q6egz8g9q8mTUkg91uLkGD1S16eIdnofDGu07ugYKd4ivTtIbZn5jHqvC+1Boe59ePr+rjwjCFv
+	XRivc+LRbQq+y6ltMNql+gy0RUMLaMIP4EuOJpq9jOjrMPMEIcCcHuQuNH8cHHxTM2SGNJKZ0Hp
+	wqhFpZXYozpMryX6xD/9RW4/YxU5jX4+4t+etv9OooUnnbPMajA+9Ontv0I
+X-Google-Smtp-Source: AGHT+IFKrAN2G2zTZh4SCpeU6gZa9GThIvhb7rVDTGkR/MLZ+R0xImuA8WoUYuizes16PmjbOY9KlVCaKR3Fm5qO6C8=
+X-Received: by 2002:a05:6512:b9d:b0:595:7e01:6b3a with SMTP id
+ 2adb3069b0e04-5957e016e6emr28072e87.14.1762951423456; Wed, 12 Nov 2025
+ 04:43:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251111192422.4180216-1-dianders@chromium.org>
- <20251111112158.3.I35b9e835ac49ab408e5ca3e0983930a1f1395814@changeid>
- <b55d94f2-6b79-407f-af58-b9847db3c9a2@kernel.org> <CADrjBPpCKfd_0PY=DULnmqfb8veqH-SQ-kr5gC6Y28uBVo8iRA@mail.gmail.com>
- <CACRpkdYN=FN92cuS3U-XBVoyD3DcKkfzEXYVNnQNK07rxJJZ=A@mail.gmail.com>
-In-Reply-To: <CACRpkdYN=FN92cuS3U-XBVoyD3DcKkfzEXYVNnQNK07rxJJZ=A@mail.gmail.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 12 Nov 2025 12:43:12 +0000
-X-Gm-Features: AWmQ_bmPb1_M5A-rGtzHjXMiQBLBGQHTdvPma_dayyNctbSOvz5HTwmZK5JuVGs
-Message-ID: <CADrjBPo+EhJ5iLCm=HpzLCWjv+QCX3ft4e4eC1CPzeCk+trpKQ@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: google: Add dts directory for
- Google-designed silicon
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Douglas Anderson <dianders@chromium.org>, 
+References: <20251110101043.2108414-1-praveen.talari@oss.qualcomm.com> <20251110101043.2108414-3-praveen.talari@oss.qualcomm.com>
+In-Reply-To: <20251110101043.2108414-3-praveen.talari@oss.qualcomm.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 12 Nov 2025 13:43:30 +0100
+X-Gm-Features: AWmQ_blw_0zZEbC2wTIU0HIhaE3Pg5Px5M6V4b6IhL47o7V7zMZgJkY7fz-LNV8
+Message-ID: <CACRpkdYEbxtjoi8KQxS5fY6xr3UZwQmG-yKvT3L8fRcCXDaAwQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] pinctrl: qcom: msm: Fix potential deadlock in
+ pinmux configuration
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, 
-	Roy Luo <royluo@google.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>, 
-	Julius Werner <jwerner@chromium.org>, William McVicker <willmcvicker@google.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Drew Fustini <fustini@kernel.org>, 
-	Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org, soc@lists.linux.dev
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, 
+	alexey.klimov@linaro.org, krzk@kernel.org, bryan.odonoghue@linaro.org, 
+	jorge.ramirez@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, psodagud@quicinc.com, djaggi@quicinc.com, 
+	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, 
+	quic_arandive@quicinc.com, quic_shazhuss@quicinc.com, 
+	quic_cchiluve@quicinc.com, Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Linus,
+Hi Praveen,
 
-On Wed, 12 Nov 2025 at 12:36, Linus Walleij <linus.walleij@linaro.org> wrot=
-e:
->
-> On Wed, Nov 12, 2025 at 1:26=E2=80=AFPM Peter Griffin <peter.griffin@lina=
-ro.org> wrote:
->
-> > There will be some Laguna SoC
-> > drivers for pinctrl, clocks etc,
->
-> Oh new pin control, interesting!
->
-> Will you be doing the upstreaming of that?
+thanks for your patch!
 
-It will most likely be Doug, not sure if he's started looking at that
-yet though.
+On Mon, Nov 10, 2025 at 11:11=E2=80=AFAM Praveen Talari
+<praveen.talari@oss.qualcomm.com> wrote:
 
-Peter
+> Replace disable_irq() with disable_irq_nosync() in msm_pinmux_set_mux()
+> to prevent potential deadlock when wakeup IRQ is triggered on the same
+> GPIO being reconfigured.
+>
+> The issue occurs when a wakeup IRQ is triggered on a GPIO and the IRQ
+> handler attempts to reconfigure the same GPIO's pinmux. In this scenario,
+> msm_pinmux_set_mux() calls disable_irq() which waits for the currently
+> running IRQ handler to complete, creating a circular dependency that
+> results in deadlock.
+>
+> Using disable_irq_nosync() avoids waiting for the IRQ handler to
+> complete, preventing the deadlock condition while still properly
+> disabling the interrupt during pinmux reconfiguration.
+>
+> Suggested-by: Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>
+> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+
+I applied this patch 2/4 to the pin control tree for fixes.
+
+I removed the word "potential" from subject and text so as to
+reflect what Bjorn is saying: it's a very real issue.
+
+Thanks for fixing this!
+Linus Walleij
 
