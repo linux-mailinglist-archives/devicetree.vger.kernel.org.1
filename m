@@ -1,165 +1,105 @@
-Return-Path: <devicetree+bounces-237643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA989C53031
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:27:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96133C53209
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:43:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C5AB421D6D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:27:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDF2F42617C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EAB333B6E9;
-	Wed, 12 Nov 2025 14:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E1232C2356;
+	Wed, 12 Nov 2025 14:37:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qve7G4L0"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="lY2KHR3P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1758733B6DE;
-	Wed, 12 Nov 2025 14:26:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 602872C026E
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 14:37:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762957617; cv=none; b=gfj3WWO3cRVyKC8IZGmbkIP4XHc3ggkbODLApNHmBwCNywnJ+Z7NFCkLKwXLxRUgB6UqMn3Rq0F/C0DYr0DUmzpSVorj33Tdz2qsl48Nfr2DR5zH5mEhYYGAcLVrlncw+8NQxR4uwCkSobHnHuT9V3VjIFX336P6HFi6BPgV1bc=
+	t=1762958247; cv=none; b=p/FL79qfwBoCibhVr60PMLx1Sw1iGpffShvjFTrBF0xazIQK03jIfOHp/hfsjuj7lGTkRz2j7AeXCxp3uXz1zPe1ALFRtLP0gyJjRxo+jKhS6KfbVdSnn74vztRCbiMbDsr9zUDYrXAG0vwlHN4/6g+UtNW1rcNxw5Oq/vD2YEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762957617; c=relaxed/simple;
-	bh=qeuILCfLWad/qbdor3W9n5ZZy0hnPVSh5PPuu3qs/QE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=XQvLjojS3uCWk30gUjr17c9Pp78kLJIWNZA//FhSlKjN5tEUdItgTunpQ3RhUIYodmsa6vKVb2OkChVGA73ztpS7jRE7JFWjOhz4hEC69v19913ySk071UL2r1z3i+7eZ7glxdsLe9uI/LFPYwbNEejb0pObQBOJBZyoLQq03f4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qve7G4L0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E68DC4CEF5;
-	Wed, 12 Nov 2025 14:26:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762957616;
-	bh=qeuILCfLWad/qbdor3W9n5ZZy0hnPVSh5PPuu3qs/QE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=qve7G4L0YkbRYzSqsV764xHqJipSwJLZHj1ww/HX7HeUzWhQmoOkvD06mELydd+6p
-	 vBe+03Yks5anblHWanxMmaKRFLYdBRYE2LXOk5OQ86x+FvMwLA8KvRjGvoM1tzyXBI
-	 1AqRNa1RCPCD7VE/h9+O5DF8MyE5DTdGzUrZExQwCa6paTArLe6ncDc48usZtCgQpa
-	 wix5EmQQky48KVxL1DGT6rU5y3wEH3cvA3WJvTD9yLPDVZV2zxcy2Ps0tNJEOapc1p
-	 Y2UnYtiOi+pELcNjbWhpdzUjKNXZxsSTGMh/D3rlKMZRaStt2gWo2lS+nbPDKX1T7q
-	 YpgzTjAvTymzQ==
-Date: Wed, 12 Nov 2025 08:26:55 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1762958247; c=relaxed/simple;
+	bh=rFdkV8BtJFuneZDFlffAsIS8x4aIK6ti+OGgqdl4lEY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ff2tElonwZKWmE7QhPWBNVcWmpj+6zvR2HJunZb/zmkNOMWQVfiRghyhYbzbLoRmtvrQlG80gCfuA8g3TmZKtpW8BP5N8jVBdOk4ea0P99w6O4gh1BwCiULsW3VojbA4zzH4u0jLBRdIQwQAesg5LDTp0TU5tXag8laE3eXriT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=lY2KHR3P; arc=none smtp.client-ip=91.218.175.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1762958233;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=3yCieyHDoW3ITh82IhI4hK06ZWR3IHLaCTPT9+BieoU=;
+	b=lY2KHR3PU43Bc8+D/67TfG8jVYd8ms7a4soa1ifgPGo+Oi8OEg5Amp597peqHokZ037rBf
+	LDqTEefACtoufJB3/eGaiASAi02laNL+/2E17lJJjlf1KK78d6UjPEAAA+MdasOzsAe9b4
+	HAJT3fpv9Jwe2PzZ2auDRY9fXW6qCa0=
+From: Yuntao Wang <yuntao.wang@linux.dev>
+To: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	James Morse <james.morse@arm.com>,
+	Chen Zhou <chenzhou10@huawei.com>,
+	Baoquan He <bhe@redhat.com>,
+	Zhen Lei <thunder.leizhen@huawei.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Alexander Graf <graf@amazon.com>,
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Yuntao Wang <yuntao.wang@linux.dev>
+Subject: [PATCH 00/10] of/fdt: Some bug fixes and cleanups
+Date: Wed, 12 Nov 2025 22:35:10 +0800
+Message-ID: <20251112143520.233870-1-yuntao.wang@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-stm32@st-md-mailman.stormreply.com, 
- Conor Dooley <conor+dt@kernel.org>, 
- Patrick Delaunay <patrick.delaunay@foss.st.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To: Patrice Chotard <patrice.chotard@foss.st.com>
-In-Reply-To: <20251112-upstream_uboot_properties-v1-0-0b19133710e3@foss.st.com>
-References: <20251112-upstream_uboot_properties-v1-0-0b19133710e3@foss.st.com>
-Message-Id: <176295563590.1637939.3347883345967436731.robh@kernel.org>
-Subject: Re: [PATCH 0/6] Add boot phase tags for STMicroelectronics boards
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+This patch series fixes several bugs related to dt_root_addr_cells and
+dt_root_size_cells, and performs some cleanup.
 
-On Wed, 12 Nov 2025 11:46:42 +0100, Patrice Chotard wrote:
-> The bootph-all flag was introduced in dt-schema
-> (dtschema/schemas/bootph.yaml) to define node usage across
-> different boot phases.
-> 
-> To ensure SD boot, timer, gpio, syscfg, clock and uart nodes need to be
-> present in all boot stages, so add missing bootph-all phase flag
-> to these nodes to support SD boot.
-> 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> ---
-> Patrice Chotard (6):
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics f4 boards
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics f7 boards
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics h7 boards
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp13 boards
->       ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp15 boards
->       arm64: dts: st: Add boot phase tags for STMicroelectronics mp2 boards
-> 
->  arch/arm/boot/dts/st/stm32429i-eval.dts       | 11 +++++
->  arch/arm/boot/dts/st/stm32746g-eval.dts       | 10 +++++
->  arch/arm/boot/dts/st/stm32f4-pinctrl.dtsi     | 12 ++++++
->  arch/arm/boot/dts/st/stm32f429-disco.dts      | 11 +++++
->  arch/arm/boot/dts/st/stm32f429.dtsi           |  9 ++++
->  arch/arm/boot/dts/st/stm32f469-disco.dts      | 12 ++++++
->  arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi     | 11 +++++
->  arch/arm/boot/dts/st/stm32f746-disco.dts      | 12 ++++++
->  arch/arm/boot/dts/st/stm32f746.dtsi           |  5 +++
->  arch/arm/boot/dts/st/stm32f769-disco.dts      | 12 ++++++
->  arch/arm/boot/dts/st/stm32h743.dtsi           | 19 +++++++++
->  arch/arm/boot/dts/st/stm32mp131.dtsi          | 21 ++++++++++
->  arch/arm/boot/dts/st/stm32mp135f-dk.dts       | 11 +++++
->  arch/arm/boot/dts/st/stm32mp15-scmi.dtsi      | 26 ++++++++++++
->  arch/arm/boot/dts/st/stm32mp151.dtsi          | 29 +++++++++++++
->  arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts | 14 +++++++
->  arch/arm/boot/dts/st/stm32mp157a-dk1.dts      | 43 +++++++++++++++++++
->  arch/arm/boot/dts/st/stm32mp157c-dk2.dts      | 43 +++++++++++++++++++
->  arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts | 14 +++++++
->  arch/arm/boot/dts/st/stm32mp157c-ed1.dts      | 60 +++++++++++++++++++++++++++
->  arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts | 31 ++++++++++++++
->  arch/arm/boot/dts/st/stm32mp157c-ev1.dts      | 36 ++++++++++++++++
->  arch/arm64/boot/dts/st/stm32mp211.dtsi        |  7 ++++
->  arch/arm64/boot/dts/st/stm32mp215f-dk.dts     |  1 +
->  arch/arm64/boot/dts/st/stm32mp231.dtsi        | 22 ++++++++++
->  arch/arm64/boot/dts/st/stm32mp235f-dk.dts     | 11 +++++
->  arch/arm64/boot/dts/st/stm32mp251.dtsi        | 27 +++++++++++-
->  arch/arm64/boot/dts/st/stm32mp257f-dk.dts     | 11 +++++
->  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 11 +++++
->  29 files changed, 541 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 53c18dc078bb6d9e9dfe2cc0671ab78588c44723
-> change-id: 20251112-upstream_uboot_properties-22480b0b4b1c
-> 
-> Best regards,
-> --
-> Patrice Chotard <patrice.chotard@foss.st.com>
-> 
-> 
-> 
+Links to the previous related patches:
 
+https://lore.kernel.org/lkml/CAL_JsqJxar7z+VcBXwPTw5-Et2oC9bQmH_CtMtKhoo_-=zN2XQ@mail.gmail.com/
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Yuntao Wang (10):
+  of/fdt: Introduce dt_root_addr_size_cells() and
+    dt_root_addr_size_bytes()
+  of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+    it
+  of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+    it
+  of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+    it
+  of/fdt: Use dt_root_addr_size_bytes() instead of open-coding it
+  of/fdt: Fix the len check in early_init_dt_check_for_elfcorehdr()
+  of/fdt: Fix the len check in
+    early_init_dt_check_for_usable_mem_range()
+  of/fdt: Use dt_root_addr_size_bytes() instead of open-coding it
+  of/fdt: Fix incorrect use of dt_root_addr_cells in
+    early_init_dt_check_kho()
+  of/address: Remove the incorrect and misleading comment
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+ drivers/of/address.c         |  4 ----
+ drivers/of/fdt.c             | 14 +++++++-------
+ drivers/of/of_reserved_mem.c |  6 +++---
+ include/linux/of_fdt.h       | 11 +++++++++++
+ 4 files changed, 21 insertions(+), 14 deletions(-)
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: 53c18dc078bb6d9e9dfe2cc0671ab78588c44723 (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/st/' for 20251112-upstream_uboot_properties-v1-0-0b19133710e3@foss.st.com:
-
-arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dtb: pinctrl@50002000 (st,stm32mp157-pinctrl): qspi-bk1-0:pins1: 'pinmux' is a required property
-	from schema $id: http://devicetree.org/schemas/pinctrl/st,stm32-pinctrl.yaml
-arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dtb: pinctrl@50002000 (st,stm32mp157-pinctrl): qspi-bk1-0:pins2: 'pinmux' is a required property
-	from schema $id: http://devicetree.org/schemas/pinctrl/st,stm32-pinctrl.yaml
-arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dtb: pinctrl@50002000 (st,stm32mp157-pinctrl): qspi-bk2-0:pins1: 'pinmux' is a required property
-	from schema $id: http://devicetree.org/schemas/pinctrl/st,stm32-pinctrl.yaml
-arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dtb: pinctrl@50002000 (st,stm32mp157-pinctrl): qspi-bk2-0:pins2: 'pinmux' is a required property
-	from schema $id: http://devicetree.org/schemas/pinctrl/st,stm32-pinctrl.yaml
-
-
-
-
-
+-- 
+2.51.0
 
