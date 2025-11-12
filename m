@@ -1,155 +1,232 @@
-Return-Path: <devicetree+bounces-237379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B20C504E7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 03:10:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2549C50529
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 03:19:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BF76D4E3772
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 02:10:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BCA894E59EF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 02:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6911A296BD2;
-	Wed, 12 Nov 2025 02:10:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D111990C7;
+	Wed, 12 Nov 2025 02:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="K7RVjU+L"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="gk2VSwhX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0049A35CBA1;
-	Wed, 12 Nov 2025 02:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D43072610
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 02:19:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762913424; cv=none; b=DQSjdDE50KPsawPVxGTYXjE7SzL4lg70j9/ZZwQpo6jiO2RhOyrq6yAG/ByQSTmYAg1cBf1T5HhX1cyCCUAaExa6caDWni71uBtwTufhiDWTdlBmakB0V7QlVAGRyJKzaKoJkrL1JRAwJ8LyrywmDpRrE8o6D3JbG56c+TPXmTY=
+	t=1762913979; cv=none; b=q9qfFtdu7cHJBZ+B42ysK1z3AvADXVgDvmw6AXOSGUkBk9k6YQQ/u76ccSUtPqfcdz5WPfZSc9M/BpPSiG9IHQ93yZ425ZJ4cRqAxJC/hq0pQd8Xa40ujqpmfKjt7neE/gpyq54rK1B1W4qmEBB7Vr894/cFDG5psngWOyjZ7X8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762913424; c=relaxed/simple;
-	bh=BvUb/yaofmO3fmkC1lDAB8q3pcGVZHADxRwUljCieeI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=q499QerdbZGMmwcQsYUeizmh10XwQtgkEzpXkVoN54kga3JkPZucaLuDh10xzYmPysY3IagpOnX0+28lWdZJeH/o2SPCoxZq1tZHYd9sqi09Tz8sQVsGahCwbpzhuMfW4hrK3XY59bD1Ppt3SyQ2HOXuBkS+2J5DyiooM0PXVzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=K7RVjU+L; arc=none smtp.client-ip=117.135.210.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id; bh=Cj0tiv1YrXlK1Am
-	HXUGCqMa9Ip8rNuXArJeCHSLI0LM=; b=K7RVjU+LkWNo734KPekTzcIup2abS5U
-	q7iy/NQqXm7T9DjBgFPcduxpJjkZpb1b4/o1Iq0YGdjg9axK1HtDzcSdPkTjVzT0
-	7lOQwVgWH8kQu39ESUjO4zw987sDpFte+BwxWub+x8nQgqMGpkXm/IXZOjLeriav
-	/amk9Snz2Kw8=
-Received: from localhost.localdomain (unknown [])
-	by gzsmtp5 (Coremail) with SMTP id QCgvCgBXD0xd7BNptMyYDg--.29307S2;
-	Wed, 12 Nov 2025 10:09:35 +0800 (CST)
-From: Wenliang Yan <wenliang202407@163.com>
-To: krzk@kernel.org
-Cc: christophe.jaillet@wanadoo.fr,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	jdelvare@suse.com,
-	krzk+dt@kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	wenliang202407@163.com
-Subject: Re: [PATCH 1/8] dt-binding:ti,ina3221:Add SQ52210
-Date: Tue, 11 Nov 2025 21:09:21 -0500
-Message-Id: <20251112020921.104041-1-wenliang202407@163.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <2bc7a6ed-582d-41a4-a6a7-36f24165519c@kernel.org>
-References: <2bc7a6ed-582d-41a4-a6a7-36f24165519c@kernel.org>
-X-CM-TRANSID:QCgvCgBXD0xd7BNptMyYDg--.29307S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxGFy5GFyxWw18Ww15Jw15CFg_yoW5Xr1fpF
-	Z2yFs8tF4xtF1fX3yI9F4kCr1rAw4Iya17KF1DGrWIgan8Gr90qrZ3Kw1q9F9xXrZ3WFW2
-	qa4Igr1F9w1jyFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JjfTmDUUUUU=
-X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/xtbCvwByRmkT7GAyggAA3N
+	s=arc-20240116; t=1762913979; c=relaxed/simple;
+	bh=x2aGuz+zJKZnZZkXzCTVvYZ2ScR1g8KD1+E5T+TcHbg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rcgIVsNNcK5786Aru6UWOz3fiR3Pl9Yw45lQO5vmyUmv1D343xwV1aOCDOHBTcmL812nhOU8YlkyslcMDHUdWousmmic9aaQUmNy7HqtKMnkSQmEY9bQ8cV6lKW9qOP2cmhAndljFgvGv45SrEVqyNFo96JXw1vMd1amK49c1XU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=gk2VSwhX; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b7260435287so56773966b.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 18:19:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1762913976; x=1763518776; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ugAQKBkBrsHecB9x8Cs9RwnH0DI2WGTlcIm1Ae1jyr0=;
+        b=gk2VSwhXpuPtX/Fqzr3AwXz1gHhLb2kLLml9g1FsMGgyXn031gl4T+NmBIirL00dD2
+         Kn5SVvCG4YbujGvs0sw0/Ek0BLiKDcxnbKnN3cZnvW2NcSnpT9L7MSbY1LwKTnhA3Pek
+         8uRkUEuzFAz4MUVdwJCKZFJTianz3jU7wwVhB3CmB5SddXuo+Rvyb/M8bkCia5+DCzDz
+         /jkYGUraJHhlC7RXmQ/BuF2Ef/CUfgTuYn6dMW9UlYw0kEw/KyOnpyd81swGrQPScQKM
+         GBysQAUuvVA1EpDUhYpI2mVYSlBC1BvGL3yZ5VDHxAu+T2VmAp/3aG3ixPQNjs/JSpAz
+         /thg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762913976; x=1763518776;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ugAQKBkBrsHecB9x8Cs9RwnH0DI2WGTlcIm1Ae1jyr0=;
+        b=M+tX/g08beIunDO60d0UOc/8A9g6JxfnyUClUxeXKp/MaDwxFjj+wJmlK+Sn+NcSbX
+         QvXp/H0RGROYGxDGXTz5tK0j+uEL0xj5RJwB/KTcbSX3WeiLg0MQmwQabHw5FXoPHQcv
+         AOnB6RPm1SJrZR21IhWngh6L+Le1ocebk9XkJS2TfrgwRa/YKkQcPZ00CClWFI4wgadd
+         eooBSeAqABBtLIBYYoxUBr1ws77tGZWugsB2m9DiQy/wERuLylSBiMjgt3Vinos/VI0I
+         FrtymmzneVt0Wk+nP+rSNnmFLU0lacC9bLQQS8C2lVFRUPHVqj5Y6tBU/KiMu6AX+oKe
+         kviA==
+X-Forwarded-Encrypted: i=1; AJvYcCWiTMFvE1aZcP+w3jrkJQ56b/r6gAKoeKpEnKE8s4jeseAEdk7hey7OmuSPlCzmODwcw35tapWx0eIt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyG8pnKjagn0sfOjx3fFmt0iAed/sHzxEnjwG+Pf/js/6z4xCgj
+	CM0ZvMr8u3WMRVtABIrvYQjDY3h+A21tsnk8LO/+2eAwoSb7Dt+zy/TllBIccfydQU3O+BwdZZQ
+	0dlnzsGgiwAA/GIfbJ+oubh8cGZZO/k0SOruTO4myvg==
+X-Gm-Gg: ASbGnctez22Xl3ugSIyXY3YlpBh5j5m0zXWLPoXMYWTUgfGan8TWIkPS1QgEviLiXMe
+	teHAZUA5h+CE5Q8y6XrKPp0H1NPNBRhVRLT5DV/5DQ/ckI9PtencdC5Fh2UDsCRep9+tGslSO93
+	a7ew2LU3Qbr5rIlOMzsNjojVob7IY50a6vUMprKBs9WosmekfveOg4uPg/oBtwPsOuKFzJiEAG/
+	ike5QPoBsSe9LIH0m8N16ECRFS3mJdfjwUXjwg8Hqg4nfku/jaDxv6/9ajmjOk=
+X-Google-Smtp-Source: AGHT+IE+yEBTlwHkenGiGwu5UyXnAf6gT3RkSyNE+10D+a3qX/UN5XaT1J5EAZetmYd9Vh7p3GgyT6IZWxgqCbtm2x0=
+X-Received: by 2002:a17:907:3daa:b0:b72:52c2:b8ca with SMTP id
+ a640c23a62f3a-b7331aec193mr102047266b.59.1762913975653; Tue, 11 Nov 2025
+ 18:19:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20251023-v5_user_cfi_series-v22-0-1935270f7636@rivosinc.com>
+ <20251023-v5_user_cfi_series-v22-25-1935270f7636@rivosinc.com>
+ <CANXhq0oEpCow0G+KsJ6ZPuwsxmAFVqoKGEzygiwSmxFsmntiWg@mail.gmail.com> <aRN-0Z9MNeJ9IZf2@debug.ba.rivosinc.com>
+In-Reply-To: <aRN-0Z9MNeJ9IZf2@debug.ba.rivosinc.com>
+From: Zong Li <zong.li@sifive.com>
+Date: Wed, 12 Nov 2025 10:19:23 +0800
+X-Gm-Features: AWmQ_bmKovRTmE80-MSruF1BPvDQmZ8Z-ahD6_kAC3IOhiFoglBht7EGrzIY3bI
+Message-ID: <CANXhq0ryrNUoBvACX9hh-=FVOe+L6_6beXrZQn2e1P6eWgcUiA@mail.gmail.com>
+Subject: Re: [PATCH v22 25/28] riscv: create a config for shadow stack and
+ landing pad instr support
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
+	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
+	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
+	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com, 
+	rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-At 2025-11-11 16:17:26, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
->On 11/11/2025 09:05, Wenliang Yan wrote:
->> Add a compatible string for sq52210, sq52210 is forward compatible
->> with INA3221 and add alert register to implement four additional
->> alert function.
->> 
->> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+On Wed, Nov 12, 2025 at 2:22=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> w=
+rote:
 >
+> On Tue, Nov 11, 2025 at 01:58:37PM +0800, Zong Li wrote:
+> >On Fri, Oct 24, 2025 at 12:51=E2=80=AFAM Deepak Gupta via B4 Relay
+> ><devnull+debug.rivosinc.com@kernel.org> wrote:
+> >>
+> >> From: Deepak Gupta <debug@rivosinc.com>
+> >>
+> >> This patch creates a config for shadow stack support and landing pad i=
+nstr
+> >> support. Shadow stack support and landing instr support can be enabled=
+ by
+> >> selecting `CONFIG_RISCV_USER_CFI`. Selecting `CONFIG_RISCV_USER_CFI` w=
+ires
+> >> up path to enumerate CPU support and if cpu support exists, kernel wil=
+l
+> >> support cpu assisted user mode cfi.
+> >>
+> >> If CONFIG_RISCV_USER_CFI is selected, select `ARCH_USES_HIGH_VMA_FLAGS=
+`,
+> >> `ARCH_HAS_USER_SHADOW_STACK` and DYNAMIC_SIGFRAME for riscv.
+> >>
+> >> Reviewed-by: Zong Li <zong.li@sifive.com>
+> >> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> >> ---
+> >>  arch/riscv/Kconfig                  | 22 ++++++++++++++++++++++
+> >>  arch/riscv/configs/hardening.config |  4 ++++
+> >>  2 files changed, 26 insertions(+)
+> >>
+> >> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> >> index 0c6038dc5dfd..4f9f9358e6e3 100644
+> >> --- a/arch/riscv/Kconfig
+> >> +++ b/arch/riscv/Kconfig
+> >> @@ -1146,6 +1146,28 @@ config RANDOMIZE_BASE
+> >>
+> >>            If unsure, say N.
+> >>
+> >> +config RISCV_USER_CFI
+> >> +       def_bool y
+> >> +       bool "riscv userspace control flow integrity"
+> >> +       depends on 64BIT && $(cc-option,-mabi=3Dlp64 -march=3Drv64ima_=
+zicfiss) && \
+> >> +                           $(cc-option,-fcf-protection=3Dfull)
+> >
+> >Hi Deepak,
+> >I noticed that you added a $(cc-option,-fcf-protection=3Dfull) check in
+> >this version. I think this check will fail by a cc1 warning when using
+> >a newer toolchain, because -fcf-protection cannot be used alone, it
+> >must be specified together with the appropriate -march option.
+> >For example:
+> >  1. -fcf-protection=3Dbranch requires -march=3D..._zicfilp
+> >  2. -fcf-protection=3Dreturn requires -march=3D..._zicfiss
+> >  3. -fcf-protection=3Dfull requires -march=3D..._zicfilp_zicfiss
 >
->Please use subject prefixes matching the subsystem. You can get them for
->example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->your patch is touching. For bindings, the preferred subjects are
->explained here:
->https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
->
->It is never "dt-binding:". Also, all spaces are gone. Just look at `git
->log`.
->
+> toolchain that I have from June doesn't require -march=3D..._zicfilp_zicf=
+iss
+> for -fcf-protection=3Dfull. If that has changed, I think this will need a
+> revision.
 
-I will change the subject to "dt-bindings: hwmon: ti,ina3221: Add SQ52210" before the next submission.
+Yes, that=E2=80=99s what I=E2=80=99ve learned from the toolchain guys so fa=
+r, perhaps
+we can double check with them. If it is right, I guess we might merge
+them into one check as follows:
+$(cc-option,-mabi=3Dlp64 -march=3Drv64ima_zicfilp_zicfiss -fcf-protection=
+=3Dfull)
+or
+$(cc-option,-mabi=3Dlp64 -march=3Drv64ima_zicfiss -fcf-protection=3Dreturn)
 
 >
->> ---
->>  .../devicetree/bindings/hwmon/ti,ina3221.yaml    | 16 +++++++++++++++-
->>  1 file changed, 15 insertions(+), 1 deletion(-)
->> 
->> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
->> index 5f10f1207d69..0fae82ca3ee1 100644
->> --- a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
->> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
->> @@ -12,7 +12,9 @@ maintainers:
->>  
->>  properties:
->>    compatible:
->> -    const: ti,ina3221
->> +    enum:
->> +      - silergy,sq52210
->> +      - ti,ina3221
->>  
->>    reg:
->>      maxItems: 1
->> @@ -77,6 +79,18 @@ patternProperties:
->>            exclude specific channels from the summation control function.
->>          type: boolean
->>  
->> +      alert-type:
->
->Not a generic property, missing type and vendor prefix.
->
->This clearly was not tested.
->
->
->> +        description: |
->> +          The SQ52210 features a configurable alert function with four
->> +          types: SUL, BOL, BUL, and POL. Each channel can be configured to
->> +          select one of these types to enable the alert function. This alert
->> +          function can operate concurrently with both Critical and Warning
->> +          functions.
->> +
->> +          The configuration must use numerical values 0 through 3,
->
->
->Don't repeat constraints in free form text.
->
->> +          0 corresponds to SUL, 1 to BOL, 2 to BUL, and 3 to POL.
->> +        enum: [ 0, 1, 2, 3 ]
->
->No, use string enum instead.
->
->Anyway, does not look like DT property. Why would alert type be set per
->board? Why I cannot change the alert during runtime?
->
->
-
-You are right, my previous consideration was problematic. Indeed, there is
-no need to set the alert type at the board level. I will modify this
-content and test it before the next submission.
-
-
-Thanks,
-Wenlaing Yan
-
+> >
+> >
+> >> +       depends on RISCV_ALTERNATIVE
+> >> +       select RISCV_SBI
+> >> +       select ARCH_HAS_USER_SHADOW_STACK
+> >> +       select ARCH_USES_HIGH_VMA_FLAGS
+> >> +       select DYNAMIC_SIGFRAME
+> >> +       help
+> >> +         Provides CPU assisted control flow integrity to userspace ta=
+sks.
+> >> +         Control flow integrity is provided by implementing shadow st=
+ack for
+> >> +         backward edge and indirect branch tracking for forward edge =
+in program.
+> >> +         Shadow stack protection is a hardware feature that detects f=
+unction
+> >> +         return address corruption. This helps mitigate ROP attacks.
+> >> +         Indirect branch tracking enforces that all indirect branches=
+ must land
+> >> +         on a landing pad instruction else CPU will fault. This mitig=
+ates against
+> >> +         JOP / COP attacks. Applications must be enabled to use it, a=
+nd old user-
+> >> +         space does not get protection "for free".
+> >> +         default y.
+> >> +
+> >>  endmenu # "Kernel features"
+> >>
+> >>  menu "Boot options"
+> >> diff --git a/arch/riscv/configs/hardening.config b/arch/riscv/configs/=
+hardening.config
+> >> new file mode 100644
+> >> index 000000000000..089f4cee82f4
+> >> --- /dev/null
+> >> +++ b/arch/riscv/configs/hardening.config
+> >> @@ -0,0 +1,4 @@
+> >> +# RISCV specific kernel hardening options
+> >> +
+> >> +# Enable control flow integrity support for usermode.
+> >> +CONFIG_RISCV_USER_CFI=3Dy
+> >>
+> >> --
+> >> 2.43.0
+> >>
+> >>
 
