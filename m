@@ -1,132 +1,253 @@
-Return-Path: <devicetree+bounces-237754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D358CC53C34
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:45:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D68E2C5397D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:11:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 62EEB4FA6D8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:53:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1D446544AC1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66E05329368;
-	Wed, 12 Nov 2025 16:53:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3441342507;
+	Wed, 12 Nov 2025 16:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vD7tEPop"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4924D342519
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 16:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C23342144;
+	Wed, 12 Nov 2025 16:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762966387; cv=none; b=uQ1AB+o4849/uStUVM5/hDpbmyED/BXr2vvOaoauT/LOukTVjY4ZlCUmomzoa38dfl3ODGbudvv3o5GBB6ndxWeLXWdGAYwrWajy7Oq1gfbkh83WWW99RDNj1wzXb+gLdk/jM5omlzmFflUNMK/pt5IF9DyresKbO99tFHkrAHA=
+	t=1762966159; cv=none; b=sUOIMzDN9jOWdYjgqER6pElMvRBbaY868s9y95IxDSrQDzJzOyhpvA3S75YnBz7ObbE1BZrwlCbG58UVw1gpxQpa28VGwa4MfuQ7bdR1xKSPzDderajGJ5xajn6mI7PaBxjFXMtCe8wbBw5DOXkZv7IrrP9rbKdrziBvxj2ip3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762966387; c=relaxed/simple;
-	bh=BwRQFFjStra3DsF4NaVbCbesa2D7H6XBGB1YtS1E5Wk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HCJr6TIT3/LaxortXrvA4yvoW/RPgtsO0lSyiqG5aWnPkXQvm+M1CjKWj0CIakHaWbBW1HVjEV88P8/wDjSCFBNM24x7YUysv5DeyR7pnqm2a5qrca8lAqBZPVAqHbOKIAnb/AYcw359ZxXZ/LQHZNOuW6R0qiflaoaDt1hjb5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-b99dc8f439cso533516a12.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:53:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762966383; x=1763571183;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fznzNSl69lKMgOov3QZ4fMUSrBwsRp9eCNzvWDgHwfg=;
-        b=Vd8HcXgNaZhYoGg/+CO7eN1To/WEeC5eH5YLP8WX1xnSoh75hrwlL+0YOJN6CwQP+r
-         SN5CyBLYrI78YRawq6Yv9xeByL5BAZ8TeHc6m8ZVrDfLHSbJI/aP/DpeZdOOOfAypFVl
-         jMUO9ljRHFJAaKzGmyWLuwRAUVwOxgtAUzpqITEtcc3Tj4GiD9RJepPJm+dHy5BOzJTX
-         ggekHDLio0rYd6olml6bJUxxONH7R5ZLIZUdfbmYnyrQkmWdMjYJpeavlkCP8X1T2Vgu
-         b5DG5hU14DbDAM2Gg/gTQSb56nESUYAecJZYzajlKTXLlBdtzO6JkcdTv+V772HFICJ9
-         RN4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUkF7o3X3sdH836GVX3sD3fyQPuOcd19GEKOHC6Rzj8OrpjwRj460+1iWjfdvWTQeA+dZxhCzxyhD8N@vger.kernel.org
-X-Gm-Message-State: AOJu0YxW12urvbf9OyLFsRgclLsPiPrFPQ8Oo3/Ta1oc6OfSlgQkBl0T
-	e8cB6QWF4xKGoNmx0x/e5BK5vwqYJ1afShFvaZ4tOX75jW3wf34ha2L0eqJGOmjQ
-X-Gm-Gg: ASbGncs0pWbSWpWqLgh7W4joskt6VrsCfhk+VI2yLfI0/S3n8nZpuaJBvNS2zBiBF1r
-	zQ5Dvupv7ECJ9pc2/sNUw5Y3DeYNLGBdt+Vc6kUy0MQpf2y0qRDJq52Mawg6y8Yn7lpChkiMfSh
-	G9zWM8XtIssjoOUeaJ5TiyCBA5VcBoAkcXygTD/nw7jAzm/SVUFKAGmzS1ORK0bMR2slmBNk7UP
-	5ArEYGZXpzg5bO9KdMYKKGIEjsuOPiPXmj02Et44OFuDombjwFQGJ7/MFjeKl7OXX4hQDPgIS5Z
-	GVnFBSlVFmCEiBs/BP+i6pRd3P0x79k3MheohFSJPJsRRYaW7fBdck9dLKMYKZkKaHa1aAzEv2R
-	kqhv2mRcBZqjYeDnBun9Inoy9EJZGrKBPNdRaLuYsZ5RviHb6QzPqRyvN+Hhbjl6Dp69E3MdRU3
-	eTSry45dgfUsuNbzvHTvNM+Ev7t0pL1btZqcChE3ObXQ==
-X-Google-Smtp-Source: AGHT+IEnwzjAvMs7WZQW6kjDdaeKff1zGu07wHpL0nqTMn+L9WCBITz0RZCHagkcJzIVIp1TCwRNKA==
-X-Received: by 2002:a17:902:ea0b:b0:28e:a70f:e879 with SMTP id d9443c01a7336-2984ed2550dmr52734915ad.1.1762966382870;
-        Wed, 12 Nov 2025 08:53:02 -0800 (PST)
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com. [209.85.210.171])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2984dbd93b4sm36671625ad.2.2025.11.12.08.53.02
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Nov 2025 08:53:02 -0800 (PST)
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7b0246b27b2so1445762b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:53:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWwdiJ/uqZ9x3CnFSjupRYnNP+E3tMZnefTP88hP/9UUC7Q8T8NDl+Du0/7L7XODaONospusA6uZ8qq@vger.kernel.org
-X-Received: by 2002:a05:6102:c03:b0:5db:dad4:803 with SMTP id
- ada2fe7eead31-5de07ed2044mr1042935137.35.1762966080037; Wed, 12 Nov 2025
- 08:48:00 -0800 (PST)
+	s=arc-20240116; t=1762966159; c=relaxed/simple;
+	bh=0UxzDI5/2OOPFiLuL/ETR5cvUWQJ9noAD30qrtcyp4o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BlKvcbpJXDD4y3oZkaqZ9rwMOFDhzz38Dp9sxIl9So1uumohQh3RXsvGgDRod7Mw+KXRI2ophuhq/5bCgEucc4XrLQyCiPEygz8O/C0OF56b5+3BRbQE6jRopn6pRrBBakY6DRA+I4v7famOMKHbNYK52Qy2sysdJMPq+AdJEYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vD7tEPop; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87F31C4CEF5;
+	Wed, 12 Nov 2025 16:49:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762966159;
+	bh=0UxzDI5/2OOPFiLuL/ETR5cvUWQJ9noAD30qrtcyp4o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vD7tEPopA8xg0x3lHgCAEMBLbYNDe9Ek7+YnfNqQxcSE7Whx1AkVpTqfc9Oz45jIV
+	 9lG/1xebJhOAS6NwBJ/8Oodww/WmwQQjS0gK8O8lTE/4oJTHkdBlx4wIvADVOthqMo
+	 +7R0Kx0PRPtNS2c18wtKViAb5IoqV9znoDudUOt8WBg77FAnr6KloLdwkUAENxdppg
+	 iZlrR91lUBvCsTG6zr7fu/jm3rh+Xa3FwbAT0+57rB4V+ZzTt+ffYLgtwUi8DVgFZ0
+	 Exile5ZYpuKX8kQdOpjuc//MYOvAenDUm6jckTJemEB3NQSiD+zr92Ku8169uNnZOu
+	 /A46aVpdm1kUA==
+Date: Wed, 12 Nov 2025 10:53:36 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	venkata.valluru@oss.qualcomm.com, jessica.zhang@oss.qualcomm.com, 
+	Yi Zhang <zhanyi@qti.qualcomm.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: Enable lvds panel-DV215FHM-R01 for
+ rb3gen2 industrial mezzanine
+Message-ID: <qps5fkbgdqqvoqa3m5l4naksyc4aoq4xqnciyrpkrbs5qcno7c@aa6ync6sk4ju>
+References: <20251112-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v1-0-6eab844ec3ac@oss.qualcomm.com>
+ <20251112-add-lt9211c-bridge-for-rb3gen2-industrial-mezzanine-v1-1-6eab844ec3ac@oss.qualcomm.com>
+ <kosvayxmpbngn56v7t734f4qqrc2rptkjdd7q5q23brg22dvov@cxs7kzzuapim>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112143520.233870-1-yuntao.wang@linux.dev> <20251112143520.233870-8-yuntao.wang@linux.dev>
-In-Reply-To: <20251112143520.233870-8-yuntao.wang@linux.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 12 Nov 2025 17:47:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUj1G74d9WoNJFNjeQ6tOENW8kZfr7YMwRvLUaQnuW6pA@mail.gmail.com>
-X-Gm-Features: AWmQ_bl96eJ0z2R9z9MwX4iTUg9zDacFdfuBv9uJoul9zbfPX5vA8c0U1fmngLQ
-Message-ID: <CAMuHMdUj1G74d9WoNJFNjeQ6tOENW8kZfr7YMwRvLUaQnuW6pA@mail.gmail.com>
-Subject: Re: [PATCH 07/10] of/fdt: Fix the len check in early_init_dt_check_for_usable_mem_range()
-To: Yuntao Wang <yuntao.wang@linux.dev>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, James Morse <james.morse@arm.com>, 
-	Baoquan He <bhe@redhat.com>, Zhen Lei <thunder.leizhen@huawei.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Changyuan Lyu <changyuanl@google.com>, 
-	Alexander Graf <graf@amazon.com>, "Mike Rapoport (Microsoft)" <rppt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <kosvayxmpbngn56v7t734f4qqrc2rptkjdd7q5q23brg22dvov@cxs7kzzuapim>
 
-Hi Yuntao,
+On Wed, Nov 12, 2025 at 05:02:20PM +0200, Dmitry Baryshkov wrote:
+> On Wed, Nov 12, 2025 at 08:18:11PM +0530, Gopi Botlagunta wrote:
+> > Below is the routing diagram of dsi lanes from qcs6490 soc to
+> > mezzanine.
+> > 
+> > DSI0 --> SW1403.4 --> LT9611uxc --> hdmi port
+> >                  |
+> >                   --> SW2700.1 --> dsi connector
+> >                               |
+> >                                --> LT9211c --> LVDS connector
+> > 
+> > Disable hdmi connector for industrial mezzanine and enable
+> > LT9211c bridge and lvds panel node.
+> > LT9211c is powered by default with reset gpio connected to 117.
+> > 
+> > Signed-off-by: Yi Zhang <zhanyi@qti.qualcomm.com>
+> > Signed-off-by: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
+> > ---
+> >  .../qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso | 106 +++++++++++++++++++++
+> >  1 file changed, 106 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+> > index 619a42b5ef48..cc8ee1643167 100644
+> > --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+> > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+> > @@ -8,6 +8,112 @@
+> >  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+> >  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> >  
+> > +/ {
+> > +
+> > +	hdmi-connector {
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	panel_lvds: panel-lvds@0 {
+> > +		compatible = "panel-lvds";
+> 
+> Please describe the actual panel using compatible, etc. It's not that
+> this is some generic uknown LVDS panel.
+> 
 
-On Wed, 12 Nov 2025 at 15:38, Yuntao Wang <yuntao.wang@linux.dev> wrote:
-> The len value is in bytes, while `dt_root_addr_cells + dt_root_size_cells`
-> is in cells (4 bytes per cell).
->
-> The modulo calculation between them is incorrect, the units must be
-> converted first.
+I presume the mezzanine doesn't have a panel, so how do we provide the
+description of the mezzanine such that a developer can quickly get up to
+speed with their specific panel connected to it?
 
-Thanks for your patch!
+Do we leave this node disabled, just for reference, or do we specify a
+specific panel and then have the developer copy and adopt this to their
+panel?
 
-> Fixes: fb319e77a0e7 ("of: fdt: Add memory for devices by DT property "linux,usable-memory-range"")
+The benefit of doing it like that is that we provide a complete example
+and something we can test. But at the same time, If I presume we might
+have users of the mezzanine without an attached LVDS panel?
 
-That commit merely changed "<" to "%".
+> > +		data-mapping = "vesa-24";
+> > +		width-mm = <476>;
+> > +		height-mm = <268>;
 
-The code that added the bad expression was:
-Fixes: 2af2b50acf9b9c38 ("of: fdt: Add generic support for handling
-usable memory range property")
-However, that code was copied from:
-Fixes: 8f579b1c4e347b23 ("arm64: limit memory regions based on DT
-property, usable-memory-range")
+The way this patch is written we certainly have some specific panel in
+mind...
 
-So I think you want to list these two Fixes-tags instead.
+Regards,
+Bjorn
 
-> Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
-
-For the actual change:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> > +
+> > +		status = "okay";
+> > +
+> > +		panel-timing {
+> > +			clock-frequency = <148500000>;
+> > +			hactive = <1920>;
+> > +			vactive = <1080>;
+> > +			hfront-porch = <88>;
+> > +			hback-porch = <148>;
+> > +			hsync-len = <44>;
+> > +			vfront-porch = <4>;
+> > +			vback-porch = <36>;
+> > +			vsync-len = <5>;
+> > +			de-active = <1>;
+> > +		};
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +
+> > +				dual-lvds-odd-pixels;
+> 
+> Add one empty line between properties and subnodes. Drop empty line
+> between reg and dual-foo-pixels.
+> 
+> > +				panel_in_lvds_odd: endpoint {
+> > +					remote-endpoint = <&lt9211c_out_odd>;
+> > +				};
+> > +			};
+> > +
+> > +			port@1 {
+> > +				reg = <1>;
+> > +
+> > +				dual-lvds-even-pixels;
+> > +				panel_in_lvds_even: endpoint {
+> > +					remote-endpoint = <&lt9211c_out_even>;
+> > +				};
+> > +
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +};
+> > +
+> > +&i2c1 {
+> > +	status = "okay";
+> 
+> No clock-frequency?
+> 
+> > +
+> > +	lvds_bridge: lvds-bridge@29 {
+> > +		compatible = "lontium,lt9211c";
+> 
+> Not supported in mainline and not described as a dependency in the cover
+> letter.
+> 
+> > +		reg = <0x29>;
+> > +		reset-gpios = <&tlmm 117 1>;
+> 
+> Use GPIO_ACTIVE_foo
+> 
+> > +
+> > +		status = "okay";
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +
+> > +				lt9211c_in: endpoint {
+> > +					data-lanes = <0 1 2 3>;
+> > +					remote-endpoint = <&mdss_dsi0_out>;
+> > +				};
+> > +			};
+> > +
+> > +			port@2 {
+> > +				reg = <2>;
+> > +
+> > +				lt9211c_out_odd: endpoint {
+> > +					remote-endpoint = <&panel_in_lvds_odd>;
+> > +				};
+> > +			};
+> > +
+> > +			port@3 {
+> > +				reg = <3>;
+> > +
+> > +				lt9211c_out_even: endpoint {
+> > +					remote-endpoint = <&panel_in_lvds_even>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +
+> > +};
+> > +
+> > +&lt9611_codec {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&mdss_dsi0_out {
+> > +	remote-endpoint = <&lt9211c_in>;
+> > +};
+> > +
+> >  &spi11 {
+> >  	#address-cells = <1>;
+> >  	#size-cells = <0>;
+> > 
+> > -- 
+> > 2.34.1
+> > 
+> 
+> -- 
+> With best wishes
+> Dmitry
 
