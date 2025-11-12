@@ -1,410 +1,265 @@
-Return-Path: <devicetree+bounces-237524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E65BCC51BDD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:44:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A283C51C07
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:47:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 154094FB093
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:34:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B021E3A77E0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:37:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 990A22EDD72;
-	Wed, 12 Nov 2025 10:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D3F3043A2;
+	Wed, 12 Nov 2025 10:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="CirY+Lx8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="p0Oz30K3";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VEE83gR6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011019.outbound.protection.outlook.com [40.107.130.19])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60630267B02
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 10:34:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.19
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762943689; cv=fail; b=czxHNw90WFi+/YmngER7E7FZRrWN9SjmNeNw56dl1oyVPbnrJsVapqYxE5OBkB5enARXs88q+VpmK1YLvWXBYlszre85rkpfRwSzoE2bumtvWkOuy97GuuDx4NC18j4Ar6t//K0UdtpRI2xwUtr8edeZg3wk3P1NeLfIAFLnvKU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762943689; c=relaxed/simple;
-	bh=2npWoy2H183Q5tNjJIRc5gqMiEx2xiMb2kpfrAXwASo=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=p1cj6PC4iQX2X4HP23WmWwxl2CIOkrykafXn+eFJSbMBhS7kRvwJECZNckIeGusuAKNUjqKczBrKFkxZlRY8fVUFgq2gU6NzQ4NO1Cmomy6Gi9TUjC4wf6pfIIrPDSDuA+q/0UNWz7ewLQBttiLsvji47jk8VnwPBsI5yKCHP2E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=CirY+Lx8; arc=fail smtp.client-ip=40.107.130.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DEp7kJpN5ksWmEkBqWu1g+Y6j3SpZRBGxk5/3tN55FSjKY6q4ZpY2b2HAFEG41pNRppG77UzmZ7gD3rShC+qIbP0UHQX/5kVtkdGAGqSPu0B+77RM4IE8pKU3S58tbr9LKSp0MGXcc+xy0SQtKZA0bG5WEbDPYrojlw1vgicmA3jrLOx3rqGuRwQLw9yD1jYnBHdwtRwFBQ6TEkHQaHndTvfDaebSPRT0Gn28AcHalbfS0vPWmLOTGPSO1rm8M6Ryt+Qh7P/+SIkpUZgbkJuqwXV+nZEA+8E6laq6B3nhdZUmNmWIiGDuM52XpCgva6bedOVlpHEY4vA+I+JmfHD/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v2lw7NzGyGCSd8wz2Msi3Eh+UQwjvTTHxfqUt4DXFh0=;
- b=Opj0Vyuhxl9LEnZ8IA5iP6eH679j2MNlwOSymkVB3QmFghToicqN8f9VUcP9qVnAoXcSA2vgIfJgurPUjRMgpeRSYMj8CQYItjBBzVudQqcWjrKZswDVUFuJNWhl5KKV9gEqKc6hT8/Lr8O3NSiWOaf/otx4z2ntB+4AGiyWrQAoP+aSuc7jpclKG6Ppu9oKI0il2GCC9nEpE/junxJgeTOrHLCG+VVSxhWKZeEIE0J+U8BOZrpTjBpQqL668Ta4L9ndd6xcvuSWwHFEgahog/BxUsOAedKIJAEpfXk1EFLUUK3PnXzp5+Tw5z/U/w8fKQ+CTre8Cnica3rk3BEuIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v2lw7NzGyGCSd8wz2Msi3Eh+UQwjvTTHxfqUt4DXFh0=;
- b=CirY+Lx8LtESH5C1QxATx8kmywz5MoiVi9dZpHAfrPCNCY2lWZTDOP2o+v7HuQwB/1cke8+/MJqI3kEfAzUjbi01bwCQqqNID48gav3772ceBFpi9zpYhNR5wt0w/2csSzQ2hMIwwlikk3+bWi9ReOq4a7HrU74Glu5GagsclPY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by PAXPR04MB8080.eurprd04.prod.outlook.com (2603:10a6:102:1c9::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.16; Wed, 12 Nov
- 2025 10:34:41 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::5ee:7297:93b4:a8d1]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::5ee:7297:93b4:a8d1%6]) with mapi id 15.20.9298.012; Wed, 12 Nov 2025
- 10:34:41 +0000
-Message-ID: <1459ebad-c087-49ac-a316-14436fac4bc6@cherry.de>
-Date: Wed, 12 Nov 2025 11:34:39 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
- Radxa boards
-To: Diederik de Haas <diederik@cknow-tech.com>,
- FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jbx6244@gmail.com, pgwipeout@gmail.com,
- jonas@kwiboo.se, ziyao@disroot.org, amadeus@jmu.edu.cn,
- nicolas.frattaroli@collabora.com, pbrobinson@gmail.com, wens@kernel.org,
- detlev.casanova@collabora.com, stephen@radxa.com,
- sebastian.reichel@collabora.com, liujianfeng1994@gmail.com,
- andy.yan@rock-chips.com, damon.ding@rock-chips.com,
- kylepzak@projectinitiative.io, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251111054112.55505-1-naoki@radxa.com>
- <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
- <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
- <B0C8C5A69B9F465E+ba0ad139-d3d9-4492-ac9a-cc58f8f35074@radxa.com>
- <41275775-9e6e-9202-4c79-6140a56e41d5@manjaro.org>
- <572f341f-a5fa-4f1c-ad60-a5fe3e046d6d@cherry.de>
- <774C3AB9F17BAE47+14f8b8ba-ba78-410e-b44c-4d077585d05a@radxa.com>
- <DE6M84A93WTV.O5IW3BG8TZRW@cknow-tech.com>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <DE6M84A93WTV.O5IW3BG8TZRW@cknow-tech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-ClientProxiedBy: WA2P291CA0029.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1f::29) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D08288537
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 10:37:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762943855; cv=none; b=sCFGsdLUxCc35dFClJBxrY5JtbIOWe7eKYh4EMVsSJ4Rq4LdQH2iRCDCA68AHJ6PbpESorG93+7j0d+dl4iLp3Qx46+SLDGuSPaV+jSUqqxFig966Mh5oscOXVYwS3FCWOhQI+j+dNdIkPEM54lV4ZDQN70SsFTzmTEfLcQH03I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762943855; c=relaxed/simple;
+	bh=dx6zm7iYDFsu+uW4HxvS1RA6sCHD+I68rch7mq06/pw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CFFCRWcmVtMhmR3qWMiVXTfwiJe+RJosfh0z0u6kE39Ubi0fO+sKl/zvTCiu9VTIwfdbviQ7fMO2JeiULOayNvC6L99bq9QoFC6lSimZuXcmuUAY2IjtROMdpa0acqTy+MryNJfX0wqQ3BrJDegWqFTwqr6wmBTSgQCBkvxjGqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=p0Oz30K3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VEE83gR6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC9ghAf1109118
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 10:37:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yEvEVaysBiDJvqu7zSpO/ven4wuPjiUA9FzLjPjO1Lk=; b=p0Oz30K3ZkEWwuzp
+	iqiim70ICP+vQQno+zYJnXP3FiLNW/NqOujPtIY2anc++sqN5gaDBPycS0NGFyFX
+	dpaoAHlUUwgvFGRmEFlte6Q8mA+lKrD9UJkcg1RWWZA4pZpilpZt69WCHX9kZaoz
+	3iG3mxKT/mv/TWO1givhucRFRitwKYp92KbL6yeP7RnsGST1HSYK6DeJ8D2z78pf
+	fLH8OFRFwugXCRlNnTYSgmUaLMsZMHKuIBbKB7GCEQEYfqshTC+LviPVOOA7SKdX
+	CXobtf7q7JlojXQJW4Mn8oAhLcQ+baKjrmDIsLWcCpZC6lJXo78vrDERvDKQ13HS
+	/bV64Q==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acqum05u4-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 10:37:32 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b10c2ea0b5so29414385a.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 02:37:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762943852; x=1763548652; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yEvEVaysBiDJvqu7zSpO/ven4wuPjiUA9FzLjPjO1Lk=;
+        b=VEE83gR6V7jtim28gTs/PCIFOLUi9MFEcCGi4zuC1QmE/TgAjPAAbv3G5b0Y74LPJ+
+         dCGSwTwi0JD16zsuuRmg1js1utJv379J5aYUF1IVOC8+4j94O1NvH/NqQDs4hvh9ODwy
+         UTArToPX9DjwV4bGi3mJ3UtQBqv6tv+CYkqCQGmaTLVSI88jwGgKqU9nvO3B7Bnw5Kp6
+         ppu1P8wYMe084IIucPGuYKr7v/hhouW9mBeUUNWInBE/5w+zJFppt2JbkwhBYQqGbBmi
+         eDEbAz/+/Dn2gN0tWC7v7J5KF0pr2KZqFd2xr4vfX94yJZe2APTjQ7SGmuRmL7lOWnZl
+         UH2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762943852; x=1763548652;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yEvEVaysBiDJvqu7zSpO/ven4wuPjiUA9FzLjPjO1Lk=;
+        b=rBITqsmINS4JRpRsEPQvU4bSNiwCEyeajUBjJBhjkLEHQ0iV7QkznyGUvXRcdl07Yi
+         Hpa1ytyVOmkT+ZcXJCn/tq1wKrJG8t8IKzuPfRMqX/qSiA5N0Jrjz6XEiAV65msfKfvF
+         177cog2HaHBqdDKLv4BgfVkfg7x4/U09pfBxrOPqGo1Fxb4UJi2rWWA5QRcu4tyiAPVC
+         lc2nxbKC6M9y566D25MJTWvzQ4cAs9cedm7mSDT9spbCNN+spq7fr4zlgOz/1mlcqf4r
+         0wPJ+b06n2HWvQLJDlHP26DHO9Zmdbnt98OnbBrx5rSUvIk/jJ8U1zNSUrPMiFeblck7
+         74DQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVCwLRyrsSz8I4aH4I8rYItlOmQY2Qj7ckVqF99jafrilHdygeUmCo0Y8KgwXskpwpHbgMksLmy0dBz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhk/cB3iXDcQWrEmq9jbIUn6UnV2ekTRuiFM9+BIM+CIgu50XE
+	/Q4YqvDhrj1edd6Lihoa6sLrrawoZJxPi8zWWctQ2c0Oq/Uybn0TosnlyyKMGhEj6NhiOc7GYsN
+	j8/k+t2WzLwfVQ2vb+kEgB4RFzje57G+pj2mUDYXUjCy/9gLcpTqXmjJC6ex01loC
+X-Gm-Gg: ASbGncsBQxCgkBfcK9EI16QNP6NhuD7s1dRLUdGpoc+YsdcBxI1ocimhAD2zC78ibT5
+	TqLlXF5jZ1ANk+F2sedaU4BT1aRNvDwKTnfAjJoqoY25KAROygfBSly9i2hy6drSCWyuf5vcb12
+	Ju5qSRg/sFFNzQRftJUNXgq1OJ9QgH5Q7G9QMWeYPHYi3QQo5OWrroaa4OhtDPSl1O6RxGBxag6
+	JocF3W0ZHdFWOePSGtUw243xUpUDy32QgrXN6QIvcyw66c1lo3LesUR0CEwR/OcAPxbWqnLqrSq
+	rC0XuG+QF0yS51pxrR9/h0PBe8CUoz8qqkUDHr/FIpKcUhCwYICFdssazWnkAvfuTRbR+4jAamr
+	aow4+JZOQvQALStF2w4KSEyJkAnFizNVjibGbXSK1XfcBsxIP5RSGdu2j
+X-Received: by 2002:a05:620a:c44:b0:8a2:eb35:8df9 with SMTP id af79cd13be357-8b29b96bfacmr174329985a.11.1762943852377;
+        Wed, 12 Nov 2025 02:37:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHnodYPH8G4uSHNNb8nQWE1cE1kx1PmZfPb6CE/gBIDzIV9Um7jRFbvxAfRziignE7KgxTdXA==
+X-Received: by 2002:a05:620a:c44:b0:8a2:eb35:8df9 with SMTP id af79cd13be357-8b29b96bfacmr174327385a.11.1762943851866;
+        Wed, 12 Nov 2025 02:37:31 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bfa0f37csm1559184066b.64.2025.11.12.02.37.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 02:37:31 -0800 (PST)
+Message-ID: <ae21a963-696a-48f3-af91-ee72aef4b60d@oss.qualcomm.com>
+Date: Wed, 12 Nov 2025 11:37:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|PAXPR04MB8080:EE_
-X-MS-Office365-Filtering-Correlation-Id: c224e484-c737-493f-f67e-08de21d71671
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?OW51OVAwaUdLMWlqNU55TDdjSCtqT1JHT2VwVHgycGo5bS9IWnZUeW1tQ3Zt?=
- =?utf-8?B?TTdoT1UxNlhKS2tRWHRyM3BYZ00vdkVKUmMrMUk1eGJWSy9uZVhEck95UVY0?=
- =?utf-8?B?dVU5eGp0aFZyVGE1NmNhc0lXL2VhMzVIYWd0ditXclRqdTZOcWRQblhiRzZ1?=
- =?utf-8?B?SlpXUklWSmNxWTNUckdYR0tsb0tUTVZTSkd2eUpFYnBZZ1M4R3gzMW0xdmls?=
- =?utf-8?B?VmdmVW5TZU5xVjVqZjJ2VEcvSTMzVjBGTUkzQWZFWFh3cEx3M21FS2pCclVu?=
- =?utf-8?B?RTI0WG5oSGx3VGprMExDMGtoLzgvYjJuSU41RFpKQTJYTUFrcTR2Sm1GVTdH?=
- =?utf-8?B?OXVoVTJCL1orQ0ZlRW9wZjFXSmM2MDZVaTM0WWZrZ2ZzMTBySldnbCtVT3Za?=
- =?utf-8?B?K3o3ZFl3V2J3UGhJbjVvZUVUenZDZzRWZU5yUDRER1N2UGdnbzJVSXEyOEQ3?=
- =?utf-8?B?Y1Jjc1BYOU5ZNFFBYmhSb2s3Ky9KdnIxenVaYXl0REhSbjUwRHZvNVV4ZTZ4?=
- =?utf-8?B?WTR6MXU3YjJ5WEx5bUhwTFBTZU94YjdzaFN6MURIc2V4VzMvOFNMYW5SSHVB?=
- =?utf-8?B?Z09sL0JCeUhpM3llcDNDbmpTRUNHeFhLRHprVFlrakNYaHBvT1JXc0J0cWZj?=
- =?utf-8?B?ZUdNSFFKUjhldVpUVThLL3BWVFFycHkvaWlud0FYZXRGNHdrVGUwV0FZWDJl?=
- =?utf-8?B?UUZXcGIzN0RESE1rREFCK2U0K21hZEgySFJoZWpVS2NXWEpNU1RkbHVBWHFq?=
- =?utf-8?B?RUpLam8rUDJXbFYwOVkvOFd3R1BDcWFLT1BCalZ6WWJBZWtWa2xwV3YwTkZJ?=
- =?utf-8?B?VWVKa2pkS1NxTzA4aEJwanlBKzE3TVI0WUhrT2R2OXVuSjFoOVF3T0VINFRu?=
- =?utf-8?B?SFFNVGpZZFFmZlFqSFBxR0Rab0c3Q2EwNGVRR0IxRXpTQUFYOHpFS0VIVG5j?=
- =?utf-8?B?NEJlVE1yVmxMRzc1aTR6enhWZFhHeW9sb0hRUXk4TE1QZnZzekdiU2lxMWY1?=
- =?utf-8?B?dk1EeS8wa1QzeVNVUjNPQjhJZEVXbCs4SXV2NWJ0TXhsQXd6SkdUN3E2N1p6?=
- =?utf-8?B?S3U2WXpPTklMTFJYaVhoWGpYL3dZNERSYXAveVdtK2gvSWVtb0ZFYnd0UmF2?=
- =?utf-8?B?em1FTDRoYmlJdkd0bHVnUG5BeUJPb1hHZUtwMndDcVNPU2ZwanAwbHQvYjFF?=
- =?utf-8?B?d29XUklsdG53NEwvSTlxeUdNOXF2RTdWem5OYlBjTng2bmdMZTBUYzVkUTJE?=
- =?utf-8?B?VDkwYXUzOENTYjJMYTVvTHVuOWNZS0F4MHJpMGFNVTExQ05lZzAxbzdZWDl2?=
- =?utf-8?B?NkRPaVM3bFRmL0FRR2pUb244Sm8rZDFQMFFwMGdsMU9JanVuNTlCQWJxUWVk?=
- =?utf-8?B?a0l1T1c1aFMzYzlCL3l1WGtXNmcwTHZ0cE1UN0RpSDJhYlphVHorZWpIUlZG?=
- =?utf-8?B?RTE0ZnZCcjdzVWl4RHQyNDBUYXFBYUZaOTd2V1JIbkdoSGFGNkVraTFSRDlH?=
- =?utf-8?B?SCtjbUR4dWhVdFhQdDRpL1BvZ3lZa2JVRjhQQmFwenVsQTN4eGV0OElzaHNC?=
- =?utf-8?B?V3k2K1Vuek9nYWIwRDNmbGs2ZlBBTXhFeVo0NEs2aFZYTGswNzdIeTlPM0h6?=
- =?utf-8?B?RHJ3MXpJVmhKTFNWWlJ1Y1ZhaEpra3habTZ5YWl4RUVjT1BlS0VDcjZRRGxF?=
- =?utf-8?B?VE1QM1gvOHB4YjJCRzl6UCtzU1AyRXhiVjBmaU9zRkRmWlNJTWc1WGdtQTNV?=
- =?utf-8?B?SlpRanFrU0VqYzJUbkJuOWtJd1Y1Y1ltLzVoVFhFTHJrK05GMG8ydkJFUEtK?=
- =?utf-8?B?THVjY1hQZllqclFGUVV3bzlIK1NXRjdaRHd4amRGRTVwVFNNZ1gzTVd1NWZO?=
- =?utf-8?B?MjBMYlVtaU9GWU5nQXNYY0lDakFnTXZKMEpwbCtzSWNpSEE9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NmZySEhkbzA0dGpqalVGR1Q3REhucEIwdSs3VlpqTkJyWGEvRkxEdnNac3Rr?=
- =?utf-8?B?TTBxNmQzNzM1TVBoT2tmYjd1SDRFLzVSOVMvenJZVXJwYmI1bi91WGJhY1VM?=
- =?utf-8?B?Wm9XL21WK0FBdVppL1hvcHpSeCs4aHA3b3ZCUm8wb3JmRUtZWllNdkRoV3Q4?=
- =?utf-8?B?dGd1UVJXV2YvQk9TdWNkVHV3dnhvQ2lidjJBSWRkZXkwRzMyeVlOb0pLMHZ6?=
- =?utf-8?B?VENMbVJaeWhVaXFRalNyeGJNZmllYmx5d0pvNHdqbDkvZnpPcEZGbFhHZUNp?=
- =?utf-8?B?V3lweFdGVXdWZkNleEswMkdOcjQyRk9VTFkzcXYxaGJXUVA4Y29BSUx1akFp?=
- =?utf-8?B?YXlNdlNJTU0zajJoa2krK3UwTzV0aWw4aXRjTXpNa0FybVpzM3Z1aWFTZWtX?=
- =?utf-8?B?aVF5bys4K2EwdzArNDNYODNheUY2RFlMWTZKMkdYREc0VFRvVHoyN3lNRnEr?=
- =?utf-8?B?ZE1QN1JlVnZ6ZHlrbEtEaWFJdWJ2aDVaK1V1STlrZndseTNnUnJDOFBRaHhw?=
- =?utf-8?B?Y2I1cWphcW1ackQraStOU3BQUHVYbytBcUh4VjBFOGsvRE5XSkdvOEJ5elN5?=
- =?utf-8?B?d3lYaDJMNHNpWVdDeHUzS0dZbEh4eWV2ZU91cno3dGh4N01FZ0JhclNCMkpn?=
- =?utf-8?B?U3pqejZaRWJqbjFhY05VakFLcVpNYkxIWVBNaDVpMEZ3Q3dUcG5HQlpZUVlM?=
- =?utf-8?B?TTZhSzd2UENGMWMyTVJlT0lLMHF0MEtyMExvL2ZnbHFqV3I5NVFJTEtZalRv?=
- =?utf-8?B?M1hOV29KWWl2QzFpenAzRlRRSTBvZEVUUFAvMVFmd1hCc3NyeW1SZmxGWUFG?=
- =?utf-8?B?emFFeExYUk82MDhyaE85L3A2MjRLdVB1RjNnVVp6NFppWXdPbXd2cHJwaVVK?=
- =?utf-8?B?eCs3b1k3M3hVYUNVK0JKME15c1hyWGZCZkdDV1AydkFZNUVRcUtvRWtDOUR6?=
- =?utf-8?B?U05aMjZ0T1pFMjNJYzVCc0N0RjBvNUNLQkFiQkNYTE5DK2VNTVFzUWtXMzZW?=
- =?utf-8?B?Wk81SlJNWGpObTRDQ3YwN2p0azM0WEZCRzBCbmdCY1YyVGVLRHFXblBGMWZZ?=
- =?utf-8?B?SEs0Q24rSVd6TlA3MjM2RGROVVRqZ0U3Vk1pTnAxODB5dHZxSHVTRGk2Rkg5?=
- =?utf-8?B?VnVWZmk2V01HNktlRm1jaVpWMzBwNnVvUzVJRjN3ZWVyQlROdlprWk9WN0gw?=
- =?utf-8?B?ZEFCdGlqWFlMZ2ZyTjR2UkVBMWQza1MzV2hVdDRPNWw0blIwbUt1UjF6WjlP?=
- =?utf-8?B?QTNWMG13TUczZGxTT2NXVGR2dnRnN3lFMitLWC9kaVJHWUZIZmRzV3ZBRUFm?=
- =?utf-8?B?K0FaZ0ZyUXFORWFmbjh4K0p6aGl0SksrZm1xM2d0aTBrT0lqWGFmdkwxamFn?=
- =?utf-8?B?aWIxRlNmMHJnNzNZTWZXaVZaelRBbnNYbzNveXJhZUpqcDJIRGE3RjZiRXc2?=
- =?utf-8?B?SUFDSStaWlZBZ3ppNFBvNUpzZ0t2SytlZ3h4SzVtRThBS0RiUzBDRkI4RXRD?=
- =?utf-8?B?TzJxclNTMlJHbXQyUE8ydG5EM3EwQkorbUdBRnVnTkhoekI3M3JHOXlkY2wv?=
- =?utf-8?B?WUViZTdNT0RkOG13WlZ2QUhTRm5TMDJGSE93TGtmQ3JlcVd1T2wwMDQrUUV1?=
- =?utf-8?B?R2YwVFRDcXdTU01KN0VadVhla24zcWpUVXdIOWtyaVBZdU52RTM2dVJmSy9v?=
- =?utf-8?B?UzFFb1RaSGFLSyttY3gvUWovb21JMklucUZGYkxlRjd5dDMySGY2Y0VDV2pY?=
- =?utf-8?B?aDNwQmU3UENtQzNkcXFBa1BwNDVKTTVlRjRxaExuN3dEZnNlWTU5ZHNaeks3?=
- =?utf-8?B?MXhIaVZXYVp3NGp4aXVJMjdidW96YzlHT3Mvc2ttVGdkNTVPL01UdG9XbEpn?=
- =?utf-8?B?ZFUwYmZQbFowaE5DRit1d2JXdUI5NEEwdHBXcFAzWHB5VVlDK29xY1p3aEt2?=
- =?utf-8?B?TzJEeXdyOWY2VWMyTWhyOEdYNmZ6M0tkQ3VQdFJEa1JVQ3UwdjF5bHhTemxn?=
- =?utf-8?B?MEpYZDN3NFJiYk4yZkRCbDdRRTNFM09RMUxzSDVQV3IwbUExdElNS0FPQXhv?=
- =?utf-8?B?RTVFNVJRaDYvYkNVT2NyRWRWWHdXcEhmZko4UXI4T1RzaWMwcitwZTdic3Rs?=
- =?utf-8?B?VXZFZEhrcndTaEFSM29xeE5TZ3hoa1JReVpuaWxiVTZPTEN6VzhTaklmdnJU?=
- =?utf-8?B?TUE9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: c224e484-c737-493f-f67e-08de21d71671
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2025 10:34:41.5749
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9FRDJCOTCNDgcxwKOHm9uHQqbRp4dPmkCgfMwlL1Sc+aj6iaVm2IQQPYtrQMSHVJ561l7suZ/cjA3nST6nfYojGcdQeWt+RwXB+YPkzqiXA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8080
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 16/21] drm/msm/adreno: Do CX GBIF config before GMU
+ start
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse
+ <jordan@cosmicpenguin.net>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Connor Abbott <cwabbott0@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org
+References: <20251110-kaana-gpu-support-v2-0-bef18acd5e94@oss.qualcomm.com>
+ <20251110-kaana-gpu-support-v2-16-bef18acd5e94@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251110-kaana-gpu-support-v2-16-bef18acd5e94@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDA4NSBTYWx0ZWRfX80//7VYLxdJn
+ uW1Vn7sWl+6rv5GzLisvnrA4OHQlK0reO0zzVj4loPm9yeRZmZPsGVGrCxis+w94fmRDNwXJvDx
+ IbkBs378hkingvPS3M7DGCukyDoOPimoXnN+oJTRMhBJ7SmJ3bHXtPeati/10Y+CjKtqavugpGF
+ iN1ImDCrjstjw1RciHtyHbJMmTMFnOJZcTP50lKkIDGWCqCdpO3OzUkyV4MDe1bgeiVxEKg40ZH
+ h2nPq8R0YL1YIn+byXN7dPYuVCibf/Si1x5aguCOh5tw9HdJxnkPvxxzuyQ9synG4DrpPScH396
+ Vfury3DY8JdhRs7r0OQav5a93wzDkkMvPolPcUx5tFCnZysj9np3EprIboxyBgfRiDKkZ4pAEfc
+ mtseHfGLECpOFo8sD1v4a+P2ixxVUg==
+X-Proofpoint-GUID: 1fUXQHYQJ-zP86xqOQJa54io1KvpuRG5
+X-Proofpoint-ORIG-GUID: 1fUXQHYQJ-zP86xqOQJa54io1KvpuRG5
+X-Authority-Analysis: v=2.4 cv=KeTfcAYD c=1 sm=1 tr=0 ts=6914636d cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=XltbfQAJAwjtl7jyp1EA:9
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-12_03,2025-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 suspectscore=0
+ impostorscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511120085
 
-Hi all,
-
-On 11/12/25 10:40 AM, Diederik de Haas wrote:
-> [You don't often get email from diederik@cknow-tech.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+On 11/10/25 5:37 PM, Akhil P Oommen wrote:
+> GMU lies on the CX domain and accesses CX GBIF. So do CX GBIF
+> configurations before GMU wakes up. This was not a problem so far, but
+> A840 GPU is very sensitive to this requirement. Also, move these
+> registers to the catalog.
 > 
-> Hi Naoki,
-> 
-> On Wed Nov 12, 2025 at 12:42 AM CET, FUKAUMI Naoki wrote:
->> On 11/12/25 03:32, Quentin Schulz wrote:
->>> On 11/11/25 5:14 PM, Dragan Simic wrote:
->>>> On Tuesday, November 11, 2025 16:32 CET, FUKAUMI Naoki
->>>> <naoki@radxa.com> wrote:
->>>>> On 11/11/25 23:46, Dragan Simic wrote:
->>>>>> On Tuesday, November 11, 2025 14:07 CET, "Diederik de Haas"
->>>>>> <diederik@cknow-tech.com> wrote:
->>>>>>> On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
->>>>>>>> Radxa's boards turn all LEDs on at boot(loader), but some boards
->>>>>>>> don't have `default-state` property in Linux kernel tree but
->>>>>>>> have it in U-Boot tree instead[1].
->>>>>>>>
->>>>>>>> This patch adds `default-state = "on"` for (almost) all LEDs (with a
->>>>>>>> few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
->>>>>>>> WAN LEDs on E20C/E52C).
->>>>>>>
->>>>>>> I'm missing the *why* these changes would be an improvement.
->>>>>>>
->>>>>>> Personally, for both 'heartbeat' and 'netdev' triggers, I want them to
->>>>>>> be off by default and once it gets a 'heartbeat' or a 'netdev'
->>>>>>> trigger, THEN I want the LED to be on/blinking.
->>>>>>
->>>>>> That's a good question for Naoki.  My own preference would also
->>>>>> be to have the device's power LED turned on by U-Boot as quickly
->>>>>> as possible after supplying power to the board or turning it on
->>>>>> by pressing the power button.  I'm actually not a big fan of
->>>>>> having all the LEDs shining for a couple of seconds or so, which
->>>>>> may actually look like some error condition to me.
->>>>>>
->>>>>> Having all that in mind, I may suggest that just the U-Boot's
->>>>>> behavior is changed to turn the power LEDs on only.
->>>>>
->>>>> I can't quite explain it, but...
->>>>>
->>>>> - 1st (Power) LED
->>>>>
->>>>> The 1st (power) LED turns on automatically/immediately without software
->>>>> intervention. (On some boards, this LED cannot be controlled by software
->>>>> at all.)
->>>>>
->>>>> In DTS, this should be described using `default-state = "on"`. The use
->>>>> of the Linux-specific property `linux,default-trigger = "default-on"` is
->>>>> unsuitable for non-Linux environments.
->>>>>
+> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> ---
 
-I think the wording in the binding can be understood two ways.
+[...]
 
-The binding says the following about the default-state property:
+> +	/* For A7x and newer, do the CX GBIF configurations before GMU wake up */
+> +	for (int i = 0; (gbif_cx && gbif_cx[i].offset); i++)
+> +		gpu_write(gpu, gbif_cx[i].offset, gbif_cx[i].value);
 
-"""
-       The initial state of the LED. If the LED is already on or off and the
-       default-state property is set the to same value, then no glitch 
-should be
-       produced where the LED momentarily turns off (or on). The "keep" 
-setting
-       will keep the LED at whatever its current state is, without 
-producing a
-       glitch.
-"""
+We haven't been doing this a lot in the GPU driver, but adding a
+.num_entries-like field is both more memory efficient and less error-prone
 
-I think the issue here is around the meaning of "initial state". I 
-believe Naoki is probably thinking about the **HW** initial state of the 
-LED, which is whatever is the state of the LED without SW control. I 
-think Diederik is thinking about this being the state of the LED right 
-when the SW takes over and configures the LED before the trigger is setup.
+> +
+> +	/* For A7x and newer, do the CX GBIF configurations before GMU wake up */
 
-In the first interpretation, there's no need for an "improvement" for 
-the patches as they would just fix correctness of the DT wrt HW state at 
-boot.
+duplicate comment
 
-In the second interpretation, a change of this value must be justified 
-as people will simply disagree forever and we could end up with people 
-reverting other people's patches after each release. If it's just a 
-matter of taste, I believe the typical answer is keeping the status quo.
+> +	if (adreno_is_a8xx(adreno_gpu)) {
+> +		gpu_write(gpu, REG_A8XX_GBIF_CX_CONFIG, 0x20023000);
+> +		gmu_write(gmu, REG_A6XX_GMU_MRC_GBIF_QOS_CTRL, 0x33);
 
-We should find a way to make this binding not up to interpretation.
+Either set this prio value here, or in a8xx_gpu.c
 
-Additionally, if the LED cannot be controlled on some boards, I don't 
-think it should be part of the DT.
+> +	}
+> +
+>  	/* Set up the lowest idle level on the GMU */
+>  	a6xx_gmu_power_config(gmu);
+>  
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> index 029f7bd25baf..66771958edb2 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> @@ -1265,17 +1265,20 @@ static int hw_init(struct msm_gpu *gpu)
+>  	/* enable hardware clockgating */
+>  	a6xx_set_hwcg(gpu, true);
+>  
+> -	/* VBIF/GBIF start*/
+> -	if (adreno_is_a610_family(adreno_gpu) ||
+> -	    adreno_is_a640_family(adreno_gpu) ||
+> -	    adreno_is_a650_family(adreno_gpu) ||
+> -	    adreno_is_a7xx(adreno_gpu)) {
+> +	/* For gmuwrapper implementations, do the VBIF/GBIF CX configuration here */
+> +	if (adreno_is_a610_family(adreno_gpu)) {
+>  		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE0, 0x00071620);
 
->>>>> - 2nd (Heartbeat) LED
->>>>>
->>>>> The 2nd (heartbeat) LED can be controlled by software. It should be lit
->>>>> up as quickly as possible to indicate that the very first software
->>>>> (e.g., the bootloader) is running.
->>>>>
+a640/650 family GPUs didn't receive a .gbif_cx addition in the catalog to match
 
-My understanding is Naoki wants to use default-state = on, for the 
-bootloader to turn it on as soon as it takes over control of the LEDs.
+>  		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE1, 0x00071620);
+>  		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE2, 0x00071620);
+>  		gpu_write(gpu, REG_A6XX_GBIF_QSB_SIDE3, 0x00071620);
+> -		gpu_write(gpu, REG_A6XX_RBBM_GBIF_CLIENT_QOS_CNTL,
+> -			  adreno_is_a7xx(adreno_gpu) ? 0x2120212 : 0x3);
+> +	}
+> +
+> +	if (adreno_is_a610_family(adreno_gpu) ||
+> +	    adreno_is_a640_family(adreno_gpu) ||
+> +	    adreno_is_a650_family(adreno_gpu)) {
+> +		gpu_write(gpu, REG_A6XX_RBBM_GBIF_CLIENT_QOS_CNTL, 0x3);
+> +	} else if (adreno_is_a7xx(adreno_gpu)) {
+> +		gpu_write(gpu, REG_A6XX_RBBM_GBIF_CLIENT_QOS_CNTL, 0x2120212);
+>  	} else {
+>  		gpu_write(gpu, REG_A6XX_RBBM_VBIF_CLIENT_QOS_CNTL, 0x3);
 
->>>>> On Linux, usually this is used as `linux,default-trigger = "heartbeat"`.
->>>>> It indicates that kernel is running (regardless of the `default-state`
->>>>> setting), and its behavior can be modified in user space.
->>>>
->>>> As discussed already in the #linux-rockchip IRC channel, [1] perhaps
->>>> the best option would be to have the power LEDs turned on as quickly
->>>> upon powering on the board as possible, and to have U-Boot pulsate
->>>> the heartbeat LEDs using the LED_BOOT feature.  In such a scenario,
->>>> no other LEDs would be turned on early, and the LED-related DT parts
->>>> specific to U-Boot would be migrated to the kernel DTs.
->>>>
->>>> [1] https://libera.catirclogs.org/linux-rockchip/2025-11-11#38997824;
->>>
->>> The LED_BOOT feature (guarded by the Kconfig symbol of the same name) in
->>> U-Boot only applies if /options/u-boot/boot-led property is set.
->>
->> For the default state of the heartbeat LED, I'm thinking of using
->> LED_BOOT (/options/u-boot/boot-led), but I'm concerned that this is
->> U-Boot-specific.
-> 
-> If U-Boot wants to use the heartbeat LED to signal the *bootloader* is
-> running, I guess that's fine. And if you want to make it solid or
-> blinking, that seems best discussed on the U-Boot ML.
-> 
+Downstream seems to set QOS_CNTL at the same time as QSB_SIDEn for
+these targets
 
-The solution may still involve configuring the Device Tree, and we're 
-trying to have U-Boot-specific changes to the Device Tree in U-Boot 
-source tree to a minimum.
 
-> I still consider the bootloader and the kernel stages separate.
+>  	}
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+> index 031ca0e4b689..cf700f7de09b 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+> @@ -46,6 +46,7 @@ struct a6xx_info {
+>  	const struct adreno_protect *protect;
+>  	const struct adreno_reglist_list *pwrup_reglist;
+>  	const struct adreno_reglist_list *ifpc_reglist;
+> +	const struct adreno_reglist *gbif_cx;
+>  	const struct adreno_reglist_pipe *nonctxt_reglist;
+>  	u32 gmu_chipid;
+>  	u32 gmu_cgc_mode;
+> diff --git a/drivers/gpu/drm/msm/adreno/a8xx_gpu.c b/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
+> index 2ef69161f1d0..ad140b0d641d 100644
+> --- a/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
+> @@ -500,6 +500,9 @@ static int hw_init(struct msm_gpu *gpu)
+>  
+>  	gpu_write(gpu, REG_A6XX_RBBM_SECVID_TSB_CNTL, 0);
+>  
+> +	/* Increase priority of GMU traffic over GPU traffic */
+> +	gmu_write(gmu, REG_A6XX_GMU_MRC_GBIF_QOS_CTRL, 0x33);
 
-They do however share most of their Device Tree (for Rockchip at least) 
-and the least (ideally no) changes we can have in U-Boot the better.
+Kgsl (later) added this for A740 too - would it be beneficial to enable
+unconditionally on gen7+?
 
-> And I haven't seen an argument why I should change *my* opinion on the
-> heartbeat and netdev triggers (default-state) wrt the kernel.
-> 
-
-Device Tree is not kernel specific as you said already.
-
-> I don't think that what U-Boot does or doesn't do, should determine what
-> the Linux kernel does or doesn't do.
-
-It shouldn't, but (most of) the Device Tree is shared, so you cannot 
-just dismiss U-Boot behavior when talking about Linux behavior based on 
-Device Tree interpretation. We may have a need for a bootloader-specific 
-property. We have a Linux-specific one after all 
-(linux,default-trigger). Though... that does seem to be on the edge of 
-what the DT is made for (description of the HW, not logic/policy).
-
-> I have no plans to use another bootloader then U-Boot, but it's possible
-> that people do, so what the Linux kernel does should be independent from
-> what the/a specific bootloader does.
-> 
-
-Barebox also uses upstream DT as far as I know and supports some Radxa 
-products (Rock 5B/5T/..., CM3, Rock (RK3188), Rock 3A from the 
-arch/arm/boards/radxa-* directories). Zephyr has support for RK3568, 
-RK3588, and other SoCs, and uses upstream DT as well.
-
-Again, we're talking about modifications of the Device Tree here, so 
-typically I would expect all consumers of that DT to be interpreting the 
-properties the same way, except if you have OS-specific properties/nodes 
-(think u-boot,config-compatible nodes, linux, prefixed properties, 
-bootph- properties, ...).
-
-> And as I said before, *I* want LEDs with netdev and heartbeat triggers,
-> to be off (at the start, which is indeed the default value).
-> I use the heartbeat trigger to:
-> 1) See the kernel has started (and has gotten to the point the heartbeat
->     'infrastructure' has been set up
-> 2) Wait for the blinking to slow down as that (generally) means it's
->     pretty much done with the boot process and the SSH server should
->     probably be running then, so I can login
-> 3) When the heartbeat LED is solid, that means the system has crashed
->     (f.e. due to overheating ...)
-> 
-
-If the *HW* default state of the LED is off and the default-state 
-property is off, then you won't be able to tell apart a completely 
-bricked board and one that is stuck somewhere between U-Boot proper and 
-the Linux kernel taking over that LED.
-
-> And also, if you're going to change/override other people's choices, a
-> motivation as to why would be 'nice'.
-> 
->>> <more discussion about LED functionality in U-Boot ...>
->>
->> As you know, default "default-state" is "off".
->>    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/common.yaml?h=v6.17#n74
->>
->> As far as I understand, there should not be any workarounds for specific
->> implementations.
->>    https://lore.kernel.org/linux-rockchip/3389401.44csPzL39Z@phil/
->>
->> So removing `default-state = "off"` is acceptable, right?
-> 
-> I don't see/understand the connection with 'workarounds for specific
-> implementations' with removing ``default-state = "off"``.
-> 
-> IMO it's perfectly fine to remove ``default-state = "off"``, although
-> having it explicitly may be useful, especially if the commit that set
-> that property specified *why* it should be "off".
-> 
-
-The status property defaults to okay, and we do not want them to be 
-listed explicitly. Not sure if there's consensus on applying this to all 
-properties which have defaults, across all subsystems.
-
-> Relatedly, when a node does not have the 'default-state' property, I
-> would _assume_ the author wanted/intended it to be "off". Ideally it
-> would be described in the commit message, but that is optional.
-
-The lack of a property doesn't necessarily mean it was forgotten, agreed.
-
-> But if that is changed, then it should be motivated *why*.
-> 
-
-Agreed.
-
-Cheers,
-Quentin
+Konrad
 
