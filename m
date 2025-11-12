@@ -1,129 +1,166 @@
-Return-Path: <devicetree+bounces-237634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD18C52AC5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:21:37 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4597C52B40
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:27:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1856F4A1F6D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:59:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BA6134E46FF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:05:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C11D326E6FF;
-	Wed, 12 Nov 2025 13:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FDF25A2DE;
+	Wed, 12 Nov 2025 14:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVK16Lgu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a+xPixGs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9222F26D4D4;
-	Wed, 12 Nov 2025 13:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797432586C8
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 14:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762955806; cv=none; b=i6m0teC4p3Ltr70z+yBX+UCS10WoFOG/xYHON93RDS6wRht7dKV3DeUWOLsbRN/PR4MmtOTVd8MrtJxA5f3FH+Mxjayq9lykPzAJZ8IN02iNAqWcZBw+aUd/4s0mNHhMfwduvRTTsIxGMXCLhGxZT/GyNzKhtzIc8RJuluRoJCI=
+	t=1762956322; cv=none; b=oXE9sG0tCOK1Jg92Av04ElA7lhZ8kKLzIbhMniMYkAPWQ+haGItYtBWgkb2Uv+rrfzoF+haWspo0zBf8ldGPxRyT5KBCaKF9+AZEQKAmZFuBuJ90x9aMcGjHE/6Z0fF3dHjBRh14kiFAKKliMDI9qBQ5fHD1pF66C2shrg6mBm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762955806; c=relaxed/simple;
-	bh=9VysWk+Q/2Wk/gqHBbWZCfUFWziKZ/B3UYPT/bITXRw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Xmv8MrZ9ONS7rJ0ZevDy0BKvqJ3se51GGq6ZFW1vUAoWKllHdWMBPuz2J9w7tf2H84btkqu0xI63JCdlewoEr818whJPnttSIS7pJiLgTyJweKGravXQJjwxWuzyO7+ERGIelo/P5225jq4VyPNLZUKq5r5L1+2NYJSfX2Tn/ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVK16Lgu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F83C2BC86;
-	Wed, 12 Nov 2025 13:56:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762955806;
-	bh=9VysWk+Q/2Wk/gqHBbWZCfUFWziKZ/B3UYPT/bITXRw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=oVK16LguOIh3nM/IjAS2+FfLBtYxyb+Ec5hDE1IAjfdOhXAokx3AWF/sAx47lOeis
-	 aGw3yBTMCiUZFjFDATgg/4FhejRYnycUHJvpauZ/GQ1R4NVZXyolGRfKx9wyaYmDsA
-	 ijKENPpy4CpKfAed3DAd+WrKUUQOpNJL+8jHCqhCicDIBLIV/upWcuTRvi8j6h59ii
-	 9dR5T5Wj+U78o7EwfhvzsdzaSVyFu2dF26ATjnDa9DYjnUan7PVfPxiPUJ8bv0y2dd
-	 XUifwrN94gD/cXwuboA3ONAOvrpaK7CJEfQiaZGxFifdmGZN9pDw1U79J3MT+AaxNW
-	 dvHUH837GuXWA==
-Date: Wed, 12 Nov 2025 07:56:44 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1762956322; c=relaxed/simple;
+	bh=h+naC3WP5Hca5p6GdNfPWAs3ASYye9OHxLz/qrFbh3k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GYJf01ftK4CHfNPIcs74emQ6asrST0oTFoPaRxs7mHnHopUL2puYst6L12nkuOOBCbxwHEC/FtwYoNpygnH+KPrwpz8gmtRDVTQG7Db6AExEPZz28BuWcDoFzw0bLeI2FTynlUb+WsVHJef78D4uz6sQp7YpnghKdHRat8ILM4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a+xPixGs; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-3437af844afso911152a91.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 06:05:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762956321; x=1763561121; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5IgqMB/v3xeO5BgQjIq0XWQN2JeRWzsu5Px5Hi7zIAE=;
+        b=a+xPixGsrNtHQ3HpCDXmeCI5F9CWxk1JxIuJtQTjQgbtXs8OUSjpr6AzdrHfz/3LMw
+         8WzTxgwgzxMb050YKouW5Y9s+gSTuKuVlFUuLq39VLdbT+bF7QnHFLbWEQMS5VzSo0yS
+         aeGp5WPVgZ86PNL6PLbsPd5u+1uHQ8p4GD5SHla5cOgAnTp3KGi6XApwJgoK99esj542
+         9Asf1Vv5dDTQBYBPGtkt4mZqMkeb3NSu1mbKMqqASDaM22XEm03/sGx/zN40OjcM5j9r
+         FjO6EM1sO4vpVklmf43HDp0Tv9hw0IFjHnsFfcCDuqYc0eMdH4X5WdNJwdKcaGjzF4Yl
+         1O/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762956321; x=1763561121;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=5IgqMB/v3xeO5BgQjIq0XWQN2JeRWzsu5Px5Hi7zIAE=;
+        b=WmW5AWuMyXXcOjn7A+mYBKPP0Xax7ot21ediIWZWjcbAmWtJG4tcbONqMpsr/N6ESS
+         xBwam0+MWjVdnQ69pb9cxM08Th899GXRqE2D+oxRI6LS93OU1mrQkJ5T4rMuQb03d0tx
+         vQUPczSJW481J4ba81RWsKIqLBBUsd1Eu36480eN365E3tTHXLpg7J/T9qlqd9gDmwt8
+         /+UcKdrLxU4D7m4Xz9pg7XhCI14THl4hrVU8F9jNdbc8e+vvvw6is19qe3DKoPtQNaFI
+         vT/6ZeN+CtUSc4b6z8Hn8v7NE9ZEZiC0Veq6rpycBlBrWr1gsakLwO3KnmLvOFI8iON0
+         cnCA==
+X-Forwarded-Encrypted: i=1; AJvYcCVa/TkAePftA+wril0ShT4MZ2hcN2k11XNOiwTOlsmGMNgrp7h2G66dXXQkXhNS+2Tyogd4MApPKOuH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzal9wsqqqPAtxwFFE0F1Sq+bG7By32g61qxCRUR6quvOxZ2NjF
+	xGnVSAUom7bD/VoqTeSJ/tjKm248cDpCB72orqItxdxMQh+BXTyl6ttxwQczIe7sx2Pm2YXfTfk
+	TolPR2CCbEDPlSempdBnE1JQO4nZP0kQ=
+X-Gm-Gg: ASbGncsCNqPOJkpCRyeM4DbyJNxae26h8DJj6J09dXTOfaq9/ENA6BeUFrczc2DGvSU
+	/IS/fqx4o93iZwEzonKakwRqABXKU5XaGOw7wc80NLdVZNNy+Hnoo51pz9ir4Mh+1GtwEKCtnSY
+	hFHWLoPjGZgFNMdqCrPsmzL0ZtAzWEnSoP8GoWs6Q4z8WZ356ZIKO9npzYygcUihu3WynKFVsml
+	khNov8rq24nODOr5U01vE/daUVNzydqoLYm7TtJpIu0G5L//uUTV2u+9EFa
+X-Google-Smtp-Source: AGHT+IGGE4/VL1DEyxNrJ9gXhy58i37XginUx1Z79nbxZV1zaeXJiHFTS6UKxC5C1DeQKZdokBPv7izFiH2R6Na0d44=
+X-Received: by 2002:a17:90b:3f88:b0:33e:2934:6e11 with SMTP id
+ 98e67ed59e1d1-343dde1328emr4083273a91.11.1762956320459; Wed, 12 Nov 2025
+ 06:05:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com>
-References: <20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com>
-Message-Id: <176295563376.1637834.15728252609575729805.robh@kernel.org>
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: add AP8096SG variant of DB820c
+References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
+ <20251109214515.121742-2-rpimentel.silva@gmail.com> <9d48a54c-0585-4524-b9d5-30696f5ecc8b@kernel.org>
+ <CAEnQRZCvpXzGt=7NGv7-s+y0gvOg7Jx4OqbfbW3uv8jDp-jroQ@mail.gmail.com>
+ <CAOMZO5CU09fcBB8oUOO=qC=Du3Q9gnJOQacK=6v+pnSQViex3g@mail.gmail.com>
+ <CAEnQRZCHKemw2YVT=WVJvUMr9CCWoZ3MORt_mU1V-62C53n-3w@mail.gmail.com>
+ <CAEnQRZBBJ4PGDOk7hBP_qsk7bBiec8pHb0DYKs2mhOAahNyKww@mail.gmail.com>
+ <baafb460-fb65-4cd2-9911-89d828199d9b@kernel.org> <2e160fe1-bcb2-41cf-817e-ac2a36959b16@kernel.org>
+ <CAEnQRZDg0yAjR-a-4J2ZKAjh3mm8NeQCA=o2kyNJtXMAFCMLAA@mail.gmail.com>
+ <56530f64-6ddf-4d2a-a079-0578db260449@kernel.org> <CAEnQRZD=h5qOC445U3_+HPh7aCE8TohSpZmg9hgkRE7mg5HUpA@mail.gmail.com>
+In-Reply-To: <CAEnQRZD=h5qOC445U3_+HPh7aCE8TohSpZmg9hgkRE7mg5HUpA@mail.gmail.com>
+From: Rogerio Pimentel <rpimentel.silva@gmail.com>
+Date: Wed, 12 Nov 2025 09:04:26 -0500
+X-Gm-Features: AWmQ_bkE3E5kBt-au_w0tdPJgXF5KUKjHFMKLDQ12VqLfiSClucWeakQI7DwekA
+Message-ID: <CAOkaPuX7YeUJJj15dY0vD8mngg5MS5uBwU_UfrFRFjrghR7NDw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Fabio Estevam <festevam@gmail.com>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com, 
+	marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de, 
+	joao.goncalves@toradex.com, frieder.schrempf@kontron.de, josua@solid-run.com, 
+	francesco.dolcini@toradex.com, primoz.fiser@norik.com, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Xiaofeng Wei <xiaofeng.wei@nxp.com>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Joseph Guo <qijian.guo@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Nov 12, 2025 at 7:33=E2=80=AFAM Daniel Baluta <daniel.baluta@gmail.=
+com> wrote:
+>
+> <snip>
+>
+> > > We (NXP) immensely  appreciate individual contributions from everyone=
+.
+> > >
+> > > We need to be fair, the v1 of this patchset was taken from NXP
+> > > downstream without
+> > > respecting the Developer Certificate of Origin.
+> >
+> > No, it wasn't. Please read carefully DCO. The chain here was not
+> > correct, but that's the only thing.
+> >
+>
+> Indeed carefully reading the DCO Clause b) you are right.
+>
+> > >
+> > > E.g there were commits pulled in from our internal tree without
+> > > keeping the S-o-B tags.
+> >
+> > Read DCO, please. It is not mandatory to keep 3rd party SoB. It is
+> > perfectly fine to skip it, if needed according to (b) of DCO certifying=
+.
+> >
+>
+> True. In my understanding though if one bases their work on others work
+> they should at least keep the S-o-b tag as a common courtesy.
+>
+> Commit messages explicitly says that the work is based on NXP internal
+> tree patches.
+>
+> At this point I leave to Rogerio's appreciation on which S-o-B flags
+> to pull and how much
+> of his work is based on NXP tree.
+>
+> Thanks a lot Rogerio and Krzysztof for helping move this forward.
 
-On Tue, 11 Nov 2025 18:02:50 +0200, Dmitry Baryshkov wrote:
-> While debugging a crash in the DRM CI setup I noticed that the kernel
-> warns about the unsupported hardware in CPU OPP tables. After a small
-> research I found that board indeed uses APQ8096SG rather than APQ8096.
-> Add DT file for these boards.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
-> Dmitry Baryshkov (2):
->       dt-bindings: arm: qcom: add Dragonboard 820c using APQ8096SG SoC
->       arm64: dts: qcom: add apq8096sg-db820c, AP8096SG variant of DB820c
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
->  arch/arm64/boot/dts/qcom/Makefile                  |    1 +
->  arch/arm64/boot/dts/qcom/apq8096-db820c.dts        | 1126 +-------------------
->  .../{apq8096-db820c.dts => apq8096-db820c.dtsi}    |    5 -
->  arch/arm64/boot/dts/qcom/apq8096sg-db820c.dts      |   15 +
->  5 files changed, 24 insertions(+), 1130 deletions(-)
-> ---
-> base-commit: ab40c92c74c6b0c611c89516794502b3a3173966
-> change-id: 20251111-db820c-pro-8ecd2a28520e
-> 
-> Best regards,
-> --
-> With best wishes
-> Dmitry
-> 
-> 
-> 
+Thanks Daniel, Krzysztof and Fabio for the review and discussion.
+I understand and agree with Krzysztof's point, but if there are no problems=
+,
+I would like to keep all the names suggested by Daniel:
 
+Author: Xiaofeng Wei <xiaofeng.wei@nxp.com>
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Co-developed-by: Joseph Guo <qijian.guo@nxp.com>
+Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Co-developed-by: Steven Yang <steven.yang@nxp.com>
+Signed-off-by: Steven Yang <steven.yang@nxp.com>
 
-  pip3 install dtschema --upgrade
+Co-developed-by: Lei Xu <lei.xu@nxp.com>
+Signed-off-by: Lei Xu <lei.xu@nxp.com>
 
-
-This patch series was applied (using b4) to base:
- Base: ab40c92c74c6b0c611c89516794502b3a3173966 (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com:
-
-arch/arm64/boot/dts/qcom/apq8096sg-db820c.dtb: usb@6af8800 (qcom,msm8996-dwc3): 'extcon' does not match any of the regexes: '^pinctrl-[0-9]+$', '^usb@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml
-arch/arm64/boot/dts/qcom/apq8096sg-db820c.dtb: usb@76f8800 (qcom,msm8996-dwc3): 'extcon' does not match any of the regexes: '^pinctrl-[0-9]+$', '^usb@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml
-arch/arm64/boot/dts/qcom/apq8096sg-db820c.dtb: syscon@9a10000 (syscon): compatible: ['syscon'] is too short
-	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml
-
-
-
-
-
+Co-developed-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
+Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
 
