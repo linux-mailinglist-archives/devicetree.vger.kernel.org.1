@@ -1,192 +1,129 @@
-Return-Path: <devicetree+bounces-237633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D062C529B6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:06:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD18C52AC5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF5442583E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:54:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1856F4A1F6D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3245A23E320;
-	Wed, 12 Nov 2025 13:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C11D326E6FF;
+	Wed, 12 Nov 2025 13:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="S2bxnIZ+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVK16Lgu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 752EE25D53B
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 13:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9222F26D4D4;
+	Wed, 12 Nov 2025 13:56:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762955663; cv=none; b=RJsDFjUwhGlL90Ntpcw6Uiu16FdXZ6bRqtnso243XJRRC0dIEYq7tBjNjAPwT1TVhLrDoEgL5bnydAL+Vmy31MyQ/AXVK4LM5fElx6ob3H01ukBosXzUF7kwKw3IfVTu02iVj0Bzdi8Y9h3kteOMCs3oVSgGvAnsiGttMMBrA9E=
+	t=1762955806; cv=none; b=i6m0teC4p3Ltr70z+yBX+UCS10WoFOG/xYHON93RDS6wRht7dKV3DeUWOLsbRN/PR4MmtOTVd8MrtJxA5f3FH+Mxjayq9lykPzAJZ8IN02iNAqWcZBw+aUd/4s0mNHhMfwduvRTTsIxGMXCLhGxZT/GyNzKhtzIc8RJuluRoJCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762955663; c=relaxed/simple;
-	bh=I4I3WIzpcjfsDiSTgOlk8Atq3GBfqXf8GVaWSsFqgPk=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SsR5w3TrzKpBCbRex9lBgFG7HSPqFkr+XQse2J75bfQ2QXlBnPGKhebz/ltaEGlWiAwuPr+eyKOlFmIra/7ivrLAbEYp4H6aP7CfMFK5UtbK8CVjXezDNvo7e4rUE1IV81/QCVeuP34j3DqpjNJ7bSZia2mL+048a1+09AoQK2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=S2bxnIZ+; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C54BF3F85A
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 13:54:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1762955652;
-	bh=zw6ziSjkzQiRWUig0BOelMJ1uVjsDF/5GnnR77Yu8HA=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=S2bxnIZ+WIp/kPGQzOUzcqOfgcGGKsCRhf16bABXinJ0l7OnADT7NOa7/K9ZE/rmL
-	 uxO/ChTkQSpKQB+vDR6RMl/vDmo5SUeoy3XjPK/kwMWvlHnTbFMXPwaO9lSFaQ5tAt
-	 MIqP9ab4yokt2HZXsY/BOYEISEbRnS58O34EQcBfBXCn/Ej1gHcLPfeegpZlwNsc8x
-	 xhFeHdJxzTjcQG2pf1V9hHw9QjetZSaNKyhgO8wgJSjv3vlfF+z34zUlzOR/NO6rjm
-	 QaF8XL3iXqlCXgk+FQWZR5nhWV8nsP2fxWn8mNHu2TC2rIOyYF2WCPq4vvDA2KF04T
-	 ejzQZY3BOeHzB8gFIbQxpQ5JF5NUUpq46Kqrd0rMxJHFjqQfrWsMLWNVuGRVn1F+jM
-	 p/lfgLop1OAKfYs5lHOHXrckxPuWy1xf2QacC3OFsFONS8wycraBk3BzL8azgJASgN
-	 wnU7euPTgdT0fOPkcrzx/tgR5zAB3SvhisjzGff5E0fCwj6U48zp7L+Tdh9HbJJ/x8
-	 BZpcn0cAAx/6EG2uffKO6BF8a5O+C7W32E5jePiYXi46gVzxZux71LmGM+NlGTCI87
-	 gKiqrxfPmrNzGjTtEEsUHbhmXvrtKwonBjS6gPZxz2nHJJARf/4FDmEVVnWy2CIjDy
-	 f2aUL4pNobvTtysdjYGXhNyQ=
-Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-b72a95dc6d9so96079666b.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 05:54:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762955652; x=1763560452;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zw6ziSjkzQiRWUig0BOelMJ1uVjsDF/5GnnR77Yu8HA=;
-        b=dQ7zUDHTAJoDN0BLyLHYeIx15Bb+j+RFmdzoQbnkc5rqyeInjKiFVlKpO2o7m6y/oV
-         02KZUiORZA+/qT789VOTeoYoGRRBp36ACrJTS1gwkYt7NUpYFxhmK8X2QAPmFzQMwaI/
-         7L4NX3k7ljUGUZGxs6WpZfzaTpsv3KKM2+4Xus3X5XByI7AcpvM4fKp8vG67mvqhLM+h
-         gkqVhMma2OscEOaDrwBIAT6jWvsV/cHC6sXXIjEDg9T409opHe5zvIIT2cT/Ce+PjrQL
-         2UR24evbB4fk80dSGXbGyNzWyutdt6ibKgfDp/Sd9xjCFmSapj84q3Xe31husnZT4KOc
-         05JQ==
-X-Gm-Message-State: AOJu0YxGKDCV7qvg2UV87v92Uk0UOsQx527v5I6md2d8megtNe50B+qt
-	m7oLydPr5sMSrRy4n/GC5y4vt1Lam/9q1+Yw2EYKJf4NjaftiLisJtSYQn/yka8hr4WLxythOxV
-	aX3xKnftc0feezqV7J2W0LBvK1dzv1h8XShgvDUi4UhM4A1FXNRCmFA6V8sBYAETE+k2ZheZOn+
-	1bcl+qmrcI24B/cDSHp4i7nAA337/l1jsTnjsDdrPJu5KMnEnllV7D/A==
-X-Gm-Gg: ASbGncuXjgVz8yrufRKDMECFfwKxxkpVBiNdP+mBxqwtBqeIE5GifRp55+h81J7ZcUy
-	CXViuZtN5YMIPc8Xp+SBIZc/pgI7JkV7qc0ToGh71eh6pw4VryTh/tNOsxNmxaWkUZlHx93DtVH
-	ED2CXAWhs84C9q4TedLv9gWG4Kz0jjnI6BWM4DQog4MFhjt+wfCF5SJfJhXpMA03DsnRyL5mjOu
-	/qCffPO34CL
-X-Received: by 2002:a17:907:3f0b:b0:b72:599:5385 with SMTP id a640c23a62f3a-b7331aed080mr274451866b.61.1762955651978;
-        Wed, 12 Nov 2025 05:54:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHASu3IyWs8sdfwZaJ3pNAVG0SXfiJ1YnPjXsl7ym/EOc9nMzNozT0R3ShCHNy28iULSDnVopmBypGnnGPw+tE=
-X-Received: by 2002:a17:907:3f0b:b0:b72:599:5385 with SMTP id
- a640c23a62f3a-b7331aed080mr274448466b.61.1762955651487; Wed, 12 Nov 2025
- 05:54:11 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 12 Nov 2025 05:54:10 -0800
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 12 Nov 2025 05:54:09 -0800
+	s=arc-20240116; t=1762955806; c=relaxed/simple;
+	bh=9VysWk+Q/2Wk/gqHBbWZCfUFWziKZ/B3UYPT/bITXRw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Xmv8MrZ9ONS7rJ0ZevDy0BKvqJ3se51GGq6ZFW1vUAoWKllHdWMBPuz2J9w7tf2H84btkqu0xI63JCdlewoEr818whJPnttSIS7pJiLgTyJweKGravXQJjwxWuzyO7+ERGIelo/P5225jq4VyPNLZUKq5r5L1+2NYJSfX2Tn/ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVK16Lgu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F83C2BC86;
+	Wed, 12 Nov 2025 13:56:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762955806;
+	bh=9VysWk+Q/2Wk/gqHBbWZCfUFWziKZ/B3UYPT/bITXRw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=oVK16LguOIh3nM/IjAS2+FfLBtYxyb+Ec5hDE1IAjfdOhXAokx3AWF/sAx47lOeis
+	 aGw3yBTMCiUZFjFDATgg/4FhejRYnycUHJvpauZ/GQ1R4NVZXyolGRfKx9wyaYmDsA
+	 ijKENPpy4CpKfAed3DAd+WrKUUQOpNJL+8jHCqhCicDIBLIV/upWcuTRvi8j6h59ii
+	 9dR5T5Wj+U78o7EwfhvzsdzaSVyFu2dF26ATjnDa9DYjnUan7PVfPxiPUJ8bv0y2dd
+	 XUifwrN94gD/cXwuboA3ONAOvrpaK7CJEfQiaZGxFifdmGZN9pDw1U79J3MT+AaxNW
+	 dvHUH837GuXWA==
+Date: Wed, 12 Nov 2025 07:56:44 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20251107095530.114775-1-hal.feng@starfivetech.com>
-References: <20251107095530.114775-1-hal.feng@starfivetech.com>
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-User-Agent: alot/0.0.0
-Date: Wed, 12 Nov 2025 05:54:09 -0800
-X-Gm-Features: AWmQ_bkCo556C5q4g3w_mabHlgyG7zuhHtzy3L72tGDQo2o37ahEt_qsjrthSBY
-Message-ID: <CAJM55Z_rczBo4D3HsC90QW1=fp3NWgK-tsEo6LHTZNXEBHTDqA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/8] Add support for StarFive VisionFive 2 Lite board
-To: Albert Ou <aou@eecs.berkeley.edu>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, E Shattow <e@freeshell.de>, 
-	Hal Feng <hal.feng@starfivetech.com>, 
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-
-Quoting Hal Feng (2025-11-07 10:55:22)
-> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S industrial
-> SoC which can run at -40~85 degrees centigrade and up to 1.25GHz.
->
-> Board features:
-> - JH7110S SoC
-> - 4/8 GiB LPDDR4 DRAM
-> - AXP15060 PMIC
-> - 40 pin GPIO header
-> - 1x USB 3.0 host port
-> - 3x USB 2.0 host port
-> - 1x M.2 M-Key (size: 2242)
-> - 1x MicroSD slot (optional non-removable 64GiB eMMC)
-> - 1x QSPI Flash
-> - 1x I2C EEPROM
-> - 1x 1Gbps Ethernet port
-> - SDIO-based Wi-Fi & UART-based Bluetooth
-> - 1x HDMI port
-> - 1x 2-lane DSI
-> - 1x 2-lane CSI
->
-> VisionFive 2 Lite schematics: https://doc-en.rvspace.org/VisionFive2Lite/PDF/VF2_LITE_V1.10_TF_20250818_SCH.pdf
-> VisionFive 2 Lite Quick Start Guide: https://doc-en.rvspace.org/VisionFive2Lite/VisionFive2LiteQSG/index.html
-> More documents: https://doc-en.rvspace.org/Doc_Center/visionfive_2_lite.html
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com>
+References: <20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com>
+Message-Id: <176295563376.1637834.15728252609575729805.robh@kernel.org>
+Subject: Re: [PATCH 0/2] arm64: dts: qcom: add AP8096SG variant of DB820c
 
 
-Hi Hal,
+On Tue, 11 Nov 2025 18:02:50 +0200, Dmitry Baryshkov wrote:
+> While debugging a crash in the DRM CI setup I noticed that the kernel
+> warns about the unsupported hardware in CPU OPP tables. After a small
+> research I found that board indeed uses APQ8096SG rather than APQ8096.
+> Add DT file for these boards.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+> Dmitry Baryshkov (2):
+>       dt-bindings: arm: qcom: add Dragonboard 820c using APQ8096SG SoC
+>       arm64: dts: qcom: add apq8096sg-db820c, AP8096SG variant of DB820c
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
+>  arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dts        | 1126 +-------------------
+>  .../{apq8096-db820c.dts => apq8096-db820c.dtsi}    |    5 -
+>  arch/arm64/boot/dts/qcom/apq8096sg-db820c.dts      |   15 +
+>  5 files changed, 24 insertions(+), 1130 deletions(-)
+> ---
+> base-commit: ab40c92c74c6b0c611c89516794502b3a3173966
+> change-id: 20251111-db820c-pro-8ecd2a28520e
+> 
+> Best regards,
+> --
+> With best wishes
+> Dmitry
+> 
+> 
+> 
 
-Currently the JH7110 device trees are layed out like this, with a nice
-separation between the SoC description and board descriptions:
 
-jh7110.dtsi               # JH7110 SoC description
-|- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
-   |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
-   |  |- <VF2 boards>     # Final VF2 board descriptions
-   |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
-   |  |- <Mars CM boards> # Final Mars CM board descriptions
-   |- <other boards>      # Other JH7110 board descriptions
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-With this series it moves to
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-jh711x.dtsi
-|- jh711x-common.dtsi
-   |- jh7110-common.dtsi
-   |  |- <jh7110 boards>
-   |- jh7110s-common.dtsi
-      |- <jh7110s boards>
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-..which I can't even give clear labels like above. In other words when new
-patches are sent in it would not be easy to explain exactly where each change
-should go and why.
-I'm also worried that you'll find that more of the peripherals on the JH7110S
-need special handling and a new jh7110s-... compatible string. Then I guess
-they'll need to jump from jh7110x.dtsi two levels down to jh7110{,s}-common.dtsi
-which then both describe SoC and board properties.
+  pip3 install dtschema --upgrade
 
-If you're serious about calling this a new SoC then I'd expect something more
-like this:
 
-jh711x.dtsi                  # Peripherals common to both SoCs
-|- jh7110.dtsi               # JH7110 SoC description
-|  |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
-|     |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
-|     |  |- <VF2 boards>     # Final VF2 board descriptions
-|     |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
-|     |  |- <Mars CM boards> # Final Mars CM board descriptions
-|     |- <other boards>      # Other JH7110 board descriptions
-|- jh7110s.dtsi              # JH7110S SoC description
-   |- jh7110s-common.dtsi    # Peripherals common to all JH7110S boards
-      |- <JH7110S boards>    # Final JH7110S board descriptions
+This patch series was applied (using b4) to base:
+ Base: ab40c92c74c6b0c611c89516794502b3a3173966 (use --merge-base to override)
 
-I know this will mean some duplication in jh7110{,s}-common.dtsi, but I would
-prefer that to not having a clear explanation of what each file describes.
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
 
-Do you think this layout could work for you?
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com:
 
-/Emil
+arch/arm64/boot/dts/qcom/apq8096sg-db820c.dtb: usb@6af8800 (qcom,msm8996-dwc3): 'extcon' does not match any of the regexes: '^pinctrl-[0-9]+$', '^usb@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml
+arch/arm64/boot/dts/qcom/apq8096sg-db820c.dtb: usb@76f8800 (qcom,msm8996-dwc3): 'extcon' does not match any of the regexes: '^pinctrl-[0-9]+$', '^usb@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml
+arch/arm64/boot/dts/qcom/apq8096sg-db820c.dtb: syscon@9a10000 (syscon): compatible: ['syscon'] is too short
+	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml
+
+
+
+
+
 
