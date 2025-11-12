@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-237438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E729C51176
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:24:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09A69C51182
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:25:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1043234C44D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:24:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E33181895CD5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547752D8387;
-	Wed, 12 Nov 2025 08:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE1C2DC796;
+	Wed, 12 Nov 2025 08:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NPlPq+RM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bk1nBRkn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B4D285C99;
-	Wed, 12 Nov 2025 08:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E95D2D5C7A;
+	Wed, 12 Nov 2025 08:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762935848; cv=none; b=Scd0tbC2TTGN55p88N5RFgF47VGwKXmb7HGVGtjQm4iZh5J9aPXJrlTBHr7sofJb+FV8IvtXJ1fFXfqXOn00ECgPHk5ZSru5pZejuL/uLthSm8n3kOWavGBZXv4aaMFelqqBTAK7Q7nGtHePAkT49ThnYutxZUCKegot2c2eQ/I=
+	t=1762935898; cv=none; b=hlpU8rvJCsps8XX8//ieVl1hV8MVN3dlUmofKJCjVSsbXzCPYorY9x57P0oRf1iuRhgxJwectWVbrBGchorBVa+5lOPWXRWbMvFpPadSg3icC5H87wBwiQkrEas5Si8KKWl8wj2c1lruUozHB+2YmXj2rnxWu0zrcPQHCyf67fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762935848; c=relaxed/simple;
-	bh=nPgIElCsbpJYasIzjMJOq1v5dfPCNLHDI/7LeLitaKo=;
+	s=arc-20240116; t=1762935898; c=relaxed/simple;
+	bh=Q/QyHaLAgaVdBMtPSmk8J58WVVg01wAiuM4riboMwNE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pHAuKTvqLD0x/m92p0Gmx/MRJvBLsuavNuLoFIXJO/lzuBUfTJBjlo6UB3uLUb/maPo/QatO7NER49tgmsw01F5QpoAfZySKhw13Iqa9H1DlvvkxHko9oFjm/KEBQ8QmZt5KdcOxl31uBxIENShClGCeWac2RTqtJf/nyTwv6mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NPlPq+RM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 381D5C116B1;
-	Wed, 12 Nov 2025 08:24:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NMK0XeMahHmKfwNmNMkKsc0gLL77i4zhi9eAR2mejNtCNPJyJW53aR4mgySmLj3Ev0khL6sgsL9rJOkUk75RSGJmEQJFkLCqOxGwBjJiGNEphvk8YHPSmHNQcEKz4jF7M/H+nLkIZ5NXMAsLMVZEsTZ661a5O+W01rw2hQWPj+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bk1nBRkn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E58ADC4CEF8;
+	Wed, 12 Nov 2025 08:24:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762935846;
-	bh=nPgIElCsbpJYasIzjMJOq1v5dfPCNLHDI/7LeLitaKo=;
+	s=k20201202; t=1762935898;
+	bh=Q/QyHaLAgaVdBMtPSmk8J58WVVg01wAiuM4riboMwNE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NPlPq+RM0G7b72mCTTTtcouVS4XBtI33J8V715Lf4rY7WBJPYTlKN/gXhiIK8tfr0
-	 HfJoQUONE9Jhe65mDcTIJcXMunEVq/erqEbRui/nwWfvQyJOR1ci8zYuJ5UmJTfWNc
-	 1829z/qQewKmdDoxxwyh+OFtvkv8qUjZF2AHwWnOifG5bNRDtfRhphe3TfNS88B1a/
-	 sUiIVOmTcMJdJ3kQzKe3OLarcbZJemcs3kEhP84ts8lzGmD1GtsdfTGjij0Dp+jyNX
-	 7Z65OThEjRjA4yOu6stsirYiJaCMDRbKtn8bA37mBUSG0QwHVkfIJmbkVR4dTckhgY
-	 e7Y1/DTRjsmpg==
-Message-ID: <88893633-ca4f-42d2-8d69-7f065ea34bf0@kernel.org>
-Date: Wed, 12 Nov 2025 09:24:01 +0100
+	b=Bk1nBRkn4iZ264APmYkNPG3UpTT+VxqzQ3S7XK0HGOv8tN2fl5iuotfFGjNHHW898
+	 PYj2AtbbPEHsRbc//iachZqeHCqk2H07y7dVUcD+rXeWdB9Ab9xACldsCWHm5AY9gn
+	 +8ZLOtLorSQs7FhWmeoZeGyFi4RxfTuqI5NpOYY3yISH9IJw+CpQ0cmq6crBLX2J31
+	 pvdkARjyVsyTZZk2bZKr/eQZS2wriMZhfYdgrYDN5hYN75//NTd8wXeefcHpFiiL6o
+	 HHSJbWw7Nvj0kX69kA/dOF1PAvzwyW/nXbakvp4DTTVnWFLMxpDS16Iy8kuopL/Kdf
+	 rYxhfJ8VtVqKQ==
+Message-ID: <177ca4e1-fa11-4b24-b72d-1af6c7c2f1c6@kernel.org>
+Date: Wed, 12 Nov 2025 09:24:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v7 4/5] dt-bindings: clock: rockchip: Add RK3506
- clock and reset unit
-To: Elaine Zhang <zhangqing@rock-chips.com>, mturquette@baylibre.com,
- sboyd@kernel.org, heiko@sntech.de, robh@kernel.org, p.zabel@pengutronix.de,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, finley.xiao@rock-chips.com,
- sugar.zhang@rock-chips.com
-References: <20251112022111.3828521-1-zhangqing@rock-chips.com>
+Subject: Re: [RESEND PATCH v8 0/4] rockchip: add can for RK3576 Soc
+To: Elaine Zhang <zhangqing@rock-chips.com>, mkl@pengutronix.de,
+ kernel@pengutronix.de, mailhol.vincent@wanadoo.fr, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, cl@rock-chips.com
+Cc: linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251112015940.3695638-1-zhangqing@rock-chips.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,24 +103,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251112022111.3828521-1-zhangqing@rock-chips.com>
+In-Reply-To: <20251112015940.3695638-1-zhangqing@rock-chips.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/11/2025 03:21, Elaine Zhang wrote:
-> From: Finley Xiao <finley.xiao@rock-chips.com>
+On 12/11/2025 02:59, Elaine Zhang wrote:
+> rk3576 can is a new controller,new register layout and Bit position
+> definition:
+> Support CAN protocol.
+> Support Dma.
 > 
-> Add device tree bindings for clock and reset unit on RK3506 SoC.
-> Add clock and reset IDs for RK3506 SoC.
+> There are major differences from the previous rk3568.
+> All errata on the rk3568 have been fixed and redesigned.
 > 
-> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> RK3576 CANFD requires authorization and permission. The software
+> code is not open by default and needs to be authorized separately.
+> 
+> Change in V8:
+> [PATCH v8 1/4]: Drop CANFD, correction format warning.
+> [PATCH v8 2/4]: Drop fifo_setup of rkcanfd_devtype_data.
+> [PATCH v8 3/4]: Drop CANFD.
+> [PATCH v8 4/4]: Drop CANFD.
 
 
-You just again ignored Conor's feedback and resent only this, so his
-questions are buried in the archives.
-
-NAK
+Please implement the feedback I asked at v8. Stop resending the same
+over and over, bypassing people's review.
 
 Best regards,
 Krzysztof
