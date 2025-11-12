@@ -1,183 +1,179 @@
-Return-Path: <devicetree+bounces-237789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 298BAC542E8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:39:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1388C5441A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:50:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DFFED4F3636
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:29:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E67F3BA1FC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A2634DCDF;
-	Wed, 12 Nov 2025 19:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DE8350D6A;
+	Wed, 12 Nov 2025 19:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K352Iz8A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aw7hUThy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EFC034DB63
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 19:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730FB350D45;
+	Wed, 12 Nov 2025 19:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762975763; cv=none; b=mZMEcTqG1hELWw24hlRYhY304khyJD1ifhLm6mcStp3Zi3NsDoBgqg3Gng8lPuK677pBKvlpTBb6ZipDbqk08g3L9cJpE0vGTDCjAEN3neOksYEVu4Hom1s/HZ4+BbML2Zgs0EMAjhAgw0Qnz2XZb4tZNeJOQZ7kij7hOlnAUfg=
+	t=1762976129; cv=none; b=GcLJS+A3ljxjXCeYpsRlV0jWlPnW9okYqwWwN386vDZbTuwx9CJxOveb9Ddi2eUEpbEofNMbhu2v1vg4DsZ6gGElUL6AqPibdgDYtV36mKJbfqjji5KAhXiBxM1xoMq4wtsLrD2O6oY9hx3xxNLbBxSOwjXPNVcXsEB2BZS0o5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762975763; c=relaxed/simple;
-	bh=cBs5VsCM5bkQCwAVcWEWV1HKeCFrZdeAh6gx6vjF0Ps=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KHwg2yEqL//3yhZQ++AW0ajJauP/lVGFB8J1ShSY7D9VFoIVU5p/SMfFUr/iUBPBIL3sXMtQ7zJG+9MWn2wJxImeOlbJH9IxMFL21AqWp1gHmxqUhWMQw4uH9GvU/jWwAo/dTm4QYnE2kp3DPnpRX48Tiwttsa/fT3NvDrFQ0cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K352Iz8A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37375C19424
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 19:29:23 +0000 (UTC)
+	s=arc-20240116; t=1762976129; c=relaxed/simple;
+	bh=8lTGsGlCbLKIsPiwLyp46Bav7NCNyZ5/nO8VhCopaLU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DI1W81H6yz9p70P/AZAOK0C3jL3x82W4WQ3MReNJ0nvblCC8EU6SPZfPrBEX9E1vh03qqZo5OpH6Sladq/KsFE3lNzC7ai5B49W7WgjzG/4WtlhBm01k9DnDNoxLJgTe4ftVzD8rraGCJaVZVA9Kh0rL981DLKVuslRN4odG6xU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aw7hUThy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F18E5C16AAE;
+	Wed, 12 Nov 2025 19:35:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762975763;
-	bh=cBs5VsCM5bkQCwAVcWEWV1HKeCFrZdeAh6gx6vjF0Ps=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=K352Iz8Ah3njTVW7iehUnnH7mqi0Jd6YwMB4qZkyO+cIO1D7Pz6qNEcuOZXb/AXkw
-	 pcmFXpcyZMls1fI59UI/29eJypzLeW20lErann0mpshHzt3ur4vj67oY3kW4uBN2+D
-	 wdkZ7dKutDKfxp/0HGFCbyl6exwmzFCVe6M/nkpYSoUlXpG0XiZwVxcppdH7WD6Ni9
-	 z+iTp0EgYBh7btC3FXy9oVN5fPG+ADnQ8+SmKYuB+BPDNb5Nlzg2CF6LxSEFIG7x6r
-	 UwVZqF1WwD656gypaRpT/CvjAXPRt6J5giHHLr3kYehrERBJTQ0mYJ1NxiDLglYNmD
-	 Y3PHhD2Z86n6w==
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6431b0a1948so10309a12.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:29:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU9qQN7EG+oGc5/AjpG7fynNZIsNNKiPb2xUl6o0U56iiuwrpiuGN/LHUAOnHuAU6XDmca6+sIwkpLL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjyNe7tQRbbqwBM51uf3e2IwlkFFGOZ+/6be2J6wdyVKZdBc2m
-	x3hOmjJa4kqjIeTe+nILEgYbRO4OrbEPYuUreAqNWV6o01Ie3cCr+OeXI/rVleoJUQy2JFgg5QZ
-	u7liFahaTLgO4P6olwUrVSZS9HIsoJQ==
-X-Google-Smtp-Source: AGHT+IHHsq6g1iGPfNpj/BGp5eL9w+14A+MEbPOCADp6BJOBMQBWxT0j5cv1w9FevsaSK63J53W6goPTLfg5SnHB+/k=
-X-Received: by 2002:a05:6402:34ce:b0:63b:ef0e:dfa7 with SMTP id
- 4fb4d7f45d1cf-6431a4bfc9cmr3902960a12.6.1762975760981; Wed, 12 Nov 2025
- 11:29:20 -0800 (PST)
+	s=k20201202; t=1762976129;
+	bh=8lTGsGlCbLKIsPiwLyp46Bav7NCNyZ5/nO8VhCopaLU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Aw7hUThy1BKIh+X1/42gbF+XV11cyBMHuATmnpfK0pqFh4sbpvpG86TKz7FnxTx+M
+	 kuVs3Lqrp6Lat9YZVyX9hGEjEx8sSObpaT16RO8utT31IT9n8F90W1Bo2UXN20lD/0
+	 TkOhrHCcXQgUlSk5LzdfYs2cXaOM27qucwHi3h0jOjT+m3Rx6kUCtbhiIRe9jhzn/Q
+	 vGn8L4A9DJDg3fPvGpI7BXyyIcIb/x4TWzGxBuaacSSbTZES+BTL/hO46bS38kLVTV
+	 Z0Zd+dutAFweol+gDYxjbzUKd1JMZGtwxovATXfP8XBST25kAMGr/wtXXeL3A3CNBe
+	 tlwJ4nBiEEFDA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D7FBECD13D9;
+	Wed, 12 Nov 2025 19:35:28 +0000 (UTC)
+From: Hrishabh Rajput via B4 Relay <devnull+hrishabh.rajput.oss.qualcomm.com@kernel.org>
+Subject: [PATCH v6 0/2] Add support for Gunyah Watchdog
+Date: Wed, 12 Nov 2025 19:35:19 +0000
+Message-Id: <20251112-gunyah_watchdog-v6-0-38ad01f8dac0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
- <20251015071420.1173068-6-herve.codina@bootlin.com> <20251030141448.GA3853761-robh@kernel.org>
- <20251031162004.180d5e3f@bootlin.com> <20251112142632.GA1610836-robh@kernel.org>
-In-Reply-To: <20251112142632.GA1610836-robh@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 12 Nov 2025 13:29:09 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ89EcUvQnS0xYXOrw6wJ30TT5oFA85eCqHYdu43056cw@mail.gmail.com>
-X-Gm-Features: AWmQ_bnvVqS34104BGAfHcYDtcOO0joqpBN-zpybKauFgaXAFRsInCQMBTqH6M4
-Message-ID: <CAL_JsqJ89EcUvQnS0xYXOrw6wJ30TT5oFA85eCqHYdu43056cw@mail.gmail.com>
-Subject: Re: [PATCH v4 05/29] dt-bindings: bus: Add simple-platform-bus
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
-	Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
-	Richard Fitzgerald <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Mark Brown <broonie@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	Davidlohr Bueso <dave@stgolabs.net>, Jonathan Cameron <jonathan.cameron@huawei.com>, 
-	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
-	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Dan Williams <dan.j.williams@intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
-	patches@opensource.cirrus.com, linux-gpio@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, 
-	Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHfhFGkC/3XPwWrDMAwG4FcpPs9Fsmyn7mnvMcawYzUxrPEWt
+ 9lKybvP7WErZLkIfoE+8V9F4TFxEfvNVYw8pZLyUIN92oi290PHMsWahQJlwAHJ7jxcfP/25U9
+ tH3MnVVRWO007Vk7Uq4+RD+n7Lr681tyncsrj5f5gwtt23ZpQgiTP1oEhYB2ecynbz7N/b/Pxu
+ K1D3MhJ/TIIYJeMkiiDc1Fj1EYbWGHogVG7JUOVYRuRfa0XMK4w+oEhXDK6lmp8CMiMSGhWGPP
+ HIDRLxlRGt5bpECwHbP5h5nn+AaaCTfrRAQAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762976127; l=4082;
+ i=hrishabh.rajput@oss.qualcomm.com; s=20250903; h=from:subject:message-id;
+ bh=8lTGsGlCbLKIsPiwLyp46Bav7NCNyZ5/nO8VhCopaLU=;
+ b=0XLbKa2eIfHYXJ1aQ6JX5xlLJZACFU1zMQLEHK98LwxER/WMS6/l0S+VCUDXcoEwGC3MNxibi
+ c5Y+uCEdTXWC+0zUM80Z21t0UwPTv5cGAOPcL1P3kHrWwkHSP7rW/Et
+X-Developer-Key: i=hrishabh.rajput@oss.qualcomm.com; a=ed25519;
+ pk=syafMitrjr3b/OYAtA2Im06AUb3fxZY2vJ/t4iCPmgw=
+X-Endpoint-Received: by B4 Relay for
+ hrishabh.rajput@oss.qualcomm.com/20250903 with auth_id=509
+X-Original-From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+Reply-To: hrishabh.rajput@oss.qualcomm.com
 
-On Wed, Nov 12, 2025 at 8:26=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Fri, Oct 31, 2025 at 04:20:04PM +0100, Herve Codina wrote:
-> > Hi Rob,
-> >
-> > On Thu, 30 Oct 2025 09:14:48 -0500
-> > Rob Herring <robh@kernel.org> wrote:
-> >
-> > > On Wed, Oct 15, 2025 at 09:13:52AM +0200, Herve Codina wrote:
-> > > > A Simple Platform Bus is a transparent bus that doesn't need a spec=
-ific
-> > > > driver to perform operations at bus level.
-> > > >
-> > > > Similar to simple-bus, a Simple Platform Bus allows to automaticall=
-y
-> > > > instantiate devices connected to this bus.
-> > > >
-> > > > Those devices are instantiated only by the Simple Platform Bus prob=
-e
-> > > > function itself.
-> > >
-> > > Don't let Greg see this... :)
-> > >
-> > > I can't say I'm a fan either. "Platform bus" is a kernel thing, and t=
-he
-> > > distinction here between the 2 compatibles is certainly a kernel thin=
-g.
-> > >
-> > > I think this needs to be solved within the kernel.
-> >
-> > I fully agree with that.
-> >
-> > >
-> > > What I previously said is define a list of compatibles to not
-> > > instantiate the child devices. This would essentially be any case hav=
-ing
-> > > a specific compatible and having its own driver. So if someone has
-> > > 'compatible =3D "vendor,not-so-simple-bus", "simple-bus"', when and i=
-f
-> > > they add a driver for "vendor,not-so-simple-bus", then they have to a=
-dd
-> > > the compatible to the list in the simple-pm-bus driver. I wouldn't
-> > > expect this to be a large list. There's only a handful of cases where
-> > > "simple-bus" has a more specific compatible. And only a few of those
-> > > have a driver. A more general and complicated solution would be makin=
-g
-> > > linux handle 2 (or more) drivers matching a node and picking the driv=
-er
-> > > with most specific match. That gets complicated with built-in vs.
-> > > modules. I'm not sure we really need to solve that problem.
-> >
-> > Right. Let discard the "more general and complicated solution" and focu=
-s
-> > on the list of compatible to avoid child devices instantiation.
-> >
-> > Do you mean that, for "simple-bus" compatible we should:
-> >  - Remove the recursive device instantiation from of_platform_populate(=
-).
->
-> That may be a problem I hadn't considered. While we've solved most probe
-> ordering issues, I think some may remain. Even when of_platform_populate(=
-)
-> is called affects this. For example, I tried removing various arm32
-> of_platform_.*populate() calls which run earlier than the default call,
-> but that broke some platforms. (Looking at the list of remaining ones, I
-> fixed the at91 pinctrl/gpio drivers, but never tried to remove the
-> calls again.)
->
-> Maybe this can be restricted to cases which are not recursively created
-> from the root node. Not sure how we detect that. Perhaps no OF_POPULATED
-> flag on the parent node? Or we could just enable this for OF_DYNAMIC
-> nodes? That should be sufficient for your usecase.
+Gunyah is a Type-I hypervisor which was introduced in the patch series
+[1]. It is an open source hypervisor. The source repo is available at
+[2].
 
-Thinking a bit more about this, I think you don't have to do anything.
-If child nodes already got populated, calling of_platform_populate() a
-second time is essentially a nop. And for cases you care about, that
-wouldn't have happened. Of course, I'd still rather there only be 1
-path that devices could have been instantiated.
+The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+access the MMIO watchdog. It either provides the fully emulated MMIO
+based watchdog interface or the SMC-based watchdog interface depending
+on the hypervisor configuration.
+The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
 
-Rob
+This patch series adds support for the SMC-based watchdog interface
+provided by the Gunyah Hypervisor.
+
+This series is tested on SM8750 platform.
+
+[1]
+https://lore.kernel.org/all/20240222-gunyah-v17-0-1e9da6763d38@quicinc.com/
+
+[2]
+https://github.com/quic/gunyah-hypervisor
+
+Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+---
+Changes in v6:
+- Fix build issues reported by the kernel test robot on PowerPC and RISC-V
+  architectures by adding IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY) check
+  before calling arm_smccc_hypervisor_has_uuid().
+- Link to v5: https://lore.kernel.org/r/20251107-gunyah_watchdog-v5-0-4c6e3fb6eb17@oss.qualcomm.com
+
+Changes in v5:
+- Move the gunyah_wdt device registration from the SMEM driver to the
+  SCM driver. Add additional logic to check if we're running under the
+  Gunyah Hypervisor.
+- Implement .remove() for gunyah_wdt driver to make it not persistent.
+- Link to v4: https://lore.kernel.org/r/20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com
+
+Changes in v4:
+- Move the contents of gunyah_wdt_init() to qcom_smem_probe() to make
+  sure we're registering the watchdog only on the Qualcomm devices.
+- Link to v3: https://lore.kernel.org/r/20251028-gunyah_watchdog-v3-1-e6d1ea438b1d@oss.qualcomm.com
+
+Changes in v3:
+- Move back to platform driver model. In module init, determine if we're
+  running on a Qualcomm device and there is no supported memory-mapped
+  watchdog present. Then proceed to register platform device and driver
+  for SMC-based Gunyah watchdog.
+- To determine if we're running on a Qualcomm device we're checking the
+  presence of "qcom,smem" compatible devicetree node. As an alternative,
+  we also tried using socinfo for the same purpose. When both
+  gunyah_wdt and socinfo drivers were made built-in, it couldn't be
+  ensured that the socinfo driver probed successfully before gunyah_wdt
+  init was called. Hence, we resorted to the devicetree node approach.
+- Limit the errors listed in gunyah_error to the ones that can be
+  produced by the driver.
+- Link to v2: https://lore.kernel.org/r/20251006-gunyah_watchdog-v2-1-b99d41d45450@oss.qualcomm.com
+
+Changes in v2:
+- Move away from platform driver model since the devicetree overlay does
+  not happen by default.
+  See https://lore.kernel.org/all/91002189-9d9e-48a2-8424-c42705fed3f8@quicinc.com/
+- Only when MMIO-based watchdog device is absent in the devicetree,
+  proceed to detect SMC-based watchdog using GUNYAH_WDT_STATUS SMC and
+  initialize if SMC returns success.
+- Implement pm notifiers as gunyah_wdt is no longer a platform driver so
+  dev_pm_ops cannot be used.
+- Pretimeout IRQ is no longer supported.
+- Remove struct gunyah_wdt since it is not required.
+- Move the contents of gunyah_errno.h to gunyah_wdt.c.
+- Link to v1: https://lore.kernel.org/r/20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com
+
+---
+Hrishabh Rajput (2):
+      firmware: qcom: scm: Register gunyah watchdog device
+      watchdog: Add driver for Gunyah Watchdog
+
+ MAINTAINERS                      |   1 +
+ drivers/firmware/qcom/qcom_scm.c |  53 ++++++++
+ drivers/watchdog/Kconfig         |  13 ++
+ drivers/watchdog/Makefile        |   1 +
+ drivers/watchdog/gunyah_wdt.c    | 260 +++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 328 insertions(+)
+---
+base-commit: 6146a0f1dfae5d37442a9ddcba012add260bceb0
+change-id: 20250903-gunyah_watchdog-2d2649438e29
+
+Best regards,
+-- 
+Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+
+
 
