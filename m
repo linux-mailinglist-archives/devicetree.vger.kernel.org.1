@@ -1,110 +1,88 @@
-Return-Path: <devicetree+bounces-237781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C1F5C54064
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:56:40 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6FD2C540BA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:01:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0C583AFD95
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:56:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 630E6347BD6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BE0343214;
-	Wed, 12 Nov 2025 18:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF2634D389;
+	Wed, 12 Nov 2025 18:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="srnaOMbM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NlCqCvFn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 999042D662F;
-	Wed, 12 Nov 2025 18:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1BC2D662F;
+	Wed, 12 Nov 2025 18:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762973797; cv=none; b=iS7bNv0peCHS/hk/0Kn6naCB8KMK4F7VXU2NmOVUu6Pt1x7WLLnBHYmiW1XVSvL7nnCC5GXVp00mSjliG4gjirq+dVjYGnjupTstmorgYhIsUUXvfiM9zmOdfdAaDkRpTYvGDLDkuFiU39LLoPlL/srY9lhYwoVtYaQgk9CclGU=
+	t=1762973991; cv=none; b=g/v5irYgaNrhXQ758UbiI17YFPNFeBCWxJ3ZMASi9H7S7EdlYzr0Q4/LUnS2k/2770anwSNulG78rf2DcTuqYnWvhCspG8lVM+WBQw5uErRjw2i4/gDLHgvLxjMOlt25b9sOaz7cv7YX+vaHv8qw0mNRb8quRIHtHpyIYMNroUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762973797; c=relaxed/simple;
-	bh=wnhEjBehMvH+VcTKME6K3P5TFtwHDoZ1sl5SUn95RW0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FxAAPPRQoh+8On4olaZpNJra4GX5WeYfFMs9NpSBWINtkmv5Fb0K9UyM81soGyv+zaf6LS7PEUA8jVDt79qb7TW+yvpP4fTYO3LDJ1YFU7aow3ZQKId4Xh9e1c6Gpo2JoyexifC3FQ646/JgLniibQ8umfVhDomzH2/f3598idc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=srnaOMbM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 458CAC16AAE;
-	Wed, 12 Nov 2025 18:56:32 +0000 (UTC)
+	s=arc-20240116; t=1762973991; c=relaxed/simple;
+	bh=s70+dEijLJu02bLEgTDFzYjbtJ3yISumbYjuEFikp1U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=U3YX4POKtEA12IPEwkgBCuEtjf2KdoMGubRvsTPfZJszPsZnTwivrIrgiCs/Nb8Fy9uGHOsIHGF/arTpsErF4n8NvZXzo2/xHbAJKztLEl5Qge6TaWeOM6CFMGblUARHmsGR3jKVv12/GwWlntGb+CoyEG/KAXXpVR5pZOx1RDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NlCqCvFn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6DE8C113D0;
+	Wed, 12 Nov 2025 18:59:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762973797;
-	bh=wnhEjBehMvH+VcTKME6K3P5TFtwHDoZ1sl5SUn95RW0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=srnaOMbMhtXpMh0YneM2DfkFDH+Lx13tpS+EcJAmlFp2fwuGJGV9FS5Avhee2oZVG
-	 0H2MW4ubKyxNwMZizzrkoecvpHnFVhcd1dvIVqkkaO5AFBG4Iu0eKCdA8rPrgmisln
-	 br6RKTVOKvo2yCfUBK4a9mTUKimw7R0RrBPUZl++Na3MPo/LWSOevAWtAlQ1ws60IC
-	 0ZeoyoGmZbDGpgQderwSS9ILifWnuQMhFRy6hlmT1GdasuSYWtGu+d1jkr5BQOJ98a
-	 nwj6RcQleIQ0vVazB4LcROCnt47uek29cKIhfdiscP6X5FqNvAJuh45/KT9QKzagMC
-	 l+dRBGK6Kaqqg==
-From: Conor Dooley <conor@kernel.org>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	han.xu@nxp.com,
-	broonie@kernel.org,
-	dlan@gentoo.org,
-	pjw@kernel.org,
-	Alex Elder <elder@riscstar.com>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Frank.li@nxp.com,
-	p.zabel@pengutronix.de,
-	guodong@riscstar.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	apatel@ventanamicro.com,
-	joel@jms.id.au,
-	geert+renesas@glider.be,
-	cyy@cyyself.name,
-	heylenay@4d2.org,
-	fustini@kernel.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 0/9] spi: enable the SpacemiT K1 SoC QSPI
-Date: Wed, 12 Nov 2025 18:56:13 +0000
-Message-ID: <20251112-approve-cartload-5a3f3d017c2d@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251027133008.360237-1-elder@riscstar.com>
-References: <20251027133008.360237-1-elder@riscstar.com>
+	s=k20201202; t=1762973990;
+	bh=s70+dEijLJu02bLEgTDFzYjbtJ3yISumbYjuEFikp1U=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=NlCqCvFnIdpo3ZYt44/2IUvfqAcmNstFQ0sVeXIZqhGd1ELQQmaorLAK20SiRWebw
+	 njk2wPLnJ9AyjVxan6FZDaqDkYh9bt9Ob+ziA37Po8j+gg7xXqANp1y0MFvCa7eYZ+
+	 JSeVY3NV4lXuWCIj6I9b2hQrXMela9M5J85Eio5yG9WTIva8IP43/pcC/1dODyuJcy
+	 rBkY7UbhoFR55dtiYcQJc1noG/i4mZk63EtC/bKPUTOsDKM9H5AQ4P3w2AvPVw1oAA
+	 9Uvou1fmuqLPva/ATG8I2yboLfGKKF7MZWQ3jB8TNTtYERti95otrJ9QcB8TL3JIpc
+	 mwtiH2RxgZrJg==
+Message-ID: <81ad7e01-d826-4dbc-a029-fdfdd06f6a88@kernel.org>
+Date: Wed, 12 Nov 2025 12:59:44 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=667; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=QYu7vucndkkkm6zIRBflLJq+QN7l+LYv149tZnZO9JA=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkiN3zNru+5vrOwp/Rz57QPF0siN74LWmjWFmwkmrJlT WXT0jO7O0pZGMS4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRxncM/504dq80vna35Mah qosqqxYf60yNrpxfZs84sf6GrdT7BccYGa6wCbqpJJyfnZ0nOVHhGMfynQ7/ZfOmzTxl+GeiyLY ZiWwA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] arm64: dts: intel: agilex5: Add Altera compatible
+ for I3C controllers
+To: adrianhoyin.ng@altera.com, alexandre.belloni@bootlin.com,
+ Frank.Li@nxp.com, wsa+renesas@sang-engineering.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-i3c@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1762237922.git.adrianhoyin.ng@altera.com>
+ <ac9eb45581525f1f3aaffa46a73927038ea8a9ae.1762237922.git.adrianhoyin.ng@altera.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <ac9eb45581525f1f3aaffa46a73927038ea8a9ae.1762237922.git.adrianhoyin.ng@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-On Mon, 27 Oct 2025 08:29:58 -0500, Alex Elder wrote:
-> This series adds support for the SpacemiT K1 SoC QSPI.  This IP is
-> generally compatible with the Freescale QSPI driver, requiring three
-> minor changes to enable it to be supported.  The changes are:
->   - Adding support for optional resets
->   - Having the clock *not* be disabled when changing its rate
->   - Allowing the size of storage blocks written to flash chips
->     to be set to something different from the AHB buffer size
+
+On 11/4/25 01:29, adrianhoyin.ng@altera.com wrote:
+> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
 > 
-> [...]
+> Add the "altr,agilex5-dw-i3c-master" compatible string to the
+> I3C controller nodes on the Agilex5 SoCFPGA platform.
+> 
+> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> ---
+>   arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> index 04e99cd7e74b..5c8ad5e9b248 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
 
-Applied to riscv-config-for-next, thanks!
+Applied!
 
-[9/9] riscv: defconfig: enable SPI_FSL_QUADSPI as a module
-      (no commit info)
 
-Thanks,
-Conor.
 
