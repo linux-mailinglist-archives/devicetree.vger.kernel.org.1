@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-237773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67AA6C53F4A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:43:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15BABC53F7A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:45:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D292F4F19DE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:36:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1870F3B753B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83372358D32;
-	Wed, 12 Nov 2025 18:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801CF35293D;
+	Wed, 12 Nov 2025 18:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+BLgP/K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XxgUJKuc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 540BE358D2D;
-	Wed, 12 Nov 2025 18:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 548E2351FCA;
+	Wed, 12 Nov 2025 18:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762971991; cv=none; b=OQbaQj5UfX9d1YcXf+84UiEuFpaP9a0lihADqe/7y2pKNuBE9FomOJrTfwiIgePpuBgS2l5mEABs4E/mcnIZyVuzeqf9Z97728ZY1G+IMvpSKa7RTjUg2wVsccqYcJwem98HKZUGEbs3GuM2ip4dzaB9Q3qc316QwE7EKb0bVS0=
+	t=1762972328; cv=none; b=SBaO93H255RBnVSaVmci2njaYj3BS21R2TO8uQmK6LWmdkArHJHV8uDNMGDPL6HxcH+6cAPNEhGO/m0ycl2iHD8DOPHi+PoILoUX2A1Ybr+sQX9zyuKMDx9MoirSYPhHbYY2PmcmPlB/5XKodOAWQEe0wDP/RCjqwB9AzId+oug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762971991; c=relaxed/simple;
-	bh=KqIE5WmfyHmP8ll3rOCY+FYSMtK6zHgkQ3ZM4GG1AjQ=;
+	s=arc-20240116; t=1762972328; c=relaxed/simple;
+	bh=rhYHIaDeRlqkfmPOJcKkkL6MWk98Yo8FHzQg9ppxXiw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kYL0sJ3sNqMhnmiKUlncHQlcpGYA364TjqXYkuNFoleMVOvHzQcZG6j41DbW5h3hYoduHqZcqZkRRm76Yo/3vHgeT2fzEWDIkerUB6yDYZMPLQxD8/yqBYKHA+DXoNAhVcmWUpSzK6+i+puGwIrPpWkbJE+sL0bzSyIBl0X6vlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+BLgP/K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A38A8C19424;
-	Wed, 12 Nov 2025 18:26:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PTW4RMW4jeczgBKvbya7FYhp3cwha8zSroG7aW/gR8WXPOXGs/5r9Fukn9E5UQwHB2fol+Y8a6f/XIKSdD1GcSsdF0aaPDdueFgFp/YWySQ8NauzFCNWx6k3+SdCNz/73Ka8aq69B5GOvgGtgLoP0x5jmR/Pt/+NW/YR0GPsD0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XxgUJKuc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAA60C4CEF1;
+	Wed, 12 Nov 2025 18:32:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762971990;
-	bh=KqIE5WmfyHmP8ll3rOCY+FYSMtK6zHgkQ3ZM4GG1AjQ=;
+	s=k20201202; t=1762972325;
+	bh=rhYHIaDeRlqkfmPOJcKkkL6MWk98Yo8FHzQg9ppxXiw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W+BLgP/Kvh42AwbBcDdL6xFNxRAMUoqlImaEJWOsJ6Mj/IvTdWE86pZzvDLLh4T3A
-	 6IPzZvuwMcSmW6zZB01E6oJzEliKrGozmzVTKBtm0tBRU3+RmLbrD1PVlnm23xratU
-	 tlzd0dq24GiZdgiTrW640DefdGUlEU1go/6/WTXUSQt0+yxeMbD06/X/z7bmqyesoB
-	 h8yI3Mo3dt08CaaUnAE/BL3UlWlol0ZlymcP9lHsaD52mjiX5RaQdo6zhTrQtgNkff
-	 CBZJD+uqT+FtHqK2Kz9l0wzQDQivhj3y86kLjUk0logNlnGhCTFXs38J27PnJaXB/S
-	 a5rRcfY/BJ5QA==
-Date: Wed, 12 Nov 2025 18:26:23 +0000
+	b=XxgUJKucqwpnqFajquRl8Zd0vK+MfyA65TGjwcjY+tJlFdF3RFAk7NAAGp9567X+3
+	 2f+we+WKmh3O3LlAxx3dlAGlzeCnLftFkwyfkCoQt24ZAqfn1wV5N+8xevaCWM/Qi0
+	 rgNRzafPx7FZzdTOuUuy9S8b/lSz8bLksBHzXHtZvBfCJ7zXVc6Nij5fcJZn5UYEus
+	 bEDdHhVu0rnWAZmXJQ/TEYxdV2YS2hlyq8lZdqZuWWDB9WCDQhk6GmY5eBfovjQKzf
+	 d/MTO7p1tHRDeqwOtltFxZJ0pGz+JagVC5SVl07WrvlCyBy5iOFoI5i93P/64hli+I
+	 NXOkZYD5QQoJA==
+Date: Wed, 12 Nov 2025 18:32:01 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jon Nettleton <jon@solid-run.com>,
-	Mikhail Anikin <mikhail.anikin@solid-run.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 02/11] dt-bindings: display: panel: ronbo,rb070d30:
- panel-common ref
-Message-ID: <20251112-efficient-dental-219b34a728ab@spud>
-References: <20251107-imx8mp-hb-iiot-v2-0-d8233ded999e@solid-run.com>
- <20251107-imx8mp-hb-iiot-v2-2-d8233ded999e@solid-run.com>
- <20251107-cornbread-juggling-2e7e69bcac10@spud>
- <14492bcb-aa74-4fce-b9e6-3d33b08c682f@solid-run.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, vkoul@kernel.org,
+	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: phy: lan966x: Add optional
+ microchip,sx-tx/rx-inverted
+Message-ID: <20251112-junkman-buckle-31fcfcbfa3c5@spud>
+References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
+ <20251110110536.2596490-3-horatiu.vultur@microchip.com>
+ <20251110-unwound-award-a11d69b9da4f@spud>
+ <20251111095831.lp4kvdfcahtwgrqc@DEN-DL-M31836.microchip.com>
+ <58b0d712-48a4-4490-a63f-404716844557@kernel.org>
+ <20251111-ploy-dispersal-164ae403df4d@spud>
+ <20251112080235.c5iinfnketsunefy@DEN-DL-M31836.microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,53 +65,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+EOiDhVMpxn0wrR/"
+	protocol="application/pgp-signature"; boundary="5ULl6H7+uUD9DWU7"
 Content-Disposition: inline
-In-Reply-To: <14492bcb-aa74-4fce-b9e6-3d33b08c682f@solid-run.com>
+In-Reply-To: <20251112080235.c5iinfnketsunefy@DEN-DL-M31836.microchip.com>
 
 
---+EOiDhVMpxn0wrR/
+--5ULl6H7+uUD9DWU7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 12, 2025 at 11:51:55AM +0000, Josua Mayer wrote:
-> Hi Conor,
+On Wed, Nov 12, 2025 at 09:02:35AM +0100, Horatiu Vultur wrote:
+> The 11/11/2025 17:39, Conor Dooley wrote:
+> > On Tue, Nov 11, 2025 at 11:06:02AM +0100, Krzysztof Kozlowski wrote:
+> > > On 11/11/2025 10:58, Horatiu Vultur wrote:
+> > > > The 11/10/2025 18:43, Conor Dooley wrote:
+> > > >=20
+> > > > Hi Conor,
+> > > >=20
+> > > >> On Mon, Nov 10, 2025 at 12:05:36PM +0100, Horatiu Vultur wrote:
+> > > >>> This allows to invert the N and P signals of the RX and TX Serdes
+> > > >>> signals. This option allows the board designer to trace their sig=
+nals
+> > > >>> easier on the boards.
+> > > >>
+> > > >> Why can't this just be done in software, debugfs or something like=
+ that?
+> > > >> Maybe it's just your description is poor, but sounds like the inte=
+ntion
+> > > >> here is to just switch things around for debug purposes.
+> > > >=20
+> > > > I don't think it should be done through debugfs. As this describes =
+the
+> > > > board layout and I don't think someone will want to change it at
+> > > > runtime to see how things behave. So maybe the description is poor.
+> > >=20
+> > > You said it is purely for hardware designer to trace signals, so sorr=
+y,
+> > > but that's not DTs purpose.
+> >=20
+> > If it is not purely some sort of debug helper, then please explain
+> > better in your commit message.
 >=20
-> Am 07.11.25 um 18:48 schrieb Conor Dooley:
-> > On Fri, Nov 07, 2025 at 12:46:09PM +0100, Josua Mayer wrote:
-> >> Add missing ref on panel-common.yaml for this dsi panel so that common
-> >> properties can be shared.
-> >>
-> >> Drop reset-gpios and backlight as they are already in panel-common.
-> >>
-> >> Switch from additionalProperties to unevaluatedProperties so that comm=
-on
-> >> panel properties are available without repeating them in this binding.
-> >>
-> >> Notably panel-common defines the "port" property for linking panels to=
- a
-> >> source - which was missing from this panel. Mark it as required.
-> >>
-> >> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Is your ack compatible with Frank Li requesting to move the
-> ref on panel-common further towards the end of the file?
+> Yes, I will do so because I don't see how this is a debug helper
+> functionality. I see it as changing the polarity of some pins and there
 
-I don't care what you do with that. I will say that it is pretty normal
-to have it at the top of the file and move it if there ends up being a
-need, and it's not worth resubmitting for that alone.
+The word "trace" here might be problematic? Maybe you meant something
+like "lay out", but all of the use of the word tracing in electronics
+that I have ever seen refers to troubleshooting - be that physically
+following signals to see if there's degradation or things like the
+trace framework in linux.
 
---+EOiDhVMpxn0wrR/
+> are few examples in the devicetree bindings where pins change the
+> polarity. Why I see it as changing the polarity is because the
+> N(negative) will become P(positive) and the P(positive) will become the
+> N(negative), so we just invert the signals.
+
+--5ULl6H7+uUD9DWU7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTRTwAKCRB4tDGHoIJi
-0oSSAP9SN63sA1M/10C28Rdxq70LHgjhnvuOt7uLqa7qxb9H8wD/TuHCoPY5bn/4
-4deqcUE/0q2mjHZ/dBSzUxDDPOOgIg4=
-=Dix4
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTSoQAKCRB4tDGHoIJi
+0imiAQCuvPVj5pCt0I4n4uPayM4eKjorWxB+tswfVsc6jE04EwEAusBqIYkcPuvM
+u0XmSCHD6wSTz43Y5uWyQdojJ+Pqswg=
+=t3BV
 -----END PGP SIGNATURE-----
 
---+EOiDhVMpxn0wrR/--
+--5ULl6H7+uUD9DWU7--
 
