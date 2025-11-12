@@ -1,243 +1,152 @@
-Return-Path: <devicetree+bounces-237400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4215AC5089F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 05:37:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A52BC50917
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 05:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5942189505C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 04:38:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7CF264E03D8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 04:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBB2B27F01E;
-	Wed, 12 Nov 2025 04:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7BC12D29C2;
+	Wed, 12 Nov 2025 04:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YRUVOYqH";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZNWskUH0"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="c3CQRNje"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from giraffe.ash.relay.mailchannels.net (giraffe.ash.relay.mailchannels.net [23.83.222.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F59239573
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 04:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762922258; cv=none; b=db92NNLPg8H7JOsLOt9gDv0gUiaC3R2fJATcQKjroW5d6RSwXLcM2NPYkepdo8UWazcw7T6dzw9FpoOZVH0T+6G2ajdRUUig0shFEQRxZIjJxWg9jIeKtcxOH1+Seg1R6jUQdoTtX83mB+QiwEMMl/c8BY548W7HWuRQbdzxVW4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762922258; c=relaxed/simple;
-	bh=V0vl5PYqOwt6P32dIC0YxQDIkv9JT71y2bFJQpFNggw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=WsQOJGojaNxlSdau2c6pzMoJwayQfviEJdfRFRqzw6CEKDTPOvshMQRDafiPegZzsqDflykNuFHZvQ+R2+ZdDQQKdMNJXluH7Gg+og6/yjY6d6HadoLaefQWEjEMHQyGWOW0SdibZrWfHAHU/xR49M5VLohJx3YW1ltt4TTelQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YRUVOYqH; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZNWskUH0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC3H7j24052806
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 04:37:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JVQKND3i2NbrdQnKxtCPDowADDAfakYZ28GFem/SIZo=; b=YRUVOYqHydXvvqvJ
-	HUw75CnuM4GykvZ71R0PbxjB03A3TQ6r2hZBoVoKba5/xTfAymnPHkc2K2HaZmm4
-	voV/kxXijn7kKo9kaGGOH5PrAvNlPPnVCcuQwYFeG0p+RD8ywA/lb2qpvbxHCn5k
-	+N9Qo4sVhGJkFxG7xS5nT93pGokTUL5mXzNMkltyrh+Rgsp9Gfd1yEVX1tm/T6Ia
-	kzGIV+pRmwAkVS0U63qw9EHmB3qW85DTPUebeHZrkdKGRCZuJMx4P/GkpWXAcJP6
-	NMiwJmfcnpQTLBPn7HGZPoV/VyEDAc2uFYIYF1koBp/6q2NikbvwygGJ1pVc3qnw
-	V3qgqw==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acj6v859f-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 04:37:36 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-29806c42760so11006525ad.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 20:37:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762922256; x=1763527056; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JVQKND3i2NbrdQnKxtCPDowADDAfakYZ28GFem/SIZo=;
-        b=ZNWskUH0w3LUaxoL87B6zSeGa4rF2raYomVC14qjWB8I1AG2xBrs++sgP1GEzJouY7
-         wETZHSvSQVsQTwiGiXFJF5KcPCfrIYPfsk5aUN1/rPmE99QAtZkZ6ZMa6RlG3I4YMM7R
-         Fhu5bJvWuU4wfEwYgp9V3jdUbg/en3lcS1nZigwnYkxx9mRfW8OXmKexeF2kzOu04Ocu
-         FD9WrvASdq5Py6ZHgKPZLO8t3iUcxaQ7UbWC3t52fRSapnrmvqRiDBvSbbR86Bq8pkaV
-         dVtR6CHMX/fDqiefbUpHFUYamYYwo6YQTHxWy6O7hirlMeb9orRMHUI3uSELZc6OLt+F
-         1A4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762922256; x=1763527056;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JVQKND3i2NbrdQnKxtCPDowADDAfakYZ28GFem/SIZo=;
-        b=pCUJxR/0Qh37EwbZy7iY0dr1hFJ4yowM5AMf3FuVVadAXh/tjipevs4HHgT+k2SYlJ
-         H8105RtUHjONepCoTjy+dzcFFqLx3Wk5VLqAD4dm+Rz2XIsZc/c4Rv/iaGquXMT5buGl
-         HoRXgB24C0H+XAJBc6wuk5YsO+ufvukOKt1I/m1JgNhrDLeGLqNuoCkbVw2Z2wqXgosB
-         +yfnFJUL99iIUDPAgdcBNM25MGTp6EO+HTcnVjmmTb8VLjcfV8ImP+TcAiq5weT9Zdbn
-         SRu0SvlaOXf4Rsh6BJaAKlFHXejBlR94LY9IAbT27QIixINMof2Zil2YwVTfqIPGW8QR
-         u7Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCUirkY1aM8cAhzBMtLfFRUpIjQSw6nEwkGk5NJPRsAVSkYtOInqy3k8mWNNzuK8zJWT8G5uR8YiewSV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yze0GW8XPrayf/6+oTwXjf40EBjW3R3SI5B3pwWTub6re2QB3QE
-	MeOB+HXxd7sweyMS3OEXJtIMxfiqDZLD7yV3pBGuV7A/ZVwzTWDILNNgJs0OVrWTzKNRLy1sMW/
-	GCx+xoiGEg+KdVBW+o7KdOkYse1fugvWTHERT6SNxF+HgtGMFlMcJ26LcpXGNxpRa
-X-Gm-Gg: ASbGncsih/a0PqdIxHji5hF0fDMB6MQbhGISrqi1Rim/+KTpZUKD2M0w58z29Veo181
-	FeAATKMCmFdGqW2tvZTxIigtgCi11Gn+2t6QsVSfl4/I8UiEWgwhCpO3ACif31Mv+XzaloRnXe9
-	Ti6FpUAnsNrfokmC3P9Knohngoo3371Y9HdI5LsenQDVyVNMl+bIvpipAa6NnxAKkgHnUEaOveU
-	4Ph9Ex2Ga4WAmnUyZ+iVNAVj0prbE89sznx4Ly1mrcnl8UfhzuMJgSifxhbEQB0scMKh8z30kSX
-	11PXnkkqkxEZ7yzd6ftbufRubZZsSeNYUwZeHzy1ZqJ6I86PrRqynQFYpcoCL9EatJjFiaXb8FZ
-	a0Pc9NmSwLPuCdWhVyFBgV8aNhafzGkcopLB7U0o=
-X-Received: by 2002:a17:902:d54f:b0:295:34ba:7afa with SMTP id d9443c01a7336-2984eddf6a5mr21873735ad.43.1762922255798;
-        Tue, 11 Nov 2025 20:37:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGgxphywwo7rj2wEd9u2tLC3LhciITf/QsO2ACTfPA2oFJMOF4ZYzAGhbaKJALeAsYksHv/aQ==
-X-Received: by 2002:a17:902:d54f:b0:295:34ba:7afa with SMTP id d9443c01a7336-2984eddf6a5mr21873455ad.43.1762922255302;
-        Tue, 11 Nov 2025 20:37:35 -0800 (PST)
-Received: from [192.168.31.147] ([49.43.242.220])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29852391df0sm2680995ad.3.2025.11.11.20.37.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Nov 2025 20:37:34 -0800 (PST)
-Message-ID: <68dbaf42-0d64-45f7-8410-ebcbae2da612@oss.qualcomm.com>
-Date: Wed, 12 Nov 2025 10:07:26 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A30329BD8C;
+	Wed, 12 Nov 2025 04:54:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.222.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762923264; cv=pass; b=Vgnf3SOys3EecCSQJGr4kKwYbvVAUs/W59myGpItPqf0x23yvqkGdYPWvkijNUYiOv6On8DtM0SRcSf6xW3csC5EMkE1X4a1XoPYpLnjcLUrreDsFrA02BLuHfM99FoLp/svbDUO0gReF9gzqsAxdd9iX9nrppfMVLib5ZGTwGI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762923264; c=relaxed/simple;
+	bh=9KivrGD3xoNjlKvn9kQQv8aN6LgAM+Fdc98kuKzNt/E=;
+	h=From:To:Cc:Subject:Message-ID:In-Reply-To:References:MIME-Version:
+	 Date; b=aG0l/w+TI/vpX6nlgy1fHwfjPv/3HCDSjqybecYMZ5swAMgdrIHIwYCWfauSZIj2vdRuGz0wKAO9B/rOGSILlx+XLFqJl4zG5/6vStUsng0lqHpewy77BcReYc2JuuNiNnFJXCA1KSuX14cV2ov9WGWxHhJsTqFNktH3gHYJkSE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=c3CQRNje; arc=pass smtp.client-ip=23.83.222.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id C3350120CA6;
+	Wed, 12 Nov 2025 04:44:45 +0000 (UTC)
+Received: from de-fra-smtpout9.hostinger.io (trex-green-9.trex.outbound.svc.cluster.local [100.121.213.86])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 2ED39120665;
+	Wed, 12 Nov 2025 04:44:43 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1762922685; a=rsa-sha256;
+	cv=none;
+	b=v3LTPQJzxr1Xh3nPjFIb1iARsvBMt0VdFu1nglefMvcTdoaj1dwTb+Hfjo8aRCr+LK0nIi
+	LEOxqzGhsLeU4qBvtBcDNzUEl3AZMTlCkSyq3v1woWfdUTFSqbqiXjrhkJ2fhwb7YIOl5m
+	ch+ZrXUv9BW117bmG8eh+TJ4LQFAwywf7VP9QmIIFoE6BjPwpYYEm4H2HPTPKPbnJPNRyt
+	6wPgrwpsaDNqmCUPKl54mFfLPBYBurPl7bfsxXWHCZ6EpiFeS197YjLA0Tm5gus8AQsVtT
+	UQvJca0WIE9q5qjbebzjJiavhcGJFl+mkC6RjigmLvnUXR4tCrSGEtKo5iwwLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1762922685;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=gWvTqx7+tTYvzQaik51mPtFs1qznC/s+mRlEV2OX5Ak=;
+	b=Xnrki8bKZNWsIvyAkXaggpCJrCV0sUl9AUsXBKCiPnDzd3xzd9d+xsjJ5L6oRZcK5v0S4S
+	M57ujtFS/H4CKFB5Y7WpwsZdJxZ/ZElLUfsnUcwGwblyN1hNicbZTfJX4v666I2JWYStPG
+	1l0NeemhnOaSGQsb4MvlBgHvK2Yvq1/cCHDhYa9C4Ohm7lHH+X/cgTqlaGJClF/24SOlez
+	jEizgwC2Ntwm/T8O3B665F6Lc2kWC6oVjmHkY0e40BdEQbO6geQ8euYP7Ii18QCMio9UMK
+	ZAv3IT6+iGkmwPIOUDKmn7TWZY6h3EcI5rGe4M2PVOHxIHlhb065OzIsqWDKYQ==
+ARC-Authentication-Results: i=1;
+	rspamd-768b565cdb-bj6n2;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Shoe-Bitter: 7f330a8001916908_1762922685683_1118103663
+X-MC-Loop-Signature: 1762922685683:3359293449
+X-MC-Ingress-Time: 1762922685683
+Received: from de-fra-smtpout9.hostinger.io (de-fra-smtpout9.hostinger.io
+ [148.222.55.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.121.213.86 (trex/7.1.3);
+	Wed, 12 Nov 2025 04:44:45 +0000
+Received: from localhost.localdomain (unknown [IPv6:2001:861:4450:d360:e24a:32fa:a400:91c])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d5rRD5f44z3xHJ;
+	Wed, 12 Nov 2025 04:44:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1762922681;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gWvTqx7+tTYvzQaik51mPtFs1qznC/s+mRlEV2OX5Ak=;
+	b=c3CQRNjebgeT+IyjT13VU8HAgAZmZrVGQYFTyjy2rac4zaujKJ7qHZ/wg4k1kTWbP62u2l
+	KaArpODu6bdJFoAsqPAxKP7EYH4BIhcyvmQjq54zlyLr1DAkQsZL6+sz/gaM8+yA2aIU7k
+	cdNtAalj+jTRyp5QIHTAQVTmtyb3tuO1CMAVcBeO+0Rvh2QZGtuZa4Hw3BTfoLiGg3ksvl
+	tXS43z7vh5JWvtS2kguGXLOJm5copnEZtL1FElnuurbQz+d8e5m34QbSiC61YLsl1QTO7v
+	Ool/L9sFfdZ9XYuIcObiG13P9xXRpHOlZ/NDnrwIFkcn6HGTwsEp83Y5pxSACQ==
+From: michael.opdenacker@rootcommit.com
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@gentoo.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Yangyu Chen <cyy@cyyself.name>
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/2] dt-bindings: riscv: spacemit: Add OrangePi R2S board
+Message-ID: <20251112044426.2351999-2-michael.opdenacker@rootcommit.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251112044426.2351999-1-michael.opdenacker@rootcommit.com>
+References: <20251112044426.2351999-1-michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-Subject: Re: [PATCH v5 1/2] firmware: qcom: scm: Register gunyah watchdog
- device
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <20251107-gunyah_watchdog-v5-0-4c6e3fb6eb17@oss.qualcomm.com>
- <20251107-gunyah_watchdog-v5-1-4c6e3fb6eb17@oss.qualcomm.com>
- <hbxtbaoavlsw7pbmg3cfkbyx4nacjfiikckhqgpvlggbh6hu5b@jyporqecfzni>
- <263d1390-eff5-4846-b2c2-31f96fc3248e@quicinc.com>
- <3794bb0e-5e2c-4d5e-8d81-d302fa36677c@quicinc.com>
- <56aqammkwte3tcdzni2unufjp4t4yaqazzdkigrwqsxp3ghcqe@ppe2pjwg3hrl>
- <60583236-692f-4605-9f56-f7dadb46558d@kernel.org>
- <zbwcg5pkdspkcnvaitac6y5iko346qyuzuipqhkoedcaqm2dpa@zmszuwhm5q7z>
- <6bebcf6c-9328-4cd6-b77c-a147338d607a@oss.qualcomm.com>
- <nkh73mo4h5kj2lrz7paop7fn3ow2itxl5vh43muw6n5dxgmco3@tgvbmdxhbiqo>
-Content-Language: en-US
-In-Reply-To: <nkh73mo4h5kj2lrz7paop7fn3ow2itxl5vh43muw6n5dxgmco3@tgvbmdxhbiqo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: E548oaV7kXswLVrmUagRTQUWxZPJFw6B
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDAzNCBTYWx0ZWRfX4Sf26tX02L3y
- XhYsfACgYASRfnAF6zsT1AfoTnnBz3GfKHneWGrNkqZCECr4nrVn5QqXXc+QmdwXqBnccijY16K
- Ij8N7iAePp8yn6vBV5vvf5XTUk2RuiPezblnuR6jotmc5gxO0yOC3he171YaA9FxNaDG6ElQkQB
- oKZW5nBkIyC1tNV+79jmCdz+SCw4lBiStMaL+M/CZfhpzJKzy2wICCoosDwAMAOm/NOoDJKTDrY
- lnBzLxZVzY4vNXoobFC3sdhtsKi4BMPMz6moeW/wKQO0U6q2TZ/IdFSQocP5rBgOssf03ZvvoCL
- A2xYsp2Wri5jjPkvBKvIk1duAkR0udpGhBlc9VGwHRXFzKqMjTD6s9VX9JdfYHivy71jAOYdE4q
- +Bru4Aq8W7cyx5vxN8SrqMuw509s0g==
-X-Authority-Analysis: v=2.4 cv=f8dFxeyM c=1 sm=1 tr=0 ts=69140f10 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=5O+OyBe/A2HhBAuNR3RTDA==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=wXnSqrKzETg_ePB1FBQA:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-ORIG-GUID: E548oaV7kXswLVrmUagRTQUWxZPJFw6B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-12_01,2025-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
- adultscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511120034
+Content-Transfer-Encoding: 8bit
+Date: Wed, 12 Nov 2025 04:44:40 +0000 (UTC)
+X-CM-Envelope: MS4xfMVNK2xIzuy4WMC19TFvaS0296fSICCBfbpkkQJhiyBC4HxXM09fTCRgLWRZ4QTsj3XioJFaA4XlIMzUb+QomrVTIQkWdqJzF6ksO5gG+1H3vPDL7PlD OxcotLIen1pW+/bmqhXZluSMnRQDcWj67BdaxFqe/kS4TXWpIkTZiaxoesoEsi3ZaOGxpkJTvArjiv8vco+gJhpMORx7f2KS3TFcFQoNGAZhFf2t7DgtnDeX 05ptyWUPXjLuja6hzLffAZ/GL30TW1gjEIH8avsN7croIilxKDjyank3R7fQqwnM1aqQYjLflxxJ/6kCs3VQBUOLvI5w+BQaGCcmsNyiTvCvCLl34kAkcJlS NrjtFH5FjmauD9H2ChvYbDd+Pp/MorBU3tZh7t7KG1/NGemi9cxpKw925ACfhmI+wzwwopHty9cc/NpnNk/yYmJvOOXRMUzPbcMQHaTaO2kTdTdOk2AjnnWH LNvkDnCYYA0Y/zg3wnq8Qnh8aSU1AZeM2RB68ziRh2i76r1lxhneA0vbUvejqL1fdKlusV9ENz2cNORaypoZ5YseqF+MzV+rtLT9/v/32HoVtSMqJwycMjlQ d/ngjjsW0+PKBR7Aqk1gS8DpsGQKjwMyIfk8LTVVaQd/x/4onyuY2M7J6JEegUJSlLVt36zPy43JSyRyvInbtO5vfmDuSfmLXnUO00CGFamJ+z66zHcbjRnn PJU0sBivWIA=
+X-CM-Analysis: v=2.4 cv=Ceda56rl c=1 sm=1 tr=0 ts=691410b9 a=XVsSf4j1YTBLvHmD+RU1sw==:617 a=xqWC_Br6kY4A:10 a=5dAzR5NRAAAA:8 a=lv0vYI88AAAA:8 a=d70CFdQeAAAA:8 a=GJGCkeFiLITI3ydwnRgA:9 a=9STjDIb-X-UA:10 a=ZKAZAlVgJm32z6MX8p4a:22 a=9qqun4PRrEabIEPCFt1_:22 a=NcxpMcIZDGm-g932nG_k:22
+X-AuthUser: michael.opdenacker@rootcommit.com
 
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
 
-On 11/11/2025 8:35 PM, Dmitry Baryshkov wrote:
-> On Tue, Nov 11, 2025 at 07:30:59PM +0530, Hrishabh Rajput wrote:
->> On 11/11/2025 5:52 PM, Dmitry Baryshkov wrote:
->>> On Tue, Nov 11, 2025 at 11:41:51AM +0100, Krzysztof Kozlowski wrote:
->>>> On 11/11/2025 11:34, Dmitry Baryshkov wrote:
->>>>> On Tue, Nov 11, 2025 at 10:51:43AM +0530, Pavan Kondeti wrote:
->>>>>> On Mon, Nov 10, 2025 at 09:43:53AM +0530, Pavan Kondeti wrote:
->>>>>>> On Sat, Nov 08, 2025 at 07:26:46PM +0200, Dmitry Baryshkov wrote:
->>>>>>>>> +static void qcom_scm_gunyah_wdt_free(void *data)
->>>>>>>>> +{
->>>>>>>>> +	struct platform_device *gunyah_wdt_dev = data;
->>>>>>>>> +
->>>>>>>>> +	platform_device_unregister(gunyah_wdt_dev);
->>>>>>>>> +}
->>>>>>>>> +
->>>>>>>>> +static void qcom_scm_gunyah_wdt_init(struct qcom_scm *scm)
->>>>>>>>> +{
->>>>>>>>> +	struct platform_device *gunyah_wdt_dev;
->>>>>>>>> +	struct device_node *np;
->>>>>>>>> +	bool of_wdt_available;
->>>>>>>>> +	int i;
->>>>>>>>> +	uuid_t gunyah_uuid = UUID_INIT(0xc1d58fcd, 0xa453, 0x5fdb, 0x92, 0x65,
->>>>>>>> static const?
->>>>>>>>
->>>>>>>>> +				       0xce, 0x36, 0x67, 0x3d, 0x5f, 0x14);
->>>>>>>>> +	static const char * const of_wdt_compatible[] = {
->>>>>>>>> +		"qcom,kpss-wdt",
->>>>>>>>> +		"arm,sbsa-gwdt",
->>>>>>>>> +	};
->>>>>>>>> +
->>>>>>>>> +	/* Bail out if we are not running under Gunyah */
->>>>>>>>> +	if (!arm_smccc_hypervisor_has_uuid(&gunyah_uuid))
->>>>>>>>> +		return;
->>>>>>>> This rquires 'select HAVE_ARM_SMCCC_DISCOVERY'
->>>>>>>>
->>>>>>> Probably `depends on HAVE_ARM_SMCCC_DISCOVERY` is correct here.
->>>>>>>
->>>>>> Dmitry / Bjorn,
->>>>>>
->>>>>> We are debating on this internally on how to resolve this dependency
->>>>>>
->>>>>> - QCOM_SCM depends on HAVE_ARM_SMCCC_DISCOVERY which means restricting
->>>>>>     QCOM_SCM compilation than what it is today.
->>>>>>
->>>>>> - Adding #ifdefry around arm_smccc_hypervisor_has_uuid usage in qcom scm driver
->>>>>>
->>>>>> - Adding stub for `arm_smccc_hypervisor_has_uuid()` which is not done
->>>>>>     for any of the functions defined in drivers/firmware/smccc/smccc.c
->>>>>>
->>>>>> We are trending towards the first option above. Please let us know if
->>>>>> you think otherwise.
->>>>> The same as before: 'select HAVE_ARM_SMCCC_DISCOVERY'.
->>>> HAVE_ARM_SMCCC_DISCOVERY has a dependency which is not always selected
->>>> (e.g. ARM32), thus selecting it might lead to warnings of unmet
->>>> dependencies.
->>> Then `if (!IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY))` might be a good
->>> option here (and depend on GICv3 selecting it).
->> Thanks a lot Dmitry, wemade the change below and compile tested on various
->> architectures (ARM64, ARM32, x86, PowerPC, RISC-V and MIPS) and it was
->> success.
->>
->> We will include it in our next patch version, if there are no further
->> concerns.
->>
->> }; /* Bail out if we are not running under Gunyah */ - if
->> (!arm_smccc_hypervisor_has_uuid(&gunyah_uuid)) + if
->> (!IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY) || +
->> !arm_smccc_hypervisor_has_uuid(&gunyah_uuid)) return; /*
-> Unreadable. Don't you read what you are sending?
+Document the compatible string for the OrangePi R2S board [1], which
+is marketed as using the Ky X1 SoC but is in fact identical in die
+and package to the SpacemiT K1 SoC [2].
 
-Sorry, my mail client messed up the formatting while sending. Here is 
-the proper version:
+Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-R2S.html [1]
+Link: https://www.spacemit.com/en/key-stone-k1 [2]
+Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+---
+ Documentation/devicetree/bindings/riscv/spacemit.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-/* Bail out if we are not running under Gunyah */
--	if (!arm_smccc_hypervisor_has_uuid(&gunyah_uuid))
-+	if (!IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY) ||
-+	    !arm_smccc_hypervisor_has_uuid(&gunyah_uuid))
-		return;
-
-Thanks,
-Hrishabh
-
+diff --git a/Documentation/devicetree/bindings/riscv/spacemit.yaml b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+index 52fe39296031..9c49482002f7 100644
+--- a/Documentation/devicetree/bindings/riscv/spacemit.yaml
++++ b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+@@ -23,6 +23,7 @@ properties:
+               - bananapi,bpi-f3
+               - milkv,jupiter
+               - spacemit,musepi-pro
++              - xunlong,orangepi-r2s
+               - xunlong,orangepi-rv2
+           - const: spacemit,k1
+ 
 
