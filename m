@@ -1,105 +1,108 @@
-Return-Path: <devicetree+bounces-237661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0012CC52FFB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:25:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 597FAC5311E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:35:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC1764A4349
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:42:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4035C502113
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93F9D339B53;
-	Wed, 12 Nov 2025 14:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E162C0297;
+	Wed, 12 Nov 2025 14:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="HuZVYKhw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vFtHcz/n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 035142C0F60
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 14:38:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 772112B2DA;
+	Wed, 12 Nov 2025 14:40:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762958322; cv=none; b=MIF7x/5BBCWj6CUky5HBHVLI+0eJfscF8jSadvIKqw6KUQlT3otlaHNz7cybY0kEOuK7g+Yl6yWqEy9h/Be714zNBMH5dkmq4m62aJGG1d7pd7bVEYVS+4CW3/MNHviounsh5h5ObdKZ4Xg5HuB+KnpGd01yX7n+48prwyXcRaY=
+	t=1762958412; cv=none; b=ICret55VJoQPaUW8ldfvqly8uwax/Bzi9UpYOvVmUu/fGVmGddBTm2B3sNPQ01EGJqpc+5CAnUmr97wgk3cn0+JM7QqEpwbfe9wUzzHjGvYL/DFQyaT5hoFqLPEwBy4Czd7SIf1bI4tXvd/rboVQ1dgdVRBJXSY4X70RhQ04Gtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762958322; c=relaxed/simple;
-	bh=9J+GQsabqWq0SzdkzjfkY0+YAySvu0mHZIJKBIsN2SA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DZgH+v3p4T57neO/oN6K6IEiXa9ira4xA19/EdYoBwwv90pGXe5R+hJG55TPlWTYVL5MfsI4EP8KpQe4brQNPToaC7iG+HP0aTUxXnGoAeETbfD1nOFuc89mUN5Ih+sZuP6h+hRoKurBlGRFqEIbRXVvnK1zhd7PQ/yHvz/XDCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=HuZVYKhw; arc=none smtp.client-ip=91.218.175.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1762958319;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RPVVr6R6/R4uLeTWW79sJbo88M16VGLNR2YUAhLQNnQ=;
-	b=HuZVYKhwVa7mIpp7GLEabQYO7zytLZA0fV/X4oxkz/gBcin8w1+09UYcqYPKQFyI2GqHOo
-	83Sgf/x36JxHZarvwVTHG6WNy7tSQiFUsCeUXrtzTxev656j01RD/OY6EuYtE33g1s88UN
-	9af3ZSK1WFqhJstRFB7D1UhPLpCM9as=
-From: Yuntao Wang <yuntao.wang@linux.dev>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	James Morse <james.morse@arm.com>,
-	Chen Zhou <chenzhou10@huawei.com>,
-	Baoquan He <bhe@redhat.com>,
-	Zhen Lei <thunder.leizhen@huawei.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Changyuan Lyu <changyuanl@google.com>,
-	Alexander Graf <graf@amazon.com>,
-	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Yuntao Wang <yuntao.wang@linux.dev>
-Subject: [PATCH 10/10] of/address: Remove the incorrect and misleading comment
-Date: Wed, 12 Nov 2025 22:35:20 +0800
-Message-ID: <20251112143520.233870-11-yuntao.wang@linux.dev>
-In-Reply-To: <20251112143520.233870-1-yuntao.wang@linux.dev>
-References: <20251112143520.233870-1-yuntao.wang@linux.dev>
+	s=arc-20240116; t=1762958412; c=relaxed/simple;
+	bh=gFZwBjqnrl19OxTrYC0mLSsa806uq14xs/QzjVBVgVo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SIsSLFFYKZkTUXHfqP0hckCNp4P8dUwqOBQl0bF0EVyhOhztTdbgXdpOxKd9iS0ayCk/w22A+cavKa2ue3YSokU2BzlpYbPPpY8oCYSUhOWujm5pDlOwty6Sot4xT5SYC0TJJ+oF5EfxaIY46qxKJeMBx1PgUVSsF90YjrZLTKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vFtHcz/n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 975F8C16AAE;
+	Wed, 12 Nov 2025 14:40:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762958411;
+	bh=gFZwBjqnrl19OxTrYC0mLSsa806uq14xs/QzjVBVgVo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vFtHcz/nDVI4vRMyJ6ir9z+uaWieVNvrv/urkCN3hmP1T5Z5sEfQWQSTCHi97Iv1D
+	 m1L6ydPm7G2Dn2bKK8ZfTJst7ba8leenJH6Gzg4fU4RSnKu0l8XgoMk9scaB9SUPmY
+	 Hkx4w1MpppUSdlO+t+1wLUFXHqv1NCJQcU4YXtx36/j63SBS3X+yHetDj6I6EHv11v
+	 d4zmY01N9C8O84EaQF8lBEFqYXNTfTD96kfrYGF18zS7An4EAmitwR57t1QwI7iJ4r
+	 9BPzzTDWqHCEE7NbG+ZVccUAIre5wrycWBcZKS3bId4P7GatzFSI8Pw/52qn4QfHvm
+	 j7oTVUA3zxMvQ==
+Date: Wed, 12 Nov 2025 14:40:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>,
+	Cyril Jean <cyril.jean@microchip.com>
+Subject: Re: [PATCH v3 3/3] spi: add support for microchip "soft" spi
+ controller
+Message-ID: <20251112-eradicate-onslaught-f6cab44cc6b0@spud>
+References: <20251107122104.1389301-1-prajna.rajendrakumar@microchip.com>
+ <20251107122104.1389301-4-prajna.rajendrakumar@microchip.com>
+ <20251107-emit-slip-b1ab5f7d5591@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="myID+3ZAXg5EfgBj"
+Content-Disposition: inline
+In-Reply-To: <20251107-emit-slip-b1ab5f7d5591@spud>
 
-The of_bus_default_match() function appears to have been copied from
-of_bus_default_flags_match() with some modifications.
 
-However, the comment was left unchanged and still describes the behavior
-of of_bus_default_flags_match(), it is incorrect and misleading, remove it.
+--myID+3ZAXg5EfgBj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
----
- drivers/of/address.c | 4 ----
- 1 file changed, 4 deletions(-)
+On Fri, Nov 07, 2025 at 05:15:12PM +0000, Conor Dooley wrote:
+> On Fri, Nov 07, 2025 at 12:21:04PM +0000, Prajna Rajendra Kumar wrote:
+> > Introduce driver support for the Microchip FPGA CoreSPI IP.
+> >=20
+> > This driver supports only Motorola SPI mode and frame size of 8-bits.
+> > TI/NSC modes and wider frame sizes are not currently supported.
+> >=20
+> > Signed-off-by: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.co=
+m>
+>=20
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index f0f8f0dd191c..4034d798c55a 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -328,10 +328,6 @@ static int of_bus_default_flags_match(struct device_node *np)
- 
- static int of_bus_default_match(struct device_node *np)
- {
--	/*
--	 * Check for presence first since of_bus_n_addr_cells() will warn when
--	 * walking parent nodes.
--	 */
- 	return of_property_present(np, "#address-cells");
- }
- 
--- 
-2.51.0
+Now that I think about it, this should probably have been
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
+
+--myID+3ZAXg5EfgBj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRScRwAKCRB4tDGHoIJi
+0mziAQCy9+R2tv3ebHyzPAgKiOwVWpPQKfWM3B1FLvgEnXVZnAEAsFs9Vv2zmO69
+zEn3f0mnZEZG6betXCnkGJ/XCk4uNQ8=
+=pcfB
+-----END PGP SIGNATURE-----
+
+--myID+3ZAXg5EfgBj--
 
