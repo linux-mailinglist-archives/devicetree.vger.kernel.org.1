@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-237656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 142ECC52D38
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:54:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AB83C52CE4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3508150416C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:39:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D9D6B505DBD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7243161B3;
-	Wed, 12 Nov 2025 14:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4100933F36D;
+	Wed, 12 Nov 2025 14:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Vrcw36mp"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="m/6pSkkz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC13F2C08D0
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 14:37:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912E7338F5B
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 14:38:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762958279; cv=none; b=KHrqY1jilTu/I2tyNORpoihb+7D/MnU0QHztzXFhQ7LI+xxT7v2P1PxhhsYWHV9tt4+TRV4+yogpv/tHfyhvX7smZlipFdI8Q9ALLSu13MoAVvvOunQQDOvD8HPJP6ztOGtGIAb2/fpL51QKCliQg1BBjHu3pYkYsfVQ0pZTwcU=
+	t=1762958297; cv=none; b=dvhga/iaVHBFfKN+bi/I2SOGA4dTCzWqehJQ8L50UxM8Unht+GHRF8hLdWbJRe81IIU9KXHsL80zsS2QMcctUs8xCCcnE021m+CjTkJs6aaAAiVXZb+kMB4zUZgBGONdWS6/bNS13mrqcww/N7sGpZ1t07KhouDAgXJsjhuoxFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762958279; c=relaxed/simple;
-	bh=tlzXcMXy8FsmBGgDOagtaOXIuwvKvU9OQ00actPcIUg=;
+	s=arc-20240116; t=1762958297; c=relaxed/simple;
+	bh=SVrdZokn4Lg3YZClW7Ovq1EP/NlP9+GFaTssSuYuBNo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=S6jilgNc/l5JMIP+b2GR4dGw0jLcRLzSDlSDFYwOMXataai6qB1tguW2X7bCPgui7LMtnHWpIRzofgGPRDrrBdrLD3lPrdZw+aW+3pPPZqTez65kxJsE0JIJoYsW/0b6ky4jM99cPPrKWomcZ0RlFBew+0woFy7VUmxAKSTcMc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Vrcw36mp; arc=none smtp.client-ip=91.218.175.173
+	 MIME-Version; b=iKeUBCoJmvPkqOvaASlm4zDJ27FABK01sfaBaJiDihIsGNLJ0dRBnDFEHzYx7cEHwnDv/l9k/68VD5COtwbVggOgVZ7H6330DjINLk8r8jVa3mK6HXpsv31T13KxGZ8hCnAOVz3KhJBd1XxBymK8ErzZm9c3tFcaRw3UGUemhrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=m/6pSkkz; arc=none smtp.client-ip=91.218.175.185
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1762958276;
+	t=1762958293;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=UXYo/CzGAlYteilPh0ZKzeSdTBerfs4sNxjGWF5Bkm4=;
-	b=Vrcw36mp4Tb0XqVNnMyiHjQYwMbtquKj0IIVKJssEjJbyBynju04/ez6VJE+GjQ2OUmi4t
-	OnWx7084aU5S1Q66j38DdsLzDjbEmt1zcvJo7xMcisqQejt846lINewzj7I9cB3L+3O4ef
-	ZTavnN8qQsUzGCpFVePpqCu2Rm37LKk=
+	bh=g+5LIko+l4oTBneHg9zMPQiGx1ZkBFSa9O+/fWSP2Kc=;
+	b=m/6pSkkzPaGWn3w1k8m6Mx3J6tBEDh4LMCobyaYJQJGhNox3kBUUysBW/zgqsdWBc7vGgr
+	c1cJQKUgFf+9ugfCcIl41hdQ6FX0hMeY088TGLhtNXnH2Q4whramE+hJxY1f0s9yERwK8J
+	gEZtK5djniqHZxCBht/kGF8XMNjOwPo=
 From: Yuntao Wang <yuntao.wang@linux.dev>
 To: Rob Herring <robh@kernel.org>,
 	Saravana Kannan <saravanak@google.com>
@@ -59,9 +59,9 @@ Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Yuntao Wang <yuntao.wang@linux.dev>
-Subject: [PATCH 05/10] of/fdt: Use dt_root_addr_size_bytes() instead of open-coding it
-Date: Wed, 12 Nov 2025 22:35:15 +0800
-Message-ID: <20251112143520.233870-6-yuntao.wang@linux.dev>
+Subject: [PATCH 07/10] of/fdt: Fix the len check in early_init_dt_check_for_usable_mem_range()
+Date: Wed, 12 Nov 2025 22:35:17 +0800
+Message-ID: <20251112143520.233870-8-yuntao.wang@linux.dev>
 In-Reply-To: <20251112143520.233870-1-yuntao.wang@linux.dev>
 References: <20251112143520.233870-1-yuntao.wang@linux.dev>
 Precedence: bulk
@@ -73,27 +73,31 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-Use dt_root_addr_size_bytes() instead of open-coding it in
-of_fdt_limit_memory() to improve code maintainability.
+The len value is in bytes, while `dt_root_addr_cells + dt_root_size_cells`
+is in cells (4 bytes per cell).
 
+The modulo calculation between them is incorrect, the units must be
+converted first.
+
+Fixes: fb319e77a0e7 ("of: fdt: Add memory for devices by DT property "linux,usable-memory-range"")
 Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
 ---
  drivers/of/fdt.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 0edd639898a6..a1db3c9ac981 100644
+index 716ebe8c23d3..0f95f3b356ea 100644
 --- a/drivers/of/fdt.c
 +++ b/drivers/of/fdt.c
-@@ -52,7 +52,7 @@ void __init of_fdt_limit_memory(int limit)
- 	int memory;
- 	int len;
- 	const void *val;
--	int cell_size = sizeof(uint32_t)*(dt_root_addr_cells + dt_root_size_cells);
-+	int cell_size = dt_root_addr_size_bytes();
+@@ -859,7 +859,7 @@ void __init early_init_dt_check_for_usable_mem_range(void)
+ 	pr_debug("Looking for usable-memory-range property... ");
  
- 	memory = fdt_path_offset(initial_boot_params, "/memory");
- 	if (memory > 0) {
+ 	prop = of_get_flat_dt_prop(node, "linux,usable-memory-range", &len);
+-	if (!prop || (len % (dt_root_addr_cells + dt_root_size_cells)))
++	if (!prop || len % dt_root_addr_size_bytes())
+ 		return;
+ 
+ 	endp = prop + (len / sizeof(__be32));
 -- 
 2.51.0
 
