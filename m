@@ -1,126 +1,115 @@
-Return-Path: <devicetree+bounces-237737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3BC8C53849
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:53:22 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDAF4C53807
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:47:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 872B8564B96
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:57:44 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6944C348650
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 16:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360F723E320;
-	Wed, 12 Nov 2025 15:55:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LMEKdVb9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8BDB288505;
+	Wed, 12 Nov 2025 16:31:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D0E338904;
-	Wed, 12 Nov 2025 15:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DCDD238C1B
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 16:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762962940; cv=none; b=SaVeX8zr364Y1+KPE68goCmJKXFRLm8hwsZdGDW++O1LAqxFfBupbgLDbOAqnrvGNoS6PwhJkWlW17ND84dhvfMJPdPunbGc3ey9W0Eq1j4gwuNeJviwuJVE4X8TSjyJCSDC8gUds6OicRrMdoG9iiHqRymug7xPBeNibGF5USU=
+	t=1762965115; cv=none; b=Wp98FRnpyZgJ9som9m+ZvcPxTAbtWRaNfJHApupEybZKHx8xfwpNgZvAlJGZdt2UyaiRBPZclN4a2WFsKAbeiBXCwggOFUoPZY1Z3pHylTzVcaFJw2HR1IVancGvUmxsvRiNfgFtnoSUixO6WG12/2EaEN6wKYWvPj0scuuGStU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762962940; c=relaxed/simple;
-	bh=imcsxgykMEiMSOCV9jYIEvncowj9MhfNmPEniejhA6I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a9/CSEGvrAgRmtHUSrbyy7P+N6FHAoyPUYoyLoVhYnF0UoeuuexUbG+2tilbtPlB2SUvc3TDGQLesuMekixYbhenSghoac1WkMN/Z/6+4Sw3gXiqx0pAOFj5SApknLPwGUvsiHz0HDXIPrqoTVGjyDYidGOG7GKJV5MRMWAhNEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LMEKdVb9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A50DC4CEF7;
-	Wed, 12 Nov 2025 15:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762962939;
-	bh=imcsxgykMEiMSOCV9jYIEvncowj9MhfNmPEniejhA6I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LMEKdVb9I1zWsP/mfFNaS/SHpAEsNR09sD6zkcr7znwUBbZc9uWUEPj47YJ3iGCDH
-	 +Hzd6/k08gDjAHtY7R/fhdqh/Iudxq0RVoxuD/jshIbwnysCopn0NwxmDWnUrto0DZ
-	 75VsjFxMfHV+o5LFcCiJlq0VrqwsXs4rpqCldKQ43HCgxkfOT6Rv8uVy0KjZpSkXhB
-	 ZR+x6cPy1kznJua1/ZVw5qe4CwXOOQDR8cR3P9dvf25FD4zxYsO6L/uH/PFYd329e+
-	 Nde90MuTedOX6Jm87+YfhbfzRG9KKlFD+h23xnn3pjrYwCWSF2qV78CgWymvurYlNG
-	 vEWEj7SEid2VQ==
-Message-ID: <2a4fd083-368e-42b2-a3af-d792e076e011@kernel.org>
-Date: Wed, 12 Nov 2025 16:55:34 +0100
+	s=arc-20240116; t=1762965115; c=relaxed/simple;
+	bh=KKsAI3szX8k5QGcaHEIBxzjAglk5W7KKlVx8cmhmNBE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C5M84B64XNnDMZmW8tdeHIYp3EowtHrg2wAhaHjcdQUFoHTIsWMnmn5k/UuZmNFVASwl1Jm7aRM9sPvJkd5pSXLVxyxhUSvA9l8Y1J5gNcXk1SDo3H1lMrB+od/IDOJmiVlRKqqkfJJHYfX66LSssVb+fFdvLx8vUGZnwh8uC8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-4501b097976so511054b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:31:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762965103; x=1763569903;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2P6mD4EHSxM2KeefnQnSLrX2dBEn9VutMK08a+7oUBg=;
+        b=C4Xv+MzcM29HfwJHfHxzuVZC9ZQ8Xe82NRwHKCeGOCIQYDsV7OUMYPHKXj7Cu1vJ/f
+         OEBT6WZiCnIGGAgEuavQRPrcKRPGf3Qtd5hz8v3OktpMzB7mA2lDIfBnj9BJ0uSMxptO
+         rryBXMtf/PlFBpzHeWb7g8aG5bw/tgO9WybSl/n+fYe38/hsHTIteAj6gQ0M06ONGeBy
+         x2v/imuhLmILCO4h79/Ep5aTfddQIO/o+fUSY+Uc79tg80m4L3YFwGvCRe14AASgzB+6
+         1eztePmMrH2Ag0DWG+qvCLGJaWwZYBV/Ft5e76mRxZW6o17Zy/lZ9RMU8iHi/olYAGJx
+         QHAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVXXLpbK+pyyYLfLYLmOk2K3KPnw9OMybWxjGrVW8iwFzKvm6QMGrXr4nLlzPZnunA8iro6ptqrbO3b@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzp7Opfu8PRxY6sjfZMdjw4oV0Pfpi3i0unK1WFIF07vDp9fxFU
+	K6e1WgMdSMbzS0afhPEDHF++y5wzZy9DSgnStw4uOdRBoealFfe40C9vRjShqjfF
+X-Gm-Gg: ASbGnctlmO/qTFt6Pe8Oaxq5vlOHzcYsAE/3EqiAxbIbxCVUPDqLk7M69uZB61dw9k2
+	VOLcXv+pLdwdKa7NuO5EHpSnQzjHEe2gqiCM0F7v1hDiSNTT/fSF+aueDgpA+SImGUhfRm2vvxj
+	317bJCyAIM2phlnuojVfLbXFAFseTxmmVZrjBbgna9GPWHoYKddHyMzXsYayi/d9es7h19aBaIi
+	wCKqBeyx/PPZW3trqopnlMzERh508QwIZ0Ar6OFKDyvRuVr8eaZwmuf+fIZfVbfq5fkOCasXTZR
+	kyBOlsfqaVEgNSlPXxE6//cz5ecaSSPQTbW9ldMTjGZRLwxEDAQfAE5Iqml8eEM0FST9r4NV7ol
+	lCIOsWONneBudsqghAX/GCfJwBxBOp2sJ7pXuNSuXVfQCLycVtlWqjvG5w6QYuJV3NiLk5HMSEr
+	d/+gJjball3yCoAVMSts1jcqaJ+05Sqr74tkPHY98PqQ==
+X-Google-Smtp-Source: AGHT+IFH8bhwTBajEXL37zGNzkALDNqMPkahCm/nZDSNSazis6PSLc2cwZfihOhvGBsYXu9vAwg/uw==
+X-Received: by 2002:a05:6808:4fe5:b0:44f:7562:1a73 with SMTP id 5614622812f47-45074583954mr1975863b6e.35.1762965103059;
+        Wed, 12 Nov 2025 08:31:43 -0800 (PST)
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com. [209.85.167.179])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-45002798bdasm8297162b6e.17.2025.11.12.08.31.42
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 08:31:42 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-450154aa53fso484431b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:31:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU2pf1zzUE6/gjBYOjP5e8br+DLsPsbgJxFE5Doe5SRWgoj6KfiYajorStLlYkg0miWYJACxBoX8nH9@vger.kernel.org
+X-Received: by 2002:a05:6102:4424:b0:5db:cba0:93a with SMTP id
+ ada2fe7eead31-5de07e5dd3emr862566137.35.1762964749487; Wed, 12 Nov 2025
+ 08:25:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] spi: dt-bindings: nuvoton,npcm-pspi: Convert to DT
- schema
-To: Tomer Maimon <tmaimon77@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, broonie@kernel.org, avifishman70@gmail.com,
- tali.perry1@gmail.com, joel@jms.id.au, venture@google.com, yuenn@google.com,
- benjaminfair@google.com, andrew@codeconstruct.com.au
-Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251112150950.1680154-1-tmaimon77@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251112150950.1680154-1-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251112143520.233870-1-yuntao.wang@linux.dev> <20251112143520.233870-2-yuntao.wang@linux.dev>
+In-Reply-To: <20251112143520.233870-2-yuntao.wang@linux.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 12 Nov 2025 17:25:37 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUOXjMOxOn5oU1jftAVKk6b+8LN-72H5tAqaAyvysxhLQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bnXVpA5sSxuV8McK_e1ZHyzSr-EJLVA6EUpZKT19Uyy9uwBtuUtu1ias6k
+Message-ID: <CAMuHMdUOXjMOxOn5oU1jftAVKk6b+8LN-72H5tAqaAyvysxhLQ@mail.gmail.com>
+Subject: Re: [PATCH 01/10] of/fdt: Introduce dt_root_addr_size_cells() and dt_root_addr_size_bytes()
+To: Yuntao Wang <yuntao.wang@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, AKASHI Takahiro <takahiro.akashi@linaro.org>, 
+	James Morse <james.morse@arm.com>, Chen Zhou <chenzhou10@huawei.com>, Baoquan He <bhe@redhat.com>, 
+	Zhen Lei <thunder.leizhen@huawei.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	Changyuan Lyu <changyuanl@google.com>, Alexander Graf <graf@amazon.com>, 
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 12/11/2025 16:09, Tomer Maimon wrote:
-> Convert the Nuvoton NPCM PSPI binding to DT schema format.
-> 
-> Also update the binding to fix shortcoming:
->  * Drop clock-frequency property: it is never read in the NPCM PSPI
->    driver and has no effect.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
+On Wed, 12 Nov 2025 at 15:37, Yuntao Wang <yuntao.wang@linux.dev> wrote:
+> Currently, many places use the result of the expression
+> `(dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32)` for various
+> checks.
+>
+> To improve code maintainability and reduce the chance of errors, extract
+> this expression into two helper functions.
+>
+> Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Gr{oetje,eeting}s,
 
-Best regards,
-Krzysztof
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
