@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-237778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE91EC5404C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:54:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3EBC54079
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:58:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 273AA3B0B66
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:49:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1E8404E2FF9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8A934AAFB;
-	Wed, 12 Nov 2025 18:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5941634B1A2;
+	Wed, 12 Nov 2025 18:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j/hD8IGn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F2y+mAx5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9740A1B3925;
-	Wed, 12 Nov 2025 18:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314C934AAFB;
+	Wed, 12 Nov 2025 18:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762973373; cv=none; b=h3Kg8fOv2DJRuzDW76dXzHb6vfHlA3gAk2Ah/htwsI2keWUZAYq9HQ19fugcG3jWYPi8YzKz22F+ZN+Q2EIiDVeQc5DdSBBJxX7WFTdZeLTE/zB3dCmc3saXoEh6yom5z0LwCoAqed0YdAG8txJFTPUG+x6BuunEibcQz66dWuE=
+	t=1762973497; cv=none; b=HhFkG4IXYfJC+MRg17082Kcg89fHxcAN6utlnOx0IN3O/dtjprX4C4BBfDzXQi1Q/qBCPsVGIuaIJaYZGzkDD7ougihC6X0WHVXmeUcUQPlwYbQ9yQQsBahL7DQpli/Nt+VmRe+PMQn8A5muy0rpjNQamkxS4v2MC27T/fd0s4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762973373; c=relaxed/simple;
-	bh=9DyqYhTVr+ET9PloHfUUoxUdfC+ZS9pwHUh1FrcT11k=;
+	s=arc-20240116; t=1762973497; c=relaxed/simple;
+	bh=sBTcLveD/UZnNJ/cSBjDDlFv4bZw6V6Ta/fJPIfzI6I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=flnSatJX7JqVDPcBDXY3op/mmbevlAUg2GjaYK8SOPXBNHdp1qg46X1kpWSr6phkaMZ6lOIgjgrk08eMqZR2aAl1L4cFR9rPF3dEhU5Y9VB2AM/4QWn5pZKwTmI4t7Jww3gP00Y10rsE1y+xQkVPa/SZ89PV707yRE1JXv0aLrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j/hD8IGn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C5DDC16AAE;
-	Wed, 12 Nov 2025 18:49:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IBSFR5NRhHAGgz3lkUY93bZZbCHz4gygG3L0cyBBnIV4y9pVco5wcwYngnaOeNJ/GARlSBEeoQW7N5C8vhu4U58xjFqk0ZTrZDUnKNnlwkucHtKlhr2WqVe1bq0Jy+xLKhjjB6TFsJP/C44Nek2RkYR9wf3qgUyBgp4V0p/jRqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F2y+mAx5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCF00C16AAE;
+	Wed, 12 Nov 2025 18:51:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762973372;
-	bh=9DyqYhTVr+ET9PloHfUUoxUdfC+ZS9pwHUh1FrcT11k=;
+	s=k20201202; t=1762973496;
+	bh=sBTcLveD/UZnNJ/cSBjDDlFv4bZw6V6Ta/fJPIfzI6I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j/hD8IGn4k3nGs1deCFbvPkATaE2YeiYjoZhwtT9+V5Dp/fkl7jo75GraV13cjXXu
-	 zM6yI8SIQUz7ysX6z44hZStuk8v0kjUTL0ZqtYSos2ZZfgZDjhjX445ev5SfiOkBbj
-	 Bh5CFP1aH/wKN2V+igHPH1tyFMyaWXvY0e7vHjds629LP7D588fvvGNW9f+0bqi6U8
-	 BJTntb+UttZMxIGpV3z5b3VN2OBK0Uaxf/x5+D/5Cm9Lh85sfRNxqhQFe4Bk8DvKqn
-	 n6SsCU8kzQtZ9r2YaA0N27QOGJRW8WA71l6zkqMm1CHD8K6ZnUnvcu5udTnKidK85u
-	 K64MxSrHAVlMg==
-Date: Wed, 12 Nov 2025 18:49:28 +0000
+	b=F2y+mAx5JIDbvtkmJ1/3FZnnja4tYEMxRM3xqpvwjrDS+iqh61Pxk0VqahwonfBu9
+	 WPpkuEzO4BH0fjmuJKXY3vZ5UaR9yO1MOK75qb3mcQDCKXTHOc997b1LjWf5HGWbee
+	 yaegsSP7F/OsVrYjuMJC40V0ZQ1Nd17tjHsRtiVAxeq5xwX+TxNeW+/IHgL5uI8GjN
+	 cn36xftHOGmSMlovoYpzWGXOj0l37jktodgtgZ6jRu8XB92eUjkRRVfBQ1c8wo7JFt
+	 Lz+C9XKC6bTbdygzPDxt/ikVA5ujv7WwOn5fG0htQkVjRBJZNCMFJockiSAJfFUcgA
+	 +TOMMA+MLvPag==
+Date: Wed, 12 Nov 2025 18:51:32 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: srini@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, horatiu.vultur@microchip.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	daniel.machon@microchip.com, luka.perkov@sartura.hr
-Subject: Re: [PATCH v2 1/2] dt-bindings: nvmem: lan9662-otpc: Add LAN969x
- series
-Message-ID: <20251112-enlarging-deed-f0ca3281f35e@spud>
-References: <20251112130213.842337-1-robert.marko@sartura.hr>
+To: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: pca9540: add debounce timer
+ configuration
+Message-ID: <20251112-cultivate-freehand-596455d47ee5@spud>
+References: <20251112121710.2623143-1-martijn.de.gouw@prodrive-technologies.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,30 +60,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="k2yE/U1BfqNR5hr7"
+	protocol="application/pgp-signature"; boundary="COxGVMI2WRe60wMC"
 Content-Disposition: inline
-In-Reply-To: <20251112130213.842337-1-robert.marko@sartura.hr>
+In-Reply-To: <20251112121710.2623143-1-martijn.de.gouw@prodrive-technologies.com>
 
 
---k2yE/U1BfqNR5hr7
+--COxGVMI2WRe60wMC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
-(Although idk anything about the device despite my employer, I am just
-reviewing th binding)
+On Wed, Nov 12, 2025 at 01:17:08PM +0100, Martijn de Gouw wrote:
+> Make the different debounce timers configurable from the devicetree.
+> Depending on the board design, these have to be set different than the
+> default register values.
+>=20
+> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+> ---
+>  .../regulator/nxp,pca9450-regulator.yaml      | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regu=
+lator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regula=
+tor.yaml
+> index a5486c36830f0..e49acadabc4b0 100644
+> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.y=
+aml
+> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.y=
+aml
+> @@ -124,6 +124,36 @@ properties:
+>        When WDOG_B signal is asserted a warm reset will be done instead o=
+f cold
+>        reset.
+> =20
+> +  nxp,pmic_on_req-on-debounce-us:
 
---k2yE/U1BfqNR5hr7
+While you're solving the bot complaints, replace the _s with -s.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 120, 20000, 100000, 750000 ]
+> +    description: Debounce time for PMIC_ON_REQ high.
+> +
+> +  nxp,pmic_on_req-off-debounce-us:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 120, 2000 ]
+> +    description: Debounce time for PMIC_ON_REQ is asserted low
+
+These enum values are kinda strange. The only two options are 120 and
+2000 or are those max and min? Not super suspect since there's partial
+matching with the req-on property but weird enough to ask about ;)
+
+> +
+> +  nxp,power-on-step-ms:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 1, 2, 4, 8]
+> +    description: Time step configuration during power on sequence
+> +
+> +  nxp,power-down-step-ms:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 2, 4, 8, 16 ]
+> +    description: Time step configuration during power down sequence
+> +
+> +  nxp,restart-ms:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 250, 500 ]
+> +    description: Time to stay off regulators during Cold reset
+> +
+> +  npx,pmic_rst_b-debounce-ms:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 10, 50, 100, 500, 1000, 2000, 4000, 8000 ]
+> +    description: PMIC_RST_B debounce time
+> +
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.39.2
+>=20
+
+--COxGVMI2WRe60wMC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTWtwAKCRB4tDGHoIJi
-0n8yAQCJ3K01O7eOJJmyiglKn74p0A/nstYW9kAvF2eKzAjCaAD/cJjUsF7zUife
-hntWlvxLy7s9ayYUvB+PkWqz7jCb9AE=
-=ksNA
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTXNAAKCRB4tDGHoIJi
+0iX1AP0XQN/9RxGV3+VLMqObhhZ2ATmZpbdo/p/UEXby3trUugEA4B105k76+JRc
+SnFbH8fUp+vQikMYpWw4tyhfRwqI+gE=
+=ZiXN
 -----END PGP SIGNATURE-----
 
---k2yE/U1BfqNR5hr7--
+--COxGVMI2WRe60wMC--
 
