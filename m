@@ -1,295 +1,173 @@
-Return-Path: <devicetree+bounces-237415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D726FC50E42
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:19:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1576BC50E5A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:21:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1521D3B89E5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 07:12:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7DCA3A9F9E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 07:12:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D644F2BCF46;
-	Wed, 12 Nov 2025 07:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 829BC296BCC;
+	Wed, 12 Nov 2025 07:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eH5LvamG";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ejRvq+r+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gvTDzYVg";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CUzXQJqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806F5286D57
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:12:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98773285C96
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:12:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762931528; cv=none; b=i0Kk2NsxCHEXHRCNbKT0e4jpp6f6KZOGVqOZuP8AZx9fs7j4ODbM6Oh40vq4pvGCtjL0f61rGx9Scy8ctfLOyezM4afXUosBBmMjI172+XYY+8HShwN3VYnp9nTUhVQLAT/xMGq0C2BHQYosVFMsi0U5bkx3SZMHgmlRZofekT0=
+	t=1762931568; cv=none; b=FjIg74UOmt9pi/fZzkSV3YufdJtiltqMK8sKVNlqtxxOH/GNzW16q2yUSGJNNd3QDNZRQfqUhuDXw0Xus7uhwFRqv/UIFH4tK6peiv+B5tsYBSdsMD4A1MZoPIFzV8dqfalpoxcjGqhsaw5IDZbG/G3yhKLKNgQxOIXSaJ7SVVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762931528; c=relaxed/simple;
-	bh=t6/dnpKeijBWspn2y7sLCQ1hIJte3iDvGgv7cHKKY14=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IYcRTkecjaxT3flxIwLLHzwHWakyDiNqL9LEWApjA8Shq9vZWfVrKyE+lrvtIqxM4yT/aZAntmLABe5vUdjAxTRCs00dTzddc1+sQFUIJ4gCe90SdUmbM/Xiv3+6gFUJsOsYZIaUvIV4lWbe8m0QCIX+J79Qi26u0LibxhoIlW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eH5LvamG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ejRvq+r+; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1762931568; c=relaxed/simple;
+	bh=nm2Ff6jo8I+QGuD3PQnqbmzX4vD+x9n9obxne1ccimM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iKxqDSvDHDj0GZmM3w7t1b3A8l76Tqq1tUOmGQuGgJj8/EwI9mfYIGlVStp+6Y/3Z0IEWKNvvwpYP5+ff+svitggmKzbSU5ILSvRmXjJomVKH37oW6gHwS0l7qo7q1K6aVgilCIO0cFiDWAJ8nupwZzTVEe/732cFHfb5WQqb0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gvTDzYVg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CUzXQJqh; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC1I3vB3684657
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:12:02 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ABN3LqA3921752
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:12:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9fxPxZxcQt6S8UXjieAvc43H1MpqDUf2xI5qng2G0vQ=; b=eH5LvamG8iATuNvP
-	UmwPQL7u3r8sg3PdA+oZjS2ZLtLsqavOzSjF4phxI6hT2up+ydX+GUzWT8ienj0Y
-	siQ2CCkPNEub0PqONjoEkQxrgKsCZrRdZYdISlmauDx4e39fZuF/CbgZF55JD/sF
-	W2HJrXdZF+Kvj8oD3wvOjeQViKYVBIBWvpHRX9wo9fezbE/uNwksNz2zGREO4jdX
-	anQNMaUlWpj+zk21K+iumnp1S2c29lyMa154XRHx77IcC7/bYLf1Mmu3aSDKV+ek
-	6+howMQh4TXY06gn/sNQ0uyr0SJVCaxOxCjltGPWhZfDKl1HGVuFe2pM/ekrwrvN
-	TdiwPw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acgeu0w4q-1
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=cTUtPl+F/Wsa2a4a3fwMU2pSucYtfz3vonO
+	DrbZBpqI=; b=gvTDzYVgC58SDEn3SJOa90vgLPsdtqItCt5LsSLBFFGE+xxceAK
+	ZaRjUVGVY8ceh0t6ciZG6gORwB/3QTpkOd1mA20AIgAi0Wu/pdWmws+QoUbFOmNT
+	V3j5z6sR46pMtRozoA1nXnQmxku/83fpghn6DnIDrA17ef0bXJNrWUQf5KiSaBdm
+	W+/GMMHgECRQnUdBiYLnl60FUIIzk2N/L83oCHpiE4hCZg/u/Mqw6n/5vDhE1unk
+	mHDNZ25eXZcYgSwxXcaE3kScdjlRW2aFSNv600VQp5Hm3xX6j+J03ZmC8XnkGKna
+	cwYPYRNEPGn63D6Stp/TFY8hkyQdSqfP2Qw==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acefus4rr-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:12:02 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3413ea2c342so203609a91.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 23:12:02 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 07:12:44 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7b0007167e5so181861b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Nov 2025 23:12:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762931522; x=1763536322; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9fxPxZxcQt6S8UXjieAvc43H1MpqDUf2xI5qng2G0vQ=;
-        b=ejRvq+r+1q4/CrQANP7X3CwYlvEnOIykGI3YuaZiHTUwQJY3HojqSx5DV8vbX2vAER
-         n4ZWxp7+8FU0qDcO3xPf1m0Nj/43ONZbFQsA1KbXY4neUz1pycZmkwUM7YbXqh7TOS/X
-         FR0qzoOjLogY3cWtUTjX2LT9yPzTh/UneSN+qUkJPLjzDZEN95TXYsehEL+laMSXOBCZ
-         y9h1RWPPniFDIfDtLBU57mcphPBr8lM1DcUVJTirOKkUDY8Yw9uIOS5aIEhZXMqb76ti
-         SMRPf6WBcWIqAoj6mTX7st0YZua5uM4OM1be6mtizmBEoFIdDM3pBpS5BEfnZtJZIHQu
-         lgOw==
+        d=oss.qualcomm.com; s=google; t=1762931564; x=1763536364; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cTUtPl+F/Wsa2a4a3fwMU2pSucYtfz3vonODrbZBpqI=;
+        b=CUzXQJqhfH53ZFHB0PLdHMZbrY1ckYdAbEKd+EEWGCiYW+KVH19lSUpRTriUUn8GCE
+         nEx8rc/Vc81K/tKzKSxt1N0P/VHJosuKIfr7JMAhf4HZHKUL+RxijGyt/yp+yckoMNJm
+         n8hVczhdc/bgxjBvWgSZWg4lWbx1mqFsC49K9omrw0nQV9aiYsjjn/vqaWTYxVBBBnSb
+         5YoTuyL4rMKE/C9LYJbbxfeIaJ8LomcZTQhUhQSly0dOGUtlm77CSi2mcU33/729IWpT
+         GT56rK5y4o6W510qzZnenxUhoDGw3CRxplVadGGaZhVnjXMgE7Wt+Z6K5apbI9uiDWk+
+         3S7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762931522; x=1763536322;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=9fxPxZxcQt6S8UXjieAvc43H1MpqDUf2xI5qng2G0vQ=;
-        b=hvrzv/9NdpGxM75VTFRwhNwVnDd2hTy5GLvfBbDjqJPsPpGO1tjz1vp9nm+aPUIaMO
-         gDNYc9ZWYTA66z/hGDEN2rzrX+aaL7003We+kv5BI09JiSn7BeOCgNSidilNDGJ6wt0D
-         e630420e+ii8eUwlUEbN5v9uV7OBVDjAbhtpeIOUMpJRDT1OlBhciUcqNX6xQnChragN
-         hu8jUTN200lJA+L9v5uotGAfmTVr7mPZBLLoWcze0hoH8qef7pX/ow8BoVvvhz+qvrIz
-         NAH6Iq/MQG39HsXe760YEMooT0SpSg9pCrJ6BNymvmGdbWodI2LLVxlYvrz1KXriOQ1s
-         A09w==
-X-Forwarded-Encrypted: i=1; AJvYcCUKsFSMJH3ParpMqBNEqZu94IWPUtV3zJh0uxdzPtUDbZpmyPRS26fqg0Jm5R6ceIQX2t6vkkbIDIUa@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMFZOMa5accsehtpMrHXs/cvACE5/NGJoC4J5of+7npnS/G4/v
-	CTwg2sG4SvxdizM7xpR0YO0Pvkrt9PnEWMWisKCMHFSeJZgttB0qanobWNWq1Q0rENC++C6iHnG
-	FvDLynCSxMxbHds/a0b41cVsELCOQUwXCmA+sw2+ThebQpn/0u9nl2mHrm4QNDZTE
-X-Gm-Gg: ASbGncuKeX2/Um1ib0EJpsezyljT2HG4aHM//qr6YbmuQpu9nl2Q4qJkkislKZmRwOg
-	S8Y9uPSzzI3/rRa1Zz/8oNFQr+b8snrwytjYBwzSjUIs1SUHmDdq3LYdxE8v/t5kWqc6NY9LAXh
-	SL420g8TavQFU8d1pcmjvFude4FyzAgNBck4uzpseL61gtbFQb8ML4z27qPO9pV81uVKyQEdSUc
-	MF9irLfZK//+IMKYSp8qj2S6gbikF4lEe63q8+I/C76vc+M4ycNKWO0P1KehwZDbYTfN6J+EA+2
-	ywMmEEvEwUMwWoxi7V8rGkOQUS4XYqaC30AOsdf3xoeyQ95roizl4VlOS/ofYNhqGGWmLMwevFJ
-	UNkJ4GfbFI5Jz9d+KCHdHrg==
-X-Received: by 2002:a17:90b:3ec8:b0:343:6a63:85d1 with SMTP id 98e67ed59e1d1-343ddef65a5mr1336606a91.6.1762931521743;
-        Tue, 11 Nov 2025 23:12:01 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHjYDY1JLEsZVVzJaPhfcfNidP7Rb9JXHS6DfFNv0Q2YteiyP7RZu1nSeRRUCw8ztCuRHYQjg==
-X-Received: by 2002:a17:90b:3ec8:b0:343:6a63:85d1 with SMTP id 98e67ed59e1d1-343ddef65a5mr1336582a91.6.1762931521246;
-        Tue, 11 Nov 2025 23:12:01 -0800 (PST)
-Received: from hu-weiden-sha.qualcomm.com ([114.94.8.21])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bbf18968e1dsm1748045a12.33.2025.11.11.23.11.56
+        d=1e100.net; s=20230601; t=1762931564; x=1763536364;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cTUtPl+F/Wsa2a4a3fwMU2pSucYtfz3vonODrbZBpqI=;
+        b=apk32MtYcqu7v5wqxL0wY0T6LKiA3u9ayR77uQecdhVNnZhH05gCFXYvIPDEZ2YKsm
+         8RccFnO3nBuE4L0lgk3JG5cjxa9TgaysqGjt3QbyjM8nYLs5UX9Ds+YkZ1J0xSO2M0IJ
+         W7+ek6lJMXlWuDsPbATgh7y+JgKtqofTxoN1r6CP9OnkUfxrgss/Zw+fOfeOq72TVHOE
+         /oaxBQqo2U2I425FChhM+egpPEn5H98GBs3fRFdchNn2oeOjHcNTWnh5+Dpy858cmj29
+         3lxscPAsPugprYG4s9sz1mxpf2xDQDBSMxzyR0vqxzKzp3Jbo4uF2zhkwVxobsckZ64I
+         7aDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXSBWV1QWzAW/rG0I56lxcTarTb6SAddZGkgo9RzqQez856ibEJ+YoyFxEX1BSXaklrn1wyzS9uSIIn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8HUZVF2IhgfcAVvJd7AaBXp9XlJzR5cssLP2cLyt+tkFf0SjS
+	NT8IscSiKIM7/yFukL/R5JSBi0vLdhosAN8DbJm5CLRvMOncR+BGNbk2OP03SiRC3/pq3tjUNr/
+	I6UzGiRvYOsks9tvzzG7k360Q8BW+45SOiL5ASq5JWMPR7MJP0no7R+hareJXCRA=
+X-Gm-Gg: ASbGncscED8jrQ4CRnca+ZxG4oC9uKaAyP0o9kSP2cBj+XwTp7nY59/d/JvIKSYdwL5
+	VSUBKJoXgCO1GkbogLSHsC6eNHyfITDHBHom3Jd6tSaLTjV5y2NHcK1QACvhqFT/F82+/EHaXo+
+	8VKzLKOo2dupw7u2wQnqUu6lo0WBI+NvFdOvG43Op6li8h3aCX6pTATIf1HzGDHIHWDFw9CiAAl
+	WxG6zMW6AhG5uekdMkchJlCgtmVKtk4V1Az8z18jvI4PFFh8+Av42PXwO3X+Mh8Mvb3snY7LWuR
+	saQIGyQI12Ac3i3gwc2fYlKDNVaiUkLbp10122BELVCXkFYkEdE+rc/WCHGSODDlWXySmW+TkJj
+	0RzJMqLkkfZJf1Lr+cnDXjuYMl+HU1g==
+X-Received: by 2002:a05:6a00:3e21:b0:7a2:861d:bfb with SMTP id d2e1a72fcca58-7b7a59978c8mr1337967b3a.7.1762931563641;
+        Tue, 11 Nov 2025 23:12:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE8/WVzXtZC81bsT/lVupwJpWgLlYk4J1uvkWrhn84yol6tDqvbdYjpuCd7yrTjhx/IcgUuVQ==
+X-Received: by 2002:a05:6a00:3e21:b0:7a2:861d:bfb with SMTP id d2e1a72fcca58-7b7a59978c8mr1337946b3a.7.1762931563095;
+        Tue, 11 Nov 2025 23:12:43 -0800 (PST)
+Received: from hu-sartgarg-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b0c9632e22sm17949037b3a.8.2025.11.11.23.12.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Nov 2025 23:12:00 -0800 (PST)
-From: Wei Deng <wei.deng@oss.qualcomm.com>
+        Tue, 11 Nov 2025 23:12:42 -0800 (PST)
+From: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        cheng.jiang@oss.qualcomm.com, quic_jiaymao@quicinc.com,
-        quic_chezhou@quicinc.com, quic_shuaz@quicinc.com
-Subject: [PATCH v2 1/1] arm64: dts: qcom: lemans-evk: Enable Bluetooth support
-Date: Wed, 12 Nov 2025 12:41:47 +0530
-Message-Id: <20251112071147.1450258-2-wei.deng@oss.qualcomm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251112071147.1450258-1-wei.deng@oss.qualcomm.com>
-References: <20251112071147.1450258-1-wei.deng@oss.qualcomm.com>
+        linux-kernel@vger.kernel.org, quic_nguyenb@quicinc.com,
+        quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
+        quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com,
+        quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com,
+        Sarthak Garg <sarthak.garg@oss.qualcomm.com>
+Subject: [PATCH V5 0/3] Add SD Card support for sm8750 SoC and boards
+Date: Wed, 12 Nov 2025 12:42:31 +0530
+Message-Id: <20251112071234.2570251-1-sarthak.garg@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDA1NiBTYWx0ZWRfX93myaIZQespI
- cvKQu5884FWJ0/CEMs8nNyxopctFQYrFEtWuqVwVtuhiptf1NpWb1nDk3dcHXR2TC7c3r8TUg3s
- A8aP7xDHpti3Qw1ALNL/LezoaMdXxgfKMWD33Z/ViBuhMT39BvpddKqque17EujT+kMdk3QOG2i
- wrNbqwiOTiPKvZUyGYklq9Vv8flxepXDwHZC/KU3/YfXU4i4cu/ouJhQwRP0KGirkkvu4Gmjkcd
- MfCga9eeU7q16sMF/LeioxjhofwYKqu9agX3JvPpjORFSQptzurlpIXSoyuciD6N1wMLQrP8AsH
- Px9wzNbK9+R8ziQ6iHAzBnKhEsbv/nb15y1hHN/gGqcYqJ/snczonMjLo5TStqcmzj7jpJIsYn4
- 4i2XdtdyhovFpuENMUBLI26V96137g==
-X-Proofpoint-ORIG-GUID: _uKLNLKBkHuSDBKk6o87oBQbHhlfkpye
-X-Proofpoint-GUID: _uKLNLKBkHuSDBKk6o87oBQbHhlfkpye
-X-Authority-Analysis: v=2.4 cv=SvudKfO0 c=1 sm=1 tr=0 ts=69143342 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=jAN5yIkcfwfeL4kR2mIA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-GUID: 4PMYtUiOjEMLzuwNRg5mWWfG9uRx5BQU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDA1NiBTYWx0ZWRfX24tYS0L41XLY
+ 3/Mg3l3sIftS7k5q4uQshbE68P2wtsymv+9yv+YXeQH1ypBfJtgVBh9qqFDz9/Bjfwz6ivb9emF
+ nTiMsN08jCO5lLKVkRKbxergQ/Mq/9oGI3eUpqC36iE6Octd2FV5TLt2NmBZY3+2Pd754u2h1hY
+ WycQFnJVp7IzM6323v15p8DUfm8y6/lJBBc+XIBsXAAOV/Z3Y+uDRhryzuFbhHTQPxeKt3tAOWo
+ 8+xWtfstK4HQbI9fYCw1n5pn+9tZLExWXiZoPUQmOfH934Zlrt0yjeQwvWDMZeyC7CeJ5y0Ko88
+ a7zna3mLEfhPOzTSSMObHnUjlG4876eGExJwqUemra7c/oXk+hjPcBEuVTLqa+mXR+wSSGGT4HK
+ Dqbp2KTBVJvxXVa9ukaPZGwuNfWfRg==
+X-Proofpoint-ORIG-GUID: 4PMYtUiOjEMLzuwNRg5mWWfG9uRx5BQU
+X-Authority-Analysis: v=2.4 cv=H8HWAuYi c=1 sm=1 tr=0 ts=6914336c cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=rfq7y1KLf-xer_pzc54A:9 a=IoOABgeZipijB_acs4fv:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-12_02,2025-11-11_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 priorityscore=1501 phishscore=0 suspectscore=0
- spamscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0
+ adultscore=0 phishscore=0 clxscore=1015 impostorscore=0 suspectscore=0
+ priorityscore=1501 spamscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511120056
 
-There's a WCN6855 WiFi/Bluetooth module on an M.2 card. To make
-Bluetooth work, we need to define the necessary device tree nodes,
-including UART configuration and power supplies.
+Add SD Card support for sm8750 SoC, including MTP and QRD boards.
 
-Since there is no standard M.2 binding in the device tree at present,
-the PMU is described using dedicated PMU nodes to represent the
-internal regulators required by the module.
+- Changed from v4
+    - As suggested by Konrad Dybcio sort nodes with a unit address
+      (numbers after @) by that register address.
 
-The module provides a 3.3V supply, which originates from the
-main board’s 12V rail. To represent this power hierarchy in the device
-tree, add a fixed 12V regulator node as the DC-IN source and link it
-to the 3.3V regulator node.
+- Changed from v3
+    - As suggested by Krzysztof Kozlowski refactor the code to follow
+      DTS coding style and use hex everywhere in reg.
 
-Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/lemans-evk.dts | 99 +++++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
+- Changed from v2
+    - As suggested by Abel Vesa move the GPIO configuration for SD card
+      detection (specifically the pin settings for gpio55) from the
+      SoC-level device tree (sm8750.dtsi) to the board-specific device
+      tree files.
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-index b40fa203e4a2..89f3f001fdcf 100644
---- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-@@ -21,6 +21,7 @@ aliases {
- 		ethernet0 = &ethernet0;
- 		mmc1 = &sdhc;
- 		serial0 = &uart10;
-+		serial1 = &uart17;
- 	};
- 
- 	dmic: audio-codec-0 {
-@@ -110,6 +111,17 @@ vmmc_sdc: regulator-vmmc-sdc {
- 		regulator-max-microvolt = <2950000>;
- 	};
- 
-+	vreg_dcin_12v: regulator-dcin-12v {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_DCIN_12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	vreg_sdc: regulator-vreg-sdc {
- 		compatible = "regulator-gpio";
- 
-@@ -123,6 +135,75 @@ vreg_sdc: regulator-vreg-sdc {
- 
- 		startup-delay-us = <100>;
- 	};
-+
-+	vreg_wcn_3p3: regulator-wcn-3p3 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		vin-supply = <&vreg_dcin_12v>;
-+
-+		regulator-boot-on;
-+	};
-+
-+	wcn6855-pmu {
-+		compatible = "qcom,wcn6855-pmu";
-+
-+		vddio-supply = <&vreg_wcn_3p3>;
-+		vddaon-supply = <&vreg_wcn_3p3>;
-+		vddpmu-supply = <&vreg_wcn_3p3>;
-+		vddpmumx-supply = <&vreg_wcn_3p3>;
-+		vddpmucx-supply = <&vreg_wcn_3p3>;
-+		vddrfa0p95-supply = <&vreg_wcn_3p3>;
-+		vddrfa1p3-supply = <&vreg_wcn_3p3>;
-+		vddrfa1p9-supply = <&vreg_wcn_3p3>;
-+		vddpcielp3-supply = <&vreg_wcn_3p3>;
-+		vddpcielp9-supply = <&vreg_wcn_3p3>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -761,6 +842,24 @@ &uart10 {
- 	status = "okay";
- };
- 
-+&uart17 {
-+	status = "okay";
-+
-+	bluetooth: bluetooth {
-+		compatible = "qcom,wcn6855-bt";
-+		max-speed = <3200000>;
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+	};
-+};
-+
- &ufs_mem_hc {
- 	reset-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
- 	vcc-supply = <&vreg_l8a>;
+- Changed from v1
+    - As suggested by Konrad Dybcio the patch into separate commits per
+      board and did formatting improvements (e.g. aligning < symbols,
+      placing each item on a new line).
+    - Addressed Konrad Dybcio comment to use SVS_L1 for opp-202000000.
+
+Sarthak Garg (3):
+  arm64: dts: qcom: sm8750: Add SDC2 nodes for sm8750 soc
+  arm64: dts: qcom: sm8750-mtp: Add SDC2 node for sm8750 mtp board
+  arm64: dts: qcom: sm8750-qrd: Add SDC2 node for sm8750 qrd board
+
+ arch/arm64/boot/dts/qcom/sm8750-mtp.dts | 23 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 23 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8750.dtsi    | 54 +++++++++++++++++++++++++
+ 3 files changed, 100 insertions(+)
+
 -- 
-2.25.1
+2.34.1
 
 
