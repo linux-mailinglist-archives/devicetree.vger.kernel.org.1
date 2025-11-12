@@ -1,120 +1,158 @@
-Return-Path: <devicetree+bounces-237805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB1C6C547D1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 21:41:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78BB2C5485F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 21:57:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4EBF3B36CF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:40:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10A044E36FF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81FD92D321A;
-	Wed, 12 Nov 2025 20:40:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7ED2D8378;
+	Wed, 12 Nov 2025 20:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="NEMyVhrf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nb7qiCwn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2953F2D7386
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 20:40:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44127299AA3;
+	Wed, 12 Nov 2025 20:55:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762980055; cv=none; b=ok/4qNRlvyaYnR9bxaExRl0HtTztAMdBOPTVlTalVYtOU3aoyxCZptI6QpqyKvAsZ12wxpqGpr8a1krYP+DLpKGoZgr1WEaZiQiLsaLSHjbfTAzLl+71vnaTcLD5HWorqDSmQO0DoshntM9Gc8E9PVoTnvHGrh7IZR9NJrgeCXU=
+	t=1762980953; cv=none; b=ICuzTfbzNND8KYfPEi+NbGc7UObAygBaVvH8qdo9JPQAmQCzonrTSxxTPiRoMXlb1EnGymNUxYoI2TnkPibnbl6n5H5KUSmEuQzZqXFhGSmC24rAGivdC10Sv+/BnrX0Ggc6Bcyj+Yzq7uT1TsygpidudZ4u9K72VIPDFvilfPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762980055; c=relaxed/simple;
-	bh=MU/t7yDIQVtRLPS83A55ASI5JupXfSZAZodZqTb2m/g=;
+	s=arc-20240116; t=1762980953; c=relaxed/simple;
+	bh=u9LmrEU/UvD3HmrDpdPbJVYRs1xAIxsoSOUYJsiJhbM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bADKNhcgxT2CodIFgg07aIq8fNG4OUqwDt3M6LNTHKSGO+rm1ur+TzjvuIFguN/arvRWtuCNHPBo8BLfyd3ioIiq+q90XDG0OsQIjO/KU6ZXb37KMe9f+1DItAx7M/bVxC807NDZrfhuMLrsE8Lxyt4iGJeFfZmO62igcqJ2fHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=NEMyVhrf; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=oeU8
-	SWMoK2dOcr0D2fwl4bR8PvyNTGqF9TFmyF6ECoY=; b=NEMyVhrfXx+MFs3sDVtI
-	2xSP2bS7Bwa75wbMjOAqYaSyWqjhNv22Lqu7RqAHcEJp9BhceEh+YXMYZz/vE3um
-	fcdvlzQ5d6u5NKP/fMWT+wxRCj6fFxUu/duaNOSa8438A3NVBuGWoLcwDsL+qynD
-	1gaDTKW4CoUamW7BtpdFaTsuaoISZrLTW/BdREO4QEXu+Or/oXSWl/1MS7AEGslg
-	o9io56kpL+nQn+no0j2cpvpX2hUdWRwSbI0lmcecbpIRX/BfjoSlNCw3e/A8i4bx
-	eYcRjTBIqd2HA+9WZu//iMs6cEzuFXSYxioLoIdpgh5rsR9I1KUT1Z/kohtTyIpx
-	YQ==
-Received: (qmail 1633650 invoked from network); 12 Nov 2025 21:40:48 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Nov 2025 21:40:48 +0100
-X-UD-Smtp-Session: l3s3148p1@0QmAx2tDtK0ujnuk
-Date: Wed, 12 Nov 2025 21:40:47 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Taje7woZ5RHX10XHkFt+Jd6DIT7XXQ2TxZa4bUp1E8LLOfn4GsnBxv/AD9J29wnb6GZQ3hNxjS4fNOrR3PbQAWj03yN7Nth0eaZMtoyVX8snolNFHGLVhfvjk/yFfj9sQTTkWjO5jgAm9rS+CQKYR4Gh68wPOhPc3P9IPtIqkpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nb7qiCwn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A16A3C16AAE;
+	Wed, 12 Nov 2025 20:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762980952;
+	bh=u9LmrEU/UvD3HmrDpdPbJVYRs1xAIxsoSOUYJsiJhbM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nb7qiCwnhPto2pgEl1/YJZWf8v8VutOtnoIDpx0ty3mtsRHdkdGOnCGFELPA1rSNT
+	 LM5PW7nFf1xDLRFStZhD3Fwr4tIm5aF424LfGdKxbMfetOpxfl6mHvvbblyhEwZPgC
+	 7BBageWFnPyKejQpAyZ9CE/4V0NoNahtGvmRTMOslrdInQT6aGI44hP38qw3cGC+cb
+	 FybHGYHwVi45ZJtfO/6DLk9jeBCrG51IUlUt2Z3EFgHMJwhgOzqqheg3vOCiSUtl4W
+	 x7JU8Z7ecosRmmuKt0yMiIgn4Di+2LIL6piMmZJ0nZzvbh16AkX63sVUiy2qsZ5uRY
+	 mGPLGg43yOsXA==
+Date: Wed, 12 Nov 2025 14:55:51 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yuntao Wang <yuntao.wang@linux.dev>
+Cc: Saravana Kannan <saravanak@google.com>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pcs: renesas,rzn1-miic:
- Add renesas,miic-phylink-active-low property
-Message-ID: <aRTwz5QHq9U5QbQ-@ninjato>
-References: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Catalin Marinas <catalin.marinas@arm.com>,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	James Morse <james.morse@arm.com>,
+	Chen Zhou <chenzhou10@huawei.com>, Baoquan He <bhe@redhat.com>,
+	Zhen Lei <thunder.leizhen@huawei.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Alexander Graf <graf@amazon.com>,
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/10] of/fdt: Some bug fixes and cleanups
+Message-ID: <20251112205551.GC2155854-robh@kernel.org>
+References: <20251112143520.233870-1-yuntao.wang@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="1OKIy6xsYpTTCgv4"
-Content-Disposition: inline
-In-Reply-To: <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-
---1OKIy6xsYpTTCgv4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20251112143520.233870-1-yuntao.wang@linux.dev>
 
-Hi Prabhakar,
+On Wed, Nov 12, 2025 at 10:35:10PM +0800, Yuntao Wang wrote:
+> This patch series fixes several bugs related to dt_root_addr_cells and
+> dt_root_size_cells, and performs some cleanup.
+> 
+> Links to the previous related patches:
+> 
+> https://lore.kernel.org/lkml/CAL_JsqJxar7z+VcBXwPTw5-Et2oC9bQmH_CtMtKhoo_-=zN2XQ@mail.gmail.com/
+> 
+> Yuntao Wang (10):
+>   of/fdt: Introduce dt_root_addr_size_cells() and
+>     dt_root_addr_size_bytes()
+>   of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+>     it
+>   of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+>     it
+>   of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+>     it
 
-> Add the boolean DT property `renesas,miic-phylink-active-low` to the RZN1
+Your aim in writing subjects should be to write something that is unique 
+for every commit in the past or future. Because you can never make the 
+same change twice, right? (I'm excluding 'fix typos/spelling' type 
+commits). Certainly the same subject in one series is never right.
 
-Hmm, we already have "renesas,ether-link-active-low" in
-renesas,ether.yaml and renesas,etheravb.yaml. Can't we reuse that?
+>   of/fdt: Use dt_root_addr_size_bytes() instead of open-coding it
+>   of/fdt: Fix the len check in early_init_dt_check_for_elfcorehdr()
+>   of/fdt: Fix the len check in
+>     early_init_dt_check_for_usable_mem_range()
+>   of/fdt: Use dt_root_addr_size_bytes() instead of open-coding it
 
-Happy hacking,
+This is not what I meant. We have multiple copies of this where only 
+the property name changes: 
 
-   Wolfram
+	prop = of_get_flat_dt_prop(node, "linux,elfcorehdr", &len);
+	if (!prop || (len < (dt_root_addr_cells + dt_root_size_cells)))
+		return;
 
---1OKIy6xsYpTTCgv4
-Content-Type: application/pgp-signature; name="signature.asc"
+	elfcorehdr_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
+	elfcorehdr_size = dt_mem_next_cell(dt_root_size_cells, &prop);
 
------BEGIN PGP SIGNATURE-----
+Instead, add a function something like this:
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmkU8MwACgkQFA3kzBSg
-KbatnBAApDm5EFhJq8XaJ76HpXCw8qvC4tnoIVIL3aJ093m+TbqQrGVQt4Eor/tY
-YMD+yRVl2T/GPfdykrpGXIHb/ecu6OF9Ex5XdTcFBOLu9Xv2KIIscWYOw4FShrA7
-545vB6m8YRIQ2v4YREfNh0hBhpFWPkydjW8KM7KGqOTMtQQVj03o6b06R+oKw2T5
-YsRwjt54lbHXWsa41yxeIFigCJq689dpOFUdAQa6NsZ+bMehF+um0kHwjls2uV/+
-WiU6fvRJdoY+Dp9bhiSW+eoE4QUs1pxkKi83LO+5yK25Pce1M+w4qpHOnFGNrpJY
-dDIPJRabCls7r3NEgF5CkjxAy2xQkioCGyyw3W+yryqsARLO2aV719H2wRQcHFlE
-Cy17fWvtQiI/4IAcFCJwV83fYfxwYJ10ZFtoU2v+YCaPSyvqX9L1tdj5qBO3gWr8
-9QnmfAgWFqJvgH2Wj2HE/2shdwvi9sBOGjEenC+C3hC64kX/3V5Qq0O0OceJbmmB
-IRoZgzaYqQF4ylxJrCO+f9xhi+8s8jfcyHGvQSHSHXUU2w3HS5F4WRmMtVdVRXLT
-yq3PnhpDJSCSvf8WZnDS69dsvGqdxGGD3AjCn/uyX+jvkom/H5SOE+zwTdpmngJj
-5mlolfaguWmeWN1bH7yRzvo7tLUbBVtiFmnYrVqWACkrk9cqK0M=
-=jh3m
------END PGP SIGNATURE-----
+static void early_init_dt_read_address(unsigned long node, const char 
+*prop, u64 *addr, u64*size)
+{
+        prop = of_get_flat_dt_prop(node, prop, &len);
+        if (!prop || (len < (dt_root_addr_cells + dt_root_size_cells)))
+                return;
 
---1OKIy6xsYpTTCgv4--
+        *addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
+        *size = dt_mem_next_cell(dt_root_size_cells, &prop);
+}
+
+Then we only have the length checks in one place.
+
+
+That still leaves the cases with more than 1 entry open coded. So 
+instead, to cover that case to something like this:
+
+const __be32 *of_get_flat_dt_address_prop(unsigned long node, const char 
+*propname, int *len)
+{
+	prop = of_get_flat_dt_prop(node, propname, &len);
+	if (!prop || (*len % (dt_root_addr_cells + dt_root_size_cells))) {
+		*len = 0;
+		return NULL;
+	}
+
+	*len /= (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
+	return prop;
+}
+
+And then a user would look something like this:
+
+prop = of_get_flat_dt_address(node, "linux,usable-memory-range", &len);
+for (i = 0; i < len; i++) {
+	of_read_address_idx(prop, i, &addr, &size);
+	...
+}
+
+Here 'len' is number of addr+size entries.
+
+And the simple case of reading 1 entry could be just:
+
+of_read_address_idx(of_get_flat_dt_address(node, "linux,elfcorehdr", NULL), 0, &addr, &size);
+
+Rob
 
