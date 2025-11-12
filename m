@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-237496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30D6C51953
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:12:14 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 901F3C519CC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:19:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B9DB189DBCC
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:11:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E2AF54F1D94
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:11:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A00302FFF9B;
-	Wed, 12 Nov 2025 10:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E652F28F1;
+	Wed, 12 Nov 2025 10:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owB01Lqi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dsFw02eZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7362522068D;
-	Wed, 12 Nov 2025 10:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EF229A326;
+	Wed, 12 Nov 2025 10:11:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762942238; cv=none; b=RBL9k4mC/MEpPRIjETJIJfs8I1N0H7FnxP9IeahWd/waSW+PKHIvnH0pc5h7SRFGNQN3Alm20JEb2+fus0HWKWFH4N9RGdqeSQXBjKy6WYU5yrSaqbtmsIrBSK9CZ379hFL9r88JQUgWtRFQnCPD+rE06H/RypdaXb2CJf20wcQ=
+	t=1762942269; cv=none; b=FXjfH2ZIPgV/ZNqvqNgNYsdUrfExNtGKRIC4+xykiHcalLCadkVBhmYGjKMwoV3An/NKOdzuRrzwyuRazzE5f17+rb/ebQfuu7c3m3NJtZPDyKCv1VxE1r4sqfyMK9Auli9RRTInlVkgowHhhnTX7udTfVWLsR8BesO6Eb3ZbrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762942238; c=relaxed/simple;
-	bh=OI4OUlvhHmDSAzWOa/KlNdjQ8BpXsKJB7zSPJd/P6F8=;
+	s=arc-20240116; t=1762942269; c=relaxed/simple;
+	bh=67K+zUYP/aX07sPx28wY3sUmjVIxiApKZNs5WbP/U/E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gFuY7Odx2XA5gdxff95NoXu0S5Ju5rpX7aeaRre4UTEPnH6JprzTYDkdyqHdIIKvw7w4vCBomSN09LgYMXyYDiw6/h0d/m1XF/kawUGDPbUlrMZYyP315AyT1xBS/pI2r7i+yBhkCu3olV1BXfOLyPGuMna2AQrPAtimyFEsyQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owB01Lqi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A061EC16AAE;
-	Wed, 12 Nov 2025 10:10:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lf/yJQwgE+HXmUST41i5+GqO9FlAVWgXAdpo/Gx2+Err4Re40rO/DXEhTvab0FCUxAn778wxgjGq0itMr9ElsG+ELJbKMZZ2gBDw3hcD5EFm9vd6wmC5OQiBmV58QE9MbPuB4ASkafUYyO0DSmkUn7StaBmfr+iRO+5huOVv3As=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dsFw02eZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24445C16AAE;
+	Wed, 12 Nov 2025 10:11:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762942238;
-	bh=OI4OUlvhHmDSAzWOa/KlNdjQ8BpXsKJB7zSPJd/P6F8=;
+	s=k20201202; t=1762942268;
+	bh=67K+zUYP/aX07sPx28wY3sUmjVIxiApKZNs5WbP/U/E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=owB01LqiOZhRt6lQkLYrDIKUxIaRF3ajlHqurrNjK9jZeTgy+J9AnzbT7B4MfCiKj
-	 5ERwfd67DAGdbfY12lFCv4KLfi+JwHF2NZjcin5p+4mxug0QSCUtwtQr2sA9aZnafN
-	 VSXxV6ONT5U6tpZWLzUr6SYwI5MApyvbYGLcFKM+sD/kzG5driYk5m1zFYM3Pp54H1
-	 tWKQUlNquokdosF93TVtmG5PxllL5qHRFZQ/aGOtGMJP8WCSfh7Qv1S869GUJT+03V
-	 fUvmG69RDVO02rcOK7CH2MYr8KsjP5cowwxa0bwoCpZdZ3La6NbR3sWyHek8g2eqFI
-	 KkWexN3WkJA+w==
-Date: Wed, 12 Nov 2025 11:10:35 +0100
+	b=dsFw02eZhsIPw+FfG11keYy8dCIECtSNGvyD+WPxdkQesFL6xRcwuaZ4wghA5HKT6
+	 LaSlvWi4cRWWWLMmgzqwOlqzVRzO7lZLLwofPFRej3C2JevpIiRqg3kPmc8UoX8vOJ
+	 XOJBPp4Bf42kezFpeQDGQYrGWjFnhAt/P9wReRuWGotHHidZASLq2m6ymwwAU2NaAW
+	 A8gzJ1aS5FNm+yMpaS1C95OCNLJkfrIdAetAvdGsv4rDTleZiOuZ4i2973aRiXPNTu
+	 WB0xggNCqMw+R6Y0P4VGJnUOwowBLdSGzCFJhUjQhr0npfC5qFTTR+8Aumke1zSV+s
+	 wZK3WwYSM2d9A==
+Date: Wed, 12 Nov 2025 11:11:06 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v4 06/20] dt-bindings: mfd: Add samsung,s2mpg11-pmic
-Message-ID: <20251112-winged-kangaroo-of-superiority-af06a2@kuoka>
-References: <20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org>
- <20251110-s2mpg1x-regulators-v4-6-94c9e726d4ba@linaro.org>
+To: michael.opdenacker@rootcommit.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: riscv: spacemit: Add OrangePi R2S
+ board
+Message-ID: <20251112-devious-devout-urchin-86634a@kuoka>
+References: <20251112044426.2351999-1-michael.opdenacker@rootcommit.com>
+ <20251112044426.2351999-2-michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,34 +63,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251110-s2mpg1x-regulators-v4-6-94c9e726d4ba@linaro.org>
+In-Reply-To: <20251112044426.2351999-2-michael.opdenacker@rootcommit.com>
 
-On Mon, Nov 10, 2025 at 07:28:49PM +0000, Andr=C3=A9 Draszik wrote:
-> The Samsung S2MPG11 PMIC is similar to the existing S2MPG10 PMIC
-> supported by this binding, but still differs enough from it to justify
-> a separate binding.
->=20
-> It is a Power Management IC for mobile applications with buck
-> converters, various LDOs, power meters, NTC thermistor inputs, and
-> additional GPIO interfaces and typically complements an S2MPG10 PMIC in
-> a main/sub configuration as the sub-PMIC.
->=20
-> Like S2MPG10, communication is via the Samsung ACPM firmware and it
-> therefore needs to be a child of the ACPM firmware node.
->=20
-> Add the PMIC, the regulators node, and the supply inputs of the
-> regulator rails, with the supply names matching the datasheet.
->=20
-> Note: S2MPG11 is typically used as the sub-PMIC together with an
-> S2MPG10 PMIC in a main/sub configuration, hence the datasheet and the
-> binding both suffix the supplies with an 's'.
->=20
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
->=20
-> ---
+On Wed, Nov 12, 2025 at 04:44:40AM +0000, michael.opdenacker@rootcommit.com wrote:
+> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+> 
+> Document the compatible string for the OrangePi R2S board [1], which
+> is marketed as using the Ky X1 SoC but is in fact identical in die
+> and package to the SpacemiT K1 SoC [2].
+> 
+> Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-R2S.html [1]
+> Link: https://www.spacemit.com/en/key-stone-k1 [2]
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
