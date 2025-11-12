@@ -1,513 +1,410 @@
-Return-Path: <devicetree+bounces-237531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1697C51CFF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:00:39 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E65BCC51BDD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:44:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42AB63A3B33
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:49:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 154094FB093
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:34:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583DF307AD2;
-	Wed, 12 Nov 2025 10:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 990A22EDD72;
+	Wed, 12 Nov 2025 10:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="Z63585R9"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="CirY+Lx8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011019.outbound.protection.outlook.com [40.107.130.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B252F9980;
-	Wed, 12 Nov 2025 10:49:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762944586; cv=none; b=KNcx0JGcxAb48TiLgRYjLRnWk2ahNc4cQ4IRHQhvWssE6ozyd0S1VF/4ENfSkSF4akn1qDgHKoA0QtOy/HgFJXColQsM51wRfu8rhFb1iIORudBnoLMKNWhFiGwompRKhioABiw0wfRntyyi1Cdb/jPuKJ11KVtKU/DvmTX1G8I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762944586; c=relaxed/simple;
-	bh=lJ0uNLhfLrA7LHCPlWiozKKuJyTV2jcZ9On951jTW9w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rBlsppMVXfHSoRj0Bha8KDKJORGzysM/mbCIPsj7dtnKwAvD9v3fusmLEHXCMJlW0rDvnzqDfhfGzToOmgl5WpmfCTJDvy4Pn6/BK2lj3bIQs/L7EWkNK/bIWg7tuyuBObbcSA9e0NOlM9g5dKt5sGBqmBEulaWwbmNMXEVMLDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=Z63585R9; arc=none smtp.client-ip=168.119.41.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
-	 s=mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References
-	:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=dgGZ0Ls2Qnd1LKBBXRPbg7oJE3pekXxFEUky5palhQ4=; b=Z63585R9x3gpxZljpA0+0iAyGk
-	siMmnTMjKVHW0KKIig8MHRviCPehflbVqkSS21Fk6I9N7ZXVty9SPCegpSLpO6QgO1MpKFDqAlsDI
-	ZM9P6rdppInIwWAFFAbbQW1FIf9tFdBf6CTN3DEkOAmXkQDuezscNtg9UojsGOx0whNI=;
-Received: from 194-208-208-245.tele.net ([194.208.208.245]:57612 helo=[192.168.0.207])
-	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-	(Exim 4.93)
-	(envelope-from <matthias.fend.oss@emfend.at>)
-	id 1vJ8Aa-000uap-Ks; Wed, 12 Nov 2025 11:33:45 +0100
-Message-ID: <85e049db-f7b6-4609-949d-3d93d2f3bb1e@emfend.at>
-Date: Wed, 12 Nov 2025 11:33:42 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60630267B02
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 10:34:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762943689; cv=fail; b=czxHNw90WFi+/YmngER7E7FZRrWN9SjmNeNw56dl1oyVPbnrJsVapqYxE5OBkB5enARXs88q+VpmK1YLvWXBYlszre85rkpfRwSzoE2bumtvWkOuy97GuuDx4NC18j4Ar6t//K0UdtpRI2xwUtr8edeZg3wk3P1NeLfIAFLnvKU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762943689; c=relaxed/simple;
+	bh=2npWoy2H183Q5tNjJIRc5gqMiEx2xiMb2kpfrAXwASo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=p1cj6PC4iQX2X4HP23WmWwxl2CIOkrykafXn+eFJSbMBhS7kRvwJECZNckIeGusuAKNUjqKczBrKFkxZlRY8fVUFgq2gU6NzQ4NO1Cmomy6Gi9TUjC4wf6pfIIrPDSDuA+q/0UNWz7ewLQBttiLsvji47jk8VnwPBsI5yKCHP2E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=CirY+Lx8; arc=fail smtp.client-ip=40.107.130.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DEp7kJpN5ksWmEkBqWu1g+Y6j3SpZRBGxk5/3tN55FSjKY6q4ZpY2b2HAFEG41pNRppG77UzmZ7gD3rShC+qIbP0UHQX/5kVtkdGAGqSPu0B+77RM4IE8pKU3S58tbr9LKSp0MGXcc+xy0SQtKZA0bG5WEbDPYrojlw1vgicmA3jrLOx3rqGuRwQLw9yD1jYnBHdwtRwFBQ6TEkHQaHndTvfDaebSPRT0Gn28AcHalbfS0vPWmLOTGPSO1rm8M6Ryt+Qh7P/+SIkpUZgbkJuqwXV+nZEA+8E6laq6B3nhdZUmNmWIiGDuM52XpCgva6bedOVlpHEY4vA+I+JmfHD/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v2lw7NzGyGCSd8wz2Msi3Eh+UQwjvTTHxfqUt4DXFh0=;
+ b=Opj0Vyuhxl9LEnZ8IA5iP6eH679j2MNlwOSymkVB3QmFghToicqN8f9VUcP9qVnAoXcSA2vgIfJgurPUjRMgpeRSYMj8CQYItjBBzVudQqcWjrKZswDVUFuJNWhl5KKV9gEqKc6hT8/Lr8O3NSiWOaf/otx4z2ntB+4AGiyWrQAoP+aSuc7jpclKG6Ppu9oKI0il2GCC9nEpE/junxJgeTOrHLCG+VVSxhWKZeEIE0J+U8BOZrpTjBpQqL668Ta4L9ndd6xcvuSWwHFEgahog/BxUsOAedKIJAEpfXk1EFLUUK3PnXzp5+Tw5z/U/w8fKQ+CTre8Cnica3rk3BEuIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v2lw7NzGyGCSd8wz2Msi3Eh+UQwjvTTHxfqUt4DXFh0=;
+ b=CirY+Lx8LtESH5C1QxATx8kmywz5MoiVi9dZpHAfrPCNCY2lWZTDOP2o+v7HuQwB/1cke8+/MJqI3kEfAzUjbi01bwCQqqNID48gav3772ceBFpi9zpYhNR5wt0w/2csSzQ2hMIwwlikk3+bWi9ReOq4a7HrU74Glu5GagsclPY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
+ by PAXPR04MB8080.eurprd04.prod.outlook.com (2603:10a6:102:1c9::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.16; Wed, 12 Nov
+ 2025 10:34:41 +0000
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::5ee:7297:93b4:a8d1]) by AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::5ee:7297:93b4:a8d1%6]) with mapi id 15.20.9298.012; Wed, 12 Nov 2025
+ 10:34:41 +0000
+Message-ID: <1459ebad-c087-49ac-a316-14436fac4bc6@cherry.de>
+Date: Wed, 12 Nov 2025 11:34:39 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Turn all LEDs on at boot for
+ Radxa boards
+To: Diederik de Haas <diederik@cknow-tech.com>,
+ FUKAUMI Naoki <naoki@radxa.com>, Dragan Simic <dsimic@manjaro.org>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jbx6244@gmail.com, pgwipeout@gmail.com,
+ jonas@kwiboo.se, ziyao@disroot.org, amadeus@jmu.edu.cn,
+ nicolas.frattaroli@collabora.com, pbrobinson@gmail.com, wens@kernel.org,
+ detlev.casanova@collabora.com, stephen@radxa.com,
+ sebastian.reichel@collabora.com, liujianfeng1994@gmail.com,
+ andy.yan@rock-chips.com, damon.ding@rock-chips.com,
+ kylepzak@projectinitiative.io, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20251111054112.55505-1-naoki@radxa.com>
+ <DE5W0143QGG2.3C7SW89IJKZ4P@cknow-tech.com>
+ <516e919a-42af-8707-4e75-a808df8971fd@manjaro.org>
+ <B0C8C5A69B9F465E+ba0ad139-d3d9-4492-ac9a-cc58f8f35074@radxa.com>
+ <41275775-9e6e-9202-4c79-6140a56e41d5@manjaro.org>
+ <572f341f-a5fa-4f1c-ad60-a5fe3e046d6d@cherry.de>
+ <774C3AB9F17BAE47+14f8b8ba-ba78-410e-b44c-4d077585d05a@radxa.com>
+ <DE6M84A93WTV.O5IW3BG8TZRW@cknow-tech.com>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <DE6M84A93WTV.O5IW3BG8TZRW@cknow-tech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-ClientProxiedBy: WA2P291CA0029.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1f::29) To AS8PR04MB8897.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42c::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] media: i2c: add Himax HM1246 image sensor driver
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Matthias Fend <matthias.fend@emfend.at>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- Hans de Goede <hansg@kernel.org>, Ricardo Ribalda <ribalda@chromium.org>,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Tarang Raval <tarang.raval@siliconsignals.io>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Alan Stern <stern@rowland.harvard.edu>,
- Jingjing Xiong <jingjing.xiong@intel.com>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- Mehdi Djait <mehdi.djait@linux.intel.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>,
- bsp-development.geo@leica-geosystems.com
-References: <20251104-hm1246-v5-0-97c8f25b5419@emfend.at>
- <20251104-hm1246-v5-2-97c8f25b5419@emfend.at>
- <aQn_lguAdP-ZwCzK@smile.fi.intel.com> <aRMqw_yGMatKS5mY@kekkonen.localdomain>
-Content-Language: de-DE
-From: Matthias Fend <matthias.fend.oss@emfend.at>
-In-Reply-To: <aRMqw_yGMatKS5mY@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: 
-X-Spam-Bar: 
-X-Spam-Report: 
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|PAXPR04MB8080:EE_
+X-MS-Office365-Filtering-Correlation-Id: c224e484-c737-493f-f67e-08de21d71671
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?OW51OVAwaUdLMWlqNU55TDdjSCtqT1JHT2VwVHgycGo5bS9IWnZUeW1tQ3Zt?=
+ =?utf-8?B?TTdoT1UxNlhKS2tRWHRyM3BYZ00vdkVKUmMrMUk1eGJWSy9uZVhEck95UVY0?=
+ =?utf-8?B?dVU5eGp0aFZyVGE1NmNhc0lXL2VhMzVIYWd0ditXclRqdTZOcWRQblhiRzZ1?=
+ =?utf-8?B?SlpXUklWSmNxWTNUckdYR0tsb0tUTVZTSkd2eUpFYnBZZ1M4R3gzMW0xdmls?=
+ =?utf-8?B?VmdmVW5TZU5xVjVqZjJ2VEcvSTMzVjBGTUkzQWZFWFh3cEx3M21FS2pCclVu?=
+ =?utf-8?B?RTI0WG5oSGx3VGprMExDMGtoLzgvYjJuSU41RFpKQTJYTUFrcTR2Sm1GVTdH?=
+ =?utf-8?B?OXVoVTJCL1orQ0ZlRW9wZjFXSmM2MDZVaTM0WWZrZ2ZzMTBySldnbCtVT3Za?=
+ =?utf-8?B?K3o3ZFl3V2J3UGhJbjVvZUVUenZDZzRWZU5yUDRER1N2UGdnbzJVSXEyOEQ3?=
+ =?utf-8?B?Y1Jjc1BYOU5ZNFFBYmhSb2s3Ky9KdnIxenVaYXl0REhSbjUwRHZvNVV4ZTZ4?=
+ =?utf-8?B?WTR6MXU3YjJ5WEx5bUhwTFBTZU94YjdzaFN6MURIc2V4VzMvOFNMYW5SSHVB?=
+ =?utf-8?B?Z09sL0JCeUhpM3llcDNDbmpTRUNHeFhLRHprVFlrakNYaHBvT1JXc0J0cWZj?=
+ =?utf-8?B?ZUdNSFFKUjhldVpUVThLL3BWVFFycHkvaWlud0FYZXRGNHdrVGUwV0FZWDJl?=
+ =?utf-8?B?UUZXcGIzN0RESE1rREFCK2U0K21hZEgySFJoZWpVS2NXWEpNU1RkbHVBWHFq?=
+ =?utf-8?B?RUpLam8rUDJXbFYwOVkvOFd3R1BDcWFLT1BCalZ6WWJBZWtWa2xwV3YwTkZJ?=
+ =?utf-8?B?VWVKa2pkS1NxTzA4aEJwanlBKzE3TVI0WUhrT2R2OXVuSjFoOVF3T0VINFRu?=
+ =?utf-8?B?SFFNVGpZZFFmZlFqSFBxR0Rab0c3Q2EwNGVRR0IxRXpTQUFYOHpFS0VIVG5j?=
+ =?utf-8?B?NEJlVE1yVmxMRzc1aTR6enhWZFhHeW9sb0hRUXk4TE1QZnZzekdiU2lxMWY1?=
+ =?utf-8?B?dk1EeS8wa1QzeVNVUjNPQjhJZEVXbCs4SXV2NWJ0TXhsQXd6SkdUN3E2N1p6?=
+ =?utf-8?B?S3U2WXpPTklMTFJYaVhoWGpYL3dZNERSYXAveVdtK2gvSWVtb0ZFYnd0UmF2?=
+ =?utf-8?B?em1FTDRoYmlJdkd0bHVnUG5BeUJPb1hHZUtwMndDcVNPU2ZwanAwbHQvYjFF?=
+ =?utf-8?B?d29XUklsdG53NEwvSTlxeUdNOXF2RTdWem5OYlBjTng2bmdMZTBUYzVkUTJE?=
+ =?utf-8?B?VDkwYXUzOENTYjJMYTVvTHVuOWNZS0F4MHJpMGFNVTExQ05lZzAxbzdZWDl2?=
+ =?utf-8?B?NkRPaVM3bFRmL0FRR2pUb244Sm8rZDFQMFFwMGdsMU9JanVuNTlCQWJxUWVk?=
+ =?utf-8?B?a0l1T1c1aFMzYzlCL3l1WGtXNmcwTHZ0cE1UN0RpSDJhYlphVHorZWpIUlZG?=
+ =?utf-8?B?RTE0ZnZCcjdzVWl4RHQyNDBUYXFBYUZaOTd2V1JIbkdoSGFGNkVraTFSRDlH?=
+ =?utf-8?B?SCtjbUR4dWhVdFhQdDRpL1BvZ3lZa2JVRjhQQmFwenVsQTN4eGV0OElzaHNC?=
+ =?utf-8?B?V3k2K1Vuek9nYWIwRDNmbGs2ZlBBTXhFeVo0NEs2aFZYTGswNzdIeTlPM0h6?=
+ =?utf-8?B?RHJ3MXpJVmhKTFNWWlJ1Y1ZhaEpra3habTZ5YWl4RUVjT1BlS0VDcjZRRGxF?=
+ =?utf-8?B?VE1QM1gvOHB4YjJCRzl6UCtzU1AyRXhiVjBmaU9zRkRmWlNJTWc1WGdtQTNV?=
+ =?utf-8?B?SlpRanFrU0VqYzJUbkJuOWtJd1Y1Y1ltLzVoVFhFTHJrK05GMG8ydkJFUEtK?=
+ =?utf-8?B?THVjY1hQZllqclFGUVV3bzlIK1NXRjdaRHd4amRGRTVwVFNNZ1gzTVd1NWZO?=
+ =?utf-8?B?MjBMYlVtaU9GWU5nQXNYY0lDakFnTXZKMEpwbCtzSWNpSEE9PQ==?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NmZySEhkbzA0dGpqalVGR1Q3REhucEIwdSs3VlpqTkJyWGEvRkxEdnNac3Rr?=
+ =?utf-8?B?TTBxNmQzNzM1TVBoT2tmYjd1SDRFLzVSOVMvenJZVXJwYmI1bi91WGJhY1VM?=
+ =?utf-8?B?Wm9XL21WK0FBdVppL1hvcHpSeCs4aHA3b3ZCUm8wb3JmRUtZWllNdkRoV3Q4?=
+ =?utf-8?B?dGd1UVJXV2YvQk9TdWNkVHV3dnhvQ2lidjJBSWRkZXkwRzMyeVlOb0pLMHZ6?=
+ =?utf-8?B?VENMbVJaeWhVaXFRalNyeGJNZmllYmx5d0pvNHdqbDkvZnpPcEZGbFhHZUNp?=
+ =?utf-8?B?V3lweFdGVXdWZkNleEswMkdOcjQyRk9VTFkzcXYxaGJXUVA4Y29BSUx1akFp?=
+ =?utf-8?B?YXlNdlNJTU0zajJoa2krK3UwTzV0aWw4aXRjTXpNa0FybVpzM3Z1aWFTZWtX?=
+ =?utf-8?B?aVF5bys4K2EwdzArNDNYODNheUY2RFlMWTZKMkdYREc0VFRvVHoyN3lNRnEr?=
+ =?utf-8?B?ZE1QN1JlVnZ6ZHlrbEtEaWFJdWJ2aDVaK1V1STlrZndseTNnUnJDOFBRaHhw?=
+ =?utf-8?B?Y2I1cWphcW1ackQraStOU3BQUHVYbytBcUh4VjBFOGsvRE5XSkdvOEJ5elN5?=
+ =?utf-8?B?d3lYaDJMNHNpWVdDeHUzS0dZbEh4eWV2ZU91cno3dGh4N01FZ0JhclNCMkpn?=
+ =?utf-8?B?U3pqejZaRWJqbjFhY05VakFLcVpNYkxIWVBNaDVpMEZ3Q3dUcG5HQlpZUVlM?=
+ =?utf-8?B?TTZhSzd2UENGMWMyTVJlT0lLMHF0MEtyMExvL2ZnbHFqV3I5NVFJTEtZalRv?=
+ =?utf-8?B?M1hOV29KWWl2QzFpenAzRlRRSTBvZEVUUFAvMVFmd1hCc3NyeW1SZmxGWUFG?=
+ =?utf-8?B?emFFeExYUk82MDhyaE85L3A2MjRLdVB1RjNnVVp6NFppWXdPbXd2cHJwaVVK?=
+ =?utf-8?B?eCs3b1k3M3hVYUNVK0JKME15c1hyWGZCZkdDV1AydkFZNUVRcUtvRWtDOUR6?=
+ =?utf-8?B?U05aMjZ0T1pFMjNJYzVCc0N0RjBvNUNLQkFiQkNYTE5DK2VNTVFzUWtXMzZW?=
+ =?utf-8?B?Wk81SlJNWGpObTRDQ3YwN2p0azM0WEZCRzBCbmdCY1YyVGVLRHFXblBGMWZZ?=
+ =?utf-8?B?SEs0Q24rSVd6TlA3MjM2RGROVVRqZ0U3Vk1pTnAxODB5dHZxSHVTRGk2Rkg5?=
+ =?utf-8?B?VnVWZmk2V01HNktlRm1jaVpWMzBwNnVvUzVJRjN3ZWVyQlROdlprWk9WN0gw?=
+ =?utf-8?B?ZEFCdGlqWFlMZ2ZyTjR2UkVBMWQza1MzV2hVdDRPNWw0blIwbUt1UjF6WjlP?=
+ =?utf-8?B?QTNWMG13TUczZGxTT2NXVGR2dnRnN3lFMitLWC9kaVJHWUZIZmRzV3ZBRUFm?=
+ =?utf-8?B?K0FaZ0ZyUXFORWFmbjh4K0p6aGl0SksrZm1xM2d0aTBrT0lqWGFmdkwxamFn?=
+ =?utf-8?B?aWIxRlNmMHJnNzNZTWZXaVZaelRBbnNYbzNveXJhZUpqcDJIRGE3RjZiRXc2?=
+ =?utf-8?B?SUFDSStaWlZBZ3ppNFBvNUpzZ0t2SytlZ3h4SzVtRThBS0RiUzBDRkI4RXRD?=
+ =?utf-8?B?TzJxclNTMlJHbXQyUE8ydG5EM3EwQkorbUdBRnVnTkhoekI3M3JHOXlkY2wv?=
+ =?utf-8?B?WUViZTdNT0RkOG13WlZ2QUhTRm5TMDJGSE93TGtmQ3JlcVd1T2wwMDQrUUV1?=
+ =?utf-8?B?R2YwVFRDcXdTU01KN0VadVhla24zcWpUVXdIOWtyaVBZdU52RTM2dVJmSy9v?=
+ =?utf-8?B?UzFFb1RaSGFLSyttY3gvUWovb21JMklucUZGYkxlRjd5dDMySGY2Y0VDV2pY?=
+ =?utf-8?B?aDNwQmU3UENtQzNkcXFBa1BwNDVKTTVlRjRxaExuN3dEZnNlWTU5ZHNaeks3?=
+ =?utf-8?B?MXhIaVZXYVp3NGp4aXVJMjdidW96YzlHT3Mvc2ttVGdkNTVPL01UdG9XbEpn?=
+ =?utf-8?B?ZFUwYmZQbFowaE5DRit1d2JXdUI5NEEwdHBXcFAzWHB5VVlDK29xY1p3aEt2?=
+ =?utf-8?B?TzJEeXdyOWY2VWMyTWhyOEdYNmZ6M0tkQ3VQdFJEa1JVQ3UwdjF5bHhTemxn?=
+ =?utf-8?B?MEpYZDN3NFJiYk4yZkRCbDdRRTNFM09RMUxzSDVQV3IwbUExdElNS0FPQXhv?=
+ =?utf-8?B?RTVFNVJRaDYvYkNVT2NyRWRWWHdXcEhmZko4UXI4T1RzaWMwcitwZTdic3Rs?=
+ =?utf-8?B?VXZFZEhrcndTaEFSM29xeE5TZ3hoa1JReVpuaWxiVTZPTEN6VzhTaklmdnJU?=
+ =?utf-8?B?TUE9PQ==?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: c224e484-c737-493f-f67e-08de21d71671
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2025 10:34:41.5749
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9FRDJCOTCNDgcxwKOHm9uHQqbRp4dPmkCgfMwlL1Sc+aj6iaVm2IQQPYtrQMSHVJ561l7suZ/cjA3nST6nfYojGcdQeWt+RwXB+YPkzqiXA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8080
 
-Hi Sakari,
+Hi all,
 
-Am 11.11.2025 um 13:23 schrieb Sakari Ailus:
-> Hi Andy, Matthias,
+On 11/12/25 10:40 AM, Diederik de Haas wrote:
+> [You don't often get email from diederik@cknow-tech.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
 > 
-> On Tue, Nov 04, 2025 at 03:28:54PM +0200, Andy Shevchenko wrote:
->> On Tue, Nov 04, 2025 at 11:31:34AM +0100, Matthias Fend wrote:
->>> Add a V4L2 sub-device driver for Himax HM1246 image sensor.
+> Hi Naoki,
+> 
+> On Wed Nov 12, 2025 at 12:42 AM CET, FUKAUMI Naoki wrote:
+>> On 11/12/25 03:32, Quentin Schulz wrote:
+>>> On 11/11/25 5:14 PM, Dragan Simic wrote:
+>>>> On Tuesday, November 11, 2025 16:32 CET, FUKAUMI Naoki
+>>>> <naoki@radxa.com> wrote:
+>>>>> On 11/11/25 23:46, Dragan Simic wrote:
+>>>>>> On Tuesday, November 11, 2025 14:07 CET, "Diederik de Haas"
+>>>>>> <diederik@cknow-tech.com> wrote:
+>>>>>>> On Tue Nov 11, 2025 at 6:41 AM CET, FUKAUMI Naoki wrote:
+>>>>>>>> Radxa's boards turn all LEDs on at boot(loader), but some boards
+>>>>>>>> don't have `default-state` property in Linux kernel tree but
+>>>>>>>> have it in U-Boot tree instead[1].
+>>>>>>>>
+>>>>>>>> This patch adds `default-state = "on"` for (almost) all LEDs (with a
+>>>>>>>> few exceptions which should be "off" such as RGB LEDs on E25 and LAN/
+>>>>>>>> WAN LEDs on E20C/E52C).
+>>>>>>>
+>>>>>>> I'm missing the *why* these changes would be an improvement.
+>>>>>>>
+>>>>>>> Personally, for both 'heartbeat' and 'netdev' triggers, I want them to
+>>>>>>> be off by default and once it gets a 'heartbeat' or a 'netdev'
+>>>>>>> trigger, THEN I want the LED to be on/blinking.
+>>>>>>
+>>>>>> That's a good question for Naoki.  My own preference would also
+>>>>>> be to have the device's power LED turned on by U-Boot as quickly
+>>>>>> as possible after supplying power to the board or turning it on
+>>>>>> by pressing the power button.  I'm actually not a big fan of
+>>>>>> having all the LEDs shining for a couple of seconds or so, which
+>>>>>> may actually look like some error condition to me.
+>>>>>>
+>>>>>> Having all that in mind, I may suggest that just the U-Boot's
+>>>>>> behavior is changed to turn the power LEDs on only.
+>>>>>
+>>>>> I can't quite explain it, but...
+>>>>>
+>>>>> - 1st (Power) LED
+>>>>>
+>>>>> The 1st (power) LED turns on automatically/immediately without software
+>>>>> intervention. (On some boards, this LED cannot be controlled by software
+>>>>> at all.)
+>>>>>
+>>>>> In DTS, this should be described using `default-state = "on"`. The use
+>>>>> of the Linux-specific property `linux,default-trigger = "default-on"` is
+>>>>> unsuitable for non-Linux environments.
+>>>>>
+
+I think the wording in the binding can be understood two ways.
+
+The binding says the following about the default-state property:
+
+"""
+       The initial state of the LED. If the LED is already on or off and the
+       default-state property is set the to same value, then no glitch 
+should be
+       produced where the LED momentarily turns off (or on). The "keep" 
+setting
+       will keep the LED at whatever its current state is, without 
+producing a
+       glitch.
+"""
+
+I think the issue here is around the meaning of "initial state". I 
+believe Naoki is probably thinking about the **HW** initial state of the 
+LED, which is whatever is the state of the LED without SW control. I 
+think Diederik is thinking about this being the state of the LED right 
+when the SW takes over and configures the LED before the trigger is setup.
+
+In the first interpretation, there's no need for an "improvement" for 
+the patches as they would just fix correctness of the DT wrt HW state at 
+boot.
+
+In the second interpretation, a change of this value must be justified 
+as people will simply disagree forever and we could end up with people 
+reverting other people's patches after each release. If it's just a 
+matter of taste, I believe the typical answer is keeping the status quo.
+
+We should find a way to make this binding not up to interpretation.
+
+Additionally, if the LED cannot be controlled on some boards, I don't 
+think it should be part of the DT.
+
+>>>>> - 2nd (Heartbeat) LED
+>>>>>
+>>>>> The 2nd (heartbeat) LED can be controlled by software. It should be lit
+>>>>> up as quickly as possible to indicate that the very first software
+>>>>> (e.g., the bootloader) is running.
+>>>>>
+
+My understanding is Naoki wants to use default-state = on, for the 
+bootloader to turn it on as soon as it takes over control of the LEDs.
+
+>>>>> On Linux, usually this is used as `linux,default-trigger = "heartbeat"`.
+>>>>> It indicates that kernel is running (regardless of the `default-state`
+>>>>> setting), and its behavior can be modified in user space.
+>>>>
+>>>> As discussed already in the #linux-rockchip IRC channel, [1] perhaps
+>>>> the best option would be to have the power LEDs turned on as quickly
+>>>> upon powering on the board as possible, and to have U-Boot pulsate
+>>>> the heartbeat LEDs using the LED_BOOT feature.  In such a scenario,
+>>>> no other LEDs would be turned on early, and the LED-related DT parts
+>>>> specific to U-Boot would be migrated to the kernel DTs.
+>>>>
+>>>> [1] https://libera.catirclogs.org/linux-rockchip/2025-11-11#38997824;
 >>>
->>> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
->>> array size of 1296 x 976. It is programmable through an I2C interface and
->>> connected via parallel bus.
->>>
->>> The sensor has an internal ISP with a complete image processing pipeline
->>> including control loops. However, this driver uses the sensor in raw mode
->>> and the entire ISP is bypassed.
+>>> The LED_BOOT feature (guarded by the Kconfig symbol of the same name) in
+>>> U-Boot only applies if /options/u-boot/boot-led property is set.
 >>
-
-...
-
->>
->>> +static int hm1246_calc_pll(struct hm1246 *hm1246, u32 xclk, u32 link_freq,
->>> +			   u32 clocks_per_pixel, u8 *pll1, u8 *pll2, u8 *pll3)
->>> +{
->>> +	const u8 pclk_div_table[] = { 4, 5, 6, 7, 8, 12, 14, 16 };
->>> +	const u8 sysclk_div_table[] = { 1, 2, 3, 4 };
->>> +	const u8 post_div_table[] = { 1, 2, 4, 8 };
->>> +	const int sysclk_pclk_ratio = 3; /* Recommended value */
->>> +	u32 pclk, vco_out, best_vco_diff;
->>> +	int pclk_div_index, sysclk_div_index, post_div_index;
->>> +	u8 pre_div = 0, multiplier_h = 0, multiplier_l = 0;
->>> +
->>> +	if (link_freq < HM1246_PCLK_MIN || link_freq > HM1246_PCLK_MAX)
->>> +		return -EINVAL;
->>> +
->>> +	/*
->>> +	 * In raw mode (1 pixel per clock) the pixel clock is internally
->>> +	 * divided by two.
->>> +	 */
->>> +	pclk = 2 * link_freq / clocks_per_pixel;
->>> +
->>> +	/* Find suitable PCLK and SYSCLK dividers. */
->>> +	for (pclk_div_index = 0; pclk_div_index < ARRAY_SIZE(pclk_div_table);
->>> +	     pclk_div_index++) {
->>> +		for (sysclk_div_index = 0;
->>> +		     sysclk_div_index < ARRAY_SIZE(sysclk_div_table);
->>> +		     sysclk_div_index++) {
->>> +			if (sysclk_div_table[sysclk_div_index] *
->>> +				    sysclk_pclk_ratio ==
->>> +			    pclk_div_table[pclk_div_index])
->>
->>> +				goto sysclk_pclk_ratio_found;
->>
->>> +		}
->>> +	}
->>
->> And instead of this goto mess, factor out to a helper.
+>> For the default state of the heartbeat LED, I'm thinking of using
+>> LED_BOOT (/options/u-boot/boot-led), but I'm concerned that this is
+>> U-Boot-specific.
 > 
-> I think the above looks fine as-is: it's easier to understand what it does
-> when it's all in a single location. This isn't overly complicated, which
-> would be another reason to do that.
-> 
->>
->>> +	return -EINVAL;
-> 
-> I'd do:
-> 
-> 	if (sysclk_div_index == ARRAY_SIZE(sysclk_div_table))
-> 		return -EINVAL;
-> 
-> instead of using a goto.
-
-I don't think that will work. Once the matching divisors are found, the 
-inner and outer loop must break immediately. Otherwise, the 
-corresponding indices will be overwritten.
-
-In the initial version [1], I used a variable to terminate the outer 
-loop and check for success. I changed that to a goto statement, as you 
-suggested.
-Perhaps I should revert to the original version, which I don't consider 
-overly complicated either?
-
-Thanks
-  ~Matthias
-
-[1] https://lore.kernel.org/all/20250403-hm1246-v1-2-30990d71bc42@emfend.at/
-
-> 
->>
->>> +sysclk_pclk_ratio_found:
->>> +
->>> +	/* Determine an appropriate post divider. */
->>> +	for (post_div_index = 0; post_div_index < ARRAY_SIZE(post_div_table);
->>> +	     post_div_index++) {
->>> +		vco_out = pclk * pclk_div_table[pclk_div_index] *
->>> +			  post_div_table[post_div_index];
->>> +
->>> +		if (vco_out >= HM1246_PLL_VCO_MIN &&
->>> +		    vco_out <= HM1246_PLL_VCO_MAX)
->>> +			break;
->>> +	}
->>> +	if (post_div_index >= ARRAY_SIZE(post_div_table))
->>> +		return -EINVAL;
->>> +
->>> +	/* Find best pre-divider and multiplier values. */
->>> +	best_vco_diff = U32_MAX;
->>> +	for (u32 div = DIV_ROUND_UP(xclk, HM1246_PLL_INCLK_MAX);
->>> +	     div <= xclk / HM1246_PLL_INCLK_MIN; div++) {
->>> +		u32 multi, multi_h, multi_l, vco, diff;
->>> +
->>> +		multi = DIV_ROUND_CLOSEST_ULL((u64)vco_out * div, xclk);
->>> +		if (multi < HM1246_PLL_MULTI_MIN ||
->>> +		    multi > HM1246_PLL_MULTI_MAX)
->>> +			continue;
->>> +
->>> +		multi_h = multi / (HM1246_PLL_MULTI_H_MIN *
->>> +				   HM1246_PLL_MULTI_L_MAX) +
->>> +			  2;
->>> +		multi_l = multi / multi_h;
->>> +		vco = div_u64((u64)xclk * multi_h * multi_l, div);
->>> +
->>> +		diff = abs_diff(vco_out, vco);
->>> +
->>> +		if (diff < best_vco_diff) {
->>> +			best_vco_diff = diff;
->>> +			pre_div = div;
->>> +			multiplier_h = multi_h;
->>> +			multiplier_l = multi_l;
->>> +		}
->>> +
->>> +		if (!diff)
->>> +			break;
->>> +	}
->>> +
->>> +	if (best_vco_diff == U32_MAX)
->>> +		return -EINVAL;
->>> +
->>> +	*pll1 = HM1246_PLL1CFG_MULTIPLIER(multiplier_l - 1);
->>> +	*pll2 = HM1246_PLL2CFG_PRE_DIV(pre_div - 1) |
->>> +		HM1246_PLL2CFG_MULTIPLIER(multiplier_h - 2);
->>> +	*pll3 = HM1246_PLL3CFG_POST_DIV(post_div_index) |
->>> +		HM1246_PLL3CFG_SYSCLK_DIV(sysclk_div_index) |
->>> +		HM1246_PLL3CFG_PCLK_DIV(pclk_div_index);
->>> +
->>> +	return 0;
->>> +}
->>
->> ...
->>
->>> +static int hm1246_cci_write_pll(struct hm1246 *hm1246, u8 pll1, u8 pll2,
->>> +				u8 pll3)
->>> +{
->>> +	const struct cci_reg_sequence pll_regs[] = {
->>
->> static ?
->>
->>> +		{ HM1246_PLL1CFG_REG, pll1 },
->>> +		{ HM1246_PLL2CFG_REG, pll2 },
->>> +		{ HM1246_PLL3CFG_REG, pll3 },
->>> +		{ HM1246_SBC_CTRL_REG, HM1246_SBC_CTRL_PLL_EN },
->>> +	};
->>
->> I would even move it outside the function. Note, static const maybe located in
->> ro memory while w/o static it's just a guarantee that compiler doesn't change
->> the values. Hence there is no guarantee it will be in ro memory.
->>
->>> +	return cci_multi_reg_write(hm1246->regmap, pll_regs,
->>> +				   ARRAY_SIZE(pll_regs), NULL);
->>> +}
->>> +
->>> +static int hm1246_pll_check_locked(struct hm1246 *hm1246)
->>> +{
->>> +	u64 boot_ref2;
->>> +	int ret;
->>> +
->>> +	ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2,
->>> +		       NULL);
->>
->> Despite being longer 80 I still would put it on one line. It will increase readability.
-> 
-> I prefer it as-is.
-> 
->>
->> 	ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2, NULL);
->>
->> Another option is to define local regmap:
->>
->> 	struct regmap *map = hm1246->regmap;
->> 	...
->> 	ret = cci_read(map, HM1246_SBC_BOOT_REF2_REG, &boot_ref2, NULL);
->>
->> which will be most readable and satisfy 80 limit.
->>
->>
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	return (boot_ref2 & HM1246_SBC_BOOT_REF2_PLL_LOCK) ? 0 : -EIO;
->>
->> Think about similar improvements elsewhere in this driver.
->>
->>> +}
->>
->> ...
->>
->>> +	/* PLL lock time: tpll typ. 100us */
->>
->> It's not a variable name, use proper English.
->>
->>> +	fsleep(200);
->>
->> ...
->>
->>> +static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode, u16 r,
->>> +					 u16 g, u16 b)
->>
->> Use logical split.
->>
->> static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode,
->> 					 u16 r, u16 g, u16 b)
->>
->> This applies to other similar places in the code.
->>
->> ...
->>
->>> +static int hm1246_test_pattern(struct hm1246 *hm1246, u32 index)
->>> +{
->>> +	const u16 RGBMIN = 0x0, RGBMAX = 0x3ff;
->>
->> 0 is enough (no need 0x).
->>
->>
->> So, the MAX is 10-bit, Can we use rather (BIT(10) - 1) to show this?
-> 
-> The above value likely comes from a sensor datasheet; I think 0x3ff is fine
-> as-is. If this was a bitmask with a row of bits set, I'd use GENMASK(), but
-> not BIT(10) - 1.
-> 
->>
->>> +	const struct tp {
->>> +		int pattern;
->>> +		u16 r, g, b;
->>> +	} tps[] = {
->>> +		/* 0 - Disabled */
->>
->> Instead of indices in the comment, make the code robust
->>
->>> +		{ .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->>
->> 		[0] = { .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->>
->> It even fit 80 characters.
->>
->>> +		/* 1 - Checkboard pattern */
->>> +		{ .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->>> +		/* 2 - Ramp */
->>> +		{ .pattern = 1, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->>> +		/* 3 - Moving ones */
->>> +		{ .pattern = 2, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->>> +		/* 4 - Blending color bars */
->>> +		{ .pattern = 3, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->>> +		/* 5 - Color bars */
->>> +		{ .pattern = 4, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->>> +		/* 6 - Solid white */
->>> +		{ .pattern = 15, .r = RGBMAX, .g = RGBMAX, .b = RGBMAX },
->>> +		/* 7 - Solid black */
->>> +		{ .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->>> +		/* 8 - Solid red */
->>> +		{ .pattern = 15, .r = RGBMAX, .g = RGBMIN, .b = RGBMIN },
->>> +		/* 9 - Solid green */
->>> +		{ .pattern = 15, .r = RGBMIN, .g = RGBMAX, .b = RGBMIN },
->>> +		/* 10- Solid blue */
->>> +		{ .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMAX },
->>> +	};
->>> +	u8 mode;
->>> +
->>> +	if (index >= ARRAY_SIZE(tps))
->>> +		return -EINVAL;
->>> +
->>> +	mode = HM1246_TEST_PATTERN_MODE_MODE(tps[index].pattern);
->>> +	if (index)
->>> +		mode |= HM1246_TEST_PATTERN_MODE_ENABLE;
->>> +
->>> +	return hm1246_cci_write_test_pattern(hm1246, mode, tps[index].r,
->>> +					     tps[index].g, tps[index].b);
->>> +}
->>
->> ...
->>
->>> +static int hm1246_set_ctrl(struct v4l2_ctrl *ctrl)
->>> +{
->>> +	struct hm1246 *hm1246 = container_of_const(ctrl->handler, struct hm1246,
->>> +						   ctrls);
->>
->> Why _const()?
->> Why not split it between lines like:
->>
->> 	struct hm1246 *hm1246 =
->> 		container_of_const(ctrl->handler, struct hm1246, ctrls);
->>
->>> +	struct v4l2_subdev_state *state;
->>> +	const struct v4l2_mbus_framefmt *format;
->>> +	u32 val;
->>> +	bool needs_cmu_update = true;
->>> +	int ret = 0;
->>> +
->>> +	state = v4l2_subdev_get_locked_active_state(&hm1246->sd);
->>> +	format = v4l2_subdev_state_get_format(state, 0);
->>> +
->>> +	if (ctrl->id == V4L2_CID_VBLANK) {
->>> +		s64 exposure_max;
->>> +
->>> +		exposure_max =
->>> +			format->height + ctrl->val - HM1246_COARSE_INTG_MARGIN;
->>> +		ret = __v4l2_ctrl_modify_range(hm1246->exposure_ctrl,
->>> +					       hm1246->exposure_ctrl->minimum,
->>> +					       exposure_max,
->>> +					       hm1246->exposure_ctrl->step,
->>> +					       exposure_max);
->>> +
->>> +		if (ret) {
->>> +			dev_err(hm1246->dev, "exposure ctrl range update failed\n");
->>> +			return ret;
->>> +		}
->>> +	}
->>
->>> +	if (!pm_runtime_get_if_active(hm1246->dev))
->>> +		return 0;
->>
->> Use ACQUIRE() and return directly where it makes sense.
-> 
-> That's interesting.
-> 
->>
->>> +	switch (ctrl->id) {
->>> +	case V4L2_CID_EXPOSURE:
->>> +		cci_write(hm1246->regmap, HM1246_COARSE_INTG_REG, ctrl->val,
->>> +			  &ret);
->>> +		break;
->>> +
->>> +	case V4L2_CID_ANALOGUE_GAIN:
->>> +		cci_write(hm1246->regmap, HM1246_ANALOG_GLOBAL_GAIN_REG,
->>> +			  ctrl->val, &ret);
->>> +		break;
->>> +
->>> +	case V4L2_CID_VBLANK:
->>> +		val = format->height + ctrl->val;
->>> +		cci_write(hm1246->regmap, HM1246_FRAME_LENGTH_LINES_REG, val,
->>> +			  &ret);
->>> +		break;
->>> +
->>> +	case V4L2_CID_HFLIP:
->>> +	case V4L2_CID_VFLIP:
->>> +		val = 0;
->>> +		if (hm1246->hflip_ctrl->val)
->>> +			val |= HM1246_IMAGE_ORIENTATION_HFLIP;
->>> +		if (hm1246->vflip_ctrl->val)
->>> +			val |= HM1246_IMAGE_ORIENTATION_VFLIP;
->>> +
->>> +		cci_write(hm1246->regmap, HM1246_IMAGE_ORIENTATION_REG, val,
->>> +			  &ret);
->>> +		break;
->>> +
->>> +	case V4L2_CID_TEST_PATTERN:
->>> +		ret = hm1246_test_pattern(hm1246, ctrl->val);
->>> +		needs_cmu_update = false;
->>
->> Like here, and you won't need needs_cmu_update anymore.
->>
->>> +		break;
->>> +
->>> +	default:
->>> +		ret = -EINVAL;
->>> +		needs_cmu_update = false;
->>> +		break;
->>> +	}
->>> +
->>> +	if (needs_cmu_update)
->>> +		cci_write(hm1246->regmap, HM1246_CMU_UPDATE_REG, 0, &ret);
->>> +
->>> +	pm_runtime_put(hm1246->dev);
->>> +
->>> +	return ret;
->>> +}
->>
->> ...
->>
->>> +static int hm1246_identify_module(struct hm1246 *hm1246)
->>
->> This is a singleton function, right?
->>
->> Check what once.h (or even once_lite.h) provides for you for such a case,
->> and drop unneeded "identified" variable.
-> 
-> Once for every device, so I don't think this applies.
-> 
->>
->>> +{
->>> +	u64 model_id;
->>> +	int ret;
->>> +
->>> +	if (hm1246->identified)
->>> +		return 0;
->>> +
->>> +	ret = cci_read(hm1246->regmap, HM1246_MODEL_ID_REG, &model_id, NULL);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	if (model_id != HM1246_MODEL_ID) {
->>> +		dev_err(hm1246->dev, "model id mismatch: 0x%llx!=0x%x\n",
->>> +			model_id, HM1246_MODEL_ID);
->>> +		return -ENXIO;
->>> +	}
->>> +
->>> +	hm1246->identified = true;
->>> +
->>> +	return 0;
->>> +}
+> If U-Boot wants to use the heartbeat LED to signal the *bootloader* is
+> running, I guess that's fine. And if you want to make it solid or
+> blinking, that seems best discussed on the U-Boot ML.
 > 
 
+The solution may still involve configuring the Device Tree, and we're 
+trying to have U-Boot-specific changes to the Device Tree in U-Boot 
+source tree to a minimum.
+
+> I still consider the bootloader and the kernel stages separate.
+
+They do however share most of their Device Tree (for Rockchip at least) 
+and the least (ideally no) changes we can have in U-Boot the better.
+
+> And I haven't seen an argument why I should change *my* opinion on the
+> heartbeat and netdev triggers (default-state) wrt the kernel.
+> 
+
+Device Tree is not kernel specific as you said already.
+
+> I don't think that what U-Boot does or doesn't do, should determine what
+> the Linux kernel does or doesn't do.
+
+It shouldn't, but (most of) the Device Tree is shared, so you cannot 
+just dismiss U-Boot behavior when talking about Linux behavior based on 
+Device Tree interpretation. We may have a need for a bootloader-specific 
+property. We have a Linux-specific one after all 
+(linux,default-trigger). Though... that does seem to be on the edge of 
+what the DT is made for (description of the HW, not logic/policy).
+
+> I have no plans to use another bootloader then U-Boot, but it's possible
+> that people do, so what the Linux kernel does should be independent from
+> what the/a specific bootloader does.
+> 
+
+Barebox also uses upstream DT as far as I know and supports some Radxa 
+products (Rock 5B/5T/..., CM3, Rock (RK3188), Rock 3A from the 
+arch/arm/boards/radxa-* directories). Zephyr has support for RK3568, 
+RK3588, and other SoCs, and uses upstream DT as well.
+
+Again, we're talking about modifications of the Device Tree here, so 
+typically I would expect all consumers of that DT to be interpreting the 
+properties the same way, except if you have OS-specific properties/nodes 
+(think u-boot,config-compatible nodes, linux, prefixed properties, 
+bootph- properties, ...).
+
+> And as I said before, *I* want LEDs with netdev and heartbeat triggers,
+> to be off (at the start, which is indeed the default value).
+> I use the heartbeat trigger to:
+> 1) See the kernel has started (and has gotten to the point the heartbeat
+>     'infrastructure' has been set up
+> 2) Wait for the blinking to slow down as that (generally) means it's
+>     pretty much done with the boot process and the SSH server should
+>     probably be running then, so I can login
+> 3) When the heartbeat LED is solid, that means the system has crashed
+>     (f.e. due to overheating ...)
+> 
+
+If the *HW* default state of the LED is off and the default-state 
+property is off, then you won't be able to tell apart a completely 
+bricked board and one that is stuck somewhere between U-Boot proper and 
+the Linux kernel taking over that LED.
+
+> And also, if you're going to change/override other people's choices, a
+> motivation as to why would be 'nice'.
+> 
+>>> <more discussion about LED functionality in U-Boot ...>
+>>
+>> As you know, default "default-state" is "off".
+>>    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/leds/common.yaml?h=v6.17#n74
+>>
+>> As far as I understand, there should not be any workarounds for specific
+>> implementations.
+>>    https://lore.kernel.org/linux-rockchip/3389401.44csPzL39Z@phil/
+>>
+>> So removing `default-state = "off"` is acceptable, right?
+> 
+> I don't see/understand the connection with 'workarounds for specific
+> implementations' with removing ``default-state = "off"``.
+> 
+> IMO it's perfectly fine to remove ``default-state = "off"``, although
+> having it explicitly may be useful, especially if the commit that set
+> that property specified *why* it should be "off".
+> 
+
+The status property defaults to okay, and we do not want them to be 
+listed explicitly. Not sure if there's consensus on applying this to all 
+properties which have defaults, across all subsystems.
+
+> Relatedly, when a node does not have the 'default-state' property, I
+> would _assume_ the author wanted/intended it to be "off". Ideally it
+> would be described in the commit message, but that is optional.
+
+The lack of a property doesn't necessarily mean it was forgotten, agreed.
+
+> But if that is changed, then it should be motivated *why*.
+> 
+
+Agreed.
+
+Cheers,
+Quentin
 
