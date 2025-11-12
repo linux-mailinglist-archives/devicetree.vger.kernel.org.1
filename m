@@ -1,80 +1,121 @@
-Return-Path: <devicetree+bounces-237374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 186E3C50459
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 03:00:32 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00B31C50467
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 03:00:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77D9C189B759
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 02:00:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A57E434C96E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 02:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9382BF00A;
-	Wed, 12 Nov 2025 01:59:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7EC029BD89;
+	Wed, 12 Nov 2025 01:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="HLILyDSY"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="SNh991fB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+Received: from mail-m49223.qiye.163.com (mail-m49223.qiye.163.com [45.254.49.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4982BE7DB;
-	Wed, 12 Nov 2025 01:58:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66ABE29994B;
+	Wed, 12 Nov 2025 01:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762912742; cv=none; b=KOi2B9OwqiNTW1h9Pd+4ZqDmqXe6m0eAY8QBKAmGP9u7KT89t1QIxNA37UCaDlFzaCVQGiUfEHRjYpumavPhFKnBULBXZleV9cJIX7iIFWWBov1Wls9c1EyyCibg1cbVgNoWVk7P1NSbXy3kwaaNml5dLwDM9hDiHFhwGDklApQ=
+	t=1762912795; cv=none; b=PeSad0n9zQEn1LHLpqPRgJ4O2rCyspDB93MJoHSHQA+6Dp3WqfyV0e3nD6Qdohc94DowTSBa2UpNBzuvY3BCBmtreFPZfUGzEz+Yc6EiQyNwbXoEicmZ9NNAIFrc2DvoPd8a+B8q+8HGIFcNTlPq2jldWM2gE5+ZNDeB8bcDbwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762912742; c=relaxed/simple;
-	bh=APAKyQvFVIBcKOgb0uEOcq1Ddyo8JI5mya0p3PDa9LQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d6OJjGlCIHdJ3IftNZjCnTUn1Oz4EJ6Z1TjO2azugVa6ixDOQGjTDnq7TZBsqHASlwMpzIrsXTMlPR/ZXmx5++ef7T1KyMINovYEISTw+OnhuSfJoc3b+ACuplurxbVJvSeIRbcaku/L8sXo/waqxTIDUcLm4hcLJy5xfl6TxCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=HLILyDSY; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=APAKyQvFVIBcKOgb0uEOcq1Ddyo8JI5mya0p3PDa9LQ=;
-	b=HLILyDSYnDXEUpkIEhUHcKPLevgW3I2zFhuK/HL7Op8/kgiF1TT70cO9sH9gJ8
-	P4lmLuTlJrjVrgOthd7OJo8MYTLp/XCKjpUOBxGUV/2/k2yB2VV6CKUHbKopoM2x
-	XYuRz4WJ34IO4oXGvWtuL3aHMASNXoZiM5nwMgXPHyVec=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgAnLZPA6RNpuzvPAQ--.5587S3;
-	Wed, 12 Nov 2025 09:58:25 +0800 (CST)
-Date: Wed, 12 Nov 2025 09:58:23 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, frank.li@nxp.com, s.hauer@pengutronix.de,
-	festevam@gmail.com, kernel@pengutronix.de,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/7] Add vpcie3v3aux regulator for i.MX PCIe M.2
- connector
-Message-ID: <aRPpvy2TtCyCCegm@dragon>
-References: <20251024073152.902735-1-hongxing.zhu@nxp.com>
+	s=arc-20240116; t=1762912795; c=relaxed/simple;
+	bh=zJO17dFWztKd52ye3rVlJnGNdN8EwFkk+B4EwPpOQNk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=PGVqTlnViuvAy/QLmFtKQpYQGxuJiDWK94112BIVqmLSPIo/39ianeGRlYvFo7LspASVhlpnDATccLBfLq3jUJ8ovwakvW8MhxZvXtHUenLsOdwtcdsYm6WO/9R1EEJWhGy82s19r2FIfzjEwsUDvrUMuP7+g3dmrIdkxVloovc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=SNh991fB; arc=none smtp.client-ip=45.254.49.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from rockchip.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2941ca60b;
+	Wed, 12 Nov 2025 09:59:42 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: zhangqing@rock-chips.com,
+	mkl@pengutronix.de,
+	kernel@pengutronix.de,
+	mailhol.vincent@wanadoo.fr,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	cl@rock-chips.com
+Cc: linux-can@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [RESEND PATCH v8 1/4] dt-bindings: can: rockchip_canfd: add rk3576 CAN controller
+Date: Wed, 12 Nov 2025 09:59:37 +0800
+Message-Id: <20251112015940.3695638-2-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251112015940.3695638-1-zhangqing@rock-chips.com>
+References: <20251112015940.3695638-1-zhangqing@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251024073152.902735-1-hongxing.zhu@nxp.com>
-X-CM-TRANSID:M88vCgAnLZPA6RNpuzvPAQ--.5587S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU0EfOUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNgLJL2kT6cJyogAA3T
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a75ca4a2803a3kunm5e00f3261f0708
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkgfSVZKT0MdTUwYSR9PS0JWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=SNh991fBzKaGqM8MsVy8B0PE/YSM+BRhYc8Al6YvWYQn8cf0a3DO5a5cDFwZD2B4x1hesZ/H0zJsHsA9jfnmV4NDATUk9RfNwuHUhEPZlKZT9X/ZXM5oBe3jkoJa4zHiMHov/cdLIxyT0mnQxdJwZMFrsdlos+rRWPvhuh/KMCI=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=5jlNOBZ/fcIvDq+MUV6cC4EWNKpgXZB+f3K4bCpTHTU=;
+	h=date:mime-version:subject:message-id:from;
 
-On Fri, Oct 24, 2025 at 03:31:45PM +0800, Richard Zhu wrote:
-> [PATCH v1 1/7] arm64: dts: imx8dxl-evk: Add vpcie3v3aux regulator for
-> [PATCH v1 2/7] arm64: dts: imx8mp-evk: Add vpcie3v3aux regulator for
-> [PATCH v1 3/7] arm64: dts: imx8mq-evk: Add vpcie3v3aux regulator for
-> [PATCH v1 4/7] arm64: dts: imx8qm-mek: Add vpcie3v3aux regulator for
-> [PATCH v1 5/7] arm64: dts: imx8qxp-mek: Add vpcie3v3aux regulator for
-> [PATCH v1 6/7] arm64: dts: imx95-15x15-evk: Add vpcie3v3aux regulator
-> [PATCH v1 7/7] arm64: dts: imx95-19x19-evk: Add vpcie3v3aux regulator
+Add documentation for the rockchip rk3576 CAN controller.
 
-Applied all, thanks!
+Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+---
+ .../bindings/net/can/rockchip,rk3568v2-canfd.yaml  | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.yaml b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.yaml
+index a077c0330013..22e10494e7d1 100644
+--- a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.yaml
++++ b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.yaml
+@@ -10,13 +10,12 @@ title:
+ maintainers:
+   - Marc Kleine-Budde <mkl@pengutronix.de>
+ 
+-allOf:
+-  - $ref: can-controller.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+-      - const: rockchip,rk3568v2-canfd
++      - enum:
++          - rockchip,rk3568v2-canfd
++          - rockchip,rk3576-can
+       - items:
+           - const: rockchip,rk3568v3-canfd
+           - const: rockchip,rk3568v2-canfd
+@@ -43,6 +42,13 @@ properties:
+       - const: core
+       - const: apb
+ 
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    items:
++      - const: rx
++
+ required:
+   - compatible
+   - reg
+-- 
+2.34.1
 
 
