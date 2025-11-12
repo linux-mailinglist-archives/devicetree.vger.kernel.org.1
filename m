@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-237373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4499AC503E6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 02:53:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 186E3C50459
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 03:00:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BABB73B24B7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 01:53:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77D9C189B759
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 02:00:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0312428B4F0;
-	Wed, 12 Nov 2025 01:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9382BF00A;
+	Wed, 12 Nov 2025 01:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="NqdefhQy"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="HLILyDSY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503F07262F;
-	Wed, 12 Nov 2025 01:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4982BE7DB;
+	Wed, 12 Nov 2025 01:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762912398; cv=none; b=oce6On8NkQZvvtLn4mvZmgGwKTgLJLwUW4nOAvkthL8es8UKVIePKNkyLKejSJo46UtaD55xEsAmsCx+U1AYSW3MmaZ8/DA3KdiabLwWWpt1VpxwgDpS+CHhDaDrlRDJDdIULUvR5xRmOGvpN0mYj5iGOQllIEaSwjN/BhES+e8=
+	t=1762912742; cv=none; b=KOi2B9OwqiNTW1h9Pd+4ZqDmqXe6m0eAY8QBKAmGP9u7KT89t1QIxNA37UCaDlFzaCVQGiUfEHRjYpumavPhFKnBULBXZleV9cJIX7iIFWWBov1Wls9c1EyyCibg1cbVgNoWVk7P1NSbXy3kwaaNml5dLwDM9hDiHFhwGDklApQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762912398; c=relaxed/simple;
-	bh=C9neEnQq3thnjzjGOw8nSCkjTdV9aE9g14bGC4lf5vE=;
+	s=arc-20240116; t=1762912742; c=relaxed/simple;
+	bh=APAKyQvFVIBcKOgb0uEOcq1Ddyo8JI5mya0p3PDa9LQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g0lTXC/IPakSOS+EFloiEAM4xNjxe8AkMpNdQzXVhRApUbW87i8xCXZS0wierOwdjvgwL53USGdBIequefAJZAouXcr5Qp03SVixJ0NdIPv1DRdL3K55a6r1OIKexBMT18b0gZn3yPXCj4+uqN5xsEyMX2Wa0QPE1DDnJDNfOuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=NqdefhQy; arc=none smtp.client-ip=1.95.21.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=d6OJjGlCIHdJ3IftNZjCnTUn1Oz4EJ6Z1TjO2azugVa6ixDOQGjTDnq7TZBsqHASlwMpzIrsXTMlPR/ZXmx5++ef7T1KyMINovYEISTw+OnhuSfJoc3b+ACuplurxbVJvSeIRbcaku/L8sXo/waqxTIDUcLm4hcLJy5xfl6TxCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=HLILyDSY; arc=none smtp.client-ip=220.197.32.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=C9neEnQq3thnjzjGOw8nSCkjTdV9aE9g14bGC4lf5vE=;
-	b=NqdefhQyq+sZoVxWznWBYZ2OWBn2H2NOGNh/Os3l7rkNzBdk2i26nmATH0wU4P
-	4q0YgG+IWidcwRRI6NciXc1/zWQefvi7CKHaEs1D2zFXHaLtglQ7lvHI8/NTmeeZ
-	nx7ued2u44pRu9fIGoz21fG+CByCpz55MYqHXBgoBwAa8=
+	Content-Type; bh=APAKyQvFVIBcKOgb0uEOcq1Ddyo8JI5mya0p3PDa9LQ=;
+	b=HLILyDSYnDXEUpkIEhUHcKPLevgW3I2zFhuK/HL7Op8/kgiF1TT70cO9sH9gJ8
+	P4lmLuTlJrjVrgOthd7OJo8MYTLp/XCKjpUOBxGUV/2/k2yB2VV6CKUHbKopoM2x
+	XYuRz4WJ34IO4oXGvWtuL3aHMASNXoZiM5nwMgXPHyVec=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAXXYde6BNpLQ7yAA--.5484S3;
-	Wed, 12 Nov 2025 09:52:32 +0800 (CST)
-Date: Wed, 12 Nov 2025 09:52:30 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgAnLZPA6RNpuzvPAQ--.5587S3;
+	Wed, 12 Nov 2025 09:58:25 +0800 (CST)
+Date: Wed, 12 Nov 2025 09:58:23 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
 To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/11] PCI: imx6: Add a method to handle CLKREQ#
- override
-Message-ID: <aRPoXvIeooNhLpfn@dragon>
-References: <20251015030428.2980427-1-hongxing.zhu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, frank.li@nxp.com, s.hauer@pengutronix.de,
+	festevam@gmail.com, kernel@pengutronix.de,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/7] Add vpcie3v3aux regulator for i.MX PCIe M.2
+ connector
+Message-ID: <aRPpvy2TtCyCCegm@dragon>
+References: <20251024073152.902735-1-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +60,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251015030428.2980427-1-hongxing.zhu@nxp.com>
-X-CM-TRANSID:Mc8vCgAXXYde6BNpLQ7yAA--.5484S3
+In-Reply-To: <20251024073152.902735-1-hongxing.zhu@nxp.com>
+X-CM-TRANSID:M88vCgAnLZPA6RNpuzvPAQ--.5587S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUo1v3UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNwBx1mkT6GC+PAAA3g
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU0EfOUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNgLJL2kT6cJyogAA3T
 
-On Wed, Oct 15, 2025 at 11:04:17AM +0800, Richard Zhu wrote:
-> [PATCH v6 01/11] arm64: dts: imx95-15x15-evk: Add supports-clkreq
-> [PATCH v6 02/11] arm64: dts: imx95-19x19-evk: Add supports-clkreq
-> [PATCH v6 03/11] arm64: dts: imx8mm-evk: Add supports-clkreq property
-> [PATCH v6 04/11] arm64: dts: imx8mp-evk: Add supports-clkreq property
-> [PATCH v6 05/11] arm64: dts: imx8mq-evk: Add supports-clkreq property
-> [PATCH v6 06/11] arm64: dts: imx8qm-mek: Add supports-clkreq property
-> [PATCH v6 07/11] arm64: dts: imx8qxp-mek: Add supports-clkreq
+On Fri, Oct 24, 2025 at 03:31:45PM +0800, Richard Zhu wrote:
+> [PATCH v1 1/7] arm64: dts: imx8dxl-evk: Add vpcie3v3aux regulator for
+> [PATCH v1 2/7] arm64: dts: imx8mp-evk: Add vpcie3v3aux regulator for
+> [PATCH v1 3/7] arm64: dts: imx8mq-evk: Add vpcie3v3aux regulator for
+> [PATCH v1 4/7] arm64: dts: imx8qm-mek: Add vpcie3v3aux regulator for
+> [PATCH v1 5/7] arm64: dts: imx8qxp-mek: Add vpcie3v3aux regulator for
+> [PATCH v1 6/7] arm64: dts: imx95-15x15-evk: Add vpcie3v3aux regulator
+> [PATCH v1 7/7] arm64: dts: imx95-19x19-evk: Add vpcie3v3aux regulator
 
-Applied these, thanks!
+Applied all, thanks!
 
 
