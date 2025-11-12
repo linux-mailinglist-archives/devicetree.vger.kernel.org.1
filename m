@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-237785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97DDDC540F2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:05:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0DCC54101
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:06:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 69965347F83
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:04:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2846C3B03A8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC6FC34A77D;
-	Wed, 12 Nov 2025 19:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A88B34B1AD;
+	Wed, 12 Nov 2025 19:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EN1ilMGg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcFvJEfK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804C333AD8D;
-	Wed, 12 Nov 2025 19:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E1F33B961;
+	Wed, 12 Nov 2025 19:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762974271; cv=none; b=Su0Ul/qygIffRsdEL3vsmjkKKD2Tv/qHoxXBmAGoHxdnz3904uLousCUSLxiz3aplWtdJYjZQWQaGvTkcZQL1loHNcocZ85ccLwdqKUI61ppLISO9ynReNc1WegDs0e/mk4rN8VrvANscMuRnqnayZZDS3/Raf/bU4I2UI2/a1E=
+	t=1762974407; cv=none; b=XV6W2cGLXQUF4q/sJ5p7SMYMwOvLyCZ11dKWFAR72ZQ7T8XaOn1EQ31kgyKCOp8XuIhznV1X9TcfHUIZVI4wui7M4O7yOMppjN9bMHBR9IMbNMgj4oce1o7jTcLbyWKkqCRuFPXzPtJlctTJBgfJslIVahcMGoJKvJbJyVTHdEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762974271; c=relaxed/simple;
-	bh=OsZBDvzHWBseg3Knx1k9apRw+CVUYMUDRIxIjk6M13w=;
+	s=arc-20240116; t=1762974407; c=relaxed/simple;
+	bh=GIbd6MD47NH11JySYSxBrFY7Iy0t51QXyCzM1GwsUlQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gpcDZTcqFnqqubhZms0dWa1sp31v3UyD3eBagNvBK4P/SZZ0WXkD/FUVi1l06C05UdaP8lhSixy6xo2iIQCXRN2MDOts4U+DwPo6aeNI2ULkDC1bIXNY80sSmPyE9Idzbgw1swaC0Uo6T6lCf+fYvalCaDwaH7p07zP6Eu4anrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EN1ilMGg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BDD9C4CEF5;
-	Wed, 12 Nov 2025 19:04:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ErM4EpN+biGzms9WRycEQSLfUhbQqlvAusGAKA5HA7JrluABUNcipBld2eiHVOcTNmg5PBdKZHKT3VKFt62OXfBle6sRXHHtFgAGaZK88Fq1eQr9ScA3njzcwvwM0Es4QjEJ3mzp//j/TdfFEHcxVziFxCTgtZKsWmz7VbQwrAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcFvJEfK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBAC9C113D0;
+	Wed, 12 Nov 2025 19:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762974271;
-	bh=OsZBDvzHWBseg3Knx1k9apRw+CVUYMUDRIxIjk6M13w=;
+	s=k20201202; t=1762974406;
+	bh=GIbd6MD47NH11JySYSxBrFY7Iy0t51QXyCzM1GwsUlQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EN1ilMGgWW8T6uXzRy1PpJ6wHDNYjkIgRF8C2S09QM6Pp9dTc64ppdgUJytGHFD9f
-	 c18leiGKUMZKJ6nA+8vHY5Ux8zQ45jfQRox2kXQo9HqKLBBfqVLTYI26r3GR6a4sFV
-	 rYtq0SqLkeF9ihQdQJycAlh16u09SIbV7B9cRgo4HINTUnsnUNzm2oe2ftrT+mJ3TH
-	 xaia2aPceqtEnq/hZryp5jnqH+9Gcr4IWlACvomiq48jDKc1xGXkkqHvv/PAgJI5kR
-	 Ys4Hk0KGfofvnbp9rP5+1Qqq+UfsNw8M4ABS7k6okOZPJduSN3NEyJp1qmnpPj0qr5
-	 cn7FxoPbcD0og==
-Date: Wed, 12 Nov 2025 19:04:26 +0000
+	b=WcFvJEfKxeJmLjevg1Z4Vyq2HsT8biL2rJ2rUzQzcvfvjuwb+MAWn5/n3UMo7hWvI
+	 Bo6LTOBVB6zWLmVICckx9PDu01TJxtFnWX+EsOnfpPRHKzT9rVQVuFVoVCrdwpDkn3
+	 /zxK2Rn0xycRpz8+MVGStA2WQcFSibvRY2h2wk1nb+QMywoo49n+8k4tNEoah99323
+	 8gjF4+3m1gpKbUgqlGbecIldltjyxLmEqluawnABK+9wTpJ075lUQTBBdJdqaTvMo7
+	 rRENs7vsPUoQSK6n6GPNSfyW1+tESPEzPJoSj4V789GLje7xNeoaVP9BBztfP8XnMt
+	 T4yvbHU7HMOjQ==
+Date: Wed, 12 Nov 2025 19:06:42 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol.vincent@wanadoo.fr,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	heiko@sntech.de, cl@rock-chips.com, linux-can@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH v8 1/4] dt-bindings: can: rockchip_canfd: add
- rk3576 CAN controller
-Message-ID: <20251112-surely-enroll-02a3a3646084@spud>
-References: <20251112015940.3695638-1-zhangqing@rock-chips.com>
- <20251112015940.3695638-2-zhangqing@rock-chips.com>
+To: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: pca9540: add debounce
+ timer configuration
+Message-ID: <20251112-battered-handful-35937a12aafe@spud>
+References: <20251112163311.720331-1-martijn.de.gouw@prodrive-technologies.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,52 +60,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="EQbl/SQeCGRxcKF0"
+	protocol="application/pgp-signature"; boundary="icvERwW864wMe76K"
 Content-Disposition: inline
-In-Reply-To: <20251112015940.3695638-2-zhangqing@rock-chips.com>
+In-Reply-To: <20251112163311.720331-1-martijn.de.gouw@prodrive-technologies.com>
 
 
---EQbl/SQeCGRxcKF0
+--icvERwW864wMe76K
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 12, 2025 at 09:59:37AM +0800, Elaine Zhang wrote:
-> Add documentation for the rockchip rk3576 CAN controller.
+On Wed, Nov 12, 2025 at 05:33:08PM +0100, Martijn de Gouw wrote:
+> Make the different debounce timers configurable from the devicetree.
+> Depending on the board design, these have to be set different than the
+> default register values.
 >=20
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
 > ---
->  .../bindings/net/can/rockchip,rk3568v2-canfd.yaml  | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
+>  .../regulator/nxp,pca9450-regulator.yaml      | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-=
-canfd.yaml b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-ca=
-nfd.yaml
-> index a077c0330013..22e10494e7d1 100644
-> --- a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.y=
+> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regu=
+lator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regula=
+tor.yaml
+> index a5486c36830f0..3d47390f13016 100644
+> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.y=
 aml
-> +++ b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.y=
+> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.y=
 aml
-> @@ -10,13 +10,12 @@ title:
->  maintainers:
->    - Marc Kleine-Budde <mkl@pengutronix.de>
+> @@ -124,6 +124,30 @@ properties:
+>        When WDOG_B signal is asserted a warm reset will be done instead o=
+f cold
+>        reset.
 > =20
-> -allOf:
-> -  - $ref: can-controller.yaml#
+> +  nxp,pmic_on_req-on-debounce-us:
+> +    enum: [ 120, 20000, 100000, 750000 ]
+> +    description: Debounce time for PMIC_ON_REQ high.
 
-Since in the other mail it was stated that this was removed in error
+I left some comments on v1, one a question and one a request for a
+change. Please go take a look. Since you'll need a v3
 pw-bot: changes-requested
+(Please also give a bit more time between revisions for people to go
+through their mail queues)
 
---EQbl/SQeCGRxcKF0
+> +
+> +  nxp,pmic_on_req-off-debounce-us:
+> +    enum: [ 120, 2000 ]
+> +    description: Debounce time for PMIC_ON_REQ is asserted low
+> +
+> +  nxp,power-on-step-ms:
+> +    enum: [ 1, 2, 4, 8]
+> +    description: Time step configuration during power on sequence
+> +
+> +  nxp,power-down-step-ms:
+> +    enum: [ 2, 4, 8, 16 ]
+> +    description: Time step configuration during power down sequence
+> +
+> +  nxp,restart-ms:
+> +    enum: [ 250, 500 ]
+> +    description: Time to stay off regulators during Cold reset
+> +
+> +  npx,pmic_rst_b-debounce-ms:
+> +    enum: [ 10, 50, 100, 500, 1000, 2000, 4000, 8000 ]
+> +    description: PMIC_RST_B debounce time
+> +
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.39.2
+>=20
+
+--icvERwW864wMe76K
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTaOgAKCRB4tDGHoIJi
-0qoVAP4ySdGjjDkARJ7pR6fmuWavLo9sUrf8lfFCP/JEOD1eUgEApqQ3+nwlh4ab
-e8WwfeqUajB1sRAcrjGqY5QGC287OQY=
-=K1Vm
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTawgAKCRB4tDGHoIJi
+0r3aAP0WQQCt5EChIE1S/Okwx+DLZQ9g11O0ui3OlzppLB3M1AEAt2zDCRrcClvf
+AGye5S2AfE1wQIb+4wC5fyyy99ha/wc=
+=boMk
 -----END PGP SIGNATURE-----
 
---EQbl/SQeCGRxcKF0--
+--icvERwW864wMe76K--
 
