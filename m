@@ -1,144 +1,132 @@
-Return-Path: <devicetree+bounces-237450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42794C51260
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:40:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 520D1C51284
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:45:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 33C174E1FD1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:40:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1221B3ACE44
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:45:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBDB92F7ACD;
-	Wed, 12 Nov 2025 08:40:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PWf9MxE4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4EFC2F531C;
+	Wed, 12 Nov 2025 08:45:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E792874F1;
-	Wed, 12 Nov 2025 08:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49CBB2F9DB0
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:45:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762936851; cv=none; b=kSZ1nVVSaEFtTeMStfMmjb1MbaJb/z6BIiLsHHRdgQG90Tel77dB8qCllkXFCWFkgSSdkAsl9de26+DL+WzuHQVYnaYxqNR/sD4I6G0eqN2s/hvxZN915/zaUl2RWsSooP65PLNrqvj9ZjocXxyrCMVfmSsdqim9QfzBYbDAe7k=
+	t=1762937108; cv=none; b=Hb4UquLokK+PF3ZtR/PeHleLba9k0K8YlAkv+Bjrgb5waSdoER/2n/X9KNkXGAKbAyPRSnbSNlFZDQrqeVXtjTx6stzrPzyI9y4How3Sh06GTECLMns+PLV7ed4dd5w3S9nixr2IsCMa0ZVcUb849zy8u26rx7z9CSy2HPG9znI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762936851; c=relaxed/simple;
-	bh=lcwxQu/soNAypJWH0CYGVdZaDZ7OuY35lRb3v2Avqvg=;
+	s=arc-20240116; t=1762937108; c=relaxed/simple;
+	bh=dbthEIOvDC6vM52YAMeye5jTlYYAk8oYzKbjEca+jc8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X4Ad8uhKekz5Jt01Bb+I4+sTPTGHYawx2baFuaqwC1zU9UQLdcepc3HF/ID1GEDB0ybmPxNiLxD8Z0hAlkjTTxiJCltuEnHVpiVGA48A0I+kxyGLDqhdliUl5kD3cw042gVrU3SuekU641gznoJFKl2RQoR8EqIWxY8fYbi+qqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PWf9MxE4; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762936850; x=1794472850;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lcwxQu/soNAypJWH0CYGVdZaDZ7OuY35lRb3v2Avqvg=;
-  b=PWf9MxE4ecVK5wmGC6J6Ip80rcn0ShqohvP25Fbe6r5+c2TtsLTlRpcG
-   JE5jI630qdjX9Ebv7e3iYQyrvQ8mpnrF9mYBXuttlKAZ6nYzX3ndu2LtT
-   Gdy6lNZJs/psCsecXm3l6ssH0JVgoRzHet6JV18+Cq+BjxEaeu688l9fb
-   dXVzRbCPSOSNg81NwIq/wvgRvimlP2oSIuJPRLiZsDqvdDk1nmgIKUypJ
-   OIZuCbqjSKeh322WKEo4xTL4bTbxQfzgwsCauEpFcHepxCxHyaAjBrzA0
-   3vXEzgUZRgYyJbeOQfAUWroPy/7YQeShJFwA7nhe2QbGTm7Fx4brtapwf
-   g==;
-X-CSE-ConnectionGUID: LHDDXmWJRAy7IjLeX/e4ew==
-X-CSE-MsgGUID: RBbppXTaT6CpLMJkXehXaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11610"; a="65032298"
-X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; 
-   d="scan'208";a="65032298"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2025 00:40:49 -0800
-X-CSE-ConnectionGUID: N2bA1VYgQg2EALNKEfWvpw==
-X-CSE-MsgGUID: TV49G5t0RLaSKNHCJZ0mkw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,299,1754982000"; 
-   d="scan'208";a="189130986"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.214])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2025 00:40:47 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id B81B9121DDD;
-	Wed, 12 Nov 2025 10:40:44 +0200 (EET)
-Date: Wed, 12 Nov 2025 10:40:44 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bryan O'Donoghue <bod@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Hans de Goede <hansg@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] media: i2c: add Samsung S5KJN1 image sensor
- device driver
-Message-ID: <aRRIDCJqjdI-zu1f@kekkonen.localdomain>
-References: <20251023025356.2421327-1-vladimir.zapolskiy@linaro.org>
- <zGlVBFnnqOaXjobqCKcCVXYYwfZwwxelX8G9ocxVagSkLPFzqtDmjtLwg0mzjc4dcn845hPm_6UPjBNb6Eza2Q==@protonmail.internalid>
- <20251023025356.2421327-3-vladimir.zapolskiy@linaro.org>
- <aa8d9d2a-a778-49b9-ad66-05bf31065856@kernel.org>
- <ff531ac2-26e0-48a4-a0f8-9e5c09dde05f@linaro.org>
- <aRMA_kd87a7rL-v0@kekkonen.localdomain>
- <d118401c-a238-4d76-ad85-7ff7449d606f@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cBvVUtMT+cgZAd9aMH1TpKavLxA4rPDx5uxw9xSvcgh8ZQAALpGjteHJz2g48DcyfhkyvmXEamVK6V+8elSQ2nHmoqogR04qapLYeE3rBlduvxen/2/XgYqN8x5hnpjURZU4SFURkUMN+fMOm4p5Wop7qamIYaZ1mmAaFMVxmhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vJ6T8-0001qQ-9X; Wed, 12 Nov 2025 09:44:46 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vJ6T6-0003Hx-34;
+	Wed, 12 Nov 2025 09:44:44 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 8D2B349D91F;
+	Wed, 12 Nov 2025 08:44:44 +0000 (UTC)
+Date: Wed, 12 Nov 2025 09:44:44 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Aswath Govindraju <a-govindraju@ti.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, Haibo Chen <haibo.chen@nxp.com>, 
+	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 0/8] phy: phy-can-transceiver: Support TJA1048/TJA1051
+Message-ID: <20251112-vivid-mysterious-guppy-3bc98a-mkl@pengutronix.de>
+References: <20251001-can-v7-0-fad29efc3884@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ybnlldmwtejuzxbv"
 Content-Disposition: inline
-In-Reply-To: <d118401c-a238-4d76-ad85-7ff7449d606f@linaro.org>
+In-Reply-To: <20251001-can-v7-0-fad29efc3884@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, Nov 12, 2025 at 04:39:49AM +0200, Vladimir Zapolskiy wrote:
-> Hi Sakari,
-> 
-> On 11/11/25 11:25, Sakari Ailus wrote:
-> > Hi Vladimir,
-> > 
-> > On Sat, Nov 08, 2025 at 01:00:33PM +0200, Vladimir Zapolskiy wrote:
-> > > On 11/4/25 17:53, Bryan O'Donoghue wrote:
-> > > > On 23/10/2025 03:53, Vladimir Zapolskiy wrote:
-> > > > > +static int s5kjn1_check_hwcfg(struct s5kjn1 *s5kjn1)
-> > > > > +{
-> > > > > +	struct fwnode_handle *fwnode = dev_fwnode(s5kjn1->dev), *ep;
-> > > > > +	struct v4l2_fwnode_endpoint bus_cfg = {
-> > > > > +		.bus_type = V4L2_MBUS_CSI2_DPHY,
-> > > > > +	};
-> > > > > +	unsigned long freq_bitmap;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	if (!fwnode)
-> > > > > +		return -ENODEV;
-> > > > > +
-> > > > > +	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
-> > > > > +	if (!ep)
-> > > > > +		return -EINVAL;
-> > > > > +
-> > > > > +	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
-> > > > > +	fwnode_handle_put(ep);
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	if (bus_cfg.bus.mipi_csi2.num_data_lanes &&
-> > > > 
-> > > > Is !bus_cfg.bus.mipi_csi2.num_data_lanes a valid case ?
-> > > > 
-> > > 
-> > > Yes, it is a valid case, because a number of data lanes is unchangeable
-> > > and the property can be omitted like in many other similar cases.
-> > 
-> > In that case make 4 lanes the default.
-> 
-> 4 lanes configuration is the only supported lane configuration mode
-> in the driver, so I believe there is nothing else to change. Perhaps
-> the confusion came from misreading the given dt binding documentation.
 
-Right now you're not setting any default for the number of lanes for
-v4l2_fwnode_endpoint_alloc_parse(). Please add that in bus_cfg.
+--ybnlldmwtejuzxbv
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 0/8] phy: phy-can-transceiver: Support TJA1048/TJA1051
+MIME-Version: 1.0
 
--- 
-Sakari Ailus
+On 01.10.2025 21:22:31, Peng Fan wrote:
+> TJA1048 is a Dual channel can transceiver with Sleep mode supported.
+> TJA105{1,7} is a Single Channel can transceiver with Sleep mode supported.
+>
+> To support them:
+> patch 1: add binding doc
+> patch 2/3: To support dual channel,
+>    - Introduce new flag CAN_TRANSCEIVER_DUAL_CH to indicate the phy
+>      has two channels.
+>    - Introduce can_transceiver_priv as a higher level encapsulation for
+>      phy, mux_state, num_ch.
+>    - Alloc a phy for each channel
+> patch 4: Simplify code
+> patch 5: Add TJA1051,7 support
+> Others: Update dts to use phys.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--ybnlldmwtejuzxbv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmkUSPkACgkQDHRl3/mQ
+kZySvAf+OFcIv9Q1NDa53XdFIdOJfnQshUo1IZMggqNsuPNzMQKJ6R564JfdKSe+
+SDr8+3X7K7je0ZNjGNwBlqG67+AUU/WGW2v4ZOEkabVxnNEVbPHz7qJwLmYUs9b3
+vOSIMe0uxsXGVN3aFHsbC6kOB3wahwNp/1IDYdmZa/z6YOwA3bQ3eJAiqnbEuQWW
+leNCXauhnCw+WTtCdSLzQN7vLWnWKnRFWmuGfFTAK4S8/vEqOc6Y1p/ThTv8wOIh
+4UfcCqqRvH6zUWh5SbhQyANm9bO/qbbs4P4qRGEH+0X3/7oCKWc2VAI0lGQ1ndtf
+5G51bBe28y6IHAGpb2c1rGNXLw8Cgg==
+=tFN5
+-----END PGP SIGNATURE-----
+
+--ybnlldmwtejuzxbv--
 
