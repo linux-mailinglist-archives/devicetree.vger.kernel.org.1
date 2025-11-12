@@ -1,149 +1,125 @@
-Return-Path: <devicetree+bounces-237433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F29CCC51100
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:13:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C160AC51131
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 48F1034B43D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:13:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9440C188DAFC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:17:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1D72F39CC;
-	Wed, 12 Nov 2025 08:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9052F5320;
+	Wed, 12 Nov 2025 08:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EYm3OOIK"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="vi/Gk5XL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFF52F12C4
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:13:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC062F5318;
+	Wed, 12 Nov 2025 08:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762935211; cv=none; b=TBQ0Pxvz4WkJQ0l0xqt6jzKO8M+tLen6zar23QxiJZ3vnaD8pAE9PucNsebrMN1pgS9yX/ibOVif5GNIc51ZU/kYY7tqV8mUwAtMMQ5rgQMpIg7pmSRz7rYpnGiSx3vfuxpgBGuWaqIDrnqXH1rusazEK4SkE9gCwSJR3LeJd2w=
+	t=1762935396; cv=none; b=nMYVig8+rRy322MKXtFW6mlzIeynUuAhag+x/SH6PwiFKZSZdK8tfHiP/j6/ha+YaDgcJNjuuuPNiEhz+KLs/6I/afP1hQvlelyWjpciecqf/reom8e4pet9IoUVNHeyA9wEbCS9hWm+nAdtOtg50yXCtlLb+S+IiJrZ1SRtwIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762935211; c=relaxed/simple;
-	bh=qLBafia/PKtEtA26Adnrbq1J4wPUztP9+12xCkx0pVM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kEsTsmrpwhDj4c1ENGFxmp7rU0UTktbGkTYIKrtepkShDgOfS2CTlrJuV96CL0a4mTsZb5PxGssW+k96JowFITuSaJz70uJkheatJdVyEAf5geAxyxeVEZ3erbLUP2n9r8WGzWF4t0wjZZghjRvp8fGB6h4U8VYaIB5g5Ot3MbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EYm3OOIK; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-ba599137cf7so510876a12.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 00:13:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762935210; x=1763540010; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qLBafia/PKtEtA26Adnrbq1J4wPUztP9+12xCkx0pVM=;
-        b=EYm3OOIKouzUfIvsndgG5kC13qDFyZ+OaxHph4kCFhjd2oLSSgOmp83KfY+GkYNs+r
-         ySMsDuprl6457LbQVHp4d+Y+0Wsypo2OtBaEWDO1TjIw/MPrWzBRE1idQeR1JdRWFhxh
-         aGbeTmSk9cSjr+JeKcYutIbdfjaEdMv4PU8jaMIgK2JtOc8DQyN+bl5vBlibKbR8Xv0p
-         9Cn2oxQGWug3yS8/oFb/TU7JOCjg3RDy4HggV9ZFDfyqWcFwk7a0XmFRjBHG5FWlgZfa
-         X53HauSDDY7znqNA1EipFMHZ7uu03jiCyTO34MRc+3kOQLk76/ZwzwArsjbbO0DegfMO
-         Jy2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762935210; x=1763540010;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=qLBafia/PKtEtA26Adnrbq1J4wPUztP9+12xCkx0pVM=;
-        b=np1TDcoXCSUYqYY9IhbvKWSwDe6Mc5LFc52pNtHxTsGqXWp1F128hI3YbWt/jo7g1j
-         rIOB/Jp+1U7ESOT+MmTbozeQfJKo+XrFNs5B9N9zzh2ICEB/kTY+nxbuTQc/qRGsuSP5
-         EHyxWhLVvaOCOjZXt+ch6WRqedCDiJPO+NeQlMJ8f9d/I5SKfU24EQUKIl+wnEGZB9qN
-         DaH0H+5RWQk4avvKOYvVevAt14HJitIJuWFSSSVpXMwO6y+lsp5dmff2zw1VRanqsMu+
-         thU9LgUvHjVUMwFqAO5yvuiJ7I+OPqj3rD/oC+sUaMVkqXlxYzDkdjZnBijZpOfTkQ+p
-         NRjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEjLBQgEtjYRql6FXa6wIU5OcwrWCZTOYPMGZCSNEWflntlink/k712NkrcRfBZWAOOuCy3X56hpPV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxotwVEa6GTz7My3MSYFc4ORqjlYjG+p1QvQMGLm7cCBkoSkeE
-	FE3b8TfWNaJ+/sYtoIfSS5y9lt39iCfh06qSq1t8xLtGtLWAjLcgkhuuQi8UzhWhftZoaeDgO5Y
-	7UJRhWzhqteyUxCFWXrhDBeTUlkU/Ucx2sy/AIto=
-X-Gm-Gg: ASbGnctxs1Ssv5ZmdTj9HUDP1l+ZKeW5HU/f0KUNsNZvsBHMnnF/lP6sGCWlA8ZrFGJ
-	5/hn6eTLn+NjvKRqGt7Q8jCSFPt4pE1y0AhuAS0vX13bhEOZ6gMYFnnyPiP+OsCpPLKhdEg9xKO
-	SGUj2Hi5k26wje/dZUGq6YB9Qm6GLd9ZV/JsVbnXU2PVBDJZ69j37++ctl70CPTE2mkWM4lkMpJ
-	YDo533P0mZeehb+NX4Nv9Y3UjjAJLbuYK5dNNXcKWoU1DpAevV7l6zvrg==
-X-Google-Smtp-Source: AGHT+IFnRin4gbmaFXUeI1BQiFdRCsNStgXxem0kbVw96MxrNLtIH0I6wkHre4CD95K+KCuFYtCNaztTRJvt/f8NODg=
-X-Received: by 2002:a17:902:ef48:b0:295:6d30:e263 with SMTP id
- d9443c01a7336-2984ee02133mr29024415ad.40.1762935209636; Wed, 12 Nov 2025
- 00:13:29 -0800 (PST)
+	s=arc-20240116; t=1762935396; c=relaxed/simple;
+	bh=D2VhTMOIho5TF5gmeTYsJz1QMNfT6fyktvgzdUCAGF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JRHVGAfjFyKx/7KnBcKFIubH0LmvtMIRTXZuzppaMMxVoVAIoehRTYZHvx4Jv2ClX51hwVdgpSCgj2cn5Go6qeLTjz/R3W/Yz20gNVf6vQwMFMWD8gYD5yc9gkdWgF1ypYHzq2Araq9yyN9SPay4pmj+AEpWwb8VbkoXpW9nO/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=vi/Gk5XL; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 41D4D4E4164B;
+	Wed, 12 Nov 2025 08:16:31 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E91766070B;
+	Wed, 12 Nov 2025 08:16:30 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0D00810371904;
+	Wed, 12 Nov 2025 09:16:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762935389; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=HQnMOSoBh6c02XpaM92rHFo3ekXwzKheXU/0txW3bog=;
+	b=vi/Gk5XLFGdPJ7ioZPuZQMq1Sw+qBGaB2Ibv2uhLkgVRAFIsTHFnB5wiGmnJsH+lEQ6qCV
+	KR3geUy9jHdD3rpPNj0UAev3bdA1gOAkxKr62rt5HgQ/rqbOiOu+5w6Lwcvkgu4R4opMfl
+	qJBgCadS4hhctbc1ioqQJKIFBT/wMdZcNDqamrTovDLBGo2GPEXyGVGiZEk6Gk4EWsCx9v
+	GGVQnQaULWqeyhaaLU5WMJT0oUCnv2qSB8uyBc5bPWmF5xZMNGK5UaJOtagxQ3q/G2wRjt
+	hxnPc6/6K8H8U3baaySQ00ln7aW5kILINmz9UUEtgpMsv0SFu3FAnGXg7rTwQQ==
+Message-ID: <dd488c39-3aa3-43f6-8cf7-abca4af3cc7a@bootlin.com>
+Date: Wed, 12 Nov 2025 09:16:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251109214515.121742-1-rpimentel.silva@gmail.com>
- <20251109214515.121742-2-rpimentel.silva@gmail.com> <9d48a54c-0585-4524-b9d5-30696f5ecc8b@kernel.org>
- <CAEnQRZCvpXzGt=7NGv7-s+y0gvOg7Jx4OqbfbW3uv8jDp-jroQ@mail.gmail.com>
- <CAOMZO5CU09fcBB8oUOO=qC=Du3Q9gnJOQacK=6v+pnSQViex3g@mail.gmail.com> <CAEnQRZCHKemw2YVT=WVJvUMr9CCWoZ3MORt_mU1V-62C53n-3w@mail.gmail.com>
-In-Reply-To: <CAEnQRZCHKemw2YVT=WVJvUMr9CCWoZ3MORt_mU1V-62C53n-3w@mail.gmail.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Wed, 12 Nov 2025 10:15:53 +0200
-X-Gm-Features: AWmQ_blLufo9e8_weYIhkdYf5Y61ajIvynO_fKPgAnclvKt8xEjxER44mrl124g
-Message-ID: <CAEnQRZBBJ4PGDOk7hBP_qsk7bBiec8pHb0DYKs2mhOAahNyKww@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com, 
-	marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de, 
-	joao.goncalves@toradex.com, frieder.schrempf@kontron.de, josua@solid-run.com, 
-	francesco.dolcini@toradex.com, primoz.fiser@norik.com, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Xiaofeng Wei <xiaofeng.wei@nxp.com>, 
-	Daniel Baluta <daniel.baluta@nxp.com>, Joseph Guo <qijian.guo@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v15 01/15] dt-bindings: net: Introduce the
+ ethernet-connector description
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
+ Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+ Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Romain Gantois <romain.gantois@bootlin.com>,
+ Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+References: <20251106094742.2104099-1-maxime.chevallier@bootlin.com>
+ <20251106094742.2104099-2-maxime.chevallier@bootlin.com>
+ <56410c74-3d0e-4cdc-87a0-230cad8f691a@lunn.ch>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <56410c74-3d0e-4cdc-87a0-230cad8f691a@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Nov 11, 2025 at 2:49=E2=80=AFPM Daniel Baluta <daniel.baluta@gmail.=
-com> wrote:
->
-> On Tue, Nov 11, 2025 at 1:50=E2=80=AFPM Fabio Estevam <festevam@gmail.com=
-> wrote:
-> >
-> > Hi Daniel,
-> >
-> > On Tue, Nov 11, 2025 at 5:45=E2=80=AFAM Daniel Baluta <daniel.baluta@gm=
-ail.com> wrote:
-> >
-> > > In addition to that, Rogerio please read:
-> > >
-> > > https://docs.kernel.org/process/submitting-patches.html
-> > >
-> > > At this moment I think you should keep the original author of the
-> > > patch.
-> >
-> > Right, but NXP makes a total mess with authorship.
->
-> I cannot disagree with you on this, let me clarify it internally with
-> NXP colleagues
-> and sort everything out.
 
-Hi Fabio & Rogerio,
 
-Checked internally and to track the correct authorship and development work
-here is how NXP would prefer to get credit.
+On 11/11/2025 04:34, Andrew Lunn wrote:
+> On Thu, Nov 06, 2025 at 10:47:26AM +0100, Maxime Chevallier wrote:
+>> The ability to describe the physical ports of Ethernet devices is useful
+>> to describe multi-port devices, as well as to remove any ambiguity with
+>> regard to the nature of the port.
+>>
+>> Moreover, describing ports allows for a better description of features
+>> that are tied to connectors, such as PoE through the PSE-PD devices.
+>>
+>> Introduce a binding to allow describing the ports, for now with 2
+>> attributes :
+>>
+>>  - The number of lanes, which is a quite generic property that allows
+>>    differentating between multiple similar technologies such as BaseT1
+>>    and "regular" BaseT (which usually means BaseT4).
+> 
+> You still use lanes here, but the implementation has moved on to
+> pairs.
+> 
+> Please add my Reviewed-by when you fix this.
 
-#Use git commit --amend --author=3D"Xiaofeng Wei <xiaofeng.wei@nxp.com>"
-Author: Xiaofeng Wei <xiaofeng.wei@nxp.com>
+Arg, I've made updates on lanes -> pairs, but as you point out I have
+missed a few :( thanks for spotting this,
 
-Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
+Maxime
 
-Co-developed-by: Joseph Guo <qijian.guo@nxp.com>
-Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
+> 
+> 	Andrew
 
-Co-developed-by: Steven Yang <steven.yang@nxp.com>
-Signed-off-by: Steven Yang <steven.yang@nxp.com>
-
-Co-developed-by: Lei Xu <lei.xu@nxp.com>
-Signed-off-by: Lei Xu <lei.xu@nxp.com>
-
-Then you can add your own C-d-b and S-o-b.
-
-Thanks,
-Daniel.
 
