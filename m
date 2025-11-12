@@ -1,118 +1,147 @@
-Return-Path: <devicetree+bounces-237385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9278EC505F4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 03:56:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F820C50697
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 04:15:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B4D83A8050
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 02:56:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F6373B24BF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 03:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705A42C11D5;
-	Wed, 12 Nov 2025 02:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726C718A6AD;
+	Wed, 12 Nov 2025 03:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="BfnanaLs"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="aLIRsccX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973191.qiye.163.com (mail-m1973191.qiye.163.com [220.197.31.91])
+Received: from mail-m4921.qiye.163.com (mail-m4921.qiye.163.com [45.254.49.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D0C2F56;
-	Wed, 12 Nov 2025 02:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25956186294;
+	Wed, 12 Nov 2025 03:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762916182; cv=none; b=UfskPmjD0yuNMkZRT2Skc0Iko5MBfepSMgbPlUK5jm8n0jerqRvHnN8D/943l6en4Qp9cXeSV0mDLp92JIVav86H1aJWtSvAf6csGSBLwkcrEb8T2Mn97Tiz4HDWL+L7BjL+OLYa5DFXjagpI/nbVy4Ny0pZNMi3ZpvSzonwvoI=
+	t=1762917322; cv=none; b=Ld/Zu9Ao8+7nSDtCSwa7BC329FWXSKsNngyZ9yp1pCA6OD+HZikCL9x+ppxcw2XdhN+ULeBmB1eU/Lc+XSm5Ag2CxVNq0W7h4TTGcnB2+spQFusIs9CTr6HKKktBL6eqqHAdEGmGn5p+D34ot1BxJ57IgCqImvHWDYlYOaG4v8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762916182; c=relaxed/simple;
-	bh=yY3OdD0Wf3KLSwr77WwJGHM//jDxDpOVbvQPM76WUZ8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XvUaShchqaseOctJ2wqojp6ztPbHF9O+3UN4/w7JAoJcbJKi5dUAAp6hskbmflscERsudWDPxROLD3NUc2rg8aQ4KoXYkz8yO32gvESOlp3PpqTEpFDFCemTiK14/0JmpKaKVuCgBpVpxrs53Vo4chp4o/CJUtXAAL53ok6i/10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=BfnanaLs; arc=none smtp.client-ip=220.197.31.91
+	s=arc-20240116; t=1762917322; c=relaxed/simple;
+	bh=ous4ekECHCVh+bwS4QqLshbet6cQu7pTxp9rlTcxeGg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qVHgO+77n5AU9szGFaev47abwHAuQChUVbzH9ntLKRnQH17IJ3fMVNCS8pLsKZys1vb1g++eq5CDkUHtvOFwGCHm4aS784jMjI2WQ90LDkiA7vGPKq6Ap47FMpNX8BRHoyE/wBe15jbvIiROfh/E7zGfk7n2vYyG/kQbH85wkqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=aLIRsccX; arc=none smtp.client-ip=45.254.49.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.149] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2943c7c46;
-	Wed, 12 Nov 2025 10:50:59 +0800 (GMT+08:00)
-Message-ID: <d4861ef9-a25c-491c-9a00-d65fe75d2677@rock-chips.com>
-Date: Wed, 12 Nov 2025 10:50:57 +0800
+Received: from rockchip.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2941ca600;
+	Wed, 12 Nov 2025 09:59:41 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: zhangqing@rock-chips.com,
+	mkl@pengutronix.de,
+	kernel@pengutronix.de,
+	mailhol.vincent@wanadoo.fr,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	cl@rock-chips.com
+Cc: linux-can@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [RESEND PATCH v8 0/4] rockchip: add can for RK3576 Soc
+Date: Wed, 12 Nov 2025 09:59:36 +0800
+Message-Id: <20251112015940.3695638-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 04/10] dt-bindings: phy: rockchip: rk3399-typec-phy:
- Support mode-switch
-To: Krzysztof Kozlowski <krzk@kernel.org>, Chaoyi Chen <kernel@airkyi.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20251111105040.94-1-kernel@airkyi.com>
- <20251111105040.94-5-kernel@airkyi.com>
- <868f09fd-8fe8-4c01-952f-6317604c43a3@kernel.org>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <868f09fd-8fe8-4c01-952f-6317604c43a3@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9a75f93d9b03abkunm3992e66e1852d51
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a75ca43d503a3kunm5e00f3261f06da
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh5NTFZMQkMZSRpJGUJJHkpWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0xCTlYeQk1MSU5DGU5JTktWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
 DKIM-Signature: a=rsa-sha256;
-	b=BfnanaLsNym3HyzqwH3OnGP1xmT0wPf4OoG6mLeXNzKNon4hMOY5ybAPzIG5A2swqv9GW1Dk0xahQPlEdSUzGVGO030Q+pdtfdO7Vn8vOx3D4j7Jqoib9PCmnjI9PllpUI2CFlrsM/l5X+lLXGTAlfSSW9PssoQIt4PnwxpBKbs=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=7NS+b33zjPCJC+YQ9D+VMMD2zKMV2hZ3cis1B+LtXgQ=;
+	b=aLIRsccXD6OHTYMdNKhB6kfs1DxMOUvutw9+ms35cehDXC065xL9yF/088jZrkgBlm4B6eWysIV5bnzspS5kcdZ4KF2qx1a2Tr/HJdvZqfDFJSYAFl/5Tdutm0G62qCfG8j56DFT8K1/yQYUYV9zu1H1oDaiqWsjw/16TpAbbY4=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=au2n4rrZx8SO4PVuqq8XAKDLJGp5zKXJpUNLmozR0c8=;
 	h=date:mime-version:subject:message-id:from;
 
-On 11/11/2025 7:09 PM, Krzysztof Kozlowski wrote:
+rk3576 can is a new controller,new register layout and Bit position
+definition:
+Support CAN protocol.
+Support Dma.
 
-> On 11/11/2025 11:50, Chaoyi Chen wrote:
->> While an external Type-C controller is still required to detect cable
->> attachment and report USB PD events, the actual mode and orientation
->> switching is performed internally by the PHY through software
->> configuration. This allows the PHY to act as a Type-C multiplexer for
->> both data role and DP altmode configuration.
->>
->> To reflect this hardware design, this patch introduces a new
->> "mode-switch" property for the dp-port node in the device tree bindings.
->> This property indicates that the connected PHY is capable of handling
->> Type-C mode switching itself.
->>
->> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> There are never blank lines between tags.
->
-Sorry for that. I will pay attention to this in future submissions.
+There are major differences from the previous rk3568.
+All errata on the rk3568 have been fixed and redesigned.
+
+RK3576 CANFD requires authorization and permission. The software
+code is not open by default and needs to be authorized separately.
+
+Change in V8:
+[PATCH v8 1/4]: Drop CANFD, correction format warning.
+[PATCH v8 2/4]: Drop fifo_setup of rkcanfd_devtype_data.
+[PATCH v8 3/4]: Drop CANFD.
+[PATCH v8 4/4]: Drop CANFD.
+
+Change in V7:
+[PATCH v7 1/4]: Correction format warning.
+[PATCH v7 2/4]: No change.
+[PATCH v7 3/4]: Correct the writing of some registers and
+                correct the annotations.
+[PATCH v7 4/4]: Optimize the structure parameters and
+                ensure error handling.
+
+Change in V6:
+[PATCH v6 1/4]: Fix dma is support only for rk3576.
+[PATCH v6 2/4]: Fix the compilation warning.
+[PATCH v6 3/4]: Fix the compilation warning.
+[PATCH v6 4/4]: Fix the compilation warning.
+
+Change in V5:
+[PATCH v5 1/4]: Add rk3576 canfd to rockchip,rk3568v2-canfd.yaml, remove
+                rockchip,rk3576-canfd.yaml
+[PATCH v5 2/4]: Encapsulate some hardware operation functions into
+                rkcanfd_devtype_data to provide differentiated
+                implementations for different models
+                (such as RK3568v2/v3)..
+[PATCH v5 3/4]: Add rk3576 canfd,fix the register naming rule,
+                Delete the variables used by rockchip itself.
+[PATCH v5 4/4]: Fix .h sorting.
+
+
+Change in V4:
+[PATCH v4 1/3]: Correct the format and add explanations.
+[PATCH v4 2/3]: No change.
+[PATCH v4 3/3]: No change.
+
+Change in V3:
+[PATCH v3 1/3]: Add documentation for the rk3576 CAN-FD.
+[PATCH v3 2/3]: Adjust the differentiated code section and
+                add dma function.
+[PATCH v3 3/3]: Remove dma, no use dma by default.
+
+Change in V2:
+[PATCH v2 1/2]: remove rk3576_canfd.c, use the rockchip_canfd driver
+[PATCH v2 2/2]: code style.
+
+Elaine Zhang (4):
+  dt-bindings: can: rockchip_canfd: add rk3576 CAN controller
+  net: can: rockchip: Refactor the rkcanfd_devtype_data structure
+  net: can: rockchip: add can for RK3576 Soc
+  net: can: rockchip: support dma for rk3576 rx
+
+ .../net/can/rockchip,rk3568v2-canfd.yaml      |  52 +-
+ .../net/can/rockchip/rockchip_canfd-core.c    | 581 ++++++++++++++++--
+ drivers/net/can/rockchip/rockchip_canfd-rx.c  | 212 +++++++
+ drivers/net/can/rockchip/rockchip_canfd-tx.c  |  20 +
+ drivers/net/can/rockchip/rockchip_canfd.h     | 277 +++++++++
+ 5 files changed, 1094 insertions(+), 48 deletions(-)
 
 -- 
-Best,
-Chaoyi
+2.34.1
 
 
