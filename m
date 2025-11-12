@@ -1,202 +1,274 @@
-Return-Path: <devicetree+bounces-237770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB0AC53D5A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:03:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E3FC53D15
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 767704F2C02
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:32:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 711024FD66A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10437346A14;
-	Wed, 12 Nov 2025 17:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD3F346E5E;
+	Wed, 12 Nov 2025 17:33:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UXw3yd9c";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hHnN/kZY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W78qEqSp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C8D32D428
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 17:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD9F315789
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 17:33:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762968721; cv=none; b=ZbEnchVRHo8RTYFRNYIovdWhQMhMsr8FU+35xtdx97+z0fE2iItYtMiet/M28rJMpEXS1OQ8e1SzsD7+6AlExCTcBeUiyhD0fTtlHBuKca5DdQD1FVxy1FT8okYIxCn64mBtM/Xb1zoIJ1Q5KYAvGHCTEPYWsdex13yiciW2mjo=
+	t=1762968823; cv=none; b=FTuPq3Kmq8JrAtKNuIyyQuMDcVljTlOR67//qQ7Hr7pwpcviGZaU524VvCTsAZNus+FLxndZR8ONlur6oOP337vD65M2bYwW9Q4Ycn+ZczwufqIJT2WkZNrUyIjMOzRYu3evkRqdX9IsNZoW0MpanG5Tts35mBbIo2iQvgQwH6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762968721; c=relaxed/simple;
-	bh=hzVZxAQsYGT+Jc1xNwFigB8FYEOlInLVTTrbWelcrKk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FHCv6JoDFPMeZzjMtlqrlkBjTR5KknZanQRjOp52LxtE9q22TZ3ailLYFt4goei3v4gaoF9MQOl8lmwWYTvnylIVA7Cm6O3F/E9x3W/GF7t0ce5Yyum7LkooQqOr+Bf332ch3ybzrUFDynwhTvs488vxE1RzadUm8NmnkII/04E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UXw3yd9c; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hHnN/kZY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC9gjsB1109261
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 17:31:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oRq7N9zEd4E6O7kii0K2QODDGUwp+okVrUJjhuRm9ts=; b=UXw3yd9c0V+CqXAv
-	Qe9i4LF/MLsW60UiDZBzcgtoCOTc/ZVEKiO9MgbzgjvbHprTk20LPZeI2oolYwTv
-	bfhfJMi8Jjls2/z7pimUXEEms6aw0FJc9JuJWkHWoWRvwL7T1wpLYUAzz6bltjoM
-	2vgUG9yu4mlzmWV+IHCWXTBjiSZ/dM6YDBC6V7SsGTsRVxHrbi/FD44S5h6jphaN
-	+/3M/uHTuwoJhmjeklSBFsTul42ZVMOKRfiBgvjovp3obD8rK3ahGXB47+M2I9Rv
-	0k3+RpQkIWz6WJ+oiM8NSYvHffqyGvvUrTZpbN/qJIDPWt+IepLuE89hr3rN219m
-	qX5C8A==
-Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acqum1dn8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 17:31:58 +0000 (GMT)
-Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-5dbc9806b6dso2093285137.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:31:58 -0800 (PST)
+	s=arc-20240116; t=1762968823; c=relaxed/simple;
+	bh=L/oKLVeai+77dmSJ2udu0Pkh34+umH9uQu66eO72Chk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=H0uOgxTd7Mi+oJ7sic/8SEb3CtfX+4rn7HkAQL+NbxL++hLzgsPBhQGQEGG//Wx4MPt9gvywtnfiOBCtVsgsPa9HhB07SgjOIUiXkqWQ4EtwHHDNXZd5PTDoZelZlr9OxLZTxARzGNjgc8tzsSnu3HWLJA4eon+aD83iLDEMT24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W78qEqSp; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42b32a5494dso596173f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:33:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762968717; x=1763573517; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oRq7N9zEd4E6O7kii0K2QODDGUwp+okVrUJjhuRm9ts=;
-        b=hHnN/kZY78Sxlpq+fj6HwKbJXIDB0mQ+ybtL6vZLqxd7NQ+GC7mSGo3kncKr+b7qgt
-         JLZds5d+OLlBBmM4asQ2nzxFo84kEuyG2M7eFJNT2LfBbG0GXv1bYoZPJ7pExGibof8z
-         WAoCLyIZMehWqQfJ0aLQv+XQAtkzbcuNoMnhxNZeTicuE3hVgjQFkh6rlvahGP6Ph/dZ
-         t/S+D6G3WBYSv5ANSNXSsQ9RvFVFAYOydzEC7bkLRhmh+VVfV/JrQQgZ34z/i7Z56EZ9
-         rC6ITejiDQ/DBBMfUqAdMyZUIVAbbJ2WqbAhOQg/DCfUmT0xBlTAu4yXfChqvXvtuS8G
-         76Pw==
+        d=gmail.com; s=20230601; t=1762968819; x=1763573619; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=44Kc/j2JhoyAbLrRyX1QwglgFc2dUpdlPh4jWhsbUTw=;
+        b=W78qEqSpk1iKBvAcYBqowsJwoqaH5iYa8ckaDIcWv+VvbZW1OS36L8S1cjVsDp4lpQ
+         Ypx6jUihWNbz9VP3R5Ymu5QfvtLyCMBZBayum27++0NkgJFE7O6LsvObx/QAB0SlK3vn
+         fxGftT5sTpMk0jYSIEm/VBzIl2vefyufameWquQAPDGgUBfqnkyPNM+JxEhw2QSLf9D/
+         AImltIhkFaeER9RnvY5/YZqlKOTI/+68a4jBuOnJ0e4BMsyQbYcCDgYivdFvDXsyystG
+         /GltREopbXXS2KgFsRocFolR3NmA6g1uq80N+SKjKpsjJqA71r2SClzbVQAJ94rzyVnj
+         bUdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762968717; x=1763573517;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oRq7N9zEd4E6O7kii0K2QODDGUwp+okVrUJjhuRm9ts=;
-        b=JzDmod0NqB2Al+pv8tGnapX0V3a92ahoR5F7oh5tCgWgUoAxNYf8uwglpvLF/+UTXv
-         AhznMt5Ur6q2fCK2EP36KCZEsef0gTWfYcKXN4q3bLE9KHPTSRfsJfDysgF1woLOOpvV
-         gVfNzRbgxrA/ZLfCer3lIrgjZjYMNQ4H9UX57CaSTMPgWa36lspLXeXZ8y4msrbABaJx
-         g4yZjN1oIDL6HLie+u2vlvh7DFgmwC0gx18q1o7W1xpflnS+2rj0BI/EznZCNAUwMmgn
-         yaZK6tCoa/jHRHsyTzMjij8c/zGOOXi+aWMtf1szNTb1jPCVJAv4yisoszR9oybbO7M0
-         yupg==
-X-Forwarded-Encrypted: i=1; AJvYcCX+e1BbZZOSFh1oa7P7OSPHUbQWGoWD4fbU5BnYhZ+9p17LCDVTWXzaXVCoBppARoGT8+n0+m0aqV2h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1ZF4is+133nA/62SshVznSmERwvgEVXuu4GxO2QRrcFIIlwCj
-	9JF/0I+OOn6mYkb8Qxk9O2yj48Cmjb9PdihdxOscIPvvD7I3icia846HI0wSBfAk0zIjjCCbWhl
-	qh/rTSRXvNDk5hB54yi/sVcFs9IdGJNV1uNuo5nUUDHnyYPjFHoaOEvOay2xi/CsB
-X-Gm-Gg: ASbGnct4jjuhZtZvgGQ+cQpuwXnYNcQQCi0WewmNrqBGT+ywpTaJ7kT7ponRuNS6pY5
-	DFMkBJYMI0MDXl9JQB5xeuXio1jsnNrK3lAK2/sBSc/hcdriGqX0qM4NwzA7Ei6/HeSw/OtZGYm
-	WBojyAyagNvtUr6O9ZF5E+kCHoAFt4AuhEDUY7rv6/uumo4pxxkZupdqtFUolliOqy3M7cp9Hvf
-	75ArF1EYUqGAssOJ65yOkHjGvRde/DyvFblokB4RhPy45OYuUs7bwU5toJ+m0btCi/80YOUaMEg
-	9ss2xZcLkrwcZXI29aAIu5+qqq33o9YqHefvWL1+Mls1ISBG+Yy6R1KyBfcAdqAoa+hyNtOjd86
-	4NQksCvpRs5/zM4+z1fOTYkcj0Q==
-X-Received: by 2002:a05:6102:4414:b0:5dd:888a:5d54 with SMTP id ada2fe7eead31-5de07e67c33mr1391612137.33.1762968717615;
-        Wed, 12 Nov 2025 09:31:57 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEiJyUMMrNVOX6ffx/lvBQ51RUGJEu6SBGxM1Dx1h6AXQTQL9O09CpizEhbeAdj5d3AN71GVw==
-X-Received: by 2002:a05:6102:4414:b0:5dd:888a:5d54 with SMTP id ada2fe7eead31-5de07e67c33mr1391569137.33.1762968717168;
-        Wed, 12 Nov 2025 09:31:57 -0800 (PST)
-Received: from [192.168.68.121] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47787e3a62esm47050655e9.3.2025.11.12.09.31.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Nov 2025 09:31:56 -0800 (PST)
-Message-ID: <f474c182-3a9d-4540-86b3-1f84ae3d14de@oss.qualcomm.com>
-Date: Wed, 12 Nov 2025 17:31:55 +0000
+        d=1e100.net; s=20230601; t=1762968819; x=1763573619;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=44Kc/j2JhoyAbLrRyX1QwglgFc2dUpdlPh4jWhsbUTw=;
+        b=pKUxCct2z2JqjLURdK3dA459q6e2hrQaPN08UMLE6JBeexgmy3N2ZxsGYYr36rC0Id
+         URYH0XHKkizVXxBEhUJQtzkFg3oBzEjkf4c/9IYrMJwbIx3AGLU4fJZOTsKcIjfZ+VDY
+         wFXVuCDn3SggSyWiYD7lW/ZceJc68AmIBzoH7gBuuq3t058hC9ROfeltvBURpNCT/pOb
+         jYmAsa7PMFkF7/YdiU0wL/3UsZgaabGgASd3xIvFOKhK4vjbKhbsG/sIrNQCvqde2PLI
+         VXcBenmtXljvi7I6JNQLE03xmcfZLQe16ShT5D0A9cOGfIsNfxr1eRcxLWebWEln+FPW
+         j4iw==
+X-Forwarded-Encrypted: i=1; AJvYcCVox/7wUxnEoL/+MQm/P4jANAf3KI+tZFM/GoyOKn29AKKfMldHSQCt4XWjiGKTRt6MLyEEVEfyWYY8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpJJvbB/arLNOTR2Sa48tDn+c5r7C5GfUPOmywEdb9bBGkdKSN
+	74TktBMMXjYBKxWPZT7SE3uzHqu9LTZHOSJIDRJ2/9V/ke8y0tGiksFw
+X-Gm-Gg: ASbGncu5oNGIV9Virwmwlpyf/qLOKH6mOQ0/hyrTJFWrAm/HYrNvZlYrYwgRjOFMFw2
+	UuZ5sKOX0wjoaT23cWo1T+jzelUtqNRgfmjw3doQIjG5JPPaptr4yQqDzEIu+jCyjnboLwNOlY6
+	bLwlOIVUYswJJ5B+nX1xjxUz/guPWcLuVs2N0OV9UMfSlqFr8jl0t9Nu8y2pRe5kskTQX/d5WAD
+	0wH+4C6q007sOdps/5AEeaoBC8xVEYT5AxtVETGBryZW+lZetoeCEBj49W2SiFF5WNbOQrH1YYW
+	f2acXt+i4xjJwOh0anKKvLZO23CBd0BobRF/XsFq/dPweUfo4K9fHJK2XFaz3E1q3x/sitV//WD
+	LRnzUsLjfhHt6qzDQ8vW8ytjE85eHA2wuSMVOhwf+OKu+mg/xBJ7ZjBWYv5ojol9LM3srwx2jfK
+	pChWYY8uqSQ4hYSG6DFcYvMA==
+X-Google-Smtp-Source: AGHT+IH6Qjzo8T7i3m2l3eXDsCIqvaE7ouHOEbD83pVacao2ZlOAWd37u6dKpswf2G543Njjogyyhw==
+X-Received: by 2002:a05:6000:144c:b0:42b:3bee:a7ff with SMTP id ffacd0b85a97d-42b4bb95233mr3102189f8f.24.1762968818723;
+        Wed, 12 Nov 2025 09:33:38 -0800 (PST)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b29e4b9bdsm31970655f8f.32.2025.11.12.09.33.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 09:33:38 -0800 (PST)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	broonie@kernel.org,
+	avifishman70@gmail.com,
+	tali.perry1@gmail.com,
+	joel@jms.id.au,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com,
+	andrew@codeconstruct.com.au
+Cc: openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v1] spi: dt-bindings: nuvoton,npcm-fiu: Convert to DT schema
+Date: Wed, 12 Nov 2025 19:33:14 +0200
+Message-Id: <20251112173314.1751671-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/12] ASoC: codecs: wsa881x: split into common and
- soundwire drivers
-To: Alexey Klimov <alexey.klimov@linaro.org>,
-        Srinivas Kandagatla <srini@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, linux-sound@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
- <20250522-rb2_audio_v3-v3-5-9eeb08cab9dc@linaro.org>
- <f1337654-ff69-4489-840a-a1b38efb7f74@oss.qualcomm.com>
- <DE6W0RIF2Y26.1MENYDV2RIAIP@linaro.org>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <DE6W0RIF2Y26.1MENYDV2RIAIP@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDE0MSBTYWx0ZWRfX0nx/qtpAqaaA
- 6l8XovENzkOr4GSef52jpDs15vCBg8uKUDt+RvHk18vz/pjDEkDKDi/AssPHm+QUYBma585/Upf
- hVsApoRy22v9BQs/UbeOVEaCBULx5LdVFOmudsa2QZqfdtiFH4a7RPXXLwLcEVW9yA0qxs8ULqo
- HXRaljikdzVQxQYVU3N9vNS8k/2fEIh1W88HEEcLVvbUknqmWNLF/msnPJE2lL8fb8E1hRC4XiM
- 24DjxMIWel80W8/q4JvoARXt8irqlYkAfagoon9GCXNGQV3ZFKg0lVuOJVY9mcdUwr2jAb9wvrV
- nk11nkHXbOA44xN7bwhpHoIfacQKu22Na5ap9VN+a/w4FKxymbPzZK7MIPaX1wfWCULAEhpk3Kq
- /umWT9u7mFG3737nUKsWgqaURvTuOA==
-X-Proofpoint-GUID: luPWBaoGJuI_fRtgfz5dsGJxC1oSuQy-
-X-Proofpoint-ORIG-GUID: luPWBaoGJuI_fRtgfz5dsGJxC1oSuQy-
-X-Authority-Analysis: v=2.4 cv=KeTfcAYD c=1 sm=1 tr=0 ts=6914c48e cx=c_pps
- a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8
- a=Kxc87NqaCDsCGrhekR4A:9 a=QEXdDO2ut3YA:10 a=-aSRE8QhW-JAV6biHavz:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-12_05,2025-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 suspectscore=0
- impostorscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511120141
+Content-Transfer-Encoding: 8bit
 
-On 11/12/25 5:21 PM, Alexey Klimov wrote:
-> On Thu May 29, 2025 at 11:05 AM BST, Srinivas Kandagatla wrote:
->>
->>
->> On 5/22/25 6:40 PM, Alexey Klimov wrote:
->>> This is required in order to introduce wsa881x driver that works
->>> in analog mode and is configurable via i2c only.
->>> Functional changes, if any, are kept to be minimal and common
->>> parts or parts that can be shared are moved into wsa881x-common
->>> helper driver.
->>> The regmap config structure now contains 0x3000 offset as required
->>> by soundwire spec.
->>>
->>> While at this, also fix the typo in WSA881X_ADC_EN_SEL_IBIAS
->>> register name and rename wsa881x_set_sdw_stream() to
->>> wsa881x_set_stream() and update registers description in the
->>> header and use the new defines in wsa881x_init_common() and
->>> in wsa881x_digital_mute().
->>>
->>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Cc: Srinivas Kandagatla <srini@kernel.org>
->>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->>> ---
->>>  sound/soc/codecs/Kconfig          |   4 +
->>>  sound/soc/codecs/Makefile         |   2 +
->>>  sound/soc/codecs/wsa881x-common.c | 193 +++++++++++++++
->>>  sound/soc/codecs/wsa881x-common.h | 458 +++++++++++++++++++++++++++++++++++
->>>  sound/soc/codecs/wsa881x.c        | 493 +-------------------------------------
->>
->> How about we have something like wsa881x.c wsa881x-sdw.c wsa881x-i2c.c ?
-> 
-> I am totaly open to suggestions. Splitting to wsa881x-{sdw,i2c}.c sounds
-> good to me.
-thanks, and it makes it more aligned with what other codecs do too.
+Convert the Nuvoton NPCM FIU binding to DT schema format.
 
---srini> I kept the original name to keep the changes minimal.
-> 
-> 
-> 
-> [...] (the rest of the patch was quoted and sent but I didn't find any
-> comments there, please let me know if I missed something there)
-> 
-> Best regards,
-> Alexey
-> 
+Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+---
+ .../bindings/spi/nuvoton,npcm-fiu.txt         | 58 -------------
+ .../bindings/spi/nuvoton,npcm-fiu.yaml        | 87 +++++++++++++++++++
+ 2 files changed, 87 insertions(+), 58 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.yaml
+
+diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt b/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
+deleted file mode 100644
+index fb38e96d395f..000000000000
+--- a/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
++++ /dev/null
+@@ -1,58 +0,0 @@
+-* Nuvoton FLASH Interface Unit (FIU) SPI Controller
+-
+-NPCM FIU supports single, dual and quad communication interface.
+-
+-The NPCM7XX supports three FIU modules,
+-FIU0 and FIUx supports two chip selects,
+-FIU3 support four chip select.
+-
+-The NPCM8XX supports four FIU modules,
+-FIU0 and FIUx supports two chip selects,
+-FIU1 and FIU3 supports four chip selects.
+-
+-Required properties:
+-  - compatible : "nuvoton,npcm750-fiu" for Poleg NPCM7XX BMC
+-			     "nuvoton,npcm845-fiu" for Arbel NPCM8XX BMC
+-  - #address-cells : should be 1.
+-  - #size-cells : should be 0.
+-  - reg : the first contains the register location and length,
+-          the second contains the memory mapping address and length
+-  - reg-names: Should contain the reg names "control" and "memory"
+-  - clocks : phandle of FIU reference clock.
+-
+-Required properties in case the pins can be muxed:
+-  - pinctrl-names : a pinctrl state named "default" must be defined.
+-  - pinctrl-0 : phandle referencing pin configuration of the device.
+-
+-Optional property:
+-  - nuvoton,spix-mode: enable spix-mode for an expansion bus to an ASIC or CPLD.
+-
+-Aliases:
+-- All the FIU controller nodes should be represented in the aliases node using
+-  the following format 'fiu{n}' where n is a unique number for the alias.
+-  In the NPCM7XX BMC:
+-  		fiu0 represent fiu 0 controller
+-  		fiu1 represent fiu 3 controller
+-  		fiu2 represent fiu x controller
+-
+-  In the NPCM8XX BMC:
+-  		fiu0 represent fiu 0 controller
+-  		fiu1 represent fiu 1 controller
+-  		fiu2 represent fiu 3 controller
+-  		fiu3 represent fiu x controller
+-
+-Example:
+-fiu3: spi@c00000000 {
+-	compatible = "nuvoton,npcm750-fiu";
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	reg = <0xfb000000 0x1000>, <0x80000000 0x10000000>;
+-	reg-names = "control", "memory";
+-	clocks = <&clk NPCM7XX_CLK_AHB>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&spi3_pins>;
+-	flash@0 {
+-			...
+-	};
+-};
+-
+diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.yaml b/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.yaml
+new file mode 100644
+index 000000000000..b12676da7426
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/nuvoton,npcm-fiu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton NPCM Flash Interface Unit (FIU) SPI Controller
++
++maintainers:
++  - Tomer Maimon <tmaimon77@gmail.com>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++description: |
++  NPCM FIU supports single, dual and quad communication interface.
++
++  The NPCM7XX supports three FIU modules:
++    FIU0 and FIUx support two chip selects
++    FIU3 supports four chip selects.
++
++  The NPCM8XX supports four FIU modules:
++    FIU0 and FIUx support two chip selects
++    FIU1 and FIU3 support four chip selects.
++
++  Alias convention:
++    The '/aliases' node should define:
++      For NPCM7xx:  fiu0=&fiu0; fiu1=&fiu3; fiu2=&fiux;
++      For NPCM8xx:  fiu0=&fiu0; fiu1=&fiu3; fiu2=&fiux; fiu3=&fiu1;
++
++properties:
++  compatible:
++    enum:
++      - nuvoton,npcm750-fiu # Poleg NPCM7XX
++      - nuvoton,npcm845-fiu # Arbel NPCM8XX
++
++  reg:
++    minItems: 1
++    items:
++      - description: FIU registers
++      - description: Memory-mapped flash contents (optional)
++
++  reg-names:
++    minItems: 1
++    items:
++      - const: control
++      - const: memory
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  nuvoton,spix-mode:
++    type: boolean
++    description: Enable SPIX mode for an expansion bus to an ASIC or CPLD.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
++    fiu3: spi@c0000000 {
++        compatible = "nuvoton,npcm750-fiu";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0xfb000000 0x1000>,
++              <0x80000000 0x10000000>;
++        reg-names = "control", "memory";
++        clocks = <&clk NPCM7XX_CLK_AHB>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&spi3_pins>;
++
++        flash@0 {
++            compatible = "jedec,spi-nor";
++            reg = <0>;
++            #address-cells = <1>;
++            #size-cells = <1>;
++        };
++    };
+-- 
+2.34.1
 
 
