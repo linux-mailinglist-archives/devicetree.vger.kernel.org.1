@@ -1,92 +1,202 @@
-Return-Path: <devicetree+bounces-237503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4362CC519FD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:22:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93241C51A12
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:23:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CA1914FA7F7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:12:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 081E54F0903
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07A0302CDB;
-	Wed, 12 Nov 2025 10:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F3F3009DE;
+	Wed, 12 Nov 2025 10:17:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kAvbH9QI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9D7302CB1;
-	Wed, 12 Nov 2025 10:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA95020FAAB;
+	Wed, 12 Nov 2025 10:17:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762942329; cv=none; b=u3lehiTCvzF83FcsjuVHwSX8YCmmJuAiidYMxmnpqPhik57U79F4o0IVkPsVjry3SPIls6sXPAbouqTKLQSN2P+Zj9/G+8iLF1+9sBbbJ0OvKMw/MgMf+Jr47D1jCDz8ck/olewOv3QyRKQ5e9N4LtwDx+H1nn6Ij1pUlKi8bc4=
+	t=1762942665; cv=none; b=nmHu6AgIGGp1XzS2L2qa3XamfvjRaXrwIHCPnAV/nm01D1hB+6OZK5EWHvN0LSkXMY+G3c9CA8XMkhEFHBSqiQFoYbEJMFR/cr962q18BDpSUQMrz9YH3RRncls/MbZCoQbkyYT7CgmSu0OdmN6Aq4NmiIkWJVqRijPQ5ljL4sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762942329; c=relaxed/simple;
-	bh=ny2XylRjq1EK6h3i/HZ7JxOmnPtg8Rs65J2/1rfDoY8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DwYMhTnykStoRCGgYGcBb7BdkN585CFYqGZrjzy27S/sDzd5vFlLPiv0/bO+nf5HIsm12p6m48cKpbFJWkZ09wHr+RcuXL2SiZrRhGdEQOaGtJkY3i6oC3WtWS6VaDSg0At2lzWDCR6B9NTSSetWP0dl1MRGlzT2W9g6bK6jZGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 12 Nov
- 2025 18:11:57 +0800
-Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Wed, 12 Nov 2025 18:11:57 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: ryan_chen <ryan_chen@aspeedtech.com>, <bmc-sw@aspeedtech.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>, <jk@codeconstruct.com.au>, Lee Jones
-	<lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon
-	<will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson
-	<bjorn.andersson@oss.qualcomm.com>, Geert Uytterhoeven
-	<geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
-	<nfraprado@collabora.com>, Taniya Das <quic_tdas@quicinc.com>, Lad Prabhakar
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Kuninori Morimoto
-	<kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v8 4/4] arm64: configs: Update defconfig for AST2700 platform support
-Date: Wed, 12 Nov 2025 18:11:57 +0800
-Message-ID: <20251112101157.2149169-5-ryan_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251112101157.2149169-1-ryan_chen@aspeedtech.com>
-References: <20251112101157.2149169-1-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1762942665; c=relaxed/simple;
+	bh=WpoCcavivjMt+i1lFxpN8RV/2RXIDLiJO+mUz5517PE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=UAHgnGgTaOkbIDtDGsdUq4sdj6ypF6xGiK6ux0F7GXu2NdQotAG4grddeK6I6C5hZ2jbuT3rLVm0912XouEg1tw6QCEbt27XwAIakup5F3+v4ivwEzYRyH/8oU/AyQylfZQqiDMfG3VQMWk5TZ9c9+Rla1i7zvK7M7f7vuCvCPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kAvbH9QI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8AD7C19423;
+	Wed, 12 Nov 2025 10:17:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762942665;
+	bh=WpoCcavivjMt+i1lFxpN8RV/2RXIDLiJO+mUz5517PE=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=kAvbH9QIUdzmSkVElNofVh2FZDwu2fxI+yUY6QxCPV8uLo8eW30UpX0O27FE0cyRF
+	 i3aj5A/T0z2hljHsdvkJpW7k8EnD5re9Hm+80g2wwukdCPthcnpZLGiswEdMBqV91x
+	 g2s96s1fDiTijTZMqQtC5XOUbHumS+k/z4771f1PrA5ilF3MdydFoxZAzlzo4q9eGO
+	 +mIZVb9Y0Z+gRU7eb+9b6D99qYeFTd8icvAg+qv7nTfP0nXOc9SymwkUR+I8Vb/smp
+	 gdBZGwHu7lllWvlV3Z76yYrjUwtlopkuEU3nh+7z0bS7FqC17y/9huDPqbIHmgww1F
+	 A4ao26c1I6iBw==
+Message-ID: <e93388c4-4b85-4913-9063-6df3c912acae@kernel.org>
+Date: Wed, 12 Nov 2025 11:17:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] media: dt-bindings: adi,adv7180: add VPP and CSI
+ register maps
+To: Michael Tretter <m.tretter@pengutronix.de>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, kernel@pengutronix.de
+References: <20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de>
+ <20251111-b4-adv7180-vpp-sub-device-v1-1-9877fe9f709b@pengutronix.de>
+ <20251112-burrowing-funny-cobra-19705d@kuoka>
+ <aRRV0LXnoU4gjBgE@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aRRV0LXnoU4gjBgE@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable options for ASPEED AST2700 SoC.
+On 12/11/2025 10:39, Michael Tretter wrote:
+> On Wed, 12 Nov 2025 09:05:14 +0100, Krzysztof Kozlowski wrote:
+>> On Tue, Nov 11, 2025 at 03:36:14PM +0100, Michael Tretter wrote:
+>>> The ADV7280 and ADV7280-M have up to three register maps for the VPP and
+>>> CSI. The address of these register maps may be programmed via registers
+>>> in the main register map.
+>>>
+>>> Allow to specify the addresses of the VPP and CSI in the device tree to
+>>> solve address conflicts on a board level.
+>>>
+>>> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+>>> ---
+>>>  .../devicetree/bindings/media/i2c/adi,adv7180.yaml | 44 ++++++++++++++++++++++
+>>>  1 file changed, 44 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+>>> index dee8ce7cb7ba..4bbdc812442b 100644
+>>> --- a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+>>> @@ -138,6 +138,31 @@ allOf:
+>>>        required:
+>>>          - ports
+>>>  
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - adi,adv7280
+>>> +              - adi,adv7280-m
+>>> +    then:
+>>> +      properties:
+>>> +        reg:
+>>> +          minItems: 1
+>>> +          maxItems: 3
+>>
+>> This does not match top-level.
+> 
+> Ack. If I understand the error message by dt_bindings_check correctly, I
+> have to move the default from the top-level to the else branch of this
+> conditional expression. Right?
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Top-level should have widest constraints and in if:then: please narrow
+them per variant.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e3a2d37bd104..ca2978dd1ccc 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -39,6 +39,7 @@ CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_APPLE=y
- CONFIG_ARCH_ARTPEC=y
-+CONFIG_ARCH_ASPEED=y
- CONFIG_ARCH_AXIADO=y
- CONFIG_ARCH_BCM=y
- CONFIG_ARCH_BCM2835=y
--- 
-2.34.1
+> 
+>>
+>>> +          description:
+>>> +            The ADV7280 and ADV7280-M have up to three register maps, which can be
+>>> +            accessed via the I2C port. The main register map, the VPP register map,
+>>> +            and the CSI register map. The main register map is mandatory. The other
+>>> +            register maps are optional and the default is used unless specified.
 
+BTW, here should be list with description, instead of min/maxItems and
+above.
+
+>>> +
+>>> +        reg-names:
+>>> +          minItems: 1
+>>> +          items:
+>>> +            - const: main
+>>> +            - enum: [ csi, vpp ]
+>>> +            - enum: [ csi, vpp ]
+>>
+>> List must not be flexible. What does it mean "optional"? The device has
+>> them always or you disable them via some sort of efuse/OTP?
+> 
+> The flexible list is inspired by the binding for adi,adv748x.yaml. It
+> also has a main device and several optional slave devices, which remain
+> at the default address if not specified in the device tree.
+> 
+> The optional register maps depend on the variant of the chip, and the
+> driver may or may not use them. In case of the adv7280-m, the driver
+> currently always programs a hard-coded default address into the
+> hardware. Making the csi and vpp register map addresses as optional
+> would allow to preserve the current driver behavior in these cases.
+
+You can keep them optional for backwards compatibility and this should
+be explained in the commit msg. However description must speak about
+hardware and your last sentence felt as not speaking that - "register
+maps are optional and the default is used unless specified."
+
+If the device always has three register maps, then the three register
+maps shall be always defined. See also writing bindings doc.
+
+Best regards,
+Krzysztof
 
