@@ -1,214 +1,192 @@
-Return-Path: <devicetree+bounces-237632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 536DBC52977
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:02:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D062C529B6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 15:06:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 354E04FA140
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:52:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF5442583E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:54:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7DE23D7F0;
-	Wed, 12 Nov 2025 13:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3245A23E320;
+	Wed, 12 Nov 2025 13:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cSWdgjYk";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OlPOLL9R"
+	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="S2bxnIZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2492264A3
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 13:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 752EE25D53B
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 13:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762955574; cv=none; b=mjovvaHNjHD23/OpQErnje8DtorgFWMrVzBRdHGjVqIuhUp272kpj+aW602ghV1st/4MEDuoToeHFKYY2LiywEFeW2uw00wLma1BNJ3vt9FMZ3+5qgmN75xQuV58oi+PWCvP/nbeiqQaHigd7bWC7JRZs7/P7nAX6LOdhBvFsUs=
+	t=1762955663; cv=none; b=RJsDFjUwhGlL90Ntpcw6Uiu16FdXZ6bRqtnso243XJRRC0dIEYq7tBjNjAPwT1TVhLrDoEgL5bnydAL+Vmy31MyQ/AXVK4LM5fElx6ob3H01ukBosXzUF7kwKw3IfVTu02iVj0Bzdi8Y9h3kteOMCs3oVSgGvAnsiGttMMBrA9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762955574; c=relaxed/simple;
-	bh=OAryLYQkLLUmB/WMe+NZx5UWRsH3+TBfVnEaugxiuw0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bwig+XiXK2Gl3OIKB/o1bD2u2sSa1hHStk+dz9DbESdEqQly82onaNSDU63ZcHFgSSOXRiIlMurS+K2sHPatZb1OY8sx43wRQvzA7d9RXVzfqFYvCSrQKVYh5Y+nAeM0DPwo6wHzh3Q+NuTA+bQjgPnfJN9s0YUlK0p2FYHE31c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cSWdgjYk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OlPOLL9R; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ACDZFQb3502468
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 13:52:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	RTdtyUKWWBMzxYsC5nXPivGVgsscMtomVbfKa/HEHHo=; b=cSWdgjYkemJrNc1g
-	pFfqjO1NFr+lWhKcYSBN7fNg0B9phMoU5W7dun4wLxb4ZFE12v6b/qKyaFp1z+dh
-	pI3/hIHiz4SZqa7t7qWngw21byrArSI5wl3ivV1IRxI4VuIwTyj+HxHHT6182eNZ
-	BiYCPXszvnAGl7xVByzRqLw9c4AntRPbjLeb8F3P8hVYotjfjT61CEKh6mVFSz4A
-	wg1jy04dv8QNy1J7vR6T4BMUZoiVJ5dOqJeI4m68iIzg33F1GsFOhe5Vb7qe43/g
-	PDlJm8t4vw4a51B4h4ZbmL3tqMfjC4a6EoP6PPyR7o+l9nwCWno+z9i6gDKe3TAP
-	FG8EXg==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acdcc2nan-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 13:52:51 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed5ff5e770so1588161cf.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 05:52:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762955571; x=1763560371; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RTdtyUKWWBMzxYsC5nXPivGVgsscMtomVbfKa/HEHHo=;
-        b=OlPOLL9RWzBf4vTSt8CsJoRNFXAddA3yBCacKrTKVKfD/ppBUHXVxwHisSL5CNFpDL
-         DyaX0W3EHaeCOwXPB4785kdTDSxoU+1Yr9zxg8LyoSymG3vG0d9Dm7QzxlNZfKR135gn
-         XUbwGJYTqFh8aQFOn1svj2DzTtEr2r1ssCOKQsgJ8eHPwpqFOlAR2S7xXvTvTdQlfyJp
-         fpIquZdzrj0KjGqBhrVJyysnOAnX7T3Now/kbZQ5ORNHP36Fo4IErx1Jp0lj5J8f6YRd
-         xQqt0KZipBnrV/qwlsrp16WIt5Ft1K32NAJpghNzotmdD92bsPKR0nIl9RGTelmC6xFM
-         nOtQ==
+	s=arc-20240116; t=1762955663; c=relaxed/simple;
+	bh=I4I3WIzpcjfsDiSTgOlk8Atq3GBfqXf8GVaWSsFqgPk=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SsR5w3TrzKpBCbRex9lBgFG7HSPqFkr+XQse2J75bfQ2QXlBnPGKhebz/ltaEGlWiAwuPr+eyKOlFmIra/7ivrLAbEYp4H6aP7CfMFK5UtbK8CVjXezDNvo7e4rUE1IV81/QCVeuP34j3DqpjNJ7bSZia2mL+048a1+09AoQK2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=S2bxnIZ+; arc=none smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C54BF3F85A
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 13:54:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20251003; t=1762955652;
+	bh=zw6ziSjkzQiRWUig0BOelMJ1uVjsDF/5GnnR77Yu8HA=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=S2bxnIZ+WIp/kPGQzOUzcqOfgcGGKsCRhf16bABXinJ0l7OnADT7NOa7/K9ZE/rmL
+	 uxO/ChTkQSpKQB+vDR6RMl/vDmo5SUeoy3XjPK/kwMWvlHnTbFMXPwaO9lSFaQ5tAt
+	 MIqP9ab4yokt2HZXsY/BOYEISEbRnS58O34EQcBfBXCn/Ej1gHcLPfeegpZlwNsc8x
+	 xhFeHdJxzTjcQG2pf1V9hHw9QjetZSaNKyhgO8wgJSjv3vlfF+z34zUlzOR/NO6rjm
+	 QaF8XL3iXqlCXgk+FQWZR5nhWV8nsP2fxWn8mNHu2TC2rIOyYF2WCPq4vvDA2KF04T
+	 ejzQZY3BOeHzB8gFIbQxpQ5JF5NUUpq46Kqrd0rMxJHFjqQfrWsMLWNVuGRVn1F+jM
+	 p/lfgLop1OAKfYs5lHOHXrckxPuWy1xf2QacC3OFsFONS8wycraBk3BzL8azgJASgN
+	 wnU7euPTgdT0fOPkcrzx/tgR5zAB3SvhisjzGff5E0fCwj6U48zp7L+Tdh9HbJJ/x8
+	 BZpcn0cAAx/6EG2uffKO6BF8a5O+C7W32E5jePiYXi46gVzxZux71LmGM+NlGTCI87
+	 gKiqrxfPmrNzGjTtEEsUHbhmXvrtKwonBjS6gPZxz2nHJJARf/4FDmEVVnWy2CIjDy
+	 f2aUL4pNobvTtysdjYGXhNyQ=
+Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-b72a95dc6d9so96079666b.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 05:54:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762955571; x=1763560371;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RTdtyUKWWBMzxYsC5nXPivGVgsscMtomVbfKa/HEHHo=;
-        b=cOxNbGJx2nsJH0hK49ijN8uvCb+Rfp9WFPNSESfhBk2bgEl28aZPIZ4E8HOAh3OwYw
-         A0XaXcqHsmQ2hl5LAi6znNPyHjlQk5iO41hcC7e9I9983mjoOSfooU2AGKtuSL2z2qpp
-         QQUMqNGus9waEfXS47Ahy1Q0MYeoK6IZBZ9P/kcSQS+PWy8MLwK/PJ+pxhX3OOPrYySP
-         grGbp8PAv8wNz7Vb7ZTcz9iWq1phyFr2MNtToAUn81k4zvt2yGPu7NMY9Tq4+8A8G2HB
-         fteRjeNGahXiZe0tpxADAZUalDzTOY8HIaaBWv9UZagaqUrZ9bFvOca1qdFPpt2qcFG9
-         95qA==
-X-Forwarded-Encrypted: i=1; AJvYcCWqMEiE+zMN1jt96GEmNn4ao9YrB/7ZcxA0j8JWuJGdSdOVAYg6ThYL9Ue5HkeFBJGJsZpLNPi4mkDq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7nMOnMdIFB30o9QFQJY8l51LWzT42fbsIr6lZQin9gWsToVj/
-	KYDjk/RR7aJ18Oq0SXqtEZ1QMl7MrZkxSl+iD1Oh4aCV/N5qdKXF7gYQEH1y0mUwIu1WVDY+7tF
-	3vHHoiENmvZqEjB5bKpC9gyshG9suDvtlXKk6Cd+KEuhXeBxMpDBg1aozuhTg9myj
-X-Gm-Gg: ASbGncsf6yR6akmO+PpsKYbef3sQSgKREe1Sw34Kqh1AMoiB0EVMHSya5wiajzhsNHn
-	bqykGbT0P2JQdk6wV87X4oD5LVbM2V42rjkMl2X8oBw9b0F4DYBCcwFDJgMLsL7kH614JBiGreV
-	9EHgHHcLhSA+HaI9HOAj0tLwzNldp6O3OFJq6OOSerforj+qVtdn84051bM6uOmc82f8ItE6NUn
-	/gzxi2HZ5OGVM6eY5eHg5GRHNGMtJHPnYUx/1O9ZtvhhpV6FadCMzQMkpBpTtUNS+mICa3yj1Av
-	9rFw57BXrR1afw30grQFVAt43xEsPoUxFkz64ahnyOAYI9lBKF42Rs3VsF+AWeDIoc6w1MHK7bm
-	UMxWvrBPw4DUAHbSmK9LrpOVAhgRc2dgmnL2B0TrA+TLwgKdxuZS1n2X5
-X-Received: by 2002:a05:622a:1209:b0:4ec:ed46:ab6d with SMTP id d75a77b69052e-4eddbdad3damr29223911cf.9.1762955569077;
-        Wed, 12 Nov 2025 05:52:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFcy1zE3l/tMASsQZC9DN852+GpFxCEn0w3eDqVGBouDX1a9/hlv2AeSAGGjvnQlClfa38f9w==
-X-Received: by 2002:a05:622a:1209:b0:4ec:ed46:ab6d with SMTP id d75a77b69052e-4eddbdad3damr29223501cf.9.1762955568364;
-        Wed, 12 Nov 2025 05:52:48 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bf723172sm1585335666b.32.2025.11.12.05.52.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Nov 2025 05:52:47 -0800 (PST)
-Message-ID: <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
-Date: Wed, 12 Nov 2025 14:52:45 +0100
+        d=1e100.net; s=20230601; t=1762955652; x=1763560452;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zw6ziSjkzQiRWUig0BOelMJ1uVjsDF/5GnnR77Yu8HA=;
+        b=dQ7zUDHTAJoDN0BLyLHYeIx15Bb+j+RFmdzoQbnkc5rqyeInjKiFVlKpO2o7m6y/oV
+         02KZUiORZA+/qT789VOTeoYoGRRBp36ACrJTS1gwkYt7NUpYFxhmK8X2QAPmFzQMwaI/
+         7L4NX3k7ljUGUZGxs6WpZfzaTpsv3KKM2+4Xus3X5XByI7AcpvM4fKp8vG67mvqhLM+h
+         gkqVhMma2OscEOaDrwBIAT6jWvsV/cHC6sXXIjEDg9T409opHe5zvIIT2cT/Ce+PjrQL
+         2UR24evbB4fk80dSGXbGyNzWyutdt6ibKgfDp/Sd9xjCFmSapj84q3Xe31husnZT4KOc
+         05JQ==
+X-Gm-Message-State: AOJu0YxGKDCV7qvg2UV87v92Uk0UOsQx527v5I6md2d8megtNe50B+qt
+	m7oLydPr5sMSrRy4n/GC5y4vt1Lam/9q1+Yw2EYKJf4NjaftiLisJtSYQn/yka8hr4WLxythOxV
+	aX3xKnftc0feezqV7J2W0LBvK1dzv1h8XShgvDUi4UhM4A1FXNRCmFA6V8sBYAETE+k2ZheZOn+
+	1bcl+qmrcI24B/cDSHp4i7nAA337/l1jsTnjsDdrPJu5KMnEnllV7D/A==
+X-Gm-Gg: ASbGncuXjgVz8yrufRKDMECFfwKxxkpVBiNdP+mBxqwtBqeIE5GifRp55+h81J7ZcUy
+	CXViuZtN5YMIPc8Xp+SBIZc/pgI7JkV7qc0ToGh71eh6pw4VryTh/tNOsxNmxaWkUZlHx93DtVH
+	ED2CXAWhs84C9q4TedLv9gWG4Kz0jjnI6BWM4DQog4MFhjt+wfCF5SJfJhXpMA03DsnRyL5mjOu
+	/qCffPO34CL
+X-Received: by 2002:a17:907:3f0b:b0:b72:599:5385 with SMTP id a640c23a62f3a-b7331aed080mr274451866b.61.1762955651978;
+        Wed, 12 Nov 2025 05:54:11 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHASu3IyWs8sdfwZaJ3pNAVG0SXfiJ1YnPjXsl7ym/EOc9nMzNozT0R3ShCHNy28iULSDnVopmBypGnnGPw+tE=
+X-Received: by 2002:a17:907:3f0b:b0:b72:599:5385 with SMTP id
+ a640c23a62f3a-b7331aed080mr274448466b.61.1762955651487; Wed, 12 Nov 2025
+ 05:54:11 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 12 Nov 2025 05:54:10 -0800
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 12 Nov 2025 05:54:09 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
- nodes
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        Nickolay Goppen <setotau@mainlining.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux@mainlining.org
-References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
- <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
- <07066c46-4121-48da-846a-3a180d245589@oss.qualcomm.com>
- <47b40a91-8365-4431-9fd9-1e48fad2a4e1@mainlining.org>
- <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
- <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
- <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: EOhC9HZJ88shranrOQGUm1q_oET1poZN
-X-Proofpoint-ORIG-GUID: EOhC9HZJ88shranrOQGUm1q_oET1poZN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDExMiBTYWx0ZWRfX/p4WV+wZbP7K
- 2TCiIQBJLFKrnsZEmbiewrOhbYRa/PUulWqFo1El90xZSTe9ZfV6T4k6Rhy5h56ZjJZagjLNyLq
- 2SiPR481M1x8BVkg3LmWDdFLAc601H6O+UqaG+BVZ5GVc+ViyOg6zCnGiA+4DJZY1yXkKQx+Oms
- a3ObC+5ry1ibBw/F3U19tPHCOlHzGF2/QT9B8xu5e20uF77aQItNhzDfJP3lkeHdkFFSW/1RLh+
- mpnxx77cAX8MXZfBQYsHkx7R+PJFOrIGTmIXTFuFLvfZkeZZQMfn9qsRsUBNTkRoPEWO156v/vJ
- bb9Xj5zGhXF6nox1Uw47ifMDrhNzOhbiqm9hA1XsUn8ZCGC4qbsM9Oh34PqKS1Vuu1HGsr1tkFa
- /vYhVFO6QeBawvpFKTJ644nvDoGY5g==
-X-Authority-Analysis: v=2.4 cv=L/0QguT8 c=1 sm=1 tr=0 ts=69149133 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=OuZLqq7tAAAA:8 a=eRqVM4IRrQ2YyvCDTyEA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
- a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-12_03,2025-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 bulkscore=0 lowpriorityscore=0
- clxscore=1015 adultscore=0 suspectscore=0 spamscore=0 impostorscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511120112
+In-Reply-To: <20251107095530.114775-1-hal.feng@starfivetech.com>
+References: <20251107095530.114775-1-hal.feng@starfivetech.com>
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+User-Agent: alot/0.0.0
+Date: Wed, 12 Nov 2025 05:54:09 -0800
+X-Gm-Features: AWmQ_bkCo556C5q4g3w_mabHlgyG7zuhHtzy3L72tGDQo2o37ahEt_qsjrthSBY
+Message-ID: <CAJM55Z_rczBo4D3HsC90QW1=fp3NWgK-tsEo6LHTZNXEBHTDqA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/8] Add support for StarFive VisionFive 2 Lite board
+To: Albert Ou <aou@eecs.berkeley.edu>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Conor Dooley <conor+dt@kernel.org>, E Shattow <e@freeshell.de>, 
+	Hal Feng <hal.feng@starfivetech.com>, 
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
-> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
->> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
->>>
->>> 24.10.2025 16:58, Nickolay Goppen пишет:
->>>>
->>>> 24.10.2025 11:28, Konrad Dybcio пишет:
->>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
->>>>>> In order to enable CDSP support for SDM660 SoC:
->>>>>>   * add shared memory p2p nodes for CDSP
->>>>>>   * add CDSP-specific smmu node
->>>>>>   * add CDSP peripheral image loader node
->>>>>>
->>>>>> Memory region for CDSP in SDM660 occupies the same spot as
->>>>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
->>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
->>>>>> cdsp_region, which is also larger in size.
->>>>>>
->>>>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
->>>>>> related nodes and add buffer_mem back.
->>>>>>
->>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
->>>>>> ---
->>>>> [...]
->>>>>
->>>>>> +            label = "turing";
->>>>> "cdsp"
->>>> Ok, I'll change this in the next revision.
->>>>>> +            mboxes = <&apcs_glb 29>;
->>>>>> +            qcom,remote-pid = <5>;
->>>>>> +
->>>>>> +            fastrpc {
->>>>>> +                compatible = "qcom,fastrpc";
->>>>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
->>>>>> +                label = "cdsp";
->>>>>> +                qcom,non-secure-domain;
->>>>> This shouldn't matter, both a secure and a non-secure device is
->>>>> created for CDSP
->>>> I've added this property, because it is used in other SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
->>> Is this property not neccessary anymore?
->>
->> +Srini?
-> 
-> That is true, we do not require this for CDSP, as CDSP allows both
-> unsigned and signed loading, we create both secured and non-secure node
-> by default. May be we can provide that clarity in yaml bindings so that
-> it gets caught during dtb checks.
-> 
-> 
-> However in ADSP case, we only support singed modules, due to historical
-> reasons how this driver evolved over years, we have this flag to allow
-> compatiblity for such users.
+Quoting Hal Feng (2025-11-07 10:55:22)
+> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S industrial
+> SoC which can run at -40~85 degrees centigrade and up to 1.25GHz.
+>
+> Board features:
+> - JH7110S SoC
+> - 4/8 GiB LPDDR4 DRAM
+> - AXP15060 PMIC
+> - 40 pin GPIO header
+> - 1x USB 3.0 host port
+> - 3x USB 2.0 host port
+> - 1x M.2 M-Key (size: 2242)
+> - 1x MicroSD slot (optional non-removable 64GiB eMMC)
+> - 1x QSPI Flash
+> - 1x I2C EEPROM
+> - 1x 1Gbps Ethernet port
+> - SDIO-based Wi-Fi & UART-based Bluetooth
+> - 1x HDMI port
+> - 1x 2-lane DSI
+> - 1x 2-lane CSI
+>
+> VisionFive 2 Lite schematics: https://doc-en.rvspace.org/VisionFive2Lite/PDF/VF2_LITE_V1.10_TF_20250818_SCH.pdf
+> VisionFive 2 Lite Quick Start Guide: https://doc-en.rvspace.org/VisionFive2Lite/VisionFive2LiteQSG/index.html
+> More documents: https://doc-en.rvspace.org/Doc_Center/visionfive_2_lite.html
 
-Does that mean that we can only load signed modules on the ADSP, but
-the driver behavior was previously such that unsigned modules were
-allowed (which was presumably fine on devboards, but not on fused
-devices)?
 
-Konrad
+Hi Hal,
+
+Currently the JH7110 device trees are layed out like this, with a nice
+separation between the SoC description and board descriptions:
+
+jh7110.dtsi               # JH7110 SoC description
+|- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
+   |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
+   |  |- <VF2 boards>     # Final VF2 board descriptions
+   |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
+   |  |- <Mars CM boards> # Final Mars CM board descriptions
+   |- <other boards>      # Other JH7110 board descriptions
+
+With this series it moves to
+
+jh711x.dtsi
+|- jh711x-common.dtsi
+   |- jh7110-common.dtsi
+   |  |- <jh7110 boards>
+   |- jh7110s-common.dtsi
+      |- <jh7110s boards>
+
+..which I can't even give clear labels like above. In other words when new
+patches are sent in it would not be easy to explain exactly where each change
+should go and why.
+I'm also worried that you'll find that more of the peripherals on the JH7110S
+need special handling and a new jh7110s-... compatible string. Then I guess
+they'll need to jump from jh7110x.dtsi two levels down to jh7110{,s}-common.dtsi
+which then both describe SoC and board properties.
+
+If you're serious about calling this a new SoC then I'd expect something more
+like this:
+
+jh711x.dtsi                  # Peripherals common to both SoCs
+|- jh7110.dtsi               # JH7110 SoC description
+|  |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
+|     |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
+|     |  |- <VF2 boards>     # Final VF2 board descriptions
+|     |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
+|     |  |- <Mars CM boards> # Final Mars CM board descriptions
+|     |- <other boards>      # Other JH7110 board descriptions
+|- jh7110s.dtsi              # JH7110S SoC description
+   |- jh7110s-common.dtsi    # Peripherals common to all JH7110S boards
+      |- <JH7110S boards>    # Final JH7110S board descriptions
+
+I know this will mean some duplication in jh7110{,s}-common.dtsi, but I would
+prefer that to not having a clear explanation of what each file describes.
+
+Do you think this layout could work for you?
+
+/Emil
 
