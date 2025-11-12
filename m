@@ -1,138 +1,152 @@
-Return-Path: <devicetree+bounces-237762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E53C53A53
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:22:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE2EC53CEB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 18:56:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6485D345591
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:19:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B7DFB542147
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 17:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E623D343D76;
-	Wed, 12 Nov 2025 17:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B4E33451AE;
+	Wed, 12 Nov 2025 17:21:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bwK61djM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S9TrqFbN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3C3632ABD6;
-	Wed, 12 Nov 2025 17:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F68A3446A9
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 17:21:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762967887; cv=none; b=F8YLhFfSEzkSMRAsMXArr3qHh06uxQWL/gVoQbUbzMP2TiALD4GNi6OnARXPKBlLG5IsMso3ekGuI9RcMTHYmITXVlYTP39QWrDVtoavhxhDQgALdiZRSZdtLR8mvpWAFxZ31vue66G6gt2lgng8ak9ZaP68rjRr2aOCKcJS6mM=
+	t=1762968069; cv=none; b=H/dZ3mqIQnbISmKl0y3L/nYnYY0J+UEg6tj9B8HwgcwHj6bt0xJ3cjCvrPldT8Y/kbQs1/0q4nxV/9E0cCFBft9O4SwVHohqDs6e2dmDYUqdzXuX64mXR0cmARTBJwecMiuIoeAXG6DBScMOO49xMpqr9oyVVoPDSfKivTXZvl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762967887; c=relaxed/simple;
-	bh=lywOI3ugT5GWb9bwVFXxkmySZuCeiZT6yvSuaKP0HcU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JXWTRAO2CedNUgSWMcUgxQsSPPSl9Sq4lY53c5FkQi+NxZn8q9Tb/UZW5FiqcSRtNihhYBVXCrgneN/gaa3fgvGLoKoOO5AaxvwXOmNSsjXrrPcP5LWY1yNetY1LsGPQ+ydrPAux8ICrYgJKaJr9/6V2js7Eatwr3rXgCQ5uPSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bwK61djM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1882C4CEF7;
-	Wed, 12 Nov 2025 17:17:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762967885;
-	bh=lywOI3ugT5GWb9bwVFXxkmySZuCeiZT6yvSuaKP0HcU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bwK61djMIzlYVBJc4Z+qj++gbp7r+37xPxbLaPk/yQnLIoBvSOEuXsvHZYOd7uFzw
-	 AazikNH2wSTsfKCKQoT4J7Yj/XOt83DkO+Y6752a3ur8rfvKcQyL3Md9GHy8pzJj39
-	 a+xb2ppjv/PZ2gTEf+8OjgIlhSFPRC/2nMbtXTH7MVDY4S2OpdWnD88oOqp3hdJ/eK
-	 UlUcv0XSDLkriDXp1QKO8YIKuxycCakV/M2WvQfoC9HpoLylVoXc7WuafnKiBDQ7Um
-	 EoscBrZSBliWNOgV0rJh+az/NLMf1Yj6U23fykSjLTWGDNWPI5v+dSF4nECmNMLnsz
-	 IU5A8BD7Dd8PQ==
-Date: Wed, 12 Nov 2025 17:17:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Junhui Liu <junhui.liu@pigmoral.tech>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
-	Inochi Amaoto <inochiama@outlook.com>, sophgo@lists.linux.dev,
-	linux-serial@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 00/13] riscv: Add initial support for Anlogic DR1V90
-Message-ID: <20251112-bazooka-dragster-cf5c508094e3@spud>
-References: <20251021-dr1v90-basic-dt-v3-0-5478db4f664a@pigmoral.tech>
+	s=arc-20240116; t=1762968069; c=relaxed/simple;
+	bh=zGm3bjPIXNlAXsn923/poaK7/h5DdSgopChHq1KIJug=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=MLtp2URSXTOtOh51XY/AMPCX443ckk4RL65/amx2GhU70yidz4QREdnLH684HEUeUdvfK/q9wpb9hkah6vNbA0OAWKY5HkF6M/3O3VpJVI58nNC6Wr0MbabYmIIumhI8/fE4KVfTubq7ir+f5Hcx2tz/Za6yqZ1rV4N+IvX2qlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S9TrqFbN; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42b3c965df5so753739f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:21:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762968064; x=1763572864; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+D8BoUvcqK/7rHl2L0r4XdY6giRmTPN9ngtKeR3ez90=;
+        b=S9TrqFbNcrP3YS5Uc7rdz6PzAL3g54MeF9cHf4b6VqPeDafcgVsOwmw3sVcAxW+SYf
+         +kYZ8G5A1zVPRayt8sMogwJOaPtvzFRjp83uHjY4bmuhyPP/ULvORLZSyu5rRukDMrAv
+         oe4Mtob5tFI/QAhL8K4A08M6tRgspAZr9rFNkqKY1CuEyuwiRzlmha0ipW1jef88mufh
+         HtUdnYZGD29e3ULyHYB1AJmA5sxwYg3TX4ME9YuPK0B3SXLXHMIOCCKL0iDeU7NUoyZc
+         6RXESpaWDJd3iV94l7X2grwZG3XtoyE+63VFil56xuS/4XFFO9EM+x/SF0Bk/4MevcWB
+         Rh2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762968064; x=1763572864;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+D8BoUvcqK/7rHl2L0r4XdY6giRmTPN9ngtKeR3ez90=;
+        b=EWcArLnLQa0EUGv7ISiF3UzF+++PyVvni8cgqlGYtPCOtiwDYRQE2waVhJQNggv3hd
+         /iZahzJnnR5UJtB9LC1E1kNhjEQRV/v8IEFxk+HO2/hPKVwJ9zxVIzHFEHZLZe9QgG+v
+         HUkOjUvBnvEUKIlLIX35Fp6vi3IsOjWqH4oGGfLO1Fg2SU05kZeaL1LTSZH4mB31905H
+         Crga8K8Ua3iCCaM5XK0BEpuoyjp5HgzdCkpZnrMH1/dR1mmoQjx5igwaPFB3XGF1W/KL
+         Tdn/Csk8HANBARc2kqddq5twaNWk6pCw1h7Wf/imDM0+PQ95TGOsMxSd5GRJg65/J4Ux
+         Ihyw==
+X-Forwarded-Encrypted: i=1; AJvYcCWIqMRG0hhjjq/ITXNuubDRDkHCuEuO7Wd588jllJpRCv7rPiko78LjptVPXtKdBllOtqICBVN8018b@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo5H3zHp1ODmozUrhXg3zeMCBKEEN0b5mnhsIpZltFVo96+beY
+	nWLc6bqmFZzySsLjcRJYACMLs/4FSdPiENPS9GVqd0y6iXpzrESfpqnlUi31Z8OZ4PA=
+X-Gm-Gg: ASbGncsZon4ygnX5EvAnFXd2Yzlt1Sw9en8yen/B3I6ma/bQiZY9sq/uz3dWOhBZnl4
+	navFD+vD7Mdd7QbZ/LefkPoWYFj5GA+od8rBDN1Xj/LpKM3tiF7dGbXQjxoehJEp7Ao9lrHHxpH
+	EZNgsyGcECgF+WJ6PMyIJONwk2KHr+5kB6y+TGhmU6lqOVOwe2Gx8CtzrK+mjglNhoV0plbPByB
+	ZZBa8Zcpyz3xFeZuMYHE4zETqTjlXe59OaZAZ+pI4TGyjZGv6+JTkC6J0lv3JqKp/pNrr3bEq9d
+	Sno57Bm4uskr/3O1DW1aThyJa/kvaE/cJcKUwtxlzqwQ7ilrM7C3qrAYhmJdrEqLpXkQMKbvRhX
+	1JnSqrI7/RS9lHEg4ZwY1PvQC7Oc7IeQr6j+qJDMkqfv+QKfF0TLwJXQieyiG7jmnCp6n5bmIfO
+	MfC2jKj4EnpJcX1Yo=
+X-Google-Smtp-Source: AGHT+IFOnruwkehrKtiSlIIluNpW1jCcNK6zjknkUp1TXGQBb3IO3OG62+bnEz116c3kPlLyvXv7bg==
+X-Received: by 2002:a5d:5f53:0:b0:3ec:ea73:a91e with SMTP id ffacd0b85a97d-42b4bb90b60mr3558763f8f.12.1762968064363;
+        Wed, 12 Nov 2025 09:21:04 -0800 (PST)
+Received: from localhost ([2a02:c7c:7259:a00:4fbd:5c9b:d8a2:ee64])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b4789896esm9558995f8f.38.2025.11.12.09.21.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 09:21:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sV5/agMmM68jKYjx"
-Content-Disposition: inline
-In-Reply-To: <20251021-dr1v90-basic-dt-v3-0-5478db4f664a@pigmoral.tech>
-
-
---sV5/agMmM68jKYjx
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 12 Nov 2025 17:21:03 +0000
+Message-Id: <DE6W0RIF2Y26.1MENYDV2RIAIP@linaro.org>
+Subject: Re: [PATCH v3 05/12] ASoC: codecs: wsa881x: split into common and
+ soundwire drivers
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Srinivas Kandagatla" <srinivas.kandagatla@oss.qualcomm.com>, "Srinivas
+ Kandagatla" <srini@kernel.org>
+Cc: "Mark Brown" <broonie@kernel.org>, <linux-sound@vger.kernel.org>, "Liam
+ Girdwood" <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Bjorn Andersson" <andersson@kernel.org>, "Dmitry Baryshkov"
+ <lumag@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Konrad
+ Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Jaroslav Kysela"
+ <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
+ <20250522-rb2_audio_v3-v3-5-9eeb08cab9dc@linaro.org>
+ <f1337654-ff69-4489-840a-a1b38efb7f74@oss.qualcomm.com>
+In-Reply-To: <f1337654-ff69-4489-840a-a1b38efb7f74@oss.qualcomm.com>
 
-On Tue, Oct 21, 2025 at 05:41:35PM +0800, Junhui Liu wrote:
-> This introduces initial support for the Anlogic DR1V90 SoC [1] and the
-> Milianke MLKPAI-FS01 [2] board.
->=20
-> The DR1V90 is a RISC-V based FPSoC from Anlogic, featuring a Nuclei
-> UX900 [3] core as its processing system (PS) and 94,464 LUTs in the
-> programmable logic (PL) part. The Milianke MLKPAI-FS01 board is one of
-> the first platforms based on this SoC, with UART1 routed to a Type-C
-> interface for console access.
->=20
-> Tested on the Milianke MLKPAI-FS01 board with both the vendor's OpenSBI
-> and the not-yet-upstreamed mainline OpenSBI [4], as well as the vendor=E2=
-=80=99s
-> U-Boot. Because the vendor=E2=80=99s OpenSBI is loaded at 0x1f300000, we =
-have
-> to additionally reserve the DRAM region 0x1fe00000=E2=80=930x1fffffff to =
-prevent
-> overlap if using vendor's OpenSBI.
->=20
-> Link: https://www.anlogic.com/product/fpga/saldragon/dr1 [1]
-> Link: https://www.milianke.com/product-item-104.html [2]
-> Link: https://nucleisys.com/product/900.php [3]
-> Link: https://github.com/pigmoral/opensbi/tree/dr1v90 [4]
+On Thu May 29, 2025 at 11:05 AM BST, Srinivas Kandagatla wrote:
+>
+>
+> On 5/22/25 6:40 PM, Alexey Klimov wrote:
+>> This is required in order to introduce wsa881x driver that works
+>> in analog mode and is configurable via i2c only.
+>> Functional changes, if any, are kept to be minimal and common
+>> parts or parts that can be shared are moved into wsa881x-common
+>> helper driver.
+>> The regmap config structure now contains 0x3000 offset as required
+>> by soundwire spec.
+>>=20
+>> While at this, also fix the typo in WSA881X_ADC_EN_SEL_IBIAS
+>> register name and rename wsa881x_set_sdw_stream() to
+>> wsa881x_set_stream() and update registers description in the
+>> header and use the new defines in wsa881x_init_common() and
+>> in wsa881x_digital_mute().
+>>=20
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Cc: Srinivas Kandagatla <srini@kernel.org>
+>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>> ---
+>>  sound/soc/codecs/Kconfig          |   4 +
+>>  sound/soc/codecs/Makefile         |   2 +
+>>  sound/soc/codecs/wsa881x-common.c | 193 +++++++++++++++
+>>  sound/soc/codecs/wsa881x-common.h | 458 +++++++++++++++++++++++++++++++=
+++++
+>>  sound/soc/codecs/wsa881x.c        | 493 +------------------------------=
+-------
+>
+> How about we have something like wsa881x.c wsa881x-sdw.c wsa881x-i2c.c ?
 
-Thanks for grabbing the irqchip stuff Thomas.
+I am totaly open to suggestions. Splitting to wsa881x-{sdw,i2c}.c sounds
+good to me.
+I kept the original name to keep the changes minimal.
 
-I've applied this, with myself listed as maintainer. I set the status to
-"Odd Fixes" because I will be doing no work on it and only applying
-patches that people send in. I'll happy pass the platform off to someone
-qualified to maintain it, should that person be willing to do so :)
 
-Patches are here:
-https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=3Dan=
-logic-initial
 
-I'll submit as a standalone PR to Arnd et al over in the soc group for
-the next release.
+[...] (the rest of the patch was quoted and sent but I didn't find any
+comments there, please let me know if I missed something there)
 
-Cheers,
-Conor.
+Best regards,
+Alexey
 
---sV5/agMmM68jKYjx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTBRQAKCRB4tDGHoIJi
-0m7BAQD1yYi9jfzMwFoKsn729d+GEAmzldurXKdZYtAcmWmIdAEAxWTgsRJKilvT
-RFkLQvvfFeBChW/ncbEBG5CxBatGEg0=
-=CwfP
------END PGP SIGNATURE-----
-
---sV5/agMmM68jKYjx--
 
