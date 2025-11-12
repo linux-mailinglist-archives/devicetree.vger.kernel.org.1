@@ -1,144 +1,144 @@
-Return-Path: <devicetree+bounces-237461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5694C513DE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:00:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD57FC51412
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:03:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7F1A534DD0D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:00:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B37121883D13
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3EDA2FE07B;
-	Wed, 12 Nov 2025 08:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25372FDC38;
+	Wed, 12 Nov 2025 09:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="yKwyZYl4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sA+Do/CI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E14C2FDC58;
-	Wed, 12 Nov 2025 08:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B7F2FD7B9;
+	Wed, 12 Nov 2025 09:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762937984; cv=none; b=EJ5MLfn4HQ58Z4rc8h0vo43hsBOJc2Zke/t3PpmzSl8IjeVnXL/bH+ZCes7A5C2r6SDJ//nYwJSCMbacGy/uKUTCKSCp2uDnT/VqR1QwolKtdXGNUxFfFnazdR1moTVBxrKlFrP3HmX1P8P+zvxLG5e++jtjXgBPlFZ9qxhRnCQ=
+	t=1762938084; cv=none; b=ADJiY1oTlrdHmn2EfNRCpF8cL3Y6q1xtBuinYN9sK2BwPcsDZojyZTY85viCk4v8shjRTZutU9afRRPZrqre4pDIAMzU0otkjQIs0Rxhlr9dOUu3umxbk/mvU5iCjjEfsrON9q20aSMV92RzH9ikNpj3c7k9hSi86NNiuZGo0MQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762937984; c=relaxed/simple;
-	bh=fw6xRRSrEe6IvmtlKZd1GHXRPKMnz65H243RiUIEEfI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tLBlAyeMSAgNmcjJLi/4Y+cd1eytRMkWj8bLsk+lPzr3dlzBrAmrGYQwE6oxQxz/QXXfXL+D2BC9bczUpuer8lkyBIp4v88nWJHhBEcrjh3X/vhqowJ5HjBAImrEnnhLqN/v0NP+JhEepyqCVKs3nv5MG4UYh9bBLl1a52mjzsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=yKwyZYl4; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 45981C0F559;
-	Wed, 12 Nov 2025 08:59:19 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C2BBE6070B;
-	Wed, 12 Nov 2025 08:59:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9C7D31037170F;
-	Wed, 12 Nov 2025 09:59:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762937979; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=XgvHorkYlljZc4LneQOwVFrbrAMtL/782gZQ0/mOGIY=;
-	b=yKwyZYl4dynT48ezsUgkoxmvzYd+FSQ9cbqH5KYFiCa/jACajVD8n/vtnbxf3pdaFiqpCu
-	E2AwTCbX7yIYoGlv0rBSyKkRjEOjcdnxbIj7v+4Tu/I5u1eC/gRvlp/EZPWlFg7bG6wA+G
-	L2Ef2HHXzqoRCBSY4ZeJy9DgCMgtVhsKasN9/zGySRsVBod4xGugR0X0a/3ZKQcBBZoX6/
-	+HLfBuH7ym7aYM9IUM+aFIhxNdxPEymjckh53zcJkIC0qJyIZTEbl/Ojh48hoFGKp/lPOp
-	LgUGLzWnOxPEhEEqqERuqQCqglx4gjEp9ajBSXdkiIm2wdXl3qRMV4L6z5DUwQ==
-Date: Wed, 12 Nov 2025 09:59:34 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Lee Jones <lee@kernel.org>
-Cc: kernel test robot <lkp@intel.com>, Aaro Koskinen <aaro.koskinen@iki.fi>,
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman
- <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
- <tony@atomide.com>, Shree Ramamoorthy <s-ramamoorthy@ti.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, oe-kbuild-all@lists.linux.dev, Andrew Davis
- <afd@ti.com>, Bajjuri Praneeth <praneeth@ti.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] mfd: tps65219: Implement LOCK register handling
- for TPS65214
-Message-ID: <20251112095934.41dfe0a3@kmaincent-XPS-13-7390>
-In-Reply-To: <20251110134221.GD1949330@google.com>
-References: <20251106-fix_tps65219-v2-1-a7d608c4272f@bootlin.com>
-	<202511070607.Il9q9meO-lkp@intel.com>
-	<20251110134221.GD1949330@google.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1762938084; c=relaxed/simple;
+	bh=SYKAUEMpWmFnGT4gIQZx0ei3ZRWX61yUgs/quaWsVwA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GCbOM6J7wokLiSJHshZe44j1SsUMlo7Guzvtdnvo6xUi5xgAoaAIFrBPnx/9XbcUuxocrNdKSMCOBOBMP6lbDjX8eytMsRJk/t5r3l50rYjXQ3g7QBBQh5J44UJK9oTDvhywos7p9/+JSS6z9weAGclzPA7UHjVzUGHAfL5W0RA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sA+Do/CI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D83C4CEF5;
+	Wed, 12 Nov 2025 09:01:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762938084;
+	bh=SYKAUEMpWmFnGT4gIQZx0ei3ZRWX61yUgs/quaWsVwA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sA+Do/CId3iKaUPBJqjbGQJVxRtDvozxF6MRb37goRwrmhHPkZmTX+w1BD/vh6u0l
+	 8wdBEwpJ8maGkFgP1webv7QG9uphCf6fVBFn9MENxMYj1t/cqt4GRWeHN3+a5ULjJC
+	 iSXcxJnEdgctJh1kWfG+ys9OTUTISIp5bNIsuL06F1jEzVLHQUD7Z4w13NVFkV9OpD
+	 7n/N3lnk3MbejNOibCgu8Rn4NYo93yQTzn6cJirbPkm4BJ+PbZwifesZK5UIGiU4VI
+	 ozeiNZlsgXXHZp98Zdi4Y050KFXdwBn9+f62tXOzXdVj7tBL7SyHaJRsiUfLngFolT
+	 4UdZR3xTBfI1w==
+Message-ID: <deb416cf-30e1-4080-9e40-cf1808b95d7f@kernel.org>
+Date: Wed, 12 Nov 2025 10:01:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: keystone: add missing items to
+ mboxes
+To: Anshul Dalal <anshuld@ti.com>, Nishanth Menon <nm@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
+References: <20251112-k3_syscon_add_boot_mailboxes-v2-0-aebc1e47b391@ti.com>
+ <20251112-k3_syscon_add_boot_mailboxes-v2-1-aebc1e47b391@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251112-k3_syscon_add_boot_mailboxes-v2-1-aebc1e47b391@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
 
-On Mon, 10 Nov 2025 13:42:21 +0000
-Lee Jones <lee@kernel.org> wrote:
+On 12/11/2025 09:30, Anshul Dalal wrote:
+> The mailboxes for the ti,sci node were not documented, this patch adds
+> the description for the two channel entries as per TI-SCI spec[1].
+> 
+> [1]:
+> https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x/sec_proxy.html
+> 
+> Signed-off-by: Anshul Dalal <anshuld@ti.com>
+> ---
+>  Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> index 25a2b42105e541cb3c8ad12a0dfec1af038fa907..182915c34fc1429fb627ac44c99c0c76fdf28e0f 100644
+> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> @@ -60,6 +60,12 @@ properties:
+>  
+>    mboxes:
+>      minItems: 2
 
-> On Fri, 07 Nov 2025, kernel test robot wrote:
->=20
-> > Hi Kory,
-> >=20
-> > kernel test robot noticed the following build warnings:
-> >=20
-> > [auto build test WARNING on 1c353dc8d962de652bc7ad2ba2e63f553331391c]
-> >=20
-> > url:
-> > https://github.com/intel-lab-lkp/linux/commits/Kory-Maincent-TI-com/mfd=
--tps65219-Implement-LOCK-register-handling-for-TPS65214/20251106-185551
-> > base:   1c353dc8d962de652bc7ad2ba2e63f553331391c patch link:
-> > https://lore.kernel.org/r/20251106-fix_tps65219-v2-1-a7d608c4272f%40boo=
-tlin.com
-> > patch subject: [PATCH v2 1/2] mfd: tps65219: Implement LOCK register
-> > handling for TPS65214 config: i386-buildonly-randconfig-003-20251107
-> > (https://download.01.org/0day-ci/archive/20251107/202511070607.Il9q9meO=
--lkp@intel.com/config)
-> > compiler: gcc-13 (Debian 13.3.0-16) 13.3.0 reproduce (this is a W=3D1 b=
-uild):
-> > (https://download.01.org/0day-ci/archive/20251107/202511070607.Il9q9meO=
--lkp@intel.com/reproduce)
-> >=20
-> > If you fix the issue in a separate patch/commit (i.e. not just a new
-> > version of the same patch/commit), kindly add following tags
-> > | Reported-by: kernel test robot <lkp@intel.com>
-> > | Closes:
-> > https://lore.kernel.org/oe-kbuild-all/202511070607.Il9q9meO-lkp@intel.c=
-om/
-> >=20
-> > All warnings (new ones prefixed by >>):
-> >=20
-> >    drivers/mfd/tps65219.c: In function 'tps65214_reg_write': =20
-> > >> drivers/mfd/tps65219.c:479:26: warning: variable 'tps' set but not u=
-sed
-> > >> [-Wunused-but-set-variable] =20
-> >      479 |         struct tps65219 *tps;
-> >          |                          ^~~
-> >=20
-> >=20
-> > vim +/tps +479 drivers/mfd/tps65219.c
-> >=20
-> >    475=09
-> >    476	static int tps65214_reg_write(void *context, unsigned int
-> > reg, unsigned int val) 477	{
-> >    478		struct i2c_client *i2c =3D context; =20
-> >  > 479		struct tps65219 *tps; =20
->=20
-> Please fix.
+That's wrong now.
 
-Yes, I will do it this week, I was waiting for few days in case of more
-reviews.
+> +    description: |
+> +      List of phandles to mailbox channels used for receiving and transmitting
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Drop, completely redundant. I don't understand why you added it.
+
+> +      data from and to the TI-SCI Controller.
+
+Best regards,
+Krzysztof
 
