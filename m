@@ -1,126 +1,144 @@
-Return-Path: <devicetree+bounces-237449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10A18C5122A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:35:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42794C51260
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:40:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93CDB3B6BC2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:32:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 33C174E1FD1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D763A2F3C32;
-	Wed, 12 Nov 2025 08:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBDB92F7ACD;
+	Wed, 12 Nov 2025 08:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q0FshDGY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PWf9MxE4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C292D1F4E;
-	Wed, 12 Nov 2025 08:32:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E792874F1;
+	Wed, 12 Nov 2025 08:40:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762936356; cv=none; b=N2sDXgiY1e0k4a/FNFjHwLQsxJ+J4AxHFJXU/uHg0Sln1e20O3D6qfXQu/mlMXMUgvgYzawGIxONT+iWNXSLIxMJW2rNTghfbPCUKNJnWScFWIMLQFq08ZmcGmX4O45WSmjdTkNqZDPdI9xUEC7A2520DPj3nO9DbkmT5GRw0OU=
+	t=1762936851; cv=none; b=kSZ1nVVSaEFtTeMStfMmjb1MbaJb/z6BIiLsHHRdgQG90Tel77dB8qCllkXFCWFkgSSdkAsl9de26+DL+WzuHQVYnaYxqNR/sD4I6G0eqN2s/hvxZN915/zaUl2RWsSooP65PLNrqvj9ZjocXxyrCMVfmSsdqim9QfzBYbDAe7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762936356; c=relaxed/simple;
-	bh=HLgjcXexC7pF9CiIspXb6LGzy7iOI12i9DXTENjQK1w=;
+	s=arc-20240116; t=1762936851; c=relaxed/simple;
+	bh=lcwxQu/soNAypJWH0CYGVdZaDZ7OuY35lRb3v2Avqvg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=add50/d6d3Sc3V5+xj0s6pW+uPxY+6lY/uSdQXeht5mlsgHFKyAOYTgcPgFzkoaRnCD8HXjmgWVopPv/RU5QsnlDJMn5+NDt67NUvpNbjEo+dhh2h4gEeICmd9tF7lK2ezSTbi5JTOCXmyFw1zngZ4AtuuJ95GazXCA7pMVQEVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q0FshDGY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99523C4CEF8;
-	Wed, 12 Nov 2025 08:32:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762936356;
-	bh=HLgjcXexC7pF9CiIspXb6LGzy7iOI12i9DXTENjQK1w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q0FshDGYRzjn07iHUHbVMBW8fPmDhBKmWCPzT00v75yPduJYGW2UmC2/VKp9vxj+7
-	 MnCplljpJw87Koy57fVoNRxcUGDoxMdUrXq2eIPT3n3Xqf/R9PBn5JQ0OM85yZBo8i
-	 9/EXi274/+HFzeskwFpZGIsDTbCg0iZWrNb+Gzzo8rTeuBMI/PGPn0+7QDMolXxGiy
-	 5dq0Mg/RA9jpB+No8NXN3jgCRg44e8sS/qBeu6E/+NjYI5QD+8DaI4gbLYCsXpl56z
-	 cHRpZRRNhIIIMv7kebKpg6Z6IxLEm7HJu2hy3xXrhThe6GwyTK2uAMh/+m1Q004QjA
-	 1g58dONx5oGKg==
-Date: Wed, 12 Nov 2025 09:32:33 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Roy Luo <royluo@google.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
-	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, 
-	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
-Message-ID: <20251112-logical-grebe-of-modernism-dcf83b@kuoka>
-References: <20251111130624.3069704-1-royluo@google.com>
- <20251111130624.3069704-2-royluo@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=X4Ad8uhKekz5Jt01Bb+I4+sTPTGHYawx2baFuaqwC1zU9UQLdcepc3HF/ID1GEDB0ybmPxNiLxD8Z0hAlkjTTxiJCltuEnHVpiVGA48A0I+kxyGLDqhdliUl5kD3cw042gVrU3SuekU641gznoJFKl2RQoR8EqIWxY8fYbi+qqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PWf9MxE4; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762936850; x=1794472850;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lcwxQu/soNAypJWH0CYGVdZaDZ7OuY35lRb3v2Avqvg=;
+  b=PWf9MxE4ecVK5wmGC6J6Ip80rcn0ShqohvP25Fbe6r5+c2TtsLTlRpcG
+   JE5jI630qdjX9Ebv7e3iYQyrvQ8mpnrF9mYBXuttlKAZ6nYzX3ndu2LtT
+   Gdy6lNZJs/psCsecXm3l6ssH0JVgoRzHet6JV18+Cq+BjxEaeu688l9fb
+   dXVzRbCPSOSNg81NwIq/wvgRvimlP2oSIuJPRLiZsDqvdDk1nmgIKUypJ
+   OIZuCbqjSKeh322WKEo4xTL4bTbxQfzgwsCauEpFcHepxCxHyaAjBrzA0
+   3vXEzgUZRgYyJbeOQfAUWroPy/7YQeShJFwA7nhe2QbGTm7Fx4brtapwf
+   g==;
+X-CSE-ConnectionGUID: LHDDXmWJRAy7IjLeX/e4ew==
+X-CSE-MsgGUID: RBbppXTaT6CpLMJkXehXaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11610"; a="65032298"
+X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; 
+   d="scan'208";a="65032298"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2025 00:40:49 -0800
+X-CSE-ConnectionGUID: N2bA1VYgQg2EALNKEfWvpw==
+X-CSE-MsgGUID: TV49G5t0RLaSKNHCJZ0mkw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,299,1754982000"; 
+   d="scan'208";a="189130986"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.214])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2025 00:40:47 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id B81B9121DDD;
+	Wed, 12 Nov 2025 10:40:44 +0200 (EET)
+Date: Wed, 12 Nov 2025 10:40:44 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Bryan O'Donoghue <bod@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] media: i2c: add Samsung S5KJN1 image sensor
+ device driver
+Message-ID: <aRRIDCJqjdI-zu1f@kekkonen.localdomain>
+References: <20251023025356.2421327-1-vladimir.zapolskiy@linaro.org>
+ <zGlVBFnnqOaXjobqCKcCVXYYwfZwwxelX8G9ocxVagSkLPFzqtDmjtLwg0mzjc4dcn845hPm_6UPjBNb6Eza2Q==@protonmail.internalid>
+ <20251023025356.2421327-3-vladimir.zapolskiy@linaro.org>
+ <aa8d9d2a-a778-49b9-ad66-05bf31065856@kernel.org>
+ <ff531ac2-26e0-48a4-a0f8-9e5c09dde05f@linaro.org>
+ <aRMA_kd87a7rL-v0@kekkonen.localdomain>
+ <d118401c-a238-4d76-ad85-7ff7449d606f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251111130624.3069704-2-royluo@google.com>
+In-Reply-To: <d118401c-a238-4d76-ad85-7ff7449d606f@linaro.org>
 
-On Tue, Nov 11, 2025 at 01:06:23PM +0000, Roy Luo wrote:
-> Document the device tree bindings for the DWC3 USB controller found in
-> Google Tensor SoCs, starting with the G5 generation.
+On Wed, Nov 12, 2025 at 04:39:49AM +0200, Vladimir Zapolskiy wrote:
+> Hi Sakari,
 > 
-> The Tensor G5 silicon represents a complete architectural departure from
-> previous generations (like gs101), including entirely new clock/reset
-> schemes, top-level wrapper and register interface. Consequently,
-> existing Samsung/Exynos DWC3 USB bindings are incompatible, necessitating
-> this new device tree binding.
+> On 11/11/25 11:25, Sakari Ailus wrote:
+> > Hi Vladimir,
+> > 
+> > On Sat, Nov 08, 2025 at 01:00:33PM +0200, Vladimir Zapolskiy wrote:
+> > > On 11/4/25 17:53, Bryan O'Donoghue wrote:
+> > > > On 23/10/2025 03:53, Vladimir Zapolskiy wrote:
+> > > > > +static int s5kjn1_check_hwcfg(struct s5kjn1 *s5kjn1)
+> > > > > +{
+> > > > > +	struct fwnode_handle *fwnode = dev_fwnode(s5kjn1->dev), *ep;
+> > > > > +	struct v4l2_fwnode_endpoint bus_cfg = {
+> > > > > +		.bus_type = V4L2_MBUS_CSI2_DPHY,
+> > > > > +	};
+> > > > > +	unsigned long freq_bitmap;
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	if (!fwnode)
+> > > > > +		return -ENODEV;
+> > > > > +
+> > > > > +	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
+> > > > > +	if (!ep)
+> > > > > +		return -EINVAL;
+> > > > > +
+> > > > > +	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
+> > > > > +	fwnode_handle_put(ep);
+> > > > > +	if (ret)
+> > > > > +		return ret;
+> > > > > +
+> > > > > +	if (bus_cfg.bus.mipi_csi2.num_data_lanes &&
+> > > > 
+> > > > Is !bus_cfg.bus.mipi_csi2.num_data_lanes a valid case ?
+> > > > 
+> > > 
+> > > Yes, it is a valid case, because a number of data lanes is unchangeable
+> > > and the property can be omitted like in many other similar cases.
+> > 
+> > In that case make 4 lanes the default.
 > 
-> The USB controller on Tensor G5 is based on Synopsys DWC3 IP and features
-> Dual-Role Device single port with hibernation support.
-> 
-> Signed-off-by: Roy Luo <royluo@google.com>
-> ---
->  .../bindings/usb/google,gs5-dwc3.yaml         | 140 ++++++++++++++++++
->  1 file changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml b/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
-> new file mode 100644
-> index 000000000000..bfaf6cbdfec3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2025, Google LLC
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/google,gs5-dwc3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Google Tensor Series (G5+) DWC3 USB SoC Controller
-> +
-> +maintainers:
-> +  - Roy Luo <royluo@google.com>
-> +
-> +description:
-> +  Describes the DWC3 USB controller block implemented on Google Tensor SoCs,
-> +  starting with the G5 generation. Based on Synopsys DWC3 IP, the controller
-> +  features Dual-Role Device single port with hibernation add-on.
-> +
-> +properties:
-> +  compatible:
-> +    const: google,gs5-dwc3
+> 4 lanes configuration is the only supported lane configuration mode
+> in the driver, so I believe there is nothing else to change. Perhaps
+> the confusion came from misreading the given dt binding documentation.
 
-Doug just said SoC is lga, not gs5, so you need both to align on that.
-Actually not only you both, but whoever else is upstreaming from Google.
+Right now you're not setting any default for the number of lanes for
+v4l2_fwnode_endpoint_alloc_parse(). Please add that in bus_cfg.
 
-It is not the community who should synchronize and organize way how
-Google works on their own stuff. Google should organize how Google works
-on your Google's stuff.
-
-Best regards,
-Krzysztof
-
+-- 
+Sakari Ailus
 
