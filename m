@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-237786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C0DCC54101
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:06:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64033C5410D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 20:08:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2846C3B03A8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:06:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A0058346DC2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 19:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A88B34B1AD;
-	Wed, 12 Nov 2025 19:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB9F34DB63;
+	Wed, 12 Nov 2025 19:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcFvJEfK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WEVCNybn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E1F33B961;
-	Wed, 12 Nov 2025 19:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3129334C808;
+	Wed, 12 Nov 2025 19:07:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762974407; cv=none; b=XV6W2cGLXQUF4q/sJ5p7SMYMwOvLyCZ11dKWFAR72ZQ7T8XaOn1EQ31kgyKCOp8XuIhznV1X9TcfHUIZVI4wui7M4O7yOMppjN9bMHBR9IMbNMgj4oce1o7jTcLbyWKkqCRuFPXzPtJlctTJBgfJslIVahcMGoJKvJbJyVTHdEc=
+	t=1762974476; cv=none; b=Eh46hqqfn5ZeudR2rmNCLsKmTk17iMHNk5O0HW5cLJxUhI1ug8Y6nrXAsiSbRR5mfhcZsHD0oiySQj+RGWoKxqRulwznzIRoJPQFX+mDsiXTlLtbeM6+3n3eyELZGmro/JDL4RlvXKm9YfyE3XtM08wgzfkyVgjg3HSkBFXLXs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762974407; c=relaxed/simple;
-	bh=GIbd6MD47NH11JySYSxBrFY7Iy0t51QXyCzM1GwsUlQ=;
+	s=arc-20240116; t=1762974476; c=relaxed/simple;
+	bh=4X5km6tMQI+rmQ+2RA+kgRbD/MaASgUWl21z9NvFxCc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ErM4EpN+biGzms9WRycEQSLfUhbQqlvAusGAKA5HA7JrluABUNcipBld2eiHVOcTNmg5PBdKZHKT3VKFt62OXfBle6sRXHHtFgAGaZK88Fq1eQr9ScA3njzcwvwM0Es4QjEJ3mzp//j/TdfFEHcxVziFxCTgtZKsWmz7VbQwrAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcFvJEfK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBAC9C113D0;
-	Wed, 12 Nov 2025 19:06:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q7xozPHM0m3fa4ooLrdt48ub8B2a/qTuXvKLmDpw37yTBlMHowsJc39Ehuw4uq4jj2i9keN5dPqkGiKFh1/Rb6vkovb4usAetXamff7SeZRXPIkH0ymnO85Q5kSDSxjXKdiY5Z/jGHK3pvyJ+CgqGF3bikaCR/Z6rO41oc43ahQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WEVCNybn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 580F6C4CEF8;
+	Wed, 12 Nov 2025 19:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762974406;
-	bh=GIbd6MD47NH11JySYSxBrFY7Iy0t51QXyCzM1GwsUlQ=;
+	s=k20201202; t=1762974475;
+	bh=4X5km6tMQI+rmQ+2RA+kgRbD/MaASgUWl21z9NvFxCc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WcFvJEfKxeJmLjevg1Z4Vyq2HsT8biL2rJ2rUzQzcvfvjuwb+MAWn5/n3UMo7hWvI
-	 Bo6LTOBVB6zWLmVICckx9PDu01TJxtFnWX+EsOnfpPRHKzT9rVQVuFVoVCrdwpDkn3
-	 /zxK2Rn0xycRpz8+MVGStA2WQcFSibvRY2h2wk1nb+QMywoo49n+8k4tNEoah99323
-	 8gjF4+3m1gpKbUgqlGbecIldltjyxLmEqluawnABK+9wTpJ075lUQTBBdJdqaTvMo7
-	 rRENs7vsPUoQSK6n6GPNSfyW1+tESPEzPJoSj4V789GLje7xNeoaVP9BBztfP8XnMt
-	 T4yvbHU7HMOjQ==
-Date: Wed, 12 Nov 2025 19:06:42 +0000
+	b=WEVCNybnc6t6289XVBYkcWqOoxpXqCnrLBLYLoiHlIbKyjkbGJommYxYZ4GvUKdzk
+	 RvCaaYP4cH5e7LLxqfEh/U5J3NbcNb9zsGx7irU6L2ggZu686KokOvrxociihCrdz5
+	 dJwld8Pz0SSqtx5kTdGzsQdfnbx8hipENl9Wi6lNZNvCXnCb9b5gngZtmYSqEKO6wj
+	 5nkefY3+3deZoLjCDjmW1duP1O9r17D6AOg4pER2uFLTODAnUbspPTpahmODQvVy32
+	 cdL9DSF+KFzEqfM/EGASoFTjqu4im0ljDP7j6qlpVZV6ov6xCd8GSzIZLOvBJkNhd/
+	 +2SZ5Fb6iN0MQ==
+Date: Wed, 12 Nov 2025 19:07:51 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: pca9540: add debounce
- timer configuration
-Message-ID: <20251112-battered-handful-35937a12aafe@spud>
-References: <20251112163311.720331-1-martijn.de.gouw@prodrive-technologies.com>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, michal.simek@amd.com,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	git@amd.com
+Subject: Re: [PATCH] dt-bindings: usb: dwc3-xilinx: Describe the reset
+ constraint for the versal platform
+Message-ID: <20251112-bagging-diameter-4ebab1f9ed45@spud>
+References: <20251112155430.1326426-1-radhey.shyam.pandey@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,87 +60,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="icvERwW864wMe76K"
+	protocol="application/pgp-signature"; boundary="92AFPMtx3g8andt7"
 Content-Disposition: inline
-In-Reply-To: <20251112163311.720331-1-martijn.de.gouw@prodrive-technologies.com>
+In-Reply-To: <20251112155430.1326426-1-radhey.shyam.pandey@amd.com>
 
 
---icvERwW864wMe76K
+--92AFPMtx3g8andt7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 12, 2025 at 05:33:08PM +0100, Martijn de Gouw wrote:
-> Make the different debounce timers configurable from the devicetree.
-> Depending on the board design, these have to be set different than the
-> default register values.
+On Wed, Nov 12, 2025 at 09:24:30PM +0530, Radhey Shyam Pandey wrote:
+> AMD Versal platform USB 2.0 IP controller receives one reset input from
+> the SoC controlled by the CRL.RST_USB [RESET] register so accordingly
+> describe reset constraints.
 >=20
-> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 > ---
->  .../regulator/nxp,pca9450-regulator.yaml      | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
+>  .../devicetree/bindings/usb/dwc3-xilinx.yaml  | 43 +++++++++++++++----
+>  1 file changed, 34 insertions(+), 9 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regu=
-lator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regula=
-tor.yaml
-> index a5486c36830f0..3d47390f13016 100644
-> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.y=
-aml
-> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.y=
-aml
-> @@ -124,6 +124,30 @@ properties:
->        When WDOG_B signal is asserted a warm reset will be done instead o=
-f cold
->        reset.
+> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Doc=
+umentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> index 36f5c644d959..cd0cc9da242f 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> @@ -50,17 +50,22 @@ properties:
+>      description:
+>        A list of phandles for resets listed in reset-names.
 > =20
-> +  nxp,pmic_on_req-on-debounce-us:
-> +    enum: [ 120, 20000, 100000, 750000 ]
-> +    description: Debounce time for PMIC_ON_REQ high.
+> -    items:
+> -      - description: USB core reset
+> -      - description: USB hibernation reset
+> -      - description: USB APB reset
+> +    oneOf:
+> +      - items:
+> +          - description: USB controller reset
+> +      - items:
+> +          - description: USB core reset
+> +          - description: USB hibernation reset
+> +          - description: USB APB reset
+> =20
+>    reset-names:
+> -    items:
+> -      - const: usb_crst
+> -      - const: usb_hibrst
+> -      - const: usb_apbrst
+> -
+> +    oneOf:
+> +      - items:
+> +          - const: usb_crst
 
-I left some comments on v1, one a question and one a request for a
-change. Please go take a look. Since you'll need a v3
-pw-bot: changes-requested
-(Please also give a bit more time between revisions for people to go
-through their mail queues)
+Why do we need all this oneOf stuff if both have the same first reset?
+Can't you just set minItems: 1?
 
+> +      - items:
+> +          - const: usb_crst
+> +          - const: usb_hibrst
+> +          - const: usb_apbrst
+>    phys:
+>      minItems: 1
+>      maxItems: 2
+> @@ -95,6 +100,26 @@ required:
+>    - resets
+>    - reset-names
+> =20
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,versal-dwc3
+> +    then:
+> +      properties:
+> +        resets:
+> +          maxItems: 1
+> +        reset-names:
+> +          maxItems: 1
+> +    else:
+> +      properties:
+> +        resets:
+> +          minItems: 3
+> +        reset-names:
+> +          minItems: 3
 > +
-> +  nxp,pmic_on_req-off-debounce-us:
-> +    enum: [ 120, 2000 ]
-> +    description: Debounce time for PMIC_ON_REQ is asserted low
-> +
-> +  nxp,power-on-step-ms:
-> +    enum: [ 1, 2, 4, 8]
-> +    description: Time step configuration during power on sequence
-> +
-> +  nxp,power-down-step-ms:
-> +    enum: [ 2, 4, 8, 16 ]
-> +    description: Time step configuration during power down sequence
-> +
-> +  nxp,restart-ms:
-> +    enum: [ 250, 500 ]
-> +    description: Time to stay off regulators during Cold reset
-> +
-> +  npx,pmic_rst_b-debounce-ms:
-> +    enum: [ 10, 50, 100, 500, 1000, 2000, 4000, 8000 ]
-> +    description: PMIC_RST_B debounce time
-> +
->  required:
->    - compatible
->    - reg
+>  additionalProperties: false
+> =20
+>  examples:
+>=20
+> base-commit: b179ce312bafcb8c68dc718e015aee79b7939ff0
 > --=20
-> 2.39.2
+> 2.34.1
 >=20
 
---icvERwW864wMe76K
+--92AFPMtx3g8andt7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTawgAKCRB4tDGHoIJi
-0r3aAP0WQQCt5EChIE1S/Okwx+DLZQ9g11O0ui3OlzppLB3M1AEAt2zDCRrcClvf
-AGye5S2AfE1wQIb+4wC5fyyy99ha/wc=
-=boMk
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRTbBwAKCRB4tDGHoIJi
+0jX7AQCAHa54UizRxsLeHp9VJzAq+vFdLs6YxvkaigFx6sowxAEA+An2kZel0I/A
+Ftl+wdLtzBFFGVzZh6cSv2qGpvIuVAU=
+=Er4U
 -----END PGP SIGNATURE-----
 
---icvERwW864wMe76K--
+--92AFPMtx3g8andt7--
 
