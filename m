@@ -1,134 +1,126 @@
-Return-Path: <devicetree+bounces-237428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51876C51085
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:59:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB11C510B8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:06:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3B5AC4E4890
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 07:59:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A1001889222
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 138C32F25F8;
-	Wed, 12 Nov 2025 07:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DDCC2D97B5;
+	Wed, 12 Nov 2025 08:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KK7zbsj5"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XCCBJQli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7D52F1FCF;
-	Wed, 12 Nov 2025 07:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34B329B793;
+	Wed, 12 Nov 2025 08:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762934392; cv=none; b=T7JqSaProzJ+jIk4VfFpzbmAZnCC/2BWzBcC5DoLNoToKykhAk/GapC9rhYE0O8fIUBqBI9UR3/yNoxiF9iBKrWIXucAGF+pU65QZpBvyEKyjQlp4+gU+T8gZJS9y/+0HnjsQov/+kFEwuxD7xbUQzM5ad0FU8iS+besmxqiPmQ=
+	t=1762934706; cv=none; b=tdUBuK7IHf6LSgRRMmxr4iEx72ZN0IxWdnrmjRZsit42YjmGsO0m0PRiWo1wgedfjZQ9/WFPRhEKRcJVqTZdbTsy3rWHekuGdixq1CCHc5DhXHQNR36ulp+0+iSNIA7rvcOrAKDNEQPaRT7Wkdbkwh4PPWmhyGxIEWuHtZAiHa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762934392; c=relaxed/simple;
-	bh=8akT4ONHrb64kEpomTVQoIZ4ml3bBSkkAHISRhlCNw8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TQOLfDj4xq0OYs0RZgWsf7GSvEIMWsFOyJhA8oG9F8sS1T1zov44Zo/hPBcycnQ5YbyMZl4MAmrAxgDOKivfSyd+OU1dlW2UFmDwvxqZ1FoONbk/gYenBFTPdhPkTco8Yhq8uklSzdm4sLdtl5BboqbizOfiv9ElRxhEzUldz5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KK7zbsj5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 752BBC16AAE;
-	Wed, 12 Nov 2025 07:59:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762934391;
-	bh=8akT4ONHrb64kEpomTVQoIZ4ml3bBSkkAHISRhlCNw8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KK7zbsj5Z0zIlqpCf3ig03tzzo5aDho0FdA6Jh8r9UqeVB64YKFrEcENBmYHPUfDj
-	 LpCZLoMQwXhuiVo68hhc/iEd7o+aQBun6Dp47cZX5TtClU6j/i2dPV1/ODxZrKe1oW
-	 hWbzh2VGRJYM4Ui6/fyN1OUqHs1fa3COoLhsu7ZMIoMxENAhrPtBCcSPewgpHQN3IC
-	 y5qSFS0pYdnxqC0OjmM3EegXcnGTcHGyd+6Rhy1Rk8FF/Bys8HJGBYRbVFD/7eoYcy
-	 RD2xXuQqC46jJoBdND9y3TjWuAIAWv/mm8EakQQ0u44SzE0HgC//5GH95dXAUlQRFV
-	 Qb9VNAmPaUFng==
-Message-ID: <3e99dcf8-7a8d-42e9-9d29-f05542df1fa4@kernel.org>
-Date: Wed, 12 Nov 2025 08:59:45 +0100
+	s=arc-20240116; t=1762934706; c=relaxed/simple;
+	bh=7fgngQWE5JqhzDwfazakRBCRmnVFrLFlRIkASUf9MlU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fJhLTMS/YA09yzUNsvPgV8fzo1GbX6NZBUxvme2I50U1jpCE1Ya1r6YC3Yx2iFGfXzYrIKZg36ZbFuKDG+1JEyO8Pom3X/YON2Xui8tiI9jUvZOJ8AVRWj3rrH1Lj8h+O1NbtYDBDgZ2SpxCpB3n1GsOyfTKqZCrBv/Zqe37mQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=XCCBJQli; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1762934705; x=1794470705;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7fgngQWE5JqhzDwfazakRBCRmnVFrLFlRIkASUf9MlU=;
+  b=XCCBJQlicHH/Xo0eeuUcdT2stoJ2arQZpOwtU33uH6NKOLfomNjZHx+1
+   zLP8EQzUK3Z5fnJ9xJN1ZkcsRy3hTCwtrK46MAjNvcZlVaImyLIvDza6Y
+   /q8KpEsArBbVU4KmkZQ9g72ngIWfLQ2/VFYBISiVZ3pwDlU57me961/9S
+   Cx7uxgF2aO6klUn7qmTyLhfaa9h09z8jlM6oSpVSggTpNavaWSGUbGAql
+   Uj+p+yfa/ftUr0TCjusdT9qhU0Wu7WKEm9+TPxBPSheSwwSS6wZU5rBqt
+   +ItPAtxA1ZpRsU6bu3r6lxVUZ8opVXyGRxHyWig5gbmb9M4odtwFYsGbq
+   g==;
+X-CSE-ConnectionGUID: O+7tn57RR6yiVzrz+41PbQ==
+X-CSE-MsgGUID: /JM4zLgETfazU5PP2MMZiA==
+X-IronPort-AV: E=Sophos;i="6.19,298,1754982000"; 
+   d="scan'208";a="49497723"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Nov 2025 01:05:02 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 12 Nov 2025 01:04:07 -0700
+Received: from localhost (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Wed, 12 Nov 2025 01:04:07 -0700
+Date: Wed, 12 Nov 2025 09:02:35 +0100
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, <vkoul@kernel.org>,
+	<kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: lan966x: Add optional
+ microchip,sx-tx/rx-inverted
+Message-ID: <20251112080235.c5iinfnketsunefy@DEN-DL-M31836.microchip.com>
+References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
+ <20251110110536.2596490-3-horatiu.vultur@microchip.com>
+ <20251110-unwound-award-a11d69b9da4f@spud>
+ <20251111095831.lp4kvdfcahtwgrqc@DEN-DL-M31836.microchip.com>
+ <58b0d712-48a4-4490-a63f-404716844557@kernel.org>
+ <20251111-ploy-dispersal-164ae403df4d@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: serial: snps-dw-apb-uart: Add
- "google,lga-uart"
-To: Douglas Anderson <dianders@chromium.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: linux-samsung-soc@vger.kernel.org, Roy Luo <royluo@google.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Chen-Yu Tsai <wenst@chromium.org>, Julius Werner <jwerner@chromium.org>,
- William McVicker <willmcvicker@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org
-References: <20251111192422.4180216-1-dianders@chromium.org>
- <20251111112158.2.I040412d80bc262f213444aa6f6ec4f0334315a67@changeid>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251111112158.2.I040412d80bc262f213444aa6f6ec4f0334315a67@changeid>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20251111-ploy-dispersal-164ae403df4d@spud>
 
-On 11/11/2025 20:22, Douglas Anderson wrote:
-> The Google Tensor G5 SoC (known as "laguna" and canonically written in
-> code as "lga") has a UART based on Designware IP. The UART appears to
-> work reasonably well, at least for serial console, with the existing
-> driver in Linux. Add a compatible for this UART based on the canonical
-> "lga" name for this SoC with a fallback to the existing
-> "snps,dw-apb-uart".
+The 11/11/2025 17:39, Conor Dooley wrote:
+> On Tue, Nov 11, 2025 at 11:06:02AM +0100, Krzysztof Kozlowski wrote:
+> > On 11/11/2025 10:58, Horatiu Vultur wrote:
+> > > The 11/10/2025 18:43, Conor Dooley wrote:
+> > > 
+> > > Hi Conor,
+> > > 
+> > >> On Mon, Nov 10, 2025 at 12:05:36PM +0100, Horatiu Vultur wrote:
+> > >>> This allows to invert the N and P signals of the RX and TX Serdes
+> > >>> signals. This option allows the board designer to trace their signals
+> > >>> easier on the boards.
+> > >>
+> > >> Why can't this just be done in software, debugfs or something like that?
+> > >> Maybe it's just your description is poor, but sounds like the intention
+> > >> here is to just switch things around for debug purposes.
+> > > 
+> > > I don't think it should be done through debugfs. As this describes the
+> > > board layout and I don't think someone will want to change it at
+> > > runtime to see how things behave. So maybe the description is poor.
+> > 
+> > You said it is purely for hardware designer to trace signals, so sorry,
+> > but that's not DTs purpose.
 > 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+> If it is not purely some sort of debug helper, then please explain
+> better in your commit message.
+
+Yes, I will do so because I don't see how this is a debug helper
+functionality. I see it as changing the polarity of some pins and there
+are few examples in the devicetree bindings where pins change the
+polarity. Why I see it as changing the polarity is because the
+N(negative) will become P(positive) and the P(positive) will become the
+N(negative), so we just invert the signals.
+
+> pw-bot: changes-requested
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Best regards,
-Krzysztof
+-- 
+/Horatiu
 
