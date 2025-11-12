@@ -1,167 +1,139 @@
-Return-Path: <devicetree+bounces-237452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1BC2C512C6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:48:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1035C512FC
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:50:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CFE8188EDC4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:47:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E365189DDD2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 08:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 573112EE5F4;
-	Wed, 12 Nov 2025 08:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC2052FD7DA;
+	Wed, 12 Nov 2025 08:49:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6061F2FCC12
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4327E2FC019
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 08:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762937241; cv=none; b=KTygeOoMMcmEFqWdF8/Kbv9s9jxyLmOOBNBQl+3DIUHa8BWu/ytTTWzx9awwJjW1XJQ0u7T7x7nfJiT+AOzcf5dD3dyCfPlA8gF69Blp668AgJN2pHiCOT8UL77LaZU06mp/TkFlcj5DNqdzEMdfmNlPlNbZ6TvRFUJfMdxeAL0=
+	t=1762937362; cv=none; b=QON2Yr1+Ac034VWqIG24DJogsjbs4V1EUjV/ddvOljw3fU4iG8Kc51wnrb7u1lHOkl0XH/eyDKd7sWwlHlMBBhhAiafvBhjBXL0ZUEa1RxIJ1jFmmiRIHn7W1rR+OTMuXK/MNxUH8Q1UdkDxFsZ2RDwe0CZy0MAVDTISBCvo0S8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762937241; c=relaxed/simple;
-	bh=4jeqUNmPOMwzZ/GkaScD0IOS4S+tWByBRy2rtt22bj4=;
+	s=arc-20240116; t=1762937362; c=relaxed/simple;
+	bh=7Y0NcEO50k+Lkg2TaAhT6H2aLX/ROBKDfEWsp+yfC9k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FZKga6cdWeG4MBF+zeXnffuIindOERbRfqOJ3XgrYLeDhy8BGpZrVmjfIUWyI0TwEPonY67q0TpbRxUPCKc7BXqKfPTkXRZxZkWHBPdiklv5EKtmb9imLJQWU5LCq2P57XjTzBb9QFZ1sAKPHPRD6et43PgJKiWy9JWVZ8mNHVs=
+	 Content-Type:Content-Disposition:In-Reply-To; b=AjuhnRWBVyUbLY/eqbFX5OvgMRhy6YPrwmWyA2P47RAtB9kIeOh/dBeaKGcnnzPvvKadQCoWSinYy2HxJ2Wzms1HstY+O9SWufqLtVgzefzxAE3euwDEDQ7AgldhHVFXccHIPMDcBcqHSN4fSs+TWoA3GVfqhsu5YpU9y1Jy1/4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vJ6VZ-0002Hl-IX; Wed, 12 Nov 2025 09:47:17 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vJ6XM-0002Yv-Jz; Wed, 12 Nov 2025 09:49:08 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vJ6VZ-0003IF-1D;
-	Wed, 12 Nov 2025 09:47:17 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vJ6VZ-00GPvd-0q;
-	Wed, 12 Nov 2025 09:47:17 +0100
-Date: Wed, 12 Nov 2025 09:47:17 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/2] Add support for Skov Rev.C HDMI variant
-Message-ID: <20251112084717.ea7fchu7jcz6dzsi@pengutronix.de>
-References: <20251107-v6-18-skov-revc-hdmi-v1-0-595549e5b496@pengutronix.de>
- <176278493286.154609.17548604407386943510.robh@kernel.org>
- <20251110145256.pxgfw3zu7wocguqs@pengutronix.de>
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vJ6XL-0003Ic-24;
+	Wed, 12 Nov 2025 09:49:07 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 60C0B49D932;
+	Wed, 12 Nov 2025 08:49:07 +0000 (UTC)
+Date: Wed, 12 Nov 2025 09:49:07 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Cc: mani@kernel.org, thomas.kopp@microchip.com, mailhol.vincent@wanadoo.fr, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, brgl@bgdev.pl, linux-can@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mukesh.savaliya@oss.qualcomm.com, 
+	anup.kulkarni@oss.qualcomm.com
+Subject: Re: [PATCH v6 0/6] can: mcp251xfd: add gpio functionality
+Message-ID: <20251112-misty-functional-tench-b87da7-mkl@pengutronix.de>
+References: <20251001091006.4003841-1-viken.dadhaniya@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="x44lo3g2fuc72oal"
 Content-Disposition: inline
-In-Reply-To: <20251110145256.pxgfw3zu7wocguqs@pengutronix.de>
+In-Reply-To: <20251001091006.4003841-1-viken.dadhaniya@oss.qualcomm.com>
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Mail-From: mkl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 25-11-10, Marco Felsch wrote:
-> On 25-11-10, Rob Herring (Arm) wrote:
-> > 
-> > On Fri, 07 Nov 2025 15:49:50 +0100, Marco Felsch wrote:
-> > > Hi,
-> > > 
-> > > this small patchset adds the support for the Rev.C HDMI board variant.
-> > > 
-> > > Regards,
-> > >   Marco
-> > > 
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > ---
-> > > Marco Felsch (2):
-> > >       dt-bindings: arm: fsl: add Skov Rev.C HDMI support
-> > >       arm64: dts: imx8mp-skov: add Rev.C HDMI support
-> > > 
-> > >  Documentation/devicetree/bindings/arm/fsl.yaml          | 1 +
-> > >  arch/arm64/boot/dts/freescale/Makefile                  | 1 +
-> > >  arch/arm64/boot/dts/freescale/imx8mp-skov-revc-hdmi.dts | 8 ++++++++
-> > >  3 files changed, 10 insertions(+)
-> > > ---
-> > > base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
-> > > change-id: 20251107-v6-18-skov-revc-hdmi-1e8d4bbac26a
-> > > 
-> > > Best regards,
-> > > --
-> > > Marco Felsch <m.felsch@pengutronix.de>
-> > > 
-> > > 
-> > > 
-> > 
-> > 
-> > My bot found new DTB warnings on the .dts files added or changed in this
-> > series.
-> > 
-> > Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> > are fixed by another series. Ultimately, it is up to the platform
-> > maintainer whether these warnings are acceptable or not. No need to reply
-> > unless the platform maintainer has comments.
-> > 
-> > If you already ran DT checks and didn't see these error(s), then
-> > make sure dt-schema is up to date:
-> > 
-> >   pip3 install dtschema --upgrade
-> > 
-> > 
-> > This patch series was applied (using b4) to base:
-> >  Base: 3a8660878839faadb4f1a6dd72c3179c1df56787 (use --merge-base to override)
-> > 
-> > If this is not the correct base, please add 'base-commit' tag
-> > (or use b4 which does this automatically)
-> > 
-> > New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20251107-v6-18-skov-revc-hdmi-v1-0-595549e5b496@pengutronix.de:
-> > 
-> > arch/arm64/boot/dts/freescale/imx8mp-skov-revc-hdmi.dtb: switch@5f (microchip,ksz9893): pinctrl-names: ['default'] is too short
-> > 	from schema $id: http://devicetree.org/schemas/net/dsa/microchip,ksz.yaml
-> 
-> This may be a valid issue, but it's rather an additional patch worth it
-> since this patchset doesn't touch the imx8mp-skov-reva.dtsi include at
-> all.
 
-FTR: If I get the binding right, the regression is caused by commit
-https://lore.kernel.org/all/20250918-ksz-strap-pins-v3-2-16662e881728@bootlin.com/.
+--x44lo3g2fuc72oal
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 0/6] can: mcp251xfd: add gpio functionality
+MIME-Version: 1.0
 
-Since this commit, pinctrl-names always need to have the "default" and
-"reset" value, which is wrong.
+On 01.10.2025 14:40:00, Viken Dadhaniya wrote:
+> Hi all,
+>
+> The mcp251xfd allows two pins to be configured as GPIOs. This series
+> adds support for this feature.
+>
+> The GPIO functionality is controlled with the IOCON register which has
+> an erratum.
+>
+> Patch 1 from https://lore.kernel.org/linux-can/20240429-mcp251xfd-runtime=
+_pm-v1-3-c26a93a66544@pengutronix.de/
+> Patch 2 refactor of no-crc functions to prepare workaround for non-crc wr=
+ites
+> Patch 3 is the fix/workaround for the aforementioned erratum
+> Patch 4 only configure pin1 for rx-int
+> Patch 5 adds the gpio support
+> Patch 6 updates dt-binding
+>
+> As per Marc's comment on below patch, we aim to get this series into
+> linux-next since the functionality is essential for CAN on the RB3 Gen2
+> board. As progress has stalled, Take this series forward with minor code
+> adjustments. Include a Tested-by tag to reflect validation performed on t=
+he
+> target hardware.
+>
+> https://lore.kernel.org/all/20240806-industrious-augmented-crane-44239a-m=
+kl@pengutronix.de/
 
-Regards,
-  Marco
+Applied to linux-can-next.
 
+Thanks,
+Marc
 
-> 
-> Regards, Marco
-> 
-> > 
-> > 
-> > 
-> > 
-> > 
-> > 
-> 
-> -- #gernperDu #CallMeByMyFirstName
-> 
-> Pengutronix e.K.                           |
-> | Steuerwalder Str. 21                       |
-> https://www.pengutronix.de/ | 31137 Hildesheim, Germany
-> | Phone: +49-5121-206917-0    | Amtsgericht Hildesheim, HRA 2686
-> | Fax:   +49-5121-206917-9    |
-> 
-> 
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--x44lo3g2fuc72oal
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmkUSgAACgkQDHRl3/mQ
+kZwz0QgAipcjcGPzwKwxFbq5c4IoWpsPnYAFL+EOEL7hSL3OyHweBpeMW3tl7Lex
+NExeojiPB7ji26RDdMv6ZWeCsSo8z8zjGZSHo881gorLtT/RZXLEM2SR+HV0oCym
+ouEWEgVLMwAaN/EsB3OUiKP7MvrhBGdCWvZvHkwjxLaoB9BPaR9LHX1SgUfad6jb
+1UMT4Tmn9Nl26pZDubdl1ybVG9NOpQOlVXu4ne7p3OioVGWUXlaZhJmGL1pybMR0
+EHS9f7/h851NBzM+IdfF3pejmBU+22wZcFOrN9S8X4/td31HtVR9SLid5Yma/c85
+Ncye9dZMUL577iAde/B8uRWivo479g==
+=mfrj
+-----END PGP SIGNATURE-----
+
+--x44lo3g2fuc72oal--
 
