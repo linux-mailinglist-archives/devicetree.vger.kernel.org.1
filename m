@@ -1,154 +1,318 @@
-Return-Path: <devicetree+bounces-237488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78963C5171C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:47:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F60C51821
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:57:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 25335348808
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:47:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BB6854FC289
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:49:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F398A2EA732;
-	Wed, 12 Nov 2025 09:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECAF3002A3;
+	Wed, 12 Nov 2025 09:49:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="GQr9aP7O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PTz8vIdx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638862F998D;
-	Wed, 12 Nov 2025 09:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811862FFFA5;
+	Wed, 12 Nov 2025 09:49:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762940867; cv=none; b=bGeCZypuQ8Y9N9mbjGYvGi+Nd6ZvHw08fafdNDNpsdjhZIllfX+q0Aj/Gq3RyNbZpeWY5yH2B0reWYiDwpiY16/ss9VBrlUgmimsV7nBP6XWkO5uZ0MGoJpSeVSXwiaGibWFEHAHaF59FK8m6esY4bCXjMxImiiz7Z5a+ix3u90=
+	t=1762940943; cv=none; b=PgUiXbuD1wiXiZwGzzVecy1giRPBVQqVprWtWCzg2neDBUqrUlRsvqnCVjpkM2Wkqu83lQGLzCfw7y6qHCQDsLyYaLjaqjfSCPMeSKRtlHzPYQGzWssQ730FFRMELd0FnBzAckbPNn/vPpJCPb39V3uxhauNijoREHeb07++2cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762940867; c=relaxed/simple;
-	bh=uQlw9n9vkNkHMlNxgHtHye18JiC1YKtz5ZIUPvK5eWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IMhEtj44p0IzmkGnckCMOhT1ugTk+6SCJ3N33S041s0GXq/9LwkQea7PfwkYqAE621/rgjil8f3V1d75GuggMGJcQymCobokuDUKUsvruACw2+edBN3YdAa1EMn1dR1O8ky/P2PSapltKGbuMuPZQs6pZOSEqrJZzYhp4NmDg4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=GQr9aP7O; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 64C831F928;
-	Wed, 12 Nov 2025 10:47:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1762940862;
-	bh=3SYq7/Ls6CuDLQxN3kb3YD34nt8HriJZ18tYljiOVG0=; h=From:To:Subject;
-	b=GQr9aP7OU/Icb3c2EW7UG5FUGaeEeJDpVyVK/yTK8xPtVNzsm8ZfrO4M1hRFKIzAT
-	 hd+6FSD0JKBfSJsSZykP2Q6MTlsGvunfDDio/ZKsoZf5B7cZfGZy3ttOtKxOsboYHM
-	 sMqAmEMz2KOzP8/lwP3r3nopCCBi+CqWKj2b54TlFiawFCboQd/AgDWiY6RYRsvx9d
-	 ILlNnLI75q2gv8Rbg6IsjYaLftjw+cagpSLmyTJl7mPz1LXinEwTW+8P5DjZf62RFm
-	 JNXxLl1xrzRXEF0FMm2hP0yStcly3emOSlHhA95pyjIHBC+U8PJ/5UGW3o6q1MN8sM
-	 4qdbEHAQJe4rA==
-Date: Wed, 12 Nov 2025 10:47:37 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"Kirill A. Shutemov" <kas@kernel.org>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	Rick Edgecombe <rick.p.edgecombe@intel.com>,
-	Max Krummenacher <max.krummenacher@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	Vitor Soares <vitor.soares@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: add Toradex SMARC iMX95
-Message-ID: <20251112094737.GA5126@francesco-nb>
-References: <20251111151618.70132-1-francesco@dolcini.it>
- <20251111151618.70132-3-francesco@dolcini.it>
- <aRNeMJWsCTRO3j6X@lizhi-Precision-Tower-5810>
- <aRN562k3NXCMghEl@gaggiata.pivistrello.it>
+	s=arc-20240116; t=1762940943; c=relaxed/simple;
+	bh=cv+A0Rv4b6lrzkLMP+XQea/RkP4alO9eM9auJHAeB7k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UVdLpPMEfLiyeNP9nh2duVzP/AHdn8AzuK+3lTVmkQ0JwX5CJ+L+bNccG2qBMLV8y1zgn7SmuEqYulB68bjKXY+IEixJqu0WdMDydgamiQw7Dg6WlNdIkL2XJL3zTzPf+kjGEnsUMwbeNxEpvzka6qWJHNAy3eDGaPIKGmFCl8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PTz8vIdx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A21C8C4CEF8;
+	Wed, 12 Nov 2025 09:48:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762940943;
+	bh=cv+A0Rv4b6lrzkLMP+XQea/RkP4alO9eM9auJHAeB7k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PTz8vIdxtSj3/VXZCWtGx5HxaUpBY+G/6h1LPqn7seq3v0wAI67GLIMDM967O/6re
+	 ex77pnTeevTT9PlHJwahNhiORDJ6SWtyvatWksBi2jd1TQD+ODzBU6/ILy6dC3sc5Y
+	 oAr/mwwxkt12d3lgDSMOlwMKoY30EqNxtsBS9h48sYdvN9P0XhkNdV2SI/nkBZIzJE
+	 Btp6k4bdwaHSY7AUexNzZS7BxL7KsmB79uETuIefoifN/Dli3p7QOXrcS+PRUGechV
+	 YXyCHuSSAfjlPesSTL9P2wxlSWmdoROX/iwB4myGfPQvLWyn57Ya48PdQvVGmynML0
+	 MLMXq0baf3N1g==
+Message-ID: <312ca473-77a6-4b95-b558-bb121294fbc9@kernel.org>
+Date: Wed, 12 Nov 2025 10:48:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: google: Add initial dts for frankel,
+ blazer, and mustang
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Douglas Anderson <dianders@chromium.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org,
+ Roy Luo <royluo@google.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Julius Werner <jwerner@chromium.org>,
+ William McVicker <willmcvicker@google.com>, linux-kernel@vger.kernel.org
+References: <20251111192422.4180216-1-dianders@chromium.org>
+ <20251111112158.4.I5032910018cdd7d6be7aea78870d04c0dc381d6e@changeid>
+ <40e67c6d-2430-483b-b4b1-0220ffbd6418@kernel.org>
+ <CAGXv+5Gx+skrUR3PXt=RSL8YyKZYeQCkJ-3qW9wtrHrr9aqWAg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAGXv+5Gx+skrUR3PXt=RSL8YyKZYeQCkJ-3qW9wtrHrr9aqWAg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aRN562k3NXCMghEl@gaggiata.pivistrello.it>
 
-On Tue, Nov 11, 2025 at 07:01:15PM +0100, Francesco Dolcini wrote:
-> Hello Frank,
+On 12/11/2025 10:35, Chen-Yu Tsai wrote:
+> On Wed, Nov 12, 2025 at 4:14â€¯PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 11/11/2025 20:22, Douglas Anderson wrote:
+>>> Add barebones device trees for frankel (Pixel 10), blazer (Pixel 10
+>>> Pro), and mustang (Pixel 10 Pro XL). These device trees are enough to
+>>> boot to a serial prompt using an initramfs.
+>>>
+>>> Many things can be noted about these device trees:
+>>>
+>>> 1. They are organized as "dts" files for the main SoC and "dtso"
+>>>    overlays for the boards. There is discussion about this in the
+>>>    bindings patch ("dt-bindings: arm: google: Add bindings for
+>>>    frankel/blazer/mustang").
+>>> 2. They won't boot with the currently shipping bootloader. The current
+>>>    bootloader hardcodes several paths to nodes that it wants to update
+>>>    and considers it a fatal error if it can't find these nodes.
+>>>    Interested parties will need to wait for fixes to land and a new
+>>>    bootloader to be rolled out before attempting to use these.
+>>> 3. They only add one revision (MP1) of each of frankel, blazer, and
+>>>    mustang. With this simple barebones device tree, there doesn't
+>>>    appear to be any difference between the revisions. More revisions
+>>>    will be added as needed in the future. The heuristics in the
+>>>    bootloader will pick the MP1 device tree if there are not any
+>>>    better matches.
+>>> 4. They only add the dts for the B0 SoC for now. The A0 SoC support
+>>>    can be added later if we find the need.
+>>> 5. Even newer versions of the bootloader will still error out if they
+>>>    don't find a UFS node to add calibration data to. Until UFS is
+>>>    supported, we provide a bogus UFS node for the bootloader. While
+>>>    the bootloader could be changed, there is no long-term benefit
+>>>    since eventually the device tree will have a UFS node.
+>>> 6. They purposely choose to use the full 64-bit address and size cells
+>>>    for the root node and the `soc@0` node. Although I haven't tested
+>>>    the need for this, I presume the arguments made in commit
+>>>    bede7d2dc8f3 ("arm64: dts: qcom: sdm845: Increase address and size
+>>>    cells for soc") would apply here.
+>>> 7. Though it looks as if the UART is never enabled, the bootloader
+>>>    knows to enable the UART when the console is turned on. Baud rate
+>>>    is configurable in the bootloader so is never hardcoded in the
+>>>    device tree.
+>>>
+>>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>>> ---
+>>> To avoid fragmenting the discussion, IMO:
+>>> * Let's have the discussion about using the "dts" for SoC and the
+>>>   "dtso" for the boards in response to the bindings (patch #1).
+>>
+>> That's discussion here, bindings are irrelevant to this.
+>>
+>>> * If we want to have a discussion about putting "board-id" and
+>>>   "model-id" at the root of the board overlays, we can have it
+>>>   here. I'll preemptively note that the "board-id" and "model-id"
+>>>   won't show up in the final combined device tree and they are just
+>>>   used by the tool (mkdtimg). We could change mkdtimg to parse the
+>>>   "compatible" strings of the overlays files (since I've put the IDs
+>>>   there too), but official the docs [1] seem to indicate that
+>>>   top-level properties like this are OK.
+>>>
+>>> In order for these device trees to pass validation without warnings,
+>>> it's assumed you have my dtc patches:
+>>> * https://lore.kernel.org/r/20251110204529.2838248-1-dianders@chromium.org
+>>> * https://lore.kernel.org/r/20251110204529.2838248-2-dianders@chromium.org
+>>>
+>>> [1] https://git.kernel.org/pub/scm/utils/dtc/dtc.git/tree/Documentation/dt-object-internal.txt?h=main
+>>>
+>>>  arch/arm64/boot/dts/google/Makefile           |   9 +
+>>>  arch/arm64/boot/dts/google/lga-b0.dts         | 391 ++++++++++++++++++
+>>>  .../arm64/boot/dts/google/lga-blazer-mp1.dtso |  22 +
+>>>  .../boot/dts/google/lga-frankel-mp1.dtso      |  22 +
+>>>  .../boot/dts/google/lga-mustang-mp1.dtso      |  22 +
+>>>  .../boot/dts/google/lga-muzel-common.dtsi     |  17 +
+>>>  6 files changed, 483 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/google/lga-b0.dts
+>>>  create mode 100644 arch/arm64/boot/dts/google/lga-blazer-mp1.dtso
+>>>  create mode 100644 arch/arm64/boot/dts/google/lga-frankel-mp1.dtso
+>>>  create mode 100644 arch/arm64/boot/dts/google/lga-mustang-mp1.dtso
+>>>  create mode 100644 arch/arm64/boot/dts/google/lga-muzel-common.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/google/Makefile b/arch/arm64/boot/dts/google/Makefile
+>>> index a6b187e2d631..276001e91632 100644
+>>> --- a/arch/arm64/boot/dts/google/Makefile
+>>> +++ b/arch/arm64/boot/dts/google/Makefile
+>>> @@ -1 +1,10 @@
+>>>  # SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>>> +
+>>> +dtb-$(CONFIG_ARCH_GOOGLE) += \
+>>> +     lga-blazer-mp1.dtb \
+>>> +     lga-frankel-mp1.dtb \
+>>> +     lga-mustang-mp1.dtb
+>>> +
+>>> +lga-blazer-mp1-dtbs          := lga-b0.dtb lga-blazer-mp1.dtbo
+>>> +lga-frankel-mp1-dtbs         := lga-b0.dtb lga-frankel-mp1.dtbo
+>>> +lga-mustang-mp1-dtbs         := lga-b0.dtb lga-mustang-mp1.dtbo
+>>> diff --git a/arch/arm64/boot/dts/google/lga-b0.dts b/arch/arm64/boot/dts/google/lga-b0.dts
+>>> new file mode 100644
+>>> index 000000000000..83c2db4f20ef
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/google/lga-b0.dts
+>>> @@ -0,0 +1,391 @@
+>>> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+>>> +/*
+>>> + * Google Tensor G5 (laguna) SoC rev B0
+>>> + *
+>>> + * Copyright 2024-2025 Google LLC.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>> +
+>>> +/ {
+>>> +     model = "Google Tensor G5 rev B0";
+>>> +     compatible = "google,soc-id-0005-rev-10", "google,lga";
+>>
+>> So that's SoC, thus must not be a DTS file, but DTSI.
+>>
+>> ...
+>>
+>>
+>> ...
+>>
+>>
+>>> diff --git a/arch/arm64/boot/dts/google/lga-frankel-mp1.dtso b/arch/arm64/boot/dts/google/lga-frankel-mp1.dtso
+>>> new file mode 100644
+>>> index 000000000000..133494de7a9b
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/google/lga-frankel-mp1.dtso
+>>
+>> And that's a board, so DTS.
+>>
+>>> @@ -0,0 +1,22 @@
+>>> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+>>> +/*
+>>> + * Google Pixel 10 (frankel) MP 1
+>>> + *
+>>> + * Copyright 2024-2025 Google LLC.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +/plugin/;
+>>> +
+>>> +#include "lga-muzel-common.dtsi"
+>>> +
+>>> +/ {
+>>> +     board-id = <0x070306>;
+>>> +     board-rev = <0x010000>;
+>>
+>> Undocumented ABI, which you cannot document because these properties are
+>> not allowed. You cannot have them.
 > 
-> On Tue, Nov 11, 2025 at 11:02:56AM -0500, Frank Li wrote:
-> > On Tue, Nov 11, 2025 at 04:16:14PM +0100, Francesco Dolcini wrote:
-> > > From: Max Krummenacher <max.krummenacher@toradex.com>
-> > >
-> > > Add DT support for Toradex SMARC iMX95 SoM and Development carrier
-> > > board.
-> > >
-> > > The module consists of an NXP i.MX95 family SoC, up to 16GB of LPDDR5
-> > > RAM and up to 128GB of storage, a USB 3.0 Host Hub and 2.0 OTG, two
-> > > Gigabit Ethernet PHYs, a 10 Gigabit Ethernet interface, an I2C EEPROM
-> > > and Temperature Sensor, an RX8130 RTC, a Quad/Dual lane CSI interface,
-> > > and some optional addons: TPM 2.0, DSI, LVDS, DisplayPort (through a
-> > > DSI-DP bridge), and Wi-Fi/BT module.
-> > >
-> > > Link: https://www.toradex.com/computer-on-modules/smarc-arm-family/nxp-imx95
-> > > Link: https://www.toradex.com/products/carrier-board/smarc-development-board-kit
-> > > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-> > > Co-developed-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> > > Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> > > Co-developed-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > > Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> > > Co-developed-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-> > > Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-> > > Co-developed-by: Vitor Soares <vitor.soares@toradex.com>
-> > > Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
-> > > Co-developed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > ---
-> > > v2:
-> > >  - move enable-active-high after gpio
-> > >  - add newline between properties and child node in som_dsi2dp_bridge
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/Makefile        |    1 +
-> > >  .../dts/freescale/imx95-toradex-smarc-dev.dts |  277 ++++
-> > >  .../dts/freescale/imx95-toradex-smarc.dtsi    | 1155 +++++++++++++++++
-> > >  3 files changed, 1433 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx95-toradex-smarc-dev.dts
-> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > > index 75676b908299..28f8eaf18471 100644
-> > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > @@ -390,6 +390,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx943-evk.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
-> > > +dtb-$(CONFIG_ARCH_MXC) += imx95-toradex-smarc-dev.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx95-tqma9596sa-mb-smarc-2.dtb
-> > >
-> > ...
-> > > +
-> > > +/* SMARC PCIE_A / M2 Key B */
-> > > +&pcie0 {
-> > > +	status = "okay";
-> > 
-> > Nit: if there are next version, please consider add supports-clkreq.
+> This is part of the discussion I want to have at Plumbers. But I suppose
+> we can start here.
+
+Then the patch should be called RFC as not yet ready for merging. :)
+
 > 
-> What do you expect exactly?
-> Maybe what you are looking for is in imx95-toradex-smarc.dtsi?
+> The Android DTB partition format uses six 32-bit integers for matching,
+> as opposed to a compatible string used in FIT images. Two of the integers
+> are the "id" and "rev" numbers in the example above. The remaining four
+> are custom and left up to the (vendor) bootloader implementation.
+> 
+> The values for these fields need to be stored somewhere with the .dts.
+> The compiled DTB is useless if the user cannot build a proper image for
+> the bootloader to consume, and that involves putting in the right numbers
+> in these fields. The android "mkdtimg" tool can either take the values
+> from some known properties within the DTB, or have them fed to it
+> externally.
+> 
+> So if we don't want these numbers in the dts itself, then we should come
+> up with some format to store them beside the dts files.
 
-Found it, you are referring to https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pci/pci-bus-common.yaml#L155
+Re-iterating comment from Rob long time ago: adding such new properties
+is fine, but they must come for more than one user and be universal
+across these users.
 
-We would not be able to test it, the required changes in the PCIe driver
-are not merged yet, so I would prefer to skip it for this series for the
-moment.
+And of course the ABI needs to be documented which did not happen here.
 
-Francesco
+I indeed said incorrectly that "properties are not allowed". The
+properties could be allowed if we document them according to above Rob's
+comment, but that did not happen.
 
+Adding these properties per one SoC vendor is not really allowed, like
+qcom,board-id and qcom,msm-id, but maybe you intend to make it generic.
+
+> 
+> 
+> On a similar note, we would have a similar problem with FIT images and
+> overlays. The FIT image format maps a (series of) compatible string(s)
+> to one DTB and any number of overlays. If overlays are involved, then
+> the compatible string cannot come from the DTB itself, and the mapping
+> must be stored somewhere.
+
+I recall, although cannot find now references to, a email talk on the
+list saying that such overlays should have their own compatible, thus
+solving this mapping problem.
+
+
+Best regards,
+Krzysztof
 
