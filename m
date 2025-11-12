@@ -1,498 +1,271 @@
-Return-Path: <devicetree+bounces-237560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC330C51F94
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:29:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C0FC51F9D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:30:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4403D42672A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:20:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7668E4270FA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741AA30E0F3;
-	Wed, 12 Nov 2025 11:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F253E30E0C5;
+	Wed, 12 Nov 2025 11:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WjxNzFjP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JvZ2mcAj";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PsQeLKLD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0519B30BF6F
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:18:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B5612C15BE
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:20:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762946340; cv=none; b=crbczp2P/pRo+dKQrO86qQXL2TEyIzzBFMIPQFFciNmju5b4g7510AG+J6r572/e6yH0AU48gLb2SWMLgZ0/PXehRq0vM1AqN5pC/z8Ih1InH7fe4B6TPrSlmw+7IIRPBKkWD+Vn2B6VRPZeY49n6nC+bzGE1zPlqaG2razNgDo=
+	t=1762946435; cv=none; b=KL9lukMLUtNOLqZH2k3yQVA2qITcnV1rfqgbmhgkp2wmbKY2TAZx9paVxFXw1ugIP+MKzE5oZZdN3lAAoTouq1a/xD9jpJ4bChYo6cie18VMJMYKTR8+69Ia269IqSSefXRhL7JC5F/rM2CBRFoe2bhs7RgA2DK7wzBnczGn2RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762946340; c=relaxed/simple;
-	bh=DvoNn8piBq3/RMBpQvEHO8ZeX9vzUS0LqSVLvVC6flk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=u00YBKWhg7697ZV6MMBuwaY6qElOjn6L1rCKGZcxrqfP1C/i1Sxxscbkw/+cmd/BNPOU9Q09pJRasG58mkLMFmEH+s1k6RBALov34klh3/hhnF5Jw1XfV6pyWfJ6YkeZDj5Y02sCRZDDLgypbmUxaiw4wiEK8WsBNaPi7CIHfHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WjxNzFjP; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-bc17d39ccd2so125503a12.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 03:18:57 -0800 (PST)
+	s=arc-20240116; t=1762946435; c=relaxed/simple;
+	bh=Z8ZdAGG4EyKf8tVMNLlOiWZmA/jRMp+kaNu5G+A0Vfc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wf5uyDL+1ZcsvnovImw4vXWuniA3ItRaetWzqKzaf1p9z+7VdrejV8kUgZ58iZ8bWy+IHYAoG/6hWKtLBDXts93XSBf9/wNFVDKssqXZDf3ioVYhBggNjMgrsEc9oAsj4RjDj5Ch3c/j/oeUf+Gfpnk8syT3XLEKKZr7ez9JSnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JvZ2mcAj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PsQeLKLD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC6Sj3P350148
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:20:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	r5gL8BGnvahOLcwAKb9JaCY7XjjVHbw8vJ21kFjLfyw=; b=JvZ2mcAjim4Djm0G
+	bkDVQQBQY6tqUxDRvzHuPOg4UKulx2RGI6pI8zcXsITA83TqJobw3rMkuYGfWP9N
+	vF315wdmChMmQeAn7N5b3SAO2qX8wNs6nDYAZwvmKDba7c0ygPs0ztmSOkD/uWfx
+	T3lloEVwQwCV+Y0Y7ouEfmV4FRjIKDSzBPbPHBm8l0uOC85QAraMBq5d2vQuznPI
+	CxYeTAKUNk3qQL9c756ACGNGFC2iS9o1PtuKuc+KESMN6JUrTJUibj067TqjRzfb
+	YD891JV2zvZWz6ECu+uUDVLY8i4GsM8Vo6I6f+YR/lAKFuTiANmgbhgar1cmEhW9
+	WS1IfQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acn0ns0bv-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:20:33 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ed6317be8cso2296351cf.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 03:20:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762946337; x=1763551137; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cFAKkFyXyl3xzCijB0MqhcWNwMFSjCzGgD6ecJ/NvoM=;
-        b=WjxNzFjP6tsudCcsKhAd/FJfP4ebqjqRNCbvTb/nYBIN9yRq20wyCttbWJ30FGd2GX
-         VwAm8H187VtmayjK3h2KoDXZ5p0T8oKdrVl9o2tjv0MjxGpUHjcPy8P31zDG3IovSPvK
-         Nm5PZG/RNVNXx5p1INFtqm8q9roGNA5eeFpr3xkaSeHe2ErBe6B8D4dauPYXUOZRjUcm
-         WPweuPUKp8+52gA+5kNryx/9qq2m7b5iDgydeS+jWro6dC7XxK/Tw/ECwZobaRIxjJ5f
-         HH2cmWRMso8ofonjPEF+b+TdoZrwFPuEjPhp6n7jaiAVu9txUDZcbxT5ms4E32HelkKY
-         F48A==
+        d=oss.qualcomm.com; s=google; t=1762946432; x=1763551232; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=r5gL8BGnvahOLcwAKb9JaCY7XjjVHbw8vJ21kFjLfyw=;
+        b=PsQeLKLDEFFKWnXn1zE2B5Ja6x6Y6Q291SuOoJb8sWjuEgrUjcHL/WxxuABgRyO30h
+         YE9qfVMADSYsxaWuT6nChK83cZwYO/JiZZ3XAZrJx8RTSHPr4PvOx0dy7BrU+54PglRJ
+         Tioc3Tj/9+2W5oRz5qRiiprhep9w+cVQrAwviCeaOz2WEeY35eqbfTxibjiff5GnZwiU
+         JCqp8jmpqoS0p/r5Xe4fm3odd5WZmmZHqAITs+3IgfiY9NwDshZv62pW5HvxB3o4tp+S
+         JBKj1GltP3tKnCepwk1iFWbvCJ3XpbNj+yjKLMktp+r8cUSDxJt1zPtKe4reejEgl3py
+         nxOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762946337; x=1763551137;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=cFAKkFyXyl3xzCijB0MqhcWNwMFSjCzGgD6ecJ/NvoM=;
-        b=TOKEZ63INlY+e91OjBvMlvuoOurea6S5ZWMBTqzfWB6V2yk9WcyzP2l/hnbFbWM9ei
-         85bYaSE/Jxft+iFelY3DJBRlYftkcdKUPc3Vre57hXOhlov30cMOcqWOSoCu5GGqUNDE
-         iwUaLSssg/1bqisKKZd0O9UWMFwnVuAAFQU43+Y9wupuPR4EL6QX70fNkKdcQ0Ngx+f6
-         g05jsgx/BfEY5a/f0mZ3U4TcLuzfFzEkthO3LmlxV9iQiT4zKLhznZx0e7wWJ5jw4xwN
-         rT/EMLT2SQy9mSb2x6rMfYCW6WKkhKM/8D1iVkyBHnRhTXuqUChL9p1f2BWcQARGH7zI
-         051Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVBoYGy5pk9W+GDmoPsY0GyRigJ42hTuFsbTKoPk3f2WfVGZYg/E9yUAZ+kzZoXLvWTZ6pauY6yuMQ6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcKVX2f0nVFlXiDuNDVEQcQM9Iie3d3pjTXE/Z6XpFMf8ofGk9
-	TQFp8FlmB8kslHBszEspFy56FUEDoT/hECzra9j5XjSSgKqUaMwJl0Xh
-X-Gm-Gg: ASbGncvTXBLslJWg5/E2M+yCBprRUtPIIbmkagpWefZ8qHI4TlDY9VNLAGPmEyAZHGm
-	sJG0zAqLOdtzjivmZIvT09t6oAM6rCT63alJnAEdEfLZGTCYuAuMMWhPAN9U41JDfZQnjez/bXf
-	iAElISugeI1NvpEVQar/bL+jBB0RggHr+4NJKUtTmCkIZ6QeS9sC686JhcyKnG0/Dvue9lUpwYB
-	FGAVDh50XlXa8oHEsjFd/XvCKPXUq5Xa2ggMccyB0BSUsaRwY6XgDx46qMVbz7uTSoCaYxDzLpd
-	GM886osv98A70HfXg2w9kJy8CrjO8KAB6PyG7kyaOtjKO7kx/mAV2m9d+VYsiOKI3yeDSqLzmeM
-	0OzAa44LbzkiXzfdU3Ka58csU395Sxa6cPpUFKrXws/JoGwHyUxruhzaq/c+CfPaJVjQFcUvdff
-	v/qzqo6JoxM0BqULPi1KRS9dBKznqgZcRlXOUCGWsTXl9imtHRQ7OifM8ULYomntJm/bcAfZwDL
-	H1nMkLef+7+DYqCMgd0A/+XBDe9Rl8/b+gHNTEPlj2YOoERAWAKNL4=
-X-Google-Smtp-Source: AGHT+IGt0RRVbVR/yZsLZrSMrAd0R3g3Iv447XVFWHi+oqmuFnDXiY3rJ/p45tT2A4ZH4cWSR5tTMA==
-X-Received: by 2002:a17:903:2406:b0:298:4f73:d872 with SMTP id d9443c01a7336-2984f73d8d1mr34941415ad.21.1762946337209;
-        Wed, 12 Nov 2025 03:18:57 -0800 (PST)
-Received: from [192.168.2.3] (2403-580a-80ed-0-4835-5a07-49e7-f115.ip6.aussiebb.net. [2403:580a:80ed:0:4835:5a07:49e7:f115])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2984dca0f28sm27386695ad.60.2025.11.12.03.18.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Nov 2025 03:18:56 -0800 (PST)
-From: James Calligeros <jcalligeros99@gmail.com>
-Date: Wed, 12 Nov 2025 21:16:57 +1000
-Subject: [PATCH v5 11/11] arm64: dts: apple: t8103, t8112, t60xx: Add hwmon
- SMC subdevice
+        d=1e100.net; s=20230601; t=1762946432; x=1763551232;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r5gL8BGnvahOLcwAKb9JaCY7XjjVHbw8vJ21kFjLfyw=;
+        b=LVnPsuJfqIvl/jpJVQD8JS6bl6ae2nOZEAvjhNlmH+dLC02yv8X3wOZUOAyhZsuZz2
+         oHBZVhAHbJcksm1ua41N4hzxsyEsGA3fhQPuGFcXtYr/55s3Ur6kMRZo1SGbZwv/2xyA
+         Z+A2WDC6Uj9jOUlNBnOgUSB4oWjHYlMc0GGb8HZx1k/NkGWRoAw2F69x+LUimW3qPNxu
+         J0DdJwWoHMaKZ9zqverVsUIq0SBaKHfvu/k7o7sa9wSVGNQroJxOwQZfFgtn4rdI7KjN
+         xO3DQZs1Qd1ZQuwTZCvnVRF8hoIe7CuA+jdZcKCNkGPzymd0S3Vp5IU9nI+eoytuStVV
+         BSrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV3o2mDycD5jPzOGxvKzmAbsnIIaRFW17OyFKT6R3DHx9AqAakbNoAtFVbPABIWxIryK0gqke7a0CEn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9uGslaliQFRCWcQHFN917gz2IgBeoRQ24CMrpuIEp1Qfqn/32
+	wPc+d+OnjRtvBhwRucUe8cM5rU2W9D3i+DXIczonGiES52Qx4PmQ+RSdnops+/rFhq/W48wSQq+
+	tG3TigQNvSngZfCkV3+e1bzJDECYBoDxsSyRJPr58PJQ/N1Irtvhb7DsW72sBybMZ
+X-Gm-Gg: ASbGncvRex5YnroYGtQGC+kXlQHZh7HPNYB7n37rmTaaRwE40IEYItmaxLAMciqSOXi
+	fqRaNVGO/piOG+6kwn7YeO+n4SS9Olov8HLw3zI1ToTdDlPBWqNFfoL3OMArUvnOF5QpzxYf95U
+	dCZvMytQaCHrk0BTNUSU7x4F3VOFkxn53QaK3ZZuEYg2PfbQtxcH5nV1LzpPhemNQEVWVPpgQDQ
+	QL1LW/BR2HwyLazceDtmfhYOMzMRkaSvdFIaFU65pZTNbTrSx+fAE4mZdaJeBKTG497McqFp69S
+	wjH0vRPB4+icer4T7fH32Wm4qx78rDQlPYi8T2TDzniMyvbIAnwrcnnJNssGfdUejdYUTRRaOrF
+	6WQPrIhORTrq4jzQRBxV1q5mRx68kanC0ePFaRWMRMUaj/zIaNjRHuRwm
+X-Received: by 2002:a05:622a:1a0b:b0:4e8:966b:459b with SMTP id d75a77b69052e-4eddbc9b6fdmr20569071cf.5.1762946432226;
+        Wed, 12 Nov 2025 03:20:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEuxcDboMBlXZ8IfMpbvAVD/xCyC6PkgJofI6nYVfYXkD5ZeyDbBO/vyiqeNaeZ+hpdlaOWnQ==
+X-Received: by 2002:a05:622a:1a0b:b0:4e8:966b:459b with SMTP id d75a77b69052e-4eddbc9b6fdmr20568821cf.5.1762946431714;
+        Wed, 12 Nov 2025 03:20:31 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7327a48bc7sm321134966b.71.2025.11.12.03.20.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 03:20:31 -0800 (PST)
+Message-ID: <4e9d15cd-1ef2-464c-b421-f8a333c53825@oss.qualcomm.com>
+Date: Wed, 12 Nov 2025 12:20:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251112-macsmc-subdevs-v5-11-728e4b91fe81@gmail.com>
-References: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
-In-Reply-To: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Jonathan Corbet <corbet@lwn.net>, 
- James Calligeros <jcalligeros99@gmail.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-rtc@vger.kernel.org, linux-hwmon@vger.kernel.org, 
- linux-input@vger.kernel.org, linux-doc@vger.kernel.org
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=12033;
- i=jcalligeros99@gmail.com; h=from:subject:message-id;
- bh=DvoNn8piBq3/RMBpQvEHO8ZeX9vzUS0LqSVLvVC6flk=;
- b=owGbwMvMwCV2xczoYuD3ygTG02pJDJkiOcdKW0OuRJzxTNLXypSeaKSjarLpuSGXpk26pWvhp
- e8M76I6JrAwiHExWIopsmxoEvKYbcR2s1+kci/MHFYmkCHSIg0MQMDCwJebmFdqpGOkZ6ptqGdo
- qGOsY8TAxSkAU+2sz/A/IldnXZEPx5S0Y8VyJUHfLa8YaNi5vCp7u/b9hZMzvLOzGb6KtH+fsYp
- xcrbTMe7NMQ1G7Auunq4xT23bt8rq6McFhnwA
-X-Developer-Key: i=jcalligeros99@gmail.com; a=openpgp;
- fpr=B08212489B3206D98F1479BDD43632D151F77960
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] power: reset: qcom-pon: Add support for WARM reset
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: krzk+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        robh@kernel.org, conor+dt@kernel.org, sre@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20251103182006.1158383-1-loic.poulain@oss.qualcomm.com>
+ <20251103182006.1158383-3-loic.poulain@oss.qualcomm.com>
+ <740b9e7c-59bc-4a35-a268-526d92db372c@oss.qualcomm.com>
+ <CAFEp6-12qN0=cv5=tPeVq3bVDLkaQDHLLCVQY4dtCTSvx+dPOQ@mail.gmail.com>
+ <c1269f38-ab90-40d1-b5d3-39f546829d6c@oss.qualcomm.com>
+ <CAFEp6-1+inMhsgjSqAZ+UDBMuNc9DA-jXFyqB=gkvYpSzW9Ukg@mail.gmail.com>
+ <6daf722b-6b1b-4c91-b108-74793d930319@oss.qualcomm.com>
+ <CAFEp6-0sbDj0C9KAMxq1mrGO9jGz4YDMqnf1AGVU49PyGzLi8w@mail.gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CAFEp6-0sbDj0C9KAMxq1mrGO9jGz4YDMqnf1AGVU49PyGzLi8w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: NTYXd0-n4LkHlDTjaL3_2sAm7DFzmKTU
+X-Proofpoint-ORIG-GUID: NTYXd0-n4LkHlDTjaL3_2sAm7DFzmKTU
+X-Authority-Analysis: v=2.4 cv=acRsXBot c=1 sm=1 tr=0 ts=69146d81 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8
+ a=oAzUKsySGAh57qx-K-8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDA5MSBTYWx0ZWRfX4c1t0E8wh6Mx
+ fXoX5Vel6ReYsdi2lsfPQHFY+5HaR864bsdHbCNGnwb4JmdMjABt8wQY5KLG6/YJKwl9hXXlCU8
+ 7Tgm6IeNRbw16o0ZqZJ3DsC8h/BAbOqlVcC5g8Q6yniaQkl6/QVgpVMvcUrBvPXxVXQzd/L0WSA
+ rcE9FUnAdlkhuHODyosXK6hEMYFZVfmZWOfF8ZK0rxHgJFOpXhMqkA++7ExnDVS9i7kbw/uPYam
+ YZkQ4pn7FDDtU5BoWTbLCy1C4Zywb3yvuF3XUgE5+xXxPnAg3q63thjEzr7cb0R6+tzC9MVe62E
+ ev8+rOm6az4OsKdmqJU8fy0eQjegTHmL/uY5MMZ82eO2gc+i/rjLwJfjUiqtRiAfytpsPX/03n1
+ fxsytOG7EaZVks5beIHqsUZYPUoUaQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-12_03,2025-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 bulkscore=0 clxscore=1015 spamscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511120091
 
-Apple's System Management Controller integrates numerous sensors
-that can be exposed via hwmon. Add the subdevice, compatible,
-and some common sensors that are exposed on every currently
-supported device as a starting point.
+On 11/12/25 12:16 PM, Loic Poulain wrote:
+> Hi Konrad,
+> 
+> On Thu, Nov 6, 2025 at 1:50 PM Konrad Dybcio
+> <konrad.dybcio@oss.qualcomm.com> wrote:
+>>
+>> On 11/5/25 10:44 PM, Loic Poulain wrote:
+>>> Hi Konrad,
+>>>
+>>> On Tue, Nov 4, 2025 at 4:20 PM Konrad Dybcio
+>>> <konrad.dybcio@oss.qualcomm.com> wrote:
+>>>>
+>>>> On 11/4/25 4:01 PM, Loic Poulain wrote:
+>>>>> Hi Konrad, Krzysztof,
+>>>>>
+>>>>> On Tue, Nov 4, 2025 at 12:50 PM Konrad Dybcio
+>>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
+>>>>>>
+>>>>>> On 11/3/25 7:20 PM, Loic Poulain wrote:
+>>>>>>> This mechanism can be used when firmware lacks proper warm-reset handling,
+>>>>>>> for example, when the PSCI SYSTEM_RESET2 function is not implemented.
+>>>>>>> It enables the warm reset functionality via the PMIC.
+>>>>>>>
+>>>>>>> This fallback is only enabled if qcom,warm-reset property is present.
+>>>>>>>
+>>>>>>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+>>>>>>> ---
+>>>>>>>  drivers/power/reset/qcom-pon.c | 47 ++++++++++++++++++++++++++++++++++
+>>>>>>>  1 file changed, 47 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
+>>>>>>> index 7e108982a582..684e9fe9987d 100644
+>>>>>>> --- a/drivers/power/reset/qcom-pon.c
+>>>>>>> +++ b/drivers/power/reset/qcom-pon.c
+>>>>>>> @@ -19,12 +19,20 @@
+>>>>>>>
+>>>>>>>  #define NO_REASON_SHIFT                      0
+>>>>>>>
+>>>>>>> +#define PON_SW_RESET_S2_CTL                          0x62
+>>>>>>> +#define              PON_SW_RESET_S2_CTL_WARM_RST    0x01
+>>>>>>> +#define PON_SW_RESET_S2_CTL2                         0x63
+>>>>>>> +#define              PON_SW_RESET_S2_CTL2_RST_EN     BIT(7)
+>>>>>>> +#define PON_SW_RESET_GO                                      0x64
+>>>>>>> +#define              PON_SW_RESET_GO_MAGIC           0xa5
+>>>>>>
+>>>>>> Going back to msm8974 where the SPMI arbiter first showed up, these
+>>>>>> values are all seemingly valid, so I think we can drop the dt property.
+>>>>>> The restart reasons are set in stone too, and you can find more of them
+>>>>>> in the register description.
+>>>>>
+>>>>> Yes, but this should only apply when the platform firmware does not
+>>>>> support warm reset via PSCI, right?
+>>>>> Making it unconditional would override the PSCI implementation even
+>>>>> when warm reset is supported.
+>>>>>
+>>>>> The point is that psci_sys_reset() executes a cold reset if warm
+>>>>> reset isn’t available. Therefore, our PMIC reboot notifier must have a
+>>>>> higher priority than the PSCI handler.
+>>>>>
+>>>>> So maybe the alternative could be to introduce an additional reboot
+>>>>> handler in psci, with the lowest priority, so that warm reset can have
+>>>>> a chance to run either from the psci main reboot handler or from the
+>>>>> PMIC reboot handler before falling back to cold reset?
+>>>>> [PSCI-handler]->[other-handlers]->[PSCI-cold-reset-fallback-handler]
+>>>>
+>>>> This seems like a common enough problem, perhaps the framework could
+>>>> accept EOPNOTSUPP or similar and try to delegate further, coming back
+>>>> with a normal restart or so, if unsupported. Trying to make a special
+>>>> contract between qcom-pon and psci silently will be very fragile
+>>>> otherwise.
+>>>
+>>> I tested the following, as described above:
+>>> https://github.com/loicpoulain/linux/commit/5c34ea54e1a21ff1192c3c341877b24eff5f80b4
+>>> The only special 'contract' is the handler priority.
+>>> If you can elaborate on another/better approach, that would be helpful.
+>>
+>> Thinking about it again, it'd be difficult to grab some sort of a handle
+>> to the ""parent"" reboot mode, so what you propose here is good
+>>
+>>>>>> That said, we're circumventing PS_HOLD this way - is that intended?
+>>>>>
+>>>>> Well, we don’t have direct control over PS_HOLD since it’s managed by
+>>>>> the firmware in our case. That’s why I considered using the PMIC
+>>>>> software reset as an effective way to achieve this warm reset.
+>>>>
+>>>> Hm, so is there no longer a way to assert it by writing to PMIC
+>>>> registers?
+>>>
+>>> PS_HOLD is a SoC signal, and we can maybe assert it via the
+>>> MPM_PS_HOLD register through the msm-poweroff driver if needed (well,
+>>> if access is allowed from a non-secure world).
+>>> However, this would also require coordination with the PMIC driver to
+>>> select the correct PS_HOLD action (shutdown, cold reset, warm reset).
+>>> For that reason, I’d prefer to keep PS_HOLD based logic abstracted by PSCI.
+>>> Using the SW_RST PMIC register allows us to perform a reset without
+>>> additional signal handling.
+>>
+>> Yeah of course we should use PSCI where functional and available
+>>
+>> I think PS_HOLD used to be fully manual on old (msm-3.10) platforms
+>> through PMIC registers. I see that e.g. msm-4.19 has an SCM call to
+>> (de)assert it. There's also a "halt PMIC arbiter" call.
+>>
+>> (via drivers/power/reset/msm-poweroff.c)
+> 
+> Yes I could try the SCM call to deassert PS_HOLD, is it something we
+> should prefer over PMIC soft reset?
+> Asking because the implication would be a more complex solution
+> (though not yet tested):
+> - Adding reboot mode support in qcom-scm to activate ELD mode
+> - Adding reset-notifier in pmic driver to modify PS_HOLD action to warm-reset
+> - Adding reset-notifier in qcom,scm (of lower priority than PMIC)
+> doing the actual SCM ps-hold deassert
+> - Ensuring that PSCI is still used for cold-reset and warm-reset when
+> supported...
 
-Reviewed-by: Neal Gompa <neal@gompa.dev>
-Co-developed-by: Janne Grunau <j@jannau.net>
-Signed-off-by: Janne Grunau <j@jannau.net>
-Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
----
- .../boot/dts/apple/hwmon-common.dtsi     | 33 +++++++++++++++++++++++++
- .../boot/dts/apple/hwmon-fan-dual.dtsi   | 22 +++++++++++++++++
- arch/arm64/boot/dts/apple/hwmon-fan.dtsi | 17 +++++++++++++
- .../boot/dts/apple/hwmon-laptop.dtsi     | 33 +++++++++++++++++++++++++
- .../boot/dts/apple/hwmon-mac-mini.dtsi   | 15 +++++++++++
- .../arm64/boot/dts/apple/t6001-j375c.dts |  2 ++
- arch/arm64/boot/dts/apple/t6001.dtsi     |  2 ++
- .../arm64/boot/dts/apple/t6002-j375d.dts |  2 ++
- .../arm64/boot/dts/apple/t600x-die0.dtsi |  4 +++
- .../boot/dts/apple/t600x-j314-j316.dtsi  |  3 +++
- .../arm64/boot/dts/apple/t602x-die0.dtsi |  4 +++
- arch/arm64/boot/dts/apple/t8103-j274.dts |  2 ++
- arch/arm64/boot/dts/apple/t8103-j293.dts |  3 +++
- arch/arm64/boot/dts/apple/t8103-j313.dts |  2 ++
- arch/arm64/boot/dts/apple/t8103-j456.dts |  2 ++
- arch/arm64/boot/dts/apple/t8103-j457.dts |  2 ++
- arch/arm64/boot/dts/apple/t8103.dtsi     |  5 ++++
- arch/arm64/boot/dts/apple/t8112-j413.dts |  2 ++
- arch/arm64/boot/dts/apple/t8112-j473.dts |  2 ++
- arch/arm64/boot/dts/apple/t8112-j493.dts |  3 +++
- arch/arm64/boot/dts/apple/t8112.dtsi     |  5 ++++
- 21 files changed, 165 insertions(+)
+My answer is unfortunately "I don't know". We should loop in some
+PMIC folks that would know the difference
 
-diff --git a/arch/arm64/boot/dts/apple/hwmon-common.dtsi b/arch/arm64/boot/dts/apple/hwmon-common.dtsi
-new file mode 100644
-index 000000000000..b87021855fdf
---- /dev/null
-+++ b/arch/arm64/boot/dts/apple/hwmon-common.dtsi
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Hardware monitoring sensors expected to be found on all Apple Silicon devices
-+ *
-+ * Copyright The Asahi Linux Contributors
-+ */
-+
-+&smc_hwmon {
-+	current-ID0R {
-+		apple,key-id = "ID0R";
-+		label = "AC Input Current";
-+	};
-+	power-PSTR {
-+		apple,key-id = "PSTR";
-+		label = "Total System Power";
-+	};
-+	power-PDTR {
-+		apple,key-id = "PDTR";
-+		label = "AC Input Power";
-+	};
-+	power-PMVR {
-+		apple,key-id = "PMVR";
-+		label = "3.8 V Rail Power";
-+	};
-+	temperature-TH0x {
-+		apple,key-id = "TH0x";
-+		label = "NAND Flash Temperature";
-+	};
-+	voltage-VD0R {
-+		apple,key-id = "VD0R";
-+		label = "AC Input Voltage";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/apple/hwmon-fan-dual.dtsi b/arch/arm64/boot/dts/apple/hwmon-fan-dual.dtsi
-new file mode 100644
-index 000000000000..3eef0721bcca
---- /dev/null
-+++ b/arch/arm64/boot/dts/apple/hwmon-fan-dual.dtsi
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * SMC hwmon fan keys for Apple Silicon desktops/laptops with two fans
-+ *
-+ * Copyright The Asahi Linux Contributors
-+ */
-+
-+#include "hwmon-fan.dtsi"
-+
-+&smc_hwmon {
-+	fan-F0Ac {
-+		label = "Fan 1";
-+	};
-+	fan-F1Ac {
-+		apple,key-id = "F1Ac";
-+		label = "Fan 2";
-+		apple,fan-minimum = "F1Mn";
-+		apple,fan-maximum = "F1Mx";
-+		apple,fan-target = "F1Tg";
-+		apple,fan-mode = "F1Md";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/apple/hwmon-fan.dtsi b/arch/arm64/boot/dts/apple/hwmon-fan.dtsi
-new file mode 100644
-index 000000000000..fba9faf38f4b
---- /dev/null
-+++ b/arch/arm64/boot/dts/apple/hwmon-fan.dtsi
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * hwmon fan keys for Apple Silicon desktops/laptops with a single fan.
-+ *
-+ *  Copyright The Asahi Linux Contributors
-+ */
-+
-+&smc_hwmon {
-+	fan-F0Ac {
-+		apple,key-id = "F0Ac";
-+		label = "Fan";
-+		apple,fan-minimum = "F0Mn";
-+		apple,fan-maximum = "F0Mx";
-+		apple,fan-target = "F0Tg";
-+		apple,fan-mode = "F0Md";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/apple/hwmon-laptop.dtsi b/arch/arm64/boot/dts/apple/hwmon-laptop.dtsi
-new file mode 100644
-index 000000000000..0c4666282a5c
---- /dev/null
-+++ b/arch/arm64/boot/dts/apple/hwmon-laptop.dtsi
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Hardware monitoring sensors expected on all Apple Silicon laptops
-+ *
-+ * Copyright The Asahi Linux Contributors
-+ */
-+
-+&smc_hwmon {
-+	power-PHPC {
-+		apple,key-id = "PHPC";
-+		label = "Heatpipe Power";
-+	};
-+	temperature-TB0T {
-+		apple,key-id = "TB0T";
-+		label = "Battery Hotspot Temperature";
-+	};
-+	temperature-TCHP {
-+		apple,key-id = "TCHP";
-+		label = "Charge Regulator Temperature";
-+	};
-+	temperature-TW0P {
-+		apple,key-id = "TW0P";
-+		label = "WiFi/BT Module Temperature";
-+	};
-+	voltage-SBAV {
-+		apple,key-id = "SBAV";
-+		label = "Battery Voltage";
-+	};
-+	voltage-VD0R {
-+		apple,key-id = "VD0R";
-+		label = "Charger Input Voltage";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/apple/hwmon-mac-mini.dtsi b/arch/arm64/boot/dts/apple/hwmon-mac-mini.dtsi
-new file mode 100644
-index 000000000000..f32627336ae7
---- /dev/null
-+++ b/arch/arm64/boot/dts/apple/hwmon-mac-mini.dtsi
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * hwmon sensors expected on all Mac mini models
-+ *
-+ * Copyright The Asahi Linux Contributors
-+ */
-+
-+#include "hwmon-fan.dtsi"
-+
-+&smc_hwmon {
-+	temperature-TW0P {
-+		apple,key-id = "TW0P";
-+		label = "WiFi/BT Module Temperature";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/apple/t6001-j375c.dts b/arch/arm64/boot/dts/apple/t6001-j375c.dts
-index 2e7c23714d4d..08276114c1d8 100644
---- a/arch/arm64/boot/dts/apple/t6001-j375c.dts
-+++ b/arch/arm64/boot/dts/apple/t6001-j375c.dts
-@@ -24,3 +24,5 @@ &wifi0 {
- &bluetooth0 {
- 	brcm,board-type = "apple,okinawa";
- };
-+
-+#include "hwmon-fan-dual.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t6001.dtsi b/arch/arm64/boot/dts/apple/t6001.dtsi
-index ffbe823b71bc..264df90f07d8 100644
---- a/arch/arm64/boot/dts/apple/t6001.dtsi
-+++ b/arch/arm64/boot/dts/apple/t6001.dtsi
-@@ -66,3 +66,5 @@ p-core-pmu-affinity {
- &gpu {
- 	compatible = "apple,agx-g13c", "apple,agx-g13s";
- };
-+
-+#include "hwmon-common.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t6002-j375d.dts b/arch/arm64/boot/dts/apple/t6002-j375d.dts
-index 2b7f80119618..d12c0ae418f7 100644
---- a/arch/arm64/boot/dts/apple/t6002-j375d.dts
-+++ b/arch/arm64/boot/dts/apple/t6002-j375d.dts
-@@ -56,3 +56,5 @@ &bluetooth0 {
- 
- /delete-node/ &ps_disp0_cpu0_die1;
- /delete-node/ &ps_disp0_fe_die1;
-+
-+#include "hwmon-fan-dual.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-index f715b19efd16..e6647c1a9173 100644
---- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-@@ -37,6 +37,10 @@ smc_gpio: gpio {
- 			#gpio-cells = <2>;
- 		};
- 
-+		smc_hwmon: hwmon {
-+			compatible = "apple,smc-hwmon";
-+		};
-+
- 		smc_reboot: reboot {
- 			compatible = "apple,smc-reboot";
- 			nvmem-cells = <&shutdown_flag>, <&boot_stage>,
-diff --git a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-index c0aac59a6fae..127814a9dfa4 100644
---- a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
-@@ -131,3 +131,6 @@ &fpwm0 {
- };
- 
- #include "spi1-nvram.dtsi"
-+
-+#include "hwmon-laptop.dtsi"
-+#include "hwmon-fan-dual.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t602x-die0.dtsi b/arch/arm64/boot/dts/apple/t602x-die0.dtsi
-index 8622ddea7b44..680c103c1c0f 100644
---- a/arch/arm64/boot/dts/apple/t602x-die0.dtsi
-+++ b/arch/arm64/boot/dts/apple/t602x-die0.dtsi
-@@ -114,6 +114,10 @@ smc_gpio: gpio {
- 			#gpio-cells = <2>;
- 		};
- 
-+		smc_hwmon: hwmon {
-+			compatible = "apple,smc-hwmon";
-+		};
-+
- 		smc_reboot: reboot {
- 			compatible = "apple,smc-reboot";
- 			nvmem-cells = <&shutdown_flag>, <&boot_stage>,
-diff --git a/arch/arm64/boot/dts/apple/t8103-j274.dts b/arch/arm64/boot/dts/apple/t8103-j274.dts
-index 1c3e37f86d46..f5b8cc087882 100644
---- a/arch/arm64/boot/dts/apple/t8103-j274.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j274.dts
-@@ -61,3 +61,5 @@ &pcie0_dart_2 {
- &i2c2 {
- 	status = "okay";
- };
-+
-+#include "hwmon-mac-mini.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
-index 5b3c42e9f0e6..abb88391635f 100644
---- a/arch/arm64/boot/dts/apple/t8103-j293.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
-@@ -119,3 +119,6 @@ dfr_panel_in: endpoint {
- &displaydfr_dart {
- 	status = "okay";
- };
-+
-+#include "hwmon-laptop.dtsi"
-+#include "hwmon-fan.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j313.dts b/arch/arm64/boot/dts/apple/t8103-j313.dts
-index 97a4344d8dca..491ead016b21 100644
---- a/arch/arm64/boot/dts/apple/t8103-j313.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j313.dts
-@@ -41,3 +41,5 @@ &wifi0 {
- &fpwm1 {
- 	status = "okay";
- };
-+
-+#include "hwmon-laptop.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j456.dts b/arch/arm64/boot/dts/apple/t8103-j456.dts
-index 58c8e43789b4..c2ec6fbb633c 100644
---- a/arch/arm64/boot/dts/apple/t8103-j456.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j456.dts
-@@ -75,3 +75,5 @@ &pcie0_dart_1 {
- &pcie0_dart_2 {
- 	status = "okay";
- };
-+
-+#include "hwmon-fan-dual.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103-j457.dts b/arch/arm64/boot/dts/apple/t8103-j457.dts
-index 7089ccf3ce55..aeaab2482d54 100644
---- a/arch/arm64/boot/dts/apple/t8103-j457.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j457.dts
-@@ -56,3 +56,5 @@ ethernet0: ethernet@0,0 {
- &pcie0_dart_2 {
- 	status = "okay";
- };
-+
-+#include "hwmon-fan.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 59f2678639cf..f1820bdc0910 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -909,6 +909,10 @@ smc_gpio: gpio {
- 				#gpio-cells = <2>;
- 			};
- 
-+			smc_hwmon: hwmon {
-+				compatible = "apple,smc-hwmon";
-+			};
-+
- 			smc_reboot: reboot {
- 				compatible = "apple,smc-reboot";
- 				nvmem-cells = <&shutdown_flag>, <&boot_stage>,
-@@ -1141,3 +1145,4 @@ port02: pci@2,0 {
- };
- 
- #include "t8103-pmgr.dtsi"
-+#include "hwmon-common.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8112-j413.dts b/arch/arm64/boot/dts/apple/t8112-j413.dts
-index 6f69658623bf..500dcdf2d4b5 100644
---- a/arch/arm64/boot/dts/apple/t8112-j413.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j413.dts
-@@ -78,3 +78,5 @@ &i2c4 {
- &fpwm1 {
- 	status = "okay";
- };
-+
-+#include "hwmon-laptop.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8112-j473.dts b/arch/arm64/boot/dts/apple/t8112-j473.dts
-index 06fe257f08be..11db6a92493f 100644
---- a/arch/arm64/boot/dts/apple/t8112-j473.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j473.dts
-@@ -52,3 +52,5 @@ &pcie1_dart {
- &pcie2_dart {
- 	status = "okay";
- };
-+
-+#include "hwmon-mac-mini.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
-index fb8ad7d4c65a..a0da02c00f15 100644
---- a/arch/arm64/boot/dts/apple/t8112-j493.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
-@@ -133,3 +133,6 @@ touchbar0: touchbar@0 {
- 		touchscreen-inverted-y;
- 	};
- };
-+
-+#include "hwmon-laptop.dtsi"
-+#include "hwmon-fan.dtsi"
-diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
-index 6bc3f58b06f7..c4d1e5ffaee9 100644
---- a/arch/arm64/boot/dts/apple/t8112.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8112.dtsi
-@@ -912,6 +912,10 @@ smc_gpio: gpio {
- 				#gpio-cells = <2>;
- 			};
- 
-+			smc_hwmon: hwmon {
-+				compatible = "apple,smc-hwmon";
-+			};
-+
- 			smc_reboot: reboot {
- 				compatible = "apple,smc-reboot";
- 				nvmem-cells = <&shutdown_flag>, <&boot_stage>,
-@@ -1180,3 +1184,4 @@ port03: pci@3,0 {
- };
- 
- #include "t8112-pmgr.dtsi"
-+#include "hwmon-common.dtsi"
-
--- 
-2.51.2
-
+Konrad
 
