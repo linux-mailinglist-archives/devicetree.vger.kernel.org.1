@@ -1,270 +1,280 @@
-Return-Path: <devicetree+bounces-237547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83013C51EE3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:24:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B9AC5207B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:42:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 458EF3AF828
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:16:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 830C24FE20F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69812E8B83;
-	Wed, 12 Nov 2025 11:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9149F309F08;
+	Wed, 12 Nov 2025 11:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HWMCUqVR";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KwwDovIy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JH+yqK/w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3652D2D249E
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562BD30AD17
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:17:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762946191; cv=none; b=OPvFXwEhZPuOLDQhfME0HRAzzlmDHbJ+UVJixJKGj2+fXW8P0ybJDD7LNLwD/YpenN2TPeXdt3ZVRRgW6ru0WarN7bhQnHdOhLJy0a3fW1sGySM3zFU7BOsbRygLkqELyDzMkXP6ml0VEfR7AlnFcg8H2yaVtNqQ/pRV3ED2ysw=
+	t=1762946257; cv=none; b=TmpDbLiRMU9jsfL6FciaUMRN8X5/kcH/s1h05qc5mzt8VgeH499niFf5SZMf1oPJcHlb2ZfYO03JDdZPiXclKVdR/HaPVQC+A0szIF9hi3oImWY7sqZU7WhAK3FnwB8e/VMPjk6NKXcFmNrxE3utSg6ZF+2WOiF3wvVNUV/dPBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762946191; c=relaxed/simple;
-	bh=2RbCPxBXrvXGXOedZj1/8RpYrvzys0WCnNhRvJnhUuA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rN5OkliG162d+ReDJ6OK69cBZ75PZdDopmr9ANKl3NQTJndTHKnQSHhj+yK2s4AWK7QVeKhYqJbR0G3QtJlDFx2KoTfNGpnOeUjCftW4OTd37A0/PzRKy7+mcpJ/iLVRjwiB8ecd+evx6ctCj3qChuW7018JqgkD1k+wn/nf2mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HWMCUqVR; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KwwDovIy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC9Qd3W4076902
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:16:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NoxDKOeccwe0hHKDuDC3QJhQ4gtuxY2B4MV4Ct21dd4=; b=HWMCUqVRnQp66ell
-	L7R9KwvxD1Kp/G6e47U0iQ0l3KxXSUxZOHdNTwYp/Sy/JXGfVeH7ehZJ773Bdsad
-	VN3P6AuBjMscsrsodKaIBZAIa3lz7YuIeZdqfUDpI7WXqAdL4cm5augKiXnzfJrd
-	2Fx0HCUuMCi7SqDxMFrwriMWlPnCJixKcZESi3SkXD99tf6g8Au7Fn/+5CNFQ6BJ
-	wAnyHqXyvzoYA2ddjdkXA2DmKCLtmaASvO8dihAIFHKeVritIUQsy6LJknQa3zTt
-	xpBj2iz1lj2qVMAhRTeL/vcuMSF6bLO0kWhovVB7+QFhaB3sI/DkbUy+XE8uxLXp
-	6pdAAw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acguahky9-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:16:28 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-882376d91beso20354046d6.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 03:16:28 -0800 (PST)
+	s=arc-20240116; t=1762946257; c=relaxed/simple;
+	bh=P0402Uz3TGlHgNTrUFPCtCcxzRvCHZS96bV6+P1WJZE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jpibwigePt6hS6mHLAFYqRAbx5wvU1NJL9aKHCJCuZZXUT1UxUHbtvGVIwH7C+c6hUJ93OOxxnVRXM9yevR8L+yNpAWyUa7oioM0vz3PbUSJvdAacg4QBpUGppVLiox/ZfK443Jc9cuHvzEOXG765VRTV5V+66bDPNw06KQfsOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JH+yqK/w; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2953e415b27so6460715ad.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 03:17:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762946188; x=1763550988; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NoxDKOeccwe0hHKDuDC3QJhQ4gtuxY2B4MV4Ct21dd4=;
-        b=KwwDovIyV4rEbx7c73OBB1JYEeiQa+CU4sAiDx90LnSikRbQrbSJp3VCUs+ut6+T+D
-         8Hw80IYvWOECad26r9W1c1YWJAKqCELuM3TkU+tEiWoOSAwZK1jR0oICRKrpwKMzsVX5
-         FJFBgBX+5qZBwnqwk+zM5L+qPFjcPI/pMUqMb5pAyJPOlUBwIwbyFbhDkloirAkC92cI
-         yZB7BWCa+zYJWteeXpP7usd8z3EnchpRjuBQ6kuc4G8Pk848EaCfQLjxZFa4qtnAn6xh
-         MOBJwctqhJX914ryp6pKMFRoasl+ZcF51xrTRpLIfCBRobpus86Z+d4Ksi7XzYtoWU/O
-         xlzg==
+        d=gmail.com; s=20230601; t=1762946255; x=1763551055; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O7clx8dfZg3jZ+tSq2YUEpFAI0n8/M6CLth3qWizbsA=;
+        b=JH+yqK/wikni6qDLU1ilwS82iVM8RIQ/LjhfvRgSzxgMl+pibmFh0tSdodCYoveiQM
+         NEGr49st7HSShYc1G2omRWfE0+hUfOh50D4U6lfLQmo3ORV45OOrGG4eYBvKLin8q1UU
+         53pFtXvGNbFWw9CfGJzICYw4s7Sr5Q1TdQh1fHpr9p/cRTh1/k5l+wCqcplv/tycUePN
+         MmfUtZ3FXSvuCof3uiBLvLK3/Pje1m+bIrMPDPr+si/gks+H1Oh+D0Lp4BU1U0FMPgHb
+         THwu4XRTpgidoDjRu+yx+Vkg2+Tef1f6utLcn+bhLt2ztXeMFWiquMoISh/zHkKvgeY7
+         LhvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762946188; x=1763550988;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=NoxDKOeccwe0hHKDuDC3QJhQ4gtuxY2B4MV4Ct21dd4=;
-        b=dfRxG4HIn6Whej+G3md5h/HcxPkExhKnG1mzu6z56DA90ASnxf0OegpxrcXLY0D5Fp
-         WLmz9k7N32LpkSMo4FL8oco40KMUWkrB58n6y+mY6Acb+qHttRRo6utmqRgcnf0n9LM5
-         NQQ9yGh2ZINbVl8A27AZojPh8HTo6sdpJduUWjP9BypTIpYH6WPbGHmvid2vgnly62Z2
-         TsK/TU44/ZTsrkxzbwTFXE1OMBtJTdgQCQ2/6UdsB0BjQpbliGwQHy/Hdwrn6+kJv5cb
-         wQi7sYu69EdVW3Y5vsApULaFXRDAKDu/f6uMfgCDaC9aEZKUJckTmqQZQWdviG5BHEeb
-         Uqxw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbYDPFT2QLK5T4nWlnMR+Uubu+rKksPph4rYTDbilYnELeIbXSO7ngAMZIblP+IXFieWQF9kSsFTsi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/2hG2Q3NmKw0dEjJ3Glq+ktMGWdiT6GH3CQoR3IK3Ic6TA/jP
-	1OqGowrsk35QgE3B/zCWSIpIMJWEyWigUhjCpv48gidGVZGhDFaVDGTlleyl2XFM1NA7KJWDPKL
-	+Mgd5PvDvQASFaJ+YFMdO+4V6E0H47DjvKRWwGwxq5A40V/vHTyy8pJpLWR37fGVp/Qqe31m8D5
-	EPrpW0QxKu2D+F9mg20NxuWzpHtMpkfZNITluJi1w=
-X-Gm-Gg: ASbGncsiK7xk4q31kzwUWmtFDrgjSVYYwtfycVrvVtEXShclrlbobBcDDHLDDpVJd4U
-	8X/tBFyxvo7v+ezQ/UlCHdZYyG2OPHg2nWTNPNQAiEawh4i5kYwClRap71j/pZwAopYNrNNMQd0
-	J68AIlN1iFHppADXyB3Ii5EhZcxLZUhN8aeu4kyEM477Hef729IoCjng1j6u3vvb/FquYX869qE
-	YfPeX8T/Qwt+1F8Ew==
-X-Received: by 2002:a05:620a:17a4:b0:89f:5a59:bf30 with SMTP id af79cd13be357-8b29b84978cmr310114985a.78.1762946188248;
-        Wed, 12 Nov 2025 03:16:28 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEbFMkRlXTnyauzcsrT9L1dZMT8pmOX8XA3fFrhIrcGJfg7RI6eB1RHXioVGWBqcn68+pLzUTvJit6HnES/i0c=
-X-Received: by 2002:a05:620a:17a4:b0:89f:5a59:bf30 with SMTP id
- af79cd13be357-8b29b84978cmr310111585a.78.1762946187783; Wed, 12 Nov 2025
- 03:16:27 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762946255; x=1763551055;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O7clx8dfZg3jZ+tSq2YUEpFAI0n8/M6CLth3qWizbsA=;
+        b=DG1b2dBz8r9xIQpdatlF3uLbzu5wWV43rKqTFgMPxXL2zQ3c+fBxEkT+KR8V0arKWB
+         i2NYAhADQLYbpOACKB0x1Wfavc6q6OM1zBySVOhEtIPKK3dn/xET/ldTfkRDui85M6uU
+         d6X+1ydJ8rxRVeC7RVlZhjc3MwlJfwUcVvfwu8A6UD+nz2svFN29H84RG1RIH2e4SKDi
+         x/9H+R6XEMTwU3KXlUemVF4g03xKAlLSOviM5Jrp6F1VQKL4xzZfb918geD0VDx8CUPq
+         zUae6sOlzqv9Zf9sTbplYjAvsi30iFkZJ83nO3LdJZGt/h08q6qOld0vh/vv7GjHXAUa
+         Vi2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVOYFhXcH0WD7gpKzo6LItBHiyEbFZ2hUHEP3wwnand2CVOFUFOcx9pJtfEKTRVdEAc5Hw80UVf9+Sa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxA+8HlEeNTDgVNvCsjGArNYiuZP+NTz3QzJPH/n4PuOD037l8+
+	MVdVylJnUhRNPd5X6eZ2yXWF05tcbq1RjGOSb2A8THRve7w4rvb33cNI
+X-Gm-Gg: ASbGncuZpdKDdAMZIeXv6gnn15v/y3W11yjI8umgu4nv8rwxtSL9YAwDGBvLPpka1xz
+	djv2M4PCD25Xy9Tp4/J3nz2Clm68y3eLcvSYL9d62cxkb2AD3+sCIvqGw1LwlGc5Z+4nPe4tZtx
+	F2hJXAHJqZxqomsSvPbQNkF8wyx67WQ2ZcyZ9GoKs2jd77TGTFxtBNNA/H78ruCW8M0eIwaTHGv
+	BB73YNno01ricYyJpmzbTSVKuxJbBu/UranGUN6xpH3GaIpkcWOzyCG7NOkJp9trtvzKM9s/i8z
+	P6qkLxsi9qOGw0uCpKlNQ065GdQyuTNYfqEkMNW0lhITwDJU9t3dxKseMlE/4QCDz5FMN3blfin
+	GG4wcuzdmbpegMom3I5UITCU6E9t1EeHSB3LMarOkk9NbirKiW+26iQsxOaCTo8PZQlIbx6qluO
+	lz/wmRT/PjDl3+/GcRP5ibyshVepyYhChyxicR+jDfl/McPbvjhPHWx++ojOwCwiHmWjWiuewFU
+	5O47mM/bFC0seV54Vln6dAxgjADWQgKaXzYKzVtbeb/Q+VeHgpgFeA=
+X-Google-Smtp-Source: AGHT+IHVEaLkAKMKOQnX2Yk+k2Hy7v2hitB1DZg/c1k61ch6ePvOS7vJ2UEiP4g6NHx8/2s4uaVz5g==
+X-Received: by 2002:a17:902:f684:b0:26a:8171:dafa with SMTP id d9443c01a7336-2984ed49524mr36554305ad.21.1762946254443;
+        Wed, 12 Nov 2025 03:17:34 -0800 (PST)
+Received: from [192.168.2.3] (2403-580a-80ed-0-4835-5a07-49e7-f115.ip6.aussiebb.net. [2403:580a:80ed:0:4835:5a07:49e7:f115])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2984dca0f28sm27386695ad.60.2025.11.12.03.17.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 03:17:34 -0800 (PST)
+From: James Calligeros <jcalligeros99@gmail.com>
+Subject: [PATCH v5 00/11] mfd: macsmc: add rtc, hwmon and hid subdevices
+Date: Wed, 12 Nov 2025 21:16:46 +1000
+Message-Id: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251103182006.1158383-1-loic.poulain@oss.qualcomm.com>
- <20251103182006.1158383-3-loic.poulain@oss.qualcomm.com> <740b9e7c-59bc-4a35-a268-526d92db372c@oss.qualcomm.com>
- <CAFEp6-12qN0=cv5=tPeVq3bVDLkaQDHLLCVQY4dtCTSvx+dPOQ@mail.gmail.com>
- <c1269f38-ab90-40d1-b5d3-39f546829d6c@oss.qualcomm.com> <CAFEp6-1+inMhsgjSqAZ+UDBMuNc9DA-jXFyqB=gkvYpSzW9Ukg@mail.gmail.com>
- <6daf722b-6b1b-4c91-b108-74793d930319@oss.qualcomm.com>
-In-Reply-To: <6daf722b-6b1b-4c91-b108-74793d930319@oss.qualcomm.com>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Wed, 12 Nov 2025 12:16:16 +0100
-X-Gm-Features: AWmQ_bkmppPZqTvg4YgUg-M0KbsuBOPKkMsqNwJWI4AM834g9wwfM8l1Kra8Vug
-Message-ID: <CAFEp6-0sbDj0C9KAMxq1mrGO9jGz4YDMqnf1AGVU49PyGzLi8w@mail.gmail.com>
-Subject: Re: [PATCH 2/5] power: reset: qcom-pon: Add support for WARM reset
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        robh@kernel.org, conor+dt@kernel.org, sre@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-GUID: 0Si1qnmbJcX30XLFxQL87soGre5OjcNB
-X-Authority-Analysis: v=2.4 cv=ao2/yCZV c=1 sm=1 tr=0 ts=69146c8d cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8
- a=g6XIpITSSIbtmoP3y8UA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-ORIG-GUID: 0Si1qnmbJcX30XLFxQL87soGre5OjcNB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDA5MCBTYWx0ZWRfX5evqr8tfn2pi
- 4/DHAP6M3l2ZD5g6Yt8oIwLB83ivKBrIX9/zRwfQu8b5L4Q3j3bqDW/sUAmX7hkrFbVDDIs4bs3
- 2YySq5HIJO8h5FemcSCHvtQ7RZSylfpdO/6MosLIaI8Gtin5kE45rNcHNvmmLwdtaJr2vfn+EGh
- pn9QQnUQKuqVt516qh/dX1QsH340KtP5BhXdoERpCEcCupJizDEc0ZRC3eZ2TYkmNRG0m+Opc+z
- atbuVVRWkP1LfxGK149h35gGSwI3AuP/yAo2yq8nvTXAjYhLjIuIVL8KcWrqwt5GwlPkM713dH6
- vg1YYWjgLPhddm7rPQPtjsCHxtdtlFhnedWrLxfIkn+jok7q4PduJU8jedeAEaqSCIcxChnish8
- extKjI8c3CizuvUhGafvlb9s1qQXtg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-12_03,2025-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 spamscore=0 phishscore=0 adultscore=0
- priorityscore=1501 impostorscore=0 malwarescore=0 suspectscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511120090
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ5sFGkC/2XMQWrDMBCF4asEraswGlmRlVXuUbqQZ8aJoI6D1
+ YqW4LtXCTQYe/kefP9dZZmSZHXc3dUkJeU0XutwbztFl3g9i05ct0JAB6056CFSHkjn746lZN1
+ 6sEhgPAOpim6T9OnnGXz/qPuS8tc4/T77xTze/1RYp4rRoJ3n/kBWXG/C6TzE9LmncVCPVMEFR
+ 7/hWDmJkxDYNYTtmtsXNwBbbitnz7br2UcBXPNmwdFteFO59Q07CtJFkCWf5/kPEEC78mkBAAA
+ =
+X-Change-ID: 20250816-macsmc-subdevs-87032c017d0c
+To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Jonathan Corbet <corbet@lwn.net>, 
+ James Calligeros <jcalligeros99@gmail.com>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-rtc@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+ linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Mark Kettenis <kettenis@openbsd.org>, Hector Martin <marcan@marcan.st>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7401;
+ i=jcalligeros99@gmail.com; h=from:subject:message-id;
+ bh=P0402Uz3TGlHgNTrUFPCtCcxzRvCHZS96bV6+P1WJZE=;
+ b=owGbwMvMwCV2xczoYuD3ygTG02pJDJkiOcvqqhaZzQtebHiWL3KbwN0ohsKQ0AcxbxY2tMbfr
+ G75FXGoYyILgxgXg6WYIsuGJiGP2UZsN/tFKvfCzGFlAhkiLdLAAAQsDHy5iXmlRjpGeqbahnqG
+ hjrGOkYMXJwCMNV2Vxn+qWvvmalsuUr7mbkmTxgj94QZj97MYlyuOX3zCsdqccceB4b/hVsc/76
+ 5fDv6W223y9wp7bkbgv4utvZdu7Thxdsr29omcwMA
+X-Developer-Key: i=jcalligeros99@gmail.com; a=openpgp;
+ fpr=B08212489B3206D98F1479BDD43632D151F77960
 
-Hi Konrad,
+Hi all,
 
-On Thu, Nov 6, 2025 at 1:50=E2=80=AFPM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 11/5/25 10:44 PM, Loic Poulain wrote:
-> > Hi Konrad,
-> >
-> > On Tue, Nov 4, 2025 at 4:20=E2=80=AFPM Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>
-> >> On 11/4/25 4:01 PM, Loic Poulain wrote:
-> >>> Hi Konrad, Krzysztof,
-> >>>
-> >>> On Tue, Nov 4, 2025 at 12:50=E2=80=AFPM Konrad Dybcio
-> >>> <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>>>
-> >>>> On 11/3/25 7:20 PM, Loic Poulain wrote:
-> >>>>> This mechanism can be used when firmware lacks proper warm-reset ha=
-ndling,
-> >>>>> for example, when the PSCI SYSTEM_RESET2 function is not implemente=
-d.
-> >>>>> It enables the warm reset functionality via the PMIC.
-> >>>>>
-> >>>>> This fallback is only enabled if qcom,warm-reset property is presen=
-t.
-> >>>>>
-> >>>>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> >>>>> ---
-> >>>>>  drivers/power/reset/qcom-pon.c | 47 ++++++++++++++++++++++++++++++=
-++++
-> >>>>>  1 file changed, 47 insertions(+)
-> >>>>>
-> >>>>> diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/q=
-com-pon.c
-> >>>>> index 7e108982a582..684e9fe9987d 100644
-> >>>>> --- a/drivers/power/reset/qcom-pon.c
-> >>>>> +++ b/drivers/power/reset/qcom-pon.c
-> >>>>> @@ -19,12 +19,20 @@
-> >>>>>
-> >>>>>  #define NO_REASON_SHIFT                      0
-> >>>>>
-> >>>>> +#define PON_SW_RESET_S2_CTL                          0x62
-> >>>>> +#define              PON_SW_RESET_S2_CTL_WARM_RST    0x01
-> >>>>> +#define PON_SW_RESET_S2_CTL2                         0x63
-> >>>>> +#define              PON_SW_RESET_S2_CTL2_RST_EN     BIT(7)
-> >>>>> +#define PON_SW_RESET_GO                                      0x64
-> >>>>> +#define              PON_SW_RESET_GO_MAGIC           0xa5
-> >>>>
-> >>>> Going back to msm8974 where the SPMI arbiter first showed up, these
-> >>>> values are all seemingly valid, so I think we can drop the dt proper=
-ty.
-> >>>> The restart reasons are set in stone too, and you can find more of t=
-hem
-> >>>> in the register description.
-> >>>
-> >>> Yes, but this should only apply when the platform firmware does not
-> >>> support warm reset via PSCI, right?
-> >>> Making it unconditional would override the PSCI implementation even
-> >>> when warm reset is supported.
-> >>>
-> >>> The point is that psci_sys_reset() executes a cold reset if warm
-> >>> reset isn=E2=80=99t available. Therefore, our PMIC reboot notifier mu=
-st have a
-> >>> higher priority than the PSCI handler.
-> >>>
-> >>> So maybe the alternative could be to introduce an additional reboot
-> >>> handler in psci, with the lowest priority, so that warm reset can hav=
-e
-> >>> a chance to run either from the psci main reboot handler or from the
-> >>> PMIC reboot handler before falling back to cold reset?
-> >>> [PSCI-handler]->[other-handlers]->[PSCI-cold-reset-fallback-handler]
-> >>
-> >> This seems like a common enough problem, perhaps the framework could
-> >> accept EOPNOTSUPP or similar and try to delegate further, coming back
-> >> with a normal restart or so, if unsupported. Trying to make a special
-> >> contract between qcom-pon and psci silently will be very fragile
-> >> otherwise.
-> >
-> > I tested the following, as described above:
-> > https://github.com/loicpoulain/linux/commit/5c34ea54e1a21ff1192c3c34187=
-7b24eff5f80b4
-> > The only special 'contract' is the handler priority.
-> > If you can elaborate on another/better approach, that would be helpful.
->
-> Thinking about it again, it'd be difficult to grab some sort of a handle
-> to the ""parent"" reboot mode, so what you propose here is good
->
-> >>>> That said, we're circumventing PS_HOLD this way - is that intended?
-> >>>
-> >>> Well, we don=E2=80=99t have direct control over PS_HOLD since it=E2=
-=80=99s managed by
-> >>> the firmware in our case. That=E2=80=99s why I considered using the P=
-MIC
-> >>> software reset as an effective way to achieve this warm reset.
-> >>
-> >> Hm, so is there no longer a way to assert it by writing to PMIC
-> >> registers?
-> >
-> > PS_HOLD is a SoC signal, and we can maybe assert it via the
-> > MPM_PS_HOLD register through the msm-poweroff driver if needed (well,
-> > if access is allowed from a non-secure world).
-> > However, this would also require coordination with the PMIC driver to
-> > select the correct PS_HOLD action (shutdown, cold reset, warm reset).
-> > For that reason, I=E2=80=99d prefer to keep PS_HOLD based logic abstrac=
-ted by PSCI.
-> > Using the SW_RST PMIC register allows us to perform a reset without
-> > additional signal handling.
->
-> Yeah of course we should use PSCI where functional and available
->
-> I think PS_HOLD used to be fully manual on old (msm-3.10) platforms
-> through PMIC registers. I see that e.g. msm-4.19 has an SCM call to
-> (de)assert it. There's also a "halt PMIC arbiter" call.
->
-> (via drivers/power/reset/msm-poweroff.c)
+This series adds support for the remaining SMC subdevices. These are the
+RTC, hwmon, and HID devices. They are being submitted together as the RTC
+and hwmon drivers both require changes to the SMC DT schema.
 
-Yes I could try the SCM call to deassert PS_HOLD, is it something we
-should prefer over PMIC soft reset?
-Asking because the implication would be a more complex solution
-(though not yet tested):
-- Adding reboot mode support in qcom-scm to activate ELD mode
-- Adding reset-notifier in pmic driver to modify PS_HOLD action to warm-res=
-et
-- Adding reset-notifier in qcom,scm (of lower priority than PMIC)
-doing the actual SCM ps-hold deassert
-- Ensuring that PSCI is still used for cold-reset and warm-reset when
-supported...
+The RTC driver is responsible for getting and setting the system clock,
+and requires an NVMEM cell. This series replaces Sven's original RTC driver
+submission [1].
+
+The hwmon function is an interesting one. While each Apple Silicon device
+exposes pretty similar sets of sensors, these all seem to be paired to
+different SMC keys in the firmware interface. This is true even when the
+sensors are on the SoC. For example, an M1 MacBook Pro will use different
+keys to access the LITTLE core temperature sensors to an M1 Mac mini. This
+necessitates describing which keys correspond to which sensors for each
+device individually, and populating the hwmon structs at runtime. We do
+this with a node in the device tree. This series includes only the keys
+for sensors which we know to be common to all devices. The SMC is also
+responsible for monitoring and controlling fan speeds on systems with fans,
+which we expose via the hwmon driver.
+
+The SMC also handles the hardware power button and lid switch. Power
+button presses and lid opening/closing are emitted as HID events, so we
+add an input subdevice to handle them.
+
+Since there are no real dependencies between the components of this series,
+it should be fine for each subsystem to take the relevant patches through
+their trees. The mfd one-liners should be taken in order to avoid trivial
+conflicts. Per [2], the hwmon driver should be merged along with the preceding
+mfd patch adding the __SMC_KEY macro to avoid build errors.
 
 Regards,
-Loic
+
+James
+
+[1] https://lore.kernel.org/asahi/CAEg-Je84XxLWH7vznQmPRfjf6GxWOu75ZetwN7AdseAwfMLLrQ@mail.gmail.com/T/#t
+[2] https://lore.kernel.org/asahi/20251106140050.GQ8064@google.com/
+
+---
+Changes in v5:
+- Drop inadvertent mfd core includes in rtc and input drivers
+- Link to v4: https://lore.kernel.org/r/20251025-macsmc-subdevs-v4-0-374d5c9eba0e@gmail.com
+
+Changes in v4:
+- Added Rob's R-b to hwmon Devicetree schema
+- Added missing include to hwmon driver
+- Dropped superfluous dev_info() from hwmon probe
+- Added Guenter's A-b to hwmon driver
+- Renamed INPUT_MACSMC_INPUT to INPUT_MACSMC
+- Dropped leftover mention of HID in input driver
+- Reinstated input driver MODULE_ALIAS
+- Trigger a hard wakeup on power button/lid switch when coming out of
+  s2idle
+- Suppress KEY_POWER event on wakeup to prevent an immediate shutdown
+  when waking up
+- Squashed hwmon Devicetree commits into one
+- Link to v3: https://lore.kernel.org/r/20251007-macsmc-subdevs-v3-0-d7d3bfd7ae02@gmail.com
+
+Changes in v3:
+- Renamed macsmc-hid to macsmc-input
+- Switched to pm_wakeup_event in macsmc-input
+- macsmc-input now configures its capabilities before registering the device
+- Renamed macsmc_hwmon to macsmc-hwmon
+- Dropped module aliases in macsmc-input and macsmc_hwmon
+- Introduced new SMC FourCC macro to silence GCC errors
+- Condensed hwmon binding using $defs
+- Made label property optional for hwmon sensors
+- Fixed incorrect hwmon is_visible implementation
+- Dropped 64-bit math from SMC float ops
+- Fixed incorrect use of error numbers in hwmon driver
+- Replaced a number of non-fatal dev_errs with dev_dbgs in hwmon driver
+- Added hwmon driver documentation
+- Added hwmon subdevice directly to the DT SMC node
+- Included "common" hwmon sensors in SoC .dtsi files
+- Fixed typo in hwmon-common.dtsi
+- Added Neal's R-b to series
+- Added required nodes to t602x Devicetrees
+- Link to v2: https://lore.kernel.org/r/20250827-macsmc-subdevs-v2-0-ce5e99d54c28@gmail.com
+
+Changes in v2:
+- Added Rob's R-b tag to RTC DT binding
+- Removed redundant nesting from hwmon DT binding
+- Dedpulicated property definitions in hwmon DT schema
+- Made label a required property for hwmon DT nodes
+- Clarified semantics in hwmon DT schema definitions
+- Split mfd tree changes into separate commits
+- Fixed numerous style errors in hwmon driver
+- Removed log messages sysfs read/write functions in hwmon driver
+- Removed ignored errors from hwmon driver
+- Removed uses of dev_err for non-errors in hwmon driver
+- Made it more obvious that a number of hwmon fan properties are optional
+- Modified hwmon driver to reflect DT schema changes
+- Added compatible property to hwmon node
+- Link to v1: https://lore.kernel.org/r/20250819-macsmc-subdevs-v1-0-57df6c3e5f19@gmail.com
+
+---
+Hector Martin (2):
+      rtc: Add new rtc-macsmc driver for Apple Silicon Macs
+      input: macsmc-input: New driver to handle the Apple Mac SMC buttons/lid
+
+James Calligeros (7):
+      dt-bindings: hwmon: Add Apple System Management Controller hwmon schema
+      mfd: macsmc: Wire up Apple SMC RTC subdevice
+      mfd: macsmc: Add new __SMC_KEY macro
+      hwmon: Add Apple Silicon SMC hwmon driver
+      mfd: macsmc: Wire up Apple SMC hwmon subdevice
+      mfd: macsmc: Wire up Apple SMC input subdevice
+      arm64: dts: apple: t8103, t8112, t60xx: Add hwmon SMC subdevice
+
+Sven Peter (2):
+      dt-bindings: rtc: Add Apple SMC RTC
+      arm64: dts: apple: t8103,t60xx,t8112: Add SMC RTC node
+
+ .../bindings/hwmon/apple,smc-hwmon.yaml  |  86 +++
+ .../bindings/mfd/apple,smc.yaml          |  45 ++
+ .../bindings/rtc/apple,smc-rtc.yaml      |  35 +
+ Documentation/hwmon/macsmc-hwmon.rst     |  71 +++
+ MAINTAINERS                              |   6 +
+ .../boot/dts/apple/hwmon-common.dtsi     |  33 +
+ .../boot/dts/apple/hwmon-fan-dual.dtsi   |  22 +
+ arch/arm64/boot/dts/apple/hwmon-fan.dtsi |  17 +
+ .../boot/dts/apple/hwmon-laptop.dtsi     |  33 +
+ .../boot/dts/apple/hwmon-mac-mini.dtsi   |  15 +
+ .../arm64/boot/dts/apple/t6001-j375c.dts |   2 +
+ arch/arm64/boot/dts/apple/t6001.dtsi     |   2 +
+ .../arm64/boot/dts/apple/t6002-j375d.dts |   2 +
+ .../arm64/boot/dts/apple/t600x-die0.dtsi |  10 +
+ .../boot/dts/apple/t600x-j314-j316.dtsi  |   3 +
+ .../arm64/boot/dts/apple/t602x-die0.dtsi |  10 +
+ arch/arm64/boot/dts/apple/t8103-j274.dts |   2 +
+ arch/arm64/boot/dts/apple/t8103-j293.dts |   3 +
+ arch/arm64/boot/dts/apple/t8103-j313.dts |   2 +
+ arch/arm64/boot/dts/apple/t8103-j456.dts |   2 +
+ arch/arm64/boot/dts/apple/t8103-j457.dts |   2 +
+ arch/arm64/boot/dts/apple/t8103.dtsi     |  11 +
+ arch/arm64/boot/dts/apple/t8112-j413.dts |   2 +
+ arch/arm64/boot/dts/apple/t8112-j473.dts |   2 +
+ arch/arm64/boot/dts/apple/t8112-j493.dts |   3 +
+ arch/arm64/boot/dts/apple/t8112.dtsi     |  11 +
+ drivers/hwmon/Kconfig                    |  12 +
+ drivers/hwmon/Makefile                   |   1 +
+ drivers/hwmon/macsmc-hwmon.c             | 851 +++++++++++++++++++++++++
+ drivers/input/misc/Kconfig               |  11 +
+ drivers/input/misc/Makefile              |   1 +
+ drivers/input/misc/macsmc-input.c        | 207 ++++++
+ drivers/mfd/macsmc.c                     |   3 +
+ drivers/rtc/Kconfig                      |  11 +
+ drivers/rtc/Makefile                     |   1 +
+ drivers/rtc/rtc-macsmc.c                 | 140 ++++
+ include/linux/mfd/macsmc.h               |   1 +
+ 37 files changed, 1671 insertions(+)
+---
+base-commit: 24172e0d79900908cf5ebf366600616d29c9b417
+change-id: 20250816-macsmc-subdevs-87032c017d0c
+
+Best regards,
+-- 
+James Calligeros <jcalligeros99@gmail.com>
+
 
