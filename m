@@ -1,79 +1,65 @@
-Return-Path: <devicetree+bounces-237622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB39C5277C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:25:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B39CC52794
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 14:28:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6CCD1891D91
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:25:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 618811894CDF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA09A337B80;
-	Wed, 12 Nov 2025 13:25:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5076B337BB1;
+	Wed, 12 Nov 2025 13:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="dA3ow4En"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jz0imOsw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACEB30C34A;
-	Wed, 12 Nov 2025 13:25:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2696A3358C3;
+	Wed, 12 Nov 2025 13:28:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762953923; cv=none; b=G6QKt1HGO08hpLHQ2eVcuHrZ6CqnsZ5pcxE1O4ZnuXDSjI5HQS/ukQdsfZcw1Cjz0y0Jsgqk/4o5+SzcFeeHJK4HAGeAIQO6dTq7xNjrE2p/e85jWw9XsXQ8sDAvM11hD1SFfWEQE5AGhCUYWhdN2k0GYcdNKQvD+PRStNW0lNQ=
+	t=1762954126; cv=none; b=qHNcwHe20WbHVpRbgQytU0x4/RSB5yv/vMzx1eBvLLwp9kh7fZr/eS9WJ4OIYKWMRi5fxsncyxLv+2jBTgcwk4JyhWnKYb2Sfh4WsKaecik3hHxpYS6H9q/MWK0XK1TetrJOPJTFRxlmYo8kXmCysNcfk1akE/DXv4hJTGbHrjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762953923; c=relaxed/simple;
-	bh=O7/lmhrEnSM5nvlYJelxb/eMu9DoLXJrh4JFzJ/R9NI=;
+	s=arc-20240116; t=1762954126; c=relaxed/simple;
+	bh=7p+aSh/V+tz65soo1tD2yC344mTmqbEBiquY9Efluo4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AOiIwaar2a1GZp5mG209ceNCLfTduDyjGxWlWXBOftUpU34KbeuMZtOJdagt5K7bXTYxv/Tr07FELg2W6tSUKCgaPXu3Ww+C/3pja5Si6Xz0GVNfa3viHPpKZJ46TKsgZ/atcpHy5qiSkhIlG2Goy451I+9DnJXulw9PuZPW9AA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=dA3ow4En; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=UaY7KqekpaEMhTYRhO2ZoYZ8i2O52YuClMxZhBCoR7I=; b=dA3ow4EnKu9JWOlLIY40GL+xLV
-	5mYhKMR9yXmdr4PTcNUsQlOWynfniRaBzrDNzML+nZF4S39boswZrujC6IreXKOO6ODGPgjY2DYFq
-	+msb2tpUCrG/SPk4gvhuPLYVTatZLpD2JUQ+4QoYXkB5bvBn1xs5/9BJcHjab9lkxuvI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vJAqQ-00DkWD-BY; Wed, 12 Nov 2025 14:25:06 +0100
-Date: Wed, 12 Nov 2025 14:25:06 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Rob Herring <robh@kernel.org>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH net-next v15 01/15] dt-bindings: net: Introduce the
- ethernet-connector description
-Message-ID: <dd29e395-8074-4259-8563-062e5e1b6216@lunn.ch>
-References: <20251106094742.2104099-1-maxime.chevallier@bootlin.com>
- <20251106094742.2104099-2-maxime.chevallier@bootlin.com>
- <20251112124355.GA1269790-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WEn1MqAQaIDj16QClAKywuuj81OtqyFVqHVq+3QymwE1BQUviKgdVH0BofIOJ/0kuk33yOM41/B8yPl2CbsTMXygbnrinMDz1gLbn/60hcvGZawf6aHCrU3MQXgrdh3X+IYQKno6iG16LXwmHCTgVnkYewWenPO6NETusr3gO4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jz0imOsw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CEDBC16AAE;
+	Wed, 12 Nov 2025 13:28:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762954125;
+	bh=7p+aSh/V+tz65soo1tD2yC344mTmqbEBiquY9Efluo4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jz0imOswLo9zbXTjFvWAmaUuauxblP2wi0OPbIS/hz1J4Iyxt4b2ZF3Op2BBW+RN4
+	 PbdLtrCT1BTI9P+fVLQpvfSDkIMwINbAVEoHh6/nQlc0n1PB+FedBWTGAJDgTIqYXx
+	 ybLv6R0u1KpKQGYZq1MACCr/R9nd/kAfVWR9Sd/6eZ0Gen4NczC/1S8Ulg/MGEVm6X
+	 laRpi1vPi8dOgk11jMVkVr71bs41ua8FEmQ6KMhNLl+/9BgGe5YJXD3TxdY9dJS24R
+	 PMOXNj2NnzwTfnjLzKYo5te165tef+fbQmBo2Q4hRi1u4Vw9nuS7J503D2dxmf57KC
+	 yIn2F4cSBtTyg==
+Date: Wed, 12 Nov 2025 07:28:44 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: zhangsenchuan@eswincomputing.com
+Cc: krzk+dt@kernel.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, linux-pci@vger.kernel.org,
+	ouyanghui@eswincomputing.com, kwilczynski@kernel.org,
+	mani@kernel.org, shradha.t@samsung.com,
+	pinkesh.vaghela@einfochips.com, bhelgaas@google.com,
+	inochiama@gmail.com, jingoohan1@gmail.com, p.zabel@pengutronix.de,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	mayank.rana@oss.qualcomm.com, thippeswamy.havalige@amd.com,
+	christian.bruel@foss.st.com, gustavo.pimentel@synopsys.com,
+	conor+dt@kernel.org, lpieralisi@kernel.org,
+	krishna.chundru@oss.qualcomm.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: PCI: eic7700: Add Eswin PCIe host
+ controller
+Message-ID: <176295412361.1610589.12532159548453602404.robh@kernel.org>
+References: <20251110090716.1392-1-zhangsenchuan@eswincomputing.com>
+ <20251110090900.1412-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,16 +68,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251112124355.GA1269790-robh@kernel.org>
+In-Reply-To: <20251110090900.1412-1-zhangsenchuan@eswincomputing.com>
 
-> > +  pairs:
-> > +    description:
-> > +      Defines the number of BaseT pairs that are used on the connector.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
+
+On Mon, 10 Nov 2025 17:08:59 +0800, zhangsenchuan@eswincomputing.com wrote:
+> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 > 
-> Constraints? Wouldn't 4 pairs be the max?
+> Add Device Tree binding documentation for the Eswin EIC7700 PCIe
+> controller module, the PCIe controller enables the core to correctly
+> initialize and manage the PCIe bus and connected devices.
+> 
+> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
+> Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
+> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> ---
+>  .../bindings/pci/eswin,eic7700-pcie.yaml      | 167 ++++++++++++++++++
+>  1 file changed, 167 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+> 
 
-[1, 2, 4];
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-	Andrew
 
