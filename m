@@ -1,211 +1,133 @@
-Return-Path: <devicetree+bounces-237490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFE8C51776
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:52:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F33CC517AE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 10:54:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6BFC1886AD8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:51:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3494D1889DE5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 09:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C88303CB0;
-	Wed, 12 Nov 2025 09:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A202A301713;
+	Wed, 12 Nov 2025 09:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tri/oO1Z";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BYyU5yWA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YBMVowPt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30AAD30276D
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770E3280025;
+	Wed, 12 Nov 2025 09:51:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762940951; cv=none; b=I3xkuIjvDer3rhBsxHGZHcnitg6DKGmVyTkvUDCLIG3i0knpeJdQSADC9Y+jTnynbQmnx+9BjTT+eCVn6MBRjz8lkA6gCO3B3BsgeJ976OH2Thi8PBeXk5S31zp7OwqepgqHzASphfF1tIx9eVDUalkZwEJa9tI1WTkCeJ42Cqo=
+	t=1762941064; cv=none; b=JdrLcYZf5uy/cIoYoFWVeUQOdhYmK2Qfq92z8FpPPRifVmK6bJv0twzczG0xk0CURTu60KDLo3P09b8uPZ97ZGsb46ezXccECTmyLUsqrUj982z12E2tdsNnW/N1zMP/OZG2DoduTT3pz8igLr3vrdut1K/Y7W4r/w8kSrFg9IE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762940951; c=relaxed/simple;
-	bh=wTui7CYgiy+K6A4DwIyIpanabpofRNM0sn205OFN0K0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NVZV1uITCXm8/Z1xEjveaCEq4IRet53gd/W80QVbZLdtnMuk33aVhAjk8HtUzjPcpgAXwoIGagrzNHQ3hSrlaOJFew5toWqf9yV8E3B24rbVHNCmkIhJfDe+F7y9FFNuhDwOW9/6w14JXe7iN7ePMi2nv20W7oj486hMSThmaA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tri/oO1Z; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BYyU5yWA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC9gMwr960222
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:49:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+dPJ4QZdBUlMpVPRyGvKtHV7b42+J5SfL4CezhrPsEM=; b=Tri/oO1ZEG/NXnXj
-	LZ7eUv/Z4t5Xpb9bTEJ/YzsUOMgVtx55KaPtO6P1rg/gKKagVqtARxR66yqlMfXF
-	Ba4NWIJ6sfBdpgI8Ci98+8p48bSh3al5LCHotjlL25X5gcmdgIh3Rq7Og1k+/kZk
-	iwc3j8n/K+ztzRkkV/l4P8IVQfN1uSos8ObPgx8IA1b2epBcan8o5MBRhVb2wOhK
-	nyROZc6CCrMkjRSi8+ZT/jQlxIWRS2smP8pgiut+sgB1SgR7Jm+Nxn0W0DSxjift
-	76jWYAICf9fX95WAvBfZMrTQiNqq0mzoIBKG+FKdvb7yv7DCh+zAZzcqBdTA++3y
-	d67QyQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acquer1vu-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 09:49:07 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ed861df509so1789351cf.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 01:49:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762940947; x=1763545747; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+dPJ4QZdBUlMpVPRyGvKtHV7b42+J5SfL4CezhrPsEM=;
-        b=BYyU5yWAzNjmSjF0db+II+H5IL4CxtRMmKrta2O86LW9BoVRVca50EOlyJ1Csws1na
-         VXIjg+0QOC3IYyRve5/R25xPOvBjiaKNnO9Mmcbz9J3VAoIQcmLRQ0Rqan5q82teMrhd
-         KrmjkW4cs361zLjk0HgqlC05Utg4est/0lE+cK0QH8NtjpXMFk8R6qvSqDOkWFJZJvVl
-         cECr9wkDrU7eUnZuiTeBE5YQsv1i8GtB18FuJkDfGY0FjUFdiiDzHEimoDgjJ77Iy21m
-         YdZ2lc7SkYLhNwDBN385SlQpwt5jtfNhLp/l2naZJ+mqitQuyePdI6VqFpdiQCs0nR7e
-         Vb9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762940947; x=1763545747;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+dPJ4QZdBUlMpVPRyGvKtHV7b42+J5SfL4CezhrPsEM=;
-        b=PtT2NI1aPLbm8B7B3zZ306+/sVf5jqQ5L79TdP8MfeftJKVS4Y/Muyy6CriysVIHJ5
-         jMrMXXIA3xoFQ1qvDuvtV9Aj5sjvnbvm780kudAcTCnYwm5SO/ftTNhgZPKV+EGfPHVU
-         dHv/KeVPpAbw0kNlE/pVcV0CSbml48f70WQpiEBKS6ud4OglUPxLizhPNIDwWZC8Sfyp
-         WTQaH1CNYvxUbZmV9Z1H/DmpTOxoXUVKF9OxZQNzj4wn0v6aEcN5IdlmODTM1tw/kNFi
-         oGPkv2S6ygyspUQof5zfpA++kDHbWAx71OmWz6O54CaH8MY1aqxxuAAApkg+/SChf7b0
-         Epig==
-X-Forwarded-Encrypted: i=1; AJvYcCXgpritmT1y/pSxKKTDYBlNL22VirWxTti5kkzXUb0uS0s48kUnf715a3Q8u2sAw6qbo4f/fr935npS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTrgTW0d08ojeVpMF1CnBdIdQTrZ4vz5cIAnYO6XGlLRlBICvt
-	eeCDRZcQYHDcpV0/9tHrF/RHyKav2vHpT+NPzM4ePB9Y1RVFhEi43VxouFEhxd53sSH5qbW4FnE
-	77YvsaX8Ditr/AnN8kN+Ww/Aa2VbCIyZTdKDXtp6O7L2Xnw1EnH+Hg6WewUmB8U2O
-X-Gm-Gg: ASbGncsbF0V2FNAq2wHkavd4Igic1jsMuMAwW/KnC2SydjJYETmrJnAqqXglT7tR83D
-	B3xRjpuG2Ih7v2QVHjpWAO0j40U8MiidFpbKYmkF2ZNTt2VyUBfW9Aq8s6GNG1vySNjWuyUeh/Z
-	c7OCgYh0YXFcDcN+2i1TDTKdqLKubQHxMD3JDanzXmo7RWBDrscG8gZ02XwEjRQhDcQTw+JLcCP
-	TktydErPLqoq4U2AHjGfq+WlJJynuAasCh2zK5RDUzsEioOHWaueaUsRzZvSych9hsN8UxHvMl9
-	Rtse4wwQf482CvyH6ayodojL/fI9BXJrUcpZn07x6VyX2Ps+iRkvoA1is2JMLUm9l0cdMY7MNSl
-	Y6OsS7XFdD0woVFouP9dMtNCDSunriNms5TPLBaqS0DMw6bTHffyHZmyt
-X-Received: by 2002:a05:622a:11c4:b0:4ed:b0fe:54af with SMTP id d75a77b69052e-4eddbdc11d9mr20202751cf.13.1762940947395;
-        Wed, 12 Nov 2025 01:49:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFPqrzdXmGbyKJf1zyUJ/6/lZ60CvdT07rxfc/WOc785KhcfTTcn2HopItZGmkx92ctB3AEQw==
-X-Received: by 2002:a05:622a:11c4:b0:4ed:b0fe:54af with SMTP id d75a77b69052e-4eddbdc11d9mr20202511cf.13.1762940946968;
-        Wed, 12 Nov 2025 01:49:06 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bdbc9656sm1568734666b.7.2025.11.12.01.49.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Nov 2025 01:49:06 -0800 (PST)
-Message-ID: <2bde5922-6519-4b6d-9edf-94fd0e7dbc9d@oss.qualcomm.com>
-Date: Wed, 12 Nov 2025 10:49:03 +0100
+	s=arc-20240116; t=1762941064; c=relaxed/simple;
+	bh=qI1ZCOjECs89IEuODLO9Awg0CVwjT8XOpU9kA8tvTyg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gIjmOaOYkaJRVOwaLnOWN/V9H0jwx5uWX1mvVcZvyn0NOFXwc3BOeBeJj3XpyFOJpeivx/8wJiXrJvH6I8EU+bJFMiRj0vbCmJoYPnidFuy3IXNhpHCNL4sDLCseSXxdzG5T9+L2nVUkme2sN2C9xBnmZwMzfIEyjG4lVJ4iBsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YBMVowPt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ED75C4CEF8;
+	Wed, 12 Nov 2025 09:51:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762941064;
+	bh=qI1ZCOjECs89IEuODLO9Awg0CVwjT8XOpU9kA8tvTyg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YBMVowPtBB19uVe53JssvPV+3K6JElRFgrm76O1qFGyi4PBlJ/jWYRHdQ8RrOJRoF
+	 v79bgkmIHXMaUdApjR+vTJZ+Oe2DW4OMmCZc/T+7XQ0e88oV/VeSerX9u1rbgcOMUJ
+	 zxtTu+LiWR+SVrR5/UMDE34csitd7m+iYceJVKCD6sW5gLt1JaEtOTekFKbSsy0zMQ
+	 RSGzgRqOrMXAvhUghyJG+x/YLQ10YsSr2z8MUEyTpqqCR9m9Hm5D7if1M9D1geia5e
+	 LUPcBlEll5NBq0e3QlsrhVPRisutOhiZgSl4S2EkPH0mGb2lfhsppKs/VBattKm4Pk
+	 fhOiuNTqtkjHQ==
+Date: Wed, 12 Nov 2025 10:51:01 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v4 02/20] regulator: dt-bindings: add s2mpg10-pmic
+ regulators
+Message-ID: <20251112-gainful-flashy-seal-f2c5dc@kuoka>
+References: <20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org>
+ <20251110-s2mpg1x-regulators-v4-2-94c9e726d4ba@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: lemans-evk: Enable Bluetooth support
-To: Wei Deng <wei.deng@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        stable@vger.kernel.org, cheng.jiang@oss.qualcomm.com,
-        quic_jiaymao@quicinc.com, quic_chezhou@quicinc.com,
-        quic_shuaz@quicinc.com
-References: <20251110055709.319587-1-wei.deng@oss.qualcomm.com>
- <28ffece5-29b7-4d6f-a6cf-5fdf3b8259ef@oss.qualcomm.com>
- <ee04e03a-ffd0-43c0-ba77-c7ee20aaac43@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <ee04e03a-ffd0-43c0-ba77-c7ee20aaac43@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDA3OCBTYWx0ZWRfXwq3lZ2doa8im
- fASLSMn++Fka2zTjKpRC+1OMZi9UtsXOt89S6Kayu6Vab7A1xNfDCjGndCV3u7Yv8E8t5rS37NR
- k9CPBlgyZ1+avJWlm2mASSmnSnlOGn8/tvSM7SVQUTdX7MxCX4H2xyFCj/6eCbIqdA00Tm0+Tur
- 4NJI6QsNom2DQFVIOXrcFHgxhmFFi01EOoPedSF7Chll/WVxO0VKJ6WNTLmRXkUyK5pz5JEq3VC
- tyLj4AiEHrZMBpvw/9hDETV3IEP3t0/29j5+qtcwqWVi3UWLkNSKnYjeLDOBfuOQtE75O2k7TE/
- M3Ngivg54w3gl8IOCvflnl4Wc83MnYTa4CMjeHh3oD+B7KLeyZXn6glhJKh5hXLjb47WFTQ+E9Q
- qwDgfGxhIi67NIrBj8hnKK/2aBYN4w==
-X-Proofpoint-ORIG-GUID: AInxPc0DiQJMk6jcDYPXvsfY6hzDNnvW
-X-Authority-Analysis: v=2.4 cv=cPztc1eN c=1 sm=1 tr=0 ts=69145814 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=iyyYdLundppeB2c9LQAA:9
- a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-GUID: AInxPc0DiQJMk6jcDYPXvsfY6hzDNnvW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-12_03,2025-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- spamscore=0 bulkscore=0 impostorscore=0 adultscore=0 phishscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511120078
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251110-s2mpg1x-regulators-v4-2-94c9e726d4ba@linaro.org>
 
-On 11/11/25 1:24 PM, Wei Deng wrote:
-> Hi Konrad,
-> 
-> Thanks for your comments.
-> 
-> On 11/10/2025 7:49 PM, Konrad Dybcio wrote:
->> On 11/10/25 6:57 AM, Wei Deng wrote:
->>> There's a WCN6855 WiFi/Bluetooth module on an M.2 card. To make
->>> Bluetooth work, we need to define the necessary device tree nodes,
->>> including UART configuration and power supplies.
->>>
->>> Since there is no standard M.2 binding in the device tree at present,
->>> the PMU is described using dedicated PMU nodes to represent the
->>> internal regulators required by the module.
->>>
->>> The 3.3V supply for the module is assumed to come directly from the
->>> main board supply, which is 12V. To model this in the device tree, we
->>> add a fixed 12V regulator node as the DC-IN source and connect it to
->>> the 3.3V regulator node.
->>>
->>> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
->>> ---
->>
->> [...]
->>
->>>  &apps_rsc {
->>> @@ -627,6 +708,22 @@ &qupv3_id_2 {
->>>  	status = "okay";
->>>  };
->>>  
->>> +&qup_uart17_cts {
->>> +	bias-disable;
->>> +};
->>> +
->>> +&qup_uart17_rts {
->>> +	bias-pull-down;
->>> +};
->>> +
->>> +&qup_uart17_tx {
->>> +	bias-pull-up;
->>> +};
->>> +
->>> +&qup_uart17_rx {
->>> +	bias-pull-down;
->>> +};
->>
->> This is notably different than all other platforms' bluetooth pin
->> settings - for example pulling down RX sounds odd, since UART signal
->> is supposed to be high at idle
->>
->> see hamoa.dtsi : qup_uart14_default as an example
->>
-> 
-> I followed the qup_uart17 settings from lemans-ride-common.dtsi. Since these configurations are not required for Bluetooth functionality. I will remove this configuration in the next patch.
+On Mon, Nov 10, 2025 at 07:28:45PM +0000, Andr=C3=A9 Draszik wrote:
+> The S2MPG10 PMIC is a Power Management IC for mobile applications with
+> buck converters, various LDOs, power meters, RTC, clock outputs, and
+> additional GPIO interfaces.
+>=20
+> It has 10 buck and 31 LDO rails. Several of these can either be
+> controlled via software (register writes) or via external signals, in
+> particular by:
+>     * one out of several input pins connected to a main processor's:
+>         *  GPIO pins
+>         * other pins that are e.g. firmware- or power-domain-controlled
+>           without explicit driver intervention
+>     * a combination of input pins and register writes.
+>=20
+> Control via input pins allows PMIC rails to be controlled by firmware,
+> e.g. during standby/suspend, or as part of power domain handling where
+> otherwise that would not be possible. Additionally toggling a pin is
+> faster than register writes, and it also allows the PMIC to ensure that
+> any necessary timing requirements between rails are respected
+> automatically if multiple rails are to be enabled or disabled quasi
+> simultaneously.
+>=20
+> While external control via input pins appears to exist on other
+> versions of this PMIC, there is more flexibility in this version, in
+> particular there is a selection of input pins to choose from for each
+> rail (which must therefore be configured accordingly if in use),
+> whereas other versions don't have this flexibility.
+>=20
+> Add documentation related to the regulator (buck & ldo) parts like
+> devicetree definitions, regulator naming patterns, and additional
+> properties.
+>=20
+> S2MPG10 is typically used as the main-PMIC together with an S2MPG11
+> PMIC in a main/sub configuration, hence the datasheet and the binding
+> both suffix the rails with an 'm'.
+>=20
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+>=20
+> ---
 
-This feels like you're essentially saying you don't know/care why you
-did this before and don't know why you're changing it again. This
-doesn't give me a lot of confidence. Are you testing your changes on
-real hw, running an upstream kernel with some distro userland?
+What is the base of this? base-commit from cover letter:
+fatal: bad object ab40c92c74c6b0c611c89516794502b3a3173966
 
-Konrad
+I am asking because `b4 diff` fails:
+
+b4 diff '20251110-s2mpg1x-regulators-v4-2-94c9e726d4ba@linaro.org'
+Grabbing thread from lore.kernel.org/all/20251110-s2mpg1x-regulators-v4-2-9=
+4c9e726d4ba@linaro.org/t.mbox.gz
+Checking for older revisions
+Grabbing search results from lore.kernel.org
+  Added from v3: 21 patches
+---
+Analyzing 83 messages in the thread
+Preparing fake-am for v3: dt-bindings: firmware: google,gs101-acpm-ipc: con=
+vert regulators to lowercase
+ERROR: Could not write fake-am tree
+---
+Could not create fake-am range for lower series v3
+
+
+Best regards,
+Krzysztof
+
 
