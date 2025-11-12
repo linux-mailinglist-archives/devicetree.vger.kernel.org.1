@@ -1,133 +1,246 @@
-Return-Path: <devicetree+bounces-237609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162CDC5250D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:49:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B228C524BF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 13:44:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 799E43AC640
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:43:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E543189F08E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B0E33509B;
-	Wed, 12 Nov 2025 12:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFDB0334C28;
+	Wed, 12 Nov 2025 12:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uxo36mmt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LUk0566x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44425309F03
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 12:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE37C31355E;
+	Wed, 12 Nov 2025 12:43:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762951428; cv=none; b=WYpFp5NHcdtf8VkuFUOq2mgtm6ZYIlpi/6+iaPwXS7jnNh23vrLgJfYfYpn0xyoUexCApUurhVjEz9cQIFFpvnvAsYgu5RnzehQatuCBRlxxcd0IvKmXbzbck98w3kzys+wXgp+6Pn2hQ161MAhd2NQVqRaBA7KkCg9PMmSik0s=
+	t=1762951437; cv=none; b=moiF0MKA1hqFYNfDipOVeXjdW+k2h8bYUoeMzk+eO2KzrN8iNrEfk8yZk/bIzqGwWpuSkRsMSodp2+tLzyuRo85sKr5mOhUITWfDSrqjLaI0vpTxdwEPJYYCGcw8ocgiEATePN3xxx6vYfAJlrpstZ0T5czxTA6hFLkcstSRH9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762951428; c=relaxed/simple;
-	bh=oDG71wLkZH6zNZ8BBmCy1cYzzKvLo2hY7GqxG8NdDxk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oXootcz+Tku8ViUE9DwYiZlQrzkvT1d2hygYnRlzD43teAG/hPcbDzhNZQBAEBdlQxUjxqmBTnfcXQ0E8IoAr6BJ8uaXunwMJgishy+N7qnlKt7bnFzh0YRkUspBgyx7BKRQKaC5Go99yMM73UF3u/1VOv3n2SUOQNnFH+7ZmW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uxo36mmt; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-594476f218fso561064e87.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 04:43:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762951423; x=1763556223; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oDG71wLkZH6zNZ8BBmCy1cYzzKvLo2hY7GqxG8NdDxk=;
-        b=uxo36mmtj8Hh+wII3sTWzpG8uou1bkkJCbYDvyvOcxOOpzOUM7cmRMlItxiPTpT3lA
-         0G3JQ0olpAdjQaaMDHrN4TDKa9GjJx7tk6u6pd3Mc2Txjn7ROQuK4pSzF8Gq7fX4YyOk
-         MZjPar6m400HZLMhAqlqqVEBOJxUwcjMmfTtUkAK9CMhlolvzTw3+2VH+L4mzl1GdxMZ
-         qr8/FIgPcanmRg1Oen4DdUs9Iryg673YXkKnJj6U2FDyOB0MPjflGMfZpKyT9PHjSijc
-         u+lPz5943ICxpmNykEHYHxTVJeIAbR2JReXirkb5hro76hxAHTHg91ciWg2dX/tjksOM
-         AkWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762951423; x=1763556223;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=oDG71wLkZH6zNZ8BBmCy1cYzzKvLo2hY7GqxG8NdDxk=;
-        b=QmeNnkgmf5z4EYkH7yFKpQ5QCDbUfl/mCr9cAiHxkDu/gXNg2mffJnbYGBL1MU2W5j
-         jVKSmFaKVzaOjNpfx5a3uedK05DLryrmj2FoiGbgnrarQGAN012zx3MSrYa9Mhtkjym2
-         7aGiUOU1MvWrfXWDVgyET/9YG/CWgwkqGw57r9aBiefsDSF9ISyKurwhF5AUbTyM1V6s
-         UXe87h1/vjQpevTBC6ojEbfVEAXjwQldHwsqgaqs5fMsRnYDxc02R6hgongb057S9Sua
-         4NCYhO7W8V6o/zt+lIQ4K0EnsGzpETdbF4KlkqriGcsmpzc4qIIJ5Bp6qfiAbj12WHKY
-         +3lg==
-X-Forwarded-Encrypted: i=1; AJvYcCXnQWHHKJXUP2p25u6yR5QkrZkqVZv7YmQTTNWRnFMOdjzstBCzSQ4XmHwobBIIgkHuteIoBA2gdSQg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0QwVGV1R/TniL+Ye4Q/DatD9vb1ndHcsaZtZpafhlzmPDPvvI
-	eLSPOONlwboNct0VW2R1+JgniYGOhLrmu/ipy6ugC9/LTPTOmhB5NFgzuKkGy5/2+B+6025nJ2y
-	tsT6RqCqT3+zYdhU8+UlFbn8r7E/PBtUWfbIiqUOgJg==
-X-Gm-Gg: ASbGncsZ1RK3hPwm9203/LvlM1E2CiTMYjB6PndbSZSyONrIlIsz4/CzvKK0iO9n8fP
-	Q6egz8g9q8mTUkg91uLkGD1S16eIdnofDGu07ugYKd4ivTtIbZn5jHqvC+1Boe59ePr+rjwjCFv
-	XRivc+LRbQq+y6ltMNql+gy0RUMLaMIP4EuOJpq9jOjrMPMEIcCcHuQuNH8cHHxTM2SGNJKZ0Hp
-	wqhFpZXYozpMryX6xD/9RW4/YxU5jX4+4t+etv9OooUnnbPMajA+9Ontv0I
-X-Google-Smtp-Source: AGHT+IFKrAN2G2zTZh4SCpeU6gZa9GThIvhb7rVDTGkR/MLZ+R0xImuA8WoUYuizes16PmjbOY9KlVCaKR3Fm5qO6C8=
-X-Received: by 2002:a05:6512:b9d:b0:595:7e01:6b3a with SMTP id
- 2adb3069b0e04-5957e016e6emr28072e87.14.1762951423456; Wed, 12 Nov 2025
- 04:43:43 -0800 (PST)
+	s=arc-20240116; t=1762951437; c=relaxed/simple;
+	bh=ANqlcL/lxDVL3cKzBO7YnssgrqZZpZVjE42b8mFuB0g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pi+VC2ikem0HIVtPZ0EZMnw2cDwgqwa9m/SSdS+eKmbHqUZV9BeklE6QLDFnz10spnkznp/ouxPfhLAoc9Z5i6I3HJQtsda0IU9xHjO8SicSg1+LKY1uDg5pBmxGL/HMxwzxT1Lq64OSp64zsh/zHlT4iMeSlUAtsGUVWKz1As0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LUk0566x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15B5BC4CEF5;
+	Wed, 12 Nov 2025 12:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762951437;
+	bh=ANqlcL/lxDVL3cKzBO7YnssgrqZZpZVjE42b8mFuB0g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LUk0566xFHhr4vWog7/q9K565lO4dgAtycAOW/TPTuxa4vfk7esk/hfDvvMnjNLrG
+	 gzN41cH1oicqcMZFv7VoJrXBGlyjzcUUfELbqaosAAvcE5BIg6zQf6y3zNKVxYBpeg
+	 g+xyw21Ts0EywcFMRD+iE7v0qUfHhE9nPb4k4xyOnjBvUeuT65iVgNBAP/AW+cxvoU
+	 WlSDZhdziKymIrWxJjSRXJZMDaYLmstmFrOy7GBnnU2ggUFUta0ahJ16zzyn7gbUDq
+	 uVmU0QKT9RgADeXY+Q/593T9sCj2aALNW0byALOBauNSqctTEqSfQonsMi2tmRefm/
+	 Wb8/3ViXZLxZQ==
+Date: Wed, 12 Nov 2025 06:43:55 -0600
+From: Rob Herring <robh@kernel.org>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject: Re: [PATCH net-next v15 01/15] dt-bindings: net: Introduce the
+ ethernet-connector description
+Message-ID: <20251112124355.GA1269790-robh@kernel.org>
+References: <20251106094742.2104099-1-maxime.chevallier@bootlin.com>
+ <20251106094742.2104099-2-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251110101043.2108414-1-praveen.talari@oss.qualcomm.com> <20251110101043.2108414-3-praveen.talari@oss.qualcomm.com>
-In-Reply-To: <20251110101043.2108414-3-praveen.talari@oss.qualcomm.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 12 Nov 2025 13:43:30 +0100
-X-Gm-Features: AWmQ_blw_0zZEbC2wTIU0HIhaE3Pg5Px5M6V4b6IhL47o7V7zMZgJkY7fz-LNV8
-Message-ID: <CACRpkdYEbxtjoi8KQxS5fY6xr3UZwQmG-yKvT3L8fRcCXDaAwQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] pinctrl: qcom: msm: Fix potential deadlock in
- pinmux configuration
-To: Praveen Talari <praveen.talari@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, 
-	alexey.klimov@linaro.org, krzk@kernel.org, bryan.odonoghue@linaro.org, 
-	jorge.ramirez@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, psodagud@quicinc.com, djaggi@quicinc.com, 
-	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, 
-	quic_arandive@quicinc.com, quic_shazhuss@quicinc.com, 
-	quic_cchiluve@quicinc.com, Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251106094742.2104099-2-maxime.chevallier@bootlin.com>
 
-Hi Praveen,
+On Thu, Nov 06, 2025 at 10:47:26AM +0100, Maxime Chevallier wrote:
+> The ability to describe the physical ports of Ethernet devices is useful
+> to describe multi-port devices, as well as to remove any ambiguity with
+> regard to the nature of the port.
+> 
+> Moreover, describing ports allows for a better description of features
+> that are tied to connectors, such as PoE through the PSE-PD devices.
+> 
+> Introduce a binding to allow describing the ports, for now with 2
+> attributes :
+> 
+>  - The number of lanes, which is a quite generic property that allows
+>    differentating between multiple similar technologies such as BaseT1
+>    and "regular" BaseT (which usually means BaseT4).
+> 
+>  - The media that can be used on that port, such as BaseT for Twisted
+>    Copper, BaseC for coax copper, BaseS/L for Fiber, BaseK for backplane
+>    ethernet, etc. This allows defining the nature of the port, and
+>    therefore avoids the need for vendor-specific properties such as
+>    "micrel,fiber-mode" or "ti,fiber-mode".
+> 
+> The port description lives in its own file, as it is intended in the
+> future to allow describing the ports for phy-less devices.
+> 
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> ---
+>  .../bindings/net/ethernet-connector.yaml      | 53 +++++++++++++++++++
+>  .../devicetree/bindings/net/ethernet-phy.yaml | 18 +++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/ethernet-connector.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-connector.yaml b/Documentation/devicetree/bindings/net/ethernet-connector.yaml
+> new file mode 100644
+> index 000000000000..2b67907582c7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/ethernet-connector.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/ethernet-connector.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic Ethernet Connector
+> +
+> +maintainers:
+> +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
+> +
+> +description:
+> +  An Ethernet Connector represents the output of a network component such as
+> +  a PHY, an Ethernet controller with no PHY, or an SFP module.
+> +
+> +properties:
+> +
+> +  pairs:
+> +    description:
+> +      Defines the number of BaseT pairs that are used on the connector.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-thanks for your patch!
+Constraints? Wouldn't 4 pairs be the max?
 
-On Mon, Nov 10, 2025 at 11:11=E2=80=AFAM Praveen Talari
-<praveen.talari@oss.qualcomm.com> wrote:
+Is it possible you need to know which pairs are wired?
 
-> Replace disable_irq() with disable_irq_nosync() in msm_pinmux_set_mux()
-> to prevent potential deadlock when wakeup IRQ is triggered on the same
-> GPIO being reconfigured.
->
-> The issue occurs when a wakeup IRQ is triggered on a GPIO and the IRQ
-> handler attempts to reconfigure the same GPIO's pinmux. In this scenario,
-> msm_pinmux_set_mux() calls disable_irq() which waits for the currently
-> running IRQ handler to complete, creating a circular dependency that
-> results in deadlock.
->
-> Using disable_irq_nosync() avoids waiting for the IRQ handler to
-> complete, preventing the deadlock condition while still properly
-> disabling the interrupt during pinmux reconfiguration.
->
-> Suggested-by: Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>
-> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+> +
+> +  media:
 
-I applied this patch 2/4 to the pin control tree for fixes.
+Both of these names are a bit generic though I don't have a better 
+suggestion.
 
-I removed the word "potential" from subject and text so as to
-reflect what Bjorn is saying: it's a very real issue.
+> +    description:
+> +      The mediums, as defined in 802.3, that can be used on the port.
+> +    enum:
+> +      - BaseT
+> +      - BaseK
+> +      - BaseS
+> +      - BaseC
+> +      - BaseL
+> +      - BaseD
+> +      - BaseE
+> +      - BaseF
+> +      - BaseV
+> +      - BaseMLD
+> +
+> +required:
+> +  - media
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        media:
+> +          contains:
+> +            const: BaseT
+> +    then:
+> +      required:
+> +        - pairs
 
-Thanks for fixing this!
-Linus Walleij
+else:
+  properties:
+    pairs: false
+
+??
+
+> +
+> +additionalProperties: true
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index 2ec2d9fda7e3..f434768d6bae 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -277,6 +277,17 @@ properties:
+>  
+>      additionalProperties: false
+>  
+> +  mdi:
+> +    type: object
+> +
+> +    patternProperties:
+> +      '^connector-[a-f0-9]+$':
+
+Unit addresses are hex, index suffixes are decimal: connector-[0-9]+
+
+
+> +        $ref: /schemas/net/ethernet-connector.yaml#
+> +
+> +        unevaluatedProperties: false
+> +
+> +    additionalProperties: false
+> +
+>  required:
+>    - reg
+>  
+> @@ -313,5 +324,12 @@ examples:
+>                      default-state = "keep";
+>                  };
+>              };
+> +            /* Fast Ethernet port, with only 2 pairs wired */
+> +            mdi {
+> +                connector-0 {
+> +                    pairs = <2>;
+> +                    media = "BaseT";
+> +                };
+> +            };
+>          };
+>      };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1ab7e8746299..19ba82b98616 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9276,6 +9276,7 @@ R:	Russell King <linux@armlinux.org.uk>
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/ABI/testing/sysfs-class-net-phydev
+> +F:	Documentation/devicetree/bindings/net/ethernet-connector.yaml
+>  F:	Documentation/devicetree/bindings/net/ethernet-phy.yaml
+>  F:	Documentation/devicetree/bindings/net/mdio*
+>  F:	Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> -- 
+> 2.49.0
+> 
 
