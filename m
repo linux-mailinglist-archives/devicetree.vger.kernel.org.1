@@ -1,271 +1,171 @@
-Return-Path: <devicetree+bounces-237561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C0FC51F9D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:30:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 804A5C51F64
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 12:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7668E4270FA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:21:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 05CBA34D80C
+	for <lists+devicetree@lfdr.de>; Wed, 12 Nov 2025 11:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F253E30E0C5;
-	Wed, 12 Nov 2025 11:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C83C3054E1;
+	Wed, 12 Nov 2025 11:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JvZ2mcAj";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PsQeLKLD"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Agq4Gj7q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B5612C15BE
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:20:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E566309F08
+	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:28:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762946435; cv=none; b=KL9lukMLUtNOLqZH2k3yQVA2qITcnV1rfqgbmhgkp2wmbKY2TAZx9paVxFXw1ugIP+MKzE5oZZdN3lAAoTouq1a/xD9jpJ4bChYo6cie18VMJMYKTR8+69Ia269IqSSefXRhL7JC5F/rM2CBRFoe2bhs7RgA2DK7wzBnczGn2RI=
+	t=1762946890; cv=none; b=Azfx/XLjXKEWz7L4o+Jwk7kbsixj67Lsnro906fybFK4hWfmk6fNHL9/BNs68C75D4SxN4VFaODFpro/SsRNADupUYvVipgEEKPPFnrNzWu9iV/e8UiQxIp578h0cX8w25TDBolC0glt4e0fupqOUDVbxDgsQiXozQXeJ8AhUj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762946435; c=relaxed/simple;
-	bh=Z8ZdAGG4EyKf8tVMNLlOiWZmA/jRMp+kaNu5G+A0Vfc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wf5uyDL+1ZcsvnovImw4vXWuniA3ItRaetWzqKzaf1p9z+7VdrejV8kUgZ58iZ8bWy+IHYAoG/6hWKtLBDXts93XSBf9/wNFVDKssqXZDf3ioVYhBggNjMgrsEc9oAsj4RjDj5Ch3c/j/oeUf+Gfpnk8syT3XLEKKZr7ez9JSnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JvZ2mcAj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PsQeLKLD; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AC6Sj3P350148
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:20:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	r5gL8BGnvahOLcwAKb9JaCY7XjjVHbw8vJ21kFjLfyw=; b=JvZ2mcAjim4Djm0G
-	bkDVQQBQY6tqUxDRvzHuPOg4UKulx2RGI6pI8zcXsITA83TqJobw3rMkuYGfWP9N
-	vF315wdmChMmQeAn7N5b3SAO2qX8wNs6nDYAZwvmKDba7c0ygPs0ztmSOkD/uWfx
-	T3lloEVwQwCV+Y0Y7ouEfmV4FRjIKDSzBPbPHBm8l0uOC85QAraMBq5d2vQuznPI
-	CxYeTAKUNk3qQL9c756ACGNGFC2iS9o1PtuKuc+KESMN6JUrTJUibj067TqjRzfb
-	YD891JV2zvZWz6ECu+uUDVLY8i4GsM8Vo6I6f+YR/lAKFuTiANmgbhgar1cmEhW9
-	WS1IfQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acn0ns0bv-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 11:20:33 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ed6317be8cso2296351cf.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 03:20:33 -0800 (PST)
+	s=arc-20240116; t=1762946890; c=relaxed/simple;
+	bh=1dYK7f4FkPzoZeJ51K8mDZvHGpP/FeIezNcDD5hERdU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pg0Ow9KP1JR5EJ+li/FJhUzMWzNU7Q37ldwSmVOuHkIU3MAUtDVWv8erxMk5Rn9Rl01od+ufTlwIEUGutXu4CWaTD+YyY5eHU37Gkca+fc/fdWPepjjdyM/EGjOvBU/CKLV0QnXqJAeMVSJVHR0jlaiiTdmbejbghj6oznwxtzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Agq4Gj7q; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2957850c63bso6266775ad.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 03:28:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762946432; x=1763551232; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r5gL8BGnvahOLcwAKb9JaCY7XjjVHbw8vJ21kFjLfyw=;
-        b=PsQeLKLDEFFKWnXn1zE2B5Ja6x6Y6Q291SuOoJb8sWjuEgrUjcHL/WxxuABgRyO30h
-         YE9qfVMADSYsxaWuT6nChK83cZwYO/JiZZ3XAZrJx8RTSHPr4PvOx0dy7BrU+54PglRJ
-         Tioc3Tj/9+2W5oRz5qRiiprhep9w+cVQrAwviCeaOz2WEeY35eqbfTxibjiff5GnZwiU
-         JCqp8jmpqoS0p/r5Xe4fm3odd5WZmmZHqAITs+3IgfiY9NwDshZv62pW5HvxB3o4tp+S
-         JBKj1GltP3tKnCepwk1iFWbvCJ3XpbNj+yjKLMktp+r8cUSDxJt1zPtKe4reejEgl3py
-         nxOw==
+        d=google.com; s=20230601; t=1762946888; x=1763551688; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ig8V7S9rFhIoVLkY+/XWuMwWvPcC3NWWv4ch5Z8G1nk=;
+        b=Agq4Gj7q75twnaldQoOyRwegmMpWfqRiAkSduaLyqfF9b0ngSBXUBtv38zNPxzZpju
+         2LpRH+6BJo6spdCm8zZPmto1MLnrBLRUm0IpN6/mSkVf51HqIIPjhyJgDMSLvcMO1oRM
+         MbjG3IMv5Lnbq8xDWQz1rKjXI92CnRArQ7ya+qWk/+lQyJy1mampYfS07KdJCS0becQa
+         YfWSz7irenPniI+wFEEq7tfeB4zn1FuHmSABqEcIdGoti6+7BD5XeI+HUliFBkUsEeCn
+         Oz+AG21bFX/eRk0++NhYJbsjsX5WIigS64HJwwEwNpZafC97iICeD7vbcHYl9cDYOLpx
+         02Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762946432; x=1763551232;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=r5gL8BGnvahOLcwAKb9JaCY7XjjVHbw8vJ21kFjLfyw=;
-        b=LVnPsuJfqIvl/jpJVQD8JS6bl6ae2nOZEAvjhNlmH+dLC02yv8X3wOZUOAyhZsuZz2
-         oHBZVhAHbJcksm1ua41N4hzxsyEsGA3fhQPuGFcXtYr/55s3Ur6kMRZo1SGbZwv/2xyA
-         Z+A2WDC6Uj9jOUlNBnOgUSB4oWjHYlMc0GGb8HZx1k/NkGWRoAw2F69x+LUimW3qPNxu
-         J0DdJwWoHMaKZ9zqverVsUIq0SBaKHfvu/k7o7sa9wSVGNQroJxOwQZfFgtn4rdI7KjN
-         xO3DQZs1Qd1ZQuwTZCvnVRF8hoIe7CuA+jdZcKCNkGPzymd0S3Vp5IU9nI+eoytuStVV
-         BSrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV3o2mDycD5jPzOGxvKzmAbsnIIaRFW17OyFKT6R3DHx9AqAakbNoAtFVbPABIWxIryK0gqke7a0CEn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9uGslaliQFRCWcQHFN917gz2IgBeoRQ24CMrpuIEp1Qfqn/32
-	wPc+d+OnjRtvBhwRucUe8cM5rU2W9D3i+DXIczonGiES52Qx4PmQ+RSdnops+/rFhq/W48wSQq+
-	tG3TigQNvSngZfCkV3+e1bzJDECYBoDxsSyRJPr58PJQ/N1Irtvhb7DsW72sBybMZ
-X-Gm-Gg: ASbGncvRex5YnroYGtQGC+kXlQHZh7HPNYB7n37rmTaaRwE40IEYItmaxLAMciqSOXi
-	fqRaNVGO/piOG+6kwn7YeO+n4SS9Olov8HLw3zI1ToTdDlPBWqNFfoL3OMArUvnOF5QpzxYf95U
-	dCZvMytQaCHrk0BTNUSU7x4F3VOFkxn53QaK3ZZuEYg2PfbQtxcH5nV1LzpPhemNQEVWVPpgQDQ
-	QL1LW/BR2HwyLazceDtmfhYOMzMRkaSvdFIaFU65pZTNbTrSx+fAE4mZdaJeBKTG497McqFp69S
-	wjH0vRPB4+icer4T7fH32Wm4qx78rDQlPYi8T2TDzniMyvbIAnwrcnnJNssGfdUejdYUTRRaOrF
-	6WQPrIhORTrq4jzQRBxV1q5mRx68kanC0ePFaRWMRMUaj/zIaNjRHuRwm
-X-Received: by 2002:a05:622a:1a0b:b0:4e8:966b:459b with SMTP id d75a77b69052e-4eddbc9b6fdmr20569071cf.5.1762946432226;
-        Wed, 12 Nov 2025 03:20:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEuxcDboMBlXZ8IfMpbvAVD/xCyC6PkgJofI6nYVfYXkD5ZeyDbBO/vyiqeNaeZ+hpdlaOWnQ==
-X-Received: by 2002:a05:622a:1a0b:b0:4e8:966b:459b with SMTP id d75a77b69052e-4eddbc9b6fdmr20568821cf.5.1762946431714;
-        Wed, 12 Nov 2025 03:20:31 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7327a48bc7sm321134966b.71.2025.11.12.03.20.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Nov 2025 03:20:31 -0800 (PST)
-Message-ID: <4e9d15cd-1ef2-464c-b421-f8a333c53825@oss.qualcomm.com>
-Date: Wed, 12 Nov 2025 12:20:29 +0100
+        d=1e100.net; s=20230601; t=1762946888; x=1763551688;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ig8V7S9rFhIoVLkY+/XWuMwWvPcC3NWWv4ch5Z8G1nk=;
+        b=MHwGK46xNMa7TQ2FTGnuL98syTGoKNuIAs+domPFtZ2aJGJKQ0mGw1c3QhWHo5R8Xi
+         frE3fWVUbj9f73QHa6kqJ+h7tNkR2loiy6osGe0e9HVU3Y4zaagxNzQQ4j6XWKo9uw15
+         FlM8f6myHuA8HCb8OkwVvQ9OZNClBS0SlVqXGc3ttXmFrecBm0EfH7ju+RBQ61JyuDIg
+         c2cqtslDdsfqDI3YpSdYN1t0S/XLVWUG4HUzEm0rCTXZeix7FdFqPxi70pdpKcobn6Bl
+         MyQ5dzLit6YaYvxm89o6gtOVzEYdp3BMtno1/3tGFflphCtZJfw2xFJWuyBZl3BAb0uT
+         +vnw==
+X-Forwarded-Encrypted: i=1; AJvYcCXsqmPLYAM/DsnbPkuGHcO9YymoR3medFP9nLio0c+Ck/e/k9AKnj0tZ9386DRw5n329S9+VHx4plqv@vger.kernel.org
+X-Gm-Message-State: AOJu0YygG9Mytmq/cjKU0/Vs2IRxH5hfHanLR1YoXA1qvZUl383sA4y6
+	5Rt93+PSOImTfzoTA8xvvP4a0lXmhD4Pta82X4pxu2PmsEpK/sRNYFkiynnQ8oOWCZHhr+4YnzR
+	8kl1HPVG2Y4Og6VA95YX7Mwm7LItvKvvQxhs/62MZ
+X-Gm-Gg: ASbGncvIkoXSYHGtXlvU0K4/CEnxVSZwz/G+OKmwo500H8WBnBQnMz9lEVw3MTrMPdZ
+	s41DeEV6Lj4qJ4ePdtyl67DKxaDTEvePQejN2GO40+mzxtJePEgu5RrrpLsohbbKrjeJ0RFHcVN
+	R2YWT6SRZUl0dLTyhr4O0qOgzOMHvC8pZiwTpReAL1PeUaOt3c/6mXi4l0pVCnCAMSfNo2fwabG
+	6aTkKTAq6/4toQdx9Shp5Vc9JygjL8ErH2CZvy0UGfve4LnmQAJXMPZ9rchkb7huM4S5MfCUk+r
+	i6vDjzB/MIjnHWFXHNuWVveMfxa709Ev8PQQ
+X-Google-Smtp-Source: AGHT+IEzhYJUJIhP1itpJ8SMj4wfy7Edo9fDUXSWIfM11ytYomEi4CEvHvu/YvWNAK7+sehRmwWVHzbMhPckpBBMF6k=
+X-Received: by 2002:a17:903:234d:b0:296:5ebe:8fa with SMTP id
+ d9443c01a7336-2984094a5bcmr70869985ad.23.1762946887940; Wed, 12 Nov 2025
+ 03:28:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] power: reset: qcom-pon: Add support for WARM reset
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        robh@kernel.org, conor+dt@kernel.org, sre@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20251103182006.1158383-1-loic.poulain@oss.qualcomm.com>
- <20251103182006.1158383-3-loic.poulain@oss.qualcomm.com>
- <740b9e7c-59bc-4a35-a268-526d92db372c@oss.qualcomm.com>
- <CAFEp6-12qN0=cv5=tPeVq3bVDLkaQDHLLCVQY4dtCTSvx+dPOQ@mail.gmail.com>
- <c1269f38-ab90-40d1-b5d3-39f546829d6c@oss.qualcomm.com>
- <CAFEp6-1+inMhsgjSqAZ+UDBMuNc9DA-jXFyqB=gkvYpSzW9Ukg@mail.gmail.com>
- <6daf722b-6b1b-4c91-b108-74793d930319@oss.qualcomm.com>
- <CAFEp6-0sbDj0C9KAMxq1mrGO9jGz4YDMqnf1AGVU49PyGzLi8w@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAFEp6-0sbDj0C9KAMxq1mrGO9jGz4YDMqnf1AGVU49PyGzLi8w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: NTYXd0-n4LkHlDTjaL3_2sAm7DFzmKTU
-X-Proofpoint-ORIG-GUID: NTYXd0-n4LkHlDTjaL3_2sAm7DFzmKTU
-X-Authority-Analysis: v=2.4 cv=acRsXBot c=1 sm=1 tr=0 ts=69146d81 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8
- a=oAzUKsySGAh57qx-K-8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDA5MSBTYWx0ZWRfX4c1t0E8wh6Mx
- fXoX5Vel6ReYsdi2lsfPQHFY+5HaR864bsdHbCNGnwb4JmdMjABt8wQY5KLG6/YJKwl9hXXlCU8
- 7Tgm6IeNRbw16o0ZqZJ3DsC8h/BAbOqlVcC5g8Q6yniaQkl6/QVgpVMvcUrBvPXxVXQzd/L0WSA
- rcE9FUnAdlkhuHODyosXK6hEMYFZVfmZWOfF8ZK0rxHgJFOpXhMqkA++7ExnDVS9i7kbw/uPYam
- YZkQ4pn7FDDtU5BoWTbLCy1C4Zywb3yvuF3XUgE5+xXxPnAg3q63thjEzr7cb0R6+tzC9MVe62E
- ev8+rOm6az4OsKdmqJU8fy0eQjegTHmL/uY5MMZ82eO2gc+i/rjLwJfjUiqtRiAfytpsPX/03n1
- fxsytOG7EaZVks5beIHqsUZYPUoUaQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-12_03,2025-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 bulkscore=0 clxscore=1015 spamscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511120091
+References: <20251111130624.3069704-1-royluo@google.com> <20251111130624.3069704-2-royluo@google.com>
+ <20251112-logical-grebe-of-modernism-dcf83b@kuoka>
+In-Reply-To: <20251112-logical-grebe-of-modernism-dcf83b@kuoka>
+From: Roy Luo <royluo@google.com>
+Date: Wed, 12 Nov 2025 19:27:30 +0800
+X-Gm-Features: AWmQ_bn2RT6EbgSb3mHFWKckHPwcrvZ-s2OqhjevpH_GhYx3Lcain4Rs18PGkFc
+Message-ID: <CA+zupgxALZjF8m=PfYgb1QUgf0u+-Su0XYQ3VB=fCpM1dt9s_Q@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>, Badhri Jagan Sridharan <badhri@google.com>, 
+	Doug Anderson <dianders@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/12/25 12:16 PM, Loic Poulain wrote:
-> Hi Konrad,
-> 
-> On Thu, Nov 6, 2025 at 1:50 PM Konrad Dybcio
-> <konrad.dybcio@oss.qualcomm.com> wrote:
->>
->> On 11/5/25 10:44 PM, Loic Poulain wrote:
->>> Hi Konrad,
->>>
->>> On Tue, Nov 4, 2025 at 4:20 PM Konrad Dybcio
->>> <konrad.dybcio@oss.qualcomm.com> wrote:
->>>>
->>>> On 11/4/25 4:01 PM, Loic Poulain wrote:
->>>>> Hi Konrad, Krzysztof,
->>>>>
->>>>> On Tue, Nov 4, 2025 at 12:50 PM Konrad Dybcio
->>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
->>>>>>
->>>>>> On 11/3/25 7:20 PM, Loic Poulain wrote:
->>>>>>> This mechanism can be used when firmware lacks proper warm-reset handling,
->>>>>>> for example, when the PSCI SYSTEM_RESET2 function is not implemented.
->>>>>>> It enables the warm reset functionality via the PMIC.
->>>>>>>
->>>>>>> This fallback is only enabled if qcom,warm-reset property is present.
->>>>>>>
->>>>>>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
->>>>>>> ---
->>>>>>>  drivers/power/reset/qcom-pon.c | 47 ++++++++++++++++++++++++++++++++++
->>>>>>>  1 file changed, 47 insertions(+)
->>>>>>>
->>>>>>> diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
->>>>>>> index 7e108982a582..684e9fe9987d 100644
->>>>>>> --- a/drivers/power/reset/qcom-pon.c
->>>>>>> +++ b/drivers/power/reset/qcom-pon.c
->>>>>>> @@ -19,12 +19,20 @@
->>>>>>>
->>>>>>>  #define NO_REASON_SHIFT                      0
->>>>>>>
->>>>>>> +#define PON_SW_RESET_S2_CTL                          0x62
->>>>>>> +#define              PON_SW_RESET_S2_CTL_WARM_RST    0x01
->>>>>>> +#define PON_SW_RESET_S2_CTL2                         0x63
->>>>>>> +#define              PON_SW_RESET_S2_CTL2_RST_EN     BIT(7)
->>>>>>> +#define PON_SW_RESET_GO                                      0x64
->>>>>>> +#define              PON_SW_RESET_GO_MAGIC           0xa5
->>>>>>
->>>>>> Going back to msm8974 where the SPMI arbiter first showed up, these
->>>>>> values are all seemingly valid, so I think we can drop the dt property.
->>>>>> The restart reasons are set in stone too, and you can find more of them
->>>>>> in the register description.
->>>>>
->>>>> Yes, but this should only apply when the platform firmware does not
->>>>> support warm reset via PSCI, right?
->>>>> Making it unconditional would override the PSCI implementation even
->>>>> when warm reset is supported.
->>>>>
->>>>> The point is that psci_sys_reset() executes a cold reset if warm
->>>>> reset isn’t available. Therefore, our PMIC reboot notifier must have a
->>>>> higher priority than the PSCI handler.
->>>>>
->>>>> So maybe the alternative could be to introduce an additional reboot
->>>>> handler in psci, with the lowest priority, so that warm reset can have
->>>>> a chance to run either from the psci main reboot handler or from the
->>>>> PMIC reboot handler before falling back to cold reset?
->>>>> [PSCI-handler]->[other-handlers]->[PSCI-cold-reset-fallback-handler]
->>>>
->>>> This seems like a common enough problem, perhaps the framework could
->>>> accept EOPNOTSUPP or similar and try to delegate further, coming back
->>>> with a normal restart or so, if unsupported. Trying to make a special
->>>> contract between qcom-pon and psci silently will be very fragile
->>>> otherwise.
->>>
->>> I tested the following, as described above:
->>> https://github.com/loicpoulain/linux/commit/5c34ea54e1a21ff1192c3c341877b24eff5f80b4
->>> The only special 'contract' is the handler priority.
->>> If you can elaborate on another/better approach, that would be helpful.
->>
->> Thinking about it again, it'd be difficult to grab some sort of a handle
->> to the ""parent"" reboot mode, so what you propose here is good
->>
->>>>>> That said, we're circumventing PS_HOLD this way - is that intended?
->>>>>
->>>>> Well, we don’t have direct control over PS_HOLD since it’s managed by
->>>>> the firmware in our case. That’s why I considered using the PMIC
->>>>> software reset as an effective way to achieve this warm reset.
->>>>
->>>> Hm, so is there no longer a way to assert it by writing to PMIC
->>>> registers?
->>>
->>> PS_HOLD is a SoC signal, and we can maybe assert it via the
->>> MPM_PS_HOLD register through the msm-poweroff driver if needed (well,
->>> if access is allowed from a non-secure world).
->>> However, this would also require coordination with the PMIC driver to
->>> select the correct PS_HOLD action (shutdown, cold reset, warm reset).
->>> For that reason, I’d prefer to keep PS_HOLD based logic abstracted by PSCI.
->>> Using the SW_RST PMIC register allows us to perform a reset without
->>> additional signal handling.
->>
->> Yeah of course we should use PSCI where functional and available
->>
->> I think PS_HOLD used to be fully manual on old (msm-3.10) platforms
->> through PMIC registers. I see that e.g. msm-4.19 has an SCM call to
->> (de)assert it. There's also a "halt PMIC arbiter" call.
->>
->> (via drivers/power/reset/msm-poweroff.c)
-> 
-> Yes I could try the SCM call to deassert PS_HOLD, is it something we
-> should prefer over PMIC soft reset?
-> Asking because the implication would be a more complex solution
-> (though not yet tested):
-> - Adding reboot mode support in qcom-scm to activate ELD mode
-> - Adding reset-notifier in pmic driver to modify PS_HOLD action to warm-reset
-> - Adding reset-notifier in qcom,scm (of lower priority than PMIC)
-> doing the actual SCM ps-hold deassert
-> - Ensuring that PSCI is still used for cold-reset and warm-reset when
-> supported...
+On Wed, Nov 12, 2025 at 4:32=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Tue, Nov 11, 2025 at 01:06:23PM +0000, Roy Luo wrote:
+> > Document the device tree bindings for the DWC3 USB controller found in
+> > Google Tensor SoCs, starting with the G5 generation.
+> >
+> > The Tensor G5 silicon represents a complete architectural departure fro=
+m
+> > previous generations (like gs101), including entirely new clock/reset
+> > schemes, top-level wrapper and register interface. Consequently,
+> > existing Samsung/Exynos DWC3 USB bindings are incompatible, necessitati=
+ng
+> > this new device tree binding.
+> >
+> > The USB controller on Tensor G5 is based on Synopsys DWC3 IP and featur=
+es
+> > Dual-Role Device single port with hibernation support.
+> >
+> > Signed-off-by: Roy Luo <royluo@google.com>
+> > ---
+> >  .../bindings/usb/google,gs5-dwc3.yaml         | 140 ++++++++++++++++++
+> >  1 file changed, 140 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/google,gs5-dw=
+c3.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml=
+ b/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
+> > new file mode 100644
+> > index 000000000000..bfaf6cbdfec3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
+> > @@ -0,0 +1,140 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright (c) 2025, Google LLC
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/google,gs5-dwc3.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Google Tensor Series (G5+) DWC3 USB SoC Controller
+> > +
+> > +maintainers:
+> > +  - Roy Luo <royluo@google.com>
+> > +
+> > +description:
+> > +  Describes the DWC3 USB controller block implemented on Google Tensor=
+ SoCs,
+> > +  starting with the G5 generation. Based on Synopsys DWC3 IP, the cont=
+roller
+> > +  features Dual-Role Device single port with hibernation add-on.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: google,gs5-dwc3
+>
+> Doug just said SoC is lga, not gs5, so you need both to align on that.
+> Actually not only you both, but whoever else is upstreaming from Google.
+>
+> It is not the community who should synchronize and organize way how
+> Google works on their own stuff. Google should organize how Google works
+> on your Google's stuff.
+>
+> Best regards,
+> Krzysztof
+>
 
-My answer is unfortunately "I don't know". We should loop in some
-PMIC folks that would know the difference
+Ack, will align on the next patchset.
 
-Konrad
+Thanks,
+Roy Luo
 
