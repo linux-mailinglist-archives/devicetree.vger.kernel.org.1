@@ -1,111 +1,215 @@
-Return-Path: <devicetree+bounces-238159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD8DC57E3D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:20:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83781C57EAF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:24:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 05EA035347B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:19:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 066F34EAADF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC67D28643A;
-	Thu, 13 Nov 2025 14:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F7126ED46;
+	Thu, 13 Nov 2025 14:19:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HKPoZDzj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BF22727E3
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 14:19:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE571280037
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 14:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763043555; cv=none; b=jIVdUiWGh0uSELi/L5pkyHlpjHeIOLRmMffC4N40tcPg9j70W0dYcq7/TbPUq3670CINQyorO/VVHuSbHRX75juvnRNR1Za+inwTohuSRb3rl6doGgdXsIPHv3b2IxrdjkR6bIWkqdQJ7/vAulCaoi+L/r3rxuCsUAZkxkC2ECg=
+	t=1763043561; cv=none; b=jm1PyefgXk/aYsHAYCAgb36rNcnEBdwMasafK3sOQwy/R7BcMpalEqsz+eGIXEshBodg181DLoESoycTTLxb7lO5NjqIf9X24VjEg2JQIYJ+896TbHZvuvaeNXRG08sAUTgZP4ZB8fPZxp/GwcWicg2CTslfZpeBaGNX+Uv3MmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763043555; c=relaxed/simple;
-	bh=vJVdsmeHsUXqAeVRdhsj7TQml+wrLBqo7mPbRPjpD20=;
+	s=arc-20240116; t=1763043561; c=relaxed/simple;
+	bh=+60GxZqo7W68nBsBK+4RC1waiWGLnIxNTQPjNx2YCXQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V/ATSaAfPtAjri+FlYXXwkUS6igmOijum9M83EqZWL2jQIDmRZ1OHfhKYibnRJ+ae6REEw5PUB+iFDiNKtB8obelP/bo3ao7JJIktMwDFG+ZeGsuQUFhubS5KjQE6djJHuiuicX+nZDWvDTnl4Q/rXp5OfyJt6tayvALhMTqYds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-5597330a34fso617817e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 06:19:12 -0800 (PST)
+	 To:Cc:Content-Type; b=Wdd0H2wcy3vmlb95v3BJPTK6Q4f6iEu1BEfqBtUe3evGMMdZELB2Pd1hxOJdGj+zUKNkazugi7eMnIaJsXvyHusML4lLcSu0hGVl1E8Dwfml3Mrnirf3jkLm4+5lilSRncBy5688O95+Vfaa7JQH982ogdgMgB33OEFfNl0FEms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HKPoZDzj; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-64149f78c0dso1427751a12.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 06:19:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763043558; x=1763648358; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8gGk2esZ3TPP+U/Xv/QDaG4ohk1EPYMCao+ua5Ut7t0=;
+        b=HKPoZDzjuucpsOnDVeeX5FEffNZmMkEhlZUPhNbufPgXC5bim6wpOygxs3qsKJOIHJ
+         wAAMT8FZ2Zo/xn2Cp7pNHcDqfbtUq2T8+W81lsRmpBy6AAjYPHFHVfV+6y2wwYCxGoFU
+         INo2jKqULR2PwHyeRV2G36PZnv1r2U17qcToy1s3gSRNsvSKBJL/VBMzpLyJCT9P8Hfm
+         s/FnpM2JQu+lcRgugPqYBibi15c3j909O73bjmBPdR7ddIwrilS2d8KNJne3FYhvEgCO
+         wdpZF4HYeas5hoFFpQbTcjLfNm+dKzg13JMYkzfvFG1Kb1gjo/bjYK5X/prLBvbIOQIt
+         SVXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763043551; x=1763648351;
+        d=1e100.net; s=20230601; t=1763043558; x=1763648358;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=icPVrj3OePZGMuahj/4/ViTGnP1F/ipWE8Dz8LO0Hro=;
-        b=w/rbICuEWzZW9vZkkZR8tFyg1NFoGRUwh5lVNqrsQGWDJbgXi0udEDc6L5p98+Iel5
-         u6+tz88tnl7r5Sc5wFUD1WZRxxr/xsNhu0W0j0CxjEMQjH7JdE7LV+kHkBWquKQVcdGp
-         UVdu7iWAVeNcqNKwS2DGpOpVISnr/Ke4RHVpM5mt7U08zAEK6KVbeWoqwKa5R0oY3S8p
-         7H+QtXSK82luARzEuyfjcfBJdE0GffAC4g54AeFV+ooGh3GhMHO/4WL1XQTvDs5q5hNy
-         q8gyz8rMsHwlYCUwxUpBkMxClAWnWEMBk7OLQmgQkqT41RuQM263TLpFqYqRi13N7bOA
-         fCNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWfLe6Mz7D6PCmDM9JORR1tjkQAwuGuyAIZcg3YgBzCuJ5R/Nyw7X1z6r4Zv2HjRYbxWZPY4pjxdZK9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwTSQToHHqo8830VIwwgcZCAFSTGhhf9V9Y/2UnWlbJlsm2uls
-	Wk9e/qGH3lw/T6d5yjCtIrqMRZvPPSoqstKxmKVbDmJSlMCR3Z9mKj9J1A0AXo5ULvI=
-X-Gm-Gg: ASbGncvNOIZG4zZIYWL7Dce5YTjcvstGTvKr+TJsUKVD6Jht19r5dMyIWx4hMGFAbpP
-	vE3IaN8aw+DWNaKMM07/PSx3x1CkzMAITKlDUW03bxJ8RFT9fbd7Z7KcfS06+2NlECKXkkjoy+Z
-	DubeUZa1y5Stk0RFJFiTIWfYP22xS+OcV8cGNmH58UZApKEFt1QCyRH1P0JIR1wnP90BqeX5E4K
-	fP52rOy1ZBSPRhbiIyIXMbJgklp5l5aDYvUZ5W6sTYu3Q0HhsOGK0NnocKpfSCRgv8vsTKNquwA
-	W0C6O73JpATR3FcjOa+USDkDdLfJnQafzZt5fUrK6uYfz67g3R8F9pdAjdLKiropsvqpL8QiJIc
-	RBDtXn58r8a0wc7spzNmwJHnhH4UXlr7ZROE7TR5FEwmY2OYzjss0jZZbXzzKAgO+zhAZYaw/ef
-	C9TL1VHvmA1oORZoqeXnn23Sov0t8p9GCfuHKAd62GuuGNJHEP
-X-Google-Smtp-Source: AGHT+IHSNFVptCcJAOvkKywQKWII438Bs6wrC5c/Rcs+GfQRmf1mjfM011vYNqnuKkhablLD1+plJQ==
-X-Received: by 2002:a05:6122:45a0:b0:559:83be:69c5 with SMTP id 71dfb90a1353d-559e7d6bc76mr2848156e0c.10.1763043551360;
-        Thu, 13 Nov 2025 06:19:11 -0800 (PST)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55b0f499b5dsm792670e0c.24.2025.11.13.06.19.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Nov 2025 06:19:10 -0800 (PST)
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-9374ecdccb4so495030241.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 06:19:10 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWncOIP7OB1aFi+09PSuXfp9ihPLm3uYlKtgQfrSKTxol6ZkpLYXnxUpua/vbWGFfA+GU1Kp23SlTyk@vger.kernel.org
-X-Received: by 2002:a05:6102:390a:b0:5db:d07c:21a9 with SMTP id
- ada2fe7eead31-5de07e67bc0mr2364221137.35.1763043549851; Thu, 13 Nov 2025
- 06:19:09 -0800 (PST)
+        bh=8gGk2esZ3TPP+U/Xv/QDaG4ohk1EPYMCao+ua5Ut7t0=;
+        b=weIq0pSdp4W+trzRYoIpp9xedY0OWzNw7+AOreYettxogmCz5VbsAHlZUSLMdLdOTL
+         Tr2hoPX51lkxyYH7/5tCZhFNd4bNuhjt7LJmLVLUkIWUUGJrFPrAN+PWrR8UuYShsvrZ
+         4Lpap33fAY56KuiBtDt6yJptgtb/V+SFbiwNpx1bbaPA/+wuL/MbzIRrjMhIFj0UrQHf
+         OceEDOY35ytbfmp8eFrNlaRyCnaRpYUStALo4MJ7z84rfOpSZtviGtVR0CaUQo2XEagJ
+         am0+CnVJUcdQ31CI1pKj3DQkLGWczeIMMBVU9/BlVtIPdch0I2dAZL76q0IIxAVA9XkX
+         0IFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwFWR6R4BywjGLDjT5uoWJa+bGCcjANMBq5YyCd1qIheQj6UAJba7ztSmISysAFw19Y35z3aSuJ/CP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8OG31UqPgbRNkQZCPRgoGYasvdPMorum2ZfnV+/Mz08woOy8c
+	tsF92EgDy85rWoGtCtOFZGPpo1FEIb41zdbVe7jfFR/XmFbumLLW5xNALJ+iBBfOu6mjQg3WS9S
+	Cyut0wUw1XOQkrnvG39eEkuODuZb+h5aRca/sqPCJXA==
+X-Gm-Gg: ASbGncuKEKFRqe+Ovpwh3nxq5OOwGkYoWJblFXj16QA1u3aBYd3GbjUVGi2qtz4nynK
+	IaCMci/U6+w56tK5DTCCzsyyTIYfL6m69D79C1Ph2Fdh0OHk1OC52HSsvgJ5dBbHbFvF3pg62J1
+	4nwyNUdbiIsn6iI84La7v+qPTQ6lXrpnohFSeV//Di5vyPE2+wbqiueJPWuAnZMUKnTi1yg/lkw
+	ggSF8t6hRphTdpE4uSuAZvMHmZK4Fk5JcLTziUfBCe52M/MAvS3ii5IGrQwI92iTDsSe131fLVQ
+	gIyMhwOERw8sFA==
+X-Google-Smtp-Source: AGHT+IEk4ZuVDBz3u+9Uv4/zJfB1Emeu9cNMcz6aWafXiAHCM1K8SOZabMAhPk/X3XNWJIyPPXn256y5U9W+nbjKzzM=
+X-Received: by 2002:a05:6402:27c6:b0:640:95e2:cd17 with SMTP id
+ 4fb4d7f45d1cf-6431a57e355mr5833525a12.36.1763043558031; Thu, 13 Nov 2025
+ 06:19:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251107210706.45044-1-ovidiu.panait.rb@renesas.com> <20251107210706.45044-5-ovidiu.panait.rb@renesas.com>
-In-Reply-To: <20251107210706.45044-5-ovidiu.panait.rb@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 13 Nov 2025 15:18:58 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVSgpJ3khJGFn9__BW+W+zM+fgrEDFKuAZgQeXyWa6w-g@mail.gmail.com>
-X-Gm-Features: AWmQ_bnydjHxg_KvXSzY7Vjv_ur8bfvy2AE8JWRXR2FRDM9SQFjKqTqegYDXS7g
-Message-ID: <CAMuHMdVSgpJ3khJGFn9__BW+W+zM+fgrEDFKuAZgQeXyWa6w-g@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] arm64: dts: renesas: r9a09g057h44-rzv2h-evk:
- Enable RTC
-To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-Cc: claudiu.beznea.uj@bp.renesas.com, alexandre.belloni@bootlin.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-rtc@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20251110173334.234303-1-vincent.guittot@linaro.org>
+ <20251110173334.234303-2-vincent.guittot@linaro.org> <aRIn1COnQG6Mz27j@lizhi-Precision-Tower-5810>
+In-Reply-To: <aRIn1COnQG6Mz27j@lizhi-Precision-Tower-5810>
+From: Vincent Guittot <vincent.guittot@linaro.org>
+Date: Thu, 13 Nov 2025 15:19:06 +0100
+X-Gm-Features: AWmQ_bn4_FBV_0kJ1ugPYoCrbCQQh9T4qf5dxZ1Dk01YEW7NuCgTcJxJ5cXExLg
+Message-ID: <CAKfTPtBT6qT2zC8toUOEFD_ZkJPBMJgZrZc2NCAFSUXANYJ==Q@mail.gmail.com>
+Subject: Re: [PATCH 1/4 v4] dt-bindings: PCI: s32g: Add NXP PCIe controller
+To: Frank Li <Frank.li@nxp.com>
+Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
+	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
+	ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	cassel@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 7 Nov 2025 at 22:07, Ovidiu Panait <ovidiu.panait.rb@renesas.com> wrote:
-> Enable RTC.
+On Mon, 10 Nov 2025 at 18:59, Frank Li <Frank.li@nxp.com> wrote:
 >
-> Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+> On Mon, Nov 10, 2025 at 06:33:31PM +0100, Vincent Guittot wrote:
+> > Describe the PCIe host controller available on the S32G platforms.
+> >
+> > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> > Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+> > ---
+> >  .../bindings/pci/nxp,s32g-pcie.yaml           | 130 ++++++++++++++++++
+> >  1 file changed, 130 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
+> > new file mode 100644
+> > index 000000000000..6077c251c2cd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
+> > @@ -0,0 +1,130 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/nxp,s32g-pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP S32G2xxx/S32G3xxx PCIe Root Complex controller
+> > +
+> > +maintainers:
+> > +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > +  - Ionut Vicovan <ionut.vicovan@nxp.com>
+> > +
+> > +description:
+> > +  This PCIe controller is based on the Synopsys DesignWare PCIe IP.
+> > +  The S32G SoC family has two PCIe controllers, which can be configured as
+> > +  either Root Complex or Endpoint.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+>
+> Suggest move allOf after required, in case add if-else branch later.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.19.
+okay
+>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - nxp,s32g2-pcie
+> > +      - items:
+> > +          - const: nxp,s32g3-pcie
+> > +          - const: nxp,s32g2-pcie
+> > +
+> > +  reg:
+> > +    maxItems: 6
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: dbi
+> > +      - const: dbi2
+> > +      - const: atu
+> > +      - const: dma
+> > +      - const: ctrl
+> > +      - const: config
+> > +
+> > +  interrupts:
+> > +    maxItems: 2
+>
+> Need match interrupt-names's restriction
+>
+>       minItems: 1
+>       maxItems: 2
 
-Gr{oetje,eeting}s,
+Yes
 
-                        Geert
+>
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: msi
+> > +      - const: dma
+> > +    minItems: 1
+> > +
+> ...
+> > +
+> > +        pcie@40400000 {
+> > +            compatible = "nxp,s32g3-pcie",
+> > +                         "nxp,s32g2-pcie";
+>
+> put to one line to save LOC.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Okay
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+> Frank
+> > +            reg = <0x00 0x40400000 0x0 0x00001000>,   /* dbi registers */
+> > +                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 registers */
+> > +                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers */
+> > +                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers */
+> > +                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl registers */
+> > +                  <0x5f 0xffffe000 0x0 0x00002000>;   /* config space */
+> ...
+> > +            };
+> > +        };
+> > +    };
+> > --
+> > 2.43.0
+> >
 
