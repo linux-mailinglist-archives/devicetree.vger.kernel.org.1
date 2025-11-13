@@ -1,36 +1,37 @@
-Return-Path: <devicetree+bounces-238128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC424C577CC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:52:57 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C64AEC5778A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:44:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F00F23A2C9B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:47:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8D9EE4E1C73
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:44:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7A634DCC9;
-	Thu, 13 Nov 2025 12:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98042DECDE;
+	Thu, 13 Nov 2025 12:44:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3902DECA5
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410803F9C5
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763038058; cv=none; b=a+vyKDDBKVsPod4LHDUUUAtQ7rVphICgHbxhBNSw8WULapg3uHA1bAxFhkV/LB/piLASZQrCxVckw4gtyN5rpv104ksoTe+8aFYcqz54RnNQv6zkyrXD5nTpQst6NCMjawAPZMG1uCIHeDDc0HrR1DG6VcqxHUhVgOqhRGNWvDc=
+	t=1763037863; cv=none; b=MG0Ocn7jPGCB+ctzOUB7m1pBJl2+V5VvUVeRvCjbz7QN0w3OsM0fHRb7zKqiwC+jGTsX4fkYlrC262lDHUspeDE40F0GsNtA62J3SgSNed3M8YfNYwJV7j/eTCyBrbcP9RliOTnMYyAKasS7sCRsdBSEK9de+Dn1vVvO8j9bjS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763038058; c=relaxed/simple;
-	bh=gBAROcRUkYwTba1+ec+AWeOEYXvzBOkKYswP41fgJXY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RYjV48weAnSrDdZOWifyBobGSDrGckkOZpnrEXbYCckrplC2oSe88KElLiKnyRtg7Ix2s+ylqFCnzmL8rshLogB4xcuzgEEDeSGsb9/FaMC8pmAqWAq2MHYuYknY1jtkAbjOdbbZdUxrxiBR0UmdZCaxQGKpq6T2rozIxMAYezU=
+	s=arc-20240116; t=1763037863; c=relaxed/simple;
+	bh=T4IWM3XO8ub9sXkyQuB+2WD9BGnAywQersoeSNlTCgo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=GxkxiD0h3SL/QobWXdfEvB9Skqtb+I3BL2/BAGeU7Y7A60RiAftGUjR5i9kbFUxliIAS9gj3oDwOrYO2oxL5z+invmi1th5x3aUvG+K3ZPH+vZWSK+SNl0+iX5bpgSNXGD7pmW5NJ6rMI5ayCTmI7MawLcleuIsBUrDTr8AwnBo=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
 Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5ADCgQXt030553;
-	Thu, 13 Nov 2025 21:42:27 +0900
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5ADCgQXu030553;
+	Thu, 13 Nov 2025 21:42:32 +0900
 From: FUKAUMI Naoki <naoki@radxa.com>
 To: heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
@@ -43,10 +44,12 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
         kuninori.morimoto.gx@renesas.com, damon.ding@rock-chips.com,
         kylepzak@projectinitiative.io, devicetree@vger.kernel.org,
         linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v3 0/3] Consolidate and clarify LED device tree descriptions on Radxa boards
-Date: Thu, 13 Nov 2025 12:42:19 +0000
-Message-ID: <20251113124222.4691-1-naoki@radxa.com>
+Subject: [PATCH v3 1/3] arm64: dts: rockchip: Use default-state for power LED for Radxa boards
+Date: Thu, 13 Nov 2025 12:42:20 +0000
+Message-ID: <20251113124222.4691-2-naoki@radxa.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251113124222.4691-1-naoki@radxa.com>
+References: <20251113124222.4691-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,56 +67,101 @@ However, the device tree description for this behavior is inconsistent
 and fragmented, with definitions split between the main Linux DTS
 files and separate U-Boot files (u-boot/arch/arm/dts/*-u-boot.dtsi).
 
-This patch series addresses this inconsistency and fragmentation by
-consolidating the description within the upstream device tree, thereby
-improving overall clarity.
-
-Patch 1 addresses the inconsistency for the power LED by using
+This patch addresses the inconsistency for the power LED by using
 default-state = "on" instead of linux,default-trigger = "default-on".
 
-Patch 2 addresses the description fragmentation for the heartbeat LED
-by consolidating its default-state = "on" definition from the U-Boot
-files into the main Linux DTS.
-
-Patch 3 addresses inconsistency by removing redundant default-state =
-"off" definitions, as this is already the default configuration.
-
-
-This patch series does not address some LEDs that are (implicitly)
-default-state = "off" at kernel but should be "on" at bootloader.
-These will be addressed separately.
-
-FUKAUMI Naoki (3):
-  arm64: dts: rockchip: Use default-state for power LED for Radxa boards
-  arm64: dts: rockchip: Turn on heartbeat LED at boot for Radxa boards
-  arm64: dts: rockchip: Remove default-state = "off" from LEDs for Radxa
-    boards
----
-Changes in v3:
-- Split into three patches
-- Reword commit message
-Changes in v2:
-- Add more URLs for reference
-- Reword commit message
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 ---
  arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts    | 1 -
- arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts    | 1 +
- arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts | 3 ++-
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 1 +
- arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts   | 2 --
+ arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts | 2 +-
  arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts      | 1 -
- arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts | 1 +
- arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts      | 1 +
- arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi  | 1 +
- arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts      | 1 +
- arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts      | 3 ++-
- arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts   | 2 --
+ arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts      | 2 +-
  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts   | 2 +-
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi     | 1 +
- arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts      | 1 +
- arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts     | 3 ++-
- 16 files changed, 15 insertions(+), 10 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts     | 2 +-
+ 6 files changed, 4 insertions(+), 6 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+index 7a32972bc2496..c1e3098b9a7bc 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
+@@ -35,7 +35,6 @@ green-led {
+ 			function = LED_FUNCTION_POWER;
+ 			gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+ 			label = "rockpis:green:power";
+-			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		blue-led {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+index 962b8b231c960..74160cf891885 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+@@ -39,8 +39,8 @@ leds {
+ 		led-0 {
+ 			function = LED_FUNCTION_POWER;
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "on";
+ 			gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_LOW>;
+-			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		/* USER_LED2 */
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts b/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+index c03ae1dd34560..0b696d49b71fa 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3528-rock-2a.dts
+@@ -45,7 +45,6 @@ led-1 {
+ 		default-state = "on";
+ 		function = LED_FUNCTION_STATUS;
+ 		gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
+-		linux,default-trigger = "default-on";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+index 9bc33422ced50..7023dc326d0e8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
+@@ -52,9 +52,9 @@ leds: leds {
+ 
+ 		power-led {
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "on";
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
+-			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		user-led {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+index bc8140883de47..e360446368ae6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+@@ -88,8 +88,8 @@ gpio-leds {
+ 		pinctrl-0 = <&led_pins>;
+ 
+ 		power-led1 {
++			default-state = "on";
+ 			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+-			linux,default-trigger = "default-on";
+ 		};
+ 
+ 		hdd-led2 {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+index 19a08f7794e67..217538ed12df8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+@@ -61,9 +61,9 @@ io-led {
+ 
+ 		power-led {
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "on";
+ 			function = LED_FUNCTION_POWER;
+ 			gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
+-			linux,default-trigger = "default-on";
+ 		};
+ 	};
+ 
 -- 
 2.43.0
 
