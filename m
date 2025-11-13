@@ -1,131 +1,135 @@
-Return-Path: <devicetree+bounces-238092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E150AC57190
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:07:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02183C57208
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:16:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3B1DE34D31F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:04:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EC083AACB2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDDDF3385AB;
-	Thu, 13 Nov 2025 11:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45549338900;
+	Thu, 13 Nov 2025 11:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8reU62B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB7D33858A;
-	Thu, 13 Nov 2025 11:03:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B45C2D5C6C;
+	Thu, 13 Nov 2025 11:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763031819; cv=none; b=phPhqyso4e8YGeSO2FVh1xrpZtiYXy7euJU8evi1ZOdtEz4gtSNuJN6Ldi+yFAzifkvEyIWQoGYOAj1gxFXnSETgNR+OE8Gy+TuU2FA/HEulthr0lqoZ6nU9aOqP/ezPQB764FwVWYr4R2Kk1wmZO5hf1glZuo2RPyhS6ym+6uc=
+	t=1763032431; cv=none; b=iAFkZkIGxP5b01uTwxbW78k8og6V7+aCGkWFTvaZp0CsvSsgkYyugkSPQt8nU3zgKfSlEk3bIA5jmiHEjFC4sGI//rkL21yQAYoj6B6lkzdsRbQw4KTe1kTJqBfs/cfzZUWPRgXKgrmUu1DMlhGEHUGsrKCMonp2FTBwLnMDMbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763031819; c=relaxed/simple;
-	bh=3HHbn8SmWeQ7e6ONE8U1Lm7cOSkVRQmJs+OzzxqfvFM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZnBVoCYh8ivY6IY4RNU3hmEly+1P8iSOZjfQULLpXbpAjpX3EgrPFEennJOUgqYWx9m/3hL++7wOIOE2OeX/4FJpRLsMQG3e9OAcfyvpRwqF17+vemQEM4iYjNEGs2TGuEViIQ4a9BlTUzTVuygJmapRSVsZO5hyWd3C7h1zucQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C9CDC12FC;
-	Thu, 13 Nov 2025 03:03:29 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 11CCA3F66E;
-	Thu, 13 Nov 2025 03:03:35 -0800 (PST)
-Date: Thu, 13 Nov 2025 11:03:33 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
- arm,poll-transport property
-Message-ID: <aRW7BZimWdpq4TyX@pluto>
-References: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
- <aPoxfH_TLrsMxMVQ@pluto>
- <70554674-7020-4582-a4e7-dbee34907096@mailbox.org>
- <5ae0a793-d3e7-45d1-bf5c-3c46593d1824@mailbox.org>
+	s=arc-20240116; t=1763032431; c=relaxed/simple;
+	bh=BoMIB6Cgo57Hjts4k6r7afy8LmhwKcqYc1FVVQP9p1k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gw8c4x2u9sqqzHYHGQ5Htge0oUOsN7D+F2JDO/i/2ZQU+RidZ4pLKeeqPIetMZqo7F8hkVEdvnJW1h4q4CInmVXEgdhxikqnSllYgKCLiULqaAqLgBrjkhM2Eo7jQAYv/ValVO02kUFFsyGwKhqiHC5GZ6yRiky0E9a31izhNVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8reU62B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E170FC4CEF5;
+	Thu, 13 Nov 2025 11:13:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763032430;
+	bh=BoMIB6Cgo57Hjts4k6r7afy8LmhwKcqYc1FVVQP9p1k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=F8reU62BrOOOflqvWMIeTQmSfcVW0KPhbuLZuSLDliq0wNaMUxxFmBhwHbeVBzYUM
+	 uK9HfX9TGGofrW/y5Ip92+F87+xvW6T2MHvIZ5E6erIpoxr253b2GcYhnfzNb6FbSh
+	 2nJDqaxnaqfxKhy0he7wfqnysIh9Cu37yXeXkVwfmCknqcacj2NQhrcwVHICMDqxSm
+	 9TEqAtw1lwsTeTwFVrnEcXMoCtk5vFQRSISxmjLz2X3RXsYYBC7J0XKgKQShWkaYgV
+	 tk2XwRN72zLu4XkDrj96ELA3Nb6Dms5fh+2Ttbggk5Zewz5tVKBCX2sohoQxWtZKQM
+	 X264vq6FSz9EA==
+Message-ID: <7dc40cbf-3d00-4843-88f2-91990f7807ea@kernel.org>
+Date: Thu, 13 Nov 2025 12:13:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/20] regulator: dt-bindings: add s2mpg10-pmic
+ regulators
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org>
+ <20251110-s2mpg1x-regulators-v4-2-94c9e726d4ba@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251110-s2mpg1x-regulators-v4-2-94c9e726d4ba@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5ae0a793-d3e7-45d1-bf5c-3c46593d1824@mailbox.org>
 
-On Thu, Oct 30, 2025 at 01:52:42AM +0100, Marek Vasut wrote:
-> On 10/23/25 4:00 PM, Marek Vasut wrote:
+On 10/11/2025 20:28, André Draszik wrote:
+> The S2MPG10 PMIC is a Power Management IC for mobile applications with
+> buck converters, various LDOs, power meters, RTC, clock outputs, and
+> additional GPIO interfaces.
 > 
-> Hello again,
-> 
+> It has 10 buck and 31 LDO rails. Several of these can either be
+> controlled via software (register writes) or via external signals, in
+> particular by:
+>     * one out of several input pins connected to a main processor's:
+>         *  GPIO pins
+>         * other pins that are e.g. firmware- or power-domain-controlled
+>           without explicit driver intervention
+>     * a combination of input pins and regist
 
-Hi,
 
-bit of a late reply...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> > > On Thu, Oct 23, 2025 at 02:35:57PM +0200, Marek Vasut wrote:
-> > > > Document new property arm,poll-transport, which sets all SCMI
-> > > > operation into
-> > > > poll mode. This is meant to work around uncooperative SCP
-> > > > implementations,
-> > > > which do not generate completion interrupts. This applies
-> > > > primarily on mbox
-> > > > based implementations, but does also cover SMC and VirtIO ones.
-> > > 
-> > > Hi,
-> > > 
-> > > ..indeed I was thinking a while ago about exposing the existing
-> > > force- polling
-> > > switch but in my case it was purely a testing-scenario
-> > > configuration, so a
-> > > no-no for the DT, things are different if you have to describe an HW
-> > > that has
-> > > no completion IRQ also on the a2p channel...
-> > 
-> > Correct, at least until the SCP on this hardware is updated.
-> > 
-> > > ...having said that, though, usually polling-mode is reserved to a few
-> > > selected commands in a few chosen scenarios (as you may have seen),
-> > > 'carpet-polling' non-for-testing for all the commands on A2P seems a lot
-> > > inefficient and heavy...is it really a viable solution ? or these
-> > > systems use such a low rate of SCMI messages that polling after each and
-> > > every message is negligible ?
-> > > 
-> > > ..just to understand the context...
-> > 
-> > These systems are early in development and it is likely that the SCP
-> > will be updated to generate interrupts properly. Currently, this is not
-> > the case, hence the carpet-polling, until this is resolved.
-> 
-> While I was going through the SCMI spec, DEN0056F , page 209 , section "4.1
-> Shared memory based transport" , bullet • Completion interrupts, I found it
-> explicitly states:
-> 
-> "
-> This transport supports polling or interrupt driven modes of communication.
-> In interrupt mode, when the callee completes processing a message, it raises
-> an interrupt to the caller. Hardware support for completion interrupts is
-> optional.
-> "
-
-Oh, yes...I knew that...it is just that till now, no systems were really
-ever developed that lacked the completion IRQ as a whole, it was, till now,
-more of a case of having the capability NOT to use it selectively at runtime
-and instead use polling when wanted (like for clock ops in ISR context)
-
-I am not sure what is the reason why this only-polling scenario was never
-supported in the HW description, this indeed pre-dates my work on SCMI....
-...I would/will check with Sudeep, when he's back, what are the reasons for
-this (if any)...
-
-Thanks,
-Cristian
+Best regards,
+Krzysztof
 
