@@ -1,512 +1,226 @@
-Return-Path: <devicetree+bounces-238342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E0DC5A305
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:44:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF20C5A326
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:45:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 307EE3B4A6F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 21:43:39 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AB7FD35324E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 21:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EB0324B32;
-	Thu, 13 Nov 2025 21:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8F6324B2E;
+	Thu, 13 Nov 2025 21:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bSIy4QnX"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ki4yGI65"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-il1-f194.google.com (mail-il1-f194.google.com [209.85.166.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62A04324B20
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 21:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85AF24502F
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 21:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763070217; cv=none; b=Wlt73LUo8iP3zmOHeC6p1TVuvmCErnzbdj2PRbvolnYolSeOnUDG5nglS2fJVEwjU9BwDaIwdx47vms2yRFRTEiqlzZU1dTlcAaFYPEmHbcFyvBGJoSGwOA9P/gviG4/6c9A1JskLFf3/GT7s0oa4MMgC6c7McWhbT5saZW7d9g=
+	t=1763070349; cv=none; b=R8YG+9NmVbzBU7yu0mvH7VYSMFXS+Fog1KF4q3CMNLNrGTdN8nZ22cJTl7YJkCOiLPuO9CtixIgHhkKm16snhABcUBVXwQ9lO0DMS1FyLe8JDiLpn+CxFvERZeKPUxAUVk/8jGF4ibvMMEf88pYDkeSwKgYec/NC2f5T0TpYeJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763070217; c=relaxed/simple;
-	bh=P1Wd3VULu3BSq8lMRkW1AkoBzPjVxBdGrOtW7xmDHp0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NMbznNV8pqCmYTRB5XMx2ygMJfyOJUPGZSzdn4hHc2VXqwdUVERYQQ9WEp7xapCXLfRrfwfVtoU8Y4EvGtuwpJrN0y5Dlj6szdO9lprHjzHTNgZGlBY5a1nUlPg9iqvqSH5diL1rRpWFeIspmWwdD1oWJ3orkJ94yH7ykCgc2s4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bSIy4QnX; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-429c8632fcbso952882f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 13:43:35 -0800 (PST)
+	s=arc-20240116; t=1763070349; c=relaxed/simple;
+	bh=9BK/aY1DJKiNGs1q0x6hPPgaG4Z4qLB/Bh+9MtSYO0Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R6+frDEs/RrsC1C/KKoUWc0Jj0XNhZG6PiM9kXfEWIKCqadwN+zg5rTy9yZn2T2c7ckNV5eEn5YJaOSlVywJSJKRgYdJ7omnkrgOI3G8iI319pMr4/I/kUQ1o38NjOXfHDHe7BpaVwcc8x51uOL07y+zjzko23M3ui0i9aLykZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ki4yGI65; arc=none smtp.client-ip=209.85.166.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f194.google.com with SMTP id e9e14a558f8ab-43377ee4825so7334225ab.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 13:45:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763070214; x=1763675014; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=46QZHU7uIDXHoQavB1V0yHR2sr2uuHTixpocAbyVIRU=;
-        b=bSIy4QnXxUF8kCOeX56SM6qVTQksAsOmtAugN1+7KlTaz8oCtpjG/e4cvV6vlH4hLZ
-         KlLqoODE6bNAcNaoiijRdL7PTv8WhuRXpBX2waJ+ni9RLf6IPBjPYzqbYiex4pJ2e/sC
-         952rUN8LQ16Cs7MySUTlU1XpAk7RJoLch+R4DhqSkte2905WQycfRCv57vGvihLd1C3U
-         zZlB6PpBa60Lng1oqf8XHxiOKDCAvmE/yqeGyJHHuhO1wh3wvehz1xKQnbVFzYuRLXhX
-         fJLEoeNrOX2PT8lBfoxhggBLlBJtcPDK5zBE/8UrgPG0/1Fnq0GZluhfqvNQDUdQEhOA
-         STTg==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1763070346; x=1763675146; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B379bUTcQAQWYz6DwkV1TzQYdhegW4cKAiyXnES8aOg=;
+        b=ki4yGI65FMb2mCyi952WbyfyIlsuNy2mH3FYis46NNjAXey8GY6axepk0GZXQmvnmn
+         wXHtKNHRX+t7MQlwX6IvSVF9/oUPiVl5pzI/9SJ4Gqjy1TUZ5ERx3sgJitRhVmOJusSl
+         /HsPwUAeKgBX1FUMGYcR9KsQXlEOuNCNXneMdidoUzkyq4khmVQs3tNFxrya6VLs+IA7
+         A3wpKu/N5fPJsC4o7IE+jen8iiSa2vXLpLsU4OaayzSH0rhvZgaxfca51FuK9LnzQvw6
+         pfBZiNEp2FPachyFDeAtbSqyj820lurOdV60DLzuir3VXmyLXFAqqHLM2BfMhXlVt6gL
+         0KFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763070214; x=1763675014;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=46QZHU7uIDXHoQavB1V0yHR2sr2uuHTixpocAbyVIRU=;
-        b=NG57n7LHI8rMV/4zZ7sXXQTH56keQ2q8KHUR9I9+5h/xgicZ/oopIOWyZI1kzQSZ2B
-         BsYwHr6oeGZO8fl1nAD53FhX+6PzzTuA0NvlOxOXsN76lvowWewkD753JXGHza+i9Yw2
-         TFR5mxycV6PuRVdh+AecTA9vhZI2CxEFnPXUJ2gYkH1ZdQsiaepSWvJVfeE5+QTY5pa5
-         LOeBMsM7fnFle90IdAVlctdIMlNr5U7VJ3O+Nyp8YKmlKRa0MBg5nQ0TN6WcvdvjXPmr
-         fXscnSELDph7nPF+kpCS2+g1sHYXDhKd9LnOL2vyleKVT0sWtyyT8+h1MHmibf2mPdq4
-         +3hg==
-X-Forwarded-Encrypted: i=1; AJvYcCWixdlRYYgXDOsinxBnnuRUEygaYQ0a9K4AkGngFNkefqhleny/fu/OYQRcDnfjUFwtluu1W3iLIICF@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrNHgGEoQNh0EaUHZBg6asqw7cvR8Uta52rjHNkZrh3TGmlr1o
-	Xc8+PzCIFqum0U0lKzX9ILJ2RnjGNkmJhkqaSb9b6M11sqDJfQUOxvBsPwhlDvEIlts=
-X-Gm-Gg: ASbGnctjiCka4STPbNglg0mbPIum0fLwqE56nZ68NsBs8T2LBDVjsg5vDQnlJ6xAt/r
-	C0A2jASzhG6gOnkY/PXIALqf/v/j1s9mvd+SZwxhvGejmXfVWeDdQNX9ShlF4/brdn3MuyO9ZP+
-	LwFoze7ZprcbRsfdqZ021iJnU0Y2xqlUra7zsGZO8OdMzETqYkGLIIc883zl1RGEQM8U+yhZVVd
-	7HhmROmulWZ2X94KJvzFw1tYCpYcZENOsf35u+/EDjgtLTRQjT3YobDGsmwdBT26/QCX/qn7q4q
-	MXsD7iaYLgrRbXU+u2DjtNoOuga13APkA7Ujbc5FKgnGEJxMg7Krq0UG1GUEooE1mAOrSLMB2w4
-	7ZrEVPyFZj/2dzFZToannB/qJHyoiEWm4lFY0Nw8hPdB5C8ZVzWiwlb2wdLJGeZUiW4ytQkyeoW
-	d6T2hBVlyVVc8WtIyTgFZcfZ8pzA==
-X-Google-Smtp-Source: AGHT+IFj3zfhqqmtiS2xdrrokk/vyX88M2L7g3CTJDyBUhIpz/25qDfe4s9wRsguKQ7LBVD7mX7rXA==
-X-Received: by 2002:a05:6000:420a:b0:429:d725:410c with SMTP id ffacd0b85a97d-42b59373658mr724486f8f.44.1763070213679;
-        Thu, 13 Nov 2025 13:43:33 -0800 (PST)
-Received: from draszik.lan ([212.129.72.6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53e97a87sm6573448f8f.20.2025.11.13.13.43.32
+        d=1e100.net; s=20230601; t=1763070346; x=1763675146;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B379bUTcQAQWYz6DwkV1TzQYdhegW4cKAiyXnES8aOg=;
+        b=M/czXXnuG4W1RCQmckXEtA9U7SBlmJvfIDOYIUTOWBTvSjggbMjSpJb+Iy7TAe+lif
+         rl9hJLwXOMegBLWNvaDesF9ym/CEfjsRBg/lb0zcthkMsHIoNobbqYuWHNVhygU3QB0M
+         /c9L1K0v18MXpzT+nz3Vo3finFdgxPYPlbybR8I0axuO4hyVqolyELwT+uxajuJQT3oA
+         mPdWzXBax9XoH66UGQKHg0wsqs/bid+lhvjsmfYgI5YWrdiBkLgt3ISpvzmi+Dv1sNur
+         rONJqcql2u+VR7YhhMSvZxfRqsum6iT+xBlmTxFWJb/jFshCXlNvMiXtea/Pm9fZPeCN
+         sOjw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbQyHnHjamJmbKIkojBUF6PWkyu71EfpBr0RlcFt7B6SEPoLa1Kx7mwvHWnBc80C01LLbvtv30pm05@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxYv4ZRJELIcf08tPc4maDfCN8Uhcr1kLmaT9gp2G2Jd12UvMV
+	WaF15HTk8QJ34uABlijq0lZtI3Q9EWEp0qf/l9Tj0ousb9EVNXFJdkisGoWzwk4zdrI=
+X-Gm-Gg: ASbGnculet1HGMBPWYS2hBcaAz+M0SUsGp4bZcHmZWoJCQf+S6Pwbd7iTeZgODeuDvy
+	1zEjdUj1mO52s578MBb1ot1W4VQZ/ChhPjY3uc1fWwWb51QcX8/qh9X1fS+1YdD8aW2BFMC2ZGt
+	iCvN8Ai2XhgP+EzwAC6ZGJ0Dz+g0M42Cp82QmIS1sDHRYL7cfRX1ZNxj/CkxqSmJAmZSae+zazp
+	wzPdL1NBXR+0GLrk9PgwfHdEKnw5aU2iNghOG2bzDZvBWUrIeGQwF1YsOy5g1Hg1tCO+ZSoHk0/
+	7IAOvyqjghGMSWOMV/UiBwyzPnx8G7ZuYEyyodWMJTOhM3pplTXXyujs/WXk9Bku9gjsUjyXwJF
+	59ilrwFLbw/i4A1zDOpW33Kuot5jevzVHFkGRzeMDADnSYOAl4+0SkZy+pmggMdCM/n8NWY+yMe
+	TuHqIgNoAhuJtSyIvfaEZ9WQy1LO2DXtW9JNpLL5MMooZZETPGXWhlaQ==
+X-Google-Smtp-Source: AGHT+IGJ0MUov99smegICrZ4kiST3drjyP8OcDyErpcAaWnTogYM2QvmzGI/vYXhzw3nIp4B4JWV4A==
+X-Received: by 2002:a05:6e02:3813:b0:433:3316:17db with SMTP id e9e14a558f8ab-4348c863a78mr17011835ab.4.1763070345478;
+        Thu, 13 Nov 2025 13:45:45 -0800 (PST)
+Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-434839a4ac7sm10877115ab.25.2025.11.13.13.45.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Nov 2025 13:43:33 -0800 (PST)
-Message-ID: <45ce203c03ec34631a0170baa7e4cf26c98b9cd3.camel@linaro.org>
-Subject: Re: [PATCH v3 09/20] mfd: sec: Add support for S2MPG11 PMIC via ACPM
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski	
- <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Peter Griffin	
- <peter.griffin@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Date: Thu, 13 Nov 2025 21:43:29 +0000
-In-Reply-To: <20251113162534.GO1949330@google.com>
-References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
-	 <20251103-s2mpg1x-regulators-v3-9-b8b96b79e058@linaro.org>
-	 <20251113162534.GO1949330@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+        Thu, 13 Nov 2025 13:45:44 -0800 (PST)
+From: Alex Elder <elder@riscstar.com>
+To: dlan@gentoo.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	vkoul@kernel.org,
+	kishon@kernel.org,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org
+Cc: ziyao@disroot.org,
+	aurelien@aurel32.net,
+	johannes@erdfelt.com,
+	mayank.rana@oss.qualcomm.com,
+	qiang.yu@oss.qualcomm.com,
+	shradha.t@samsung.com,
+	inochiama@gmail.com,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	p.zabel@pengutronix.de,
+	christian.bruel@foss.st.com,
+	thippeswamy.havalige@amd.com,
+	krishna.chundru@oss.qualcomm.com,
+	guodong@riscstar.com,
+	devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/7] Introduce SpacemiT K1 PCIe phy and host controller
+Date: Thu, 13 Nov 2025 15:45:32 -0600
+Message-ID: <20251113214540.2623070-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hi Lee,
+This series introduces a PHY driver and a PCIe driver to support PCIe
+on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
+Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
+PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
+one PCIe lane, and the other two ports each have two lanes.  All PCIe
+ports operate at 5 GT/second.
 
-Thanks for your review.
+The PCIe PHYs must be configured using a value that can only be
+determined using the combo PHY, operating in PCIe mode.  To allow
+that PHY to be used for USB, the needed calibration step is performed
+by the PHY driver automatically at probe time.  Once this step is done,
+the PHY can be used for either PCIe or USB.
 
-On Thu, 2025-11-13 at 16:25 +0000, Lee Jones wrote:
-> Mark, something for you below.
->=20
-> > Add support for Samsung's S2MPG11 PMIC, which is a Power Management IC
-> > for mobile applications with buck converters, various LDOs, power
-> > meters, NTC thermistor inputs, and additional GPIO interfaces. It
-> > typically complements an S2MPG10 PMIC in a main/sub configuration as
-> > the sub-PMIC.
-> >=20
-> > Like S2MPG10, communication is not via I2C, but via the Samsung ACPM
-> > firmware.
-> >=20
-> > Also like S2MPG10, the regulator rails will need to be instantiated
-> > individually to allow probe to succeed due to rails being used as
-> > supplies for S2MPG10, and to avoid supply rails from being disabled
-> > unexpectedly due to probe deferral.
-> >=20
-> > Note: The firmware uses the ACPM channel ID and the Speedy channel ID
-> > to select the PMIC address. Since these are firmware properties, they
-> > can not be retrieved from DT, but instead are deducted from the
-> > compatible for now.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> >=20
-> > ---
-> > Note: checkpatch suggests to update MAINTAINERS, but the new file is
-> > covered already due to using a wildcard.
-> >=20
-> > v3:
-> > - mention NTC thermistor inputs in commit message
-> > - one instance per actual rail, not per rail type (LDO or buck)
-> >=20
-> > v2:
-> > - mention GPIOs in commit message
-> > ---
-> > =C2=A0drivers/mfd/sec-acpm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 213 +++++++++++++++++-
-> > =C2=A0drivers/mfd/sec-common.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 45 +++-
-> > =C2=A0drivers/mfd/sec-irq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 67 +++++-
-> > =C2=A0include/linux/mfd/samsung/core.h=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 =
-1 +
-> > =C2=A0include/linux/mfd/samsung/irq.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 9=
-9 ++++++++
-> > =C2=A0include/linux/mfd/samsung/s2mpg11.h | 434 +++++++++++++++++++++++=
-+++++++++++++
-> > =C2=A06 files changed, 848 insertions(+), 11 deletions(-)
-> >=20
-> > diff --git a/drivers/mfd/sec-acpm.c b/drivers/mfd/sec-acpm.c
-> > index 8b31c816d65b86c54a108fa994384abfac0e7da4..b44af6f8b1cdfcb75cf9d4c=
-55c9d973a88fd510c 100644
-> > --- a/drivers/mfd/sec-acpm.c
-> > +++ b/drivers/mfd/sec-acpm.c
-> > @@ -13,6 +13,7 @@
-> > =C2=A0#include <linux/mfd/samsung/core.h>
-> > =C2=A0#include <linux/mfd/samsung/rtc.h>
-> > =C2=A0#include <linux/mfd/samsung/s2mpg10.h>
-> > +#include <linux/mfd/samsung/s2mpg11.h>
-> > =C2=A0#include <linux/mod_devicetable.h>
-> > =C2=A0#include <linux/module.h>
-> > =C2=A0#include <linux/of.h>
-> > @@ -216,6 +217,155 @@ static const struct regmap_config s2mpg10_regmap_=
-config_meter =3D {
-> > =C2=A0	.cache_type =3D REGCACHE_FLAT,
-> > =C2=A0};
-> > =C2=A0
-> > +static const struct regmap_range s2mpg11_common_registers[] =3D {
-> > +	regmap_reg_range(0x00, 0x02), /* CHIP_ID_S, INT, INT_MASK */
-> > +	regmap_reg_range(0x0a, 0x0c), /* Speedy control */
-> > +	regmap_reg_range(0x1a, 0x27), /* Debug */
->=20
-> These numbers are usually defined, and rightfully so.
+The driver supports 256 MSIs, and initially does not support PCI INTx
+interrupts.  The hardware does not support MSI-X.
 
-We already had this discussion when S2MPG10 core support was added, so
-I used the same approach again for consistency.
+Version 6 of this series addresses a few comments from Christophe
+Jaillet, and improves a workaround that disables ASPM L1.  The two
+people who had reported errors on earlier versions of this code have
+confirmed their NVMe devices now work when configured with the default
+RISC-V kernel configuration.
 
->=20
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_common_ro_registers[] =3D {
-> > +	regmap_reg_range(0x00, 0x01), /* CHIP_ID_S, INT */
-> > +	regmap_reg_range(0x25, 0x27), /* Debug */
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_common_nonvolatile_registers[=
-] =3D {
-> > +	regmap_reg_range(0x00, 0x00), /* CHIP_ID_S */
-> > +	regmap_reg_range(0x02, 0x02), /* INT_MASK */
-> > +	regmap_reg_range(0x0a, 0x0c), /* Speedy control */
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_common_precious_registers[] =
-=3D {
-> > +	regmap_reg_range(0x01, 0x01), /* INT */
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_common_wr_table =3D {
-> > +	.yes_ranges =3D s2mpg11_common_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_common_registers),
-> > +	.no_ranges =3D s2mpg11_common_ro_registers,
-> > +	.n_no_ranges =3D ARRAY_SIZE(s2mpg11_common_ro_registers),
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_common_rd_table =3D {
-> > +	.yes_ranges =3D s2mpg11_common_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_common_registers),
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_common_volatile_table =
-=3D {
-> > +	.no_ranges =3D s2mpg11_common_nonvolatile_registers,
-> > +	.n_no_ranges =3D ARRAY_SIZE(s2mpg11_common_nonvolatile_registers),
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_common_precious_table =
-=3D {
-> > +	.yes_ranges =3D s2mpg11_common_precious_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_common_precious_registers),
-> > +};
-> > +
-> > +static const struct regmap_config s2mpg11_regmap_config_common =3D {
-> > +	.name =3D "common",
-> > +	.reg_bits =3D ACPM_ADDR_BITS,
-> > +	.val_bits =3D 8,
-> > +	.max_register =3D S2MPG11_COMMON_SPD_DEBUG4,
-> > +	.wr_table =3D &s2mpg11_common_wr_table,
-> > +	.rd_table =3D &s2mpg11_common_rd_table,
-> > +	.volatile_table =3D &s2mpg11_common_volatile_table,
-> > +	.precious_table =3D &s2mpg11_common_precious_table,
-> > +	.num_reg_defaults_raw =3D S2MPG11_COMMON_SPD_DEBUG4 + 1,
-> > +	.cache_type =3D REGCACHE_FLAT,
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_pmic_registers[] =3D {
-> > +	regmap_reg_range(0x00, 0x5a), /* All PMIC registers */
-> > +	regmap_reg_range(0x5c, 0xb7), /* All PMIC registers */
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_pmic_ro_registers[] =3D {
-> > +	regmap_reg_range(0x00, 0x05), /* INTx */
-> > +	regmap_reg_range(0x0c, 0x0d), /* STATUS OFFSRC */
-> > +	regmap_reg_range(0x98, 0x98), /* GPIO input */
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_pmic_nonvolatile_registers[] =
-=3D {
-> > +	regmap_reg_range(0x06, 0x0b), /* INTxM */
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_pmic_precious_registers[] =3D=
- {
-> > +	regmap_reg_range(0x00, 0x05), /* INTx */
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_pmic_wr_table =3D {
-> > +	.yes_ranges =3D s2mpg11_pmic_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_pmic_registers),
-> > +	.no_ranges =3D s2mpg11_pmic_ro_registers,
-> > +	.n_no_ranges =3D ARRAY_SIZE(s2mpg11_pmic_ro_registers),
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_pmic_rd_table =3D {
-> > +	.yes_ranges =3D s2mpg11_pmic_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_pmic_registers),
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_pmic_volatile_table =
-=3D {
-> > +	.no_ranges =3D s2mpg11_pmic_nonvolatile_registers,
-> > +	.n_no_ranges =3D ARRAY_SIZE(s2mpg11_pmic_nonvolatile_registers),
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_pmic_precious_table =
-=3D {
-> > +	.yes_ranges =3D s2mpg11_pmic_precious_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_pmic_precious_registers),
-> > +};
-> > +
-> > +static const struct regmap_config s2mpg11_regmap_config_pmic =3D {
-> > +	.name =3D "pmic",
-> > +	.reg_bits =3D ACPM_ADDR_BITS,
-> > +	.val_bits =3D 8,
-> > +	.max_register =3D S2MPG11_PMIC_LDO_SENSE2,
-> > +	.wr_table =3D &s2mpg11_pmic_wr_table,
-> > +	.rd_table =3D &s2mpg11_pmic_rd_table,
-> > +	.volatile_table =3D &s2mpg11_pmic_volatile_table,
-> > +	.precious_table =3D &s2mpg11_pmic_precious_table,
-> > +	.num_reg_defaults_raw =3D S2MPG11_PMIC_LDO_SENSE2 + 1,
-> > +	.cache_type =3D REGCACHE_FLAT,
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_meter_registers[] =3D {
-> > +	regmap_reg_range(0x00, 0x3e), /* Meter config */
-> > +	regmap_reg_range(0x40, 0x8a), /* Meter data */
-> > +	regmap_reg_range(0x8d, 0x9c), /* Meter data */
-> > +};
-> > +
-> > +static const struct regmap_range s2mpg11_meter_ro_registers[] =3D {
-> > +	regmap_reg_range(0x40, 0x9c), /* Meter data */
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_meter_wr_table =3D {
-> > +	.yes_ranges =3D s2mpg11_meter_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_meter_registers),
-> > +	.no_ranges =3D s2mpg11_meter_ro_registers,
-> > +	.n_no_ranges =3D ARRAY_SIZE(s2mpg11_meter_ro_registers),
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_meter_rd_table =3D {
-> > +	.yes_ranges =3D s2mpg11_meter_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_meter_registers),
-> > +};
-> > +
-> > +static const struct regmap_access_table s2mpg11_meter_volatile_table =
-=3D {
-> > +	.yes_ranges =3D s2mpg11_meter_ro_registers,
-> > +	.n_yes_ranges =3D ARRAY_SIZE(s2mpg11_meter_ro_registers),
-> > +};
-> > +
-> > +static const struct regmap_config s2mpg11_regmap_config_meter =3D {
-> > +	.name =3D "meter",
-> > +	.reg_bits =3D ACPM_ADDR_BITS,
-> > +	.val_bits =3D 8,
-> > +	.max_register =3D S2MPG11_METER_LPF_DATA_NTC7_2,
-> > +	.wr_table =3D &s2mpg11_meter_wr_table,
-> > +	.rd_table =3D &s2mpg11_meter_rd_table,
-> > +	.volatile_table =3D &s2mpg11_meter_volatile_table,
-> > +	.num_reg_defaults_raw =3D S2MPG11_METER_LPF_DATA_NTC7_2 + 1,
-> > +	.cache_type =3D REGCACHE_FLAT,
-> > +};
-> > +
-> > =C2=A0struct sec_pmic_acpm_shared_bus_context {
-> > =C2=A0	const struct acpm_handle *acpm;
-> > =C2=A0	unsigned int acpm_chan_id;
-> > @@ -325,16 +475,22 @@ static struct regmap *sec_pmic_acpm_regmap_init(s=
-truct device *dev,
-> > =C2=A0	return regmap;
-> > =C2=A0}
-> > =C2=A0
-> > -static void sec_pmic_acpm_mask_common_irqs(void *regmap_common)
-> > +static void sec_pmic_acpm_mask_common_s2mpg10_irqs(void *regmap_common=
-)
-> > =C2=A0{
-> > =C2=A0	regmap_write(regmap_common, S2MPG10_COMMON_INT_MASK, S2MPG10_COM=
-MON_INT_SRC);
-> > =C2=A0}
-> > =C2=A0
-> > +static void sec_pmic_acpm_mask_common_s2mpg11_irqs(void *regmap_common=
-)
-> > +{
-> > +	regmap_write(regmap_common, S2MPG11_COMMON_INT_MASK, S2MPG11_COMMON_I=
-NT_SRC);
-> > +}
-> > +
-> > =C2=A0static int sec_pmic_acpm_probe(struct platform_device *pdev)
-> > =C2=A0{
-> > =C2=A0	struct regmap *regmap_common, *regmap_pmic, *regmap;
-> > =C2=A0	const struct sec_pmic_acpm_platform_data *pdata;
-> > =C2=A0	struct sec_pmic_acpm_shared_bus_context *shared_ctx;
-> > +	void (*masq_irqs_handler)(void *data);
-> > =C2=A0	const struct acpm_handle *acpm;
-> > =C2=A0	struct device *dev =3D &pdev->dev;
-> > =C2=A0	int ret, irq;
-> > @@ -365,7 +521,19 @@ static int sec_pmic_acpm_probe(struct platform_dev=
-ice *pdev)
-> > =C2=A0		return PTR_ERR(regmap_common);
-> > =C2=A0
-> > =C2=A0	/* Mask all interrupts from 'common' block, until successful ini=
-t */
-> > -	ret =3D regmap_write(regmap_common, S2MPG10_COMMON_INT_MASK, S2MPG10_=
-COMMON_INT_SRC);
-> > +	switch (pdata->device_type) {
-> > +	case S2MPG10:
-> > +		ret =3D regmap_write(regmap_common, S2MPG10_COMMON_INT_MASK, S2MPG10=
-_COMMON_INT_SRC);
-> > +		break;
-> > +
-> > +	case S2MPG11:
-> > +		ret =3D regmap_write(regmap_common, S2MPG11_COMMON_INT_MASK, S2MPG11=
-_COMMON_INT_SRC);
-> > +		break;
-> > +
-> > +	default:
-> > +		return dev_err_probe(dev, -EINVAL, "Unsupported device type %d\n",
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 pdata->device_type);
-> > +	}
-> > =C2=A0	if (ret)
-> > =C2=A0		return dev_err_probe(dev, ret, "failed to mask common block int=
-errupts\n");
-> > =C2=A0
-> > @@ -374,10 +542,12 @@ static int sec_pmic_acpm_probe(struct platform_de=
-vice *pdev)
-> > =C2=A0	if (IS_ERR(regmap_pmic))
-> > =C2=A0		return PTR_ERR(regmap_pmic);
-> > =C2=A0
-> > -	regmap =3D sec_pmic_acpm_regmap_init(dev, shared_ctx, SEC_PMIC_ACPM_A=
-CCESSTYPE_RTC,
-> > -					=C2=A0=C2=A0 pdata->regmap_cfg_rtc, true);
-> > -	if (IS_ERR(regmap))
-> > -		return PTR_ERR(regmap);
-> > +	if (pdata->regmap_cfg_rtc) {
-> > +		regmap =3D sec_pmic_acpm_regmap_init(dev, shared_ctx, SEC_PMIC_ACPM_=
-ACCESSTYPE_RTC,
-> > +						=C2=A0=C2=A0 pdata->regmap_cfg_rtc, true);
-> > +		if (IS_ERR(regmap))
-> > +			return PTR_ERR(regmap);
-> > +	}
-> > =C2=A0
-> > =C2=A0	regmap =3D sec_pmic_acpm_regmap_init(dev, shared_ctx, SEC_PMIC_A=
-CPM_ACCESSTYPE_METER,
-> > =C2=A0					=C2=A0=C2=A0 pdata->regmap_cfg_meter, true);
-> > @@ -392,13 +562,28 @@ static int sec_pmic_acpm_probe(struct platform_de=
-vice *pdev)
-> > =C2=A0		devm_device_init_wakeup(dev);
-> > =C2=A0
-> > =C2=A0	/* Unmask PMIC interrupt from 'common' block, now that everythin=
-g is in place. */
-> > -	ret =3D regmap_clear_bits(regmap_common, S2MPG10_COMMON_INT_MASK,
-> > -				S2MPG10_COMMON_INT_SRC_PMIC);
-> > +	switch (pdata->device_type) {
-> > +	case S2MPG10:
-> > +		ret =3D regmap_clear_bits(regmap_common, S2MPG10_COMMON_INT_MASK,
-> > +					S2MPG10_COMMON_INT_SRC_PMIC);
-> > +		masq_irqs_handler =3D sec_pmic_acpm_mask_common_s2mpg10_irqs;
-> > +		break;
-> > +
-> > +	case S2MPG11:
-> > +		ret =3D regmap_clear_bits(regmap_common, S2MPG11_COMMON_INT_MASK,
-> > +					S2MPG11_COMMON_INT_SRC_PMIC);
-> > +		masq_irqs_handler =3D sec_pmic_acpm_mask_common_s2mpg11_irqs;
-> > +		break;
-> > +
-> > +	default:
-> > +		return dev_err_probe(dev, -EINVAL, "Unsupported device type %d\n",
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 pdata->device_type);
-> > +	}
-> > =C2=A0	if (ret)
-> > =C2=A0		return dev_err_probe(dev, ret, "failed to unmask PMIC interrupt=
-\n");
-> > =C2=A0
-> > =C2=A0	/* Mask all interrupts from 'common' block on shutdown */
-> > -	ret =3D devm_add_action_or_reset(dev, sec_pmic_acpm_mask_common_irqs,=
- regmap_common);
-> > +	ret =3D devm_add_action_or_reset(dev, masq_irqs_handler, regmap_commo=
-n);
-> > =C2=A0	if (ret)
-> > =C2=A0		return ret;
-> > =C2=A0
-> > @@ -420,8 +605,18 @@ static const struct sec_pmic_acpm_platform_data s2=
-mpg10_data =3D {
-> > =C2=A0	.regmap_cfg_meter =3D &s2mpg10_regmap_config_meter,
-> > =C2=A0};
-> > =C2=A0
-> > +static const struct sec_pmic_acpm_platform_data s2mpg11_data =3D {
-> > +	.device_type =3D S2MPG11,
-> > +	.acpm_chan_id =3D 2,
-> > +	.speedy_channel =3D 1,
-> > +	.regmap_cfg_common =3D &s2mpg11_regmap_config_common,
-> > +	.regmap_cfg_pmic =3D &s2mpg11_regmap_config_pmic,
-> > +	.regmap_cfg_meter =3D &s2mpg11_regmap_config_meter,
-> > +};
-> > +
-> > =C2=A0static const struct of_device_id sec_pmic_acpm_of_match[] =3D {
-> > =C2=A0	{ .compatible =3D "samsung,s2mpg10-pmic", .data =3D &s2mpg10_dat=
-a, },
-> > +	{ .compatible =3D "samsung,s2mpg11-pmic", .data =3D &s2mpg11_data, },
-> > =C2=A0	{ },
-> > =C2=A0};
-> > =C2=A0MODULE_DEVICE_TABLE(of, sec_pmic_acpm_of_match);
-> > diff --git a/drivers/mfd/sec-common.c b/drivers/mfd/sec-common.c
-> > index b722481594801e545d24014af6afd5e1e39d7522..4daa0ece91dc783560dfad4=
-99f11193b689c2fd1 100644
-> > --- a/drivers/mfd/sec-common.c
-> > +++ b/drivers/mfd/sec-common.c
-> > @@ -15,6 +15,7 @@
-> > =C2=A0#include <linux/mfd/samsung/core.h>
-> > =C2=A0#include <linux/mfd/samsung/irq.h>
-> > =C2=A0#include <linux/mfd/samsung/s2mpg10.h>
-> > +#include <linux/mfd/samsung/s2mpg11.h>
-> > =C2=A0#include <linux/mfd/samsung/s2mps11.h>
-> > =C2=A0#include <linux/mfd/samsung/s2mps13.h>
-> > =C2=A0#include <linux/module.h>
-> > @@ -82,6 +83,39 @@ static const struct mfd_cell s2mpg10_devs[] =3D {
-> > =C2=A0	MFD_CELL_OF("s2mpg10-gpio", NULL, NULL, 0, 0, "samsung,s2mpg10-g=
-pio"),
-> > =C2=A0};
-> > =C2=A0
-> > +static const struct mfd_cell s2mpg11_devs[] =3D {
-> > +	MFD_CELL_NAME("s2mpg11-meter"),
-> > +	MFD_CELL_BASIC("s2mpg11-regulator", NULL, NULL, 0, S2MPG11_BUCKBOOST)=
-,
->=20
-> This is highly irregular - in that, we've never done this before.
->=20
-> We're going to need to have Mark look at this.
+					-Alex
 
-I did see this in at least one other driver, ah yes at least
-drivers/mfd/88pm860x-core.c is doing something similar, maybe others, too
-(I stopped there).
+This series is available here:
+  https://github.com/riscstar/linux/tree/outgoing/pcie-v6
 
-Cheers,
-Andre'
+Between version 5 and version 6:
+  - Aurelien Jarno and Johannes Erdfelt tested this code and found
+    they no longer saw the errors they observed previously
+  - Disabling ASPM L1 is now done earlier, at the end of the
+    dw_pcie_host_ops->init callback rather than ->post_init
+  - The function that disables ASPM L1 has been moved and renamed
+  - The return value from devm_platform_ioremap_resource_byname()
+    is now checked with IS_ERR()
+  - The number of MSI vectors implemented is back to 256, after
+    confirming with SpacemiT that they are all in fact supported
+  - The sentinel entry in the OF match table no longer includes
+    a trailing comma
+  - MODULE_LICENSE() and MODULE_DESCRIPTION() macros are now
+    included
+
+Here is version 5 of this series:
+  https://lore.kernel.org/lkml/20251107191557.1827677-1-elder@riscstar.com/
+
+Between version 4 and version 5:
+- Clarify that INTx interrupts are not currently supported
+- Add Rob Herring's Reviewed-by on patch 3
+- The name of the PCIe root port will always begin with "pcie"
+- Lines in the bindings are now wrapped at 80 columns
+- Subject lines are all captialized (after subsystem tags)
+- Place the PCIe Kconfig option in the proper location based on
+  vendor name (not Kconfig symbol); expand its description
+- Drop two PCIe controller Kconfig dependencies
+- Use dw_pcie_readl_dbi() and dw_pcie_writel_dbi() when turning
+  off ASPM L1
+- The dw_pcie_host_ops->init callback has been rearranged a bit:
+    - The vendor and device IDs are now set early
+    - PERST# is asserted separate from putting the controller in RC mode
+      and indicating power is detected
+    - phy_init() is now called later, just before deasserting PERST#
+- Because of timing issues involved in having the root port enable power,
+  getting and enabling the regulator is back to being done in the PCIe
+  controller probe function
+- The regulator definition is moved back to the PCIe controller DT node,
+  out of the root port sub-node (in "k1-bananapi-f3.dts")
+
+Here is version 4 of this series:
+  https://lore.kernel.org/lkml/20251030220259.1063792-1-elder@riscstar.com/
+
+Additional history is available at that link.
+
+
+Alex Elder (7):
+  dt-bindings: phy: spacemit: Add SpacemiT PCIe/combo PHY
+  dt-bindings: phy: spacemit: Introduce PCIe PHY
+  dt-bindings: pci: spacemit: Introduce PCIe host controller
+  phy: spacemit: Introduce PCIe/combo PHY
+  PCI: spacemit: Add SpacemiT PCIe host driver
+  riscv: dts: spacemit: Add a PCIe regulator
+  riscv: dts: spacemit: PCIe and PHY-related updates
+
+ .../bindings/pci/spacemit,k1-pcie-host.yaml   | 157 ++++
+ .../bindings/phy/spacemit,k1-combo-phy.yaml   | 114 +++
+ .../bindings/phy/spacemit,k1-pcie-phy.yaml    |  71 ++
+ .../boot/dts/spacemit/k1-bananapi-f3.dts      |  44 ++
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  33 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi          | 176 +++++
+ drivers/pci/controller/dwc/Kconfig            |  13 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-spacemit-k1.c | 358 ++++++++++
+ drivers/phy/Kconfig                           |  11 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-spacemit-k1-pcie.c            | 670 ++++++++++++++++++
+ 12 files changed, 1649 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/spacemit,k1-pcie-host.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/spacemit,k1-combo-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/spacemit,k1-pcie-phy.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-spacemit-k1.c
+ create mode 100644 drivers/phy/phy-spacemit-k1-pcie.c
+
+
+base-commit: 6d7e7251d03f98f26f2ee0dfd21bb0a0480a2178
+-- 
+2.48.1
+
 
