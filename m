@@ -1,103 +1,81 @@
-Return-Path: <devicetree+bounces-238052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E91AC56D6F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:28:20 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 641F0C56D4B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:27:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6396A4E6222
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:25:01 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3B2193519D9
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78552F7479;
-	Thu, 13 Nov 2025 10:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F57432255D;
+	Thu, 13 Nov 2025 10:26:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ecQb3Uzi";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DSUR2Ytl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dpl7fpkX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E40B2E6CA5
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656822F290E
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:26:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763029497; cv=none; b=Xx9OzzlxxnOqtwxVJBcXEaUrSvKdueN/6cAnCLRGr22YT5evaKP6rKkFcrBxq5aMgtN0HJlcSGT9wv7i4hph5oIwB/qUpE0lvikIqnIeQtqFwALYXAzLFOejbYLf4cD7uNpqvaxeIqjC7fVKNThnuD2D9UjYux5AXXYWgGnPRpI=
+	t=1763029599; cv=none; b=cId/ZFS+GQxrZnmpoIWGbtWch9BJicDNJGdXYubshh9FJiIYlOm/StLBtQfyrtz8XF/MPQGEt4rI0DB2J196+WY8ZkmUxmfBbdBesl7TDISw6rSMe+fnO6KvrgXKGv7QjhcT+qrax4TQ7NfQSJjqZdzG/CBsqnB/1XzSUx2+1PQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763029497; c=relaxed/simple;
-	bh=y3Tkh9Y+00TkC16p9tWZ5iuCujnyRKQ+Q9BWXTtfT5U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p1mSmITHl3/lHDtMgyCPtdf0yJ3lDGW1l18bjH3SU+PfZevmSG1xxm/F4AidNGEcaf7upck5hnQSJibsrDB/pN5/CvfxjHwbjuHWBBG0qNAUiRT8WdGs0fidw/zRLOShQFZLiSl9RbB4O8rZ7K7oxD4DxYZ+S5gORgUleysxUig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ecQb3Uzi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DSUR2Ytl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD6hcJp3801307
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:24:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5OSax5t+kt4/xPcqkn+xgV2a9SEJt/pjMe89M6iO6pc=; b=ecQb3Uzis5TIo0Ts
-	XCz2YVy9BUgoVj/4GJA/ubtmiHO3b8najejQq63DxFQUV5+Ptw5KIbaIU7EQEQiA
-	7D6XjULPe4iKYvdGI+pPVDVsO54lGGBs81dT6QLxU+u/nsuWF+l52D1Ad6V/b6XG
-	3PbEbJe5lQ75vO9S+hJ2T6Um/XQ+UIgUxLE8UCRbAj644t2g1liudtjgyxsZakTR
-	tvLT95iQbv261QIYs5OCiTOGtPcV8tXWVrlYC8RsWiL8VQYTD3g3fTZRnOchyxj3
-	vKHYZ6Jlbx/l8qISJuI81UpqhM2B0MG1+IL5UmsGehldaRZBWqBb9jptAJGl7a22
-	7p4xdg==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adaam8pgr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:24:54 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7a998ab7f87so1061853b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 02:24:54 -0800 (PST)
+	s=arc-20240116; t=1763029599; c=relaxed/simple;
+	bh=ZCFF04RJ9CJCCxVRA1yz9U8VC4BnDMiI7a/ozJ4Gsyw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=brv2xS8gqY65/xFmv/GWQWne33LKkgNjTWTUAxvfPfP5pKxC+bOcFiOdasQSX2zyXyWb/xVLhtgI7KLHZHSd6L3RqhbS4E+AWlhwwp6nybbFh7YADNJPWScyl1sJvQowpCB9LAMfMEQIBY3WmfF+9be2btUXwTj0cnJ1GEw+XRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dpl7fpkX; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42b3c5defb2so415180f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 02:26:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763029494; x=1763634294; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5OSax5t+kt4/xPcqkn+xgV2a9SEJt/pjMe89M6iO6pc=;
-        b=DSUR2YtlaIUCuslAqoKzLWxESW+5g6EiPY1eKjOY/PDJPe+A4gMWwyNYjLUJG5XzEe
-         oVgmtiopLsLGDXVahb0yqIctJ//Um3G/nn++DDMoLtGvmWvAuZZqzN7bw2O3DVLX2l8Q
-         cMVcp/kPrQj9e4AN7FWNrfJwHv/AOleOn8ReV+P5DiiQINrqxskMSosK6+9mCbURO6OI
-         jHDZW6eyHAEcjMK1/XEX4kcuwiDEcvn2pWcKtvAksVJEg6szXqceUGu8tTFMG13KdXnO
-         ZzcXthI7PRRaEBjoXlw4GphmutJYVFCRqYlHO8h/5l+y2mqLJvK0qOYXFeh15B4mprP8
-         e4Sg==
+        d=linaro.org; s=google; t=1763029596; x=1763634396; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=v8GhrcAyMh3A+V43CTkvvT8Jy87HXinsSZJMcVDG3s0=;
+        b=Dpl7fpkXF0gkobSFHf7scS5hTiYA3Phb2KISMxQhISZdJwWqpX4PR5Y5rcSmmfMLo+
+         l6HO1l4GiuSmzym5hv+H7QXd362GlKGj/AP/N/TGPD/crZYyIvzvZ/1am8Cu0NyWlwUg
+         7k/xgszsuJKLy55vRK0M0WIe/eUbtbCsRNC8BC/GB3Wsd28mWqtisUeKPFNQ60lprpce
+         xHK1RtURMlL+ZJb+SWH5vfrA8ts2Dhj2pho/SNvLW+Jdz9Yoeab4hC5InmXnqJFqbCRS
+         XHw7BJl4RADFY3sm4ldIjewGF3OdMFfdcdcAcbnSQu+onp8G9brFGBrMFwyEKdecIl5q
+         Wbzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763029494; x=1763634294;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5OSax5t+kt4/xPcqkn+xgV2a9SEJt/pjMe89M6iO6pc=;
-        b=G+nhd/y2TpuOuAQJch/iGN694ixHJHeA3Y3F7hOHBfiV8ZLN3/+4WsDJMxaxcIkwRT
-         XAUNHk4BRYKz77AuhUZQh9Qw5I/cTdVtmd/IV6W1y17hfwT14565y/9KbSMXGneZp7BD
-         aJCN9A0foXFHfVkCkPXKPvL2kl8P554UW1HV3h1RqZmKixOraGT/TSYGpZRKvGXZn/S9
-         oWYERn1gTw2+g42HZI7fpSYkhhg194X7ANK2oLg+V+rreZ4yTIFgrPx7+JtMS9wq9ao3
-         gTun/g80n5kilRpJDuSdOD69DgVj1hPim4kMY43LWlvyMBLgaWYezkn0CheaYRtz1q07
-         L24w==
-X-Forwarded-Encrypted: i=1; AJvYcCUW8bMXhepBqsGlzvIgOvk49bKhmobhzEeW1eLkRlgLNGVibpxsOHvtLHIMaEryNgEBghO7NaUskzSh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMMFIYz+UoNLTBxxPOJoA2LxZezJ5wEea80Br9rCxj6+R5FMTW
-	jByNFtvatJM+b1rCTzmD+AUGy64vw/H/wUXybq5mfxzrXaiRPjB4HmdeqllvnA6KiKX66DjeDZP
-	Pp/x9OyGs5KgtVy/1MOQFCppyWyandDtKXx2t27DT/PnebnsgDjLD636mqZ72pZZ1AsHnseHk
-X-Gm-Gg: ASbGncsatBNlXTAg1PXqXEmec9Pn/AMjBEjDxs1XO8JQcdDvfoEdOxOyqLx6gdtJl6H
-	RTr7K7zbIAbfsbDaBwsS8hz+dnX6GwY8GTHZKyAqv/lzP95v9r5/jJhGiygaueWvBjfTYf3mRNJ
-	e+2XV41h+suXS302TEOVYCgEWGjVjSWK8O9DU5xup6ACpRnDwsPbymCKap7IxVOnkEWrWKLqwo4
-	mCLotJ8hRidaHsuLMHVqGhTyO/nlPJUmrUx9jV3nvbo+5jjwipTTzy8YaAZzPEY0AzV45t+Wv70
-	aXhq8NoJxamHXDqXEvrjJ4DQqR1YrsUQN6PBWAU1sNcB2mnMKYgYUVDlzWL5zx6D4PlKqpZJW+B
-	uSFiIUNKZp6Ha60fP+hAPbLcZ4CirTTkPo1fBGrOw1wnTtlfE6vEmC1qJBfyRZlau0uUX2/J/g3
-	XbNEwHwfNmFdiuvUVR3+8clg==
-X-Received: by 2002:a05:6a00:3ccd:b0:781:2538:bf95 with SMTP id d2e1a72fcca58-7b7a299aeb1mr7083460b3a.10.1763029493649;
-        Thu, 13 Nov 2025 02:24:53 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGnWkPH7h7QZCCvr43VCijhRBypZyvpSZr65Qfwwqa4vfN5Jq0617Vyobk+VmSzuOSZTLg90w==
-X-Received: by 2002:a05:6a00:3ccd:b0:781:2538:bf95 with SMTP id d2e1a72fcca58-7b7a299aeb1mr7083430b3a.10.1763029493115;
-        Thu, 13 Nov 2025 02:24:53 -0800 (PST)
-Received: from [10.190.211.199] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b927826dc9sm1812902b3a.53.2025.11.13.02.24.48
+        d=1e100.net; s=20230601; t=1763029596; x=1763634396;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v8GhrcAyMh3A+V43CTkvvT8Jy87HXinsSZJMcVDG3s0=;
+        b=nWC41z9UP/1BClJg6PSiNVk3tyRQOqtMx673dOEZHK7F86ePlMwA+6AaTTEe3uvN+7
+         3G4cdPWODgtChbFEnWlvJzYzQu79Vqk1idSYOlAmKQktAyrJWVGtM1ujSfislQeYc+de
+         KjoI16VVkIVoDbDRVSmVn+Yn0RzrEnVEgOjLNk7295EDG5YCDYbMqzh/uedSdUU8PWYH
+         7dhpfEHneDQMZuPwSZPmNca8wsR3Ql+8DaVK+c83fQSUs7gLPZp2scP0qV02EqbLQW5I
+         sawaHqNrJeeRwJ7nhbQYK06Ey9xXT6Au2eepwEvLD3c5Q+2C3euKDPCsEGpA+fZ0IOZ5
+         AjGA==
+X-Forwarded-Encrypted: i=1; AJvYcCXn/SqpibPjJej7UM2bvXle+TQSXCpZRSE7Yx2rdCeYTBZsnCqKr328uzAaDaOPK169/NR99x24riYw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXtAt0o3vkicGbRDdt/oDFsWlTvinCYgnqNaMWq0H369iseBrq
+	oTVJc5ZJUvsjRxWL4kvPfbJlJ9WOawAd4urXWjRqLo5acRA0F0Jq+D9cFWaGkYE/9Fk=
+X-Gm-Gg: ASbGnctLmdzKKX9VUvjFnj7SWfdKqykBr1A3pcmboc7gUmarMyd95QqAbyJDt9scLaZ
+	B61eRwgwBt64RZlxxB3ZnxnmQx03ByISjDI6stVrc5vz78x0dHkOzWtNFIBHiEtID5lGV6lBGMk
+	UK/xKmkRwhCNc9to3qa94e0qMfQZOusdB5zvB1QoU9eNjD1ByFDelszJWEDtubtauwB6NKAXUxD
+	zQyRhF53T9f1N5A0opgmL/IrWJTjntW9RTszjuKwxZMNB9O7SIuqCbskaRtUfUWBA67XAErlF+J
+	I2KCargTVPJIuqxw1FuNGlHKjnjxw8g0wsFGwIG8zBg2RSNvy3jmPZr8MPcSW3V8d+u7eiIEJWl
+	j8x80TCGW+lHKTq8iu6Hn4gmZC9GZo5GLFV+ACwdQ8i+GKsW5h39hBhrIOq0YWvFi/sfiklKWZw
+	ZzBNLEhA==
+X-Google-Smtp-Source: AGHT+IFappH0cJvSx4iLsRJxGuedr9FOAfOnQi4qZr3vNlHJHTAAZOTa3M8ohns19ObiXS0otCFe/Q==
+X-Received: by 2002:a5d:5848:0:b0:42b:3dfb:6436 with SMTP id ffacd0b85a97d-42b4bdaeacbmr6137389f8f.60.1763029595613;
+        Thu, 13 Nov 2025 02:26:35 -0800 (PST)
+Received: from [10.11.12.107] ([5.12.85.52])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f0b57asm3088931f8f.27.2025.11.13.02.26.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Nov 2025 02:24:52 -0800 (PST)
-Message-ID: <0df6882b-5ac7-48d4-abf6-470921fea81f@oss.qualcomm.com>
-Date: Thu, 13 Nov 2025 15:54:47 +0530
+        Thu, 13 Nov 2025 02:26:35 -0800 (PST)
+Message-ID: <62bb6c08-a1d0-4dba-a431-0d6ce49d66b2@linaro.org>
+Date: Thu, 13 Nov 2025 12:26:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,114 +83,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] firmware: qcom: scm: Register gunyah watchdog
- device
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pavan Kondeti
- <pavan.kondeti@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20251112-gunyah_watchdog-v6-0-38ad01f8dac0@oss.qualcomm.com>
- <20251112-gunyah_watchdog-v6-1-38ad01f8dac0@oss.qualcomm.com>
- <e5awatsfe6qksjj3z2vqn4fpc6pnlzuezu544f4oiyduappihp@zxgvyvyro76a>
+Subject: Re: [PATCH v2 2/5] nvmem: add Samsung Exynos OTP support
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ semen.protsenko@linaro.org, willmcvicker@google.com,
+ kernel-team@android.com, linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20251112-gs101-otp-v2-0-bff2eb020c95@linaro.org>
+ <20251112-gs101-otp-v2-2-bff2eb020c95@linaro.org>
+ <20251113-benign-macaw-of-development-dbd1f8@kuoka>
+ <9d77461c-4487-4719-98db-1c5c5025c87e@linaro.org>
+ <725ea727-d488-40aa-b36d-04d6d44a8ec5@kernel.org>
+ <1af37451-1f66-4b6b-8b36-846cbd2ca1e8@linaro.org>
 Content-Language: en-US
-From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-In-Reply-To: <e5awatsfe6qksjj3z2vqn4fpc6pnlzuezu544f4oiyduappihp@zxgvyvyro76a>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <1af37451-1f66-4b6b-8b36-846cbd2ca1e8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA3NiBTYWx0ZWRfXyR8tJPlWqhqn
- znKhEcGNBctCSP1gi6jm7jIhba+Zkar8hCGXdFgEwrT2oYokZMAYMky8fv6m0R9INxQ52LEVYzE
- tQZG2gf5dl0+DYzHhetZNaUH3cBi/iWjO/bXfKbFUa3GR1NxbAkbI0pSxwU4tZzgZoMiR9YQOMJ
- wUuha4wSEMO6PQ6eTP2SCtNO9penxz6qdBzgXu0nf2xpqkzvk8EiJgLYM+0K15Xl/z6W0AwM1UN
- 9CY30d6qjE0bqjX2FjCXjwxzOvSa5Fw23V4/y5Cr26v2Q3HEAqjh+1yuzVATXQr/fkTndp0uUU5
- +pdCtjoIynLIZa7xLjhkg+JwfAUlhU0/pC1HCKNk+t765LIyQ3cfX7KYYb1YPyVcHvhqGhZz5Wf
- XqKUr/L1ThKoudCF6nGqeS/tLL7u7g==
-X-Authority-Analysis: v=2.4 cv=d4f4CBjE c=1 sm=1 tr=0 ts=6915b1f6 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=rIQdjpfwJTbE9Fzp_MwA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-ORIG-GUID: OhdorX0uCX_-AiCfA03xcSll7cqACJIX
-X-Proofpoint-GUID: OhdorX0uCX_-AiCfA03xcSll7cqACJIX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-13_01,2025-11-12_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 impostorscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
- phishscore=0 suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130076
 
 
 
-On 11/13/2025 1:32 AM, Dmitry Baryshkov wrote:
-> On Wed, Nov 12, 2025 at 07:35:20PM +0000, Hrishabh Rajput wrote:
->> To restrict Gunyah watchdog initialization to Qualcomm platforms running
->> under the Gunyah Hypervisor, register the watchdog device in the QCOM
->> SCM driver.
->>
->> When Gunyah is not present or Gunyah emulates MMIO-based watchdog, we
->> expect Qualcomm watchdog or ARM SBSA watchdog device to be present in
->> the devicetree. First, we make sure we're running under the Gunyah
->> Hypervisor. Then we move to check if any of the above mentioned
->> watchdog device nodes are present, if not then we proceed to register
->> the SMC-based Gunyah watchdog device.
->>
->> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
->> ---
->>   drivers/firmware/qcom/qcom_scm.c | 53 ++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 53 insertions(+)
->>
->> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
->> index e777b7cb9b12..3f45cc69ef83 100644
->> --- a/drivers/firmware/qcom/qcom_scm.c
->> +++ b/drivers/firmware/qcom/qcom_scm.c
->> @@ -2182,6 +2182,56 @@ int qcom_scm_qtee_callback_response(phys_addr_t buf, size_t buf_size,
->>   }
->>   EXPORT_SYMBOL(qcom_scm_qtee_callback_response);
->>   
->> +static void qcom_scm_gunyah_wdt_free(void *data)
->> +{
->> +	struct platform_device *gunyah_wdt_dev = data;
->> +
->> +	platform_device_unregister(gunyah_wdt_dev);
->> +}
->> +
->> +static void qcom_scm_gunyah_wdt_init(struct qcom_scm *scm)
->> +{
->> +	struct platform_device *gunyah_wdt_dev;
->> +	struct device_node *np;
->> +	bool of_wdt_available;
->> +	int i;
->> +	const uuid_t gunyah_uuid = UUID_INIT(0xc1d58fcd, 0xa453, 0x5fdb,
+On 11/13/25 11:51 AM, Tudor Ambarus wrote:
 > 
-> static const
 > 
->> +					     0x92, 0x65, 0xce, 0x36,
->> +					     0x67, 0x3d, 0x5f, 0x14);
->> +	const char * const of_wdt_compatible[] = {
+> On 11/13/25 11:35 AM, Krzysztof Kozlowski wrote:
+>> On 13/11/2025 10:28, Tudor Ambarus wrote:
+>>>
+>>>
+>>> On 11/13/25 10:30 AM, Krzysztof Kozlowski wrote:
+>>>> On Wed, Nov 12, 2025 at 08:29:06AM +0000, Tudor Ambarus wrote:
+>>>>> Add initial support for the Samsung Exynos OTP controller. Read the
+>>>>> product and chip IDs from the OTP controller registers space and
+>>>>> register the SoC info to the SoC interface.
+>>>>>
+>>>>> The driver can be extended to empower the controller become nvmem
+>>>>> provider. This is not in the scope of this patch because it seems the
+>>>>> OTP memory space is not yet used by any consumer, even downstream.
+>>>>
+>>>> Quick look tells me you just duplicated existing Samsung ChipID driver.
+>>>> Even actual product ID registers and masks are the same, with one
+>>>> difference - you read CHIPID3... which is the same as in newer Exynos,
+>>>> e.g. Exynos8895.
+>>>
+>>> Yes, that's correct. It's very similar with the Samsung ChipID driver.
+>>>
+>>>>
+>>>> What is exactly the point of having this as separate driver? I think
+>>>
+>>> The difference is that for gs101 the chipid info is part of the OTP
+>>> registers. GS101 OTP has a clock, an interrupt line, a register space 
+>>> (that contains product and chip ID, TMU data, ASV, etc) and a 32Kbit
+>>> memory space that can be read/program/locked with specific commands.
+>>>
+>>> The ChipID driver handles older exynos platforms that have a dedicated
+>>> chipid device that references a SFR register space to get the product
+>>> and chip ID. On GS101 (but also for e850 and autov9 I assume) the
+>>> "ChipID block" is just an abstraction, it's not a physical device. The
+>>> ChipID info is from OTP. When the power-on sequence progresses, the OTP
+>>> chipid values are loaded to the OTP registers. We need the OTP clock to
+>>> be on in order to read them. So GS101 has an OTP device that also happens
+>>> to have chip ID info.
+>>>
+>>> For now I just got the chipid info and registered it to the SoC interface
+>>> (which is very similar to that the exynos-chipid driver does), but this
+>>> driver can be extended to export both its memory space and register space
+>>
+>>
+>> There is no code for that now and possibility of extension is not a
+>> reason to duplicate yet.
+>>
+>>> as nvmem devices, if any consumer needs them. Downstream GS101 drivers
+>>> seem to use just the chip id info and a dvfs version from the OTP
+>>> registers. DVFS version is not going to be used upstream as we're defining
+>>> the OPPs in DT. So I was not interested in extending the driver with nvmem
+>>> provider support, because it seems we don't need it for GS101.
+>>>
+>>> Do the above justify the point of having a dedicated driver?
+>> Only partially, I asked about driver. I did not spot previously the
+>> clock, so we have two differences - CHIPID3 register and clock - right?
 > 
-> static const
+> clock and interrupts, but I don't use the interrupts because I just need
+> to read the OTP registers to get the chip id info.
+> 
+>> I wonder why Exynos8895 and others, which are already supported, do not
+>> use CHIPID3, but nevertheless these two differences can be easily
+>> integrated into existing driver.
+> 
+> they can be integrated, but I want to make sure we're making the best
+> decision.
+> 
+>>>> this can easily be just customized chipid driver - with different
+>>>> implementation of exynos_chipid_get_chipid_info().
+>>>
+>>> If the answer is no to my question above, how shall I model the device
+>>> that binds to the existing exynos-chipid driver?
+>> Just extend the existing driver.
+>>
+> So you mean I shall have something like that in DT:
+> 
+> +		chipid@10000000 {
+> +			compatible = "google,gs101-chipid";
+> +			reg = <0x10000000 0xf084>;
+> +			clocks = <&cmu_misc CLK_GOUT_MISC_OTP_CON_TOP_PCLK>;
+> +			interrupts = <GIC_SPI 752 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		};
+> 
+> Maybe remove the interrupts because I don't need them for reading OTP regs.
+> 
+> What happens in the maybe unlikely case we do want to add support for OTP
+> for GS101? How will we describe that in DT?
+> 
 
-Thanks. I will make both of these arrays `static const` in the next 
-patch version. Have taken a note of this so I do this moving forward.
+Ah, I guess you meant to keep the node as I described it in patch 3/5,
+an efuse node with a google,gs101-otp compatible, that will bind to the
+existing exynos-chipid driver. Then if/when we add OTP support, move
+everything to a new OTP driver. That can work, yes. Unless I add some
+OTP support now, to justify the new driver. Both shall be okay, right?
 
 Thanks,
-Hrishabh
-> 
->> +		"qcom,kpss-wdt",
->> +		"arm,sbsa-gwdt",
->> +	};
->> +
-> 
+ta
+
 
 
