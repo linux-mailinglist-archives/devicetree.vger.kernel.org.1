@@ -1,86 +1,120 @@
-Return-Path: <devicetree+bounces-237995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF786C56521
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:41:55 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66BE1C5655D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:44:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ECDB0351EB5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:37:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 57F474E66AB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:39:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E08B032E75E;
-	Thu, 13 Nov 2025 08:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UE2Te3G3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4EF733374B;
+	Thu, 13 Nov 2025 08:36:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C6B2857FC;
-	Thu, 13 Nov 2025 08:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21904333459;
+	Thu, 13 Nov 2025 08:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.223.95.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763022922; cv=none; b=tMz0Y3bt2TH5XGMsX410owPswwdxP5KFzfPbYKRzK0IwdmEf08D//PW16acaeJBII/ixIuAq2G3AW0DbPWS9JbHXmxdF631rugzLS6NYbEIe7vhxxm5XQ/t8c7rqtiJ2xEx/9pxUX2EAGmWG6RRerVXZk4ElkgRRXuCSI5oE+ug=
+	t=1763023019; cv=none; b=g/kFuR8rvdyS+YXyd00Qf07VDzGZudyv+/yPR3rt71rEb8CifQ8qKnUPt+O8ooDZOvSGKjfY5BBkV/VJlw91owl8XvRY0ZMYdBR6MeMlymPtAUhMwvn/7iMBhhs35swkNy2BqfW9oe1n+nJLmxuC3hxnSdPu/VERGkWonHtU6wo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763022922; c=relaxed/simple;
-	bh=ICI1faY+jwQWDxMwXi+RLB99AqgqE2PSln2lQy4kxmU=;
+	s=arc-20240116; t=1763023019; c=relaxed/simple;
+	bh=9tmZNT31eqYFTJ2Nfxp+D1J2uiA9NkpKSfKBy+GJCx8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n2yxN40aAx4L41DzGmT56QNbN+km0zAWSUyaUSk1C0+2Ig7to0nTy/IFi5etJeUeWvqp17skqpU+A2jZk2n0385onKsGyLiBbazjncP60URs8XzVAcmfV9qARlhzKv6mrnCV3q7yLXEXn9zABLWPrdA7rEmKIxox3ruLuM1aH8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UE2Te3G3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C36FFC113D0;
-	Thu, 13 Nov 2025 08:35:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763022922;
-	bh=ICI1faY+jwQWDxMwXi+RLB99AqgqE2PSln2lQy4kxmU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UE2Te3G36qEKDHoZD9k/3f1GwsAneXvrd/vZ7jp6Hk+W+UTNbdlVTpDANB0UwVUa7
-	 qSNDHq6qruzuGFHctcMAdxWR3Xm4bMv13mDY/L/yVHr/ivMTz7loRfwQIczCgiIURi
-	 LEs4odmj7tfK2KTicIz2bjIJmcADvAl5WZHr8MeSoatlIP0u3keA075nMC1Qu1NyE9
-	 ilSPNYfEZvZcinP8nGpHfz25QI0UDXi5wuUpn6ce7eR8Vp75bayV29CX2vflCOHdaV
-	 rbBofld0KMJuLwJX37sjaWVFH03PNQJuwpnKyphhedQh25a0urRmXLz0GHuSp/si3j
-	 COkgRBzNdKsiQ==
-Date: Thu, 13 Nov 2025 09:35:19 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: michael.opdenacker@rootcommit.com
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Asus Tinkerboard 3 and 3S
-Message-ID: <20251113-berserk-hairy-alligator-2eee0c@kuoka>
-References: <20251111172003.2324525-1-michael.opdenacker@rootcommit.com>
- <20251111172003.2324525-2-michael.opdenacker@rootcommit.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZaOLZUcum+yGPAU8gSEAI/4PGeso6pDhkrTRpLVTrbkXSl7EqY7TFck2eoTj3D9YuzvkHFzFLseYUblP/R0mx/3SZU5Lf9yVBGMNaAvi4F69dUF7/3dT11Vs9LNXA6bcSojz3POGvnGkLa8in/xvMwEcqpYf2pW3FZB89Zp2yBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=83.223.95.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384
+	 client-signature ECDSA (secp384r1) client-digest SHA384)
+	(Client CN "*.hostsharing.net", Issuer "GlobalSign GCC R6 AlphaSSL CA 2025" (verified OK))
+	by bmailout1.hostsharing.net (Postfix) with ESMTPS id 8D6692C06646;
+	Thu, 13 Nov 2025 09:36:48 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id 7A4635160; Thu, 13 Nov 2025 09:36:48 +0100 (CET)
+Date: Thu, 13 Nov 2025 09:36:48 +0100
+From: Lukas Wunner <lukas@wunner.de>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: andersson@kernel.org, robh@kernel.org, manivannan.sadhasivam@linaro.org,
+	krzk@kernel.org, helgaas@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
+	conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v2] schemas: pci: Document PCIe T_POWER_ON
+Message-ID: <aRWYoHvaCCN95ZR9@wunner.de>
+References: <20251110112947.2071036-1-krishna.chundru@oss.qualcomm.com>
+ <aRHdiYYcn2uZkLor@wunner.de>
+ <44c7b4a8-33ce-4516-81bf-349b5e555806@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251111172003.2324525-2-michael.opdenacker@rootcommit.com>
+In-Reply-To: <44c7b4a8-33ce-4516-81bf-349b5e555806@oss.qualcomm.com>
 
-On Tue, Nov 11, 2025 at 05:20:22PM +0000, michael.opdenacker@rootcommit.com wrote:
-> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+On Thu, Nov 13, 2025 at 09:33:54AM +0530, Krishna Chaitanya Chundru wrote:
+> On 11/10/2025 6:11 PM, Lukas Wunner wrote:
+> > On Mon, Nov 10, 2025 at 04:59:47PM +0530, Krishna Chaitanya Chundru wrote:
+> > >  From PCIe r6, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
+> > Please use the latest spec version as reference, i.e. PCIe r7.0.
+> ack.
+> > > minimum amount of time(in us) that each component must wait in L1.2.Exit
+> > > after sampling CLKREQ# asserted before actively driving the interface to
+> > > ensure no device is ever actively driving into an unpowered component and
+> > > these values are based on the components and AC coupling capacitors used
+> > > in the connection linking the two components.
+> > > 
+> > > This property should be used to indicate the T_POWER_ON for each Root Port.
+> > What's the difference between this property and the Port T_POWER_ON_Scale
+> > and T_POWER_ON_Value in the L1 PM Substates Capabilities Register?
+> > 
+> > Why do you need this in the device tree even though it's available
+> > in the register?
 > 
-> Document the compatible strings for Asus Tinkerboard 3 [1] and 3S [2],
-> which are SBCs based on the Rockchip 3566 SoC.
+> This value is same as L1 PM substates value, some controllers needs to
+> update this
+> value before enumeration as hardware might now program this value
+> correctly[1].
 > 
-> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
-> and a "mask ROM" DIP switch to the "3" version.
+> [1]: [PATCH] PCI: qcom: Program correct T_POWER_ON value for L1.2 exit
+> timing
 > 
-> Link: https://tinker-board.asus.com/series/tinker-board-3.html [1]
-> Link: https://tinker-board.asus.com/series/tinker-board-3s.html [2]
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> <https://lore.kernel.org/all/20251104-t_power_on_fux-v1-1-eb5916e47fd7@oss.qualcomm.com/>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Per PCIe r7.0 sec 7.8.3.2, all fields in the L1 PM Substates Capabilities
+Register are of type "HwInit", which sec 7.4 defines as:
 
-Best regards,
-Krzysztof
+   "Register bits are permitted, as an implementation option, to be
+    hard-coded, initialized by system/device firmware, or initialized
+    by hardware mechanisms such as pin strapping or nonvolatile storage.
+    Initialization by system firmware is permitted only for
+    system-integrated devices.
+    Bits must be fixed in value and read-only after initialization."
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+These bits are not supposed to be writable by the operating system,
+so what you're doing in that patch is not spec-compliant.
+
+I think it needs to be made explicit in the devicetree schema that
+the property is only intended for non-compliant hardware which allows
+(and requires) the operating system to initialize the register.
+
+Maybe it makes more sense to have a property which specifies the raw
+32-bit register contents, instead of having a property for each
+individual field.  Otherwise you'll have to amend the schema
+whenever the PCIe spec extends the register with additional fields.
+
+Thanks,
+
+Lukas
 
