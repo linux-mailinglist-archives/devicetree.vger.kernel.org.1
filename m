@@ -1,204 +1,141 @@
-Return-Path: <devicetree+bounces-238189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9611FC58745
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:44:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C680C587DF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:50:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED24D3BA711
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:28:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D74C23BAF9D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:29:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9869F2EBB9A;
-	Thu, 13 Nov 2025 15:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAAA2359719;
+	Thu, 13 Nov 2025 15:18:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="hXL+fFSt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AcRoJkWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739BE2EB853;
-	Thu, 13 Nov 2025 15:17:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7ECE359712;
+	Thu, 13 Nov 2025 15:18:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763047038; cv=none; b=qukigK5Pt9vWPwMftohGSZpN4rEHUqMfVwEIC8yK9UM69vGZcgbOzQGd2kGORJ05HWiPVdhtFFEGXKpWama6IxSXqpKoxhjQ/3FO/eAmC45ZItROaNQAi3SjjpCmIrS5lQogfKL4ef2DhSy7g1WegtQGi5FpS/7O6rXERKNRz2E=
+	t=1763047094; cv=none; b=dNoVeS7EVx9HYwaI2G16TOa9S+icktSaeR+mIVgwB7raB8ncybX4wyfSh6lAGiD5rO2ZULa/+yAXVlUzFeG7WzI3h1OZ6kfrYvxwW5LeceTsMzgofdmzvh2QDT5iFhJdztrQN95H+0VBzFrqiBtSsQLOc7IxUzE54DHDzxeOXzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763047038; c=relaxed/simple;
-	bh=T3n7uGsXw8/exc2MdTHyFvaIfrDg+W4gycMLUTTp62k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cgStd5F11ZcsVSyE2ciq75yMUhUtJLkwuqXiXJlNOpW8iQeKu4U3RGqymc1csu2uOAGDw/WO4Lsro7pCEJcVJG+YFNoLO2Iu5EQZS6OCTuLY59iONn6pUy37dZlttHXWqkFLV2di5PCsl2blAgOCUbwMVBb1hofd4eoqHhomDl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=hXL+fFSt; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1763046978;
-	bh=5AGNvaURvHGKAavyDt3SYJlevQsgOCQzedVhKN3nGVw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hXL+fFSt1lF8fqaJhdWEA3T+ShmM5u/Xbf2lHvu3gDBmJqfAIZnz90g8kW1bkujvH
-	 px5RxeqKofIflhoz0eTfbb9T5DxdtDorPZFcXz9FS3JKdz71pKojqBBaVOIxRyGjwH
-	 lCNjQVnpwYI6vPbmUiH1wKlm91jOCWG3uAvOwn90fw4uSS7EJHp84vp4p0MWm7I1O6
-	 LncojllfI5h8FEhShvcfF/nCceH0btWwhhkd2m6Uw2mGwqKZnPFE4dHYCh0AUk4cUN
-	 jT1stvHhQkdvhp9/fzCc0pX229Tp8PlDHqKeBSoCpw/8aEIzf9WuFdXfD5oZXncwd9
-	 j9t+Ab9nUJqTw==
-Received: from [192.168.2.54] (unknown [74.244.53.222])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id AFF95B2202BC;
-	Thu, 13 Nov 2025 16:16:14 +0100 (CET)
-Message-ID: <4a55301a-ef7e-4b47-8151-621cfba36ddd@freeshell.de>
-Date: Thu, 13 Nov 2025 07:16:12 -0800
+	s=arc-20240116; t=1763047094; c=relaxed/simple;
+	bh=akDGSZ8NZGTZE+dKZXPwbwewMZSsNcbWHubp3ouC8Uw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cqup4ZsQgT5chfN8fJ7cm1YX1ZSIWQoFIbiQ9Y3moCBjil/18hIxuYijz1nwWbBBUtg9FmhSGXNH8jsD9OblfDlZEUs3EWZtF7curHdD0EWPdlHyB6UHC8HCaPO9IjVn4wEjpIVX8Vqsadv19j2Y3hH10U1LIJtbgcZ7FV0rYG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AcRoJkWa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DC3AC4CEF5;
+	Thu, 13 Nov 2025 15:18:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763047094;
+	bh=akDGSZ8NZGTZE+dKZXPwbwewMZSsNcbWHubp3ouC8Uw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AcRoJkWaNM2t9ywADCDQ9VAaPdaWgy0McpjW69L9TLPWj+8c55kd44o/k2Yfp9Qql
+	 fWCtbgh63URYfNm9VYmVbZnqLw0H7qFiKQti0aXagDP+8ggwLFgJLdf8ItQlrU+af6
+	 cO2nSnlnhygjSjOKuBevIExtPHyzyAMpuX0QUI73DhkYpic9yl+9y5QX2sBX224b6p
+	 /HXNt0q1O4Qj6b0AO1uiw2YjD2Xe1hF4cVb3VEyxE3uRqT4qdnf2Y0wIC4Njn09QFV
+	 FshmUBPU+eHUl+tJ1SEh2Nde4+WZI63eVZ5f4S8U6qUN0umSFxGoRv9jWmZSoT8qgZ
+	 mLHbVR5UhhOXg==
+Date: Thu, 13 Nov 2025 15:18:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Xu Yilun <yilun.xu@linux.intel.com>
+Cc: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
+	Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mahesh Rao <mahesh.rao@altera.com>,
+	Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: fpga: stratix10: add support for
+ Agilex5
+Message-ID: <20251113-buckshot-deeply-4654ba05b940@spud>
+References: <cover.1763008269.git.khairul.anuar.romli@altera.com>
+ <e342dc1626ae07d6b1773ad9fa5232d38af76bc2.1763008269.git.khairul.anuar.romli@altera.com>
+ <aRVx85JJHDD4yygV@yilunxu-OptiPlex-7050>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] Add support for StarFive VisionFive 2 Lite board
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Bjorn Helgaas <bhelgaas@google.com>,
- Conor Dooley <conor+dt@kernel.org>, Hal Feng <hal.feng@starfivetech.com>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20251107095530.114775-1-hal.feng@starfivetech.com>
- <CAJM55Z_rczBo4D3HsC90QW1=fp3NWgK-tsEo6LHTZNXEBHTDqA@mail.gmail.com>
- <ZQ2PR01MB13076544E2136E7E7C2EEDA1E6CD2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
- <CAJM55Z9KyNK1n4i9FxbLor4HTQKqK8WKA2svjPVvKXihw_E+sg@mail.gmail.com>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <CAJM55Z9KyNK1n4i9FxbLor4HTQKqK8WKA2svjPVvKXihw_E+sg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dlqke+i+nDLgcyhp"
+Content-Disposition: inline
+In-Reply-To: <aRVx85JJHDD4yygV@yilunxu-OptiPlex-7050>
 
 
+--dlqke+i+nDLgcyhp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 11/13/25 02:42, Emil Renner Berthing wrote:
-> Quoting Hal Feng (2025-11-13 04:42:05)
->>> On 12.11.25 21:54, Emil Renner Berthing wrote:
->>> Quoting Hal Feng (2025-11-07 10:55:22)
->>>> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S
->>>> industrial SoC which can run at -40~85 degrees centigrade and up to
->>>> 1.25GHz.
-> [...]
->>> Currently the JH7110 device trees are layed out like this, with a nice separation
->>> between the SoC description and board descriptions:
->>>
->>> jh7110.dtsi               # JH7110 SoC description
->>> |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
->>>    |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
->>>    |  |- <VF2 boards>     # Final VF2 board descriptions
->>>    |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
->>>    |  |- <Mars CM boards> # Final Mars CM board descriptions
->>>    |- <other boards>      # Other JH7110 board descriptions
->>>
->>> With this series it moves to
->>>
->>> jh711x.dtsi
->>> |- jh711x-common.dtsi
->>>    |- jh7110-common.dtsi
->>>    |  |- <jh7110 boards>
->>>    |- jh7110s-common.dtsi
->>>       |- <jh7110s boards>
->>>
->>> ..which I can't even give clear labels like above. In other words when new
->>> patches are sent in it would not be easy to explain exactly where each change
->>> should go and why.
->>> I'm also worried that you'll find that more of the peripherals on the JH7110S
->>> need special handling and a new jh7110s-... compatible string. Then I guess
->>> they'll need to jump from jh7110x.dtsi two levels down to jh7110{,s}-
->>> common.dtsi which then both describe SoC and board properties.
->>>
->>> If you're serious about calling this a new SoC then I'd expect something more
->>> like this:
->>>
->>> jh711x.dtsi                  # Peripherals common to both SoCs
->>> |- jh7110.dtsi               # JH7110 SoC description
->>> |  |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
->>> |     |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
->>> |     |  |- <VF2 boards>     # Final VF2 board descriptions
->>> |     |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
->>> |     |  |- <Mars CM boards> # Final Mars CM board descriptions
->>> |     |- <other boards>      # Other JH7110 board descriptions
->>> |- jh7110s.dtsi              # JH7110S SoC description
->>>    |- jh7110s-common.dtsi    # Peripherals common to all JH7110S boards
->>>       |- <JH7110S boards>    # Final JH7110S board descriptions
->>>
->>> I know this will mean some duplication in jh7110{,s}-common.dtsi, but I
->>> would prefer that to not having a clear explanation of what each file describes.
->>>
->>> Do you think this layout could work for you?
->>
->> Yeah, it is clearer for developers and maintainers.
->>
->> Considering Conor's suggestion, what about:
->>
->> jh7110.dtsi               # JH7110 SoC description
->> |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
->>    |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
->>    |  |- <VF2 boards>     # Final VF2 board descriptions
->>    |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
->>    |  |- <Mars CM boards> # Final Mars CM board descriptions
->>    |- <other boards>      # Other JH7110 board descriptions
->> |- <JH7110S boards>
->>
+On Thu, Nov 13, 2025 at 01:51:47PM +0800, Xu Yilun wrote:
+> On Thu, Nov 13, 2025 at 12:43:55PM +0800, Khairul Anuar Romli wrote:
+> > The Agilex 5 SoC FPGA manager introduces updated hardware features and
+> > register maps that require explicit binding support to enable correct
+> > initialization and control through the FPGA manager subsystem.
+> >=20
+> > It allows FPGA manager drivers detect and configure Agilex 5 FPGA manag=
+ers
+> > properly. This changes also keep device tree bindings up to date with
+> > hardware platforms changes.
+> >=20
+> > Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+> > ---
+> > Changes in v2:
+> > 	- No changes in this patch
 
-JH-7110 and JH-7110I reference docs are listed (not any JH-7110S) at:
-https://doc-en.rvspace.org/Doc_Center/datasheet_0.html
+Should have been changed to permit the fallback compatible as discussed.
+pw-bot: changes-requested
 
-Does the JH-7110I use the OPP table for JH-7110 or JH-7110S?
 
->> Move the opp table from jh7110.dtsi to jh7110-common.dtsi.
->> Remove jh7110s-common.dtsi, because only one board uses JH7110S now.
-> 
-> This patchset adds 2 different boards. Has this changed?
-> 
-> Also this would mean that you're not using the starfive,jh7110s compatible or
-> any other starfive,jh7110s-.. compatible strings, so effectively you're not
-> treating it as a new chip, but just a board that needs a different opp table.
-> 
-> I see now that the opp table is effectively the only difference between the two
-> chips in this patchset, so if that's closer to reality then what you suggest is
-> fine with me.
-> 
-> /Emil
+> > ---
+> >  .../devicetree/bindings/fpga/intel,stratix10-soc-fpga-mgr.yaml   | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc=
+-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc=
+-fpga-mgr.yaml
+> > index 6e536d6b28a9..b531522cca07 100644
+> > --- a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-m=
+gr.yaml
+> > +++ b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-m=
+gr.yaml
+> > @@ -23,6 +23,7 @@ properties:
+> >      enum:
+> >        - intel,stratix10-soc-fpga-mgr
+> >        - intel,agilex-soc-fpga-mgr
+> > +      - intel,agilex5-soc-fpga-mgr
+>=20
+> Reviewed-by: Xu Yilun <yilun.xu@intel.com>
+>=20
+> > =20
+> >  required:
+> >    - compatible
+> > --=20
+> > 2.43.7
+> >=20
+> >=20
 
-Are we now re-visiting Hal's suggestion then (during code review for
-Milk-V Mars CM and Mars CM Lite) to split out the OPP tables and make
-them per-board, as before introduction of the StarFive VisionFive 2 Lite
-board(s) ?
+--dlqke+i+nDLgcyhp
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Can we then do as from where we are now before this series:
+-----BEGIN PGP SIGNATURE-----
 
-- Move "the JH-7110" OPP table into jh7110-common-opp-1500.dtsi
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRX2sAAKCRB4tDGHoIJi
+0rdYAQC7sQEVu7SKrMQ3KHq3DVBedYoFsFA1OVppngdT2j+vMQD/S3sHmlSllRZL
+Gely8CY3d+X3HaLtpKLUeVi/q1zpIgQ=
+=PhQO
+-----END PGP SIGNATURE-----
 
-- Each board jh7110-{deepcomputing,milkv,pine64,starfive}*.dts includes
-said OPP dtsi file.
-
-and for this series:
-
-- Drop the adding of a new compatible
-
-- Add "the JH-7110S" OPP table into jh7110-common-opp-1250.dtsi
-
-- Use existing jh7110-* prefix for "JH-7110S" board dtsi and dts,
-include jh7110-common.dtsi as usual, and include jh7110-common-opp-1250.dtsi
-
-The exact filename pattern for the OPP tables I suggest here are
-approximations, however that idea is my suggestion if we're just doing a
-breakout of the tables and not a new compatible.
-
-I am positive on having the 1250MHz OPP tables split out into dtsi
-instead of stuffing them into the VisionFive 2 Lite common dtsi. That's
-all it is?
-
--E
+--dlqke+i+nDLgcyhp--
 
