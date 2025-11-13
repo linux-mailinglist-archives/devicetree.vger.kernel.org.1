@@ -1,151 +1,152 @@
-Return-Path: <devicetree+bounces-238004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0CE9C565F9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:53:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80146C5662F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:54:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 836C83B8503
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:52:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A8A63BA67C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7762E332EA4;
-	Thu, 13 Nov 2025 08:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36CF333756;
+	Thu, 13 Nov 2025 08:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RdjP1K45"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="lwyyTHOK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4574F33290C;
-	Thu, 13 Nov 2025 08:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21552333750
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763023910; cv=none; b=alMtmcI5j2nN7JFxNsSiSZBitFQ3stDQxfNwtrR5yCfagjCvnnsZV2D42sNsaOLtvzxNSAaxp4OjE3RmVEHN9h+Y94ZJRxn5ixDn69Kl5B7/8UzOi7FmdylkCjxpFdP5j3x7jiFbdGMF0XLTB1D9dCuEG/oogVZdce4DxHISEbc=
+	t=1763023935; cv=none; b=LaGRq7TnwJYfkcGHuW4CXN0wbQ2bHtAXXWiz7gGWFOC6dusf4vQlmcEKBz+igWwXdEuxqWZYfqOPdoJZUnrAVZgXE4AH6+7Cmwxf0IfHUHeTkyodL3TRZXfsuxcqCcbPW+7Qsz81dQ4Sr3Ydoe42GEkSYPZfojGk7e8QIxIdS5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763023910; c=relaxed/simple;
-	bh=H63NxSppjTvEdhpkW2ZiNbrZQD1ZYTG2LKogPmLbgA8=;
+	s=arc-20240116; t=1763023935; c=relaxed/simple;
+	bh=YlJJuk5N5mBnKpxGrdq20hUxrtgBhTJK4SCKYl/2W2o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZGRUy9MD4sPmu4/OZo51d6UEZekBECbzoTFPMgbYlEb5ORMOmuDOz4AYTugVmZpTyRaLtqiTzHydaHnVSoOtDoq/HbMdXJRT7RWDShOq47BTsriQ09arHOWmUY5/pzvOzAOwaAVfl/nzLq9Hf0Z2heUPJxqx04JBVw1aJL3Gdtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RdjP1K45; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46F8AC19421;
-	Thu, 13 Nov 2025 08:51:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763023909;
-	bh=H63NxSppjTvEdhpkW2ZiNbrZQD1ZYTG2LKogPmLbgA8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RdjP1K45hZnYy5oVOE7A7c4o4krZZYGjqaYWY8PAj7tKXA73VCTJii4c+ikFsxoil
-	 H1m9eBcwkj/V9dePKQS6i+KgP13IhewOOY3uNjOqH/M7gtD/ygVI3TRB6b9d/XgKE4
-	 u+T55S8TQXTIoWU8dritCJRc6Ycj60zno7dVcavHtSH1CD6tVcm0Zqb2JeQnQbkwKk
-	 YT6IVtZQOzteb88pZBu0iGtWRZUIHN/EYseP9zRTBFY2hVFxEyZVZcipF3/X2KKnZO
-	 7oEMIqqMyAGWSlf2WdEYFL3KIBAA4nYqgWokYotdyl+3uYPFi6tCq15ZRewai4TqG+
-	 ofR6CRrHk/lng==
-Date: Thu, 13 Nov 2025 09:51:47 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	broonie@kernel.org, avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	andrew@codeconstruct.com.au, openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] spi: dt-bindings: nuvoton,npcm-fiu: Convert to DT
- schema
-Message-ID: <20251113-loose-seahorse-of-endeavor-5d216e@kuoka>
-References: <20251112173314.1751671-1-tmaimon77@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VvgoHE9RjYrdJRMMGcILeFA49AsBBZUrHs58xO4IY9u14u1uJgf/pifNUS6T6b93ja9w/lEkvS3ctBp9wLbd/JEkx8zQCkuSECGIVEJjsj9BB31VXlYa6Bp6KFwYo2oCN/m+E29r9EyXbaclPXqz4ee8y30lgm4J/nunpJKyyZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=lwyyTHOK; arc=none smtp.client-ip=95.215.58.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Thu, 13 Nov 2025 10:52:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1763023932; h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type:in-reply-to:in-reply-to:  references:references;
+	bh=7nAK7H7KAJNuUJL99/a2htshLv3964/hsXXnW93gtDs=;
+	b=lwyyTHOKzUt/4NpAASZrIpugLaz8LCEGAFyJ/rV+cIqagvuBKYhcPTfFFRHzT7VvWuyfgI
+	Vj3DT2s3TjUN7cE36G5JkI9zHplqOR219BiJg8FADPwSSOEdHDnXhL+ARuDbb6BHWzlR/L
+	QE9e+BLac5BDe4YsyzjV7Z9GBSvVk1Q=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Matti Vaittinen <matti.vaittinen@linux.dev>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v4 03/16] dt-bindings: battery: Add trickle-charge upper limit
+Message-ID: <97d97e19d67b472ee7db4a88607e7589fdca791d.1763022807.git.mazziesaccount@gmail.com>
+Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
+References: <cover.1763022807.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="y2Owh/m8rgmrwCNF"
 Content-Disposition: inline
-In-Reply-To: <20251112173314.1751671-1-tmaimon77@gmail.com>
+In-Reply-To: <cover.1763022807.git.mazziesaccount@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, Nov 12, 2025 at 07:33:14PM +0200, Tomer Maimon wrote:
-> +  The NPCM7XX supports three FIU modules:
-> +    FIU0 and FIUx support two chip selects
-> +    FIU3 supports four chip selects.
-> +
-> +  The NPCM8XX supports four FIU modules:
-> +    FIU0 and FIUx support two chip selects
-> +    FIU1 and FIU3 support four chip selects.
-> +
-> +  Alias convention:
-> +    The '/aliases' node should define:
-> +      For NPCM7xx:  fiu0=&fiu0; fiu1=&fiu3; fiu2=&fiux;
-> +      For NPCM8xx:  fiu0=&fiu0; fiu1=&fiu3; fiu2=&fiux; fiu3=&fiu1;
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,npcm750-fiu # Poleg NPCM7XX
-> +      - nuvoton,npcm845-fiu # Arbel NPCM8XX
-> +
-> +  reg:
-> +    minItems: 1
 
-It wasn't flexible in the original binding. Your DTS being absolute mess
-and defining one 'reg' entry but two 'reg-names' (!!!) does not help at
-all.
+--y2Owh/m8rgmrwCNF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Anyway, address space is rarely optional, so I have doubts you would
-have proper justification for this change.
+=46rom: Matti Vaittinen <mazziesaccount@gmail.com>
 
-> +    items:
-> +      - description: FIU registers
-> +      - description: Memory-mapped flash contents (optional)
-> +
-> +  reg-names:
-> +    minItems: 1
-> +    items:
-> +      - const: control
-> +      - const: memory
-> +
-> +  interrupts:
+Some of the chargers for lithium-ion batteries use a trickle-charging as
+a first charging phase for very empty batteries, to "wake-up" the battery.
+Trickle-charging is a low current, constant current phase. After the
+voltage of the very empty battery has reached an upper limit for
+trickle charging, the pre-charge phase is started with a higher current.
 
-Wasn't in the old binding. I asked last time - you need to explain each
-changen done to the binding from pure conversion.
+Allow defining the upper limit for trickle charging voltage, after which
+the charging should be changed to the pre-charging.
 
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  nuvoton,spix-mode:
-> +    type: boolean
-> +    description: Enable SPIX mode for an expansion bus to an ASIC or CPLD.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
-> +    fiu3: spi@c0000000 {
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Drop unused label.
+---
+Revision history:
+ v3 =3D> :
+ - No changes
 
-> +        compatible = "nuvoton,npcm750-fiu";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        reg = <0xfb000000 0x1000>,
-> +              <0x80000000 0x10000000>;
+ v2 =3D> v3:
+ - Clarify the 'trickle-charging' the property refers to is the
+   "pre-pre" -phase charging.
 
-Keep reg as the second property, followed by reg-names.
+ RFCv1 =3D> v2:
+ - No changes
+---
+ Documentation/devicetree/bindings/power/supply/battery.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> +        reg-names = "control", "memory";
-> +        clocks = <&clk NPCM7XX_CLK_AHB>;
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&spi3_pins>;
+diff --git a/Documentation/devicetree/bindings/power/supply/battery.yaml b/=
+Documentation/devicetree/bindings/power/supply/battery.yaml
+index bfb7b716ae13..d1a2080557a0 100644
+--- a/Documentation/devicetree/bindings/power/supply/battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/battery.yaml
+@@ -71,6 +71,10 @@ properties:
+       NiMh bq24400) - that is different and not controlled by this
+       property.
+=20
++  tricklecharge-upper-limit-microvolt:
++    description: limit when to change to precharge from trickle charge
++      Trickle-charging here refers "wake-up" or "pre-pre" -charging.
++
+   precharge-current-microamp:
+     description: current for pre-charge phase
+=20
+--=20
+2.51.1
 
-Best regards,
-Krzysztof
 
+--y2Owh/m8rgmrwCNF
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmkVnDEACgkQeFA3/03a
+ocVrWgf/d4DFYFEm80FUKYIgBbs8zWbMq4JHUb4QrdeS5KkgZlD4vsCHtTGbg/Oc
+Mws0Mq28fojjASpdjYACM8B7Y2jHmk3WAkpQTILyXvPk4K+PsWW36DjqfGsoOI+r
+li/5Pw3VLUUhXGApyiv3VaPfFwv/1cnIE7lTBLAjYkW1z1aS8YEgwYvvtfXc4wYH
+I3g/aIAedOjttHoa0FTt4aBpBUTGai4Ds7F4YksV0A2+8IDlLEfZVie0uAYLQ9lx
+wnH4V2k8zt8Xx1vowmtHr8OM5ov0yuHhU5WlLBtx9XmPi3GhKK1rR/enle7VMIme
+B/nrNIx9RYrQtYMw1nj6aFzdaafImg==
+=+2la
+-----END PGP SIGNATURE-----
+
+--y2Owh/m8rgmrwCNF--
 
