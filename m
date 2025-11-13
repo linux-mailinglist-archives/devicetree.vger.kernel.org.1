@@ -1,128 +1,468 @@
-Return-Path: <devicetree+bounces-237904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECDE2C557A1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 03:51:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39BABC558F7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 04:37:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 950504E6590
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:48:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1BF33B43D1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 03:34:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 586D227D77D;
-	Thu, 13 Nov 2025 02:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A953E306B0C;
+	Thu, 13 Nov 2025 03:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="Hzh33el4"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CP68sSZa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09AE26980F;
-	Thu, 13 Nov 2025 02:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1959B30594A
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 03:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763002059; cv=none; b=WkryujiM0/tNcxO6kGdj8Jxe1lmgUJtbn0y+LulO3rG/0cPQDm/JpybCiMkV3uTsOvd/mzX6HOBA3KAatpY8KcmrG80vFIvm3uxOwk7NEo9llOOPfGQ5k5dldcWqhbHLIrg+088MORiYEDkuKXTdtavtA0Zi7EBkFVqprxWuyHs=
+	t=1763004614; cv=none; b=rrXIArSYEq8LD3BDOQilVXl8bxtqI47HgJkAsGE/GtgODfpAdIPUumXiWtift+bhhwoL5RWn4rTJ9puo8vAxWxWNX6Aecrhm9FPaZlsmorWXGC1ClfvnZusZO8+vJiw8IV4EhtGaAJZlws6TUyWyh9XHeovmRNm0tkc6mV8panI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763002059; c=relaxed/simple;
-	bh=FWzhZoXDYdhehysd0N/Y0Ocbz/rgArBbWTS465/380s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gZGRAqv6m72vaQLtX+HsRpir20DSUL3gm+bv8qs8YRyE+xk43p9xx9E+43ti1Bjigugn0WdiIzdkCTv4+ZcdN6ztGsOlxUUPt2eFXDd7Hq0By7Gzd4F4ecVqPkgs/qNTQWEcOTHN8tLYtNuUtaax4LOQ+Ca7vMcbzZMCuItbp24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=Hzh33el4; arc=none smtp.client-ip=205.220.177.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
-Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5AD1hkxu024043;
-	Thu, 13 Nov 2025 02:47:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	corp-2025-04-25; bh=1sHGTjdI5nQJA3D1GLCj0xQo44LivYH21QX3rDb+TUM=; b=
-	Hzh33el4Y+nT36Z0VrbtaAD5HFlzKjd/SEGtfUnf2Rk15Z7upJSq79FIk+8OQJQr
-	g+aaSqeDRGGGyb/1ComZPolN8bbq19AcYehgnomNyH9AeXTnHaZnJX9ZuLUKaYvp
-	EGEutrLZoe8a/M9JeJUUpgTCf4XWu2F26gQWzQdoBhxAFARatzy4IhyeiLhVEOmM
-	JIGB+227d/ejhnmn3iYwwjwwFnKcE+d8bOXiMCDnfHPduXT4mvgW/T7aUQDgWd3V
-	X2GZPanY2J9CaMG/bZCfmsJ2811tiWgWSqz/9bBWCElCPCw4hK5xrs0Xea+acP1U
-	o95fdf0QI5vnESzgUSN+8w==
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4acxpngvwq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 13 Nov 2025 02:47:15 +0000 (GMT)
-Received: from pps.filterd (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 5AD0qNLZ032481;
-	Thu, 13 Nov 2025 02:47:14 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 4a9van9qcd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 13 Nov 2025 02:47:14 +0000
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5AD2lB8N038323;
-	Thu, 13 Nov 2025 02:47:13 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 4a9van9qab-6;
-	Thu, 13 Nov 2025 02:47:13 +0000
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: linux-scsi@vger.kernel.org, peter.wang@mediatek.com
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-        alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-        robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jejb@linux.ibm.com, lgirdwood@gmail.com,
-        broonie@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
-        conor.dooley@microchip.com, chu.stanley@gmail.com,
-        chun-hung.wu@mediatek.com, alice.chao@mediatek.com,
-        naomi.chu@mediatek.com, ed.tsai@mediatek.com,
-        chunfeng.yun@mediatek.com
-Subject: Re: [PATCH v1] dt-bindings: phy: mediatek,ufs-phy: Update maintainer information in mediatek,ufs-phy.yaml
-Date: Wed, 12 Nov 2025 21:46:55 -0500
-Message-ID: <176298170716.2933492.7751949109863545912.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251103115808.3771214-1-peter.wang@mediatek.com>
-References: <20251103115808.3771214-1-peter.wang@mediatek.com>
+	s=arc-20240116; t=1763004614; c=relaxed/simple;
+	bh=8JI+x6ZdcL25cu+nNa50Rvxzn1siL7V10cXC1zjWmCs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HdTfeKvzIxO6vsUHCwSE9PpE773TLUkgVgn2ZGPRWQB9xUZXG/gUkS9flGMxFBYPubIGZBLvFokI385rZDfaCKeOGjPFJHJxZB0Jg/BQ0pAdiN39JBJ2tHSZ6AXY4SXHPP+Dl86MpnA5U703UxCPPTkW4kyynwA8Jx9NNdrFlSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CP68sSZa; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b729a941e35so40657466b.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 19:30:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1763004609; x=1763609409; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kumcQLXhRVJ42+kqGdBB5vBon2g+g8mfBJG3iE4h+7I=;
+        b=CP68sSZaTZpMKXF/NhJ6Isq9LS9LeMu2fWmPQj6XGAP1g1oog7sqZ5y+xND0U2UgRE
+         /SvvrMnAsAyeQifqzmPicRnBKfmCQfTe9HcporFkVvF+C4qJ7bhXFF3fi6wm+L31eehB
+         NAFhrkHqSgCId91/MngKBFjQ/6I029pQyQaqk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763004609; x=1763609409;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=kumcQLXhRVJ42+kqGdBB5vBon2g+g8mfBJG3iE4h+7I=;
+        b=IJz+/bXYDZyq2zAgCOawvvsvWLJ4LuV75IP3l2a+WZZFLb+kZJc6bcr63Dk19/iBu5
+         Gj5ZWKO24iPsxERPrNO+r58S9Ry5ysBZAncLVyQ/9sLeEezu/Eta7ascT6fLJgD8Miy/
+         xbKhzMW+KU7VHtVnxcHhpzz35ufDhy3eUHmrjHlvK3Vz+2DYrGVlF7h1AzYvy87sii5a
+         VGXQzNTG3r5mL/l6fwgaebeDnh/rDK493WEzy4XNBwc7YaNcOzEth5IsuMmKTEdk1t2q
+         JalfXNPNuLVS4aPcQTwQdvd0BvsXlCQi7YOynfFr1DhvX6ZpMrvnf6eLogIbUp9jRM7p
+         XGYw==
+X-Forwarded-Encrypted: i=1; AJvYcCXLOsNMHUhhQDSLDBNyFdlDxQQSkQmAyIUNehVUAa8CCgJqiWic15Jc8OOrQe1kfAlnlAG3cxvSgVkh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6HwtIpOQL3zBbNhFttUwLSgNYwmYkebyxDdPbSgKUfBdBmccG
+	PAYbnIe4e1yj8kuiH94aFctq8HQnkuw9orc2qAVmUI5LoHsFOZxJ4OnDx2ZbiaDFv6YGTo2oc9E
+	f5PrgZnjq
+X-Gm-Gg: ASbGncvUdc6zHMOTvE5s9/tPdg2s5P6UWGIJB9h+TGNzJRZjB2Zb6U4H6U2Smbsk/Yp
+	MSW5YpVWkacuVD/y59DqnD9RoaQ82bXYdu3at88843/BQnSsMZhi80CbplbRtieKB/agvoscXN2
+	ujICuufzTQum/eO34yFWFQcvUTEQ0saVpcVAXiXQLP6Oy5py5sByBaXUKys6cbectJ+ZIeXvASv
+	j/jpkGm2UyMoy0/ZrIETUtT9vIs9ZIdFCmebt16ABb/tK9s7Jwb15r1l5Q0xyoSIRGZJHX+AU90
+	A2A6FCjdvgFR5lZxuOHEGfAZRjwVpSVzGvVKEbqp4DzTJh1cK/tL4KRRhE6fJ7abs6qRI9A913L
+	giANn323i8ht5XOboKwGUA2W6qlZpxZr6GpkUvt/0O9+eKWTpSye78P+dl4rxZqT2BME7Xqboaa
+	D1fWKxYUPyCiamTrb0TM+UXpZdbxK6a5AEPnkOUdaUzXRiy6vvIw==
+X-Google-Smtp-Source: AGHT+IG7eG8MwMCPSkBY+IGGI3/q+LwhpnCMk43qrHyDfM/P1K0XPeEhok9XJ+a1nr0mb044TVcD1w==
+X-Received: by 2002:a17:906:fe44:b0:b6d:608c:838b with SMTP id a640c23a62f3a-b7331ace065mr432399566b.45.1763004608562;
+        Wed, 12 Nov 2025 19:30:08 -0800 (PST)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fda8d69sm65360666b.50.2025.11.12.19.30.07
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 19:30:07 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47754e9cc7fso1934115e9.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 19:30:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWTvVQmQYVR9VOheeSAjBws0s98HANd+Gu1arll8aoxG8Ywsb3JqlF4p4hlMirsft4eQpCL03ZQEiyS@vger.kernel.org
+X-Received: by 2002:a05:600c:3790:b0:475:e067:f23d with SMTP id
+ 5b1f17b1804b1-477870c52a3mr31201855e9.25.1763004606759; Wed, 12 Nov 2025
+ 19:30:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-12_06,2025-11-12_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 suspectscore=0 mlxscore=0
- phishscore=0 mlxlogscore=924 spamscore=0 bulkscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2510240000
- definitions=main-2511130017
-X-Authority-Analysis: v=2.4 cv=Criys34D c=1 sm=1 tr=0 ts=691546b3 b=1 cx=c_pps
- a=qoll8+KPOyaMroiJ2sR5sw==:117 a=qoll8+KPOyaMroiJ2sR5sw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=mpaa-ttXAAAA:8 a=8d0GUG1h20LVvl_VnrYA:9 a=QEXdDO2ut3YA:10
- cc=ntf awl=host:12100
-X-Proofpoint-GUID: IeOeuSWTlTrpHkCLnld7n0QRG4Xbhs5D
-X-Proofpoint-ORIG-GUID: IeOeuSWTlTrpHkCLnld7n0QRG4Xbhs5D
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEyMDE0MSBTYWx0ZWRfX9hbFk6XYutWW
- Yw7di95yWfu4YBraVPukJnMQ3rL3LgBLjU45S3j4/On0OocZqamzibfRHrN25ewELf036lHNgZb
- ocRqjtcAmEFBstn5lkCHBt92p8nYFTiKKCu+UjganwOUDFl2rNPVr+uqMhmHgAi0rKTdS5uuucZ
- Nakmo6jG4CS72zn6vgTFbhWHuXu9rehqhT3IbiX3V09g3QZ5Mhbug5odUW/PCZTuQDk4zCIVybs
- RtL5XI13vbVCNvz+zqxVjU9lnrm7y5yq4R+DmHdrYM19V0iFjHpJ5DsS7Zgvlu282zdwdM7dIow
- vYuwk+pAfUwdZsqF62XLSQm6uKlJW5H7U7k/LDpAvpht/EaATwJQf3acFLFUHb3E0cNhRuxZzwP
- VrS0lDd+Zwu3TNzsGErQDLAcV67CglrMjT1PRHOz5TiCmo0YLFE=
+References: <20251111192422.4180216-1-dianders@chromium.org>
+ <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid> <20251113022719.GA2281498-robh@kernel.org>
+In-Reply-To: <20251113022719.GA2281498-robh@kernel.org>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 12 Nov 2025 19:29:55 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WUXK_xs4taxs8Q4kxqvkNYE+Ftk3N=N7Nm7yKEvUMtAQ@mail.gmail.com>
+X-Gm-Features: AWmQ_blcmWR5kJDaDngm-8O-X2v8SAcxprJmk_stg7YsNR0KAtWultK00ENsFTE
+Message-ID: <CAD=FV=WUXK_xs4taxs8Q4kxqvkNYE+Ftk3N=N7Nm7yKEvUMtAQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for frankel/blazer/mustang
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, 
+	Roy Luo <royluo@google.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>, 
+	Julius Werner <jwerner@chromium.org>, William McVicker <willmcvicker@google.com>, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 03 Nov 2025 19:57:36 +0800, peter.wang@mediatek.com wrote:
+Hi,
 
-> Replace Stanley Chu with me and Chaotian in the maintainers field,
-> since his email address is no longer active.
-> 
-> 
+On Wed, Nov 12, 2025 at 6:27=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Tue, Nov 11, 2025 at 11:22:04AM -0800, Douglas Anderson wrote:
+> > Add top-level DT bindings useful for Pixel 10 (frankel), Pixel 10 Pro
+> > (blazer), and Pixel 10 Pro XL (mustang).
+> >
+> > Since overlays are fairly well-supported these days and the downstream
+> > Pixel bootloader assumes that the SoC is the base overlay and specific
+> > board revisions are overlays, reflect the SoC / board split in the
+> > bindings.
+> >
+> > The SoC in the Pixel 10 series has the marketing name of "Tensor
+> > G5". Despite the fact that it sounds very similar to the "Tensor G4",
+> > it's a very different chip. Tensor G4 was, for all intents and
+> > purposes, a Samsung Exynos offshoot whereas Tensor G5 is entirely its
+> > own SoC. This SoC is known internally as "laguna" and canonically
+> > referred to in code as "lga". There are two known revisions of the
+> > SoC: an A0 pre-production variant (ID 0x000500) and a B0 variant (ID
+> > 0x000510) used in production. The ID is canonicaly broken up into a
+> > 16-bit SoC product ID, a 4-bit major rev, and a 4-bit minor rev.
+> >
+> > The dtb for all supported SoC revisions is appended to one of the boot
+> > partitions and the bootloader will look at the device trees and pick
+> > the correct one. The current bootloader uses a downstream
+> > `soc_compatible` node to help it pick the correct device tree. It
+> > looks like this:
+> >   soc_compatible {
+> >     B0 {
+> >       description =3D "LGA B0";
+> >       product_id =3D <0x5>;
+> >       major =3D <0x1>;
+> >       minor =3D <0x0>;
+> >       pkg_mode =3D <0x0>;
+> >     };
+> >   };
+> > Note that `pkg_mode` isn't currently part of the ID on the SoC and the
+> > bootloader always assumes 0 for it.
+> >
+> > In this patch, put the SoC IDs straight into the compatible. Though
+> > the bootloader doesn't look at the compatible at the moment, this
+> > should be easy to teach the bootloader about.
+> >
+> > Boards all know their own platform_id / product_id / stage / major /
+> > minor / variant. For instance, Google Pixel 10 Pro XL MP1 is:
+> > * platform_id (8-bits): 0x07 - frankel/blazer/mustang
+> > * product_id (8-bits):  0x05 - mustang
+> > * stage (4-bits):       0x06 - MP
+> > * major (8-bits):       0x01 - MP 1
+> > * minor (8-bits):       0x00 - MP 1.0
+> > * variant (8-bits):     0x00 - No special variant
+> >
+> > When board overlays are packed into the "dtbo" partition, a tool
+> > (`mkdtimg`) extracts a board ID and board rev from the overlay and
+> > stores that as metadata with the overlay. Downstream, the dtso
+> > intended for the Pixel 10 Pro XL MP1 has the following properties at
+> > its top-level:
+> >   board_id =3D <0x70506>;
+> >   board_rev =3D <0x010000>;
+> >
+> > The use of top-level IDs can probably be used for overlays upstream as
+> > well, but also add the IDs to the compatible string in case it's
+> > useful.
+> >
+> > Compatible strings are added for all board revisions known to be
+> > produced based on downstream sources.
+> >
+> > A few notes:
+> > * If you look at `/proc/device-tree/compatible` and
+> >   `/proc/device-tree/model` on a running device, that won't
+> >   necessarily be an exact description of the hardware you're running
+> >   on. If the bootloader can't find a device tree that's an exact match
+> >   then it will pick the best match (within reason--it will never pick
+> >   a device tree for a different product--just for different revs of
+> >   the same product).
+> > * There is no merging of the top-level compatible from the SoC and
+> >   board. The compatible string containing IDs for the SoC will not be
+> >   found in the device-tree passed to the OS.
+>
+> I think this is a problem...
 
-Applied to 6.19/scsi-queue, thanks!
+Fair enough. Is the right answer to add a special rule when applying
+overlays to base dtbs? If both the base DTB and the overlay contain a
+top-level compatible, should we merge the two instead of having the
+overlay replace the base property? Would that be right in all cases?
 
-[1/1] dt-bindings: phy: mediatek,ufs-phy: Update maintainer information in mediatek,ufs-phy.yaml
-      https://git.kernel.org/mkp/scsi/c/ad4716ad48d4
+Specifically, if we were to look at how we handle our dev boards that
+are socketed and can handle either SoC rev A0 or SoC rev B0, I guess
+the top-level compatible string somehow needs to indicate this
+somehow? If we "merged" the compatible strings of the board and the
+SoC?
 
--- 
-Martin K. Petersen
+So if we had a deepspace (devboard) with a A0 rev SoC:
+
+base (lga A0):
+  google,soc-id-0005-rev-00, google,lga
+
+overlay (deepspace devboard 1)
+  google,pixel-id-070101-rev-010000
+
+Final compatible:
+  google,pixel-id-070101-rev-010000, google,soc-id-0005-rev-00, google,lga
+
+If we had a deepspace with a B0 rev SoC:
+
+base (lga A0):
+  google,soc-id-0005-rev-10, google,lga
+
+overlay (deepspace devboard 1)
+  google,pixel-id-070101-rev-010000
+
+Final compatible:
+  google,pixel-id-070101-rev-010000, google,soc-id-0005-rev-10, google,lga
+
+
+...is that what you're thinking? Of course, it still somehow feels
+cleaner to me to put the SoC compatible under the "soc@0" node, though
+I know that goes against "tradition"... If we did that then the base
+SoC "dtb" doesn't need a compatible at all and the board would _just_
+have its own compatible.
+
+
+NOTE: I don't think this is a novel problem. There are already
+existing overlays that mess with the top-level compatible...
+
+grep '^\tcompatible' $(find arch/arm64/boot/dts -name '*.dtso')
+
+
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> > In the past, attempts to have the SoC as a base device tree and boards
+> > supported as overlays has been NAKed. From a previous discussion [1]
+> > "Nope, boards are not overlays. Boards are DTB." I believe this needs
+> > to be relitigated.
+>
+> I think it is worth having the discussion. There's been some discussions
+> about an overlay split with SoMs and baseboards as well. I think that's
+> what is driving this addition[1]. I don't think this case is much
+> different.
+>
+> As a different way to combine things compared to .dtsi files, I don't
+> care too much how things are structured to the extent that's just
+> internal structure and we're moving the combining of files from one
+> point in time to another.
+>
+> My concern here is largely around validation. Can the SoC DTB pass
+> validation, and can we still validate the whole thing at build time? To
+> start with, it's not great if we have to make the schema allow only an
+> SoC compatible without a board compatible. Then suddenly omitting a
+> board compatible is always valid. Solving that with an entirely
+> different SoC compatible as you have doesn't seem great.
+
+I guess, in theory, we could solve this by simply not trying to
+validate the SoC "dts" file on its own. Is this as simple as giving it
+its own filename suffix? Do we just call it "lga-b0.dtsb" or for
+"device tree source base", or something like that? Then we add kernel
+rules where we don't validate that on its own but only validate it
+together with overlays?
+
+
+> My other concern is whether this is an ABI between the SoC and board
+> DTBs? And I don't mean just you, but for anyone wanting to do anything
+> remotely similar. An ABI is a problem as we don't really have any way to
+> validate each piece separately. (This is already a problem for existing
+> overlays.)
+
+To keep the problem smaller / easier to think about and not try to
+solve all existing problems: the only case we're worried about at the
+moment is when the base device tree and all overlays are generated at
+the same time. That feels like it might be an easier case to handle?
+
+
+> > In the previous NAK, I didn't see any links to documentation
+> > explicitly stating that DTBs have to represent boards. It's also
+> > unclear, at least to me, _why_ a DTB would be limited to represent a
+> > "board" nor what the definition of a "board" is.
+> >
+> > As at least one stab at why someone might not want an overlay scheme
+> > like this, one could point out that the top-level compatible can be a
+> > bit of a mess. Specifically in this scheme the board "compatible" from
+> > the overlay will fully replace/hide the SoC "compatible" from the base
+> > SoC. If this is truly the main concern, it wouldn't be terribly hard
+> > to add a new semantic (maybe selectable via a new additional
+> > property?) that caused the compatible strings to be merged in a
+> > reasonable way.
+> >
+> > Aside from dealing with the compatible string, let's think about what
+> > a "board" is. I will make the argument here that the SoC qualifies as
+> > a "board" and that the main PCB of a phone can be looked at as a
+> > "cape" for this SoC "board". While this may sound like a stretch, I
+> > would invite a reader to propose a definition of "board" that excludes
+> > this. Specifically, it can be noted:
+> > * I have a development board at my desk that is "socketed". That is, I
+> >   can pull the SoC out and put a different one in. I can swap in a
+> >   "rev A0" or a "rev B0" SoC into this socket. Conceivably, I could
+> >   even put a "Tensor G6", G7, G8, or G999 in the socket if it was
+> >   compatible. In this sense, the "SoC" is a standalone thing that can
+> >   be attached to the devboard "cape". The SoC being a standalone thing
+> >   is in the name. It's a "system" on a chip.
+> > * In case the definition of a board somehow needs a PCB involved, I
+> >   can note that on my dev board the CPU socket is soldered onto to a
+> >   CPU daughtercard (a PCB!) that then has a board-to-board connector
+> >   to the main PCB.
+> > * Perhaps one could argue that a dev board like I have describe would
+> >   qualify for this SoC/board overlay scheme but that a normal cell
+> >   phone wouldn't because the SoC isn't removable. Perhaps removability
+> >   is a requirement here? If so, imagine if some company took a
+> >   Raspberry Pi, soldered some components directly onto the "expansion"
+> >   pins, and resold that to consumers. Does this mean they can't use
+> >   overlays?
+> >
+> > To me, the above arguments justify why SoC DTBs + "board" overlays
+> > should be accepted. As far as I can tell, there is no downside and
+> > many people who would be made happy with this.
+> >
+> > [1] https://lore.kernel.org/all/dbeb28be-1aac-400b-87c1-9764aca3a799@ke=
+rnel.org/
+> >
+> >  .../devicetree/bindings/arm/google.yaml       | 87 +++++++++++++++----
+> >  1 file changed, 68 insertions(+), 19 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/google.yaml b/Docume=
+ntation/devicetree/bindings/arm/google.yaml
+> > index 99961e5282e5..f9f9ea1c8050 100644
+> > --- a/Documentation/devicetree/bindings/arm/google.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/google.yaml
+> > @@ -13,27 +13,18 @@ description: |
+> >    ARM platforms using SoCs designed by Google branded "Tensor" used in=
+ Pixel
+> >    devices.
+> >
+> > -  Currently upstream this is devices using "gs101" SoC which is found =
+in Pixel
+> > -  6, Pixel 6 Pro and Pixel 6a.
+> > +  These bindings for older Pixel devices don't use device tree overlay=
+s so
+> > +  no separate SoC entry is added. This may change in the future.
+> >
+> > -  Google have a few different names for the SoC:
+> > -  - Marketing name ("Tensor")
+> > -  - Codename ("Whitechapel")
+> > -  - SoC ID ("gs101")
+> > -  - Die ID ("S5P9845")
+> > -
+> > -  Likewise there are a couple of names for the actual device
+> > -  - Marketing name ("Pixel 6")
+> > -  - Codename ("Oriole")
+> > -
+> > -  Devicetrees should use the lowercased SoC ID and lowercased board co=
+dename,
+> > -  e.g. gs101 and gs101-oriole.
+> > +  Newer Pixel devices are expected to have the SoC device tree as the =
+base
+> > +  and specific board device trees as overlays.
+> >
+> >  properties:
+> >    $nodename:
+> >      const: '/'
+> >    compatible:
+> >      oneOf:
+> > +      # Google Tensor G1 AKA gs101 AKA whitechapel AKA Die ID S5P9845 =
+boards
+> >        - description: Google Pixel 6 or 6 Pro (Oriole or Raven)
+> >          items:
+> >            - enum:
+> > @@ -41,13 +32,71 @@ properties:
+> >                - google,gs101-raven
+> >            - const: google,gs101
+> >
+> > +      # Google Tensor G5 AKA lga (laguna) SoC and boards
+> > +      - description: Tensor G5 SoC (laguna)
+> > +        items:
+> > +          - enum:
+> > +              - google,soc-id-0005-rev-00  # A0
+> > +              - google,soc-id-0005-rev-10  # B0
+> > +          - const: google,lga
+> > +      - description: Google Pixel 10 Board (Frankel)
+> > +        items:
+> > +          - enum:
+> > +              - google,pixel-id-070302-rev-000000  # Proto 0
+> > +              - google,pixel-id-070302-rev-010000  # Proto 1
+> > +              - google,pixel-id-070302-rev-010100  # Proto 1.1
+> > +              - google,pixel-id-070303-rev-010000  # EVT 1
+> > +              - google,pixel-id-070303-rev-010100  # EVT 1.1
+> > +              - google,pixel-id-070303-rev-010101  # EVT 1.1 Wingboard
+> > +              - google,pixel-id-070304-rev-010000  # DVT 1
+> > +              - google,pixel-id-070305-rev-010000  # PVT 1
+> > +              - google,pixel-id-070306-rev-010000  # MP 1
+>
+> Should upstream really care about anything other than MP1? I don't think
+> so. Which ones are useful in 1 year, 2 years, 10 years?
+
+I suspect that nearly all of them are useful, though _possibly_ some
+of the early proto devices can be removed?
+
+Specifically, engineers at Google will be supporting these devices for
+many many years to come. Newer Pixel phones have something like an
+8-year support life during which engineers will need to continue to
+support them. From my experience on the Pixel team, unless you can
+demonstrate a need for something newer it's common to get assigned EVT
+1 or EVT 1.1 devices when you request hardware, even for older phones.
+
+Even if end users are unlikely to need these, having them supported
+will be essential for those at Google who need to support the product
+as a whole.
+
+We've had similar discussions in the past about Chromebooks and the
+need to support old hardware, which is why Chromebooks have many
+revisions supported. I can tell you that when we tried to drop old
+revisions in the past I had angry people come and visit me.
+
+
+> > +          - const: google,lga-frankel
+> > +          - const: google,lga
+>
+> It's not clear to me how you map boards to SoC revision? You boot up
+> using the SoC DTB and then select the board DTBO based on?
+
+The key here is that combining happens in the bootloader. The
+bootloader boots up and has its own (non-device tree ways) to handle
+things. It then looks at the SoC ID register, looks at the IDs that
+tell it what board it's running on, and picks a base DTB (representing
+the SoC) and an overlay (representing the board). It combines these
+two and passes a single unified device tree to Linux.
+
+Maybe this is a key difference between what we're doing and what
+you're thinking of? We're not trying to boot the main OS with just the
+base.
+
+
+> This all
+> needs to be well defined and general enough any (existing) platform
+> could use it. If [1] helps or doesn't work for you I'm interested in
+> hearing that.
+
+> [1] https://lore.kernel.org/devicetree-spec/20250911151436.2467758-1-raym=
+ond.mao@linaro.org/
+
+Perhaps I don't understand the proposal, but it doesn't seem useful to
+me (?) or at least it's not relevant to the problem we're trying to
+solve here.
+
+If I had to guess, I'd say the problem they're trying to solve there
+is that they've got some external peripherals (like an i2c-connected
+dohickey). They want to ship their dohickey to customers and tell
+customers that they can attach the dohickey to any of a number of
+devboards. If a customer attaches their dohickey to a Raspberry Pi it
+should go on, let's say, i2c5. If it's on a Beagleboard they'll say it
+belongs on i2c3. On an stm32 it belongs on i2c11. So they distribute a
+bunch of "dtbo" files with their dohickey, one for each target
+devboard. This mechanism allows a loader to figure out which devboard
+is running and which overlay should be loaded. Is that right?
+
+
+In our case, the problem is very different. We're really just trying
+to pick together all the pieces that make up a full system.
+
+-Doug
 
