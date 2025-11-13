@@ -1,143 +1,131 @@
-Return-Path: <devicetree+bounces-238161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 460D2C57F04
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:27:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6EFEC57F13
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:28:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9E0014EDEFD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:21:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B39C64EE6AE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9D4287503;
-	Thu, 13 Nov 2025 14:21:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827F02877D5;
+	Thu, 13 Nov 2025 14:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="haoMfR6B"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EDqFMzgJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665102727FC
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 14:21:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4734283FF9;
+	Thu, 13 Nov 2025 14:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763043699; cv=none; b=Su80cMt99+jjvkkDrXnaa7Jh2TBajCgPfhuKDpQ+vIxizkbLvnYA396OAa8Gh1a1lldfhydQVeuR0KxMnRfcaSb/P4//yIvmCokyc1bhW24cNMEVbRrZCb1ji823oz/xP3ZJavXn0ECF8mpGCUmDLgZHAp6v5Ks1wpb38N2mVfE=
+	t=1763043747; cv=none; b=TbImzd/WVjALUszBFiYiYP23vCX4FwfTz07Vd0PERV/SArAJpp4ifJIMGVj1rNOqQAzifhPdYda+z/qrUoH7/1OdF6kc5lADwyKsjANLPwFE4K9ef3mA6h1ImlJF4tqQL930CwmRulkWt35RPhuS8En9wcqRDsExpi4rXd8honU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763043699; c=relaxed/simple;
-	bh=Xe7Ea1AD5sUFo6oXsT+qD/kgt+3KXcnBspVGZoedp+I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GnJYXbwLqmqTtr0VEafdwz4jlBJnUAOYIUKkkwiAuFHL09w0c43N7u/73vT58Wct7Qo6JcEY4S9L/+QqQkivyWw+qzv5YLCbW6HoKAo9myIdstdFCym01KcPiY/IIbl/AthzHcqUiMpkUhfJGpxqNZGQueuZ0qFmF53iFXKr6ZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=haoMfR6B; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42b3b0d76fcso621888f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 06:21:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763043696; x=1763648496; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PVTH3OodIWn9qSwlGdTpQLDwP01tYh5/+5JVhlUv+nY=;
-        b=haoMfR6BOBTWSk33QievBrW0k/VGkRlaKureVuWz+EWYvTVVkZkFCMS6eUUnmQYSAw
-         vR00hPMIblDxs46XHig8ocQyFTYfG0mPmuOK11AFrGYZs57O3apL4OpumSJgqFigVh36
-         lyVMQdtFw3YH4m+hcIbCk3o2FezKLi4XqOV58JZ2kJkkNQ1WX0Sif7s9Hx0Tt3siIYBg
-         jDvH4kP6ALOvxN8Y29K9hs/n8oC+sunAquEbV+d1ez384R0covO6b3Kc2mg9vhSHDpWe
-         AgdmA1cioKdK4YcHP25oSF/2Y4YsemfW6erNdywEyN0rKnW0Bm31/95VA0jms1JTGL7A
-         45Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763043696; x=1763648496;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=PVTH3OodIWn9qSwlGdTpQLDwP01tYh5/+5JVhlUv+nY=;
-        b=RYEci2VhaFv0S9GgaZLlL0z9s2ehiNyiwbqBdWxHfv9AQvgLWI7ZvVwiMTCQlwGz8p
-         ea/dgnaB+yznvlLzoOKeJYtcXj0XTeAcTJUzUxEz3Jvn6yGV6ajepRCstRg1OiNUF9M6
-         u5pYwtCSvmsHwmduUMSJ/sf3CM+YuPN2HTQUWNfBuBlTCqdTYcUcGHnv+f2+vID5yO/z
-         oJ5gsLk0LIGpc41wcx0LQ+t9z8ODR8zfmkOWwMe6FoAAwHXtRRChdz8Q05YoIjQ+FaaF
-         ll0pnRxvvysfILKxBwK3wRkxlOOWWEIl8Hk4eoAVqSP318tsgttDISTMQq75FFXTTvun
-         gF0w==
-X-Forwarded-Encrypted: i=1; AJvYcCVKqJfU1/x4OVz5kP33kiC0EdgGStQsx7NFIVxBs0d2anuzG0yv7rORYCXZA+JC+UoSkw8M8jnWgbu/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyHFWuc16buqMwgc3PK7FJSsdlkegla3XoDYe+VfhPYANQvBfd
-	7xvjQFxVqarxGLGH08yaMcPH/BnPy1dSLhZeiwM/wZXVzq9W4Fa0xlYp0JBSe6tp2oHoUBz5tW8
-	19L8y9oAWt1U8DP0dOyG/MengEo0NpT4=
-X-Gm-Gg: ASbGncsS9KMMoS0LdRuOpk7fZjT4rRJWdlg44P0IWxOw3fhSQWao35BmNKADcfHVdYy
-	TEbdJALa3THAbmwr9TM5ASm3m3vPYsUKNkz+j55UeTUGR1hx6pAp/R02dAkkvGl7P62/cAR57C6
-	aOhWtAbV1kIx5/lzBpc+OsxRR3ZMs5XEn9jf3aA6mW4GmRNxEr0LrlQDZC90OuqSbNp5puBolv7
-	4W6UBXANSy5LBW4JUVjvGkh4lWYU46bJPTPGQNZcStrHR//VfiyQ0+IHh+7uhK4Jn4t6nfE
-X-Google-Smtp-Source: AGHT+IHpKdVN83TCm20YE3t1L1lDlWwYUNuksMEsa3ToWtEDthhiiFsiCO+R+2diKHhI8EC3wUv5l0WKP1xsWN52j2s=
-X-Received: by 2002:a05:6000:4210:b0:42b:3ed2:c079 with SMTP id
- ffacd0b85a97d-42b4bdb3157mr6520095f8f.48.1763043695648; Thu, 13 Nov 2025
- 06:21:35 -0800 (PST)
+	s=arc-20240116; t=1763043747; c=relaxed/simple;
+	bh=VHm3dGajIZFdLCEjo6RhvwU9h8nLup+9R9J4A/jkTNg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tKRFJbEkuuWmQV++YK/6RYalut6eqEDfwa3Ib3vx3f69a3wCoseN8C9hLtKqzzFqR11Gy+85MVcjkoAEdGu4LwAGUEgzbB120SCJfUGwR4GRFhefAUySs8D6tkk/5K7JWRs3MirL0gJ7uvXDLD10QVJ6R9XRvsTILG9Rg+5+Dv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EDqFMzgJ; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763043745; x=1794579745;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VHm3dGajIZFdLCEjo6RhvwU9h8nLup+9R9J4A/jkTNg=;
+  b=EDqFMzgJ/4M94rH7nQsRsXC9A8qASf00ChPpudlRjF1C7XBJVuLIlA4z
+   Bs7Gu2qZPC2IT9F+Dsl+vjWVLpwtNGIgk2f7wj4/sNooQfj95D+nihNwt
+   PX80imEnV2muW5DTwrCMkSJtHcjyq9+ahT27uLWmNjFc/GNCqb3x6hhW8
+   YkcdbtdDLNScymRt853XiF+uKo+wkCzG35O/eadcW2a2OXI1RU5DzVB3X
+   P+n4OFajCZuJpRWm3mQZbAJFN6liEY9fLzeaQbdzkh3K+lo2UJqkKlPZ6
+   7eNgGSAaF/cVrU/+bu0GnRRyt1KraXpzeF/1B0VNRUDvm9tXI0xPQcff5
+   w==;
+X-CSE-ConnectionGUID: M8kOA35qRzGRIEpnmu3DMA==
+X-CSE-MsgGUID: zOEzfD/rQgeprshKyZUXtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65030916"
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; 
+   d="scan'208";a="65030916"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2025 06:22:25 -0800
+X-CSE-ConnectionGUID: 0nmFRwd+RIia7e4u2IYFLg==
+X-CSE-MsgGUID: PUjJmhXRRUaIrm0G484j1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; 
+   d="scan'208";a="220313531"
+Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 13 Nov 2025 06:22:21 -0800
+Received: from kbuild by 7b01c990427b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vJYDL-0005QF-0Q;
+	Thu, 13 Nov 2025 14:22:19 +0000
+Date: Thu, 13 Nov 2025 22:21:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yuntao Wang <yuntao.wang@linux.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	James Morse <james.morse@arm.com>,
+	Chen Zhou <chenzhou10@huawei.com>, Baoquan He <bhe@redhat.com>,
+	Zhen Lei <thunder.leizhen@huawei.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Linux Memory Management List <linux-mm@kvack.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Alexander Graf <graf@amazon.com>,
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Yuntao Wang <yuntao.wang@linux.dev>
+Subject: Re: [PATCH 04/10] of/reserved_mem: Use dt_root_addr_size_bytes()
+ instead of open-coding it
+Message-ID: <202511132259.fWi45yHp-lkp@intel.com>
+References: <20251112143520.233870-5-yuntao.wang@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250915080157.28195-1-clamor95@gmail.com> <20250915080157.28195-7-clamor95@gmail.com>
- <175847725338.4354.4145979844570539358@lazor>
-In-Reply-To: <175847725338.4354.4145979844570539358@lazor>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 13 Nov 2025 16:21:24 +0200
-X-Gm-Features: AWmQ_blflchRXgqVJi0za8JR5StKpVBhyxQTDb1Y4F00r9nuMPcYEvgT9Q0wdNU
-Message-ID: <CAPVz0n2gUT5aOT3S05Up+vAiMBf5jmthRV_7z_fpj9RsPWEg_w@mail.gmail.com>
-Subject: Re: [PATCH v3 06/11] clk: tegra: remove EMC to MC clock mux in Tegra114
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Chanwoo Choi <cw00.choi@samsung.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Osipenko <digetx@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Mikko Perttunen <mperttunen@nvidia.com>, 
-	MyungJoo Ham <myungjoo.ham@samsung.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Rob Herring <robh@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Thierry Reding <treding@nvidia.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251112143520.233870-5-yuntao.wang@linux.dev>
 
-=D0=BD=D0=B4, 21 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 20:54 Step=
-hen Boyd <sboyd@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Quoting Svyatoslav Ryhel (2025-09-15 01:01:52)
-> > diff --git a/drivers/clk/tegra/clk-tegra114.c b/drivers/clk/tegra/clk-t=
-egra114.c
-> > index 8bde72aa5e68..6b3a140772c2 100644
-> > --- a/drivers/clk/tegra/clk-tegra114.c
-> > +++ b/drivers/clk/tegra/clk-tegra114.c
-> > @@ -1321,6 +1309,28 @@ static int tegra114_reset_deassert(unsigned long=
- id)
-> >         return 0;
-> >  }
-> >
-> > +#ifdef CONFIG_TEGRA124_CLK_EMC
-> > +static struct clk *tegra114_clk_src_onecell_get(struct of_phandle_args=
- *clkspec,
-> > +                                               void *data)
-> > +{
-> > +       struct clk_hw *hw;
-> > +       struct clk *clk;
-> > +
-> > +       clk =3D of_clk_src_onecell_get(clkspec, data);
-> > +       if (IS_ERR(clk))
-> > +               return clk;
-> > +
-> > +       hw =3D __clk_get_hw(clk);
->
-> Can you just use of_clk_hw_onecell_get() instead? Then we don't need to
-> use __clk_get_hw(). Or is this whole function used to return a clk
-> pointer to something that isn't the clk framework?
->
+Hi Yuntao,
 
-This logic was adopted from Tegra124 driver, but of_clk_hw_onecell_get
-might be applicable. I will adjust to use it and if all works as
-expected, I will apply it in v4. Thank you.
+kernel test robot noticed the following build warnings:
 
-> > +
-> > +       if (clkspec->args[0] =3D=3D TEGRA114_CLK_EMC) {
-> > +               if (!tegra124_clk_emc_driver_available(hw))
-> > +                       return ERR_PTR(-EPROBE_DEFER);
-> > +       }
-> > +
-> > +       return clk;
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.18-rc5 next-20251113]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Yuntao-Wang/of-fdt-Introduce-dt_root_addr_size_cells-and-dt_root_addr_size_bytes/20251112-232000
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20251112143520.233870-5-yuntao.wang%40linux.dev
+patch subject: [PATCH 04/10] of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding it
+config: nios2-randconfig-002-20251113 (https://download.01.org/0day-ci/archive/20251113/202511132259.fWi45yHp-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 11.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251113/202511132259.fWi45yHp-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511132259.fWi45yHp-lkp@intel.com/
+
+All warnings (new ones prefixed by >>, old ones prefixed by <<):
+
+>> WARNING: modpost: vmlinux: section mismatch in reference: dt_root_addr_size_bytes+0x0 (section: .text.unlikely) -> dt_root_addr_cells (section: .init.data)
+>> WARNING: modpost: vmlinux: section mismatch in reference: dt_root_addr_size_bytes+0x4 (section: .text.unlikely) -> dt_root_size_cells (section: .init.data)
+WARNING: modpost: vmlinux: section mismatch in reference: dt_root_addr_size_bytes+0x8 (section: .text.unlikely) -> dt_root_addr_cells (section: .init.data)
+WARNING: modpost: vmlinux: section mismatch in reference: dt_root_addr_size_bytes+0xc (section: .text.unlikely) -> dt_root_size_cells (section: .init.data)
+ERROR: modpost: "__divsi3_table" [lib/lz4/lz4_compress.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
