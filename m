@@ -1,68 +1,71 @@
-Return-Path: <devicetree+bounces-238372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E40CC5A858
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 00:22:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41BC9C5A85E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 00:22:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 233D94EF7EF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:18:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EE4674F150C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58FC5314A80;
-	Thu, 13 Nov 2025 23:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 747053277AA;
+	Thu, 13 Nov 2025 23:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="P0aJVu7S"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jPv47wxR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8193030B51E;
-	Thu, 13 Nov 2025 23:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9273271E2;
+	Thu, 13 Nov 2025 23:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763075905; cv=none; b=Gtpen8eIkn9N3EJ7U8e+sdrrg29bSb8U9h3ljwXVP1qigBdxgOdep6CQDH+FUUUwc3uwno+B9aBK8bBwya+Q0bJAhVpMs3kBYRuO0mT5MzbmJhjn+NtgLvjY5uK0fdcOJg+NDzZyPC516dcB1HnYJ+QPCnppxwpKX7ZATMiE8Ww=
+	t=1763075908; cv=none; b=YdqXajzrJkXkK2jIryo8b7smDzGB6fQE6uPUBRzRF6VgjPB8K3tR6z8Ulvk4SlUq9Ub9AyoTxwSd7jQBuzyGuHLeSVNQQYNb43+ZRBwU1w3mHJn0g77TPuf/bwPZ684YtBUHX17CtHDjH9e3WTNgcGJg9H/CxxVhDBM08l0OnVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763075905; c=relaxed/simple;
-	bh=9ejglyg0+XWK2s19CoKPWTK5Fl+cjH4Nr9lcpqSnndQ=;
+	s=arc-20240116; t=1763075908; c=relaxed/simple;
+	bh=p3mdxSTOHle18hqQBkRL6hSu5jldPR5TNMgqGLNhNl0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jyvTS6ofzF8ggoKpcgd0fDNjipMINixDN1VxwiUIy0JB49T1u8YFJsy1zg41o9ZujAFJWHFLus2FhaEh5xnO3B34gJgeSkHgTuaPDwGMSkiKcFm9HjqczSADXpQll6ESNbFCbd4qZzjMj0ydnH5031l5MPUjPNR/tAreYWQPfdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=P0aJVu7S; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=OdI2FmrJzMhCKskW2iINC2qAjIMia3jTEta1BjgdLroxIdZCh3HhqpoZSi7PKn1uGseeOaJvwkzrcZWV5eZa5kLwCG0Zm0tFRFKJD+2t95bsKc4UdxUXjiS6SUfEoD7GP/+sovOYr+Y6Rinnr7FUGtH7ichlXXVxST+Yx/hs/78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jPv47wxR; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=UIlcfUM5yx0zo8woN7gotIggTkdWYNMGQKYLuoK3Kzo=; b=P0aJVu7S24MIQH/+hmQ/K7aQ6m
-	/cM8o48RufHby5hhUNd42IJe76BLDqHPOOFRLdIHCxX3sN+qXuFXbUYdR8JX3Gk+iz1FVA1umTBGA
-	WQVeuo674VDoeW/Gf65kEYVtdvQZxzExNZXoSmCNUZqfZsdacGxmbKazeJz8o3tUiNstQwypHqaQn
-	DATM186UI/MXeAmu8AV9WiyKjad27vIuLLohD9hR8zBjqAEjvbuTYvjeD1ExVCORCikrObruT6/Kz
-	BrGL+jf1B6xB/K/xiQqDtwYqeCAPNB82abt2D5Frf0Iy5Il8IDOBi5Yt8XAi8rlYheN/oJUgVJCfd
-	ecO4xVNA==;
+	bh=riHuRM1k/DFvdlBRjwWTjBhHifAxIVebtaf9zUqQz1Y=; b=jPv47wxRaXGpcY/WjPo6mTDh5l
+	bN0pYUxMKtxtkmR3YaArdlw0XH9vswzuGChcKl+nFt1L3oyQS6/RuFaU8fvEItmEc+G0xJDxreKGZ
+	4S8qZcWy2SWIhf5iF93rd6C53lqibF2w1W7vaeKXmEUIfG7lpaJCNtQuML9wWl1uPPu2/5AJR/jfg
+	bju0WS6vz2Ho9/meXy2Tt4vwPFJhcb2mlAsqJ254Qt5nnCaO7IDG5mPA8fqz4PDMOVQkCTlnLpczn
+	u2aOiO67F3dEU9lnbJQnRFPqCkcQuTAcGpXCPzFeNIEvK6cuoEJnt+AT73z/JA1j6IrbqAwqLHTzD
+	bRBn8qxA==;
 Received: from i53875a11.versanet.de ([83.135.90.17] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1vJga2-0005lz-T1; Fri, 14 Nov 2025 00:18:18 +0100
+	id 1vJga3-0005lz-FO; Fri, 14 Nov 2025 00:18:19 +0100
 From: Heiko Stuebner <heiko@sntech.de>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Quentin Schulz <foss+kernel@0leil.net>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
+	Johan Jonker <jbx6244@gmail.com>,
+	Michael Riesch <michael.riesch@collabora.com>,
+	=?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>,
+	Muhammed Efe Cetin <efectn@6tel.net>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH] arm64: dts: rockchip: disable HS400 on RK3588 Tiger
-Date: Fri, 14 Nov 2025 00:18:15 +0100
-Message-ID: <176307584244.496508.13187740741138486595.b4-ty@sntech.de>
+	Mykola Kvach <xakep.amatop@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: rockchip: orangepi-5: fix PCIe 3.3V regulator voltage
+Date: Fri, 14 Nov 2025 00:18:16 +0100
+Message-ID: <176307584246.496508.12079514999315183214.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251112-tiger-hs200-v1-1-b50adac107c0@cherry.de>
-References: <20251112-tiger-hs200-v1-1-b50adac107c0@cherry.de>
+In-Reply-To: <cf6e08dfdfbf1c540685d12388baab1326f95d2c.1762165324.git.xakep.amatop@gmail.com>
+References: <cf6e08dfdfbf1c540685d12388baab1326f95d2c.1762165324.git.xakep.amatop@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,20 +76,23 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 12 Nov 2025 16:01:53 +0100, Quentin Schulz wrote:
-> We've had reports from the field that some RK3588 Tiger have random
-> issues with eMMC errors.
+On Mon, 03 Nov 2025 12:27:40 +0200, Mykola Kvach wrote:
+> The vcc3v3_pcie20 fixed regulator powers the PCIe device-side 3.3V rail
+> for pcie2x1l2 via vpcie3v3-supply. The DTS mistakenly set its
+> regulator-min/max-microvolt to 1800000 (1.8 V). Correct both to 3300000
+> (3.3 V) to match the rail name, the PCIe/M.2 power requirement, and the
+> actual hardware wiring on Orange Pi 5.
 > 
-> Applying commit a28352cf2d2f ("mmc: sdhci-of-dwcmshc: Change
-> DLL_STRBIN_TAPNUM_DEFAULT to 0x4") didn't help and seemed to have made
-> things worse for our board.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: disable HS400 on RK3588 Tiger
-      commit: baa18d577cd445145039e731d3de0fa49ca57204
+[1/1] arm64: dts: rockchip: orangepi-5: fix PCIe 3.3V regulator voltage
+      commit: b5414520793e68d266fdd97a84989d9831156aad
+
+Please start new threads when sending version x+1 and don't append
+that new patch to the old thread (less confusing for tooling like b4).
 
 Best regards,
 -- 
