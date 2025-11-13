@@ -1,132 +1,122 @@
-Return-Path: <devicetree+bounces-238118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A6CCC576AF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:29:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DDCAC576B5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:30:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B495D4EC1EC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:24:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 391B14E4C20
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BCD934FF66;
-	Thu, 13 Nov 2025 12:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558A334DCFC;
+	Thu, 13 Nov 2025 12:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EjxO0CH9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HkkRxDXu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DDxCiDHQ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YiayYikV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5AD34F486
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:23:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E1A3328F5
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:25:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763036583; cv=none; b=XLLPAvEwH7C4zcq4D/aiomM1hFnR0/i8OTUinnAeFgHPO2rS89ULVR19VtC1iHyaMGWeh8YKNL9ohM1nsHiBSVW9GZAxFRytTgKYvg8t3Y4cugcDQLGwmDrBooUsYkVPwS1fHCh+ztFF3qyjOWPxYvy0jTi/vo/aTiF9fCcS81o=
+	t=1763036757; cv=none; b=fNVRNOSJ1YdWmIs59G91KJ9ulS+abdpXYYH9ApcpjUreJVSRk3mktLYFgijmWXUlnRwKuFRfFeJVbCqM8yNxJlDKS3xo/K30z2ZhNER35gYd4ruSk/dwQSQs9z2rx5CrgI7qQcbGeZpHd6nxYPKdVr8symaxB6siRK2kfCnThYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763036583; c=relaxed/simple;
-	bh=qN/E6+YlVkEM+xSihEjX8Nat6/Mt4w97aH7S4tAGH1w=;
+	s=arc-20240116; t=1763036757; c=relaxed/simple;
+	bh=4f1Zjw1zCq47Ur2vodP9rbPlRo/8QwIyPNmawQp8sOs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T37RarRrBcviXeqbc0Oqf+olZA4HW/LiB4AUXeJ7iHHHwMXxLEmGxufPiun3d6Rfim1iBRBMZys+VQhBkah0jw9GCa9wfo92FPacXFfnNnaippgD3YGFNvHO5Ei7JgUsF3P24OBnydXLX8zMeZNS88Kv0N0yaauoLBdS3/CFKDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EjxO0CH9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HkkRxDXu; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=o6BMvXNoQPotRQVdVWpnuNf03yyNB3opg89BprHAomZssvYM+rGsfl4lIbtqwybr1oumEnPiC4m9pQIFUh5tYgocibZ9UDf7vT58YTyvPVUpxUw6uiYcy5pJH1j/CEsS/urLGISUy3SXagNaNN7k4ThzldMNAHlANFXw/O/WtKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DDxCiDHQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YiayYikV; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD9NfPl3120632
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:23:00 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD8tjiI2962156
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:25:53 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=+GplvHX5yxJ933q0AmGSwv5z
-	wUzQHMR7HZka/BgtTp8=; b=EjxO0CH97Q5YXz86h/exEubfja23O0cpfbonUSFO
-	/EcgGBaDegu0X6DGJ0COHg4/Cv9Whk1CLhs50au+g/U68OYvdjxcYC7LRDJ10C7Y
-	f/4gtfgZN7C92XuqmFmkUcBwU9m2tAFrbdOOV1rXoz4mAE44i7oGgN6ulNcyb7Mt
-	q66lH2BpsdMtxD7wn1BvJKKjaKHlpW9IlRPOV/mfcG9X6d6ayeZNAUG/ZyFFnqiP
-	UdsICNQuFKz/CIksK0/8U4hHosXzUZxZKMw3QchC3x+3QITrrMf08zLIsSgcQCtU
-	MNNLvmSf631noRe0hvxaCyRjP+8cXcDnfCQpru0hatbOCQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ad5pust1f-1
+	:references:subject:to; s=qcppdkim1; bh=wygzyebzYJNMZqpqCjdykX+g
+	xqQ5wcv57efQBabWDfI=; b=DDxCiDHQMivdVXcbKpUJRqBq1RHC0KLJJRapRP/u
+	82XlkvpKvud+un9zRIKgVaWx73J250lDKxyMUpL/RHfpQlctODCewEskRNLU/l8o
+	8L2b3uhr0L++PjfhrDhV9cWIajs/GtRPeW/tZglgU55oYXttDeYdNji6yqiq5FPs
+	qODam1xnt66jOb4H1UG43VvAoINCRIND8uzpO8JwKXaRH4KzDQmNmeUj3QmOG2YW
+	0jjv2KALidH2bwWG58qxmARBm4usG5fi7y7Vufgcie7ZbqsAKdwSe2vPUQ2p489Z
+	0FCOw3gouoc/oio3He1W1XZt/aFz73mjB+E1jOTKr/LCgw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acwbpug3x-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:23:00 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed6ff3de05so22708401cf.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 04:23:00 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:25:53 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4edb7c81e0fso22520201cf.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 04:25:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763036579; x=1763641379; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1763036753; x=1763641553; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+GplvHX5yxJ933q0AmGSwv5zwUzQHMR7HZka/BgtTp8=;
-        b=HkkRxDXueWE/5OCpmA/3Y5DxpYXF+tCV62GsqTO41fqKvyYF2JvtCNjdBLwyNbwa5p
-         3SVnoim3yj07AU+D2wXUHX76lPzaPLJz7LQgHI2faPy4NfCh1/iF86sI+g1C0DWiIOT2
-         9peZ3Ik3j+oz6kXeum+G6ID0PEvIIX8Pt2SSaePDLF+YE5wdgvE/TnpcvvNstrpj0biw
-         tXt0ofGhsabFhx0rx6HB3rrnMNtbybpr7e8CMtqthf1OexxFKim9k5UHipwGeGHBlHv6
-         /xaIbJbieejKCm73jFb/j4AOUl3v7N30yOr7TrWUOcixQrTyj491wOz2HcCSVBjQTgRz
-         xBdQ==
+        bh=wygzyebzYJNMZqpqCjdykX+gxqQ5wcv57efQBabWDfI=;
+        b=YiayYikV7H32ieLQtSy8zXTR8+qycpwcpGvUiwjhSdMmpjg1gRu9tgNk/WOOt3gVQD
+         AsPFHQOPxb94HR+ZIxVeRFPwrS2wA1KP7IBHwqegSx3hHiziKdsFA+Dy3uQXpDH7lbWT
+         +rGumdr23CVKNZPtyf1CgVu2g+zsrm27UnZWoxzkuFcdOC5tLBxlwx7uUSF1RsMbDNCS
+         bSaC1h7Dsnw6U2/rQFRyRFiFwatKPvQ1qxSiR8SAglyCs6v2M61ytNOMF62PzstSObln
+         Ae2gwQUbMmGExxWic5jbiTUy3bjP4lT/+mKN7QxZdk2PnFl1wl1sd2yWyO3sbmHcqnaF
+         6/Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763036579; x=1763641379;
+        d=1e100.net; s=20230601; t=1763036753; x=1763641553;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+GplvHX5yxJ933q0AmGSwv5zwUzQHMR7HZka/BgtTp8=;
-        b=ivfNWgp8nVd+DV89pzWaA6DxT36LQqBq4BvCRen1qZOFc1mtFD53altcrTqmZycO+W
-         u6Ofuf6qnZn9oJh39KeFi6R2jyn6L2aJulOfMAJLUEzANpHHjhCHT+A3NZUMtUIbzXWX
-         jy6++91zncsctKlvJ3rA8N5T0deRwOfMPaMvDPIUM1zE1+ew4gkom4i9mp7VazM+UXTG
-         EqEH1wOc0lx/8lHBeB6t9r/Ny1gccS8wB7efR3GocVSigArExak2adYtOQiqlGWssire
-         E+OpyzQcyRXRKSkMJCUKCu6MCXONOiAzTXJm4gNpUSWNTp/grJM1ocVGhTO7DVHiejbM
-         3W5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWrmct9A2rtWDKnhSu2Ca6QcUA000+PzSkiimJo3YWmJO2lrcdyO3zGMik3b+bKVwKy3sloT2vxPiOI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLvgVFiwc7OXEHfzcD9pcxVqTBnQEXAt/fw1oB3kbNzEgOddIc
-	lfZgoDksV4l91t/Piu+xw01cHES+LquymH5vyc8ghMqH0ldo49XMcQmVOykW/OUxQ04a9dlYi0Z
-	D4RFGzMuOSIhdYzQGmLYchbhfbFt5LLGokGHRp4kl0Dn53Yg8S5ibXMUKisgW/s82
-X-Gm-Gg: ASbGncsJ3QmJ5jkZ6Z1U0vIhlsAxQZtQ3RdkyoGIYA6+zRCI+JrjwYT0AZDwITPHSu8
-	JeIRW2rWECh8+sC2TOW8XCDXemZCZMJMwbJo8ogtOYD76pq0BMj+dmJycp4aOtGXk98IZyloAAq
-	D0JHnVwyFVy47flSyauVVWBa9v8uL39r8X48Eqf1IeI8cuy15zfYJGkab+ga3ZhHkGlQb+qFOUr
-	NLoTWyBCgro4kaxsewpBZ1SqvEHcn4GG8mtzz9FmYHW+RcHUcIq6GhVVEdP+RGsH91t8AGgBUSk
-	jbVxdm+MiMIaJQM0lyM0cKpUffVSf9usYwgfMFjjaAOAh8jMTQ+jAOpgIMHjCH0xhDZ30Nq+WhI
-	nnYkIpgNrdFPQYTyuoRqX7rqr6OjcdCT69Di2fhLPlSW4FLh6P3FkztUQhCN4zpDQrbcvodj9ED
-	KWfC1irZfcAsen
-X-Received: by 2002:a05:622a:24a:b0:4ec:f5cd:8721 with SMTP id d75a77b69052e-4eddba97f18mr79916691cf.0.1763036579301;
-        Thu, 13 Nov 2025 04:22:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFYSlJ7Mqnq9Dyf5Mj+nWkiUVIb7DVf2qG0ZIWMq78bytd3X9FzuruWsSqOGP5mq4NeoWsUsw==
-X-Received: by 2002:a05:622a:24a:b0:4ec:f5cd:8721 with SMTP id d75a77b69052e-4eddba97f18mr79916231cf.0.1763036578763;
-        Thu, 13 Nov 2025 04:22:58 -0800 (PST)
+        bh=wygzyebzYJNMZqpqCjdykX+gxqQ5wcv57efQBabWDfI=;
+        b=VTR+QXZ8RUGwHBRDV6pPNZ5PlkWKAm28zSsJJEIpXTOvwZJHURemtg8EeaDixHEU5Z
+         j5OiLKxQTRjCchDWipT8XnBnM+WsMhrT/78E/7N3HB0z3DIAYzMPKLvYb38v0h0a5MP7
+         FjCbUJk0ocxezxloEbz3WKmLYklL0ybRMV7ZNEMqa7mr8jIji//SA87vXfg5zXLFsxjp
+         XfTINMo9WGf0SfEXfG14st5As3tIegcpjipxOojVgZM878L4ZZmGnYGsj+a7ZU52XhNY
+         NbyW1XnR/eLGCTglrt6ezWXY7thm3bKaZpPFiPFGR+r0h32xjcEXepEqmwxTFt2nK1lX
+         5F9w==
+X-Forwarded-Encrypted: i=1; AJvYcCUFJ0t2f8uC61VI1AusK4Z8UTVv+letYPFxdIGFpHdOxfeYXRv7agrgilAerk+gDDHHgWAE23MqknxD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHnsGD70d9z50x/VBuE4nJbMSUD4lW98bUgP+tocTL0uGtm0VL
+	n0yzyhW95fiVIPtu/UdDwIZ5h/B1gk7d5covZZflThcjdpF29iNeecleZzbj4LWOFoQQqBj26XT
+	Crh1x7mOfffrZTfHYFTaeFOm2Z6jClJ16e6KFrQ/f/dmWjwyIwNZ2ZYa1QAZUBCfb
+X-Gm-Gg: ASbGncuhVZftFcKLxyezn6shCIe1IJ/FMb3Po+A6H1Rl4yW8xysn67RBVODB8Xydhll
+	x+3jXJQ+i9OySuAVdZV76qEPnUg+I31dzhGZaFqbqkN1huKQQm2EFWcjMuRPFLgvxBctRavGqSz
+	VvYZh/PaqSqE5Si4RhtFbOe4+2YhzylyuMBHSbCWvVwmSpA8tGCBfJkhqmPbiBgQDJT8hfQ8u7U
+	BMcUQfYgZ/Rkzhy2LDbqCCEIWp3KoiWK0H6cIgEXsakSaoaY9bHdDjpMVg7pUKs+1BgjD93o3Za
+	vSQNQuIiQ4n/vG7t2HlVP2MDuAonXzZ27gUtn7zWY1rsdcJiiSVZ6WPrfvQpzwOsDnFokeHZ57k
+	x8VrQvaGB5b2UTUpb5iZD9EBP+ABGk4yt/Z/5LyV4ESZdy6xw8hziMFF5ALMbqz9JCLpfqFkOwp
+	Zw+fG66vCOcM/n
+X-Received: by 2002:ac8:5f94:0:b0:4c4:dfac:683f with SMTP id d75a77b69052e-4eddbe1c3e3mr88980541cf.56.1763036752711;
+        Thu, 13 Nov 2025 04:25:52 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHPgUir/gxQ0BS5g947vsiBdKwcdqknLcUDWg+UY3VwNvd5Mq0nQvdnu7KRIrQj37IVNdbiDA==
+X-Received: by 2002:ac8:5f94:0:b0:4c4:dfac:683f with SMTP id d75a77b69052e-4eddbe1c3e3mr88980061cf.56.1763036752047;
+        Thu, 13 Nov 2025 04:25:52 -0800 (PST)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-595803b4d70sm363916e87.39.2025.11.13.04.22.56
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5958040eed4sm369960e87.110.2025.11.13.04.25.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Nov 2025 04:22:57 -0800 (PST)
-Date: Thu, 13 Nov 2025 14:22:55 +0200
+        Thu, 13 Nov 2025 04:25:50 -0800 (PST)
+Date: Thu, 13 Nov 2025 14:25:49 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Connor Abbott <cwabbott0@gmail.com>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 05/21] drm/msm/adreno: Move adreno_gpu_func to
- catalogue
-Message-ID: <kwf62e5l5n4pwfmetvhicupj7r6ow46dnlkkluyhl7s5wuazpw@q7vbdi7d6ul3>
-References: <20251110-kaana-gpu-support-v2-0-bef18acd5e94@oss.qualcomm.com>
- <20251110-kaana-gpu-support-v2-5-bef18acd5e94@oss.qualcomm.com>
- <28d62905-c191-4c3a-995e-a4146ffce619@oss.qualcomm.com>
- <12e6f588-e422-4803-ae14-56e5297e564d@oss.qualcomm.com>
- <os7rpbynyoeolwvbrocx3yrrxzhextx3srywal2i54jj6dw3mw@n6fbt3pzjvj6>
- <d87bea02-1a89-4854-b760-617c3655b287@oss.qualcomm.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com
+Subject: Re: [PATCH] dt-bindings: mfd: qcom,tcsr: Add compatible for Kaanapali
+Message-ID: <we7qsu2aivdnqttvxzveiryp2axy3dxu4dw7s43xmytxnaifzt@ajyt5y4cqwy5>
+References: <20250924-knp-mfd-v1-1-6c8a98760e95@oss.qualcomm.com>
+ <b623c7f6-f28f-49ba-b6f6-25084117a6b3@oss.qualcomm.com>
+ <l4mb5pi7kz7uuq6o3eueoxl2ngt2sdd6dv3kyudw6i54co5v5h@w6ya2nuas322>
+ <ad00835e-bc20-4f97-aba6-e1b4f5e97191@oss.qualcomm.com>
+ <f2q7a7r7quq6pplcn3kklwrhdc6hxa5zvc7osygshtyurwyvi4@t5iyragt7irh>
+ <b5ecf5e7-4dc4-41ac-9b56-7c52afacb950@oss.qualcomm.com>
+ <01de9616-825b-4fbb-83cf-e0bf91e8cf39@oss.qualcomm.com>
+ <81174278-c3c4-4dc6-856e-b58aa2cb6fea@oss.qualcomm.com>
+ <br3fmilhh7fihv4atnf4olvy4w66z4p7sh4ypicuc3766ky6tb@pppfdynfhfz7>
+ <bf706156-1413-42cb-a463-803063c347fc@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -135,63 +125,260 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d87bea02-1a89-4854-b760-617c3655b287@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=E6/AZKdl c=1 sm=1 tr=0 ts=6915cda4 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <bf706156-1413-42cb-a463-803063c347fc@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=NvjcssdJ c=1 sm=1 tr=0 ts=6915ce51 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=LPoitUEaq9Ymm4AzyX8A:9 a=CjuIK1q_8ugA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA5MyBTYWx0ZWRfXzwliwtmVQpP6
- eduzBGwDZeYRpxhRyBrq7PA8GBoHvZ+i24p3fVRVMtjGOwR2AWThIzcRjXFu9WX4ffYusDXCBBL
- dK3o/6KDSfwFicJNUrhkwcDiRS/U3OqOgSGaPHqUcUfpFFjdJ+c/LnXjVtUZdvD0qAoLJijP/3l
- mdBHBJ+Sfx8zmot+FVKcnth/F7v5z9lq13jCkkFQV7l+c4D8xmvlYMQ5gL9Or7rvTr98mEkjYWs
- 9EspF6H1IqTOzDaI/VScNTnubRVM9OOUMFHjkpgY2JywhYif/KQDwl0uyVWADhp+Yxai7vtSi/b
- BJaP7B0C10trJ0xFjMjW01HB7nZBH7EinKZkWhnOXf1G9D/wHHgqedccrTRmOBS0eynHpVE7Zhx
- u/3YETKInOgfarsPTGfvmp86V0wE+Q==
-X-Proofpoint-GUID: Qsegxp5DraCpO5PIcoZdBlkKAUfjmUyF
-X-Proofpoint-ORIG-GUID: Qsegxp5DraCpO5PIcoZdBlkKAUfjmUyF
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=jYguEzgl6mIPwd92HLwA:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-GUID: m75uLhtbM4bLZHCn2LR2stt5WxXk-E9D
+X-Proofpoint-ORIG-GUID: m75uLhtbM4bLZHCn2LR2stt5WxXk-E9D
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA5MiBTYWx0ZWRfXxxE0H1A4G/+y
+ +Kk7Nn7bEQB9mgX+We8MCv8H5wjyRwMei/ZkQSr7pIECdKSz40Op0kK4UhvBY6FYgxdGQlD9d8Z
+ csr8+ihOQhgDfzHd50w7Z/VI92siy76on5guxr3H8j5Xk8X6RdNnNuUtCPfWqlQKsU0zQjQC6f1
+ AQgktRhhoIKnqj40rMl6uz3KidpsNfVO2FgfxMlWR3c+ck0Qr5yUfT2ukP8OtZ4y/x4hyNll6XF
+ YAzxAs6YBidTkAxPXhq8v2lOx4DkfN3+BIrDq43qMVzHpdYJyFOPeonNUgg7qMWHizbRsSvXDCK
+ LuB6htmWrEyvoBoVJDN6bJUcyvgoXr9MN9pLc7iNqDAf8Iq26ytZp6ZqfRa7180xK5bmGzNKDCN
+ BzCkqbEo9a8ib22PHOMAaOjlvC3BAA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-13_02,2025-11-12_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 adultscore=0 malwarescore=0 spamscore=0
- clxscore=1015 phishscore=0 bulkscore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130093
+ clxscore=1015 spamscore=0 suspectscore=0 phishscore=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511130092
 
-On Thu, Nov 13, 2025 at 10:27:09AM +0100, Konrad Dybcio wrote:
-> On 11/13/25 4:38 AM, Dmitry Baryshkov wrote:
-> > On Thu, Nov 13, 2025 at 03:32:51AM +0530, Akhil P Oommen wrote:
-> >> On 11/12/2025 3:52 PM, Konrad Dybcio wrote:
-> >>> On 11/10/25 5:37 PM, Akhil P Oommen wrote:
-> >>>> In A6x family (which is a pretty big one), there are separate
-> >>>> adreno_func definitions for each sub-generations. To streamline the
-> >>>> identification of the correct struct for a gpu, move it to the
-> >>>> catalogue and move the gpu_init routine to struct adreno_gpu_funcs.
+On Thu, Nov 13, 2025 at 06:03:33PM +0800, Aiqun(Maria) Yu wrote:
+> On 11/12/2025 12:05 AM, Bjorn Andersson wrote:
+> > On Tue, Nov 11, 2025 at 08:27:17PM +0800, Aiqun(Maria) Yu wrote:
+> >> On 11/7/2025 12:24 AM, Konrad Dybcio wrote:
+> >>> On 11/6/25 11:16 AM, Aiqun(Maria) Yu wrote:
+> >>>> On 11/6/2025 5:06 AM, Bjorn Andersson wrote:
+> >>>>> On Tue, Nov 04, 2025 at 01:35:01PM +0800, Jingyi Wang wrote:
+> >>>>>>
+> >>>>>>
+> >>>>>> On 11/4/2025 12:02 PM, Bjorn Andersson wrote:
+> >>>>>>> On Tue, Nov 04, 2025 at 11:34:25AM +0800, Aiqun(Maria) Yu wrote:
+> >>>>>>>> On 9/25/2025 7:23 AM, Jingyi Wang wrote:
+> >>>>>>>>> Document the qcom,tcsr-kaanapali compatible, tcsr will provide various
+> >>>>>>>>> control and status functions for their peripherals.
+> >>>>>>>>>
+> >>>>>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> >>>>>>>>> ---
+> >>>>>>>>>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+> >>>>>>>>>  1 file changed, 1 insertion(+)
+> >>>>>>>>>
+> >>>>>>>>> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> >>>>>>>>> index 14ae3f00ef7e..ae55b0a70766 100644
+> >>>>>>>>> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> >>>>>>>>> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> >>>>>>>>> @@ -48,6 +48,7 @@ properties:
+> >>>>>>>>>            - qcom,tcsr-ipq8064
+> >>>>>>>>>            - qcom,tcsr-ipq8074
+> >>>>>>>>>            - qcom,tcsr-ipq9574
+> >>>>>>>>> +          - qcom,tcsr-kaanapali
+> >>>>>>>>
+> >>>>>>>> It looks good to me. Glymur didn't have this functionality verified yet.
+> >>>>>>>
+> >>>>>>> You spelled Reviewed-by: Aiqun Yu <..> wrong.
+> >>>>>>>
+> >>>>>>>> Remind for review.
+> >>>>>>>
+> >>>>>>> No need for that, reviewers will review when they have time.
+> >>>>>>>
+> >>>>>>>>
+> >>>>>>
+> >>>>>> Hi Bjorn,
+> >>>>>>
+> >>>>>>>
+> >>>>>>> But that said, most modern additions to this binding follow the common
+> >>>>>>> format of qcom,<soc>-<block>.
+> >>>>>>>
+> >>>>>>> So I would prefer this to be qcom,kaanapali-tcsr.
+> >>>>>>>
+> >>>>>>> Regards,
+> >>>>>>> Bjorn
+> >>>>>>>
+> >>>>>>
+> >>>>>> qcom,tcsr-kaanapali is used to distinguish with binding for GCC:
+> >>>>>> https://lore.kernel.org/all/20251030-gcc_kaanapali-v2-v2-2-a774a587af6f@oss.qualcomm.com/
+> >>>>>>
+> >>>>>
+> >>>>> So, qcom,kaanapali-tcsr is the clock controller region of TCSR and
+> >>>>> qcom,tcsr-kaanapali is the non-clock controller region of TCSR?
+> >>>>>
+> >>>>> Sorry for not understanding that earlier, but this doesn't work for me.
+> >>>>>
+> >>>>> It's a bit of a lie that TCSR_MUTEX is a separate node in devicetree,
+> >>>>> but it's always an nice chunk of 256K in the beginning (or end in some
+> >>>>> cases?) of TCSR. But for the rest, there should be a single tcsr node in
+> >>>>> DeviceTree and that one node should be a syscon and a clock controller.
 > >>>>
-> >>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> >>>> ---
-> >>>
-> >>> [...]
-> >>>
-> >>>
-> >>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >>>> index 44df6410bce1..9007a0e82a59 100644
-> >>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >>>> @@ -683,7 +683,7 @@ static const struct adreno_info a6xx_gpus[] = {
-> >>>
-> >>> Somewhere among this diff, a619_holi needs to have gmu_wrapper funcs
+> >>>> I've been dive deeply on this tcsr block. And actually the tcsr clock
+> >>>> controller part is a very small trunk size(0x1c) of the tcsr block. And
+> >>>> this block have contain other multiple purposed sys registers. So maybe
+> >>>> we can have a more discussion on how to have device tree node describe
+> >>>> this situation? It is not straight forward that to have a non-tcsrcc
+> >>>> related area being described in tcsrcc.
+> >>>>
+> >>>> What about option 1 (tcsr_mutex + tcsr_dload_syscon + tcsrcc):>> tcsr_mutex: hwlock@1f40000 {
+> >>>> 	compatible = "qcom,tcsr-mutex";
+> >>>> 	reg = <0x0 0x01f40000 0x0 0x20000>;
+> >>>> 	#hwlock-cells = <1>;
+> >>>> };
+> >>>>
+> >>>> tcsr_dload: syscon@1fc0000 {
+> >>>> 	compatible = "qcom,tcsr-kaanapali", "syscon";
+> >>>> 	reg = <0x0 0x1fc0000 0x0 0x30000>;
+> >>>> };
+> >>>>
+> >>>> tcsrcc: clock-controller@1fd5044 {
+> >>>> 	compatible = "qcom,kaanapali-tcsr", "syscon";
 > >>
-> >> Could you point me to the holi's devicetree? Currently I see only a610
-> >> (sm6115) and a702 (qcm2290) uses gmu_wrapper.
+> >> Remove "syscon" here. Not need for tcsrcc fallback to "syscon".
+> >>
+> >>>> 	reg = <0x0 0x01fd5044 0x0 0x1c>;
+> >>>> ...
+> >>>> };
+> >>>>
+> >>>> What about option 2 (tcsr whole block + tcsr_mutex  + tcsrcc):
+> >>>>
+> >>>> tcsr: syscon@1f40000 {
+> >>>> 	compatible = "qcom,tcsr-kaanapali", "syscon";
+> >>>> 	reg = <0x0 0x1f40000 0x0 0xC0000>; //align with the whole hardware
+> >>>> block design.
+> >>>> };
+> >>>>
+> >>>> tcsr_mutex: hwlock@1f40000 {
+> >>>> 	compatible = "qcom,tcsr-mutex";
+> >>>> 	reg = <0x0 0x01f40000 0x0 0x20000>;
+> >>>> 	#hwlock-cells = <1>;
+> >>>> };
+> >>>>
+> >>>> tcsrcc: clock-controller@1fd5044 {
+> >>>> 	compatible = "qcom,kaanapali-tcsr", "syscon";
+> >>
+> >> Same here, don't need to have "syscon" here.
+> >>
+> >>>> 	reg = <0x0 0x01fd5044 0x0 0x1c>;
+> >>>> ...
+> >>>> };
+> >>>
+> >>> Is there anything wrong with what we have done for x1e80100?
+> >>> ______________________
+> >>> |             |       |
+> >>> | TCSR_MUTEX  | mutex |
+> >>> |_____________|_______|
+> >>> |	      |       |
+> >>> | RANDOM_REGS |       |
+> >>> |_____________|       |
+> >>> |	      |       |
+> >>> | TCSR_CLKS   | tcsr  |
+> >>> |_____________|       |
+> >>> |	      |       |
+> >>> | RANDOM_REGS |       |
+> >>> |_____________|_______|
+> >>>
+> >>
+> >> Second you! We can firstly have a option selected for kaanapali, and
+> >> then other platform can be followed or fixed afterwards.
+> >>
+> >> Here suggest to have option 2 which is remove "syscon" from tcsr clocks,
+> >> and only add the whole "syscon" to "tcsr" whole block.
+> >>
 > > 
-> > I don't think upstream was ported to SM4350. SM6375 should need the same
-> > hook, but I don't know why Konrad didn't enable GPU on that platform.
+> > I think you misunderstood Konrad, or perhaps I misunderstand you.
 > 
-> I'll try to fire up -next and confirm it hasn't bitrotten.
+> Maybe let Konrad help to explain more here. I thought the chart below is
+> very clearly indicate the tcsr_clks is only part of the tcsr block.
+> 
+> > 
+> > This is what we have for Hamoa:
+> > 
+> > tcsr_mutex: hwlock@1f40000 {
+> >         compatible = "qcom,tcsr-mutex";
+> >         reg = <0 0x01f40000 0 0x20000>;
+> >         #hwlock-cells = <1>;
+> > };
+> > 
+> > tcsr: clock-controller@1fc0000 {
+> 
+> 
+> It is not a clock-controller start from 0x1fc0000.
+> 
+> >         compatible = "qcom,x1e80100-tcsr", "syscon";
+> >         reg = <0 0x01fc0000 0 0x30000>;
+> 
+> This is what we have a discussion initialized here:
+> "qcom,<platform>-tcsr" is only a tcsr clock controller binder, reference
+> from [1].
 
-Maybe then a patch to enable it too?
+SoC-tcsrcc? Make it more obvious, please.
+
+> "qcom,tcsr-<platform>" is a common tcsr block. reference current binding
+> patch.
+
+SoC-tcsr, please, if it didn't land yet.
+
+> 
+> For below hardware block information, is it really a recommendation to
+> combine the tscr block with tcsr clock controller all together?
+> ______________________
+> |             |       |
+> | TCSR_MUTEX  | mutex |
+> |_____________|_______|
+> |	      |       |
+> | RANDOM_REGS |       |
+> |_____________|       |
+> |	      |       |
+> | TCSR_CLKS   | tcsr  |
+> |_____________|       |
+> |	      |       |
+> | RANDOM_REGS |       |
+> |_____________|_______|
+> 
+> [1]https://lore.kernel.org/all/20251030-gcc_kaanapali-v2-v2-2-a774a587af6f@oss.qualcomm.com/
+> 
+> 
+> >         clocks = <&rpmhcc RPMH_CXO_CLK>;
+> >         #clock-cells = <1>;
+> >         #reset-cells = <1>;
+> > };
+> > 
+> > This is exactly what I suggested above and Konrad is asking you why
+> > this doesn't work for Kaanapali. The addresses are even the same, what
+> > is the problem?
+> 
+> The problem is the current patchset document a separate tcsr block as a
+> mfd. While the suggestion here is to use the tcsr clock controller
+> binding to document the whole tcsr block which is not belonged to tcsr
+> clock controller.
+
+What prevents us from using TCSR as an MFD and describing hwmutex and
+TCSRCC as subdevices?
+
+> 
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> >>>
+> >>> 8750 was different because someone decided to stick the "TCSR clocks"
+> >>> into the TLMM address space, but it was a one-off
+> >>>
+> >>> Konrad
+> >>
+> >>
+> >> -- 
+> >> Thx and BRs,
+> >> Aiqun(Maria) Yu
+> 
+> 
+> -- 
+> Thx and BRs,
+> Aiqun(Maria) Yu
 
 -- 
 With best wishes
