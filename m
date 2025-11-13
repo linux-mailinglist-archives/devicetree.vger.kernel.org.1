@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-238315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CEAC59C8C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:36:55 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55736C59CA7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:38:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CA6B3A42D8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:36:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DAB0B35214B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C4DB31C59B;
-	Thu, 13 Nov 2025 19:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FBD31AF31;
+	Thu, 13 Nov 2025 19:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fVo5395u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aEQAPJkc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83BDC31B10B;
-	Thu, 13 Nov 2025 19:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486A8319879;
+	Thu, 13 Nov 2025 19:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763062585; cv=none; b=uxl5lA3hN53bAz5YpVkg2yxNhnI00/5oNw2mKAqsY9Rgr4RC4S5v5TStTFmGHZt4R5LWogQz4Ie7FLoLV/LhoG8Rhj4iHaM0HOR6W4+SQeHiCObfg86Q/cKQ8UAHowRWExPienJZtxUv8P0q5XliHJUN884ciJiyVM9VCT4BVhM=
+	t=1763062605; cv=none; b=M3tY2/PgvbYHWWwMIUoFvP9FPmHeMweOk5pgiEK6CAeic38YyGNM1jpnZ+Tky7gsSxVqqwvC3mM7jfSwqJrhC/vyA9TAPS45H2hbf42lRls07ERssirZiKEtEySOcZSOMLLkuFeE4SpJzPNL0RHNWRsCyKpUh3ivGuq6HWhVuN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763062585; c=relaxed/simple;
-	bh=OUQ+Qmgs7ku22AW5gxYYNj5W9qbgTRyidFX1ThPc08Y=;
+	s=arc-20240116; t=1763062605; c=relaxed/simple;
+	bh=LwV1U6Cq5cEu+tSpRxXgRX2MHT6VLD5wV+cjhY8i3yw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DZjH3/5lYvv3DJQgGwnPSTxjV2LhEJ3CiTsHqHhaiGgUQppcpq64VPWiG46EeBK7aDezXmRiawfho3RV0tMx92ylEmp+dx6LnmiKeRI8hy6Z1fiQ8wAirLxC29xXLEATtAVjuau5uO+vDV2EAFAjWokCcdeC3tlo6ITI+jUh4WY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fVo5395u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A06EAC4CEF5;
-	Thu, 13 Nov 2025 19:36:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=C8qMxZrkXHdkfaMlwkMeubHeHOM6LUZvCws5nR2lWaeQAAhCm3NDiCusuqweYyh4y+Lism7AI59qHEFzOTMMLFlEJHIPugZc+My9rEkcfvzAjgvumZUIp8JDnslaA/tF4EpDsUhe2Y6D/Qr/n2fIzfmhgk8Edf5r4HKXBr1vu0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aEQAPJkc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79014C4CEF7;
+	Thu, 13 Nov 2025 19:36:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763062584;
-	bh=OUQ+Qmgs7ku22AW5gxYYNj5W9qbgTRyidFX1ThPc08Y=;
+	s=k20201202; t=1763062604;
+	bh=LwV1U6Cq5cEu+tSpRxXgRX2MHT6VLD5wV+cjhY8i3yw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fVo5395uuWVkGDkpQEn4MEn43J6l9a+VMxco++53CmD15eZPSt9Ip6/9SLG9XruF5
-	 GVFH3+fUSYwGzKI5/V8g1PLnc2vK4qkCt2F5Y8zjVavMmASmJ69d6YuBSOl8IsNFlZ
-	 VGfQgRXxVAOpPadLloiVmKEierKsdndDvxomHfGzjI5vE5ZXR8bYt6XemLEMnVf8+T
-	 heiYU2s4fwklhs5rVDpO0e9zowxf9NgZvx2CwS7YbL9ziWtOBDlngJCKhR/7cndQoZ
-	 e2Gjn1ELU9XgKPgBzh3lcOdRhzOeiLHvjYg13zTvW1Wdu+uZja9/eLxK1qeMxuBV6C
-	 4Z+xEHCc26R7A==
-Date: Thu, 13 Nov 2025 19:36:19 +0000
+	b=aEQAPJkct/DFPHMCGZE/tTEZrMl33vAfNdSvZBbFcLt57tqkUxIltVnkFH280xpjJ
+	 lS1NPtMLYSSO5kvF5Et/AVIOIZpthQEdaSdtZWSUe3eViGUvu5l7UkYxeKkprbu0iC
+	 LuafCxkfdpEq6iPOka5zLmd9MRSUniAK0rHyVV0aeYBICrTwoU2JsCvBFZRSM6WOyP
+	 +M4149rtgdigLaHrp3t41U7WWmhqfRPFslzlKXll6sJpfQuELEEWEBSdshktyVO73I
+	 B8JHcpcKFIwM8xopN4VIsiQfhqcnkFwSYSZNKxM4X/UftoYTfTmSA2vlPP1uIg+CMl
+	 jwpcoUY9W5VDw==
+Date: Thu, 13 Nov 2025 19:36:40 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, clg@kaod.org,
-	clg@redhat.com, broonie@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	linux-spi@vger.kernel.org, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH 1/4] dt-bindings: spi: aspeed,ast2600-fmc: Add AST2700
- SoC support
-Message-ID: <20251113-reroute-backlit-b2e1d1b6dc04@spud>
-References: <20251113085332.89688-1-chin-ting_kuo@aspeedtech.com>
- <20251113085332.89688-2-chin-ting_kuo@aspeedtech.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-i2c@vger.kernel.org, Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: loongson,ls2x: Add ls2k0300-i2c
+ compatible
+Message-ID: <20251113-zeppelin-parasite-64916707f9ab@spud>
+References: <cover.1763018288.git.zhoubinbin@loongson.cn>
+ <75ff6d9ecb23082cb656da5936a5c4ac0a98074f.1763018288.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,67 +66,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LS0ZL1mlvV8tsXyl"
+	protocol="application/pgp-signature"; boundary="nKXF8pIjq4Op37EP"
 Content-Disposition: inline
-In-Reply-To: <20251113085332.89688-2-chin-ting_kuo@aspeedtech.com>
+In-Reply-To: <75ff6d9ecb23082cb656da5936a5c4ac0a98074f.1763018288.git.zhoubinbin@loongson.cn>
 
 
---LS0ZL1mlvV8tsXyl
+--nKXF8pIjq4Op37EP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 13, 2025 at 04:53:29PM +0800, Chin-Ting Kuo wrote:
-> Add AST2700 to the list of supported SoCs in the ASPEED FMC/SPI bindings.
-
-Please add information here as to why these devices are not compatible
-with the ast2600 ones. With that info,
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: changes-requested
+pw-bot: not-applicable
 
->=20
-> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-> ---
->  Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yam=
-l b/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
-> index 57d932af4506..80e542624cc6 100644
-> --- a/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
-> +++ b/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
-> @@ -12,7 +12,7 @@ maintainers:
-> =20
->  description: |
->    This binding describes the Aspeed Static Memory Controllers (FMC and
-> -  SPI) of the AST2400, AST2500 and AST2600 SOCs.
-> +  SPI) of the AST2400, AST2500, AST2600 and AST2700 SOCs.
-> =20
->  allOf:
->    - $ref: spi-controller.yaml#
-> @@ -20,6 +20,8 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> +      - aspeed,ast2700-fmc
-> +      - aspeed,ast2700-spi
->        - aspeed,ast2600-fmc
->        - aspeed,ast2600-spi
->        - aspeed,ast2500-fmc
-> --=20
-> 2.34.1
->=20
-
---LS0ZL1mlvV8tsXyl
+--nKXF8pIjq4Op37EP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRYzMwAKCRB4tDGHoIJi
-0hcsAP9GQ4eMq05L+q3QOeYKmFSX9l0RK7CzAFAaEFVK2vQKoAD/cOZK1QxP2nV7
-sUnhA4Tv0TcCZ4ixDmGcDKByRdBFwgo=
-=8VOg
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRYzSAAKCRB4tDGHoIJi
+0mZXAQDd3RrI00A5vVFloAvephXoJ1I28x1MhBR0hjnC8t1SfQD9FMx5WSVRmP4V
+61FrNSIUiyQCVaYIgmW4+r89Sk9EwA0=
+=/hpM
 -----END PGP SIGNATURE-----
 
---LS0ZL1mlvV8tsXyl--
+--nKXF8pIjq4Op37EP--
 
