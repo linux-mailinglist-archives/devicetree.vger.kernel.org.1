@@ -1,172 +1,149 @@
-Return-Path: <devicetree+bounces-238324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C630C59D2E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:45:44 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA1FC59D6D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:50:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 49CEA3515FB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:45:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C9D1E351D73
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23E9331AF38;
-	Thu, 13 Nov 2025 19:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076762F693E;
+	Thu, 13 Nov 2025 19:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CYdJIPPS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m2WY8ADM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC36331771E;
-	Thu, 13 Nov 2025 19:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D372B26E703;
+	Thu, 13 Nov 2025 19:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763063102; cv=none; b=KWZ9owrOwdKRuT/K92V9oqsB3dBHidlHPzIGG9mdsDGLmyPGGblYpAxgNvmuUtzNGKQMFR2O+qXmdSx1olCX0NEL9TRm31MVvP9Vk0Y/9LHryf/acIWi5SK3bwM3VdSwBrtO6iqTPGa4+Jg8JxkUfzxljlTmw/jaE6fNQD1k38s=
+	t=1763063419; cv=none; b=ATyMNY+/3xZtoRfR+/YVXXx9e7aT6C9xCb9qRcJYYAdY5VuR1YFI5wdpoKCRg4+BYO7vhIVR7fz5HT05GxXwbEsxbXrLOWIsTx2XZwInymXrDDXhVADJ7gav1PWC1uDtSeVAiYT3Y/yRySBSSZoMuWqffV5my1MKKVHhHKObGRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763063102; c=relaxed/simple;
-	bh=0VwKaYc35bZVUgu90hr/jsC2a+mJC8giJD4+WvmKtmE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hapWJp/jd33VoyH1eKaxaxXMlJ+pIL9py9A0VAPKI45x473lRhli7vOoBYxuYoraPH5EITCAemqYP+AkEWMAx/WjMtMyC9llGoNGkWUJHYICH4xiPLp5jLXeE2NFQXkKmk0OS820TTc0tzUQ/F3If7aDAeNta29iGSFuMMtVh1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CYdJIPPS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70FE0C4CEF1;
-	Thu, 13 Nov 2025 19:44:54 +0000 (UTC)
+	s=arc-20240116; t=1763063419; c=relaxed/simple;
+	bh=l8KIsccA1YWYWTLWU7e76Frhe8QvZs+opM2EpB6tHZ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PlGzsahhbx6A4GJfFPiVieBdCqwLUoD5IaBKM3TgDv0nPs3pt//kFNFu0bu414IYD83gEMuCpycTJ9out+rbODRAJRswl1OojFWGWjuUKP7yTHZLIMhviNRPOkKwBiYmP/z6Ow5YS5ZU5g2KJm+W5VXsgQITxYzH1fuQEAgvyBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m2WY8ADM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D5E5C113D0;
+	Thu, 13 Nov 2025 19:50:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763063101;
-	bh=0VwKaYc35bZVUgu90hr/jsC2a+mJC8giJD4+WvmKtmE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CYdJIPPSOEOvnf/bgsK11R2E89RQ7+vEc5reOI2FhvVe9UVPfAItJfBhMQSYjoGv0
-	 TNXFpYwpGAm3kQazKFBeEFhmJBXOw2jeikG1SNneO4gp0FOhTlV3pYjUDrryqGGvVW
-	 cF5VIdqba1jBzZ6YvMAoSjLCEVCBO8pk8A10cnNxpONJ1ru5wnLwbGyKKF/S1cYyFK
-	 kyt0oasNjxwpqKj75d72zVvVJgRpLLL++cfso3ieHF0qj4Hasq9dUqbELt+sp1roY3
-	 W1mhVVQ/6D80E7ChaldiPuY4sQVYEzinVKabCn9zyBlXxO0pqxcAgaPojRyQZWFrVk
-	 9FNGg4ljOwW3w==
-Date: Thu, 13 Nov 2025 19:44:52 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Xingyu Wu <xingyu.wu@starfivetech.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Maud Spierings <maudspierings@gocontroll.com>,
-	Andy Yan <andyshrk@163.com>, Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH RFC 01/13] dt-bindings: soc: starfive: Add vout-subsystem
- IP block
-Message-ID: <20251113-irritable-unfold-da619d52026c@spud>
-References: <20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
- <CGME20251108010453eucas1p2403ec0dd2c69ae7f3eabe19cf686f345@eucas1p2.samsung.com>
- <20251108-jh7110-clean-send-v1-1-06bf43bb76b1@samsung.com>
- <20251111-massager-twistable-1e88f03d82f8@spud>
- <20251111-unsaid-rockslide-67b88b2e34bd@spud>
- <0d8e3a626b037dd348378e5ebca8005c1e715871.camel@icenowy.me>
- <20251112-skating-robust-81be8dee0a8b@spud>
- <1d54524d7ef939232b4512ca59c78794484103ca.camel@icenowy.me>
+	s=k20201202; t=1763063419;
+	bh=l8KIsccA1YWYWTLWU7e76Frhe8QvZs+opM2EpB6tHZ8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=m2WY8ADM/g1lyTomMRPfayjqUwxzke0dwvaW2gfk0DIkhMALXqbOIpT6ui0VISuHl
+	 F0QPjwRM42rd4/zkh3Me6bt5k6rnVnWS0MzK/hqIZXt0ZKxAhJepJqhS56j4+I0PUw
+	 cyywHcVIn0/asyJWvp1Rkwt9POhC/pjY6ICzPCuOiajGbY5uLi2kOGIkpOxlUXH6da
+	 BNBswYYAS7AuRk2n3jUiIMXL4CyYG09KUYgiGZ6oY8LJPQNKawy7ROMdIYxqPD+/8Y
+	 ltrCJNd3a9IIwxmctChE3GV9riHmETETkV2d90mSLgWe3Tx8JSUxnMSxYd1EFhb2bv
+	 N/LiUlgu/tR3A==
+Message-ID: <3add6c9f-1bcd-4ec7-ae5e-ba1e67c5087d@kernel.org>
+Date: Thu, 13 Nov 2025 20:50:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ts3gmjGSebbDWFBm"
-Content-Disposition: inline
-In-Reply-To: <1d54524d7ef939232b4512ca59c78794484103ca.camel@icenowy.me>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: realtek: Add Kent SoC and EVB device
+ trees
+To: Yu-Chun Lin <eleanor.lin@realtek.com>, afaerber@suse.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
+ james.tai@realtek.com
+Cc: linux-arm-kernel@lists.infradead.org,
+ linux-realtek-soc@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cy.huang@realtek.com, stanley_chang@realtek.com
+References: <20251113123009.26568-1-eleanor.lin@realtek.com>
+ <20251113123009.26568-4-eleanor.lin@realtek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251113123009.26568-4-eleanor.lin@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 13/11/2025 13:30, Yu-Chun Lin wrote:
+> diff --git a/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi b/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
+> new file mode 100644
+> index 000000000000..0989afcbde67
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
+> @@ -0,0 +1,129 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+
+Odd, why do you want GPLv3 or GPLv4? GPLv3 has quite strict
+requirements, so I hope you know what you are doing and your legal
+understand this.
+
+> +/*
+> + * Realtek RTD1920S Smallville EVB
+> + *
+> + * Copyright (c) 2024 Realtek Semiconductor Corp.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/thermal/thermal.h>
+> +#include "rtd1920.dtsi"
+> +
+> +/ {
+> +	chosen {
+> +		bootargs = "earlycon=uart8250,mmio32,0x98007800";
+
+Drop bootargs, I asked for this last time. That's debugging.
+
+> +		stdout-path = "serial0:460800n8";
+> +	};
 
 
---ts3gmjGSebbDWFBm
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 13, 2025 at 08:48:33AM +0800, Icenowy Zheng wrote:
-> =E5=9C=A8 2025-11-12=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 18:36 +0000=EF=
-=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> > On Wed, Nov 12, 2025 at 02:34:39PM +0800, Icenowy Zheng wrote:
-> > > =E5=9C=A8 2025-11-11=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 18:36 +0000=
-=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> > > > On Tue, Nov 11, 2025 at 06:18:16PM +0000, Conor Dooley wrote:
-> > > > > On Sat, Nov 08, 2025 at 02:04:35AM +0100, Michal Wilczynski
-> > > > > wrote:
-> > > > > > Add the dt-binding documentation for the StarFive JH7110
-> > > > > > Video
-> >=20
-> > > > > > +patternProperties:
-> > > > > > +=C2=A0 "^display@[0-9a-f]+$":
-> > > > >=20
-> > > > > Personally I'd like to see these being regular properties,
-> > > > > since
-> > > > > there's
-> > > > > exactly one possible setup for this.
-> > > > >=20
-> > > > > > +=C2=A0=C2=A0=C2=A0 type: object
-> > > > > > +=C2=A0=C2=A0=C2=A0 description: Verisilicon DC8200 Display Con=
-troller node.
-> > > > >=20
-> > > > > Can you add the relevant references here instead of allowing
-> > > > > any
-> > > > > object?
-> > > >=20
-> > > > I don't think that if you did, this would pass the binding
-> > > > checks,
-> > > > because there's no "verisilicon,dc" binding. I think I saw one in
-> > > > progress, but without the soc-specific compatible that I am going
-> > > > to
-> > > > require here - if for no reason other than making sure that the
-> > > > clocks
-> > > > etc are provided correctly for this device.
-> > >=20
-> > > Well I didn't specify any soc-specific compatible because that IP
-> > > has
-> > > its own identification registers.
-> >=20
-> > I still require one because I want to make sure that clocks etc are
-> > handled correctly. You can ignore it in the driver if you wish, but
-> > when
-> > the next user comes along with one more or less clock, I want the
-> > jh7110 one to be forced to use the correct configuration.
->=20
-> I don't think for those generic IPs requiring a SoC-specific compatible
-> is a good idea.
-
-I disagree. If things are complex enough to end up with different
-numbers of clocks or power-domains etc on different platforms (which I
-believe GPUs are) then I want one for validation purposes on platforms I
-care about. What you do in the driver is up to you.
-
---ts3gmjGSebbDWFBm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRY1NAAKCRB4tDGHoIJi
-0k9zAQDvbUM7s4AEGxVxu+wdxmQIgr0MmVDfS6YxVkmZ+4CJIAEAiwMj6RElCUx6
-g7Zzf1f3tUc15pHEt8NIVOAt/SqlRQc=
-=tccX
------END PGP SIGNATURE-----
-
---ts3gmjGSebbDWFBm--
+Best regards,
+Krzysztof
 
