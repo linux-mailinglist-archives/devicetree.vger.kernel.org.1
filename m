@@ -1,323 +1,171 @@
-Return-Path: <devicetree+bounces-238107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32DCC5759A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:15:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F67C575CE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:20:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6F9814E33A7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:15:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E38104E1BF1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4719D34DB68;
-	Thu, 13 Nov 2025 12:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CCB934DB62;
+	Thu, 13 Nov 2025 12:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="f2kky85F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lcuaqM7F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012033.outbound.protection.outlook.com [40.93.195.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 455AA2EA470;
-	Thu, 13 Nov 2025 12:15:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.33
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763036109; cv=fail; b=Vco0T4F68pIETFc5thw9Fq6H1M9wW5uJbVLtXlidFSPlUKj6WjGIrTSnv3u8bY5YRpPxfhCLK72Pv9HNAmYA9SlFutlQ7wLVS/Jq87pdbEfNL1v/YnF2fcErdSDBRNZ52U/tpLKWKeBockkAQwpisdis9zLKroPhTrvXxzWXrn4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763036109; c=relaxed/simple;
-	bh=/+jZlzx/QfmNjnSGbO+grUfslORX52XMktO1fosd77s=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Gyfa6RDgBVvmgU653HEpkICEi8wbbs358xRQ+VqQdv2tMjAWrximR1zAWisUbVCDeNMk+VFyCOgLLYNAJiESi1IO/IQhlyIJa5dvnbE1utoR/8dWHoXWKW/RAHxRXHxdKZ7oGrRoyro4gSJOTY/SS5Q3fr2rLeopZy4zUIuPSSU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=f2kky85F; arc=fail smtp.client-ip=40.93.195.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ervb7l2Hse0FTKr0qgBGa2wBHqWtYPPBlqtcJh0bMX9JW9fex9J4DQauXKTIja8v0bEhh0XiVpkBGNQc5yovHiBkjO+ezsRnIrtFlHfQMqGUHYfzqz0TLz8g/917f4KXOUnMsTJbfaXTvI8sFdOwP2MvSESddQLqUosbITZlrcmrg1RLAx7b4AxhS9Zwc8Ay6zPsZg/7MxaJj9Y7ZrcrkPR0YY6dadOK+ywdJkXlSu3BipNJav3irkBz85RR4fl/eXngjpVghdZOYfn8apP2uenkisJHWT8dFXYHm5OqAJpO2Te5Gl1lDL7rYS75zuFTxWuaRtP3U/EnFZh51gH8mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kni+uprTvh4HbnOvPSWuU/+R6LdqI9scCjXvyN/5gVI=;
- b=A96uMaSTVYcXfCOYqdTr6RsJlrMkPd+gd41X54OQuxqiiQD10aTv4lgyFo5UFtah91Xek0DCNqZ1g+dqGaBlcaMhXW/PL/yqLRAUoLxA91qIJvRuwqeanUEqyyjHwUx5RiNDAhtvovkyOksBjehzD+cCjFvPHX3+XidxqAPoeaCyaLIJ2qqkF6mVuAzOE29QMrs8NSQoG4xN6N3/m0pzhbBG4iJKi0O6OAa8HNBj5KVqni/AfkRMrXG7CKFmiR8Zq/xqFaIqhAXTULj9St9529iJuUZWkze4HOspJDP1Vm6Gdx5ewM1p4yyi7hjLOsRDoKAz6Xuwx/U/z4xzxarDOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kni+uprTvh4HbnOvPSWuU/+R6LdqI9scCjXvyN/5gVI=;
- b=f2kky85FlUpUxepTpICTD3kLWOTBoCXpWKHL/5FrSNqLmzLP6TCaZMOuYTXsiJ4kzzrOUSLHBo1hi4HE2ZySfjMpKlNkV3VULGs/St9R75Of9Vt2iXDkpKIcceNrPxObjlXoV3keyIjCEH4af71oqy3pM5JPghMDZqcA4W7P3RY=
-Received: from MN0PR12MB5953.namprd12.prod.outlook.com (2603:10b6:208:37c::15)
- by IA1PR12MB7712.namprd12.prod.outlook.com (2603:10b6:208:420::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Thu, 13 Nov
- 2025 12:15:02 +0000
-Received: from MN0PR12MB5953.namprd12.prod.outlook.com
- ([fe80::6798:13c6:d7ba:e01c]) by MN0PR12MB5953.namprd12.prod.outlook.com
- ([fe80::6798:13c6:d7ba:e01c%5]) with mapi id 15.20.9320.013; Thu, 13 Nov 2025
- 12:15:02 +0000
-From: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, "Simek,
- Michal" <michal.simek@amd.com>, "linux-usb@vger.kernel.org"
-	<linux-usb@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "git (AMD-Xilinx)" <git@amd.com>
-Subject: RE: [PATCH] dt-bindings: usb: dwc3-xilinx: Describe the reset
- constraint for the versal platform
-Thread-Topic: [PATCH] dt-bindings: usb: dwc3-xilinx: Describe the reset
- constraint for the versal platform
-Thread-Index: AQHcU+zDcCWaPQULXkSxJV7QRsA8c7TvZ26AgAEcEiA=
-Date: Thu, 13 Nov 2025 12:15:02 +0000
-Message-ID:
- <MN0PR12MB59537C0F520B40977620BFCDB7CDA@MN0PR12MB5953.namprd12.prod.outlook.com>
-References: <20251112155430.1326426-1-radhey.shyam.pandey@amd.com>
- <20251112-bagging-diameter-4ebab1f9ed45@spud>
-In-Reply-To: <20251112-bagging-diameter-4ebab1f9ed45@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-11-13T12:04:44.0000000Z;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN0PR12MB5953:EE_|IA1PR12MB7712:EE_
-x-ms-office365-filtering-correlation-id: 3a260c1b-9a15-4e10-dcba-08de22ae45e6
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?I+CBIQV+uDa92p9qUvMITFbQ6gM1EgjBUgwVS0aBZ9ecqSBqJAfBNQfDZYbn?=
- =?us-ascii?Q?z4mHX/XppjMRg6SZ5FU5rVuxu6/OtqrnRBhsPxYmFTyTwf8DCeHg3c1MrFqO?=
- =?us-ascii?Q?ZxTZvzVzZMzTza3Kkfkr7i4ZpxBgaCwjlQKcBjBieFPG5uJpCs9wgIlkuWEF?=
- =?us-ascii?Q?X0ELznjsuXj/NGjAIox2A73reCsOLwQgglBkmo5jlPeg1xSULNB0OnMxw0np?=
- =?us-ascii?Q?ldsmxh6ZNko6pXeNfT2sLQ/kNi2irJCTOoobLNc44DGlv8KNKDIr2F1XhnoU?=
- =?us-ascii?Q?Xz7Tyyba9QS3n9VRkP47T/l379bP2xBqYKTrftH84n6UsvcBLgtgQ1uDQzPN?=
- =?us-ascii?Q?BG35qutbtXoQd4Sv++6wcZKMsk4vH9tfDYcezPoGwhQpDieOYWY6fz5IV1IF?=
- =?us-ascii?Q?dTXmK3m38LTYbVHJdctjaatdX8JskdnLzFWiM56aWfsn4MxQQMDSIx+XaS/v?=
- =?us-ascii?Q?uPtIh0NAzvPKV4hDEMcQKDq/GeJB0dBRvpXGRSsqnYeCUK0ewzPPjtZwl56u?=
- =?us-ascii?Q?6jvvOcFF8CZos1sSfkYb+xU7s3Xln1AfwqfV5+8jYexnYOWPcUy9OUnHHUB/?=
- =?us-ascii?Q?nPm87YAJnaSMGCsqXY9nnOpNrneYNZlXA5WXtmAYdyfH5yh7mdLuD54cJYbw?=
- =?us-ascii?Q?eu5n3DihHwN0hxxBDR0s0xzsGTBor0usItTI+fUDwUkOOTuUIZXLxc08unv6?=
- =?us-ascii?Q?Q5olQtVQedCYXXRgg9e6uFhPyhEXG1Dik9f0aIY7KXkAZ8gTvNei/yItntum?=
- =?us-ascii?Q?Gnav7JmjhbQcmuphFWIoRdCKwnmltaRU9UGPl55eCzVMUrFmUJHpAz0XxI40?=
- =?us-ascii?Q?Q5H4RS97pbsL2O84y2ajspNh3SiQV+bMFAQGJJzaHtzjEICnymw20J8imoYD?=
- =?us-ascii?Q?ud4gSKSTzWXrabvaKBreeW5heZusbcLbym7F69DVP35XpBUpjDZDr7T/D7NR?=
- =?us-ascii?Q?BmUDRMACI8MTi2n+6G/2SDtSxlqKjtcxL0xQNPW4izBET7CcyfJVkKyyLnsq?=
- =?us-ascii?Q?T5exUNQeLf4U1Ji7FjlYXwhwtWSTKU/1n8jBccf5AvERSOl0GeDSg8MV1GXF?=
- =?us-ascii?Q?TFPYytcEZ4pLk788vOUREa1r3MrFl3L5avUWNYYp7MKUci5dzz5+gA8I8x8O?=
- =?us-ascii?Q?+THCBRCKVe/4fZCrXHpCRyU5zIS1eL0DXo+f8y26LXO0nBS1niXMlsMQL7Fu?=
- =?us-ascii?Q?FpZ0VHdLdgeM++wqy1YcWr4h7qAdBkZ4w+HPAeTm9hnvs5aaxOoN50bVDUcw?=
- =?us-ascii?Q?A87rl138z1csmd2GnLg48MIQMwZ9JgJ8F1ijFKa9V9EYiJcNNT3epSW+F38W?=
- =?us-ascii?Q?uBgCabvmmq/21BPqm+DSsj49A/4xat5pScYevE6JQdGPA+nMRj7T0nvaG9Ds?=
- =?us-ascii?Q?SckIYsZ1qP96sQtIMRN1kNRAEiDVq50ElG1Ek6Tg+mK4dYUMbdTT7XD4GDEO?=
- =?us-ascii?Q?eiEy+dOahwJfzRTXmGv8ngtfacJT0wYLklZzT/8wXugi1KXJnpVsF7wYMwiG?=
- =?us-ascii?Q?DnjJKtQIYC0BFZWs4nJge+xtDiXR9mshAlZQ?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5953.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?s9KPBxiWl6k1rf13Ywxj5OEKyw3U8SMs70a/mqc9fy7TdrmMxAstBmLT0i5O?=
- =?us-ascii?Q?3wnc489f/N1ueeuxqvDP0SQWxLq/cQNAXNn4fn37Nk8HMHqljbINHECidUiJ?=
- =?us-ascii?Q?lbOng+Dq/VUWn3BkXdGwKMh8frozzIODd/RypyNd5mVIrC2yi3m3qBu9QuD8?=
- =?us-ascii?Q?qBFhFCOrMt6ObU5rd8iKqNWHuR8opzziUnzHN/FM+z/9Lbz5sjIwki3nOEi9?=
- =?us-ascii?Q?+HeL5ZhL/pwATQLreU9GJPKcJq/ltryUXEvSJ1XvHXuBeEQQCuzvXi/6eRc+?=
- =?us-ascii?Q?pKkYF3iU52Lj7RPhNIQOeOJzoNbEL1nh077rPA9fHjUm0oh/jFXImS1L1kLx?=
- =?us-ascii?Q?6O7hFKQDDhs1bPt9/+kO6YXzRkQkv6oxLIJlyXSQjw3mLaakPEgr6mUovQop?=
- =?us-ascii?Q?74dfwOInON0FykIRPvAyJhuuolbyTnhz26+q6C/PucvgjrXh1Eky+aozFuGU?=
- =?us-ascii?Q?sFI4g7mYdhQKC9SHR6gyocRr1Jyo7qWlyZSvOq1EuCcsIWlU5aTYfr6kKD7Q?=
- =?us-ascii?Q?fJq/m1BWPfCzLlO+Rqgm9/n1Ttfh3voGA141TC2YdoNMn0QafLcxdmP8t2Cg?=
- =?us-ascii?Q?8aWtrKNuw/8GnNrB/qywpbADHxHI8C4kO1D3w8H5mCef6fOxP9iEE8wi5Nk9?=
- =?us-ascii?Q?vVkaUoccEJaqSt5Vl/9GZV/Dg7i9cqMrOVqgLhwRLYA7nTuX0bAyEszkSazu?=
- =?us-ascii?Q?meqP6gdoBMpi6Ec3DPRZPjvBqMNSLAuO85wbw5Y+1wDFLTMEFDlAzvOhnSLE?=
- =?us-ascii?Q?sf2h1b/1j8lQqhcjTK82YQNcxPg9sb9XBIhWZteFQDVvrTiklfu0QhGc+AIQ?=
- =?us-ascii?Q?WadPlngsNKy26ZU6YjLcEnXX3+u7tk44cYYi6fiUOHEyvIO7ZV+a7pmh74qI?=
- =?us-ascii?Q?tTG/caZn0xpVvIfyA+RX9Xz+Us2AUqIOwWlBWET1wm7z4BFlGqn12BCsYDcm?=
- =?us-ascii?Q?uk8Omd0Dwa8iV+4hcatto45jHkyM2eN7oyI+RpW93f1Q1ZU+vlv9gc+p7DxS?=
- =?us-ascii?Q?5MvZYyWyABiwiCMs0qB0tUi8zF0lHiB6qXNyIlj5BFU0jQ9hmnQaFy91sb0R?=
- =?us-ascii?Q?yuCq/2gBZrmW3XnUIm7w4pPYL2lgqnMj8XBgZ7pzMIqeRsAtc0Vpoxgtqzu1?=
- =?us-ascii?Q?GAdAmRfMIC9dW8yUz5uOkJ7uh6+V5n1Fcxoi4pPrcj4R7r7yfOXewnldyicX?=
- =?us-ascii?Q?5bAeybgpSBPc2Ztxs98ugy7OAQ35WzI9Vvk214/QuTAGyBYMJtXxslHv6DVw?=
- =?us-ascii?Q?aeP0Q3tAZ7JRTl7kBYDU0lMYrKoNzqI1yT9tDkuzMxXlxx1KqM6g3ZlXcBf7?=
- =?us-ascii?Q?z2rA2/ylk/0+/I0pDw1uaNQVa4PjIAqwdPAb+QDkcFy4RX5Myoka+S0xmRyO?=
- =?us-ascii?Q?zv75bTkXrZeYlnQWx2b9y4nzTUcslbDBxXFaVYtLvUglP9dx7rsH5OLPJ4uf?=
- =?us-ascii?Q?yeNn9TXyx0JB+hG+QzVEEqmt9x80Bcx4x2C6+OnpS6R/EVOyY9oAdXACik4N?=
- =?us-ascii?Q?cUPjYXFQV3+JxD74KuSJaTXBZX64NfbX1nw+FdLQc2gyx+aa5ljYDPnvVDNx?=
- =?us-ascii?Q?7/e/1ZfAgRyVkG/FNkE=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915E32D879F
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763036394; cv=none; b=ekpYrNA5lOyMEBqn5KRnTZRgSmwjgPCnNeH3rnod1u8UOlG4TMrv5adJp+5fhByLRj8oRWQ2cGI3x8L5FN9x4hrPTun61lXRACoMEJSjcZWzxqVRIABWIwUZ3hF4kuCqoHdY7hkV/pznONcX9+vCvTornWWbWBSch2xJJEKPzlU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763036394; c=relaxed/simple;
+	bh=hFrCmasW3dJTdQBRMZd6hGI1h3snbWI80Lfv91M7y5Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A9C15oVx1P4QY1cf1DON30tQ2nRtGe3bkygIV501yMDvz9AbH4vWfRWzBYeygzuNAlLjDBNT8w2VBW8jPn9DVYdLujtCFV/+6eAcIYhk4ylEckWGeUcdTxPapnBugk/0GKgI/iyRS46BFNV+pks0O1RQJyLTyudqw0wEH0QEpAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lcuaqM7F; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47721743fd0so4470255e9.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 04:19:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763036391; x=1763641191; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=duoUSRGaQi6NsgJv/pi2xphHVVy8YVSx2yc+RI8LbNM=;
+        b=lcuaqM7FJqIR2jCcmr+onbMPfm33h254BG2NZIL48yjHPaG7uVxl9tGItTF4sC0lV7
+         KKpknjevQNwMKL+dmuJM8MNTT2EWsa00yQirXEgwUvMoUyao54q5a4nRCn63dLIzQUwv
+         zQeLJVezreN6Xe5cJo2tPt6RG04DrBOmIYgSTuj2DCx7AGjUJQq9FI0ZWmTWDOt02r5s
+         yx791dnAi+YIkast4kjoAjFQp3M3vk9OGUNchTLN5RSNnj0SX3Up0L2lR9qbj4FWg7W0
+         vWtkS/0Q0xnNVAStOeDBdyX/JEBfYm0UbDLirSpW59TcuXXAUELVHAvjR5bW3yxnJto+
+         /3UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763036391; x=1763641191;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=duoUSRGaQi6NsgJv/pi2xphHVVy8YVSx2yc+RI8LbNM=;
+        b=lkXCTWL08leizbeF/GdbnQLZloXYufIig7c1UaGGPvo3tuihOokW/a4EyJhuENupwd
+         KA2attJB18ohwV/cmMjK8BFZ/LLQY1eeH1VC6Uu1Sh0Kav6aaGUG6qOASh4rU3XjSK7d
+         KNpGavFkkXWUe+aB3tKYvBZncCMbRQjHo60/Mz7VvM5qOpKm/LFRK+p8mDgrEeiT1sT5
+         Os862cy+k5hlX7RlUAI0nn76wngESdEqClvJTnnDgvKkgJTDm7H860389kvW5aaAB41n
+         U3Y26Dc131XmK5pQFZpAa1uXL1lLS+JlZYlIc7x2W9+qIULg4hP9kx8LxdQOG/NQnsdk
+         C6EQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWjQhlfYefVEtyQncQC4ryVH0qjfGnN1WmGFOsmODN+mQSUbisYB8HvdzdyuQ0xzojnF8SyAnlDmsRF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxmn3034CXHykxG4tIKaZDi+9+1WeluOE84tFtVPkPGTH7eapd6
+	eg+h8lEG+5X3Xbhrc/dX03tWQ6Magou5I6lkQ+Glhq98zateXWAPkuQD199HJQf6yF4=
+X-Gm-Gg: ASbGncvaRSuXFa+P1qn5nS2C3zWrOgJSZlfuke8KYz5nY147FyyW3rVgKa0po5onXRm
+	oWOpn/uypma+ZefqkVrxBL84OSfYw3ldiZFSdug2dT5JK5tYNn81qB1lPI/VhWuCSnpXtURQDiK
+	PpV66YXCmaiBj1unfQrErPzlt/aH/2ejrq41qkC2XSsWkUqlcgrANrLuBkg7ncnBt6LpGE3iEht
+	HZqlPX4WeAWgpUr8H3WK5oPW1FHTCIuQNyP0lE11FJ7A5KOP890xzEQvcBKNxL5MGf7hVN2hnsp
+	MnUkZKLvhY1Dau8n01N/PEcVAgtlwToVUQZWam9Po1OMAJV2O/ayFPE0OoMKkhJCCFKnj0oZ4xX
+	/GCvAp2NR1mt1E7Dzfmp92qK3QTRCZUZIFVpzOlJ6yAl+YxMoOeiJNgvdj2shTWAOr50w5L9e29
+	qefE+sn3JUHFAB
+X-Google-Smtp-Source: AGHT+IH8T4ZyL5HYmAGvNL/oZLRRXU8OO4RxTJEHDGnN0oDjnzobpXuL2pV25qu0GlPmyxzXDorawg==
+X-Received: by 2002:a05:600c:19c7:b0:477:7bca:8b3c with SMTP id 5b1f17b1804b1-477870c5352mr61064035e9.19.1763036390818;
+        Thu, 13 Nov 2025 04:19:50 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff23:4430:e68d:9e37:1627:2b9b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f19664sm3679227f8f.36.2025.11.13.04.19.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Nov 2025 04:19:50 -0800 (PST)
+Date: Thu, 13 Nov 2025 13:19:48 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 12/14] remoteproc: pas: Extend parse_fw callback to
+ fetch resources via SMC call
+Message-ID: <aRXM5OfxYTt2a8yj@linaro.org>
+References: <20251113-kvm-rproc-v7-v7-0-df4910b7c20a@oss.qualcomm.com>
+ <20251113-kvm-rproc-v7-v7-12-df4910b7c20a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5953.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a260c1b-9a15-4e10-dcba-08de22ae45e6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2025 12:15:02.5214
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JEoPRS20qn9U2Zs4fx7cri9jIkU/4+3epyHg0lPUL1kECL28cN9mbgZLvtsQI/XN
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7712
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113-kvm-rproc-v7-v7-12-df4910b7c20a@oss.qualcomm.com>
 
-[Public]
+On Thu, Nov 13, 2025 at 04:06:02PM +0530, Mukesh Ojha wrote:
+> Qualcomm remote processor may rely on static and dynamic resources for
+> it to be functional. For most of the Qualcomm SoCs, when run with Gunyah
+> or older QHEE hypervisor, all the resources whether it is static or
+> dynamic, is managed by the hypervisor. Dynamic resources if it is
+> present for a remote processor will always be coming from secure world
+> via SMC call while static resources may be present in remote processor
+> firmware binary or it may be coming from SMC call along with dynamic
+> resources.
+> 
+> Remoteproc already has method like rproc_elf_load_rsc_table() to check
+> firmware binary has resources or not and if it is not having then we
+> pass NULL and zero as input resource table and its size argument
+> respectively to qcom_scm_pas_get_rsc_table() and while it has resource
+> present then it should pass the present resources to Trustzone(TZ) so that
+> it could authenticate the present resources and append dynamic resource
+> to return in output_rt argument along with authenticated resources.
+> 
+> Extend parse_fw callback to include SMC call to get resources from
+> Trustzone and to leverage resource table parsing and mapping and
+> unmapping code from the remoteproc framework.
+> 
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> ---
+>  drivers/remoteproc/qcom_q6v5_pas.c | 60 ++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 58 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> index 9feee2cb1883..4d00837db58d 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> [...]
+> @@ -413,6 +414,61 @@ static void *qcom_pas_da_to_va(struct rproc *rproc, u64 da, size_t len, bool *is
+>  	return pas->mem_region + offset;
+>  }
+>  
+> +static int qcom_pas_parse_firmware(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	size_t output_rt_size = MAX_RSCTABLE_SIZE;
+> +	struct qcom_pas *pas = rproc->priv;
+> +	struct resource_table *table = NULL;
+> +	void *output_rt;
+> +	size_t table_sz;
+> +	int ret;
+> +
+> +	ret = qcom_register_dump_segments(rproc, fw);
+> +	if (ret) {
+> +		dev_err(pas->dev, "Error in registering dump segments\n");
+> +		return ret;
+> +	}
+> +
+> +	if (!rproc->has_iommu)
+> +		return ret;
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Thursday, November 13, 2025 12:38 AM
-> To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>
-> Cc: gregkh@linuxfoundation.org; robh@kernel.org; krzk+dt@kernel.org;
-> conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>; linux-
-> usb@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git (AMD-Xilinx=
-)
-> <git@amd.com>
-> Subject: Re: [PATCH] dt-bindings: usb: dwc3-xilinx: Describe the reset co=
-nstraint for
-> the versal platform
->
-> On Wed, Nov 12, 2025 at 09:24:30PM +0530, Radhey Shyam Pandey wrote:
-> > AMD Versal platform USB 2.0 IP controller receives one reset input
-> > from the SoC controlled by the CRL.RST_USB [RESET] register so
-> > accordingly describe reset constraints.
-> >
-> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > ---
-> >  .../devicetree/bindings/usb/dwc3-xilinx.yaml  | 43
-> > +++++++++++++++----
-> >  1 file changed, 34 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > index 36f5c644d959..cd0cc9da242f 100644
-> > --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > @@ -50,17 +50,22 @@ properties:
-> >      description:
-> >        A list of phandles for resets listed in reset-names.
-> >
-> > -    items:
-> > -      - description: USB core reset
-> > -      - description: USB hibernation reset
-> > -      - description: USB APB reset
-> > +    oneOf:
-> > +      - items:
-> > +          - description: USB controller reset
-> > +      - items:
-> > +          - description: USB core reset
-> > +          - description: USB hibernation reset
-> > +          - description: USB APB reset
-> >
-> >    reset-names:
-> > -    items:
-> > -      - const: usb_crst
-> > -      - const: usb_hibrst
-> > -      - const: usb_apbrst
-> > -
-> > +    oneOf:
-> > +      - items:
-> > +          - const: usb_crst
->
-> Why do we need all this oneOf stuff if both have the same first reset?
-> Can't you just set minItems: 1?
+Just do "return 0;" please, you know already that it is 0.
 
-Thanks. I have now set minItems:1 and defined compatible based
-reset min/max constraints. Doing some more validation and
-will send out the v2.
+> +
+> +	ret = rproc_elf_load_rsc_table(rproc, fw);
+> +	if (ret)
+> +		dev_info(&rproc->dev, "Error in loading resource table from firmware\n");
 
-Example:
---- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-@@ -47,6 +47,7 @@ properties:
-       - const: ref_clk
+This is odd, you log an "error" as dev_info(), so is it an error or not?
+If it is expected that firmware images may not have the resource table
+in the ELF, you should probably just silently ignore this error (or use
+dev_dbg()).
 
-   resets:
-+    minItems: 1
-     description:
-       A list of phandles for resets listed in reset-names.
-
-@@ -56,6 +57,7 @@ properties:
-       - description: USB APB reset
-
-   reset-names:
-+    minItems: 1
-     items:
-       - const: usb_crst
-       - const: usb_hibrst
-@@ -95,6 +97,28 @@ required:
-   - resets
-   - reset-names
-
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - xlnx,versal-dwc3
-+    then:
-+      properties:
-+        resets:
-+          maxItems: 1
-+        reset-names:
-+          maxItems: 1
-+    else:
-+      properties:
-+        resets:
-+          minItems: 3
-+          maxItems: 3
-+        reset-names:
-+          minItems: 3
-+          maxItems: 3
-+
-
->
-> > +      - items:
-> > +          - const: usb_crst
-> > +          - const: usb_hibrst
-> > +          - const: usb_apbrst
-> >    phys:
-> >      minItems: 1
-> >      maxItems: 2
-> > @@ -95,6 +100,26 @@ required:
-> >    - resets
-> >    - reset-names
-> >
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - xlnx,versal-dwc3
-> > +    then:
-> > +      properties:
-> > +        resets:
-> > +          maxItems: 1
-> > +        reset-names:
-> > +          maxItems: 1
-> > +    else:
-> > +      properties:
-> > +        resets:
-> > +          minItems: 3
-> > +        reset-names:
-> > +          minItems: 3
-> > +
-> >  additionalProperties: false
-> >
-> >  examples:
-> >
-> > base-commit: b179ce312bafcb8c68dc718e015aee79b7939ff0
-> > --
-> > 2.34.1
-> >
+Thanks,
+Stephan
 
