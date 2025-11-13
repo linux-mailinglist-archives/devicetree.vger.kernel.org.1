@@ -1,190 +1,154 @@
-Return-Path: <devicetree+bounces-237945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A2FC5602B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:10:56 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2A1C56041
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B9373BA660
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 07:09:25 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E8F23349F4F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 07:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD7A320A24;
-	Thu, 13 Nov 2025 07:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53C732255C;
+	Thu, 13 Nov 2025 07:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="TUPqQrEg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LV3POpON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3E531A579;
-	Thu, 13 Nov 2025 07:09:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7010F322522;
+	Thu, 13 Nov 2025 07:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763017764; cv=none; b=lgPB4I/G6PoLiznIInhoy4EKDu73ITDdpw072RR5LibwTJe2TjiHcn37M1ERcUxjIPQ0vV+w7G+/bmiK1vsLKrLFvYgUs3maLvHbj4gb2P34lXLXZTasiwp9G3M2L/bYI68EDRqdIg0WCMJ9hbW5fBuhvrGmDETBv9X99GHMky0=
+	t=1763017923; cv=none; b=os+q48G0WHwzXye7lH2Rd4s6Ngo3/NOSeGvxIj9vKwd+sPMI/nSHlLUbWDCk7iYeONxfINeHCMMftaD/7oRYoal0k20AhAZF8PVbHK8LZb4BVG73+HikGV3v/z8TSJuU4DfsjIyaQAMx14j9Yr2LJoDS0vbpZLw6HI0ToEuuEDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763017764; c=relaxed/simple;
-	bh=40REHCCklSt6AflWpmU6hsAu2lQyenxuwXU32WpLZ9k=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=Net+v/yI4Y8TGs3USu7Nk1mjeOntRKF4WAeHW/SSTHNl3rLsH3FSNoMlKCyq5P/wASe3/Ev4Zg3/paXPfZwuTjyMB89q/Nj/ST0+L3eHKR8en/7omCjW0IlZZRQrqGg859gyTNVMfipRohlSw2/TDxpWbZdNiDnVxO1HQ87nHBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=TUPqQrEg; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=a/zUORiLYgVJvvIFDouSZHVvh8fh4Yl0V3NhiL1OspU=; b=TUPqQrEgLdDmODb5AuADy6DhB7
-	hw+HPx/o5kfORwW/2R41iZBKOhMSLy8HFaf4tDSIvDFBm5y6fFR5ZTVsftWRnhyGEruSXLsSaxWR2
-	UUOnF2kMYvX9fbjazjhUa5NwiPATab2SQWXl4Ff87gkzotuLm92aFk3mTQ1ZEglKV4VJqDGKGSJFU
-	R1GtAve/PluNCIvACBIrAnfJ9OifdChRj3/80vEoEF/X42OXv+5G8k/Y0mXr7I/9JR/AMi7/KYl1o
-	63aVH3cLWINS0VswbGNk+mtZAQKnh6Ggy1ZmF9CWeR25pEHk4G1ppqZlVkWvDEyRrdML5hIWgPjXL
-	iq/VOShQ==;
-Received: from [122.175.9.182] (port=34661 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1vJRSJ-0000000G9Ls-3fpH;
-	Thu, 13 Nov 2025 02:09:20 -0500
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 376581A64E3C;
-	Thu, 13 Nov 2025 12:39:08 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
- by localhost (zimbra.couthit.local [127.0.0.1]) (amavis, port 10032)
- with ESMTP id ckcJaN1Y1_X8; Thu, 13 Nov 2025 12:39:06 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id C8E841A64E3B;
-	Thu, 13 Nov 2025 12:39:06 +0530 (IST)
-X-Virus-Scanned: amavis at couthit.local
-Received: from zimbra.couthit.local ([127.0.0.1])
- by localhost (zimbra.couthit.local [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 8GR88C0sm3ek; Thu, 13 Nov 2025 12:39:06 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 9B2661A64E3C;
-	Thu, 13 Nov 2025 12:39:06 +0530 (IST)
-Date: Thu, 13 Nov 2025 12:39:06 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: afd <afd@ti.com>
-Cc: nm <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	tony <tony@atomide.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	linux-omap <linux-omap@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	netdev <netdev@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
-	danishanwar <danishanwar@ti.com>, pratheesh <pratheesh@ti.com>, 
-	j-rameshbabu <j-rameshbabu@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, mohan <mohan@couthit.com>, 
-	pmohan <pmohan@couthit.com>, basharath <basharath@couthit.com>, 
-	m-karicheri2 <m-karicheri2@ti.com>, parvathi <parvathi@couthit.com>
-Message-ID: <1253388251.49228.1763017746545.JavaMail.zimbra@couthit.local>
-In-Reply-To: <444398864.187812.1762422794296.JavaMail.zimbra@couthit.local>
-References: <20251103124820.1679167-1-parvathi@couthit.com> <20251103124820.1679167-3-parvathi@couthit.com> <89858ed0-58fd-4056-b8af-065c92885a10@ti.com> <444398864.187812.1762422794296.JavaMail.zimbra@couthit.local>
-Subject: Re: [PATCH v2 2/2] arm: dts: ti: Adds support for AM335x and AM437x
+	s=arc-20240116; t=1763017923; c=relaxed/simple;
+	bh=3nN7auRltuKc8nr6AqmVgABE9kGxZ73bqDSf2VD+iAs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ceNU+zf1s/DDxIxb28uul2KmfFfabfhJNJhue4OWiZs3p6usG1hPc1rhbm00SIIiEF1Ht2c+K1ol9MRHcCYublE66okMnRLzqvou8tme4YSXlZE5hV3TVc3io+eGgyJlAgz07x3uizBNcNysTSF9VSrqNHVUWTb3ODPGxwWzPME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LV3POpON; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0159C4CEFB;
+	Thu, 13 Nov 2025 07:11:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763017923;
+	bh=3nN7auRltuKc8nr6AqmVgABE9kGxZ73bqDSf2VD+iAs=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=LV3POpONQ0LBGYBYWqYAXwGQvw+yxhuPJLZzZ2tH55cMPx/gsHVdwaVIGOMc5E83N
+	 +yCLcS43DOOGlXfgewFdg9tg4/TvoJuxNIkP/YCRhp3CgGptkw7SNJmrZZVRDeN49E
+	 klqOFcw/cad6eCUNGbNX+zEJiQL2DGHnq9hrW3pqXG3v8/OxLo6Hi4/NZPW1qPxjw0
+	 MFYZvc9TWkVrpBrQCBo0jaN92DxoXqQrvJTUMKi7HtflTMpX58lYFRUg3wBW/wNze2
+	 V70nyOD/CU9pEgiOnFqmcUAa0d0Ycz9XCzCFE98QN+aRhpqF/IomrVlyhV3+2g/BNj
+	 oR5T+d30pxTEw==
+Message-ID: <33f348e8-87ca-4579-b571-05c033c955bb@kernel.org>
+Date: Thu, 13 Nov 2025 08:11:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: agilex5: add fpga-region and fpga-mgr
+ nodes
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
+ Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+ Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>,
+ Ho Yin <adrian.ho.yin.ng@altera.com>,
+ Niravkumar L Rabara <nirav.rabara@altera.com>, linux-fpga@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1763008269.git.khairul.anuar.romli@altera.com>
+ <9a4ce6b2470328b9326402a2f00ff285be1793c3.1763008269.git.khairul.anuar.romli@altera.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <9a4ce6b2470328b9326402a2f00ff285be1793c3.1763008269.git.khairul.anuar.romli@altera.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 9.0.0_ZEXTRAS_20240927 (ZimbraWebClient - GC138 (Linux)/9.0.0_ZEXTRAS_20240927)
-Thread-Topic: Adds support for AM335x and AM437x
-Thread-Index: 5iKEgrqd+6T7XN5cqv4nZpstY2kVHv8fMrJ2
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 
-Hi,
-
-> Hi,
+On 13/11/2025 05:43, Khairul Anuar Romli wrote:
+> The Intel Agilex 5 SoC contains a programmable FPGA region that requires
+> proper device tree description to enable FPGA manager support in the Linux
+> kernel. Without the 'fpga-region' and 'fpga-mgr' nodes, the kernel cannot
+> detect or manage the FPGA hardware correctly.
 > 
->> On 11/3/25 6:47 AM, Parvathi Pudi wrote:
->>> From: Roger Quadros <rogerq@ti.com>
->>> 
->>> PRU-ICSS instance consists of two PRU cores along with various
->>> peripherals such as the Interrupt Controller (PRU_INTC), the Industrial
->>> Ethernet Peripheral(IEP), the Real Time Media Independent Interface
->>> controller (MII_RT), and the Enhanced Capture (eCAP) event module.
->>> 
->>> The TI Sitara AM335x ICE-V2 consists of single PRU-ICSS instance,
->>> This patch adds the new device tree source file in-order to use
->>> PRU-ICSS instance, along with makefile changes to add the new DTS
->>> file for PRUSS.
->>> 
->>> The TI Sitara AM437x series of devices consists of 2 PRU-ICSS instances
->>> (PRU-ICSS0 and PRU-ICSS1). This patch adds the device tree nodes for the
->>> PRU-ICSS1 instance to support DUAL-MAC mode of operation. Support for
->>> Ethernet over PRU is available only for ICSS1 instance.
->>> 
->>> am33xx-l4.dtsi, am4372.dtsi - Adds IEP and eCAP peripheral as child nodes
->>> of the PRUSS subsystem node.
->>> 
->>> am335x-icev2-prueth.dts, am437x-idk-evm.dts - Adds PRU-ICSS
->>> instance node along with PRU eth port information and corresponding
->>> port configuration. It includes interrupt mapping for packet reception,
->>> HW timestamp collection, and PRU Ethernet ports in MII mode,
->>> 
->>> GPIO configuration, boot strapping along with delay configuration for
->>> individual PRU Ethernet port and other required nodes.
->>> 
->>> Signed-off-by: Roger Quadros <rogerq@ti.com>
->>> Signed-off-by: Andrew F. Davis <afd@ti.com>
->>> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
->>> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->>> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
->>> ---
->>>   arch/arm/boot/dts/ti/omap/Makefile            |   1 +
->>>   .../boot/dts/ti/omap/am335x-icev2-prueth.dts  | 533 ++++++++++++++++++
->>>   arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi      |  11 +
->>>   arch/arm/boot/dts/ti/omap/am4372.dtsi         |  11 +
->>>   arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts  | 137 ++++-
->>>   5 files changed, 692 insertions(+), 1 deletion(-)
->>>   create mode 100644 arch/arm/boot/dts/ti/omap/am335x-icev2-prueth.dts
->>> 
->>> diff --git a/arch/arm/boot/dts/ti/omap/Makefile
->>> b/arch/arm/boot/dts/ti/omap/Makefile
->>> index 1aef60eef671..d06dd31d0bb6 100644
->>> --- a/arch/arm/boot/dts/ti/omap/Makefile
->>> +++ b/arch/arm/boot/dts/ti/omap/Makefile
->>> @@ -100,6 +100,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
->>>   	am335x-evmsk.dtb \
->>>   	am335x-guardian.dtb \
->>>   	am335x-icev2.dtb \
->>> +	am335x-icev2-prueth.dtb \
->> 
->> This new DTB looks to be almost identical to the regular am335x-icev2.dtb, to
->> add an optional node to an existing board use DT overlay, do not clone the
->> whole board DT just to add a node. Maybe that is how we hacked around this
->> in our evil vendor tree back in 2018 but do not take our old hacks and push
->> them upstream as-is.
->> 
->> Andrew
->> 
+> This patch adds a 'fpga-region' node with compatible = "fpga-region", along
+> with appropriate #address-cells and #size-cells properties, to describe the
+> FPGA region layout.
 > 
-> Understood. We will review this redundancy and revert back with an update.
+> Also defines specific compatible string for Agilex5 and add Agilex string
+> as fallback for stratix10-soc driver initialization.
 > 
+> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+> ---
+> Changes in v2:
+> 	- All fallback compatible string to ensure driver is still able to
+> 	  initialize without new compatible string added in the driver.
+> ---
+>  arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> index bf7128adddde..06be0b8671c0 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> @@ -85,9 +85,21 @@ svc {
+>  			method = "smc";
+>  			memory-region = <&service_reserved>;
+>  			iommus = <&smmu 10>;
+> +
+> +			fpga_mgr: fpga-mgr {
+> +				compatible = "intel,agilex5-soc-fpga-mgr",
+> +					     "intel,agilex-soc-fpga-mgr";
 
-We have created a device tree overlay file (am335x-icev2-prueth-overlay.dtso)
-that will disable CPSW nodes defined in "am335x-icev2.dts" and enables the PRUETH
-nodes at boot time depending on pin configuration. We will update the Makefile to
-merge it with the base DTS to generate a device tree binary.
 
-We will post the revised version v3 shortly.
+You did not bother to test this...
 
-Thanks and Regards,
-Parvathi.
+Best regards,
+Krzysztof
 
