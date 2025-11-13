@@ -1,134 +1,318 @@
-Return-Path: <devicetree+bounces-237934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8E4C55D9C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 06:51:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB407C55DBC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 06:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F030534C667
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 05:51:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6733E4E3A0F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 05:52:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA822F6927;
-	Thu, 13 Nov 2025 05:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A914C30217C;
+	Thu, 13 Nov 2025 05:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lBOlwr4R"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PoNs5FtU";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="jpHL+7bi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C362512E6;
-	Thu, 13 Nov 2025 05:51:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6AD2FF66A
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 05:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763013074; cv=none; b=LDt4PtRZVC+Bs5ha6Z080ky8GUXEfZYPBdrtHL4D/+Xb3PjIanuVNSNwPtsggRs2xMe504VPecVGdNnognfOKxI/Oyhkjj4MJr9FEZ4vP2Z3c1neemeIEMFNTjCM9Vg3QMOpYSA0y6I8QDJE60AI2iUPSY/J5MfgUtrPGA4lRLA=
+	t=1763013129; cv=none; b=LzBhU+M6BY3ifDTuxfnjhYK2AnhM+atFOFrvntryPgXX19qkd70uAAYmvXQzn1wknDUc5VQpIwUa95mTRXWQjTbhLKIbU5T8BoLfZCOJIrUdrLtVN5/+aJ9uEJ0ypbGghONdIL7bbeyP/33asf0PfBnb2K6VwIVDIBjwGCNw3Bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763013074; c=relaxed/simple;
-	bh=DLX5/XZfkVtg0LES4vcbawkAfBpUPSg8sV2FGqstTlk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kwr5vAVlYOtIyKLgmlmzO8b2CsUi1YJpi0C5QxUXVN0I8V71ZZ3gyLnwmKQjo3S0KDdODXmp7dEV4Awj2aUoJumdJ5SJRONz0QDlxKyiHYl8FEC0tDfOoucboMh70T0U8ZpUO91IW8cwpiBKiCWoLyi9VXh6kCIip8Merix9aCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lBOlwr4R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FF0EC4CEF5;
-	Thu, 13 Nov 2025 05:51:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763013073;
-	bh=DLX5/XZfkVtg0LES4vcbawkAfBpUPSg8sV2FGqstTlk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lBOlwr4Rg6b5wenq2KuXkhqgUYtlGPisHGdb/YePoOitx330sUCu8OWw3QzTxDCNW
-	 /ww0LwaWJxarbp83GgoqJsHvdTzMNdLYSGjfOe4onmuDAFQgjprSSed9X8wR/gv4by
-	 iwwR4Xu3O5WXX7uxRelM58JCDBj8oY+8LkW1b0BUUkLzSm4pHvb6FbtVTB3L9j4jrt
-	 LyChZPunGbI1N2mlQdtj9TRZNXnJUOP72qjTbm1FFn9flt0wVAxf1cF2/rGeLj268O
-	 pwJ6331Bodj8+FovI8lrI9MUq3bAZQJkj0YYD0gkPWuBX2KsQVEIHKd4gniCf3dWKG
-	 TpgLwJDmuE7RQ==
-Date: Thu, 13 Nov 2025 11:20:56 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Lukas Wunner <lukas@wunner.de>, 
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, andersson@kernel.org, robh@kernel.org, 
-	manivannan.sadhasivam@linaro.org, krzk@kernel.org, helgaas@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com, 
-	conor+dt@kernel.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v2] schemas: pci: Document PCIe T_POWER_ON
-Message-ID: <vnfjiakbgw3s7dxqh3zriifxjoqcjhshat3hrnikebpa57yh3k@erc4nb5enqes>
-References: <20251110112947.2071036-1-krishna.chundru@oss.qualcomm.com>
- <aRHdiYYcn2uZkLor@wunner.de>
- <enri4affdgq4q5mibnmhldhqqoybqbdcswohoj5mst2i77ckmu@dwlaqfxyjy3w>
- <CANAwSgQcMDXitA2RLbFsD_v2KoOQMcHywxcxNs-ab-O2JddAuQ@mail.gmail.com>
+	s=arc-20240116; t=1763013129; c=relaxed/simple;
+	bh=TTrQnSOjky/digu/151EgsUvRH0eS2vtmhdHfbpi5Nc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ocm49Q2kabAu+dC0M58QHEPd8bykE+dQSMGjxqrVTwOg3RrXHimvgEeKzUgaykTzLt7zgvbjxaQIVZDSCBsz3z1+sPJrD6npHf/4Gzonspr4ZgkOXAF7NhvrLvDUDeP9CRqJ8kktvyGgUTNRQTOgYY7oHNc+2JMOeM/6dC1wIqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PoNs5FtU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jpHL+7bi; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD11FsZ2918458
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 05:52:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=jicTo8oqMyMLCYWTfHkrZvCNBxNfkvXktsT
+	UhgUgBLE=; b=PoNs5FtUy4IB5p1MsQIbxhNUsaJuB5m5fiA75pEklgnd4rWAzY4
+	d6wVzhvRuIg7Us5/Fs2kSdNRvrXOe5E7abZNU2xnHDMvMBIdQp7+7vqO7pu0SlWR
+	WCQZhBccSYmHIqQ1kjdCkc/+fOExpvsyovjfOgo7feH86ELl5u1JbJHsOWYltHqq
+	eohXopSU1NH7YV3iokDwQiEnNp21Z3vpcpNIpylSzBF6IkbrU4uqcWGk4S2PX8go
+	QkRiGnfHaeVyBYHIL1fTOKhZl7obBrwkV9KMb28Avx90rt0xUHLvwggGdzWHQBzx
+	3vkt7Iiaal7rQAYTmegrkNMz9HUu1yFY2tQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acqdgkj9w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 05:52:07 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-297dde580c8so13939155ad.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 21:52:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763013126; x=1763617926; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jicTo8oqMyMLCYWTfHkrZvCNBxNfkvXktsTUhgUgBLE=;
+        b=jpHL+7bi3bgit36ncxBhOhk/yxNyM/pcmCOUWqRr/jDl/duLSqSAJgrJ0BUFgf+DGe
+         K/fF/laEADrcNhE3oDClWnidZkziMsKze8MbRiDoEG58qQgD5Of9ixZDH0koTSPvVJhd
+         QUJoS1yGA9/8hPB+sal2zVAWwoVRNbANP5rbybPll3d5vknv6DFJ5GXEGcq1SA/SkP0N
+         yCwbtVT+04GEWOz6pf/esfMm6jUwEGhhMGvndcV1qPJsHtHXRppoc7Ac/StEKYQ9Yq+V
+         wIDChmtWcNPyncl55XD4H+xBW2/Ml1nQdxno77+2x6UN+Hds8rcFAp9qdrE7HsaMuniX
+         FGLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763013126; x=1763617926;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jicTo8oqMyMLCYWTfHkrZvCNBxNfkvXktsTUhgUgBLE=;
+        b=sYLd0RyMiLJxAuwLwru48nYCiYwt4jQw7NBYLx2JZvsYsFQDbEFfWtcISo+K0KiuI4
+         hKec1NbzdOUnW7w4B7Zcj8PReR0i+hLohu+gov5tRS7LQVnQrGLiVuTM10bnbmF7/RIL
+         7EAMjwhM/ndVGTrqIVqQ8yuCAt5ECcuvPoFZZQfQQajM6qYyY+LoBxcyM8UKWeJFepc2
+         wF2LsrXS2PQg0P0RyKk0e8IziF/jo35FuuKkxsA4DWkEAVK8Fg88t22DXjpT4Ss/q0LZ
+         OT9m7Alj4XQ/4NBfTggxCmhsiJ+u12x/o+CsmWWLlra2OnirNum1GzfRvzqkYzaJjdbH
+         VHQA==
+X-Forwarded-Encrypted: i=1; AJvYcCVtvkVdtNUMpISUwuFhi5B9gya0I+HMIW1cxfUJ83SP2S1v/c7TAcOVpirFUghWL1HfZrPMy1jPifht@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzz+2hXtHWKoWtqCWhWxn7LqfsOUTu8czu30lr8IPcTqeMZopFM
+	Qmc4RfIRjQ+6fc9XfA8oZgKAdGuB0i7ZeBu7c7Kz3qpAsXI6uxYiExyVvEUThCUvVAEKTgCbaG0
+	M/siULa15LnAb1xMJv3ClD/S8xnnfLtlvVGGfzb2YJABtTqZmPP9qwgqS0oyglcRX
+X-Gm-Gg: ASbGncsVlA80okQaB+kdNj7ynjz67SCEMuVUvuHC3c8wm4l6UOqmyWRJ/h5k7ogfYtU
+	RQagBUcg1adIG68YVBXezcL43zaPl8rE+za99T9deLljxV+10G7Dr93jBrVk6s8pchcpc7RhRdg
+	eq6hdWV48Vtk3QjbJYjeTqkYxa4w5xjSzOv4C7z8PzQZOmToSK1Heakmmj8zuZOWEHIlsYUIIgV
+	aQevin8MQl9LnoNi0v42HSUhfJ90Etb9ItF2gZ+z6iEXjY8XykhRl4CV4IJGMFzRHU6sCkdvu+M
+	ICoD2u/oC1QxcxGVCQ1abxM8H7NTXj2h9+u+pjAwcrLhka6x3zFOI/mn9iO1VE+t6Adqm+aVtqn
+	ymU+qf8Z4ydY5N0pYwzT/TILdBPbPIKfEcf/I/T9x34CXAeqieVDe9s4=
+X-Received: by 2002:a17:903:32c4:b0:295:ed0:f7bf with SMTP id d9443c01a7336-2984ee0a933mr67128645ad.58.1763013126287;
+        Wed, 12 Nov 2025 21:52:06 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFR/MJkYAywS3TLHAJKmRqNbPUYvhJT9OqN0Mx+apk2yX08m4uG2jap26XLLi+1NgscVt+YGA==
+X-Received: by 2002:a17:903:32c4:b0:295:ed0:f7bf with SMTP id d9443c01a7336-2984ee0a933mr67128435ad.58.1763013125773;
+        Wed, 12 Nov 2025 21:52:05 -0800 (PST)
+Received: from san-w175-na3-01.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2b0d76sm11076355ad.68.2025.11.12.21.52.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 21:52:05 -0800 (PST)
+From: Wei Zhang <wei.zhang@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_miaoqing@quicinc.com,
+        quic_zhichen@quicinc.com, Wei Zhang <wei.zhang@oss.qualcomm.com>
+Subject: [PATCH v5] arm64: dts: qcom: qcs8300-ride: enable WLAN on qcs8300-ride
+Date: Wed, 12 Nov 2025 21:51:47 -0800
+Message-ID: <20251113055148.2729943-1-wei.zhang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANAwSgQcMDXitA2RLbFsD_v2KoOQMcHywxcxNs-ab-O2JddAuQ@mail.gmail.com>
+X-Authority-Analysis: v=2.4 cv=dtrWylg4 c=1 sm=1 tr=0 ts=69157207 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=vM19rjaGBDlTF_Dnh2IA:9
+ a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: kznTHdm3S1ymMRPacESj22UtkcQwqXfQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDAzOCBTYWx0ZWRfX4hzkIZz63moG
+ RHKwIEX2TI8Xm6WpGPIlz4HnGujO6eXYQyq8klkWQaGxtNsSB2rvJNWBOnx0tqdrWEtGwkEFiEc
+ Nf6RGo7Hi6yP78Eg+K/2il0CBDhwr9MfT5MZkY7qf4QquIshVWf61IgnIG61lYtyJ2kO2Wj4D1v
+ /uM2XyQpM0c4FVTURsoHvRvXmJePH1BtIwKJeAUaGsAYFd3wK3Brm980/DNxJNVqMBjNwkhOvqm
+ o50dCeiSYovzpR1Xi0P+G3bFxtb2K/UjgmaYjtU/NjEOggmMCbRfW7FIwoxeP8uSEULI77rqs6k
+ v2RtOjJdAEUi4XftcmjlbtLr1kaNXkZD4opr6/YjcxQkjxX0csiQcVRt9MuMMWh1lV84E6trn8S
+ qCKLQFE9jEjjCGmrMi6vz++ZTkBO4Q==
+X-Proofpoint-ORIG-GUID: kznTHdm3S1ymMRPacESj22UtkcQwqXfQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-12_06,2025-11-12_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 phishscore=0 clxscore=1011 adultscore=0
+ impostorscore=0 spamscore=0 suspectscore=0 malwarescore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130038
 
-On Thu, Nov 13, 2025 at 10:46:59AM +0530, Anand Moon wrote:
-> Hi Manivannan
-> 
-> On Thu, 13 Nov 2025 at 10:01, Manivannan Sadhasivam <mani@kernel.org> wrote:
-> >
-> > On Mon, Nov 10, 2025 at 01:41:45PM +0100, Lukas Wunner wrote:
-> > > On Mon, Nov 10, 2025 at 04:59:47PM +0530, Krishna Chaitanya Chundru wrote:
-> > > > From PCIe r6, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
-> > >
-> > > Please use the latest spec version as reference, i.e. PCIe r7.0.
-> > >
-> > > > minimum amount of time(in us) that each component must wait in L1.2.Exit
-> > > > after sampling CLKREQ# asserted before actively driving the interface to
-> > > > ensure no device is ever actively driving into an unpowered component and
-> > > > these values are based on the components and AC coupling capacitors used
-> > > > in the connection linking the two components.
-> > > >
-> > > > This property should be used to indicate the T_POWER_ON for each Root Port.
-> > >
-> > > What's the difference between this property and the Port T_POWER_ON_Scale
-> > > and T_POWER_ON_Value in the L1 PM Substates Capabilities Register?
-> > >
-> > > Why do you need this in the device tree even though it's available
-> > > in the register?
-> > >
-> >
-> > Someone needs to program these registers. In the x86 world, BIOS will do it
-> > happily, but in devicetree world, OS has to do it. And since this is a platform
-> > specific value, this is getting passed from devicetree.
-> >
-> According to the RK3588 TRM Part 2, the DSP_PCIE_L1SUB_CAPABILITY_REG (0x4)
-> It is a commonly configurable parameter, It can be tuned on for the
-> Rockchip platform.
+Enable WLAN on qcs8300-ride by adding a node for the PMU module
+of the WCN6855 and assigning its LDO power outputs to the existing
+WiFi module.
 
-T_POWER_ON is a generic value defined in the spec. All compatible platforms
-should support setting this value through 'L1 PM Substates Capabilities'
-register or by platform specific register.
+On the qcs8300-ride platform, the corresponding firmware and BDF
+are QCA6698AQ instead of WCN6855, which have been added in the
+20250211 release.
 
-> > - Mani
-> >
-> > --
-> > மணிவண்ணன் சதாசிவம்
-> >
-> Thanks
-> -Anand
-> 
-> I could not apply this patch
-> 
-> $ git am ./v2_20251110_krishna_chundru_schemas_pci_document_pcie_t_power_on.mbx
-> Applying: schemas: pci: Document PCIe T_POWER_ON
-> error: dtschema/schemas/pci/pci-bus-common.yaml: does not exist in index
-> Patch failed at 0001 schemas: pci: Document PCIe T_POWER_ON
-> hint: Use 'git am --show-current-patch=diff' to see the failed patch
-> hint: When you have resolved this problem, run "git am --continue".
-> hint: If you prefer to skip this patch, run "git am --skip" instead.
-> hint: To restore the original branch and stop patching, run "git am --abort".
-> hint: Disable this message with "git config set advice.mergeConflict false"
+Signed-off-by: Wei Zhang <wei.zhang@oss.qualcomm.com>
+---
+This patch depends on:
+- PCIe
+https://lore.kernel.org/all/20251024095609.48096-1-ziyue.zhang@oss.qualcomm.com/
 
-This is a dtschema patch, not Linux kernel.
+Changes in v5:
+- rebase patches
+- Flip the order of property-n and property-names (Konrad)
+- flip the order of bias and output property (Konrad)
+- Link to v4: https://lore.kernel.org/all/20250325075331.1662306-1-quic_stonez@quicinc.com/
 
-- Mani
+Changes in v4:
+- Rename the symbol pcieport0 to pcie0_port0 (Konrad)
+- Adjust the property order in node pcie0_port0 (Konrad)
+- Add to the commit message mentioning FW and BDF used by QCS8300 (Dmitry)
+- Specify the calibration data using the correct variant (Dmitry)
+- Link to v3: https://lore.kernel.org/all/20250318093350.2682132-1-quic_stonez@quicinc.com/
 
+Changes in v3:
+- Complete the nodes property definitions according to DTS binding requirements (Bjorn)
+- Link to v2: https://lore.kernel.org/all/20250227065439.1407230-1-quic_stonez@quicinc.com/
+
+Changes in v2:
+- Rename the nodes name according to DTS coding style (Konrad & Krzysztof)
+- Provide regulator-min/max-microvolt to the regulators (Konrad)
+- Link to v1: https://lore.kernel.org/all/20250210062910.3618336-1-quic_stonez@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 108 ++++++++++++++++++++++
+ 1 file changed, 108 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+index 1215f21e67f1..cd8800a59700 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
++++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+@@ -33,6 +33,88 @@ regulator-usb2-vbus {
+ 		enable-active-high;
+ 		regulator-always-on;
+ 	};
++
++	vreg_conn_1p8: vreg-conn-1p8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vreg_conn_1p8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		startup-delay-us = <4000>;
++		enable-active-high;
++		gpio = <&pmm8650au_1_gpios 4 GPIO_ACTIVE_HIGH>;
++	};
++
++	vreg_conn_pa: vreg-conn-pa {
++		compatible = "regulator-fixed";
++		regulator-name = "vreg_conn_pa";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		startup-delay-us = <4000>;
++		enable-active-high;
++		gpio = <&pmm8650au_1_gpios 6 GPIO_ACTIVE_HIGH>;
++	};
++
++	wcn6855-pmu {
++		compatible = "qcom,wcn6855-pmu";
++
++		pinctrl-0 = <&wlan_en_state>;
++		pinctrl-names = "default";
++
++		vddio-supply = <&vreg_conn_pa>;
++		vddaon-supply = <&vreg_conn_1p8>;
++		vddpmu-supply = <&vreg_conn_pa>;
++		vddpmumx-supply = <&vreg_conn_1p8>;
++		vddpmucx-supply = <&vreg_conn_pa>;
++		vddrfa0p95-supply = <&vreg_conn_1p8>;
++		vddrfa1p3-supply = <&vreg_conn_pa>;
++		vddrfa1p9-supply = <&vreg_conn_1p8>;
++		vddpcie1p3-supply = <&vreg_conn_pa>;
++		vddpcie1p9-supply = <&vreg_conn_1p8>;
++
++		wlan-enable-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
++
++		regulators {
++			vreg_pmu_rfa_cmn: ldo0 {
++				regulator-name = "vreg_pmu_rfa_cmn";
++			};
++
++			vreg_pmu_aon_0p59: ldo1 {
++				regulator-name = "vreg_pmu_aon_0p59";
++			};
++
++			vreg_pmu_wlcx_0p8: ldo2 {
++				regulator-name = "vreg_pmu_wlcx_0p8";
++			};
++
++			vreg_pmu_wlmx_0p85: ldo3 {
++				regulator-name = "vreg_pmu_wlmx_0p85";
++			};
++
++			vreg_pmu_btcmx_0p85: ldo4 {
++				regulator-name = "vreg_pmu_btcmx_0p85";
++			};
++
++			vreg_pmu_rfa_0p8: ldo5 {
++				regulator-name = "vreg_pmu_rfa_0p8";
++			};
++
++			vreg_pmu_rfa_1p2: ldo6 {
++				regulator-name = "vreg_pmu_rfa_1p2";
++			};
++
++			vreg_pmu_rfa_1p7: ldo7 {
++				regulator-name = "vreg_pmu_rfa_1p7";
++			};
++
++			vreg_pmu_pcie_0p9: ldo8 {
++				regulator-name = "vreg_pmu_pcie_0p9";
++			};
++
++			vreg_pmu_pcie_1p8: ldo9 {
++				regulator-name = "vreg_pmu_pcie_1p8";
++			};
++		};
++	};
+ };
+ 
+ &apps_rsc {
+@@ -355,6 +437,25 @@ &pcie1_phy {
+ 	status = "okay";
+ };
+ 
++&pcieport0 {
++	wifi@0 {
++		compatible = "pci17cb,1103";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
++
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
++		vddaon-supply = <&vreg_pmu_aon_0p59>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
++		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
++		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
++
++		qcom,calibration-variant = "QC_QCS8300_Ride";
++	};
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+@@ -461,6 +562,13 @@ perst-pins {
+ 			bias-pull-down;
+ 		};
+ 	};
++
++	wlan_en_state: wlan-en-state {
++		pins = "gpio54";
++		function = "gpio";
++		bias-pull-up;
++		output-low;
++	};
+ };
+ 
+ &uart7 {
+
+base-commit: 6fa9041b7177f6771817b95e83f6df17b147c8c6
+prerequisite-patch-id: 0c5a6e979d4ceb5b8c4a81e398dca96b8932441e
+prerequisite-patch-id: babbcf9dd8722e19d91b01eb45756f58e58ba6ac
+prerequisite-patch-id: e641f09d4139ac77c34757bd08af2db746de3963
+prerequisite-patch-id: f5dd3ee9979e2a049badfb51cfab184da4501870
+prerequisite-patch-id: 40187dae2c9518a10866104b9fcd5a481ac67d51
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
