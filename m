@@ -1,179 +1,386 @@
-Return-Path: <devicetree+bounces-238089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01BB7C57124
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:03:03 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D30A0C57130
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:03:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C2D43BA080
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:59:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 378F134D267
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C50F33507B;
-	Thu, 13 Nov 2025 10:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58073346AF;
+	Thu, 13 Nov 2025 10:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OX9cuSGu";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YM0qVUW7"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="yKV4hulO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15141F5EA
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:58:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E553933469C
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:59:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763031533; cv=none; b=ooVkSp6rvw11EZgt72/FAq22k/HykfDxEvzezuX6DrEAjvI0nbhacmebjgN40pR8cJr/z/f8/04V6pzYEvL4xngt8RVLqZh0IgwF1+JQak/ej4lMTPC17KEw8DKuAdk3eBWaopuW/tDpJKYp/XdElHSx5H0SH9BNsI0/C5yKW4M=
+	t=1763031571; cv=none; b=vDNnvP9KjwBWduGGaOlzryqvdRDp0lmM4jfsNQaMkOUDgZ0Sjeek0YRDPJLin0BtU8SRH1BNKsuVR9LqZAhfGbjDllFZ43+sC9EepRnl6egM+ax1MP1+d8kVzEmL4fCPiyt43RETeWpKPVSPq1UXc0QOsRTrREVsxMVREP2HDFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763031533; c=relaxed/simple;
-	bh=0SfTgwIzPX/BA/JPrecUkCRKouOa5PWWI5O6ZWAA/DY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=moMdigS8EBymX9+rtyriou+gcSdOlcFDP2kWbcixkP7o1oUOVucPLmYU4wOxs78Ff/miEBQLW+WubBJDsGvwACXeqLygCjCYhd56jwz3BAev+pfLU4eYI69UJ95D68aOJf3VaO93oDGC2MUS82tMynF6gTSOuYFjcN+1bWNs5iQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OX9cuSGu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YM0qVUW7; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD9QGtm3121987
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:58:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jgBPaO5vYeetCNzgFhvdCRkSv11ZkxPO6+3HoWQmMsc=; b=OX9cuSGue2w3yOTX
-	RFu0kR0LgWyxuJjvGc9Ya8ZqJu/ZqNoTzEstbau0fpspsTIz7A2U4jGS61BnCtCN
-	mEYsktpis3zl9MYBs77wYRrjIyaC6W/8QJD/51E2bNPgb9Iv+K1g1izUJi8I1Lpg
-	HzZQaqYNNmysuiKoJAVqbDA8E7jho/Fi4LdG4c89xIA1kf0v7crDJl6pP0iO629q
-	pCVL8VYZ0TBBAGpqHTB7GkTLgRmc0Cw1zBzr09i2kVJT8wlPD8Di08D6tanVIyft
-	ejsV1xCAzPbKU9jkEpynvoDWKlIQTmNxWfm7ecuemCUk1P0cYWFz2BAx8zsxDbbs
-	Ce82oA==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ad5pusk1y-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:58:50 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-88233ac98f7so2154186d6.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 02:58:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763031529; x=1763636329; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jgBPaO5vYeetCNzgFhvdCRkSv11ZkxPO6+3HoWQmMsc=;
-        b=YM0qVUW7JOstpF8Kuv2+fm0Rg1K5X5g3WNov7BBdTqfaGo+S81rzzFx1iWUKMqqobN
-         EEgtqeWpayXg4kI3ern4fC819b+pbJbkYpoMEs13XWLaZonjKKZxlqLkxDb02EkyxxZv
-         crhwmqckv9r4f2SiVhUYcpig2fs3VqqR44sjUy2K8NQkWKe+LM8L35DwehE0Dah2FQcr
-         LCpTUsz/zYk5EB+hBTMMn972NaBPyIFgOV5WOaRYQKZG1YCW353cbvq3gBXCD+9LWaZe
-         1Dw5WwaiU6FPAd4SZuZberg4vWp6c2Y5aNmSb0SjVYzPYgmxolNtrpadcN+YYyoxp/UG
-         7Hlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763031529; x=1763636329;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jgBPaO5vYeetCNzgFhvdCRkSv11ZkxPO6+3HoWQmMsc=;
-        b=GAXodag3V72IIa8zF6nS+Eu0/fPtAd9uL/CWTVAeIy+RbeB70OVUSJdBPULM3EqLik
-         9jYA25TNQUyJcFsj1oqeacjYKCIJRBKMEZNRyctn5cdXPXm6F/R+S00IT3HSDKPODaL+
-         O1Sa8jVsYEXtC7CjGENyzlj4ugXgk3cKzjHCGz2V3DB0FdwdNvtNwNT7Texc1wbbdxiX
-         AeCmju7Fh92joZoxUVeqP/TMW9gMqTImdUoGBK4pUlo5m3OiVusCBjI5dL731WqUILrP
-         IvxpOv0lxkPbFx3RTC/k885fGaiwk9BWfSu3iVYesScQOUnnl0dYKeZML+bOq1GVqNkq
-         jbsA==
-X-Forwarded-Encrypted: i=1; AJvYcCVAHYOWFyur5L8ozZwyIljjYPtfOkqSBmiF9yneSUkld06oAVYeu9XkVXhZ2psyJEHk58d+O4wbAnX3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoooDkNuFVQoWH8QWMBbmGaMYQ2WSDBfXL+3aayWmjOiG13YwO
-	yCWs5pCF5H9ANl1+F6Vma8CQKqCIemmIu+8XAOchwLaeHdJhss8zAF18VBsj65ZImj6KCq3r3xm
-	1gxe3yBUNvR+KY5Ec2qX322IiWXVY+H2iwJaehDoK49tqJSpGLUAuBLXdj4PUeaSR
-X-Gm-Gg: ASbGncugbjeftUrLX4cj09xJWH5lwumKJwUTbA/qlkVedNyAo5JI6veA61icntdyDAb
-	0Tv4dcETPq9Ei8HZpNCuOG+I1swoHbj8YHBpxCm8sc5Et84UBxsxeBKSjYf1R2zTBUqwDxZt8md
-	ZTjTFwX5eT/O2kvEY9GS8AQnqSLV8phNp+LdKq9rc6F2GH8Rk33eFrItO226H5azUs7jNusTVMR
-	Pi0uKj9U4/cQwcDnKqYmYUmeRrqpwIftRu0StxqAa/ONRGqsCZcIxAlpdMKh0aSD0bA/qwRQIvL
-	LP6y4Ce/W8AeoFekiXN3CTHUhTfQDoAtxLxLL+Z9PtjSja9ZHW18vb3OjU0ZfjMdbh+Lop2dRgc
-	aRe/HValZtJ0s4/xA8TB4J+5i0jI41LNRgwu3Qfwoca6Pc6nThtbWZhGB
-X-Received: by 2002:ac8:7f4f:0:b0:4ed:2f2b:aadb with SMTP id d75a77b69052e-4ede794dd10mr20846311cf.12.1763031528998;
-        Thu, 13 Nov 2025 02:58:48 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFdQDsxtlP4V4oPmd1PqozO62xfFzJpWU31Y99QHzv5aGDzw9SGa8isg87xEOWg69/ZZScEyA==
-X-Received: by 2002:ac8:7f4f:0:b0:4ed:2f2b:aadb with SMTP id d75a77b69052e-4ede794dd10mr20846131cf.12.1763031528471;
-        Thu, 13 Nov 2025 02:58:48 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fad3edasm140259166b.17.2025.11.13.02.58.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Nov 2025 02:58:47 -0800 (PST)
-Message-ID: <8ebd7250-fa3e-4705-a5e6-f01878389df5@oss.qualcomm.com>
-Date: Thu, 13 Nov 2025 11:58:43 +0100
+	s=arc-20240116; t=1763031571; c=relaxed/simple;
+	bh=Ludw0lVw+NCqkO+gYIR/P40wGOIX716edDfNBOXG488=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e6/6BvMJ7AhK6WN3h0F9AfoiPYwmtUN/K6EriQ9MQ6xSdzBF22XLeqafR5RV0izCnzNfqS0jSSlXkdbQ3A0k16tbtNPALnPIUFMRxSmjRlZIXRx872yIz02NNa0/l3aS8CyS0C+H+CxYx/Xe0otOZqvDiEWndfNQNaLXICFaAHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=yKV4hulO; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=/5WNpQnXexzvUnL0SZ99IdSXhXmMgcUViaTDBYNlqpc=; b=yKV4hulOarStJW8vTLYXGFp8YA
+	rPoIOcXqdG4NMjw9GmU20MW0ESE5LKgb8jupmnv7SWYVMlRoVAiBEIpZdJOXz5E2BRHUqJl0I4szj
+	20xFQK4HyPgyDNaxzZevSwX6Z041S+7a+AjiK1AAPYzVkayuivmVCKvYkCaEmvCiM0mZNH7IMxBsP
+	/LgrL1DDv3AzBh3uR14PjP/9in40tvpo6RXZsU5mBUNy7nrfy8aj4+3X/GeocEKxEDTBj+s6VK8Lx
+	NtSKPfzY1MDJEs12eqjvdu5VeRoWD26mZdyFIENjHQ2h2F+G1iulhoU0gErD1FEA4TkIT1wGjnC7Q
+	WIOgBTpw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58100)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vJV2z-000000005JA-1Pjw;
+	Thu, 13 Nov 2025 10:59:25 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vJV2x-000000004n0-0xU7;
+	Thu, 13 Nov 2025 10:59:23 +0000
+Date: Thu, 13 Nov 2025 10:59:23 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <aRW6CxvmIEqkMrfA@shell.armlinux.org.uk>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+ <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
+ <20251027234648.GC24987@pendragon.ideasonboard.com>
+ <aQAVE96NAD4Z4lgt@shell.armlinux.org.uk>
+ <20251028071817.GX13023@pendragon.ideasonboard.com>
+ <20251111235434.GA25874@pendragon.ideasonboard.com>
+ <aRR3gVsZcr01zwzN@shell.armlinux.org.uk>
+ <20251112222551.GB9135@pendragon.ideasonboard.com>
+ <20251113010627.GC9135@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 15/21] drm/msm/a8xx: Add support for Adreno 840 GPU
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse
- <jordan@cosmicpenguin.net>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Connor Abbott <cwabbott0@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20251110-kaana-gpu-support-v2-0-bef18acd5e94@oss.qualcomm.com>
- <20251110-kaana-gpu-support-v2-15-bef18acd5e94@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251110-kaana-gpu-support-v2-15-bef18acd5e94@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=E6/AZKdl c=1 sm=1 tr=0 ts=6915b9ea cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=1fD9zpMYXuRVFxAoecEA:9
- a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA4MSBTYWx0ZWRfXxp97Pv5WLDyN
- Q9kt7XDq7ULZ4nlTlEP4k9fB8eBqydLg8Vi3AeNbHby4JQIbehXUdtj9uvBM5HPbpImkA0rKA6K
- WqiSns5xGW1j4aUWXL6lNa93KZeMfcV+RnUTVijF6RVlRyN4zewkKQC3H3DbETd+8SdKrhOODhY
- xTPHXjpoOJv7/zskNL82Rhfbq8aCVXKX78Z6+bzrEfiJG5af6qUeazlGEu5gcfXuHsa7vdJeRwB
- 6hIYrC/GWVqaEFNKdHuYyMGMc2Sg2S1XLEGNjAS9i+fYs3ROvITg+ixmpgDr6P9EYcGEPJkbT6P
- wlLltIzgMAQwYaUbBxkIPjCqRK20YVaHzI4Z58bRbSX6wclzWp/Me8nfh/pXNUHe7hbAzbkY4LM
- 2938ZkqPwLg7e2aZw+M7J9dq/cNYaA==
-X-Proofpoint-GUID: udUarm_pdXGd6t3Agq98f-AD7d7bNn_9
-X-Proofpoint-ORIG-GUID: udUarm_pdXGd6t3Agq98f-AD7d7bNn_9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-13_01,2025-11-12_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 adultscore=0 malwarescore=0 spamscore=0
- clxscore=1015 phishscore=0 bulkscore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130081
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113010627.GC9135@pendragon.ideasonboard.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 11/10/25 5:37 PM, Akhil P Oommen wrote:
-> Adreno 840 present in Kaanapali SoC is the second generation GPU in
-> A8x family. It comes in 2 variants with either 2 or 3 Slices. This is
-> in addition to the SKUs supported based on the GPU FMAX.
+On Thu, Nov 13, 2025 at 03:06:27AM +0200, Laurent Pinchart wrote:
+> On Thu, Nov 13, 2025 at 12:25:52AM +0200, Laurent Pinchart wrote:
+> > On Wed, Nov 12, 2025 at 12:03:13PM +0000, Russell King (Oracle) wrote:
+> > > On Wed, Nov 12, 2025 at 01:54:34AM +0200, Laurent Pinchart wrote:
+> > > > On Tue, Oct 28, 2025 at 09:18:17AM +0200, Laurent Pinchart wrote:
+> > > > > I didn't notice it at the time because my board was connected to a
+> > > > > switch that didn't support EEE.
+> > > > 
+> > > > I can confirm that reverting that commit makes the issue disappear. So
+> > > > we're dealing with an interrupt storm that occurs when all three of the
+> > > > following conditions are true:
+> > > > 
+> > > > - cpu-pd-wait is enabled
+> > > > - EEE is enabled
+> > > > - the peer also supports EEE
+> > > 
+> > > Thanks - overall, please take the statistics and interrupt status bits
+> > > with a pinch of salt - I suspect there are cases where the interrupt
+> > > is not actually enabled, and the code doesn't take action to clear
+> > > down a set status bit, but _does_ count it - so every interrupt that
+> > > happens increments the counter.
+> > 
+> > True. To (partly) avoid that, I've dropped the line that discards
+> > disabled bits in dwmac4_irq_status():
+> > 
+> >  	/* Discard disabled bits */
+> > -	intr_status &= intr_enable;
+> > 
+> > to ensure that all bits are processed and cleared. I then didn't see any
+> > high count of any of the GMAC_INT_STATUS interrupts. For
+> > MTL_INTERRUPT_STATUS it's a bit different, as by default only one queue
+> > is processed.
+> > 
+> > > > Furthermore, I tried counting bits from all the interrupt status
+> > > > registers I could find. The count of MTL_INTERRUPT_STATUS Q0IS to Q4IS
+> > > > bits is very high, and so are the DMA_CH0_STATUS TBU and ETI bits.
+> > > 
+> > > TBU means that the transmitter found that the next buffer was owned by
+> > > the "application" rather than the hardware, which would be normal after
+> > > getting to the end of the queued packets.
+> > > 
+> > > ETI means that a packet has been transferred into MTL memory, and thus
+> > > would occur for every transmitted packet.
+> > > 
+> > > Having dug into the imx8m documentation and the driver this morning,
+> > > I don't think TBU and ETI are the source of the interrupt storm. Their
+> > > corresponding interrupt enable bits are DMA_CHAN_INTR_ENA_TBUE and
+> > > DMA_CHAN_INTR_ENA_ETE (driver names). Both of these only appear in a
+> > > header file - the code never enables these interrupts. So, TBU and ETI
+> > > should not be causing an interrupt storm.
+> > > 
+> > > As for QxIS, stmmac_common_interrupt() will iterate over the queues
+> > > in use, calling stmmac_host_mtl_irq_status() aka dwmac4_irq_mtl_status()
+> > > for each. Only if this happens will MTL_CHAN_INT_CTRL() be read which
+> > > clears the status bit. In other words, if e.g. Q1IS is set, but only
+> > > one queue is being used. dwmac4_irq_mtl_status() won't be called for
+> > > queue 1, and thus MTL_CHAN_INT_CTRL() won't be read to clear Q1IS.
+> > 
+> > That's why I tried to enable all 5 queues in DT, but alas, it didn't
+> > help. I'll try again and count all possible interrupts.
 > 
-> Add the necessary register configurations to the catalog and enable
-> support for it.
+> Here's my debug patch (not very pretty, sorry about that):
+
+That's fine. Thanks for providing this and the raw data.
+
+> Here are the corresponding stats captured right after booting to
+> userspace, with the 0 counts stripped off to keep the output readable:
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> ---
+>      irq_gmac_0_n: 1
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+RSGMIIS, disabled, cleared by read of MAC_PHYIF_CONTROL_STATUS.
 
-Konrad
+>      irq_gmac_5_n: 4047
+
+LPIIS, enabled, cleared by read of LPI_CONTROL_STATUS which is done.
+
+>      irq_gmac_18_n: 46
+
+MDIOIS, disabled, clear on read of _this_ status register
+
+>      irq_mtl0_n: 2244307
+
+This will increment each time dwmac4_irq_mtl_status() is called for
+channel 0, which will be called each time stmmac_common_interrupt() is
+called. Thus, this indicates the total number of times the stmmac
+interrupt handler has been called.
+
+>      irq_mtl_0_n: 2244307
+>      irq_mtl_1_n: 2244307
+>      irq_mtl_2_n: 2244307
+>      irq_mtl_3_n: 2244307
+>      irq_mtl_4_n: 2244307
+
+These should be cleared by reading the corresponding queue interrupt
+control/status register, iow MTL_CHAN_INT_CTRL(). However, we do not
+write to MTL_CHAN_INT_CTRL() to enable any of the interrupts there, so
+this looks weird to me, so it would be an idea to look at what value
+this MTL_CHAN_INT_CTRL() register contains, it may provide something
+useful, but I actually suspect it's another red herring.
+
+>      irq_chan0_n: 2244307
+
+Similarly to irq_mtl0_n, this will increment each time
+dwmac4_dma_interrupt() is called for channel 0, which will be via
+stmmac_napi_check(), stmmac_dma_interrupt() and
+stmmac_common_interrupt(). Therefore, it is expected to have the same
+value as irq_mtl0_n.
+
+>      irq_chan0_0_n: 333
+>      irq_chan0_2_n: 2244307
+>      irq_chan0_6_n: 2769
+>      irq_chan0_10_n: 2244307
+>      irq_chan0_11_n: 2799
+>      irq_chan0_15_n: 2701
+
+Only interrupts 0, 6, 12, 14 and 15 are enabled. Status bits in this
+register require '1' to be written to clear them. As the value written
+back is the status that was read masked by the interrupt enable, if
+bits 2 or 10 are set, they will never be cleared, so will increment
+each and every time stmmac_common_interrupt() is called. Therefore,
+these values are not significant.
+
+> 
+> Here are the stats after enabling five queues in DT, also captured right
+> after booting to userspace:
+> 
+>      irq_gmac_0_n: 1
+>      irq_gmac_5_n: 4020
+>      irq_gmac_18_n: 41
+>      irq_mtl0_n: 1286469
+>      irq_mtl1_n: 1286469
+>      irq_mtl2_n: 1286469
+>      irq_mtl3_n: 1286469
+>      irq_mtl4_n: 1286469
+>      irq_mtl_0_n: 6432345
+>      irq_mtl_1_n: 6432345
+>      irq_mtl_2_n: 6432345
+>      irq_mtl_3_n: 6432345
+>      irq_mtl_4_n: 6432345
+
+These values are the sum of irq_mtl[0-4]_n, so would be expected given
+the other numbers.
+
+>      irq_chan0_n: 1286469
+>      irq_chan1_n: 1286469
+>      irq_chan2_n: 1286469
+>      irq_chan3_n: 1286469
+>      irq_chan4_n: 1286469
+>      irq_chan0_0_n: 416
+>      irq_chan0_2_n: 1286466
+>      irq_chan0_6_n: 3470
+>      irq_chan0_10_n: 1286466
+>      irq_chan0_11_n: 2740
+>      irq_chan0_15_n: 2686
+>      irq_chan1_2_n: 1286469
+>      irq_chan1_10_n: 1286469
+>      irq_chan2_2_n: 1286467
+>      irq_chan2_10_n: 1286467
+>      irq_chan4_2_n: 1286469
+>      irq_chan4_10_n: 1286469
+
+It's slightly interesting that irq_chanX_2_n and irq_chanX_10_n don't
+match their corresponding irq_chanX_n values, which implies that they
+have been clear. It's likely given that we're talking about 0, 2 or 3
+times that's due to the first few packets and these bits hadn't been
+set. So again, I don't think TBU and ETI are significant.
+
+> Setting eee-broken-1000t, with a single queue:
+> 
+>      irq_gmac_0_n: 1
+>      irq_gmac_18_n: 6
+>      irq_mtl0_n: 2548
+>      irq_mtl_0_n: 2548
+>      irq_mtl_1_n: 2548
+>      irq_mtl_2_n: 2548
+>      irq_mtl_3_n: 2548
+>      irq_mtl_4_n: 2548
+>      irq_chan0_n: 2548
+>      irq_chan0_0_n: 282
+>      irq_chan0_2_n: 2548
+>      irq_chan0_6_n: 2324
+>      irq_chan0_10_n: 2548
+>      irq_chan0_11_n: 29
+>      irq_chan0_15_n: 2548
+
+These counts suggest that the interrupt handler was entered 2548 times
+at the point they were captured, which corresponds to "normal"
+interrupts for channel 0.
+
+> 
+> And eee-broken-1000t with 5 queues:
+> 
+>      irq_gmac_0_n: 1
+>      irq_gmac_18_n: 8
+>      irq_mtl0_n: 2672
+>      irq_mtl1_n: 2672
+>      irq_mtl2_n: 2672
+>      irq_mtl3_n: 2672
+>      irq_mtl4_n: 2672
+>      irq_mtl_0_n: 13360
+>      irq_mtl_1_n: 13360
+>      irq_mtl_2_n: 13360
+>      irq_mtl_3_n: 13360
+>      irq_mtl_4_n: 13360
+>      irq_chan0_n: 2672
+>      irq_chan1_n: 2672
+>      irq_chan2_n: 2672
+>      irq_chan3_n: 2672
+>      irq_chan4_n: 2672
+>      irq_chan0_0_n: 283
+>      irq_chan0_2_n: 2672
+>      irq_chan0_6_n: 2439
+>      irq_chan0_10_n: 2672
+>      irq_chan0_11_n: 46
+>      irq_chan0_15_n: 2672
+>      irq_chan2_2_n: 2670
+>      irq_chan2_10_n: 2670
+>      irq_chan3_2_n: 2672
+>      irq_chan3_10_n: 2672
+
+So channel 0 responsible for 2672 normal interrupts. Again, this
+reinforces that the other values with 2672 are likely not significant.
+
+> Given the enabled interrupts, I agree that the counters are misleading,
+> as none of the interrupt bits with high counts are enabled. I'm however
+> not entirely sure about the MTL interrupt status register, it's not
+> clear to me if it is wired to the EQOS IRQ line as I don't see a
+> corresponding interrupt enable register.
+> 
+> If we rule out the main EQOS IRQ line and the per-channel RX and TX IRQ
+> lines as the source of the interrupt storm, the last possible culprit
+> according to section 7.1.2 (A53 Interrupts) of the i.MX8MP reference
+> manual would be the "ENET QOS TSN LPI RX exit Interrupt" that is OR'ed
+> into IRQ 135. As that's related to EEE, it's a probable culprit, but I
+> don't know how what controls that IRQ line.
+
+As you have several interrupt signals which presumably show up in
+/proc/interrupts, do the values in your IRQ counters correspond with
+those interrupt sources? Are any of these interrupts shared with
+anything else?
+
+Hmm, looking at 7.1.2, and the mention of "ENET QOS TSN LPI RX exit
+Interrupt" I'm wondering whether Freescale have wired the lpi_intr_o
+signal of the GMAC to their OR4 gate. This is the LPI RX exit
+interrupt output, and it is cleared when reading the LPI control/
+status register. However, its deassertion is synchronous to the RX
+clock domain, so it will take time to clear.
+
+The purpose of this signal is to trigger to external hardware (to the
+GMAC) to restore the application clock to the MAC. I'm not sure that
+this was meant to be wired to an actual CPU interrupt. The only clue
+is the name which suggests it is, but there's nothing that states
+there's a way to disable it being asserted which makes me more
+suspicious that it's not meant to be a CPU interrupt.
+
+So, maybe this is the cause of the interrupt storm. Maybe Kieran isn't
+seeing the storm because his receive path is not entering LPI.
+
+I think a useful check for this would be if you could either disable
+LPI entry at the link partner, or hook it up to another system which
+can have tx_lpi disabled, and see how the iMX8 system behaves.
+
+If preventing the iMX8 receive path entering LPI fixes the problem,
+then I think this is likely the culpret.
+
+However, I'd be worred about this - if we "disable LPI" by way of
+the advertisement at the local end, there is the possibility that a
+remote system could override the negotiation and force its transmit
+link into LPI mode, which would cause the iMX8MP receive side to see
+LPI entry and exit, triggering this interrupt. If this is correct,
+that gives an attacker a way to manipulate the iMX8MP system,
+potentially causing all sorts of problems.
+
+Hmm. Not sure I like this look of that.
+
+If this hypothesis is correct, then yes, disabling EEE is the only
+way forward for this, but I would suggest going further - ensuring
+that SmartEEE is enabled on the PHY but with the advertisement
+cleared (so EEE negotiation indicates not supported) to block the
+receive side LPI getting to the EQOS.
+
+This also means that 100M EEE would also be affected, so just
+disabling 1G EEE in DT is insufficient.
+
+Andrew - if we need to go down this path, I think we need a flag in
+the PHY flags to indicate that we want SmartEEE enabled.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
