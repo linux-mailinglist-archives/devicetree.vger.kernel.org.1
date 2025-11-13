@@ -1,260 +1,143 @@
-Return-Path: <devicetree+bounces-238235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3510C58E24
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:54:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 632B2C58F98
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 18:04:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DF034F99FC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:39:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E1593BA2D8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:50:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62579363C66;
-	Thu, 13 Nov 2025 16:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364CA3570BE;
+	Thu, 13 Nov 2025 16:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qjxCpYfr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qNgGXQIa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30D7D363C42;
-	Thu, 13 Nov 2025 16:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055913557E9;
+	Thu, 13 Nov 2025 16:42:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763051468; cv=none; b=bt5Fr+fwpGn7NINJMuywi4rpmZ8TGgDJTlNe877ga3GHL1+MwqSk8bPOrrAE9LvRTS//zNeKjv7V8hSOBr8CGM1roZea7fNukHTOCTEwExGxWR2aDTktfBHreyfG7PfwSbisIafw1rl1RQBVtbQvwEgJTONBpLxUa+3i2nsFQJM=
+	t=1763052123; cv=none; b=PD4jXBcN/XO8di+lg2JwqyKChERwZra81U9T19qwDK/XX1IMOdXCE0+y0Q3B+gM2cT87LWIk/JUIHiHaqRMcTSZj5TwnCkPRMgCci47LeuoQrg21XIR4Uc8IFZeWCkLLgIIbdrWxL+eS7MFrXpSifhcryz8CDnX5jsCWGKN3cf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763051468; c=relaxed/simple;
-	bh=ImsBrSsWCbftesE+Cb1PYnzgguu50ch+W6P48qu+dUI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZjCwsc/1MNKdFe/4P5nlTD1x5MG1zFE1vJm8eoodC0O0tfyKPGcf5YI/9qoeeGFBIOpqP4mQeym8oljoH/5UP0oDNgDl4f+9LTmhih1tv81kf3a/tzXK2okEOK8ynWX9mrM7SCAWuSuPAHb4GWUpu9CX4Ey5Wv3y47C68Ocy6Do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qjxCpYfr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 87BA8C2BCC4;
-	Thu, 13 Nov 2025 16:31:07 +0000 (UTC)
+	s=arc-20240116; t=1763052123; c=relaxed/simple;
+	bh=tbI30SQdpsjBi0FiA0lyqvsLgdo6wOPvrHQ/VuIekYY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bbEb5YOHBOo6ymN6PVG5uu9UT1SxajoUjaYyND4B8CVfbyKUrswWSptf7s6Fv2QdmyCcU8dTvWgOANVPngv8HZNoEPE4ND3P3Vv1VPXWQtfk5pt76Tg+c7JP0bUsIBwyD712JQslAICNnYVaw+GjN7X5gXjg8B2goTn9WRUSxZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qNgGXQIa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46851C113D0;
+	Thu, 13 Nov 2025 16:41:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763051467;
-	bh=ImsBrSsWCbftesE+Cb1PYnzgguu50ch+W6P48qu+dUI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=qjxCpYfrA+jv9Cs/yv229WgXJxRN+0rlmD69yl8QvZ+mQZUWi7J9/5KxAT//fNUpu
-	 Xqax7/rVDSDd372Dy60R8t+3UMZhlNTT7hNVug1DlxJLcsuvj7Se96Q4aE4M3eEhQn
-	 4yo4wxAUEckApMesXY7cBeilI7CCmoemizq7I6Mo9fdGq3CnLxRWVSk059BjsOmQ3Y
-	 nW3FdeyKjLcKwvSEloJVp2RxBAgvCmi4yGycATT43pX1Ee4ftH4S+focUvYR9Q+LIO
-	 ks33tthtdECLMINZTMb3FOUzsvrkIFFeXitKbySepsCDjcWbh0QVMjiwoHKVasDp21
-	 RATVEsFBFzg9Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59690CD8CA7;
-	Thu, 13 Nov 2025 16:31:07 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Thu, 13 Nov 2025 17:31:03 +0100
-Subject: [PATCH v6 7/7] Input: synaptics-rmi4 - support fallback values for
- PDT descriptor bytes
+	s=k20201202; t=1763052122;
+	bh=tbI30SQdpsjBi0FiA0lyqvsLgdo6wOPvrHQ/VuIekYY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qNgGXQIajwxVe7WQ6kGYsfOs7tSWSzNInH4olIfs/uNUQzMJDBdh1uWvYgVARgS7L
+	 MkAaVG9auvsafOddLcG45jmQc3v1nOehwRhRvHGQjzcKei4eZEe5Ym44vPahLnL916
+	 QgDNMcuEuhc+oJ17Xpuavg9cl0TZ3yruFjCPTXVuEnk1T/5wBmKbNA/CfUlyK1V6se
+	 HY2sE5/OILtgWAA75hTY+o9QlRhMRAw44S+qk+cObISqfwHdtorH238PvR2M0MBqj7
+	 0GhzF8VV7KeT7s+YnwnEGp3be9KojOk5Tz6DEdtf/7g3QUK0KghiWpbgovzeetJB8B
+	 xcm4CJq+pWrVQ==
+Date: Thu, 13 Nov 2025 22:11:47 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+	andersson@kernel.org, robh@kernel.org, manivannan.sadhasivam@linaro.org, 
+	krzk@kernel.org, helgaas@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org, 
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, 
+	quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v2] schemas: pci: Document PCIe T_POWER_ON
+Message-ID: <epqkkezjnkwznh4minlvhh7vbnwh3isqeofqamgupj7rjnhjv2@wtrx4ecjgvob>
+References: <20251110112947.2071036-1-krishna.chundru@oss.qualcomm.com>
+ <aRHdiYYcn2uZkLor@wunner.de>
+ <44c7b4a8-33ce-4516-81bf-349b5e555806@oss.qualcomm.com>
+ <aRWYoHvaCCN95ZR9@wunner.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251113-synaptics-rmi4-v6-7-d9836afab801@ixit.cz>
-References: <20251113-synaptics-rmi4-v6-0-d9836afab801@ixit.cz>
-In-Reply-To: <20251113-synaptics-rmi4-v6-0-d9836afab801@ixit.cz>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Casey Connolly <casey.connolly@linaro.org>, 
- phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5650; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=WDxThFuTW5xe6P2WYsbevC4RS4y/BvA9+hBHQwKvAJE=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpFgfJZS4oQt3CYBKaahhk76Gf+LJqmETicSXSh
- LQs/aKqEFaJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaRYHyQAKCRBgAj/E00kg
- cvTED/9o0xvCKweql1jKRZ1ltYvYsDJWnYgxmZAlbO0XL5K0kgJX4xvJ0w+7KZKwSJmREszyjMX
- uw4wiFyMxn3lSEJD1NEEbfk0qF8gvUv0rKCTzRTY3yx/gO1BLEMcTvxuLdqrQNAv9WI8xEGpGel
- HE9kS/SUf9sS+DNLRVsLn7eAfYzqBL+BCjqJrDA7Zs/CBh81ab0Wwvg33V8y0F/i6cX2lt5QpgW
- NcvwAtFqoJzPhrqupY929bQIdfCI2yOVyuRxmbqWOQmzBXr6U5bTDtiYupfqkIPgKr908J9JapP
- d0h+4SduEnHHrsN9yFdqU98I7skD9mNREUutvzedrAgG1V6QQsW4JpX+vHvLcKPJ5fXylXWlRs1
- UKwVn7dd+6WuJtPydTizVEOykj2kdJ64/niTfW4OUbuJDRTaPS3gDhGt8eRLT903vtkW76JduQ6
- 9FYtjYimVc+Lh5VX7iHe0KaDZEsRii37wveTvUkdtuyVEOUqr75hXZSEHIlS0d3t8Bji9ZON21G
- Bo0oSBbn1lDKKoHs30i6G7j5bAVTHC/CS3N2yr06V/ltR2rIQF7raNI4EzXlfJSquXUElmbdeqT
- lX2yA5V0lsSpSp0V3plDF6vzv7YfsZbE7PXjtXy9tmwmn2RKA12WykfEmsWVy10kSfmyMay3ya6
- Z/3zn38+y8pZZvw==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aRWYoHvaCCN95ZR9@wunner.de>
 
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
+On Thu, Nov 13, 2025 at 09:36:48AM +0100, Lukas Wunner wrote:
+> On Thu, Nov 13, 2025 at 09:33:54AM +0530, Krishna Chaitanya Chundru wrote:
+> > On 11/10/2025 6:11 PM, Lukas Wunner wrote:
+> > > On Mon, Nov 10, 2025 at 04:59:47PM +0530, Krishna Chaitanya Chundru wrote:
+> > > >  From PCIe r6, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
+> > > Please use the latest spec version as reference, i.e. PCIe r7.0.
+> > ack.
+> > > > minimum amount of time(in us) that each component must wait in L1.2.Exit
+> > > > after sampling CLKREQ# asserted before actively driving the interface to
+> > > > ensure no device is ever actively driving into an unpowered component and
+> > > > these values are based on the components and AC coupling capacitors used
+> > > > in the connection linking the two components.
+> > > > 
+> > > > This property should be used to indicate the T_POWER_ON for each Root Port.
+> > > What's the difference between this property and the Port T_POWER_ON_Scale
+> > > and T_POWER_ON_Value in the L1 PM Substates Capabilities Register?
+> > > 
+> > > Why do you need this in the device tree even though it's available
+> > > in the register?
+> > 
+> > This value is same as L1 PM substates value, some controllers needs to
+> > update this
+> > value before enumeration as hardware might now program this value
+> > correctly[1].
+> > 
+> > [1]: [PATCH] PCI: qcom: Program correct T_POWER_ON value for L1.2 exit
+> > timing
+> > 
+> > <https://lore.kernel.org/all/20251104-t_power_on_fux-v1-1-eb5916e47fd7@oss.qualcomm.com/>
+> 
+> Per PCIe r7.0 sec 7.8.3.2, all fields in the L1 PM Substates Capabilities
+> Register are of type "HwInit", which sec 7.4 defines as:
+> 
+>    "Register bits are permitted, as an implementation option, to be
+>     hard-coded, initialized by system/device firmware, or initialized
+>     by hardware mechanisms such as pin strapping or nonvolatile storage.
+>     Initialization by system firmware is permitted only for
+>     system-integrated devices.
+>     Bits must be fixed in value and read-only after initialization."
+>                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 
+> These bits are not supposed to be writable by the operating system,
+> so what you're doing in that patch is not spec-compliant.
+> 
 
-Some replacement displays include third-party touch ICs which do not
-expose the function number and the interrupt status in its PDT entries.
+I interpret 'initialized by system/device firmware', same as 'initialized by
+OS', as both are mostly same for the devicetree platforms. So it is fine IMO.
+Ofc, if the initialization was carried out by the firmware, then OS has no
+business in changing it, but it is not the case.
 
-OnePlus 6 (original touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2b 22 0d 06 01 01)
+> I think it needs to be made explicit in the devicetree schema that
+> the property is only intended for non-compliant hardware which allows
+> (and requires) the operating system to initialize the register.
+> 
 
-OnePlus 6 (aftermarket touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2c 23 0d 06 00 00)
+Sorry, I disagree. The hardware is spec compliant, just that the firmware missed
+initializing the fields.
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-[codeflow adjustments, checkpatch fixes, wording]
-Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
-Co-developed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- drivers/input/rmi4/rmi_driver.c | 62 +++++++++++++++++++++++++++++++++++------
- drivers/input/rmi4/rmi_driver.h |  2 ++
- include/linux/rmi.h             |  3 ++
- 3 files changed, 59 insertions(+), 8 deletions(-)
+> Maybe it makes more sense to have a property which specifies the raw
+> 32-bit register contents, instead of having a property for each
+> individual field.  Otherwise you'll have to amend the schema
+> whenever the PCIe spec extends the register with additional fields.
+> 
 
-diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
-index 93a190e333c66..bb1db5bbb3abb 100644
---- a/drivers/input/rmi4/rmi_driver.c
-+++ b/drivers/input/rmi4/rmi_driver.c
-@@ -462,9 +462,10 @@ static int rmi_driver_reset_handler(struct rmi_device *rmi_dev)
- 	return 0;
- }
- 
--static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
--			      struct pdt_entry *entry, u16 pdt_address)
-+static int rmi_read_pdt_entry(struct rmi_device *rmi_dev, struct pdt_entry *entry,
-+			      struct pdt_scan_state *state, u16 pdt_address)
- {
-+	const struct rmi_device_platform_data *pdata = rmi_get_platform_data(rmi_dev);
- 	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int error;
- 
-@@ -475,6 +476,21 @@ static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
- 		return error;
- 	}
- 
-+	if (pdata->pdt_fallback_size > state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1) {
-+		/* Use the description bytes from the driver */
-+		buf[5] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS];
-+		buf[4] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1];
-+
-+		error = rmi_read_block(rmi_dev, pdt_address, buf,
-+				RMI_PDT_ENTRY_SIZE - 2);
-+		if (error) {
-+			dev_err(&rmi_dev->dev,
-+					"Read PDT entry at %#06x failed, code: %d.\n",
-+					pdt_address, error);
-+			return error;
-+		}
-+	}
-+
- 	entry->page_start = pdt_address & RMI4_PAGE_MASK;
- 	entry->query_base_addr = buf[0];
- 	entry->command_base_addr = buf[1];
-@@ -547,7 +563,7 @@ static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
- 	int retval;
- 
- 	for (addr = pdt_start; addr >= pdt_end; addr -= RMI_PDT_ENTRY_SIZE) {
--		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, addr);
-+		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, state, addr);
- 		if (error)
- 			return error;
- 
-@@ -1024,9 +1040,13 @@ static int rmi_driver_remove(struct device *dev)
- }
- 
- #ifdef CONFIG_OF
--static int rmi_driver_of_probe(struct device *dev,
--				struct rmi_device_platform_data *pdata)
-+static const u8 rmi_s3706_fallback_pdt[] = {34, 41, 01, 01, 12, 01};
-+
-+static int rmi_driver_of_probe(struct rmi_device *rmi_dev,
-+			       struct rmi_device_platform_data *pdata)
- {
-+	struct device *dev = rmi_dev->xport->dev;
-+	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int retval;
- 
- 	retval = rmi_of_property_read_u32(dev, &pdata->reset_delay_ms,
-@@ -1034,11 +1054,37 @@ static int rmi_driver_of_probe(struct device *dev,
- 	if (retval)
- 		return retval;
- 
-+	/*
-+	 * In some aftermerket touch ICs, the first PDT entry is empty and
-+	 * the function number register is 0. If so, the driver
-+	 * may have provide backup PDT entries.
-+	 */
-+
-+	retval = rmi_read_block(rmi_dev, PDT_START_SCAN_LOCATION,
-+			buf, RMI_PDT_ENTRY_SIZE);
-+	if (retval) {
-+		dev_err(dev, "Read PDT entry at %#06x failed, code: %d.\n",
-+			PDT_START_SCAN_LOCATION, retval);
-+		return retval;
-+	}
-+
-+	if (!RMI4_END_OF_PDT(buf[5]))
-+		return 0;
-+
-+	/* List of known PDT entries per compatible. */
-+	if (of_device_is_compatible(dev->of_node, "syna,rmi4-s3706b")) {
-+		pdata->pdt_fallback_desc = rmi_s3706_fallback_pdt;
-+		pdata->pdt_fallback_size = ARRAY_SIZE(rmi_s3706_fallback_pdt);
-+	} else {
-+		dev_err(dev, "First PDT entry is empty and no backup values provided.\n");
-+		return -EINVAL;
-+	}
-+
- 	return 0;
- }
- #else
--static inline int rmi_driver_of_probe(struct device *dev,
--					struct rmi_device_platform_data *pdata)
-+static inline int rmi_driver_of_probe(struct rmi_device *rmi_dev,
-+				      struct rmi_device_platform_data *pdata)
- {
- 	return -ENODEV;
- }
-@@ -1159,7 +1205,7 @@ static int rmi_driver_probe(struct device *dev)
- 	pdata = rmi_get_platform_data(rmi_dev);
- 
- 	if (rmi_dev->xport->dev->of_node) {
--		retval = rmi_driver_of_probe(rmi_dev->xport->dev, pdata);
-+		retval = rmi_driver_of_probe(rmi_dev, pdata);
- 		if (retval)
- 			return retval;
- 	}
-diff --git a/drivers/input/rmi4/rmi_driver.h b/drivers/input/rmi4/rmi_driver.h
-index a4ae2af93ce3a..b931f428713bf 100644
---- a/drivers/input/rmi4/rmi_driver.h
-+++ b/drivers/input/rmi4/rmi_driver.h
-@@ -31,6 +31,8 @@
- #define RMI_PDT_FUNCTION_VERSION_MASK   0x60
- #define RMI_PDT_INT_SOURCE_COUNT_MASK   0x07
- 
-+#define RMI_OF_PDT_DESC_CELLS 2
-+
- #define PDT_START_SCAN_LOCATION 0x00e9
- #define PDT_END_SCAN_LOCATION	0x0005
- #define RMI4_END_OF_PDT(id) ((id) == 0x00 || (id) == 0xff)
-diff --git a/include/linux/rmi.h b/include/linux/rmi.h
-index ab7eea01ab427..4ba2cefac8558 100644
---- a/include/linux/rmi.h
-+++ b/include/linux/rmi.h
-@@ -214,6 +214,9 @@ struct rmi_device_platform_data {
- 	int reset_delay_ms;
- 	int irq;
- 
-+	unsigned int pdt_fallback_size;
-+	const u8 *pdt_fallback_desc;
-+
- 	struct rmi_device_platform_data_spi spi_data;
- 
- 	/* function handler pdata */
+DT properties do not specify a register value, but instead they specify hardware
+configuration value and that's what this property is doing. The OS/other DT
+consumers should interpret this value as per the spec and program the relevant
+registers.
+
+- Mani
 
 -- 
-2.51.0
-
-
+மணிவண்ணன் சதாசிவம்
 
