@@ -1,179 +1,171 @@
-Return-Path: <devicetree+bounces-238277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7365C598EB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E5E2C59930
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:55:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8FA7634CA50
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 18:45:06 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1BC163425BA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 18:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585823115B5;
-	Thu, 13 Nov 2025 18:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CFB31281C;
+	Thu, 13 Nov 2025 18:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PR6xYFk6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WGtumTY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3562C30FC15;
-	Thu, 13 Nov 2025 18:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C9B3112BC
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 18:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763059500; cv=none; b=M6vsqcDRuOTnXbRGb2pXJuldD8DpMXvtPC/m6d49gGLyikiXgsiikPYTejHCCmKjqvq4rE9C6WshJke/48JVXQJ+DHS02Ixt8z/w6mU4uEIz1CHn+adkYA5cg5tquXw377gQFub2/yA/cE6+L6bzHFHNdV01XcRnpK+KJyWUe2Q=
+	t=1763060052; cv=none; b=Esd/C8t0Xef4DA3HYXtABEQcLvJHUBERlWDPxU1VQt/xKp85P5FDcIzJOgq1FJk8f0JNfn9SKNmoQA9IuW/i6Nit1nX9yJMaZL0FOKb7OwemzOf1PJNJL3kPlViqPuY5U18VCFyLkNnIHwk+owQsvpMcOw0+FStLP/CcfSHVO5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763059500; c=relaxed/simple;
-	bh=uJwfz7y+UOjyl3txMn7ctra7YU4BaP0tmmsat+CbBmU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fph8YdAWS0m8sG2DZdwUGJi/h2fkzm6BxWvZ6B0gA9rHa1v3PYxF3iv2lS9ouoJmWMjnyCtrvNsk2S+0yO9Bo1zqROQvD1swEMN9ukXdIzqdyn1xoGsOhB6/5TSEDgW+sHTgL5bobip2uK99a8Bm1siKZbIBkFi3WWCh8M642cM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PR6xYFk6; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763059498; x=1794595498;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uJwfz7y+UOjyl3txMn7ctra7YU4BaP0tmmsat+CbBmU=;
-  b=PR6xYFk6qzUcxnEZIaVSpVaAt0c+LkEsHcif0As7UCSa0pSy2T41nHG7
-   Q9QwUZ3pt+lA+rmvD7RSmUp8xmD8QUxpSPqf1yhjwPjtqRnvX/kM5yvF5
-   E+kXmf+4v3tLfRLbMBQpsdIcqXkqGmMXW3jPIc0TTp18Dy3ezY+LVXkjX
-   VjqfB/LjMLo7fm/QQ+S8Z4QMvcTHOhEe4ktAJ5wc4QmezKtRFcx0fqEAz
-   Y7kwqFgRvuMzK9vzJt8KeORMwV6ZQKfChP+Z+Ro3pfDZ10vbSjdniyvf2
-   XZWr+VrQQDe4VubCGGMx8V1j+FK3piuY2z/VL4xuL4BW4+yaNVmO8OWGy
-   g==;
-X-CSE-ConnectionGUID: 5iK8ftCjT0yY0GaecxRbSQ==
-X-CSE-MsgGUID: JFw5oROvSrKyATRfmd1kVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="82782235"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; 
-   d="scan'208";a="82782235"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2025 10:44:57 -0800
-X-CSE-ConnectionGUID: pXRj2ntZQ4eRt1WRIuqYvA==
-X-CSE-MsgGUID: ckktt7N/RVqHdg43JpF33A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; 
-   d="scan'208";a="189835423"
-Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 13 Nov 2025 10:44:53 -0800
-Received: from kbuild by 7b01c990427b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vJcJO-0005l9-2G;
-	Thu, 13 Nov 2025 18:44:50 +0000
-Date: Fri, 14 Nov 2025 02:43:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yuntao Wang <yuntao.wang@linux.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	James Morse <james.morse@arm.com>, Baoquan He <bhe@redhat.com>,
-	Zhen Lei <thunder.leizhen@huawei.com>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Geoff Levand <geoff@infradead.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Linux Memory Management List <linux-mm@kvack.org>,
-	Changyuan Lyu <changyuanl@google.com>,
-	Alexander Graf <graf@amazon.com>,
-	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Yuntao Wang <yuntao.wang@linux.dev>
-Subject: Re: [PATCH v2 3/7] of/fdt: Fix the len check in
- early_init_dt_check_for_usable_mem_range()
-Message-ID: <202511140236.zLyckeBA-lkp@intel.com>
-References: <20251113155104.226617-4-yuntao.wang@linux.dev>
+	s=arc-20240116; t=1763060052; c=relaxed/simple;
+	bh=ImyLRSldVokJNTwxQD8uL+Aad8g9eoYs7zgGRDjZ8Ww=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lRQLphcTBHvgIOI7d1n/akmfP6zuHOdYWs1ZeCakc6W8K84mjeb+Jx2HY/ZGDsnQvYWIEAlm15oQRRpDjyKKQn1+0TQByPeYbgtQTIQc7RcvcMzumJRCCZ4VT/X/gmW5NZdGnSUSaX+gWH+sCou+i/++5mUjCpaRUAobUCq79VM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WGtumTY5; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-42b3d4d9ca6so1065039f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:54:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763060049; x=1763664849; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0za6nc+aCXQm8KF/y6TMG9+/t9XbwHnz+7+385lRJ0w=;
+        b=WGtumTY5f+hp9Jl3OH7Dr9fDE3PVEL2vqCA5IFMUthmdMZ2vAzPHHqsd1JZjizwKFA
+         rLWbMfuOOm/+XU84wemFDsiDbDGvXzgi8dzao4F1xQEcGo+yKLdXWOmQ7Z1dF3+WT6Sg
+         v/Sz1xfR+nbHFtcSzfhr5vI0WG7pjkt0LMp/GR6DSj029wleELq6OasX49G0XN4cfhza
+         OgCQFCS0CTgT1kW3PouAC40a84om8KE6fqtXEUNZPXZuru02BsByFPiyi/Xh2fNpzhGe
+         JksTmgfTe2ahBOfOqYcP/ZNK8MRMivML32XeqKUaIq+W3sEspz6IXNWyg7g/yE3w7Tl5
+         9K0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763060049; x=1763664849;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0za6nc+aCXQm8KF/y6TMG9+/t9XbwHnz+7+385lRJ0w=;
+        b=AovvMpKPpGC4YwDoj2xbctRsZ2OkRh0ypsmg2nFSjf5HrgstoV2nteSZxbNKnu9rBW
+         ZkRzc4vuRuRRe3K0UwRVvmyYtosWQMGULNFxJA+qw2aWnq07RiseARkNSrqeENn1zDHs
+         HY0J5AtaOrcjM7jWLvAAmKz14Xp5KgZ7tKpYFpg25mch3ycaG76b9s2fMLNopGXy+qW2
+         ubxa4+0TOEXKap9iGYTU1e+o88M6+vHGN42QGo8Q8QJHxqe4eSar7x1fFrLVKG2iPXpx
+         20O6tLhXXxmYyOTUgB9yM23z6PoNOL/X0MG+uSyeIiNPXLsto6eS0UfHJEQ/8nERAIfm
+         +S7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUVscwBdeXIwONPFal3YrLXMwL5GzPrT3XDrrqoW+paEaIC3prfRlCuY6J1ISL9Q/mOWA1Xua6hT1yS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYp0k3NUDKlBzbZ5DSeUQqtiD/qGqZvq8UX7ZkBRQoOAPCV7C7
+	r7j7jnNM00xX5VpRkjB6AVdAhtjkrOH1nBVsgJ06lZLSVyuqUILKsG0rKDIy2DVEj9pEG1bGv4W
+	0x1shlKIsULxtRWNqTBL4qMZGLyfeZso=
+X-Gm-Gg: ASbGncuiapCFyZta+jaG+04xIp30jmiM1yx7kUe55P0jDciZmnr9pW1ZDkw+MFaK2mx
+	17kcX5fp/YCqBE9Q80zULjLgqUc5kBfQlr9RpOa2PSLog7CnxpfP1jrb3s02Kppoc7AFu+mWvtO
+	hGM4ul3qZOBimiWU2Z1KS/WG/6d8YcQpVYNNTwz76sAchlQKlI4l8eelaR657l7SNShib9GalQn
+	4y58rL4jjmKMwdmEgA63Od7H0JzcxTi+dJ+JTgpzud82UCh9b1RXcL/WzOZWw==
+X-Google-Smtp-Source: AGHT+IGTSBrTIDYDjncilT4tzbDR8Dtp04aGMzl96p2G9sbZioO58z/jxSqd5HKBnz20COtjN+8hMikzMSLxwBPwrho=
+X-Received: by 2002:a05:6000:26c3:b0:42b:5448:7ae8 with SMTP id
+ ffacd0b85a97d-42b59372315mr442629f8f.29.1763060048361; Thu, 13 Nov 2025
+ 10:54:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251113155104.226617-4-yuntao.wang@linux.dev>
+References: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <de098757-2088-4b34-8a9a-407f9487991c@lunn.ch>
+In-Reply-To: <de098757-2088-4b34-8a9a-407f9487991c@lunn.ch>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 13 Nov 2025 18:53:41 +0000
+X-Gm-Features: AWmQ_bmzRimk8gYF_4YjJuq9mGlvR6GBPwMMkQlI3Mtuob5q5ystweObvaU2JrE
+Message-ID: <CA+V-a8vgJcJ+EsxSwQzQbprjqhxy-QS84=wE6co+D50wOOOweA@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pcs: renesas,rzn1-miic:
+ Add renesas,miic-phylink-active-low property
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Yuntao,
+Hi Andrew,
 
-kernel test robot noticed the following build errors:
+On Wed, Nov 12, 2025 at 8:58=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Wed, Nov 12, 2025 at 08:19:36PM +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add the boolean DT property `renesas,miic-phylink-active-low` to the RZ=
+N1
+> > MIIC binding schema. This property allows configuring the active level
+> > of the PHY-link signals used by the Switch, EtherCAT, and SERCOS III
+> > interfaces.
+> >
+> > The signal polarity is controlled by fields in the MIIC_PHYLINK registe=
+r:
+> >   - SWLNK[3:0]: configures the Switch interface link signal level
+> >       0 - Active High
+> >       1 - Active Low
+> >   - CATLNK[6:4]: configures the EtherCAT interface link signal level
+> >       0 - Active Low
+> >       1 - Active High
+> >   - S3LNK[9:8]: configures the SERCOS III interface link signal level
+> >       0 - Active Low
+> >       1 - Active High
+> >
+> > When the `renesas,miic-phylink-active-low` property is present, the
+> > PHY-link signal is configured as active-low. When omitted, the signal
+> > defaults to active-high.
+>
+> Sorry, but i asked in a previous version, what is phy-link? You still
+> don't explain what this signal is. phylib/phylink tells you about the
+> link state, if there is a link partner, what link speed has been
+> negotiated, duplex, pause etc. What does this signal indicate?
+>
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.18-rc5 next-20251113]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+                                   +----> Ethernet Switch -------->
+GMAC (Synopsys IP)
+                                    |
+                                    |
+MII Converter ----------+
+                                    |
+                                   +----> EtherCAT Slave Controller
+                                   |
+                                   |
+                                   +----> SERCOS Controller
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yuntao-Wang/of-fdt-Consolidate-duplicate-code-into-helper-functions/20251114-004121
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20251113155104.226617-4-yuntao.wang%40linux.dev
-patch subject: [PATCH v2 3/7] of/fdt: Fix the len check in early_init_dt_check_for_usable_mem_range()
-config: arm-allnoconfig (https://download.01.org/0day-ci/archive/20251114/202511140236.zLyckeBA-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 0bba1e76581bad04e7d7f09f5115ae5e2989e0d9)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251114/202511140236.zLyckeBA-lkp@intel.com/reproduce)
+Each of these IPs has its own link status pin as an input to the SoC:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511140236.zLyckeBA-lkp@intel.com/
+SWITCH_MII_LINK: Switch PHY link status input
+S3_MII_LINKP: SERCOS III link status from PHY
+CAT_MII_LINK: EtherCAT link status from PHY
 
-All errors (new ones prefixed by >>):
+The above architecture is for the RZ/N1 SoC. For RZ/T2H SoC we dont
+have a SERCOS Controller. So in the case of RZ/T2H EVK the
+SWITCH_MII_LINK status pin is connected to the LED1 of VSC8541 PHY.
 
->> drivers/of/fdt.c:903:31: error: incompatible pointer types passing 'phys_addr_t *' (aka 'unsigned int *') to parameter of type 'u64 *' (aka 'unsigned long long *') [-Wincompatible-pointer-types]
-     903 |                 of_fdt_read_addr_size(prop, &rgn[i].base, &rgn[i].size);
-         |                                             ^~~~~~~~~~~~
-   drivers/of/fdt.c:663:60: note: passing argument to parameter 'addr' here
-     663 | void __init of_fdt_read_addr_size(const __be32 *prop, u64 *addr, u64 *size)
-         |                                                            ^
-   drivers/of/fdt.c:903:45: error: incompatible pointer types passing 'phys_addr_t *' (aka 'unsigned int *') to parameter of type 'u64 *' (aka 'unsigned long long *') [-Wincompatible-pointer-types]
-     903 |                 of_fdt_read_addr_size(prop, &rgn[i].base, &rgn[i].size);
-         |                                                           ^~~~~~~~~~~~
-   drivers/of/fdt.c:663:71: note: passing argument to parameter 'size' here
-     663 | void __init of_fdt_read_addr_size(const __be32 *prop, u64 *addr, u64 *size)
-         |                                                                       ^
-   2 errors generated.
+The PHYLNK register [0] (section 10.2.5 page 763) allows control of
+the active level of the link.
+0: High active (Default)
+1: Active Low
 
+For example the SWITCH requires link-up to be reported to the switch
+via the SWITCH_MII_LINK input pin.
 
-vim +903 drivers/of/fdt.c
+[0] https://www.renesas.com/en/document/mah/rzn1d-group-rzn1s-group-rzn1l-g=
+roup-users-manual-r-engine-and-ethernet-peripherals?r=3D1054561
 
-   879	
-   880	/**
-   881	 * early_init_dt_check_for_usable_mem_range - Decode usable memory range
-   882	 * location from flat tree
-   883	 */
-   884	void __init early_init_dt_check_for_usable_mem_range(void)
-   885	{
-   886		struct memblock_region rgn[MAX_USABLE_RANGES] = {0};
-   887		const __be32 *prop;
-   888		int len, i;
-   889		unsigned long node = chosen_node_offset;
-   890	
-   891		if ((long)node < 0)
-   892			return;
-   893	
-   894		pr_debug("Looking for usable-memory-range property... ");
-   895	
-   896		prop = of_fdt_get_addr_size_prop(node, "linux,usable-memory-range", &len);
-   897		if (!prop)
-   898			return;
-   899	
-   900		len = min(len, MAX_USABLE_RANGES);
-   901	
-   902		for (i = 0; i < len; i++) {
- > 903			of_fdt_read_addr_size(prop, &rgn[i].base, &rgn[i].size);
-   904	
-   905			pr_debug("cap_mem_regions[%d]: base=%pa, size=%pa\n",
-   906				 i, &rgn[i].base, &rgn[i].size);
-   907		}
-   908	
-   909		memblock_cap_memory_range(rgn[0].base, rgn[0].size);
-   910		for (i = 1; i < MAX_USABLE_RANGES && rgn[i].size; i++)
-   911			memblock_add(rgn[i].base, rgn[i].size);
-   912	}
-   913	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Cheers,
+Prabhakar
 
