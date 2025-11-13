@@ -1,116 +1,234 @@
-Return-Path: <devicetree+bounces-237871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0B06C55394
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:17:40 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FBE3C55442
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:38:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 756B33AEA77
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 01:17:39 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C5FD53465DF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 01:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8887F1A2C11;
-	Thu, 13 Nov 2025 01:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Q/6xIIdl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 201F028FFF6;
+	Thu, 13 Nov 2025 01:38:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3E618B0A
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 01:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B757080D;
+	Thu, 13 Nov 2025 01:37:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762996654; cv=none; b=r/eT0cJI7YwXfZsjE7VLZUx+XhjhCWO9u9NEexROvcZSaNMDxQwbyP9ntepQa9SCpQ31Wy62cmE3dnLx7aWkpucdqVVn6hilSSYjJG2OLs0/D/1HMIgD6QIB3aC0DZAVWien0VT5TPyqzp7yYl1wLXIh0NDfURyfx7IZ4ysF3b8=
+	t=1762997881; cv=none; b=ZRTI1hiGs0uF0fWkA1ZGLazuCslM163mEHzqCoScPHnz8BUdZKXZkJgUYG9CQfQr3y2pLgSRTdL1j21P6FPSWUC1uZpBQFucs9SZlWOUOWy7sI/d7OscJfuv2smI1Oy5WauuYiyC9tzu5QfETQyDgrQDyyUInS/bHfc1zIRLmN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762996654; c=relaxed/simple;
-	bh=RJdzbBhfGhI09u51y8sQG5hOaq5lWDhaLzOTTvMVY8Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lKLXsipnManxi53sjrYW/ApnH56H3aB82kRVHKnDnL9cq+DjhaACvG8ZTBJd4YGRQZVSz7e8KPdx3QMtf4G1+uJ+3Tv3dcbhtiho/JSQYRybjVZuJwVaIWN+Eou9eYthyCPUtDJ3cC8MBUmQlC+vBSjYkb4Qkwuxev3LszlGEXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Q/6xIIdl; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [213.216.211.176])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 0737122B;
-	Thu, 13 Nov 2025 02:15:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762996530;
-	bh=RJdzbBhfGhI09u51y8sQG5hOaq5lWDhaLzOTTvMVY8Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q/6xIIdl2+JQnH0b/1SnFhwrRERG4EdyYO4RnR+B+HR25Z9jH8taSNwl4QQxb3AT7
-	 i81CKgCdjf4exuXEhe/7ntYCfVL9wpSkHuXN7Pd69iUyYkdJKNhb09OPpUdYx1rsJH
-	 a4OKXAShC1CyNyyw8VREt/l66WqeJKDEhOceQXZE=
-Date: Thu, 13 Nov 2025 03:17:19 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <20251113011719.GD9135@pendragon.ideasonboard.com>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
- <aP83bMDWCre7-Sjw@pengutronix.de>
- <aRR-6Nl3ELB2v8gV@shell.armlinux.org.uk>
- <176295131007.567526.3395425614344577792@ping.linuxembedded.co.uk>
- <aRSD9n_F4aRXAdf3@shell.armlinux.org.uk>
+	s=arc-20240116; t=1762997881; c=relaxed/simple;
+	bh=Uiu7GyzBjzUkcrK2zXQT7LSVNZ3Ei1g+wlG73SyEsJ0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=riiVJvMFH86S8ujtfe+JTlglSXOqqRaptAA5rP1ZaueDgrgoWWFgibSBhfppGAKe4rc7+I44O+Qn7ABHTRKdJx3yRu4iP22YyCSI6rUzkNgPZaNmD5mJZI/mGzKnRjYGukqnxKZ2NFOyFGLN65ZAGXdMVgTjFCLsaGoXw8+PwJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app1 (Coremail) with SMTP id TAJkCgDXz2daNhVp+DV7AA--.29102S2;
+	Thu, 13 Nov 2025 09:37:32 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	troy.mitchell@linux.dev,
+	bmasney@redhat.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v8 0/3] Add driver support for ESWIN eic700 SoC clock controller
+Date: Thu, 13 Nov 2025 09:36:37 +0800
+Message-Id: <20251113013637.1109-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aRSD9n_F4aRXAdf3@shell.armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgDXz2daNhVp+DV7AA--.29102S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3WF4DKFW8Cw1xWw45Aw48Crg_yoWxZr17pF
+	4kGr98CFn0gryxXan7tayIgF95XanrJFWjkryxXw1jva4Yk34vyr4FvFy5AFWDZr1xAw4D
+	tFnrWa1jkF4UZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBm14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26r
+	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+	6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
+	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVWUtVW8ZwCY02Avz4vE-syl42
+	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
+	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI4
+	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
+	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
+	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUO73vUUUUU
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 
-On Wed, Nov 12, 2025 at 12:56:22PM +0000, Russell King (Oracle) wrote:
-> On Wed, Nov 12, 2025 at 12:41:50PM +0000, Kieran Bingham wrote:
-> > Perhaps further complicating matters.
-> > 
-> > I have a Debix Model A as well ... I'm in a different office to Laurent
-> > - and I believe EEE is enabled on my board/network switch.
-> > 
-> > I do not get an interrupt storm.
-> > 
-> > I'm not sure how this helps yet, - I don't know what to debug as I can't
-> > reproduce the issue!
-> > 
-> > I can provide remote access to the board with ssh if that helps anyone
-> > who wants to look at something specific about my setup or run anything
-> > if anyone has ideas of what to check my side.
-> > 
-> > Perhaps we can find some subtle difference between a working case and a
-> > non-working case...
-> 
-> Thanks, that's interesting. I guess the next steps would be to try and
-> work out what's different between your two setups.
-> 
-> - same board revision?
-> - same firmware/ATF?
-> - same kernel/modules?
-> - same type of link partner? (I suspect, given the cpu-pd-wait
->    interaction, isn't the problem.)
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-I've provided the binaries I use for U-Boot (including TF-A) and the
-kernel to Kieran, he will test to see if they make a difference. I also
-tested replacing mainline TF-A (v2.13) with the downstream NXP version
-listed in the U-Boot i.MX8MP EVK documentation, and that didn't appear
-to make any difference.
+The link [1] provides the official documentation for the EIC7700. Section 3.2
+covers the clock subsystem.
 
--- 
-Regards,
+[1] https://www.sifive.com/document-file/eic7700x-datasheet
 
-Laurent Pinchart
+Updates:
+  Changes in v8:
+  - Added clock-tree link in cover-letter.
+  - Updated YAML file
+    - Added "Acked-by: Troy Mitchell <troy.mitchell@linux.dev>" for bindings.
+  - Updated driver file
+    - Changed Kconfig symbol type from bool to tristate to build this driver as
+      module.
+  - Updated MAINTAINERS file
+    - Added entry "ESWIN EIC7700 CLOCK DRIVER".
+
+  - Link to v7: https://lore.kernel.org/all/20251023071658.455-1-dongxuyang@eswincomputing.com/
+
+  Changes in v7:
+  - Updated YAML file
+    - Added "Acked-by: Conor Dooley <conor.dooley@microchip.com>" for bindings.
+  - Updated driver file
+    - Added description for clk of eswin_calc_pll().
+    - Added macro EIC7700_MUX_TBL to manage mux clock-tree.
+    - Added eswin_clk_register_mux_tbl() to register mux clocks with
+      discontinuous parent indexes.
+
+  - Link to v6: https://lore.kernel.org/all/20251009092029.140-1-dongxuyang@eswincomputing.com/
+
+  Changes in v6:
+  - Removed config option patch dependency from cover letter, because the patch
+    was applied.
+  - Updated YAML file
+    - Added an oscillator as the clock input, named xtal24m.
+    - Added clocks property.
+  - Updated driver file
+    - Replaced fixed_rate_clk_xtal_24m with xtal24m.
+    - Dropped fixed_rate_clk_xtal_24m from driver. Because clock xtal24m was
+      registered by fixed-clock as oscillator.
+
+  - Link to v5: https://lore.kernel.org/all/20250923084637.1223-1-dongxuyang@eswincomputing.com/
+
+  Changes in v5:
+  - Removed vendor prefix patch dependency from cover letter, because the patch
+    was applied.
+  - Updated YAML file
+    - Placed the required after all properties.
+    - Removed patternProperties. Also removed compatible of eswin,pll-clock,
+      eswin,mux-clock, eswin,divider-clock and eswin,gate-clock as we have moved
+      clock tree from DTS to Linux driver.
+    - Removed the clock tree from DTS. Used clock-controller to manage all
+      clock. Removed all child nodes in clock-controller.
+    - Removed '#address-cells' and '#size-cells' properties, because the clock
+      controller did not need to define these properties.
+    - Removed eic7700-clocks.dtsi.
+    - Added dt-bindings header for clock IDs. Because used the IDs to register
+      clocks.
+  - Updated driver file
+    - Modified the commit for clock driver. Dropped indentation in commit.
+    - Removed CLK_OF_DECLARE(). Used *clk_hw_register* to register clocks. Used
+      devm_of_clk_add_hw_provider.
+    - Dropped singletons.
+    - Checked the value right after obtaining it.
+    - Removed the definitions of macro frequency in clk.h like CLK_FREQ_24M.
+    - Modified description of help in Kconfig.
+    - Added COMPILE_TEST. Added COMMON_CLK_ESWIN for clk.o. And added
+      "select COMMON_CLK_ESWIN" for clk-eic7700.c. Without COMMON_CLK_EIC7700,
+      clk.c could not be compiled.
+    - Used .determined_rate.
+    - Added macro definitions of EIC7700_DIV, EIC7700_FIXED, EIC7700_FACTOR,
+      EIC7700_MUX and EIC7700_PLL to manage clock tree.
+    - Added clk-eic7700.h to place eic7700 SoC clock registers.
+    - Removed refdiv_val and postdiv1_val from clk_pll_recalc_rate(). Because
+      these values were unused.
+
+  - Link to v4: https://lore.kernel.org/all/20250815093539.975-1-dongxuyang@eswincomputing.com/
+
+  Changes in v4:
+  - Updated YAML file
+    - Changed name from cpu-default-frequency to cpu-default-freq-hz.
+    - Dropped $ref of cpu-default-frequency.
+    - Added cpu-default-frequency for required.
+    - Removed cpu-default-frequency in updated file, because there was no
+      need to add cpu-default-frequency.
+    - Moved DIVIDER to DIV.
+    - Arranged the IDs in order.
+    - Dropped EIC7700_NR_CLKS.
+    - Removed dt-bindings eswin,eic7700-clock.h. Because IDs was not used,
+      and used clock device nodes.
+    - According to the updated driver codes, the YAML has been updated.
+  - Updated driver file
+    - Remove undocumented parameters "cpu_no_boost_1_6ghz" and
+      "cpu-default-frequency".
+    - Modified the comment and used the correct Linux coding style.
+    - Removed codes of voltage, because it was not the clock driver.
+    - Updated the formula of clock frequency calculation. Removed the logic
+      that only used register selection.
+    - Used CLK_OF_DECLARE() to register clocks. Registered pll-clock,
+      mux-clock, divider-clock, and gate-clock in clk-eic7700.c.
+      The specific implementation of clock registration was in clk.c.
+    - Added eic7700-clocks.dtsi.
+    - Moved device information to DTS. Put all clocks' node in the
+      eic7700-clocks.dtsi.
+
+  - Link to v3: https://lore.kernel.org/all/20250624103212.287-1-dongxuyang@eswincomputing.com/
+
+  Changes in v3:
+  - Update example, drop child node and add '#clock-cells' to the parent
+    node.
+  - Change parent node from sys-crg to clock-controller for this yaml.
+  - Drop "syscon", "simple-mfd" to clear warnings/errors by using "make
+    dt_binding_check". And these are not necessary.
+  - Add "cpu-default-frequency" definition in yaml for "undocumented ABI".
+  - Drop Reviewed-by, this is misunderstanding. We have not received such
+    an email.
+  - Link to v2: https://lore.kernel.org/all/20250523090747.1830-1-dongxuyang@eswincomputing.com/
+
+  Changes in v2:
+  - Update example, drop child node.
+  - Clear warnings/errors for using "make dt_binding_check".
+  - Change to the correct format.
+  - Drop some non-stanard code.
+  - Use dev_err_probe() in probe functions.
+  - Link to v1: https://lore.kernel.org/all/20250514002233.187-1-dongxuyang@eswincomputing.com/
+
+Xuyang Dong (3):
+  dt-bindings: clock: eswin: Documentation for eic7700 SoC
+  clock: eswin: Add eic7700 clock driver
+  MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
+
+ .../bindings/clock/eswin,eic7700-clock.yaml   |   46 +
+ MAINTAINERS                                   |    8 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/eswin/Kconfig                     |   15 +
+ drivers/clk/eswin/Makefile                    |    8 +
+ drivers/clk/eswin/clk-eic7700.c               | 1033 +++++++++++++++++
+ drivers/clk/eswin/clk-eic7700.h               |  122 ++
+ drivers/clk/eswin/clk.c                       |  481 ++++++++
+ drivers/clk/eswin/clk.h                       |  256 ++++
+ .../dt-bindings/clock/eswin,eic7700-clock.h   |  280 +++++
+ 11 files changed, 2251 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+ create mode 100644 drivers/clk/eswin/Kconfig
+ create mode 100644 drivers/clk/eswin/Makefile
+ create mode 100644 drivers/clk/eswin/clk-eic7700.c
+ create mode 100644 drivers/clk/eswin/clk-eic7700.h
+ create mode 100644 drivers/clk/eswin/clk.c
+ create mode 100644 drivers/clk/eswin/clk.h
+ create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
+
+--
+2.43.0
+
 
