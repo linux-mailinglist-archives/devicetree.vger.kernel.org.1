@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E0EC59CEC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:41:03 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 376DEC59CFC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:42:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF4A33AB3F2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:41:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 940A34E024F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C1931CA59;
-	Thu, 13 Nov 2025 19:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D8F313538;
+	Thu, 13 Nov 2025 19:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WraHeHFZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ESVbNSBN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF02931C580;
-	Thu, 13 Nov 2025 19:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A20A286417;
+	Thu, 13 Nov 2025 19:41:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763062858; cv=none; b=bU5n92V0seqADF5atVLTnYTUP3pLud6+OiOJKaKyEvqL2/sUrORM4oQeMceFtCLZMScD+Xf5kA4GDg/FkbitkZoZnFuHUmVx247N6dvCUdzD1oG2WarEWzBN7TBQdeqbTx9tOkj2xGX9i4XfchoWKVyjNFai+NtxnfQrv56HQP4=
+	t=1763062916; cv=none; b=t1Ny4jLuFIxNEIy3cw4+PNl3L1+R8zc5BVi6SOTFVBw7gTJkDZ71qd+JD+OaXg0DH55hAJWKGWXz4hAjMcHu9TvOVaF9WnpH7+QBO31Vf/0779+KPZJ7czANcVGhhccoYnJbgaFDNFZ+WnqWoz7BbZ4hisv0YeY8JS9Za2ykeNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763062858; c=relaxed/simple;
-	bh=TcT52yLXeNEehNW66+XeJkIqErBHCAX4NfTuEp14RQE=;
+	s=arc-20240116; t=1763062916; c=relaxed/simple;
+	bh=rd2zpPCHj2LC0VX+Ni1vP+XGAM697mBCGbgOGiSycFc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t5ZlB/Ziex9gJ9s+3kHEv8Zx5o1bNU7tnt/R0z3tk2DXyb0CC9bHTu/bZQhb2QeXSNcbtZWFYDwj4NCTyFVNp4hL89whvs2d3Y5DtWrGzYha+uZXIiTCcHD2AtjDvGl4LK5iJ4IIHEANnnr1itHQ/W9NAbM5qGXPVZsEhq/Ss5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WraHeHFZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5B4CC4CEF1;
-	Thu, 13 Nov 2025 19:40:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p91oPezZWfuxcmN5zt8nyzIRYgKFcccVYhTKBkejIe2u06l1GoaZqjY9iVLf/e/sVk4Sorn7vCPxqWUTLxbUyM8G7XfJ3VlTQLnwVwdj9YdjKevmJCE+HESTIKsbvK3wbJLptZkkSkF5rmiTybBNuh1yFEjmQFWAivY+83ma43A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ESVbNSBN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAD1CC4CEF1;
+	Thu, 13 Nov 2025 19:41:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763062857;
-	bh=TcT52yLXeNEehNW66+XeJkIqErBHCAX4NfTuEp14RQE=;
+	s=k20201202; t=1763062915;
+	bh=rd2zpPCHj2LC0VX+Ni1vP+XGAM697mBCGbgOGiSycFc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WraHeHFZ1imxSQShswAz2LQ/MaAmTBxwA8zuSEaBHV0B0zX4hy2Z1TZBvAe7DnTUf
-	 2htf6fs05O1u0dfnztGMJiCyT6/+7IZxzgpErIGcQY88VWb2iac4BJVKpKWC8KkTzE
-	 SpBgAZBXoC6zdF8h6ykoICReTFs2JSvg6RstG47OSntpEiAIvlv5gt8uZ6U9v+FF9H
-	 WrBBGE3KqH93Q3gJGVd6428I+nZwmobfdMzR4jBB0lCeyoFqRjtwb+4Nob9sa3yjev
-	 xKyb9INI+6pPgL+6J++95AET0KKtdot63ROGb/PxYBrNEpZuYawDqgO0x8h7/jSIO8
-	 Yk90xK02AneJA==
-Message-ID: <96f79b35-cabe-4c90-a404-5c10a2853cb3@kernel.org>
-Date: Thu, 13 Nov 2025 20:40:52 +0100
+	b=ESVbNSBN5U75Smbj3dlhdPq58cUYnJoFgHs7TbvPT8SisZiJDqF81eX/Kp4/7LYR/
+	 ubATuM17Fg0p/LMsk88h2One9ciuWnpeYqCD8nFvn6gfjbN8uyk+dbCNdTjskFqzj8
+	 gFfiAm1Mt5naSEI9o6gNCtLWiMIeXP0rKoNHaQbhnPpCVStGUF7NlnCKlnBA2mBzRP
+	 1BKfOXDR2IIjfSqTaK4uCE/vEqUyyPjd4YF4C4rZYLq+MjCW8O0pD9BgUYHnw0TAbD
+	 /gd89hC9xhggKM5UlfKMq6OFobhfphUi8sfX7BWgtssrSloOgvwcIVOfkB0goGvNGU
+	 1cf69nyUgUyvw==
+Message-ID: <8fafec79-febd-464a-903b-e7e8b841b6c9@kernel.org>
+Date: Thu, 13 Nov 2025 20:41:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: realtek: Add Kent SoC and EVB device
- trees
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: Add Realtek ISO system controller
 To: =?UTF-8?B?RWxlYW5vciBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>,
  "afaerber@suse.de" <afaerber@suse.de>, "robh@kernel.org" <robh@kernel.org>,
  "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
@@ -67,9 +66,9 @@ Cc: "linux-arm-kernel@lists.infradead.org"
  =?UTF-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>,
  =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= <stanley_chang@realtek.com>
 References: <20251105104452.6336-1-eleanor.lin@realtek.com>
- <20251105104452.6336-4-eleanor.lin@realtek.com>
- <14b19124-ab99-4ee4-89c9-81e724c4b5bb@kernel.org>
- <cfd4ca2e1a8341edb4585e664b00f4a6@realtek.com>
+ <20251105104452.6336-3-eleanor.lin@realtek.com>
+ <88d90e44-88d9-4b5c-ba76-1e27dd28f78b@kernel.org>
+ <06078f60af0948d19b1abae53eeec7f6@realtek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,32 +114,75 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <cfd4ca2e1a8341edb4585e664b00f4a6@realtek.com>
+In-Reply-To: <06078f60af0948d19b1abae53eeec7f6@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 11/11/2025 13:25, Eleanor Lin [林祐君] wrote:
+On 11/11/2025 13:19, Eleanor Lin [林祐君] wrote:
+> Hi Krzysztof,
+> 
+> Sorry for the delay in responding to you.
+> 
+>> On 05/11/2025 11:44, Yu-Chun Lin wrote:
+>>> Add DT binding schema for Realtek system controller.
+>>>
+>>> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+>>> ---
+>>>  .../bindings/mfd/realtek,iso-system.yaml      | 65
+>> +++++++++++++++++++
+>>>  1 file changed, 65 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/mfd/realtek,iso-system.yaml
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/mfd/realtek,iso-system.yaml
+>>> b/Documentation/devicetree/bindings/mfd/realtek,iso-system.yaml
+>>> new file mode 100644
+>>> index 000000000000..6fbdedd3ee5b
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mfd/realtek,iso-system.yaml
+>>> @@ -0,0 +1,65 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mfd/realtek,iso-system.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
->>> +#include <dt-bindings/thermal/thermal.h> #include "rtd1501.dtsi"
+>>> +title: Realtek ISO System Controller
 >>> +
->>> +/ {
->>> +     chosen {
->>> +             bootargs = "earlycon=uart8250,mmio32,0x98007800
->>> +                         console=ttyS0,460800 8250.nr_uarts=2
->> init=/init
->>> +                         loglevel=8 max_loop=64 loop.max_part=7
->>> +
->>> +firmware_class.path=/vendor/firmware/,/vendor/av_fw";
+>>> +description: |
 >>
->> NAK, drop all bootargs. None of above are suitable for mainline. Don't post all
->> this android or custom initramfs stuff.
+>>
+>> Do not need '|' unless you need to preserve formatting.
 >>
 > 
-> I will remove all custom bootargs and keep only 'earlycon=uart8250,mmio32,0x98007800'.
+> I will remove it in V2.
 > 
+>>> +  The Realtek ISO System Controller is a register area that contains
+>>> + miscellaneous system registers for the SoC and serves as a parent
+>>> + node  for other functions.
+>>> +
+>>> +maintainers:
+>>> +  - James Tai <james.tai@realtek.com>
+>>> +  - Yu-Chun Lin <eleanor.lin@realtek.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - realtek,iso-system
+>>
+>> No clue what is "iso system", neither commit msg, nor title nor description
+>> explain me that. Please add first bindings for the iso soc or if this is not soc,
+>> then use only soc-specific compatibles (see writing bindings doc).
+>>
+> 
+> I will rename 'realtek,misc' for clarity.
 
+How "misc" clarifies a lot? In what way this helps anyone to understand:
+1. What is this hardware?
+2. What device it is?
+3. How do you fulfill requirements from writing-bindings?
 
-Not really, that's debugging not mainline use.
 
 Best regards,
 Krzysztof
