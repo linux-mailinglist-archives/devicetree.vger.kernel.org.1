@@ -1,171 +1,164 @@
-Return-Path: <devicetree+bounces-238278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5E2C59930
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:55:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7DDC59A09
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:10:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1BC163425BA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 18:54:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C892F4E10A4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CFB31281C;
-	Thu, 13 Nov 2025 18:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D6F318131;
+	Thu, 13 Nov 2025 19:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WGtumTY5"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="KOikJ6xR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C9B3112BC
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 18:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67011313529;
+	Thu, 13 Nov 2025 19:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763060052; cv=none; b=Esd/C8t0Xef4DA3HYXtABEQcLvJHUBERlWDPxU1VQt/xKp85P5FDcIzJOgq1FJk8f0JNfn9SKNmoQA9IuW/i6Nit1nX9yJMaZL0FOKb7OwemzOf1PJNJL3kPlViqPuY5U18VCFyLkNnIHwk+owQsvpMcOw0+FStLP/CcfSHVO5E=
+	t=1763060732; cv=none; b=BSvNFEF2Rx0QWaUt5MpBxH6sUkjrwz/yQoZ6Iew98oV64Yi+B2O9f6PDmSG2GZT6+2hoXbLN2pJbc+MHhBsD3KQnuMFBDUaLevEZstmefPahjbVswzqXoxZS6tPA+8tPqm6Ze60xKoWc/wV+SinNl34nXwkDlfYwwg51oQ5dyxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763060052; c=relaxed/simple;
-	bh=ImyLRSldVokJNTwxQD8uL+Aad8g9eoYs7zgGRDjZ8Ww=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lRQLphcTBHvgIOI7d1n/akmfP6zuHOdYWs1ZeCakc6W8K84mjeb+Jx2HY/ZGDsnQvYWIEAlm15oQRRpDjyKKQn1+0TQByPeYbgtQTIQc7RcvcMzumJRCCZ4VT/X/gmW5NZdGnSUSaX+gWH+sCou+i/++5mUjCpaRUAobUCq79VM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WGtumTY5; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-42b3d4d9ca6so1065039f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:54:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763060049; x=1763664849; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0za6nc+aCXQm8KF/y6TMG9+/t9XbwHnz+7+385lRJ0w=;
-        b=WGtumTY5f+hp9Jl3OH7Dr9fDE3PVEL2vqCA5IFMUthmdMZ2vAzPHHqsd1JZjizwKFA
-         rLWbMfuOOm/+XU84wemFDsiDbDGvXzgi8dzao4F1xQEcGo+yKLdXWOmQ7Z1dF3+WT6Sg
-         v/Sz1xfR+nbHFtcSzfhr5vI0WG7pjkt0LMp/GR6DSj029wleELq6OasX49G0XN4cfhza
-         OgCQFCS0CTgT1kW3PouAC40a84om8KE6fqtXEUNZPXZuru02BsByFPiyi/Xh2fNpzhGe
-         JksTmgfTe2ahBOfOqYcP/ZNK8MRMivML32XeqKUaIq+W3sEspz6IXNWyg7g/yE3w7Tl5
-         9K0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763060049; x=1763664849;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0za6nc+aCXQm8KF/y6TMG9+/t9XbwHnz+7+385lRJ0w=;
-        b=AovvMpKPpGC4YwDoj2xbctRsZ2OkRh0ypsmg2nFSjf5HrgstoV2nteSZxbNKnu9rBW
-         ZkRzc4vuRuRRe3K0UwRVvmyYtosWQMGULNFxJA+qw2aWnq07RiseARkNSrqeENn1zDHs
-         HY0J5AtaOrcjM7jWLvAAmKz14Xp5KgZ7tKpYFpg25mch3ycaG76b9s2fMLNopGXy+qW2
-         ubxa4+0TOEXKap9iGYTU1e+o88M6+vHGN42QGo8Q8QJHxqe4eSar7x1fFrLVKG2iPXpx
-         20O6tLhXXxmYyOTUgB9yM23z6PoNOL/X0MG+uSyeIiNPXLsto6eS0UfHJEQ/8nERAIfm
-         +S7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUVscwBdeXIwONPFal3YrLXMwL5GzPrT3XDrrqoW+paEaIC3prfRlCuY6J1ISL9Q/mOWA1Xua6hT1yS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYp0k3NUDKlBzbZ5DSeUQqtiD/qGqZvq8UX7ZkBRQoOAPCV7C7
-	r7j7jnNM00xX5VpRkjB6AVdAhtjkrOH1nBVsgJ06lZLSVyuqUILKsG0rKDIy2DVEj9pEG1bGv4W
-	0x1shlKIsULxtRWNqTBL4qMZGLyfeZso=
-X-Gm-Gg: ASbGncuiapCFyZta+jaG+04xIp30jmiM1yx7kUe55P0jDciZmnr9pW1ZDkw+MFaK2mx
-	17kcX5fp/YCqBE9Q80zULjLgqUc5kBfQlr9RpOa2PSLog7CnxpfP1jrb3s02Kppoc7AFu+mWvtO
-	hGM4ul3qZOBimiWU2Z1KS/WG/6d8YcQpVYNNTwz76sAchlQKlI4l8eelaR657l7SNShib9GalQn
-	4y58rL4jjmKMwdmEgA63Od7H0JzcxTi+dJ+JTgpzud82UCh9b1RXcL/WzOZWw==
-X-Google-Smtp-Source: AGHT+IGTSBrTIDYDjncilT4tzbDR8Dtp04aGMzl96p2G9sbZioO58z/jxSqd5HKBnz20COtjN+8hMikzMSLxwBPwrho=
-X-Received: by 2002:a05:6000:26c3:b0:42b:5448:7ae8 with SMTP id
- ffacd0b85a97d-42b59372315mr442629f8f.29.1763060048361; Thu, 13 Nov 2025
- 10:54:08 -0800 (PST)
+	s=arc-20240116; t=1763060732; c=relaxed/simple;
+	bh=xbsJgSP/qfdSCYvBFIjxcuGK2HLNSgntGJrudJXGpGE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CYOC5lAtDCGigBPTqm0ELRXfyiC19P6cNKVr8GqB2kAL8HXtmjpTs5yel4tkydZCJ9UtnvWF9kRQiolpFBsu+sHQjI9lpW9c+sJ2TxcPmAwSHNzWP74GQzmBz0Iy8YKGdD5qlbHXqBYcfTvtGCKWjvXd7mcmM2fpCFsuguvO0/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=KOikJ6xR; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id A4006264C2;
+	Thu, 13 Nov 2025 20:05:27 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id cVVbP0EOnFVw; Thu, 13 Nov 2025 20:05:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1763060727; bh=xbsJgSP/qfdSCYvBFIjxcuGK2HLNSgntGJrudJXGpGE=;
+	h=From:Subject:Date:To:Cc;
+	b=KOikJ6xRJHpCFTI/IIBv1x8rSDYBLfgSMh9rKWcN5FiFD9GTD+S8ktgGR3JSvzm84
+	 0xdJl1jE+pMK76FoZ2piHSO1IccpEXEQ9bomElLgh80726rKxRTd1jTcs1XdUlmUQq
+	 AGxS5iDOodDd7gTXYQwxQoGoPD6i/F3dplQeTi30OGt09aAg8h2ySEvuuDQl8//u4I
+	 C1mc8Qz8pFJjwdYv/908gh3ceaDLKOc7qDCTMRJBd5QKFNSl0+cw/ZqzKKIZNUvQY1
+	 t3SXCgcS4PGfrFYdP0lqTqV5lPCTYXQer6mnf0hUuc9W00h+xJIgfx84VLvn37Y5OB
+	 4xSuRWpJTsTpw==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH 00/13] Support for Samsung S2MU005 PMIC and its sub-devices
+Date: Fri, 14 Nov 2025 00:35:01 +0530
+Message-Id: <20251114-s2mu005-pmic-v1-0-9e3184d3a0c9@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <de098757-2088-4b34-8a9a-407f9487991c@lunn.ch>
-In-Reply-To: <de098757-2088-4b34-8a9a-407f9487991c@lunn.ch>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 13 Nov 2025 18:53:41 +0000
-X-Gm-Features: AWmQ_bmzRimk8gYF_4YjJuq9mGlvR6GBPwMMkQlI3Mtuob5q5ystweObvaU2JrE
-Message-ID: <CA+V-a8vgJcJ+EsxSwQzQbprjqhxy-QS84=wE6co+D50wOOOweA@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pcs: renesas,rzn1-miic:
- Add renesas,miic-phylink-active-low property
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAN0rFmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDQ0Mj3WKj3FIDA1PdgtzMZF2DZDPztESzpMRk42QloJaCotS0zAqwcdG
+ xtbUAuSre+V4AAAA=
+X-Change-ID: 20251112-s2mu005-pmic-0c67fa6bac3c
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Jonathan Corbet <corbet@lwn.net>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763060713; l=4075;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=xbsJgSP/qfdSCYvBFIjxcuGK2HLNSgntGJrudJXGpGE=;
+ b=BtLrXuFPHG7bSTiR5t6fQiSMgXQ+caOKS4PELrmBT94oWUNgGzcGPA3OMy56H2k1iPz9Y0ktH
+ dTdDg5YNfc3BqiZIqypdiFUb4NME3nHGoQx3bnRuOHcdyzmAGCjy6E+
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-Hi Andrew,
+S2MU005 is an MFD chip manufactured by Samsung Electronics. This is
+found in various devices manufactured by Samsung and others, including
+all Exynos 7870 devices. It is known to have the following features:
 
-On Wed, Nov 12, 2025 at 8:58=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Wed, Nov 12, 2025 at 08:19:36PM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add the boolean DT property `renesas,miic-phylink-active-low` to the RZ=
-N1
-> > MIIC binding schema. This property allows configuring the active level
-> > of the PHY-link signals used by the Switch, EtherCAT, and SERCOS III
-> > interfaces.
-> >
-> > The signal polarity is controlled by fields in the MIIC_PHYLINK registe=
-r:
-> >   - SWLNK[3:0]: configures the Switch interface link signal level
-> >       0 - Active High
-> >       1 - Active Low
-> >   - CATLNK[6:4]: configures the EtherCAT interface link signal level
-> >       0 - Active Low
-> >       1 - Active High
-> >   - S3LNK[9:8]: configures the SERCOS III interface link signal level
-> >       0 - Active Low
-> >       1 - Active High
-> >
-> > When the `renesas,miic-phylink-active-low` property is present, the
-> > PHY-link signal is configured as active-low. When omitted, the signal
-> > defaults to active-high.
->
-> Sorry, but i asked in a previous version, what is phy-link? You still
-> don't explain what this signal is. phylib/phylink tells you about the
-> link state, if there is a link partner, what link speed has been
-> negotiated, duplex, pause etc. What does this signal indicate?
->
+1. Two LED channels with adjustable brightness for use as a torch, or a
+   flash strobe.
+2. An RGB LED with 8-bit channels. Usually programmed as a notification
+   indicator.
+3. An MUIC, which works with USB micro-B (and USB-C?). For the micro-B
+   variant though, it measures the ID-GND resistance using an internal
+   ADC.
+4. A charger device, which reports if charger is online, voltage,
+   resistance, etc.
 
-                                   +----> Ethernet Switch -------->
-GMAC (Synopsys IP)
-                                    |
-                                    |
-MII Converter ----------+
-                                    |
-                                   +----> EtherCAT Slave Controller
-                                   |
-                                   |
-                                   +----> SERCOS Controller
+This patch series implements a lot of these features. Naturally, this
+series touches upon a lot of subsystems. The 'parent' is the MFD driver,
+so the subsystems have some form of dependency to the MFD driver, so
+they are not separable.
 
-Each of these IPs has its own link status pin as an input to the SoC:
+Here are the subsystems corresponding to the patch numbers:
+dt-bindings - 01, 02, 03, 04, 05
+mfd         - 05, 06, 07, 08
+rtc         - 06
+led         - 01, 02, 09, 10, 11
+extcon      - 03, 12
+power       - 04, 13
 
-SWITCH_MII_LINK: Switch PHY link status input
-S3_MII_LINKP: SERCOS III link status from PHY
-CAT_MII_LINK: EtherCAT link status from PHY
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Kaustabh Chakraborty (13):
+      dt-bindings: leds: document Samsung S2M series PMIC flash LED device
+      dt-bindings: leds: document Samsung S2M series PMIC RGB LED device
+      dt-bindings: extcon: document Samsung S2M series PMIC extcon device
+      dt-bindings: power: supply: document Samsung S2M series PMIC charger device
+      dt-bindings: mfd: s2mps11: add documentation for S2MU005 PMIC
+      mfd: sec-irq: add support for creating multiple IRQ chips
+      mfd: sec: add support for S2MU005 PMIC
+      mfd: sec: store hardware revision in sec_pmic_dev and add S2MU005 support
+      leds: flash: add support for Samsung S2M series PMIC flash LED device
+      leds: rgb: add support for Samsung S2M series PMIC RGB LED device
+      Documentation: leds: document pattern behavior of Samsung S2M series PMIC RGB LEDs
+      extcon: add support for Samsung S2M series PMIC extcon devices
+      power: supply: add support for Samsung S2M series PMIC charger device
 
-The above architecture is for the RZ/N1 SoC. For RZ/T2H SoC we dont
-have a SERCOS Controller. So in the case of RZ/T2H EVK the
-SWITCH_MII_LINK status pin is connected to the LED1 of VSC8541 PHY.
+ .../bindings/extcon/samsung,s2mu005-muic.yaml      |  35 ++
+ .../bindings/leds/samsung,s2mu005-flash.yaml       |  52 +++
+ .../bindings/leds/samsung,s2mu005-rgb.yaml         |  34 ++
+ .../devicetree/bindings/mfd/samsung,s2mps11.yaml   | 103 ++++-
+ .../power/supply/samsung,s2mu005-charger.yaml      |  35 ++
+ Documentation/leds/index.rst                       |   1 +
+ Documentation/leds/leds-s2m-rgb.rst                |  60 +++
+ drivers/extcon/Kconfig                             |  10 +
+ drivers/extcon/Makefile                            |   1 +
+ drivers/extcon/extcon-s2m.c                        | 355 ++++++++++++++++
+ drivers/leds/flash/Kconfig                         |  12 +
+ drivers/leds/flash/Makefile                        |   1 +
+ drivers/leds/flash/leds-s2m-flash.c                | 413 ++++++++++++++++++
+ drivers/leds/rgb/Kconfig                           |  11 +
+ drivers/leds/rgb/Makefile                          |   1 +
+ drivers/leds/rgb/leds-s2m-rgb.c                    | 462 +++++++++++++++++++++
+ drivers/mfd/sec-common.c                           |  41 +-
+ drivers/mfd/sec-i2c.c                              |  29 ++
+ drivers/mfd/sec-irq.c                              | 234 ++++++++---
+ drivers/power/supply/Kconfig                       |  11 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/s2m-charger.c                 | 216 ++++++++++
+ drivers/rtc/rtc-s5m.c                              |  15 +-
+ include/linux/mfd/samsung/core.h                   |   9 +-
+ include/linux/mfd/samsung/irq.h                    |  94 +++++
+ include/linux/mfd/samsung/s2mu005.h                | 328 +++++++++++++++
+ 26 files changed, 2487 insertions(+), 77 deletions(-)
+---
+base-commit: 131f3d9446a6075192cdd91f197989d98302faa6
+change-id: 20251112-s2mu005-pmic-0c67fa6bac3c
 
-The PHYLNK register [0] (section 10.2.5 page 763) allows control of
-the active level of the link.
-0: High active (Default)
-1: Active Low
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
-For example the SWITCH requires link-up to be reported to the switch
-via the SWITCH_MII_LINK input pin.
-
-[0] https://www.renesas.com/en/document/mah/rzn1d-group-rzn1s-group-rzn1l-g=
-roup-users-manual-r-engine-and-ethernet-peripherals?r=3D1054561
-
-Cheers,
-Prabhakar
 
