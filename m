@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45684C57C11
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:44:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BFC8C57DD0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:13:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 18E46342388
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:40:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9240F3B2746
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:41:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 312B51F91E3;
-	Thu, 13 Nov 2025 13:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD5E21257B;
+	Thu, 13 Nov 2025 13:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uZ9Knb+k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="byrY5wbf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012D813AA2D;
-	Thu, 13 Nov 2025 13:39:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB91199931;
+	Thu, 13 Nov 2025 13:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763041148; cv=none; b=Um6Bgm6uHWce2vnISU6wlxHpGolEm/LKUKaDnShEV6sAHvVS3+d+3J+9LXtQduwpU+BgTFMEKf6ZuFjUqPdyfDHiIrFpreOfhDvanVhK9L5rmT4yJfnwY675IcwiOLWxd8tyGds1yw/TN8r08RyZhV1HHtoQvkAWs9H0/X6JIWc=
+	t=1763041295; cv=none; b=lq7nLh5B8HJcPbFrELIqNxFlHIblWvaTE/QQnsIPoRiKbJ1aJFxZOJWYmKqcHrVg/zLZVHcS/tFAIuBP5PDfwrd++u2bNdOhzvaZGhKwXuu5vu/xqYGGKLvURa1C+JB7CUMH5LVsMPq6IcYaTPOUefVnAaQtAqsmAuB8ZuAaU+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763041148; c=relaxed/simple;
-	bh=UC7LDskuUj1F3PHT5HO6nuQpwJh4WXXsAWBOprPtOoM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=g9wyRtBsAU4y0vcGXYcdXYY6ck4YjL4X1oUMXKg6IPR/J7o//pPzyOYI1zGl22woUtfEZM3q+Kmza7cVK5z1RSb0WEOmcd1g0/HZk45jf03/TPJAJc75D5XkWExy7MqE+8m177AV1sSziYz+k9NvMso4OnTSrqf4fkczlKhpfQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uZ9Knb+k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 159F0C19424;
-	Thu, 13 Nov 2025 13:39:00 +0000 (UTC)
+	s=arc-20240116; t=1763041295; c=relaxed/simple;
+	bh=0oPmjX7i+4dV5SIthOu1LFMeA79wevcnzEIBElFpTmg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MLoPH3TZZRekrZ4BmCY0sSciNIxuASoGEgxe2pD3XIaz4W2aVh1Axou30+4/2KZuYivDFp7mNkutCQYEDnaPsEF3+hhpZ8zbR0+4QlT6yZppkGy1KBBrOb7ZZajAKlHlM0xtNAyurjzmcap9C3eWeN1ZrPNjT83N6TrEdFX9j6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=byrY5wbf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8A76C16AAE;
+	Thu, 13 Nov 2025 13:41:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763041144;
-	bh=UC7LDskuUj1F3PHT5HO6nuQpwJh4WXXsAWBOprPtOoM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=uZ9Knb+kH6l7sXTUsiyJ672axAXskZgg7tznkIgKRiuaCvTrmcJ9iSTm7Jir3H6si
-	 Ak10bwZOSWRWUFAEyJZXNfrbC9Bg7WMKfGGEjAoD+ImgisDo9vgBAUvR1ojhgPECtH
-	 3UJ3Wft/UAksipXKbOpkd8zIo4mpM/iZiqfrnDeWegzZzOJLOmA3ncHd2vL8FCgf19
-	 iDKilIgAdAgHsjyjnG7BCT2p9lX/N40GlkW7OxASjE59EnBxae4FafIdO8+zyG+dLL
-	 zI8PiBc4PmgHHxX6kqYBqBHyYnAc4Y9t7dg2EL7lwFYZwnJlpYfJkRKMvi5bef6Cel
-	 1if6ixFpcyYlQ==
-Message-ID: <26841765-171b-475f-8019-2c349958af7d@kernel.org>
-Date: Thu, 13 Nov 2025 14:38:59 +0100
+	s=k20201202; t=1763041295;
+	bh=0oPmjX7i+4dV5SIthOu1LFMeA79wevcnzEIBElFpTmg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=byrY5wbfZMZ+z2ZUFglfbQogR4lorOu40Lgb2ePAXgriuMiAdxdS0HYu3CoGYvqeg
+	 eubvmiAD5gg60yAG5y14vAZ+jienPvSnd9/eJV4zpVH94xVjBOOW8HrUkTiJOj40jK
+	 F9LQaIyXTzzak6XgAbJm5FRFf/55BBqbIj/veydPdDKJ6fVEYhwwb0zGYP7wtP3GOu
+	 HFNwI+vc8NIcatnQy4Mav8fy2oHnAV/bIE3lx4I8LXzjqhM41mvRi5l2jGj7dPXUM4
+	 b8iSjxUny+nV4tUE+Msvrix1G9en6qWCOj5SAuwWuT1Xsn45MvQ3MPb0HV0wsaVgKK
+	 CofdSAAGe5G8w==
+Message-ID: <9b9796e9-414d-4af3-bcf0-40eda370ec31@kernel.org>
+Date: Thu, 13 Nov 2025 14:41:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcs8300-ride: Enable Bluetooth support
+Subject: Re: [PATCH v2 0/2] Enable FPGA Manager support for Agilex5
+To: "Romli, Khairul Anuar" <khairul.anuar.romli@altera.com>,
+ Xu Yilun <yilun.xu@linux.intel.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+ Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rao, Mahesh" <mahesh.rao@altera.com>,
+ "Ng, Adrian Ho Yin" <adrian.ho.yin.ng@altera.com>,
+ "Rabara, Niravkumar Laxmidas" <nirav.rabara@altera.com>,
+ "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <cover.1763008269.git.khairul.anuar.romli@altera.com>
+ <aRV0UCZD6fwnfWUE@yilunxu-OptiPlex-7050>
+ <a0214340-d0dd-4689-9692-d934f3a80c40@kernel.org>
+ <cdd2d579-65a3-4e1f-b8e8-45b30a6d9848@altera.com>
+ <00d09e4a-2bcb-4158-803a-d298aad33a95@kernel.org>
+ <c3ae06f0-e4d0-48ed-a589-fb6fef3fe68d@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wei Deng <wei.deng@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- cheng.jiang@oss.qualcomm.com, quic_jiaymao@quicinc.com,
- quic_chezhou@quicinc.com, quic_shuaz@quicinc.com
-References: <20251113130942.2661069-1-wei.deng@oss.qualcomm.com>
- <8f22f268-988b-4504-a4c0-7cc9021dc8c9@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -106,43 +113,81 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8f22f268-988b-4504-a4c0-7cc9021dc8c9@kernel.org>
+In-Reply-To: <c3ae06f0-e4d0-48ed-a589-fb6fef3fe68d@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/11/2025 14:37, Krzysztof Kozlowski wrote:
-> On 13/11/2025 14:09, Wei Deng wrote:
->> Enable BT on qcs8300-ride by adding a device tree node for BT.
+On 13/11/2025 10:38, Romli, Khairul Anuar wrote:
+> On 13/11/2025 5:10 pm, Krzysztof Kozlowski wrote:
+>> On 13/11/2025 10:07, Romli, Khairul Anuar wrote:
+>>> On 13/11/2025 3:13 pm, Krzysztof Kozlowski wrote:
+>>>> On 13/11/2025 07:01, Xu Yilun wrote:
+>>>>> On Thu, Nov 13, 2025 at 12:43:54PM +0800, Khairul Anuar Romli wrote:
+>>>>>> This patch series adds device tree bindings, driver support, and DTS
+>>>>>> updates to enable FPGA Manager functionality for Intel Agilex5 SoC.
+>>>>>>
+>>>>>> These changes are intended to enable FPGA programming and management
+>>>>>> capabilities on Agilex5-based platforms.
+>>>>>>
+>>>>>> ---
+>>>>>> Notes:
+>>>>>> Patch #3 depends on  "arm64: dts: intel: Add Agilex5 SVC node with memory
+>>>>>
+>>>>> There is no patch #3 now. Should be Patch #2 ?
+>>>>>
+>>>>>> region" from
+>>>>>> https://lore.kernel.org/all/3381ef56c1ff34a0b54cf76010889b5523ead825.1762387665.git.khairul.anuar.romli@altera.com/
+>>>>>>
+>>>>>> This patch series is applied on socfpga maintainer's tree
+>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
+>>>>>
+>>>>> Given that, @Dinh Nguyen could you take the series if you are good?
+>>>>
+>>>> This was never tested, so series cannot be taken.
+>>>>
+>>>> NAK, Altera should test the code BEFORE sending it to upstream, not
+>>>> after we say it was not tested.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>> If you are referring to the code being tested on the Agilex5, it was
+>>> tested. I even take the measure to add the debug print the in init to
+>>> see if the fallback is working, which it did.
+>>>
+>>> Of course I took clock manager patch from Dinh's clock manager driver
+>>> for Agilex5 have local defconfig instead of using default defconfig for
+>>> testing the code.
+>>>
+>>> https://lore.kernel.org/all/9326ee66cb8e33c0fe83a24e9a1effc8da252ff2.1760396607.git.khairul.anuar.romli@altera.com/
+>>>
+>>> Are you referring to different kind of test?
 >>
->> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
->> ---
->> This patch depends on:
->> - WLAN
->> https://lore.kernel.org/all/20251113055148.2729943-1-wei.zhang@oss.qualcomm.com/
-> 
-> And that patch depends on something else.
-> 
-> You make it very difficult to review and even more difficult to merge.
-> 
->> ---
->>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 28 +++++++++++++++++++++++
->>  1 file changed, 28 insertions(+)
+>> Yes, test by tools, because you certainly do not want to engage
+>> reviewers if computers do the job fine.
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->> index cd8800a59700..08b705fe4eea 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->> @@ -18,6 +18,7 @@ / {
->>  	aliases {
->>  		serial0 = &uart7;
->>  		mmc0 = &sdhc_1;
+>> see any DT talk (there where like four last years!) or
+>> Documentation/devicetree/bindings/writing-schema.rst or
+>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> There is no such alias?
+> Thanks, I can see the error with make -j48 CHECK_DTBS=y
+> DT_SCHEMA_FILES=intel,stratix10-soc-fpga-mgr.yaml
+> intel/socfpga_agilex5_socdk.dtb;
+> 
+> If i revert back without adding "intel,agilex-soc-fpga-mgr"", the tool
+> is able to pass without any issue. But we need the driver entry to make
+> it able to load as it compare the entry from dts and the compatible
+> entry in the driver.
+> 
+> Should we add back the entry in the driver like in the v1? Or, shall we
+> defer the driver changes for now?
 
-Ah there is, found now added by Sayali Lokhande <quic_sayalil@quicinc.com>.
-
-Anyway, organize your work in reasonable patchsets not 3 or more
-one-patchers spread all over the mailing list.
+You ask now about basics of DT, so sorry but doing homework is your
+task. Maybe the beginners DTS talk from this year's OSSEU will be
+helpful here. Or one of many other resources...
 
 Best regards,
 Krzysztof
