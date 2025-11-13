@@ -1,512 +1,221 @@
-Return-Path: <devicetree+bounces-237951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 098E0C56092
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:23:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCBAEC560F2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:30:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4A9D3A60BB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 07:23:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3006A3B9932
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 07:29:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739D832255C;
-	Thu, 13 Nov 2025 07:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T8szyAkx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD2432548E;
+	Thu, 13 Nov 2025 07:28:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422132FF167;
-	Thu, 13 Nov 2025 07:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23072F693E;
+	Thu, 13 Nov 2025 07:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763018590; cv=none; b=Z/p878w5TVv+WGOemImopd9/iehCkiruldhwEDIV9lIfixD4WLnbvZpvZL5LhBb3wcUfHf/V5L5FXMBi6RKbI5u8Mv3GqssIJI5ecVYdGzDfduuR15frawvmH+DzfOChEFQ24E2FTcgzfr1HBLhwaRYiQ+sL/sxwHBMdJDXB7e8=
+	t=1763018938; cv=none; b=YthWRFn5FRhQCDqs9mNlgDiHcgoR99kICJm6LUBogLu9sOm42aq4Kc++3tpOEXZNbeBnp+dCIx056sJz0uRnDYskIFrHgAeoM/7fBId+OCYZIutl86+7C5CAP4QwaLj4Oav2T121sI3RZVCfv3PnxxGJ9asHyj0qHhWZgx5z6Ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763018590; c=relaxed/simple;
-	bh=x6exCT/jwQsyRSKnsqVBZEoI1kKZOy0U85qXSrekQxI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F+d9C3ePcq12gRh/wYY6lEbPBZA2heJ+o8x8k81jGAD8zu/lb0OMmbTA0X789uKum7CmSm1grr1UjmTsEMITj5/EmBh7SqNdpAZ184aq0oSmFafg8QbjBq836o1xhc6Bcyv+jtqWjZ5F6OZPXjlLML+UtT7ukyBnTfAqAk8tF08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T8szyAkx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 254A9C116D0;
-	Thu, 13 Nov 2025 07:23:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763018589;
-	bh=x6exCT/jwQsyRSKnsqVBZEoI1kKZOy0U85qXSrekQxI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T8szyAkxfKZnrgqLteWvFyKuRnRCQxwdlzdW+dx0E4wsCwaCCeV78cfCWuoZGonfz
-	 fJQ3VyGDWoGWbKM4/gFtcWe38Re+z7MnB+jqkwv4PFo/GgkYGHvbd87JVGtfk0bwAW
-	 WM1iYYw2ci1Cx09XW9YgLBPxZu+N/69iaFPmK4Qu7MuY1wcI3+5dxZ3dqbOwlgFuHI
-	 2zI5RngSp1/lplQG9++t4/3GPqK2PGJudTmUXrNdFfAjoytIO6x6OwcQ8kssAXNtCK
-	 A5y4yPzj2662DjoZxfRBzI2cwmi+ZvVBvKyfRgnrqqw9MYGfg1+KA8ynJ4yHIULG5Y
-	 81PDbN0ktVZ/g==
-Message-ID: <00ea821c-5252-42cb-8f6f-da01453947bd@kernel.org>
-Date: Thu, 13 Nov 2025 08:23:04 +0100
+	s=arc-20240116; t=1763018938; c=relaxed/simple;
+	bh=+tWDQR/vm/v7tmTJUbQfSwGLeRfkVxgTd7ghh3TZwKc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=S7JOriXfRTXyc9ClDAOrjzgIPV1txiRCL1A9nZvDFSNGjXRIVBMefTsHy9fJYdGR0el3fgmWocNw5eSOA5pr7gB5Byh465T6mj0SayTiJJdp3F/hGeA2sCwwjjIEVrLEnlmtMuJsLfO+FrWu+T1Ao6cob+7O1cE1ns4Kd+WZMOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from ubt.. (unknown [210.73.43.101])
+	by APP-05 (Coremail) with SMTP id zQCowABnbG2RiBVpVTOWAA--.33691S2;
+	Thu, 13 Nov 2025 15:28:19 +0800 (CST)
+From: Chunyan Zhang <zhangchunyan@iscas.ac.cn>
+To: Andrew Morton <akpm@linux-foundation.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Alexander Viro <viro@zeniv.linux.org.uk>
+Cc: linux-mm@kvack.org,
+	Peter Xu <peterx@redhat.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	David Hildenbrand <david@redhat.com>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	"Liam R . Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Mike Rapoport <rppt@kernel.org>,
+	Suren Baghdasaryan <surenb@google.com>,
+	Michal Hocko <mhocko@suse.com>,
+	Axel Rasmussen <axelrasmussen@google.com>,
+	Yuanchu Xie <yuanchu@google.com>,
+	linux-riscv@lists.infradead.org,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor@kernel.org>,
+	Deepak Gupta <debug@rivosinc.com>,
+	Ved Shanbhogue <ved@rivosinc.com>,
+	linux-fsdevel@vger.kernel.org,
+	Christian Brauner <brauner@kernel.org>,
+	Jan Kara <jack@suse.cz>,
+	linux-kernel@vger.kernel.org,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Subject: [PATCH V15 0/6] mm: Add soft-dirty and uffd-wp support for RISC-V
+Date: Thu, 13 Nov 2025 15:28:00 +0800
+Message-Id: <20251113072806.795029-1-zhangchunyan@iscas.ac.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for
- frankel/blazer/mustang
-To: Doug Anderson <dianders@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Griffin
- <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
- linux-samsung-soc@vger.kernel.org, Roy Luo <royluo@google.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Chen-Yu Tsai <wenst@chromium.org>, Julius Werner <jwerner@chromium.org>,
- William McVicker <willmcvicker@google.com>, linux-kernel@vger.kernel.org
-References: <20251111192422.4180216-1-dianders@chromium.org>
- <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid>
- <05c833f0-15bc-4a86-9ac4-daf835fe4393@kernel.org>
- <CAD=FV=XXWK9pmZQvNk6gjkqe6kgLXaVENgz0pBii6Gai7BdL-A@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAD=FV=XXWK9pmZQvNk6gjkqe6kgLXaVENgz0pBii6Gai7BdL-A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowABnbG2RiBVpVTOWAA--.33691S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Wr18CrWDAF15CF43Zr4DXFb_yoW7tryUpF
+	4UGry3tr4rtr1Iga93Xw109an0qan8tw15Gw1rX34rA3y2k3Wjvrna9a1rWF1DJr4UWryI
+	qrWakr90934qyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9mb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwV
+	C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4IIrI8v6xkF7I0E8cxan2IY
+	04v7MxkF7I0En4kS14v26r4a6rW5MxkIecxEwVAFwVW8CwCF04k20xvY0x0EwIxGrwCFx2
+	IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v2
+	6r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67
+	AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IY
+	s7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr
+	0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07ba4SwUUUUU=
+X-CM-SenderInfo: x2kd0wxfkx051dq6x2xfdvhtffof0/1tbiDAYFB2kVaThzyQAAsf
 
-On 12/11/2025 20:19, Doug Anderson wrote:
-> Hi,
-> 
-> On Tue, Nov 11, 2025 at 11:58 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 11/11/2025 20:22, Douglas Anderson wrote:
->>> Add top-level DT bindings useful for Pixel 10 (frankel), Pixel 10 Pro
->>> (blazer), and Pixel 10 Pro XL (mustang).
->>>
->>> Since overlays are fairly well-supported these days and the downstream
->>> Pixel bootloader assumes that the SoC is the base overlay and specific
->>> board revisions are overlays, reflect the SoC / board split in the
->>> bindings.
->>>
->>> The SoC in the Pixel 10 series has the marketing name of "Tensor
->>> G5". Despite the fact that it sounds very similar to the "Tensor G4",
->>> it's a very different chip. Tensor G4 was, for all intents and
->>> purposes, a Samsung Exynos offshoot whereas Tensor G5 is entirely its
->>> own SoC. This SoC is known internally as "laguna" and canonically
->>> referred to in code as "lga". There are two known revisions of the
->>> SoC: an A0 pre-production variant (ID 0x000500) and a B0 variant (ID
->>> 0x000510) used in production. The ID is canonicaly broken up into a
->>> 16-bit SoC product ID, a 4-bit major rev, and a 4-bit minor rev.
->>>
->>> The dtb for all supported SoC revisions is appended to one of the boot
->>> partitions and the bootloader will look at the device trees and pick
->>> the correct one. The current bootloader uses a downstream
->>> `soc_compatible` node to help it pick the correct device tree. It
->>> looks like this:
->>>   soc_compatible {
->>>     B0 {
->>>       description = "LGA B0";
->>>       product_id = <0x5>;
->>>       major = <0x1>;
->>>       minor = <0x0>;
->>>       pkg_mode = <0x0>;
->>>     };
->>>   };
->>> Note that `pkg_mode` isn't currently part of the ID on the SoC and the
->>> bootloader always assumes 0 for it.
->>>
->>> In this patch, put the SoC IDs straight into the compatible. Though
->>> the bootloader doesn't look at the compatible at the moment, this
->>> should be easy to teach the bootloader about.
->>>
->>> Boards all know their own platform_id / product_id / stage / major /
->>> minor / variant. For instance, Google Pixel 10 Pro XL MP1 is:
->>> * platform_id (8-bits): 0x07 - frankel/blazer/mustang
->>> * product_id (8-bits):  0x05 - mustang
->>> * stage (4-bits):       0x06 - MP
->>> * major (8-bits):       0x01 - MP 1
->>> * minor (8-bits):       0x00 - MP 1.0
->>> * variant (8-bits):     0x00 - No special variant
->>>
->>> When board overlays are packed into the "dtbo" partition, a tool
->>> (`mkdtimg`) extracts a board ID and board rev from the overlay and
->>> stores that as metadata with the overlay. Downstream, the dtso
->>> intended for the Pixel 10 Pro XL MP1 has the following properties at
->>> its top-level:
->>>   board_id = <0x70506>;
->>>   board_rev = <0x010000>;
->>>
->>> The use of top-level IDs can probably be used for overlays upstream as
->>> well, but also add the IDs to the compatible string in case it's
->>> useful.
->>>
->>> Compatible strings are added for all board revisions known to be
->>> produced based on downstream sources.
->>>
->>> A few notes:
->>> * If you look at `/proc/device-tree/compatible` and
->>>   `/proc/device-tree/model` on a running device, that won't
->>>   necessarily be an exact description of the hardware you're running
->>>   on. If the bootloader can't find a device tree that's an exact match
->>>   then it will pick the best match (within reason--it will never pick
->>>   a device tree for a different product--just for different revs of
->>>   the same product).
->>> * There is no merging of the top-level compatible from the SoC and
->>>   board. The compatible string containing IDs for the SoC will not be
->>>   found in the device-tree passed to the OS.
->>>
->>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
->>> ---
->>> In the past, attempts to have the SoC as a base device tree and boards
->>> supported as overlays has been NAKed. From a previous discussion [1]
->>> "Nope, boards are not overlays. Boards are DTB." I believe this needs
->>> to be relitigated.
->>>
->>> In the previous NAK, I didn't see any links to documentation
->>> explicitly stating that DTBs have to represent boards. It's also
->>> unclear, at least to me, _why_ a DTB would be limited to represent a
->>> "board" nor what the definition of a "board" is.
->>>
->>> As at least one stab at why someone might not want an overlay scheme
->>> like this, one could point out that the top-level compatible can be a
->>> bit of a mess. Specifically in this scheme the board "compatible" from
->>> the overlay will fully replace/hide the SoC "compatible" from the base
->>> SoC. If this is truly the main concern, it wouldn't be terribly hard
->>> to add a new semantic (maybe selectable via a new additional
->>> property?) that caused the compatible strings to be merged in a
->>> reasonable way.
->>>
->>> Aside from dealing with the compatible string, let's think about what
->>> a "board" is. I will make the argument here that the SoC qualifies as
->>> a "board" and that the main PCB of a phone can be looked at as a
->>> "cape" for this SoC "board". While this may sound like a stretch, I
->>> would invite a reader to propose a definition of "board" that excludes
->>> this. Specifically, it can be noted:
->>> * I have a development board at my desk that is "socketed". That is, I
->>>   can pull the SoC out and put a different one in. I can swap in a
->>>   "rev A0" or a "rev B0" SoC into this socket. Conceivably, I could
->>>   even put a "Tensor G6", G7, G8, or G999 in the socket if it was
->>>   compatible. In this sense, the "SoC" is a standalone thing that can
->>>   be attached to the devboard "cape". The SoC being a standalone thing
->>>   is in the name. It's a "system" on a chip.
->>> * In case the definition of a board somehow needs a PCB involved, I
->>>   can note that on my dev board the CPU socket is soldered onto to a
->>>   CPU daughtercard (a PCB!) that then has a board-to-board connector
->>>   to the main PCB.
->>> * Perhaps one could argue that a dev board like I have describe would
->>>   qualify for this SoC/board overlay scheme but that a normal cell
->>>   phone wouldn't because the SoC isn't removable. Perhaps removability
->>>   is a requirement here? If so, imagine if some company took a
->>>   Raspberry Pi, soldered some components directly onto the "expansion"
->>>   pins, and resold that to consumers. Does this mean they can't use
->>>   overlays?
->>>
->>> To me, the above arguments justify why SoC DTBs + "board" overlays
->>> should be accepted. As far as I can tell, there is no downside and
->>> many people who would be made happy with this.
->>>
->>> [1] https://lore.kernel.org/all/dbeb28be-1aac-400b-87c1-9764aca3a799@kernel.org/
->>>
->>>  .../devicetree/bindings/arm/google.yaml       | 87 +++++++++++++++----
->>>  1 file changed, 68 insertions(+), 19 deletions(-)
-> 
->>> @@ -41,13 +32,71 @@ properties:
->>>                - google,gs101-raven
->>>            - const: google,gs101
->>>
->>> +      # Google Tensor G5 AKA lga (laguna) SoC and boards
->>> +      - description: Tensor G5 SoC (laguna)
->>> +        items:
->>> +          - enum:
->>> +              - google,soc-id-0005-rev-00  # A0
->>> +              - google,soc-id-0005-rev-10  # B0
->>
->> SoCs cannot be final compatibles.
-> 
-> Right. I talked about this at length "after the cut" in my patch. See
-> above. I wish to relitigate this policy and wish to know more details
-> about where it is documented, the reasons for decision, and where the
-> boundary exactly lies between something that's allowed to be a final
-> compatible and something that's not. I made several arguments above
-> for why I think the SoC should be allowed as a final compatible, so it
+This patchset adds support for Svrsw60t59b [1] extension which is ratified now,
+also add soft dirty and userfaultfd write protect tracking for RISC-V.
 
-Because this represents a actual device users run. It is electronically,
-physically impossible to run the SoC alone.
+The patches 1 and 2 add macros to allow architectures to define their own checks
+if the soft-dirty / uffd_wp PTE bits are available, in other words for RISC-V,
+the Svrsw60t59b extension is supported on which device the kernel is running.
+Also patch1-2 are removing "ifdef CONFIG_MEM_SOFT_DIRTY"
+"ifdef CONFIG_HAVE_ARCH_USERFAULTFD_WP" and
+"ifdef CONFIG_PTE_MARKER_UFFD_WP" in favor of checks which if not overridden by
+the architecture, no change in behavior is expected.
 
-There are few - one or two - exceptions for the SoMs, but never for SoC.
+This patchset has been tested with kselftest mm suite in which soft-dirty, 
+madv_populate, test_unmerge_uffd_wp, and uffd-unit-tests run and pass,
+and no regressions are observed in any of the other tests.
 
-> would be great if you could respond to them and tell me where I got it
-> wrong.
-> 
-> 
->> Your commit msg does not explain what
->> is 'soc-id' or 'soc_id' in this context.
-> 
-> In the commit message I do say: "SoC: an A0 pre-production variant (ID
-> 0x000500) and a B0 variant (ID 0x000510) used in production. The ID is
-> canonicaly broken up into a 16-bit SoC product ID, a 4-bit major rev,
-> and a 4-bit minor rev."
+This patchset applies on the mm/mm-new branch commit ea53cb52f919
+("mm/vmalloc: cleanup gfp flag use in new_vmap_block()")
 
-> 
-> ...then, I further say "In this patch, put the SoC IDs straight into
+[1] https://github.com/riscv-non-isa/riscv-iommu/pull/543
 
-That's fine.
+V15:
+- Rebased on to the latest mm-new branch;
+- Removed a redundant space;
+- Added Conor's Acked-by.
 
-> the compatible. Though the bootloader doesn't look at the compatible
-> at the moment, this should be easy to teach the bootloader about."
+V14: https://lore.kernel.org/all/20250918083731.1820327-1-zhangchunyan@iscas.ac.cn/
+- Fix indent inssues in userfaultfd_k.h;
+- Some descriptions and comments minor changes.
 
-But nothing explains why this SoC can be run alone without board.
-> 
-> The idea here is for the bootloader, which can read the ID of the
-> current SoC, to be able to pick the right device tree from among
-> multiple. I am certainly not married to putting the SoC ID in the
+V13: https://lore.kernel.org/all/20250917033703.1695933-1-zhangchunyan@iscas.ac.cn/
+- Rebase on mm-new branch;
+- Fixed build errors;
+- Add more exactly descriptions in commit message in patch 1-2;
+- Replace '__always_inline' with 'inline' for uffd_supports_wp_marker();
+- Add Svrsw60t59b description to the extensions dt-binding in patch 6.
 
-I am not discussing about style of the compatible. I said - you cannot
-have SoC compatible alone. None of above gives any argument for that.
+V12: https://lore.kernel.org/all/20250915101343.1449546-1-zhangchunyan@iscas.ac.cn/
+- Rename the macro API to pgtable_supports_soft_dirty/uffd_wp();
+- Add changes for setting VM_SOFTDIRTY flags conditionally;
+- Drop changes to show_smap_vma_flags();
+- Drop CONFIG_MEM_SOFT_DIRTY compile condition of clear_soft_dirty() and clear_soft_dirty_pmd();
+- Fix typos;
+- Add uffd_supports_wp_marker() and drop some ifdef CONFIG_PTE_MARKER_UFFD_WP.
 
-> compatible like this. As I mentioned above, in downstream device trees
-> the SoC is stored in a custom node and I thought upstream would hate
-> that. I also considered giving the `soc@0` node a custom compatible
-> string and adding properties about the SoC ID underneath that and
-> teaching the bootloader how to find this, and I can switch to this if
-> you prefer.
-> 
-> If you have an alternate technique for which the bootloader could pick
-> a device tree based on the current SoC ID or you have specific wording
-> that you think I should add to the commit message to explain my
-> current scheme, I'm happy to adjust things.
-> 
-> 
->>> +          - const: google,lga
->>> +      - description: Google Pixel 10 Board (Frankel)
->>> +        items:
->>> +          - enum:
->>> +              - google,pixel-id-070302-rev-000000  # Proto 0
->>> +              - google,pixel-id-070302-rev-010000  # Proto 1
->>> +              - google,pixel-id-070302-rev-010100  # Proto 1.1
->>> +              - google,pixel-id-070303-rev-010000  # EVT 1
->>> +              - google,pixel-id-070303-rev-010100  # EVT 1.1
->>> +              - google,pixel-id-070303-rev-010101  # EVT 1.1 Wingboard
->>> +              - google,pixel-id-070304-rev-010000  # DVT 1
->>> +              - google,pixel-id-070305-rev-010000  # PVT 1
->>> +              - google,pixel-id-070306-rev-010000  # MP 1
->>> +          - const: google,lga-frankel
->>> +          - const: google,lga
->>
->> So what is the lga?
-> 
-> "google,lga" is the name of the processor. I was under the impression
-> that the last entry in the top-level compatible string was supposed to
-> be the SoC compatible string. Certainly this was true in every board
+V11: https://lore.kernel.org/all/20250911095602.1130290-1-zhangchunyan@iscas.ac.cn/
+- Rename the macro API to pgtable_*_supported() since we also have PMD support;
+- Change the default implementations of two macros, make CONFIG_MEM_SOFT_DIRTY or
+  CONFIG_HAVE_ARCH_USERFAULTFD_WP part of the macros;
+- Correct the order of insertion of RISCV_ISA_EXT_SVRSW60T59B;
+- Rephrase some comments.
 
-google,soc-id-0005-rev-00 is the soc compatible string.
+V10: https://lore.kernel.org/all/20250909095611.803898-1-zhangchunyan@iscas.ac.cn/
+- Fixed the issue reported by kernel test irobot <lkp@intel.com>.
 
-> I've worked with and I seem to even recall it being requested by DT
-> folks. It also seems to match what I see in examples in the kernel
-> docs [1].
+V9: https://lore.kernel.org/all/20250905103651.489197-1-zhangchunyan@iscas.ac.cn/
+- Add pte_soft_dirty/uffd_wp_available() API to allow dynamically checking
+  if the PTE bit is available for the platform on which the kernel is running.
 
-Sorry but no. Writing bindings do not request having two compatibles for
-the same soc in two different, independent (orthogonal) lists.
+V8: https://lore.kernel.org/all/20250619065232.1786470-1-zhangchunyan@iscas.ac.cn/)
+- Rebase on v6.16-rc1;
+- Add dependencies to MMU && 64BIT for RISCV_ISA_SVRSW60T59B;
+- Use 'Svrsw60t59b' instead of 'SVRSW60T59B' in Kconfig help paragraph;
+- Add Alex's Reviewed-by tag in patch 1.
 
-So it is rev-xyz + google,lga-frankel + soc-id + lga, if you need that
-soc-id part.
+V7: https://lore.kernel.org/all/20250409095320.224100-1-zhangchunyan@iscas.ac.cn/
+- Add Svrsw60t59b [1] extension support;
+- Have soft-dirty and uffd-wp depending on the Svrsw60t59b extension to
+  avoid crashes for the hardware which don't have this extension.
 
-> 
-> At the moment, the fact that the SoC name is part of the top-level
-> compatible is used in the Linux driver
-> "drivers/cpufreq/cpufreq-dt-platdev.c" to implement its blocklist. The
-> extensive list of compatible strings there shows how prevalent this
-> concept is.
-> 
-> I seem to recall a previous discussion where Stephen Boyd proposed
-> that a better place for the SoC compatible string was under the
-> "soc@0" node. Ah yes, I found at least one [2]  post about it, though
-> I think there was some earlier discussion too. Do you want me to try
-> jumping that way?
-> 
-> 
->> What is lga-frankel?
-> 
-> This was an attempt to add a slightly more generic name for the board
-> in case it was later found to be needed for some reason. I know that,
-> occasionally, code finds it useful to test a top-level compatible
-> string to apply a workaround to a specific class of boards. In this
-> case, if someone needed to detect that they were on a "frankel" board
-> but didn't care about the specific revision, they could test for this
-> string.
-> 
-> Alternatively, I could add something like "google,pixel-id-0703xx", or
-> "google,pixel-id-0703", or something similar which "means"
-> google,lga-frankel. If you'd prefer this, I'm happy to change it.
-> 
-> I also have no specific need to add the "lga-frankel" compatible
-> string here other than the fact that it shouldn't really hurt to have
-> it here, it seems to match the example I pointed to earlier in the
-> docs [1], and that it could be useful in the future. If you think I
-> should simply remove it, I can do that. If we later find some need for
-> it we can add some rules to deal with it then.
-> 
-> 
->>> +allOf:
->>>    # Bootloader requires empty ect node to be present
->>> -  ect:
->>> -    type: object
->>> -    additionalProperties: false
->>
->> Please keep it here
-> 
-> "it" being "additionalProperties", I think? I'm not sure I understand,
-> but let's discuss below in the context of full examples and not diffs.
+V6: https://lore.kernel.org/all/20250408084301.68186-1-zhangchunyan@iscas.ac.cn/
+- Changes to use bits 59-60 which are supported by extension Svrsw60t59b
+  for soft dirty and userfaultfd write protect tracking.
 
-I meant ect node, existing hunk. Properties must be defined in top-level.
+V5: https://lore.kernel.org/all/20241113095833.1805746-1-zhangchunyan@iscas.ac.cn/
+- Fixed typos and corrected some words in Kconfig and commit message;
+- Removed pte_wrprotect() from pte_swp_mkuffd_wp(), this is a copy-paste
+  error;
+- Added Alex's Reviewed-by tag in patch 2.
 
+V4: https://lore.kernel.org/all/20240830011101.3189522-1-zhangchunyan@iscas.ac.cn/
+- Added bit(4) descriptions into "Format of swap PTE".
 
-> 
-> 
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>
->> not:
->>
->>> +          contains:
->>> +            const: google,gs101
->>
->>> +    then:
->>> +      properties:
->>> +        ect:
->>
->> ect: false, instead
-> 
-> Trying to understand the above is making my brain hurt. Perhaps I
-> didn't get enough sleep last night. ...or maybe my brain isn't meant
-> to directly parse diffs. It's probably easier to just look at
-> full-blown examples.
-> 
-> Before, we had this:
-> 
-> --
-> 
-> properties:
->   ...
->   ...
->   # Bootloader requires empty ect node to be present
->   ect:
->     type: object
->     additionalProperties: false
-> 
-> required:
->   - ect
-> 
-> additionalProperties: true
-> 
-> --
-> 
-> In other words we were _required_ to have an "ect" node with no
-> properties under it. However, additional properties are allowed in the
-> root node.
-> 
-> After my patch:
-> 
-> --
-> 
-> properties:
->   ..
->   ..
-> 
-> allOf:
->   # Bootloader requires empty ect node to be present
->   - if:
->       properties:
->         compatible:
->           contains:
->             const: google,gs101
->     then:
->       properties:
->         ect:
->           type: object
->           additionalProperties: false
-> 
->       required:
->         - ect
-> 
-> additionalProperties: true
-> 
-> --
-> 
-> In other words, on gs101 we're _required_ to have an "ect" node with
-> no properties under it. However, additional properties are allowed in
-> the root node. This seems correct.
-> 
-> The best my brain can parse your request, I think you're asking for this:
-> 
-> --
-> 
-> properties:
->   ...
->   ...
->   ect:
->     type: object
->     additionalProperties: false
-> 
-> allOf:
->   # Bootloader requires empty ect node to be present
->   - if:
->       properties:
->         compatible:
->           not:
->             contains:
->               const: google,gs101
->     then:
->       properties:
->         ect: false
->     else:
->       required:
->       - ect
+V3: https://lore.kernel.org/all/20240805095243.44809-1-zhangchunyan@iscas.ac.cn/
+- Fixed the issue reported by kernel test irobot <lkp@intel.com>.
 
-Yes, actually now I see you could drop the "not:" and exchange the
-"then:else:" branches.
+V2: https://lore.kernel.org/all/20240731040444.3384790-1-zhangchunyan@iscas.ac.cn/
+- Add uffd-wp supported;
+- Make soft-dirty uffd-wp and devmap mutually exclusive which all use
+  the same PTE bit;
+- Add test results of CRIU in the cover-letter.
 
-Best regards,
-Krzysztof
+Chunyan Zhang (6):
+  mm: softdirty: Add pgtable_supports_soft_dirty()
+  mm: userfaultfd: Add pgtable_supports_uffd_wp()
+  riscv: Add RISC-V Svrsw60t59b extension support
+  riscv: mm: Add soft-dirty page tracking support
+  riscv: mm: Add userfaultfd write-protect support
+  dt-bindings: riscv: Add Svrsw60t59b extension description
+
+ .../devicetree/bindings/riscv/extensions.yaml |   6 +
+ arch/riscv/Kconfig                            |  16 ++
+ arch/riscv/include/asm/hwcap.h                |   1 +
+ arch/riscv/include/asm/pgtable-bits.h         |  37 +++++
+ arch/riscv/include/asm/pgtable.h              | 143 +++++++++++++++++-
+ arch/riscv/kernel/cpufeature.c                |   1 +
+ fs/proc/task_mmu.c                            |  15 +-
+ fs/userfaultfd.c                              |  22 +--
+ include/asm-generic/pgtable_uffd.h            |  17 +++
+ include/linux/mm.h                            |   3 +
+ include/linux/mm_inline.h                     |   8 +-
+ include/linux/pgtable.h                       |  12 ++
+ include/linux/userfaultfd_k.h                 |  69 +++++----
+ mm/debug_vm_pgtable.c                         |  10 +-
+ mm/huge_memory.c                              |  13 +-
+ mm/internal.h                                 |   2 +-
+ mm/memory.c                                   |   6 +-
+ mm/mmap.c                                     |   6 +-
+ mm/mremap.c                                   |  13 +-
+ mm/userfaultfd.c                              |  10 +-
+ mm/vma.c                                      |   6 +-
+ mm/vma_exec.c                                 |   5 +-
+ 22 files changed, 337 insertions(+), 84 deletions(-)
+
+-- 
+2.34.1
+
 
