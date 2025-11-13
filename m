@@ -1,147 +1,240 @@
-Return-Path: <devicetree+bounces-237949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4905C56067
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:16:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC2D1C56089
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:20:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C71733AEF81
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 07:15:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 43E504E2D38
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 07:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E4F320A3E;
-	Thu, 13 Nov 2025 07:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A334322523;
+	Thu, 13 Nov 2025 07:20:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="upuLy5FB"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XoHXrO4m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8601320A0E;
-	Thu, 13 Nov 2025 07:14:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53B929CEB;
+	Thu, 13 Nov 2025 07:20:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763018099; cv=none; b=OcvpcTQDVVZ3la+rmG2mX+EWiirDNpEvrU9nuLhZzm3eppi8JHfl95aeZlN2bPs2SuraCnEsp5C5aNMUiklV5mZ4hs4hRC2XzUSrVsg1ylLgF+fAAtbzGSzl+ZF47U30UBggGJGAOm9fQoPHS1HjD/qkqyAFMYBnqSGzcKEIDI4=
+	t=1763018443; cv=none; b=MptV/xyOeZfppE0hhcj/hYlYDHuoMQNaMovqmT/wMzBGxE6k2E0r3CJWk+8Mt9gqB5E5lqzXWt0SPZMxE940Fy7Qmi5XvcPkBTNAwNj+egErcNvX3Qz/++DKzDrqXY3kwOc7LdnNkMICUj8ZJcFRbBuOA/KA/zWHkCqP8g5xZRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763018099; c=relaxed/simple;
-	bh=SDz5IUPxp2WbK+ZgDzhfQ6GPQiWpizsIvuDW3iYmwq0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nBQD5EoJbN5Yp7wCDFEZHdOJJgFdZkvxnQqRL6QBeme9EcQIjgYAxpRxi77Cgnb6U3jFxrMNlg9lKneolK+XmMOOsUilOnS12J35gNO9EMh8FIInnUhuoLtyy5OICfPxZq4DokjCFYfk0Ayyf0Kkddir+h5+QfqSxKxmYHHv/W4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=upuLy5FB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF0FC4CEFB;
-	Thu, 13 Nov 2025 07:14:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763018099;
-	bh=SDz5IUPxp2WbK+ZgDzhfQ6GPQiWpizsIvuDW3iYmwq0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=upuLy5FBcpDEll3XS50VxE9Au3AHGzSdnn0VLeRQIvE3pvPuCAv05ylFRgi3B4GrK
-	 ebPWnXeK/tUzX7oCMaP1jqHZR9uOqKO57Mqh7DRcE9/Tup9ucHbhJsQqdaDhn+9cpa
-	 EQdvXakUcKplTiRIMIUFkN0JBXK+yZD3Yuz1oilvPC8sS0d3gKjuJSnVZy+zsL41ma
-	 Jm20U0Y5ffm7SZgInoOnRaaNyj5GL9k0Cm9WJMuvFQeH+3Bx3qL19kAfQri3obgt0e
-	 9sAemzqUUaqLVpI7KHIsmykzN7Byv7qWNmEK/+RTwPgIc9aiqRbov23qVkhrEeigoS
-	 ClM/Gcf619yFw==
-Message-ID: <259e917f-0570-40d6-983f-bfe9d77444a7@kernel.org>
-Date: Thu, 13 Nov 2025 08:14:54 +0100
+	s=arc-20240116; t=1763018443; c=relaxed/simple;
+	bh=6Me6GWqOMV1Te3Vqndd4JPy4GgWbf+TWVFwtSqdGhwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pVWyJBPAu/RX5kQDx8v3jzI2NJQB0sovY/ps2znTT/S5szidlCeox+FghpoW8VS2wV8o2aA4Du9KdprG54HaaOx2HzM+g175Q3O7U7WEgnnPszAvrcdvcxpty2U8jayg5SbLOIrZNF7PP1TXx/kcsOyUqOqO4vqRpgkJ5BgDhfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XoHXrO4m; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763018441; x=1794554441;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6Me6GWqOMV1Te3Vqndd4JPy4GgWbf+TWVFwtSqdGhwE=;
+  b=XoHXrO4m2Yhq1LoEz3M3uBAQFx47UO6m0xcfZrHt75ivhZNBDrUXFv7L
+   US2f+hoaefflnDOeIDFPuzr0o1wmqVZm11TBHECuRBWIceapPMtu35EPA
+   KxlERTK9U4zniMRG2UXLL+DuOCX4S0bmIbKNbCH0eGbxi/edECrAH03Ip
+   pqQyN2C67EGyDbFCSQ5XznN7PHFMyNUGs2Z4GHn5q1udD4f4+8TYRXnyu
+   AYiNyr5Y7TfvrFYG1xDDsYxKd1QMdDuBNcGFVkU6AjJRWNtZOMPLUM3e2
+   ytEft3SMJlGDrZSjMNSCgAR4UJQvgr9GZG3TYYn3Mvz0nXe9+YCf9uaMj
+   g==;
+X-CSE-ConnectionGUID: G+urj6xYRjm3sNkRx+8NHQ==
+X-CSE-MsgGUID: bd6YLeY8Qm633qVyroyOwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65018343"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="65018343"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2025 23:20:40 -0800
+X-CSE-ConnectionGUID: Gj2hNzySSG+P7YfpZN0+0w==
+X-CSE-MsgGUID: Rg/fE/d9SqiQUCtfAuTUPQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; 
+   d="scan'208";a="189614267"
+Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 12 Nov 2025 23:20:36 -0800
+Received: from kbuild by 7b01c990427b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vJRdB-00051L-19;
+	Thu, 13 Nov 2025 07:20:33 +0000
+Date: Thu, 13 Nov 2025 15:19:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	Andrew Morton <akpm@linux-foundation.org>,
+	David Hildenbrand <david@redhat.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Linux Memory Management List <linux-mm@kvack.org>,
+	devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
+	linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
+	Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
+	"Liam R . Howlett" <Liam.Howlett@oracle.com>,
+	Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH v3 08/22] mm: Allow page table accessors to be
+ non-idempotent
+Message-ID: <202511131448.ZCsuBlBE-lkp@intel.com>
+References: <20251113014656.2605447-9-samuel.holland@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: Add compatible for
- Facebook Anacapa BMC
-To: Peter Shen <sjg168@gmail.com>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>,
- Joel Stanley <joel@jms.id.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, peter.shen@amd.com
-References: <20251112211248.3711889-1-sjg168@gmail.com>
- <20251112211248.3711889-2-sjg168@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251112211248.3711889-2-sjg168@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113014656.2605447-9-samuel.holland@sifive.com>
 
-On 12/11/2025 22:12, Peter Shen wrote:
-> This patch adds the compatible string for the Facebook Anacapa BMC
-> which uses an Aspeed AST2600 SoC. This is required before adding
-> the board's device tree source file.
-> 
-> Signed-off-by: Peter Shen <sjg168@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Hi Samuel,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 24172e0d79900908cf5ebf366600616d29c9b417]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Samuel-Holland/mm-ptdump-replace-READ_ONCE-with-standard-page-table-accessors/20251113-095117
+base:   24172e0d79900908cf5ebf366600616d29c9b417
+patch link:    https://lore.kernel.org/r/20251113014656.2605447-9-samuel.holland%40sifive.com
+patch subject: [PATCH v3 08/22] mm: Allow page table accessors to be non-idempotent
+config: powerpc-allnoconfig (https://download.01.org/0day-ci/archive/20251113/202511131448.ZCsuBlBE-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251113/202511131448.ZCsuBlBE-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511131448.ZCsuBlBE-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   mm/gup.c: In function 'gup_fast_pte_range':
+>> mm/gup.c:2848:9: error: implicit declaration of function 'set_pmd'; did you mean 'set_p4d'? [-Wimplicit-function-declaration]
+    2848 |         set_pmd(&pmd, pmd);
+         |         ^~~~~~~
+         |         set_p4d
+--
+   mm/pgtable-generic.c: In function '___pte_offset_map':
+>> mm/pgtable-generic.c:303:9: error: implicit declaration of function 'set_pmd'; did you mean 'set_p4d'? [-Wimplicit-function-declaration]
+     303 |         set_pmd(&pmdval, pmdval);
+         |         ^~~~~~~
+         |         set_p4d
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+vim +2848 mm/gup.c
 
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
+  2819	
+  2820	#ifdef CONFIG_ARCH_HAS_PTE_SPECIAL
+  2821	/*
+  2822	 * GUP-fast relies on pte change detection to avoid concurrent pgtable
+  2823	 * operations.
+  2824	 *
+  2825	 * To pin the page, GUP-fast needs to do below in order:
+  2826	 * (1) pin the page (by prefetching pte), then (2) check pte not changed.
+  2827	 *
+  2828	 * For the rest of pgtable operations where pgtable updates can be racy
+  2829	 * with GUP-fast, we need to do (1) clear pte, then (2) check whether page
+  2830	 * is pinned.
+  2831	 *
+  2832	 * Above will work for all pte-level operations, including THP split.
+  2833	 *
+  2834	 * For THP collapse, it's a bit more complicated because GUP-fast may be
+  2835	 * walking a pgtable page that is being freed (pte is still valid but pmd
+  2836	 * can be cleared already).  To avoid race in such condition, we need to
+  2837	 * also check pmd here to make sure pmd doesn't change (corresponds to
+  2838	 * pmdp_collapse_flush() in the THP collapse code path).
+  2839	 */
+  2840	static int gup_fast_pte_range(pmd_t pmd, pmd_t *pmdp, unsigned long addr,
+  2841			unsigned long end, unsigned int flags, struct page **pages,
+  2842			int *nr)
+  2843	{
+  2844		int ret = 0;
+  2845		pte_t *ptep, *ptem;
+  2846	
+  2847		/* transform pmd as if &pmd pointed to a hardware page table */
+> 2848		set_pmd(&pmd, pmd);
+  2849		ptem = ptep = pte_offset_map(&pmd, addr);
+  2850		pmd = pmdp_get(&pmd);
+  2851		if (!ptep)
+  2852			return 0;
+  2853		do {
+  2854			pte_t pte = ptep_get_lockless(ptep);
+  2855			struct page *page;
+  2856			struct folio *folio;
+  2857	
+  2858			/*
+  2859			 * Always fallback to ordinary GUP on PROT_NONE-mapped pages:
+  2860			 * pte_access_permitted() better should reject these pages
+  2861			 * either way: otherwise, GUP-fast might succeed in
+  2862			 * cases where ordinary GUP would fail due to VMA access
+  2863			 * permissions.
+  2864			 */
+  2865			if (pte_protnone(pte))
+  2866				goto pte_unmap;
+  2867	
+  2868			if (!pte_access_permitted(pte, flags & FOLL_WRITE))
+  2869				goto pte_unmap;
+  2870	
+  2871			if (pte_special(pte))
+  2872				goto pte_unmap;
+  2873	
+  2874			/* If it's not marked as special it must have a valid memmap. */
+  2875			VM_WARN_ON_ONCE(!pfn_valid(pte_pfn(pte)));
+  2876			page = pte_page(pte);
+  2877	
+  2878			folio = try_grab_folio_fast(page, 1, flags);
+  2879			if (!folio)
+  2880				goto pte_unmap;
+  2881	
+  2882			if (unlikely(pmd_val(pmd) != pmd_val(pmdp_get(pmdp))) ||
+  2883			    unlikely(pte_val(pte) != pte_val(ptep_get(ptep)))) {
+  2884				gup_put_folio(folio, 1, flags);
+  2885				goto pte_unmap;
+  2886			}
+  2887	
+  2888			if (!gup_fast_folio_allowed(folio, flags)) {
+  2889				gup_put_folio(folio, 1, flags);
+  2890				goto pte_unmap;
+  2891			}
+  2892	
+  2893			if (!pte_write(pte) && gup_must_unshare(NULL, flags, page)) {
+  2894				gup_put_folio(folio, 1, flags);
+  2895				goto pte_unmap;
+  2896			}
+  2897	
+  2898			/*
+  2899			 * We need to make the page accessible if and only if we are
+  2900			 * going to access its content (the FOLL_PIN case).  Please
+  2901			 * see Documentation/core-api/pin_user_pages.rst for
+  2902			 * details.
+  2903			 */
+  2904			if ((flags & FOLL_PIN) && arch_make_folio_accessible(folio)) {
+  2905				gup_put_folio(folio, 1, flags);
+  2906				goto pte_unmap;
+  2907			}
+  2908			folio_set_referenced(folio);
+  2909			pages[*nr] = page;
+  2910			(*nr)++;
+  2911		} while (ptep++, addr += PAGE_SIZE, addr != end);
+  2912	
+  2913		ret = 1;
+  2914	
+  2915	pte_unmap:
+  2916		pte_unmap(ptem);
+  2917		return ret;
+  2918	}
+  2919	#else
+  2920	
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here ('b4 trailers -u ...'). However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for tags received on the version they apply.
-
-Full context and explanation:
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
-</form letter>
-
-Best regards,
-Krzysztof
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
