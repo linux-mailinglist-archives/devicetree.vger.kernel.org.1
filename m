@@ -1,131 +1,128 @@
-Return-Path: <devicetree+bounces-238397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8384BC5AA9E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 00:44:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A471C5AADA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 00:48:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 3957A23466
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:44:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDE463ACEF6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D212B328B49;
-	Thu, 13 Nov 2025 23:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672AF320CCD;
+	Thu, 13 Nov 2025 23:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="bUA0bMJ/";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="bUA0bMJ/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Triv6O5Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE292727FA;
-	Thu, 13 Nov 2025 23:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 789F813A258;
+	Thu, 13 Nov 2025 23:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763077449; cv=none; b=a0L2gp9IeiaqwJ8TuVmin3eSZarBmCoi5Fg3B8Ej1GBIWkO9R3fESzF/tYMbLO5g2GmvgwHw9CoHFZ3ChG7g8tz/Y24EtD/cGRCf/xvQSP1WUQOpH7ok5dfEDcElpipEfZ2YABfaGxu0cMN45vD0tPrV100rLaGAxy3qZV1igus=
+	t=1763077649; cv=none; b=IAfShb0N9eBzJmn+F2ckBLmaOuanhWbLpMBote3xTgv7ubrH1gJ+6SWclSWimFXm8JIApvND0pdZRAHijfCGfqyfoRgQo1BTTcvNjbsG7mwkOj5tbGawU0c/tRwjH4SBlR8Gt5L5pqhRYuw8vOs+MtE18qxSuictS8HEDNzkHJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763077449; c=relaxed/simple;
-	bh=K7IDGxVuPc9htF6r6S29UFO6As+kDcP693ftPwC5HNA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S20Y997BA/YSyhAlXwg4+gWuPOEco1srPec8MYvYtI6OYfyh4BBTMI4EYESS8g1W4yvYk+7Tfk5/l9dCM6gQdIEwUxi8+/s/iiEvEYUzON3Ajn1k3K5ZdlPKAexY5QYMhZSTV7DnnQ73nE+aqjK8Js4ByklgfjxjcQexMSjKxLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=bUA0bMJ/; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=bUA0bMJ/; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1763077445; bh=K7IDGxVuPc9htF6r6S29UFO6As+kDcP693ftPwC5HNA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bUA0bMJ/gdo4AtN3mgMuLhlRW8QiX4zoYg4i1a2YGagksW2ZVI0cfH1VeMMfZ6e0T
-	 UM+HXdeaJ3gJquf17wUV3WmsI/JZyXLH9jw2VCzdSLPBOfzCbDovmrdlGGqddrhJW1
-	 RtsAlXq3AuhnJhH44D0Pavuep1rIvbD+uUKKk4luT/bpgM1EaCEOyKjrSRGnAR0TTo
-	 xAIzxrhvUEsCRR1A86McMV0S0p4aM9js/ORyR61O1rdkH+cYyTRKn3fKnfy0UP75nf
-	 kQ+OV+o7WwCp7R/X5qQOVKEQuKqYYuxt2qNprl69gv7Nxh+wqUlMHeLyaBzLccjQd3
-	 SYUKkT+hK2raA==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id CCB253E101C;
-	Thu, 13 Nov 2025 23:44:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1763077445; bh=K7IDGxVuPc9htF6r6S29UFO6As+kDcP693ftPwC5HNA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bUA0bMJ/gdo4AtN3mgMuLhlRW8QiX4zoYg4i1a2YGagksW2ZVI0cfH1VeMMfZ6e0T
-	 UM+HXdeaJ3gJquf17wUV3WmsI/JZyXLH9jw2VCzdSLPBOfzCbDovmrdlGGqddrhJW1
-	 RtsAlXq3AuhnJhH44D0Pavuep1rIvbD+uUKKk4luT/bpgM1EaCEOyKjrSRGnAR0TTo
-	 xAIzxrhvUEsCRR1A86McMV0S0p4aM9js/ORyR61O1rdkH+cYyTRKn3fKnfy0UP75nf
-	 kQ+OV+o7WwCp7R/X5qQOVKEQuKqYYuxt2qNprl69gv7Nxh+wqUlMHeLyaBzLccjQd3
-	 SYUKkT+hK2raA==
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id 48D363E0FFD;
-	Thu, 13 Nov 2025 23:44:05 +0000 (UTC)
-Message-ID: <eb9fa1ab-07d7-4f9d-add4-e6fff015ff44@mleia.com>
-Date: Fri, 14 Nov 2025 01:44:04 +0200
+	s=arc-20240116; t=1763077649; c=relaxed/simple;
+	bh=Y0Rj4ZRe5ERECMPOL/Tf/uw4avMT1HmU7UJTbesrIqc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B7n/Ao/PvbPWX/GbSexx81oysdALIWC/shL38BXPf0LGtXFSpdCT88xdWBYjO5bOg4XgglNyVv9dbQGZMGyWIVWxlg26WV7rL1PX8vhhbAsUADGFSHquzoeTtgHx5WUzWAa5/IDYsy/5cuN5XEoWvtry50DJZO0EaPx31r8Z6xI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Triv6O5Y; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763077647; x=1794613647;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Y0Rj4ZRe5ERECMPOL/Tf/uw4avMT1HmU7UJTbesrIqc=;
+  b=Triv6O5YyhEuDtftxm6vCYHXXjk8ZN3FtuAn3ElBBa45iSMSxx+8K6x/
+   /erXCAJ6Ohuv/L6ofnnhO++IN3RwEqfdkjd/AsQXXkFIk9GYmzMos5/t6
+   eaSShOF+VsdJmqPZJRFCGda0msFGqyp1d/y13JljQJ7wQOfs0SpSmr+HF
+   xoxicZcfi1w7oAIjUfzwmJfZEem9tthdYR1pB5hbGbM3BX84wCaZ83EJN
+   pQtgTn1uE0YDdktsRUch0cO5KCu4sOi8woj4fQ90QHwrlsFGdZRwBSsrj
+   h9FBcw2l4vqeS5SnKP5OmB8W6vbudkCRQ0I4hi1SECX5YeebGzE2OkURK
+   Q==;
+X-CSE-ConnectionGUID: Ki4wgjdnSg+2PsWR45StnQ==
+X-CSE-MsgGUID: S888nDTyRquS/ehiMQWm/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="87816449"
+X-IronPort-AV: E=Sophos;i="6.19,303,1754982000"; 
+   d="scan'208";a="87816449"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2025 15:47:26 -0800
+X-CSE-ConnectionGUID: Dq9YV3/3QBC9a11GdiOapg==
+X-CSE-MsgGUID: nXbXL0z/T6OqbjgYjMo1qQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,303,1754982000"; 
+   d="scan'208";a="189267507"
+Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 13 Nov 2025 15:47:21 -0800
+Received: from kbuild by 7b01c990427b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vJh27-0005zX-2L;
+	Thu, 13 Nov 2025 23:47:19 +0000
+Date: Fri, 14 Nov 2025 07:46:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yuntao Wang <yuntao.wang@linux.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	James Morse <james.morse@arm.com>,
+	Chen Zhou <chenzhou10@huawei.com>, Baoquan He <bhe@redhat.com>,
+	Zhen Lei <thunder.leizhen@huawei.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Linux Memory Management List <linux-mm@kvack.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Alexander Graf <graf@amazon.com>,
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Yuntao Wang <yuntao.wang@linux.dev>
+Subject: Re: [PATCH 04/10] of/reserved_mem: Use dt_root_addr_size_bytes()
+ instead of open-coding it
+Message-ID: <202511140700.auD70FDr-lkp@intel.com>
+References: <20251112143520.233870-5-yuntao.wang@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ARM: dts: lpc32xx: update #address-cells of arm,pl175
- to 2
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/LPC32XX SOC SUPPORT"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20251029202801.3963952-1-Frank.Li@nxp.com>
- <20251029202801.3963952-5-Frank.Li@nxp.com>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20251029202801.3963952-5-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251113_234405_854406_AB387800 
-X-CRM114-Status: GOOD (  15.11  )
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251112143520.233870-5-yuntao.wang@linux.dev>
 
-Hi Frank.
+Hi Yuntao,
 
-On 10/29/25 22:28, Frank Li wrote:
-> Change #address-cells of arm,pl175 to 2 to fix below CHECK_DTBS warnings:
->    arm/boot/dts/nxp/lpc/lpc3250-ea3250.dtb: memory-controller@31080000 (arm,pl175): #address-cells: 2 was expected
->          from schema $id: http://devicetree.org/schemas/memory-controllers/arm,pl172.yaml#
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->   arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-> index 77f210a2152dc..0249a1838ee0d 100644
-> --- a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-> +++ b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-> @@ -155,7 +155,7 @@ emc: memory-controller@31080000 {
->   			reg = <0x31080000 0x1000>;
->   			clocks = <&clk LPC32XX_CLK_DDRAM>, <&clk LPC32XX_CLK_DDRAM>;
->   			clock-names = "mpmcclk", "apb_pclk";
-> -			#address-cells = <1>;
-> +			#address-cells = <2>;
->   			#size-cells = <1>;
->   
->   			ranges = <0 0xe0000000 0x01000000>,
+kernel test robot noticed the following build warnings:
 
-Recently you've made a conversion to YAML for arm,pl17x memory controllers
-and now this warning is reported - and by the way I believe and it's
-opposite to the commit message, the warning is not reported in the upstream,
-because lpc3250-ea3250.dts does not enable the controller.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.18-rc5 next-20251113]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I wonder and let me ask you, why two address cells are needed here?
+url:    https://github.com/intel-lab-lkp/linux/commits/Yuntao-Wang/of-fdt-Introduce-dt_root_addr_size_cells-and-dt_root_addr_size_bytes/20251112-232000
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20251112143520.233870-5-yuntao.wang%40linux.dev
+patch subject: [PATCH 04/10] of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding it
+config: i386-randconfig-011-20251114 (https://download.01.org/0day-ci/archive/20251114/202511140700.auD70FDr-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.4.0-5) 12.4.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251114/202511140700.auD70FDr-lkp@intel.com/reproduce)
 
-My default preference is to get one address cell for NOR flash ICs, and
-I'd suggest to make a change to the dt binding of the controller.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511140700.auD70FDr-lkp@intel.com/
+
+All warnings (new ones prefixed by >>, old ones prefixed by <<):
+
+>> WARNING: modpost: vmlinux: section mismatch in reference: dt_root_addr_size_bytes+0x1 (section: .text) -> dt_root_size_cells (section: .init.data)
+>> WARNING: modpost: vmlinux: section mismatch in reference: dt_root_addr_size_bytes+0x7 (section: .text) -> dt_root_addr_cells (section: .init.data)
 
 -- 
-Best wishes,
-Vladimir
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
