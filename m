@@ -1,185 +1,116 @@
-Return-Path: <devicetree+bounces-238179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B552CC5836D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:08:16 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17784C585E1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:27:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7A183AE646
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:58:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 73E8E35ACB9
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483112DC32C;
-	Thu, 13 Nov 2025 14:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="T8vElxvm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2BE2E92B5;
+	Thu, 13 Nov 2025 15:05:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A7723D7D2;
-	Thu, 13 Nov 2025 14:58:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14ED327F163
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 15:04:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763045886; cv=none; b=pJpzZX0OBvJ5DwLCj03Xp+QMzx+riVRe8wc5/21WiVwGz8sDX8+sIj0/45aJLPsz/Zw4in2r+q9wIXkf8PiMfxmxQ7xcQEnHdyEUC/KvH3w0YpZLy+YCfqkl+nmLS2DxKi4EwEU+2ETcjGA9jZAQAmpdt316I+dd2T2YFjzAOUA=
+	t=1763046300; cv=none; b=mozw3QvgHHPADKMsKS47ONrdNXI9CmNe9NJbOK5L93LsR+ZHXR6n8F8lJWkR6qi+iSUzE8MRZPraSBCzMBFhD/kd3FAZKXL3wE29DzZjagbi/1XIC8t6CVPLjQ8aGvXKcLpZc5N0+IFuM5F+WH0dCjuFwQ1BejCib0xWebOd1BU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763045886; c=relaxed/simple;
-	bh=3Uu21/c6Hbs21uxpxbmZo7JhKjwRedtSvTBuDxAnxMI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=bnoZm8SBNOZsSdawEKekpcm89RPqcM6qCt4lQL1o0R3wobLYkGCgwwNg16R/aSLxGSY9/7GT7fbd404fK77bfUVYtGDyqnGdjop0PTlxMt1Jy49YeN+ZlLsT6wHIDYWKOZoH5j1aPRF6ejAO5TcWtdS5RVVqoaYXjamilF1qyE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=T8vElxvm; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20251113145759euoutp01fef0a97a0ebaf8bd2c8d8fa9cc795730~3mOLljyiZ1322713227euoutp012;
-	Thu, 13 Nov 2025 14:57:59 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20251113145759euoutp01fef0a97a0ebaf8bd2c8d8fa9cc795730~3mOLljyiZ1322713227euoutp012
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1763045879;
-	bh=ogp7tQuY4ykhbwHIKUJTRYSar7oRQokZNx6TlxIJ+5c=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=T8vElxvmkwwSu1Wl5s0VXj6iVdl2A5s7iYFjmFeFPouxsJm1ZPkAuL/pj3v38TcxU
-	 /xoPUpVOskKRLjECmF0grhpoxv/PVum1bvXNYzG6n+Owrs/cxRuPbe4zkZQdEvAzaI
-	 PFjnHtKU80hgiAFcv2hYlDM5zIbRHGRMVNt0srsQ=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20251113145758eucas1p1bca3e4e91b329de9c52de40c7d86d093~3mOLC8LIJ0576905769eucas1p1J;
-	Thu, 13 Nov 2025 14:57:58 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20251113145757eusmtip2959d20c844dc6203e206300997e642d0~3mOJlt2ga3124231242eusmtip2e;
-	Thu, 13 Nov 2025 14:57:57 +0000 (GMT)
-Message-ID: <e1696331-1271-46a8-adb6-9fed4521f22b@samsung.com>
-Date: Thu, 13 Nov 2025 15:57:57 +0100
+	s=arc-20240116; t=1763046300; c=relaxed/simple;
+	bh=96Y6UTc1RsC1zBGnStoKZ73w488HXsI+oYFS9qcYNHk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JHTQspjc7ECfBr2fYiS+VO/F1JVNJUzhp9UuWGS/mzwBlOYgd9bQ2JnlENj8PIsfS9l1CRmjXXbo/ea3EPDudFE12ALL09PdiJS0dPn+xyGqyE/lg/yYQw6tn3PBHzZd8WHQfPXq43jbEMur2wHNg2u6dNxfndz9VEY4P+aIq8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4ed86157911so9195281cf.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 07:04:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763046298; x=1763651098;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4ubK9EQtGlqEmscuI2UlEc444kIJ9wNNtF0OWUtH/PI=;
+        b=FdSm3WdMIL9m0zOlSscEEBS+IdB/7YWnyCw+ZVB050IJOo37J28gCBdl+iYK3aF+6/
+         1/tlGTfoKVBLcb+hOmmHwJHzUBbLVLT2TZbyCeV7i++YQtLguRCxzCQL5ceID2g2w7Ep
+         1EcFpJuSNTnaImUFXCrf1un8teADr2tgjZgHS5CKjmivxQwI/vvi/QUNEZyLtx0ZlKa9
+         sHmEunmAqX1aofic+VhIZ82TLlDUySKbL8EGrw8/rvn6mZRIGvL9I+fKPk6i7EH+UUGb
+         pH9CCUc0HYbwgK/HoEJVxPHiubz8GsOxpk4gLTrFLQA6+u8CwRA0muVIY/8gdovBY7YD
+         VDEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVi+DvzzSpFrhOiHmsx2VVJrrpp+Z6+qQ/8VkfCkifV6JgqZjaC0jp0RTft72xqicMZ5vidS0h3bP+Q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/BbTAAYXuGntagXRQAZjprF9V7vqYYkUuyZvGLvfWnL1GUWdj
+	FIayDEcyl6w+FM0Jht0ULnLQwdCOnmoGvlPVE7r63m6CLm553TGsUrHy4KS6XLu/f8U=
+X-Gm-Gg: ASbGncvt4gws5bWg/4wNnUx0XDXkPpZkg1fY7Tn4S8ucXpQUVh16xvE6YjT4KVittCj
+	uE9TGvzVQiRWhCZ8Z3oo06dXamie1rGMnlw3yum2nC/GOWBvnV+z3Mi5LHy3C4GxKGl+XAj7ovS
+	Tq4Xrk/R6OsYeNo/R1KxfQAY4F/T8h7F0Bl86egrOHnzfojtRkI5OfwS9EhrLxqySmkzCGfaG9I
+	v+FsDna9ojqpM6XHtTAHPZAqljurnCNR6GJzAS2b6Tkm7iyNLw7aBB1KX9W8m8mlNYl7cr6xsgQ
+	A+1NHCgFuQ/UzL6l4T2HwQAbjPSnibmSAS4TvqdVV33vlHoKaHKQStJxkNlUuRrBsfTXW2TnI5E
+	guMQeGe5R/xOnNCdo9UspeNhnUh9syhuc4xcBs7/a9AvI9IK72K0nbHnOyWF7gdd9J6G8jCoRXU
+	P3q8egla52rXM7h8oFStzlMskYKFkytW3Mx8aCJg==
+X-Google-Smtp-Source: AGHT+IH9VcX6es2t6CyHtZXbThXHkX3MdmtF0oTK70aZYV2ftyF0L4eTIXzpY3enU1kcobhEaMtYjw==
+X-Received: by 2002:a05:622a:507:b0:4eb:a10c:de05 with SMTP id d75a77b69052e-4eddbd8081bmr79648971cf.55.1763046295546;
+        Thu, 13 Nov 2025 07:04:55 -0800 (PST)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9376111f1d8sm626725241.8.2025.11.13.07.04.54
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Nov 2025 07:04:55 -0800 (PST)
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-93526e2842dso255933241.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 07:04:54 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW3v+ovqR+8yNmfJ/t/ygn9rJ/eC821QBQU/tGeVt66HESa86K/VERjlWKckfbAck9kLCzcTUC8o2jh@vger.kernel.org
+X-Received: by 2002:a05:6102:a4b:b0:5db:f573:a2c with SMTP id
+ ada2fe7eead31-5de07d2f924mr2287392137.13.1763046294441; Thu, 13 Nov 2025
+ 07:04:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 00/13] drm: starfive: jh7110: Enable display
- subsystem
-To: Conor Dooley <conor@kernel.org>, Maxime Ripard <mripard@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>, Robert Foss <rfoss@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>, Hal Feng
-	<hal.feng@starfivetech.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Xingyu
-	Wu <xingyu.wu@starfivetech.com>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
-	Abraham I <kishon@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
-	Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
-	<jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>, Philipp
-	Zabel <p.zabel@pengutronix.de>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Icenowy Zheng <uwu@icenowy.me>, Maud Spierings
-	<maudspierings@gocontroll.com>, Andy Yan <andyshrk@163.com>, Heiko Stuebner
-	<heiko@sntech.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20251111-matriarch-diocese-b314e7bdaf81@spud>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20251113145758eucas1p1bca3e4e91b329de9c52de40c7d86d093
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e
-X-EPHeader: CA
-X-CMS-RootMailID: 20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e
-References: <CGME20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e@eucas1p1.samsung.com>
-	<20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
-	<20251110-clang-baking-b8b27730356e@spud>
-	<00e897dc-9966-439b-a74a-7604a1870027@samsung.com>
-	<20251111-footing-eclair-332f5f0769f2@spud>
-	<20251111-matriarch-diocese-b314e7bdaf81@spud>
+References: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com> <20251023135810.1688415-7-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20251023135810.1688415-7-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 13 Nov 2025 16:04:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUqoi-1GgyC3ZpmOupNtFxaUwRx8C4Q3iO9nx_hMwxX5A@mail.gmail.com>
+X-Gm-Features: AWmQ_bntxYDPmpH9FJ7BCBwIP1rRXvUl6W1zgLobUSlsMYdvdi_L11aPQlSxmS8
+Message-ID: <CAMuHMdUqoi-1GgyC3ZpmOupNtFxaUwRx8C4Q3iO9nx_hMwxX5A@mail.gmail.com>
+Subject: Re: [PATCH v8 6/7] arm64: dts: renesas: r9a08g045: Add USB support
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
+	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"
 
+On Thu, 23 Oct 2025 at 17:21, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add USB nodes for the Renesas RZ/G3S SoC. This consists of PHY reset,
+> host and device support.
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
+Thanks, will queue in renesas-devel for v6.19.
 
-On 11/11/25 19:37, Conor Dooley wrote:
-> On Tue, Nov 11, 2025 at 06:14:48PM +0000, Conor Dooley wrote:
->> On Tue, Nov 11, 2025 at 04:33:28PM +0100, Michal Wilczynski wrote:
->>>
->>>
->>> On 11/10/25 20:35, Conor Dooley wrote:
->>>> On Sat, Nov 08, 2025 at 02:04:34AM +0100, Michal Wilczynski wrote:
->>>>> This series enables the display subsystem on the StarFive JH7110 SoC.
->>>>> This hardware has a complex set of dependencies that this series aims to
->>>>> solve.
->>>>>
->>>>> I believe this is a PHY tuning issue that can be fixed in the new
->>>>> phy-jh7110-inno-hdmi.c driver without changing the overall architecture.
->>>>> I plan to continue debugging these modes and will submit follow up fixes
->>>>> as needed.
->>>>>
->>>>> The core architectural plumbing is sound and ready for review.
->>>>>
->>>>> Notes:
->>>>> - The JH7110 does not have a centralized MAINTAINERS entry like the
->>>>>   TH1520, and driver maintainership seems fragmented. I have therefore
->>>>>   added a MAINTAINERS entry for the display subsystem and am willing to
->>>>>   help with its maintenance.
->>>>
->>>> Yeah, bunch of different folks wrote the drivers, so lots of entries.
->>>> Pretty much all as you've done here, authors are responsible for the
->>>> individual components and Emil is the platform maintainer but
->>>> responsible for most drivers.
->>>>
->>>> Do you need any feedback dt wise on the RFC, or is it too likely that
->>>> we'll both waste our breath if the DRM folks don't approve of your
->>>> approach for the rest of this series?
->>>
->>> Hi Conor,
->>>
->>> Thank you for your response.
->>>
->>> That's a fair point about the risk of the DRM approach being rejected.
->>> While I can't be certain, I'm hopeful that part is relatively
->>> straightforward, as it primarily integrates other recently reviewed
->>> (though not yet merged) components like the inno-hdmi bridge and dc8200
->>> drivers.
->>>
->>> To be honest, I was more concerned that the DT part of the series would
->>> be more problematic. Given that, I would find it very helpful to get
->>> your feedback on the DT aspects now, if you have the time.
->>
->> Right. You'll definitely want some actual DRM people to weigh in though
->> before making changes, I am really not familiar enough with this type of
->> hardware to know if the breakdown is correct.
-> 
-> It looks generally sane to me chief, but as I said I am not really
-> familiar enough with this sort of hardware to have a real take on it.
-> Sorry, you'll need to get your affirmation about how you've laid stuff
-> out elsewhere :/
+Gr{oetje,eeting}s,
 
-Thanks for the look, Conor.
+                        Geert
 
-I appreciate the sanity check on the DT side. I'll focus on getting the
-necessary feedback from the DRM maintainers regarding the architectural
-breakdown before spinning a v2.
-
-[Adding Dmitry Baryshkov and highlighting Maxime, Heiko, and Robert]
-
-Could you folks take a brief look at the driver split in this series?
-
-Conor has reviewed the DT bindings and they look sane to him, but we
-need to verify that the architectural split between the
-phy-jh7110-inno-hdmi and the DRM bridge driver is acceptable for this
-Innosilicon IP.
-
-I am particularly interested if the current handling of the PHY tuning
-parameters (as described in the cover letter) fits the modern DRM
-bridge/PHY paradigm, or if this should be modeled differently given the
-similarities to Rockchip implementations.
-
-Best regards,
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
