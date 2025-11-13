@@ -1,234 +1,200 @@
-Return-Path: <devicetree+bounces-237899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BD65C5561C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 03:08:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 341DDC55626
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 03:10:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B99A53B8747
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:00:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A68563B7B1A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2DE29B764;
-	Thu, 13 Nov 2025 02:00:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649A529D287;
+	Thu, 13 Nov 2025 02:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Yrx0QE6l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D2glekrH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACDE62248AF;
-	Thu, 13 Nov 2025 02:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD3629B764
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 02:03:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762999242; cv=none; b=WfY1iXm1RwM0SqlCC9O9uw8YAlVtfr6bU9BDdZps1g1LiyOX1xSwn7FEVrxaKxvLbbEgT39c9SRc+ZMAR+iCOXHRK+BnSqpBYcQ9VFnCye+lcFcFGT+WR1Zp7UMdKYEYpykAAtL2T/RZ9TESY6JC8GGxsvzVQrH6d3MCg2Rg4HY=
+	t=1762999386; cv=none; b=WVH/NW0Yb5v0Lx+hjoOo2iSA0Ki47/7lyd5PZSu6GG5n8fRCwAyv1bFfAQpygRbVOaj99n8Y26sP03Z/urLxcJzuu29gU5hVg0CeIW6mnnvgiaZUfi50HJW3meX2fC4aMVlsMtRriD7IqCvlCEcTS3anl9Yulc8/hzSSjOESbKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762999242; c=relaxed/simple;
-	bh=m/JsSUuuwvDOeT9RQcGvgVZikLHJyfgvCRC/Km24WVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AT1O9WgYTgm86RRIv/Vyke80QXYuhL0NI2UVzcNphHedL9xcsCloACGWJTS5ja1bqR9me9BCz3Yev0S9v6mvHMDEeeGSLJbRhQRxAB5sU/83ElRy8Is+G/sMml0x74BUp4sLztidkZz4D4YYJHHIQgvQd3+Iijp9BBtQ3IIPC14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Yrx0QE6l; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [213.216.211.176])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 8B042BD2;
-	Thu, 13 Nov 2025 02:58:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762999118;
-	bh=m/JsSUuuwvDOeT9RQcGvgVZikLHJyfgvCRC/Km24WVM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yrx0QE6l81GKJpO7fUpDjtqnA5GrvpgVcKw12mkvhSUeNKwzoA5dm+f8PQQU/pHwQ
-	 pOTPOexPfTcmFKdY2Uv+IlpJCWsNnxJaxnQL0L+hG679KyV9uQqt3ii6BXKlD9jxR6
-	 eH9ydbOSbO4wdbNojVfBEQeCE5fR4cuG+zJarzCY=
-Date: Thu, 13 Nov 2025 04:00:27 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Guoniu Zhou <guoniu.zhou@nxp.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v7 1/5] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8ULP compatible string
-Message-ID: <20251113020027.GE9135@pendragon.ideasonboard.com>
-References: <20251023-csi2_imx8ulp-v7-0-5ecb081ce79b@nxp.com>
- <20251023-csi2_imx8ulp-v7-1-5ecb081ce79b@nxp.com>
- <20251027000537.GM13023@pendragon.ideasonboard.com>
- <aROg99ryy6RTZZIx@lizhi-Precision-Tower-5810>
- <20251111211025.GA26805@pendragon.ideasonboard.com>
- <aROzSqKEOXQgkWLz@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1762999386; c=relaxed/simple;
+	bh=7sagxwt3YOzXO5GtOUTkLWYm3rudvxzxUFEOh7+/8k0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fiH2zOV9Ld4Xhbogn5vxXueTd1h0ishsUEhXWI3eneuKmcJYHTTJ95M0m2xIszBNM26epZAp/MZttcbsXHZB/memhyvVJUCwO8Qai02IOe4cOwWKkxriigD9iAg8FWSpGMWgmVbTBBfiFHRgag733kgtyIv4u/I1yRijg0UR2Eg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D2glekrH; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b99bfb451e5so182421a12.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 18:03:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762999384; x=1763604184; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=UjweUzZ22jKy+FdesM7fO6h9LCgM2UrGbdkfnRu72po=;
+        b=D2glekrHFqeT0yPeelVgNhvC98HG+fPpgHEZI7nouqZayqIRe6psL548Yg952k9LXY
+         ap8XZ0j151HcFuYoGfwOped5fmAyDQ+l4RIwQLhlKr5t+XgAFOTfRvfctJy6rsYUmaLE
+         IVtwOOzIm21RnG5BopAIkdOG7W8loTGpbc0gcCdUGvpHhSsNCnNdw/TLotTmwKXLQf1g
+         BQdcQ92VOahrAS5jPLitmPlRIDym3JRC3klqK/98wpKKrbTU/pB9pdfCjjSXwLvDx9q7
+         CIesUu+HunioutEDfVFUwM35CzzOgmB6SH7AgEX4t/ychMjnQaRZ65c8Nu/7+tmLZPpI
+         Wg7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762999384; x=1763604184;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UjweUzZ22jKy+FdesM7fO6h9LCgM2UrGbdkfnRu72po=;
+        b=XfLNJ2qt3VaBcQpporMYSMoopG4yCMPYK7hu5We77/Bte07tjouCgDA76zVls19795
+         tkp1gPt99pZIb+COlh01KaOoL1M8U0ZrWPUhyJH1QA9ZArAdh9YEk02ZRhmV/5UFSpUF
+         D7pAkzoApwTxXgyxvtVy+DljyTvqR6UIBrcT+D97H3DkS0yiSZfCfvVvWi5R1mLVVhul
+         N5fJgLtJK8vkWSxRPXPswVKL0b8QbdYpEivwqygMz0xOXxsdr+kJLN1CVupUJa2y29kW
+         VaRQ822elEnw4NYQUKbtDPzJUCHl/pjhR1zsA7IG4wQ+/looYjwUKcZjp7PP+WF5+7FD
+         jAqw==
+X-Forwarded-Encrypted: i=1; AJvYcCXY17RxhlAaJ9pyydEutkd52i32I68bj475U+FwfPeS9TYd5m4otvMs6kskw7DHafxoxES9LijfY1df@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIv8pd7tKDjzcyonE7iP1y+4qO7P5hwt7566xk9/IWsCugxGOW
+	ezhnAQNACkm0U2SqMww+4oJFXv0QtqsAnv8yNsYSvPORTzdUFwO4ggbE
+X-Gm-Gg: ASbGncv9/Y3kz4d/1A68HWFJmu5vK1mO1jvPxknx283bYR6P4MrweuFdZyn/QGt0xCA
+	ruoWmRrS6Np5r+XgRfy/NEmcDfAEwhMEbP2v84ocjYGrg/bK5yheDDZqbYYu7T2A4Yl3EPbqM87
+	Zd4zgjzLbv68c3DboQWevX6MB5ThwQQ7tBSqXLCqFpF0Ogaze4Wprh23Cusk9/hPESuvsV8RTdo
+	6JHS5sBoAfoeuea+4In+HItZbjJJ1hfCPuM7js35judmzcy6aThAeaj+6lFDRXjRO7sPikUID4c
+	Bc/4gwWyFLumig+5mOUP0TkIXkvgyAqwxnUYIWUUczfJw9MdhauMX5qYKI4GlNGP+4B13SCrPJz
+	TQ3/Cvj0PQD73IEbvb4GbLfTu08JNyT5ZCRAWYGf0XJf0cFKoQKZpWWWZK/lHhzUh7IsUUrUXXb
+	phWL83FEtAnM9I94SjVpL9nPjM4F8EGbA67HtoQa+oQtcFviu0
+X-Google-Smtp-Source: AGHT+IG1WS6e6A31ciU36x82nVcAmvDmiX6VuzUgSbYU6zLgxbRslxDpgz+YB6Vd+8ZB7Iy10zQcHQ==
+X-Received: by 2002:a17:902:e80f:b0:295:6d30:e25f with SMTP id d9443c01a7336-2984edec6e3mr65136965ad.53.1762999383530;
+        Wed, 12 Nov 2025 18:03:03 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bc36fa02c42sm435825a12.16.2025.11.12.18.03.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Nov 2025 18:03:02 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <50cb21bc-55e7-4bf3-9d05-0cbe10af46aa@roeck-us.net>
+Date: Wed, 12 Nov 2025 18:03:01 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aROzSqKEOXQgkWLz@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/8] dt-binding:ti,ina3221:Add SQ52210
+To: Wenliang Yan <wenliang202407@163.com>, Jean Delvare <jdelvare@suse.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: christophe.jaillet@wanadoo.fr, corbet@lwn.net,
+ devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251111080546.32421-1-wenliang202407@163.com>
+ <20251111080546.32421-2-wenliang202407@163.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251111080546.32421-2-wenliang202407@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 11, 2025 at 05:06:02PM -0500, Frank Li wrote:
-> On Tue, Nov 11, 2025 at 11:10:25PM +0200, Laurent Pinchart wrote:
-> > On Tue, Nov 11, 2025 at 03:47:51PM -0500, Frank Li wrote:
-> > > On Mon, Oct 27, 2025 at 02:05:37AM +0200, Laurent Pinchart wrote:
-> > > > On Thu, Oct 23, 2025 at 05:19:42PM +0800, Guoniu Zhou wrote:
-> > > > > From: Guoniu Zhou <guoniu.zhou@nxp.com>
-> > > > >
-> > > > > The CSI-2 receiver in the i.MX8ULP is almost identical to the version
-> > > > > present in the i.MX8QXP/QM, but i.MX8ULP CSI-2 controller needs pclk
-> > > > > clock as the input clock for its APB interface of Control and Status
-> > > > > register(CSR). So add compatible string fsl,imx8ulp-mipi-csi2 and
-> > > > > increase maxItems of Clocks (clock-names) to 4 from 3.  And keep the
-> > > > > same restriction for existing compatible.
-> > > > >
-> > > > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > > Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> > > > > ---
-> > > > >  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 41 ++++++++++++++++++++--
-> > > > >  1 file changed, 39 insertions(+), 2 deletions(-)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > > > index 3389bab266a9adbda313c8ad795b998641df12f3..da3978da1cab75292ada3f24837443f7f4ab6418 100644
-> > > > > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > > > @@ -20,6 +20,7 @@ properties:
-> > > > >        - enum:
-> > > > >            - fsl,imx8mq-mipi-csi2
-> > > > >            - fsl,imx8qxp-mipi-csi2
-> > > > > +          - fsl,imx8ulp-mipi-csi2
-> > > > >        - items:
-> > > > >            - const: fsl,imx8qm-mipi-csi2
-> > > > >            - const: fsl,imx8qxp-mipi-csi2
-> > > > > @@ -39,12 +40,16 @@ properties:
-> > > > >                       clock that the RX DPHY receives.
-> > > > >        - description: ui is the pixel clock (phy_ref up to 333Mhz).
-> > > > >                       See the reference manual for details.
-> > > > > +      - description: pclk is clock for csr APB interface.
-> > > > > +    minItems: 3
-> > > > >
-> > > > >    clock-names:
-> > > > >      items:
-> > > > >        - const: core
-> > > > >        - const: esc
-> > > > >        - const: ui
-> > > > > +      - const: pclk
-> > > > > +    minItems: 3
-> > > > >
-> > > > >    power-domains:
-> > > > >      maxItems: 1
-> > > > > @@ -130,19 +135,51 @@ allOf:
-> > > > >          compatible:
-> > > > >            contains:
-> > > > >              enum:
-> > > > > -              - fsl,imx8qxp-mipi-csi2
-> > > > > +              - fsl,imx8ulp-mipi-csi2
-> > > > > +    then:
-> > > > > +      properties:
-> > > > > +        reg:
-> > > > > +          minItems: 2
-> > > > > +        resets:
-> > > > > +          minItems: 2
-> > > > > +          maxItems: 2
-> > > > > +        clocks:
-> > > > > +          minItems: 4
-> > > > > +        clock-names:
-> > > > > +          minItems: 4
-> > > >
-> > > > Do we need the clock-names constraint ? The DT schemas will enforce that
-> > > > clocks and clock-names always have the same number of elements.
-> > >
-> > > clock-names list already restrict at top section
-> > >
-> > > clock-names:
-> > >   items:
-> > >     - const: core
-> > >     - const: esc
-> > >     - const: ui
-> > >     - const: pclk
-> > >   minItems: 3
-> > >
-> > > Here just restrict need 4 clocks, instead 3 clock for fsl,imx8ulp-mipi-csi2
-> >
-> > I understand that. My point was that the dt-schema will always verify
-> > that the number of clocks items is equal to the number of clock-names
-> > items. That's a constraint enforced by the core schemas. As
-> > clocks: minItems is set to 4, the clock-names: minItems constraint is
-> > redundant.
+On 11/11/25 00:05, Wenliang Yan wrote:
+> Add a compatible string for sq52210, sq52210 is forward compatible
+> with INA3221 and add alert register to implement four additional
+> alert function.
 > 
-> I am not sure when have such features. Previous comments from Rob require
-> clocks and clock-names keep the same at binding yaml.
+> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+> ---
+>   .../devicetree/bindings/hwmon/ti,ina3221.yaml    | 16 +++++++++++++++-
+>   1 file changed, 15 insertions(+), 1 deletion(-)
 > 
-> https://lore.kernel.org/linux-devicetree/20251031000012.GA466250-robh@kernel.org/
-> 
-> Rob have not said that clock-names can be removed.
-> 
-> Do you have any thread, which inidicate we only need limit clocks at
-> if-else branch?
-> 
-> I also have not found related commit at
-> https://github.com/devicetree-org/dt-schema.git
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> index 5f10f1207d69..0fae82ca3ee1 100644
+> --- a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> @@ -12,7 +12,9 @@ maintainers:
+>   
+>   properties:
+>     compatible:
+> -    const: ti,ina3221
+> +    enum:
+> +      - silergy,sq52210
+> +      - ti,ina3221
+>   
+>     reg:
+>       maxItems: 1
+> @@ -77,6 +79,18 @@ patternProperties:
+>             exclude specific channels from the summation control function.
+>           type: boolean
+>   
+> +      alert-type:
+> +        description: |
+> +          The SQ52210 features a configurable alert function with four
+> +          types: SUL, BOL, BUL, and POL. Each channel can be configured to
+> +          select one of these types to enable the alert function. This alert
+> +          function can operate concurrently with both Critical and Warning
+> +          functions.
+> +
+> +          The configuration must use numerical values 0 through 3,
+> +          0 corresponds to SUL, 1 to BOL, 2 to BUL, and 3 to POL.
+> +        enum: [ 0, 1, 2, 3 ]
+> +
 
-I think you're right. There are dependencies between clock-names and
-clocks described in the DT schemas, but I don't see any automatic
-dependency regarding the number of items. I seem to have dreamt this :-/
-Sorry about the noise.
+Per datasheet, each of the alerts can be enabled independently. It is possible
+to enable SUL, BOL, BUL, and POL on each channel at the same time. This is not
+possible with the above property since it only permits enabling alerts for one
+of the alert sources on each channel.
 
-> > > > > +
-> > > > > +  - if:
-> > > > > +      properties:
-> > > > > +        compatible:
-> > > > > +          contains:
-> > > > > +            const: fsl,imx8qxp-mipi-csi2
-> > > > >      then:
-> > > > >        properties:
-> > > > >          reg:
-> > > > >            minItems: 2
-> > > > >          resets:
-> > > > >            maxItems: 1
-> > > > > -    else:
-> > > > > +        clocks:
-> > > > > +          maxItems: 3
-> > > > > +        clock-names:
-> > > > > +          maxItems: 3
-> > > > > +
-> > > > > +  - if:
-> > > > > +      properties:
-> > > > > +        compatible:
-> > > > > +          contains:
-> > > > > +            enum:
-> > > > > +              - fsl,imx8mq-mipi-csi2
-> > > > > +    then:
-> > > > >        properties:
-> > > > >          reg:
-> > > > >            maxItems: 1
-> > > > >          resets:
-> > > > >            minItems: 3
-> > > > > +        clocks:
-> > > > > +          maxItems: 3
-> > > > > +        clock-names:
-> > > > > +          maxItems: 3
-> > > > >        required:
-> > > > >          - fsl,mipi-phy-gpr
-> > > > >
-> > > >
-> > > > Could you please sort those conditional blocks by alphabetical order of
-> > > > the compatible strings ?
+Also, I am not sure if it makes sense to have this as devicetree property.
+It is not really a board property. It might make more sense to tie enabling
+the alerts automatically if a channel is enabled and a limit is set for a
+given channel.
 
--- 
-Regards,
+Guenter
 
-Laurent Pinchart
 
