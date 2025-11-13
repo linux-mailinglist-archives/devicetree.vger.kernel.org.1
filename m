@@ -1,254 +1,202 @@
-Return-Path: <devicetree+bounces-238165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15E9FC57F6A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:36:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE8DDC57F70
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:36:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 703D64EE5F8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:29:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 533404E716F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 655942C327E;
-	Thu, 13 Nov 2025 14:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED562BEC43;
+	Thu, 13 Nov 2025 14:30:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MTsXoWdL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u5t+1LVB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4586E26D4DD
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 14:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9D02BF017;
+	Thu, 13 Nov 2025 14:30:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763044164; cv=none; b=p4JMjc78VYjZecGwuFDmyA/h2lKVcSmngq70Bc883OhntCYd1/hH64EF0K5oK1CuH7KRSe6T2KJDXIdvEO7/I4aOP3WOIldOjopFYRzuM2Cy//3DecATL7HngqFgUWm9puJDDC+BiNCcMiOLsneJaiWh8o+PvFXGQWoDoEJfYZc=
+	t=1763044237; cv=none; b=GFTPU+Y40h/NZgnrK9tv2oAu6mfD2xfJHCDaman/YFtt8nDIKg4evbPz7YrwOED6rYs3nSHstS2jrAZS6QpFwpbrwwjNAjpMHLYuM4k1do7/Y4Emf1ZCDSA1CC+JTh2HVByEO9DUAnivLrYi94/biFcuHV9PPxl+RLVGg2RUUGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763044164; c=relaxed/simple;
-	bh=enukvQUkWp5qWLLQJutYEr5eHCre8gtyCfegyL8aecU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CrLk1A04Y5M4SvfHzBtgYjR/XzLasaP+r3KDMcQ3KFS6YG6s52ScwpQ+IqchqGeV2shXaiAiB63svH33IXM8+lhSjcxCsNbAInxBKRI/cXzNKkkhSyV+z7mF2CipJe6yvXqEe1RtRsPstzCh3qO8FO8GR371t2epJWxOa4OQZvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MTsXoWdL; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42b47f662a0so977926f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 06:29:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763044160; x=1763648960; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UNomNoVs3/3wdBsUcq9EZSvX1zLpw+oNIAvlqkMmZEs=;
-        b=MTsXoWdL5q+SKlKFYuluPzOD01u5Un9K0DErqJEcgs6WiRpSbbI5NNZX3gSvFhXKR6
-         QY5Kza6huPV0tgxIbLxCwu1+wExP9MxfVJmtk/5yd1zvprODuYXu1RHE5/b5gCI2lyXe
-         E7vm1+iNcnvO5ULiHvudpmhjgiMXsf0tLRZTL8hu7aTAPyZBOrzazrR8oynNh9FAF9Mh
-         M1qixhxtDwJa+ZIF/HMxw6f8uWUrsiAvWwAMrLz29PO8EChBw4JXcZRqbwXZsERb1tSH
-         0MORytgRr3WbRHs8FX42JeDkoiwqk/im9aMBRG7CmwRK62YZDsl1rlJJXJ24Gt8pjuak
-         vz/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763044160; x=1763648960;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=UNomNoVs3/3wdBsUcq9EZSvX1zLpw+oNIAvlqkMmZEs=;
-        b=MvW5lIuYhRJGcBkWLvyHacJcGk4Ai3sohlT14HUgT83wq121fmW/3uqfYwTm3MAAkl
-         EJte4Ug4bQtlEzv0ApC2aEQkzymhqCsTbEEm5cFWatQxKSUJ5s47iSSqC49CrOuAJVPp
-         qX2+VB2ZtiOEl0M7ih/tqi5e+EjjH7ioyu/Dt8hyRSoEtmcxnwHegH2TD5KtJ9v31c8/
-         rssw5+w5Jx/wS+iejlIChJEA9CQkI/5PCjCz6vwwhRd04H34HcKUzjg+8cSB89W3iFgx
-         eR02EJEuIf1E/PGHP/K35Rq01xqXy5QqZZ2dmryNGVUytxFqtzQDgUY1Pea5i5eHOCoK
-         xthw==
-X-Forwarded-Encrypted: i=1; AJvYcCVKIvmvXsc94tPT6gTbiomIWMxeeDU/hkxhZLj6DZ4KZc5UtXK68cx9/S+yM2cas7wPWTkseFC3VqDs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxjjhQlGFk88e2r4g9/yWKirHEG1DvW0kIui9YdvFB7Wi+RyhX
-	n733fsj3GaxwrwRcVND6qqOeUGN4VU2Ed4xMYUnsnj+u4L1HQ3T99ENJr5uNjEeQtSgDeNpfrUJ
-	IMzOZPAHUIAWA7ISrJFAUQxDOwxmcRd0=
-X-Gm-Gg: ASbGnctAMNzcQoZO0PAaLF6lWu+JuY9/r0slU6WZH0GCgi14tHdBrUesJsLgeatEDl/
-	PF1gg8vFOY8c2QKGRXGyNUrvZ74ywDBYVirfJ6aEV5RDVa0YzWntbY1SJUU8RpHu7nqrPJz6mS3
-	DcenqMOedJsrWj3eN63M1UdYXZbcvxas+dF1ZNoY1eJAtgXCMC/lVTIWNVabBdmQk5Nsuy2tGLy
-	z0jiAGVSyTBLkohKnOlcf9DOdv4zwGDXyUXEQQb29XyjY5DFW+SG8MGpQyoTxGarVfYQy2w7n3K
-	MtOGKlI=
-X-Google-Smtp-Source: AGHT+IEjZesfWe6UAJr9rfneLrz6LT9ITsEcvC5EG+9+SI64dIq/3Wyqp3hO3mKXfLSgOhg9/PSLnT/sN+ozMuJc6zU=
-X-Received: by 2002:a05:6000:230b:b0:429:d253:8619 with SMTP id
- ffacd0b85a97d-42b52795624mr3292848f8f.5.1763044159375; Thu, 13 Nov 2025
- 06:29:19 -0800 (PST)
+	s=arc-20240116; t=1763044237; c=relaxed/simple;
+	bh=qH4DioWsSdddifokanN44++630Ul0UCbsrzeONqMNSo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c46KN8yf9LlgGYDpuAC5A4S2wpqW6/9AMgFnmZKVyzc/mHSiXq+YocYkPyIyqlHbFMmSjIvxtX2Jt392+/ZV4z1WZA/QA2mGR8wLvLGtBYVZmxhdE0y8UDmK+/reHwArZxChJWYMPiZRCrFsYcQ6w64IYwBBJvyLM7Wjw5kQpjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u5t+1LVB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 182D7C113D0;
+	Thu, 13 Nov 2025 14:30:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763044236;
+	bh=qH4DioWsSdddifokanN44++630Ul0UCbsrzeONqMNSo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u5t+1LVBMmNcg3CUNoXBE1h3k+ZjGeBYM2uZBvVfRI0zJhzYeOyS+d/zngO8f9DMi
+	 +j/VDe2MxRKXnHlcfBEaB1TpdSyAkhBRTQxmUyx/bH652wc7zFcvn1hAI1itNRuKTo
+	 sGVc7wYfQWa5FRCHEnnjEhLQ0re84a5DpVqPR/QIZJdZUcbKlF4u/Cai22OruMQtky
+	 ztO4pFoakumctnpI4svigQxI8WZH1ZPzI6ygN3HmA5R1coUzgvrYA7hub5Ukzrrpui
+	 5/YPeMqVF9ZUxTB5/jWJNY8aysUyjnNx18WChJx3EqefU1XZhhNuEE/hQkG9DkvXH5
+	 temUs1VNuy4yA==
+Date: Thu, 13 Nov 2025 14:30:28 +0000
+From: Lee Jones <lee@kernel.org>
+To: Alexander Kurz <akurz@blala.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Dzmitry Sankouski <dsankouski@gmail.com>,
+	Griffin Kroah-Hartman <griffin.kroah@fairphone.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Dr . David Alan Gilbert" <linux@treblig.org>,
+	Job Sava <jsava@criticallink.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v7 3/6] Input: mc13783-pwrbutton: convert pdata members
+ to array
+Message-ID: <20251113143028.GJ1949330@google.com>
+References: <20251031195718.1586-1-akurz@blala.de>
+ <20251031195718.1586-4-akurz@blala.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250915080157.28195-1-clamor95@gmail.com> <20250915080157.28195-7-clamor95@gmail.com>
- <6112196.aeNJFYEL58@senjougahara>
-In-Reply-To: <6112196.aeNJFYEL58@senjougahara>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 13 Nov 2025 16:29:08 +0200
-X-Gm-Features: AWmQ_bn3skm8vRUEdsGZ0nnCIIDUv9P1uoNNzH9ij76xxg0XWrgAcalJ4Vq9gRI
-Message-ID: <CAPVz0n12YKGfjvYZZOkMaB18gk74xiprB7=XbcSpPvi9=Jtt4A@mail.gmail.com>
-Subject: Re: [PATCH v3 06/11] clk: tegra: remove EMC to MC clock mux in Tegra114
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <treding@nvidia.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Dmitry Osipenko <digetx@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
-	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251031195718.1586-4-akurz@blala.de>
 
-=D1=87=D1=82, 13 =D0=BB=D0=B8=D1=81=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 07:0=
-5 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Monday, September 15, 2025 5:01=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > Configure EMC without mux for correct EMC driver support.
->
-> Rather than just 'removing EMC to MC clock mux in Tegra114', I would say =
-this patch removes current emc and emc_mux clocks and replaces them with th=
-e proper EMC clock implementation. I would edit the commit subject and comm=
-it message along those lines.
->
+On Fri, 31 Oct 2025, Alexander Kurz wrote:
 
-Noted
+> As preparation for the extension of support for all three mc13xxx
+> variants, convert the members of mc13xxx_buttons_platform_data to
+> arrays to allow index access within the next commit.
+> 
+> Signed-off-by: Alexander Kurz <akurz@blala.de>
+> ---
+>  drivers/input/misc/mc13783-pwrbutton.c | 42 +++++++++++++-------------
+>  include/linux/mfd/mc13xxx.h            |  8 ++---
 
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  drivers/clk/tegra/clk-tegra114.c | 48 ++++++++++++++++++++++----------
-> >  1 file changed, 33 insertions(+), 15 deletions(-)
-> >
-> > diff --git a/drivers/clk/tegra/clk-tegra114.c b/drivers/clk/tegra/clk-t=
-egra114.c
-> > index 8bde72aa5e68..6b3a140772c2 100644
-> > --- a/drivers/clk/tegra/clk-tegra114.c
-> > +++ b/drivers/clk/tegra/clk-tegra114.c
-> > @@ -622,10 +622,6 @@ static const char *mux_plld_out0_plld2_out0[] =3D =
-{
-> >  };
-> >  #define mux_plld_out0_plld2_out0_idx NULL
-> >
-> > -static const char *mux_pllmcp_clkm[] =3D {
-> > -     "pll_m_out0", "pll_c_out0", "pll_p_out0", "clk_m", "pll_m_ud",
-> > -};
-> > -
-> >  static const struct clk_div_table pll_re_div_table[] =3D {
-> >       { .val =3D 0, .div =3D 1 },
-> >       { .val =3D 1, .div =3D 2 },
-> > @@ -672,7 +668,6 @@ static struct tegra_clk tegra114_clks[tegra_clk_max=
-] __initdata =3D {
-> >       [tegra_clk_csi] =3D { .dt_id =3D TEGRA114_CLK_CSI, .present =3D t=
-rue },
-> >       [tegra_clk_i2c2] =3D { .dt_id =3D TEGRA114_CLK_I2C2, .present =3D=
- true },
-> >       [tegra_clk_uartc] =3D { .dt_id =3D TEGRA114_CLK_UARTC, .present =
-=3D true },
-> > -     [tegra_clk_emc] =3D { .dt_id =3D TEGRA114_CLK_EMC, .present =3D t=
-rue },
-> >       [tegra_clk_usb2] =3D { .dt_id =3D TEGRA114_CLK_USB2, .present =3D=
- true },
-> >       [tegra_clk_usb3] =3D { .dt_id =3D TEGRA114_CLK_USB3, .present =3D=
- true },
-> >       [tegra_clk_vde_8] =3D { .dt_id =3D TEGRA114_CLK_VDE, .present =3D=
- true },
-> > @@ -1048,14 +1043,7 @@ static __init void tegra114_periph_clk_init(void=
- __iomem *clk_base,
-> >                                            0, 82, periph_clk_enb_refcnt=
-);
-> >       clks[TEGRA114_CLK_DSIB] =3D clk;
-> >
-> > -     /* emc mux */
-> > -     clk =3D clk_register_mux(NULL, "emc_mux", mux_pllmcp_clkm,
-> > -                            ARRAY_SIZE(mux_pllmcp_clkm),
-> > -                            CLK_SET_RATE_NO_REPARENT,
-> > -                            clk_base + CLK_SOURCE_EMC,
-> > -                            29, 3, 0, &emc_lock);
-> > -
-> > -     clk =3D tegra_clk_register_mc("mc", "emc_mux", clk_base + CLK_SOU=
-RCE_EMC,
-> > +     clk =3D tegra_clk_register_mc("mc", "emc", clk_base + CLK_SOURCE_=
-EMC,
-> >                                   &emc_lock);
-> >       clks[TEGRA114_CLK_MC] =3D clk;
-> >
-> > @@ -1321,6 +1309,28 @@ static int tegra114_reset_deassert(unsigned long=
- id)
-> >       return 0;
-> >  }
-> >
-> > +#ifdef CONFIG_TEGRA124_CLK_EMC
-> > +static struct clk *tegra114_clk_src_onecell_get(struct of_phandle_args=
- *clkspec,
-> > +                                             void *data)
-> > +{
-> > +     struct clk_hw *hw;
-> > +     struct clk *clk;
-> > +
-> > +     clk =3D of_clk_src_onecell_get(clkspec, data);
-> > +     if (IS_ERR(clk))
-> > +             return clk;
-> > +
-> > +     hw =3D __clk_get_hw(clk);
-> > +
-> > +     if (clkspec->args[0] =3D=3D TEGRA114_CLK_EMC) {
-> > +             if (!tegra124_clk_emc_driver_available(hw))
-> > +                     return ERR_PTR(-EPROBE_DEFER);
-> > +     }
-> > +
-> > +     return clk;
-> > +}
-> > +#endif
-> > +
-> >  static void __init tegra114_clock_init(struct device_node *np)
-> >  {
-> >       struct device_node *node;
-> > @@ -1362,16 +1372,24 @@ static void __init tegra114_clock_init(struct d=
-evice_node *np)
-> >       tegra_audio_clk_init(clk_base, pmc_base, tegra114_clks,
-> >                            tegra114_audio_plls,
-> >                            ARRAY_SIZE(tegra114_audio_plls), 24000000);
-> > +
-> > +     tegra_clk_apply_init_table =3D tegra114_clock_apply_init_table;
-> > +
->
-> Is there any particular reason for moving this here? If not, omitting the=
- change would simplify the patch a bit.
->
+Acked-by: Lee Jones <lee@kernel.org>
 
-IIRC, I tried to align with Tegra124 EMC clk driver, I will try to
-drop this change and check if all works as expected.
+>  2 files changed, 23 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/input/misc/mc13783-pwrbutton.c b/drivers/input/misc/mc13783-pwrbutton.c
+> index 20f68aab6edf..2ee115d77b1c 100644
+> --- a/drivers/input/misc/mc13783-pwrbutton.c
+> +++ b/drivers/input/misc/mc13783-pwrbutton.c
+> @@ -108,24 +108,24 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> -	reg |= (pdata->b1on_flags & 0x3) << MC13783_POWER_CONTROL_2_ON1BDBNC;
+> -	reg |= (pdata->b2on_flags & 0x3) << MC13783_POWER_CONTROL_2_ON2BDBNC;
+> -	reg |= (pdata->b3on_flags & 0x3) << MC13783_POWER_CONTROL_2_ON3BDBNC;
+> +	reg |= (pdata->b_on_flags[0] & 0x3) << MC13783_POWER_CONTROL_2_ON1BDBNC;
+> +	reg |= (pdata->b_on_flags[1] & 0x3) << MC13783_POWER_CONTROL_2_ON2BDBNC;
+> +	reg |= (pdata->b_on_flags[2] & 0x3) << MC13783_POWER_CONTROL_2_ON3BDBNC;
+>  
+>  	priv->pwr = pwr;
+>  	priv->mc13783 = mc13783;
+>  
+>  	mc13xxx_lock(mc13783);
+>  
+> -	if (pdata->b1on_flags & MC13783_BUTTON_ENABLE) {
+> -		priv->keymap[0] = pdata->b1on_key;
+> -		if (pdata->b1on_key != KEY_RESERVED)
+> -			__set_bit(pdata->b1on_key, pwr->keybit);
+> +	if (pdata->b_on_flags[0] & MC13783_BUTTON_ENABLE) {
+> +		priv->keymap[0] = pdata->b_on_key[0];
+> +		if (pdata->b_on_key[0] != KEY_RESERVED)
+> +			__set_bit(pdata->b_on_key[0], pwr->keybit);
+>  
+> -		if (pdata->b1on_flags & MC13783_BUTTON_POL_INVERT)
+> +		if (pdata->b_on_flags[0] & MC13783_BUTTON_POL_INVERT)
+>  			priv->flags |= MC13783_PWRB_B1_POL_INVERT;
+>  
+> -		if (pdata->b1on_flags & MC13783_BUTTON_RESET_EN)
+> +		if (pdata->b_on_flags[0] & MC13783_BUTTON_RESET_EN)
+>  			reg |= MC13783_POWER_CONTROL_2_ON1BRSTEN;
+>  
+>  		irq = platform_get_irq_byname(pdev, "b1on");
+> @@ -144,15 +144,15 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
+>  		priv->irq[0] = irq;
+>  	}
+>  
+> -	if (pdata->b2on_flags & MC13783_BUTTON_ENABLE) {
+> -		priv->keymap[1] = pdata->b2on_key;
+> -		if (pdata->b2on_key != KEY_RESERVED)
+> -			__set_bit(pdata->b2on_key, pwr->keybit);
+> +	if (pdata->b_on_flags[1] & MC13783_BUTTON_ENABLE) {
+> +		priv->keymap[1] = pdata->b_on_key[1];
+> +		if (pdata->b_on_key[1] != KEY_RESERVED)
+> +			__set_bit(pdata->b_on_key[1], pwr->keybit);
+>  
+> -		if (pdata->b2on_flags & MC13783_BUTTON_POL_INVERT)
+> +		if (pdata->b_on_flags[1] & MC13783_BUTTON_POL_INVERT)
+>  			priv->flags |= MC13783_PWRB_B2_POL_INVERT;
+>  
+> -		if (pdata->b2on_flags & MC13783_BUTTON_RESET_EN)
+> +		if (pdata->b_on_flags[1] & MC13783_BUTTON_RESET_EN)
+>  			reg |= MC13783_POWER_CONTROL_2_ON2BRSTEN;
+>  
+>  		irq = platform_get_irq_byname(pdev, "b2on");
+> @@ -171,15 +171,15 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
+>  		priv->irq[1] = irq;
+>  	}
+>  
+> -	if (pdata->b3on_flags & MC13783_BUTTON_ENABLE) {
+> -		priv->keymap[2] = pdata->b3on_key;
+> -		if (pdata->b3on_key != KEY_RESERVED)
+> -			__set_bit(pdata->b3on_key, pwr->keybit);
+> +	if (pdata->b_on_flags[2] & MC13783_BUTTON_ENABLE) {
+> +		priv->keymap[2] = pdata->b_on_key[2];
+> +		if (pdata->b_on_key[2] != KEY_RESERVED)
+> +			__set_bit(pdata->b_on_key[2], pwr->keybit);
+>  
+> -		if (pdata->b3on_flags & MC13783_BUTTON_POL_INVERT)
+> +		if (pdata->b_on_flags[2] & MC13783_BUTTON_POL_INVERT)
+>  			priv->flags |= MC13783_PWRB_B3_POL_INVERT;
+>  
+> -		if (pdata->b3on_flags & MC13783_BUTTON_RESET_EN)
+> +		if (pdata->b_on_flags[2] & MC13783_BUTTON_RESET_EN)
+>  			reg |= MC13783_POWER_CONTROL_2_ON3BRSTEN;
+>  
+>  		irq = platform_get_irq_byname(pdev, "b3on");
+> diff --git a/include/linux/mfd/mc13xxx.h b/include/linux/mfd/mc13xxx.h
+> index dd46fe424a80..4437ab80fcf8 100644
+> --- a/include/linux/mfd/mc13xxx.h
+> +++ b/include/linux/mfd/mc13xxx.h
+> @@ -181,12 +181,8 @@ struct mc13xxx_leds_platform_data {
+>  #define MC13783_BUTTON_RESET_EN		(1 << 4)
+>  
+>  struct mc13xxx_buttons_platform_data {
+> -	int b1on_flags;
+> -	unsigned short b1on_key;
+> -	int b2on_flags;
+> -	unsigned short b2on_key;
+> -	int b3on_flags;
+> -	unsigned short b3on_key;
+> +	int b_on_flags[3];
+> +	unsigned int b_on_key[3];
+>  };
+>  
+>  #define MC13783_TS_ATO_FIRST	false
+> -- 
+> 2.39.5
+> 
 
-> >       tegra_super_clk_gen4_init(clk_base, pmc_base, tegra114_clks,
-> >                                       &pll_x_params);
-> >
-> >       tegra_init_special_resets(1, tegra114_reset_assert,
-> >                                 tegra114_reset_deassert);
-> >
-> > +#ifdef CONFIG_TEGRA124_CLK_EMC
-> > +     tegra_add_of_provider(np, tegra114_clk_src_onecell_get);
-> > +     clks[TEGRA114_CLK_EMC] =3D tegra124_clk_register_emc(clk_base, np=
-,
-> > +                                                        &emc_lock);
-> > +#else
-> >       tegra_add_of_provider(np, of_clk_src_onecell_get);
-> > -     tegra_register_devclks(devclks, ARRAY_SIZE(devclks));
-> > +#endif
->
-> tegra124_clk_register_emc and tegra124_clk_emc_driver_available have stub=
- implementations when CONFIG_TEGRA124_CLK_EMC is not enabled, so it would b=
-e cleaner to just call them always.
->
-
-Yes, I will adjust this in v4. Thank you.
-
-> >
-> > -     tegra_clk_apply_init_table =3D tegra114_clock_apply_init_table;
-> > +     tegra_register_devclks(devclks, ARRAY_SIZE(devclks));
-> >
-> >       tegra_cpu_car_ops =3D &tegra114_cpu_car_ops;
-> >  }
-> >
->
->
->
->
+-- 
+Lee Jones [李琼斯]
 
