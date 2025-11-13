@@ -1,240 +1,512 @@
-Return-Path: <devicetree+bounces-237950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2D1C56089
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:20:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 098E0C56092
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:23:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 43E504E2D38
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 07:20:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4A9D3A60BB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 07:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A334322523;
-	Thu, 13 Nov 2025 07:20:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739D832255C;
+	Thu, 13 Nov 2025 07:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XoHXrO4m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T8szyAkx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53B929CEB;
-	Thu, 13 Nov 2025 07:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422132FF167;
+	Thu, 13 Nov 2025 07:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763018443; cv=none; b=MptV/xyOeZfppE0hhcj/hYlYDHuoMQNaMovqmT/wMzBGxE6k2E0r3CJWk+8Mt9gqB5E5lqzXWt0SPZMxE940Fy7Qmi5XvcPkBTNAwNj+egErcNvX3Qz/++DKzDrqXY3kwOc7LdnNkMICUj8ZJcFRbBuOA/KA/zWHkCqP8g5xZRo=
+	t=1763018590; cv=none; b=Z/p878w5TVv+WGOemImopd9/iehCkiruldhwEDIV9lIfixD4WLnbvZpvZL5LhBb3wcUfHf/V5L5FXMBi6RKbI5u8Mv3GqssIJI5ecVYdGzDfduuR15frawvmH+DzfOChEFQ24E2FTcgzfr1HBLhwaRYiQ+sL/sxwHBMdJDXB7e8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763018443; c=relaxed/simple;
-	bh=6Me6GWqOMV1Te3Vqndd4JPy4GgWbf+TWVFwtSqdGhwE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pVWyJBPAu/RX5kQDx8v3jzI2NJQB0sovY/ps2znTT/S5szidlCeox+FghpoW8VS2wV8o2aA4Du9KdprG54HaaOx2HzM+g175Q3O7U7WEgnnPszAvrcdvcxpty2U8jayg5SbLOIrZNF7PP1TXx/kcsOyUqOqO4vqRpgkJ5BgDhfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XoHXrO4m; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763018441; x=1794554441;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6Me6GWqOMV1Te3Vqndd4JPy4GgWbf+TWVFwtSqdGhwE=;
-  b=XoHXrO4m2Yhq1LoEz3M3uBAQFx47UO6m0xcfZrHt75ivhZNBDrUXFv7L
-   US2f+hoaefflnDOeIDFPuzr0o1wmqVZm11TBHECuRBWIceapPMtu35EPA
-   KxlERTK9U4zniMRG2UXLL+DuOCX4S0bmIbKNbCH0eGbxi/edECrAH03Ip
-   pqQyN2C67EGyDbFCSQ5XznN7PHFMyNUGs2Z4GHn5q1udD4f4+8TYRXnyu
-   AYiNyr5Y7TfvrFYG1xDDsYxKd1QMdDuBNcGFVkU6AjJRWNtZOMPLUM3e2
-   ytEft3SMJlGDrZSjMNSCgAR4UJQvgr9GZG3TYYn3Mvz0nXe9+YCf9uaMj
-   g==;
-X-CSE-ConnectionGUID: G+urj6xYRjm3sNkRx+8NHQ==
-X-CSE-MsgGUID: bd6YLeY8Qm633qVyroyOwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65018343"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="65018343"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2025 23:20:40 -0800
-X-CSE-ConnectionGUID: Gj2hNzySSG+P7YfpZN0+0w==
-X-CSE-MsgGUID: Rg/fE/d9SqiQUCtfAuTUPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; 
-   d="scan'208";a="189614267"
-Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 12 Nov 2025 23:20:36 -0800
-Received: from kbuild by 7b01c990427b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vJRdB-00051L-19;
-	Thu, 13 Nov 2025 07:20:33 +0000
-Date: Thu, 13 Nov 2025 15:19:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Samuel Holland <samuel.holland@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	Andrew Morton <akpm@linux-foundation.org>,
-	David Hildenbrand <david@redhat.com>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Linux Memory Management List <linux-mm@kvack.org>,
-	devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
-	linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
-	Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
-	"Liam R . Howlett" <Liam.Howlett@oracle.com>,
-	Samuel Holland <samuel.holland@sifive.com>
-Subject: Re: [PATCH v3 08/22] mm: Allow page table accessors to be
- non-idempotent
-Message-ID: <202511131448.ZCsuBlBE-lkp@intel.com>
-References: <20251113014656.2605447-9-samuel.holland@sifive.com>
+	s=arc-20240116; t=1763018590; c=relaxed/simple;
+	bh=x6exCT/jwQsyRSKnsqVBZEoI1kKZOy0U85qXSrekQxI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F+d9C3ePcq12gRh/wYY6lEbPBZA2heJ+o8x8k81jGAD8zu/lb0OMmbTA0X789uKum7CmSm1grr1UjmTsEMITj5/EmBh7SqNdpAZ184aq0oSmFafg8QbjBq836o1xhc6Bcyv+jtqWjZ5F6OZPXjlLML+UtT7ukyBnTfAqAk8tF08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T8szyAkx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 254A9C116D0;
+	Thu, 13 Nov 2025 07:23:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763018589;
+	bh=x6exCT/jwQsyRSKnsqVBZEoI1kKZOy0U85qXSrekQxI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T8szyAkxfKZnrgqLteWvFyKuRnRCQxwdlzdW+dx0E4wsCwaCCeV78cfCWuoZGonfz
+	 fJQ3VyGDWoGWbKM4/gFtcWe38Re+z7MnB+jqkwv4PFo/GgkYGHvbd87JVGtfk0bwAW
+	 WM1iYYw2ci1Cx09XW9YgLBPxZu+N/69iaFPmK4Qu7MuY1wcI3+5dxZ3dqbOwlgFuHI
+	 2zI5RngSp1/lplQG9++t4/3GPqK2PGJudTmUXrNdFfAjoytIO6x6OwcQ8kssAXNtCK
+	 A5y4yPzj2662DjoZxfRBzI2cwmi+ZvVBvKyfRgnrqqw9MYGfg1+KA8ynJ4yHIULG5Y
+	 81PDbN0ktVZ/g==
+Message-ID: <00ea821c-5252-42cb-8f6f-da01453947bd@kernel.org>
+Date: Thu, 13 Nov 2025 08:23:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251113014656.2605447-9-samuel.holland@sifive.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for
+ frankel/blazer/mustang
+To: Doug Anderson <dianders@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Griffin
+ <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
+ linux-samsung-soc@vger.kernel.org, Roy Luo <royluo@google.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Chen-Yu Tsai <wenst@chromium.org>, Julius Werner <jwerner@chromium.org>,
+ William McVicker <willmcvicker@google.com>, linux-kernel@vger.kernel.org
+References: <20251111192422.4180216-1-dianders@chromium.org>
+ <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid>
+ <05c833f0-15bc-4a86-9ac4-daf835fe4393@kernel.org>
+ <CAD=FV=XXWK9pmZQvNk6gjkqe6kgLXaVENgz0pBii6Gai7BdL-A@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAD=FV=XXWK9pmZQvNk6gjkqe6kgLXaVENgz0pBii6Gai7BdL-A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Samuel,
+On 12/11/2025 20:19, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, Nov 11, 2025 at 11:58 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 11/11/2025 20:22, Douglas Anderson wrote:
+>>> Add top-level DT bindings useful for Pixel 10 (frankel), Pixel 10 Pro
+>>> (blazer), and Pixel 10 Pro XL (mustang).
+>>>
+>>> Since overlays are fairly well-supported these days and the downstream
+>>> Pixel bootloader assumes that the SoC is the base overlay and specific
+>>> board revisions are overlays, reflect the SoC / board split in the
+>>> bindings.
+>>>
+>>> The SoC in the Pixel 10 series has the marketing name of "Tensor
+>>> G5". Despite the fact that it sounds very similar to the "Tensor G4",
+>>> it's a very different chip. Tensor G4 was, for all intents and
+>>> purposes, a Samsung Exynos offshoot whereas Tensor G5 is entirely its
+>>> own SoC. This SoC is known internally as "laguna" and canonically
+>>> referred to in code as "lga". There are two known revisions of the
+>>> SoC: an A0 pre-production variant (ID 0x000500) and a B0 variant (ID
+>>> 0x000510) used in production. The ID is canonicaly broken up into a
+>>> 16-bit SoC product ID, a 4-bit major rev, and a 4-bit minor rev.
+>>>
+>>> The dtb for all supported SoC revisions is appended to one of the boot
+>>> partitions and the bootloader will look at the device trees and pick
+>>> the correct one. The current bootloader uses a downstream
+>>> `soc_compatible` node to help it pick the correct device tree. It
+>>> looks like this:
+>>>   soc_compatible {
+>>>     B0 {
+>>>       description = "LGA B0";
+>>>       product_id = <0x5>;
+>>>       major = <0x1>;
+>>>       minor = <0x0>;
+>>>       pkg_mode = <0x0>;
+>>>     };
+>>>   };
+>>> Note that `pkg_mode` isn't currently part of the ID on the SoC and the
+>>> bootloader always assumes 0 for it.
+>>>
+>>> In this patch, put the SoC IDs straight into the compatible. Though
+>>> the bootloader doesn't look at the compatible at the moment, this
+>>> should be easy to teach the bootloader about.
+>>>
+>>> Boards all know their own platform_id / product_id / stage / major /
+>>> minor / variant. For instance, Google Pixel 10 Pro XL MP1 is:
+>>> * platform_id (8-bits): 0x07 - frankel/blazer/mustang
+>>> * product_id (8-bits):  0x05 - mustang
+>>> * stage (4-bits):       0x06 - MP
+>>> * major (8-bits):       0x01 - MP 1
+>>> * minor (8-bits):       0x00 - MP 1.0
+>>> * variant (8-bits):     0x00 - No special variant
+>>>
+>>> When board overlays are packed into the "dtbo" partition, a tool
+>>> (`mkdtimg`) extracts a board ID and board rev from the overlay and
+>>> stores that as metadata with the overlay. Downstream, the dtso
+>>> intended for the Pixel 10 Pro XL MP1 has the following properties at
+>>> its top-level:
+>>>   board_id = <0x70506>;
+>>>   board_rev = <0x010000>;
+>>>
+>>> The use of top-level IDs can probably be used for overlays upstream as
+>>> well, but also add the IDs to the compatible string in case it's
+>>> useful.
+>>>
+>>> Compatible strings are added for all board revisions known to be
+>>> produced based on downstream sources.
+>>>
+>>> A few notes:
+>>> * If you look at `/proc/device-tree/compatible` and
+>>>   `/proc/device-tree/model` on a running device, that won't
+>>>   necessarily be an exact description of the hardware you're running
+>>>   on. If the bootloader can't find a device tree that's an exact match
+>>>   then it will pick the best match (within reason--it will never pick
+>>>   a device tree for a different product--just for different revs of
+>>>   the same product).
+>>> * There is no merging of the top-level compatible from the SoC and
+>>>   board. The compatible string containing IDs for the SoC will not be
+>>>   found in the device-tree passed to the OS.
+>>>
+>>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>>> ---
+>>> In the past, attempts to have the SoC as a base device tree and boards
+>>> supported as overlays has been NAKed. From a previous discussion [1]
+>>> "Nope, boards are not overlays. Boards are DTB." I believe this needs
+>>> to be relitigated.
+>>>
+>>> In the previous NAK, I didn't see any links to documentation
+>>> explicitly stating that DTBs have to represent boards. It's also
+>>> unclear, at least to me, _why_ a DTB would be limited to represent a
+>>> "board" nor what the definition of a "board" is.
+>>>
+>>> As at least one stab at why someone might not want an overlay scheme
+>>> like this, one could point out that the top-level compatible can be a
+>>> bit of a mess. Specifically in this scheme the board "compatible" from
+>>> the overlay will fully replace/hide the SoC "compatible" from the base
+>>> SoC. If this is truly the main concern, it wouldn't be terribly hard
+>>> to add a new semantic (maybe selectable via a new additional
+>>> property?) that caused the compatible strings to be merged in a
+>>> reasonable way.
+>>>
+>>> Aside from dealing with the compatible string, let's think about what
+>>> a "board" is. I will make the argument here that the SoC qualifies as
+>>> a "board" and that the main PCB of a phone can be looked at as a
+>>> "cape" for this SoC "board". While this may sound like a stretch, I
+>>> would invite a reader to propose a definition of "board" that excludes
+>>> this. Specifically, it can be noted:
+>>> * I have a development board at my desk that is "socketed". That is, I
+>>>   can pull the SoC out and put a different one in. I can swap in a
+>>>   "rev A0" or a "rev B0" SoC into this socket. Conceivably, I could
+>>>   even put a "Tensor G6", G7, G8, or G999 in the socket if it was
+>>>   compatible. In this sense, the "SoC" is a standalone thing that can
+>>>   be attached to the devboard "cape". The SoC being a standalone thing
+>>>   is in the name. It's a "system" on a chip.
+>>> * In case the definition of a board somehow needs a PCB involved, I
+>>>   can note that on my dev board the CPU socket is soldered onto to a
+>>>   CPU daughtercard (a PCB!) that then has a board-to-board connector
+>>>   to the main PCB.
+>>> * Perhaps one could argue that a dev board like I have describe would
+>>>   qualify for this SoC/board overlay scheme but that a normal cell
+>>>   phone wouldn't because the SoC isn't removable. Perhaps removability
+>>>   is a requirement here? If so, imagine if some company took a
+>>>   Raspberry Pi, soldered some components directly onto the "expansion"
+>>>   pins, and resold that to consumers. Does this mean they can't use
+>>>   overlays?
+>>>
+>>> To me, the above arguments justify why SoC DTBs + "board" overlays
+>>> should be accepted. As far as I can tell, there is no downside and
+>>> many people who would be made happy with this.
+>>>
+>>> [1] https://lore.kernel.org/all/dbeb28be-1aac-400b-87c1-9764aca3a799@kernel.org/
+>>>
+>>>  .../devicetree/bindings/arm/google.yaml       | 87 +++++++++++++++----
+>>>  1 file changed, 68 insertions(+), 19 deletions(-)
+> 
+>>> @@ -41,13 +32,71 @@ properties:
+>>>                - google,gs101-raven
+>>>            - const: google,gs101
+>>>
+>>> +      # Google Tensor G5 AKA lga (laguna) SoC and boards
+>>> +      - description: Tensor G5 SoC (laguna)
+>>> +        items:
+>>> +          - enum:
+>>> +              - google,soc-id-0005-rev-00  # A0
+>>> +              - google,soc-id-0005-rev-10  # B0
+>>
+>> SoCs cannot be final compatibles.
+> 
+> Right. I talked about this at length "after the cut" in my patch. See
+> above. I wish to relitigate this policy and wish to know more details
+> about where it is documented, the reasons for decision, and where the
+> boundary exactly lies between something that's allowed to be a final
+> compatible and something that's not. I made several arguments above
+> for why I think the SoC should be allowed as a final compatible, so it
 
-kernel test robot noticed the following build errors:
+Because this represents a actual device users run. It is electronically,
+physically impossible to run the SoC alone.
 
-[auto build test ERROR on 24172e0d79900908cf5ebf366600616d29c9b417]
+There are few - one or two - exceptions for the SoMs, but never for SoC.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Samuel-Holland/mm-ptdump-replace-READ_ONCE-with-standard-page-table-accessors/20251113-095117
-base:   24172e0d79900908cf5ebf366600616d29c9b417
-patch link:    https://lore.kernel.org/r/20251113014656.2605447-9-samuel.holland%40sifive.com
-patch subject: [PATCH v3 08/22] mm: Allow page table accessors to be non-idempotent
-config: powerpc-allnoconfig (https://download.01.org/0day-ci/archive/20251113/202511131448.ZCsuBlBE-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251113/202511131448.ZCsuBlBE-lkp@intel.com/reproduce)
+> would be great if you could respond to them and tell me where I got it
+> wrong.
+> 
+> 
+>> Your commit msg does not explain what
+>> is 'soc-id' or 'soc_id' in this context.
+> 
+> In the commit message I do say: "SoC: an A0 pre-production variant (ID
+> 0x000500) and a B0 variant (ID 0x000510) used in production. The ID is
+> canonicaly broken up into a 16-bit SoC product ID, a 4-bit major rev,
+> and a 4-bit minor rev."
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511131448.ZCsuBlBE-lkp@intel.com/
+> 
+> ...then, I further say "In this patch, put the SoC IDs straight into
 
-All errors (new ones prefixed by >>):
+That's fine.
 
-   mm/gup.c: In function 'gup_fast_pte_range':
->> mm/gup.c:2848:9: error: implicit declaration of function 'set_pmd'; did you mean 'set_p4d'? [-Wimplicit-function-declaration]
-    2848 |         set_pmd(&pmd, pmd);
-         |         ^~~~~~~
-         |         set_p4d
---
-   mm/pgtable-generic.c: In function '___pte_offset_map':
->> mm/pgtable-generic.c:303:9: error: implicit declaration of function 'set_pmd'; did you mean 'set_p4d'? [-Wimplicit-function-declaration]
-     303 |         set_pmd(&pmdval, pmdval);
-         |         ^~~~~~~
-         |         set_p4d
+> the compatible. Though the bootloader doesn't look at the compatible
+> at the moment, this should be easy to teach the bootloader about."
+
+But nothing explains why this SoC can be run alone without board.
+> 
+> The idea here is for the bootloader, which can read the ID of the
+> current SoC, to be able to pick the right device tree from among
+> multiple. I am certainly not married to putting the SoC ID in the
+
+I am not discussing about style of the compatible. I said - you cannot
+have SoC compatible alone. None of above gives any argument for that.
+
+> compatible like this. As I mentioned above, in downstream device trees
+> the SoC is stored in a custom node and I thought upstream would hate
+> that. I also considered giving the `soc@0` node a custom compatible
+> string and adding properties about the SoC ID underneath that and
+> teaching the bootloader how to find this, and I can switch to this if
+> you prefer.
+> 
+> If you have an alternate technique for which the bootloader could pick
+> a device tree based on the current SoC ID or you have specific wording
+> that you think I should add to the commit message to explain my
+> current scheme, I'm happy to adjust things.
+> 
+> 
+>>> +          - const: google,lga
+>>> +      - description: Google Pixel 10 Board (Frankel)
+>>> +        items:
+>>> +          - enum:
+>>> +              - google,pixel-id-070302-rev-000000  # Proto 0
+>>> +              - google,pixel-id-070302-rev-010000  # Proto 1
+>>> +              - google,pixel-id-070302-rev-010100  # Proto 1.1
+>>> +              - google,pixel-id-070303-rev-010000  # EVT 1
+>>> +              - google,pixel-id-070303-rev-010100  # EVT 1.1
+>>> +              - google,pixel-id-070303-rev-010101  # EVT 1.1 Wingboard
+>>> +              - google,pixel-id-070304-rev-010000  # DVT 1
+>>> +              - google,pixel-id-070305-rev-010000  # PVT 1
+>>> +              - google,pixel-id-070306-rev-010000  # MP 1
+>>> +          - const: google,lga-frankel
+>>> +          - const: google,lga
+>>
+>> So what is the lga?
+> 
+> "google,lga" is the name of the processor. I was under the impression
+> that the last entry in the top-level compatible string was supposed to
+> be the SoC compatible string. Certainly this was true in every board
+
+google,soc-id-0005-rev-00 is the soc compatible string.
+
+> I've worked with and I seem to even recall it being requested by DT
+> folks. It also seems to match what I see in examples in the kernel
+> docs [1].
+
+Sorry but no. Writing bindings do not request having two compatibles for
+the same soc in two different, independent (orthogonal) lists.
+
+So it is rev-xyz + google,lga-frankel + soc-id + lga, if you need that
+soc-id part.
+
+> 
+> At the moment, the fact that the SoC name is part of the top-level
+> compatible is used in the Linux driver
+> "drivers/cpufreq/cpufreq-dt-platdev.c" to implement its blocklist. The
+> extensive list of compatible strings there shows how prevalent this
+> concept is.
+> 
+> I seem to recall a previous discussion where Stephen Boyd proposed
+> that a better place for the SoC compatible string was under the
+> "soc@0" node. Ah yes, I found at least one [2]  post about it, though
+> I think there was some earlier discussion too. Do you want me to try
+> jumping that way?
+> 
+> 
+>> What is lga-frankel?
+> 
+> This was an attempt to add a slightly more generic name for the board
+> in case it was later found to be needed for some reason. I know that,
+> occasionally, code finds it useful to test a top-level compatible
+> string to apply a workaround to a specific class of boards. In this
+> case, if someone needed to detect that they were on a "frankel" board
+> but didn't care about the specific revision, they could test for this
+> string.
+> 
+> Alternatively, I could add something like "google,pixel-id-0703xx", or
+> "google,pixel-id-0703", or something similar which "means"
+> google,lga-frankel. If you'd prefer this, I'm happy to change it.
+> 
+> I also have no specific need to add the "lga-frankel" compatible
+> string here other than the fact that it shouldn't really hurt to have
+> it here, it seems to match the example I pointed to earlier in the
+> docs [1], and that it could be useful in the future. If you think I
+> should simply remove it, I can do that. If we later find some need for
+> it we can add some rules to deal with it then.
+> 
+> 
+>>> +allOf:
+>>>    # Bootloader requires empty ect node to be present
+>>> -  ect:
+>>> -    type: object
+>>> -    additionalProperties: false
+>>
+>> Please keep it here
+> 
+> "it" being "additionalProperties", I think? I'm not sure I understand,
+> but let's discuss below in the context of full examples and not diffs.
+
+I meant ect node, existing hunk. Properties must be defined in top-level.
 
 
-vim +2848 mm/gup.c
+> 
+> 
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>
+>> not:
+>>
+>>> +          contains:
+>>> +            const: google,gs101
+>>
+>>> +    then:
+>>> +      properties:
+>>> +        ect:
+>>
+>> ect: false, instead
+> 
+> Trying to understand the above is making my brain hurt. Perhaps I
+> didn't get enough sleep last night. ...or maybe my brain isn't meant
+> to directly parse diffs. It's probably easier to just look at
+> full-blown examples.
+> 
+> Before, we had this:
+> 
+> --
+> 
+> properties:
+>   ...
+>   ...
+>   # Bootloader requires empty ect node to be present
+>   ect:
+>     type: object
+>     additionalProperties: false
+> 
+> required:
+>   - ect
+> 
+> additionalProperties: true
+> 
+> --
+> 
+> In other words we were _required_ to have an "ect" node with no
+> properties under it. However, additional properties are allowed in the
+> root node.
+> 
+> After my patch:
+> 
+> --
+> 
+> properties:
+>   ..
+>   ..
+> 
+> allOf:
+>   # Bootloader requires empty ect node to be present
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             const: google,gs101
+>     then:
+>       properties:
+>         ect:
+>           type: object
+>           additionalProperties: false
+> 
+>       required:
+>         - ect
+> 
+> additionalProperties: true
+> 
+> --
+> 
+> In other words, on gs101 we're _required_ to have an "ect" node with
+> no properties under it. However, additional properties are allowed in
+> the root node. This seems correct.
+> 
+> The best my brain can parse your request, I think you're asking for this:
+> 
+> --
+> 
+> properties:
+>   ...
+>   ...
+>   ect:
+>     type: object
+>     additionalProperties: false
+> 
+> allOf:
+>   # Bootloader requires empty ect node to be present
+>   - if:
+>       properties:
+>         compatible:
+>           not:
+>             contains:
+>               const: google,gs101
+>     then:
+>       properties:
+>         ect: false
+>     else:
+>       required:
+>       - ect
 
-  2819	
-  2820	#ifdef CONFIG_ARCH_HAS_PTE_SPECIAL
-  2821	/*
-  2822	 * GUP-fast relies on pte change detection to avoid concurrent pgtable
-  2823	 * operations.
-  2824	 *
-  2825	 * To pin the page, GUP-fast needs to do below in order:
-  2826	 * (1) pin the page (by prefetching pte), then (2) check pte not changed.
-  2827	 *
-  2828	 * For the rest of pgtable operations where pgtable updates can be racy
-  2829	 * with GUP-fast, we need to do (1) clear pte, then (2) check whether page
-  2830	 * is pinned.
-  2831	 *
-  2832	 * Above will work for all pte-level operations, including THP split.
-  2833	 *
-  2834	 * For THP collapse, it's a bit more complicated because GUP-fast may be
-  2835	 * walking a pgtable page that is being freed (pte is still valid but pmd
-  2836	 * can be cleared already).  To avoid race in such condition, we need to
-  2837	 * also check pmd here to make sure pmd doesn't change (corresponds to
-  2838	 * pmdp_collapse_flush() in the THP collapse code path).
-  2839	 */
-  2840	static int gup_fast_pte_range(pmd_t pmd, pmd_t *pmdp, unsigned long addr,
-  2841			unsigned long end, unsigned int flags, struct page **pages,
-  2842			int *nr)
-  2843	{
-  2844		int ret = 0;
-  2845		pte_t *ptep, *ptem;
-  2846	
-  2847		/* transform pmd as if &pmd pointed to a hardware page table */
-> 2848		set_pmd(&pmd, pmd);
-  2849		ptem = ptep = pte_offset_map(&pmd, addr);
-  2850		pmd = pmdp_get(&pmd);
-  2851		if (!ptep)
-  2852			return 0;
-  2853		do {
-  2854			pte_t pte = ptep_get_lockless(ptep);
-  2855			struct page *page;
-  2856			struct folio *folio;
-  2857	
-  2858			/*
-  2859			 * Always fallback to ordinary GUP on PROT_NONE-mapped pages:
-  2860			 * pte_access_permitted() better should reject these pages
-  2861			 * either way: otherwise, GUP-fast might succeed in
-  2862			 * cases where ordinary GUP would fail due to VMA access
-  2863			 * permissions.
-  2864			 */
-  2865			if (pte_protnone(pte))
-  2866				goto pte_unmap;
-  2867	
-  2868			if (!pte_access_permitted(pte, flags & FOLL_WRITE))
-  2869				goto pte_unmap;
-  2870	
-  2871			if (pte_special(pte))
-  2872				goto pte_unmap;
-  2873	
-  2874			/* If it's not marked as special it must have a valid memmap. */
-  2875			VM_WARN_ON_ONCE(!pfn_valid(pte_pfn(pte)));
-  2876			page = pte_page(pte);
-  2877	
-  2878			folio = try_grab_folio_fast(page, 1, flags);
-  2879			if (!folio)
-  2880				goto pte_unmap;
-  2881	
-  2882			if (unlikely(pmd_val(pmd) != pmd_val(pmdp_get(pmdp))) ||
-  2883			    unlikely(pte_val(pte) != pte_val(ptep_get(ptep)))) {
-  2884				gup_put_folio(folio, 1, flags);
-  2885				goto pte_unmap;
-  2886			}
-  2887	
-  2888			if (!gup_fast_folio_allowed(folio, flags)) {
-  2889				gup_put_folio(folio, 1, flags);
-  2890				goto pte_unmap;
-  2891			}
-  2892	
-  2893			if (!pte_write(pte) && gup_must_unshare(NULL, flags, page)) {
-  2894				gup_put_folio(folio, 1, flags);
-  2895				goto pte_unmap;
-  2896			}
-  2897	
-  2898			/*
-  2899			 * We need to make the page accessible if and only if we are
-  2900			 * going to access its content (the FOLL_PIN case).  Please
-  2901			 * see Documentation/core-api/pin_user_pages.rst for
-  2902			 * details.
-  2903			 */
-  2904			if ((flags & FOLL_PIN) && arch_make_folio_accessible(folio)) {
-  2905				gup_put_folio(folio, 1, flags);
-  2906				goto pte_unmap;
-  2907			}
-  2908			folio_set_referenced(folio);
-  2909			pages[*nr] = page;
-  2910			(*nr)++;
-  2911		} while (ptep++, addr += PAGE_SIZE, addr != end);
-  2912	
-  2913		ret = 1;
-  2914	
-  2915	pte_unmap:
-  2916		pte_unmap(ptem);
-  2917		return ret;
-  2918	}
-  2919	#else
-  2920	
+Yes, actually now I see you could drop the "not:" and exchange the
+"then:else:" branches.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
