@@ -1,111 +1,126 @@
-Return-Path: <devicetree+bounces-238199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ECD8C58B18
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:26:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1261FC58C11
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:34:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03C6A4A7936
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:47:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC3514F6F00
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 341CD35295C;
-	Thu, 13 Nov 2025 15:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="O+O8RiMb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB0E350A18;
+	Thu, 13 Nov 2025 15:46:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71046351FA2;
-	Thu, 13 Nov 2025 15:40:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763048429; cv=pass; b=Vl+ORBaB34V11y6fdm1SOZ1JtmHWZRaJRZ+uG2xMvs2E0O97BBa/E/NNan+5chMS/8++BoqIh92vVzSlwYqJGUE/lq3P6k2ke+gxz3Zs/X0X8+MgRpgwFswmXrMK8IjT/RbkWm4nzOqXDNw9mOe9gsV5CjnOeBiWJU90sA4tPn0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763048429; c=relaxed/simple;
-	bh=4fCKpLICjk4fw3t90InQG4ReeV3U8XAuF/jebYZ0WAM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=YrpIaZJFb0J24TBEKZl5QkM4Grhx1c8pX2LUV85MFfYvZKCWBdtLAQSvppEcANTMriBPANQyLFhWaul1Dtqc+6CHGyOujdsw8FfgEvUQ1ddjoS0kAizPrdj4R3pcqLI5MQ4TeuYeagpNA/jMN0zC0vi+3BFTEBrIlmuoG2pnfRw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=O+O8RiMb; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1763048398; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UNPr05+3rQh/UX8A79WkVE3XBsOWQP3yPWzrXpjH8uXAO6VYGfco9truRuNCJiU89S6PI8j3C9/faqIDz7XeG9HwC+tQ1tnnJ/NaCZIttRDFg4LPXEgGHwqKkaNiFNLbaZlPabhD1fW6tigFh4GMiB4Zff7puNtdc0+Xb5Us3hA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1763048398; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=4fCKpLICjk4fw3t90InQG4ReeV3U8XAuF/jebYZ0WAM=; 
-	b=Zv74+CsFskvWeG5gxXcFtH16LGVr8oim8hmGWniEh5pXCcv4aZz0/voktwkcg1AU8KR4JaNa/K1oiG7WIzqsIE6CpVFJNBRhYnpRtZ4y0cAHaah/sYMHex/kRSt+xxd+GzrR+btbW0jDkYucLRrYz8BLI/hMT1alT5OAEqtL+QQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763048398;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=4fCKpLICjk4fw3t90InQG4ReeV3U8XAuF/jebYZ0WAM=;
-	b=O+O8RiMbN3SSMtvLRz4S4WI6l2OK8qbQtKSMnptUwB+I2GEsR4m4ffWqr+XLIdIZ
-	mNWrcRYE2cskC/7zxd1qo/YthVEOWKj+vuzW9HV1SMVfWLsoA1a9fGRKhVHF8aUXrQm
-	DoDY8nS53KB4W+93qDMp8OFqNlR1vRvsf223HJ9GUSvW1SHk0rognsKb6yUol9gfSoY
-	ZVGYDSakWdmTNHq2egBATXcMbEaooPHUOtfGR4wUoApR/jkEz+IX/PDkSepn8WR2Ckz
-	hnEZg5mHgvsPsTr09JRbrDW4WUiVJvCbUH19NMpCRNYf06Tn9V1jtowzUKTd04yEDFB
-	sfFdHN3BSA==
-Received: by mx.zohomail.com with SMTPS id 1763048395696100.40154822714373;
-	Thu, 13 Nov 2025 07:39:55 -0800 (PST)
-Message-ID: <af984cf6b76fb4cd30f12fbb9ddd889a5e73d036.camel@icenowy.me>
-Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: starfive: add Orange Pi RV
- board compatible
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Emil Renner Berthing <kernel@esmil.dk>, Albert Ou
- <aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>, Conor Dooley
- <conor+dt@kernel.org>, Drew Fustini <drew@beagleboard.org>, E Shattow
- <e@freeshell.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Zhu
- <michael.zhu@starfivetech.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul
- Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>, Yao Zi
- <ziyao@disroot.org>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Date: Thu, 13 Nov 2025 23:39:45 +0800
-In-Reply-To: <CANBLGcxoD5w7ApN9mNHWym2oo5XscV7B0rrU5MF68wiS52Eecw@mail.gmail.com>
-References: <20250930100318.2131968-1-uwu@icenowy.me>
-	 <CANBLGcxoD5w7ApN9mNHWym2oo5XscV7B0rrU5MF68wiS52Eecw@mail.gmail.com>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C4A350A1A
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 15:46:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763048809; cv=none; b=norkEo2r6GjM+bJbzDrzWb40F/gGE3dpD2Ivn2D6R+CAaDxAY2QfDrHqnR4Y7NP2fBWcuM/GMEv0NnO0PTPQp8TnG2hggdDUK9JdY/VPPBABf3gJN+1hz9keGVat3cCemG/HeSEjui4g6iWn2DR1Mmsi4D0udGOl0EXfxhWG1ck=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763048809; c=relaxed/simple;
+	bh=JbMu6ahMlLII1KW/kjAvmBsc+G89KXscjqjvlqGkV2o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EyXljsx40XcCdn4Qv/DnoaePNNdYjaAQ7M+rMrf4K5VmjlAJoqTwqZQAIboMvk1wiTL3yZnT8fCY9xTXXYBedXVAnhIUO3XLI0ewxgDRtmzCjhWQswH4vbjpW0OrmlbGVlptutwJobPiV7yX2kzfTjXcW0DjveEC/rqnAfI2Njw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-54aa789f9b5so547524e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 07:46:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763048806; x=1763653606;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ScuVkhi+y4j9hXy/c6rksPSqjbU1qzqA5VKC3tcakUw=;
+        b=JY3xbe5G0Hy8FxMrE2bvF8z5VN66d9fgQcNKcgvwZGyVx9GGodGSy5xnjiUswp9tm4
+         HpoyGIbiQqPKeFFQDgkeHehbH/Tjynz9HemXgTBDsLz6b2CdmG3KilQm0jYXh18mQsGS
+         HM0SvziAAT+N/dkJO9FHO/1RZSU0PR7T2n35U4sorhyAfMh1Ku4SM0lgXia5Sr1+woIe
+         y6HJn/F58yUTwipNKlz8JiFx9fmt56c46kshXwNUYeJdPwHGmoT1PIJy6bDnSAtBuCmo
+         nnLisbvjH22yOh8loEpnuVDKqpIzGbYqaIRLrORoXKLiw+3HeBQk/phYYD6ZnaOdnxdD
+         bpZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV6ayzxhGeuYoVnKsef9mMHodpNFS8dcD8Lw+Ga0mYxAsKoy4eCo5VGpgMvuEI9BubZgW9d73mm6Exl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwegldzuqkHo1HMOblC3PClyMUodHbPfJR6A1wsXrEwdSX/a+MZ
+	n3ZsffL1khfjZirzh89gRRZBRmIWfkYEV7lXcAPOAjaAX+rR+v4+SfxzIOeQVOK0u0U=
+X-Gm-Gg: ASbGncsP7VMIhs5zLwV7yQ98RzpCeTb3y4+ZelX3iTrOvg7jlqPIZyWfVJSlXhQ80e/
+	btUeJ09RMCD+NauNXrXV0Us5+ZSbXEgZPHM9Rqf3Wb8WlbYAgfOZYvw6+99o+28qXflSyEVpImv
+	AFdxT1RjUj7TXlDZw84ppcPaFCVygiavKOOktaYkjfCZZONsJR32zecGRXsKBsWLrGP6G0eBci1
+	QIxX6h0zKDt5fpfrLStXpM4ikiVTSHXQs9B8oBdtn4t5K3ViLzcRzY+RgoXqVs69qBrVi2aXl2g
+	ZFgVkI7V6EL0MOuERk+595i5S+PG39Y+qRoQjjc4foxX5i5uvqMw9bFWGoEvWq5ecAnb/EUGN/Y
+	j52RBx8Hh61NIuWncliXPFnilpfW90hyegnzTx1psb9OaGJQ0N6zoDmg/obMjYSAwAiRLzz/byn
+	KQj6Xnustuh7RLMvMKUTVDrjcHin34Svct/5FMoVX9uQ==
+X-Google-Smtp-Source: AGHT+IFQQ4j733gdDgeEe9BlFJoxjwY3llUQZOIfrU1jVDJsmDjL65hup4HDPD+nnyhK2+7BNU8WcA==
+X-Received: by 2002:a05:6122:1799:b0:559:623a:3aa9 with SMTP id 71dfb90a1353d-55b1bce4c5fmr38486e0c.1.1763048806024;
+        Thu, 13 Nov 2025 07:46:46 -0800 (PST)
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com. [209.85.221.170])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55b0f35a6d9sm789476e0c.7.2025.11.13.07.46.45
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Nov 2025 07:46:45 -0800 (PST)
+Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-559748bcf99so741884e0c.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 07:46:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWmisGQNrzoUQL+IpICCgHXNeHpqXwTN0HHMxZKTziob6p0ld+BGVxHs+CG9oM4zriC+i8tzDw1g3eO@vger.kernel.org
+X-Received: by 2002:a05:6102:cc8:b0:5db:ce49:5c71 with SMTP id
+ ada2fe7eead31-5dfc55b0bbfmr40115137.18.1763048805410; Thu, 13 Nov 2025
+ 07:46:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+References: <20251110203926.692242-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251110203926.692242-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 13 Nov 2025 16:46:33 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVt2rtKs+yRqLBPK+_CwSwZC2XmBor-wmVf_JDyPiFbmA@mail.gmail.com>
+X-Gm-Features: AWmQ_bkGYm2i_ZaT0N1d4rO7PGzb0yXpIqlcQJ7vIAPvPbw4btR7TgMuI9BaYk4
+Message-ID: <CAMuHMdVt2rtKs+yRqLBPK+_CwSwZC2XmBor-wmVf_JDyPiFbmA@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: renesas: rzt2h-n2h-evk: Enable Ethernet support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-=E5=9C=A8 2025-11-13=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 02:55 -0800=EF=BC=
-=8CEmil Renner Berthing=E5=86=99=E9=81=93=EF=BC=9A
-> Quoting Icenowy Zheng (2025-09-30 12:03:17)
-> > Orange Pi RV is a newly released JH7110 board by Xunlong.
-> >=20
-> > Add a compatible string to the starfive platform DT binding.
-> >=20
-> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
->=20
-> Hi Icenowy,
->=20
-> Thanks for the patches! Now that E's patch is in Conor's
-> riscv-dt-for-next branch
-> will you be sending a v3? Also please add a cover letter when you do.
+On Mon, 10 Nov 2025 at 21:39, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable Ethernet support on the RZ/T2H and RZ/N2H EVKs.
+>
+> Configure the MIIC converter in mode 0x6:
+>   Port 0 <-> ETHSW Port 0
+>   Port 1 <-> ETHSW Port 1
+>   Port 2 <-> GMAC2
+>   Port 3 <-> GMAC1
+>
+> Enable the ETHSS, GMAC1 and GMAC2 nodes. ETHSW support will be added
+> once the switch driver is available.
+>
+> Configure the MIIC converters to map ports according to the selected
+> switching mode, with converters 0 and 1 mapped to switch ports and
+> converters 2 and 3 mapped to GMAC ports.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I will do this when I have time.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.19.
 
-BTW, your this mail gets DMARC quarantined by my mail provider.
+Gr{oetje,eeting}s,
 
-Thanks,
-Icenowy
+                        Geert
 
->=20
-> /Emil
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
