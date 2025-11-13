@@ -1,150 +1,287 @@
-Return-Path: <devicetree+bounces-238355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1A9AC5A52B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:35:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD04FC5A5BE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:42:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC7633B0EED
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:34:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E1C064F2AF9
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:36:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDF62280CFC;
-	Thu, 13 Nov 2025 22:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD5B31BC8F;
+	Thu, 13 Nov 2025 22:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="mMvp/yTD"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="pdaf5v2k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0825D76026;
-	Thu, 13 Nov 2025 22:34:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8682E03FE;
+	Thu, 13 Nov 2025 22:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763073274; cv=none; b=mqR/v2DWF4yggWfzXtNXzTwKcBYFk+QViHWZfPhZik2A18EL7ebZaenMIKcQzVKctldaYEAS1LSLv+EvfYeA3w6BrRU8thsRbmO4GK6mdZkSpAXcdYfXyR4giB6BuPW3cA/KBGeXQ50DWWDygbWTfXuO+WG05fEKziHci8nVhMo=
+	t=1763073377; cv=none; b=F75jd72wWxL4JHNZ1rA99H80HfgClKX741P3+awzvLwPipO0NTx4/NevrTa6tO6eSWRoxW6KFD59fpruOOxTP6xl3Y2aUJCGrPdNJFt5O6swelRYTCn/IFDvrZgEy0tQQ8ytCjpl8KXgANlOS9YLgz18p//6J+V0z92hTVh6/lA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763073274; c=relaxed/simple;
-	bh=IKaqYh5FTlwHvhByay4VeK+Ue+9R1/kNxroMbxuEdO4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fMlpn7FRaVE0MKa5JupeSYAX1/FLjydQq04CMJlw8smDSsSIk3gK7WcA5mI/zoSx5+uQoYSVmDQl+t7VqbgTk6AFkEgXMUeMGjvqIfgz1tpm5FzI+zt2+NKL2MNwd6pzloQD7fbhkRbUdpeTeSaZoAc8VWiTZv3d5bWMRfLDV3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=mMvp/yTD; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=IAH0ljWgr/r7rtXP8CHeFZ266fhcWeM8ywYAtKpwpc4=; b=mMvp/yTD9SPaIQlUi1UFT0cpy8
-	2e5XRvbZbB1/z8djasK2KUJxtN+W1llaOPDGS0CeGuICL6IHPyhAEHVTeRMc3PWy0OnMZuefFCSJ7
-	E/BAj5KOmuo0WjXta7c1yui762WouZhvmb9UFj9SBxHTLMHmxLbdpYBGqZelybbZMwJfY1BziTdiH
-	83T7QVKoDu7xZoDnG5ZNGiSYqmrxBKWiHe6bcF6GH1kplubId45+QPCaIlLUt6tcNB21ATHB5jPO3
-	eAj9Uv70j4JWpfRwrgAfgdph0qPDzLxgB8JTjdFg1ru5JmDbwstrDy1WjytM4dH0+bN9LryzO3Grg
-	PzXuCWFw==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
-	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJftd-0000000BBsF-2zge;
-	Thu, 13 Nov 2025 22:34:29 +0000
-Message-ID: <6757912e-c729-4114-8aea-44a34a9c3a3d@infradead.org>
-Date: Thu, 13 Nov 2025 14:34:28 -0800
+	s=arc-20240116; t=1763073377; c=relaxed/simple;
+	bh=6xOuc9OuR5SyBNHngmpgW0egzWTHw3MpsMjVZiVPkng=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uKPZrZX3hnmXCo31eJOyoP7VexMN0866EVhep+D8Qpp2IwW4XW4ApiOd08O9qM5NgVqvsepXgVqoWtFFi+t8IruIooQWIjoucKjIKBhdgqWHpvU+q+q0LHtJZxxd4qi5iBRtRwjHDZZA+Tkp43HoLAf5RUxHJpZ1ujo6JXnEuf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=pdaf5v2k; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=N8U24sO6e6httf2hxXjc6YUvS3goaUUaOyj8qFfupFU=; b=pdaf5v2kpjdd3L8m7MpTD/k7FZ
+	tEeUMmQgNYvULW6OFSQyWsUYSGIP0x1cZqDXwkXZhL6AkIHEO3EPf+qurca7bn5gErEAu1AgnwKXM
+	oWKsss3Jam9eKIbsrDCPPU0M0usEhuzkeuMy7OP04rtsORGZ8X44U2LfAmd5Vn4/ptx1hHY9TJ/Tw
+	aRYkw3qRlQpZot7Qwn7JOK5PqVeCCJOqaeyrepB94GjfioEXAtEJoWOTbY389yMdGJoZB0aY2BOXl
+	mx2n1kCqVGU6fyLYV92LkVGfgKwcEUAZCw0W6UOukop8G6NmYZkkEfc9B5Fmn/LyICMVLBWhcazyw
+	Ki/XwKuw==;
+Received: from i53875a11.versanet.de ([83.135.90.17] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vJfv4-0005Rc-Hp; Thu, 13 Nov 2025 23:35:58 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, michael.opdenacker@rootcommit.com
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 2/2] arm64: dts: rockchip: add Tinkerboard 3 and 3S device tree
+Date: Thu, 13 Nov 2025 23:35:57 +0100
+Message-ID: <3310785.5fSG56mABF@diego>
+In-Reply-To: <20251111172003.2324525-3-michael.opdenacker@rootcommit.com>
+References:
+ <20251111172003.2324525-1-michael.opdenacker@rootcommit.com>
+ <20251111172003.2324525-3-michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/5] docs: staging: gpio-rpmsg: gpio over rpmsg bus
-To: Shenwei Wang <shenwei.wang@nxp.com>,
- Daniel Baluta <daniel.baluta@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- dl-linux-imx <linux-imx@nxp.com>
-References: <20251104203315.85706-1-shenwei.wang@nxp.com>
- <20251104203315.85706-4-shenwei.wang@nxp.com>
- <20251112125741.GB1319094-robh@kernel.org>
- <CAEnQRZB4ymvSERKhJW=PAk5xA2JYD=i4wzkbumj_g5S8BjONjg@mail.gmail.com>
- <1dd236fc-26f7-4c02-b183-c3fc13d24767@infradead.org>
- <PAXPR04MB9185B7827B1CCD1CD8D0E9B389CDA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <PAXPR04MB9185B7827B1CCD1CD8D0E9B389CDA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+Hi Michael,
+
+Am Dienstag, 11. November 2025, 18:20:23 Mitteleurop=C3=A4ische Normalzeit =
+schrieb michael.opdenacker@rootcommit.com:
+> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+>=20
+> Add initial device tree support for Asus Tinkerboard 3 [1] and 3S [2],
+> which are SBCs based on the Rockchip 3566 SoC.
+>=20
+> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
+> and a "mask ROM" DIP switch (to mask the eMMC and enter "Mask ROM"
+> mode for recovery) to the "3" version.
+>=20
+> This adds support for:
+> - Debug UART (/dev/ttyS2)
+> - SD card (/dev/mmcblk1)
+> - eMMC (/dev/mmcblk0, only on Tinkerboard 3S)
+> - I2C:
+>   - i2c0 (internal bus with a PMIC and regulators)
+>   - i2c2 (internal bus with an at24 eeprom and an RTC device)
+> - USB 2.0 ports
+> - 2 GPIO LEDS
+>=20
+> Link: https://tinker-board.asus.com/series/tinker-board-3.html [1]
+> Link: https://tinker-board.asus.com/series/tinker-board-3s.html [2]
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+> ---
+
+please follow the DTS coding style
+https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
 
 
+> +/ {
+> +	aliases {
+> +		serial2 =3D &uart2;
+> +		mmc1 =3D &sdmmc0;
+> +		i2c0 =3D &i2c0;
+> +		i2c2 =3D &i2c2;
 
-On 11/13/25 2:23 PM, Shenwei Wang wrote:
-> 
-> 
->> -----Original Message-----
->> From: Randy Dunlap <rdunlap@infradead.org>
->> Sent: Wednesday, November 12, 2025 3:18 PM
->> To: Daniel Baluta <daniel.baluta@gmail.com>; Rob Herring <robh@kernel.org>
->> Cc: Shenwei Wang <shenwei.wang@nxp.com>; Bjorn Andersson
->> <andersson@kernel.org>; Mathieu Poirier <mathieu.poirier@linaro.org>;
->> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
->> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
->> <s.hauer@pengutronix.de>; Jonathan Corbet <corbet@lwn.net>; Linus Walleij
->> <linus.walleij@linaro.org>; Bartosz Golaszewski <brgl@bgdev.pl>; Pengutronix
->> Kernel Team <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>;
->> Peng Fan <peng.fan@nxp.com>; linux-remoteproc@vger.kernel.org;
->> devicetree@vger.kernel.org; imx@lists.linux.dev; linux-arm-
->> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; linux-
->> doc@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>
->> Subject: [EXT] Re: [PATCH v5 3/5] docs: staging: gpio-rpmsg: gpio over rpmsg bus
->> On 11/12/25 5:35 AM, Daniel Baluta wrote:
->>> On Wed, Nov 12, 2025 at 2:59 PM Rob Herring <robh@kernel.org> wrote:
->>>>
->>>> On Tue, Nov 04, 2025 at 02:33:13PM -0600, Shenwei Wang wrote:
->>>>> Describes the gpio rpmsg transport protocol over the rpmsg bus
->>>>> between the cores.
->>>>>
->>>>> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
->>>>> ---
->>>>>  Documentation/staging/gpio-rpmsg.rst | 202
->> +++++++++++++++++++++++++++
->>>>>  Documentation/staging/index.rst      |   1 +
->>>>
->>>> Why is this in staging when none of the drivers are?
->>>
->>> I guess that's because remoteproc.rst and rpmsg.rst are in
->>> Documentation/staging and that's because when converting them from
->>> .txt to .rst the author didn't know a good place where to move them.
->>>
->>> Would Documentation/driver-api be a good place for these doc files? I
->>> can move them and then Shenwei place the gpio-rpmsg.rst in the
->>> Documentation/driver-api also
->>
->> Documentation/driver-api/gpio/ if its driver documentation.
->> Documentation/userspace-api/gpio/ if it user API docs There is also gpio
->> documentation in Documentation/admin-guide/gpio/ which could also be
->> appropriate depending on the nature of the document.
->>
-> 
-> Thanks Randy!
-> 
-> Do we have a final decision on where to place this document?
-> My thought is that Documentation/driver-api/gpio/ seems more appropriate. 
-> However, it’s worth noting that while this is a driver-related document, it doesn’t describe the driver API itself.
+alphabetical property order
 
-I agree that in driver-api/gpio/ seems to be the best place for it.
-(even though it's not my call)
 
--- 
-~Randy
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D "serial2:1500000n8";
+> +	};
+> +
+> +	vcc3v3_sys: regulator-3v3-vcc-sys {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "vcc3v3_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt =3D <3300000>;
+> +		regulator-max-microvolt =3D <3300000>;
+> +		vin-supply =3D <&vcc5v0_sys>;
+> +	};
+> +
+> +	vcc5v0_sys: regulator-5v0-vcc-sys {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "vcc5v0_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt =3D <5000000>;
+> +		regulator-max-microvolt =3D <5000000>;
+> +	};
+> +
+> +	vcc5v0_usb_host: regulator-5v0-vcc-usb-host {
+> +		compatible =3D "regulator-fixed";
+> +		enable-active-high;
+> +		gpios =3D <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&usb_host_pwren_h>;
+> +		regulator-name =3D "vcc5v0_usb_host";
+> +		regulator-min-microvolt =3D <5000000>;
+> +		regulator-max-microvolt =3D <5000000>;
+> +		vin-supply =3D <&vcc5v0_sys>;
+> +	};
+> +
+> +	gpio_leds: gpio-leds {
+
+gpio-foo before regulator-bar
+
+> +		compatible =3D "gpio-leds";
+> +
+> +		act-led {
+> +			gpios =3D <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger=3D"mmc1";
+> +};
+
+missing indentation
+
+> +
+> +		rsv-led {
+> +			gpios =3D <&gpio0 RK_PD6 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger=3D"none";
+> +		};
+> +	};
+> +};
+> +
+> +&uart2 {
+
+alphabetical ordering of phandles please (uart2 definitly somewhere after i=
+2c0)
+
+> +	status =3D "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status =3D "okay";
+> +
+> +	rk809: pmic@20 {
+> +		compatible =3D "rockchip,rk809";
+> +		reg =3D <0x20>;
+> +		assigned-clocks =3D <&cru I2S1_MCLKOUT_TX>;
+> +		assigned-clock-parents =3D <&cru CLK_I2S1_8CH_TX>;
+> +		#clock-cells =3D <1>;
+> +		clocks =3D <&cru I2S1_MCLKOUT_TX>;
+> +		clock-names =3D "mclk";
+> +		clock-output-names =3D "rk809-clkout1", "rk809-clkout2";
+> +		interrupt-parent =3D <&gpio0>;
+> +		interrupts =3D <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&pmic_int_l>, <&i2s1m0_mclk>;
+> +		#sound-dai-cells =3D <0>;
+> +		system-power-controller;
+> +		wakeup-source;
+> +
+> +		vcc1-supply =3D <&vcc3v3_sys>;
+> +		vcc2-supply =3D <&vcc3v3_sys>;
+> +		vcc3-supply =3D <&vcc3v3_sys>;
+> +		vcc4-supply =3D <&vcc3v3_sys>;
+> +		vcc5-supply =3D <&vcc3v3_sys>;
+> +		vcc6-supply =3D <&vcc3v3_sys>;
+> +		vcc7-supply =3D <&vcc3v3_sys>;
+> +		vcc8-supply =3D <&vcc3v3_sys>;
+> +		vcc9-supply =3D <&vcc3v3_sys>;
+> +
+> +		regulators {
+> +			vcc_1v8: DCDC_REG5 {
+> +				regulator-name =3D "vcc_1v8";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt =3D <1800000>;
+> +				regulator-max-microvolt =3D <1800000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc3v3_sd: SWITCH_REG2 {
+> +				regulator-name =3D "vcc3v3_sd";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vccio_sd: LDO_REG5 {
+> +				regulator-name =3D "vccio_sd";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt =3D <1800000>;
+> +				regulator-max-microvolt =3D <3300000>;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_3v3: SWITCH_REG1 {
+> +				regulator-name =3D "vcc_3v3";
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	vdd_cpu: regulator@40 {
+
+you probably need &cpu0 phandles to set this regulator-supply?
+
+> +		compatible =3D "silergy,syr827";
+> +		reg =3D <0x40>;
+> +		fcs,suspend-voltage-selector =3D <1>;
+> +		regulator-name =3D "vdd_cpu";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt =3D <830000>;
+> +		regulator-max-microvolt =3D <1200000>;
+> +		regulator-ramp-delay =3D <2300>;
+> +		vin-supply =3D <&vcc3v3_sys>;
+> +
+> +		regulator-state-mem {
+> +			regulator-off-in-suspend;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	status =3D "okay";
+> +
+> +	m24c08@50 {
+
+I guess eeprom@50 ?
+
+Heiko
+
 
 
