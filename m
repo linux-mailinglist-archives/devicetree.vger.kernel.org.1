@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-238307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399B0C59C2F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:33:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB3F5C59C26
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:33:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 861864E0223
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:32:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 299F43B205D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0732C31AF38;
-	Thu, 13 Nov 2025 19:32:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7C031B82A;
+	Thu, 13 Nov 2025 19:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X0/uYzGZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BjKFta0Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B05316188
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 19:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CED431A56B
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 19:32:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763062331; cv=none; b=D9urR57b09UgyZSNP/nk371yM8qzE9Guz9hfqnSQdQuVOVpwca9Q28nR67JTg0DbHE3ay23h33GXl7VHoT6RWcQhXvlfLXu8zvFLeyUP2YWfGBhTomPYO1JbAzpixSCuz6ouSXGa+c60Fh+jp2jj8dKkQcj2KA9zXOzGkHvv+8U=
+	t=1763062333; cv=none; b=P9r/W8JfI803JFhrhDVX6w5gAR1P/6PQ4cv8/1/ClKv1i8i0JmUE7tlp+6qfd44j+WHL1E6BK5O048g1JsF7wFHHhMzgFBKN78Qxp6uSjIwLS62eoXtFhYyYgFoJgYZA2yNNTtxUuB8yQq9KgK6OVacNVvrpnhBuaxL8CHspfDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763062331; c=relaxed/simple;
-	bh=I5HbGkyc/sunmgY83wGJUyYGqn1DOWOkvyn3f5pY9XQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OgLSF+RJY7Ros0wkUOi5W74o1JS4rgyZfFZ7/9QhvDTETLYIBlSBMpA3WA8QJwz4ZqVSsZyWT463X3M3h3kF0vPoHunxxVj+yg+krLFWiTaVmNwATDWL1muJuunQBmm30bSAfqA96qrjlH/Pg/Cbqsj03LwXH53tVHtZi4lr5mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X0/uYzGZ; arc=none smtp.client-ip=209.85.210.45
+	s=arc-20240116; t=1763062333; c=relaxed/simple;
+	bh=JnyNYT5+jEouV/8yUPXvRX7CeEyZGEPq2A0wuBBRJJg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=J/o4Va557bTltxQXRdNi9SWqPPteHbBDdpZhWVz07UBP6yEHqbqI240OhcVpO3R6azg+RnJkNq5y94xSOyTs0fn9Fzmw7imUzHamKC22un6+jmLoHo8qxTtW3QjeO5jOt8ex9o9cvRVQ/eijnptvLQYYNY5FztR8vQKP/g7ncTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BjKFta0Y; arc=none smtp.client-ip=209.85.210.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7c28ff7a42eso471779a34.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 11:32:09 -0800 (PST)
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7c7060a2a53so342161a34.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 11:32:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763062328; x=1763667128; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lw/U+z5I4kWuL5rL8h4E+nT2ml8zVb8Mlz2CECK2kyU=;
-        b=X0/uYzGZ9QByDOg2gwnPTSFdds30oN//WQteJn+3ZVokKNZrKc1iCQ7bmbyYZflXv7
-         2NT6ss4JS1d6nJ7IDgIHmgt35/9/GjzeUMoVtUt+7B7w90e7tRErqLf3b1S2CED0JLbr
-         //wkIvpQb7Kqt6UcSF351A8pcQBABTkW5p14dTmuiZOahQu0OMAfcUFYdseAyTm1cucA
-         dDqiptzCdDRVKvtOHA9R3QBLppM2zmtTSm/63X9XTzT1dgK2zyk7VANjImnSRSH3zRH2
-         1UrWbAxxgmcxn3xFtjYVLrhBF3EFYhSZdq8Fsedw4WfgRbsuUrtTD3JT0p3MuId5FHKU
-         VM2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763062328; x=1763667128;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1763062329; x=1763667129; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Lw/U+z5I4kWuL5rL8h4E+nT2ml8zVb8Mlz2CECK2kyU=;
-        b=tf7mjxb18ulO/FSaiPU1M5U2NX2uAAeI1z7/ws16cAeauOaTxqAsqSe0hxFsdR7a9N
-         DHP9XapHBMvQszsC8GxakFtUJVJRD/k7EjbKG3U1sdONUHwiVUYBXBFnsJnyE8uIF4WS
-         zxuYMoRvH1yECQCdgYDZbKjIIOaKG1kCiM4c3TYWVMshq7424JwXHf85CiXpiGo6YqR1
-         3OeJQ5tOdXAwKa+GIbGCmm27TwXeL6x/k+Mb1LQISlaKu3v6Xj4sb9KS9zICXKJksfBn
-         C9403RnvOpv36DgaTPhIkufA5a0mGYYpJCLsih4T9c0MLUA8htNR2kib3QJlVz9QULZz
-         0W9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUW+l4PHR75D7lo1b16lHI6JwfG/046u9V6ZSK97A5piMrjhlujHuecxm+s1qDbWIdrtmcvNli4csg8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzG97OgGu8jjcJ+NwBdF0rK57YcYr29VFkqteimA7JD48mLZP4C
-	fCAG4qzjNTeGgm1z0/HzE80ldYMuvsnqlUSe4K5TMQZEXgx+hHNxnfeA
-X-Gm-Gg: ASbGncuGpmnhYI0wsL1IQ5Qt1P4OdUnKXzWgyqNlt6mRUUg48TiIbnnqvOKDALVu9gG
-	Hr724bzGkxa4RJL4gnZLOP2sDE1WfPG5iNmUETVUfYhhRlvvIvthHBp4vTBOJWI15VunfdVguZy
-	wdXavkK/M4EtpPXzfhLcw5fPo+NhUomd8W468x4OWF51hJWLVQue4EQB1l9t6aOLiLQsillEqz8
-	fJon/yOx1ZboYuvHU2sfkr32gT744S8xm/sy2pWxFlh2RweY6ZZAmCU1ocYZQy/C/oRppFN5j9Z
-	24ggATkDo1W9V0U9ZBHU2xPxVI3DfSxVuowcvRiv1nWTYNpuiWoO2g4lt3/n2nasq3lHVsDFOCu
-	HsA51wPIqI3Cdzy+Jg0NlZTtiwcP5bHv9a5ZzmpqHLSRIUPBGKUwD+yD94fXJ+RKal0/8UtpVsj
-	3vd5TSQBbf
-X-Google-Smtp-Source: AGHT+IFEgyX0ltKX3lDaJ+pACBb477rkzx0l2ZFB+JcPMhVtmDYkqFRhnbMiih50devZNHV+aa6GYw==
-X-Received: by 2002:a05:6830:25d6:b0:7aa:4e01:f57d with SMTP id 46e09a7af769-7c7444fe486mr424984a34.18.1763062327571;
-        Thu, 13 Nov 2025 11:32:07 -0800 (PST)
+        bh=ojyXh9J+hBwCNMVLciyvICBaCTIpiiyWT0C0jl060F0=;
+        b=BjKFta0YjqNejZFTNmvMyeMozXjmf/wK5Cmtkdnlw3tk66ive9zk5Qyx9D/6zT5uvd
+         E7HbU/HBi0lEcEIgkjCCA8EkfhIQI+AFkSfeW6kO8yhhpZfvP5xLfJovbN+juvUpphhg
+         LIRDrf1pfhdZGs7ENZIqUoRc8bPeEAXtPs/F5xpWXBXD3BvAbIczRsQ2S793Vz0FTjfo
+         Izt0vz0jX3nlhwWSiXssQVj5M261kQZLTBRBEPZYXSElu14UpQkUomWuyNmfwwWQIKmm
+         kbLDU3bE4Nkl6VtSVeeDXZc0RgmKPEWzG8qfWedRXBpflI/9EJ1zLAk7JyTPfkWw55CD
+         GQqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763062329; x=1763667129;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ojyXh9J+hBwCNMVLciyvICBaCTIpiiyWT0C0jl060F0=;
+        b=D+3SyGBE1k6QLsvBZAAaIsL8IHDY2lMlFi6Hpd0PDahNx2nvcC/bZZlwKGfB2nNOR3
+         gFtodFFQ+WCu89O/7CvHQNRq1ujybVSAT+XGPhx5FWkm0ksANDl8AgUHoQIEtX+whGuf
+         PgaCBiDcy0Gbk43wtywl22cSHiBB0GpVA48DvWwLtvDZEQvvpTv6QzEaotRGbBUNMGD4
+         mZXWGCXwRvZfC30pEGBw+Ncw5y4qattPLz360vwQYx1wtP6VqlOGsghs4QWBpU8tjPhr
+         zD431u+7IYWB1z4CxmDSlKKVu98IGuckGgY3WeoUJdo9sX8mN1yrDIcHto2FoFDaj0l0
+         x/OA==
+X-Forwarded-Encrypted: i=1; AJvYcCUmjUGCmMre2e0vPSBVqP9pUPY7F8loq8gFvkIV2ntJBMGCJmCiRcHiC3cASB3u7Tr2px8Vg0DBExJB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4+vJMCg2i9LTiNKzmlYBSzywxc61tygNI6y4nFqzg3Io5bElC
+	TdQi9gJdTj6XhzMW06ZpbF8fA+vxUQkCV0OpRrEP8KWcK1VLO5ZiF/hG
+X-Gm-Gg: ASbGnct4lx4v89Ed9pvjO4wAEge4IcwCBXthgbzc67jMhCZyCU44LqBUAd/suCvGN6O
+	KGip+XTpA9dOhuv4OPnA1jEuGmTWb2emzAnLUP70p7z5gvgwh77Y0Gfwyg84zfAoWy6pt68pTX5
+	3+CvFn+gqNaM1pdzr6CKgt3QunYgymCdvnBUnVuKMQoUpHlctgGITWM/1e27xkgKnrcrdwzeCsB
+	/2iCNkGurJVjNNjgHoc+MkQY44eYbjdnnJvKl4oX17IFEUVG4yAbzxjv6Efjvw2v0j0EhUfCEx5
+	OM8GnTj1/9BKjBPBDml87fmzIxPQe7sI+eYkRNO7abKoF41cMRe52VYLq8pvMS/Z4D25tLRbTLk
+	35yodAzswwGXZ4PCSIl9b831Bz7a1QP/vOThjhkQ/LYyEmSugzcG1xLU5rRxvh3JL+XDRhq0NE2
+	KAk3X9DV32
+X-Google-Smtp-Source: AGHT+IFxeDPnr+c8wuNGsY9u69U5OD00ERq1Zo4Tm+ccQl+K/E1e0bde7KqzTrSFky5MSRTost79jQ==
+X-Received: by 2002:a05:6830:348e:b0:745:9272:4a39 with SMTP id 46e09a7af769-7c7445506c0mr510040a34.25.1763062329639;
+        Thu, 13 Nov 2025 11:32:09 -0800 (PST)
 Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c73a392fa5sm1693527a34.19.2025.11.13.11.32.06
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c73a392fa5sm1693527a34.19.2025.11.13.11.32.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Nov 2025 11:32:06 -0800 (PST)
+        Thu, 13 Nov 2025 11:32:08 -0800 (PST)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-rockchip@lists.infradead.org
 Cc: mripard@kernel.org,
@@ -90,11 +92,14 @@ Cc: mripard@kernel.org,
 	andy.yan@rock-chips.com,
 	krzk+dt@kernel.org,
 	robh@kernel.org,
-	Laurent.pinchart@ideasonboard.com
-Subject: [PATCH v2 0/3] Add HDMI for Gameforce Ace
-Date: Thu, 13 Nov 2025 13:29:36 -0600
-Message-ID: <20251113192939.30031-1-macroalpha82@gmail.com>
+	Laurent.pinchart@ideasonboard.com,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2 1/3] dt-bindings: display: rockchip: Add no-hpd for dw-hdmi-qp controller
+Date: Thu, 13 Nov 2025 13:29:37 -0600
+Message-ID: <20251113192939.30031-2-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251113192939.30031-1-macroalpha82@gmail.com>
+References: <20251113192939.30031-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,24 +110,39 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add support for the micro HDMI port for the Gameforce Ace. This port does
-not have a HPD pin so it requires making changes to the HDMI controller
-to support this configuration.
+Add an attribute of "no-hpd" for the Rockchip dw-hdmi-qp controller.
+This is used to describe implementations where the HPD pin is not
+connected or used for other purposes, such as in the RK3588S based
+Gameforce Ace which repurposed the GPIO for an additional face
+button.
 
-Changes since v1:
- - Simplified checking of no-hpd parameter and changed to
-   device_property_read_bool() function.
+The "no-hpd" option was chosen to be consistent with other devices
+which already define this parameter for broken or missing hpd
+functionality.
 
-Chris Morgan (3):
-  dt-bindings: display: rockchip: Add no-hpd for dw-hdmi-qp controller
-  drm/bridge: dw-hdmi-qp: Add support for missing HPD
-  arm64: dts: rockchip: Add HDMI to Gameforce Ace
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ .../display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml        | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
- .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |  6 ++
- .../dts/rockchip/rk3588s-gameforce-ace.dts    | 63 +++++++++++++++++++
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c  | 32 ++++++++--
- 3 files changed, 97 insertions(+), 4 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
+index 96b4b088eebe..07342838cd52 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
+@@ -69,6 +69,12 @@ properties:
+       - const: main
+       - const: hpd
+ 
++  no-hpd:
++    type: boolean
++    description:
++      The HPD pin is not present or used for another purpose, and the EDID
++      must be polled instead to determine if a device is attached.
++
+   phys:
+     maxItems: 1
+     description: The HDMI/eDP PHY
 -- 
 2.43.0
 
