@@ -1,150 +1,151 @@
-Return-Path: <devicetree+bounces-238103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECF01C57381
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:36:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8FFDC574D1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:00:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AD5314E9B16
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:34:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 781A13AF6BE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36431340274;
-	Thu, 13 Nov 2025 11:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9EC133D6F9;
+	Thu, 13 Nov 2025 11:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="lkhjf2bu"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="UqU8Z+1n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BFB2FD69D;
-	Thu, 13 Nov 2025 11:34:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A085F2C21DB;
+	Thu, 13 Nov 2025 11:59:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763033659; cv=none; b=oAw4Mrd9F3y27qgPB+z/8+lXkyBfPsAg3Pfw/odLv4XBLcZMyInNd5yklpGcf4Hu6fjDAi7sck7KkNgAcJDr3cqQtVH84fpQdF5Mcfb1bKQhOIBuNEatfF3HYrgMwUoICF8yBlcW3Tqe8khHAhfg4MNp+deCmvmuCicaBzPHC0o=
+	t=1763035149; cv=none; b=Ylrb4pk2P4NhHPnjg5FflW6RKgXDVddKNiOeKCv3OIxXHXGt8sE7WncKIHby6uaV7+qrNiEZAjmjA8b8maFUL613LsTAt2uk3zrBDZ0GjJiWN+DxlMDy/jlaOcSUQI7n/oPrsZKMi7wq0aZEhAJg9KbRviyhSsujaN8wRRKcl54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763033659; c=relaxed/simple;
-	bh=ua8dmVMKlKkuJrQ6eAXatkwp2khgLieidwCwNTGMUg0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K9V+qt3iGeAFqlgc15ngyzbJDFGd7K8fHzZnSYErszpmngZdZXc9MUIyEVPnux6+Aj5nBjpno7YPKOf0+Lm5Oo++1sHU+N3NGv62wlhcXIxZarrSP97l9fAlnfAX0rjYADz4yd7pHj+9gLN+UdXEyvpq2o6Wa9xi0S+99B1PPPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=lkhjf2bu; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4d6dTC663Vz9t9s;
-	Thu, 13 Nov 2025 12:34:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1763033647;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kstUxXctzALc3r6mHu6J3NJbeAPLhvcpKA5iAHi8E80=;
-	b=lkhjf2bugBr8TeoCb0ZzOBM0DsINKupPBIdRwGnhRqoTv2mFtNO1B8+oWW3FtNoI1aR6Y5
-	lgCYLSgrWZLc1v01kB/g7qw/zsDs7iyvBDzg6yXJiwuFAk/k2i1+CxlG6HFK1/RtSv2H+1
-	WpKP4kIBl9vqND3Vuu/E88hm1AKtQKvSY7kwDlErNfF9HAWhJhpLiZK/Cg1GWkJEDXfVAH
-	02ujI/5S/pMV6GYs4RlT/tpeb5niqTrV4A6tB0mZ9LYLA+6DY5rDIGDAyID8JaNmQR0h/w
-	Hb5zD+lQLV9yssY2mB7uoZOrg9Uih1isCNOWRrSEHkmSSs/moMZ+/PcbW2ndzw==
-Message-ID: <032bfb41-413d-4d59-aa66-7f109af4422d@mailbox.org>
-Date: Thu, 13 Nov 2025 12:34:03 +0100
+	s=arc-20240116; t=1763035149; c=relaxed/simple;
+	bh=2sBh8QH1TKDtxeRP11XpUoeSd5s6nQOikQ8K8oZjRCw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZQAREgrUYaa/Fs9HvLQ3dA5x/5xy7KIcvEBja/zUfvlVQZ/DhuFaueuVIOKF1UZOedct/FxvB7WnTk1QRERBjXqB6UF04lT2gRqmmJgrj/8SQAy5EviSWGqi7V20NBL0lgSTRI3fGWeYWSYxch4csU9EryPhFRFWG2Dw9EAYS3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=UqU8Z+1n; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1763035147; x=1794571147;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2sBh8QH1TKDtxeRP11XpUoeSd5s6nQOikQ8K8oZjRCw=;
+  b=UqU8Z+1nWylss6svpX00j7MBCu3vXu7p9aGg2YySAk+tMvSqgBpnFe6q
+   DKC8tjtEgNfMg4ktJT6tT4ABYXvRwnFyvxNyfFkpzFHWAf9DyHM4oc/53
+   jOYzMaMJkhBsIPOHODQUv8GH3l/OuG5FTIGN67OwqUdNViTdquSsEdS/P
+   rfXCz4Dj4ivDWVB61/6o/fYVG/NzAP2LwuY/vA8Tfsmr3YgZm8brmTlZL
+   mde2VZyig7lIYXvZdWAt/GMpew5Ljb/+cJ/mFWp1dDG86pfB8SjsWzR1K
+   Alv3Mhs8dzQfC7l+bSj2EaAZmhyMI9LZBjFHwHqkXo6dU8+sSmphlkyEU
+   Q==;
+X-CSE-ConnectionGUID: D5xO8BvaQcOeXAyrv7Ox3Q==
+X-CSE-MsgGUID: f+cpa6PiRwyRJF252ydmyQ==
+X-IronPort-AV: E=Sophos;i="6.19,301,1754982000"; 
+   d="scan'208";a="55527099"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2025 04:59:04 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Thu, 13 Nov 2025 04:58:24 -0700
+Received: from localhost (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Thu, 13 Nov 2025 04:58:23 -0700
+Date: Thu, 13 Nov 2025 12:56:50 +0100
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, <vkoul@kernel.org>,
+	<kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: lan966x: Add optional
+ microchip,sx-tx/rx-inverted
+Message-ID: <20251113115650.lxsvkbrwnrwj7ysd@DEN-DL-M31836.microchip.com>
+References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
+ <20251110110536.2596490-3-horatiu.vultur@microchip.com>
+ <20251110-unwound-award-a11d69b9da4f@spud>
+ <20251111095831.lp4kvdfcahtwgrqc@DEN-DL-M31836.microchip.com>
+ <58b0d712-48a4-4490-a63f-404716844557@kernel.org>
+ <20251111-ploy-dispersal-164ae403df4d@spud>
+ <20251112080235.c5iinfnketsunefy@DEN-DL-M31836.microchip.com>
+ <20251112-junkman-buckle-31fcfcbfa3c5@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
- arm,poll-transport property
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-References: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
- <aPoxfH_TLrsMxMVQ@pluto> <70554674-7020-4582-a4e7-dbee34907096@mailbox.org>
- <5ae0a793-d3e7-45d1-bf5c-3c46593d1824@mailbox.org> <aRW7BZimWdpq4TyX@pluto>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aRW7BZimWdpq4TyX@pluto>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: e9d5488ffa9da467466
-X-MBO-RS-META: e53boqqq1douzuw15mwdychamyjjxw4y
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20251112-junkman-buckle-31fcfcbfa3c5@spud>
 
-On 11/13/25 12:03 PM, Cristian Marussi wrote:
-
-Hello Cristian,
-
-> bit of a late reply...
-
-No worries, I am buried under email myself, take your time.
-
->>>> On Thu, Oct 23, 2025 at 02:35:57PM +0200, Marek Vasut wrote:
->>>>> Document new property arm,poll-transport, which sets all SCMI
->>>>> operation into
->>>>> poll mode. This is meant to work around uncooperative SCP
->>>>> implementations,
->>>>> which do not generate completion interrupts. This applies
->>>>> primarily on mbox
->>>>> based implementations, but does also cover SMC and VirtIO ones.
->>>>
->>>> Hi,
->>>>
->>>> ..indeed I was thinking a while ago about exposing the existing
->>>> force- polling
->>>> switch but in my case it was purely a testing-scenario
->>>> configuration, so a
->>>> no-no for the DT, things are different if you have to describe an HW
->>>> that has
->>>> no completion IRQ also on the a2p channel...
->>>
->>> Correct, at least until the SCP on this hardware is updated.
->>>
->>>> ...having said that, though, usually polling-mode is reserved to a few
->>>> selected commands in a few chosen scenarios (as you may have seen),
->>>> 'carpet-polling' non-for-testing for all the commands on A2P seems a lot
->>>> inefficient and heavy...is it really a viable solution ? or these
->>>> systems use such a low rate of SCMI messages that polling after each and
->>>> every message is negligible ?
->>>>
->>>> ..just to understand the context...
->>>
->>> These systems are early in development and it is likely that the SCP
->>> will be updated to generate interrupts properly. Currently, this is not
->>> the case, hence the carpet-polling, until this is resolved.
->>
->> While I was going through the SCMI spec, DEN0056F , page 209 , section "4.1
->> Shared memory based transport" , bullet • Completion interrupts, I found it
->> explicitly states:
->>
->> "
->> This transport supports polling or interrupt driven modes of communication.
->> In interrupt mode, when the callee completes processing a message, it raises
->> an interrupt to the caller. Hardware support for completion interrupts is
->> optional.
->> "
+The 11/12/2025 18:32, Conor Dooley wrote:
+> On Wed, Nov 12, 2025 at 09:02:35AM +0100, Horatiu Vultur wrote:
+> > The 11/11/2025 17:39, Conor Dooley wrote:
+> > > On Tue, Nov 11, 2025 at 11:06:02AM +0100, Krzysztof Kozlowski wrote:
+> > > > On 11/11/2025 10:58, Horatiu Vultur wrote:
+> > > > > The 11/10/2025 18:43, Conor Dooley wrote:
+> > > > > 
+> > > > > Hi Conor,
+> > > > > 
+> > > > >> On Mon, Nov 10, 2025 at 12:05:36PM +0100, Horatiu Vultur wrote:
+> > > > >>> This allows to invert the N and P signals of the RX and TX Serdes
+> > > > >>> signals. This option allows the board designer to trace their signals
+> > > > >>> easier on the boards.
+> > > > >>
+> > > > >> Why can't this just be done in software, debugfs or something like that?
+> > > > >> Maybe it's just your description is poor, but sounds like the intention
+> > > > >> here is to just switch things around for debug purposes.
+> > > > > 
+> > > > > I don't think it should be done through debugfs. As this describes the
+> > > > > board layout and I don't think someone will want to change it at
+> > > > > runtime to see how things behave. So maybe the description is poor.
+> > > > 
+> > > > You said it is purely for hardware designer to trace signals, so sorry,
+> > > > but that's not DTs purpose.
+> > > 
+> > > If it is not purely some sort of debug helper, then please explain
+> > > better in your commit message.
+> > 
+> > Yes, I will do so because I don't see how this is a debug helper
+> > functionality. I see it as changing the polarity of some pins and there
 > 
-> Oh, yes...I knew that...it is just that till now, no systems were really
-> ever developed that lacked the completion IRQ as a whole, it was, till now,
-> more of a case of having the capability NOT to use it selectively at runtime
-> and instead use polling when wanted (like for clock ops in ISR context)
-> 
-> I am not sure what is the reason why this only-polling scenario was never
-> supported in the HW description, this indeed pre-dates my work on SCMI....
-> ...I would/will check with Sudeep, when he's back, what are the reasons for
-> this (if any)...
+> The word "trace" here might be problematic? Maybe you meant something
+> like "lay out", but all of the use of the word tracing in electronics
+> that I have ever seen refers to troubleshooting - be that physically
+> following signals to see if there's degradation or things like the
+> trace framework in linux.
 
-Thank you !
+I understand, by trace I meant "lay out" the signals on the board.
+What do you think if I say something like this:
+
+---
+dt-bindings: phy: lan966x: Add optional microchip,sx-tx/rx-inverted
+
+The lan966x has 3 integrated SerDess and for each of them it is possible
+to change the polarity of the P(possitive) and N(Negative) pins Serdes.
+By changing the polarity of both pins then the functionality of the pins
+will be inverted.
+---
+
+I have tried not to mention any 'lay out' or 'trace' not to make it
+confusing.
+
+> 
+> > are few examples in the devicetree bindings where pins change the
+> > polarity. Why I see it as changing the polarity is because the
+> > N(negative) will become P(positive) and the P(positive) will become the
+> > N(negative), so we just invert the signals.
+
+
 
 -- 
-Best regards,
-Marek Vasut
+/Horatiu
 
