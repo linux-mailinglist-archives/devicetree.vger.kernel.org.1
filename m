@@ -1,87 +1,168 @@
-Return-Path: <devicetree+bounces-238221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DDC9C58BCF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:31:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3EBC58C21
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:35:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 31A7D365F57
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:11:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61C5942150C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CF434F486;
-	Thu, 13 Nov 2025 16:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C8B3596F8;
+	Thu, 13 Nov 2025 16:19:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Or5QZeP/"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="L08N9R9H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFFBE34D395;
-	Thu, 13 Nov 2025 16:07:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DEF3570C4;
+	Thu, 13 Nov 2025 16:19:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763050027; cv=none; b=aSw5zj/qVsPRNr58xM/AcYfy9acR4idnr9Y44ElkTRR/lyYtBOMSXcRVHIo3qRgMNv6Ng2wVvGRGEcn8V+zV2X2q/FZoAeZFJTvBIKltA8wJ9XEG433oFU2KF2nYMPLd6tSVjSp/LChdeniXh8gW14iAmWTQABKqwD/csi7ujFs=
+	t=1763050753; cv=none; b=ZvLzWfCOswDFvfo7RefBcGQ3+khOhdSytBw52PH/SW81u1kBfS/UQZyERFqLmL4Q6B/UhdBYEq711wnZ/Sd0kbU+MIa7IhOIo/d6lU+dfPLPDeaNEMRVzSWn1HBcWR4ytza9Z0eu9ThjujkXlMrYTPiZEeWGCQ3ER/Ztj74KtnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763050027; c=relaxed/simple;
-	bh=g+/FYjcz3WYiDo8+OgGvPY082eJaIJCtja71aw6bHxI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=bmVWFwLM/1IznjKBz9IygbZHX+Q/kSc7NiPFnWmcz6XJ6Ml3HbYt6WDRujGywTwy0SoMJZQl89LscqXQjqHEoK5Nh5JFJ0GXMBTB9t0eMMZGRyMZ2c+vsEvIlshbvkJH0pX2ojHkld7Sg8nz8RQ7dhOHWR+TyocTybJ/aMX5hbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Or5QZeP/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99ABEC116D0;
-	Thu, 13 Nov 2025 16:07:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763050026;
-	bh=g+/FYjcz3WYiDo8+OgGvPY082eJaIJCtja71aw6bHxI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Or5QZeP/i01cj5lNVBRNT2nBAVuIqbCt/FlFRJycUkRfVhsXoXGC5nbWgekehPiKd
-	 1QEuhRq8IJ3td16ectF9Ec+6SpEO5BSXEGVr2/rE7wo6YdkU+PdQ3bSzJR3uTfDvez
-	 n2FTilav6PUER2/MkDBM7hiSCgTfc1WqagnMa5wK33SQEttWx9fWI9TLbPtrNLp/pB
-	 zFbr8uqUDX/MUjzbER9vW5/H+JQyv/eGEBRY+shRnBHN600oJ+/bLRVdnu4wY9Vqy9
-	 /fPRCNC5DbJzNdVldYUqJCtooww0QXP5SaRDbCo+iyuME0CfAOkc8RXGT77gSbJ9Jw
-	 EwJJl4SSx2t5A==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andreas Kemnade <andreas@kemnade.info>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Tony Lindgren <tony@atomide.com>, Kevin Hilman <khilman@kernel.org>, 
- akemnade@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-input@vger.kernel.org, linux-omap@vger.kernel.org
-In-Reply-To: <20251106-twl6030-button-v4-1-fdf1aa6e1e9a@kernel.org>
-References: <20251106-twl6030-button-v4-1-fdf1aa6e1e9a@kernel.org>
-Subject: Re: (subset) [PATCH v4 1/3] dt-bindings: mfd: twl: enable power
- button also for twl603x
-Message-Id: <176305002333.1560960.3842601279717096522.b4-ty@kernel.org>
-Date: Thu, 13 Nov 2025 16:07:03 +0000
+	s=arc-20240116; t=1763050753; c=relaxed/simple;
+	bh=ZbbaaHUsQVLypoOUIIZkHe7iZlm+xeNap25LcZ0bsIk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kCp8b5QcevgzbQEEFQU7Ng+OKMvhRZe0RepumU84W8CrhaNVDnZUhKtoYILtJ4TMPncGktq+/BVYe45IUWStF1Z+RO5kF7L/35K/OIT1ZFJPdKjaI5JXZ5ynIhw6cPMnkXcn5zHdxbNrOWM4p6jroycmLgabMLKFv41JTiDidQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=L08N9R9H; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763050749;
+	bh=ZbbaaHUsQVLypoOUIIZkHe7iZlm+xeNap25LcZ0bsIk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=L08N9R9H05FYgeI9He5wHagRWiiNK1wBzRiAIi1E0bwjHP0B2EawoC/wrhPwCN6Y5
+	 jhuQHRwtEgVNqhy1K8RlbKaA6mevZjcmqSfVk09V1KBpkYqzapV1YnScBMrbOIYjOX
+	 VO4RxYBGG1jvY89tItdFBj+QnC0NoujI7MTpkhy770bdBzoC53sQLi2f8D6yMnAv+L
+	 XslBpTDc5Z4swz4lXyOEr3alCOFf9ZUXdjRUlAQxuWVXekfL64byL9cFcYkfNoWBly
+	 iuaXggnvrQNWwSLGZXDdPxCELz6+ayfY5Rg8wYmCTxE7/qW4zGxeSh5vSq1nYDiIdg
+	 60E/apd/bqVHA==
+Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:9cb8:f653:99e7:c419])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B644117E00B0;
+	Thu, 13 Nov 2025 17:19:07 +0100 (CET)
+From: Laura Nao <laura.nao@collabora.com>
+To: daniel.lezcano@linaro.org
+Cc: andrew-ct.chen@mediatek.com,
+	angelogioacchino.delregno@collabora.com,
+	arnd@arndb.de,
+	bchihi@baylibre.com,
+	colin.i.king@gmail.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	frank-w@public-files.de,
+	fshao@chromium.org,
+	kernel@collabora.com,
+	krzk+dt@kernel.org,
+	lala.lin@mediatek.com,
+	laura.nao@collabora.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	lukasz.luba@arm.com,
+	matthias.bgg@gmail.com,
+	nfraprado@collabora.com,
+	rafael@kernel.org,
+	robh@kernel.org,
+	rui.zhang@intel.com,
+	srini@kernel.org,
+	u.kleine-koenig@baylibre.com,
+	wenst@chromium.org
+Subject: Re: [PATCH RESEND v3 3/9] thermal/drivers/mediatek/lvts: Guard against zero temp_factor in lvts_raw_to_temp
+Date: Thu, 13 Nov 2025 17:18:59 +0100
+Message-Id: <20251113161859.280743-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <84b9fd00-ce75-43bf-a53b-48818628f7e2@linaro.org>
+References: <84b9fd00-ce75-43bf-a53b-48818628f7e2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-52d38
 
-On Thu, 06 Nov 2025 10:00:25 +0100, akemnade@kernel.org wrote:
-> TWL603x has also a power button function, so add the corresponding subnode.
-> As not in all cases there is a power button connected to the corresponding
-> pad of the TWL603x, the functionality can be disabled by
-> status = "disabled" or simply not adding the subnode.
-> To keep things simple, follow the established design pattern of using const
-> interrupts as used also by the other subdevices.
-> 
-> [...]
+Hi Daniel,
 
-Applied, thanks!
+On 11/10/25 13:42, Daniel Lezcano wrote:
+> On 10/16/25 16:21, Laura Nao wrote:
+>> Add a guard against zero temp_factor in lvts_raw_to_temp() to prevent
+>> division by zero and ensure safe conversion. 
+>
+> Is the temp_factor something else than a ro data statically initialized by the lvts_data structure ?
+>
+> It is pointless to handle the case where the temp_factor is zero. If we read the temperature the kernel crashes immediately (which means it was not tested).
+>
+> The temp_factor is an internal value of the driver. If the temp_factor is zero, the driver is buggy and should be fixed.
+>
+>
 
-[1/3] dt-bindings: mfd: twl: enable power button also for twl603x
-      commit: 65a4ee23e057f60d25c3436acd88f2f169f780c2
+That’s right - if temp_factor is zero, that indicates broken platform 
+data. I propose failing the probe instead of adding a runtime guard, 
+since this condition should never happen in a valid configuration. This 
+way, we make the developer aware of the issue early and avoid a kernel 
+crash at runtime.
 
---
-Lee Jones [李琼斯]
+I'll send out a v4 to drop the "if (temp_factor == 0)" checks and 
+replace the warning with an error:
+
+if (!lvts_data->temp_factor)
+	return dev_err_probe(dev, -EINVAL, "temp_factor should never be zero; check platform data.\n");
+
+Best,
+
+Laura
+
+>> Fixes: 6725a29321e4 ("thermal/drivers/mediatek/lvts_thermal: Make coeff configurable")
+>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+>> Reviewed-by: Fei Shao <fshao@chromium.org>
+>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+>> ---
+>>   drivers/thermal/mediatek/lvts_thermal.c | 12 +++++++++---
+>>   1 file changed, 9 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
+>> index 1c54d0b75b1a..4ef549386add 100644
+>> --- a/drivers/thermal/mediatek/lvts_thermal.c
+>> +++ b/drivers/thermal/mediatek/lvts_thermal.c
+>> @@ -284,11 +284,14 @@ static int lvts_raw_to_temp(u32 raw_temp, int temp_factor)
+>>     static u32 lvts_temp_to_raw(int temperature, int temp_factor)
+>>   {
+>> -    u32 raw_temp = ((s64)(golden_temp_offset - temperature)) << 14;
+>> +    u32 raw_temp;
+>>   -    raw_temp = div_s64(raw_temp, -temp_factor);
+>> +    if (temp_factor == 0)
+>> +        return temperature;
+>>   -    return raw_temp;
+>> +    raw_temp = ((s64)(golden_temp_offset - temperature)) << 14;
+>> +
+>> +    return div_s64(raw_temp, -temp_factor);
+>>   }
+>>     static int lvts_get_temp(struct thermal_zone_device *tz, int *temp)
+>> @@ -1346,6 +1349,9 @@ static int lvts_probe(struct platform_device *pdev)
+>>       if (irq < 0)
+>>           return irq;
+>>   +    if (!lvts_data->temp_factor)
+>> +        dev_warn(dev, "temp_factor should never be zero; check platform data.\n");
+>> +
+>>       golden_temp_offset = lvts_data->temp_offset;
+>>         ret = lvts_domain_init(dev, lvts_td, lvts_data); 
+> If
+>
+>
+>
+>
+>
 
 
