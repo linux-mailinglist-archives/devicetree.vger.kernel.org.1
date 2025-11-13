@@ -1,765 +1,169 @@
-Return-Path: <devicetree+bounces-238142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 539A9C57AC4
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:32:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD9FC57AC1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:32:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EA48C4E3275
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:31:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4BF24355618
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C68513AA2D;
-	Thu, 13 Nov 2025 13:31:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7C81DE8AF;
+	Thu, 13 Nov 2025 13:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uQ2z2tA5"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="RLf5/szz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0DBA1A26B
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 13:31:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D915D14D29B
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 13:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763040678; cv=none; b=TdmlePiF3lbuKp78OZyv1NVVsqWn6QnxQa3JRdaAielv2wjv85g3k+5r2IkGVDqqdyTsgi7MrFVEuqe4Bux2YRjmX3oBDbGt2g1i7EGyccRD2SyAZOXSQdIwWiOM2fC4aErzIoxeJUp4RXEwjWv6WSJb/8U8lstBfaDdf3OMDXU=
+	t=1763040698; cv=none; b=i/CulMR43XlOe5k2JQxQN4hWgqvostK15hsH/TKz1snOTosDndbATwnDxYTse7fOovn4B+KI6odc6GYEWdLxyW9xqZjJkZ3PocFJUrU18J2fuIidF7P0fv6aGgXeSDwEOCtQHzpuKaIXTkkIVruTlJRt67dctYNRG2ZyV4sV/pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763040678; c=relaxed/simple;
-	bh=qCv1zxq5bcZAWOKyzmK4fjXJyOXUcLMhHF7+LsNLcXE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=BSJoBZja0ovhSK2EkI6qytnhDaYv9Y5qgPV0yI92qCz4+MuNl+Szt9RZCUr6zMihP3uEInuztD04twuHA2qdPbMCsO4g4yl//pw4zTtdnSXgGEm7U7m612i2mCKq9J7NbD5blSGHoKPHwXnlqfeAP/MCjKFuXYw6QHv0VI2oEmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uQ2z2tA5; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so124805966b.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 05:31:15 -0800 (PST)
+	s=arc-20240116; t=1763040698; c=relaxed/simple;
+	bh=ozyIZ+DRAXgcmWNPabI3QVCnzbiWETR79BPnKWOg1ac=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eHPSqlLJxwGug9fgCgkwnsBLQfCp6LL6AHfFQCsZj5jna6ePPrnzF8XwjLd7+Si7i9dpXj6C4PbrFVbIdUZNXjwkA09+cTKenlxXHevkTQTy40v48DBZhwV3gb9F9RP0ZGLJ46h0W0DBj6aK86TYL5Z8wcPt9esyxWF03HQNzuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=RLf5/szz; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5957d7e0bf3so1457900e87.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 05:31:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763040674; x=1763645474; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=R3Dqt47bT9tRJg8DFRDd8CZytQ/KWmH/+6ypW+kSsd8=;
-        b=uQ2z2tA52yE6n9dNL+OawG1ixz9dixYtVPSGmajGvm9WZJu1Svsw8zuppI2McbYB/7
-         HjaTEsySGLHDxLoU7UKijCbUyqVBd3B5qd5b+COYgMthbyU//jjymT2E0TTXbopkM8Ic
-         kJFKmb09lUAYdtYcF8z5AqOuontS4jPwisD2ZS8dpgx/P9eiGvcIOrzu6ZKTlBGMktim
-         KFp0Ab3rAFtLUpzPGhl+mnBUdwRQmnHRsX1dj+Mp6qoQjQ4OJIn2URJCzFXKEEiMTN9O
-         gVtfkaPHdtOXo0+qW8NzIQh/YixGoKQPvKlXqA1/b36dztbvDIamDr3wBe3n4WnIl+hu
-         2X3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763040674; x=1763645474;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1763040694; x=1763645494; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=R3Dqt47bT9tRJg8DFRDd8CZytQ/KWmH/+6ypW+kSsd8=;
-        b=NbXyd7rUV3Q3Oz0UK0zJw+HBvKcg+GNXg9yI8QfwwImrKMYKWrhizP7QPIbvlMOGrk
-         95li2ksTB0sImu3UOAkaNVMJJKPk77lnlLO4nBCcCT2YxTsUXJry91+ifz+tnlGjFTkq
-         qamXBScBfmnr4BOvFTAHviLz46WXJx9FoGhQDkY4HqM4AjVpYP9yjS5+YrraAUHyQu7U
-         c3Wv/wBmbk4mgzdoEYbR3vWo/UG57WH+UHnV7EfN/3JtCGngNPIJ/N36RkRhDjwJtbDj
-         KXEx218RD+36HVqP6dM1FsqQLjjrxe5fUVM39vn+pQomqTp9ARQQk79+MBnPTA+nxW1x
-         FpSw==
-X-Forwarded-Encrypted: i=1; AJvYcCVvt1BKNbHXsA8MdEzLzRQgTKP/ncP6Dcr1KNAiU5zbpSZNJ4dHd3KdZn2u7mlkhYmBuF7QcGiiEpK1@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywe9b6rYO0N5eEHX1ReXusfKRJfuMZuSSbSCbbafgG2TLv9IWSF
-	hn/SjI0678SQK6/Cztc7AMJOLSoCGkeGkU/0zV+Ud4U/n2Uif1muf7EUMyq8Q4fcWQo=
-X-Gm-Gg: ASbGncsfyi1j7ArePUnrQZzTICM/5DRQ+MKRmY96rT/KXGPz2JXFAhs4gJVnZY+wdq9
-	xB/71XzE7VrbSHppLSZhY8jMRn8QYIT75YIG5MFj0Jov5oSxSMU3Cw9bBhxlFGYBFGF830+Wnmr
-	cetqS7R8XCISvUAZuCM+gbhb20AWCklj0/BEYfFC2cSXC44nBLuyCW3OJ/0Ask9chmlwmFyQQNp
-	eyEpmGlrpyX3GetldPpW4CHQFZhwb7HFusWnjBxglAoV3qGW4CTd7qjw98jkG1TYdWHicVN6aWA
-	acrbu722/QBgdJjWpti2NspryYowRRJy3k+uCksDHks/OdCB2c0zX5Gex68ICFLIM/VRRnudGff
-	j1rUrPoPK8Wl2aKbf4Ez5t1rqttjumOOymUUhaXwxNsuQPCSEn+L4bbVlf5zVjS+GtTke/9cgqU
-	gv/88EhHrDJXJ3tnrBYvHBG9sv/znvrzUdLUBFrJPam0IrTXGLIoL4qAlIilraFWdmLR0=
-X-Google-Smtp-Source: AGHT+IGHxIo0Q+JtQIZs17biyUyimW3Lh/jOSGuiHHiwlpi/rTlUut6b9te1pq8EpoKb52ZnGoz/Zg==
-X-Received: by 2002:a17:907:934c:b0:b73:4202:f108 with SMTP id a640c23a62f3a-b734202f8f8mr421331766b.11.1763040674147;
-        Thu, 13 Nov 2025 05:31:14 -0800 (PST)
-Received: from puffmais2.c.googlers.com (180.192.141.34.bc.googleusercontent.com. [34.141.192.180])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fd809fasm165197866b.45.2025.11.13.05.31.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Nov 2025 05:31:13 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Thu, 13 Nov 2025 13:31:10 +0000
-Subject: [PATCH] arm64: dts: exynos: gs101-pixel: add all S2MPG1x
- regulators
+        bh=73kr7nUrOWZMw2Xrq3JK7B68+7C7ERu+i4U/2oSeqZY=;
+        b=RLf5/szzPsqFeDCV3opzXWfb0Ldojdtec8pQE3xNDEhETeIs/yOkZbdXLVp4EEkrIZ
+         QpfBvawPoegB/EtYhzVvIJ/MrYSSmoZu+Gf9comaIWAEujb8gSPYXnUf8geDlOoaVqcw
+         8H+HesTJqMQZgCfvj7IxVvMtG8EcJGGB1sXixe4YycCb8i6CeKb9120eRoL00JKYeeTv
+         42bNPTNAZwbL3pvkZthRqGeGKSWfFpRIosZE8uJJtkg/JFfBsc8A4GoG43jnXGFqGPrW
+         4SbyByIn6hDOGX77lIH0wiTKLqhsSS2rxX7EKezvibn4f8vmrDs+Xx1Ka9R7u7nhY3yM
+         yXFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763040694; x=1763645494;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=73kr7nUrOWZMw2Xrq3JK7B68+7C7ERu+i4U/2oSeqZY=;
+        b=vrvBUl5NV89Az5IrrOLb/y3T/L9uqadyySvCjXlZwjDsgvZcdw4ZwmNIZhTcAkIlFf
+         AEhjtgWj6BS9YhYTHHyl+eK9WsrHCz67yGLyPmfyCyOxcLkjSGy2wjcGT+Wie8DzdyKZ
+         4jmyAqdeuUdQY6GiOhPrAIuEdA9z0RpvC03+EHE160jJUMNEppWGDFfJoxiwwlD10mje
+         Yw3+9XHu7xUJyAEtiSsGJbHRdRyHBA5yUnyO6KoqCYSwUxeiys8QZP3U/dNpFqcWTYWx
+         2xS3gwmkGBw2eM0H78tZRgo1g7tIq66uj1ZU2YnU8EOWj2c0yYmZo2t3BMDkKKdEUCyF
+         YlUg==
+X-Forwarded-Encrypted: i=1; AJvYcCVOi1KTFWpd9FdpbqMQogsOoS8/qVJQakKMigxz+APTYTNIUbNjGUdAti+QjGh3APTI8YggoRVSPUef@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhQ0fMUF7d7pOXDFcHVPou7Qmw7cI0095Ud+7B9GahrLsMyuv3
+	tSV9ujZ361gIVL6kZpNslgDu3RAlY7FuO6DaNT2KDM4DtCsqsc30oy0ZZ7h006Mqr1WeXoU8Rzy
+	G4qchBtvjA/gaCTTpEi0wZvUrrxtciz3xKWRzpQ79AQ==
+X-Gm-Gg: ASbGncvy6McbP1llefMIPtnKcxWpcnug+wj50ng5ggYCQ8cDX4CuHsQ3dx5Y9ikiasY
+	hy1U8nT0iWXUqqzQq8dJibvnn/p22Cus5i6BMHBXwQZ1eRAil4BUDjiHZAIiYWwApOHIi0Dzui5
+	pONQjXQkJ+yLTsBBF2xdCLpQQgCFUQsrdZJ+mZhuWeVMwFIyRv9dyxLadm4YfGtaNLzbDILb8lQ
+	J7kCD+KHFqxgUsoK20xfmtPh2ILiMVtWN2LEzLD0EhoPyFbpFjCnZQMvz18rXZZvRhUSMbDW6Jz
+	v2bAiiE8nBcYrz+V
+X-Google-Smtp-Source: AGHT+IFmYGYaNrPxFWU0ghXUofhzNye14/5vushtgIFDWSfgA/MklzOW/JNoBE9rLO+zgbK8iJzH+WbW5agg2UGK7Co=
+X-Received: by 2002:a05:6512:144d:20b0:595:7b24:d352 with SMTP id
+ 2adb3069b0e04-5957ececb1fmr730185e87.24.1763040694032; Thu, 13 Nov 2025
+ 05:31:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251113-s2mpg1x-regulators-dts-v1-1-80a70ef42be1@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAJ3dFWkC/33MywqDMBCF4VcJs+5AovZiXqW4GM3EBuotiSKI7
- 95YF911+R843waBveMAWmzgeXHBDX0KdRHQvKhvGZ1JDZnMrvImcwxZN7ZqRc/t/KY4+IAmBiS
- mojacG2tLSOfRs3XrF35WZ3ue5uTHc/zxWvzD71So5pGXJdVWL8Vh1xQYm6HrXNSi5zXiASilJ
- FT7/gG85g8a0wAAAA==
-X-Change-ID: 20250603-s2mpg1x-regulators-dts-aea4bde3dff9
-To: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, 
- Juan Yescas <jyescas@google.com>, Douglas Anderson <dianders@chromium.org>, 
- kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+References: <20251107-qcom-sa8255p-emac-v5-0-01d3e3aaf388@linaro.org>
+ <20251107-qcom-sa8255p-emac-v5-3-01d3e3aaf388@linaro.org> <9805b902-95bb-4b18-b65f-f6efdfb6807a@oss.qualcomm.com>
+In-Reply-To: <9805b902-95bb-4b18-b65f-f6efdfb6807a@oss.qualcomm.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 13 Nov 2025 14:31:22 +0100
+X-Gm-Features: AWmQ_bmfo87z1zTXv8LP-M-WOLEoIFCS2S60P9_2zq_qXBjBuZTULdbiMAAMcS0
+Message-ID: <CAMRc=MdWu5x5bgh4CfPsowJnF0Qh1W770KTDtTFMkGkQf4_LKg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/8] net: stmmac: qcom-ethqos: improve typing in devres callback
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Matthew Gerlach <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Keguang Zhang <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
+	Romain Gantois <romain.gantois@bootlin.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>, 
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Maxime Ripard <mripard@kernel.org>, Shuang Liang <liangshuang@eswincomputing.com>, 
+	Zhi Li <lizhi2@eswincomputing.com>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
+	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, Clark Wang <xiaoning.wang@nxp.com>, 
+	Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>, 
+	Samin Guo <samin.guo@starfivetech.com>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S <swathi.ks@samsung.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Most rails are the same between Pixel 6 and Pro, with the following
-differences:
-    * only Pro has UWB
-    * Pro uses l2m, not l14m, for TCXO
-    * Pro uses bucka, not l31m, for NFC
+On Fri, Nov 7, 2025 at 11:50=E2=80=AFAM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 11/7/25 11:29 AM, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > It's bad practice to just directly pass void pointers to functions whic=
+h
+> > expect concrete types. Make it more clear what type ethqos_clks_config(=
+)
+> > expects.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/=
+drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> > index 8578a2df8cf0d1d8808bcf7e7b57c93eb14c87db..8493131ca32f5c6ca7e1654=
+da0bbf4ffa1eefa4e 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> > @@ -726,7 +726,9 @@ static int ethqos_clks_config(void *priv, bool enab=
+led)
+> >
+> >  static void ethqos_clks_disable(void *data)
+> >  {
+> > -     ethqos_clks_config(data, false);
+> > +     struct qcom_ethqos *ethqos =3D data;
+> > +
+> > +     ethqos_clks_config(ethqos, false);
+>
+> ethqos_clks_config() takes a voidptr too
+>
+> Konrad
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
-Please note that this patch depends on the bindings updates for S2MPG1x
-from
-https://lore.kernel.org/all/20251110-s2mpg1x-regulators-v4-0-94c9e726d4ba@linaro.org/
+Right. I think I had something in mind when I wrote it but I'm not
+sure what anymore. Best drop this.
 
-I've left out conversion of placeholder regulators for now, because
-some more testing is required for such changes.
-
-With this in change (and the corresponding driver updates), the most
-noteable change is that the display is turned off at some point during
-boot (since we don't have a display driver yet). To avoid that, one
-could boot with regulator_ignore_unused or vci_disp (ldo22m) could be
-marked as regulator-always-on. I've not done that to ensure power
-consumption is reduced by default and the phone stays cool and the
-battery charges using the default settings configured by the bootloader.
----
- arch/arm64/boot/dts/exynos/google/gs101-oriole.dts |  22 +
- .../boot/dts/exynos/google/gs101-pixel-common.dtsi | 494 ++++++++++++++++++++-
- arch/arm64/boot/dts/exynos/google/gs101-raven.dts  |  18 +
- 3 files changed, 533 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-index 8df42bedbc036b5e97f6238d64820370043ffef2..36721adcaa239da20d63173bdeab67f4381f3c91 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-@@ -8,6 +8,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/regulator/samsung,s2mpg10-regulator.h>
- #include "gs101-pixel-common.dtsi"
- 
- / {
-@@ -15,6 +16,27 @@ / {
- 	compatible = "google,gs101-oriole", "google,gs101";
- };
- 
-+&acpm_ipc {
-+	pmic-1 {
-+		regulators {
-+			ldo14m {
-+				/* PLL */
-+				regulator-name = "avdd18_tcxo";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_TCXO_ON>;
-+			};
-+
-+			ldo31m {
-+				regulator-name = "nfc";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+			};
-+		};
-+	};
-+};
-+
- &cont_splash_mem {
- 	reg = <0x0 0xfac00000 (1080 * 2400 * 4)>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
-index 93892adaa679439bd87b0630cf9416b05c9d4536..f957e0abe9a0ea8a015334424a64b69b26d789de 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
-@@ -10,6 +10,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/regulator/samsung,s2mpg10-regulator.h>
- #include <dt-bindings/usb/pd.h>
- #include "gs101-pinctrl.h"
- #include "gs101.dtsi"
-@@ -101,7 +102,7 @@ cont_splash_mem: splash@fac00000 {
- };
- 
- &acpm_ipc {
--	pmic {
-+	pmic-1 {
- 		compatible = "samsung,s2mpg10-pmic";
- 		interrupts-extended = <&gpa0 6 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
-@@ -109,6 +110,22 @@ pmic {
- 		system-power-controller;
- 		wakeup-source;
- 
-+		vinl1m-supply = <&s2mpg11_buck3s>;
-+		vinl2m-supply = <&s2mpg11_buck3s>;
-+		vinl3m-supply = <&s2mpg10_buck8m>;
-+		vinl4m-supply = <&s2mpg10_buck9m>;
-+		vinl5m-supply = <&s2mpg10_buck9m>;
-+		vinl6m-supply = <&s2mpg10_buck9m>;
-+		vinl7m-supply = <&s2mpg11_buck6s>;
-+		vinl8m-supply = <&s2mpg11_buck6s>;
-+		vinl9m-supply = <&s2mpg11_buck7s>;
-+		vinl10m-supply = <&s2mpg11_buck7s>;
-+		vinl11m-supply = <&s2mpg11_buck7s>;
-+		vinl12m-supply = <&s2mpg11_bucka>;
-+		vinl13m-supply = <&s2mpg11_bucka>;
-+		vinl14m-supply = <&s2mpg11_buckboost>;
-+		vinl15m-supply = <&s2mpg11_buckboost>;
-+
- 		clocks {
- 			compatible = "samsung,s2mpg10-clk";
- 			#clock-cells = <1>;
-@@ -117,6 +134,475 @@ clocks {
- 		};
- 
- 		regulators {
-+			buck1m {
-+				regulator-name = "vdd_mif";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_PWREN_MIF>;
-+			};
-+
-+			buck2m {
-+				regulator-name = "vdd_cpucl2";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_CPUCL2_EN2>;
-+			};
-+
-+			buck3m {
-+				regulator-name = "vdd_cpucl1";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_CPUCL1_EN2>;
-+			};
-+
-+			buck4m {
-+				regulator-name = "vdd_cpucl0";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_PWREN>;
-+			};
-+
-+			buck5m {
-+				regulator-name = "vdd_int";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_PWREN_MIF>;
-+			};
-+
-+			buck6m {
-+				regulator-name = "vdd_cpucl2_m";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_CPUCL2_EN2>;
-+			};
-+
-+			buck7m {
-+				/* GPU */
-+				regulator-name = "vdd_int_m";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_PWREN_MIF>;
-+			};
-+
-+			s2mpg10_buck8m: buck8m {
-+				regulator-name = "lldo2";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			s2mpg10_buck9m: buck9m {
-+				regulator-name = "lldo3";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			buck10m {
-+				regulator-name = "vdd_tpu";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_TPU_EN>;
-+			};
-+
-+			ldo1m {
-+				/* ALIVE, AOC PLL */
-+				regulator-name = "vdd_l1m_alive";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+			};
-+
-+			ldo2m {
-+				/* lots, DDR */
-+				regulator-name = "vdd_l2m_alive";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-always-on;
-+			};
-+
-+			ldo3m {
-+				/* AVDD: MIPI CSI & DSI, PLL: CPUCL SHARED TPU UFS */
-+				regulator-name = "ldo3m";
-+				regulator-min-microvolt = <725000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_PWREN_MIF>;
-+			};
-+
-+			ldo4m {
-+				/* AVDD: MIPI CSI & DSI, UFS, OTP, TS_SUB, TS_TOP, XOTP */
-+				regulator-name = "ldo4m";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_PWREN_MIF>;
-+			};
-+
-+			ldo5m {
-+				/* VDD: ADD, AVDD: TCXO & TCXO_FAR */
-+				regulator-name = "avdd075_tcxo";
-+				regulator-min-microvolt = <725000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_TCXO_ON>;
-+			};
-+
-+			ldo6m {
-+				/* PLL CPUCL & MIFx, UFS clk, MIPI DSI */
-+				regulator-name = "vdd_pll";
-+				regulator-min-microvolt = <725000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_PWREN_MIF>;
-+			};
-+
-+			ldo7m {
-+				/* IO (HSI (USB)) */
-+				regulator-name = "vdd_hsi";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <6250>;
-+				/*
-+				 * TODO: link to HSI power domain, without this,
-+				 * Linux hangs during USB access.
-+				 */
-+				regulator-always-on;
-+			};
-+
-+			ldo8m {
-+				regulator-name = "vdd085_usb";
-+				regulator-min-microvolt = <725000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-always-on;
-+			};
-+
-+			ldo9m {
-+				regulator-name = "vdd18_usb";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-always-on;
-+			};
-+
-+			ldo10m {
-+				regulator-name = "vdd33_usb";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3350000>;
-+				regulator-always-on;
-+			};
-+
-+			ldo11m {
-+				regulator-name = "vdd_cpucl1_m";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_CPUCL1_EN2>;
-+			};
-+
-+			ldo12m {
-+				regulator-name = "vdd_cpucl0_m";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_PWREN>;
-+			};
-+
-+			ldo13m {
-+				regulator-name = "vdd_tpu_m";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_TPU_EN>;
-+			};
-+
-+			ldo15m {
-+				regulator-name = "vdd_slc_m";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+			};
-+
-+			ldo16m {
-+				regulator-name = "vdd085_pcie0";
-+				regulator-min-microvolt = <725000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
-+
-+			ldo17m {
-+				regulator-name = "vdd085_pcie1";
-+				regulator-min-microvolt = <725000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
-+
-+			ldo18m {
-+				regulator-name = "vdd18_pcie0";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+			};
-+
-+			ldo19m {
-+				regulator-name = "vdd18_pcie1";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+			};
-+
-+			ldo20m {
-+				/* DMIC, memory power */
-+				regulator-name = "vddq_aoc_pdm";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG10_EXTCTRL_LDO20M_EN2>;
-+			};
-+
-+			ldo21m {
-+				/* Dauntless  */
-+				regulator-name = "vdd_dtls";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+			};
-+
-+			ldo22m {
-+				/* display */
-+				regulator-name = "vci_disp";
-+				regulator-min-microvolt = <3025000>;
-+				regulator-max-microvolt = <3025000>;
-+			};
-+
-+			ldo25m {
-+				/* touch */
-+				regulator-name = "dvdd_tsp";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+			};
-+
-+			ldo26m {
-+				/* touch */
-+				regulator-name = "avdd_ts";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			ldo27m {
-+				/* under-display fingerprint scanner */
-+				regulator-name = "avdd_udfps";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+		};
-+	};
-+
-+	pmic-2 {
-+		compatible = "samsung,s2mpg11-pmic";
-+		interrupts-extended = <&gpa0 7 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sub_pmic_int>;
-+		wakeup-source;
-+
-+		vinl1s-supply = <&s2mpg10_buck8m>;
-+		vinl2s-supply = <&s2mpg11_buck6s>;
-+		vinl3s-supply = <&s2mpg11_buck7s>;
-+		vinl4s-supply = <&s2mpg11_buck7s>;
-+		vinl5s-supply = <&s2mpg11_buckboost>;
-+		vinl6s-supply = <&s2mpg11_buckboost>;
-+		vinbd-supply = <&s2mpg11_buckboost>;
-+
-+		regulators {
-+			buck1s {
-+				/* multimedia */
-+				regulator-name = "vdd_cam";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG11_EXTCTRL_PWREN_MIF>;
-+			};
-+
-+			buck2s {
-+				regulator-name = "vdd_g3d";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG11_EXTCTRL_G3D_EN>;
-+			};
-+
-+			s2mpg11_buck3s: buck3s {
-+				regulator-name = "lldo1";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			buck4s {
-+				/* DDR */
-+				regulator-name = "vdd2h_mem";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+			};
-+
-+			buck5s {
-+				/* DDR */
-+				regulator-name = "vddq_mem";
-+				regulator-min-microvolt = <400000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG11_EXTCTRL_PWREN_MIF>;
-+			};
-+
-+			s2mpg11_buck6s: buck6s {
-+				regulator-name = "lldo4";
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			s2mpg11_buck7s: buck7s {
-+				regulator-name = "mldo";
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <2200000>;
-+				regulator-ramp-delay = <6250>;
-+			};
-+
-+			buck8s {
-+				regulator-name = "vdd_g3d_l2";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG11_EXTCTRL_G3D_EN>;
-+			};
-+
-+			buck9s {
-+				regulator-name = "vdd_aoc";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+			};
-+
-+			buck10s {
-+				/* DDR */
-+				regulator-name = "vdd2l_mem";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+			};
-+
-+			buckd {
-+				regulator-name = "vcc_ufs";
-+				regulator-min-microvolt = <2400000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG11_EXTCTRL_UFS_EN>;
-+			};
-+
-+			s2mpg11_bucka: bucka {
-+				/* lots, IO */
-+				regulator-name = "bucka";
-+				regulator-min-microvolt = <1700000>;
-+				regulator-max-microvolt = <2100000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+			};
-+
-+			s2mpg11_buckboost: buckboost {
-+				regulator-name = "buckboost";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3600000>;
-+			};
-+
-+			ldo1s {
-+				regulator-name = "vdd_g3d_m";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG11_EXTCTRL_G3D_EN>;
-+			};
-+
-+			ldo2s {
-+				regulator-name = "vdd_aoc_ret";
-+				regulator-min-microvolt = <450000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+			};
-+
-+			ldo6s {
-+				/* sensors */
-+				regulator-name = "vdd_prox";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			ldo7s {
-+				/* sensors */
-+				regulator-name = "vdd_sensors";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+			};
-+
-+			ldo8s {
-+				regulator-name = "vccq_ufs";
-+				regulator-min-microvolt = <1130400>;
-+				regulator-max-microvolt = <1281200>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG11_EXTCTRL_UFS_EN>;
-+			};
-+
-+			ldo9s {
-+				regulator-name = "vdd_gnss";
-+				regulator-min-microvolt = <725000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
-+
-+			ldo10s {
-+				regulator-name = "vdd_gnss_rf";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+			};
-+
-+			ldo11s {
-+				regulator-name = "vdd_gnss_aux";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+			};
-+
-+			ldo13s {
-+				regulator-name = "vddq_mmc";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3350000>;
-+				regulator-always-on;
-+				samsung,ext-control = <S2MPG11_EXTCTRL_LDO13S_EN>;
-+			};
- 		};
- 	};
- };
-@@ -317,6 +803,12 @@ pmic_int: pmic-int-pins {
- 		samsung,pin-pud = <GS101_PIN_PULL_NONE>;
- 	};
- 
-+	sub_pmic_int: sub-pmic-int-pins {
-+		samsung,pins = "gpa0-7";
-+		samsung,pin-function = <GS101_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <GS101_PIN_PULL_NONE>;
-+	};
-+
- 	key_power: key-power-pins {
- 		samsung,pins = "gpa10-1";
- 		samsung,pin-function = <GS101_PIN_FUNC_EINT>;
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-raven.dts b/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
-index 1e7e6b34b8649bc700a745c579a0268f0f6a9524..a422542715f27c8ea7a624f749b6d92e1bcb3429 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
-@@ -15,6 +15,24 @@ / {
- 	compatible = "google,gs101-raven", "google,gs101";
- };
- 
-+&acpm_ipc {
-+	pmic-2 {
-+		regulators {
-+			ldo4s {
-+				regulator-name = "vdd2_uwb";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			ldo14s {
-+				regulator-name = "vdd3_uwb";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1950000>;
-+			};
-+		};
-+	};
-+};
-+
- &cont_splash_mem {
- 	reg = <0x0 0xfac00000 (1440 * 3120 * 4)>;
- 	status = "okay";
-
----
-base-commit: edf57d8dafc63f9298a209e518ea6a2e0df78ed0
-change-id: 20250603-s2mpg1x-regulators-dts-aea4bde3dff9
-prerequisite-change-id: 20250603-s2mpg1x-regulators-7a41c8399abf:v4
-prerequisite-patch-id: 9d4a1e0afe6eb45dcd35a9537b7d5b4e35e801c3
-prerequisite-patch-id: 928fd84e5f6207a2fd98dd8372a91df0776ecfde
-prerequisite-patch-id: b87abb6b9a8fc104f0f752bca0e9347d17de72e0
-prerequisite-patch-id: e053834e5bec411f5c512b63a3528e49aad11ee2
-prerequisite-patch-id: 4fdd195c0b3fea537144ac8d82bb40a38cbde117
-prerequisite-patch-id: cc716fef97d6c25c0589d7269b8f34e04ea96216
-prerequisite-patch-id: 20ff503abaf2fcaef4328e1f8009ed3df242bad3
-prerequisite-patch-id: a0d80e8f49401dd79a7e4dda2517e00228aa3087
-prerequisite-patch-id: 2368af876ec7c643d9765d3fb1e9bc4991023a18
-prerequisite-patch-id: b70d5648790458e72db82e26b180bbd7301469b3
-prerequisite-patch-id: 92be1aa6f95b2a5795df84e11a602e97a41b2938
-prerequisite-patch-id: 86625bb109da618cbb8aef07fa717257918077b8
-prerequisite-patch-id: 2016c6cd5e0d51daddada37232e3b99c8f4ad77b
-prerequisite-patch-id: d323362e84d3991bd949745579aec34897620321
-prerequisite-patch-id: b1571de42ac7dcf0fe8ddb77650a656244ff751b
-prerequisite-patch-id: 44ea2393bc4df716427cbac9b7f080a683ba1c0b
-prerequisite-patch-id: c968c5b557897767bfc2629de79b1ede8ab48767
-prerequisite-patch-id: 221800199a94e12e928dc9606c82b6eb33cffa3a
-prerequisite-patch-id: c76d8055f620e0b5fa81101a31db08fd5a60e773
-prerequisite-patch-id: be0027a934451be02b1c4653bac8b6bc2ae2bd85
-
-Best regards,
--- 
-André Draszik <andre.draszik@linaro.org>
-
+Bart
 
