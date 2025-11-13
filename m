@@ -1,103 +1,202 @@
-Return-Path: <devicetree+bounces-238298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC77AC59B1B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:17:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5AA3C59B54
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:19:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3D713BB224
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:14:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 04AF6345103
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF6A31B13C;
-	Thu, 13 Nov 2025 19:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E4131A81D;
+	Thu, 13 Nov 2025 19:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cfBzblaG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jAWm3OCd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14EBF31B120;
-	Thu, 13 Nov 2025 19:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E727031A810;
+	Thu, 13 Nov 2025 19:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763061241; cv=none; b=HvxR6FCD/xuINPONsBmeV+515YyPHwmZ9qHGZnF1inZxlT38jGgYAfZgG3tD1u46wsDig9YKy0XG6alIH2R+FsKJy/7Xb5BHuKKKjJjiGy/v08v90JEfA5c4TZaFhRnSkPGgHzOizHZrvUdsKFcHe44oXDWKdWA/VwLh1yryPZw=
+	t=1763061383; cv=none; b=JVl3SY6n8601ne40rHfjV1PlWI6M5I6gSystZiiSud/hniXNF7dGYHc8E2cKFvJZZnS7VS0nHpJMuX4C/QNDD+24JZyUvutNxojBHKSGvKQTcXtLCRS1htfD/lXXwbgIZtR3nxBDZLyGGVn2f0VXaO3WyHfrQ3Lmg9EOMkPT8fQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763061241; c=relaxed/simple;
-	bh=jTWDk+BqohV3m4pXD2Ea/Pvbdh3J2t6AMrMnl8XqWNM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NkfdsvyoN3wqMow5ZqY/HsiIMOCelgsOZKSNSCFiPgSN2CNmr5cMV+0lkjsJSHfbeE+KPkTTRdbICwlobFg/CSJLFpZ9nMhHwUJ+caK2G9LESqR4wMfxyrZTzLeMDuqjEZwOXvRzCHhYivYTlQ0LZbPYcZo20W+nkGvkgKU61Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cfBzblaG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8FAFC113D0;
-	Thu, 13 Nov 2025 19:13:54 +0000 (UTC)
+	s=arc-20240116; t=1763061383; c=relaxed/simple;
+	bh=IblUqGpTbIRtiXEqbdz5S15EKx867g0thOANjT9zzo0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tqXoN29cJz50toETGMuTyXeEIKDHkpHuKz27Quf3GPAT0nf4E1PNdnODQS6Rx7Hy0GWS72T03z2ZO93Ii42gACQC4lTG7H9P0NswBLeUCkn/CDr+QSRbtQlAHx/ac3FdAb0VkLqH/B3Ti4ECzcLDy6ZdRNgBqemB1opCGpkzX3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jAWm3OCd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DE21C113D0;
+	Thu, 13 Nov 2025 19:16:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763061240;
-	bh=jTWDk+BqohV3m4pXD2Ea/Pvbdh3J2t6AMrMnl8XqWNM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cfBzblaGV5hhZbOf+DAbxa0lXzHi4wNDeV83e/hMffLKgQ9aQzRt5eagWi2nPqVig
-	 +OgYRY0az8+Cx1dALXALokHuXG9h4Ac0KocHu2f2aOFrh5JfP5kb5N2PGQ+jWRkgFZ
-	 sQO5P/6ZVQGgc0tbu/wiJi2+KByxtaQcvyCHWokq7luXvunk4iaagmEBd7E/dILMJ7
-	 O0OEDG02xpXqVoTVHxOJWhrQ1iUwv/awNcNmXnToyD9TD2PPENLItvCkEQZon2ybcL
-	 cBey4qKmDoPGH+bX/4ZC4EIlu/PFZnOgoYOFnwFZ672IwX+pcaSSfkBElCf46zNrZt
-	 56xqzpPXgEojg==
-Message-ID: <7cfd85f6-54e9-42df-8330-d81fbe441ca5@kernel.org>
-Date: Thu, 13 Nov 2025 20:13:52 +0100
+	s=k20201202; t=1763061382;
+	bh=IblUqGpTbIRtiXEqbdz5S15EKx867g0thOANjT9zzo0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jAWm3OCdZCohQVKp5xXcn4czTWQ2MTmmYQBUnepiL/xkhVs6FGcaMfyOJocxIz7Bp
+	 5V1tpOfeN/K8T7KYy8X/7mAkx2OyFLh336Et0Q8Xr4N6XyTYOUBc/j6rhxx/P90J1r
+	 w2YIuNuxfi2VH0RJo2wSezaWCaZ7uUnHVrpbxdVG3LWs5GMsAJMv5QaW2quFEtKicP
+	 K12bENP+L8JMTxNVY1si2rwXPADgiezPGKXDCtVWufNcSKOD6PqjHfQRr5D1OIiw5u
+	 u9JNu2wVtrmHHuBzWHK2yOj/8BefmBT2ArjGapig3s8vDGX4KDuSvXVKvpHQcuEJr9
+	 T+6Q/gD9Wrpig==
+Date: Thu, 13 Nov 2025 19:16:18 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+Cc: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"Simek, Michal" <michal.simek@amd.com>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [PATCH] dt-bindings: usb: dwc3-xilinx: Describe the reset
+ constraint for the versal platform
+Message-ID: <20251113-risk-doorstop-4ec156b58d0a@spud>
+References: <20251112155430.1326426-1-radhey.shyam.pandey@amd.com>
+ <20251112-bagging-diameter-4ebab1f9ed45@spud>
+ <MN0PR12MB59537C0F520B40977620BFCDB7CDA@MN0PR12MB5953.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/22] riscv: Memory type control for platforms with
- physical memory aliases
-To: Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-mm@kvack.org
-Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
- linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
- Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
- Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
- <Liam.Howlett@oracle.com>, Andy Whitcroft <apw@canonical.com>,
- Dwaipayan Ray <dwaipayanray1@gmail.com>, Joe Perches <joe@perches.com>,
- Julia Lawall <Julia.Lawall@inria.fr>, Lukas Bulwahn
- <lukas.bulwahn@gmail.com>, Nicolas Palix <nicolas.palix@imag.fr>
-References: <20251113014656.2605447-1-samuel.holland@sifive.com>
-From: "David Hildenbrand (Red Hat)" <david@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20251113014656.2605447-1-samuel.holland@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="R/LfrMLgE6sszEZI"
+Content-Disposition: inline
+In-Reply-To: <MN0PR12MB59537C0F520B40977620BFCDB7CDA@MN0PR12MB5953.namprd12.prod.outlook.com>
 
-On 13.11.25 02:45, Samuel Holland wrote:
-> 
-> On some RISC-V platforms, including StarFive JH7100 and ESWIN EIC7700,
-> DRAM is mapped to multiple physical address ranges, with each alias
-> having a different set of statically-determined Physical Memory
-> Attributes (PMAs), such as cacheability. Software can alter the PMAs for
-> a page by selecting a PFN from the corresponding physical address range.
-> On these platforms, this is the only way to allocate noncached memory
-> for use with noncoherent DMA.
-> 
-> These physical memory aliases are only visible to architecture code.
-> Generic MM code only ever sees the primary (cacheable) alias. The major
-> change from v1 of this series is that I was asked to move the hooks from
-> pfn_pXX()/pXX_pfn() to set_pXX()/pXXp_get().
-> 
->   - Patches 1-10 ensure that architecture-specific code that hooks page
->     table reads and writes is always called, and the calls are balanced.
 
-It is not immediately clear to me from the description why that is 
-required. Can you summarize the core problem here, and why we have to 
-route everything through these accessors?
+--R/LfrMLgE6sszEZI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Cheers
+On Thu, Nov 13, 2025 at 12:15:02PM +0000, Pandey, Radhey Shyam wrote:
+> [Public]
+>=20
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: Thursday, November 13, 2025 12:38 AM
+> > To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>
+> > Cc: gregkh@linuxfoundation.org; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>; linux-
+> > usb@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git (AMD-Xili=
+nx)
+> > <git@amd.com>
+> > Subject: Re: [PATCH] dt-bindings: usb: dwc3-xilinx: Describe the reset =
+constraint for
+> > the versal platform
+> >
+> > On Wed, Nov 12, 2025 at 09:24:30PM +0530, Radhey Shyam Pandey wrote:
+> > > AMD Versal platform USB 2.0 IP controller receives one reset input
+> > > from the SoC controlled by the CRL.RST_USB [RESET] register so
+> > > accordingly describe reset constraints.
+> > >
+> > > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> > > ---
+> > >  .../devicetree/bindings/usb/dwc3-xilinx.yaml  | 43
+> > > +++++++++++++++----
+> > >  1 file changed, 34 insertions(+), 9 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> > > b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> > > index 36f5c644d959..cd0cc9da242f 100644
+> > > --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> > > @@ -50,17 +50,22 @@ properties:
+> > >      description:
+> > >        A list of phandles for resets listed in reset-names.
+> > >
+> > > -    items:
+> > > -      - description: USB core reset
+> > > -      - description: USB hibernation reset
+> > > -      - description: USB APB reset
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - description: USB controller reset
+> > > +      - items:
+> > > +          - description: USB core reset
+> > > +          - description: USB hibernation reset
+> > > +          - description: USB APB reset
+> > >
+> > >    reset-names:
+> > > -    items:
+> > > -      - const: usb_crst
+> > > -      - const: usb_hibrst
+> > > -      - const: usb_apbrst
+> > > -
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - const: usb_crst
+> >
+> > Why do we need all this oneOf stuff if both have the same first reset?
+> > Can't you just set minItems: 1?
+>=20
+> Thanks. I have now set minItems:1 and defined compatible based
+> reset min/max constraints. Doing some more validation and
+> will send out the v2.
+>=20
+> Example:
+> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> @@ -47,6 +47,7 @@ properties:
+>        - const: ref_clk
+>=20
+>    resets:
+> +    minItems: 1
+>      description:
+>        A list of phandles for resets listed in reset-names.
+>=20
+> @@ -56,6 +57,7 @@ properties:
+>        - description: USB APB reset
+>=20
+>    reset-names:
+> +    minItems: 1
+>      items:
+>        - const: usb_crst
+>        - const: usb_hibrst
+> @@ -95,6 +97,28 @@ required:
+>    - resets
+>    - reset-names
+>=20
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,versal-dwc3
+> +    then:
+> +      properties:
+> +        resets:
+> +          maxItems: 1
+> +        reset-names:
+> +          maxItems: 1
+> +    else:
+> +      properties:
+> +        resets:
+> +          minItems: 3
+> +          maxItems: 3
 
-David
+FWIW, this maxItems is not needed as it matches the number in the list.
+
+--R/LfrMLgE6sszEZI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRYuggAKCRB4tDGHoIJi
+0gT9AQCko4kdzAGADmzJ9rqSW1og+tEAc0KZ4IN9qoyyNQ7pigEA50Ga3HW83D8L
+WvF3aHpMsTZijeLjVl33kuBr+RPqgAY=
+=GL2A
+-----END PGP SIGNATURE-----
+
+--R/LfrMLgE6sszEZI--
 
