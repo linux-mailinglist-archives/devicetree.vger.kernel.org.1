@@ -1,144 +1,133 @@
-Return-Path: <devicetree+bounces-238213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D9EC58A79
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:18:07 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 595C5C58A5A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:16:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F029435A1AE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:58:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 68C0C34545A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 15:58:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F792F6911;
-	Thu, 13 Nov 2025 15:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B03355806;
+	Thu, 13 Nov 2025 15:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jb3daeNc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JLg62xZp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B9B2F5A2C;
-	Thu, 13 Nov 2025 15:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78578352929;
+	Thu, 13 Nov 2025 15:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763049228; cv=none; b=lJ1Qyh0DeCgDgLoD6SvNRRUtpOBGP4PdTIOFoz4OUftfjFoRbvGeaZsl9L56Iw6ozUrya5U+OxHd8wwrE2e907SEg3fPUXAwfJn2hlCnjRcmgHcFz+Xs5d7M4i2urUREzCVgpf5Hl6q9uRP1WnyTc2WvtqaRX5YLN7NPUS++sl4=
+	t=1763049251; cv=none; b=pR86j1etO8sODJ6kOFcmhkzJYgIc97USys1WbfAm+oKjn8Ey6vEwvHlf4lDscutwpC25KuSs27PVx83AUD7a+c2k/Uq1mgBfJYXZ42LPRR3iOCt3HtQcxKYjSwq9TvLXaCHL6nZg4PZnj35Vrhn7CrlPGYNLo7KbF0r6SESW394=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763049228; c=relaxed/simple;
-	bh=JxJauLY+ba1iXG0VTsoMlwTwiTPASiGsh3bv8D8L0GM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CAGv2PjBCN2O14jGCmjGOFSqVjUCYqmo/Eh1fKg1tf+KADB3crOforZrPZK+xCCFqVfxzC/B8P+qxX04pmOAK03oGs5jkCg+QJBf/g1hKjXfaH5Gyg+/6c9Q1iAftX2F1EkqWeePEkt9VxSEc74USTd0JBU02syKakiQ+XSw5Zk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jb3daeNc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9697EC113D0;
-	Thu, 13 Nov 2025 15:53:46 +0000 (UTC)
+	s=arc-20240116; t=1763049251; c=relaxed/simple;
+	bh=PksXhfm6DxsOyKhs9Ke2wv9TNPEzGflef5ZRqcdeWFw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=i2d97IAyUpVGBYCHCeyCLFjBPGwBei/WQyNrVst5dm3UpmGqR6yzt0K1f6y+pwPYt7/DicDU4qxxcDeQEUrde3GK186fZJ3KJmFKUPq72wbb8+VNW6epiF2ANEdzlSPFLmHKJPjllHZnKhSo9mgKiSru2DcKwJjyq2Bagnf/oxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JLg62xZp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1AB2C4CEFB;
+	Thu, 13 Nov 2025 15:54:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763049228;
-	bh=JxJauLY+ba1iXG0VTsoMlwTwiTPASiGsh3bv8D8L0GM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jb3daeNce383Za1kPNHvt+RSwKQvMS7xYs9ULFhOvWmR+JrMERX1c78Yyvk/KYpI6
-	 Dw2EyNd8Smzxofsi2apmDVFnFs51OC0q4/s1iO3Z5++t0fOy7dcMbz8zNWLcvVNsb0
-	 N4ckYgGLmEIiyuQelSqqP86SSwVUQxBM3rD8VkVTkvANTKHNB7gex7SjBPRO55lgtN
-	 zwWul+SpUO9CEuMhpg0xWqheCgfPuecuX8lqiSNCaSx2qBzjYvBH1SK+SfC7f2gEYX
-	 VqtnwcEi4Dn+CEEUl5h378BgoHCB7Q+dlL0w+aracZv5FNDVUHcv3q5tvKVsySPE1C
-	 WeivcU6ZvEGJg==
-Date: Thu, 13 Nov 2025 15:53:43 +0000
-From: Lee Jones <lee@kernel.org>
-To: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V9 2/3] leds: pwm: Add optional GPIO enable pin support
-Message-ID: <20251113155343.GM1949330@google.com>
-References: <20251105065012.88796-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20251105065012.88796-3-Qing-wu.Li@leica-geosystems.com.cn>
+	s=k20201202; t=1763049251;
+	bh=PksXhfm6DxsOyKhs9Ke2wv9TNPEzGflef5ZRqcdeWFw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=JLg62xZp+Cf9n4/V4/JASc36uOkBlJrNjWaDfju6VfwTy+RABTfYoPqm6vm3xxzl7
+	 AVHGsKSC5c/aq5FTqBNKdcTWd/Lt5HtSJGqYb0P+gERHBPfuyfdupdR4nJYWkS60ml
+	 1g0SNcgYsxcMi0pAJkzvjyq/8e5MvwuyT7uhITQWpo0o3abebssykmL7QtAmkBaUxz
+	 0IQnlkddtndT3OGd40fCrWTgQnFaQQo8EofQRKsEN00VfdcYsfGpE5DQw63stVVZct
+	 JTrunFYjFoshIsaJHUIGn1MBYcTKPsSqX/cbyQGqKhp1SCb2wJ+Yg3AVmhB9IfZkU1
+	 6m4fcuj/9dAng==
+Date: Thu, 13 Nov 2025 09:54:09 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	andersson@kernel.org, robh@kernel.org,
+	manivannan.sadhasivam@linaro.org, krzk@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v2] schemas: pci: Document PCIe T_POWER_ON
+Message-ID: <20251113155409.GA2283653@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251105065012.88796-3-Qing-wu.Li@leica-geosystems.com.cn>
+In-Reply-To: <aRWYoHvaCCN95ZR9@wunner.de>
 
-On Wed, 05 Nov 2025, LI Qingwu wrote:
-
-> Add support for optional GPIO-based enable pin control to PWM LED driver.
-> Some PWM LED driver chips like TPS92380 and LT3743 require a separate
-> enable signal in addition to PWM control. Implement support for such
-> GPIO control through the "enable-gpios" device tree property, activating
-> the pin when LED brightness is non-zero and deactivating it when off.
+On Thu, Nov 13, 2025 at 09:36:48AM +0100, Lukas Wunner wrote:
+> On Thu, Nov 13, 2025 at 09:33:54AM +0530, Krishna Chaitanya Chundru wrote:
+> > On 11/10/2025 6:11 PM, Lukas Wunner wrote:
+> > > On Mon, Nov 10, 2025 at 04:59:47PM +0530, Krishna Chaitanya Chundru wrote:
+> > > > From PCIe r6, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON
+> > > > is the minimum amount of time(in us) that each component must
+> > > > wait in L1.2.Exit after sampling CLKREQ# asserted before
+> > > > actively driving the interface to ensure no device is ever
+> > > > actively driving into an unpowered component and these values
+> > > > are based on the components and AC coupling capacitors used
+> > > > in the connection linking the two components.
+> > > > 
+> > > > This property should be used to indicate the T_POWER_ON for
+> > > > each Root Port.
+> > >
+> > > What's the difference between this property and the Port
+> > > T_POWER_ON_Scale and T_POWER_ON_Value in the L1 PM Substates
+> > > Capabilities Register?
+> > > 
+> > > Why do you need this in the device tree even though it's
+> > > available in the register?
+> > 
+> > This value is same as L1 PM substates value, some controllers
+> > needs to update this value before enumeration as hardware might
+> > now program this value correctly[1].
+> > 
+> > [1]: [PATCH] PCI: qcom: Program correct T_POWER_ON value for L1.2
+> > exit timing
+> > 
+> > <https://lore.kernel.org/all/20251104-t_power_on_fux-v1-1-eb5916e47fd7@oss.qualcomm.com/>
 > 
-> Tested on i.MX8MP EVK with TPS92380 LED driver chip
+> Per PCIe r7.0 sec 7.8.3.2, all fields in the L1 PM Substates Capabilities
+> Register are of type "HwInit", which sec 7.4 defines as:
 > 
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> ---
->  drivers/leds/leds-pwm.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>    "Register bits are permitted, as an implementation option, to be
+>     hard-coded, initialized by system/device firmware, or initialized
+>     by hardware mechanisms such as pin strapping or nonvolatile storage.
+>     Initialization by system firmware is permitted only for
+>     system-integrated devices.
+>     Bits must be fixed in value and read-only after initialization."
+>                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 > 
-> diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
-> index c73134e7b951..aa9e14d912bf 100644
-> --- a/drivers/leds/leds-pwm.c
-> +++ b/drivers/leds/leds-pwm.c
-> @@ -9,6 +9,7 @@
->   * based on leds-gpio.c by Raphael Assenat <raph@8d.com>
->   */
->  
-> +#include <linux/gpio/consumer.h>
->  #include <linux/module.h>
->  #include <linux/kernel.h>
->  #include <linux/platform_device.h>
-> @@ -26,6 +27,7 @@ struct led_pwm {
->  };
->  
->  struct led_pwm_data {
-> +	struct gpio_desc	*enable_gpio;
->  	struct led_classdev	cdev;
->  	struct pwm_device	*pwm;
->  	struct pwm_state	pwmstate;
-> @@ -51,6 +53,8 @@ static int led_pwm_set(struct led_classdev *led_cdev,
->  	if (led_dat->active_low)
->  		duty = led_dat->pwmstate.period - duty;
->  
-> +	gpiod_set_value_cansleep(led_dat->enable_gpio,  !!brightness);
-
-Nit: Too many spaces.
-
-Didn't checkpatch.pl pick this up?
-
-The rest of the set looks okay.
-
-> +
->  	led_dat->pwmstate.duty_cycle = duty;
->  	/*
->  	 * Disabling a PWM doesn't guarantee that it emits the inactive level.
-> @@ -132,6 +136,21 @@ static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
->  		break;
->  	}
->  
-> +	/*
-> +	 * Claim the GPIO as GPIOD_ASIS and set the value
-> +	 * later on to honor the different default states
-> +	 */
-> +	led_data->enable_gpio = devm_fwnode_gpiod_get(dev, fwnode, "enable", GPIOD_ASIS, NULL);
-> +	if (IS_ERR(led_data->enable_gpio)) {
-> +		if (PTR_ERR(led_data->enable_gpio) == -ENOENT)
-> +			/* Enable GPIO is optional */
-> +			led_data->enable_gpio = NULL;
-> +		else
-> +			return PTR_ERR(led_data->enable_gpio);
-> +	}
-> +
-> +	gpiod_direction_output(led_data->enable_gpio, !!led_data->cdev.brightness);
-> +
->  	ret = devm_led_classdev_register_ext(dev, &led_data->cdev, &init_data);
->  	if (ret) {
->  		dev_err(dev, "failed to register PWM led for %s: %d\n",
-> -- 
-> 2.43.0
+> These bits are not supposed to be writable by the operating system,
+> so what you're doing in that patch is not spec-compliant.
 > 
+> I think it needs to be made explicit in the devicetree schema that
+> the property is only intended for non-compliant hardware which allows
+> (and requires) the operating system to initialize the register.
 
--- 
-Lee Jones [李琼斯]
+I don't see a driver patch that uses this yet, but I assume the driver
+will use a device-specific way to set the value that will appear in
+the L1 PM Substates Capabilities register, and the register visible in
+config space probably is read-only as the PCIe spec describes, so I
+don't think this makes the hardware non-compliant.
+
+> Maybe it makes more sense to have a property which specifies the raw
+> 32-bit register contents, instead of having a property for each
+> individual field.  Otherwise you'll have to amend the schema
+> whenever the PCIe spec extends the register with additional fields.
+
+I don't have any personal experience with this hardware, but I think
+the device-specific registers that back the standard PCI config
+registers sometimes use different formats.  pcie-brcmstb.c is a good
+example that I've tripped over several times:
+https://lore.kernel.org/all/5ca0b4a2-ec3a-4fa5-a691-7e3bab88890a@broadcom.com/
+
+Bjorn
 
