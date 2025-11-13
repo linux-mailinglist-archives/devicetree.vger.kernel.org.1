@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-237886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAD8DC55553
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:50:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA320C55547
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:50:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E33D3B2C24
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 01:50:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CABAB4E1816
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 01:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5902E5B1B;
-	Thu, 13 Nov 2025 01:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 418F22E8B68;
+	Thu, 13 Nov 2025 01:47:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="h9BbaI20"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="UYKTvH1a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C4B2E06D2
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 01:47:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F252E427F
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 01:47:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762998437; cv=none; b=M/iD3TvyVO/i6l4E2NULfQdXJYSzpD4Lo9osQDI8M69bKJi2WXxF5WmXPOMb0HF0jJBR8O0Wrksvx/9fBowVnVKtcW5Wi4LnpjfjRvGXooRenZNmbRWvEs8Miva9mvaVwP9NIKXKh+8DvTNVSzuhvJR0mS3833ypLY6mvjI52tE=
+	t=1762998438; cv=none; b=h1lpz1YviuBciZp6Qbwla2pwsupTKdOX8xhJ7i+0AU7P2PYp60OsJH+7OhPoladA+r91lPJvQ9+pgyMw4+jjx12YHqwxokh3hxqf24rsZvLJeKYphyVGugWNd0JLlS3M1mnPNZUM4NmZ2ag9kcwhrl+1OuJQvOazk1CNljehyD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762998437; c=relaxed/simple;
-	bh=86DWhTWxpA+Wn6OoSODTxcACeGJ6z7eq0QJodNfrB5g=;
+	s=arc-20240116; t=1762998438; c=relaxed/simple;
+	bh=kgf9Y1avYCG16k+2jIsQME77PnvA1E0FdJ9r57gO51w=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bJQ9JY9LcnGsAysVVoRVkM2/NST765R0RYQ3AEdFkBZuWmT5O0A81yDVKLrYv+Fg+ewt2TZD9eX6u+Toro/vbhpnt9weFd8sSFOe3966m5kx5lkRGoyHXLh1SGnt5Iy1ESKwwz2B5XAngItd67rLOO4LymSLkJziFRprDfrRpJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=h9BbaI20; arc=none smtp.client-ip=209.85.215.180
+	 MIME-Version; b=Y0/FESDqOjz3U4fDAzJTCUEAwHHT97BNMmADy+VtwWbLHj58molZVklGvXTRTvzWlm2tSlF0OIx6arNd7Ir+qiLrEiFIwhdeVXw5CPKvpchCropkS9y3J+LISwwWETRbBwEu3lVHDHgUcyMZE9IJOWes1Cv6euduGk5hdZg+iOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=UYKTvH1a; arc=none smtp.client-ip=209.85.214.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b99bfb451e5so177199a12.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 17:47:14 -0800 (PST)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-298145fe27eso2890425ad.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 17:47:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1762998434; x=1763603234; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1762998436; x=1763603236; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=onXS1ZyyTIk7E4Phjch+Gs0PpMpoB1JPFOZexalawi0=;
-        b=h9BbaI20ErXz7k96wyZ4jxSnKtn+lcez+ImlndUqs1usZiu6F8k8KatSou3fHsfogG
-         DnDBnkpxDkAQyVm3OgdOcv5LoG8lk+UUNUFVEC4XeXzaIZ3R7Xf+DeZwckgAJlXfXGbl
-         DQUrQiMYg6qj0f9bUwiFfizAB+GaF2uxnLlgH19UxvGUlh82R/GSOJjmtb5obCd4m1v9
-         KlqwiayULydoNS+fRpE+dd3oRC6getLmEu95kpOVtXAjAzbLPKNte7ZEM013EUeM2WE4
-         QuSIAPTGdtAspfZiFku+a55vi67F3qNeXDiSnte56gBCiiJ9RyD9ulxobPP4Ayeili1j
-         2ncQ==
+        bh=FhqbfzFBgO5voylyQ1oE0qebaNihNkFkz8eAAFF/X6s=;
+        b=UYKTvH1aC/3YI6iSGCF72suUdlUaPVRoOachIMj8luGune8VFUNw8//CFLViMVnThO
+         E/eV6zt0BjWK3b1oRFndk4heO+6KSn+7422rhowdwKvhlzk/yxZlOHqzoeFlQHOnzcKl
+         ViBCz+18XDGZpJjiXRXTFBwmxcre17jHfEn2e66bZl7IUWkpZ0KY5Yk5xpMt8/2Qi8VV
+         SuFJHuiinfE5NCNNqcbXbMEtSXkzrlfAD7cAhsscbUzTbv7R7m2YElK31ZV8BXteaZ5w
+         3I9L/iHmeQDRZANNz8FVtCv2lj/OOz7aYwzKMrsVKZdmpcGMAcFmhG/nCrnlHc8zHyDS
+         s9jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762998434; x=1763603234;
+        d=1e100.net; s=20230601; t=1762998436; x=1763603236;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=onXS1ZyyTIk7E4Phjch+Gs0PpMpoB1JPFOZexalawi0=;
-        b=muYilmujA0i/9LUpORQUBpQubtxLFhZ6ESWkdYkwnwEYvfIpYcGK/AMLN1R2KS+A0Q
-         scklpC5Kc3f9g8XJPcP0LOMAr3uwQEBg/p2JM13Tb50SPRLmc5/eZuHkjlOWi6ccdoQs
-         bzr5EdcJeUj089tJzfi4Kl0DtHma9ilZryuU9yMQqOwA/0MiURN5sy2PiWC9lAI9G/U/
-         AHRLBaL3vBFXJ/XwDA5JpfC3na5Agg0gZOe/Jl330ufuuHpWLUeeFxPair0hAobDHwv3
-         +jVCqNf9yrhvVON0jYe8wRInP+Ay9d2e0CXqomOr5hpaIvTEqh5Oy659JdIsFgtNvJSk
-         RIww==
-X-Gm-Message-State: AOJu0YytvwX3KVtFsRcvBXVySdcEDzsqI1d0cQvaAsQvI7cpZb3g+BqB
-	O2ISHQggaJTJKXtRZAV/WuCsXC/I/pPW72QEEa4K7va4QqHWldrrdhr+kD7tuI9wL3k=
-X-Gm-Gg: ASbGncu0WhhsKj7HvHM1++N9L0xRw2O27GeYlztSKtW3OOigc4dyEpFsTWAKen5EgqF
-	y9qaPCQk6hcBEuEAY9iMqV2jLMUrI1M/TjTAEimssTxcFijc6pv0AxVgr70mLXC28CFK0b+lFov
-	+F305DQwdn6BC3bolukrPkDWwZ7b4WlmYY39A+zHXlxWUsqZbLFbys/TxJc6hUtSYPB2XSY0Ehc
-	x1P5FSuh/3sZxR9tKsiOlVsRIX1jTz7zL1co2S8XFHFij4ZcSX/sylTU4s1oZ0pk/pLIW8+ay7h
-	ruvttBpErEC7ogxHW4MNUC2A7KzqyCPDpJi48c/KIq+UnkOoXPBhRc8wlNSjb+7Lj0v505v+Rud
-	juwm+7X6+A/WsfMXlYc1j3KPOXE+bOWpMQ+et+ICctfxSsILt6UJukfpm+8i+Q7/JDwMQE787p1
-	WljVoLLqnNdeA0vM1XjSMLmw==
-X-Google-Smtp-Source: AGHT+IEPUQpGJSnlpoH1wKnMxfvk73znW6zYh27mDLEJKnxaxWn+hw/P1W+C7Nu+pbcglz2Jny/U/g==
-X-Received: by 2002:a17:902:cccf:b0:297:f8d9:aad7 with SMTP id d9443c01a7336-2984ede5755mr62262705ad.50.1762998434336;
-        Wed, 12 Nov 2025 17:47:14 -0800 (PST)
+        bh=FhqbfzFBgO5voylyQ1oE0qebaNihNkFkz8eAAFF/X6s=;
+        b=K82JS37aK4/RXiyHCsLDRQOTM8OxPk5YRol22lIhpjvTTk3azDQsxt8394PIFlB0aG
+         4dpQbfd7h9cwOtfun14AZtHdiM+Mci6gwH92TDnzwyN6lxvW9Rd9KZX54qTuBnCipgS/
+         2QJFV+X8RCUyr2wN5rqvERdzkpbC7h5GUc1T41iuis5vjTFNZJhn14CHSsTl95zQYlG0
+         VuzOVJpkSEOqX/FX1pSS13axvR5aIlJ2nc900TXN3rxwa7dbVTvaaJCRWUS7cJCQSHxt
+         QW+F09d0l5sGg9WViHAfYQyLc4mjh6ntCF4dxsAg7nfqHlBpjBykUOVcjf3LebCHfTvi
+         MrSw==
+X-Gm-Message-State: AOJu0Ywp7zMFfc+kcFr0ygrIlpuISOUCM29/qg81//ekfyH2YnjHUXKR
+	kq6LZv5Lq9qa14BQe/lMZyzG/E3bw5GHDiYRMKznKLb3RuflKGC+2QELIG+b+41IwdY=
+X-Gm-Gg: ASbGncuNQ55OPNpN11kxuCD4Wi4Udce6GWi402VV5nvu73yxd5ISc8sl2cVsIcMvrHl
+	7+Qg5i55oMhZvDQICuq9IUQm7QyrQgceu6kHoBI0QAcugCBvooLdThqdBxuivT16jfbbRyoJ6OE
+	/Pw/2wIon3KkKIj1SONKFh/5EYYsLoJXO+cIa7DcFzAf0vcRBMV661jKYpNdAYF7wP7QjFAbwvu
+	IFrTMKWDtUUpe5jQdON9YDJKhfsDEAXu74nTkoUb6ariOxY7kzC5eJUQ0FPCi+GbSbnFiqPcNUr
+	ZAhW4Z3HMA3D5hA2WOjXxxDzODitUTd5drSRvLftL7xefFnxGAjrMB/MXGz024a/eeFet22/i3+
+	CBEku2G5HxnkYozVguBf/poyGFh+RrchWk39rYgKFxOzyh3Bx/erGZBVb1ji808prCw1ct1EBEe
+	mdJxEhWflxXQBlrqgn9CyyIqLSJ2Hm61Vz
+X-Google-Smtp-Source: AGHT+IFU3ZD0WgCFLGesvoHcSqmefP/DlaLr5QtMhOO16RVbV2tzjU8K9lCg5h0K2mU/+/PVAIgbRA==
+X-Received: by 2002:a17:902:fc86:b0:298:1156:acd5 with SMTP id d9443c01a7336-2984edcaeccmr67224805ad.39.1762998435872;
+        Wed, 12 Nov 2025 17:47:15 -0800 (PST)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2ccae8sm4986485ad.98.2025.11.12.17.47.13
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2ccae8sm4986485ad.98.2025.11.12.17.47.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Nov 2025 17:47:14 -0800 (PST)
+        Wed, 12 Nov 2025 17:47:15 -0800 (PST)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	Paul Walmsley <pjw@kernel.org>,
@@ -94,9 +94,9 @@ Cc: devicetree@vger.kernel.org,
 	Vlastimil Babka <vbabka@suse.cz>,
 	"Liam R . Howlett" <Liam.Howlett@oracle.com>,
 	Samuel Holland <samuel.holland@sifive.com>
-Subject: [PATCH v3 10/22] riscv: mm: Always use page table accessor functions
-Date: Wed, 12 Nov 2025 17:45:23 -0800
-Message-ID: <20251113014656.2605447-11-samuel.holland@sifive.com>
+Subject: [PATCH v3 11/22] riscv: mm: Simplify set_p4d() and set_pgd()
+Date: Wed, 12 Nov 2025 17:45:24 -0800
+Message-ID: <20251113014656.2605447-12-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20251113014656.2605447-1-samuel.holland@sifive.com>
 References: <20251113014656.2605447-1-samuel.holland@sifive.com>
@@ -108,9 +108,11 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Use the semantically appropriate accessor function instead of a raw
-pointer dereference. This will become important once these functions
-start transforming the PTE value on some platforms.
+RISC-V uses the same page table entry format and has the same atomicity
+requirements at all page table levels, so these setter functions use the
+same underlying implementation at all levels. Checking the translation
+mode to pick between two identical branches only serves to make these
+functions less efficient.
 
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
@@ -120,294 +122,37 @@ Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 Changes in v2:
  - New patch for v2
 
- arch/riscv/include/asm/pgtable.h |  8 ++--
- arch/riscv/kvm/gstage.c          |  6 +--
- arch/riscv/mm/init.c             | 68 +++++++++++++++++---------------
- arch/riscv/mm/pgtable.c          |  9 +++--
- 4 files changed, 49 insertions(+), 42 deletions(-)
+ arch/riscv/include/asm/pgtable-64.h | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
-diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
-index 5a08eb5fe99f..acfd48f92010 100644
---- a/arch/riscv/include/asm/pgtable.h
-+++ b/arch/riscv/include/asm/pgtable.h
-@@ -952,7 +952,7 @@ static inline pud_t pudp_huge_get_and_clear(struct mm_struct *mm,
- #ifdef CONFIG_SMP
- 	pud_t pud = __pud(xchg(&pudp->pud, 0));
- #else
--	pud_t pud = *pudp;
-+	pud_t pud = pudp_get(pudp);
+diff --git a/arch/riscv/include/asm/pgtable-64.h b/arch/riscv/include/asm/pgtable-64.h
+index 6e789fa58514..5532f8515450 100644
+--- a/arch/riscv/include/asm/pgtable-64.h
++++ b/arch/riscv/include/asm/pgtable-64.h
+@@ -275,10 +275,7 @@ static inline unsigned long _pmd_pfn(pmd_t pmd)
  
- 	pud_clear(pudp);
- #endif
-@@ -1129,13 +1129,15 @@ extern unsigned long empty_zero_page[PAGE_SIZE / sizeof(unsigned long)];
-  */
- #define set_p4d_safe(p4dp, p4d) \
- ({ \
--	WARN_ON_ONCE(p4d_present(*p4dp) && !p4d_same(*p4dp, p4d)); \
-+	p4d_t old = p4dp_get(p4dp); \
-+	WARN_ON_ONCE(p4d_present(old) && !p4d_same(old, p4d)); \
- 	set_p4d(p4dp, p4d); \
- })
- 
- #define set_pgd_safe(pgdp, pgd) \
- ({ \
--	WARN_ON_ONCE(pgd_present(*pgdp) && !pgd_same(*pgdp, pgd)); \
-+	pgd_t old = pgdp_get(pgdp); \
-+	WARN_ON_ONCE(pgd_present(old) && !pgd_same(old, pgd)); \
- 	set_pgd(pgdp, pgd); \
- })
- #endif /* !__ASSEMBLER__ */
-diff --git a/arch/riscv/kvm/gstage.c b/arch/riscv/kvm/gstage.c
-index b67d60d722c2..297744e2ab5d 100644
---- a/arch/riscv/kvm/gstage.c
-+++ b/arch/riscv/kvm/gstage.c
-@@ -154,7 +154,7 @@ int kvm_riscv_gstage_set_pte(struct kvm_gstage *gstage,
- 		ptep = &next_ptep[gstage_pte_index(map->addr, current_level)];
- 	}
- 
--	if (pte_val(*ptep) != pte_val(map->pte)) {
-+	if (pte_val(ptep_get(ptep)) != pte_val(map->pte)) {
- 		set_pte(ptep, map->pte);
- 		if (gstage_pte_leaf(ptep))
- 			gstage_tlb_flush(gstage, current_level, map->addr);
-@@ -241,12 +241,12 @@ void kvm_riscv_gstage_op_pte(struct kvm_gstage *gstage, gpa_t addr,
- 		if (op == GSTAGE_OP_CLEAR)
- 			put_page(virt_to_page(next_ptep));
- 	} else {
--		old_pte = *ptep;
-+		old_pte = ptep_get(ptep);
- 		if (op == GSTAGE_OP_CLEAR)
- 			set_pte(ptep, __pte(0));
- 		else if (op == GSTAGE_OP_WP)
- 			set_pte(ptep, __pte(pte_val(ptep_get(ptep)) & ~_PAGE_WRITE));
--		if (pte_val(*ptep) != pte_val(old_pte))
-+		if (pte_val(ptep_get(ptep)) != pte_val(old_pte))
- 			gstage_tlb_flush(gstage, ptep_level, addr);
- 	}
- }
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index d85efe74a4b6..ac686c1b2f85 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -459,8 +459,8 @@ static void __meminit create_pte_mapping(pte_t *ptep, uintptr_t va, phys_addr_t
- 
- 	BUG_ON(sz != PAGE_SIZE);
- 
--	if (pte_none(ptep[pte_idx]))
--		ptep[pte_idx] = pfn_pte(PFN_DOWN(pa), prot);
-+	if (pte_none(ptep_get(ptep + pte_idx)))
-+		set_pte(ptep + pte_idx, pfn_pte(PFN_DOWN(pa), prot));
+ static inline void set_p4d(p4d_t *p4dp, p4d_t p4d)
+ {
+-	if (pgtable_l4_enabled)
+-		WRITE_ONCE(*p4dp, p4d);
+-	else
+-		set_pud((pud_t *)p4dp, (pud_t){ p4d_val(p4d) });
++	WRITE_ONCE(*p4dp, p4d);
  }
  
- #ifndef __PAGETABLE_PMD_FOLDED
-@@ -542,18 +542,19 @@ static void __meminit create_pmd_mapping(pmd_t *pmdp,
- 	uintptr_t pmd_idx = pmd_index(va);
+ static inline int p4d_none(p4d_t p4d)
+@@ -342,10 +339,7 @@ pud_t *pud_offset(p4d_t *p4d, unsigned long address);
  
- 	if (sz == PMD_SIZE) {
--		if (pmd_none(pmdp[pmd_idx]))
--			pmdp[pmd_idx] = pfn_pmd(PFN_DOWN(pa), prot);
-+		if (pmd_none(pmdp_get(pmdp + pmd_idx)))
-+			set_pmd(pmdp + pmd_idx, pfn_pmd(PFN_DOWN(pa), prot));
- 		return;
- 	}
- 
--	if (pmd_none(pmdp[pmd_idx])) {
-+	if (pmd_none(pmdp_get(pmdp + pmd_idx))) {
- 		pte_phys = pt_ops.alloc_pte(va);
--		pmdp[pmd_idx] = pfn_pmd(PFN_DOWN(pte_phys), PAGE_TABLE);
-+		set_pmd(pmdp + pmd_idx,
-+			pfn_pmd(PFN_DOWN(pte_phys), PAGE_TABLE));
- 		ptep = pt_ops.get_pte_virt(pte_phys);
- 		memset(ptep, 0, PAGE_SIZE);
- 	} else {
--		pte_phys = PFN_PHYS(_pmd_pfn(pmdp[pmd_idx]));
-+		pte_phys = PFN_PHYS(_pmd_pfn(pmdp_get(pmdp + pmd_idx)));
- 		ptep = pt_ops.get_pte_virt(pte_phys);
- 	}
- 
-@@ -644,18 +645,19 @@ static void __meminit create_pud_mapping(pud_t *pudp, uintptr_t va, phys_addr_t
- 	uintptr_t pud_index = pud_index(va);
- 
- 	if (sz == PUD_SIZE) {
--		if (pud_val(pudp[pud_index]) == 0)
--			pudp[pud_index] = pfn_pud(PFN_DOWN(pa), prot);
-+		if (pud_val(pudp_get(pudp + pud_index)) == 0)
-+			set_pud(pudp + pud_index, pfn_pud(PFN_DOWN(pa), prot));
- 		return;
- 	}
- 
--	if (pud_val(pudp[pud_index]) == 0) {
-+	if (pud_val(pudp_get(pudp + pud_index)) == 0) {
- 		next_phys = pt_ops.alloc_pmd(va);
--		pudp[pud_index] = pfn_pud(PFN_DOWN(next_phys), PAGE_TABLE);
-+		set_pud(pudp + pud_index,
-+			pfn_pud(PFN_DOWN(next_phys), PAGE_TABLE));
- 		nextp = pt_ops.get_pmd_virt(next_phys);
- 		memset(nextp, 0, PAGE_SIZE);
- 	} else {
--		next_phys = PFN_PHYS(_pud_pfn(pudp[pud_index]));
-+		next_phys = PFN_PHYS(_pud_pfn(pudp_get(pudp + pud_index)));
- 		nextp = pt_ops.get_pmd_virt(next_phys);
- 	}
- 
-@@ -670,18 +672,19 @@ static void __meminit create_p4d_mapping(p4d_t *p4dp, uintptr_t va, phys_addr_t
- 	uintptr_t p4d_index = p4d_index(va);
- 
- 	if (sz == P4D_SIZE) {
--		if (p4d_val(p4dp[p4d_index]) == 0)
--			p4dp[p4d_index] = pfn_p4d(PFN_DOWN(pa), prot);
-+		if (p4d_val(p4dp_get(p4dp + p4d_index)) == 0)
-+			set_p4d(p4dp + p4d_index, pfn_p4d(PFN_DOWN(pa), prot));
- 		return;
- 	}
- 
--	if (p4d_val(p4dp[p4d_index]) == 0) {
-+	if (p4d_val(p4dp_get(p4dp + p4d_index)) == 0) {
- 		next_phys = pt_ops.alloc_pud(va);
--		p4dp[p4d_index] = pfn_p4d(PFN_DOWN(next_phys), PAGE_TABLE);
-+		set_p4d(p4dp + p4d_index,
-+			pfn_p4d(PFN_DOWN(next_phys), PAGE_TABLE));
- 		nextp = pt_ops.get_pud_virt(next_phys);
- 		memset(nextp, 0, PAGE_SIZE);
- 	} else {
--		next_phys = PFN_PHYS(_p4d_pfn(p4dp[p4d_index]));
-+		next_phys = PFN_PHYS(_p4d_pfn(p4dp_get(p4dp + p4d_index)));
- 		nextp = pt_ops.get_pud_virt(next_phys);
- 	}
- 
-@@ -727,18 +730,19 @@ void __meminit create_pgd_mapping(pgd_t *pgdp, uintptr_t va, phys_addr_t pa, phy
- 	uintptr_t pgd_idx = pgd_index(va);
- 
- 	if (sz == PGDIR_SIZE) {
--		if (pgd_val(pgdp[pgd_idx]) == 0)
--			pgdp[pgd_idx] = pfn_pgd(PFN_DOWN(pa), prot);
-+		if (pgd_val(pgdp_get(pgdp + pgd_idx)) == 0)
-+			set_pgd(pgdp + pgd_idx, pfn_pgd(PFN_DOWN(pa), prot));
- 		return;
- 	}
- 
--	if (pgd_val(pgdp[pgd_idx]) == 0) {
-+	if (pgd_val(pgdp_get(pgdp + pgd_idx)) == 0) {
- 		next_phys = alloc_pgd_next(va);
--		pgdp[pgd_idx] = pfn_pgd(PFN_DOWN(next_phys), PAGE_TABLE);
-+		set_pgd(pgdp + pgd_idx,
-+			pfn_pgd(PFN_DOWN(next_phys), PAGE_TABLE));
- 		nextp = get_pgd_next_virt(next_phys);
- 		memset(nextp, 0, PAGE_SIZE);
- 	} else {
--		next_phys = PFN_PHYS(_pgd_pfn(pgdp[pgd_idx]));
-+		next_phys = PFN_PHYS(_pgd_pfn(pgdp_get(pgdp + pgd_idx)));
- 		nextp = get_pgd_next_virt(next_phys);
- 	}
- 
-@@ -1574,14 +1578,14 @@ struct execmem_info __init *execmem_arch_setup(void)
- #ifdef CONFIG_MEMORY_HOTPLUG
- static void __meminit free_pte_table(pte_t *pte_start, pmd_t *pmd)
+ static inline void set_pgd(pgd_t *pgdp, pgd_t pgd)
  {
--	struct page *page = pmd_page(*pmd);
-+	struct page *page = pmd_page(pmdp_get(pmd));
- 	struct ptdesc *ptdesc = page_ptdesc(page);
- 	pte_t *pte;
- 	int i;
+-	if (pgtable_l5_enabled)
+-		WRITE_ONCE(*pgdp, pgd);
+-	else
+-		set_p4d((p4d_t *)pgdp, (p4d_t){ pgd_val(pgd) });
++	WRITE_ONCE(*pgdp, pgd);
+ }
  
- 	for (i = 0; i < PTRS_PER_PTE; i++) {
- 		pte = pte_start + i;
--		if (!pte_none(*pte))
-+		if (!pte_none(ptep_get(pte)))
- 			return;
- 	}
- 
-@@ -1595,14 +1599,14 @@ static void __meminit free_pte_table(pte_t *pte_start, pmd_t *pmd)
- 
- static void __meminit free_pmd_table(pmd_t *pmd_start, pud_t *pud, bool is_vmemmap)
- {
--	struct page *page = pud_page(*pud);
-+	struct page *page = pud_page(pudp_get(pud));
- 	struct ptdesc *ptdesc = page_ptdesc(page);
- 	pmd_t *pmd;
- 	int i;
- 
- 	for (i = 0; i < PTRS_PER_PMD; i++) {
- 		pmd = pmd_start + i;
--		if (!pmd_none(*pmd))
-+		if (!pmd_none(pmdp_get(pmd)))
- 			return;
- 	}
- 
-@@ -1617,13 +1621,13 @@ static void __meminit free_pmd_table(pmd_t *pmd_start, pud_t *pud, bool is_vmemm
- 
- static void __meminit free_pud_table(pud_t *pud_start, p4d_t *p4d)
- {
--	struct page *page = p4d_page(*p4d);
-+	struct page *page = p4d_page(p4dp_get(p4d));
- 	pud_t *pud;
- 	int i;
- 
- 	for (i = 0; i < PTRS_PER_PUD; i++) {
- 		pud = pud_start + i;
--		if (!pud_none(*pud))
-+		if (!pud_none(pudp_get(pud)))
- 			return;
- 	}
- 
-@@ -1668,7 +1672,7 @@ static void __meminit remove_pte_mapping(pte_t *pte_base, unsigned long addr, un
- 
- 		ptep = pte_base + pte_index(addr);
- 		pte = ptep_get(ptep);
--		if (!pte_present(*ptep))
-+		if (!pte_present(ptep_get(ptep)))
- 			continue;
- 
- 		pte_clear(&init_mm, addr, ptep);
-@@ -1698,7 +1702,7 @@ static void __meminit remove_pmd_mapping(pmd_t *pmd_base, unsigned long addr, un
- 			continue;
- 		}
- 
--		pte_base = (pte_t *)pmd_page_vaddr(*pmdp);
-+		pte_base = (pte_t *)pmd_page_vaddr(pmdp_get(pmdp));
- 		remove_pte_mapping(pte_base, addr, next, is_vmemmap, altmap);
- 		free_pte_table(pte_base, pmdp);
- 	}
-@@ -1777,10 +1781,10 @@ static void __meminit remove_pgd_mapping(unsigned long va, unsigned long end, bo
- 		next = pgd_addr_end(addr, end);
- 		pgd = pgd_offset_k(addr);
- 
--		if (!pgd_present(*pgd))
-+		if (!pgd_present(pgdp_get(pgd)))
- 			continue;
- 
--		if (pgd_leaf(*pgd))
-+		if (pgd_leaf(pgdp_get(pgd)))
- 			continue;
- 
- 		p4d_base = p4d_offset(pgd, 0);
-diff --git a/arch/riscv/mm/pgtable.c b/arch/riscv/mm/pgtable.c
-index 8b6c0a112a8d..c4b85a828797 100644
---- a/arch/riscv/mm/pgtable.c
-+++ b/arch/riscv/mm/pgtable.c
-@@ -95,8 +95,8 @@ int pud_free_pmd_page(pud_t *pud, unsigned long addr)
- 	flush_tlb_kernel_range(addr, addr + PUD_SIZE);
- 
- 	for (i = 0; i < PTRS_PER_PMD; i++) {
--		if (!pmd_none(pmd[i])) {
--			pte_t *pte = (pte_t *)pmd_page_vaddr(pmd[i]);
-+		if (!pmd_none(pmdp_get(pmd + i))) {
-+			pte_t *pte = (pte_t *)pmd_page_vaddr(pmdp_get(pmd + i));
- 
- 			pte_free_kernel(NULL, pte);
- 		}
-@@ -158,8 +158,9 @@ pmd_t pmdp_collapse_flush(struct vm_area_struct *vma,
- pud_t pudp_invalidate(struct vm_area_struct *vma, unsigned long address,
- 		      pud_t *pudp)
- {
--	VM_WARN_ON_ONCE(!pud_present(*pudp));
--	pud_t old = pudp_establish(vma, address, pudp, pud_mkinvalid(*pudp));
-+	VM_WARN_ON_ONCE(!pud_present(pudp_get(pudp)));
-+	pud_t old = pudp_establish(vma, address, pudp,
-+				   pud_mkinvalid(pudp_get(pudp)));
- 
- 	flush_pud_tlb_range(vma, address, address + HPAGE_PUD_SIZE);
- 	return old;
+ static inline int pgd_none(pgd_t pgd)
 -- 
 2.47.2
 
