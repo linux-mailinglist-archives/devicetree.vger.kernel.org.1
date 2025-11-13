@@ -1,202 +1,126 @@
-Return-Path: <devicetree+bounces-238299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5AA3C59B54
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:19:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1E1C59BCF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:25:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 04AF6345103
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:16:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 37F7B4E1541
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:17:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E4131A81D;
-	Thu, 13 Nov 2025 19:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EE33164D5;
+	Thu, 13 Nov 2025 19:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jAWm3OCd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dvIhnU76"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E727031A810;
-	Thu, 13 Nov 2025 19:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C89D221FCF;
+	Thu, 13 Nov 2025 19:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763061383; cv=none; b=JVl3SY6n8601ne40rHfjV1PlWI6M5I6gSystZiiSud/hniXNF7dGYHc8E2cKFvJZZnS7VS0nHpJMuX4C/QNDD+24JZyUvutNxojBHKSGvKQTcXtLCRS1htfD/lXXwbgIZtR3nxBDZLyGGVn2f0VXaO3WyHfrQ3Lmg9EOMkPT8fQ=
+	t=1763061450; cv=none; b=a7C1pbbuxx38vhNHQCaNnnJu4qG7AQr7GbUyqwP4U3yJhLHV1wF3mNb2RJhNU9T3+X7TJh6V/PuhPcVnm1agSpP5yTbgvyVeP9Ti2ltTAm6fLfgZMPoIwfq3MAE0cB1EMsNNRFnUuteXG0F2QQF8qnMzIbZxrdAgmlJTrMfuvI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763061383; c=relaxed/simple;
-	bh=IblUqGpTbIRtiXEqbdz5S15EKx867g0thOANjT9zzo0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tqXoN29cJz50toETGMuTyXeEIKDHkpHuKz27Quf3GPAT0nf4E1PNdnODQS6Rx7Hy0GWS72T03z2ZO93Ii42gACQC4lTG7H9P0NswBLeUCkn/CDr+QSRbtQlAHx/ac3FdAb0VkLqH/B3Ti4ECzcLDy6ZdRNgBqemB1opCGpkzX3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jAWm3OCd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DE21C113D0;
-	Thu, 13 Nov 2025 19:16:20 +0000 (UTC)
+	s=arc-20240116; t=1763061450; c=relaxed/simple;
+	bh=kt1jO8UvsULEtaDs/E7EX9tnRAFarugVzSN9GuwH6ro=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s7OIg8q6oz8mEdzaLLdPPCMEdPFuzWPBH1i90sYnBPPZv5EB81Yzi6b9gwbvD8W5gte/krbFZlPtD0fqWtbBlaHRuTQUApPqQdP0KuTlRaGImLSPslexGf3nnYGFOctyIzbiTH0BHDvuSJZZngyIq5njv2zAUJNT1JbpzYQvwMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dvIhnU76; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CDD1C4CEF5;
+	Thu, 13 Nov 2025 19:17:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763061382;
-	bh=IblUqGpTbIRtiXEqbdz5S15EKx867g0thOANjT9zzo0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jAWm3OCdZCohQVKp5xXcn4czTWQ2MTmmYQBUnepiL/xkhVs6FGcaMfyOJocxIz7Bp
-	 5V1tpOfeN/K8T7KYy8X/7mAkx2OyFLh336Et0Q8Xr4N6XyTYOUBc/j6rhxx/P90J1r
-	 w2YIuNuxfi2VH0RJo2wSezaWCaZ7uUnHVrpbxdVG3LWs5GMsAJMv5QaW2quFEtKicP
-	 K12bENP+L8JMTxNVY1si2rwXPADgiezPGKXDCtVWufNcSKOD6PqjHfQRr5D1OIiw5u
-	 u9JNu2wVtrmHHuBzWHK2yOj/8BefmBT2ArjGapig3s8vDGX4KDuSvXVKvpHQcuEJr9
-	 T+6Q/gD9Wrpig==
-Date: Thu, 13 Nov 2025 19:16:18 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
-Cc: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [PATCH] dt-bindings: usb: dwc3-xilinx: Describe the reset
- constraint for the versal platform
-Message-ID: <20251113-risk-doorstop-4ec156b58d0a@spud>
-References: <20251112155430.1326426-1-radhey.shyam.pandey@amd.com>
- <20251112-bagging-diameter-4ebab1f9ed45@spud>
- <MN0PR12MB59537C0F520B40977620BFCDB7CDA@MN0PR12MB5953.namprd12.prod.outlook.com>
+	s=k20201202; t=1763061449;
+	bh=kt1jO8UvsULEtaDs/E7EX9tnRAFarugVzSN9GuwH6ro=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dvIhnU76/pW+vCvvgnPNOO2XoQTRK5+zJKW4w6KCqjeswisCxWkZpIiklY0SGPySS
+	 dc4BL0IQw9fjzF4yEHDnzZhbHolCVFhMkJCDkfroC1oOYtZ1AEzdpJNIltye3ymCvr
+	 EoRUENxrYwJSfHaAGwqCFp4xZkLO5vyi37LLaJudOdlSK/ZjLC+8F3TSas9cOVBxw/
+	 b33BvjEkKZPiNKw/m8PlodjOhuvFQf0UXpUiKy2dufHvnPJCEUu7MAIUM+q8ZL3qRP
+	 ySj9jf4v/bQJ/v3kabWXXf5WDP40v48ydCR215Lvnu4LAirAtUi8mxv+N29aZK0vi3
+	 AC64p6ZBMkUBw==
+Message-ID: <273b638e-8251-4faf-929a-87432a48abdc@kernel.org>
+Date: Thu, 13 Nov 2025 20:17:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="R/LfrMLgE6sszEZI"
-Content-Disposition: inline
-In-Reply-To: <MN0PR12MB59537C0F520B40977620BFCDB7CDA@MN0PR12MB5953.namprd12.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/22] checkpatch: Warn on page table access without
+ accessors
+To: Samuel Holland <samuel.holland@sifive.com>, Joe Perches
+ <joe@perches.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <pjw@kernel.org>, linux-riscv@lists.infradead.org,
+ Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org
+Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
+ linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
+ Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
+ Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
+ <Liam.Howlett@oracle.com>, Andy Whitcroft <apw@canonical.com>,
+ Dwaipayan Ray <dwaipayanray1@gmail.com>,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>
+References: <20251113014656.2605447-1-samuel.holland@sifive.com>
+ <20251113014656.2605447-8-samuel.holland@sifive.com>
+ <1dfa1e3566cafbe43a1d4753defef9c82ddb3b64.camel@perches.com>
+ <a6e7a571-91d2-4e66-bc86-ba30f624294b@sifive.com>
+From: "David Hildenbrand (Red Hat)" <david@kernel.org>
+Content-Language: en-US
+In-Reply-To: <a6e7a571-91d2-4e66-bc86-ba30f624294b@sifive.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 13.11.25 03:36, Samuel Holland wrote:
+> On 2025-11-12 8:21 PM, Joe Perches wrote:
+>> On Wed, 2025-11-12 at 17:45 -0800, Samuel Holland wrote:
+>>> Architectures may have special rules for accessing the hardware page
+>>> tables (for example, atomicity/ordering requirements), so the generic MM
+>>> code provides the pXXp_get() and set_pXX() hooks for architectures to
+>>> implement. These accessor functions are often omitted where a raw
+>>> pointer dereference is believed to be safe (i.e. race-free). However,
+>>> RISC-V needs to use these hooks to rewrite the page table values at
+>>> read/write time on some platforms. A raw pointer dereference will no
+>>> longer produce the correct value on those platforms, so the generic code
+>>> must always use the accessor functions.
+>> []
+>>> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+>> []
+>>> @@ -7721,6 +7721,13 @@ sub process {
+>>>   				ERROR("MISSING_SENTINEL", "missing sentinel in ID array\n" . "$here\n$stat\n");
+>>>   			}
+>>>   		}
+>>> +
+>>> +# check for raw dereferences of hardware page table pointers
+>>> +		if ($realfile !~ m@^arch/@ &&
+>>> +		    $line =~ /(?<!pte_t |p[mu4g]d_t |izeof\()\*\(?(vmf(\.|->))?(pte|p[mu4g]d)p?\b/) {
+>>> +			WARN("PAGE_TABLE_ACCESSORS",
+>>> +			     "Use $3p_get()/set_$3() instead of dereferencing page table pointers\n" . $herecurr);
+>>> +		}
+>>>   	}
+>>
+>> Seems like a lot of matches
+>>
+>> $ git grep -P '(?<!pte_t |p[mu4g]d_t |izeof\()\*\(?(vmf(\.|->))?(pte|p[mu4g]d)p?\b' | \
+>>    grep -v '^arch/' | wc -l
+>> 766
+
+That is indeed concerning.
+
+I recall that we discussed an alternative approach with Ryan in the 
+past: I don't remember all the details, but essentially it was about 
+using separate types, such that dereferencing would not get you the type 
+the other functions would be expecting. Such that the compiler will bark 
+when you try to dereference.
 
 
---R/LfrMLgE6sszEZI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+-- 
+Cheers
 
-On Thu, Nov 13, 2025 at 12:15:02PM +0000, Pandey, Radhey Shyam wrote:
-> [Public]
->=20
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Thursday, November 13, 2025 12:38 AM
-> > To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>
-> > Cc: gregkh@linuxfoundation.org; robh@kernel.org; krzk+dt@kernel.org;
-> > conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>; linux-
-> > usb@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git (AMD-Xili=
-nx)
-> > <git@amd.com>
-> > Subject: Re: [PATCH] dt-bindings: usb: dwc3-xilinx: Describe the reset =
-constraint for
-> > the versal platform
-> >
-> > On Wed, Nov 12, 2025 at 09:24:30PM +0530, Radhey Shyam Pandey wrote:
-> > > AMD Versal platform USB 2.0 IP controller receives one reset input
-> > > from the SoC controlled by the CRL.RST_USB [RESET] register so
-> > > accordingly describe reset constraints.
-> > >
-> > > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > > ---
-> > >  .../devicetree/bindings/usb/dwc3-xilinx.yaml  | 43
-> > > +++++++++++++++----
-> > >  1 file changed, 34 insertions(+), 9 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > > b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > > index 36f5c644d959..cd0cc9da242f 100644
-> > > --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > > @@ -50,17 +50,22 @@ properties:
-> > >      description:
-> > >        A list of phandles for resets listed in reset-names.
-> > >
-> > > -    items:
-> > > -      - description: USB core reset
-> > > -      - description: USB hibernation reset
-> > > -      - description: USB APB reset
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - description: USB controller reset
-> > > +      - items:
-> > > +          - description: USB core reset
-> > > +          - description: USB hibernation reset
-> > > +          - description: USB APB reset
-> > >
-> > >    reset-names:
-> > > -    items:
-> > > -      - const: usb_crst
-> > > -      - const: usb_hibrst
-> > > -      - const: usb_apbrst
-> > > -
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: usb_crst
-> >
-> > Why do we need all this oneOf stuff if both have the same first reset?
-> > Can't you just set minItems: 1?
->=20
-> Thanks. I have now set minItems:1 and defined compatible based
-> reset min/max constraints. Doing some more validation and
-> will send out the v2.
->=20
-> Example:
-> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> @@ -47,6 +47,7 @@ properties:
->        - const: ref_clk
->=20
->    resets:
-> +    minItems: 1
->      description:
->        A list of phandles for resets listed in reset-names.
->=20
-> @@ -56,6 +57,7 @@ properties:
->        - description: USB APB reset
->=20
->    reset-names:
-> +    minItems: 1
->      items:
->        - const: usb_crst
->        - const: usb_hibrst
-> @@ -95,6 +97,28 @@ required:
->    - resets
->    - reset-names
->=20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - xlnx,versal-dwc3
-> +    then:
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +        reset-names:
-> +          maxItems: 1
-> +    else:
-> +      properties:
-> +        resets:
-> +          minItems: 3
-> +          maxItems: 3
-
-FWIW, this maxItems is not needed as it matches the number in the list.
-
---R/LfrMLgE6sszEZI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRYuggAKCRB4tDGHoIJi
-0gT9AQCko4kdzAGADmzJ9rqSW1og+tEAc0KZ4IN9qoyyNQ7pigEA50Ga3HW83D8L
-WvF3aHpMsTZijeLjVl33kuBr+RPqgAY=
-=GL2A
------END PGP SIGNATURE-----
-
---R/LfrMLgE6sszEZI--
+David
 
