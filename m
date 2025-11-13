@@ -1,149 +1,108 @@
-Return-Path: <devicetree+bounces-238325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA1FC59D6D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:50:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36612C59D91
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:53:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C9D1E351D73
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:50:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 171754E6295
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076762F693E;
-	Thu, 13 Nov 2025 19:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC5403161A7;
+	Thu, 13 Nov 2025 19:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m2WY8ADM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GLGnHjbW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D372B26E703;
-	Thu, 13 Nov 2025 19:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F92F315D29;
+	Thu, 13 Nov 2025 19:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763063419; cv=none; b=ATyMNY+/3xZtoRfR+/YVXXx9e7aT6C9xCb9qRcJYYAdY5VuR1YFI5wdpoKCRg4+BYO7vhIVR7fz5HT05GxXwbEsxbXrLOWIsTx2XZwInymXrDDXhVADJ7gav1PWC1uDtSeVAiYT3Y/yRySBSSZoMuWqffV5my1MKKVHhHKObGRc=
+	t=1763063564; cv=none; b=T6eUtV4aahIkDZGh1n7N7whW3jGJGa73e+9V+VWcLoQf1x6Wfj/ihtA3dfoU/m1hTWrKcBlase2TJYGtuN0ZVUwcWx0P8ZaXBO59Bosu69i7JGxyz5jD+AyjyLEfbZEBmLdO2r3DzL6e07Hzjb+bLa/03LtN3/i252smWrsCeow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763063419; c=relaxed/simple;
-	bh=l8KIsccA1YWYWTLWU7e76Frhe8QvZs+opM2EpB6tHZ8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PlGzsahhbx6A4GJfFPiVieBdCqwLUoD5IaBKM3TgDv0nPs3pt//kFNFu0bu414IYD83gEMuCpycTJ9out+rbODRAJRswl1OojFWGWjuUKP7yTHZLIMhviNRPOkKwBiYmP/z6Ow5YS5ZU5g2KJm+W5VXsgQITxYzH1fuQEAgvyBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m2WY8ADM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D5E5C113D0;
-	Thu, 13 Nov 2025 19:50:16 +0000 (UTC)
+	s=arc-20240116; t=1763063564; c=relaxed/simple;
+	bh=D6xByP9v7HA0BT4JxxGeDeAoBgYUhj6KpJENBxSZV5k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TROK0BlgDGPWDTpXU9c1Co7faDLVEFX8YVqr5lx3dtTDYcvDVKTzTdnZk0Mw1X6La3tMwqpw+OSizZRnOqDaUYCpq/IhmCs2Jzi7wKy9N/ciuAZbYJqzmqwcjFqqyWillLE3rukpgB36AxbiopNV9WtenjFONPtT99j2SiveKNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GLGnHjbW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61B79C4CEF8;
+	Thu, 13 Nov 2025 19:52:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763063419;
-	bh=l8KIsccA1YWYWTLWU7e76Frhe8QvZs+opM2EpB6tHZ8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m2WY8ADM/g1lyTomMRPfayjqUwxzke0dwvaW2gfk0DIkhMALXqbOIpT6ui0VISuHl
-	 F0QPjwRM42rd4/zkh3Me6bt5k6rnVnWS0MzK/hqIZXt0ZKxAhJepJqhS56j4+I0PUw
-	 cyywHcVIn0/asyJWvp1Rkwt9POhC/pjY6ICzPCuOiajGbY5uLi2kOGIkpOxlUXH6da
-	 BNBswYYAS7AuRk2n3jUiIMXL4CyYG09KUYgiGZ6oY8LJPQNKawy7ROMdIYxqPD+/8Y
-	 ltrCJNd3a9IIwxmctChE3GV9riHmETETkV2d90mSLgWe3Tx8JSUxnMSxYd1EFhb2bv
-	 N/LiUlgu/tR3A==
-Message-ID: <3add6c9f-1bcd-4ec7-ae5e-ba1e67c5087d@kernel.org>
-Date: Thu, 13 Nov 2025 20:50:14 +0100
+	s=k20201202; t=1763063564;
+	bh=D6xByP9v7HA0BT4JxxGeDeAoBgYUhj6KpJENBxSZV5k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GLGnHjbW8w5AQLT4TCnqeRul6f5gt7WgxeT+9V7DkAV3tkBaqwEJ65N1LJnhcD8tQ
+	 CmKv33y0fDkZdzyeFPVWBpEM2EA8fOLBleoBFcnRA/N+VGbS3AMwThmoKC7EniD74n
+	 ureP3k9067MsWLTnxkEtvjKsCmVpzO0yDOi6p/6tDeD78nx+Q0qtgmjgoJ7m7PIVvb
+	 OZ6sS6CbotGH8HAgOo1p06gSwaSeX6RvpwEJd9t1L7IPWCCwXUdJhDlmy8k5SiI89q
+	 sJ08U0J4hRSIIRS8VchBU+vLCIHtId1WyzNWkem6wN9Hb1rdsuM9NcMMrM+Si2Ft3k
+	 6llenEIRl0LSg==
+Date: Thu, 13 Nov 2025 19:52:38 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	linux-rtc@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 01/13] dt-bindings: leds: document Samsung S2M series
+ PMIC flash LED device
+Message-ID: <20251113-silica-unashamed-6d78cdf55b35@spud>
+References: <20251114-s2mu005-pmic-v1-0-9e3184d3a0c9@disroot.org>
+ <20251114-s2mu005-pmic-v1-1-9e3184d3a0c9@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: realtek: Add Kent SoC and EVB device
- trees
-To: Yu-Chun Lin <eleanor.lin@realtek.com>, afaerber@suse.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
- james.tai@realtek.com
-Cc: linux-arm-kernel@lists.infradead.org,
- linux-realtek-soc@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, cy.huang@realtek.com, stanley_chang@realtek.com
-References: <20251113123009.26568-1-eleanor.lin@realtek.com>
- <20251113123009.26568-4-eleanor.lin@realtek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251113123009.26568-4-eleanor.lin@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 13/11/2025 13:30, Yu-Chun Lin wrote:
-> diff --git a/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi b/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
-> new file mode 100644
-> index 000000000000..0989afcbde67
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
-> @@ -0,0 +1,129 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-
-Odd, why do you want GPLv3 or GPLv4? GPLv3 has quite strict
-requirements, so I hope you know what you are doing and your legal
-understand this.
-
-> +/*
-> + * Realtek RTD1920S Smallville EVB
-> + *
-> + * Copyright (c) 2024 Realtek Semiconductor Corp.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/thermal/thermal.h>
-> +#include "rtd1920.dtsi"
-> +
-> +/ {
-> +	chosen {
-> +		bootargs = "earlycon=uart8250,mmio32,0x98007800";
-
-Drop bootargs, I asked for this last time. That's debugging.
-
-> +		stdout-path = "serial0:460800n8";
-> +	};
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Pm2uUZI5hpWGqHdz"
+Content-Disposition: inline
+In-Reply-To: <20251114-s2mu005-pmic-v1-1-9e3184d3a0c9@disroot.org>
 
 
+--Pm2uUZI5hpWGqHdz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Fri, Nov 14, 2025 at 12:35:02AM +0530, Kaustabh Chakraborty wrote:
+> Certain Samsung S2M series PMICs have a flash LED controller with
+> two LED channels, and with torch and flash control modes. Document the
+> devicetree schema for the device.
+>=20
+> The initial driver introduced has support for S2MU005, add its
+> compatible as well.
+
+Drop this sentence please.
+pw-bot: changes-requested
+With it gone
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--Pm2uUZI5hpWGqHdz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRY3BgAKCRB4tDGHoIJi
+0hquAQCFvzpL/uf0VxfXg2G5vEFz2sazW81JFWrhtOtwcp2YfwD/QevXW5MldAvy
+LgEwcl+DCU8iEfnMtBUEC5/q6eI2OQw=
+=dXM/
+-----END PGP SIGNATURE-----
+
+--Pm2uUZI5hpWGqHdz--
 
