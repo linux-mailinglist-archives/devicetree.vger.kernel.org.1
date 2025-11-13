@@ -1,167 +1,116 @@
-Return-Path: <devicetree+bounces-238337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B3BC59F66
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 21:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC25C59F69
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 21:25:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 34EC74E27DE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:24:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E4E44E33C3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:24:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49D02311940;
-	Thu, 13 Nov 2025 20:24:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBA431326E;
+	Thu, 13 Nov 2025 20:24:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="WbBpP3Ou"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kANWmNZt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FEF2877F2;
-	Thu, 13 Nov 2025 20:24:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9262FE04B;
+	Thu, 13 Nov 2025 20:24:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763065452; cv=none; b=FLQNdqCEDoWxjCL20BZtZy94aLKhVxNZdziupjVY4jlFJs6Cx04CtUwxaeLOaVN/Rjm4LS01xEY/3jqpOAXG+JHiRSjFu0cl7mOu8TErRUmpxTDUOM111uoFvI3131mSDkhPH4NghzaJiVNNt2vOpUVJ4ORaY1yW9nSmaBvnOq0=
+	t=1763065475; cv=none; b=f57lzngICpH/iHiVpj/M9ZKtgsBNn1XWKg5AEbM9nEd0aoAgjpXeOJ8/GU2hKeLHdAP5u5lsVKYlV4uE5ZwpPyxDibM/WsZLWU8KeTx7KbmTYnD+iv6tQdknbygT+6DGEZIUnCGJnpI9FoDwXMhnhMTlPcT3zur+t5jAOr119x4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763065452; c=relaxed/simple;
-	bh=D9UKAvXdC5cpJpTyd2jAsEj9qc3G4X4H8wSSvOVSuaM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Yi2ZRfWT6DD2Mv92lqZGT9bNozAsnQWXd0Qoq27wIuFbNYkg+CEXkLtoFBA7/w+TKH55XXSTvH3nhfA99lkaJgxfzxO+tdqD1mp9Oex6WnG13bl5XlQdCMfHQT/p+d7uKHzUsVDxG91xhU04+etAyhoM4cVNvnJ3fkZ/acUvdFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=WbBpP3Ou; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=nNf9m+JS/I5CX1tV9NPZBIw3JgLomlwFtuJEag/nt5o=; b=WbBpP3Ouc6g4KsOdNyJ/LX3Pos
-	XOwsPB2/lZW1Lb160zlvMqVMvJGocOU5CjVij2FMkl6BURM2LY3mjffQIuSeC1xl8X/CihApOir4P
-	qCsSQ+0NWqocVwEIjaiHPZNi2YUi9UVh67ssujEG3bCl4CyqhHSjVQobDrNNYTtfVedmHTuemVyDG
-	hHMd0zwrfpIhC+HBt39skD/i4gWUZjZ7nF7HwhFEdSLM6dzoh+79NEl1jY1zvQRpYq+dQmx65T+Ph
-	Qct4lu8jRp2MMB6c6oHE8QXEaKzTw25ZSzYYm+ZLWDbxAadn1qqWglsct8up73f3BZzJDbR81aAeg
-	Ub2/LkjA==;
-Received: from i53875a11.versanet.de ([83.135.90.17] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vJdrS-0004eR-6I; Thu, 13 Nov 2025 21:24:06 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Doug Anderson <dianders@chromium.org>
-Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree-spec@vger.kernel.org,
- "kernel@pengutronix.de" <kernel@pengutronix.de>, quentin.schulz@cherry.de,
- Arnd Bergmann <arnd@arndb.de>
-Subject: Re: SoC-specific device tree aliases?
-Date: Thu, 13 Nov 2025 21:24:05 +0100
-Message-ID: <22899909.EfDdHjke4D@diego>
-In-Reply-To:
- <CAD=FV=XMm_SatBN79D6A8aCXSTpJvmgdhXMm84Um5fpq=e66LA@mail.gmail.com>
-References:
- <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
- <CAL_JsqKHqEtYoSuoLd=tR5B+P-_nDyOfpqEUZ_f=ws3yt5qORw@mail.gmail.com>
- <CAD=FV=XMm_SatBN79D6A8aCXSTpJvmgdhXMm84Um5fpq=e66LA@mail.gmail.com>
+	s=arc-20240116; t=1763065475; c=relaxed/simple;
+	bh=4NO2Xdkz+jSDa61SzpnaLxD87yK+fJMEQl6hv5p3foU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p9y9VN1qmvBMZbK/+GpK0E5Kt7tZqo7NxBuTf9sH2eBZEzpb/yBAQ7wuwEpy20utswhIb1KJnHqf+y2eapmD5kbcy0xNz7f15IQt5koHEJUCihm3/P2LrhdXBnA27CUuzRydWyQ/9beYTiK4y83BNTebYJMh2mxu3w+68urcask=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kANWmNZt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17A4AC4CEFB;
+	Thu, 13 Nov 2025 20:24:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763065475;
+	bh=4NO2Xdkz+jSDa61SzpnaLxD87yK+fJMEQl6hv5p3foU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kANWmNZt1Ib/MEjszjq3IIn1PYr6mCiLIBAhiqYeog6m2ahduTP9W0j9Wjdh98b94
+	 5NwldTDIdGZvV/ZnR3ppFS5bn1vWpQ/cKeSHou9697vZZGaCGDRdn+YCA1rEjU4Unw
+	 X3S7a45nV5XpczwpLG9uvQhr5SxrhtLOc3iy/rtBEZwNWxHH2TTRJC8oHasptjG6ZG
+	 HvqBE6U5UyhUwN3H5UcQhgs+ueZMDM/DIIWhhiBQDDNYu+ho+SnBhvm0CsZzuWXW/o
+	 4MnZIqnYisZWY7Kv4N+JVQIhEofCUwYqwSxCqwJIqWDkYg01Lrd5GgtOaf96FAJvIB
+	 firhIZDFs8TUg==
+Date: Thu, 13 Nov 2025 14:28:58 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: david@ixit.cz
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Casey Connolly <casey.connolly@linaro.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v2 02/12] arch: arm64: qcom: sdm845-enchilada: Specify
+ panel name within the compatible
+Message-ID: <mccbyhok747hjopkigm7rj7y6564bhnqxzcpo5yqjhbfffa4z4@5odvenhhsh3p>
+References: <20251113-sofef00-rebuild-v2-0-e175053061ec@ixit.cz>
+ <20251113-sofef00-rebuild-v2-2-e175053061ec@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113-sofef00-rebuild-v2-2-e175053061ec@ixit.cz>
 
-Am Donnerstag, 13. November 2025, 20:17:40 Mitteleurop=C3=A4ische Normalzei=
-t schrieb Doug Anderson:
-> Hi,
->=20
-> On Thu, Nov 13, 2025 at 10:12=E2=80=AFAM Rob Herring <robh@kernel.org> wr=
-ote:
-> >
-> > On Thu, Nov 13, 2025 at 2:29=E2=80=AFAM Ahmad Fatoum <a.fatoum@pengutro=
-nix.de> wrote:
-> > >
-> > > Hello,
-> > >
-> > > With /chosen/bootsource now part of dt-schema, I would like to raise a
-> > > related point: The need for SoC-specific device tree aliases.
-> > >
-> > > For many SoCs, there is a canonical numbering for peripherals; it's u=
-sed
-> > > in the datasheet and BootROMs often makes use of it at runtime to rep=
-ort
-> > > the bootsource as a pair:
-> > >
-> > >   - One value to enumerate type of boot medium (e.g. mmc, spi-nor..)
-> > >   - Another value that describes which instance (e.g. SDHC1, SPI3, ..=
-=2E)
-> > >
-> > > Some examples, where this is the case, are AT91, STM32MP or i.MX.
-> > >
-> > > barebox has traditionally used /aliases to translate BootROM informat=
-ion
-> > > to a device tree node to fixup /chosen/bootsource.
-> >
-> > So bootsource will be populated "mmc0" or "spinor1" for example?
-> >
-> > > This doesn't work out for many newer SoC support, because of different
-> > > expectations: For upstream, aliases are relevant to a board, while
-> > > barebox traditionally expected them to be SoC-specific (because they
-> > > used to be on i.MX, probably).
-> >
-> > But usually the numbering follows the SoC numbering. Sometimes it
-> > follows the PCB numbering, but I think that's mainly serial ports.
-> > I've certainly steered people away from vendor specific instance
-> > numbering properties towards aliases (if the need can't be eliminated
-> > entirely).
->=20
-> It's been a long time since I was involved in any discussion about
-> this, but I remember Arnd Bergmann being strongly against having
-> numbering aliases in the SoC "dtsi" file. I was always on the opposite
-> side of this argument, but it seems reasonable to include him in the
-> conversation.
->=20
-> From my point of view, with the exception of the "serial" alias folks
-> almost always wanted devices to be numbered as per the SoC numbering,
-> as long as there was a well-defined SoC numbering. For instance, if
-> the SoC manual consistently calls a port "i2c12" then it's pretty
-> confusing if the device doesn't end up as "/dev/i2c12". This always
-> led me to the argument that aliases like this should be in the SoC
-> ".dtsi" file.
+On Thu, Nov 13, 2025 at 06:57:36PM +0100, David Heidelberg via B4 Relay wrote:
+> From: David Heidelberg <david@ixit.cz>
 
-Yep, especially when everything in the soc documentation _and_ the
-board schematics calls i2c4 controller, clocks and data lines ... i2c4-foo.
+No "arch: " prefix on these files, please. (If patch 1 is picked in the
+current form, I can fix it up for you) 
 
-I do agree that unnumbered controllers (like sdhci, sdmmc, sdio on
-recent Rockchip SoCs) should be the responsibility of the boards,
-but really don't get the idea of repeating the ever same list of aliases
-in each and every board dts.
+Regards,
+Bjorn
 
-
-> The "serial" alias is a bit of a special case because of historical
-> assumptions. It's often assumed that serial port "0" is the debug
-> port. Luckily there aren't usually so many active serial ports so it's
-> not terribly confusing...
->=20
->=20
-> > The board specific part I think is more that the board defines what
-> > devices are present and not present. It would be weird to have a
-> > serial3 alias when that's not wired up. And board .dts files are going
-> > to forget to remove it. Though I guess it is somewhat harmless.
->=20
-> To me it doesn't seem awful to still have the alias pointing to a
-> "disabled" node. The node is still there, so why can't the alias still
-> be there?
-
-additionally, one would never ever point "serial3" or "i2c4" to anything
-else than the uart3 and i2c4 controllers, because that would be completely
-confuse everybody.
-
-Like when the board uses i2c0 and i2c4, those should still have the
-aliases i2c0 and i2c4, because when you have "i2c1" as alias for the i2c4
-controller on the running system, so many heads will explode ;-)
-
-
-
-
+> 
+> sofef00 is name of the DDIC, it doesn't contain name of the panel used.
+> The DDIC is also paired with other panels, so make clear which panel is
+> used.
+> 
+> New device-tree will work with old driver as expected, due to secondary
+> compatible.
+> 
+> cosmetic: sort the node.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+> index a259eb9d45ae0..8aead6dc25e00 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+> @@ -31,9 +31,9 @@ battery: battery {
+>  };
+>  
+>  &display_panel {
+> -	status = "okay";
+> +	compatible = "samsung,sofef00-ams628nw01", "samsung,sofef00";
+>  
+> -	compatible = "samsung,sofef00";
+> +	status = "okay";
+>  };
+>  
+>  &bq27441_fg {
+> 
+> -- 
+> 2.51.0
+> 
+> 
 
