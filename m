@@ -1,78 +1,96 @@
-Return-Path: <devicetree+bounces-238138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52D16C57BB7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:41:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E6DC57AA6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:31:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 835E54A5607
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:14:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A24834A47F5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:14:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A87C350A18;
-	Thu, 13 Nov 2025 13:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30A6635293E;
+	Thu, 13 Nov 2025 13:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="YHjNBTr9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k1hR2ZcG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603AE2EFD88;
-	Thu, 13 Nov 2025 13:14:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AFCD2D63EF
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 13:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763039644; cv=none; b=csqKz054XdaJ2lO+X4H9wLRFzF7a1N0qMGpgU+VRXFsW8TWMPalrsPKhUUHaQk18KmzA6Z8Y+cbZkVM+jVVd2xulCcu7PzUuBEtefhgeoZdzjxKw4HXweuq1cah890ePTBecvqRhTb09PykRAdTj99P7Tvm5x4I/TTZuiaRuvb4=
+	t=1763039561; cv=none; b=bVFyDiqkfvzFHOqtvJtNmZDXKQ15bqkQkKwsLFMCBGQuLyRv4IOyOuu/4Lz7pjht0KHe1t1KitZovjIRPuuOEnONiRDc7korPon0KHqqhGh3DtW2h3L382Jv+SgEm/OViLicQIV7SFRZ+hGF4IbAsxH3IaOg01UOcNhu8WoauDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763039644; c=relaxed/simple;
-	bh=WrKXaqClSXp37PlSbyDK+7ff3d4yATsoEfOX5STpTbA=;
+	s=arc-20240116; t=1763039561; c=relaxed/simple;
+	bh=PYHbKpYtcN2fDp/XLJTpHxlUS9sULnm6PE4CIW+WlNo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IZUbD6QVihJPEyhmgo9eyZodNs4xcuedpMw2iQudcUog9gtQYssoarWbnkKForY+5ny4T+8EASEjpPtJpB3OqUbeAtRoyGqL+1XrIRosoRFRXV9R13FT67ujYunbgwYzVp/8uADvWtMAg0EaBrWK9hHTwdFyMeTpHP5eQ58h05k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=YHjNBTr9; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=JSJC20DFhx/21yu6oEjT5bRb3QA5tX9bbfhsu/ygtmU=; b=YHjNBTr9BoT9IuGmfS/LcjPVWA
-	umQOSs07pA+8PuPSHL9ET3FzgrOM+G595aSm9RjaMSGWS00ofWWKRY3TQFZQwIiBT9CES5Swh7P0z
-	Z7bEMM+ONwFp5DB/sDgJg76RStTs8l5NvmLDuVRYf6U44tguWJaOIDOtw3s2J49N/Rwo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vJX96-00DrcU-OB; Thu, 13 Nov 2025 14:13:52 +0100
-Date: Thu, 13 Nov 2025 14:13:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=IjabjHDcXTd2dTDbG45HpDsAYNgWSk+w4JtoYse2Tdp7FjDrIhKfyFWOSnnrp8M7t09jQfOb3aJaiF3pENRE4ipTAbp7QD0KM6x2z1t792sm6q7gmYDXJ39ylEYAmUcWGyzCqtl+FgkUR2M7yZYbdHv9c3FgF3DDxieR5Hi7J9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k1hR2ZcG; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-298039e00c2so9510415ad.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 05:12:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763039559; x=1763644359; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BIIPN/N9Vp0LrvuR8gE94KTgdl5e+2K5VQUK3v6uGlM=;
+        b=k1hR2ZcGPAoBDl458GB26haFUIRdU+g7Dwdjd4VATi3NXjDGLYnlys50x46He1zhYn
+         zP2jhGV/vys61we7IGfNB0y1vBJafM6CVA5QPbb8HvEZPBSUuQl5raNFPQhpdN1fiLWE
+         HJJMuRYt9UeuuM/Fi46FrmbQBsLPmo5UFrM4IEoVAE9u3i8vjbZLPh3Ci/6pMXNJDbwo
+         nLfO6YqbyV3BCYcy0/BJrGo0oH0osp6lBfToWwxOzMbA+9fE+cV7z08fwqh4iMgN6LU6
+         9skjU7sWzPKOUZa2CPCOegpY6mphNg7h4cKvDaEuGMrKvYvTSfdVB/3BALK+RLCtiTRP
+         ZiyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763039559; x=1763644359;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BIIPN/N9Vp0LrvuR8gE94KTgdl5e+2K5VQUK3v6uGlM=;
+        b=Pj7uDtvxzVNk/kyT3WFbM28FOEBoRZzCROm7Cq4/2MQpLkVceeawQjVhUmc8bPSgmV
+         HglEzvyM5ugiyB4NpyHJPC2pjTBEbIi4Optdxt9YAGg2oWr7pzhPYlFMxdvtvt17mylz
+         99p04kPgDIn0Mm7D2ApRdOeeQcjE8f7p8QjlLnqkEm6SDs4gmunZWbRWWJnMTZfLQCKc
+         x4K8c3USeTPg7iRe2s58YedExJvfND1wvf5tBtROibe/nACbodmFoxcNKe+rMliWX5jL
+         +4ATWZZQhnylM/XEVkogQxJnvaN1yFLVfby6cfzURvhVDnN2Cqf0z4A+YIKFFXwdDAY8
+         BtVg==
+X-Forwarded-Encrypted: i=1; AJvYcCXDldpPP+KDkm0Ahk8xzDbeTNGChe4rGzFKEkK+7P1PcDGApRe9/dGWraZsBvrvWx792kqQNe0FZvOM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbAPYm9Mb3p3P3OWn1CMsnRhnyr1exy/PE76iwwkzBq9QHeDgp
+	OngvosT3zTfV/xia4Up1e+kLNzLTyU3JCeZig8XolVhbpOg1HxyX/SoW
+X-Gm-Gg: ASbGncuE4yUTo3vflKlzG5IDi07O/dQqjIZyMkuUPVkhkObdl2fpcUJNOW5K8niej94
+	WNz3F+kzmmuGaFgi2J6ohZgSYUA2VeijpjNdx/wi4L1cHzS2e+wGS7jQdNEqVHYxVQKpt7AMD3z
+	aYbH4XL4Oe+1gtzqL/w69x29sERb8AM2pfsGHUBCY3JcxYFNs1N2hw9iNqr+1ig/8kBLFeZnY9O
+	Q1QTgHsJ3UKW2jP8mp9CkBWd6papxILGHWAs0bLRTsWX2ZobKsMbYNVAnINMJkykzKom5foVGAZ
+	wWPImzE0CKK8P9RG8m9Ox54f1udrJchzC5hm0imhYAn3Oa1io+0IkhKDq4gZpU5oOfgqeB8aKCf
+	oeeF1ydFgKtjZpv353Hyx3wz51TvcsaqoyWHlfcjYX0RABJkcybmIxM7u5ArgYn87EPaBeAy0lR
+	SRBVqCKhaIvg==
+X-Google-Smtp-Source: AGHT+IHKWHFV17ns3ZpVjF2rHkOOpDusjT/d9J9zPlp7ZvaOQIJuUpu9+Z9VWrtjzQL6wybXmhMOig==
+X-Received: by 2002:a17:902:c947:b0:295:5625:7e41 with SMTP id d9443c01a7336-2984ed92e1amr84549625ad.22.1763039558775;
+        Thu, 13 Nov 2025 05:12:38 -0800 (PST)
+Received: from localhost ([2804:30c:1661:8a00:578a:911c:ac25:24a6])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2985c244e13sm25487465ad.29.2025.11.13.05.12.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Nov 2025 05:12:37 -0800 (PST)
+Date: Thu, 13 Nov 2025 10:13:56 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: rodrigo.alencar@analog.com
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
 	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH net-next v16 03/15] net: phy: Introduce PHY ports
- representation
-Message-ID: <d0eba8d1-a65d-4460-9497-5dd292dfe64d@lunn.ch>
-References: <20251113081418.180557-1-maxime.chevallier@bootlin.com>
- <20251113081418.180557-4-maxime.chevallier@bootlin.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH 1/3] iio: frequency: adf41513: driver implementation
+Message-ID: <aRXZlMsPjIGWJ_oc@debian-BULLSEYE-live-builder-AMD64>
+References: <20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com>
+ <20251110-adf41513-iio-driver-v1-1-2df8be0fdc6e@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,53 +99,123 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251113081418.180557-4-maxime.chevallier@bootlin.com>
+In-Reply-To: <20251110-adf41513-iio-driver-v1-1-2df8be0fdc6e@analog.com>
 
-On Thu, Nov 13, 2025 at 09:14:05AM +0100, Maxime Chevallier wrote:
-> Ethernet provides a wide variety of layer 1 protocols and standards for
-> data transmission. The front-facing ports of an interface have their own
-> complexity and configurability.
-> 
-> Introduce a representation of these front-facing ports. The current code
-> is minimalistic and only support ports controlled by PHY devices, but
-> the plan is to extend that to SFP as well as raw Ethernet MACs that
-> don't use PHY devices.
-> 
-> This minimal port representation allows describing the media and number
-> of pairs of a BaseT port. From that information, we can derive the
-> linkmodes usable on the port, which can be used to limit the
-> capabilities of an interface.
-> 
-> For now, the port pairs and medium is derived from devicetree, defined
-> by the PHY driver, or populated with default values (as we assume that
-> all PHYs expose at least one port).
-> 
-> The typical example is 100M ethernet. 100BaseT can work using only 2
-> pairs on a Cat 5 cables. However, in the situation where a 10/100/1000
-> capable PHY is wired to its RJ45 port through 2 pairs only, we have no
-> way of detecting that. The "max-speed" DT property can be used, but a
-> more accurate representation can be used :
-> 
-> mdi {
-> 	connector-0 {
-> 		media = "BaseT";
-> 		pairs = <2>;
-> 	};
-> };
-> 
-> >From that information, we can derive the max speed reachable on the
-> port.
-> 
-> Another benefit of having that is to avoid vendor-specific DT properties
-> (micrel,fiber-mode or ti,fiber-mode).
-> 
-> This basic representation is meant to be expanded, by the introduction
-> of port ops, userspace listing of ports, and support for multi-port
-> devices.
-> 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Hi Rodrigo,
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+A couple of comments inline since this is on the mailing list.
+As mentioned in the other thread, we ought to continue the review of this internally.
 
-    Andrew
+On 11/10, Rodrigo Alencar via B4 Relay wrote:
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> - ADF41513: 1 GHz to 26.5 GHz frequency range
+> - ADF41510: 1 GHz to 10 GHz frequency range
+> - Integer-N and fractional-N operation modes
+> - Ultra-low phase noise (-235 dBc/Hz integer-N, -231 dBc/Hz fractional-N)
+> - High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
+> - 25-bit fixed modulus or 49-bit variable modulus fractional modes
+> - Programmable charge pump currents with 16x range
+> - Digital lock detect functionality
+> - Phase resync capability for consistent output phase
+> - Clock framework integration for system clock generation
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> ---
+...
+> +
+> +static int adf41513_parse_uhz(const char *str, u64 *freq_uhz)
+> +{
+> +	u64 uhz = 0;
+> +	int f_count = ADF41513_HZ_DECIMAL_PRECISION;
+> +	bool frac_part = false;
+> +
+> +	if (str[0] == '+')
+> +		str++;
+> +
+> +	while (*str && f_count > 0) {
+> +		if ('0' <= *str && *str <= '9') {
+> +			uhz = uhz * 10 + *str - '0';
+> +			if (frac_part)
+> +				f_count--;
+> +		} else if (*str == '\n') {
+> +			if (*(str + 1) == '\0')
+> +				break;
+> +			return -EINVAL;
+> +		} else if (*str == '.' && !frac_part) {
+> +			frac_part = true;
+> +		} else {
+> +			return -EINVAL;
+> +		}
+> +		str++;
+> +	}
+> +
+> +	for (; f_count > 0; f_count--)
+> +		uhz *= 10;
+> +
+> +	*freq_uhz = uhz;
+> +
+> +	return 0;
+> +}
+didn't check the details, but can't the sub-Hz resolution be supported with
+.write_raw_get_fmt()?
+e.g.
+
+static int adf41513_write_raw_get_fmt(struct iio_dev *indio_dev,
+				    struct iio_chan_spec const *chan, long mask)
+{
+	switch (mask) {
+	case IIO_CHAN_INFO_FREQUENCY:
+		return IIO_VAL_INT_64;
+	default:
+		return IIO_VAL_INT_PLUS_MICRO;
+	}
+}
+
+static const struct iio_info adf41513_info = {
+...
+	.write_raw_get_fmt = adf41513_write_raw_get_fmt(),
+};
+
+...
+> +
+> +static ssize_t adf41513_write(struct iio_dev *indio_dev,
+> +			      uintptr_t private,
+> +			      const struct iio_chan_spec *chan,
+> +			      const char *buf, size_t len)
+> +{
+> +	struct adf41513_state *st = iio_priv(indio_dev);
+> +	unsigned long long readin;
+> +	unsigned long tmp;
+> +	u64 freq_uhz;
+> +	int ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	switch ((u32)private) {
+> +	case ADF41513_FREQ:
+> +		ret = adf41513_parse_uhz(buf, &freq_uhz);
+> +		if (ret)
+> +			return ret;
+> +		ret = adf41513_set_frequency(st, freq_uhz, ADF41513_SYNC_DIFF);
+> +		break;
+> +	case ADF41513_FREQ_REFIN:
+> +		ret = kstrtoull(buf, 10, &readin);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (readin < ADF41513_MIN_REF_FREQ || readin > ADF41513_MAX_REF_FREQ) {
+Can, alternatively, this check be made with in_range() macro?
+If so, then
+#include <linux/minmax.h>
+
+Same question/suggestion to other similar value bounds checks throughout the driver.
+
+> +			ret = -EINVAL;
+> +			break;
+> +		}
+> +
+
+With best regards,
+Marcelo
 
