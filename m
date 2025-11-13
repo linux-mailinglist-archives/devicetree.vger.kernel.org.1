@@ -1,287 +1,172 @@
-Return-Path: <devicetree+bounces-238356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD04FC5A5BE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:42:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C77C9C5A591
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:39:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E1C064F2AF9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:36:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B2C43A750D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD5B31BC8F;
-	Thu, 13 Nov 2025 22:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD852E6127;
+	Thu, 13 Nov 2025 22:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="pdaf5v2k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rwjLvrXE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8682E03FE;
-	Thu, 13 Nov 2025 22:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FBAF2E427C;
+	Thu, 13 Nov 2025 22:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763073377; cv=none; b=F75jd72wWxL4JHNZ1rA99H80HfgClKX741P3+awzvLwPipO0NTx4/NevrTa6tO6eSWRoxW6KFD59fpruOOxTP6xl3Y2aUJCGrPdNJFt5O6swelRYTCn/IFDvrZgEy0tQQ8ytCjpl8KXgANlOS9YLgz18p//6J+V0z92hTVh6/lA=
+	t=1763073541; cv=none; b=P85DdI/9JpBHwWUoyeCxddk1DLhp7iM0NXr7Vrrhufl1wy0kAegwCJDY4UjeXLp0+IWHtGQLx+FtNrV2xrTA6GILovvrnQYo7yUJN2WZGe3DkoTgSyBvkX7vEv7Km46txD6+WGgTFtyD0kDwsH72j5kQSusd8CswHil+HmyKGw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763073377; c=relaxed/simple;
-	bh=6xOuc9OuR5SyBNHngmpgW0egzWTHw3MpsMjVZiVPkng=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uKPZrZX3hnmXCo31eJOyoP7VexMN0866EVhep+D8Qpp2IwW4XW4ApiOd08O9qM5NgVqvsepXgVqoWtFFi+t8IruIooQWIjoucKjIKBhdgqWHpvU+q+q0LHtJZxxd4qi5iBRtRwjHDZZA+Tkp43HoLAf5RUxHJpZ1ujo6JXnEuf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=pdaf5v2k; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=N8U24sO6e6httf2hxXjc6YUvS3goaUUaOyj8qFfupFU=; b=pdaf5v2kpjdd3L8m7MpTD/k7FZ
-	tEeUMmQgNYvULW6OFSQyWsUYSGIP0x1cZqDXwkXZhL6AkIHEO3EPf+qurca7bn5gErEAu1AgnwKXM
-	oWKsss3Jam9eKIbsrDCPPU0M0usEhuzkeuMy7OP04rtsORGZ8X44U2LfAmd5Vn4/ptx1hHY9TJ/Tw
-	aRYkw3qRlQpZot7Qwn7JOK5PqVeCCJOqaeyrepB94GjfioEXAtEJoWOTbY389yMdGJoZB0aY2BOXl
-	mx2n1kCqVGU6fyLYV92LkVGfgKwcEUAZCw0W6UOukop8G6NmYZkkEfc9B5Fmn/LyICMVLBWhcazyw
-	Ki/XwKuw==;
-Received: from i53875a11.versanet.de ([83.135.90.17] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vJfv4-0005Rc-Hp; Thu, 13 Nov 2025 23:35:58 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, michael.opdenacker@rootcommit.com
-Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 2/2] arm64: dts: rockchip: add Tinkerboard 3 and 3S device tree
-Date: Thu, 13 Nov 2025 23:35:57 +0100
-Message-ID: <3310785.5fSG56mABF@diego>
-In-Reply-To: <20251111172003.2324525-3-michael.opdenacker@rootcommit.com>
-References:
- <20251111172003.2324525-1-michael.opdenacker@rootcommit.com>
- <20251111172003.2324525-3-michael.opdenacker@rootcommit.com>
+	s=arc-20240116; t=1763073541; c=relaxed/simple;
+	bh=bJO7lRAgZthhVJtPBrw2yr+3dHNBPSri1nazhYZnFAU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tiJnF1v3MUnTz/e9LZUUipP83XP9Eg0lc/jjjGUQ9ZUVjzYZRG3uhTLTgnp+R5QsKrEWgDyalE6nb64woABbI3G4EBM/OG9R5eCjPOfEJe8uvzFScv5aqewCH2ueXWkNd9yDkNVKqsMJM4eCpeKfapuo9NefUhLrLgO1jsDFDQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rwjLvrXE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0E40C4CEF7;
+	Thu, 13 Nov 2025 22:39:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763073540;
+	bh=bJO7lRAgZthhVJtPBrw2yr+3dHNBPSri1nazhYZnFAU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rwjLvrXExA5HeJQIsNZssAT4ITH9y/lJqSPHnBR/BVIkUnqaEaXq9QFbfWYeVc9n6
+	 JNo60lRVxbXIivf9UCs6KAsAekvPXEwIJxt2UACfJa4TvZ8NKtiq4w+VFRLoZZYkhz
+	 K9zcXq85JUro42ztEU9gU/N2mvzp8XP355YvGhz/Hmz0+a775OxFbCGKkbVhPs6mu6
+	 BRKBlyCgDsX3HvCX0Spsx4iHWHVe3pP5SfoSlX9hoZF9048fKiTLcrWIJBNBcDdTKb
+	 /VC2yqoprCOHwETy5AOLzpf/ee1yhiqwklDWjMdIp/cPqrUCN6nd21JgN7QMxGdE6y
+	 P+mWP45HXm9VQ==
+Date: Thu, 13 Nov 2025 16:38:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yuntao Wang <yuntao.wang@linux.dev>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	James Morse <james.morse@arm.com>, Baoquan He <bhe@redhat.com>,
+	Zhen Lei <thunder.leizhen@huawei.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Geoff Levand <geoff@infradead.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Alexander Graf <graf@amazon.com>,
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] of/fdt: Consolidate duplicate code into helper
+ functions
+Message-ID: <20251113223859.GB800052-robh@kernel.org>
+References: <20251113155104.226617-1-yuntao.wang@linux.dev>
+ <20251113155104.226617-2-yuntao.wang@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113155104.226617-2-yuntao.wang@linux.dev>
 
-Hi Michael,
-
-Am Dienstag, 11. November 2025, 18:20:23 Mitteleurop=C3=A4ische Normalzeit =
-schrieb michael.opdenacker@rootcommit.com:
-> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
->=20
-> Add initial device tree support for Asus Tinkerboard 3 [1] and 3S [2],
-> which are SBCs based on the Rockchip 3566 SoC.
->=20
-> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
-> and a "mask ROM" DIP switch (to mask the eMMC and enter "Mask ROM"
-> mode for recovery) to the "3" version.
->=20
-> This adds support for:
-> - Debug UART (/dev/ttyS2)
-> - SD card (/dev/mmcblk1)
-> - eMMC (/dev/mmcblk0, only on Tinkerboard 3S)
-> - I2C:
->   - i2c0 (internal bus with a PMIC and regulators)
->   - i2c2 (internal bus with an at24 eeprom and an RTC device)
-> - USB 2.0 ports
-> - 2 GPIO LEDS
->=20
-> Link: https://tinker-board.asus.com/series/tinker-board-3.html [1]
-> Link: https://tinker-board.asus.com/series/tinker-board-3s.html [2]
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+On Thu, Nov 13, 2025 at 11:50:58PM +0800, Yuntao Wang wrote:
+> Currently, there are many pieces of nearly identical code scattered across
+> different places. Consolidate the duplicate code into helper functions to
+> improve maintainability and reduce the likelihood of errors.
+> 
+> Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
 > ---
-
-please follow the DTS coding style
-https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
-
-
-> +/ {
-> +	aliases {
-> +		serial2 =3D &uart2;
-> +		mmc1 =3D &sdmmc0;
-> +		i2c0 =3D &i2c0;
-> +		i2c2 =3D &i2c2;
-
-alphabetical property order
-
-
-> +	};
+>  drivers/of/fdt.c       | 41 +++++++++++++++++++++++++++++++++++++++++
+>  include/linux/of_fdt.h |  5 +++++
+>  2 files changed, 46 insertions(+)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 0edd639898a6..5e0eabc1449f 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -625,6 +625,47 @@ const void *__init of_get_flat_dt_prop(unsigned long node, const char *name,
+>  	return fdt_getprop(initial_boot_params, node, name, size);
+>  }
+>  
+> +const __be32 *__init of_fdt_get_addr_size_prop(unsigned long node,
+> +                                               const char *name, int *entries)
+> +{
+> +	const __be32 *prop;
+> +	int len, elen = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
 > +
-> +	chosen {
-> +		stdout-path =3D "serial2:1500000n8";
-> +	};
+> +	prop = of_get_flat_dt_prop(node, name, &len);
+> +	if (!prop) {
+> +		*entries = 0;
+> +		return NULL;
+> +	}
 > +
-> +	vcc3v3_sys: regulator-3v3-vcc-sys {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc3v3_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		vin-supply =3D <&vcc5v0_sys>;
-> +	};
-> +
-> +	vcc5v0_sys: regulator-5v0-vcc-sys {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc5v0_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
-> +	};
-> +
-> +	vcc5v0_usb_host: regulator-5v0-vcc-usb-host {
-> +		compatible =3D "regulator-fixed";
-> +		enable-active-high;
-> +		gpios =3D <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&usb_host_pwren_h>;
-> +		regulator-name =3D "vcc5v0_usb_host";
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
-> +		vin-supply =3D <&vcc5v0_sys>;
-> +	};
-> +
-> +	gpio_leds: gpio-leds {
+> +	if (len % elen) {
+> +		*entries = -1;
 
-gpio-foo before regulator-bar
+I don't think it's really important to distinguish a length error from 
+any other error. Either we can read the property or we can't.
 
-> +		compatible =3D "gpio-leds";
+> +		return NULL;
+> +	}
 > +
-> +		act-led {
-> +			gpios =3D <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger=3D"mmc1";
-> +};
+> +	*entries = len / elen;
+> +	return prop;
+> +}
+> +
+> +bool __init of_fdt_get_addr_size(unsigned long node, const char *name,
+> +                                 u64 *addr, u64 *size)
+> +{
+> +	const __be32 *prop;
+> +	int len, elen = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
 
-missing indentation
+Still have 2 locations to get the same calculation wrong...
 
 > +
-> +		rsv-led {
-> +			gpios =3D <&gpio0 RK_PD6 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger=3D"none";
-> +		};
-> +	};
-> +};
-> +
-> +&uart2 {
+> +	prop = of_get_flat_dt_prop(node, name, &len);
+> +	if (!prop || len < elen)
+> +		return false;
 
-alphabetical ordering of phandles please (uart2 definitly somewhere after i=
-2c0)
+Why doesn't calling of_fdt_get_addr_size_prop() work here? If 'len < 
+elen', then 'len % elen' will also be true except in the 0 length case. 
+For that case, of_fdt_get_addr_size_prop() needs to handle it too.
 
-> +	status =3D "okay";
-> +};
 > +
-> +&i2c0 {
-> +	status =3D "okay";
+> +	of_fdt_read_addr_size(prop, addr, size);
+> +	return true;
+> +}
 > +
-> +	rk809: pmic@20 {
-> +		compatible =3D "rockchip,rk809";
-> +		reg =3D <0x20>;
-> +		assigned-clocks =3D <&cru I2S1_MCLKOUT_TX>;
-> +		assigned-clock-parents =3D <&cru CLK_I2S1_8CH_TX>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&cru I2S1_MCLKOUT_TX>;
-> +		clock-names =3D "mclk";
-> +		clock-output-names =3D "rk809-clkout1", "rk809-clkout2";
-> +		interrupt-parent =3D <&gpio0>;
-> +		interrupts =3D <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pmic_int_l>, <&i2s1m0_mclk>;
-> +		#sound-dai-cells =3D <0>;
-> +		system-power-controller;
-> +		wakeup-source;
+> +void __init of_fdt_read_addr_size(const __be32 *prop, u64 *addr, u64 *size)
+> +{
+> +	*addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
+> +	*size = dt_mem_next_cell(dt_root_size_cells, &prop);
+> +}
 > +
-> +		vcc1-supply =3D <&vcc3v3_sys>;
-> +		vcc2-supply =3D <&vcc3v3_sys>;
-> +		vcc3-supply =3D <&vcc3v3_sys>;
-> +		vcc4-supply =3D <&vcc3v3_sys>;
-> +		vcc5-supply =3D <&vcc3v3_sys>;
-> +		vcc6-supply =3D <&vcc3v3_sys>;
-> +		vcc7-supply =3D <&vcc3v3_sys>;
-> +		vcc8-supply =3D <&vcc3v3_sys>;
-> +		vcc9-supply =3D <&vcc3v3_sys>;
-> +
-> +		regulators {
-> +			vcc_1v8: DCDC_REG5 {
-> +				regulator-name =3D "vcc_1v8";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt =3D <1800000>;
-> +				regulator-max-microvolt =3D <1800000>;
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc3v3_sd: SWITCH_REG2 {
-> +				regulator-name =3D "vcc3v3_sd";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vccio_sd: LDO_REG5 {
-> +				regulator-name =3D "vccio_sd";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt =3D <1800000>;
-> +				regulator-max-microvolt =3D <3300000>;
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_3v3: SWITCH_REG1 {
-> +				regulator-name =3D "vcc_3v3";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	vdd_cpu: regulator@40 {
+>  /**
+>   * of_fdt_is_compatible - Return true if given node from the given blob has
+>   * compat in its compatible list
+> diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
+> index b8d6c0c20876..3a0805ff6c7b 100644
+> --- a/include/linux/of_fdt.h
+> +++ b/include/linux/of_fdt.h
+> @@ -55,6 +55,11 @@ extern int of_get_flat_dt_subnode_by_name(unsigned long node,
+>  					  const char *uname);
+>  extern const void *of_get_flat_dt_prop(unsigned long node, const char *name,
+>  				       int *size);
+> +extern const __be32 *of_fdt_get_addr_size_prop(unsigned long node,
+> +                                               const char *name, int *entries);
+> +extern bool of_fdt_get_addr_size(unsigned long node, const char *name,
+> +                                 u64 *addr, u64 *size);
+> +extern void of_fdt_read_addr_size(const __be32 *prop, u64 *addr, u64 *size);
+>  extern int of_flat_dt_is_compatible(unsigned long node, const char *name);
 
-you probably need &cpu0 phandles to set this regulator-supply?
+Looks like of_flat_dt_* would be more consistent with existing naming.
 
-> +		compatible =3D "silergy,syr827";
-> +		reg =3D <0x40>;
-> +		fcs,suspend-voltage-selector =3D <1>;
-> +		regulator-name =3D "vdd_cpu";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt =3D <830000>;
-> +		regulator-max-microvolt =3D <1200000>;
-> +		regulator-ramp-delay =3D <2300>;
-> +		vin-supply =3D <&vcc3v3_sys>;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	status =3D "okay";
-> +
-> +	m24c08@50 {
-
-I guess eeprom@50 ?
-
-Heiko
-
-
+>  extern unsigned long of_get_flat_dt_root(void);
+>  extern uint32_t of_get_flat_dt_phandle(unsigned long node);
+> -- 
+> 2.51.0
+> 
 
