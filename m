@@ -1,136 +1,133 @@
-Return-Path: <devicetree+bounces-238082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32650C5705A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:55:43 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94612C57087
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:57:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D0FBA4E9DB2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:49:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C74504E7370
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D666D3203BE;
-	Thu, 13 Nov 2025 10:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063593321C4;
+	Thu, 13 Nov 2025 10:52:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="K0qGIcje"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1Vl+jwE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay48-hz3.antispameurope.com (mx-relay48-hz3.antispameurope.com [94.100.134.237])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4732E093B
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.237
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763030979; cv=pass; b=L6SEBUxA0a0scUeclaNAv3ewtl1Jb8f5jPhYYg8cmexmRYPI22CZSYYPM053O2IQb/eFG7VXgE+aqT5cTIUDofTuDjJCyqJhdTZaLt8BYWfDCl+qKsuDaeyA5BPNe3+hRt1rTy1KakqK6/QXZnPGJ1A6iU3I7efyLx3siD8EcYc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763030979; c=relaxed/simple;
-	bh=J6BsqTCmOrFFiAQAx5pEd4B6YJ3Nlg5q4umEShFXHAU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=B08JDtF7OhSn9owVJoJMM/yQtfRjQRz+qts2RGKp9IwHuscSJGW25qofQWe+zpAWFY5rPMjrPIVHfF4Nu8MIi+R90aSH5A4EFgEsfKeNiS8e1UxKKdNZZSjavaUcYc0aGoxZdmmClamWC7H3Am6ai04IieNoLfFfr4agft0qSf4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=K0qGIcje; arc=pass smtp.client-ip=94.100.134.237
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate48-hz3.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out02-hz1.hornetsecurity.com;
- dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=HwZpnlL5PSUjD1ekyFYHL+mEFm8pXGu4Iwrph47h1b8=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1763030954;
- b=Ts/mg5rxeoOO+O7851vJ8BhnEhJzheLmWEpKw7kQajUijcSZVejnbQ0b4KwxvpjtYEiVkyfx
- TG0A9aZllbKoJlnDpSuclcw5cv+/kDfKce3MQAO7AjyfgAIj9EYuCmK1Cgy2pUvpk4rxTCjG3cc
- xRtr2CHYYmGaU1f9i+gzM2TiYvyOTUWOcJ7jW+TpjU1BiQEy/2CMF87ayK/8dJ1YYdGD4wOvEUU
- 0uaUezjABcb5iAOif/yFP+irE332zh4rMvYTQ1xtip+0cl/Xy1SnySVlMrPh6BAcgEyLxkY+TZZ
- QsKWnhqp0Gwq6DTP9D/vqUVJKO2qkPKOhry0H5j9VPpEQ==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1763030954;
- b=lfddmx2J45GgrUCC859a8+MlIlz3h6mQ66OxV4mhlz4jqXUbDeBiS8mdhCmDl7bPvz5cQMVd
- hIYMAvxEjH19x9d5efy/PqrwHKzFFgDWDxwwwCGffqfbKyzvV2Fb80Jtp4iExqd1VspTeddSgV1
- bW+vqvxb+raCcO7zQZOvb6tPOQv7RPtwIatHESGmkkgOGRXopbyZloWaaPtr+hLB9OdqoVRcK33
- 4WqznK9CVkUXGVhHHh/PMWpPRNuvf3v7tYfmYsJx4bG7hm+V3xp2O9Hg28XgxGElu847h1BCXLT
- ej9CrjnAumpQVz/WDOF1Z0PYB0hokKvm8d0fTBQHNm8Gg==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay48-hz3.antispameurope.com;
- Thu, 13 Nov 2025 11:49:14 +0100
-Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id C3B245A063D;
-	Thu, 13 Nov 2025 11:49:06 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: mb-smarc-2: Add MicIn routing
-Date: Thu, 13 Nov 2025 11:48:56 +0100
-Message-ID: <20251113104859.1354420-3-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251113104859.1354420-1-alexander.stein@ew.tq-group.com>
-References: <20251113104859.1354420-1-alexander.stein@ew.tq-group.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9BBF2D0607;
+	Thu, 13 Nov 2025 10:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763031168; cv=none; b=Y8ayvpRglxepugNioOV9iuGD5q4YPEDw/QBwUfdgIaAK1NhOfnAP/RFL8OWQtzh6h6p4lAwhrU4/h8fWhE3qLIG9cQm76UjDSaxARRWpD2lJcisO3YYJzVSeYpe08kwF6VEfYeLjPsXxyW8fJ5jP2w3oq+3igwnPvLC8IEgn7qE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763031168; c=relaxed/simple;
+	bh=l9v05bUxB1fkYe8by6F+67M0LiZ3Dy4jYGtzV7XjO3Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YPR7lnriaCgptObDGLgQwerUxuwVDvXLvrzhVs8Qn2IHtn6wgmiz/cEvWII9HsxeYIuTX/OcECeGZSKuBITXoCOeXjcFCLT4cbMnUga/tj3Vz6RLmmb6Sxp9Xq7N44pYkUwGB5x9MQP0m1UoRo83oeWoy0Evxv41wELX2JhLKO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r1Vl+jwE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 792A4C4CEF8;
+	Thu, 13 Nov 2025 10:52:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763031166;
+	bh=l9v05bUxB1fkYe8by6F+67M0LiZ3Dy4jYGtzV7XjO3Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r1Vl+jwEND5Qi2zB0d7roJtLKGQ4y5IuydyOjN5ZE5ZsXJYdLuX3AogmnCH/F864k
+	 1gCdnM+FjQA0V2InyCxPsbL3HQ6SYdQwcwrJdBaZRby56M6jR+Q4ehN9CxVisngR+X
+	 Cx3bqQdZ645xrz+ZKH2HvZakI499V1QSs3fuI3s03TM1NKwKFoifDewhEH3v4tg8Z5
+	 84wvMgBTNM+LQ7IJRpwQdXWjvRK/XLIYS/Msk2R3KwAEYLn8ma+GKsL0MXHfR1tfN0
+	 xe2R/5vFLdIa1jKVODBH7m43Ox1Qn3uDvHzKWyPrgYbsdgCRH1qRQVv3q+CezbPNx6
+	 fSlAcmUgF0TZw==
+Message-ID: <7904826d-043d-4e63-9d38-e0763b3822ba@kernel.org>
+Date: Thu, 13 Nov 2025 11:52:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay48-hz3.antispameurope.com with 4d6cTH3cvgz1kPGJ0
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:ed014fac5779153bf3b07ca053158c71
-X-cloud-security:scantime:1.897
-DKIM-Signature: a=rsa-sha256;
- bh=HwZpnlL5PSUjD1ekyFYHL+mEFm8pXGu4Iwrph47h1b8=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1763030954; v=1;
- b=K0qGIcjeCC3BF4PWR5AmxXmdlRWnYf3WdhuHzZh0lvU4GEs+SHMVGHf89kov6+3dNrhqHhd+
- DIQgWRkOb4Qggv61+fVCvdowlj/eNGttXB9qOgJ1GPq6fCx59Dlyb3wAAmK7IdurkWX3Y/TVmSK
- 0WFB6NTtSmYIefuW66ShGNZ7kSVyg085Lm4XbJ8zdLw8LkDF8em03G+zUaLEQ5yyBIKmrWyZ3mk
- sSA7QjuxCyaX+kQL0xvSzlhjDbqxExl1i3D8H6117fSEE5GsZdh5137a/Z3xLHdZxwrdmarbfuS
- N81Cnm0X1PzWgqcR0aIeDo5DzF7C8FFzOgz7H9uSgqoVQ==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: i2c-hid: Introduce FocalTech
+ FT8112
+To: Daniel Peng <daniel_peng@pegatron.corp-partner.google.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-input@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20251113140004.v4.1.I894dde5015f4acad94cb5bada61e5811c5142395@changeid>
+ <20251113-belligerent-wrasse-of-current-3cd3a5@kuoka>
+ <CAAq2-DFJ2HZQ=p5J7wppQWYh9tqrFxNqexYXFcVB=b1ufWgmXg@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAAq2-DFJ2HZQ=p5J7wppQWYh9tqrFxNqexYXFcVB=b1ufWgmXg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-MicIn is connected to IN3_L. Add routing including the Mic Bias.
+On 13/11/2025 11:44, Daniel Peng wrote:
+> Hi Krzysztof,
+> 
+> Sorry for the confusion.
+> I just refer ilitek,ili2901.yaml as example to modify correct information
+> for this device. And I create document file for FocalTech FT8112 device for
+> Skywalker platform only.
+> Moreover, modified related interrupt and reset gpio to map for Skywaler
+> platform(MT8189).
+> 
+> I think it would be good to create document. If any, please let me know.
+> 
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi b/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
-index 478cc8ede05ef..3d20e3bf32ce7 100644
---- a/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
-@@ -98,6 +98,13 @@ sound {
- 		model = "tqm-tlv320aic32";
- 		ssi-controller = <&sai1>;
- 		audio-codec = <&tlv320aic3x04>;
-+		audio-routing =
-+			"IN3_L", "Mic Jack",
-+			"Mic Jack", "Mic Bias",
-+			"IN1_L", "Line In Jack",
-+			"IN1_R", "Line In Jack",
-+			"Line Out Jack", "LOL",
-+			"Line Out Jack", "LOR";
- 	};
- };
- 
--- 
-2.43.0
+Please don't top post.
 
+There is no need for new document, everything is identical, so just add
+new compatible to the other binding.
+
+Best regards,
+Krzysztof
 
