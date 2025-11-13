@@ -1,313 +1,278 @@
-Return-Path: <devicetree+bounces-237997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19EB3C5657B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:46:32 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82095C565E9
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:53:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C80E835530A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:40:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 49CC5342837
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53ED733120B;
-	Thu, 13 Nov 2025 08:39:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120BB2D29D6;
+	Thu, 13 Nov 2025 08:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="dzNNwXUq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PBZQgJ+A";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dZbDPD6B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFB3D2853F7;
-	Thu, 13 Nov 2025 08:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E1323F40D
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763023187; cv=none; b=Lat1RshewHhACYy1V74qhMsT4QNDuH51cuS9yyIooS2A2LFBketwqQ2hGPSiiVTfg9267TAFsoN4uU2wlNXA3Wkk/1OGtDzeJXiBccreYJnBXcqTKAciHKBintZjIIqcVwN6HNpXvWKcL+qZE2QhhXZK33kY0k1hDR6q3MJzuTw=
+	t=1763023584; cv=none; b=HY1aIQwD+y/Z1IdHlKgnRzkc8Q56ENotlSwVZtpA6BPOSNLyb/5Tko4CIl5AIdD94iYkNYS8RXoS6oNnCHMydqM8FKumv+7XFedN4GsWXCUdmjlfOokawjqylPatCszATMix5YxeZBKFfVtTjMYDdcXPmktUBw5YK7S4cMdfEW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763023187; c=relaxed/simple;
-	bh=M2gflnII7hGs+7TzU/+hUk/rqQywT7+PStfAeWwe30g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KAgnBxaoFQohJtPo6XSuGRbQqTLNvZrDAiR1D/GDqJiGW9hXnSbwuJ/9Gn6KiIXqsNGqXfh2XDS3IvKChRIjkgTpv0pNAZ9E8CiCF6Nm5Xt+tSTnpxUdfKT5pzt+jU2yKKrNpApRUomt1c0Ut2dYZCEZMkf8msw1Nb2G72TYSk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=dzNNwXUq; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E0275446;
-	Thu, 13 Nov 2025 09:37:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1763023061;
-	bh=M2gflnII7hGs+7TzU/+hUk/rqQywT7+PStfAeWwe30g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dzNNwXUqqVIuM6S9Twx21l9BTEGzToaWXPHG1hwiGfdlYsXykVv9t/ooSQVfwPXK/
-	 PTyzj93C4WEJ/3YjFAJxXrtU+lGXV9MGRCFdxqXZACc/QrXIO9FoOAIc3Sk+e65YPk
-	 PU/Wxoyk4qtfJvTXKjwg6JN+KNOKdaFif54AVo6w=
-Date: Thu, 13 Nov 2025 09:39:37 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com, 
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jerome.forissier@linaro.org, 
-	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v13 15/15] Documentation: mali-c55: Document the mali-c55
- parameter setting
-Message-ID: <2n4sn2aakwl7k2qvcefb7m2zzllytj7i4nup55xex2ggdngfkd@gwpxbpmlupko>
-References: <20251111-c55-v13-0-3dc581355e3a@ideasonboard.com>
- <20251111-c55-v13-15-3dc581355e3a@ideasonboard.com>
+	s=arc-20240116; t=1763023584; c=relaxed/simple;
+	bh=jGAs8GDkTdepMafZ6RRqwys5UhmLlRnQZMfjPFvWU14=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VII3TGH+4shCzj4nxEqlxdYMI7B1MYPlYE0Qbd0InHmzQNLpmPCI9SpO4YQqdQor6yFZi+1QH0/Da1C1GY6CWIHsDGH5KsNOa5/D2P5KrA757/8qQx7OdAsO9sEqpSDc6mnzBqMnRtmwcm4VznNuqQ4MDsX++nq7ioB0EbQBp/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PBZQgJ+A; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dZbDPD6B; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD65g2g3563291
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:46:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=D3wze9fyhGDJ4KP1QzTcteRoRGZ7U9g3nAS
+	QGeqMgHk=; b=PBZQgJ+AqRlc6m/JUx2XvTH9CE2LbP55t/P0RXhhEPZqf689daE
+	KzU/o//WJtInYW4NExRqah3qogG8qJXlwOf8OFNkfTRbkk04QviWdPMS5X5mLtaB
+	XD2b0bI67N1ElQ7CWJp/WMxLord2qnDiq9JRV0PEy6TDsy7k7HeHFI1hu7sL6CEH
+	S8SCc8zDYvb5wwRVQ1LuVmGIztm21k5CGl5xrzSLub9Ho564BOJUnPgPYE4dDpwj
+	RUcSKyR5z7GsDfmNE2ZNbs5AtPOSNPWPhLtpIoVwpli1HWPuvIYd3aL2YN55jvQo
+	fSp6o0+PxC2ALLHcKfl6Kx97ZPZ1vGQs/IA==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ad9rvgfc8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:46:21 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-340c07119bfso1508655a91.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 00:46:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763023581; x=1763628381; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D3wze9fyhGDJ4KP1QzTcteRoRGZ7U9g3nASQGeqMgHk=;
+        b=dZbDPD6BK0xaq4DIKLgfsOOjbhBDJrUIQ6ZZ4wp+aVByDkxTLLzFSkLBf8sbLKlZXs
+         lsXUVcbFgOI+URfOFEPgOifi6ASzZfg7HoykXHo8plZxjfgnsDhageTmwkwO7Gc5/Clg
+         hifydP+EOo5B15wMFXLxI16u9lz9xl1SAOARPGrLxC+eW/Xinp5YpVJeg5gUPbNQ2Owh
+         ELnnJKN2okZHWF+KdO4KpEWPCmftN0a25gHzdIJLJ7vfkWwGXUPUESNhF4N0EK9xEe3T
+         U/ong1RAzw8Jbbxll4F7+7PElXgKESdvDEvKjZqossWNUwf3vfeTrTaNfN+ogOLwKASi
+         5ywg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763023581; x=1763628381;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D3wze9fyhGDJ4KP1QzTcteRoRGZ7U9g3nASQGeqMgHk=;
+        b=kaBEpJz3N4CORhSezuQCmedAa+prGmVapTyivYezy8MGAde9lbpAP54swQaQxTGazc
+         T57tmOYO71Fh5PwKfIzat/YqealsK9O6eN64oXR5TenQDB/xTQ/V3mY8nrjBEdHFVbQx
+         AqdeyrHkDQ1v295H+2oeP77m4fS/P8+9CUFpQC0RH4tzrd5fBgJUmJrkYzQGl0iNA/u6
+         7IhU/XX0Ght+mWB3hoJg08Rboj18iioPuLmC7/zpT4D3D8/5HD+IF7Vo1icGmgfVtYT6
+         9OsdssPnkUgVU2RB0pa4Lw4q6cPKwkjjFg+AoFbA+Et7zKIep440LFbIPWR3dN3PclXv
+         87xg==
+X-Forwarded-Encrypted: i=1; AJvYcCVcrAf4sWID88ega0mEHCNTgu3vR4soNAnyizM34TqjGqjrCNnZdYYCu88SGWollkR3EgE+kEDChB6X@vger.kernel.org
+X-Gm-Message-State: AOJu0YymJKl/XzWGtL7oVlzbb/lvbHwcBD/zRBALNyVKUi4WZ2bR7r+7
+	fg30JcRZIuYeQKhCFu8Gmzd5VRomqEBj6hhb8/nfSMmJEAW34zQ5YJwhXM40J+dNtZEofJ67arP
+	FOE4jUU17SPXlGPFdbG3sepTfjeryHexHHhC5qrVUsAFujqJ30t962Wt+WFrOCcP7wqsq6pi8
+X-Gm-Gg: ASbGncsWRO+YMnTSJYL4E2KhUL1zvdcz8RTPPFLptH2SpAOjbWJCGoU8cVoooocknNG
+	gnBxxmBNuf/9wf49TpRjbqq0q57+bw5HEeimyRi0JYhU/2xRAlTw0jo2lTLbVoNUFzuJ0BGlScT
+	0FKZSsVg91MPwWK4bjTREdFOjWR/djMMdIOoAS/0AmL1YYDsm73b9wbzU5ccwWcbKyku5lCCdr7
+	5hxAM8BMU3qDIa9VNfaiN3OrgDJy8m72Cq5eyyxlcnixWilc6FjFVMKj45NQSEG/JKGlg+nTV7J
+	C0ZC05o39RRXonOyxvfm+SIG/DGhF8BP23Vfb2eyyVbXxSM39jtKaX1jqyNkJd9YNxEdEUxPDUB
+	w3/KHduYSHqfnjPFbEo4ecun0o0ZA8eiCFW8N
+X-Received: by 2002:a17:90b:5625:b0:341:88ba:c6d3 with SMTP id 98e67ed59e1d1-343ddec5702mr7210236a91.23.1763023580741;
+        Thu, 13 Nov 2025 00:46:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEqX2Ea/Aovz7+Slvwr4ycE1eB3ZqJee0sXrnYFeJDXMYYaEaRLil3IMHwxyr5d4Ygv6d5f6Q==
+X-Received: by 2002:a17:90b:5625:b0:341:88ba:c6d3 with SMTP id 98e67ed59e1d1-343ddec5702mr7210205a91.23.1763023580146;
+        Thu, 13 Nov 2025 00:46:20 -0800 (PST)
+Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bc375fe4da5sm1422954a12.26.2025.11.13.00.46.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Nov 2025 00:46:19 -0800 (PST)
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: [PATCH] arm64: dts: qcom: sdx75: Flatten usb controller node
+Date: Thu, 13 Nov 2025 14:16:08 +0530
+Message-Id: <20251113084608.3837064-1-krishna.kurapati@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251111-c55-v13-15-3dc581355e3a@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=XrX3+FF9 c=1 sm=1 tr=0 ts=69159add cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=1q36Q9n_z7eM6CNx3OUA:9 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-ORIG-GUID: gQ81YBpWZ4vv2EyYOCLaQhfPQGynCeI_
+X-Proofpoint-GUID: gQ81YBpWZ4vv2EyYOCLaQhfPQGynCeI_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA2MiBTYWx0ZWRfX9cjNLW8scd++
+ EvzxEsLtmPYSOaalm9g7cQ2/qCanv80Qnb8M48hHyN2EaYJvt1XxSPJr4Z+wIcyUXFAtoOsYmvB
+ qFNfj4qEno7yYos4FleR829BAIxTXDv+xwQlHMezWGq5zdvhOSy3Yqz8tl40PQaEeyjady213Sd
+ lqyANsn4R5D1LSiNft9DqB6QU5TaHxrvAFet2rQR9mbmWfV8S9qUxI4c2Wmm+NuFGGBStB2PlQa
+ kGFndzUTy/SMitashdrOOn2jUqefUlcVRz2oZSsx3WCu+8MpSHHHnMC5dy1mgtMmxltRHbr8/kv
+ iqcq6F2oesFV+vCzpdbVQZXbd3ig3S0oci0qXgZFdyaghCylJdzTh+UfXyf6vY7fCAxX+ZI/T9D
+ 7rfli4x43o5nzDWNeQc/KI4apFsgbQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-13_01,2025-11-12_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 spamscore=0 clxscore=1015 impostorscore=0
+ phishscore=0 adultscore=0 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130062
 
-Hi Dan
+Flatten usb controller node and update to using latest bindings
+and flattened driver approach.
 
-On Tue, Nov 11, 2025 at 04:15:59PM +0000, Daniel Scally wrote:
-> Document the mali-c55 parameter setting by expanding the relevant
-> pages in both admin-guide/ and userspace-api/.
->
-> Tested-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Nayden Kanchev  <nayden.kanchev@arm.com>
-> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v12:
->
-> 	- None
->
-> Changes in v11:
->
-> 	- Updated the documentation to account for the use of the
-> 	  V4L2 extensible params
->
-> Changes in v10:
->
-> 	- None
->
-> Changes in v9:
->
-> 	- None
->
-> Changes in v8:
->
-> 	- None
->
-> Changes in v7:
->
-> 	- None
->
-> Changes in v7:
->
-> 	- None
->
-> Changes in v6:
->
-> 	- Minor rewording
->
-> Changes in v5:
->
-> 	- New patch
-> ---
->  Documentation/admin-guide/media/mali-c55.rst       | 19 ++++++-
->  .../media/v4l/metafmt-arm-mali-c55.rst             | 66 +++++++++++++++++++++-
->  2 files changed, 80 insertions(+), 5 deletions(-)
->
-> diff --git a/Documentation/admin-guide/media/mali-c55.rst b/Documentation/admin-guide/media/mali-c55.rst
-> index 03723e0e8e43f17a04ede0032b2ddbfdb859d1e3..315f982000c48e46a2be0e7210b657d5af611e14 100644
-> --- a/Documentation/admin-guide/media/mali-c55.rst
-> +++ b/Documentation/admin-guide/media/mali-c55.rst
-> @@ -387,9 +387,24 @@ the processing flow the statistics can be drawn from::
->                         +-------------+   |    +-------------+
->                                           +-->  AWB-1
->
-> -At present all statistics are drawn from the 0th tap point for each algorithm;
-> +By default all statistics are drawn from the 0th tap point for each algorithm;
->  I.E. AEXP statistics from AEXP-0 (A), AWB statistics from AWB-0 and AF
-> -statistics from AF-0. In the future this will be configurable.
-> +statistics from AF-0. This is configurable for AEXP and AWB statsistics through
-> +programming the ISP's parameters.
-> +
-> +.. _mali-c55-3a-params:
-> +
-> +Programming ISP Parameters
-> +==========================
-> +
-> +The ISP can be programmed with various parameters from userspace to apply to the
-> +hardware before and during video stream. This allows userspace to dynamically
-> +change values such as black level, white balance and lens shading gains and so
-> +on.
-> +
-> +The buffer format and how to populate it are described by the
-> +:ref:`V4L2_META_FMT_MALI_C55_PARAMS <v4l2-meta-fmt-mali-c55-params>` format,
-> +which should be set as the data format for the `mali-c55 3a params` video node.
->
->  References
->  ==========
-> diff --git a/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst b/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
-> index 0bda9740a6be20df541ac7cf78e45e510f79ad19..49d6b8080ecec1013a93f5283a00a3fa0d7ebb17 100644
-> --- a/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
-> +++ b/Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
-> @@ -1,10 +1,11 @@
->  .. SPDX-License-Identifier: GPL-2.0
->
-> +.. _v4l2-meta-fmt-mali-c55-params:
->  .. _v4l2-meta-fmt-mali-c55-stats:
->
-> -*************************************
-> -V4L2_META_FMT_MALI_C55_STATS ('C55S')
-> -*************************************
-> +*****************************************************************************
-> +V4L2_META_FMT_MALI_C55_STATS ('C55S'), V4L2_META_FMT_MALI_C55_PARAMS ('C55P')
-> +*****************************************************************************
->
->  3A Statistics
->  =============
-> @@ -23,6 +24,65 @@ of the C structure :c:type:`mali_c55_stats_buffer` defined in
->
->  For details of the statistics see :c:type:`mali_c55_stats_buffer`.
->
-> +Configuration Parameters
-> +========================
-> +
-> +The configuration parameters are passed to the
-> +:ref:`mali-c55 3a params <mali-c55-3a-params>` metadata output video node, using
-> +the :c:type:`v4l2_meta_format` interface. Rather than a single struct containing
-> +sub-structs for each configurable area of the ISP, parameters for the Mali-C55
-> +use the V4L2 extensible parameters system, through which groups of parameters
-> +are defined as distinct structs or "blocks" which may be added to the data
-> +member of :c:type:`v4l2_params_buffer`. Userspace is responsible for populating
+Also add the missing usb-role-switch property in base dt node.
 
-This should be updated to the latest v4l2-isp. I'll do so before
-sending the PR. I've also shortened it to avoid repeating parts of the
-v4l2-isp documentation to:
+Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/sdx75-idp.dts |  6 +--
+ arch/arm64/boot/dts/qcom/sdx75.dtsi    | 67 ++++++++++++--------------
+ 2 files changed, 34 insertions(+), 39 deletions(-)
 
-+Configuration Parameters
-+========================
+diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+index 06cacec3461f..6696e1aee243 100644
+--- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+@@ -337,11 +337,9 @@ &uart1 {
+ };
+ 
+ &usb {
+-	status = "okay";
+-};
+-
+-&usb_dwc3 {
+ 	dr_mode = "peripheral";
 +
-+The configuration parameters are passed to the :ref:`mali-c55 3a params
-+<mali-c55-3a-params>` metadata output video node, using the
-+:c:type:`v4l2_meta_format` interface. Rather than a single struct containing
-+sub-structs for each configurable area of the ISP, parameters for the Mali-C55
-+use the v4l2-isp parameters system, through which groups of parameters are
-+defined as distinct structs or "blocks" which may be added to the data member of
-+:c:type:`v4l2_isp_params_buffer`. Userspace is responsible for populating the
-+data member with the blocks that need to be configured by the driver.  Each
-+block-specific struct embeds :c:type:`v4l2_isp_params_block_header` as its first
-+member and userspace must populate the type member with a value from
-+:c:type:`mali_c55_param_block_type`.
++	status = "okay";
+ };
+ 
+ &usb_hsphy {
+diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+index f26ba90ba66d..6e7695146ff8 100644
+--- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+@@ -1019,12 +1019,9 @@ opp-384000000 {
+ 			};
+ 		};
+ 
+-		usb: usb@a6f8800 {
+-			compatible = "qcom,sdx75-dwc3", "qcom,dwc3";
+-			reg = <0x0 0x0a6f8800 0x0 0x400>;
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges;
++		usb: usb@a600000 {
++			compatible = "qcom,sdx75-dwc3", "qcom,snps-dwc3";
++			reg = <0x0 0x0a600000 0x0 0xfc100>;
+ 
+ 			clocks = <&gcc GCC_USB30_SLV_AHB_CLK>,
+ 				 <&gcc GCC_USB30_MASTER_CLK>,
+@@ -1041,21 +1038,35 @@ usb: usb@a6f8800 {
+ 					  <&gcc GCC_USB30_MASTER_CLK>;
+ 			assigned-clock-rates = <19200000>, <200000000>;
+ 
+-			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
++			interrupts-extended = <&intc GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&pdc 10 IRQ_TYPE_EDGE_RISING>,
+ 					      <&pdc 9 IRQ_TYPE_EDGE_RISING>,
+ 					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "pwr_event",
++			interrupt-names = "dwc_usb3",
++					  "pwr_event",
+ 					  "hs_phy_irq",
+ 					  "dp_hs_phy_irq",
+ 					  "dm_hs_phy_irq",
+ 					  "ss_phy_irq";
+ 
++			iommus = <&apps_smmu 0x80 0x0>;
++
++			snps,dis_u2_susphy_quirk;
++			snps,dis_enblslpm_quirk;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++
+ 			power-domains = <&gcc GCC_USB30_GDSC>;
+ 
+ 			resets = <&gcc GCC_USB30_BCR>;
+ 
++			phys = <&usb_hsphy>,
++			       <&usb_qmpphy>;
++			phy-names = "usb2-phy",
++				    "usb3-phy";
++
+ 			interconnects = <&system_noc MASTER_USB3_0 QCOM_ICC_TAG_ALWAYS
+ 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+ 					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1063,38 +1074,24 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+ 			interconnect-names = "usb-ddr",
+ 					     "apps-usb";
+ 
++			usb-role-switch;
+ 			status = "disabled";
+ 
+-			usb_dwc3: usb@a600000 {
+-				compatible = "snps,dwc3";
+-				reg = <0x0 0x0a600000 0x0 0xcd00>;
+-				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+-				iommus = <&apps_smmu 0x80 0x0>;
+-				snps,dis_u2_susphy_quirk;
+-				snps,dis_enblslpm_quirk;
+-				snps,dis-u1-entry-quirk;
+-				snps,dis-u2-entry-quirk;
+-				phys = <&usb_hsphy>,
+-				       <&usb_qmpphy>;
+-				phy-names = "usb2-phy",
+-					    "usb3-phy";
+-
+-				ports {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+-					port@0 {
+-						reg = <0>;
+-
+-						usb_1_dwc3_hs: endpoint {
+-						};
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_1_dwc3_hs: endpoint {
+ 					};
++				};
+ 
+-					port@1 {
+-						reg = <1>;
++				port@1 {
++					reg = <1>;
+ 
+-						usb_1_dwc3_ss: endpoint {
+-						};
++					usb_1_dwc3_ss: endpoint {
+ 					};
+ 				};
+ 			};
+-- 
+2.34.1
 
-
-> +the data member with the blocks that need to be configured by the driver, but
-> +need not populate it with **all** the blocks, or indeed with any at all if there
-> +are no configuration changes to make. Populated blocks **must** be consecutive
-> +in the buffer. To assist both userspace and the driver in identifying the
-> +blocks each block-specific struct embeds :c:type:`v4l2_params_block_header` as
-> +its first member and userspace must populate the type member with a value from
-> +:c:type:`mali_c55_param_block_type`. Once the blocks have been populated
-> +into the data buffer, the combined size of all populated blocks shall be set in
-> +the data_size member of :c:type:`v4l2_params_buffer`. For example:
-> +
-> +.. code-block:: c
-> +
-> +	struct v4l2_params_buffer *params =
-> +		(struct v4l2_params_buffer *)buffer;
-> +
-> +	params->version = MALI_C55_PARAM_BUFFER_V1;
-> +	params->data_size = 0;
-> +
-> +	void *data = (void *)params->data;
-> +
-> +	struct mali_c55_params_awb_gains *gains =
-> +		(struct mali_c55_params_awb_gains *)data;
-> +
-> +	gains->header.type = MALI_C55_PARAM_BLOCK_AWB_GAINS;
-> +	gains->header.flags |= V4L2_PARAMS_FL_BLOCK_ENABLE;
-> +	gains->header.size = sizeof(struct mali_c55_params_awb_gains);
-> +
-> +	gains->gain00 = 256;
-> +	gains->gain00 = 256;
-> +	gains->gain00 = 256;
-> +	gains->gain00 = 256;
-> +
-> +	data += sizeof(struct mali_c55_params_awb_gains);
-> +	params->data_size += sizeof(struct mali_c55_params_awb_gains);
-> +
-> +	struct mali_c55_params_sensor_off_preshading *blc =
-> +		(struct mali_c55_params_sensor_off_preshading *)data;
-> +
-> +	blc->header.type = MALI_C55_PARAM_BLOCK_SENSOR_OFFS;
-> +	blc->header.flags |= V4L2_PARAMS_FL_BLOCK_ENABLE;
-> +	blc->header.size = sizeof(struct mali_c55_params_sensor_off_preshading);
-> +
-> +	blc->chan00 = 51200;
-> +	blc->chan01 = 51200;
-> +	blc->chan10 = 51200;
-> +	blc->chan11 = 51200;
-> +
-> +	params->total_size += sizeof(struct mali_c55_params_sensor_off_preshading);
-
-s/total_size/data_size
-
-And I've also updated it to use the v4l2-isp types
-
-+.. code-block:: c
-+
-+       struct v4l2_isp_params_buffer *params =
-+               (struct v4l2_isp_params_buffer *)buffer;
-+
-+       params->version = MALI_C55_PARAM_BUFFER_V1;
-+       params->data_size = 0;
-+
-+       void *data = (void *)params->data;
-+
-+       struct mali_c55_params_awb_gains *gains =
-+               (struct mali_c55_params_awb_gains *)data;
-+
-+       gains->header.type = MALI_C55_PARAM_BLOCK_AWB_GAINS;
-+       gains->header.flags |= V4L2_ISP_PARAMS_FL_BLOCK_ENABLE;
-+       gains->header.size = sizeof(struct mali_c55_params_awb_gains);
-+
-+       gains->gain00 = 256;
-+       gains->gain00 = 256;
-+       gains->gain00 = 256;
-+       gains->gain00 = 256;
-+
-+       data += sizeof(struct mali_c55_params_awb_gains);
-+       params->data_size += sizeof(struct mali_c55_params_awb_gains);
-+
-+       struct mali_c55_params_sensor_off_preshading *blc =
-+               (struct mali_c55_params_sensor_off_preshading *)data;
-+
-+       blc->header.type = MALI_C55_PARAM_BLOCK_SENSOR_OFFS;
-+       blc->header.flags |= V4L2_ISP_PARAMS_FL_BLOCK_ENABLE;
-+       blc->header.size = sizeof(struct mali_c55_params_sensor_off_preshading);
-+
-+       blc->chan00 = 51200;
-+       blc->chan01 = 51200;
-+       blc->chan10 = 51200;
-+       blc->chan11 = 51200;
-+
-+       params->data_size += sizeof(struct mali_c55_params_sensor_off_preshading);
-
-With your ack, I'll apply the following changes before sending the PR.
-
-Thanks
-  j
-
-> +
->  Arm Mali-C55 uAPI data types
->  ============================
->
->
-> --
-> 2.43.0
->
->
 
