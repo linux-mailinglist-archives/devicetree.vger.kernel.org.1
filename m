@@ -1,448 +1,191 @@
-Return-Path: <devicetree+bounces-238333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC87CC59E90
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 21:11:02 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D0FC59EE1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 21:16:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A486B34FC33
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:10:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E6664E70C1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C64311C30;
-	Thu, 13 Nov 2025 20:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69FC31326E;
+	Thu, 13 Nov 2025 20:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oBXyI0gw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QZ6aQ7Fv"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Z0l1U0QR";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="S2jgeUOu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439092DA77D
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 20:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C39C30E82A
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 20:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763064608; cv=none; b=lb5rHkPgj1YMTyYJPsHNbYbdX1Cb/U65Sc9fdRNMZgLddEe35mj8+N7F/4P+NudN7KnJAW4hHOaX5OmLaSb/B/oht/vcDzmBzcHGb7GXHym4Fj/f0cy0223MREzSMpvYetjvE1DGeLtfGYoWPKGCxWXvnVXlwM1NJjgAdAs6BAE=
+	t=1763064880; cv=none; b=BTMQaE4S0hezS104K+uikprLOcFu/KwBJ0lBJE1U4wAQFNWfaPkU3WVen5MMdmlXzYoCUxf4NH17YNX+A/7GtuSRqqa7N2mJT575J3R5Rrhdw1rx84mRi7mQD3hqmJl+nzpAM7BapK7GdiFTTcp1P9PNI77K77RjMx/dTwYK760=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763064608; c=relaxed/simple;
-	bh=EBHCvOjhq4ypRbbHuMgmE9YiEOZDb5Z2mRmWCl8wBkE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P3XmjDd2SOhDuJ2vZaCArauPbf1jt3DI4zxR8PelTaQJjbRK7J/y7o2wKLyHHN0vrncLABuQX1vTDVqDSdg9u7uyf4yFUQwGMVYAaWYGj7SZD9f5nTLOAbyy6Ys/iPErP9AGx/ESHYNMZxcD0WBkNivGDk0IwNOZa+T+WBAY94I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oBXyI0gw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QZ6aQ7Fv; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1763064880; c=relaxed/simple;
+	bh=AI/sQdV27pRuG1UG93jWy8O0cfI7jlAIBk7rWDkB574=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TVWIKNAxfUYd2eml1GnnwVcaEkuSKI4fxr5EUQPhZ/5g9nBVshfY6KcoLjPg9dDCHBIz3hFSKX9Qsjlx+GOpXIIACHkdkzz8bY8PE0bQt1RB8Pb04yfiVKm3eyq1Nx3xGIQ1RcaTbWnYpz8r4Bwxf2va6DyAzKq6Tu6XVBrs4S0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z0l1U0QR; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=S2jgeUOu; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ADEi2eJ3801194
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 20:10:05 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ADJN67N1062164
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 20:14:38 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	muO9LZ6kEmosm3Ges2kz3Rxg8kQYhqoJRKbnsDIH6Ac=; b=oBXyI0gwG2mzWFPb
-	YLePrDX9GYEoRrOR05DxjZbPT55KcIzhujqTdpUg2R5vrrBa96yTX3gmie+BPUC8
-	rclPgOmmc0RHKknAodh9cYAEDO6o2LcSLLWqaNNvtY8Y53c6d2tE3x9t5gKItNrK
-	LJ3K08GgCBaCJ2N9gfUiP9EGwVx3h3ZmZMx8RjjKB8mNV6/AfDZvLJeieKn3J0yQ
-	0TOiYYT0ckAKVQErNFW7zyu/+l3lVoGrl5Teqpj5874jr/BmDKQLG4iMunAWFCuG
-	ySmI7Tj+Yvyqc4/VVvdxloQeexx8kftl+PMqAiQp+M6a7J07mw1gJG4H/QKXCqhc
-	xPI7eQ==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adaamagt4-1
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=PN5o3JxT68gD62VcfZEL3Ebk
+	8On0PDZMV5SQeeSv2nc=; b=Z0l1U0QRe+5Z3laKQk1X/sUI81ErD6j4oCHnvbat
+	E3mmXqEajKCbno1nfP7Eek/UB98l/bE+64k1CtCWqgXRNeVpmbvWqzZ9Pr1zj2AV
+	2CHps/Q+AJmhZLjNSvj6IIM83Uq2Qm8Hfnc2clhwTRyBeSCMitcukgdCiyxGPaMR
+	YQjeTePPiHkgQj0y5+iSm0+qr63Sym6mOjeIJJ414YjlSTiF9NetQYUSF/FJlnhS
+	b5ONlBoCNYi/Sn7hwbsiwaQQ2Ms1blJs3/nJ88qV2MM7tP8MDIKcJh2gjTpXG/2t
+	cudmqU59lKmNFi2JTzeEZ4+qAib7ekQVUT7r7n75lB7OLQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adnen0484-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 20:10:04 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7b895b520a2so1404954b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:10:04 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 20:14:38 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-88233d526baso45029856d6.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:14:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763064604; x=1763669404; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=muO9LZ6kEmosm3Ges2kz3Rxg8kQYhqoJRKbnsDIH6Ac=;
-        b=QZ6aQ7FvN2bj7iiHavK+9u8XQCQdkLo2LCj/wdITbo76PyTDKjsYH842XfT+Dtc3XV
-         hli3Dq8ptVQXcEUKGQ5Vj7tYVD6REAI8I1GnC+YwFZwJx6SYTtj0yHYIwn2qLsEejUif
-         GH21EVvX0J7NTqo12Ykp3nUUf5s1PZv5hzTFRcOSOaRlk8YeZ6hk963n0Aikv3Y11b3G
-         qag9vs4q00b+rAvPuL22igjL+8duAU4AUCnYdOoyTuWwSMJ6pbFAUySn00I7lYBpw6sF
-         v0jmc5nFa5K7dtfHab8c4bOSa76xYJb/Xhn/EGZyc1DkU3TnxmOiVkvfH24Dm005kyvj
-         lBZA==
+        d=oss.qualcomm.com; s=google; t=1763064877; x=1763669677; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PN5o3JxT68gD62VcfZEL3Ebk8On0PDZMV5SQeeSv2nc=;
+        b=S2jgeUOuVxAol1EHKO6OSYgST0siriSlRxuI8bb+QeTWMGAaUySq3bZ1CTum30QcNn
+         lUjSg5b9Liyoa4roizOhtDpby9juJ1+0wpLcivPyykwUecKxi7BsMlNxhQTOwC5Fq6/Y
+         kMZfG87XnlzBFg3L5u+5aL6DS1wiyC+k6P4P0BwWfQgY7eazrouJnSrEm9bKIJ+EPvjf
+         hafP7B97dZ2h17CFlNMs3QutfBEvoXZJ+M7GE2pKsph8yST8mvkbFjOW+9SWVNIA8JLO
+         IEfZMuDF2QFTYQUY0ZbnklFtErR+4D0fpOKcAw+6vt+VZrFCbYhjBw9BPZno3Y+2tV9T
+         ubhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763064604; x=1763669404;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=muO9LZ6kEmosm3Ges2kz3Rxg8kQYhqoJRKbnsDIH6Ac=;
-        b=kmlFA0zTKL7ME+WJoN+7rLOau9bcoRCW3j1WbndCUNHSE5dt2U3SqqC0UO5aU6g7Kf
-         ja77z7B7/Uw7XH2Z+waNEOOzaT2M8+l0+h9abs9dZt6fgCox1QA0dF8T5OpuSCZHIGeW
-         sZTMoJwEA2tEqnoGkvAxqZxykCiSf0Gh+zNuPcFRIAN5UdDThtT8sxr4hoqvDu9gV1/f
-         nobm5+daItsQYw6wxN1zDksltjBJn8wXGdE+Xgwocv26XfjUNL6+d3XElkdaGu2upc5d
-         PwH6D7VTfB1CJdlYc355GM6jCwDu2LkIJYpOrBjpNdE901BnzMbrT9DxGUn2i/vUmmZJ
-         Y3jw==
-X-Forwarded-Encrypted: i=1; AJvYcCXLs0qcyssCjowxpKOoaA3VqaSbZCi6ZNKVFGsZsyx5iREOgSNJ452y6/tCz45q9mzeP3UsxEL7LEbp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZfNckeKNDuJmnAbznwwqZ8g59SvgudednpfoKWIWZO2FBc2Kd
-	ikNiR//r70xbp0cmENW8seUZODponQvfEvJjidBsDbgZXoE6DekpptUFd1WTrveTCiBtGniYP5y
-	bqjWiw7Gp16pKQ+c9fA6bkUI4mt9gktBM42Apnz1F8+Dw42CQcgdGIvu2aIgSIZPd
-X-Gm-Gg: ASbGncvarmkyXFtMUyFbAUc2mzZKRx+T3fQVQcV3DMeg4byqY7lDAGYgmdAX8zW4fSq
-	UfGJSuuC2qO5jHrYoMCtPdUqMDqDeQaOHMo0B0dx2MdGkojtbLXhLoTBEaCGPOyAixA1Oli81MS
-	D8FJxuNT4+3p1O9ItlurUb5ZDySVhsQWkIp+uE44ktgRadMRDTm5NWJgE7G1Jneh+F1Y5ouAT4N
-	aCED8j0UpTOXCVFhyeRYVzoaN0T/sHbDPCwSCqScyufNEbXHYvLFNKQj7v8afrrVShZ8ibcWYBy
-	pbSX91JbZh/ZcBNjL7JGdHsxlMIggD/LjuJSf4IPYaEBLZOmvB2p9j8oJ2PPrpOckoeynTcR1IS
-	GML81nRVdVIvZ76VRcFo8+Q==
-X-Received: by 2002:a05:6a00:18a9:b0:7a2:7c48:e394 with SMTP id d2e1a72fcca58-7ba379a7b0cmr708774b3a.0.1763064603705;
-        Thu, 13 Nov 2025 12:10:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGXw02RGuW9FGIDBukM/HjJLOOcWHafS/kj+OCLzdcZqwqyZ3wk2YYJnz5mKp+Dfeu3fQ0m6A==
-X-Received: by 2002:a05:6a00:18a9:b0:7a2:7c48:e394 with SMTP id d2e1a72fcca58-7ba379a7b0cmr708721b3a.0.1763064602969;
-        Thu, 13 Nov 2025 12:10:02 -0800 (PST)
-Received: from [10.204.104.20] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b924aea005sm3129109b3a.3.2025.11.13.12.09.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Nov 2025 12:10:02 -0800 (PST)
-Message-ID: <5b841c60-cac9-4def-928c-33cbf3d908f5@oss.qualcomm.com>
-Date: Fri, 14 Nov 2025 01:39:54 +0530
+        d=1e100.net; s=20230601; t=1763064877; x=1763669677;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PN5o3JxT68gD62VcfZEL3Ebk8On0PDZMV5SQeeSv2nc=;
+        b=kW5n+ANpligDiAYQOALBlD+KnX5OU7Qk96/L07Zx+KMRF+GQs8AIfEaeNSj95mzi8r
+         NY2OaVdL4aOM013UUz0gj+FfpmJv7kHTj9NAzT4iiGBnvfacV3KbydXcngHS2U3auRI9
+         Lx63sZfat4GWgGwhkHRTtrjojmKD1trQ+vMOyylxrRbINX96CDP+LKjYXpkbi8bJ1+Z4
+         /4koKOBNV/6rAEt0JhAqN1Tb72UZOV9miS9Wjn1yPe1j2YTYoC5h+zopkTFKCQhKEZnW
+         VObZBazO/kAzSFqCzFcZaQnTuMvfm3RUR1uuZtuk56RVr2HAhT65mKawU4Le5n1VVQn0
+         RpYw==
+X-Forwarded-Encrypted: i=1; AJvYcCXjevfZZmooXHOHS0SXSRaHIEYoene2/cLh1YatAYZZzTGT5NCy6fgIdjX1I9+i7dPRX/t3u7lOfvJD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKyribWsAHkHvB8upd3/qtus1oSxOMxJ0c73jVCkuQRqzEbUE2
+	y1VWFYJ4PMbYcVJ7TZB6wksvpkZtDXXx1C/Jxv7kERTcjItJvR+Qv5igtwusYfrzpIc8YCpcfrg
+	CiqkJXayH9bdzN/c5wLmYDLRBr/3wCBRl5ciH9TIw2EPizxPYZX9j+AAvnHf2sGyq
+X-Gm-Gg: ASbGncvELOsxr1RmWjM0Z2dw2xp91LRk5xQWLCvgoKb5ZPRiEo3WJKaPfM7uR81atv1
+	hE/rfO7Ic9C7nQz0i29LSRzXGKgmpKlFu/R7YwElk905rnWAhfV2vZkHp5VbgqTsZakxf04p6h4
+	CSskKMT7xIpVACbhPCK9ExWNfzD68dDX0qFBa3/q5/1CuUSERcBx97U+ZWCU9pm4OjezXkFhiiS
+	mW48pttj04xMTZjvkqZUAHA7xtdA7x4rh7cAdmkIPqkFax+KEffRM6sHFm6JCqOawOOQCoXLjyU
+	L9eFYApc2294HJ3g9o7Mx1PKN9MOIicaBBqZN1CuBPmLJYW5WAk77tYfVqLbPYZJJAnR+JJxThU
+	OpAtpIlPx7NxSInVXdPCGIOUSA+3ru2YhKsBi7wqyR6JTXNEJJ5HkNTL8wMZx+WgYbS0VhLenhG
+	U0VNi4o8ArUWej
+X-Received: by 2002:a05:6214:628:b0:880:4dd6:20c4 with SMTP id 6a1803df08f44-882925b634emr6722076d6.25.1763064877383;
+        Thu, 13 Nov 2025 12:14:37 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE7gf2nNHl2mDJHcdRunnsr1cDxkVTsv5LoLojLfO7ZxN24jktHyKPFTPyMsxGUSBzT78TNdw==
+X-Received: by 2002:a05:6214:628:b0:880:4dd6:20c4 with SMTP id 6a1803df08f44-882925b634emr6721736d6.25.1763064876942;
+        Thu, 13 Nov 2025 12:14:36 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37b9ce2798asm6298391fa.23.2025.11.13.12.14.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Nov 2025 12:14:36 -0800 (PST)
+Date: Thu, 13 Nov 2025 22:14:34 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Wei Deng <wei.deng@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, cheng.jiang@oss.qualcomm.com,
+        quic_jiaymao@quicinc.com, quic_chezhou@quicinc.com,
+        quic_shuaz@quicinc.com
+Subject: Re: [PATCH] arm64: dts: qcom: qcs8300-ride: Enable Bluetooth support
+Message-ID: <nh6rlcyamnm2spm54oitckujnxp7wna26vomxvlrik3mlhh3no@22skfvcsrfhj>
+References: <20251113130942.2661069-1-wei.deng@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 13/21] drm/msm/adreno: Introduce A8x GPU Support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse
- <jordan@cosmicpenguin.net>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Connor Abbott <cwabbott0@gmail.com>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org
-References: <20251110-kaana-gpu-support-v2-0-bef18acd5e94@oss.qualcomm.com>
- <20251110-kaana-gpu-support-v2-13-bef18acd5e94@oss.qualcomm.com>
- <aff7043c-0029-433c-9340-22718909e583@oss.qualcomm.com>
-Content-Language: en-US
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-In-Reply-To: <aff7043c-0029-433c-9340-22718909e583@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDE1NyBTYWx0ZWRfX6gMTZ7X9o6RC
- oFvQkdo30M1rNc9opyzf3r2ttWe5SxUbSSsrloPP9b+wgVPlB1EL6lKKq8HCyxkg6X+QwBZtB4E
- YjLCY1AWlyifB0YKQJbPATwpEQ219REuDXT/lzI4PCUwjli+deWmpAyaB68XooGIRcJrnzPAMac
- fs6UIoItsPK+nwgc436WClFAl3zy11GKYNVF6IH3nikOGvzfm6ijJDAjopHUv88rkCy91oLgDiZ
- E4IcAB884lJ+Sxi7Y3g9K9MKY0h831oO1HeD7z2YIRlJ1iSM4K5sI1jtMlZ9M7JT0dZtz+l3wIe
- N+Th9lH9yhMKQPNl3kJ0lgpFOd5vTuKRZ3cALpxiZSx2DspfW/3ImITa+JaENgczLyjZ9hOlCqf
- blLGDa2N+o9uu6NiX7vKBDduB0MrQA==
-X-Authority-Analysis: v=2.4 cv=d4f4CBjE c=1 sm=1 tr=0 ts=69163b1c cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=53R2tzsCfDe74MVAKjgA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-ORIG-GUID: Pz56AoX3X_azSLXzQh-zujxiXcmdWzRK
-X-Proofpoint-GUID: Pz56AoX3X_azSLXzQh-zujxiXcmdWzRK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113130942.2661069-1-wei.deng@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=Zpfg6t7G c=1 sm=1 tr=0 ts=69163c2e cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=5bVZ9rrVUiTTcsr0HSkA:9 a=CjuIK1q_8ugA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDE1OCBTYWx0ZWRfX7143ykTBSNlN
+ shGQ/nES/vDXshJmU8xdMfBRdk2p5RlwVH44uqgq/v7qU9r4arXlLNe0mlQeRf5BFQSwr9Hb8VO
+ 0JEJuUEWRc1xJX9peB6Z/wBt/+d3j3+Kkwl0vQQuw41lLhXuO1lVSEZ4CtZW59VbcA5+u5tC1PB
+ sySBylNZdoPFW0nNATe8OWwI2a+PRfyYNVBYG6YjAmNCKTbDV/trqJdS4dTrpjFFUtx6KY78ItI
+ lC6SZRaIhbnyfjPiCeVqKgBdXoI24h7h4t2bcE3Wt8nl0Pb/xwdl6PnJ9zeil0VHiOD6CauUkKh
+ X7YrvLxSGV2zWhdBjIxKug2q6qx3CVCF+RsPL5f/46oCILyrGpEA00/NmtWNMgvyW2K3cPGCJV9
+ 5Z4FRLh25ARmVDBqSwqcXEa8rhbJOA==
+X-Proofpoint-ORIG-GUID: NvUaf9xeOP2fSLRwMOVH5YrvOsl3SWtz
+X-Proofpoint-GUID: NvUaf9xeOP2fSLRwMOVH5YrvOsl3SWtz
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-13_05,2025-11-13_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
- phishscore=0 suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
+ adultscore=0 priorityscore=1501 bulkscore=0 phishscore=0 malwarescore=0
+ lowpriorityscore=0 spamscore=0 impostorscore=0 clxscore=1015 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130157
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130158
 
-On 11/13/2025 3:45 PM, Konrad Dybcio wrote:
-> On 11/10/25 5:37 PM, Akhil P Oommen wrote:
->> A8x is the next generation of Adreno GPUs, featuring a significant
->> hardware design change. A major update to the design is the introduction
->> of Slice architecture. Slices are sort of mini-GPUs within the GPU which
->> are more independent in processing Graphics and compute workloads. Also,
->> in addition to the BV and BR pipe we saw in A7x, CP has more concurrency
->> with additional pipes.
->>
->> From a software interface perspective, these changes have a significant
->> impact on the KMD side. First, the GPU register space has been extensively
->> reorganized. Second, to avoid  a register space explosion caused by the
->> new slice architecture and additional pipes, many registers are now
->> virtualized, instead of duplicated as in A7x. KMD must configure an
->> aperture register with the appropriate slice and pipe ID before accessing
->> these virtualized registers.
->>
->> This patch adds only a skeleton support for the A8x family. An A8x GPU
->> support will be added in an upcoming patch.
->>
->> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
->> ---
+On Thu, Nov 13, 2025 at 06:39:42PM +0530, Wei Deng wrote:
+> Enable BT on qcs8300-ride by adding a device tree node for BT.
 > 
-> [...]
+> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
+> ---
+> This patch depends on:
+> - WLAN
+> https://lore.kernel.org/all/20251113055148.2729943-1-wei.zhang@oss.qualcomm.com/
+> ---
+>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 28 +++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
 > 
->> +static void a8xx_aperture_slice_set(struct msm_gpu *gpu, enum adreno_pipe pipe, u32 slice)
->> +{
->> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
->> +	u32 val;
->> +
->> +	val = A8XX_CP_APERTURE_CNTL_HOST_PIPEID(pipe) | A8XX_CP_APERTURE_CNTL_HOST_SLICEID(slice);
-> 
-> There's also a BIT(23) value here which is seemingly never set, but
-> perhaps may come in useful for the bigger GPU
-> 
->> +
->> +	if (a6xx_gpu->cached_aperture == val)
->> +		return;
->> +
->> +	gpu_write(gpu, REG_A8XX_CP_APERTURE_CNTL_HOST, val);
->> +
->> +	a6xx_gpu->cached_aperture = val;
->> +}
->> +
->> +static void a8xx_aperture_aquire(struct msm_gpu *gpu, enum adreno_pipe pipe, unsigned long *flags)
-> 
-> "acquire"
+> @@ -571,6 +580,25 @@ wlan_en_state: wlan-en-state {
+>  	};
+>  };
+>  
+> +&uart2 {
+> +	status = "okay";
+> +
+> +	bluetooth: bluetooth {
+> +		compatible = "qcom,wcn6855-bt";
+> +		firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
 
-Oops!
+The reason for these firmware-names should be added to the commit
+message.
 
+> +		max-speed = <3200000>;
+> +
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
+> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+> +		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
+> +	};
+> +};
+> +
+>  &uart7 {
+>  	status = "okay";
+>  };
+> -- 
+> 2.25.1
 > 
->> +{
->> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
->> +
->> +	spin_lock_irqsave(&a6xx_gpu->aperture_lock, *flags);
->> +
->> +	a8xx_aperture_slice_set(gpu, pipe, 0);
-> 
-> Maybe we can add "unsigned long flags[MAX_NUM_SLICES]" to a6xx_gpu
-> to make the API a little more ergonomic.. but maybe that's too much
-> IDK
-> 
-> [...]
-> 
->> +	a6xx_gpu->slice_mask = a6xx_llc_read(a6xx_gpu,
->> +			REG_A8XX_CX_MISC_SLICE_ENABLE_FINAL) & GENMASK(3, 0);
-> 
-> Please define that field in the XML
-This should be more clear in the next rev
 
-> 
-> [...]
-> 
->> +}
->> +
->> +static u32 a8xx_get_first_slice(struct a6xx_gpu *a6xx_gpu)
->> +{
->> +	return ffs(a6xx_gpu->slice_mask) - 1;
->> +}
->> +
->> +static inline bool _a8xx_check_idle(struct msm_gpu *gpu)
->> +{
->> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
->> +
->> +	/* Check that the GMU is idle */
->> +	if (!a6xx_gmu_isidle(&a6xx_gpu->gmu))
->> +		return false;
->> +
->> +	/* Check that the CX master is idle */
->> +	if (gpu_read(gpu, REG_A8XX_RBBM_STATUS) &
->> +			~A8XX_RBBM_STATUS_CP_AHB_BUSY_CX_MASTER)
->> +		return false;
->> +
->> +	return !(gpu_read(gpu, REG_A8XX_RBBM_INT_0_STATUS) &
->> +		A6XX_RBBM_INT_0_MASK_RBBM_HANG_DETECT);
-> 
-> Odd parenthesis-alignment (couple times in the file), checkpatch
-> usually mumbles at that
-Not sure about the issue here, but I do run b4 prep --check and didn't
-see any complaints.
-
-> 
-> [...]
-> 
->> +
->> +void a8xx_flush(struct msm_gpu *gpu, struct msm_ringbuffer *ring)
->> +{
->> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
->> +	uint32_t wptr;
->> +	unsigned long flags;
->> +
->> +	spin_lock_irqsave(&ring->preempt_lock, flags);
->> +
->> +	/* Copy the shadow to the actual register */
->> +	ring->cur = ring->next;
->> +
->> +	/* Make sure to wrap wptr if we need to */
->> +	wptr = get_wptr(ring);
->> +
->> +	/* Update HW if this is the current ring and we are not in preempt*/
->> +	if (!a6xx_in_preempt(a6xx_gpu)) {
->> +		if (a6xx_gpu->cur_ring == ring)
->> +			gpu_write(gpu, REG_A6XX_CP_RB_WPTR, wptr);
-> 
-> I think this should use _fenced too, but I guess the preempt detail
-> is just a harmless copypasta
-I have reused a6xx_flush here in next rev.
-
-> 
-> [...]
-> 
->> +static void a8xx_set_hwcg(struct msm_gpu *gpu, bool state)
->> +{
->> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
->> +	struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
->> +	u32 val;
->> +
->> +	gmu_write(gmu, REG_A6XX_GPU_GMU_AO_GMU_CGC_MODE_CNTL,
->> +			state ? adreno_gpu->info->a6xx->gmu_cgc_mode : 0);
->> +	gmu_write(gmu, REG_A6XX_GPU_GMU_AO_GMU_CGC_DELAY_CNTL,
->> +			state ? 0x110111 : 0);
-> 
-> a840 sets this, a830 sets 0x10111, please confirm which way x2 skews
-This is correct for X2.
-
-> 
->> +	gmu_write(gmu, REG_A6XX_GPU_GMU_AO_GMU_CGC_HYST_CNTL,
->> +			state ? 0x55555 : 0);
->> +
->> +	gpu_write(gpu, REG_A8XX_RBBM_CLOCK_CNTL_GLOBAL, 1);
->> +	gpu_write(gpu, REG_A8XX_RBBM_CGC_GLOBAL_LOAD_CMD, state ? 1 : 0);
-> 
-> !!state
-> 
-> [...]
-> 
->> +static void a8xx_nonctxt_config(struct msm_gpu *gpu, u32 *gmem_protect)
->> +{
->> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->> +	const struct a6xx_info *info = adreno_gpu->info->a6xx;
->> +	const struct adreno_reglist_pipe *regs = info->nonctxt_reglist;
->> +	unsigned int pipe_id, i;
->> +	unsigned long flags;
->> +
->> +	for (pipe_id = PIPE_NONE; pipe_id <= PIPE_DDE_BV; pipe_id++) {
->> +		/* We don't have support for LPAC yet */
->> +		if (pipe_id == PIPE_LPAC)
->> +			continue;
-> 
-> This seems arbitrary - one because there are no defines targetting PIPE_LPAC
-> specifcally in the reg lists you shared and two because it would almost
-> certainly not hurt to configure these registers and otherwise not power up
-> the LPAC pipeline
-> 
->> +
->> +		a8xx_aperture_aquire(gpu, pipe_id, &flags);
->> +
->> +		for (i = 0; regs[i].offset; i++) {
->> +			if (!(BIT(pipe_id) & regs[i].pipe))
->> +				continue;
->> +
->> +			if (regs[i].offset == REG_A8XX_RB_GC_GMEM_PROTECT)
->> +				*gmem_protect = regs[i].value;
->> +
->> +			gpu_write(gpu, regs[i].offset, regs[i].value);
->> +		}
->> +
->> +		a8xx_aperture_release(gpu, flags);
->> +	}
->> +
->> +	a8xx_aperture_clear(gpu);
->> +}
->> +
->> +static int a8xx_cp_init(struct msm_gpu *gpu)
->> +{
->> +	struct msm_ringbuffer *ring = gpu->rb[0];
->> +	u32 mask;
->> +
->> +	/* Disable concurrent binning before sending CP init */
->> +	OUT_PKT7(ring, CP_THREAD_CONTROL, 1);
->> +	OUT_RING(ring, BIT(27));
->> +
->> +	OUT_PKT7(ring, CP_ME_INIT, 4);
->> +
->> +	/* Use multiple HW contexts */
->> +	mask = BIT(0);
->> +
->> +	/* Enable error detection */
->> +	mask |= BIT(1);
->> +
->> +	/* Set default reset state */
->> +	mask |= BIT(3);
->> +
->> +	/* Disable save/restore of performance counters across preemption */
->> +	mask |= BIT(6);
->> +
->> +	OUT_RING(ring, mask);
->> +
->> +	/* Enable multiple hardware contexts */
->> +	OUT_RING(ring, 0x00000003);
->> +
->> +	/* Enable error detection */
->> +	OUT_RING(ring, 0x20000000);
->> +
->> +	/* Operation mode mask */
->> +	OUT_RING(ring, 0x00000002);
-> 
-> Should we include the pwrup reglist from the get-go too? I don't think
-> you used the ones you declared in patch 15 (or at least my ctrl-f can't
-> find the use of it)
-
-yeah. I should remove that for now.
-
-> 
-> [...]
-> 
->> +#define A8XX_CP_INTERRUPT_STATUS_MASK_PIPE \
->> +	(A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_CSFRBWRAP | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_CSFIB1WRAP | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_CSFIB2WRAP | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_CSFIB3WRAP | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_CSFSDSWRAP | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_CSFMRBWRAP | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_CSFVSDWRAP | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_OPCODEERROR | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_VSDPARITYERROR | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_REGISTERPROTECTIONERROR | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_ILLEGALINSTRUCTION | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_SMMUFAULT | \
->> +	 A8XX_CP_INTERRUPT_STATUS_MASK_PIPE_VBIFRESP | \
-> 
-> kgsl also enables VBIFRESTP(TYPE/READ/LIENT)
-
-Ack
-
-> 
-> [...]
-> 
->> +	/* Setup GMEM Range in UCHE */
->> +	gmem_range_min = SZ_64M;
-> 
-> this doesn't seem to ever change, you can inline it
-
-fwiw, this documents the magic number. ;)
-
--Akhil
-
-> 
-> [...]
-> 
->> +static void a8xx_dump(struct msm_gpu *gpu)
->> +{
->> +	DRM_DEV_INFO(&gpu->pdev->dev, "status:   %08x\n",
->> +			gpu_read(gpu, REG_A8XX_RBBM_STATUS));
-> 
-> This can be a single line
-> 
-> Konrad
-
-
+-- 
+With best wishes
+Dmitry
 
