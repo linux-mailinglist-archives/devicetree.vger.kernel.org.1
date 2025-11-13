@@ -1,95 +1,201 @@
-Return-Path: <devicetree+bounces-238239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FAC5C58ED7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:59:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4AEC5921E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 18:26:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7483835F355
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:53:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 162154E83CF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3C235970E;
-	Thu, 13 Nov 2025 16:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF95335A94F;
+	Thu, 13 Nov 2025 16:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A8mEga9R"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FXGx0vo5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6B7921D3F3;
-	Thu, 13 Nov 2025 16:46:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADD835A15E;
+	Thu, 13 Nov 2025 16:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763052370; cv=none; b=mcZIXpYzxeNzNPPCkorNA5TIXNCDIT/3GhxU2MzKuaAidgCnKu3jBzPfsFrbIJrzUbXja6fC+Fa2Upr1/5NNwklz1N+57qTn2m80RNbJ/9a6qKikJ3n2D3fQwH7X6SFZpKfFNnJqE1vqbN6unpF5r1Olau0YNsLTOj6b4eL8C6g=
+	t=1763050868; cv=none; b=IIxo5puebYFQkIv30DUM6WhzR4ITYviLQLPsl0JQRInXxvfK1QEZrncjEkw6oQUjGsVNi4+PoA2zmYYPmhXCABzBGYXORrlQUAyzGh6x7SyRz/At/rMUG0OIa+xpabP5N6fH2hJUe2hQ8l1RP89syrMszb5zG3JcJh9xk81yipg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763052370; c=relaxed/simple;
-	bh=+SNBZZpwIVsQ1NMm9S2r0CGt8y213OHdKQwYS8JlXzw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OnlEmWNgSWpkpBzozjRHmmPbNuklH28V+SI3lHMiwlgbYgNezoNWIdsSVcH6jpDOQz/ewMsnGgaFb0wCXUYMuMTgnFXrvp6U6loCL2Tt/rqlgZsvdWq3o4FEXkXQB4W7ZK5ls9y3JouSRCu64Cu6Cgm2QdKM0BREQW2NQdPQpNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A8mEga9R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2C27C4CEF5;
-	Thu, 13 Nov 2025 16:46:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763052369;
-	bh=+SNBZZpwIVsQ1NMm9S2r0CGt8y213OHdKQwYS8JlXzw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A8mEga9Rmp51/7zGCoyQ8Ecsah26vWq7zE+u+7YzNSypa+OURY3wOD2ntrIuOCb1Q
-	 JEme03y2PBUgJ6J7Mp85nDQX+CFPREH8wMRLN3+c2kRiUPFPW/nOOmWqEiWXG083h8
-	 uz9cLSjIlrbHa1AOSCluR/uR5MDJoiQrHfrEa2fJGBWgYcRdJVmUkgzSiLZJ4bNCkt
-	 oSzBElibE5+KtXZ8X1XieuXRYpC6bQ/jJqg1F3wG1yqut6gGbG4VE8WG3m7ZOl3DZ3
-	 B/KpoJKIZjzpNQOpX22bjmrJsseposwHAbEzV5bL+KeDFZpp0N6vUKn20rp8ud9a3M
-	 fwIlh14+ShhuA==
-Date: Thu, 13 Nov 2025 16:46:03 +0000
-From: Lee Jones <lee@kernel.org>
-To: Junjie Cao <caojunjie650@gmail.com>
-Cc: Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: backlight: Add Awinic AW99706
- backlight
-Message-ID: <20251113164603.GP1949330@google.com>
-References: <20251109032240.3422503-1-caojunjie650@gmail.com>
- <20251109032240.3422503-2-caojunjie650@gmail.com>
+	s=arc-20240116; t=1763050868; c=relaxed/simple;
+	bh=eBWGYbEPMSvsTZJWmtZWO1t79PMxcV429zFLf0WhYQw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kc6VD4UzMlKMjP4yw9RCxm/ZmFhi+SxLikIJmiCnSyxvgDPgzJb9P1arVq03t65PKCz0QMVOPAu8McGs/AFS3uO0QRnC/GvBcHqXNiDQGGKkf2qea5PLAj6QK+yKv9Hic20mWtNion0FD7k2MOS3tPTGUIcG9oELcJY0u3qdKnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FXGx0vo5; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763050864;
+	bh=eBWGYbEPMSvsTZJWmtZWO1t79PMxcV429zFLf0WhYQw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=FXGx0vo55dQWrQLSZ6T5FwniDgYI8sm4cMlr4ZHSh0vV2u9jFCJsdEcRIbc7Tqdhr
+	 w/P4ldsvV+lsw6AGnXfWLgVu6XnFxaQ+J11rJiHgM8vE6bmEJs+AsfaIZUoYvZR8nh
+	 T5c7GcM+bDwbbNxRvnwst2Dr0au4OntLx9K99s3uAMbmEuJt67dgU8iyTogu4ch3MD
+	 xyYEPdMW+4+e4UgU7z0ppYQvxdtIv3Sx1eHwZFWIBZrSOv8GCYEIkyvJBVlS+ISK7F
+	 uip+yMNGWz97aCboHz61ru3EoKCProh9B/a0t23QVRJyGwwYGsEqVNkAbiuhI5c4Wx
+	 T2IyvBkxMAO/g==
+Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:9cb8:f653:99e7:c419])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 97DB117E1341;
+	Thu, 13 Nov 2025 17:21:03 +0100 (CET)
+From: Laura Nao <laura.nao@collabora.com>
+To: daniel.lezcano@linaro.org
+Cc: andrew-ct.chen@mediatek.com,
+	angelogioacchino.delregno@collabora.com,
+	arnd@arndb.de,
+	bchihi@baylibre.com,
+	colin.i.king@gmail.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	frank-w@public-files.de,
+	fshao@chromium.org,
+	kernel@collabora.com,
+	krzk+dt@kernel.org,
+	lala.lin@mediatek.com,
+	laura.nao@collabora.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	lukasz.luba@arm.com,
+	matthias.bgg@gmail.com,
+	nfraprado@collabora.com,
+	rafael@kernel.org,
+	robh@kernel.org,
+	rui.zhang@intel.com,
+	srini@kernel.org,
+	u.kleine-koenig@baylibre.com
+Subject: Re: [PATCH RESEND v3 4/9] thermal: mediatek: lvts: Add platform ops to support alternative conversion logic
+Date: Thu, 13 Nov 2025 17:20:53 +0100
+Message-Id: <20251113162053.281093-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <1e0545da-5d24-4ca4-863d-0d5671902d0b@linaro.org>
+References: <1e0545da-5d24-4ca4-863d-0d5671902d0b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251109032240.3422503-2-caojunjie650@gmail.com>
 
-On Sun, 09 Nov 2025, Junjie Cao wrote:
+Hi Daniel,
 
-> Add Awinic AW99706 backlight binding documentation.
-> 
-> Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
-> ---
-> Changes in v3:
-> - breaking a long line (Krzysztof)
-> - rename backlight node (Krzysztof)
-> - Link to v2: https://lore.kernel.org/linux-leds/20251103110648.878325-2-caojunjie650@gmail.com
-> 
-> Changes in v2:
-> - use proper units for properties (Krzysztof)
-> - drop non-fixed properties (Krzysztof)
-> - add properties(max-brightness, default-brightness) (Krzysztof)
-> - Link to v1: https://lore.kernel.org/linux-leds/20251026123923.1531727-2-caojunjie650@gmail.com
-> 
->  .../leds/backlight/awinic,aw99706.yaml        | 101 ++++++++++++++++++
->  1 file changed, 101 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/awinic,aw99706.yaml
+On 11/10/25 14:06, Daniel Lezcano wrote:
+> On 10/16/25 16:21, Laura Nao wrote:
+>> Introduce lvts_platform_ops struct to support SoC-specific versions of
+>> lvts_raw_to_temp() and lvts_temp_to_raw() conversion functions.
+>>
+>> This is in preparation for supporting SoCs like MT8196/MT6991, which
+>> require a different lvts_temp_to_raw() implementation.
+>>
+>> Reviewed-by: Fei Shao <fshao@chromium.org>
+>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+>> ---
+>>   drivers/thermal/mediatek/lvts_thermal.c | 27 ++++++++++++++++++++++---
+>>   1 file changed, 24 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
+>> index 4ef549386add..df1c0f059ad0 100644
+>> --- a/drivers/thermal/mediatek/lvts_thermal.c
+>> +++ b/drivers/thermal/mediatek/lvts_thermal.c
+>> @@ -125,8 +125,14 @@ struct lvts_ctrl_data {
+>>               continue; \
+>>           else
+>>   +struct lvts_platform_ops {
+>> +    int (*lvts_raw_to_temp)(u32 raw_temp, int temp_factor);
+>> +    u32 (*lvts_temp_to_raw)(int temperature, int temp_factor);
+>> +};
+>> +
+>>   struct lvts_data {
+>>       const struct lvts_ctrl_data *lvts_ctrl;
+>> +    const struct lvts_platform_ops *ops;
+>>       const u32 *conn_cmd;
+>>       const u32 *init_cmd;
+>>       int num_cal_offsets;
+>> @@ -300,6 +306,7 @@ static int lvts_get_temp(struct thermal_zone_device *tz, int *temp)
+>>       struct lvts_ctrl *lvts_ctrl = container_of(lvts_sensor, struct lvts_ctrl,
+>>                              sensors[lvts_sensor->id]);
+>>       const struct lvts_data *lvts_data = lvts_ctrl->lvts_data;
+>> +    const struct lvts_platform_ops *ops = lvts_data->ops;
+>>       void __iomem *msr = lvts_sensor->msr;
+>>       u32 value;
+>>       int rc;
+>> @@ -332,7 +339,7 @@ static int lvts_get_temp(struct thermal_zone_device *tz, int *temp)
+>>       if (rc)
+>>           return -EAGAIN;
+>>   -    *temp = lvts_raw_to_temp(value & 0xFFFF, lvts_data->temp_factor);
+>> +    *temp = ops->lvts_raw_to_temp(value & 0xFFFF, lvts_data->temp_factor); 
+>
+> Don't do this in each functions. It does not help for the readability.
+>
+> May be something like:
+>
+> int lvts_raw_to_temp(u32 raw_temp, const struct lvts_ctrl_data)
+> {
+>     return data->ops->lvts_temp_to_raw(raw_temp, data->temp_factor);
+> }
+>
+> or
+>
+> int lvts_raw_to_temp(u32 raw_temp, const struct lvts_ctrl_data)
+> {
+>     int temperature;
+>
+>     if (data->ops->lvts_temp_to_raw)
+>         return data->ops->lvts_temp_to_raw(raw_temp, data->temp_factor);
+>
+>     temperature = ((s64)(raw_temp & 0xFFFF) * temp_factor) >> 14;
+>         temperature += golden_temp_offset;
+>
+>         return temperature;
+> }
+>
+> ... and get rid of all the lvts_platform_ops_v1
+>
+> (btw _v1 is confusing, it suggests there multiple versions of the same SoC)
+>
 
-Applied (manually), thanks
+Right, the first option looks more efficient. Since temp_offset is 
+already part of lvts_data, the function would look like:
 
--- 
-Lee Jones [李琼斯]
+int lvts_raw_to_temp(u32 raw_temp, const struct lvts_data *lvts_data)
+{
+	return lvts_data->ops->lvts_raw_to_temp(raw_temp, lvts_data->temp_factor);
+}
+
+and the same pattern applies for temp_to_raw().
+
+This change will require renaming the existing 
+lvts_raw_to_temp()/lvts_temp_to_raw()/lvts_temp_to_raw_v2() 
+implementations. I agree the current _v1 and _v2 suffixes aren’t very 
+descriptive. Since lvts_temp_to_raw_v2() version is only used by MT8196,
+it could be renamed to lvts_temp_to_raw_mt8196(), with the corresponding 
+platform ops defined as lvts_platform_ops_mt8196. The base 
+lvts_raw_to_temp()/lvts_temp_to_raw() are shared across the other SoCs,
+so they could be renamed after the first supported platform (mt7988) and 
+reused for all SoCs that share the same logic.
+
+I'll send out a v4 with the proposed changes.
+
+Thanks,
+
+Laura
+
+> [ ... ]
+>
+
 
