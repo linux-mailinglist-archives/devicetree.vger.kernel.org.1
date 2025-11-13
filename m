@@ -1,186 +1,383 @@
-Return-Path: <devicetree+bounces-238317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F62C59CB3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:39:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16002C59CBF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:39:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16AA63AAC24
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:38:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EBC3D4E1591
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320612D7DE1;
-	Thu, 13 Nov 2025 19:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89DBA31AF3E;
+	Thu, 13 Nov 2025 19:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hUjI+89y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OnKKG6aC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583D9313533;
-	Thu, 13 Nov 2025 19:38:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A473168EE;
+	Thu, 13 Nov 2025 19:39:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763062685; cv=none; b=ZkgxIRpd02QAhxLUf7SVAQLUi7p2yiE5K2tEFVaYeTLED0ceReGIpSReJ2oVpVoUXTfviIQqWmpIISlhAIorLuI9p4n/pw1V05LhZdpqlpbwP+QK0wFti5IffznQfutY0JgZWBfwK1MYKtkV5xdtoaHLDcl28+eauSQ5X9ZSQb0=
+	t=1763062772; cv=none; b=piQz2sPwpK1iCP+VDNJeGr0S+xc8vHoOohryV9wtGiv/BGEsKQv11neFPaL6B0ovWyh62U6bP/zBtKDPgkAhqSPKXKpxtgzCvA0wtu/GRelzLJ8fj+cthnF/VMR2DmPEsWnJpg+fW/dBO27acgYBRr1kyNx4LzCU5gBPpNjoUSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763062685; c=relaxed/simple;
-	bh=HEJSaA71TuXh1QUGrm04DbY3CyzCazML7OWPoC5lA1M=;
+	s=arc-20240116; t=1763062772; c=relaxed/simple;
+	bh=KAWex1GOIW6PS1dlFxY8ETVyEcV50mZ4em/2EF+WvwI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EoXUST0eVS6jBz4JckggnZJ64fGshgMDSicfp9FELPjx4EnJF0v+3fpO0PTJ1fNp13ZbcI8xqbLutcOrJBpg6MpQz0L/Kby7i4KXMW+oMoQgns7m9flobua0MTnpvEreD4EQyU5gb8iRaVolRnZ8Z/miTXaa7hPKr19lobALKto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hUjI+89y; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763062683; x=1794598683;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=HEJSaA71TuXh1QUGrm04DbY3CyzCazML7OWPoC5lA1M=;
-  b=hUjI+89ymFiVFh4M1yN+jVh0+LiZzqrN/S035FwwecO/2gENFsdWGwmW
-   Etr43TmVhhJgiP3nywIViEqucfeU+6LXx0cAbO4+2WSAwzg+cqHs4towE
-   Mh3qzra2Iss3oTGJWKnCT/Aay1RdWOQSFfgftXhghRkbcb9IjKez9gAqf
-   OfEhJRZr25qUPzJm1/3FqRHOw+BTniYvwm4RJGVBo5piTWJVsOeIH6vTT
-   mnKevSO1vb6drYmR6wbHDdDMA/0X3V5iqUxTQpqVNtgtA+H9F7AN09qte
-   uoECHAezIGiD6nyD+oUzvROo2WqiYVfTkVVhNn2cSZM+Bec8AkprxEdkJ
-   g==;
-X-CSE-ConnectionGUID: cA3A2gjiSCSk7g1ei4u5Hw==
-X-CSE-MsgGUID: SH8RxHmYQ1OGut5lbZFQvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="52721621"
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; 
-   d="scan'208";a="52721621"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2025 11:38:02 -0800
-X-CSE-ConnectionGUID: soxY0Zs6Ty2frP213V6FJQ==
-X-CSE-MsgGUID: CcjC+fnwTheaokIWwwZZ5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,302,1754982000"; 
-   d="scan'208";a="193858615"
-Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 13 Nov 2025 11:37:58 -0800
-Received: from kbuild by 7b01c990427b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vJd8l-0005nn-2B;
-	Thu, 13 Nov 2025 19:37:55 +0000
-Date: Fri, 14 Nov 2025 03:37:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yuntao Wang <yuntao.wang@linux.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	James Morse <james.morse@arm.com>, Baoquan He <bhe@redhat.com>,
-	Zhen Lei <thunder.leizhen@huawei.com>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Geoff Levand <geoff@infradead.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Linux Memory Management List <linux-mm@kvack.org>,
-	Changyuan Lyu <changyuanl@google.com>,
-	Alexander Graf <graf@amazon.com>,
-	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Yuntao Wang <yuntao.wang@linux.dev>
-Subject: Re: [PATCH v2 6/7] of/reserved_mem: Simplify the logic of
- __reserved_mem_reserve_reg()
-Message-ID: <202511140307.Th0UqUd9-lkp@intel.com>
-References: <20251113155104.226617-7-yuntao.wang@linux.dev>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VFJuSD3djSGqY/+g5bMDoF1/aDRg0V2BrAJl8/qCpaeK3yvg8e+R3p6cASs77MOhbmOB/MqBFZDsb17GAKJ8igjb0SdlZdBg0O8+/0aUbw4e4s3C09tSb0LKvSGDZiTci3XO+TAUJKrIlMnQ03eaDtOuMn3TJ9Q7AEVaQeQneEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OnKKG6aC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DCA8C4CEF5;
+	Thu, 13 Nov 2025 19:39:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763062771;
+	bh=KAWex1GOIW6PS1dlFxY8ETVyEcV50mZ4em/2EF+WvwI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OnKKG6aCfB9XUc6/Pt/z0d8ysk7NLPkiYWvlF2P5fM7TYxIHOBas5zr4uPuFEUvFm
+	 KK/qAh+Zo52FzN8LtNoxNIy0wk6zAruosKST7+TxtiZ8G7+vx9ASsdriev7kbZfnbu
+	 MJityj3mO+guC8eKXeC1+0PefZOKlNcKXwmlc4sTusXxpHreABmfEqQltR4OEHA9vl
+	 liHNDc1x503TEi6QRa92R7/KFPkuY8GOPwopsu02xKZmzeESbo6n0+BZGXvjR9GxMd
+	 OBlfh6XQo5RqU1il45VAtWdnUBInOpCV5uOx03OKbvtYzpWjdN8nsKs42yGElpLvCF
+	 UcgKedKzobPWw==
+Date: Thu, 13 Nov 2025 19:39:27 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: reset: add sky1 reset controller
+Message-ID: <20251113-kissing-uphill-e8eea3fa6f5c@spud>
+References: <20251113075935.774359-1-gary.yang@cixtech.com>
+ <20251113075935.774359-2-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Yz8zv5OhRBRImQYW"
+Content-Disposition: inline
+In-Reply-To: <20251113075935.774359-2-gary.yang@cixtech.com>
+
+
+--Yz8zv5OhRBRImQYW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251113155104.226617-7-yuntao.wang@linux.dev>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Yuntao,
+On Thu, Nov 13, 2025 at 03:59:33PM +0800, Gary Yang wrote:
+> There are two reset controllers on Cix sky1 Soc.
+> One is located in S0 domain, and the other is located
+> in S5 domain.
+>=20
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> ---
+>  .../bindings/reset/cix,sky1-rst.yaml          |  48 +++++
+>  include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 +++++
+>  include/dt-bindings/reset/cix,sky1-rst.h      | 164 ++++++++++++++++++
+>  3 files changed, 254 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/cix,sky1-rst.=
+yaml
+>  create mode 100644 include/dt-bindings/reset/cix,sky1-rst-fch.h
+>  create mode 100644 include/dt-bindings/reset/cix,sky1-rst.h
+>=20
+> diff --git a/Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml b/=
+Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+> new file mode 100644
+> index 000000000000..6339ed3f296a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/cix,sky1-rst.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CIX Sky1 Reset Controller
+> +
+> +maintainers:
+> +  - Gary Yang <gary.yang@cixtech.com>
+> +
+> +description: |
+> +  CIX Sky1 reset controller can be used to reset various set of peripher=
+als.
+> +  There are two reset controllers, one is located in S0 domain, the other
+> +  is located in S5 domain.
+> +
+> +  See also:
+> +  - include/dt-bindings/reset/cix,sky1-rst.h
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - cix,sky1-rst
+> +          - cix,sky1-rst-fch
+> +      - const: syscon
 
-kernel test robot noticed the following build errors:
+Why are these "syscon"s? I don't see that explained.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.18-rc5 next-20251113]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#reset-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/reset/cix,sky1-rst.h>
+> +    reset-controller@16000000 {
+> +      compatible =3D "cix,sky1-rst", "syscon";
+> +      reg =3D <0x16000000 0x1000>;
+> +      #reset-cells =3D <1>;
+> +    };
+> diff --git a/include/dt-bindings/reset/cix,sky1-rst-fch.h b/include/dt-bi=
+ndings/reset/cix,sky1-rst-fch.h
+> new file mode 100644
+> index 000000000000..8e67d7eb92aa
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/cix,sky1-rst-fch.h
+> @@ -0,0 +1,42 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/* Author: Jerry Zhu <jerry.zhu@cixtech.com> */
+> +#ifndef DT_BINDING_RESET_FCH_SKY1_H
+> +#define DT_BINDING_RESET_FCH_SKY1_H
+> +
+> +/* func reset for sky1 fch */
+> +
+> +#define SW_I3C0_RST_FUNC_G_N	0
+> +#define SW_I3C0_RST_FUNC_I_N	1
+> +#define SW_I3C1_RST_FUNC_G_N	2
+> +#define SW_I3C1_RST_FUNC_I_N	3
+> +#define SW_UART0_RST_FUNC_N	4
+> +#define SW_UART1_RST_FUNC_N	5
+> +#define SW_UART2_RST_FUNC_N	6
+> +#define SW_UART3_RST_FUNC_N	7
+> +#define SW_TIMER_RST_FUNC_N	8
+> +
+> +/* apb reset for sky1 fch */
+> +#define SW_I3C0_RST_APB_N	9
+> +#define SW_I3C1_RST_APB_N	10
+> +#define SW_DMA_RST_AXI_N	11
+> +#define SW_UART0_RST_APB_N	12
+> +#define SW_UART1_RST_APB_N	13
+> +#define SW_UART2_RST_APB_N	14
+> +#define SW_UART3_RST_APB_N	15
+> +#define SW_SPI0_RST_APB_N	16
+> +#define SW_SPI1_RST_APB_N	17
+> +#define SW_I2C0_RST_APB_N	18
+> +#define SW_I2C1_RST_APB_N	19
+> +#define SW_I2C2_RST_APB_N	20
+> +#define SW_I2C3_RST_APB_N	21
+> +#define SW_I2C4_RST_APB_N	22
+> +#define SW_I2C5_RST_APB_N	23
+> +#define SW_I2C6_RST_APB_N	24
+> +#define SW_I2C7_RST_APB_N	25
+> +#define SW_GPIO_RST_APB_N	26
+> +
+> +/* fch rst for xspi */
+> +#define SW_XSPI_REG_RST_N	27
+> +#define SW_XSPI_SYS_RST_N	28
+> +
+> +#endif
+> diff --git a/include/dt-bindings/reset/cix,sky1-rst.h b/include/dt-bindin=
+gs/reset/cix,sky1-rst.h
+> new file mode 100644
+> index 000000000000..72c0d6a60452
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/cix,sky1-rst.h
+> @@ -0,0 +1,164 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/* Author: Jerry Zhu <jerry.zhu@cixtech.com> */
+> +#ifndef DT_BINDING_RESET_SKY1_H
+> +#define DT_BINDING_RESET_SKY1_H
+> +
+> +/* reset for csu_pm */
+> +
+> +#define SKY1_CSU_PM_RESET_N		0
+> +#define SKY1_SENSORHUB_RESET_N		1
+> +#define SKY1_SENSORHUB_NOC_RESET_N	2
+> +
+> +/* reset group0 for s0 domain modules */
+> +#define SKY1_DDRC_RESET_N		3
+> +#define SKY1_GIC_RESET_N		4
+> +#define SKY1_CI700_RESET_N		5
+> +#define SKY1_SYS_NI700_RESET_N		6
+> +#define SKY1_MM_NI700_RESET_N		7
+> +#define SKY1_PCIE_NI700_RESET_N		8
+> +#define SKY1_GPU_RESET_N		9
+> +#define SKY1_NPUTOP_RESET_N		10
+> +#define SKY1_NPUCORE0_RESET_N		11
+> +#define SKY1_NPUCORE1_RESET_N		12
+> +#define SKY1_NPUCORE2_RESET_N		13
+> +#define SKY1_VPU_RESET_N		14
+> +#define SKY1_ISP_SRESET_N		15
+> +#define SKY1_ISP_ARESET_N		16
+> +#define SKY1_ISP_HRESET_N		17
+> +#define SKY1_ISP_GDCRESET_N		18
+> +#define SKY1_DPU_RESET0_N		19
+> +#define SKY1_DPU_RESET1_N		20
+> +#define SKY1_DPU_RESET2_N		21
+> +#define SKY1_DPU_RESET3_N		22
+> +#define SKY1_DPU_RESET4_N		23
+> +#define SKY1_DP_RESET0_N		24
+> +#define SKY1_DP_RESET1_N		25
+> +#define SKY1_DP_RESET2_N		26
+> +#define SKY1_DP_RESET3_N		27
+> +#define SKY1_DP_RESET4_N		28
+> +#define SKY1_DP_PHY_RST_N		29
+> +
+> +/* reset group1 for s0 domain modules */
+> +#define SKY1_AUDIO_HIFI5_RESET_N	30
+> +#define SKY1_AUDIO_HIFI5_NOC_RESET_N	31
+> +#define SKY1_CSIDPHY_PRST0_N		32
+> +#define SKY1_CSIDPHY_CMNRST0_N		33
+> +#define SKY1_CSI0_RST_N			34
+> +#define SKY1_CSIDPHY_PRST1_N		35
+> +#define SKY1_CSIDPHY_CMNRST1_N		36
+> +#define SKY1_CSI1_RST_N			37
+> +#define SKY1_CSI2_RST_N			38
+> +#define SKY1_CSI3_RST_N			39
+> +#define SKY1_CSIBRDGE0_RST_N		40
+> +#define SKY1_CSIBRDGE1_RST_N		41
+> +#define SKY1_CSIBRDGE2_RST_N		42
+> +#define SKY1_CSIBRDGE3_RST_N		43
+> +#define SKY1_GMAC0_RST_N		44
+> +#define SKY1_GMAC1_RST_N		45
+> +#define SKY1_PCIE0_RESET_N		46
+> +#define SKY1_PCIE1_RESET_N		47
+> +#define SKY1_PCIE2_RESET_N		48
+> +#define SKY1_PCIE3_RESET_N		49
+> +#define SKY1_PCIE4_RESET_N		50
+> +
+> +/* reset group1 for usb phys */
+> +#define SKY1_USB_DP_PHY0_PRST_N		51
+> +#define SKY1_USB_DP_PHY1_PRST_N		52
+> +#define SKY1_USB_DP_PHY2_PRST_N		53
+> +#define SKY1_USB_DP_PHY3_PRST_N		54
+> +#define SKY1_USB_DP_PHY0_RST_N		55
+> +#define SKY1_USB_DP_PHY1_RST_N		56
+> +#define SKY1_USB_DP_PHY2_RST_N		57
+> +#define SKY1_USB_DP_PHY3_RST_N		58
+> +#define SKY1_USBPHY_SS_PST_N		59
+> +#define SKY1_USBPHY_SS_RST_N		60
+> +#define SKY1_USBPHY_HS0_PRST_N		61
+> +#define SKY1_USBPHY_HS1_PRST_N		62
+> +#define SKY1_USBPHY_HS2_PRST_N		63
+> +#define SKY1_USBPHY_HS3_PRST_N		64
+> +#define SKY1_USBPHY_HS4_PRST_N		65
+> +#define SKY1_USBPHY_HS5_PRST_N		66
+> +#define SKY1_USBPHY_HS6_PRST_N		67
+> +#define SKY1_USBPHY_HS7_PRST_N		68
+> +#define SKY1_USBPHY_HS8_PRST_N		69
+> +#define SKY1_USBPHY_HS9_PRST_N		70
+> +
+> +/* reset group1 for usb controllers */
+> +#define SKY1_USBC_SS0_PRST_N		71
+> +#define SKY1_USBC_SS1_PRST_N		72
+> +#define SKY1_USBC_SS2_PRST_N		73
+> +#define SKY1_USBC_SS3_PRST_N		74
+> +#define SKY1_USBC_SS4_PRST_N		75
+> +#define SKY1_USBC_SS5_PRST_N		76
+> +#define SKY1_USBC_SS0_RST_N		77
+> +#define SKY1_USBC_SS1_RST_N		78
+> +#define SKY1_USBC_SS2_RST_N		79
+> +#define SKY1_USBC_SS3_RST_N		80
+> +#define SKY1_USBC_SS4_RST_N		81
+> +#define SKY1_USBC_SS5_RST_N		82
+> +#define SKY1_USBC_HS0_PRST_N		83
+> +#define SKY1_USBC_HS1_PRST_N		84
+> +#define SKY1_USBC_HS2_PRST_N		85
+> +#define SKY1_USBC_HS3_PRST_N		86
+> +#define SKY1_USBC_HS0_RST_N		87
+> +#define SKY1_USBC_HS1_RST_N		88
+> +#define SKY1_USBC_HS2_RST_N		89
+> +#define SKY1_USBC_HS3_RST_N		90
+> +
+> +/* reset group0 for rcsu */
+> +#define SKY1_AUDIO_RCSU_RESET_N			91
+> +#define SKY1_CI700_RCSU_RESET_N			92
+> +#define SKY1_CSI_RCSU0_RESET_N			93
+> +#define SKY1_CSI_RCSU1_RESET_N			94
+> +#define SKY1_CSU_PM_RCSU_RESET_N		95
+> +#define SKY1_DDR_BROADCAST_RCSU_RESET_N		96
+> +#define SKY1_DDR_CTRL_RCSU_0_RESET_N		97
+> +#define SKY1_DDR_CTRL_RCSU_1_RESET_N		98
+> +#define SKY1_DDR_CTRL_RCSU_2_RESET_N		99
+> +#define SKY1_DDR_CTRL_RCSU_3_RESET_N		100
+> +#define SKY1_DDR_TZC400_RCSU_0_RESET_N		101
+> +#define SKY1_DDR_TZC400_RCSU_1_RESET_N		102
+> +#define SKY1_DDR_TZC400_RCSU_2_RESET_N		103
+> +#define SKY1_DDR_TZC400_RCSU_3_RESET_N		104
+> +#define SKY1_DP0_RCSU_RESET_N			105
+> +#define SKY1_DP1_RCSU_RESET_N			106
+> +#define SKY1_DP2_RCSU_RESET_N			107
+> +#define SKY1_DP3_RCSU_RESET_N			108
+> +#define SKY1_DP4_RCSU_RESET_N			109
+> +#define SKY1_DPU0_RCSU_RESET_N			110
+> +#define SKY1_DPU1_RCSU_RESET_N			111
+> +#define SKY1_DPU2_RCSU_RESET_N			112
+> +#define SKY1_DPU3_RCSU_RESET_N			113
+> +#define SKY1_DPU4_RCSU_RESET_N			114
+> +#define SKY1_DSU_RCSU_RESET_N			115
+> +#define SKY1_FCH_RCSU_RESET_N			116
+> +#define SKY1_GICD_RCSU_RESET_N			117
+> +#define SKY1_GMAC_RCSU_RESET_N			118
+> +#define SKY1_GPU_RCSU_RESET_N			119
+> +#define SKY1_ISP_RCSU0_RESET_N			120
+> +#define SKY1_ISP_RCSU1_RESET_N			121
+> +#define SKY1_NI700_MMHUB_RCSU_RESET_N		122
+> +
+> +/* reset group1 for rcsu */
+> +#define SKY1_NPU_RCSU_RESET_N			123
+> +#define SKY1_NI700_PCIE_RCSU_RESET_N		124
+> +#define SKY1_PCIE_X421_RCSU_RESET_N		125
+> +#define SKY1_PCIE_X8_RCSU_RESET_N		126
+> +#define SKY1_SF_RCSU_RESET_N			127
+> +#define SKY1_RCSU_SMMU_MMHUB_RESET_N		128
+> +#define SKY1_RCSU_SMMU_PCIEHUB_RESET_N		129
+> +#define SKY1_RCSU_SYSHUB_RESET_N		130
+> +#define SKY1_NI700_SMN_RCSU_RESET_N		131
+> +#define SKY1_NI700_SYSHUB_RCSU_RESET_N		132
+> +#define SKY1_RCSU_USB2_HOST0_RESET_N		133
+> +#define SKY1_RCSU_USB2_HOST1_RESET_N		134
+> +#define SKY1_RCSU_USB2_HOST2_RESET_N		135
+> +#define SKY1_RCSU_USB2_HOST3_RESET_N		136
+> +#define SKY1_RCSU_USB3_TYPEA_DRD_RESET_N	137
+> +#define SKY1_RCSU_USB3_TYPEC_DRD_RESET_N	138
+> +#define SKY1_RCSU_USB3_TYPEC_HOST0_RESET_N	139
+> +#define SKY1_RCSU_USB3_TYPEC_HOST1_RESET_N	140
+> +#define SKY1_RCSU_USB3_TYPEC_HOST2_RESET_N	141
+> +#define SKY1_VPU_RCSU_RESET_N			142
+> +
+> +#endif
+> --=20
+> 2.49.0
+>=20
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yuntao-Wang/of-fdt-Consolidate-duplicate-code-into-helper-functions/20251114-004121
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20251113155104.226617-7-yuntao.wang%40linux.dev
-patch subject: [PATCH v2 6/7] of/reserved_mem: Simplify the logic of __reserved_mem_reserve_reg()
-config: arm-allnoconfig (https://download.01.org/0day-ci/archive/20251114/202511140307.Th0UqUd9-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 0bba1e76581bad04e7d7f09f5115ae5e2989e0d9)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251114/202511140307.Th0UqUd9-lkp@intel.com/reproduce)
+--Yz8zv5OhRBRImQYW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511140307.Th0UqUd9-lkp@intel.com/
+-----BEGIN PGP SIGNATURE-----
 
-All errors (new ones prefixed by >>):
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRYz7wAKCRB4tDGHoIJi
+0o9vAP9Ng5A5I1/BoWwQacFJgKdkEBNUk7zGUTOiG6yrttjZAQEAr86SSHXQMidr
+ye4OhbE4hwmmpgsuo9lvnD6+2Tz/SAU=
+=oBDZ
+-----END PGP SIGNATURE-----
 
->> drivers/of/of_reserved_mem.c:175:31: error: incompatible pointer types passing 'phys_addr_t *' (aka 'unsigned int *') to parameter of type 'u64 *' (aka 'unsigned long long *') [-Wincompatible-pointer-types]
-     175 |                 of_fdt_read_addr_size(prop, &base, &size);
-         |                                             ^~~~~
-   include/linux/of_fdt.h:62:60: note: passing argument to parameter 'addr' here
-      62 | extern void of_fdt_read_addr_size(const __be32 *prop, u64 *addr, u64 *size);
-         |                                                            ^
-   drivers/of/of_reserved_mem.c:175:38: error: incompatible pointer types passing 'phys_addr_t *' (aka 'unsigned int *') to parameter of type 'u64 *' (aka 'unsigned long long *') [-Wincompatible-pointer-types]
-     175 |                 of_fdt_read_addr_size(prop, &base, &size);
-         |                                                    ^~~~~
-   include/linux/of_fdt.h:62:71: note: passing argument to parameter 'size' here
-      62 | extern void of_fdt_read_addr_size(const __be32 *prop, u64 *addr, u64 *size);
-         |                                                                       ^
-   2 errors generated.
-
-
-vim +175 drivers/of/of_reserved_mem.c
-
-   150	
-   151	/*
-   152	 * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
-   153	 */
-   154	static int __init __reserved_mem_reserve_reg(unsigned long node,
-   155						     const char *uname)
-   156	{
-   157		phys_addr_t base, size;
-   158		int len;
-   159		const __be32 *prop;
-   160		bool nomap;
-   161	
-   162		prop = of_fdt_get_addr_size_prop(node, "reg", &len);
-   163		if (!len)
-   164			return -ENOENT;
-   165	
-   166		if (len < 0) {
-   167			pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
-   168			       uname);
-   169			return -EINVAL;
-   170		}
-   171	
-   172		nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
-   173	
-   174		while (len-- > 0) {
- > 175			of_fdt_read_addr_size(prop, &base, &size);
-   176	
-   177			if (size && early_init_dt_reserve_memory(base, size, nomap) == 0) {
-   178				/* Architecture specific contiguous memory fixup. */
-   179				if (of_flat_dt_is_compatible(node, "shared-dma-pool") &&
-   180				    of_get_flat_dt_prop(node, "reusable", NULL))
-   181					dma_contiguous_early_fixup(base, size);
-   182				pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
-   183					uname, &base, (unsigned long)(size / SZ_1M));
-   184			} else {
-   185				pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
-   186				       uname, &base, (unsigned long)(size / SZ_1M));
-   187			}
-   188		}
-   189		return 0;
-   190	}
-   191	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--Yz8zv5OhRBRImQYW--
 
