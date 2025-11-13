@@ -1,202 +1,79 @@
-Return-Path: <devicetree+bounces-238010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A6B5C56677
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:57:32 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49E5BC5669C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:58:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 92A724E6F26
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:54:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 222BA4E84DE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D980333733;
-	Thu, 13 Nov 2025 08:53:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="R49H1O1J"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC67332911;
+	Thu, 13 Nov 2025 08:53:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB3E18E20
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727C6286405;
+	Thu, 13 Nov 2025 08:53:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763023996; cv=none; b=TP1orASbq/7cZVAv+Cp9igWyWdyZHzbIfv9jGCF/GqkkjF83+H2YHkAZGUMU39Y7LER25i4Jpefh5O4yuCWOK5wncPHjhRdZthAurnjrt5Q7YV9YPFqxMeeiNhvAdBWf7sR424GFxLdeiFBHhBFiVvaY3X0kaEycLPi/4XC6Qlo=
+	t=1763024018; cv=none; b=c8zjixQHPaMqQPH+T6cNTITPiE4UBpsYKvg+IQj5ixVYf90WP491f73jHbnqvVw01Jd0BMdZghgnj/gGvQ79VbDDdKYb0zL8k3M4rjeCzXUNu/Z7zofngSjty7P2tVBv1EyCg+rorS+kADcIEGoAtLmiMbPxehvZEomVbW+JGJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763023996; c=relaxed/simple;
-	bh=1YZRmBNlepkATlvAZsgLip5h9yPpsKDB8Ve0w3eLi0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bDta4GGy3nhzCLKTYzi1T/ZUXK8eaPwBLiHB9e8ApFooZ7XitNri8MAxah0WF8J9boCiIFjj3HTPmyVeYJyPZwuHY1+fnpHhCo5q44BJNhMsD4MZQ4fvJTdo/67dPLjeJDElyNSAR0hKE9YMekh/WSlZB8y8ahBj7zAA/GI3DHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=R49H1O1J; arc=none smtp.client-ip=95.215.58.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Thu, 13 Nov 2025 10:53:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1763023992; h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-	 content-type:content-type:in-reply-to:in-reply-to:  references:references;
-	bh=/eTa0NJ3DTjCZ/Zj/UbEujKDtzwwAvVBRBi75gVWYGs=;
-	b=R49H1O1JAuWCyqxxaA3Q71S3ior4PCQUcQRTf8ByCB8Fss0B5KIhDyBd9SpAfsIzzoMp/F
-	GHlt+b1dzfEYkn52bBnv7aUtzQPf4JLYmGsx5SZQ+n9gbrzbgpkYt35Kg76cngOI/TZ5Ls
-	UCz77GyxxCOHMdEZlr/snllepvtG9wo=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Matti Vaittinen <matti.vaittinen@linux.dev>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v4 07/16] mfd: rohm-bd71828: Use regmap_reg_range()
-Message-ID: <8629b93c778910dd3d55a3f4c3aa4e7c0232a906.1763022807.git.mazziesaccount@gmail.com>
-Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1763024018; c=relaxed/simple;
+	bh=mGv89sVzXiRXV52S5ABIfy4jbiv6TAiW57W5EOhI76w=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FyOdqeOEJCChRXZxZNL9a0pDw61vwsCEO6+wUt/OQu2JDu1NMUQSyADAyUrnkKEFET/3muny5O+AXyQJi1u90Ir7oHproTmGE8KaqcGwa+rXsr29JRlDJKdnPqrgkg4V+Q0jUjPMkBtcgW/z79beuCByjHloaSW/CnAcipZPBCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 13 Nov
+ 2025 16:53:33 +0800
+Received: from aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Thu, 13 Nov 2025 16:53:32 +0800
+From: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<joel@jms.id.au>, <andrew@codeconstruct.com.au>, <clg@kaod.org>,
+	<clg@redhat.com>, <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, <openbmc@lists.ozlabs.org>,
+	<linux-spi@vger.kernel.org>, <BMC-SW@aspeedtech.com>
+Subject: [PATCH 0/4] spi: aspeed: Add AST2700 SoC support and Quad SPI handling update
+Date: Thu, 13 Nov 2025 16:53:28 +0800
+Message-ID: <20251113085332.89688-1-chin-ting_kuo@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OWnnQx6gIBuLXqbQ"
-Content-Disposition: inline
-In-Reply-To: <cover.1763022807.git.mazziesaccount@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+This series adds AST2700 support to the ASPEED FMC/SPI driver and
+bindings, introduces 64-bit address compatibility, and improves
+Quad SPI page programming behavior. It also implements AST2700-specific
+segment logic, where range adjustment is not required because the
+AST2700 SPI hardware controller already fixes decoding issues on
+the existing platforms and adopts an updated scheme.
 
---OWnnQx6gIBuLXqbQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Chin-Ting Kuo (4):
+  dt-bindings: spi: aspeed,ast2600-fmc: Add AST2700 SoC support
+  spi: aspeed: Enable Quad SPI mode for page program
+  spi: aspeed: Use phys_addr_t for bus addresses to support 64-bit
+    platforms
+  spi: aspeed: Add support for the AST2700 SPI controller
 
-=46rom: Matti Vaittinen <mazziesaccount@gmail.com>
+ .../bindings/spi/aspeed,ast2600-fmc.yaml      |   4 +-
+ drivers/spi/spi-aspeed-smc.c                  | 107 +++++++++++++++---
+ 2 files changed, 95 insertions(+), 16 deletions(-)
 
-The regmap range tables tend to be somewhat verbose. Using the
-regmap_reg_range() can make the definitions slightly mode compact.
+-- 
+2.34.1
 
-Tidy the regmap range tables by using the regmap_reg_range().
-
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
-Revision history:
- v2 =3D> :
- - no changes
- RFCv1 =3D> v2:
- - New patch
----
- drivers/mfd/rohm-bd71828.c | 64 +++++++++++---------------------------
- 1 file changed, 18 insertions(+), 46 deletions(-)
-
-diff --git a/drivers/mfd/rohm-bd71828.c b/drivers/mfd/rohm-bd71828.c
-index 84a64c3b9c9f..2a43005b67ee 100644
---- a/drivers/mfd/rohm-bd71828.c
-+++ b/drivers/mfd/rohm-bd71828.c
-@@ -157,55 +157,27 @@ static struct mfd_cell bd71828_mfd_cells[] =3D {
- };
-=20
- static const struct regmap_range bd71815_volatile_ranges[] =3D {
--	{
--		.range_min =3D BD71815_REG_SEC,
--		.range_max =3D BD71815_REG_YEAR,
--	}, {
--		.range_min =3D BD71815_REG_CONF,
--		.range_max =3D BD71815_REG_BAT_TEMP,
--	}, {
--		.range_min =3D BD71815_REG_VM_IBAT_U,
--		.range_max =3D BD71815_REG_CC_CTRL,
--	}, {
--		.range_min =3D BD71815_REG_CC_STAT,
--		.range_max =3D BD71815_REG_CC_CURCD_L,
--	}, {
--		.range_min =3D BD71815_REG_VM_BTMP_MON,
--		.range_max =3D BD71815_REG_VM_BTMP_MON,
--	}, {
--		.range_min =3D BD71815_REG_INT_STAT,
--		.range_max =3D BD71815_REG_INT_UPDATE,
--	}, {
--		.range_min =3D BD71815_REG_VM_VSYS_U,
--		.range_max =3D BD71815_REG_REX_CTRL_1,
--	}, {
--		.range_min =3D BD71815_REG_FULL_CCNTD_3,
--		.range_max =3D BD71815_REG_CCNTD_CHG_2,
--	},
-+	regmap_reg_range(BD71815_REG_SEC, BD71815_REG_YEAR),
-+	regmap_reg_range(BD71815_REG_CONF, BD71815_REG_BAT_TEMP),
-+	regmap_reg_range(BD71815_REG_VM_IBAT_U, BD71815_REG_CC_CTRL),
-+	regmap_reg_range(BD71815_REG_CC_STAT, BD71815_REG_CC_CURCD_L),
-+	regmap_reg_range(BD71815_REG_VM_BTMP_MON, BD71815_REG_VM_BTMP_MON),
-+	regmap_reg_range(BD71815_REG_INT_STAT, BD71815_REG_INT_UPDATE),
-+	regmap_reg_range(BD71815_REG_VM_VSYS_U, BD71815_REG_REX_CTRL_1),
-+	regmap_reg_range(BD71815_REG_FULL_CCNTD_3, BD71815_REG_CCNTD_CHG_2),
- };
-=20
- static const struct regmap_range bd71828_volatile_ranges[] =3D {
--	{
--		.range_min =3D BD71828_REG_PS_CTRL_1,
--		.range_max =3D BD71828_REG_PS_CTRL_1,
--	}, {
--		.range_min =3D BD71828_REG_PS_CTRL_3,
--		.range_max =3D BD71828_REG_PS_CTRL_3,
--	}, {
--		.range_min =3D BD71828_REG_RTC_SEC,
--		.range_max =3D BD71828_REG_RTC_YEAR,
--	}, {
--		/*
--		 * For now make all charger registers volatile because many
--		 * needs to be and because the charger block is not that
--		 * performance critical.
--		 */
--		.range_min =3D BD71828_REG_CHG_STATE,
--		.range_max =3D BD71828_REG_CHG_FULL,
--	}, {
--		.range_min =3D BD71828_REG_INT_MAIN,
--		.range_max =3D BD71828_REG_IO_STAT,
--	},
-+	regmap_reg_range(BD71828_REG_PS_CTRL_1, BD71828_REG_PS_CTRL_1),
-+	regmap_reg_range(BD71828_REG_PS_CTRL_3, BD71828_REG_PS_CTRL_3),
-+	regmap_reg_range(BD71828_REG_RTC_SEC, BD71828_REG_RTC_YEAR),
-+	/*
-+	 * For now make all charger registers volatile because many
-+	 * needs to be and because the charger block is not that
-+	 * performance critical.
-+	 */
-+	regmap_reg_range(BD71828_REG_CHG_STATE, BD71828_REG_CHG_FULL),
-+	regmap_reg_range(BD71828_REG_INT_MAIN, BD71828_REG_IO_STAT),
- };
-=20
- static const struct regmap_access_table bd71815_volatile_regs =3D {
---=20
-2.51.1
-
-
---OWnnQx6gIBuLXqbQ
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmkVnHIACgkQeFA3/03a
-ocVDaAf9Ftz+J+DpPS3xjpGiXCoIqfLJuSpoCLAoczvx0r7o2bAPDDBPmLyWIcys
-wGlCxN/T9jmXD1DA1BwNymrh7p5BYTY/4xZNjJNvCncC6nP6Kfznpddf09Plar0S
-3e3j3S+QtdJHO8A5Rfh+pbMzRQFSAW36mr3xVaWWKsI2j0O8USq5ffpA/gxnjQES
-74bph3aVgMPBBWK53cEK4lHMGexJ8+p5t6nOchq5nt5ReFGfX62Kri3ZgKo/y7+k
-0NJ4atukU5+5pC4pq25rXrWKWaEVsnq83NqedYjcBd5DlEeZHXbs8D929QkmeZpi
-iIiF3MaVlwy7qLAIbdLKaWPa2G4mGw==
-=Rkq0
------END PGP SIGNATURE-----
-
---OWnnQx6gIBuLXqbQ--
 
