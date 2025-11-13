@@ -1,200 +1,116 @@
-Return-Path: <devicetree+bounces-237900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 341DDC55626
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 03:10:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5243C55711
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 03:32:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A68563B7B1A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:03:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6A833B02FB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 02:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649A529D287;
-	Thu, 13 Nov 2025 02:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D2glekrH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC16D2FC010;
+	Thu, 13 Nov 2025 02:30:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.hostedemail.com (smtprelay0016.hostedemail.com [216.40.44.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD3629B764
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 02:03:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DDD28248C;
+	Thu, 13 Nov 2025 02:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=216.40.44.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762999386; cv=none; b=WVH/NW0Yb5v0Lx+hjoOo2iSA0Ki47/7lyd5PZSu6GG5n8fRCwAyv1bFfAQpygRbVOaj99n8Y26sP03Z/urLxcJzuu29gU5hVg0CeIW6mnnvgiaZUfi50HJW3meX2fC4aMVlsMtRriD7IqCvlCEcTS3anl9Yulc8/hzSSjOESbKE=
+	t=1763001048; cv=none; b=fnAX8/nFY67jcNFiEVFBTClBph2H830v++M3WGzAXRfpE5wEuEaHLOP3cG0OHOhAEJhjfFh3HxXoyfiQeJQIshiipwk3t1RWtuSijSw51GCsIUUimHBkyUtl9Jy8Pp9rb7OO/TWyNmCrEpDWOliHpkmKO6Bs4vxLGnDdX4zx2FQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762999386; c=relaxed/simple;
-	bh=7sagxwt3YOzXO5GtOUTkLWYm3rudvxzxUFEOh7+/8k0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fiH2zOV9Ld4Xhbogn5vxXueTd1h0ishsUEhXWI3eneuKmcJYHTTJ95M0m2xIszBNM26epZAp/MZttcbsXHZB/memhyvVJUCwO8Qai02IOe4cOwWKkxriigD9iAg8FWSpGMWgmVbTBBfiFHRgag733kgtyIv4u/I1yRijg0UR2Eg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D2glekrH; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b99bfb451e5so182421a12.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Nov 2025 18:03:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762999384; x=1763604184; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=UjweUzZ22jKy+FdesM7fO6h9LCgM2UrGbdkfnRu72po=;
-        b=D2glekrHFqeT0yPeelVgNhvC98HG+fPpgHEZI7nouqZayqIRe6psL548Yg952k9LXY
-         ap8XZ0j151HcFuYoGfwOped5fmAyDQ+l4RIwQLhlKr5t+XgAFOTfRvfctJy6rsYUmaLE
-         IVtwOOzIm21RnG5BopAIkdOG7W8loTGpbc0gcCdUGvpHhSsNCnNdw/TLotTmwKXLQf1g
-         BQdcQ92VOahrAS5jPLitmPlRIDym3JRC3klqK/98wpKKrbTU/pB9pdfCjjSXwLvDx9q7
-         CIesUu+HunioutEDfVFUwM35CzzOgmB6SH7AgEX4t/ychMjnQaRZ65c8Nu/7+tmLZPpI
-         Wg7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762999384; x=1763604184;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UjweUzZ22jKy+FdesM7fO6h9LCgM2UrGbdkfnRu72po=;
-        b=XfLNJ2qt3VaBcQpporMYSMoopG4yCMPYK7hu5We77/Bte07tjouCgDA76zVls19795
-         tkp1gPt99pZIb+COlh01KaOoL1M8U0ZrWPUhyJH1QA9ZArAdh9YEk02ZRhmV/5UFSpUF
-         D7pAkzoApwTxXgyxvtVy+DljyTvqR6UIBrcT+D97H3DkS0yiSZfCfvVvWi5R1mLVVhul
-         N5fJgLtJK8vkWSxRPXPswVKL0b8QbdYpEivwqygMz0xOXxsdr+kJLN1CVupUJa2y29kW
-         VaRQ822elEnw4NYQUKbtDPzJUCHl/pjhR1zsA7IG4wQ+/looYjwUKcZjp7PP+WF5+7FD
-         jAqw==
-X-Forwarded-Encrypted: i=1; AJvYcCXY17RxhlAaJ9pyydEutkd52i32I68bj475U+FwfPeS9TYd5m4otvMs6kskw7DHafxoxES9LijfY1df@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIv8pd7tKDjzcyonE7iP1y+4qO7P5hwt7566xk9/IWsCugxGOW
-	ezhnAQNACkm0U2SqMww+4oJFXv0QtqsAnv8yNsYSvPORTzdUFwO4ggbE
-X-Gm-Gg: ASbGncv9/Y3kz4d/1A68HWFJmu5vK1mO1jvPxknx283bYR6P4MrweuFdZyn/QGt0xCA
-	ruoWmRrS6Np5r+XgRfy/NEmcDfAEwhMEbP2v84ocjYGrg/bK5yheDDZqbYYu7T2A4Yl3EPbqM87
-	Zd4zgjzLbv68c3DboQWevX6MB5ThwQQ7tBSqXLCqFpF0Ogaze4Wprh23Cusk9/hPESuvsV8RTdo
-	6JHS5sBoAfoeuea+4In+HItZbjJJ1hfCPuM7js35judmzcy6aThAeaj+6lFDRXjRO7sPikUID4c
-	Bc/4gwWyFLumig+5mOUP0TkIXkvgyAqwxnUYIWUUczfJw9MdhauMX5qYKI4GlNGP+4B13SCrPJz
-	TQ3/Cvj0PQD73IEbvb4GbLfTu08JNyT5ZCRAWYGf0XJf0cFKoQKZpWWWZK/lHhzUh7IsUUrUXXb
-	phWL83FEtAnM9I94SjVpL9nPjM4F8EGbA67HtoQa+oQtcFviu0
-X-Google-Smtp-Source: AGHT+IG1WS6e6A31ciU36x82nVcAmvDmiX6VuzUgSbYU6zLgxbRslxDpgz+YB6Vd+8ZB7Iy10zQcHQ==
-X-Received: by 2002:a17:902:e80f:b0:295:6d30:e25f with SMTP id d9443c01a7336-2984edec6e3mr65136965ad.53.1762999383530;
-        Wed, 12 Nov 2025 18:03:03 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bc36fa02c42sm435825a12.16.2025.11.12.18.03.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Nov 2025 18:03:02 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <50cb21bc-55e7-4bf3-9d05-0cbe10af46aa@roeck-us.net>
-Date: Wed, 12 Nov 2025 18:03:01 -0800
+	s=arc-20240116; t=1763001048; c=relaxed/simple;
+	bh=31PCfrreYrZ++waB2Ulpo4M51w728qBoU3m/Oh5gQNc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=g/MvZdPyOqM/+fjsR9zNYWUQ3gQxL/3cLyOc4hgKd+Xsk4fqgxHR1YFee30JJZd3S/fbg3RoBiBKSRRE2EapxG3uq/Vv0wv7ngpkP0S4seQ8eg13R6UKlMZljbgYRDdLWhvlVlvFkts/WomWnLyjiWH8lf1alh1Ymi7jYUyH36k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com; spf=pass smtp.mailfrom=perches.com; arc=none smtp.client-ip=216.40.44.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=perches.com
+Received: from omf10.hostedemail.com (a10.router.float.18 [10.200.18.1])
+	by unirelay04.hostedemail.com (Postfix) with ESMTP id 248AF1A0737;
+	Thu, 13 Nov 2025 02:21:10 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf10.hostedemail.com (Postfix) with ESMTPA id E75B02F;
+	Thu, 13 Nov 2025 02:21:03 +0000 (UTC)
+Message-ID: <1dfa1e3566cafbe43a1d4753defef9c82ddb3b64.camel@perches.com>
+Subject: Re: [PATCH v3 07/22] checkpatch: Warn on page table access without
+ accessors
+From: Joe Perches <joe@perches.com>
+To: Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt	
+ <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
+	linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+  David Hildenbrand	 <david@redhat.com>, linux-mm@kvack.org
+Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>, 
+	linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>, Michal Hocko
+	 <mhocko@suse.com>, Conor Dooley <conor@kernel.org>, Lorenzo Stoakes	
+ <lorenzo.stoakes@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Alexandre Ghiti	 <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring	 <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>, "Liam
+ R . Howlett"	 <Liam.Howlett@oracle.com>, Andy Whitcroft
+ <apw@canonical.com>, Dwaipayan Ray	 <dwaipayanray1@gmail.com>, Lukas
+ Bulwahn <lukas.bulwahn@gmail.com>
+Date: Wed, 12 Nov 2025 18:21:01 -0800
+In-Reply-To: <20251113014656.2605447-8-samuel.holland@sifive.com>
+References: <20251113014656.2605447-1-samuel.holland@sifive.com>
+	 <20251113014656.2605447-8-samuel.holland@sifive.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] dt-binding:ti,ina3221:Add SQ52210
-To: Wenliang Yan <wenliang202407@163.com>, Jean Delvare <jdelvare@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: christophe.jaillet@wanadoo.fr, corbet@lwn.net,
- devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251111080546.32421-1-wenliang202407@163.com>
- <20251111080546.32421-2-wenliang202407@163.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251111080546.32421-2-wenliang202407@163.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: E75B02F
+X-Stat-Signature: 637x6efm4mgrsxn5df3wupihd98x8qr7
+X-Rspamd-Server: rspamout06
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX19giTHWCQXhnf4xIrV8ypTp+gyVUJdqk4E=
+X-HE-Tag: 1763000463-251880
+X-HE-Meta: U2FsdGVkX1/zAceZ5vnh4tbWR1f+Cwm6Gajb5Cysjq6qV34Cj9ZhK7eypGnKqYKEn8aGGYIrbdej0PNanG4Y7TU/rQFSPu393I2CQtbbB+tC8raIaQXcfTo4/QsU+zfgvxgvrkbI2t+kILkdA2MOrD1E61pPCOZlLL5D27VIEclZ4WR5+L5e2bEJGUcPo/3BvvjYsMlCufHb2LdyCWotOP9G0jDRsl191XUc0vokRa6gejGK8FjkEibcUKMjgguRZP81NCcHiR4kBfuLcisXBHTUQG1ReqMmWiKYx9A+Ot1h30HMlHgxWYbe8+ei1wEa
 
-On 11/11/25 00:05, Wenliang Yan wrote:
-> Add a compatible string for sq52210, sq52210 is forward compatible
-> with INA3221 and add alert register to implement four additional
-> alert function.
-> 
-> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
-> ---
->   .../devicetree/bindings/hwmon/ti,ina3221.yaml    | 16 +++++++++++++++-
->   1 file changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
-> index 5f10f1207d69..0fae82ca3ee1 100644
-> --- a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
-> @@ -12,7 +12,9 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    const: ti,ina3221
-> +    enum:
-> +      - silergy,sq52210
-> +      - ti,ina3221
->   
->     reg:
->       maxItems: 1
-> @@ -77,6 +79,18 @@ patternProperties:
->             exclude specific channels from the summation control function.
->           type: boolean
->   
-> +      alert-type:
-> +        description: |
-> +          The SQ52210 features a configurable alert function with four
-> +          types: SUL, BOL, BUL, and POL. Each channel can be configured to
-> +          select one of these types to enable the alert function. This alert
-> +          function can operate concurrently with both Critical and Warning
-> +          functions.
+On Wed, 2025-11-12 at 17:45 -0800, Samuel Holland wrote:
+> Architectures may have special rules for accessing the hardware page
+> tables (for example, atomicity/ordering requirements), so the generic MM
+> code provides the pXXp_get() and set_pXX() hooks for architectures to
+> implement. These accessor functions are often omitted where a raw
+> pointer dereference is believed to be safe (i.e. race-free). However,
+> RISC-V needs to use these hooks to rewrite the page table values at
+> read/write time on some platforms. A raw pointer dereference will no
+> longer produce the correct value on those platforms, so the generic code
+> must always use the accessor functions.
+[]
+> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+[]
+> @@ -7721,6 +7721,13 @@ sub process {
+>  				ERROR("MISSING_SENTINEL", "missing sentinel in ID array\n" . "$here\=
+n$stat\n");
+>  			}
+>  		}
 > +
-> +          The configuration must use numerical values 0 through 3,
-> +          0 corresponds to SUL, 1 to BOL, 2 to BUL, and 3 to POL.
-> +        enum: [ 0, 1, 2, 3 ]
-> +
+> +# check for raw dereferences of hardware page table pointers
+> +		if ($realfile !~ m@^arch/@ &&
+> +		    $line =3D~ /(?<!pte_t |p[mu4g]d_t |izeof\()\*\(?(vmf(\.|->))?(pte|=
+p[mu4g]d)p?\b/) {
+> +			WARN("PAGE_TABLE_ACCESSORS",
+> +			     "Use $3p_get()/set_$3() instead of dereferencing page table poin=
+ters\n" . $herecurr);
+> +		}
+>  	}
 
-Per datasheet, each of the alerts can be enabled independently. It is possible
-to enable SUL, BOL, BUL, and POL on each channel at the same time. This is not
-possible with the above property since it only permits enabling alerts for one
-of the alert sources on each channel.
+Seems like a lot of matches
 
-Also, I am not sure if it makes sense to have this as devicetree property.
-It is not really a board property. It might make more sense to tie enabling
-the alerts automatically if a channel is enabled and a limit is set for a
-given channel.
+$ git grep -P '(?<!pte_t |p[mu4g]d_t |izeof\()\*\(?(vmf(\.|->))?(pte|p[mu4g=
+]d)p?\b' | \
+  grep -v '^arch/' | wc -l
+766
 
-Guenter
+Is this really appropriate?
 
+trivia:
+
+izeof is really odd looking.  I'd prefer sizeof.
 
