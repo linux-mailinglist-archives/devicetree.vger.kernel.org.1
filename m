@@ -1,109 +1,55 @@
-Return-Path: <devicetree+bounces-237998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-237999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82095C565E9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:53:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E37C56590
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:48:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 49CC5342837
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:46:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F0843A2C2B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 08:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120BB2D29D6;
-	Thu, 13 Nov 2025 08:46:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PBZQgJ+A";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dZbDPD6B"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CD32DC352;
+	Thu, 13 Nov 2025 08:48:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E1323F40D
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F9C22578D;
+	Thu, 13 Nov 2025 08:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763023584; cv=none; b=HY1aIQwD+y/Z1IdHlKgnRzkc8Q56ENotlSwVZtpA6BPOSNLyb/5Tko4CIl5AIdD94iYkNYS8RXoS6oNnCHMydqM8FKumv+7XFedN4GsWXCUdmjlfOokawjqylPatCszATMix5YxeZBKFfVtTjMYDdcXPmktUBw5YK7S4cMdfEW0=
+	t=1763023732; cv=none; b=Le57BQJB9M1ZZ7LUXhy8rCIKOAX0v/4F5Dod5shE3EONCQs/LjNeybmUF/ayiXvS7kM4Yfcx8DSqMUPkwPsbyKorLfW3IUPKY2bLRKqL4vtaxTtjG5QcIoPPLn0/agcAY9HpaTExVJ7QZSqR1CLxpubP/kt5NbJ1bMaATAchW64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763023584; c=relaxed/simple;
-	bh=jGAs8GDkTdepMafZ6RRqwys5UhmLlRnQZMfjPFvWU14=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VII3TGH+4shCzj4nxEqlxdYMI7B1MYPlYE0Qbd0InHmzQNLpmPCI9SpO4YQqdQor6yFZi+1QH0/Da1C1GY6CWIHsDGH5KsNOa5/D2P5KrA757/8qQx7OdAsO9sEqpSDc6mnzBqMnRtmwcm4VznNuqQ4MDsX++nq7ioB0EbQBp/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PBZQgJ+A; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dZbDPD6B; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD65g2g3563291
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:46:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=D3wze9fyhGDJ4KP1QzTcteRoRGZ7U9g3nAS
-	QGeqMgHk=; b=PBZQgJ+AqRlc6m/JUx2XvTH9CE2LbP55t/P0RXhhEPZqf689daE
-	KzU/o//WJtInYW4NExRqah3qogG8qJXlwOf8OFNkfTRbkk04QviWdPMS5X5mLtaB
-	XD2b0bI67N1ElQ7CWJp/WMxLord2qnDiq9JRV0PEy6TDsy7k7HeHFI1hu7sL6CEH
-	S8SCc8zDYvb5wwRVQ1LuVmGIztm21k5CGl5xrzSLub9Ho564BOJUnPgPYE4dDpwj
-	RUcSKyR5z7GsDfmNE2ZNbs5AtPOSNPWPhLtpIoVwpli1HWPuvIYd3aL2YN55jvQo
-	fSp6o0+PxC2ALLHcKfl6Kx97ZPZ1vGQs/IA==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ad9rvgfc8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:46:21 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-340c07119bfso1508655a91.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 00:46:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763023581; x=1763628381; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=D3wze9fyhGDJ4KP1QzTcteRoRGZ7U9g3nASQGeqMgHk=;
-        b=dZbDPD6BK0xaq4DIKLgfsOOjbhBDJrUIQ6ZZ4wp+aVByDkxTLLzFSkLBf8sbLKlZXs
-         lsXUVcbFgOI+URfOFEPgOifi6ASzZfg7HoykXHo8plZxjfgnsDhageTmwkwO7Gc5/Clg
-         hifydP+EOo5B15wMFXLxI16u9lz9xl1SAOARPGrLxC+eW/Xinp5YpVJeg5gUPbNQ2Owh
-         ELnnJKN2okZHWF+KdO4KpEWPCmftN0a25gHzdIJLJ7vfkWwGXUPUESNhF4N0EK9xEe3T
-         U/ong1RAzw8Jbbxll4F7+7PElXgKESdvDEvKjZqossWNUwf3vfeTrTaNfN+ogOLwKASi
-         5ywg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763023581; x=1763628381;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D3wze9fyhGDJ4KP1QzTcteRoRGZ7U9g3nASQGeqMgHk=;
-        b=kaBEpJz3N4CORhSezuQCmedAa+prGmVapTyivYezy8MGAde9lbpAP54swQaQxTGazc
-         T57tmOYO71Fh5PwKfIzat/YqealsK9O6eN64oXR5TenQDB/xTQ/V3mY8nrjBEdHFVbQx
-         AqdeyrHkDQ1v295H+2oeP77m4fS/P8+9CUFpQC0RH4tzrd5fBgJUmJrkYzQGl0iNA/u6
-         7IhU/XX0Ght+mWB3hoJg08Rboj18iioPuLmC7/zpT4D3D8/5HD+IF7Vo1icGmgfVtYT6
-         9OsdssPnkUgVU2RB0pa4Lw4q6cPKwkjjFg+AoFbA+Et7zKIep440LFbIPWR3dN3PclXv
-         87xg==
-X-Forwarded-Encrypted: i=1; AJvYcCVcrAf4sWID88ega0mEHCNTgu3vR4soNAnyizM34TqjGqjrCNnZdYYCu88SGWollkR3EgE+kEDChB6X@vger.kernel.org
-X-Gm-Message-State: AOJu0YymJKl/XzWGtL7oVlzbb/lvbHwcBD/zRBALNyVKUi4WZ2bR7r+7
-	fg30JcRZIuYeQKhCFu8Gmzd5VRomqEBj6hhb8/nfSMmJEAW34zQ5YJwhXM40J+dNtZEofJ67arP
-	FOE4jUU17SPXlGPFdbG3sepTfjeryHexHHhC5qrVUsAFujqJ30t962Wt+WFrOCcP7wqsq6pi8
-X-Gm-Gg: ASbGncsWRO+YMnTSJYL4E2KhUL1zvdcz8RTPPFLptH2SpAOjbWJCGoU8cVoooocknNG
-	gnBxxmBNuf/9wf49TpRjbqq0q57+bw5HEeimyRi0JYhU/2xRAlTw0jo2lTLbVoNUFzuJ0BGlScT
-	0FKZSsVg91MPwWK4bjTREdFOjWR/djMMdIOoAS/0AmL1YYDsm73b9wbzU5ccwWcbKyku5lCCdr7
-	5hxAM8BMU3qDIa9VNfaiN3OrgDJy8m72Cq5eyyxlcnixWilc6FjFVMKj45NQSEG/JKGlg+nTV7J
-	C0ZC05o39RRXonOyxvfm+SIG/DGhF8BP23Vfb2eyyVbXxSM39jtKaX1jqyNkJd9YNxEdEUxPDUB
-	w3/KHduYSHqfnjPFbEo4ecun0o0ZA8eiCFW8N
-X-Received: by 2002:a17:90b:5625:b0:341:88ba:c6d3 with SMTP id 98e67ed59e1d1-343ddec5702mr7210236a91.23.1763023580741;
-        Thu, 13 Nov 2025 00:46:20 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEqX2Ea/Aovz7+Slvwr4ycE1eB3ZqJee0sXrnYFeJDXMYYaEaRLil3IMHwxyr5d4Ygv6d5f6Q==
-X-Received: by 2002:a17:90b:5625:b0:341:88ba:c6d3 with SMTP id 98e67ed59e1d1-343ddec5702mr7210205a91.23.1763023580146;
-        Thu, 13 Nov 2025 00:46:20 -0800 (PST)
-Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bc375fe4da5sm1422954a12.26.2025.11.13.00.46.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Nov 2025 00:46:19 -0800 (PST)
-From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Subject: [PATCH] arm64: dts: qcom: sdx75: Flatten usb controller node
-Date: Thu, 13 Nov 2025 14:16:08 +0530
-Message-Id: <20251113084608.3837064-1-krishna.kurapati@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1763023732; c=relaxed/simple;
+	bh=YOS1OUwRph7MAOs2qaWQ75lwbdHGF5OrgkOIbrVqLpM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ENfogimvQ3b5SKn+RbM7kMO84CIyB1KaH5zJo+fe5fSb5X2UcyylJWgZA0uw7xM8qk/2BhZ1wlZDM3x/wLytAKxgjXHUCq05zBpuOLHvt3m/7CCuI/L45FAUcRbiSy4swXKSXj2pXrQhIYIRKyEY4TZhpdc1lqdRTqZuooHAdq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.45])
+	by gateway (Coremail) with SMTP id _____8AxjdJlmxVpocoiAA--.4894S3;
+	Thu, 13 Nov 2025 16:48:37 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.45])
+	by front1 (Coremail) with SMTP id qMiowJAxQMJimxVpkYAxAQ--.3356S2;
+	Thu, 13 Nov 2025 16:48:36 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-i2c@vger.kernel.org
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH 0/2] i2c: Add Loongson-2K0300 I2C controller support
+Date: Thu, 13 Nov 2025 16:48:22 +0800
+Message-ID: <cover.1763018288.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,168 +57,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=XrX3+FF9 c=1 sm=1 tr=0 ts=69159add cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=1q36Q9n_z7eM6CNx3OUA:9 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-ORIG-GUID: gQ81YBpWZ4vv2EyYOCLaQhfPQGynCeI_
-X-Proofpoint-GUID: gQ81YBpWZ4vv2EyYOCLaQhfPQGynCeI_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA2MiBTYWx0ZWRfX9cjNLW8scd++
- EvzxEsLtmPYSOaalm9g7cQ2/qCanv80Qnb8M48hHyN2EaYJvt1XxSPJr4Z+wIcyUXFAtoOsYmvB
- qFNfj4qEno7yYos4FleR829BAIxTXDv+xwQlHMezWGq5zdvhOSy3Yqz8tl40PQaEeyjady213Sd
- lqyANsn4R5D1LSiNft9DqB6QU5TaHxrvAFet2rQR9mbmWfV8S9qUxI4c2Wmm+NuFGGBStB2PlQa
- kGFndzUTy/SMitashdrOOn2jUqefUlcVRz2oZSsx3WCu+8MpSHHHnMC5dy1mgtMmxltRHbr8/kv
- iqcq6F2oesFV+vCzpdbVQZXbd3ig3S0oci0qXgZFdyaghCylJdzTh+UfXyf6vY7fCAxX+ZI/T9D
- 7rfli4x43o5nzDWNeQc/KI4apFsgbQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-13_01,2025-11-12_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 spamscore=0 clxscore=1015 impostorscore=0
- phishscore=0 adultscore=0 suspectscore=0 malwarescore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130062
+X-CM-TRANSID:qMiowJAxQMJimxVpkYAxAQ--.3356S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQEFCGkVcy8C8QAAse
+X-Coremail-Antispam: 1Uk129KBj9xXoW7XryDXrW8Kry5JF4fGry5WrX_yoWfCFbEkF
+	n7Wa47Aw1DCF93Aa48Ja1rZry3Cayqga4rZ3Zxtw4SkrW2qw1YgF9rJrZxZw4xXF4UWFsx
+	Ww1kAF4Iv3ZxWosvyTuYvTs0mTUanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvT
+	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+	cSsGvfJTRUUUbzAYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0
+	oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F4
+	0EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_
+	Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxAIw28IcxkI7VAKI4
+	8JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xv
+	wVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjx
+	v20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20E
+	Y4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267
+	AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxU7_MaUUUUU
 
-Flatten usb controller node and update to using latest bindings
-and flattened driver approach.
+Hi all:
 
-Also add the missing usb-role-switch property in base dt node.
+This patch set describes the I2C controller integrated into the Loongson-2K0300 chip.
 
-Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sdx75-idp.dts |  6 +--
- arch/arm64/boot/dts/qcom/sdx75.dtsi    | 67 ++++++++++++--------------
- 2 files changed, 34 insertions(+), 39 deletions(-)
+It has a significantly different design from the previous I2C controller (i2c-ls2x),
+such as support for master-slave transfer mode, and DMA transfers (implementation
+in progress), etc. Therefore, we try to name it i2c-ls2x-v2.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-index 06cacec3461f..6696e1aee243 100644
---- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-@@ -337,11 +337,9 @@ &uart1 {
- };
- 
- &usb {
--	status = "okay";
--};
--
--&usb_dwc3 {
- 	dr_mode = "peripheral";
-+
-+	status = "okay";
- };
- 
- &usb_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-index f26ba90ba66d..6e7695146ff8 100644
---- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-@@ -1019,12 +1019,9 @@ opp-384000000 {
- 			};
- 		};
- 
--		usb: usb@a6f8800 {
--			compatible = "qcom,sdx75-dwc3", "qcom,dwc3";
--			reg = <0x0 0x0a6f8800 0x0 0x400>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+		usb: usb@a600000 {
-+			compatible = "qcom,sdx75-dwc3", "qcom,snps-dwc3";
-+			reg = <0x0 0x0a600000 0x0 0xfc100>;
- 
- 			clocks = <&gcc GCC_USB30_SLV_AHB_CLK>,
- 				 <&gcc GCC_USB30_MASTER_CLK>,
-@@ -1041,21 +1038,35 @@ usb: usb@a6f8800 {
- 					  <&gcc GCC_USB30_MASTER_CLK>;
- 			assigned-clock-rates = <19200000>, <200000000>;
- 
--			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&intc GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&pdc 10 IRQ_TYPE_EDGE_RISING>,
- 					      <&pdc 9 IRQ_TYPE_EDGE_RISING>,
- 					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "pwr_event",
-+			interrupt-names = "dwc_usb3",
-+					  "pwr_event",
- 					  "hs_phy_irq",
- 					  "dp_hs_phy_irq",
- 					  "dm_hs_phy_irq",
- 					  "ss_phy_irq";
- 
-+			iommus = <&apps_smmu 0x80 0x0>;
-+
-+			snps,dis_u2_susphy_quirk;
-+			snps,dis_enblslpm_quirk;
-+			snps,dis-u1-entry-quirk;
-+			snps,dis-u2-entry-quirk;
-+
- 			power-domains = <&gcc GCC_USB30_GDSC>;
- 
- 			resets = <&gcc GCC_USB30_BCR>;
- 
-+			phys = <&usb_hsphy>,
-+			       <&usb_qmpphy>;
-+			phy-names = "usb2-phy",
-+				    "usb3-phy";
-+
- 			interconnects = <&system_noc MASTER_USB3_0 QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1063,38 +1074,24 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 			interconnect-names = "usb-ddr",
- 					     "apps-usb";
- 
-+			usb-role-switch;
- 			status = "disabled";
- 
--			usb_dwc3: usb@a600000 {
--				compatible = "snps,dwc3";
--				reg = <0x0 0x0a600000 0x0 0xcd00>;
--				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
--				iommus = <&apps_smmu 0x80 0x0>;
--				snps,dis_u2_susphy_quirk;
--				snps,dis_enblslpm_quirk;
--				snps,dis-u1-entry-quirk;
--				snps,dis-u2-entry-quirk;
--				phys = <&usb_hsphy>,
--				       <&usb_qmpphy>;
--				phy-names = "usb2-phy",
--					    "usb3-phy";
--
--				ports {
--					#address-cells = <1>;
--					#size-cells = <0>;
--
--					port@0 {
--						reg = <0>;
--
--						usb_1_dwc3_hs: endpoint {
--						};
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usb_1_dwc3_hs: endpoint {
- 					};
-+				};
- 
--					port@1 {
--						reg = <1>;
-+				port@1 {
-+					reg = <1>;
- 
--						usb_1_dwc3_ss: endpoint {
--						};
-+					usb_1_dwc3_ss: endpoint {
- 					};
- 				};
- 			};
+Therefore we try to name it i2c-ls2x-v2.
+
+Thanks.
+
+Binbin Zhou (2):
+  dt-bindings: i2c: loongson,ls2x: Add ls2k0300-i2c compatible
+  i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C controller
+
+ .../bindings/i2c/loongson,ls2x-i2c.yaml       |   1 +
+ MAINTAINERS                                   |   1 +
+ drivers/i2c/busses/Kconfig                    |  10 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-ls2x-v2.c              | 513 ++++++++++++++++++
+ 5 files changed, 526 insertions(+)
+ create mode 100644 drivers/i2c/busses/i2c-ls2x-v2.c
+
+
+base-commit: e9a6fb0bcdd7609be6969112f3fbfcce3b1d4a7c
 -- 
-2.34.1
+2.47.3
 
 
