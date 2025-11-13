@@ -1,252 +1,185 @@
-Return-Path: <devicetree+bounces-238074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCA27C56F4F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C3AEC56FA6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:48:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F31D420961
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:38:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0152421C91
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:40:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F06633BBCC;
-	Thu, 13 Nov 2025 10:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3268330306;
+	Thu, 13 Nov 2025 10:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Xgk10/om";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EU4V22XZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Or3b0ixy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBAA633437F
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15671531F9;
+	Thu, 13 Nov 2025 10:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763030224; cv=none; b=AdzIdqPh20fnRfU4m6K5MwYtZS+OnejC/UqBE47XSA+iDl7cIr2j5VlY62lmLvhgDEDyeNEHxIqyq7Kj8HAKHHtxWnz6kUk4wfZz0aCa6j1CiCuxGjznzITDu+msKHtRC+bnjZfo3hx4znL4WT+mEhaLi4gaHszLL95E77TeBMA=
+	t=1763030428; cv=none; b=g+UyjhdO2gts6VELUx0LVzh1Gx8N8166koPnBvEfTxGjAVDUT5mEZn7f4HhyzvEDi7PWfcO7x4dMRAXoSfTLnuW52liS4I9cqT7r4/ZotWTGkobWxqKiJ0vc017PiPGne/6G77v1zmKcU0aHFXPpSDptDdnPCTKhSTjiGD1zkgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763030224; c=relaxed/simple;
-	bh=uRDqwnYIZZpnXYckK3LJYkQkz8Z734oXrxzphtus+RQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uzFiyRpR7fUeX+nWJXDg+QfRrDuyOp9xVl2hXT2SR0iee0hYKpncxgzpdCgV+v8DD+RbRvCRfcTh2b/PWKjm8pC8zq2YgJ0ar9dPImFIVYOQQwNKilvmQFlTRdkqi45u370XJ4xVuS53rRyvb9awSn7cjhKFe8ebHj2lzOtd0xQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Xgk10/om; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EU4V22XZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD96Nim3035335
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:37:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IEpFo0lEJkHbippaH0NrsqLZL5lxGXEOzc/fjU/RBLU=; b=Xgk10/omaLkRPScg
-	jRkXFq/bS+BR6vtqYJEu1E25C+1LUWgMCD4pacHlemYdnuHV77NMB5hPDPjQXuuW
-	ZLo4GNcAc0yGqkJoJW64bvWxbr9tvNm1opbeWUSWVdNihL9d0xRAJHLwLUYwAHH2
-	nQRhnzK4re2J8mcib1F+TygXdyma/EsuFbp9KcAlG5UxYJV3JcYHw7BeM3AuA0af
-	YWp1rpU5zkhi6uw5g8SasZOQlpFT7TqZVQb3cfZUbi2swr7VMKDIWYGjuOey4Xe3
-	PvrKCWKe63oW6v+N5DLdItBobTk81HfcYRGttJNGXq7jqCWdvDtWATqIUEHPja5W
-	0kfKAw==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ad4ju9rpx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:37:01 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7b9090d9f2eso839393b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 02:37:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763030221; x=1763635021; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IEpFo0lEJkHbippaH0NrsqLZL5lxGXEOzc/fjU/RBLU=;
-        b=EU4V22XZzGMc2qbhTn47qX9f/pkRZRrNBx0L7VVX0QFpF9ikcdmQUmB9hwjGyFtEA2
-         JmfCRZG1veZgCDM4V7h+8HldkMUUM8SMDCy2KSd5kcllFKHOIg1XZjIHo2FQV/3MpynW
-         zq6Yve/VrUHqbBNzXusYC7XYMy/R0JrdA0skZfK39mGGt/L234eW2Ikiv61H+SDk3pOI
-         xwDMyBcayOMS751A4H6s/D9OMsjHfucp9ZW4cAFSArFGyIoN0ClxSV77N7efp+2OoHWu
-         FG9+bVlUwAIK+J3IXBKAT5KSAbwrIJ49TAdqdRhOAAD7OmvsQ2SqzEWv3Hz6wGX0WGPA
-         qG1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763030221; x=1763635021;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IEpFo0lEJkHbippaH0NrsqLZL5lxGXEOzc/fjU/RBLU=;
-        b=ja21SZrIm1ntMMmqiTOJRtIJrSSaT19V4NSpawMqaqQUvgbOBSSk3+teW8q/LZiFGF
-         ihX57GfWh/8cTnIwwqyP31aNux/hdcaE/mSB8/8H3KQcJHq45fs8Bz/4jl6M7+4MmhHO
-         dAKoDO/B1V64cPJFIcLhJ7rXsa+JxtB2CoPYEqxM0qfISdaAgMqAoF6pRdQrvnHkyui4
-         /1AgJEeiLtbW2kv47JTZDGxWRkhwE0a4BFGMBcEQVWc9WD+JDChGqdvXbqEm55bWczJi
-         VBgg4KFoU78Jyj+FX6D02Yq+eLoT6fgAOM3lHC6MjWCGiPoZhVtA/73TkFEfxVlaMSjp
-         uubw==
-X-Forwarded-Encrypted: i=1; AJvYcCXkoubvAZYg0IaWD7S8+qStdJs4q3o6e9Atjd59JtK/oD3Nmu6z25sOecbC4GlGr3YayGAinFftXvLW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeMkm/qz2yEAPEYbBbZsPnAG9zjORu6d2TyTmvYT+vmgNLdDdq
-	ZfSfjiK1yAc7Gi5uePZ7NUppL8hwxH4IMLClzz0bQYodBZHpT8/TLWTagdYhoJKQGRVyH/KXb7L
-	mM0Zevb/T/DbaZtTaInEXi38PpBb/WfeNiDv2l09+IStfjdpSLXP/mlaOQ7QyXomkzEVZuvZC
-X-Gm-Gg: ASbGncvIUiGTPg8zfvVdfeJYqRlga7ZfqRCWXsrNFeczyXL/R1qq45P31tm9Tffz3qj
-	uqLfie4poRE0kvW+ua4ocBRwye3k3Ko4c9yj+2Byk4w+DowHBAATASUd5OEW7u5I7In0oxYHCaL
-	/7MVsO0CWm+Zi3GEBz4aaAf7nbY9rxwGcILkJ3FT49bn0yBTB36BqECLl+2LCofu68dzXiU/g5r
-	viLEqC++777NW9h1WUUf5uhEq8xbs15pi8iuBYgOko7mxQ7aXlf9Rd/X5vkc1m2ggqBWtRCWAqH
-	v5MXjLZVgAOoPkt3Mfmn7inISeCF8qACiAY9x24LR5N9eQYMvhcO1yl7pg2XhfXEuYYB/EuM/uv
-	kBi87rv009cnt77huLdQZkKPB+A==
-X-Received: by 2002:a05:6a00:2f8c:b0:7b8:d791:2609 with SMTP id d2e1a72fcca58-7b8d7a06c06mr2374784b3a.30.1763030221028;
-        Thu, 13 Nov 2025 02:37:01 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHRJk/LYHNL0N2BjvD4SL5cUmuMhD/H2i9MP9tcPGbheHI9p2inDU/usuYhfwIs0BIGeSWgnA==
-X-Received: by 2002:a05:6a00:2f8c:b0:7b8:d791:2609 with SMTP id d2e1a72fcca58-7b8d7a06c06mr2374750b3a.30.1763030220313;
-        Thu, 13 Nov 2025 02:37:00 -0800 (PST)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b9250d2d16sm1886922b3a.22.2025.11.13.02.36.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Nov 2025 02:37:00 -0800 (PST)
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Date: Thu, 13 Nov 2025 16:06:04 +0530
-Subject: [PATCH v7 14/14] arm64: dts: qcom: Add EL2 overlay for Lemans
+	s=arc-20240116; t=1763030428; c=relaxed/simple;
+	bh=XAEk2gO6Dgxkt9QVW+uJ7j3ysQrmrx0Zs+nhWoNI+40=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=UwRFrUeHQmV/ZvjZRx/pFbxoRUnztj5+ZFIt7wx1HfjICn0lRHRjUYXYXZ0+n3LZmeayyPquSEk+MSxVBi5MAwhN4ZkOgggGbEnmw2px3Ig2LXHMZWWNIsK9f/PUCAkkl3GNY4IoLYHtKySCOgAX1uqgIqV3j0fgAR6rz2Q3uUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Or3b0ixy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CAACC113D0;
+	Thu, 13 Nov 2025 10:40:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763030428;
+	bh=XAEk2gO6Dgxkt9QVW+uJ7j3ysQrmrx0Zs+nhWoNI+40=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Or3b0ixyWVlT1dPdqmaC72tRC7xq4wLgmibR7nhfxqQPwD23TaEMpvfSpRpORd5i4
+	 YjxOs3CDyda2vvRJ5Q5ieKiCN6W4vNkOvSHWGiNIuHEKBBGhzz1T0501nUJ4PXAoka
+	 xSNN549KxsGYWabcjhBatJ8iWDYVovGZTPc+rkIhm0fUTfN84mAHCXw2qwk92AULcs
+	 Ax46ybza4k814xTWkCIGklfNePhtVX3zB0guMs5YHyNA6FasQN9PDvv3/ODelJcjB/
+	 nQ54NDrJpaklq2uT3Q7DPalSWY+ZqZo3SdQ5eEBztnNYKAZl5aHwgFgvNdSY9PGstU
+	 XnlrxmiENxRHQ==
+Message-ID: <28fa635b-f9a6-41c3-8199-9630ed3e7649@kernel.org>
+Date: Thu, 13 Nov 2025 11:40:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v20 1/4] dt-bindings: i2c: Split AST2600 binding into a
+ new YAML
+To: Ryan Chen <ryan_chen@aspeedtech.com>,
+ "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+ "joel@jms.id.au" <joel@jms.id.au>,
+ "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+ "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ "naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
+ "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+ "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20251021013548.2375190-1-ryan_chen@aspeedtech.com>
+ <20251021013548.2375190-2-ryan_chen@aspeedtech.com>
+ <0b76f196-f642-4991-ad5c-717c23938421@kernel.org>
+ <TY2PPF5CB9A1BE6597ECD46BD4CB7C5F09FF2FAA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <3c3287f6-1c5c-4c4d-9349-32665a5e1585@kernel.org>
+ <TY2PPF5CB9A1BE6FE06477B9CC51B8133DAF2CFA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <TY2PPF5CB9A1BE67DBBC08424DD062549BDF2CDA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <TY2PPF5CB9A1BE67DBBC08424DD062549BDF2CDA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251113-kvm-rproc-v7-v7-14-df4910b7c20a@oss.qualcomm.com>
-References: <20251113-kvm-rproc-v7-v7-0-df4910b7c20a@oss.qualcomm.com>
-In-Reply-To: <20251113-kvm-rproc-v7-v7-0-df4910b7c20a@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-X-Mailer: b4 0.14-dev-f7c49
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763030164; l=3311;
- i=mukesh.ojha@oss.qualcomm.com; s=20250708; h=from:subject:message-id;
- bh=uRDqwnYIZZpnXYckK3LJYkQkz8Z734oXrxzphtus+RQ=;
- b=7A/Z6ut0FKWK8v4j5lsxhBkzvdLVVNjQoKLYVy/nG06nfHEdk+4dGvaBwFlbP+rIwP1xtjq3Q
- 9+E5GbDuGRjD76kPfrec64vXG+0j/gJDjMKcnKlNtow3A48ki07w2hD
-X-Developer-Key: i=mukesh.ojha@oss.qualcomm.com; a=ed25519;
- pk=eX8dr/7d4HJz/HEXZIpe3c+Ukopa/wZmxH+5YV3gdNc=
-X-Proofpoint-ORIG-GUID: KIKzVjDY3jXSPHbCtwVBKcYr7VXl-WtS
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA3OCBTYWx0ZWRfX1+55AdEpYTIx
- CG/z/2BS4lOxFPbb2g5jZp58Kxf1RxPbKulwvVsEndjXxml2GJiAN+ILBugLKzEDESAyPHaNpoy
- +WJ3JQ0ErPx8c7wI86iUc6X+HzlGTfGop0Utl4pTreMEEXYnE28PAoMgtRwN1oqO9oorj3o+FVT
- mrDMGnZBI+g8NrOAok0ujAHAn9ZgYgaOUjdtUh/MkJ5YFkrI4ZvDjMzoQGczMe2bzHv6FHtWGTO
- FnzQRBgqlbWdVXLSdzCel54r+i8NpIJ9RszlrHAxnHAainEammiA6iTxZqZ+z0Ci6LSeyDbOIYe
- HY46YGZNmgIyVxohzO27hRyxeUR0FrlUZYcoinFeoAm0y0BcAnVamW/R5gyMXoxz+mKQOkW8/S0
- LRHOHC7EvEZDwdIcosJG8oMcOJt7VQ==
-X-Authority-Analysis: v=2.4 cv=BdnVE7t2 c=1 sm=1 tr=0 ts=6915b4ce cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=OUqdy03oI2q1KQI58CwA:9
- a=QEXdDO2ut3YA:10 a=eSe6kog-UzkA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-GUID: KIKzVjDY3jXSPHbCtwVBKcYr7VXl-WtS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-13_01,2025-11-12_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 bulkscore=0 priorityscore=1501 spamscore=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 clxscore=1015 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130078
 
-All the Lemans IOT variants boards are using Gunyah hypervisor which
-means that, so far, Linux-based OS could only boot in EL1 on those
-devices.  However, it is possible for us to boot Linux at EL2 on these
-devices [1].
+On 13/11/2025 10:34, Ryan Chen wrote:
+>>>>>> +  reg:
+>>>>>> +    minItems: 1
+>>>>>
+>>>>> Why?
+>>>>
+>>>> Will update as following.
+>>>>
+>>>> reg:
+>>>>   minItems: 1
+>>>>   maxItems: 2
+>>>
+>>>
+>>> No. You changed nothing. Instead explain why this is flexible.
+>>>
+>>> See writing bindings.
+>>
+>> Sorry, I still not understand your point. Do you mean need to explain why reg is
+>> flexible 1 -> 2?
+>> If yes, I will update to following.
+>>
+>> reg:
+>>   minItems: 1
+>>   maxItems: 2
+>>   description:
+>>     The first region covers the controller registers.
+>>     The optional second region covers the controller's buffer space.
+> 
+> After check the
+> https://docs.kernel.org/devicetree/bindings/writing-schema.html#annotated-example-schema
+> I think I should update with following, am I correct ?
+> 
+>  reg:
+>    items:
+>      - description: The first region covers the controller registers.
+> 	 - description: The optional second region covers the controller's buffer space.
 
-When running under Gunyah, remote processor firmware IOMMU streams is
-controlled by the Gunyah however when Linux take ownership of it in EL2,
-It need to configure it properly to use remote processor.
+Please drop "The first region covers" and same for the second. Just say
+what is this - controller register and controllers buffer space - and
+second one is not optional now.
 
-Add a EL2-specific DT overlay and apply it to Lemans IOT variant
-devices to create -el2.dtb for each of them alongside "normal" dtb.
+> 
+> What you question about 
+> " Please explain me how one, same SoC has optional IO address space? I asked to explain WHY this is flexible"
+> The AST2600 i2c controller have three io,buffer,dma mode. 
+> The AST2600 have buffer register for buffer transfer. That is 2nd reg offset. 
 
-[1]
-https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+So the SoC *HAS* it. It is always there. It cannot be missing in the
+hardware.
 
-Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/Makefile        | 10 ++++++++
- arch/arm64/boot/dts/qcom/lemans-el2.dtso | 41 ++++++++++++++++++++++++++++++++
- 2 files changed, 51 insertions(+)
+> If dtsi not descript it, the driver will go back to io mode transfer. Flexible implement is in driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 6f34d5ed331c..56efd90b7a5e 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -37,6 +37,10 @@ lemans-evk-camera-dtbs	:= lemans-evk.dtb lemans-evk-camera.dtbo
- 
- dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera-csi1-imx577.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera.dtb
-+
-+lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
-+
-+dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
-@@ -142,6 +146,12 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
-+
-+qcs9100-ride-el2-dtbs := qcs9100-ride.dtb lemans-el2.dtbo
-+qcs9100-ride-r3-el2-dtbs := qcs9100-ride-r3.dtb lemans-el2.dtbo
-+
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-el2.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3-el2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb4210-rb2.dtb
-diff --git a/arch/arm64/boot/dts/qcom/lemans-el2.dtso b/arch/arm64/boot/dts/qcom/lemans-el2.dtso
-new file mode 100644
-index 000000000000..af35039946e3
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/lemans-el2.dtso
-@@ -0,0 +1,41 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+/*
-+ * Lemans specific modifications required to boot in EL2.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&iris {
-+	/* More driver work is needed */
-+	status = "disabled";
-+};
-+
-+/*
-+ * When running under Gunyah, remote processor firmware IOMMU streams is
-+ * controlled by the Gunyah however when we take ownership of it in EL2,
-+ * we need to configure it properly to use remote processor.
-+ */
-+&remoteproc_adsp {
-+	iommus = <&apps_smmu 0x3000 0x0>;
-+};
-+
-+&remoteproc_cdsp0 {
-+	iommus = <&apps_smmu 0x21c0 0x0400>;
-+};
-+
-+&remoteproc_cdsp1 {
-+	iommus = <&apps_smmu 0x29c0 0x0400>;
-+};
-+
-+&remoteproc_gpdsp0 {
-+       iommus = <&apps_smmu 0x38a0 0x0>;
-+};
-+
-+&remoteproc_gpdsp1 {
-+       iommus = <&apps_smmu 0x38c0 0x0>;
-+};
+Describe the hardware.
 
--- 
-2.50.1
-
+Best regards,
+Krzysztof
 
