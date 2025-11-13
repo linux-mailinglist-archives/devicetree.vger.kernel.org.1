@@ -1,129 +1,173 @@
-Return-Path: <devicetree+bounces-238216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A3B3C58D7C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:47:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6027C58A64
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:17:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B0D6650412A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:01:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2CAB2358EF3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9072F7AA7;
-	Thu, 13 Nov 2025 15:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0156B358D3F;
+	Thu, 13 Nov 2025 16:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="J7URCsAY"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="wYj7kFN0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70ED2F4A19;
-	Thu, 13 Nov 2025 15:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C913587B4
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 16:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763049506; cv=none; b=edzVvkaZwJBuvPXCYQVqAjZxgQkEptT6OsDRo/rASu9GYb1khVX08lhXmin7mw0xIdOsBXsxvCldkWqj7ssViAJPv11mUHX1jQSue6HUcNRUMt736WwUaOzppWcSdzBgMYHfyYnKEXt3FGaK+rrYAV/sMeuOkKd6tkDZR4avl88=
+	t=1763049656; cv=none; b=WqGU6g5KvoXfwTOOgL5Zsve7UFzasekW5GdtCvJiSIHSBCpwk9+n0y2ihW6Jz164Ou1IKJpJi4+b4FBv/aWdco2EqnAXdocq16KU8HOAfifVglPEmhxJ/9LHIkacFq2cKYa2HELDLA9n2MW4+zjNwz4bZHwj5tc0pjtZqcczsPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763049506; c=relaxed/simple;
-	bh=NYeJSyKg8aRuFEhyCnL0JQc7N+mw1OvuhAKAZHnRiGU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pbHrLDccZluabgLgpX2v0IzSwza876Bo3pFpluz6uR2bP6b4p6jieSE7e7L9x9+D3n1cuqsDR/8Gcsq+b1X+J91fL83YU3umgIq6ODD0hH8i/gQChAIQsuGAQQP8CpItl05EapygzvreV8s7BebqVJ5EJuXaDVOoyat9shDKXio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=J7URCsAY; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=aWqMO5dgKynFXVsf0PHGotO7feJhY392/1Tkcj5y4X4=; b=J7URCsAY11Fgeyi5sgnO0X8T0v
-	DLtkvJJl3PyIkZ3+pQdqa5PD08pffN0ZsYf84O5wPEbDPpiWRbX+vKOEbp87LAFPiB/mZ3rOhRUev
-	wl/E73KkEUEJOW0cczLixDs89IGZapg8+t4mzKPDkp7aY+fu0dlQCpHoXtiBE7C0V33WqRqWR7Ina
-	pGBEbTpoHbR8kIAbT9jLtTXZHlosI5thcir0tsA3EceaS1T7Iz5jB9+WtF3oM79LWHPkzQX873kD2
-	U6e/ONoRJWyV2KMfNwpRVagYpVP1QRU/T0TRZyKfyznhdLSkKcCxnC3ab9fjEVPKPNTuo4mJ0PCIM
-	jRyeeBKw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59990)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vJZi5-000000005f9-20ny;
-	Thu, 13 Nov 2025 15:58:09 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vJZi1-000000004yz-1Tfu;
-	Thu, 13 Nov 2025 15:58:05 +0000
-Date: Thu, 13 Nov 2025 15:58:05 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pcs: renesas,rzn1-miic:
- Add renesas,miic-phylink-active-low property
-Message-ID: <aRYADfD8QkIw9Fnd@shell.armlinux.org.uk>
-References: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <aRTwz5QHq9U5QbQ-@ninjato>
- <CA+V-a8s5fg02ZQT4tubJ46iBFtNXJRvTPp2DLJgeFnb3eMQPfg@mail.gmail.com>
+	s=arc-20240116; t=1763049656; c=relaxed/simple;
+	bh=GVF+/h/LJTdxRP1ZtmC621CmOgcKo6hwIwZpoupHaeI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=rqkqcaSuplgahCWPYZT5soVC+Q0vVNgBn1A0G3GssxqbZF35v2/GmTEJvQyse+S4JyS8YUPzOwQtQtb7RB9VwJZvD4vIduqBUJ+9wlQjWapmAxUizKG4MlG95vxhj6Aqp7To6Ci3Cpq7MlWKGk626QW/MqpgdG4ntk9ZQEiqH3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=wYj7kFN0; arc=none smtp.client-ip=91.218.175.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1763049641;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nrP7Gp+eF5NahttnTnvgNwZULrq3e5/I28tBchxZyz4=;
+	b=wYj7kFN0sTEDAng8vbV5v/enVBVSST/zKRJ5m01CIdc6tiCAuUznFpK6DINro4Vlx1rr51
+	y4NV7WiXWN0QQFVJR4wXDybMpCVLu1hKa8Ftyk1BkgDxECVppm/5jpfBQlYz1QPgNDDXUY
+	0anLuUAiLdIBbPxTYvqHRauxZS8vcnw=
+From: Yuntao Wang <yuntao.wang@linux.dev>
+To: robh@kernel.org
+Cc: akpm@linux-foundation.org,
+	bhe@redhat.com,
+	catalin.marinas@arm.com,
+	changyuanl@google.com,
+	chenzhou10@huawei.com,
+	devicetree@vger.kernel.org,
+	geert+renesas@glider.be,
+	graf@amazon.com,
+	james.morse@arm.com,
+	linux-kernel@vger.kernel.org,
+	rppt@kernel.org,
+	saravanak@google.com,
+	takahiro.akashi@linaro.org,
+	thunder.leizhen@huawei.com,
+	yuntao.wang@linux.dev
+Subject: Re: [PATCH 00/10] of/fdt: Some bug fixes and cleanups
+Date: Fri, 14 Nov 2025 00:00:20 +0800
+Message-ID: <20251113160020.227664-1-yuntao.wang@linux.dev>
+In-Reply-To: <20251112205551.GC2155854-robh@kernel.org>
+References: <20251112205551.GC2155854-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8s5fg02ZQT4tubJ46iBFtNXJRvTPp2DLJgeFnb3eMQPfg@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Migadu-Flow: FLOW_OUT
 
-On Thu, Nov 13, 2025 at 02:45:18PM +0000, Lad, Prabhakar wrote:
-> Hi Wolfram,
+On Wed, 12 Nov 2025 14:55:51 -0600, Rob Herring <robh@kernel.org> wrote:
+
+> On Wed, Nov 12, 2025 at 10:35:10PM +0800, Yuntao Wang wrote:
+> > This patch series fixes several bugs related to dt_root_addr_cells and
+> > dt_root_size_cells, and performs some cleanup.
+> > 
+> > Links to the previous related patches:
+> > 
+> > https://lore.kernel.org/lkml/CAL_JsqJxar7z+VcBXwPTw5-Et2oC9bQmH_CtMtKhoo_-=zN2XQ@mail.gmail.com/
+> > 
+> > Yuntao Wang (10):
+> >   of/fdt: Introduce dt_root_addr_size_cells() and
+> >     dt_root_addr_size_bytes()
+> >   of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+> >     it
+> >   of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+> >     it
+> >   of/reserved_mem: Use dt_root_addr_size_bytes() instead of open-coding
+> >     it
 > 
-> On Wed, Nov 12, 2025 at 8:40 PM Wolfram Sang
-> <wsa+renesas@sang-engineering.com> wrote:
-> >
-> > Hi Prabhakar,
-> >
-> > > Add the boolean DT property `renesas,miic-phylink-active-low` to the RZN1
-> >
-> > Hmm, we already have "renesas,ether-link-active-low" in
-> > renesas,ether.yaml and renesas,etheravb.yaml. Can't we reuse that?
-> >
-> On the RZ/N1x we have the below architecture
+> Your aim in writing subjects should be to write something that is unique 
+> for every commit in the past or future. Because you can never make the 
+> same change twice, right? (I'm excluding 'fix typos/spelling' type 
+> commits). Certainly the same subject in one series is never right.
 > 
->                                                       +----> Ethernet Switch
->                                                       |           |
->                                                       |           v
->     MII Converter ----------------------+      GMAC (Synopsys IP)
->                                                       |
->                                                       +----> EtherCAT
-> Slave Controller
->                                                       |
->                                                       +----> SERCOS
-> Controller
+> >   of/fdt: Use dt_root_addr_size_bytes() instead of open-coding it
+> >   of/fdt: Fix the len check in early_init_dt_check_for_elfcorehdr()
+> >   of/fdt: Fix the len check in
+> >     early_init_dt_check_for_usable_mem_range()
+> >   of/fdt: Use dt_root_addr_size_bytes() instead of open-coding it
+> 
+> This is not what I meant. We have multiple copies of this where only 
+> the property name changes: 
+> 
+> 	prop = of_get_flat_dt_prop(node, "linux,elfcorehdr", &len);
+> 	if (!prop || (len < (dt_root_addr_cells + dt_root_size_cells)))
+> 		return;
+> 
+> 	elfcorehdr_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
+> 	elfcorehdr_size = dt_mem_next_cell(dt_root_size_cells, &prop);
+> 
+> Instead, add a function something like this:
+> 
+> static void early_init_dt_read_address(unsigned long node, const char 
+> *prop, u64 *addr, u64*size)
+> {
+>         prop = of_get_flat_dt_prop(node, prop, &len);
+>         if (!prop || (len < (dt_root_addr_cells + dt_root_size_cells)))
+>                 return;
+> 
+>         *addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
+>         *size = dt_mem_next_cell(dt_root_size_cells, &prop);
+> }
+> 
+> Then we only have the length checks in one place.
+> 
+> 
+> That still leaves the cases with more than 1 entry open coded. So 
+> instead, to cover that case to something like this:
+> 
+> const __be32 *of_get_flat_dt_address_prop(unsigned long node, const char 
+> *propname, int *len)
+> {
+> 	prop = of_get_flat_dt_prop(node, propname, &len);
+> 	if (!prop || (*len % (dt_root_addr_cells + dt_root_size_cells))) {
+> 		*len = 0;
+> 		return NULL;
+> 	}
+> 
+> 	*len /= (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
+> 	return prop;
+> }
+> 
+> And then a user would look something like this:
+> 
+> prop = of_get_flat_dt_address(node, "linux,usable-memory-range", &len);
+> for (i = 0; i < len; i++) {
+> 	of_read_address_idx(prop, i, &addr, &size);
+> 	...
+> }
+> 
+> Here 'len' is number of addr+size entries.
+> 
+> And the simple case of reading 1 entry could be just:
+> 
+> of_read_address_idx(of_get_flat_dt_address(node, "linux,elfcorehdr", NULL), 0, &addr, &size);
+> 
+> Rob
 
-I'm not sure that diagram has come out correctly. If you're going to
-draw diagrams, make sure you do it using a fixed-width font. To me,
-it looks like the MII Converter is bolted to GMAC and only has one
-connection, and the GMAC has what seems to be maybe five connections.
+Hi Rob,
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+The link to the new patch series:
+
+https://lore.kernel.org/linux-devicetree/20251113155104.226617-1-yuntao.wang@linux.dev/t/
+
+Thanks,
+Yuntao
 
