@@ -1,168 +1,331 @@
-Return-Path: <devicetree+bounces-238222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D3EBC58C21
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:35:25 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B41C58D16
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 17:45:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61C5942150C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:27:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4EA265411A6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 16:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C8B3596F8;
-	Thu, 13 Nov 2025 16:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B59553570C1;
+	Thu, 13 Nov 2025 16:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="L08N9R9H"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Xqpgor5C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DEF3570C4;
-	Thu, 13 Nov 2025 16:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A672FE58D
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 16:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763050753; cv=none; b=ZvLzWfCOswDFvfo7RefBcGQ3+khOhdSytBw52PH/SW81u1kBfS/UQZyERFqLmL4Q6B/UhdBYEq711wnZ/Sd0kbU+MIa7IhOIo/d6lU+dfPLPDeaNEMRVzSWn1HBcWR4ytza9Z0eu9ThjujkXlMrYTPiZEeWGCQ3ER/Ztj74KtnY=
+	t=1763051055; cv=none; b=XpHQ8x7nRx+udWhd/th3tHWa46mes5WyoKz1XKU9TZ2F2G70vp9357y/kRW494yh899qxCzIo0Xuz3OlXfVFQAdsuKI6MI2sDwZhxyczYzn0yV7BS/7/ddJ2oj2LbTwiNjv9kUC+BR2pDGEOGqQx5XEyQVlogxo+UxcEYSziqZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763050753; c=relaxed/simple;
-	bh=ZbbaaHUsQVLypoOUIIZkHe7iZlm+xeNap25LcZ0bsIk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kCp8b5QcevgzbQEEFQU7Ng+OKMvhRZe0RepumU84W8CrhaNVDnZUhKtoYILtJ4TMPncGktq+/BVYe45IUWStF1Z+RO5kF7L/35K/OIT1ZFJPdKjaI5JXZ5ynIhw6cPMnkXcn5zHdxbNrOWM4p6jroycmLgabMLKFv41JTiDidQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=L08N9R9H; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1763050749;
-	bh=ZbbaaHUsQVLypoOUIIZkHe7iZlm+xeNap25LcZ0bsIk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=L08N9R9H05FYgeI9He5wHagRWiiNK1wBzRiAIi1E0bwjHP0B2EawoC/wrhPwCN6Y5
-	 jhuQHRwtEgVNqhy1K8RlbKaA6mevZjcmqSfVk09V1KBpkYqzapV1YnScBMrbOIYjOX
-	 VO4RxYBGG1jvY89tItdFBj+QnC0NoujI7MTpkhy770bdBzoC53sQLi2f8D6yMnAv+L
-	 XslBpTDc5Z4swz4lXyOEr3alCOFf9ZUXdjRUlAQxuWVXekfL64byL9cFcYkfNoWBly
-	 iuaXggnvrQNWwSLGZXDdPxCELz6+ayfY5Rg8wYmCTxE7/qW4zGxeSh5vSq1nYDiIdg
-	 60E/apd/bqVHA==
-Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:9cb8:f653:99e7:c419])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laura.nao)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B644117E00B0;
-	Thu, 13 Nov 2025 17:19:07 +0100 (CET)
-From: Laura Nao <laura.nao@collabora.com>
-To: daniel.lezcano@linaro.org
-Cc: andrew-ct.chen@mediatek.com,
-	angelogioacchino.delregno@collabora.com,
-	arnd@arndb.de,
-	bchihi@baylibre.com,
-	colin.i.king@gmail.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	frank-w@public-files.de,
-	fshao@chromium.org,
-	kernel@collabora.com,
-	krzk+dt@kernel.org,
-	lala.lin@mediatek.com,
-	laura.nao@collabora.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	lukasz.luba@arm.com,
-	matthias.bgg@gmail.com,
-	nfraprado@collabora.com,
-	rafael@kernel.org,
-	robh@kernel.org,
-	rui.zhang@intel.com,
-	srini@kernel.org,
-	u.kleine-koenig@baylibre.com,
-	wenst@chromium.org
-Subject: Re: [PATCH RESEND v3 3/9] thermal/drivers/mediatek/lvts: Guard against zero temp_factor in lvts_raw_to_temp
-Date: Thu, 13 Nov 2025 17:18:59 +0100
-Message-Id: <20251113161859.280743-1-laura.nao@collabora.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <84b9fd00-ce75-43bf-a53b-48818628f7e2@linaro.org>
-References: <84b9fd00-ce75-43bf-a53b-48818628f7e2@linaro.org>
+	s=arc-20240116; t=1763051055; c=relaxed/simple;
+	bh=YrHg4D4Rn+vC2SZi4KRny6/RVdR+R0c8DKxuDoshRZk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UAbvT11zh5y5woF3LCxfLzh+zq/RfxJA4NunS7cpvGCspEFJ+Vh7PO9leGX0IKYgm76URrc2ZHIW7BlKtOgL4JZX8f5yKrAi4OWQT3swZq7ImkEgv1hePd5XpTrVb/y769hhiN+6XeGo3y5dGYIVvFSSnmJHMXwifiyoljDrVko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Xqpgor5C; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b73301e6ab5so132962066b.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:24:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1763051049; x=1763655849; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K5wt2b9AIytvZm3PkDsPhENWn/BTbuYs0T0/KW2/iVE=;
+        b=Xqpgor5C2IjhmmPhr/FB2ktdU9LjFp9BY7DF2aJqg16xFcms1yvcP0LCqsNtjO8b3I
+         FosbNznhBIk12UJQuHLhDQGYxFRLq/MubWQixabaPylNH0+UwSwJ7s3vrNegdQhB6nM4
+         g2KyF7pYulHkKRwCQNStymddmFKm6SQapvbOQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763051049; x=1763655849;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=K5wt2b9AIytvZm3PkDsPhENWn/BTbuYs0T0/KW2/iVE=;
+        b=I+0TdUu/KLXW65LPgCL283fGa46tRnFv2HtSysMg+c+qgcREYJXMzsqHpmLWCU6Nxj
+         rDwo5b5I01x5g+NuRXF3awnY/YXRy603Lb1U9Ji6zAAg8AYoqQ5jRPeQM7wIAI/nnQHY
+         skdfRvdWsfuXEomeUePfKzXiy1gIym/JCsCXDS/D2HLH+8FPoqllRDqiSZ9xF6mzBhom
+         NqjpyJWEVnBWbrn0MwkBqwB2O7cXt5/4aHwvzXImp4Q3e+TitQzNMQvL3cTYd98y6iEw
+         au2+oveDPBYqfZnyf8qz2VSXV/p1Fj1jYhUlHtz7erpPG7mCTUemhf4BKMMuNt/zGOgR
+         PU+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWZ0sr1qzcYKe1pPQr2oY6anB7VoUQIVvUwFbZqOL4d23uN+rg09nAgW9NR2am72OAq0Lh96F0Q4tAx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOUB6YYz8fujGFTkbxtT3Ql+htzq6tJWgrzpQT8KpIdofEzJEm
+	xrVFbxow2dqUBnRpiCdkw8dFpzMT4U0WeCxiKZPNVWbpdYm0CmTgTwYhQ3lKbnGvJbOQvB32AsP
+	h79KT+Ze9
+X-Gm-Gg: ASbGncugOSy7xsZrSjZsA6EWFR7/inOeTkdfGGcrOoEXzJn5ZuOOIldQsLa82b7hSqb
+	fJSDka1+mAf27SRCpUTp+SxaheOq034mFMe6+ZKQVfnJel0BuG3XdUH60TBWLzhx36d97Ai2CxM
+	Dwq233MUlaeeoIlzEhQHmzKl1zdzKPDN3yk0CbqhIF5DGWNHbq8IKLxepPtcut3iQcHTxijhY/5
+	UQCMqcR8hwt9tPnFqCh5rTS8CNLk6No5NXg79kscns3bu6krfaM3UdSQgJDEHzE/HDoNrKjhvCr
+	X8HOlpyhk7PulL0EPOT24KJ03A9FKpJXeopAFNY4s7iYSnJ4TQPI7yWYwyvuZywNV3n45/bFBzB
+	Ka4JrkQ40WTgByF9TfDMC94T9s2OpWhfmoPnKDiC/ERX4wEfbBE3/K0Rw2mdxBDkOrgh9UATd8z
+	bVM8Mp8ciS5tpMF1Mg+/ECNePRpa0Lu6ap4EMD9+UvvJmee+GdzA==
+X-Google-Smtp-Source: AGHT+IHZ12U9884G1JeQPHZghCprZpjS6wVK4sRpLRyz+Q42ehTw9ehAPY1zY9AxudggwWP7pSYlAg==
+X-Received: by 2002:a17:907:3fa3:b0:b72:69bd:ee22 with SMTP id a640c23a62f3a-b7331bdc7d7mr789471766b.55.1763051048531;
+        Thu, 13 Nov 2025 08:24:08 -0800 (PST)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com. [209.85.128.41])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fa811c1sm192063566b.10.2025.11.13.08.24.04
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Nov 2025 08:24:05 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477775d3728so10483945e9.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:24:04 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUGi0wzVGrK4X2V61r9FPh5XhCzKOF8HNIAvHw5qWhxQCRbDlT3rdrVpjkTNcU4O7YZ1FQPLY8v8jfX@vger.kernel.org
+X-Received: by 2002:a05:600c:350d:b0:46e:32a5:bd8d with SMTP id
+ 5b1f17b1804b1-4778fe553famr1167935e9.3.1763051043969; Thu, 13 Nov 2025
+ 08:24:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251111192422.4180216-1-dianders@chromium.org>
+ <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid>
+ <05c833f0-15bc-4a86-9ac4-daf835fe4393@kernel.org> <CAD=FV=XXWK9pmZQvNk6gjkqe6kgLXaVENgz0pBii6Gai7BdL-A@mail.gmail.com>
+ <00ea821c-5252-42cb-8f6f-da01453947bd@kernel.org>
+In-Reply-To: <00ea821c-5252-42cb-8f6f-da01453947bd@kernel.org>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 13 Nov 2025 08:23:52 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=VSxeKgGcsRb9qiXq7nsbOWZjPvzmGEOhFA+pmABWdknQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bkn8U9vLweoLL7ChsWq65S9_NbSZw7csl7J0f4Er_fIbKu-AjDA18N3giM
+Message-ID: <CAD=FV=VSxeKgGcsRb9qiXq7nsbOWZjPvzmGEOhFA+pmABWdknQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for frankel/blazer/mustang
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, 
+	Roy Luo <royluo@google.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>, 
+	Julius Werner <jwerner@chromium.org>, William McVicker <willmcvicker@google.com>, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Daniel,
+Hi,
 
-On 11/10/25 13:42, Daniel Lezcano wrote:
-> On 10/16/25 16:21, Laura Nao wrote:
->> Add a guard against zero temp_factor in lvts_raw_to_temp() to prevent
->> division by zero and ensure safe conversion. 
+On Wed, Nov 12, 2025 at 11:23=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
 >
-> Is the temp_factor something else than a ro data statically initialized by the lvts_data structure ?
+> >>> +      # Google Tensor G5 AKA lga (laguna) SoC and boards
+> >>> +      - description: Tensor G5 SoC (laguna)
+> >>> +        items:
+> >>> +          - enum:
+> >>> +              - google,soc-id-0005-rev-00  # A0
+> >>> +              - google,soc-id-0005-rev-10  # B0
+> >>
+> >> SoCs cannot be final compatibles.
+> >
+> > Right. I talked about this at length "after the cut" in my patch. See
+> > above. I wish to relitigate this policy and wish to know more details
+> > about where it is documented, the reasons for decision, and where the
+> > boundary exactly lies between something that's allowed to be a final
+> > compatible and something that's not. I made several arguments above
+> > for why I think the SoC should be allowed as a final compatible, so it
 >
-> It is pointless to handle the case where the temp_factor is zero. If we read the temperature the kernel crashes immediately (which means it was not tested).
->
-> The temp_factor is an internal value of the driver. If the temp_factor is zero, the driver is buggy and should be fixed.
->
->
+> Because this represents a actual device users run. It is electronically,
+> physically impossible to run the SoC alone.
 
-That’s right - if temp_factor is zero, that indicates broken platform 
-data. I propose failing the probe instead of adding a runtime guard, 
-since this condition should never happen in a valid configuration. This 
-way, we make the developer aware of the issue early and avoid a kernel 
-crash at runtime.
+I'm not convinced that this definition is as clear as you're making it
+out to be. It's physically impossible to run many "boards" alone.
 
-I'll send out a v4 to drop the "if (temp_factor == 0)" checks and 
-replace the warning with an error:
+Want to boot up a Raspberry Pi? Provide it with power. Hook up a
+display to it. Hook up a keyboard to it. Plug in an Ethernet cable.
+Plug an SD card in it. Without those things it doesn't run.
 
-if (!lvts_data->temp_factor)
-	return dev_err_probe(dev, -EINVAL, "temp_factor should never be zero; check platform data.\n");
+Want to boot up a lga-B0 SoC? Hook up power to the power pins. Connect
+a MIPI panel to the MIPI pins. Connect a UFS chip to the UFS pins.
+Without those things it doesn't run.
 
-Best,
+Yes, the complexity of just "hooking up" the components on an SoC is
+an order of magnitude harder than a Raspberry Pi, but it's still just
+hooking it up to external components. In both cases, we are modeling
+the core "brains" (the part that contains the processor) as the DTB
+and everything else just "hooks up" to interfaces.
 
-Laura
+If I had to make a definition for what the base DTB should be it
+should be the component with the boot CPU. _Why_ is that the wrong
+definition?
 
->> Fixes: 6725a29321e4 ("thermal/drivers/mediatek/lvts_thermal: Make coeff configurable")
->> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
->> Reviewed-by: Fei Shao <fshao@chromium.org>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> Signed-off-by: Laura Nao <laura.nao@collabora.com>
->> ---
->>   drivers/thermal/mediatek/lvts_thermal.c | 12 +++++++++---
->>   1 file changed, 9 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
->> index 1c54d0b75b1a..4ef549386add 100644
->> --- a/drivers/thermal/mediatek/lvts_thermal.c
->> +++ b/drivers/thermal/mediatek/lvts_thermal.c
->> @@ -284,11 +284,14 @@ static int lvts_raw_to_temp(u32 raw_temp, int temp_factor)
->>     static u32 lvts_temp_to_raw(int temperature, int temp_factor)
->>   {
->> -    u32 raw_temp = ((s64)(golden_temp_offset - temperature)) << 14;
->> +    u32 raw_temp;
->>   -    raw_temp = div_s64(raw_temp, -temp_factor);
->> +    if (temp_factor == 0)
->> +        return temperature;
->>   -    return raw_temp;
->> +    raw_temp = ((s64)(golden_temp_offset - temperature)) << 14;
->> +
->> +    return div_s64(raw_temp, -temp_factor);
->>   }
->>     static int lvts_get_temp(struct thermal_zone_device *tz, int *temp)
->> @@ -1346,6 +1349,9 @@ static int lvts_probe(struct platform_device *pdev)
->>       if (irq < 0)
->>           return irq;
->>   +    if (!lvts_data->temp_factor)
->> +        dev_warn(dev, "temp_factor should never be zero; check platform data.\n");
->> +
->>       golden_temp_offset = lvts_data->temp_offset;
->>         ret = lvts_domain_init(dev, lvts_td, lvts_data); 
-> If
+
+> There are few - one or two - exceptions for the SoMs, but never for SoC.
+
+OK, but the big question: _WHY???_
+
+Where does it say that a DTB has to be something that can run "alone"
+and (most importantly) what benefit do we get for making that
+requirement (AKA _WHY_)? This is the question you're not answering.
+From Rob's response, he doesn't seem to think that a DTB needs to be
+for something that can boot alone and he seems OK with allowing a
+fairly flexible split here. Rob's response was focused on making sure
+we can do validation and I'd love to continue on with that discussion.
+
+
+> > would be great if you could respond to them and tell me where I got it
+> > wrong.
+> >
+> >
+> >> Your commit msg does not explain what
+> >> is 'soc-id' or 'soc_id' in this context.
+> >
+> > In the commit message I do say: "SoC: an A0 pre-production variant (ID
+> > 0x000500) and a B0 variant (ID 0x000510) used in production. The ID is
+> > canonicaly broken up into a 16-bit SoC product ID, a 4-bit major rev,
+> > and a 4-bit minor rev."
 >
+> >
+> > ...then, I further say "In this patch, put the SoC IDs straight into
 >
+> That's fine.
 >
+> > the compatible. Though the bootloader doesn't look at the compatible
+> > at the moment, this should be easy to teach the bootloader about."
 >
+> But nothing explains why this SoC can be run alone without board.
+> >
+> > The idea here is for the bootloader, which can read the ID of the
+> > current SoC, to be able to pick the right device tree from among
+> > multiple. I am certainly not married to putting the SoC ID in the
 >
+> I am not discussing about style of the compatible. I said - you cannot
+> have SoC compatible alone. None of above gives any argument for that.
+>
+> > compatible like this. As I mentioned above, in downstream device trees
+> > the SoC is stored in a custom node and I thought upstream would hate
+> > that. I also considered giving the `soc@0` node a custom compatible
+> > string and adding properties about the SoC ID underneath that and
+> > teaching the bootloader how to find this, and I can switch to this if
+> > you prefer.
+> >
+> > If you have an alternate technique for which the bootloader could pick
+> > a device tree based on the current SoC ID or you have specific wording
+> > that you think I should add to the commit message to explain my
+> > current scheme, I'm happy to adjust things.
+> >
+> >
+> >>> +          - const: google,lga
+> >>> +      - description: Google Pixel 10 Board (Frankel)
+> >>> +        items:
+> >>> +          - enum:
+> >>> +              - google,pixel-id-070302-rev-000000  # Proto 0
+> >>> +              - google,pixel-id-070302-rev-010000  # Proto 1
+> >>> +              - google,pixel-id-070302-rev-010100  # Proto 1.1
+> >>> +              - google,pixel-id-070303-rev-010000  # EVT 1
+> >>> +              - google,pixel-id-070303-rev-010100  # EVT 1.1
+> >>> +              - google,pixel-id-070303-rev-010101  # EVT 1.1 Wingboa=
+rd
+> >>> +              - google,pixel-id-070304-rev-010000  # DVT 1
+> >>> +              - google,pixel-id-070305-rev-010000  # PVT 1
+> >>> +              - google,pixel-id-070306-rev-010000  # MP 1
+> >>> +          - const: google,lga-frankel
+> >>> +          - const: google,lga
+> >>
+> >> So what is the lga?
+> >
+> > "google,lga" is the name of the processor. I was under the impression
+> > that the last entry in the top-level compatible string was supposed to
+> > be the SoC compatible string. Certainly this was true in every board
+>
+> google,soc-id-0005-rev-00 is the soc compatible string.
+>
+> > I've worked with and I seem to even recall it being requested by DT
+> > folks. It also seems to match what I see in examples in the kernel
+> > docs [1].
+>
+> Sorry but no. Writing bindings do not request having two compatibles for
+> the same soc in two different, independent (orthogonal) lists.
+>
+> So it is rev-xyz + google,lga-frankel + soc-id + lga, if you need that
+> soc-id part.
 
+Probably not worth continuing to discuss until we can agree that the
+SoC can be in its own dtb. If we can agree upon that we can talk about
+if we need the SoC part in the top-level compatible and how to
+accomplish that. I had a few ideas / suggestions in my response to Rob
+that roughly break down into:
+
+* Don't model the SoC in the top-level compatible. Maybe put it in the
+soc@0 node.
+
+* Come up with a rule for "merging" top-level compatibles if a base
+and overlay both define.
+
+Whatever solution we come up with, I want to make sure it handles our
+socketed dev boards where the SoC can be removed and replaced with a
+different one.
+
+
+> >>> +allOf:
+> >>>    # Bootloader requires empty ect node to be present
+> >>> -  ect:
+> >>> -    type: object
+> >>> -    additionalProperties: false
+> >>
+> >> Please keep it here
+> >
+> > "it" being "additionalProperties", I think? I'm not sure I understand,
+> > but let's discuss below in the context of full examples and not diffs.
+>
+> I meant ect node, existing hunk. Properties must be defined in top-level.
+
+OK, much clearer. Thanks!
+
+
+> > The best my brain can parse your request, I think you're asking for thi=
+s:
+> >
+> > --
+> >
+> > properties:
+> >   ...
+> >   ...
+> >   ect:
+> >     type: object
+> >     additionalProperties: false
+> >
+> > allOf:
+> >   # Bootloader requires empty ect node to be present
+> >   - if:
+> >       properties:
+> >         compatible:
+> >           not:
+> >             contains:
+> >               const: google,gs101
+> >     then:
+> >       properties:
+> >         ect: false
+> >     else:
+> >       required:
+> >       - ect
+>
+> Yes, actually now I see you could drop the "not:" and exchange the
+> "then:else:" branches.
+
+For the sake of clarity, I'll go with this:
+
+properties:
+  ...
+  ...
+  ect:
+    type: object
+    additionalProperties: false
+
+allOf:
+  # Bootloader requires empty ect node to be present
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: google,gs101
+    then:
+      required:
+      - ect
+
+additionalProperties: true
 
