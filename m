@@ -1,286 +1,362 @@
-Return-Path: <devicetree+bounces-238076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B4DFC56F11
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:42:02 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55501C56F22
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:42:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 80D543439F0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:40:53 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DBCB63422B2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:42:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9891A3314D9;
-	Thu, 13 Nov 2025 10:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0A6331A7A;
+	Thu, 13 Nov 2025 10:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="fjtaHgW9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BZ/mzdf8";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="V/igIplb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022136.outbound.protection.outlook.com [52.101.126.136])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237902DCF44;
-	Thu, 13 Nov 2025 10:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.136
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763030444; cv=fail; b=qZqxvmmzj9e1KnfIq1XPDiM5Gixp5xFMtPh6GZw4yv1mtmBNnxcChlK/WFOuHnsDPAgTe9JVpL4Rkqr6WKBa8eYmaGoFc0RnEtDS0jElWBU+q3mar07o9UtF6Ass3Wfb5tPqam/+fp7Jimg0fEEtP6acdbjPD6IIPs1W0rO56Mk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763030444; c=relaxed/simple;
-	bh=OJ2vdMe5V9OCZrXkJ4jtmMgBEz8B1AstvCH+fjIB4mQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=bhvXr63mNjXrXTTCLlUnCuAXGAiTJEwVUiZ/yj2AQmxqy+Af/nuCOwWovVGW8EZBgvIrjPzSXNPURUsk29vLFeSzGWm85XbNilcuE/HolcDRG9lJ+mRl15NEUhJA67uoDoEHHHNIj2bKiX4JT/VgfAWh0Vks/s1Tz7O7zk9p0IA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=fjtaHgW9; arc=fail smtp.client-ip=52.101.126.136
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DjASKpTH7A+swpOe4NLKEo94zHXf0uUiAdYRH6+YQDD0VADjohZozC/y6tKjSHJYByNbWdVRGyU15+vi6KwFmUS6XM1V1Ih6bn4Vig/8be7hhUNfFi/4uR0Jlo4vBvsWxrDbDBLB6EDas4JPvahwXCw0npIxL7h2GYRJW6iAdQ39GJtTxNUIBuwJgtuVvlG9lZx/yfxYg9hjzRWPYlvVE4wM83GfW/BrH+VUhthbZjLQQrYkhk7so0u/vfipJmeABcU92NdZFU2gQQsSg9Gw+Y/AFx0GjQIFLy4LI/3pF55F3jXcGePggMdx1C1eY+fRKmIsoSqUJOjeLGGK3wdTrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OJ2vdMe5V9OCZrXkJ4jtmMgBEz8B1AstvCH+fjIB4mQ=;
- b=YS5lr65/1qIzi6MNGsLbRx+7MGq5XfU0XQhwDimUhWOlzPrM5Esu7DI9vqQFIPnSCo1DgV+7842EpLSqS91ypqwR4KQddy0dH7lscBHrGGSwEQ1tJc6wyXBFrJlv04n9dGd17gt/pcl4oif+HQlHcmxvlmk53XfDKYQLGbDcJ3jDaguJ+LhF2IICkKUAWbVQTy4iUYcH5wY8QI8NlrLAcmrlgcHAj5/uPMo+0L5SpLrtrshSqumLm8iF9+de+FiOV2wVwsMlm+bJIVdvbgkrQh9/2Vw+IdmG54P1L5PWp3ycQ07of9GIx/ewo1Z/hekRA3H2riLu1NSYT+b+q/pBBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OJ2vdMe5V9OCZrXkJ4jtmMgBEz8B1AstvCH+fjIB4mQ=;
- b=fjtaHgW9bvQ6sBYtoH0gchSmOSUbk7JjlO6EwOva/yXpXS7pv8Y13ygsZdhf2EL3DMyw5n1hFvkHqOme3KrV9DYY+XiaQEkiGFfqQJxsxhxpgX0TWjbYu5iQ0ZfjZOlJACvvk+0G88oKRwuVwwFyu4cOzW7ahaMgeqNz+VUF9evsndao7QRp6TXN5b0Y/8yo2qmBVHrRPDUmyIKd+z4Mj/5XF+PfvAzMWKqfwRp43bPoXRLyI9AS1AhGSe9Lvst6J/fH3MfXcxlbWrhSsftIS0RMPY0YpraYtXnJ0UWul26/wW7iQe8ul6WOXP9UY4NYK171ShqhRhkqPtinzwfMIg==
-Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
- by TY1PPFC2A7D9DAA.apcprd06.prod.outlook.com (2603:1096:408::923) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Thu, 13 Nov
- 2025 10:40:37 +0000
-Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
- ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
- ([fe80::6b58:6014:be6e:2f28%6]) with mapi id 15.20.9320.013; Thu, 13 Nov 2025
- 10:40:37 +0000
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Po-Yu Chuang <ratbert@faraday-tech.com>, Joel Stanley
-	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "taoren@meta.com" <taoren@meta.com>
-Subject: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support for
- AST2600
-Thread-Topic: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support
- for AST2600
-Thread-Index: AQHcUjKRp/5wUPPeG0Wo2Pz9fS4A+7TsCtCAgAJeVpCAAKBqgIABWbLA
-Date: Thu, 13 Nov 2025 10:40:37 +0000
-Message-ID:
- <SEYPR06MB51342977EC2246163D14BDC19DCDA@SEYPR06MB5134.apcprd06.prod.outlook.com>
-References: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
- <20251110-rgmii_delay_2600-v4-4-5cad32c766f7@aspeedtech.com>
- <68f10ee1-d4c8-4498-88b0-90c26d606466@lunn.ch>
- <SEYPR06MB5134EBA2235B3D4BE39B19359DCCA@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <3af52caa-88a7-4b88-bd92-fd47421cc81a@lunn.ch>
-In-Reply-To: <3af52caa-88a7-4b88-bd92-fd47421cc81a@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|TY1PPFC2A7D9DAA:EE_
-x-ms-office365-filtering-correlation-id: 6acd2cf3-5459-4316-1471-08de22a11521
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?3B+uB8jIWbLevfibYdxCSBrK53yb3pOWdoBGFQ2cStKUG1c0UwnpViSpqaun?=
- =?us-ascii?Q?egncbUus4Na2rr680+YdWvzEuPrZvZJdiSVufR91fTtLWFCPHRPMswPlmSge?=
- =?us-ascii?Q?Tv8dnFjkLzHqvfEyrkktpqRgnvMH7l9kAfhmCLetSxL3WbaefKTKjIQNO4qT?=
- =?us-ascii?Q?g7GoI9kSEPHurkF4sJeGfZt02Ltcrqq4pcy+2nwKr3daZsEECR8Hgz2AorYq?=
- =?us-ascii?Q?uLa53BVsIMjC+XoTRpFBIaekFoW86btqhzvYIWFOzflkRxdtUVZ77PFWPcSk?=
- =?us-ascii?Q?47miV4V8jiz4VCLtEMb6Zs8rUMDPgNEyE9t95YMVP4rGPsiSFQD9DoghETOW?=
- =?us-ascii?Q?ZkplXzcc0rV8pzZrekouD/MA/eSEWAmsDB8kZJXa+7mIC75xqLSqHX+F7XAY?=
- =?us-ascii?Q?ak8tbnYMdj0VJcNk43gYIO5zVe9H6wJAvzKTWzVXKkmvlkvJldBCU7Q16jn5?=
- =?us-ascii?Q?74rDRiWSZewU1790Y7SYtAeWDbW8soqxUk3xC8q7+w6AS4KU39bxSst7lLzr?=
- =?us-ascii?Q?lrIkfWBxAFgJoyV+f0pKb2ddX5AUTyf60Xhov8tvdNbXzCYrhdTvt6mMQrp9?=
- =?us-ascii?Q?Tyw00BzaJgFh3NOzoJZoskSc47F/5mvGlzsYvQt47jkB37ke/Wh4b+EMZ0Qe?=
- =?us-ascii?Q?LE18MpqYBdTrJOoCg1Z08lsUU2U6H+cerNq1F15Lg8FsbYsYsKDlefBBqxHK?=
- =?us-ascii?Q?dw8UdWEnoezhV66aoV+y6rKIZ1Bb3axeLBbEXy1B9KH7EqtxQIW6RdQ4ZIAE?=
- =?us-ascii?Q?HBt/Pj3bKkhALKRYVcF+XQK8l6kmQaFdT9YfXLaKBJVYpKM8dPnzqA2ClX53?=
- =?us-ascii?Q?G/Hh3TPhk0Bx0+g71acm/kLxFSV3WRQR9/akZuHHDGdiVKvO8b2pb1kYlNNI?=
- =?us-ascii?Q?tzfC3Y/CVrqCmLp/QOLrvy2962M7aIWRTWdgjawDkJCAUARd/jEuQNE7sabA?=
- =?us-ascii?Q?wvNdH5FqneOwd7xk2sMoAUUJUFziBbaXubOkNpAE8g7N5WSz234ulBYunoCF?=
- =?us-ascii?Q?d5Puz/uamhZAtFR9gJpVIF6ruz9+VrY0qYFGCuVh4DKPhU/oE5Un8zMmmHzV?=
- =?us-ascii?Q?lK24ACZTxPQ6LNFCDTlf3RIL3oIDgzabT1eRUPk7d8akqec1zO7r1xFUDO7E?=
- =?us-ascii?Q?WmKrH8z46T5gUkaKC1hLNOdY5D0J27LYH/4qLqVFWgqJRzFO2/bAoNf/TUSk?=
- =?us-ascii?Q?wrlzlc5vTLYPd7KZaDpyykXKGQ4zRh1DALi9KetxVZRdgelTgWJqUB1Hjinb?=
- =?us-ascii?Q?S21PG6De7af/RXyY6bfFDqEdB+2N8WnMH/M/VyYojO1CcVW0cK6M1oEoRLVw?=
- =?us-ascii?Q?U27MCSQ8IigsWKwYJzNcrTyEXoSykV8jaDpdPEbBP1ZvuQlfJflCJi4x88NH?=
- =?us-ascii?Q?x2FN7W8uEj5oGsp6BNDXTuDpM68iF072QEcg3NH90qT0WfVS4Fgc+IKofJZ1?=
- =?us-ascii?Q?6rMt0jI1RMj7nl1gNL0/+yBxhCDLklVUg+5YVG970x2HhMzdXJD/LbPPC7no?=
- =?us-ascii?Q?zwlooHIo0DZl2merl2ZaCQoVU4BaLqne4aa+?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?HfRS521P9Mm36ibC8d2At24z9j0BLv3ZUek3YABy8RUXetPVW05+/wjSOxlK?=
- =?us-ascii?Q?62N8Qse1gdmZDeOqoTeLuNnS0yUkaxcyEVDg+7NBvANGIYB1ioA224EDPJK2?=
- =?us-ascii?Q?soLMcMqlmjisQxv3SUVHheWWN5c8kVgJsrra025IrvmGLwFZ/liz+/jn2ju4?=
- =?us-ascii?Q?HIqpyWDMHQ5i1QhDq11/XwcOU2Z8WXssOnval6YHENH8j/h9UbM6teR5AX7P?=
- =?us-ascii?Q?JClzbpliSKHu/GfBmrRaVlyFmn64Gy+1kGDVvbcrLrlfoSNJUbcuK5ozk/Ag?=
- =?us-ascii?Q?HzjsOOZipov2LZ0CzFGgNJTODMH1/AJASyHTEcFfKp69REirWfidp4IvLdV+?=
- =?us-ascii?Q?BKYOFQ1gK9Eq+J+wfRFRvqbNd540LhN9KT/ugSqS2l64GhEp3rH14kiU7xqS?=
- =?us-ascii?Q?mziNfcf+fmkw/N2R2sOG2cd9jCd6rbtTC1hoBn1+QlVL56rtyKZ33kiPzQXJ?=
- =?us-ascii?Q?BSSkDdcDuRCxKWjQLSY3NG5qhjUdbZWbQ+Eai3BL0sy+5T54opC/SZ04kVHM?=
- =?us-ascii?Q?hcmPDYOjs81zVj2DPy2Lda5HVdKcpQ4BPqwN4VgmjpujMr2iN3rsz03/nCa5?=
- =?us-ascii?Q?4YFK5Naxb1qG0gRuEzjLS5Vn2dpNrKo37/YNRXt3rXPbdh/uuoKJCvPjt1fI?=
- =?us-ascii?Q?/uUCR1RbFQEJj4VRDQ4Hsbe0nH8OAjZuXtnrIFhoh6mppalkDpsXqUtWXoV4?=
- =?us-ascii?Q?lqAIKi1Qzpe5bRhzJzO6ruyd0m9cde6BXqNrg95rnRk0b0tTL56pJZ7o71aT?=
- =?us-ascii?Q?Sp9iDRU0wcWtBK/YWalx/bjJFgr4MoJuUzFJJTDuoprxpMWsGdjpHiEWKpg4?=
- =?us-ascii?Q?Dk8MwZk8admvS9FBPHyfL9Z9QREjyTBHtsF+ScLl8aBWmVpoir6Q2z1cViLD?=
- =?us-ascii?Q?xFXcG6aIq+AaUGlGk98aJMNaY9bBmD/m7Y3+fKX4JBf0pRUMk22CBh09qjOo?=
- =?us-ascii?Q?i2QxDCDxDBW7rwBxZweGQNlPWriPdxgbb9oZ5Rw+b8CoSmmbA03OEi7vIqdK?=
- =?us-ascii?Q?Zk0gPDYpFxSZjutyykfn/WQ9hOs7mWEvqkJmlJZ8BqFnHkJySvnjKHoSJ6BW?=
- =?us-ascii?Q?Pn8J0T3E0B0xMDAyFH0f3JBRvq4Qt3UEovwgrQGZ9xnenbpEoP0jVEBmQfal?=
- =?us-ascii?Q?K6c4P2fLpSyC8i1u8gkC/M1WQQlaqX30/xoaJ5nYrq1W8j0E83J8mHtVAA2k?=
- =?us-ascii?Q?ie2NTjxy+QBUefSHaPD9iHfgNHz5UestCx35W1hz8X6+PwAQfYF4SbPUFc7q?=
- =?us-ascii?Q?oDVm6fZu/6E1UTPwFHTpg30hY/aYHhL5s4N0RSIMLqKB8rhNTVc3cV6mtlCu?=
- =?us-ascii?Q?l7eXzJBmupyCG/UvyzolkV8DNkPgcTh+0VAzaQNNUWJReiFd+qwm5NO5X5jg?=
- =?us-ascii?Q?Bi84jv5Vt7ZHAQuJ1SYaqDOih0flbh8T3uJKCuz1uRIIFygcUygALmbA+zIe?=
- =?us-ascii?Q?48DYaU/0VM+JmxGTYN+sbREZ3JRI8CFHoiy1ozFVj9UU4f5aGWesSlbFCq+C?=
- =?us-ascii?Q?Xcy7TaPrzp34PANAbfnqDVa80ts3IYdVRe/1CMjwSTEt0mBh6lHNy51R1I0m?=
- =?us-ascii?Q?UydDYic7+FRl6OnIY12RMzu+Yr8kYGo9Hk9sfeL2?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3BA433120B
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:42:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763030523; cv=none; b=Qnar+7qcR6Jmg5GY8Y3QfpYCoDA/lq6Iqy0l7R8BHIgpUaXtQOYn/k2ZrsHebuF6TEnzXTh/B2+9sZHhvjXNW3V1mA7DSfVsCoV3ORw5WMD73WNIiyY9ArEGpULuTWU7Mxegm9Afx8xJX7Le6+deA0aqh77MweG9eIuJJl6Kr4Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763030523; c=relaxed/simple;
+	bh=hXnD6LTmh4guVB4bmTUA8Fa8BRB+LUsKMsPfTIUEKcE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZZAoDQz2x+7/OabyoSUx4dwBemi+ieoJ8vq8DmvJXwOffXHgP9W/X8v3wULc6G2O45sqt/vqh6UX9r1JLpkArn74oK+lanx4so/rE5TevBGW51YqKmhQNtfaeL6Q7qeE8ieo+MW4JGIdtBde/VLpLU4ZIwX+WlFAJjSYp0qhdBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BZ/mzdf8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=V/igIplb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ADAHW2n4097322
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:42:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	E/2GHGKMHH3/peG1/WgTL/Kznds7LnX+Rx8aV6ZmG/8=; b=BZ/mzdf8FsUTa5S8
+	S2PuVk1AwG5OQRuzNiulTYOFRsh+hNX0yI3ePguikeODvXjPfGiTR72vgNNBCfb3
+	WMycOihk6RzTTlbriof7ZTKm+8uf6u065W8fgzog5tty1v31cKnED+257k9XcGhv
+	AsiF3gMiTlzFRn3ADtScIoeuXtG/ZCDQc8S1NDfdoo/YpE7N4VbA3NZfTN+VUmzG
+	tTTk6PLKJCqpNmabG7T6qybBT3IK2BCJyq1fvm8MlE8mWkSv1QHgSoKJa2wjbZej
+	RIl8i8/PVOsaL0QVr+WhOzgifa4xnrPN90jbZoX2D8xpqAC/PX6/Ldn2dF8u0r/G
+	SY7RRw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4addetr265-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:42:00 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ed83a05863so1766311cf.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 02:42:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763030519; x=1763635319; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E/2GHGKMHH3/peG1/WgTL/Kznds7LnX+Rx8aV6ZmG/8=;
+        b=V/igIplbnyJkCBteF40UyjJ4zYpfKq+J/ZiU//itJZwAdPdDLIcz7FIskjke+NT/YL
+         2RbVPaTfusguIsjOf+/XsyzYEiqwGTlaQyEH337lXJb/KioBUzgI6TM7V3LJDSr2XFMx
+         Wex9wa9/gLDd0aWKYeuyFki4vT+gm8/RbTzQdOJrgoHIm5e/X0Y5s8xOcnxlUrwteJ6u
+         +/ksSja7fFbqPUoqR+E2uNAQUgTl6Cs3B9xk2YDXLQvyzlTbyFdryZdsA8qJKfnrK9KD
+         Cga71tIEtW84cpc4T7TPfrVNVTkdTiy2Awww3471lJjNswEYprdXV/x7CwOVLQtvHUAu
+         5+Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763030519; x=1763635319;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E/2GHGKMHH3/peG1/WgTL/Kznds7LnX+Rx8aV6ZmG/8=;
+        b=anu3elUOkwFF/aM9OLV0xcbaV76oAmMppmZIIqPWa18JGaDbxZKgUpxzndG5/EYH9+
+         cyR8pebohMNhyPnfxJ0isuHHli/zO4V8LOBzJMHSadJqSeiyCX8S++CTOvX9bOrlpjto
+         BAKjBbPCP9iRZBXCgwFyxbtkN1OmCQl68dr9xL1+IUpWKRAxn4ToqA2WkZwlHKQAG/mL
+         irJA3HLtI7yQSWX6uNiQz2aMraIrQd3f3Brsx9dri4K2B6thc58L8KZdwZbCz5OAH+iJ
+         hN5qi7Rwq0H0VmR3nWjxVsxy3ijQL35HncQUyM8EErN24lNqJnqoa7ZkYk6RXDWALud/
+         43NQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+0Ep6dsKXv1hTsnFftjMCkWmCqbS1P/4Af+CJwIrJhrI225snj/3FbfoWTFbfqyqonbxIpFYRAV2e@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxwl9G6EGpordXki2aAP9STLxs6IGPoDJ7OxRZWOrr1y8fsRlij
+	fZl15k4l+TB7FZcKiJBLkqH1awO4YyBH5sYeNHMKNBZ32dyvviwq1eKwDoL7ipbsLGOaKck3Gag
+	p83uSryLjVIpItpDhRhRSHLnG8UIWGbAmY3g6K4az4Vf/5Ed6YUQf8Tc0So0LgpwL
+X-Gm-Gg: ASbGnct8EAFHVVSBT5zn8AN3bsfOXu11l24cSnCjpdZq5TaBtIf18jiIfcZeSCEK2ZU
+	lye6eHkYjDDlGT8CYwIDWy7jPl+yTxCwOq0cMAfw3WkAGskBPGm5fniEDI51Qexdm/fpmhc/9EK
+	n8EJUG3XkK5FjHZhf3Xzj2KWZQtv8ohqYTVvethAJkT07/9Apy+Z3Sue+PC/Jh4mpx6WNQ+iQQg
+	BDP2lydYG2lxp8Fxr1GAM1GuV8qwrUEKGwFQIEhtEo8f3AlOcvSMmOmh8wRBp8OMTBLyvkobsXX
+	jUpzf5jCbuvy/507IRwXJGB6mMsjMrp1IvHkqWRtwcMnRaQcjv47uFFO75TJ6ZpKE2E9ZseFR+o
+	Q3ovBM6q1InUjlZRdBZ21Taumjm6g3aOIrv9+rtoRDwIG8BTog1iQhjqd
+X-Received: by 2002:ac8:5dc7:0:b0:4eb:9cb1:c290 with SMTP id d75a77b69052e-4eddbc9b895mr53790361cf.4.1763030519297;
+        Thu, 13 Nov 2025 02:41:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFrcl4+qTqOk0GNCNMWbcWMtXYz2d4n4q2FotMPgIrNQP9oX8JoqbWJTtwwS/ePssboaTi9sA==
+X-Received: by 2002:ac8:5dc7:0:b0:4eb:9cb1:c290 with SMTP id d75a77b69052e-4eddbc9b895mr53790161cf.4.1763030518787;
+        Thu, 13 Nov 2025 02:41:58 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fad41e5sm136107866b.19.2025.11.13.02.41.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Nov 2025 02:41:58 -0800 (PST)
+Message-ID: <f0dc9c49-93af-45d3-90a1-6f098a036afa@oss.qualcomm.com>
+Date: Thu, 13 Nov 2025 11:41:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6acd2cf3-5459-4316-1471-08de22a11521
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2025 10:40:37.2273
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ue/9K4dBC6boI2ClYOKnven0quif8FuMcmRrvuyflVSVSkfUr8jqGeyFJvmEKRjqxE8H8u9g6t/JlT0clz5985u1a5M1grJlKVypdmK9E9M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PPFC2A7D9DAA
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mfd: qcom,tcsr: Add compatible for Kaanapali
+To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com
+References: <20250924-knp-mfd-v1-1-6c8a98760e95@oss.qualcomm.com>
+ <b623c7f6-f28f-49ba-b6f6-25084117a6b3@oss.qualcomm.com>
+ <l4mb5pi7kz7uuq6o3eueoxl2ngt2sdd6dv3kyudw6i54co5v5h@w6ya2nuas322>
+ <ad00835e-bc20-4f97-aba6-e1b4f5e97191@oss.qualcomm.com>
+ <f2q7a7r7quq6pplcn3kklwrhdc6hxa5zvc7osygshtyurwyvi4@t5iyragt7irh>
+ <b5ecf5e7-4dc4-41ac-9b56-7c52afacb950@oss.qualcomm.com>
+ <01de9616-825b-4fbb-83cf-e0bf91e8cf39@oss.qualcomm.com>
+ <81174278-c3c4-4dc6-856e-b58aa2cb6fea@oss.qualcomm.com>
+ <br3fmilhh7fihv4atnf4olvy4w66z4p7sh4ypicuc3766ky6tb@pppfdynfhfz7>
+ <bf706156-1413-42cb-a463-803063c347fc@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <bf706156-1413-42cb-a463-803063c347fc@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: Kz9OtlU_3QB47a_yX_jhHTU-VV0Ye65Q
+X-Proofpoint-ORIG-GUID: Kz9OtlU_3QB47a_yX_jhHTU-VV0Ye65Q
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA3OSBTYWx0ZWRfX4Pecob6bUg35
+ Zfs43en7veV8MGWyKm23R+KQWYYGjrb8lO862oKrMUJ7WofhPDoQ64Hb3N+RNqMlUzU7eQjlwnS
+ tM75J58YRcPZPlpQWaZbGWDQ9SeIr90QNaZZqRKljxgNEFt3uqIx8Jrcsdjj8Ef2YTZpAdmvAe/
+ KJQtdiISZ0l0A7Vpuv3B82tzDsDwe2TKZOZmUBW/zU5l3ZRTiicm+U+QSTL3LlMkNNSDCqOi4IO
+ gKRjqAez98BD5mavMQ64DK4kkotavSn8PQfwhVmHQccSfeSbsImPqPdqwUvT7QmE9STwx7+FK1V
+ zb3HqDylD8tWSq+qshJizALSHvGK3FDP6qBhity1kYyfVXopgxNISWUFtG2fXntqggMkfCvYFdx
+ H1HQS/lxVV9yZ1AQG9ggJYhSQKu5LA==
+X-Authority-Analysis: v=2.4 cv=QZNrf8bv c=1 sm=1 tr=0 ts=6915b5f8 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=q7Qu6pG9dnr7vhMOZxIA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-13_01,2025-11-12_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0 phishscore=0 suspectscore=0 spamscore=0
+ priorityscore=1501 impostorscore=0 bulkscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511130079
 
-> > > This is an optional property. If it does not exist, you have an old
-> > > DT blob. It is not an error. So you need to do different things
-> > > depending on what the error code is. If it does not exist, just
-> > > return 0 and leave the hardware alone. If it is some other error repo=
-rt it,
-> and abort the probe.
-> > >
-> >
-> > Based on this for next version, I want to move the "aspeed,scu" from dt=
-si to
-> dts.
-> > Change it to optional and accord it whether existed to decide it is
-> > old or new DT blob.
->=20
-> I think that is the easy way out, not necessarily the correct way.
->=20
+On 11/13/25 11:03 AM, Aiqun(Maria) Yu wrote:
+> On 11/12/2025 12:05 AM, Bjorn Andersson wrote:
+>> On Tue, Nov 11, 2025 at 08:27:17PM +0800, Aiqun(Maria) Yu wrote:
+>>> On 11/7/2025 12:24 AM, Konrad Dybcio wrote:
+>>>> On 11/6/25 11:16 AM, Aiqun(Maria) Yu wrote:
+>>>>> On 11/6/2025 5:06 AM, Bjorn Andersson wrote:
+>>>>>> On Tue, Nov 04, 2025 at 01:35:01PM +0800, Jingyi Wang wrote:
+>>>>>>>
+>>>>>>>
+>>>>>>> On 11/4/2025 12:02 PM, Bjorn Andersson wrote:
+>>>>>>>> On Tue, Nov 04, 2025 at 11:34:25AM +0800, Aiqun(Maria) Yu wrote:
+>>>>>>>>> On 9/25/2025 7:23 AM, Jingyi Wang wrote:
+>>>>>>>>>> Document the qcom,tcsr-kaanapali compatible, tcsr will provide various
+>>>>>>>>>> control and status functions for their peripherals.
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>>>>>>>>>> ---
+>>>>>>>>>>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+>>>>>>>>>>  1 file changed, 1 insertion(+)
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+>>>>>>>>>> index 14ae3f00ef7e..ae55b0a70766 100644
+>>>>>>>>>> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+>>>>>>>>>> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+>>>>>>>>>> @@ -48,6 +48,7 @@ properties:
+>>>>>>>>>>            - qcom,tcsr-ipq8064
+>>>>>>>>>>            - qcom,tcsr-ipq8074
+>>>>>>>>>>            - qcom,tcsr-ipq9574
+>>>>>>>>>> +          - qcom,tcsr-kaanapali
+>>>>>>>>>
+>>>>>>>>> It looks good to me. Glymur didn't have this functionality verified yet.
+>>>>>>>>
+>>>>>>>> You spelled Reviewed-by: Aiqun Yu <..> wrong.
+>>>>>>>>
+>>>>>>>>> Remind for review.
+>>>>>>>>
+>>>>>>>> No need for that, reviewers will review when they have time.
+>>>>>>>>
+>>>>>>>>>
+>>>>>>>
+>>>>>>> Hi Bjorn,
+>>>>>>>
+>>>>>>>>
+>>>>>>>> But that said, most modern additions to this binding follow the common
+>>>>>>>> format of qcom,<soc>-<block>.
+>>>>>>>>
+>>>>>>>> So I would prefer this to be qcom,kaanapali-tcsr.
+>>>>>>>>
+>>>>>>>> Regards,
+>>>>>>>> Bjorn
+>>>>>>>>
+>>>>>>>
+>>>>>>> qcom,tcsr-kaanapali is used to distinguish with binding for GCC:
+>>>>>>> https://lore.kernel.org/all/20251030-gcc_kaanapali-v2-v2-2-a774a587af6f@oss.qualcomm.com/
+>>>>>>>
+>>>>>>
+>>>>>> So, qcom,kaanapali-tcsr is the clock controller region of TCSR and
+>>>>>> qcom,tcsr-kaanapali is the non-clock controller region of TCSR?
+>>>>>>
+>>>>>> Sorry for not understanding that earlier, but this doesn't work for me.
+>>>>>>
+>>>>>> It's a bit of a lie that TCSR_MUTEX is a separate node in devicetree,
+>>>>>> but it's always an nice chunk of 256K in the beginning (or end in some
+>>>>>> cases?) of TCSR. But for the rest, there should be a single tcsr node in
+>>>>>> DeviceTree and that one node should be a syscon and a clock controller.
+>>>>>
+>>>>> I've been dive deeply on this tcsr block. And actually the tcsr clock
+>>>>> controller part is a very small trunk size(0x1c) of the tcsr block. And
+>>>>> this block have contain other multiple purposed sys registers. So maybe
+>>>>> we can have a more discussion on how to have device tree node describe
+>>>>> this situation? It is not straight forward that to have a non-tcsrcc
+>>>>> related area being described in tcsrcc.
+>>>>>
+>>>>> What about option 1 (tcsr_mutex + tcsr_dload_syscon + tcsrcc):>> tcsr_mutex: hwlock@1f40000 {
+>>>>> 	compatible = "qcom,tcsr-mutex";
+>>>>> 	reg = <0x0 0x01f40000 0x0 0x20000>;
+>>>>> 	#hwlock-cells = <1>;
+>>>>> };
+>>>>>
+>>>>> tcsr_dload: syscon@1fc0000 {
+>>>>> 	compatible = "qcom,tcsr-kaanapali", "syscon";
+>>>>> 	reg = <0x0 0x1fc0000 0x0 0x30000>;
+>>>>> };
+>>>>>
+>>>>> tcsrcc: clock-controller@1fd5044 {
+>>>>> 	compatible = "qcom,kaanapali-tcsr", "syscon";
+>>>
+>>> Remove "syscon" here. Not need for tcsrcc fallback to "syscon".
+>>>
+>>>>> 	reg = <0x0 0x01fd5044 0x0 0x1c>;
+>>>>> ...
+>>>>> };
+>>>>>
+>>>>> What about option 2 (tcsr whole block + tcsr_mutex  + tcsrcc):
+>>>>>
+>>>>> tcsr: syscon@1f40000 {
+>>>>> 	compatible = "qcom,tcsr-kaanapali", "syscon";
+>>>>> 	reg = <0x0 0x1f40000 0x0 0xC0000>; //align with the whole hardware
+>>>>> block design.
+>>>>> };
+>>>>>
+>>>>> tcsr_mutex: hwlock@1f40000 {
+>>>>> 	compatible = "qcom,tcsr-mutex";
+>>>>> 	reg = <0x0 0x01f40000 0x0 0x20000>;
+>>>>> 	#hwlock-cells = <1>;
+>>>>> };
+>>>>>
+>>>>> tcsrcc: clock-controller@1fd5044 {
+>>>>> 	compatible = "qcom,kaanapali-tcsr", "syscon";
+>>>
+>>> Same here, don't need to have "syscon" here.
+>>>
+>>>>> 	reg = <0x0 0x01fd5044 0x0 0x1c>;
+>>>>> ...
+>>>>> };
+>>>>
+>>>> Is there anything wrong with what we have done for x1e80100?
+>>>> ______________________
+>>>> |             |       |
+>>>> | TCSR_MUTEX  | mutex |
+>>>> |_____________|_______|
+>>>> |	      |       |
+>>>> | RANDOM_REGS |       |
+>>>> |_____________|       |
+>>>> |	      |       |
+>>>> | TCSR_CLKS   | tcsr  |
+>>>> |_____________|       |
+>>>> |	      |       |
+>>>> | RANDOM_REGS |       |
+>>>> |_____________|_______|
+>>>>
+>>>
+>>> Second you! We can firstly have a option selected for kaanapali, and
+>>> then other platform can be followed or fixed afterwards.
+>>>
+>>> Here suggest to have option 2 which is remove "syscon" from tcsr clocks,
+>>> and only add the whole "syscon" to "tcsr" whole block.
+>>>
+>>
+>> I think you misunderstood Konrad, or perhaps I misunderstand you.
+> 
+> Maybe let Konrad help to explain more here. I thought the chart below is
+> very clearly indicate the tcsr_clks is only part of the tcsr block.
+> 
+>>
+>> This is what we have for Hamoa:
+>>
+>> tcsr_mutex: hwlock@1f40000 {
+>>         compatible = "qcom,tcsr-mutex";
+>>         reg = <0 0x01f40000 0 0x20000>;
+>>         #hwlock-cells = <1>;
+>> };
+>>
+>> tcsr: clock-controller@1fc0000 {
+> 
+> 
+> It is not a clock-controller start from 0x1fc0000.
+> 
+>>         compatible = "qcom,x1e80100-tcsr", "syscon";
+>>         reg = <0 0x01fc0000 0 0x30000>;
+> 
+> This is what we have a discussion initialized here:
+> "qcom,<platform>-tcsr" is only a tcsr clock controller binder, reference
+> from [1].
+> "qcom,tcsr-<platform>" is a common tcsr block. reference current binding
+> patch.
+> 
+> For below hardware block information, is it really a recommendation to
+> combine the tscr block with tcsr clock controller all together?
+> ______________________
+> |             |       |
+> | TCSR_MUTEX  | mutex |
+> |_____________|_______|
+> |	      |       |
+> | RANDOM_REGS |       |
+> |_____________|       |
+> |	      |       |
+> | TCSR_CLKS   | tcsr  |
+> |_____________|       |
+> |	      |       |
+> | RANDOM_REGS |       |
+> |_____________|_______|
+> 
+> [1]https://lore.kernel.org/all/20251030-gcc_kaanapali-v2-v2-2-a774a587af6f@oss.qualcomm.com/
+> 
+> 
+>>         clocks = <&rpmhcc RPMH_CXO_CLK>;
+>>         #clock-cells = <1>;
+>>         #reset-cells = <1>;
+>> };
+>>
+>> This is exactly what I suggested above and Konrad is asking you why
+>> this doesn't work for Kaanapali. The addresses are even the same, what
+>> is the problem?
+> 
+> The problem is the current patchset document a separate tcsr block as a
+> mfd. While the suggestion here is to use the tcsr clock controller
+> binding to document the whole tcsr block which is not belonged to tcsr
+> clock controller.
 
-Agreed.
-That's easy to implement adding support RGMII delay configuration for AST26=
-00.
-According to aspeed,scu property if it is a new dts.
-If it is old dts, ignore delay setting flow.
-If new one, configure the corresponding value from tx/rx-internal-delay-ps
-properties.
+Neither Bjorn nor I see an issue with this. Clock controllers are usually
+not just clock controllers anyway. For example, all of our XX_CC blocks
+also include resets, power-domains and various tunables which are often
+not used by Linux
 
-At first, I would just like to support for new dts based on AST2600.
-The existed dts in kernel is as legacy dts for AST2600 and try to bypass
-them. Therefore, I tried to use new compatible or aspeed,scu property to id=
-entify
-which new dts is.
-
-> All systems have the aspeed,scu, so it should really be in the .dtsi file=
-.
->=20
-> What are you really trying to solve? That the DT blob says "rgmii", but t=
-he
-> bootloader has configured the MAC to add delays? You should be able to te=
-st
-> for that condition. If it is found, issue as warning, and treat phy-mode =
-as
-> 'rgmii-id'. If the DT blob says 'rgmii-id' and the MAC is configured to a=
-dd the
-> delays, the system is at least consistent, no need for a warning, disable=
- the
-> MAC delays and pass _RGMII_ID to the PHY. And if the blob says 'rgmii-id'=
- and
-> the MAC is not adding delays, no need to touch the MAC delay, and pass
-> _RGMII_ID to the PHY.
->=20
-> Are there any mainline DT .dts files which say rgmii-txid, or rgmii-rxid?=
- They
-> would be rather odd, but occasionally you see them.
-> Assuming there are not lots of them, i would probably just leave everythi=
-ng as
-> is.
->=20
-
-Based on the above information, I have attempted to outline my understandin=
-g.
-1. 'rgmii' + MAC delay:
-Add warming, keep MAC delay and pass "rgmii-id" to PHY driver.
-
-2. 'rgmii-id' + MAC delay:
-disable MAC delay and pass "rgmii-id" to PHY driver
-
-3. 'rgmii-id' + no MAC delay:
-Keep disabling MAC delay and pass "rgmii-id" to PHY driver
-
-4. 'rgmii-txid' or 'rgmii-rxid':
-Keep original setting
-
-
-I have some idea to discuss with you.
-1. On 'rgmii', I want to add warming and directly disable MAC delay and pas=
-s 'rgmii-id'=20
-to PHY driver.
-
-2. On 'rgmii-id', ignore if enabling MAC delay, all disable MAC delay and p=
-ass ' rgmii-id'
-to PHY driver.
-
-3. On 'rgmii-txid' or 'rgmii-rxid', keep the above item 4.
-
-Actually, it's difficult for the driver to determine whether the MAC delay =
-is enabled or not.
-Our design doesn't use a single bit to indicate the delay state. Instead, t=
-he delay setting is=20
-derived from the user's configured delay value.
-
-From what I understand, when the TX delay value is set to zero, the data an=
-d clock signals=20
-are almost aligned to the edge - which likely means the MAC TX delay is dis=
-abled.
-
-Therefore, I'd prefer the driver to simply configure the MAC delay based on=
- the phy-mode=20
-and the tx/rx-internal-delay-ps properties.
-
-As you mentioned before, the v4 behavior results in a network interface tha=
-t can successfully=20
-probe but does not actually work.
-So, I'm also considering another approach on the AST2600:
-to not support rgmii, rgmii-txid, or rgmii-rxid modes directly.
-If any of these are encountered, the driver could automatically treat them =
-as rgmii-id and issue=20
-a warning.
-
-Thanks,
-Jacky
+Konrad
 
