@@ -1,177 +1,81 @@
-Return-Path: <devicetree+bounces-238130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BA4C57839
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:00:20 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D4DC57840
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 14:00:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FF823A394F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:53:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 40EA5352F13
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 13:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44558350298;
-	Thu, 13 Nov 2025 12:53:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fJUNGdID";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UYi/NVXX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8415B34EEE8;
+	Thu, 13 Nov 2025 13:00:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4FF34F47B
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FEF2C21E8;
+	Thu, 13 Nov 2025 13:00:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763038404; cv=none; b=Pm8D8wQwSANdiTN8iCNERyTidRpno9EjFWqlPXgJoNYxWEK7hrsxEEJ4M5MeI0hYQUsXKulQ8XlNjyP0Vk2VxpyNpxN7b6TS7X1P8rLti2IzJmJsoJH53cxxdndk6KidnFam/ooYkTNa0u+CAdswUjZiwswWPJyffBvoxguA6cY=
+	t=1763038843; cv=none; b=hl9O5Ez1FPt+CRngnK/2WNe6Yaaawm06Ba5QnwzCXcCro2hou16ShrS8fyKYkVB0+V9paWgfVteGF2cIziRLsKXb2RwvCssrW4p4EwHaHT7DEDk9uXeQYkuUxLPShTghq7vmbMLyvgygogX2pVgw5B4T/OfwCdx+qHFtV25CVCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763038404; c=relaxed/simple;
-	bh=j+2J6ZUFajjytoR3KQFekY2+2Lu/2W4FLLpntE9VrY4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dWiKpCs9cyvu6F0OVnROgBm45vqEhB/aZYE15a5XFtky+g+0/pOm6zbdItt7ytXc7FdePOeX65IVdOk4IH7Ns+6JBpi/DG2kMjqtgfnrvrR64UnxugxRGngZHpjNj0O9AvJoUB/SpgcbH23TwUSHdjJAt9utgkHvKPPwlDuTJN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fJUNGdID; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UYi/NVXX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD8YdqI2993638
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:53:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AYyaenzuM4P++qYxmun+3HNcdnK2juXNoveNn5bkvqQ=; b=fJUNGdIDhnR2cgGc
-	NgCahAzBv+5JtDaOd+3UiMFrG/ILQpdb8jD9/ys19pEJbnPhp5f5D7B3HbOJXk6A
-	ltAxhhuNZ5IwLc6FyYy2hHavyDlYT2U74E1V0eq4fhDKBg3gMLpdrZ8+3tX2x4jq
-	pkb5NDoRYzrr15DLMOsy9dzq3bMuOSFHoqLL2IGZ/b8CbUr+GsZAvwMY1fkwUxOY
-	T2cnPOWr5tpASKquvp6c/5650qFhDq/MkfCOuNfCbjfIuuabnXUH6tAtWHHyL0C6
-	llkcZ5VIGvZS6nisG0pJ1HxqxQxPurHk6IO3heC+6/hcs8ixc3pGMAU7dw9uG+JW
-	AWnK4w==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ad47jj7vf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 12:53:21 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8906754b823so25769285a.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 04:53:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763038401; x=1763643201; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AYyaenzuM4P++qYxmun+3HNcdnK2juXNoveNn5bkvqQ=;
-        b=UYi/NVXXDgbR6YkzCToUljkUX9n5tQX7afAabiR5YmXKAIl+HIlqR8kjvkqPnXvD3d
-         IctJXAdf8f93PbOsqN8IQh6AYiiBKdd7U8nJUkGz8Cb6JNtkwctVJ/bFdEYIfd3yfpZ3
-         mEthWY0VDpIa8fLNYonkD5OR4wnXZRse43vkCx42u1Zd90hMR55QQwgIGGREVaoT9f65
-         KL4jdHFnSFjgKsO4iP48E3xx14/ITRF/bnxzK2fqNqUMFPdnEGz2RDmILtmk71F/NMiP
-         FkRSp7gNkiWqwIms7qxYiUowDuCzbCidHrPYtVTLm9tRTOvyYh/xfCqYtmMXQOPR65yk
-         v6Nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763038401; x=1763643201;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AYyaenzuM4P++qYxmun+3HNcdnK2juXNoveNn5bkvqQ=;
-        b=jfLw2Nis6P5V5F9gh5SON82yb4E35IG+hy+P8ovpIkBThBLj7mInVqKCrRLzwYA6fl
-         RqiQSIDVFALLUoGjToQLpRW8dzDBfrtwukRlR9ZtG0O20AxB8Ir/mvarHf3lznf3+FbW
-         EvUndIFGwEuHJADQYOKsqXcLi8HaGOG1y94YAqH3LyGZy4pmU6Ekq3BW1iItc1TN95oh
-         umWxIfiRY0powbg7203I8KDk3AutWCoXyydg87zxdtbs1RPCUfseikDhVD9Ndy9oNXUa
-         7i1t/BmKxG6pPjBfPTYiNzxBqk+DQuHCH5jSsboxb3AIs9+3alaszbgocx/Vt7LA9Js5
-         7n4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV1+XlOZbQLxaPBTsaoVWNWJrNouUpHb1fzEJ+qEIhH2tti0IbJrHT/JViNCtUgwBUjfaAqW8vV3ZaQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5dnYnHCYA+LjmkjIykA/QYHayPV3lYwKxbwQ6FSxvBe2wi4Wn
-	1E5Sp4j6DheCbkUmcFBfKsmwWp87dcQqN+e0T5N+nUkLe8CYUbgGiNsm6HJnLBYii4L237wzCuP
-	61RbadLl9WGtlc/8V0P0RyXdHFuSQ2s0Kc9ggBlwReYSyLSQhtkCrcgHkHOfH+Nhs
-X-Gm-Gg: ASbGnctbgrbpRpAr/5F9FGSRg8Tkxw0nl2nq6zRuAJEm5xwYZxEU/QqNCIqoK85tQzl
-	VEZ1FbRnZMM+8h7rdOLrsfFHhkak/ImaVSAyk13I7nHnqtuPWxLNe8k6AqVwpRefz/g6cMcNORD
-	wXEj1UcI/g8fFulcRdZXbaxD0nzDBmSfHjQ/HHEJACtfHDMstwnWIw/qPRRY60ojn9Fs1E6dxO6
-	Bhikok7+gGyqyldc7jwabUSymnE/BovWRthC29DgAwolNUD4JHj+II+4yT9h5nljA2zdbmIds+v
-	1Prkskp7J6cj+zbdSr5wlcLHtB4trB4XbY109UWPyifFZHaXmweeAtSPXRkkVeMGyR+q3o0T093
-	zKRev8cMhiE3KBX+lt2IMmrbOoEckFe4g5fiji570EueS1fQD3HKpgDbd
-X-Received: by 2002:a05:622a:104:b0:4ec:f123:230a with SMTP id d75a77b69052e-4eddbdd8854mr56882481cf.13.1763038400825;
-        Thu, 13 Nov 2025 04:53:20 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFjmdNxWA8+HlNYNhMlyELz/tsu9oCrl8hmBZgLJYoGovSIiRTjKkKYNIPWLsy5oVddw257lA==
-X-Received: by 2002:a05:622a:104:b0:4ec:f123:230a with SMTP id d75a77b69052e-4eddbdd8854mr56882191cf.13.1763038400393;
-        Thu, 13 Nov 2025 04:53:20 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6433a497f27sm1425009a12.17.2025.11.13.04.53.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Nov 2025 04:53:19 -0800 (PST)
-Message-ID: <8e2b54aa-8838-4613-9b50-29d07bd6e8c1@oss.qualcomm.com>
-Date: Thu, 13 Nov 2025 13:53:17 +0100
+	s=arc-20240116; t=1763038843; c=relaxed/simple;
+	bh=5/jeS8R2INGgMyMRHYo8PH31xZ8F+hej1l6sBG6zsic=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=XgtcqeNiEOpJkJxXS4Jvg6HGa4bdsArH1wb3sUsl3uNYO9GzlUsNIPSlF3ucBmJGwi0AxfEsC9XoN2CMd9LNIL+gUHcFA7nXx+Viz+3xQRamKziRnaXVaD9fTRsTFr2f/7vsFmIihITB5S1w9wimwo2lYZGI99Pc4xsjD7yH8HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [58.61.140.134])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 297bea02c;
+	Thu, 13 Nov 2025 21:00:35 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: coiaprant@gmail.com
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org
+Subject: Re: [PATCH v5 3/3] arm64: dts: rockchip: Add devicetree for the 9Tripod X3568 v4
+Date: Thu, 13 Nov 2025 21:00:21 +0800
+Message-Id: <20251113130021.822765-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <6F2972A5-047F-48A5-B409-C3F3E71643AD@gmail.com>
+References: <6F2972A5-047F-48A5-B409-C3F3E71643AD@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] arm64: dts: qcom: qcs8300-ride: enable WLAN on
- qcs8300-ride
-To: Wei Zhang <wei.zhang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_miaoqing@quicinc.com,
-        quic_zhichen@quicinc.com
-References: <20251113055148.2729943-1-wei.zhang@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251113055148.2729943-1-wei.zhang@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA5NyBTYWx0ZWRfX5qzdqWcbIhmz
- EPVHXJyp1a5pPatqFHhjEAx8b4I1W6Lq5uOiWhf3Hed3h/tJLqlc8OIF6680a9tmQygYUKM46hb
- 43a1sMlu4riyoeXMGbR0C1CcEL5BRxJoT5HYiNTVKXYiePQfh/Uz2hJoKjhW6CcBDCX+0ZWPUBg
- xXCNYd1ykqE2E9ra6RpiT5RozIHpPBY1pc7MJv26KqFhVUg20aBig6C5GLtEdnvh2Gv954bkRDj
- vXcr1SE1MdDDQmctVw4g5ddRFVj8JWOoEQgAZKh0wuj0DQMxT/2w5xDakUsGDpN4rNMtQf1Vapg
- qpapufBgxLsLiAMEOJyhgJCEqZjqmnJLEgltuZnZA//qU6EuLrT291QLaDZeMzKY0N0igbHpSIv
- ic8dcEPpIBJzUgaen/NEHnVtOtmJJA==
-X-Proofpoint-GUID: M_ILEyNucPnHceSaiiYVFddU-I1B84Wd
-X-Authority-Analysis: v=2.4 cv=A5Fh/qWG c=1 sm=1 tr=0 ts=6915d4c1 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=y28fyX8gKcvqRzd0QmsA:9
- a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-ORIG-GUID: M_ILEyNucPnHceSaiiYVFddU-I1B84Wd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-13_02,2025-11-12_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 clxscore=1015 spamscore=0 phishscore=0
- adultscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130097
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a7d4db1a103a2kunmc0f785fd12ff7c
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDQx9JVhpDGk5CQ0lPTEMeGlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlOQ1VNSlVKT0tVSkhPWVdZFhoPEhUdFFlBWU9LSFVKS0lCTUtKVUpLS1VLWQ
+	Y+
 
-On 11/13/25 6:51 AM, Wei Zhang wrote:
-> Enable WLAN on qcs8300-ride by adding a node for the PMU module
-> of the WCN6855 and assigning its LDO power outputs to the existing
-> WiFi module.
-> 
-> On the qcs8300-ride platform, the corresponding firmware and BDF
-> are QCA6698AQ instead of WCN6855, which have been added in the
-> 20250211 release.
-> 
-> Signed-off-by: Wei Zhang <wei.zhang@oss.qualcomm.com>
-> ---
+Hi,
 
-[...]
+> PCIe and MIC picked from OEM source codes.
 
-> +		wlan-enable-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
+I know it comes from BSP code, but it's not correct.
+A PCIe 3.3V power supply will not have a 0.1V situation.
+Rockchip fixed this in their kernel a long time ago:
+https://github.com/rockchip-linux/kernel/commit/17e9559f67d26f3c602e38a24feb5194e51ac782
 
-You say active-high here
+> Since parts of the OEM source code are not available in mainline,
+> I refer to other boards (e.g. RK3568-EVB or RK3568-ROC-PC), but
+> I don't have a camera or screen to test, so I mark them as demo.
 
-[...]
-
-> +	wlan_en_state: wlan-en-state {
-> +		pins = "gpio54";
-> +		function = "gpio";
-> +		bias-pull-up;
-> +		output-low;
-
-and active-low here..
-
-Please remove the latter line
-
-Konrad
+These things may have been brought by rk3568-evbxxx.dtsi, and may
+not actually exist.
 
