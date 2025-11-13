@@ -1,140 +1,203 @@
-Return-Path: <devicetree+bounces-238025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFD86C5681C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:11:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC261C56877
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 10:15:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B66C3355BF5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:01:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C1C294EBDD6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 09:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6B23396F0;
-	Thu, 13 Nov 2025 08:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F21E332EA5;
+	Thu, 13 Nov 2025 08:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="i6HACEtl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FGYsqAmV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="M2YTs9BP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4482741DA;
-	Thu, 13 Nov 2025 08:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED1114AD20
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763024184; cv=none; b=DGRgXfYrO2qMBICPG+urFD3R8h6kQ8vsUXVr3sx70YXPfG9Mtb9Ae0KvZ7khsdEUEnbPSDMgQJejFgYAUUnHYLFBHY/vQ3ZmR8VTiwJ6YTKAsZkb5CCWlDME2iHSftZcSbS73d27NWhYqDb4Y1u1GY0oBmAk4O9HADGDMjB9gW4=
+	t=1763024340; cv=none; b=nNcqNtVlT+6lW0opdnHUvDXpqVnp9DZ04Lzp/GtBxDjFlNeVUYMt+HklyD/S7xkDKpxz9if7A86QkCS+P455K0yqCcl0qvR3iGhnL3d8Gzv56yyD7tbB+TPNeMGgktaSo1AeDtmGnnvs7Z/9vQ9+v6IVrlmXQUDFI2NcvQojHXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763024184; c=relaxed/simple;
-	bh=zp6SlYcPA6p/E0ySGHx+QoEp05+2+wht8ejef48Qeh8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lEQMIF1yKg+8Un3p2HqPfsgsX2UgG35eM10BThDAWdcHofHl1YmCJDfkl2hdgDZtbd3nUDhWh2BHIG9qPBIUCh9zvbMBySGqJDGtEfVdM0J0zgxjHpljPMTzrrar9CbEQKf2x7bPGFl4KqIZ+QmUe5Ky+UsBpSPDWi04kIBoqcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=i6HACEtl; arc=none smtp.client-ip=95.215.58.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Thu, 13 Nov 2025 10:56:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1763024180; h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-	 content-type:content-type:in-reply-to:in-reply-to:  references:references;
-	bh=nWP3To9chHe8h02n9M1ldMghujzaU64BefpJAj3Yhlc=;
-	b=i6HACEtlEZRTsOq0Aw420IWJzeqnYlQlHrCGC44aRMpphV+QM19Nkd3SWxR/8Rh+VPI1Wx
-	YGN+xA5JY7HUIRIu9XqP51yViYUBKG2vuOAvUwSFyWUYnIzCJwJ3Kut3n0/z4NiKcvFHsa
-	ajjEH3CAha+UqO/Fa252aB6HqDN6iyw=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Matti Vaittinen <matti.vaittinen@linux.dev>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v4 16/16] MAINTAINERS: Add ROHM BD72720 PMIC
-Message-ID: <3aa7088ba93e0faac1010897e5da2f0541022d9f.1763022807.git.mazziesaccount@gmail.com>
-Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1763024340; c=relaxed/simple;
+	bh=xeygKzfNcFQdWUmw0ipAs/cIwF7l2/4A6HjIVo7GqkE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pfLszHQdALgAB48W2YPkxel1HPur7JhOEC3io8SrXDDyCsw2j+Ntpr/TOqzIhz9FFA+yNGQJOd7zbrrAPZB8kpdMxMiGdmo+959R2OpfKCVukiBRs9YoI+yY/rWc3OrHBxjQBixJUbeTBOMvvAfwZmaA2iO0KL3VkSw3myQodqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FGYsqAmV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=M2YTs9BP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD8rX6e2909814
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:58:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sROjm0GfKSzH5SLU/NEBWTltDSLd9LFgr/GT0GVKZ6c=; b=FGYsqAmVJ91Sm7TH
+	DutOPdwu+77i+E/LtYnIJJzBPx486I817RtREncP/Qr1BM6eD1LfnOIXMaiMXeIX
+	G+qwtR5Mmy9oOohqtrSkydhHo1eEUovPv870xZGRj63f3lkXbom4NFXnnYXbBoaL
+	fCYi645gOYSLwCkEjGiekb1i7a4IMWlmaNtS+Ue1wZn10BX2lFTg4gtOXK5XDW0g
+	osnFt4QMdiEq8yc2s4wI99ERamW8FLWzhszDgUEl5DiZ2U5OwPfE5WFWLYWygMbO
+	3O03qXhAcL1ebRgYAf/5b+/tY6jzMumlyC5K8wm167zrLkCs1aima/cbLrWATLOA
+	o4YuOQ==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4acygmabag-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 08:58:57 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3418ad76023so1464864a91.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 00:58:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763024336; x=1763629136; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sROjm0GfKSzH5SLU/NEBWTltDSLd9LFgr/GT0GVKZ6c=;
+        b=M2YTs9BP5etJCe7Jkjo71XZJ2mTtJAuUlUAOmtpm7pKuZod8ZmHvFuFGlbvunSbyhX
+         /spjShQV/Kb4ZF3qrR7+tV098Mx+8Oi6Kh1uEIG020NHjdRGo1rM1E8coj7j4Tz5YyCZ
+         Rsob4K7Fd7ftI7MtvtMRT8/g7RYF9YEpo/WbIdSGGd7vQ2IQe71haztJ0Q77kbo1pXcb
+         Bec2IOGpG3zGUunETg3ZSaJad0cMt1nLa+vB4KbhWjl2TC3OOqizblKuj0Uh+VNTWfcB
+         3UGgNf6QOvT6oK5bJhuTm1qBQ3uP9yOy2XX5PSpInHKg9D7WJlusCnhg+ZJYfi27BQJ2
+         3aNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763024336; x=1763629136;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sROjm0GfKSzH5SLU/NEBWTltDSLd9LFgr/GT0GVKZ6c=;
+        b=F/0E84TNaojSao77lQTPdr5to0oHCDpq8nVMqoTNH7XI5W+VA9AVOhKDj7oVGGE+Rr
+         Fx91Uou5N9/XlwIQVGLLEnFNon0IPXRLvKI/mG2Iwp7pnnOY5XcD+bECCsYbX6rP12SM
+         95P52n6IVS+5ZYw5T7IQ+s/lJDZTOceC11mMkkSRaGamDHiQ+agITFB/GiJceJ18Zvqq
+         h+Bcrlg16g8cB2M6cmczYhPcb7sGUMg3GnBuPeuexB3fwE7RQKyFNjW542NZ2K9eVoJo
+         8SYMko22DCCRIrdHKANXd3X9TS/zIuHpU1/qicSjYUonar5xpgEcK55bF/dY9UR6H8Bj
+         iXtA==
+X-Forwarded-Encrypted: i=1; AJvYcCUrZ9iH11iXrOlWYSHRqx+M5ZUmfOB6FL++ZEHhaZWWRQbIruzXmtVYKqKn3Gw68ONve/XbrhDNCwzO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzuo2DmbLv61SBnSuL9gD7Lx96CXG8+kQrQq093c9bBIJ6Y1pPA
+	CKmuT39N1S6WKwZhflWlDopNPjDk8ZibSjKvffTB86IcxGzjf62oLUJFGY5xXZ5sW94UqXo3gMg
+	dIJY/Lq8HLbZzevsIDC4uVmlZ5/OxK129sCU449/vhtc8elBRc74wsoUstOD2Kbu5
+X-Gm-Gg: ASbGncuiYOaprfGTVxY2MwM+a+Mjp9xl0UpARC4EsJWxaY81i6LJphV5DLRhMJNfoMu
+	tnzbUTqYA/xkh7GcNx1XhtpylX5F5wcPWozNBz5q1nKGWhpxen2N6XBz+YHBoAtEdeCIB1ZY0aC
+	5rZSWp0Kg/gYz0u3hx0uhSXq5bUWZ5XYRxxitgSiezNlGXCREZvmyImN0pS9f689g6ztl/lLfT8
+	4N+/xWZc7sGqDqxxLBiEE4NbC/6zjnc5NIgf3e/Q2zj61x6UZQVyWr/ukSuaVtAeHR/Bff//9dv
+	HDEtAaPLMLpVlYMp2UOKuonS7CAtmkaZdGQ542UEUL8dCPbxfxvHdRu7mO/UmFQIHvQV078BMAB
+	RUwFhxCIFm7/utjubT4VxGPhj5v3hlbpvw3ukSB+GEU4osqM6wLSIV1aNOQn8V4DdKsE8Z+rW
+X-Received: by 2002:a17:902:e5d1:b0:296:ec5:ab3d with SMTP id d9443c01a7336-2984ee3523dmr75868785ad.61.1763024336338;
+        Thu, 13 Nov 2025 00:58:56 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHzgUlzNtw8/rYEnIQrkWBFku2DIdKphkHqn6UbV00gDuOF+BZfctiwr/Qw6rkA2ESsI4XQ0g==
+X-Received: by 2002:a17:902:e5d1:b0:296:ec5:ab3d with SMTP id d9443c01a7336-2984ee3523dmr75868465ad.61.1763024335662;
+        Thu, 13 Nov 2025 00:58:55 -0800 (PST)
+Received: from [10.133.33.34] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2ccc03sm17458615ad.109.2025.11.13.00.58.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Nov 2025 00:58:55 -0800 (PST)
+Message-ID: <4d4fad1f-aa89-4aae-a856-b032ebc4ea9d@oss.qualcomm.com>
+Date: Thu, 13 Nov 2025 16:58:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="a9hT/oob02Yt7ImX"
-Content-Disposition: inline
-In-Reply-To: <cover.1763022807.git.mazziesaccount@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/3] coresight-tnoc: Add support for Interconnect TNOC
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Leo Yan <leo.yan@arm.com>
+References: <20251015-itnoc-v5-0-d7ca2b1cc6df@oss.qualcomm.com>
+Content-Language: en-US
+From: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
+In-Reply-To: <20251015-itnoc-v5-0-d7ca2b1cc6df@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: RViLLoixCzWtxHUhzjLaIw1VkHaNhqv1
+X-Authority-Analysis: v=2.4 cv=E/fAZKdl c=1 sm=1 tr=0 ts=69159dd1 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=Wn57KMgoQ4YZn1JjiAUA:9 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-ORIG-GUID: RViLLoixCzWtxHUhzjLaIw1VkHaNhqv1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA2NCBTYWx0ZWRfX+jG9FHR4reZY
+ OrxLGCKg9RW7owAnad7zhpfbGVVHK/WgI4ypcoC27F9Fwgd/0K9kvwBbsanMWkkLJBjGk2rJauN
+ 8fg/wA6UkSzShEBaN2kVCxvmpr8zN/b8HzWXJfrWj234ljQOOWANRwVtw+jhajSGoREZ2/GwVX5
+ BSLpf2wjOkI5T+HSOSK8GdvkUanl/WzUMekz4t+MtIpUJXo4scnyD9H5VU/anCKx8RNb/pUHYyf
+ ptk1tT3trrGtppxu/g6ucxLgAXrM03cDFwqZKM7IsD4p6Sjw1j3v49PLm0JNpfW8ygXXAYOJwkY
+ 1tLd97auKMWwuBTHI7ZbFt+RPHXvtHQUT02imTmzPr+Er94pwxPwZoN3ADhk2rNH8J0SbmCOBI8
+ T2acEXfZ9o1VGz3L/ytEDQKOq4YY+Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-13_01,2025-11-12_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 spamscore=0 phishscore=0 suspectscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130064
 
 
---a9hT/oob02Yt7ImX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-=46rom: Matti Vaittinen <mazziesaccount@gmail.com>
+On 10/16/2025 1:49 PM, Yuanfang Zhang wrote:
+> This patch series adds support for the Qualcomm CoreSight Interconnect TNOC
+> (Trace Network On Chip) block, which acts as a CoreSight graph link forwarding
+> trace data from subsystems to the Aggregator TNOC. Unlike the Aggregator TNOC,
+> this block does not support aggregation or ATID assignment.
+> 
+> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+> ---
+> Changes in v5:
+> - Add the missing review-by tag for patch 3.
+> - Link to v4: https://lore.kernel.org/r/20250831-itnoc-v4-0-f0fb0ef822a5@oss.qualcomm.com
+> 
+> Changes in v4:
+> - Fix unintended blank line removals in trace_noc_enable_hw.
+> - Link to v3: https://lore.kernel.org/r/20250828-itnoc-v3-0-f1b55dea7a27@oss.qualcomm.com
+> 
+> Changes in v3:
+> - Add detail for changes in V2.
+> - Remove '#address-cells' and '#size-cells' properties from in-ports field.
+> - Fix comment indentation for packet description.
+> - Link to v2: https://lore.kernel.org/r/20250819-itnoc-v2-0-2d0e6be44e2f@oss.qualcomm.com
+> 
+> Changes in v2:
+> - Removed the trailing '|' after the description in qcom,coresight-itnoc.yaml.
+> - Dropped the 'select' section from the YAML file.
+> - Updated node name to use a more generic naming convention.
+> - Removed the 'items' property from the compatible field.
+> - Deleted the description for the reg property.
+> - Dropped clock-names and adjusted the order of clock-names and clocks.
+> - Moved additionalProperties to follow the $ref of out-ports.
+> - Change "atid" type from u32 to int, set it as "-EOPNOTSUPP" for non-AMBA device.
+> - Link to v1: https://lore.kernel.org/r/20250815-itnoc-v1-0-62c8e4f7ad32@oss.qualcomm.com
+> 
+> ---
+> Yuanfang Zhang (3):
+>       dt-bindings: arm: qcom: Add Coresight Interconnect TNOC
+>       coresight-tnoc: add platform driver to support Interconnect TNOC
+>       coresight-tnoc: Add runtime PM support for Interconnect TNOC
+> 
+>  .../bindings/arm/qcom,coresight-itnoc.yaml         |  90 ++++++++++++++
+>  drivers/hwtracing/coresight/coresight-tnoc.c       | 136 +++++++++++++++++++--
+>  2 files changed, 215 insertions(+), 11 deletions(-)
+> ---
+> base-commit: 2b52cf338d39d684a1c6af298e8204902c026aca
+> change-id: 20250815-itnoc-460273d1b80c
+> 
+> Best regards,
 
-Add the ROHM BD72720 PMIC driver files to be maintained by undersigned.
+Gentle reminder. 
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
----
-Revision history:
- RFCv1 =3D>:
- - No changes
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fe01aa31c58b..7e3c1eac7cda 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22353,6 +22353,7 @@ S:	Supported
- F:	drivers/clk/clk-bd718x7.c
- F:	drivers/gpio/gpio-bd71815.c
- F:	drivers/gpio/gpio-bd71828.c
-+F:	drivers/gpio/gpio-bd72720.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
- F:	drivers/mfd/rohm-bd9576.c
-@@ -22369,6 +22370,7 @@ F:	drivers/watchdog/bd96801_wdt.c
- F:	include/linux/mfd/rohm-bd71815.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
-+F:	include/linux/mfd/rohm-bd72720.h
- F:	include/linux/mfd/rohm-bd957x.h
- F:	include/linux/mfd/rohm-bd96801.h
- F:	include/linux/mfd/rohm-bd96802.h
---=20
-2.51.1
+thanks,
+Yuanfang.
 
 
---a9hT/oob02Yt7ImX
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEyBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmkVnSoACgkQeFA3/03a
-ocUZKQf3RnWEJD5XEsjYHiqpfGbSkxCyq2y+9UDyXdp8Wuq1kAvLxy1AgMgYRhSQ
-Kgsi/BaCI4HQt1RS6SxDioeYjAslQzVgcDRCRi3Uzw9wp8VUHx7F1QtZ7UY1oEur
-jE+IMZO4jPa0DF5EZAaxwaIPXmls2Lk/O3GYxMkeOdE7FR1vrFnY1EgiRv50W7QV
-Ai0RXIpR56RHaFZUPcdAse7o5xlRmNfttvhTEiKQ5jPjz1TmkOKJeoRNCSPwutS8
-t1i5GYgJ2MpQtdnmIEomcGfUA+Ul0xZCDGXuX2luQeTy1ncCy2Bsc2qVg7UL1iYN
-xGOLD658Bmn8KrOss590oC5IroDe
-=n6lR
------END PGP SIGNATURE-----
-
---a9hT/oob02Yt7ImX--
 
