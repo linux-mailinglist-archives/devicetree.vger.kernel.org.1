@@ -1,74 +1,67 @@
-Return-Path: <devicetree+bounces-238350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB1AC5A443
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:04:39 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B17BC5A43D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:04:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF4F43A6118
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 21:58:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 67F844E06B2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:04:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4296331A072;
-	Thu, 13 Nov 2025 21:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E453164C2;
+	Thu, 13 Nov 2025 22:03:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="f25tQNVt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L//Nr7PN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3DD2F5A05;
-	Thu, 13 Nov 2025 21:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5B7244679;
+	Thu, 13 Nov 2025 22:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763071102; cv=none; b=b4udQdw04KuwyWLXNw9RKsXEEdvqu1U7rV6UyNZm6R4Uxhx0ewf0YhvCenNWr4ldDVqFpPww+pHnXr4tLJ4WxA92r3bVUdqqMqQGCKXmYrTSZRVdkbG0JRQth9G6kEGYFhVLtLeL7bSd3++/jcJHut5UUtwxfNMzVgpgCB2ut3g=
+	t=1763071438; cv=none; b=lsMnd4qTz+hWWkLOyIlWa8/EYQYZUliDJbp3Ee81XJ1mIOa0v/hwZh4BH8bibS83H1uLU79zz4rhJjE0qHKyvD7oKBcUOnYMuIZ1qjooucPIT9nPvC/oQYgZ/yPEGxxrC1DB3zpl1h1n91tJgKSvRJ2PELyjoxsCEfWXzos3hMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763071102; c=relaxed/simple;
-	bh=u3RJTEuTMsu/Mh0lzU/eXO9euG6h1ckFdxYoSCZ8rNw=;
+	s=arc-20240116; t=1763071438; c=relaxed/simple;
+	bh=+q6R5ADEst/IJRlT0HeoA2Qb1YnoiNZiNGQkk5WQMWE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=taz5WQWwDmdf2BNE4aSHGNuVaIhVvHVQQsDKZof3m6cBSTpor4JF15QT6QkAMVGmDhaMRiKdv8Th0Z//XDH4XVNQp/fbBdwH2TCs7XqkJObtcQ5kpXFsi2Hf+BqH1C2g2rWUdyqBiqdd+qQVC8U8Yq54EkohUBWoW040jNGeDco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=f25tQNVt; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Qa18NJB1fJabOG9o5oBBmugYBETJSqlkvD8oDh6fndI=; b=f25tQNVtFX2MKpp463PhWDnU5K
-	XefbmrMPqZwVTWuUsFxuhJE8F71oOZyaBvxwytjY9I3vpRa/rI8JMa9rW8EMiwGmD08QxLqEImeTy
-	ZeamHA1hHPeIhjv7vW9Q7W5Ab6vpcntgXFZXEQkUXh+l885zw9KRgiCEa4BxfFGHiDX0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vJfKP-00DvH3-Gs; Thu, 13 Nov 2025 22:58:05 +0100
-Date: Thu, 13 Nov 2025 22:58:05 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=lnbqUrqLIk4w/fhAlgLJtKIzayrwaDKnhtmo+6Xob8wnd6N3G2w40M8is2IHSkJHkfYNix7Ef+WeBkcpaxAIeG7gol1kPrnR5HO8Tj93EgggKvWDmAjCSgBJaIJxChjFA7Nx+npSmOe654Yl6aFDQHagJQVo+rRUZCvaDVeAbpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L//Nr7PN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A009C4CEF5;
+	Thu, 13 Nov 2025 22:03:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763071437;
+	bh=+q6R5ADEst/IJRlT0HeoA2Qb1YnoiNZiNGQkk5WQMWE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L//Nr7PNObVuWD2mUcZ+vYgF66VZzt9fCieFyPY1q5L/gP3lXHtYpug3X35V+Ex4O
+	 4IA/zMzZesPed5TsR1ad0pcGvi5hUmp2Ghs6q3Qvat0Yhqum9dTfAnCimBCv7KiHTp
+	 az9w2vyn+fx4hVlbY+kuJmcD8aja0sJGo+Je18iKJPWMjTca0CPtiDlTRvjGdC6NyB
+	 IqlO7282TiP8bxGgtSJW5tfBX1vWOFXa/sUqVbjcEi6v8e7vj128BgLLBi4nUk3/On
+	 wDc83/BNf9G7vX5xDY6vtVjbTG+/8/hZMRow5GDnHHNJVHdHJg6ku+Z8NYuCA1XoxL
+	 8RZhPm7mqjOLA==
+Date: Thu, 13 Nov 2025 16:03:56 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yuntao Wang <yuntao.wang@linux.dev>
+Cc: Saravana Kannan <saravanak@google.com>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pcs: renesas,rzn1-miic:
- Add renesas,miic-phylink-active-low property
-Message-ID: <0d13ed33-cb0b-4cb0-8af3-b54c2ad7537b@lunn.ch>
-References: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <de098757-2088-4b34-8a9a-407f9487991c@lunn.ch>
- <CA+V-a8vgJcJ+EsxSwQzQbprjqhxy-QS84=wE6co+D50wOOOweA@mail.gmail.com>
+	Catalin Marinas <catalin.marinas@arm.com>,
+	James Morse <james.morse@arm.com>, Baoquan He <bhe@redhat.com>,
+	Zhen Lei <thunder.leizhen@huawei.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Geoff Levand <geoff@infradead.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Alexander Graf <graf@amazon.com>,
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/7] of/fdt: Simplify the logic of
+ early_init_dt_scan_memory()
+Message-ID: <20251113220356.GA800052-robh@kernel.org>
+References: <20251113155104.226617-1-yuntao.wang@linux.dev>
+ <20251113155104.226617-6-yuntao.wang@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,28 +70,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8vgJcJ+EsxSwQzQbprjqhxy-QS84=wE6co+D50wOOOweA@mail.gmail.com>
+In-Reply-To: <20251113155104.226617-6-yuntao.wang@linux.dev>
 
-> Each of these IPs has its own link status pin as an input to the SoC:
-
-> The above architecture is for the RZ/N1 SoC. For RZ/T2H SoC we dont
-> have a SERCOS Controller. So in the case of RZ/T2H EVK the
-> SWITCH_MII_LINK status pin is connected to the LED1 of VSC8541 PHY.
+On Thu, Nov 13, 2025 at 11:51:02PM +0800, Yuntao Wang wrote:
+> Use the existing helper functions to simplify the logic of
+> early_init_dt_scan_memory()
 > 
-> The PHYLNK register [0] (section 10.2.5 page 763) allows control of
-> the active level of the link.
-> 0: High active (Default)
-> 1: Active Low
+> Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
+> ---
+>  drivers/of/fdt.c | 14 ++++++--------
+>  1 file changed, 6 insertions(+), 8 deletions(-)
 > 
-> For example the SWITCH requires link-up to be reported to the switch
-> via the SWITCH_MII_LINK input pin.
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 4c45a97d6652..b6b059960fc2 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1027,7 +1027,7 @@ int __init early_init_dt_scan_memory(void)
+>  
+>  	fdt_for_each_subnode(node, fdt, 0) {
+>  		const char *type = of_get_flat_dt_prop(node, "device_type", NULL);
+> -		const __be32 *reg, *endp;
+> +		const __be32 *reg;
+>  		int l;
+>  		bool hotpluggable;
+>  
+> @@ -1038,23 +1038,21 @@ int __init early_init_dt_scan_memory(void)
+>  		if (!of_fdt_device_is_available(fdt, node))
+>  			continue;
+>  
+> -		reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
+> +		reg = of_fdt_get_addr_size_prop(node, "linux,usable-memory", &l);
+>  		if (reg == NULL)
+> -			reg = of_get_flat_dt_prop(node, "reg", &l);
+> +			reg = of_fdt_get_addr_size_prop(node, "reg", &l);
+>  		if (reg == NULL)
+>  			continue;
+>  
+> -		endp = reg + (l / sizeof(__be32));
+>  		hotpluggable = of_get_flat_dt_prop(node, "hotpluggable", NULL);
+>  
+> -		pr_debug("memory scan node %s, reg size %d,\n",
+> +		pr_debug("memory scan node %s, reg {addr,size} entries %d,\n",
+>  			 fdt_get_name(fdt, node, NULL), l);
+>  
+> -		while ((endp - reg) >= (dt_root_addr_cells + dt_root_size_cells)) {
+> +		while (l-- > 0) {
+>  			u64 base, size;
+>  
+> -			base = dt_mem_next_cell(dt_root_addr_cells, &reg);
+> -			size = dt_mem_next_cell(dt_root_size_cells, &reg);
+> +			of_fdt_read_addr_size(reg, &base, &size);
 
-Why does the switch require this? The switch also needs to know the
-duplex, speed etc. Link on its own is of not enough. So when phylink
-mac_link_up is called, you tell it the speed, duplex and also that the
-link is up. When the link goes down, mac_link_down callback will be
-called and you tell it the link is down.
+This doesn't work. of_fdt_read_addr_size() needs to take an entry index 
+to read each entry.
 
-    Andrew
-
+Rob
 
