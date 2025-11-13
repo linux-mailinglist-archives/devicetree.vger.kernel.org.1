@@ -1,55 +1,52 @@
-Return-Path: <devicetree+bounces-238354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38012C5A4EC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A9AC5A52B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 23:35:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B1813AA685
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:24:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC7633B0EED
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 22:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9770131E10B;
-	Thu, 13 Nov 2025 22:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDF62280CFC;
+	Thu, 13 Nov 2025 22:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="bNnsW5w1"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="mMvp/yTD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294D93164D0
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 22:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0825D76026;
+	Thu, 13 Nov 2025 22:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763072673; cv=none; b=WzB+O9o28OfFOGIyk0q/FNNKMph49KRAOXd9DgyVEtHrCqolJv3LJjy6Rp1hTUlnxOwx7f1+spMjvmR4b5SM8vxIo5YwxTKO7V28uuHz4d/lrSCyJPR8I1scEseuxq7hf3ib+vlYnlv/V7ZD59pCQO6yQ8kXvJFZ2cUNmOa9NxA=
+	t=1763073274; cv=none; b=mqR/v2DWF4yggWfzXtNXzTwKcBYFk+QViHWZfPhZik2A18EL7ebZaenMIKcQzVKctldaYEAS1LSLv+EvfYeA3w6BrRU8thsRbmO4GK6mdZkSpAXcdYfXyR4giB6BuPW3cA/KBGeXQ50DWWDygbWTfXuO+WG05fEKziHci8nVhMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763072673; c=relaxed/simple;
-	bh=0A7E6p3NyGvGxRZwbuJeOguXiJ/TAcxI4gw35WC8eBU=;
+	s=arc-20240116; t=1763073274; c=relaxed/simple;
+	bh=IKaqYh5FTlwHvhByay4VeK+Ue+9R1/kNxroMbxuEdO4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S9dlGxeNw0smbQyup0PloJMw7GJ5ebOD3mkoLCuG7z3Y1e/OeWFK6WPKGLT64nd9l6UbnObccvhz6VY3nshZhAdbFjxm3CTRvqesk4SB/G05eh+kGonzJxnAEcKXObCtGg0PXI5PoqT/l9F3cQjMd3bQe247gcG+xLvAFd+YMns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=bNnsW5w1; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1763072669;
-	bh=0A7E6p3NyGvGxRZwbuJeOguXiJ/TAcxI4gw35WC8eBU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bNnsW5w1L4nQ6M9iOKcAXFQjUiKR2YfkTIPtMRbV39ThZ7InueAuUT1nKwbCFUVyP
-	 TvW7zfAG6WX75ibRfEaHl/NWPJbjipufjj5id0Qe8nIA2mEEzLTt6ZcQo7mS+/6jlJ
-	 5qAqZoAIMsrOfbbSZHQ8xCn1Aqu51EpXoFDFg0AC5IShn1LAzZttY89ZSUgneo8ZXU
-	 fQOGxjy7OvcWDWtA2X9lqryhECIQYh71l3shPFMIS6xu7fjiYnVkbh8ulOO3KxEp9g
-	 pyuTysqb+Xs2B4O6hTWQ8ou4QtNabnPAilxWe6IJEYkLis7CZn3n2wDAlcgzQz1bu9
-	 z7byeOWHmTBcg==
-Received: from [192.168.1.90] (unknown [82.79.138.145])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4C54A17E00B0;
-	Thu, 13 Nov 2025 23:24:28 +0100 (CET)
-Message-ID: <684723a1-50f4-4645-ab6e-52e69d1fc96a@collabora.com>
-Date: Fri, 14 Nov 2025 00:24:27 +0200
+	 In-Reply-To:Content-Type; b=fMlpn7FRaVE0MKa5JupeSYAX1/FLjydQq04CMJlw8smDSsSIk3gK7WcA5mI/zoSx5+uQoYSVmDQl+t7VqbgTk6AFkEgXMUeMGjvqIfgz1tpm5FzI+zt2+NKL2MNwd6pzloQD7fbhkRbUdpeTeSaZoAc8VWiTZv3d5bWMRfLDV3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=mMvp/yTD; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=IAH0ljWgr/r7rtXP8CHeFZ266fhcWeM8ywYAtKpwpc4=; b=mMvp/yTD9SPaIQlUi1UFT0cpy8
+	2e5XRvbZbB1/z8djasK2KUJxtN+W1llaOPDGS0CeGuICL6IHPyhAEHVTeRMc3PWy0OnMZuefFCSJ7
+	E/BAj5KOmuo0WjXta7c1yui762WouZhvmb9UFj9SBxHTLMHmxLbdpYBGqZelybbZMwJfY1BziTdiH
+	83T7QVKoDu7xZoDnG5ZNGiSYqmrxBKWiHe6bcF6GH1kplubId45+QPCaIlLUt6tcNB21ATHB5jPO3
+	eAj9Uv70j4JWpfRwrgAfgdph0qPDzLxgB8JTjdFg1ru5JmDbwstrDy1WjytM4dH0+bN9LryzO3Grg
+	PzXuCWFw==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vJftd-0000000BBsF-2zge;
+	Thu, 13 Nov 2025 22:34:29 +0000
+Message-ID: <6757912e-c729-4114-8aea-44a34a9c3a3d@infradead.org>
+Date: Thu, 13 Nov 2025 14:34:28 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,103 +54,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] drm/bridge: dw-hdmi-qp: Add support for missing
- HPD
-To: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org
-Cc: mripard@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>, rfoss@kernel.org,
- tzimmermann@suse.de, jonas@kwiboo.se, neil.armstrong@linaro.org,
- heiko@sntech.de, sebastian.reichel@collabora.com, jernej.skrabec@gmail.com,
- dri-devel@lists.freedesktop.org, andrzej.hajda@intel.com,
- andy.yan@rock-chips.com, krzk+dt@kernel.org, robh@kernel.org,
- Laurent.pinchart@ideasonboard.com
-References: <20251113192939.30031-1-macroalpha82@gmail.com>
- <20251113192939.30031-3-macroalpha82@gmail.com>
+Subject: Re: [PATCH v5 3/5] docs: staging: gpio-rpmsg: gpio over rpmsg bus
+To: Shenwei Wang <shenwei.wang@nxp.com>,
+ Daniel Baluta <daniel.baluta@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+ "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ dl-linux-imx <linux-imx@nxp.com>
+References: <20251104203315.85706-1-shenwei.wang@nxp.com>
+ <20251104203315.85706-4-shenwei.wang@nxp.com>
+ <20251112125741.GB1319094-robh@kernel.org>
+ <CAEnQRZB4ymvSERKhJW=PAk5xA2JYD=i4wzkbumj_g5S8BjONjg@mail.gmail.com>
+ <1dd236fc-26f7-4c02-b183-c3fc13d24767@infradead.org>
+ <PAXPR04MB9185B7827B1CCD1CD8D0E9B389CDA@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20251113192939.30031-3-macroalpha82@gmail.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <PAXPR04MB9185B7827B1CCD1CD8D0E9B389CDA@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/13/25 9:29 PM, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+
+
+On 11/13/25 2:23 PM, Shenwei Wang wrote:
 > 
-> Add support for the dw-hdmi-qp driver to handle devices with missing
-> HPD pins.
 > 
-> Since in this situation we are now polling for the EDID data via i2c
-> change the error message to a debug message when we are unable to
-> complete an i2c read, as a disconnected device would otherwise fill
-> dmesg with i2c read errors.
+>> -----Original Message-----
+>> From: Randy Dunlap <rdunlap@infradead.org>
+>> Sent: Wednesday, November 12, 2025 3:18 PM
+>> To: Daniel Baluta <daniel.baluta@gmail.com>; Rob Herring <robh@kernel.org>
+>> Cc: Shenwei Wang <shenwei.wang@nxp.com>; Bjorn Andersson
+>> <andersson@kernel.org>; Mathieu Poirier <mathieu.poirier@linaro.org>;
+>> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+>> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
+>> <s.hauer@pengutronix.de>; Jonathan Corbet <corbet@lwn.net>; Linus Walleij
+>> <linus.walleij@linaro.org>; Bartosz Golaszewski <brgl@bgdev.pl>; Pengutronix
+>> Kernel Team <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>;
+>> Peng Fan <peng.fan@nxp.com>; linux-remoteproc@vger.kernel.org;
+>> devicetree@vger.kernel.org; imx@lists.linux.dev; linux-arm-
+>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; linux-
+>> doc@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>
+>> Subject: [EXT] Re: [PATCH v5 3/5] docs: staging: gpio-rpmsg: gpio over rpmsg bus
+>> On 11/12/25 5:35 AM, Daniel Baluta wrote:
+>>> On Wed, Nov 12, 2025 at 2:59 PM Rob Herring <robh@kernel.org> wrote:
+>>>>
+>>>> On Tue, Nov 04, 2025 at 02:33:13PM -0600, Shenwei Wang wrote:
+>>>>> Describes the gpio rpmsg transport protocol over the rpmsg bus
+>>>>> between the cores.
+>>>>>
+>>>>> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+>>>>> ---
+>>>>>  Documentation/staging/gpio-rpmsg.rst | 202
+>> +++++++++++++++++++++++++++
+>>>>>  Documentation/staging/index.rst      |   1 +
+>>>>
+>>>> Why is this in staging when none of the drivers are?
+>>>
+>>> I guess that's because remoteproc.rst and rpmsg.rst are in
+>>> Documentation/staging and that's because when converting them from
+>>> .txt to .rst the author didn't know a good place where to move them.
+>>>
+>>> Would Documentation/driver-api be a good place for these doc files? I
+>>> can move them and then Shenwei place the gpio-rpmsg.rst in the
+>>> Documentation/driver-api also
+>>
+>> Documentation/driver-api/gpio/ if its driver documentation.
+>> Documentation/userspace-api/gpio/ if it user API docs There is also gpio
+>> documentation in Documentation/admin-guide/gpio/ which could also be
+>> appropriate depending on the nature of the document.
+>>
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 32 +++++++++++++++++---
->  1 file changed, 28 insertions(+), 4 deletions(-)
+> Thanks Randy!
 > 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> index 39332c57f2c5..a2b1a4821714 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> @@ -145,6 +145,7 @@ struct dw_hdmi_qp {
->  	struct regmap *regm;
->  
->  	unsigned long tmds_char_rate;
-> +	bool no_hpd;
->  };
->  
->  static void dw_hdmi_qp_write(struct dw_hdmi_qp *hdmi, unsigned int val,
-> @@ -520,6 +521,11 @@ static int dw_hdmi_qp_i2c_read(struct dw_hdmi_qp *hdmi,
->  		i2c->is_regaddr = true;
->  	}
->  
-> +	/*
-> +	 * Mark errors as debug messages when using no_hpd so no device
-> +	 * attached does not fill up dmesg.
-> +	 */
-> +
+> Do we have a final decision on where to place this document?
+> My thought is that Documentation/driver-api/gpio/ seems more appropriate. 
+> However, it’s worth noting that while this is a driver-related document, it doesn’t describe the driver API itself.
 
-Using the *_ratelimited() variant - see below - would make this comment kind of
-redundant.  Moreover, you've already explained the rationale behind the change
-in the commit description.  Hence I'd rather drop it.
+I agree that in driver-api/gpio/ seems to be the best place for it.
+(even though it's not my call)
 
->  	while (length--) {
->  		reinit_completion(&i2c->cmp);
->  
-> @@ -535,14 +541,20 @@ static int dw_hdmi_qp_i2c_read(struct dw_hdmi_qp *hdmi,
->  
->  		stat = wait_for_completion_timeout(&i2c->cmp, HZ / 10);
->  		if (!stat) {
-> -			dev_err(hdmi->dev, "i2c read timed out\n");
-> +			if (hdmi->no_hpd)
-> +				dev_dbg(hdmi->dev, "i2c read timed out\n");
-
-I think it's worth switching to dev_dbg_ratelimited() in this case.
-
-> +			else
-> +				dev_err(hdmi->dev, "i2c read timed out\n");
->  			dw_hdmi_qp_write(hdmi, 0x01, I2CM_CONTROL0);
->  			return -EAGAIN;
->  		}
->  
->  		/* Check for error condition on the bus */
->  		if (i2c->stat & I2CM_NACK_RCVD_IRQ) {
-> -			dev_err(hdmi->dev, "i2c read error\n");
-> +			if (hdmi->no_hpd)
-> +				dev_dbg(hdmi->dev, "i2c read error\n");
-
-Same here.
-
-> +			else
-> +				dev_err(hdmi->dev, "i2c read error\n");
->  			dw_hdmi_qp_write(hdmi, 0x01, I2CM_CONTROL0);
->  			return -EIO;
->  		}
-
-[...]
-
-Regardless,
-
-Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+-- 
+~Randy
 
 
