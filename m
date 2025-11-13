@@ -1,130 +1,136 @@
-Return-Path: <devicetree+bounces-238274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19F58C59792
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:32:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 817B7C5987F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:42:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C7E0934DF6B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 18:32:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23B733ACC49
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 18:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703B030E0C5;
-	Thu, 13 Nov 2025 18:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gVNb32t+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848F63126C3;
+	Thu, 13 Nov 2025 18:39:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42176272E5A;
-	Thu, 13 Nov 2025 18:32:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C3330F53B
+	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 18:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763058731; cv=none; b=cw5ZZDwu/8zGP2nwGgPkiWOGwUKobJ0E0r2Z+3okKVRt8fubLvnF3W0iMRfhJErcSTfVEyROo1UO9xgXlylvz8CYW1mNRXpc7FT6FMjB9SLqkOqqjaD3UT5MEKguGts/i4URl/r3V4i2SiYbBsP2IqZ5uVTXPXvCxrrJ579Ew6Q=
+	t=1763059179; cv=none; b=iIeesqMLCu68wDHT4/kLahe4qCNIbP7nAXuvy+32XF9a6EgqJVKi4RrI+pvNysjSYQ/MVL2zORVFKNNbHkNC8VbW3PPKdjbMfURIUCEqCZBf1wtq8f0jtCrvO20txSoYo7T82c5hwOHOqkRDMooAh97XdeqgYHd6fA9hXB/ZDo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763058731; c=relaxed/simple;
-	bh=9k0cV4W4E2McMEpHp1lX7/djiZ/+GbilTaI5Qd996Hk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A1+cJdPewhaW79rDCzTkPoF/rJkHIwN9glN9NA6HgROgOOHuINHcfVNfquOxIUnYff10SHc3s+Jfozx9RAcjSUJUfpGB79+98/PKd+nJjXLhwMGtgP+vm6bPQ77SLgGM0z4qQAWRri18LUzPUenPz4OZKLjMuNyTnNiCx9nkN8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gVNb32t+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D935C4CEF7;
-	Thu, 13 Nov 2025 18:32:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763058730;
-	bh=9k0cV4W4E2McMEpHp1lX7/djiZ/+GbilTaI5Qd996Hk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gVNb32t+Fx6zWayiyYsL5u5EliZBg+xwF8tM8HkzrHqKH5/4isdX35JmRhLPxHaJH
-	 1CPnqMLSMNSGjqUia4DsuVnQjRNStybfKhQ7V90sVl6pvs9jOVYLljBkBHlA+AzPxR
-	 VyAJewk07Ee6X73eO+3N1uBEFPhPwCJwk1gdKWTpVZC3RohnOG+KSbDiPExR8aAP0a
-	 96o7oXqSO7vvA06Hq7A0ERK59yXOgOZu1gbqfSbF9U3XckIZXVP9kpgnsP4A17wXWm
-	 Sa5wOIagNp0Uzz2B8CldEKZYIYFz1pigbXcCuBJuYHmat7fgjf/AjT7flveS74zyUi
-	 uwqY++dzAFkuQ==
-Date: Thu, 13 Nov 2025 12:36:33 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Ananthu C V <ananthu.cv@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] soc: qcom: socinfo: add support for new fields in
- revisions 20,21,22, and 23
-Message-ID: <3ebfephjmohck2y4upx6qe7yt7b6ocooe6ae5sfmom44oxz3fy@yeaiuy7ivpt5>
-References: <20251113085432.1309629-1-ananthu.cv@oss.qualcomm.com>
+	s=arc-20240116; t=1763059179; c=relaxed/simple;
+	bh=3c0sAkDQu1qBVzE7td1x+QSCl8WUFk7pNS0yIvPZ3RM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lcYyS/+kNR8BQlrf7zEgVEm+oUIv/4voCRhAyehpoturYkyCY4cMTrh1KrRxIksPkJR6+kifPorJkUahTIfeUQBopbsz18LDZoyk1sbX4o+C16+1AZthIKpJWtRm/6RuLyDvJXjA+3AZutaVNiy4GZHJrWj94KsL7HMcWy3xl5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-9371f7571cfso398745241.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:39:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763059177; x=1763663977;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fn33ddPk9bS9PgY509eYuCfPPBWfLh0ylYRDGrpE/Zo=;
+        b=Ew7V3S8eVN6anG0q/kaMKcf9kISf6HhNeSE+JhMWn68qoPCjN73vn5Nx49iIdebrBK
+         g2nU2kPkiOIAI8ZOiQ2PFBQd7T3+s9+t+gbSaZz3xeDG7kH3e+RxjHWzXBm+Bpgt5uGo
+         gb1tWFymmH6Aohgz0kjBu575STYD5KnT82Fbxoid4Aqr2Jb3z7J3nazHknyaZT4HKAjk
+         hFOVGR0amhckQKshQSfXLG8ment7seHq7W850BmplfInw7y2RkgZa8kOiWl5p8OdTt1w
+         S6uGwOw4OnQKWsi/DUJ1fnrryuCJX1hQ/Lc364sEjEWqG+LKq7ugC23Y8jqF6/K9R5SO
+         fLoA==
+X-Forwarded-Encrypted: i=1; AJvYcCWs9Bm638k1AG2MpNRqc+VsOWXRQcVBIzA/wyXsw+NBQekq7UqFtL2jp86YfFo2kYjX0O6LAULbr8t2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvdtT4UzBiwqJ7EnzaU4eN9mrpeQ/ME5CALyzom4gPRObkPUuZ
+	OIbcf3QXP0jcb50oPEtkas5dqk4H0N2CzNApWIL68nhHQuyBtB9DW+VdBt2qqhYjpU0=
+X-Gm-Gg: ASbGncsKiphATVZ36jGNjsCB0YRs4UhKs4QNxHvWYFaKJkq5yEFgBWYx0aNdf6lpmWJ
+	FJQh89AxD/2nY5emoi5WItjBv4zyVVJiSZT+XC4xk/G2iAXqj3uObwA3wg7+i149dCAmA4HEaZW
+	Kroh7wvIrIOTazlAdr4fsuTdM6vMif8Kq3qQukXuLynBXrIAJM2R0acbA6tbdI0HiK9zzgFDjFF
+	QD/f0spN74o1UtnC61mSlv3KS9Psfj0cDRxox4B6gLt8JYkXpdKvPBU4yJVUjfmJQg5mJuMMDkl
+	llqaQov8+TzdP1n2pg1h0FVdhOukGdaaPTQL/UcwG70LIUZTNKHQhkAUSGWj73UYa59WI+6NamT
+	2fRN4VKe5WdIQKekMj4fN3t79P/cZrP9Bl9grttfCDmte/QtQtcmr76X0L1l1+N/dTsma4VOqM6
+	LY4hfVzqmHQXelaEFL+BikpbszdjaXi5I+INVwmw==
+X-Google-Smtp-Source: AGHT+IEg025/8GaZyuaPj//SE28CjtwYiYJ0/g9OHrwa2UkmjJux2bX9xa/IefVR6wQ+urh8XVR31A==
+X-Received: by 2002:a05:6102:38c7:b0:5df:c390:ef5b with SMTP id ada2fe7eead31-5dfc5b94a70mr348208137.38.1763059176746;
+        Thu, 13 Nov 2025 10:39:36 -0800 (PST)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55b0f359fa2sm1030386e0c.8.2025.11.13.10.39.35
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Nov 2025 10:39:35 -0800 (PST)
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-93720fd0723so369056241.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 10:39:35 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUc/bgnwcvk0vtzdzeub2Iryu/pxzeKABTFxiyK9iruj/802nf4SR+OxXZr6VrwElOBIav+WRGAM9Ts@vger.kernel.org
+X-Received: by 2002:a05:6102:4b88:b0:5db:eeb6:812c with SMTP id
+ ada2fe7eead31-5dfc5b96e0amr374019137.43.1763059175404; Thu, 13 Nov 2025
+ 10:39:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251113085432.1309629-1-ananthu.cv@oss.qualcomm.com>
+References: <20251105104151.1489281-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251105104151.1489281-2-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251105104151.1489281-2-cosmin-gabriel.tanislav.xa@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 13 Nov 2025 19:39:23 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXEjnPWzwLF49ryooEUPNeLtXEuHDipcCMq=wsXN=zD_Q@mail.gmail.com>
+X-Gm-Features: AWmQ_blsF688r-SQvCXnNFqKgHzgSK8u69yJh9wFop3IkqSYjXU8VHfHFzFl3OY
+Message-ID: <CAMuHMdXEjnPWzwLF49ryooEUPNeLtXEuHDipcCMq=wsXN=zD_Q@mail.gmail.com>
+Subject: Re: [PATCH v3 01/14] clk: renesas: r9a09g077: add SPI module clocks
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, linux-spi@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Nov 13, 2025 at 12:55:06AM -0800, Ananthu C V wrote:
-> add support for the below fields in socinfo structure:
-> - v20:
->   * raw_package_type: type of the raw package
-> - v21:
->   * partial_features_array_offset: position on array indexed by
->     ChipInfoPartType, each bit notes the corresponding component being
->     enabled or disabled
-> - v22:
->   * cpu_cores_array_offset: position on array of cpu cores per cluster
-> - v23:
->   * part_instances_offset: position on array of PlatformInfoPartInfoType
->     structures
->   * num_part_instances: length of the array of part_instances at
->     part_instances_offset
-> 
+Hi Cosmin,
 
-Please see https://lore.kernel.org/r/20251104130906.167666-1-mukesh.ojha@oss.qualcomm.com
+On Wed, 5 Nov 2025 at 11:43, Cosmin Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have four SPI
+> peripherals, each with their own clock divider, which divides PLL4 by
+> either 24, 25, 30 or 32, similar to the SCI peripheral.
+>
+> The dividers feed into the usual module clocks.
+>
+> Add them all.
+>
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-Regards,
-Bjorn
+Thanks for your patch!
 
-> Signed-off-by: Ananthu C V <ananthu.cv@oss.qualcomm.com>
-> ---
->  drivers/soc/qcom/socinfo.c       | 4 ++++
->  include/linux/soc/qcom/socinfo.h | 9 +++++++++
->  2 files changed, 13 insertions(+)
-> 
-> diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
-> index 963772f45489..a14aaad51f81 100644
-> --- a/drivers/soc/qcom/socinfo.c
-> +++ b/drivers/soc/qcom/socinfo.c
-> @@ -621,6 +621,10 @@ static void socinfo_debugfs_init(struct qcom_socinfo *qcom_socinfo,
->  			   &qcom_socinfo->info.fmt);
->  
->  	switch (qcom_socinfo->info.fmt) {
-> +	case SOCINFO_VERSION(0, 23):
-> +	case SOCINFO_VERSION(0, 22):
-> +	case SOCINFO_VERSION(0, 21):
-> +	case SOCINFO_VERSION(0, 20):
->  	case SOCINFO_VERSION(0, 19):
->  		qcom_socinfo->info.num_func_clusters = __le32_to_cpu(info->num_func_clusters);
->  		qcom_socinfo->info.boot_cluster = __le32_to_cpu(info->boot_cluster);
-> diff --git a/include/linux/soc/qcom/socinfo.h b/include/linux/soc/qcom/socinfo.h
-> index 608950443eee..40903c54b526 100644
-> --- a/include/linux/soc/qcom/socinfo.h
-> +++ b/include/linux/soc/qcom/socinfo.h
-> @@ -82,6 +82,15 @@ struct socinfo {
->  	__le32 num_func_clusters;
->  	__le32 boot_cluster;
->  	__le32 boot_core;
-> +	/* Version 20 */
-> +	__le32 raw_package_type;
-> +	/* Version 21 */
-> +	__le32 partial_features_array_offset;
-> +	/* Version 22 */
-> +	__le32 cpu_cores_array_offset;
-> +	/* Version 23 */
-> +	__le32 part_instances_offset;
-> +	__le32 num_part_instances;
->  };
->  
->  /* Internal feature codes */
-> -- 
-> 2.43.0
-> 
+> --- a/drivers/clk/renesas/r9a09g077-cpg.c
+> +++ b/drivers/clk/renesas/r9a09g077-cpg.c
+> @@ -54,6 +54,11 @@
+>  #define DIVSCI3ASYNC   CONF_PACK(SCKCR3, 12, 2)
+>  #define DIVSCI4ASYNC   CONF_PACK(SCKCR3, 14, 2)
+>
+> +#define DIVSPI0ASYNC   CONF_PACK(SCKCR3, 0, 2)
+> +#define DIVSPI1ASYNC   CONF_PACK(SCKCR3, 2, 2)
+> +#define DIVSPI2ASYNC   CONF_PACK(SCKCR3, 4, 2)
+> +#define DIVSPI3ASYNC   CONF_PACK(SCKCR2, 16, 2)
+
+I'll move these up while applying, so all SCKCR2 and SCKCR3 definitions
+are grouped and sorted.
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.19.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
