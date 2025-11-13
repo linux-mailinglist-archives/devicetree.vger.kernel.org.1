@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD1FC59B3F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:18:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7512CC59A7F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 20:13:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C51C4EF3B6
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:11:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B8773B3B49
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 19:12:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E35E319851;
-	Thu, 13 Nov 2025 19:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AE130BF55;
+	Thu, 13 Nov 2025 19:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R3toaTeL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oitpd3Zd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6056E26E708;
-	Thu, 13 Nov 2025 19:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 193C5257845;
+	Thu, 13 Nov 2025 19:11:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763061041; cv=none; b=QdQYBq1mGbFyj9S+HD6eh0jC96QDs3gawQpMhlVCxrTXzDAcPUDAVFGWmJWo10qzMBVAdJGAF0xnWejZwKMujdb+Zv2TqOOdYeqMR6HxBQpSZisx+bI2JjTHNbm2YoreV7jGa3uWV/66l0r0nJYYldkZY3pL+5/Ldlgoqk3NQSM=
+	t=1763061103; cv=none; b=jkUlulYbcUcqD3hddvllZEk7F7rfov5xX0fx92rgrZTUTTrJAElKN5sHDA9nXM4ypVoqy9EEk6U204SQFoB+tYtZ+/pCJEQA+w/KS/+KYvLSl7rVCShHL8thLcKyMdBPHYXTEiobG6rFlFNsGWfKT9yWz5gTNoxXsJV8e5ClpY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763061041; c=relaxed/simple;
-	bh=44TFkluQ8NjYkM/UonfvdyIjixH2154CCmS8Jt4lT68=;
+	s=arc-20240116; t=1763061103; c=relaxed/simple;
+	bh=XPlHEOw1uPJQDazcMEywsx61CVGNF/VpjcTn8wMkkCo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ihb6OrtLAvR1Xjap2RXIbNjtVuBp8tGZQvdidlWGv61ocFC7nXq/EjRUaSkOYrw4WYera7p4CnrK2feLqRjrV5uCHIR4Mmkmk/m2TRdaIWXJMJsOPSYN2FBkOnW4mafZphDDzGH5kkN/RdNj5TKIGUBSs0f/tGGhp2gOYV8c9lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R3toaTeL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2347CC4CEF1;
-	Thu, 13 Nov 2025 19:10:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=L9BMk4y1l/H/Ln4AS05gm82sH0+qwzE4OFZ0xIB7bTr2mTnM93Q4pJQ/R+BIhBVLRr5Xfld8v1BFJQABm0aFxgAN+ZhJimgwjUUvP+XXzht2gzEznHYVG+6a+k7y9c/nfrenxsER9CdoOe6elA3RYCigsk4f5Et8YvfNKBOA/Ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oitpd3Zd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ED57C4CEF7;
+	Thu, 13 Nov 2025 19:11:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763061040;
-	bh=44TFkluQ8NjYkM/UonfvdyIjixH2154CCmS8Jt4lT68=;
+	s=k20201202; t=1763061102;
+	bh=XPlHEOw1uPJQDazcMEywsx61CVGNF/VpjcTn8wMkkCo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=R3toaTeLMEp1d+NiFs6A+mAY1QvXx6w8f3DWOLVS/1Maj4RyEyaI5L5hN7YTyPF1r
-	 h9/gJnDm459DS/Gtg/XeJaLhWgMeRLqXpKO4Am6wfK3HgR4bQiPeky/lIH+Etx/T2g
-	 /AflA7CydDfqNxJv1TsKtJV4AQE/KWXmEUEeXlgPv4q4qa+5pxYXsBGRu8S9RnKhNU
-	 A2RqgauhajKhHy6HUToubqfxEOYUdPdK8CwTC2hVKKG5+XtBC5WvBmwudvJyoIL0VM
-	 sRQi9XZ8z9NLL1aDBRjzrOW3qboZSkFNBjF/E8SmOAg9BjFBoU8h51AoHQNur3kYlo
-	 aYtC+RKaddxSQ==
-Message-ID: <0898b3ab-ae9a-49c8-a026-b9dac50e38c9@kernel.org>
-Date: Thu, 13 Nov 2025 20:10:33 +0100
+	b=Oitpd3ZdicpxqLH3v5bMK5Dlw1A1IeaK/f+tMTgfSeNLv6snibjasCa8fSqZIGDFS
+	 ilaoa+y3l2jQcb+qTJocZRgmlzNYJaDn3EAu9DGDHd/qKIxK0tmkyjhU2Txd2cqisv
+	 aNhkpdWedumHkSV5hFInFMMbkv3zrJuy4L/pysJQMAwj2LyuHGxfPnws2ZY1hL6Cwa
+	 V1Ic0ZewDvDwdHjuxn5G151CvWFhEP6vH3mkDkXNug+MjJ0B4RzaKCWG0UOQtkjWVF
+	 lSaCMtY9s73rD13zCeObAXRd10IO48NtEimwc7JrnRCNLaeilmBAOmnUfHvaE+uupq
+	 eH2Mloms0G7lA==
+Message-ID: <ae87f1fe-b107-4589-bde5-21c9f3e8f816@kernel.org>
+Date: Thu, 13 Nov 2025 20:11:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/22] perf/events: replace READ_ONCE() with standard
- page table accessors
+Subject: Re: [PATCH v3 05/22] mm: Move the fallback definitions of pXXp_get()
 To: Samuel Holland <samuel.holland@sifive.com>,
  Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
  linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
@@ -63,32 +62,23 @@ Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
  Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
  Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
- <Liam.Howlett@oracle.com>, Anshuman Khandual <anshuman.khandual@arm.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, linux-perf-users@vger.kernel.org
+ <Liam.Howlett@oracle.com>
 References: <20251113014656.2605447-1-samuel.holland@sifive.com>
- <20251113014656.2605447-5-samuel.holland@sifive.com>
+ <20251113014656.2605447-6-samuel.holland@sifive.com>
 From: "David Hildenbrand (Red Hat)" <david@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20251113014656.2605447-5-samuel.holland@sifive.com>
+In-Reply-To: <20251113014656.2605447-6-samuel.holland@sifive.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 13.11.25 02:45, Samuel Holland wrote:
-> From: Anshuman Khandual <anshuman.khandual@arm.com>
+> Some platforms need to fix up the values when reading or writing page
+> tables. Because of this, the accessors must always be used; it is not
+> valid to simply dereference a pXX_t pointer.
 > 
-> Replace READ_ONCE() with standard page table accessors i.e pxdp_get() which
-> anyways default into READ_ONCE() in cases where platform does not override.
+> Move these definitions up by a few lines, so they will be in scope
+> everywhere that currently dereferences a pXX_t pointer.
 > 
-> Cc: Peter Zijlstra <peterz@infradead.org>
-> Cc: Ingo Molnar <mingo@redhat.com>
-> Cc: Arnaldo Carvalho de Melo <acme@kernel.org>
-> Cc: Namhyung Kim <namhyung@kernel.org>
-> Cc: linux-perf-users@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> Link: https://lore.kernel.org/r/20251006042622.1743675-1-anshuman.khandual@arm.com/
 > Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 > ---
 
