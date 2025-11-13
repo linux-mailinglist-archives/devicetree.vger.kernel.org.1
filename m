@@ -1,204 +1,322 @@
-Return-Path: <devicetree+bounces-238091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F32C57166
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:06:00 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1034AC57293
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 12:24:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BD1564EC6C8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:01:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3186D349F39
+	for <lists+devicetree@lfdr.de>; Thu, 13 Nov 2025 11:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5677B339B44;
-	Thu, 13 Nov 2025 11:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F19C33B979;
+	Thu, 13 Nov 2025 11:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RjbrXA50";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="joYBJEgN"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="bIG9hQmf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m1973172.qiye.163.com (mail-m1973172.qiye.163.com [220.197.31.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A249533859B
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 11:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE9623385B2;
+	Thu, 13 Nov 2025 11:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763031649; cv=none; b=KberD6Wh8ks8x5qe/JFdlQIalgvbjypAGrYjNY+Qur2bHGjW/7crqKfbC1BcTQmDpIIj2/3sSJa/F0wWvOYMvoP9kihKHmmecRk9V6+yTk4ZIwffe2Aoc/Jm9+eeX3L2bM4aJMCJ2W0pc9DDB/yWDxgvXhJTu5I2q95b69nr6d8=
+	t=1763033029; cv=none; b=dnQNv9TR4YQUk++XTU5HGJIKo8uT8bo5iTkK/CYsYABpCKOuZK1DkQi6EV1bcmvLWfA4kzPr9yusvWNaqrVAfDPVrf83oJLzxNvRiL2u/UrbusWskEaHsPoRkf2LwSLJTc86bP7tXRKq6BZRc9tnGNcRWePTPP/ABD3Vt9E8tFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763031649; c=relaxed/simple;
-	bh=m5MeXEG3jZ6w84sxyLlnVWrLy9Qi9HUWIDgjc4XX0dk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bDLApCFYm0xkQWekUzLZzIN8zuOsH6g2O7AP74hcrGlroSxoXkvSQdNeYWXTJc8Jf13EE+Z06/CUuDgSdSdykP832RAG2gg9dcHj08TxGTkeqVcg9ZYzmAlTs7V3TZlmWfjrP1MzD0souRiWjVEhAYSX7gVVHAZeJu79I+GRr5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RjbrXA50; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=joYBJEgN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD5S9h13440489
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 11:00:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Dctm8dTwaNPV9EO1BqVmXYSJCSP7ANhI7WYmBi6vq2c=; b=RjbrXA50z6h7NNvg
-	jOCNuSSFppBjleq/dMjJ6ijGPRgNDSWUbjMfByueEa18RzFDKdyhNbzY/l8qkkVE
-	FBTEl0I/4TMpsiCyaAdwDROO+BLSNJOU8EQCmDotWjsW/jepZRq2C48sRc0Ph3wT
-	ChkTBLlZL+/Yglk1uQTJoSIo9jDXEYRql3QF1INXtKAgMEziQkGwu8jMOHtDkT7t
-	X8KB2KJcTGh3QEGxFF1taxqg2LlrxDvSUh3z9livUcPjBfFsRnfGItETb/9SZe3q
-	LzlI0P8HJsuMFvHcrHT7Haf6kE8oLJXRj9sT7me/jpaNyATHWUOd1XFbFpqUTCdg
-	6Vo0pQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ad97891ge-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 11:00:46 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4edaeb11630so1575221cf.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 03:00:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763031646; x=1763636446; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dctm8dTwaNPV9EO1BqVmXYSJCSP7ANhI7WYmBi6vq2c=;
-        b=joYBJEgNPr0Tn3imDasr75grsem/t8CV/rJPIMzd+vXK8hX3QXR6Gh+hG1HHCjDg+O
-         1/5+GYtOJF2x3cQRmzymN9iDozoJvpyppL1nPHoIKcUWLP5nvKOmyhCtM3+FrKMtsMpj
-         dJvWgPs3BatIaLfy3mAcG4NOM4XTqJ6xlAuBqawPSdaL4Onb85zg+OvgX1D4n7ENmKwA
-         8NctrUtxULljvlkN65zEmuJnuCpPH9FI9w8Anc0drJIxck0P9/ewkdfsCpu5LxbKAmX4
-         c8GAxyAUBKSiF2AFRj024wvNH+EQa1wtMKVe+6/eLEm20R1L+yFWZ6frzDXo0n3AQdAE
-         YgYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763031646; x=1763636446;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Dctm8dTwaNPV9EO1BqVmXYSJCSP7ANhI7WYmBi6vq2c=;
-        b=IGO0mQDR+NEuwss9ONTCD0wW4tmjrDVt9JeGZoNu0K1Sobhp+tDxdBjSnk91ef0fgQ
-         fM5krrQOWFg+Y/RnMPK9GiRIeg+Ov9Fz9usRRSNz98R17ob/jPQiBBzrZTq/RGQ2vSIV
-         GsQYOIhlAPhE5XEJ1wE/B5OuNPtZHgZzEWlb1mAVg0d+2jL4how77D5Qp2n+FnepypN5
-         0z8xavwA5b8UZMGI6o7R4YS2tyOym+y6MeX9dUhSUIQg8DPZblMeN5WoH4Ptb2I7QHDP
-         BpIJSySzWEVSB3wXbobaqFa+ue3rOuoEZxAPJGgD2nzXWi/Njt6/5VgvTygTi8pXw02M
-         HsfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWeNTOVikj+njM3W2AuoAYvyzIUvCOZUARNWezzfTt+PKRTZaoSIo91qa4X87CigTZ24p1Lr9C1GOHo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGU7UaX7wu/ADABty2oo9ABcJ1VkMfvB/jCJXQY8TJRi+Z95AH
-	8UXuXU8WHr/PETLSf8FWSCgMfoMyLIYB7AjnQ6fiEgGeMPH9BdV9ij2XWkgJ7pZZKRdqqQZCzlD
-	Ct6OBk3U/6In99D5zUPQYoItVIoWT1bWczft/L/DhK+JCDpISI+RPPWNhmGJ6rN6s
-X-Gm-Gg: ASbGncuvCzDYHyUXc2C1mCsVzNTXPcGWFklDvV+YWrDg9MlukZ+uykq/FFSWXH0dsxz
-	YTJ8Zr9P5696XsQS0yWyZC4wEIHWsg1s04KTXo9Op+RKOIUTkbV9K2cx0EUnatwTOzSIyckqAVQ
-	cYpckhn22qb5izi1H1/mFqrDqIEEItHiUHVp0TfeFNF6a0AtcItSj/bb7aF1SWtjjCNZmEezQ1r
-	bQTRPwEXR1678yLO1BI6rtx5fz3brdcaPYq5RKiUXkp2ZNaKEoPeI2AEBhU00MeOiXEPW5UXHHm
-	Xyolc0b7Io2JSPrjZGr6P99VSJrW+TBMO4mQbpf65IJZR8aefl8nXUbv+PozTrpxQXn/YNfIxpv
-	aOsXYejga44pjfU4VmOUtAVXxDuJT6iKABmOOec5xI5Lw8F9ZCwCxUpPz
-X-Received: by 2002:a05:622a:1a18:b0:4ed:afb4:5e30 with SMTP id d75a77b69052e-4ede794dc16mr20378581cf.11.1763031645548;
-        Thu, 13 Nov 2025 03:00:45 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFlVsSXjGAfEYJjZnev0pvnXR+ZCVmOPqmdnlNGvxTXW2vNS2YbvXEmH1mcjxmr+DTcdG+UNw==
-X-Received: by 2002:a05:622a:1a18:b0:4ed:afb4:5e30 with SMTP id d75a77b69052e-4ede794dc16mr20376831cf.11.1763031643184;
-        Thu, 13 Nov 2025 03:00:43 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734ff75e4fsm137001066b.12.2025.11.13.03.00.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Nov 2025 03:00:42 -0800 (PST)
-Message-ID: <fcb093e3-05e6-4e77-9150-25f9a76f8937@oss.qualcomm.com>
-Date: Thu, 13 Nov 2025 12:00:40 +0100
+	s=arc-20240116; t=1763033029; c=relaxed/simple;
+	bh=tL9huuj0lp11J3BNxg+GBpa/qQMQoaOviG2IhmdbrZk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=cOSkPi6ZztdV0z4CwY1hTs6632e7Gfg3APYZII3ySAYy2qFbkNcmvb0cM4z4XFzmZUyksUh9rQrzeFjNsfHxBX2gXNzmL2ecpeizx5ah3QxuDz0dSGrtTX4XAMRg2y8i91XmuraFQftCiT7TEcN9XdW7QwJAQmk52Mpk8cmXbCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=bIG9hQmf; arc=none smtp.client-ip=220.197.31.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from rockchip.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 29728c011;
+	Thu, 13 Nov 2025 15:54:24 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: zhangqing@rock-chips.com,
+	mkl@pengutronix.de,
+	kernel@pengutronix.de,
+	mailhol.vincent@wanadoo.fr,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	cl@rock-chips.com
+Cc: linux-can@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v9 2/3] net: can: rockchip: Refactor the rkcanfd_devtype_data structure
+Date: Thu, 13 Nov 2025 15:54:18 +0800
+Message-Id: <20251113075419.482940-3-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251113075419.482940-1-zhangqing@rock-chips.com>
+References: <20251113075419.482940-1-zhangqing@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] dt-bindings: firmware: qcom,scm: Document reboot mode
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>, konradybcio@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        sre@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20251103182006.1158383-1-loic.poulain@oss.qualcomm.com>
- <20251103182006.1158383-4-loic.poulain@oss.qualcomm.com>
- <aqoxdaq72prkeqwxmmohlmbpx7icuc32sej7did6vt6rzrgfib@bvmt7ppkvloc>
- <CAFEp6-2GGA2gvBKfO0fZemVmJmjQpTQEJ0vLfEewfhHKOYQGSQ@mail.gmail.com>
- <be0a418b-5e8f-4895-a3b8-482b6ad6a40e@oss.qualcomm.com>
- <sdhnchve6r5i4frhlx5q7lod5npzosbfdjjyd56l2z5ksoe4t4@lhm6d2pzsztm>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <sdhnchve6r5i4frhlx5q7lod5npzosbfdjjyd56l2z5ksoe4t4@lhm6d2pzsztm>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDA4MSBTYWx0ZWRfXxz08eHPQLi46
- 5O/4QOB3lBaJFZ67Z/Eou8t0CNDP/oFRnABh9JlX0lKq8BqGSTYySqgaW5G0g5B19dYHkwyJGyc
- OXqUZKTFEy2okLVv1DDambqcU4S4yW28j0bxUsHQZ4VH/6PM/+mnAt/6Qkn/1aMErlYESsH2aAq
- 1s8rst4w87DxIRcAvNwXBqAo1MhMpUq4Z2mibVQdcx/5TjlQZxhtrK0Eh3Ez0aZZdoDMAcjg+M1
- DLGI3QwEhqkSOtg6oQIaTxg7QH/xbn8sxQgGvNgXJ64SmU0J+NiWeJq0Ir05emjnrneUa5JaI6G
- yl290xono9HJj8LIFNn3pmh51e3DmRe++dfSNdaAnhvRtGBW/yvhz3XBQOKR9XWB+y2AuNLgQVx
- HUmM7QGpmnV9X+DR/uIGGCXZOSeblA==
-X-Proofpoint-ORIG-GUID: z0jM4uxK_bi9cYI-YMUFGR_miMM6Q5Hr
-X-Proofpoint-GUID: z0jM4uxK_bi9cYI-YMUFGR_miMM6Q5Hr
-X-Authority-Analysis: v=2.4 cv=PIYCOPqC c=1 sm=1 tr=0 ts=6915ba5e cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=hsPK79fdjXi5lFZ4yDYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-13_01,2025-11-12_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 bulkscore=0 impostorscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130081
+X-HM-Tid: 0a9a7c35612d03a3kunm5789752bf03e7
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxpLTFZLGE9IS0IYGU1DQxlWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=bIG9hQmfF4Un1kaIMgUh18R5aHJVi259blHqI/5obePNOvIcUcvdFYYy0cVhIC6cRLHaQgx72zjcYWSC5i4tD1CxL4BCwYnZyW3+E50GKqSByIS+SxfBbrUg83KA8/IHZCL1rtKNHiwrA1BojNncUZw6aGva88alko3frj7TINU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=qO5gjJMOC2KoZtAZHzit9KBiOeQ/Raj5W6HVLeYvZI4=;
+	h=date:mime-version:subject:message-id:from;
 
-On 11/12/25 5:36 PM, Bjorn Andersson wrote:
-> On Wed, Nov 05, 2025 at 10:44:05AM +0100, Konrad Dybcio wrote:
->> On 11/4/25 10:19 PM, Loic Poulain wrote:
->>> On Tue, Nov 4, 2025 at 3:12 AM Bjorn Andersson <andersson@kernel.org> wrote:
->>>>
->>>> On Mon, Nov 03, 2025 at 07:20:04PM +0100, Loic Poulain wrote:
->>>>> SCM can be used to support reboot mode such as Emergency Recovery Mode.
->>>>
->>>> "such as"? Do we have any other useful bits in here?
->>>
->>>  I heard we may have different EDL modes supported like USB or SD
->>> based EDL, but I don't know much about the details.
->>>
->>>>
->>>>>
->>>>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 4 ++++
->>>>>  1 file changed, 4 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>> index b913192219e4..c8bb7dacd900 100644
->>>>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>>>> @@ -121,6 +121,10 @@ properties:
->>>>>            - description: offset of the download mode control register
->>>>>      description: TCSR hardware block
->>>>>
->>>>> +patternProperties:
->>>>> +  "^mode-.*$":
->>>>
->>>> I'd only ever expect mode-edl = <1>. Do we have additional modes that
->>>> warrant the generic nature of this?
->>>
->>> We may extend this to mode-ramdump if it makes sense, but as of now
->>> it's indeed only edl, will fix it.
->>
->> Would adding ramdump here be a matter of:
->>
->> + mode-ramdump = <0xmagic>
->>
->> ?
->>
->> If so, please add it too
->>
-> 
-> But what does that mean? "Hey computer, perform a graceful shutdown and
-> when you're done, give me a ramdump"?
+Add new function pointer:
+Encapsulate some hardware operation functions into
+rkcanfd_devtype_data to provide differentiated implementations for
+different models (such as RK3568v2/v3).
 
-I.. guess?
+Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+---
+ .../net/can/rockchip/rockchip_canfd-core.c    | 100 ++++++++++--------
+ drivers/net/can/rockchip/rockchip_canfd.h     |  10 ++
+ 2 files changed, 68 insertions(+), 42 deletions(-)
 
-Perhaps it could be useful for registering a panic handler to reboot
-into ramdump in case that's not enabled by deafult (but is that
-possible with our fw?)
+diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
+index 046f0a0ae4d4..761cb36148ff 100644
+--- a/drivers/net/can/rockchip/rockchip_canfd-core.c
++++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
+@@ -24,32 +24,6 @@
+ 
+ #include "rockchip_canfd.h"
+ 
+-static const struct rkcanfd_devtype_data rkcanfd_devtype_data_rk3568v2 = {
+-	.model = RKCANFD_MODEL_RK3568V2,
+-	.quirks = RKCANFD_QUIRK_RK3568_ERRATUM_1 | RKCANFD_QUIRK_RK3568_ERRATUM_2 |
+-		RKCANFD_QUIRK_RK3568_ERRATUM_3 | RKCANFD_QUIRK_RK3568_ERRATUM_4 |
+-		RKCANFD_QUIRK_RK3568_ERRATUM_5 | RKCANFD_QUIRK_RK3568_ERRATUM_6 |
+-		RKCANFD_QUIRK_RK3568_ERRATUM_7 | RKCANFD_QUIRK_RK3568_ERRATUM_8 |
+-		RKCANFD_QUIRK_RK3568_ERRATUM_9 | RKCANFD_QUIRK_RK3568_ERRATUM_10 |
+-		RKCANFD_QUIRK_RK3568_ERRATUM_11 | RKCANFD_QUIRK_RK3568_ERRATUM_12 |
+-		RKCANFD_QUIRK_CANFD_BROKEN,
+-};
+-
+-/* The rk3568 CAN-FD errata sheet as of Tue 07 Nov 2023 11:25:31 +08:00
+- * states that only the rk3568v2 is affected by erratum 5, but tests
+- * with the rk3568v2 and rk3568v3 show that the RX_FIFO_CNT is
+- * sometimes too high. In contrast to the errata sheet mark rk3568v3
+- * as effected by erratum 5, too.
+- */
+-static const struct rkcanfd_devtype_data rkcanfd_devtype_data_rk3568v3 = {
+-	.model = RKCANFD_MODEL_RK3568V3,
+-	.quirks = RKCANFD_QUIRK_RK3568_ERRATUM_1 | RKCANFD_QUIRK_RK3568_ERRATUM_2 |
+-		RKCANFD_QUIRK_RK3568_ERRATUM_5 | RKCANFD_QUIRK_RK3568_ERRATUM_7 |
+-		RKCANFD_QUIRK_RK3568_ERRATUM_8 | RKCANFD_QUIRK_RK3568_ERRATUM_10 |
+-		RKCANFD_QUIRK_RK3568_ERRATUM_11 | RKCANFD_QUIRK_RK3568_ERRATUM_12 |
+-		RKCANFD_QUIRK_CANFD_BROKEN,
+-};
+-
+ static const char *__rkcanfd_get_model_str(enum rkcanfd_model model)
+ {
+ 	switch (model) {
+@@ -212,7 +186,7 @@ static int rkcanfd_get_berr_counter(const struct net_device *ndev,
+ 	if (err)
+ 		return err;
+ 
+-	rkcanfd_get_berr_counter_corrected(priv, bec);
++	priv->devtype_data.get_berr_counter(priv, bec);
+ 
+ 	pm_runtime_put(ndev->dev.parent);
+ 
+@@ -302,7 +276,7 @@ static void rkcanfd_chip_start(struct rkcanfd_priv *priv)
+ 
+ 	rkcanfd_set_bittiming(priv);
+ 
+-	rkcanfd_chip_interrupts_disable(priv);
++	priv->devtype_data.interrupts_disable(priv);
+ 	rkcanfd_chip_set_work_mode(priv);
+ 
+ 	priv->can.state = CAN_STATE_ERROR_ACTIVE;
+@@ -316,7 +290,7 @@ static void __rkcanfd_chip_stop(struct rkcanfd_priv *priv, const enum can_state
+ 	priv->can.state = state;
+ 
+ 	rkcanfd_chip_set_reset_mode(priv);
+-	rkcanfd_chip_interrupts_disable(priv);
++	priv->devtype_data.interrupts_disable(priv);
+ }
+ 
+ static void rkcanfd_chip_stop(struct rkcanfd_priv *priv, const enum can_state state)
+@@ -342,8 +316,8 @@ static int rkcanfd_set_mode(struct net_device *ndev,
+ 
+ 	switch (mode) {
+ 	case CAN_MODE_START:
+-		rkcanfd_chip_start(priv);
+-		rkcanfd_chip_interrupts_enable(priv);
++		priv->devtype_data.chip_start(priv);
++		priv->devtype_data.interrupts_enable(priv);
+ 		netif_wake_queue(ndev);
+ 		break;
+ 
+@@ -537,7 +511,7 @@ static int rkcanfd_handle_error_int(struct rkcanfd_priv *priv)
+ 		if (cf) {
+ 			struct can_berr_counter bec;
+ 
+-			rkcanfd_get_berr_counter_corrected(priv, &bec);
++			priv->devtype_data.get_berr_counter(priv, &bec);
+ 			cf->can_id |= CAN_ERR_PROT | CAN_ERR_BUSERROR | CAN_ERR_CNT;
+ 			cf->data[6] = bec.txerr;
+ 			cf->data[7] = bec.rxerr;
+@@ -567,7 +541,7 @@ static int rkcanfd_handle_state_error_int(struct rkcanfd_priv *priv)
+ 	u32 timestamp;
+ 	int err;
+ 
+-	rkcanfd_get_berr_counter_corrected(priv, &bec);
++	priv->devtype_data.get_berr_counter(priv, &bec);
+ 	can_state_get_by_berr_counter(ndev, &bec, &tx_state, &rx_state);
+ 
+ 	new_state = max(tx_state, rx_state);
+@@ -581,7 +555,7 @@ static int rkcanfd_handle_state_error_int(struct rkcanfd_priv *priv)
+ 	can_change_state(ndev, cf, tx_state, rx_state);
+ 
+ 	if (new_state == CAN_STATE_BUS_OFF) {
+-		rkcanfd_chip_stop(priv, CAN_STATE_BUS_OFF);
++		priv->devtype_data.chip_stop(priv, CAN_STATE_BUS_OFF);
+ 		can_bus_off(ndev);
+ 	}
+ 
+@@ -620,7 +594,7 @@ rkcanfd_handle_rx_fifo_overflow_int(struct rkcanfd_priv *priv)
+ 	if (!skb)
+ 		return 0;
+ 
+-	rkcanfd_get_berr_counter_corrected(priv, &bec);
++	priv->devtype_data.get_berr_counter(priv, &bec);
+ 
+ 	cf->can_id |= CAN_ERR_CRTL | CAN_ERR_CNT;
+ 	cf->data[1] = CAN_ERR_CRTL_RX_OVERFLOW;
+@@ -719,21 +693,21 @@ static int rkcanfd_open(struct net_device *ndev)
+ 	if (err)
+ 		goto out_close_candev;
+ 
+-	rkcanfd_chip_start(priv);
++	priv->devtype_data.chip_start(priv);
+ 	can_rx_offload_enable(&priv->offload);
+ 
+-	err = request_irq(ndev->irq, rkcanfd_irq, IRQF_SHARED, ndev->name, priv);
++	err = request_irq(ndev->irq, priv->devtype_data.irq, IRQF_SHARED, ndev->name, priv);
+ 	if (err)
+ 		goto out_rkcanfd_chip_stop;
+ 
+-	rkcanfd_chip_interrupts_enable(priv);
++	priv->devtype_data.interrupts_enable(priv);
+ 
+ 	netif_start_queue(ndev);
+ 
+ 	return 0;
+ 
+ out_rkcanfd_chip_stop:
+-	rkcanfd_chip_stop_sync(priv, CAN_STATE_STOPPED);
++	priv->devtype_data.chip_stop_sync(priv, CAN_STATE_STOPPED);
+ 	pm_runtime_put(ndev->dev.parent);
+ out_close_candev:
+ 	close_candev(ndev);
+@@ -746,10 +720,10 @@ static int rkcanfd_stop(struct net_device *ndev)
+ 
+ 	netif_stop_queue(ndev);
+ 
+-	rkcanfd_chip_interrupts_disable(priv);
++	priv->devtype_data.interrupts_disable(priv);
+ 	free_irq(ndev->irq, priv);
+ 	can_rx_offload_disable(&priv->offload);
+-	rkcanfd_chip_stop_sync(priv, CAN_STATE_STOPPED);
++	priv->devtype_data.chip_stop_sync(priv, CAN_STATE_STOPPED);
+ 	close_candev(ndev);
+ 
+ 	pm_runtime_put(ndev->dev.parent);
+@@ -818,7 +792,7 @@ static int rkcanfd_register(struct rkcanfd_priv *priv)
+ 	if (err)
+ 		goto out_pm_runtime_put_sync;
+ 
+-	rkcanfd_register_done(priv);
++	priv->devtype_data.register_done(priv);
+ 
+ 	pm_runtime_put(ndev->dev.parent);
+ 
+@@ -840,6 +814,48 @@ static inline void rkcanfd_unregister(struct rkcanfd_priv *priv)
+ 	pm_runtime_disable(ndev->dev.parent);
+ }
+ 
++static const struct rkcanfd_devtype_data rkcanfd_devtype_data_rk3568v2 = {
++	.model = RKCANFD_MODEL_RK3568V2,
++	.quirks = RKCANFD_QUIRK_RK3568_ERRATUM_1 | RKCANFD_QUIRK_RK3568_ERRATUM_2 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_3 | RKCANFD_QUIRK_RK3568_ERRATUM_4 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_5 | RKCANFD_QUIRK_RK3568_ERRATUM_6 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_7 | RKCANFD_QUIRK_RK3568_ERRATUM_8 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_9 | RKCANFD_QUIRK_RK3568_ERRATUM_10 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_11 | RKCANFD_QUIRK_RK3568_ERRATUM_12 |
++		RKCANFD_QUIRK_CANFD_BROKEN,
++	.get_berr_counter = rkcanfd_get_berr_counter_corrected,
++	.interrupts_enable = rkcanfd_chip_interrupts_enable,
++	.interrupts_disable = rkcanfd_chip_interrupts_disable,
++	.chip_start = rkcanfd_chip_start,
++	.chip_stop = rkcanfd_chip_stop,
++	.chip_stop_sync = rkcanfd_chip_stop_sync,
++	.irq = rkcanfd_irq,
++	.register_done = rkcanfd_register_done,
++};
++
++/* The rk3568 CAN-FD errata sheet as of Tue 07 Nov 2023 11:25:31 +08:00
++ * states that only the rk3568v2 is affected by erratum 5, but tests
++ * with the rk3568v2 and rk3568v3 show that the RX_FIFO_CNT is
++ * sometimes too high. In contrast to the errata sheet mark rk3568v3
++ * as effected by erratum 5, too.
++ */
++static const struct rkcanfd_devtype_data rkcanfd_devtype_data_rk3568v3 = {
++	.model = RKCANFD_MODEL_RK3568V3,
++	.quirks = RKCANFD_QUIRK_RK3568_ERRATUM_1 | RKCANFD_QUIRK_RK3568_ERRATUM_2 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_5 | RKCANFD_QUIRK_RK3568_ERRATUM_7 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_8 | RKCANFD_QUIRK_RK3568_ERRATUM_10 |
++		RKCANFD_QUIRK_RK3568_ERRATUM_11 | RKCANFD_QUIRK_RK3568_ERRATUM_12 |
++		RKCANFD_QUIRK_CANFD_BROKEN,
++	.get_berr_counter = rkcanfd_get_berr_counter_corrected,
++	.interrupts_enable = rkcanfd_chip_interrupts_enable,
++	.interrupts_disable = rkcanfd_chip_interrupts_disable,
++	.chip_start = rkcanfd_chip_start,
++	.chip_stop = rkcanfd_chip_stop,
++	.chip_stop_sync = rkcanfd_chip_stop_sync,
++	.irq = rkcanfd_irq,
++	.register_done = rkcanfd_register_done,
++};
++
+ static const struct of_device_id rkcanfd_of_match[] = {
+ 	{
+ 		.compatible = "rockchip,rk3568v2-canfd",
+diff --git a/drivers/net/can/rockchip/rockchip_canfd.h b/drivers/net/can/rockchip/rockchip_canfd.h
+index 93131c7d7f54..72f26b96add0 100644
+--- a/drivers/net/can/rockchip/rockchip_canfd.h
++++ b/drivers/net/can/rockchip/rockchip_canfd.h
+@@ -436,9 +436,19 @@ enum rkcanfd_model {
+ 	RKCANFD_MODEL_RK3568V3 = 0x35683,
+ };
+ 
++struct rkcanfd_priv;
++
+ struct rkcanfd_devtype_data {
+ 	enum rkcanfd_model model;
+ 	u32 quirks;
++	void (*get_berr_counter)(struct rkcanfd_priv *priv, struct can_berr_counter *bec);
++	void (*interrupts_enable)(const struct rkcanfd_priv *priv);
++	void (*interrupts_disable)(const struct rkcanfd_priv *priv);
++	void (*chip_start)(struct rkcanfd_priv *priv);
++	void (*chip_stop)(struct rkcanfd_priv *priv, const enum can_state state);
++	void (*chip_stop_sync)(struct rkcanfd_priv *priv, const enum can_state state);
++	irqreturn_t (*irq)(int irq, void *dev_id);
++	void (*register_done)(const struct rkcanfd_priv *priv);
+ };
+ 
+ struct rkcanfd_fifo_header {
+-- 
+2.34.1
 
-Konrad
 
