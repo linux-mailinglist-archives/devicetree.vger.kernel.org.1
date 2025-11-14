@@ -1,103 +1,203 @@
-Return-Path: <devicetree+bounces-238825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E554CC5E5E5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:56:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2922C5E646
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:02:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BE074F2F17
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:34:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 368C14F4562
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:40:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81F3833469F;
-	Fri, 14 Nov 2025 16:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAF433556B;
+	Fri, 14 Nov 2025 16:39:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="UjXG24gg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JiHuM5Q9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m12888.netease.com (mail-m12888.netease.com [103.209.128.88])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4899C33439B;
-	Fri, 14 Nov 2025 16:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.209.128.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433EE335549;
+	Fri, 14 Nov 2025 16:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763138079; cv=none; b=m5Ho0BpegDDUovXCtPrvL5D+qVBFwskhCW4h/75mUKCQ7MVWYRGiI72rn3TzOjDrbppcaLyBM0+35zQ87jdbOG8D9tprFK1K/BMIlgcNFrO+d83MBelMJq2Y2HIBu5Js1jiq2kqYK3hDjMG6DJxFofDNeuPHUymDlUhiGpa4g3w=
+	t=1763138397; cv=none; b=JnT0N0VeAnchB67Lxx5K1zWuKpWH0CGQ6KjvIrmBDDTDH69h/7lGB/HiZzJC6T/WASN1tWE4TmqUuZgmvp1+q8NIrynrl05H1F+rp+lF5+fSNxOfvQ1KCrae5e02FXUv92OwK0Avai8nRuFWuDveZUdVm1DSr3Udfc7H/g2rOH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763138079; c=relaxed/simple;
-	bh=YYj/n0arlw78uSfajMg1OJLtNX2BlBtjaxNrNVFM62k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=V0F6eHXmRFXto14kjf8NPQq5P0t5jpZxAbg1eoxr0+oMKD5hOw9CU5tvTxywZtLOJ4dhUXlTOrHW8QeUjO+b5mBzqPM48W59edF6YYdOAeFOgX5ao75UqaY5zrC5Krs3J19b8IZlPSbOLMmq0paYhrtgqJ4RECOEr/sTdUla5xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=UjXG24gg; arc=none smtp.client-ip=103.209.128.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from [127.0.1.1] (unknown [116.3.204.103])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 29a2e3206;
-	Sat, 15 Nov 2025 00:34:25 +0800 (GMT+08:00)
-From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-Date: Sat, 15 Nov 2025 00:34:16 +0800
-Subject: [PATCH 2/2] dt-bindings: arm: qcom: rubikpi3: document rubikpi3
- board binding
+	s=arc-20240116; t=1763138397; c=relaxed/simple;
+	bh=bLsvvHPDpo7u9K8rvsM02ueTdodp270jX2AjxuPSOVs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QXfd/WJJga/03L1tsbt9DSVDQCeFbgN+4qKYJ2xGsYBqidIPuB08qqUMcXepLP3ENBnNcqLXJ1J4dQ0/tsbG1F0qnjhqL6dR0H8AAOYggYFNj6sTjkCEfRT++ndHoIjEm2+LgSeDULwuq8wtfjWFJmWRwyDBure/hvkst3fzg64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JiHuM5Q9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8814AC4CEF5;
+	Fri, 14 Nov 2025 16:39:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763138396;
+	bh=bLsvvHPDpo7u9K8rvsM02ueTdodp270jX2AjxuPSOVs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JiHuM5Q9ROv7GzsPSbypcQLkjsyQw7zUp80ynEPMqDZYukhnpJt0JIXbufYpj3oiJ
+	 PVueWfvhKe4kUx5KIYS4Xte4v4BEpW8iHB0nkm4x9VB6TI27yYpj8McDCU/+mQ1b/L
+	 m1gvZds85tHQgBfvjGcVYXf06kWV0p9vGn6sjBOqkR0+DSBu8Halsif6kLw4aEJDut
+	 EQQ8GD6gf2KDtCiaVwM/2WX/+uKIptN3BIkE+wIekjuhxJQ2VJuE3aoAmKv/mB/ews
+	 RZyq67l/ziPikXwmtK+M1lmB4NmUzUeejp2/5AQYXBjo2nMsm+7/AI8jelS1st3VdX
+	 zQFQMUwWx82sQ==
+Date: Fri, 14 Nov 2025 10:39:54 -0600
+From: Rob Herring <robh@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@linux.dev>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-kernel@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-clk@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	linux-leds@vger.kernel.org, Pavel Machek <pavel@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-gpio@vger.kernel.org,
+	linux-pm@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rtc@vger.kernel.org, Lee Jones <lee@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v4 04/16] dt-bindings: power: supply: BD72720 managed
+ battery
+Message-ID: <20251114163954.GA3399895-robh@kernel.org>
+References: <cover.1763022807.git.mazziesaccount@gmail.com>
+ <ac5a4e992e4fb9c7bffb1e641a7cd61f74af4cba.1763022807.git.mazziesaccount@gmail.com>
+ <176303119683.3716572.16868393928566655866.robh@kernel.org>
+ <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251115-rubikpi-next-20251114-v1-2-fc630dc5bb5d@thundersoft.com>
-References: <20251115-rubikpi-next-20251114-v1-0-fc630dc5bb5d@thundersoft.com>
-In-Reply-To: <20251115-rubikpi-next-20251114-v1-0-fc630dc5bb5d@thundersoft.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Hongyang Zhao <hongyang.zhao@thundersoft.com>, 
- Roger Shimizu <rosh@debian.org>
-X-Mailer: b4 0.15-dev-a6db3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763138062; l=886;
- i=hongyang.zhao@thundersoft.com; s=20251115; h=from:subject:message-id;
- bh=YYj/n0arlw78uSfajMg1OJLtNX2BlBtjaxNrNVFM62k=;
- b=lG4mkVAuJdv5KXUelXG1/hy46oVEV9lGuDEi6Iuv6Bz1IpXfzeUkBHgyumICrzm+bJyoXqOmk
- WXvnu5shezpBORR9bifTf3wrRxO06Zp+NgXtD68jGIEF5r/25i4q6Kq
-X-Developer-Key: i=hongyang.zhao@thundersoft.com; a=ed25519;
- pk=0M0CJ1s9WiFZwli2JsxLB9ykikp5WkpKzCWgpdANKNI=
-X-HM-Tid: 0a9a8337d3c609d5kunm846241b3342e8c
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZTkhIVh0aH0tJGB1CTB0ZSVYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKSk1VSFVJS09VSktIWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
-	VKQktLWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=UjXG24gg/QTsVRRGv781KcKvXFwm3q672kDvyvFyQv76QSEIg0aH4btkgne3HNn6B3xbXRh2MRYfmDI3cCjdAfE0nFJdSRxiJylei9yPDnXHzA6AlwFiqJjLpqyuAQLnBob70wbut+IS9qSLwpKk/HoljPX9SlThiZ+NBFdQO0I=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=9fhGlhM/E9smgHkVH8Tdj12RXzNX/lnussg+31t05dU=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
 
-Add binding for the Thundercomm RUBIK Pi 3 board,
-which is based on the Qualcomm Dragonwing QCS6490 SoC.
+On Fri, Nov 14, 2025 at 11:04:27AM +0200, Matti Vaittinen wrote:
+> On 13/11/2025 12:53, Rob Herring (Arm) wrote:
+> > 
+> > On Thu, 13 Nov 2025 10:52:19 +0200, Matti Vaittinen wrote:
+> > > From: Matti Vaittinen <mazziesaccount@gmail.com>
+> > > 
+> > > The BD72720 PMIC has a battery charger + coulomb counter block. These
+> > > can be used to manage charging of a lithium-ion battery and to do fuel
+> > > gauging.
+> > > 
+> > > ROHM has developed a so called "zero-correction" -algorithm to improve
+> > > the fuel-gauging accuracy close to the point where battery is depleted.
+> > > This relies on battery specific "VDR" tables, which are measured from
+> > > the battery, and which describe the voltage drop rate. More thorough
+> > > explanation about the "zero correction" and "VDR" parameters is here:
+> > > https://lore.kernel.org/all/676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com/
+> > > 
+> > > Document the VDR zero-correction specific battery properties used by the
+> > > BD72720 and some other ROHM chargers.
+> > > 
+> > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > > 
+> > > ---
+> > > NOTE:
+> > > Linus' rb-tag holds only if there's no further comments from Rob.
+> > > 
+> > > Revision history:
+> > >   v3 =>:
+> > >   - No changes
+> > > 
+> > >   v2 => v3:
+> > >   - Constrain VDR threshold voltage to 48V
+> > >   - Use standard '-bp' -suffix for the rohm,volt-drop-soc
+> > > 
+> > >   RFCv1 => v2:
+> > >   - Add units to rohm,volt-drop-soc (tenths of %)
+> > >   - Give real temperatures matching the VDR tables, instead of vague
+> > >     'high', 'normal', 'low', 'very low'. (Add table of temperatures and
+> > >     use number matching the right temperature index in the VDR table name).
+> > >   - Fix typoed 'algorithm' in commit message.
+> > > 
+> > > The parameters are describing the battery voltage drop rates - so they
+> > > are properties of the battery, not the charger. Thus they do not belong
+> > > in the charger node.
+> > > 
+> 
+> // snip
+> 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/rohm,vdr-battery.example.dtb: battery (simple-battery): 'degrade-cycle-microamp-hours', 'rohm,volt-drop-0-microvolt', 'rohm,volt-drop-1-microvolt', 'rohm,volt-drop-2-microvolt', 'rohm,volt-drop-3-temp-microvolt', 'rohm,volt-drop-soc-bp', 'rohm,volt-drop-temperatures-millicelsius', 'rohm,voltage-vdr-thresh-microvolt' do not match any of the regexes: '^ocv-capacity-table-[0-9]+$', '^pinctrl-[0-9]+$'
+> > 	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml
+> > 
+> 
+> Odd. I am pretty sure I didn't see this when I ran the make
+> dt_binding_check. Not 100% sure what happened there. I get this error now
+> though when including all the bindings to the check.
+> 
+> Do I get this right - these errors result from the properties used in
+> example not being included in the battery.yaml? So, this means that the
+> check is done based on the binding (battery.yaml) where the compatible
+> (simple-battery) is defined - not based on the properties which are present
+> in this file where the example resides, (and which references the
+> battery.yaml)?
+> 
+> ...
+> 
+> Oh... Now that I wrote it I feel like an idiot.
+> 
+> This approach couldn't work for the validation, right? Let's assume I had a
+> VDR battery, and I added a static-battery -node for it. Running the
+> validation would pick the battery.yaml based on the compatible (just as it
+> does here), and be completely unaware of this vdr-battery.yaml. I have no
+> idea why I thought this would work. Probably because I only thought this
+> from the documentation POV.
+> 
+> So, as far as I understand, the only viable options are expanding the
+> existing battery.yaml with these properties (which I hoped to avoid, see
+> below)
+> 
+> >> The right place for them is the battery node, which is described by the
+> >> generic "battery.yaml". I was not comfortable with adding these
+> >> properties to the generic battery.yaml because they are:
+> >>    - Meaningful only for those charger drivers which have the VDR
+> >>      algorithm implemented. (And even though the algorithm is not charger
+> >>      specific, AFAICS, it is currently only used by some ROHM PMIC
+> >>      drivers).
+> >>    - Technique of measuring the VDR tables for a battery is not widely
+> >>      known. AFAICS, only folks at ROHM are measuring those for some
+> >>      customer products. We do have those tables available for some of the
+> >>      products though (Kobo?).
+> 
+> or, to add new compatible for the "vdr-battery".
+> AFAICS, adding new compatible would require us to wither duplicate the used
+> properties from battery.yaml here (as battery.yaml mandates the
+> "simple-battery" - compatible) - or to split the battery.yaml in two files,
+> one containing the generic properties, other containing the "simple-battery"
+> -compatible and referencing the generic one. Then the "vdr-battery" could
+> also reference the generic one.
+> 
+> Any suggestions for the next path to follow?
 
-Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-Reviewed-by: Roger Shimizu <rosh@debian.org>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Probably the latter option. You could do the former and make the new 
+properties conditional on the "vdr-battery" compatible. That's fine with 
+small differences, but gets messy as there are more properties and 
+variations.
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index d84bd3bca201..8c7dbf764ec2 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -348,6 +348,7 @@ properties:
-               - qcom,qcs6490-rb3gen2
-               - radxa,dragon-q6a
-               - shift,otter
-+              - thundercomm,rubikpi3
-           - const: qcom,qcm6490
- 
-       - description: Qualcomm Technologies, Inc. Distributed Unit 1000 platform
+But is "VDR" a type of battery though? Is there a certain type/chemistry 
+of battery we should be describing where VDR is applicable? I don't 
+think it scales well if we define battery compatibles for every 
+variation of charger algorithm. Honestly I don't mind just adding 1 
+property. I care more if we allow undocumented properties than 
+allowing documented but invalid for the platform properties. When it 
+becomes 10, 20, 30 properties, then I might start to care. If that 
+happens, either we are doing a poor job of generically describing 
+battery parameters or chargers and batteries are tightly coupled and 
+can't be described independently.
 
--- 
-2.43.0
-
+Rob
 
