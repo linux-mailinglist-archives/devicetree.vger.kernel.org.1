@@ -1,103 +1,112 @@
-Return-Path: <devicetree+bounces-238504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBE04C5BD1E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:41:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4076DC5BD36
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:42:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 601A53546A8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:41:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 35D924E1B8C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75EBD2F6190;
-	Fri, 14 Nov 2025 07:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405082F6195;
+	Fri, 14 Nov 2025 07:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BzOzY0cm"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="bbbxPXV7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBEF2F60A3;
-	Fri, 14 Nov 2025 07:41:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E982EDD7D;
+	Fri, 14 Nov 2025 07:42:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763106091; cv=none; b=mkZigQZ0AFSbyLQUv63kQT30rp8+NZ2fomMVrqfeqWue9UCV/zsvC3Vjwu9gVpEJX9pg9PMKBtcyl4D1ZkdHf7frQKCT7STYSs3W4xbPQmPcUWfMdEzK1XeovcNIaSSaAmjRvcR75T6VPlwKCTxbZAnoOXrWcn5oPhj/nfCdHVU=
+	t=1763106173; cv=none; b=auvPzneljwkQBW/d2HoNQEq9NCmB3SU8xC1yNq4Ztj9+179hw+dYxAM/9aRIGQp1OjXxi3QiCyqitlA3OWc62mNeCpMtUeslciiwYgc48vk87EMv77Xt4aR0sru4CHoOwTC4eh7uF5x0yaf8KSSUUXCNvL/cDAt26k+3UbHIHWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763106091; c=relaxed/simple;
-	bh=OiMeu0tamg27GyEN4OqG+CIznFFE/vebWRAa4Bsb4VI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bt4Q2SfwKEnoBhu/MKVHixOPOdLSalii7W0RuoVlHjZ/T28sWw/Zg83MUkKBdOgb0Djd/ijn2YXLdgH1xx9oQu2KRJS5NDGPkU6qU5pSEEb6DC01zQ8nQZLU5jmZFb/UsLuaCb02M/9vC3I0MJ9yhkcC8IMSSOKDMFkBrexXCuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BzOzY0cm; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id D03E91A1A95;
-	Fri, 14 Nov 2025 07:41:27 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A3AF36060E;
-	Fri, 14 Nov 2025 07:41:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1818D102F28CB;
-	Fri, 14 Nov 2025 08:41:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763106086; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=CxtuouY15dmqdz/kBa2p3jgenEqmkhSb6ARS2BjXY+s=;
-	b=BzOzY0cm5XVVH89LIadrgngMECdCBiRxbLBEJgcSAaZmZD4jIpm2NHjdxuVBrPEaEDMBEt
-	85x2yfQs77oDEr0uVNJ1KOBWPFwM/euNkH5svXR1EgZJxX6xTGo1rR3hBTnOIMOt7LrGC4
-	EY23c2JsZx79g7GI+1jZctghMUk9pGsirtwGum0kehtRsVCsHwGiZTnZJKCCwk9gg1X2vp
-	2DQv6g9Eb/Ch6auJFZnAZ1GmK9VGEG01QhO0Ru72gvSY16pVHNZd+txE8hsvWt5Bx7daT9
-	8oRAFs7yCwE++KQDQ0njMZU13yig2BsQ4qIwH8GIILqJNkORxx+6WlLW0MQQ5A==
-Date: Fri, 14 Nov 2025 08:41:22 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Saravana
- Kannan <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, Herve
- Codina <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Hoan Tran
- <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Phil Edworthy <phil.edworthy@renesas.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Pascal
- Eberhard <pascal.eberhard@se.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 0/8] gpio: renesas: Add support for GPIO and related
- interrupts in RZ/N1 SoC
-Message-ID: <20251114084122.01a0d281@bootlin.com>
-In-Reply-To: <20251027123601.77216-1-herve.codina@bootlin.com>
-References: <20251027123601.77216-1-herve.codina@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1763106173; c=relaxed/simple;
+	bh=RJWOcXTviPu4i/X22CoYfKTcY0vpRjUBt82Suo5qKes=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=YOW7YDyVQLtBPbSB6WmhJyUFzbAbCm2oWpxBtclPQ9hwKCl+b0XNK/U1vCeEdkUDJA0ROLz4w8Vk7gwsJEgvdJwIXOHi0hWGg5ZwtLFs4jhwMqvFhWALt+khm0W8wUQnR+vWWmA8sMArTr0jxW37t1fHEaYwn2iH0LyQrm4MWV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=bbbxPXV7; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id; bh=IoWtqzKVXo6FmrE
+	fBjsDpD5FkqNtFtVHd+0Qu0u979Y=; b=bbbxPXV7a5vQ1aeJC4hQOv/i2KArrBm
+	mY1l2Z99cfAVFQLlBSWDi/fU3S3y2DjvTRHHXJWoWWn3M8bfx9TwiRb5smBKNlo8
+	l7VmnTtwZRpsmkqWwUT5KC4fUUhMMBrGsK7spHbsGsEXeWoRZT3ies+G0yD/f+8A
+	zzQ8/of1UXRk=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wBHhRlM3RZpKI+xAA--.34S2;
+	Fri, 14 Nov 2025 15:42:07 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net
+Cc: christophe.jaillet@wanadoo.fr,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	jdelvare@suse.com,
+	krzk+dt@kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	wenliang202407@163.com
+Subject: Re: [PATCH 1/8] dt-binding:ti,ina3221:Add SQ52210
+Date: Fri, 14 Nov 2025 02:41:47 -0500
+Message-Id: <20251114074147.6941-1-wenliang202407@163.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <79da1c83-0529-48cb-a20d-23512f68397e@roeck-us.net>
+References: <79da1c83-0529-48cb-a20d-23512f68397e@roeck-us.net>
+X-CM-TRANSID:_____wBHhRlM3RZpKI+xAA--.34S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7GrW3uF4UCF1xtF4DXr47Arb_yoWkJrgEkw
+	s7Zr9rAr48JFW3ua4DGF9xAr98ta1UXFs3JF10vFW5Zr18A3y3Wr4ktw4xJ347JFZ8Aw1j
+	vrWUGFW0y3W7AjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7VU16uWtUUUUU==
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbibgUG02kW0zz4sgAAsk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Geert,
+At 2025-11-14 01:18:30, "Guenter Roeck" <linux@roeck-us.net> wrote:
+>On Tue, Nov 11, 2025 at 03:05:45AM -0500, Wenliang Yan wrote:
+>> SQ52210 adds power attribute to report power data, and implements
+>> read/write functions for this purpose.
+>> 
+>> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+>> ---
+>>  drivers/hwmon/ina3221.c | 79 ++++++++++++++++++++++++++++++++++++++---
+>>  1 file changed, 75 insertions(+), 4 deletions(-)
+>> 
+>> diff --git a/drivers/hwmon/ina3221.c b/drivers/hwmon/ina3221.c
+>> index abb6049c8eab..ea01687ad1fa 100644
+>> --- a/drivers/hwmon/ina3221.c
+>> +++ b/drivers/hwmon/ina3221.c
+>> @@ -348,19 +348,16 @@ static const u8 ina3221_in_reg[] = {
+>>  	INA3221_SHUNT3,
+>>  	INA3221_SHUNT_SUM,
+>>  };
+>> -
+>>  static const u8 alert_limit_reg[] = {
+>>  	SQ52210_ALERT_LIMIT1,
+>>  	SQ52210_ALERT_LIMIT2,
+>>  	SQ52210_ALERT_LIMIT3,
+>>  };
+>> -
+>>  static const u8 alert_flag[] = {
+>>  	F_AFF1,
+>>  	F_AFF2,
+>>  	F_AFF3,
+>>  };
+>> -
+>
+>Please refrain from making such cosmetic changes.
+>
 
-On Mon, 27 Oct 2025 13:35:52 +0100
-"Herve Codina (Schneider Electric)" <herve.codina@bootlin.com> wrote:
+Understood, I'll make the changes.
 
-> Hi,
-> 
-> This series adds support for GPIO and GPIO IRQ mux available in the
-> RZ/N1 SoCs.
-> 
+Thanks,
+Wenlaing Yan
 
-The series seems ready to be applied even with the minor feedback from Wolfram
-on patch 6.
-
-Do you expect a new iteration from my side or do you think this v6 iteration
-can be applied as it?
-
-Best regards.
-Hervé
 
