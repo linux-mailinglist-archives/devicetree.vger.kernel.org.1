@@ -1,347 +1,173 @@
-Return-Path: <devicetree+bounces-238894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9026BC5F5F5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 22:31:17 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68F42C5F5F8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 22:31:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AB0A435ACE9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 21:31:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AF72635CA97
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 21:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD5B35BDC1;
-	Fri, 14 Nov 2025 21:31:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 283A635BDD4;
+	Fri, 14 Nov 2025 21:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gh68+/oi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ew8Xh4g5";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GwzyJrpd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 340A535BDB6;
-	Fri, 14 Nov 2025 21:31:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACC135BDC7
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 21:31:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763155873; cv=none; b=GoPN+i3xbPq0XvndCZCgrHRGmH8TeDX6ezj0Gapcz8/JO47eGAs/hY4btWHjlR7A5k38GsP4rlSa3FrtkztuzyWF0oAdU/rQ/owS5uy28lARq7XOi/By1SXwcvMWoqffg+kfoUt+DfHqUX94AUQD97BgmDcm0SL6k0y23lhCKow=
+	t=1763155882; cv=none; b=pjGCk2HGNzp16g1be1m36XaejR3kOVFJ8hpgSBuTJdfn1R3qfShhb9/lKXsM9WcRdebfca0EdzaRr+gZm2LIw6rsQmk+ezYIQ7z3TQ+BlAWvGRy/MgNPZsaouockzRDhh1KtObV8Z2M+tLiwYFNgfi6AT5cvbNU3iEWyqJOrpo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763155873; c=relaxed/simple;
-	bh=vBIjwMrAujz98IXGy/+MpqpAUTWEIud1pTdYyulmXEo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ji2h0dja2kHMFKOkI141E2ah0fKA9ilRVVKBfcf24eQjNr2ezEPvNdKhl1M7LUlb9hV/N0RGORd0xtmranUUW8gWdqdxC/aIfvjUd7mv6fznE20652HWA6ioy7CqjGTAxKV3XhPV/RcjaBwfZnDMuN2dJIBWiqjPRbYxSlz28d4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gh68+/oi; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1763155869;
-	bh=vBIjwMrAujz98IXGy/+MpqpAUTWEIud1pTdYyulmXEo=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=gh68+/oiWYGUzIVndg6zqhVS5NtQy7aoNh8M5gkDZ19ARAR1X2mnXPT/c4GNldyfa
-	 hL4budVdezcI/rTpSQRPbQEf9uN9X+q7mykayuvkUw4B+wxU+BfahLe0sqFi/n5ytM
-	 m2NIfyzrwGqbnPFfSMLAk/sQ9pLvzSrEH4enUWMCHlBMhRzmb49EcTHpSnZhE5sQ94
-	 1L3GLoO2CHJ7ZnDt0JCpDZHUYr4JmO10tozn2hspuy7oC1iGg1CjLeHZACkLDQxix3
-	 00e5KwpqNfyGG0ej48VW1VF6MzoBHAHrLqQvC7ZvrSn53m2ER2qxXg4cF4r7HJeaFD
-	 1dlNEgab2wwJQ==
-Received: from [IPv6:2606:6d00:11:696f::c41] (unknown [IPv6:2606:6d00:11:696f::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F043B17E12D5;
-	Fri, 14 Nov 2025 22:31:06 +0100 (CET)
-Message-ID: <34c7c47e753ef6c53cf4aa7554c8ad05707df166.camel@collabora.com>
-Subject: Re: [PATCH v3 2/6] media: mediatek: encoder: Add support for common
- firmware interface
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Hans Verkuil
- <hverkuil@xs4all.nl>,  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Sebastian Fricke <sebastian.fricke@collabora.com>, Nathan Hebert	
- <nhebert@chromium.org>, Arnd Bergmann <arnd@arndb.de>, Irui Wang	
- <irui.wang@mediatek.com>, George Sun <george.sun@mediatek.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	 <andrzejtp2010@gmail.com>
-Date: Fri, 14 Nov 2025 16:31:05 -0500
-In-Reply-To: <20250814085642.17343-3-kyrie.wu@mediatek.com>
-References: <20250814085642.17343-1-kyrie.wu@mediatek.com>
-	 <20250814085642.17343-3-kyrie.wu@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-BFBTaEQOkW5nYap+49cW"
-User-Agent: Evolution 3.58.1 (3.58.1-1.fc43) 
+	s=arc-20240116; t=1763155882; c=relaxed/simple;
+	bh=4wHutVPZHzKW0CBC6gvfiy435oE3atvyvraD0aRRdUI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JEm8330kmCINPsLUElefZe8uavbZ6oK8JJOkpkNgTaxMyV/Ht351opu+Stt6oAdpipIP5k0DLSBU/+JVzgtf7oeUV/FqlGfZIa04idLoSweP5lzcWgf+kIijrPkFTxYHR63c6uiIyEap7EX0ouXBwEFfjgFbq2fmDrEW7+AV8JE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ew8Xh4g5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GwzyJrpd; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AEIQCSQ380888
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 21:31:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	m3eMOK+HlzN3NWKmihAhMU9paKgRRNM2y2GGr7K3kG4=; b=ew8Xh4g5vpSP1Zjg
+	bpWldg37vo5D9nIfqlX75E5xvFWmmHVSPFcE66SjIym7DmHtNWj17HeRtFs7wcoO
+	ZteQGNULrbIrvhIsIPjlp7/gSkqmFmfA2osH5N7twAAVA1QtR0z4mQ01TTXrZVbV
+	8V3Q4Plg2vg9WZziAdO/G/3NcW8ERHOB/oIIZVAYL+fAJLaymMiLgijHulGeRBeC
+	ySAKrF/snKDJIZL55r15iRxIQQP1pneM3emuH4LG5hzp/jI51WeUcHCbt7tyygdS
+	LjXUSTBQIwlPCPV44y8HZCfP2HqcJztHWIDMI24IwGDd/zi6Qhs1Omb33idzlE0M
+	E6VntQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ae7qh8vrb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 21:31:19 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ee05927208so220491cf.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:31:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763155878; x=1763760678; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m3eMOK+HlzN3NWKmihAhMU9paKgRRNM2y2GGr7K3kG4=;
+        b=GwzyJrpdrCsdYDGislFKeaKAGlBNtTiUrjbmwGSERNaEHlyLgPiQFJMtO4G6xXhCXt
+         iMIil1qtxWtnG5G4fdB9tIqVWIRrd1+jPANoK9HbqnuW8D6b2ZfoMbopjWNNza0/fT8t
+         D19GCeXAkxPVYnK+3eA4IOwKpD4Wbv1Ty3Z9pl2BoOztbqWwCNJKF/g2bjlxYswFPYR6
+         dHLi+nL+bYyBWAWT0egqRpfUerRdDbZypttsbG0NEyQ5AF8C5u5EGjsY9cCKD2C5WEDR
+         ZJxgGNaJgJJ+LOXvQeUZJ2K9OEchbXVYLWTGVeWPs43YfDNQO3n1zD7m/+7ePgyHDl2e
+         0XeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763155878; x=1763760678;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m3eMOK+HlzN3NWKmihAhMU9paKgRRNM2y2GGr7K3kG4=;
+        b=tDbnTOOsQ+RRpeP/OWsneRpJrd/PooApHyVfiLYgHT/ZBcE2cw/k6qacHCbW0k1aE/
+         jW1N/CXgE/aKs9Jj409Bd0PsQbi24LC/yO+e0Hd4ZAusS06sNMsyJRbR5CLdXrAMeP6T
+         UwWlNBUH847g/RZFYpGb/uLFlN8ny35ksKV8yQRBJ5po74R27hD1X9mvxmaWZrqNSJYa
+         cB9J4lBOTouJAtqFVrpmUtPPsfMkC7GtPkgKitqAz6F8sX4IIZXi4Zsf1BsxI2oI5hF1
+         rq7XhUJhvXMZKrk3aMPC+eIeu01Ny0hqgbfUQRC1ipIvxKj8Hvyw7oVLEalEttw52k+j
+         cwoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVVdYyjtG+1tCd41WsWO6FXpR2tUYWs5Rg4MatYIo8e2s3CJlAXrVqLiDXjbGVaxHmurbgJtJfi19WE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwI6MMvzCjdFE14hDlfzVUNUQoKta7QgFpcNU41/US87tGXVDxF
+	Y+bK05iQ65qn6tNHdz7u/8tXO4GdBW+BjO/z8Hyiw0QPJquVKjBko72ZuWwG9/BtDCDHE6ivlYQ
+	MseQoFKFI8FvxDp7FJkgK70Xz5/w05ualRgUe4ngQTxsh807TqzwnuZWApPRkg2S1
+X-Gm-Gg: ASbGncuFy6wr0NIuiJUo2Q6+fIf3sx80GuWoYQmafxK+zo/bpfUBKS8Zn7ZAX3rudgP
+	TtkE8Q39j6RqLL8JNDWU5eu3q+W4RVCiKWkSoVEwj2zGAqjb5lgoVsQiUu5CoXCEHrcwzFydDxd
+	wwpA1ducpl8ZbqzcBZwLa+Sqjoa+8OxUHtDX9Vxwe3PI/TlKukRZ8DOyWi1xD95i0rGrooe8SUy
+	QdZVgw2rSt8rxzVAw3bXLg/qdJfbkqLqF9CRTEwz2kUSbj+5gvEZQuEZHgIJJmklBb0mgpo6AbC
+	zpqQ6n/7kKd53WlnjoIMzqV45ErojBjwAlVn4OIMgJmKaxDuQ292evLXyy428cdIcD+Q1+qWfqB
+	FtV/mIi8Z2SDpRYLknU2+vgpRRmK+tAMuHBysfRZx/Un0SUmen3cYfq8d
+X-Received: by 2002:ac8:5fce:0:b0:4ed:6e12:f576 with SMTP id d75a77b69052e-4edf36eeebemr43731181cf.8.1763155878563;
+        Fri, 14 Nov 2025 13:31:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG84e13Ij0fjz1mCVTKqmi8pqco4zDdzx7qetDnkV/I00+/pFf6pc8OO+AxyQJYwxhlZiqWog==
+X-Received: by 2002:ac8:5fce:0:b0:4ed:6e12:f576 with SMTP id d75a77b69052e-4edf36eeebemr43730771cf.8.1763155878151;
+        Fri, 14 Nov 2025 13:31:18 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fad48dcsm463058166b.25.2025.11.14.13.31.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Nov 2025 13:31:17 -0800 (PST)
+Message-ID: <f4fbc949-415b-489e-b333-4c846d3ce8c7@oss.qualcomm.com>
+Date: Fri, 14 Nov 2025 22:31:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-BFBTaEQOkW5nYap+49cW
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Le jeudi 14 ao=C3=BBt 2025 =C3=A0 16:56 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
-> From: Irui Wang <irui.wang@mediatek.com>
->=20
-> The existing encoder firmware interface implied just one type of codec:
-> H.264. Future encoders may support additional codecs; however adding
-> entire sets of interfaces for them is not scalable.
->=20
-> Instead, a new "common" firmware interface is defined for non codec
-> specific messages. The new messages encapsulate the old ones for
-> backward compatibility.
->=20
-> This patch adds support for these new messages.
->=20
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
-> ---
-> =C2=A0.../vcodec/encoder/mtk_vcodec_enc_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 3 ++
-> =C2=A0.../mediatek/vcodec/encoder/venc_drv_if.c=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 3 +-
-> =C2=A0.../mediatek/vcodec/encoder/venc_ipi_msg.h=C2=A0=C2=A0=C2=A0 | 26 +=
-++++++++++++
-> =C2=A0.../mediatek/vcodec/encoder/venc_vpu_if.c=C2=A0=C2=A0=C2=A0=C2=A0 |=
- 37 ++++++++++++-------
-> =C2=A04 files changed, 54 insertions(+), 15 deletions(-)
->=20
-> diff --git
-> a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-> b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-> index b1277bcfcf53..426b1398f815 100644
-> --- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-> +++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-> @@ -16,6 +16,7 @@
-> =C2=A0
-> =C2=A0#define MTK_ENC_CTX_IS_EXT(ctx) ((ctx)->dev->venc_pdata->uses_ext)
-> =C2=A0#define MTK_ENC_IOVA_IS_34BIT(ctx) ((ctx)->dev->venc_pdata->uses_34=
-bit)
-> +#define MTK_ENC_DRV_IS_COMM(ctx) (((ctx)->dev->venc_pdata-
-> >uses_common_fw_iface))
-> =C2=A0
-> =C2=A0/**
-> =C2=A0 * struct mtk_vcodec_enc_pdata - compatible data for each IC
-> @@ -29,6 +30,7 @@
-> =C2=A0 * @num_output_formats: number of entries in output_formats
-> =C2=A0 * @core_id: stand for h264 or vp8 encode index
-> =C2=A0 * @uses_34bit: whether the encoder uses 34-bit iova
-> + * @uses_common_fw_iface: whether the encoder uses common driver interfa=
-ce
-> =C2=A0 */
-> =C2=A0struct mtk_vcodec_enc_pdata {
-> =C2=A0	bool uses_ext;
-> @@ -40,6 +42,7 @@ struct mtk_vcodec_enc_pdata {
-> =C2=A0	size_t num_output_formats;
-> =C2=A0	u8 core_id;
-> =C2=A0	bool uses_34bit;
-> +	bool uses_common_fw_iface;
-> =C2=A0};
-> =C2=A0
-> =C2=A0/*
-> diff --git a/drivers/media/platform/mediatek/vcodec/encoder/venc_drv_if.c
-> b/drivers/media/platform/mediatek/vcodec/encoder/venc_drv_if.c
-> index e83747b8d69a..f8c9349c18c0 100644
-> --- a/drivers/media/platform/mediatek/vcodec/encoder/venc_drv_if.c
-> +++ b/drivers/media/platform/mediatek/vcodec/encoder/venc_drv_if.c
-> @@ -19,13 +19,14 @@
-> =C2=A0int venc_if_init(struct mtk_vcodec_enc_ctx *ctx, unsigned int fourc=
-c)
-> =C2=A0{
-> =C2=A0	int ret =3D 0;
-> +	const bool uses_common_fw_iface =3D MTK_ENC_DRV_IS_COMM(ctx);
-> =C2=A0
-> =C2=A0	switch (fourcc) {
-> =C2=A0	case V4L2_PIX_FMT_VP8:
-> =C2=A0		ctx->enc_if =3D &venc_vp8_if;
-> =C2=A0		break;
-> =C2=A0	case V4L2_PIX_FMT_H264:
-> -		ctx->enc_if =3D &venc_h264_if;
-> +		ctx->enc_if =3D uses_common_fw_iface ? &venc_if :
-> &venc_h264_if;
-> =C2=A0		break;
-> =C2=A0	default:
-> =C2=A0		return -EINVAL;
-> diff --git a/drivers/media/platform/mediatek/vcodec/encoder/venc_ipi_msg.=
-h
-> b/drivers/media/platform/mediatek/vcodec/encoder/venc_ipi_msg.h
-> index bb16d96a7f57..ce3c2c8059fb 100644
-> --- a/drivers/media/platform/mediatek/vcodec/encoder/venc_ipi_msg.h
-> +++ b/drivers/media/platform/mediatek/vcodec/encoder/venc_ipi_msg.h
-> @@ -45,6 +45,20 @@ struct venc_ap_ipi_msg_init {
-> =C2=A0	uint64_t venc_inst;
-> =C2=A0};
-> =C2=A0
-> +/**
-> + * struct venc_ap_ipi_msg_init_comm - AP to VPU init cmd structure
-> + * @base: AP to VPU init cmd structure
-> + * @codec_type: encoder type
-> + * @reserved: reserved field
-> + * @shared_iova: shared iova
-> + */
-> +struct venc_ap_ipi_msg_init_comm {
-> +	struct venc_ap_ipi_msg_init base;
-> +	u32 codec_type;
-> +	u32 reserved;
-> +	u64 shared_iova;
-> +};
-> +
-> =C2=A0/**
-> =C2=A0 * struct venc_ap_ipi_msg_set_param - AP to VPU set_param cmd struc=
-ture
-> =C2=A0 * @msg_id:	message id (AP_IPIMSG_XXX_ENC_SET_PARAM)
-> @@ -175,6 +189,18 @@ struct venc_vpu_ipi_msg_init {
-> =C2=A0	uint32_t venc_abi_version;
-> =C2=A0};
-> =C2=A0
-> +/**
-> + * struct venc_vpu_ipi_msg_init_comm - VPU ack AP init cmd structure
-> + * @init_ack: AP init cmd structure
-> + * @vpu_vsi_addr: VSI address from VPU
-> + * @reserved: reserved field
-> + */
-> +struct venc_vpu_ipi_msg_init_comm {
-> +	struct venc_vpu_ipi_msg_init init_ack;
-> +	u32 vpu_vsi_addr;
-> +	u32 reserved;
-> +};
-> +
-> =C2=A0/**
-> =C2=A0 * struct venc_vpu_ipi_msg_set_param - VPU ack AP set_param cmd str=
-ucture
-> =C2=A0 * @msg_id:	message id (VPU_IPIMSG_XXX_ENC_SET_PARAM_DONE)
-> diff --git a/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
-> b/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
-> index 51bb7ee141b9..537b9955932e 100644
-> --- a/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
-> +++ b/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
-> @@ -10,24 +10,25 @@
-> =C2=A0
-> =C2=A0static void handle_enc_init_msg(struct venc_vpu_inst *vpu, const vo=
-id *data)
-> =C2=A0{
-> -	const struct venc_vpu_ipi_msg_init *msg =3D data;
-> +	const struct venc_vpu_ipi_msg_init_comm *msg =3D data;
-> +	struct mtk_vcodec_fw *fw =3D vpu->ctx->dev->fw_handler;
-> =C2=A0
-> -	vpu->inst_addr =3D msg->vpu_inst_addr;
-> -	vpu->vsi =3D mtk_vcodec_fw_map_dm_addr(vpu->ctx->dev->fw_handler,
-> -					=C2=A0=C2=A0=C2=A0=C2=A0 msg->vpu_inst_addr);
-> +	vpu->inst_addr =3D msg->init_ack.vpu_inst_addr;
-> +	vpu->vsi =3D mtk_vcodec_fw_map_dm_addr(fw, vpu->inst_addr);
-> =C2=A0
-> =C2=A0	/* Firmware version field value is unspecified on MT8173. */
-> -	if (mtk_vcodec_fw_get_type(vpu->ctx->dev->fw_handler) =3D=3D VPU)
-> +	if (mtk_vcodec_fw_get_type(fw) =3D=3D VPU)
-> =C2=A0		return;
-> =C2=A0
-> =C2=A0	/* Check firmware version. */
-> -	mtk_venc_debug(vpu->ctx, "firmware version: 0x%x\n", msg-
-> >venc_abi_version);
-> -	switch (msg->venc_abi_version) {
-> +	mtk_venc_debug(vpu->ctx, "firmware version: 0x%x\n",
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 msg->init_ack.venc_abi_version);
-> +	switch (msg->init_ack.venc_abi_version) {
-> =C2=A0	case 1:
-> =C2=A0		break;
-> =C2=A0	default:
-> =C2=A0		mtk_venc_err(vpu->ctx, "unhandled firmware version 0x%x\n",
-> -			=C2=A0=C2=A0=C2=A0=C2=A0 msg->venc_abi_version);
-> +			=C2=A0=C2=A0=C2=A0=C2=A0 msg->init_ack.venc_abi_version);
-> =C2=A0		vpu->failure =3D 1;
-> =C2=A0		break;
-> =C2=A0	}
-> @@ -132,7 +133,8 @@ static int vpu_enc_send_msg(struct venc_vpu_inst *vpu=
-,
-> void *msg,
-> =C2=A0int vpu_enc_init(struct venc_vpu_inst *vpu)
-> =C2=A0{
-> =C2=A0	int status;
-> -	struct venc_ap_ipi_msg_init out;
-> +	size_t msg_size;
-> +	struct venc_ap_ipi_msg_init_comm out;
-> =C2=A0
-> =C2=A0	init_waitqueue_head(&vpu->wq_hd);
-> =C2=A0	vpu->signaled =3D 0;
-> @@ -149,9 +151,16 @@ int vpu_enc_init(struct venc_vpu_inst *vpu)
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	memset(&out, 0, sizeof(out));
-> -	out.msg_id =3D AP_IPIMSG_ENC_INIT;
-> -	out.venc_inst =3D (unsigned long)vpu;
-> -	if (vpu_enc_send_msg(vpu, &out, sizeof(out))) {
-> +	out.base.msg_id =3D AP_IPIMSG_ENC_INIT;
-> +	out.base.venc_inst =3D (unsigned long)vpu;
-> +	if (MTK_ENC_DRV_IS_COMM(vpu->ctx)) {
-> +		out.codec_type =3D vpu->ctx->q_data[MTK_Q_DATA_DST].fmt-
-> >fourcc;
-> +		msg_size =3D sizeof(struct venc_ap_ipi_msg_init_comm);
-> +	} else {
-> +		msg_size =3D sizeof(struct venc_ap_ipi_msg_init);
-> +	}
-> +
-> +	if (vpu_enc_send_msg(vpu, &out, msg_size)) {
-> =C2=A0		mtk_venc_err(vpu->ctx, "AP_IPIMSG_ENC_INIT fail");
-> =C2=A0		return -EINVAL;
-> =C2=A0	}
-> @@ -260,7 +269,7 @@ static int vpu_enc_encode_32bits(struct venc_vpu_inst
-> *vpu,
-> =C2=A0		sizeof(struct venc_ap_ipi_msg_enc);
-> =C2=A0	struct venc_ap_ipi_msg_enc_ext out;
-> =C2=A0
-> -	mtk_venc_debug(vpu->ctx, "bs_mode %d ->", bs_mode);
-> +	mtk_venc_debug(vpu->ctx, "%s, bs_mode %d ->", __func__, bs_mode);
-> =C2=A0
-> =C2=A0	memset(&out, 0, sizeof(out));
-> =C2=A0	out.base.msg_id =3D AP_IPIMSG_ENC_ENCODE;
-> @@ -305,7 +314,7 @@ static int vpu_enc_encode_34bits(struct venc_vpu_inst
-> *vpu,
-> =C2=A0	struct venc_ap_ipi_msg_enc_ext_34 out;
-> =C2=A0	size_t msg_size =3D sizeof(struct venc_ap_ipi_msg_enc_ext_34);
-> =C2=A0
-> -	mtk_venc_debug(vpu->ctx, "bs_mode %d ->", bs_mode);
-> +	mtk_venc_debug(vpu->ctx, "%s, bs_mode %d ->", __func__, bs_mode);
-> =C2=A0
-> =C2=A0	memset(&out, 0, sizeof(out));
-> =C2=A0	out.msg_id =3D AP_IPIMSG_ENC_ENCODE;
-
---=-BFBTaEQOkW5nYap+49cW
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: add apq8096sg-db820c, AP8096SG
+ variant of DB820c
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com>
+ <20251111-db820c-pro-v1-2-6eece16c5c23@oss.qualcomm.com>
+ <02a9d6eb-e480-431b-bd4c-a35cee170516@oss.qualcomm.com>
+ <wf4h2lwyvgswtv4bgdfidj4vpvykwhu2gri4crvvtd644hf6nr@cnpqi5bmpvm5>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <wf4h2lwyvgswtv4bgdfidj4vpvykwhu2gri4crvvtd644hf6nr@cnpqi5bmpvm5>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=cIvtc1eN c=1 sm=1 tr=0 ts=69179fa7 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u3Kf3rDHAAAA:8 a=p0SuUtGt204vInNQsQgA:9
+ a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22 a=EGheP1PGFffiXWuNiQ4X:22
+X-Proofpoint-ORIG-GUID: UTrLfILRxnfzMxev6GhZK65eWsI6YPw-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDE3NSBTYWx0ZWRfX5BmbpOsH2fLc
+ SiGRnB1mVg1gtvM/WOZHgCfKzEEoChljsH1CYp1LARX2bonMgv+Og0MDIfCrXOEzZV5jj10jPtY
+ 52BizAZqOj+fYwleyWc7WwMgqqvlQuNIKQfqwFqlCyp0Q9thyflvJz9MdwBdORDkzmrHLh3HGma
+ 9fnM5YG6BKXD7Ak+84WABkaqijiy9P6AYaGf82e2s6bNApFCdv93KGMdB0wqvaxHg3BVpp6dUtd
+ HrmX1HaXXSJIKULH1WqyH7OOjTJgs3XPDpZyN3nZPCegMf5chRearLgRkLCtjZGtqWiLQm33Uy5
+ DF1HqXmZ84eUoJETry9WCVnQyNN3qH/YYCkQ5AGb/WeKJUEhGSc4GsdUiOQYwurnYZT03DOTQTI
+ fwbVA3ASTj4zapm73KNsfJ4Au+FwRg==
+X-Proofpoint-GUID: UTrLfILRxnfzMxev6GhZK65eWsI6YPw-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-14_07,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 priorityscore=1501 adultscore=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140175
 
------BEGIN PGP SIGNATURE-----
+On 11/13/25 9:32 PM, Dmitry Baryshkov wrote:
+> On Wed, Nov 12, 2025 at 10:44:49AM +0100, Konrad Dybcio wrote:
+>> On 11/11/25 5:02 PM, Dmitry Baryshkov wrote:
+>>> There has been a (rare) varint of Dragonboard 820c, utilizing Pro
+>>> version of the SoC, with the major difference being CPU and GPU clock
+>>> tables. Add a DT file representing this version of the board.
+>>
+>> So is the conclusion that both flavors were used?
+> 
+> Yes. I have had a production unit with a non-SG flavour. Bjorn's lab
+> has a standard one too. All units in Collabora lab are Pro ones.
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaRefmQAKCRDZQZRRKWBy
-9A2wAQD+XGLRKFcXVtiuPuP5MOg9fF2WdigjfKEEny/WcQE9EQEAv2hUndof7kVp
-7mkp5jZHADk+IpTHWPuZl5/ePYI3MQc=
-=xEJD
------END PGP SIGNATURE-----
+Pro doesn't necessarily have to == SG, this seems to be sort of
+a "MSM8996Pro" and "QCM8996Pro" situation. I'm hoping that speedbin
+fuse values don't have different meanings for mobilePro and SG
 
---=-BFBTaEQOkW5nYap+49cW--
+>> This product brief
+>>
+>> https://cdn.lantronix.com/wp-content/uploads/pdf/Open-Q_820_Development_Kit_Quick_Start_Guide.pdf
+> 
+> This is a totally different board.
+
+Oh right sorry
+
+Konrad
 
