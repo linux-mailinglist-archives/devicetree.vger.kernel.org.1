@@ -1,279 +1,120 @@
-Return-Path: <devicetree+bounces-238565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB90C5C50E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:38:36 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC55C5C713
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02C813A572D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:33:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 43F7B4F73F6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89693302CB6;
-	Fri, 14 Nov 2025 09:33:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F6A3081D2;
+	Fri, 14 Nov 2025 09:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Bq8gdeJl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6C4306B2D
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:33:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA7FC35898;
+	Fri, 14 Nov 2025 09:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763112822; cv=none; b=ON4avJGQeFuIlMrxB90L/pcYwlZdbN/sTOKemOjzjEDgdbKR/Hx+2upVI8TBy6IOE8pDAg+KfqsqpZAHGqBS3kpWWbVgt85mFevbcVgQVPKsmmR9fy7MGudZtitBKYtLOMfDBO7MoyTxUOOCOYfchAv7vAGr4L5K77giDs2NhJ8=
+	t=1763113918; cv=none; b=Ct/rp7PYqRqsIw1+ZTXlofHeMjuuGG1OA/S6g9qvUEulc5XhzSbC5ZAOkzvrBXizCDqtpK3TEFiERHbm8sszblptqVCsfiL0nErr6CoAfEsCqxBNGKYpeRBxWQyKnEx0hwfxVm1Y1/snD9/exCbCNMn4Bdq+lHNL0llmyBf1GTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763112822; c=relaxed/simple;
-	bh=NpM95N9DN3UFQ7COCkLjeUezCaohFHKQ5vC1GQJ5VCI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RqGJbzzOXivLnTmoFOOoEYHlA49V36RSgXPDG5jeVG2YtcAuwxK1HfDVIX8iaoN6T8d/LvKcF7Fm/xrYGLfNsPZLDcNlTqnyjYuwD/F0s+47N4TrfFfm6OiF9nDTN50jFghg3TFlvuUU4c42143dQBEwxNp0H8KOiUWFfP/j7WA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-5deb0b2f685so1672997137.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:33:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763112819; x=1763717619;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=kfkPNlB0ztwDghu8aUOEh8JnL7NlmqdeOqG584soohM=;
-        b=Q6S9zkEC8dL8utq/xpkag/wS2npRX0rqOwc5MWzAunFAH0teZRgzf/CJg3D3gOr1Q1
-         iDvN2690kPaxmdw0v14eDQKJ2k/mjtPUIUAv4ic24/rgAf03X1aROUr8no6Zl4w8jgeR
-         ttCOOu/Yy+X4BAn7hvpQmYxwrLS9FXk4KT0M9MNGAexzUZdfWyMzxnxt9+LrVNVw3ZxY
-         g+/BaEhHTf0PDRVFg2cw603au6xnwUoAjEOPLFCc8ZPTKStyPSMTopNvUiXmWq11Tiwx
-         MNfs0z1zrH/4X5nRW+M763NLscN56dQ/fgbxLsj+Ag11v+jmgGQc7XL6J1RpL8PcGe5P
-         Ur2w==
-X-Forwarded-Encrypted: i=1; AJvYcCWL3j3LOcD6zhQi7U4+CGf8mL4S+O9lJNlLWas6R7MUuak1mlVCeLT8+ZemraFUuDMitu4SbaRzjofL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9vSUO9yFqDhOMRbWN9thozPWkC2RQ1Qkpaz5BGkCXTTMODD+Q
-	biSmntZGlDIN3VG1g6P04n0Gp2lPr/E7OFwmZEw597A9dy/0MucxBKN5Rt8VWwgZ
-X-Gm-Gg: ASbGnctfqSO2ScKryujeWtiQwV9PYlNe1HO3zA05UDzPbMIKfEm3Qy8bvpnWfzvz+C0
-	X67IkXnAJtsnAo4UvBumX1OtSJijcg8byb0O4lplKhm8i5TEv3hhGGDF+p0sgXXAkbquMpIe+Kz
-	tWiwX+7sRwQWCmFkVCVmJ8eSoivbukxF/ME7/zTLSkGzEES83XbDFC1zup/M58gGqmufSyAHaCy
-	YdEJ61OOxRkIU3PuajAW7mUnaY9F9PXucXnoSom768bYPyj5lUBnRhVebK1QxFDaZmUv9hUZlr0
-	/1cAWWb5HKzUhmveElRomjHq6dtTUJwSzl/Jj8TXd10HJt5vfePctF3gHA2S5JfQQNhpDaUUycZ
-	WE8UZBFkUo3pFniRtvA/8Aobud8k0CKCgkhOTWLHADvTmI6A1Ey6b0aDtQwVfGplPQtJccTtbAb
-	bSPid0Om3ieHF2dorer9QwSBLrgZ7HXQhxXqJEvu9n1xl8Rq+nJ/GJG4kgwtL98w4=
-X-Google-Smtp-Source: AGHT+IHlpxyjjnE7EFTsv8QiGfrGP88v7+ma/3N1ZhHuUh9ni235TsBON+JENlBGrW8ExAVx/eutug==
-X-Received: by 2002:a05:6102:cd1:b0:5d7:dddd:5709 with SMTP id ada2fe7eead31-5dfc5365800mr1038298137.0.1763112819242;
-        Fri, 14 Nov 2025 01:33:39 -0800 (PST)
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5dfb707521fsm1458106137.2.2025.11.14.01.33.39
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 01:33:39 -0800 (PST)
-Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-93917ebde8aso79334241.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:33:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXSUCeWA336zp1mMxPsTu9nGEe0xyxgaiYqEvr0U5r8JJjhSpMVRPiVcepPimgglGmlb3GzL/JmOkOx@vger.kernel.org
-X-Received: by 2002:a05:6102:1621:b0:5dd:37a3:c389 with SMTP id
- ada2fe7eead31-5dfb406b273mr2848749137.2.1763112818859; Fri, 14 Nov 2025
- 01:33:38 -0800 (PST)
+	s=arc-20240116; t=1763113918; c=relaxed/simple;
+	bh=o1C0X19ijn5qAxn6OTNxbSExkcUdGudqvVuyPNjsYRo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qYmNxsl9Vp/gYYEpogOavCDYVCuUl0dlGRW5BD4xCNEs1SqPGY5660LmbnO4NnFvy7eY9e08jphKlBA+rh1X6quDMDKbQlR9wVZyJOJWUnRCeVLbj/o7CMlyA0wgFgvyToCfwJ6y2T3ycvkmH943nCBbsMYq77CYXjMVQqRZM2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Bq8gdeJl; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763113917; x=1794649917;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=o1C0X19ijn5qAxn6OTNxbSExkcUdGudqvVuyPNjsYRo=;
+  b=Bq8gdeJlRNYDYMDqzzclI0p+SBIxyRzan333/sNPXETpbwf7kLv0gZdk
+   qaiV2DMu/S4ZaE30GDj2N1al56SBqY1e8w+2ccTkRyupXIj57osrFfA1z
+   fi4lStHoOpylfh9d2FTUo2b4p0gWOTWrt+lpzxVydc+OvX2+cwIVk4we9
+   J3n/VhSqeM0c5y+tnp4/iqm3whB6hOwAD5RKbFmiwZTmwJtxZbrsizLjP
+   5S2MR4a+cu0DQvrk8iu8a3/ai1+Axol7caM1fio3tICkrX7w7R1lXsDVS
+   AYtyN0nVskx0AnHj+1TU2Q3/FOnWiZQE0zsVD7A2Cawv3qpWa4o6IbH50
+   Q==;
+X-CSE-ConnectionGUID: nSZeEksBSi+aD1fohnBYwQ==
+X-CSE-MsgGUID: 5TfR0ALxTfK4RAl9eLbtCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65303904"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
+   d="scan'208";a="65303904"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2025 01:51:56 -0800
+X-CSE-ConnectionGUID: Hl2/Ky0sRDm0a3GExQt/qQ==
+X-CSE-MsgGUID: 6OIHJbSRSrKXTzecRghEyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
+   d="scan'208";a="227092418"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by orviesa001.jf.intel.com with ESMTP; 14 Nov 2025 01:51:52 -0800
+Date: Fri, 14 Nov 2025 17:37:19 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
+	Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mahesh Rao <mahesh.rao@altera.com>,
+	Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: agilex5: add fpga-region and fpga-mgr
+ nodes
+Message-ID: <aRb4T2vEhKlehJiy@yilunxu-OptiPlex-7050>
+References: <cover.1763008269.git.khairul.anuar.romli@altera.com>
+ <9a4ce6b2470328b9326402a2f00ff285be1793c3.1763008269.git.khairul.anuar.romli@altera.com>
+ <aRVyvjCny/I/rElC@yilunxu-OptiPlex-7050>
+ <c7470b9e-5c8f-4498-a752-9c986de8aca2@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027123601.77216-1-herve.codina@bootlin.com> <20251027123601.77216-8-herve.codina@bootlin.com>
-In-Reply-To: <20251027123601.77216-8-herve.codina@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 14 Nov 2025 10:33:27 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUKO_=OeepHwOdFE7wWjxVQTCnq_9g0qJUB3UXE6Vb8GA@mail.gmail.com>
-X-Gm-Features: AWmQ_bkS97Bhw3nuMQeFYkA968hCya9xwSjNdd3dxLkusXF7TWSJCaeM8rc-7KQ
-Message-ID: <CAMuHMdUKO_=OeepHwOdFE7wWjxVQTCnq_9g0qJUB3UXE6Vb8GA@mail.gmail.com>
-Subject: Re: [PATCH v6 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
- Interrupt Multiplexer
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, 
-	Serge Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Pascal Eberhard <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c7470b9e-5c8f-4498-a752-9c986de8aca2@kernel.org>
 
-Hi Herv=C3=A9,
+On Thu, Nov 13, 2025 at 08:12:24AM +0100, Krzysztof Kozlowski wrote:
+> On 13/11/2025 06:55, Xu Yilun wrote:
+> > On Thu, Nov 13, 2025 at 12:43:56PM +0800, Khairul Anuar Romli wrote:
+> >> The Intel Agilex 5 SoC contains a programmable FPGA region that requires
+> >> proper device tree description to enable FPGA manager support in the Linux
+> >> kernel. Without the 'fpga-region' and 'fpga-mgr' nodes, the kernel cannot
+> >> detect or manage the FPGA hardware correctly.
+> >>
+> >> This patch adds a 'fpga-region' node with compatible = "fpga-region", along
+> >> with appropriate #address-cells and #size-cells properties, to describe the
+> >> FPGA region layout.
+> >>
+> >> Also defines specific compatible string for Agilex5 and add Agilex string
+> >> as fallback for stratix10-soc driver initialization.
+> >>
+> >> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+> > 
+> > Reviewed-by: Xu Yilun <yilun.xu@intel.com>
+> 
+> How this can be reviewed if it is completely wrong and obviously not
+> matching the bindings from this patchset?
 
-On Mon, 27 Oct 2025 at 13:36, Herve Codina (Schneider Electric)
-<herve.codina@bootlin.com> wrote:
-> On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
-> interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
-> order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
->
-> The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
-> IRQ lines out of the 96 available to wire them to the GIC input lines.
->
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
+I apologize. Obviously I didn't pay enough effort on DT. Thanks for
+pointing out and providing the Doc.
 
-Thanks for your patch!
-
-> --- a/drivers/soc/renesas/Kconfig
-> +++ b/drivers/soc/renesas/Kconfig
-> @@ -62,6 +62,7 @@ config ARCH_RZN1
->         select PM
->         select PM_GENERIC_DOMAINS
->         select ARM_AMBA
-> +       select RZN1_IRQMUX
-
-I guess it makes some sense to enable this unconditionally...
-But as the GPIO driver it relies on is not enabled automatically,
-perhaps
-
-    select RZN1_IRQMUX if GPIO_DWAPB
-
-?
-
->
->  if ARM && ARCH_RENESAS
->
-> @@ -459,6 +460,9 @@ config PWC_RZV2M
->  config RST_RCAR
->         bool "Reset Controller support for R-Car" if COMPILE_TEST
->
-> +config RZN1_IRQMUX
-> +       bool "Renesas RZ/N1 GPIO IRQ multiplexer support" if COMPILE_TEST
-> +
->  config SYSC_RZ
->         bool "System controller for RZ SoCs" if COMPILE_TEST
->         select MFD_SYSCON
-
-> --- /dev/null
-> +++ b/drivers/soc/renesas/rzn1_irqmux.c
-
-> +static int rzn1_irqmux_parent_args_to_line_index(struct device *dev,
-> +                                                const struct of_phandle_=
-args *parent_args)
-> +{
-> +       /*
-> +        * The parent interrupt should be one of the GIC controller.
-> +        * Three arguments must be provided.
-> +        *  - args[0]: GIC_SPI
-> +        *  - args[1]: The GIC interrupt number
-> +        *  - args[2]: The interrupt flags
-> +        *
-> +        * We retrieve the line index based on the GIC interrupt number
-> +        * provided.
-> +        */
-> +
-> +       if (parent_args->args_count !=3D 3 ||
-> +           parent_args->args[0] !=3D GIC_SPI) {
-
-Fits on a single line.
-
-> +               dev_err(dev, "Invalid interrupt-map item\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (parent_args->args[1] < RZN1_IRQMUX_GIC_SPI_BASE ||
-> +           parent_args->args[1] >=3D RZN1_IRQMUX_GIC_SPI_BASE + RZN1_IRQ=
-MUX_NUM_OUTPUTS) {
-> +               dev_err(dev, "Invalid GIC interrupt %u\n", parent_args->a=
-rgs[1]);
-> +               return -EINVAL;
-> +       }
-> +
-> +       return parent_args->args[1] - RZN1_IRQMUX_GIC_SPI_BASE;
-> +}
-> +
-> +static int rzn1_irqmux_setup(struct device *dev, struct device_node *np,=
- u32 __iomem *regs)
-> +{
-> +       DECLARE_BITMAP(index_done, RZN1_IRQMUX_NUM_OUTPUTS) =3D {};
-> +       struct of_imap_parser imap_parser;
-> +       struct of_imap_item imap_item;
-> +       int index;
-> +       int ret;
-> +       u32 tmp;
-> +
-> +       /* We support only #interrupt-cells =3D <1> and #address-cells =
-=3D <0> */
-> +       ret =3D of_property_read_u32(np, "#interrupt-cells", &tmp);
-> +       if (ret)
-> +               return ret;
-> +       if (tmp !=3D 1)
-> +               return -EINVAL;
-> +
-> +       ret =3D of_property_read_u32(np, "#address-cells", &tmp);
-> +       if (ret)
-> +               return ret;
-> +       if (tmp !=3D 0)
-> +               return -EINVAL;
-> +
-> +       ret =3D of_imap_parser_init(&imap_parser, np, &imap_item);
-> +       if (ret)
-> +               return ret;
-> +
-> +       for_each_of_imap_item(&imap_parser, &imap_item) {
-> +               index =3D rzn1_irqmux_parent_args_to_line_index(dev, &ima=
-p_item.parent_args);
-> +               if (index < 0) {
-> +                       of_node_put(imap_item.parent_args.np);
-> +                       return index;
-> +               }
-> +
-> +               if (test_and_set_bit(index, index_done)) {
-> +                       of_node_put(imap_item.parent_args.np);
-> +                       dev_err(dev, "Mux output line already defined\n")=
-;
-
-Perhaps print the actual index? E.g.
-
-    dev_err(dev, "Duplicate GIC_SPI interrupt %u in interrupt-map\n",
-            RZN1_IRQMUX_GIC_SPI_BASE + index);
-
-Hmm, having to add the base again would be a reason to let
-rzn1_irqmux_parent_args_to_line_index() return the actual GIC interrupt
-number instead...
-
-> +                       return -EINVAL;
-> +               }
-> +
-> +               /*
-> +                * The child #address-cells is 0 (already checked). The f=
-irst
-> +                * value in imap item is the src hwirq.
-> +                */
-> +               writel(imap_item.child_imap[0], regs + index);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int rzn1_irqmux_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct device_node *np =3D dev->of_node;
-> +       u32 __iomem *regs;
-> +
-> +       regs =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(regs))
-> +               return PTR_ERR(regs);
-> +
-> +       return rzn1_irqmux_setup(dev, np, regs);
-
-As Wolfram already pointed out, this function looks a bit shallow.
-
-> +}
-
-Nothing critical, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+> Best regards,
+> Krzysztof
 
