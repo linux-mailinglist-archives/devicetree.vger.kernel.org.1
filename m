@@ -1,48 +1,102 @@
-Return-Path: <devicetree+bounces-238639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ADA0C5CD9D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:26:43 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA197C5CDFA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:32:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 631793544F7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:25:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0EA9D4E1C49
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175EA312831;
-	Fri, 14 Nov 2025 11:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629AD311C05;
+	Fri, 14 Nov 2025 11:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QGFXEYKM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YvmEGhHa";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HCQCn7Tr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D496F2FB0A0;
-	Fri, 14 Nov 2025 11:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB74623EAB9
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763119485; cv=none; b=XWmKd2B44Q2FSr2zKRoCVPqvQ3XP10nSkLpmxN3M1vi8G3uEPnDXkgfBEGUapyCFRnl4fhNPZMs7fLN4sBIE+87hHxeU+qEPnEY14s+WyM+qXYiFQwmkE2ZbOVdn+7M3b9i0FZwrH+y3NKRwb69NFuR3nGfmZTY7uYyDei1156Y=
+	t=1763119619; cv=none; b=bghLREgk31Ww1iv4CS6NXfCcT2cjsn2lBLF3aIaxPZ1D3R+qlesQCQlKG27XuhWUl+G8XWM+KLTmmcPa2b8Dj1p5gFceZl7oyF0etKjwjJEosD4YhQ7V9hZ6FLjwBXCioN2h+a/idb4V+cLCHspRX+b6JllFwlggbMF7y7pKMOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763119485; c=relaxed/simple;
-	bh=MtghmiCdP/8IKMS5DMPz3DbB1bGYJqknWD64qm8gx6g=;
+	s=arc-20240116; t=1763119619; c=relaxed/simple;
+	bh=FjgcuY6SxnUFbFV//lcFGoEp8mOCm8RF0YZOkQurjI0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gWdAwTUNt2wFryqjlmQuX7F64FviJK8m5jiR0LxBEl84FSfMNM389AGRUuseZePMdQUppVBrLcZdDNtU7rNlorRVKeGHteQqTgjgWtcoc9r2O2SU+hAp+KYLqCLu1Uakeh59Lknt9gTiTmaaqR+0JvFP2sfxl8FpsRldIMWLDFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QGFXEYKM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A1DEC113D0;
-	Fri, 14 Nov 2025 11:24:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763119484;
-	bh=MtghmiCdP/8IKMS5DMPz3DbB1bGYJqknWD64qm8gx6g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QGFXEYKMvm2HNSyCb8GPhDeOdgFMnQ8q7i21Qg72lsaqlRl9/43/3FS1EB/a5EYh1
-	 gh1xoBac/IvDGdFyYhzSvICzmhSnaYH7j1E+qIcW1zksPuqwkSxKvwMESp/ypz7/LB
-	 0s2tgVFQhL8BXHGTHEnSTMR8G616F7HVxdSVKl19HEnXlv5w9q+REozEaB+3Ewt1XE
-	 HCn1OR/vJZZUh+CbUyoHORWcNVa8NMwTVagekxizkO1G+GmR2yj4zkAO6BYY+VA63B
-	 pPgWvEUcpkCNRCyIExsM4bwyC/m8mKzQPsKvnXHBLhMXurrtfqRJOTnORCIzd5Hvb4
-	 y4eFDL9EsULVw==
-Message-ID: <f9d47593-6fba-495e-aedb-c0efcaa5526e@kernel.org>
-Date: Fri, 14 Nov 2025 12:24:38 +0100
+	 In-Reply-To:Content-Type; b=NLAX9gC0jGxN0i4PBsWwLigjoKdW6syN0QM7Nho+/NHUSq8lEOSaQbrLRZ0abJrwQTf+wkvCHV4EXk5xJ/2rISs8tmVPery/JU5wI0AiLVJCwbbTQABw//Zhb3rHtWxrNXUe47TqGpPE7veMnmCCiZnofyTGlx34agaWL/w39HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YvmEGhHa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HCQCn7Tr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE8cvjb1431650
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:26:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xj6btczQP9EttHmyg9oi/yzZG5tH5YacuDZXJnwTFdA=; b=YvmEGhHayMHB5uzm
+	enctitrc46sCoSYts4Pd9jZjRcyEUid2Ik/mbTzm8syTdh4h4lXKq37hSw8lTm8u
+	Yhy8xu/xdQxTek7UznfSUHnt7Unsi24CjmQHL3RP0QBVu7uPEq+iTY6nQGTFN45Q
+	GGAap7UTFISWYeA7ukX5CUosV266vxpbLt6zcavgnyczJO7ANnJaxrfLwRCxQq9R
+	u8ZYGBePYg0IyQ/Zzu1PDGTHB74DtlwOFi90Kv4Dh8PSZHso9CgSO+WOGtPeU+Rt
+	3iD78ZHcicHcJHs4x6j/DiT6z8TlLjfXAuNPUfpaZR9anLgM/rs1mo1BsMjgydUc
+	JJgxmg==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adr9g1xvk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:26:56 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3436e9e3569so4283145a91.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 03:26:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763119616; x=1763724416; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xj6btczQP9EttHmyg9oi/yzZG5tH5YacuDZXJnwTFdA=;
+        b=HCQCn7TrTDGlfi/b6A1mRsKLAsMWqKThV7/VKGPBGd+hoRiWvisTmzXDjFLevCUdMQ
+         5cyOd/7MWaUFDtf5IRnp5HAu1v083ylZ5Hfwwwl/uGYoOoFKhkxil72tt8OxgxD4Lu4l
+         VV+BzgonEiGJOpruutS357e+O9ZGRj7tJiGtDJrHjV0eWK9+lnLpb+x+AIyjeO9ypjk3
+         w+0aWRc+6ZQqycTo+sXW/9V1p3w283cY4Rdt69LcN6fkvoqzs/JT7sd3xpExzJm2LIRD
+         rm37cdxsyXOcavs7fIXw2E8lZU9QOo/yYnd9Uv2m/6lRmWQh0gpjrYjnDePAGnVJFudq
+         d50A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763119616; x=1763724416;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xj6btczQP9EttHmyg9oi/yzZG5tH5YacuDZXJnwTFdA=;
+        b=PIT4uy8RfGOu2+W9Cp4r/JiZDx4FR6QkjY77Ou52DVO91wbSDNyhpv0nfwqVEtrYBC
+         8BwWwA4Bx/vMENIueBXsyKkT8MnLfNgUsYANlzORpkp3AnRjpReRfUsGpTh88HWO0kkr
+         ILBe43pSRqPuczmOitHrWVDjinPAk+Xpg1zGpm4f5hjIQRP4XlaRWvPUPCeaAP7W8SlN
+         ARrrcbnUuEsKZDZ31LzcOc/JL0hMcm1FzWJtW7NBmHhg+8bvlTNR7G0ZFFI7UGb4y3mg
+         rAZrX1H9jjysORSOLcwGQbfVoW76QX+SCPTDVssICebZqWe4BYTguHriyCmM7ILuF+/R
+         +lbA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfRytNE/q3NociAkXzKLKrDJWE+a1f0XixJNqhQrWOBN6z2j9zcvwHx+tWMoFxvVT2iXp4t88HP5JK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2K81HSl11IHY55cJh4uOZeXO+BLTjYMNvgWvaSG4A90/NISdw
+	8UhieWeAn5a/qyxVrE8ZMxSnEAAEb5mvqo+uj1XN29Sx5+vvuZoAe5eiMj7LW2Fl+EMFs3iFeR1
+	OEQ24/5/GpNYaDzBxKw+VsKe4qU51BqTzheGORO3s54no7vZT04eBHLYczN0aH6O5
+X-Gm-Gg: ASbGncupOIoWUFyF3yNJtVu/id7LOYIduuHqDhAwX3boK7B8x14E61chT3ePdFyApxC
+	ZtxM7Ur2scEqDdhHHGpxOWPfwsLmAONsXA7nSlKsjO1/QopmSVjTA/LElGPlUUHl5iz4T1Rw07c
+	0Pf7BT9fDZmHXRmDjD/541nJ9lD+aTa2Ir9SlMVQeqZTModkn/pkgT71qZdRa2P4ohkIWkkQJYX
+	yTtqVgYITGeasRdYpFZXrinzBNePw0g9YPJwEMdM25E/PBphkWCVLS4IFjkUqVm1QvA3QkiXQzy
+	HlWW+LPdfuOFwmtYtYbszhebp62SVcsRq6F2P+s8tXUaI6xm+tmaJZ2KhsMg7vtLHN6MvrMHIT9
+	uWt3/LD3JOMUsn25N8PRz3dU=
+X-Received: by 2002:a17:90a:d408:b0:33b:b020:597a with SMTP id 98e67ed59e1d1-343f99c1cc3mr3251186a91.0.1763119615950;
+        Fri, 14 Nov 2025 03:26:55 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFgKCyHJGBBYPB4qZv+EAl4Tx88PJN32VSjZcg29sFOWP5dg9DS3lwkBEwjYg2dmQ/BXtGF2A==
+X-Received: by 2002:a17:90a:d408:b0:33b:b020:597a with SMTP id 98e67ed59e1d1-343f99c1cc3mr3251153a91.0.1763119615473;
+        Fri, 14 Nov 2025 03:26:55 -0800 (PST)
+Received: from [192.168.1.8] ([106.222.229.203])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3456516c622sm167599a91.9.2025.11.14.03.26.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Nov 2025 03:26:55 -0800 (PST)
+Message-ID: <76523142-b337-4a31-90d2-c8477ef0b270@oss.qualcomm.com>
+Date: Fri, 14 Nov 2025 16:56:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,99 +104,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] wifi: ath: Use static calibration variant table for
- devicetree platforms
-To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: srinivas.kandagatla@oss.qualcomm.com, Jeff Johnson <jjohnson@kernel.org>,
- Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, ath10k@lists.infradead.org,
- ath11k@lists.infradead.org, devicetree@vger.kernel.org,
- ath12k@lists.infradead.org, Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
- <20251114-ath-variant-tbl-v1-1-a9adfc49e3f3@oss.qualcomm.com>
- <3a951821-14b1-464e-b1da-05a95f4164af@kernel.org>
- <kn24jkn77ydcrn23xz6z27cvaclksmeb3ic7pr24lxsqediugl@ubkf5t4wyyrq>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 11/21] drm/msm/a6xx: Improve MX rail fallback in RPMH
+ vote init
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse
+ <jordan@cosmicpenguin.net>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Connor Abbott <cwabbott0@gmail.com>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org
+References: <20251110-kaana-gpu-support-v2-0-bef18acd5e94@oss.qualcomm.com>
+ <20251110-kaana-gpu-support-v2-11-bef18acd5e94@oss.qualcomm.com>
+ <dd32a5e0-1dd1-484d-8fb7-8f6c506c8c83@oss.qualcomm.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <kn24jkn77ydcrn23xz6z27cvaclksmeb3ic7pr24lxsqediugl@ubkf5t4wyyrq>
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+In-Reply-To: <dd32a5e0-1dd1-484d-8fb7-8f6c506c8c83@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=L+AQguT8 c=1 sm=1 tr=0 ts=69171200 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=UUXEStRZTiKyGgBwSCQbmw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=lZFDvItL9zSOf8gjBGIA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA5MSBTYWx0ZWRfX/eI5LC5D0tk8
+ HFWh6fwWEGIYs615Gh6dw6vPUU9mnZ46cETjrPmoniCjIn2LRo1HjU2xPy5bNra2B/R/V4Byusc
+ Ykin1hzoXd1h7oAZhe1vdpHaS2M4DD3fQLiMRK8y7AFqnO6lVZA+LhyNosQMjhrsqvAW30JiF01
+ jDT/yTzyqNsfQa/1YvL04DzJUGEwiCUqTYSZU69sNTUn0Rn1/fNytDSjz0IyEGT/rEwn4I59d0B
+ VMVN7xmJzwjVc/AKWVO+vHsSWQ0DVPV4I7wdiwrXqsmzDaQhjnqJc7aAh+aRhNLCvlxvQ2tKv9E
+ gcHotX3O+orMfmWHzR9qX8y3QFxcrj847Zv+yN40HQMk5CwseafKPKuHGZAQhYVRRxxfCh1D0xo
+ L6y2BVdSvOYJQiqpqiSf7d7sA9sAsg==
+X-Proofpoint-ORIG-GUID: lnLWfWvgySzsFmlz4e7FFBwPrzYj9JFm
+X-Proofpoint-GUID: lnLWfWvgySzsFmlz4e7FFBwPrzYj9JFm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-14_03,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 impostorscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 bulkscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140091
 
-On 14/11/2025 12:16, Manivannan Sadhasivam wrote:
->>>  
->>> +static const struct __ath_calib_variant_table {
->>> +	const char *machine;
->>> +	const char *variant;
->>> +} ath_calib_variant_table[] = {
->>> +	{ "ALFA Network AP120C-AC", "ALFA-Network-AP120C-AC" },
->>> +	{ "8devices Jalapeno", "8devices-Jalapeno" },
->>> +	{ "Google cozmo board", "GO_COZMO" },
->>> +	{ "Google damu board", "GO_DAMU" },
->>> +	{ "Google fennel sku1 board", "GO_FENNEL" },
->>> +	{ "Google fennel sku6 board", "GO_FENNEL" },
->>> +	{ "Google fennel sku7 board", "GO_FENNEL" },
->>
->> Are these top-machine models? If so, you cannot use them. The value is
->> user-informative, not ABI. If you wanted to use them, you would need to
->> document the ABI.
->>
+On 11/12/2025 4:29 PM, Konrad Dybcio wrote:
+> On 11/10/25 5:37 PM, Akhil P Oommen wrote:
+>> Current logic assumes that the voltage corners in both MxG and MxA are
+>> always same. This is not true for recent targets. So, rework the rpmh init
+>> sequence to probe and calculate the votes with the respective rails, ie,
+>> GX rails should use MxG as secondary rail and Cx rail should use MxA as
+>> the secondary rail.
 > 
-> I had this question initially, but Srini convinced me it is OK to use it in the
-> driver as they do it in audio :)
+> Is GMU always on Mx*A* and never Mx*C*?
 
-That's sounds like an issue which could be fixed or at least discussed.
-There is no in-kernel usage of ASoC's 'model' property, thus we probably
-never noticed that it is an ABI.
+I believe the GMUs we have so far are always on MxA when it is available.
 
-OTOH, everyone apparently knows that audio's 'model' is an ABI because
-no one changes it, unlike top-level machine 'model' which is being
-changed from time to time.
+-Akhil.
 
-Best regards,
-Krzysztof
+> 
+> Konrad
+
 
