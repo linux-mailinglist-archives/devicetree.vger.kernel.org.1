@@ -1,156 +1,257 @@
-Return-Path: <devicetree+bounces-238853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 363E4C5E82A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:19:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B2E8C5E9BD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:38:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8E773BEDB7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:19:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3D609364AFD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:26:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C982D3EF8;
-	Fri, 14 Nov 2025 17:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD6233C539;
+	Fri, 14 Nov 2025 17:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OoCOcPaO"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="QtQUj/r8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 242782D24AD;
-	Fri, 14 Nov 2025 17:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763140795; cv=none; b=S6mcUi5fvHkbWhntWM7CAm2bwdlz/yHjzZqU41V0QGm2XbRhsBd9s08X1A4ztbLZw3P4MPcfe22cJA7au2IZ0lMtKtq5l7SG8it0zd/jEPzZzuHMDVkKI3RITJDO3/zfRmsTwkFTQelKramqc9uLlDw+eEdBVtlNZ7wcuJIFV1A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763140795; c=relaxed/simple;
-	bh=Ry2NX3YpOns0VgrqIFLUrBPQMwDNS0mEtioSCIef/gs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i5VcG6eqbaGTojrwdiHqZfciYI/u9S2c1LGL0Y0mq9KBnuueFnsZgGIuP+aqupumatXZkhN1LuXoZ3bCNPKaT/jhUQGKG6ysHQhTITmJzLM5b9EitNeQQup9Cqq+ctBILb82oE54cyFtWCDxgUcJ7FxNrRqm0PZ0uYL7adqPBJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OoCOcPaO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83020C4CEF1;
-	Fri, 14 Nov 2025 17:19:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763140794;
-	bh=Ry2NX3YpOns0VgrqIFLUrBPQMwDNS0mEtioSCIef/gs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OoCOcPaOU5UuKRnc7WU+t/JAHoUc3skwMmTFEXYt5RbezAa0rFQtVuNy0abPW8+RR
-	 ROkw3svS8LHk6Kl+r87a8ImmmwKV2stsnQVdpGw4tmYuOAC5zVMCNC8/NBxA427Of3
-	 lOWMR5YqYc4SYoeEEGn+iCNpBv6E5eb0h/VZu56UH7/O75cpemV13pO6YcDROm2tXx
-	 33cN1KoHZ6LZbwheJwP/bqDvMBEFO64CcqpN5iYS4Tsqa7hYBapU7+7eiVlp14HKen
-	 riQZswyhgKwLAxyp8t5pxR00nB0BfF+2CqkYq/w5QXAxHlnI4bclpkchUJcZuEvhex
-	 LJ4wr5fJVqp2w==
-Date: Fri, 14 Nov 2025 22:49:40 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v6 0/6] PCI: rzg3s-host: Add PCIe driver for Renesas
- RZ/G3S SoC
-Message-ID: <akw7hzxci73gd7zlbo56matorjihffuq45l22mzkmavzlm66k7@zjujvakf76ve>
-References: <20251029133653.2437024-1-claudiu.beznea.uj@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58AC2339B51;
+	Fri, 14 Nov 2025 17:26:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763141198; cv=fail; b=gSRW6Z9s3xhstA5LueeANnpYbzypvVnRfunwcXJmZMP7JwM58wm3QhxpUAMMxSdOntWgAtbwCdCW+vxN0ovUP0tzA8S4y7BPXc56VmSnGIEe3b/WjEQB8V5s0uPiTh7mwsSoGYoYEZODfBmO6kbKGquN7hRQXICKOLKEOtoDUPw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763141198; c=relaxed/simple;
+	bh=6/kfcmqetSsqSaVhSqrafDyJyq1eaSeM7/dejA7oGq8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=f9T978VZS9yE41KeSJeBAV5Bek1nEI4gCZmhvRs4fwEs/S/JaRaxNyNw1keKi7MwNahql+j9D2i12n/NZpDxWqHoqRTXAWOpbuZaS8HzvdkvYLSodXTiDzcHP+o3Jd3hnz8DYX5er4aZH48ZsottybGlQY3agYJubDbNCLiuJrk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=QtQUj/r8; arc=fail smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AEH2Z6N2627446;
+	Fri, 14 Nov 2025 18:26:13 +0100
+Received: from mrwpr03cu001.outbound.protection.outlook.com (mail-francesouthazon11011066.outbound.protection.outlook.com [40.107.130.66])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4ae4y8rwet-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 14 Nov 2025 18:26:13 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=X6DEBiVm6WWDVwee8SVL3NukAvKWoX3DvBp7WqqP0j2Q0ojB5gr0E2y7IxxPLai3EP6fhWsvk6rwXlH6BJXoQGu2voN+9dwhM2HHxFPSQpfWtzE72Tsk4DBh8s6XhyCRTh3/vDc5vCMFrDiYj62LaNKIMIfAPNCAl5pXxeWXXL06O0Abv7uwFYGhwE1xHAhTqvC04dibxIL66axa7alFw67N0dHgN1qh9gGsdrFPoaxJqlq/RgAK4wXT9pM0pLdIiitMzjYMWlYeFwnnyhpuTNWRR+329r4d2CgOW7My1skQZUd9t/kGQIAtJQiIvw1wQlf3GXPtvp3aZWN2qPZucQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GnAni0z0+nGCMgjbVP5aUBSduJvn/0sMF8C8HoJvpIA=;
+ b=iIiGYJg30Yq1BPZ8gy8sah05G77KFxda9oDlp9A4/lP1L9Dc3rfNreJtq5JnmiYWIT2WKE9ll2oCkQTjRAcGBwof+8UTpcbeqP20vcSrIka27PsqtFKW3JwGV8fptWItO3qGVi/vOZuGXUt1tkpqIuWYdqefexsSTc5czzssZtwkfpWOjeNXBXT+kcU5klcWo44wBgt45jY5dhFKSm2DyBX3I6MQm/kUdxqn8ZuVK7ak3NCv6J4NX3nmbnJ5PG9IVtejpNfQa1BFJ0jCxf5UKg1d/63n58PvbCYCDUD6oV8xUVYFK7BKoX84Om+28k2Psa1egIRC63GIvn1yQ+lQAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GnAni0z0+nGCMgjbVP5aUBSduJvn/0sMF8C8HoJvpIA=;
+ b=QtQUj/r80ui3STXYd8Eknazj/Vbf3mxttg/vvIyh5phG+l7vNCEoPgZ/XYmrCnXTUz5dr7orXegP194hMSvHluB/Y0+IsC15WDIxs9MV2YIJspwGzdJRWvigakT4EJ/Qp2LqlBqat8faVwAOmZNK3zz4LCZ5w+9Rhfokcq2DmMW4+QESaTgS8532X5gRx40Kk/KwqpMz+gjv5PDq9+dxzFdwteE4hT6LI3QP+3ej1Qe+BlrvzbhGphiTja8FdDDECI6oWzrt8CDu+cEo2a0Vr/1TpfIj1qt8u1sbMoLBfmmu7/43AGj5Go6ABLpcPufORVrD2IOqXLCFVMVS3Uguwg==
+Received: from DU7P251CA0010.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:551::27)
+ by AS8PR10MB5877.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:521::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.18; Fri, 14 Nov
+ 2025 17:26:09 +0000
+Received: from DU2PEPF00028D03.eurprd03.prod.outlook.com
+ (2603:10a6:10:551:cafe::c7) by DU7P251CA0010.outlook.office365.com
+ (2603:10a6:10:551::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.17 via Frontend Transport; Fri,
+ 14 Nov 2025 17:26:06 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DU2PEPF00028D03.mail.protection.outlook.com (10.167.242.187) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9298.6 via Frontend Transport; Fri, 14 Nov 2025 17:26:09 +0000
+Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
+ 2025 18:26:20 +0100
+Received: from localhost (10.48.87.93) by STKDAG1NODE1.st.com (10.75.128.132)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
+ 2025 18:26:08 +0100
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH v2 0/6] Add boot phase tags for STMicroelectronics boards
+Date: Fri, 14 Nov 2025 18:26:00 +0100
+Message-ID: <20251114-upstream_uboot_properties-v2-0-3784ff668ae0@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251029133653.2437024-1-claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAChmF2kC/42NTQ6CMBBGr0JmbUmnYPxZeQ9DCMVBusBpZgrRE
+ O5u5QQu30u+962gJIEUrsUKQkvQwK8M7lBAP3avJ5nwyAzOuiMiOjNHTULd1M6eObVROJKknDD
+ O1Wfrra899pD3UWgI7719bzKPQRPLZ79a8Gf/qS5orLEeL1hVJ7RU3QZWLTWVPU/QbNv2BevMB
+ 97EAAAA
+X-Change-ID: 20251112-upstream_uboot_properties-22480b0b4b1c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Patrick Delaunay <patrick.delaunay@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE1.st.com
+ (10.75.128.132)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028D03:EE_|AS8PR10MB5877:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9213297c-cb78-4f00-3b80-08de23a2e6c0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?QlZDNHV0R3hHSnllSHZLTzZ1ZmFEKzNiQm9wTTlUbi9HTWw5dnBTblRmVStx?=
+ =?utf-8?B?UzVzanozbUlrdDhtSlltcXFYWmtDZnhEV21JNW5CVkxYYytHNTJOWGhDeG51?=
+ =?utf-8?B?ODNMWllJSjM0dENtTVRzdXVUVTZDcUZSNXd0YUowL2VaaktKNU5YNGNjUktt?=
+ =?utf-8?B?WlVyQXRpR285eXNrYW1xNWlMcG4vOFhIOTJYRVgwbmV2RHNzSk9GeXRackEv?=
+ =?utf-8?B?OGZaankzd1JaVUlCVmVUZkNxajA1UEd1d3p1a1d4cUNyTkFqWlY5eEtDekww?=
+ =?utf-8?B?cEhTMUZJaUtlMVlRQm1RLzZTeG9vVkQ2U1ZYZ3VyVnNieEVyTFlhQk1tL2Mx?=
+ =?utf-8?B?b1RaODJuR2NqS3pINVFJZk44RW93aUZVMnE0MEw4d0VseGU5cEc0VXVjZ1py?=
+ =?utf-8?B?cnZCMmMxamJIZ01reXFsekVjclZHMWszOStGZlhpQXpQT3JnKzEwRDVpVHFw?=
+ =?utf-8?B?U2sxQXViT0luRExydVJjemNVdW56cHNqVXdrY0RMSjVrZnNYUkw0UGxzRFQz?=
+ =?utf-8?B?SFdINTBMWXRxZEpSMUppa1dzc1BVNEYvUWlYWFZjL3lHWUJ2anViY0orZmsz?=
+ =?utf-8?B?N3VJam9OY0hmVVNodmFwUUlNblJkMWRFQXZSM3JnUnhGblFMLzRxTHJYQ1cx?=
+ =?utf-8?B?eFQ5NDhUWEdrMHZoWlNKaWRYVm1QTFBHREE3Z0RaSVFHanBOK2Q2Ym5ZYWFD?=
+ =?utf-8?B?N01GRDJmZFY5UUYyQ2hjRlE2dEd4dDAwM1V4NExuVHNOZ1cxVjJlQUQxOExj?=
+ =?utf-8?B?SDBnS0h2bUw1ZDlrUHJBVUduMlFXYnBDTk1aQ0JmWUJndXVIS2RVT1JSQjNN?=
+ =?utf-8?B?TTFEeEV2aU9sWEMyWkU3MDZRcTgyQm1tVkJaOGdod3BxZVJZVUg4M2dlRWk4?=
+ =?utf-8?B?WExFdmthaDR3ZCsvQXlRdmI4WExOaUdmL2h5SmYyTlYvZXowY1lJSEZhd09V?=
+ =?utf-8?B?OCtnc3ZqOXdDYWx5WUpRRVE1blAxOE1RcktFL01nQUp0Y1g3amFuTFBUWURU?=
+ =?utf-8?B?WHpmUEV1N01KNUlCWGtjNmtjQnNDcGRrMWR4enA0LzZyVXowZUxtOXduYXMr?=
+ =?utf-8?B?NmpzWVdVVXFPbEhlMHlraGJCQzU2eHlzZzE5eTc1MDRJd25Jd2ZjYVI2M1Nu?=
+ =?utf-8?B?QllrdE4za3BNOUVZVW9FM3YyRWMzMDdGeDlQRVR5VUpZUXNvYTBqbzZWbWhP?=
+ =?utf-8?B?MWsxTEJLeGw5QkI0bGhzL250QUdVRlVkclA1RGRhcHVnMmY5ZDlLZE5BNzhH?=
+ =?utf-8?B?TytJOHZJQks0aWVEZS91TlAxZElSQTFpQ0R1M2hpOFBwNmRzY3NpdElXZnAy?=
+ =?utf-8?B?YXJnWXJDcVJ1SmR1Ti9LeTRiQ3hRZEx3cHRaQlJwdDFYaktaQ1BLMFhyN1U2?=
+ =?utf-8?B?QkdYWVRnemR0RFV3UnQzN1RUd01jbGhPazlVbDAvN3d4cnRWZW1yRnRLWXZL?=
+ =?utf-8?B?QU9YQjNUZitJL0RSYStrbXBveUdSR2FaVjhDcXhubnJtV3pCL0pmR2hXSTlL?=
+ =?utf-8?B?cm5DNUtBQkdzcjZPTDNYeENOeW13NjZyZEJaN3I5eUZqd2FjbnVCYkFmQTB5?=
+ =?utf-8?B?SysrUyt5YTRzaXJmRE1vSHdsNHBVbEwzTHFvYVduQm5JUXJZclh1alJaVVRq?=
+ =?utf-8?B?bk53b085dVhPNXRDQUxSMTg5WjZiMmg4SFVEbXJpYU5yYmIvaTZBdyt1NDlk?=
+ =?utf-8?B?K0kySTFLOGh5K3lLZEFPVHc1WTdpUjRXSjhnUHV0N0pub2RiR2dsaUR0SFVw?=
+ =?utf-8?B?d3VsTjNQcHkyQVZ3UnBnV0ZSY1VPc2JNdG00UTl1WDZDdEVsbTRMOGZLZCtQ?=
+ =?utf-8?B?dUxvV3diVzV3U05vTkY0RFZlZFlaV2FRY0dNNkhuZVdsRWJzTG9VWjRWOXNp?=
+ =?utf-8?B?a0pQQ0F1SG52MDk4aTQ2UEVMdFQ5V2p3VWZFM2xyR3BmRkZNOHBudy9OdFAr?=
+ =?utf-8?B?THQvVTNwV0pxUE14RW9PRFlSTThKWWZTZXl2VjluNytUR3QveXJOKzVzUFZW?=
+ =?utf-8?B?eHBCVVJHYjk2ODJHS3ZNamRvZzJ2WE1xSXJkRGx6QjlqTld5MHRvT1E2RG9Y?=
+ =?utf-8?B?cDFjZFdsN0NJbzFEeTlZdnZTZWlyVi9rR2NsZEhnU1c1Q0V4aWtiZnF0cTBU?=
+ =?utf-8?Q?4NJ8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 17:26:09.5185
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9213297c-cb78-4f00-3b80-08de23a2e6c0
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF00028D03.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB5877
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDE0MCBTYWx0ZWRfX273J+Ytd2dIN
+ Zb4Hz0/oGkPLvB4mewa8YSB58XHrQ94YsTHVNFhSUOxioheMHHxNLXRwE2KzzMYkmQthX4Utypt
+ FrwdyTkgDfIRxczdnU/nS9UxwxIqmA39/Hy2kCKtxn+1ECLIEbCPNT2tb8pcLZYSp36R5NWeHYJ
+ aFyyGljRr5otnvYsHasVg/bAb+yhBTgb37oWfn9uiDLp00OPN+MmiV/BHZiuvxOjK0Sy5HJ9mGc
+ +B7ceUSHu/oxweWLkcZfpOYZTvmmyVEpECp0PYkVuuBAvcCpfaLc2/vOiqx3z8++FD68DsL/ZrP
+ GJAqqnWrMPL0bZk4bX5vlMObUKZsPQlYaiF0B4u4ZXKIVX9+7cyYGhpEdL+5oCijHosgFO8NCMc
+ acvVEN9aSeMpsKeZIDO7LZfKbPCeXQ==
+X-Authority-Analysis: v=2.4 cv=ZOraWH7b c=1 sm=1 tr=0 ts=69176635 cx=c_pps
+ a=OoqrPP89fG8PzfUgsW4dTA==:117 a=d6reE3nDawwanmLcZTMRXA==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=XWp4PHTOCikA:10 a=IkcTkHD0fZMA:10
+ a=6UeiqGixMTsA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=8b9GpE9nAAAA:8 a=HILBdA-kGuq4vTFu6uoA:9
+ a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: weAIv4Tt1x4TCtbnopKo4Eico46SdRNc
+X-Proofpoint-GUID: weAIv4Tt1x4TCtbnopKo4Eico46SdRNc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-14_05,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ priorityscore=1501 adultscore=0 spamscore=0 clxscore=1015 suspectscore=0
+ lowpriorityscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140140
 
-On Wed, Oct 29, 2025 at 03:36:47PM +0200, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Hi,
-> 
-> Series adds a PCIe driver for the Renesas RZ/G3S SoC.
-> It is split as follows:
-> - patches 1-2/6:	add PCIe support for the RZ/G3S SoC
-> - patches 3-6/6:	add device tree support and defconfig flag
-> 
-> Please provide your feedback.
-> 
-> Merge strategy, if any:
-> - patches 1-2/6 can go through the PCI tree
+The bootph-all flag was introduced in dt-schema
+(dtschema/schemas/bootph.yaml) to define node usage across
+different boot phases.
+    
+To ensure SD boot, timer, gpio, syscfg, clock and uart nodes need to be
+present in all boot stages, so add missing bootph-all phase flag
+to these nodes to support SD boot.
 
-Patch 2 is not applying on top of v6.18-rc1. Please fix it up and resend.
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+---
+Changes in v2:
+- Fix 'pinmux' is a required property for arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dtb
+- Add bootph-all property for lvds and ltdc nodes for stm32mp2
 
-- Mani
+---
+Patrice Chotard (6):
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics f4 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics f7 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics h7 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp13 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp15 boards
+      arm64: dts: st: Add boot phase tags for STMicroelectronics mp2 boards
 
-> - patches 3-6/6 can go through the Renesas tree
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> Changes in v6:
-> - addressed review comments on DT bindings and driver code
-> - per-patch changes are described in each individual patch
-> 
-> Changes in v5:
-> - dropped patch
->   "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
->   and introduced patch
->   "arm64: dts: renesas: rzg3s-smarc-som: Add PCIe reference clock"
-> - addressed review comments
-> - per-patch changes are described in each individual patch
-> 
-> Changes in v4:
-> - dropped v3 patches:
->   - "clk: renesas: r9a08g045: Add clocks and resets support for PCIe"
->   - "soc: renesas: rz-sysc: Add syscon/regmap support"
->   as they are already integrated
-> - dropped v3 patch "PCI: of_property: Restore the arguments of the
->   next level parent" as it is not needed anymore in this version due
->   port being added in device tree
-> - addressed review comments
-> - per-patch changes are described in each individual patch
-> 
-> Changes in v3:
-> - added patch "PCI: of_property: Restore the arguments of the next level parent"
->   to fix the legacy interrupt request
-> - addressed review comments
-> - per-patch changes are described in each individual patch
-> 
-> Changes in v2:
-> - dropped "of/irq: Export of_irq_count()" as it is not needed anymore
->   in this version
-> - added "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
->   to reflect the board specific memory constraints
-> - addressed review comments
-> - updated patch "soc: renesas: rz-sysc: Add syscon/regmap support"
-> - per-patch changes are described in each individual patch
-> 
-> Claudiu Beznea (6):
->   dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add Renesas RZ/G3S
->   PCI: rzg3s-host: Add Renesas RZ/G3S SoC host driver
->   arm64: dts: renesas: r9a08g045: Add PCIe node
->   arm64: dts: renesas: rzg3s-smarc-som: Add PCIe reference clock
->   arm64: dts: renesas: rzg3s-smarc: Enable PCIe
->   arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
-> 
->  .../bindings/pci/renesas,r9a08g045-pcie.yaml  |  249 +++
->  MAINTAINERS                                   |    8 +
->  arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   65 +
->  .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |    5 +
->  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |   11 +
->  arch/arm64/configs/defconfig                  |    1 +
->  drivers/pci/controller/Kconfig                |    9 +
->  drivers/pci/controller/Makefile               |    1 +
->  drivers/pci/controller/pcie-rzg3s-host.c      | 1759 +++++++++++++++++
->  9 files changed, 2108 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
->  create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
-> 
-> -- 
-> 2.43.0
-> 
+ arch/arm/boot/dts/st/stm32429i-eval.dts       | 11 +++++
+ arch/arm/boot/dts/st/stm32746g-eval.dts       | 10 +++++
+ arch/arm/boot/dts/st/stm32f4-pinctrl.dtsi     | 12 ++++++
+ arch/arm/boot/dts/st/stm32f429-disco.dts      | 11 +++++
+ arch/arm/boot/dts/st/stm32f429.dtsi           |  9 ++++
+ arch/arm/boot/dts/st/stm32f469-disco.dts      | 12 ++++++
+ arch/arm/boot/dts/st/stm32f7-pinctrl.dtsi     | 11 +++++
+ arch/arm/boot/dts/st/stm32f746-disco.dts      | 12 ++++++
+ arch/arm/boot/dts/st/stm32f746.dtsi           |  5 +++
+ arch/arm/boot/dts/st/stm32f769-disco.dts      | 12 ++++++
+ arch/arm/boot/dts/st/stm32h743.dtsi           | 19 +++++++++
+ arch/arm/boot/dts/st/stm32mp131.dtsi          | 21 ++++++++++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts       | 11 +++++
+ arch/arm/boot/dts/st/stm32mp15-scmi.dtsi      | 26 ++++++++++++
+ arch/arm/boot/dts/st/stm32mp151.dtsi          | 29 +++++++++++++
+ arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts | 14 +++++++
+ arch/arm/boot/dts/st/stm32mp157a-dk1.dts      | 43 +++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-dk2.dts      | 43 +++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts | 14 +++++++
+ arch/arm/boot/dts/st/stm32mp157c-ed1.dts      | 60 +++++++++++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts | 25 +++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-ev1.dts      | 36 ++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp211.dtsi        |  7 ++++
+ arch/arm64/boot/dts/st/stm32mp215f-dk.dts     |  1 +
+ arch/arm64/boot/dts/st/stm32mp231.dtsi        | 22 ++++++++++
+ arch/arm64/boot/dts/st/stm32mp235f-dk.dts     | 11 +++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 26 ++++++++++++
+ arch/arm64/boot/dts/st/stm32mp255.dtsi        |  3 +-
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts     | 11 +++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 11 +++++
+ 30 files changed, 537 insertions(+), 1 deletion(-)
+---
+base-commit: 53c18dc078bb6d9e9dfe2cc0671ab78588c44723
+change-id: 20251112-upstream_uboot_properties-22480b0b4b1c
 
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Patrice Chotard <patrice.chotard@foss.st.com>
+
 
