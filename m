@@ -1,266 +1,159 @@
-Return-Path: <devicetree+bounces-238763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C96C5DE95
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:37:01 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C3EAC5DDB7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:28:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2FD183672A6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:04:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AF40A4F6EF6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8392232C312;
-	Fri, 14 Nov 2025 14:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D889F32D448;
+	Fri, 14 Nov 2025 14:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t2R7b97K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DrzXRK73"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 609F232A3F9
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 14:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D879A32D43B
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 14:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763132164; cv=none; b=Y6quOUmNDyaBvbx2peZCyepsAiaG25XDoA0qx/Kl1h4fBSdzG0QIfm73lj1+gzLLqY0SSGx+udjl8xG4YkEy0UMF4dT5USMiq4UicsrArumIAL5kLbEFWn7jGjkwA9EOAbFg8N+9EhGEcQWnGQ20Bmd85JM+MCGLeUXZi/rgNbw=
+	t=1763132182; cv=none; b=EPXqTQOsXbzNzYI/TMnjrD+Mg/E+HUX4k7a3Rh1w4ERUUJhL3AQ76VVdyHuJiBPjFtUN8y5LM02VRIvrk9M6RLj9VIn5JTj0PG8k5FmP+FNZniXmvztIDqH2T51JTaWtWsthaCAE2Gau7EKtZHBUXtzmahkjHcoQN2Z2TcX3QNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763132164; c=relaxed/simple;
-	bh=Hm35Kpu8wDtxPaRNylrFfo4pK22w1ThwQCWTxtV76yw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lE9OwfMuSYshQkR5f831qBZ5mfvkQkqufl2awao3NLZnE1ayAa+r3dYI0vrbQ8P84CU/2zVqdqZdt4Jpl/q7cxWKK+o4O8QWGHIdLqthF5ftu9JvIFibcsxCOY9uRvc13CLZcf442ArrdAb3yEYjUhgvTf8gGq3E59yzDip88Wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t2R7b97K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E136C4CEF5
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 14:56:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763132164;
-	bh=Hm35Kpu8wDtxPaRNylrFfo4pK22w1ThwQCWTxtV76yw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=t2R7b97KTZaNbJbqPZN18mMT3+YiA0un05+Ba7Gu7eKIURL18KKtxE3I4R0DHiTlD
-	 CWfTUUyKK0R0i/c2zNJHOvtBpJje06CTnXyEi31SFl7/KJwJzkI9ONkgCDEmpy+8Cy
-	 ET2jGzw8aLf7jEWr0lbDjzJJlUjuWjm7SsXfbSFm4KGYzJN0nXeqDPRssel5EZbWiu
-	 E9OsGe2X91Gb4WOoR5OcN0QQEMoIKjYbXZ6auomlR5nX8eR2oOAWz3GqMYHBlHdYfZ
-	 mv2lO82BHAwV0oxWPF8MuoOaoeNEW74pTOCBvv6tftqhany95BsCj28b4it8RBH+2s
-	 KoyNSRt3G5MBw==
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b73161849e1so349956066b.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:56:03 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWgHRsqOPFnxlV2G4+xCGiyQp7wh0lItt8VuafahYLPum0pAn2X7/UGSXR9lV3DNZEc3OChOirBedvX@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywa9PrNi/U6oD8qlO/ctS1P+SDIr/9JOFplzoub9ImtrGXyrlth
-	KtMsnS3+/uEvWvpfiRo7GTDhBdT6fP5jTmjiWvIJKrwAYv0iZMWcNru+vPh33ySEU+0V0KED40t
-	v0+LfNNmQ9KrXI0n5jMsQO3qhKd+8Vw==
-X-Google-Smtp-Source: AGHT+IHFOMmFGuFiOT6TwXyreOpnCVb55w8kOZgCvsU+uKZEZH+kwho1l5m2rvT/YZL/0A8L6l6875tceyDZ2hPxxbc=
-X-Received: by 2002:a17:906:ee89:b0:b43:b7ec:b8a1 with SMTP id
- a640c23a62f3a-b736780de83mr325756666b.24.1763132162447; Fri, 14 Nov 2025
- 06:56:02 -0800 (PST)
+	s=arc-20240116; t=1763132182; c=relaxed/simple;
+	bh=8C9FHp7PZ631e2Ybbwogq7Pblu3WU18LYULy9dqpPsE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j4XIRErJ1xx3U7OdPK1IYpzm3FnA8xeW4a4TykFkpukcfb7XELc3KkLNs5nz19IqnHOkqM+P48wT5f7/nykumf280N4cqPrbgnwsRLHGPr2CnZSJm/cwg6EdLWXVvRuaTaKgVPYCDk4THSv+sHtZjo5RUmV1nBistSCI63IC2k8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DrzXRK73; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4775638d819so12281485e9.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:56:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763132179; x=1763736979; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=s/9mxyG1LVSxOgn1WKCRkmy+qBsoYVMZn7X9oY3XK/o=;
+        b=DrzXRK7309makCRyyckanFU2YCV0LbP+bHzVkskNtEeH0OAG+sRIJAX6BLER8S6CFI
+         tqze0a/N5MsVsN5V0pe9c6Za77WJc7mZP5Ig78s5/iJZ5AqTgAgZ3I1EZzXCzTct9RVH
+         ClxDL2LG4S64qptAwYmry+CljmjOptdPcADGXKKzEovmWzcNZ4q0oiCuhIrgAYGavj17
+         82cWtM8L4MTqJKCblgM5Bmjec6wYN/ZiVWtNKK3HAu/RyEDjPsutxck1Co8GRGTogWdc
+         B/8snNSfEbAJkeJPI5ZjsEW+idV9XcJP5FXJMbz+L7KP/u2GWm1JUh1AyHlim5TfqMW6
+         nA8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763132179; x=1763736979;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s/9mxyG1LVSxOgn1WKCRkmy+qBsoYVMZn7X9oY3XK/o=;
+        b=j1LBr4lu3PMo8Vut5aZq5RMEtX4DW4A+D5u0Wkhu8cHjwtlq9kIgjUj+9WVdJEjYCL
+         9d6Jfx9uVADf05LhL6YrX8+yZDgmr8NgOcIFCyrfoy58TgUZ/V55VQpV7mnfQJXIObac
+         TjnzaJ/pPne7Jg2e4MEPpDFs9sc9E57wDbf95/Kg6hL/YnHcapGT9BduVomxIdJRVPTD
+         OXFJG6gmQAxQhzNJBjZr/lUYnaJYqj6zhJQpOXOMZ51b6er0XxJdP5e6Ug2JDdHCzADI
+         YIngn77US0I0R5nYG0izK8doRpsaSIlpbdGoibvs1B7xOofJvprq2jMhg/P0DNT9+VEU
+         CbPA==
+X-Forwarded-Encrypted: i=1; AJvYcCWYFWv4sLnVwUrlFDgPWTh2toqdI2ilYRTWcagW4KBcUK9ylhzo8RmwVdX0f6J43FEQBWm488gug8//@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiHVauU/oqC6V9upjsDLanIIt2vajuNma2WLIFJUmXGHHiglE4
+	7NNYsqOo0+s4p07Gf8FMeAr8JLemaId0BhMwU0cI9Ih3O+7IRoHEARIF
+X-Gm-Gg: ASbGncvkO7nIl0uDZdYY7MDa6aginPTsBgMqnOMCvP66y6KoiJIeT9LW/LM8A1bii8d
+	YHmrsVkpu2i7VVEeSAb/uwvvsXNqQPvsvRKHsmQMcZj7V2nBY4mh78A39n50J89/db5PN4WCbHe
+	zFex3lAiReD9aWraoUoLfzk3sWeEYw4xob38facPiVNXIiJutDO5luhl5CHt+84E6BodtCuJdrh
+	lWaNPrxZkWuSExP1AKj/2p/W6Z169prdOgjV4mgs74ADv2Ih5MlbANgDblnaYedKhuYtNh/sBIQ
+	7ikZLdWW0IffSdA34EEDtBhwG+ux2Fu651cEG1fka/R4po7AVET20jMVvqVcykvZ4COyu3l7sad
+	ZdlN8LoEvbnC/sRqY6f1JfDhwmASrnXxVkwjMU0esnZgxQgms7Vh5OChC444gBaJWSfLvXnNGyv
+	E7oEH77ftgEvbSLt1RDvSiswhY7mOwP12DTZ8Lrl4HGv/yOb2AYXpVpn+RAbl9ar8=
+X-Google-Smtp-Source: AGHT+IHH+QDPwizZAqaXOkEIZoWon24hqYUWks1VOVo0gf4ap+2tE/j3QWY4er5Dp7X0/B6XnzFATw==
+X-Received: by 2002:a05:600c:4753:b0:477:7ab8:aba with SMTP id 5b1f17b1804b1-4778fe5ff23mr34390975e9.1.1763132178710;
+        Fri, 14 Nov 2025 06:56:18 -0800 (PST)
+Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47787e2b835sm148886025e9.2.2025.11.14.06.56.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 06:56:17 -0800 (PST)
+Date: Fri, 14 Nov 2025 15:56:15 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Mikko Perttunen <mperttunen@nvidia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
+	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v5 21/23] dt-bindings: display: tegra: document Tegra20
+ and Tegra30 CSI
+Message-ID: <cd467v5xu6aaxtllfc5awt6sen6jw3u4vdr35ue3x6e5cao6vz@4kjeiwo63tce>
+References: <20251022144930.73272-1-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251113223859.GB800052-robh@kernel.org> <20251114030954.8738-1-yuntao.wang@linux.dev>
-In-Reply-To: <20251114030954.8738-1-yuntao.wang@linux.dev>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 14 Nov 2025 08:55:50 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKz6LHhPPVETMuDvXuUjEZw2XHQzmU9vsXeK-fd3Mf7tg@mail.gmail.com>
-X-Gm-Features: AWmQ_bm_R9llgL_ODkwnHlYbieB5CpPDrL1FJAf6j5EvCL4NqK0dgg0Sv8tFIP8
-Message-ID: <CAL_JsqKz6LHhPPVETMuDvXuUjEZw2XHQzmU9vsXeK-fd3Mf7tg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] of/fdt: Consolidate duplicate code into helper functions
-To: Yuntao Wang <yuntao.wang@linux.dev>
-Cc: akpm@linux-foundation.org, ardb@kernel.org, bhe@redhat.com, 
-	catalin.marinas@arm.com, changyuanl@google.com, devicetree@vger.kernel.org, 
-	geert+renesas@glider.be, geoff@infradead.org, graf@amazon.com, 
-	james.morse@arm.com, linux-kernel@vger.kernel.org, mark.rutland@arm.com, 
-	rppt@kernel.org, saravanak@google.com, thunder.leizhen@huawei.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tqyqdls54xm3etue"
+Content-Disposition: inline
+In-Reply-To: <20251022144930.73272-1-clamor95@gmail.com>
+
+
+--tqyqdls54xm3etue
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 21/23] dt-bindings: display: tegra: document Tegra20
+ and Tegra30 CSI
+MIME-Version: 1.0
 
-On Thu, Nov 13, 2025 at 9:10=E2=80=AFPM Yuntao Wang <yuntao.wang@linux.dev>=
- wrote:
->
-> On Thu, 13 Nov 2025 16:38:59 -0600, Rob Herring <robh@kernel.org> wrote:
->
-> > On Thu, Nov 13, 2025 at 11:50:58PM +0800, Yuntao Wang wrote:
-> > > Currently, there are many pieces of nearly identical code scattered a=
-cross
-> > > different places. Consolidate the duplicate code into helper function=
-s to
-> > > improve maintainability and reduce the likelihood of errors.
-> > >
-> > > Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
-> > > ---
-> > >  drivers/of/fdt.c       | 41 ++++++++++++++++++++++++++++++++++++++++=
-+
-> > >  include/linux/of_fdt.h |  5 +++++
-> > >  2 files changed, 46 insertions(+)
-> > >
-> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > index 0edd639898a6..5e0eabc1449f 100644
-> > > --- a/drivers/of/fdt.c
-> > > +++ b/drivers/of/fdt.c
-> > > @@ -625,6 +625,47 @@ const void *__init of_get_flat_dt_prop(unsigned =
-long node, const char *name,
-> > >     return fdt_getprop(initial_boot_params, node, name, size);
-> > >  }
-> > >
-> > > +const __be32 *__init of_fdt_get_addr_size_prop(unsigned long node,
-> > > +                                               const char *name, int=
- *entries)
-> > > +{
-> > > +   const __be32 *prop;
-> > > +   int len, elen =3D (dt_root_addr_cells + dt_root_size_cells) * siz=
-eof(__be32);
-> > > +
-> > > +   prop =3D of_get_flat_dt_prop(node, name, &len);
-> > > +   if (!prop) {
-> > > +           *entries =3D 0;
-> > > +           return NULL;
-> > > +   }
-> > > +
-> > > +   if (len % elen) {
-> > > +           *entries =3D -1;
-> >
-> > I don't think it's really important to distinguish a length error from
-> > any other error. Either we can read the property or we can't.
->
-> Hi Rob,
->
-> I didn't originally split it into two checks, but later I noticed that in
-> __reserved_mem_reserve_reg(), the two error conditions return different
-> error codes. I was concerned about breaking compatibility, so I made the
-> change this way.
->
-> If compatibility isn't an issue, I'd be happy to merge the two checks int=
-o one.
+On Wed, Oct 22, 2025 at 05:49:28PM +0300, Svyatoslav Ryhel wrote:
+> Document CSI HW block found in Tegra20 and Tegra30 SoC.
+>=20
+> The #nvidia,mipi-calibrate-cells is not an introduction of property, such
+> property already exists in nvidia,tegra114-mipi.yaml and is used in
+> multiple device trees. In case of Tegra30 and Tegra20 CSI block combines
+> mipi calibration function and CSI function, in Tegra114+ mipi calibration
+> got a dedicated hardware block which is already supported. This property
+> here is used to align with mipi-calibration logic used by Tegra114+.
+>=20
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../display/tegra/nvidia,tegra20-csi.yaml     | 138 ++++++++++++++++++
+>  1 file changed, 138 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidi=
+a,tegra20-csi.yaml
 
-You'll have to adjust the handling of -ENOENT case, but yes I think
-that is fine. IMO, the kernel can either read and parse a property or
-it can't. The exact reason it can't is generally not important.
+Applied, thanks.
 
-> > > +           return NULL;
-> > > +   }
-> > > +
-> > > +   *entries =3D len / elen;
-> > > +   return prop;
-> > > +}
-> > > +
-> > > +bool __init of_fdt_get_addr_size(unsigned long node, const char *nam=
-e,
-> > > +                                 u64 *addr, u64 *size)
-> > > +{
-> > > +   const __be32 *prop;
-> > > +   int len, elen =3D (dt_root_addr_cells + dt_root_size_cells) * siz=
-eof(__be32);
-> >
-> > Still have 2 locations to get the same calculation wrong...
-> >
-> > > +
-> > > +   prop =3D of_get_flat_dt_prop(node, name, &len);
-> > > +   if (!prop || len < elen)
-> > > +           return false;
-> >
-> > Why doesn't calling of_fdt_get_addr_size_prop() work here? If 'len <
-> > elen', then 'len % elen' will also be true except in the 0 length case.
-> > For that case, of_fdt_get_addr_size_prop() needs to handle it too.
->
-> I'm fully in favor of calling of_fdt_get_addr_size_prop() directly here,
-> that was my original intention as well, which is also why I placed this
-> function right after of_fdt_get_addr_size_prop().
->
-> But again, due to compatibility concerns, I had to implement it this way.
->
-> For example, suppose prop points to data like:
->
-> [addr, size, other data]
->
-> With the previous `len < elen` check, addr and size could still be read
-> successfully. But if we switch to the `len % elen` check, this type of
-> data may fail.
+Thierry
 
-Only if 'other data' is not a multiple of [addr,size], but that's
-completely invalid*.
+--tqyqdls54xm3etue
+Content-Type: application/pgp-signature; name="signature.asc"
 
-(*The dts format does allow something as complex as '<0x12345678>,
-"string", /bits 8/ <0xab>', but you would have to be completely insane
-to do that when there's no type information in the DTB.)
+-----BEGIN PGP SIGNATURE-----
 
-> If compatibility is not a concern, I can certainly change it to something
-> like the following:
->
-> prop =3D of_fdt_get_addr_size_prop(node, name, &len);
-> if (!prop || len !=3D 1)
->   return false;
-> >
-> > > +
-> > > +   of_fdt_read_addr_size(prop, addr, size);
-> > > +   return true;
-> > > +}
-> > > +
-> > > +void __init of_fdt_read_addr_size(const __be32 *prop, u64 *addr, u64=
- *size)
-> > > +{
-> > > +   *addr =3D dt_mem_next_cell(dt_root_addr_cells, &prop);
-> > > +   *size =3D dt_mem_next_cell(dt_root_size_cells, &prop);
-> > > +}
-> > > +
-> > >  /**
-> > >   * of_fdt_is_compatible - Return true if given node from the given b=
-lob has
-> > >   * compat in its compatible list
-> > > diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
-> > > index b8d6c0c20876..3a0805ff6c7b 100644
-> > > --- a/include/linux/of_fdt.h
-> > > +++ b/include/linux/of_fdt.h
-> > > @@ -55,6 +55,11 @@ extern int of_get_flat_dt_subnode_by_name(unsigned=
- long node,
-> > >                                       const char *uname);
-> > >  extern const void *of_get_flat_dt_prop(unsigned long node, const cha=
-r *name,
-> > >                                    int *size);
-> > > +extern const __be32 *of_fdt_get_addr_size_prop(unsigned long node,
-> > > +                                               const char *name, int=
- *entries);
-> > > +extern bool of_fdt_get_addr_size(unsigned long node, const char *nam=
-e,
-> > > +                                 u64 *addr, u64 *size);
-> > > +extern void of_fdt_read_addr_size(const __be32 *prop, u64 *addr, u64=
- *size);
-> > >  extern int of_flat_dt_is_compatible(unsigned long node, const char *=
-name);
-> >
-> > Looks like of_flat_dt_* would be more consistent with existing naming.
->
-> Naming is hard :-)
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkXQw8ACgkQ3SOs138+
+s6Fc0w//YzvvfrnY2oE+gg920G2CSw3rl1e0FAgNvins2Qt8x1QUys+Tr3GyLm3k
+k2TYECD1jsXh6dGN5XWZUxY8m0G+pzXgFqZ8jnLRstWRC0I3Vn+nGsbXBUMpbp0F
+ogRuV3DGK+9Z3eDBahsQulOIQtRMvM9fMO3csuzI/ql+XCVzwjFzD1yjWkwsgl55
+spLXD/YnC2YRd6rB0CbTxKb4CZX7xJm6eFZ0JWAgWdUDemIKLQXEmFIK5ZoqCK/q
+PYn9uuFLeebTTLQF5dCuvSGSjoQY+SrVHBPDRDUqFL5m2PQPIWdVIgWPTrQ5vllZ
+AkED1KPfot8yoPt0lP97nynkWFaC6jp0aSSKGhNiv3gwunwF1Tzf4KMlwtn/NZhl
+jGrwt2CkVE6i0pW2lf6xneM6Kg206eSuCA5Shla69u74LGB0f4+sCfdNfDxg0y4v
+24rrOPlNcFrJduCiGW+wgszu3XiR1Uy/l/UlSV505O44uHTRck16zup+hA6mz9Xv
+s12707JMhxwtvqNUlvHc5pyu6KU7dgOzG4X3ezHKd/o3Zuxun8ZOtqUsWvhlRrrd
+XkLbkt11kNxmCuVgBPxIwLTXSgIDZZxDN641pvWfFUx/sV5QZ8RgObK79ne4d/yC
+BvXV19RCcd0c/aYfIaOn92k74QkOzOgFR2h9HOzDlaxTHEY/hFo=
+=ETS8
+-----END PGP SIGNATURE-----
 
-Indeed.
-
-> I spent quite a while thinking about the names of these functions.
->
-> In drivers/of/fdt.c and include/linux/of_fdt.h, there are several naming
-> styles in use, such as of_fdt_, of_flat_dt_, and others.
-
-It's a bit of a mess...
-
-> I chose of_fdt_ as the prefix, or namespace, for these functions mainly
-> because:
->
-> 1. Compared to of_flat_dt_, it's simpler and shorter, and fdt can represe=
-nt
->    flat_dt, or flattened device tree.
->
-> 2. of_fdt_ matches the file names drivers/of/fdt.c and include/linux/of_f=
-dt.h better.
->
-> 3. In the libfdt library, functions consistently use the fdt_ prefix, so =
-using
->    a similar of_fdt_ prefix in of/fdt.c seems reasonable.
-
-If we started fresh, I would agree with all of this.
-
-> But if you prefer the of_flat_dt_ nameing convention, I can change it.
-
-I do primarily because that aligns with the other functions which read
-specific properties (e.g. of_flat_dt_is_compatible(),
-of_flat_dt_translate_address()).
-
-Rob
+--tqyqdls54xm3etue--
 
