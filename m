@@ -1,206 +1,156 @@
-Return-Path: <devicetree+bounces-238668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A5E6C5D11C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:19:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC38DC5D125
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:19:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D36214E5A49
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:16:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7B9F434E206
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E507C22A4CC;
-	Fri, 14 Nov 2025 12:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA1443101A2;
+	Fri, 14 Nov 2025 12:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OQP9Mujj"
+	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="VSvcuPab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8439136358;
-	Fri, 14 Nov 2025 12:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C078A14B950
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 12:19:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763122572; cv=none; b=l7ZacCSoOGxQzhJTNLRk6oAcxz5i9q04JfwFh/7iiLCvfrFs/EoSEV0IK+ogSKVW0rZ3jsVi77aB2vvk/2UGQFRTELe21oLSyN2eXjif0vumHK7PLGT24hB5ta/wcI7BpIZ5lziOuvM+3nNF8i2k2JaIPRkzmc0TWpB5O7YYcGY=
+	t=1763122747; cv=none; b=BV064+l870q8VttanmGDJTusYzo7vap0oPMKF1WXbJKetbEBRAiWpBX0uqtpQpaBip+iUFS2tF5SYoeH+y3msf46ZNTnRtn6miJEU/UYRGOQsx45gg/r8FVFTJg9xQpuY5CQ68/RIPAajBwYMERdqN99j+PaArn3Wia6aZYkRfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763122572; c=relaxed/simple;
-	bh=xPOPe5KPnNiu09gF7yQRUhum6s9WtN78iX7rty+2ULQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C/ojZwemrE3BLABuNa8BJumhZXgjGlSNgwEJxWg5SqHV5tElpk4d3OQEZiMF4A9VTmNHAOQ7bkXbwglcjgtbug4inQVFNGHddX078hiBz9XzH8npDpbXLiHlu6JLmv8sWDe+kDsI9Ke7c/9RGNZ52nTYYuWZpNoAhRvlBf365EU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OQP9Mujj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA893C4CEF5;
-	Fri, 14 Nov 2025 12:16:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763122572;
-	bh=xPOPe5KPnNiu09gF7yQRUhum6s9WtN78iX7rty+2ULQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OQP9MujjMCq4Uv/f866Yn2CCo9a4YMujBOwr2ADvwuThtbnLO8bkdZS2CofH+L6l8
-	 JYS+HMULZebmC+Of/wI4fJzkMjuWJKK5YoPvOnG79fHV21fynxJVi9uNuOnKWO3fKZ
-	 rLbDg4wZB4UiWCvV7aFcgBAME2TwnCOLwQ3C4qaXHfB+1wGyxSTvxpSYM+EB3tEITV
-	 gS+HQ/RltMbeTQ7PVd2tPDrSb8oSUH3L7DB8NUNx2UcX69l1tPYOxZP+IosaFMU0+U
-	 GWomPsGw5MTmA1oj4yLVqhJiOL98CRP81Krxp3kSr8qxN7eidwH9moepMHp01bef5x
-	 uSFuFUjUHHuHQ==
-Message-ID: <e7e4b35f-8c8c-4a11-8d3a-193ba93bb6d8@kernel.org>
-Date: Fri, 14 Nov 2025 13:16:04 +0100
+	s=arc-20240116; t=1763122747; c=relaxed/simple;
+	bh=SGlJYLihZT4+phmoB/86SGMUspoJUqlO/5liLNI0JaQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Im0kwNxmTllI5FZqcc04wyjQZyqMr2ZPmDGZRRCEo3QiOQGWmgKyrl6A9mBtPpgJHETodMK+bUO+ASjIy6MyovTLTnLIYUhBV2PIpUWMvWICsLBZNhnOmKPjsFblKPbUThrVlk9CtpVLe1AFi9Zh2Rd7c6qsg4PCny2RGNqsZDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=VSvcuPab; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arduino.cc
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b73161849e1so322226166b.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:19:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=arduino.cc; s=google; t=1763122743; x=1763727543; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VHSvtON0daRkXUkTRexT/Sc3xyec4Q2i/7798OEMzyc=;
+        b=VSvcuPab+M3XrP0erU44T66QaAvKrYgMiBHlSdAxXl9ZEz9Hv1+etnsi0iLQeC1oAN
+         jEnOn6G2KUW8fZOyajGb4RuM/t3Ati896X5E0AYq+R5wmVNe68hrQs+W1ETULReoZdSj
+         2cZfuHT6I0I7ewHjPpSFzRX1Ap75Liamsdprs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763122743; x=1763727543;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VHSvtON0daRkXUkTRexT/Sc3xyec4Q2i/7798OEMzyc=;
+        b=oQojHNwYJsEs99MvMjLGnZdCTw3c7pk73T1p9vtLnKjQ4lBhX6qkkCr6SJCmkjbSzj
+         lLwVE/Q3KhNzDi+wKpZrer3EqEtbv8R6ScXoB1mOXDPPM2YQfBGy4wJ8fRuAlhldCTzj
+         /7MsqayjZ7+qMUj1g8ZsoYUj9tbfP+GG8wE/f9hTM6zPSuYoCfmX5wbU9gx65/mKDege
+         Gy3hsrIbo/GY+ajWfq8tn7L5N33sC8nVhaoNCuaCjKklJbTQY2ROwn3OwPg+ceCaBWTv
+         QuVL1tEUIx1QeHc74slqn+9iYaklZmhU38fRQGGDZZxmHc4aJU/029e6hVOKerYNvOaG
+         cacw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhfIk3X0kHnoyQJLjCn3Ef32WQRDox8Lg8cCIn3L4/E62JaS4+OvCS7jDlcqK+63y2DEMSSjjOBa7a@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6oqQvgouKWMwUtq9kgAzQOXLiZVtaLbR185pPQYrOpcItWAOf
+	S2VBIQ47zUlVa/J0Q+3jamJ1pwCGfmnY6dfD7I3FIyuUy3vrdbi4q8U8ZHjGy9STupQ=
+X-Gm-Gg: ASbGncuyWFh7T3zvxvu+TnNO8kv5l6Y5mtDNuLUYUSWwRQyLobep9Fhrj8jeTHWxtPa
+	SB/WZ0dx67gBJK9HIFQKTt8jAgr7Pt+edTSLTkJJeZqJcCHnOMGPKKcavmPyKWTd7nWgLcA4Z0f
+	Qkr8ktF0fmfkmkox0FzvzMJvY8XdDok6lxmRl69WsmuXyuo/ySHj+REOq1jxaapJpDt/g/UxeMM
+	ODEkidaXqp3HvnuQULEzuviXO6SuFubavJmJH7MeBBY/eEDj9Qkya+MWae71kqN1K4m3yikPgzl
+	T9tX6YpYBihDLx8jecltys/Ernmmd7LSl1b3hJF4QH3V97cRUSROg/LQbkiTebfO2sZPjY3hkXE
+	hfTLrcq08QGM8f53KibKhQni/m6oEHGXRog7OSBg7I/j8Cdlom2LMJrHt50ft26aNizNtAUXJw/
+	Ub4ANC16aGZ6oFmZGOZAE3wGa+ZahjBNbTm4HOzEkqguaADCSZAGVadNj/GLraXcBj0o0oFQ==
+X-Google-Smtp-Source: AGHT+IFxpDudTXwIWPtFNvkoyi2MCTPSB82q+cheaWh8DndjD5+q+I3FMC5nPCdsc5ZAOVqgxrhpjg==
+X-Received: by 2002:a17:907:3cd5:b0:b73:57eb:688 with SMTP id a640c23a62f3a-b7367949dc5mr287626866b.53.1763122738505;
+        Fri, 14 Nov 2025 04:18:58 -0800 (PST)
+Received: from riccardo-work.fritz.box (host-82-52-164-74.retail.telecomitalia.it. [82.52.164.74])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fed6315sm375295666b.64.2025.11.14.04.18.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 04:18:58 -0800 (PST)
+From: Riccardo Mereu <r.mereu.kernel@arduino.cc>
+X-Google-Original-From: Riccardo Mereu <r.mereu@arduino.cc>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	broonie@kernel.org
+Cc: linux@roeck-us.net,
+	Jonathan.Cameron@huawei.com,
+	wenswang@yeah.net,
+	naresh.solanki@9elements.com,
+	michal.simek@amd.com,
+	nuno.sa@analog.com,
+	chou.cosmo@gmail.com,
+	grantpeltier93@gmail.com,
+	eajames@linux.ibm.com,
+	farouk.bouabid@cherry.de,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	m.facchin@arduino.cc,
+	Riccardo Mereu <r.mereu@arduino.cc>
+Subject: [PATCH v2 0/6] arm64: qcom: add support for Arduino UnoQ SBC
+Date: Fri, 14 Nov 2025 13:18:47 +0100
+Message-ID: <20251114121853.16472-1-r.mereu@arduino.cc>
+X-Mailer: git-send-email 2.51.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] dt-bindings: display/msm/rgmu: Document A612 RGMU
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Dan Carpenter <dan.carpenter@linaro.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Jie Zhang <jie.zhang@oss.qualcomm.com>
-References: <20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com>
- <20251107-qcs615-spin-2-v2-3-a2d7c4fbf6e6@oss.qualcomm.com>
- <20251110-persimmon-wombat-of-holiness-6b3f9c@kuoka>
- <f08c8707-eb72-4689-b53b-acd6e3218836@oss.qualcomm.com>
- <e0e82b22-ecef-4136-834b-ea4a6b00e179@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e0e82b22-ecef-4136-834b-ea4a6b00e179@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/11/2025 13:08, Akhil P Oommen wrote:
-> On 11/14/2025 5:30 PM, Akhil P Oommen wrote:
->> On 11/10/2025 1:21 PM, Krzysztof Kozlowski wrote:
->>> On Fri, Nov 07, 2025 at 02:20:08AM +0530, Akhil P Oommen wrote:
->>>> From: Jie Zhang <jie.zhang@oss.qualcomm.com>
->>>>
->>>> RGMU a.k.a Reduced Graphics Management Unit is a small state machine
->>>> with the sole purpose of providing IFPC (Inter Frame Power Collapse)
->>>> support. Compared to GMU, it doesn't manage GPU clock, voltage
->>>> scaling, bw voting or any other functionalities. All it does is detect
->>>> an idle GPU and toggle the GDSC switch. As it doesn't access DDR space,
->>>> it doesn't require iommu.
->>>>
->>>> So far, only Adreno 612 GPU has an RGMU core. Document RGMU in the GMU's
->>>> schema.
->>>>
->>>> Signed-off-by: Jie Zhang <jie.zhang@oss.qualcomm.com>
->>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
->>>> ---
->>>>  .../devicetree/bindings/display/msm/rgmu.yaml      | 131 +++++++++++++++++++++
->>>>  MAINTAINERS                                        |   1 +
->>>>  2 files changed, 132 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/msm/rgmu.yaml b/Documentation/devicetree/bindings/display/msm/rgmu.yaml
->>>> new file mode 100644
->>>> index 000000000000..7621556477d0
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/display/msm/rgmu.yaml
->>>
->>> Filename matching compatible, so qcom,adreno-rgmu.yaml
->>>
->>>
->>>> @@ -0,0 +1,131 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>> +# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->>>> +%YAML 1.2
->>>> +---
->>>> +
->>>> +$id: http://devicetree.org/schemas/display/msm/rgmu.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: RGMU attached to certain Adreno GPUs
->>>> +
->>>> +maintainers:
->>>> +  - Rob Clark <robin.clark@oss.qualcomm.com>
->>>> +
->>>> +description: |
->>>
->>> Do not need '|' unless you need to preserve formatting.
->>>
->>>> +  RGMU (Reduced Graphics Management Unit) IP is present in some GPUs that
->>>> +  belong to Adreno A6xx family. It is a small state machine that helps to
->>>> +  toggle the GX GDSC (connected to CX rail) to implement IFPC feature and save
->>>> +  power.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    items:
->>>> +      - const: qcom,adreno-rgmu-612.0
->>>> +      - const: qcom,adreno-rgmu
->>>> +
->>>> +  reg:
->>>> +    items:
->>>> +      - description: Core RGMU registers
->>>> +
->>>> +  reg-names:
->>>> +    items:
->>>> +      - const: gmu
->>>
->>> Drop reg-names, useless for one entry with same name as the block name.
->>
->> Just to confirm, drop only reg-names, but keep 'reg'?
-> 
-> Wait. We should keep 'reg'.
-> 
-> If we remove 'reg-names' here, we cannot use reg-names in DT too because
-> we are setting additionalProperties to False, right?
+This patch series adds support for Arduino UnoQ single board computer.
+UnoQ combines Qualcomm QRB2210 microprocessor and STMicroelectronics
+STM32U585 microcontroller.
 
+In some files we decided to keep UnoQ code name as "imola".
 
-Yes, I ask to drop reg-names from everywhere because they are pointless.
+As this platform has a microcontroller connected to the microprocessor
+we needed a dedicated spidev and to add uart2 to qcm2290.dtsi file; both
+are used as interfaces between microprocessor and microcontroller.
 
-Best regards,
-Krzysztof
+Some GPIOs on the JMISC connector have been defined but not used in
+qrb2210-arduino-imola.dts; this is meant to facilitate carrier dtbo
+development for users.
+
+Changes since v1:
+- Added PATCH 1/6 adding Arduino vendor prefix to
+  dt-bindings/vendor-prefixes.yaml
+- In PATCH 2/6 and 3/6 changed compatible in spidev and bindings
+  to "arduino,unoq-mcu"
+- In PATCH 4/6 changed commit message to clarify imola as UnoQ codename
+- In PATCH 5/6 fixed a typo in commit message
+- In PATCH 6/6:
+	* added chassis-type="embedded"
+	* ordered nodes in alphabetical order
+	* dropped unused led labels
+	* fixed error in commit message (qrb2210 instead of unoq)
+
+Riccardo Mereu (6):
+  dt-bindings: vendor-prefixes: Add Arduino name
+  dt-bindings: trivial-devices: add arduino spi mcu interface
+  spi: spidev: add compatible for arduino spi mcu interface
+  dt-bindings: arm: qcom: Add arduino imola, UnoQ codename
+  arm64: dts: qcom: agatti: add uart2 node
+  arm64: dts: qcom: qrb2210: add dts for Arduino unoq
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/agatti.dtsi          |  24 +
+ .../boot/dts/qcom/qrb2210-arduino-imola.dts   | 456 ++++++++++++++++++
+ drivers/spi/spidev.c                          |   2 +
+ 7 files changed, 488 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
+
+--
+2.51.2
+
 
