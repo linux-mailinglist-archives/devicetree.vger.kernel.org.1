@@ -1,80 +1,85 @@
-Return-Path: <devicetree+bounces-238464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7AD7C5B84C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:28:40 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC851C5B907
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:34:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D37B934C75E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 06:27:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 420C64F242B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 06:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C202F28E6;
-	Fri, 14 Nov 2025 06:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A65972F49E5;
+	Fri, 14 Nov 2025 06:27:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Kjjd+Cal"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="KB7pnVvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011033.outbound.protection.outlook.com [52.101.62.33])
+Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013050.outbound.protection.outlook.com [40.107.201.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4CF2F260A;
-	Fri, 14 Nov 2025 06:26:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDA892EB84E;
+	Fri, 14 Nov 2025 06:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.50
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763101617; cv=fail; b=H+6RORVBox2wiJOnTgi4R6tEb8HT20jNJ1TJ8vJfls3CmsKVzt+EEeAshHtPk6lAwNqs7Sume1jY8kl9/JSApW/95Rdq2WkJ+KLeJ2pxj3EoSJEEgGJcQ7gk0T30klwG/BfmR/uPsNtIOU3sm6ZbkSvkxCond+CGqnnF+ZZhAsw=
+	t=1763101676; cv=fail; b=gDMawCz1YEjRoCd8+c93ZGeudrh7hz0iZyM/gcc1Vz9WbJXXTvv6ael2EDun0R60wA2hiDXlydXUNZ6hBzYuwM44xW64nrO6D/YMNGR/641uQHTjvuqqfafcwuYomBi/OGIoOCf0KjTm3MX3q0AYA9GKxhgrLqz+ybRAOdINPvk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763101617; c=relaxed/simple;
-	bh=u+zffLTm948boHusdGKXEaZVdTxSwQEVG4VITE7tjus=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=IJSAjXP9++ltdLvWQpsqHWYPoOinaiphDYKYoafehmBZGOVqBpnItTjNc5vaaSTB7cciAhvXlyVdRNgKakQ2KH3wDaGNgBJplrR2v7r+6YeYx74YIz6IMgpVPWhOHkw56V8q+kiAER3uasUDAO9hHXPhSOf8Ab/JvLeqoa4NZwU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Kjjd+Cal; arc=fail smtp.client-ip=52.101.62.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+	s=arc-20240116; t=1763101676; c=relaxed/simple;
+	bh=4hgo6JyVasca31mTBI7zZTiEgb7NtRgLTZo+2VDvJJ8=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version; b=fTAk0ZlaJl1pzntuYtcTTfxUJaPBPKyaA2BJ2R1CL4Xqvna8dkMVu+exAa9E6iUs3zeDe1zUFMwHSixF4qs3v07kswFwaqOBpqnVr3TpSx2hDveLeb0PXoAyq6BSLPQqrs99eI4i0P8Zl84PeX+Ud/umJOeNN1GJGI7/xHdxB3o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=KB7pnVvh; arc=fail smtp.client-ip=40.107.201.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kAqIxyHPJngonIFlpl32YXFaSFI2qRywFQj+9qT+gTBUI6VvkBgmmnsNRsVP1G3TkPYgv63ruGzyD1xfSnJOzonIy7MCRerFXW+fMMI4M4Q8d/Z/JWekW5TtVkxM40bro+P8WxStBP8xrvGP3hVXb1rhmuetBL0M2/EQculVhE2oQqOz6dDgAwg+Ne/WUmG/LLx9DL2KIqidqtIabB3htlkV0ylHuXhoHGvgcZ+VaYsEqcm2tykEpdWwGxBZngBfnSThFJErNSqaXOQ66t5LwxLI6htQVSRP3Wcemsn/Hrjv1lRIiUblvwWOpV6pKze2n/42mHuO4mtOVk4Sue9VIw==
+ b=bWtraJIxVJ8Dc7VA6eSxp3iMeUMBLlYH+Xc7CPKePpLJWDUkDzliXR+fJMcMcGVoO2T0vnXqJt5pUvedL6n2PwC8CV3JlQFf91zPHayGjIMi8PjXMfkP6ICQpT5Si/d7xO9xeC4YWL4V+fdCvInH75pVZx+N6X2ZjB+c/gT1D1Ecpmk0m7mu4qVOtb6Rr71cFGNQ+aA+SFootRjd3yZ44/boIr2dlr41lJj3uBUndI6aeVAo5BmSiEDTKYwCaOI/qOVzh9rlGmIwvsG7DepETYMZCEAEtAf8dFolfczPkIhIlZu9yRLiHfPc3CKkMZ6EbPuMZxc4RMVphELIQJ8qTQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t4vMwFFp4X/mlBWxNickQ1YWz8STFBIbPqwQXtWSFjI=;
- b=PxrJTjjgT7sN+fNlhFYhR/yOWSt7YPDsfRP7d8jAx4k+eSycu7156FbAlZUlcaw4NZiI1Vz7VPpNiHwDMKwfECCtRZxYEvMpjCInXTb/r8WjuGMXRpCqRWZ7SbynQUxW959EM2X1Wg0xJ9Z0CGT5u9DIqGM7j8U1lR08eXZTXokn1vEyXcJhrjMlxSFPDP8mks8GfZgFrfYoNhZLhuksZtYRn9Y7WGpnCil5wb7ffxr6BDDdECdcIzSeNXJLs4yJoj4itp04hJgvx+PlIIMCQC9JZiufx9lze1P2EkeGv9RbA+iQbqnvlCKoj2GTrNTcv8wZqCoymM4FYg7lFthFdg==
+ bh=OxsdAtZgkvlMFIwXYff1aSzZXHjONltqCpMvK3iD9kQ=;
+ b=NSEXLkrugKKeRLWrq9ILhFprjQwxxfkM3d9EgTb3PWNez65ProsA5SkrKy74pj4jIUzNCg9fnm1Q7LfunpwUA/5GKRfcPD6ZY2MfflFrhCYiw5P90YL8jpi/qgaQmYWdD6/JQeb80+XmBcYQs5y5qEaWqHVejqGQ22k3g0KlEcPUmFDC8XRwVk0dpCK7/dNRagver4UgzGYnKwufDVAkL/i8KzGzxP0MpFzx2xnHH8tZ8Cd9Rne8yiZUSH+zd0pRgPhkl8UbPIFqP2xEaiKo9iMKBs36Eo3jSZeaJZry0Kq5gZuQGADeuVpmeh55rWLUsL8fJyYxcz7pwirNu0mMFQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t4vMwFFp4X/mlBWxNickQ1YWz8STFBIbPqwQXtWSFjI=;
- b=Kjjd+Calg4lVAHWtNjjzHz3nEgtCoX6O3ocvwcPRVm8xITasN/KWy16TSEM70/sEVZ0AeiCM4vKy40f5XGP6woNAY9OwfjM10DEK6UMFKk4nSY+kJ4OWWtKY64wCZIEl3m4ufmssFbroU0ieXlfFioHk+QcKxUrZFgYYPQF9TPWNSGToNFn7Z97WVrNIaiehZbEBFGAqvmSQ1kP2KS4T5HPHDMkTpTWiaz0begkca+zIa9Ptbd7QFt9X3ngHYeXbB53j9/Bbpq8aBvlPgiUN0rotjwAyN3hv9vopQObQwjuv9FOcvCr1n9cCQ3FDp5BzQx4i63gbZXdmwRSuUjRUlg==
+ bh=OxsdAtZgkvlMFIwXYff1aSzZXHjONltqCpMvK3iD9kQ=;
+ b=KB7pnVvhEDx0KTrtec31D8j7B+BYnXVjH+eENOLHkeLePdt4nRDLsIxFqPvlMOP8JIqpaT2hGt/VEW+uB+E9dOk2gnvuZvcz4or6cYPP7mh+HMoGZ0Ciga/snkWqTkX8N9SP5OfvQDGHTEakksnfgLf8KtU5YmCJW7H1+QDAnwcKC110trGPKg47LXxJmIRsIj+KnyK0iGG+BFMMkgTVSRQqXmoLbGLqxUlRYylmS2eZH71+XoRjBX7bzPzgLc0Z+FnZ1hxm0BxyIdlVHyNnu5QHbqfoD+Bz+6Jw4ccGcbOCm6a6p9li5Hg6CVdG5nl1SSp9V2URgdX9cDbdSBLXHw==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CH1PPFDAD84AB72.namprd12.prod.outlook.com
- (2603:10b6:61f:fc00::627) by BL4PR12MB9506.namprd12.prod.outlook.com
- (2603:10b6:208:590::12) with Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from BN8PR03MB4916.namprd03.prod.outlook.com (2603:10b6:408:7a::18)
+ by PH0PR03MB6573.namprd03.prod.outlook.com (2603:10b6:510:b1::8) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Fri, 14 Nov
- 2025 06:26:53 +0000
-Received: from CH1PPFDAD84AB72.namprd12.prod.outlook.com
- ([fe80::7816:ec9f:a1fe:e5c9]) by CH1PPFDAD84AB72.namprd12.prod.outlook.com
- ([fe80::7816:ec9f:a1fe:e5c9%6]) with mapi id 15.20.9320.013; Fri, 14 Nov 2025
- 06:26:53 +0000
-Date: Thu, 13 Nov 2025 22:26:48 -0800
-From: Marc Olberding <molberding@nvidia.com>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dts: aspeed: Add a dts for the nvidia msx4 hpm
-Message-ID: <aRbLqH8pLWCQryhu@molberding.nvidia.com>
-References: <20251108-msx1_devicetree-v3-0-c7cb477ade27@nvidia.com>
- <20251108-msx1_devicetree-v3-2-c7cb477ade27@nvidia.com>
- <a030d7a2e2d36064bd86fe2af1ec6e4baabd9946.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a030d7a2e2d36064bd86fe2af1ec6e4baabd9946.camel@codeconstruct.com.au>
-X-ClientProxiedBy: MW3PR06CA0017.namprd06.prod.outlook.com
- (2603:10b6:303:2a::22) To CH1PPFDAD84AB72.namprd12.prod.outlook.com
- (2603:10b6:61f:fc00::627)
+ 2025 06:27:50 +0000
+Received: from BN8PR03MB4916.namprd03.prod.outlook.com
+ ([fe80::73a:ddca:6d01:4adc]) by BN8PR03MB4916.namprd03.prod.outlook.com
+ ([fe80::73a:ddca:6d01:4adc%6]) with mapi id 15.20.9320.013; Fri, 14 Nov 2025
+ 06:27:50 +0000
+From: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+To: Moritz Fischer <mdf@kernel.org>,
+	Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mahesh Rao <mahesh.rao@altera.com>,
+	Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	linux-fpga@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Subject: [PATCH v3 0/2] Enable FPGA Manager support for Agilex5
+Date: Fri, 14 Nov 2025 14:27:40 +0800
+Message-ID: <cover.1763100984.git.khairul.anuar.romli@altera.com>
+X-Mailer: git-send-email 2.43.7
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY3PR04CA0024.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::29) To BN8PR03MB4916.namprd03.prod.outlook.com
+ (2603:10b6:408:7a::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,129 +87,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PPFDAD84AB72:EE_|BL4PR12MB9506:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01ba02c7-e20f-43b2-abb3-08de2346cd57
+X-MS-TrafficTypeDiagnostic: BN8PR03MB4916:EE_|PH0PR03MB6573:EE_
+X-MS-Office365-Filtering-Correlation-Id: b00cc0dc-0626-4fc2-4108-08de2346ef3a
+X-MS-Exchange-AtpMessageProperties: SA
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|366016|1800799024|921020;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?uWwRM99y9aeN47EsvXDO6LyqP3b1ayyOYFIRVdLE33ot7WqSlJDdmElwj1Pp?=
- =?us-ascii?Q?qZPlOvhpFu4obLNzFXJG4jAPxMKKEZtZGVTk7FZdfAW1K62lUHHevO/jHYGx?=
- =?us-ascii?Q?SeXFR5QmTmVnpeoeYIqt/0J1mMBSblIB4Ns/yUF0UapuHgM/3c+TpyqtWNKC?=
- =?us-ascii?Q?uR6Ih2YxYwi10TfiOQ6KH96pX6ZxBfwSBb+DdLa8EqTz/sRrpHprsFIORTBq?=
- =?us-ascii?Q?dRKPsLNXN/s/auF2Vr4fKKF4Xs8W0wVjYcdcpNqiFnEvHGm1XG8IBcbZGcVk?=
- =?us-ascii?Q?uLCLatURogU2ckO+370YECBmpgDjs9gA7yMNxe0zz56PhZTtGeVDE5qNGhwu?=
- =?us-ascii?Q?d4NZI499R6h9MC7ttTwd7JszneCGfKDdFiwvTcJiQyVG49WQkJqIkvHYv7CG?=
- =?us-ascii?Q?8kTFIBQlMLjtGiBsH+qEGLNxJL3c5C8tsVfQleWhswoKpBNRXZ8LwjxPCkte?=
- =?us-ascii?Q?3esQ5g/nIZvDeM3qa34ZWRxQTwVBOD8Xhx3m871RgHdfuut/pmJAB8sIKLMr?=
- =?us-ascii?Q?bSBJdv2QRyzulsbLU8IXO4Xk3bbfoxwGb2z0HssOz8zLuHXcWAk8YKRjBpKD?=
- =?us-ascii?Q?ihgY0G+85bI9BaUsmMjO1zR30dCKzmuZB+5LtICSIJYqtZ1V2sh8p/lbtwsg?=
- =?us-ascii?Q?OvY2NoNoW62ljP4tSDU33wwjZHtcP3PLGGSU9vmdevrkD4Lk5O+jbic8MBdM?=
- =?us-ascii?Q?Cs5n5yu0yZWJxgI09bJiZW0c+IeC0W0HlUViUTlN0zZDzLDGtOXkPOKz4V7R?=
- =?us-ascii?Q?wYUq2dNVotpNqm7KsRE8NfNt6lt+cb44Vt3YdG2H7NAQPZ2EeLe0mfonlxgM?=
- =?us-ascii?Q?DioJm3lPzu89Cah1IuYLz7/PpJZI9WLVovxdJ5Az+tFKvEVlUlfi6i4ZMepZ?=
- =?us-ascii?Q?145Vn92pDjrs6svoQuCIAvYO+jNEs/TcS+VVPicVVtkBiteKek5p133u/zui?=
- =?us-ascii?Q?wVVEimGV7p7162bITbqi9JPEJIUo5ftUx2zozTUMwkXRhPn6QrMrZm1mTaTH?=
- =?us-ascii?Q?I+CEEoqnCAUkX0TXTRiY5QKNC81CkDDF1eqYCwN5sffMB+DMMdujOuJZ7NbH?=
- =?us-ascii?Q?p51ONGTzrpvKsvT97qmshlww42KyZMmIZDCXtcv8IG9nSAh75tcI9BvCyDPU?=
- =?us-ascii?Q?pG5NYTwfZgT1jLzRSDAzhJRdHgFm/M2ihMKtcWkjLD6My+PJ7JHriSUqolya?=
- =?us-ascii?Q?AlVYdSHCIm5IahCUedM65ZMDC/lHqBmbMIs1vbaxp4jaUvnrXntOoN17ZjjU?=
- =?us-ascii?Q?G6IQiaeBh0BqFTvs0hD/Qg7XzL6KyZ1MXaxqFUIZ3OeGU9PSGT5gnP8/SsmU?=
- =?us-ascii?Q?ncBNo3FnESqnR4WtsZIRTz3vp0JzD6TM6endkNeEZs9PZ+GvYBFXftHZh4ag?=
- =?us-ascii?Q?uB2tvNP4s0jBJyHyoNFp0qKQh3ZqZZbgxmwG3zKs3uX2ux6T1keVJiSyvcDr?=
- =?us-ascii?Q?Zvt187wQuGua3TuBi1WnOa5x73CtKxVI?=
+	=?us-ascii?Q?zFi7bgaRSJhZBFsoKgRhGgD0hIbq+sDpFKkgrYOCLjU634W32/7o0DBIXqyS?=
+ =?us-ascii?Q?w6xLCqTZipkl9C/Ern7Xuf9s60DA79RKw5QGeszi23Z4PeiqDOqiujOz/v7E?=
+ =?us-ascii?Q?bwqNzmkvbPjGzI9ntsX/mlLtyLsB1MlJ4HaFDqNqIVV1Z3Fbk7VV+LsC/iTw?=
+ =?us-ascii?Q?BVlqj/lfHjHTduONIOpmFNmuNCBEo+gRn4MK4Uevcq7BCACeptUpdZWZO/JT?=
+ =?us-ascii?Q?doiLRWThHcF/yZlKNaotQ/LPVHQqsxH9mADVsmOuflUubvXaiBPTznyn1QRx?=
+ =?us-ascii?Q?te4MDzSH28erNKR3oy2TXRiAqoBHYSQpk2G/Hsgnd4Ulf9EG2fhOMUu2f6Cr?=
+ =?us-ascii?Q?H99po3S2B2+dfotxidqRDZSMwvu1LuYksH5FXjouLN+lAWZ7KmfWpfQMvkUC?=
+ =?us-ascii?Q?0/yz/RRt1C4eOYUVDcCEPCou9IeOFwxqWNuCcrBnUaxoG6DJAK8e31+n3mPa?=
+ =?us-ascii?Q?OR2e7QL9//bK6fLFIUQvAOhs3c6bbH+jAGFiMmOdJsMb7W3zVDzaxJPUYNYt?=
+ =?us-ascii?Q?xf6zTUwFRuPa0zKa4DfDrpLTUnA/7+uB5IgjkEVtEArv59cPOpf7dsf4gdl+?=
+ =?us-ascii?Q?0DVDiOWOplL4mWu0dvHcgCnMXZARXgERfs063za8F3ia8NlYaEL02FFg+i/9?=
+ =?us-ascii?Q?5JIArxr9CqoJzO/2+Ly3nQHCfA3BEgJhD2XhWglFmtl8lEk1KPDHPO7GIRaV?=
+ =?us-ascii?Q?eV0A/9J0OgS+p22CSo9XlP45qCs7czl4z9Me3tKxBakVzLmar2PH3ejXbUcf?=
+ =?us-ascii?Q?5ztFjsO3HPoKoFGmYE8xwD5LIXYMVwbwKUW9Cg+isVuSB1ZME/5KAwXxMjV+?=
+ =?us-ascii?Q?ljlqiDgzftvFu+c3Sy1xTyunljXbMCUEIAd0iEtYIr/1x2rgHy1hQspLY1Kp?=
+ =?us-ascii?Q?AJLK9F3s6RHJ72frDmPFkHLR/ZI9kDreFGDBSynUV9knFE3stn+7haAoFeLt?=
+ =?us-ascii?Q?RVIzPkLvQw3uAzLUYvtqUXGflStIbrTsF4RgDt6TwtRIDjTas5bxzlRL/WzR?=
+ =?us-ascii?Q?aCliDkWQmfGS3PjuNDg6sXzPta9QvgHANMEKG3BPC20I/PhRiEe56KSPV8gO?=
+ =?us-ascii?Q?PZ+ih9C+kM/dKBGm4SLbahG8d6l979oO6KerWJvzbes9AuubGjIUys27NaDm?=
+ =?us-ascii?Q?YVjdd61eh7p3GOZ3byRcYpC6egVFFCIvPyPyqzFGo2uejA+ubBM2u7HVOEaG?=
+ =?us-ascii?Q?35ex+kRINC/rOOaAstIKtVzWQ6maUkYhKmYhvwqIErs+YPTt3Ol7YWKSA9wo?=
+ =?us-ascii?Q?fx+pL7Qxnj8w+vRXC3TnAUdPy3xgXgQhubnIZ7LIaWk659RZU+nYPmdls/FY?=
+ =?us-ascii?Q?21ZWyKG99e5gyNulIYdafetmmA96t5tX0YyFkZAxsp1UrYh4KXSB+LYjrxaU?=
+ =?us-ascii?Q?KnXExfzqunBhPk+34vOem/GA3mpzVun/cD6/zwLqiNXUqeXERNiUA8/MND8o?=
+ =?us-ascii?Q?14tOSAF5G7mOorYHWyqNj18GErj968Ji0vy4HvwHJbWXZdRLJDK4D/A7o7bd?=
+ =?us-ascii?Q?uAtRtjC1DSUp/n5fTgUncd1Z3w3wx0l5RKuL?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH1PPFDAD84AB72.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN8PR03MB4916.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(921020);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?yxJK9fibSuNUrfUL3LMAgUlX3DeuMzuOXldzkwQtXBSluSqIknmgcye/QwxW?=
- =?us-ascii?Q?HuwJJYDxanXhak/8QHRXlXsXQOR/cYdNWdatP8ygpTfixdbAQAC+hClDNzm0?=
- =?us-ascii?Q?uHeo7zHaCHU7TeIn/PX266derwtkdWLHHSppgfNTqtVVsXaG+ywscYk/KOes?=
- =?us-ascii?Q?+tKCwtidU49VvIuKRMWkWRu6j8L/zWiCxHREYxWNlZcCidUagQaJSGuxxKxW?=
- =?us-ascii?Q?8FFCWh0bsramXhaAC311dhHkYxewg7NxO2ihTKL7CAlnJG7mGkbPn/WXjfrA?=
- =?us-ascii?Q?2W0KFzWVd87pSEZKBnBh2P8DWBi3DuS457xlpbrVdNCr9H40IfkFweoCB+x1?=
- =?us-ascii?Q?lW+I0q4dnfMvp3L9/zknvutvLBb6NZLIvwPjcK2UAYv5HDEsPwnpwBfyLXlU?=
- =?us-ascii?Q?wrgUCWF8Z3tgO+UexRF3VWRzUb80j4y8TS4IvgBt2fz1DoESg2ELJAvViA1c?=
- =?us-ascii?Q?782MpxWfNxvtf0MiiG2A6fhLH1BFNJNQZGm/vhbqtNwztFH0wfH0X7jM8rtV?=
- =?us-ascii?Q?Wp/mLokwGNDCuk5CkPXURgVAFQMNcI9B956xBpPB4QK3q4OFdMY8lOLT5Ll+?=
- =?us-ascii?Q?9vxO4aqDyffQ1W/uJr2kdADZNynZPLI4/TtTef30vMI9qXEWrd9BBrqP3fFe?=
- =?us-ascii?Q?gcbiwEU1hBQOu1NQhqONr12AXWWtEXgA7FkB/bS6oQqE0h8pCzGl8gyySNy5?=
- =?us-ascii?Q?vOQIiyN78rKqgSNG/q84PLkwfKu3WXZXPogqnXFlnINck8CIX8WWeTUReEGY?=
- =?us-ascii?Q?HQsvtJdclqPN+CcglD3eDXYVjwu8G6iY7JL9x2PuCRGyDNiDJUCrqS6oeiIr?=
- =?us-ascii?Q?Kpjs06Qj43yYhTm/tIwLg9scQ7fp8j9AtFZekl8QjaHbKPmq5bsdMXasOjyx?=
- =?us-ascii?Q?5UL5PhsykItGmHrAMHrLisXk2l0dQaGhYQjQzIBX7mglo7URF6e43xZpJoF8?=
- =?us-ascii?Q?FFxapH3Dp1UVJ59BqDEgm44BfImPdTATtqaBZRTFLHQ6Mwxohp1JURol+zRn?=
- =?us-ascii?Q?I59r61St2NKo9S2ao/J2RzWnDkqJAixrqGDqkvBYu4yLMJBppEJafVGNllCg?=
- =?us-ascii?Q?tD79DbHBGBKjAeMcyXyAwqEAve4NYvQeOx1+4ZXdDwOWZcxS2z+sGgn3nquI?=
- =?us-ascii?Q?j+HIYinvnMIIDsSD+5LPsvisSCAc/mPVvPhAM/aV0RCoLfuz/dhUu/HS+zjh?=
- =?us-ascii?Q?Qspxg3IHyl0Eotg2xGpRepN+ed5cBTxcjCoXvpdP5jZjgfHsYAyKHF3/m9tR?=
- =?us-ascii?Q?HhW4w9k3F1xsxYgwKmjEqxT7RiLOb9wWuFvLaahc7g1Bf2duxfd9L0XeIFGv?=
- =?us-ascii?Q?1/XJfdIhkDcuTG05hfNyXe/o4t19fbgfMf9XXiVWB4UGkch4rAMvVufQ4CcU?=
- =?us-ascii?Q?Fd2FUBrh7/gzPtIlB5rPlVA3QPOW8ZwkUZPO50IXr01oXBICIC9XbW4dQ5aN?=
- =?us-ascii?Q?0iswwEG9aBwzzhbs5fUXML2VC2ssEZrByADlGzaXKu04P93XJGcVmHM8ee1a?=
- =?us-ascii?Q?8hTArUkIFD2nB57hG1sN8GHZObpscjz457ioBKH6+I+vzaqSLLMp1KWyOKDZ?=
- =?us-ascii?Q?E9G8gnAE9q6FAJCvWqiHgCuXsd0EwsBrKcbN/7U1?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01ba02c7-e20f-43b2-abb3-08de2346cd57
-X-MS-Exchange-CrossTenant-AuthSource: CH1PPFDAD84AB72.namprd12.prod.outlook.com
+	=?us-ascii?Q?QIZDSXKt+ZgYKyyiRHVGLG1K7QK0tOtNKJHnpMXFw+PtJxaEUcxaCNO6QKZ9?=
+ =?us-ascii?Q?IrLT+sAidHjXc2TFXOPkMF6Y4P2fOinwZYYU2jGeqdjMq8wwxlxQWvb+3JiO?=
+ =?us-ascii?Q?nhn/W0m1dBUwQ5uobH34Dvqp8xESQ6vBIeucyuFgYPkHQMOm8taofiucuw/e?=
+ =?us-ascii?Q?0C2jXMDFN2cFvXQ/cMV+6pPVsjbjGlTS4WSFifNL3KHQUVwBfNuvv5vR4mWQ?=
+ =?us-ascii?Q?G4zzl25mIzx2yZz9l549nr83QjuDVWC5pjoe5TT8pKaMfNHEa4mstQC6LcQe?=
+ =?us-ascii?Q?QLBOg+cRoHcRQ1a1TtG7qG3J89aO45mv7OKyV4hYBvTSuasLIMwPXLeBDWi7?=
+ =?us-ascii?Q?avq+AxCNVHCls2dBShD3v0D5Dfkt0Suu46c/MlQYwht0Cc4tzT1NPO8W6VsH?=
+ =?us-ascii?Q?dVhpcGgtqEbadWTKKVb5ELZnvolkDmZAZhr2ZW6KSlaShhR5Yk5/ZXCglYJl?=
+ =?us-ascii?Q?cvNv3umBFhwl58snYrJE4KCid+kYQ4AmAlSuNX5N4UTvChe2yrXzxB3D5z5+?=
+ =?us-ascii?Q?6MATVS/RkCMvnmtHCCu7yQiB6D8CKPE2wSEmOO+xLnX6ocZCNGmLlJxfORSs?=
+ =?us-ascii?Q?LEtunLznvabt2qbxKLkGLTjsk0RzIO9TGccEAnf9IS8kh9dr5XorfO+LEskh?=
+ =?us-ascii?Q?8Y7vfBe4rqy/FNOlopKZdJXRb+//Yq8/L1dJIuKTyWX1PWGkJaBIQ2o2UA3q?=
+ =?us-ascii?Q?ENrzsDPd7ngyFpQMiKioVIu4grkA+3XGg9JfuRx8XtHfNMNTcEjAeqyW8kOp?=
+ =?us-ascii?Q?K9V3wnFGTM1QJZJLE0P1qn6hM71vT2Pkd4EawRB0i6n6C2Q6h58dTVoatjYp?=
+ =?us-ascii?Q?SPA4XBEBqjL7FnCoW9/4WLT2Dj+VlPqVORbOcGywmhzpz/tjGBULW4Xn4whQ?=
+ =?us-ascii?Q?CcuFaDlfYb0Hljg/nVJcRjXpOZbg50jL1bcQwVRSXA4W0Zs/B7KjtkFGdjhi?=
+ =?us-ascii?Q?apCN9bWhLP3IjENkYaGinrvO2sg8R7gNnkt/B2txvRSZex+9BnHF0pSCTajl?=
+ =?us-ascii?Q?tZJOcBajkJCQIHAwsUUkxOgNLv+Xz1c2b6WDcqXtkCPjgGO0jUP43ILBwNKq?=
+ =?us-ascii?Q?QtaOrscrIQCD+6lRfrb+a+xBTTKlUxRccxqV9ZRA3fdzOYSoXhUl4ME1UBH6?=
+ =?us-ascii?Q?LlFlmL+oZ8AxohWxrD8jNDPo1zeSQxb0S0WXZzjuT6mHl+md7RXRexKiPQAv?=
+ =?us-ascii?Q?0LE3MF5j9zlLQb3i2bVVylX92C7Z56mJaJ9GBE9Jxka+hbdVGio8FHUZDTER?=
+ =?us-ascii?Q?pP4R4vf05dhipPClB8Z2X+gZ2U4PlMHWZXWRkITXSVYXwPFLiQ4udXez/7hw?=
+ =?us-ascii?Q?6Qcj5TOJGnpBQ1bUclcPdLcm6P8dscMIuSXd/YQuTwevCd8aNdHGYyTkGyJ8?=
+ =?us-ascii?Q?PxawXWYaCoNPGze9cDseRvkSu4JQvNaGALUQUKCuAiltaSwn6bfMuUb3Jmkp?=
+ =?us-ascii?Q?FX5e6esdAfnIHxJ38za65f4oKXK/NKVBTB3oliUzcjs9PBvNWAgiSjzDlIF9?=
+ =?us-ascii?Q?JwlKFf/ipJiLOEF05YmmQrt0cfV2Ct9ekDPYpXyiG1Q6wmcHsyJOTAzEjVb9?=
+ =?us-ascii?Q?t0l0b4Vc9NWIELdV+biFZlq3cDq7bVfID08t13OinMovt598+zKMbVKLXiL9?=
+ =?us-ascii?Q?5A=3D=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b00cc0dc-0626-4fc2-4108-08de2346ef3a
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR03MB4916.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 06:26:53.6577
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 06:27:50.5072
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aLk3ORG7mDBYrf0JRyUwIDHaKSnGmMCuSDkL9NrtSrrsMlBfQ/fQCXIRNqgSkp98V8TLuUA+m/LlRRfssZjRIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR12MB9506
+X-MS-Exchange-CrossTenant-UserPrincipalName: F5XzG6bFjgF+D4i+WAbPjcNh/b4nkrMS4RFE9eP0wAjgsBNCtk2ECYbxSQfxFDFDWJnAtT57+5flkIukIAHw0QrvEn5Wi7rFz0jcrM/1aWA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR03MB6573
 
-On Fri, Nov 14, 2025 at 02:46:19PM +1030, Andrew Jeffery wrote:
-> > +	model = "AST2600 MSX4 Kernel";
-> 
-> I find this to be a curious model name :)
-> 
-> Are there no other reasonable names?
-> 
-For better or worse, this is the most accurate name, and matches the hpm hardware itself.
-We may need multi-hpm support for the resulting firmware at some point, so matching
-the hpm to the device tree seemed like the simplest thing to do. If this doesn't
-match the way the kernel deals with this sort of thing, please let me know the best path forward.
+This patch series adds device tree bindings, driver and DTS updates to
+enable FPGA Manager functionality for Intel Agilex5 SoC.
 
-> > +	compatible = "nvidia,msx4-bmc", "aspeed,ast2600";
-> > +
-> > +	aliases {
-> > +		serial0 = &uart1;
-> > +		serial1 = &uart2;
-> > +		serial2 = &uart3;
-> > +		serial3 = &uart4;
-> > +		serial4 = &uart5;
-> 
-> Just checking whether you're actually using all of these? I guess the
-> uart nodes further down suggest so?
->
+These changes are intended to enable FPGA programming and FPGA management
+capabilities on Agilex5-based platforms.
 
-These UARTs are wired up on this platform. Userspace may not use them today,
-but we want to enable doing so without needing further device tree updates, in
-case they are needed for debug where a BMC firmware flash would be unpalatable.
+---
+Notes:
+Patch #2 depends on  "arm64: dts: intel: Add Agilex5 SVC node with memory
+region" from
+https://lore.kernel.org/all/3381ef56c1ff34a0b54cf76010889b5523ead825.1762387665.git.khairul.anuar.romli@altera.com/
 
-> 
-> Seems curious to enable all of these I2C controllers yet have no
-> devices under them? Can you elaborate?
-> 
-> Andrew
+This patch series is applied on socfpga maintainer's tree
+https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
 
-Unfortunately, the devices that we need over i2c are not
-guaranteed to be available at BMC boot, and are probed in userspace through
-the new_device sysfs node from the i2c subsystem. The BMC doesn't
-have direct control over when these devices are accessible,
-they are available after the host has completed POST.
+Changes in v3:
+	- Add fallback in altera's soc fpga manager compatible properties.
+	- Validate with make CHECK_DBTS=y on:
+	  - intel/socfpga_agilex5_socdk.dtb (fallback)
+          - intel/socfpga_agilex_socdk.dtb (non-fallback)
+          - altera/socfpga_stratix10_socdk.dtb (non-fallback)
 
-As far as I can tell, there isn't a great way to defer probe for devices
-that the BMC doesn't have immediate control over whether its accessible.
-Regulators seem like a match, but it seems to assume that you can directly
-turn on the power domain that the device is tied to, which isn't the case here
-for various reasons.
+Changes in v2:
+	- Drop "fpga: stratix10-soc: Add support for Agilex5"
+	- Add fallback compatible in DT
+---
+Khairul Anuar Romli (2):
+  dt-bindings: fpga: stratix10: add support for Agilex5
+  arm64: dts: agilex5: add fpga-region and fpga-mgr nodes
 
-Please let me know if I'm ignorant of a way to deal with this issue.
+ .../fpga/intel,stratix10-soc-fpga-mgr.yaml         | 14 +++++++++++---
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi     | 12 ++++++++++++
+ 2 files changed, 23 insertions(+), 3 deletions(-)
 
-Thanks for the Review,
-Marc
+-- 
+2.43.7
+
 
