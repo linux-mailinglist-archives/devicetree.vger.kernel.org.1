@@ -1,146 +1,172 @@
-Return-Path: <devicetree+bounces-238556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91316C5C640
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:54:53 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B750C5C529
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:40:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2038B50409E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:27:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6019435BAF3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:31:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55CFE302CDB;
-	Fri, 14 Nov 2025 09:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E42308F3E;
+	Fri, 14 Nov 2025 09:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oy12Wodc"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Gt5z0wfC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFDF2BE04F;
-	Fri, 14 Nov 2025 09:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B674306B2D
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763112412; cv=none; b=FRqfVHS8YyfyfLVB5qIx9OaSUEzt6xwjFYEBV8JvH9bcvPmfBz6qgqokDngwVcWKD6HQUDvWlUdKIT5R/wzcBfbvncjO2I/WwLmQwpCEVDLV3+Frgv/BdLwLZF1geDVsGhPcmLTRAsi/ZAm+POJEYQoYEOsJqEudiOdlV2xOKEA=
+	t=1763112678; cv=none; b=lpEgucu13MujwrbuGkc+sISlygzaXbT9CVICmx9N24eUuXGL+Q6M+desKjzDz4L4Nv9bb4x6+wwmE2N0hvP+uNjzzvNsxh/+gzocpy3XMvE7MwRJxWj+CGkVJWhMqwobnUGHAXgac4Xlvwq8jTiTT32qw27rtZ2irfrTWYrDPJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763112412; c=relaxed/simple;
-	bh=sX+HOIylT+s1DfHSzoGBLyVtWwyxqB+zreyy1Q1PrXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=beE8PDnU6kB/hWrXu9Cf6wo307a0P5wXqHDnyTBz/pdm0gzuwxQjz+83Href88VSP0FM/ucJHMDgKf1csFsMddcXGAYuiHcmhyIUZCC9pK76BJB6ms91HuCuAy7BWWqZNYNuEmR9Rs+/k03tNFrORf7/7D5BP7/xdaiSwWQrsDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oy12Wodc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D5C4C4CEF8;
-	Fri, 14 Nov 2025 09:26:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763112411;
-	bh=sX+HOIylT+s1DfHSzoGBLyVtWwyxqB+zreyy1Q1PrXs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Oy12WodcEZ0xjE9jQd3zfg3IH6YfscOfbxRppFoSsNZW7bJyLB3pLIK5oT52nwSbz
-	 FS8Apk088s5krjYBuc8/f3d4tJ0P8D9Glrx83vItqgS40sx+cCKT0djYA6HtQ122WE
-	 XbsYCh1lI/aGEds70C/Y9jlamxM9HI8XbrTpHKiFue1WVgNsqqfSbRaQ1qiDNFwrgR
-	 oqiY4wCvBF2CMR1LZzF4h3yt39zNIB2i2EhZaJZn/D23lRqDNx2MLq7c7uFNgoDb4Q
-	 6I0JLax3LGu9aA3amA9aYnG12RbC7wYERUc0JHGM4Nnnpn2btIb2QywcmkxQafd+Ry
-	 8y9x9CWfXYMnw==
-Date: Fri, 14 Nov 2025 10:26:49 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, Roy Luo <royluo@google.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Chen-Yu Tsai <wenst@chromium.org>, Julius Werner <jwerner@chromium.org>, 
-	William McVicker <willmcvicker@google.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for
- frankel/blazer/mustang
-Message-ID: <20251114-elite-refined-yak-bf9e64@kuoka>
-References: <20251111192422.4180216-1-dianders@chromium.org>
- <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid>
- <05c833f0-15bc-4a86-9ac4-daf835fe4393@kernel.org>
- <CAD=FV=XXWK9pmZQvNk6gjkqe6kgLXaVENgz0pBii6Gai7BdL-A@mail.gmail.com>
- <00ea821c-5252-42cb-8f6f-da01453947bd@kernel.org>
- <CAD=FV=VSxeKgGcsRb9qiXq7nsbOWZjPvzmGEOhFA+pmABWdknQ@mail.gmail.com>
- <6490f20a-2492-4ee0-8f34-d529e0df0bad@kernel.org>
- <CAD=FV=Us7SU_OifVkS4mdfVhc=xGYSBiBpBk9aA1Ki0y+iYBpQ@mail.gmail.com>
- <abb77afe-c285-46ba-88ac-08574bd67712@kernel.org>
- <CAD=FV=VcAbgv41tjgWQN4i8Wqk6T6uvdpQ261Q_hcKM4AMpGEw@mail.gmail.com>
+	s=arc-20240116; t=1763112678; c=relaxed/simple;
+	bh=ACQpx7cjZHPONgx9RRCg5HRaeFcKLESZFAJFQv7L0K4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=emwTAxoX+W7e9z90dch66L22Zp+0YfMirCJqGH7u0G+C3hM1kBJ4/vytCFAOMcsdAvMMXvRHEvpnA35bhfr3CwTeBUblGVGzWvLJr7ogUj8NgP9lYVHKnLcGwIeWo7h1x5t18P2rW8/SeokgcP3HvkfF+kOfTlWrs3r+wBTz+4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Gt5z0wfC; arc=none smtp.client-ip=209.85.218.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b737502f77bso5867866b.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:31:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1763112673; x=1763717473; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OfvYbwMR85cXvJiXqvlh8kV+lNS72Io0vdeb3FdrUK8=;
+        b=Gt5z0wfCaiI1ftWmU5iVKgPjYaQKzQthmqbpbaNK1L0EDU9djSiQ/veSCISJzelRrX
+         U0cpdp40ZjTZvynmBdobuQaxBKwwdDYthYCywihYkHWl0s0yaOP3OwKbuSHKEPMh52Aq
+         wI6sym00wQLQ1Yl2LDuiK+TUG/UF6P0ev6QIHh7qLfqjNGoMCqvzQHChKs2gC7xmrWvz
+         iNtc16cBSMz13cfEn6svqKceNtti2HVodV4UpuasHxhpGjw47Q4h9xXTHXxQKtgQhVM5
+         MsxyklUiFOaOP5YuHMQ8sQXMjlgCUYnWM4V3lWXO5OegOrLCTRF3ZVuPRfEDWmS48aF1
+         e6PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763112673; x=1763717473;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OfvYbwMR85cXvJiXqvlh8kV+lNS72Io0vdeb3FdrUK8=;
+        b=OPXjEOVmdp3h5DpNKKMz3q8QKu0e3w/bBu21MCliqzhHdiOrlLtCtjxsEiCUkJssNQ
+         q4LlRMQlGX/9zg7ib6ejUoAN0i89Brc7TdLU/6NbgN5nl0Sm7Ge1C96o5wzDh3hURhVb
+         w9WNjcH+Gs3Ci47k1360m3afVPkLRaBdDDES6htvO3P8tbzYa0Dom+O5LIyjZGXwcovf
+         32qm8UscRydqjvh3akCJjsDZp6SJfX6X9WU7e5VFgXd0WOc1Ab33oIi6sYATvHbcw+Hr
+         b5pWHQkmSSvvAYw7jiugkAUOlXy5ucoPEoadQctOg2vP1VMhlwdnU5aLqQ+41GPr+QoU
+         kMYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUZCBF/mY/x1uuh9qkOcm/m3v/LMlcvXfZt21agtQ9p1KNg1g2t+ZFhHBbIXI+LqEGS8nwWnysYFXng@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5FuZ3qpCtf/7/Mnzqd1+RnHNmWbySasx4H3RelkH/iZaINS+9
+	xvZUtmwk3dZw36VMqu+1z/qzWm6PPFvThGwmR9xbH+n8AV7eKgXYPQ5zt4jNqnAXHSo=
+X-Gm-Gg: ASbGnctJbNLSVRzJ9NTf/RBEOE8QRUvCd/hT9ErS8iSlHMuUkYZTTAN7Jsr4sgCCS7S
+	7qHuGQbYf78qQV5uRqjESgPYptvoOReaE4M7nRNHAx4SAMJvl7sJRA0SD3DpY/IJIKXxd2iswNx
+	MWngz1eIObtPVlUGo88iwunmnBvTOAPJ45Z/hqOVyA0m00fjSYIcn6e5yRESU3K73keidmCz06P
+	XgFf/NEnsTBv2xHxSLCYX5dlpNut9W2afTbvuxdp0Cc3WGhosucXuxmvZz9IxCuSC1so1tSkO6T
+	bcwhnLQ9I0OebjiNWwfWxRt3GqONSYVkhIn5bBrGLSqAMi9fBLEv5MdwwZVRvgBdpPe1vl+2Zy4
+	EyFWadWJKgmh+/AsUmNwiFr4iLa/2PjFPxiKdBQay41TviCg09TdJwTjfnliqUremTbsOaeHSJL
+	sqz3+lGOTVSSJVuYiczmmU+02q//cPwS/GBu6nyPxNdPiepX1+zRcojhY2yP8IoKf8Vtmkujr2l
+	AMeqjmffhDbPwYq9x9Y86Y=
+X-Google-Smtp-Source: AGHT+IEHPT99abpf0KPMgu3Y6RnZucQGw5ejkSL87Rxnqo9xEnFi6rEdVtOT7jKib0z0sW0Ef35W4g==
+X-Received: by 2002:a17:907:3e03:b0:b73:59b0:34d6 with SMTP id a640c23a62f3a-b73678ecc12mr273490766b.33.1763112673413;
+        Fri, 14 Nov 2025 01:31:13 -0800 (PST)
+Received: from [192.168.101.179] (2001-1c04-0509-ec01-156d-fa6e-7f19-0b67.cable.dynamic.v6.ziggo.nl. [2001:1c04:509:ec01:156d:fa6e:7f19:b67])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fd80841sm352104366b.41.2025.11.14.01.31.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 01:31:12 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/5] Enable QoS configuration for SM6350
+Date: Fri, 14 Nov 2025 10:31:08 +0100
+Message-Id: <20251114-sm6350-icc-qos-v2-0-6af348cb9c69@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAD=FV=VcAbgv41tjgWQN4i8Wqk6T6uvdpQ261Q_hcKM4AMpGEw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAN32FmkC/3WPy26DMBBFfwXNulP5IWzCKv9RZQFmXEYVOLEpS
+ YT49zhm002X90pzzp0NEkWmBG21QaSVE4c5B/VRgRu7+ZuQh5xBCVVLKSymyehaIDuHt5Bw0PL
+ kfa/J9B7y0TWS50cBfl2OHOn2m7nLUULfJUIXpomXtprpsWBhC9XAX2nekGthpMZI9xB/ilIMu
+ rfKms6emnbV8FaMnJYQn+WFVRbHf2tXiQIbZWuqvdPeyLPvOF7HMNNnngSXfd9fDEAUPRMBAAA
+ =
+X-Change-ID: 20251107-sm6350-icc-qos-d319ffb3e6bf
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763112672; l=2923;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=ACQpx7cjZHPONgx9RRCg5HRaeFcKLESZFAJFQv7L0K4=;
+ b=KA0AoWxizz0/gD8OfkMA4rS2gAqVLcb1/7U5wBumPN8iT6dhshUZrXarIVRz1s4lnnGAnOGWR
+ valGwg+JpYfAuecKkuVTx4irGlqABIo9n/bNeNk+0OpIdZdFn6jC2hi
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-On Thu, Nov 13, 2025 at 10:04:53AM -0800, Doug Anderson wrote:
-> Hi,
->=20
->=20
-> On Thu, Nov 13, 2025 at 9:43=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> >
-> > >>> Yes, the complexity of just "hooking up" the components on an SoC is
-> > >>> an order of magnitude harder than a Raspberry Pi, but it's still ju=
-st
-> > >>> hooking it up to external components. In both cases, we are modeling
-> > >>> the core "brains" (the part that contains the processor) as the DTB
-> > >>> and everything else just "hooks up" to interfaces.
-> > >>
-> > >> You mix the topics, so I don't follow. I speak here about bindings -=
- you
-> > >> cannot have the that compatible alone, because it is incomplete, just
-> > >> like compatible for "transistor" is not correct in that context. You
-> > >> speak what could or could be DTB, different topic.
-> > >
-> > > A "SoC" is "complete". It has a processor that can run instructions.
-> >
-> > Then show me executing any piece of software, which is the consumer of
-> > the bindings, and runs on the SoC without the rest of the hardware syst=
-em.
->=20
-> Show me something that runs on a Raspberry Pi (the models that don't
-> have eMMC) that runs without hooking up power and plugging in an SD
-> card. :-P
+Update dt-bindings, driver and dts in order to configure the QoS
+registers for the various SM6350 interconnects.
 
-It has MMC controller/slot described in the DTS and the SDcard itself is
-DT-transparent, meaning you do not describe it in DTS, plus I can easily
-insert such card, thus for sake of this discussion that RPi still works
-fine with DTS.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Refactor icc-rpmh.c change to be "less spaghetti" :) use less goto
+  (Dmitry)
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20251107-sm6350-icc-qos-v1-0-8275e5fc3f61@fairphone.com
 
-This SoC cannot work without other pieces described in DT, that's why it
-is incomplete and unusable on its own.
+---
+Luca Weiss (5):
+      dt-bindings: interconnect: qcom,sm6350-rpmh: Add clocks for QoS
+      interconnect: qcom: icc-rpmh: Get parent's regmap for nested NoCs
+      interconnect: qcom: sm6350: Remove empty BCM arrays
+      interconnect: qcom: sm6350: enable QoS configuration
+      arm64: dts: qcom: sm6350: Add clocks for aggre1 & aggre2 NoC
 
-You are right that my previous arguments of hooking components are
-incomplete, so let me rephrase it - the DTS file should be complete from
-DT point of view and completly usable on its own. That's why DTS
-represents board (with the exceptions of few SoMs as explaiend to me
-long time ago).
-
-SoC does not meet this criteria, therefore it is not suitable for DTS.
-
-And if you claim that SoC could be fitting DTS, then I claim that
-individual transistor or one IP block like DWC USB3 could be there as
-well. With your arguments we could create DTS files for DWC USB3 nodes.
-Fact that transistor or DWC USB3 cannot execute code on their own does
-not matter, because it is nowhere said that DTS represents something
-which can execute code. CPU executes code, so following this argument
-DTS could contain only CPU device nodes..
-
-If we allow subpieces, like SoC components or SoCs (both still unusable
-on their own), as DTS files we open the pandora box of all possible
-styles and formats. I don't see reasoon why would we want it, what
-benefits this would bring to the ecosystem maintenance.
-
-We did not document it that DTS represents usable board, but it is
-implied all over the software projects, like GRUB devicetree [1] which
-takes one DTB to load. Only one.
-
-[1] https://www.gnu.org/software/grub/manual/grub/html_node/devicetree.html
+ .../bindings/interconnect/qcom,sm6350-rpmh.yaml    |  65 ++++-
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               |   3 +
+ drivers/interconnect/qcom/icc-rpmh.c               |  19 +-
+ drivers/interconnect/qcom/sm6350.c                 | 298 ++++++++++++++++++++-
+ 4 files changed, 357 insertions(+), 28 deletions(-)
+---
+base-commit: 33b5a67d76ce575ea38bc3de55719a6cdf42287d
+change-id: 20251107-sm6350-icc-qos-d319ffb3e6bf
+prerequisite-change-id: 20250613-rework-icc-0d3b7276a798:v3
+prerequisite-patch-id: dc49cf2810a33db590997c9e9969f09fcbba207e
+prerequisite-patch-id: bd229a10bfd7485726f341f1bbc179fa032e4beb
+prerequisite-patch-id: ea3e9a509dc2d590f647560df3fa773165d5df48
+prerequisite-patch-id: 95b82df224ac0515c56d41cad8547099248697c1
+prerequisite-patch-id: c793efccb33da5b78d634fc0f7259c01854c7da2
+prerequisite-patch-id: b25a3cc84427ed3d321575d32dee239aa6dcfa65
+prerequisite-patch-id: 8262f845f906a575f9ee06c002d8626c7b25a87e
+prerequisite-patch-id: f3b9493e64d90665d7093c7f7af335452010cf13
+prerequisite-patch-id: 4e05eb6178064d4b4541fccbff31e18d4e5ae258
+prerequisite-patch-id: 4c169d0f54fb39999cf62eaba98208fd94e0d250
+prerequisite-patch-id: 91f18aff5b2cc765964c8991647dd53e75e97648
+prerequisite-patch-id: 7749a4cc2e2e8e2ac191844f8c42f338d0a80392
+prerequisite-patch-id: 75a9009c7cdbeb94b2c7528f6ecc54d7a4b7a6be
+prerequisite-patch-id: 9566648a76666548a85084664ba6fd4a240fe602
+prerequisite-patch-id: c2ba63308bedf78640d64d9662ebfe2ceb7e6d26
+prerequisite-patch-id: a08ad34a60042b2693b91f24712ccc10e0d5666b
+prerequisite-patch-id: 8227a4926c64a28215b6c03d43df5518d72094e8
+prerequisite-patch-id: 15ece9c03dbae75dbfb1b16a2e2c1d2ed1766c82
+prerequisite-patch-id: e69ae611580f951450269b4a7df8789f6b2e2c89
+prerequisite-patch-id: 5e54f850197bc33dc581ff8907fcad1dccef20a8
+prerequisite-patch-id: 73caecb9e342117c2a83832f0d2346119466a899
+prerequisite-patch-id: 79abd6d335f0bdd8725c27797d4fbc7ffc017007
+prerequisite-patch-id: faa043f224857fad9bd8368d83d5154e3f7013c1
+prerequisite-patch-id: 5d7fdb3ea01a6066079dd89a4e494165b75159db
+prerequisite-patch-id: 0234857c8f0119652dcf3fd6e7e1fe051f40a6ea
 
 Best regards,
-Krzysztof
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
 
