@@ -1,153 +1,156 @@
-Return-Path: <devicetree+bounces-238852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7F0C5E79F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:13:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 363E4C5E82A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:19:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D51353BCCD8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:13:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8E773BEDB7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E333370EC;
-	Fri, 14 Nov 2025 17:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C982D3EF8;
+	Fri, 14 Nov 2025 17:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MH0Cnjak"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OoCOcPaO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B396B3358D5;
-	Fri, 14 Nov 2025 17:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 242782D24AD;
+	Fri, 14 Nov 2025 17:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763140401; cv=none; b=R7WyEFs60rPinoQ4Gci0th8kiWe7p1yb2aMgozyRtKV/z5GDjeqeVZ8m+RIcki3hFXdsmoO+qawP2/uGh4Uv9og5U3g1ZD7zorIgsdimFitTKZiHb3lcrDHCAfSBMc4LxB2qGw4Fitw5xdMrVsXjuCBcCuBg0axVNHkm3Z8y7/Q=
+	t=1763140795; cv=none; b=S6mcUi5fvHkbWhntWM7CAm2bwdlz/yHjzZqU41V0QGm2XbRhsBd9s08X1A4ztbLZw3P4MPcfe22cJA7au2IZ0lMtKtq5l7SG8it0zd/jEPzZzuHMDVkKI3RITJDO3/zfRmsTwkFTQelKramqc9uLlDw+eEdBVtlNZ7wcuJIFV1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763140401; c=relaxed/simple;
-	bh=+Bzp3fEwjU4swGO1VQTl09fdciqzmHGwTdRazJXd1v8=;
+	s=arc-20240116; t=1763140795; c=relaxed/simple;
+	bh=Ry2NX3YpOns0VgrqIFLUrBPQMwDNS0mEtioSCIef/gs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AT+R7GHq6P/rDsU4ai5RgFOcX3ZjAg82c4aSyh1Ab84Syj5nr1JjJG7+bVCmRGTEhYAGUYAFCHzCr4rmI1fn+AB4bfkwoh2zK40HX0hc0qYGfjTSp1aHQ2Xz5VtK58mffL2VLbQYlTElTQ0RI/kl1LpUi53aGks3BRktfFnLMxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MH0Cnjak; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C58CCC2BCAF;
-	Fri, 14 Nov 2025 17:13:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i5VcG6eqbaGTojrwdiHqZfciYI/u9S2c1LGL0Y0mq9KBnuueFnsZgGIuP+aqupumatXZkhN1LuXoZ3bCNPKaT/jhUQGKG6ysHQhTITmJzLM5b9EitNeQQup9Cqq+ctBILb82oE54cyFtWCDxgUcJ7FxNrRqm0PZ0uYL7adqPBJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OoCOcPaO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83020C4CEF1;
+	Fri, 14 Nov 2025 17:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763140401;
-	bh=+Bzp3fEwjU4swGO1VQTl09fdciqzmHGwTdRazJXd1v8=;
+	s=k20201202; t=1763140794;
+	bh=Ry2NX3YpOns0VgrqIFLUrBPQMwDNS0mEtioSCIef/gs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MH0CnjakYy5RZ5+SUyOMI7z/OrzdDgXR2Upjr4XT+ArNNO3sxNysmx7toOsg8eARD
-	 tZ1cQYZW6ha9u924JKCC2szzgaHw1P4X426KxKPI634QxESflIacIwNoKVJZgbHV9z
-	 xRLFQ+BFmUMrHzEEH01hawzHT9wVlRYYzzt3K0zbfx/Djy+yP8VO+YdEYqMcVkib2z
-	 JZnDMNH4sR5Yf+/IT2PiQ1dy+QkEJGtAunpyJ4kSDbTG59RJgiQATDP6SFR52Li91A
-	 EmHX1b9G02AVGhEmtCrqIroS2WGMLVyNsD6+ZYHCRYjUnIlsWmeSMvHWg0Sma99OvL
-	 y0svXkLRFj6QA==
-Date: Fri, 14 Nov 2025 17:13:16 +0000
-From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Subject: Re: [PATCH v3 1/2] bindings: iio: adc: Add bindings for TI ADS131M0x
- ADCs
-Message-ID: <20251114-scurvy-chewable-d68637504645@spud>
-References: <20251114092000.4058978-1-o.rempel@pengutronix.de>
- <20251114092000.4058978-2-o.rempel@pengutronix.de>
- <ce727652-c00b-4779-97ea-0b9e4fc3477d@baylibre.com>
+	b=OoCOcPaOU5UuKRnc7WU+t/JAHoUc3skwMmTFEXYt5RbezAa0rFQtVuNy0abPW8+RR
+	 ROkw3svS8LHk6Kl+r87a8ImmmwKV2stsnQVdpGw4tmYuOAC5zVMCNC8/NBxA427Of3
+	 lOWMR5YqYc4SYoeEEGn+iCNpBv6E5eb0h/VZu56UH7/O75cpemV13pO6YcDROm2tXx
+	 33cN1KoHZ6LZbwheJwP/bqDvMBEFO64CcqpN5iYS4Tsqa7hYBapU7+7eiVlp14HKen
+	 riQZswyhgKwLAxyp8t5pxR00nB0BfF+2CqkYq/w5QXAxHlnI4bclpkchUJcZuEvhex
+	 LJ4wr5fJVqp2w==
+Date: Fri, 14 Nov 2025 22:49:40 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
+	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v6 0/6] PCI: rzg3s-host: Add PCIe driver for Renesas
+ RZ/G3S SoC
+Message-ID: <akw7hzxci73gd7zlbo56matorjihffuq45l22mzkmavzlm66k7@zjujvakf76ve>
+References: <20251029133653.2437024-1-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hW2LHpf02kwcVMSJ"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ce727652-c00b-4779-97ea-0b9e4fc3477d@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251029133653.2437024-1-claudiu.beznea.uj@bp.renesas.com>
 
+On Wed, Oct 29, 2025 at 03:36:47PM +0200, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Hi,
+> 
+> Series adds a PCIe driver for the Renesas RZ/G3S SoC.
+> It is split as follows:
+> - patches 1-2/6:	add PCIe support for the RZ/G3S SoC
+> - patches 3-6/6:	add device tree support and defconfig flag
+> 
+> Please provide your feedback.
+> 
+> Merge strategy, if any:
+> - patches 1-2/6 can go through the PCI tree
 
---hW2LHpf02kwcVMSJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Patch 2 is not applying on top of v6.18-rc1. Please fix it up and resend.
 
-On Fri, Nov 14, 2025 at 10:33:59AM -0600, David Lechner wrote:
-> On 11/14/25 3:19 AM, Oleksij Rempel wrote:
-> > Add device tree bindings documentation for the Texas Instruments
-> > ADS131M0x analog-to-digital converters. This family includes the ADS131=
-M02,
-> > ADS131M03, ADS131M04, ADS131M06, and ADS131M08 variants.
-> >=20
-> > These variants differ primarily in the number of supported channels
-> > (2, 3, 4, 6, and 8, respectively), which requires separate compatible
-> > strings to validate the channel nodes.
-> >=20
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> > changes v3:
-> > - Make channel@ regex patterns consistent
-> > changes v2:
-> > - Rename file to ti,ads131m02.yaml and update $id.
-> > - Add supplies (avdd, dvdd, refin), interrupts, reset-gpios, and clock-=
-names.
-> > - Make avdd-supply, dvdd-supply, and clock-names required.
-> > - Tighten channel validation logic for each device variant.
-> > - Simplify channel description and reorder datasheet list.
-> > - Update commit message to clarify device difference
-> > ---
->=20
->=20
-> ...
->=20
-> > +  - if:
-> > +      # 32-pin devices: M06, M08
-> > +      # These support both XTAL/CLKIN and optional REFIN.
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - ti,ads131m06
-> > +            - ti,ads131m08
-> > +    then:
-> > +      properties:
-> > +        clock-names:
-> > +          description:
-> > +            Indicates if a crystal oscillator (XTAL) or CMOS signal is=
- connected
-> > +            (CLKIN).
-> > +          enum: [xtal, clkin]
->=20
->=20
-> Usually, we want all possible properties declared at the top level and th=
-en
-> only limit them by the conditional statements.
->=20
-> This makes it easier to see what all of the possibilities are. At first I
-> thought clock-names had not been added.
->=20
->=20
-> > +        refin-supply:
-> > +          description: Optional external reference supply (REFIN).
->=20
-> refin-supply should be at the top level as well.
+- Mani
 
-Oh ye, good shout. I didn't notice those inside the list of different
-devices.
+> - patches 3-6/6 can go through the Renesas tree
+> 
+> Thank you,
+> Claudiu Beznea
+> 
+> Changes in v6:
+> - addressed review comments on DT bindings and driver code
+> - per-patch changes are described in each individual patch
+> 
+> Changes in v5:
+> - dropped patch
+>   "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
+>   and introduced patch
+>   "arm64: dts: renesas: rzg3s-smarc-som: Add PCIe reference clock"
+> - addressed review comments
+> - per-patch changes are described in each individual patch
+> 
+> Changes in v4:
+> - dropped v3 patches:
+>   - "clk: renesas: r9a08g045: Add clocks and resets support for PCIe"
+>   - "soc: renesas: rz-sysc: Add syscon/regmap support"
+>   as they are already integrated
+> - dropped v3 patch "PCI: of_property: Restore the arguments of the
+>   next level parent" as it is not needed anymore in this version due
+>   port being added in device tree
+> - addressed review comments
+> - per-patch changes are described in each individual patch
+> 
+> Changes in v3:
+> - added patch "PCI: of_property: Restore the arguments of the next level parent"
+>   to fix the legacy interrupt request
+> - addressed review comments
+> - per-patch changes are described in each individual patch
+> 
+> Changes in v2:
+> - dropped "of/irq: Export of_irq_count()" as it is not needed anymore
+>   in this version
+> - added "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
+>   to reflect the board specific memory constraints
+> - addressed review comments
+> - updated patch "soc: renesas: rz-sysc: Add syscon/regmap support"
+> - per-patch changes are described in each individual patch
+> 
+> Claudiu Beznea (6):
+>   dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add Renesas RZ/G3S
+>   PCI: rzg3s-host: Add Renesas RZ/G3S SoC host driver
+>   arm64: dts: renesas: r9a08g045: Add PCIe node
+>   arm64: dts: renesas: rzg3s-smarc-som: Add PCIe reference clock
+>   arm64: dts: renesas: rzg3s-smarc: Enable PCIe
+>   arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
+> 
+>  .../bindings/pci/renesas,r9a08g045-pcie.yaml  |  249 +++
+>  MAINTAINERS                                   |    8 +
+>  arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   65 +
+>  .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |    5 +
+>  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |   11 +
+>  arch/arm64/configs/defconfig                  |    1 +
+>  drivers/pci/controller/Kconfig                |    9 +
+>  drivers/pci/controller/Makefile               |    1 +
+>  drivers/pci/controller/pcie-rzg3s-host.c      | 1759 +++++++++++++++++
+>  9 files changed, 2108 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+>  create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
+> 
+> -- 
+> 2.43.0
+> 
 
---hW2LHpf02kwcVMSJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRdjLAAKCRB4tDGHoIJi
-0sJ+APoDg+pqUNc7xW4MMoAewX0mgykQpAzkBKRMmQ1g/5/8BgEAn2DvdcnQvyDL
-t/jNSZUt9WAvkNFqUO41Ne2ENdHy9wE=
-=N05E
------END PGP SIGNATURE-----
-
---hW2LHpf02kwcVMSJ--
+-- 
+மணிவண்ணன் சதாசிவம்
 
