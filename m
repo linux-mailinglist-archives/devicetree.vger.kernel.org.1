@@ -1,177 +1,151 @@
-Return-Path: <devicetree+bounces-238649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA7EEC5CEE4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:49:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43860C5CF74
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 802DF352274
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:49:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 70CF44E7B9E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A310D30BF66;
-	Fri, 14 Nov 2025 11:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6E83176EE;
+	Fri, 14 Nov 2025 11:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZeQkJVwi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SLawjDEm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C3C2877D5;
-	Fri, 14 Nov 2025 11:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33BA3164DB
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:55:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763120945; cv=none; b=RPtF8nu2roIpPDzbzYglmWCAv0s6+kGnIfqjpC68GGfwcg+zjufsGVc8B8FfHcyF99GFs6UVCmQIorXpTX7sK4naqbx45GwPd2hhB+26XxefPn4EbcFmgySZmpc8r2OpVJ/Or4sNKfc1q75Db++EuuLVcct8DJV+kd870vqZMdQ=
+	t=1763121338; cv=none; b=N/nJyJO59XO6Kje5tX/BLO1A0+yu9j8mturXGhuz/pPpfuxsWU9Mu/i+TTRCj/N9Gu+YYaTwrbPAWwb7HPiE2IARkhoQfEKFvOjOudXnT+GVjW31s1KtEMHZp/8qv/ldSZ8Tsfj8HeBqVDGvSmwh7hRjoLN3UyivYgVa7vbIkaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763120945; c=relaxed/simple;
-	bh=cC46TDZLqw5+GYMhdoo+O522lBYA4CPjnOeOdcsc1+E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AbUPQOoxhFdxHlxdpoKnyY/J7m+LdSyzEE3MU2QHwE0TYw19fw+hKXnrOn/YZC23TtIeejHQ5FM3iypsNuaqRwbEHWC5HKQQy0LJfyWzaJJXfnn/OriQo3RgFOn4JmWAvrWGRwI3Rlj9ElIfsbKWjMSMv5tanyHUvgCAULWkj44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZeQkJVwi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA94EC4CEFB;
-	Fri, 14 Nov 2025 11:49:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763120945;
-	bh=cC46TDZLqw5+GYMhdoo+O522lBYA4CPjnOeOdcsc1+E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZeQkJVwiXV1dOT2t+9jWjSvBpOMZLOQJxLHxO0cPMqNQ2ph31ma57WBeUzyomVa3D
-	 KOrF19b9OaI+rIAMc7XH3XtY8Aqf15oqO7sFpZRWR+1OuziNB54zBYAh+oZtMSRk6A
-	 ULwc11/eQpSTRUxsa+A35IwDKSG8OfyLaLS0g7i0hKnAoprHPqiK1BNfr8Ytl0CAUH
-	 OU56R/ZNSk/Tm4w/kf1OKTRHvt4bzZcSYIawlUNl1Xi7bUI9+nkSR2318I2/9L22Jz
-	 JeDAss0Crl48QYeBfmlD7edepkG+TL7Lc2G5IabZ90MuMBJjt9RVCXw5wTHKRm2cig
-	 wQKUbwxXgMrzA==
-Message-ID: <a0d238a8-a618-46e7-b4da-0f47b468aae3@kernel.org>
-Date: Fri, 14 Nov 2025 12:48:59 +0100
+	s=arc-20240116; t=1763121338; c=relaxed/simple;
+	bh=kSsVcz8630KwHo4IO7LJsqMTZrFWGAD+oaRzx2FLL3w=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=LNJdXup1uYznYg2jc65ifcFOOknybduIBPwtGf+BRWWZnU2CWznI9MoHPahnUJwp/ZlxV3srolZZjwgVt5NOSK1eskYcgoyKGwMcIo3vLCWRmP4GZJ+7JsKaRM5VHZHhMKtgKTd5lqi2r5UqFwgkzLzRCYLcHz4xvPwx6B9XaDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SLawjDEm; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-477770019e4so22403015e9.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 03:55:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763121335; x=1763726135; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kSsVcz8630KwHo4IO7LJsqMTZrFWGAD+oaRzx2FLL3w=;
+        b=SLawjDEmIkye7FklV/K0NRjVRjISwZlLXhh7NLhMp5I8d6eIDNFW3ENbEsrnKlOEbK
+         wP0JiezJ6FXzc0YP0NiJOoRTpo2jTNUHgpttC37nd6OidVHmg+Z64cRg9Honr90y+7fD
+         vY4U5+gOET7UBDi2+6m0nE3IHVqTC+n8b2MjOoukKLSqOQdSZcbd7UFfL1zB8pbmmyxV
+         nzCfQmH8JdYSC1KDcjNxE6slEewY9NdKw+gPg7Qt9glB4DcEfcCKGThdsdB/7uqtGY+c
+         Icm6rA+EMa6fppbBYI178ND65UVjuOU36LmpQdA7TaLx/mqrvylgW2CLEK+1YSXtpTqF
+         //2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763121335; x=1763726135;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kSsVcz8630KwHo4IO7LJsqMTZrFWGAD+oaRzx2FLL3w=;
+        b=K/wtmv+0PSr1GW3RUY8AzWj3iXKZWOzO/5V6zF0vucjB3S+VoNrR6ueO5uQQsEaRkm
+         UYfq2xmRCJ0vo50yJtvrFd0TAISOi6v5oDHKIgLr8A19FJYSVBP8aHNuCKm0bGfM9L7d
+         rPcZlHV09+AP16yx2XkYMP4h7cqUvxmPD8b6v9+EZqOlhDP5lJg2A7VX1G33lviXYmDI
+         531f8qDqDMpI+6460qywP1piwPEaZe0onhCBnqfASB6D/rtH3EgmvQZf33HGTmtVQE42
+         MwxPOIOx9p3Elx4xnFNb0gTnrR0zJ6rjcwTRht+BMjBSkcAIY6ItE3HTW8jkJTr081so
+         LVsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVMmUsOHWGZX0fwC10Kv4q2Sktp8Qwkq39x5I5Eeqv20dAXzVOcrELkldNBNfXDvSI+0zjAEK1r9eQY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtQ0TzWgDIdu/+MUxhNoLxcMXif545ebd1C+4Dk4m0XqozDpi2
+	NdQ7fUTLlic+ku2aYRypkXFfConYJPqy4UsM5gF7GQ/Zax/USHGdUmmi/Ozymx7Oo84=
+X-Gm-Gg: ASbGncv2LZ4x2B/qf9hgj3ijIngPkpnVEdKv3RaXVx1yxZ0/p3H+Wuxyszqpw0oVD8i
+	NNoK1Bs8sB0NjBXAkHJnqJfBPHr9F8TYPSRS9swRQwe39eKLUvatzGw+9QM+J+/OohMr7yJ0X35
+	Bn1x3vYvM6dNd7hPdEWIjrzRkc6juoZY56ZcR/61xFzazITpHt9kApDmr1ixPHnN7qTFL7+F1fa
+	/USh1JJC/kG4SJGSUIg7uuC7BHLKwz6oQgZcy3Y3cXbvG0k45Es81ColDA4M4+i1Nse3PxrW5Ta
+	b68oGoBMyOqHzf/wNG8PoQr+Id78vOdJGz+tX0ckLTADwS+u4vOsKPJ6Xs4MgJnRgHpaJXfaGCW
+	ph5b2Hk2bu7pSoBRdQmvxFy09NntInmxaiG08f/hza8it3nt7k65FdEPvdBu6sG1ReYhg9E6gGy
+	P5C+i/zg==
+X-Google-Smtp-Source: AGHT+IGaX63VyG7288bvhFhh9mADvgY7EJnU+zr1vNcvBNVERTkgMmla9vn+invb7igtQmyDtjSXdw==
+X-Received: by 2002:a05:600c:1c16:b0:476:4efc:8ed4 with SMTP id 5b1f17b1804b1-4778fe49c3bmr26839345e9.11.1763121335290;
+        Fri, 14 Nov 2025 03:55:35 -0800 (PST)
+Received: from draszik.lan ([212.129.74.29])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53e85e6fsm9688761f8f.18.2025.11.14.03.55.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 03:55:34 -0800 (PST)
+Message-ID: <6479a8d84052b326ffeb5609959aaf3a1aac9ff8.camel@linaro.org>
+Subject: Re: [PATCH 06/13] mfd: sec-irq: add support for creating multiple
+ IRQ chips
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Kaustabh Chakraborty
+	 <kauschluss@disroot.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo
+ Choi	 <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-leds@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-pm@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, 	linux-rtc@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Date: Fri, 14 Nov 2025 11:55:34 +0000
+In-Reply-To: <20251114075004a444bff0@mail.local>
+References: <20251114-s2mu005-pmic-v1-0-9e3184d3a0c9@disroot.org>
+	 <20251114-s2mu005-pmic-v1-6-9e3184d3a0c9@disroot.org>
+	 <20251114075004a444bff0@mail.local>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] wifi: ath: Use static calibration variant table for
- devicetree platforms
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: Jeff Johnson <jjohnson@kernel.org>,
- Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, ath10k@lists.infradead.org,
- ath11k@lists.infradead.org, devicetree@vger.kernel.org,
- ath12k@lists.infradead.org, Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
- <20251114-ath-variant-tbl-v1-1-a9adfc49e3f3@oss.qualcomm.com>
- <3a951821-14b1-464e-b1da-05a95f4164af@kernel.org>
- <kn24jkn77ydcrn23xz6z27cvaclksmeb3ic7pr24lxsqediugl@ubkf5t4wyyrq>
- <f9d47593-6fba-495e-aedb-c0efcaa5526e@kernel.org>
- <70322e09-694a-471d-b4fc-f5a8a1c01450@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <70322e09-694a-471d-b4fc-f5a8a1c01450@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 14/11/2025 12:44, Srinivas Kandagatla wrote:
-> On 11/14/25 11:24 AM, Krzysztof Kozlowski wrote:
->> On 14/11/2025 12:16, Manivannan Sadhasivam wrote:
->>>>>  
->>>>> +static const struct __ath_calib_variant_table {
->>>>> +	const char *machine;
->>>>> +	const char *variant;
->>>>> +} ath_calib_variant_table[] = {
->>>>> +	{ "ALFA Network AP120C-AC", "ALFA-Network-AP120C-AC" },
->>>>> +	{ "8devices Jalapeno", "8devices-Jalapeno" },
->>>>> +	{ "Google cozmo board", "GO_COZMO" },
->>>>> +	{ "Google damu board", "GO_DAMU" },
->>>>> +	{ "Google fennel sku1 board", "GO_FENNEL" },
->>>>> +	{ "Google fennel sku6 board", "GO_FENNEL" },
->>>>> +	{ "Google fennel sku7 board", "GO_FENNEL" },
->>>>
->>>> Are these top-machine models? If so, you cannot use them. The value is
->>>> user-informative, not ABI. If you wanted to use them, you would need to
->>>> document the ABI.
-> 
-> the value has expected format, can it not be an ABI?, from DT Specs:
+On Fri, 2025-11-14 at 08:50 +0100, Alexandre Belloni wrote:
+> On 14/11/2025 00:35:07+0530, Kaustabh Chakraborty wrote:
+> > The current state of the driver only allows creating only one IRQ chip
+> > per PMIC. On some PMICs, such as Samsung's S2MU005, there are multiple
+> > interrupt blocks, for which the current implementation stands insuffici=
+ent.
+> >=20
+> > Add support for creating multiple IRQ chips for a PMIC. Every IRQ chip =
+is
+> > given it's own index, which is used by sub-device drivers to request IR=
+Qs.
+> >=20
+> > A macro is defined which states the maximum number of chips supported.
+> > It's set to 1 as currently, no PMIC requires more than one IRQ chip. Th=
+e
+> > value must be changed accordingly on adding new PMICs requiring multipl=
+e
+> > IRQ chips.
+> >=20
+> > Moreover, adjust the s5m RTC driver to initialize IRQs with the
+> > appropriate IRQ chip index.
+> >=20
+> > Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+>=20
+> > ---
+> > =C2=A0drivers/mfd/sec-irq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 163 +++++++++++++++++++++++----------------
+> > =C2=A0drivers/rtc/rtc-s5m.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 15 +++-
+> > =C2=A0include/linux/mfd/samsung/core.h |=C2=A0=C2=A0 5 +-
+> > =C2=A0include/linux/mfd/samsung/irq.h=C2=A0 |=C2=A0 14 ++++
+> > =C2=A04 files changed, 127 insertions(+), 70 deletions(-)
 
-Where is the ABI documented? You should not have ABI which is completely
-undocumented.
+Your patch reminded me to finally send
+https://lore.kernel.org/all/20251114-s5m-alarm-v1-0-c9b3bebae65f@linaro.org=
+/
 
-> "Specifies a string that uniquely identifies the model of the system
-> board" We can argue that its not part of
-> Documentation/devicetree/bindings/arm/qcom.yaml
-> 
-> @Mani, can you not use the top level machine compatibles instead,
-> something like: "google,fennel-sku7" instead of "Google fennel sku7
-> board" which is an ABI.
-> 
->>>>
->>>
->>> I had this question initially, but Srini convinced me it is OK to use it in the
->>> driver as they do it in audio :)
->>
->> That's sounds like an issue which could be fixed or at least discussed.
->> There is no in-kernel usage of ASoC's 'model' property, thus we probably
->> never noticed that it is an ABI.
->>
-> model is actually used as soundcard name and long name if there is no
-> DMI info for the platform,  This string is also used at the UCM level to
-> identify the correct UCM configuration.
-You speak about user-space... I did not dispute that. I said - it is not
-used in the kernel.
+If applied first, you wouldn't need to touch rtc-s5m.c I believe.
 
-> >
-> However the model that we are referring for sound is part of the
-> dt-bindings for the sound card, not the top-level model, so this is an
-> ABI for soundcard itself.
+Equally, I can rebase mine on top of yours - no strong feelings.
 
-We speak about the values. They are not defined as ABI and not used in
-the kernel.
-
-Best regards,
-Krzysztof
+Cheers,
+Andre'
 
