@@ -1,58 +1,110 @@
-Return-Path: <devicetree+bounces-238452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B1FC5B538
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 05:36:16 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 055E7C5B56E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 05:42:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B32CE34CE41
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 04:36:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8737D3491C6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 04:42:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A50702C235B;
-	Fri, 14 Nov 2025 04:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460C12C21CA;
+	Fri, 14 Nov 2025 04:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BgtZeHEe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nqknAvL9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7771E28725C;
-	Fri, 14 Nov 2025 04:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88292C15A6
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763094961; cv=none; b=n+NHWCvK00+MJ9wu5H6SyjLYKGyCeKCMAhSqEAXpD4x3CneSgjUEVOMvJUwwO9E9LqsV82kidG2216KfdDqH2Lhc3RPcAuVxG6Zno4Yd/rBw1bC98WTWYL0+Wcv+fSjxY6WH3j6mKfX5gB2rRbuUTJ5zjnj2yak8wxtFZU64vGk=
+	t=1763095317; cv=none; b=gP2wajujAM7LK07gpirQYIP0lhcoigKZUXPwasIeacouYiYfPbghNSEifs5HE+N8vKyeP/+PSrwSJMSQuGV3/+LoifY9ivdA8r5q8p0htP34MROdrf8CZfj3biVNC9sEiEaKp1MN8Gw2SzGQCdAOCgi2U0AerJjUWVRsueOUuCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763094961; c=relaxed/simple;
-	bh=OfGZLvFQpSlxN4/JOHFMPeL6kgpDPwFBi+BZUuqqWMs=;
+	s=arc-20240116; t=1763095317; c=relaxed/simple;
+	bh=3RN92yVVMcDs0OkX8b1S7hfcpAmebIIdaWYB5oeNg5I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uxkls7skfwQIfoRmHGPcENdfNYTdzYMzmbc8xDn9QJFFbcelUW6fnY/oFey9mQTZOyarUp54Fz0cFVVsH9WeGWK7ObJ+HvSCT/GSthzD8a6G54dFnrOxaAg/V0TWuVg7RsUzinR/RoXm5A0P4JYy8qg+tV66DCxfBZ/PwCKMvJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BgtZeHEe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D818C4CEF5;
-	Fri, 14 Nov 2025 04:35:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763094959;
-	bh=OfGZLvFQpSlxN4/JOHFMPeL6kgpDPwFBi+BZUuqqWMs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BgtZeHEeyT/tlKLsvIA+TGHePCNE5BSMErQpviqiQecpqIKSxPJ4ywVADbdVuISgk
-	 btAXgWIm3sypcio1+Z6zSvWSpMxVneQMK6vy3uy1VkF/eDABjWHaAEyDlM88rLDaIy
-	 UrThLp0usXmJsynsgjKEHg5RwR+qjlwHgh2ngTUB6iwLr83d5NQGoFIgfUsxFVhxOh
-	 qk+WmqRAK+BPCI0JeSkHie/Lzb/50QmO+964ysGu4f03+It+S1mrw+hfUu+nLdy3Yq
-	 ItYW/BFnwprCXja6iYW87xixvHujBZXPzeMWlaadyOHMzxgneZj0DyYlWbItR3/Ohk
-	 WKg0rGqmnqLEQ==
-Date: Thu, 13 Nov 2025 22:40:24 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Sudarshan Shetty <tessolveupstream@gmail.com>, konradybcio@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-Message-ID: <3qk6i5infwcahkmwn5p4n5hfspdvjd3azimrfkk637z6ar2hpe@vb7zvytl3zk4>
-References: <20251107105735.1491273-1-tessolveupstream@gmail.com>
- <20251107105735.1491273-3-tessolveupstream@gmail.com>
- <badmoityubqmjsxune27vrh2e6htwkhvnak4uj7iiixnxhjpkm@qi56e6kilyt2>
+	 Content-Type:Content-Disposition:In-Reply-To; b=II6xYI8KoXdJ9eagfgfF5XDvQQpQ2ViH3FoVG/Sx8bVyKZ4qDQSUciJ/ICuI+ZhCK57KtKolWvD8stesYAatqtMo/8KBXnElXCSR/iAhxubz4Aenj2HInsJec3yugukwysHg49yzY9BvJ52HW13/oahBndzGyUheC51D4cg1cNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nqknAvL9; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b994baabfcfso1010334a12.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 20:41:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763095315; x=1763700115; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jYITvpqCiW1DtaQqw+zoQjW9fGy8Lts1f9UcjxkD50s=;
+        b=nqknAvL9g+iOC75oYMJN09LCyYLSBaHMWM8BOSeQQJwPEutSsj2RF2C60WRtmEp6MO
+         A7/nKcCOgjnCnAEJHiWpq5jzDOd5JJzjSx88aUuXsHyXbSFj2+9pyhUS3btiftiya0mB
+         QSokG4baP/zhWULpwVtpXc/6paXik0UFxwzj/xVh5f2ilYSl3u7uxKwAYC7qqODtJDI1
+         sfNcnbUx5eROY2hAQDu0xeMvASLKjxYaD6gLjzAXP7Rml0O9ygL4YrzwFP+ihht1y2+5
+         pTIyRUncK02cUR01CqEqXQiH+B9QlDdYnMrZNNC/aKjBAc5BvflkpkawnB8jTxrgBWl6
+         UA6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763095315; x=1763700115;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jYITvpqCiW1DtaQqw+zoQjW9fGy8Lts1f9UcjxkD50s=;
+        b=EEOhgkKZZ3nxh4Vgc1K3iQEhJm+xf0RSIgp7wb/2AiP2zlp8a7NXP76I5L6VQjawRN
+         dW9GI9SHmuy/7gZkpP7yTEC24faF8qn5B5Y82UIfdPEQPr7TV7XTJCAC9RfDq7ZF2LoA
+         24JVISPm0xZHlwvSRZO1KpohPvIH5crzwxaudamKa3YmNiMb8k+1ugRrWRxcVLehjDtt
+         VaW7Y6cJCqP52loOCqSD6YDzFlwCZebxqbs9vNFlHh0X8cLQyUfECrAkC+BY5pEFIRM+
+         mvrksI9/CRYLnfUe8RJOKBf69AElIlzbzcAqljju5klOTS9WAolY1vp/o+hyovi0g/7K
+         afNg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/TCPdXRl+/XoVxzM180Hu6Rhia2f2wNIMgRtZDm7k1YApf3eydZeTQk1JaadF8MKotwJ5Rp6MEFO9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPImL+6gdllZb7beJOhzuDC/mui5GvNTaBZfZCOdI6QAHyBnyO
+	+6Tk67yd795oSo353Ma+7KULNwTS67lmW72mc4YalZfPDWmaQAujmpvq
+X-Gm-Gg: ASbGnctkJp4LklARNE6mnQ05V8nxEZFvzWxJZg+CeweA6EIOmGOLHRBFXoZPVOBHJTr
+	HQLbi/Cb6kqTMnUanpulAFsCE58F9JYNxuMMC6Sy7fpF5HwS236JrjMla8FDioT1eG2i1WnfDW3
+	YDUpCZu4N3aWE+/ytjdCuuICpQJdlAI6pW2JV4mJ81xynxNenk1wfZlb5+ohl1OThXHG3Z1jl5W
+	slaWhRUMOLeXWEB7H5L3tsiVf63ea5sj/cPjTynuDH/7uB05HMUxqBXVhXe1NoQfjt1KMqlLAgz
+	pOGcAsWApCNoOGblXUGD+Yzpb+WT2lKdCLiQus1txC68TwqBOWbSmzXwFtmClEFcbu/wonMi4i9
+	+8EXOPXHBzH0wumpONonizzgBquxN1pzMJNanlEsP7vkHmg+F0MOl1itU3gUk2z61Ws9XELq0zD
+	idaKWB67f7
+X-Google-Smtp-Source: AGHT+IEYHLOamGM5/rhDQ8pIrx2agy7W4DgZWwY06i1uk7cuxizAxZJhIaEBAx3eQH7DJBOHIqA7NQ==
+X-Received: by 2002:a05:7022:5f09:b0:119:e56b:989c with SMTP id a92af1059eb24-11b40f82b10mr512024c88.3.1763095314813;
+        Thu, 13 Nov 2025 20:41:54 -0800 (PST)
+Received: from geday ([2804:7f2:8082:36cd::1])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11b060885cdsm5676123c88.6.2025.11.13.20.41.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Nov 2025 20:41:53 -0800 (PST)
+Date: Fri, 14 Nov 2025 01:41:46 -0300
+From: Geraldo Nascimento <geraldogabriel@gmail.com>
+To: =?utf-8?B?5byg54Oo?= <ye.zhang@rock-chips.com>
+Cc: Shawn Lin <shawn.lin@rock-chips.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	linux-pci <linux-pci@vger.kernel.org>,
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>,
+	devicetree <devicetree@vger.kernel.org>,
+	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>,
+	Johan Jonker <jbx6244@gmail.com>,
+	linux-rockchip <linux-rockchip@lists.infradead.org>,
+	Simon Glass <sjg@chromium.org>,
+	Philipp Tomsich <philipp.tomsich@vrull.eu>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Tom Rini <trini@konsulko.com>, u-boot@lists.denx.de
+Subject: Re: [PATCH] arm64: dts: rockchip: align bindings to PCIe spec
+Message-ID: <aRazCssWVdAOmy7D@geday>
+References: <4b5ffcccfef2a61838aa563521672a171acb27b2.1762321976.git.geraldogabriel@gmail.com>
+ <ba120577-42da-424d-8102-9d085c1494c8@rock-chips.com>
+ <aQsIXcQzeYop6a0B@geday>
+ <67b605b0-7046-448a-bc9b-d3ac56333809@rock-chips.com>
+ <aQ1c7ZDycxiOIy8Y@geday>
+ <d9e257bd-806c-48b4-bb22-f1342e9fc15a@rock-chips.com>
+ <aRLEbfsmXnGwyigS@geday>
+ <AGsAmwCFJj0ZQ4vKzrqC84rs.3.1762847224180.Hmail.ye.zhang@rock-chips.com>
+ <aRQ_R90S8T82th45@geday>
+ <aRUvr0UggTYkkCZ_@geday>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,27 +113,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <badmoityubqmjsxune27vrh2e6htwkhvnak4uj7iiixnxhjpkm@qi56e6kilyt2>
+In-Reply-To: <aRUvr0UggTYkkCZ_@geday>
 
-On Thu, Nov 13, 2025 at 10:08:20PM +0200, Dmitry Baryshkov wrote:
-> On Fri, Nov 07, 2025 at 04:27:35PM +0530, Sudarshan Shetty wrote:
-> > Introduce the device tree support for the QCS615-based talos-evk
+On Wed, Nov 12, 2025 at 10:09:15PM -0300, Geraldo Nascimento wrote:
+> Hi Ye, Shawn,
 > 
-> You can't introduce DT _support_. It's either introducing a DT or
-> supporting.
+> Here's more contained workaround without resorting to clearing DDR to
+> INPUT for every GPIO:
 > 
-> > platform, which follows the SMARC (Smart Mobility ARChitecture)
-> > standard. The platform is composed of two main hardware
-> > components: the talos-evk-som and the talos-evk-cb.
-> 
-> are those the actual names? I'd say, the platform is composed of the SoM
-> (following some standard or not) and a Carrier Board.
-> 
+> diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
+> index ee1822ca01db..1d89131ec6ac 100644
+> --- a/drivers/pci/controller/pcie-rockchip-host.c
+> +++ b/drivers/pci/controller/pcie-rockchip-host.c
+> @@ -315,7 +315,8 @@ static int rockchip_pcie_host_init_port(struct rockchip_pcie *rockchip)
+>  			    PCIE_CLIENT_CONFIG);
+>  
+>  	msleep(PCIE_T_PVPERL_MS);
+> -	gpiod_set_value_cansleep(rockchip->perst_gpio, 1);
+> +	gpiod_direction_input(rockchip->perst_gpio);
+> +	gpiod_direction_output(rockchip->perst_gpio, 1);
+>  
+>  	msleep(PCIE_RESET_CONFIG_WAIT_MS);
+>  
+> This results in working PCIe for me, pass initial link training.
 
-That's likely accurate, but in the patch the "carrier board" includes
-the talos-evk-som.dtsi. So, while what you say probably is correct,
-"talos-evk-cb.dtsi" describes what I believe is actually the EVK.
+Sorry for the inconvenience of more mail, but I'm providing as much
+detail as I can.
 
-Regards,
-Bjorn
+This hack has been confirmed to work in U-boot also.
+
+diff --git a/drivers/pci/pcie_rockchip.c b/drivers/pci/pcie_rockchip.c
+index 19f9e58a640..5702b607ee6 100644
+--- a/drivers/pci/pcie_rockchip.c
++++ b/drivers/pci/pcie_rockchip.c
+@@ -329,8 +329,10 @@ static int rockchip_pcie_init_port(struct udevice *dev)
+ 	writel(PCIE_CLIENT_LINK_TRAIN_ENABLE,
+ 	       priv->apb_base + PCIE_CLIENT_CONFIG);
+ 
+-	if (dm_gpio_is_valid(&priv->ep_gpio))
+-		dm_gpio_set_value(&priv->ep_gpio, 1);
++	if (dm_gpio_is_valid(&priv->ep_gpio)) {
++		dm_gpio_set_dir_flags(&priv->ep_gpio, (priv->ep_gpio.flags & ~GPIOD_IS_OUT) | GPIOD_IS_IN);
++		dm_gpio_set_dir_flags(&priv->ep_gpio, (priv->ep_gpio.flags & ~GPIOD_IS_IN) | GPIOD_IS_OUT | GPIOD_IS_OUT_ACTIVE);
++	}
+ 
+ 	ret = readl_poll_sleep_timeout
+ 			(priv->apb_base + PCIE_CLIENT_BASIC_STATUS1,
+
+So my report suggests this is not specific to Linux and because same
+workaround works in U-boot simplified driver model I suggest you check
+from your side.
+
+Previously PCIe link training timeout, not working. Now I'm very happy
+with working PCIe in Linux and U-boot.
+
+Thanks,
+Geraldo Nascimento
 
