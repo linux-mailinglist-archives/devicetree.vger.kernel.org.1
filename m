@@ -1,119 +1,109 @@
-Return-Path: <devicetree+bounces-238821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603DDC5E3BD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:29:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC165C5E480
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:39:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A0DD426AFF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:23:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DFA53ACE6E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:29:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40EFB2F693F;
-	Fri, 14 Nov 2025 16:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21AD32D7C7;
+	Fri, 14 Nov 2025 16:28:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dw5RjQZ4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="goUhTe7x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E30283CB0;
-	Fri, 14 Nov 2025 16:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9967732C954;
+	Fri, 14 Nov 2025 16:28:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763137346; cv=none; b=dfixyqe1qrwYsGD+EvuS2IQsTrxktwo+IiwDuQBE+F8fZ+YXgoMU4BN4x/3bmJFNbTetW8qz4myysSl+UYr+FULBE8pikvzZOXQDOYimT+bNz1wVOHrUFZWJLdsGafiys93rbiCDYCG7cfcDRChOfUSfee1fOb3r11gTbFvyt+I=
+	t=1763137736; cv=none; b=nD5ouf0hssyd1+N4p+a5ZxhQ9xwi6ORHHJzeLnFLOOEO2pEMwAB0QT28T+4lC5e/popq55mZhj9+X6q6myXHGXQO1l5vjw22QdaNFFu/shqFSsF78bdjhsif0tBx5mZYCrmfCxUMNlzDko0HAemmVWJiyjZ+izeAG/WxYBCQmV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763137346; c=relaxed/simple;
-	bh=Dh7B81R0CZthI9c9EIIN3+DY5FYoCN3eZa7ifInLPXw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FrHWKL8C1nZsxAozkGkL15+UucpCLXtFNeiDH7e68Fy93Ht5qjGBErLPcOplv0FWwVfa1fJtLUaNN0e3v9M5ojKcZNDFdwlZldMIG+6+JbjsdL9wznO5DtrVLHNRM1g5CZz5OhucCVddBonp7hHQLfaYNCg4ZiZcj9SS01x9v5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dw5RjQZ4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18243C4CEF8;
-	Fri, 14 Nov 2025 16:22:25 +0000 (UTC)
+	s=arc-20240116; t=1763137736; c=relaxed/simple;
+	bh=SLDIwzA9HYZFes2YBFtEOxEYLpaHeRLAdrEs6jk+MTs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ls6QShURK4kGpG+zsS9juk0ATM7g6SfKLrRtUv2aBLJ+ypC0OtXAj0l58d5/2anpXZFX530SrjMTqg/idbzqS9Q9enw3dT0G80gGHQVcRdWWiiWWMYskRX4sF+nT5WCce+8FWGqeBqXdFcipKIOpe4DpfiVvgBd9YbYcXJHTMEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goUhTe7x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88A89C113D0;
+	Fri, 14 Nov 2025 16:28:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763137345;
-	bh=Dh7B81R0CZthI9c9EIIN3+DY5FYoCN3eZa7ifInLPXw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dw5RjQZ441yQWfZo1zaW2y9Ff7Fbpc4MDmSCaR5XnvyHjtaVi9mEBa+/XNq3plSpm
-	 YctoaAEnlbxvUdqtU7s8kCDYhSxFeYF2ZX5wBC2jF+EmfC49v0vHh2oTCZQ5MNMzrQ
-	 hQM0e281PSZMWJwOsStkKVZoCNymSiPckpWGSfd3FC0Ft5l1hgPFpWDc44f7gcUcO9
-	 uc+AiGLcYXXiZzfZoCn9tPavc+RB41G0eQvkNj+1bI3CDuSkLuBozOVIdRsbbhXm4U
-	 BAUeDOOaC6nJUXJ1bXKQZVXPxZhPRS0Tj+H3+vPrTUUkFWMcswhCU7g1Bm9vUoyMMW
-	 koBIXdaOMy9bw==
-Date: Fri, 14 Nov 2025 10:22:23 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Matti Vaittinen <matti.vaittinen@linux.dev>
-Cc: linux-kernel@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>,
-	Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	linux-rtc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Pavel Machek <pavel@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-leds@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 01/16] dt-bindings: regulator: ROHM BD72720
-Message-ID: <176313734261.3399634.14735602290463429362.robh@kernel.org>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
- <21e83fccf2d2422f4bea1c482dcd3cb1aeda4085.1763022807.git.mazziesaccount@gmail.com>
+	s=k20201202; t=1763137736;
+	bh=SLDIwzA9HYZFes2YBFtEOxEYLpaHeRLAdrEs6jk+MTs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=goUhTe7xL19Mvu98KPP6DT3iGJWuwB56RCEaVyLGdKWUjkAB60dLFV0A8KqdR14sn
+	 cUu29XCgPVDkqz59ysrF1eRzkJGRFLKNQWhUUMhajn34JMWKlYIM5Rst+R38r27WuQ
+	 45uR+K+STcu7kF+KfAGhSgGX/Tcyb3xW6nzzd6Idq5DrSXSNffj6Y5QGLlk3WauNFP
+	 vZN0k8Nvn2aq0UwD4QShUzsi4FhzacqROqkwIKBuy8hx1VploUkhuYSPnanFzg3cYU
+	 zVxyW7uXSd6Dq0MYjbk8ESvY2/U+HUd5sjd5Cjq925VFm247qmX6Wo8bJDo6PG+T48
+	 sZKc8FyN39FQQ==
+From: Mark Brown <broonie@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+ Support Opensource <support.opensource@diasemi.com>, 
+ Peter Rosin <peda@axentia.se>, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, asahi@lists.linux.dev, 
+ patches@opensource.cirrus.com, Lukas Bulwahn <lbulwahn@redhat.com>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Lukas Bulwahn <lukas.bulwahn@redhat.com>
+In-Reply-To: <20251114113713.231513-1-lukas.bulwahn@redhat.com>
+References: <20251114113713.231513-1-lukas.bulwahn@redhat.com>
+Subject: Re: [PATCH] MAINTAINERS: refer to trivial-codec.yaml in relevant
+ sections
+Message-Id: <176313773331.173018.5617582229167638951.b4-ty@kernel.org>
+Date: Fri, 14 Nov 2025 16:28:53 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <21e83fccf2d2422f4bea1c482dcd3cb1aeda4085.1763022807.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-88d78
 
+On Fri, 14 Nov 2025 12:37:12 +0100, Lukas Bulwahn wrote:
+> Commit 4acbfcf11cbe ("ASoC: dt-bindings: consolidate simple audio codec to
+> trivial-codec.yaml") aggregates a few sound device-tree bindings, i.e., txt
+> and yaml files, into a common trivial-codec.yaml, but misses to adjust the
+> references in ANALOG DEVICES INC ASOC CODEC DRIVERS, ARM/APPLE MACHINE
+> SOUND DRIVERS, NXP TFA9879 DRIVER and WOLFSON MICROELECTRONICS DRIVERS,
+> which refer to files removed by the commit above.
+> 
+> [...]
 
-On Thu, 13 Nov 2025 10:51:32 +0200, Matti Vaittinen wrote:
-> From: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
-> The ROHM BD72720 is a new PMIC with 10 BUCk and 11 LDO regulators.
-> 
-> The BD72720 is designed to support using the BUCK10 as a supply for
-> the LDOs 1 to 4. When the BUCK10 is used for this, it can be set to a
-> LDON_HEAD mode. In this mode, the BUCK10 voltage can't be controlled by
-> software, but the voltage is adjusted by PMIC to match the LDO1 .. LDO4
-> voltages with a given offset. Offset can be 50mV .. 300mV and is
-> changeable at 50mV steps.
-> 
-> Add 'ldon-head-microvolt' property to denote a board which is designed
-> to utilize the LDON_HEAD mode.
-> 
-> All other properties are already existing.
-> 
-> Add dt-binding doc for ROHM BD72720 regulators to make it usable.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
-> ---
-> Revision history:
->  v3 => v4:
->  - Drop type from ldon-head
->  - Fix the name patterns for regulator nodes and names
-> 
->  v2 => v3:
->  - drop unnecessary descriptions
->  - use microvolts for the 'ldon-head' dt-property
-> 
->  RFCv1 => v2:
->  - No changes
-> ---
->  .../regulator/rohm,bd72720-regulator.yaml     | 148 ++++++++++++++++++
->  1 file changed, 148 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd72720-regulator.yaml
-> 
+Applied to
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] MAINTAINERS: refer to trivial-codec.yaml in relevant sections
+      commit: 6402ddf3027d8975f135cf2b2014d6bbeb2d3436
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
