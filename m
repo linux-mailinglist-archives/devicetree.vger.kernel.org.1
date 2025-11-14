@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF4FC5BB4B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:14:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02929C5BB40
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:13:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8F9EE4EF815
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:11:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 408713B62B7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:12:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A792E2EF2;
-	Fri, 14 Nov 2025 07:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1003F2F1FDE;
+	Fri, 14 Nov 2025 07:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQQ2SOz2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uEUI4ywR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841C32DEA83
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD60C2F0C70
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763104252; cv=none; b=ewGpZ/6m4Szqpp5e6dgZ1o+ci5yKbZL4K4BLrfaYsLaDg4lt3Yf25W6OO+8QQfZXOml+wtmkKxX8lB15JrFCWm4IcX1TgCoaDq369JlAujW3/bspRx/nMyyXaTJJ5O7/OkQyl2Kxu/TduMGNnmiwMpvSdXOnXu7uJEwJTJEF55c=
+	t=1763104332; cv=none; b=HxD/DjhvIh6EG/3x/QnMMH15OLyoGpsDlZC9Su8Tm2HZPS6LwMjSFSj183Wt4DOmVHBojmQbuLFvjdKv07h5BaDlY1UXsp1YaNMUF7klt4bdD9DEWhWk91kDDJ8vIEsAnLBueYgARaeSwf1n00OLHLVkm00+Un++pChtQ2bB0gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763104252; c=relaxed/simple;
-	bh=ccvetV8EUhcF61PR5sl6ocj28TheKqAp3WeRxMJ8Deo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UwGHCf5iv4U4IxsBjqaD/E6PnVPAFeGSwYt3jIGIW8VNBpkV7n+0uEasc3mcZbMrC0wz5oMoFSpB70sZXmLy8/spezuZe/bltCpIhx2ynIAjazKoz8IEN+Km4kg8CAau5nTwuGujtcAebqFAFiGIvXioJHJK2FgyZdrkI425JZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQQ2SOz2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E157C2BCAF;
-	Fri, 14 Nov 2025 07:10:48 +0000 (UTC)
+	s=arc-20240116; t=1763104332; c=relaxed/simple;
+	bh=bfQ1ZLsBAds0j6ibLwiSL4xWiijnFqeBR06qt8zrRkY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=lXyYlYQ7X45cLEw0yPZjWfpWNfFvp66txKvDJwC/cZJOSBDe8tMO9rWHdWldix93gFX1QCAuWRGdZQT5h8S9bSVaExO3qKlwtsiucWqcmmIU5fHh+LAj5QGEmI/5jcAfsFRMmwis4HfgT2d/1Y07spQdsbaQ2q7H0q1ZLJCmgQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uEUI4ywR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84443C113D0;
+	Fri, 14 Nov 2025 07:12:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763104252;
-	bh=ccvetV8EUhcF61PR5sl6ocj28TheKqAp3WeRxMJ8Deo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eQQ2SOz2WwBxo321IP17Ky5GohQ+n0/SV2SA6NKrRETxCzsmE6zehpqA81wAqZfz3
-	 5HChlnwMRQ2zWz0xUBlKu5xCSCrFia5kn4YevWWVGgZzNBm64yXDJorO20C4pHiylF
-	 ScmnC2KvFhxinAdM4ZLPNIBTE1uuzNbcctLzQREOAfv3vZdJ2zovN4EXm319he3qAU
-	 cUWrMBtQ3QIJsHTto9ueAh9Ocx0uiaSxnCwf1XWpesy5WXZntazc4iCctAhRhQoMUe
-	 RevK4eLZbnyNDZS/Z2t9EbbG4IVXXG9lfwH4GBPngl/HvNqtY/XtAlr6CRexpZXyb4
-	 hROZMdgWgVLLg==
-Message-ID: <f2bc30de-119b-4f4a-844a-8a908c9290b6@kernel.org>
-Date: Fri, 14 Nov 2025 08:10:46 +0100
+	s=k20201202; t=1763104332;
+	bh=bfQ1ZLsBAds0j6ibLwiSL4xWiijnFqeBR06qt8zrRkY=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=uEUI4ywRdEPum2zM2Ga7E4hoAauDjdu6IvJxfY6TgGQIBD84K9dRZxN64zfR9BLyD
+	 WW2frrsjA2qdYdW7QKkVMtqWRQDffuc4pTMrlFsuyEgVaZw5xfpZIxyYKqs/gxuGjB
+	 GjRpBKrKDdwH5sW7WvgL+70IuhRQkzSQtW9+/4ty9s60Dy1S7MW7tCJjllN8d1U9u8
+	 KnQ6t2y+QJe8Bz72MEjD9UJ5by0N9saCqtTrsFbm9LAZYaDH/zLjOjkUhWIoxUfKT9
+	 3txbfcp6idn5b91TNKXQmWFz25z7ofecgW+zN3EbXYmOVjPcewFiLRCkOVZeC9ccnp
+	 v/3tmYijttnDQ==
+Message-ID: <2177a0f0-68df-495c-b267-18e3d9b6ca80@kernel.org>
+Date: Fri, 14 Nov 2025 08:12:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
-To: FUKAUMI Naoki <naoki@radxa.com>, Joseph Kogut <joseph.kogut@gmail.com>,
- Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+Subject: Re: [PATCH v6 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
- honyuenkwun@gmail.com, quentin.schulz@cherry.de, pbrobinson@gmail.com,
- amadeus@jmu.edu.cn, jbx6244@gmail.com, devicetree@vger.kernel.org,
+ i@next.chainsx.cn, honyuenkwun@gmail.com, quentin.schulz@cherry.de,
+ dsimic@manjaro.org, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
+ jbx6244@gmail.com, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20251105051335.17652-1-naoki@radxa.com>
- <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
- <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
- <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
- <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
- <2892FE50237CD58E+0f15924c-a915-4446-954c-d81a782d23e9@radxa.com>
- <19ce0a41-563c-6202-6b94-b2c644a0b827@manjaro.org>
- <F02BA2E6B1111826+2445b38d-b5e0-499c-83e7-4521c57b2210@radxa.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <20251105051335.17652-2-naoki@radxa.com>
+ <ce6e6369-a7e4-4a35-80f8-70ef41c3b877@kernel.org>
+ <A6C1199E2A0D3F37+f3fe0fd5-4ca5-4d3d-bc1d-45f46b48f89b@radxa.com>
+ <93deab54-bd5e-433e-acbc-13f6ead47f43@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -111,95 +108,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <F02BA2E6B1111826+2445b38d-b5e0-499c-83e7-4521c57b2210@radxa.com>
+In-Reply-To: <93deab54-bd5e-433e-acbc-13f6ead47f43@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 14/11/2025 06:03, FUKAUMI Naoki wrote:
-> Hi Dragan, Joseph,
-> 
-> On 11/12/25 09:46, Dragan Simic wrote:
->> Hello Naoki,
->>
->> On Wednesday, November 12, 2025 00:26 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
->>> On 11/11/25 23:33, Dragan Simic wrote:
->>>> On Tuesday, November 11, 2025 12:52 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>>> On 11/6/25 02:48, Joseph Kogut wrote:
->>>>>> On Wed, Nov 5, 2025 at 4:15 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>>>>> I'd like to clarify the situation regarding the v6 patch series I submitted.
->>>>>>>
->>>>>>> The original device tree work for the Radxa CM5 and IO Board was
->>>>>>> authored by Joseph Kogut. I took over the responsibility of getting it
->>>>>>> upstreamed with his agreement.
->>>>>>
->>>>>> I'll confirm this. I've been in communication with Naoki. They made a
->>>>>> large number of revisions to my original patch series, which I think
->>>>>> have technical merit. I suggested they submit the patches themselves,
->>>>>> and gave them explicit permission to add my Signed-off-by and CC me.
->>>>>>
->>>>>> I assume this was the correct way for them to continue the work I
->>>>>> started, but if not, please let us know the best way to proceed.
->>>>>
->>>>> Can anyone help us?
+On 05/11/2025 08:08, Krzysztof Kozlowski wrote:
+> On 05/11/2025 07:57, FUKAUMI Naoki wrote:
+>> On 11/5/25 15:43, Krzysztof Kozlowski wrote:
+>>> On 05/11/2025 06:13, FUKAUMI Naoki wrote:
+>>>> Add device tree binding documentation for the Radxa CM5 IO Board.
 >>>>
->>>> I'm not exactly sure how to resolve the current situation, but for
->>>> Signed-off-by tags to be present, in this case you'd need to have
->>>> Co-developed-by tags as well, because the final patch versions,
->>>> which would be submitted by Naoki, would differ significantly from
->>>> the versions that Joseph actively worked on, if I understood
->>>> everything correctly.  Though, for Joseph's Signed-off-by tags to
->>>> be included there, he would also need to participate actively in
->>>> the development of the final patch versions.
+>>>> Link: https://dl.radxa.com/cm5/radxa_cm5_product_brief.pdf
+>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
 >>>
->>> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
+>>> Wrong DCO chain.
 >>>
->>> If
->>> ----
->>> From: Joseph Kogut <joseph.kogut@gmail.com>
+>>>> ---
+>>>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
 >>>
->>> <changelog>
->>>
->>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
->>> Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
->>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>> ----
->>> then I can submit my patch series?
+>>> NAK, you just stolen ownership of an already posted patch.
 >>
->> Actually, the Co-developed-by tags would be pointing to Joseph
->> in that case, but as I described it above, this approach basically
->> cannot be used, because Joseph's original work differs a lot from
->> what you'd actually submit to the mailing list(s).
->>
->>> Or,
->>>
->>>> Another option, technically a bit simpler, would be to include just
->>>> Originally-by tags for Joseph, which would indicate that Joseph gave
->>>> up on the development of the patches and handed them over to Naoki
->>>> for future development and submission to the mailing lists. Though,
->>>> that would require Joseph to publicly state exactly that.
->>>
->>> I cannot find any documentation about "Originally-by".
->>> Is this correct?
->>> ----
->>> <changelog>
->>>
->>> Originally-by: Joseph Kogut <joseph.kogut@gmail.com>
-
-There is no such tag. Don't invent tags.
-
->>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>> ----
->>
->> That approach is the only I see applicable in this case.  However,
->> let's hear opinions from other people as well.
+>> Read "Changes in v6" and patches; my patches are not the same as v5.
+>> Your reply is totally inappropriate.
 > 
-> I see. I want to do this approach.
+> Inappropriate is taking authorship of someone's patch, because we all
+> expect to preserve the original authorship. That's not only basic
+> decency but actually a standard.
 > 
-> Joseph, could you give me a statement to do this?
+> Additionally, read Joseph's reply that he wants to continue the work:
+> https://lore.kernel.org/all/CAMWSM7iHtAxewW4JkRqRsifVnccqeFviaCgeOyprKDr92FOurg@mail.gmail.com/
+> 
+> You clearly do not understand how to continue with someone's work.
+> 
+> It is still a NAK.
 
-Use standard authorship and standard tags, some of which are explained
-in Submitting patches.
+And I still wait for justification why you took authorship of this
+patch, because to my eye you changed here nothing.
 
+So what did you change HERE that you think you are the author now?
 
 Best regards,
 Krzysztof
