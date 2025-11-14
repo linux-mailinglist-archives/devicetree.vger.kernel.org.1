@@ -1,726 +1,184 @@
-Return-Path: <devicetree+bounces-238484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA72C5BACB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:06:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C13B0C5BAD7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:08:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C33CE348EA3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:06:23 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 220C1354214
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9DA81FF7C7;
-	Fri, 14 Nov 2025 07:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED7724C68B;
+	Fri, 14 Nov 2025 07:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HVJV5p/t"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="Yd6vZtKP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44D72580D7
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763103980; cv=none; b=sCXIFkFVVx6SJnnjQnNunS2y0vpx+BSVb0fzvSKw48elv/7QDspontUbxgD9KU9HGpJA6JU8ZEXJMIft1X3JuKvm2pLBFhaEh/CZNuYGgN8xdukX5M+qYjL9nRJ1eDVYbPrEPF7Kxtgy7++egoTd3IjCW8cKckMVjnWx6gyOvsI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763103980; c=relaxed/simple;
-	bh=xD78xYqPUz5Bo8pWxFQPqaNWPyhYIoXYA8uVCFHIHB8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IIyyBJqFqqYStDpywPWLOD01m+xZMR3D4Do4b0MDVwTH5ZtZyBoHiITYkFoCHJlKdsrjilKaaDTr1202mbP4WEShnRP2nD/n5dB97zZQaUw399h8rrLGz9G2odtGNXNa9zGUixgiH/yXWXkyciOpS7bZtNHt91f8gmZk41ZFc7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HVJV5p/t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2104AC19421
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763103980;
-	bh=xD78xYqPUz5Bo8pWxFQPqaNWPyhYIoXYA8uVCFHIHB8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=HVJV5p/tziD6KJ6uUs1rL2Hb6kvq78wlxOPG6kp5Vi9trnoH6QCVWTKFUJis/X0hk
-	 +QnOdqiKh7XVHGQf0bqycw5/zkvZ9qOzYI/D3g6t8YSP+UFDy3+lUBugi+JjYkC710
-	 73svnx+XhBkdefftzSd2eek4alkxgTHWngcgNREE1CCtuaSBVIf2W6PNHpJzx0pmpu
-	 YocHtmMVgC2eBQsA6PPN3pXumWh9b8wK8mmB3nTFyiFJaiLz9uk45UT2N5sMhvIXP1
-	 WM4gHIa5WzoKhFaTu1Au48YDjdUfHDAoE7XM4nHLQk+hYtoe+6/e2gxk9O18bAaJsv
-	 3VVmrdVPkpdtQ==
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-640b0639dabso2836331a12.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Nov 2025 23:06:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU8+pjI1Ya0d47cgawE8vt2SPkjQIRcnG0ug9J6w9iYhDxRQp57mnLLyDuXpEew4JvVAz6x8IxE/dy2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzy94u6ZYKi0yEOdqJnw0N5VZQBK0N1V24bL0abCoQrVGBBlkle
-	zAOlVVLl/iV+2X7Z/XgHKd8PBxYyck3SNwb/EUG5jsf04/Gnikm2sc34pHUEmvCF6OV5g0D2GYP
-	mjTE6VFh1DSX5Cv9WFaZXHz32UfNs0G0=
-X-Google-Smtp-Source: AGHT+IEkDdZWZMzkRirxddiBNFxn6xwZTom9lrJFa4HKf92yuZryd4xH4sSCkQGOMjvxBfZdDFVIv10UaCPLyiR4uiQ=
-X-Received: by 2002:a17:907:1b04:b0:b04:274a:fc87 with SMTP id
- a640c23a62f3a-b736789d345mr198341966b.4.1763103978633; Thu, 13 Nov 2025
- 23:06:18 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7051F2580D7;
+	Fri, 14 Nov 2025 07:08:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763104097; cv=pass; b=teZQrOI/iGAOh0KFccz8jjY3wxixPCiYY/iXkxUcjpprtdvW6rS5Q9soBYM5dbczFuWkaDc4oTbMNPa+Ex27e6yqX3OKM5gouaMgSvW4X/YljjDJPfHePTCJ0fWMbLhuMGzz4D1Cx7VXwDVIAluvmPQFyyGMj3cokL80W+88f5E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763104097; c=relaxed/simple;
+	bh=iC+mgltNwb/6TnBtEL9kwPSjqaqHA5+5TY9cLqiISLU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CmbDbjxz4jCiyDT0LSsQxQJ8+WHAHbdfojD36uE1Fj0ynF91YLU2TVLXg4Tcuwx/pc0KlfZUEYiDMDP1SYZoQeWA7DGImOvX/i3Unftjon0+qKSFhrhikMW6SEwaGeVUEeHo1UvpfGI1WLzMNM8ekj49x4zfCXnmifFAm58qhsw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=Yd6vZtKP; arc=pass smtp.client-ip=136.143.184.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1763104032; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=jk8AIvOvE/8LILOk2DAILmhafD1+Kg+0XgQZHPcvLjJXSs3Qx5wAXkzN5cm/OxTZ51kk7c6QgLrcFAGR355r+9xNXVNZGIu6GDQVIA47uKMXSlZKpaZhKMbG/skxbQxmTi+2HJww9siVp6dDOOeh9j8biyYC5chBoMAyIPdjZ6k=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1763104032; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=iC+mgltNwb/6TnBtEL9kwPSjqaqHA5+5TY9cLqiISLU=; 
+	b=SMLZwHprsnx3D00elMkDAh13b+oJs8sHl8Sm9UQlfTbjAYanSRGYNDvHwmvIar8Xa2ELh6OZExv8bnPxCVP/6IwacTlLs4UK7BQU36CdBlIc4xsUH0clvzNVfXIdd896rin/1aX4hZYouTbL9x13nknClax0wwN6HugVdoTvRcQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763104032;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=iC+mgltNwb/6TnBtEL9kwPSjqaqHA5+5TY9cLqiISLU=;
+	b=Yd6vZtKPbUx5vWV+zNJtZtt5NR9BWsRdyN8Gw4lNM4SwZ6FAE6/Rk7VRnLKUT/v6
+	sELB7aNzp5H8Z2YbspkYpXkuvsQF0W+fkXmB0JYpIRUgf+qRhxpew29OIpCi3HhxdkX
+	29DoCJAuPPZrDkrzlUJ9d7fQ4kMo5WOC+XUgfn6jPLk1o0EFKcak8CiZg4N8uL8jPRE
+	K+UK2V5lb5YkC2rdGSGEOYgfgsOMvc/j8YCVjYgN7Cddi7uua0UDXan8YvpIHlX9J7w
+	ctZax5B1yJ9tck3DyVIfWhhgYo9KBtNBD1JKLOTnYrE47mZreU0zMzkvSRqIkpFDLQ6
+	74JW1oXADQ==
+Received: by mx.zohomail.com with SMTPS id 1763104029433118.5268080863134;
+	Thu, 13 Nov 2025 23:07:09 -0800 (PST)
+Message-ID: <0109a90fc464e3cc63dd6c11e699db0143906256.camel@icenowy.me>
+Subject: Re: [PATCH RFC 01/13] dt-bindings: soc: starfive: Add
+ vout-subsystem IP block
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Conor Dooley <conor@kernel.org>
+Cc: Michal Wilczynski <m.wilczynski@samsung.com>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Emil Renner
+ Berthing <kernel@esmil.dk>, Hal Feng <hal.feng@starfivetech.com>, Michael
+ Turquette <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Xingyu Wu <xingyu.wu@starfivetech.com>,
+  Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
+ <m.szyprowski@samsung.com>, Maud Spierings <maudspierings@gocontroll.com>, 
+ Andy Yan <andyshrk@163.com>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org,  linux-phy@lists.infradead.org,
+ dri-devel@lists.freedesktop.org,  linux-riscv@lists.infradead.org
+Date: Fri, 14 Nov 2025 15:06:55 +0800
+In-Reply-To: <20251113-irritable-unfold-da619d52026c@spud>
+References: <20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
+	 <CGME20251108010453eucas1p2403ec0dd2c69ae7f3eabe19cf686f345@eucas1p2.samsung.com>
+	 <20251108-jh7110-clean-send-v1-1-06bf43bb76b1@samsung.com>
+	 <20251111-massager-twistable-1e88f03d82f8@spud>
+	 <20251111-unsaid-rockslide-67b88b2e34bd@spud>
+	 <0d8e3a626b037dd348378e5ebca8005c1e715871.camel@icenowy.me>
+	 <20251112-skating-robust-81be8dee0a8b@spud>
+	 <1d54524d7ef939232b4512ca59c78794484103ca.camel@icenowy.me>
+	 <20251113-irritable-unfold-da619d52026c@spud>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1763018288.git.zhoubinbin@loongson.cn> <8899e0bf2a008003208dbcb63b4a40ae116fe5d8.1763018288.git.zhoubinbin@loongson.cn>
-In-Reply-To: <8899e0bf2a008003208dbcb63b4a40ae116fe5d8.1763018288.git.zhoubinbin@loongson.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Fri, 14 Nov 2025 15:06:17 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H49z=Dee0xm6_xQwt7ziPtDeCGmMWqj2CnMw6VPTyabqA@mail.gmail.com>
-X-Gm-Features: AWmQ_bm4-ovrA9f7xwdRsTUA3T231oq0V0yOS2PUVcQmp6QQDCnUWPiG6mJTiiM
-Message-ID: <CAAhV-H49z=Dee0xm6_xQwt7ziPtDeCGmMWqj2CnMw6VPTyabqA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C controller
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 
-Hi, Binbin,
+=E5=9C=A8 2025-11-13=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:44 +0000=EF=BC=
+=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> On Thu, Nov 13, 2025 at 08:48:33AM +0800, Icenowy Zheng wrote:
+> > =E5=9C=A8 2025-11-12=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 18:36 +0000=EF=
+=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> > > On Wed, Nov 12, 2025 at 02:34:39PM +0800, Icenowy Zheng wrote:
+> > > > =E5=9C=A8 2025-11-11=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 18:36 +000=
+0=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> > > > > On Tue, Nov 11, 2025 at 06:18:16PM +0000, Conor Dooley wrote:
+> > > > > > On Sat, Nov 08, 2025 at 02:04:35AM +0100, Michal Wilczynski
+> > > > > > wrote:
+> > > > > > > Add the dt-binding documentation for the StarFive JH7110
+> > > > > > > Video
+> > >=20
+> > > > > > > +patternProperties:
+> > > > > > > +=C2=A0 "^display@[0-9a-f]+$":
+> > > > > >=20
+> > > > > > Personally I'd like to see these being regular properties,
+> > > > > > since
+> > > > > > there's
+> > > > > > exactly one possible setup for this.
+> > > > > >=20
+> > > > > > > +=C2=A0=C2=A0=C2=A0 type: object
+> > > > > > > +=C2=A0=C2=A0=C2=A0 description: Verisilicon DC8200 Display C=
+ontroller
+> > > > > > > node.
+> > > > > >=20
+> > > > > > Can you add the relevant references here instead of
+> > > > > > allowing
+> > > > > > any
+> > > > > > object?
+> > > > >=20
+> > > > > I don't think that if you did, this would pass the binding
+> > > > > checks,
+> > > > > because there's no "verisilicon,dc" binding. I think I saw
+> > > > > one in
+> > > > > progress, but without the soc-specific compatible that I am
+> > > > > going
+> > > > > to
+> > > > > require here - if for no reason other than making sure that
+> > > > > the
+> > > > > clocks
+> > > > > etc are provided correctly for this device.
+> > > >=20
+> > > > Well I didn't specify any soc-specific compatible because that
+> > > > IP
+> > > > has
+> > > > its own identification registers.
+> > >=20
+> > > I still require one because I want to make sure that clocks etc
+> > > are
+> > > handled correctly. You can ignore it in the driver if you wish,
+> > > but
+> > > when
+> > > the next user comes along with one more or less clock, I want the
+> > > jh7110 one to be forced to use the correct configuration.
+> >=20
+> > I don't think for those generic IPs requiring a SoC-specific
+> > compatible
+> > is a good idea.
+>=20
+> I disagree. If things are complex enough to end up with different
+> numbers of clocks or power-domains etc on different platforms (which
+> I
+> believe GPUs are) then I want one for validation purposes on
+> platforms I
+> care about. What you do in the driver is up to you.
 
-On Thu, Nov 13, 2025 at 4:48=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> This I2C module is integrated into the Loongson-2K0300 SoCs.
->
-> It provides multi-master functionality and controls all I2C bus-specific
-> timing, protocols, arbitration, and timing. It supports both standard
-> and fast modes.
->
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  MAINTAINERS                      |   1 +
->  drivers/i2c/busses/Kconfig       |  10 +
->  drivers/i2c/busses/Makefile      |   1 +
->  drivers/i2c/busses/i2c-ls2x-v2.c | 513 +++++++++++++++++++++++++++++++
->  4 files changed, 525 insertions(+)
->  create mode 100644 drivers/i2c/busses/i2c-ls2x-v2.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ddecf1ef3bed..8badab5d774d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14601,6 +14601,7 @@ M:      Binbin Zhou <zhoubinbin@loongson.cn>
->  L:     linux-i2c@vger.kernel.org
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-> +F:     drivers/i2c/busses/i2c-ls2x-v2.c
-Move this line after i2c-ls2x.c?
+Well I think Vivante GPUs do have such case -- a "shader" clock that is
+only present when 3D support is here. But that binding still contains
+only "vivante,gc" and the maintainer of etnaviv rejects extra
+compatible strings.
 
->  F:     drivers/i2c/busses/i2c-ls2x.c
->
->  LOONGSON PWM DRIVER
-> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-> index fd81e49638aa..f52abbe20ce5 100644
-> --- a/drivers/i2c/busses/Kconfig
-> +++ b/drivers/i2c/busses/Kconfig
-> @@ -855,6 +855,16 @@ config I2C_LS2X
->           This driver can also be built as a module. If so, the module
->           will be called i2c-ls2x.
->
-> +config I2C_LS2X_V2
-> +       tristate "Loongson-2 Fast Speed I2C adapter"
-> +       depends on LOONGARCH || COMPILE_TEST
-> +       help
-> +         If you say yes to this option, support will be included for the
-> +         I2C interface on the Loongson-2K0300 SoCs.
-> +
-> +         This driver can also be built as a module. If so, the module
-> +         will be called i2c-ls2x-v2.
-> +
->  config I2C_MLXBF
->          tristate "Mellanox BlueField I2C controller"
->          depends on (MELLANOX_PLATFORM && ARM64) || COMPILE_TEST
-> diff --git a/drivers/i2c/busses/Makefile b/drivers/i2c/busses/Makefile
-> index fb985769f5ff..8cdfc30b79e9 100644
-> --- a/drivers/i2c/busses/Makefile
-> +++ b/drivers/i2c/busses/Makefile
-> @@ -80,6 +80,7 @@ obj-$(CONFIG_I2C_KEBA)                +=3D i2c-keba.o
->  obj-$(CONFIG_I2C_KEMPLD)       +=3D i2c-kempld.o
->  obj-$(CONFIG_I2C_LPC2K)                +=3D i2c-lpc2k.o
->  obj-$(CONFIG_I2C_LS2X)         +=3D i2c-ls2x.o
-> +obj-$(CONFIG_I2C_LS2X_V2)      +=3D i2c-ls2x-v2.o
->  obj-$(CONFIG_I2C_MESON)                +=3D i2c-meson.o
->  obj-$(CONFIG_I2C_MICROCHIP_CORE)       +=3D i2c-microchip-corei2c.o
->  obj-$(CONFIG_I2C_MPC)          +=3D i2c-mpc.o
-> diff --git a/drivers/i2c/busses/i2c-ls2x-v2.c b/drivers/i2c/busses/i2c-ls=
-2x-v2.c
-> new file mode 100644
-> index 000000000000..e3b2a7ffe67e
-> --- /dev/null
-> +++ b/drivers/i2c/busses/i2c-ls2x-v2.c
-> @@ -0,0 +1,513 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Loongson-2K fast I2C controller driver
-> + *
-> + * Copyright (C) 2025 Loongson Technology Corporation Limited
-> + *
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/units.h>
-> +
-> +/* Loongson-2 fast I2C offset registers */
-> +#define LOONGSON2_I2C_CR1      0x00    /* I2C control 1 register */
-> +#define LOONGSON2_I2C_CR2      0x04    /* I2C control 2 register */
-> +#define LOONGSON2_I2C_OAR      0x08    /* I2C slave address register */
-> +#define LOONGSON2_I2C_DR       0x10    /* I2C data register */
-> +#define LOONGSON2_I2C_SR1      0x14    /* I2C status 1 register */
-> +#define LOONGSON2_I2C_SR2      0x18    /* I2C status 2 register */
-> +#define LOONGSON2_I2C_CCR      0x1C    /* I2C clock control register */
-> +#define LOONGSON2_I2C_TRISE    0x20    /* I2C trise register */
-> +#define LOONGSON2_I2C_FLTR     0x24
-> +
-> +/* Bitfields of I2C control 1 register */
-> +#define LOONGSON2_I2C_CR1_PE           BIT(0)
-> +#define LOONGSON2_I2C_CR1_START                BIT(8)
-> +#define LOONGSON2_I2C_CR1_STOP         BIT(9)
-> +#define LOONGSON2_I2C_CR1_ACK          BIT(10)
-> +#define LOONGSON2_I2C_CR1_POS          BIT(11)
-> +
-> +#define LOONGSON2_I2C_CR1_OP_MASK      (LOONGSON2_I2C_CR1_START | LOONGS=
-ON2_I2C_CR1_STOP)
-> +
-> +/* Bitfields of I2C control 2 register */
-> +#define LOONGSON2_I2C_CR2_FREQ         GENMASK(5, 0)
-> +#define LOONGSON2_I2C_CR2_ITERREN      BIT(8)
-> +#define LOONGSON2_I2C_CR2_ITEVTEN      BIT(9)
-> +#define LOONGSON2_I2C_CR2_ITBUFEN      BIT(10)
-> +
-> +#define LOONGSON2_I2C_CR2_IRQ_MASK     (LOONGSON2_I2C_CR2_ITBUFEN | \
-> +                                        LOONGSON2_I2C_CR2_ITEVTEN | \
-> +                                        LOONGSON2_I2C_CR2_ITERREN)
-> +
-> +/* Bitfields of I2C status 1 register */
-> +#define LOONGSON2_I2C_SR1_SB           BIT(0)
-> +#define LOONGSON2_I2C_SR1_ADDR         BIT(1)
-> +#define LOONGSON2_I2C_SR1_BTF          BIT(2)
-> +#define LOONGSON2_I2C_SR1_RXNE         BIT(6)
-> +#define LOONGSON2_I2C_SR1_TXE          BIT(7)
-> +#define LOONGSON2_I2C_SR1_BERR         BIT(8)
-> +#define LOONGSON2_I2C_SR1_ARLO         BIT(9)
-> +#define LOONGSON2_I2C_SR1_AF           BIT(10)
-> +
-> +#define LOONGSON2_I2C_SR1_ITEVTEN_MASK (LOONGSON2_I2C_SR1_BTF | \
-> +                                        LOONGSON2_I2C_SR1_ADDR | \
-> +                                        LOONGSON2_I2C_SR1_SB)
-> +#define LOONGSON2_I2C_SR1_ITBUFEN_MASK (LOONGSON2_I2C_SR1_TXE | LOONGSON=
-2_I2C_SR1_RXNE)
-> +#define LOONGSON2_I2C_SR1_ITERREN_MASK (LOONGSON2_I2C_SR1_AF | \
-> +                                        LOONGSON2_I2C_SR1_ARLO | \
-> +                                        LOONGSON2_I2C_SR1_BERR)
-> +
-> +/* Bitfields of I2C status 2 register */
-> +#define LOONGSON2_I2C_SR2_BUSY         BIT(1)
-> +
-> +/* Bitfields of I2C clock control register */
-> +#define LOONGSON2_I2C_CCR_CCR          GENMASK(11, 0)
-> +#define LOONGSON2_I2C_CCR_DUTY         BIT(14)
-> +#define LOONGSON2_I2C_CCR_FS           BIT(15)
-> +
-> +/* Bitfields of I2C trise register */
-> +#define LOONGSON2_I2C_TRISE_SCL                GENMASK(5, 0)
-> +
-> +#define LOONGSON2_I2C_FREE_SLEEP_US    1000
-> +#define LOONGSON2_I2C_FREE_TIMEOUT_US  5000
-> +
-> +/*
-> + * struct loongson2_i2c_msg - client specific data
-> + * @addr: 8-bit slave addr, including r/w bit
-> + * @count: number of bytes to be transferred
-> + * @buf: data buffer
-> + * @stop: last I2C msg to be sent, i.e. STOP to be generated
-> + * @result: result of the transfer
-> + */
-> +struct loongson2_i2c_msg {
-> +       u8 addr;
-> +       u32 count;
-> +       u8 *buf;
-> +       bool stop;
-> +       int result;
-> +};
-> +
-> +/*
-> + * struct loongson2_i2c_priv - private data of the controller
-> + * @adapter: I2C adapter for this controller
-> + * @dev: device for this controller
-> + * @complete: completion of I2C message
-> + * @regmap: regmap of the I2C device
-> + * @i2c_t: I2C timing information
-> + * @msg: I2C transfer information
-> + */
-> +struct loongson2_i2c_priv {
-> +       struct i2c_adapter adapter;
-> +       struct device *dev;
-> +       struct completion complete;
-> +       struct regmap *regmap;
-> +       struct i2c_timings i2c_t;
-> +       struct loongson2_i2c_msg msg;
-> +};
-> +
-> +static void loongson2_i2c_disable_irq(struct loongson2_i2c_priv *priv)
-> +{
-> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C=
-_CR2_IRQ_MASK, 0);
-> +}
-> +
-> +static int loongson2_i2c_wait_free_bus(struct loongson2_i2c_priv *priv)
-> +{
-> +       u32 status;
-> +       int ret;
-> +
-> +       ret =3D regmap_read_poll_timeout(priv->regmap, LOONGSON2_I2C_SR2,=
- status,
-> +                                      !(status & LOONGSON2_I2C_SR2_BUSY)=
-,
-> +                                      LOONGSON2_I2C_FREE_SLEEP_US,
-> +                                      LOONGSON2_I2C_FREE_TIMEOUT_US);
-> +       if (ret) {
-> +               dev_dbg(priv->dev, "I2C bus free failed.\n");
-> +               ret =3D -EBUSY;
-> +       }
-> +
-> +       return ret;
-> +}
-> +
-> +static void loongson2_i2c_write_byte(struct loongson2_i2c_priv *priv, u8=
- byte)
-> +{
-> +       regmap_write(priv->regmap, LOONGSON2_I2C_DR, byte);
-> +}
-We usually put the write function after read, which means
-loongson2_i2c_write_byte() should be after loongson2_i2c_read_msg().
-
-> +
-> +static void loongson2_i2c_read_msg(struct loongson2_i2c_priv *priv)
-> +{
-> +       struct loongson2_i2c_msg *msg =3D &priv->msg;
-> +       u32 rbuf;
-> +
-> +       regmap_read(priv->regmap, LOONGSON2_I2C_DR, &rbuf);
-> +       *msg->buf++ =3D rbuf;
-> +       msg->count--;
-> +}
-> +
-> +static void loongson2_i2c_terminate_xfer(struct loongson2_i2c_priv *priv=
-)
-> +{
-> +       struct loongson2_i2c_msg *msg =3D &priv->msg;
-> +
-> +       loongson2_i2c_disable_irq(priv);
-> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C=
-_CR1_OP_MASK,
-> +                          msg->stop ? LOONGSON2_I2C_CR1_STOP : LOONGSON2=
-_I2C_CR1_START);
-> +       complete(&priv->complete);
-> +}
-> +
-> +static void loongson2_i2c_handle_write(struct loongson2_i2c_priv *priv)
-> +{
-> +       struct loongson2_i2c_msg *msg =3D &priv->msg;
-> +
-> +       if (msg->count) {
-> +               loongson2_i2c_write_byte(priv, *msg->buf++);
-> +               msg->count--;
-> +               if (!msg->count)
-> +                       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR=
-2,
-> +                                          LOONGSON2_I2C_CR2_ITBUFEN, 0);
-> +       } else {
-> +               loongson2_i2c_terminate_xfer(priv);
-> +       }
-> +}
-The same, loongson2_i2c_handle_write() should be after
-loongson2_i2c_handle_read(), you have already done this in
-loongson2_i2c_isr_event().
-
-Huacai
-
-> +
-> +static void loongson2_i2c_handle_read(struct loongson2_i2c_priv *priv, i=
-nt flag)
-> +{
-> +       struct loongson2_i2c_msg *msg =3D &priv->msg;
-> +       bool changed;
-> +       int i;
-> +
-> +       switch (msg->count) {
-> +       case 1:
-> +               /* only transmit 1 bytes condition */
-> +               loongson2_i2c_disable_irq(priv);
-> +               loongson2_i2c_read_msg(priv);
-> +               complete(&priv->complete);
-> +               break;
-> +       case 2:
-> +               if (flag !=3D 1) {
-> +                       /* ensure only transmit 2 bytes condition */
-> +                       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR=
-2,
-> +                                          LOONGSON2_I2C_CR2_ITBUFEN, 0);
-> +                       break;
-> +               }
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_OP_MASK,
-> +                                  msg->stop ? LOONGSON2_I2C_CR1_STOP : L=
-OONGSON2_I2C_CR1_START);
-> +
-> +               loongson2_i2c_disable_irq(priv);
-> +
-> +               for (i =3D 2; i > 0; i--)
-> +                       loongson2_i2c_read_msg(priv);
-> +
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_POS, 0);
-> +               complete(&priv->complete);
-> +               break;
-> +       case 3:
-> +               regmap_update_bits_check(priv->regmap, LOONGSON2_I2C_CR2,=
- LOONGSON2_I2C_CR2_ITBUFEN,
-> +                                        0, &changed);
-> +               if (changed)
-> +                       break;
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_ACK, 0);
-> +               fallthrough;
-> +       default:
-> +               loongson2_i2c_read_msg(priv);
-> +       }
-> +}
-> +
-> +static void loongson2_i2c_handle_rx_addr(struct loongson2_i2c_priv *priv=
-)
-> +{
-> +       struct loongson2_i2c_msg *msg =3D &priv->msg;
-> +
-> +       switch (msg->count) {
-> +       case 0:
-> +               loongson2_i2c_terminate_xfer(priv);
-> +               break;
-> +       case 1:
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1,
-> +                                  LOONGSON2_I2C_CR1_ACK | LOONGSON2_I2C_=
-CR1_POS, 0);
-> +               /* start or stop */
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_OP_MASK,
-> +                                  msg->stop ? LOONGSON2_I2C_CR1_STOP : L=
-OONGSON2_I2C_CR1_START);
-> +               break;
-> +       case 2:
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_ACK, 0);
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_POS,
-> +                                  LOONGSON2_I2C_CR1_POS);
-> +               break;
-> +
-> +       default:
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_ACK,
-> +                                  LOONGSON2_I2C_CR1_ACK);
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_POS, 0);
-> +       }
-> +}
-> +
-> +static irqreturn_t loongson2_i2c_isr_error(u32 status, void *data)
-> +{
-> +       struct loongson2_i2c_priv *priv =3D data;
-> +       struct loongson2_i2c_msg *msg =3D &priv->msg;
-> +
-> +       /* Arbitration lost */
-> +       if (status & LOONGSON2_I2C_SR1_ARLO) {
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_SR1, LOONG=
-SON2_I2C_SR1_ARLO, 0);
-> +               msg->result =3D -EAGAIN;
-> +       }
-> +
-> +       /*
-> +        * Acknowledge failure:
-> +        * In master transmitter mode a Stop must be generated by softwar=
-e
-> +        */
-> +       if (status & LOONGSON2_I2C_SR1_AF) {
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
-SON2_I2C_CR1_STOP,
-> +                                  LOONGSON2_I2C_CR1_STOP);
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_SR1, LOONG=
-SON2_I2C_SR1_AF, 0);
-> +               msg->result =3D -EIO;
-> +       }
-> +
-> +       /* Bus error */
-> +       if (status & LOONGSON2_I2C_SR1_BERR) {
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_SR1, LOONG=
-SON2_I2C_SR1_BERR, 0);
-> +               msg->result =3D -EIO;
-> +       }
-> +
-> +       loongson2_i2c_disable_irq(priv);
-> +       complete(&priv->complete);
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static irqreturn_t loongson2_i2c_isr_event(int irq, void *data)
-> +{
-> +       u32 possible_status =3D LOONGSON2_I2C_SR1_ITEVTEN_MASK;
-> +       struct loongson2_i2c_priv *priv =3D data;
-> +       struct loongson2_i2c_msg *msg =3D &priv->msg;
-> +       u32 status, ien, event, cr2;
-> +
-> +       regmap_read(priv->regmap, LOONGSON2_I2C_SR1, &status);
-> +       if (status & LOONGSON2_I2C_SR1_ITERREN_MASK)
-> +               return loongson2_i2c_isr_error(status, data);
-> +
-> +       regmap_read(priv->regmap, LOONGSON2_I2C_CR2, &cr2);
-> +       ien =3D cr2 & LOONGSON2_I2C_CR2_IRQ_MASK;
-> +
-> +       /* Update possible_status if buffer interrupt is enabled */
-> +       if (ien & LOONGSON2_I2C_CR2_ITBUFEN)
-> +               possible_status |=3D LOONGSON2_I2C_SR1_ITBUFEN_MASK;
-> +
-> +       event =3D status & possible_status;
-> +       if (!event) {
-> +               dev_dbg(priv->dev, "spurious evt irq (status=3D0x%08x, ie=
-n=3D0x%08x)\n", status, ien);
-> +               return IRQ_NONE;
-> +       }
-> +
-> +       /* Start condition generated */
-> +       if (event & LOONGSON2_I2C_SR1_SB)
-> +               loongson2_i2c_write_byte(priv, msg->addr);
-> +
-> +       /* I2C Address sent */
-> +       if (event & LOONGSON2_I2C_SR1_ADDR) {
-> +               if (msg->addr & I2C_M_RD)
-> +                       loongson2_i2c_handle_rx_addr(priv);
-> +               /* Clear ADDR flag */
-> +               regmap_read(priv->regmap, LOONGSON2_I2C_SR2, &status);
-> +               /* Enable buffer interrupts for RX/TX not empty events */
-> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2, LOONG=
-SON2_I2C_CR2_ITBUFEN,
-> +                                  LOONGSON2_I2C_CR2_ITBUFEN);
-> +       }
-> +
-> +       if (msg->addr & I2C_M_RD) {
-> +               /* RX not empty */
-> +               if (event & LOONGSON2_I2C_SR1_RXNE)
-> +                       loongson2_i2c_handle_read(priv, 0);
-> +
-> +               if (event & LOONGSON2_I2C_SR1_BTF)
-> +                       loongson2_i2c_handle_read(priv, 1);
-> +       } else {
-> +               /* TX empty */
-> +               if (event & LOONGSON2_I2C_SR1_TXE)
-> +                       loongson2_i2c_handle_write(priv);
-> +
-> +               if (event & LOONGSON2_I2C_SR1_BTF)
-> +                       loongson2_i2c_handle_write(priv);
-> +       }
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static int loongson2_i2c_xfer_msg(struct loongson2_i2c_priv *priv, struc=
-t i2c_msg *msg,
-> +                                 bool is_stop)
-> +{
-> +       struct loongson2_i2c_msg *l_msg =3D &priv->msg;
-> +       unsigned long timeout;
-> +       int ret;
-> +
-> +       l_msg->addr   =3D i2c_8bit_addr_from_msg(msg);
-> +       l_msg->buf    =3D msg->buf;
-> +       l_msg->count  =3D msg->len;
-> +       l_msg->stop   =3D is_stop;
-> +       l_msg->result =3D 0;
-> +
-> +       reinit_completion(&priv->complete);
-> +
-> +       /* Enable events and errors interrupts */
-> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2,
-> +                          LOONGSON2_I2C_CR2_ITEVTEN | LOONGSON2_I2C_CR2_=
-ITERREN,
-> +                          LOONGSON2_I2C_CR2_ITEVTEN | LOONGSON2_I2C_CR2_=
-ITERREN);
-> +
-> +       timeout =3D wait_for_completion_timeout(&priv->complete, priv->ad=
-apter.timeout);
-> +       ret =3D l_msg->result;
-> +
-> +       if (!timeout)
-> +               ret =3D -ETIMEDOUT;
-> +
-> +       return ret;
-> +}
-> +
-> +static int loongson2_i2c_xfer(struct i2c_adapter *i2c_adap, struct i2c_m=
-sg msgs[], int num)
-> +{
-> +       struct loongson2_i2c_priv *priv =3D i2c_get_adapdata(i2c_adap);
-> +       int ret =3D 0, i;
-> +
-> +       ret =3D loongson2_i2c_wait_free_bus(priv);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /* START generation */
-> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C=
-_CR1_START,
-> +                          LOONGSON2_I2C_CR1_START);
-> +
-> +       for (i =3D 0; i < num && !ret; i++)
-> +               ret =3D loongson2_i2c_xfer_msg(priv, &msgs[i], i =3D=3D n=
-um - 1);
-> +
-> +       return (ret < 0) ? ret : num;
-> +}
-> +
-> +static u32 loongson2_i2c_func(struct i2c_adapter *adap)
-> +{
-> +       return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
-> +}
-> +
-> +static const struct i2c_algorithm loongson2_i2c_algo =3D {
-> +       .master_xfer =3D loongson2_i2c_xfer,
-> +       .functionality =3D loongson2_i2c_func,
-> +};
-> +
-> +static void loongson2_i2c_adjust_bus_speed(struct loongson2_i2c_priv *pr=
-iv)
-> +{
-> +       struct device *dev =3D priv->adapter.dev.parent;
-> +       struct i2c_timings *t =3D &priv->i2c_t;
-> +       u32 val, ccr =3D 0;
-> +
-> +       t->bus_freq_hz =3D I2C_MAX_STANDARD_MODE_FREQ;
-> +
-> +       i2c_parse_fw_timings(dev, t, false);
-> +
-> +       if (t->bus_freq_hz >=3D I2C_MAX_FAST_MODE_FREQ) {
-> +               val =3D DIV_ROUND_UP(t->bus_freq_hz, I2C_MAX_FAST_MODE_FR=
-EQ * 3);
-> +
-> +               /* Select Fast mode */
-> +               ccr |=3D LOONGSON2_I2C_CCR_FS;
-> +       } else {
-> +               val =3D DIV_ROUND_UP(t->bus_freq_hz, I2C_MAX_STANDARD_MOD=
-E_FREQ * 2);
-> +       }
-> +
-> +       ccr |=3D FIELD_GET(LOONGSON2_I2C_CCR_CCR, val);
-> +       regmap_write(priv->regmap, LOONGSON2_I2C_CCR, ccr);
-> +
-> +       /* reference clock determination the configure val(0x3f) */
-> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C=
-_CR2_FREQ,
-> +                          LOONGSON2_I2C_CR2_FREQ);
-> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_TRISE, LOONGSON2_I=
-2C_TRISE_SCL,
-> +                          LOONGSON2_I2C_TRISE_SCL);
-> +
-> +       /* Enable I2C */
-> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C=
-_CR1_PE,
-> +                          LOONGSON2_I2C_CR1_PE);
-> +}
-> +
-> +static const struct regmap_config loongson2_i2c_regmap_config =3D {
-> +       .reg_bits =3D 32,
-> +       .val_bits =3D 32,
-> +       .reg_stride =3D 4,
-> +       .max_register =3D LOONGSON2_I2C_TRISE,
-> +};
-> +
-> +static int loongson2_i2c_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct loongson2_i2c_priv *priv;
-> +       struct i2c_adapter *adap;
-> +       void __iomem *base;
-> +       int irq, ret;
-> +
-> +       priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-> +       base =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(base))
-> +               return dev_err_probe(dev, PTR_ERR(base),
-> +                                    "devm_platform_ioremap_resource fail=
-ed\n");
-> +
-> +       priv->regmap =3D devm_regmap_init_mmio(dev, base,
-> +                                            &loongson2_i2c_regmap_config=
-);
-> +       if (IS_ERR(priv->regmap))
-> +               return dev_err_probe(dev, PTR_ERR(priv->regmap),
-> +                                    "devm_regmap_init_mmio failed\n");
-> +
-> +       irq =3D platform_get_irq(pdev, 0);
-> +       if (irq < 0)
-> +               return -EINVAL;
-> +
-> +       priv->dev =3D dev;
-> +
-> +       adap =3D &priv->adapter;
-> +       adap->retries =3D 5;
-> +       adap->nr =3D pdev->id;
-> +       adap->dev.parent =3D dev;
-> +       adap->owner =3D THIS_MODULE;
-> +       adap->algo =3D &loongson2_i2c_algo;
-> +       adap->timeout =3D 2 * HZ;
-> +       device_set_node(&adap->dev, dev_fwnode(dev));
-> +       i2c_set_adapdata(adap, priv);
-> +       strscpy(adap->name, pdev->name, sizeof(adap->name));
-> +       init_completion(&priv->complete);
-> +       platform_set_drvdata(pdev, priv);
-> +
-> +       loongson2_i2c_adjust_bus_speed(priv);
-> +
-> +       ret =3D devm_request_irq(dev, irq,  loongson2_i2c_isr_event, IRQF=
-_SHARED, pdev->name, priv);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Unable to request irq %d\=
-n", irq);
-> +
-> +       return devm_i2c_add_adapter(dev, adap);
-> +}
-> +
-> +static const struct of_device_id loongson2_i2c_id_table[] =3D {
-> +       { .compatible =3D "loongson,ls2k0300-i2c" },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, loongson2_i2c_id_table);
-> +
-> +static struct platform_driver loongson2_i2c_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "loongson2-i2c-v2",
-> +               .of_match_table =3D loongson2_i2c_id_table,
-> +       },
-> +       .probe =3D loongson2_i2c_probe,
-> +};
-> +
-> +module_platform_driver(loongson2_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("Loongson-2K0300 I2C bus driver");
-> +MODULE_AUTHOR("Loongson Technology Corporation Limited");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.47.3
->
->
+In addition, as the addition of SoC-specific compatible string and the
+real DT are usually written by the same person at the same time, I
+don't think this introduces any more validation (because when the
+author gets things wrong they will just make it wrong at the two
+places).
 
