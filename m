@@ -1,96 +1,105 @@
-Return-Path: <devicetree+bounces-238804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03305C5E3ED
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:32:58 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A16C5E625
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:00:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 586C9365478
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:59:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7CED53612C2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA504329C51;
-	Fri, 14 Nov 2025 15:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4926134403B;
+	Fri, 14 Nov 2025 15:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqaXmnod"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H4WhkwBh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97864328B70;
-	Fri, 14 Nov 2025 15:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F943342CAD;
+	Fri, 14 Nov 2025 15:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763135522; cv=none; b=kYJPpyLSs6QQbiytKOHQPJHqEfyrTDe6nqjnF3KbtZS7iJHtyfkcQVvQKuD/EXlAkyZhiMZAIuqpHZxi7+22zk4qd2zEwJ7SpVHn2csm+wjUaiR7dPzT7KKT6Xi3I9cjarOvplc2qFsHzV2dbuwjNvFTMGzaJ/dXfHFdpkfiMA4=
+	t=1763135662; cv=none; b=TOoJe5orO8C+431GFb2mS6p0DzI0BEkQ4nsfUkNoocoaITFSjhshRm4RgF8qvO2GiF01ORXpGTyXMGbO9yI15Eb4LWuu9UtDuH8oHlsUbPfuSSHAQwRLQukrwqdU+WfiXiBoPIa6yKYAYhfVoYRooKXCYxX+cHTCfXUM029SP4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763135522; c=relaxed/simple;
-	bh=J5HNRa0SJNKyFSPAm69QFFJazSb2EUQ9r0pDyINyuRM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z1f2GMP85JqOCeSVmp0jdwvkRjJO8X6EZaZoCGPPlSBMpkCRy/XOEhyHctdzV6ujGulOVp3uGB4h8dIGIdY+0lBjCTnAgdqQe28zrVnGfjzI82VU4cVI5IKeolA2F5c8eGSFExtMFJN+l2uTPG6rXTmHfa4HRXTMcwXvF6UDYwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqaXmnod; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33DFEC4CEFB;
-	Fri, 14 Nov 2025 15:51:58 +0000 (UTC)
+	s=arc-20240116; t=1763135662; c=relaxed/simple;
+	bh=6dcBJsX+DWNI8iUR9izRHhNmTPyKKihwxdk1IowRBqU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qF0TEamTfhvMSj+F3PUZf9lr6qBl1K+7z17MqHIB6yPBn8h0M8SRYOdKVm9Sdf5koZ7i5FiACAHTJzgNqSQIfC4WfzBN79ru29OL4DYqWRHOa9nNNOwkEGHYByZE0KzFae1E6ci3vwnr3uDUjrfGNop8CpM+DpwplNQZiiGLZ3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H4WhkwBh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F7DC4CEF5;
+	Fri, 14 Nov 2025 15:54:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763135522;
-	bh=J5HNRa0SJNKyFSPAm69QFFJazSb2EUQ9r0pDyINyuRM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aqaXmnod3GHdHYBuMDtrz/Jw7aiTVvSW6Xvqg3Q4iqOtf8eyb/8id/sIWMaxXKo6t
-	 Igva6rfKus6TDOcDIwr0HKsf4D9H8Ec1RxeK7TXCsjPaTvOLiBfO8abvH4d5vH+Uvh
-	 yd6mh4xZbmTG6hxZVgfFEJTo++rBPY84yeQ1nquIDBbApW0SLW60oFFaMxwcOZQfy8
-	 ez4Yhx/h3EJDcxVJyPYFYlst1Lg/gg98Cftc8x9H2xP5z/Yoq5SQz7IascpRfn+m+s
-	 xrI1b5nanA80boVvm5/MEA12WhSatyijM0maxqdwblPFQ6mPyi4jZpN5EgEzVIsznT
-	 w4MBGKEfuevbg==
-Message-ID: <df4a6a77-9004-4dbe-9b11-7af2bea7e068@kernel.org>
-Date: Fri, 14 Nov 2025 15:51:55 +0000
+	s=k20201202; t=1763135661;
+	bh=6dcBJsX+DWNI8iUR9izRHhNmTPyKKihwxdk1IowRBqU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=H4WhkwBhrBglf22WFMxpeOgknb+bVeu0AsDwv4mayUJqnN411hF7yFuggPdyD99R7
+	 BJNV7QnOsoStXjU1sg2lR81Yg0syt+zyGxGDZ7NJLfFTXwNmxN1OFOP06M9VZDteRB
+	 RdP7hJFkrJH8hOsftUphiNqJV6C44uyMcrh1ofNXSZ7v83Dbj3Ig9oXfNbEt0ifQKu
+	 95W9atCjYTDg/7OXvRyLNni1DmMQ4pm9sarFV9Ga0XFHuVW2BoK7rIlTau8Bq4KVFV
+	 f3JcsheBi02mLYkU7ez0TioptHLEDK0vXZRlQvEfistdHoF8P3PZS486ENdmzcK9sc
+	 DhQ1Hom3r6kfw==
+Received: from johan by xi.lan with local (Exim 4.98.2)
+	(envelope-from <johan@kernel.org>)
+	id 1vJw7w-00000000373-0jlP;
+	Fri, 14 Nov 2025 16:54:20 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alejandro Enrique <alejandroe1@geotab.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: gnss: u-blox: use open-drain reset and safeboot in example
+Date: Fri, 14 Nov 2025 16:54:13 +0100
+Message-ID: <20251114155413.11949-1-johan@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] Add CAMSS support for SM6350
-To: Luca Weiss <luca.weiss@fairphone.com>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <3ph8XeidoxkUIsK7qiOH29pde94sdwa3ReWKVVrPabgS5enIAmwVAC5plyFnBMJGKQBnxFB6df6j69OMFIeavw==@protonmail.internalid>
- <20251114-sm6350-camss-v2-0-d1ff67da33b6@fairphone.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20251114-sm6350-camss-v2-0-d1ff67da33b6@fairphone.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/11/2025 11:15, Luca Weiss wrote:
-> Add bindings, driver and dts to support the Camera Subsystem on the
-> SM6350 SoC.
-> 
-> These patches were tested on a Fairphone 4 smartphone with WIP sensor
-> drivers (Sony IMX576 and IMX582), the camera pipeline works properly as
-> far as I can tell.
-> 
-> Though when stopping the camera stream, the following clock warning
-> appears in dmesg. But it does not interfere with any functionality,
-> starting and stopping the stream works and debugcc is showing 426.4 MHz
-> while the clock is on, and 'off' while it's off.
-> 
-> Any suggestion how to fix this, is appreciated.
-> 
-> [ 5738.590980] ------------[ cut here ]------------
-> [ 5738.591009] gcc_camera_axi_clk status stuck at 'on'
-> [ 5738.591049] WARNING: CPU: 0 PID: 6918 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x170/0x190
+The RESET_N and SAFEBOOT_N pins should typically be left open and only
+be connected to ground in rare cases where a device is misbehaving.
 
-Do you have a full and complete kernel tree we could look at here ?
+Specify GPIO_OPEN_DRAIN in the example as this is what should generally
+be used.
 
+Note that the current Linux driver implementation depends on these pins
+being declared open-drain so that they are not driven while the main
+supply is off.
+
+Signed-off-by: Johan Hovold <johan@kernel.org>
 ---
-bod
+
+Changes in v2:
+ - declare the pins as both active-low and open-drain (as the former is
+   no longer implied by the latter)
+
+
+ Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+index 9f14cfe7efd1..d016808f65cb 100644
+--- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
++++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+@@ -67,7 +67,7 @@ examples:
+             compatible = "u-blox,neo-8";
+             v-bckp-supply = <&gnss_v_bckp_reg>;
+             vcc-supply = <&gnss_vcc_reg>;
+-            reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+-            safeboot-gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
++            reset-gpios = <&gpio 1 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
++            safeboot-gpios = <&gpio 2 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+         };
+     };
+-- 
+2.51.0
+
 
