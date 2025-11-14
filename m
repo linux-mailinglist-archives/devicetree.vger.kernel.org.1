@@ -1,206 +1,181 @@
-Return-Path: <devicetree+bounces-238729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8280BC5DA4F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:42:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F5BC5DA9D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:46:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E5D2C364049
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:30:06 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4F872364DDD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 052B0325717;
-	Fri, 14 Nov 2025 14:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1640B27FD5D;
+	Fri, 14 Nov 2025 14:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PDYd9ug6"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="AXHo9KLB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6285311958
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 14:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 957623203AE;
+	Fri, 14 Nov 2025 14:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763130441; cv=none; b=mYcWHvPItGNXZ0XSBxy4kSWmTiaI5lERFHII3BztuPl+232Get+tTO4TojWYwUFOnXYlQSoYi8MAa5iDtrbXAINKnQmG7M7vUw2sfxd2ouj2mXuOuOZh/0l5b1Y4n3NvyWMEqmP6uok4xZ9JHsoQqDsYLnrWrLau+/qjKO/et2I=
+	t=1763130624; cv=none; b=GktSNvTnnhTWZ51arfrV4Yh4eaASj4gzYLVcCuO4YsZxSjHR7TlkuHpuATdquF56tcIDIPwYK1rAykMCxKHNTc2qjxkAZIntxOsGXzx7Gu0YdmBHWJ7XEJ5it/DmQOBKI0fQfyeEPeYrvH+CQA0LiyVC2uipdSs5Z4KD43gIlbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763130441; c=relaxed/simple;
-	bh=5YadEI0vAiA2mEfESwPx+1xN4MdYsxduC+f1QiMr750=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J+Lxlqe1tEuZB1/umo9QnaGwHIW4norVXtN4sezjIqhujoBk4OJSd6fpiub2gy1ArCj5AOKXKMS+UYFMYW7LKqHqo+RsKJKfl730iR5xTXAb+5XnORZb4eWbUNT4y25ZOpHnrjkxsKLUhDi2XkwVUlekUCXjHHDeTqMaMCW70uQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PDYd9ug6; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4775ae77516so22879855e9.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:27:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763130438; x=1763735238; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tnB0ie2DHEok31H5zr0rYmlZz2VTfGbw8J6v6s/PiNA=;
-        b=PDYd9ug6IIa3gkMdJfC2cUcw3Ldrtln4EaLKA0VNvJNtSI0hNoWg75S5PHK5Z5yHN/
-         LU8wNluydCuGhdrkTUXdTHWeZ69nl+yLHPha3t95EsflGtthjoLAtmIkEXci4xBqIlaH
-         Fi+mCnOgE2b2WMCi2z7SkhCMIdzd1RDn3xylZ+oUJe3dvbonlfTJ9AGr+czg51gK+ABn
-         D89OxhP3NUKdPJwxtWM8BzSgRBxKUqsuZgiPyTHML+RvULfJ2h9nwtEmHB4Bm0SgsDEi
-         s0M+H8ycwTzbpwwqb5D1ZmqXtQoebXMD7u3+uWkthcKrxm6VbXjtZ3HJ4b+KQClxwIJr
-         e2yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763130438; x=1763735238;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tnB0ie2DHEok31H5zr0rYmlZz2VTfGbw8J6v6s/PiNA=;
-        b=Ay+28ssAO/whNvO1idsX5HbntemFxhXgpImMqcVrRenMmj6VxsRk/4cuCGligmb8xu
-         EkFAa0IDTifgTJSmgqrS+2rgIUDhtYNKjXRmM20RDBmWaZY/QFOPegBnur8gLCczbXRJ
-         WzZLloWqJSvnTM5/KTSoMH/2E9/HuRS8yOrkumHz0mh6GlJ+gKFserR+b8V+9Ajvx7z/
-         YNMuvwYmhfgHw0mh6A21mwPTctKm0tVq5+LbxkeuUMbolG8uRb9p2AcOYIYcIgwMbVt/
-         ooiNADwqHz/j1dSZuzGh+5uFQLZFR7Z3Ww9wvszRoOXewrUjvL0BL980DOa5ltVCEk8D
-         4LgA==
-X-Forwarded-Encrypted: i=1; AJvYcCWRBT5bXXa0eP4bg7XOSWU+CQ8paysgSlcaOc+w+uyS6V2ZdqRc6z1YTdwU0e+FuYAJMLgwWYdcReyB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzI5eL9a5snZ3mJXYtHw6RoCD6NoSNYltssC2NuxsNNfOrg45Ak
-	lcNMHbnrwC94F6OGDtBgTIOcJVvSAFVSnhZJ6dsgnBQejIQ3DKPK4mHw
-X-Gm-Gg: ASbGncstqWRjlNruhN3BH36fZFhUvDXjIjdQVDckpM674foJnhMHenIJvpW6Cb0bOxd
-	SnrcX74jJurxmEDRiCER63gs2pc3zAfZMZMke01YJJiMTQKFF0OWf7aeHA9NMZwZv49Pryc74H7
-	fH4UvEnP50aZHintnK8f2CusA1ZZk+shyELnr4cjWrxfhgXFA7cWcTy+ygKPAApnchELEhl+Gu1
-	2dFKPI0nv43EnsZhI7Fi0tGjgsU2ZVpDKRlLm0Qnr/ATZGPMqYyuyY1QOVHo2BW0sWzzkuBSC0X
-	qvHfWSpfQnn5AtiU3yBUzlI8LmTi7AMQanGNZDcSw9oEiRS1pCtMsPt6H6/r6Q6ZPaAT6gCT9y1
-	KwY9qzQKXeGD8Yl44LIl3S0eKCZNLnG8v2wPVH8eL3pHr3m0iuSeag0N+dffQ7DVUUYp4Uq1Txc
-	mJw89qJwNSXLnDYVwasQSE6suzGCBjpsrTHbGM+5JU2hbuo/RB6WA182CpQ5f/HqU=
-X-Google-Smtp-Source: AGHT+IExtl9I947o9yThdytltbG+dOzwR8t1R13RAWRujiBz1gy/fzjdorcNXbxrlghQJ5oA52AS3g==
-X-Received: by 2002:a05:600c:3586:b0:477:7b16:5f87 with SMTP id 5b1f17b1804b1-4778fe121famr33076605e9.0.1763130438009;
-        Fri, 14 Nov 2025 06:27:18 -0800 (PST)
-Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47787e2bcf9sm152467825e9.3.2025.11.14.06.27.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 06:27:16 -0800 (PST)
-Date: Fri, 14 Nov 2025 15:27:14 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>, 
-	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
-	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v5 09/23] gpu: host1x: convert MIPI to use operation
- function pointers
-Message-ID: <n5m7ubrimzctfh6uumh5anyt5cc7jnuph5opbi4wup3du7nhqe@dljwxfws6vla>
-References: <20251022142051.70400-1-clamor95@gmail.com>
- <20251022142051.70400-10-clamor95@gmail.com>
+	s=arc-20240116; t=1763130624; c=relaxed/simple;
+	bh=KZNT1wWng/P05licVbhYv1HJq/k4a9lnK05hDqrSCrY=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=F/7vDGLlOcoS2fp3ArY7nzJS/kT4OYnTPOK6Q2GwgFqVyXHTVLz8V9TlYeQairmGy9EvSumIJCmhknWRJggaD0gnqtiyRd56c/3pCkycovoQ675FTQKd4OQSOogj4T8W12+G+5WKSw8LvUWC1LEBXnnNFKJ2kQNNA5mCvv7P1NQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=AXHo9KLB; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 5F729410BE;
+	Fri, 14 Nov 2025 15:30:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1763130619; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=A+G7g/1fFBn8WAUP1v+DVPAPbNvSQrcah4q8RsIWc20=;
+	b=AXHo9KLBFxS5+DeOuVYrRjs1yABGwUKVUS1bBkD/zWya2qB/487CkKRfqjdztCJ0KaRGff
+	tIwJtM4V9mXySFzZ8Xa7FMMw1dWD4qWaarIUJ4FLmfPHFiVOesXYGCZKnChcsgCI06raTc
+	7GEV8ODThuT09zWO5+mk2m/ipIHaKWT/vmCsAgbH6UG5rnnkpcPerVtPK19G9rbdCEZQKk
+	Pmmx6iEJ9RVuN2MaRBos2Cr1yZdFoZPa+bRrg6VfuAGaVyttm+/fGTFvnWyilDf3XdxWbl
+	MU0T1dizgtGf1NThwV6gA1yCwJ2QTV3QV3VNvF8Y91kxxfNi9909Eugu+moAHA==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <01b16ed0-472d-49f5-a4ad-fce03a651de8@rootcommit.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20251111172003.2324525-1-michael.opdenacker@rootcommit.com>
+ <20251111172003.2324525-3-michael.opdenacker@rootcommit.com>
+ <dbacc018-2631-6606-7562-27371cf45d6f@manjaro.org> <01b16ed0-472d-49f5-a4ad-fce03a651de8@rootcommit.com>
+Date: Fri, 14 Nov 2025 15:30:18 +0100
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+To: "Michael Opdenacker" <michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xaaurevkxctpys3l"
-Content-Disposition: inline
-In-Reply-To: <20251022142051.70400-10-clamor95@gmail.com>
-
-
---xaaurevkxctpys3l
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+Message-ID: <51b28810-9d17-0505-56e7-6a3e13749fd9@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH 2/2] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= add Tinkerboard 3 and 3S device tree
+User-Agent: SOGoMail 5.12.3
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 09/23] gpu: host1x: convert MIPI to use operation
- function pointers
-MIME-Version: 1.0
+X-Last-TLS-Session-Version: None
 
-On Wed, Oct 22, 2025 at 05:20:37PM +0300, Svyatoslav Ryhel wrote:
-> Convert existing MIPI code to use operation function pointers, a necessary
-> step for supporting Tegra20/Tegra30 SoCs. All common MIPI configuration
-> that is SoC-independent remains in mipi.c, while all SoC-specific code is
-> moved to tegra114-mipi.c (The naming matches the first SoC generation with
-> a dedicated calibration block). Shared structures and function calls are
-> placed into tegra-mipi-cal.h.
+Hello Michael,
+
+On Friday, November 14, 2025 14:54 CET, Michael Opdenacker <michael.opd=
+enacker@rootcommit.com> wrote:
+> Thanks a lot for your review and feedback!
 >=20
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> Acked-by: Mikko Perttunen <mperttunen@nvidia.com>
-> ---
->  drivers/gpu/drm/tegra/dsi.c             |   1 +
->  drivers/gpu/host1x/Makefile             |   1 +
->  drivers/gpu/host1x/mipi.c               | 525 +++---------------------
->  drivers/gpu/host1x/tegra114-mipi.c      | 483 ++++++++++++++++++++++
->  drivers/staging/media/tegra-video/csi.c |   1 +
->  include/linux/host1x.h                  |  10 -
->  include/linux/tegra-mipi-cal.h          |  57 +++
->  7 files changed, 599 insertions(+), 479 deletions(-)
->  create mode 100644 drivers/gpu/host1x/tegra114-mipi.c
->  create mode 100644 include/linux/tegra-mipi-cal.h
+> On 11/14/25 03:26, Dragan Simic wrote:
+> > Thanks for this patch!  Please, see some comments below.
+> >
+> > On Tuesday, November 11, 2025 18:20 CET, michael.opdenacker@rootcom=
+mit.com wrote:
+> >> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+> >>
+> >> Add initial device tree support for Asus Tinkerboard 3 [1] and 3S =
+[2],
+> >> which are SBCs based on the Rockchip 3566 SoC.
+> > For consistency and because it's a proper noun, this should be
+> > s/Tinkerboard/Tinker Board/.
+>=20
+> Fixed in all the patches.
 
-Not sure if I missed this earlier, but I don't understand why the code
-was moved around like this. tegra114-mipi.c now contains the code for
-all of Tegra114, Tegra124, Tegra132 and Tegra210, so the name doesn't
-make any more sense than the old name.
+Thanks.
 
-Furthermore, moving the header file contents now also means that we have
-a cross-dependency within the series that makes this more difficult to
-merge. Obviously that's something we can make work, /if/ there's a need,
-but from what I can tell there's really no benefit to this extra churn.
+> > The board .dts/.dtb files should include "-board", i.e. these shoul=
+d
+> > be "rk3566-tinker-board-3.dtb" and "rk3566-tinker-board-3s.dtb"
+> > instead, because there's no real need for shortening.  These boards
+> > are simply named "Tinker Board", which should be preserved.
+>=20
+> Done too. However, I used these names for consistency with what was u=
+sed=20
+> on arm(32) for the original Tinker Board:
+>=20
+> arch/arm/boot/dts/rockchip/rk3288-tinker.dts
+> arch/arm/boot/dts/rockchip/rk3288-tinker-s.dts
+> arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
+>=20
+> I guess it's fine to ignore what arm did right? It won't live as long=
+ as=20
+> arm64 (I attend Arnd's talk about arm 32).
 
-I also don't fully understand the benefit of converting the code into
-operation function pointers if we always use the same function pointers
-for all generations. Effectively this adds boilerplate and an extra
-indirection for no benefit at all.
+Thanks.  Yes, I saw that naming for the other Tinker Board, based
+on RK3288, which I'd consider a mistake from the past we should heed
+from, instead of repeating it. :)
 
-Splitting the "SoC specific" parts from the generic parts also now
-needlessly exports a symbol for absolutely no reason. Both files are
-linked into the same driver/module, there's no need for an exported
-symbol.
+[snip]
 
-The only slight bit of information that might justify this is the hint
-in this commit message that Tegra20/Tegra30 requires this. But I don't
-see patches for this anywhere, making it impossible to review this
-change.
+> >> +/ {
+> >> +	model =3D "Rockchip RK3566 Asus Tinker Board 3";
+> > For consistency and to avoid redundancy, the "Rockchip RK3566"
+> > part should be removed.
+>=20
+> Done.
 
-Looking at other parts of the series, and given it's spread across a
-large number of trees with compile-time dependencies between them, I
-think it would be better to split this up differently. I think it could
-be three series in total: one for the clock changes needed for this,
-another with all of the MIPI changes (in which case it would make sense
-to include the Tegra20/Tegra30 bits as well to actually show why the
-rework in this patch is needed) and a final one with the staging/media
-bits that make use if this all. Well, maybe also a fourth series that
-adds the DT changes needed to make it all work.
+Thanks.
 
-I think if you avoid splitting the MIPI prototypes into tegra-mipi-cal.h
-you should be able to get rid of the cross-dependency. Clock changes
-should already be independent. Also, I think it's probably fine if we
-keep all of the MIPI driver code in the one file that it's currently in.
-This removes the need for the odd exported symbol. It's not a great deal
-of code, and I doubt that Tegra20/Tegra30 support would add
-significantly to it.
+> >> +	compatible =3D "asus,rk3566-tinker-3", "rockchip,rk3566";
+> >
+> > Actually, the compatible should be "asus,rk3566-tinker-board-3"
+> > instead, because there's no real need for shortening it.
+>=20
+> No problem to do it. However, here we have a slightly bigger problem:=
+ it=20
+> would be inconsistent with the bindings for the original Tinker Board=
+ in=20
+> the same rockchip.yaml file:
+>=20
+>  =C2=A0 =C2=A0 =C2=A0 - description: Asus Tinker board
+>  =C2=A0 =C2=A0 =C2=A0 =C2=A0 items:
+>  =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 - const: asus,rk3288-tinker
+>  =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 - const: rockchip,rk3288
+>=20
+>  =C2=A0 =C2=A0 =C2=A0 - description: Asus Tinker board S
+>  =C2=A0 =C2=A0 =C2=A0 =C2=A0 items:
+>  =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 - const: asus,rk3288-tinker-s
+>  =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 - const: rockchip,rk3288
+>=20
+> What do you think? The discrepancy would be quite visiible.
 
-Thierry
+I'd still consider that old naming a mistake from the past we should
+heed from, instead of repeating it for the sake of consistency that's
+already lacking left and right.
 
---xaaurevkxctpys3l
-Content-Type: application/pgp-signature; name="signature.asc"
+> >> +	compatible =3D "asus,rk3566-tinker-3s", "asus,rk3566-tinker-3", =
+"rockchip,rk3566";
+> > The compatibles should be as below instead, for the same reasons
+> > as already explained above.
+> >
+> >    "asus,rk3566-tinker-board-3s", "asus,rk3566-tinker-board-3", "ro=
+ckchip,rk3566"
+>=20
+> Yes, whatever is decided for the compatible strings.
+>
+> > Though, perhaps it would be better to not include the "asus,rk3566-
+> > tinker-board-3" part, because I think it's pretty much redundant.
+>=20
+> My reasoning was that Tinker Board 3S is a superset of Tinker Board 3=20
+> (additional eMMC and headers).
+> If someday some code is associated to the compatible string for Tinke=
+r=20
+> 3, than Tinker 3S should use it too, right? Unless we want to have th=
+e=20
+> possibility to ignore some Tinker3 code in Tinker 3S for some reason.=20
+> Then, it's better indeed that 3S doesn't use the Tinker 3 compatible=20
+> string. It seems we have more options with what you're suggesting.
 
------BEGIN PGP SIGNATURE-----
+You were right about having "asus,rk3566-tinker-board-3" there
+as well originally, because that would allow us to possibly define
+some specifics later that apply to both the 3 and 3S variants.
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkXPD8ACgkQ3SOs138+
-s6F9Mg//fsdjwELtSUcPtGsvmQbiCC8AEsQPM2yo9/JndswVd0jMth0Xv4Sqoi1r
-3MjKK3XZ2ElOMba9WBeo4+0z1x1Ui8v0WDGTr5bkZBYG8OJq92Qcp+zh4Zf+1i6V
-FA2lnZ3yPoKMcx+9y5QHULaqvuIjn4LQCmc2Y4RV0R8rY2XoMwm+8PRi6x0AvL+i
-6emDiikWr8OPU+Xbinbp9Vn2fgWUeezNQROFqyjrZB8GRoXX2JavEQpQHlSAI4Yi
-baNrdhN4TIxoGqWF5MjfvT4PaPuwJoHIeFWjT4dAfZ6VXeECdUiyYpj1QT/FhR4t
-etvzich70RdWs8EBbvnr6M2pTIPKWGdcdg7MPl04UGUZGuCieqPkp0pUFEPfv7ta
-OdbX376VR66TJ5VXu2+JYmfbRndyA5FoCX+3B9MAiJ176qpNrY7LLMVSQ8t0ViT5
-m1NVTDl9kwIrm0Y7wJKiHPbHpXMhI+ofz1z62pzCivdzrTx9WM27WMQLbfGnk1jj
-78hHWckI2EBBTDMPx9PgOIy/8ZQ+0uq8qEd84nBd5RSuOq4YEzPmkxdKJ4GCVc08
-GeVyuaZk1c4Fj1JTtF8YADERPZQ86ncfYyc4LHQHJEIE3tj4MiqRpJaUixye4Mfl
-NczbVNGDRiRB5b2JJSIa7u1hXBJFKv83HyXzXnkYiwiLw4cgrHQ=
-=BFaE
------END PGP SIGNATURE-----
+Just like "asus,rk3566-tinker-board-3" refines "rockchip,rk3566"
+and makes it more specific, "asus,rk3566-tinker-board-3s" also does
+the same to "asus,rk3566-tinker-board-3".
 
---xaaurevkxctpys3l--
 
