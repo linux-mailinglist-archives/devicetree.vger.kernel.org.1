@@ -1,109 +1,162 @@
-Return-Path: <devicetree+bounces-238822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC165C5E480
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:39:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6D4C5E4A4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:42:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DFA53ACE6E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:29:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D57D33AC022
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21AD32D7C7;
-	Fri, 14 Nov 2025 16:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA5C334379;
+	Fri, 14 Nov 2025 16:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="goUhTe7x"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="PG73crPu";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="PG73crPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9967732C954;
-	Fri, 14 Nov 2025 16:28:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7307F139579;
+	Fri, 14 Nov 2025 16:33:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763137736; cv=none; b=nD5ouf0hssyd1+N4p+a5ZxhQ9xwi6ORHHJzeLnFLOOEO2pEMwAB0QT28T+4lC5e/popq55mZhj9+X6q6myXHGXQO1l5vjw22QdaNFFu/shqFSsF78bdjhsif0tBx5mZYCrmfCxUMNlzDko0HAemmVWJiyjZ+izeAG/WxYBCQmV8=
+	t=1763137985; cv=none; b=IIH568nVmzerYBmgCRfdcsJao3KVxbDDbMR9bktrRSmYPk3NHUPkiwXPudIq+yEkzeHpUoUmvgZoiBQPN7VtvRC27XG6OxXSaJDlo//cLMUmjRZ1ZprDiSm/T3sThrS9qy5vNoJPRVz6WCIJ93XQjkDSulsC5eAJth/jyl2wNpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763137736; c=relaxed/simple;
-	bh=SLDIwzA9HYZFes2YBFtEOxEYLpaHeRLAdrEs6jk+MTs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ls6QShURK4kGpG+zsS9juk0ATM7g6SfKLrRtUv2aBLJ+ypC0OtXAj0l58d5/2anpXZFX530SrjMTqg/idbzqS9Q9enw3dT0G80gGHQVcRdWWiiWWMYskRX4sF+nT5WCce+8FWGqeBqXdFcipKIOpe4DpfiVvgBd9YbYcXJHTMEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goUhTe7x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88A89C113D0;
-	Fri, 14 Nov 2025 16:28:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763137736;
-	bh=SLDIwzA9HYZFes2YBFtEOxEYLpaHeRLAdrEs6jk+MTs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=goUhTe7xL19Mvu98KPP6DT3iGJWuwB56RCEaVyLGdKWUjkAB60dLFV0A8KqdR14sn
-	 cUu29XCgPVDkqz59ysrF1eRzkJGRFLKNQWhUUMhajn34JMWKlYIM5Rst+R38r27WuQ
-	 45uR+K+STcu7kF+KfAGhSgGX/Tcyb3xW6nzzd6Idq5DrSXSNffj6Y5QGLlk3WauNFP
-	 vZN0k8Nvn2aq0UwD4QShUzsi4FhzacqROqkwIKBuy8hx1VploUkhuYSPnanFzg3cYU
-	 zVxyW7uXSd6Dq0MYjbk8ESvY2/U+HUd5sjd5Cjq925VFm247qmX6Wo8bJDo6PG+T48
-	 sZKc8FyN39FQQ==
-From: Mark Brown <broonie@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>, Lars-Peter Clausen <lars@metafoo.de>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, 
- =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
- Support Opensource <support.opensource@diasemi.com>, 
- Peter Rosin <peda@axentia.se>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, asahi@lists.linux.dev, 
- patches@opensource.cirrus.com, Lukas Bulwahn <lbulwahn@redhat.com>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Lukas Bulwahn <lukas.bulwahn@redhat.com>
-In-Reply-To: <20251114113713.231513-1-lukas.bulwahn@redhat.com>
-References: <20251114113713.231513-1-lukas.bulwahn@redhat.com>
-Subject: Re: [PATCH] MAINTAINERS: refer to trivial-codec.yaml in relevant
- sections
-Message-Id: <176313773331.173018.5617582229167638951.b4-ty@kernel.org>
-Date: Fri, 14 Nov 2025 16:28:53 +0000
+	s=arc-20240116; t=1763137985; c=relaxed/simple;
+	bh=bf0pIEsi5Ze4Ewu72bp30eGErg5IlXD0tlNNo6JLWB0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z6MEwVN83UCWcEagToVaGw6Gxr4JsHBbCm5zOoHZIuI3vr0FPHwZejIv4nHUi1tyI1xpdibGv+GGmoOYm3CHAYgJ+wTOEFFAPcZWdLDid+TghH0Vs0yu359Uo4HLRZAhSXOY6Uen1tH+XGGmMVo9TX+0CgKXjQ+doqSlrt3a2WA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=PG73crPu; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=PG73crPu; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1763137978; bh=bf0pIEsi5Ze4Ewu72bp30eGErg5IlXD0tlNNo6JLWB0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PG73crPueBHj1zRKa8VzXt3JKoUTpWxaF1KTpokvaIMSItnSXKbbT9fc7IQdB+Dk7
+	 FQ/n2RKODlqbT1C1Rr2vBEVWe6LBW3DesZrxIhyWYZ8thxG+D8YGxU7MUpKXzoZGJp
+	 VClnOzA0pwspGoMAnGyqXS7J8ILZUMdcfOOFqO/sOom9jaEog4enVBail6xVE8ankv
+	 D2pCfDYO067CdOqc7JJZYaXo+W5xgfrzJODTYFPSlUEb50gVDSJICsZOUMtiL54MGD
+	 IsTNBQN0kZO1vo7qIzF2l9pRuCR3nDIQ2l7I0/PUSFe/1if7rADDpHkFCuxz9soGOP
+	 xapk4l/dEfC0A==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id CCE033E1525;
+	Fri, 14 Nov 2025 16:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1763137978; bh=bf0pIEsi5Ze4Ewu72bp30eGErg5IlXD0tlNNo6JLWB0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PG73crPueBHj1zRKa8VzXt3JKoUTpWxaF1KTpokvaIMSItnSXKbbT9fc7IQdB+Dk7
+	 FQ/n2RKODlqbT1C1Rr2vBEVWe6LBW3DesZrxIhyWYZ8thxG+D8YGxU7MUpKXzoZGJp
+	 VClnOzA0pwspGoMAnGyqXS7J8ILZUMdcfOOFqO/sOom9jaEog4enVBail6xVE8ankv
+	 D2pCfDYO067CdOqc7JJZYaXo+W5xgfrzJODTYFPSlUEb50gVDSJICsZOUMtiL54MGD
+	 IsTNBQN0kZO1vo7qIzF2l9pRuCR3nDIQ2l7I0/PUSFe/1if7rADDpHkFCuxz9soGOP
+	 xapk4l/dEfC0A==
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mleia.com (Postfix) with ESMTPSA id 450B43E0CE9;
+	Fri, 14 Nov 2025 16:32:58 +0000 (UTC)
+Message-ID: <646d17c0-7151-4a61-80c0-c336acdf0abd@mleia.com>
+Date: Fri, 14 Nov 2025 18:32:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] ARM: dts: lpc3250-phy3250: add at25 required
+ properties
+To: Frank Li <Frank.li@nxp.com>
+Cc: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "moderated list:ARM/LPC32XX SOC SUPPORT"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ imx@lists.linux.dev
+References: <20251029202801.3963952-1-Frank.Li@nxp.com>
+ <20251029202801.3963952-4-Frank.Li@nxp.com>
+ <4bf7223e-1611-4149-a4d6-9a3ac103e264@mleia.com>
+ <aRdVY5aMCjj4fmDB@lizhi-Precision-Tower-5810>
+From: Vladimir Zapolskiy <vz@mleia.com>
+In-Reply-To: <aRdVY5aMCjj4fmDB@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-88d78
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20251114_163258_858394_49509EF0 
+X-CRM114-Status: GOOD (  20.32  )
 
-On Fri, 14 Nov 2025 12:37:12 +0100, Lukas Bulwahn wrote:
-> Commit 4acbfcf11cbe ("ASoC: dt-bindings: consolidate simple audio codec to
-> trivial-codec.yaml") aggregates a few sound device-tree bindings, i.e., txt
-> and yaml files, into a common trivial-codec.yaml, but misses to adjust the
-> references in ANALOG DEVICES INC ASOC CODEC DRIVERS, ARM/APPLE MACHINE
-> SOUND DRIVERS, NXP TFA9879 DRIVER and WOLFSON MICROELECTRONICS DRIVERS,
-> which refer to files removed by the commit above.
+Hi Frank.
+
+On 11/14/25 18:14, Frank Li wrote:
+> On Fri, Nov 14, 2025 at 01:47:48AM +0200, Vladimir Zapolskiy wrote:
+>> Hi Frank.
+>>
+>> On 10/29/25 22:28, Frank Li wrote:
+>>> Add at25 required properties (size, address-width and pagesize), which
+>>> duplicate deprecated properties.
+>>>
+>>> Change nodename 'at25' to 'eeprom'.
+>>>
+>>> Fix below CHECK_DTB warning:
+>>>     arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dtb: at25@0 (atmel,at25): 'pagesize' is a required property
+>>>     arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dtb: at25@0 (atmel,at25): $nodename: 'anyOf' conditional failed, one must be fixed:
+>>>
+>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>> ---
+>>>    arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts | 6 +++++-
+>>>    1 file changed, 5 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+>>> index 21a6d0bca1e8a..15463a96938cc 100644
+>>> --- a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+>>> +++ b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+>>> @@ -200,7 +200,7 @@ &ssp0 {
+>>>    	cs-gpios = <&gpio 3 5 0>;
+>>>    	status = "okay";
+>>> -	eeprom: at25@0 {
+>>> +	eeprom: eeprom@0 {
+>>>    		compatible = "atmel,at25";
+>>>    		reg = <0>;
+>>>    		spi-max-frequency = <5000000>;
+>>> @@ -216,6 +216,10 @@ eeprom: at25@0 {
+>>>    		at25,byte-len = <0x8000>;
+>>>    		at25,addr-mode = <2>;
+>>>    		at25,page-size = <64>;
+>>> +
+>>> +		size = <0x8000>;
+>>> +		address-width = <16>;
+>>> +		pagesize = <64>;
+>>
+>> Is there any need to have both sets of properties?
+>>
 > 
-> [...]
+> Generally, keep old one just for back compatible. It is quite common for
+> this case.
+> 
+> I am NOT sure if it is safe enough to remove deprecated properties now.
+> 
 
-Applied to
+It should be safe to remove the deprecated properties, it is fine.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+This way the backward compatibility is preserved, and while the forward
+compatibility is not preserved, it is not supposed to be preserved anyway.
 
-Thanks!
+>> I'd suggest to remove the deprecated set in a separate patch, note
+>> that your done change is not described in the commit message.
+> 
+> Which part is not described?
+> 
 
-[1/1] MAINTAINERS: refer to trivial-codec.yaml in relevant sections
-      commit: 6402ddf3027d8975f135cf2b2014d6bbeb2d3436
+Sorry for it, I reread the commit message, and both changes are mentined,
+but please split heterogeneous changes into separate patches.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+-- 
+Best wishes,
+Vladimir
 
