@@ -1,102 +1,113 @@
-Return-Path: <devicetree+bounces-238875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC0FCC5EC06
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 19:08:42 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 529CDC5ECCA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 19:17:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2A0D7380749
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:58:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 20A4A367E43
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1D5346FB0;
-	Fri, 14 Nov 2025 17:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1454E346E42;
+	Fri, 14 Nov 2025 17:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6X541PQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xu0OuBEW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2FD345CC6;
-	Fri, 14 Nov 2025 17:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76682D29D1;
+	Fri, 14 Nov 2025 17:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763142912; cv=none; b=ORns+eGVpywY0s1HXrWfHFk3pi2xZ8++N9i8gMPaLoh59IaKiqs+NpOFa04piCsZjC/Cy6hBA4IDPws6ImaSoN/fikDyroCSpqLGy10DvlB7/cXmJ5yzsXVzCLdwXC/aQfArJP3EGzqb97AoPbJLbcAXZ1lONliiWBnWwPBrFAg=
+	t=1763143061; cv=none; b=tYJ50XDW4EP5vZD0pRaCbyp56rg+efjZTjvYsDTbTA5URSXZ/DW7wfxDiCjJ4tfCTxDi7SUHZLBbdPmaG2maDGND/evjFOA3WneP+6kWat0E0JOctrVc6Smbus/zC6Dn2Qe8AJazc1a6My7iYjiRT7+DNmpC77flx4dnOSBrcPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763142912; c=relaxed/simple;
-	bh=Bbn75JmNL83npodCTJTBOAPaDgy6voJdhk7xvelQSXk=;
+	s=arc-20240116; t=1763143061; c=relaxed/simple;
+	bh=vfL1Pl5c9TiW8/PwiGRW6nnpwuYEWu4MfO4FlaLmKHI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xz9kcjy3TTnNsYsAmksYY6PULLFQfH7ERIoONcCjWxrLossGtoh3ICuIMcAFTXSKX/yJZxJqHKOGhD7b+o/GCNYafU29Cj8aYxyQSGPyf6+dsRR3m0CmUzPgsvtEubL/mXJkmWJMgyAJnLayDNVukGIiI6pGHE7XUESX7R9RJB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6X541PQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49221C19424;
-	Fri, 14 Nov 2025 17:55:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lHbsZvGrYsPC6W0ZbEfS7Q7/BGCwStjtjZ0+D+KJcsuMSTlwc6Jt6G+Y2utVgaOpPL39qXd3OCHl0nOyZBH4pRisgbd7cdsnVD/YMGvfRFTHiJb2QIXCgB9TDa35UPsUeJ4oUhXggIQmcn7Bzh1OsarZXSHMFmO6Tx2ypK40XBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xu0OuBEW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E157C4CEF1;
+	Fri, 14 Nov 2025 17:57:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763142911;
-	bh=Bbn75JmNL83npodCTJTBOAPaDgy6voJdhk7xvelQSXk=;
+	s=k20201202; t=1763143061;
+	bh=vfL1Pl5c9TiW8/PwiGRW6nnpwuYEWu4MfO4FlaLmKHI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a6X541PQcR+vUg9Qe47frMIQly2Sd2xFW7KLq4G7AYVFOl1az3CbbARBIl5b8fPYq
-	 QnFc8mT9SIpMPZ9+2+2DbhMLb2/hv3dgG6I2aBUBnEwCCPRh0xBAy24Us3RujLoG7F
-	 QESqh1+T5o/Wd2b3dBZjoZXHpbckcsCdChLlgoF5mi46lf3JQLSoZ3NqQA6bMd3Oi9
-	 9akNt/t/3Sz2BvWKZKEQgRTdFq+Mq+7c0xg/GFBHKJUWQsJsFrh3Q5tlFCvurg7ltg
-	 7yBmNSc57mki9Pzv9PNasRGIfkXiYByHmq1aClYxWdpspQ9yry2xG63Kea7bGBT5J+
-	 R+EEG+Rj4UdvA==
-Date: Fri, 14 Nov 2025 17:55:06 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-	Rob Herring <robh@kernel.org>,
+	b=Xu0OuBEWCNcolV9hhQObYp9kEcBWREwXELrFxs6Dn5F2/wauksne/QZLElvFfOcOJ
+	 /KpeikNwouH60qUgW8TB4qMGaiId5DNDddBrp1NPKER/Dfmxl3bm7pim1IbSxFIB2B
+	 i97Qi4e1nvvr3hSFz4YqtfVti2Bg6kIpvqJP1NGVPw/dclDCR9ewE/mzoB1zy2Vbum
+	 RYMqOvufhORb6Do3p3d06qiM6vI+QHCea+0jbUF+qLau8jljoW0TM6+c/8Vu8TL0fV
+	 3YBHnaIIvL02TNvlqkVAlYJPhSCjExbFzP098OfwyMFXS7j5w9nWiA4L0hDFzUSdv4
+	 Qh3MysW9mB8UQ==
+Date: Fri, 14 Nov 2025 11:57:39 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: clock: tmpv770x: Remove definition of
- number of clocks
-Message-ID: <20251114-gatherer-landlady-de35d5ecab9e@spud>
-References: <20251114065358.854817-1-yuji2.ishikawa@toshiba.co.jp>
- <20251114065358.854817-3-yuji2.ishikawa@toshiba.co.jp>
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/12] dt-bindings: PCI: qcom: Move remaining devices to
+ dedicated schema
+Message-ID: <20251114175739.GA3805640-robh@kernel.org>
+References: <20251103-dt-bindings-pci-qcom-v1-0-c0f6041abf9b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2MovHCO94YyZNoex"
-Content-Disposition: inline
-In-Reply-To: <20251114065358.854817-3-yuji2.ishikawa@toshiba.co.jp>
-
-
---2MovHCO94YyZNoex
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251103-dt-bindings-pci-qcom-v1-0-c0f6041abf9b@linaro.org>
 
-On Fri, Nov 14, 2025 at 03:53:58PM +0900, Yuji Ishikawa wrote:
-> Remove the definitions of number of clocks from bindings because they
-> prevent adding new clocks. Since the previous patch removed all refereces
-> within the driver, they can now be deleted.
->=20
-> The same for resets and plls.
->=20
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+On Mon, Nov 03, 2025 at 04:14:40PM +0100, Krzysztof Kozlowski wrote:
+> Some time ago I already moved several devices from qcom,pcie.yaml
+> binding to a dedicated binding files for easier reviewing and
+> maintenance.
+> 
+> Move the remaining one which makes the qcom,pcie.yaml empty thus can be
+> entirely removed.
+> 
+> Best regards,
+> Krzysztof
+> 
+> ---
+> Krzysztof Kozlowski (12):
+>       dt-bindings: PCI: qcom,pcie-sm8150: Merge SC8180x into SM8150
+>       dt-bindings: PCI: qcom,pcie-sdx55: Move SDX55 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-sdm845: Move SDM845 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-qcs404: Move QCS404 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-ipq5018: Move IPQ5018 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-ipq6018: Move IPQ6018 and IPQ8074 Gen3 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-ipq8074: Move IPQ8074 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-ipq4019: Move IPQ4019 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-ipq9574: Move IPQ9574 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-apq8064: Move APQ8064 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-msm8996: Move MSM8996 to dedicated schema
+>       dt-bindings: PCI: qcom,pcie-apq8084: Move APQ8084 to dedicated schema
+> 
+>  .../devicetree/bindings/pci/qcom,pcie-apq8064.yaml | 170 +++++
+>  .../devicetree/bindings/pci/qcom,pcie-apq8084.yaml | 109 +++
+>  .../devicetree/bindings/pci/qcom,pcie-ipq4019.yaml | 146 ++++
+>  .../devicetree/bindings/pci/qcom,pcie-ipq5018.yaml | 189 +++++
+>  .../devicetree/bindings/pci/qcom,pcie-ipq6018.yaml | 179 +++++
+>  .../devicetree/bindings/pci/qcom,pcie-ipq8074.yaml | 165 +++++
+>  .../devicetree/bindings/pci/qcom,pcie-ipq9574.yaml | 183 +++++
+>  .../devicetree/bindings/pci/qcom,pcie-msm8996.yaml | 156 ++++
+>  .../devicetree/bindings/pci/qcom,pcie-qcs404.yaml  | 131 ++++
+>  .../devicetree/bindings/pci/qcom,pcie-sc8180x.yaml | 168 -----
+>  .../devicetree/bindings/pci/qcom,pcie-sdm845.yaml  | 190 +++++
+>  .../devicetree/bindings/pci/qcom,pcie-sdx55.yaml   | 172 +++++
+>  .../devicetree/bindings/pci/qcom,pcie-sm8150.yaml  |   1 +
+>  .../devicetree/bindings/pci/qcom,pcie.yaml         | 782 ---------------------
+>  14 files changed, 1791 insertions(+), 950 deletions(-)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
-
---2MovHCO94YyZNoex
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRds+gAKCRB4tDGHoIJi
-0lV2AQDV0BxOT40o+VE6NKbdmT7olKBY8l4rzUaLXTsZxea9EQD/dfaGYz26GiUt
-Odbl5zIWpStM9pj9OXriS0kswZdHYQY=
-=Vb4j
------END PGP SIGNATURE-----
-
---2MovHCO94YyZNoex--
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
