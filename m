@@ -1,119 +1,99 @@
-Return-Path: <devicetree+bounces-238770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FE1C5DC3C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:09:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26D3BC5DD4B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:23:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id F066A24183
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:09:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB0503BFFB1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:13:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47F3331A7A;
-	Fri, 14 Nov 2025 14:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 730263396F0;
+	Fri, 14 Nov 2025 15:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="izcBSFjc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GTUkGo9T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D272215F42;
-	Fri, 14 Nov 2025 14:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D6E338F38;
+	Fri, 14 Nov 2025 15:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763132366; cv=none; b=hTqnq19Z0SC6kwXyCvvse8vWUWmntUneDy2ya3Hq5bg+u/9nvFNpQcAxtahPL3RRSnu3esAKWCFiIWiRnorpV+0BDbwWxzMLnl8wmEz2GeXXa/kGoIfk+dSxlZkwbCG4jOa3XLEHvcCGhP3+hVJ/dHwg9vLzS+bLYXUe06v5BWU=
+	t=1763132629; cv=none; b=iV93RfrT5+4y8lSEhd0QtbAJNJc6zLqCm8pzruTwJdOsSk3mxYuoibnbR1YpNSDVWm1xPdcEGGYjumw7sWTiz0iCypKHf0tOFl86O2TXgwdwKTzU2DHQ81bjK9tmxsKZRjVRJvbNcG5FrASRfkZBFd1mbCxwvsjt4OJr9COJM6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763132366; c=relaxed/simple;
-	bh=93PryjTgoVe/axb20tQpg8q0p8T0ctHDp37gLkWl2MY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J/cffQGfTTAMxT1EtvPoty2T7TMWAks4QEWKr3iFdCvEo8H46wXHXrWCAjbekk4pvfnrNs5iGq1K1fJgtF7b4vd9VjojnibhufcY3pQZ+3szByCJlJUmybZ9dDjEKnje7+IGKFwosEMukdY7WOLUbcY/w0OtXnT2YbTBgwyNe3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=izcBSFjc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16928C4CEFB;
-	Fri, 14 Nov 2025 14:59:26 +0000 (UTC)
+	s=arc-20240116; t=1763132629; c=relaxed/simple;
+	bh=kefeWEjeK/OPnEnN7znU76/80ITc8r/9IdrjebzenRY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HeaaxAM7ZA0WPDqo4R/PUke9nDlBpCYy47tsEJHL1RsKZIeioRtyEIoP8ABXLSSlH6BAUeSJWM0Z4i1bx9sbBrIsWGbIX+XjUR2D1zhVoIuyJNvj4kdLeb3uBhMUuedAQYHkWgEBU9mUCgd2xfdtF5iQvcq6G/v5nJ9h7YXSNi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GTUkGo9T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E04BC4CEF1;
+	Fri, 14 Nov 2025 15:03:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763132366;
-	bh=93PryjTgoVe/axb20tQpg8q0p8T0ctHDp37gLkWl2MY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=izcBSFjchCN77clVG+cuL7ofS211riLJAgI5FtII+ejTAypg70vv1ta0cUNYl34hj
-	 XGmckVA304SsU/gvM5ar2CP3C+msJlPGClUXfA0n9wK1TPvcRY2sT7H6pnfmt5zo2j
-	 eovHJp7tZDD9+UW2SqotxeQPPETIl3LwMSnSI8tFGxV+VKCNGIFNZ91VSnNUA2Upfu
-	 XJjd2Sy7PE6MPHSs4QYlPyhtRuzo/2pQ8RRnxEy2Z9JpFyW+HuuMGlLUznCHuA0Wyo
-	 IcrZi7fzkktFshWWk3ir377LEeDJKVH6Fb01v9sHyBcOVvbMMTp1LU0DhDuJ7rtaod
-	 YuM59i8Eo/+YA==
+	s=k20201202; t=1763132628;
+	bh=kefeWEjeK/OPnEnN7znU76/80ITc8r/9IdrjebzenRY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=GTUkGo9TrrRYqRj5rWkR4Ilf5WcAAz7S59gVSPpTXYZ1x2SrSnRqQ5Rld7cGEC+Eb
+	 v+mA2jyyAtWC4XWuJ6pXqYkqyC2cJFGNVe6GT1XXmmGVL3ZgWY5Gzem++uwJiqNx3y
+	 8JIjRVZFLxiWVBetIBIPadsWFVIkGlzixSnODqJGIo8JkmYLJSRnB+UyEXZqEfvIg+
+	 8aBgFKnuCJ4m7WpvMzFsc92UGquSIv9pqJVnUYF+ed1z6mjlGpJaNziN2hFEsMn92C
+	 +pvqistwQnDXRb0zlS0QMJMtsxqSgvo/jITEe4q5LjSOwumsJBs2L85Fuuko/yalRq
+	 k8i6hmFzE2Uag==
 Received: from johan by xi.lan with local (Exim 4.98.2)
 	(envelope-from <johan@kernel.org>)
-	id 1vJvGl-000000008Ru-3VVi;
-	Fri, 14 Nov 2025 15:59:24 +0100
-Date: Fri, 14 Nov 2025 15:59:23 +0100
+	id 1vJvL1-00000000069-0C0Q;
+	Fri, 14 Nov 2025 16:03:47 +0100
 From: Johan Hovold <johan@kernel.org>
-To: alejandroe1@geotab.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 2/2] gnss: ubx: add support for the safeboot gpio
-Message-ID: <aRdDyyIA9Z4e8mBz@hovoldconsulting.com>
-References: <20250911-ubx-safeboot-v3-0-32fe6b882a3c@geotab.com>
- <20250911-ubx-safeboot-v3-2-32fe6b882a3c@geotab.com>
+To: Johan Hovold <johan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alejandro Enrique <alejandroe1@geotab.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: gnss: u-blox: use open-drain reset and safeboot in example
+Date: Fri, 14 Nov 2025 16:03:35 +0100
+Message-ID: <20251114150335.357-1-johan@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250911-ubx-safeboot-v3-2-32fe6b882a3c@geotab.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 11, 2025 at 02:58:29PM +0200, Alejandro Enrique via B4 Relay wrote:
-> From: Alejandro Enrique <alejandroe1@geotab.com>
-> 
-> U-Blox 8/M8/M9 chip have a pin to start it in safeboot mode, to be
-> used to recover from situations where the flash content has become
-> corrupted and needs to be restored. If this pin is asserted at power
-> up/reset, the receiver starts in safeboot mode and GNSS operation is
-> disabled.
-> 
-> Deassert the safeboot pin when probing this driver.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+The RESET_N and SAFEBOOT_N pins should typically be left open and only
+be connected to ground in rare cases where a device is misbehaving.
 
-Sorry about the late feedback on this. I had to think about how best to
-handle this, given that we don't have an interface yet to actually
-assert these pins.
+Switch to using GPIO_OPEN_DRAIN in the example as this is what should
+generally be used.
 
-I guess we can go ahead and request them at probe as you're doing here
-and add an interface for controlling them later if needed (instead of
-not claiming them and allowing emergency control through gpiolib).
+Note that the current Linux driver implementation depends on these pins
+being declared open-drain so that they are not driven while the main
+supply is off.
 
-> @@ -82,6 +83,13 @@ static int ubx_probe(struct serdev_device *serdev)
->  
->  	data = gnss_serial_get_drvdata(gserial);
->  
-> +	/* Deassert safeboot */
-> +	safeboot = devm_gpiod_get_optional(&serdev->dev, "safeboot", GPIOD_OUT_LOW);
-> +	if (IS_ERR(safeboot)) {
-> +		ret = PTR_ERR(safeboot);
-> +		goto err_free_gserial;
-> +	}
-> +
->  	data->vcc = devm_regulator_get(&serdev->dev, "vcc");
+Signed-off-by: Johan Hovold <johan@kernel.org>
+---
+ Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Note that the driver is not enabling the supply until open() so I moved
-the deassert to after the supplies have been requested (but before reset
-is deasserted).
+diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+index 9f14cfe7efd1..e8b696986bb7 100644
+--- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
++++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+@@ -67,7 +67,7 @@ examples:
+             compatible = "u-blox,neo-8";
+             v-bckp-supply = <&gnss_v_bckp_reg>;
+             vcc-supply = <&gnss_vcc_reg>;
+-            reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+-            safeboot-gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
++            reset-gpios = <&gpio 1 GPIO_OPEN_DRAIN>;
++            safeboot-gpios = <&gpio 2 GPIO_OPEN_DRAIN>;
+         };
+     };
+-- 
+2.51.0
 
-Note however that both the RESET_N and SAFEBOOT_N pins should be
-declared as open-drain to avoid driving them while the main supply is
-off.
-
-I added a comment about this to the commit message about this when
-applying and will send a follow-on patch to update the binding example.
-
->  	if (IS_ERR(data->vcc)) {
->  		ret = PTR_ERR(data->vcc);
-
-Johan
 
