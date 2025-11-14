@@ -1,102 +1,44 @@
-Return-Path: <devicetree+bounces-238531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5A8C5C11D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54965C5C148
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:49:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 66E544F25A6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:44:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E94704E6538
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:47:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761C42FFF90;
-	Fri, 14 Nov 2025 08:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ptHOZBfG";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OydssMI6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127D32FFDE2;
+	Fri, 14 Nov 2025 08:47:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C2382FE075
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:43:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667CE12DDA1
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763109841; cv=none; b=ioW2mhd79U5QijChhdbAvR5rIYgr4DAtOmWb69n34VAYjMg/I4FeIXJneWAojmUm0gpH/N+Uylw+PvM4J1Ga+cOfuDZtiE9PzXj7rp3aWBv9VHF/Rez8vW27mDMzO5eONgokKGcsLwiolADTh7bkKqPF4/7+Pe55DIvlbU+AVyU=
+	t=1763110034; cv=none; b=RmAqMXUWoQOf+tfo8hM1yGun2Ik2WxcpLZdXaj5NybiZiKBmS4oPXmnhcPUmysXMTHnXyCKkBCBys3EFd3LEX79EEO4cD/i7Hbl5Lof34vA9XvwW0RrXGWJb1RH17RYV5Gxz62yH4tt8+7VuTHNCk+cBFmaoLO/IrH9aamr7WbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763109841; c=relaxed/simple;
-	bh=4W3PW+/8rvDXVUcpg4gcxwbdAJsW2vURL8IYXfhgkeg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O9sdTCuW38IHVCzDDC8md+tOTYPvwknZWK667q/GhtzsQwfIHilvwHXABVACFY7UEpfCkJi/HeMCf62T7kDX5fQetvDDT4oQIvf8CTrP14XsyRl+40WMn53vxaRnq8S8cnSABY5tv1Rb1ZzFpO/IvPBcdoBhCI0spQc3rgTWWVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ptHOZBfG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OydssMI6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE8T9851610301
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:43:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4KysJawHwaaBhDk0PHT1s/DETKrJ3/17/2/MQdw+4wI=; b=ptHOZBfGV/Dbveh5
-	YnEY2eL2HfYXeK9TCPcZwKemkuPGkXyrEfXfhgBUcD02kn5HSr1/RWk4b4CwB4WF
-	nvwZAfDuhlP+KPo2RT6qPoNa3jROy3mw7xILUCAYIxveMnsV+gT3L/dNjYY3VMQg
-	qo1CeMTwwhwRBcOu8OYxE23yGkwRA2hliUGk3Cp9JX8C4TCsRaN8Je/iB4zF8wae
-	6GQ0fo4fwxtvD6/INwYuxFSdneRw8wtHI/CZBO0KsCf5o6VvY5yyMGJUctCAfkHq
-	poY/5jsphB/xxtM04saLlaxJPjw9d97AEFFE0cBP/BIWfufhMOnpnHd4HAonjKdy
-	6N3iOw==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adr9h1ekk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:43:58 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-34377900dbcso2639226a91.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 00:43:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763109837; x=1763714637; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4KysJawHwaaBhDk0PHT1s/DETKrJ3/17/2/MQdw+4wI=;
-        b=OydssMI6wTQd4kqi/DlNJ1NAA+LANkf5Vqhuq1zOtb+dh5MExcnmFvHrvXJMzVEkRJ
-         sSYqAnvdFi+wKy9PqQ+M1nFdYISHciEeLP1GOcLbKqzv+NLGRE2SHAgiPinqYVedkSKR
-         OrcNE5Gv2VKPpQueA8gDCCLUMYK7JbuYgOf1xYAK32ZsUjOxMODQ10sHjf22CyfCBHmA
-         QKTJp8+OKQwUmyAAQk9avif8kcP/xniBgfjVAw3nJbiV0wZ3GpYkyxp0tWsIeLb4/yVw
-         LV1v86uzrWV3eVSJZWfT76g6mzkBH+p/03fTN5K51X9zIcMhh8G4d52tGwt8/+8fdHqX
-         +g2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763109837; x=1763714637;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4KysJawHwaaBhDk0PHT1s/DETKrJ3/17/2/MQdw+4wI=;
-        b=Nqz9TpkOCmNzXNgqLsQFiPB9rfpUUdHC5KtLEIAZujRIVJytClpm9PqaWgnTjBRRXM
-         BEwvNpqYek5eaxoefhmQOAGkTKbc6zVF83i2Giw2R+AKdGbimKCft1g00oq7b09ZcvmZ
-         Vrr3X/tQga22eJTlTY++4F/v58oFKNI/vSykw1YHaq18aobdfx59DmAT5VZw0xXW1npM
-         AWlgwp9yycLoJT6in0+XXAt42rP3I2eCLQBHUy2zRg1e4SS18Ycxq2x8AIkvL4PThlNM
-         nGA55z+3IckbkxwemB7BLaHM37VE0s/OPMbQlzd7eTnC5/ISMfZhOL/nw17jsxfmU2Kj
-         8hiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUfP/EaGFfmxoKUwKJe1fMsJ717joyPzcTmVaaXnUXm34B5bC41Ao1ENMZjxyCttPFH3qnij0ZwUI+c@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybmi2W6sVRFf0XQo6YqQBbokXt5x2UbAVTeGPKu0XkxjzpUZyA
-	iIicM55O1TfgovJzquoh3iEK29voJ/UNiaapF/FizYKo0JGo2OtBslKcCxg5kRERlLf60DH1+qk
-	6//QdAcqWBA4v47QYRF6rBKVBMyuoZP4bqA5mw9+vkl2PvkURYNA2fQtTe2fIxvLg
-X-Gm-Gg: ASbGncuhdNziQlLXsmY5uI75xWdP8doKzDMfrn0w6QyRtNIgW8dg+cB6YbBlo2xPBk2
-	bkDrI5F+cPxuPmnUWTX8hzBF2+Y2lqm1hg+yDx7Zbj+Yw55AuIdfvSmH1a1fdx5ZxQ53pZ+bD+G
-	jPmv8cFcqbpYvUjW9ESmfVpDoMziVFeuvZKlIqfXY6zGv+zR6om/YMS67CvsFbaURfFLVxmwAbA
-	xwmM0nptnoDHD5VjI5OjFKRv8msTW0XrY078mv0ym78dMiozb54mEPQ1THZ1a6YMTVI2jPhwpTe
-	T6g10S+PYyQVHeuDd8LuaojzWIdBE6O3Uvnzs9tYyAuZn1QgHfq2srcdBXoKvNcKQ23+yOc1Igw
-	uY66X7ycJnhKCjwAEbOBFtymTGQ==
-X-Received: by 2002:a05:6a20:4329:b0:358:dc7d:a2d0 with SMTP id adf61e73a8af0-35b9fc781cdmr3586488637.7.1763109837183;
-        Fri, 14 Nov 2025 00:43:57 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEicXfiNpeEOekwoI5ToqdCDNv9WTuMtdcrC45s6cp7XCiKNqqnedzAju2s/J/GR6ByWsB/sg==
-X-Received: by 2002:a05:6a20:4329:b0:358:dc7d:a2d0 with SMTP id adf61e73a8af0-35b9fc781cdmr3586455637.7.1763109836655;
-        Fri, 14 Nov 2025 00:43:56 -0800 (PST)
-Received: from [10.218.35.249] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bc37517864asm4121968a12.17.2025.11.14.00.43.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 00:43:56 -0800 (PST)
-Message-ID: <380aa79f-f334-44db-9527-85247f9735af@oss.qualcomm.com>
-Date: Fri, 14 Nov 2025 14:13:49 +0530
+	s=arc-20240116; t=1763110034; c=relaxed/simple;
+	bh=uNi0IN8z9nQus5eNw7uGH1EX3oz3GiVff8AX5ejQ6yM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=M4PrbI+4PmTnthSYu7RTHjIvk9L0GsdIE7oVDzMJRYBtU5oh+8ddWZrfMxAnBsbJqT6t/YBc/OLWQOINX8AJb3T0qW143Wt0zFYRCfl5Thzy4/NO3WB00sr/kZPDT+ZIzkWXfhkNjQiFBcV1QiiwfJOad4H8gcWIr0HeO/POjZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip4t1763110003t6e9a2cbd
+X-QQ-Originating-IP: /6Z5+nX3o4vML1dAYSFZidFlE4csM/xLSFdrWgK4Pqo=
+Received: from [IPV6:240f:10b:7440:1:1ea:c5f5: ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 14 Nov 2025 16:46:39 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 2104105009139998330
+Message-ID: <5CDCCB3C8D98AFF4+865e773e-29b1-4e60-b8b1-3633b996619b@radxa.com>
+Date: Fri, 14 Nov 2025 17:46:39 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,150 +46,199 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] clk: qcom: rpmh: Add support for Kaanapali rpmh
- clocks
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, jingyi.wang@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com, Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251030-gcc_kaanapali-v2-v2-0-a774a587af6f@oss.qualcomm.com>
- <20251030-gcc_kaanapali-v2-v2-4-a774a587af6f@oss.qualcomm.com>
- <swma6lyjfmyhl5ookdzvpjn5qresgsze5wptg45jfgj7ub6a4t@bdgfstw6gzoq>
+Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: joseph.kogut@gmail.com
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
+ honyuenkwun@gmail.com, quentin.schulz@cherry.de, dsimic@manjaro.org,
+ pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
+ <705A25012553039E+ea9a05c0-ccc5-4d70-930b-e989300e55a1@radxa.com>
 Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <swma6lyjfmyhl5ookdzvpjn5qresgsze5wptg45jfgj7ub6a4t@bdgfstw6gzoq>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <705A25012553039E+ea9a05c0-ccc5-4d70-930b-e989300e55a1@radxa.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 9ecZ5UfPDld6KGGfLYQO_PPioaie4nrB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA2OCBTYWx0ZWRfX30PWcRO5K2Ey
- kY/bRvSW3BdMrODDlCh1XcNhw1BCNKrjgWetQ/Dt6JEgsc0QdXS2ew6WcCo2AGF38jb6iZ2lYUe
- Uzk7JMxbuETMlw6Xp7lE+BOHzptb0JPgEvQeNP8PGEBjWNZpRhUrT7jj+nnFoBBTRZtVAv5PFI3
- 3jhwZVApeuyLGG9T1z3hNYeaaiXux8BZLUz8YSmURCR6qXMWx8V2WYCgvslWB8tKRPlvs0Xo0Xf
- 1/gfV+5I+HExYtF4sYhkvZE5MjUndUwOwYdVJyBbYV7UqAWgRYEy59+5dpr9zpaxdrFINgncMHN
- slPZXSiT9fkNf9bsLPEviD1vfjZCTcRKLo5ACqh3A6+2W4iVJj36VY0+Uc0Nfad8Kj/cWOxoK2G
- BKXxiP3Dy9B2e5RTUcK3o5s1m1pLMA==
-X-Proofpoint-GUID: 9ecZ5UfPDld6KGGfLYQO_PPioaie4nrB
-X-Authority-Analysis: v=2.4 cv=V+1wEOni c=1 sm=1 tr=0 ts=6916ebce cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=HYvDxcvnGcN7GFw1JaQA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-14_02,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 suspectscore=0 phishscore=0 clxscore=1015
- spamscore=0 priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140068
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: M5aCtjAndv5OVcqTjEihMTj5f1Ko0fludn0BGn0XcmYqxUIs/DKAIRhN
+	tEh4E8AXMglYR71ODOK3DewekC2cP0y5oM13Glr7YA7c4vTHVh5W6IrRkYQKnoDqzFxT2GT
+	PQha2GSLJd62fHTsdGuT6Fwb9zq9VIP/avQrNwc1FHspOGuXb++ySCKUmXait6YnlQPFYIt
+	IpdHInm+EcINF3vNRYKnO7KNDJ1eXzLovtvVMfuMFl4yi5xid1EOcWTMXX/qnByQ460oqf5
+	nAOqO3Z97DYnUo0Nj1xzCZ2c+lQkyPRs1cWucYJ/2Ys2fY/wS3loMwXbdJ+PwCHpmiVV1jA
+	uPzs4Dcyv5Yj2Gcj++Hdp1ljZ2TBAfUdQ4SvSNFo66tcJVAdhVEUx/AcSnkjxKGfv8kusRf
+	gvqt5lscArhhsdM4Wz9fczPZZx10EKzoTrHMcRysU+RlpPShtHZXKQfqnHihQa/dofR8ece
+	2Q2ns6UaT0pFjEuLdzY648ljX1R60/wOVN/Ehisrta0TBL7c6ATBYc1gbsuf6PnnOcU28Jj
+	YxBMQCWlqt8gbGgDb6a8Rl3hxBrLH7yK5BGFvTo1aZNYsm/cw3Ry1dWYdqRIBTISxMleNN7
+	h+9DjnBO5vsxP+wAsZf9aVtgkn9vPZz8k2RVlDwh+mzWSWSSNi4ON63x1T4sJ0lJofuCsnr
+	A9PSWmGNlI6fr6ewpt7nO1yo8Vo/BwK7nZu8jFcfGiO21yK2Yok6hfQxB4LTpaRaQhBzQ6v
+	ryCHLd/D2UAe/bQtTD1f/neRMlA63xcLyVmQrJpBQOftjjmseEaO8kWAWnRnQdW0AXZmX6q
+	s2ZHKZ1pBGnbJUpJ4xJ1XDNVjmp+LTeDDzaLHeq21YSoJjP2zjwb6zv0BBxIt6ypzWGB3cf
+	POkRHsVBMzwvniYmimxDFr9qd9EQZaYDAIOiHnca2n+Ps71PYXsqiktMUBXMhCM4xov+tO4
+	lVmsKM2pPsMQiDO7iKa0eobroxW7ZSUlsVzf6X9TdGE6urIqryvMYj0FjVI0FBgUAURQElm
+	NMLW0MrYqoxk0aBSIi
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+X-QQ-RECHKSPAM: 0
 
+(Sorry, "To:" was wrong in previous email)
 
+Hi Joseph,
 
-On 11/11/2025 4:16 PM, Dmitry Baryshkov wrote:
-> On Thu, Oct 30, 2025 at 04:39:07PM +0530, Taniya Das wrote:
->> Add the RPMH clocks present in Kaanapali SoC.
->>
->> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->> ---
->>  drivers/clk/qcom/clk-rpmh.c | 42 ++++++++++++++++++++++++++++++++++++++++++
->>  1 file changed, 42 insertions(+)
->>
->> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
->> index 1a98b3a0c528c24b600326e6b951b2edb6dcadd7..fd0fe312a7f2830a27e6effc0c0bd905d9d5ebed 100644
->> --- a/drivers/clk/qcom/clk-rpmh.c
->> +++ b/drivers/clk/qcom/clk-rpmh.c
->> @@ -395,6 +395,19 @@ DEFINE_CLK_RPMH_VRM(clk4, _a, "C4A_E0", 1);
->>  DEFINE_CLK_RPMH_VRM(clk5, _a, "C5A_E0", 1);
->>  DEFINE_CLK_RPMH_VRM(clk8, _a, "C8A_E0", 1);
->>  
->> +DEFINE_CLK_RPMH_VRM(ln_bb_clk1, _a2_e0, "C6A_E0", 2);
->> +DEFINE_CLK_RPMH_VRM(ln_bb_clk2, _a2_e0, "C7A_E0", 2);
->> +DEFINE_CLK_RPMH_VRM(ln_bb_clk3, _a2_e0, "C8A_E0", 2);
->> +
->> +DEFINE_CLK_RPMH_VRM(rf_clk1, _a_e0, "C1A_E0", 1);
->> +DEFINE_CLK_RPMH_VRM(rf_clk2, _a_e0, "C2A_E0", 1);
+On 11/14/25 17:06, FUKAUMI Naoki wrote:
+> Hi Joseph,
 > 
-> What is the difference between these clocks and clk[3458] defined few
-> lines above? Why are they named differently? If the other name is
-> incorrect, please fix it.
+> On 11/5/25 21:15, FUKAUMI Naoki wrote:
+>> I'd like to clarify the situation regarding the v6 patch series I 
+>> submitted.
+>>
+>> The original device tree work for the Radxa CM5 and IO Board was 
+>> authored by Joseph Kogut. I took over the responsibility of getting it 
+>> upstreamed with his agreement.
+>>
+>> However, I now understand that I should have preserved the original 
+>> Signed-off-by chain (and DCO) in the v6 series. This was my oversight.
+>>
+>> To correct this, I would prefer for Joseph to post the patches 
+>> himself, which will not include my Signed-off-by.
 > 
+> Could you please post the patches?
 
-Dmitry, my intention was to make a clear distinction between the ‘rf’
-clocks and the ‘ln’ clocks. Since there could be overlap in the
-numbering, I added prefixes for clarity. I should have applied the same
-approach to clk[3458] as well. I will add the fix-up for the same.
+Please ignore the patches I sent as v6. Also, I don't claim my 
+copyright. Feel free (not) to use them.
 
->> +
->> +DEFINE_CLK_RPMH_VRM(rf_clk3, _a2_e0, "C3A_E0", 2);
->> +DEFINE_CLK_RPMH_VRM(rf_clk4, _a2_e0, "C4A_E0", 2);
->> +DEFINE_CLK_RPMH_VRM(rf_clk5, _a2_e0, "C5A_E0", 2);
->> +
->> +DEFINE_CLK_RPMH_VRM(div_clk1, _a4_e0, "C11A_E0", 4);
->> +
->>  DEFINE_CLK_RPMH_BCM(ce, "CE0");
->>  DEFINE_CLK_RPMH_BCM(hwkm, "HK0");
->>  DEFINE_CLK_RPMH_BCM(ipa, "IP0");
->> @@ -901,6 +914,34 @@ static const struct clk_rpmh_desc clk_rpmh_glymur = {
->>  	.num_clks = ARRAY_SIZE(glymur_rpmh_clocks),
->>  };
->>  
->> +static struct clk_hw *kaanapali_rpmh_clocks[] = {
->> +	[RPMH_CXO_CLK]		= &clk_rpmh_bi_tcxo_div2.hw,
->> +	[RPMH_CXO_CLK_A]	= &clk_rpmh_bi_tcxo_div2_ao.hw,
->> +	[RPMH_DIV_CLK1]		= &clk_rpmh_div_clk1_a4_e0.hw,
->> +	[RPMH_LN_BB_CLK1]	= &clk_rpmh_ln_bb_clk1_a2_e0.hw,
->> +	[RPMH_LN_BB_CLK1_A]	= &clk_rpmh_ln_bb_clk1_a2_e0_ao.hw,
->> +	[RPMH_LN_BB_CLK2]	= &clk_rpmh_ln_bb_clk2_a2_e0.hw,
->> +	[RPMH_LN_BB_CLK2_A]	= &clk_rpmh_ln_bb_clk2_a2_e0_ao.hw,
->> +	[RPMH_LN_BB_CLK3]	= &clk_rpmh_ln_bb_clk3_a2_e0.hw,
->> +	[RPMH_LN_BB_CLK3_A]	= &clk_rpmh_ln_bb_clk3_a2_e0_ao.hw,
->> +	[RPMH_RF_CLK1]		= &clk_rpmh_rf_clk1_a_e0.hw,
->> +	[RPMH_RF_CLK1_A]	= &clk_rpmh_rf_clk1_a_e0_ao.hw,
->> +	[RPMH_RF_CLK2]		= &clk_rpmh_rf_clk2_a_e0.hw,
->> +	[RPMH_RF_CLK2_A]	= &clk_rpmh_rf_clk2_a_e0_ao.hw,
->> +	[RPMH_RF_CLK3]		= &clk_rpmh_rf_clk3_a2_e0.hw,
->> +	[RPMH_RF_CLK3_A]	= &clk_rpmh_rf_clk3_a2_e0_ao.hw,
->> +	[RPMH_RF_CLK4]		= &clk_rpmh_rf_clk4_a2_e0.hw,
->> +	[RPMH_RF_CLK4]		= &clk_rpmh_rf_clk4_a2_e0_ao.hw,
->> +	[RPMH_RF_CLK5_A]	= &clk_rpmh_rf_clk5_a2_e0.hw,
->> +	[RPMH_RF_CLK5_A]	= &clk_rpmh_rf_clk5_a2_e0_ao.hw,
->> +	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
->> +};
->> +
->> +static const struct clk_rpmh_desc clk_rpmh_kaanapali = {
->> +	.clks = kaanapali_rpmh_clocks,
->> +	.num_clks = ARRAY_SIZE(kaanapali_rpmh_clocks),
->> +};
->> +
->>  static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
->>  					 void *data)
->>  {
->> @@ -991,6 +1032,7 @@ static int clk_rpmh_probe(struct platform_device *pdev)
->>  
->>  static const struct of_device_id clk_rpmh_match_table[] = {
->>  	{ .compatible = "qcom,glymur-rpmh-clk", .data = &clk_rpmh_glymur},
->> +	{ .compatible = "qcom,kaanapali-rpmh-clk", .data = &clk_rpmh_kaanapali},
->>  	{ .compatible = "qcom,milos-rpmh-clk", .data = &clk_rpmh_milos},
->>  	{ .compatible = "qcom,qcs615-rpmh-clk", .data = &clk_rpmh_qcs615},
->>  	{ .compatible = "qcom,qdu1000-rpmh-clk", .data = &clk_rpmh_qdu1000},
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> Best regards,
+> 
+> -- 
+> FUKAUMI Naoki
+> Radxa Computer (Shenzhen) Co., Ltd.
+> 
+>> My apologies for the confusion this caused. Thank you for pointing 
+>> this out.
+>>
+>> Best regards,
 >>
 >> -- 
->> 2.34.1
+>> FUKAUMI Naoki
+>> Radxa Computer (Shenzhen) Co., Ltd.
+>>
+>> On 11/5/25 14:13, FUKAUMI Naoki wrote:
+>>> This patch series add support for the Radxa CM5 SoM and IO Board.
+>>>
+>>> Changes in v6:
+>>> (Patch 1/3)
+>>> - Fix description; "Radxa CM5" is the correct name
+>>> (Patch 2/3)
+>>> - Fix #include(s)
+>>> - Include rk3588s.dtsi
+>>> - Move alias for gmac1 from io board dts
+>>> - Add Maskrom key
+>>> - Add pinctrl-* for led-0
+>>> - Add vcc_1v1_nldo_s3 regulator for pmic
+>>> - Move gmac1 (except status) from io board dts
+>>> - Fix phy-supply for gmac1
+>>> - Fix compatible for vdd_cpu_big1_s0 regulator
+>>> - Add eeprom on i2c0
+>>> - Add vdd_npu_s0 regulator for rknn
+>>> - Fix compatible for rgmii_phy1
+>>> - Add pinctrl-* and reset-* for rgmii_phy1
+>>> - Add domain-supply for pd_npu
+>>> - Add rknn_*
+>>> - Add saradc
+>>> - Fix properties in sdhci
+>>> - Move pmic from io board dts
+>>> - Fix vcc*-supply for pmic
+>>> - Add regulators in pmic
+>>> - Add tsadc
+>>> - Move vop(_mmu) from io board dts
+>>> - Trivial changes (labels, names, etc)
+>>> (Patch 3/3)
+>>> - Fix #include(s)
+>>> - Remove #include "rk3588s.dtsi"
+>>> - Fix model
+>>> - Add fan
+>>> - Add Recovery key
+>>> - Add pinctrl-* for vcc3v3_wf
+>>> - Add vcc_sysin regulator
+>>> - Add pinctrl-* for vbus5v0_typec
+>>> - Add rfkill-bt and rfkill-wlan for M.2 module
+>>> - Add sound for es8316
+>>> - Add phy-supply for combphy2_psu
+>>> - Fix power-role to "source" for fusb302
+>>> - Add rtc for hym8536
+>>> - Add audio-codec on i2c8 for es8316
+>>> - Add i2s0_8ch for es8316
+>>> - Add package_thermal for fan
+>>> - Add pinctrl-* for pcie2x1l2
+>>> - Add pwm11 for fan
+>>> - Fix properties in sdmmmc
+>>> - Add phy-supply for u2phy2_host and u2phy3_host
+>>> - Remove usb_host0_ohci
+>>> - Add pinctrl-* for usbdp_phy0
+>>> - Trivial changes (labels, names, etc)
+>>>
+>>> Changes in v5:
+>>> (Patch 2/3, per Jimmy)
+>>> - Alias eMMC to mmc0
+>>> - Remove unused sdio alias
+>>> - Move gmac, hdmi0 nodes to carrier board dts
+>>> (Patch 3/3, per Jimmy)
+>>> - Enable hdmi0_sound and i2s5_8ch
+>>> - Remove redundant enablement of sdhci
+>>> - Enable usb_host2_xhci
+>>>
+>>> - Tested HDMI audio
+>>>
+>>> Changes in v4:
+>>> - Fixed XHCI initialization bug by changing try-power-role from source
+>>>    to sink
+>>>
+>>> Changes in v3:
+>>> - Addressed YAML syntax error in dt binding (per Rob)
+>>> - Fixed whitespace issue in dts reported by checkpatch.pl
+>>> - Split base SoM and carrier board into separate patches
+>>> - Added further details about the SoM and carrier to the commit
+>>>    messages
+>>>
+>>> Changes in v2:
+>>> - Added copyright header and data sheet links
+>>> - Removed non-existent property
+>>> - Sorted alphabetically
+>>> - Removed errant whitespace
+>>> - Moved status to the end of each node
+>>> - Removed pinctrl-names property from leds (indicated by CHECK_DTBS)
+>>> - Removed delays from gmac with internal delay
+>>>
+>>> Link: https://lore.kernel.org/r/20250617-rk3588s-cm5-io-dts-upstream- 
+>>> v5-0-8d96854a5bbd@gmail.com
+>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>> ---
+>>> I have communicated with Joseph privately and taken ownership of
+>>> moving this forward, with his blessing. All bugs belong to me.
+>>> ---
+>>> FUKAUMI Naoki (3):
+>>>    dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
+>>>    arm64: dts: rockchip: Add Radxa CM5
+>>>    arm64: dts: rockchip: Add Radxa CM5 IO Board
+>>>
+>>>   .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+>>>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>>   .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 503 +++++++++++++++
+>>>   .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 602 ++++++++++++++++++
+>>>   4 files changed, 1113 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5- 
+>>> io.dts
+>>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
+>>
 >>
 > 
-
--- 
-Thanks,
-Taniya Das
 
 
