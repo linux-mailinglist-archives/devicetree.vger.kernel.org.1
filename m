@@ -1,412 +1,199 @@
-Return-Path: <devicetree+bounces-238696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8721C5D5FF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:36:38 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1B9C5D67A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:44:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C61243BE324
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:36:23 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2A9C135A8DD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:38:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406F531AF22;
-	Fri, 14 Nov 2025 13:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4714230B50A;
+	Fri, 14 Nov 2025 13:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cQ3iGFuZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F4LlhnUj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D278B315D4D
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:36:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 686E3243951
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:38:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763127370; cv=none; b=hbZuUKghDkf1WDdpy0nK1qPN8/ZX0JVBVcYqbikFBGI08YwElD2FokmxeB0SM2FRnws5XDGja6nlqkopEbTS7+iPhLGB2Dqsn9rZjd6Rj8vUcNy1AIYdqKYtfL+aRQCi8arlymzQgcDkYtnCLBocuOhFhLwwXGDl/xUewvLdk/I=
+	t=1763127495; cv=none; b=JivS3AaaGNiDyPtJ6xmz1MNS6Voh0bWYgS8Jqs+cDdQYYZOjlchFzkuS+YRgpfu3z1rlpwi1mt7bfD+cfc4BeR2GoEXmfyIF+XSCDf2PJ6oOWhjkFrA8DRJowD83JyyqiZw3tu2Qmg6EiTEw7sHV8/6hYFKYaT3NitZtTI8YVQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763127370; c=relaxed/simple;
-	bh=rsbpRPLuJ8Y4/Yw4PnJKo8krV5yqmWDCP57lNFV6hSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cvg39IfGqA1peg7qnOnZSJ+aknwyTGvdTG8odKtbAbg3QbH+CZ666r6+XLr1D3F5qz3EjiheY15Okiu5vp/wOW513PnhH7TWp/DW+hUikDcS4qfmRDkqeSxWUfRxBLE+ftZQghsuf95R1ztT5c5Ih3oI2UG08iZJFECNeGm2nn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cQ3iGFuZ; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1763127495; c=relaxed/simple;
+	bh=m50tmAKOVZaO3KVaIEd7VXOTi/ZVrWJh4kP+ruH1EnY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TwPL0sbI3QLBNIPO6xRP8ZinKJHejleZL0Y8X/L6n8qQJWHdWGDpjaMddfHqkLh+iQQ3ZZGV/q98THwKTfdGKvSQq6cozcPPV5jXYbxMJ08jajE8Y6IqmSHXJT/qEtWIu4LhV7bqIlSH16rfnjXcFYHRofLs+lW8IoAR00v9Mvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F4LlhnUj; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-29555415c5fso22729205ad.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:36:06 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b714b1290aeso297988566b.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:38:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763127366; x=1763732166; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=lb4Qki5bHo72eO9B2OE3Jm1rNZljAEP6P1/UtnhCU+k=;
-        b=cQ3iGFuZXuDxi0Q+37GjVIY5yo1v1yyf0NuonAgFBCImEHSPvfAOIThknyTw5pDCOj
-         Qpf9wI9+KK2c5hVoN853EIHzmVFdpcHgRDz1dEZ+E3PFhAwlMLBiHY3ISZ3o361z3drp
-         zHvbH0IcWWJ6JWtiWPKYgA5NBVO1GwyZ6NGw3dPGClQXM8UWCG1sF0CSI5/6UWKeGA8h
-         YDzwOupF020PNV6Syuc8Bt2F7b6CnwdWT8uyKQJFz6j2ckjevQENDarN8ediOuoA6C4O
-         X9IfSA0H/tkHHEitSThidVzoGSTm2HbaWdvzyCW051vjmmOVrMLfNSSDIMTyEjD+gfQB
-         fckA==
+        d=gmail.com; s=20230601; t=1763127492; x=1763732292; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OboskOPEErKPwAQpls5bNzuQhdJX2qsytJypo11hl/k=;
+        b=F4LlhnUjwt4Tc2r/bad5cNH8xSj2dnp+UUc0mfonQ4YmRX3T+VmozJirwizH10rLL6
+         CDr2IP5IYUatms0F7GH5kRBHzV1HgvqtZR0kGUf5A/63fYhAjuyCa3PUDaDmi2zhMSVA
+         aQrkTvKOw7RXKV7MUDf4iAVUVjIf6CZ6NKq/6JToIxbw0JZwsS5o8BbLJuV7svnpGvTF
+         z9XWM026AM5h68jxgX2Qn3VWJ0OQJ2tzGGfhHTk6tAMvTNwK0Dq+5XaxUUFeavM1cJkR
+         hcGLWcIJ5F1cQ4+mQ5MeYQTtvVzWGOQraafbBJ0RtTOoj9SsW1PRSQrQHnc74UW6s6tG
+         UPIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763127366; x=1763732166;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lb4Qki5bHo72eO9B2OE3Jm1rNZljAEP6P1/UtnhCU+k=;
-        b=HWmb8s6zpVl4V78MJMJ0MNJizNv0Vn6JHzSB5dyCm4JNx7pghblD8FD83QiGCC2MmR
-         /P30B4P7XJkwX1YOHMGJXSyhL9pSubucdKpHxGKPL8Ge5s9Hof1cMLuBlx8KIyM+b3la
-         YOdJm9oBCjz6axwrRWeK2WQY43D9FEhXHgmRL9fszjPEq0hCMh6Iod5fLo2Js4GeDMaY
-         oGNA3zTqrukJB34wXa6S1tYwUATHjGjhZmd11JP9CdLki2zrs4Oc4LxzweubBnGRhiIJ
-         Dhp6kVAGWgLHSSKk/0hugf/Y6yl6Q/36o62Un4t5QasCgvoCZfySZO3AzHzzMFHnzaPS
-         6Isg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIyPuXkBErxMkDphgASMKVlfb2T4iPRXdxwY53TIDfMAEblljRm5YYPCegD7Ind4ar7md227j7yFco@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8qPKyMjzvoZeV9bsE0Ty8/UL+amZD3B8gVTb3AENvEzGe1bjk
-	6CIPAzZ9Ah7bcCk8vrBECfp4EocKVJ60PG04BG8RQYu36Nwy28qCXhoF
-X-Gm-Gg: ASbGncsbxWhynxRO24Ey+s+Kojg7AbToBBIDofpfsMBfyWyzowk0pMQiPi3WBvLJkg+
-	NNF/f32GLWMwxamIRvCf9+hZw7btcSEXECQP26sH9phYoZUeoGXoAbA4u5dlP5jSshw7ihmSKTs
-	EPJF2FD2MZVishpctnrTNCA3iBHR7zW3I+Kz+Z36dXOZTFyiBZn92+/3XGjHlDBmouZSH5H330N
-	S48Tkz+/GU9pCG8OInM2gdEym7xOQRzkoU0PipTBMLiu9lMCLhPsGvEgeMELq/+Gpu3MSd43jD3
-	Iy+T2JsQ41G1WXWayiJXTnB+Tc4WVBjcPjm5rvxiXTjn70oKk2chhv3tACrziwvk8L9/OhkxBKu
-	QELyg9caPot1FThbmdobIVBGSsmls6RYOdMZGwNT3utEsBs2i7nVyoxRl9LtmysO+gS4dZHzjzP
-	O07RmtACTH/o+yKFvRRTgVNbpmXVgqEPt6o3/9koDBLbvOKzur
-X-Google-Smtp-Source: AGHT+IE1pWwQOQUXpelll+Ymz6AwlMQfle3dld9yqkH7aeekCJHQtvNouuavmX71xquKciZcRhoqZQ==
-X-Received: by 2002:a17:902:ef06:b0:298:595d:3d3a with SMTP id d9443c01a7336-2986a7566edmr29814205ad.50.1763127366012;
-        Fri, 14 Nov 2025 05:36:06 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2c103asm55441335ad.96.2025.11.14.05.36.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 05:36:05 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <55fba1a9-a24d-40b7-b97a-171f4a60a7dc@roeck-us.net>
-Date: Fri, 14 Nov 2025 05:36:02 -0800
+        d=1e100.net; s=20230601; t=1763127492; x=1763732292;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OboskOPEErKPwAQpls5bNzuQhdJX2qsytJypo11hl/k=;
+        b=PKIVFZzVTmL5S23PPO0vfo6F9MMwNj3Djes4/Ie5JR8vmCOI7ULMBFtfMHSTek5Xf9
+         xw0VAqM627bHBP+7uNcc3nJrLXZL2CAzAafO4rKlu5zBbsAxfz8juYh6M8aAtbAdHTW/
+         wUJpkra/aVcMzwbTacEQs1w9m1+wRFyft943uOPDyYMFIjKPfafCNGPrAyV2lnqFFYxy
+         u22Z+YZnXrGUTSYWWktdZ/xiYltfr/a6wdeBDZ6LZJI0NASV5jfENQubDywn370bHZVd
+         /54V1CU/RcF364VoJRO64JCUxXmex1YXLB8x6nACuwVeRzevv6MKBm5nAt4KP0TjnfZ3
+         a1+w==
+X-Gm-Message-State: AOJu0Yysydp2lE0V5MvXilP1OL9ixo8haVSKzMyeJfFJQFL1SIOPddBd
+	djBooVyMLCIRk5XPbexNcfpEGzbHiYNjWPAX+Aelu+o7hcNRkzise1pY
+X-Gm-Gg: ASbGnctJY8H2Zf/jvLANlHXoVH+f2SovJc/p4k8zt1X8HtA8AfnwKx42q4WNIElf3PH
+	hEDUbNHEVfG/RXHi9j+bTLbCU19HJpe/nfRPLsH+l/GvbnsVV9nHbUufucxOOMWbajGfdlZeg0l
+	I9yoBGt5a9cOMQ+25LM3b5ZIY6kNgBNDPVKu0Xc2htt0/AyQktwFx0XS1SbNnkwTDW08Zn25DcD
+	q22WL345U3IOhPpvErt3CiClE3OYbnRYWWRbctRTm9JD3LiUh7fCg0njBD4/blzNY2YIDPA0nYA
+	z+1KQElCwQnkP3yZ7j6hmLjGlNQIwUMrGHWPmSJUVeRlevHDUZkcQtCqEbWeUMERSf280buq3Kv
+	JNYscAuJUOIIP/laCSXit86F9dXjg6jPy+dHCSjbVS+wAaIAmfc+kFOh9mJxz0MkI/wBOx3O3rp
+	SuVbMy/NxDcNf77A2y6ylobBPev0qwqjPhzqcGmn0zMRH9hAEK
+X-Google-Smtp-Source: AGHT+IHlE5emn9yan7ANjC9v1EbG+iM1kGDrBeJiQfoNgY5bOTMIJhsyHpkBfuIpxhI2l/GF362j1w==
+X-Received: by 2002:a17:907:d78b:b0:b73:2b08:ac70 with SMTP id a640c23a62f3a-b736793db12mr270335166b.49.1763127491149;
+        Fri, 14 Nov 2025 05:38:11 -0800 (PST)
+Received: from SMW024614.wbi.nxp.com ([128.77.115.158])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fedb2cfsm385330666b.71.2025.11.14.05.38.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 05:38:10 -0800 (PST)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH v5 0/6] Add support for i.MX8ULP's SIM LPAV
+Date: Fri, 14 Nov 2025 05:37:32 -0800
+Message-ID: <20251114133738.1762-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] watchdog: Add driver for Gunyah Watchdog
-To: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20251114-gunyah_watchdog-v7-0-f5c155b941d5@oss.qualcomm.com>
- <20251114-gunyah_watchdog-v7-2-f5c155b941d5@oss.qualcomm.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251114-gunyah_watchdog-v7-2-f5c155b941d5@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/13/25 23:57, Hrishabh Rajput via B4 Relay wrote:
-> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> 
-> On Qualcomm SoCs running under the Gunyah hypervisor, access to watchdog
-> through MMIO is not available on all platforms. Depending on the
-> hypervisor configuration, the watchdog is either fully emulated or
-> exposed via ARM's SMC Calling Conventions (SMCCC) through the Vendor
-> Specific Hypervisor Service Calls space.
-> 
-> Add driver to support the SMC-based watchdog provided by the Gunyah
-> Hypervisor. Device registration is done in the QCOM SCM driver after
-> checks to restrict the watchdog initialization to Qualcomm devices
-> running under Gunyah.
-> 
-> Gunyah watchdog is not a hardware but an SMC-based vendor-specific
-> hypervisor interface provided by the Gunyah hypervisor. The design
-> involving QCOM SCM driver for registering the platform device has been
-> devised to avoid adding non-hardware nodes to devicetree.
-> 
-> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> ---
->   MAINTAINERS                   |   1 +
->   drivers/watchdog/Kconfig      |  13 +++
->   drivers/watchdog/Makefile     |   1 +
->   drivers/watchdog/gunyah_wdt.c | 260 ++++++++++++++++++++++++++++++++++++++++++
->   4 files changed, 275 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ddecf1ef3bed..f80e762aa324 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3215,6 +3215,7 @@ F:	arch/arm64/boot/dts/qcom/
->   F:	drivers/bus/qcom*
->   F:	drivers/firmware/qcom/
->   F:	drivers/soc/qcom/
-> +F:	drivers/watchdog/gunyah_wdt.c
->   F:	include/dt-bindings/arm/qcom,ids.h
->   F:	include/dt-bindings/firmware/qcom,scm.h
->   F:	include/dt-bindings/soc/qcom*
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index 05008d937e40..bc6db9a1c116 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -2354,4 +2354,17 @@ config KEEMBAY_WATCHDOG
->   	  To compile this driver as a module, choose M here: the
->   	  module will be called keembay_wdt.
->   
-> +config GUNYAH_WATCHDOG
-> +	tristate "Qualcomm Gunyah Watchdog"
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	depends on HAVE_ARM_SMCCC
-> +	select WATCHDOG_CORE
-> +	help
-> +	  Say Y here to include support for watchdog timer provided by the
-> +	  Gunyah hypervisor. The driver uses ARM SMC Calling Convention (SMCCC)
-> +	  to interact with Gunyah Watchdog.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called gunyah_wdt.
-> +
->   endif # WATCHDOG
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index b680e4d3c1bc..1215efb7816d 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -102,6 +102,7 @@ obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
->   obj-$(CONFIG_APPLE_WATCHDOG) += apple_wdt.o
->   obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
->   obj-$(CONFIG_MARVELL_GTI_WDT) += marvell_gti_wdt.o
-> +obj-$(CONFIG_GUNYAH_WATCHDOG) += gunyah_wdt.o
->   
->   # X86 (i386 + ia64 + x86_64) Architecture
->   obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
-> diff --git a/drivers/watchdog/gunyah_wdt.c b/drivers/watchdog/gunyah_wdt.c
-> new file mode 100644
-> index 000000000000..addfd1733ad1
-> --- /dev/null
-> +++ b/drivers/watchdog/gunyah_wdt.c
-> @@ -0,0 +1,260 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#include <linux/arm-smccc.h>
-> +#include <linux/delay.h>
-> +#include <linux/errno.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/watchdog.h>
-> +
-> +#define GUNYAH_WDT_SMCCC_CALL_VAL(func_id) \
-> +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, ARM_SMCCC_SMC_32,\
-> +			   ARM_SMCCC_OWNER_VENDOR_HYP, func_id)
-> +
-> +/* SMCCC function IDs for watchdog operations */
-> +#define GUNYAH_WDT_CONTROL   GUNYAH_WDT_SMCCC_CALL_VAL(0x0005)
-> +#define GUNYAH_WDT_STATUS    GUNYAH_WDT_SMCCC_CALL_VAL(0x0006)
-> +#define GUNYAH_WDT_PING      GUNYAH_WDT_SMCCC_CALL_VAL(0x0007)
-> +#define GUNYAH_WDT_SET_TIME  GUNYAH_WDT_SMCCC_CALL_VAL(0x0008)
-> +
-> +/*
-> + * Control values for GUNYAH_WDT_CONTROL.
-> + * Bit 0 is used to enable or disable the watchdog. If this bit is set,
-> + * then the watchdog is enabled and vice versa.
-> + * Bit 1 should always be set to 1 as this bit is reserved in Gunyah and
-> + * it's expected to be 1.
-> + */
-> +#define WDT_CTRL_ENABLE  (BIT(1) | BIT(0))
-> +#define WDT_CTRL_DISABLE BIT(1)
-> +
-> +enum gunyah_error {
-> +	GUNYAH_ERROR_OK				= 0,
-> +	GUNYAH_ERROR_UNIMPLEMENTED		= -1,
-> +	GUNYAH_ERROR_ARG_INVAL			= 1,
-> +};
-> +
-> +/**
-> + * gunyah_error_remap() - Remap Gunyah hypervisor errors into a Linux error code
-> + * @gunyah_error: Gunyah hypercall return value
-> + */
-> +static inline int gunyah_error_remap(enum gunyah_error gunyah_error)
-> +{
-> +	switch (gunyah_error) {
-> +	case GUNYAH_ERROR_OK:
-> +		return 0;
-> +	case GUNYAH_ERROR_UNIMPLEMENTED:
-> +		return -EOPNOTSUPP;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int gunyah_wdt_call(unsigned long func_id, unsigned long arg1,
-> +			   unsigned long arg2)
-> +{
-> +	struct arm_smccc_res res;
-> +
-> +	arm_smccc_1_1_smc(func_id, arg1, arg2, &res);
-> +	return gunyah_error_remap(res.a0);
-> +}
-> +
-> +static int gunyah_wdt_start(struct watchdog_device *wdd)
-> +{
-> +	unsigned int timeout_ms;
-> +	struct device *dev = wdd->parent;
-> +	int ret;
-> +
-> +	ret = gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0);
-> +	if (ret && watchdog_active(wdd)) {
-> +		dev_err(dev, "%s: Failed to stop gunyah wdt %d\n", __func__, ret);
-> +		return ret;
-> +	}
-> +
-> +	timeout_ms = wdd->timeout * 1000;
-> +	ret = gunyah_wdt_call(GUNYAH_WDT_SET_TIME, timeout_ms, timeout_ms);
-> +	if (ret) {
-> +		dev_err(dev, "%s: Failed to set timeout for gunyah wdt %d\n",
-> +			__func__, ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_ENABLE, 0);
-> +	if (ret)
-> +		dev_err(dev, "%s: Failed to start gunyah wdt %d\n", __func__, ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int gunyah_wdt_stop(struct watchdog_device *wdd)
-> +{
-> +	return gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0);
-> +}
-> +
-> +static int gunyah_wdt_ping(struct watchdog_device *wdd)
-> +{
-> +	return gunyah_wdt_call(GUNYAH_WDT_PING, 0, 0);
-> +}
-> +
-> +static int gunyah_wdt_set_timeout(struct watchdog_device *wdd,
-> +				  unsigned int timeout_sec)
-> +{
-> +	wdd->timeout = timeout_sec;
-> +
-> +	if (watchdog_active(wdd))
-> +		return gunyah_wdt_start(wdd);
-> +
-> +	return 0;
-> +}
-> +
-> +static int gunyah_wdt_get_time_since_last_ping(void)
-> +{
-> +	struct arm_smccc_res res;
-> +
-> +	arm_smccc_1_1_smc(GUNYAH_WDT_STATUS, 0, 0, &res);
-> +	if (res.a0)
-> +		return gunyah_error_remap(res.a0);
-> +
-> +	return res.a2 / 1000;
-> +}
-> +
-> +static unsigned int gunyah_wdt_get_timeleft(struct watchdog_device *wdd)
-> +{
-> +	int seconds_since_last_ping;
-> +
-> +	seconds_since_last_ping = gunyah_wdt_get_time_since_last_ping();
-> +	if (seconds_since_last_ping < 0 ||
-> +	    seconds_since_last_ping > wdd->timeout)
-> +		return 0;
-> +
-> +	return wdd->timeout - seconds_since_last_ping;
-> +}
-> +
-> +static int gunyah_wdt_restart(struct watchdog_device *wdd,
-> +			      unsigned long action, void *data)
-> +{
-> +	/* Set timeout to 1ms and send a ping */
-> +	gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0);
-> +	gunyah_wdt_call(GUNYAH_WDT_SET_TIME, 1, 1);
-> +	gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_ENABLE, 0);
-> +	gunyah_wdt_call(GUNYAH_WDT_PING, 0, 0);
-> +
-> +	/* Wait to make sure reset occurs */
-> +	mdelay(100);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct watchdog_info gunyah_wdt_info = {
-> +	.identity = "Gunyah Watchdog",
-> +	.options = WDIOF_SETTIMEOUT
-> +		 | WDIOF_KEEPALIVEPING
-> +		 | WDIOF_MAGICCLOSE,
-> +};
-> +
-> +static const struct watchdog_ops gunyah_wdt_ops = {
-> +	.owner = THIS_MODULE,
-> +	.start = gunyah_wdt_start,
-> +	.stop = gunyah_wdt_stop,
-> +	.ping = gunyah_wdt_ping,
-> +	.set_timeout = gunyah_wdt_set_timeout,
-> +	.get_timeleft = gunyah_wdt_get_timeleft,
-> +	.restart = gunyah_wdt_restart
-> +};
-> +
-> +static int gunyah_wdt_probe(struct platform_device *pdev)
-> +{
-> +	struct watchdog_device *wdd;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	ret = gunyah_wdt_call(GUNYAH_WDT_STATUS, 0, 0);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "status check failed\n");
-> +		return ret;
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
- From the context, it seems to me that this should fail silently with -ENODEV
-if the function returns -EOPNOTSUPP (not implemented).
+The LPAV System Integration Module (SIM) is an IP found inside i.MX8ULP's
+LPAV subsystem, which offers clock gating, reset line
+assertion/de-assertion, and various other misc. options.
 
-Guenter
+This series adds support for the IP by introducing a new clock HW provider
+driver and by modifying i.MX8MP's AUDIOMIX block control reset driver to
+allow it to be used for i.MX8ULP's SIM LPAV as well.
+
+This series is a spin-off from [1].
+
+[1]: https://lore.kernel.org/lkml/20240922174225.75948-1-laurentiumihalcea111@gmail.com/
+
+---
+Changes in v5:
+
+* drop patches that were already picked up by Philipp/Abel.
+* include the "bits.h" header.
+* replace mask with bit index.
+* link to v4: https://lore.kernel.org/lkml/20251104120301.913-1-laurentiumihalcea111@gmail.com/
+
+Changes in v4:
+
+* shorten commit message for patch 5
+* drop base from "struct imx8mp_audiomix_reset" and use local variable
+* imx8mp_audiomix_reset_get_regmap() now takes "struct imx8mp_audiomix_reset *"
+  as its argument instead of a "struct device *"
+* use base pointer as the data argument for devm_add_action_or_reset()
+* shorten commit message for patch 6
+* drop regmap field from "struct clk_imx8ulp_sim_lpav_data", use local
+  variable and let devres manage it
+* drop base field from "struct clk_imx8ulp_sim_lpav_data", use local
+  variable and let devres manage it.
+* CONFIG_CLK_IMX8ULP now selects CONFIG_AUXILIARY_BUS, which is needed
+  for devm_auxiliary_device_create().
+* drop static definition of "struct regmap_config" and change to using
+  local one in the clock driver.
+* link to v3: https://lore.kernel.org/lkml/20251029135229.890-1-laurentiumihalcea111@gmail.com/
+
+Changes in v3:
+
+* rename "lpav_bus", "hifi_core", and "hifi_plat" to "bus", "core", "plat"
+* don't assign the "name" field of "struct clk_parent_data". Previously, we
+  were assigning the local parent name to this field, which wouldn't have
+  worked anyways if, for whatever reason, the fallback mechanism would kick in.
+* replace the whole auxiliary reset driver creation chunk by
+  a single devm_auxiliary_device_create() call.
+* replace the "shift" field from "struct imx8mp_reset_map" with the usage of
+  ffs()
+* shorten commit description for patch 6
+* cast "id->driver_data" to "void *" instead of the previous
+  "const struct imx8mp_reset_info *", which makes the line shorter.
+* open question resulting from Peng Fan's comment on V2: how to access
+  interconnect QoS registers? do we need to model the sim_lpav as an
+  interconnect provider as well or is it fine to have another interconnect
+  provider that references the sim_lpav node and accesses its registers
+  via regmap (dev_get_regmap(), specifically, NOT syscon).
+* link to v2: https://lore.kernel.org/lkml/20251017112025.11997-1-laurentiumihalcea111@gmail.com/
+
+Changes in v2:
+
+* drop redundant description for "#clock-cells"/"#reset-cells" properties
+  from binding
+* make "mux-controller" and "#reset-cells" properties mandatory
+* add "mux-controller" child to binding example node
+* drop the compatiblity with syscon - this was never actually needed and
+  it was done to allow using "mmio-mux", which requires a syscon parent
+* modify the auxiliary reset driver to use regmap - this will allow the
+  mux controller, clock control and reset control APIs to use the same
+  spinlock.
+* rename "imx8ulp-reset-sim-lpav.h" to "fsl,imx8ulp-sim-lpav.h"
+* drop the "IMX8ULP_CLK_SIM_LPAV_END" macro, which doesn't belong to the
+  binding headers
+* fix the values of "IMX8MP_AUDIOMIX_EARC_RESET_MASK" and
+  "IMX8MP_AUDIOMIX_EARC_PHY_RESET_MASK", which were previously incorrect
+* drop redundant macros from auxiliary reset driver - replace their
+  occurrences with their values
+* squash the binding-related macro additions into the binding patch
+* add mux-controller child node to the sim_lpav node
+* make the "gates" array static
+* link to v1: https://lore.kernel.org/lkml/20250804155407.285353-1-laurentiumihalcea111@gmail.com/
+---
+
+Laurentiu Mihalcea (6):
+  reset: imx8mp-audiomix: Drop unneeded macros
+  reset: imx8mp-audiomix: Replace mask with bit index
+  reset: imx8mp-audiomix: Switch to using regmap API
+  reset: imx8mp-audiomix: Extend the driver usage
+  reset: imx8mp-audiomix: Support i.MX8ULP SIM LPAV
+  arm64: dts: imx8ulp: add sim lpav node
+
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi |  17 +++
+ drivers/reset/reset-imx8mp-audiomix.c      | 170 +++++++++++++++------
+ 2 files changed, 141 insertions(+), 46 deletions(-)
+
+-- 
+2.43.0
 
 
