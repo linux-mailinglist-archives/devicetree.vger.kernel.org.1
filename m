@@ -1,404 +1,218 @@
-Return-Path: <devicetree+bounces-238794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E6DC5E411
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:34:20 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 867F9C5DE9E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:37:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7E04E4E584C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:47:18 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A0D73381801
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09E1340A69;
-	Fri, 14 Nov 2025 15:33:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AD633E36C;
+	Fri, 14 Nov 2025 14:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Aq3cTo12";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Pf6T7MCT"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PaZwhQLD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3558341ADD
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 15:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC2F331207;
+	Fri, 14 Nov 2025 14:57:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763134439; cv=none; b=tSSBD4QQrh+jFWvv7PYYIWF09YvFbqfDt1L6y4EGmtC5I4mg5ZzeFDzusNUe2d5oKW/cDu/NApsw5rc9YU4RAFITwnIgeZ6ccIpYLo1rfS8jjwEzSKpkok86SGpgp042Q6z7YsQ83S5XtI6JfhAP2yFjTBoJIYtovJBdeFDCQOI=
+	t=1763132250; cv=none; b=kEQLM95Ue14Oi0fHEG59dMyUaHBntxl5FSSNkFjDhrsC7xQAdb91CqXADzSV85RxSnOCVCYisFE2G9qAVFHrHX6UwubX3TrNLiks+lxiUwQzKm3xNfInze0CaiF58uSXnNOiZsU6h2V70b4A7bX3rcz6b+qU0LVftuqgCHHE0TM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763134439; c=relaxed/simple;
-	bh=NDU/9DTGFzTS6lHtk5lvp+cXA2+ZXVND12r05xXFGZw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=t3T9Gychecaf/1oRQ9xM329ssQX+qqSB5cVnxNXi90BUpor9yGN2lXLZJ6VgU86kd1+kHw/ncLawZAveGZBGbjaZHz+JLJVjH7VUFHDBggUqHCxAC1DsYbu1XRIg7h7YGnmSO1p6fMSR2HgktathUrlnkgahTRqWknTil/xdudw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Aq3cTo12; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Pf6T7MCT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE8Rvha1427916
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 15:33:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=aq+XT4jKptJ
-	SUIP35BrFeVRs5wjC8qJyB9EbrAfv+z4=; b=Aq3cTo12ElBNQ94jgVomCptbPf1
-	JaUEenX5oCJTddwHklj9x+zd58hXR3oK0KOH4dC4JFnopubYwgrkP0bGRjT8B1fU
-	yjhi70mjR1dmXbL3OrxAag5/GO8XIz8LkRALKta4RfvVYRqru+YK9LG0mikuhtUA
-	tddMy6k5p5v+HEeQJb2o9Tnpur53sLSf+yBAtMY5tqx9V88ExjVDvng3Rpn7mI6x
-	db1vgHHXBlN9aYkUlArPxnhuOwlzDp/+zNJaBqHO5Okm+bIiwozARBoHv2KI6sOM
-	rHz+JohAfywYdJwBffUCSTEXEugMVTkgfzhtJwW98Hcl1VyI25YLB63x0Eg==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adr9g2mkc-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 15:33:56 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8a9ec099b5cso612363785a.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:33:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763134436; x=1763739236; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aq+XT4jKptJSUIP35BrFeVRs5wjC8qJyB9EbrAfv+z4=;
-        b=Pf6T7MCTVzHO0hk1h5pQ8T7P9yhcj+tKFIdYbR9WuW9IelU04Zl1GVLMYNRlVs6n8s
-         TfOjN2HSecBqSDCvZtUYrPnl4tYTiKTwLlw2/xz969Ieg1tgJGoAM/k2wEaasBpcZue4
-         i/ODhjhZhnmzMiRvC6VLy1BZ3V0PtTgbrLwmowVZNEPHA0ve31TSbVvzQMagEd0PQmLA
-         U2Dwf9wzM7HboTmLfeVUZS8Jpl8nU81CeUhMk4C61bZ6Y85lE77E5gNjMxhjgyDedAYL
-         Lhgvg47Gay1kcASxNeyfnjOjNxHFn+6reX/KVHwUYNmLD0JKqEyOdj6PasrzngRI6VlD
-         5x5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763134436; x=1763739236;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=aq+XT4jKptJSUIP35BrFeVRs5wjC8qJyB9EbrAfv+z4=;
-        b=oYEIqvCqmXrAmxa8fnxSgFxmbuIuE/hTYpRMUaIdwITbzPRsDycesLpUd8i8cuOsRV
-         VL0OpGhLZjzALZeB+Z29cg1A861PiMrWCFs0ghLZfz856LYrIcNGLEdjQGzuK9S02BMT
-         uTWa1HeU9ojErUIbnEJjXvxQIQTZKFKzE/0Zi6JJMJJX02bAalrMr3rpM3qLP6vW7YgB
-         naw+Nf7WXZxFGvDXV7T9HzTx4zbznjga2o2u5H2BRff046OOlPAsEpfN9tpIIlTKq17w
-         x5dUmnCPq5ufhGMprwu7kI8uxWSE4eC5g11ZkLj93IOTw+QzoAzqjEHgj25DMlAdydU3
-         xfWA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkWO14I2z92bVamtDUVoEwuYd7D+dX7UTS19HmsgMiA9VFGycYjrX/nybxVcM9sONPWGr03MyWMlUa@vger.kernel.org
-X-Gm-Message-State: AOJu0YymhjgmPd32fpm5lvBasx4He9NphXz8HWAlN16vuqGHCgNtHMR4
-	5MYX/HhNtzedAwjHW2ed6HSdlDcNZumdHxCr4cJcTUBh/qIANyf5lGSkRXImgglRozNgA8DoxDa
-	OlPZ13vJdNkwSkvYjce2+SLqinF7BzMzGbDua+76lwDpkC1aU6Kr+xfKxjWkN00sY
-X-Gm-Gg: ASbGncv1kaLvZjdrK6PX2LjYeLKz839t63vzU2Dlb6raD4YQ3bpEsFDCL4QLvkYvBWY
-	d4WADzpPrpTidNe8RP4QCLopWpI0obqmuxjsSRTRj+kyI/HPjkyIrvn9KM3X7CZW9lLchVPe6Fp
-	6wsxD2Ffd671tlWUYenPemlCQqXHgt3sJzFjnxwlcs8nTk/TpDmFgmBClvG22Y/bIn1xeQkQ6wK
-	ds3SDJbNW+xZHdhi6UFx6aCVUscn3JcmpH4MYEPicGBwvQISycg6bUHJZwt/kJckcrHzO12EOvS
-	gf6wB2ISW+eXhPt+KJVRsVIkFVJt6PUNAZcQVeqdEadPnFeK4L+/iHR8gSUADPUzi4Lk8Qlvyp2
-	muBj1TB3789mat0Kaukdtgsy8wvU4jQ==
-X-Received: by 2002:a17:902:e548:b0:294:fb21:ae07 with SMTP id d9443c01a7336-2986a6d692dmr37469195ad.21.1763132244634;
-        Fri, 14 Nov 2025 06:57:24 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHLkk2GCSNJknT6ol4YR4oPjskABRG9VD9RIRBzBKsc5wu7Io5HACafNijLahG9P+6hwQPyAw==
-X-Received: by 2002:a17:902:e548:b0:294:fb21:ae07 with SMTP id d9443c01a7336-2986a6d692dmr37468815ad.21.1763132244095;
-        Fri, 14 Nov 2025 06:57:24 -0800 (PST)
-Received: from hu-rdwivedi-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c244e13sm57548015ad.29.2025.11.14.06.57.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 06:57:23 -0800 (PST)
-From: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>
-To: mani@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
-        bvanassche@acm.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, James.Bottomley@HansenPartnership.com,
-        martin.petersen@oracle.com, ram.dwivedi@oss.qualcomm.com,
-        quic_ahari@quicinc.com
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Shazad Hussain <quic_shazhuss@quicinc.com>
-Subject: [PATCH V1 3/3] ufs: ufs-qcom: Add support for firmware-managed resource abstraction
-Date: Fri, 14 Nov 2025 20:26:46 +0530
-Message-Id: <20251114145646.2291324-4-ram.dwivedi@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251114145646.2291324-1-ram.dwivedi@oss.qualcomm.com>
-References: <20251114145646.2291324-1-ram.dwivedi@oss.qualcomm.com>
+	s=arc-20240116; t=1763132250; c=relaxed/simple;
+	bh=UTl0W5+Bdo6I+bjM1sDG2qr2k/CxEVF6Tf83hOXGMzU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U4sNlGV2qEcjBGdH7l0avBQ8twftorCP6lmdOz0cTInxoXbA6ie/aBU8UImT/lugiMQAFn+a1PfTw0/8JOTAQ+5LWqrZSRC4TL4TzkdDhPGSEVVXWUb4Sc2Gen5WEjqKtqE+V9GTT7GVvMK+T/ZMY+eCDhhsHFGomweYinfGig8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PaZwhQLD; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1036CB5;
+	Fri, 14 Nov 2025 15:55:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1763132124;
+	bh=UTl0W5+Bdo6I+bjM1sDG2qr2k/CxEVF6Tf83hOXGMzU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PaZwhQLDGaev/igVb0jI/OydGH3dMJiRT5hie2WPZI9PhWjrvgydCncmP68HwsIgu
+	 NMOdv/Dod3ygTeAVnKJy2eINSdDKG2I3B7kqTPukZdAjBN9Jt3CCNjyRmGKUN7rBX6
+	 nd3GoNDppwdbVYgtEa5Z/5fN1XuPLYXj9XDckE7E=
+Date: Fri, 14 Nov 2025 15:57:21 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Daniel Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, nayden.kanchev@arm.com, 
+	robh+dt@kernel.org, mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com, 
+	laurent.pinchart@ideasonboard.com, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v13 15/15] Documentation: mali-c55: Document the mali-c55
+ parameter setting
+Message-ID: <umslyxkmj4gnr743c6ixsykay5w2seoeiy2hzidg6lb3fcizep@dglvrn7l7a4q>
+References: <20251111-c55-v13-0-3dc581355e3a@ideasonboard.com>
+ <20251111-c55-v13-15-3dc581355e3a@ideasonboard.com>
+ <2n4sn2aakwl7k2qvcefb7m2zzllytj7i4nup55xex2ggdngfkd@gwpxbpmlupko>
+ <aRdBbn4cpdn_7H0v@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=L+AQguT8 c=1 sm=1 tr=0 ts=69174be4 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=TgZdhWxOq2hPTxl1y-EA:9 a=bTQJ7kPSJx9SKPbeHEYW:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDEyNSBTYWx0ZWRfXwLmiLQjluBOU
- coUoF8RnB19s5r2CBx7faIyhPjrp2z85SZrT6xgHdG0/dxqYUJNxKtxuIIYLzAyenAtdH7isStg
- EoGceZURYk8SQ+l8/n7Y6wy8/qYLg3HRHY5dsJWN3xQmmPXpo/w9R1nGpTM/2ueUQQ47NiAF6Ia
- /1qVcgoL7U7xdJRMikGvbZPjQmICXFbQvo9wo2OAA1L5v/0w3yFu0CzKGmSxgSqa5tzTERj7SvY
- d60HvGtn4caDhJLOSKdo0G1cUIWL5CUbBFJXunKOUDW1qL55s+GR55gukH+xe0hBvtSMmsEQerI
- IrolLE4UIBSuFeJniiaf75r+HyJkRk5vEnBGMuYazPfn3TuX4NV8zi5lsRPCzovMM0kISIlTP6L
- Fjz/Pnm7PPzqMWTPFV/SR69AOHmZcA==
-X-Proofpoint-ORIG-GUID: S4A_yW2YRtf0vdFVBgdgJ0OH67-qpLOw
-X-Proofpoint-GUID: S4A_yW2YRtf0vdFVBgdgJ0OH67-qpLOw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-14_04,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 impostorscore=0 priorityscore=1501 adultscore=0
- clxscore=1015 bulkscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140125
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aRdBbn4cpdn_7H0v@kekkonen.localdomain>
 
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+Hi Sakari,
+   can't say timing is what we excel the most at.
 
-Add a compatible string for SA8255p platforms where resources such as
-PHY, clocks, regulators, and resets are managed by firmware through an
-SCMI server. Use the SCMI power protocol to abstract these resources and
-invoke power operations via runtime PM APIs (pm_runtime_get/put_sync).
+Afaik Hans has applied the PR, and as all comments here are on ...
+comments, they will be addressed with patches on top
 
-Introduce vendor operations (vops) for SA8255p targets to enable SCMI-
-based resource control. In this model, capabilities like clock scaling
-and gating are not yet supported; these will be added incrementally.
+On Fri, Nov 14, 2025 at 04:49:18PM +0200, Sakari Ailus wrote:
+> Hi Jacopo,
+>
+> On Thu, Nov 13, 2025 at 09:39:37AM +0100, Jacopo Mondi wrote:
+> > > +the data member with the blocks that need to be configured by the driver, but
+> > > +need not populate it with **all** the blocks, or indeed with any at all if there
+> > > +are no configuration changes to make. Populated blocks **must** be consecutive
+> > > +in the buffer. To assist both userspace and the driver in identifying the
+> > > +blocks each block-specific struct embeds :c:type:`v4l2_params_block_header` as
+> > > +its first member and userspace must populate the type member with a value from
+> > > +:c:type:`mali_c55_param_block_type`. Once the blocks have been populated
+> > > +into the data buffer, the combined size of all populated blocks shall be set in
+> > > +the data_size member of :c:type:`v4l2_params_buffer`. For example:
+> > > +
+> > > +.. code-block:: c
+> > > +
+> > > +	struct v4l2_params_buffer *params =
+> > > +		(struct v4l2_params_buffer *)buffer;
+> > > +
+> > > +	params->version = MALI_C55_PARAM_BUFFER_V1;
+> > > +	params->data_size = 0;
+> > > +
+> > > +	void *data = (void *)params->data;
+> > > +
+> > > +	struct mali_c55_params_awb_gains *gains =
+> > > +		(struct mali_c55_params_awb_gains *)data;
+> > > +
+> > > +	gains->header.type = MALI_C55_PARAM_BLOCK_AWB_GAINS;
+> > > +	gains->header.flags |= V4L2_PARAMS_FL_BLOCK_ENABLE;
+> > > +	gains->header.size = sizeof(struct mali_c55_params_awb_gains);
+> > > +
+> > > +	gains->gain00 = 256;
+> > > +	gains->gain00 = 256;
+> > > +	gains->gain00 = 256;
+> > > +	gains->gain00 = 256;
+> > > +
+> > > +	data += sizeof(struct mali_c55_params_awb_gains);
+> > > +	params->data_size += sizeof(struct mali_c55_params_awb_gains);
+> > > +
+> > > +	struct mali_c55_params_sensor_off_preshading *blc =
+> > > +		(struct mali_c55_params_sensor_off_preshading *)data;
+> > > +
+> > > +	blc->header.type = MALI_C55_PARAM_BLOCK_SENSOR_OFFS;
+> > > +	blc->header.flags |= V4L2_PARAMS_FL_BLOCK_ENABLE;
+> > > +	blc->header.size = sizeof(struct mali_c55_params_sensor_off_preshading);
+> > > +
+> > > +	blc->chan00 = 51200;
+> > > +	blc->chan01 = 51200;
+> > > +	blc->chan10 = 51200;
+> > > +	blc->chan11 = 51200;
+> > > +
+> > > +	params->total_size += sizeof(struct mali_c55_params_sensor_off_preshading);
+> >
+> > s/total_size/data_size
+> >
+> > And I've also updated it to use the v4l2-isp types
+> >
+> > +.. code-block:: c
+> > +
+> > +       struct v4l2_isp_params_buffer *params =
+> > +               (struct v4l2_isp_params_buffer *)buffer;
+>
+> What's the type of buffer here? If it's void, you can drop the cast.
+>
+> > +
+> > +       params->version = MALI_C55_PARAM_BUFFER_V1;
+> > +       params->data_size = 0;
+> > +
+> > +       void *data = (void *)params->data;
+>
+> No need for a cast here.
+>
+> > +
+> > +       struct mali_c55_params_awb_gains *gains =
+> > +               (struct mali_c55_params_awb_gains *)data;
+>
+> Ditto.
+>
+> Unless, I guess, you use C++. :-)
+>
 
-Co-developed-by: Anjana Hari <quic_ahari@quicinc.com>
-Signed-off-by: Anjana Hari <quic_ahari@quicinc.com>
-Co-developed-by: Shazad Hussain <quic_shazhuss@quicinc.com>
-Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
-Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
----
- drivers/ufs/host/ufs-qcom.c | 161 +++++++++++++++++++++++++++++++++++-
- drivers/ufs/host/ufs-qcom.h |   1 +
- 2 files changed, 161 insertions(+), 1 deletion(-)
+It was C++ code yes :)
 
-diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-index 8d119b3223cb..13ccf1fb2ebf 100644
---- a/drivers/ufs/host/ufs-qcom.c
-+++ b/drivers/ufs/host/ufs-qcom.c
-@@ -14,6 +14,7 @@
- #include <linux/of.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
- #include <linux/reset-controller.h>
- #include <linux/time.h>
- #include <linux/unaligned.h>
-@@ -619,6 +620,27 @@ static int ufs_qcom_hce_enable_notify(struct ufs_hba *hba,
- 	return err;
- }
- 
-+static int ufs_qcom_fw_managed_hce_enable_notify(struct ufs_hba *hba,
-+						 enum ufs_notify_change_status status)
-+{
-+	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-+
-+	switch (status) {
-+	case PRE_CHANGE:
-+		ufs_qcom_select_unipro_mode(host);
-+		break;
-+	case POST_CHANGE:
-+		ufs_qcom_enable_hw_clk_gating(hba);
-+		ufs_qcom_ice_enable(host);
-+		break;
-+	default:
-+		dev_err(hba->dev, "Invalid status %d\n", status);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- /**
-  * ufs_qcom_cfg_timers - Configure ufs qcom cfg timers
-  *
-@@ -789,6 +811,38 @@ static int ufs_qcom_resume(struct ufs_hba *hba, enum ufs_pm_op pm_op)
- 	return ufs_qcom_ice_resume(host);
- }
- 
-+static int ufs_qcom_fw_managed_suspend(struct ufs_hba *hba, enum ufs_pm_op pm_op,
-+				       enum ufs_notify_change_status status)
-+{
-+	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-+
-+	if (status == PRE_CHANGE)
-+		return 0;
-+
-+	if (hba->spm_lvl != UFS_PM_LVL_5) {
-+		dev_err(hba->dev, "Unsupported spm level %d\n", hba->spm_lvl);
-+		return -EINVAL;
-+	}
-+
-+	pm_runtime_put_sync(hba->dev);
-+
-+	return ufs_qcom_ice_suspend(host);
-+}
-+
-+static int ufs_qcom_fw_managed_resume(struct ufs_hba *hba, enum ufs_pm_op pm_op)
-+{
-+	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-+	int err;
-+
-+	err = pm_runtime_resume_and_get(hba->dev);
-+	if (err) {
-+		dev_err(hba->dev, "PM runtime resume failed: %d\n", err);
-+		return err;
-+	}
-+
-+	return ufs_qcom_ice_resume(host);
-+}
-+
- static void ufs_qcom_dev_ref_clk_ctrl(struct ufs_qcom_host *host, bool enable)
- {
- 	if (host->dev_ref_clk_ctrl_mmio &&
-@@ -1421,6 +1475,52 @@ static void ufs_qcom_exit(struct ufs_hba *hba)
- 	phy_exit(host->generic_phy);
- }
- 
-+static int ufs_qcom_fw_managed_init(struct ufs_hba *hba)
-+{
-+	struct device *dev = hba->dev;
-+	struct ufs_qcom_host *host;
-+	int err;
-+
-+	host = devm_kzalloc(dev, sizeof(*host), GFP_KERNEL);
-+	if (!host)
-+		return -ENOMEM;
-+
-+	host->hba = hba;
-+	ufshcd_set_variant(hba, host);
-+
-+	ufs_qcom_get_controller_revision(hba, &host->hw_ver.major,
-+					 &host->hw_ver.minor, &host->hw_ver.step);
-+
-+	err = ufs_qcom_ice_init(host);
-+	if (err)
-+		goto out_variant_clear;
-+
-+	ufs_qcom_get_default_testbus_cfg(host);
-+	err = ufs_qcom_testbus_config(host);
-+	if (err)
-+		/* Failure is non-fatal */
-+		dev_warn(dev, "Failed to configure the testbus %d\n", err);
-+
-+	hba->caps |= UFSHCD_CAP_WB_EN;
-+
-+	ufs_qcom_advertise_quirks(hba);
-+	host->hba->quirks &= ~UFSHCD_QUIRK_REINIT_AFTER_MAX_GEAR_SWITCH;
-+
-+	ufs_qcom_set_host_params(hba);
-+	ufs_qcom_parse_gear_limits(hba);
-+
-+	return 0;
-+
-+out_variant_clear:
-+	ufshcd_set_variant(hba, NULL);
-+	return err;
-+}
-+
-+static void ufs_qcom_fw_managed_exit(struct ufs_hba *hba)
-+{
-+	pm_runtime_put_sync(hba->dev);
-+}
-+
- /**
-  * ufs_qcom_set_clk_40ns_cycles - Configure 40ns clk cycles
-  *
-@@ -1952,6 +2052,39 @@ static int ufs_qcom_device_reset(struct ufs_hba *hba)
- 	return 0;
- }
- 
-+/**
-+ * ufs_qcom_fw_managed_device_reset - Reset UFS device under FW-managed design
-+ * @hba: pointer to UFS host bus adapter
-+ *
-+ * In the firmware-managed reset model, cold boot power-on is handled
-+ * automatically by the PM domain framework during SCMI protocol init,
-+ * before ufshcd_device_reset() is reached. For subsequent resets
-+ * (such as suspend/resume or recovery), the UFS driver must explicitly
-+ * invoke PM runtime operations to reset the subsystem.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+static int ufs_qcom_fw_managed_device_reset(struct ufs_hba *hba)
-+{
-+	static bool is_boot = true;
-+	int err;
-+
-+	/* Skip reset on cold boot; perform it on subsequent calls */
-+	if (is_boot) {
-+		is_boot = false;
-+		return 0;
-+	}
-+
-+	pm_runtime_put_sync(hba->dev);
-+	err = pm_runtime_resume_and_get(hba->dev);
-+	if (err < 0) {
-+		dev_err(hba->dev, "PM runtime resume failed: %d\n", err);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
- static void ufs_qcom_config_scaling_param(struct ufs_hba *hba,
- 					struct devfreq_dev_profile *p,
- 					struct devfreq_simple_ondemand_data *d)
-@@ -2231,6 +2364,20 @@ static const struct ufs_hba_variant_ops ufs_hba_qcom_vops = {
- 	.freq_to_gear_speed	= ufs_qcom_freq_to_gear_speed,
- };
- 
-+static const struct ufs_hba_variant_ops ufs_hba_qcom_sa8255p_vops = {
-+	.name                   = "qcom-sa8255p",
-+	.init                   = ufs_qcom_fw_managed_init,
-+	.exit                   = ufs_qcom_fw_managed_exit,
-+	.hce_enable_notify      = ufs_qcom_fw_managed_hce_enable_notify,
-+	.pwr_change_notify      = ufs_qcom_pwr_change_notify,
-+	.apply_dev_quirks       = ufs_qcom_apply_dev_quirks,
-+	.fixup_dev_quirks       = ufs_qcom_fixup_dev_quirks,
-+	.suspend                = ufs_qcom_fw_managed_suspend,
-+	.resume                 = ufs_qcom_fw_managed_resume,
-+	.dbg_register_dump      = ufs_qcom_dump_dbg_regs,
-+	.device_reset           = ufs_qcom_fw_managed_device_reset,
-+};
-+
- /**
-  * ufs_qcom_probe - probe routine of the driver
-  * @pdev: pointer to Platform device handle
-@@ -2241,9 +2388,16 @@ static int ufs_qcom_probe(struct platform_device *pdev)
- {
- 	int err;
- 	struct device *dev = &pdev->dev;
-+	const struct ufs_hba_variant_ops *vops;
-+	const struct ufs_qcom_drvdata *drvdata = device_get_match_data(dev);
-+
-+	if (drvdata && drvdata->vops)
-+		vops = drvdata->vops;
-+	else
-+		vops = &ufs_hba_qcom_vops;
- 
- 	/* Perform generic probe */
--	err = ufshcd_pltfrm_init(pdev, &ufs_hba_qcom_vops);
-+	err = ufshcd_pltfrm_init(pdev, vops);
- 	if (err)
- 		return dev_err_probe(dev, err, "ufshcd_pltfrm_init() failed\n");
- 
-@@ -2271,10 +2425,15 @@ static const struct ufs_qcom_drvdata ufs_qcom_sm8550_drvdata = {
- 	.no_phy_retention = true,
- };
- 
-+static const struct ufs_qcom_drvdata ufs_qcom_sa8255p_drvdata = {
-+	.vops = &ufs_hba_qcom_sa8255p_vops
-+};
-+
- static const struct of_device_id ufs_qcom_of_match[] __maybe_unused = {
- 	{ .compatible = "qcom,ufshc" },
- 	{ .compatible = "qcom,sm8550-ufshc", .data = &ufs_qcom_sm8550_drvdata },
- 	{ .compatible = "qcom,sm8650-ufshc", .data = &ufs_qcom_sm8550_drvdata },
-+	{ .compatible = "qcom,sa8255p-ufshc", .data = &ufs_qcom_sa8255p_drvdata },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, ufs_qcom_of_match);
-diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
-index 380d02333d38..1111ab34da01 100644
---- a/drivers/ufs/host/ufs-qcom.h
-+++ b/drivers/ufs/host/ufs-qcom.h
-@@ -313,6 +313,7 @@ struct ufs_qcom_host {
- struct ufs_qcom_drvdata {
- 	enum ufshcd_quirks quirks;
- 	bool no_phy_retention;
-+	const struct ufs_hba_variant_ops *vops;
- };
- 
- static inline u32
--- 
-2.34.1
+> > +
+> > +       gains->header.type = MALI_C55_PARAM_BLOCK_AWB_GAINS;
+> > +       gains->header.flags |= V4L2_ISP_PARAMS_FL_BLOCK_ENABLE;
+> > +       gains->header.size = sizeof(struct mali_c55_params_awb_gains);
+> > +
+> > +       gains->gain00 = 256;
+> > +       gains->gain00 = 256;
+> > +       gains->gain00 = 256;
+> > +       gains->gain00 = 256;
+> > +
+> > +       data += sizeof(struct mali_c55_params_awb_gains);
+>
+> 	data += sizeof(*gains);
+>
+> ?
+>
+> > +       params->data_size += sizeof(struct mali_c55_params_awb_gains);
+>
+> Ditto.
+>
+> > +
+> > +       struct mali_c55_params_sensor_off_preshading *blc =
+> > +               (struct mali_c55_params_sensor_off_preshading *)data;
+> > +
+> > +       blc->header.type = MALI_C55_PARAM_BLOCK_SENSOR_OFFS;
+> > +       blc->header.flags |= V4L2_ISP_PARAMS_FL_BLOCK_ENABLE;
+> > +       blc->header.size = sizeof(struct mali_c55_params_sensor_off_preshading);
+> > +
+> > +       blc->chan00 = 51200;
+> > +       blc->chan01 = 51200;
+> > +       blc->chan10 = 51200;
+> > +       blc->chan11 = 51200;
+> > +
+> > +       params->data_size += sizeof(struct mali_c55_params_sensor_off_preshading);
+>
+> 	... += sizeof(*blc);
+>
+> ?
 
+Patches will follow after v6.19 has been released
+
+
+>
+> >
+> > With your ack, I'll apply the following changes before sending the PR.
+> >
+> > Thanks
+> >   j
+> >
+> > > +
+> > >  Arm Mali-C55 uAPI data types
+> > >  ============================
+> > >
+> > >
+>
+> --
+> Regards,
+>
+> Sakari Ailus
 
