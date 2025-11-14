@@ -1,146 +1,169 @@
-Return-Path: <devicetree+bounces-238691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84937C5D590
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:29:03 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0922AC5D587
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:28:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E86794E221B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:22:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 13CCA3453FB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6BD314A6E;
-	Fri, 14 Nov 2025 13:22:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JLxJBecV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025D1314D25;
+	Fri, 14 Nov 2025 13:23:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE033148B7
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:22:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433B7314A6B
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763126525; cv=none; b=GXK+DuJFx/ADYJKUdTI56US3tDn1CvwZhqFG8nwOlxq0y6kR5QossushxX24nPh3fMIcBjBdHfbXk6Gsi2V/tUXW1pv/xGaj2sZBheNSmw1thOhauDym79SbpeVfbmVQsmWuxSjBeJACVGuZOlEi3ZHeYp2eRwQO/Zdi2c+zKaU=
+	t=1763126583; cv=none; b=FHY4paS5mpN42JpclVXLfvWC0gmtYcYVCsFbRq2isR1Xkhz/vKBEFiekG/DFoBv7crc7aMRfvT5vQOrxsovn0rEB+t4gqkdtXluRCC/WO0qmwcq/XT/bB0IEfsI7NB9vm4eWPLT4OxV4/1MwH+7M8CIEJ8H9NmwWTQ292eDKDok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763126525; c=relaxed/simple;
-	bh=PIhVxornY+xeHydrfUvm8sKztzt4GgYtkzvZxgJ8W40=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mwW+FBZb0F5iEJOfq+uMlmS3+8gTaxylt3c+k3KI4t9Qux+q1vf+UbEDLWvMD7ESVc3n7ed+asp36yEz1K1xRoaBvbcehAWX0Bd4wtIkrk28Id0n42gjR0O72Izs/5coyijfD/7wG+YabLOqf4qPiGdwuxRzaGd8v8JPYjo1Tqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JLxJBecV; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-37b95f87d4eso17035101fa.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:22:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763126522; x=1763731322; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TrtX8x6xiGPlcF3REo6XTaulSDVNKE90sjqlhnGudPU=;
-        b=JLxJBecVTt7ci4MySHtaJCX2RuSWm+47+kgQXd3+q5iCTC6xRsKVeS4VMO2C6iKoUi
-         7wC7myl8516ZyD8NfP4qhC6InalfcMWDXVAnbtLDFNwJ6ARwpQfEZIrsLX12cgIT1uql
-         lrk6TGIK/1QEbP5uaOpQ8lOu/DJZfSzIb3aiGlYvsoBl6Z+b0tkjB3xpz6kbj1SreGpl
-         da9piGtvNIXkCcYmoDu2sNWR9609OQO1ta0KvjdQNYb4U1AiIS2D9tvNsn+Wv5udjE9n
-         tKW1+Vcx+V8JDmWgyb2Y2iuVQPq4hnOZ7a48Uw3v7Cx5fOHYIAEu4dBdezJxsOSPM0Es
-         tZGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763126522; x=1763731322;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TrtX8x6xiGPlcF3REo6XTaulSDVNKE90sjqlhnGudPU=;
-        b=h6pjwPoxJZ42M8Xop4xmgv3wrw0K2qHDYytrSwwvMH0CAyDLsUYhoxnTJxwoY8lTKL
-         jRbN7gInMILNK91CU5G8/Iu1wiZ3p9i8SGpIEFD4uqLRw1KnPsXlAaHeJT7LE6HzZVO8
-         u/H7rWBPSmoQqamjWpIvizBIfY07uwCWpiglkipCx+75jI0rMGjVeQg2+ob5gpjlKHzl
-         G0To2W7ZKfFIwv6q6pOSQWRqm2mT+2+D2yz42W6zDdxb2aoMV03LgSo1hyvXwawMavwH
-         aj0P/KeBY2qwcN06iQ3GAzkx4Y2BUfaK62LWKFK9QITYDgRChA43u4YnRPtg8KdOyxa+
-         J3lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5ntBP32zaKY+xkAj/1zeWA58yCUUEPBNT7CHvrpAbOxhkFRUVyKVAmCuQg81tnmwxxCcZ4SE0gScP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/tGsLiNWScluySI5CGhASZ/MK1tNlwSCz8sWRwp5Y923yRuL0
-	K+Qw014DDYya4Q3gKZtAc1q2FhKFkM8J8rdpY9umyJs/8Dnzly6xVZ0i
-X-Gm-Gg: ASbGncv6cbwm2QchK9JYHlgn95DEaGcFVrYgZ/D6/XrHDopt8vvmypjOQQpJqes9zaQ
-	Ji64HtrNFl+TxiAqMOO/WmMt6phhIKng2c7A/Qb1uoZ/O3K8oU4PyJuWRlUlnyDMK3FcWsATy/b
-	PQatAoB9As4m99qJqjTcFH53ysQtRXTHz3M7pIvVhR89pgDhWvC8zyVPEB/uF1dQs1ZFYxA8b/Y
-	4wo4zwDPKSQrsGOgApOk+f2j5xpLpXxYpqJtHgeChvmmD7/FDhYn+hs0iZ/JEgusw3Uk05eeilr
-	dVAEb8ZiPxcaDhu/pO/wE2ib50uNa75CD45EmxUU76T46mZ04geJH+2vLlIfABvxduLu+2i5ErY
-	Qo59XnwOdZTULuok+d8/PJDfuBB+aFEqbg8ydOcXHVcXKa2FchQAXhGvpjmCNggcW755fn0eq/n
-	HouUH94TuCUhgoZAfGUcsYRdNigi8hnhFuH0h5Scu1gmg9nxFRyNhH4FT5PA==
-X-Google-Smtp-Source: AGHT+IFJvPwRc3iSb2WexT7/Nxb76MqMei5zXQUBPxVbaOVwZ0mTUJAzGoCKPRFSwFTVf5iDU0WZyw==
-X-Received: by 2002:a05:651c:418f:b0:378:e3f9:2d26 with SMTP id 38308e7fff4ca-37babd80ac1mr5793261fa.39.1763126521767;
-        Fri, 14 Nov 2025 05:22:01 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37b9ce080a6sm10220141fa.4.2025.11.14.05.22.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 05:22:01 -0800 (PST)
-Message-ID: <2334e57c-a384-4a1e-9708-19d14b8f082c@gmail.com>
-Date: Fri, 14 Nov 2025 15:22:00 +0200
+	s=arc-20240116; t=1763126583; c=relaxed/simple;
+	bh=eShN4Ob6yWOBP8ZKZQ3V71WXPtkYdhIepRwN9uTkl7c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I2/59bya20llT3Pk1SyiCk47QmWVy2c7XA84UKuv4msrFFc9KUWJM60XwLzcRseczgHLqYZ9VkZrgfBN2VdUqrj7rnlgF5YWfwELzRDYGoAAyc/7YLcqkLlD4CbQDnfRinls9jkdjt9iXkxY7elCHj1jJKHRE+1DlZk1EQ08BEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vJtlF-0003Gu-9f; Fri, 14 Nov 2025 14:22:45 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vJtlD-000QjO-0z;
+	Fri, 14 Nov 2025 14:22:43 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id E3F1E49F5AE;
+	Fri, 14 Nov 2025 13:22:42 +0000 (UTC)
+Date: Fri, 14 Nov 2025 14:22:42 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: zhangqing <zhangqing@rock-chips.com>
+Cc: linux-arm-kernel@lists.infradead.org, robh@kernel.org, 
+	conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-can@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	cl@rock-chips.com, kernel@pengutronix.de, krzk+dt@kernel.org, 
+	mailhol.vincent@wanadoo.fr
+Subject: Re: [PATCH v9 3/3] net: can: rockchip: add can for RK3576 Soc
+Message-ID: <20251114-illegal-flounder-of-maturity-edc269-mkl@pengutronix.de>
+References: <20251113075419.482940-1-zhangqing@rock-chips.com>
+ <20251113075419.482940-4-zhangqing@rock-chips.com>
+ <20251113-slim-foamy-gecko-2dc389-mkl@pengutronix.de>
+ <176d96b4-397c-49d4-8e8e-2f77a5d59c12@rock-chips.com>
+ <20251114-utopian-cheerful-otter-33c1d5-mkl@pengutronix.de>
+ <3233894e-9409-4b74-a954-0b30064c3c8c@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 14/16] power: supply: bd71828: Support wider register
- addresses
-To: Andreas Kemnade <andreas@kemnade.info>,
- Matti Vaittinen <matti.vaittinen@linux.dev>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-rtc@vger.kernel.org
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
- <6248200397d3582fe926938736da66d6bbf9535d.1763022807.git.mazziesaccount@gmail.com>
- <20251114121509.629d171b@kemnade.info>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20251114121509.629d171b@kemnade.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qaousal5vpe3w2e4"
+Content-Disposition: inline
+In-Reply-To: <3233894e-9409-4b74-a954-0b30064c3c8c@rock-chips.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Thanks Andreas,
 
-On 14/11/2025 13:15, Andreas Kemnade wrote:
-> On Thu, 13 Nov 2025 10:55:39 +0200
-> Matti Vaittinen <matti.vaittinen@linux.dev> wrote:
-> 
->> As a side note, we can reduce the "wasted space / member / instance" from
->> 3 bytes to 1 byte, by using u16 instead of the unsigned int if needed. I
->> rather use unsigned int to be initially prepared for devices with 32 bit
->> registers if there is no need to count bytes.
-> 
-> Well, this is totally internal to the module, so no ABI/API changes, so
-> there is no advantage of using 32bit now I think. We can switch any time.
+--qaousal5vpe3w2e4
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v9 3/3] net: can: rockchip: add can for RK3576 Soc
+MIME-Version: 1.0
 
-The only advantage is to avoid the churn if 32bit ICs are to be added.
+On 14.11.2025 20:14:13, zhangqing wrote:
+>
+> =E5=9C=A8 2025/11/14 19:01, Marc Kleine-Budde =E5=86=99=E9=81=93:
+> > On 14.11.2025 17:55:53, zhangqing wrote:
+> > > > > +/* The rk3576 CAN-FD */
+> > > > > +static const struct rkcanfd_devtype_data rkcan_devtype_data_rk35=
+76 =3D {
+> > > > > +	.model =3D RKCAN_MODEL_RK3576,
+> > > > > +	.quirks =3D RKCANFD_QUIRK_CANFD_BROKEN,
+> > > > Is CAN-FD mode broken on the rk3576?
+> > > >
+> > > > Please test CAN-FD and please do the tests documented near the
+> > > > definition of RKCANFD_QUIRK_CANFD_BROKEN:
+> > > >
+> > > > | Tests on the rk3568v2 and rk3568v3 show that receiving certain
+> > > > | CAN-FD frames trigger an Error Interrupt.
+> > > > |
+> > > > | - Form Error in RX Arbitration Phase: TX_IDLE RX_STUFF_COUNT (0x0=
+a010100) CMD=3D0 RX=3D0 TX=3D0
+> > > > |   Error-Warning=3D1 Bus-Off=3D0
+> > > > |   To reproduce:
+> > > > |   host:
+> > > > |     cansend can0 002##01f
+> > > > |   DUT:
+> > > > |     candump any,0:0,#FFFFFFFF -cexdHtA
+> > > > |
+> > > > | - Form Error in RX Arbitration Phase: TX_IDLE RX_CRC (0x0a010200)=
+ CMD=3D0 RX=3D0 TX=3D0
+> > > > |   Error-Warning=3D1 Bus-Off=3D0
+> > > > |   To reproduce:
+> > > > |   host:
+> > > > |     cansend can0 002##07217010000000000
+> > > > |   DUT:
+> > > > |     candump any,0:0,#FFFFFFFF -cexdHtA
+> > > There is no doubt about the other modifications above. They will be
+> > > corrected in version V10.
+> > >
+> > > CANFD requires authorization and is not supported by default.
+> > Can you explain what you mean by authorization? What do you mean by "not
+> > supported"?
+>
+> For RK3576 SoC, the IC hardware design supports CANFD.
+> However, a license application is required before it can be used; otherwi=
+se,
+> there will be legal risks.
 
-> But we have 32bit stuff in the regmap cache anyways, so that is not above
-> the general level of wasting space.
+INANL. If an SoC is supplied without a license for the IP cores that you
+want to use in a product you sell, you must purchase a license from
+Bosch:
 
-Exactly. And, I am not sure if sparing ~hundred bytes is worth the 
-hassle - even if it is hassle internal to the driver. But yeah, we can 
-squeeze a few bytes if it is seen beneficial. That's why I mentioned it 
-here :)
+https://www.bosch-semiconductors.com/products/ip-modules/can-protocol-licen=
+se/can-protocol-license.html
 
-Yours,
-	-- Matti
+I don't see why you should restrict the driver to CAN only, if CAN-FD is
+functional.
 
----
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+Marc
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--qaousal5vpe3w2e4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmkXLR8ACgkQDHRl3/mQ
+kZxcJQf+IBUb+EvRr6yojdWFYfh0iU6b+aUU/2CZ3TkeWzdBIRLFUkaKGsPr+XBS
+4+qZeP0ur/AFd84E24pp1uN6T7XCVNwQh97MzfCXx32rkJNHQvrQehp8llBWg5mM
+jwTsCyuu28Ber/ehYp7aprO0YMSwe+ocKilEtD6TBAG6KU9SQ/BDLnXTyQ3ql8Hj
+ZYK8BA1sYtCnz6tr4sHuClKwmfQqoozXi/YWikAtCrNrcphB7cHv5znanwUC1VS4
+50HLYsFXPQr/fPAT6bVX28XIGjFK01uDPHacWkzu0WcXLVqfNtN4f79gXkxogwvk
+GZDGFSCCXSVNPD0EXrPK838WQ/bRAA==
+=aDZ6
+-----END PGP SIGNATURE-----
+
+--qaousal5vpe3w2e4--
 
