@@ -1,218 +1,154 @@
-Return-Path: <devicetree+bounces-238768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 867F9C5DE9E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:37:30 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1156BC5E009
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:53:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A0D73381801
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:08:44 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5DD10359F93
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AD633E36C;
-	Fri, 14 Nov 2025 14:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E643314B3;
+	Fri, 14 Nov 2025 14:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PaZwhQLD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P6sYjKLk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC2F331207;
-	Fri, 14 Nov 2025 14:57:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66082331225
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 14:57:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763132250; cv=none; b=kEQLM95Ue14Oi0fHEG59dMyUaHBntxl5FSSNkFjDhrsC7xQAdb91CqXADzSV85RxSnOCVCYisFE2G9qAVFHrHX6UwubX3TrNLiks+lxiUwQzKm3xNfInze0CaiF58uSXnNOiZsU6h2V70b4A7bX3rcz6b+qU0LVftuqgCHHE0TM=
+	t=1763132281; cv=none; b=IUWmCkIQqs5DtSqPxLPfl4a040dvl1VrlZGa0Qk9PgPw02lGWr+tOl82M7syn1nFb2FlTBNdbvFrkQfI/vj9daQEp3/9wCapIFkaq9vGkp9ZgCPgxNFABnym/2UOKMEqf9EADkio7oGwLTG7p4brlYu73VisSTfAsX44m/pzXO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763132250; c=relaxed/simple;
-	bh=UTl0W5+Bdo6I+bjM1sDG2qr2k/CxEVF6Tf83hOXGMzU=;
+	s=arc-20240116; t=1763132281; c=relaxed/simple;
+	bh=F1ZCzX89awJADOgTe+k1vSNI5Zu2MhOm6VSE4oz9v3Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U4sNlGV2qEcjBGdH7l0avBQ8twftorCP6lmdOz0cTInxoXbA6ie/aBU8UImT/lugiMQAFn+a1PfTw0/8JOTAQ+5LWqrZSRC4TL4TzkdDhPGSEVVXWUb4Sc2Gen5WEjqKtqE+V9GTT7GVvMK+T/ZMY+eCDhhsHFGomweYinfGig8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PaZwhQLD; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1036CB5;
-	Fri, 14 Nov 2025 15:55:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1763132124;
-	bh=UTl0W5+Bdo6I+bjM1sDG2qr2k/CxEVF6Tf83hOXGMzU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PaZwhQLDGaev/igVb0jI/OydGH3dMJiRT5hie2WPZI9PhWjrvgydCncmP68HwsIgu
-	 NMOdv/Dod3ygTeAVnKJy2eINSdDKG2I3B7kqTPukZdAjBN9Jt3CCNjyRmGKUN7rBX6
-	 nd3GoNDppwdbVYgtEa5Z/5fN1XuPLYXj9XDckE7E=
-Date: Fri, 14 Nov 2025 15:57:21 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
-	Daniel Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, nayden.kanchev@arm.com, 
-	robh+dt@kernel.org, mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v13 15/15] Documentation: mali-c55: Document the mali-c55
- parameter setting
-Message-ID: <umslyxkmj4gnr743c6ixsykay5w2seoeiy2hzidg6lb3fcizep@dglvrn7l7a4q>
-References: <20251111-c55-v13-0-3dc581355e3a@ideasonboard.com>
- <20251111-c55-v13-15-3dc581355e3a@ideasonboard.com>
- <2n4sn2aakwl7k2qvcefb7m2zzllytj7i4nup55xex2ggdngfkd@gwpxbpmlupko>
- <aRdBbn4cpdn_7H0v@kekkonen.localdomain>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FvKKyadHC8vRwI6nt3PZzLf5wlr9mHQSzhx0Qaz50dy7FA3pYktFZsynK6znR+Us4VudCrdqOVbQ07cqu+mvFpu3qdosiON3BUpaBbzsavWfEEOEC6KO0mUMjZTthnaOcD/FGnWFk9r7XJLG30etAbZOgIUCHa1IGGRWDudsi00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P6sYjKLk; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-429c4c65485so1748097f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:57:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763132278; x=1763737078; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JGnRuedlsHd0fcZwXKJjRRdg6CbePYJalR5bL55auvo=;
+        b=P6sYjKLk8/0kTE8lO+CzOp9BGFg8Q8tPJr+bCGTdHDZKE+MuFpap3hCh9kxjhmRm8c
+         DuBjPD5NZJlrBauJgvudHJfDhTFYnUEwPUFkerun/pu41rb3ivvBU6YwcVtkOWPGw0hO
+         QOwsRsQz4UBTPeSKOpwFHcvd62DjRCcOMx8lQdKVdZI0x6Hq8tpyYerCRNhjXj90/aci
+         LYyfxvfggc2KATudGot4O98WBjZoeOFX0LZpu5SiV6WRECYdE/ihuKSdP18u3Tj6YpMU
+         82Z7BDy2Am7a0XuJHskjQoaq/Yphc/+B8ZYI0KcVAxVqUYevx5hGx334o+U7PvVrYoy8
+         9xUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763132278; x=1763737078;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JGnRuedlsHd0fcZwXKJjRRdg6CbePYJalR5bL55auvo=;
+        b=l6kwgiT3WwVmDL6hIj1wMfkn1HDzT13mwLlaBFzp5ZeJYvJPEe2HajFxGMrZtAY1+I
+         eO3Uh0KVbFst44q4GCo+UERRILi0fA9BTRYdrvMidanWnhMrSm16prbgIH5bebL1IuVb
+         g4XCzP2wqIZQQ/XZ8We1suJ8O3UcdVduuVDmUoGGBPhKg22Ykn9vCU9kD5/xEsR/kg/y
+         PhxiTtcp0j3/5FzZCZpBKgxSj/Ge/vknW9hLPV7OFBdW51xjr65dE8n2bKrPyKfsMyXS
+         7NiX3dXNktR0GqVmOkWNu1tI+HZNFAiCD9EiSUBpg2pOOq1ZxtpWZMxinCnGXgw4IEw/
+         c4Wg==
+X-Forwarded-Encrypted: i=1; AJvYcCVIiw9Vn6adDbAcHXoO3hwVLLROuMxSsHdNRuOqz3W8/QEqfRD60D2F9GPjwEAKYNqIW5BtbnCVf2cp@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywi6QoyYKuPkNz1+avozqL/QKi2ju9yNi5DDTiw7EyVORTKLvz5
+	7nKcIr/0/iCu3TJESB8fgffo5aUxXz3y31cqXsM2deumx6XOS8osOgBf
+X-Gm-Gg: ASbGncuSQktfL4eMvMsmpJufb9HXtTF9IkgLRg27wOahFqVdxqwhT8YyIgmCTEa18uW
+	/YCpTy5JB/2RmYPxs+BVYBBzB45p8bFKoo19tzgaEpTzFHmOuWrIcFhE2iNbR4/EvzFHVNMXG6C
+	bZoctGImvAl+MW+nZcdgY3/bAKX2j8/a+wwn49sqCFvFUfpq6AY4rpK/1OdZ2rl6Im1r0ouhgW1
+	H5Z+AMdIDrimkNIHtSetB8uM185N7qpVMLIYBpI5adt6L3sVt/CPXxkdoGPfnXKPVNMos9TLqON
+	zQijH3MkaKHaETb+/y5+YqvEzQMvWCsHDN7Oe7Mm5C9k4K6hUPeJbbCvDKnJEYUHEDJeB+omwR/
+	deTP7ByaITpLWms7MWVTtrvSM/6AE6+bim8O1O2Z8UGeFjsI0aHBqoWcS/Cs1W0C+g2r42Wv8/n
+	JtHbcvufPfY4NzQz+G/8u11jvQOF+lt8m8E+e5G/jbpXZGQLr9Y8WZ1Bu0XEASUg44FbKTlEoNr
+	A==
+X-Google-Smtp-Source: AGHT+IGR+CaGRepCgY9abJOUDZMtJSLpLAxIBXYfl3hSOsk7LXj9GzOPlhHY0Won/RR6QmkpGOV9IA==
+X-Received: by 2002:a05:6000:615:b0:42b:41a6:a670 with SMTP id ffacd0b85a97d-42b59394029mr3665245f8f.54.1763132277621;
+        Fri, 14 Nov 2025 06:57:57 -0800 (PST)
+Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f174afsm10192785f8f.33.2025.11.14.06.57.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 06:57:56 -0800 (PST)
+Date: Fri, 14 Nov 2025 15:57:54 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Mikko Perttunen <mperttunen@nvidia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
+	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v5 22/23] ARM: tegra: add CSI nodes for Tegra20 and
+ Tegra30
+Message-ID: <6ec4sw2c5rs2s4akd55vacveloiyc7ehbhouz2mqs2gy2w7v5d@rqxzhxcgm2ns>
+References: <20251022144930.73272-1-clamor95@gmail.com>
+ <20251022144930.73272-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xekcx7ux3cabz2pl"
 Content-Disposition: inline
-In-Reply-To: <aRdBbn4cpdn_7H0v@kekkonen.localdomain>
-
-Hi Sakari,
-   can't say timing is what we excel the most at.
-
-Afaik Hans has applied the PR, and as all comments here are on ...
-comments, they will be addressed with patches on top
-
-On Fri, Nov 14, 2025 at 04:49:18PM +0200, Sakari Ailus wrote:
-> Hi Jacopo,
->
-> On Thu, Nov 13, 2025 at 09:39:37AM +0100, Jacopo Mondi wrote:
-> > > +the data member with the blocks that need to be configured by the driver, but
-> > > +need not populate it with **all** the blocks, or indeed with any at all if there
-> > > +are no configuration changes to make. Populated blocks **must** be consecutive
-> > > +in the buffer. To assist both userspace and the driver in identifying the
-> > > +blocks each block-specific struct embeds :c:type:`v4l2_params_block_header` as
-> > > +its first member and userspace must populate the type member with a value from
-> > > +:c:type:`mali_c55_param_block_type`. Once the blocks have been populated
-> > > +into the data buffer, the combined size of all populated blocks shall be set in
-> > > +the data_size member of :c:type:`v4l2_params_buffer`. For example:
-> > > +
-> > > +.. code-block:: c
-> > > +
-> > > +	struct v4l2_params_buffer *params =
-> > > +		(struct v4l2_params_buffer *)buffer;
-> > > +
-> > > +	params->version = MALI_C55_PARAM_BUFFER_V1;
-> > > +	params->data_size = 0;
-> > > +
-> > > +	void *data = (void *)params->data;
-> > > +
-> > > +	struct mali_c55_params_awb_gains *gains =
-> > > +		(struct mali_c55_params_awb_gains *)data;
-> > > +
-> > > +	gains->header.type = MALI_C55_PARAM_BLOCK_AWB_GAINS;
-> > > +	gains->header.flags |= V4L2_PARAMS_FL_BLOCK_ENABLE;
-> > > +	gains->header.size = sizeof(struct mali_c55_params_awb_gains);
-> > > +
-> > > +	gains->gain00 = 256;
-> > > +	gains->gain00 = 256;
-> > > +	gains->gain00 = 256;
-> > > +	gains->gain00 = 256;
-> > > +
-> > > +	data += sizeof(struct mali_c55_params_awb_gains);
-> > > +	params->data_size += sizeof(struct mali_c55_params_awb_gains);
-> > > +
-> > > +	struct mali_c55_params_sensor_off_preshading *blc =
-> > > +		(struct mali_c55_params_sensor_off_preshading *)data;
-> > > +
-> > > +	blc->header.type = MALI_C55_PARAM_BLOCK_SENSOR_OFFS;
-> > > +	blc->header.flags |= V4L2_PARAMS_FL_BLOCK_ENABLE;
-> > > +	blc->header.size = sizeof(struct mali_c55_params_sensor_off_preshading);
-> > > +
-> > > +	blc->chan00 = 51200;
-> > > +	blc->chan01 = 51200;
-> > > +	blc->chan10 = 51200;
-> > > +	blc->chan11 = 51200;
-> > > +
-> > > +	params->total_size += sizeof(struct mali_c55_params_sensor_off_preshading);
-> >
-> > s/total_size/data_size
-> >
-> > And I've also updated it to use the v4l2-isp types
-> >
-> > +.. code-block:: c
-> > +
-> > +       struct v4l2_isp_params_buffer *params =
-> > +               (struct v4l2_isp_params_buffer *)buffer;
->
-> What's the type of buffer here? If it's void, you can drop the cast.
->
-> > +
-> > +       params->version = MALI_C55_PARAM_BUFFER_V1;
-> > +       params->data_size = 0;
-> > +
-> > +       void *data = (void *)params->data;
->
-> No need for a cast here.
->
-> > +
-> > +       struct mali_c55_params_awb_gains *gains =
-> > +               (struct mali_c55_params_awb_gains *)data;
->
-> Ditto.
->
-> Unless, I guess, you use C++. :-)
->
-
-It was C++ code yes :)
-
-> > +
-> > +       gains->header.type = MALI_C55_PARAM_BLOCK_AWB_GAINS;
-> > +       gains->header.flags |= V4L2_ISP_PARAMS_FL_BLOCK_ENABLE;
-> > +       gains->header.size = sizeof(struct mali_c55_params_awb_gains);
-> > +
-> > +       gains->gain00 = 256;
-> > +       gains->gain00 = 256;
-> > +       gains->gain00 = 256;
-> > +       gains->gain00 = 256;
-> > +
-> > +       data += sizeof(struct mali_c55_params_awb_gains);
->
-> 	data += sizeof(*gains);
->
-> ?
->
-> > +       params->data_size += sizeof(struct mali_c55_params_awb_gains);
->
-> Ditto.
->
-> > +
-> > +       struct mali_c55_params_sensor_off_preshading *blc =
-> > +               (struct mali_c55_params_sensor_off_preshading *)data;
-> > +
-> > +       blc->header.type = MALI_C55_PARAM_BLOCK_SENSOR_OFFS;
-> > +       blc->header.flags |= V4L2_ISP_PARAMS_FL_BLOCK_ENABLE;
-> > +       blc->header.size = sizeof(struct mali_c55_params_sensor_off_preshading);
-> > +
-> > +       blc->chan00 = 51200;
-> > +       blc->chan01 = 51200;
-> > +       blc->chan10 = 51200;
-> > +       blc->chan11 = 51200;
-> > +
-> > +       params->data_size += sizeof(struct mali_c55_params_sensor_off_preshading);
->
-> 	... += sizeof(*blc);
->
-> ?
-
-Patches will follow after v6.19 has been released
+In-Reply-To: <20251022144930.73272-2-clamor95@gmail.com>
 
 
->
-> >
-> > With your ack, I'll apply the following changes before sending the PR.
-> >
-> > Thanks
-> >   j
-> >
-> > > +
-> > >  Arm Mali-C55 uAPI data types
-> > >  ============================
-> > >
-> > >
->
-> --
-> Regards,
->
-> Sakari Ailus
+--xekcx7ux3cabz2pl
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 22/23] ARM: tegra: add CSI nodes for Tegra20 and
+ Tegra30
+MIME-Version: 1.0
+
+On Wed, Oct 22, 2025 at 05:49:29PM +0300, Svyatoslav Ryhel wrote:
+> Add CSI node to Tegra20 and Tegra30 device trees.
+>=20
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
+> ---
+>  arch/arm/boot/dts/nvidia/tegra20.dtsi | 19 ++++++++++++++++++-
+>  arch/arm/boot/dts/nvidia/tegra30.dtsi | 24 ++++++++++++++++++++++--
+>  2 files changed, 40 insertions(+), 3 deletions(-)
+
+Applied, thanks.
+
+Thierry
+
+--xekcx7ux3cabz2pl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkXQ3EACgkQ3SOs138+
+s6H5FQ/7BNrS2X7EchthFaqJs0Itrm1KN9MujAl7hYVvTbvyozWCOEjKbFN4QX/R
+1+8mcxFJxc5TtgvW16xQ+mePTyN2N7jxL1TxRT7XCZL5Tp14zhdK9zDoQK/1408r
+0dw0xy7PAzn9uj8EYX/dfrKT9rsGy0Nc97UyGoBE0/oTU/XHYAoPev2JyFSCqaHn
+sD4JvD6tliCPcRZkdum6WkajMFarxmgx72sJ5jLhOzzsT7/vcJyb12gVN94OtK6b
+6kASWMvl+1YQPbxWk/iSSBYUwlvoG794KpTPyhEzezvigRJkLO3jSSCzCplJ+K9i
+IVfmJlnaaOONvQZVULWL4Bn4OplAnDBaqi8AUwGa5QjlgEEc81FczmuU4KAj+5Zx
+mIhy2Bd5hMjqvSyKFXiDd+4QlRzNHsC3dacBktMu4EH+KC3DVKMTQ3/+7yyXqcc3
+ne4wp7IJVQ9oEsPxr1e0GKPkDEd4iz10UaDCHZKFvDzEwrOkkN7vzUF4tndq1/Av
++fz4pjf3DCJ7NMc1fs/kBabrbTmHbTqAkIot26EKaLfrogrGlGm/smu32t7CrzWq
+dY17/9eNoHdrPC7o/kncXM3oxYGrh2Bw1OFtF9RL5mLCxSTLOKAkqZZv5zHTLEAg
+MYnh3JVBfN/JUn8Y5x9LTYlIvap2zYy3Rss6uFmNUcMWhjBqhsw=
+=/CC6
+-----END PGP SIGNATURE-----
+
+--xekcx7ux3cabz2pl--
 
