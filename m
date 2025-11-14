@@ -1,143 +1,184 @@
-Return-Path: <devicetree+bounces-238492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E23CC5BC13
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:19:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5057FC5BC2B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:21:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8533535DE87
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:16:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 59B2935E53A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:17:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600B72F60AC;
-	Fri, 14 Nov 2025 07:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A4219F137;
+	Fri, 14 Nov 2025 07:17:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OjKPPlky"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="j3t1hXDF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3161F2F5A35;
-	Fri, 14 Nov 2025 07:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D0282D73B2
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763104477; cv=none; b=AMSaXdbwpw0+hkRjtR7WSmxqishqwrFKy3fGt7xsUJts8l+Kp7Gt9beF0/vWQIFVeaSjpdTT8p2Hl8uBoeNLIWAEoL0RqgDRnNPkQESnRUbl4oQD7CvW3j+Caw8x76ICwyWpG27G5iZHH7G7arlDdB/wTynU5vuweqocYiTAf/4=
+	t=1763104653; cv=none; b=U9d7diM5O/vL7VLH42f2qYxYqDNn40hvVvW7mqH2n5gUhUyniT8WsWqH0CB4C7RDgOOLihC/55A0XcZK0K90wd9WhdHB/jxXk/UzOFqKVnuK0/XZgvqwtdTNui+7RQ+zL2WwjpeXeC7VPBNQWRQyxObeFUt44DPQQ3J+3l1qtAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763104477; c=relaxed/simple;
-	bh=TC0cYgWskBAUXZfGZK4Z3ivQKc5wIiuX55D1oKHmjko=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gaJYJLSCOsMr/XyC3C7Ksl6P+Tt0xLaBRbTJbSGLJkqpFF/4vk5sJKbCT2n7bywJqbtzr8YTLbqp0ACzQ7zHkaAzsxR+6BBUieGxzZ0UGQmXRVcBc3QALGgE0v4hIoVldu3Gip+jGZhKLGPPisB+gUDhDs78QT1MkMEjqQWynIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OjKPPlky; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0907C16AAE;
-	Fri, 14 Nov 2025 07:14:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763104476;
-	bh=TC0cYgWskBAUXZfGZK4Z3ivQKc5wIiuX55D1oKHmjko=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OjKPPlkyxpQFE678hpCI+5V66iQB8Oqjg+/LdQgYsytJOp3CgsktgFraFsrkoIXhu
-	 K1lmaWWiRmvx6ZnAQHrudfmRdCOttOjBiVsfT3s37J/k9H3kXHOMNloOzxLHZoeVT0
-	 9OW3pbuTHZSXRznoOOl7DRLh1tOF9jM60V2S7osagIGYZHIVIZKYiH6bj+94SSf/vx
-	 fojIfpEh0NFN8e+qFmpJnF+5fnJx5+ByKtYCiepwGUnfGc3jHHOPQCD0yaWMWsJMC7
-	 xDeXJP3cDmFWYWeywtYyoMh9afnj+4lnGpreZkADVulWXSj5+LVDEO1huNQXMYSXv9
-	 7YfVdS4yK8BRA==
-Message-ID: <6fed3757-44d0-43f9-b75a-52e1cbab41eb@kernel.org>
-Date: Fri, 14 Nov 2025 08:14:32 +0100
+	s=arc-20240116; t=1763104653; c=relaxed/simple;
+	bh=wJ0HXiwgF3mBEqiHdeJ5Kr9v+pVAeWraFczzjPNaoFo=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=JFVEuuPBSewUQ24ABNqbRPzfeytjuMW3sjFKvHqsd/wa6R2DPteuba0PXgQ/Ku6TIDFEiXi+65phktrZoXI/lp8Cc1aDB3PaIm6/lLSw8mVSwLTRBY3nYaJUwq4iQMMjs9AK/MWD3t2AZrywI5IHgE7ghXj5eoYar1JkQ94pJ6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=j3t1hXDF; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id DA99A40ECE;
+	Fri, 14 Nov 2025 08:17:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1763104648; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=wh/tfWGf9wj+hssXa1sWxqLcBid1XiEHEgOudSny0/s=;
+	b=j3t1hXDFtzAr2kAFEuanonDiddDqRMOP/fe9ZwnolyM4oZFSuStEFfn2o//qelrvUER2l9
+	vOrf5yQSgSzLZ0D6CBvo5GmyBCDz9T9FXjZ70WhqGltNZEA5iSgY3doymDdVcY/HAHLB3I
+	c42wifTZ0qyPF5VaUQtPHqSadj4bRGIZHeGTV/z4K3mKTSeBuO43G/0H2IAyqgV8qO3tIb
+	obWgGwcoj1gCjBoZDTtWjyrK8inDzlDV9HMcpU9ZmCNcsZWTo9rcMncHlPjobyLPNCcSgF
+	uVbDYVxgV2ReIhOR9Mfcoh9Izlg4QtZfycKxYSrTYRedQvbjEuAFXwbsttMcUA==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <f2bc30de-119b-4f4a-844a-8a908c9290b6@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
+ <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
+ <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
+ <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
+ <2892FE50237CD58E+0f15924c-a915-4446-954c-d81a782d23e9@radxa.com>
+ <19ce0a41-563c-6202-6b94-b2c644a0b827@manjaro.org>
+ <F02BA2E6B1111826+2445b38d-b5e0-499c-83e7-4521c57b2210@radxa.com> <f2bc30de-119b-4f4a-844a-8a908c9290b6@kernel.org>
+Date: Fri, 14 Nov 2025 08:17:23 +0100
+Cc: "FUKAUMI Naoki" <naoki@radxa.com>, "Joseph Kogut" <joseph.kogut@gmail.com>, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com, honyuenkwun@gmail.com, quentin.schulz@cherry.de, pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: input: i2c-hid: Introduce FocalTech
- FT8112
-To: Daniel Peng <daniel_peng@pegatron.corp-partner.google.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-input@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20251113140004.v4.1.I894dde5015f4acad94cb5bada61e5811c5142395@changeid>
- <20251113-belligerent-wrasse-of-current-3cd3a5@kuoka>
- <CAAq2-DFJ2HZQ=p5J7wppQWYh9tqrFxNqexYXFcVB=b1ufWgmXg@mail.gmail.com>
- <7904826d-043d-4e63-9d38-e0763b3822ba@kernel.org>
- <CAAq2-DHouqsbOB75mifXVxQT+jZaho9RBB0zdZ0a3bq3FxDT7w@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAAq2-DHouqsbOB75mifXVxQT+jZaho9RBB0zdZ0a3bq3FxDT7w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Message-ID: <49c39864-3e58-2e0e-7abc-50502f2afb02@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v6 0/3] Add Radxa CM5 and IO Board
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
+X-Rspamd-Fuzzy: 6a02a4752b38c3d77040b1f4191339ebbc41b3df29ece2e367691666ca46428741e41a1b26bf12e3a424a3765f237d56a084dfa57b59252cf99689b6c76d9621
 
-On 14/11/2025 07:13, Daniel Peng wrote:
->> On 13/11/2025 11:44, Daniel Peng wrote:
->>> From: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
->>>
->>> The FocalTech FT8112 touch screen chip same as Ilitek ili2901 controller
->>
->> So keep the device in that binding under enum. No need to create
->> document for every device, even if they were different but here it is
->> pretty obvious - same chip.
->>
->> Best regards,
->> Krzysztof
-> 
-> Sorry for the confusion. Might be I use the wrong description, and make you
-> feel that is the same chip and no need to create new binding file.
-> 
-> Here are my question:
-> 1. I had referred to ilitek,ili2901.yaml and copied as new file for
-> focaltech,ft8112.yaml. Moreover, I also modified to replace related
-> information for Focaltech FT8112 touchscreen.
-> There are many different descriptions in the file, such as "compatible",
-> "reg", "interrupt-parent", "interrupts", "reset-gpios", ... .etc.
-> If "No need to create document for every device" now, could you help to
-> provide what file that I need to keep the device in the binding under enum?
+Hello Krzysztof,
 
-You wrote it is the same chip as ili2901, so obviously in ili2901.
+On Friday, November 14, 2025 08:10 CET, Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> On 14/11/2025 06:03, FUKAUMI Naoki wrote:
+> > On 11/12/25 09:46, Dragan Simic wrote:
+> >> On Wednesday, November 12, 2025 00:26 CET, FUKAUMI Naoki <naoki@ra=
+dxa.com> wrote:
+> >>> On 11/11/25 23:33, Dragan Simic wrote:
+> >>>> On Tuesday, November 11, 2025 12:52 CET, FUKAUMI Naoki <naoki@ra=
+dxa.com> wrote:
+> >>>>> On 11/6/25 02:48, Joseph Kogut wrote:
+> >>>>>> On Wed, Nov 5, 2025 at 4:15=E2=80=AFAM FUKAUMI Naoki <naoki@ra=
+dxa.com> wrote:
+> >>>>>>> I'd like to clarify the situation regarding the v6 patch seri=
+es I submitted.
+> >>>>>>>
+> >>>>>>> The original device tree work for the Radxa CM5 and IO Board =
+was
+> >>>>>>> authored by Joseph Kogut. I took over the responsibility of g=
+etting it
+> >>>>>>> upstreamed with his agreement.
+> >>>>>>
+> >>>>>> I'll confirm this. I've been in communication with Naoki. They=
+ made a
+> >>>>>> large number of revisions to my original patch series, which I=
+ think
+> >>>>>> have technical merit. I suggested they submit the patches them=
+selves,
+> >>>>>> and gave them explicit permission to add my Signed-off-by and =
+CC me.
+> >>>>>>
+> >>>>>> I assume this was the correct way for them to continue the wor=
+k I
+> >>>>>> started, but if not, please let us know the best way to procee=
+d.
+> >>>>>
+> >>>>> Can anyone help us?
+> >>>>
+> >>>> I'm not exactly sure how to resolve the current situation, but f=
+or
+> >>>> Signed-off-by tags to be present, in this case you'd need to hav=
+e
+> >>>> Co-developed-by tags as well, because the final patch versions,
+> >>>> which would be submitted by Naoki, would differ significantly fr=
+om
+> >>>> the versions that Joseph actively worked on, if I understood
+> >>>> everything correctly.  Though, for Joseph's Signed-off-by tags t=
+o
+> >>>> be included there, he would also need to participate actively in
+> >>>> the development of the final patch versions.
+> >>>
+> >>> https://www.kernel.org/doc/html/latest/process/submitting-patches=
+.html#when-to-use-acked-by-cc-and-co-developed-by
+> >>>
+> >>> If
+> >>> ----
+> >>> From: Joseph Kogut <joseph.kogut@gmail.com>
+> >>>
+> >>> <changelog>
+> >>>
+> >>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+> >>> Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
+> >>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> >>> ----
+> >>> then I can submit my patch series?
+> >>
+> >> Actually, the Co-developed-by tags would be pointing to Joseph
+> >> in that case, but as I described it above, this approach basically
+> >> cannot be used, because Joseph's original work differs a lot from
+> >> what you'd actually submit to the mailing list(s).
+> >>
+> >>> Or,
+> >>>
+> >>>> Another option, technically a bit simpler, would be to include j=
+ust
+> >>>> Originally-by tags for Joseph, which would indicate that Joseph =
+gave
+> >>>> up on the development of the patches and handed them over to Nao=
+ki
+> >>>> for future development and submission to the mailing lists. Thou=
+gh,
+> >>>> that would require Joseph to publicly state exactly that.
+> >>>
+> >>> I cannot find any documentation about "Originally-by".
+> >>> Is this correct?
+> >>> ----
+> >>> <changelog>
+> >>>
+> >>> Originally-by: Joseph Kogut <joseph.kogut@gmail.com>
+>=20
+> There is no such tag. Don't invent tags.
 
-Best regards,
-Krzysztof
+True, it doesn't exist officially, but it's been used fairly often.
+
+> >>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> >>> ----
+> >>
+> >> That approach is the only I see applicable in this case.  However,
+> >> let's hear opinions from other people as well.
+> >=20
+> > I see. I want to do this approach.
+> >=20
+> > Joseph, could you give me a statement to do this?
+>=20
+> Use standard authorship and standard tags, some of which are explaine=
+d
+> in Submitting patches.
+
+Frankly, your suggestion is useless, because it doesn't explain what=20
+to do in this particular case.
+
 
