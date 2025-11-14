@@ -1,385 +1,172 @@
-Return-Path: <devicetree+bounces-238906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4808EC5F7BE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 23:15:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D09C5F7D7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 23:17:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4D17D4E178B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 22:15:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0E7B3A0753
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 22:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C1933556C;
-	Fri, 14 Nov 2025 22:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1808D30ACEC;
+	Fri, 14 Nov 2025 22:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="x79ID1Q7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="miU/a84C";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aHZuM8mQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2640430DD21;
-	Fri, 14 Nov 2025 22:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965602FFFA6
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 22:16:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763158467; cv=none; b=Fp1wEUKAJF4FmTZXukqgoYx2sw2SpBghJbSD/p3pUy6CCNpIVy4V3tZmpvO9ddHNF5G37Q1tEk4JOZV4KR/gUS75hO2BFEvhP1VkuhP68/XDVZ8ios01mi5Qqq1Q5JaEMavi4GsFqW0GY0A6ycFmQO6Rt6kmzzDolMxCCSQsmzE=
+	t=1763158618; cv=none; b=fpNPk5aBB8+Rxks7ZYOojHNqiUO0Z9R8K6yizs5eA0moAHt98wX2Ct1Vpkx4gyLWKkxG28tD5k44f7x6L3K3r463kFEEFL3p4e5vSjrHld1cAGFYCz9eir+eeZ9bpaZYpdbsQh2gDEXGekBHgV7t+3X2B1Z0zaVPwVYXUk6ZK0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763158467; c=relaxed/simple;
-	bh=4b7KoQzePjKkzLh1qdBljbeKVRp4bcbbeAwKjldO+XI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J84UjZeRrnyturDnuk4eSbyEh1/MyDBD0idU7YvCKjb2hE7r+vKG58UsDfgz7ecH2iS4Me+syPy9rIVJ4Qcjo36F4aoUJUGqRcNs+m3dVfyXLKv2INvRTOHAa0IAetuoWF2hSg107tpHCfi8Da7BD0BJy5tQfJWLyw6YLkFte6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=x79ID1Q7; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AEKUmpZ3284220;
-	Fri, 14 Nov 2025 17:14:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=LS10h
-	r9DehV95HTlL43FzIGHIptI90LuJhinPd8ThxQ=; b=x79ID1Q78qGG7zHn+KcGZ
-	KfNXxuy0JCHqre541KMFUEyqLR6ECSqnau6yCNsZqe1/ZAo5VueEYrkSso3iByFl
-	WJ/01NYAHyuyeagZfApnpRQLVr1BHHLRxFz7X9fUQhthG2Y4ezgoZyIQiB/vPPTF
-	7nIl8IFf0Db1mr5gDQMuRQZtIh/QugCcWaRE0J6PHKHEgzcI/TjqF4MEWaYT5aW7
-	S74WlkdQ4EH6xrxmzho/glREGAsD3NoJp/tEy7MVHcK/A8cwqWcCYAyHD1LCtMMD
-	9S02kKPILMvlxAzlMRpvgv1kM5cJj82V1lKBeqyOwhDyRKDh6ZiFuJ0k+FU8dQuw
-	g==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4adr7uwter-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Nov 2025 17:14:18 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5AEMEFNl005546
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 14 Nov 2025 17:14:15 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 14 Nov
- 2025 17:14:15 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 14 Nov 2025 17:14:15 -0500
-Received: from JSANTO12-L01.ad.analog.com ([10.65.60.206])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AEME3bA030870;
-	Fri, 14 Nov 2025 17:14:05 -0500
-From: Jonathan Santos <Jonathan.Santos@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Jonathan Santos <Jonathan.Santos@analog.com>,
-        <Michael.Hennerich@analog.com>, <ramona.gradinariu@analog.com>,
-        <antoniu.miclaus@analog.com>, <jic23@kernel.org>,
-        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        Andy Shevchenko
-	<andriy.shevchenko@intel.com>
-Subject: [PATCH v2 2/2] iio: accel: adxl380: add support for ADXL318 and ADXL319
-Date: Fri, 14 Nov 2025 19:14:02 -0300
-Message-ID: <94f1c01bdaea81a1a5f14df6aa95bc2b209165e9.1763134751.git.Jonathan.Santos@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <27fdb3b85015d29c01b804e7f1de5fa615cf9f5f.1763134751.git.Jonathan.Santos@analog.com>
-References: <27fdb3b85015d29c01b804e7f1de5fa615cf9f5f.1763134751.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1763158618; c=relaxed/simple;
+	bh=Euo3aYyIiS2EFzYRpUBRUMp9JkSwubI8mtwHHK57FSs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LFROjWM5ZMnSmttuvvLbBH2CrNc117L7QLDqEV74yh0dJP1hOi5+ZedhKp33DccznIUp4tU+UdSrYJVSI3CMbTGYdyDrBtPMvY6vyEJoVoy6E5bwzjSOp89tiMlpCEuOVfPqtuNQJSm9tVR7GDYf8tQnwZBsa6MLrRfYFEDPNDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=miU/a84C; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aHZuM8mQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AEIQ9MB380829
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 22:16:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ztuYyaE22UQpg1VtA7huflvbOJvFMCvZ8dxISGtSh34=; b=miU/a84C32DqdD0z
+	21baSOB3AveoQhq+vbZ6Az6dl9OJb+X8KQneUyh2ZOvFuIuiHUmeltvI+DUV8/ke
+	rIKgEctqhccb/sV/CbW1zYMTYBnZaQsD7rC5OJ5hIqdZXrBnJanVoveR8pSN+D1e
+	N/okcizq4i4lmYM+AZ9DgS9fOKNp5XeK14jI7XhR8QbHRIA0KRyKkQ+R31ueaSF8
+	FDZlHuN0qJzoxNNueytjycl6T3gK5qjLUTtZp9GaILFNs2MYNxP2ng48dOaLAQAt
+	bbmSK4jQhHTmcN96AnxBgyvmyryI/s/NOSY9K12oZ0gg2VV0EMVYhnzlwvo9nc1B
+	0hZuPQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ae7qh8yqt-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 22:16:54 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4edaa289e0dso9143331cf.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 14:16:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763158614; x=1763763414; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ztuYyaE22UQpg1VtA7huflvbOJvFMCvZ8dxISGtSh34=;
+        b=aHZuM8mQYsCGtM8wSsktH1odDnq5QjK/Iz3GtPHVAO0+/dZHGCSiAXqtzHFmBPrKG5
+         NeDPVeMAijHBU2rku1QxwXC16Tw26G2OqlbvoENZSTAXwD148c1wR7kYqxNAyfbnXExu
+         xKz/W96XnB883is0phBupiKK8I1CXttqDwbDldJ8BAVfqVuRSExzpVeVSVhzX26dKYh8
+         dxMOkS9xj7JzcdYVe7sY+sh3TmiwUxWYfic0iHwFU99VOE6w9jSlm07FLOMbZroAKUgF
+         EZ6KU1BG1rYuccDkoUdY75NvbpK0akDw5Rglka5+a2rxoK1oUMDi0cbwqj9uIXOvYKGG
+         SAtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763158614; x=1763763414;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ztuYyaE22UQpg1VtA7huflvbOJvFMCvZ8dxISGtSh34=;
+        b=kBwVTWQ+ToulU6YkqYtWM/GAgCb62xO+t0aqhvqieseKqLO22RvrCuAoDMMj6mm73X
+         5IZMameqF+UXkhBw4eOjPG3lCqkS9sEfKfxUv48OH9QioHUxo9VdanXdyZR2iDEY3htQ
+         BZyBoyO1vE5ltawRCM0wasJjVjIOrkLKgKV12HXMOtY3TMDBoLtaf7ngJFNHLzKdm8Pe
+         YIn/mfhF+VuYfd+Jiq1XZlXdfbcd29Fg0T651m53XnXnxesTkh6Jm+bdKR0d4LcPMrQo
+         N/rl0GPZRmb1KJ1C9gjP95LYfz02FwqcpqoN6ZFK0CtpSqgC3TBGaGr2jskNqEI3Dqa0
+         5spA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJvgm0Z7tc5dM+xVj8LXctjfx+gpL7Om7znAUuFd88h2p95SEh+LnKjBa7Ve0GZN2qcAvM/n+hIV5Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzZKej0qqZG9XYBKqtigHWOUxhaXYYh1WzdZJ5AOQtSLtehXS7
+	FdIC/6aqDe9dsGfAhDZzlf3OkDMm/+SJIrQqsFmyRJhILRfDM5Pj0pHxHfsQ/7GWInC1p9bicri
+	WkNNpG+y2bgS8fPX+q6kEb7eL9euEkK4fmXzyuJhZsrrzkAjN2U9A6+eGXzdOIanO
+X-Gm-Gg: ASbGncsTx+ixoEl3XvaKxTX1gxq9ERmCOoSxEr5c6/jsvzAvi/avvVKTpLP7W/vXRJj
+	Tp+B2L0AduBCJStlFtizsfGZVEPeK0/n4a9SoktoIcJUZ5ios6eUczqEc0p2yPDmWo0uVjIe4Bg
+	N/E6X6aEIlNn/PL5iKekfEUDloXjDLzN2g3w80m2YyxiRG2C5+NfHfqTxGYzMwRPgKj4Hb1AbsF
+	Ri3grJFEZFne9xeNwrTixV8RCJ9okfWc5W8+6TYDgIDXi5/hT4gRk3p4V+tQZlN7p2GTdQPGcns
+	dFVbyBiqFWLA1ylZXkTD0MGj6dSpMKWzd3T9JFDOE9kKyCHkDsl+wenP2h8vd+ah6bGj+ccoakL
+	uT4LE4SWqiQjgiiyrbQB9WZ+7eNWyUJtU/CzNrGkkdHf+OlWPWtzKhh4V
+X-Received: by 2002:a05:622a:1820:b0:4ed:3cfa:638a with SMTP id d75a77b69052e-4edf36e5099mr44152401cf.8.1763158614246;
+        Fri, 14 Nov 2025 14:16:54 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG0nd6c/kzzPXZC2X5wHVvvmNWn5NWPaIyzTQSgkf9L94Ds3FA9xJLXbYLBIFCtp2rkNjJ6Mw==
+X-Received: by 2002:a05:622a:1820:b0:4ed:3cfa:638a with SMTP id d75a77b69052e-4edf36e5099mr44152181cf.8.1763158613803;
+        Fri, 14 Nov 2025 14:16:53 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fb12c87sm471442266b.31.2025.11.14.14.16.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Nov 2025 14:16:53 -0800 (PST)
+Message-ID: <5fbb0239-7f8d-4e47-b035-4de270b6a348@oss.qualcomm.com>
+Date: Fri, 14 Nov 2025 23:16:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: aIwLpj0CCzQMBqTBapvChXXOMBHQIADs
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDE4MSBTYWx0ZWRfXz3/uOPELy/AB
- 7eVkZ+E8JikW9B4xVMaoIzZMZMobO8Dly16Wz/WDV9H1z1w8Tazu74cDnkxj2++JsNRrTHSt5s/
- isKyJgvAxRqC3Us1p8B0POJkgCY75RW/7qG7XWZjvFmZF/oN1tOEWid9ZQ7iGnRyXmn0DW0vc/G
- ewY/3ml9vCo2sMFQYe8jNZ0LOYBC/bNhzE6aNK0LjuzKtQpPO8wU4RBZy/rg53FLC1g1uk07Lkk
- ssDxM9dNzp78GcDTj1wl0HVxa7z8v2LeOB2DgJ4Ps8mvLBTbp8+Ryf7OFf+Kwx0q32okI40Gmkv
- eGY6eMaun+9h3VAVPxnxRfANlxAMPPA3XznRpptFdXACfOloQZCKYI+UfIIbBDBGp9hChvXc1X4
- ELJFa6tr05+iSNlFxhysVFZ47UYEMQ==
-X-Proofpoint-ORIG-GUID: aIwLpj0CCzQMBqTBapvChXXOMBHQIADs
-X-Authority-Analysis: v=2.4 cv=NLTYOk6g c=1 sm=1 tr=0 ts=6917a9ba cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=QyXUC8HyAAAA:8 a=gAnH3GRIAAAA:8
- a=IgsPIOQ7CyMxhxFOnYkA:9 a=cPQSjfK2_nFv0Q5t_7PE:22
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: qcs8300: Add CCI definitions
+To: Vikram Sharma <quic_vikramsa@quicinc.com>, bryan.odonoghue@linaro.org,
+        mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        hverkuil-cisco@xs4all.nl, cros-qcom-dts-watchers@chromium.org,
+        catalin.marinas@arm.com, will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_nihalkum@quicinc.com, Ravi Shankar <quic_rshankar@quicinc.com>,
+        Vishal Verma <quic_vishverm@quicinc.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20251114064541.446276-1-quic_vikramsa@quicinc.com>
+ <20251114064541.446276-3-quic_vikramsa@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251114064541.446276-3-quic_vikramsa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=cIvtc1eN c=1 sm=1 tr=0 ts=6917aa57 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=MC0u2OBjPC9q_JU67CwA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: WtQgM0maaLJ-oFo7qBEPueov3g-ERXpQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDE4MiBTYWx0ZWRfX2+eZhjTOAdj4
+ 8RwqTe66pjseD9YK0T4oEl8NS/dbk6vei2LNe25jN/r6FDUdOlraLu3Fh3pYMIGiFVFBiUAUjxQ
+ FYnOcOnX01+f0lV/EfXKZfEm6yh11ZuVpEuHkw58S7n0lLLYIolyRH9FXcDGFFMhG5MxlW4BG6m
+ tvJnrRutGIZkjj3c054ViIHmjPTeMRJSk4/8e/Xy3rUyog9Xmvp61jEI6skmnbDp15UtiZBwHBB
+ LHQiIuQPfNVv0lTsGi9NncPWErcrBCwyF4MB5wqXyjpu1UrYErFgpFR05ftljfFieLNExhh4Toy
+ bEtnlSD8WacKCHnQwf+rYMEayI11Lu/wSHJr6Z7/kBPXhuUrvv1VPMwv+Y5d4/AMI/SkGujBnNS
+ SxUXdiI91uArkk9euUFOm2mIk+CGrg==
+X-Proofpoint-GUID: WtQgM0maaLJ-oFo7qBEPueov3g-ERXpQ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-14_07,2025-11-13_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
- malwarescore=0 suspectscore=0 clxscore=1011 phishscore=0 adultscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511140181
+ impostorscore=0 phishscore=0 priorityscore=1501 adultscore=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140182
 
-The ADXL318 and ADXL319 are low noise density, low power, 3-axis
-accelerometers based on ADXL380 and ADXL382, respectively. The main
-difference between the new parts and the existing ones are the absence
-of interrupts and events like tap detection, activity/inactivity, and
-free-fall detection.
+On 11/14/25 7:45 AM, Vikram Sharma wrote:
+> From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+> 
+> Qualcomm QCS8300 SoC contains three Camera Control Interface (CCI).
+> Compared to Lemans, the key difference is in SDA/SCL GPIO assignments
+> and number of CCIs.
+> 
+> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+> Co-developed-by: Ravi Shankar <quic_rshankar@quicinc.com>
+> Signed-off-by: Ravi Shankar <quic_rshankar@quicinc.com>
+> Co-developed-by: Vishal Verma <quic_vishverm@quicinc.com>
+> Signed-off-by: Vishal Verma <quic_vishverm@quicinc.com>
+> Co-developed-by: Suresh Vankadara <quic_svankada@quicinc.com>
+> Signed-off-by: Suresh Vankadara <quic_svankada@quicinc.com>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
 
-Other differences in the new parts are fewer power modes, basically
-allowing only idle and measurement modes, and the removal of the 12-bit
-SAR ADC path for the 3-axis signals (known as lower signal chain),
-being excluisive for the temperature sensor in the ADXL318/319.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
----
-Changes in v2:
-- resorted the new parts references by numerical order
-- Rearranged the new elements in adxl380_chip_info struct using pahole
-  to improve memory alignment.
----
- drivers/iio/accel/adxl380.c     | 134 ++++++++++++++++++++++----------
- drivers/iio/accel/adxl380.h     |   4 +
- drivers/iio/accel/adxl380_i2c.c |   4 +
- drivers/iio/accel/adxl380_spi.c |   4 +
- 4 files changed, 107 insertions(+), 39 deletions(-)
-
-diff --git a/drivers/iio/accel/adxl380.c b/drivers/iio/accel/adxl380.c
-index 0cf3c6815829..4f6b33a8a34a 100644
---- a/drivers/iio/accel/adxl380.c
-+++ b/drivers/iio/accel/adxl380.c
-@@ -26,7 +26,9 @@
- #include "adxl380.h"
- 
- #define ADXL380_ID_VAL				380
-+#define ADXL318_ID_VAL				380
- #define ADXL382_ID_VAL				382
-+#define ADXL319_ID_VAL				382
- 
- #define ADXL380_DEVID_AD_REG			0x00
- #define ADLX380_PART_ID_REG			0x02
-@@ -178,41 +180,6 @@ enum adxl380_tap_time_type {
- 
- static const int adxl380_range_scale_factor_tbl[] = { 1, 2, 4 };
- 
--const struct adxl380_chip_info adxl380_chip_info = {
--	.name = "adxl380",
--	.chip_id = ADXL380_ID_VAL,
--	.scale_tbl = {
--		[ADXL380_OP_MODE_4G_RANGE] = { 0, 1307226 },
--		[ADXL380_OP_MODE_8G_RANGE] = { 0, 2615434 },
--		[ADXL380_OP_MODE_16G_RANGE] = { 0, 5229886 },
--	},
--	.samp_freq_tbl = { 8000, 16000, 32000 },
--	/*
--	 * The datasheet defines an intercept of 470 LSB at 25 degC
--	 * and a sensitivity of 10.2 LSB/C.
--	 */
--	.temp_offset =  25 * 102 / 10 - 470,
--
--};
--EXPORT_SYMBOL_NS_GPL(adxl380_chip_info, "IIO_ADXL380");
--
--const struct adxl380_chip_info adxl382_chip_info = {
--	.name = "adxl382",
--	.chip_id = ADXL382_ID_VAL,
--	.scale_tbl = {
--		[ADXL382_OP_MODE_15G_RANGE] = { 0, 4903325 },
--		[ADXL382_OP_MODE_30G_RANGE] = { 0, 9806650 },
--		[ADXL382_OP_MODE_60G_RANGE] = { 0, 19613300 },
--	},
--	.samp_freq_tbl = { 16000, 32000, 64000 },
--	/*
--	 * The datasheet defines an intercept of 570 LSB at 25 degC
--	 * and a sensitivity of 10.2 LSB/C.
--	 */
--	.temp_offset =  25 * 102 / 10 - 570,
--};
--EXPORT_SYMBOL_NS_GPL(adxl382_chip_info, "IIO_ADXL380");
--
- static const unsigned int adxl380_th_reg_high_addr[2] = {
- 	[ADXL380_ACTIVITY] = ADXL380_THRESH_ACT_H_REG,
- 	[ADXL380_INACTIVITY] = ADXL380_THRESH_INACT_H_REG,
-@@ -276,9 +243,14 @@ static int adxl380_set_measure_en(struct adxl380_state *st, bool en)
- 		if (ret)
- 			return ret;
- 
--		/* Activity/ Inactivity detection available only in VLP/ULP mode */
--		if (FIELD_GET(ADXL380_ACT_EN_MSK, act_inact_ctl) ||
--		    FIELD_GET(ADXL380_INACT_EN_MSK, act_inact_ctl))
-+		/*
-+		 * Activity/Inactivity detection available only in VLP/ULP
-+		 * mode and for devices that support low power modes. Otherwise
-+		 * go straight to measure mode (same bits as ADXL380_OP_MODE_HP).
-+		 */
-+		if (st->chip_info->has_low_power &&
-+		    (FIELD_GET(ADXL380_ACT_EN_MSK, act_inact_ctl) ||
-+		    FIELD_GET(ADXL380_INACT_EN_MSK, act_inact_ctl)))
- 			op_mode = ADXL380_OP_MODE_VLP;
- 		else
- 			op_mode = ADXL380_OP_MODE_HP;
-@@ -1618,6 +1590,15 @@ static int adxl380_set_watermark(struct iio_dev *indio_dev, unsigned int val)
- 	return 0;
- }
- 
-+static const struct iio_info adxl318_info = {
-+	.read_raw = adxl380_read_raw,
-+	.read_avail = &adxl380_read_avail,
-+	.write_raw = adxl380_write_raw,
-+	.write_raw_get_fmt = adxl380_write_raw_get_fmt,
-+	.debugfs_reg_access = &adxl380_reg_access,
-+	.hwfifo_set_watermark = adxl380_set_watermark,
-+};
-+
- static const struct iio_info adxl380_info = {
- 	.read_raw = adxl380_read_raw,
- 	.read_avail = &adxl380_read_avail,
-@@ -1632,6 +1613,81 @@ static const struct iio_info adxl380_info = {
- 	.hwfifo_set_watermark = adxl380_set_watermark,
- };
- 
-+const struct adxl380_chip_info adxl318_chip_info = {
-+	.name = "adxl318",
-+	.chip_id = ADXL318_ID_VAL,
-+	.scale_tbl = {
-+		[ADXL380_OP_MODE_4G_RANGE] = { 0, 1307226 },
-+		[ADXL380_OP_MODE_8G_RANGE] = { 0, 2615434 },
-+		[ADXL380_OP_MODE_16G_RANGE] = { 0, 5229886 },
-+	},
-+	.samp_freq_tbl = { 8000, 16000, 32000 },
-+	/*
-+	 * The datasheet defines an intercept of 550 LSB at 25 degC
-+	 * and a sensitivity of 10.2 LSB/C.
-+	 */
-+	.temp_offset =  25 * 102 / 10 - 550,
-+	.info = &adxl318_info,
-+};
-+EXPORT_SYMBOL_NS_GPL(adxl318_chip_info, "IIO_ADXL380");
-+
-+const struct adxl380_chip_info adxl319_chip_info = {
-+	.name = "adxl319",
-+	.chip_id = ADXL319_ID_VAL,
-+	.scale_tbl = {
-+		[ADXL382_OP_MODE_15G_RANGE] = { 0, 4903325 },
-+		[ADXL382_OP_MODE_30G_RANGE] = { 0, 9806650 },
-+		[ADXL382_OP_MODE_60G_RANGE] = { 0, 19613300 },
-+	},
-+	.samp_freq_tbl = { 16000, 32000, 64000 },
-+	/*
-+	 * The datasheet defines an intercept of 550 LSB at 25 degC
-+	 * and a sensitivity of 10.2 LSB/C.
-+	 */
-+	.temp_offset =  25 * 102 / 10 - 550,
-+	.info = &adxl318_info,
-+};
-+EXPORT_SYMBOL_NS_GPL(adxl319_chip_info, "IIO_ADXL380");
-+
-+const struct adxl380_chip_info adxl380_chip_info = {
-+	.name = "adxl380",
-+	.chip_id = ADXL380_ID_VAL,
-+	.scale_tbl = {
-+		[ADXL380_OP_MODE_4G_RANGE] = { 0, 1307226 },
-+		[ADXL380_OP_MODE_8G_RANGE] = { 0, 2615434 },
-+		[ADXL380_OP_MODE_16G_RANGE] = { 0, 5229886 },
-+	},
-+	.samp_freq_tbl = { 8000, 16000, 32000 },
-+	/*
-+	 * The datasheet defines an intercept of 470 LSB at 25 degC
-+	 * and a sensitivity of 10.2 LSB/C.
-+	 */
-+	.temp_offset =  25 * 102 / 10 - 470,
-+	.has_low_power = true,
-+	.info = &adxl380_info,
-+
-+};
-+EXPORT_SYMBOL_NS_GPL(adxl380_chip_info, "IIO_ADXL380");
-+
-+const struct adxl380_chip_info adxl382_chip_info = {
-+	.name = "adxl382",
-+	.chip_id = ADXL382_ID_VAL,
-+	.scale_tbl = {
-+		[ADXL382_OP_MODE_15G_RANGE] = { 0, 4903325 },
-+		[ADXL382_OP_MODE_30G_RANGE] = { 0, 9806650 },
-+		[ADXL382_OP_MODE_60G_RANGE] = { 0, 19613300 },
-+	},
-+	.samp_freq_tbl = { 16000, 32000, 64000 },
-+	/*
-+	 * The datasheet defines an intercept of 570 LSB at 25 degC
-+	 * and a sensitivity of 10.2 LSB/C.
-+	 */
-+	.temp_offset =  25 * 102 / 10 - 570,
-+	.has_low_power = true,
-+	.info = &adxl380_info,
-+};
-+EXPORT_SYMBOL_NS_GPL(adxl382_chip_info, "IIO_ADXL380");
-+
- static const struct iio_event_spec adxl380_events[] = {
- 	{
- 		.type = IIO_EV_TYPE_THRESH,
-@@ -1866,7 +1922,7 @@ int adxl380_probe(struct device *dev, struct regmap *regmap,
- 	indio_dev->channels = adxl380_channels;
- 	indio_dev->num_channels = ARRAY_SIZE(adxl380_channels);
- 	indio_dev->name = chip_info->name;
--	indio_dev->info = &adxl380_info;
-+	indio_dev->info = chip_info->info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 
- 	ret = devm_regulator_get_enable(dev, "vddio");
-diff --git a/drivers/iio/accel/adxl380.h b/drivers/iio/accel/adxl380.h
-index a683625d897a..e67c5aab8efc 100644
---- a/drivers/iio/accel/adxl380.h
-+++ b/drivers/iio/accel/adxl380.h
-@@ -12,10 +12,14 @@ struct adxl380_chip_info {
- 	const char *name;
- 	const int scale_tbl[3][2];
- 	const int samp_freq_tbl[3];
-+	const struct iio_info *info;
- 	const int temp_offset;
- 	const u16 chip_id;
-+	const bool has_low_power;
- };
- 
-+extern const struct adxl380_chip_info adxl318_chip_info;
-+extern const struct adxl380_chip_info adxl319_chip_info;
- extern const struct adxl380_chip_info adxl380_chip_info;
- extern const struct adxl380_chip_info adxl382_chip_info;
- 
-diff --git a/drivers/iio/accel/adxl380_i2c.c b/drivers/iio/accel/adxl380_i2c.c
-index b4f86f972361..bd8782d08c7d 100644
---- a/drivers/iio/accel/adxl380_i2c.c
-+++ b/drivers/iio/accel/adxl380_i2c.c
-@@ -33,6 +33,8 @@ static int adxl380_i2c_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id adxl380_i2c_id[] = {
-+	{ "adxl318", (kernel_ulong_t)&adxl318_chip_info },
-+	{ "adxl319", (kernel_ulong_t)&adxl319_chip_info },
- 	{ "adxl380", (kernel_ulong_t)&adxl380_chip_info },
- 	{ "adxl382", (kernel_ulong_t)&adxl382_chip_info },
- 	{ }
-@@ -40,6 +42,8 @@ static const struct i2c_device_id adxl380_i2c_id[] = {
- MODULE_DEVICE_TABLE(i2c, adxl380_i2c_id);
- 
- static const struct of_device_id adxl380_of_match[] = {
-+	{ .compatible = "adi,adxl318", .data = &adxl318_chip_info },
-+	{ .compatible = "adi,adxl319", .data = &adxl319_chip_info },
- 	{ .compatible = "adi,adxl380", .data = &adxl380_chip_info },
- 	{ .compatible = "adi,adxl382", .data = &adxl382_chip_info },
- 	{ }
-diff --git a/drivers/iio/accel/adxl380_spi.c b/drivers/iio/accel/adxl380_spi.c
-index 6edd0d211ffa..4ead949b24f1 100644
---- a/drivers/iio/accel/adxl380_spi.c
-+++ b/drivers/iio/accel/adxl380_spi.c
-@@ -35,6 +35,8 @@ static int adxl380_spi_probe(struct spi_device *spi)
- }
- 
- static const struct spi_device_id adxl380_spi_id[] = {
-+	{ "adxl318", (kernel_ulong_t)&adxl318_chip_info },
-+	{ "adxl319", (kernel_ulong_t)&adxl319_chip_info },
- 	{ "adxl380", (kernel_ulong_t)&adxl380_chip_info },
- 	{ "adxl382", (kernel_ulong_t)&adxl382_chip_info },
- 	{ }
-@@ -42,6 +44,8 @@ static const struct spi_device_id adxl380_spi_id[] = {
- MODULE_DEVICE_TABLE(spi, adxl380_spi_id);
- 
- static const struct of_device_id adxl380_of_match[] = {
-+	{ .compatible = "adi,adxl318", .data = &adxl318_chip_info },
-+	{ .compatible = "adi,adxl319", .data = &adxl319_chip_info },
- 	{ .compatible = "adi,adxl380", .data = &adxl380_chip_info },
- 	{ .compatible = "adi,adxl382", .data = &adxl382_chip_info },
- 	{ }
--- 
-2.34.1
-
+Konrad
 
