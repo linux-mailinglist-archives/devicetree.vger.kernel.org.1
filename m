@@ -1,60 +1,86 @@
-Return-Path: <devicetree+bounces-238791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0046C5E00F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:53:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B19C5E112
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:04:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 225A74A28AA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:39:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5BC864FD38C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:39:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EAE32E692;
-	Fri, 14 Nov 2025 15:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EABE32E6A9;
+	Fri, 14 Nov 2025 15:28:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TRV5vQif"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LkjbqH06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B08832E141;
-	Fri, 14 Nov 2025 15:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1BD32D7F4;
+	Fri, 14 Nov 2025 15:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763134087; cv=none; b=VlT5XXg0+4nZ5H8W5YZswAj3cP5GoippWWj9u4qEI6Yz4vxRxQPyUzC6xF6Gxqel26aFhK1EvA3tYawaOHofJRD0N33UD/hew/AlG0Qxl48QafBPWz236qVOx4m/d3QAmgL/WmKzYi43odFqZTTEwkLKzHBGHFwM2QzVtwohuYU=
+	t=1763134109; cv=none; b=seiJb/Zt9V1ZSGahdLcJ25Sn30yVtrSkOkadnhaVJ2W4fH23Y7TyL7BEsBsvg6f25opQZ9RGCPVvbHjHN6rHN9Ti7VBai5JoJ2pVWLhq8VN9+N+QzZG/rWMf4FkAZ5F6JzxQrWmvOm8aZiYKtRQU0IbjbjJyi96sNffbiPwmPTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763134087; c=relaxed/simple;
-	bh=RUXK/5/a9yTgVDsERyD/jo/GSpkGjV+60oQqDcr23xM=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hwWgg5ZWwKK60Fknh64Zd9yT0ETY7WTQrNnLhuNhYVLQkkxfY43mtUSsppWyGycpnnSKEfLNf9PqREnuwudI4Mrw+MJ5m7J+hxvTKAVoysBLcOsfeDA4GyIBV9qh3fenddPzNP/fyOOxOAC2v6pZ9p6yQkjrsXMrv8qYRL4Q6Lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TRV5vQif; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CD9FC4CEF5;
-	Fri, 14 Nov 2025 15:28:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763134086;
-	bh=RUXK/5/a9yTgVDsERyD/jo/GSpkGjV+60oQqDcr23xM=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=TRV5vQifUz6xPCpUSRevekxF/6ZE1DedvLG3eIvTyIQwRLd6se05fxbws6atQjr1B
-	 ZybOAAU95xIPj/EJ6W2V7hEyagLopJPXII8xUvQVuoZn+tOvn79FEcyHPxgmTW+RO7
-	 Pwa3pzD7AdajkZ74iMq+a+FS3ov+d1146XU/oQFM3duP3+EncsRJK+ZgeAn2tdZdpB
-	 sAlwpFzcuC/Q2VFLydIXrJqa+azFffbAZQjNcnXL0s5QteIDRj0YR2DMB+4eMNWmIT
-	 tdnutihf+Sm/36Lk8tVe7UYHFSd+W/JpdCz+TYVhlreklNBntYlOt7p5bZ1T3Z1h1b
-	 Y16TPyQOISC4Q==
-Received: from johan by xi.lan with local (Exim 4.98.2)
-	(envelope-from <johan@kernel.org>)
-	id 1vJviX-000000000fs-1V6R;
-	Fri, 14 Nov 2025 16:28:05 +0100
-Date: Fri, 14 Nov 2025 16:28:05 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alejandro Enrique <alejandroe1@geotab.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: gnss: u-blox: use open-drain reset and
- safeboot in example
-Message-ID: <aRdKhWvsK7xHou0-@hovoldconsulting.com>
-References: <20251114150335.357-1-johan@kernel.org>
+	s=arc-20240116; t=1763134109; c=relaxed/simple;
+	bh=z8lCr3fSbWR0YaeRJvRwXvQNpYW9CE1zd/Fm1bcIsCE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n6cQTe+uiXpEMSkHRusag5G6cBvW5w6tqV+YjlmcbYc0KkZYhviZarRl/m91AJrhLG445SO0XqFoE4dE382mtJo/Pw+nK7BcoGXTNVpBI+i5hs1ceCIeWz2NwzXST9trVdnMrZ87ZldSJ+gQCbgzP4tlY3WjWHu0D9duekY/ncA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LkjbqH06; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763134108; x=1794670108;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=z8lCr3fSbWR0YaeRJvRwXvQNpYW9CE1zd/Fm1bcIsCE=;
+  b=LkjbqH063u0pq5dYjXDf++VVJnwUmyFcHaX/9V4RECDnUMJL9FNB/Bv2
+   Mcz8jDM5RW+xp69OHg/NpzShe51fercrdgPMfcU+5TwgWwdQ//36XnYv7
+   AxeYPFMMouHhCbWcQcusPIfFXpKhbKrJI3ld4/Ol+azuxaxZObwlDYcGI
+   QaFV73UfBzX3OIi5SAgKv1JOqxsVHOt4i0e76BTh2hpaZCae3CVtQ9hKJ
+   OYtgpruwqQKxyIubZRf9e7ho6+cdFVfJBJ8TCdwvvjpUtCXJ1Py/xbCSP
+   DJL3PDb9+F1yjoi9eFXr/9E0aoFcPKHfUq46HfqBmLGRh/F7hlAFRXq1e
+   Q==;
+X-CSE-ConnectionGUID: d3Cr80r0R4+qvXxfKnozeg==
+X-CSE-MsgGUID: Q5eqjIEsRuWhdUHDqlg9wg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11613"; a="75909789"
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; 
+   d="scan'208";a="75909789"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2025 07:28:27 -0800
+X-CSE-ConnectionGUID: 82XteTvSQDqJSy/t7iUKSw==
+X-CSE-MsgGUID: Ypb8ALdmRFS6MgEOugSKQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,305,1754982000"; 
+   d="scan'208";a="189450717"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.53])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2025 07:28:24 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 606D5121DDE;
+	Fri, 14 Nov 2025 17:28:23 +0200 (EET)
+Date: Fri, 14 Nov 2025 17:28:23 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	laurent.pinchart@ideasonboard.com,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v13 15/15] Documentation: mali-c55: Document the mali-c55
+ parameter setting
+Message-ID: <aRdKlwosRv-80_KN@kekkonen.localdomain>
+References: <20251111-c55-v13-0-3dc581355e3a@ideasonboard.com>
+ <20251111-c55-v13-15-3dc581355e3a@ideasonboard.com>
+ <2n4sn2aakwl7k2qvcefb7m2zzllytj7i4nup55xex2ggdngfkd@gwpxbpmlupko>
+ <aRdBbn4cpdn_7H0v@kekkonen.localdomain>
+ <umslyxkmj4gnr743c6ixsykay5w2seoeiy2hzidg6lb3fcizep@dglvrn7l7a4q>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,43 +89,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251114150335.357-1-johan@kernel.org>
+In-Reply-To: <umslyxkmj4gnr743c6ixsykay5w2seoeiy2hzidg6lb3fcizep@dglvrn7l7a4q>
 
-On Fri, Nov 14, 2025 at 04:03:35PM +0100, Johan Hovold wrote:
-> The RESET_N and SAFEBOOT_N pins should typically be left open and only
-> be connected to ground in rare cases where a device is misbehaving.
+Hi Jacopo,
+
+On Fri, Nov 14, 2025 at 03:57:21PM +0100, Jacopo Mondi wrote:
+> Hi Sakari,
+>    can't say timing is what we excel the most at.
 > 
-> Switch to using GPIO_OPEN_DRAIN in the example as this is what should
-> generally be used.
->
-> Note that the current Linux driver implementation depends on these pins
-> being declared open-drain so that they are not driven while the main
-> supply is off.
-> 
-> Signed-off-by: Johan Hovold <johan@kernel.org>
-> ---
->  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> index 9f14cfe7efd1..e8b696986bb7 100644
-> --- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> +++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> @@ -67,7 +67,7 @@ examples:
->              compatible = "u-blox,neo-8";
->              v-bckp-supply = <&gnss_v_bckp_reg>;
->              vcc-supply = <&gnss_vcc_reg>;
-> -            reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
-> -            safeboot-gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
-> +            reset-gpios = <&gpio 1 GPIO_OPEN_DRAIN>;
-> +            safeboot-gpios = <&gpio 2 GPIO_OPEN_DRAIN>;
+> Afaik Hans has applied the PR, and as all comments here are on ...
+> comments, they will be addressed with patches on top
 
-Bah, I forgot about the ABI breakage introduced a few years ago which
-means that we now need to specify both open-drain and active-low:
+This is just sample code, changing it later on will be fine.
 
-	https://lore.kernel.org/all/20170719131640.GA2533@localhost/
+Thanks.
 
-Will fix in a v2.
+-- 
+Kind regards,
 
-Johan
+Sakari Ailus
 
