@@ -1,128 +1,130 @@
-Return-Path: <devicetree+bounces-238530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 042BAC5C077
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:40:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3FECC5C073
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:40:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E5FEA4E0F87
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:40:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 24EE134FA73
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:40:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8F32FDC41;
-	Fri, 14 Nov 2025 08:40:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C47D52FDC41;
+	Fri, 14 Nov 2025 08:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="cjItImkq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JCBW6hgg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay47-hz3.antispameurope.com (mx-relay47-hz3.antispameurope.com [94.100.134.236])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA492FD67B
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:40:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.236
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763109643; cv=pass; b=Ol5MjKqWKff2qK06322Yl/aWrP8Ysaqgedr9CuFs9uTT9XVuE2ZzxYFXNVx8hjnIT+TO24lttPiwqf+TqSEgbuzp3mrmCkgOC5XmKhMcn9POM2E/79bDtn0SEY9dfXvnYlJj/KHnNg3kXTsn0l5iHG76XugBolYSzxOGw3mP5vQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763109643; c=relaxed/simple;
-	bh=Ra/5m92uB7SXw4M21jf1shKnl80L1lF9SDNcGq+iH6c=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SjHC3+WvIh4UWPfNej3b0OktXsJ6/9O35R3vNkm2WRfG4QnV9TfYwwMnHetTzNu2VLD2zUNJjH+to6G4j1wA4A1ngFU29qk0+82SU0uDW1RmujeK75JAaVaNY/dfp/hdKSchay/DPxV0oiBUUjJlHmeeB3Pzcv4tM6ZK+jcQ3O4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=cjItImkq; arc=pass smtp.client-ip=94.100.134.236
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate47-hz3.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com
- smtp.helo=hmail-p-smtp01-out04-hz1.hornetsecurity.com; dmarc=pass
- header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=wFG888Gb9Ru3OuBdwJfnSjD0IrRTCToX06LrZpem+M0=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1763109620;
- b=tEAbfqUABIBXYWlkn3+xK2O4Xkz2yP1QIV+SIz6/3FM4iBcX0EpkkuZ/F1hrIeb5fyKTmZtp
- ESQ400xRVl8xTRhsFyJ6ZO1+kjffyWs4ztnfkgatx1gXqnS+J+RdNoqxJ6hUKOVAH7R0t7/PzMg
- G90jc+kiTezz/1LG57j7kBpaF+a65uOJ8z6U2WVmgpTzK91u1vC+IbzvHm2wl+1MK+vAyBlGAt8
- eTqKx+KgFLcXKg9bpodl2qQJSQ0/vGu3U/NWQNMj/YYlAdGpapAdj2MTeJtq+diJVx6uvCBVm87
- dYdLMpUeTewetVZSvESnmSxTf7zR+nfZcsJIAK0IbuNWQ==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1763109620;
- b=M2RVtziQUcpMaZ6SnktVZgQU3eMArR0LjMvc7+A79KRUMapVtfR1RXy04PSLCvDGnZL4Q9BT
- fjMEshLcMsVi+XZz0qG/RVqZ9XOueT77bNvR+hxSAAJMs953xftr0xLnaZhV2vNq/YJOBgLQBW5
- g9UPJLyHz/h6tVvemPw+bASb3zvuqXhCJRCxsZymlPHn3BEf1tqjS/Hxc/IOvf8mZG2BM9hPt9g
- w46NnwwnatJj0pKnCwRZI14NOhatf6QHQ4lHiOIN/eYbami2lPgS1ykvt8jqf8dCRmvQAzGpZvI
- aNWer5P9JGaGhBepjcWEmPZgLnaqWgMUeBeHlG/7TKN0Q==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay47-hz3.antispameurope.com;
- Fri, 14 Nov 2025 09:40:20 +0100
-Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out04-hz1.hornetsecurity.com (Postfix) with ESMTPSA id B0F20220D04;
-	Fri, 14 Nov 2025 09:40:10 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: freescale: tqma9352: Add vcc-supply for spi-nor
-Date: Fri, 14 Nov 2025 09:39:58 +0100
-Message-ID: <20251114083959.1463736-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EB182FB61D
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:40:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763109609; cv=none; b=feNAPzCIKxQq1DyB2oWyU33U+TQ4meAR1MMgAiFxrhFzya2/3arfU2NbueJqQN/4K/VQ3Py/P+qK5/YmJJ6DErM7XDjF2fLI7E7L/AK6S5fwuuyYkSZD7acg9O2NsFZO6yjlLbfmO80PXYcwQqW+I4nN7epCJlnRCZdC1SbNYfk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763109609; c=relaxed/simple;
+	bh=tBN7u5qfN1+V9rr4IdHxP5a+Li3T84TKD8wJ1gUhDIM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kv7CcGKRjO+W7OtrI9hxNJk6zHN0gSkOVw3pLtwQ66Okg+tSahyt0iFNKC9XuP3Rx+mjqL3Edzqu/dzH/VJqQODbIfSggqt/gCwjPWl18beWHWZXktR1qQa1BICjlnHFvT6lP/mOcTcJvgIu4Vod4AlykeJ9kVlH2T27UA9MFik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JCBW6hgg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 382E6C4CEF8;
+	Fri, 14 Nov 2025 08:40:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763109609;
+	bh=tBN7u5qfN1+V9rr4IdHxP5a+Li3T84TKD8wJ1gUhDIM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JCBW6hgg3SsBPRoreLYkLMkW7mQ7L3VkWHkviZ5PYXVJBJMsB8SKH/neq4dDlTCQ+
+	 xUzLvfRZS2K5izUExHgk8UatStw/O0lEkDVcLVTIxV+bGPpB5jh0y9dI8c7jXMzckF
+	 gzS5emP1XLo2SoTBFDA+XHY3gtjtEESS4LbUIcRiW9bKoIhEkBUhWAbirv7ty2hdiD
+	 KXpDi+5iufGso6mitb2gBUwfyrWqDN6f4aZm+OeRqgENMPiY3iPKpBR4aeY7hv/TKe
+	 6TXtoLQawFFaD1pJI/kw3xMBJd4nY0S+/vta11OhF1ClXxfhcZ6zeUAdVvVLQEJUNf
+	 4Xq1lPGrEYmUQ==
+Message-ID: <2e04869a-29f8-4c2e-bfe7-0a4b22369a8c@kernel.org>
+Date: Fri, 14 Nov 2025 09:40:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay47-hz3.antispameurope.com with 4d79Z33Zbfz4MQ5P
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:3960ebd3158cf10cca87d14920876d23
-X-cloud-security:scantime:2.484
-DKIM-Signature: a=rsa-sha256;
- bh=wFG888Gb9Ru3OuBdwJfnSjD0IrRTCToX06LrZpem+M0=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1763109619; v=1;
- b=cjItImkqtdl1h0/xgc+WYdFzNHechFGNH8A2qv6okOnBWQQWGu15H62af/eY06o2ojYa3ek0
- xls4ODQFd9U/8h9Ndi4LWwAYR/z6RAComeBv8l9QEF/BItndPYxlPJxApkeOtEFLIm0oc5VHxhm
- 9pJc6RrQ4kIUq3uRyXpeOhvRaK0QRS8/YvGZvFOnkZ1BF/IImqWehlXfVB4q7bA5GxqRSZOtpdY
- aU+5nEPiS1EcMav++qUo15FQdjVBed4ekJcCeFr8yhOmwhd2FmhhNKUsbx+WkcKR0T132VNwE/X
- WU9T4qJX02SqyHRWfEda0jU9W+aXzCo220iXHyXmXMciQ==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add kfr prefix
+To: Gilles BULOZ <gilles.buloz@kontron.com>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+References: <13a2c25b-9633-c06c-0c07-95157a2a9c1e@kontron.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <13a2c25b-9633-c06c-0c07-95157a2a9c1e@kontron.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-(Q)SPI NOR flash is supplied by 1.8V. Add the corresponding supply.
+On 14/11/2025 08:53, Gilles BULOZ wrote:
+> Add kfr vendor prefix for Kontron France, which is a single-board
+> computer (SBC) manufacturer.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+There is no user for this.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi b/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
-index 82914ca148d3a..3a23e2eb9febe 100644
---- a/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
-@@ -67,6 +67,7 @@ flash0: flash@0 {
- 		spi-max-frequency = <62000000>;
- 		spi-tx-bus-width = <4>;
- 		spi-rx-bus-width = <4>;
-+		vcc-supply = <&buck5>;
- 
- 		partitions {
- 			compatible = "fixed-partitions";
--- 
-2.43.0
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument, so you will
+not CC people just because they made one commit years ago). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+</form letter>
+
+Best regards,
+Krzysztof
 
