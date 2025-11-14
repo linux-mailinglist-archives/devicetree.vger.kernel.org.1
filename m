@@ -1,167 +1,120 @@
-Return-Path: <devicetree+bounces-238827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D2DCC5E556
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:50:32 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3508AC5E6AF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:03:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D5043AFF81
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:44:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 499814F9452
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054DF33556E;
-	Fri, 14 Nov 2025 16:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A09829B795;
+	Fri, 14 Nov 2025 16:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="Jr6lUwqt";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="Jr6lUwqt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K30ipYDu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B362F3346BB;
-	Fri, 14 Nov 2025 16:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1F929A30A;
+	Fri, 14 Nov 2025 16:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763138647; cv=none; b=CD9C5Bm8jpOB6GD8jFFhnBwqlWj8n7VX+WvrrmKZVA93oUHMBBouG4tM7gasnvspnvSWvGkz35n8IaoVBYFJY9gzjcBzl7/AfZ1FG2By0xZZTKKOB3KbaP7AwGFjzDg4XtyRFZzW8ds80Fh+ZUg3wkalFEZ1vWbK6+Sit8/iM3A=
+	t=1763138821; cv=none; b=jycAZ5Ztcjwj7iExcHkhoAfHmCmrDmfG/4xA21/GRVTyeeYKziwNDo5rsqUTNJp6zXkIv51YE392e18LCGVNuDX4PrehAPWQ5gK5/h1XJdP36UUlCiHFwiECgoUL6QBV1EypVShRLgXV85DeGPFGO3kau5z6L2DXespyLq8eQvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763138647; c=relaxed/simple;
-	bh=amx1Z+RrD4CwZ1rF6kcX9RLp5bCo6GnsqSibeDGvxyo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QEo/uXIqOvqLiBxOUGs/SoPitnFmVdE1GnlmBoqdmInVosKBhH0atiihNDzQbdJWI00uDgx1RLe5eMBvi3TDqHkSFWizdfrcFPyjUBg5ttAbHDLbaqS1NMKlukFz8z/oQIr040TxUnq7lbxZeZiyARp8NPR53wTUzmGkZeds/bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=Jr6lUwqt; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=Jr6lUwqt; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1763138644; bh=amx1Z+RrD4CwZ1rF6kcX9RLp5bCo6GnsqSibeDGvxyo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Jr6lUwqtdr04b1l1ZEG72BDuCoatMDSU4HJBDfQSnzXgD43UAD7Yya8jLAOHFM3pz
-	 LK+Ox5L6zQoko/4ZvLV5i4Z+4Wyd03by68F2Ftrd/PUFTz4cLrtR0Uh3YFQ4wy9nUL
-	 JODrdFz9ms4H8d8kzf2o8jrHfA4D+PjWNIxxPvKvkUTOsse4SAann7ST4O5aonw/jO
-	 udYtZHr4LLYpCz1UK0kTSAeFlaqJm2TXsGJyxzn2goTbucnSPvvCquQfc/6ErV0hBd
-	 j0oSj65KXxFCQBVFYAHwKbapDHIIScULCidB2h1CKoawRyUpOrkVctlQXW8G2OpcRx
-	 igzZpM9O9PMuw==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 2AD5C3E1525;
-	Fri, 14 Nov 2025 16:44:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1763138644; bh=amx1Z+RrD4CwZ1rF6kcX9RLp5bCo6GnsqSibeDGvxyo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Jr6lUwqtdr04b1l1ZEG72BDuCoatMDSU4HJBDfQSnzXgD43UAD7Yya8jLAOHFM3pz
-	 LK+Ox5L6zQoko/4ZvLV5i4Z+4Wyd03by68F2Ftrd/PUFTz4cLrtR0Uh3YFQ4wy9nUL
-	 JODrdFz9ms4H8d8kzf2o8jrHfA4D+PjWNIxxPvKvkUTOsse4SAann7ST4O5aonw/jO
-	 udYtZHr4LLYpCz1UK0kTSAeFlaqJm2TXsGJyxzn2goTbucnSPvvCquQfc/6ErV0hBd
-	 j0oSj65KXxFCQBVFYAHwKbapDHIIScULCidB2h1CKoawRyUpOrkVctlQXW8G2OpcRx
-	 igzZpM9O9PMuw==
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id 9629B3E0CE9;
-	Fri, 14 Nov 2025 16:44:03 +0000 (UTC)
-Message-ID: <03494fa4-26e6-4691-8fa6-5bd99c2c25a1@mleia.com>
-Date: Fri, 14 Nov 2025 18:44:03 +0200
+	s=arc-20240116; t=1763138821; c=relaxed/simple;
+	bh=4EpMRFeYHj1in4XKS+Dlo+4mLzX8SiIfcEMg1hebD0A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rYoxFhl2f91KOSJJM6msPQmF6JNWTAWaAyPKjW0R7fwNnbas0Ac/6asf8Y0URNZrvuZDALP3DPhYBdxBgMfO/1CJCfzsK3InR5+s5+NN6DvWAELnSBsUuFibIBNW1VPfk1NzlFa4FVTODSQfH3PYklyyUpzxH7dTFkMN08gzru0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K30ipYDu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52E88C4CEFB;
+	Fri, 14 Nov 2025 16:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763138820;
+	bh=4EpMRFeYHj1in4XKS+Dlo+4mLzX8SiIfcEMg1hebD0A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K30ipYDuR/RUrNmkVc7gm/zBnjjveNhFDABC4izAmhLcDJUFonKiI0G5vLlL6u/LO
+	 TeJ0wYSOE73rEdYcMoA6nR3i496qxne3PZihBlID9tEPoXOaTyt4ie3uyyIq9BgLBw
+	 PZJSb75fArEiccCcnjRALq60MFwd8TEqtK++9S5GnJ9RD62wbNFzJCGXVewGTrOZZ6
+	 mFU4euj93FqTdJfqoyGkaIjeSl5gcbO46LE2c6jjvEi4BnfXDk3zaMeKxwPTQr7zEQ
+	 gERyKvSX5UerE+mDcfN45nfSgQ+bg4rUomyFKu5AHF775QwAbx8ZkDuCYTamt4cTbJ
+	 ea3KEVbFnM+jw==
+Date: Fri, 14 Nov 2025 16:46:54 +0000
+From: Mark Brown <broonie@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 09/20] mfd: sec: Add support for S2MPG11 PMIC via ACPM
+Message-ID: <db7e95dd-2361-4579-b52c-b9556da4633a@sirena.org.uk>
+References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
+ <20251103-s2mpg1x-regulators-v3-9-b8b96b79e058@linaro.org>
+ <20251113162534.GO1949330@google.com>
+ <45ce203c03ec34631a0170baa7e4cf26c98b9cd3.camel@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] ARM: dts: lpc32xx: add bus surfix for simple-bus
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/LPC32XX SOC SUPPORT"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-References: <20251029202801.3963952-1-Frank.Li@nxp.com>
- <af66cc8a-051a-4512-9a02-468b17550775@mleia.com>
- <aRdWoQ/vPplF0aQA@lizhi-Precision-Tower-5810>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <aRdWoQ/vPplF0aQA@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251114_164404_195024_621ABE18 
-X-CRM114-Status: GOOD (  17.26  )
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Qn5lIfBNzUCscegG"
+Content-Disposition: inline
+In-Reply-To: <45ce203c03ec34631a0170baa7e4cf26c98b9cd3.camel@linaro.org>
+X-Cookie: Causes moderate eye irritation.
 
-On 11/14/25 18:19, Frank Li wrote:
-> On Fri, Nov 14, 2025 at 01:55:50AM +0200, Vladimir Zapolskiy wrote:
->> Hi Frank.
->>
->> On 10/29/25 22:27, Frank Li wrote:
->>> add bus surfix for simple-bus to fix below CHECK_DTBS warnings:
->>
->> typo in the subject and in the commit message above, s/surfix/suffix/
->>
->>> arm/boot/dts/nxp/lpc/lpc3250-ea3250.dtb: usb (simple-bus): $nodename:0: 'usb' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
->>>           from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
->>>
->>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>> ---
->>>    arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 6 +++---
->>>    1 file changed, 3 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
->>> index 2236901a00313..9790b0a1d6537 100644
->>> --- a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
->>> +++ b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
->>> @@ -86,7 +86,7 @@ dma: dma-controller@31000000 {
->>>    			#dma-cells = <2>;
->>>    		};
->>> -		usb {
->>> +		usb-bus {
->>
->> Device nodes under "usb" should be just elevated, the "simple-bus" here
->> was used only to group some controllers together.
->>
->>>    			#address-cells = <1>;
->>>    			#size-cells = <1>;
->>>    			compatible = "simple-bus";
->>> @@ -307,14 +307,14 @@ mpwm: pwm@400e8000 {
->>>    			};
->>>    		};
->>> -		fab {
->>> +		fab-bus {
->>
->> FAB shall find its place in the AXI/AHB/APB/... list, isn't it?
-> 
-> what's FAB means? It is too short and hard to find exact information
-> from google?
 
-You may find UM10326 "LPC32x0 and LPC32x0/01 User manual" document online,
-LPC32xx is an old and simple SoC.
+--Qn5lIfBNzUCscegG
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-FAB stands for Fast Access Bus, it's a bus behind AHB to FAB bridge, you
-may get an overview from "Fig 3. LPC32x0 block diagram, AHB matrix view",
-and "Table 4. Peripheral devices on the LPC32x0" lists all FAB peripherals.
+On Thu, Nov 13, 2025 at 09:43:29PM +0000, Andr=E9 Draszik wrote:
+> On Thu, 2025-11-13 at 16:25 +0000, Lee Jones wrote:
 
-So, FAB is very similar to APB functionally, could it be just another
-name of APB?.. Likely we won't know for sure.
+> > > +static const struct mfd_cell s2mpg11_devs[] =3D {
+> > > +	MFD_CELL_NAME("s2mpg11-meter"),
+> > > +	MFD_CELL_BASIC("s2mpg11-regulator", NULL, NULL, 0, S2MPG11_BUCKBOOS=
+T),
 
-I'd suggest to send a change, which adds "fab" to the list of permitted
-device tree node names with a "simple-bus" compatible. Or let me know,
-and I'll do it myself whenever I find a minute for it...
+> > This is highly irregular - in that, we've never done this before.
 
->>>    			#address-cells = <1>;
->>>    			#size-cells = <1>;
->>>    			compatible = "simple-bus";
->>>    			ranges = <0x20000000 0x20000000 0x30000000>;
->>>    			/* System Control Block */
->>> -			scb {
->>> +			scb-bus {
->>>    				compatible = "simple-bus";
->>>    				ranges = <0x0 0x40004000 0x00001000>;
->>>    				#address-cells = <1>;
->>
->> Here "simple-bus" is also unjustified...
+> > We're going to need to have Mark look at this.
 
--- 
-Best wishes,
-Vladimir
+> I did see this in at least one other driver, ah yes at least
+> drivers/mfd/88pm860x-core.c is doing something similar, maybe others, too
+> (I stopped there).
 
+Other drivers doing something doesn't mean that they're following good
+practice.  We do also have drivers which have multiple identical IP
+blocks and are passing in resources with base address, interrupt and
+whatever for the IP blocks which is different to just passing a Linux
+internal ID number through.
+
+--Qn5lIfBNzUCscegG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkXXP0ACgkQJNaLcl1U
+h9AEDQf/fuZp1M50wSKQchrgoKDudU423oxJuyVfXaRPVzOrj/euxCZ6NgE4HQbM
+88EwVcbDcWsGa/wH6JjZBKW5qr6T+16zJZYTNf1RlE1pTa2OY0hDI2wRxdlfhIJ7
+QmM4+GxY2iW/cTfL27Vc/ViELbaD9XDlNkHUQTTnB9EE52zHIHj87ZJsRolF8Uls
+HkAomvBJm6QxzNsqc3qqnwOxeybUwvOh+v/lKkChUYwCkX0YE3ubgJXdapAcqeEA
+3dNCryPywswLotFv8Az/W35UNEFyLAsoMrkpdgc7Ef0qIXNiLZfRXdrragi0m4xz
+jDcoIxDQkU5bP6Ql0JiUhFxi4XhBJg==
+=QkOk
+-----END PGP SIGNATURE-----
+
+--Qn5lIfBNzUCscegG--
 
