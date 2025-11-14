@@ -1,151 +1,146 @@
-Return-Path: <devicetree+bounces-238650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43860C5CF74
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:58:46 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6DF4C5CF9E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 70CF44E7B9E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:55:53 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 24F0235ACCB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6E83176EE;
-	Fri, 14 Nov 2025 11:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530D2316185;
+	Fri, 14 Nov 2025 11:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SLawjDEm"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="PuHN+dmM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33BA3164DB
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B736A315D26;
+	Fri, 14 Nov 2025 11:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763121338; cv=none; b=N/nJyJO59XO6Kje5tX/BLO1A0+yu9j8mturXGhuz/pPpfuxsWU9Mu/i+TTRCj/N9Gu+YYaTwrbPAWwb7HPiE2IARkhoQfEKFvOjOudXnT+GVjW31s1KtEMHZp/8qv/ldSZ8Tsfj8HeBqVDGvSmwh7hRjoLN3UyivYgVa7vbIkaI=
+	t=1763121588; cv=none; b=AGHLPwcp/+XP1fhfrUFxBPkqEZ3eStKs+GbLlnfUE9vSYZ2dDWqdDM6+bGastRO28dwQjFVG1lNhwxsZYvR7ZFSWHgYH78mprpoAzwf4QUl4ftLvFXHQDhxdfPAyhEE2D7bIHWt3617/Kmh+q0IPTEYUVjstM0ZT+tOVPuYPCYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763121338; c=relaxed/simple;
-	bh=kSsVcz8630KwHo4IO7LJsqMTZrFWGAD+oaRzx2FLL3w=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LNJdXup1uYznYg2jc65ifcFOOknybduIBPwtGf+BRWWZnU2CWznI9MoHPahnUJwp/ZlxV3srolZZjwgVt5NOSK1eskYcgoyKGwMcIo3vLCWRmP4GZJ+7JsKaRM5VHZHhMKtgKTd5lqi2r5UqFwgkzLzRCYLcHz4xvPwx6B9XaDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SLawjDEm; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-477770019e4so22403015e9.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 03:55:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763121335; x=1763726135; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=kSsVcz8630KwHo4IO7LJsqMTZrFWGAD+oaRzx2FLL3w=;
-        b=SLawjDEmIkye7FklV/K0NRjVRjISwZlLXhh7NLhMp5I8d6eIDNFW3ENbEsrnKlOEbK
-         wP0JiezJ6FXzc0YP0NiJOoRTpo2jTNUHgpttC37nd6OidVHmg+Z64cRg9Honr90y+7fD
-         vY4U5+gOET7UBDi2+6m0nE3IHVqTC+n8b2MjOoukKLSqOQdSZcbd7UFfL1zB8pbmmyxV
-         nzCfQmH8JdYSC1KDcjNxE6slEewY9NdKw+gPg7Qt9glB4DcEfcCKGThdsdB/7uqtGY+c
-         Icm6rA+EMa6fppbBYI178ND65UVjuOU36LmpQdA7TaLx/mqrvylgW2CLEK+1YSXtpTqF
-         //2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763121335; x=1763726135;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kSsVcz8630KwHo4IO7LJsqMTZrFWGAD+oaRzx2FLL3w=;
-        b=K/wtmv+0PSr1GW3RUY8AzWj3iXKZWOzO/5V6zF0vucjB3S+VoNrR6ueO5uQQsEaRkm
-         UYfq2xmRCJ0vo50yJtvrFd0TAISOi6v5oDHKIgLr8A19FJYSVBP8aHNuCKm0bGfM9L7d
-         rPcZlHV09+AP16yx2XkYMP4h7cqUvxmPD8b6v9+EZqOlhDP5lJg2A7VX1G33lviXYmDI
-         531f8qDqDMpI+6460qywP1piwPEaZe0onhCBnqfASB6D/rtH3EgmvQZf33HGTmtVQE42
-         MwxPOIOx9p3Elx4xnFNb0gTnrR0zJ6rjcwTRht+BMjBSkcAIY6ItE3HTW8jkJTr081so
-         LVsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVMmUsOHWGZX0fwC10Kv4q2Sktp8Qwkq39x5I5Eeqv20dAXzVOcrELkldNBNfXDvSI+0zjAEK1r9eQY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtQ0TzWgDIdu/+MUxhNoLxcMXif545ebd1C+4Dk4m0XqozDpi2
-	NdQ7fUTLlic+ku2aYRypkXFfConYJPqy4UsM5gF7GQ/Zax/USHGdUmmi/Ozymx7Oo84=
-X-Gm-Gg: ASbGncv2LZ4x2B/qf9hgj3ijIngPkpnVEdKv3RaXVx1yxZ0/p3H+Wuxyszqpw0oVD8i
-	NNoK1Bs8sB0NjBXAkHJnqJfBPHr9F8TYPSRS9swRQwe39eKLUvatzGw+9QM+J+/OohMr7yJ0X35
-	Bn1x3vYvM6dNd7hPdEWIjrzRkc6juoZY56ZcR/61xFzazITpHt9kApDmr1ixPHnN7qTFL7+F1fa
-	/USh1JJC/kG4SJGSUIg7uuC7BHLKwz6oQgZcy3Y3cXbvG0k45Es81ColDA4M4+i1Nse3PxrW5Ta
-	b68oGoBMyOqHzf/wNG8PoQr+Id78vOdJGz+tX0ckLTADwS+u4vOsKPJ6Xs4MgJnRgHpaJXfaGCW
-	ph5b2Hk2bu7pSoBRdQmvxFy09NntInmxaiG08f/hza8it3nt7k65FdEPvdBu6sG1ReYhg9E6gGy
-	P5C+i/zg==
-X-Google-Smtp-Source: AGHT+IGaX63VyG7288bvhFhh9mADvgY7EJnU+zr1vNcvBNVERTkgMmla9vn+invb7igtQmyDtjSXdw==
-X-Received: by 2002:a05:600c:1c16:b0:476:4efc:8ed4 with SMTP id 5b1f17b1804b1-4778fe49c3bmr26839345e9.11.1763121335290;
-        Fri, 14 Nov 2025 03:55:35 -0800 (PST)
-Received: from draszik.lan ([212.129.74.29])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53e85e6fsm9688761f8f.18.2025.11.14.03.55.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 03:55:34 -0800 (PST)
-Message-ID: <6479a8d84052b326ffeb5609959aaf3a1aac9ff8.camel@linaro.org>
-Subject: Re: [PATCH 06/13] mfd: sec-irq: add support for creating multiple
- IRQ chips
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Kaustabh Chakraborty
-	 <kauschluss@disroot.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo
- Choi	 <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-leds@vger.kernel.org, 	devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-pm@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, 	linux-rtc@vger.kernel.org,
- linux-doc@vger.kernel.org
-Date: Fri, 14 Nov 2025 11:55:34 +0000
-In-Reply-To: <20251114075004a444bff0@mail.local>
-References: <20251114-s2mu005-pmic-v1-0-9e3184d3a0c9@disroot.org>
-	 <20251114-s2mu005-pmic-v1-6-9e3184d3a0c9@disroot.org>
-	 <20251114075004a444bff0@mail.local>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1763121588; c=relaxed/simple;
+	bh=eNU2dfgFmtBJq37mteaUxJp1cGsyEgobjPsimxjft7E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EO9bwr2D6PCfXalam8pBo7vGirGmf7366o1mPkEHNfhzCiemaOo++AXPqB5HFgryL1m62gQtxE2i0CUqn6cM6IEiJmj1vNlO8UT5ar7MAK+nygpoXq8d73iMYM5PlgsgXEU65nATuJeJGgWVxu9VnLUN0ZWZ6ZiEtnpk6hoqU7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=PuHN+dmM; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE8eSW33654633;
+	Fri, 14 Nov 2025 06:59:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=lxfbEMVp3frthPM2L9tfN8WBAWF
+	oJYHNYY5cA7X/Z80=; b=PuHN+dmMte+GwgCV9ogs3Pe9AfflLHSTvEYrX6Cwi0c
+	OcJDfD1LOE9e0Gt863xHi2IBXOe2UnjFym+b7wpsXdJxdIzveR4+39kucie7K6oi
+	OQivvzIdGtYX9EsXFKjAPBDFp/fV0eSTltAqxLSD8b/OQiBNF4KnOtWQUHBMWHBz
+	bcu8AXkWZ6MwxTA/ypTqBneMAZb1Xqv+IMVKHTkjh1dPB5lnQONuKXl4wwCkGE4r
+	m3ce1mt9AQLPRpJsqyw2ZLWepR/ObDlZJR3Oqt7bez0VOar4e5RDS0/yFKN5b7ms
+	Ix90OFLhYLYhTUCtn0ecnAFEye8P6wy403nKSJ3tBug==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4adwaw1v1v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Nov 2025 06:59:03 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5AEBx2La016249
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 14 Nov 2025 06:59:02 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 14 Nov 2025 06:59:02 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 14 Nov 2025 06:59:01 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 14 Nov 2025 06:59:01 -0500
+Received: from Ubuntu.ad.analog.com ([10.66.6.193])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AEBwodg018389;
+	Fri, 14 Nov 2025 06:58:53 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v3 0/3] iio: amplifiers: add support for ADL8113 Low Noise Amplifier
+Date: Fri, 14 Nov 2025 11:57:22 +0000
+Message-ID: <20251114115725.5660-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA5NSBTYWx0ZWRfX0SbCbRpgZMzI
+ 8ehXrIYQ7wINlj1GvKzkBsExdHiXnUtBY/dOJvwkiq1M31QPBI/2RFnglkcWQ2tsZn2tk17dkwE
+ Sd+M4P8msi8w8QTr7tPKRdmA0moe60SHN4ezKIOWcpsuTt0v21q1G5w3LNViE7G+nL7EGq2A45B
+ T4o9YcxfgaVrXQJbXHY7c4DXCCYrEFngvQoHDKO5YVslqfrzDp0N5cgpti/rqTVSPtduzD0vVzi
+ RE7x8EQEnIGOFcuRorfXx7a177D2N4bQPOcDBDs9SGeeBRxGdZ2aqsn2RvwgjQQJ891HtmOSgxv
+ FC5MZ1aiVTTCrk5PggNOz4Ar64JurRAuKIi9m2AarMQ/6Qsa6TYDvIBSebs97iid0i5yah4BizW
+ 9FRVb34MjwkODQ4KnOjf/Jn47GuKow==
+X-Proofpoint-ORIG-GUID: Dm8rQ4OKq9Z-iLZJmRo26spzCjiLjT-l
+X-Authority-Analysis: v=2.4 cv=M91A6iws c=1 sm=1 tr=0 ts=691719b0 cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=_jDn8YihPVvimUYNn0YA:9
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: Dm8rQ4OKq9Z-iLZJmRo26spzCjiLjT-l
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-14_03,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 impostorscore=0 clxscore=1015 adultscore=0
+ bulkscore=0 phishscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140095
 
-On Fri, 2025-11-14 at 08:50 +0100, Alexandre Belloni wrote:
-> On 14/11/2025 00:35:07+0530, Kaustabh Chakraborty wrote:
-> > The current state of the driver only allows creating only one IRQ chip
-> > per PMIC. On some PMICs, such as Samsung's S2MU005, there are multiple
-> > interrupt blocks, for which the current implementation stands insuffici=
-ent.
-> >=20
-> > Add support for creating multiple IRQ chips for a PMIC. Every IRQ chip =
-is
-> > given it's own index, which is used by sub-device drivers to request IR=
-Qs.
-> >=20
-> > A macro is defined which states the maximum number of chips supported.
-> > It's set to 1 as currently, no PMIC requires more than one IRQ chip. Th=
-e
-> > value must be changed accordingly on adding new PMICs requiring multipl=
-e
-> > IRQ chips.
-> >=20
-> > Moreover, adjust the s5m RTC driver to initialize IRQs with the
-> > appropriate IRQ chip index.
-> >=20
-> > Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
->=20
-> > ---
-> > =C2=A0drivers/mfd/sec-irq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 163 +++++++++++++++++++++++----------------
-> > =C2=A0drivers/rtc/rtc-s5m.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 15 +++-
-> > =C2=A0include/linux/mfd/samsung/core.h |=C2=A0=C2=A0 5 +-
-> > =C2=A0include/linux/mfd/samsung/irq.h=C2=A0 |=C2=A0 14 ++++
-> > =C2=A04 files changed, 127 insertions(+), 70 deletions(-)
+This patch series adds support for the Analog Devices ADL8113, a 10MHz to 12GHz
+Low Noise Amplifier with integrated bypass switches.
 
-Your patch reminded me to finally send
-https://lore.kernel.org/all/20251114-s5m-alarm-v1-0-c9b3bebae65f@linaro.org=
-/
+The ADL8113 provides four operation modes controlled by two GPIO pins:
+- Internal Amplifier (14dB gain)
+- Internal Bypass (0dB gain)
+- External Bypass A (0dB gain) - Signal routes from RFIN to OUT_A and from IN_A to RFOUT
+- External Bypass B (0dB gain) - Signal routes from RFIN to OUT_B and from IN_B to RFOUT
 
-If applied first, you wouldn't need to touch rtc-s5m.c I believe.
+The external bypass modes enable external signal processing, conditioning, or filtering
+while maintaining signal integrity through dedicated signal paths.
 
-Equally, I can rebase mine on top of yours - no strong feelings.
+Changes in v3:
+- Refactor driver architecture to separate gain mode and signal path controls
+- Replace single "mode" attribute with separate "signal_path" and "hardwaregain" attributes
+- Add write support for hardwaregain to enable switching between amplifier (14dB) and bypass (0dB) modes
+- Automatically handle signal path constraints (external paths force bypass mode)
+- Simplify device tree bindings by removing extra blank line
+- Update ABI documentation to reflect the new signal_path attribute interface
+- Add comprehensive validation for gain/path combinations
 
-Cheers,
-Andre'
+Antoniu Miclaus (3):
+  dt-bindings: iio: amplifiers: add adl8113
+  iio: amplifiers: adl8113: add driver support
+  Documentation: ABI: adl8113: add documentation
+
+ .../testing/sysfs-bus-iio-amplifiers-adl8113  |  30 +++
+ .../bindings/iio/amplifiers/adi,adl8113.yaml  |  64 +++++
+ drivers/iio/amplifiers/Kconfig                |  12 +
+ drivers/iio/amplifiers/Makefile               |   1 +
+ drivers/iio/amplifiers/adl8113.c              | 252 ++++++++++++++++++
+ 5 files changed, 359 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-amplifiers-adl8113
+ create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,adl8113.yaml
+ create mode 100644 drivers/iio/amplifiers/adl8113.c
+
+-- 
+2.43.0
+
 
