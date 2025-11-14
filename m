@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02929C5BB40
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:13:54 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E23CC5BC13
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:19:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 408713B62B7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:12:40 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8533535DE87
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1003F2F1FDE;
-	Fri, 14 Nov 2025 07:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600B72F60AC;
+	Fri, 14 Nov 2025 07:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uEUI4ywR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OjKPPlky"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD60C2F0C70
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3161F2F5A35;
+	Fri, 14 Nov 2025 07:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763104332; cv=none; b=HxD/DjhvIh6EG/3x/QnMMH15OLyoGpsDlZC9Su8Tm2HZPS6LwMjSFSj183Wt4DOmVHBojmQbuLFvjdKv07h5BaDlY1UXsp1YaNMUF7klt4bdD9DEWhWk91kDDJ8vIEsAnLBueYgARaeSwf1n00OLHLVkm00+Un++pChtQ2bB0gw=
+	t=1763104477; cv=none; b=AMSaXdbwpw0+hkRjtR7WSmxqishqwrFKy3fGt7xsUJts8l+Kp7Gt9beF0/vWQIFVeaSjpdTT8p2Hl8uBoeNLIWAEoL0RqgDRnNPkQESnRUbl4oQD7CvW3j+Caw8x76ICwyWpG27G5iZHH7G7arlDdB/wTynU5vuweqocYiTAf/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763104332; c=relaxed/simple;
-	bh=bfQ1ZLsBAds0j6ibLwiSL4xWiijnFqeBR06qt8zrRkY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=lXyYlYQ7X45cLEw0yPZjWfpWNfFvp66txKvDJwC/cZJOSBDe8tMO9rWHdWldix93gFX1QCAuWRGdZQT5h8S9bSVaExO3qKlwtsiucWqcmmIU5fHh+LAj5QGEmI/5jcAfsFRMmwis4HfgT2d/1Y07spQdsbaQ2q7H0q1ZLJCmgQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uEUI4ywR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84443C113D0;
-	Fri, 14 Nov 2025 07:12:08 +0000 (UTC)
+	s=arc-20240116; t=1763104477; c=relaxed/simple;
+	bh=TC0cYgWskBAUXZfGZK4Z3ivQKc5wIiuX55D1oKHmjko=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gaJYJLSCOsMr/XyC3C7Ksl6P+Tt0xLaBRbTJbSGLJkqpFF/4vk5sJKbCT2n7bywJqbtzr8YTLbqp0ACzQ7zHkaAzsxR+6BBUieGxzZ0UGQmXRVcBc3QALGgE0v4hIoVldu3Gip+jGZhKLGPPisB+gUDhDs78QT1MkMEjqQWynIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OjKPPlky; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0907C16AAE;
+	Fri, 14 Nov 2025 07:14:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763104332;
-	bh=bfQ1ZLsBAds0j6ibLwiSL4xWiijnFqeBR06qt8zrRkY=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=uEUI4ywRdEPum2zM2Ga7E4hoAauDjdu6IvJxfY6TgGQIBD84K9dRZxN64zfR9BLyD
-	 WW2frrsjA2qdYdW7QKkVMtqWRQDffuc4pTMrlFsuyEgVaZw5xfpZIxyYKqs/gxuGjB
-	 GjRpBKrKDdwH5sW7WvgL+70IuhRQkzSQtW9+/4ty9s60Dy1S7MW7tCJjllN8d1U9u8
-	 KnQ6t2y+QJe8Bz72MEjD9UJ5by0N9saCqtTrsFbm9LAZYaDH/zLjOjkUhWIoxUfKT9
-	 3txbfcp6idn5b91TNKXQmWFz25z7ofecgW+zN3EbXYmOVjPcewFiLRCkOVZeC9ccnp
-	 v/3tmYijttnDQ==
-Message-ID: <2177a0f0-68df-495c-b267-18e3d9b6ca80@kernel.org>
-Date: Fri, 14 Nov 2025 08:12:06 +0100
+	s=k20201202; t=1763104476;
+	bh=TC0cYgWskBAUXZfGZK4Z3ivQKc5wIiuX55D1oKHmjko=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OjKPPlkyxpQFE678hpCI+5V66iQB8Oqjg+/LdQgYsytJOp3CgsktgFraFsrkoIXhu
+	 K1lmaWWiRmvx6ZnAQHrudfmRdCOttOjBiVsfT3s37J/k9H3kXHOMNloOzxLHZoeVT0
+	 9OW3pbuTHZSXRznoOOl7DRLh1tOF9jM60V2S7osagIGYZHIVIZKYiH6bj+94SSf/vx
+	 fojIfpEh0NFN8e+qFmpJnF+5fnJx5+ByKtYCiepwGUnfGc3jHHOPQCD0yaWMWsJMC7
+	 xDeXJP3cDmFWYWeywtYyoMh9afnj+4lnGpreZkADVulWXSj5+LVDEO1huNQXMYSXv9
+	 7YfVdS4yK8BRA==
+Message-ID: <6fed3757-44d0-43f9-b75a-52e1cbab41eb@kernel.org>
+Date: Fri, 14 Nov 2025 08:14:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: i2c-hid: Introduce FocalTech
+ FT8112
+To: Daniel Peng <daniel_peng@pegatron.corp-partner.google.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-input@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20251113140004.v4.1.I894dde5015f4acad94cb5bada61e5811c5142395@changeid>
+ <20251113-belligerent-wrasse-of-current-3cd3a5@kuoka>
+ <CAAq2-DFJ2HZQ=p5J7wppQWYh9tqrFxNqexYXFcVB=b1ufWgmXg@mail.gmail.com>
+ <7904826d-043d-4e63-9d38-e0763b3822ba@kernel.org>
+ <CAAq2-DHouqsbOB75mifXVxQT+jZaho9RBB0zdZ0a3bq3FxDT7w@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
- i@next.chainsx.cn, honyuenkwun@gmail.com, quentin.schulz@cherry.de,
- dsimic@manjaro.org, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
- jbx6244@gmail.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251105051335.17652-1-naoki@radxa.com>
- <20251105051335.17652-2-naoki@radxa.com>
- <ce6e6369-a7e4-4a35-80f8-70ef41c3b877@kernel.org>
- <A6C1199E2A0D3F37+f3fe0fd5-4ca5-4d3d-bc1d-45f46b48f89b@radxa.com>
- <93deab54-bd5e-433e-acbc-13f6ead47f43@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -108,45 +107,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <93deab54-bd5e-433e-acbc-13f6ead47f43@kernel.org>
+In-Reply-To: <CAAq2-DHouqsbOB75mifXVxQT+jZaho9RBB0zdZ0a3bq3FxDT7w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/11/2025 08:08, Krzysztof Kozlowski wrote:
-> On 05/11/2025 07:57, FUKAUMI Naoki wrote:
->> On 11/5/25 15:43, Krzysztof Kozlowski wrote:
->>> On 05/11/2025 06:13, FUKAUMI Naoki wrote:
->>>> Add device tree binding documentation for the Radxa CM5 IO Board.
->>>>
->>>> Link: https://dl.radxa.com/cm5/radxa_cm5_product_brief.pdf
->>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+On 14/11/2025 07:13, Daniel Peng wrote:
+>> On 13/11/2025 11:44, Daniel Peng wrote:
+>>> From: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
 >>>
->>> Wrong DCO chain.
->>>
->>>> ---
->>>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
->>>
->>> NAK, you just stolen ownership of an already posted patch.
+>>> The FocalTech FT8112 touch screen chip same as Ilitek ili2901 controller
 >>
->> Read "Changes in v6" and patches; my patches are not the same as v5.
->> Your reply is totally inappropriate.
+>> So keep the device in that binding under enum. No need to create
+>> document for every device, even if they were different but here it is
+>> pretty obvious - same chip.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Inappropriate is taking authorship of someone's patch, because we all
-> expect to preserve the original authorship. That's not only basic
-> decency but actually a standard.
+> Sorry for the confusion. Might be I use the wrong description, and make you
+> feel that is the same chip and no need to create new binding file.
 > 
-> Additionally, read Joseph's reply that he wants to continue the work:
-> https://lore.kernel.org/all/CAMWSM7iHtAxewW4JkRqRsifVnccqeFviaCgeOyprKDr92FOurg@mail.gmail.com/
-> 
-> You clearly do not understand how to continue with someone's work.
-> 
-> It is still a NAK.
+> Here are my question:
+> 1. I had referred to ilitek,ili2901.yaml and copied as new file for
+> focaltech,ft8112.yaml. Moreover, I also modified to replace related
+> information for Focaltech FT8112 touchscreen.
+> There are many different descriptions in the file, such as "compatible",
+> "reg", "interrupt-parent", "interrupts", "reset-gpios", ... .etc.
+> If "No need to create document for every device" now, could you help to
+> provide what file that I need to keep the device in the binding under enum?
 
-And I still wait for justification why you took authorship of this
-patch, because to my eye you changed here nothing.
-
-So what did you change HERE that you think you are the author now?
+You wrote it is the same chip as ili2901, so obviously in ili2901.
 
 Best regards,
 Krzysztof
