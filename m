@@ -1,228 +1,146 @@
-Return-Path: <devicetree+bounces-238557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFA98C5C48D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:33:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91316C5C640
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:54:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F9CA422098
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:28:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2038B50409E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4CA27281E;
-	Fri, 14 Nov 2025 09:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55CFE302CDB;
+	Fri, 14 Nov 2025 09:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NzuQ0lR3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oy12Wodc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B849028727C;
-	Fri, 14 Nov 2025 09:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFDF2BE04F;
+	Fri, 14 Nov 2025 09:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763112441; cv=none; b=r392oKcMOyqBA3ayn7sIrRVziWpfGGNl32CQeD5frNl9HI/v2HbqV/EEK7Q6o8VQnTeGZBXto80Of30hJBTi5EBxF+krQnSXyLVnYycpYK7PxhWV1kTDrCeDspBJREcuRup7gNYWWYHDp5oEmOFDPAK7NEgYlseBCq5nudiOFLc=
+	t=1763112412; cv=none; b=FRqfVHS8YyfyfLVB5qIx9OaSUEzt6xwjFYEBV8JvH9bcvPmfBz6qgqokDngwVcWKD6HQUDvWlUdKIT5R/wzcBfbvncjO2I/WwLmQwpCEVDLV3+Frgv/BdLwLZF1geDVsGhPcmLTRAsi/ZAm+POJEYQoYEOsJqEudiOdlV2xOKEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763112441; c=relaxed/simple;
-	bh=JEFXzboCDJt0JmXtr+UN4FXJ3ZEMeYNhJunbMmjv/q4=;
+	s=arc-20240116; t=1763112412; c=relaxed/simple;
+	bh=sX+HOIylT+s1DfHSzoGBLyVtWwyxqB+zreyy1Q1PrXs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QS0BuGKpA3yqEP0Afv4KM73LMPP7TLOdNZNMZuZ1kip4j9/Y9uLnSw9lh4nltMiZpwCrjH36hJ69KvMlUf2cjoLWS3ojNBx5X+oCgMOP9/Fl/k2EfSCXsTdCQQxdontQvplHyJavcHlrcoa5O8mivD640O7U6crEThQ9WqzcR54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NzuQ0lR3; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763112440; x=1794648440;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JEFXzboCDJt0JmXtr+UN4FXJ3ZEMeYNhJunbMmjv/q4=;
-  b=NzuQ0lR3TlX5mCm2XFeIoBLd6j3+nTwWhPMSIeC7ZWXdL4NEffVY063m
-   ihgaCm9e3Jn0p4Tlp0O+ip5C/VfRDML+2E/qanGMliON1jXgtmDHWbfFK
-   OfXMU9TzSDn6PTEQCDO8eUT3Crt8O95ZbEk9bZ/Rni3tz2BEHl1Ndf45w
-   6Pat/L81aR9wR7FYlafyRFGIegI0avb2f1xUzbhHDZQw6sTHKE715Oolm
-   U9c4Wq/vj8stCK/9Gv8AJQ4QZDz4Okvk45jEKo43gUZgQgLAXrZSTBbvx
-   SrIyUlozZGot3yb4gfHbOK8zABKgvwUBXz5B6Zu20XhZqkjzrfU2V4IK7
-   w==;
-X-CSE-ConnectionGUID: EMY+raUMS3G/4oF4P3BBRA==
-X-CSE-MsgGUID: splbwSesRFuG7hpnOES09g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="76306657"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
-   d="scan'208";a="76306657"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2025 01:27:20 -0800
-X-CSE-ConnectionGUID: 4AjhgMubSHes0WVu/Jx9Pg==
-X-CSE-MsgGUID: rr1ahpIVT1iWUmr5/Xq9uA==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 14 Nov 2025 01:27:15 -0800
-Received: from kbuild by 7b01c990427b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vJq5J-0006P9-0Q;
-	Fri, 14 Nov 2025 09:27:13 +0000
-Date: Fri, 14 Nov 2025 17:26:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, jic23@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, andy@kernel.org,
-	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, cosmin.tanislav@analog.com,
-	marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v1 2/3] iio: adc: Initial support for AD4134
-Message-ID: <202511141657.LqnXWUQm-lkp@intel.com>
-References: <86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=beE8PDnU6kB/hWrXu9Cf6wo307a0P5wXqHDnyTBz/pdm0gzuwxQjz+83Href88VSP0FM/ucJHMDgKf1csFsMddcXGAYuiHcmhyIUZCC9pK76BJB6ms91HuCuAy7BWWqZNYNuEmR9Rs+/k03tNFrORf7/7D5BP7/xdaiSwWQrsDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oy12Wodc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D5C4C4CEF8;
+	Fri, 14 Nov 2025 09:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763112411;
+	bh=sX+HOIylT+s1DfHSzoGBLyVtWwyxqB+zreyy1Q1PrXs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Oy12WodcEZ0xjE9jQd3zfg3IH6YfscOfbxRppFoSsNZW7bJyLB3pLIK5oT52nwSbz
+	 FS8Apk088s5krjYBuc8/f3d4tJ0P8D9Glrx83vItqgS40sx+cCKT0djYA6HtQ122WE
+	 XbsYCh1lI/aGEds70C/Y9jlamxM9HI8XbrTpHKiFue1WVgNsqqfSbRaQ1qiDNFwrgR
+	 oqiY4wCvBF2CMR1LZzF4h3yt39zNIB2i2EhZaJZn/D23lRqDNx2MLq7c7uFNgoDb4Q
+	 6I0JLax3LGu9aA3amA9aYnG12RbC7wYERUc0JHGM4Nnnpn2btIb2QywcmkxQafd+Ry
+	 8y9x9CWfXYMnw==
+Date: Fri, 14 Nov 2025 10:26:49 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, Roy Luo <royluo@google.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Chen-Yu Tsai <wenst@chromium.org>, Julius Werner <jwerner@chromium.org>, 
+	William McVicker <willmcvicker@google.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for
+ frankel/blazer/mustang
+Message-ID: <20251114-elite-refined-yak-bf9e64@kuoka>
+References: <20251111192422.4180216-1-dianders@chromium.org>
+ <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid>
+ <05c833f0-15bc-4a86-9ac4-daf835fe4393@kernel.org>
+ <CAD=FV=XXWK9pmZQvNk6gjkqe6kgLXaVENgz0pBii6Gai7BdL-A@mail.gmail.com>
+ <00ea821c-5252-42cb-8f6f-da01453947bd@kernel.org>
+ <CAD=FV=VSxeKgGcsRb9qiXq7nsbOWZjPvzmGEOhFA+pmABWdknQ@mail.gmail.com>
+ <6490f20a-2492-4ee0-8f34-d529e0df0bad@kernel.org>
+ <CAD=FV=Us7SU_OifVkS4mdfVhc=xGYSBiBpBk9aA1Ki0y+iYBpQ@mail.gmail.com>
+ <abb77afe-c285-46ba-88ac-08574bd67712@kernel.org>
+ <CAD=FV=VcAbgv41tjgWQN4i8Wqk6T6uvdpQ261Q_hcKM4AMpGEw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt@analog.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAD=FV=VcAbgv41tjgWQN4i8Wqk6T6uvdpQ261Q_hcKM4AMpGEw@mail.gmail.com>
 
-Hi Marcelo,
+On Thu, Nov 13, 2025 at 10:04:53AM -0800, Doug Anderson wrote:
+> Hi,
+>=20
+>=20
+> On Thu, Nov 13, 2025 at 9:43=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> >
+> > >>> Yes, the complexity of just "hooking up" the components on an SoC is
+> > >>> an order of magnitude harder than a Raspberry Pi, but it's still ju=
+st
+> > >>> hooking it up to external components. In both cases, we are modeling
+> > >>> the core "brains" (the part that contains the processor) as the DTB
+> > >>> and everything else just "hooks up" to interfaces.
+> > >>
+> > >> You mix the topics, so I don't follow. I speak here about bindings -=
+ you
+> > >> cannot have the that compatible alone, because it is incomplete, just
+> > >> like compatible for "transistor" is not correct in that context. You
+> > >> speak what could or could be DTB, different topic.
+> > >
+> > > A "SoC" is "complete". It has a processor that can run instructions.
+> >
+> > Then show me executing any piece of software, which is the consumer of
+> > the bindings, and runs on the SoC without the rest of the hardware syst=
+em.
+>=20
+> Show me something that runs on a Raspberry Pi (the models that don't
+> have eMMC) that runs without hooking up power and plugging in an SD
+> card. :-P
 
-kernel test robot noticed the following build errors:
+It has MMC controller/slot described in the DTS and the SDcard itself is
+DT-transparent, meaning you do not describe it in DTS, plus I can easily
+insert such card, thus for sake of this discussion that RPi still works
+fine with DTS.
 
-[auto build test ERROR on c5411c8b9ed1caf53604bb1a5be3f487988efc98]
+This SoC cannot work without other pieces described in DT, that's why it
+is incomplete and unusable on its own.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/dt-bindings-iio-adc-Add-AD4134/20251110-204756
-base:   c5411c8b9ed1caf53604bb1a5be3f487988efc98
-patch link:    https://lore.kernel.org/r/86f532ae3a9b3f122b9d5dbada9c131a0c048ca7.1762777931.git.marcelo.schmitt%40analog.com
-patch subject: [PATCH v1 2/3] iio: adc: Initial support for AD4134
-config: nios2-allyesconfig (https://download.01.org/0day-ci/archive/20251114/202511141657.LqnXWUQm-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251114/202511141657.LqnXWUQm-lkp@intel.com/reproduce)
+You are right that my previous arguments of hooking components are
+incomplete, so let me rephrase it - the DTS file should be complete from
+DT point of view and completly usable on its own. That's why DTS
+represents board (with the exceptions of few SoMs as explaiend to me
+long time ago).
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511141657.LqnXWUQm-lkp@intel.com/
+SoC does not meet this criteria, therefore it is not suitable for DTS.
 
-All errors (new ones prefixed by >>):
+And if you claim that SoC could be fitting DTS, then I claim that
+individual transistor or one IP block like DWC USB3 could be there as
+well. With your arguments we could create DTS files for DWC USB3 nodes.
+Fact that transistor or DWC USB3 cannot execute code on their own does
+not matter, because it is nowhere said that DTS represents something
+which can execute code. CPU executes code, so following this argument
+DTS could contain only CPU device nodes..
 
-   drivers/iio/adc/ad4134-common.c: In function 'ad4134_probe':
->> drivers/iio/adc/ad4134-common.c:178:34: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
-     178 |                                  FIELD_PREP(AD4134_DATA_PACKET_CONFIG_FRAME_MASK,
-         |                                  ^~~~~~~~~~
-   cc1: some warnings being treated as errors
+If we allow subpieces, like SoC components or SoCs (both still unusable
+on their own), as DTS files we open the pandora box of all possible
+styles and formats. I don't see reasoon why would we want it, what
+benefits this would bring to the ecosystem maintenance.
 
+We did not document it that DTS represents usable board, but it is
+implied all over the software projects, like GRUB devicetree [1] which
+takes one DTB to load. Only one.
 
-vim +/FIELD_PREP +178 drivers/iio/adc/ad4134-common.c
+[1] https://www.gnu.org/software/grub/manual/grub/html_node/devicetree.html
 
-    87	
-    88	int ad4134_probe(struct device *dev, const struct ad4134_bus_info *bus_info)
-    89	{
-    90		bool use_internal_ldo_retulator;
-    91		struct gpio_desc *reset_gpio;
-    92		struct iio_dev *indio_dev;
-    93		struct ad4134_state *st;
-    94		int ret;
-    95	
-    96		indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-    97		if (!indio_dev)
-    98			return -ENOMEM;
-    99	
-   100		st = iio_priv(indio_dev);
-   101		st->dev = dev;
-   102	
-   103		indio_dev->name = bus_info->chip_info->name;
-   104	
-   105		/* Required regulators */
-   106		ret = devm_regulator_bulk_get_enable(dev, 3, ad4143_regulator_names);
-   107		if (ret)
-   108			return dev_err_probe(dev, ret, "failed to enable power supplies\n");
-   109	
-   110		/* Required regulator that we need to read the voltage */
-   111		ret = devm_regulator_get_enable_read_voltage(dev, "refin");
-   112		if (ret < 0)
-   113			return dev_err_probe(dev, ret, "failed to get REFIN voltage.\n");
-   114	
-   115		st->refin_mv = ret / MILLI;
-   116	
-   117		/*
-   118		 * If ldoin is not provided, then avdd1v8, dvdd1v8, and clkvdd are
-   119		 * required.
-   120		 */
-   121		ret = devm_regulator_get_enable_optional(dev, "ldoin");
-   122		if (ret < 0 && ret != -ENODEV)
-   123			return dev_err_probe(dev, ret, "failed to enable ldoin supply\n");
-   124	
-   125		use_internal_ldo_retulator = ret == 0;
-   126	
-   127		if (!use_internal_ldo_retulator) {
-   128			ret = devm_regulator_get_enable(dev, "avdd1v8");
-   129			if (ret < 0)
-   130				return dev_err_probe(dev, ret,
-   131						     "failed to enable avdd1v8 supply\n");
-   132	
-   133			ret = devm_regulator_get_enable(dev, "dvdd1v8");
-   134			if (ret < 0)
-   135				return dev_err_probe(dev, ret,
-   136						     "failed to enable dvdd1v8 supply\n");
-   137	
-   138			ret = devm_regulator_get_enable(dev, "clkvdd");
-   139			if (ret < 0)
-   140				return dev_err_probe(dev, ret,
-   141						     "failed to enable clkvdd supply\n");
-   142		}
-   143	
-   144		ret = ad4134_clock_select(st);
-   145		if (ret)
-   146			return ret;
-   147	
-   148		crc8_populate_msb(ad4134_spi_crc_table, AD4134_SPI_CRC_POLYNOM);
-   149	
-   150		reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-   151		if (IS_ERR(reset_gpio))
-   152			return dev_err_probe(dev, PTR_ERR(reset_gpio),
-   153					     "failed to find reset GPIO\n");
-   154	
-   155		if (reset_gpio) {
-   156			fsleep(AD4134_RESET_TIME_US);
-   157			gpiod_set_value_cansleep(reset_gpio, 0);
-   158		}
-   159	
-   160		ret = bus_info->bops->config_iio_dev(indio_dev);
-   161		if (ret)
-   162			return dev_err_probe(dev, ret, "failed to config IIO device\n");
-   163	
-   164		st->regmap = bus_info->bops->init_regmap(st);
-   165		if (IS_ERR(st->regmap))
-   166			return dev_err_probe(st->dev, PTR_ERR(st->regmap),
-   167					     "failed to initialize regmap");
-   168	
-   169		/* wiring/configuration specific setup */
-   170		ret = bus_info->bops->setup(st);
-   171		if (ret)
-   172			return dev_err_probe(dev, ret, "failed to setup bus\n");
-   173	
-   174		/* Bump precision to 24-bit */
-   175		st->current_scan_type = AD4134_DATA_PACKET_24BIT_FRAME;
-   176		ret = regmap_update_bits(st->regmap, AD4134_DATA_PACKET_CONFIG_REG,
-   177					 AD4134_DATA_PACKET_CONFIG_FRAME_MASK,
- > 178					 FIELD_PREP(AD4134_DATA_PACKET_CONFIG_FRAME_MASK,
-   179						    st->current_scan_type));
-   180		if (ret)
-   181			return ret;
-   182	
-   183		/* Set high performance power mode */
-   184		ret = regmap_update_bits(st->regmap, AD4134_DEVICE_CONFIG_REG,
-   185					 AD4134_DEVICE_CONFIG_POWER_MODE_MASK,
-   186					 FIELD_PREP(AD4134_DEVICE_CONFIG_POWER_MODE_MASK,
-   187						    AD4134_POWER_MODE_HIGH_PERF));
-   188		if (ret)
-   189			return ret;
-   190	
-   191		return devm_iio_device_register(dev, indio_dev);
-   192	}
-   193	EXPORT_SYMBOL_NS_GPL(ad4134_probe, "IIO_AD4134");
-   194	
+Best regards,
+Krzysztof
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
