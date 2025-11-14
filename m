@@ -1,184 +1,202 @@
-Return-Path: <devicetree+bounces-238485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C13B0C5BAD7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:08:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F2A8C5BAEC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:09:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 220C1354214
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:08:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E53543581AF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED7724C68B;
-	Fri, 14 Nov 2025 07:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37CBD275AE4;
+	Fri, 14 Nov 2025 07:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="Yd6vZtKP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OXB/SH+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7051F2580D7;
-	Fri, 14 Nov 2025 07:08:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763104097; cv=pass; b=teZQrOI/iGAOh0KFccz8jjY3wxixPCiYY/iXkxUcjpprtdvW6rS5Q9soBYM5dbczFuWkaDc4oTbMNPa+Ex27e6yqX3OKM5gouaMgSvW4X/YljjDJPfHePTCJ0fWMbLhuMGzz4D1Cx7VXwDVIAluvmPQFyyGMj3cokL80W+88f5E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763104097; c=relaxed/simple;
-	bh=iC+mgltNwb/6TnBtEL9kwPSjqaqHA5+5TY9cLqiISLU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CmbDbjxz4jCiyDT0LSsQxQJ8+WHAHbdfojD36uE1Fj0ynF91YLU2TVLXg4Tcuwx/pc0KlfZUEYiDMDP1SYZoQeWA7DGImOvX/i3Unftjon0+qKSFhrhikMW6SEwaGeVUEeHo1UvpfGI1WLzMNM8ekj49x4zfCXnmifFAm58qhsw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=Yd6vZtKP; arc=pass smtp.client-ip=136.143.184.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1763104032; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=jk8AIvOvE/8LILOk2DAILmhafD1+Kg+0XgQZHPcvLjJXSs3Qx5wAXkzN5cm/OxTZ51kk7c6QgLrcFAGR355r+9xNXVNZGIu6GDQVIA47uKMXSlZKpaZhKMbG/skxbQxmTi+2HJww9siVp6dDOOeh9j8biyYC5chBoMAyIPdjZ6k=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1763104032; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=iC+mgltNwb/6TnBtEL9kwPSjqaqHA5+5TY9cLqiISLU=; 
-	b=SMLZwHprsnx3D00elMkDAh13b+oJs8sHl8Sm9UQlfTbjAYanSRGYNDvHwmvIar8Xa2ELh6OZExv8bnPxCVP/6IwacTlLs4UK7BQU36CdBlIc4xsUH0clvzNVfXIdd896rin/1aX4hZYouTbL9x13nknClax0wwN6HugVdoTvRcQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763104032;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=iC+mgltNwb/6TnBtEL9kwPSjqaqHA5+5TY9cLqiISLU=;
-	b=Yd6vZtKPbUx5vWV+zNJtZtt5NR9BWsRdyN8Gw4lNM4SwZ6FAE6/Rk7VRnLKUT/v6
-	sELB7aNzp5H8Z2YbspkYpXkuvsQF0W+fkXmB0JYpIRUgf+qRhxpew29OIpCi3HhxdkX
-	29DoCJAuPPZrDkrzlUJ9d7fQ4kMo5WOC+XUgfn6jPLk1o0EFKcak8CiZg4N8uL8jPRE
-	K+UK2V5lb5YkC2rdGSGEOYgfgsOMvc/j8YCVjYgN7Cddi7uua0UDXan8YvpIHlX9J7w
-	ctZax5B1yJ9tck3DyVIfWhhgYo9KBtNBD1JKLOTnYrE47mZreU0zMzkvSRqIkpFDLQ6
-	74JW1oXADQ==
-Received: by mx.zohomail.com with SMTPS id 1763104029433118.5268080863134;
-	Thu, 13 Nov 2025 23:07:09 -0800 (PST)
-Message-ID: <0109a90fc464e3cc63dd6c11e699db0143906256.camel@icenowy.me>
-Subject: Re: [PATCH RFC 01/13] dt-bindings: soc: starfive: Add
- vout-subsystem IP block
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Conor Dooley <conor@kernel.org>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Emil Renner
- Berthing <kernel@esmil.dk>, Hal Feng <hal.feng@starfivetech.com>, Michael
- Turquette <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Xingyu Wu <xingyu.wu@starfivetech.com>,
-  Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Lee Jones <lee@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
- <m.szyprowski@samsung.com>, Maud Spierings <maudspierings@gocontroll.com>, 
- Andy Yan <andyshrk@163.com>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org,  linux-phy@lists.infradead.org,
- dri-devel@lists.freedesktop.org,  linux-riscv@lists.infradead.org
-Date: Fri, 14 Nov 2025 15:06:55 +0800
-In-Reply-To: <20251113-irritable-unfold-da619d52026c@spud>
-References: <20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
-	 <CGME20251108010453eucas1p2403ec0dd2c69ae7f3eabe19cf686f345@eucas1p2.samsung.com>
-	 <20251108-jh7110-clean-send-v1-1-06bf43bb76b1@samsung.com>
-	 <20251111-massager-twistable-1e88f03d82f8@spud>
-	 <20251111-unsaid-rockslide-67b88b2e34bd@spud>
-	 <0d8e3a626b037dd348378e5ebca8005c1e715871.camel@icenowy.me>
-	 <20251112-skating-robust-81be8dee0a8b@spud>
-	 <1d54524d7ef939232b4512ca59c78794484103ca.camel@icenowy.me>
-	 <20251113-irritable-unfold-da619d52026c@spud>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B59723184F;
+	Fri, 14 Nov 2025 07:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763104163; cv=none; b=iEH/E47R0Mgg5voMnmxYA0n86x+Fj8n9tF+wGFmHf9XLitLKCoC1d/WhgZzmphgJd7KzZM8NpuSY/JyNYGIyHGzYJKM0rD6l05wmaeW37pnSX18ztsMjwy7sEe0bJvdBouvwqzn7KLF1bGjG/i3LUcmftHgQOF9+2GYAYYC10Xs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763104163; c=relaxed/simple;
+	bh=uMczW6xm3tzYXJie6UXCYYndNg50YuEV29JoCE/q1ik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M+KKK6auuYW8xkHjG1bR1FgsxlHmQA/rdXbs2V7DtWWCZDgtncpSCmKO7TSC9KIpFA+mMd7oSSf9EKjB48CJefI+clZj77Hmeh7I6oO4s74oAMJFjXYlQOpCZl7F6BPS0i7nfCVzjBI0PfppibzgiEv/HVJ8FLTbDsV+RHkSSPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OXB/SH+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B48C4AF09;
+	Fri, 14 Nov 2025 07:09:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763104161;
+	bh=uMczW6xm3tzYXJie6UXCYYndNg50YuEV29JoCE/q1ik=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OXB/SH+eZFegjNwezMreXdWJVEB1Uw8X41gZ8U+mRfgeMPGcwoVsxSXizMcK192pJ
+	 J238StqrQcqXv35Q4ssEC1oHeThV3GPZmfsHNkzmV+DhTvlV+IId4opjTz+qAllAiH
+	 qCOq8WyydbO2MSknFThAQVQffscFRq83G0F5UPjYOOjh7hckuaRiXJER15dtzjA3wq
+	 Mkx0W12hqqC1An0g12pxy+yDVr+1Rrybr2sVY1UpkwLtZB2mH8plHHZYzZ2ZNEC+pd
+	 vRF1/goXKkSDpC2dMVBusVB0Gp5jQ3+0LFSzAiejIXxGbsns+1+dW+MZgWB2ddls8p
+	 N1u0fooSE49iQ==
+Message-ID: <77918d70-49a0-4922-8f41-60b236a0ae3d@kernel.org>
+Date: Fri, 14 Nov 2025 08:09:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: freescale: Add FRDM-IMX91 basic support
+To: Joseph Guo <qijian.guo@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Justin Jiang <justin.jiang@nxp.com>, Tom Zheng <haidong.zheng@nxp.com>,
+ Steven Yang <steven.yang@nxp.com>
+References: <20251114-imx91_frdm-v1-0-e5763bdf9336@nxp.com>
+ <20251114-imx91_frdm-v1-1-e5763bdf9336@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251114-imx91_frdm-v1-1-e5763bdf9336@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-=E5=9C=A8 2025-11-13=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:44 +0000=EF=BC=
-=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> On Thu, Nov 13, 2025 at 08:48:33AM +0800, Icenowy Zheng wrote:
-> > =E5=9C=A8 2025-11-12=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 18:36 +0000=EF=
-=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> > > On Wed, Nov 12, 2025 at 02:34:39PM +0800, Icenowy Zheng wrote:
-> > > > =E5=9C=A8 2025-11-11=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 18:36 +000=
-0=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> > > > > On Tue, Nov 11, 2025 at 06:18:16PM +0000, Conor Dooley wrote:
-> > > > > > On Sat, Nov 08, 2025 at 02:04:35AM +0100, Michal Wilczynski
-> > > > > > wrote:
-> > > > > > > Add the dt-binding documentation for the StarFive JH7110
-> > > > > > > Video
-> > >=20
-> > > > > > > +patternProperties:
-> > > > > > > +=C2=A0 "^display@[0-9a-f]+$":
-> > > > > >=20
-> > > > > > Personally I'd like to see these being regular properties,
-> > > > > > since
-> > > > > > there's
-> > > > > > exactly one possible setup for this.
-> > > > > >=20
-> > > > > > > +=C2=A0=C2=A0=C2=A0 type: object
-> > > > > > > +=C2=A0=C2=A0=C2=A0 description: Verisilicon DC8200 Display C=
-ontroller
-> > > > > > > node.
-> > > > > >=20
-> > > > > > Can you add the relevant references here instead of
-> > > > > > allowing
-> > > > > > any
-> > > > > > object?
-> > > > >=20
-> > > > > I don't think that if you did, this would pass the binding
-> > > > > checks,
-> > > > > because there's no "verisilicon,dc" binding. I think I saw
-> > > > > one in
-> > > > > progress, but without the soc-specific compatible that I am
-> > > > > going
-> > > > > to
-> > > > > require here - if for no reason other than making sure that
-> > > > > the
-> > > > > clocks
-> > > > > etc are provided correctly for this device.
-> > > >=20
-> > > > Well I didn't specify any soc-specific compatible because that
-> > > > IP
-> > > > has
-> > > > its own identification registers.
-> > >=20
-> > > I still require one because I want to make sure that clocks etc
-> > > are
-> > > handled correctly. You can ignore it in the driver if you wish,
-> > > but
-> > > when
-> > > the next user comes along with one more or less clock, I want the
-> > > jh7110 one to be forced to use the correct configuration.
-> >=20
-> > I don't think for those generic IPs requiring a SoC-specific
-> > compatible
-> > is a good idea.
->=20
-> I disagree. If things are complex enough to end up with different
-> numbers of clocks or power-domains etc on different platforms (which
-> I
-> believe GPUs are) then I want one for validation purposes on
-> platforms I
-> care about. What you do in the driver is up to you.
+On 14/11/2025 07:55, Joseph Guo wrote:
+> +
+> +	reserved-memory {
+> +		ranges;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +
+> +		linux,cma {
+> +			compatible = "shared-dma-pool";
+> +			alloc-ranges = <0 0x80000000 0 0x30000000>;
+> +			reusable;
+> +			size = <0 0x10000000>;
+> +			linux,cma-default;
+> +		};
+> +	};
+> +
+> +	sound-mqs {
+> +		compatible = "fsl,imx6sx-sdb-mqs",
+> +			     "fsl,imx-audio-mqs";
+> +		audio-codec = <&mqs1>;
+> +		audio-cpu = <&sai1>;
+> +		model = "mqs-audio";
+> +	};
+> +
+> +	sw-keys {
 
-Well I think Vivante GPUs do have such case -- a "shader" clock that is
-only present when 3D support is here. But that binding still contains
-only "vivante,gc" and the maintainer of etnaviv rejects extra
-compatible strings.
+That's not how the node is called. Either use existing name or follow DT
+spec in node naming.
 
-In addition, as the addition of SoC-specific compatible string and the
-real DT are usually written by the same person at the same time, I
-don't think this introduces any more validation (because when the
-author gets things wrong they will just make it wrong at the two
-places).
+> +		compatible = "gpio-keys";
+> +
+> +		K2: user_btn1 {
+
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+And underscore used... Please do not send us downstream code.
+
+You need to write it from scratch from usptream code, not send us what
+you have in downstream.
+
+...
+
+> +	};
+> +
+> +	pcf2131: rtc@53 {
+> +		compatible = "nxp,pcf2131";
+> +		reg = <0x53>;
+> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-parent = <&pcal6524>;
+> +		status = "okay";
+
+Why?
+
+> +	};
+> +};
+> +
+> +&lpspi3 {
+> +	cs-gpios = <&gpio2 8 GPIO_ACTIVE_LOW>;
+> +	pinctrl-0 = <&pinctrl_lpspi3>;
+> +	pinctrl-1 = <&pinctrl_lpspi3>;
+> +	pinctrl-names = "default", "sleep";
+> +	gpio = <&pcal6408 0 GPIO_ACTIVE_HIGH>;
+> +	status = "okay";
+> +
+> +	spidev0: spi@0 {
+> +		compatible = "lwn,bk4";
+
+NAK, don't fake nodes. Just because downstream uses this, is not correct
+argument. This does not exist here.
+
+...
+
+> +
+> +	pinctrl_usdhc2_gpio_sleep: usdhc2gpiogrpsleep {
+
+You still not bother to test your own code... Again, why are you sending
+downstream code?
+
+Best regards,
+Krzysztof
 
