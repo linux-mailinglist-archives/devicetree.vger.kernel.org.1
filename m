@@ -1,44 +1,89 @@
-Return-Path: <devicetree+bounces-238532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54965C5C148
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:49:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627F0C5C430
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:28:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E94704E6538
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:47:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3970E4FC6B0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:18:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127D32FFDE2;
-	Fri, 14 Nov 2025 08:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1FF30649D;
+	Fri, 14 Nov 2025 09:17:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="j/yQnkOj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667CE12DDA1
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763110034; cv=none; b=RmAqMXUWoQOf+tfo8hM1yGun2Ik2WxcpLZdXaj5NybiZiKBmS4oPXmnhcPUmysXMTHnXyCKkBCBys3EFd3LEX79EEO4cD/i7Hbl5Lof34vA9XvwW0RrXGWJb1RH17RYV5Gxz62yH4tt8+7VuTHNCk+cBFmaoLO/IrH9aamr7WbQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763110034; c=relaxed/simple;
-	bh=uNi0IN8z9nQus5eNw7uGH1EX3oz3GiVff8AX5ejQ6yM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=M4PrbI+4PmTnthSYu7RTHjIvk9L0GsdIE7oVDzMJRYBtU5oh+8ddWZrfMxAnBsbJqT6t/YBc/OLWQOINX8AJb3T0qW143Wt0zFYRCfl5Thzy4/NO3WB00sr/kZPDT+ZIzkWXfhkNjQiFBcV1QiiwfJOad4H8gcWIr0HeO/POjZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1763110003t6e9a2cbd
-X-QQ-Originating-IP: /6Z5+nX3o4vML1dAYSFZidFlE4csM/xLSFdrWgK4Pqo=
-Received: from [IPV6:240f:10b:7440:1:1ea:c5f5: ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 14 Nov 2025 16:46:39 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2104105009139998330
-Message-ID: <5CDCCB3C8D98AFF4+865e773e-29b1-4e60-b8b1-3633b996619b@radxa.com>
-Date: Fri, 14 Nov 2025 17:46:39 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7C0302156;
+	Fri, 14 Nov 2025 09:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763111854; cv=fail; b=gz/9Y4hyeY/c53gLrOabFNaBbJyS+BliLIABTpfDxoSi/vrbsdSOPsKEyTDd5kMLG+fBsK5bQxyilsQSVdvn+uQgv94RZnTGeYofn2tkunCKEAcAj0ly7EEgoh5eqQXT4zUUidBJZJHE8gQGJCkGypCrPfnHRC7v2S15BGXH9Qk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763111854; c=relaxed/simple;
+	bh=ZFzka9Hs9kU7s5fRkIGXNdnV83vCtwO2jz2poSoAjU8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oZmYj3aVzknobGzbyEuAO5n/JJ3uDULU3hUzfNtrbLxlrSlv8Ut9iq1NsZliB8Sr8jtLD5H/RJWnbIChNjACNbpARKBc6vXANW1sF2VkOrUmTlj5Zzn+0st7G+fw0JcR53dGKWNIqIub/xnEhi7q+pOHZbDGIZSgYoqt8qKtgXs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=j/yQnkOj; arc=fail smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE9DDW71829054;
+	Fri, 14 Nov 2025 10:17:17 +0100
+Received: from db3pr0202cu003.outbound.protection.outlook.com (mail-northeuropeazon11010065.outbound.protection.outlook.com [52.101.84.65])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4adr7k25sj-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 14 Nov 2025 10:17:17 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OnFdV/EShYAFliiaFwydpGEWvwiRciYIDDJTXnm/fCPCsvqiPzLL8336VdXluAqOFBKh93KjJKtgEv4sZ2gzILE4wtq4xCG1cuHNyObAbq7J+fhxis4g9pd0PzilgYRbEw0gpsVVuEK5SncfxgLXTre1QahBGPaijosWHmnB9qaMxTwo66uMJ2Klmu7+AVTfY1908O6kj8MEjJyTRQX8WLDQiMmeE2QD6WzmUDlffs/0MV4XqZ67aeu/eGKhg8B8FNv3X+wN+QSeymgpcvnTbd8dMh8T688ObhrfEcMvbSTtGbeqaefqt2UvbhphURaLAtT0q1qMsSHlaSYsCbakng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4l6lcrB3m7XR5pzCXBvCJaO7j25B2XoH92w8UTOK8iA=;
+ b=IhAKnV9loraui1v19RZuP6LeDkj/fspWR/B9/Ba+M4DQZV4yfHt/2xMrQgiHywFrHg+s1mprDpEhUk0wIL65ocN/l4ap7SXnV8ummXby2cAZYKzPzAbyzYGYYTERVdUk9BfP8Kk9zQHD3ruL6iB4zuK477uKBVmCBoUm/zIwRk3lQRaGmUCjbj1qBtKRoK8CcyolXdr5AU7XmzDeKJhN3sxHrEUm1jsfHYVTcSYvAh9XtHGrlpQPrDBmRP5fur+FOMZ5Qbmikzl3LUSiDqMbyMfO5w9HzTn9+ad2VdNCYCoKepH/99/QRfwSbzMjvA9+OdMiq/jGCjRva/DRfa7Bew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4l6lcrB3m7XR5pzCXBvCJaO7j25B2XoH92w8UTOK8iA=;
+ b=j/yQnkOj98oFnwjoqsfj7Ywg7YF6rnsRzmjymIU/Hal59Y/m0+ux0q5okox8vScWJ3gfuw9Scvyi+LSIbP6vafmBv3mVxYkM1FNGTrzJwafb2rGnl7yAYcr9++VWKiAkifDMv6SmkZA+zFmTnUR5IP9/sl/R95J4pwoTd6zjJIpdjsF+rLXeRvWElLnxYkleLMrk03xUhtUqZjVgJN/WC5fNH7yYTZw4yoOzVP6oC1gnRoh7VyetGECPIGv0P/fmvaaaaROXYxSCcspVhM9MHEd/9KmqV85LEH7b6URcxgZa8zUDpCfx/UfTH0Lu9812OL4RJjKz3wH7gJSQrIInpA==
+Received: from AS4P189CA0015.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:5d7::19)
+ by AS8PR10MB5831.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:524::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Fri, 14 Nov
+ 2025 09:17:16 +0000
+Received: from AM2PEPF0001C70C.eurprd05.prod.outlook.com
+ (2603:10a6:20b:5d7:cafe::5e) by AS4P189CA0015.outlook.office365.com
+ (2603:10a6:20b:5d7::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.17 via Frontend Transport; Fri,
+ 14 Nov 2025 09:17:12 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ AM2PEPF0001C70C.mail.protection.outlook.com (10.167.16.200) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9320.13 via Frontend Transport; Fri, 14 Nov 2025 09:17:15 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
+ 2025 09:51:29 +0100
+Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
+ 2025 09:51:16 +0100
+Message-ID: <01dbb151-148f-46af-b843-f96f99910ea6@foss.st.com>
+Date: Fri, 14 Nov 2025 09:51:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,199 +91,148 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: joseph.kogut@gmail.com
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
- honyuenkwun@gmail.com, quentin.schulz@cherry.de, dsimic@manjaro.org,
- pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251105051335.17652-1-naoki@radxa.com>
- <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
- <705A25012553039E+ea9a05c0-ccc5-4d70-930b-e989300e55a1@radxa.com>
+Subject: Re: [PATCH v2 0/3] bus: rifsc: add stm32mp21 support and config dump
+ debug entry
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        "Conor Dooley" <conor.dooley@microchip.com>
+References: <20251106-rifsc_debugfs-v2-0-f90e94ae756d@foss.st.com>
 Content-Language: en-US
-In-Reply-To: <705A25012553039E+ea9a05c0-ccc5-4d70-930b-e989300e55a1@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: M5aCtjAndv5OVcqTjEihMTj5f1Ko0fludn0BGn0XcmYqxUIs/DKAIRhN
-	tEh4E8AXMglYR71ODOK3DewekC2cP0y5oM13Glr7YA7c4vTHVh5W6IrRkYQKnoDqzFxT2GT
-	PQha2GSLJd62fHTsdGuT6Fwb9zq9VIP/avQrNwc1FHspOGuXb++ySCKUmXait6YnlQPFYIt
-	IpdHInm+EcINF3vNRYKnO7KNDJ1eXzLovtvVMfuMFl4yi5xid1EOcWTMXX/qnByQ460oqf5
-	nAOqO3Z97DYnUo0Nj1xzCZ2c+lQkyPRs1cWucYJ/2Ys2fY/wS3loMwXbdJ+PwCHpmiVV1jA
-	uPzs4Dcyv5Yj2Gcj++Hdp1ljZ2TBAfUdQ4SvSNFo66tcJVAdhVEUx/AcSnkjxKGfv8kusRf
-	gvqt5lscArhhsdM4Wz9fczPZZx10EKzoTrHMcRysU+RlpPShtHZXKQfqnHihQa/dofR8ece
-	2Q2ns6UaT0pFjEuLdzY648ljX1R60/wOVN/Ehisrta0TBL7c6ATBYc1gbsuf6PnnOcU28Jj
-	YxBMQCWlqt8gbGgDb6a8Rl3hxBrLH7yK5BGFvTo1aZNYsm/cw3Ry1dWYdqRIBTISxMleNN7
-	h+9DjnBO5vsxP+wAsZf9aVtgkn9vPZz8k2RVlDwh+mzWSWSSNi4ON63x1T4sJ0lJofuCsnr
-	A9PSWmGNlI6fr6ewpt7nO1yo8Vo/BwK7nZu8jFcfGiO21yK2Yok6hfQxB4LTpaRaQhBzQ6v
-	ryCHLd/D2UAe/bQtTD1f/neRMlA63xcLyVmQrJpBQOftjjmseEaO8kWAWnRnQdW0AXZmX6q
-	s2ZHKZ1pBGnbJUpJ4xJ1XDNVjmp+LTeDDzaLHeq21YSoJjP2zjwb6zv0BBxIt6ypzWGB3cf
-	POkRHsVBMzwvniYmimxDFr9qd9EQZaYDAIOiHnca2n+Ps71PYXsqiktMUBXMhCM4xov+tO4
-	lVmsKM2pPsMQiDO7iKa0eobroxW7ZSUlsVzf6X9TdGE6urIqryvMYj0FjVI0FBgUAURQElm
-	NMLW0MrYqoxk0aBSIi
-X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
-X-QQ-RECHKSPAM: 0
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20251106-rifsc_debugfs-v2-0-f90e94ae756d@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM2PEPF0001C70C:EE_|AS8PR10MB5831:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ad6fd85-a9ee-403a-64ec-08de235e9a17
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?NWdvQnE5Q1l2RWVsWURhWFF1VG1hYU5WV1FnaXNXQUNhUEkxTk9TOEJ4Sjg0?=
+ =?utf-8?B?Z1A3TVFkTzE4NnF1R1ZxMmNvRUNiUWJSQUlSVks4cGRoRVA0bjFrNU96SjNS?=
+ =?utf-8?B?VVZrU05OSlp1aTE2MWFWcitKWWtkTFFQNzNyOSt6Y1h2dVlyVmNYUW9DdFZN?=
+ =?utf-8?B?eXlnb1l4Z1ZqNm14Z3Fqd1AycTVTaTFvdHYyTlJTdCtSaHFhUkNXdFJ0TEZp?=
+ =?utf-8?B?QWN5eHUwcWJ3YWRaN09lVkxXSjUxdUhkZ3BiNGQzeEYzdXl0MlM4bEhEUDJU?=
+ =?utf-8?B?UWVHR3pXR2l6ay9CVGZCckhhU1pyNFNURDJSNjhQaVRJZEhQNkc2VjdQK3R0?=
+ =?utf-8?B?WXJBaVk0TVYvV0h5dGZtOUhuSk1MZ1J6UVRZSjJQTHo0QThHa3BlOTJsbFZK?=
+ =?utf-8?B?blBZV0J0cUdUc2hiNVZZQ2wvZTRaUzVNb2JvZUVFQys0SVRUQysrQ3RkSDc4?=
+ =?utf-8?B?elNjT2R0VTJxcDEzVFJzYXk1bGtCcEcyTUlqQ0dPVnh1RXVjRUNPUzV4QW9q?=
+ =?utf-8?B?QzJPY09NL0ovWXEzWklaVUlhYjFkYkRVdEhEcE1rRXpNTGZNYy8xaFQrQXhG?=
+ =?utf-8?B?TlhZaHhtWUJlWjlpQWtCY3loZi8waTBsQkh3ck9MNERjM0gva2p0STh1cFFn?=
+ =?utf-8?B?Q09KajFsR0drVGc0eWZEa0VOdW1vV21lK2RGcjFTTVloanlqZUpidXI5bWZ1?=
+ =?utf-8?B?R09EVjJmZXZRUHhxRGJrb21mWEYwUU00TDZGZ0s5RFFOMnlUbm5RN2pyNVl6?=
+ =?utf-8?B?TnkyTWVuMGpkYmJqT1JEY2V2TjhYdS9lRE42QkwyVkZBbHl6ZVJ5VlNxb3V0?=
+ =?utf-8?B?Yk43Mk03MlJqa3VOQW9hR1hUaW9uQWFqakxueFpoL1RLSUpveTdJTExsQVB3?=
+ =?utf-8?B?RmFmWDNjYzlVdXA4SkR4S0NtMTYvejgwM0NnZ0VvZXNqQnltNkxsWGV6SlRx?=
+ =?utf-8?B?L0x6ZlQwVnJhMysrUEV4d05idURvbXJDdkhWbnoveHRFMk5uOUNjQjh2MDNr?=
+ =?utf-8?B?WHFLK3BPWmxkYTZiRERHTndSTHdkV2VvMWlVMnNNRnRsbUJOVEJZYVlLaHRO?=
+ =?utf-8?B?RzkrcTRLNkwwb0VwbFNHdUlaWlAydk9VY1hROXMvZ3hTMzhrRlhrL2J4K0ZB?=
+ =?utf-8?B?RnN3Rnd6Nno1emEvbmllby9oNDZ4RHY5VTlnOFgvdXQ1NmNNMzluV0EzMk1h?=
+ =?utf-8?B?Yy9Ba1krbjF1RitTaFgxcWF5d0R4ZHBwZzg2aHFsVnh5UEMyNDZmTTNZN0h3?=
+ =?utf-8?B?bTU4RHVUN3UveG0wbGcyZ1RmdVlRaG96RUdnaGRxRG56L0pCSkhDZXNwSlRP?=
+ =?utf-8?B?RW14Z0N5NWt1alZDdG9LQWRPU2JuZUdiRW1CbldEU05tSFpBbVZHUnRzK29s?=
+ =?utf-8?B?ZGU5am45dzVQWnJpeW1oWHBGbFlRU1lvNVA0L084eU5PUGlJRHJQRHJhb2JJ?=
+ =?utf-8?B?R3VydjlJaWY5N1U3dVhDZHQ2aDlhTWNSWXVIVlJmakc5anNObk15L2JYSWlW?=
+ =?utf-8?B?V3BVdDZqYUhhVDU0WUZXbW8xOFFXSzNJcG9PWS9RMXBrbXZuc1dTTzV0aGhQ?=
+ =?utf-8?B?S2tXTFNwdzdLMG9rNm5Wd3pLNUVwdVRxeXdJdENhQjlHR2txN1c2QkpmZVdj?=
+ =?utf-8?B?U3d2NnJvYTRQRy9rWFBnVnUxK1pXRVI0dU5rV1lPemNMU3NQN2w0eTVkc2tT?=
+ =?utf-8?B?K0lEYXJaYlY3TThxNnMyWXJhZHBNWHJXNmVsNHQ5RDVzRGdpaUlDeEc2anlK?=
+ =?utf-8?B?YitVdWVMZHh4NUxsOWlweWNkeDRPeEFJV1JPMTZRdnRaTXkvRDFYUERVcyta?=
+ =?utf-8?B?N0J1enJ3c05sdStEYkpZanlld3R6L0EyaUVWUndwUzlMczErZy9jZzl4UGZS?=
+ =?utf-8?B?TUxycjVrenpCUHVBOUF6TUFKejRLOVJpanU1QW5BaGdBM2RLMHFZN0cyY2l5?=
+ =?utf-8?B?MGxnay9pUEJJd1dROXJWUi8zejJ2TzNBTFBiRTJhU1NkaUxPbWNDL2dXenZ2?=
+ =?utf-8?B?dUdJYnpNWXFSQ1dOcG5hRjIyNW5JMGxLTDk4V01obm9BRDhFSVJYeUFuV0JN?=
+ =?utf-8?B?TzFHdm9yR3Y4bG5PcCt3T0NpdGRTcmdEMk5JTzc5WGt0L2k5RFNaaG5jK21T?=
+ =?utf-8?Q?Jec4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 09:17:15.1537
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ad6fd85-a9ee-403a-64ec-08de235e9a17
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM2PEPF0001C70C.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB5831
+X-Authority-Analysis: v=2.4 cv=KoBAGGWN c=1 sm=1 tr=0 ts=6916f39d cx=c_pps
+ a=JbfknYpaHg+7S6z5Esqmrw==:117 a=uCuRqK4WZKO1kjFMGfU4lQ==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=TP8aPCUxYTYA:10 a=IkcTkHD0fZMA:10
+ a=6UeiqGixMTsA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=8b9GpE9nAAAA:8
+ a=n2zXhBmsAd_17serdwMA:9 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA3MiBTYWx0ZWRfX5mG9zKJvR8FN
+ kdXly16lZbBWAW1uPVblb2D3dNkhj0BzPNjprFLo7rXVD0QgF6ENdiw3bBA45DuIMzmtwlaiwcU
+ fQ7z0mNCWcyJLJ28UXG70eiPT3cNfJZKii7/XLwt5p9LZ9FwR2XysmaDZVBS8yM5eWZt1gy5wF3
+ PQ3Lrm/KlcyBtlACLGLNjIV1u2mpfCpg1pCaIBYcDB+4FCgcX/EhHG3j6gxkMlU/VcnmMHwDtTt
+ yup4YJR9wUIKQzY63RNy2PHcFyGTE1HQM/bPIUlg4Okh2TOK47X1h6Yol6V+m0Eu12BR6RRUWuL
+ d3bIgkN3zx2xHVR5IGgjB9Ae0d3G684E86iRPFbRZOdubKL3ZcEUBomr1pQxlHzzccpo0VuN3TE
+ c8i/v5ootTekknKfV98gObch6+s1BA==
+X-Proofpoint-ORIG-GUID: sRiOjl7rVeOMQyF_hKYn1Jf9PNG2GiY7
+X-Proofpoint-GUID: sRiOjl7rVeOMQyF_hKYn1Jf9PNG2GiY7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-14_02,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0
+ clxscore=1011 lowpriorityscore=0 malwarescore=0 bulkscore=0 adultscore=0
+ spamscore=0 suspectscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140072
 
-(Sorry, "To:" was wrong in previous email)
+Hi Gatien
 
-Hi Joseph,
-
-On 11/14/25 17:06, FUKAUMI Naoki wrote:
-> Hi Joseph,
+On 11/6/25 10:31, Gatien Chevallier wrote:
+> The STM32MP21x platforms have a slightly different RIFSC. Add support
+> for these platforms.
 > 
-> On 11/5/25 21:15, FUKAUMI Naoki wrote:
->> I'd like to clarify the situation regarding the v6 patch series I 
->> submitted.
->>
->> The original device tree work for the Radxa CM5 and IO Board was 
->> authored by Joseph Kogut. I took over the responsibility of getting it 
->> upstreamed with his agreement.
->>
->> However, I now understand that I should have preserved the original 
->> Signed-off-by chain (and DCO) in the v6 series. This was my oversight.
->>
->> To correct this, I would prefer for Joseph to post the patches 
->> himself, which will not include my Signed-off-by.
+> Also, the RIF is a complex firewall framework which can be tricky
+> to debug. To facilitate the latter, add a debugfs entry that can
+> be used to display the whole RIFSC firewall configuration at runtime.
 > 
-> Could you please post the patches?
-
-Please ignore the patches I sent as v6. Also, I don't claim my 
-copyright. Feel free (not) to use them.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> ---
+> Changes in v2:
+> - Added Conor tag on bindings
+> - Fixed coccinelle warning by using str_enabled_disabled() when
+>    applicable
+> - Link to v1: https://lore.kernel.org/r/20251104-rifsc_debugfs-v1-0-7ebdfbf8d33f@foss.st.com
+> 
+> ---
+> Gatien Chevallier (3):
+>        dt-bindings: bus: add stm32mp21 RIFSC compatible
+>        arm64: dts: st: set RIFSC as an access controller on stm32mp21x platforms
+>        bus: rifsc: add debugfs entry to dump the firewall configuration
+> 
+>   .../bindings/bus/st,stm32mp25-rifsc.yaml           |   8 +-
+>   arch/arm64/boot/dts/st/stm32mp211.dtsi             |   4 +-
+>   drivers/bus/stm32_rifsc.c                          | 597 ++++++++++++++++++++-
+>   3 files changed, 602 insertions(+), 7 deletions(-)
+> ---
+> base-commit: 6146a0f1dfae5d37442a9ddcba012add260bceb0
+> change-id: 20251104-rifsc_debugfs-5053ea033ce3
+> 
 > Best regards,
-> 
-> -- 
-> FUKAUMI Naoki
-> Radxa Computer (Shenzhen) Co., Ltd.
-> 
->> My apologies for the confusion this caused. Thank you for pointing 
->> this out.
->>
->> Best regards,
->>
->> -- 
->> FUKAUMI Naoki
->> Radxa Computer (Shenzhen) Co., Ltd.
->>
->> On 11/5/25 14:13, FUKAUMI Naoki wrote:
->>> This patch series add support for the Radxa CM5 SoM and IO Board.
->>>
->>> Changes in v6:
->>> (Patch 1/3)
->>> - Fix description; "Radxa CM5" is the correct name
->>> (Patch 2/3)
->>> - Fix #include(s)
->>> - Include rk3588s.dtsi
->>> - Move alias for gmac1 from io board dts
->>> - Add Maskrom key
->>> - Add pinctrl-* for led-0
->>> - Add vcc_1v1_nldo_s3 regulator for pmic
->>> - Move gmac1 (except status) from io board dts
->>> - Fix phy-supply for gmac1
->>> - Fix compatible for vdd_cpu_big1_s0 regulator
->>> - Add eeprom on i2c0
->>> - Add vdd_npu_s0 regulator for rknn
->>> - Fix compatible for rgmii_phy1
->>> - Add pinctrl-* and reset-* for rgmii_phy1
->>> - Add domain-supply for pd_npu
->>> - Add rknn_*
->>> - Add saradc
->>> - Fix properties in sdhci
->>> - Move pmic from io board dts
->>> - Fix vcc*-supply for pmic
->>> - Add regulators in pmic
->>> - Add tsadc
->>> - Move vop(_mmu) from io board dts
->>> - Trivial changes (labels, names, etc)
->>> (Patch 3/3)
->>> - Fix #include(s)
->>> - Remove #include "rk3588s.dtsi"
->>> - Fix model
->>> - Add fan
->>> - Add Recovery key
->>> - Add pinctrl-* for vcc3v3_wf
->>> - Add vcc_sysin regulator
->>> - Add pinctrl-* for vbus5v0_typec
->>> - Add rfkill-bt and rfkill-wlan for M.2 module
->>> - Add sound for es8316
->>> - Add phy-supply for combphy2_psu
->>> - Fix power-role to "source" for fusb302
->>> - Add rtc for hym8536
->>> - Add audio-codec on i2c8 for es8316
->>> - Add i2s0_8ch for es8316
->>> - Add package_thermal for fan
->>> - Add pinctrl-* for pcie2x1l2
->>> - Add pwm11 for fan
->>> - Fix properties in sdmmmc
->>> - Add phy-supply for u2phy2_host and u2phy3_host
->>> - Remove usb_host0_ohci
->>> - Add pinctrl-* for usbdp_phy0
->>> - Trivial changes (labels, names, etc)
->>>
->>> Changes in v5:
->>> (Patch 2/3, per Jimmy)
->>> - Alias eMMC to mmc0
->>> - Remove unused sdio alias
->>> - Move gmac, hdmi0 nodes to carrier board dts
->>> (Patch 3/3, per Jimmy)
->>> - Enable hdmi0_sound and i2s5_8ch
->>> - Remove redundant enablement of sdhci
->>> - Enable usb_host2_xhci
->>>
->>> - Tested HDMI audio
->>>
->>> Changes in v4:
->>> - Fixed XHCI initialization bug by changing try-power-role from source
->>>    to sink
->>>
->>> Changes in v3:
->>> - Addressed YAML syntax error in dt binding (per Rob)
->>> - Fixed whitespace issue in dts reported by checkpatch.pl
->>> - Split base SoM and carrier board into separate patches
->>> - Added further details about the SoM and carrier to the commit
->>>    messages
->>>
->>> Changes in v2:
->>> - Added copyright header and data sheet links
->>> - Removed non-existent property
->>> - Sorted alphabetically
->>> - Removed errant whitespace
->>> - Moved status to the end of each node
->>> - Removed pinctrl-names property from leds (indicated by CHECK_DTBS)
->>> - Removed delays from gmac with internal delay
->>>
->>> Link: https://lore.kernel.org/r/20250617-rk3588s-cm5-io-dts-upstream- 
->>> v5-0-8d96854a5bbd@gmail.com
->>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
->>> ---
->>> I have communicated with Joseph privately and taken ownership of
->>> moving this forward, with his blessing. All bugs belong to me.
->>> ---
->>> FUKAUMI Naoki (3):
->>>    dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
->>>    arm64: dts: rockchip: Add Radxa CM5
->>>    arm64: dts: rockchip: Add Radxa CM5 IO Board
->>>
->>>   .../devicetree/bindings/arm/rockchip.yaml     |   7 +
->>>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>>   .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 503 +++++++++++++++
->>>   .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 602 ++++++++++++++++++
->>>   4 files changed, 1113 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5- 
->>> io.dts
->>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
->>
->>
-> 
+
+DT patch applied on stm32-next.
+
+I'll send a dedicated PR for other patches to arm-soc tree.
+
+regards
+Alex
 
 
