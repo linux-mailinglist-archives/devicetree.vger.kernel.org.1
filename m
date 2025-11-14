@@ -1,358 +1,182 @@
-Return-Path: <devicetree+bounces-238883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2088AC5EDEF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 19:32:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4AD4C5EE61
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 19:41:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D47BE3432E3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:25:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 972FB3B0EB4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA2F342CBF;
-	Fri, 14 Nov 2025 18:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D476C2DC338;
+	Fri, 14 Nov 2025 18:41:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fN56Awec"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cbRWCcY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC3231D723
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 18:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6822DC332
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 18:41:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763144703; cv=none; b=l+LXzmvkryiMk3fZCFFtn/DSrvKzKJ1WAlslQj8fj8285C0/B7BPBtnvG5xLh9fTo/e/GLuq3ofH9WkbInBEndXXUqa+ZaAtq55VmGW6D+sI6eRv3YqSjcr98Tk17yOypQk2g/1ZtMN8Uo+1OVQlKDLpHFY+nw/9DvWoEhkjWls=
+	t=1763145674; cv=none; b=qtD81SOStuGe5yW0hztGyVVrZuQGUYpGBLoJW6FXhEuSAtnBV6OKOR7bvJjkdwsRCTzCqXVZRazxgAgRsEsH2HLczdnSjd+sNEp2RL2AyoXq0EBkSOycrMcYVZKq2Cr3GS+x4Sg6Myz+vTOYpLdKU8QWrdRrg5co3rcld6UDgjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763144703; c=relaxed/simple;
-	bh=gJaks/UCvgAlXCLih4Srnc070Lq8z81HWpnI4Tauz7U=;
+	s=arc-20240116; t=1763145674; c=relaxed/simple;
+	bh=uU3rKZArNQJfMmH8g2F3c3EvB0q/FTV9vy0xjSTNwGc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LrqJOry74pGFXCqwbWaXabOPyG1AWkynuBzBdVj1D0JZlXKz/ryStE1Hf3oTPQvvgvw9mTubMq95zcJCs1cyLfX735qFci8T45HmQTzD1wC7cfmUh3bYk65mK0qqFhlGhZ6UffLLg/+MWJNI69jf8ceqo7xUfkSKFlj95qa/nAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fN56Awec; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b71397df721so310677566b.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:25:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763144700; x=1763749500; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HOlPxByPVTPCbTo7AMY18VmB1hSsPxJmT9QGb8+o0Aw=;
-        b=fN56AwecxiOpQWDyG2SpPU6VJq0OS5BrFE+pbSK+VTIhDJ8qnTT5lhmA0xcVkYLhIw
-         t1cEghNwjtUqRxeecw7TDXQStmKMtWMuerMNjUW9toiN4MvMZh52rQzMCy5SP5GSFwjn
-         E5OjZVxMbla1cesxr/1BHngx80m2BR7qR8UfxQdWvWaAbSIdTgaGJ2eXLTIk2Z8HobPP
-         n0rll75APNIl7rDMApEY7DgDFzkXsjbZJMkI9OyNTRXEMu0a1P1CRgAVxxUl55Ir2ym+
-         EbS9JDQKbWyDU1vgrIkPprDv9BIU7lGmLtTt/COXmu67PkVk0xZ3vDf7+TKWeLdM1kzP
-         7yXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763144700; x=1763749500;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=HOlPxByPVTPCbTo7AMY18VmB1hSsPxJmT9QGb8+o0Aw=;
-        b=Q5uqJTjZHBv5Zv9K/uu96JPYdVtdgNpcfNQVN35WcrbjSY7IdLeLZD41Ws3JLmuJIp
-         p+/xW4TTiDnbUR41GeRY8s56UvEBt7AOSLGBkPG9aX2yeXStWUL1ibGN3YbT+RZTzj0v
-         CSmO5w3c/mVCDC5I4oSr1WxOLZe6IZRvhNUtGEWqelO44ol2A1P4zAOMrYatQkBqeCIF
-         w9S97PLZ5UlkF0yd5hcq6TD8gbXmGLBhuhQkXuGzqSTy2Io8zvEWeYIU9GE9I+lnLbFt
-         DSJZjrR6BgGH9h22oNJUw7Yt0+gNF3mfeLwUmnPMHKrMHnIeHune54+9XxnDS9aDwsTV
-         1T+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWiGJlpWe479dEejnmlNeg+1m9qBNYVR8GWHv0mkJBWxKBZdOU4j8P0k4rYul+rz2AsfMnE5WAE3CJt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzS2wLGabkQZLWmiKdzOmo/b0aXnDZDbS50anwdznVGBvWZ3ITn
-	bAxVsOUbGFVktzNuLjEwUVhJnYItYtXjau3GM19WMHokTL/yoI+sGgOfkZAbhKolHHFfjhQLBPl
-	mcFyJXrrE5bQFiz0p/ieMT65xAiOA2EA=
-X-Gm-Gg: ASbGnctvmknLaTpw9avzS00icZQ1xSgR6AgHF/UXHKT98Vs/ZNdQ8RgFImdc1R0BP7B
-	aXmVWX0tlpynDgX1/Rh6SwmPrtnAi/+j967HeckGrcrKbHR2yMg/Isi8jsZr5F35KalWjkESQxO
-	Z6yXgVH6vFyT6okupfg3otc+j2MbAQFjYhwhYk41NTYYVvv3cpmo6C78sYevpQVRQBnSt5I169f
-	LLJ9KCPm2ybojDALwtTExO1qILqyip2Z9+oTZ/RS7AnfVVPz2gfUXjkd3h0FQ==
-X-Google-Smtp-Source: AGHT+IHooFAx39vbTH14kY2vkzUUNpCSYRss1/mwUR7nsY81OVmVVvb4tRt71ZKJsCxS1Y/sfm0rX/p9bYgSlzoQFyc=
-X-Received: by 2002:a17:907:a4c:b0:b72:d001:7653 with SMTP id
- a640c23a62f3a-b736780c141mr411429466b.19.1763144699443; Fri, 14 Nov 2025
- 10:24:59 -0800 (PST)
+	 To:Cc:Content-Type; b=rSXy4BBZNT70zt428nY16KBFgBn1ygD7TYw/F5fd8qmQIV9RFR1oI12p55t2oE/9Ocb2gvsTKdOuYjominYJ6E7HoD/6oWgq7AGNFdwX6Ge4FTmeIOqbAWauz6NH9aKqIHSHY7Zco+6w6YTRBOvdkuCGBNmDQvC3o1jBzaidxg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cbRWCcY5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 692BDC19425
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 18:41:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763145674;
+	bh=uU3rKZArNQJfMmH8g2F3c3EvB0q/FTV9vy0xjSTNwGc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=cbRWCcY5USjcdSj47Pp23LIyarPtOwBgsWiU3/NMFMa5MBMglHjEJpgJ2c9OTHlmH
+	 EmFMXKsdis97g6GYha81Fw0F/ajSvIdu/MJzNliyT2zGXy8qsMqC/SmrRqWWsWeONq
+	 91uh8TeuxQr9ZwGVBmFhNFPrrO94oSD5s/3f8moD3X2Y/txM5b5k6gEky8B0OTfPI0
+	 qfHxCEYcTEJVA9FXbFKNTn7Aqa56O1U9CbAMKJOK/rhJwCW5xUq8pSWWXPqPwg+KhM
+	 2W0gLUCqwZdj62zIAvObyCRTJpgmSDc+YlPlWcW/aV7yOlbUYOGSa5fbGkbutmoeC3
+	 n+oK5t3baj9iQ==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b7346565d7cso306624066b.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:41:14 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWZ3hOoPHg7TcX/TA3Ihrs6G0BBVYJFuBjlPCKWkzJC9qMJRinpei7nhOXg7tDhkaikU7XSbN9QXsGx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpR4p+HmkRLgN6MfKd3Muqn2VB7Seb6gUTA/Jm3eI4p9hiydNJ
+	+vPplkbblmUk+hOejpMezmuK7WEHMhoZcuAb+H2mNMiHCWAxlbhauTztNrWZak6b8g8lAWdf6l7
+	f5Z0Vt31pm4tlRXXZQ1lhuFgM8BE64w==
+X-Google-Smtp-Source: AGHT+IHc2ZYhQaMLw8/0t5ii4Uq5xmDZtv8iTCdZaeuEuCGVJg4CCn4SxcbUH4Ipk3/KHt6cJaWR4f0E1HmJBCwT+PA=
+X-Received: by 2002:a17:907:97c3:b0:b6d:5c4e:b09f with SMTP id
+ a640c23a62f3a-b736789d444mr371783266b.5.1763145672998; Fri, 14 Nov 2025
+ 10:41:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251114092000.4058978-1-o.rempel@pengutronix.de> <20251114092000.4058978-3-o.rempel@pengutronix.de>
-In-Reply-To: <20251114092000.4058978-3-o.rempel@pengutronix.de>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 14 Nov 2025 20:24:23 +0200
-X-Gm-Features: AWmQ_bkzDCK-qXNyHUrYcmb0FM-3ZSN52nNcYrFmhBRlsvWdBHMMQo35fe5RytA
-Message-ID: <CAHp75Vcjv=XerYsunKO7h_e_jBMQuaKvkvRAuPLAXLqevM4jMw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS131M0x ADC driver
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Jander <david@protonic.nl>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
+References: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
+ <20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com>
+ <176313578804.3261993.9727195642647352249.robh@kernel.org> <87qzu0bnmi.ffs@tglx>
+In-Reply-To: <87qzu0bnmi.ffs@tglx>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 14 Nov 2025 12:41:01 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+tqGrSmFiEdyrgnsJ6eQ-gt2K9GVfb2nag_fLUWFcLpw@mail.gmail.com>
+X-Gm-Features: AWmQ_bky6sQizUe8-QnLDwwW0UvWW-OY8BvouApVtd_66_FtgFJPhLRoI4LbsZg
+Message-ID: <CAL_Jsq+tqGrSmFiEdyrgnsJ6eQ-gt2K9GVfb2nag_fLUWFcLpw@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: Add gpio_intc node for Amlogic S7D SoCs
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-kernel@vger.kernel.org, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
+	Heiner Kallweit <hkallweit1@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	Jerome Brunet <jbrunet@baylibre.com>, Conor Dooley <conor+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 14, 2025 at 11:20=E2=80=AFAM Oleksij Rempel <o.rempel@pengutron=
-ix.de> wrote:
+On Fri, Nov 14, 2025 at 10:11=E2=80=AFAM Thomas Gleixner <tglx@linutronix.d=
+e> wrote:
 >
-> From: David Jander <david@protonic.nl>
+> On Fri, Nov 14 2025 at 09:58, Rob Herring wrote:
+> > On Wed, 05 Nov 2025 17:45:36 +0800, Xianwei Zhao wrote:
 >
-> Add a new IIO ADC driver for Texas Instruments ADS131M0x devices
-> (ADS131M02/03/04/06/08). These are 24-bit, up to 64 kSPS, simultaneous-
-> sampling delta-sigma ADCs accessed via SPI.
+> > New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/amlog=
+ic/' for 20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com:
+> >
+> > arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: interrupt-co=
+ntroller@4080 (amlogic,s7d-gpio-intc): compatible: 'oneOf' conditional fail=
+ed, one must be fixed:
+> >       ['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+> >       'amlogic,meson-gpio-intc' was expected
+> >       'amlogic,s7d-gpio-intc' is not one of ['amlogic,meson8-gpio-intc'=
+, 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,mes=
+on-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-=
+intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogi=
+c,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', '=
+amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+> >       from schema $id: http://devicetree.org/schemas/interrupt-controll=
+er/amlogic,meson-gpio-intc.yaml
+> > arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: /soc/bus@fe0=
+00000/interrupt-controller@4080: failed to match any schema with compatible=
+: ['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc']
 >
-> Highlights:
-> - Supports 2/3/4/6/8-channel variants with per-channel RAW and SCALE.
-> - Implements device-required full-duplex fixed-frame transfers.
-> - Handles both input and output CRC
+> The first patch in this series clearly adds the "missing"
+> bindings.
 >
-> Note: Despite the almost identical name, this hardware is not
-> compatible with the ADS131E0x series handled by
-> drivers/iio/adc/ti-ads131e08.c.
+> Confused....
 
-...
+You and b4. It looks normal reading the thread, but shazam is
+thoroughly confused. I think that's because this series is missing a
+'v2' tag.
 
-> +config TI_ADS131M02
-> +       tristate "Texas Instruments ADS131M02"
-> +       depends on SPI && COMMON_CLK && REGULATOR
-
-Hmm... The COMMON_CLK looks strange here. Why?
-
-> +       select CRC_ITU_T
-
-Btw, why does it not use regmap?
-
-...
-
-> +#include <linux/array_size.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/cleanup.h>
-> +#include <linux/clk.h>
-> +#include <linux/crc-itu-t.h>
-> +#include <linux/delay.h>
-> +#include <linux/dev_printk.h>
-
-> +#include <linux/device.h>
-
-Is it used? I haven't found what API or data structure is required from her=
-e.
-
-> +#include <linux/device/devres.h>
-> +#include <linux/err.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/lockdep.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/string.h>
-> +#include <linux/types.h>
-> +#include <linux/unaligned.h>
-
-...
-
-> +#define ADS131M_CMD_RREG_OP            0xa000
-> +#define ADS131M_CMD_WREG_OP            0x6000
-
-These two have bit 13 always set. What is the meaning of that bit?
-
-> +#define ADS131M_CMD_RREG(a, n) \
-> +       (ADS131M_CMD_RREG_OP | \
-> +        FIELD_PREP(ADS131M_CMD_ADDR_MASK, a) | \
-> +        FIELD_PREP(ADS131M_CMD_NUM_MASK, n))
-> +#define ADS131M_CMD_WREG(a, n) \
-> +       (ADS131M_CMD_WREG_OP | \
-> +        FIELD_PREP(ADS131M_CMD_ADDR_MASK, a) | \
-> +        FIELD_PREP(ADS131M_CMD_NUM_MASK, n))
-
-...
-
-> +/**
-> + * ads131m_tx_frame_unlocked - Sends a command frame with Input CRC
-> + * @priv: Device private data structure.
-> + * @command: The 16-bit command to send (e.g., NULL, RREG, RESET).
-> + *
-> + * This function sends a command in Word 0, and its calculated 16-bit
-> + * CRC in Word 1, as required when Input CRC is enabled.
-> + *
-> + * Return: 0 on success, or a negative error code from spi_sync.
-
-spi_sync()
-
-But I would drop it as it makes dependency on the code changes and it
-will deviate easily if code grows and something else becomes a call
-that returns an error, also this simply doesn't scale: are you going
-to list whole bunch of APIs in the kernel doc? (rhetorical Q) Ditto
-for other similar cases.
-
-> + */
-
-...
-
-> +/**
-> + * ads131m_check_status_crc_err - Checks for an Input CRC error.
-> + * @priv: Device private data structure.
-> + *
-> + * Sends a NULL command to fetch the STATUS register and checks the
-> + * CRC_ERR bit. This is used to verify the integrity of the previous
-> + * command (like RREG or WREG).
-> + *
-> + * Return: 0 on success, -EIO if CRC_ERR bit is set.
-
-Note, this kernel-doc line is good as it doesn't rely on the code,
-rather on the HW programming flow.
-
-> + */
-
-...
-
-> +static int ads131m_rmw_reg(struct ads131m_priv *priv, u8 reg, u16 clear,=
- u16 set)
-> +{
-> +       u16 old_val, new_val;
-> +       int ret;
-> +
-> +       guard(mutex)(&priv->lock);
-> +
-> +       ret =3D ads131m_read_reg_unlocked(priv, reg, &old_val);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       new_val =3D (old_val & ~clear) | set;
-> +       if (new_val =3D=3D old_val)
-> +               return 0;
-> +
-> +       return ads131m_write_reg_unlocked(priv, reg, new_val);
-> +}
-
-...
-
-> +static int ads131m_hw_reset(struct ads131m_priv *priv)
-> +{
-> +       struct device *dev =3D &priv->spi->dev;
-> +       int ret;
-> +
-> +       /* Datasheet: Hold /RESET low for > 2 f_CLKIN cycles. 1us is ampl=
-e. */
-> +       ret =3D gpiod_set_value_cansleep(priv->reset_gpio, 1);
-> +       if (ret < 0)
-> +               return dev_err_probe(dev, ret, "Failed to assert reset GP=
-IO\n");
-
-
-> +       fsleep(1);
-
-Hmm... Is it needed? I think the GPIO is slow enough to avoid delays
-like this, but okay.
-
-> +       ret =3D gpiod_set_value_cansleep(priv->reset_gpio, 0);
-> +       if (ret < 0)
-> +               return dev_err_probe(dev, ret, "Failed to deassert reset =
-GPIO\n");
-> +
-> +       /* Wait t_REGACQ (5us) for registers to be accessible */
-> +       fsleep(ADS131M_RESET_DELAY_US);
-> +
-> +       return 0;
-> +}
-
-Can you use the reset-gpio driver instead of a custom approach?
-
-...
-
-> +       /*
-> +        * Get the optional external reference. This schedules regulator_=
-put()
-> +        * automatically.
-> +        */
-> +       priv->refin_supply =3D devm_regulator_get_optional(dev, "refin");
-> +       ret =3D PTR_ERR_OR_ZERO(priv->refin_supply);
-> +       if (ret =3D=3D -ENODEV)
-> +               priv->refin_supply =3D NULL;
-> +       else if (ret < 0)
-> +               return dev_err_probe(dev, ret, "failed to get refin regul=
-ator\n");
-
-So, will the refin_supply be ever an error pointer? I think no, hence
-why IS_ERR_OR_NULL() in the user somewhere above in the code?
-
-...
-
-> +static int ads131m_parse_clock(struct ads131m_priv *priv, bool *is_xtal)
-> +{
-> +       struct device *dev =3D &priv->spi->dev;
-> +       int ret;
-> +
-> +       priv->clk =3D devm_clk_get_enabled(dev, NULL);
-> +       if (IS_ERR(priv->clk))
-> +               return dev_err_probe(dev, PTR_ERR(priv->clk), "clk get en=
-abled failed\n");
-> +
-> +       ret =3D device_property_match_string(dev, "clock-names", "xtal");
-> +       if (ret =3D=3D 0) {
-> +               if (!priv->config->supports_xtal)
-> +                       return dev_err_probe(dev, -EINVAL,
-> +                                            "'xtal' clock not supported =
-on this device");
-
-> +               *is_xtal =3D true;
-> +
-> +               return 0;
-
-This...
-
-> +       } else if (ret > 0) {
-> +               return dev_err_probe(dev, -EINVAL, "'xtal' must be the on=
-ly or first clock name");
-
-> +       } else if (ret =3D=3D -ENODATA) {
-> +               *is_xtal =3D false;
-> +
-> +               return 0;
-> +       }
-> +
-> +       return dev_err_probe(dev, ret, "failed to read 'clock-names' prop=
-erty");
-
-...and this can be deduplicated, so the first one becomes just a check
-for !supports_xtal.
-
-  if (ret =3D=3D 0) && !supports_xtal)
-    return dev_err_probe(...);
-  else if (ret > 0)
-    return dev_err_probe(...);
-
-This one will be modified to
-
-  else if (ret !=3D -ENODATA)
-    return dev_err_probe(...);
-
-  *is_xtal =3D !ret;
-  return ret;
-
-> +}
-
-...
-
-> +       config =3D spi_get_device_match_data(spi);
-
-> +       if (!config)
-> +               return dev_err_probe(dev, -EINVAL, "No device configurati=
-on data found\n");
-
-Without this code will crash, right? So, I consider this check is
-redundant because any support of any new chip requires this, and if
-one didn't add the driver data, means it wasn't tested (which is a
-good trap on itself during code review).
-
-...
-
-> +       { } /* Fixed sentinel */
-
-No comment needed.
-
---=20
-With Best Regards,
-Andy Shevchenko
+$ b4 shazam -H 20251105-irqchip-gpio-s6-s7-s7d-v1-3-b4d1fe4781c1@amlogic.co=
+m
+Grabbing thread from
+lore.kernel.org/all/20251105-irqchip-gpio-s6-s7-s7d-v1-3-b4d1fe4781c1@amlog=
+ic.com/t.mbox.gz
+Breaking thread to remove parents of
+20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com
+Checking for newer revisions
+Grabbing search results from lore.kernel.org
+Analyzing 18 messages in the thread
+WARNING: duplicate messages found at index 1
+   Subject 1: dt-bindings: interrupt-controller: Add support for
+Amlogic S6 S7 and S7D SoCs
+   Subject 2: dt-bindings: interrupt-controller: Add support for
+Amlogic S6 S7 and S7D SoCs
+  2 is not a reply... assume additional patch
+WARNING: duplicate messages found at index 1
+   Subject 1: irqchip/meson-gpio: Add support for Amlogic S6 S7 and S7D SoC=
+s
+   Subject 2: dt-bindings: interrupt-controller: Add support for
+Amlogic S6 S7 and S7D SoCs
+  2 is not a reply... assume additional patch
+WARNING: duplicate messages found at index 1
+   Subject 1: arm64: dts: amlogic: Add gpio_intc node for Amlogic S6
+SoCs
+   Subject 2: irqchip/meson-gpio: Add support for Amlogic S6 S7 and S7D SoC=
+s
+  2 is not a reply... assume additional patch
+WARNING: duplicate messages found at index 1
+   Subject 1: arm64: dts: amlogic: Add gpio_intc node for Amlogic S7 SoCs
+   Subject 2: arm64: dts: amlogic: Add gpio_intc node for Amlogic S6 SoCs
+  2 is not a reply... assume additional patch
+WARNING: duplicate messages found at index 1
+   Subject 1: arm64: dts: amlogic: Add gpio_intc node for Amlogic S7D SoCs
+   Subject 2: arm64: dts: amlogic: Add gpio_intc node for Amlogic S7 SoCs
+  2 is not a reply... assume additional patch
+Looking for additional code-review trailers on lore.kernel.org
+Analyzing 0 code-review messages
+Checking attestation on all messages, may take a moment...
+---
+  =E2=9C=93 [PATCH] arm64: dts: amlogic: Add gpio_intc node for Amlogic S7D=
+ SoCs
+    =E2=9C=93 Signed: DKIM/linutronix.de
+  =E2=9C=93 [PATCH] arm64: dts: amlogic: Add gpio_intc node for Amlogic S7 =
+SoCs
+    =E2=9C=93 Signed: DKIM/linutronix.de
+  [PATCH 3/5] arm64: dts: Add gpio_intc node for Amlogic S6 SoCs
+    =E2=9C=97 No key: ed25519/xianwei.zhao@amlogic.com
+    + Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org> (=E2=9C=97
+DKIM/linaro.org)
+  [PATCH 4/5] arm64: dts: Add gpio_intc node for Amlogic S7 SoCs
+    =E2=9C=97 No key: ed25519/xianwei.zhao@amlogic.com
+    + Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org> (=E2=9C=97
+DKIM/linaro.org)
+  [PATCH 5/5] arm64: dts: Add gpio_intc node for Amlogic S7D SoCs
+    =E2=9C=97 No key: ed25519/xianwei.zhao@amlogic.com
+    + Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org> (=E2=9C=97
+DKIM/linaro.org)
+  ERROR: missing [6/5]!
+  ERROR: missing [7/5]!
+  ERROR: missing [8/5]!
+  ERROR: missing [9/5]!
+  ERROR: missing [10/5]!
+---
+Total patches: 5
+---
+WARNING: Thread incomplete!
 
