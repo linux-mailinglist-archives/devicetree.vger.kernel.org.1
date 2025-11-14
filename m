@@ -1,219 +1,213 @@
-Return-Path: <devicetree+bounces-238605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC422C5CA6E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61B25C5CA44
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:42:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 343A04E3755
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:36:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 99DFC4F7599
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735EF31283B;
-	Fri, 14 Nov 2025 10:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F231030147C;
+	Fri, 14 Nov 2025 10:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="H/FUmHa0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uxcQJSh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94CC309EE1;
-	Fri, 14 Nov 2025 10:36:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2C22E2F05
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763116574; cv=none; b=I0e6G3ONJen5G4nkWr4MOI28mMITToHjlscz3NINTRljWUnZ6DumuQGhkADOkhG5Qza0ElPREW/VMztu544DSdwxVml7czuVIWMtT+Ti0I9a5pFre7ZJXTEODXr7sb/2jQh7+pjRd0YEpXictseOKIE9/6pIOgH2DLQhz8n7vPE=
+	t=1763116472; cv=none; b=F+kGcGBnXIOzBQ0d+0AIipaASBmnRR5CHlKvuEGWzz344RjoTQnCjcJZa2mY8X96+zb4PREUCMV94l3cX78tmBRc1OCl2xw93Sxw7z9AUdJw4H/wzvcXZkDMKVSWQg/2UtIOLMf/BTzQ6qm1gJ1ApHZv2XgcOFwIMB5DzNjzI00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763116574; c=relaxed/simple;
-	bh=AHvFiiSjYvkYqHt92ejpO7JsVeSi3JWv6E/E/+derrI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VFXviF+Xtb35OSFYx3DXQpz68ymzlnuT9t6ye/Qg23c6DwqRmd7G84BV3JoD+DV6w9CBGvRu3esDzy2G6qVdJLDRD1vhgxIDVjbKCo9twJWzcIA0K/jEXkZSeVFQzn6jk7FLo2JITeQ7/Y7kpwr/2mlhf3P3lB6Ngk1B7YhUZsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=H/FUmHa0; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1763116573; x=1794652573;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AHvFiiSjYvkYqHt92ejpO7JsVeSi3JWv6E/E/+derrI=;
-  b=H/FUmHa0Q3HTygqdAyZM5nYU7GZg9l1D8iHJq/wIc3PswwEM8hJ9u1EH
-   TIU1MYgmup139rpGx8LNDCq4dsHUcUD8CxK85RdGBHmqLE8MS1NBt0mSF
-   rYe5wdr5gwldTjJ9ZrxM5S23LUy42+SdvC+g8Xib8ZQUCZo4ZfuqCSda6
-   /qF7yvxmZfM+UwATwVIvS2THG6Sl42sLaGnWJfDmVIEDJyLKc0PW1/CAC
-   qyt3kyMv4EptUBnaeD5lXJQuBiam+faEIaGMHClQh7DVwJkU9d+Mz165w
-   1g7utRAa1GEfFuIhDDboLOj/VIjMYA9VbZWagmoQMZ6GCo11PeC+LViEe
-   A==;
-X-CSE-ConnectionGUID: yd5Zh4Y2Qi+gO4Rle4ZwuA==
-X-CSE-MsgGUID: 0VW+4uvUQtyT/jU4/IWjBw==
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
-   d="scan'208";a="49141580"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Nov 2025 03:36:12 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Fri, 14 Nov 2025 03:35:46 -0700
-Received: from localhost (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Fri, 14 Nov 2025 03:35:46 -0700
-Date: Fri, 14 Nov 2025 11:34:11 +0100
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-CC: Vladimir Oltean <vladimir.oltean@nxp.com>, <vkoul@kernel.org>,
-	<kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-phy@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Daniel Golle
-	<daniel@makrotopia.org>
-Subject: Re: [PATCH 0/2] phy: microchip: lan966x: Allow to invert N and P
- signals
-Message-ID: <20251114103411.rzigaoictyinmx66@DEN-DL-M31836.microchip.com>
-References: <20251110110536.2596490-1-horatiu.vultur@microchip.com>
- <20251110114216.r6zdgg4iky7kasut@skbuf>
- <20251111095016.42byrgj33lp4bouo@DEN-DL-M31836.microchip.com>
- <20251113163023.syl6nxq2mqkxpz4z@skbuf>
+	s=arc-20240116; t=1763116472; c=relaxed/simple;
+	bh=Yx8aYHaNzs7BiMp0GEId+mQ4OvxUgnf1ojr2ioJQPII=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LR2UKPzemP4Z+s2cBL8d3c+nJu4pqMwglK1UeAQJtnffuYyOJGzn4t/3flU6QKfnCeaPgzbXbS67TYxMtNSqOvlBFs/Kf9vWy7iLiMNWJTA0oqTPB+VZtbDmTr+HFmOAewVHbb2FST+qHYcrJO9hdFqpdoz8Q5Tn7krmGTwhvU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uxcQJSh/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E75F0C4CEF1;
+	Fri, 14 Nov 2025 10:34:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763116472;
+	bh=Yx8aYHaNzs7BiMp0GEId+mQ4OvxUgnf1ojr2ioJQPII=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uxcQJSh//IYZjjJXBFljswRXEpjUcifHFl04ALPZpFNFG6Ny6YkdpXyuV7yDODd+m
+	 BjvbVtpTFLwTGzDAu+5z6lwJ85xb/cI7yHp8Y8gEGTGgrCP+J6RGwEx4ba+a2cNVAY
+	 ZXWjojDNwCYb5PuODIGNfjd5Snif18I0qgNRctQnMjm/Yxe3t8qqNk5N3ClGX6xcHl
+	 apVpGP3uu9aLzE/ofEE7eiYg+OJ3jJAG7NduROAzzU0MleT8GCMmmjdI6ix3tlGRPF
+	 73/az3/zFHVmJG1E3NQGW3anuLXzWHJ0xhYyW+BcVCplWtzv3j7omWFiz3Cq5BZiZx
+	 rA4vWlCRfcUWw==
+Message-ID: <99309e42-dfdc-4632-8681-c9763b9e8ad4@kernel.org>
+Date: Fri, 14 Nov 2025 11:34:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20251113163023.syl6nxq2mqkxpz4z@skbuf>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, Joseph Kogut <joseph.kogut@gmail.com>,
+ heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jonas@kwiboo.se, kever.yang@rock-chips.com, honyuenkwun@gmail.com,
+ quentin.schulz@cherry.de, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
+ jbx6244@gmail.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
+ <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
+ <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
+ <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
+ <2892FE50237CD58E+0f15924c-a915-4446-954c-d81a782d23e9@radxa.com>
+ <19ce0a41-563c-6202-6b94-b2c644a0b827@manjaro.org>
+ <F02BA2E6B1111826+2445b38d-b5e0-499c-83e7-4521c57b2210@radxa.com>
+ <f2bc30de-119b-4f4a-844a-8a908c9290b6@kernel.org>
+ <49c39864-3e58-2e0e-7abc-50502f2afb02@manjaro.org>
+ <f156cd48-d764-43c8-99ed-24ab212d8eee@collabora.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <f156cd48-d764-43c8-99ed-24ab212d8eee@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-The 11/13/2025 18:30, Vladimir Oltean wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+On 14/11/2025 09:51, Cristian Ciocaltea wrote:
+> On 11/14/25 9:17 AM, Dragan Simic wrote:
+>> Hello Krzysztof,
+>>
+>> On Friday, November 14, 2025 08:10 CET, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>> On 14/11/2025 06:03, FUKAUMI Naoki wrote:
+>>>> On 11/12/25 09:46, Dragan Simic wrote:
+>>>>> On Wednesday, November 12, 2025 00:26 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>>>>> On 11/11/25 23:33, Dragan Simic wrote:
+>>>>>>> On Tuesday, November 11, 2025 12:52 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>>>>>>> On 11/6/25 02:48, Joseph Kogut wrote:
+>>>>>>>>> On Wed, Nov 5, 2025 at 4:15 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>>>>>>>>> I'd like to clarify the situation regarding the v6 patch series I submitted.
+>>>>>>>>>>
+>>>>>>>>>> The original device tree work for the Radxa CM5 and IO Board was
+>>>>>>>>>> authored by Joseph Kogut. I took over the responsibility of getting it
+>>>>>>>>>> upstreamed with his agreement.
+>>>>>>>>>
+>>>>>>>>> I'll confirm this. I've been in communication with Naoki. They made a
+>>>>>>>>> large number of revisions to my original patch series, which I think
+>>>>>>>>> have technical merit. I suggested they submit the patches themselves,
+>>>>>>>>> and gave them explicit permission to add my Signed-off-by and CC me.
+>>>>>>>>>
+>>>>>>>>> I assume this was the correct way for them to continue the work I
+>>>>>>>>> started, but if not, please let us know the best way to proceed.
+>>>>>>>>
+>>>>>>>> Can anyone help us?
+>>>>>>>
+>>>>>>> I'm not exactly sure how to resolve the current situation, but for
+>>>>>>> Signed-off-by tags to be present, in this case you'd need to have
+>>>>>>> Co-developed-by tags as well, because the final patch versions,
+>>>>>>> which would be submitted by Naoki, would differ significantly from
+>>>>>>> the versions that Joseph actively worked on, if I understood
+>>>>>>> everything correctly.  Though, for Joseph's Signed-off-by tags to
+>>>>>>> be included there, he would also need to participate actively in
+>>>>>>> the development of the final patch versions.
+>>>>>>
+>>>>>> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
+>>>>>>
+>>>>>> If
+>>>>>> ----
+>>>>>> From: Joseph Kogut <joseph.kogut@gmail.com>
+>>>>>>
+>>>>>> <changelog>
+>>>>>>
+>>>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>>>>> Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>>>> ----
+>>>>>> then I can submit my patch series?
+>>>>>
+>>>>> Actually, the Co-developed-by tags would be pointing to Joseph
+>>>>> in that case, but as I described it above, this approach basically
+>>>>> cannot be used, because Joseph's original work differs a lot from
+>>>>> what you'd actually submit to the mailing list(s).
+>>>>>
+>>>>>> Or,
+>>>>>>
+>>>>>>> Another option, technically a bit simpler, would be to include just
+>>>>>>> Originally-by tags for Joseph, which would indicate that Joseph gave
+>>>>>>> up on the development of the patches and handed them over to Naoki
+>>>>>>> for future development and submission to the mailing lists. Though,
+>>>>>>> that would require Joseph to publicly state exactly that.
+>>>>>>
+>>>>>> I cannot find any documentation about "Originally-by".
+>>>>>> Is this correct?
+>>>>>> ----
+>>>>>> <changelog>
+>>>>>>
+>>>>>> Originally-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>>
+>>> There is no such tag. Don't invent tags.
+>>
+>> True, it doesn't exist officially, but it's been used fairly often.
 > 
-> Hi Horatiu,
+> Hmm, actually this tag seems to be documented, or at least given as an example:
 > 
-> On Tue, Nov 11, 2025 at 10:50:16AM +0100, Horatiu Vultur wrote:
-> > The 11/10/2025 13:42, Vladimir Oltean wrote:
-> > >
-> > > Hi Horatiu,
-> >
-> > Hi Vladimir,
-> >
-> > >
-> > > On Mon, Nov 10, 2025 at 12:05:34PM +0100, Horatiu Vultur wrote:
-> > > > Allow to invert the N and P signals of the Serdes for both RX and TX. This
-> > > > is used to allow the board designer to trace more easily the signals.
-> > > >
-> > > > Horatiu Vultur (2):
-> > > >   phy: microchip: lan966x: Add support for inverting the rx/tx lanes
-> > > >   dt-bindings: phy: lan966x: Add optional microchip,sx-tx/rx-inverted
-> > > >
-> > > >  .../phy/microchip,lan966x-serdes.yaml         | 24 +++++++++++++++++++
-> > > >  drivers/phy/microchip/lan966x_serdes.c        | 23 ++++++++++++++++++
-> > > >  2 files changed, 47 insertions(+)
-> > > >
-> > > > --
-> > > > 2.34.1
-> > >
-> > > For context, I am trying to describe the lane polarity property
-> > > generically, and I've already blocked Daniel Golle's attempt to
-> > > introduce the similar in intent "maxlinear,rx-inverted" and
-> > > "maxlinear,tx-inverted".
-> > > https://lore.kernel.org/netdev/20251028000959.3kiac5kwo5pcl4ft@skbuf/
-> > >
-> > > I am trying to find out all there is to know in order about this
-> > > feature, and I just noticed your patch, so I have to ask some questions
-> > > in order to understand, had a generic property existed, whether you
-> > > would have used it.
-> >
-> > Yes, if there was something generic that would fit, I would like to use it.
-> >
-> > >
-> > > So I see that you don't have OF nodes for individual SerDes lanes, so
-> > > this makes your device tree structure incompatible with simple
-> > > "tx-polarity"/"rx-polarity" properties. Are those something you're not
-> > > willing to introduce?
-> >
-> > Do you propose to change the device tree to describe each SerDes lane
-> > individualy?
-> > Apparently in the lan966x_serdes we have also the port muxing which I am
-> > not sure it should be there as it should be in the switch. I have done
-> > it this way because I have use the phy-ocelot-serdes.c as an example.
-> > If I change the device tree to describe each lane, then first I need to
-> > take the port muxing which is fine for me. But there might be a problem,
-> > if someone will use a newer kernel with an older device tree, it would
-> > break the things?
-> >
-> > > What about other stuff that's in
-> > > Documentation/devicetree/bindings/phy/transmit-amplitude.yaml?
-> > > You also won't be able to make use of the existing device tree
-> > > properties if you don't have OF node containers for each lane.
-> >
-> > To be honest, I haven't look at transmit-amplitude.yaml yet.
-> >
-> > --
-> > /Horatiu
-> >
-> 
-> ffs :-/
-> 
-> The radioactive piece of #### that is my work inbox moved your reply to
-> the Junk folder, _even though_ you were already in the list of safe
-> senders and domains. I just checked this thread to see what was going on
-> and why you didn't respond...
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/maintainer-tip.rst?h=v6.18-rc5#n309
 
-No worries.
+Yes, for the tip folks (so three people). If you send to the TIP, their
+maintainer profile applies. There are also other specific rules in TIP
+which are in contrary to common (as most used) process, e.g. completely
+reversed tags (see also Konstantin's explanation about the order which
+he implemented in b4).
 
-> 
-> Yeah, the device tree binding I want to propose is per lane, so there
-> needs to be an OF node for each lane.
-> 
-> I can't easily parse the lan966x_serdes_muxes[] macros, assuming this is
-> what you are talking about.
+If you want to use it outside of tip, first this should be added to
+common docs and checkpatch. Just like b4 should be changed if you want
+to use their order of tags.
 
-Yes, I was talking about lan966x_serdes_muxes and I totally understand
-that is not that easy to parse it.
-
-> 
-> Would it be possible to leave the SerDes muxing alone (with its
-> #phy-cells = <2>) and just add the lane OF nodes as an extra? You can
-> add new support for phys = <&phandle_directly_to_lane>, but that
-> wouldn't remove the existing support.
-
-So you were thinking something like this
----
-	serdes: serdes@e202c000 {
-		compatible = "microchip,lan966x-serdes";
-		reg = <0xe202c000 0x9c>,
-		      <0xe2004010 0x4>;
-		#phy-cells = <2>;
-
-		serdes_lane_0 {
-		    reg = <0>;
-		};
-	};
-
-	port0 {
-		phys = <&serdes_lane_0>;
-	};
----
-
-Maybe it is just a silly idea but what about doing like this:
----
-	serdes: serdes@e202c000 {
-		compatible = "microchip,lan966x-serdes";
-		reg = <0xe202c000 0x9c>,
-		      <0xe2004010 0x4>;
-		#phy-cells = <2>;
-		status = "disabled";
-
-		serdes_lane_0 {
-		    serdes-properties
-		};
-	};
----
-Then there is no change to the ports and then in the lan966x-serdes I
-will iterate over all the child nodes and read the properties for each
-lane.
-
-Anyway I can wait with this patch series until you get your changes in.
-
--- 
-/Horatiu
+Best regards,
+Krzysztof
 
