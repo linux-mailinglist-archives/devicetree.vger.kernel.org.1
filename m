@@ -1,76 +1,77 @@
-Return-Path: <devicetree+bounces-238672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C01C5D15B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:23:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F5F4C5D170
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:24:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4D9D935BC71
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:21:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 14FBD35CEF3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:21:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624CF31A810;
-	Fri, 14 Nov 2025 12:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F113191AC;
+	Fri, 14 Nov 2025 12:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="KK8inn+c"
+	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="I933hu1d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFD73164D2
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 12:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8CE53191DA
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 12:19:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763122753; cv=none; b=AgAFzAraHVRwRQ25az11fsFOvjCCbl/XTyIAZ52J+KeyZioc1oaYOMODxVdqWVfTW2Ztk6vkVOtM6XAWuTjUc9Us4Pn5GpTkR8IUuhv+oCa95ZJRLT5e+aQVscrmTi9p+81dynbW8mHYLLXQjFsdG73f9RjoA1gtMMDgwf3902k=
+	t=1763122754; cv=none; b=BtugoMXS/6wZ7DAUMkPEIizCLH8EemR1HeDplj/CmyuQqmQQp9/tvqChDIRJa4swnTc+w+E2j6p8NXHCMtHeyrsWyTu+c/lGKNkLicDcZIULhkoFyOQCE5HN9QQ1v3AumVucH8l3L8xm4ks9KPP5c5NXJG1AMduYqWbB6r4yTdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763122753; c=relaxed/simple;
-	bh=OHRpJMagiKLaTMEhh9T2V0GoMorBCrqfEatgArmrqLs=;
+	s=arc-20240116; t=1763122754; c=relaxed/simple;
+	bh=C/tgHBEMS7lC54F1l05FDdUUbx+i2inD9Tlr30ZzFM8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mlVxoKXiycCI9Lcqsc6QNMVttAgFG9xsQr1qlMDK7KppggylkdyX3ohsbiaz/xRW6G9TKQuPvHN+Wwn4DIKiDQCwKnhtRCqxZxb2QVijxcfGNZnyuol74gZjYqRS6RkJIWlALqIjbzI2Z+T+NC9AjYcnCvZhcfUrg+AWl06CjPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=KK8inn+c; arc=none smtp.client-ip=209.85.218.53
+	 MIME-Version:Content-Type; b=RBNzSxLy7VMLhatDIyepCevNZRisSZaRu7nK5yPpil95ax7GRC/FU5QWflVtX25WI9dGkw8EQBJ5GXOFenEDqoXNnzjVDAKz/ULSNSFOvzk5oWIoMAtGnb4xlVNS+UJ76Jzkiw/F/tGS6ZBEmQXRS8wtatly38IczddzNmZrtOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=I933hu1d; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arduino.cc
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b714b1290aeso286520366b.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:19:10 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b736cd741c1so97082066b.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:19:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arduino.cc; s=google; t=1763122749; x=1763727549; darn=vger.kernel.org;
+        d=arduino.cc; s=google; t=1763122750; x=1763727550; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WJAU1WR1mzyYUMLxIXnsBVjAE6a2+g/KdU+qx5lmqJ4=;
-        b=KK8inn+cBTDXDNbhI8i1xm2ddfsd3u8PJONVg8GnWZ0T4o8PsXxyshIjjpIVlPNpc1
-         ajxjtQKNRhRy1+ovOHtvIPeG1uC2vN6lIv0NsYmzdbPgWw+PoWNBTqpMoRK8jaCULbrn
-         LvUe2BXNqF72Q9olRqAMbdyV9OHCtVaJSMCUg=
+        bh=u90NAsdBNasBuoFf1cybakUudwJYTlK8TE/NRm955hs=;
+        b=I933hu1dNu1pyIZy/RwkNPSps7v6epasv+it/29ZixigwcZAx+zxbbmfic6xQrJh/D
+         0gJ3B/6wNYvKWzEEGhbYN1DEs/aZM563f1nuearQxLsE06VrRCiIo1k8YHG9ijarYOkc
+         7waHNXWGXIgNAV9ByJxICSh6Hm2ZCz8zM9LwI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763122749; x=1763727549;
+        d=1e100.net; s=20230601; t=1763122750; x=1763727550;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=WJAU1WR1mzyYUMLxIXnsBVjAE6a2+g/KdU+qx5lmqJ4=;
-        b=GLD5ib6qY4696gkTR78nn6c7QgaU+L5Ofhzmc46h34zKwaH/m29jAdUGi5li3PL4MU
-         7udJbTZdxBwqrgYM3vvfZIRICLQBTzi0VwGvC5td9uJ9yVEqCEmRDHGeEkqo+8C4GWsb
-         iSd6oyq5fHf+4U4Of0oek2Sk2tvR3OF0JPaHrLYbhl4lMmo40S5yJwJ7FrJ4oVAb3koV
-         bXdC15p0UBn4hRMktX5Znko0HoGy720ZYJ4UBW0ATd2c+mKMRn3r+mds29vaSnbQ8zap
-         zUW9wm73sZj2GK2Fqkz1WPdxylXKQL06nPyKG9awyya4Ky7ruqRRyPsP9DPAwahi9kdj
-         Wiqg==
-X-Forwarded-Encrypted: i=1; AJvYcCVGlLmitc/4xY9+BcA0itY8GDFY5L7R8sjA3PZ4m5RCGlK6AQb8uLEN4yVy54pAarh7rtCOreoEhMRE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmczxCoNNvl7ba2+hDz4fcmKrWEV9iBH7/Lsms9Vw4FDrOXTWS
-	gvYdHIX7G5GMHnwGa6ZmnkDCGw4VYn20dZ8hV3D642InQr0/nDS9zlUSV71QSRcxhpk=
-X-Gm-Gg: ASbGncscL5QRzUCIomRSBpEif1T1cadH0/BJ7fNc0lWjARsvK5TVoKgpeJhLyq+x9Y0
-	yiiAW3n7JD+QYt1nAsS1fteNq7n7s6jYsU3VrpQBXA0ZdF4a/Q3DPg59i3PM6GBvU4rpU2Ta2L8
-	DzQD+LfKgVcUMqPF2XEqmXWMbhwF4DBvVTz1CoL43d6gE8Q0qaW7WLPm1njNWD1Py7qMmZ/z7gi
-	4rofqGUxArTHjhfPAuHxo/XbbuCYkO3kTFURgKtkLWXvYVW5LnqQqRxoXXSiil7/7sdeE0e9ZuI
-	ZU8YHS6trCD9OOlqhLLqOLwcReV0VW+U5Wyv4NQAY8nhpwGlNsaB7vez7nGUyylKSUYr8CKZ/PG
-	nBQBADezHIHmE6lm1//tSpfkHimjXXk1Rv8FO58TZzMkrWbDHr1x4wIuKKqygu2XCm5hz4CLLWU
-	iDr0RjjlBZDINxTX11Nmz9Trb8e+VubEcbP666sozIDY+hkwCuxIkqRHiWd5ledBDjK5VbzA==
-X-Google-Smtp-Source: AGHT+IFwJoL1U/KjpDTc6Zxhp8ozUFTmTEzhEqtM8HTL6bjv53lGvy4oC0WSkiZ8azgAxX4XjtE4fA==
-X-Received: by 2002:a17:906:fe41:b0:b73:2b08:ac85 with SMTP id a640c23a62f3a-b736780b8d2mr274231766b.19.1763122748989;
-        Fri, 14 Nov 2025 04:19:08 -0800 (PST)
+        bh=u90NAsdBNasBuoFf1cybakUudwJYTlK8TE/NRm955hs=;
+        b=v8L6h1Mg78ZhADYdM6nmyMj3IPETb40w8/oPpZRkQcETJV0SOQ3MmTxwqWLWqoBRUf
+         D3anAPgqNPgk/NHSRMe/B8lwr11xV2C6nMz1GBqHyRbJR/GxzFM7xjUn3PPxYTbkrTMQ
+         6Kgkm7+ToB1WnTyhjX5IN9aFfAPiHdP3KJ/X1o3VgR6IT81qr1LkwOykm4JA3gx6gJ0b
+         jttGnOGNtCSZtT0VXdQk/2iwcUmQtV+eV/iMpcLnFp6e9tJYkRRW87RE35qPa0wW6uUy
+         7tfQvxLz7pPGUf4og1liT6piC/u9izxTaxpthzQBRN1Pv6PEFUpfeixi0WFJkRXP0Kbj
+         t8CA==
+X-Forwarded-Encrypted: i=1; AJvYcCXZ4lZR9pEPT0qCPtd8rK/RVacWbGvtGTOxi/rrnBrSy2mJkMJPkUcwsAAhucnA1R7wqlU1kQMSFI15@vger.kernel.org
+X-Gm-Message-State: AOJu0YzslrLW2egA2ZVgVVqqXNF6bERF91E6ACG8zZA+apuGQ2Vu5Rhr
+	wVhKu6c+SdWGcQ0XFeW8/pw15/TYuq7SYLswLctd517D5YOaDi3X5Th6+oBML9Rb4Qk=
+X-Gm-Gg: ASbGncsxBL6mDVkwTZcLIgRnCMdtcFhEw6KDpg732Z7NAOomyWa4ktjk9FlXkGMYKiC
+	RsUo5D4BD8Tn2wth9f3E5GMLHASflN+RZrfPq5Do+yN34B0PpH6HRHCtqg0nrkM0c4m2Z/RuQaZ
+	x/8mYe6b9/cgbu6zMlUtccHINYCeICgVbQ50mN12fqqQsUS/iuFGswxaEfuKIqKUvG6deSFGvQt
+	8WUiJHERqzEzqYgwGA68tX4MC+E4s8yD1/kb2QepNzLr+WTY5bQdg4D1C2e62Cz7NHH+tVLAyK6
+	N8RHJgI7NvT1/2Rf/ONOWE6ohirfSlobLLzEg+HLKgc3GW5ynq9272V7qAPx5wu/Rxwz6BsfpBJ
+	9zLxu/PQ2O4uOFmF1N91DukP9dFnf8J6OKXOBvMv/lLFV1cM7Qlt/nAqPIpcEZy7foXdb5JNTyo
+	yQZjkHegUsKRDTsEGhCBOxrzguWpgESNS36U6t2JBUi0LvUAHchfyq0dne1RNX074AiT5fem/EC
+	BJoUihf
+X-Google-Smtp-Source: AGHT+IGsHmnSIhpWtHLoB35t9TtSGdohvRhU+DpPgTHUuRWxKlnSUCRa6zD2ZLZYgRuc/phSInmncA==
+X-Received: by 2002:a17:907:7f09:b0:b73:64e4:2046 with SMTP id a640c23a62f3a-b73678f4734mr288988966b.33.1763122750026;
+        Fri, 14 Nov 2025 04:19:10 -0800 (PST)
 Received: from riccardo-work.fritz.box (host-82-52-164-74.retail.telecomitalia.it. [82.52.164.74])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fed6315sm375295666b.64.2025.11.14.04.19.07
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fed6315sm375295666b.64.2025.11.14.04.19.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 04:19:08 -0800 (PST)
+        Fri, 14 Nov 2025 04:19:09 -0800 (PST)
 From: Riccardo Mereu <r.mereu.kernel@arduino.cc>
 X-Google-Original-From: Riccardo Mereu <r.mereu@arduino.cc>
 To: andersson@kernel.org,
@@ -95,9 +96,9 @@ Cc: linux@roeck-us.net,
 	linux-spi@vger.kernel.org,
 	m.facchin@arduino.cc,
 	Riccardo Mereu <r.mereu@arduino.cc>
-Subject: [PATCH v2 3/6] spi: spidev: add compatible for arduino spi mcu interface
-Date: Fri, 14 Nov 2025 13:18:50 +0100
-Message-ID: <20251114121853.16472-4-r.mereu@arduino.cc>
+Subject: [PATCH v2 4/6] dt-bindings: arm: qcom: Add arduino imola, UnoQ codename
+Date: Fri, 14 Nov 2025 13:18:51 +0100
+Message-ID: <20251114121853.16472-5-r.mereu@arduino.cc>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20251114121853.16472-1-r.mereu@arduino.cc>
 References: <20251114121853.16472-1-r.mereu@arduino.cc>
@@ -107,36 +108,30 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add compatible entry in spidev describing in Arduino boards one of the
-interfaces between microprocessor and  microcontroller.
+Document Arduino imola, UnoQ codename.
+Arduino UnoQ combines Qualcomm Dragonwing™ QRB2210 microprocessor
+with STMicroelectronics STM32U585 microcontroller.
 
 Signed-off-by: Riccardo Mereu <r.mereu@arduino.cc>
 ---
- drivers/spi/spidev.c | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
-index 5300c942a2a4..9a0160f6dc3d 100644
---- a/drivers/spi/spidev.c
-+++ b/drivers/spi/spidev.c
-@@ -704,6 +704,7 @@ static const struct class spidev_class = {
-  */
- static const struct spi_device_id spidev_spi_ids[] = {
- 	{ .name = /* abb */ "spi-sensor" },
-+	{ .name = /* arduino */ "unoq-mcu" },
- 	{ .name = /* cisco */ "spi-petra" },
- 	{ .name = /* dh */ "dhcom-board" },
- 	{ .name = /* elgin */ "jg10309-01" },
-@@ -737,6 +738,7 @@ static int spidev_of_check(struct device *dev)
- 
- static const struct of_device_id spidev_dt_ids[] = {
- 	{ .compatible = "abb,spi-sensor", .data = &spidev_of_check },
-+	{ .compatible = "arduino,unoq-mcu", .data = &spidev_of_check },
- 	{ .compatible = "cisco,spi-petra", .data = &spidev_of_check },
- 	{ .compatible = "dh,dhcom-board", .data = &spidev_of_check },
- 	{ .compatible = "elgin,jg10309-01", .data = &spidev_of_check },
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index d84bd3bca201..1af19245b1d5 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -336,6 +336,7 @@ properties:
+       - description: Qualcomm Technologies, Inc. Robotics RB1
+         items:
+           - enum:
++              - arduino,imola
+               - qcom,qrb2210-rb1
+           - const: qcom,qrb2210
+           - const: qcom,qcm2290
 -- 
 2.51.2
 
