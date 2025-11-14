@@ -1,120 +1,124 @@
-Return-Path: <devicetree+bounces-238828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3508AC5E6AF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:03:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD2AC5E8A5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:24:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 499814F9452
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:47:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 04BD64E58C1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A09829B795;
-	Fri, 14 Nov 2025 16:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44B532C0260;
+	Fri, 14 Nov 2025 17:02:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K30ipYDu"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="YWhFOohS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1F929A30A;
-	Fri, 14 Nov 2025 16:47:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763138821; cv=none; b=jycAZ5Ztcjwj7iExcHkhoAfHmCmrDmfG/4xA21/GRVTyeeYKziwNDo5rsqUTNJp6zXkIv51YE392e18LCGVNuDX4PrehAPWQ5gK5/h1XJdP36UUlCiHFwiECgoUL6QBV1EypVShRLgXV85DeGPFGO3kau5z6L2DXespyLq8eQvI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763138821; c=relaxed/simple;
-	bh=4EpMRFeYHj1in4XKS+Dlo+4mLzX8SiIfcEMg1hebD0A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rYoxFhl2f91KOSJJM6msPQmF6JNWTAWaAyPKjW0R7fwNnbas0Ac/6asf8Y0URNZrvuZDALP3DPhYBdxBgMfO/1CJCfzsK3InR5+s5+NN6DvWAELnSBsUuFibIBNW1VPfk1NzlFa4FVTODSQfH3PYklyyUpzxH7dTFkMN08gzru0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K30ipYDu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52E88C4CEFB;
-	Fri, 14 Nov 2025 16:46:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763138820;
-	bh=4EpMRFeYHj1in4XKS+Dlo+4mLzX8SiIfcEMg1hebD0A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K30ipYDuR/RUrNmkVc7gm/zBnjjveNhFDABC4izAmhLcDJUFonKiI0G5vLlL6u/LO
-	 TeJ0wYSOE73rEdYcMoA6nR3i496qxne3PZihBlID9tEPoXOaTyt4ie3uyyIq9BgLBw
-	 PZJSb75fArEiccCcnjRALq60MFwd8TEqtK++9S5GnJ9RD62wbNFzJCGXVewGTrOZZ6
-	 mFU4euj93FqTdJfqoyGkaIjeSl5gcbO46LE2c6jjvEi4BnfXDk3zaMeKxwPTQr7zEQ
-	 gERyKvSX5UerE+mDcfN45nfSgQ+bg4rUomyFKu5AHF775QwAbx8ZkDuCYTamt4cTbJ
-	 ea3KEVbFnM+jw==
-Date: Fri, 14 Nov 2025 16:46:54 +0000
-From: Mark Brown <broonie@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 09/20] mfd: sec: Add support for S2MPG11 PMIC via ACPM
-Message-ID: <db7e95dd-2361-4579-b52c-b9556da4633a@sirena.org.uk>
-References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
- <20251103-s2mpg1x-regulators-v3-9-b8b96b79e058@linaro.org>
- <20251113162534.GO1949330@google.com>
- <45ce203c03ec34631a0170baa7e4cf26c98b9cd3.camel@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89936285CB2;
+	Fri, 14 Nov 2025 17:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763139746; cv=pass; b=CWLvTnKUD/uhql8VaXlZYQzgOCR+k5j59P354dwypdmGvGAiP0JXXeXjHi5HXUZRwplG0OXRo2F+LqYvlm0n4MCfqTl+z9l8oglnAUbqEsEtbx1TAWAyHca7KMcMSg73JYJYSqJGTJZJFmz3WPthvbTrIS5xUW5+gDxhcVWnrqw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763139746; c=relaxed/simple;
+	bh=khMN5Ms1UyKeWOn8LdRhkIibQEsiI7EMdFu82kxmGFM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tzBY9F2I7qp1+sjrRD9bcDAXpmpyirMwCX9tSMMtWihrw0ete9TPGqL3W/1GUqbj6w0mBOAEu84eQNbh8yy8VN7WVWQhmn2OwWsMB+NcRAI7mU0d0hxQTLQsip3rt21cyti8Kk+sMydDoO4FjxGutFv29/172ymaO05hcGFLNMo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=YWhFOohS; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1763139246; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=P1zbySLBMoTuYWFzBJXE0e3U9S9ADb62KIYeWDu/hnFXM/rhr8nqeSPeVlb4n6oD0iydHND9ZBg6Qvcy7mBNwpNIppqyBXmiRpKxcyMq2mpHIkUFhZ/mob1UwQZBhE9VTYTkEzT7EO76CMqAS59cAjG1EEj7Z+xHZ8KqsC5yUDU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1763139246; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=/H7GHzQdEVJHWL6IxnBg2c0IP7Sxxl00BJqFqnDMZQs=; 
+	b=n83DtCqhT9N/20fxJEKKf6WmBPorVU2gHXJBVnRLL1307/U0xu6Q6Kcpw7hzvbMXNGol2ZdtK8msFdmli9QPYTCqTDwBCbDMRlh7TOuhA25yREcmDeP98fl42xF+qJJwKNXHK8MkcVqUVtQlG1+Dhv3Wp0XZsv2ggh9aPV8UUpg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763139246;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=/H7GHzQdEVJHWL6IxnBg2c0IP7Sxxl00BJqFqnDMZQs=;
+	b=YWhFOohSBAKRoxsUW21p5utSu/GZuw1B/PQeLZweWzonb8DZSyqcol1yKIoqASw8
+	rq66EqlN00hohSvpAVQYg68kpoTsUYsh0CO95Xuz6o+Fg/cZ3hJsh49o0iOBlq5GzWu
+	xqS+Ip85MTQdnd+iOfq2PjkcA9yERrHw9WL7XuI4=
+Received: by mx.zohomail.com with SMTPS id 1763139243754487.4274112916788;
+	Fri, 14 Nov 2025 08:54:03 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH 00/13] MediaTek Interconnect Cleanup and MT8196 Enablement
+Date: Fri, 14 Nov 2025 17:53:54 +0100
+Message-Id: <20251114-mt8196-dvfsrc-v1-0-b956d4631468@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Qn5lIfBNzUCscegG"
-Content-Disposition: inline
-In-Reply-To: <45ce203c03ec34631a0170baa7e4cf26c98b9cd3.camel@linaro.org>
-X-Cookie: Causes moderate eye irritation.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKJeF2kC/zXMQQqDMBCF4auEWXfAEa3GqxQXNk7aWSS2k1QE8
+ e4NlS7/B+/bIbEKJxjMDsqrJFliCboYcM8pPhhlLg11VbdE1GDIPdkrzqtP6rC13vW2oq5rHJT
+ PS9nL9vNu49nK709h8znCfUqMbglB8mAibxn/NIzH8QURFBY6kAAAAA==
+X-Change-ID: 20251114-mt8196-dvfsrc-59fc8901774c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Henry Chen <henryc.chen@mediatek.com>, Georgi Djakov <djakov@kernel.org>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.3
 
+This series is a combination of binding changes, driver cleanups and new
+driver code to enable the interconnect on the MediaTek MT8196 SoC.
 
---Qn5lIfBNzUCscegG
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series currently does not add any users of it (i.e., no bandwidth
+requests being made in affected device drivers), as the only one I
+quickly whippd up is in the UFS driver, which is undergoing some major
+refactoring upstream in a different series of mine.
 
-On Thu, Nov 13, 2025 at 09:43:29PM +0000, Andr=E9 Draszik wrote:
-> On Thu, 2025-11-13 at 16:25 +0000, Lee Jones wrote:
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+AngeloGioacchino Del Regno (8):
+      dt-bindings: soc: mediatek: dvfsrc: Add support for MT8196
+      dt-bindings: interconnect: mt8183-emi: Add support for MT8196 EMI
+      soc: mediatek: mtk-dvfsrc: Change error check for DVFSRCv4 START cmd
+      soc: mediatek: mtk-dvfsrc: Add and propagate DVFSRC bandwidth type
+      soc: mediatek: mtk-dvfsrc: Add a new callback for calc_dram_bw
+      soc: mediatek: mtk-dvfsrc: Write bandwidth to EMI DDR if present
+      soc: mediatek: mtk-dvfsrc: Add support for DVFSRCv4 and MT8196
+      interconnect: mediatek: Add support for MediaTek MT8196 EMI ICC
 
-> > > +static const struct mfd_cell s2mpg11_devs[] =3D {
-> > > +	MFD_CELL_NAME("s2mpg11-meter"),
-> > > +	MFD_CELL_BASIC("s2mpg11-regulator", NULL, NULL, 0, S2MPG11_BUCKBOOS=
-T),
+Nicolas Frattaroli (5):
+      dt-bindings: soc: mediatek: dvfsrc: Document clock
+      soc: mediatek: mtk-dvfsrc: Get and Enable DVFSRC clock
+      soc: mediatek: mtk-dvfsrc: Rework bandwidth calculations
+      interconnect: mediatek: Don't hijack parent device
+      interconnect: mediatek: Aggregate bandwidth with saturating add
 
-> > This is highly irregular - in that, we've never done this before.
+ .../bindings/interconnect/mediatek,mt8183-emi.yaml |   1 +
+ .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml       |   7 +
+ drivers/interconnect/mediatek/Kconfig              |   7 +
+ drivers/interconnect/mediatek/Makefile             |   1 +
+ drivers/interconnect/mediatek/icc-emi.c            |   9 +-
+ drivers/interconnect/mediatek/mt8196.c             | 383 +++++++++++++++++++++
+ drivers/soc/mediatek/mtk-dvfsrc.c                  | 364 ++++++++++++++++++--
+ include/dt-bindings/interconnect/mediatek,mt8196.h |  48 +++
+ 8 files changed, 785 insertions(+), 35 deletions(-)
+---
+base-commit: d8a3d478ec9200b852095cb96d166ca7909f57e0
+change-id: 20251114-mt8196-dvfsrc-59fc8901774c
 
-> > We're going to need to have Mark look at this.
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-> I did see this in at least one other driver, ah yes at least
-> drivers/mfd/88pm860x-core.c is doing something similar, maybe others, too
-> (I stopped there).
-
-Other drivers doing something doesn't mean that they're following good
-practice.  We do also have drivers which have multiple identical IP
-blocks and are passing in resources with base address, interrupt and
-whatever for the IP blocks which is different to just passing a Linux
-internal ID number through.
-
---Qn5lIfBNzUCscegG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkXXP0ACgkQJNaLcl1U
-h9AEDQf/fuZp1M50wSKQchrgoKDudU423oxJuyVfXaRPVzOrj/euxCZ6NgE4HQbM
-88EwVcbDcWsGa/wH6JjZBKW5qr6T+16zJZYTNf1RlE1pTa2OY0hDI2wRxdlfhIJ7
-QmM4+GxY2iW/cTfL27Vc/ViELbaD9XDlNkHUQTTnB9EE52zHIHj87ZJsRolF8Uls
-HkAomvBJm6QxzNsqc3qqnwOxeybUwvOh+v/lKkChUYwCkX0YE3ubgJXdapAcqeEA
-3dNCryPywswLotFv8Az/W35UNEFyLAsoMrkpdgc7Ef0qIXNiLZfRXdrragi0m4xz
-jDcoIxDQkU5bP6Ql0JiUhFxi4XhBJg==
-=QkOk
------END PGP SIGNATURE-----
-
---Qn5lIfBNzUCscegG--
 
