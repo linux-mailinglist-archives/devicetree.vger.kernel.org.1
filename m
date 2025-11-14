@@ -1,203 +1,167 @@
-Return-Path: <devicetree+bounces-238826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2922C5E646
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:02:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D2DCC5E556
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 368C14F4562
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:40:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D5043AFF81
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAF433556B;
-	Fri, 14 Nov 2025 16:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054DF33556E;
+	Fri, 14 Nov 2025 16:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JiHuM5Q9"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="Jr6lUwqt";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="Jr6lUwqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433EE335549;
-	Fri, 14 Nov 2025 16:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B362F3346BB;
+	Fri, 14 Nov 2025 16:44:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763138397; cv=none; b=JnT0N0VeAnchB67Lxx5K1zWuKpWH0CGQ6KjvIrmBDDTDH69h/7lGB/HiZzJC6T/WASN1tWE4TmqUuZgmvp1+q8NIrynrl05H1F+rp+lF5+fSNxOfvQ1KCrae5e02FXUv92OwK0Avai8nRuFWuDveZUdVm1DSr3Udfc7H/g2rOH0=
+	t=1763138647; cv=none; b=CD9C5Bm8jpOB6GD8jFFhnBwqlWj8n7VX+WvrrmKZVA93oUHMBBouG4tM7gasnvspnvSWvGkz35n8IaoVBYFJY9gzjcBzl7/AfZ1FG2By0xZZTKKOB3KbaP7AwGFjzDg4XtyRFZzW8ds80Fh+ZUg3wkalFEZ1vWbK6+Sit8/iM3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763138397; c=relaxed/simple;
-	bh=bLsvvHPDpo7u9K8rvsM02ueTdodp270jX2AjxuPSOVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QXfd/WJJga/03L1tsbt9DSVDQCeFbgN+4qKYJ2xGsYBqidIPuB08qqUMcXepLP3ENBnNcqLXJ1J4dQ0/tsbG1F0qnjhqL6dR0H8AAOYggYFNj6sTjkCEfRT++ndHoIjEm2+LgSeDULwuq8wtfjWFJmWRwyDBure/hvkst3fzg64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JiHuM5Q9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8814AC4CEF5;
-	Fri, 14 Nov 2025 16:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763138396;
-	bh=bLsvvHPDpo7u9K8rvsM02ueTdodp270jX2AjxuPSOVs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JiHuM5Q9ROv7GzsPSbypcQLkjsyQw7zUp80ynEPMqDZYukhnpJt0JIXbufYpj3oiJ
-	 PVueWfvhKe4kUx5KIYS4Xte4v4BEpW8iHB0nkm4x9VB6TI27yYpj8McDCU/+mQ1b/L
-	 m1gvZds85tHQgBfvjGcVYXf06kWV0p9vGn6sjBOqkR0+DSBu8Halsif6kLw4aEJDut
-	 EQQ8GD6gf2KDtCiaVwM/2WX/+uKIptN3BIkE+wIekjuhxJQ2VJuE3aoAmKv/mB/ews
-	 RZyq67l/ziPikXwmtK+M1lmB4NmUzUeejp2/5AQYXBjo2nMsm+7/AI8jelS1st3VdX
-	 zQFQMUwWx82sQ==
-Date: Fri, 14 Nov 2025 10:39:54 -0600
-From: Rob Herring <robh@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@linux.dev>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-kernel@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-clk@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	linux-leds@vger.kernel.org, Pavel Machek <pavel@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-gpio@vger.kernel.org,
-	linux-pm@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-rtc@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v4 04/16] dt-bindings: power: supply: BD72720 managed
- battery
-Message-ID: <20251114163954.GA3399895-robh@kernel.org>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
- <ac5a4e992e4fb9c7bffb1e641a7cd61f74af4cba.1763022807.git.mazziesaccount@gmail.com>
- <176303119683.3716572.16868393928566655866.robh@kernel.org>
- <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
+	s=arc-20240116; t=1763138647; c=relaxed/simple;
+	bh=amx1Z+RrD4CwZ1rF6kcX9RLp5bCo6GnsqSibeDGvxyo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QEo/uXIqOvqLiBxOUGs/SoPitnFmVdE1GnlmBoqdmInVosKBhH0atiihNDzQbdJWI00uDgx1RLe5eMBvi3TDqHkSFWizdfrcFPyjUBg5ttAbHDLbaqS1NMKlukFz8z/oQIr040TxUnq7lbxZeZiyARp8NPR53wTUzmGkZeds/bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=Jr6lUwqt; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=Jr6lUwqt; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1763138644; bh=amx1Z+RrD4CwZ1rF6kcX9RLp5bCo6GnsqSibeDGvxyo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jr6lUwqtdr04b1l1ZEG72BDuCoatMDSU4HJBDfQSnzXgD43UAD7Yya8jLAOHFM3pz
+	 LK+Ox5L6zQoko/4ZvLV5i4Z+4Wyd03by68F2Ftrd/PUFTz4cLrtR0Uh3YFQ4wy9nUL
+	 JODrdFz9ms4H8d8kzf2o8jrHfA4D+PjWNIxxPvKvkUTOsse4SAann7ST4O5aonw/jO
+	 udYtZHr4LLYpCz1UK0kTSAeFlaqJm2TXsGJyxzn2goTbucnSPvvCquQfc/6ErV0hBd
+	 j0oSj65KXxFCQBVFYAHwKbapDHIIScULCidB2h1CKoawRyUpOrkVctlQXW8G2OpcRx
+	 igzZpM9O9PMuw==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id 2AD5C3E1525;
+	Fri, 14 Nov 2025 16:44:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1763138644; bh=amx1Z+RrD4CwZ1rF6kcX9RLp5bCo6GnsqSibeDGvxyo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jr6lUwqtdr04b1l1ZEG72BDuCoatMDSU4HJBDfQSnzXgD43UAD7Yya8jLAOHFM3pz
+	 LK+Ox5L6zQoko/4ZvLV5i4Z+4Wyd03by68F2Ftrd/PUFTz4cLrtR0Uh3YFQ4wy9nUL
+	 JODrdFz9ms4H8d8kzf2o8jrHfA4D+PjWNIxxPvKvkUTOsse4SAann7ST4O5aonw/jO
+	 udYtZHr4LLYpCz1UK0kTSAeFlaqJm2TXsGJyxzn2goTbucnSPvvCquQfc/6ErV0hBd
+	 j0oSj65KXxFCQBVFYAHwKbapDHIIScULCidB2h1CKoawRyUpOrkVctlQXW8G2OpcRx
+	 igzZpM9O9PMuw==
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mleia.com (Postfix) with ESMTPSA id 9629B3E0CE9;
+	Fri, 14 Nov 2025 16:44:03 +0000 (UTC)
+Message-ID: <03494fa4-26e6-4691-8fa6-5bd99c2c25a1@mleia.com>
+Date: Fri, 14 Nov 2025 18:44:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] ARM: dts: lpc32xx: add bus surfix for simple-bus
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/LPC32XX SOC SUPPORT"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+References: <20251029202801.3963952-1-Frank.Li@nxp.com>
+ <af66cc8a-051a-4512-9a02-468b17550775@mleia.com>
+ <aRdWoQ/vPplF0aQA@lizhi-Precision-Tower-5810>
+From: Vladimir Zapolskiy <vz@mleia.com>
+In-Reply-To: <aRdWoQ/vPplF0aQA@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20251114_164404_195024_621ABE18 
+X-CRM114-Status: GOOD (  17.26  )
 
-On Fri, Nov 14, 2025 at 11:04:27AM +0200, Matti Vaittinen wrote:
-> On 13/11/2025 12:53, Rob Herring (Arm) wrote:
-> > 
-> > On Thu, 13 Nov 2025 10:52:19 +0200, Matti Vaittinen wrote:
-> > > From: Matti Vaittinen <mazziesaccount@gmail.com>
-> > > 
-> > > The BD72720 PMIC has a battery charger + coulomb counter block. These
-> > > can be used to manage charging of a lithium-ion battery and to do fuel
-> > > gauging.
-> > > 
-> > > ROHM has developed a so called "zero-correction" -algorithm to improve
-> > > the fuel-gauging accuracy close to the point where battery is depleted.
-> > > This relies on battery specific "VDR" tables, which are measured from
-> > > the battery, and which describe the voltage drop rate. More thorough
-> > > explanation about the "zero correction" and "VDR" parameters is here:
-> > > https://lore.kernel.org/all/676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com/
-> > > 
-> > > Document the VDR zero-correction specific battery properties used by the
-> > > BD72720 and some other ROHM chargers.
-> > > 
-> > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > > 
-> > > ---
-> > > NOTE:
-> > > Linus' rb-tag holds only if there's no further comments from Rob.
-> > > 
-> > > Revision history:
-> > >   v3 =>:
-> > >   - No changes
-> > > 
-> > >   v2 => v3:
-> > >   - Constrain VDR threshold voltage to 48V
-> > >   - Use standard '-bp' -suffix for the rohm,volt-drop-soc
-> > > 
-> > >   RFCv1 => v2:
-> > >   - Add units to rohm,volt-drop-soc (tenths of %)
-> > >   - Give real temperatures matching the VDR tables, instead of vague
-> > >     'high', 'normal', 'low', 'very low'. (Add table of temperatures and
-> > >     use number matching the right temperature index in the VDR table name).
-> > >   - Fix typoed 'algorithm' in commit message.
-> > > 
-> > > The parameters are describing the battery voltage drop rates - so they
-> > > are properties of the battery, not the charger. Thus they do not belong
-> > > in the charger node.
-> > > 
+On 11/14/25 18:19, Frank Li wrote:
+> On Fri, Nov 14, 2025 at 01:55:50AM +0200, Vladimir Zapolskiy wrote:
+>> Hi Frank.
+>>
+>> On 10/29/25 22:27, Frank Li wrote:
+>>> add bus surfix for simple-bus to fix below CHECK_DTBS warnings:
+>>
+>> typo in the subject and in the commit message above, s/surfix/suffix/
+>>
+>>> arm/boot/dts/nxp/lpc/lpc3250-ea3250.dtb: usb (simple-bus): $nodename:0: 'usb' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+>>>           from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+>>>
+>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>> ---
+>>>    arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 6 +++---
+>>>    1 file changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
+>>> index 2236901a00313..9790b0a1d6537 100644
+>>> --- a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
+>>> +++ b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
+>>> @@ -86,7 +86,7 @@ dma: dma-controller@31000000 {
+>>>    			#dma-cells = <2>;
+>>>    		};
+>>> -		usb {
+>>> +		usb-bus {
+>>
+>> Device nodes under "usb" should be just elevated, the "simple-bus" here
+>> was used only to group some controllers together.
+>>
+>>>    			#address-cells = <1>;
+>>>    			#size-cells = <1>;
+>>>    			compatible = "simple-bus";
+>>> @@ -307,14 +307,14 @@ mpwm: pwm@400e8000 {
+>>>    			};
+>>>    		};
+>>> -		fab {
+>>> +		fab-bus {
+>>
+>> FAB shall find its place in the AXI/AHB/APB/... list, isn't it?
 > 
-> // snip
-> 
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/rohm,vdr-battery.example.dtb: battery (simple-battery): 'degrade-cycle-microamp-hours', 'rohm,volt-drop-0-microvolt', 'rohm,volt-drop-1-microvolt', 'rohm,volt-drop-2-microvolt', 'rohm,volt-drop-3-temp-microvolt', 'rohm,volt-drop-soc-bp', 'rohm,volt-drop-temperatures-millicelsius', 'rohm,voltage-vdr-thresh-microvolt' do not match any of the regexes: '^ocv-capacity-table-[0-9]+$', '^pinctrl-[0-9]+$'
-> > 	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml
-> > 
-> 
-> Odd. I am pretty sure I didn't see this when I ran the make
-> dt_binding_check. Not 100% sure what happened there. I get this error now
-> though when including all the bindings to the check.
-> 
-> Do I get this right - these errors result from the properties used in
-> example not being included in the battery.yaml? So, this means that the
-> check is done based on the binding (battery.yaml) where the compatible
-> (simple-battery) is defined - not based on the properties which are present
-> in this file where the example resides, (and which references the
-> battery.yaml)?
-> 
-> ...
-> 
-> Oh... Now that I wrote it I feel like an idiot.
-> 
-> This approach couldn't work for the validation, right? Let's assume I had a
-> VDR battery, and I added a static-battery -node for it. Running the
-> validation would pick the battery.yaml based on the compatible (just as it
-> does here), and be completely unaware of this vdr-battery.yaml. I have no
-> idea why I thought this would work. Probably because I only thought this
-> from the documentation POV.
-> 
-> So, as far as I understand, the only viable options are expanding the
-> existing battery.yaml with these properties (which I hoped to avoid, see
-> below)
-> 
-> >> The right place for them is the battery node, which is described by the
-> >> generic "battery.yaml". I was not comfortable with adding these
-> >> properties to the generic battery.yaml because they are:
-> >>    - Meaningful only for those charger drivers which have the VDR
-> >>      algorithm implemented. (And even though the algorithm is not charger
-> >>      specific, AFAICS, it is currently only used by some ROHM PMIC
-> >>      drivers).
-> >>    - Technique of measuring the VDR tables for a battery is not widely
-> >>      known. AFAICS, only folks at ROHM are measuring those for some
-> >>      customer products. We do have those tables available for some of the
-> >>      products though (Kobo?).
-> 
-> or, to add new compatible for the "vdr-battery".
-> AFAICS, adding new compatible would require us to wither duplicate the used
-> properties from battery.yaml here (as battery.yaml mandates the
-> "simple-battery" - compatible) - or to split the battery.yaml in two files,
-> one containing the generic properties, other containing the "simple-battery"
-> -compatible and referencing the generic one. Then the "vdr-battery" could
-> also reference the generic one.
-> 
-> Any suggestions for the next path to follow?
+> what's FAB means? It is too short and hard to find exact information
+> from google?
 
-Probably the latter option. You could do the former and make the new 
-properties conditional on the "vdr-battery" compatible. That's fine with 
-small differences, but gets messy as there are more properties and 
-variations.
+You may find UM10326 "LPC32x0 and LPC32x0/01 User manual" document online,
+LPC32xx is an old and simple SoC.
 
-But is "VDR" a type of battery though? Is there a certain type/chemistry 
-of battery we should be describing where VDR is applicable? I don't 
-think it scales well if we define battery compatibles for every 
-variation of charger algorithm. Honestly I don't mind just adding 1 
-property. I care more if we allow undocumented properties than 
-allowing documented but invalid for the platform properties. When it 
-becomes 10, 20, 30 properties, then I might start to care. If that 
-happens, either we are doing a poor job of generically describing 
-battery parameters or chargers and batteries are tightly coupled and 
-can't be described independently.
+FAB stands for Fast Access Bus, it's a bus behind AHB to FAB bridge, you
+may get an overview from "Fig 3. LPC32x0 block diagram, AHB matrix view",
+and "Table 4. Peripheral devices on the LPC32x0" lists all FAB peripherals.
 
-Rob
+So, FAB is very similar to APB functionally, could it be just another
+name of APB?.. Likely we won't know for sure.
+
+I'd suggest to send a change, which adds "fab" to the list of permitted
+device tree node names with a "simple-bus" compatible. Or let me know,
+and I'll do it myself whenever I find a minute for it...
+
+>>>    			#address-cells = <1>;
+>>>    			#size-cells = <1>;
+>>>    			compatible = "simple-bus";
+>>>    			ranges = <0x20000000 0x20000000 0x30000000>;
+>>>    			/* System Control Block */
+>>> -			scb {
+>>> +			scb-bus {
+>>>    				compatible = "simple-bus";
+>>>    				ranges = <0x0 0x40004000 0x00001000>;
+>>>    				#address-cells = <1>;
+>>
+>> Here "simple-bus" is also unjustified...
+
+-- 
+Best wishes,
+Vladimir
+
 
