@@ -1,171 +1,412 @@
-Return-Path: <devicetree+bounces-238695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9503EC5D617
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:39:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8721C5D5FF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:36:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E5EF034AA69
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:34:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C61243BE324
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:36:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7752E31A55F;
-	Fri, 14 Nov 2025 13:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406F531AF22;
+	Fri, 14 Nov 2025 13:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kynesim.co.uk header.i=@kynesim.co.uk header.b="1aJcIsXg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cQ3iGFuZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7679D136358
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:33:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D278B315D4D
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:36:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763127238; cv=none; b=nyW+BDhPq04pVrzxOioGX0Ka13qvI8zDp5/qTw2fsy+2RWzj3Li/AqC6AVIDZb+6Zeyb8HoqcEFWNoj/Fc9Di8XymnfoCPrObJ9KBnOkFkXayca8vheCI3Y7y+9YoBM79WnH8FQa4hwSAbQLwXBXgWkM5t+qUq8yftAnijSSChA=
+	t=1763127370; cv=none; b=hbZuUKghDkf1WDdpy0nK1qPN8/ZX0JVBVcYqbikFBGI08YwElD2FokmxeB0SM2FRnws5XDGja6nlqkopEbTS7+iPhLGB2Dqsn9rZjd6Rj8vUcNy1AIYdqKYtfL+aRQCi8arlymzQgcDkYtnCLBocuOhFhLwwXGDl/xUewvLdk/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763127238; c=relaxed/simple;
-	bh=6OPWkw88SLGOTV0S5cSAZm2veOCUr2frRtUVV9N68e0=;
-	h=From:To:Cc:Subject:Date:Message-ID:References:In-Reply-To:
-	 MIME-Version:Content-Type; b=lJXFX5hWYakHdQ9GoG6Czmn60GQmOz7HJJqcco84mi7/mypWvOg08W5OjeMudmgU90r0f8Qh+cYhd2pvrwjYYi4s1KpR3ix3eYyxQVoam58V0j/WvQ/nMJd4aYMfk+iVGVlHFIqVq/wVy/tNjbmUul6tyVtUtL3OtwGL87Tut4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kynesim.co.uk; spf=pass smtp.mailfrom=kynesim.co.uk; dkim=pass (2048-bit key) header.d=kynesim.co.uk header.i=@kynesim.co.uk header.b=1aJcIsXg; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kynesim.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kynesim.co.uk
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4777771ed1aso14316015e9.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:33:55 -0800 (PST)
+	s=arc-20240116; t=1763127370; c=relaxed/simple;
+	bh=rsbpRPLuJ8Y4/Yw4PnJKo8krV5yqmWDCP57lNFV6hSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cvg39IfGqA1peg7qnOnZSJ+aknwyTGvdTG8odKtbAbg3QbH+CZ666r6+XLr1D3F5qz3EjiheY15Okiu5vp/wOW513PnhH7TWp/DW+hUikDcS4qfmRDkqeSxWUfRxBLE+ftZQghsuf95R1ztT5c5Ih3oI2UG08iZJFECNeGm2nn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cQ3iGFuZ; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-29555415c5fso22729205ad.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:36:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kynesim.co.uk; s=google; t=1763127234; x=1763732034; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:user-agent:in-reply-to
-         :references:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wpPC2wtFd4NLEl4Fex1g+49rhMvK8bEF1ED2igQKkxU=;
-        b=1aJcIsXgHNGMStIs3tQO+xH3VZFW5xSomEHLaZQmGl9V5rZPQpfpeMCC4hI2FPNxKc
-         Rb7koyuK7YKnQ8Cxr0aK1CQvD2HaMkzk+fv0wNnnzey5BmsMuCvIfBkGfmqMjZqSdhsS
-         D3zibjy1XvPZwmdS9Q4BuR9WXnIUsvMA6y25aphiHbNHRFq0ebXxHTtjUGh4kJfRvxJZ
-         d1GNnNPjw54XE4BwFERzZ/QU1OFfSGMGO0qhscQCGo8fSdbA/3KhB2OayPoarFCPkey+
-         fqjhmOLm2UVqL8hNnEZpnauzu0Vjr6p2IEXGbJsDKDLNgQ9kZBzPY/em1F9Zrco+XHBg
-         HZFg==
+        d=gmail.com; s=20230601; t=1763127366; x=1763732166; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=lb4Qki5bHo72eO9B2OE3Jm1rNZljAEP6P1/UtnhCU+k=;
+        b=cQ3iGFuZXuDxi0Q+37GjVIY5yo1v1yyf0NuonAgFBCImEHSPvfAOIThknyTw5pDCOj
+         Qpf9wI9+KK2c5hVoN853EIHzmVFdpcHgRDz1dEZ+E3PFhAwlMLBiHY3ISZ3o361z3drp
+         zHvbH0IcWWJ6JWtiWPKYgA5NBVO1GwyZ6NGw3dPGClQXM8UWCG1sF0CSI5/6UWKeGA8h
+         YDzwOupF020PNV6Syuc8Bt2F7b6CnwdWT8uyKQJFz6j2ckjevQENDarN8ediOuoA6C4O
+         X9IfSA0H/tkHHEitSThidVzoGSTm2HbaWdvzyCW051vjmmOVrMLfNSSDIMTyEjD+gfQB
+         fckA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763127234; x=1763732034;
-        h=content-transfer-encoding:mime-version:user-agent:in-reply-to
-         :references:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wpPC2wtFd4NLEl4Fex1g+49rhMvK8bEF1ED2igQKkxU=;
-        b=joMWV29jrzp8EwwV5zA4lLXONxh+k61VcVKvcM0wQfx9CxbTJVdU33aG9YCnB1RXqd
-         Y1zeVUoXIHI4hyExhf1xccWcBjc0bvqA8UOdnVhTNBJeRF05/9FnaqfDXoJzF+vM1P+T
-         liJKJM+7JAWhXdX2z7qfRt6tLiAX52EPChGxDGkfvCx3BEzmebUqpuxcRK9BSoHzNdvi
-         ypuyP96GF7d2SEQ3Q8hrdaKcbr/I1V9LRb6HR8Kr4j7WpUT0faB182rXc80n8JvBmps2
-         KDrtrgvkQdSigEpo/8vexjPSzqz5wG8njW3gia6OvqEFAyT/iR1xk21JwAIhgzyZdtHr
-         l7eQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVzZPCfuiNMK7OEdAx1tlgiGYBvoFuGPyZoAIdD9Dc1ScvuZNPDqPNPMfBxr2fn8kyjzndmXTuuckUE@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywtc+MDTHHyxijk0iYgczwTaBhPB/tEJsgDruaXWiluAKFD8Mfr
-	4/hCsJ3PoE6JzSliMv2mMufjfurFA6/hwPAPpgy5H4N1jog9Qwolf0UX8Kd/rcOYt3g=
-X-Gm-Gg: ASbGncspag3BpxajfQiXOlLTmCXHeycB7jXOAcECxXWK/MuKYQUKPtjmOqPBSEmSEeA
-	XE6KR9far5q8DTS6Of6pycqOsQGzNyRLKr81E6PbTHB+gG92Zg7oAj15+t46ghXd7f/f1Tcxgox
-	3jvlum6yVmW6CABwvYwh4icwq4e6qJz68WqbPJFchZtwOQCP/T6VIww9ZOICCe6FrOUVPdwl3mz
-	BpUITN2rjNJMYqyr5db6DW9SPGaB4ghO1nV6CcsVIkYYYg2DELo+Q9Tccy3cLjdYAyPJMzkEXwT
-	Pz8OAujYRHs1yZnhKEfV73Y4jIbU5sp6zLx735K44bIVy5D4SqhbSVyl7QGaV6lg35M59JQpUun
-	hOOx/Z7pR54M1fR7xuBvgpytSbm7Jcb6DM+UqJtqPkN8itlHfvEyVlJZi2SXWwm1Fqz+Tyg+Dxv
-	YdxutPt+crocVNI5G7Qz99WPRCx/YFQ/BY9QACG75PEBfxEBUaDZ7nwQxxpn3osGGEKfYHftRDn
-	waVHtlDjw==
-X-Google-Smtp-Source: AGHT+IFSfYp+TEIQ0ghuAn77Ll5FRjYgRRifxjJaxX6xb5D05/JuUxVRrH0WsOS6QGKVmw+kLQGajg==
-X-Received: by 2002:a05:600c:1d01:b0:477:54cd:200f with SMTP id 5b1f17b1804b1-4778fe69569mr30877955e9.9.1763127233520;
-        Fri, 14 Nov 2025 05:33:53 -0800 (PST)
-Received: from CTHALPA.outer.uphall.net (cpc92886-cmbg20-2-0-cust122.5-4.cable.virginm.net. [82.20.18.123])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4778bb34295sm44948895e9.2.2025.11.14.05.33.52
-        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
-        Fri, 14 Nov 2025 05:33:53 -0800 (PST)
-From: John Cox <jc@kynesim.co.uk>
-To: Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>, Sakari Ailus	 <sakari.ailus@linux.intel.com>, Laurent Pinchart	 <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, Broadcom internal kernel review list	 <bcm-kernel-feedback-list@broadcom.com>, John Cox <john.cox@raspberrypi.com>, Dom Cobley <dom@raspberrypi.com>, review list <kernel-list@raspberrypi.com>, Ezequiel Garcia	 <ezequiel@vanguardiasur.com.ar>, Stefan Wahren <wahrenst@gmx.net>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/5] media: ioctl: Add pixel formats NV12MT_COL128 and NV12MT_10_COL128
-Date: Fri, 14 Nov 2025 13:33:53 +0000
-Message-ID: <vnbehk9a1e1pn6qv2qj8tcaj5l62u0dul9@4ax.com>
-References: <20250701-media-rpi-hevc-dec-v4-0-057cfa541177@raspberrypi.com> <20250701-media-rpi-hevc-dec-v4-2-057cfa541177@raspberrypi.com> <e99ff4f12d52eee03075f911e6b904290b47a961.camel@ndufresne.ca>
-In-Reply-To: <e99ff4f12d52eee03075f911e6b904290b47a961.camel@ndufresne.ca>
-User-Agent: ForteAgent/8.00.32.1272
+        d=1e100.net; s=20230601; t=1763127366; x=1763732166;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lb4Qki5bHo72eO9B2OE3Jm1rNZljAEP6P1/UtnhCU+k=;
+        b=HWmb8s6zpVl4V78MJMJ0MNJizNv0Vn6JHzSB5dyCm4JNx7pghblD8FD83QiGCC2MmR
+         /P30B4P7XJkwX1YOHMGJXSyhL9pSubucdKpHxGKPL8Ge5s9Hof1cMLuBlx8KIyM+b3la
+         YOdJm9oBCjz6axwrRWeK2WQY43D9FEhXHgmRL9fszjPEq0hCMh6Iod5fLo2Js4GeDMaY
+         oGNA3zTqrukJB34wXa6S1tYwUATHjGjhZmd11JP9CdLki2zrs4Oc4LxzweubBnGRhiIJ
+         Dhp6kVAGWgLHSSKk/0hugf/Y6yl6Q/36o62Un4t5QasCgvoCZfySZO3AzHzzMFHnzaPS
+         6Isg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIyPuXkBErxMkDphgASMKVlfb2T4iPRXdxwY53TIDfMAEblljRm5YYPCegD7Ind4ar7md227j7yFco@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8qPKyMjzvoZeV9bsE0Ty8/UL+amZD3B8gVTb3AENvEzGe1bjk
+	6CIPAzZ9Ah7bcCk8vrBECfp4EocKVJ60PG04BG8RQYu36Nwy28qCXhoF
+X-Gm-Gg: ASbGncsbxWhynxRO24Ey+s+Kojg7AbToBBIDofpfsMBfyWyzowk0pMQiPi3WBvLJkg+
+	NNF/f32GLWMwxamIRvCf9+hZw7btcSEXECQP26sH9phYoZUeoGXoAbA4u5dlP5jSshw7ihmSKTs
+	EPJF2FD2MZVishpctnrTNCA3iBHR7zW3I+Kz+Z36dXOZTFyiBZn92+/3XGjHlDBmouZSH5H330N
+	S48Tkz+/GU9pCG8OInM2gdEym7xOQRzkoU0PipTBMLiu9lMCLhPsGvEgeMELq/+Gpu3MSd43jD3
+	Iy+T2JsQ41G1WXWayiJXTnB+Tc4WVBjcPjm5rvxiXTjn70oKk2chhv3tACrziwvk8L9/OhkxBKu
+	QELyg9caPot1FThbmdobIVBGSsmls6RYOdMZGwNT3utEsBs2i7nVyoxRl9LtmysO+gS4dZHzjzP
+	O07RmtACTH/o+yKFvRRTgVNbpmXVgqEPt6o3/9koDBLbvOKzur
+X-Google-Smtp-Source: AGHT+IE1pWwQOQUXpelll+Ymz6AwlMQfle3dld9yqkH7aeekCJHQtvNouuavmX71xquKciZcRhoqZQ==
+X-Received: by 2002:a17:902:ef06:b0:298:595d:3d3a with SMTP id d9443c01a7336-2986a7566edmr29814205ad.50.1763127366012;
+        Fri, 14 Nov 2025 05:36:06 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2c103asm55441335ad.96.2025.11.14.05.36.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Nov 2025 05:36:05 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <55fba1a9-a24d-40b7-b97a-171f4a60a7dc@roeck-us.net>
+Date: Fri, 14 Nov 2025 05:36:02 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/2] watchdog: Add driver for Gunyah Watchdog
+To: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20251114-gunyah_watchdog-v7-0-f5c155b941d5@oss.qualcomm.com>
+ <20251114-gunyah_watchdog-v7-2-f5c155b941d5@oss.qualcomm.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251114-gunyah_watchdog-v7-2-f5c155b941d5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Nicolas
+On 11/13/25 23:57, Hrishabh Rajput via B4 Relay wrote:
+> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+> 
+> On Qualcomm SoCs running under the Gunyah hypervisor, access to watchdog
+> through MMIO is not available on all platforms. Depending on the
+> hypervisor configuration, the watchdog is either fully emulated or
+> exposed via ARM's SMC Calling Conventions (SMCCC) through the Vendor
+> Specific Hypervisor Service Calls space.
+> 
+> Add driver to support the SMC-based watchdog provided by the Gunyah
+> Hypervisor. Device registration is done in the QCOM SCM driver after
+> checks to restrict the watchdog initialization to Qualcomm devices
+> running under Gunyah.
+> 
+> Gunyah watchdog is not a hardware but an SMC-based vendor-specific
+> hypervisor interface provided by the Gunyah hypervisor. The design
+> involving QCOM SCM driver for registering the platform device has been
+> devised to avoid adding non-hardware nodes to devicetree.
+> 
+> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+> ---
+>   MAINTAINERS                   |   1 +
+>   drivers/watchdog/Kconfig      |  13 +++
+>   drivers/watchdog/Makefile     |   1 +
+>   drivers/watchdog/gunyah_wdt.c | 260 ++++++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 275 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ddecf1ef3bed..f80e762aa324 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3215,6 +3215,7 @@ F:	arch/arm64/boot/dts/qcom/
+>   F:	drivers/bus/qcom*
+>   F:	drivers/firmware/qcom/
+>   F:	drivers/soc/qcom/
+> +F:	drivers/watchdog/gunyah_wdt.c
+>   F:	include/dt-bindings/arm/qcom,ids.h
+>   F:	include/dt-bindings/firmware/qcom,scm.h
+>   F:	include/dt-bindings/soc/qcom*
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index 05008d937e40..bc6db9a1c116 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -2354,4 +2354,17 @@ config KEEMBAY_WATCHDOG
+>   	  To compile this driver as a module, choose M here: the
+>   	  module will be called keembay_wdt.
+>   
+> +config GUNYAH_WATCHDOG
+> +	tristate "Qualcomm Gunyah Watchdog"
+> +	depends on ARCH_QCOM || COMPILE_TEST
+> +	depends on HAVE_ARM_SMCCC
+> +	select WATCHDOG_CORE
+> +	help
+> +	  Say Y here to include support for watchdog timer provided by the
+> +	  Gunyah hypervisor. The driver uses ARM SMC Calling Convention (SMCCC)
+> +	  to interact with Gunyah Watchdog.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called gunyah_wdt.
+> +
+>   endif # WATCHDOG
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index b680e4d3c1bc..1215efb7816d 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -102,6 +102,7 @@ obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
+>   obj-$(CONFIG_APPLE_WATCHDOG) += apple_wdt.o
+>   obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
+>   obj-$(CONFIG_MARVELL_GTI_WDT) += marvell_gti_wdt.o
+> +obj-$(CONFIG_GUNYAH_WATCHDOG) += gunyah_wdt.o
+>   
+>   # X86 (i386 + ia64 + x86_64) Architecture
+>   obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
+> diff --git a/drivers/watchdog/gunyah_wdt.c b/drivers/watchdog/gunyah_wdt.c
+> new file mode 100644
+> index 000000000000..addfd1733ad1
+> --- /dev/null
+> +++ b/drivers/watchdog/gunyah_wdt.c
+> @@ -0,0 +1,260 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#include <linux/arm-smccc.h>
+> +#include <linux/delay.h>
+> +#include <linux/errno.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/watchdog.h>
+> +
+> +#define GUNYAH_WDT_SMCCC_CALL_VAL(func_id) \
+> +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, ARM_SMCCC_SMC_32,\
+> +			   ARM_SMCCC_OWNER_VENDOR_HYP, func_id)
+> +
+> +/* SMCCC function IDs for watchdog operations */
+> +#define GUNYAH_WDT_CONTROL   GUNYAH_WDT_SMCCC_CALL_VAL(0x0005)
+> +#define GUNYAH_WDT_STATUS    GUNYAH_WDT_SMCCC_CALL_VAL(0x0006)
+> +#define GUNYAH_WDT_PING      GUNYAH_WDT_SMCCC_CALL_VAL(0x0007)
+> +#define GUNYAH_WDT_SET_TIME  GUNYAH_WDT_SMCCC_CALL_VAL(0x0008)
+> +
+> +/*
+> + * Control values for GUNYAH_WDT_CONTROL.
+> + * Bit 0 is used to enable or disable the watchdog. If this bit is set,
+> + * then the watchdog is enabled and vice versa.
+> + * Bit 1 should always be set to 1 as this bit is reserved in Gunyah and
+> + * it's expected to be 1.
+> + */
+> +#define WDT_CTRL_ENABLE  (BIT(1) | BIT(0))
+> +#define WDT_CTRL_DISABLE BIT(1)
+> +
+> +enum gunyah_error {
+> +	GUNYAH_ERROR_OK				= 0,
+> +	GUNYAH_ERROR_UNIMPLEMENTED		= -1,
+> +	GUNYAH_ERROR_ARG_INVAL			= 1,
+> +};
+> +
+> +/**
+> + * gunyah_error_remap() - Remap Gunyah hypervisor errors into a Linux error code
+> + * @gunyah_error: Gunyah hypercall return value
+> + */
+> +static inline int gunyah_error_remap(enum gunyah_error gunyah_error)
+> +{
+> +	switch (gunyah_error) {
+> +	case GUNYAH_ERROR_OK:
+> +		return 0;
+> +	case GUNYAH_ERROR_UNIMPLEMENTED:
+> +		return -EOPNOTSUPP;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int gunyah_wdt_call(unsigned long func_id, unsigned long arg1,
+> +			   unsigned long arg2)
+> +{
+> +	struct arm_smccc_res res;
+> +
+> +	arm_smccc_1_1_smc(func_id, arg1, arg2, &res);
+> +	return gunyah_error_remap(res.a0);
+> +}
+> +
+> +static int gunyah_wdt_start(struct watchdog_device *wdd)
+> +{
+> +	unsigned int timeout_ms;
+> +	struct device *dev = wdd->parent;
+> +	int ret;
+> +
+> +	ret = gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0);
+> +	if (ret && watchdog_active(wdd)) {
+> +		dev_err(dev, "%s: Failed to stop gunyah wdt %d\n", __func__, ret);
+> +		return ret;
+> +	}
+> +
+> +	timeout_ms = wdd->timeout * 1000;
+> +	ret = gunyah_wdt_call(GUNYAH_WDT_SET_TIME, timeout_ms, timeout_ms);
+> +	if (ret) {
+> +		dev_err(dev, "%s: Failed to set timeout for gunyah wdt %d\n",
+> +			__func__, ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_ENABLE, 0);
+> +	if (ret)
+> +		dev_err(dev, "%s: Failed to start gunyah wdt %d\n", __func__, ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int gunyah_wdt_stop(struct watchdog_device *wdd)
+> +{
+> +	return gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0);
+> +}
+> +
+> +static int gunyah_wdt_ping(struct watchdog_device *wdd)
+> +{
+> +	return gunyah_wdt_call(GUNYAH_WDT_PING, 0, 0);
+> +}
+> +
+> +static int gunyah_wdt_set_timeout(struct watchdog_device *wdd,
+> +				  unsigned int timeout_sec)
+> +{
+> +	wdd->timeout = timeout_sec;
+> +
+> +	if (watchdog_active(wdd))
+> +		return gunyah_wdt_start(wdd);
+> +
+> +	return 0;
+> +}
+> +
+> +static int gunyah_wdt_get_time_since_last_ping(void)
+> +{
+> +	struct arm_smccc_res res;
+> +
+> +	arm_smccc_1_1_smc(GUNYAH_WDT_STATUS, 0, 0, &res);
+> +	if (res.a0)
+> +		return gunyah_error_remap(res.a0);
+> +
+> +	return res.a2 / 1000;
+> +}
+> +
+> +static unsigned int gunyah_wdt_get_timeleft(struct watchdog_device *wdd)
+> +{
+> +	int seconds_since_last_ping;
+> +
+> +	seconds_since_last_ping = gunyah_wdt_get_time_since_last_ping();
+> +	if (seconds_since_last_ping < 0 ||
+> +	    seconds_since_last_ping > wdd->timeout)
+> +		return 0;
+> +
+> +	return wdd->timeout - seconds_since_last_ping;
+> +}
+> +
+> +static int gunyah_wdt_restart(struct watchdog_device *wdd,
+> +			      unsigned long action, void *data)
+> +{
+> +	/* Set timeout to 1ms and send a ping */
+> +	gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0);
+> +	gunyah_wdt_call(GUNYAH_WDT_SET_TIME, 1, 1);
+> +	gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_ENABLE, 0);
+> +	gunyah_wdt_call(GUNYAH_WDT_PING, 0, 0);
+> +
+> +	/* Wait to make sure reset occurs */
+> +	mdelay(100);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct watchdog_info gunyah_wdt_info = {
+> +	.identity = "Gunyah Watchdog",
+> +	.options = WDIOF_SETTIMEOUT
+> +		 | WDIOF_KEEPALIVEPING
+> +		 | WDIOF_MAGICCLOSE,
+> +};
+> +
+> +static const struct watchdog_ops gunyah_wdt_ops = {
+> +	.owner = THIS_MODULE,
+> +	.start = gunyah_wdt_start,
+> +	.stop = gunyah_wdt_stop,
+> +	.ping = gunyah_wdt_ping,
+> +	.set_timeout = gunyah_wdt_set_timeout,
+> +	.get_timeleft = gunyah_wdt_get_timeleft,
+> +	.restart = gunyah_wdt_restart
+> +};
+> +
+> +static int gunyah_wdt_probe(struct platform_device *pdev)
+> +{
+> +	struct watchdog_device *wdd;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	ret = gunyah_wdt_call(GUNYAH_WDT_STATUS, 0, 0);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "status check failed\n");
+> +		return ret;
 
->Hi Dave,
->
->sorry for the long delay.
->
->Le mardi 01 juillet 2025 =C3=A0 17:01 +0100, Dave Stevenson a =
-=C3=A9crit=C2=A0:
->> Add V4L2_PIXFMT_NV12MT_COL128 and V4L2_PIXFMT_NV12MT_10_COL128
->> to describe the Raspberry Pi HEVC decoder NV12 multiplanar formats.
->>=20
->> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
->> ---
->> =C2=A0drivers/media/v4l2-core/v4l2-ioctl.c | 2 ++
->> =C2=A0include/uapi/linux/videodev2.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 4 ++++
->> =C2=A02 files changed, 6 insertions(+)
->>=20
->> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c =
-b/drivers/media/v4l2-core/v4l2-ioctl.c
->> index 650dc1956f73..3bdcbb12bb30 100644
->> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
->> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
->> @@ -1381,7 +1381,9 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc=
- *fmt)
->> =C2=A0	case V4L2_PIX_FMT_NV16M:	descr =3D "Y/UV 4:2:2 (N-C)"; break;
->> =C2=A0	case V4L2_PIX_FMT_NV61M:	descr =3D "Y/VU 4:2:2 (N-C)"; break;
->> =C2=A0	case V4L2_PIX_FMT_NV12MT:	descr =3D "Y/UV 4:2:0 (64x32 MB, =
-N-C)"; break;
->> +	case V4L2_PIX_FMT_NV12MT_COL128: descr =3D "Y/CbCr 4:2:0 (128b =
-cols)"; break;
->> =C2=A0	case V4L2_PIX_FMT_NV12MT_16X16:	descr =3D "Y/UV 4:2:0 (16x16 =
-MB, N-C)"; break;
->> +	case V4L2_PIX_FMT_NV12MT_10_COL128: descr =3D "10-bit Y/CbCr 4:2:0 =
-(128b cols)"; break;
->> =C2=A0	case V4L2_PIX_FMT_P012M:	descr =3D "12-bit Y/UV 4:2:0 (N-C)"; =
-break;
->> =C2=A0	case V4L2_PIX_FMT_YUV420M:	descr =3D "Planar YUV 4:2:0 (N-C)"; =
-break;
->> =C2=A0	case V4L2_PIX_FMT_YVU420M:	descr =3D "Planar YVU 4:2:0 (N-C)"; =
-break;
->> diff --git a/include/uapi/linux/videodev2.h =
-b/include/uapi/linux/videodev2.h
->> index 9e3b366d5fc7..f0934d647d75 100644
->> --- a/include/uapi/linux/videodev2.h
->> +++ b/include/uapi/linux/videodev2.h
->> @@ -697,6 +697,10 @@ struct v4l2_pix_format {
->> =C2=A0#define V4L2_PIX_FMT_NV12MT_16X16 v4l2_fourcc('V', 'M', '1', =
-'2') /* 12=C2=A0 Y/CbCr 4:2:0 16x16 tiles */
->> =C2=A0#define V4L2_PIX_FMT_NV12M_8L128=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-v4l2_fourcc('N', 'A', '1', '2') /* Y/CbCr 4:2:0 8x128 tiles */
->> =C2=A0#define V4L2_PIX_FMT_NV12M_10BE_8L128 v4l2_fourcc_be('N', 'T', =
-'1', '2') /* Y/CbCr 4:2:0 10-bit 8x128 tiles */
->> +#define V4L2_PIX_FMT_NV12MT_COL128 v4l2_fourcc('N', 'c', '1', '2') /*=
- 12=C2=A0 Y/CbCr 4:2:0 128 pixel wide column */
->> +#define V4L2_PIX_FMT_NV12MT_10_COL128 v4l2_fourcc('N', 'c', '3', '0')
->> +			/* Y/CbCr 4:2:0 10bpc, 3x10 packed as 4 bytes in a 128 bytes / 96 =
-pixel wide column */
->> +
->
->Nothing to report here, it looks good. I can't remember, was there a =
-reason not
->to add this format to ./drivers/media/v4l2-core/v4l2-common.c ?
+ From the context, it seems to me that this should fail silently with -ENODEV
+if the function returns -EOPNOTSUPP (not implemented).
 
-I'll do that for the next patch. I think they can be described now.
+Guenter
 
-John Cox
-
->Nicolas
->
->> =C2=A0
->> =C2=A0/* Bayer formats - see =
-http://www.siliconimaging.com/RGB%20Bayer.htm=C2=A0*/
->> =C2=A0#define V4L2_PIX_FMT_SBGGR8=C2=A0 v4l2_fourcc('B', 'A', '8', =
-'1') /*=C2=A0 8=C2=A0 BGBG.. GRGR.. */
 
