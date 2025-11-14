@@ -1,126 +1,137 @@
-Return-Path: <devicetree+bounces-238588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991E6C5C89A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:22:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79245C5C81E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:16:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3E5214F4F14
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:14:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EA843A9343
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:13:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8DBC30E854;
-	Fri, 14 Nov 2025 10:14:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E725530E0CC;
+	Fri, 14 Nov 2025 10:13:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="koDfGSVz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f/jgR11D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12D130E0C3;
-	Fri, 14 Nov 2025 10:14:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763115249; cv=pass; b=lQYp7hSvUMYFl4+L6bXCR7rdsiW4h5p016Xy5JuOdXe7T+YnLxVhqIRHKBy39ENY12ZyqMOsk4+C83xlQiRY5/ppM1hPSr8/j/hl8l2qYhFdwKGs/28nd+ForvfIMVLng0bZ9CY9FXQxMMtRV93SSso5aPe8mKZ0ThasXr4kDqI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763115249; c=relaxed/simple;
-	bh=RYNE6PVtlVSDSEeDFNjgfOuBo8x7I3/SUfpKaxDOh0g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TepITHbo9+yMJV0m8bp2aLztSqiJzNoPRo9oOXYCMsF+EGmtw6O9w6XhXs1EzNxrLxjZBzIoeKPr+EfMUBpFOpXmO7dq+O6Bj+qmxYhIkdRrfr9aXGts4Dz/5tl9a2qbogHR7UA9LiLA0AxHJ1RndP/5mzsgRUpfvI8ildUeOWQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=koDfGSVz; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1763115216; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Uo1eI7o0dWFLKj7/RWiJpBOZ/6M8Z+p2twLTGb2REOEa4A0Tc+5V4SqJe8qS7BSZFhyF4CzP5bfubjvCMAccmCY2/9AkBRdPZ178hyhVKn5aGu1WKKkOi6VOgyiJnyib/X/FRYdVtmrGdVtvtUOYCJLCJc30bLO7ODHNIIaUauU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1763115216; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=eFWpQbs9eju7XUpWo9+RZpsWisucaM4bHjkj9224ytc=; 
-	b=AJeHo8Ql0yJqtDr3iYrwEObWN1LO4TyNPgUcJHKtUhZL2GHE5zbK8gnivvvN++0sbs1FgOvj8jf5m8fj4lGHwEt+C0Lcmh4oitdQP9co4peafzH7bI4P32zj47kEKRUO7hIfLL3fpURRKt1/9OrcnPuQ5Qcfg8bYJdr+sqFyHgw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763115216;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=eFWpQbs9eju7XUpWo9+RZpsWisucaM4bHjkj9224ytc=;
-	b=koDfGSVzRX8wUzMz6wSjHAiM9ouo73qkbfWQa79+AK9ddKM5YazjaayMrmw+Xcm+
-	UWeZHT7+N8YhIHbx4WRpKK4uCigI/yRDj+QFp2e/KpNc06eGG6ujr90riCSFyfuZorT
-	4x5D24VxcgTcLAEN4K8K8ib5Wm7FrDGXzvEAyuek=
-Received: by mx.zohomail.com with SMTPS id 176311521554345.92633741698205;
-	Fri, 14 Nov 2025 02:13:35 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Damon Ding <damon.ding@rock-chips.com>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Lee Jones <lee@kernel.org>, William Breathitt Gray <wbg@kernel.org>,
- kernel@collabora.com, Jonas Karlman <jonas@kwiboo.se>,
- Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] pwm: Add rockchip PWMv4 driver
-Date: Fri, 14 Nov 2025 11:13:29 +0100
-Message-ID: <9941350.lOV4Wx5bFT@workhorse>
-In-Reply-To: <fgu42esufq2x4fcccncqs3hlotih2gqmws5atotlaznuahoslw@34vblr6vboze>
-References:
- <20251027-rk3576-pwm-v3-0-654a5cb1e3f8@collabora.com>
- <8a6e920b-9565-4161-9d71-63f924593c23@rock-chips.com>
- <fgu42esufq2x4fcccncqs3hlotih2gqmws5atotlaznuahoslw@34vblr6vboze>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22529309F02
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763115236; cv=none; b=jxEDSPPVnzD6p1TchdyM8C8dTOaB18lCWW0qlebg6hxz6tH/D4UyurafIp+YP8aLISVQelHT2Ru5ayA9mpQj+pF9ghVPhn7ih2S91AEkyTVjoRYbayEoph5cHb3v45pacqg7XUUc+s7O5hcVGzPTsYYnwoLRmTcuhnCQFpCqZLQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763115236; c=relaxed/simple;
+	bh=80tND+lvNj2i4Qe20utjqahY1P2Ql9GnK85Gqo9FknM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gL2tUkX1STfHgOvvj9KiJ5v8zolu3BTtcu0JqpvL3PDfAZv/utq8pedp8QynmRPjs8ECay7A7OK2Ha1exmq2B5bUTZ6b4pwvn3l1z6znZtJnNyjQRPPT93x10OnQJRmeJikgeuponPQADbIn1Kbl6NvAi2G7BCDTp7wKG2F+esg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f/jgR11D; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47775fb6cb4so13139785e9.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 02:13:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763115233; x=1763720033; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uyQOUFUYuxA3AMkkTAfOVziTArOJRDBqIJ84aBAoAyI=;
+        b=f/jgR11DxRUzlo/M/m5SVIuRQhP3e6RF6x/FclxPqA0/5ggba9xSCyQBCoVG4AbrvT
+         EETzqtQk/rgBUglwxGuHkfKK+B9bbM85K9YLmnKbcXfg9bgw6AYhX7GdZCebr33X+4N5
+         OplYpyrwX+5ZjEogTLeZu4TIt0qpTDCmgR8isY9LkvehwFb2bCf9DcOaFYA9ZT0lleo6
+         peZZ2D4w1B2E5MgI3EzEQhcDNBVn5V0Ld0m2BOjVlCPx63EaLmpwBVK3QOUfKCHXkdYD
+         tfLeQ1XlsMKYySEb/HaXOcv48851CkdnNJDii8Omyl+0xTVlkQzZc7k7bX79VRJiwC/E
+         fqJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763115233; x=1763720033;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uyQOUFUYuxA3AMkkTAfOVziTArOJRDBqIJ84aBAoAyI=;
+        b=M1/RvIxZeiMoS+6GhNzjvymMplNCpBH54C471bFVh4ckD1oIIIVbgaEa8axa2EfPG1
+         IjCteM7juW+kFQ054VvPo0NyDf3HhnssjgNIcX52rEwOCzM2syv0Qn5m3vjvWlHg/uLZ
+         5DokEoHP5PLjD+Ou6SFIhK+TjjdzLhQ/j9NDAPNHKvdGn5RMRhjxIQyqjF44+j+VYFze
+         5LiMgVm/Ji9nkMawjm3GcqoDeqDBrXP+jK2VPCo4zpQY1DF5VO1dfVtsK3HqOVsbqst0
+         tHYYyuKFmiXE3yE9A1dVVg5y4Dc4P9DkohpkXoUeov6Kt/rZCp9ZTFmzdCUTz7eHlT9E
+         fJog==
+X-Forwarded-Encrypted: i=1; AJvYcCU8wihiTBJLy/ExmjFU2ipIVfeV4dWEJ8u6rjynTVnF559lty7gnf3oyLxzvHwwRD3qOuVfooVSt6gX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKhWba7Wio+H+LNik7X2eMl0SjC4zWZv5ebSVsM65l+BP1XDLR
+	nHkP2nafljjPxMzbIgrB9+DoVv3e7hBqelSgMU93nIz/4fFMDdguZAhq
+X-Gm-Gg: ASbGnctCxlO57e9MaIW8yZPOO7iVYi2CIDJBadCVCQQTBxlSjyebCx8FUCwkVF+cfiD
+	o24aA4A94a8i1V7kWHQYPGFJeAblBbec8nOsKFfNz9DX04kNh0dpLvN4WTmbX/mobCf7arnk+Qr
+	6EJa75xvykbOg5RIw7scdCsoO3ID9xBwTYnv1gFgh4ad/AyarvdeKpuLeT+vZ/dLgsYeLEYUnzZ
+	ii5M4UYD0KeuXNVbAtjnbc3D4lOw9UvbsVuK1gMgEY1+FexlWE8aiuWV8X7Pu6w/tzRA9a3AmqI
+	jWyWNnjf1LMdvwTNq4Wep3w5lNscwx72RXr+T+L/F+vU/WDIiAgQO3KTCC0qtvrMqzpNfc8GL6u
+	frdkp98c2RFjNEmHNhcTaL4Y+iDwB4SP/oAzS8xAsXWrkRciSWtj1y1pDjQRgFbPb9gvq25LYDB
+	K13yAkWNmec2Ki57lxNGGn0SuCTe1HWHw7blB4VVTgXw8cBw8a8uC8IPx1EJVzqqXIxx7w1vHjy
+	TzWak9vt6XmiFRi
+X-Google-Smtp-Source: AGHT+IHwQRc+3WyYaHuW2eDqpuK7VEQtbvn7J8+LySD9iAVjl3fw46CiL/4mZbRZEV1FnK5/AdofRA==
+X-Received: by 2002:a05:600c:3546:b0:477:7658:571e with SMTP id 5b1f17b1804b1-4778fea2df4mr25190315e9.23.1763115233221;
+        Fri, 14 Nov 2025 02:13:53 -0800 (PST)
+Received: from localhost.localdomain (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4778bae816bsm40685815e9.0.2025.11.14.02.13.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 02:13:52 -0800 (PST)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 0/2] Fix deadlock during RSCI FIFO overrun error
+Date: Fri, 14 Nov 2025 10:13:45 +0000
+Message-ID: <20251114101350.106699-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Friday, 14 November 2025 10:51:27 Central European Standard Time you wrote:
-> On Tue, Oct 28, 2025 at 04:16:26PM +0800, Damon Ding wrote:
-> > Hi Nicolas,
-> > 
-> > On 10/28/2025 1:11 AM, Nicolas Frattaroli wrote:
-> > > [...]
-> > > 
-> > 
-> > Tested-by: Damon Ding <damon.ding@rock-chips.com>
-> > 
-> > I have tested all the PWM channels in continuous mode on my RK3576-IOTEST
-> > board.
-> > 
-> > Test commands are like:
-> > 
-> > cd /sys/class/pwm/pwmchip0/
-> > echo 0 > export
-> > cd pwm0
-> > echo 10000 > period
-> > echo 5000 > duty_cycle
-> > echo normal > polarity
-> > echo 1 > enable
-> 
-> Thanks for the test, very appreciated.
-> 
-> I wonder what made you test using sysfs instead of
-> https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/libpwm.git/.
-> Is it unknown? Too complicated? Other problems?
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Can't speak for Damon Ding but this is the first time I've heard of
-libpwm, so I think you do need to market it better. :) Perhaps by
-mentioning it in the PWM subsystem docs as a way to interface with
-the kernel, if that's permitted by the docs people. (It should be,
-since libiio is mentioned for IIO.)
+This patch series aims to fix 2 issues
+ 1) Fix deadlock during RSCI FIFO overrun error, as wrong register used to
+    clear the status.
+ 2) Hardware flow control is supported on all SoCs. Fix the binding.
 
-Kind regards,
-Nicolas Frattaroli
+v2->v3:
+ * Added Rb tag from Geert for binding patch.
+ * Dropped overrun_clr from struct sci_port_params_bits
+ * All of the CFCLR_*C clearing bits match the corresponding
+   CSR_*status bits. So, reused the overrun mask for irq clearing.
+v1->v2:
+ * Split the fixes patches from original series [1]
+ * Updated commit message to make it clear that hardware flow control
+   supported on all SoC for patch#1
+ * Added Ack from Conor for patch#1
+ * Added fixes tag for patch#1
 
-> 
-> Best regards
-> Uwe
-> 
+[1] https://lore.kernel.org/all/20251027154615.115759-1-biju.das.jz@bp.renesas.com/
 
+Biju Das (2):
+  dt-bindings: serial: rsci: Drop "uart-has-rtscts: false"
+  serial: sh-sci: Fix deadlock during RSCI FIFO overrun error
+
+ .../devicetree/bindings/serial/renesas,rsci.yaml     |  2 --
+ drivers/tty/serial/sh-sci.c                          | 12 ++++++++++--
+ 2 files changed, 10 insertions(+), 4 deletions(-)
+
+-- 
+2.43.0
 
 
