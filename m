@@ -1,112 +1,161 @@
-Return-Path: <devicetree+bounces-238850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92AFC5E8F7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:27:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 006EBC5E796
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:13:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0AE5F3C16CF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:09:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 549833B9845
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F8D342145;
-	Fri, 14 Nov 2025 17:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44708335BDC;
+	Fri, 14 Nov 2025 17:13:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UKyK6ruW"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="oHHmuatK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CAF2341ACA;
-	Fri, 14 Nov 2025 17:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F67328B60;
+	Fri, 14 Nov 2025 17:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763140032; cv=none; b=fONz6/iRiJ9mfKOYqIPy7fUe1BbyVR1WddJX0wnUyKSdqQWBJ2ANJG6TiGhEIJgp/p0YGEKkJAcVQjibaO065LLu31sC1qjL0RU5FMCLaKRRw9wL0iZ1iuB4sYNEHBYs3E07xXyht9DDECMZeaFvhHi1a1FnJx4Ve6gPkAbHSCU=
+	t=1763140381; cv=none; b=pMgm6C3zlWW4URTevGgGvkLF0tUt1S/nhe4Kntf9hH7aK6XqUkTFZZs2PFnin4wOPH687blZR+O+XGeMoTGIKqt0Xe0nn/+3PZW08K/rleDyFwy+HsXND0rFBfguia63ToKTkdRkEEcMdLiGWg0vzEjj7JdF8MLfW8jLO3vnz7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763140032; c=relaxed/simple;
-	bh=igsruaZJbdtmGdaC7B3AS7+DHvBZvaCaPggr5B93CGA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=H/Tq0AjCw9mWQek2scBK/oecdpwL4FSO9H99mcNE7jUjxWtMEj8DRT03MK51JBk47Sy3WWFxppMWYlQwdAfNQcpd565maUmcdFmjs118KPlw4jOPp/UJRcineniWgvFPU2UQkBJZbQ1abCPW5vHqY5XA7nk7H5Hs+5fmF+64Ks4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UKyK6ruW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FB94C4CEF5;
-	Fri, 14 Nov 2025 17:07:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763140032;
-	bh=igsruaZJbdtmGdaC7B3AS7+DHvBZvaCaPggr5B93CGA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=UKyK6ruWPWv9yGMBCnINyDrnhMy42aw/EMiYMNaQxh6ockNFFts/0YsAYtXJhav1X
-	 D3ZtvvGusUVZl9tWcAHlp32bUnPxx3JZMETxkAsI2F2KgX56YJSKYulbsKi4WcCCN4
-	 OuCHNm8MDkeIMEW4qKgeF5qVafuJ/2FwclXcvQ/6LJ6u1egDzZwzD7P30c4WYtK/+C
-	 aXOXZQ5ViMcgOUlU6xVJum1LQZnocf0xTHZX7w8Gvb2Q6SezhmsgJ6IgPzB6yF1SCK
-	 HyTc6Gw1FiWRkjF7rgPigiWoIuDS8u0dqPK/9YUADf+OjgNagcyOmwoNRAbAZrt3fC
-	 ixeTgM2HVSJWw==
-From: Mark Brown <broonie@kernel.org>
-To: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-riscv@lists.infradead.org, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Conor Dooley <conor.dooley@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>, 
- Cyril Jean <cyril.jean@microchip.com>
-In-Reply-To: <20251114104545.284765-1-prajna.rajendrakumar@microchip.com>
-References: <20251114104545.284765-1-prajna.rajendrakumar@microchip.com>
-Subject: Re: [PATCH v4 0/3] Add support for Microchip CoreSPI Controller
-Message-Id: <176314002988.180192.12322068947585326018.b4-ty@kernel.org>
-Date: Fri, 14 Nov 2025 17:07:09 +0000
+	s=arc-20240116; t=1763140381; c=relaxed/simple;
+	bh=6+t5damWptQvd4mAFUsqidFxcjEtQFVQMl5/CasN7Iw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Wb+FISOlugGeyQ6E0Zib2tmUJ4nkSl63qhpAQukCgSip1XAohNEYdtHMUr/ynnvgxJR49D5gz8TzznMGnXfsHcI02MJn01bbpkkEARkZmyP+tyylFFnudkN/pPPwCYslLcaXr6tgq2gEfIAFV32QiVjhwXAEdCT3Nhj7Z6ZkW4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=oHHmuatK; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+	by mxout4.routing.net (Postfix) with ESMTP id 250D1100387;
+	Fri, 14 Nov 2025 17:12:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=routing; t=1763140370;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zCRjBZyNz8BCs2Fp1Icrt4MQbgBntpN/nGDy1hv7Aqs=;
+	b=oHHmuatKdvbjzw6oIV6h4eEaFhABMPYVxxahaWcYo3BF/Ez64tF/Xi0iQoiHQzdGNJ6ySh
+	Kiab7PBvcmXymQSq3ROG9FP4nVUd9feOFDzsUIFQvEe6X7aahLcpGPOtJnd2feD4l+t8xc
+	mG48oPbRNKzhVITJDdHToxk0B66Pr+0=
+Received: from webmail.hosting.de (unknown [134.0.26.148])
+	by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 2601A40131;
+	Fri, 14 Nov 2025 17:12:49 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Date: Fri, 14 Nov 2025 18:12:49 +0100
+From: "Frank Wunderlich (linux)" <linux@fw-web.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Daniel Golle <daniel@makrotopia.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
+ <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Mason Chang <mason-cw.chang@mediatek.com>, Frank
+ Wunderlich <frank-w@public-files.de>, =?UTF-8?Q?N=C3=ADcolas_F=2E_R=2E?=
+ =?UTF-8?Q?_A=2E_Prado?= <nfraprado@collabora.com>, =?UTF-8?Q?Uwe_Klein?=
+ =?UTF-8?Q?e-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, Balsam CHIHI
+ <bchihi@baylibre.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v1 1/5] dt-bindings: thermal: mediatek: make interrupt
+ only required for current SoCs
+In-Reply-To: <7a8bf2e9-5033-4588-923c-53ad23c12924@collabora.com>
+References: <20251026122143.71100-1-linux@fw-web.de>
+ <20251026122143.71100-2-linux@fw-web.de>
+ <7a8bf2e9-5033-4588-923c-53ad23c12924@collabora.com>
+Message-ID: <e31fcd9e9e5bb6e615eab98f73532dce@fw-web.de>
+X-Sender: linux@fw-web.de
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-88d78
+X-Mail-ID: 55044b9e-28b6-4f7d-8091-aa83c7055f8b
 
-On Fri, 14 Nov 2025 10:45:42 +0000, Prajna Rajendra Kumar wrote:
-> This patch series adds support for the Microchip FPGA CoreSPI "soft" IP
-> and documents its device tree bindings.
+Hi,
+
+i got respoonse from MTK...
+
+Am 2025-10-27 11:43, schrieb AngeloGioacchino Del Regno:
+> Il 26/10/25 13:21, Frank Wunderlich ha scritto:
+>> From: Frank Wunderlich <frank-w@public-files.de>
+>> 
+>> Upcoming MT7987 does not have a IRQ we have to make interrupt-property 
+>> only
+>> required for current supported SoCs.
 > 
-> As preparation, the existing Microchip SPI driver is renamed to clearly
-> indicate that it supports only the Microchip PolarFire SoC "hard" controller.
-> Although it was originally named with the expectation that it might also
-> cover the FPGA CoreSPI "soft" IP, the register layouts differ significantly,
-> so separate drivers are required.
+> Hmm. Thermal sensor IP with no interrupt? Looks really strange.
 > 
-> [...]
+> This is odd, because LVTS always has multiple interrupts, and if this 
+> doesn't
+> actually feature any, it really feels like the hardware is broken 
+> somehow.
+> 
+> MediaTek, can you please confirm whether the LVTS IP in MT7987 is 
+> really
+> like that, or can you please give the right interrupt number to Frank?
+> 
 
-Applied to
+the reason why the interrupt is disabled on MT7988/87 is because the 
+original designer only
+intended for customers to use HW reset, and did not plan for customers 
+to use high/low offset
+interrupts. However, in theory, this function can work.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+see this part of driver-patch (3/5 "Add no-irq-mode for mt7987")
 
-Thanks!
+handling is divided into two cases: one is high/low offset, and the 
+other is HW reset.
 
-[1/3] spi: microchip: rename driver file and internal identifiers
-      commit: 71c814e98696f2cd53e9e6cef7501c2d667d4c5a
-[2/3] spi: dt-binding: document Microchip CoreSPI
-      commit: 8ce9a2ed153bcaa750aa494e91ce2e70c3b0cdc5
-[3/3] spi: add support for microchip "soft" spi controller
-      commit: 059f545832be85d29ac9ccc416a16f647aa78485
+-	writel(0, LVTS_MONINT(lvts_ctrl->base));
+-
++	if (lvts_data->irq_enable) {
++		writel(0, LVTS_MONINT(lvts_ctrl->base));
++	} else {
++		writel(BIT(16), LVTS_PROTCTL(lvts_ctrl->base));
++		writel(lvts_ctrl->hw_reset_raw_temp, LVTS_PROTTC(lvts_ctrl->base));
++	}
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+HW Reset:
+In BL2, we set the thermal_ctl_en (bit 16) of WDT_REQ_MODE (0x1001C030) 
+to 1 so that the WDT
+can receive the HW reset signal from LVTS.
+We also set thermal_ctl_irq (bit 16) of WDT_REQ_IRQ_EN (0x1001C034) to 1 
+so that when the WDT
+receives the LVTS HW reset signal, it will directly reset the IC.
+LVTSMONCTRL, LVTSPROTCTL, and LVTSPROTTC are used to control the HW 
+reset strategy and temperature.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+High/Low Offset:
+Since multiple sensors share the high/low offset settings, the high/low 
+offset temperature will be
+set when we echo the temperature to thermal_zoneX/trip_point_X (call 
+lvts_set_trips function).
+Whenever any sensor's temperature is higher or lower than the high/low 
+offset, it will trigger an
+IRQ (call lvts_irq_handle).
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Currently we are discussing a way to verify this function works in 
+hardware and then we can add
+IRQ for mt7987 (which is same as on mt7988 where i did not know till now 
+that IRQ is not known as
+working - just ported driver + dts and checked temperature output and 
+thermal-trip handling
+regarding to fan). And if it works we could drop patches for 
+no-irq-mode.
 
-Thanks,
-Mark
+> Thanks,
+> Angelo
 
+regards Frank
 
