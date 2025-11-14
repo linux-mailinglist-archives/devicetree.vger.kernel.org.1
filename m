@@ -1,175 +1,127 @@
-Return-Path: <devicetree+bounces-238420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8752C5AF12
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 02:43:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B547BC5AF81
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 03:01:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D80804E0205
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 01:43:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1263E351AF0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 02:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05C725C80D;
-	Fri, 14 Nov 2025 01:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8954126463A;
+	Fri, 14 Nov 2025 02:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XCnC48ba"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NIGAVFUk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFD322580FB;
-	Fri, 14 Nov 2025 01:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A20724E4C4;
+	Fri, 14 Nov 2025 02:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763084625; cv=none; b=RhERLxx2jVNMsiADEJlLh7/Ta9t/WhmDWxxCrqvVr7roI3EsgkhlXpnsDtKeS7UqLFwkPrd5AXP+W80232tOhZ0MVeCIkKLa84riqDVtVdoEnqK+17hZ2iT+TNntZfX99+qJN+kyc6ugpbf4TepyjooV92ilFf8RlMYHW6t3NU4=
+	t=1763085668; cv=none; b=GQUiWRai/tA4vFoklkxT27HgD237PzwWYo/L2JKLv7q/8B2BxxLNuNGBdRqKE9L7rvbmknc1lBjHeFHTyw+5Wgo1+oy2zmbDYkNpm8iQpuFbNYLakdazT144Qeut2fT8FF73oeKKBCPzJ0vgYtWG0p1w065xZEjkYRQe+RLMTOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763084625; c=relaxed/simple;
-	bh=kTfllGDlqhvc1A9BtHfcfoTLx7PQTo5DNtFBvhItSq4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lNeqgX0GlbYrgzBtRBTgUyAzH61SqO+U/MjGqVkO5NynES80j6fO3GwC7cn/os+1F+JBhu59+l8s/ctidLIbl+70GCabDUnOnjVbzSAkIKZotszy+GUZruCaXbqsEkO3/+DGoP79nWygrbY8kYex4UG+8eiLhjYEAqZ5sQgEk+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XCnC48ba; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 663D9C4CEF8;
-	Fri, 14 Nov 2025 01:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763084625;
-	bh=kTfllGDlqhvc1A9BtHfcfoTLx7PQTo5DNtFBvhItSq4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XCnC48bagvhoEeAKRZtrLNml/fJaKq32T/byHu+o48fyeszmCibTBZkCNRdZ7burb
-	 Q9JVt8HeZZxYWEmbGHrmoaK6JzfELIjh99hYP4ppXCJq++TcwUu5PXltO5p7EYXugc
-	 /XNFNDqDiVBHOjd/OMwiFz5yeQXXN2jEHXVzvtXGdJ3PMEeK5Oz48HVQbDZr6Ddci0
-	 aET62+bRgj7z7NuCSXqUdrt9vuH0AxoH4PNj4F1Jsea+gv2dS6MOj2mjEssj3DKFq/
-	 b0vnu3x4ruvkgcqEC1mwfVBRSend+s3QIr8y3IZKwAr6fZU2o7hGEyO07C42i1rs1g
-	 9ym8IyEfa9wpA==
-Date: Fri, 14 Nov 2025 01:43:40 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, andy@kernel.org,
-	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, cosmin.tanislav@analog.com
-Subject: Re: [PATCH v1 1/3] dt-bindings: iio: adc: Add AD4134
-Message-ID: <20251114-unmasking-nerd-d5c147c43bad@spud>
-References: <cover.1762777931.git.marcelo.schmitt@analog.com>
- <608ab00821af9f766c75d88f59940fed87cb6df7.1762777931.git.marcelo.schmitt@analog.com>
- <20251110-unsightly-blah-410539e95a18@spud>
- <aRZUCtYzZCY9IQ5U@debian-BULLSEYE-live-builder-AMD64>
+	s=arc-20240116; t=1763085668; c=relaxed/simple;
+	bh=QsgI7XtwnbFzcmqcpVG5VODRp6ErQhOvk/Hxu5c4ksQ=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=eHr0prNFL0K3bEW5zMdCPNzK4oV93O5CGoTQSByjkmkqWnxwLGV1ZB2YP0I/Ixj8LX+dyB/g23bK3nP5kvZE7A6m/qBiAfKzp+iEvLhOwuOOYTfSuBzZ4Elz/xMnqsCtrBsDrGfCckgY3Ttwj0ndYFF871NAwTAN4jqMaD3IAho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NIGAVFUk; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 2B94340FDC;
+	Fri, 14 Nov 2025 03:00:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1763085657; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=kq+Oc886/LrLDNK1/htEPP+A49jj0wEsAdsPts936pM=;
+	b=NIGAVFUkmzy+jNAIJciKEgw5Ep3TqVeem7Td/7j/6XgIC+oFFnoTVeRPCv7Ylil+cysVHI
+	QceK/Td99BFv9Sbl8spI+HJk6baFEyh0flBqoIWFw03f/kTsFzWEDwLsVrYKFIx/i2V8Qz
+	V/+zfbsGDPE1lhVHoNWXu52nRhH/acAZ/c14/9+gECBnV+FfTOCtSb4ZWYV2qmVW8/XP0A
+	1vEU6xXNlVDrAqdZRIdc2tyzYTTt0dZ7FBw5kzqgdJG/PvibL3xkvLg5tKNvkQJMI0CBx2
+	UnQYz6RvuEKIiavrWwby7nyk1SaLgNnx/ZFQwnrEOqNulKrPv/To7cCL3m2Khw==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <20251111172003.2324525-2-michael.opdenacker@rootcommit.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20251111172003.2324525-1-michael.opdenacker@rootcommit.com> <20251111172003.2324525-2-michael.opdenacker@rootcommit.com>
+Date: Fri, 14 Nov 2025 03:00:54 +0100
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+To: michael.opdenacker@rootcommit.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="NCijVMID48bHqWAR"
-Content-Disposition: inline
-In-Reply-To: <aRZUCtYzZCY9IQ5U@debian-BULLSEYE-live-builder-AMD64>
-
-
---NCijVMID48bHqWAR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Message-ID: <e8235ec5-d857-1a0a-7108-3c2b8a5dbed9@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH 1/2] =?utf-8?q?dt-bindings=3A?==?utf-8?q?_arm=3A?=
+ =?utf-8?q?_rockchip=3A?= Asus Tinkerboard 3 and 3S
+User-Agent: SOGoMail 5.12.3
 Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-On Thu, Nov 13, 2025 at 06:56:26PM -0300, Marcelo Schmitt wrote:
-> On 11/10, Conor Dooley wrote:
-> > On Mon, Nov 10, 2025 at 09:45:18AM -0300, Marcelo Schmitt wrote:
-> >=20
-> > > +  adi,control-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/string
-> > > +    description:
-> > > +      Describes whether the device is wired to an SPI interface or n=
-ot. The
-> >=20
-> > Can you explain how you don't automagically know this from what bus
-> > you're on?
+Hello Michael,
+
+Thanks for this patch!  Please, see some comments below.
+
+On Tuesday, November 11, 2025 18:20 CET, michael.opdenacker@rootcommit.=
+com wrote:
+> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
 >=20
-> No. I mean, I should have realized we can imply SPI control mode from the=
- bus node.
-> That's one fewer dt property :)
+> Document the compatible strings for Asus Tinkerboard 3 [1] and 3S [2]=
+,
+> which are SBCs based on the Rockchip 3566 SoC.
+
+For consistency, this should be s/Tinkerboard/Tinker Board/.
+
+> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
+> and a "mask ROM" DIP switch to the "3" version.
 >=20
-> >=20
-> > > +      PIN/SPI pin on the device must be set accordingly, i.e., PIN/S=
-PI must be
-> > > +      set to logic high for SPI Control Mode, low for Pin Control Mo=
-de. When
-> > > +      absent, implies the SPI interface configuration.
-> > > +    enum: [ spi-control-mode, pin-control-mode ]
-> > > +    default: spi-control-mode
-> > > +
-> > > +  adi,asrc-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/string
-> > > +    description:
-> > > +      Asynchronous Sample Rate Converter (ASRC) operation mode contr=
-ol input.
-> > > +      Describes whether the MODE pin is set to a high level (for mas=
-ter mode
-> > > +      operation) or to a low level (for slave mode operation).
-> >=20
-> > I don't really get this one. If this is an input to the device that
-> > controls behaviour (master v slave) why is an option needed too? Clearly
-> > this is not a gpio but it seems like it could be one, in which case you=
-'d
-> > need some sort of asrc-gpios property. Is it not possible to read the
-> > value of this setting out of the device's registers (maybe it's not when
-> > there's no spi interface connected?)?
-> > It's not used in your driver, so I can't look there easily to see what's
-> > going on.
+> Link: https://tinker-board.asus.com/series/tinker-board-3.html [1]
+> Link: https://tinker-board.asus.com/series/tinker-board-3s.html [2]
+
+These two lines should read like this, to serve as references, with
+an empty line afterwards, of course:
+
+  [1] https://tinker-board.asus.com/series/tinker-board-3.html
+  [2] https://tinker-board.asus.com/series/tinker-board-3s.html
+
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 >=20
-> The MODE pin defines whether the ODR pin will behave as input or output.
-> Currently, there are no plans for supporting ODR as output but, software =
-would
-> need to do different things to control the output data rate in that case.
-> Though, the MODE pin state can indeed be read from a register. Same for D=
-CLK pin
-> I/O direction and DCLK mode. They are also readable from device's registe=
-rs.
-> So, that would be 4 fewer dt props total. Well, yeah, if the device is not
-> connected to an SPI host (pin control mode) then we can't read those. The=
-re are
-> no plans for supporting this device outside an SPI bus, but we would then
-> need these properties (or a separate binding). Not sure what to do here.=
-=20
-> Do I drop or keep adi,asrc-mode?
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Do=
+cumentation/devicetree/bindings/arm/rockchip.yaml
+> index 6aceaa8acbb2..451597a6cffb 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -86,6 +86,17 @@ properties:
+>            - const: asus,rk3288-tinker-s
+>            - const: rockchip,rk3288
+> =20
+> +      - description: Asus Tinker board 3
 
-If you need it when not in spi mode, then keep it. For all of those
-kinds of things, you probably can use the property to set things in spi
-mode and to know they're set that way in !spi mode? In spi mode you
-probably still need to be able to change the asrc mode, right? Or does
-the device not permit being tristate (n/c I guess), and it has to be tied
-low or high, and therefore software must just follow the pin setting?
+This should be s/Tinker board/Tinker Board/, because it's actually
+a proper noun/name.
 
-> The MODE pin is sampled only when the AD4134 is powered on so I don't thi=
-nk we
-> would benefit from having a GPIO connected to that (if we keep a property=
- to
-> describe the MODE pin state).
+> +        items:
+> +          - const: asus,rk3566-tinker-3
+> +          - const: rockchip,rk3566
+> +
+> +      - description: Asus Tinker board 3S
 
-As in, it gets sampled once at power on, not continuously while powered
-on? Technically, you can still do that with gpios, if you have
-controllable supplies. Depends on use case I suppose and could be added
-as an alternative later on if needed, so I wouldn't worry too much about
-it when you're seemingly not even using what you have here in the driver.
+The same as above.
 
-Actually it might be worth actually checking for it in your driver, to
-make sure that it is not being set to high, since you don't currently
-support that?
+> +        items:
+> +          - const: asus,rk3566-tinker-3s
+> +          - const: asus,rk3566-tinker-3
+> +          - const: rockchip,rk3566
+> +
+>        - description: Beelink A1
+>          items:
+>            - const: azw,beelink-a1
 
-I hope all that made sense, prob shouldn't be sending mails at 0145,
-Conor.
-
---NCijVMID48bHqWAR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRaJSwAKCRB4tDGHoIJi
-0pAmAPwImdSG3G8VxyScL/ZMU2cwSIIIdTLJtiQtTF6UlJy8/wD+L81ULtbWBcCx
-4JC9BXn0Tv9U4qGieNNc/Q2oaQJfogQ=
-=YIcG
------END PGP SIGNATURE-----
-
---NCijVMID48bHqWAR--
 
