@@ -1,88 +1,358 @@
-Return-Path: <devicetree+bounces-238882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA51C5ED34
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 19:22:15 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2088AC5EDEF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 19:32:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65D563B0BEF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:21:18 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D47BE3432E3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D01E33FE28;
-	Fri, 14 Nov 2025 18:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA2F342CBF;
+	Fri, 14 Nov 2025 18:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FKxoE2eq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fN56Awec"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A632BEC41;
-	Fri, 14 Nov 2025 18:21:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC3231D723
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 18:25:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763144465; cv=none; b=aeg1dCn8rK9qnBmFyhOTZgwtW0Hu+MIuIeQ0VtxenkQhK/8jrqBmGV3TmvsB7xavf1iuEa6d32kSpJXKcUNRTY7Up8zLZWEl2Xh2K5BYurwfUzFl2NeYVdH8S/yv2S3HlsJsYXyjUl+M6lRgjDI0Cut4GnVqhjuZmesqbS1ARuA=
+	t=1763144703; cv=none; b=l+LXzmvkryiMk3fZCFFtn/DSrvKzKJ1WAlslQj8fj8285C0/B7BPBtnvG5xLh9fTo/e/GLuq3ofH9WkbInBEndXXUqa+ZaAtq55VmGW6D+sI6eRv3YqSjcr98Tk17yOypQk2g/1ZtMN8Uo+1OVQlKDLpHFY+nw/9DvWoEhkjWls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763144465; c=relaxed/simple;
-	bh=YRp85zTU54Nz7K2egt1pgnfG1dsAZ/QmKoB5wQG6HOI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n1taIolkjhTPKAvaXTf+IXCTloE5S/wcW8wSxFxRcdFY/Mh1UaDqvRMNkosgO0rPdqRvmxKwDv/yvMq55qYXlS6jfGotJUQG1Kr7LrVKzSpTnWV8EfAQciDOSOWd0SQ7Odbuf/kQqOcw/5SDpYE0qLfKh6rmpsQwXVBC5IWuon8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FKxoE2eq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43E70C4CEF8;
-	Fri, 14 Nov 2025 18:21:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763144464;
-	bh=YRp85zTU54Nz7K2egt1pgnfG1dsAZ/QmKoB5wQG6HOI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FKxoE2eqg2NWiHZ82wMldaKUayP+2LBdYp1Zhwe0qZ+sBX1Ofex/0rSXqt+/lMcBr
-	 GKHQ/ssW4UF5Z5ZNJkWiKXHsb2tB1j4a4KJok9q/a4DejhvsH3BIUCmK1AcjrMQ8rK
-	 SDeao+jvVkcLOfmRsGZII2G9zW3p0rfkyJNtjbv7NcbxEF+mcW9yVZw8jU++ElU+FF
-	 6FjxMmdrk42HuB5LYyJZPe0jzYy9pa7mC9KgbOPKUuvRhiXVCtAAHEhWhUULJrNZr1
-	 tT03YJVyG/2hw0/HAn1H7ttfa0wtH0j2tRiRQHCpHL9shmf3g4gA3nOuTGphzScB11
-	 K9V64uqJy0xDw==
-Date: Fri, 14 Nov 2025 12:21:02 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-	Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: memory: tegra: Document DBB clock
- for Tegra264
-Message-ID: <176314446160.3849504.15297758784571269397.robh@kernel.org>
-References: <20251105195342.2705855-1-thierry.reding@gmail.com>
- <20251105195342.2705855-2-thierry.reding@gmail.com>
+	s=arc-20240116; t=1763144703; c=relaxed/simple;
+	bh=gJaks/UCvgAlXCLih4Srnc070Lq8z81HWpnI4Tauz7U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LrqJOry74pGFXCqwbWaXabOPyG1AWkynuBzBdVj1D0JZlXKz/ryStE1Hf3oTPQvvgvw9mTubMq95zcJCs1cyLfX735qFci8T45HmQTzD1wC7cfmUh3bYk65mK0qqFhlGhZ6UffLLg/+MWJNI69jf8ceqo7xUfkSKFlj95qa/nAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fN56Awec; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b71397df721so310677566b.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:25:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763144700; x=1763749500; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HOlPxByPVTPCbTo7AMY18VmB1hSsPxJmT9QGb8+o0Aw=;
+        b=fN56AwecxiOpQWDyG2SpPU6VJq0OS5BrFE+pbSK+VTIhDJ8qnTT5lhmA0xcVkYLhIw
+         t1cEghNwjtUqRxeecw7TDXQStmKMtWMuerMNjUW9toiN4MvMZh52rQzMCy5SP5GSFwjn
+         E5OjZVxMbla1cesxr/1BHngx80m2BR7qR8UfxQdWvWaAbSIdTgaGJ2eXLTIk2Z8HobPP
+         n0rll75APNIl7rDMApEY7DgDFzkXsjbZJMkI9OyNTRXEMu0a1P1CRgAVxxUl55Ir2ym+
+         EbS9JDQKbWyDU1vgrIkPprDv9BIU7lGmLtTt/COXmu67PkVk0xZ3vDf7+TKWeLdM1kzP
+         7yXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763144700; x=1763749500;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=HOlPxByPVTPCbTo7AMY18VmB1hSsPxJmT9QGb8+o0Aw=;
+        b=Q5uqJTjZHBv5Zv9K/uu96JPYdVtdgNpcfNQVN35WcrbjSY7IdLeLZD41Ws3JLmuJIp
+         p+/xW4TTiDnbUR41GeRY8s56UvEBt7AOSLGBkPG9aX2yeXStWUL1ibGN3YbT+RZTzj0v
+         CSmO5w3c/mVCDC5I4oSr1WxOLZe6IZRvhNUtGEWqelO44ol2A1P4zAOMrYatQkBqeCIF
+         w9S97PLZ5UlkF0yd5hcq6TD8gbXmGLBhuhQkXuGzqSTy2Io8zvEWeYIU9GE9I+lnLbFt
+         DSJZjrR6BgGH9h22oNJUw7Yt0+gNF3mfeLwUmnPMHKrMHnIeHune54+9XxnDS9aDwsTV
+         1T+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWiGJlpWe479dEejnmlNeg+1m9qBNYVR8GWHv0mkJBWxKBZdOU4j8P0k4rYul+rz2AsfMnE5WAE3CJt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS2wLGabkQZLWmiKdzOmo/b0aXnDZDbS50anwdznVGBvWZ3ITn
+	bAxVsOUbGFVktzNuLjEwUVhJnYItYtXjau3GM19WMHokTL/yoI+sGgOfkZAbhKolHHFfjhQLBPl
+	mcFyJXrrE5bQFiz0p/ieMT65xAiOA2EA=
+X-Gm-Gg: ASbGnctvmknLaTpw9avzS00icZQ1xSgR6AgHF/UXHKT98Vs/ZNdQ8RgFImdc1R0BP7B
+	aXmVWX0tlpynDgX1/Rh6SwmPrtnAi/+j967HeckGrcrKbHR2yMg/Isi8jsZr5F35KalWjkESQxO
+	Z6yXgVH6vFyT6okupfg3otc+j2MbAQFjYhwhYk41NTYYVvv3cpmo6C78sYevpQVRQBnSt5I169f
+	LLJ9KCPm2ybojDALwtTExO1qILqyip2Z9+oTZ/RS7AnfVVPz2gfUXjkd3h0FQ==
+X-Google-Smtp-Source: AGHT+IHooFAx39vbTH14kY2vkzUUNpCSYRss1/mwUR7nsY81OVmVVvb4tRt71ZKJsCxS1Y/sfm0rX/p9bYgSlzoQFyc=
+X-Received: by 2002:a17:907:a4c:b0:b72:d001:7653 with SMTP id
+ a640c23a62f3a-b736780c141mr411429466b.19.1763144699443; Fri, 14 Nov 2025
+ 10:24:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251105195342.2705855-2-thierry.reding@gmail.com>
+References: <20251114092000.4058978-1-o.rempel@pengutronix.de> <20251114092000.4058978-3-o.rempel@pengutronix.de>
+In-Reply-To: <20251114092000.4058978-3-o.rempel@pengutronix.de>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 14 Nov 2025 20:24:23 +0200
+X-Gm-Features: AWmQ_bkzDCK-qXNyHUrYcmb0FM-3ZSN52nNcYrFmhBRlsvWdBHMMQo35fe5RytA
+Message-ID: <CAHp75Vcjv=XerYsunKO7h_e_jBMQuaKvkvRAuPLAXLqevM4jMw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS131M0x ADC driver
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	David Jander <david@protonic.nl>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Nov 14, 2025 at 11:20=E2=80=AFAM Oleksij Rempel <o.rempel@pengutron=
+ix.de> wrote:
+>
+> From: David Jander <david@protonic.nl>
+>
+> Add a new IIO ADC driver for Texas Instruments ADS131M0x devices
+> (ADS131M02/03/04/06/08). These are 24-bit, up to 64 kSPS, simultaneous-
+> sampling delta-sigma ADCs accessed via SPI.
+>
+> Highlights:
+> - Supports 2/3/4/6/8-channel variants with per-channel RAW and SCALE.
+> - Implements device-required full-duplex fixed-frame transfers.
+> - Handles both input and output CRC
+>
+> Note: Despite the almost identical name, this hardware is not
+> compatible with the ADS131E0x series handled by
+> drivers/iio/adc/ti-ads131e08.c.
+
+...
+
+> +config TI_ADS131M02
+> +       tristate "Texas Instruments ADS131M02"
+> +       depends on SPI && COMMON_CLK && REGULATOR
+
+Hmm... The COMMON_CLK looks strange here. Why?
+
+> +       select CRC_ITU_T
+
+Btw, why does it not use regmap?
+
+...
+
+> +#include <linux/array_size.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/clk.h>
+> +#include <linux/crc-itu-t.h>
+> +#include <linux/delay.h>
+> +#include <linux/dev_printk.h>
+
+> +#include <linux/device.h>
+
+Is it used? I haven't found what API or data structure is required from her=
+e.
+
+> +#include <linux/device/devres.h>
+> +#include <linux/err.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/lockdep.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/string.h>
+> +#include <linux/types.h>
+> +#include <linux/unaligned.h>
+
+...
+
+> +#define ADS131M_CMD_RREG_OP            0xa000
+> +#define ADS131M_CMD_WREG_OP            0x6000
+
+These two have bit 13 always set. What is the meaning of that bit?
+
+> +#define ADS131M_CMD_RREG(a, n) \
+> +       (ADS131M_CMD_RREG_OP | \
+> +        FIELD_PREP(ADS131M_CMD_ADDR_MASK, a) | \
+> +        FIELD_PREP(ADS131M_CMD_NUM_MASK, n))
+> +#define ADS131M_CMD_WREG(a, n) \
+> +       (ADS131M_CMD_WREG_OP | \
+> +        FIELD_PREP(ADS131M_CMD_ADDR_MASK, a) | \
+> +        FIELD_PREP(ADS131M_CMD_NUM_MASK, n))
+
+...
+
+> +/**
+> + * ads131m_tx_frame_unlocked - Sends a command frame with Input CRC
+> + * @priv: Device private data structure.
+> + * @command: The 16-bit command to send (e.g., NULL, RREG, RESET).
+> + *
+> + * This function sends a command in Word 0, and its calculated 16-bit
+> + * CRC in Word 1, as required when Input CRC is enabled.
+> + *
+> + * Return: 0 on success, or a negative error code from spi_sync.
+
+spi_sync()
+
+But I would drop it as it makes dependency on the code changes and it
+will deviate easily if code grows and something else becomes a call
+that returns an error, also this simply doesn't scale: are you going
+to list whole bunch of APIs in the kernel doc? (rhetorical Q) Ditto
+for other similar cases.
+
+> + */
+
+...
+
+> +/**
+> + * ads131m_check_status_crc_err - Checks for an Input CRC error.
+> + * @priv: Device private data structure.
+> + *
+> + * Sends a NULL command to fetch the STATUS register and checks the
+> + * CRC_ERR bit. This is used to verify the integrity of the previous
+> + * command (like RREG or WREG).
+> + *
+> + * Return: 0 on success, -EIO if CRC_ERR bit is set.
+
+Note, this kernel-doc line is good as it doesn't rely on the code,
+rather on the HW programming flow.
+
+> + */
+
+...
+
+> +static int ads131m_rmw_reg(struct ads131m_priv *priv, u8 reg, u16 clear,=
+ u16 set)
+> +{
+> +       u16 old_val, new_val;
+> +       int ret;
+> +
+> +       guard(mutex)(&priv->lock);
+> +
+> +       ret =3D ads131m_read_reg_unlocked(priv, reg, &old_val);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       new_val =3D (old_val & ~clear) | set;
+> +       if (new_val =3D=3D old_val)
+> +               return 0;
+> +
+> +       return ads131m_write_reg_unlocked(priv, reg, new_val);
+> +}
+
+...
+
+> +static int ads131m_hw_reset(struct ads131m_priv *priv)
+> +{
+> +       struct device *dev =3D &priv->spi->dev;
+> +       int ret;
+> +
+> +       /* Datasheet: Hold /RESET low for > 2 f_CLKIN cycles. 1us is ampl=
+e. */
+> +       ret =3D gpiod_set_value_cansleep(priv->reset_gpio, 1);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "Failed to assert reset GP=
+IO\n");
 
 
-On Wed, 05 Nov 2025 20:53:40 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Accesses to external memory are routed through the data backbone (DBB)
-> on Tegra264. A separate clock feeds this path and needs to be enabled
-> whenever an IP block makes an access to external memory. The external
-> memory controller driver is the best place to control this clock since
-> it knows how many devices are actively accessing memory.
-> 
-> Document the presence of this clock on Tegra264 only.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v2:
-> - add minItems to clocks and clock-names properties
-> 
->  .../memory-controllers/nvidia,tegra186-mc.yaml      | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
+> +       fsleep(1);
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Hmm... Is it needed? I think the GPIO is slow enough to avoid delays
+like this, but okay.
 
+> +       ret =3D gpiod_set_value_cansleep(priv->reset_gpio, 0);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "Failed to deassert reset =
+GPIO\n");
+> +
+> +       /* Wait t_REGACQ (5us) for registers to be accessible */
+> +       fsleep(ADS131M_RESET_DELAY_US);
+> +
+> +       return 0;
+> +}
+
+Can you use the reset-gpio driver instead of a custom approach?
+
+...
+
+> +       /*
+> +        * Get the optional external reference. This schedules regulator_=
+put()
+> +        * automatically.
+> +        */
+> +       priv->refin_supply =3D devm_regulator_get_optional(dev, "refin");
+> +       ret =3D PTR_ERR_OR_ZERO(priv->refin_supply);
+> +       if (ret =3D=3D -ENODEV)
+> +               priv->refin_supply =3D NULL;
+> +       else if (ret < 0)
+> +               return dev_err_probe(dev, ret, "failed to get refin regul=
+ator\n");
+
+So, will the refin_supply be ever an error pointer? I think no, hence
+why IS_ERR_OR_NULL() in the user somewhere above in the code?
+
+...
+
+> +static int ads131m_parse_clock(struct ads131m_priv *priv, bool *is_xtal)
+> +{
+> +       struct device *dev =3D &priv->spi->dev;
+> +       int ret;
+> +
+> +       priv->clk =3D devm_clk_get_enabled(dev, NULL);
+> +       if (IS_ERR(priv->clk))
+> +               return dev_err_probe(dev, PTR_ERR(priv->clk), "clk get en=
+abled failed\n");
+> +
+> +       ret =3D device_property_match_string(dev, "clock-names", "xtal");
+> +       if (ret =3D=3D 0) {
+> +               if (!priv->config->supports_xtal)
+> +                       return dev_err_probe(dev, -EINVAL,
+> +                                            "'xtal' clock not supported =
+on this device");
+
+> +               *is_xtal =3D true;
+> +
+> +               return 0;
+
+This...
+
+> +       } else if (ret > 0) {
+> +               return dev_err_probe(dev, -EINVAL, "'xtal' must be the on=
+ly or first clock name");
+
+> +       } else if (ret =3D=3D -ENODATA) {
+> +               *is_xtal =3D false;
+> +
+> +               return 0;
+> +       }
+> +
+> +       return dev_err_probe(dev, ret, "failed to read 'clock-names' prop=
+erty");
+
+...and this can be deduplicated, so the first one becomes just a check
+for !supports_xtal.
+
+  if (ret =3D=3D 0) && !supports_xtal)
+    return dev_err_probe(...);
+  else if (ret > 0)
+    return dev_err_probe(...);
+
+This one will be modified to
+
+  else if (ret !=3D -ENODATA)
+    return dev_err_probe(...);
+
+  *is_xtal =3D !ret;
+  return ret;
+
+> +}
+
+...
+
+> +       config =3D spi_get_device_match_data(spi);
+
+> +       if (!config)
+> +               return dev_err_probe(dev, -EINVAL, "No device configurati=
+on data found\n");
+
+Without this code will crash, right? So, I consider this check is
+redundant because any support of any new chip requires this, and if
+one didn't add the driver data, means it wasn't tested (which is a
+good trap on itself during code review).
+
+...
+
+> +       { } /* Fixed sentinel */
+
+No comment needed.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
