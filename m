@@ -1,108 +1,95 @@
-Return-Path: <devicetree+bounces-238813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0141C5E3E1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:32:02 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 130E8C5E43E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:35:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1E0E84F2B35
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:13:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7DDA54E58B9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:15:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF5C284689;
-	Fri, 14 Nov 2025 16:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2225F32D7FC;
+	Fri, 14 Nov 2025 16:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="oVgbwioB";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="BtP+hfQ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD8931B831
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 16:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1C032D7D7;
+	Fri, 14 Nov 2025 16:11:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763136581; cv=none; b=jYHHgzg73HOgF8ipaB0OpVYfbqV9cgdPXkhCzool8cyaevLdnRrbwy51uBK5dpZd/GrymO70GJ1UOcXOyZs0pMiXPxs7j64Y3ewACm7LDAVuc6gfWogF5ilQOV4yOoxGXITpUkE2osgjyMy5xAQDK5I0UMiUvxl/gSj3NCrsxik=
+	t=1763136682; cv=none; b=INM8HypJ8rywWTciPBRxAVqIO5XKYXBKw8P7vh36+WELwk/vT7rTVYkP6dpwfwJrnNz0RcjsJ0grnF9wmu2vGQBmaudJ9BszcINdCopxqjY/JBMr6C2/9cHXuGjcxGN4GrWc58PyRtP+Bde6qWWlkomGKWU+/Cznol5wsPiVFEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763136581; c=relaxed/simple;
-	bh=1SO3Dy7hx4nN2IQu+3GA7xLbMuH69DLF1SBIkM22row=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CP2qS34QoIN9PYGPNLaKJFS8UF+lkQSsIasC+IDPPU3lXED9CFhX4MWvFT6cbCmrum9eY9sT8ySBXYEmuP+hnAvz+dU7h34Xk+YvYE+z49PFrXqL9z5PxEL54qgalsm629QCm9TTJTO272055gM1Myx24uZ8xhgnzb1vsctAh4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vJwMb-0003CT-Dp; Fri, 14 Nov 2025 17:09:29 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vJwMb-000Ron-0N;
-	Fri, 14 Nov 2025 17:09:29 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vJwMb-00000000BWa-08pa;
-	Fri, 14 Nov 2025 17:09:29 +0100
-Message-ID: <e9b580b65add30dfd0be30c73610542dcea1f8cc.camel@pengutronix.de>
-Subject: Re: [PATCH v5 5/6] reset: imx8mp-audiomix: Support i.MX8ULP SIM LPAV
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
-	 <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, Daniel Baluta
-	 <daniel.baluta@nxp.com>, Shengjiu Wang <shengjiu.wang@nxp.com>, Frank Li
-	 <Frank.Li@nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Pengutronix Kernel Team
-	 <kernel@pengutronix.de>
-Date: Fri, 14 Nov 2025 17:09:28 +0100
-In-Reply-To: <20251114133738.1762-6-laurentiumihalcea111@gmail.com>
-References: <20251114133738.1762-1-laurentiumihalcea111@gmail.com>
-	 <20251114133738.1762-6-laurentiumihalcea111@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+deb13u1 
+	s=arc-20240116; t=1763136682; c=relaxed/simple;
+	bh=cwBi9YY74QA8MO6zpFCxovU9lumqdx4z5QlatayZXl0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=el7kBH4oYwhTESKBkp/8OsX+1UxmTjc1g5W3ALkUu+sWQ8UJc2ozbybovFvkJ4/tgGeWSGq4Ul0v+VXiwXHDS3Gg0+UHGLdZfhy6z2MwXYPcHTXz+fwxe0OGqN1Mv72xpnxwARQNlvwaf2mRUIlQ7ymmr32ukDkSwmedKhW/OVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=oVgbwioB; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=BtP+hfQ7; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1763136678;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8spWPzzW+RpkKEZEymL4RDCa/iyttnxIy8IqNQCgQ7A=;
+	b=oVgbwioBD/6TNTKY8meNQAeUQVUHEPhW52odZ12L7J43od1/WiyI3F5/WEWKrbcTp4vrly
+	o1KCg/dBAs88qjZvaBNJpTcl6UYV7dZGzAiAsMg7ZnybYwYfqHgBIrQV+xenXFL1NY/RCj
+	Cb3fvucG1RFLRt/cwaMc3yIZcyOVdYg5zSgdeVKiFju2+xYy4qLAtS+z0HqNpHVOO66mjw
+	cX6cQzJs8aJ9undnJKUmey+phf8ejGdDDogdWF/PFSDZv6bjs69F8if5nna1oMwIfyg8wF
+	RUHtJoQXitzaZ+xUZ2M2ZvJlUnQ0RtNdP09zwDKaXD27Jbk2g3ssQDpWGjLO9Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1763136678;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8spWPzzW+RpkKEZEymL4RDCa/iyttnxIy8IqNQCgQ7A=;
+	b=BtP+hfQ7bH5zpsE6Ty5ce+Wlrw5LK+C1+844V/ZHYhQge3fb/2SzGwHOwp6Bbijhk7VKKr
+	k3V0HP+8QXpQRKDA==
+To: "Rob Herring (Arm)" <robh@kernel.org>, Xianwei Zhao
+ <xianwei.zhao@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ linux-kernel@vger.kernel.org, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Kevin Hilman
+ <khilman@baylibre.com>, devicetree@vger.kernel.org, Heiner Kallweit
+ <hkallweit1@gmail.com>, linux-arm-kernel@lists.infradead.org, Jerome
+ Brunet <jbrunet@baylibre.com>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 5/5] arm64: dts: Add gpio_intc node for Amlogic S7D SoCs
+In-Reply-To: <176313578804.3261993.9727195642647352249.robh@kernel.org>
+References: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
+ <20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com>
+ <176313578804.3261993.9727195642647352249.robh@kernel.org>
+Date: Fri, 14 Nov 2025 17:11:17 +0100
+Message-ID: <87qzu0bnmi.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 
-On Fr, 2025-11-14 at 05:37 -0800, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->=20
-> Support i.MX8ULP's SIM LPAV by adding its reset map definition.
->=20
-> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On Fri, Nov 14 2025 at 09:58, Rob Herring wrote:
+> On Wed, 05 Nov 2025 17:45:36 +0800, Xianwei Zhao wrote:
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com:
+>
+> arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: interrupt-controller@4080 (amlogic,s7d-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+> 	'amlogic,meson-gpio-intc' was expected
+> 	'amlogic,s7d-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+> 	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
+> arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc']
 
-> ---
->  drivers/reset/reset-imx8mp-audiomix.c | 45 +++++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
->=20
-> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-=
-imx8mp-audiomix.c
-> index d3396f37d1ff..83fc8bcf80ab 100644
-> --- a/drivers/reset/reset-imx8mp-audiomix.c
-> +++ b/drivers/reset/reset-imx8mp-audiomix.c
-> @@ -3,6 +3,7 @@
->   * Copyright 2024 NXP
->   */
-> =20
-> +#include <dt-bindings/reset/fsl,imx8ulp-sim-lpav.h>
+The first patch in this series clearly adds the "missing"
+bindings.
 
-This now depends on 3b521bf8c512 ("dt-bindings: clock: document 8ULP's
-SIM LPAV").
-
-regards
-Philipp
+Confused....
 
