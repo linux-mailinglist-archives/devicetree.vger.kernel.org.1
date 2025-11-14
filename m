@@ -1,90 +1,209 @@
-Return-Path: <devicetree+bounces-238638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6213C5CD85
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:25:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C48BC5CE15
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:35:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 754674F14A4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:19:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EE8C74F05FD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E1CE313530;
-	Fri, 14 Nov 2025 11:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0345D3148DF;
+	Fri, 14 Nov 2025 11:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="b8JITQcs"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="dvsyzarz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419502FB0A0;
-	Fri, 14 Nov 2025 11:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4354829992B
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:28:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763119142; cv=none; b=pnKZVFXx4wftVJyU7PMarGan3LqhU5z5l8ffqzjyV5TO1DVWRTgO1yIlqMWYw3+I7a18PiV8h2j8+oJ5MkrkpHYmQ00U5FaUJJm5Rre374mdYaEn1eRDcv3ZNR4AStGLXDLfduO5bHUi13WfvFQkyVC/DwKj1Nx+xPnCmHWSh2E=
+	t=1763119709; cv=none; b=kGup1+OzTtWy/i7zdVQU7+kcJ94IXO3ZY+AhDttXwfQQ3sWOYKzSUaexKprmLZsDMTdzXJRYx3D+7dk6yYKxuMG8WhPN7qz0LahtSahLq0c9W0CqdtEhMWMOw5D4E5BOf86mwy87Cy9x+gmSQozASHsgKM14MUmVpFZGPzQDNM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763119142; c=relaxed/simple;
-	bh=z6ucqdb/0st4NAumZ4Bw1GemAW/J5iVOQBoH6CJ5vm0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EHOtx9q6hvmf/0gYnsM3wuL3y7FXS71dy4DvuZcnFqGvzRHvQRzdnQfk1ofJttKaEAb5+ERIFB2byN0jpOOXQEFYQw5v8948zBuAJwjLhdPJyCZ4Y5nP3rNK3aKM+NggoXf0R+mf7NUMbZn9yhWKOKW+Kirhf1QTDcQbU6kTWEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=b8JITQcs; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=z6ucqdb/0st4NAumZ4Bw1GemAW/J5iVOQBoH6CJ5vm0=; b=b8JITQcs5h8uu12DVMMbHGo5/2
-	iaSj7J2xvpXFExT2UxyuuCyNqm563s3uaM12qiASLQyhDt30y6aWAcOYQ9wfJVWcswZYUjLUyVX/w
-	0W8RzXSFGcnKUFamVrOeaRsWMi+B32eYK6HXddUU3LTM/IeVBu03q5mQvQvvLSts/57Z3/cTKiA7M
-	6VIwjWkCfFpvOeIH/T9briF4qGSQ41ZRtXAtMHVM50fDJ3UoieVRCXgCB3C0gHnQ/UyEx7jkIKEtM
-	bDkIbGKVaQH/imazPtm2/vT0FrwRLj7lNsy4Stc9uSpa7wfGKXpZwdrPt3OO1AAB1/kulFx7b3WCH
-	IIYRztcw==;
-Date: Fri, 14 Nov 2025 12:15:09 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Matti Vaittinen <matti.vaittinen@linux.dev>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, Pavel
- Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Alexandre
- Belloni <alexandre.belloni@bootlin.com>, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v4 14/16] power: supply: bd71828: Support wider register
- addresses
-Message-ID: <20251114121509.629d171b@kemnade.info>
-In-Reply-To: <6248200397d3582fe926938736da66d6bbf9535d.1763022807.git.mazziesaccount@gmail.com>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
-	<6248200397d3582fe926938736da66d6bbf9535d.1763022807.git.mazziesaccount@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1763119709; c=relaxed/simple;
+	bh=/8v081eYKCKOZDNGWsjdgufXOvmbM2u274lti91nqBc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Sd41CwSWUBIZX+qC5fMld7Xo7PinaheT6HgLKvzSyv0h9auxIEZ8oaFiaeMb8p1EMDwzfBLFFDXfsW0jgay5zIBc4ozphxoI6vmJ24PX4Z4zeI++dAknz2ZPnQU4NfTruSitH6gahDzEb2xqdpfGQgSEfjg2Z3x4u9+4cfQzXTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=dvsyzarz; arc=none smtp.client-ip=209.85.208.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-64175dfc338so3503928a12.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 03:28:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1763119705; x=1763724505; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UZrsM3gSytE92YEMxHDpdQzx1aWK1/po5BBG7X3Ts/g=;
+        b=dvsyzarz4P5kz1ZjS8n7TxqzrBXeNLsw451q9Crli7VGi0oDDm7yivogQynzJfq3fQ
+         8zhyjCQfGN9j9hGrh6DbjrMZm3KL4upy0Y548mFLUiDI+O4vreCK8ZrOmT5Obsnhajkr
+         K6ylfBgZowe8N7B/Ituv6LbWZnlJ3UwtrpDy07voMFXITy6iIh/g/Pol0EHg+r35iz7G
+         jyVaCYdiZKYEJpUeBcSkIJQTXNKtl3QY4RvjAZ1rpz/Fo3tqUrXMRnr5YCJuuK+3xMp8
+         tZdGJ07K7kiZ73Qvme6gXgmwLE9dX8ImE70w1wW4yDtHV5OEi5ChQFn+Onj/GCppRLYd
+         EmPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763119705; x=1763724505;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UZrsM3gSytE92YEMxHDpdQzx1aWK1/po5BBG7X3Ts/g=;
+        b=lOfOpFZWMOwU9vagG7y22ulSzN4qF6Es/vxlAXbj+yUnGXUCzC/79mlMMn7nxJ6MrM
+         +MLE73m309AnKn/nfJJqWFuO+4rzB+HPJS3UJp+sifKmXbN4vx/f1j9EUu5q8TBAO64r
+         NsoCI/aWh2/7sngFUETpsR9zuMW3Yg/rS3QLcRdSOAapeRTW5yUwHKi4rnGgL59pO8nk
+         OVKT8YZTgicE+PvKwISnd8OhZOXVf624PbcD+uTKrFuWDhfih4NE9mim1JiQiKyIdA6n
+         VCch/moAtPAHViGQrM7KotAa4IAVl6CEs07rmf7nKf2U4cTB+8JVsm00UCHiOCTHTkdn
+         LzZw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxXDyFUfhCeI//FzEViLrKnrxKYtYSB+aBs78FWjrfCJqz0dnhlUun0pRt1/2wT+cg+fP9xo3Yj6TL@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywqt0T8TucgKcot1Q4z3Kx9YRpmgPsAVM3y2TjJMyiwr3TAhIw1
+	bA5+N675xo3Ho3EoyF5UFnJZXSaCExWH/FCbJBgtoDJOzs5Kv+BJeBEOXFNbAF7q3p0=
+X-Gm-Gg: ASbGnctK9yjxqaNTCVvY3obmcvJW5DsB6AfkQzxj3Wb+eSvcE+5ai8pYnD5SfFVUTe3
+	LNqD6Np3eiBj4bWE8M5Im5Am5ReAVglW7h7mLopX4oerdXk9W3jOox++l7GBEu+UFQm9xuBC6FE
+	P3kHwXJScoWKt6X6RxdNTieAxBVZobKVxuJN1+CdIPnYDKfA6f8NDgSI1B0PgduDpzwKW9dw00K
+	BJe834FPDCpWBWPTJymQbvVbYuRi72LR1K5SYDvc+R3jwDFURLa9bhP2Xqa7JvPw74Z5srBBt7Y
+	q4msg5Xzr09jQ8oWzwyZ2d//yrg3Jz+ZQuSxh2jmZ5NP4PoUkvOBV5MIWsGc37T+E12GJ+tzioW
+	Y5eGCE/OT5EpA8+75AWA8rxjkccBbWysnEuVFGjiADuNzvj2F6eSzR2C3g6kP86NtrCSNOmMbvU
+	suP4/KeOOayqYc2eO4z5tJ5THuTx/YUNcFmr4NFEfwL+su4ATfYvXONvRsw55iIW7mpZw87WDl7
+	yr4/Ck7nifh5eShofROxKSUOkWP+wAGGg==
+X-Google-Smtp-Source: AGHT+IHkMtKAsDivftMze7owOgMWMjSMGYTEya3fZ0IaGCwoODR/zJDYr0nmHilXmU636PkOl4jIQg==
+X-Received: by 2002:a17:907:3d87:b0:b72:9961:dc04 with SMTP id a640c23a62f3a-b736792fdeamr279925866b.28.1763119704520;
+        Fri, 14 Nov 2025 03:28:24 -0800 (PST)
+Received: from [192.168.101.179] (2001-1c04-0509-ec01-156d-fa6e-7f19-0b67.cable.dynamic.v6.ziggo.nl. [2001:1c04:509:ec01:156d:fa6e:7f19:b67])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fedb91bsm366887766b.70.2025.11.14.03.28.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 03:28:24 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v2 0/3] Add CAMSS support for SM6350
+Date: Fri, 14 Nov 2025 12:15:23 +0100
+Message-Id: <20251114-sm6350-camss-v2-0-d1ff67da33b6@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEsPF2kC/22OQQ6DIBBFr2JmXRoEJbWr3qNxgTBUFoAFamyMd
+ y/VLrt8k7z3Z4WE0WKCa7VCxNkmG3wBdqpAjdI/kFhdGBhlbU1ZQ5ITvKVESZcS6VRDm8F0ymg
+ NRZkiGrvsuXt/cMTnq1TzcYRBJiQqOGfztfK4ZPIrc/gKo005xPf+zlzvxv/luSaUCK4FE4Jfp
+ NY3I22cxuDxXPLQb9v2Af6l9PHdAAAA
+X-Change-ID: 20251024-sm6350-camss-9c404bf9cfdd
+To: Bryan O'Donoghue <bod@kernel.org>, Robert Foss <rfoss@kernel.org>, 
+ Todor Tomov <todor.too@gmail.com>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763119703; l=4454;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=/8v081eYKCKOZDNGWsjdgufXOvmbM2u274lti91nqBc=;
+ b=rGV1bCqA0QoOB4J2pHzjAWoClMZOmodaUbYXbxr2puh0l23HeNXM95pNlZAx+5vRtUHaEAD6g
+ njOXGF3IURTBg0DuXp8g+iOA48x7S5Fvq8ANuLgKbtGDM58CEwaSHjW
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-On Thu, 13 Nov 2025 10:55:39 +0200
-Matti Vaittinen <matti.vaittinen@linux.dev> wrote:
+Add bindings, driver and dts to support the Camera Subsystem on the
+SM6350 SoC.
 
-> As a side note, we can reduce the "wasted space / member / instance" from
-> 3 bytes to 1 byte, by using u16 instead of the unsigned int if needed. I
-> rather use unsigned int to be initially prepared for devices with 32 bit
-> registers if there is no need to count bytes.
+These patches were tested on a Fairphone 4 smartphone with WIP sensor
+drivers (Sony IMX576 and IMX582), the camera pipeline works properly as
+far as I can tell.
 
-Well, this is totally internal to the module, so no ABI/API changes, so
-there is no advantage of using 32bit now I think. We can switch any time.
-But we have 32bit stuff in the regmap cache anyways, so that is not above
-the general level of wasting space.
+Though when stopping the camera stream, the following clock warning
+appears in dmesg. But it does not interfere with any functionality,
+starting and stopping the stream works and debugcc is showing 426.4 MHz
+while the clock is on, and 'off' while it's off.
 
-Regards,
-Andreas
+Any suggestion how to fix this, is appreciated.
+
+[ 5738.590980] ------------[ cut here ]------------
+[ 5738.591009] gcc_camera_axi_clk status stuck at 'on'
+[ 5738.591049] WARNING: CPU: 0 PID: 6918 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x170/0x190
+[ 5738.591081] Modules linked in:
+[ 5738.591099] CPU: 0 UID: 10000 PID: 6918 Comm: plasma-camera Tainted: G        W           6.17.0-00057-ge6b67db49622 #71 NONE 
+[ 5738.591118] Tainted: [W]=WARN
+[ 5738.591126] Hardware name: Fairphone 4 (DT)
+[ 5738.591136] pstate: 604000c5 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[ 5738.591150] pc : clk_branch_toggle+0x170/0x190
+[ 5738.591164] lr : clk_branch_toggle+0x170/0x190
+[ 5738.591177] sp : ffff800086ed3980
+[ 5738.591184] x29: ffff800086ed3990 x28: 0000000000000001 x27: ffff800086ed3cd8
+[ 5738.591208] x26: 0000000000000000 x25: ffffda14fcfbd250 x24: 0000000000000000
+[ 5738.591230] x23: 0000000000000000 x22: ffffda14fc38bce0 x21: 0000000000000000
+[ 5738.591252] x20: ffffda14fd33e618 x19: 0000000000000000 x18: 00000000000064c8
+[ 5738.591274] x17: 0000000000000000 x16: 00001ae003667e9e x15: ffffda14fd2a07b0
+[ 5738.591295] x14: 0000000000000000 x13: 6f27207461206b63 x12: 7574732073757461
+[ 5738.591317] x11: 0000000000000058 x10: 0000000000000018 x9 : ffffda14fd2a0838
+[ 5738.591338] x8 : 0000000000057fa8 x7 : 0000000000000a16 x6 : ffffda14fd2f8838
+[ 5738.591360] x5 : ffff0001f6f59788 x4 : 0000000000000a15 x3 : ffff25ecf9d7e000
+[ 5738.591381] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff0000baf5c100
+[ 5738.591403] Call trace:
+[ 5738.591412]  clk_branch_toggle+0x170/0x190 (P)
+[ 5738.591429]  clk_branch2_disable+0x1c/0x30
+[ 5738.591445]  clk_core_disable+0x5c/0xb4
+[ 5738.591462]  clk_disable+0x38/0x60
+[ 5738.591478]  camss_disable_clocks+0x44/0x78
+[ 5738.591496]  vfe_put+0x7c/0xc0
+[ 5738.591512]  vfe_set_power+0x40/0x50
+[ 5738.591528]  pipeline_pm_power_one+0x14c/0x150
+[ 5738.591546]  pipeline_pm_power+0x74/0xf4
+[ 5738.591561]  v4l2_pipeline_pm_use+0x54/0x9c
+[ 5738.591577]  v4l2_pipeline_pm_put+0x14/0x40
+[ 5738.591592]  video_unprepare_streaming+0x18/0x24
+[ 5738.591608]  __vb2_queue_cancel+0x4c/0x314
+[ 5738.591626]  vb2_core_streamoff+0x24/0xc8
+[ 5738.591643]  vb2_ioctl_streamoff+0x58/0x98
+[ 5738.591657]  v4l_streamoff+0x24/0x30
+[ 5738.591672]  __video_do_ioctl+0x430/0x4a8
+[ 5738.591689]  video_usercopy+0x2ac/0x680
+[ 5738.591705]  video_ioctl2+0x18/0x40
+[ 5738.591720]  v4l2_ioctl+0x40/0x60
+[ 5738.591734]  __arm64_sys_ioctl+0x90/0xf0
+[ 5738.591750]  invoke_syscall.constprop.0+0x40/0xf0
+[ 5738.591769]  el0_svc_common.constprop.0+0x38/0xd8
+[ 5738.591785]  do_el0_svc+0x1c/0x28
+[ 5738.591801]  el0_svc+0x34/0xe8
+[ 5738.591820]  el0t_64_sync_handler+0xa0/0xe4
+[ 5738.591838]  el0t_64_sync+0x198/0x19c
+[ 5738.591854] ---[ end trace 0000000000000000 ]---
+
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v2:
+- Remove prefix from interconnect-names
+- Move 'top' power-domain to the top of list
+- Update regulator supply names
+- Link to v1: https://lore.kernel.org/r/20251024-sm6350-camss-v1-0-63d626638add@fairphone.com
+
+---
+Luca Weiss (3):
+      dt-bindings: media: camss: Add qcom,sm6350-camss
+      media: qcom: camss: Add SM6350 support
+      arm64: dts: qcom: sm6350: Add CAMSS node
+
+ .../bindings/media/qcom,sm6350-camss.yaml          | 349 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 165 ++++++++++
+ .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 125 ++++++++
+ drivers/media/platform/qcom/camss/camss-vfe.c      |   2 +
+ drivers/media/platform/qcom/camss/camss.c          | 249 +++++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 6 files changed, 891 insertions(+)
+---
+base-commit: a92c761bcac3d5042559107fa7679470727a4bcb
+change-id: 20251024-sm6350-camss-9c404bf9cfdd
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
