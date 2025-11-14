@@ -1,107 +1,135 @@
-Return-Path: <devicetree+bounces-238459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331B9C5B7AF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:13:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39335C5B79A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:08:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D3E99354F70
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 06:13:25 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F2D12358E70
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 06:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4270D2E3B03;
-	Fri, 14 Nov 2025 06:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3595F2DECBA;
+	Fri, 14 Nov 2025 06:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=erdfelt.com header.i=@erdfelt.com header.b="Er6siCs6"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CjV1nJ3F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out.bound.email (out.bound.email [141.193.244.10])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E96D2E336E;
-	Fri, 14 Nov 2025 06:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.193.244.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83CF52DC791
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763100801; cv=none; b=rE+W76GfTJ26TJfLG2I5Kn7pCoz5U3qZNPaYvAwUaLWf7jWRZEdKo1OW8QLZ9NyRTE6fzLVa7+wPhTqBrGtHo5vh/jvdKKheB/53rPAMX7Vd8VNRZHevDP9av8WBz7Nrle6VycPqsgrYxJzZ73aB2WeLJa81ZNwd+vDMYvCnlXc=
+	t=1763100324; cv=none; b=EPbcOOhL5M4pac+F3E1E7phz9Rzw6GxwpwTAi5qBjW44Yl4VHdhOEG9LWBry3HGAxMDUgxX/cz+dNDoYUBMbtkTwjtbKSF0bSWtjZuRZu38sJJuIlFUJFLkQp+X5ImqSDa/VqLtc3CegUdwwAMhyaKzeHPH4+lfnAutWyRlUJ8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763100801; c=relaxed/simple;
-	bh=vxgjB0dE+LltGUhpGtE0g2G6K8pcfjlEs5MgaLfwdRc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e7W74wg70PL4RCY34dX5ZIa+dp2e39ATohGa7vXA8nxCBXL+I5vKM/gs1DHQFlKMODqvO9Z6hOG6Rg8MiZUMdY17f+T1uPWnO/LH9uZ5oDevs9TWz7rOGBS2qAFj5jGPPRJq+VgnP/3sqxmVYHGvJSOvhbHznFPrw40ZjHh6DFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=erdfelt.com; spf=pass smtp.mailfrom=erdfelt.com; dkim=pass (1024-bit key) header.d=erdfelt.com header.i=@erdfelt.com header.b=Er6siCs6; arc=none smtp.client-ip=141.193.244.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=erdfelt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=erdfelt.com
-Received: from mail.sventech.com (localhost [127.0.0.1])
-	by out.bound.email (Postfix) with ESMTP id 084388A3183;
-	Thu, 13 Nov 2025 22:05:06 -0800 (PST)
-Received: by mail.sventech.com (Postfix, from userid 1000)
-	id E36AA16002A7; Thu, 13 Nov 2025 22:05:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdfelt.com;
-	s=default; t=1763100305;
-	bh=FLPhWREcGas7h61JNtnMUud1rXfGhd1AOpj3u+wNcjI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Er6siCs663+JDJeYDjYQqeIxP4BezsNSAdtqW3SXX+XS+mYUu0M2tFcgoJt0rYJDc
-	 XJag0ix53jzhR/ca26+GsG/BAPOMmZVAitu576jDVQ8zQhgq6FJVlvTBQ5TqUQaA8F
-	 YbwEgKZBOI0p7eBXFFYNbgx2iyiaDwqpvJ6oLcx0=
-Date: Thu, 13 Nov 2025 22:05:05 -0800
-From: Johannes Erdfelt <johannes@erdfelt.com>
-To: Alex Elder <elder@riscstar.com>
-Cc: dlan@gentoo.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, ziyao@disroot.org, aurelien@aurel32.net,
-	mayank.rana@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
-	shradha.t@samsung.com, inochiama@gmail.com, pjw@kernel.org,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	p.zabel@pengutronix.de, christian.bruel@foss.st.com,
-	thippeswamy.havalige@amd.com, krishna.chundru@oss.qualcomm.com,
-	guodong@riscstar.com, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/7] Introduce SpacemiT K1 PCIe phy and host controller
-Message-ID: <20251114060505.GA25077@sventech.com>
-References: <20251113214540.2623070-1-elder@riscstar.com>
+	s=arc-20240116; t=1763100324; c=relaxed/simple;
+	bh=5XM25Irfgey62gfRcMMyLesa52TU3QMHcB3U1Zbx0Bs=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=hWjakGvtrRwfrmevy0cxeOkQNpY34Vnq6gtJXJ50FOyXLQ22dxMDSjUBERm1s2SO4oVxha0/EwY0OVaCQz5I6Ij1SdUMTUH6e+9gKJbRD8si4zh4HgiFk1J+0sHXb/7AphWm3u6u5UX2evthrfN3JEgUakareZt+cLj0wFvv3oE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CjV1nJ3F; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20251114060519epoutp0471e76b2752cd65c984b71b3c3a0b4fe8~3ymYuhx2p0793907939epoutp04G
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:05:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20251114060519epoutp0471e76b2752cd65c984b71b3c3a0b4fe8~3ymYuhx2p0793907939epoutp04G
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1763100319;
+	bh=foyN9VFEd5R0A8quCBtbbHsWARJaVaEQr2kOKG08j/I=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=CjV1nJ3FIGUg8MzxNHtK0U+0NJc7tqDwC6fcOtCraMcS8TqxLP9x/B9gECCEMHfIT
+	 kDLQDleS0q0N6+tBA8DP0zCPzIjJAySG5j/CO/NGX20WNtC7IbI2i5we4NMc6LlgRU
+	 UVqVQxil0YkcZ6HAfH7El0s5urIwPJf9QsBimLNU=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPS id
+	20251114060518epcas2p4c8439432d520565644955a31d6c77fc0~3ymYALs0M1660016600epcas2p4J;
+	Fri, 14 Nov 2025 06:05:18 +0000 (GMT)
+Received: from epcas2p2.samsung.com (unknown [182.195.38.200]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4d767L0cpTz3hhT7; Fri, 14 Nov
+	2025 06:05:18 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20251114060517epcas2p354291681ebb7d2922c09960e33aa7de5~3ymWmajVk1718617186epcas2p3Y;
+	Fri, 14 Nov 2025 06:05:17 +0000 (GMT)
+Received: from KORCO118486 (unknown [12.80.208.104]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20251114060516epsmtip2b0a9c0c558ff57d67c33a178db682ec7~3ymWfEl6q0508905089epsmtip2c;
+	Fri, 14 Nov 2025 06:05:16 +0000 (GMT)
+From: "Sanghoon Bae" <sh86.bae@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
+	<conor+dt@kernel.org>, <vkoul@kernel.org>, <alim.akhtar@samsung.com>,
+	<kishon@kernel.org>, <m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
+	<shradha.t@samsung.com>
+Cc: <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-phy@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <649f8e90-d99b-401a-bb0f-ef0cf9c4fe7f@kernel.org>
+Subject: RE: [PATCH 2/4] dt-bindings: phy: Add PCIe PHY support for
+ ExynosAutov920 SoC
+Date: Fri, 14 Nov 2025 15:05:16 +0900
+Message-ID: <000601dc552c$a63e6060$f2bb2120$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251113214540.2623070-1-elder@riscstar.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQISOccZb2Ez4IvEWuwZme1oXG7+3gIkR40QAdlJHE0CkODhjLRRbuBw
+Content-Language: ko
+X-CMS-MailID: 20251114060517epcas2p354291681ebb7d2922c09960e33aa7de5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250926074017epcas2p18fb2fc616b92dc04ad9e018151c2ba29
+References: <20250926073921.1000866-1-sh86.bae@samsung.com>
+	<CGME20250926074017epcas2p18fb2fc616b92dc04ad9e018151c2ba29@epcas2p1.samsung.com>
+	<20250926073921.1000866-3-sh86.bae@samsung.com>
+	<649f8e90-d99b-401a-bb0f-ef0cf9c4fe7f@kernel.org>
 
-On Thu, Nov 13, 2025, Alex Elder <elder@riscstar.com> wrote:
-> This series introduces a PHY driver and a PCIe driver to support PCIe
-> on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
-> Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
-> PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
-> one PCIe lane, and the other two ports each have two lanes.  All PCIe
-> ports operate at 5 GT/second.
+> > Since the Exynosautov920 SoC uses the Samsung PCIe PHY, add support
+> > for it in the Exynosautov920 PCIe PHY bindings.
+> >
+> > The Exynosautov920 SoC includes two PHY instances: one for a 4-lane
+> > PHY and another for a 2-lane PHY. Each PHY can be used by separate
+> > controllers through the bifurcation option. Therefore, from 2 up to 4
+> > PCIe controllers can be supported and connected with this PHY driver.
 > 
-> The PCIe PHYs must be configured using a value that can only be
-> determined using the combo PHY, operating in PCIe mode.  To allow
-> that PHY to be used for USB, the needed calibration step is performed
-> by the PHY driver automatically at probe time.  Once this step is done,
-> the PHY can be used for either PCIe or USB.
 > 
-> The driver supports 256 MSIs, and initially does not support PCI INTx
-> interrupts.  The hardware does not support MSI-X.
+> Describe hardware, not driver.
+I will describe about the Exynosautov920 SoC PCIe hardware.
+
+> > PCIe lane number is used to distinguish each PHY instance.
+> > This is required since two PHY instances on ExynosAutov920 is not
+> > identical.
+> > On PHY driver code, need to check each instance and different settings.
 > 
-> Version 6 of this series addresses a few comments from Christophe
-> Jaillet, and improves a workaround that disables ASPM L1.  The two
-> people who had reported errors on earlier versions of this code have
-> confirmed their NVMe devices now work when configured with the default
-> RISC-V kernel configuration.
+> 
+> Describe hardware, not driver.
+I will describe about the Exynosautov920 SoC PCIe hardware.
 
-I've tested this latest patchset on my Orange Pi RV2 board. This
-patchset now works with the Intel 600p NVME SSD I had previously had
-troublw with. Thanks!
+> > @@ -19,6 +19,7 @@ properties:
+> >        - samsung,exynos5433-pcie-phy
+> >        - tesla,fsd-pcie-phy0
+> >        - tesla,fsd-pcie-phy1
+> > +      - samsung,exynosautov920-pcie-phy
+> 
+> Messed order.
+Will fix the order
 
-Tested-by: Johannes Erdfelt <johannes@erdfelt.com>
-
-JE
+> > @@ -42,6 +47,7 @@ allOf:
+> >              enum:
+> >                - tesla,fsd-pcie-phy0
+> >                - tesla,fsd-pcie-phy1
+> > +              - samsung,exynosautov920-pcie-phy
+> 
+> Messed order.
+Will fix the order
 
 
