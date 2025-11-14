@@ -1,210 +1,517 @@
-Return-Path: <devicetree+bounces-238679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D722C5D25D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:40:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 093AEC5D284
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:44:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 994CA34F003
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:33:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 205564E17B2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 699BE1B424F;
-	Fri, 14 Nov 2025 12:33:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D9F1D0DEE;
+	Fri, 14 Nov 2025 12:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="qo4Gp26N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jA05jM76"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013001.outbound.protection.outlook.com [40.107.201.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB947BA3D;
-	Fri, 14 Nov 2025 12:33:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.1
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763123622; cv=fail; b=GCAUHujWHs0ijz9j19Od8lq0T8XvLB4+L10s+wd/f5hOIqaITyAZdZOH2RImfnTkYOWU6yf506/l7Wapbzq1BMFTetaZWj1pHgXj4eXY0wcu9/zSU+FyzFhDwUWI492QedxmtfoyZUaQ+jXAmC2lHqr45diN40PL+HhOQfpDM+I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763123622; c=relaxed/simple;
-	bh=x72BhkKpekBN8PqMX1AbvY9iQte2tID2ZPgqkvxwzhM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=l3998nX73rBH0VjgA1UO0la+j/0ufMQ8PtdlxlxxW6dMZix+Ntk1jGwb1HihVDmc85Os2Jt4kITM+zr7gNwp4anB/UX08nYKw7bkxCFe+uDDRhYmH4xI+vuR5JBwu6rY30e1gUiRR8aptiLrgKCpuhSpQJrQ5OPx54VFVxGdQV8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=qo4Gp26N; arc=fail smtp.client-ip=40.107.201.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BzmY+d1yoSRwl5EVR/LMc2r8LN21KU29YVWABo1b13EuEKh2BgCzSyTan0QSyb9lTJYWk18Jq3i31yHA64/aGn8Cx4odZXWh2gcaeSgsOzhD+8cZajuQJkGAH9YdAg/kZmlbpGCeq2FIVgi1VoJAw5ld5zF0R2nh3QhoVrXmKnAzpQ2lk0+FglF/z2n2NoAB8Zezkywyy8aHS91jGSqDve8slmrRkAGMXkcVLTM4Di5ndnk1QOwWTldd+qe6SvmrLb+T91b8ptoeMBtdmmkKoxf7c9cVQp30SwS7Z9SJZXr2JQldi1jT6MPSkZQpnpUNo2lRY+L4j1HeM3VscRTXQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dGI0iYJMHbdKodYuc+InefI9A2Chk672D/5+dPTUj3w=;
- b=gvnRw/v+etTiXO91wSVKeokHHXA8AS8k3oCV4AoM3PcQhIjBfjHshO8jsPGDSS57IN/jjrepzoHW9YQz3HgCExPJeOwRmMcgGo/LIYM+adAJ2eTRSoiM/iBJr20TkjG6yu7EJb8nGx7RvfREcfu4sXDKyG8CTafRlj1riXhexkaiuI6XQUr+yIVXjVED/iAO2ktwru9RTkxcTFxwYvmtwN7xe661JEqGmMvy2fhGWeEeHaGDfa5/vr3H8B6cLUvOhV0DKkqblvGXhBwWgEWtzufTssWFl1kEeuH1XgIDy650+XvywsM5oq+GgocWYTO8X5mA+orsclNY2GnILHKuow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dGI0iYJMHbdKodYuc+InefI9A2Chk672D/5+dPTUj3w=;
- b=qo4Gp26Nrjep008Ji8H3vfKCmzSWCvcHveTOxPdnhfB8GURMm8GoL1vo79u0K5afx1a0yS39fdEpJSWIkQCPeTAxqos1HS39Ev7659a3fMfiomhZiE0exEkq9PU9aU50B3FrPAUhzFef4WIU5C9mnA1a7P/ggNUb3H271RaE01o=
-Received: from SJ0PR05CA0084.namprd05.prod.outlook.com (2603:10b6:a03:332::29)
- by DS0PR12MB9039.namprd12.prod.outlook.com (2603:10b6:8:de::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.18; Fri, 14 Nov
- 2025 12:33:34 +0000
-Received: from SJ1PEPF000026C8.namprd04.prod.outlook.com
- (2603:10b6:a03:332:cafe::79) by SJ0PR05CA0084.outlook.office365.com
- (2603:10b6:a03:332::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.7 via Frontend Transport; Fri,
- 14 Nov 2025 12:33:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ1PEPF000026C8.mail.protection.outlook.com (10.167.244.105) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Fri, 14 Nov 2025 12:33:34 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
- 2025 04:32:46 -0800
-Received: from xhdradheys41.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Fri, 14 Nov 2025 04:32:43 -0800
-From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <michal.simek@amd.com>
-CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<git@amd.com>, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Subject: [PATCH v2] dt-bindings: usb: dwc3-xilinx: Describe the reset constraint for the versal platform
-Date: Fri, 14 Nov 2025 18:02:39 +0530
-Message-ID: <20251114123239.1929255-1-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB74B1BD9D0
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 12:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763124027; cv=none; b=lTE2+lgKkGxVGW309FmxdD+JR6UfdletPDE/9JWMZIThICjnRVSJIZZnkeo0IOwJAVSX9apne5+O48J6/BNLTBjdCqRwA3RGfZWJrfKuHJ8Rz+kNmFr1CGyQZ7QBhFhVnqxi1ZyQ4V/tbB3ElRmtoCkA9xtgnu193maVol7ewPA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763124027; c=relaxed/simple;
+	bh=6RjWDLI+pLbByiw5tflsFWzlyUGWfktb18dMsX6Y0m8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z/8PaedUTwV7oVGt9c9FNo7ffGXxCm7d4qpn8JV2ajA4Pvb3GRZ4xdrYbcPr+GhKnDHqPzoGizCPXi+b+OzR1GBw6nHPQD4PLzsIM9GUSQsy7ppNNDj6/3izjUF2CySy5RXsZsCXMbYC+FtqpgxvgNED1+x7AMi7aUVOIzVzeQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jA05jM76; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-59425885f65so99212e87.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:40:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763124024; x=1763728824; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jg0PvqRezKbupz3Kg00de1ttMmCopst/jLXtGT3bTZQ=;
+        b=jA05jM76wLX7UYqLFe4u1+5ESJSj+yFeHRCxb4XOeZmwOMa6HYliJpFHICDZXmjGqJ
+         YiPdXULZHWWKNVF9wjwJpBd/Lf5HvLMFxi7kp8uZ6oyGhVCAVVTa1MxdVfhvfxbfzhWF
+         z53FYzaPLIv2CvIbAt7rUomxQ3kwXojZckfBlYlkvaLkobg/ZAbikL0MuQ+wsqwDmNxm
+         YiopAKgsU4XZE3JZecEpu58Cj/LjHAqUFsJW4xhGTkcTHFDP4ED6u+slv8qTqy9aTJOz
+         sSvMeOpuI6tyuPYi7HCLcYWA4zcoFg1pE+0zYCOuxVsMe2BpB2HgCe/2t6yf+VbjfFKw
+         lVKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763124024; x=1763728824;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Jg0PvqRezKbupz3Kg00de1ttMmCopst/jLXtGT3bTZQ=;
+        b=IIK1NUyyZkX5wXn73IJi+Q0YfbxMJdtM+lYa2kaWjF9hSl9siKmcb1rmFus7rStf0z
+         7K3+rDwP9XRAliJ1i47s88sVMflzQyJr4klUkCjx2DpER+YfCD9/0odiT4LongSY8iEy
+         8spQHJ0ei5E1Zid0nuJuOSxR48ggYUuqwYoxWZzQnxHzBUZ1n/M3D5W4xHg2O00/EeX6
+         hEjqNQXw0by5bjbLxoaU9a5A6PswxjsdaZiHoNDCvIS+2sKrtxAOwZ3tv44j3HR4gtqm
+         /lEWMa31VqACtY6tkzG0IeO27LTo1UE/nhC8wICG3y8nymJshBtr0zS9J57wtc6Ht0cZ
+         P3pQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWpLN5MkpkbHZ2oUzFHeZhMyEBf5vQoKDKBeTCUGIcjg4QoAmoZTRVNWRVq/f6jE4dldEQwaNNWJcHY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9M/hVwx4iciLjxZuPXoV+MBZeTapNjSfznBVckjolShXtUpzO
+	830lQRtFK1pgaDF27JPvpP9sF/PvjnNepaH5l2wrX7ETehcsvldJJ9MthkDqV6ERjLk=
+X-Gm-Gg: ASbGncu2YNkE20g/YiEPcQQwOwxtoYrP6atxirysqgcogfRWJfzG40wo+I4tIUYUh39
+	pkS1Jrj522r15lfQEM+XEx2HwKyEFyvqmmQ2xSl3WEGzn4K7bGo5iqWYSbCvOOyH3Y5QeXqFrbK
+	P+/3zlgMv4ILJ9bw6xoJxZsMEaI+hG34M8iYOlNHtrUmeqeMnb6nmZ4U/3zTIXwrEetK65CrgRx
+	d4Oq71S7/EO4scycf14cr4QucGlClfEsA/vsiYvjOlyJGR0jtf2+7ZFUDNTiGBCyVMMgFT0vaoS
+	FNE49VU0IUIwtLe3+zPn3S9UrqUAI1gXkfuZcwW1PR0QE7+TILnx5LB1FwLPfLWrnOEROtKxQf4
+	m9alkFa7PNwAYv1pn2C8CpgWtafy1hSv2AxkexbxrZib2CZcUp8SqWh0Jj4Grh6nx7t08xLCZif
+	t1wJXgT7VcW9h5I7BSflW89J/qWa/STMRYCtPubvy0QCHzHaaweVZ0nf3GBDcamlZ+Sg==
+X-Google-Smtp-Source: AGHT+IGJYPQlaR8EvmhvGbzkYup72zeZ7xs1plmBFOUBHn0OvAXWI4uYws2IEREwIrDVLw6kZ9Ksyw==
+X-Received: by 2002:a05:6512:1150:b0:594:2e4e:6996 with SMTP id 2adb3069b0e04-59584924433mr442379e87.7.1763124023670;
+        Fri, 14 Nov 2025 04:40:23 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-595803acc1asm1056622e87.13.2025.11.14.04.40.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Nov 2025 04:40:22 -0800 (PST)
+Message-ID: <de7ad562-80bc-498e-a6fb-cc26bb6343f0@linaro.org>
+Date: Fri, 14 Nov 2025 14:40:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C8:EE_|DS0PR12MB9039:EE_
-X-MS-Office365-Filtering-Correlation-Id: 205f6cb2-b170-4d10-7d4d-08de237a0732
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ViCghLvOKsEFIMb5rJ6FsP4jLWP+NE6Qdmrkfj0w4til6qFbp0SG3darqy1I?=
- =?us-ascii?Q?bWLX3FKUOTRL1uroqGGbVt/GSTudIbrNC9MaeEs6GgTQWhSNJ07yd1q4kTE+?=
- =?us-ascii?Q?H/iA/6k53Wda62KMJKMCH1+ptG/1PKR82u4Bd4wla5MR6C8r7KbDYy6mFIxc?=
- =?us-ascii?Q?OlQ77tY5FwRNqd+0RNdVJ0IA0v0Avt7jBWPFvLIf27iXZMC78LntORg5DvVb?=
- =?us-ascii?Q?OuQzf+rPM0R4lcz/dFZd6opq3sCaseXUaBy2/MzkNu0idV7dcH5SGOwJIrIf?=
- =?us-ascii?Q?BO3ocCR6wKaFlJBcyRnEv9zWECXYz3l4Y4ZUsvi1DfaAYDrCY22Rno6JQuZm?=
- =?us-ascii?Q?kReEpickbxlL+pKekyeLik5/84L5FRVBh8QBr8v2Lnee7l5n/WoKxulCAiuu?=
- =?us-ascii?Q?5xe8Y82/EkdHZz7PWx4DeRKO5HUrhWk+mH+P9E8Vij4ElruvOASlGLnFWCw2?=
- =?us-ascii?Q?bcWitNmQznfoMxbrhefjxN2YfkXJpIPs+ALlgWHwdolBcNIKL6C77IwSAu7Z?=
- =?us-ascii?Q?3OBO2NcIkpAkD/jiSebCnaYIXeHsw8JcxGCB+Z10ICjlkHnJHR8HEFeZqDWL?=
- =?us-ascii?Q?krjaDjDGuypp5P9fjbVRG6weIPPe/8n3sQ5lr61R7LRbjWmCI/9sheJWiMwp?=
- =?us-ascii?Q?9dImeZKIVocnNP5kaU9/bLdNxMNh/wZD47PlV0BBtCb/JkvumVY1xkzfmas4?=
- =?us-ascii?Q?p57Qkv5fpNpP4ZeQmHdgDkdklw8QdIoCDw+yT5kR8yFcsYhfm9dMgUjAc6NE?=
- =?us-ascii?Q?Df00p65GQemSLJCaz7mi/ye/uyVNTxm9aFviJUYNHeGmHZK+c/tcmWshroc0?=
- =?us-ascii?Q?5z/VTpS3YiSF8R3eiJQj1IIjlbcNGgI771rqDPN8xSwzkexSUbw2gGy6S227?=
- =?us-ascii?Q?6tW2b4Z1PbO6pou6d/my+HQ7XI/UcZZQSVv1ADiSkBk1bK9BarV+tN1EaPFc?=
- =?us-ascii?Q?hefUKV+Zsu9Kxr5f6+8ghzIT8fymQ5WGAx/CrxzDdd8EfUyzokeZlI+cbBzv?=
- =?us-ascii?Q?+wk6tlnpKgwAiC+W0Wugufgp0rAu8K0bGyetThShpCHuZr1iAMimzVCnK6I2?=
- =?us-ascii?Q?P1ZudrxsJtk9hHmpc4dYhpg7+JQXI8uVsvVXMHa3Tr1P1VxgqdhhCug0KHAZ?=
- =?us-ascii?Q?Da3w/ht62QBgkkDxSdSmoViDeK7StSc4GzgB+7ZW19/dqQkyZdmOjtaRjooH?=
- =?us-ascii?Q?7FAHB6RvcjVOgI6TAUF4RJdLvow5YuFdysLvxvPyFFZ6qXgrkyvPYsj54zoO?=
- =?us-ascii?Q?GsNG2uKCAfOrznDBYaAYfk1//Jjd60moxsr/TIJPdOT2UysDn7IOVXrSGjfJ?=
- =?us-ascii?Q?Z7PYjQGIGdZNkLczdxwH6NZ0DWxM8CSU51SPkAt0vps6iV7ia/jhpNivU5zT?=
- =?us-ascii?Q?aIKWYLqalZ26i/OGtBGbC0G73SoF4Fp6mYKO+iR7SaO2s6KI5RZKS+2zUeUa?=
- =?us-ascii?Q?9x5vW9WL47AGUsKAsjzX4wThNQ1dfhi6/kU8fgyDP/IOwIRQ4V2dUrIDfJFM?=
- =?us-ascii?Q?Ite6hwkc/zW4+QFf5goW1fs5P9czZpOYQwUyJmtWOxHGv0T7ST2ayLF1PCE+?=
- =?us-ascii?Q?2bJCd/JXWxx9VwSQ/jI=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 12:33:34.5580
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 205f6cb2-b170-4d10-7d4d-08de237a0732
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF000026C8.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9039
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: camss: Add qcom,sm6350-camss
+To: Luca Weiss <luca.weiss@fairphone.com>, Bryan O'Donoghue <bod@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251114-sm6350-camss-v2-0-d1ff67da33b6@fairphone.com>
+ <20251114-sm6350-camss-v2-1-d1ff67da33b6@fairphone.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20251114-sm6350-camss-v2-1-d1ff67da33b6@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-AMD Versal platform USB 2.0 IP controller receives one reset input from
-the SoC controlled by the CRL.RST_USB [RESET] register so accordingly
-describe reset constraints.
+Hi Luca.
 
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
----
-Changes for v2:
-- As suggested by Conor remove oneOf stuff since both platforms
-  have the same first reset.
-- In compatible else case drop maxItems as is not needed as it
-  matches the number in the list.
----
- .../devicetree/bindings/usb/dwc3-xilinx.yaml  | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+On 11/14/25 13:15, Luca Weiss wrote:
+> Add bindings for the Camera Subsystem on the SM6350 SoC.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>   .../bindings/media/qcom,sm6350-camss.yaml          | 349 +++++++++++++++++++++
+>   1 file changed, 349 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm6350-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm6350-camss.yaml
+> new file mode 100644
+> index 000000000000..d812b5b50c05
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm6350-camss.yaml
+> @@ -0,0 +1,349 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,sm6350-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SM6350 Camera Subsystem (CAMSS)
+> +
+> +maintainers:
+> +  - Luca Weiss <luca.weiss@fairphone.com>
+> +
+> +description:
+> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm6350-camss
+> +
+> +  reg:
+> +    maxItems: 12
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+> +      - const: vfe_lite
+> +
+> +  clocks:
+> +    maxItems: 30
+> +
+> +  clock-names:
+> +    items:
+> +      - const: cam_ahb_clk
+> +      - const: cam_axi
+> +      - const: soc_ahb
+> +      - const: camnoc_axi
+> +      - const: core_ahb
+> +      - const: cpas_ahb
+> +      - const: csiphy0
+> +      - const: csiphy0_timer
+> +      - const: csiphy1
+> +      - const: csiphy1_timer
+> +      - const: csiphy2
+> +      - const: csiphy2_timer
+> +      - const: csiphy3
+> +      - const: csiphy3_timer
+> +      - const: slow_ahb_src
+> +      - const: vfe0_axi
+> +      - const: vfe0
+> +      - const: vfe0_cphy_rx
+> +      - const: vfe0_csid
+> +      - const: vfe1_axi
+> +      - const: vfe1
+> +      - const: vfe1_cphy_rx
+> +      - const: vfe1_csid
+> +      - const: vfe2_axi
+> +      - const: vfe2
+> +      - const: vfe2_cphy_rx
+> +      - const: vfe2_csid
+> +      - const: vfe_lite
+> +      - const: vfe_lite_cphy_rx
+> +      - const: vfe_lite_csid
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-index 36f5c644d959..d6823ef5f9a7 100644
---- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-@@ -47,6 +47,7 @@ properties:
-       - const: ref_clk
- 
-   resets:
-+    minItems: 1
-     description:
-       A list of phandles for resets listed in reset-names.
- 
-@@ -56,6 +57,7 @@ properties:
-       - description: USB APB reset
- 
-   reset-names:
-+    minItems: 1
-     items:
-       - const: usb_crst
-       - const: usb_hibrst
-@@ -95,6 +97,26 @@ required:
-   - resets
-   - reset-names
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - xlnx,versal-dwc3
-+    then:
-+      properties:
-+        resets:
-+          maxItems: 1
-+        reset-names:
-+          maxItems: 1
-+    else:
-+      properties:
-+        resets:
-+          minItems: 3
-+        reset-names:
-+          minItems: 3
-+
- additionalProperties: false
- 
- examples:
+The sorting order of this list does not follow the sorting order accepted
+in the past.
 
-base-commit: 6d7e7251d03f98f26f2ee0dfd21bb0a0480a2178
+I'm very sorry for the vagueness, but I can not pronounce the accepted
+sorting order name, because it triggers people.
+
+> +
+> +  interrupts:
+> +    maxItems: 12
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+> +      - const: vfe_lite
+> +
+> +  interconnects:
+> +    maxItems: 4
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: ahb
+> +      - const: hf_mnoc
+> +      - const: sf_mnoc
+> +      - const: sf_icp_mnoc
+
+Please remove sf_mnoc and sf_icp_mnoc, they are not needed for enabling
+IP to produce raw images, and one day you may use them somewhere else.
+
+> +
+> +  iommus:
+> +    maxItems: 4
+> +
+> +  power-domains:
+> +    items:
+> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE2 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: Titan Top GDSC - Titan ISP Block, Global Distributed Switch Controller.
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: top
+> +      - const: ife0
+> +      - const: ife1
+> +      - const: ife2
+
+Note that the list of items and the list of the item descriptions do not
+correspond to each other. Titan Top GDSC shall be at the end.
+
+> +
+> +  vdd-csiphy-0p9-supply:
+> +    description:
+> +      Phandle to a 0.9V regulator supply to a PHY.
+> +
+> +  vdd-csiphy-1p25-supply:
+> +    description:
+> +      Phandle to a 1.25V regulator supply to a PHY.
+> +
+
+Please reference to the schematics or SoC TRM, does SM6350 SoC
+have different pads to get supplies to different CSIPHYx IPs?
+
+If so, then please provide hardware properties to get a proper
+correspondence between supplies and CSIPHYx, and make all these
+properties optional.
+
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    description:
+> +      CSI input ports.
+> +
+> +    patternProperties:
+> +      "^port@[0-3]$":
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +
+> +        description:
+> +          Input port for receiving CSI data from a CSIPHY.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +              bus-type:
+> +                enum:
+> +                  - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
+> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - interconnects
+> +  - interconnect-names
+> +  - iommus
+> +  - power-domains
+> +  - power-domain-names
+> +  - vdd-csiphy-0p9-supply
+> +  - vdd-csiphy-1p25-supply
+
+When a change to add CSIPHYx specific supplies is done, please remove
+*-supply properties from the list of the requred ones.
+
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-sm6350.h>
+> +    #include <dt-bindings/clock/qcom,sm6350-camcc.h>
+> +    #include <dt-bindings/interconnect/qcom,icc.h>
+> +    #include <dt-bindings/interconnect/qcom,sm6350.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        isp@acb3000 {
+> +            compatible = "qcom,sm6350-camss";
+> +
+> +            reg = <0x0 0x0acb3000 0x0 0x1000>,
+> +                  <0x0 0x0acba000 0x0 0x1000>,
+> +                  <0x0 0x0acc1000 0x0 0x1000>,
+> +                  <0x0 0x0acc8000 0x0 0x1000>,
+> +                  <0x0 0x0ac65000 0x0 0x1000>,
+> +                  <0x0 0x0ac66000 0x0 0x1000>,
+> +                  <0x0 0x0ac67000 0x0 0x1000>,
+> +                  <0x0 0x0ac68000 0x0 0x1000>,
+> +                  <0x0 0x0acaf000 0x0 0x4000>,
+> +                  <0x0 0x0acb6000 0x0 0x4000>,
+> +                  <0x0 0x0acbd000 0x0 0x4000>,
+> +                  <0x0 0x0acc4000 0x0 0x4000>;
+> +            reg-names = "csid0",
+> +                        "csid1",
+> +                        "csid2",
+> +                        "csid_lite",
+> +                        "csiphy0",
+> +                        "csiphy1",
+> +                        "csiphy2",
+> +                        "csiphy3",
+> +                        "vfe0",
+> +                        "vfe1",
+> +                        "vfe2",
+> +                        "vfe_lite";
+> +
+> +            clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+
+I believe this clock is critical, and it is set so in the SM6350 GCC driver,
+therefore it should not be added here.
+
+Multiple CAMCC drivers define some of the clocks as "critical" and always
+enabled, a misconfiguration in this area may cause the reported warning.
+
+> +                     <&gcc GCC_CAMERA_AXI_CLK>,
+> +                     <&camcc CAMCC_SOC_AHB_CLK>,
+> +                     <&camcc CAMCC_CAMNOC_AXI_CLK>,
+> +                     <&camcc CAMCC_CORE_AHB_CLK>,
+> +                     <&camcc CAMCC_CPAS_AHB_CLK>,
+> +                     <&camcc CAMCC_CSIPHY0_CLK>,
+> +                     <&camcc CAMCC_CSI0PHYTIMER_CLK>,
+> +                     <&camcc CAMCC_CSIPHY1_CLK>,
+> +                     <&camcc CAMCC_CSI1PHYTIMER_CLK>,
+> +                     <&camcc CAMCC_CSIPHY2_CLK>,
+> +                     <&camcc CAMCC_CSI2PHYTIMER_CLK>,
+> +                     <&camcc CAMCC_CSIPHY3_CLK>,
+> +                     <&camcc CAMCC_CSI3PHYTIMER_CLK>,
+> +                     <&camcc CAMCC_SLOW_AHB_CLK_SRC>,
+> +                     <&camcc CAMCC_IFE_0_AXI_CLK>,
+> +                     <&camcc CAMCC_IFE_0_CLK>,
+> +                     <&camcc CAMCC_IFE_0_CPHY_RX_CLK>,
+> +                     <&camcc CAMCC_IFE_0_CSID_CLK>,
+> +                     <&camcc CAMCC_IFE_1_AXI_CLK>,
+> +                     <&camcc CAMCC_IFE_1_CLK>,
+> +                     <&camcc CAMCC_IFE_1_CPHY_RX_CLK>,
+> +                     <&camcc CAMCC_IFE_1_CSID_CLK>,
+> +                     <&camcc CAMCC_IFE_2_AXI_CLK>,
+> +                     <&camcc CAMCC_IFE_2_CLK>,
+> +                     <&camcc CAMCC_IFE_2_CPHY_RX_CLK>,
+> +                     <&camcc CAMCC_IFE_2_CSID_CLK>,
+> +                     <&camcc CAMCC_IFE_LITE_CLK>,
+> +                     <&camcc CAMCC_IFE_LITE_CPHY_RX_CLK>,
+> +                     <&camcc CAMCC_IFE_LITE_CSID_CLK>;
+> +            clock-names = "cam_ahb_clk",
+> +                          "cam_axi",
+> +                          "soc_ahb",
+> +                          "camnoc_axi",
+> +                          "core_ahb",
+> +                          "cpas_ahb",
+> +                          "csiphy0",
+> +                          "csiphy0_timer",
+> +                          "csiphy1",
+> +                          "csiphy1_timer",
+> +                          "csiphy2",
+> +                          "csiphy2_timer",
+> +                          "csiphy3",
+> +                          "csiphy3_timer",
+> +                          "slow_ahb_src",
+> +                          "vfe0_axi",
+> +                          "vfe0",
+> +                          "vfe0_cphy_rx",
+> +                          "vfe0_csid",
+> +                          "vfe1_axi",
+> +                          "vfe1",
+> +                          "vfe1_cphy_rx",
+> +                          "vfe1_csid",
+> +                          "vfe2_axi",
+> +                          "vfe2",
+> +                          "vfe2_cphy_rx",
+> +                          "vfe2_csid",
+> +                          "vfe_lite",
+> +                          "vfe_lite_cphy_rx",
+> +                          "vfe_lite_csid";
+> +
+> +            interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 717 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 718 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>;
+
+Interrupt types shall be IRQ_TYPE_EDGE_RISING.
+
+> +            interrupt-names = "csid0",
+> +                              "csid1",
+> +                              "csid2",
+> +                              "csid_lite",
+> +                              "csiphy0",
+> +                              "csiphy1",
+> +                              "csiphy2",
+> +                              "csiphy3",
+> +                              "vfe0",
+> +                              "vfe1",
+> +                              "vfe2",
+> +                              "vfe_lite";
+> +
+> +            interconnects = <&gem_noc MASTER_AMPSS_M0 QCOM_ICC_TAG_ACTIVE_ONLY
+> +                             &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+> +                            <&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
+> +                             &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAYS>,
+> +                            <&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ALWAYS
+> +                             &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAYS>,
+> +                            <&mmss_noc MASTER_CAMNOC_ICP QCOM_ICC_TAG_ALWAYS
+> +                             &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAYS>;
+> +            interconnect-names = "ahb",
+> +                                 "hf_mnoc",
+> +                                 "sf_mnoc",
+> +                                 "sf_icp_mnoc";
+> +
+> +            iommus = <&apps_smmu 0x820 0xc0>,
+> +                     <&apps_smmu 0x840 0x0>,
+> +                     <&apps_smmu 0x860 0xc0>,
+> +                     <&apps_smmu 0x880 0x0>;
+> +
+> +            power-domains = <&camcc TITAN_TOP_GDSC>
+
+It should be the last one in the list, if the settled practice is followed.
+
+> +                            <&camcc IFE_0_GDSC>,
+> +                            <&camcc IFE_1_GDSC>,
+> +                            <&camcc IFE_2_GDSC>;
+> +            power-domain-names = "top",
+> +                                 "ife0",
+> +                                 "ife1",
+> +                                 "ife2";
+> +
+> +            vdd-csiphy-0p9-supply = <&vreg_l18a>;
+> +            vdd-csiphy-1p25-supply = <&vreg_l22a>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +                    csiphy0_ep: endpoint {
+
+An empty line before a child node is always needed.
+
+> +                        data-lanes = <0 1 2 3>;
+> +                        bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+> +                        remote-endpoint = <&sensor_ep>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> 
+
 -- 
-2.34.1
-
+Best wishes,
+Vladimir
 
