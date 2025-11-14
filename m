@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61B25C5CA44
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:42:05 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E0AC5CA3E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:41:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 99DFC4F7599
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:34:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 641D834ABB9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F231030147C;
-	Fri, 14 Nov 2025 10:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C1230E0D0;
+	Fri, 14 Nov 2025 10:36:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uxcQJSh/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a0RHIVcH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2C22E2F05
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F08AF309EE1
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763116472; cv=none; b=F+kGcGBnXIOzBQ0d+0AIipaASBmnRR5CHlKvuEGWzz344RjoTQnCjcJZa2mY8X96+zb4PREUCMV94l3cX78tmBRc1OCl2xw93Sxw7z9AUdJw4H/wzvcXZkDMKVSWQg/2UtIOLMf/BTzQ6qm1gJ1ApHZv2XgcOFwIMB5DzNjzI00=
+	t=1763116561; cv=none; b=lRRuaw1VNGqoZmpe4FcDSSP4floGddb+pjXgxVRckufbEo32RiJowNRFPep+f+XekZe5nqhjcJ4MyuHo6/ZW63CCtgF1MLTpJ9duEvPp8o5pitxzeluq7bgCmvq26UMGOpBus8h0sqSb4EwfXx4l0wASl8YyF3rfSXKN2fISJBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763116472; c=relaxed/simple;
-	bh=Yx8aYHaNzs7BiMp0GEId+mQ4OvxUgnf1ojr2ioJQPII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LR2UKPzemP4Z+s2cBL8d3c+nJu4pqMwglK1UeAQJtnffuYyOJGzn4t/3flU6QKfnCeaPgzbXbS67TYxMtNSqOvlBFs/Kf9vWy7iLiMNWJTA0oqTPB+VZtbDmTr+HFmOAewVHbb2FST+qHYcrJO9hdFqpdoz8Q5Tn7krmGTwhvU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uxcQJSh/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E75F0C4CEF1;
-	Fri, 14 Nov 2025 10:34:28 +0000 (UTC)
+	s=arc-20240116; t=1763116561; c=relaxed/simple;
+	bh=CetDJkrE3nB4siITubwzx2+9sqFafp9J18Lttntfj48=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=KDOzmahiuH774weP/2QzfTbqxB9St2ok6FcdD4gU1/WGdpSzdzMyS4fJjXvS2kB2yyzYud5Co5QhldgjnOBu+M9QiJvjsfdB5dogI6MevlkKhl1BKBz9igZmYwR9C40kncoBQdXzTwHxxuXK2G5GW+scqySnAUpDQamzEKpHYfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a0RHIVcH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D962DC4CEF1;
+	Fri, 14 Nov 2025 10:35:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763116472;
-	bh=Yx8aYHaNzs7BiMp0GEId+mQ4OvxUgnf1ojr2ioJQPII=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uxcQJSh//IYZjjJXBFljswRXEpjUcifHFl04ALPZpFNFG6Ny6YkdpXyuV7yDODd+m
-	 BjvbVtpTFLwTGzDAu+5z6lwJ85xb/cI7yHp8Y8gEGTGgrCP+J6RGwEx4ba+a2cNVAY
-	 ZXWjojDNwCYb5PuODIGNfjd5Snif18I0qgNRctQnMjm/Yxe3t8qqNk5N3ClGX6xcHl
-	 apVpGP3uu9aLzE/ofEE7eiYg+OJ3jJAG7NduROAzzU0MleT8GCMmmjdI6ix3tlGRPF
-	 73/az3/zFHVmJG1E3NQGW3anuLXzWHJ0xhYyW+BcVCplWtzv3j7omWFiz3Cq5BZiZx
-	 rA4vWlCRfcUWw==
-Message-ID: <99309e42-dfdc-4632-8681-c9763b9e8ad4@kernel.org>
-Date: Fri, 14 Nov 2025 11:34:27 +0100
+	s=k20201202; t=1763116560;
+	bh=CetDJkrE3nB4siITubwzx2+9sqFafp9J18Lttntfj48=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=a0RHIVcHl/qOojUjvOKM8UVoFq3FUnFz7WFsedIsiEBzz/E88xbq6aMWdLjoF3btQ
+	 cnbSNy8V9H9NxY4fWGoQPGKXzHdPWSkQixol9ntlFSwSbNWY9otQUy1DZQ7o49YTa9
+	 hV7LxKaHDerWwRzQ+GRlJengohRYfhMwuImEu+HHLKkZ1QifNGhdGQ06xYWIigVXw4
+	 W3WAdUwbvrBPaRcnSoeA/Fw/0GS6WT6YoSkM5R1ZKI+daD6pcj9Fq5jRB0VKL26e64
+	 dWubAL1/zDfGe0YMbt1AyCxPZCN8b6jnf4MIqDOHVL4ElwfgRuY0OrSjIAUZJuQfb1
+	 xXkACW6Gmk61A==
+Message-ID: <48feacac-55eb-4c5a-8466-77742c9d1e79@kernel.org>
+Date: Fri, 14 Nov 2025 11:35:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>
-Cc: FUKAUMI Naoki <naoki@radxa.com>, Joseph Kogut <joseph.kogut@gmail.com>,
- heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jonas@kwiboo.se, kever.yang@rock-chips.com, honyuenkwun@gmail.com,
+Subject: Re: [PATCH v6 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dragan Simic <dsimic@manjaro.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, joseph.kogut@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se,
+ kever.yang@rock-chips.com, i@next.chainsx.cn, honyuenkwun@gmail.com,
  quentin.schulz@cherry.de, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
  jbx6244@gmail.com, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20251105051335.17652-1-naoki@radxa.com>
- <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
- <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
- <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
- <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
- <2892FE50237CD58E+0f15924c-a915-4446-954c-d81a782d23e9@radxa.com>
- <19ce0a41-563c-6202-6b94-b2c644a0b827@manjaro.org>
- <F02BA2E6B1111826+2445b38d-b5e0-499c-83e7-4521c57b2210@radxa.com>
- <f2bc30de-119b-4f4a-844a-8a908c9290b6@kernel.org>
- <49c39864-3e58-2e0e-7abc-50502f2afb02@manjaro.org>
- <f156cd48-d764-43c8-99ed-24ab212d8eee@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <A3AD69295D2E2D65+db2dc8bd-054f-4dda-9dd1-3cc0c0feed35@radxa.com>
+ <194908a1-f956-ba0a-656f-7b1e8456b51d@manjaro.org> <1942576.CQOukoFCf9@diego>
+ <21ea3b50-6000-5202-49cf-685310e6fa18@manjaro.org>
+ <5b58dda8-af68-41cd-af23-ec48bfc11d79@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,98 +109,119 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <f156cd48-d764-43c8-99ed-24ab212d8eee@collabora.com>
+In-Reply-To: <5b58dda8-af68-41cd-af23-ec48bfc11d79@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 14/11/2025 09:51, Cristian Ciocaltea wrote:
-> On 11/14/25 9:17 AM, Dragan Simic wrote:
->> Hello Krzysztof,
+On 14/11/2025 11:30, Krzysztof Kozlowski wrote:
+> On 14/11/2025 11:12, Dragan Simic wrote:
+>> Hello Heiko,
 >>
->> On Friday, November 14, 2025 08:10 CET, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>> On 14/11/2025 06:03, FUKAUMI Naoki wrote:
->>>> On 11/12/25 09:46, Dragan Simic wrote:
->>>>> On Wednesday, November 12, 2025 00:26 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>>>> On 11/11/25 23:33, Dragan Simic wrote:
->>>>>>> On Tuesday, November 11, 2025 12:52 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>>>>>> On 11/6/25 02:48, Joseph Kogut wrote:
->>>>>>>>> On Wed, Nov 5, 2025 at 4:15 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>>>>>>>> I'd like to clarify the situation regarding the v6 patch series I submitted.
+>> On Friday, November 14, 2025 11:08 CET, Heiko Stübner <heiko@sntech.de> wrote:
+>>> Am Freitag, 14. November 2025, 09:32:29 Mitteleuropäische Normalzeit schrieb Dragan Simic:
+>>>> On Friday, November 14, 2025 09:24 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>>>> On 11/14/25 16:51, Krzysztof Kozlowski wrote:
+>>>>>> On 14/11/2025 08:47, FUKAUMI Naoki wrote:
+>>>>>>> On 11/14/25 16:42, Krzysztof Kozlowski wrote:
+>>>>>>>> On 14/11/2025 08:37, FUKAUMI Naoki wrote:
+>>>>>>>>> Hi Krzysztof,
+>>>>>>>>>
+>>>>>>>>> On 11/14/25 16:12, Krzysztof Kozlowski wrote:
+>>>>>>>>>> On 05/11/2025 08:08, Krzysztof Kozlowski wrote:
+>>>>>>>>>>> On 05/11/2025 07:57, FUKAUMI Naoki wrote:
+>>>>>>>>>>>> On 11/5/25 15:43, Krzysztof Kozlowski wrote:
+>>>>>>>>>>>>> On 05/11/2025 06:13, FUKAUMI Naoki wrote:
+>>>>>>>>>>>>>> Add device tree binding documentation for the Radxa CM5 IO Board.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Link: https://dl.radxa.com/cm5/radxa_cm5_product_brief.pdf
+>>>>>>>>>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>>>>>>>>>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Wrong DCO chain.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>>      Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> NAK, you just stolen ownership of an already posted patch.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Read "Changes in v6" and patches; my patches are not the same as v5.
+>>>>>>>>>>>> Your reply is totally inappropriate.
+>>>>>>>>>>>
+>>>>>>>>>>> Inappropriate is taking authorship of someone's patch, because we all
+>>>>>>>>>>> expect to preserve the original authorship. That's not only basic
+>>>>>>>>>>> decency but actually a standard.
+>>>>>>>>>>>
+>>>>>>>>>>> Additionally, read Joseph's reply that he wants to continue the work:
+>>>>>>>>>>> https://lore.kernel.org/all/CAMWSM7iHtAxewW4JkRqRsifVnccqeFviaCgeOyprKDr92FOurg@mail.gmail.com/
+>>>>>>>>>>>
+>>>>>>>>>>> You clearly do not understand how to continue with someone's work.
+>>>>>>>>>>>
+>>>>>>>>>>> It is still a NAK.
 >>>>>>>>>>
->>>>>>>>>> The original device tree work for the Radxa CM5 and IO Board was
->>>>>>>>>> authored by Joseph Kogut. I took over the responsibility of getting it
->>>>>>>>>> upstreamed with his agreement.
+>>>>>>>>>> And I still wait for justification why you took authorship of this
+>>>>>>>>>> patch, because to my eye you changed here nothing.
+>>>>>>>>>>
+>>>>>>>>>> So what did you change HERE that you think you are the author now?
 >>>>>>>>>
->>>>>>>>> I'll confirm this. I've been in communication with Naoki. They made a
->>>>>>>>> large number of revisions to my original patch series, which I think
->>>>>>>>> have technical merit. I suggested they submit the patches themselves,
->>>>>>>>> and gave them explicit permission to add my Signed-off-by and CC me.
->>>>>>>>>
->>>>>>>>> I assume this was the correct way for them to continue the work I
->>>>>>>>> started, but if not, please let us know the best way to proceed.
+>>>>>>>>> Changes in v6:
+>>>>>>>>> (Patch 1/3)
+>>>>>>>>> - Fix description; "Radxa CM5" is the correct name
 >>>>>>>>
->>>>>>>> Can anyone help us?
+>>>>>>>> HERE, in this patch. Don't paste me hundreds of unrelated code. Write
+>>>>>>>> concise and precise answers/comments.
 >>>>>>>
->>>>>>> I'm not exactly sure how to resolve the current situation, but for
->>>>>>> Signed-off-by tags to be present, in this case you'd need to have
->>>>>>> Co-developed-by tags as well, because the final patch versions,
->>>>>>> which would be submitted by Naoki, would differ significantly from
->>>>>>> the versions that Joseph actively worked on, if I understood
->>>>>>> everything correctly.  Though, for Joseph's Signed-off-by tags to
->>>>>>> be included there, he would also need to participate actively in
->>>>>>> the development of the final patch versions.
+>>>>>>> https://lore.kernel.org/linux-rockchip/AE0735A6C797CCFF+10496d73-7c0a-4884-9561-24721305a24f@radxa.com/
+>>>>>>>
+>>>>>>> | By the way, at some point I switched from "continuing your work" to
+>>>>>>> | "recreating a new one based on my current work." The results of my
+>>>>>>> | current work(*3) have changed significantly.
 >>>>>>
->>>>>> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
->>>>>>
->>>>>> If
->>>>>> ----
->>>>>> From: Joseph Kogut <joseph.kogut@gmail.com>
->>>>>>
->>>>>> <changelog>
->>>>>>
->>>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
->>>>>> Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
->>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>>>>> ----
->>>>>> then I can submit my patch series?
+>>>>>> So next time I will take your patch, your code, say "I recreated it" and
+>>>>>> submit under my authorship and for you it is fine?
 >>>>>
->>>>> Actually, the Co-developed-by tags would be pointing to Joseph
->>>>> in that case, but as I described it above, this approach basically
->>>>> cannot be used, because Joseph's original work differs a lot from
->>>>> what you'd actually submit to the mailing list(s).
+>>>>> Regarding CM5 patches, I'm fine.
 >>>>>
->>>>>> Or,
+>>>>>> Please take Joseph's patch instead. Read submitting patches doc to
+>>>>>> understand which one more tag has to be added when sending somoene
+>>>>>> else's work.
 >>>>>>
->>>>>>> Another option, technically a bit simpler, would be to include just
->>>>>>> Originally-by tags for Joseph, which would indicate that Joseph gave
->>>>>>> up on the development of the patches and handed them over to Naoki
->>>>>>> for future development and submission to the mailing lists. Though,
->>>>>>> that would require Joseph to publicly state exactly that.
->>>>>>
->>>>>> I cannot find any documentation about "Originally-by".
->>>>>> Is this correct?
->>>>>> ----
->>>>>> <changelog>
->>>>>>
->>>>>> Originally-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>>>>> In the future, I sincerely suggest avoiding re-creating people's work
+>>>>>> but building on top, because you just duplicate the effort.
+>>>>>
+>>>>> I understand that you don't understand how I made efforts to build my 
+>>>>> work on top of Joseph's patches.
+>>>>
+>>>> Maybe a solution for this huge mess could be that Naoki submits
+>>>> unmodified patches from Joseph first, using the standard procedure
+>>>> for that, and then the additional patch(es) that improve Joseph's
+>>>> work?  All that in the same series.
 >>>
->>> There is no such tag. Don't invent tags.
+>>> There is also Co-developed-by as an option.
 >>
->> True, it doesn't exist officially, but it's been used fairly often.
+>> Ah, that's what the above-described option #1 involves, but it also 
+>> raises some possible concerns, described in one of my responses. [1]
 > 
-> Hmm, actually this tag seems to be documented, or at least given as an example:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/maintainer-tip.rst?h=v6.18-rc5#n309
+> There are no concerns to be raised. Please read DCO. The original author
+> GAVE certified what is necessary, thus any person taking this work
+> already can you that certification. You raised some uncertainty "I'm not
 
-Yes, for the tip folks (so three people). If you send to the TIP, their
-maintainer profile applies. There are also other specific rules in TIP
-which are in contrary to common (as most used) process, e.g. completely
-reversed tags (see also Konstantin's explanation about the order which
-he implemented in b4).
+Huh, that's barely English... ok, one more try:
 
-If you want to use it outside of tip, first this should be added to
-common docs and checkpatch. Just like b4 should be changed if you want
-to use their order of tags.
+There are no concerns to be raised. Please read DCO. The original author
+GAVE certification what is necessary, thus any person taking this work
+already can use that certification. You raised some uncertainty "I'm not
+sure how fair is it for someone to become responsible" which is just not
+right here. It is completely fair and completely correct from DCO point
+of view, because the certification was already provided. Also from
+certification point, there is no "weaker" form. Either you certify or not.
+
+> sure how fair is it for someone to become responsible" which is just not
+> right here. It is completely fair and completely correct from DCO point
+> of view, because the certification was already provided. Also from
+> certification point, there is no "weaker" form. Either you certify or not.
+
+
+
 
 Best regards,
 Krzysztof
