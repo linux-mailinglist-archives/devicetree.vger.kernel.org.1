@@ -1,91 +1,90 @@
-Return-Path: <devicetree+bounces-238735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0250AC5DAEB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:50:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 060F1C5DB62
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:00:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DE4F3A9012
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:48:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9D6993663AE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6889A328242;
-	Fri, 14 Nov 2025 14:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF65032825E;
+	Fri, 14 Nov 2025 14:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K7YqAPKp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TU3ahgRA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A7D70830
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 14:45:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C4E325713
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 14:45:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763131509; cv=none; b=cmdHi4MAIkf3JIThXJIvWIyRmqe18OpfsG4od/JKZav/LHRPObR1K+M5TNOFcrBbjfjzwq8rvS9MhSVR2qG+UGUjkoI6xN3JYDkNuKk8J/HsC1XPu4AZZtf2rc1WfgLmCbAFzr/eHvbF5sRVbJpVabA58RgzlHdiQWQymcSbFrE=
+	t=1763131529; cv=none; b=dc1cK2COrgrg1+Ib78BT3fPue002SjEfzi1LJjXvktATqlxZi1iGoguzzXf2CphBAWfCAC7+kxGzxzDvrDfSaDxDvQZwJ/5DvnRChFdh3+C+Xnc30GAHP/iSsyp5b+VyxzXsiVQ+uBkf42a7rRc9DYc8WBfr1PJvaOwisxnS7ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763131509; c=relaxed/simple;
-	bh=scs02jbzUUK5MYCuVGXVgJ037lLxK1ex3dOIb++3rEY=;
+	s=arc-20240116; t=1763131529; c=relaxed/simple;
+	bh=/8fTrKl32AYfmZ+JOPItTi+DGwmLh4U+5Eurt3NQikA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LqY1cffJJ34abFFiu9h4tCSin+2kmLfV2fGOPRFqUlQ+083ROESGOOZr2Es60lciGofn/b5ZJo/gaOiIoz83eybv+w3CR8rq0gqMec4YIoX5yGPudFD7m7IIsslpCXNOubvZ7krGn/DsqxvSjHvcz08jZq2btU/ubGmAwCEkoXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K7YqAPKp; arc=none smtp.client-ip=209.85.128.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=OWki+vgQMUEPL70gr+eFvBJGmWur01T+91wqdMIBII6mDP+jguLgYLZ0ZTPzNXK/LckS/cXeCBG+0PipY/pnxDjGS6TebNtzBZjBNk63FYrBDtXIGZdLlK0HEEinnRcAKcNI5N6kNW2m96IkEfgKVJAidw+jgUryzC3OBa51r/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TU3ahgRA; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47754e9cc7fso12872135e9.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:45:07 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-63c489f1e6cso3485208a12.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:45:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763131506; x=1763736306; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1763131526; x=1763736326; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=D9Ybyyj+kFTd6FCwlnA1T6++3p3ZYy9IHGTYfoCqMXs=;
-        b=K7YqAPKpsBA0XOqjPSxANndWUeWqaRLlK4UnBZ1YplH4aNVLwmoy1kjAyr/Ic8niOe
-         M11GS0E55PqLS/59bwftORFIEqlxMSG1O7uWFrCpjNiLgco3b5iASvzKPq7f+JV7OwcJ
-         449N4Xt5O0tQ4mddW2w46pknB5F0FnRPwDg5l/wd7Bm34JlGk6Prti0JPVuDfafKpc+C
-         5Lj3oOJDLbQiohCw4HhH29XrYmaS7Xd6ajTQGgFs4evaRA0qSk+JLV8K4Czyo223SdYT
-         4hav+5vQO1CLn3sW6BkPiW+EQih84KE9fAl9bomoYmfdKFj6GhHuTFWywmjsTCmefj+v
-         Gw0g==
+        bh=7Tk51PdNGO35AHnU9TdGMHBjl7SifZZJFLFafuvE9vs=;
+        b=TU3ahgRAZFea6FVleBMHLcKCDx2IGdnfVJxtvFibYLisvcwEQcPqYILKjFly9GoMTL
+         Im13IowC0R7r+MVf5SX8U0lThVbKD5NLifImZgVYgFklEBuLOQcGq7Enh6zLLUOnsIGO
+         3vT5EHGEcUMGTl6pVQeGrgvbq9LgYfftDNXX19zkHjM4UXVVRIvy7UOstpSzLl92UhWy
+         hl/wZvLIuOvHgdHp+N2MDy/R4114T2JKKiG7PdmkOY/h700uPZDj6mXLXs8SsVrDE9iv
+         Sc67eMlJMUKDBqmDh63zrUHP381JoOCVBDIeS5uWBVh1CX+1fY0sVgauFfj1VKjLAeR4
+         BhSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763131506; x=1763736306;
+        d=1e100.net; s=20230601; t=1763131526; x=1763736326;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=D9Ybyyj+kFTd6FCwlnA1T6++3p3ZYy9IHGTYfoCqMXs=;
-        b=qnmdcbYvlR+CJesHDjug1IBh6h0pfPxang8u0CvsIO4ItNeZcH+lvYxgknCG9b+yCM
-         Ayos2fCbwxtWKO4Zz+JKyLrbOoLeguug82ZhtVLTgYeqy1Ge3RMFjrsLou2Svn7skxEi
-         uafO2YSin8fSzbcrDqzhbgRGGrJaDVzwSKZr3J3W+KuCigOZBQN/0rB7KfzUNjSSuiM3
-         cXnU5UP1GHFoxtTD7Pn9AcABPGXDmsJyfg5v7yiqqh9xCCzh5s7b0biZznMcCdIl2rG0
-         uSmtyQyzoVpGpYPdloPHDkUkYXD7Ef5pGOJU+OKZLSleJ3X8h5f/i5PdP6sKoLneU9+b
-         mb9g==
-X-Forwarded-Encrypted: i=1; AJvYcCXSLKRgMFCz7EVo9j25I2fPK4iZO3RZJbUEnfa3Fuga3fRyqkADseWC2d50sf6Khn0bKvSuk1In1G2Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvY4SxRfaSApKQ0fhMqp9+5oIK2O1YcxnN8AI7GpyPiVJUqlC/
-	FR+5tu3dY99U6tGhrRuEo92+R0yWuTytkesQDfLl3E5uMqs5E2ppGCKS
-X-Gm-Gg: ASbGncu68DEb8av52WueC+LPPxBmplkYDB0RKO8vdUhw6CD1KTRlZX2Ie9Kgk9mQ6Ch
-	0SOhJn83IJwjA/SJqUAD88MU+T5alisORjQHr7QJWuLcwcadlva2P6Xtj6GIzfzYefZV5Pzg30Q
-	QbnMbpmROBlx2DfTKeRM6iuI6QRR4cSHahOiIbK8lmmS1qAOv7M1KSYzIdYFmgd+JIylFLJI9YY
-	RnDAHT0zjf8wieT2vJquJvwrm0wUpI+QsoG4BMplfwo4ulPVnjGznihafFIIJhT7AERq38g/s6/
-	c8YQlXpLaaX1MCSDaG97i4hFx/w+BmPP0pzfgqCJfHWsmU4rePp6dB12Nh55Blrsv/AvCVyecwy
-	4ywALZHZk8OZzrWfQCeWP2savufSoHNaiFIBlZ0YiMQYGTrJTUYQEL2/XwY4Vy+LYz7/3jmIPIG
-	vcFXmo64aqwCFLJN2cI6QlH3U7k+OlCGw8etj/IQYTX5kOR8dpJuW+7MGXrqEGyVdAV2DWnjJk4
-	g==
-X-Google-Smtp-Source: AGHT+IF8RfeGPT/xDN51L06SoeBJUH89RQTSdNzCsTHFgENOPsN3MHVpSEVSUnaLsvgo3iPGAK9slQ==
-X-Received: by 2002:a05:600c:c4a3:b0:477:fcb:2256 with SMTP id 5b1f17b1804b1-4778fe6094cmr32151805e9.17.1763131505992;
-        Fri, 14 Nov 2025 06:45:05 -0800 (PST)
+        bh=7Tk51PdNGO35AHnU9TdGMHBjl7SifZZJFLFafuvE9vs=;
+        b=GtMEP6DEa6h2+oV2tiY7eq2r361R+aUbHx9Qgulruh7l9faVgGyujpCtM6x4hB3RZa
+         528tLT7X1E0/fMECy3NSxCJQzzOM3tyZa/IjQl4KE1gU4M2rveemCWGZ3eMpYqaIjQYG
+         PY4E1M2YIiv8u9dmvLKW6UFjfmsCvVcslpuOl5elAWL/cSg5TPTI+nJWTzxFJAUzJGqu
+         wzLwElpORqHdSuY5tI+K5ZBfUo6lzYqSyH8QWnN9JQS/M0cbO2hVAHdhGQMLnyUQDX5w
+         Cyj4ZmcSXeEpvdEBe6x8+D6LTeYNrBAJjqHpwKBZuEwxI6dC1bh01N9W0YqPK2c/peIh
+         nYBA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/OYn6qrWXkAqRuPjzxIDqBUYdvbASLE6aZc8KT76YdTfppyEa+E0RymAwHgkC828UWHXxjwxJgr6+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1ztVRtdr2ylm3eW8rJyWEkQZnMbSg114y+8HOYJzNvMNSnL4F
+	NhJATcMVxITo0XAelit83Vrvluslqb01kYOGLyW1kD5uXfLOHnTPjRjt
+X-Gm-Gg: ASbGnctd54r3dHp59EQWv7l6QJSBGP0Vk+z6adInZF7zYaakDbPC7hqDtUKvCAv2T2T
+	LCmkrW4xuRx6Hy+GsZCQrzh4XWzFJYH8ZOjrxE9jzSFnrqm8BxZjzaFrlRoSDc+vn07ot5wrTMo
+	tTxXFCpYtaTZCTM4j0NFRJfoRgDs7TaqsJA2JCjOPsJk+22Xjy9F0lrAgTdXhwY0zjE1RZ1lrEV
+	nhvFnITLllnlC3jFNOYhSNvtjb+VzTWMgGhZMFLMGgvHncqXojMvp0rCR6yJqy36yBP06xEqJSN
+	Eo3HSwSlSmpGMyLa2XZCn758wzhusXkVWhCRbIdWdRqVJ6Xi4fUSo21hmf0rth9/JPwmLN9qmeh
+	ut519BhCr/XWxNXiR+3bJpE92Pbze4oDvWv2KqB9CI/Wq705MVG7xchlsLxnZXK00oUFuZcWeR9
+	68ireCJbx32D3/0yExFYx4zh0XilgsZ2GyN3W4vjlfY3cn8QPKLZwynDOfGtdHTCc=
+X-Google-Smtp-Source: AGHT+IECGRp2VkHdcpMnxy+9lKviJilSbUG9J75N+N6tFZ3+Ma91NvJiRQIj8MoUNErZO8sLouaqQw==
+X-Received: by 2002:a05:6402:1469:b0:63c:3f02:60e7 with SMTP id 4fb4d7f45d1cf-6434fa7f209mr3600412a12.17.1763131526117;
+        Fri, 14 Nov 2025 06:45:26 -0800 (PST)
 Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f17291sm10242664f8f.32.2025.11.14.06.45.04
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6433a4b28bbsm3733440a12.28.2025.11.14.06.45.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 06:45:05 -0800 (PST)
-Date: Fri, 14 Nov 2025 15:45:03 +0100
+        Fri, 14 Nov 2025 06:45:24 -0800 (PST)
+Date: Fri, 14 Nov 2025 15:45:22 +0100
 From: Thierry Reding <thierry.reding@gmail.com>
 To: Svyatoslav Ryhel <clamor95@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
 	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/4 RESEND] ARM: tegra114: add missing HOST1X device
+Subject: Re: [PATCH v5 3/4 RESEND] ARM: tegra124: add missing HOST1X device
  nodes
-Message-ID: <lqyhuizpaaz6ltbxxq2dt3njmtnzdi5jllos22ome4fz6wmrhs@irfuylndk5yx>
+Message-ID: <r3u5slhvazfnkxxeisndhgnuulackua3pe6iglfwmgpepqoyaw@ynm7vouilarp>
 References: <20251016074152.8759-1-clamor95@gmail.com>
- <20251016074152.8759-3-clamor95@gmail.com>
+ <20251016074152.8759-4-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,51 +92,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bfyhnwazp5pss532"
+	protocol="application/pgp-signature"; boundary="y46ujsge2wpndcqb"
 Content-Disposition: inline
-In-Reply-To: <20251016074152.8759-3-clamor95@gmail.com>
+In-Reply-To: <20251016074152.8759-4-clamor95@gmail.com>
 
 
---bfyhnwazp5pss532
+--y46ujsge2wpndcqb
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 2/4 RESEND] ARM: tegra114: add missing HOST1X device
+Subject: Re: [PATCH v5 3/4 RESEND] ARM: tegra124: add missing HOST1X device
  nodes
 MIME-Version: 1.0
 
-On Thu, Oct 16, 2025 at 10:41:50AM +0300, Svyatoslav Ryhel wrote:
-> Add nodes for devices on the HOST1X bus: VI, EPP, ISP, MSENC and TSEC.
+On Thu, Oct 16, 2025 at 10:41:51AM +0300, Svyatoslav Ryhel wrote:
+> Add nodes for devices on the HOST1X bus: VI, ISP, ISPB, MSENC and TSEC.
 >=20
 > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
 > ---
->  arch/arm/boot/dts/nvidia/tegra114.dtsi | 64 ++++++++++++++++++++++++++
+>  arch/arm/boot/dts/nvidia/tegra124.dtsi | 64 ++++++++++++++++++++++++++
 >  1 file changed, 64 insertions(+)
 
 Applied (with slightly modified subject), thanks.
 
 Thierry
 
---bfyhnwazp5pss532
+--y46ujsge2wpndcqb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkXQG8ACgkQ3SOs138+
-s6FwcQ/5Ack/UYsnMFcgaOiFU5wt01fDcDESAIBwjPpzj4UkCdLdtBSGNagyjcbd
-2c7C8Wb9Y9L9cOA7PcGPI+pPhuRszg61h1oTa8IDE16iNDGztIMCUwdV7tAia11j
-b8UMQRMyuqJSiBLSfz2H9CwvqFzKF4D3pkDaGyH3fPWrl+1WJOi+KZCPq1NjYqge
-OEaLDPIQOVOJCK9Ft7/s3VM57snl/Lyg1M9p0YmiqrwEQS3EoX4cI0uZBgCEwgS0
-WqnPy4ZuGzfhtiI01dwqmopZH33Ral6jEDdLUtw7DPHrNZEZKA3+dY4ZEOJcKQAs
-n+C6jrz76WWMezdHhfv2PMrobk4awg4KrkeJNmProOmEOm7OYoNQFFvsWuM7rLnD
-KJ9OYcFTmzhpV9iaii+wBgBa55bUUdLFabJiIwC9UvInLwZox0xT6MpqFR8AUfqM
-8tsKd+vvvaIil6Ur0L9KMyEY80JOZpxnznqcsLR8atF422JVNEaefihfKgor77Rd
-YGKzMtLZ8ftsvp5GP1qes+wsjUF31cJv35PYSL/iC0kyOerGKG6nH4xshko5x03n
-tnnRREQKzrqBL7iUPcmbZ3GPaUC/PNnbcH7QIjxf04egAkz2kMkZGZ6BLcHJ6z5b
-Btabbfcssh2uP5TxCSiiZmGPZpsAVw+hwm4NvPsGzu9oKi4UwSo=
-=N0s7
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkXQIIACgkQ3SOs138+
+s6HEhw/9FMRFDhExTUdrfX2hp2eziEhkDgGiVKBNI441pHj8Lfj8ULrF17kSTMKU
+lqANmRAWFllRqTxDvrStf097wrW/LZKVmv/xevMmjj0gw2FRLx/WayLzrN6aUvB2
+R0vE8sn58USftIo+7VmCewaAAxE6VfFaxN1GegNFyePqFchaFTnsUvXxZf8n5vDT
+uhpmY7KKQK20z/w/BrzvFB31T2sfjHC7ZEtytmZ51TiI+zRdZkCsHXW8wTBxkAUr
+CZs27fIdHYiBX3YKYtGuz31RwiFh1/HLJMGek5GL77Dr7XtU6Pv6tuiK3oRZtBuW
+F5cIHr4f69PFz7HXOjIxTORv7GTX8mUlAYnmB4Q9mnhG4ilyMuH/d6EJPUkUcqRJ
+r1vvAw4nCrt6BtQh1/hWYOM1PO+JoXo4y807DlD8YqftHyeJx0gqmpu42AEQe5bP
+LAB32Fnb0FQc/66jOt9tK+epo8Douhae1cJ7jAWvHWT1tKDQTypSO6ZDcrpnGwhi
+3jBKKps7aYnOtbgUxCtiH3uhba1xSc+8t5yJoS0e9IOjWsT0KT6Tu6HfHqD0U2IA
+oKZgk9DJ1Zidc7eoS89haJZyxmqG5z/N/LAVVIM0bSNHSGGnJui/JEoWzPapkBR2
+P3EGYEOqu6Ey4ouIKm2FoYRe1eKfRxDnECAregel9jTjgwXxZAE=
+=F1ok
 -----END PGP SIGNATURE-----
 
---bfyhnwazp5pss532--
+--y46ujsge2wpndcqb--
 
