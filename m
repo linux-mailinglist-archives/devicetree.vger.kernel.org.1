@@ -1,77 +1,76 @@
-Return-Path: <devicetree+bounces-238673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F5F4C5D170
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:24:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D193C5D17F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:24:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 14FBD35CEF3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:21:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2FF3735D377
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F113191AC;
-	Fri, 14 Nov 2025 12:19:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3FA320A17;
+	Fri, 14 Nov 2025 12:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="I933hu1d"
+	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="UFrhOayv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8CE53191DA
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 12:19:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 579DB212574
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 12:19:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763122754; cv=none; b=BtugoMXS/6wZ7DAUMkPEIizCLH8EemR1HeDplj/CmyuQqmQQp9/tvqChDIRJa4swnTc+w+E2j6p8NXHCMtHeyrsWyTu+c/lGKNkLicDcZIULhkoFyOQCE5HN9QQ1v3AumVucH8l3L8xm4ks9KPP5c5NXJG1AMduYqWbB6r4yTdg=
+	t=1763122755; cv=none; b=JQpW3LeD+JaI4E7vljhxjuug9l8JhhF68z7cVSY6I96kzbkqhsr1GYShF/pQTjgQzg6/uCau2a+lZA4S5AcoLEgGd6QJ7LvY9/zvGg31PGtlGJzVCbHR6VQ2vz53/LrWCtFyIUXGKRDlxAsYDv9kHv/6HntoFY4cCkjBopjRWjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763122754; c=relaxed/simple;
-	bh=C/tgHBEMS7lC54F1l05FDdUUbx+i2inD9Tlr30ZzFM8=;
+	s=arc-20240116; t=1763122755; c=relaxed/simple;
+	bh=v/7uPsJjdK6hkCP+JByBQAqQMgqhmqudYFyLuedkCDw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RBNzSxLy7VMLhatDIyepCevNZRisSZaRu7nK5yPpil95ax7GRC/FU5QWflVtX25WI9dGkw8EQBJ5GXOFenEDqoXNnzjVDAKz/ULSNSFOvzk5oWIoMAtGnb4xlVNS+UJ76Jzkiw/F/tGS6ZBEmQXRS8wtatly38IczddzNmZrtOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=I933hu1d; arc=none smtp.client-ip=209.85.218.47
+	 MIME-Version; b=j239sBj1dmqylt3oG7u7Qctf0ok7sL0QWBoRUKXyHXsVziw6BogyCQ6KRvcqNMmQoTYk+k/0rpis2EF+ndBdUbv/qh9hjp5r7UUgcrtZx7qVuD94WmSIKFHqqTd9kbMda81134TTMJ8VnnC0h1Up2/8HPTWUb0MGWCRmk4aDKGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=UFrhOayv; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arduino.cc
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b736cd741c1so97082066b.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:19:11 -0800 (PST)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b72cbc24637so333290066b.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:19:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arduino.cc; s=google; t=1763122750; x=1763727550; darn=vger.kernel.org;
+        d=arduino.cc; s=google; t=1763122751; x=1763727551; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=u90NAsdBNasBuoFf1cybakUudwJYTlK8TE/NRm955hs=;
-        b=I933hu1dNu1pyIZy/RwkNPSps7v6epasv+it/29ZixigwcZAx+zxbbmfic6xQrJh/D
-         0gJ3B/6wNYvKWzEEGhbYN1DEs/aZM563f1nuearQxLsE06VrRCiIo1k8YHG9ijarYOkc
-         7waHNXWGXIgNAV9ByJxICSh6Hm2ZCz8zM9LwI=
+        bh=ZzGfb6M6LDc07sFh0FCxc5ya/PA6tX+CSaRhCVUxnTA=;
+        b=UFrhOayvR8BPf/5DJVhUqIpttCvoUPhbaVT4YGu/vEalMBZR9anFpH/rzbM9yG5vRR
+         oFiNAv+V6CiNXQl0EatwKgrwkr+cOzZJc2SqZpCJS2t6grPNP9lMBiDEAZrKX/MRaAIj
+         Yt4G4yiGK56qZ8ZnRsot0iN8/DRPA5TwdFkns=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763122750; x=1763727550;
+        d=1e100.net; s=20230601; t=1763122751; x=1763727551;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=u90NAsdBNasBuoFf1cybakUudwJYTlK8TE/NRm955hs=;
-        b=v8L6h1Mg78ZhADYdM6nmyMj3IPETb40w8/oPpZRkQcETJV0SOQ3MmTxwqWLWqoBRUf
-         D3anAPgqNPgk/NHSRMe/B8lwr11xV2C6nMz1GBqHyRbJR/GxzFM7xjUn3PPxYTbkrTMQ
-         6Kgkm7+ToB1WnTyhjX5IN9aFfAPiHdP3KJ/X1o3VgR6IT81qr1LkwOykm4JA3gx6gJ0b
-         jttGnOGNtCSZtT0VXdQk/2iwcUmQtV+eV/iMpcLnFp6e9tJYkRRW87RE35qPa0wW6uUy
-         7tfQvxLz7pPGUf4og1liT6piC/u9izxTaxpthzQBRN1Pv6PEFUpfeixi0WFJkRXP0Kbj
-         t8CA==
-X-Forwarded-Encrypted: i=1; AJvYcCXZ4lZR9pEPT0qCPtd8rK/RVacWbGvtGTOxi/rrnBrSy2mJkMJPkUcwsAAhucnA1R7wqlU1kQMSFI15@vger.kernel.org
-X-Gm-Message-State: AOJu0YzslrLW2egA2ZVgVVqqXNF6bERF91E6ACG8zZA+apuGQ2Vu5Rhr
-	wVhKu6c+SdWGcQ0XFeW8/pw15/TYuq7SYLswLctd517D5YOaDi3X5Th6+oBML9Rb4Qk=
-X-Gm-Gg: ASbGncsxBL6mDVkwTZcLIgRnCMdtcFhEw6KDpg732Z7NAOomyWa4ktjk9FlXkGMYKiC
-	RsUo5D4BD8Tn2wth9f3E5GMLHASflN+RZrfPq5Do+yN34B0PpH6HRHCtqg0nrkM0c4m2Z/RuQaZ
-	x/8mYe6b9/cgbu6zMlUtccHINYCeICgVbQ50mN12fqqQsUS/iuFGswxaEfuKIqKUvG6deSFGvQt
-	8WUiJHERqzEzqYgwGA68tX4MC+E4s8yD1/kb2QepNzLr+WTY5bQdg4D1C2e62Cz7NHH+tVLAyK6
-	N8RHJgI7NvT1/2Rf/ONOWE6ohirfSlobLLzEg+HLKgc3GW5ynq9272V7qAPx5wu/Rxwz6BsfpBJ
-	9zLxu/PQ2O4uOFmF1N91DukP9dFnf8J6OKXOBvMv/lLFV1cM7Qlt/nAqPIpcEZy7foXdb5JNTyo
-	yQZjkHegUsKRDTsEGhCBOxrzguWpgESNS36U6t2JBUi0LvUAHchfyq0dne1RNX074AiT5fem/EC
-	BJoUihf
-X-Google-Smtp-Source: AGHT+IGsHmnSIhpWtHLoB35t9TtSGdohvRhU+DpPgTHUuRWxKlnSUCRa6zD2ZLZYgRuc/phSInmncA==
-X-Received: by 2002:a17:907:7f09:b0:b73:64e4:2046 with SMTP id a640c23a62f3a-b73678f4734mr288988966b.33.1763122750026;
-        Fri, 14 Nov 2025 04:19:10 -0800 (PST)
+        bh=ZzGfb6M6LDc07sFh0FCxc5ya/PA6tX+CSaRhCVUxnTA=;
+        b=IuR+Z6+nmkBKL82Wr6R7BGJhsuD0cWxjlLcGLJDHhrPQAo+MQnaRstGW5ibw0/LvhR
+         cEyLDVLOoO4e5AcmTkNNrDK4OBnF/rRNsj5IFamb+7vnbNXmjrefMtFanlBdrYMw1XrH
+         jXRbdyLqdrxo9wsZLBIbca11p4HRmtEBfmF3dhc7loVIixM+m90BWQq1sY89BG6RKNFD
+         59HA9EGsT8PyyDj2ZzqbCTwJspchJMpw7FT51EQCNn9UkXCB3ZbauwQ8mZnUY0LOATUE
+         BRcBZ967EcUMYB2DzalGtg+pcdntUH1+omwNjfVhYXVwmeHmZ6tYb0uJTQUccsAbecXD
+         OFPA==
+X-Forwarded-Encrypted: i=1; AJvYcCUVrdmvwE6eS0/YWslge2BvL3Fg3Et6AukWVrtCR3vB/pp2x3Cl7QGjetoPh12ce1fh4pWldeJVsNdm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJRqArn265pu10xeGfz3MwIbMSUjYVcFq4XqWC0VKQmnWvFAwD
+	5UvrSKz9hrMvhjDby3jm+p/cthY1bwQOTqzyCagkiRvJJviMpdIpgbuAWw60NEHS8Aw=
+X-Gm-Gg: ASbGncsU5x0JiQHzVmG6CJzedW+Y+cLJXJ4qvRLEq2plINOnq8VnElOl+qzVDg2HVD4
+	haT4dPAjvX6TKaolh3kElaWUfiv1p62e+SOZIAdcXomPfcFwjKjwU5TXRQHugl85JC5Xwf5lD3K
+	0FXOU/AMWnH3k/fdsw4KYwXQ3Pb/vYSfp+oYAHoWZbeOb5Hsjo9VatNiy9h/6VYAR2Mn2kk3NpE
+	kwsA0UOuFuxLAl3CXIcFOoqp4p8xZvHLi7hg8vPvPSOStvVJKTCglDN5qLoT8eZsoqnumXl68mY
+	BVxi2uxeN9AVnBBsrpJroE7top9aGAzKZu3/83Um+x2TuvZTfiUFySJV4hBM5x/dVsOaNW+z5vl
+	3HZIp4Xllq3yEebcZAc3vCZzVOXJNYAmuUU8sOD/xnt9k6+ieeawQuQRhP93ZEBArzdYvKpRQOu
+	wzrvIBuXfIOqaty4B6tRcGpG2ezruo2XR+5weUDGevtps+slnS9PE3c/sEp77CeJc45uORLQ==
+X-Google-Smtp-Source: AGHT+IFeewfr9FC7ryApv29fPjOj/V6vl6UKmdtpGVrdxO0aA8KBZyJv8Wn9C7yHWIC0Ffli0JLYfg==
+X-Received: by 2002:a17:906:c113:b0:b70:b7f8:868f with SMTP id a640c23a62f3a-b73678c0493mr308686966b.27.1763122751172;
+        Fri, 14 Nov 2025 04:19:11 -0800 (PST)
 Received: from riccardo-work.fritz.box (host-82-52-164-74.retail.telecomitalia.it. [82.52.164.74])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fed6315sm375295666b.64.2025.11.14.04.19.09
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fed6315sm375295666b.64.2025.11.14.04.19.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 04:19:09 -0800 (PST)
+        Fri, 14 Nov 2025 04:19:10 -0800 (PST)
 From: Riccardo Mereu <r.mereu.kernel@arduino.cc>
 X-Google-Original-From: Riccardo Mereu <r.mereu@arduino.cc>
 To: andersson@kernel.org,
@@ -95,10 +94,12 @@ Cc: linux@roeck-us.net,
 	linux-kernel@vger.kernel.org,
 	linux-spi@vger.kernel.org,
 	m.facchin@arduino.cc,
-	Riccardo Mereu <r.mereu@arduino.cc>
-Subject: [PATCH v2 4/6] dt-bindings: arm: qcom: Add arduino imola, UnoQ codename
-Date: Fri, 14 Nov 2025 13:18:51 +0100
-Message-ID: <20251114121853.16472-5-r.mereu@arduino.cc>
+	Riccardo Mereu <r.mereu@arduino.cc>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v2 5/6] arm64: dts: qcom: agatti: add uart2 node
+Date: Fri, 14 Nov 2025 13:18:52 +0100
+Message-ID: <20251114121853.16472-6-r.mereu@arduino.cc>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20251114121853.16472-1-r.mereu@arduino.cc>
 References: <20251114121853.16472-1-r.mereu@arduino.cc>
@@ -108,30 +109,60 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Document Arduino imola, UnoQ codename.
-Arduino UnoQ combines Qualcomm Dragonwing™ QRB2210 microprocessor
-with STMicroelectronics STM32U585 microcontroller.
+uart2 is used in Arduino UnoQ as an interface between microprocessor and
+microcontroller.
 
 Signed-off-by: Riccardo Mereu <r.mereu@arduino.cc>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/agatti.dtsi | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index d84bd3bca201..1af19245b1d5 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -336,6 +336,7 @@ properties:
-       - description: Qualcomm Technologies, Inc. Robotics RB1
-         items:
-           - enum:
-+              - arduino,imola
-               - qcom,qrb2210-rb1
-           - const: qcom,qrb2210
-           - const: qcom,qcm2290
+diff --git a/arch/arm64/boot/dts/qcom/agatti.dtsi b/arch/arm64/boot/dts/qcom/agatti.dtsi
+index 8bf5c5583fc2..992a157c571f 100644
+--- a/arch/arm64/boot/dts/qcom/agatti.dtsi
++++ b/arch/arm64/boot/dts/qcom/agatti.dtsi
+@@ -562,6 +562,13 @@ qup_uart1_default: qup-uart1-default-state {
+ 				bias-disable;
+ 			};
+ 
++			qup_uart2_default: qup-uart2-default-state {
++				pins = "gpio6", "gpio7", "gpio71", "gpio80";
++				function = "qup2";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
+ 			qup_uart3_default: qup-uart3-default-state {
+ 				pins = "gpio8", "gpio9", "gpio10", "gpio11";
+ 				function = "qup3";
+@@ -1315,6 +1322,23 @@ &qup_virt SLAVE_QUP_CORE_0 RPM_ALWAYS_TAG>,
+ 				status = "disabled";
+ 			};
+ 
++			uart2: serial@4a88000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x04a88000 0x0 0x4000>;
++				interrupts = <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
++				clock-names = "se";
++				pinctrl-0 = <&qup_uart2_default>;
++				pinctrl-names = "default";
++				interconnects = <&qup_virt MASTER_QUP_CORE_0 RPM_ALWAYS_TAG
++						 &qup_virt SLAVE_QUP_CORE_0 RPM_ALWAYS_TAG>,
++						<&bimc MASTER_APPSS_PROC RPM_ALWAYS_TAG
++						 &config_noc MASTER_APPSS_PROC RPM_ALWAYS_TAG>;
++				interconnect-names = "qup-core",
++						     "qup-config";
++				status = "disabled";
++			};
++
+ 			i2c3: i2c@4a8c000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x04a8c000 0x0 0x4000>;
 -- 
 2.51.2
 
