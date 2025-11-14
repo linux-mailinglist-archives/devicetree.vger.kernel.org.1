@@ -1,178 +1,127 @@
-Return-Path: <devicetree+bounces-238806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47CCDC5E272
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:18:30 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA3AC5E3A6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:28:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A5654A1A74
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:04:45 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E1D29382624
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:06:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3020B334C31;
-	Fri, 14 Nov 2025 15:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF37261B98;
+	Fri, 14 Nov 2025 15:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UgBmdEKT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kn0voBfh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0D133375F
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 15:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D752192F2;
+	Fri, 14 Nov 2025 15:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763135688; cv=none; b=jxeWOcq5DK3F7h1J2UTIBBAl3R59xjXTGpQ0hhDNUxbJ2XhbMBxQzv+tQ1pZCXPX/9lFhZEDHL8E2ZE4Z7Dps8mvtKoOqZdInrbseTYVsTAvwpwlslG0qwaATdrf/9xkREoMgJHiFRHEA3e5/T9y824oFLwef4223UkLRPTGugw=
+	t=1763135900; cv=none; b=SCq65wQiknIPfZLuvPIu70XTtbVv6Fa2Ci0LbPv4fg7hC0bNXsHmAV82LgVDa3gTqybKGcJLCVA1siuT2NcZ+IyFtplUu6+C4Djx0dEwDBiqIxk94BOfHN5wXpLP8fuw7unDoxidIUhNLZVSK7fjtwO6X6aCAeWKjAYVi+ajW0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763135688; c=relaxed/simple;
-	bh=Jk5JSmxEp0HQ6Ptor41fJeYFMKyH+DMMft/X2zxuyiw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K/xHnbQtAX9OTXy2x3cB1vKqCQFdPM//k2W5R8KdI9p9pLwA0pvlaInuGDYqy2OLceALMjOmYPKlcs+EtRzH4N50WcPGiqg/EWsSAyboDOdnZOYkLi/SUpAGBTIbuLqFTvQy1upp/NItclTbRj3RY1rPNo7r5l9OXn03a8doSOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UgBmdEKT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D81CC113D0
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 15:54:47 +0000 (UTC)
+	s=arc-20240116; t=1763135900; c=relaxed/simple;
+	bh=tRFbjnnnGYoNv0ovOhf9bdB3gNHViLXElGTT7OSRUNM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=MAXooknqEGBFDXxbOZVrW5zFoZc/TxSYGF/FZSunoTZlblZRpnyfKnyzud86rKqOgLEKCEbNptnJ6DTXom9sqc2X/4SeWRUen8LDoBoJjfQGqTq8/b0wkMFiy4g6OXhLJwMT1M79THQ16LaGfHo8s6bbSFL2OyOgzcnHC2krwHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kn0voBfh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA6AAC19421;
+	Fri, 14 Nov 2025 15:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763135687;
-	bh=Jk5JSmxEp0HQ6Ptor41fJeYFMKyH+DMMft/X2zxuyiw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=UgBmdEKTDGiYVfpy2hkvCXfk3uWC4J3SK6oa1txw8z2OVO6PN5nu/9tj/T32/w6y/
-	 BhzL+kNoREA3BP+kJrpg356lrtpmPYQErhimKRw9OLNHU6g7+lzGm9/55a3uOZT3H7
-	 GGnzo0mnJVopBvjTd9l5h4T1eR/hCpnGeoiyQt9ze2CYTSeu3yQZnxvX/12ijR7laR
-	 oDfeK2iuJED+uWkdIuk8aBjkc+//IwnsqHLxkOEvb2Ej1VA2isGXiNPFbfmGiRgF0O
-	 IXKRayKW6fWc2T1fm2kslUudIcL85uCJOWtQE/WXucEft5bMt2MvErrZ1WWh6xxxjG
-	 1xguQz98wgNGQ==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b7379641791so9702166b.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:54:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXSghqPaB3emTJj1DjMpQkAMWXmg4VPcO5EPVOBujNTSp/McYuahkv3MxOgvAHVHh86V7DCjO+WU3d/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHN+/0P27oIP/dCByaIb6krh/WcQsdsXAuovQh3bFmOd6TctoU
-	sJPTw6EOUHawVxIBWF4qLrr5xkd20f4A0P3Q7MkFIu6zyjCfwCaJ8FCX9tr1ZkxWN9EwaJWltUq
-	jtJ0iuDUaf8XVEZHpva++cKHwNhqu8Q==
-X-Google-Smtp-Source: AGHT+IF49BCOAXcksr6jxI1XuHeLVxsuwlCSI/U4/vtzUjKtf60KEEkA0yjf+Awa59L5KtlnwetAifVA0/77G7MfGqs=
-X-Received: by 2002:a17:907:94d6:b0:b65:b9fb:e4a7 with SMTP id
- a640c23a62f3a-b73677ed936mr342085366b.9.1763135686164; Fri, 14 Nov 2025
- 07:54:46 -0800 (PST)
+	s=k20201202; t=1763135900;
+	bh=tRFbjnnnGYoNv0ovOhf9bdB3gNHViLXElGTT7OSRUNM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=kn0voBfhkFcXuamgxp1cypg5mRJYcDjJPdn2UBLK5ris48B7Oq4H9FkY+NzEziugS
+	 evjYPPdviDkQKxDhod7Iwuia4NcBUHWlURuhu8l3nV5jIXRUJDNvbsOlRU17PgRnpt
+	 ydRlUnBhMFjd1BCDD6Wrer0ZAtSZ9v4+rghuXZWmfW76LnavEl68TDiXj6w6Ikimjd
+	 o3Z5BoZcJ0kywb7tQ/z2YIa31/KC0hy+6ewhU1G5kyJKcIEg6D09PAWAzNh42kuWo2
+	 DK5bvlI7S0M2dKiJ5mSfxkRQrmXSQjE1c+ewXIG4vSr86DsX6NEPCg0R0bgkiAKFN9
+	 5mxW4hSujkSdg==
+Date: Fri, 14 Nov 2025 09:58:18 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251111192422.4180216-1-dianders@chromium.org>
- <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid>
- <05c833f0-15bc-4a86-9ac4-daf835fe4393@kernel.org> <CAD=FV=XXWK9pmZQvNk6gjkqe6kgLXaVENgz0pBii6Gai7BdL-A@mail.gmail.com>
- <00ea821c-5252-42cb-8f6f-da01453947bd@kernel.org> <CAD=FV=VSxeKgGcsRb9qiXq7nsbOWZjPvzmGEOhFA+pmABWdknQ@mail.gmail.com>
- <6490f20a-2492-4ee0-8f34-d529e0df0bad@kernel.org> <CAD=FV=Us7SU_OifVkS4mdfVhc=xGYSBiBpBk9aA1Ki0y+iYBpQ@mail.gmail.com>
- <abb77afe-c285-46ba-88ac-08574bd67712@kernel.org> <CAD=FV=VcAbgv41tjgWQN4i8Wqk6T6uvdpQ261Q_hcKM4AMpGEw@mail.gmail.com>
- <20251114-elite-refined-yak-bf9e64@kuoka>
-In-Reply-To: <20251114-elite-refined-yak-bf9e64@kuoka>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 14 Nov 2025 09:54:34 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLUNyMC274cXFcdfY7N6_uY-PrbH5RDiOfrfe2D_OAwjw@mail.gmail.com>
-X-Gm-Features: AWmQ_bn39ZgmKmSKZ9R4JlObI-OyA36Q7CJrSlb2twcDbMEmJ4DyC3n98UiHAJg
-Message-ID: <CAL_JsqLUNyMC274cXFcdfY7N6_uY-PrbH5RDiOfrfe2D_OAwjw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for frankel/blazer/mustang
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Doug Anderson <dianders@chromium.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, 
-	Roy Luo <royluo@google.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>, 
-	Julius Werner <jwerner@chromium.org>, William McVicker <willmcvicker@google.com>, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ linux-kernel@vger.kernel.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com>
+References: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
+ <20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com>
+Message-Id: <176313578804.3261993.9727195642647352249.robh@kernel.org>
+Subject: Re: [PATCH 5/5] arm64: dts: Add gpio_intc node for Amlogic S7D
+ SoCs
 
-On Fri, Nov 14, 2025 at 3:26=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Thu, Nov 13, 2025 at 10:04:53AM -0800, Doug Anderson wrote:
-> > Hi,
-> >
-> >
-> > On Thu, Nov 13, 2025 at 9:43=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> > >
-> > > >>> Yes, the complexity of just "hooking up" the components on an SoC=
- is
-> > > >>> an order of magnitude harder than a Raspberry Pi, but it's still =
-just
-> > > >>> hooking it up to external components. In both cases, we are model=
-ing
-> > > >>> the core "brains" (the part that contains the processor) as the D=
-TB
-> > > >>> and everything else just "hooks up" to interfaces.
-> > > >>
-> > > >> You mix the topics, so I don't follow. I speak here about bindings=
- - you
-> > > >> cannot have the that compatible alone, because it is incomplete, j=
-ust
-> > > >> like compatible for "transistor" is not correct in that context. Y=
-ou
-> > > >> speak what could or could be DTB, different topic.
-> > > >
-> > > > A "SoC" is "complete". It has a processor that can run instructions=
-.
-> > >
-> > > Then show me executing any piece of software, which is the consumer o=
-f
-> > > the bindings, and runs on the SoC without the rest of the hardware sy=
-stem.
-> >
-> > Show me something that runs on a Raspberry Pi (the models that don't
-> > have eMMC) that runs without hooking up power and plugging in an SD
-> > card. :-P
->
-> It has MMC controller/slot described in the DTS and the SDcard itself is
-> DT-transparent, meaning you do not describe it in DTS, plus I can easily
-> insert such card, thus for sake of this discussion that RPi still works
-> fine with DTS.
->
-> This SoC cannot work without other pieces described in DT, that's why it
-> is incomplete and unusable on its own.
->
-> You are right that my previous arguments of hooking components are
-> incomplete, so let me rephrase it - the DTS file should be complete from
-> DT point of view and completly usable on its own. That's why DTS
-> represents board (with the exceptions of few SoMs as explaiend to me
-> long time ago).
->
-> SoC does not meet this criteria, therefore it is not suitable for DTS.
->
-> And if you claim that SoC could be fitting DTS, then I claim that
-> individual transistor or one IP block like DWC USB3 could be there as
-> well. With your arguments we could create DTS files for DWC USB3 nodes.
-> Fact that transistor or DWC USB3 cannot execute code on their own does
-> not matter, because it is nowhere said that DTS represents something
-> which can execute code. CPU executes code, so following this argument
-> DTS could contain only CPU device nodes..
->
-> If we allow subpieces, like SoC components or SoCs (both still unusable
-> on their own), as DTS files we open the pandora box of all possible
-> styles and formats. I don't see reasoon why would we want it, what
-> benefits this would bring to the ecosystem maintenance.
->
-> We did not document it that DTS represents usable board, but it is
-> implied all over the software projects, like GRUB devicetree [1] which
-> takes one DTB to load. Only one.
 
-Obviously at the grub and kernel level we support only 1 DTB. No one
-is debating that here. Can we back up and stop debating implementation
-details.
+On Wed, 05 Nov 2025 17:45:36 +0800, Xianwei Zhao wrote:
+> Add GPIO interrupt controller device.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
 
-The problem is in early boot before there's DT used where you
-determine the SoC and/or board at runtime and need to load the DTB
-from that information. Both are dynamic in Google's case, but it could
-easily be only the SoC or only the board is determined at runtime.
-There's another similar usecase of booting a SoM with a SoM DT and
-then applying the baseboard DT overlay. You could want to do both in
-the same system. Your options are either have every possible
-combination as a full DT or have a way to combine them at runtime in
-some way. I'm pretty certain the answer for the former will be there's
-not enough storage. So that leaves the latter option.
 
-The only real answers here are a) your usecase is not valid or b) how
-to implement the usecase.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Rob
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: cb718411c4c05a4a424c2b73790a1648be97a4af (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com:
+
+arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: interrupt-controller@4080 (amlogic,s7d-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+	'amlogic,meson-gpio-intc' was expected
+	'amlogic,s7d-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
+arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc']
+arch/arm64/boot/dts/amlogic/amlogic-s6-s905x5-bl209.dtb: interrupt-controller@4080 (amlogic,s6-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,s6-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+	'amlogic,meson-gpio-intc' was expected
+	'amlogic,s6-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
+arch/arm64/boot/dts/amlogic/amlogic-s6-s905x5-bl209.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s6-gpio-intc', 'amlogic,meson-gpio-intc']
+arch/arm64/boot/dts/amlogic/amlogic-s7-s805x3-bp201.dtb: interrupt-controller@4080 (amlogic,s7-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,s7-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+	'amlogic,meson-gpio-intc' was expected
+	'amlogic,s7-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
+arch/arm64/boot/dts/amlogic/amlogic-s7-s805x3-bp201.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s7-gpio-intc', 'amlogic,meson-gpio-intc']
+
+
+
+
+
 
