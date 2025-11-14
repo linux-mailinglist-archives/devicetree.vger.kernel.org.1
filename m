@@ -1,41 +1,48 @@
-Return-Path: <devicetree+bounces-238667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DE5C5D0C1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:15:39 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A5E6C5D11C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:19:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C61133B612A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:14:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D36214E5A49
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC204313295;
-	Fri, 14 Nov 2025 12:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E507C22A4CC;
+	Fri, 14 Nov 2025 12:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="WxS7Eliw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OQP9Mujj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3299.qiye.163.com (mail-m3299.qiye.163.com [220.197.32.99])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A12313E11;
-	Fri, 14 Nov 2025 12:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8439136358;
+	Fri, 14 Nov 2025 12:16:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763122467; cv=none; b=QvulpQPwbLGUoo9RrF1jCVEUabombC5OdX46nsV0lRCxo1Cx5ih+uGf6ed/mShVbLaDd3Ttjm6bIeZnm1L+XYLQN+tEmc0V7k673FcuTPe2qmx+wdNRnv4tWIctKPAPfz5dSrXyORtwRmVzB3IfM7eOV+5p0lswUOUDb3MZnGno=
+	t=1763122572; cv=none; b=l7ZacCSoOGxQzhJTNLRk6oAcxz5i9q04JfwFh/7iiLCvfrFs/EoSEV0IK+ogSKVW0rZ3jsVi77aB2vvk/2UGQFRTELe21oLSyN2eXjif0vumHK7PLGT24hB5ta/wcI7BpIZ5lziOuvM+3nNF8i2k2JaIPRkzmc0TWpB5O7YYcGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763122467; c=relaxed/simple;
-	bh=RU7Hr6WRZs3muP7Sb9Bx1JQ1rtUflVJEmz9c6bFEOzY=;
+	s=arc-20240116; t=1763122572; c=relaxed/simple;
+	bh=xPOPe5KPnNiu09gF7yQRUhum6s9WtN78iX7rty+2ULQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QTMGv7Pjt5DAitDkt2QPZAk6rYYA4aXpXWaI/LfHEpKGV8D46k3PYiZlR+lM9nsXAS8s8CUqxd0ooeqYYYUMwH1LnoaNAi6No2H/PJ/1zPWDCM+8n3Y6Frvl560zZFXAgiavh2Rekn5gfWeaWe83j2oL2y+eNSvZy2AbolSNJAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=WxS7Eliw; arc=none smtp.client-ip=220.197.32.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.211] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 299e2ff87;
-	Fri, 14 Nov 2025 20:14:14 +0800 (GMT+08:00)
-Message-ID: <3233894e-9409-4b74-a954-0b30064c3c8c@rock-chips.com>
-Date: Fri, 14 Nov 2025 20:14:13 +0800
+	 In-Reply-To:Content-Type; b=C/ojZwemrE3BLABuNa8BJumhZXgjGlSNgwEJxWg5SqHV5tElpk4d3OQEZiMF4A9VTmNHAOQ7bkXbwglcjgtbug4inQVFNGHddX078hiBz9XzH8npDpbXLiHlu6JLmv8sWDe+kDsI9Ke7c/9RGNZ52nTYYuWZpNoAhRvlBf365EU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OQP9Mujj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA893C4CEF5;
+	Fri, 14 Nov 2025 12:16:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763122572;
+	bh=xPOPe5KPnNiu09gF7yQRUhum6s9WtN78iX7rty+2ULQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OQP9MujjMCq4Uv/f866Yn2CCo9a4YMujBOwr2ADvwuThtbnLO8bkdZS2CofH+L6l8
+	 JYS+HMULZebmC+Of/wI4fJzkMjuWJKK5YoPvOnG79fHV21fynxJVi9uNuOnKWO3fKZ
+	 rLbDg4wZB4UiWCvV7aFcgBAME2TwnCOLwQ3C4qaXHfB+1wGyxSTvxpSYM+EB3tEITV
+	 gS+HQ/RltMbeTQ7PVd2tPDrSb8oSUH3L7DB8NUNx2UcX69l1tPYOxZP+IosaFMU0+U
+	 GWomPsGw5MTmA1oj4yLVqhJiOL98CRP81Krxp3kSr8qxN7eidwH9moepMHp01bef5x
+	 uSFuFUjUHHuHQ==
+Message-ID: <e7e4b35f-8c8c-4a11-8d3a-193ba93bb6d8@kernel.org>
+Date: Fri, 14 Nov 2025 13:16:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,93 +50,157 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/3] net: can: rockchip: add can for RK3576 Soc
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: linux-arm-kernel@lists.infradead.org, robh@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
- linux-rockchip@lists.infradead.org, cl@rock-chips.com,
- kernel@pengutronix.de, krzk+dt@kernel.org, mailhol.vincent@wanadoo.fr
-References: <20251113075419.482940-1-zhangqing@rock-chips.com>
- <20251113075419.482940-4-zhangqing@rock-chips.com>
- <20251113-slim-foamy-gecko-2dc389-mkl@pengutronix.de>
- <176d96b4-397c-49d4-8e8e-2f77a5d59c12@rock-chips.com>
- <20251114-utopian-cheerful-otter-33c1d5-mkl@pengutronix.de>
-From: zhangqing <zhangqing@rock-chips.com>
-In-Reply-To: <20251114-utopian-cheerful-otter-33c1d5-mkl@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9a8249a13403a3kunmc0d95d2fbc54e
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGk1KGVZCSEJKTkpOTh4fGEpWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=WxS7EliwFNkkh/33Nso4byD6TZWgb1CUuJsWPOaGt2An9EnsKLuKeJesM+qdTGK3hXG3fuS3alEjq9Lpve+Xpd8wQDadX8jGOI1mq31E6Krw1bwnjhvML7vSjUFsvSFswwKUFouA07AMRUS2L3ei9BoaJF7Intm5rZq9qOheG5I=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=vELGL+YLg67WURvnTEyN9CZyoywwF35KjCPfH+omGCM=;
-	h=date:mime-version:subject:message-id:from;
+Subject: Re: [PATCH v2 3/6] dt-bindings: display/msm/rgmu: Document A612 RGMU
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Dan Carpenter <dan.carpenter@linaro.org>, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Jie Zhang <jie.zhang@oss.qualcomm.com>
+References: <20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com>
+ <20251107-qcs615-spin-2-v2-3-a2d7c4fbf6e6@oss.qualcomm.com>
+ <20251110-persimmon-wombat-of-holiness-6b3f9c@kuoka>
+ <f08c8707-eb72-4689-b53b-acd6e3218836@oss.qualcomm.com>
+ <e0e82b22-ecef-4136-834b-ea4a6b00e179@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e0e82b22-ecef-4136-834b-ea4a6b00e179@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-在 2025/11/14 19:01, Marc Kleine-Budde 写道:
-> On 14.11.2025 17:55:53, zhangqing wrote:
->>>> +/* The rk3576 CAN-FD */
->>>> +static const struct rkcanfd_devtype_data rkcan_devtype_data_rk3576 = {
->>>> +	.model = RKCAN_MODEL_RK3576,
->>>> +	.quirks = RKCANFD_QUIRK_CANFD_BROKEN,
->>> Is CAN-FD mode broken on the rk3576?
+On 14/11/2025 13:08, Akhil P Oommen wrote:
+> On 11/14/2025 5:30 PM, Akhil P Oommen wrote:
+>> On 11/10/2025 1:21 PM, Krzysztof Kozlowski wrote:
+>>> On Fri, Nov 07, 2025 at 02:20:08AM +0530, Akhil P Oommen wrote:
+>>>> From: Jie Zhang <jie.zhang@oss.qualcomm.com>
+>>>>
+>>>> RGMU a.k.a Reduced Graphics Management Unit is a small state machine
+>>>> with the sole purpose of providing IFPC (Inter Frame Power Collapse)
+>>>> support. Compared to GMU, it doesn't manage GPU clock, voltage
+>>>> scaling, bw voting or any other functionalities. All it does is detect
+>>>> an idle GPU and toggle the GDSC switch. As it doesn't access DDR space,
+>>>> it doesn't require iommu.
+>>>>
+>>>> So far, only Adreno 612 GPU has an RGMU core. Document RGMU in the GMU's
+>>>> schema.
+>>>>
+>>>> Signed-off-by: Jie Zhang <jie.zhang@oss.qualcomm.com>
+>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>>> ---
+>>>>  .../devicetree/bindings/display/msm/rgmu.yaml      | 131 +++++++++++++++++++++
+>>>>  MAINTAINERS                                        |   1 +
+>>>>  2 files changed, 132 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/msm/rgmu.yaml b/Documentation/devicetree/bindings/display/msm/rgmu.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..7621556477d0
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/display/msm/rgmu.yaml
 >>>
->>> Please test CAN-FD and please do the tests documented near the
->>> definition of RKCANFD_QUIRK_CANFD_BROKEN:
+>>> Filename matching compatible, so qcom,adreno-rgmu.yaml
 >>>
->>> | Tests on the rk3568v2 and rk3568v3 show that receiving certain
->>> | CAN-FD frames trigger an Error Interrupt.
->>> |
->>> | - Form Error in RX Arbitration Phase: TX_IDLE RX_STUFF_COUNT (0x0a010100) CMD=0 RX=0 TX=0
->>> |   Error-Warning=1 Bus-Off=0
->>> |   To reproduce:
->>> |   host:
->>> |     cansend can0 002##01f
->>> |   DUT:
->>> |     candump any,0:0,#FFFFFFFF -cexdHtA
->>> |
->>> | - Form Error in RX Arbitration Phase: TX_IDLE RX_CRC (0x0a010200) CMD=0 RX=0 TX=0
->>> |   Error-Warning=1 Bus-Off=0
->>> |   To reproduce:
->>> |   host:
->>> |     cansend can0 002##07217010000000000
->>> |   DUT:
->>> |     candump any,0:0,#FFFFFFFF -cexdHtA
->> There is no doubt about the other modifications above. They will be
->> corrected in version V10.
+>>>
+>>>> @@ -0,0 +1,131 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>> +# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +
+>>>> +$id: http://devicetree.org/schemas/display/msm/rgmu.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: RGMU attached to certain Adreno GPUs
+>>>> +
+>>>> +maintainers:
+>>>> +  - Rob Clark <robin.clark@oss.qualcomm.com>
+>>>> +
+>>>> +description: |
+>>>
+>>> Do not need '|' unless you need to preserve formatting.
+>>>
+>>>> +  RGMU (Reduced Graphics Management Unit) IP is present in some GPUs that
+>>>> +  belong to Adreno A6xx family. It is a small state machine that helps to
+>>>> +  toggle the GX GDSC (connected to CX rail) to implement IFPC feature and save
+>>>> +  power.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    items:
+>>>> +      - const: qcom,adreno-rgmu-612.0
+>>>> +      - const: qcom,adreno-rgmu
+>>>> +
+>>>> +  reg:
+>>>> +    items:
+>>>> +      - description: Core RGMU registers
+>>>> +
+>>>> +  reg-names:
+>>>> +    items:
+>>>> +      - const: gmu
+>>>
+>>> Drop reg-names, useless for one entry with same name as the block name.
 >>
->> CANFD requires authorization and is not supported by default.
-> Can you explain what you mean by authorization? What do you mean by "not
-> supported"?
-For RK3576 SoC, the IC hardware design supports CANFD.
-However, a license application is required before it can be used; 
-otherwise, there will be legal risks.
->
->> After obtaining authorization, it can be used, so this place is not
->> considered broken.
->> What's the best way to handle this situation?
-> regards,
-> Marc
->
--- 
-张晴
-瑞芯微电子股份有限公司
-Rockchip Electronics Co.,Ltd
-地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
-Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
-Tel:+86-0591-83991906-8601
-邮编：350003
-E-mail:elaine.zhang@rock-chips.com
-****************************************************************************
-保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
+>> Just to confirm, drop only reg-names, but keep 'reg'?
+> 
+> Wait. We should keep 'reg'.
+> 
+> If we remove 'reg-names' here, we cannot use reg-names in DT too because
+> we are setting additionalProperties to False, right?
 
-IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
 
-****************************************************************************
+Yes, I ask to drop reg-names from everywhere because they are pointless.
 
+Best regards,
+Krzysztof
 
