@@ -1,576 +1,174 @@
-Return-Path: <devicetree+bounces-238687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 176D1C5D471
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:13:50 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D456DC5D47A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:14:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7C3334EF535
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:07:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4016A35A281
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016A0313539;
-	Fri, 14 Nov 2025 13:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCF42FC004;
+	Fri, 14 Nov 2025 13:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Q8JdOIlG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8ASPoUL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A2F3126D9
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5042D94B7
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:08:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763125616; cv=none; b=OeWifdh2vesW3ZVNV+fZm5xzAXidarXUGj4G3GHR64JIOxxoBJUogIHUrk6LCheuxExJTwvd9zJOpkL5+EvapxiMHxbACYHsEvK2U0JDULR1kSumlttdSZ+4wypTrZqdJxLCw2tWuIhw9ctUDDWcPVtpx6UWTmsDvDOxgwLfAi0=
+	t=1763125721; cv=none; b=IVTIU7IOr3BevcN+g7hxFsoc61liXtDLC2o6GBxXCZR+RMinpjV63wFvbuj6o7HmAYJ6ta2aeLfQQNGamllkDQ5M89MntoGCObwsdDXkeNcW3hOQ6phN5mmHVn4K2nG1DmHrFnX66E6S9WcwT5/UuR9yuXzd6HTJlopge6z9/GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763125616; c=relaxed/simple;
-	bh=U30gWwAFBsNEZmxDPBTWg1VA0Q6ekWATqu/KWSk7AoE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=lIeoGdwU3M1SUhw3qinedbepOuBn6cuafaZiYBsg0IA60IR25pOF8ks2d6t3HTvUEJqDpWu00YwJtmx2L0F3AStzHymcPPxRbjanAzsvg+T+4J9zk6jnGeqee5WPj0RvE8s6Tmobv3bghFc7SgWVd1WQhUrs7QnoqoxORdW2Y58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Q8JdOIlG; arc=none smtp.client-ip=209.85.208.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f67.google.com with SMTP id 4fb4d7f45d1cf-640e9f5951aso4841096a12.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:06:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1763125612; x=1763730412; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QFlFVp68C1Bl22T0DXVcRcXo+oBu0i4nDk6iL5q9r/s=;
-        b=Q8JdOIlGGBD1IkXjgtLe5bYWoU3HFssjuy7sJOYTQ0AVP0G3nYbX2hXaMuothzMaU1
-         ooNeXiIP7XDzfOcJZsE+HMYTo7xFHzWIhNEvbPW6t1vU3/NHRyxi/PcaU3EXPo1yRa7o
-         gQ07F2u6lbBYMxT39eu0HlDC6+lUI6Q+T66EoIoNYpLNDviD/ftBVRRSdl5N054AIYQf
-         UO3DcY0cCfpWUVwpOjb3jMB4NoX72WjFKu77QM2o0sO+0uaRI50HbIMtQHFnHCB+HT2P
-         NHjIM5pTU3tDxnqUqyB76MHVSd+LP41tuevUQFGli2okuirIO231P8mBdrXLAhZr07Ex
-         3G4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763125612; x=1763730412;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QFlFVp68C1Bl22T0DXVcRcXo+oBu0i4nDk6iL5q9r/s=;
-        b=GTyXKUzLlbQppLn8s9JHOXFf2Vw6KKSo7ImzW2W3Ue4XEYszBor/V3ewQtdnQCwLer
-         lhzR0kJJxfn+DKwJjSYVB00VbPseqGmHQX6H26Gd6+XPr2yfJOktZphXAAY2XLgFomrM
-         aWBE8eVW/o5A3QbQbino9n3my3acmovuT+RYCGYXWM06ZzlhPrA9yDz2ZxK97qEartkS
-         oxCY1POdZnDaDb4Fz6zrLeF5vwm+wUIMlNyz1z4yzQRUQXzuYVbsyzTrIrx4eTEC+1lN
-         Pfzjai85qXlB6VWC8cwoMV82nxw73KiqoH8dC1o+C8fioxaJjs64RP9n3V0y9wGMrUWV
-         1NJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVaAlFQWl61C0r/4cKnLAEJrCzVUnDAv9zpNNRrdko9dtmdA93oyvhSIsYGJT9hmI/LIb0sBuYWMFJM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrpJ/is4CMCFUinZ4wLRmMmFtPe12zyIax8WCzAk9T3zOPfUYm
-	BbuJl9TXiVE6kK5r8iAta5BzFG6qn7k+9FM14Lw2ZL4oaIHcfTtMfDvUz++sb5qn4yc=
-X-Gm-Gg: ASbGncvRqvS9eS7V359VSFx0+zfjp8+N/LCo4dnsOQnfnQy+T7D5JRA2zUaq/pnFp5M
-	xZ0mNukYv2LLvvzT4iH1sPQfOkj6Mr0tDI/YaPKwhSqO/uCEdmDLCyGdNMGqFtzT9GLuzfIGZm9
-	RUVCLtjh3siA+weq+xBMfiUa5KlVrrH4i7TXu7OoPxKUrbByYytMS1gzsatQU2YppyBE3eJBOkh
-	8WchxkPZEXBnwINUk0i9uzECm3VRxCPnzk5CH7A3DIcqWQft2I1Mj7Pay5PkpMHULJ36ru/7v09
-	0EmC8ZIDhIXca9pqaowKe131d8FFXObx52o/bWdWz18vgcGTBB6uI/WkeOwkNKc3WoY7IXcgS1x
-	yuMwQnKHJu/4T0Qm9E905/1+IW7CDzIlrL+SSWDnH5lpWA1TN1mUMeP4ZHEjCIrYNJxwvsWTRmq
-	t70ZcyjW0qw8cWt2FuIRPxiKDxt+4Fx0880f1FQFI0j4UNk6IrXXbkMPf0Ef6IJkykXyB86vChT
-	GjrQsDUYCbK
-X-Google-Smtp-Source: AGHT+IEh2NFr1KybwXLKbTEo02cRgnqybmLKMeCfk6Zi6ooKLjugj9KSuN02CQuj+HAZ8zCcI5xacg==
-X-Received: by 2002:a17:906:fe4d:b0:b72:7e7c:e848 with SMTP id a640c23a62f3a-b7348570744mr750353166b.17.1763125612274;
-        Fri, 14 Nov 2025 05:06:52 -0800 (PST)
-Received: from localhost (2001-1c04-0509-ec01-156d-fa6e-7f19-0b67.cable.dynamic.v6.ziggo.nl. [2001:1c04:509:ec01:156d:fa6e:7f19:b67])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fa81331sm387170666b.9.2025.11.14.05.06.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 05:06:51 -0800 (PST)
+	s=arc-20240116; t=1763125721; c=relaxed/simple;
+	bh=dLNDvmY+Tga0mqtuY9x4IdeYGb2yvfWhIjiZOwC9fdQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Rhqcw8BMUvhqWtvRk/3YJJmKLm/nC9OOqFHlrdXnsZeSgPp2BSDCFDcV9b64zWYz9ihMJEwZsRt0uZOiwwtEQS6MMo/m8cMHuN9No/16CvBJEDYcVvQOqSkk+RXh5NUtvvwf+HzLWa0LcTJtR56LtkXRC2rW7Df7PnRpp/PNhTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t8ASPoUL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEFC2C4AF0D
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:08:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763125721;
+	bh=dLNDvmY+Tga0mqtuY9x4IdeYGb2yvfWhIjiZOwC9fdQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=t8ASPoULVnEgJZUdVQ477/babnw79FOgZtRbfLNABOhtc0hLYKVbSrNIVWaKFsOor
+	 gb5kn4+tS70s1lijGl9AfYIXZa0P+PUXfyjZ9zldrFD5yQXvruklSD2RUT5RdpB7Rh
+	 sEo24Ne/HIHD5QjZfSg+5i4HrbUjUjClgAw4CAaM1DRwFn2nuDm05D2P+158AW0Os9
+	 FnU+bP3mOxI5C70ZEBL5fJLxcxnVsVYluLmF58a/BECItc7yVQngVXSCCrCT1J9uRk
+	 eBi21C53WHfq7trLA/nXbPMLB/HaR9TTjGKkuncIKIaf2K3ygaFTHmpNrusOsUTQ4q
+	 x3CMr1P1HTbow==
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-6417313bddaso3406573a12.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:08:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV4vy9x8/76mzrNwrVklIokKkvJtKLcxAiPW53/0CoPECPnS6+BfEd83Po1h7I4lis4+aUHeKgn2NH/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNcu/Xe2p2bfuZB8GkDsjID1l82asg7ZGEQR7YPfCfVWYg5bMF
+	l/hWPV3RYU/CE0DIcoqZ4WKEUkFVFKOKUVcFZBhdMTuu/BTMyOtVBUnOwGiTZp1SWWcqehA256h
+	yTREHuWsMbrIFv5qsNqZ21qN5GdJURA==
+X-Google-Smtp-Source: AGHT+IEmOjlIGzwN2mXdlpFTSB0qntDwcfgQBxDMBRtmTeVBp37s61Vcc+KhNBCPpDulO/W+dMu4XLyHI0tsk5BZI0s=
+X-Received: by 2002:a05:6402:278f:b0:641:966d:82ba with SMTP id
+ 4fb4d7f45d1cf-64350e0476dmr2741646a12.1.1763125719175; Fri, 14 Nov 2025
+ 05:08:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20250911151436.2467758-1-raymond.mao@linaro.org>
+In-Reply-To: <20250911151436.2467758-1-raymond.mao@linaro.org>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 14 Nov 2025 07:08:27 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+apXxvngU9enNw9yzD1YAAOyamwkTBvqdrc2M955Q38g@mail.gmail.com>
+X-Gm-Features: AWmQ_bllt8kYcF9TyIDY2FL8zJVglYUuZePfZb_Ypbbfo2c2HxpexdZac4wFAkg
+Message-ID: <CAL_Jsq+apXxvngU9enNw9yzD1YAAOyamwkTBvqdrc2M955Q38g@mail.gmail.com>
+Subject: Re: [PATCH v3] docs: devicetree: overlay-notes: recommend top-level
+ compatible in DTSO
+To: Raymond Mao <raymond.mao@linaro.org>
+Cc: linux-doc@vger.kernel.org, devicetree-spec@vger.kernel.org, 
+	devicetree@vger.kernel.org, ilias.apalodimas@linaro.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 14 Nov 2025 14:06:51 +0100
-Message-Id: <DE8FV81S45S5.CH6K1QAX940D@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Vladimir Zapolskiy" <vladimir.zapolskiy@linaro.org>, "Luca Weiss"
- <luca.weiss@fairphone.com>, "Bryan O'Donoghue" <bod@kernel.org>, "Robert
- Foss" <rfoss@kernel.org>, "Todor Tomov" <todor.too@gmail.com>, "Mauro
- Carvalho Chehab" <mchehab@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
- "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: camss: Add qcom,sm6350-camss
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251114-sm6350-camss-v2-0-d1ff67da33b6@fairphone.com>
- <20251114-sm6350-camss-v2-1-d1ff67da33b6@fairphone.com>
- <de7ad562-80bc-498e-a6fb-cc26bb6343f0@linaro.org>
-In-Reply-To: <de7ad562-80bc-498e-a6fb-cc26bb6343f0@linaro.org>
 
-Hi Vladimir,
-
-On Fri Nov 14, 2025 at 1:40 PM CET, Vladimir Zapolskiy wrote:
-> Hi Luca.
+On Thu, Sep 11, 2025 at 10:14=E2=80=AFAM Raymond Mao <raymond.mao@linaro.or=
+g> wrote:
 >
-> On 11/14/25 13:15, Luca Weiss wrote:
->> Add bindings for the Camera Subsystem on the SM6350 SoC.
->>=20
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->>   .../bindings/media/qcom,sm6350-camss.yaml          | 349 +++++++++++++=
-++++++++
->>   1 file changed, 349 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/media/qcom,sm6350-camss.y=
-aml b/Documentation/devicetree/bindings/media/qcom,sm6350-camss.yaml
->> new file mode 100644
->> index 000000000000..d812b5b50c05
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/qcom,sm6350-camss.yaml
->> @@ -0,0 +1,349 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/qcom,sm6350-camss.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SM6350 Camera Subsystem (CAMSS)
->> +
->> +maintainers:
->> +  - Luca Weiss <luca.weiss@fairphone.com>
->> +
->> +description:
->> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,sm6350-camss
->> +
->> +  reg:
->> +    maxItems: 12
->> +
->> +  reg-names:
->> +    items:
->> +      - const: csid0
->> +      - const: csid1
->> +      - const: csid2
->> +      - const: csid_lite
->> +      - const: csiphy0
->> +      - const: csiphy1
->> +      - const: csiphy2
->> +      - const: csiphy3
->> +      - const: vfe0
->> +      - const: vfe1
->> +      - const: vfe2
->> +      - const: vfe_lite
->> +
->> +  clocks:
->> +    maxItems: 30
->> +
->> +  clock-names:
->> +    items:
->> +      - const: cam_ahb_clk
->> +      - const: cam_axi
->> +      - const: soc_ahb
->> +      - const: camnoc_axi
->> +      - const: core_ahb
->> +      - const: cpas_ahb
->> +      - const: csiphy0
->> +      - const: csiphy0_timer
->> +      - const: csiphy1
->> +      - const: csiphy1_timer
->> +      - const: csiphy2
->> +      - const: csiphy2_timer
->> +      - const: csiphy3
->> +      - const: csiphy3_timer
->> +      - const: slow_ahb_src
->> +      - const: vfe0_axi
->> +      - const: vfe0
->> +      - const: vfe0_cphy_rx
->> +      - const: vfe0_csid
->> +      - const: vfe1_axi
->> +      - const: vfe1
->> +      - const: vfe1_cphy_rx
->> +      - const: vfe1_csid
->> +      - const: vfe2_axi
->> +      - const: vfe2
->> +      - const: vfe2_cphy_rx
->> +      - const: vfe2_csid
->> +      - const: vfe_lite
->> +      - const: vfe_lite_cphy_rx
->> +      - const: vfe_lite_csid
+> When managing multiple base device trees and overlays in a structured
+> way (e.g. bundled in firmware or tools), it is helpful to identify the
+> intended target base DT for each overlay, which can be done via a
+> top-level compatible string in the overlay.
 >
-> The sorting order of this list does not follow the sorting order accepted
-> in the past.
-
-What file should I best reference?
-
+> This provides a way to identify which overlays should be applied once the
+> DT is selected for the case when a device have a common firmware binary
+> which only differs on the DT and overlays.
 >
-> I'm very sorry for the vagueness, but I can not pronounce the accepted
-> sorting order name, because it triggers people.
+> This patch updates the document with a note and example for this
+> practice.
+> For more information on this firmware requirement, please see [1].
 >
->> +
->> +  interrupts:
->> +    maxItems: 12
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: csid0
->> +      - const: csid1
->> +      - const: csid2
->> +      - const: csid_lite
->> +      - const: csiphy0
->> +      - const: csiphy1
->> +      - const: csiphy2
->> +      - const: csiphy3
->> +      - const: vfe0
->> +      - const: vfe1
->> +      - const: vfe2
->> +      - const: vfe_lite
->> +
->> +  interconnects:
->> +    maxItems: 4
->> +
->> +  interconnect-names:
->> +    items:
->> +      - const: ahb
->> +      - const: hf_mnoc
->> +      - const: sf_mnoc
->> +      - const: sf_icp_mnoc
+> [1] https://github.com/FirmwareHandoff/firmware_handoff/pull/74
 >
-> Please remove sf_mnoc and sf_icp_mnoc, they are not needed for enabling
-> IP to produce raw images, and one day you may use them somewhere else.
-
-Ack, will give it a try.
-
+> Suggested-by: Ilias Apalodimas <ilias.apalodimas@linaro.org>
+> Signed-off-by: Raymond Mao <raymond.mao@linaro.org>
+> ---
+> Changes in v2:
+> - Updated commit message.
+> Changes in v3
+> - Rename to 'overlay-compatible' and rephrase the description accordingly=
+.
 >
->> +
->> +  iommus:
->> +    maxItems: 4
->> +
->> +  power-domains:
->> +    items:
->> +      - description: IFE0 GDSC - Image Front End, Global Distributed Sw=
-itch Controller.
->> +      - description: IFE1 GDSC - Image Front End, Global Distributed Sw=
-itch Controller.
->> +      - description: IFE2 GDSC - Image Front End, Global Distributed Sw=
-itch Controller.
->> +      - description: Titan Top GDSC - Titan ISP Block, Global Distribut=
-ed Switch Controller.
->> +
->> +  power-domain-names:
->> +    items:
->> +      - const: top
->> +      - const: ife0
->> +      - const: ife1
->> +      - const: ife2
+>  Documentation/devicetree/overlay-notes.rst | 32 ++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 >
-> Note that the list of items and the list of the item descriptions do not
-> correspond to each other. Titan Top GDSC shall be at the end.
-
-In the v1 the comment was that top can now be put on top (because a
-limitation in the driver was fixed). But yes, forgot to modify
-power-domains description. Will fix.
-
+> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/d=
+evicetree/overlay-notes.rst
+> index 35e79242af9a..77284afba9a4 100644
+> --- a/Documentation/devicetree/overlay-notes.rst
+> +++ b/Documentation/devicetree/overlay-notes.rst
+> @@ -103,6 +103,38 @@ The above bar.dtso example modified to use target pa=
+th syntax is::
+>      ---- bar.dtso ------------------------------------------------------=
+--------
 >
->> +
->> +  vdd-csiphy-0p9-supply:
->> +    description:
->> +      Phandle to a 0.9V regulator supply to a PHY.
->> +
->> +  vdd-csiphy-1p25-supply:
->> +    description:
->> +      Phandle to a 1.25V regulator supply to a PHY.
->> +
 >
-> Please reference to the schematics or SoC TRM, does SM6350 SoC
-> have different pads to get supplies to different CSIPHYx IPs?
->
-> If so, then please provide hardware properties to get a proper
-> correspondence between supplies and CSIPHYx, and make all these
-> properties optional.
+> +Overlay identification
+> +----------------------
+> +
+> +When managing device tree overlays dynamically - such as bundling multip=
+le base
+> +device trees and overlays within firmware, initramfs, or user-space tool=
+s - it
+> +is important to associate each overlay with its corresponding base devic=
+e tree.
+> +
+> +To support this association, each overlay should define a top-level comp=
+atible
+> +string (referred to as the 'overlay-compatible' string). This string is
+> +intended to match the top-level compatible property of the target base d=
+evice
+> +tree.
 
-I shared the names in replies to v1.
+This property needs to be defined in dtschema at a minimum. Really we
+need to check the values are documented. We already have all the
+possible compatibles, so we'd need to generate a schema from them. But
+that part can wait as we don't actually validate overlays on their
+own.
 
-* VDD_CAMSS_PLL_0P9 - Camera SS PLL 0.9 V circuits
-    (not referenced in downstream kernel, connected to vreg_s5a in
-    schematics, which is MX)
-* VDD_A_CSI_x_0P9 - MIPI CSIx 0.9 V circuits
-    With pad names VDD_A_CSI_0_0P9 to VDD_A_CSI_3_0P9
-* VDD_A_CSI_x_1P25 - MIPI CSIx 1.25 V circuits
-    With pad names VDD_A_CSI_0_1P25 to VDD_A_CSI_3_1P25
+> +
+> +By including this identifier, higher-level software or firmware can dete=
+rmine
+> +which base device tree an overlay is compatible with, and apply it accor=
+dingly.
+> +
+> +Example usage::
+> +
+> +    ---- bar.dtso - overlay with top-level compatible string -----------=
+--------
+> +       /dts-v1/;
+> +       /plugin/;
+> +       / {
+> +               overlay-compatible =3D "corp,foo";
+> +
+> +               ...
+> +       };
+> +    ---- bar.dtso ------------------------------------------------------=
+--------
+> +
+> +This top-level compatible string is not required by the kernel overlay
+> +mechanism itself, but it is strongly recommended for managing overlays i=
+n
+> +scalable systems.
 
->
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    description:
->> +      CSI input ports.
->> +
->> +    patternProperties:
->> +      "^port@[0-3]$":
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +
->> +        description:
->> +          Input port for receiving CSI data from a CSIPHY.
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +
->> +            properties:
->> +              data-lanes:
->> +                minItems: 1
->> +                maxItems: 4
->> +
->> +              bus-type:
->> +                enum:
->> +                  - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
->> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
->> +
->> +            required:
->> +              - data-lanes
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - clocks
->> +  - clock-names
->> +  - interrupts
->> +  - interrupt-names
->> +  - interconnects
->> +  - interconnect-names
->> +  - iommus
->> +  - power-domains
->> +  - power-domain-names
->> +  - vdd-csiphy-0p9-supply
->> +  - vdd-csiphy-1p25-supply
->
-> When a change to add CSIPHYx specific supplies is done, please remove
-> *-supply properties from the list of the requred ones.
+Please define exactly how the matching works. I assume it is the 1
+overlay-compatible string has to match any one of the entries in the
+base root compatible property. I don't like to assume though.
 
-Is this pending some other change that will be posted? Or what do you mean?
+How would you handle a case where you have 2 similar SoCs which don't
+share a common compatible string and the overlay applies to both of
+them?
 
->
->> +  - ports
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,gcc-sm6350.h>
->> +    #include <dt-bindings/clock/qcom,sm6350-camcc.h>
->> +    #include <dt-bindings/interconnect/qcom,icc.h>
->> +    #include <dt-bindings/interconnect/qcom,sm6350.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/media/video-interfaces.h>
->> +    #include <dt-bindings/power/qcom-rpmpd.h>
->> +
->> +    soc {
->> +        #address-cells =3D <2>;
->> +        #size-cells =3D <2>;
->> +
->> +        isp@acb3000 {
->> +            compatible =3D "qcom,sm6350-camss";
->> +
->> +            reg =3D <0x0 0x0acb3000 0x0 0x1000>,
->> +                  <0x0 0x0acba000 0x0 0x1000>,
->> +                  <0x0 0x0acc1000 0x0 0x1000>,
->> +                  <0x0 0x0acc8000 0x0 0x1000>,
->> +                  <0x0 0x0ac65000 0x0 0x1000>,
->> +                  <0x0 0x0ac66000 0x0 0x1000>,
->> +                  <0x0 0x0ac67000 0x0 0x1000>,
->> +                  <0x0 0x0ac68000 0x0 0x1000>,
->> +                  <0x0 0x0acaf000 0x0 0x4000>,
->> +                  <0x0 0x0acb6000 0x0 0x4000>,
->> +                  <0x0 0x0acbd000 0x0 0x4000>,
->> +                  <0x0 0x0acc4000 0x0 0x4000>;
->> +            reg-names =3D "csid0",
->> +                        "csid1",
->> +                        "csid2",
->> +                        "csid_lite",
->> +                        "csiphy0",
->> +                        "csiphy1",
->> +                        "csiphy2",
->> +                        "csiphy3",
->> +                        "vfe0",
->> +                        "vfe1",
->> +                        "vfe2",
->> +                        "vfe_lite";
->> +
->> +            clocks =3D <&gcc GCC_CAMERA_AHB_CLK>,
->
-> I believe this clock is critical, and it is set so in the SM6350 GCC driv=
-er,
-> therefore it should not be added here.
-
-True, gcc_camera_ahb_clk has CLK_IS_CRITICAL in gcc-sm6350.c
-
->
-> Multiple CAMCC drivers define some of the clocks as "critical" and always
-> enabled, a misconfiguration in this area may cause the reported warning.
-
-Will try to remove it then.
-
->
->> +                     <&gcc GCC_CAMERA_AXI_CLK>,
->> +                     <&camcc CAMCC_SOC_AHB_CLK>,
->> +                     <&camcc CAMCC_CAMNOC_AXI_CLK>,
->> +                     <&camcc CAMCC_CORE_AHB_CLK>,
->> +                     <&camcc CAMCC_CPAS_AHB_CLK>,
->> +                     <&camcc CAMCC_CSIPHY0_CLK>,
->> +                     <&camcc CAMCC_CSI0PHYTIMER_CLK>,
->> +                     <&camcc CAMCC_CSIPHY1_CLK>,
->> +                     <&camcc CAMCC_CSI1PHYTIMER_CLK>,
->> +                     <&camcc CAMCC_CSIPHY2_CLK>,
->> +                     <&camcc CAMCC_CSI2PHYTIMER_CLK>,
->> +                     <&camcc CAMCC_CSIPHY3_CLK>,
->> +                     <&camcc CAMCC_CSI3PHYTIMER_CLK>,
->> +                     <&camcc CAMCC_SLOW_AHB_CLK_SRC>,
->> +                     <&camcc CAMCC_IFE_0_AXI_CLK>,
->> +                     <&camcc CAMCC_IFE_0_CLK>,
->> +                     <&camcc CAMCC_IFE_0_CPHY_RX_CLK>,
->> +                     <&camcc CAMCC_IFE_0_CSID_CLK>,
->> +                     <&camcc CAMCC_IFE_1_AXI_CLK>,
->> +                     <&camcc CAMCC_IFE_1_CLK>,
->> +                     <&camcc CAMCC_IFE_1_CPHY_RX_CLK>,
->> +                     <&camcc CAMCC_IFE_1_CSID_CLK>,
->> +                     <&camcc CAMCC_IFE_2_AXI_CLK>,
->> +                     <&camcc CAMCC_IFE_2_CLK>,
->> +                     <&camcc CAMCC_IFE_2_CPHY_RX_CLK>,
->> +                     <&camcc CAMCC_IFE_2_CSID_CLK>,
->> +                     <&camcc CAMCC_IFE_LITE_CLK>,
->> +                     <&camcc CAMCC_IFE_LITE_CPHY_RX_CLK>,
->> +                     <&camcc CAMCC_IFE_LITE_CSID_CLK>;
->> +            clock-names =3D "cam_ahb_clk",
->> +                          "cam_axi",
->> +                          "soc_ahb",
->> +                          "camnoc_axi",
->> +                          "core_ahb",
->> +                          "cpas_ahb",
->> +                          "csiphy0",
->> +                          "csiphy0_timer",
->> +                          "csiphy1",
->> +                          "csiphy1_timer",
->> +                          "csiphy2",
->> +                          "csiphy2_timer",
->> +                          "csiphy3",
->> +                          "csiphy3_timer",
->> +                          "slow_ahb_src",
->> +                          "vfe0_axi",
->> +                          "vfe0",
->> +                          "vfe0_cphy_rx",
->> +                          "vfe0_csid",
->> +                          "vfe1_axi",
->> +                          "vfe1",
->> +                          "vfe1_cphy_rx",
->> +                          "vfe1_csid",
->> +                          "vfe2_axi",
->> +                          "vfe2",
->> +                          "vfe2_cphy_rx",
->> +                          "vfe2_csid",
->> +                          "vfe_lite",
->> +                          "vfe_lite_cphy_rx",
->> +                          "vfe_lite_csid";
->> +
->> +            interrupts =3D <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 717 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 718 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>;
->
-> Interrupt types shall be IRQ_TYPE_EDGE_RISING.
-
-Ack
-
->
->> +            interrupt-names =3D "csid0",
->> +                              "csid1",
->> +                              "csid2",
->> +                              "csid_lite",
->> +                              "csiphy0",
->> +                              "csiphy1",
->> +                              "csiphy2",
->> +                              "csiphy3",
->> +                              "vfe0",
->> +                              "vfe1",
->> +                              "vfe2",
->> +                              "vfe_lite";
->> +
->> +            interconnects =3D <&gem_noc MASTER_AMPSS_M0 QCOM_ICC_TAG_AC=
-TIVE_ONLY
->> +                             &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_=
-ACTIVE_ONLY>,
->> +                            <&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_AL=
-WAYS
->> +                             &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAY=
-S>,
->> +                            <&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_AL=
-WAYS
->> +                             &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAY=
-S>,
->> +                            <&mmss_noc MASTER_CAMNOC_ICP QCOM_ICC_TAG_A=
-LWAYS
->> +                             &clk_virt SLAVE_EBI_CH0 QCOM_ICC_TAG_ALWAY=
-S>;
->> +            interconnect-names =3D "ahb",
->> +                                 "hf_mnoc",
->> +                                 "sf_mnoc",
->> +                                 "sf_icp_mnoc";
->> +
->> +            iommus =3D <&apps_smmu 0x820 0xc0>,
->> +                     <&apps_smmu 0x840 0x0>,
->> +                     <&apps_smmu 0x860 0xc0>,
->> +                     <&apps_smmu 0x880 0x0>;
->> +
->> +            power-domains =3D <&camcc TITAN_TOP_GDSC>
->
-> It should be the last one in the list, if the settled practice is followe=
-d.
-
-See above.
-
->
->> +                            <&camcc IFE_0_GDSC>,
->> +                            <&camcc IFE_1_GDSC>,
->> +                            <&camcc IFE_2_GDSC>;
->> +            power-domain-names =3D "top",
->> +                                 "ife0",
->> +                                 "ife1",
->> +                                 "ife2";
->> +
->> +            vdd-csiphy-0p9-supply =3D <&vreg_l18a>;
->> +            vdd-csiphy-1p25-supply =3D <&vreg_l22a>;
->> +
->> +            ports {
->> +                #address-cells =3D <1>;
->> +                #size-cells =3D <0>;
->> +
->> +                port@0 {
->> +                    reg =3D <0>;
->> +                    csiphy0_ep: endpoint {
->
-> An empty line before a child node is always needed.
-
-Ack
-
->
->> +                        data-lanes =3D <0 1 2 3>;
->> +                        bus-type =3D <MEDIA_BUS_TYPE_CSI2_DPHY>;
->> +                        remote-endpoint =3D <&sensor_ep>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +    };
->>=20
-
+Rob
 
