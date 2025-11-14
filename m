@@ -1,94 +1,102 @@
-Return-Path: <devicetree+bounces-238899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759D8C5F69B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 22:45:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9351C5F719
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 22:59:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D849535BAA7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 21:42:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8645C355207
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 21:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036E435C19D;
-	Fri, 14 Nov 2025 21:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6DE830748A;
+	Fri, 14 Nov 2025 21:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="arbSYLwS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dvq7y1MV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D216D35C185;
-	Fri, 14 Nov 2025 21:41:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D70C2FB085
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 21:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763156463; cv=none; b=bkddMFfOZ+8Uyk3X2+D0CIPajTkKWmM4/neNlG0L+vpsWrGtcoM49NIBc4wxyiTvOY2j34CIp7XsIRB+ioTvHWS4oTjOUhmZn0wLu6wg/oWR3Wo4oYobfJLFUbxlf8j/msMUe+W3J7bgAvv0U/iFP+JlSyC+Zki98Es5oiY+QnA=
+	t=1763157477; cv=none; b=W+IOJjpo3bi/6RlnxrRf1JVU6FnheptOw6a6V7TKvPbGJyo/D64i8083Y10qlJ5iYc/rEr45vuEhQ7DBLnvXYdHHxwqNdVVqF0XeQb1+24xnadUJmX2q/LgMlP9h/00bVVmzupvMZyPheYKrZT34TrB07r1Nx3GH0+Wrgw0yHAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763156463; c=relaxed/simple;
-	bh=M3gF+t8IsgI6PSTZgp2iLX1qTLe8b068JiSeWW4M8FE=;
+	s=arc-20240116; t=1763157477; c=relaxed/simple;
+	bh=NejWZ+/c7eJzxkqIJLUq6kOMKEwS/zt3yIZkcOMgvtc=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JsFIr3ZNlnnvv6UipyHDLSXcyXU3SqOqupt6dtTZwobDCIyezo9JRHOCaiSOBDhXCdyiwdneHtbri9QJ2R9qtJ5mhRgr/KpkrsJl8T2YENMMIouLdJq2XZZEXaGeHnN73KCjeC7OGNK4gb/Dw2e1uwk2cCdZKU4jVBpN+j1HxXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=arbSYLwS; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1763156459;
-	bh=M3gF+t8IsgI6PSTZgp2iLX1qTLe8b068JiSeWW4M8FE=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=arbSYLwShp22qZCf6edowX9KnBzYQDEeDNdbA32u0Jav+GL2yInfowzdJwGrakGgd
-	 1/vkoS8uRwAT0Gs4LQWgWy1oh0HTIkhiXN2swHZnCtnvXDm9qfndofaAk5FWvVuu6w
-	 09Nv8Te8YOC4D53r1DWdfve+v9+IPFyovsCcWALBMBsXOfZ4lJxGfF9PPMeLKYTEj4
-	 Y3QTxX09jMMntCWMoOMvlX6si9rqrUcs8IwzisIpeoX1LS2C5ecg4JLsC7PHqtmWnX
-	 fPvKjJk4hBk1wsANtn+F0gmg8DDRznCJInVmVve+CfxS0eCNJEeJqc28AGKcn8Qmww
-	 g3YUiD2L7EjOA==
-Received: from [IPv6:2606:6d00:11:696f::c41] (unknown [IPv6:2606:6d00:11:696f::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 78C8217E013C;
-	Fri, 14 Nov 2025 22:40:56 +0100 (CET)
-Message-ID: <e5e4d2af07ae43f6681020db340f6d9f0fb56ba9.camel@collabora.com>
-Subject: Re: [PATCH v3 4/6] media: mediatek: encoder: Add a new platform
- data member
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Hans Verkuil
- <hverkuil@xs4all.nl>,  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Sebastian Fricke <sebastian.fricke@collabora.com>, Nathan Hebert	
- <nhebert@chromium.org>, Arnd Bergmann <arnd@arndb.de>, Irui Wang	
- <irui.wang@mediatek.com>, George Sun <george.sun@mediatek.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	 <andrzejtp2010@gmail.com>
-Date: Fri, 14 Nov 2025 16:40:54 -0500
-In-Reply-To: <20250814085642.17343-5-kyrie.wu@mediatek.com>
-References: <20250814085642.17343-1-kyrie.wu@mediatek.com>
-	 <20250814085642.17343-5-kyrie.wu@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-EvRa1YfHI+xPZWk5CuRJ"
-User-Agent: Evolution 3.58.1 (3.58.1-1.fc43) 
+	 Content-Type:MIME-Version; b=hcr3I3gyBbjOGiz40nG+dNKNKcRXMTuxU/VOEpWkmN8AHB+0YAodiBVfodMBHMGaW5QBJ7HMxA+eVQooQY7ch6enqBSwOroGNKS20mvKj0PeqA4TDNtZIGsoAUV/3DMgg33R93BeT+502sJ0fHjbfL/gtnQCgOiu3VvOusX9Hdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dvq7y1MV; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-42b39d51dcfso1306140f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:57:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763157474; x=1763762274; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vbNWOmHpdEa5AGQhVuTfa8JxnnOc6K3WrOIf2UEgPrA=;
+        b=Dvq7y1MVyrcGRpWXca4pLx+e+8RdgNkKTnASp232YHPUasCie0xPxnL9F7Rp+RCoyq
+         xo6RX4VzSZ6jRzeRNwOpeLA56N452p7lXYF25nlHdwaghfFqeXqbU3kaSwY1hnPqDJU/
+         W1GnX0hoRP+jen3R+qFgFgruB0GTikL++sxvCePrrLkMHK5LlOw5h6XpCGMgnVhsotEe
+         6uTF8cmdry+dmzj/0Wtw5EhxPuG0nR0OUHaW75A2EG9HIPKG99ObxHI1fv9w1UyBAwgS
+         hQahVYFxliyUAnTbEXMEsbTII9+Uw01y5QzWXXhYKlkbJ+nIvTjHizQNefZM6N4EhhPC
+         Vh1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763157474; x=1763762274;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vbNWOmHpdEa5AGQhVuTfa8JxnnOc6K3WrOIf2UEgPrA=;
+        b=r0kCgmjAC7orBx0FuaOCiEvUrtYJ/cCeKwOFSsZpyyaSgv+EwHo1kaFizAKiv6yUtO
+         IuBlqcCmbDWRQn8EskErMjZESzr1wZ3JQLCtj3E/17x9RckptAFNemfdy3NzlcN1EgqH
+         ADubRa+l5Wq7Q/wedJBnG6i7hxb4WqsQdWYx0iMVOQR0KQtYJKWXFexEDDAoj7cAsDeU
+         XyK6o2mtT5EHsWj1opaqvT8RCXbVdGVZvZJNT3TQe9xGcp36O0wjUivpDY8o4CuAtW84
+         D4IqsePeENg9N/KOYi6wa7uh9tH9dGLyA5bHPRmUoI1jrdnceOc4zhecn/MfKfjKTrtU
+         lnvw==
+X-Forwarded-Encrypted: i=1; AJvYcCVNWY9WdDUdGiH7Si/K1zGVEuVlpKj0+n6RTMaoGjT2WoGrhuC3BB3SYm7E3HaBJCCJkGulvJ/5UJhh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMIVqiaOYJUG2f7e1MDMCDxELNXbNDTU6Bfedm86RZH12N9ZJl
+	Lq74a39542WhQMIUHL8LRpcpDfcZRZfywnDSbMLXuusHwLD4Nbh76A+j5MeWhIzMZxo=
+X-Gm-Gg: ASbGncvB+kHq0awF5XPHUajTjYwQNcI96EMCHtGUeWJP+mRcOlbZH+Hy2MuzeGvhvL5
+	xlNRvgM7G7ZXL9bh8RDQelmc8+VZ6XOi4RffVE7IUcyKY/KezFAKfr+p+5+HkyK1JEvyTH2Hr7V
+	5h4UjIFrYmYvvmapLL6hW/ZmfQxjYRzhGO4IdwLGcrTv/e7/BIqViFTsZktGNUxhVs4YEw50fDc
+	kW/ABwq12IOuF/nI/4YcJ4nwTxrE83Cxh77kjXGodxppc05LbF8CDNr6t/qLljleaUZbzNKkc89
+	9WKIZbHIdfhwvhgj5nC0ggUFjnEGFFS34AaSfRSl2iwtfGpImTGlxXZG3trnw5fdRBoYrIQodHk
+	hjAkCAEnrG4OtWcLlBnnCbf8k8ILF3b3/XD4x2A6b4+2rv7S3bzKNfTb3ALTsKBZFRPTSislaDl
+	2CAxc455mDm07AEagUiw==
+X-Google-Smtp-Source: AGHT+IGZJojwQ5TmPU9HbJqZqk3xKa3jFdu0oCf5mPPHwz3sSCeo2kX4zEUPEQ1wpVk6J/TBJSkFkw==
+X-Received: by 2002:a5d:64e3:0:b0:42b:4061:2416 with SMTP id ffacd0b85a97d-42b59396ee3mr4481398f8f.52.1763157474288;
+        Fri, 14 Nov 2025 13:57:54 -0800 (PST)
+Received: from draszik.lan ([212.129.82.217])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f0b8d6sm12805516f8f.28.2025.11.14.13.57.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 13:57:53 -0800 (PST)
+Message-ID: <f1e9a9e35f7c16d8db0e39128eb184f3f42b7d02.camel@linaro.org>
+Subject: Re: [PATCH v3 09/20] mfd: sec: Add support for S2MPG11 PMIC via ACPM
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,  Liam Girdwood
+ <lgirdwood@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, Bartosz
+ Golaszewski	 <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Peter Griffin	 <peter.griffin@linaro.org>, Will McVicker
+ <willmcvicker@google.com>, 	kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-gpio@vger.kernel.org
+Date: Fri, 14 Nov 2025 21:56:41 +0000
+In-Reply-To: <db7e95dd-2361-4579-b52c-b9556da4633a@sirena.org.uk>
+References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
+	 <20251103-s2mpg1x-regulators-v3-9-b8b96b79e058@linaro.org>
+	 <20251113162534.GO1949330@google.com>
+	 <45ce203c03ec34631a0170baa7e4cf26c98b9cd3.camel@linaro.org>
+	 <db7e95dd-2361-4579-b52c-b9556da4633a@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,188 +104,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
+Hi Mark,
 
---=-EvRa1YfHI+xPZWk5CuRJ
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le jeudi 14 ao=C3=BBt 2025 =C3=A0 16:56 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
-> From: Irui Wang <irui.wang@mediatek.com>
+On Fri, 2025-11-14 at 16:46 +0000, Mark Brown wrote:
+> On Thu, Nov 13, 2025 at 09:43:29PM +0000, Andr=C3=A9 Draszik wrote:
+> > On Thu, 2025-11-13 at 16:25 +0000, Lee Jones wrote:
 >=20
-> Add a new platform data member to indicate each encoder IC, so that the
-> get chip name function by 'of_device_is_compatible' can be removed.
+> > > > +static const struct mfd_cell s2mpg11_devs[] =3D {
+> > > > +	MFD_CELL_NAME("s2mpg11-meter"),
+> > > > +	MFD_CELL_BASIC("s2mpg11-regulator", NULL, NULL, 0, S2MPG11_BUCKBO=
+OST),
 >=20
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-
-I'm very happy of that cleanup,
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
-thanks,
-Nicolas
-
-> ---
-> =C2=A0.../mediatek/vcodec/encoder/mtk_vcodec_enc.c=C2=A0 | 23 ++---------=
---------
-> =C2=A0.../vcodec/encoder/mtk_vcodec_enc_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 6 +++++
-> =C2=A0.../vcodec/encoder/mtk_vcodec_enc_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 2 ++
-> =C2=A03 files changed, 10 insertions(+), 21 deletions(-)
+> > > This is highly irregular - in that, we've never done this before.
 >=20
-> diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_en=
-c.c b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc.c
-> index 03512bf7a072..1a7be3e57eef 100644
-> --- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc.c
-> +++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc.c
-> @@ -198,34 +198,15 @@ static int vidioc_enum_fmt_vid_out(struct file *fil=
-e, void *priv,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pdata->num_output_formats);
-> =C2=A0}
-> =C2=A0
-> -static int mtk_vcodec_enc_get_chip_name(void *priv)
-> -{
-> -	struct mtk_vcodec_enc_ctx *ctx =3D fh_to_enc_ctx(priv);
-> -	struct device *dev =3D &ctx->dev->plat_dev->dev;
-> -
-> -	if (of_device_is_compatible(dev->of_node, "mediatek,mt8173-vcodec-enc")=
-)
-> -		return 8173;
-> -	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8183-vcodec-=
-enc"))
-> -		return 8183;
-> -	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-=
-enc"))
-> -		return 8192;
-> -	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-=
-enc"))
-> -		return 8195;
-> -	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-=
-enc"))
-> -		return 8188;
-> -	else
-> -		return 8173;
-> -}
-> -
-> =C2=A0static int vidioc_venc_querycap(struct file *file, void *priv,
-> =C2=A0				struct v4l2_capability *cap)
-> =C2=A0{
-> =C2=A0	struct mtk_vcodec_enc_ctx *ctx =3D fh_to_enc_ctx(priv);
-> +	const struct mtk_vcodec_enc_pdata *pdata =3D ctx->dev->venc_pdata;
-> =C2=A0	struct device *dev =3D &ctx->dev->plat_dev->dev;
-> -	int platform_name =3D mtk_vcodec_enc_get_chip_name(priv);
-> =C2=A0
-> =C2=A0	strscpy(cap->driver, dev->driver->name, sizeof(cap->driver));
-> -	snprintf(cap->card, sizeof(cap->card), "MT%d video encoder", platform_n=
-ame);
-> +	snprintf(cap->card, sizeof(cap->card), "MT%d video encoder", pdata->ven=
-c_model_num);
-> =C2=A0
-> =C2=A0	return 0;
-> =C2=A0}
-> diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_en=
-c_drv.c b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv=
-.c
-> index bb913dfe5f04..50936949d527 100644
-> --- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-> +++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-> @@ -380,6 +380,7 @@ static int mtk_vcodec_probe(struct platform_device *p=
-dev)
-> =C2=A0}
-> =C2=A0
-> =C2=A0static const struct mtk_vcodec_enc_pdata mt8173_avc_pdata =3D {
-> +	.venc_model_num =3D 8173,
-> =C2=A0	.capture_formats =3D mtk_video_formats_capture_h264,
-> =C2=A0	.num_capture_formats =3D ARRAY_SIZE(mtk_video_formats_capture_h264=
-),
-> =C2=A0	.output_formats =3D mtk_video_formats_output,
-> @@ -390,6 +391,7 @@ static const struct mtk_vcodec_enc_pdata mt8173_avc_p=
-data =3D {
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct mtk_vcodec_enc_pdata mt8173_vp8_pdata =3D {
-> +	.venc_model_num =3D 8173,
-> =C2=A0	.capture_formats =3D mtk_video_formats_capture_vp8,
-> =C2=A0	.num_capture_formats =3D ARRAY_SIZE(mtk_video_formats_capture_vp8)=
-,
-> =C2=A0	.output_formats =3D mtk_video_formats_output,
-> @@ -400,6 +402,7 @@ static const struct mtk_vcodec_enc_pdata mt8173_vp8_p=
-data =3D {
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct mtk_vcodec_enc_pdata mt8183_pdata =3D {
-> +	.venc_model_num =3D 8183,
-> =C2=A0	.uses_ext =3D true,
-> =C2=A0	.capture_formats =3D mtk_video_formats_capture_h264,
-> =C2=A0	.num_capture_formats =3D ARRAY_SIZE(mtk_video_formats_capture_h264=
-),
-> @@ -411,6 +414,7 @@ static const struct mtk_vcodec_enc_pdata mt8183_pdata=
- =3D {
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct mtk_vcodec_enc_pdata mt8188_pdata =3D {
-> +	.venc_model_num =3D 8188,
-> =C2=A0	.uses_ext =3D true,
-> =C2=A0	.capture_formats =3D mtk_video_formats_capture_h264,
-> =C2=A0	.num_capture_formats =3D ARRAY_SIZE(mtk_video_formats_capture_h264=
-),
-> @@ -423,6 +427,7 @@ static const struct mtk_vcodec_enc_pdata mt8188_pdata=
- =3D {
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct mtk_vcodec_enc_pdata mt8192_pdata =3D {
-> +	.venc_model_num =3D 8192,
-> =C2=A0	.uses_ext =3D true,
-> =C2=A0	.capture_formats =3D mtk_video_formats_capture_h264,
-> =C2=A0	.num_capture_formats =3D ARRAY_SIZE(mtk_video_formats_capture_h264=
-),
-> @@ -434,6 +439,7 @@ static const struct mtk_vcodec_enc_pdata mt8192_pdata=
- =3D {
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct mtk_vcodec_enc_pdata mt8195_pdata =3D {
-> +	.venc_model_num =3D 8195,
-> =C2=A0	.uses_ext =3D true,
-> =C2=A0	.capture_formats =3D mtk_video_formats_capture_h264,
-> =C2=A0	.num_capture_formats =3D ARRAY_SIZE(mtk_video_formats_capture_h264=
-),
-> diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_en=
-c_drv.h b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv=
-.h
-> index 426b1398f815..b3206a7b592d 100644
-> --- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-> +++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-> @@ -21,6 +21,7 @@
-> =C2=A0/**
-> =C2=A0 * struct mtk_vcodec_enc_pdata - compatible data for each IC
-> =C2=A0 *
-> + * @venc_model_num: encoder model number
-> =C2=A0 * @uses_ext: whether the encoder uses the extended firmware messag=
-ing format
-> =C2=A0 * @min_bitrate: minimum supported encoding bitrate
-> =C2=A0 * @max_bitrate: maximum supported encoding bitrate
-> @@ -33,6 +34,7 @@
-> =C2=A0 * @uses_common_fw_iface: whether the encoder uses common driver in=
-terface
-> =C2=A0 */
-> =C2=A0struct mtk_vcodec_enc_pdata {
-> +	u16 venc_model_num;
-> =C2=A0	bool uses_ext;
-> =C2=A0	u64 min_bitrate;
-> =C2=A0	u64 max_bitrate;
+> > > We're going to need to have Mark look at this.
+>=20
+> > I did see this in at least one other driver, ah yes at least
+> > drivers/mfd/88pm860x-core.c is doing something similar, maybe others, t=
+oo
+> > (I stopped there).
+>=20
+> Other drivers doing something doesn't mean that they're following good
+> practice.=C2=A0 We do also have drivers which have multiple identical IP
+> blocks and are passing in resources with base address, interrupt and
+> whatever for the IP blocks which is different to just passing a Linux
+> internal ID number through.
 
---=-EvRa1YfHI+xPZWk5CuRJ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+That's fine and I understand that. My reply was in relation to that this
+has never been done before.
 
------BEGIN PGP SIGNATURE-----
+I'm happy to use an alternative approach that can solve my problem, if ther=
+e
+is something that I have missed. I think the commit message for patch 8
+describes the problem in better detail than this one.
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaReh5wAKCRDZQZRRKWBy
-9CXKAQDNDAfNOKCIBvVuUN6h/HCoZwSUJAeu8n4D46L0sOZWOgEA+mZTe25xAc77
-vtt/G0mwiqaKECK7tEIBJz4BfqLanAU=
-=A0Sk
------END PGP SIGNATURE-----
+Cheers,
+Andre'
 
---=-EvRa1YfHI+xPZWk5CuRJ--
 
