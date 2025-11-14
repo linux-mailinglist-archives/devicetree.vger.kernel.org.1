@@ -1,221 +1,792 @@
-Return-Path: <devicetree+bounces-238819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47B08C5E4A7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:42:23 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F40BC5E9E1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:40:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E80135005E1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:21:51 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B79273A0AA5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 16:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2394F32E130;
-	Fri, 14 Nov 2025 16:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9198332F75B;
+	Fri, 14 Nov 2025 16:20:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Rh1WNux0"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lXZdUdO7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010008.outbound.protection.outlook.com [52.101.84.8])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F103632D7C8;
-	Fri, 14 Nov 2025 16:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763137197; cv=fail; b=jsav6Y7j/n8GLKh5D6+nFHwRTRss/D4CY9Hnkd3b+oiIhnuYvuf485L5wDV/W1hzL3ehULJy1IZZvI4XYLRndFxZRI6g+5h5zS7TkqmkhEJ2JHiMPKMBHPordUZKLlCarnl0+C66ao3GIyICW2xbU50qoeZCJva68Dg8TcQA/5g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763137197; c=relaxed/simple;
-	bh=YSgtlvVotqRktpqf9iByKW0lP0Bk9d93CbTnT5XkHUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ajnAg5U4h1sZMoX1gEIrNzwDznHE5EswRIAFHrXYNxeM2DT9Um6quKciE0pSxU6Q2AxMv6PtWcVlSNA12wloHc03CSOSlOMQQ9GbM+Y1qO8cx/MjzgnCZKNTea90vh1LVJiTamluooiPHgWA0NnV2XV5/GnDHqt+rXXi+TysD0I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Rh1WNux0; arc=fail smtp.client-ip=52.101.84.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Gr1ydrIVYKa70IGUkX90CpWqrFfQQPFLPFanc6ffIJtnnTsERepcazBa44wYCwitlczG+MzEMX17/9jB7X77HvhF12kfwPM7p7iisOvlieJpuKgczLatBStvf2WGUNwzJ5UEzac72faMyxjUba2D3x9hoVwGZNapLbMGNlHNjqGTe+Hm8GAzU6tHi9mBgkDgjVTCHrNiUrAMheNmbuaflio8ydJDx+8MmMQOnXCUSwAl7UbWXlcSR5xrOBa7vnBNYNtXHSGT5vPdQFslIVQrrRfyvAc2I4xl8ft7JuAveI6M2TKZDm40OU25eurPHcqWZd0tRDAS17McUNu0+WVgeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m27Y0k2933HWAEv8kcnWQ5B0Y5Zj5RvtHLZ7FVdEBdo=;
- b=bEB+/tDsuWQYWgJ2+OF8PhHHOGB0okLdRZl3y5SG1lsnVaCbkiDk7z3+kcmTJ3Q9qhFck3mxhRMxmexkhIfOCylfgUbJiQF4yd8e+emmsqmYfC28chHPzgvbhlqG1ZEHuqv231UywNSdU6meystYSb44z9wUXjyMDCYmnnl8pzdErQPzqI+2FaHkzVlynwXS6A0Gh+TTkUYhijsOYq7wLd8J8T7hfcA7SJPg9N9MUz4hsMtOYL4A/Y3lVarYkhXZ+g/lU7+W6HiR9y/rTq3+t8rKze6s7rfRUSCBkpvraLVueNv7FLwb9gAVLbFqhryZ3898N/XddUniAQC4Ie9AlA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m27Y0k2933HWAEv8kcnWQ5B0Y5Zj5RvtHLZ7FVdEBdo=;
- b=Rh1WNux0TY744GIz9QZVudR7U8I1v7ETNQwD/GG/63JIX0fIr8yjGHPv/WvaEfLhpi7320MiDQk45w7XitjdFOopmWIuya4WTy+4UWS4kgk25AU/AhWDfH9LkG8uAJ28lqKgmD4NDlDiPeB07pJhtICB3kXCyIBSSZpJsDTNpr6K8UFIaOLNjiSJ8J2s4ScP7vlcL8ae4sM0Q0i5FU84hFMXKOpOPaASmOMElwcuu3J0oEOA98qs18gQ7JiYMNZ6jtzebOothnhwlBFMSVFIE+SDJZq+3QWmXFZtUrkEIAt/NzagxwDvlKjPofz8dnniHjEY1vWlBxpKhj0pmWAaBQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by AS8PR04MB8818.eurprd04.prod.outlook.com (2603:10a6:20b:42d::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Fri, 14 Nov
- 2025 16:19:51 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9320.013; Fri, 14 Nov 2025
- 16:19:51 +0000
-Date: Fri, 14 Nov 2025 11:19:45 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Vladimir Zapolskiy <vz@mleia.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"moderated list:ARM/LPC32XX SOC SUPPORT" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/5] ARM: dts: lpc32xx: add bus surfix for simple-bus
-Message-ID: <aRdWoQ/vPplF0aQA@lizhi-Precision-Tower-5810>
-References: <20251029202801.3963952-1-Frank.Li@nxp.com>
- <af66cc8a-051a-4512-9a02-468b17550775@mleia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <af66cc8a-051a-4512-9a02-468b17550775@mleia.com>
-X-ClientProxiedBy: SA1P222CA0086.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:35e::27) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E81C2641FB
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 16:20:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763137232; cv=none; b=F+n/jW9szgLQDZzNK2B3Zy2J0zvbr/t/puvqmQWt/X01IuuFUTDpv7tiim/w+DVKoXUw/zn7BgGIXJ+3HcqKXvIrrodR9a7wRbppou4Zlf0kYbNaEJuOGqg142AHNbaywq0XHR4SMDmW9YFbzIjfeGYP99OmUgCcElSmkkRLLBc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763137232; c=relaxed/simple;
+	bh=yva6hFn5iMXpWC1RuUzB58gb3ptHNKGxv1WlsBLNA70=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RdEjilnD4PpYiqk3U6rNhG9OHfqDb+HnnB37wKW7jTavE577vhWdbQ1MT+O+n5wGd2edFo6BfoYgofdXRGqCHvFEzuk4n7tlpnwygMp+8T3H1DLSrz+/yyyAlhefqmaPBJyGxHqry3V9tQ9tpRFkP25dciNuB6vs78xaOTFlHbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lXZdUdO7; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id D89D6C10F64;
+	Fri, 14 Nov 2025 16:20:04 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A76436060E;
+	Fri, 14 Nov 2025 16:20:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98CCB10371C8E;
+	Fri, 14 Nov 2025 17:20:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1763137226; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=QWX2nhy9RA0WdO5CLDQcjTT4JrTYRufItnEWZTXgXPM=;
+	b=lXZdUdO7vA75BorKilKgCl2AzI5139PV7Ym7XvBkvRtA+nczWJsivz1RkRTnRqb4lm+ECM
+	dq57YR9ipzZ+xpf244hInFcoGCODJrNJ2RrjUgQrQL9mnp/IPFA6tAHG+3/1VUkDIW0yE/
+	xkWTEXfC233SXZy8X9Cl0s9EOlbWRQTHCftLCdRJpVR54Ui9zimmzR2eFNKRRuMyLbCCAt
+	DGPt54XaH+hmdU97UxCNDOcTreYwaJbdCa/u+w2unOoj7vRotB7l0pedTqoWCWcuH3n1xC
+	NiL6KxoKtk0h8ZLD8yw3CPXzlOIYFQQ7Gq4kp2+4qn+izdFiINopgSKZcvHwcw==
+Date: Fri, 14 Nov 2025 17:20:24 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com
+Subject: Re: [PATCH v2 2/2] rtc: pcf85363: add support for additional features
+Message-ID: <202511141620249d04a5d7@mail.local>
+References: <20250811082123.1099880-1-lakshay.piplani@nxp.com>
+ <20250811082123.1099880-2-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|AS8PR04MB8818:EE_
-X-MS-Office365-Filtering-Correlation-Id: 060bb8eb-98ed-4ae8-d30d-08de2399a35f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?6Atqi+AtocWnPvOPCn7mu2mgVqUi4Bdmwf6T8o9M5dPVMy2BD5Nx5HGgCLI4?=
- =?us-ascii?Q?rfXgrJWM2Eghxgioj/UObfEYndjiOlmbiMytEUzUA72KIK8qzxnNEbHPGXwd?=
- =?us-ascii?Q?DvIS4rPHWf5tm6mUKCzvlxom0yhkJo4Potu+E8bAx6zwy1nkgt/f4HQe+WH9?=
- =?us-ascii?Q?hoYZ1HgB+oS/c0JmF4s7GtrBKYKZ0wK6tGeH1ZXHFEV0Zc2wuFn3Z36qz63p?=
- =?us-ascii?Q?WsUuvdPvZJl8L3mQyoXvc/MtGrfOY1Na5NVZZIuC6wXEt70N1gVKX+riD9x2?=
- =?us-ascii?Q?RtBUVseJXP3keEGOx9ZeOOk3HJGxCgGo/9U92ZzslN4pepItMdxO3TOnI3Zg?=
- =?us-ascii?Q?5Wbh4IRbuN+QfPiub+ByBoDVCy9sSrGF+VMbK1jmX2xelyQbwHkk4Yioi4ab?=
- =?us-ascii?Q?n2ghDDxhTgr1RLUq74uPvhQD+QUyy98ktYOTO0EoGfZ7SC8vdhDikak9e0Ui?=
- =?us-ascii?Q?eQc2DdVaYPSLLtzGrfrTQOkYCRKjMap4qKKb3ZAq44tjtdyuLEvmAKqg58LW?=
- =?us-ascii?Q?QZuz9Kv3ef+ioQKWphQsIoCJjFybwDcZ7SOyTc8mlZM0I0ke7Qmze43U+SYo?=
- =?us-ascii?Q?9EbohnDdrXFfrkBy1XZPF9lVCuCeYZjzJqANpGyL7QDQhIHA2aRZbHQLd3Na?=
- =?us-ascii?Q?aByoIexqyux0dGbj+MV2AAk/1mc2Zbc/5ojlGTwjBm80DiJCIVNnBf+9ULrc?=
- =?us-ascii?Q?3SDq/BkPHLZC6rDcOrcFG6HmgJ+zHj6xAy3zvKkI22fiq9iNYE8VSYHNCMD7?=
- =?us-ascii?Q?J09PGcDeOyhO6EUYc5OSH5rV5/BwDI7sh8o4U4DmolSal1W50fYX+2YfWZFL?=
- =?us-ascii?Q?KzCCe/pWYeN1WxXAIAUSCmDcyfwXcPIBgjR0AYyb2uX4uPYcTBgwT21CTTx1?=
- =?us-ascii?Q?LVwOlLq60nNfczuwQqyavnPL2cTQTuxmgV37Vy93BOvsriZVvA9BxKSYmtix?=
- =?us-ascii?Q?vQ7pZPjhi81aIz5qQD5mwAbCtQBBoVnNYle8A7B6xU0GJ9kqr75Fp+7zc9TX?=
- =?us-ascii?Q?BbJp4LxeratUpnr4KgOdotyTGt9i1PrGLSgY7AtPsRvpWils6O3RsyWPh/v3?=
- =?us-ascii?Q?7vmUhJkj+Lpww9G7HRh6hqWaSgaJlPUV/DXp3kLTRewGHG3APgs9Ggg3ruGF?=
- =?us-ascii?Q?SEJnM9hBYQN8csYI9XBttJyJ0v12vRMnFDcRmG2ZZHTb2iqCQtI3bK3S27uW?=
- =?us-ascii?Q?EaxbC8WrZh1BFYlDyAqUysTzgyjIVA/zVXaIYlewc8R8HKD/fYT/RP5XpInA?=
- =?us-ascii?Q?UlaNvhsajZ6gBsZTnS2e50n4/T+ovJ3zNl5vY39CZVrgUhKCcb0hCG40ntNk?=
- =?us-ascii?Q?A7Xf6MGF5pE2QAobZJRjJls4ULRTduicZLlzb4ytyuTufrUP3o2CcqcYdsjO?=
- =?us-ascii?Q?ykOHCnqtqNjouf64ZtgMcxX4vahHT3mExEoUJFqeAg1t1Y83dT6fyG4lVesD?=
- =?us-ascii?Q?Lygdj85iT1FZJoK+ImWHzeZiZ8FikENg0msvqd363eaekuJ7zGdF0Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?DCrRvThBgwICCasbPMvd0CYgJzRarMBRrU94Zj85EGGJsokwul1Azv6EcBL5?=
- =?us-ascii?Q?EeEAN1DYWn5CyYqFFxAvnBdVs4kYdXS1s992pps8+hJ6NYSIi/kj0wEZf64R?=
- =?us-ascii?Q?yT5+yTsmjY5rTJpLKqIKUVRGcEcyD3p1fiI0RFv2T44UbwBp/aL+8nWPhuPo?=
- =?us-ascii?Q?KG36Lb7bJ3roswh8SK7HPRwdd6Aq9K/lngQpi80IqITIoJh/hDcnVOCSo00m?=
- =?us-ascii?Q?2nmDkTL0D9yMjyN6EzpvhwnbI6f1guu5zJR0bc1am7TuKg6PDLxUXVaFJZJ9?=
- =?us-ascii?Q?gktkhX4b3JOU2KxJRekArNXt/m4hQ4iqqjCRRf4wYES9m10vffrFPRsY5WMZ?=
- =?us-ascii?Q?RUkDLEfUrYVBOESUKBWD/uLkxPrFXVcm08A5SAeRlbDtSKHQ0rJpUoSkc7Sr?=
- =?us-ascii?Q?k24TvCKF5va+EgMt1s3ow2BMSeM8NZP4AKae2mHU3y7/8h7FlShyzYyNTEoh?=
- =?us-ascii?Q?g1QzdX76LTXDzjM8+QIvozgU03w/z5G3ODmr0e7WJ92/46QMNGfqDa9GEmP+?=
- =?us-ascii?Q?FbNg60xGqrxVb9qUpo8JWqymgXsSN0z+3EbQhl6C0JZJZTYo5rDV/Rvojmw/?=
- =?us-ascii?Q?/hSJr2jLy8AqK6P3zW8lzsk4FMBNbV3NXGDuW3QcI950aXlyJChmf9Ht8DVb?=
- =?us-ascii?Q?lvYTljojpr+mdpLbb5rTEqbvUUXY1Z7k8rEWcd4KyiYusTzImQ0Iul+11K3c?=
- =?us-ascii?Q?ZMnp6w8s1lu9b8nZRyWJYqrIuYoyp4jL8+GTSpvMpmR+yz1v4u58zM4iDuO+?=
- =?us-ascii?Q?C9lCbRCXxk6849IWOXlNe6ROc+4F00RKVm2mub+Aq1DYOKct2jaWqoAVfV8c?=
- =?us-ascii?Q?w5oGgqgPm4Du3+mZS5n7YL+/CRIRrtBH9VmbxbPQnjOQRch6a8o8Xc4nh39N?=
- =?us-ascii?Q?pSCp+vS2kfRkSPByZ66XnZUnU3Kg5alitSyHqGtNJOzTFnhWfNceQOJRLRbI?=
- =?us-ascii?Q?S81TtyNqzAEawf7i/vNhcIbbSkMWqr648HWil5vzSooq6oYKtua1Vnk7bt6W?=
- =?us-ascii?Q?+Y0h4D71wRr3kZ8vKe7AsclhJfZStYZblMIiZ055+tr2lSK8Vje2XQn8pI73?=
- =?us-ascii?Q?US5+c1gFA4ZHscrgHjEG7ekgWU1ETrKjtExMwgn9EOcINZRWCTJbJ9SqgUh5?=
- =?us-ascii?Q?DbPqD98lJNHYD/Ux4IIhB9IVpX3D7Qr8SNsO77rGa2zHw+uZgFx+PYUMtY6b?=
- =?us-ascii?Q?DneQc6PObHXN5Dhib29IDzZWXwwYhavbRb8wU4YdOMCgxp0+SNVwddgW3Hoy?=
- =?us-ascii?Q?tZaUseJrtLd+0P9rTy3YV6Sv+VArftrRTTetVOUjXtwO3icMxEx7u5egmGrK?=
- =?us-ascii?Q?hjBNWZIuF4BUtq7j8mVI11zBlqwb8G5u+A3HOGR8L1OrZc2xImKuzFupJHTS?=
- =?us-ascii?Q?ehuHR7KPXXRwugdjy1eI1FT38B4U62AorCtY4cAU1/8nfJhlWezAPlePNEnX?=
- =?us-ascii?Q?KfGLON0kuA8H9Or+OR40YeuzE+UEemQEnkaTEXWie/0vJ4lHV6vLNp+MSDW/?=
- =?us-ascii?Q?raiMYV/HBcaDWOFX3Rc2A+xHuxyJ24P9NScin2bl0/jiFDLafJ9kyao6nCmB?=
- =?us-ascii?Q?Xx9G8Nsgi8FOWzo9n+U=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 060bb8eb-98ed-4ae8-d30d-08de2399a35f
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 16:19:51.4531
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qldD9voXO0JVbPB7sVSy+oyIYdlhWePQPKVpnrmtrVWCbq7LtIqwMQ4s3gRharHaWS6hHFNtApLO748RMzhmNg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8818
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250811082123.1099880-2-lakshay.piplani@nxp.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Nov 14, 2025 at 01:55:50AM +0200, Vladimir Zapolskiy wrote:
-> Hi Frank.
->
-> On 10/29/25 22:27, Frank Li wrote:
-> > add bus surfix for simple-bus to fix below CHECK_DTBS warnings:
->
-> typo in the subject and in the commit message above, s/surfix/suffix/
->
-> > arm/boot/dts/nxp/lpc/lpc3250-ea3250.dtb: usb (simple-bus): $nodename:0: 'usb' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
-> >          from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-> >
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >   arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi | 6 +++---
-> >   1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-> > index 2236901a00313..9790b0a1d6537 100644
-> > --- a/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
-> > @@ -86,7 +86,7 @@ dma: dma-controller@31000000 {
-> >   			#dma-cells = <2>;
-> >   		};
-> > -		usb {
-> > +		usb-bus {
->
-> Device nodes under "usb" should be just elevated, the "simple-bus" here
-> was used only to group some controllers together.
->
-> >   			#address-cells = <1>;
-> >   			#size-cells = <1>;
-> >   			compatible = "simple-bus";
-> > @@ -307,14 +307,14 @@ mpwm: pwm@400e8000 {
-> >   			};
-> >   		};
-> > -		fab {
-> > +		fab-bus {
->
-> FAB shall find its place in the AXI/AHB/APB/... list, isn't it?
+Hello,
 
-what's FAB means? It is too short and hard to find exact information
-from google?
+On 11/08/2025 13:51:23+0530, Lakshay Piplani wrote:
+> Add support for additional features to the NXP PCF8263/PCF85363 RTC driver:
+> - Alarm2 (minute,hour,weekday)
+> - Timestamps recording for TS pin and Battery switch-over events
+> - Battery switch over detection
+> - Offset calibration
+> - Watchdog timer
 
-Frank
->
-> >   			#address-cells = <1>;
-> >   			#size-cells = <1>;
-> >   			compatible = "simple-bus";
-> >   			ranges = <0x20000000 0x20000000 0x30000000>;
-> >   			/* System Control Block */
-> > -			scb {
-> > +			scb-bus {
-> >   				compatible = "simple-bus";
-> >   				ranges = <0x0 0x40004000 0x00001000>;
-> >   				#address-cells = <1>;
->
-> Here "simple-bus" is also unjustified...
->
-> --
-> Best wishes,
-> Vladimir
+This needs to be split per added function. The watchdog part has to be
+reviewed by the watchdog maintainers
+
+Alarm2 support definitively won't go in unless you provide an actual use
+case.
+
+> 
+> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+> ---
+> Changes in v2:
+> - Watchdog related changes due to removal of vendor specific properties
+>   from device tree
+>   * remove vendor DT knobs (enable/timeout/stepsize/repeat)
+>   * use watchdog_init_timeout (with 10s default)
+>   * derive clock_sel from final timeout
+>   * default, repeat=true (repeat mode)
+> - Fixed uninitalised warning on 'ret' (reported by kernel test robot)
+> - Use dev_dbg instead of dev_info for debug related print messages
+> - Minor cleanup and comments
+> 
+>  drivers/rtc/rtc-pcf85363.c | 557 ++++++++++++++++++++++++++++++++++---
+>  1 file changed, 522 insertions(+), 35 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-pcf85363.c b/drivers/rtc/rtc-pcf85363.c
+> index 540042b9eec8..c5c59876bad5 100644
+> --- a/drivers/rtc/rtc-pcf85363.c
+> +++ b/drivers/rtc/rtc-pcf85363.c
+> @@ -5,6 +5,10 @@
+>   * Driver for NXP PCF85363 real-time clock.
+>   *
+>   * Copyright (C) 2017 Eric Nelson
+> + *
+> + * Copyright 2025 NXP
+> + * Added support for alarm2, timestamps, battery switch-over,
+> + * watchdog, offset calibration.
+>   */
+>  #include <linux/module.h>
+>  #include <linux/i2c.h>
+> @@ -15,7 +19,11 @@
+>  #include <linux/errno.h>
+>  #include <linux/bcd.h>
+>  #include <linux/of.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/of_device.h>
+>  #include <linux/regmap.h>
+> +#include <linux/watchdog.h>
+> +#include <linux/uaccess.h>
+>  
+>  /*
+>   * Date/Time registers
+> @@ -100,19 +108,48 @@
+>  #define PIN_IO_INTA_OUT	2
+>  #define PIN_IO_INTA_HIZ	3
+>  
+> +#define PIN_IO_TSPM	GENMASK(3, 2)
+> +#define PIN_IO_TSIM	BIT(4)
+> +
+>  #define OSC_CAP_SEL	GENMASK(1, 0)
+>  #define OSC_CAP_6000	0x01
+>  #define OSC_CAP_12500	0x02
+>  
+>  #define STOP_EN_STOP	BIT(0)
+> +#define RTCM_BIT	BIT(4)
+>  
+>  #define RESET_CPR	0xa4
+>  
+>  #define NVRAM_SIZE	0x40
+>  
+> +#define TSR1_MASK	0x03
+> +#define TSR2_MASK	0x07
+> +#define TSR3_MASK	0x03
+> +#define TSR1_SHIFT	0
+> +#define TSR2_SHIFT	2
+> +#define TSR3_SHIFT	6
+> +
+> +#define WD_MODE_REPEAT	BIT(7)
+> +#define WD_TIMEOUT_MASK	GENMASK(6, 2)
+> +#define WD_TIMEOUT_SHIFT	2
+> +#define WD_CLKSEL_MASK	GENMASK(1, 0)
+> +#define WD_CLKSEL_0_25HZ	0x00
+> +#define WD_CLKSEL_1HZ	0x01
+> +#define WD_CLKSEL_4HZ	0x02
+> +#define WD_CLKSEL_16HZ	0x03
+> +
+> +#define WD_TIMEOUT_MIN	1
+> +#define WD_TIMEOUT_MAX	0x1F
+> +
+> +#define OFFSET_SIGN_BIT	7
+> +#define OFFSET_MINIMUM	-128
+> +#define OFFSET_MAXIMUM	127
+> +#define OFFSET_MASK	0xFF
+> +
+>  struct pcf85363 {
+>  	struct rtc_device	*rtc;
+>  	struct regmap		*regmap;
+> +	u8 ts_valid_flags;
+>  };
+>  
+>  struct pcf85x63_config {
+> @@ -120,6 +157,15 @@ struct pcf85x63_config {
+>  	unsigned int num_nvram;
+>  };
+>  
+> +struct pcf85363_watchdog {
+> +	struct watchdog_device wdd;
+> +	struct regmap *regmap;
+> +	struct device *dev;
+> +	u8 timeout_val;
+> +	u8 clock_sel;
+> +	bool repeat;
+> +};
+> +
+>  static int pcf85363_load_capacitance(struct pcf85363 *pcf85363, struct device_node *node)
+>  {
+>  	u32 load = 7000;
+> @@ -295,28 +341,147 @@ static int pcf85363_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
+>  static irqreturn_t pcf85363_rtc_handle_irq(int irq, void *dev_id)
+>  {
+>  	struct pcf85363 *pcf85363 = i2c_get_clientdata(dev_id);
+> +	bool handled = false;
+>  	unsigned int flags;
+>  	int err;
+>  
+>  	err = regmap_read(pcf85363->regmap, CTRL_FLAGS, &flags);
+> +
+>  	if (err)
+>  		return IRQ_NONE;
+>  
+> +	if (flags) {
+> +		dev_dbg(&pcf85363->rtc->dev, "IRQ flags: 0x%02x%s%s%s%s%s%s%s\n",
+> +			flags, (flags & FLAGS_A1F) ? " [A1F]" : "",
+> +			(flags & FLAGS_A2F) ? " [A2F]" : "",
+> +			(flags & FLAGS_BSF) ? " [BSF]" : "",
+> +			(flags & FLAGS_TSR1F) ? " [TSR1F]" : "",
+> +			(flags & FLAGS_TSR2F) ? " [TSR2F]" : "",
+> +			(flags & FLAGS_TSR3F) ? " [TSR3F]" : "",
+> +			(flags & FLAGS_WDF) ? " [WDF]" : "");
+> +	}
+> +
+>  	if (flags & FLAGS_A1F) {
+>  		rtc_update_irq(pcf85363->rtc, 1, RTC_IRQF | RTC_AF);
+>  		regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_A1F, 0);
+> -		return IRQ_HANDLED;
+> +		handled = true;
+> +	}
+> +
+> +	if (flags & FLAGS_A2F) {
+> +		rtc_update_irq(pcf85363->rtc, 1, RTC_IRQF | RTC_AF);
+> +		regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_A2F, 0);
+> +		handled = true;
+> +	}
+> +
+> +	if (flags & FLAGS_BSF) {
+> +		regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_BSF, 0);
+> +		handled = true;
+> +	}
+> +
+> +	if (flags & FLAGS_TSR1F) {
+> +		regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_TSR1F, 0);
+> +		pcf85363->ts_valid_flags |= FLAGS_TSR1F;
+> +		handled = true;
+> +	}
+> +
+> +	if (flags & FLAGS_TSR2F) {
+> +		regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_TSR2F, 0);
+> +		pcf85363->ts_valid_flags |= FLAGS_TSR2F;
+> +		handled = true;
+> +	}
+> +
+> +	if (flags & FLAGS_TSR3F) {
+> +		regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_TSR3F, 0);
+> +		pcf85363->ts_valid_flags |= FLAGS_TSR3F;
+> +		handled = true;
+> +	}
+> +
+> +	if (flags & FLAGS_WDF) {
+> +		regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_WDF, 0);
+> +		handled = true;
+> +	}
+> +
+> +	return handled ? IRQ_HANDLED : IRQ_NONE;
+> +}
+> +
+> +/*
+> + * Read the current RTC offset from the CTRL_OFFSET
+> + * register. This value is an 8-bit signed 2's complement
+> + * value that corrects osciallator drift.
+> + */
+> +static int pcf85363_read_offset(struct device *dev, long *offset)
+> +{
+> +	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pcf85363->regmap, CTRL_OFFSET, &val);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	*offset = sign_extend32(val & OFFSET_MASK, OFFSET_SIGN_BIT);
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Write an oscillator offset correction value to
+> + * the CTRL_OFFSET register. The valid range is
+> + * -128 to 127 (8-bit signed), typically used to fine
+> + * tune accuracy.
+> + */
+> +static int pcf85363_set_offset(struct device *dev, long offset)
+> +{
+> +	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
+> +
+> +	if (offset < OFFSET_MINIMUM || offset > OFFSET_MAXIMUM) {
+> +		dev_warn(dev, "Offset out of range: %ld\n", offset);
+> +		return -ERANGE;
+> +	}
+> +
+> +	return regmap_write(pcf85363->regmap, CTRL_OFFSET, offset & OFFSET_MASK);
+> +}
+> +
+> +static int pcf85363_rtc_ioctl(struct device *dev,
+> +			      unsigned int cmd, unsigned long arg)
+> +{
+> +	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	switch (cmd) {
+> +	case RTC_VL_READ: {
+> +		u32 status = 0;
+> +
+> +		ret = regmap_read(pcf85363->regmap, CTRL_FLAGS, &val);
+> +
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (val & FLAGS_BSF)
+> +			status |= RTC_VL_BACKUP_SWITCH;
+> +
+> +		return put_user(status, (u32 __user *)arg);
+>  	}
+>  
+> -	return IRQ_NONE;
+> +	case RTC_VL_CLR:
+> +		return regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_BSF, 0);
+> +
+> +	default:
+> +		return -ENOIOCTLCMD;
+> +	}
+>  }
+>  
+>  static const struct rtc_class_ops rtc_ops = {
+> +	.ioctl	= pcf85363_rtc_ioctl,
+>  	.read_time	= pcf85363_rtc_read_time,
+>  	.set_time	= pcf85363_rtc_set_time,
+>  	.read_alarm	= pcf85363_rtc_read_alarm,
+>  	.set_alarm	= pcf85363_rtc_set_alarm,
+>  	.alarm_irq_enable = pcf85363_rtc_alarm_irq_enable,
+> +	.read_offset = pcf85363_read_offset,
+> +	.set_offset = pcf85363_set_offset,
+>  };
+>  
+>  static int pcf85363_nvram_read(void *priv, unsigned int offset, void *val,
+> @@ -379,11 +544,297 @@ static const struct pcf85x63_config pcf_85363_config = {
+>  	.num_nvram = 2
+>  };
+>  
+> +/*
+> + * This function sets the watchdog control register based on the timeout,
+> + * clock selection and repeat mode settings. It prepares the value to
+> + * write into the watchdog control register (CTRL_WDOG).
+> + */
+> +static int pcf85363_wdt_reload(struct pcf85363_watchdog *wd)
+> +{
+> +	u8 val;
+> +
+> +	val = (wd->repeat ? WD_MODE_REPEAT : 0) |
+> +	       ((wd->timeout_val & WD_TIMEOUT_MAX) << WD_TIMEOUT_SHIFT) |
+> +	       (wd->clock_sel & WD_CLKSEL_MASK);
+> +
+> +	return regmap_write(wd->regmap, CTRL_WDOG, val);
+> +}
+> +
+> +static int pcf85363_wdt_start(struct watchdog_device *wdd)
+> +{
+> +	struct pcf85363_watchdog *wd = watchdog_get_drvdata(wdd);
+> +
+> +	return pcf85363_wdt_reload(wd);
+> +}
+> +
+> +static int pcf85363_wdt_stop(struct watchdog_device *wdd)
+> +{
+> +	struct pcf85363_watchdog *wd = watchdog_get_drvdata(wdd);
+> +
+> +	return regmap_write(wd->regmap, CTRL_WDOG, 0);
+> +}
+> +
+> +static int pcf85363_wdt_ping(struct watchdog_device *wdd)
+> +{
+> +	struct pcf85363_watchdog *wd = watchdog_get_drvdata(wdd);
+> +
+> +	regmap_update_bits(wd->regmap, CTRL_FLAGS, FLAGS_WDF, 0);
+> +
+> +	return pcf85363_wdt_reload(wd);
+> +}
+> +
+> +static int pcf85363_wdt_set_timeout(struct watchdog_device *wdd,
+> +				    unsigned int timeout)
+> +{
+> +	struct pcf85363_watchdog *wd = watchdog_get_drvdata(wdd);
+> +
+> +	wd->timeout_val = clamp(timeout, WD_TIMEOUT_MIN, WD_TIMEOUT_MAX);
+> +	wdd->timeout = wd->timeout_val;
+> +
+> +	return pcf85363_wdt_reload(wd);
+> +}
+> +
+> +static const struct watchdog_info pcf85363_wdt_info = {
+> +	.identity = "PCF85363 Watchdog",
+> +	.options = WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT,
+> +};
+> +
+> +static const struct watchdog_ops pcf85363_wdt_ops = {
+> +	.owner = THIS_MODULE,
+> +	.start = pcf85363_wdt_start,
+> +	.stop = pcf85363_wdt_stop,
+> +	.ping = pcf85363_wdt_ping,
+> +	.set_timeout = pcf85363_wdt_set_timeout,
+> +};
+> +
+> +static int pcf85363_watchdog_init(struct device *dev, struct regmap *regmap)
+> +{
+> +	struct pcf85363_watchdog *wd;
+> +	unsigned int timeout_sec;
+> +	int ret;
+> +
+> +	if (!IS_ENABLED(CONFIG_WATCHDOG))
+> +		return 0;
+> +
+> +	wd = devm_kzalloc(dev, sizeof(*wd), GFP_KERNEL);
+> +	if (!wd)
+> +		return -ENOMEM;
+> +
+> +	wd->regmap = regmap;
+> +	wd->dev = dev;
+> +
+> +	wd->wdd.info = &pcf85363_wdt_info;
+> +	wd->wdd.ops = &pcf85363_wdt_ops;
+> +	wd->wdd.min_timeout = WD_TIMEOUT_MIN;
+> +	wd->wdd.max_timeout = WD_TIMEOUT_MAX;
+> +	wd->wdd.parent = dev;
+> +	wd->wdd.status = WATCHDOG_NOWAYOUT_INIT_STATUS;
+> +
+> +	ret = watchdog_init_timeout(&wd->wdd, 10, dev);
+> +	if (ret)
+> +		wd->wdd.timeout = clamp(10U, WD_TIMEOUT_MIN, WD_TIMEOUT_MAX);
+> +
+> +	timeout_sec = wd->wdd.timeout;
+> +
+> +	if (timeout_sec <= 2)
+> +		wd->clock_sel = WD_CLKSEL_16HZ;
+> +	else if (timeout_sec <= 8)
+> +		wd->clock_sel = WD_CLKSEL_4HZ;
+> +	else if (timeout_sec <= 16)
+> +		wd->clock_sel = WD_CLKSEL_1HZ;
+> +	else
+> +		wd->clock_sel = WD_CLKSEL_0_25HZ;
+> +
+> +	wd->repeat = true;
+> +
+> +	ret = regmap_update_bits(regmap, CTRL_FLAGS, FLAGS_WDF, 0);
+> +	if (ret) {
+> +		dev_err(dev, "failed to clear WDF:%d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	watchdog_set_drvdata(&wd->wdd, wd);
+> +
+> +	dev_dbg(dev, "pcf85363 watchdog registered (timeout=%us, clk_sel=%u)\n",
+> +		timeout_sec, wd->clock_sel);
+> +
+> +	return devm_watchdog_register_device(dev, &wd->wdd);
+> +}
+> +
+> +/*
+> + * Parses a string in the format "min hour weekday", validates the values,
+> + * converts them to BCD, writes them to the Alarm2 registers, and enables
+> + * the Alarm2 time match bits (minute, hour, weekday).
+> + */
+> +static ssize_t alarm2_time_store(struct device *dev,
+> +				 struct device_attribute *attr,
+> +				 const char *buf, size_t count)
+> +{
+> +	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
+> +	int min, hour, weekday;
+> +	u8 regbuf[3];
+> +	int ret;
+> +
+> +	if (sscanf(buf, "%d %d %d", &min, &hour, &weekday) != 3)
+> +		return -EINVAL;
+> +
+> +	if (min < 0 || min > 59 || hour < 0 || hour > 23 || weekday < 0 || weekday > 6)
+> +		return -EINVAL;
+> +
+> +	regbuf[0] = bin2bcd(min);
+> +	regbuf[1] = bin2bcd(hour);
+> +	regbuf[2] = weekday & 0x07;
+> +
+> +	ret = regmap_bulk_write(pcf85363->regmap, DT_MINUTE_ALM2, regbuf, sizeof(regbuf));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(pcf85363->regmap, DT_ALARM_EN,
+> +				 ALRM_MIN_A2E | ALRM_HR_A2E | ALRM_DAY_A2E,
+> +				 ALRM_MIN_A2E | ALRM_HR_A2E | ALRM_DAY_A2E);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return count;
+> +}
+> +
+> +/*
+> + * Parses a string ("0" or "1") to control Alarm2 interrupt generation.
+> + * Also clears the Alarm2 flag if the alarm is being disabled.
+> + */
+> +static ssize_t alarm2_enable_store(struct device *dev,
+> +				   struct device_attribute *attr,
+> +				   const char *buf, size_t count)
+> +{
+> +	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
+> +	unsigned long enable;
+> +	int ret;
+> +
+> +	ret = kstrtoul(buf, 10, &enable);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (enable) {
+> +		ret = regmap_update_bits(pcf85363->regmap, CTRL_INTA_EN,
+> +					 INT_A2IE, INT_A2IE);
+> +	} else {
+> +		ret = regmap_update_bits(pcf85363->regmap, CTRL_INTA_EN,
+> +					 INT_A2IE, 0);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = regmap_update_bits(pcf85363->regmap, CTRL_FLAGS,
+> +					 FLAGS_A2F, 0);
+> +	}
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	return count;
+> +}
+> +
+> +static DEVICE_ATTR_WO(alarm2_time);
+> +static DEVICE_ATTR_WO(alarm2_enable);
+> +
+> +static struct attribute *alarm2_attrs[] = {
+> +	&dev_attr_alarm2_time.attr,
+> +	&dev_attr_alarm2_enable.attr,
+> +	NULL
+> +};
+> +
+> +static struct attribute_group alarm2_group = {
+> +	.name = "alarm2",
+> +	.attrs = alarm2_attrs,
+> +};
+> +
+> +/*
+> + * Reads 6 bytes of timestamp data starting at the given base register,
+> + * converts them from BCD to binary, and formats the result into a
+> + * human-readable string in "YYYY-MM-DD HH:MM:SS" format.
+> + */
+> +static int pcf85363_read_timestamp(struct pcf85363 *pcf85363, u8 base_reg, char *buf)
+> +{
+> +	struct rtc_time tm;
+> +	u8 regs[6];
+> +	int ret;
+> +
+> +	ret = regmap_bulk_read(pcf85363->regmap, base_reg, regs, sizeof(regs));
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	tm.tm_sec = bcd2bin(regs[0]);
+> +	tm.tm_min = bcd2bin(regs[1]);
+> +	tm.tm_hour = bcd2bin(regs[2]);
+> +	tm.tm_mday = bcd2bin(regs[3]);
+> +	tm.tm_mon = bcd2bin(regs[4]) - 1;
+> +	tm.tm_year = bcd2bin(regs[5]) + 100;
+> +
+> +	return sysfs_emit(buf, "%04d-%02d-%02d %02d:%02d:%02d\n",
+> +			  tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
+> +			  tm.tm_hour, tm.tm_min, tm.tm_sec);
+> +}
+> +
+> +/*
+> + * Checks whether a specific timestamp flag is set. If so, reads and
+> + * returns the formatted timestamp. Otherwise, returns "00-00-00 00:00:00".
+> + */
+> +
+> +static ssize_t pcf85363_timestamp_show(struct device *dev, char *buf,
+> +				       u8 timestamp_flag, u8 base_reg)
+> +{
+> +	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
+> +
+> +	if (!(pcf85363->ts_valid_flags & timestamp_flag))
+> +		return sysfs_emit(buf, "00-00-00 00:00:00\n");
+> +
+> +	return pcf85363_read_timestamp(pcf85363, base_reg, buf);
+> +}
+> +
+> +static ssize_t timestamp1_show(struct device *dev,
+> +			       struct device_attribute *attr, char *buf)
+> +{
+> +	return pcf85363_timestamp_show(dev, buf, FLAGS_TSR1F, DT_TIMESTAMP1);
+> +}
+> +static DEVICE_ATTR_RO(timestamp1);
+> +
+> +static ssize_t timestamp2_show(struct device *dev,
+> +			       struct device_attribute *attr, char *buf)
+> +{
+> +	return pcf85363_timestamp_show(dev, buf, FLAGS_TSR2F, DT_TIMESTAMP2);
+> +}
+> +static DEVICE_ATTR_RO(timestamp2);
+> +
+> +static ssize_t timestamp3_show(struct device *dev,
+> +			       struct device_attribute *attr, char *buf)
+> +{
+> +	return pcf85363_timestamp_show(dev, buf, FLAGS_TSR3F, DT_TIMESTAMP3);
+> +}
+> +static DEVICE_ATTR_RO(timestamp3);
+> +
+> +static struct attribute *pcf85363_attrs[] = {
+> +	&dev_attr_timestamp1.attr,
+> +	&dev_attr_timestamp2.attr,
+> +	&dev_attr_timestamp3.attr,
+> +	NULL,
+> +};
+> +
+> +static const struct attribute_group pcf85363_attr_group = {
+> +	.attrs = pcf85363_attrs,
+> +};
+> +
+>  static int pcf85363_probe(struct i2c_client *client)
+>  {
+> -	struct pcf85363 *pcf85363;
+>  	const struct pcf85x63_config *config = &pcf_85363_config;
+>  	const void *data = of_device_get_match_data(&client->dev);
+> +	struct device *dev = &client->dev;
+> +	struct pcf85363 *pcf85363;
+> +	int irq_a = client->irq;
+> +	bool wakeup_source;
+> +	int ret, i, err;
+> +	u32 tsr_mode[3];
+> +	u8 val;
+> +
+>  	static struct nvmem_config nvmem_cfg[] = {
+>  		{
+>  			.name = "pcf85x63-",
+> @@ -401,25 +852,43 @@ static int pcf85363_probe(struct i2c_client *client)
+>  			.reg_write = pcf85363_nvram_write,
+>  		},
+>  	};
+> -	int ret, i, err;
+> -	bool wakeup_source;
+>  
+>  	if (data)
+>  		config = data;
+>  
+> -	pcf85363 = devm_kzalloc(&client->dev, sizeof(struct pcf85363),
+> -				GFP_KERNEL);
+> +	pcf85363 = devm_kzalloc(&client->dev, sizeof(*pcf85363), GFP_KERNEL);
+>  	if (!pcf85363)
+>  		return -ENOMEM;
+>  
+> +	pcf85363->ts_valid_flags = 0;
+> +
+>  	pcf85363->regmap = devm_regmap_init_i2c(client, &config->regmap);
+> -	if (IS_ERR(pcf85363->regmap)) {
+> -		dev_err(&client->dev, "regmap allocation failed\n");
+> -		return PTR_ERR(pcf85363->regmap);
+> -	}
+> +	if (IS_ERR(pcf85363->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(pcf85363->regmap), "regmap init failed\n");
+>  
+>  	i2c_set_clientdata(client, pcf85363);
+>  
+> +	ret = regmap_update_bits(pcf85363->regmap, CTRL_FUNCTION, RTCM_BIT, 0);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable RTC mode\n");
+> +
+> +	if (!device_property_read_u32_array(dev, "nxp,timestamp-mode", tsr_mode, 3)) {
+> +		tsr_mode[0] &= TSR1_MASK;
+> +		tsr_mode[1] &= TSR2_MASK;
+> +		tsr_mode[2] &= TSR3_MASK;
+> +
+> +		val = (tsr_mode[2] << TSR3_SHIFT) |
+> +		      (tsr_mode[1] << TSR2_SHIFT) |
+> +		      (tsr_mode[0] << TSR1_SHIFT);
+> +
+> +		ret = regmap_write(pcf85363->regmap, DT_TS_MODE, val);
+> +		if (ret)
+> +			dev_warn(dev, "Failed to write timestamp mode register\n");
+> +
+> +		dev_dbg(dev, "Timestamp mode set: TSR1=0x%x TSR2=0x%x TSR3=0x%x\n",
+> +			tsr_mode[0], tsr_mode[1], tsr_mode[2]);
+> +	}
+> +
+>  	pcf85363->rtc = devm_rtc_allocate_device(&client->dev);
+>  	if (IS_ERR(pcf85363->rtc))
+>  		return PTR_ERR(pcf85363->rtc);
+> @@ -433,39 +902,57 @@ static int pcf85363_probe(struct i2c_client *client)
+>  	pcf85363->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
+>  	pcf85363->rtc->range_max = RTC_TIMESTAMP_END_2099;
+>  
+> -	wakeup_source = device_property_read_bool(&client->dev,
+> -						  "wakeup-source");
+> -	if (client->irq > 0 || wakeup_source) {
+> -		regmap_write(pcf85363->regmap, CTRL_FLAGS, 0);
+> -		regmap_update_bits(pcf85363->regmap, CTRL_PIN_IO,
+> -				   PIN_IO_INTAPM, PIN_IO_INTA_OUT);
+> -	}
+> +	wakeup_source = device_property_read_bool(dev, "wakeup-source");
+>  
+> -	if (client->irq > 0) {
+> -		unsigned long irqflags = IRQF_TRIGGER_LOW;
+> +	ret = regmap_write(pcf85363->regmap, CTRL_FLAGS, 0x00);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to clear CTRL_FLAGS\n");
+> +
+> +	if (irq_a > 0) {
+> +		regmap_update_bits(pcf85363->regmap, CTRL_PIN_IO, PIN_IO_INTAPM, PIN_IO_INTA_OUT);
+> +		ret = devm_request_threaded_irq(dev, irq_a, NULL,
+> +						pcf85363_rtc_handle_irq,
+> +						IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+> +						"pcf85363-inta", client);
+>  
+> -		if (dev_fwnode(&client->dev))
+> -			irqflags = 0;
+> -		ret = devm_request_threaded_irq(&client->dev, client->irq,
+> -						NULL, pcf85363_rtc_handle_irq,
+> -						irqflags | IRQF_ONESHOT,
+> -						"pcf85363", client);
+>  		if (ret) {
+> -			dev_warn(&client->dev,
+> -				 "unable to request IRQ, alarms disabled\n");
+> -			client->irq = 0;
+> +			dev_err_probe(dev, ret, "INTA IRQ request failed\n");
+> +			irq_a = 0;
+> +		} else {
+> +			regmap_write(pcf85363->regmap, CTRL_INTA_EN, INT_BSIE
+> +				     | INT_TSRIE | INT_WDIE);
+>  		}
+>  	}
+>  
+> -	if (client->irq > 0 || wakeup_source) {
+> -		device_init_wakeup(&client->dev, true);
+> -		set_bit(RTC_FEATURE_ALARM, pcf85363->rtc->features);
+> -	} else {
+> -		clear_bit(RTC_FEATURE_ALARM, pcf85363->rtc->features);
+> -	}
+> +	regmap_update_bits(pcf85363->regmap, CTRL_PIN_IO,
+> +			   PIN_IO_TSPM | PIN_IO_TSIM,
+> +			   PIN_IO_TSPM | PIN_IO_TSIM);
+> +
+> +	ret = pcf85363_watchdog_init(dev, pcf85363->regmap);
+> +
+> +	if (ret)
+> +		dev_err_probe(dev, ret, "Watchdog init failed\n");
+> +
+> +	if (irq_a > 0 || wakeup_source)
+> +		device_init_wakeup(dev, true);
+> +
+> +	dev_set_drvdata(&pcf85363->rtc->dev, pcf85363);
+>  
+>  	ret = devm_rtc_register_device(pcf85363->rtc);
+>  
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "RTC registration failed\n");
+> +
+> +	ret = sysfs_create_group(&pcf85363->rtc->dev.kobj, &alarm2_group);
+> +
+> +	if (ret)
+> +		dev_err_probe(dev, ret, "Alarm2 sysfs creation failed\n");
+> +
+> +	ret = sysfs_create_group(&pcf85363->rtc->dev.kobj, &pcf85363_attr_group);
+
+Use rtc_add_group(), also, you are not allowed to fail after calling
+devm_rtc_register_device)()
+
+> +
+> +	if (ret)
+> +		dev_err_probe(dev, ret, "Timestamp sysfs creation failed\n");
+> +
+>  	for (i = 0; i < config->num_nvram; i++) {
+>  		nvmem_cfg[i].priv = pcf85363;
+>  		devm_rtc_nvmem_register(pcf85363->rtc, &nvmem_cfg[i]);
+> -- 
+> 2.25.1
+> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
