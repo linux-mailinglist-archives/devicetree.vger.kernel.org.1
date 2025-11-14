@@ -1,68 +1,103 @@
-Return-Path: <devicetree+bounces-238692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0922AC5D587
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:28:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4A2C5D5C0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:31:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 13CCA3453FB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:23:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 241804E3661
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025D1314D25;
-	Fri, 14 Nov 2025 13:23:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01C7314D38;
+	Fri, 14 Nov 2025 13:24:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="An0Ki4z5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433B7314A6B
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA710212574
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:24:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763126583; cv=none; b=FHY4paS5mpN42JpclVXLfvWC0gmtYcYVCsFbRq2isR1Xkhz/vKBEFiekG/DFoBv7crc7aMRfvT5vQOrxsovn0rEB+t4gqkdtXluRCC/WO0qmwcq/XT/bB0IEfsI7NB9vm4eWPLT4OxV4/1MwH+7M8CIEJ8H9NmwWTQ292eDKDok=
+	t=1763126688; cv=none; b=SifP53eTZwsjTgMwi0DRH9hIuZR9kOlMdxIWNZG3pYI7N9G10eav6uuQ4QRfQghJrDc7/lSe0PLc75zmrnzuU+90PHp7uF4s1n8jG91Mux3RVqVUg7NEb0tbGoTsGO2JWbQwBcVzvR4eS/B4VEHCqTEaDX5a1Mzurc/aWU121vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763126583; c=relaxed/simple;
-	bh=eShN4Ob6yWOBP8ZKZQ3V71WXPtkYdhIepRwN9uTkl7c=;
+	s=arc-20240116; t=1763126688; c=relaxed/simple;
+	bh=/MfNmCaMbBpwAOzkjJvB9GOQKWmOcsbFnthRP3WrP4c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I2/59bya20llT3Pk1SyiCk47QmWVy2c7XA84UKuv4msrFFc9KUWJM60XwLzcRseczgHLqYZ9VkZrgfBN2VdUqrj7rnlgF5YWfwELzRDYGoAAyc/7YLcqkLlD4CbQDnfRinls9jkdjt9iXkxY7elCHj1jJKHRE+1DlZk1EQ08BEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vJtlF-0003Gu-9f; Fri, 14 Nov 2025 14:22:45 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vJtlD-000QjO-0z;
-	Fri, 14 Nov 2025 14:22:43 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id E3F1E49F5AE;
-	Fri, 14 Nov 2025 13:22:42 +0000 (UTC)
-Date: Fri, 14 Nov 2025 14:22:42 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: zhangqing <zhangqing@rock-chips.com>
-Cc: linux-arm-kernel@lists.infradead.org, robh@kernel.org, 
-	conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-can@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	cl@rock-chips.com, kernel@pengutronix.de, krzk+dt@kernel.org, 
-	mailhol.vincent@wanadoo.fr
-Subject: Re: [PATCH v9 3/3] net: can: rockchip: add can for RK3576 Soc
-Message-ID: <20251114-illegal-flounder-of-maturity-edc269-mkl@pengutronix.de>
-References: <20251113075419.482940-1-zhangqing@rock-chips.com>
- <20251113075419.482940-4-zhangqing@rock-chips.com>
- <20251113-slim-foamy-gecko-2dc389-mkl@pengutronix.de>
- <176d96b4-397c-49d4-8e8e-2f77a5d59c12@rock-chips.com>
- <20251114-utopian-cheerful-otter-33c1d5-mkl@pengutronix.de>
- <3233894e-9409-4b74-a954-0b30064c3c8c@rock-chips.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SEfN12U8S85jkacYrDwaCDhfTfIYZJasGqURSkvjCeIZTluaIiOnM+nAPJgFJiDj3vMUUibWLhAQV/CzXbbBhMOxWsSAfcDkYYS44PT4OFkwCEgCv3JJF3KiQJAoyB1z9x6OrVPN/NNfTTfR7TTlOAXAbOOLJmFTFBVYMeJtVfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=An0Ki4z5; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47775fb6c56so22354805e9.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:24:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763126685; x=1763731485; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9tFYx+r0LtpX/2l5hmodetJ2Wuc+Oih4VLt/Zf0jWOY=;
+        b=An0Ki4z5M41xmXqsKse7t1kP32LyH7afmW0YlcG9Klz4WF2Qx46YDfpOj9RcO8CIW9
+         f8efAj6aNHro8mPQWwq81DAj64i0kZRyu87XRwFl0qsvaDUW0vE7DzGLHl7CTqkpF8cB
+         RBuTx/0HmQ+ZYpJotrbnDXqLaCZFTiycAX58s0n649VTxK2Lw1+OmXloblDS4EynSQeh
+         zYKoVclD7t4CU9KkLLfS4mJ4oK49bGhGV6eIqqTlPrKW/uKBy3IvcxdrDTU1Mc6NblsK
+         ByrgavWKyOE8tH68P8SfojNr4pMgMWJrBUDZjexZwzoxjXBw2o2kLowBzdJ/f4HwwtK3
+         SFBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763126685; x=1763731485;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9tFYx+r0LtpX/2l5hmodetJ2Wuc+Oih4VLt/Zf0jWOY=;
+        b=F6ch9NyxNKhNb3YO7zbzVPTkaI72rHYbkN9cIprYhpaqutL6g9tWmMEsG3xQymzvIM
+         3uO3YKzGv/IAI4yQudqctm/pNUaz3t+liHMTcVoFvhAJIq2CM37FnToTHWbMGCtKmJ17
+         x/WSXCo2c66pW8ohwGudWagnrzQPxP6NtONlzlJceAtSJQp1qWD3weRfAGz7phntZtt7
+         vxAEGQG4NpgWUu7CspIdtRY4zytz1RdtyjH3fnpsrM2P5pSlcjFeg5YCBqhuWyo2p8zp
+         qjq41CFy3BgW3xo1TQNUao6Wg+knkASYuvcHjHfWqjS7L8vT8vSjaMAw1m8XeCHopZp4
+         yvyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/5Ug4j0abVS9TVKw1CEH1B+LqCxVUwuFK8SJFtf1roq1IWXctk0C+bAcs+THRV53RJ+Jcfao4NMeF@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwMtE2b1MRBKadC/tAncQgZU3DpYNJYdJ2s502w1nfzZHksu84
+	YDxBLHzOwqnocRV8b5rGPj1it3otIJsdgy1Bk0V8+onWOsihJWmBne8fz6XL4g==
+X-Gm-Gg: ASbGncuZH1m0bEEqxVFmtzbWK8/9XS+DGzjKPoAOhqHI5OAlRBhN+vyLV1r61QeDbmp
+	rUlQwmgA3bIMnmWjD/OFQJ1ktNySSq8w8H/ucavkaxK4IBGJoYCwWWeDd6F5jqkNqdUibi49GBW
+	f5I2AaNDYHGw2ZCDTXaxVEYpteDeG1b8gYna+W7yK7RHECam/MP9ZZ7QQh7Yn/rDdNYBVmxEohV
+	7qQcKqrDNlUqNQh4qP17nOosjpHtoFgAbbkCEkMx9YdkCWid4sGdzzOpbed6lUWiu74i6mXiuHL
+	8C0RKmS017hc6X4VAjrLv5hNH3/d8Dgdq0HVsid326U87eAYdtX+LIFezQox15R612bFaN+Av2/
+	7DN2RfSj2raEd4dwW4lh3OnHj6WZwvBvP80pqlqTtfuZhb6Li7yUvga41uiTnezC9WI5Z0+OO6l
+	eyHhT6Kpd6oJbuPSJBxSMQgCnN659ki3HUvWkDnab+UzPzxOukwOS3BcekCNl5iraY1JPsNPVMy
+	Q==
+X-Google-Smtp-Source: AGHT+IGGro6Ab6Q6hQTIcaBq7Nzqv7eihH1X2JDeRvd7W4sKRsUWsSzI35q89svHlSq6wH7pBHiBUw==
+X-Received: by 2002:a05:600c:1c20:b0:477:5b0a:e616 with SMTP id 5b1f17b1804b1-4778fe4f635mr29777265e9.5.1763126684877;
+        Fri, 14 Nov 2025 05:24:44 -0800 (PST)
+Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4778bb454a6sm46271815e9.2.2025.11.14.05.24.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 05:24:43 -0800 (PST)
+Date: Fri, 14 Nov 2025 14:24:41 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Maximilian Luz <luzmaximilian@gmail.com>, 
+	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v2 00/11] of: Add wrappers to match root node with OF
+ device ID tables
+Message-ID: <kqtjfqkzz3lfnpg7lo5m4dctowsxqxtlcdtktoatpze3hr3tue@ku6p25skb666>
+References: <20251112-b4-of-match-matchine-data-v2-0-d46b72003fd6@linaro.org>
+ <f949c2a6-df24-41bb-aac7-f5567d03c5f5@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,100 +105,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qaousal5vpe3w2e4"
+	protocol="application/pgp-signature"; boundary="ntn2juw5rgeaer4c"
 Content-Disposition: inline
-In-Reply-To: <3233894e-9409-4b74-a954-0b30064c3c8c@rock-chips.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <f949c2a6-df24-41bb-aac7-f5567d03c5f5@collabora.com>
 
 
---qaousal5vpe3w2e4
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
+--ntn2juw5rgeaer4c
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v9 3/3] net: can: rockchip: add can for RK3576 Soc
+Subject: Re: [PATCH v2 00/11] of: Add wrappers to match root node with OF
+ device ID tables
 MIME-Version: 1.0
 
-On 14.11.2025 20:14:13, zhangqing wrote:
->
-> =E5=9C=A8 2025/11/14 19:01, Marc Kleine-Budde =E5=86=99=E9=81=93:
-> > On 14.11.2025 17:55:53, zhangqing wrote:
-> > > > > +/* The rk3576 CAN-FD */
-> > > > > +static const struct rkcanfd_devtype_data rkcan_devtype_data_rk35=
-76 =3D {
-> > > > > +	.model =3D RKCAN_MODEL_RK3576,
-> > > > > +	.quirks =3D RKCANFD_QUIRK_CANFD_BROKEN,
-> > > > Is CAN-FD mode broken on the rk3576?
-> > > >
-> > > > Please test CAN-FD and please do the tests documented near the
-> > > > definition of RKCANFD_QUIRK_CANFD_BROKEN:
-> > > >
-> > > > | Tests on the rk3568v2 and rk3568v3 show that receiving certain
-> > > > | CAN-FD frames trigger an Error Interrupt.
-> > > > |
-> > > > | - Form Error in RX Arbitration Phase: TX_IDLE RX_STUFF_COUNT (0x0=
-a010100) CMD=3D0 RX=3D0 TX=3D0
-> > > > |   Error-Warning=3D1 Bus-Off=3D0
-> > > > |   To reproduce:
-> > > > |   host:
-> > > > |     cansend can0 002##01f
-> > > > |   DUT:
-> > > > |     candump any,0:0,#FFFFFFFF -cexdHtA
-> > > > |
-> > > > | - Form Error in RX Arbitration Phase: TX_IDLE RX_CRC (0x0a010200)=
- CMD=3D0 RX=3D0 TX=3D0
-> > > > |   Error-Warning=3D1 Bus-Off=3D0
-> > > > |   To reproduce:
-> > > > |   host:
-> > > > |     cansend can0 002##07217010000000000
-> > > > |   DUT:
-> > > > |     candump any,0:0,#FFFFFFFF -cexdHtA
-> > > There is no doubt about the other modifications above. They will be
-> > > corrected in version V10.
-> > >
-> > > CANFD requires authorization and is not supported by default.
-> > Can you explain what you mean by authorization? What do you mean by "not
-> > supported"?
->
-> For RK3576 SoC, the IC hardware design supports CANFD.
-> However, a license application is required before it can be used; otherwi=
-se,
-> there will be legal risks.
+On Wed, Nov 12, 2025 at 12:52:48PM +0100, AngeloGioacchino Del Regno wrote:
+> Il 12/11/25 11:28, Krzysztof Kozlowski ha scritto:
+> > Changes in v2:
+>=20
+> Note:
+>=20
+> Looks ok based on code and based on testing on the following platforms:
+>  - tegra: Jetson Xavier NX Development Kit
 
-INANL. If an SoC is supplied without a license for the IP cores that you
-want to use in a product you sell, you must purchase a license from
-Bosch:
+Thanks for testing, but Xavier NX doesn't run any of the code changed by
+this patch. soc_is_tegra() is a legacy function that we need for DT
+backwards-compatibility and should only run on 32-bit ARM devices.
 
-https://www.bosch-semiconductors.com/products/ip-modules/can-protocol-licen=
-se/can-protocol-license.html
+Technically there's one case in drivers/soc/tegra/flowctrl.c that runs
+this on Tegra210, but it should probably undergo the same treatment as
+the PMC and FUSE drivers. The code that needs this is only used for CPU
+power management on 32-bit ARM devices.
 
-I don't see why you should restrict the driver to CAN only, if CAN-FD is
-functional.
+Thierry
 
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---qaousal5vpe3w2e4
+--ntn2juw5rgeaer4c
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmkXLR8ACgkQDHRl3/mQ
-kZxcJQf+IBUb+EvRr6yojdWFYfh0iU6b+aUU/2CZ3TkeWzdBIRLFUkaKGsPr+XBS
-4+qZeP0ur/AFd84E24pp1uN6T7XCVNwQh97MzfCXx32rkJNHQvrQehp8llBWg5mM
-jwTsCyuu28Ber/ehYp7aprO0YMSwe+ocKilEtD6TBAG6KU9SQ/BDLnXTyQ3ql8Hj
-ZYK8BA1sYtCnz6tr4sHuClKwmfQqoozXi/YWikAtCrNrcphB7cHv5znanwUC1VS4
-50HLYsFXPQr/fPAT6bVX28XIGjFK01uDPHacWkzu0WcXLVqfNtN4f79gXkxogwvk
-GZDGFSCCXSVNPD0EXrPK838WQ/bRAA==
-=aDZ6
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkXLZkACgkQ3SOs138+
+s6G/cA/+IgP1K3OXIF03hJ/xSNn2a6/dnr1TTFLAUI6Ge13aBNVPxKCDqoxLZCAt
+pN2vtjYNWX0Z80+tnCpGdf961hS6OY28OJmABKNotQvlrnzBSn8ggsZ64UlAka80
+SRr74Do7F4bWqWrBHEDD4FRjlYR0OVy2/s0i5Zcavhixa1bqN/F9gTWT+kKItZOE
+TcV+O8gQF/op9NSShu+oXIZFRcPKdugCNN8w77cE/9B/0o1iII9DzX5uzFYK0Au4
+M7rAxBiHHh71czN3ts79Mcyinj9kcC3zGq9wtusv3N18sDRqwZCp+mPP3Y8Up0t4
+OotwMzxf59FsoSpNDUh/FgkCNoDoDXbajVzHTig9OQspb/nNis+P5Pbw7FIZb8Q2
+3jq8uRvMP3p8gc2pB7nnyQoC6ToofIcHlnhbW0oi1Fi0HovauoN7Vb8/gsJDWY6c
+hBe4ABpghzhh0VXFf8CM0vK2MonZYPO0BTyDguUr4nx6QGrrLnBG7S/B2wvaIzgs
+UeyUPjbgEhQVdyWALBKf6aK9IXi/Wp+s9w0XJ7qG14q665MqwxIXXIo0ZOIiIe28
+e+Ajuapyv0juG6x+mVb44mHgWqZ6bquDTegdCr9PakfF4rDYnDKAcdzOM7/y8/UX
+FXAgwJiScvxp/LO7D70bNXMPtYPQ3TVxDJu2I5128N5iNtuaxgE=
+=vxrn
 -----END PGP SIGNATURE-----
 
---qaousal5vpe3w2e4--
+--ntn2juw5rgeaer4c--
 
