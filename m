@@ -1,229 +1,256 @@
-Return-Path: <devicetree+bounces-238516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A3C7C5BE42
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:09:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC1BC5BE4E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:10:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 764414EA4AE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:07:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E28624E282C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:10:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167D228727C;
-	Fri, 14 Nov 2025 08:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9F72F4A1B;
+	Fri, 14 Nov 2025 08:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="V3RCSibC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10562F5A24
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DB42EDD7D
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763107631; cv=none; b=dB+F5laLbSilc/GmEgcmlyyuTGQLY8fCiEXzwSYBiRQDVsivP/kAriFvU0CK3k4uIZqChxhrAGpHRB+CzHM6iuclDqOh8klJCAnFJNcx6y6oufU9+cPbpK11huPHnfCIrBrf4IpZwmRL5rEcTixVFl+j2aRB1WuO8mtBqSki8OY=
+	t=1763107823; cv=none; b=RXcJ7C9xrIAlhkGpSfdoqDfxf364rBWlqUncxYn/rLyYERcIP6AqIi7gbjhvIAiIYo/cqjc27QoQw3O6oeg7ouRduL/Yc0hxs9Z3mBVh1EJawjXF8N5/RkboSMemOB23J5QtciQ1qCUpEywq3yGvuY+CVNdGxmOBgOXWNH2GoK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763107631; c=relaxed/simple;
-	bh=72crX6/mPunBrhwNHfprWMo7VIV9VhgzaS64OALxGC4=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=DHxVNt5PJ8HGZ/jZo4i4CKA/Mm5J9MH03HsGbgiyzKdrfzhsWHh5lXaPHbhnQYvi+LgYj8DJ0+QlCLDKqtx1O+o5y1qj9TUFiU5hTFvcbLFcPkitIRD/TAU+XacrBTjXilTEXYBCs8BTqp0LvAvjOIPB2Ef2psIMHojunij6z4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.194.254.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1763107598tca93d855
-X-QQ-Originating-IP: +1Wi5TzVeiZJVwJXH16VF0DYKAp8d0rHeNr9JVelc+M=
-Received: from [IPV6:240f:10b:7440:1:1ea:c5f5: ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 14 Nov 2025 16:06:33 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 12198683230585159961
-Message-ID: <705A25012553039E+ea9a05c0-ccc5-4d70-930b-e989300e55a1@radxa.com>
-Date: Fri, 14 Nov 2025 17:06:33 +0900
+	s=arc-20240116; t=1763107823; c=relaxed/simple;
+	bh=XIrLfHGU7k4xEaXto2qBACjwHQDaQFNV+WCBQ22pjIg=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=sswd+CRD2ZiLix5lqKwEvaaqnwjSJdlfXwcaq6JbOSNYqUX76FSQspN1ezNkj0IMxZI4GfV/CAdmmHmozlngz2r2AKxVZQxjLXBnHKjj3BN9hJ3Cqu+PvDyCMHcmvGB5owSgMD2jaCV8Et1+ALibFtayb7tPWij1xIdAdoMzsR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=V3RCSibC; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id DD8134109E;
+	Fri, 14 Nov 2025 09:10:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1763107818; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=vt0Qo9sZk/FDmeHh+7424Qj+6lsfcWWz+1Vmi0HPUEs=;
+	b=V3RCSibCOZLC33kLQlqWC7nQNjBoxF31MiFF8aJx1Xa/N35rGY7CtfVBEoK0B604U0L6Yo
+	j2ofBF+eGe7U11lFUX55KLXwrFQinAFrc/HdIcJQ4onWUF/PEkzPyYGguBnTxQnlp4xtb8
+	lwB6c0nXv/GnSkJ/GwIUEwX8DxOLXjohGV/hieX1njnQJQphndva4qN4sDWg2JRTnKrYPq
+	syzj1MbYQCCQzI3JbyqWHlj7JZrlWGmKXTU+ueuTwvU3Jd751oAPmnRa1Qs22ihKKPbB74
+	IHa5tTJvqWtWPp/pfCm9gZfq9BAAeD5eiT9XxEFTF4P8+28C9LYn4/O4S8shEg==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <67ccca04-b59d-4e22-a0fb-22b19378420d@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
+ <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
+ <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
+ <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
+ <2892FE50237CD58E+0f15924c-a915-4446-954c-d81a782d23e9@radxa.com>
+ <19ce0a41-563c-6202-6b94-b2c644a0b827@manjaro.org>
+ <F02BA2E6B1111826+2445b38d-b5e0-499c-83e7-4521c57b2210@radxa.com>
+ <f2bc30de-119b-4f4a-844a-8a908c9290b6@kernel.org>
+ <49c39864-3e58-2e0e-7abc-50502f2afb02@manjaro.org>
+ <7ed7d24a-5395-429f-b999-1374ac910441@kernel.org>
+ <cab16f94-4115-a606-60b4-043b6681f7ab@manjaro.org> <67ccca04-b59d-4e22-a0fb-22b19378420d@kernel.org>
+Date: Fri, 14 Nov 2025 09:10:13 +0100
+Cc: "FUKAUMI Naoki" <naoki@radxa.com>, "Joseph Kogut" <joseph.kogut@gmail.com>, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com, honyuenkwun@gmail.com, quentin.schulz@cherry.de, pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
- honyuenkwun@gmail.com, quentin.schulz@cherry.de, dsimic@manjaro.org,
- pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251105051335.17652-1-naoki@radxa.com>
- <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
-Content-Language: en-US
-In-Reply-To: <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: OCKxWS2Nvu2zdToXLTGVfd95Mj7bElxAei3AKy8UVk6uIjhHuZ3XrVrH
-	Ew12FSTeCYzVKdGHiYaDn/i5nohnD1H/rLw3NZE12D1t/kKgAL3IAJuJ13o1dUxGe4HFAum
-	ZQeVC7kKj2sTCdjQKQXp4ogGEHqu/VsCfx04zP4bOYimeN4Rr3z/Xrtt2cEhFQYD0ir/Bcm
-	Fs9Z1UuoGUWyYtJVeM0iXrnnT24rN2Sgz/ifPf0nhQemFKbhyHYBsVY9UaZbhhg7f4AKX4v
-	b1MjhheXjyvB6XgcwBPQ6EpvWjTjJL8+QNAHOcKxFsP1K2tT2oG1JJe5dJNLusueNk0O8Cv
-	5AAS3RYLDpwVacDQFhbBe2K29uIC2LKprkZmP1GGU7LvyRoQOE1W/GRWUxKE6gNJZ/3byGu
-	WqgU9hmBH8uMTCx3Hs7JRliQjDgg7+h17WVg/z9XWx+ay/7CUlQ8iYwm5rd/yop+FDvF2zv
-	VXIFDRTkPu8Rw5AgKdF/YXmFB03GkWrGvKHllT4hDRoPogFW2+Bs/orp7GHb1Wqt8jzZ9q+
-	kgejXdgWDLYXebMBPDRuY8prG+N0cho37bMp6xLm7cUA5oCbHG6zwXy7YTE38sZLh9iBhkC
-	59Lwputmyy3GMToG0Ri46yzcBRlc1c+FEzbM4A41VrgH6aQUdr+upg9R56Q5aTJQjgEkCpv
-	4vq5JGjnBm9ztAIHUASSh/zAAfCnqehBvVS+MACMJ5zWownpsXHQape8nwq/aJYgwgK/LyN
-	UoKf78+xRKsXRbUCQ8QJ5QA8o6Ly5VNm6ci6/BQFpJNSNxOxP4u/A0MHTD/RwTgDYVxdUca
-	qlBXtEFvz9J4TEWxbF0dGpNWh71Bxt2d9bGE2YSEe1DjFcCkUpfxOfnB2cjILpSoNPx1urC
-	EgGXonDE2B8wfi+91Hvog7XEIVSRO6AryMgvkQ1v7RNvTV9oSOMQqhlzEuHPrJLcUyJ0vK8
-	X8+XZyqK7zI/3inaoeq/ZE25MkG4qriSnqPeH8s9pvE1QpOmgK+N1Hx6dAfy3SI5Dl58KU7
-	H1mq56nCoMOakK5ObceYdaa2N7GB9CnS1b2ahh512l+WeXbqnNz5AVA7CeaNKqUSnrgXLMM
-	A==
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
+Message-ID: <c01b756a-73ea-3d0d-44b9-6ce8a535a103@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v6 0/3] Add Radxa CM5 and IO Board
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-Hi Joseph,
+On Friday, November 14, 2025 08:28 CET, Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> On 14/11/2025 08:26, Dragan Simic wrote:
+> > On Friday, November 14, 2025 08:22 CET, Krzysztof Kozlowski <krzk@k=
+ernel.org> wrote:
+> >> On 14/11/2025 08:17, Dragan Simic wrote:
+> >>> On Friday, November 14, 2025 08:10 CET, Krzysztof Kozlowski <krzk=
+@kernel.org> wrote:
+> >>>> On 14/11/2025 06:03, FUKAUMI Naoki wrote:
+> >>>>> On 11/12/25 09:46, Dragan Simic wrote:
+> >>>>>> On Wednesday, November 12, 2025 00:26 CET, FUKAUMI Naoki <naok=
+i@radxa.com> wrote:
+> >>>>>>> On 11/11/25 23:33, Dragan Simic wrote:
+> >>>>>>>> On Tuesday, November 11, 2025 12:52 CET, FUKAUMI Naoki <naok=
+i@radxa.com> wrote:
+> >>>>>>>>> On 11/6/25 02:48, Joseph Kogut wrote:
+> >>>>>>>>>> On Wed, Nov 5, 2025 at 4:15=E2=80=AFAM FUKAUMI Naoki <naok=
+i@radxa.com> wrote:
+> >>>>>>>>>>> I'd like to clarify the situation regarding the v6 patch =
+series I submitted.
+> >>>>>>>>>>>
+> >>>>>>>>>>> The original device tree work for the Radxa CM5 and IO Bo=
+ard was
+> >>>>>>>>>>> authored by Joseph Kogut. I took over the responsibility =
+of getting it
+> >>>>>>>>>>> upstreamed with his agreement.
+> >>>>>>>>>>
+> >>>>>>>>>> I'll confirm this. I've been in communication with Naoki. =
+They made a
+> >>>>>>>>>> large number of revisions to my original patch series, whi=
+ch I think
+> >>>>>>>>>> have technical merit. I suggested they submit the patches =
+themselves,
+> >>>>>>>>>> and gave them explicit permission to add my Signed-off-by =
+and CC me.
+> >>>>>>>>>>
+> >>>>>>>>>> I assume this was the correct way for them to continue the=
+ work I
+> >>>>>>>>>> started, but if not, please let us know the best way to pr=
+oceed.
+> >>>>>>>>>
+> >>>>>>>>> Can anyone help us?
+> >>>>>>>>
+> >>>>>>>> I'm not exactly sure how to resolve the current situation, b=
+ut for
+> >>>>>>>> Signed-off-by tags to be present, in this case you'd need to=
+ have
+> >>>>>>>> Co-developed-by tags as well, because the final patch versio=
+ns,
+> >>>>>>>> which would be submitted by Naoki, would differ significantl=
+y from
+> >>>>>>>> the versions that Joseph actively worked on, if I understood
+> >>>>>>>> everything correctly.  Though, for Joseph's Signed-off-by ta=
+gs to
+> >>>>>>>> be included there, he would also need to participate activel=
+y in
+> >>>>>>>> the development of the final patch versions.
+> >>>>>>>
+> >>>>>>> https://www.kernel.org/doc/html/latest/process/submitting-pat=
+ches.html#when-to-use-acked-by-cc-and-co-developed-by
+> >>>>>>>
+> >>>>>>> If
+> >>>>>>> ----
+> >>>>>>> From: Joseph Kogut <joseph.kogut@gmail.com>
+> >>>>>>>
+> >>>>>>> <changelog>
+> >>>>>>>
+> >>>>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+> >>>>>>> Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
+> >>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> >>>>>>> ----
+> >>>>>>> then I can submit my patch series?
+> >>>>>>
+> >>>>>> Actually, the Co-developed-by tags would be pointing to Joseph
+> >>>>>> in that case, but as I described it above, this approach basic=
+ally
+> >>>>>> cannot be used, because Joseph's original work differs a lot f=
+rom
+> >>>>>> what you'd actually submit to the mailing list(s).
+> >>>>>>
+> >>>>>>> Or,
+> >>>>>>>
+> >>>>>>>> Another option, technically a bit simpler, would be to inclu=
+de just
+> >>>>>>>> Originally-by tags for Joseph, which would indicate that Jos=
+eph gave
+> >>>>>>>> up on the development of the patches and handed them over to=
+ Naoki
+> >>>>>>>> for future development and submission to the mailing lists. =
+Though,
+> >>>>>>>> that would require Joseph to publicly state exactly that.
+> >>>>>>>
+> >>>>>>> I cannot find any documentation about "Originally-by".
+> >>>>>>> Is this correct?
+> >>>>>>> ----
+> >>>>>>> <changelog>
+> >>>>>>>
+> >>>>>>> Originally-by: Joseph Kogut <joseph.kogut@gmail.com>
+> >>>>
+> >>>> There is no such tag. Don't invent tags.
+> >>>
+> >>> True, it doesn't exist officially, but it's been used fairly ofte=
+n.
+> >>>
+> >>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> >>>>>>> ----
+> >>>>>>
+> >>>>>> That approach is the only I see applicable in this case.  Howe=
+ver,
+> >>>>>> let's hear opinions from other people as well.
+> >>>>>
+> >>>>> I see. I want to do this approach.
+> >>>>>
+> >>>>> Joseph, could you give me a statement to do this?
+> >>>>
+> >>>> Use standard authorship and standard tags, some of which are exp=
+lained
+> >>>> in Submitting patches.
+> >>>
+> >>> Frankly, your suggestion is useless, because it doesn't explain w=
+hat=20
+> >>> to do in this particular case.
+> >>
+> >> Maybe because you did not read the doc...
+> >=20
+> > I think you already know the answer: I read it multiple times and=20
+> > used it as a reference more than once.
+>=20
+> Then if you read it and saw my objection to inventing tags, you could
+> guess that only first solution for patches with changes coming from
+> multiple authors is allowed. Also you would find from that doc, that
+> patches which were not changed - like in this patchset - must be
+> attributed to single author followed by SoB. So both cases nicely
+> explained. Pretty simple once you remove the invented tag option,
+> because it is really unnecessary.
 
-On 11/5/25 21:15, FUKAUMI Naoki wrote:
-> I'd like to clarify the situation regarding the v6 patch series I 
-> submitted.
-> 
-> The original device tree work for the Radxa CM5 and IO Board was 
-> authored by Joseph Kogut. I took over the responsibility of getting it 
-> upstreamed with his agreement.
-> 
-> However, I now understand that I should have preserved the original 
-> Signed-off-by chain (and DCO) in the v6 series. This was my oversight.
-> 
-> To correct this, I would prefer for Joseph to post the patches himself, 
-> which will not include my Signed-off-by.
+Thanks, I appreciate your detailed response.
 
-Could you please post the patches?
+Let's have a look at the following excerpt from Documentation/
+process/submitting-patches.rst:
 
-Best regards,
+ 503 Co-developed-by: states that the patch was co-created by multiple =
+developers;
+ 504 it is used to give attribution to co-authors (in addition to the a=
+uthor
+ 505 attributed by the From: tag) when several people work on a single =
+patch.  Since
+ 506 Co-developed-by: denotes authorship, every Co-developed-by: must b=
+e immediately
+ 507 followed by a Signed-off-by: of the associated co-author.  Standar=
+d sign-off
+ 508 procedure applies, i.e. the ordering of Signed-off-by: tags should=
+ reflect the
+ 509 chronological history of the patch insofar as possible, regardless=
+ of whether
+ 510 the author is attributed via From: or Co-developed-by:.  Notably, =
+the last
+ 511 Signed-off-by: must always be that of the developer submitting the=
+ patch.
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+Following that, you're absolutely right that the above-described
+first approach is the way to go.  However, providing a Signed-off-by
+actually means that, at least formally, the signer becomes legally
+responsible for the code in the patch;  I'm not sure how fair is it
+for someone to become responsible for something that happened long
+time ago, about which they have no longer a clue about, which may
+happen in case someone rescues an old, abandoned patch, and changes
+or improves it a lot before submitting it to a mailing list?
 
-> My apologies for the confusion this caused. Thank you for pointing this 
-> out.
-> 
-> Best regards,
-> 
-> -- 
-> FUKAUMI Naoki
-> Radxa Computer (Shenzhen) Co., Ltd.
-> 
-> On 11/5/25 14:13, FUKAUMI Naoki wrote:
->> This patch series add support for the Radxa CM5 SoM and IO Board.
->>
->> Changes in v6:
->> (Patch 1/3)
->> - Fix description; "Radxa CM5" is the correct name
->> (Patch 2/3)
->> - Fix #include(s)
->> - Include rk3588s.dtsi
->> - Move alias for gmac1 from io board dts
->> - Add Maskrom key
->> - Add pinctrl-* for led-0
->> - Add vcc_1v1_nldo_s3 regulator for pmic
->> - Move gmac1 (except status) from io board dts
->> - Fix phy-supply for gmac1
->> - Fix compatible for vdd_cpu_big1_s0 regulator
->> - Add eeprom on i2c0
->> - Add vdd_npu_s0 regulator for rknn
->> - Fix compatible for rgmii_phy1
->> - Add pinctrl-* and reset-* for rgmii_phy1
->> - Add domain-supply for pd_npu
->> - Add rknn_*
->> - Add saradc
->> - Fix properties in sdhci
->> - Move pmic from io board dts
->> - Fix vcc*-supply for pmic
->> - Add regulators in pmic
->> - Add tsadc
->> - Move vop(_mmu) from io board dts
->> - Trivial changes (labels, names, etc)
->> (Patch 3/3)
->> - Fix #include(s)
->> - Remove #include "rk3588s.dtsi"
->> - Fix model
->> - Add fan
->> - Add Recovery key
->> - Add pinctrl-* for vcc3v3_wf
->> - Add vcc_sysin regulator
->> - Add pinctrl-* for vbus5v0_typec
->> - Add rfkill-bt and rfkill-wlan for M.2 module
->> - Add sound for es8316
->> - Add phy-supply for combphy2_psu
->> - Fix power-role to "source" for fusb302
->> - Add rtc for hym8536
->> - Add audio-codec on i2c8 for es8316
->> - Add i2s0_8ch for es8316
->> - Add package_thermal for fan
->> - Add pinctrl-* for pcie2x1l2
->> - Add pwm11 for fan
->> - Fix properties in sdmmmc
->> - Add phy-supply for u2phy2_host and u2phy3_host
->> - Remove usb_host0_ohci
->> - Add pinctrl-* for usbdp_phy0
->> - Trivial changes (labels, names, etc)
->>
->> Changes in v5:
->> (Patch 2/3, per Jimmy)
->> - Alias eMMC to mmc0
->> - Remove unused sdio alias
->> - Move gmac, hdmi0 nodes to carrier board dts
->> (Patch 3/3, per Jimmy)
->> - Enable hdmi0_sound and i2s5_8ch
->> - Remove redundant enablement of sdhci
->> - Enable usb_host2_xhci
->>
->> - Tested HDMI audio
->>
->> Changes in v4:
->> - Fixed XHCI initialization bug by changing try-power-role from source
->>    to sink
->>
->> Changes in v3:
->> - Addressed YAML syntax error in dt binding (per Rob)
->> - Fixed whitespace issue in dts reported by checkpatch.pl
->> - Split base SoM and carrier board into separate patches
->> - Added further details about the SoM and carrier to the commit
->>    messages
->>
->> Changes in v2:
->> - Added copyright header and data sheet links
->> - Removed non-existent property
->> - Sorted alphabetically
->> - Removed errant whitespace
->> - Moved status to the end of each node
->> - Removed pinctrl-names property from leds (indicated by CHECK_DTBS)
->> - Removed delays from gmac with internal delay
->>
->> Link: https://lore.kernel.org/r/20250617-rk3588s-cm5-io-dts-upstream- 
->> v5-0-8d96854a5bbd@gmail.com
->> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
->> ---
->> I have communicated with Joseph privately and taken ownership of
->> moving this forward, with his blessing. All bugs belong to me.
->> ---
->> FUKAUMI Naoki (3):
->>    dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
->>    arm64: dts: rockchip: Add Radxa CM5
->>    arm64: dts: rockchip: Add Radxa CM5 IO Board
->>
->>   .../devicetree/bindings/arm/rockchip.yaml     |   7 +
->>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>   .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 503 +++++++++++++++
->>   .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 602 ++++++++++++++++++
->>   4 files changed, 1113 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5- 
->> io.dts
->>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
-> 
-> 
+Of course, what I described is more of a hypothetical case, but the
+documentation should be covering such cases as well.
+
+That's where Originally-by, I think, comes as a possible solution;
+it's a bit like Acked-by, i.e. it's a "lighter" version of Signed-
+off-by, in the sense of effectively not making someone legally
+responsible for the code they originally authored but have had
+abandoned and which someone else is now submitting, while still
+providing the mandatory attribution.
+
+I hope it makes sense.
 
 
