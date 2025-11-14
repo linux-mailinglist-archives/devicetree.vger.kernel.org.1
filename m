@@ -1,156 +1,156 @@
-Return-Path: <devicetree+bounces-238415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6DFFC5ADFD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 02:05:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB0EC5AE8C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 02:26:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D54F94EAA95
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 01:03:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BEFC04E6460
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 01:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E947262E;
-	Fri, 14 Nov 2025 01:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1728C22A7E6;
+	Fri, 14 Nov 2025 01:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="YP7Acl8v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z09gLaMZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3269.qiye.163.com (mail-m3269.qiye.163.com [220.197.32.69])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436DF163;
-	Fri, 14 Nov 2025 01:03:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.69
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1F027456;
+	Fri, 14 Nov 2025 01:25:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763082187; cv=none; b=EeO53bF+EERDEq5VPJpZSr3ZR+ephl8f68oPb/zQEguM2Pnh8U/dtOG3YQPg8bMmTeCLmz9OghQEW5pHGfIbc7+162Kw1tTtrhojPVeq6qNhIn+xNdOMJ0PkrDZklVvpGx8LtthnjsK6hGiubUaXxFiyEeakX8wLOIoND3XtJUw=
+	t=1763083541; cv=none; b=cGmblz9YLFZI+wngC4lC95QQiZTH5n1HzNO+0QhRDQpZql1kPLVpjMRpKLOK3fFoI7tJ3OSo79oae+iHGyi2soVj8PQ7D4flPFHoqQUFFlJPXodh0Ga8SwIa4Pp4FFpWmupUc/ufddyvoII8CSIWWc708pIHqRiiSj6VAm/088A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763082187; c=relaxed/simple;
-	bh=CQoq6PMx8qJxH9R1nksizClk7X+KvrHzV4SU2EAENyk=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=lI/xLhJVQ7pW/RBO6e6xa27B9BrZa6ucPea6UzxV6gPjyIOUKYf7lHy00OM5V2nUrWWaV2VO6s5KjfKH1xzjVRWLngBh0SpHk8dUmNtVV+Xw2PQObGVEAn8UMo5iqXOUfsdlR1zjefPpZu7go5KhOtG+3CQbENkLZ6eAQu1F0kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=YP7Acl8v; arc=none smtp.client-ip=220.197.32.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.129] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 298723ecb;
-	Fri, 14 Nov 2025 09:02:51 +0800 (GMT+08:00)
-Message-ID: <589ea395-f133-4522-91e5-066c41916cd5@rock-chips.com>
-Date: Fri, 14 Nov 2025 09:02:47 +0800
+	s=arc-20240116; t=1763083541; c=relaxed/simple;
+	bh=jUpqsgzm9mQmlDwIMnmXwws2iJVd0X9NrGflGeH7Iqg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oHJLqoLtxrWqNMLFBEXrgYwyjNCt3dZnqK6D5ZnVoV6QVYzQ62faAqcqdqNHGmkWr8DvvRLeJxRd3nheM6x/nQ3ZXUi8gbjZbf8kEdHFSbH+6u4CZMGDLrvy6YnkQq5Sq9Si0m5cB9snXJUUhSiw3B/xMwHLIZTjmYhgCpg0aEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z09gLaMZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67573C2BCB0;
+	Fri, 14 Nov 2025 01:25:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763083540;
+	bh=jUpqsgzm9mQmlDwIMnmXwws2iJVd0X9NrGflGeH7Iqg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z09gLaMZlZrJHbraZakAvPZQ2kqgik/E3cfI2zd2AjI6xpvGjYqFZURz2b+UzBcTc
+	 8SwRLAul1ddhZmoa7yCwX9IFyPmrEIhWuLBuE4sFEpMh/Xj2ayDrZBOlDWhT8JFLCn
+	 K8AAzeBFl1lClijNSqUnLKDYyGpjtc9SHPUCKg3gZQchcPRcFs1kpedjTT0p80gN33
+	 nBZ3PHgGXXwZFMdtT0BOjlUvnj/c7xeVt5LlNIMMGA7Rv/7IaPLQFA1I2DV7S1aZEx
+	 +YQAP3xbmuM/xOibvOJvy24sED0Q4VX4dZwkiNH1jFlFvXA+HctaCLc3x8eQyQz83/
+	 u7OWf0KRaOl4w==
+Date: Fri, 14 Nov 2025 01:25:32 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Han Gao <rabenda.cn@gmail.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Vivian Wang <wangruikang@iscas.ac.cn>, Yao Zi <ziyao@disroot.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: net: sophgo,sg2044-dwmac: add phy
+ mode restriction
+Message-ID: <20251114-apache-sprung-f1a29b873696@spud>
+References: <20251114003805.494387-1-inochiama@gmail.com>
+ <20251114003805.494387-2-inochiama@gmail.com>
+ <yjl3gnf2gwh327wbbwcbkxwnqy5tyhwutffovlxhcm7b4vr2xu@he4tg6bcrduu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com,
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
- andersson@kernel.org, robh@kernel.org, manivannan.sadhasivam@linaro.org,
- krzk@kernel.org, helgaas@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
- conor+dt@kernel.org, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
- quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v2] schemas: pci: Document PCIe T_POWER_ON
-To: Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>
-References: <20251110112947.2071036-1-krishna.chundru@oss.qualcomm.com>
- <aRHdiYYcn2uZkLor@wunner.de>
- <44c7b4a8-33ce-4516-81bf-349b5e555806@oss.qualcomm.com>
- <aRWYoHvaCCN95ZR9@wunner.de>
- <epqkkezjnkwznh4minlvhh7vbnwh3isqeofqamgupj7rjnhjv2@wtrx4ecjgvob>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <epqkkezjnkwznh4minlvhh7vbnwh3isqeofqamgupj7rjnhjv2@wtrx4ecjgvob>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9a7fe2f3d309cckunm7df1131438582d
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0hIGlZOTk1LT01JSx5OHU1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=YP7Acl8vbwtTaY33kEqeey/faq0UGGe9d/nheRb1LEIwau649WCt0kT2wPiOowouohWQolaQlU99knIRBQIgLmuVjhw0K+0+0ZPhPDvE5VHqk+E6yHC6DrqDZENQ5eHKpx6lRa/MIYge+QJ2VdxImCZFNzKyNm+40uUfLXJ3Alk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=QOiKLcyDhGH6tCscfk11AwDm2zmGxDE8qbFURUj6Xa8=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NIRjo9fMfQbx0LeW"
+Content-Disposition: inline
+In-Reply-To: <yjl3gnf2gwh327wbbwcbkxwnqy5tyhwutffovlxhcm7b4vr2xu@he4tg6bcrduu>
 
-在 2025/11/14 星期五 0:41, Manivannan Sadhasivam 写道:
-> On Thu, Nov 13, 2025 at 09:36:48AM +0100, Lukas Wunner wrote:
->> On Thu, Nov 13, 2025 at 09:33:54AM +0530, Krishna Chaitanya Chundru wrote:
->>> On 11/10/2025 6:11 PM, Lukas Wunner wrote:
->>>> On Mon, Nov 10, 2025 at 04:59:47PM +0530, Krishna Chaitanya Chundru wrote:
->>>>>   From PCIe r6, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
->>>> Please use the latest spec version as reference, i.e. PCIe r7.0.
->>> ack.
->>>>> minimum amount of time(in us) that each component must wait in L1.2.Exit
->>>>> after sampling CLKREQ# asserted before actively driving the interface to
->>>>> ensure no device is ever actively driving into an unpowered component and
->>>>> these values are based on the components and AC coupling capacitors used
->>>>> in the connection linking the two components.
->>>>>
->>>>> This property should be used to indicate the T_POWER_ON for each Root Port.
->>>> What's the difference between this property and the Port T_POWER_ON_Scale
->>>> and T_POWER_ON_Value in the L1 PM Substates Capabilities Register?
->>>>
->>>> Why do you need this in the device tree even though it's available
->>>> in the register?
->>>
->>> This value is same as L1 PM substates value, some controllers needs to
->>> update this
->>> value before enumeration as hardware might now program this value
->>> correctly[1].
->>>
->>> [1]: [PATCH] PCI: qcom: Program correct T_POWER_ON value for L1.2 exit
->>> timing
->>>
->>> <https://lore.kernel.org/all/20251104-t_power_on_fux-v1-1-eb5916e47fd7@oss.qualcomm.com/>
->>
->> Per PCIe r7.0 sec 7.8.3.2, all fields in the L1 PM Substates Capabilities
->> Register are of type "HwInit", which sec 7.4 defines as:
->>
->>     "Register bits are permitted, as an implementation option, to be
->>      hard-coded, initialized by system/device firmware, or initialized
->>      by hardware mechanisms such as pin strapping or nonvolatile storage.
->>      Initialization by system firmware is permitted only for
->>      system-integrated devices.
->>      Bits must be fixed in value and read-only after initialization."
->>                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->>
->> These bits are not supposed to be writable by the operating system,
->> so what you're doing in that patch is not spec-compliant.
->>
-> 
-> I interpret 'initialized by system/device firmware', same as 'initialized by
-> OS', as both are mostly same for the devicetree platforms. So it is fine IMO.
-> Ofc, if the initialization was carried out by the firmware, then OS has no
-> business in changing it, but it is not the case.
-> 
 
-Yes, I tend to agree with Mani. Another problem is the s2r process in
-embedded ARM world. For power-saving, most platforms would cut-off the
-power supply of PCIe controller during system suspend, so we save and
-restore this value when relink is done, right? OS had already done this
-kind of thing already.
+--NIRjo9fMfQbx0LeW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> I think it needs to be made explicit in the devicetree schema that
->> the property is only intended for non-compliant hardware which allows
->> (and requires) the operating system to initialize the register.
->>
-> 
-> Sorry, I disagree. The hardware is spec compliant, just that the firmware missed
-> initializing the fields.
-> 
->> Maybe it makes more sense to have a property which specifies the raw
->> 32-bit register contents, instead of having a property for each
->> individual field.  Otherwise you'll have to amend the schema
->> whenever the PCIe spec extends the register with additional fields.
->>
-> 
-> DT properties do not specify a register value, but instead they specify hardware
-> configuration value and that's what this property is doing. The OS/other DT
-> consumers should interpret this value as per the spec and program the relevant
-> registers.
-> 
-> - Mani
-> 
+On Fri, Nov 14, 2025 at 08:44:15AM +0800, Inochi Amaoto wrote:
+> On Fri, Nov 14, 2025 at 08:38:03AM +0800, Inochi Amaoto wrote:
+> > As the ethernet controller of SG2044 and SG2042 only supports
+> > RGMII phy. Add phy-mode property to restrict the value.
+> >=20
+> > Also, since SG2042 has internal rx delay in its mac, make
+> > only "rgmii-txid" and "rgmii-id" valid for phy-mode.
+> >=20
+> > Fixes: e281c48a7336 ("dt-bindings: net: sophgo,sg2044-dwmac: Add suppor=
+t for Sophgo SG2042 dwmac")
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> > ---
+> >  .../bindings/net/sophgo,sg2044-dwmac.yaml     | 19 +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.=
+yaml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > index ce21979a2d9a..e8d3814db0e9 100644
+> > --- a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > @@ -70,6 +70,25 @@ required:
+> > =20
+> >  allOf:
+> >    - $ref: snps,dwmac.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: sophgo,sg2042-dwmac
+> > +    then:
+> > +      properties:
+> > +        phy-mode:
+> > +          enum:
+>=20
+> > +            - rgmii-rxid
+> > +            - rgmii-id
+>=20
+> Hi, Conor,
+>=20
+> I have restricted the phy-mode with wrong mode here, it should be
+> rgmii-rxid instead of rgmii-txid as the SG2042 always add rx delay
+> in their mac. As this is more like a mistake for me when writing
+> the binding, I keep you tag with the fix. If you need something
+> further, please let me know.
 
+Yeah that's fine chief. In general, if it is some hardware detail
+that I couldn't possibly know was correct or incorrect without
+reading the device's documentation then I probably don't care about
+the binding change required for it when it's so minimal. Probably the
+same goes for Rob and Krzysztof.
+
+--NIRjo9fMfQbx0LeW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRaFDAAKCRB4tDGHoIJi
+0sHeAQCiwuHrj6CHOoRLG+GG2NyvoAYv/ledOLpXXMp9wFne6AD/ac6tU8Z1tAkf
+gGLcZaOgphtF9IndUwUcVjxW0F1kDAM=
+=Gnn9
+-----END PGP SIGNATURE-----
+
+--NIRjo9fMfQbx0LeW--
 
