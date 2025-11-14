@@ -1,500 +1,186 @@
-Return-Path: <devicetree+bounces-238509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F618C5BD7E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:50:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 732F4C5BD90
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:51:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A9404358159
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:50:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 309954E2687
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D5A2F693F;
-	Fri, 14 Nov 2025 07:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1402E719E;
+	Fri, 14 Nov 2025 07:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DxG0tymF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p49V/Ynf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E38C2F4A1B;
-	Fri, 14 Nov 2025 07:50:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36F952561AB
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 07:51:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763106614; cv=none; b=BTKmHp26gDsGNNgvtajloRWkwhqg0vxj8tIayNQdBdmc3Rsa0du3SxAIk/2/KE8OtJzeotrCoeb+LU4zV4KqmL0ZcDB2BHAX5DRQcfTkk4w5irHrq5xQ9fUY3zzoln0CDfjsC67BDoJJXFvRoQXW/Sc0GYYgCt+E462px1SW8h4=
+	t=1763106698; cv=none; b=HTOxsCezUfCLHJwV1/qzK3L0VjhmLrjpaM4WsmS5dA/1AfuOR18ajLkQP7U5hKAYURoHb/jxWmz5T+6XIx8lOoWtnpj1a8p13YKa4ZgOLksaLr/daGo9hZLkYXdcn3SxF1l8PQDcEYkpu7SxobF84Fp1cFHPmQ0q3Zqm3VL2tLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763106614; c=relaxed/simple;
-	bh=My1DkSx6E8NH1/g/2YUqKSOXU94pnaYksctIemj4gWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Djkne36c1ihTibW4laqhMthCMUIRYC2kHB1olQnLTMKo6Pxqjxn4mUlhIxUm0Nt29eEegLxBpmMLiY0sf4GzmZFG1zBzvg6/ymcONjkFpBtMmbbxyEZJlo7uvNnS8/+0RRL2BJhJpYZNGgU+nCOrjUGEyTFHOaFaET8+nr0AlxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DxG0tymF; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 078C5C10F5B;
-	Fri, 14 Nov 2025 07:49:48 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BB2756060E;
-	Fri, 14 Nov 2025 07:50:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 22A71102F2A6F;
-	Fri, 14 Nov 2025 08:50:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763106608; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=vou/PSvtoM9CuF1Iut3e8wcLV2zmRLJ9tzJ9Bc7FteA=;
-	b=DxG0tymFHZP8aF0T9HNNjCVnOtqgWqBQZopOzLsGe+MG7KLBS4zvwmPb2xNNRrCkT+nrkD
-	yil4rKK2fwvvvOC+Z+9QK6Aur4ok9ME9aaGiBROB50aI0G+zjNJSjP4LlVl5oin9PHUKm5
-	nI+hL41DkAq14lsblJe0evNclURr5zQGvZkZFw0DqGD0wUqCUY9cwlXE2RFuyDHRnhGXiM
-	ytuL5oJuyJNECkpMaInkO3/uNepVPmMrLBD/WjX39hgnceVCtw0kgw4YCDqNW2GKZQspJM
-	q9OZ0HAscsCb1vyXLDXOCal4YNeRgm2QLHCE054nvuBiGsye+4PCvXe4w/EiPg==
-Date: Fri, 14 Nov 2025 08:50:04 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 06/13] mfd: sec-irq: add support for creating multiple
- IRQ chips
-Message-ID: <20251114075004a444bff0@mail.local>
-References: <20251114-s2mu005-pmic-v1-0-9e3184d3a0c9@disroot.org>
- <20251114-s2mu005-pmic-v1-6-9e3184d3a0c9@disroot.org>
+	s=arc-20240116; t=1763106698; c=relaxed/simple;
+	bh=iOmKMa18Wu+oc0oGR47UZYeKNmEbj1QjrKJQuvr7pCk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LkcXcqFC3WLaUqwanyww+rpUY32bUSJlr63GiGy47LC8cHkVMdnmXupX2ZxzW1E28bPJJAUGL7fAOv8ePbgrsjEmpt7CVmqbDrX4Xi4opKFL8Wu9710TJ1QLYExZkWyKcfySFQJIUDZz4ZW2thVZMgmsi7w0xMyipEwpdg/CNcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p49V/Ynf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 867FAC4CEF1;
+	Fri, 14 Nov 2025 07:51:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763106698;
+	bh=iOmKMa18Wu+oc0oGR47UZYeKNmEbj1QjrKJQuvr7pCk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p49V/Ynfp4fKJfnF+oJvdqWraq+dXFuvqR3kntsRw6A2+4CrFhcy4h6a07EiDHnLN
+	 h6qB/3O2V+x32NIkppmmhrUOf3qnx6Ipp9XvAOkBKyBgofwFvsclXv+Ew2NnzlQBXt
+	 R18BnLReWLHMt5YP01i0U/Yt5X4aGL2yslHO5fqtqxkFypkRtz33y+dVOzmU2F/7Do
+	 EwOCVEUhgjTInPvjSm4S960aykO7FX4aud8kr9FLbI/JgPtKohW0xea1BzYyubLV/k
+	 O1WJlHTCjyb/nZpLztj2Do/pwITuCUofV014nWGoveIhy8tNWIva3i+vn9leruuQtK
+	 fMd6r+/CHqrEQ==
+Message-ID: <f112b806-b204-46b5-90b2-813ad5d0ceee@kernel.org>
+Date: Fri, 14 Nov 2025 08:51:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251114-s2mu005-pmic-v1-6-9e3184d3a0c9@disroot.org>
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
+ i@next.chainsx.cn, honyuenkwun@gmail.com, quentin.schulz@cherry.de,
+ dsimic@manjaro.org, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
+ jbx6244@gmail.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <20251105051335.17652-2-naoki@radxa.com>
+ <ce6e6369-a7e4-4a35-80f8-70ef41c3b877@kernel.org>
+ <A6C1199E2A0D3F37+f3fe0fd5-4ca5-4d3d-bc1d-45f46b48f89b@radxa.com>
+ <93deab54-bd5e-433e-acbc-13f6ead47f43@kernel.org>
+ <2177a0f0-68df-495c-b267-18e3d9b6ca80@kernel.org>
+ <D88EE9EEB2B37D36+361d448f-d260-4d78-ae6b-abf1caabb94b@radxa.com>
+ <b2833988-6319-4426-8a25-c0d34acffa47@kernel.org>
+ <B6224BD6578686FF+dc81e00c-46f6-4791-af8a-99cf8e880f0c@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <B6224BD6578686FF+dc81e00c-46f6-4791-af8a-99cf8e880f0c@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 14/11/2025 00:35:07+0530, Kaustabh Chakraborty wrote:
-> The current state of the driver only allows creating only one IRQ chip
-> per PMIC. On some PMICs, such as Samsung's S2MU005, there are multiple
-> interrupt blocks, for which the current implementation stands insufficient.
+On 14/11/2025 08:47, FUKAUMI Naoki wrote:
+> On 11/14/25 16:42, Krzysztof Kozlowski wrote:
+>> On 14/11/2025 08:37, FUKAUMI Naoki wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 11/14/25 16:12, Krzysztof Kozlowski wrote:
+>>>> On 05/11/2025 08:08, Krzysztof Kozlowski wrote:
+>>>>> On 05/11/2025 07:57, FUKAUMI Naoki wrote:
+>>>>>> On 11/5/25 15:43, Krzysztof Kozlowski wrote:
+>>>>>>> On 05/11/2025 06:13, FUKAUMI Naoki wrote:
+>>>>>>>> Add device tree binding documentation for the Radxa CM5 IO Board.
+>>>>>>>>
+>>>>>>>> Link: https://dl.radxa.com/cm5/radxa_cm5_product_brief.pdf
+>>>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>>>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>>>>>>
+>>>>>>> Wrong DCO chain.
+>>>>>>>
+>>>>>>>> ---
+>>>>>>>>     Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+>>>>>>>
+>>>>>>> NAK, you just stolen ownership of an already posted patch.
+>>>>>>
+>>>>>> Read "Changes in v6" and patches; my patches are not the same as v5.
+>>>>>> Your reply is totally inappropriate.
+>>>>>
+>>>>> Inappropriate is taking authorship of someone's patch, because we all
+>>>>> expect to preserve the original authorship. That's not only basic
+>>>>> decency but actually a standard.
+>>>>>
+>>>>> Additionally, read Joseph's reply that he wants to continue the work:
+>>>>> https://lore.kernel.org/all/CAMWSM7iHtAxewW4JkRqRsifVnccqeFviaCgeOyprKDr92FOurg@mail.gmail.com/
+>>>>>
+>>>>> You clearly do not understand how to continue with someone's work.
+>>>>>
+>>>>> It is still a NAK.
+>>>>
+>>>> And I still wait for justification why you took authorship of this
+>>>> patch, because to my eye you changed here nothing.
+>>>>
+>>>> So what did you change HERE that you think you are the author now?
+>>>
+>>> Changes in v6:
+>>> (Patch 1/3)
+>>> - Fix description; "Radxa CM5" is the correct name
+>>
+>> HERE, in this patch. Don't paste me hundreds of unrelated code. Write
+>> concise and precise answers/comments.
 > 
-> Add support for creating multiple IRQ chips for a PMIC. Every IRQ chip is
-> given it's own index, which is used by sub-device drivers to request IRQs.
+> https://lore.kernel.org/linux-rockchip/AE0735A6C797CCFF+10496d73-7c0a-4884-9561-24721305a24f@radxa.com/
 > 
-> A macro is defined which states the maximum number of chips supported.
-> It's set to 1 as currently, no PMIC requires more than one IRQ chip. The
-> value must be changed accordingly on adding new PMICs requiring multiple
-> IRQ chips.
-> 
-> Moreover, adjust the s5m RTC driver to initialize IRQs with the
-> appropriate IRQ chip index.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> | By the way, at some point I switched from "continuing your work" to
+> | "recreating a new one based on my current work." The results of my
+> | current work(*3) have changed significantly.
 
-> ---
->  drivers/mfd/sec-irq.c            | 163 +++++++++++++++++++++++----------------
->  drivers/rtc/rtc-s5m.c            |  15 +++-
->  include/linux/mfd/samsung/core.h |   5 +-
->  include/linux/mfd/samsung/irq.h  |  14 ++++
->  4 files changed, 127 insertions(+), 70 deletions(-)
-> 
-> diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
-> index c5c80b1ba104..053c28f31ec9 100644
-> --- a/drivers/mfd/sec-irq.c
-> +++ b/drivers/mfd/sec-irq.c
-> @@ -181,25 +181,31 @@ static const struct regmap_irq s5m8767_irqs[] = {
->  };
->  
->  /* All S2MPG10 interrupt sources are read-only and don't require clearing */
-> -static const struct regmap_irq_chip s2mpg10_irq_chip = {
-> -	.name = "s2mpg10",
-> -	.irqs = s2mpg10_irqs,
-> -	.num_irqs = ARRAY_SIZE(s2mpg10_irqs),
-> -	.num_regs = 6,
-> -	.status_base = S2MPG10_PMIC_INT1,
-> -	.mask_base = S2MPG10_PMIC_INT1M,
-> +static const struct regmap_irq_chip s2mpg10_irq_chip[] = {
-> +	[S2MPG10_IRQ_CHIP] = {
-> +		.name = "s2mpg10",
-> +		.irqs = s2mpg10_irqs,
-> +		.num_irqs = ARRAY_SIZE(s2mpg10_irqs),
-> +		.num_regs = 6,
-> +		.status_base = S2MPG10_PMIC_INT1,
-> +		.mask_base = S2MPG10_PMIC_INT1M,
-> +	},
->  };
->  
-> -static const struct regmap_irq_chip s2mps11_irq_chip = {
-> -	.name = "s2mps11",
-> -	.irqs = s2mps11_irqs,
-> -	.num_irqs = ARRAY_SIZE(s2mps11_irqs),
-> -	.num_regs = 3,
-> -	.status_base = S2MPS11_REG_INT1,
-> -	.mask_base = S2MPS11_REG_INT1M,
-> -	.ack_base = S2MPS11_REG_INT1,
-> +static const struct regmap_irq_chip s2mps11_irq_chip[] = {
-> +	[S2MPS11_IRQ_CHIP] = {
-> +		.name = "s2mps11",
-> +		.irqs = s2mps11_irqs,
-> +		.num_irqs = ARRAY_SIZE(s2mps11_irqs),
-> +		.num_regs = 3,
-> +		.status_base = S2MPS11_REG_INT1,
-> +		.mask_base = S2MPS11_REG_INT1M,
-> +		.ack_base = S2MPS11_REG_INT1,
-> +	},
->  };
->  
-> +#define S2MPS1X_IRQ_CHIP		S2MPS14_IRQ_CHIP
-> +
->  #define S2MPS1X_IRQ_CHIP_COMMON_DATA		\
->  	.irqs = s2mps14_irqs,			\
->  	.num_irqs = ARRAY_SIZE(s2mps14_irqs),	\
-> @@ -208,85 +214,106 @@ static const struct regmap_irq_chip s2mps11_irq_chip = {
->  	.mask_base = S2MPS14_REG_INT1M,		\
->  	.ack_base = S2MPS14_REG_INT1		\
->  
-> -static const struct regmap_irq_chip s2mps13_irq_chip = {
-> -	.name = "s2mps13",
-> -	S2MPS1X_IRQ_CHIP_COMMON_DATA,
-> +static const struct regmap_irq_chip s2mps13_irq_chip[] = {
-> +	[S2MPS1X_IRQ_CHIP] = {
-> +		.name = "s2mps13",
-> +		S2MPS1X_IRQ_CHIP_COMMON_DATA,
-> +	},
->  };
->  
-> -static const struct regmap_irq_chip s2mps14_irq_chip = {
-> -	.name = "s2mps14",
-> -	S2MPS1X_IRQ_CHIP_COMMON_DATA,
-> +static const struct regmap_irq_chip s2mps14_irq_chip[] = {
-> +	[S2MPS1X_IRQ_CHIP] = {
-> +		.name = "s2mps14",
-> +		S2MPS1X_IRQ_CHIP_COMMON_DATA,
-> +	},
->  };
->  
-> -static const struct regmap_irq_chip s2mps15_irq_chip = {
-> -	.name = "s2mps15",
-> -	S2MPS1X_IRQ_CHIP_COMMON_DATA,
-> +static const struct regmap_irq_chip s2mps15_irq_chip[] = {
-> +	[S2MPS1X_IRQ_CHIP] = {
-> +		.name = "s2mps15",
-> +		S2MPS1X_IRQ_CHIP_COMMON_DATA,
-> +	},
->  };
->  
-> -static const struct regmap_irq_chip s2mpu02_irq_chip = {
-> -	.name = "s2mpu02",
-> -	.irqs = s2mpu02_irqs,
-> -	.num_irqs = ARRAY_SIZE(s2mpu02_irqs),
-> -	.num_regs = 3,
-> -	.status_base = S2MPU02_REG_INT1,
-> -	.mask_base = S2MPU02_REG_INT1M,
-> -	.ack_base = S2MPU02_REG_INT1,
-> +static const struct regmap_irq_chip s2mpu02_irq_chip[] = {
-> +	[S2MPU02_IRQ_CHIP] = {
-> +		.name = "s2mpu02",
-> +		.irqs = s2mpu02_irqs,
-> +		.num_irqs = ARRAY_SIZE(s2mpu02_irqs),
-> +		.num_regs = 3,
-> +		.status_base = S2MPU02_REG_INT1,
-> +		.mask_base = S2MPU02_REG_INT1M,
-> +		.ack_base = S2MPU02_REG_INT1,
-> +	},
->  };
->  
-> -static const struct regmap_irq_chip s2mpu05_irq_chip = {
-> -	.name = "s2mpu05",
-> -	.irqs = s2mpu05_irqs,
-> -	.num_irqs = ARRAY_SIZE(s2mpu05_irqs),
-> -	.num_regs = 3,
-> -	.status_base = S2MPU05_REG_INT1,
-> -	.mask_base = S2MPU05_REG_INT1M,
-> -	.ack_base = S2MPU05_REG_INT1,
-> +static const struct regmap_irq_chip s2mpu05_irq_chip[] = {
-> +	[S2MPU05_IRQ_CHIP] = {
-> +		.name = "s2mpu05",
-> +		.irqs = s2mpu05_irqs,
-> +		.num_irqs = ARRAY_SIZE(s2mpu05_irqs),
-> +		.num_regs = 3,
-> +		.status_base = S2MPU05_REG_INT1,
-> +		.mask_base = S2MPU05_REG_INT1M,
-> +		.ack_base = S2MPU05_REG_INT1,
-> +	},
->  };
->  
-> -static const struct regmap_irq_chip s5m8767_irq_chip = {
-> -	.name = "s5m8767",
-> -	.irqs = s5m8767_irqs,
-> -	.num_irqs = ARRAY_SIZE(s5m8767_irqs),
-> -	.num_regs = 3,
-> -	.status_base = S5M8767_REG_INT1,
-> -	.mask_base = S5M8767_REG_INT1M,
-> -	.ack_base = S5M8767_REG_INT1,
-> +static const struct regmap_irq_chip s5m8767_irq_chip[] = {
-> +	[S5M8767_IRQ_CHIP] = {
-> +		.name = "s5m8767",
-> +		.irqs = s5m8767_irqs,
-> +		.num_irqs = ARRAY_SIZE(s5m8767_irqs),
-> +		.num_regs = 3,
-> +		.status_base = S5M8767_REG_INT1,
-> +		.mask_base = S5M8767_REG_INT1M,
-> +		.ack_base = S5M8767_REG_INT1,
-> +	},
->  };
->  
->  int sec_irq_init(struct sec_pmic_dev *sec_pmic)
->  {
->  	const struct regmap_irq_chip *sec_irq_chip;
-> -	int ret;
-> +	int sec_irq_chip_num, i, ret;
->  
->  	switch (sec_pmic->device_type) {
->  	case S5M8767X:
-> -		sec_irq_chip = &s5m8767_irq_chip;
-> +		sec_irq_chip = s5m8767_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s5m8767_irq_chip);
->  		break;
->  	case S2DOS05:
->  		return 0;
->  	case S2MPA01:
-> -		sec_irq_chip = &s2mps14_irq_chip;
-> +		sec_irq_chip = s2mps14_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s2mps14_irq_chip);
->  		break;
->  	case S2MPG10:
-> -		sec_irq_chip = &s2mpg10_irq_chip;
-> +		sec_irq_chip = s2mpg10_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s2mpg10_irq_chip);
->  		break;
->  	case S2MPS11X:
-> -		sec_irq_chip = &s2mps11_irq_chip;
-> +		sec_irq_chip = s2mps11_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s2mps11_irq_chip);
->  		break;
->  	case S2MPS13X:
-> -		sec_irq_chip = &s2mps13_irq_chip;
-> +		sec_irq_chip = s2mps13_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s2mps13_irq_chip);
->  		break;
->  	case S2MPS14X:
-> -		sec_irq_chip = &s2mps14_irq_chip;
-> +		sec_irq_chip = s2mps14_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s2mps14_irq_chip);
->  		break;
->  	case S2MPS15X:
-> -		sec_irq_chip = &s2mps15_irq_chip;
-> +		sec_irq_chip = s2mps15_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s2mps15_irq_chip);
->  		break;
->  	case S2MPU02:
-> -		sec_irq_chip = &s2mpu02_irq_chip;
-> +		sec_irq_chip = s2mpu02_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s2mpu02_irq_chip);
->  		break;
->  	case S2MPU05:
-> -		sec_irq_chip = &s2mpu05_irq_chip;
-> +		sec_irq_chip = s2mpu05_irq_chip;
-> +		sec_irq_chip_num = ARRAY_SIZE(s2mpu05_irq_chip);
->  		break;
->  	default:
->  		return dev_err_probe(sec_pmic->dev, -EINVAL,
-> @@ -300,13 +327,19 @@ int sec_irq_init(struct sec_pmic_dev *sec_pmic)
->  		return 0;
->  	}
->  
-> -	ret = devm_regmap_add_irq_chip(sec_pmic->dev, sec_pmic->regmap_pmic,
-> -				       sec_pmic->irq, IRQF_ONESHOT,
-> -				       0, sec_irq_chip, &sec_pmic->irq_data);
-> -	if (ret)
-> -		return dev_err_probe(sec_pmic->dev, ret,
-> -				     "Failed to add %s IRQ chip\n",
-> -				     sec_irq_chip->name);
-> +	for (i = 0; i < sec_irq_chip_num; i++) {
-> +		ret = devm_regmap_add_irq_chip(sec_pmic->dev,
-> +					       sec_pmic->regmap_pmic,
-> +					       sec_pmic->irq,
-> +					       IRQF_ONESHOT | IRQF_SHARED, 0,
-> +					       sec_irq_chip + i,
-> +					       sec_pmic->irq_data + i);
-> +		if (ret) {
-> +			return dev_err_probe(sec_pmic->dev, ret,
-> +					     "Failed to add %s IRQ chip\n",
-> +					     sec_irq_chip->name);
-> +		}
-> +	}
->  
->  	/*
->  	 * The rtc-s5m driver requests S2MPS14_IRQ_RTCA0 also for S2MPS11
-> diff --git a/drivers/rtc/rtc-s5m.c b/drivers/rtc/rtc-s5m.c
-> index a7220b4d0e8d..726915deff7a 100644
-> --- a/drivers/rtc/rtc-s5m.c
-> +++ b/drivers/rtc/rtc-s5m.c
-> @@ -668,7 +668,7 @@ static int s5m_rtc_probe(struct platform_device *pdev)
->  	enum sec_device_type device_type =
->  		platform_get_device_id(pdev)->driver_data;
->  	struct s5m_rtc_info *info;
-> -	int ret, alarm_irq;
-> +	int ret, alarm_irq, irq_chip;
->  
->  	info = devm_kzalloc(&pdev->dev, sizeof(*info), GFP_KERNEL);
->  	if (!info)
-> @@ -684,21 +684,25 @@ static int s5m_rtc_probe(struct platform_device *pdev)
->  			regmap_cfg = &s2mps14_rtc_regmap_config;
->  			info->regs = &s2mps15_rtc_regs;
->  			alarm_irq = S2MPS14_IRQ_RTCA0;
-> +			irq_chip = S2MPS11_IRQ_CHIP;
->  			break;
->  		case S2MPS14X:
->  			regmap_cfg = &s2mps14_rtc_regmap_config;
->  			info->regs = &s2mps14_rtc_regs;
->  			alarm_irq = S2MPS14_IRQ_RTCA0;
-> +			irq_chip = S2MPS14_IRQ_CHIP;
->  			break;
->  		case S2MPS13X:
->  			regmap_cfg = &s2mps14_rtc_regmap_config;
->  			info->regs = &s2mps13_rtc_regs;
->  			alarm_irq = S2MPS14_IRQ_RTCA0;
-> +			irq_chip = S2MPS14_IRQ_CHIP;
->  			break;
->  		case S5M8767X:
->  			regmap_cfg = &s5m_rtc_regmap_config;
->  			info->regs = &s5m_rtc_regs;
->  			alarm_irq = S5M8767_IRQ_RTCA1;
-> +			irq_chip = S5M8767_IRQ_CHIP;
->  			break;
->  		default:
->  			return dev_err_probe(&pdev->dev, -ENODEV,
-> @@ -720,6 +724,7 @@ static int s5m_rtc_probe(struct platform_device *pdev)
->  	} else if (device_type == S2MPG10) {
->  		info->regs = &s2mpg10_rtc_regs;
->  		alarm_irq = S2MPG10_IRQ_RTCA0;
-> +		irq_chip = S2MPG10_IRQ_CHIP;
->  	} else {
->  		return dev_err_probe(&pdev->dev, -ENODEV,
->  				     "Unsupported device type %d\n",
-> @@ -730,12 +735,14 @@ static int s5m_rtc_probe(struct platform_device *pdev)
->  	info->s5m87xx = s5m87xx;
->  	info->device_type = device_type;
->  
-> -	if (s5m87xx->irq_data) {
-> -		info->irq = regmap_irq_get_virq(s5m87xx->irq_data, alarm_irq);
-> -		if (info->irq <= 0)
-> +	if (s5m87xx->irq_data[irq_chip]) {
-> +		info->irq = regmap_irq_get_virq(s5m87xx->irq_data[irq_chip],
-> +						alarm_irq);
-> +		if (info->irq <= 0) {
->  			return dev_err_probe(&pdev->dev, -EINVAL,
->  					     "Failed to get virtual IRQ %d\n",
->  					     alarm_irq);
-> +		}
->  	}
->  
->  	platform_set_drvdata(pdev, info);
-> diff --git a/include/linux/mfd/samsung/core.h b/include/linux/mfd/samsung/core.h
-> index d785e101fe79..dcd741c4f0d6 100644
-> --- a/include/linux/mfd/samsung/core.h
-> +++ b/include/linux/mfd/samsung/core.h
-> @@ -33,6 +33,9 @@
->  #define STEP_12_5_MV		12500
->  #define STEP_6_25_MV		6250
->  
-> +/* Maximum number of IRQ chips in a PMIC */
-> +#define MAX_IRQ_CHIPS		1
-> +
->  struct gpio_desc;
->  
->  enum sec_device_type {
-> @@ -69,7 +72,7 @@ struct sec_pmic_dev {
->  
->  	int device_type;
->  	int irq;
-> -	struct regmap_irq_chip_data *irq_data;
-> +	struct regmap_irq_chip_data *irq_data[MAX_IRQ_CHIPS];
->  };
->  
->  struct sec_platform_data {
-> diff --git a/include/linux/mfd/samsung/irq.h b/include/linux/mfd/samsung/irq.h
-> index b4805cbd949b..78eb894e350e 100644
-> --- a/include/linux/mfd/samsung/irq.h
-> +++ b/include/linux/mfd/samsung/irq.h
-> @@ -34,6 +34,8 @@ enum s2mpa01_irq {
->  	S2MPA01_IRQ_NR,
->  };
->  
-> +#define S2MPA01_IRQ_CHIP		0
-> +
->  #define S2MPA01_IRQ_PWRONF_MASK		(1 << 0)
->  #define S2MPA01_IRQ_PWRONR_MASK		(1 << 1)
->  #define S2MPA01_IRQ_JIGONBF_MASK	(1 << 2)
-> @@ -58,6 +60,8 @@ enum s2mpa01_irq {
->  #define S2MPA01_IRQ_B35_TSD_MASK	(1 << 5)
->  
->  enum s2mpg10_irq {
-> +#define S2MPG10_IRQ_CHIP		0
-> +
->  	/* PMIC */
->  	S2MPG10_IRQ_PWRONF,
->  	S2MPG10_IRQ_PWRONR,
-> @@ -183,6 +187,8 @@ enum s2mps11_irq {
->  	S2MPS11_IRQ_NR,
->  };
->  
-> +#define S2MPS11_IRQ_CHIP		0
-> +
->  #define S2MPS11_IRQ_PWRONF_MASK		(1 << 0)
->  #define S2MPS11_IRQ_PWRONR_MASK		(1 << 1)
->  #define S2MPS11_IRQ_JIGONBF_MASK	(1 << 2)
-> @@ -226,6 +232,8 @@ enum s2mps14_irq {
->  	S2MPS14_IRQ_NR,
->  };
->  
-> +#define S2MPS14_IRQ_CHIP		0
-> +
->  enum s2mpu02_irq {
->  	S2MPU02_IRQ_PWRONF,
->  	S2MPU02_IRQ_PWRONR,
-> @@ -250,6 +258,8 @@ enum s2mpu02_irq {
->  	S2MPU02_IRQ_NR,
->  };
->  
-> +#define S2MPU02_IRQ_CHIP		0
-> +
->  /* Masks for interrupts are the same as in s2mps11 */
->  #define S2MPS14_IRQ_TSD_MASK		(1 << 2)
->  
-> @@ -277,6 +287,8 @@ enum s2mpu05_irq {
->  	S2MPU05_IRQ_NR,
->  };
->  
-> +#define S2MPU05_IRQ_CHIP		0
-> +
->  #define S2MPU05_IRQ_PWRONF_MASK		BIT(0)
->  #define S2MPU05_IRQ_PWRONR_MASK		BIT(1)
->  #define S2MPU05_IRQ_JIGONBF_MASK	BIT(2)
-> @@ -321,6 +333,8 @@ enum s5m8767_irq {
->  	S5M8767_IRQ_NR,
->  };
->  
-> +#define S5M8767_IRQ_CHIP		0
-> +
->  #define S5M8767_IRQ_PWRR_MASK		(1 << 0)
->  #define S5M8767_IRQ_PWRF_MASK		(1 << 1)
->  #define S5M8767_IRQ_PWR1S_MASK		(1 << 3)
-> 
-> -- 
-> 2.51.2
-> 
+So next time I will take your patch, your code, say "I recreated it" and
+submit under my authorship and for you it is fine?
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Please take Joseph's patch instead. Read submitting patches doc to
+understand which one more tag has to be added when sending somoene
+else's work.
+
+In the future, I sincerely suggest avoiding re-creating people's work
+but building on top, because you just duplicate the effort.
+
+Best regards,
+Krzysztof
 
