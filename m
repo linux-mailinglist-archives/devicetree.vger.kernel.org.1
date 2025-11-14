@@ -1,57 +1,62 @@
-Return-Path: <devicetree+bounces-238873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8621CC5EB79
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 19:02:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF77C5EC2D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 19:09:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1F6A9382804
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:54:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 599353846B0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144C934A3B5;
-	Fri, 14 Nov 2025 17:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FBA134678E;
+	Fri, 14 Nov 2025 17:54:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ag+mbxCQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dqwR0FCN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48BE346790;
-	Fri, 14 Nov 2025 17:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61FDD3451AB;
+	Fri, 14 Nov 2025 17:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763142817; cv=none; b=p+VWO4DF4zl/35pCrUoHqPx1bt3ueKJC4DHSxNiQRu7CBBxt3bSBTv3Xb5S7ShXvk87mIRkmoxGd0TNdxtTwyGpm2Gr8g8gSrwKcnkFmJZ4D70I3nKnGTr3JfiriO8vz4MqKiBJpNbr9Ni5Z5N8LPzCcg8sLEwOJQX6khSn92WM=
+	t=1763142889; cv=none; b=iotT1jCmlsd96LQ++SF8rQePKYcvxquQ4CoigBcDtxSzIm+l/rDTBV8KbrwtZOM4+rYtrx6dnypOjAU57FArIDHlD+lcMXRo2I+i33pkb0uFUsV8sTG1CfRlANrcaK7EWGv3KCWtoGy/I7y+5WtGKTbroLUyYE0C3esDy5UDANw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763142817; c=relaxed/simple;
-	bh=clFh80UCN2GxmCCAvzH1vFgZDVg9NsNxwAf0FB+VIUE=;
+	s=arc-20240116; t=1763142889; c=relaxed/simple;
+	bh=Wdd4m8H94V0HEUG8X+Wlhilt+04J47Ja1Rp/HOiJ9C0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ALjh5U3FvYXz7C1D+gVmmnepTE72frUKihbtZgZ0NZk1YQXwVc1KRmbVreTIgD3aSckyGFePa23Xd5UNh4JfVTZUYWJIRey4u2gh84pW5je1AyuKr+lZ8ha+n4j8Q74dzpePR03Vg0PV1fIVnK4y6Re/Le4ly1VGuqZukYFV2VU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ag+mbxCQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C057FC4CEF8;
-	Fri, 14 Nov 2025 17:53:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JfrgxtAoJ+xuooojT8+pS/h+UW7Xu9qhNdP6ilZacV6iW4xSpgBdXXyj7sxi1AH/0QkAFWUx7RBL8nJ/7bjhzvpJcuAz44SDtInHA+O/Mv69YE66d6utzDmW3fi4cc96xtXBiLE4efqKIZqDrtn/vqU+Swlu259icuesYVDNt9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dqwR0FCN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4C3CC4CEF1;
+	Fri, 14 Nov 2025 17:54:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763142817;
-	bh=clFh80UCN2GxmCCAvzH1vFgZDVg9NsNxwAf0FB+VIUE=;
+	s=k20201202; t=1763142888;
+	bh=Wdd4m8H94V0HEUG8X+Wlhilt+04J47Ja1Rp/HOiJ9C0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ag+mbxCQ+Y1v+qaj2r5jSJg7EZB2MlPYmsmqeWPy4NoJKZZ1U99nkwFmZdbbOdOI4
-	 HMYNb7KxHLawzU4L58ZZgMXfgltFLBwzbNRlJ7NxKiXdDJ/ESh8Zch/nI2uV2xdX8T
-	 LTJjE7I9GOFosy6+5jnxEvajFVOBafJd/CbtKewS/y6m32+i2bqsI+QOarv7XDFOw2
-	 tD8cetab1GF0ZlvtuYPiqW3BpVKxdExlvyYR6tML+wddANRUDwsZnWhCVK/4Y3Wm6O
-	 1qrlE6wFBLDm1ZlO686NpoEVJ3J/wzkcofQa9v632GInLssJgveAMuxFPCHDCq9D6J
-	 O0WZ1qXc0eJ1w==
-Date: Fri, 14 Nov 2025 17:53:33 +0000
+	b=dqwR0FCN0QKUErLUhb3He7F2rZpXq7+jPj/RTnXwu4HzkZ6VFeAnZyfLpNvp/AiON
+	 qFNWmuFX8AaCMQtTgIMwadNSMnCI5gqVuGVXYydMczkoRCkpSaWzHbo1qOIqVoBovM
+	 bW1HYPtvLzzMU9WMeEohb87QaBbhymqUJ+0sUAnv8VDiHIlN6KL9j5yBtNrwsjLwL/
+	 3jYi00/jfCwVm7MqgcbfTW1KFEW2TGKbjR1ou79oKdU2q4BHxBxdqAZWOJTGyOrDOm
+	 FxnKXZZEtMj5Rc8JJXS/yYiu5f5L+i/FrEPvmceKlK5nMICb4cnfMcbJ88IBYR6ngE
+	 ZztUsiTj3YUIQ==
+Date: Fri, 14 Nov 2025 17:54:43 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Daniel Mack <daniel.mack@holoplot.com>
-Cc: linux-leds@vger.kernel.org, pavel@kernel.org, lee@kernel.org,
-	robh@kernel.org, devicetree@vger.kernel.org,
-	Daniel Mack <daniel@zonque.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: leds: add issi,is31fl3293 to
- leds-is31fl32xx
-Message-ID: <20251114-endurance-doorstep-05bd2f5a3877@spud>
-References: <20251114094640.4096054-1-daniel.mack@holoplot.com>
- <20251114094640.4096054-2-daniel.mack@holoplot.com>
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: tmpv770x: Add VIIF clocks
+Message-ID: <20251114-sugar-landline-4807f7aea78a@spud>
+References: <20251114070512.855008-1-yuji2.ishikawa@toshiba.co.jp>
+ <20251114070512.855008-2-yuji2.ishikawa@toshiba.co.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,36 +64,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="k+9fqS1GSlVhtUIJ"
+	protocol="application/pgp-signature"; boundary="9rif5lqzeUnw9k0G"
 Content-Disposition: inline
-In-Reply-To: <20251114094640.4096054-2-daniel.mack@holoplot.com>
+In-Reply-To: <20251114070512.855008-2-yuji2.ishikawa@toshiba.co.jp>
 
 
---k+9fqS1GSlVhtUIJ
+--9rif5lqzeUnw9k0G
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 14, 2025 at 10:46:38AM +0100, Daniel Mack wrote:
-> From: Daniel Mack <daniel@zonque.org>
+On Fri, Nov 14, 2025 at 04:05:11PM +0900, Yuji Ishikawa wrote:
+> Add clock and reset identifiers for the Video Input Interface.
+> These identifiers support two instances: VIIF0 and VIIF1.
 >=20
-> This variant supports 3 channels with 4096 brightness steps.
->=20
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
+> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> ---
+> Changelog v2:
+> - Do not modify existing identifiers to avoid breaking ABI.
+>   Keep existing identfiers for VIIF0.
+>   Introduce new idenfifiers for VIIF1, following the same naming conventi=
+ons.
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---k+9fqS1GSlVhtUIJ
+--9rif5lqzeUnw9k0G
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRdsnQAKCRB4tDGHoIJi
-0lrBAQDi+GMjFDYIu/j7b96Vtmi6Bm1mjKGu5B0oc+UqTnmqkQD/V8QnIzuFdCAR
-6q5RpaOAUzPnhLXTw2RoHTsHWm2wrAc=
-=YyA3
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRds4wAKCRB4tDGHoIJi
+0i3mAP9BZ58ecSObGvNAeb+JOYPmq90PTYrAPcd7dTnM5cjFMAD+MjZ8JbcqgUAM
++iTdGaIZBLWumfgiZZnUNc5aoli9Ugw=
+=yIFm
 -----END PGP SIGNATURE-----
 
---k+9fqS1GSlVhtUIJ--
+--9rif5lqzeUnw9k0G--
 
