@@ -1,102 +1,48 @@
-Return-Path: <devicetree+bounces-238652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95022C5CFC2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:01:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98DBAC5CF83
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:58:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F402D4E01D9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:58:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9CEB3AAB30
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D8E316901;
-	Fri, 14 Nov 2025 11:58:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDF6315D4D;
+	Fri, 14 Nov 2025 11:58:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HQ6QKvYN";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YzaIjVdm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qTfB0OIH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F087A313530
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:58:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1047313E02;
+	Fri, 14 Nov 2025 11:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763121511; cv=none; b=HShaM3zvRNVvomkATBt8MKyyHMqIx60afNXTGyqMrb3zgInU67W3UpgrgI6lLbmMm6oQzmRcXIMIY3/GaAJpHELlVdZvuRyauOF0RF/kLO6qmDjC55N3Ls00bA8u6oJ7pXbscQb1qE/8EbK+wxFATEFfMBnDW5cAlaQz1UKhyMA=
+	t=1763121525; cv=none; b=C4QfGzoJ5dVXySxH6fSPrTdip7WtCBaBCiei7IpKkKl6xQcY++KHPKokrxzacjR05mVA2C8ZkkO1OnQGok5kWawQoDID/FpVDNRUWi9h9bC2r9+dsYI8tAWY54qYCkNcbAYYRY9poMcupU9sp5eBOhi1LuWUzBTOtree4LlZy/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763121511; c=relaxed/simple;
-	bh=Dt3uOy2VtoFbOLkUEu1yu90om6ClwTmbRrXAEUFSbIU=;
+	s=arc-20240116; t=1763121525; c=relaxed/simple;
+	bh=yh5fJQGdhx2NySkfsWDlhR3K1wLRF17ZiRDZ47ourgE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b05PmJWMmKsX1byx3sFMRdbgnX7utEy6EBNcmRScNGepTLjVo5Dko3m64S41ArM2+HwnmKvQQImu0Z0eH0vKQ4/HV7WjiPKjzh33kMa2XRsw41kEYZI/AJUUmUMdJl91fJujYV5myqO9K3Y1pPvhs8tBQBerMetPX8c5/BBdBeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HQ6QKvYN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YzaIjVdm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE8SEun1616711
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:58:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GRBPuTN4gFHBJkftAyq/mOmIDHNhSyqYwsTcoxYmiII=; b=HQ6QKvYNoWqSK2sP
-	/PBXAg78g+s2ZxJ/KSthVlkOY17b2ymCBtgWtOyLzXKET01KsSsOV6/uif8Ck4fk
-	ZoXvgzi3pTNy1KuftGT+HpP3g7oCZUVrU/Geti8UI6VtCAMAeApGkUDxFGM3aIjy
-	+1YUCWLxzH9DwwJpqmMuVlxgxH09jCWk5W4Eyl5KL+98xn4+jRx3g1bT3uTlaT58
-	FXbq8ovnJGl+2e71eiLpLKUkxDXgTdQl+dNvYsitVeYlAHZAykEC3t8o7mFk2NPG
-	VEy1uMG3ko5pLdZqryc2rCW0U4viKhfPLv4AMedDZx3WN+VW7hduMwp5jvWNKrRg
-	rDxqlA==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adr9h21gj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 11:58:28 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3418ada9e6cso2456778a91.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 03:58:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763121508; x=1763726308; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GRBPuTN4gFHBJkftAyq/mOmIDHNhSyqYwsTcoxYmiII=;
-        b=YzaIjVdmCEp6TuTzeQvXMvWMWJ/yt6+J/pxGEhcXrMIHHYpx2a/UnIWPfyYlOzHU8D
-         SEmJ17cKwQi5ST+A8J9MNTq0vtlngTHwTPPBf8/L/b3h8DgFR8Yn2VO8JrSLvpeFLLtk
-         +k5MEUfRVE73l/bNGiH+sULGYH6iD4XK//QaKvttILRrCC7FmdS2+5l4vgyP1i527Puo
-         YcEl4U8HeMlnpSz44hCeIUYudtd01Usi1KlHEGjUJpzN0o53rBBnmqSPhuaBj2V2SAqE
-         MUmydRK+x8UA7FONLmbNzgXKnodP1BBYF9Xa/Z4yv5Sc+b5WQaomwSpn1sb975ukNYy3
-         2u9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763121508; x=1763726308;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GRBPuTN4gFHBJkftAyq/mOmIDHNhSyqYwsTcoxYmiII=;
-        b=NzSRtZLef0yrekx7lcfV5g1GVK7sgIZUCeTExp46i5CKiqCu9n718le0LLiUlHF9fk
-         A3cbwZd+uvdBu4SMIfgGqWkXjty2uHpGbIIzwHn+Bo2/qJmvUH4W2L2GpcMacvMpfuQv
-         Bbdwabi9Cdx5N45bXs485Rh38Rv/0CPAYWXnQ6TcJC7wPTVJQRaDZnQ8MjShN9HcT7Jr
-         sBKKMRWLK3ZxWSlMUfCvIQjEi4c0UI/ZIl/IPAfIfQO9QokrqBzHy7HLSMMLf7DkYU2b
-         RWyqHKwA8ND2eTJ+qkQCYpaFHFUxa7rBmNMWtQsuaB5BiH4yfmYsN3I2I7dp2KRPGeqH
-         cOGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUantP1O8WPR0ztH6LI47NwUPVP2PvG4gk4moaR2z1neB2jiOfzTwZjhOrd0nzDfFUYr91b/7hOEIcQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyjs2QeMxtOrRaCFYykh9EagxEZqupAkjQ7COoafSTvZRSTZbfF
-	iJcNpmo7ztFld06uVfjFadAxM8BPc+zRE1a1u2o6ShuVMQ4T81q8fCqhHtK2XhmKPQy7p8VhgdR
-	DMKk/nON+UBsY9sjp70M7kqywnP+NmDZInmhJ0YQ9ACjH/F1NhriA4N6/K1TlTtCp
-X-Gm-Gg: ASbGncuunJG6n4+EPQNblFw5v3QAMgnKIax/hnqKPJY7l/SDGdjRVuI8n2ZqK7E/pBs
-	lWX0890jS4GYuepTFlp2CYa0/+3v3ArrrWMvkBDziAYH0DToO8wWQ7ZCnWExpGDzpTxFqI506MW
-	g7bwJBk62JseWJbF8pzfScfUU5rpcJKpzwmQfXBo/LqN/1IofJ1eRVJlZE/gfuXJk6rDfR4NbOu
-	II6LNta9Z6ih/5YV49lwrDTgzCrJzay8uW0ju0vvn2BapG1Y2nUDJdhd87AaV9knyFzxMHR8Mo3
-	RPP29KRLtNDqrgFqY1ao44OZiCa+TxNe4y7nhUlBoOYmXhC9OXojvOz6Pbvyb9o9vyrla5xn2Zw
-	v3Gk3TjQlKiDMLXGOAKcmWe8=
-X-Received: by 2002:a17:90b:5803:b0:343:653d:31c with SMTP id 98e67ed59e1d1-343f9d901bemr2963722a91.5.1763121507770;
-        Fri, 14 Nov 2025 03:58:27 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGFHpQSCtLNHukFVLbxrD8xU34y4COtLfmBvJC0TqavNqnfl88QPHSsjjzeWJeLQ2nAehx0+Q==
-X-Received: by 2002:a17:90b:5803:b0:343:653d:31c with SMTP id 98e67ed59e1d1-343f9d901bemr2963689a91.5.1763121507270;
-        Fri, 14 Nov 2025 03:58:27 -0800 (PST)
-Received: from [192.168.1.8] ([106.222.229.203])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-343eac93449sm2826717a91.3.2025.11.14.03.58.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 03:58:26 -0800 (PST)
-Message-ID: <6ebe07ad-cbfe-47e2-99ee-06ad7670e699@oss.qualcomm.com>
-Date: Fri, 14 Nov 2025 17:28:18 +0530
+	 In-Reply-To:Content-Type; b=U7cCgX7TCJk39EgUvvRyzm/CZV2wN8G8MXD0wl4OkZ2vH1eIFiINW7q0tTOS32LGRB7gNPf11RT0NXGEBpY/rakB5dgHULcAhvd3F8xjmTevopAJuvzgUr6OguZ6+VknBqZqJBVAUyjTweeh6/rC/62uLhYkD0DIgqPHPtLNB+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qTfB0OIH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B23C4CEF5;
+	Fri, 14 Nov 2025 11:58:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763121525;
+	bh=yh5fJQGdhx2NySkfsWDlhR3K1wLRF17ZiRDZ47ourgE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qTfB0OIHA02m4A2962eAAWs+HLfyD9Tf+frZ2F4WOGxUUnU6OHCxclpDD9vboKak4
+	 y3nUTxtqlyK9hpQhsgKup7i5DK1l9a/sL3qeonoNI0a+Ycczt/S7VDSuPozFtW0BLc
+	 LWDveKds4FzyuX2gWMFlKvUbw9KIuq5bLx4w2ewwBh1oI5GGiEUMRDTLXBlX5ez7Zq
+	 0m5ci4AVOrnY241u4Hsso6Pf1HH5h0759x1D0x3uoauogR9oVEZeWzHFtZ7XUI89yL
+	 D2FrkPRuloB7EjVED6+Bp3TYmPooTST4PjoVfwgSoW/IdHW2UWp07oyfzcuttdTXBa
+	 nzfaddh31aVYQ==
+Message-ID: <73a39371-5bf0-4a3d-a48b-9e91668b779c@kernel.org>
+Date: Fri, 14 Nov 2025 12:58:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,129 +50,166 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] dt-bindings: display/msm: gpu: Document A612 GPU
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Dan Carpenter <dan.carpenter@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com>
- <20251107-qcs615-spin-2-v2-2-a2d7c4fbf6e6@oss.qualcomm.com>
- <20251110-wise-lurking-roadrunner-f0cec3@kuoka>
+Subject: Re: [PATCH 2/2] spi: atcspi200: Add ATCSPI200 SPI driver
+To: CL Wang <cl634@andestech.com>, broonie@kernel.org,
+ linux-spi@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ tim609@andestech.com
+References: <20251112034724.1977630-1-cl634@andestech.com>
+ <20251112034724.1977630-3-cl634@andestech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-In-Reply-To: <20251110-wise-lurking-roadrunner-f0cec3@kuoka>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251112034724.1977630-3-cl634@andestech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: GX--alMi1p1osEUclpV47Wt7-Bb22Da0
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA5NSBTYWx0ZWRfXwHR1e29utFzD
- 2r58+Za75YQk3BIRRpgcEGUgOqePiyh3S3HS8n8stUvNnVq+nd+KcJ9HJaVW8m3DLzdliI9axsc
- whkIufFCooqxW67MJZ0KVdPL6j8Oa36L0B8fQmRdAE8igI9xsw9MzSIA5iUzQBzY8p63Nr5757p
- xLPPwfW5s7mIomeyG2B1PTu54dcbRBJHC3yXyEEBbnaivYgsdOF/Txd/wdqRZtZ9dz2H3HO2RMH
- hLp4MxbHGP4kBUMv2R6q1GBs6Tku5Cr9djjqMR30wJ6rhqUdPnJAz5fekVV8NY4/9+Rb2c0YQqX
- jdu0mhPj1LRkaCM2qU+MLcA2W7TszVsezossN+KUx2xWpHlWPgC1ip9MvPZ9IdJwwSXx7pBOrzB
- pBDejGoicY4NIfGOJrKr9cJ3dOgVCg==
-X-Proofpoint-GUID: GX--alMi1p1osEUclpV47Wt7-Bb22Da0
-X-Authority-Analysis: v=2.4 cv=V+1wEOni c=1 sm=1 tr=0 ts=69171964 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=UUXEStRZTiKyGgBwSCQbmw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=PLUc99ambSscJNFV4OcA:9
- a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-14_03,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 suspectscore=0 phishscore=0 clxscore=1015
- spamscore=0 priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140095
 
-On 11/10/2025 1:18 PM, Krzysztof Kozlowski wrote:
-> On Fri, Nov 07, 2025 at 02:20:07AM +0530, Akhil P Oommen wrote:
->> A612 GPU has a new IP called RGMU (Reduced Graphics Management Unit)
->> which replaces GMU. But it doesn't do clock or voltage scaling. So we
->> need the gpu core clock in the GPU node along with the power domain to
->> do clock and voltage scaling from the kernel. Update the bindings to
->> describe this GPU.
->>
->> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
->> ---
->>  .../devicetree/bindings/display/msm/gpu.yaml       | 32 ++++++++++++++++++++--
->>  1 file changed, 30 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
->> index 826aafdcc20b..a6bbc88e6a24 100644
->> --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
->> @@ -45,11 +45,11 @@ properties:
->>            - const: amd,imageon
->>  
->>    clocks:
->> -    minItems: 2
->> +    minItems: 1
->>      maxItems: 7
->>  
->>    clock-names:
->> -    minItems: 2
->> +    minItems: 1
->>      maxItems: 7
->>  
->>    reg:
->> @@ -387,6 +387,34 @@ allOf:
->>        required:
->>          - clocks
->>          - clock-names
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: qcom,adreno-612.0
->> +    then:
->> +      properties:
->> +        clocks:
->> +          items:
->> +            - description: GPU Core clock
->> +
->> +        clock-names:
->> +          items:
->> +            - const: core
->> +
->> +        reg:
->> +          items:
->> +            - description: GPU Reg memory
->> +
->> +        reg-names:
->> +          items:
->> +            - const: kgsl_3d0_reg_memory
-> 
-> What happened with the second entry? Please describe the hardware
-> COMPLETELY (see writing bindings doc).
+On 12/11/2025 04:47, CL Wang wrote:
+> +
+> +static int atcspi_enable_clk(struct atcspi_dev *spi)
+> +{
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(spi->clk);
+> +	if (ret)
+> +		return dev_err_probe(spi->dev, ret,
+> +				     "Failed to enable clock\n");
+> +
+> +	spi->clk_rate = clk_get_rate(spi->clk);
+> +	if (!spi->clk_rate)
+> +		return dev_err_probe(spi->dev, -EINVAL,
+> +				     "Failed to get SPI clock rate\n");
 
-We can describe cx_mem and cx_dbgc too here. Then it matches the common
-schema described at the top of this file. In that case, do we need to
-re-describe it here or we can just remove both reg and reg-names
-properties here?
+You miss clock enable/prepare cleanup. In other places as well.
+ > +
+> +	return 0;
+> +}
+> +
+> +static void atcspi_init_controller(struct platform_device *pdev,
+> +				   struct atcspi_dev *spi,
+> +				   struct spi_controller *host,
+> +				   struct resource *mem_res)
+> +{
+> +	/* Get the physical address of the data register for DMA transfers. */
+> +	spi->dma_addr = (dma_addr_t)(mem_res->start + ATCSPI_DATA);
+> +
+> +	/* Initialize controller properties */
+> +	host->bus_num = pdev->id;
+> +	host->mode_bits = SPI_CPOL | SPI_CPHA | SPI_RX_QUAD | SPI_TX_QUAD;
+> +	host->dev.of_node = pdev->dev.of_node;
+> +	host->num_chipselect = ATCSPI_MAX_CS_NUM;
+> +	host->mem_ops = &atcspi_mem_ops;
+> +	host->max_speed_hz = spi->sclk_rate;
+> +}
+> +
+> +static int atcspi_probe(struct platform_device *pdev)
+> +{
+> +	struct spi_controller *host;
+> +	struct atcspi_dev *spi;
+> +	struct resource *mem_res;
+> +	int ret;
+> +
+> +	host = spi_alloc_host(&pdev->dev, sizeof(*spi));
+> +	if (!host)
+> +		return -ENOMEM;
+> +
+> +	spi = spi_controller_get_devdata(host);
+> +	spi->host = host;
+> +	spi->dev = &pdev->dev;
+> +	platform_set_drvdata(pdev, host);
+> +
+> +	ret = atcspi_init_resources(pdev, spi, &mem_res);
+> +	if (ret)
+> +		goto free_controller;
+> +
+> +	ret = atcspi_enable_clk(spi);
+> +	if (ret)
+> +		goto free_controller;
+> +
+> +	atcspi_init_controller(pdev, spi, host, mem_res);
+> +
+> +	ret = atcspi_setup(spi);
+> +	if (ret)
+> +		goto free_controller;
+> +
+> +	ret = devm_spi_register_controller(&pdev->dev, host);
+> +	if (ret) {
+> +		dev_err_probe(spi->dev, ret,
+> +			      "Failed to register SPI controller\n");
+> +		goto free_controller;
+> +	}
+> +
+> +	spi->use_dma = false;
+> +	if (ATCSPI_DMA_SUPPORT) {
+> +		ret = atcspi_configure_dma(spi);
+> +		if (ret)
+> +			dev_info(spi->dev,
+> +				 "Failed to init DMA, fallback to PIO mode\n");
+> +		else
+> +			spi->use_dma = true;
+> +	}
+> +	mutex_init(&spi->mutex_lock);
+> +
+> +	return 0;
+> +
+> +free_controller:
+> +	spi_controller_put(host);
 
--Akhil.
+Where is DMA channel release? Same for unbind path.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id atcspi_of_match[] = {
+> +	{ .compatible = "andestech,qilai-spi", },
+> +	{ .compatible = "andestech,atcspi200", },
+
+Where did you document this compatible/ABI?
 
 
+Best regards,
+Krzysztof
 
