@@ -1,300 +1,181 @@
-Return-Path: <devicetree+bounces-238678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 801D7C5D1EB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:32:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D496C5CFB9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:01:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5AD4F35D0CE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:24:25 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B4CDC359830
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21024316907;
-	Fri, 14 Nov 2025 12:22:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B593168EA;
+	Fri, 14 Nov 2025 12:00:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="ZF1iGZaH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wimegOr3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 430DE31618E;
-	Fri, 14 Nov 2025 12:21:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C74313295
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 12:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763122921; cv=none; b=XdU9uhIzwlohiKnEBTTCxwydoC/ENJFkX7TB0lH+PPB+yonfLQWw+tzLmKZQizqwyVhacQsiT/+dFtJgmGlM+N6xvNJo9dAQtbo1zHEileimQHzXRv81kXxj2ryLsut01ZI2eVA1JFV3Ls8+GersMj4QNmbGFCqqdCP2LAm1f7I=
+	t=1763121639; cv=none; b=pzsZMC4pW14afqF+QykJlNtuv09Yf0dimCRTbod9gEUi1sBMADE1remIVIT6jcGq4qnlrbWDyd546JPC7rhMAaiceD9QmFJwBr6VYXWS0VBzdqpLWrl2QDLH9YsR6ZJrGaNvlIHpo6NS5J7+Sxijq/hERL6mo9YH7mb5O6ssyPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763122921; c=relaxed/simple;
-	bh=HAc/xn10cMvNrj7udzOuqVdwq77+2n6om11MvoL9Ydo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IybkXO9xWvE0vOG0+yK1L9nGBPjE1wbRGQg2WTGIzOV8uCj+lHIYk+UmhEdvt549ChaPwX03DcTcdoo8tBi4ocT1Dlx6pVZcUiSEodfL9BSlbQeg9hAIGuzRrAii19PhkHfUdra31xx6zj54Rus7Vo7GR3twOV3UKvPuv/Asc20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=ZF1iGZaH; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AEA1iIr182654;
-	Fri, 14 Nov 2025 07:21:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=r1qbt
-	qSdgoIFAE2l3CRrdhP7Abyiyjhy1QaEh6P9RcY=; b=ZF1iGZaHP7cfwyN8McgZ4
-	GWIlzHYjgp2dc2Bl3CB9mjmZdI1fGdSfQ6FeiJ1hs/MXV9XZURXLfto7CU5AIGjs
-	8x/3CnoR0vwCS5mTZhODBO0G/AEkJguPMupYUuTTRfMpLtYk4pW36yhcrteOTXyJ
-	uMGZORCnh/rVWSAM4ERYwVzEja3bUs85SzYhQdQHl0WxASAJTlKQGvXkjrKrNMt9
-	X8f6rdzVtlTAkPYAuWzNzyIpR1sFTbrz+SwdWrCEh3XqwCL9camzjc99EIc094MO
-	QpdYjhYQVh39KqeRL6aMPF8TDRfOTxIrxZsA1V3qD4iC579UICwfACCK3jKj7i+S
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4ady1fhgyc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Nov 2025 07:21:55 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5AECLs5l046118
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 14 Nov 2025 07:21:54 -0500
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 14 Nov 2025 07:21:54 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 14 Nov 2025 07:21:54 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 14 Nov 2025 07:21:54 -0500
-Received: from Ubuntu.ad.analog.com ([10.66.6.193])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AECLgLq019987;
-	Fri, 14 Nov 2025 07:21:50 -0500
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH 2/2] iio: frequency: adf4377: add clk provider support
-Date: Fri, 14 Nov 2025 11:59:23 +0000
-Message-ID: <20251114115923.6043-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251114115923.6043-1-antoniu.miclaus@analog.com>
-References: <20251114115923.6043-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1763121639; c=relaxed/simple;
+	bh=ZaIyBTnwagX+mg5Fm8v7qCDLfAe76rRU3qsBSCjnAxg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kGlhCCss7zyOSks6ql02JVVfc0Vxu44KrnIbraUb4j9272xw6ACZeMR7bd1zNaVTOyoZPDNAChSIt/1bWFkeBjnPOGpB8FSN7M5aBdJpTqq0kw2TSpKfDJUGcZU01XBsoVi61ePVLXok4iIOHDWjoZDAJBFCQ3heAvtDNqbZLUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wimegOr3; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-429c4c65485so1601093f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:00:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763121636; x=1763726436; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DPjgwRy+onJPS+IqkIcaIi3lzoC2BxsDCzhVvVFR+2A=;
+        b=wimegOr3jyPK2z4+3HY6sYSZy9n4HsF4FvXPc3yHiHTfGRfFtZ9MT1VCAEDA6VHluQ
+         VzjqxuWa7DKh3EklWUJmQuZkPnrdyuqj5Je3j3XdexLd+grlyA1hGmOh1889GFSaikjr
+         sYjJnxwkb8Vhv4HQzfiRnFGhsdTX5scj5dsNf3YmGV72pBH4JHVEljsZzoAZ4ZwA82uI
+         SpIkXtumV9s3UhQppz0wuyDe8zTlLMXPwimW6pqi9GHJSnTWpkYIqjXanMuakgHpV7X6
+         sm8cdk6ZxbHydgfFVQEHCkGHINb7YMeM6QWGfk5MVeq4qZ+Azbp92xQgtg4gJTPmB1pE
+         67jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763121636; x=1763726436;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DPjgwRy+onJPS+IqkIcaIi3lzoC2BxsDCzhVvVFR+2A=;
+        b=EpN0I6Uz2o/a5YpLJoHDHWm2U+2fKJHtLMUkNN0hqG8aSIefI3CeogSh0IP2yVZQcS
+         rj/R7HNaUxdrQ39bKFRTknwyJSqphrODyk3ipahVLXumlToMTa31XxRlY32eTRRuosb5
+         TTytsWpwVWNDez6KpLECzEYHgSG3HsGcKuAoBOlHeax6yNhCDEemJjzn4j3QydfnoIsM
+         UGd6mK2RmClGvH/bRX04DAJ3fsqvuKKFb/myivn99qQDS5QUrdrCoIdLwARyDOSw3mtx
+         fYYrKTYN557LnrY1Tb4OeGPeYUui4XW71YtVjc1y48AONrCpLT71XpOFFJpODK43XjvX
+         1+fw==
+X-Forwarded-Encrypted: i=1; AJvYcCWr9s801MtfFlZoeskr62nxEE4EL+xNVK5lSnPOZBM0mUE4VFSlJQC+gw+kikw2hymVK0Z0EE+mPWxt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUENJ0mlKUYJggEf2YumkAGrNJ3Ug9vK6RbX1pP1ytShJUOJed
+	3m+fovESgxeP0zYZt22TQqdnozT4W5xC5L4X9zOC6EATJaloHw3XwkLLBju1NASZ4YE=
+X-Gm-Gg: ASbGnctj5KmzNlYwhn4aoTf67+e+TIAVn9EMXhP7SV7SxnQ6YpQyACvMoiFVrnbTrOr
+	24VkwiZ9I5vFFFhUvD2VS1oj8sfdzyNUXrTDM4RW7U/BMh952TKnWT9z0K1eBVoVILNULMcRDVZ
+	HI0zhqDJdfVXDa96aJfcG9t/TBdYRIs3RRjM2mIgqRfiGpu38wM5DRfhLfdF7RNcmTPXgYnIzKJ
+	2Wzr8iHIPXrU4ARLX8+T8wx1Gicq0CD4Gasj5xTi4fBSn7LePfEaXxysGhBCDUimFpG0MpKxWQe
+	id1D9BSRJzpLW6q03c/3Hq0Me9+t2JLBFBlbktr7x2lYFvYGFjhMsq07xyJL4jsV1B7Yk6S/M7G
+	+4JlE+g9YQM31RX8ADiYETp51ofXYlXsyZdDlvI+eCspjtcOY8XpUd56Pv10ot577+/cfSVmXq6
+	OnxXbrBTIonQMQqI1nH2cbgdTRkBCdIQ==
+X-Google-Smtp-Source: AGHT+IHX2390ivkvLs2uDJJ/4xAE1crzQXympMenKA3YTmHg28FuFzWNtXvAz1hi1yPzry+bv5rDqw==
+X-Received: by 2002:a05:6000:1ace:b0:3ff:17ac:a34b with SMTP id ffacd0b85a97d-42b59383b2dmr2998163f8f.42.1763121635434;
+        Fri, 14 Nov 2025 04:00:35 -0800 (PST)
+Received: from gpeter-l.roam.corp.google.com ([145.224.65.83])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53e7ae5bsm9487578f8f.8.2025.11.14.04.00.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 04:00:34 -0800 (PST)
+From: Peter Griffin <peter.griffin@linaro.org>
+Subject: [PATCH v2 0/2] Remove syscon compatible from google,gs101-pmu node
+Date: Fri, 14 Nov 2025 12:00:15 +0000
+Message-Id: <20251114-remove-pmu-syscon-compat-v2-0-9496e8c496c7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=YcywJgRf c=1 sm=1 tr=0 ts=69171ee3 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gAnH3GRIAAAA:8
- a=nVjtjxfPRRi5vZi_wFUA:9 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-ORIG-GUID: jvOSOSRW7XE__1lBDHWOiXkTQdOxusOz
-X-Proofpoint-GUID: jvOSOSRW7XE__1lBDHWOiXkTQdOxusOz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA5OCBTYWx0ZWRfX/jGTcDPNZ2zs
- nJcaQpK9kISUGeRFwozYfOJ+cpjdwhsMFuJexq55buBllw+fVEjecHSy001RjnV8g4vrUtXfe3E
- J2+3FqSAUu5xVD+Y0jC8uTyKtFQl1Sx5HbjjAKfG4w7pJUghENfLrbnTJwgJzVyb9xX5xSV6Vd+
- g7hcp4MNBr9iDkdXlVv2PaUBQjzYh1DnY9bpAsHOFhrtydHAgEn0j77GzoYn2lUsfic4aVOAJBc
- TVeyae0gb/aYVVJZHxg+54plgjro98uF4dakJngZKnZfNXzMM6eOn1B7/NRnMl0doT5i98IYJi9
- 0MvAqxK6JmSzS15BewqvRA8JCChpUJ6nhIO6rlbmlxl9TCV+mbevygapXkp9iA0ZF+DHNMYKXML
- DSQb5o7h4bO8QGxtjDgw/DzfTOyesw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-14_03,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0 priorityscore=1501
- suspectscore=0 impostorscore=0 malwarescore=0 phishscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140098
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM8ZF2kC/3WNQQ6CMBBFr0K6dgytqMGV9zAsSpnCJNIhU2wkh
+ LtbSVy6fC/5768qohBGdStWJZgoEocM5lAoN9jQI1CXWZnSnLUuDQiOnBCm8QVxiY4DOB4nO0P
+ Xtq6qja0QrcrzSdDTe08/mswDxZll2Z+S/tpf9PQ/mjSU4I1rr762HV78/UnBCh9ZetVs2/YBQ
+ 1IRWsEAAAA=
+X-Change-ID: 20251102-remove-pmu-syscon-compat-dbbc492a4eea
+To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ kernel-team@android.com, willmcvicker@google.com, dan.carpenter@linaro.org, 
+ arnd@arndb.de, robh@kernel.org, Peter Griffin <peter.griffin@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2515;
+ i=peter.griffin@linaro.org; h=from:subject:message-id;
+ bh=ZaIyBTnwagX+mg5Fm8v7qCDLfAe76rRU3qsBSCjnAxg=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpFxndB6OL9nN24aNIm+o9cKItyW9b1+ko0K+Iq
+ yFeHy0GxaOJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaRcZ3QAKCRDO6LjWAjRy
+ uhmSD/wPTru0lXRPUMWeofXVH/cZCkVFn8jaWh/YseuFJHZwg1JWLdjRynJqe+K3kJIBZ27WWcW
+ TcW86aJ0UT1oNYmV9Wd9czCKPp8Lnon0hVOTXVgnUU7/cmg+pq9vLu2uAJvUb45sd60K/WffmGl
+ DnNeWABUDi21VZLU8hXysxShZh6SIZ5E7euBcq/Xktl1ffo8vcjsFuyFCPvazTlDdiSrkf+HtZh
+ cwDZLR5loTi5ATtShLh0YEPZHkFn4KIlMZQTA+Ts2zdjEiNZ7VogsSV/ns0ECAi19sHE8dz5s8t
+ H+UgJAQcNCoCrl4x4ti9hfTsFWZu5c3gZ3cORU3orEdb0Qo+J8kDfPopMwsZbTzoSoZNoTqF86W
+ kEqnSqFQgFn4j0rkgYKyR48D82z5T+8DClouk2bHmFJqyWcAh2e5AvG85z+FxoZLcfRJOR2OBY3
+ 9Xvl1elZZJcmuNSj48UnXO+tPtVwWKii/KaNNtY05tfiaQD/qyDmSF4N++1Tz0bYZzX5LcBwvaT
+ u2NOYKdARwJ77m9Ag2pQhOq+jKr8iapK0PlZFwyqPRj0ZGccZT2dneqccGmyyXaGhGFqDfL78yJ
+ n/SCRenDrP6MXRUK6LVM3yMDbw5OSb5WDFkEdw7uablX/nVwpRTB5vynh7Kv5HUyRMeZ6FwnyIG
+ Ckhc5SWTFM3b1gw==
+X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
+ fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-Add clk provider feature for the adf4377.
+Hi folks,
 
-Even though the driver was sent as an IIO driver in most cases the
-device is actually seen as a clock provider.
+This series removes the syscon compatible from the pmu_system_controller
+node, by updating both yaml bindings and device tree.
 
-This patch aims to cover actual usecases requested by users in order to
-completely control the output frequencies from userspace.
+Since commit ba5095ebbc7a ("mfd: syscon: Allow syscon nodes without a
+"syscon" compatible") it is possible to register a regmap without the
+syscon compatible in the node.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+As noted in that commit, it isn't really correct to claim we are compatible
+with syscon, as a MMIO regmap created by syscon driver won't work on gs101.
+Removing the syscon compatible means the syscon driver won't ever attempt
+to create a mmio regmap.
+
+Currently we rely on exynos-pmu running and registering its regmap at a
+very early initcall level, so no mmio created regmap is returned. For
+pinctrl driver that runs at the same initcall level as exynos-pmu today we
+have a custom exynos_get_pmu_regmap_by_phandle() API that supports
+-EPROBE_DEFER.
+
+However with the changes proposed in [1] -EPROBE_DEFER will become
+supported in the syscon driver directly making this whole approach more
+robust especially in a highly modularized system with other drivers at the
+same initcall level. We should also be able to remove the custom API
+referenced above.
+
+Technically this is a ABI break but no other platforms are affected. With
+an old DT we will have the behaviour of today (rely on early initcall
+levels). But once [1] is merged, with a new DT we will benefit from
+-EPROBE_DEFER. Additionally PMU write register access was never working
+with a mmio syscon so the ABI break is justified.
+
+regards,
+
+Peter
+
+Link: https://lore.kernel.org/lkml/aQdHmrchkmOr34r3@stanley.mountain/ [1]
+
+Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- drivers/iio/frequency/adf4377.c | 131 +++++++++++++++++++++++++++++++-
- 1 file changed, 129 insertions(+), 2 deletions(-)
+Changes in v2:
+- Update commit description (Krzysztof)
+- Change Items to enum, remove const (Krzysztof)
+- Checkpatch warning commit msg length (Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20251103-remove-pmu-syscon-compat-v1-0-f2cb7f9ade6f@linaro.org
 
-diff --git a/drivers/iio/frequency/adf4377.c b/drivers/iio/frequency/adf4377.c
-index 08833b7035e4..08dc2110cf8c 100644
---- a/drivers/iio/frequency/adf4377.c
-+++ b/drivers/iio/frequency/adf4377.c
-@@ -8,6 +8,7 @@
- #include <linux/bitfield.h>
- #include <linux/bits.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/clkdev.h>
- #include <linux/delay.h>
- #include <linux/device.h>
-@@ -435,9 +436,14 @@ struct adf4377_state {
- 	struct gpio_desc	*gpio_ce;
- 	struct gpio_desc	*gpio_enclk1;
- 	struct gpio_desc	*gpio_enclk2;
-+	struct clk		*clk;
-+	struct clk		*clkout;
-+	struct clk_hw		hw;
- 	u8			buf[2] __aligned(IIO_DMA_MINALIGN);
- };
- 
-+#define to_adf4377_state(h)	container_of(h, struct adf4377_state, hw)
-+
- static const char * const adf4377_muxout_modes[] = {
- 	[ADF4377_MUXOUT_HIGH_Z] = "high_z",
- 	[ADF4377_MUXOUT_LKDET] = "lock_detect",
-@@ -929,6 +935,120 @@ static int adf4377_freq_change(struct notifier_block *nb, unsigned long action,
- 	return NOTIFY_OK;
- }
- 
-+static void adf4377_clk_del_provider(void *data)
-+{
-+	struct adf4377_state *st = data;
-+
-+	of_clk_del_provider(st->spi->dev.of_node);
-+}
-+
-+static unsigned long adf4377_clk_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+	u64 freq;
-+	int ret;
-+
-+	ret = adf4377_get_freq(st, &freq);
-+	if (ret)
-+		return 0;
-+
-+	return freq;
-+}
-+
-+static int adf4377_clk_set_rate(struct clk_hw *hw,
-+				unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	return adf4377_set_freq(st, rate);
-+}
-+
-+static int adf4377_clk_prepare(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	return regmap_update_bits(st->regmap, 0x1a, ADF4377_001A_PD_CLKOUT1_MSK |
-+				  ADF4377_001A_PD_CLKOUT2_MSK,
-+				  FIELD_PREP(ADF4377_001A_PD_CLKOUT1_MSK, 0) |
-+				  FIELD_PREP(ADF4377_001A_PD_CLKOUT2_MSK, 0));
-+}
-+
-+static void adf4377_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	regmap_update_bits(st->regmap, 0x1a, ADF4377_001A_PD_CLKOUT1_MSK |
-+			   ADF4377_001A_PD_CLKOUT2_MSK,
-+			   FIELD_PREP(ADF4377_001A_PD_CLKOUT1_MSK, 1) |
-+			   FIELD_PREP(ADF4377_001A_PD_CLKOUT2_MSK, 1));
-+}
-+
-+static int adf4377_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+	unsigned int readval;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, 0x1a, &readval);
-+	if (ret)
-+		return ret;
-+
-+	return !(readval & (ADF4377_001A_PD_CLKOUT1_MSK | ADF4377_001A_PD_CLKOUT2_MSK));
-+}
-+
-+static const struct clk_ops adf4377_clk_ops = {
-+	.recalc_rate = adf4377_clk_recalc_rate,
-+	.set_rate = adf4377_clk_set_rate,
-+	.prepare = adf4377_clk_prepare,
-+	.unprepare = adf4377_clk_unprepare,
-+	.is_enabled = adf4377_clk_is_enabled,
-+};
-+
-+static int adf4377_clk_register(struct adf4377_state *st)
-+{
-+	struct spi_device *spi = st->spi;
-+	struct clk_init_data init;
-+	struct clk *clk;
-+	const char *parent_name;
-+	int ret;
-+
-+	if (!device_property_present(&spi->dev, "#clock-cells"))
-+		return 0;
-+
-+	if (device_property_read_string(&spi->dev, "clock-output-names", &init.name)) {
-+		init.name = devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
-+					   fwnode_get_name(dev_fwnode(&spi->dev)));
-+		if (!init.name)
-+			return -ENOMEM;
-+	}
-+
-+	parent_name = of_clk_get_parent_name(spi->dev.of_node, 0);
-+	if (!parent_name)
-+		return -EINVAL;
-+
-+	init.ops = &adf4377_clk_ops;
-+	init.parent_names = &parent_name;
-+	init.num_parents = 1;
-+	init.flags = CLK_SET_RATE_PARENT;
-+
-+	st->hw.init = &init;
-+	clk = devm_clk_register(&spi->dev, &st->hw);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	st->clk = clk;
-+
-+	ret = of_clk_add_provider(spi->dev.of_node, of_clk_src_simple_get, clk);
-+	if (ret)
-+		return ret;
-+
-+	st->clkout = clk;
-+
-+	return devm_add_action_or_reset(&spi->dev, adf4377_clk_del_provider, st);
-+}
-+
- static const struct adf4377_chip_info adf4377_chip_info = {
- 	.name = "adf4377",
- 	.has_gpio_enclk2 = true,
-@@ -958,8 +1078,6 @@ static int adf4377_probe(struct spi_device *spi)
- 
- 	indio_dev->info = &adf4377_info;
- 	indio_dev->name = "adf4377";
--	indio_dev->channels = adf4377_channels;
--	indio_dev->num_channels = ARRAY_SIZE(adf4377_channels);
- 
- 	st->regmap = regmap;
- 	st->spi = spi;
-@@ -979,6 +1097,15 @@ static int adf4377_probe(struct spi_device *spi)
- 	if (ret)
- 		return ret;
- 
-+	ret = adf4377_clk_register(st);
-+	if (ret)
-+		return ret;
-+
-+	if (!st->clkout) {
-+		indio_dev->channels = adf4377_channels;
-+		indio_dev->num_channels = ARRAY_SIZE(adf4377_channels);
-+	}
-+
- 	return devm_iio_device_register(&spi->dev, indio_dev);
- }
- 
+---
+Peter Griffin (2):
+      dt-bindings: soc: samsung: exynos-pmu: remove syscon for google,gs101-pmu
+      arm64: dts: exynos: gs101: remove syscon compatible from pmu node
+
+ Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml | 3 ++-
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi                  | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+---
+base-commit: 72fb0170ef1f45addf726319c52a0562b6913707
+change-id: 20251102-remove-pmu-syscon-compat-dbbc492a4eea
+
+Best regards,
 -- 
-2.43.0
+Peter Griffin <peter.griffin@linaro.org>
 
 
