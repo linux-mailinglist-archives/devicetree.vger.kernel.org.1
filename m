@@ -1,89 +1,55 @@
-Return-Path: <devicetree+bounces-238550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 627F0C5C430
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:28:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C4CC5C175
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:52:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3970E4FC6B0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:18:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A77CC356CA9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:51:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1FF30649D;
-	Fri, 14 Nov 2025 09:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205F32F90D5;
+	Fri, 14 Nov 2025 08:51:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="j/yQnkOj"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="g0Bf0ERy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7C0302156;
-	Fri, 14 Nov 2025 09:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763111854; cv=fail; b=gz/9Y4hyeY/c53gLrOabFNaBbJyS+BliLIABTpfDxoSi/vrbsdSOPsKEyTDd5kMLG+fBsK5bQxyilsQSVdvn+uQgv94RZnTGeYofn2tkunCKEAcAj0ly7EEgoh5eqQXT4zUUidBJZJHE8gQGJCkGypCrPfnHRC7v2S15BGXH9Qk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763111854; c=relaxed/simple;
-	bh=ZFzka9Hs9kU7s5fRkIGXNdnV83vCtwO2jz2poSoAjU8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=oZmYj3aVzknobGzbyEuAO5n/JJ3uDULU3hUzfNtrbLxlrSlv8Ut9iq1NsZliB8Sr8jtLD5H/RJWnbIChNjACNbpARKBc6vXANW1sF2VkOrUmTlj5Zzn+0st7G+fw0JcR53dGKWNIqIub/xnEhi7q+pOHZbDGIZSgYoqt8qKtgXs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=j/yQnkOj; arc=fail smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE9DDW71829054;
-	Fri, 14 Nov 2025 10:17:17 +0100
-Received: from db3pr0202cu003.outbound.protection.outlook.com (mail-northeuropeazon11010065.outbound.protection.outlook.com [52.101.84.65])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4adr7k25sj-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 14 Nov 2025 10:17:17 +0100 (CET)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OnFdV/EShYAFliiaFwydpGEWvwiRciYIDDJTXnm/fCPCsvqiPzLL8336VdXluAqOFBKh93KjJKtgEv4sZ2gzILE4wtq4xCG1cuHNyObAbq7J+fhxis4g9pd0PzilgYRbEw0gpsVVuEK5SncfxgLXTre1QahBGPaijosWHmnB9qaMxTwo66uMJ2Klmu7+AVTfY1908O6kj8MEjJyTRQX8WLDQiMmeE2QD6WzmUDlffs/0MV4XqZ67aeu/eGKhg8B8FNv3X+wN+QSeymgpcvnTbd8dMh8T688ObhrfEcMvbSTtGbeqaefqt2UvbhphURaLAtT0q1qMsSHlaSYsCbakng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4l6lcrB3m7XR5pzCXBvCJaO7j25B2XoH92w8UTOK8iA=;
- b=IhAKnV9loraui1v19RZuP6LeDkj/fspWR/B9/Ba+M4DQZV4yfHt/2xMrQgiHywFrHg+s1mprDpEhUk0wIL65ocN/l4ap7SXnV8ummXby2cAZYKzPzAbyzYGYYTERVdUk9BfP8Kk9zQHD3ruL6iB4zuK477uKBVmCBoUm/zIwRk3lQRaGmUCjbj1qBtKRoK8CcyolXdr5AU7XmzDeKJhN3sxHrEUm1jsfHYVTcSYvAh9XtHGrlpQPrDBmRP5fur+FOMZ5Qbmikzl3LUSiDqMbyMfO5w9HzTn9+ad2VdNCYCoKepH/99/QRfwSbzMjvA9+OdMiq/jGCjRva/DRfa7Bew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4l6lcrB3m7XR5pzCXBvCJaO7j25B2XoH92w8UTOK8iA=;
- b=j/yQnkOj98oFnwjoqsfj7Ywg7YF6rnsRzmjymIU/Hal59Y/m0+ux0q5okox8vScWJ3gfuw9Scvyi+LSIbP6vafmBv3mVxYkM1FNGTrzJwafb2rGnl7yAYcr9++VWKiAkifDMv6SmkZA+zFmTnUR5IP9/sl/R95J4pwoTd6zjJIpdjsF+rLXeRvWElLnxYkleLMrk03xUhtUqZjVgJN/WC5fNH7yYTZw4yoOzVP6oC1gnRoh7VyetGECPIGv0P/fmvaaaaROXYxSCcspVhM9MHEd/9KmqV85LEH7b6URcxgZa8zUDpCfx/UfTH0Lu9812OL4RJjKz3wH7gJSQrIInpA==
-Received: from AS4P189CA0015.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:5d7::19)
- by AS8PR10MB5831.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:524::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Fri, 14 Nov
- 2025 09:17:16 +0000
-Received: from AM2PEPF0001C70C.eurprd05.prod.outlook.com
- (2603:10a6:20b:5d7:cafe::5e) by AS4P189CA0015.outlook.office365.com
- (2603:10a6:20b:5d7::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.17 via Frontend Transport; Fri,
- 14 Nov 2025 09:17:12 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- AM2PEPF0001C70C.mail.protection.outlook.com (10.167.16.200) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Fri, 14 Nov 2025 09:17:15 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
- 2025 09:51:29 +0100
-Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
- 2025 09:51:16 +0100
-Message-ID: <01dbb151-148f-46af-b843-f96f99910ea6@foss.st.com>
-Date: Fri, 14 Nov 2025 09:51:16 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F632DCBF8
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:51:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763110312; cv=none; b=Zo6DCAkWs9oEHlezalkS+BoFim74yxfrfJv0dFIHEQXJS0GK0HArDPeD8aaAX35nFqJpYfdR89fwISiNzASst4C0KLzWcfLfu7xGwu83C6YX6aKswGrDwQ6B4pOuNZtRrqI/D3z4idFq7WoP7kAwV7ztkMiGGsaXOGjkowAXhwY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763110312; c=relaxed/simple;
+	bh=2cIaTZmwBhyo30iA8poaViORtmijEWrAhSREERF2GME=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SDL1t5MBT60Chp2AfMnjIHzNHA7O7LTMGIAEGkylBHGRCHsWkOfIvJYPAiIpVSQqzmMxdzgSeJB/CPvxjjOG/GKGkh9SnOfdQnVuZk6Mma52+FCsO6tSxnJ03yJbwLGCH418NFJ306mXy5rnOcgPVnYtJzIOBTewwN0Nalq9uDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=g0Bf0ERy; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763110307;
+	bh=2cIaTZmwBhyo30iA8poaViORtmijEWrAhSREERF2GME=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=g0Bf0ERyBGBBEb7XJendqVYVeTdYklCIUn77Ujw+oGlcC6/otJSSYsA82WfL3Hkzw
+	 TO3CO6g6S5sxDs+V5quxKNC+H02gLrq3K2y+ZBTIjJim+q1cThLveLp3RUefFoZ7pw
+	 qNoqLrTBbKuornUVrcafT8iiVBr82zZ9kcCVqfKlpl6hoDa0/Pb1yNAkBlKIxjdTy7
+	 ImBsfi1YnAU1Piyjj+lkQsbiJxWKOOrlaq41v8eQzv0bzaImVSmsXEO1kuy9V1Dks6
+	 ncdzf1l4BXEjzzoKVJcvttT8S4d+gGX185GjL5FK4c7b7mRV5DPcksqZ9BRIxceJma
+	 uOFPh38526fYw==
+Received: from [192.168.1.90] (unknown [82.79.138.145])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C002D17E0B46;
+	Fri, 14 Nov 2025 09:51:46 +0100 (CET)
+Message-ID: <f156cd48-d764-43c8-99ed-24ab212d8eee@collabora.com>
+Date: Fri, 14 Nov 2025 10:51:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,148 +57,105 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] bus: rifsc: add stm32mp21 support and config dump
- debug entry
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        "Conor Dooley" <conor.dooley@microchip.com>
-References: <20251106-rifsc_debugfs-v2-0-f90e94ae756d@foss.st.com>
+Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
+To: Dragan Simic <dsimic@manjaro.org>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, Joseph Kogut <joseph.kogut@gmail.com>,
+ heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jonas@kwiboo.se, kever.yang@rock-chips.com, honyuenkwun@gmail.com,
+ quentin.schulz@cherry.de, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
+ jbx6244@gmail.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
+ <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
+ <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
+ <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
+ <2892FE50237CD58E+0f15924c-a915-4446-954c-d81a782d23e9@radxa.com>
+ <19ce0a41-563c-6202-6b94-b2c644a0b827@manjaro.org>
+ <F02BA2E6B1111826+2445b38d-b5e0-499c-83e7-4521c57b2210@radxa.com>
+ <f2bc30de-119b-4f4a-844a-8a908c9290b6@kernel.org>
+ <49c39864-3e58-2e0e-7abc-50502f2afb02@manjaro.org>
 Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20251106-rifsc_debugfs-v2-0-f90e94ae756d@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM2PEPF0001C70C:EE_|AS8PR10MB5831:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ad6fd85-a9ee-403a-64ec-08de235e9a17
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NWdvQnE5Q1l2RWVsWURhWFF1VG1hYU5WV1FnaXNXQUNhUEkxTk9TOEJ4Sjg0?=
- =?utf-8?B?Z1A3TVFkTzE4NnF1R1ZxMmNvRUNiUWJSQUlSVks4cGRoRVA0bjFrNU96SjNS?=
- =?utf-8?B?VVZrU05OSlp1aTE2MWFWcitKWWtkTFFQNzNyOSt6Y1h2dVlyVmNYUW9DdFZN?=
- =?utf-8?B?eXlnb1l4Z1ZqNm14Z3Fqd1AycTVTaTFvdHYyTlJTdCtSaHFhUkNXdFJ0TEZp?=
- =?utf-8?B?QWN5eHUwcWJ3YWRaN09lVkxXSjUxdUhkZ3BiNGQzeEYzdXl0MlM4bEhEUDJU?=
- =?utf-8?B?UWVHR3pXR2l6ay9CVGZCckhhU1pyNFNURDJSNjhQaVRJZEhQNkc2VjdQK3R0?=
- =?utf-8?B?WXJBaVk0TVYvV0h5dGZtOUhuSk1MZ1J6UVRZSjJQTHo0QThHa3BlOTJsbFZK?=
- =?utf-8?B?blBZV0J0cUdUc2hiNVZZQ2wvZTRaUzVNb2JvZUVFQys0SVRUQysrQ3RkSDc4?=
- =?utf-8?B?elNjT2R0VTJxcDEzVFJzYXk1bGtCcEcyTUlqQ0dPVnh1RXVjRUNPUzV4QW9q?=
- =?utf-8?B?QzJPY09NL0ovWXEzWklaVUlhYjFkYkRVdEhEcE1rRXpNTGZNYy8xaFQrQXhG?=
- =?utf-8?B?TlhZaHhtWUJlWjlpQWtCY3loZi8waTBsQkh3ck9MNERjM0gva2p0STh1cFFn?=
- =?utf-8?B?Q09KajFsR0drVGc0eWZEa0VOdW1vV21lK2RGcjFTTVloanlqZUpidXI5bWZ1?=
- =?utf-8?B?R09EVjJmZXZRUHhxRGJrb21mWEYwUU00TDZGZ0s5RFFOMnlUbm5RN2pyNVl6?=
- =?utf-8?B?TnkyTWVuMGpkYmJqT1JEY2V2TjhYdS9lRE42QkwyVkZBbHl6ZVJ5VlNxb3V0?=
- =?utf-8?B?Yk43Mk03MlJqa3VOQW9hR1hUaW9uQWFqakxueFpoL1RLSUpveTdJTExsQVB3?=
- =?utf-8?B?RmFmWDNjYzlVdXA4SkR4S0NtMTYvejgwM0NnZ0VvZXNqQnltNkxsWGV6SlRx?=
- =?utf-8?B?L0x6ZlQwVnJhMysrUEV4d05idURvbXJDdkhWbnoveHRFMk5uOUNjQjh2MDNr?=
- =?utf-8?B?WHFLK3BPWmxkYTZiRERHTndSTHdkV2VvMWlVMnNNRnRsbUJOVEJZYVlLaHRO?=
- =?utf-8?B?RzkrcTRLNkwwb0VwbFNHdUlaWlAydk9VY1hROXMvZ3hTMzhrRlhrL2J4K0ZB?=
- =?utf-8?B?RnN3Rnd6Nno1emEvbmllby9oNDZ4RHY5VTlnOFgvdXQ1NmNNMzluV0EzMk1h?=
- =?utf-8?B?Yy9Ba1krbjF1RitTaFgxcWF5d0R4ZHBwZzg2aHFsVnh5UEMyNDZmTTNZN0h3?=
- =?utf-8?B?bTU4RHVUN3UveG0wbGcyZ1RmdVlRaG96RUdnaGRxRG56L0pCSkhDZXNwSlRP?=
- =?utf-8?B?RW14Z0N5NWt1alZDdG9LQWRPU2JuZUdiRW1CbldEU05tSFpBbVZHUnRzK29s?=
- =?utf-8?B?ZGU5am45dzVQWnJpeW1oWHBGbFlRU1lvNVA0L084eU5PUGlJRHJQRHJhb2JJ?=
- =?utf-8?B?R3VydjlJaWY5N1U3dVhDZHQ2aDlhTWNSWXVIVlJmakc5anNObk15L2JYSWlW?=
- =?utf-8?B?V3BVdDZqYUhhVDU0WUZXbW8xOFFXSzNJcG9PWS9RMXBrbXZuc1dTTzV0aGhQ?=
- =?utf-8?B?S2tXTFNwdzdLMG9rNm5Wd3pLNUVwdVRxeXdJdENhQjlHR2txN1c2QkpmZVdj?=
- =?utf-8?B?U3d2NnJvYTRQRy9rWFBnVnUxK1pXRVI0dU5rV1lPemNMU3NQN2w0eTVkc2tT?=
- =?utf-8?B?K0lEYXJaYlY3TThxNnMyWXJhZHBNWHJXNmVsNHQ5RDVzRGdpaUlDeEc2anlK?=
- =?utf-8?B?YitVdWVMZHh4NUxsOWlweWNkeDRPeEFJV1JPMTZRdnRaTXkvRDFYUERVcyta?=
- =?utf-8?B?N0J1enJ3c05sdStEYkpZanlld3R6L0EyaUVWUndwUzlMczErZy9jZzl4UGZS?=
- =?utf-8?B?TUxycjVrenpCUHVBOUF6TUFKejRLOVJpanU1QW5BaGdBM2RLMHFZN0cyY2l5?=
- =?utf-8?B?MGxnay9pUEJJd1dROXJWUi8zejJ2TzNBTFBiRTJhU1NkaUxPbWNDL2dXenZ2?=
- =?utf-8?B?dUdJYnpNWXFSQ1dOcG5hRjIyNW5JMGxLTDk4V01obm9BRDhFSVJYeUFuV0JN?=
- =?utf-8?B?TzFHdm9yR3Y4bG5PcCt3T0NpdGRTcmdEMk5JTzc5WGt0L2k5RFNaaG5jK21T?=
- =?utf-8?Q?Jec4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 09:17:15.1537
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ad6fd85-a9ee-403a-64ec-08de235e9a17
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM2PEPF0001C70C.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB5831
-X-Authority-Analysis: v=2.4 cv=KoBAGGWN c=1 sm=1 tr=0 ts=6916f39d cx=c_pps
- a=JbfknYpaHg+7S6z5Esqmrw==:117 a=uCuRqK4WZKO1kjFMGfU4lQ==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=TP8aPCUxYTYA:10 a=IkcTkHD0fZMA:10
- a=6UeiqGixMTsA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=8b9GpE9nAAAA:8
- a=n2zXhBmsAd_17serdwMA:9 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
- a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA3MiBTYWx0ZWRfX5mG9zKJvR8FN
- kdXly16lZbBWAW1uPVblb2D3dNkhj0BzPNjprFLo7rXVD0QgF6ENdiw3bBA45DuIMzmtwlaiwcU
- fQ7z0mNCWcyJLJ28UXG70eiPT3cNfJZKii7/XLwt5p9LZ9FwR2XysmaDZVBS8yM5eWZt1gy5wF3
- PQ3Lrm/KlcyBtlACLGLNjIV1u2mpfCpg1pCaIBYcDB+4FCgcX/EhHG3j6gxkMlU/VcnmMHwDtTt
- yup4YJR9wUIKQzY63RNy2PHcFyGTE1HQM/bPIUlg4Okh2TOK47X1h6Yol6V+m0Eu12BR6RRUWuL
- d3bIgkN3zx2xHVR5IGgjB9Ae0d3G684E86iRPFbRZOdubKL3ZcEUBomr1pQxlHzzccpo0VuN3TE
- c8i/v5ootTekknKfV98gObch6+s1BA==
-X-Proofpoint-ORIG-GUID: sRiOjl7rVeOMQyF_hKYn1Jf9PNG2GiY7
-X-Proofpoint-GUID: sRiOjl7rVeOMQyF_hKYn1Jf9PNG2GiY7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-14_02,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0
- clxscore=1011 lowpriorityscore=0 malwarescore=0 bulkscore=0 adultscore=0
- spamscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140072
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <49c39864-3e58-2e0e-7abc-50502f2afb02@manjaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Gatien
-
-On 11/6/25 10:31, Gatien Chevallier wrote:
-> The STM32MP21x platforms have a slightly different RIFSC. Add support
-> for these platforms.
+On 11/14/25 9:17 AM, Dragan Simic wrote:
+> Hello Krzysztof,
 > 
-> Also, the RIF is a complex firewall framework which can be tricky
-> to debug. To facilitate the latter, add a debugfs entry that can
-> be used to display the whole RIFSC firewall configuration at runtime.
+> On Friday, November 14, 2025 08:10 CET, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On 14/11/2025 06:03, FUKAUMI Naoki wrote:
+>>> On 11/12/25 09:46, Dragan Simic wrote:
+>>>> On Wednesday, November 12, 2025 00:26 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>>>> On 11/11/25 23:33, Dragan Simic wrote:
+>>>>>> On Tuesday, November 11, 2025 12:52 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>>>>>> On 11/6/25 02:48, Joseph Kogut wrote:
+>>>>>>>> On Wed, Nov 5, 2025 at 4:15 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>>>>>>>> I'd like to clarify the situation regarding the v6 patch series I submitted.
+>>>>>>>>>
+>>>>>>>>> The original device tree work for the Radxa CM5 and IO Board was
+>>>>>>>>> authored by Joseph Kogut. I took over the responsibility of getting it
+>>>>>>>>> upstreamed with his agreement.
+>>>>>>>>
+>>>>>>>> I'll confirm this. I've been in communication with Naoki. They made a
+>>>>>>>> large number of revisions to my original patch series, which I think
+>>>>>>>> have technical merit. I suggested they submit the patches themselves,
+>>>>>>>> and gave them explicit permission to add my Signed-off-by and CC me.
+>>>>>>>>
+>>>>>>>> I assume this was the correct way for them to continue the work I
+>>>>>>>> started, but if not, please let us know the best way to proceed.
+>>>>>>>
+>>>>>>> Can anyone help us?
+>>>>>>
+>>>>>> I'm not exactly sure how to resolve the current situation, but for
+>>>>>> Signed-off-by tags to be present, in this case you'd need to have
+>>>>>> Co-developed-by tags as well, because the final patch versions,
+>>>>>> which would be submitted by Naoki, would differ significantly from
+>>>>>> the versions that Joseph actively worked on, if I understood
+>>>>>> everything correctly.  Though, for Joseph's Signed-off-by tags to
+>>>>>> be included there, he would also need to participate actively in
+>>>>>> the development of the final patch versions.
+>>>>>
+>>>>> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
+>>>>>
+>>>>> If
+>>>>> ----
+>>>>> From: Joseph Kogut <joseph.kogut@gmail.com>
+>>>>>
+>>>>> <changelog>
+>>>>>
+>>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>>>> Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>>> ----
+>>>>> then I can submit my patch series?
+>>>>
+>>>> Actually, the Co-developed-by tags would be pointing to Joseph
+>>>> in that case, but as I described it above, this approach basically
+>>>> cannot be used, because Joseph's original work differs a lot from
+>>>> what you'd actually submit to the mailing list(s).
+>>>>
+>>>>> Or,
+>>>>>
+>>>>>> Another option, technically a bit simpler, would be to include just
+>>>>>> Originally-by tags for Joseph, which would indicate that Joseph gave
+>>>>>> up on the development of the patches and handed them over to Naoki
+>>>>>> for future development and submission to the mailing lists. Though,
+>>>>>> that would require Joseph to publicly state exactly that.
+>>>>>
+>>>>> I cannot find any documentation about "Originally-by".
+>>>>> Is this correct?
+>>>>> ----
+>>>>> <changelog>
+>>>>>
+>>>>> Originally-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>
+>> There is no such tag. Don't invent tags.
 > 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
-> Changes in v2:
-> - Added Conor tag on bindings
-> - Fixed coccinelle warning by using str_enabled_disabled() when
->    applicable
-> - Link to v1: https://lore.kernel.org/r/20251104-rifsc_debugfs-v1-0-7ebdfbf8d33f@foss.st.com
-> 
-> ---
-> Gatien Chevallier (3):
->        dt-bindings: bus: add stm32mp21 RIFSC compatible
->        arm64: dts: st: set RIFSC as an access controller on stm32mp21x platforms
->        bus: rifsc: add debugfs entry to dump the firewall configuration
-> 
->   .../bindings/bus/st,stm32mp25-rifsc.yaml           |   8 +-
->   arch/arm64/boot/dts/st/stm32mp211.dtsi             |   4 +-
->   drivers/bus/stm32_rifsc.c                          | 597 ++++++++++++++++++++-
->   3 files changed, 602 insertions(+), 7 deletions(-)
-> ---
-> base-commit: 6146a0f1dfae5d37442a9ddcba012add260bceb0
-> change-id: 20251104-rifsc_debugfs-5053ea033ce3
-> 
-> Best regards,
+> True, it doesn't exist officially, but it's been used fairly often.
 
-DT patch applied on stm32-next.
+Hmm, actually this tag seems to be documented, or at least given as an example:
 
-I'll send a dedicated PR for other patches to arm-soc tree.
-
-regards
-Alex
-
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/maintainer-tip.rst?h=v6.18-rc5#n309
 
