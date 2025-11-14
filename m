@@ -1,406 +1,211 @@
-Return-Path: <devicetree+bounces-238622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC8DEC5CB4C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:55:21 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42406C5CB76
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F1B23AC01F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:54:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BD616341B8C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B10B3191AC;
-	Fri, 14 Nov 2025 10:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB1BE31327A;
+	Fri, 14 Nov 2025 10:57:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dbag8zqM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="A4s46IFk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012039.outbound.protection.outlook.com [52.101.43.39])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D0B6315D29
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763117538; cv=none; b=fHqPJ9STGyHzNJRAwv8/DCtHhKEAtq+kIwPnheuflCulVI63A5BNy1UwKGaM9Wt1xyisl6fGChXNwDha9ibF3S2haR/NvC7EvH/I8tpdF+4HtPzZaL4Hcs5ou5f5XS98I1OZXTFDpgH/7hOlqFZAkK9b8PxHoKrHrEpDXFWOleQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763117538; c=relaxed/simple;
-	bh=6O3doIFr9IR4S2kx1M6uldVyjIjXurTG0Y9yc4WTdAQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g0vq7Wa59y4WH1faBcVnK/NplrNcZKNPeS8V+R5CmBbFSSMfqMfpBwsTi0bb1QvwRqbwes+uqtbGpuZ6Lxtps/L6hGn7DfoCeLaakVBCAvp7oK8pyLUd4K9w4S129B6ZivpKSms0bYQEXA1AqruJv9jDe5hVJCzauuY5G2gpcJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dbag8zqM; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47775fb6c56so20485275e9.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 02:52:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763117533; x=1763722333; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ATfnSc/33FwJ+wue2neEbqFM/q6MAl95n5pgQFg9uxw=;
-        b=Dbag8zqM2hgs798YIf3xt4zw2mUO89SFiIfrZCt9vxg0SiCO9RS1nR0zSSvsp0HV+k
-         L7UxiYdRZfLNmvRkcbn/IQllDk881c33Qvl3PH4Gwj46KLJMYiP+e4s5hO4dCmLJlY92
-         +XapvLSUXUjtK9ld6DWLtEDRB+vrqqjSiwRqnoOvuqij3iRrxnHBXpbNTukixvafjqH5
-         RWqTFW62agAXZlgV8hN1lGoobBjwguONcRCVw5W+lUpH1WzRx3Irvc+wFWPgjdsTW7rZ
-         hclU3+PbROovElufxqfX7w/1j7mHDQEmLso7vpjsdjuJOqO4Z+JX7UXoUoDs2nJXMHt7
-         zRpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763117533; x=1763722333;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ATfnSc/33FwJ+wue2neEbqFM/q6MAl95n5pgQFg9uxw=;
-        b=Rkbbw9R5obhtBsj3OFzDcNqzzxbNOfs7iD4E0UgrTcaEyt+gK+z1t6fxFgK3myIL4D
-         brQvyR8WuUzSM58XdFMbylAoFkkVCerHecEBbFkRVrmr3v5z1w+RaEYxISnEvZhHMzNW
-         HmCAxr2R1//t3m9X5kDjJeztwOibpzPYkE7Sls56RtQpkZim1jXVVzh8XuAVdctRueyX
-         qwfEI9AjZLAa3lwQgliKLPNAiqUttxx+Nl3AV9uJNeDpalHgSV2MPZnHLh6hbH/C+G/n
-         sKnHIorL8w6UIOVgEbo8YZ+JAR4WxsYwECUuDrxpBnY3sKAqyLakY+wyk7Ybi8bxDgHL
-         E+Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCXq30ZllCKHXahPBUgFTrOV3sLB07QzE49vHPrM0Eu6sj4/Dr1Eci00qQGF5/cyQ39a/45leI3JNn83@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0rvKbsCajCKk16CKkKt2GFJNuRtIZ9qRyGE81MgRDQnHQb9oQ
-	tJ59vN7YOH9AUEkwN04wUX8LiAVBPU0h/YubZh9tgB4LvZyK5pdKM3bv
-X-Gm-Gg: ASbGncvb8zGMnQTZrAT921YO4Gn43gh9dSDUFx/EDyW806gDXw4nomctSR45DQ+cBHQ
-	QBumIqSqoffi5bcjRVhEaX3YH/HHFJiKxZl1lxlF4pedLNDS9+Z93smZ88Qz9ezvrS55An/K+vO
-	oq+ROhzbbC+QNv/mG+tiACURr9/3A1lx1PSBnxVUzx8d6L6GrN3Q329uzDTc/GfaZrPQ9XYTaTc
-	qq4Rg7p1jdHXLZXlPi4zl2xKIyiXAlY68rq0AgTyWN7HfQtowAMKvF9jNs0xK9GGmy8WEZuvCFC
-	CSq7IBf9jN++jvDqKdgaXuM92fWq5NMYTIAK8XATE27Yi0R9F5TY/uUjREXIt6GfCXIK6k4v94U
-	AxEqyAJtPuNQzs80CcfJ2fi0bj4cQtKCYJTcb2/t5HH+TEJ5nzpBgslQNT4I1QjMPQUn4tQUew0
-	aqkv3tL2JFimknPMQ3ogP9IL2+kSz8TgMdcrKorMhmNvT8TkhYbQdKBPQLiRPkAGrhp7j8TmgpX
-	VYQ+wQ9coEMOG8t
-X-Google-Smtp-Source: AGHT+IEl0rijUjBj5KTVPuwgJ52eLtySyACZ+02OvsE0VUgnXG69c8DNIvntukmMZa1vwSgobwIWIg==
-X-Received: by 2002:a05:600c:8b22:b0:475:dd89:abc with SMTP id 5b1f17b1804b1-4778fe583f0mr22856285e9.11.1763117532866;
-        Fri, 14 Nov 2025 02:52:12 -0800 (PST)
-Received: from localhost.localdomain (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f17cbfsm9031255f8f.35.2025.11.14.02.52.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 02:52:12 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v3 13/13] serial: sh-sci: Add support for RZ/G3E RSCI SCI
-Date: Fri, 14 Nov 2025 10:51:22 +0000
-Message-ID: <20251114105201.107406-14-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251114105201.107406-1-biju.das.jz@bp.renesas.com>
-References: <20251114105201.107406-1-biju.das.jz@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC9BA30B524;
+	Fri, 14 Nov 2025 10:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.39
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763117878; cv=fail; b=XOaTcy0JAnoYs6uAEgz2VfGpnU+/YU3IdmIIulxRxig5/snVsPznjguojWljgyfY9Kiu2V5LoNvrJMUBtivtQYrXXFOfgY340+TsHsNWrN3pO3x5ZN1qNlh11lWFXQ4fOgcPL1TaDG+zmA8thsCQETXpK/qpu0FuJkd0x9OmDZ4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763117878; c=relaxed/simple;
+	bh=KKYmSjOetnXKV1CEU0WTE8pLXLIbuSibXOrB0FPK3hI=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qEySez5hVtqRiDKBXf6w2H3pJ1qyfs0PRbB/nnN4HvGEmLrxeQjIKzI2aZ5ZFIqdFFYJy/+B2kFMwyUK95op4KKD8TiIAg7REBhTUc3dyfq5bC7Q4ZCiSFxYxOahDDwK3wtgg/6Ajpeowa073FgMmEHdZwCRXw3Qi4SiYaa4u5M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=A4s46IFk; arc=fail smtp.client-ip=52.101.43.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FcaLlP0ell/oMRL+P7tH2XxW1IQKJ6TSPssVUU06SApiYaBTP0V04TtNKyCoQth2CNcyPXJGEwolfgL65YZT35jHQGpbgi9rgjFe3JyYkG5k4uEUn+I4tPw3uEfzt2H7TwbmO207jww9M+FAIVuCZ5GMtGhbw0E+R+k72oAku9grd+sfNkbPozGENzfsDYlQEmgkueGAV3xv723kFQmrPfmptQ3GOiXH1Hlbbzi3p2LGDzATwK3mP9Qx6KNDSzBN8OmZW6/zy7AyugjzyzKHxGHPAJomkOJsz7yNNSSQ5dD2JS3p7B87tZFymavxLrMDEjN+tgGRgDY2b6BXdGJxyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=B2JtL1hlnaC87sMny1FCzpPNza9HEqZ0sbyjTEjtAXc=;
+ b=YguF+9ixfV5OrO6jrmPZivcBlrZCu/o/xe3iUlYLgKq5EfVrGeYE/oyXU7nz9H/HF58xxk7UggiqeIlPnX6Ejo8EdOGff0W4YbjzVEM7YhN+C9JWUMMvT5GC9DPlzfVegKy6MIv/tdokgMeHLhYHhWD+/HLL6EtJdcAcVqj3i3ploJAUcTmN1vL/1f/s1otf+JjOKQLPNJoOng/is6jvrM0QCNPtW557o+oZ+UuvzEsL1g7S9JwLE/mQN5bfMgdLiWR6Io7SvVAoDnl8q28yb43zhWrnxTZjmPajoZGDKZhBYp3SIHqO0Q7LijrY/SpXNutHdgZxlOaw9LrdneXeXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B2JtL1hlnaC87sMny1FCzpPNza9HEqZ0sbyjTEjtAXc=;
+ b=A4s46IFkuQ6+6X0PhlF4w4oZUXmo/fXpM95ySeGo1w9uQBHu55bo/iQgXxVqkTbxhGuVrDBY7OzedWvjfM27mHHuiQb/KTcL+uWsdED3LO9Klktjv1n5YsbOq3h6n2kvhde75dNf3tmNyM6Qjk9UeoEuKhzl+z+Mkk23ThUSGgA=
+Received: from BL1PR13CA0375.namprd13.prod.outlook.com (2603:10b6:208:2c0::20)
+ by CY5PR10MB6215.namprd10.prod.outlook.com (2603:10b6:930:30::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.18; Fri, 14 Nov
+ 2025 10:57:53 +0000
+Received: from BL02EPF00021F6F.namprd02.prod.outlook.com
+ (2603:10b6:208:2c0:cafe::b2) by BL1PR13CA0375.outlook.office365.com
+ (2603:10b6:208:2c0::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.6 via Frontend Transport; Fri,
+ 14 Nov 2025 10:57:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ BL02EPF00021F6F.mail.protection.outlook.com (10.167.249.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9320.13 via Frontend Transport; Fri, 14 Nov 2025 10:57:52 +0000
+Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 14 Nov
+ 2025 04:57:49 -0600
+Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE203.ent.ti.com
+ (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 14 Nov
+ 2025 04:57:49 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 14 Nov 2025 04:57:49 -0600
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.233.103])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AEAvjdH1871514;
+	Fri, 14 Nov 2025 04:57:46 -0600
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Francesco Dolcini <francesco@dolcini.it>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Francesco Dolcini
+	<francesco.dolcini@toradex.com>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/3] arm64: dts: ti: Add Aquila AM69 Support
+Date: Fri, 14 Nov 2025 16:26:10 +0530
+Message-ID: <176311776041.1390105.6254099147958762962.b4-ty@ti.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20251111175502.8847-1-francesco@dolcini.it>
+References: <20251111175502.8847-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF00021F6F:EE_|CY5PR10MB6215:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb951401-cbdb-4a4f-66a5-08de236ca8c7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?OWw5MHJ0a1pNeGVTTkthTTF3M1VaUUQ2R0FDQzhzdjhYZGtnQ0xERkN6Rzl3?=
+ =?utf-8?B?T2loaHM4cWV0bC9kR2RaL3RsRWpudlE0ZkxnaGtSQTk1TUg4YU44TzFhYWtl?=
+ =?utf-8?B?YVI2YkkzMlAvRnVlRVlvelZwdDZQOCtlZWNPWEVzNUwxMWJsTXpyZXZUcGpi?=
+ =?utf-8?B?L2QyTE5YL1Zqang1YmIvaVZHS2kzRU1xQXV0a0ZFVTU5OGk4N0xYcEZjMzg2?=
+ =?utf-8?B?NFh2U1pSMjJHUVFMUjJFYnpNUnVYOGlpSUFENC9peUJiVXNudENlbUpJVnJM?=
+ =?utf-8?B?aTlNMUpqbkg1MVVscjkvQnhRa0dtSVVaWTcxYUhUVWxHbXpKOEtqZnBpcERY?=
+ =?utf-8?B?YUdrRmNnM3NXVmVtM2NDb0hFNXVBZ09CZVU1L044Sm02bjA1azU3Z1BTZUE5?=
+ =?utf-8?B?NmN4dGlRMHovMWdxOGZzRlNUWTJjSHlFTHJON1NtQ2swVmJwMnVvWXhhd29u?=
+ =?utf-8?B?aTcxY0RLNlo1U2MrR01lL3hMOHBvc2wwbG83c211YnZXeUxuOTZPU0gwUHdQ?=
+ =?utf-8?B?eFhaMVRtUGgyUHJRMHBSME84M0hLQ2JuZFZCQVdPVWs0ZWdjL2hORndORGYr?=
+ =?utf-8?B?QW9relp6Q1RKRHhROFdQOFdQSEhJYmZNM29CZ280ZVZlSmNOWWE1bjJpcWNH?=
+ =?utf-8?B?K05mM0pYQ2JsYUtYalNMY0JCZytIZXlvN3BUNUsya2NrSGR6OTdpTlY5WVAx?=
+ =?utf-8?B?V2RlaDREcHQvenZ2cFRXOURqVDJVa01yYnpCM1ZZdnV2eGhjcTJHNUg0Z2dl?=
+ =?utf-8?B?TVYyRUZSUlVWWDB6VXFnZ280VzdGVUhORWsxN2k5Y2ZNa1M2WUpjTlNweTR4?=
+ =?utf-8?B?V2dUWDZxTWVmUWxhWWtZT2hnNG9LQkJZWThsSXRhN2YxWU0wR0owRmFTM2lY?=
+ =?utf-8?B?MERkTGY5M0NLWFN1ZElIQ0t6NU9FS3dGU2kyU3c1TmtEQy9STlBRYzhLN2JM?=
+ =?utf-8?B?elJwbjdrZEs3K3F5K0dkQUhKNmxBc1NQYmlFQTN6enBsN3cySG1BTFVKRVVi?=
+ =?utf-8?B?WjdielZzLzJCVnc4NnZSQzZkUUJMUGk5VEdHN2VVQ2tFT2IzWkhsY1RzUlky?=
+ =?utf-8?B?endjbG1yS3JxbkxBaVJwcUV3Y0RUam03dy9wMTJRRDFrRDhabm8xbDdWVXkw?=
+ =?utf-8?B?S1FFc1lpak9KR2lLYTdPcTA1YzZaUWZwTTdJcDBHUks1WTJCcnhwNmg5cHpH?=
+ =?utf-8?B?NG42aCtqZmZKUzlCL29VWUhZL3BJdlZYeStQVzRVRTEyRFMxRGlUNmk0THRV?=
+ =?utf-8?B?VWF6UUhQRHd6UjR5ZVFGeWJVbGdyS2tmem9iT0c5Z3lXWHJ3NGQ5VWxzcWpj?=
+ =?utf-8?B?OXR3OTZpRjJnZTZKNG9yRmhEaTA0aERUNTBwakhuenVwZzk3UUZSUThWSFhr?=
+ =?utf-8?B?TGlxaE12Y3lFSEJDdzZiU3pFVVlRVzBBRWhqbE9aeHhGTHdJelA5MUd4dFpl?=
+ =?utf-8?B?emlycXYxWmJPWTlJL2dZVVhrTnJTbXR6QkpNemFITWUzb0llbWU1SnlYRFR1?=
+ =?utf-8?B?bWRsYVlCekJCZW80WFl5bUtPWHJjOWdNb29RcXcyWUhPM1hheXB3VDMydTF1?=
+ =?utf-8?B?ai9ZdDBPRWljNWZuVlZqeXRsMUhaVEpSRWk1TExkdVV1UGtPK25GYWRMVysy?=
+ =?utf-8?B?SWVqcWJ3U3h2L2wzU0xYT0hFNzVHL2VEeEJIVFNaTS8wQmlRb0g5aitHSks1?=
+ =?utf-8?B?cWI5dmtoa001R2ZjT1o4dFBOazRpN1hYU0p1cGtVQ2RFbERJUk45T3ZFRThD?=
+ =?utf-8?B?eVJlcWJkLzg4Si95Q3hhcUZ4ZUtsUFh1OEl2R1IzKzFxekM5ODlCWDFIc01W?=
+ =?utf-8?B?N2d6Zy9FOFErd24zOFJma0lZWVJPd0ZLUU9QWE9GY24xaXZ4d0tyNEE1VFNF?=
+ =?utf-8?B?b3FmdGxRM3k3MmFGYklvUEwyZUhuZGcvY1ZTU3VKUmkxZGdVS1ZMQzJ4cHAr?=
+ =?utf-8?B?SEZYSDZWTHpoTU5lNytBcU9VRHJBeDVWcVBnYk1TdDUwcHphSW9PYU8wRitM?=
+ =?utf-8?B?L0J3cjIxQm9acThJT2kwenhFd2lNT0p5TmFqbTdiZ1BMSGI0ZndzaE1QUXh1?=
+ =?utf-8?B?Ymtld1gyUC9wUGZFWVJMNU1SQ0VoVncrdGdTbGpOT09EbDZKM0NoakhDNzcx?=
+ =?utf-8?Q?Wupk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 10:57:52.7086
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb951401-cbdb-4a4f-66a5-08de236ca8c7
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL02EPF00021F6F.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR10MB6215
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Hi Francesco Dolcini,
 
-Add support for RZ/G3E RSCI SCI(a.k.a non FIFO mode).
+On Tue, 11 Nov 2025 18:54:56 +0100, Francesco Dolcini wrote:
+> This patch series adds support for the Toradex Aquila AM69 SoM and its
+> currently available carrier boards: the Aquila Development Board and Clover.
+> 
+> The Aquila AM69 SoM is based on the TI AM69 SoC from the Jacinto 7 family and
+> is designed for high-end embedded computing. The SoM features up to 32GB of
+> LPDDR4 RAM and 256GB eMMC storage, extensive multimedia support (3x Quad CSI,
+> 2x Quad DSI, DisplayPort, 5x Audio I2S/TDM), six Ethernet interfaces (1x 1G, 4x
+> 2.5G SGMII, 1x 10G), USB 3.2 Host and DRD support and a Wi-Fi 7/BT 5.3 module.
+> Additionally, it includes an RX8130 RTC, I2C EEPROM and Temperature Sensor and
+> an optional TPM 2.0.
+> 
+> [...]
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * No change.
-v1->v2:
- * No change.
----
- drivers/tty/serial/rsci.c   | 138 +++++++++++++++++++++++++-----------
- drivers/tty/serial/rsci.h   |   1 +
- drivers/tty/serial/sh-sci.c |   4 ++
- 3 files changed, 103 insertions(+), 40 deletions(-)
+I have applied the following to branch ti-next on [1].
+Thank you!
 
-diff --git a/drivers/tty/serial/rsci.c b/drivers/tty/serial/rsci.c
-index 43b2e5588d4d..39960e7c60ac 100644
---- a/drivers/tty/serial/rsci.c
-+++ b/drivers/tty/serial/rsci.c
-@@ -161,8 +161,11 @@ static void rsci_serial_out(struct uart_port *p, int offset, int value)
- 
- static void rsci_clear_DRxC(struct uart_port *port)
- {
-+	struct sci_port *s = to_sci_port(port);
-+
- 	rsci_serial_out(port, CFCLR, CFCLR_RDRFC);
--	rsci_serial_out(port, FFCLR, FFCLR_DRC);
-+	if (s->type != RSCI_PORT_SCI)
-+		rsci_serial_out(port, FFCLR, FFCLR_DRC);
- }
- 
- static void rsci_clear_SCxSR(struct uart_port *port, unsigned int mask)
-@@ -229,7 +232,6 @@ static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
- 	unsigned long max_freq = 0;
- 	unsigned int baud, i;
- 	unsigned long flags;
--	unsigned int ctrl;
- 	int best_clk = -1;
- 
- 	if ((termios->c_cflag & CSIZE) == CS7) {
-@@ -294,7 +296,11 @@ static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
- 
- 	rsci_serial_out(port, CCR0, ccr0_val);
- 
--	ccr3_val |= CCR3_FM;
-+	if (s->type == RSCI_PORT_SCI)
-+		ccr3_val |= CCR3_RXDESEL;
-+	else
-+		ccr3_val |= CCR3_FM;
-+
- 	rsci_serial_out(port, CCR3, ccr3_val);
- 
- 	ccr2_val |= (cks << 20) | (brr << 8);
-@@ -303,12 +309,16 @@ static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
- 	rsci_serial_out(port, CCR1, ccr1_val);
- 	rsci_serial_out(port, CCR4, ccr4_val);
- 
--	ctrl = rsci_serial_in(port, FCR);
--	ctrl |= (FCR_RFRST | FCR_TFRST);
--	rsci_serial_out(port, FCR, ctrl);
-+	if (s->type != RSCI_PORT_SCI) {
-+		unsigned int ctrl;
- 
--	if (s->rx_trigger > 1)
--		rsci_scif_set_rtrg(port, s->rx_trigger);
-+		ctrl = rsci_serial_in(port, FCR);
-+		ctrl |= (FCR_RFRST | FCR_TFRST);
-+		rsci_serial_out(port, FCR, ctrl);
-+
-+		if (s->rx_trigger > 1)
-+			rsci_scif_set_rtrg(port, s->rx_trigger);
-+	}
- 
- 	port->status &= ~UPSTAT_AUTOCTS;
- 	s->autorts = false;
-@@ -320,7 +330,8 @@ static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
- 
- 	rsci_init_pins(port, termios->c_cflag);
- 	rsci_serial_out(port, CFCLR, CFCLR_CLRFLAG);
--	rsci_serial_out(port, FFCLR, FFCLR_DRC);
-+	if (s->type != RSCI_PORT_SCI)
-+		rsci_serial_out(port, FFCLR, FFCLR_DRC);
- 
- 	ccr0_val |= CCR0_RE;
- 	rsci_serial_out(port, CCR0, ccr0_val);
-@@ -337,12 +348,23 @@ static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
- 
- static int rsci_txfill(struct uart_port *port)
- {
--	return rsci_serial_in(port, FTSR);
-+	struct sci_port *s = to_sci_port(port);
-+
-+	if (s->type == RSCI_PORT_SCI)
-+		return !(rsci_serial_in(port, CSR) & CSR_TDRE);
-+	else
-+		return rsci_serial_in(port, FTSR);
- }
- 
- static int rsci_rxfill(struct uart_port *port)
- {
--	u32 val = rsci_serial_in(port, FRSR);
-+	struct sci_port *s = to_sci_port(port);
-+	u32 val;
-+
-+	if (s->type == RSCI_PORT_SCI)
-+		return (rsci_serial_in(port, CSR) & CSR_RDRF) != 0;
-+
-+	val = rsci_serial_in(port, FRSR);
- 
- 	return FIELD_GET(FRSR_R5_0, val);
- }
-@@ -357,7 +379,9 @@ static unsigned int rsci_tx_empty(struct uart_port *port)
- 
- static void rsci_set_mctrl(struct uart_port *port, unsigned int mctrl)
- {
--	if (mctrl & TIOCM_LOOP) {
-+	struct sci_port *s = to_sci_port(port);
-+
-+	if ((mctrl & TIOCM_LOOP) && s->type != RSCI_PORT_SCI) {
- 		/* Standard loopback mode */
- 		rsci_serial_out(port, CCR1, rsci_serial_in(port, CCR1) | CCR1_SPLP);
- 	}
-@@ -478,12 +502,13 @@ static void rsci_transmit_chars(struct uart_port *port)
- static void rsci_receive_chars(struct uart_port *port)
- {
- 	struct tty_port *tport = &port->state->port;
-+	struct sci_port *s = to_sci_port(port);
- 	u32 rdat, status, frsr_status = 0;
- 	int i, count, copied = 0;
- 	unsigned char flag;
- 
- 	status = rsci_serial_in(port, CSR);
--	frsr_status = rsci_serial_in(port, FRSR);
-+	frsr_status = (s->type == RSCI_PORT_SCI) ? 0 : rsci_serial_in(port, FRSR);
- 
- 	if (!(status & CSR_RDRF) && !(frsr_status & FRSR_DR))
- 		return;
-@@ -496,34 +521,40 @@ static void rsci_receive_chars(struct uart_port *port)
- 		if (count == 0)
- 			break;
- 
--		for (i = 0; i < count; i++) {
--			char c;
--
--			rdat = rsci_serial_in(port, RDR);
--			/* 9-bits data is not supported yet */
--			c = rdat & RDR_RDAT_MSK;
--
--			if (uart_handle_sysrq_char(port, c)) {
--				count--;
--				i--;
--				continue;
--			}
--
--			/*
--			 * Store data and status.
--			 * Non FIFO mode is not supported
--			 */
--			if (rdat & RDR_FFER) {
--				flag = TTY_FRAME;
--				port->icount.frame++;
--			} else if (rdat & RDR_FPER) {
--				flag = TTY_PARITY;
--				port->icount.parity++;
--			} else {
--				flag = TTY_NORMAL;
-+		if (s->type == RSCI_PORT_SCI) {
-+			char c = rsci_serial_in(port, RDR) & RDR_RDAT_MSK;
-+
-+			if (uart_handle_sysrq_char(port, c))
-+				count = 0;
-+			else
-+				tty_insert_flip_char(tport, c, TTY_NORMAL);
-+		} else {
-+			for (i = 0; i < count; i++) {
-+				char c;
-+
-+				rdat = rsci_serial_in(port, RDR);
-+				/* 9-bits data is not supported yet */
-+				c = rdat & RDR_RDAT_MSK;
-+
-+				if (uart_handle_sysrq_char(port, c)) {
-+					count--;
-+					i--;
-+					continue;
-+				}
-+
-+				/* Store data and status */
-+				if (rdat & RDR_FFER) {
-+					flag = TTY_FRAME;
-+					port->icount.frame++;
-+				} else if (rdat & RDR_FPER) {
-+					flag = TTY_PARITY;
-+					port->icount.parity++;
-+				} else {
-+					flag = TTY_NORMAL;
-+				}
-+
-+				tty_insert_flip_char(tport, c, flag);
- 			}
--
--			tty_insert_flip_char(tport, c, flag);
- 		}
- 
- 		rsci_serial_in(port, CSR); /* dummy read */
-@@ -607,6 +638,8 @@ static const char *rsci_type(struct uart_port *port)
- 	struct sci_port *s = to_sci_port(port);
- 
- 	switch (s->type) {
-+	case RSCI_PORT_SCI:
-+		return "sci";
- 	case RSCI_PORT_SCIF:
- 		return "scif";
- 	}
-@@ -649,6 +682,17 @@ static const struct sci_port_params rsci_port_params = {
- 	.common_regs = &rsci_common_regs,
- };
- 
-+static const struct sci_port_params rsci_rzg3e_sci_port_params = {
-+	.fifosize = 1,
-+	.overrun_reg = CSR,
-+	.overrun_mask = CSR_ORER,
-+	.sampling_rate_mask = SCI_SR(32),
-+	.error_mask = RSCI_DEFAULT_ERROR_MASK,
-+	.error_clear = RSCI_ERROR_CLEAR,
-+	.param_bits = &rsci_port_param_bits,
-+	.common_regs = &rsci_common_regs,
-+};
-+
- static const struct sci_port_params rsci_rzg3e_scif_port_params = {
- 	.fifosize = 32,
- 	.overrun_reg = CSR,
-@@ -700,6 +744,13 @@ struct sci_of_data of_sci_rsci_data = {
- 	.params = &rsci_port_params,
- };
- 
-+struct sci_of_data of_rsci_sci_data = {
-+	.type = RSCI_PORT_SCI,
-+	.ops = &rsci_port_ops,
-+	.uart_ops = &rsci_uart_ops,
-+	.params = &rsci_rzg3e_sci_port_params,
-+};
-+
- struct sci_of_data of_rsci_scif_data = {
- 	.type = RSCI_PORT_SCIF,
- 	.ops = &rsci_port_ops,
-@@ -715,12 +766,19 @@ static int __init rsci_early_console_setup(struct earlycon_device *device,
- 	return scix_early_console_setup(device, &of_sci_rsci_data);
- }
- 
-+static int __init rsci_rzg3e_sci_early_console_setup(struct earlycon_device *device,
-+						     const char *opt)
-+{
-+	return scix_early_console_setup(device, &of_rsci_sci_data);
-+}
-+
- static int __init rsci_rzg3e_scif_early_console_setup(struct earlycon_device *device,
- 						      const char *opt)
- {
- 	return scix_early_console_setup(device, &of_rsci_scif_data);
- }
- 
-+OF_EARLYCON_DECLARE(rsci, "renesas,r9a09g047-rsci", rsci_rzg3e_sci_early_console_setup);
- OF_EARLYCON_DECLARE(rsci, "renesas,r9a09g047-rscif", rsci_rzg3e_scif_early_console_setup);
- OF_EARLYCON_DECLARE(rsci, "renesas,r9a09g077-rsci", rsci_early_console_setup);
- 
-diff --git a/drivers/tty/serial/rsci.h b/drivers/tty/serial/rsci.h
-index ba255f58c088..df7a7edad7d4 100644
---- a/drivers/tty/serial/rsci.h
-+++ b/drivers/tty/serial/rsci.h
-@@ -6,6 +6,7 @@
- #include "sh-sci-common.h"
- 
- extern struct sci_of_data of_sci_rsci_data;
-+extern struct sci_of_data of_rsci_sci_data;
- extern struct sci_of_data of_rsci_scif_data;
- 
- #endif /* __RSCI_H__ */
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 7c3d25a6138c..82e472957913 100644
---- a/drivers/tty/serial/sh-sci.c
-+++ b/drivers/tty/serial/sh-sci.c
-@@ -3674,6 +3674,10 @@ static const struct of_device_id of_sci_match[] __maybe_unused = {
- 		.data = &of_sci_scif_rzv2h,
- 	},
- #ifdef CONFIG_SERIAL_RSCI
-+	{
-+		.compatible = "renesas,r9a09g047-rsci",
-+		.data = &of_rsci_sci_data,
-+	},
- 	{
- 		.compatible = "renesas,r9a09g047-rscif",
- 		.data = &of_rsci_scif_data,
--- 
-2.43.0
+[1/3] dt-bindings: arm: ti: add Toradex Aquila AM69
+      commit: 2f6ef830a756f58312b3f3bbe3c1edb739e84ec5
+[2/3] arm64: dts: ti: Add Aquila AM69 Support
+      commit: 39ac6623b1d85fdc8b142c26991339fcad270606
+[3/3] arm64: dts: ti: am69-aquila: Add Clover
+      commit: 9f748a6177e1fba8b27588e6ac6721e129f097de
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
 
