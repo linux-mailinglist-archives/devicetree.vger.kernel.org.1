@@ -1,302 +1,400 @@
-Return-Path: <devicetree+bounces-238570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD374C5C616
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:51:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E6D9C5C770
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:10:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 872B03B23B6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:51:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 046864EBC8C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FB53081D2;
-	Fri, 14 Nov 2025 09:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0D9308F30;
+	Fri, 14 Nov 2025 09:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eOIHdJMQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bxsQalZn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E9D21CC60;
-	Fri, 14 Nov 2025 09:51:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A428A2FF66C
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:55:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763113890; cv=none; b=HbuNQAr9/B25l+QxPr2D9SM3bOr3N4lDipeFtruIwIoOyQxGnALspbZ451vfHq2aVssu5vJVX4hgaDtWcSovvRkDgp7IBFEYnpBeFDxDRNK7Q/+lQWunTntL1yYDC29L2pjZicYT3X2HQn0ISCaSl3Hute0O5uS2auDqA8/+KY4=
+	t=1763114118; cv=none; b=t0rjyrqX+Ej933XPW63bl+Zc2/mTfXFEzzO37BHPOJpdgLoLsu6Z45Kdxs89w3riWKV2ncapY4jQZc7V549h9T6K2kVgqY1onKitNpcbZT/Z3xqkkz3LP4xT337drkNeX6CfGRb4bFB92T2ZvsBYP0ephiQjPPR2uLAKSTj2bVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763113890; c=relaxed/simple;
-	bh=O6LXDluXDEafQVVWq0RnhAB+p7afdg+5W2HmBgq2z8g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mh3wZeVnvkiZqp47e6kqlSu2PZSqPa92yvguRzjsg+cONf9zJCv1/Bal9YYT7Mui/x4TD4IKT3HaGMjvzhBbXr8rPIJ7p+Qy8Bj1y3Z/i8pAIfoiKbz9SvvqCJDlZTzt/5WBXuBav7cZ/yHGZO6r0clD0okAxCVFBUmuGM4GEkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eOIHdJMQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B6F3C116D0;
-	Fri, 14 Nov 2025 09:51:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763113889;
-	bh=O6LXDluXDEafQVVWq0RnhAB+p7afdg+5W2HmBgq2z8g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eOIHdJMQE0TDkiX7ARkxw5G2WdNrnktz7C93zfpLOjSLn1DGMqxCGRL2+H11VXA5t
-	 TAOlaPLd7XmgJ+NrCWHohiq4sDtyeWuovmYsxLE6NpZDcPacrgvR/xN/N5QBnZp7E0
-	 RllAb1nSls9OhiBIou1vVRW7VHcLKxVoN+cobTMUB8JTFrxeD8T3wLJ0OcXmalQAsP
-	 SGvrZFfnjccYHeBUeR7Fo73jBd6Y+o468gsooIAT788zEP9Zp52R8ccTrqslkPpBcF
-	 gIebxjHCKli7Z65Z1mWRmDJcA4xPW8Cr/Ra2MqmxiQGtOI/WdLa9Xo5nqkPOfDLcT3
-	 nZXpAlzBI8F8A==
-Date: Fri, 14 Nov 2025 10:51:27 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee@kernel.org>, 
-	William Breathitt Gray <wbg@kernel.org>, kernel@collabora.com, Jonas Karlman <jonas@kwiboo.se>, 
-	Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] pwm: Add rockchip PWMv4 driver
-Message-ID: <fgu42esufq2x4fcccncqs3hlotih2gqmws5atotlaznuahoslw@34vblr6vboze>
-References: <20251027-rk3576-pwm-v3-0-654a5cb1e3f8@collabora.com>
- <20251027-rk3576-pwm-v3-3-654a5cb1e3f8@collabora.com>
- <8a6e920b-9565-4161-9d71-63f924593c23@rock-chips.com>
+	s=arc-20240116; t=1763114118; c=relaxed/simple;
+	bh=6ykatkHi9vk1jJ+BUO783kon7P4OsdSmpxFrAex1tu4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DWIDIXucEYLtaVnj/2PmUeF9l7xVD6jcxZdmiTzjEUxNmNsdU0j6QSTaDRGWYf5co3VBULPWQvKkuFS89KnB9+bTqMI1LtXDU/9S/2Mr7WZiPIJmhk/85PPMXo1zm50aHOgLpiIJJS4qhwsN8sw+tWFuPOvBjmBWEKEiYEHsVlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bxsQalZn; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-298145fe27eso21418585ad.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:55:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763114116; x=1763718916; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B3rF2qP54FtUyeehy8NT4VAPppHdkI/TPlGoSBBxV4w=;
+        b=bxsQalZnqE2qR3yz+OIYNv/8kzVvwQ1cIrlDJ2jvBtL0RsS5BENZnWRFeWQjsUMLJT
+         Ld8aM2j8Q/OQpi/UXGLDRbVw6T5pee9UtQafNK799ol1n0HUAlqdsTR1ypeWepqBImo3
+         u2/sErjM4RTp6uM1uFg2aORuCTq9nlcnM0Aus9Z9vmfElVlt+nxaFDPepDYMFocwlApk
+         uGMzI2tSTRsFRXZ2WvZq4JrPocBPZ+GZ/2Le503R3WJ3xJsOuML+eBK/9wv+Izjt7cWW
+         Ru9oaqRK+d/SP3LYA0LW/rBiZ//xnBVIyn7n0Wiuvz6EVbuze2PmkDChhyjhGnkdsO69
+         UzMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763114116; x=1763718916;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B3rF2qP54FtUyeehy8NT4VAPppHdkI/TPlGoSBBxV4w=;
+        b=WPgCZtADGdFAqEfC5OsEA6KMAC5/oFuHhNHah6VOh/IrgvDz3cFElDARlJPxvuqzZh
+         R6Ftkfxy0o6mtC3vwVXHoXUKncQJNi8S/A/YYHFhvsUfIctnPxyHS1P3s/9aEKOI0uwr
+         rGlckGUiWaERr/BWyG52J61L/G7cvFjqd3vPwbQwjBBfd6cPzp5ZHIVIL0Jo018Z72Qm
+         cCE5VVSDBzThg+BCKfcHQx0A2udG9kCHSSXCDynnLUDGVusE2WyJVKyHa7R4ALOgFVnd
+         yzIyIMohdiaOelkrfQ4kWqxAlfp97Ohi8+Vs79CoUZ8u6QNrXn6TcjDJAtTKKTHkE2Ak
+         a15w==
+X-Forwarded-Encrypted: i=1; AJvYcCUpWexYQTRb3cYtQoc9f2Z35t1RG2Ioo+kDHiabsGDnkI5bsB6zhUTUSqtalTwahM1i0b8jSBgRZSPf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDk1JD6A6fVKo9Yfmmh3Fj2+OsjzDOQpWvH6XMC1RFWLQmU2zp
+	Y6virifZ6wiXFTeLaFtMa6OnSI/DDRiYb5lsD0hgQ80Vq8cb2FfjLBDP
+X-Gm-Gg: ASbGncsgK3ae7bLPhw4ya69KEDRZT6U0riVqUaSBjyJKUAqWI6e1amEneJiDU743Yg0
+	mOZRJlpFEmCJrJzXnn+YsL/8OKhRmhCz4hNeY2zO+ihP/cRePRjLKcIFsHGAzRzrnLHbueszRgY
+	hi54+67QFE00/fUTPs9Jn0UpeegNkSWnSrMq4MCfufC5k8DLGnZYxBo4RYHOqQahlHxAL1uCMbC
+	0q/IhSs4rdPrByv9jyJP0glrhDe7f4jWmfpu2o3GmUt64SmfYLNZzEEg3DD92muKI3WiTyAvZXA
+	4dWVb7aZYfBBBqEMUZ3M0rBtUkhtj23QSdHCADUD1VDAguHYyj2ZoICXW9YEKFe4MQ6IKEYFEMQ
+	MYPhyiiGfv4hCNAGPlf6X8uPXjoT+tnA/RC0WI7IIjnr1vR8460+0W+NTNJu1oSxOJDoq3eFnDK
+	oZAqVwtyYcunKTheAnOwomQAVl8SagyWwmFJqV4fR2NlXY
+X-Google-Smtp-Source: AGHT+IEr3mbqyKY8mKpDG2kFUh800+E/XK9q1+DxiO6L6va4dZLjL/9U9P/N4bvYrkawQB5Fg7kZFw==
+X-Received: by 2002:a17:902:eccb:b0:26d:d860:3dae with SMTP id d9443c01a7336-2986a6b891emr33322115ad.3.1763114115881;
+        Fri, 14 Nov 2025 01:55:15 -0800 (PST)
+Received: from [172.17.49.162] ([103.218.174.2])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2b11bfsm49808225ad.53.2025.11.14.01.55.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Nov 2025 01:55:15 -0800 (PST)
+Message-ID: <5f117868-71f9-4412-a6c6-bbe7914390f6@gmail.com>
+Date: Fri, 14 Nov 2025 15:25:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xfykpml5ewgt3ra3"
-Content-Disposition: inline
-In-Reply-To: <8a6e920b-9565-4161-9d71-63f924593c23@rock-chips.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: talos-evk: Add support for
+ dual-channel LVDS panel
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251028061636.724667-1-tessolveupstream@gmail.com>
+ <20251028061636.724667-2-tessolveupstream@gmail.com>
+ <fvtwdsthi242vxxlaqsbvqec4xkduch3fcslwqsjzkz4fidewn@mku374rrwlp7>
+ <90185600-c08d-4548-8e66-16d3d0de8765@gmail.com>
+ <p3bd3yfyzuayp7kysri4xf4dpmhhueyy6m5iqkwebigifttwlk@gy6xkodrzrjf>
+Content-Language: en-US
+From: Tessolve Upstream <tessolveupstream@gmail.com>
+In-Reply-To: <p3bd3yfyzuayp7kysri4xf4dpmhhueyy6m5iqkwebigifttwlk@gy6xkodrzrjf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
---xfykpml5ewgt3ra3
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 3/5] pwm: Add rockchip PWMv4 driver
-MIME-Version: 1.0
 
-On Tue, Oct 28, 2025 at 04:16:26PM +0800, Damon Ding wrote:
-> Hi Nicolas,
->=20
-> On 10/28/2025 1:11 AM, Nicolas Frattaroli wrote:
-> > The Rockchip RK3576 brings with it a new PWM IP, in downstream code
-> > referred to as "v4". This new IP is different enough from the previous
-> > Rockchip IP that I felt it necessary to add a new driver for it, instead
-> > of shoehorning it in the old one.
-> >=20
-> > Add this new driver, based on the PWM core's waveform APIs. Its platform
-> > device is registered by the parent mfpwm driver, from which it also
-> > receives a little platform data struct, so that mfpwm can guarantee that
-> > all the platform device drivers spread across different subsystems for
-> > this specific hardware IP do not interfere with each other.
-> >=20
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >   MAINTAINERS                   |   1 +
-> >   drivers/pwm/Kconfig           |  13 ++
-> >   drivers/pwm/Makefile          |   1 +
-> >   drivers/pwm/pwm-rockchip-v4.c | 353 +++++++++++++++++++++++++++++++++=
-+++++++++
-> >   4 files changed, 368 insertions(+)
-> >=20
->=20
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 8f3235ba825e..2079c2d51d5c 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -22372,6 +22372,7 @@ L:	linux-rockchip@lists.infradead.org
-> >   L:	linux-pwm@vger.kernel.org
-> >   S:	Maintained
-> >   F:	Documentation/devicetree/bindings/pwm/rockchip,rk3576-pwm.yaml
-> > +F:	drivers/pwm/pwm-rockchip-v4.c
-> >   F:	drivers/soc/rockchip/mfpwm.c
-> >   F:	include/soc/rockchip/mfpwm.h
-> > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> > index c2fd3f4b62d9..b852a7b2a29d 100644
-> > --- a/drivers/pwm/Kconfig
-> > +++ b/drivers/pwm/Kconfig
-> > @@ -615,6 +615,19 @@ config PWM_ROCKCHIP
-> >   	  Generic PWM framework driver for the PWM controller found on
-> >   	  Rockchip SoCs.
-> > +config PWM_ROCKCHIP_V4
-> > +	tristate "Rockchip PWM v4 support"
-> > +	depends on ARCH_ROCKCHIP || COMPILE_TEST
-> > +	depends on HAS_IOMEM
-> > +	depends on MFD_ROCKCHIP_MFPWM
-> > +	help
-> > +	  Generic PWM framework driver for the PWM controller found on
-> > +	  later Rockchip SoCs such as the RK3576.
-> > +
-> > +	  Uses the Rockchip Multi-function PWM controller driver infrastructu=
-re
-> > +	  to guarantee fearlessly concurrent operation with other functions of
-> > +	  the same device implemented by drivers in other subsystems.
-> > +
-> >   config PWM_SAMSUNG
-> >   	tristate "Samsung PWM support"
-> >   	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TE=
-ST
-> > diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> > index dfa8b4966ee1..fe0d16558d99 100644
-> > --- a/drivers/pwm/Makefile
-> > +++ b/drivers/pwm/Makefile
-> > @@ -55,6 +55,7 @@ obj-$(CONFIG_PWM_RENESAS_RZG2L_GPT)	+=3D pwm-rzg2l-gp=
-t.o
-> >   obj-$(CONFIG_PWM_RENESAS_RZ_MTU3)	+=3D pwm-rz-mtu3.o
-> >   obj-$(CONFIG_PWM_RENESAS_TPU)	+=3D pwm-renesas-tpu.o
-> >   obj-$(CONFIG_PWM_ROCKCHIP)	+=3D pwm-rockchip.o
-> > +obj-$(CONFIG_PWM_ROCKCHIP_V4)	+=3D pwm-rockchip-v4.o
-> >   obj-$(CONFIG_PWM_SAMSUNG)	+=3D pwm-samsung.o
-> >   obj-$(CONFIG_PWM_SIFIVE)	+=3D pwm-sifive.o
-> >   obj-$(CONFIG_PWM_SL28CPLD)	+=3D pwm-sl28cpld.o
-> > diff --git a/drivers/pwm/pwm-rockchip-v4.c b/drivers/pwm/pwm-rockchip-v=
-4.c
-> > new file mode 100644
-> > index 000000000000..7afa83f12b6a
-> > --- /dev/null
-> > +++ b/drivers/pwm/pwm-rockchip-v4.c
-> > @@ -0,0 +1,353 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Copyright (c) 2025 Collabora Ltd.
-> > + *
-> > + * A Pulse-Width-Modulation (PWM) generator driver for the generators =
-found in
-> > + * Rockchip SoCs such as the RK3576, internally referred to as "PWM v4=
-". Uses
-> > + * the MFPWM infrastructure to guarantee exclusive use over the device=
- without
-> > + * other functions of the device from different drivers interfering wi=
-th its
-> > + * operation while it's active.
-> > + *
-> > + * Technical Reference Manual: Chapter 31 of the RK3506 TRM Part 1, a =
-SoC which
-> > + * uses the same PWM hardware and has a publicly available TRM.
-> > + * https://opensource.rock-chips.com/images/3/36/Rockchip_RK3506_TRM_P=
-art_1_V1.2-20250811.pdf
-> > + *
-> > + * Authors:
-> > + *     Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > + *
-> > + * Limitations:
-> > + * - When the output is disabled, it will end abruptly without letting=
- the
-> > + *   current period complete.
-> > + *   TODO: This can be fixed in the driver in the future by having the=
- enable-
-> > + *         to-disable transition switch to oneshot mode with one repet=
-ition,
-> > + *         and then disable the pwmclk and release mfpwm when the ones=
-hot
-> > + *         complete interrupt fires.
-> > + * - When the output is disabled, the pin will remain driven to whatev=
-er state
-> > + *   it last had.
-> > + * - Adjustments to the duty cycle will only take effect during the ne=
-xt period.
-> > + * - Adjustments to the period length will only take effect during the=
- next
-> > + *   period.
-> > + * - offset should be between 0 and (period - duty)
-> > + */
-> > +
-> > +#include <linux/math64.h>
-> > +#include <linux/mfd/rockchip-mfpwm.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pwm.h>
-> > +
-> > +struct rockchip_pwm_v4 {
-> > +	struct rockchip_mfpwm_func *pwmf;
-> > +	struct pwm_chip chip;
-> > +};
-> > +
-> > +struct rockchip_pwm_v4_wf {
-> > +	u32 period;
-> > +	u32 duty;
-> > +	u32 offset;
-> > +	u8 enable;
-> > +};
-> > +
->=20
-> ...
->=20
-> > +
-> > +static int rockchip_pwm_v4_read_wf(struct pwm_chip *chip, struct pwm_d=
-evice *pwm,
-> > +				   void *_wfhw)
-> > +{
-> > +	struct rockchip_pwm_v4 *pc =3D to_rockchip_pwm_v4(chip);
-> > +	struct rockchip_pwm_v4_wf *wfhw =3D _wfhw;
-> > +	int ret =3D 0;
-> > +
->=20
-> Redundant blank lin. ;-)
->=20
-> > +
-> > +	ret =3D mfpwm_acquire(pc->pwmf);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	wfhw->period =3D mfpwm_reg_read(pc->pwmf->base, PWMV4_REG_PERIOD);
-> > +	wfhw->duty =3D mfpwm_reg_read(pc->pwmf->base, PWMV4_REG_DUTY);
-> > +	wfhw->offset =3D mfpwm_reg_read(pc->pwmf->base, PWMV4_REG_OFFSET);
-> > +	wfhw->enable =3D mfpwm_reg_read(pc->pwmf->base, PWMV4_REG_ENABLE) & P=
-WMV4_EN_BOTH_MASK;
-> > +
-> > +	mfpwm_release(pc->pwmf);
-> > +
-> > +	return 0;
-> > +}
-> > +
->=20
-> ...
->=20
-> > +MODULE_AUTHOR("Nicolas Frattaroli <nicolas.frattaroli@collabora.com>");
-> > +MODULE_DESCRIPTION("Rockchip PWMv4 Driver");
-> > +MODULE_LICENSE("GPL");
-> > +MODULE_IMPORT_NS("ROCKCHIP_MFPWM");
-> > +MODULE_ALIAS("platform:pwm-rockchip-v4");
-> >=20
->=20
-> Tested-by: Damon Ding <damon.ding@rock-chips.com>
->=20
-> I have tested all the PWM channels in continuous mode on my RK3576-IOTEST
-> board.
->=20
-> Test commands are like:
->=20
-> cd /sys/class/pwm/pwmchip0/
-> echo 0 > export
-> cd pwm0
-> echo 10000 > period
-> echo 5000 > duty_cycle
-> echo normal > polarity
-> echo 1 > enable
+On 06/11/25 04:13, Bjorn Andersson wrote:
+> On Fri, Oct 31, 2025 at 02:42:05PM +0530, Tessolve Upstream wrote:
+>>
+>>
+>> On 29/10/25 21:18, Bjorn Andersson wrote:
+>>> On Tue, Oct 28, 2025 at 11:46:36AM +0530, Sudarshan Shetty wrote:
+>>>> This patch introduces a new device tree for the QCS615 Talos
+>>>
+>>> "This patch" doesn't make sense when you look at the git log once the
+>>> patch has been accepted, please avoid it.
+>>>
+>>> Please read https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+>>>
+>>> Start your commit message with a "problem description", describe what
+>>> this LVDS talos is, why it should have it's own dts file etc.
+>>
+>> Okay, will update in next patch.
+>>>
+>>>> EVK platform with dual-channel LVDS display support.
+>>>>
+>>>> The new DTS file (`talos-evk-lvds.dts`) is based on the existing
+>>>> `talos-evk.dts` and extends it to enable a dual-channel LVDS display
+>>>> configuration using the TI SN65DSI84 DSI-to-LVDS bridge.
+>>>>
+>>>> where channel-A carries odd pixel and channel-B carries even pixel
+>>>> on the QCS615 talos evk platform.
+>>>>
+>>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/Makefile           |   1 +
+>>>>  arch/arm64/boot/dts/qcom/talos-evk-lvds.dts | 128 ++++++++++++++++++++
+>>>>  2 files changed, 129 insertions(+)
+>>>>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-lvds.dts
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>>> index d5a3dd98137d..6e7b04e67287 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>>> @@ -307,6 +307,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-mtp.dtb
+>>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-qrd.dtb
+>>>>  dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk.dtb
+>>>>  dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk-dsi.dtb
+>>>> +dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk-lvds.dtb
+>>>>  x1e001de-devkit-el2-dtbs	:= x1e001de-devkit.dtb x1-el2.dtbo
+>>>>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e001de-devkit.dtb x1e001de-devkit-el2.dtb
+>>>>  x1e78100-lenovo-thinkpad-t14s-el2-dtbs	:= x1e78100-lenovo-thinkpad-t14s.dtb x1-el2.dtbo
+>>>> diff --git a/arch/arm64/boot/dts/qcom/talos-evk-lvds.dts b/arch/arm64/boot/dts/qcom/talos-evk-lvds.dts
+>>>> new file mode 100644
+>>>> index 000000000000..7ba4ab96ada6
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/qcom/talos-evk-lvds.dts
+>>>> @@ -0,0 +1,128 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>>>> + */
+>>>> +/dts-v1/;
+>>>> +#include "talos-evk.dts"
+>>>
+>>> We don't include .dts files, split the existing one in a dtsi and dts
+>>> file and then include the dtsi here. Or provide provide this as a dtso
+>>> overlay on top of the dts.
+>>>
+>>> It's not clear to me which is the correct way, because you didn't
+>>> adequately described how the SN65DSI84 enter the picture. Is it always
+>>> there, but not part of the standard dip-switch configuration? Or is this
+>>> some mezzanine?
+>>>
+>>> Regards,
+>>> Bjorn
+>>>
+>>
+>> Thanks for the feedback.
+>> Currently, the Talos device tree hierarchy is organized as follows:
+>>
+>> talos-som.dtsi — defines SoM-specific interfaces
+>> talos-evk.dts — adds carrier board (CB) interfaces such as MicroSD, power
+>> button, and HDMI
+>> talos-evk-lvds.dts — enables the LVDS display (includes SoM + CB +
+>> LVDS + disables HDMI)
+>>
+>> The LVDS and HDMI displays share a common DSI output, so only one 
+>> interface can be active at a time. At present, talos-evk-lvds.dts 
+>> includes talos-evk.dts directly so that the base SoM and carrier 
+>> interfaces (e.g., MicroSD, power button) remain available.
+>>
+> 
+> Are you saying that there are 2 PCBs involved:
 
-Thanks for the test, very appreciated.
+Yes, 2 PCBs involved,
+> 1) The SOM
+> 2) The EVK
+> 
+> And then perhaps a DIP switch or something to disable HDMI and select
+> LVDS?
 
-I wonder what made you test using sysfs instead of
-https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/libpwm.git/.
-Is it unknown? Too complicated? Other problems?
+DIP switch is used to select either HDMI or LVDS
+> 
+> Or are you saying there are 3 PCBs:
 
-Best regards
-Uwe
+No.
+> 1) The SOM
+> 2) The EVK
+> 3) Something that provides LVDS - and disables HDMI on the EVK
+> 
+>> However, as you pointed out, including a .dts file directly is not
+>> recommended upstream. To address this, I am considering the following 
+>> restructuring options:
+>>
+>> Option 1: Introduce a talos-cb.dtsi
+>>
+>> talos-som.dtsi: SoM-specific interfaces
+>> talos-cb.dtsi: common carrier board interfaces (MicroSD, power button, etc.)
+> 
+> I'm guessing that what you call "carrier board" most would call "EVK"?
 
---xfykpml5ewgt3ra3
-Content-Type: application/pgp-signature; name="signature.asc"
+Yes.
+> 
+>> talos-evk.dts: includes talos-som.dtsi + talos-cb.dtsi + HDMI
+>> talos-evk-lvds.dts: includes talos-som.dtsi + talos-cb.dtsi + LVDS
+> 
+> 
+>>
+>> This approach avoids including .dts files directly and keeps the carrier
+>> board interfaces centralized and reusable.It also cleanly separates SoM
+>> and CB content and is consistent with how other Qualcomm platforms 
+>> structure their EVK variants.
+> 
+> Can you point to an example where this is done?
+> 
+> The examples that comes to mind is e.g. the vison board/mezzanine. Those
+> are separate physical things that you plug on top of the other boards,
+> that's why they are described the way they are.
 
------BEGIN PGP SIGNATURE-----
+This example that comes to mind. Which is restructuring code that matches
+Device Tree and hardware. 
+> 
+>>
+>> Option 2: Move CB interfaces to talos-som.dtsi (disabled by default)
+>>
+>> Move MicroSD, power button, etc., to talos-som.dtsi with status = "disabled";
+> 
+> If those components are physically mounted on the SOM, then that is the
+> correct thing to do.
+> 
+> If you suggest moving them there to solve some other problem, then it's
+> not the right solution.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmkW+5wACgkQj4D7WH0S
-/k53tgf/ZFRrKZ3wCBT3fPYwc0esDlhE8SB04CeKkBuW/VIrFjkskcsGK2iJKR2r
-2bauJvrF4JaMaXzQb6gVZSdvirjIoNyObsUw1GcjndwxA18k+/7c2XPywT5JLtZ7
-c+OelHzh2dmXjDARoRMrHeUHIMMdTJIZZGtWl5mVNhoF/dwsbnw6ClUScmjrK/rs
-tcR6Mp6S9pWnYscxTq05ftyRClMflmU+FF7Svjq0ssoaZllI0W5KSUwAv9xOh1aO
-3LbRu0QVA9I0O5QKgJcIPjPbF14lBC2FFDSKJSAxTWVZLpzQtD3//phd42ktFrHr
-3kEGqi3j/uy7FRv8XWmKVGE2TfESaw==
-=aZBT
------END PGP SIGNATURE-----
+Understood.
+> 
+>> Enable these interfaces in each top-level DTS (e.g., talos-evk.dts,
+>> talos-evk-lvds.dts)
+>> While this also avoids .dts inclusion, it may make the SoM DTS 
+>> unnecessarily complex and less reusable, as those CB-specific 
+>> peripherals don’t belong to the SoM hardware.
+>>
+>> Let me know your prepared approach here.
+> 
+> My preferred approach is that you write DeviceTree that matches the
+> hardware in front of you.
 
---xfykpml5ewgt3ra3--
+Which is taken care in v2 patch.
+https://lore.kernel.org/all/20251104125208.1009695-1-tessolveupstream@gmail.com/T/#u
+> 
+> Regards,
+> Bjorn
+> 
+>>>> +
+>>>> +/ {
+>>>> +
+>>>> +	backlight: backlight {
+>>>> +		compatible = "gpio-backlight";
+>>>> +		gpios = <&tlmm 115 GPIO_ACTIVE_HIGH>;
+>>>> +		default-on;
+>>>> +	};
+>>>> +
+>>>> +	lcd0_pwm_en {
+>>>> +		compatible = "pwm-gpio";
+>>>> +		gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>;
+>>>> +		pinctrl-0 = <&lcd0_bklt_pwm>;
+>>>> +		pinctrl-names = "default";
+>>>> +		#pwm-cells = <3>;
+>>>> +	};
+>>>> +
+>>>> +	panel-lvds {
+>>>> +		compatible = "auo,g133han01";
+>>>> +
+>>>> +		ports {
+>>>> +			#address-cells = <1>;
+>>>> +			#size-cells = <0>;
+>>>> +
+>>>> +			/* LVDS A (Odd pixels) */
+>>>> +			port@0 {
+>>>> +				reg = <0>;
+>>>> +				dual-lvds-odd-pixels;
+>>>> +
+>>>> +				lvds_panel_out_a: endpoint {
+>>>> +					remote-endpoint = <&sn65dsi84_out_a>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>> +			/* LVDS B (Even pixels) */
+>>>> +			port@1 {
+>>>> +				reg = <1>;
+>>>> +				dual-lvds-even-pixels;
+>>>> +
+>>>> +				lvds_panel_out_b: endpoint {
+>>>> +					remote-endpoint = <&sn65dsi84_out_b>;
+>>>> +				};
+>>>> +			};
+>>>> +		};
+>>>> +	};
+>>>> +};
+>>>> +
+>>>> +&adv7535 {
+>>>> +	status = "disabled";
+>>>> +};
+>>>> +
+>>>> +&i2c1 {
+>>>> +	clock-frequency = <400000>;
+>>>> +
+>>>> +	status = "okay";
+>>>> +
+>>>> +	sn65dsi84: sn65dsi84@2c {
+>>>> +		compatible = "ti,sn65dsi84";
+>>>> +		reg = <0x2c>;
+>>>> +		enable-gpios = <&tlmm 42 GPIO_ACTIVE_HIGH>;
+>>>> +		ti,dsi-lanes = <4>;
+>>>> +		ti,lvds-format = "jeida-24";
+>>>> +		ti,lvds-bpp = <24>;
+>>>> +
+>>>> +		ports {
+>>>> +			#address-cells = <1>;
+>>>> +			#size-cells = <0>;
+>>>> +
+>>>> +			port@0 {
+>>>> +				reg = <0>;
+>>>> +
+>>>> +				sn65dsi84_in: endpoint {
+>>>> +					data-lanes = <0 1 2 3>;
+>>>> +					remote-endpoint = <&mdss_dsi0_out>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>> +			port@2 {
+>>>> +				reg = <2>;
+>>>> +
+>>>> +				sn65dsi84_out_a: endpoint {
+>>>> +					data-lanes = <0 1 2 3>;
+>>>> +					remote-endpoint = <&lvds_panel_out_a>;
+>>>> +				};
+>>>> +			};
+>>>> +
+>>>> +			port@3 {
+>>>> +				reg = <3>;
+>>>> +
+>>>> +				sn65dsi84_out_b: endpoint {
+>>>> +					data-lanes = <0 1 2 3>;
+>>>> +					remote-endpoint = <&lvds_panel_out_b>;
+>>>> +				};
+>>>> +			};
+>>>> +		};
+>>>> +	};
+>>>> +};
+>>>> +
+>>>> +&mdss_dsi0 {
+>>>> +	vdda-supply = <&vreg_l11a>;
+>>>> +
+>>>> +	status = "okay";
+>>>> +};
+>>>> +
+>>>> +&mdss_dsi0_out {
+>>>> +	remote-endpoint = <&sn65dsi84_in>;
+>>>> +	data-lanes = <0 1 2 3>;
+>>>> +};
+>>>> +
+>>>> +&tlmm {
+>>>> +	lcd0_bklt_en: lcd0-bklt-en-state {
+>>>> +		pins = "gpio115";
+>>>> +		function = "gpio";
+>>>> +		bias-disable;
+>>>> +	};
+>>>> +
+>>>> +	lcd0_bklt_pwm: lcd0-bklt-pwm-state {
+>>>> +		pins = "gpio59";
+>>>> +		function = "gpio";
+>>>> +		bias-disable;
+>>>> +	};
+>>>> +};
+>>>> -- 
+>>>> 2.34.1
+>>>>
+>>
+
 
