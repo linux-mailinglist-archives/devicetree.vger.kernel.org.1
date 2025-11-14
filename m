@@ -1,174 +1,213 @@
-Return-Path: <devicetree+bounces-238688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D456DC5D47A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:14:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4C4C5D50E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 14:22:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4016A35A281
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:09:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 275EC4E8279
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCF42FC004;
-	Fri, 14 Nov 2025 13:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB35230215D;
+	Fri, 14 Nov 2025 13:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8ASPoUL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TE3O3wtx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5042D94B7
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:08:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9E22FC004
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763125721; cv=none; b=IVTIU7IOr3BevcN+g7hxFsoc61liXtDLC2o6GBxXCZR+RMinpjV63wFvbuj6o7HmAYJ6ta2aeLfQQNGamllkDQ5M89MntoGCObwsdDXkeNcW3hOQ6phN5mmHVn4K2nG1DmHrFnX66E6S9WcwT5/UuR9yuXzd6HTJlopge6z9/GM=
+	t=1763126064; cv=none; b=KWo4/+JqXTD6iTIKJ170GgyMgCok3o2tq3J72KUUI1hMoKRUeyG5oh7dKBqpUm5mxmPhFzd8tvb5zqL3vbVs4NS0DwhfH38MlHCyJYUHwW50+w7Qm/ID1m957vcWWb6wd4sMJUdOZraILuz8ttlQtwgeFeyKe46TQnv+pKkqiFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763125721; c=relaxed/simple;
-	bh=dLNDvmY+Tga0mqtuY9x4IdeYGb2yvfWhIjiZOwC9fdQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Rhqcw8BMUvhqWtvRk/3YJJmKLm/nC9OOqFHlrdXnsZeSgPp2BSDCFDcV9b64zWYz9ihMJEwZsRt0uZOiwwtEQS6MMo/m8cMHuN9No/16CvBJEDYcVvQOqSkk+RXh5NUtvvwf+HzLWa0LcTJtR56LtkXRC2rW7Df7PnRpp/PNhTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t8ASPoUL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEFC2C4AF0D
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 13:08:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763125721;
-	bh=dLNDvmY+Tga0mqtuY9x4IdeYGb2yvfWhIjiZOwC9fdQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=t8ASPoULVnEgJZUdVQ477/babnw79FOgZtRbfLNABOhtc0hLYKVbSrNIVWaKFsOor
-	 gb5kn4+tS70s1lijGl9AfYIXZa0P+PUXfyjZ9zldrFD5yQXvruklSD2RUT5RdpB7Rh
-	 sEo24Ne/HIHD5QjZfSg+5i4HrbUjUjClgAw4CAaM1DRwFn2nuDm05D2P+158AW0Os9
-	 FnU+bP3mOxI5C70ZEBL5fJLxcxnVsVYluLmF58a/BECItc7yVQngVXSCCrCT1J9uRk
-	 eBi21C53WHfq7trLA/nXbPMLB/HaR9TTjGKkuncIKIaf2K3ygaFTHmpNrusOsUTQ4q
-	 x3CMr1P1HTbow==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-6417313bddaso3406573a12.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:08:40 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV4vy9x8/76mzrNwrVklIokKkvJtKLcxAiPW53/0CoPECPnS6+BfEd83Po1h7I4lis4+aUHeKgn2NH/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNcu/Xe2p2bfuZB8GkDsjID1l82asg7ZGEQR7YPfCfVWYg5bMF
-	l/hWPV3RYU/CE0DIcoqZ4WKEUkFVFKOKUVcFZBhdMTuu/BTMyOtVBUnOwGiTZp1SWWcqehA256h
-	yTREHuWsMbrIFv5qsNqZ21qN5GdJURA==
-X-Google-Smtp-Source: AGHT+IEmOjlIGzwN2mXdlpFTSB0qntDwcfgQBxDMBRtmTeVBp37s61Vcc+KhNBCPpDulO/W+dMu4XLyHI0tsk5BZI0s=
-X-Received: by 2002:a05:6402:278f:b0:641:966d:82ba with SMTP id
- 4fb4d7f45d1cf-64350e0476dmr2741646a12.1.1763125719175; Fri, 14 Nov 2025
- 05:08:39 -0800 (PST)
+	s=arc-20240116; t=1763126064; c=relaxed/simple;
+	bh=MkZ3kMIKj667Q6zlkFms+OxbDU158ERDyf3gzaKEAeo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=S4WESh0Y4frN1n9n/69uqBPTjxJuXKgD0Ao6khNyuI3wo8U+mUqAVI9Izth5QEMHrohnbd9Epg5+mqbPr5ETImho2E9voqeL09Af9s2PzXZx636a0Aj8jTAoaKBJ/41QpVJtg8tosGHkTWZtdp1RS3f65IKhCAN82Ufa47JihSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TE3O3wtx; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42b379cd896so1284791f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 05:14:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763126060; x=1763730860; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=iU0sX+BIcc5PHiUInIFp7NW8ySzf+LdobKT956HEe2s=;
+        b=TE3O3wtxbtU988e/qgrUb8LBnjD9XIJlLYfOlnbpdfAMbp7tAn8xaDSqahTwEz8LDd
+         QT/r3JT3O6laClSRGB6DR8Q/I/DFmetFYbFtSrb7yVJwptnfeW55OTV6g/GSlo0Z6z1h
+         THKdIXSaw8d5cn3Dy+Hv6EWBqG2XF7KPo/fF0jqNJcHbTZ9JLLGDpEgxOlns0eMW8Syr
+         W9TGvEZP9hiviBfrC7zXWIG+WiYlqlzbSJJs0Rxm2XyRDr6xvYkgpLoGLtjKH4YCVnOs
+         2vvSdPUPB3mm+Dtj7U4Rlbbf8/j279ciFMTVAStWf6pmkGq570JrhgRVbElUVOPF9BHZ
+         rKzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763126060; x=1763730860;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iU0sX+BIcc5PHiUInIFp7NW8ySzf+LdobKT956HEe2s=;
+        b=gVcRgjB5Qd1bcS/kPqtPL1/RsTrEQiDDHvA9OyEfUnvjfwANEm8u6HYOMYYYVPTu4S
+         IQ8AGNXmgZi8mtA1c+LTNtMyjuVoxHL1kXd+dzHhV3QLx23y4CE4+9NQxdAocYwgya3k
+         fakWmPXDvu/OzUPYM9cJx7S0zh2j/2TPzsxblBcm2DccUnN+MKSSPfUG2+XhDRnqmKAz
+         yHlZfrebH24R9H/PibB5q2qXM+ryuQsWBRDZDJs1GYSNl8EedZ1xYC9Rc1Znt7jwm7Ga
+         l4UqThhXPRRinaKnDXypkWVD8wriMs6ExlqJaoDDfTAm1l9VJy9isNyeBo6lyyfqXD+R
+         yOlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0ViCClLohdXt8shKF8ROkXFZbRWjfaoZVrc1NzrQZ//jw92J1UvQdGb78bAMTmxJ1qStafUg7JNt1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgEb2W3gUhydGrPNcS8OnRBhs0H3nQHljGGNShXeCYQcf1PBqM
+	aos6Tpbyp7Qr5/7c3Cx7KkYVvLYz+3LJ19hcO0B1UcZWHU+TeTH8cXaJ9MrX+0zGLaE=
+X-Gm-Gg: ASbGncu9U7nWnIcBh/3CPaoVXb1AILxU1nooyHqdHs8t031APPES02ghkcsNg7007Fh
+	tLsQgoNxCPz8HNK5Xi15W8nkdSqytNEzyJkFHl9TL5H+tlLvh1zmUB9FWfzMqHM3zKqMjSTPRLq
+	W5O9jsPJwEyunQeXTTh5giElWKGmkTA71ImSv9RiUj7atiqe7pF2qEblp17EWf+xt5euw2jdTaT
+	O2h4+sRdrhOjM1brFl0X/rMFf0tKfj8T7TYvlqDq+iF9sklAOVQ2gPVMIwnBl9Bs9D1bJWuGMML
+	020pATs+sZHAG7/wpMYOHdzdRs8JoH8u5cTzkcCU3riH2NgReu/GDkmjT0Cl0TrSxvmzAtYC7gN
+	2MdLvXvd3I77ku3a7snDE6qNZt4xPnM+4sx7FjUMcnXQAmff+47YblnxMy9lYo8sijqywP/zvrs
+	Y5ATCVHmrLmofSLvA1
+X-Google-Smtp-Source: AGHT+IFlqbLqO9l0QT9dnRaBnBUSrcaFuapWFmH3KDcEb64+slQqRjevdDELlFMz7eG9w0S/wckC7Q==
+X-Received: by 2002:a05:6000:290b:b0:42b:3592:1bb9 with SMTP id ffacd0b85a97d-42b595a4856mr2451223f8f.35.1763126060406;
+        Fri, 14 Nov 2025 05:14:20 -0800 (PST)
+Received: from draszik.lan ([212.129.74.29])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f2084dsm10190727f8f.42.2025.11.14.05.14.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 05:14:20 -0800 (PST)
+Message-ID: <982158427bae79e15c92ad0198b398258e262ef6.camel@linaro.org>
+Subject: Re: [PATCH 08/13] mfd: sec: store hardware revision in sec_pmic_dev
+ and add S2MU005 support
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>, Lee Jones
+ <lee@kernel.org>,  Pavel Machek <pavel@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo
+ Choi	 <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Jonathan Corbet	 <corbet@lwn.net>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Date: Fri, 14 Nov 2025 13:14:19 +0000
+In-Reply-To: <20251114-s2mu005-pmic-v1-8-9e3184d3a0c9@disroot.org>
+References: <20251114-s2mu005-pmic-v1-0-9e3184d3a0c9@disroot.org>
+	 <20251114-s2mu005-pmic-v1-8-9e3184d3a0c9@disroot.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250911151436.2467758-1-raymond.mao@linaro.org>
-In-Reply-To: <20250911151436.2467758-1-raymond.mao@linaro.org>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 14 Nov 2025 07:08:27 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+apXxvngU9enNw9yzD1YAAOyamwkTBvqdrc2M955Q38g@mail.gmail.com>
-X-Gm-Features: AWmQ_bllt8kYcF9TyIDY2FL8zJVglYUuZePfZb_Ypbbfo2c2HxpexdZac4wFAkg
-Message-ID: <CAL_Jsq+apXxvngU9enNw9yzD1YAAOyamwkTBvqdrc2M955Q38g@mail.gmail.com>
-Subject: Re: [PATCH v3] docs: devicetree: overlay-notes: recommend top-level
- compatible in DTSO
-To: Raymond Mao <raymond.mao@linaro.org>
-Cc: linux-doc@vger.kernel.org, devicetree-spec@vger.kernel.org, 
-	devicetree@vger.kernel.org, ilias.apalodimas@linaro.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 11, 2025 at 10:14=E2=80=AFAM Raymond Mao <raymond.mao@linaro.or=
-g> wrote:
->
-> When managing multiple base device trees and overlays in a structured
-> way (e.g. bundled in firmware or tools), it is helpful to identify the
-> intended target base DT for each overlay, which can be done via a
-> top-level compatible string in the overlay.
->
-> This provides a way to identify which overlays should be applied once the
-> DT is selected for the case when a device have a common firmware binary
-> which only differs on the DT and overlays.
->
-> This patch updates the document with a note and example for this
-> practice.
-> For more information on this firmware requirement, please see [1].
->
-> [1] https://github.com/FirmwareHandoff/firmware_handoff/pull/74
->
-> Suggested-by: Ilias Apalodimas <ilias.apalodimas@linaro.org>
-> Signed-off-by: Raymond Mao <raymond.mao@linaro.org>
-> ---
-> Changes in v2:
-> - Updated commit message.
-> Changes in v3
-> - Rename to 'overlay-compatible' and rephrase the description accordingly=
+On Fri, 2025-11-14 at 00:35 +0530, Kaustabh Chakraborty wrote:
+> The device revision matters in cases when in some PMICs, the correct
+> register offsets very in different revisions. Instead of just debug
+> printing the value, store it in the driver data struct.
+>=20
+> Unlike other devices, S2MU005 has its hardware revision ID in register
+> offset 0x73. Allow handling different devices and add support for S2MU005=
 .
->
->  Documentation/devicetree/overlay-notes.rst | 32 ++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
->
-> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/d=
-evicetree/overlay-notes.rst
-> index 35e79242af9a..77284afba9a4 100644
-> --- a/Documentation/devicetree/overlay-notes.rst
-> +++ b/Documentation/devicetree/overlay-notes.rst
-> @@ -103,6 +103,38 @@ The above bar.dtso example modified to use target pa=
-th syntax is::
->      ---- bar.dtso ------------------------------------------------------=
---------
->
->
-> +Overlay identification
-> +----------------------
+>=20
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+> =C2=A0drivers/mfd/sec-common.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 30 ++++++++++++++++++++++++------
+> =C2=A0include/linux/mfd/samsung/core.h |=C2=A0 3 +++
+> =C2=A02 files changed, 27 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/mfd/sec-common.c b/drivers/mfd/sec-common.c
+> index 4c5f4dc2905b..f51c53e7a164 100644
+> --- a/drivers/mfd/sec-common.c
+> +++ b/drivers/mfd/sec-common.c
+> @@ -16,6 +16,7 @@
+> =C2=A0#include <linux/mfd/samsung/irq.h>
+> =C2=A0#include <linux/mfd/samsung/s2mps11.h>
+> =C2=A0#include <linux/mfd/samsung/s2mps13.h>
+> +#include <linux/mfd/samsung/s2mu005.h>
+> =C2=A0#include <linux/module.h>
+> =C2=A0#include <linux/of.h>
+> =C2=A0#include <linux/pm.h>
+> @@ -86,17 +87,34 @@ static const struct mfd_cell s2mu005_devs[] =3D {
+> =C2=A0	MFD_CELL_OF("s2mu005-rgb", NULL, NULL, 0, 0, "samsung,s2mu005-rgb"=
+),
+> =C2=A0};
+> =C2=A0
+> -static void sec_pmic_dump_rev(struct sec_pmic_dev *sec_pmic)
+> +static void sec_pmic_store_rev(struct sec_pmic_dev *sec_pmic)
+> =C2=A0{
+> -	unsigned int val;
+> +	unsigned int reg, mask, shift;
+> =C2=A0
+> =C2=A0	/* For s2mpg1x, the revision is in a different regmap */
+> =C2=A0	if (sec_pmic->device_type =3D=3D S2MPG10)
+> =C2=A0		return;
+> =C2=A0
+> -	/* For each device type, the REG_ID is always the first register */
+> -	if (!regmap_read(sec_pmic->regmap_pmic, S2MPS11_REG_ID, &val))
+> -		dev_dbg(sec_pmic->dev, "Revision: 0x%x\n", val);
+> +	switch (sec_pmic->device_type) {
+> +	case S2MU005:
+> +		reg =3D S2MU005_REG_ID;
+> +		mask =3D S2MU005_ID_MASK;
+> +		shift =3D S2MU005_ID_SHIFT;
+> +		break;
+> +	default:
+> +		/* For other device types, the REG_ID is always the first register. */
+> +		reg =3D S2MPS11_REG_ID;
+> +		mask =3D ~0;
+> +		shift =3D 0;
+> +	}
 > +
-> +When managing device tree overlays dynamically - such as bundling multip=
-le base
-> +device trees and overlays within firmware, initramfs, or user-space tool=
-s - it
-> +is important to associate each overlay with its corresponding base devic=
-e tree.
-> +
-> +To support this association, each overlay should define a top-level comp=
-atible
-> +string (referred to as the 'overlay-compatible' string). This string is
-> +intended to match the top-level compatible property of the target base d=
-evice
-> +tree.
+> +	if (!regmap_read(sec_pmic->regmap_pmic, reg, &sec_pmic->revision))
+> +		return;
 
-This property needs to be defined in dtschema at a minimum. Really we
-need to check the values are documented. We already have all the
-possible compatibles, so we'd need to generate a schema from them. But
-that part can wait as we don't actually validate overlays on their
-own.
+You should probably propagate the error up to the caller here.
+
+Cheers,
+Andre'
 
 > +
-> +By including this identifier, higher-level software or firmware can dete=
-rmine
-> +which base device tree an overlay is compatible with, and apply it accor=
-dingly.
+> +	sec_pmic->revision &=3D mask;
+> +	sec_pmic->revision >>=3D shift;
 > +
-> +Example usage::
+> +	dev_dbg(sec_pmic->dev, "Revision: 0x%x\n", sec_pmic->revision);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void sec_pmic_configure(struct sec_pmic_dev *sec_pmic)
+> @@ -236,7 +254,7 @@ int sec_pmic_probe(struct device *dev, int device_typ=
+e, unsigned int irq,
+> =C2=A0		return ret;
+> =C2=A0
+> =C2=A0	sec_pmic_configure(sec_pmic);
+> -	sec_pmic_dump_rev(sec_pmic);
+> +	sec_pmic_store_rev(sec_pmic);
+> =C2=A0
+> =C2=A0	return ret;
+> =C2=A0}
+> diff --git a/include/linux/mfd/samsung/core.h b/include/linux/mfd/samsung=
+/core.h
+> index fc07f7944dcd..ccd1bfa15b85 100644
+> --- a/include/linux/mfd/samsung/core.h
+> +++ b/include/linux/mfd/samsung/core.h
+> @@ -63,6 +63,7 @@ enum sec_device_type {
+> =C2=A0 * @irq_base:		Base IRQ number for device, required for IRQs
+> =C2=A0 * @irq:		Generic IRQ number for device
+> =C2=A0 * @irq_data:		Runtime data structure for IRQ controller
+> + * @revision:		Revision number of the device
+> =C2=A0 * @wakeup:		Whether or not this is a wakeup device
+> =C2=A0 */
+> =C2=A0struct sec_pmic_dev {
+> @@ -74,6 +75,8 @@ struct sec_pmic_dev {
+> =C2=A0	int device_type;
+> =C2=A0	int irq;
+> =C2=A0	struct regmap_irq_chip_data *irq_data[MAX_IRQ_CHIPS];
 > +
-> +    ---- bar.dtso - overlay with top-level compatible string -----------=
---------
-> +       /dts-v1/;
-> +       /plugin/;
-> +       / {
-> +               overlay-compatible =3D "corp,foo";
-> +
-> +               ...
-> +       };
-> +    ---- bar.dtso ------------------------------------------------------=
---------
-> +
-> +This top-level compatible string is not required by the kernel overlay
-> +mechanism itself, but it is strongly recommended for managing overlays i=
-n
-> +scalable systems.
-
-Please define exactly how the matching works. I assume it is the 1
-overlay-compatible string has to match any one of the entries in the
-base root compatible property. I don't like to assume though.
-
-How would you handle a case where you have 2 similar SoCs which don't
-share a common compatible string and the overlay applies to both of
-them?
-
-Rob
+> +	unsigned int revision;
+> =C2=A0};
+> =C2=A0
+> =C2=A0struct sec_platform_data {
 
