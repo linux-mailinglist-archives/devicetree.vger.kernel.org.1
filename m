@@ -1,256 +1,190 @@
-Return-Path: <devicetree+bounces-238517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC1BC5BE4E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:10:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA7E9C5BE87
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:13:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E28624E282C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:10:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 071D13AECE2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9F72F4A1B;
-	Fri, 14 Nov 2025 08:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313162FB085;
+	Fri, 14 Nov 2025 08:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="V3RCSibC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZYlfnBjn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DB42EDD7D
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 08:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E2A2F9C39;
+	Fri, 14 Nov 2025 08:13:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763107823; cv=none; b=RXcJ7C9xrIAlhkGpSfdoqDfxf364rBWlqUncxYn/rLyYERcIP6AqIi7gbjhvIAiIYo/cqjc27QoQw3O6oeg7ouRduL/Yc0hxs9Z3mBVh1EJawjXF8N5/RkboSMemOB23J5QtciQ1qCUpEywq3yGvuY+CVNdGxmOBgOXWNH2GoK0=
+	t=1763108002; cv=none; b=NGU3Vz9EPM6xjWb0dCqsNocHEzibo+ODksnb8wCK8RyGuVidY8/uvJBhVBMiJlrPbLEL/94o6oSDbVVjitgShtzj9Tj0Un7Xuuzaet1IlKDVryLO5/QIFd02kKIefr3D9iXjmaRb/VEQllEPTXrWR7BkrtEH0H7IJ6bB2v6o2tA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763107823; c=relaxed/simple;
-	bh=XIrLfHGU7k4xEaXto2qBACjwHQDaQFNV+WCBQ22pjIg=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=sswd+CRD2ZiLix5lqKwEvaaqnwjSJdlfXwcaq6JbOSNYqUX76FSQspN1ezNkj0IMxZI4GfV/CAdmmHmozlngz2r2AKxVZQxjLXBnHKjj3BN9hJ3Cqu+PvDyCMHcmvGB5owSgMD2jaCV8Et1+ALibFtayb7tPWij1xIdAdoMzsR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=V3RCSibC; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id DD8134109E;
-	Fri, 14 Nov 2025 09:10:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1763107818; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=vt0Qo9sZk/FDmeHh+7424Qj+6lsfcWWz+1Vmi0HPUEs=;
-	b=V3RCSibCOZLC33kLQlqWC7nQNjBoxF31MiFF8aJx1Xa/N35rGY7CtfVBEoK0B604U0L6Yo
-	j2ofBF+eGe7U11lFUX55KLXwrFQinAFrc/HdIcJQ4onWUF/PEkzPyYGguBnTxQnlp4xtb8
-	lwB6c0nXv/GnSkJ/GwIUEwX8DxOLXjohGV/hieX1njnQJQphndva4qN4sDWg2JRTnKrYPq
-	syzj1MbYQCCQzI3JbyqWHlj7JZrlWGmKXTU+ueuTwvU3Jd751oAPmnRa1Qs22ihKKPbB74
-	IHa5tTJvqWtWPp/pfCm9gZfq9BAAeD5eiT9XxEFTF4P8+28C9LYn4/O4S8shEg==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <67ccca04-b59d-4e22-a0fb-22b19378420d@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-References: <20251105051335.17652-1-naoki@radxa.com>
- <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
- <CAMWSM7gezjVSoF+-7ivboTeB=5gQAE-QVrbAbKu3M=obmb3Axg@mail.gmail.com>
- <617FDAB231C501DC+3f9809df-87df-4a02-bd5f-ebc6299b3aa7@radxa.com>
- <a10340af-1d0a-bb0b-4835-7b2c9e67d664@manjaro.org>
- <2892FE50237CD58E+0f15924c-a915-4446-954c-d81a782d23e9@radxa.com>
- <19ce0a41-563c-6202-6b94-b2c644a0b827@manjaro.org>
- <F02BA2E6B1111826+2445b38d-b5e0-499c-83e7-4521c57b2210@radxa.com>
- <f2bc30de-119b-4f4a-844a-8a908c9290b6@kernel.org>
- <49c39864-3e58-2e0e-7abc-50502f2afb02@manjaro.org>
- <7ed7d24a-5395-429f-b999-1374ac910441@kernel.org>
- <cab16f94-4115-a606-60b4-043b6681f7ab@manjaro.org> <67ccca04-b59d-4e22-a0fb-22b19378420d@kernel.org>
-Date: Fri, 14 Nov 2025 09:10:13 +0100
-Cc: "FUKAUMI Naoki" <naoki@radxa.com>, "Joseph Kogut" <joseph.kogut@gmail.com>, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com, honyuenkwun@gmail.com, quentin.schulz@cherry.de, pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
+	s=arc-20240116; t=1763108002; c=relaxed/simple;
+	bh=MT7P5gGCdQwUvwOnQhIvVEIaafKO7NNdMsTHr/FwL2w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LXeHU3jEhn6rzjLr3tCIpguRmZgnkGu0FdowI+h1PqAteLssXxH481gisiyrwOWjF7J4R3q4TZ3JzZGnPCkngT1MQgSW5FVMUZeNmT07zqjZkGfuXXGEexcT2Bj/ckHhOwQv4inLFt6K5CaT9T0+3Gz4xTzbxgqP3UXGc3KXXvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hu-tingguoc-lv.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZYlfnBjn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hu-tingguoc-lv.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ADMb6oJ1620299;
+	Fri, 14 Nov 2025 08:13:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=V/OHxco0sg710DrR5iaoLb
+	kaaqSIsqlrdkqQC6u+S3A=; b=ZYlfnBjnzlQsyT/roRmjkfaQDXo2AuMa1YCmtd
+	wiml4kM10FaJoWgGaH6wxcECp7OURin4VNpjQcLyyCO2T6r13iIFRTXtmb1zkcwi
+	vOdcesZTTaylPwJ0ynctV+RAtP/068qOBilqof38OMnyeBeSiRe1tVGouWJyU1jT
+	o0DkOGHOPFkzBm3ZmFogQVlX3//gNIOi3W66mMaK6AtZM1QeJXS8F2JyVYdN2H/Y
+	np47S3YRrZhCKGeur9vNAuet+uym4ZcLng+PYx1Hun/21RK9q6vydumxOb57uWiu
+	BUIDZ6s+l6YVSokqFgImzgt9+Ir6SvYk4yhhZDFQEXKEbiiw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4adr9h1bpj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Nov 2025 08:13:14 +0000 (GMT)
+Received: from pps.filterd (NALASPPMTA03.qualcomm.com [127.0.0.1])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5AE8DDgZ015571;
+	Fri, 14 Nov 2025 08:13:13 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by NALASPPMTA03.qualcomm.com (PPS) with ESMTPS id 4adrg3mkjt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Nov 2025 08:13:13 +0000
+Received: from NALASPPMTA03.qualcomm.com (NALASPPMTA03.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5AE8DDSM015563;
+	Fri, 14 Nov 2025 08:13:13 GMT
+Received: from hu-devc-lv-u24-a.qualcomm.com (hu-tingguoc-lv.qualcomm.com [10.81.95.108])
+	by NALASPPMTA03.qualcomm.com (PPS) with ESMTPS id 5AE8DDTV015557
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Nov 2025 08:13:13 +0000
+Received: by hu-devc-lv-u24-a.qualcomm.com (Postfix, from userid 2370279)
+	id 4CC5A2165A; Fri, 14 Nov 2025 00:13:13 -0800 (PST)
+From: Tingguo Cheng <tingguoc@hu-tingguoc-lv.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>, kernel@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+        Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Subject: [PATCH v3] arm64: dts: qcom: hamoa-iot-evk: enable pwm rg leds
+Date: Fri, 14 Nov 2025 00:13:03 -0800
+Message-ID: <20251114-add-rgb-led-for-hamoa-iot-evk-v3-1-5df1fcd68374@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <c01b756a-73ea-3d0d-44b9-6ce8a535a103@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v6 0/3] Add Radxa CM5 and IO Board
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20251017-add-rgb-led-for-hamoa-iot-evk-43ed6bda73a5
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763107620; l=1981; i=tingguo.cheng@oss.qualcomm.com; s=20240917; h=from:subject:message-id; bh=VKdTx7NziG/yqzRPbDsdPLSr+JzTIqFEkATqs2LtGKA=; b=ROoiEglHHFSMkXmDJeoWEQguARaI4VQse64Vz+d1fNbfn1mMswaQPyDGfvM3r/WpjlXiF9Rb9 40TekrL8nfDAC/Kro03tdVJYs/m6tANE7mN5vHftFvez1z9gfKf/rbD
+X-Developer-Key: i=tingguo.cheng@oss.qualcomm.com; a=ed25519; pk=PiFYQPN5GCP7O6SA43tuKfHAbl9DewSKOuQA/GiHQrI=
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: lLshMMSgc7w7BRmLB09IZ48XZXhsFQPH
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA2MyBTYWx0ZWRfXxS5Krm9H6dzu
+ U10PjcFLe9Inf94u8KmDIpaXDaoOOz53NoDiebfhBQl8Ngq/I/8t9OdIf+LKyL6FRw29V69CMiu
+ E66jy0P/FbTTHZUyJPyJ3UqHLcVuhJPaN7uhEATitgy+bFCT6sRZla+X/CBkcPkJlERwdjXc/cy
+ Vrp+gp8baECEbB1tD8F1Ls82ZVP9vojpQvAINVr7HR7myflEFwrYWT3+nQKjYduNy1LLzcVKD82
+ BEVjJn6/FB2iWWWjcLZNBHVMUyzsXERqAUGgyUfWycDKgztSONHBET/JwoEAoRVFTUS+6vD4rkE
+ BpqeUYr2DKv7nBJ+GaFOfUA8Fe/xzv3roruRYyYipoqh0TGFOCTxKEcQrtbUDQVtxq/niX06CPd
+ 3WOr+EtCIqUzAC0whUkfhOj5AQuBKw==
+X-Proofpoint-GUID: lLshMMSgc7w7BRmLB09IZ48XZXhsFQPH
+X-Authority-Analysis: v=2.4 cv=V+1wEOni c=1 sm=1 tr=0 ts=6916e49b cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=F6_ufdXwtoZMk_li76YA:9 a=QEXdDO2ut3YA:10
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-14_01,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 bulkscore=0 suspectscore=0 phishscore=0 clxscore=1034
+ spamscore=0 priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140063
 
-On Friday, November 14, 2025 08:28 CET, Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> On 14/11/2025 08:26, Dragan Simic wrote:
-> > On Friday, November 14, 2025 08:22 CET, Krzysztof Kozlowski <krzk@k=
-ernel.org> wrote:
-> >> On 14/11/2025 08:17, Dragan Simic wrote:
-> >>> On Friday, November 14, 2025 08:10 CET, Krzysztof Kozlowski <krzk=
-@kernel.org> wrote:
-> >>>> On 14/11/2025 06:03, FUKAUMI Naoki wrote:
-> >>>>> On 11/12/25 09:46, Dragan Simic wrote:
-> >>>>>> On Wednesday, November 12, 2025 00:26 CET, FUKAUMI Naoki <naok=
-i@radxa.com> wrote:
-> >>>>>>> On 11/11/25 23:33, Dragan Simic wrote:
-> >>>>>>>> On Tuesday, November 11, 2025 12:52 CET, FUKAUMI Naoki <naok=
-i@radxa.com> wrote:
-> >>>>>>>>> On 11/6/25 02:48, Joseph Kogut wrote:
-> >>>>>>>>>> On Wed, Nov 5, 2025 at 4:15=E2=80=AFAM FUKAUMI Naoki <naok=
-i@radxa.com> wrote:
-> >>>>>>>>>>> I'd like to clarify the situation regarding the v6 patch =
-series I submitted.
-> >>>>>>>>>>>
-> >>>>>>>>>>> The original device tree work for the Radxa CM5 and IO Bo=
-ard was
-> >>>>>>>>>>> authored by Joseph Kogut. I took over the responsibility =
-of getting it
-> >>>>>>>>>>> upstreamed with his agreement.
-> >>>>>>>>>>
-> >>>>>>>>>> I'll confirm this. I've been in communication with Naoki. =
-They made a
-> >>>>>>>>>> large number of revisions to my original patch series, whi=
-ch I think
-> >>>>>>>>>> have technical merit. I suggested they submit the patches =
-themselves,
-> >>>>>>>>>> and gave them explicit permission to add my Signed-off-by =
-and CC me.
-> >>>>>>>>>>
-> >>>>>>>>>> I assume this was the correct way for them to continue the=
- work I
-> >>>>>>>>>> started, but if not, please let us know the best way to pr=
-oceed.
-> >>>>>>>>>
-> >>>>>>>>> Can anyone help us?
-> >>>>>>>>
-> >>>>>>>> I'm not exactly sure how to resolve the current situation, b=
-ut for
-> >>>>>>>> Signed-off-by tags to be present, in this case you'd need to=
- have
-> >>>>>>>> Co-developed-by tags as well, because the final patch versio=
-ns,
-> >>>>>>>> which would be submitted by Naoki, would differ significantl=
-y from
-> >>>>>>>> the versions that Joseph actively worked on, if I understood
-> >>>>>>>> everything correctly.  Though, for Joseph's Signed-off-by ta=
-gs to
-> >>>>>>>> be included there, he would also need to participate activel=
-y in
-> >>>>>>>> the development of the final patch versions.
-> >>>>>>>
-> >>>>>>> https://www.kernel.org/doc/html/latest/process/submitting-pat=
-ches.html#when-to-use-acked-by-cc-and-co-developed-by
-> >>>>>>>
-> >>>>>>> If
-> >>>>>>> ----
-> >>>>>>> From: Joseph Kogut <joseph.kogut@gmail.com>
-> >>>>>>>
-> >>>>>>> <changelog>
-> >>>>>>>
-> >>>>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> >>>>>>> Co-developed-by: FUKAUMI Naoki <naoki@radxa.com>
-> >>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> >>>>>>> ----
-> >>>>>>> then I can submit my patch series?
-> >>>>>>
-> >>>>>> Actually, the Co-developed-by tags would be pointing to Joseph
-> >>>>>> in that case, but as I described it above, this approach basic=
-ally
-> >>>>>> cannot be used, because Joseph's original work differs a lot f=
-rom
-> >>>>>> what you'd actually submit to the mailing list(s).
-> >>>>>>
-> >>>>>>> Or,
-> >>>>>>>
-> >>>>>>>> Another option, technically a bit simpler, would be to inclu=
-de just
-> >>>>>>>> Originally-by tags for Joseph, which would indicate that Jos=
-eph gave
-> >>>>>>>> up on the development of the patches and handed them over to=
- Naoki
-> >>>>>>>> for future development and submission to the mailing lists. =
-Though,
-> >>>>>>>> that would require Joseph to publicly state exactly that.
-> >>>>>>>
-> >>>>>>> I cannot find any documentation about "Originally-by".
-> >>>>>>> Is this correct?
-> >>>>>>> ----
-> >>>>>>> <changelog>
-> >>>>>>>
-> >>>>>>> Originally-by: Joseph Kogut <joseph.kogut@gmail.com>
-> >>>>
-> >>>> There is no such tag. Don't invent tags.
-> >>>
-> >>> True, it doesn't exist officially, but it's been used fairly ofte=
-n.
-> >>>
-> >>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> >>>>>>> ----
-> >>>>>>
-> >>>>>> That approach is the only I see applicable in this case.  Howe=
-ver,
-> >>>>>> let's hear opinions from other people as well.
-> >>>>>
-> >>>>> I see. I want to do this approach.
-> >>>>>
-> >>>>> Joseph, could you give me a statement to do this?
-> >>>>
-> >>>> Use standard authorship and standard tags, some of which are exp=
-lained
-> >>>> in Submitting patches.
-> >>>
-> >>> Frankly, your suggestion is useless, because it doesn't explain w=
-hat=20
-> >>> to do in this particular case.
-> >>
-> >> Maybe because you did not read the doc...
-> >=20
-> > I think you already know the answer: I read it multiple times and=20
-> > used it as a reference more than once.
->=20
-> Then if you read it and saw my objection to inventing tags, you could
-> guess that only first solution for patches with changes coming from
-> multiple authors is allowed. Also you would find from that doc, that
-> patches which were not changed - like in this patchset - must be
-> attributed to single author followed by SoB. So both cases nicely
-> explained. Pretty simple once you remove the invented tag option,
-> because it is really unnecessary.
+From: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
 
-Thanks, I appreciate your detailed response.
+Add RED and GREEN LED channels for the RGB device connected to PMC8380C
+PWM-LED pins. Omit BLUE channel to match default hardware setup where
+it's tied to EDL indicator.
 
-Let's have a look at the following excerpt from Documentation/
-process/submitting-patches.rst:
+Signed-off-by: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
+---
+Changes in v3:
+- Rebased on next-20251113.
+- Validated the function based on the patch "[PATCH] leds: rgb: leds-qcom-lpg: Allow LED_COLOR_ID_MULTI".
+- Link to v2: https://lore.kernel.org/r/20251030-add-rgb-led-for-hamoa-iot-evk-v2-1-3b3326784d7b@oss.qualcomm.com
 
- 503 Co-developed-by: states that the patch was co-created by multiple =
-developers;
- 504 it is used to give attribution to co-authors (in addition to the a=
-uthor
- 505 attributed by the From: tag) when several people work on a single =
-patch.  Since
- 506 Co-developed-by: denotes authorship, every Co-developed-by: must b=
-e immediately
- 507 followed by a Signed-off-by: of the associated co-author.  Standar=
-d sign-off
- 508 procedure applies, i.e. the ordering of Signed-off-by: tags should=
- reflect the
- 509 chronological history of the patch insofar as possible, regardless=
- of whether
- 510 the author is attributed via From: or Co-developed-by:.  Notably, =
-the last
- 511 Signed-off-by: must always be that of the developer submitting the=
- patch.
+Changes in v2:
+- Rebased on next-20251030.
+- Remove BLUE led channel to align with the default hardware configuration.
+- Link to v1: https://lore.kernel.org/r/20251017-add-rgb-led-for-hamoa-iot-evk-v1-1-6df8c109da57@oss.qualcomm.com
+---
+ arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-Following that, you're absolutely right that the above-described
-first approach is the way to go.  However, providing a Signed-off-by
-actually means that, at least formally, the signer becomes legally
-responsible for the code in the patch;  I'm not sure how fair is it
-for someone to become responsible for something that happened long
-time ago, about which they have no longer a clue about, which may
-happen in case someone rescues an old, abandoned patch, and changes
-or improves it a lot before submitting it to a mailing list?
+diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+index 36dd6599402b4650b7f8ad2c0cd22212116a25fe..e0d427b7a207c097a19f454ec3d7d6c3edc8f79f 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
++++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+@@ -5,6 +5,7 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/leds/common.h>
+ #include "hamoa-iot-som.dtsi"
+ 
+ / {
+@@ -879,6 +880,28 @@ usb0_1p8_reg_en: usb0-1p8-reg-en-state {
+ 	};
+ };
+ 
++&pm8550_pwm {
++	status = "okay";
++
++	multi-led {
++		color = <LED_COLOR_ID_MULTI>;
++		function = LED_FUNCTION_STATUS;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		led@1 {
++			reg = <1>;
++			color = <LED_COLOR_ID_RED>;
++		};
++
++		led@2 {
++			reg = <2>;
++			color = <LED_COLOR_ID_GREEN>;
++		};
++	};
++};
++
+ &pmc8380_5_gpios {
+ 	usb0_pwr_1p15_reg_en: usb0-pwr-1p15-reg-en-state {
+ 		pins = "gpio8";
 
-Of course, what I described is more of a hypothetical case, but the
-documentation should be covering such cases as well.
+---
+base-commit: ce649144bbb174abb260a3f9d77f480d8d56e813
+change-id: 20251017-add-rgb-led-for-hamoa-iot-evk-43ed6bda73a5
 
-That's where Originally-by, I think, comes as a possible solution;
-it's a bit like Acked-by, i.e. it's a "lighter" version of Signed-
-off-by, in the sense of effectively not making someone legally
-responsible for the code they originally authored but have had
-abandoned and which someone else is now submitting, while still
-providing the mandatory attribution.
-
-I hope it makes sense.
+Best regards,
+-- 
+Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
 
 
