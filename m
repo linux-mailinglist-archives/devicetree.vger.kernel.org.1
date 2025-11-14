@@ -1,232 +1,145 @@
-Return-Path: <devicetree+bounces-238536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C63C5C253
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:05:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C448C5C2CE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:11:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA23A3AEA27
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:05:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B85654F6304
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069323054C8;
-	Fri, 14 Nov 2025 09:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D0CC30276A;
+	Fri, 14 Nov 2025 09:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VRyHedUR"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="EXaEWir+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB6130149D
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F7A2FFF8D;
+	Fri, 14 Nov 2025 09:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763111074; cv=none; b=TRDqnisXFY2V6Opk/h5bWLcFg529iiZ+AWQXppXbKsKma6kEtBElDVNty0wZYoR1R+aLg04qwDS5ASuzoM7iLMLlg3UoEvCRljsbhsKPrrzJO1ReHj02kWJzihYH5HdmksYM5anuOx3JkXQE3rxBZPWaugTp8cY6B0e6XB988bQ=
+	t=1763111119; cv=none; b=fkBbE1+O3ZVDqH9n6VyozkUKM2889Ec2C3ynfmTlPBVoQb1eeX+j3F3ckKW3d5BGo/Po0VALetbZoES5Ymr9MXWTjJ2Agt3f42IAtpVC0Zyb0TcpRZMlIaMR1UBirOxWS2zQ8esRkphVKj/EXzkLrx4REYJ6awjDw7N83zXByrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763111074; c=relaxed/simple;
-	bh=0TEm7iRCHjxnOslZB50ja14A360VHxBjrAw5MtbVg4E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m0vtx5lr5P85hKixsOG0AKg4pmt3Sl17IFe47FWM1UGZJ0m9RmRGs3DsLIgiAZg7EKmTz9DkOOeAUkxWtxg9YTVaoZFBCRSmdj03/UlbAn6dTGJpZjriqfLAeWxsgqbzQVAWnLJr1mcUXumjjsf7chskyTZ8SIotUdiC05FAtRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VRyHedUR; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-37b95f87d64so12131681fa.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:04:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763111070; x=1763715870; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eyGXFrfPOvtO9Z4s8XQ0ch6UyF0uTEn2G/XOy3LSwzA=;
-        b=VRyHedUReEEON2xYd87WuLqJfD1noLS/ndv5UrVlMiwt4AvPh301/msGwg3YAfz0NK
-         YD13TyYHFEGdhF+5LIO+mQG9Tyu/olXSrJrogNVSienDMHGnhETw0TerCFiLjUNbtdSN
-         b2KuZnS/MEw5h1jDPYrtK3hTXlGXAvWxnhvxvZ/bZshcWh2279+HMLOGna+Y5GEV8lPm
-         MG8G1pzJsYP6py5eaIA1WVqC+WoYcku5GLY9qpVnCTnQpRRocLijXlcMvTJ/vqGmLHV/
-         lNrKrdCC2Wa58fVEXVPdN417hEOZFXG5JpD9cSwnpoUsZ9Jb3STOsMywbKG0ccu742fw
-         YCOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763111070; x=1763715870;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eyGXFrfPOvtO9Z4s8XQ0ch6UyF0uTEn2G/XOy3LSwzA=;
-        b=AOjb1Fo3U+zGw4eBReD2tGUxbvgJGoUdqn74Z5VdZh8cQ7PZ+arX4YpfP6urWOujjJ
-         Ez8EB4VFgzopUQnPzdFUfUKYmvfp5gSbdwKlExgbQCTSekmsTq25GYuyrebv3cIolTqY
-         UDfYF0YJCiHrGDqmxlf1oPXJg+IL9VIf8XiJF++M3tXt/P9v0r1iVmryj/hn74x4NwpQ
-         WlNklhSTSSuB+F/asUO/EgFfPOBX+r1gBwH9I4ewoS8gPm6u+a8DXdjKcS/C3zmp21u+
-         jnYbMwfdK2bgpOvR3I1yJAmQIMD0988wBq3T/8BNOczSEkcW5c+DbNbjli37CSZcQlvF
-         +l1A==
-X-Forwarded-Encrypted: i=1; AJvYcCV3vk1vnv0O0HYKhVImN1/l60AAPzgh5TrOMuc+nzSYueoE16uw9GYk+1aLbzlo8cuOL0UlQ+HkpQu5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqGq0ZF8fcXR0xhDxglR776cuL9dW2rImXtuzg95S05ChkvAGn
-	XztUy/+jzaJy7yZyvd+e7AMNM5zTUAF6nH6fVnReX5Seo6vnEFVfcOp0
-X-Gm-Gg: ASbGncs3/poN50efxvHNI9ZiXzpyiYi0Yf+nKJzCstCx0vFI8VEXu3jqrsno8mvQyFs
-	Ez7EYsKi3e1+DavhpMlmVX8MwtweeK52y9T4iu0KYyadvGBiE1JWYLRM09+8oFd0JNO9SjVbmPd
-	FyzDo56JlIuTsdoizQ/CKAKdMz0UWFEP8Hnzf0CEgF6FRmdG1y8fh2RQXp6OGUBNzoAPVEoeGSq
-	kYsS8+N+l7DUhvnliWjTCvnpmruAZVyKo/lh/QgifNoL5RBSi8NJ12USpuYYL06AObj63QSRkma
-	eL/9HldkG3PWogCFg5M8O1h3qhf2TT0eUriQ1lrFQFEbC1WBr8uE4GN6OrmPyrZUkKH1kIT99s+
-	sUaiAelXD3yAoMUEI6GEUE7eeVdxliCPAnY4DK2lM/MceZvJVNExCQSTBveXUp7bGeLsBzEr2re
-	xuyMchWTSrGH4gFtdjaJlr3EjwgatWfiaj9B0bb1d1JzoybVLzraoC5mzJqg==
-X-Google-Smtp-Source: AGHT+IFr4MNcx4dsYyHl+PkDpXtMSjAYMNDIYKiKLMNKzXGQD8YnOzZnKnzRzUK+LYDxWhp7vqal/A==
-X-Received: by 2002:a2e:b4a6:0:b0:37b:a664:acde with SMTP id 38308e7fff4ca-37babd29d4emr4429431fa.32.1763111069883;
-        Fri, 14 Nov 2025 01:04:29 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37b9ce080d9sm9121361fa.3.2025.11.14.01.04.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 01:04:29 -0800 (PST)
-Message-ID: <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
-Date: Fri, 14 Nov 2025 11:04:27 +0200
+	s=arc-20240116; t=1763111119; c=relaxed/simple;
+	bh=gJ8NGqH8fWFU1bVkSST5KnxIGFjoXRaj5AV+TnBI47U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZkGOVd6lxJvpnOkJ+Deq21QVkQ17J4uKQwk5tHgJDiQ4C4h4dr0aW2vuitSrBDH7tC0MZsZYcWF/kB9r1NSnwdLLT1bYXxpN0dbFXaaqEFTdUT/lroG5JlQostn2SpGdeeOPqw28TwhpNgR54zuH2x08tndsOqnI4VkmlR2F6qU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=EXaEWir+; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AE94ndlE1317725, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1763111089; bh=Z5oNxnZ210QYD/rBmIJptWL69T4X/1/iwwqukPchxOQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=EXaEWir+Y+GiZZeUufWjQ02ZkHmpVx71pNvpEkjFGSq4GM4A63xQM1Mpem17fjYpc
+	 LWLp8upwFmr1B45WfDfvRYWIz1bEgt7yMH7OiXXiCWclCZ1lHFsx3/ZL/ejXMITtRC
+	 netR2+K8xFN2WvOeIF1znW8AD6jObSXE5kcfMXwDGTjtK4AlGMKYOSoNqKO0SvBEFI
+	 I0hwB/LbC7qfC0TWFkWxMXyEeKnHFWvtUvNi8sWfuhHRO8kRo1G3X3+5BcHPQNE+ty
+	 ajAaq/DWEpkI+yne++90/SbyitUE+UL/iZcPNNIyXp3wuC9GsoiGU82RWtvz4wwfOj
+	 J0vwBhBgV0UHg==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AE94ndlE1317725
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 14 Nov 2025 17:04:49 +0800
+Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Fri, 14 Nov 2025 17:04:49 +0800
+Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
+ RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Fri, 14 Nov 2025 17:04:49 +0800
+Received: from ww-haowen.ting (172.21.177.97) by RTKEXHMBS04.realtek.com.tw
+ (10.21.1.54) with Microsoft SMTP Server id 15.2.1544.27 via Frontend
+ Transport; Fri, 14 Nov 2025 17:04:49 +0800
+From: Hao-Wen Ting <haowen.ting@realtek.com>
+To: <daniel.lezcano@linaro.org>, <tglx@linutronix.de>
+CC: <jinn.cheng@realtek.com>, <edwardwu@realtek.com>, <phelic@realtek.com>,
+        <shawn.huang724@realtek.com>, <haowen.ting@realtek.com>,
+        <cy.huang@realtek.com>, <james.tai@realtek.com>, <cylee12@realtek.com>,
+        <phinex@realtek.com>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stanley_chang@realtek.com>
+Subject: [PATCH v2 0/2] Add Realtek System Timer driver
+Date: Fri, 14 Nov 2025 17:04:46 +0800
+Message-ID: <20251114090448.285685-1-haowen.ting@realtek.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 04/16] dt-bindings: power: supply: BD72720 managed
- battery
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Matti Vaittinen <matti.vaittinen@linux.dev>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Mark Brown
- <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- linux-kernel@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- linux-leds@vger.kernel.org, Pavel Machek <pavel@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rtc@vger.kernel.org, Lee Jones <lee@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
- <ac5a4e992e4fb9c7bffb1e641a7cd61f74af4cba.1763022807.git.mazziesaccount@gmail.com>
- <176303119683.3716572.16868393928566655866.robh@kernel.org>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <176303119683.3716572.16868393928566655866.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 13/11/2025 12:53, Rob Herring (Arm) wrote:
-> 
-> On Thu, 13 Nov 2025 10:52:19 +0200, Matti Vaittinen wrote:
->> From: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> The BD72720 PMIC has a battery charger + coulomb counter block. These
->> can be used to manage charging of a lithium-ion battery and to do fuel
->> gauging.
->>
->> ROHM has developed a so called "zero-correction" -algorithm to improve
->> the fuel-gauging accuracy close to the point where battery is depleted.
->> This relies on battery specific "VDR" tables, which are measured from
->> the battery, and which describe the voltage drop rate. More thorough
->> explanation about the "zero correction" and "VDR" parameters is here:
->> https://lore.kernel.org/all/676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com/
->>
->> Document the VDR zero-correction specific battery properties used by the
->> BD72720 and some other ROHM chargers.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->>
->> ---
->> NOTE:
->> Linus' rb-tag holds only if there's no further comments from Rob.
->>
->> Revision history:
->>   v3 =>:
->>   - No changes
->>
->>   v2 => v3:
->>   - Constrain VDR threshold voltage to 48V
->>   - Use standard '-bp' -suffix for the rohm,volt-drop-soc
->>
->>   RFCv1 => v2:
->>   - Add units to rohm,volt-drop-soc (tenths of %)
->>   - Give real temperatures matching the VDR tables, instead of vague
->>     'high', 'normal', 'low', 'very low'. (Add table of temperatures and
->>     use number matching the right temperature index in the VDR table name).
->>   - Fix typoed 'algorithm' in commit message.
->>
->> The parameters are describing the battery voltage drop rates - so they
->> are properties of the battery, not the charger. Thus they do not belong
->> in the charger node.
->>
+Changes v2:
+PATCH 1/2
+- Add full name 'system timer' to description
+- Remove redundant commit messages
+- Clarify compatible strings for specific verified SoCs
+- Remove redundant reg and interrupts description sentences
+- Use generic node name in example
+PATCH 2/2
+- Correct MAINTAINERS to alphabetical order
+- Update Kconfig: switch dependency to ARM/ARM64
+- Remove redundant pr_info output
 
-// snip
+This patch series adds support for the Realtek SYSTIMER, a 64-bit timer
+that serves as a tick broadcast timer on Realtek SoCs.
 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/rohm,vdr-battery.example.dtb: battery (simple-battery): 'degrade-cycle-microamp-hours', 'rohm,volt-drop-0-microvolt', 'rohm,volt-drop-1-microvolt', 'rohm,volt-drop-2-microvolt', 'rohm,volt-drop-3-temp-microvolt', 'rohm,volt-drop-soc-bp', 'rohm,volt-drop-temperatures-millicelsius', 'rohm,voltage-vdr-thresh-microvolt' do not match any of the regexes: '^ocv-capacity-table-[0-9]+$', '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml
-> 
+On Realtek platforms, CPUs can enter deep idle states (C-states) where
+local timers are stopped and powered off. Without a global tick broadcast
+timer, one CPU must remain awake to wake up the others, preventing all CPUs
+from entering deep idle simultaneously and limiting power savings.
 
-Odd. I am pretty sure I didn't see this when I ran the make 
-dt_binding_check. Not 100% sure what happened there. I get this error 
-now though when including all the bindings to the check.
+The Realtek SYSTIMER remains active during deep idle states, allowing all
+CPUs to enter power-cut idle states simultaneously. This significantly
+reduces overall power consumption while maintaining proper tick broadcast
+functionality.
 
-Do I get this right - these errors result from the properties used in 
-example not being included in the battery.yaml? So, this means that the 
-check is done based on the binding (battery.yaml) where the compatible 
-(simple-battery) is defined - not based on the properties which are 
-present in this file where the example resides, (and which references 
-the battery.yaml)?
+The systimer hardware for both RTD1625 and RTD1635 SoCs has identical register
+layout and IRQ configuration. The driver therefore matches both compatibles
+without special handling and has been tested on both platforms.
 
-...
+Technical details:
+- 64-bit timer operating at 1MHz fixed frequency
+- Supports oneshot mode for tick broadcast
+- Uses standard TIMER_OF framework and Device Tree integration
+- Remains active during CPU power-down states
 
-Oh... Now that I wrote it I feel like an idiot.
+Testing:
+- Verify the functionality of tick broadcast timer on both RTD1625 and RTD1635
+SoCs.
+- Verify the power consumption reduction on RTD1625 Soc in deep idle scenarios
 
-This approach couldn't work for the validation, right? Let's assume I 
-had a VDR battery, and I added a static-battery -node for it. Running 
-the validation would pick the battery.yaml based on the compatible (just 
-as it does here), and be completely unaware of this vdr-battery.yaml. I 
-have no idea why I thought this would work. Probably because I only 
-thought this from the documentation POV.
+Patch organization:
+Patch 1/2: Device Tree binding documentation
+Patch 2/2: Clocksource driver implementation
 
-So, as far as I understand, the only viable options are expanding the 
-existing battery.yaml with these properties (which I hoped to avoid, see 
-below)
+Best regards,
+Hao-Wen Ting
 
- >> The right place for them is the battery node, which is described by the
- >> generic "battery.yaml". I was not comfortable with adding these
- >> properties to the generic battery.yaml because they are:
- >>    - Meaningful only for those charger drivers which have the VDR
- >>      algorithm implemented. (And even though the algorithm is not 
-charger
- >>      specific, AFAICS, it is currently only used by some ROHM PMIC
- >>      drivers).
- >>    - Technique of measuring the VDR tables for a battery is not widely
- >>      known. AFAICS, only folks at ROHM are measuring those for some
- >>      customer products. We do have those tables available for some 
-of the
- >>      products though (Kobo?).
+Hao-Wen Ting (2):
+  dt-bindings: timer: Add Realtek SYSTIMER binding
+  clocksource: Add Realtek systimer as tick broadcast driver
 
-or, to add new compatible for the "vdr-battery".
-AFAICS, adding new compatible would require us to wither duplicate the 
-used properties from battery.yaml here (as battery.yaml mandates the 
-"simple-battery" - compatible) - or to split the battery.yaml in two 
-files, one containing the generic properties, other containing the 
-"simple-battery" -compatible and referencing the generic one. Then the 
-"vdr-battery" could also reference the generic one.
+ .../bindings/timer/realtek,systimer.yaml      |  48 +++++
+ MAINTAINERS                                   |   5 +
+ drivers/clocksource/Kconfig                   |  10 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-realtek.c           | 172 ++++++++++++++++++
+ 5 files changed, 236 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/realtek,systimer.yaml
+ create mode 100644 drivers/clocksource/timer-realtek.c
 
-Any suggestions for the next path to follow?
 
-Oh, and sorry for asking to review something which is obviously not 
-working approach. I should've understood this from the beginning.
+base-commit: 948b99877bf5a1cd58bee930e455b7574daba5c3
+-- 
+2.34.1
 
-Yours,
-	-- Matti
-
----
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
 
