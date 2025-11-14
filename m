@@ -1,171 +1,103 @@
-Return-Path: <devicetree+bounces-238439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E59AC5B40D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 04:56:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24AD6C5B41F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 04:59:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EF003B7CC4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 03:56:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0FD63AD4FC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 03:57:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD55B271456;
-	Fri, 14 Nov 2025 03:56:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF44326C3B0;
+	Fri, 14 Nov 2025 03:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="xhDEjyV4"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="aLxhxlYH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE2BA20F08C
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 03:56:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B4412CDBE;
+	Fri, 14 Nov 2025 03:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763092607; cv=none; b=NTbrwYT3kZgP9a9QlOjtFo0eSgCGeSk0wNwtHK4LnWFdBJ/hG9A34bpeVPMlvX/F0L67XWW6i7XjvQATeX80X+lfAmgW419stBC+D/hnK3yR5AoWk+e5nfSJdS5NmFroMDPhkw4e99cGDhzsh2h1+I6Z7/zlZ96e8dOibDhuk2s=
+	t=1763092640; cv=none; b=dzb62GhLkKYRQNIQiysrSsRA7LNMu3LISvG31oi52novl/GkSQ4YYEgFxsOp2lyKFiQOOaXv/pucU1TmIzWLUPJt64NWCO3lkPGhc0rmcxzx/t1146h2UyNsvwN6SPSbjQSeS+0Ele8Yt+LkzcO2DYXPxbpQ1mnHnfVG5iTpHPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763092607; c=relaxed/simple;
-	bh=GN/0wYQwkRvtIO8s1WswcmGVp7q8Cniypx+tJmnIQ60=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Zm53GvNFRr67lUV0OU+L+B5Mx0y8miw7CqCpAH56PNjrBw9QU7PLKd0vGeuJQQvwCPHXjQcoI3X6lZC0a/JCREzWBQAF8lMPLrqXG2NKVnYCbmkzem1+ELSX6QIfgx953fwfQyxZqso7O05ZJVpAccWDHSwFpitiZLMpuQ8HXI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=xhDEjyV4; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1763092593;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WyLoRKFLvpUNlw9J7t8+RiqSiG4sxWsR0UH+9VFg/+U=;
-	b=xhDEjyV4VMMk3oq2zP9elN46uvjNtK3CEgKp4M5lPecJYuj5sRbyX57MzR/81EIZhpGZ9n
-	QpECSRRihiIlYzEcekSbmSDminbfHbRV3eg1MUGZeagczJWTYemHivWVll/pFH5zLAA56i
-	BA/QU2GmZxaK+0HHKnWk5WYxQzYSdMw=
-From: Yuntao Wang <yuntao.wang@linux.dev>
-To: robh@kernel.org
-Cc: akpm@linux-foundation.org,
-	ardb@kernel.org,
-	bhe@redhat.com,
-	catalin.marinas@arm.com,
-	changyuanl@google.com,
-	devicetree@vger.kernel.org,
-	geert+renesas@glider.be,
-	geoff@infradead.org,
-	graf@amazon.com,
-	james.morse@arm.com,
-	linux-kernel@vger.kernel.org,
-	mark.rutland@arm.com,
-	rppt@kernel.org,
-	saravanak@google.com,
-	thunder.leizhen@huawei.com,
-	yuntao.wang@linux.dev
-Subject: Re: [PATCH v2 5/7] of/fdt: Simplify the logic of early_init_dt_scan_memory()
-Date: Fri, 14 Nov 2025 11:55:58 +0800
-Message-ID: <20251114035600.13453-1-yuntao.wang@linux.dev>
-In-Reply-To: <20251113220356.GA800052-robh@kernel.org>
-References: <20251113220356.GA800052-robh@kernel.org>
+	s=arc-20240116; t=1763092640; c=relaxed/simple;
+	bh=tSQjLLHNA8yuGjmtfugzc7kXZDH45UT6aFpFYINvms8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=h4hA1//xMJnbZO43zenmIvxV52DJ0v8be3Cik/8ocuMKgouQDhwGR32zLclNEjIGzmWdvVUrPjc+HlkXVlNVULaVMDEkeb5czEO2LYE3JQs0rM7Q/lHinLWUxeZetHpz3/hZOcBmTpPiu6/TtWdQxCyCc9IGb+wSYPctZtXFZ74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=aLxhxlYH; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1763092637;
+	bh=PBEe7m4ruu9JlDhXEHQH8OB4d4RdZCG95qxZSNdiuTY=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=aLxhxlYHg2hEiiWKzEYXsroGVyP6tEsllRg0s94dGktPw0RofSA9ijkHG8FF/F8Dt
+	 dI7hgQVrAO/cPcx5AhN6WWJwHb4wdOynv4GwtrHCxfqDMi5Fs1fRKcKBDARkSJzroS
+	 FaBRKGR7hQj2aNoXKlb4bot3zw4eHiRt2ugKzPAtjxcMVeVkPdeiZqxr17xPrSmyV1
+	 vvbzLcyMXTPOKtbNmUyuCqjqR1mHVkNT+Kby05srb5zpEItW2ExrTFr63MRB8nb5YS
+	 NbxgVsIXvxMj3jFNrCNzd4sF/sWpsarQjuFo9kBRD+3mZJY1MLPgWzIwNWEg2Ey8Ec
+	 uK19jp5cSwzUw==
+Received: from [192.168.68.115] (unknown [180.150.112.244])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 752DD783DF;
+	Fri, 14 Nov 2025 11:57:16 +0800 (AWST)
+Message-ID: <0118d17eb884ee664a035d44ddbbec56a418e353.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] dt: aspeed: clemente: move hdd_led to its own gpio-leds
+ group
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: alex.ts.wang@fii-foxconn.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	george.kw.lee@fii-foxconn.com, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
+ Stanley <joel@jms.id.au>
+Date: Fri, 14 Nov 2025 14:27:16 +1030
+In-Reply-To: <20251023-leo-dts-add-shunt-resistor-v1-1-5d9980aba308@fii-foxconn.com>
+References: 
+	<20251023-leo-dts-add-shunt-resistor-v1-1-5d9980aba308@fii-foxconn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 
-On Thu, 13 Nov 2025 16:03:56 -0600, Rob Herring <robh@kernel.org> wrote:
+On Thu, 2025-10-23 at 18:26 +0800, Alex Wang via B4 Relay wrote:
+> From: Alex Wang <alex.ts.wang@fii-foxconn.com>
+>=20
+> The gpio-leds driver requires all GPIOs in a group to be available;
+> if any GPIO in the group is missing the whole group will not be
+> created.
+>=20
 
-> On Thu, Nov 13, 2025 at 11:51:02PM +0800, Yuntao Wang wrote:
-> > Use the existing helper functions to simplify the logic of
-> > early_init_dt_scan_memory()
-> > 
-> > Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
-> > ---
-> >  drivers/of/fdt.c | 14 ++++++--------
-> >  1 file changed, 6 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index 4c45a97d6652..b6b059960fc2 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -1027,7 +1027,7 @@ int __init early_init_dt_scan_memory(void)
-> >  
-> >  	fdt_for_each_subnode(node, fdt, 0) {
-> >  		const char *type = of_get_flat_dt_prop(node, "device_type", NULL);
-> > -		const __be32 *reg, *endp;
-> > +		const __be32 *reg;
-> >  		int l;
-> >  		bool hotpluggable;
-> >  
-> > @@ -1038,23 +1038,21 @@ int __init early_init_dt_scan_memory(void)
-> >  		if (!of_fdt_device_is_available(fdt, node))
-> >  			continue;
-> >  
-> > -		reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
-> > +		reg = of_fdt_get_addr_size_prop(node, "linux,usable-memory", &l);
-> >  		if (reg == NULL)
-> > -			reg = of_get_flat_dt_prop(node, "reg", &l);
-> > +			reg = of_fdt_get_addr_size_prop(node, "reg", &l);
-> >  		if (reg == NULL)
-> >  			continue;
-> >  
-> > -		endp = reg + (l / sizeof(__be32));
-> >  		hotpluggable = of_get_flat_dt_prop(node, "hotpluggable", NULL);
-> >  
-> > -		pr_debug("memory scan node %s, reg size %d,\n",
-> > +		pr_debug("memory scan node %s, reg {addr,size} entries %d,\n",
-> >  			 fdt_get_name(fdt, node, NULL), l);
-> >  
-> > -		while ((endp - reg) >= (dt_root_addr_cells + dt_root_size_cells)) {
-> > +		while (l-- > 0) {
-> >  			u64 base, size;
-> >  
-> > -			base = dt_mem_next_cell(dt_root_addr_cells, &reg);
-> > -			size = dt_mem_next_cell(dt_root_size_cells, &reg);
-> > +			of_fdt_read_addr_size(reg, &base, &size);
-> 
-> This doesn't work. of_fdt_read_addr_size() needs to take an entry index 
-> to read each entry.
-> 
-> Rob
+To me its behaviour appears inconsistent. Contrast:
 
-Hi Rob,
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
+vers/leds/leds-gpio.c?h=3Dv6.18-rc1#n176
 
-This was entirely my mistake. I intended to pass &reg rather than reg,
-just like how dt_mem_next_cell() works.
+with
 
-So the correct definition of of_fdt_read_addr_size() should be:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
+vers/leds/leds-gpio.c?h=3Dv6.18-rc1#n281
 
-void __init of_fdt_read_addr_size(const __be32 **prop, u64 *addr, u64 *size);
+The driver should probably pick one policy or the other?
 
-And the correct usage should be:
+>  The hdd_led GPIO is only present after standby power is
+> enabled, which can prevent other LEDs in the same group from being
+> created and blocks properly setting 'bmc_ready_noled'.
+>=20
+> Move the 'hdd_led' node into a separate gpio-leds group so that other
+> LEDs are not blocked and the 'bmc_ready_noled' flag can be set
+> correctly.
 
-of_fdt_read_addr_size(&reg, &base, &size);
+How is standby power applied? What are you doing to enable the use of
+hdd-leds once that occurs?
 
-This bug was caused by my oversight — apologies for that.
-
-I didn’t choose an interface like `of_fdt_read_addr_size(reg, i, &base, &size)`
-because in normal cases the data in prop is consumed sequentially, and I felt
-there was no need to introduce an entry index parameter, which would increase
-the API’s complexity.
-
-There is another issue reported by kernel test robot:
-
-drivers/of/fdt.c:903:31: error: incompatible pointer types passing 'phys_addr_t *' (aka 'unsigned int *') to parameter of type 'u64 *' (aka 'unsigned long long *') [-Wincompatible-pointer-types]
-
-Given this, the problem exists regardless of which implementation we choose.
-
-I’m considering two possible solutions:
-
-1. Convert of_fdt_read_addr_size() into a macro.
-2. Split it into two functions: of_fdt_read_addr() and of_fdt_read_size().
-
-I’m leaning toward the second option.
-
-What do you think? Or do you have a better approach?
-
-Thanks,
-Yuntao
+Andrew
 
