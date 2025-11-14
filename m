@@ -1,468 +1,349 @@
-Return-Path: <devicetree+bounces-238775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36DEC5E426
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:34:55 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42FDAC5E238
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 17:15:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 474D236033A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:30:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8E51350740C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 15:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA5F0337100;
-	Fri, 14 Nov 2025 15:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A87433C530;
+	Fri, 14 Nov 2025 15:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m4KAxeZl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tBwwaeql"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C588330B3B;
-	Fri, 14 Nov 2025 15:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53C6033BBC8;
+	Fri, 14 Nov 2025 15:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763133607; cv=none; b=XrM4GmKvObaDOXwtWH2Fb+PMCVeV6XtLFsjKNhftn+g7PfZOyTFqja9xmVlMWTar7SO9mj1UcyCDXbkvgN+LJsirBvMS17nj7YzO/JYfS/KctwAEVxNSQyrpPjolkyn1Xp08sM+OiP2RukSSEX1L+6/q9XDIV7BqV2+/Kl5/cDY=
+	t=1763133620; cv=none; b=OvlO5wlYiZcFT89+UMJ5OoHqP90Cxw8KDfeVEPj6ETcMh9yyaREOQBo5wFBm27/BGEBGBDgc8NhEOdrYaKR5K3+OcEDNFHuz9uiZyXP5Gpkb2w/02zzfCelr1YuZsuQyLatL/4nLAoDmx4v3YQLgdv3YN5x3P4YcT/MxChcg1O0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763133607; c=relaxed/simple;
-	bh=0HNl+sI0ZrhFLrTIC8TpVoK8BhcUPfpwOVUrieKMlQg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hnU6leLO8kLvoKREm8vTo8sElZc66lVU81VaoWtRhXUTuT1N5lMDCeAePqDz4vpPv1e2inb2rDMf7CIiDdhcnHDb3uNwk6lZ7/6hGZHwMSNFN41OJTQLczQhsTrSdlQLzrwb7MgyUHV3f9AiGd3F2XmojeqTily41fZCPBPfb6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m4KAxeZl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D086CC4CEF1;
-	Fri, 14 Nov 2025 15:20:06 +0000 (UTC)
+	s=arc-20240116; t=1763133620; c=relaxed/simple;
+	bh=j7OEjxnWbnxgYr5nv9qmH2uUsnefB/Xdl9fyqK8S4q0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Or3SbNOV8mcHvY6jqpQ6s8bcLit94qFtqtlRn7U95ieOffy3qdK4VqYXFlybZ9Sez0rmNH7Yp4Gd+Uh8gvreunwi2WhbtxjAUeq0+DKWxpmIR9IJnDYzfDa3vgKv8v6Wg3fbFx1cLddO1M1g7jUSFconH+xg8fTW5vC9NGwbKZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tBwwaeql; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CA466C19421;
+	Fri, 14 Nov 2025 15:20:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763133607;
-	bh=0HNl+sI0ZrhFLrTIC8TpVoK8BhcUPfpwOVUrieKMlQg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m4KAxeZlMWXTaHVxkOpOW8LvQyKiRutRZZDoatHybHi72952SdgDq9LV835yfOJJf
-	 zJ/5oR2jAOUV+rOd4zrMynYhOfnfRI2aiufu2MhAngkgMr2JrM4LhhdIJGk/RS0b2A
-	 ezmNJKGxqiegJ834TArLUrwx2/RBF8Ed9oU0+NgkgVfNj2RlEwTaw0aK8dwh6Ul+w7
-	 M3XA6gaGaymFFz8bSkB2I23F6xuf5eRDOcbnA7h7lGepZgL0CYa30pLJj2jwUu8o9y
-	 9gFX2aw7ibZnpLZwYoNYB5UelfHSAD5Y/wUU7QlTKAJE3TRq/UbVxnDPbCczCGXYO8
-	 g6d0gUY5rvt4g==
-Date: Fri, 14 Nov 2025 09:20:05 -0600
-From: Rob Herring <robh@kernel.org>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	linux-samsung-soc@vger.kernel.org, Roy Luo <royluo@google.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Julius Werner <jwerner@chromium.org>,
-	William McVicker <willmcvicker@google.com>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for
- frankel/blazer/mustang
-Message-ID: <20251114152005.GA893333-robh@kernel.org>
-References: <20251111192422.4180216-1-dianders@chromium.org>
- <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid>
- <20251113022719.GA2281498-robh@kernel.org>
- <CAD=FV=WUXK_xs4taxs8Q4kxqvkNYE+Ftk3N=N7Nm7yKEvUMtAQ@mail.gmail.com>
+	s=k20201202; t=1763133619;
+	bh=j7OEjxnWbnxgYr5nv9qmH2uUsnefB/Xdl9fyqK8S4q0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=tBwwaeqlbZEdeLgXxCqJJOWYZan6csk8pjlT8FE8bF5UdsohiOBMd7/m4s5Uf7dg4
+	 qgwNHyqpvVY6nXBFcG2kitXQ+TAHC6fMLFL0rNbnOmjWUgyiOmF3cazu2zBnPo2MPG
+	 J4/0oGlgzLvPfDHsld2wL3kVS0ExkgVYKO/udwIoiFuYhEB3vxJktqJ8z6/P56Wira
+	 XaM6/3GZ48TySr/HT/TfyoXNkvmWqN9kkJqC5A2+ljlA4ZmLNMvnisVCHTs7IMBIIj
+	 fZOo69nTc4SjgWJBudu5iu0cz8xAsh3iCs2cMO4kn2yByQww0o3sG5Cq3mMoldhHNC
+	 xZwxcqvXlXKHQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0E9ECE7B13;
+	Fri, 14 Nov 2025 15:20:19 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH v15 00/14] media: rockchip: add a driver for the rockchip
+ camera interface
+Date: Fri, 14 Nov 2025 16:20:11 +0100
+Message-Id: <20240220-rk3568-vicap-v15-0-8f4915ee365d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=WUXK_xs4taxs8Q4kxqvkNYE+Ftk3N=N7Nm7yKEvUMtAQ@mail.gmail.com>
+X-B4-Tracking: v=1; b=H4sIAKtIF2kC/33SzW7bMAwH8FcpfJ4KUl+Wdup7DD2QErUYS+PAD
+ twNRd59Uouty6D4SAn6/SmQb8MqyyTr8PXhbVhkm9ZpPtUC3ZeHIR3o9F3UlOvBoEFb0BrU8sM
+ 4H9Q2JTorjmxKjNoVa4f6hGkVxQud0qE9epFDntSGpt2dFynTz/esb8+1PkzrZV5+vUdv2E4/Q
+ zavgrrM5ynd5m2oQGkfgLCQt8BPr/OxfLT9eJLL0OBN/8VQ43gf0xVjzDaEkhJk08XMH8yBBn8
+ fMxXzMWPBKC5Z6GL2HwzjfcxWTCJ4D0BiuI+5T8zsdeYqVmqe087YYlIX87cDuBV8FbIurrAIO
+ odPaT4eieeFHtP88gGMe8BYgdEFLDl6MoZ6QNgDQgVijomTZadt7gFxD4gVoCRYZ5MsBd0DEPY
+ EhDZhnQONrCGy7RK4S7T1pQJCmZwV1/0G6l2iLW3ymSWJZ46hS5hdoq1qJvSWbcRQpEvYXaItK
+ JvAPhOUFOB/4nq9/gZMyAvdXAQAAA==
+To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Gerald Loacker <gerald.loacker@wolfvision.net>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Markus Elfring <Markus.Elfring@web.de>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Paul Kocialkowski <paulk@sys-base.io>, 
+ Alexander Shiyan <eagle.alexander923@gmail.com>, 
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, 
+ Michael Riesch <michael.riesch@collabora.com>, 
+ Michael Riesch <michael.riesch@collabora.com>, 
+ Mehdi Djait <mehdi.djait@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763133617; l=11371;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=j7OEjxnWbnxgYr5nv9qmH2uUsnefB/Xdl9fyqK8S4q0=;
+ b=o72Um10xmh5ToSKuJGaIF7Iz3BjIVm7/HzVoUEq2jtZyCprx3JuSB1HorwSFeXrjP0hVhACZY
+ yGAfX6cZ8hUAPKgUhjD+5Jarwbz9iGczkk4TqBYuB5T+9Db8ZIn6oN+
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
 
-On Wed, Nov 12, 2025 at 07:29:55PM -0800, Doug Anderson wrote:
-> Hi,
-> 
-> On Wed, Nov 12, 2025 at 6:27 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Tue, Nov 11, 2025 at 11:22:04AM -0800, Douglas Anderson wrote:
-> > > Add top-level DT bindings useful for Pixel 10 (frankel), Pixel 10 Pro
-> > > (blazer), and Pixel 10 Pro XL (mustang).
-> > >
-> > > Since overlays are fairly well-supported these days and the downstream
-> > > Pixel bootloader assumes that the SoC is the base overlay and specific
-> > > board revisions are overlays, reflect the SoC / board split in the
-> > > bindings.
-> > >
-> > > The SoC in the Pixel 10 series has the marketing name of "Tensor
-> > > G5". Despite the fact that it sounds very similar to the "Tensor G4",
-> > > it's a very different chip. Tensor G4 was, for all intents and
-> > > purposes, a Samsung Exynos offshoot whereas Tensor G5 is entirely its
-> > > own SoC. This SoC is known internally as "laguna" and canonically
-> > > referred to in code as "lga". There are two known revisions of the
-> > > SoC: an A0 pre-production variant (ID 0x000500) and a B0 variant (ID
-> > > 0x000510) used in production. The ID is canonicaly broken up into a
-> > > 16-bit SoC product ID, a 4-bit major rev, and a 4-bit minor rev.
-> > >
-> > > The dtb for all supported SoC revisions is appended to one of the boot
-> > > partitions and the bootloader will look at the device trees and pick
-> > > the correct one. The current bootloader uses a downstream
-> > > `soc_compatible` node to help it pick the correct device tree. It
-> > > looks like this:
-> > >   soc_compatible {
-> > >     B0 {
-> > >       description = "LGA B0";
-> > >       product_id = <0x5>;
-> > >       major = <0x1>;
-> > >       minor = <0x0>;
-> > >       pkg_mode = <0x0>;
-> > >     };
-> > >   };
-> > > Note that `pkg_mode` isn't currently part of the ID on the SoC and the
-> > > bootloader always assumes 0 for it.
-> > >
-> > > In this patch, put the SoC IDs straight into the compatible. Though
-> > > the bootloader doesn't look at the compatible at the moment, this
-> > > should be easy to teach the bootloader about.
-> > >
-> > > Boards all know their own platform_id / product_id / stage / major /
-> > > minor / variant. For instance, Google Pixel 10 Pro XL MP1 is:
-> > > * platform_id (8-bits): 0x07 - frankel/blazer/mustang
-> > > * product_id (8-bits):  0x05 - mustang
-> > > * stage (4-bits):       0x06 - MP
-> > > * major (8-bits):       0x01 - MP 1
-> > > * minor (8-bits):       0x00 - MP 1.0
-> > > * variant (8-bits):     0x00 - No special variant
-> > >
-> > > When board overlays are packed into the "dtbo" partition, a tool
-> > > (`mkdtimg`) extracts a board ID and board rev from the overlay and
-> > > stores that as metadata with the overlay. Downstream, the dtso
-> > > intended for the Pixel 10 Pro XL MP1 has the following properties at
-> > > its top-level:
-> > >   board_id = <0x70506>;
-> > >   board_rev = <0x010000>;
-> > >
-> > > The use of top-level IDs can probably be used for overlays upstream as
-> > > well, but also add the IDs to the compatible string in case it's
-> > > useful.
-> > >
-> > > Compatible strings are added for all board revisions known to be
-> > > produced based on downstream sources.
-> > >
-> > > A few notes:
-> > > * If you look at `/proc/device-tree/compatible` and
-> > >   `/proc/device-tree/model` on a running device, that won't
-> > >   necessarily be an exact description of the hardware you're running
-> > >   on. If the bootloader can't find a device tree that's an exact match
-> > >   then it will pick the best match (within reason--it will never pick
-> > >   a device tree for a different product--just for different revs of
-> > >   the same product).
-> > > * There is no merging of the top-level compatible from the SoC and
-> > >   board. The compatible string containing IDs for the SoC will not be
-> > >   found in the device-tree passed to the OS.
-> >
-> > I think this is a problem...
-> 
-> Fair enough. Is the right answer to add a special rule when applying
-> overlays to base dtbs? If both the base DTB and the overlay contain a
-> top-level compatible, should we merge the two instead of having the
-> overlay replace the base property? Would that be right in all cases?
+Habidere,
 
-That's what has to be figured out. Maybe there's a generic 
-rule/transformation or maybe it's platform specifc or both?
+This series introduces support for the Rockchip Camera Interface (CIF),
+which is featured in many Rockchip SoCs in different variations.
+The series has now been around for a while and has received many comments
+and reviews. Thus, it should be ready for mainline by now.
 
-> Specifically, if we were to look at how we handle our dev boards that
-> are socketed and can handle either SoC rev A0 or SoC rev B0, I guess
-> the top-level compatible string somehow needs to indicate this
-> somehow? If we "merged" the compatible strings of the board and the
-> SoC?
+The last issue we discussed (see thread to v14, link below) was the
+necessary integration of a mux subdevice, as the MIPI CSI-2 data can
+be passed to the ISP and/or to the VICAP on RK3568. In order to avoid
+any uAPI breakage, the MIPI CSI-2 receiver support has been removed in v15
+(following an off-list discussion with Sakari).
 
-Yes.
+Therefore, the v15 of the series adds a media controller centric V4L2
+device driver for the Rockchip CIF with
+ - support for the PX30 VIP (not tested, though, due to the lack of HW)
+ - support for the RK3568 VICAP, including
+    - capturing frames from the DVP
+    - capturing frames from the MIPI CSI-2 receiver
+ - abstraction for the ping-pong scheme to allow for future extensions
+ - abstraction for the INTERFACE and CROP parts to allow for future
+   extensions
+ - initial support for different virtual channels (not tested, though,
+   due to the lack of HW)
 
-> So if we had a deepspace (devboard) with a A0 rev SoC:
-> 
-> base (lga A0):
->   google,soc-id-0005-rev-00, google,lga
-> 
-> overlay (deepspace devboard 1)
->   google,pixel-id-070101-rev-010000
-> 
-> Final compatible:
->   google,pixel-id-070101-rev-010000, google,soc-id-0005-rev-00, google,lga
-> 
-> If we had a deepspace with a B0 rev SoC:
-> 
-> base (lga A0):
->   google,soc-id-0005-rev-10, google,lga
-> 
-> overlay (deepspace devboard 1)
->   google,pixel-id-070101-rev-010000
-> 
-> Final compatible:
->   google,pixel-id-070101-rev-010000, google,soc-id-0005-rev-10, google,lga
-> 
-> 
-> ...is that what you're thinking? 
+Apart from that, there are no changes compared to v14.
 
-Yes, on the final value, but that leaves the base and overlay with 
-invalid values.
+Looking forward to your comments!
 
-Maybe we do something like '"", "soc"' and '"board", ""' so the entry is 
-present even if the value is not. We still have to put something in the 
-schema, but at least it makes it clear these are incomplete values.
+To: Mehdi Djait <mehdi.djait@linux.intel.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Théo Lebrun <theo.lebrun@bootlin.com>
+To: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+To: Gerald Loacker <gerald.loacker@wolfvision.net>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+To: Sakari Ailus <sakari.ailus@iki.fi>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+To: Kever Yang <kever.yang@rock-chips.com>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Collabora Kernel Team <kernel@collabora.com>
+To: Paul Kocialkowski <paulk@sys-base.io>
+To: Alexander Shiyan <eagle.alexander923@gmail.com>
+To: Val Packett <val@packett.cool>
+To: Rob Herring <robh@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
 
-> Of course, it still somehow feels
-> cleaner to me to put the SoC compatible under the "soc@0" node, though
-> I know that goes against "tradition"... If we did that then the base
-> SoC "dtb" doesn't need a compatible at all and the board would _just_
-> have its own compatible.
+Changes in v15:
+- dropped everything related to MIPI CSI-2 receiver
+- Link to v14: https://lore.kernel.org/r/20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com
 
-The soc@0 node doesn't cover everything in the SoC though. The biggest 
-thing being the CPU nodes.
+Changes in v14:
+- rkcsi: fixed invalid format handling in _set_fmt() (v4l2-compliance)
+- rkcif-interface: fixed crop, reset crop at source when sink format
+  is changed (v4l2-compliance)
+- rebased onto media-committers/next
+- Link to v13: https://lore.kernel.org/r/20240220-rk3568-vicap-v13-0-da164b4918fe@collabora.com
+
+Changes in v13:
+- fixed interrupt names in CSI-2 reciever bindings example (Rob's bot)
+- revised Radxa Camera 8M device tree overlay
+- Link to v12: https://lore.kernel.org/r/20240220-rk3568-vicap-v12-0-c6dbece6bb98@collabora.com
+
+Changes in v12:
+- added Radxa Camera 8M device tree overlay
+- rebased onto v6.18-rc1
+- fixed IOMMU pagefaults caused by wrong VLW (Mehdi)
+- fixed indentation of register defines in -regs.h (Sakari)
+- renamed CSI-2 receiver interrupts (Rob)
+- added MEDIA_BUS_TYPE_* as comments in DT bindings (Bryan)
+- added newline in rkcif-dev.c (Bryan)
+- Link to v11: https://lore.kernel.org/r/20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com
+
+Changes in v11:
+- rkcif: split large driver patch (6/13 of v10) into smaller
+  patches (6-11/17 of v11) (Bryan)
+- rkcsi: replaced devm_reset_control_array_get_exclusive with 
+  devm_reset_control_get_exclusive (Philipp)
+- Link to v10: https://lore.kernel.org/r/20240220-rk3568-vicap-v10-0-62d8a7b209b4@collabora.com
+
+Changes in v10:
+- rkcsi: fixed error handling in rkcsi_start (Bryan)
+- rkcsi: fixed interrupt references in device tree and bindings
+  (Rob's bot)
+- added missing call to rkcif_mipi_stop_streaming from rkcif_mipi_isr
+  (Mehdi)
+- renamed remaining instances "cif_" -> "rkcif_" in functions
+- Link to v9: https://lore.kernel.org/r/20240220-rk3568-vicap-v9-0-ace1e5cc4a82@collabora.com
+
+Changes in v9:
+- added compatible for RK3588 MIPI CSI-2 receiver, thus dropped
+  Krzysztof's R-b
+- added interrupts to rkcsi DT binding and RK356x DT
+- added variant specific callback to rkcif-capture-mipi that puts
+  together the CTRL0 register content (which varies between RK3568
+  and RK3588)
+- fixed v4l2_fill_pixfmt_mp() return value handling (Mehdi)
+- Link to v8: https://lore.kernel.org/r/20240220-rk3568-vicap-v8-0-9d9cbc4b524d@collabora.com
+
+Changes in v8:
+- rebased onto v6.16-rc1
+- fixed RKCIF_MIPI_MAX value in rkcif-common.h
+- fixed rkcsi Kconfig (kernel test robot)
+- sorted rkcsi DT bindings document properly, completed example
+  (Krzysztof)
+- squashed the defconfig patches (Krzysztof), dropped Bryan's R-b
+- Link to v7: https://lore.kernel.org/r/20240220-rk3568-vicap-v7-0-7581fd96a33a@collabora.com
+
+Changes in v7:
+- moved MIPI CSI-2 receiver driver into separate directory (Laurent)
+- rkcsi: fixed return values (Bryan)
+- rkcsi: fixed v4l2_get_link_freq to use pad instead of control
+  handler (Sakari)
+- rkcsi: added data-lanes property (Mehdi)
+- rkcif: fixed formatting (Bryan)
+- fixed "int" -> "unsigned int" in all for loops (Sakari)
+- rkcif-stream: fixed minimum number of required buffers (Mehdi)
+- rkcif-stream: used guards for the spinlock (Markus and Mehdi)
+- rkcif-stream: made driver less noisy with dev_dbg (Mehdi)
+- rkcif-stream: fixed issues detected by v4l2-compliance (Mehdi)
+- rkcif-dvp-capture: fixed return value propagation in _register()
+  (Mehdi)
+- removed stray "phy-names" from required properties (Rob's bot)
+- Link to v6: https://lore.kernel.org/r/20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com
+
+Changes in v6:
+- rebased onto v6.15-rc1
+- renamed "MIPI CSI HOST" -> "MIPI CSI RECEIVER" (Laurent)
+- s/@wolfvision.net/@collabora.com where appropriate
+- renamed DVP delay property and moved it to the endpoint (Sakari)
+- implemented DT review comments (Krzysztof and Sakari)
+- implemented driver review comments (Sakari)
+- fixed issues raised by media-ci (yet again)
+- added documentation including a RK3568 topology (new patch 1)
+  (Sakari)
+- added patch that enables rkcif in the defconfig (new patch 9)
+- Link to v5: https://lore.kernel.org/r/20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net
+
+Changes in v5:
+- fixed issues raised by media-ci
+- fixed dt bindings (comments by Rob and Sakari)
+- fixed probe on systems with no DVP in DT (comment by Alexander)
+- fixed error path in register offset calculation
+- split off MIPI CSI host driver into separate module (comment
+  by Mehdi)
+- added MODULE_DEVICE_TABLE() for both drivers (comment by Mehdi)
+- Link to v4: https://lore.kernel.org/r/20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net
+
+Changes in v4:
+- added support for the MIPI CSI-2 receiver (new patches 4, 6, 7, 10)
+- fixed asserts on stream stop
+- fixed register address lookup
+- fixed link validiation callback
+- fixed issues raised by Rob's bot, kernel test robot, and media-ci
+- Link to v3: https://lore.kernel.org/r/20250206-v6-8-topic-rk3568-vicap-v3-0-69d1f19e5c40@wolfvision.net
+
+Changes in v3:
+- renamed the driver "cif" -> "rkcif"
+- rebased onto v6.14-rc1
+- abstracted the generic INTERFACE+CROP part
+- addressed comments by Rob and Sakari
+- added V4L2 MPLANE formats to DVP
+- added patch that enables the RK3568 VICAP DVP on PF5 IO Expander
+- fixed formatting issues raised by media-ci bot
+- Link to v2: https://lore.kernel.org/r/20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net
+
+Changes in v2:
+- merged with Mehdi's v13
+- refactored the complete driver towards a media controller centric driver
+- abstracted the generic ping-pong stream (can be used for DVP as well as for CSI-2)
+- switched to MPLANE API
+- added support for notifications
+- Link to v1: https://lore.kernel.org/r/20240220-v6-8-topic-rk3568-vicap-v1-0-2680a1fa640b@wolfvision.net
+
+---
+Mehdi Djait (2):
+      media: dt-bindings: add rockchip px30 vip
+      arm64: dts: rockchip: add the vip node to px30
+
+Michael Riesch (12):
+      Documentation: admin-guide: media: add rockchip camera interface
+      media: dt-bindings: video-interfaces: add defines for sampling modes
+      media: dt-bindings: add rockchip rk3568 vicap
+      media: rockchip: add driver for the rockchip camera interface
+      media: rockchip: rkcif: add abstraction for interface and crop blocks
+      media: rockchip: rkcif: add abstraction for dma blocks
+      media: rockchip: rkcif: add support for px30 vip dvp capture
+      media: rockchip: rkcif: add support for rk3568 vicap dvp capture
+      media: rockchip: rkcif: add support for rk3568 vicap mipi capture
+      arm64: defconfig: enable rockchip camera interface
+      arm64: dts: rockchip: add vicap node to rk356x
+      arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
+
+ .../admin-guide/media/rkcif-rk3568-vicap.dot       |   8 +
+ Documentation/admin-guide/media/rkcif.rst          |  79 ++
+ Documentation/admin-guide/media/v4l-drivers.rst    |   1 +
+ .../bindings/media/rockchip,px30-vip.yaml          | 124 +++
+ .../bindings/media/rockchip,rk3568-vicap.yaml      | 172 ++++
+ MAINTAINERS                                        |  10 +
+ arch/arm64/boot/dts/rockchip/px30.dtsi             |  12 +
+ .../rk3568-wolfvision-pf5-io-expander.dtso         |  20 +
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi      |  44 ++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/media/platform/rockchip/Kconfig            |   1 +
+ drivers/media/platform/rockchip/Makefile           |   1 +
+ drivers/media/platform/rockchip/rkcif/Kconfig      |  18 +
+ drivers/media/platform/rockchip/rkcif/Makefile     |   8 +
+ .../platform/rockchip/rkcif/rkcif-capture-dvp.c    | 865 +++++++++++++++++++++
+ .../platform/rockchip/rkcif/rkcif-capture-dvp.h    |  25 +
+ .../platform/rockchip/rkcif/rkcif-capture-mipi.c   | 777 ++++++++++++++++++
+ .../platform/rockchip/rkcif/rkcif-capture-mipi.h   |  23 +
+ .../media/platform/rockchip/rkcif/rkcif-common.h   | 250 ++++++
+ drivers/media/platform/rockchip/rkcif/rkcif-dev.c  | 303 ++++++++
+ .../platform/rockchip/rkcif/rkcif-interface.c      | 442 +++++++++++
+ .../platform/rockchip/rkcif/rkcif-interface.h      |  31 +
+ drivers/media/platform/rockchip/rkcif/rkcif-regs.h | 153 ++++
+ .../media/platform/rockchip/rkcif/rkcif-stream.c   | 638 +++++++++++++++
+ .../media/platform/rockchip/rkcif/rkcif-stream.h   |  32 +
+ include/dt-bindings/media/video-interfaces.h       |   4 +
+ 26 files changed, 4042 insertions(+)
+---
+base-commit: d363bdfa0ec6b19a4f40b572cec70430d5b13ad6
+change-id: 20240220-rk3568-vicap-b9b3f9925f44
+
+Best regards,
+-- 
+Michael Riesch <michael.riesch@collabora.com>
 
 
-> NOTE: I don't think this is a novel problem. There are already
-> existing overlays that mess with the top-level compatible...
-> 
-> grep '^\tcompatible' $(find arch/arm64/boot/dts -name '*.dtso')
-
-That's empty for me...
-
-But there are certainly .dtsi files which define a compatible that's 
-invalid, but they are overwritten by the board .dts file.
-
-> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > ---
-> > > In the past, attempts to have the SoC as a base device tree and boards
-> > > supported as overlays has been NAKed. From a previous discussion [1]
-> > > "Nope, boards are not overlays. Boards are DTB." I believe this needs
-> > > to be relitigated.
-> >
-> > I think it is worth having the discussion. There's been some discussions
-> > about an overlay split with SoMs and baseboards as well. I think that's
-> > what is driving this addition[1]. I don't think this case is much
-> > different.
-> >
-> > As a different way to combine things compared to .dtsi files, I don't
-> > care too much how things are structured to the extent that's just
-> > internal structure and we're moving the combining of files from one
-> > point in time to another.
-> >
-> > My concern here is largely around validation. Can the SoC DTB pass
-> > validation, and can we still validate the whole thing at build time? To
-> > start with, it's not great if we have to make the schema allow only an
-> > SoC compatible without a board compatible. Then suddenly omitting a
-> > board compatible is always valid. Solving that with an entirely
-> > different SoC compatible as you have doesn't seem great.
-> 
-> I guess, in theory, we could solve this by simply not trying to
-> validate the SoC "dts" file on its own. Is this as simple as giving it
-> its own filename suffix? Do we just call it "lga-b0.dtsb" or for
-> "device tree source base", or something like that? Then we add kernel
-> rules where we don't validate that on its own but only validate it
-> together with overlays?
-
-We already do that with overlays. They are are not validated on their 
-own, and that's why we require them to be applied at build time to 
-something. Though that's hard to enforce and I'm not happy with 
-extending that to the base.
-
-As an aside, part of what makes validation so slow is N boards 
-for an SoC validates the SoC part of the DT N times. I'd like a way to 
-have a quicker validate all the SoC DTs.
-
-> > My other concern is whether this is an ABI between the SoC and board
-> > DTBs? And I don't mean just you, but for anyone wanting to do anything
-> > remotely similar. An ABI is a problem as we don't really have any way to
-> > validate each piece separately. (This is already a problem for existing
-> > overlays.)
-> 
-> To keep the problem smaller / easier to think about and not try to
-> solve all existing problems: the only case we're worried about at the
-> moment is when the base device tree and all overlays are generated at
-> the same time. That feels like it might be an easier case to handle?
-
-I know you don't care. I just don't want a mixture here. And if anyone 
-wants this to be an ABI, then the pieces need to be validated. Maybe 
-everyone is tired of us beating the ABI drum and will be happy if it is 
-not.
-
-
-> > > In the previous NAK, I didn't see any links to documentation
-> > > explicitly stating that DTBs have to represent boards. It's also
-> > > unclear, at least to me, _why_ a DTB would be limited to represent a
-> > > "board" nor what the definition of a "board" is.
-> > >
-> > > As at least one stab at why someone might not want an overlay scheme
-> > > like this, one could point out that the top-level compatible can be a
-> > > bit of a mess. Specifically in this scheme the board "compatible" from
-> > > the overlay will fully replace/hide the SoC "compatible" from the base
-> > > SoC. If this is truly the main concern, it wouldn't be terribly hard
-> > > to add a new semantic (maybe selectable via a new additional
-> > > property?) that caused the compatible strings to be merged in a
-> > > reasonable way.
-> > >
-> > > Aside from dealing with the compatible string, let's think about what
-> > > a "board" is. I will make the argument here that the SoC qualifies as
-> > > a "board" and that the main PCB of a phone can be looked at as a
-> > > "cape" for this SoC "board". While this may sound like a stretch, I
-> > > would invite a reader to propose a definition of "board" that excludes
-> > > this. Specifically, it can be noted:
-> > > * I have a development board at my desk that is "socketed". That is, I
-> > >   can pull the SoC out and put a different one in. I can swap in a
-> > >   "rev A0" or a "rev B0" SoC into this socket. Conceivably, I could
-> > >   even put a "Tensor G6", G7, G8, or G999 in the socket if it was
-> > >   compatible. In this sense, the "SoC" is a standalone thing that can
-> > >   be attached to the devboard "cape". The SoC being a standalone thing
-> > >   is in the name. It's a "system" on a chip.
-> > > * In case the definition of a board somehow needs a PCB involved, I
-> > >   can note that on my dev board the CPU socket is soldered onto to a
-> > >   CPU daughtercard (a PCB!) that then has a board-to-board connector
-> > >   to the main PCB.
-> > > * Perhaps one could argue that a dev board like I have describe would
-> > >   qualify for this SoC/board overlay scheme but that a normal cell
-> > >   phone wouldn't because the SoC isn't removable. Perhaps removability
-> > >   is a requirement here? If so, imagine if some company took a
-> > >   Raspberry Pi, soldered some components directly onto the "expansion"
-> > >   pins, and resold that to consumers. Does this mean they can't use
-> > >   overlays?
-> > >
-> > > To me, the above arguments justify why SoC DTBs + "board" overlays
-> > > should be accepted. As far as I can tell, there is no downside and
-> > > many people who would be made happy with this.
-> > >
-> > > [1] https://lore.kernel.org/all/dbeb28be-1aac-400b-87c1-9764aca3a799@kernel.org/
-> > >
-> > >  .../devicetree/bindings/arm/google.yaml       | 87 +++++++++++++++----
-> > >  1 file changed, 68 insertions(+), 19 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/google.yaml b/Documentation/devicetree/bindings/arm/google.yaml
-> > > index 99961e5282e5..f9f9ea1c8050 100644
-> > > --- a/Documentation/devicetree/bindings/arm/google.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/google.yaml
-> > > @@ -13,27 +13,18 @@ description: |
-> > >    ARM platforms using SoCs designed by Google branded "Tensor" used in Pixel
-> > >    devices.
-> > >
-> > > -  Currently upstream this is devices using "gs101" SoC which is found in Pixel
-> > > -  6, Pixel 6 Pro and Pixel 6a.
-> > > +  These bindings for older Pixel devices don't use device tree overlays so
-> > > +  no separate SoC entry is added. This may change in the future.
-> > >
-> > > -  Google have a few different names for the SoC:
-> > > -  - Marketing name ("Tensor")
-> > > -  - Codename ("Whitechapel")
-> > > -  - SoC ID ("gs101")
-> > > -  - Die ID ("S5P9845")
-> > > -
-> > > -  Likewise there are a couple of names for the actual device
-> > > -  - Marketing name ("Pixel 6")
-> > > -  - Codename ("Oriole")
-> > > -
-> > > -  Devicetrees should use the lowercased SoC ID and lowercased board codename,
-> > > -  e.g. gs101 and gs101-oriole.
-> > > +  Newer Pixel devices are expected to have the SoC device tree as the base
-> > > +  and specific board device trees as overlays.
-> > >
-> > >  properties:
-> > >    $nodename:
-> > >      const: '/'
-> > >    compatible:
-> > >      oneOf:
-> > > +      # Google Tensor G1 AKA gs101 AKA whitechapel AKA Die ID S5P9845 boards
-> > >        - description: Google Pixel 6 or 6 Pro (Oriole or Raven)
-> > >          items:
-> > >            - enum:
-> > > @@ -41,13 +32,71 @@ properties:
-> > >                - google,gs101-raven
-> > >            - const: google,gs101
-> > >
-> > > +      # Google Tensor G5 AKA lga (laguna) SoC and boards
-> > > +      - description: Tensor G5 SoC (laguna)
-> > > +        items:
-> > > +          - enum:
-> > > +              - google,soc-id-0005-rev-00  # A0
-> > > +              - google,soc-id-0005-rev-10  # B0
-> > > +          - const: google,lga
-> > > +      - description: Google Pixel 10 Board (Frankel)
-> > > +        items:
-> > > +          - enum:
-> > > +              - google,pixel-id-070302-rev-000000  # Proto 0
-> > > +              - google,pixel-id-070302-rev-010000  # Proto 1
-> > > +              - google,pixel-id-070302-rev-010100  # Proto 1.1
-> > > +              - google,pixel-id-070303-rev-010000  # EVT 1
-> > > +              - google,pixel-id-070303-rev-010100  # EVT 1.1
-> > > +              - google,pixel-id-070303-rev-010101  # EVT 1.1 Wingboard
-> > > +              - google,pixel-id-070304-rev-010000  # DVT 1
-> > > +              - google,pixel-id-070305-rev-010000  # PVT 1
-> > > +              - google,pixel-id-070306-rev-010000  # MP 1
-> >
-> > Should upstream really care about anything other than MP1? I don't think
-> > so. Which ones are useful in 1 year, 2 years, 10 years?
-> 
-> I suspect that nearly all of them are useful, though _possibly_ some
-> of the early proto devices can be removed?
-> 
-> Specifically, engineers at Google will be supporting these devices for
-> many many years to come. Newer Pixel phones have something like an
-> 8-year support life during which engineers will need to continue to
-> support them. From my experience on the Pixel team, unless you can
-> demonstrate a need for something newer it's common to get assigned EVT
-> 1 or EVT 1.1 devices when you request hardware, even for older phones.
-
-Okay, fair enough. I would drop anything you aren't certain you 
-need. You can always add it later. It's also only really useful if you 
-have DTs with the values *and* you run validation on them. If you do, 
-great! If you don't, then upstream is just carrying dead code.
-
-> > > +          - const: google,lga-frankel
-> > > +          - const: google,lga
-> >
-> > It's not clear to me how you map boards to SoC revision? You boot up
-> > using the SoC DTB and then select the board DTBO based on?
-> 
-> The key here is that combining happens in the bootloader. The
-> bootloader boots up and has its own (non-device tree ways) to handle
-> things. It then looks at the SoC ID register, looks at the IDs that
-> tell it what board it's running on, and picks a base DTB (representing
-> the SoC) and an overlay (representing the board). It combines these
-> two and passes a single unified device tree to Linux.
-> 
-> Maybe this is a key difference between what we're doing and what
-> you're thinking of? We're not trying to boot the main OS with just the
-> base.
-
-But others are and I need to worry about both. Conceivably, someone 
-might want to do both. First combine the SoC and SoM DTs, and then 
-combine that with the full board DT.
-
-> > This all
-> > needs to be well defined and general enough any (existing) platform
-> > could use it. If [1] helps or doesn't work for you I'm interested in
-> > hearing that.
-> 
-> > [1] https://lore.kernel.org/devicetree-spec/20250911151436.2467758-1-raymond.mao@linaro.org/
-> 
-> Perhaps I don't understand the proposal, but it doesn't seem useful to
-> me (?) or at least it's not relevant to the problem we're trying to
-> solve here.
-
-> If I had to guess, I'd say the problem they're trying to solve there
-> is that they've got some external peripherals (like an i2c-connected
-> dohickey). They want to ship their dohickey to customers and tell
-> customers that they can attach the dohickey to any of a number of
-> devboards. If a customer attaches their dohickey to a Raspberry Pi it
-> should go on, let's say, i2c5. If it's on a Beagleboard they'll say it
-> belongs on i2c3. On an stm32 it belongs on i2c11. So they distribute a
-> bunch of "dtbo" files with their dohickey, one for each target
-> devboard. This mechanism allows a loader to figure out which devboard
-> is running and which overlay should be loaded. Is that right?
-
-That would be more the connector usecase.
-
-It's more how do you know if a base DT is a valid target for an overlay 
-DT. I guess that's an orthongonal issue. You only have one base in your 
-series, but in general how do you know what base to apply the overlays 
-to? You've encoded that into the Makefile. The overlay-compatible scheme 
-moves that information into the overlay so any s/w can figure that out. 
-
-I think it would help if you described what you want to do more 
-generically rather than mixed in with "add a new SoC" and send that to 
-devicetree-spec and perhaps boot-architecture lists. Present the 
-problem, not just the solution.
-
-Rob
 
