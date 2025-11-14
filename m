@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32D31C5C9BD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:35:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0666C5C92A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:28:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1DABE4F967C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:25:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8D743A56A5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 812EA30DD0E;
-	Fri, 14 Nov 2025 10:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C0630FC06;
+	Fri, 14 Nov 2025 10:26:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jHd0ZFH9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TmSAgMTQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BCD23090E2
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DC030AAAF;
+	Fri, 14 Nov 2025 10:26:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763115941; cv=none; b=pZLOijPExz4CQJrUNR5OoMwK2Aqv6GdGS9hqdXj9kJBvHElgDatPXHw4kegkthVwjtO1WdoG5/j3hS5+KcmYlKFy9P067jsuO2DIqRNDknmbrPvaDZB4EOPeR6H5/sjrptYZerrGqt6YlFdEFaNratosrLHWu+MrDK6ogrhuL5I=
+	t=1763116004; cv=none; b=haPYjLqtDFLXmezungGbODnQAeMmv1CSWwpQM2oQolir8TL7jBaDLaW/keapDxmY1D0kxGcSIN1TgeuEeTIHNooru4DnAjlGCd3f/iO4p0f636n1ubnfRcOHdljrWpGIDRLO55IxWw4mTIYw0pS56DcxtgoBBurq+l6xr/Sy6cY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763115941; c=relaxed/simple;
-	bh=xbRr64+VOJ7bkaBbrPgTViWV02mxV4dUSmkkvIUgt0U=;
+	s=arc-20240116; t=1763116004; c=relaxed/simple;
+	bh=4/vosIKRRzxxVi7pbrArwNo1o/fe0zKKUJJpxZBGO/A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t/mZURBcs6SaPDA7Ybk1AFHSznc3PxqxrPReFUbog+9CDxJvXo4M53j0KReASOp9gy1R8s0T3/A4KzZ8VnQdNNv5nlArJqzc1skygbVixVmKEM5g/1V9LB/e8SJDS1/bYvzz3CWPUiHHw5ZFODMu+6egXTM/DDwL0LVNFqo7Atg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jHd0ZFH9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDAFBC4CEF1;
-	Fri, 14 Nov 2025 10:25:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NDVF87bCgigeUeEHdgthTNr/XZ8dFEwUNkKneqVblvbz1LZzAkN8TQdj3N702naoolaG/GESU1WWDVWfCkIvWVdQ7V6QLiYs1uvZ59sLuZ96d2t7SZ4abcayk0mXg0DXttDKDTdxh1KX9u276dWMmN078I4K+LamWwHJN33gyII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TmSAgMTQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D45EC113D0;
+	Fri, 14 Nov 2025 10:26:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763115940;
-	bh=xbRr64+VOJ7bkaBbrPgTViWV02mxV4dUSmkkvIUgt0U=;
+	s=k20201202; t=1763116004;
+	bh=4/vosIKRRzxxVi7pbrArwNo1o/fe0zKKUJJpxZBGO/A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jHd0ZFH97CRcs94oPE81IgtORCgWd/qGCUP9mZqPE3biFGP6+2jmSxQImwuRY1NPn
-	 ia5598L1xPPWX8MzShX/+SQPcSzrP8kj5csIYHvnle+XQjnYRSytrVx0sigKKqwP/1
-	 Q0bdDjOWupv3JMUXqnON1psRHS2qKQNoGCl2tBVujoN9Acf72oZDd+5KfQraJWBr7q
-	 u+Zr4AGl9oKiquqWDc9aDl+6c1eBaZoGWSQZ6g7hgXGa2br11pwAwVszJck0p9jeZu
-	 qu2Fv9VGI+b0JpQPWfs67HlNe5J5Bplh9Tpk79cgcqqVw8whkKpALbqBHObswwK4aQ
-	 fAWghhMHJ+erg==
-Message-ID: <618422a5-9e74-47e9-a97c-641c47d13186@kernel.org>
-Date: Fri, 14 Nov 2025 11:25:37 +0100
+	b=TmSAgMTQFCjvjyd9IvIJufR79iwyPHFPAKf4eMWQKNoA7C6ORnnyIrMyUKz2SSy4q
+	 qryh4N3VYZG7F6KbN0i67eZImdNRu/k+GmLKq9Jn7x588KhmVNpT0RUsK3b3kjsal8
+	 AMK0yvcDLf3CXbh7h+Mx0mdXSNuuPTNMNTmZ/KN1nmEErPhcMoaL+KsljJBNTDsfpu
+	 cEIDVgDaEmGjQllurE93GDMz2A1np9xWaF31L2eb/hDImFwcVA2NNG3CLFvCMruzlT
+	 4C0IEI6Y0347HjiOoiDxGAFmWb/iqXH0972xYCaG7NUetJstuv4ZfdsuBHZBkuuxWm
+	 U1JKCyee68ugA==
+Message-ID: <06c4e79d-8f2c-4eb0-ae2a-7ca7cfc18ef0@kernel.org>
+Date: Fri, 14 Nov 2025 11:26:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add kfr prefix
-To: Gilles BULOZ <gilles.buloz@kontron.com>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-References: <13a2c25b-9633-c06c-0c07-95157a2a9c1e@kontron.com>
- <2e04869a-29f8-4c2e-bfe7-0a4b22369a8c@kernel.org>
- <f47ea697-ace1-4909-eefd-7829302fff8a@kontron.com>
- <e9cd0bfe-e410-40c7-861f-274b1998be33@kernel.org>
- <3635333b-689f-215f-0127-5d24c2b7a71f@kontron.com>
+Subject: Re: [PATCH] arm64: dts: qcom: monaco-evk: Enable TPM (ST33)
+To: Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251114-enable-tpm-monaco-v1-1-4ed566838698@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,66 +103,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3635333b-689f-215f-0127-5d24c2b7a71f@kontron.com>
+In-Reply-To: <20251114-enable-tpm-monaco-v1-1-4ed566838698@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 14/11/2025 11:19, Gilles BULOZ wrote:
-> Le 14/11/2025 à 10:32, Krzysztof Kozlowski a écrit :
+On 14/11/2025 11:17, Khalid Faisal Ansari wrote:
+> Enable ST33HTPM TPM over SPI10 on the Monaco IoT EVK by adding the
+> required SPI and TPM nodes.
 > 
->> On 14/11/2025 10:23, Gilles BULOZ wrote:
->>> Le 14/11/2025 à 09:40, Krzysztof Kozlowski a écrit :
->>>
->>>>
->>>> On 14/11/2025 08:53, Gilles BULOZ wrote:
->>>>> Add kfr vendor prefix for Kontron France, which is a single-board
->>>>> computer (SBC) manufacturer.
->>>> There is no user for this.
->>> Hi Krzysztof,
->>>
->>> Yes, there's no user for vendor "kfr" in kernel tree, but Kontron has
->>> produced some ARM boards (VM6103,VX3106,VX6124,VX3124) on which we
->>> ported uboot and added some entries in device tree for board specific
->>> devices (CPLD) using vendor "kfr". We also provide a Linux BSP for these
->>> boards with drivers using compatible = kfr,<cpldchip>.
->>> My patch was just to reserve this vendor officially so that no other
->> You have entire commit msg to explain unusual things. Your commit msg
->> must explain WHY you are doing it so we know WHY we would want to accept
->> that patch. If you do not want to convince me why I want this patch
->> then... I don't want that patch (please watch Greg's talk titled that way).
+> Signed-off-by: Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
+> ---
+> Hi,
 > 
-> Sorry, I had a look to the mailing list archive and did as another developer
-> did to have a vendor added to the list, but his patch also added new drivers
-> using this vendor, unlike mine.
+> As part of TPM support enablement on Monaco EVK, the following tests were performed to verify functionality: 
 > 
-> I also did not understand you answer "there is no user for this" but I
-> guessed, I hope right.
-> 
->>
->> Anyway, you cannot "reserve" prefix. You must reference here the
->> upstream user, if it is not obvious.
-> 
-> With "upstream user", do you mean a driver in the official kernel tree ?
-> In this case there's none : we provide our drivers out-of-tree in a BSP package.
-
-Upstream user, or user in this context, is any upstream open-source
-project using these bindings or in-kernel DTS.
-
-out-of-tree forks are not upstream, thus does not count here, sorry.
 
 
-> 
->>
->> Plus I am pretty sure Kontron already has prefix and there is no point
->> for another one. How many companies Samsung has? 10? 20? How many prefixes?
-> 
-> Yes there's already "Kontron S&T AG" but as Kontron France is making very
-> specific products, I thought this was possible to have a different vendor as
-> for ACPI/PNP ID registry where Kontron has four entries. Maybe this rule is
-> written somewhere but I was not aware and did not see device-tree vendors as
-> a rare resource.
-
-One prefix is just enough, there are no benefits usually of having more.
+Please organize your work in patchsets so handling and reviewing it will
+be easy for us. Submitting patches explains more how to do it.
 
 Best regards,
 Krzysztof
