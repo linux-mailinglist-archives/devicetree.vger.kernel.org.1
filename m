@@ -1,185 +1,232 @@
-Return-Path: <devicetree+bounces-238535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D91BC5C23E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:05:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74C63C5C253
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED11A3ADD71
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:04:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA23A3AEA27
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FDAD302157;
-	Fri, 14 Nov 2025 09:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069323054C8;
+	Fri, 14 Nov 2025 09:04:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VRyHedUR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D632FFDE2
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB6130149D
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:04:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763111067; cv=none; b=gPaKDC2nJluQCK2pnAu5Dav8PfqPQz+uOIbmCfcPXVcwKQxxBaoEr70BuCi+yfE+QRS2ieWdUwlVhcu6m12DnzSSV7tRxsBRBg3ptkn5wDOW5Mcn2prCiFE7or3ipeHyOasH75JRg9zIXYfSdwFeju1y2Ew7tBtsVYVe588xScg=
+	t=1763111074; cv=none; b=TRDqnisXFY2V6Opk/h5bWLcFg529iiZ+AWQXppXbKsKma6kEtBElDVNty0wZYoR1R+aLg04qwDS5ASuzoM7iLMLlg3UoEvCRljsbhsKPrrzJO1ReHj02kWJzihYH5HdmksYM5anuOx3JkXQE3rxBZPWaugTp8cY6B0e6XB988bQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763111067; c=relaxed/simple;
-	bh=BHvm3hbmkPoS31CB/qQMOauxLpXwLi+jzNOEIhvIoqU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tvD0tDNnjDrT6g7ERtsP7RpbriZAYzU0ZryeiBDus3rrYkqzNFkruOUWaEu/xlY902L35v2RVXa8gcoTmp30O8ohFuSIq7UmPZ3D3KaeBROVfx/Jb3NCgaNG+7VqDapEz4NSX6Px/mJvL2aYMDbZQwW4Q3tP54YAMLW+lvfMZZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1763111074; c=relaxed/simple;
+	bh=0TEm7iRCHjxnOslZB50ja14A360VHxBjrAw5MtbVg4E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m0vtx5lr5P85hKixsOG0AKg4pmt3Sl17IFe47FWM1UGZJ0m9RmRGs3DsLIgiAZg7EKmTz9DkOOeAUkxWtxg9YTVaoZFBCRSmdj03/UlbAn6dTGJpZjriqfLAeWxsgqbzQVAWnLJr1mcUXumjjsf7chskyTZ8SIotUdiC05FAtRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VRyHedUR; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-5dfb5fcf063so490725137.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:04:25 -0800 (PST)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-37b95f87d64so12131681fa.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:04:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763111070; x=1763715870; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eyGXFrfPOvtO9Z4s8XQ0ch6UyF0uTEn2G/XOy3LSwzA=;
+        b=VRyHedUReEEON2xYd87WuLqJfD1noLS/ndv5UrVlMiwt4AvPh301/msGwg3YAfz0NK
+         YD13TyYHFEGdhF+5LIO+mQG9Tyu/olXSrJrogNVSienDMHGnhETw0TerCFiLjUNbtdSN
+         b2KuZnS/MEw5h1jDPYrtK3hTXlGXAvWxnhvxvZ/bZshcWh2279+HMLOGna+Y5GEV8lPm
+         MG8G1pzJsYP6py5eaIA1WVqC+WoYcku5GLY9qpVnCTnQpRRocLijXlcMvTJ/vqGmLHV/
+         lNrKrdCC2Wa58fVEXVPdN417hEOZFXG5JpD9cSwnpoUsZ9Jb3STOsMywbKG0ccu742fw
+         YCOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763111064; x=1763715864;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gil5rxl+Rfqu8BNaVY7z8XkReqTcCBYpfj3RKeayOGo=;
-        b=p2zU+BX3XQuiRCGOxdrMvOQHpyRq8P8r81t28Skb5GHSAqbCDZ5SnHBJwfkemcH3NM
-         mvyjvWOD1A2+74s5VbcDT5oGS9pSCgssNWPm6tZ3xPSkfFcegORU4vLhq7O/tnBTqmuq
-         izeK6oP3ljSrwwjYDc12MfYtciVsgyoamnskXKaKvNHYHXaI4VIhJG8ej729n9roLveb
-         jVLIk0oA6XY8m1HWK+gpkLI10Mr8J0/U5L4sxNmJBM1BhgqLynyAzYW3wTz7cc78Az3L
-         WnjDIeLYPE7JwzFz3iaYt610wxS0fkS3WcLa3yPvRfZSDcn0rvdyAdkdUxdr2TzQhMJL
-         lYHA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1NqrmJrFo3VOeQBHTcF+s8AyyhrtasnkEFs2GsRDqDRuv7vL2gZNTGqZWJyvmVU9pos6YsPJG1y5m@vger.kernel.org
-X-Gm-Message-State: AOJu0YwM27WP6ECs0eGNTP4FY7fDKl4nPAcyPBStGrTwq+NPEiT6tOVZ
-	qK/2INuukYS1EJvttvZ8H/2K+EBv9tNjh+xY2a8rNchAPAUFjq9/anrv7FD05Ssx
-X-Gm-Gg: ASbGnctjGFlck22FyOohGO1/aNJWSwOOlJzBVf76cYvn8VagqssuZ/ZY0dwBFOkCBwt
-	jozbNLM71n2AWj9SpitIHKPBsfAvm88KRgShBT1TMRykaikX6UNjgzgdmkC5ByUzHjx5l4jFSlS
-	j2ZTeThw/AWprozEvrKNRcTU7Czf36+6u316sFWJRzIpMDb6uulSoeW+vLVbSUd6pM4ryYn24rT
-	3JA3sMwgoZYl743amuPvKFRIx5JqLCF8B8DDjFubOE9+CagHHboOb41Dz3pzZrv2cJQvdvlMCtm
-	cNaMAA2koEIgmB70v5Buw7U6YcOytR4dhzXQOB9RCB3L99LCV9VXnqEZAD8KpUmCeINhfSFBzA2
-	hNnjOaMD2pMk66bUwO07f6L9SEzmWLRoRRx9/tgQcCo9x2XKV1+1f2PdbwNYLHEvOfZs+rGhhFz
-	SFZDT7pNldiUEIkWjt51AR6s8FG339/9PtcElUVV5LfTqlse9AfqEZ
-X-Google-Smtp-Source: AGHT+IG/4h7gxPVXC8sqWvoiqsgb8InQnjF8L7EFjMJsudur90MA3iNMKp4Aqs8/CtrJGQOq74OYvg==
-X-Received: by 2002:a05:6102:3e1f:b0:5db:cba0:93a with SMTP id ada2fe7eead31-5dfc5a6064bmr814218137.35.1763111063950;
-        Fri, 14 Nov 2025 01:04:23 -0800 (PST)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5dfb70b2e2fsm1480213137.6.2025.11.14.01.04.22
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1763111070; x=1763715870;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eyGXFrfPOvtO9Z4s8XQ0ch6UyF0uTEn2G/XOy3LSwzA=;
+        b=AOjb1Fo3U+zGw4eBReD2tGUxbvgJGoUdqn74Z5VdZh8cQ7PZ+arX4YpfP6urWOujjJ
+         Ez8EB4VFgzopUQnPzdFUfUKYmvfp5gSbdwKlExgbQCTSekmsTq25GYuyrebv3cIolTqY
+         UDfYF0YJCiHrGDqmxlf1oPXJg+IL9VIf8XiJF++M3tXt/P9v0r1iVmryj/hn74x4NwpQ
+         WlNklhSTSSuB+F/asUO/EgFfPOBX+r1gBwH9I4ewoS8gPm6u+a8DXdjKcS/C3zmp21u+
+         jnYbMwfdK2bgpOvR3I1yJAmQIMD0988wBq3T/8BNOczSEkcW5c+DbNbjli37CSZcQlvF
+         +l1A==
+X-Forwarded-Encrypted: i=1; AJvYcCV3vk1vnv0O0HYKhVImN1/l60AAPzgh5TrOMuc+nzSYueoE16uw9GYk+1aLbzlo8cuOL0UlQ+HkpQu5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqGq0ZF8fcXR0xhDxglR776cuL9dW2rImXtuzg95S05ChkvAGn
+	XztUy/+jzaJy7yZyvd+e7AMNM5zTUAF6nH6fVnReX5Seo6vnEFVfcOp0
+X-Gm-Gg: ASbGncs3/poN50efxvHNI9ZiXzpyiYi0Yf+nKJzCstCx0vFI8VEXu3jqrsno8mvQyFs
+	Ez7EYsKi3e1+DavhpMlmVX8MwtweeK52y9T4iu0KYyadvGBiE1JWYLRM09+8oFd0JNO9SjVbmPd
+	FyzDo56JlIuTsdoizQ/CKAKdMz0UWFEP8Hnzf0CEgF6FRmdG1y8fh2RQXp6OGUBNzoAPVEoeGSq
+	kYsS8+N+l7DUhvnliWjTCvnpmruAZVyKo/lh/QgifNoL5RBSi8NJ12USpuYYL06AObj63QSRkma
+	eL/9HldkG3PWogCFg5M8O1h3qhf2TT0eUriQ1lrFQFEbC1WBr8uE4GN6OrmPyrZUkKH1kIT99s+
+	sUaiAelXD3yAoMUEI6GEUE7eeVdxliCPAnY4DK2lM/MceZvJVNExCQSTBveXUp7bGeLsBzEr2re
+	xuyMchWTSrGH4gFtdjaJlr3EjwgatWfiaj9B0bb1d1JzoybVLzraoC5mzJqg==
+X-Google-Smtp-Source: AGHT+IFr4MNcx4dsYyHl+PkDpXtMSjAYMNDIYKiKLMNKzXGQD8YnOzZnKnzRzUK+LYDxWhp7vqal/A==
+X-Received: by 2002:a2e:b4a6:0:b0:37b:a664:acde with SMTP id 38308e7fff4ca-37babd29d4emr4429431fa.32.1763111069883;
+        Fri, 14 Nov 2025 01:04:29 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37b9ce080d9sm9121361fa.3.2025.11.14.01.04.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 01:04:23 -0800 (PST)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5d758dba570so673020137.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:04:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWtskMhuCzDSrmbvqGvO/RsypzPxIeOgGJjr9MczuMBJbFncMSjMpGoru0hODx1TuMlLDtZIU4VKRuH@vger.kernel.org
-X-Received: by 2002:a05:6102:3e1f:b0:5db:cba0:93a with SMTP id
- ada2fe7eead31-5dfc5a6064bmr814214137.35.1763111062738; Fri, 14 Nov 2025
- 01:04:22 -0800 (PST)
+        Fri, 14 Nov 2025 01:04:29 -0800 (PST)
+Message-ID: <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
+Date: Fri, 14 Nov 2025 11:04:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027123601.77216-1-herve.codina@bootlin.com> <20251027123601.77216-6-herve.codina@bootlin.com>
-In-Reply-To: <20251027123601.77216-6-herve.codina@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 14 Nov 2025 10:04:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUicJjXkkNs7FhZ0-jyuv9pzr_Q0AZNXs7tiv-MBGTkbg@mail.gmail.com>
-X-Gm-Features: AWmQ_blv8a_OuSRESNKfbMrLVNnd3bpz0G1F8NnKOsI4crGuxZwqclBQZ7aOGl8
-Message-ID: <CAMuHMdUicJjXkkNs7FhZ0-jyuv9pzr_Q0AZNXs7tiv-MBGTkbg@mail.gmail.com>
-Subject: Re: [PATCH v6 5/8] ARM: dts: r9a06g032: Add GPIO controllers
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, 
-	Serge Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Pascal Eberhard <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 04/16] dt-bindings: power: supply: BD72720 managed
+ battery
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Matti Vaittinen <matti.vaittinen@linux.dev>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Mark Brown
+ <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ linux-kernel@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ linux-leds@vger.kernel.org, Pavel Machek <pavel@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rtc@vger.kernel.org, Lee Jones <lee@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>
+References: <cover.1763022807.git.mazziesaccount@gmail.com>
+ <ac5a4e992e4fb9c7bffb1e641a7cd61f74af4cba.1763022807.git.mazziesaccount@gmail.com>
+ <176303119683.3716572.16868393928566655866.robh@kernel.org>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <176303119683.3716572.16868393928566655866.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Herv=C3=A9,
+On 13/11/2025 12:53, Rob Herring (Arm) wrote:
+> 
+> On Thu, 13 Nov 2025 10:52:19 +0200, Matti Vaittinen wrote:
+>> From: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+>> The BD72720 PMIC has a battery charger + coulomb counter block. These
+>> can be used to manage charging of a lithium-ion battery and to do fuel
+>> gauging.
+>>
+>> ROHM has developed a so called "zero-correction" -algorithm to improve
+>> the fuel-gauging accuracy close to the point where battery is depleted.
+>> This relies on battery specific "VDR" tables, which are measured from
+>> the battery, and which describe the voltage drop rate. More thorough
+>> explanation about the "zero correction" and "VDR" parameters is here:
+>> https://lore.kernel.org/all/676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com/
+>>
+>> Document the VDR zero-correction specific battery properties used by the
+>> BD72720 and some other ROHM chargers.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>>
+>> ---
+>> NOTE:
+>> Linus' rb-tag holds only if there's no further comments from Rob.
+>>
+>> Revision history:
+>>   v3 =>:
+>>   - No changes
+>>
+>>   v2 => v3:
+>>   - Constrain VDR threshold voltage to 48V
+>>   - Use standard '-bp' -suffix for the rohm,volt-drop-soc
+>>
+>>   RFCv1 => v2:
+>>   - Add units to rohm,volt-drop-soc (tenths of %)
+>>   - Give real temperatures matching the VDR tables, instead of vague
+>>     'high', 'normal', 'low', 'very low'. (Add table of temperatures and
+>>     use number matching the right temperature index in the VDR table name).
+>>   - Fix typoed 'algorithm' in commit message.
+>>
+>> The parameters are describing the battery voltage drop rates - so they
+>> are properties of the battery, not the charger. Thus they do not belong
+>> in the charger node.
+>>
 
-Thanks for your patch!
+// snip
 
-On Mon, 27 Oct 2025 at 13:36, Herve Codina (Schneider Electric)
-<herve.codina@bootlin.com> wrote:
-> Add GPIO controllers (Synosys DesignWare IPs) available in the
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/rohm,vdr-battery.example.dtb: battery (simple-battery): 'degrade-cycle-microamp-hours', 'rohm,volt-drop-0-microvolt', 'rohm,volt-drop-1-microvolt', 'rohm,volt-drop-2-microvolt', 'rohm,volt-drop-3-temp-microvolt', 'rohm,volt-drop-soc-bp', 'rohm,volt-drop-temperatures-millicelsius', 'rohm,voltage-vdr-thresh-microvolt' do not match any of the regexes: '^ocv-capacity-table-[0-9]+$', '^pinctrl-[0-9]+$'
+> 	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml
+> 
 
-Synopsys
+Odd. I am pretty sure I didn't see this when I ran the make 
+dt_binding_check. Not 100% sure what happened there. I get this error 
+now though when including all the bindings to the check.
 
-> r9a06g032 (RZ/N1D) SoC.
->
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
-> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Do I get this right - these errors result from the properties used in 
+example not being included in the battery.yaml? So, this means that the 
+check is done based on the binding (battery.yaml) where the compatible 
+(simple-battery) is defined - not based on the properties which are 
+present in this file where the example resides, (and which references 
+the battery.yaml)?
 
-> --- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> @@ -499,6 +499,127 @@ gic: interrupt-controller@44101000 {
->                                 <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(2) | IRQ_=
-TYPE_LEVEL_HIGH)>;
->                 };
->
-> +               /*
-> +                * The GPIO mapping to the corresponding pins is not obvi=
-ous.
-> +                * See the hardware documentation for details.
-> +                */
-> +               gpio0: gpio@5000b000 {
-> +                       compatible =3D "snps,dw-apb-gpio";
+...
 
-Don't we want an SoC-specific compatible value, too?
+Oh... Now that I wrote it I feel like an idiot.
 
-> +                       reg =3D <0x5000b000 0x80>;
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <0>;
-> +                       clocks =3D <&sysctrl R9A06G032_HCLK_GPIO0>;
-> +                       clock-names =3D "bus";
-> +                       status =3D "disabled";
+This approach couldn't work for the validation, right? Let's assume I 
+had a VDR battery, and I added a static-battery -node for it. Running 
+the validation would pick the battery.yaml based on the compatible (just 
+as it does here), and be completely unaware of this vdr-battery.yaml. I 
+have no idea why I thought this would work. Probably because I only 
+thought this from the documentation POV.
 
-Usually we keep all GPIO controllers enabled by default.
+So, as far as I understand, the only viable options are expanding the 
+existing battery.yaml with these properties (which I hoped to avoid, see 
+below)
 
-> +
-> +                       /* GPIO0a[0]      connected to pin  GPIO0      */
-> +                       /* GPIO0a[1..2]   connected to pins GPIO3..4   */
-> +                       /* GPIO0a[3..4]   connected to pins GPIO9..10  */
-> +                       /* GPIO0a[5]      connected to pin  GPIO12     */
-> +                       /* GPIO0a[6..7]   connected to pins GPIO15..16 */
-> +                       /* GPIO0a[8..9]   connected to pins GPIO21..22 */
-> +                       /* GPIO0a[10]     connected to pin  GPIO24     */
-> +                       /* GPIO0a[11..12] connected to pins GPIO27..28 */
-> +                       /* GPIO0a[13..14] connected to pins GPIO33..34 */
-> +                       /* GPIO0a[15]     connected to pin  GPIO36     */
-> +                       /* GPIO0a[16..17] connected to pins GPIO39..40 */
-> +                       /* GPIO0a[18..19] connected to pins GPIO45..46 */
-> +                       /* GPIO0a[20]     connected to pin  GPIO48     */
-> +                       /* GPIO0a[21..22] connected to pins GPIO51..52 */
-> +                       /* GPIO0a[23..24] connected to pins GPIO57..58 */
-> +                       /* GPIO0a[25..31] connected to pins GPIO62..68 */
-> +                       gpio0a: gpio-port@0 {
-> +                               compatible =3D "snps,dw-apb-gpio-port";
-> +                               gpio-controller;
-> +                               #gpio-cells =3D <2>;
-> +                               snps,nr-gpios =3D <32>;
-> +                               reg =3D <0>;
+ >> The right place for them is the battery node, which is described by the
+ >> generic "battery.yaml". I was not comfortable with adding these
+ >> properties to the generic battery.yaml because they are:
+ >>    - Meaningful only for those charger drivers which have the VDR
+ >>      algorithm implemented. (And even though the algorithm is not 
+charger
+ >>      specific, AFAICS, it is currently only used by some ROHM PMIC
+ >>      drivers).
+ >>    - Technique of measuring the VDR tables for a battery is not widely
+ >>      known. AFAICS, only folks at ROHM are measuring those for some
+ >>      customer products. We do have those tables available for some 
+of the
+ >>      products though (Kobo?).
 
-Please move "reg" just below "compatible", as per DT coding style.
+or, to add new compatible for the "vdr-battery".
+AFAICS, adding new compatible would require us to wither duplicate the 
+used properties from battery.yaml here (as battery.yaml mandates the 
+"simple-battery" - compatible) - or to split the battery.yaml in two 
+files, one containing the generic properties, other containing the 
+"simple-battery" -compatible and referencing the generic one. Then the 
+"vdr-battery" could also reference the generic one.
 
-The rest LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Any suggestions for the next path to follow?
 
-Gr{oetje,eeting}s,
+Oh, and sorry for asking to review something which is obviously not 
+working approach. I should've understood this from the beginning.
 
-                        Geert
+Yours,
+	-- Matti
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+---
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+~~ When things go utterly wrong vim users can always type :help! ~~
 
