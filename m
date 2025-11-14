@@ -1,454 +1,210 @@
-Return-Path: <devicetree+bounces-238885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2722C5EF5E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 20:05:18 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 076AFC5EFBB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 20:10:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7C9294EF3DD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:54:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 309AB362C8B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 18:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B7A2E11AA;
-	Fri, 14 Nov 2025 18:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF392DF71C;
+	Fri, 14 Nov 2025 18:57:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eQEXAoBQ"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="CM8v8LQ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-io1-f65.google.com (mail-io1-f65.google.com [209.85.166.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89D732DF12C
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 18:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873A7287504
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 18:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763146440; cv=none; b=X0X7E4Mv2TdOAoideIGruQCjC4WyNx75MFHwIQc+z1V/y6GqhGgVYW9uk+PUY+wfrciCUUnFsmBFPb5nP1nCFjfC/tUoXu4Z8cJZpETOX7RiL9P5t6zR4YfbNmfzH2QNZyRJ48vrn4p8HickStYW6TIlbyyPrg6XrVmdVv+c9WI=
+	t=1763146672; cv=none; b=F6ipFAPFYK2BIBD/KtKsmZwSBC7YJUqQ48lSv5Fdw2xtDctuiZ3Hs4JwF4jPB4VQoc6GO8OMciy1dnF+afvIIkpvDqI/TuU0fQCd0XX/TlgLXrv5ln+QcWiisJH67Ht3kjKdbXM9qUw0CFA/pZtoxNTgi4tvAkETTFMicsNglz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763146440; c=relaxed/simple;
-	bh=8TO+rU3SAwUBFqXZ2q0FkqFTottvFyTgXl9sDHim0/E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uRnhHJzVQnGB7s+lRJIDMFq+oIyZDXhqsUHQZGlAi7UiYemQ5JbZSoKo37srqtP+vKViQJTEyhgUhNH0cVKenFhnF/VNilmdXaR4TEkqb8ad3XOYEYszLFyenCv9ZyXRld8G56aL5O5iOpt9g+Tg4m16jWqLdq6gzW7h2NYLJTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=eQEXAoBQ; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-640a3317b89so3617622a12.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:53:58 -0800 (PST)
+	s=arc-20240116; t=1763146672; c=relaxed/simple;
+	bh=SPekITSXao5JzRpeAqm6OT/Blg0mEMpoUV8q31/6/wM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bCeGxN79P8rkvmUgaj8vKjRRX01o8yTwJuSvwK8ULSQHlAKB/IOsdV0uHmSbdbxrMUTa1kcmDvmVpKBu/IvNqpZJIageHtNDzx2m3FSICb7Hji5wWdBC3oNL63vYvAuYpgrnmpdKDteklahy8vVZDak6JwcpNi53MrVHCOpnyig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=CM8v8LQ/; arc=none smtp.client-ip=209.85.166.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f65.google.com with SMTP id ca18e2360f4ac-948a3979af4so120798139f.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:57:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1763146433; x=1763751233; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LbqPFpwRTAIoW3wlPa8y61lf1dLEt0wfuDryfbMZciM=;
-        b=eQEXAoBQqU7yPGMNKAhmaQPAz6yGU2gkZSL+0ZJdNhFMFYzPvmsJ9z3zveNjo/tKaV
-         ikY3fgCN4rVmmOuOcTUFabwdzPjHoGkRynIxrqiKXCcBaUb+eRGepBAypNlENunssIy6
-         bzW1MegpQ7kMJ2veOVI8Za+whxiv1UJJvdO8o=
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1763146669; x=1763751469; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/qXJqiPsnANUtpsR8sAeXZ7h/dCQytG5r8pVCD3h57A=;
+        b=CM8v8LQ/UUJv2yJrg7l5hT5htlxgp1xzDuf/o+4ow8OdHcDpkGOqCeAe/u9YjU//UE
+         MezGXmK/lJt4dR9iD99/B3oseLGuey/eJvKqK5qz78LJIyMfcYfF/K0WT7tcq+V1eKoY
+         4YYRXc30+jWIxL0+p4jYt4fo25Ng7cHKkukuckFitb6sO6f4xDqj0npM22sV4huVDI3E
+         NWVEcdegyDeKoJVZwp2Byb4GwISiUHC2X0rGhKky5a8n+tgQVB8AsChnWmm79iuI5tHf
+         tnzVBrtGl64DBlBcyw4fvNaSJjlhAavntyQ+zt8kOW9WhSGUw8pUwRK9lZoaMJD6hCJU
+         EYoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763146433; x=1763751233;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=LbqPFpwRTAIoW3wlPa8y61lf1dLEt0wfuDryfbMZciM=;
-        b=BxW55wSwjhu0ouUs/+p//L1BdD95W8Vq4LBgwQrH0K2nUxRTuiW5cxDh+u4r7aBJdU
-         l6xHBKLxZwNp7Pp4oMa5bSomO8KURYtivb4jKtUx5fn01Y0LzbCZ6Y5GQRs/SEHDLTh1
-         d6nsXUT7/Jw8zP1l5ycN1s+X1V7DfAEwHNJwHoJ738rxsZxoo4FYpWX58xopCSi1Sptd
-         h0borFW6Su/gp2VNadw6/y8WcEGJppoPjxCHmeai5dVSH8a/HoV1aDde9RUioNSggK46
-         cqDmk5jkIGAtVsKby8brOGY8kgtDVuB9q616VHxM+Y9u0qfqa5YS6fzZgZGhumVPw5pf
-         GmNg==
-X-Forwarded-Encrypted: i=1; AJvYcCUXQBH5zegQUewyl04eCwLQFWpFXJjwecI08F3WLL/J/th6fv/LdLb1XuwbgPA4dW8jFqLmb9qTFASe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBk8TfjSgG+OVZhTiH/QYVfu0SWMxE/Pazt8Z2D7wd2J0W8rju
-	V/wVwOv3FdTakKxQSYwtrBHCS7aUuR5eA3coWFel4FdadjRPJH7Gh04/EYQJhHa6pF3U/mbhN69
-	6c7qfoKw7
-X-Gm-Gg: ASbGncvy1RvnkUpr1tvfhfdnkP299zSrlKxnif/AlrfqqBRyZFx/9/C1jIvLJAU3Rmn
-	Qhl1GpERMGaOYvisnH+xbdyXcWc71CX321BXbZr1EfTkTJdi758h2iGNiqsYdxmOJ55URM+a943
-	0WKoxLd2CkxJASwiDcT5/qUe+zpQmSaweTtHaBV3WsfHc531h3yviK2a/KRH6BsEjuzj58Gbh67
-	sj3GIM81rJSufXMUeo4UIQEc7Rwn7qaWVo/AQuDEyYc3gdVaf7jn9viO9ea71UZ1WpNMokWQ3Gn
-	U+GgMME4vuKj8Sh+CtpV/ls3sjDpTOT8nkX9yk3j3CsBVJZysFdXeK7eMG4hWU6i9U89Zjda3mA
-	RhETqTzeCuw8qMubemm30vu5pygjjrXYJqFtGf0RHUa4iv3uKaDXIA3GYkcb/MgGbomQAOaC6hN
-	vyU2Dpi6kZBRPaX8YuozisIuJ7d0oKWMO26kORPilU7M1TaEqzrA==
-X-Google-Smtp-Source: AGHT+IEzvi2LsTcry5UJktBr3EW1k7NRm8ZcTWEadksyLRxm8KdIV4viqAm6OXYdbeLDLJUtOmVt2g==
-X-Received: by 2002:a17:907:7e93:b0:b46:abad:430e with SMTP id a640c23a62f3a-b736793d35emr400037566b.37.1763146432868;
-        Fri, 14 Nov 2025 10:53:52 -0800 (PST)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com. [209.85.221.47])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fd80a3asm439456466b.37.2025.11.14.10.53.51
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 10:53:52 -0800 (PST)
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42b3ad51fecso1854460f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:53:51 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUz+vHNx4yGzCtFKo2+GNhLZB1J84oIaFeMAk51pAaZpaluT6Ic8ws5C0ejT9KSv7qi3U6ZIiH2LSce@vger.kernel.org
-X-Received: by 2002:a05:6000:2913:b0:42b:394a:9b1 with SMTP id
- ffacd0b85a97d-42b59382378mr3447749f8f.37.1763146430499; Fri, 14 Nov 2025
- 10:53:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1763146669; x=1763751469;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/qXJqiPsnANUtpsR8sAeXZ7h/dCQytG5r8pVCD3h57A=;
+        b=dmAYz7F/C7X8hPtfTBudg+BC45Wc3XXzuRXakBhCpZRlt0kNUSP0Ug9htoGeFL0U6a
+         v89fg1elYFmuhh76TD7y2ATq9L7rpj35tp1KENYi9u274WXI7gmlW7I2BdP0utjo7Eqr
+         jEeaY6YEQ3p1Uv1kqa69Q5OgJneYlSDfGkbS4kec1Ajk4slnNQPep3nKH4AsHebIRUzM
+         IcQwmhpCNaBgBeWKyp3WDBuQnL9olG0frVJObZJFDQSrf5HgBwZqIJkcOfD7z+27mmTg
+         yGuqSylDvh9VdRsYvrcKAbPVv0MFJ8nv0Kls0CU1xJYWyByrInmB/Pq1nFreT+u+YcfP
+         1mGw==
+X-Forwarded-Encrypted: i=1; AJvYcCW01Xb3YahpafVlxTtxj4GR99yh2+hhOtv1QGpXKcVe+/UIBifDREID9uUBYXSK4jQqGqTNGeHTXx9v@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywe6cpg/RCSefzlnOS9D/Gc4uB2byxza2lx3Y7kADT/sO4tGbcR
+	PtCmVvxDrLlHWeuFQ7hLl2a/k27JdTf42jDCAi9oYaKR6MPoElr6ph9smrPatJ6OPcY=
+X-Gm-Gg: ASbGnctGvo5MdHOtnbKrviXxvz6d4ywrIItFB4ke1Ou+wSVe/IgsBPNxSe/QmJN7Uhn
+	K35bYtcJ0o/qnsGtB8kW8iELvsXm2dHJJupwsY/1Blf6mAplEkaMNX7VE/Ed2mOeaXrimdJHRUB
+	eHDn9qLKO+XJ2P4yra1QWmiHUqADL8opjiOEFvkf8WZa8rBgOajat3nALaoy0yVrq5KktLdTbpt
+	QecAii+cv9QiQ3ol8wRq3Xe7MeM0vh2gUsOgvD1BDittm+SDVerx/rAW4Lxkz/w1kYeHSyPp82M
+	+qTrtpZBDqBR1CWsyk1ghbsbfn5DXPo5+KFNpFkogAX92Y9O4MVul41uqfrUNjI3z8mQE0R+s7M
+	QsOeWUYQi+bhbiFdx3KN4bgFltiChh/7EpJHe4gls4fL2Y7njLf5Kc6xoZAIRn5TlyhWaOoMC9s
+	IQbBNh+uZIfdzCWBh5P1zt5tUcnappI5ks9t/rHsGivxKds/YRnVTKIy7jr47xDzm4
+X-Google-Smtp-Source: AGHT+IF4Nu5xfllgas5VBV6/o7VY3ZLAK+xfSIPCiHas33IRbeDvWn8RhVK1Tut1/N9t2FgYtTTWTw==
+X-Received: by 2002:a05:6602:3429:b0:945:a834:5951 with SMTP id ca18e2360f4ac-948e0689de5mr706912439f.6.1763146668632;
+        Fri, 14 Nov 2025 10:57:48 -0800 (PST)
+Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-948d2ba690bsm278679339f.8.2025.11.14.10.57.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Nov 2025 10:57:48 -0800 (PST)
+From: Alex Elder <elder@riscstar.com>
+To: broonie@kernel.org,
+	dlan@gentoo.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/3] spi: support the SpacemiT K1 SPI controller
+Date: Fri, 14 Nov 2025 12:57:41 -0600
+Message-ID: <20251114185745.2838358-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251111192422.4180216-1-dianders@chromium.org>
- <20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid>
- <20251113022719.GA2281498-robh@kernel.org> <CAD=FV=WUXK_xs4taxs8Q4kxqvkNYE+Ftk3N=N7Nm7yKEvUMtAQ@mail.gmail.com>
- <20251114152005.GA893333-robh@kernel.org>
-In-Reply-To: <20251114152005.GA893333-robh@kernel.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 14 Nov 2025 10:53:38 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=W5=AVYeZvz_LxC2-7U83yErY0JGc2nZQ37Pf54FH8++A@mail.gmail.com>
-X-Gm-Features: AWmQ_blaQNyngmlbZLa3H09wQNzECeksQmL8BlRH-m0SJuISOZbTHr-JpmObilA
-Message-ID: <CAD=FV=W5=AVYeZvz_LxC2-7U83yErY0JGc2nZQ37Pf54FH8++A@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: arm: google: Add bindings for frankel/blazer/mustang
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, 
-	Roy Luo <royluo@google.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wenst@chromium.org>, 
-	Julius Werner <jwerner@chromium.org>, William McVicker <willmcvicker@google.com>, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+This series adds support for the SPI controller found in the SpacemiT
+K1 SoC.  The driver currently supports only master mode.  The controller
+has two 32-entry FIFOs and supports PIO and DMA for transfers.
 
-On Fri, Nov 14, 2025 at 7:20=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> > NOTE: I don't think this is a novel problem. There are already
-> > existing overlays that mess with the top-level compatible...
-> >
-> > grep '^\tcompatible' $(find arch/arm64/boot/dts -name '*.dtso')
->
-> That's empty for me...
+Version 7 fixes two bugs, and now builds the driver as a kernel module
+by default.
 
-Ah, sorry! I didn't know how to represent the tab character in a text
-email. You have to replace the \t with a tab character (Ctrl-V Tab if
-you're in bash). I should have stated that.
+(Note, this is a distinct series from the QSPI driver, which was
+merged recently.)
 
+                                        -Alex
 
-> > > My concern here is largely around validation. Can the SoC DTB pass
-> > > validation, and can we still validate the whole thing at build time? =
-To
-> > > start with, it's not great if we have to make the schema allow only a=
-n
-> > > SoC compatible without a board compatible. Then suddenly omitting a
-> > > board compatible is always valid. Solving that with an entirely
-> > > different SoC compatible as you have doesn't seem great.
-> >
-> > I guess, in theory, we could solve this by simply not trying to
-> > validate the SoC "dts" file on its own. Is this as simple as giving it
-> > its own filename suffix? Do we just call it "lga-b0.dtsb" or for
-> > "device tree source base", or something like that? Then we add kernel
-> > rules where we don't validate that on its own but only validate it
-> > together with overlays?
->
-> We already do that with overlays. They are are not validated on their
-> own, and that's why we require them to be applied at build time to
-> something. Though that's hard to enforce and I'm not happy with
-> extending that to the base.
+This series is available here:
+  https://github.com/riscstar/linux/tree/outgoing/spi-v7
 
-OK, fair enough. So the requirements for the SoC-level tree seem to be:
+Between version 6 and version 7:
+  - DIV_ROUND_UP_ULL() is now used when setting the speed, to address
+    two errors reported by the Intel kernel test robot on 32-bit builds
+  - Fixed a bug interpreting the resource pointer in k1_spi_dma_cleanup()
+  - The driver is now built as a module by default, if ARCH_SPACEMIT
+    is defined
 
-1. The base can be validated on its own.
+Here is version 6 of this series:
+  https://lore.kernel.org/lkml/20251027125504.297033-1-elder@riscstar.com/
 
-2. It's obvious that the base isn't "complete" by itself.
+Between version 5 and version 6:
+  - Rebase only
 
-3. We expect the top-level compatible string to continue to be
-built-up until we consider something a "complete" device tree, so we
-need a scheme for this.
+Here is version 5 of this series:
+  https://lore.kernel.org/lkml/20251013123309.2252042-1-elder@riscstar.com/
 
-Did I miss anything?
+Between version 4 and version 5:
+  - Added Yixun's Reviewed-by tag on patch 3
 
-Those feel like solvable problems.
+Here is version 4 of this series:
+  https://lore.kernel.org/lkml/20250925121714.2514932-1-elder@riscstar.com/
 
+Between version 3 and version 4 (all suggested by Yixun):
+  - Fixed an underrun/overrun comment error
+  - Renamed a pinctrl node
+  - Formatted dmas and dma-names properties on one line
 
-> As an aside, part of what makes validation so slow is N boards
-> for an SoC validates the SoC part of the DT N times. I'd like a way to
-> have a quicker validate all the SoC DTs.
+Here is version 3 of this series:
+  https://lore.kernel.org/lkml/20250922161717.1590690-1-elder@riscstar.com/
 
-Looking at what's downstream, we do appear to be doing M x N
-validation where M =3D number of SoCs and N =3D known boards. I'd agree,
-that doesn't scale super well. That being said:
+Between version 2 and version 3:
+  - Add Conor's Acked-by to patch 1
+  - Add Rob's Reviewed-by to patch 1
+  - Added imply_PDMA to the SPI_SPACEMIT_K1 Kconfig option
+  - Fixed a bug pointed out by Vivian (and Troy) in word-sized reads
+  - Added a comment stating we use 1, 2, or 4 bytes per word
+  - Cleaned up DMA channels properly in case of failure setting up
+  - No longer use devm_*() for allocating DMA channels or buffer
+  - Moved the SPI controller into the dma-bus memory region
 
-1. It's not expected for the number of SoC to scale up very high. I
-suspect it would be super rare that a given board could be made to
-boot with more than a small handful of different SoCs. Here I'm not
-even just thinking about the needs of the Pixel team or Google, but in
-general it seems like it would be pretty hard to make a board that
-could handle a very big variety of SoCs. I think even if we scale this
-to larger things like SoMs, the answer still feels the same. NOTE:
-here, I'm only considering the problem of combining things until we
-get a "complete" board (one where we're no longer expecting to munge
-the top-level compatible string). If a SoM has enough stuff to be
-considered "complete" (we stop munging the top-level compatible) then
-I think we're back in the pre-existing overlay problem.
+Here is version 2 of this series:
+  https://lore.kernel.org/lkml/20250919155914.935608-1-elder@riscstar.com/
 
-2. Even downstream, I believe it's really only the dev boards that
-could have various SoCs plugged in. While it's possible someone made
-the choice to build half of our "proto 0" boards with A0 stepping and
-half with B0 stepping, I can't imagine that happening for more than
-one board revision. Thus if D is the number of boards that could have
-more than one SoC, the validation would actually be (M x D) + (N - D).
-It can be noted that this is the same number of device trees we'd need
-to validate if we gave up on using overlays and simply included a full
-device tree for every valid combination, like what we did with
-Chromebooks.
+Between version 1 and version 2:
+  - Use enum rather than const for the binding compatible string
+  - Omit the label and status property in the binding example
+  - The spi-spacemit-k1.o make target is now added in sorted order
+  - The SPI_SPACEMIT_K1 config option is added in sorted order
+  - The SPI_SPACEMIT_K1 config does *not* depend on MMP_PDMA,
+    however MMP_PDMA is checked at runtime, and if not enabled,
+    DMA will not be used
+  - Read/modify/writes of registers no longer use an additional
+    "virt" variable to hold the address accessed
+  - The k1_spi_driver_data->ioaddr field has been renamed base
+  - The DMA address for the base address is maintained, rather than
+    saving the DMA address of the data register
+  - The spi-max-frequency property value is now bounds checked
+  - A local variable is now initialized to 0 in k1_spi_write_word()
+  - The driver name is now "k1-spi"
+  - DT aliases are used rather than spacemit,k1-ssp-id for bus number
+  - The order of two pin control properties was changed as requested
+  - Clock names and DMA names are now on one line in the "k1.dtsi"
+  - The interrupts property is used rather than interrupts-extended
+  - The order of two pin control properties was changed as requested
+  - Clock names and DMA names are now on one line in the "k1.dtsi"
+  - The interrupts property is used rather than interrupts-extended
 
-As far as I can think of, the only way to decrease the amount of
-validation would be if we declared some sort of "interface" for the
-SoC tree. Then we validate that the SoC trees provide that interface
-and we validate the overlays against that interface.
-
-I can't imagine something like that being specified manually for
-something as giant as the interface between a board and the SoC that
-would let the board validate solely via the interface.
-
-I also can't quite imagine a tool that could somehow analyze all of
-the SoC trees and generate some sort of unified interface. The .yaml
-files are allowed to have complex enough rules about properties
-depending on other properties that it doesn't feel like you'd be able
-to succeed.
-
-That being said, I could imagine the idea of manually specifying an
-interface for more constrained uses of overlays. For instance, it does
-feel like you could maybe express an interface that a "cape" needed,
-then validate the "cape" against that.
-
-I'm going to _hope_ that solving this isn't a blocker at this point in time=
-?
+Here is version 1 of this series:
+  https://lore.kernel.org/lkml/20250917220724.288127-1-elder@riscstar.com/
 
 
-> > > My other concern is whether this is an ABI between the SoC and board
-> > > DTBs? And I don't mean just you, but for anyone wanting to do anythin=
-g
-> > > remotely similar. An ABI is a problem as we don't really have any way=
- to
-> > > validate each piece separately. (This is already a problem for existi=
-ng
-> > > overlays.)
-> >
-> > To keep the problem smaller / easier to think about and not try to
-> > solve all existing problems: the only case we're worried about at the
-> > moment is when the base device tree and all overlays are generated at
-> > the same time. That feels like it might be an easier case to handle?
->
-> I know you don't care. I just don't want a mixture here. And if anyone
-> wants this to be an ABI, then the pieces need to be validated.
+Alex Elder (3):
+  dt-bindings: spi: add SpacemiT K1 SPI support
+  spi: spacemit: introduce SpacemiT K1 SPI controller driver
+  riscv: dts: spacemit: define a SPI controller node
 
-Hmmm, any way I can convince you that the problem is different? It
-sounds as if it fundamentally breaks down into overlays that need to
-munge the top-level compatible string and ones that don't.
-
-Overlays that need to munge the top-level compatible string are likely
-doing very complex things that are very tightly intertwined with the
-tree they're overlaying atop. Yes, someone could pretend that there's
-an ABI here and someone could try to build an out-of-tree overlay
-against it, but I would argue that it's an unstable ABI you should
-expect things to break.
-
-Overlays that _don't_ need to munge the top-level compatible string
-are doing things that are much more constrained and it feels like we
-_could_ define a tight ABI to validate against. IMO, that's a very
-interesting problem to solve, but it's not the problem I'm trying to
-solve here.
+ .../bindings/spi/spacemit,k1-spi.yaml         |  84 ++
+ .../boot/dts/spacemit/k1-bananapi-f3.dts      |   7 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  20 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  15 +
+ drivers/spi/Kconfig                           |   9 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-spacemit-k1.c                 | 966 ++++++++++++++++++
+ 7 files changed, 1102 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+ create mode 100644 drivers/spi/spi-spacemit-k1.c
 
 
-> Maybe
-> everyone is tired of us beating the ABI drum and will be happy if it is
-> not.
+base-commit: 0f2995693867bfb26197b117cd55624ddc57582f
+-- 
+2.48.1
 
-I certainly appreciate all the work DT folks have done towards
-validation and also to making sure that DTs are clean and sensible.
-:-) I know my thoughts on the sanctity of overall DT ABI don't always
-match DT maintainers, though I certainly understand where you're
-coming from and why it's a problem folks try to solve. In any case, I
-don't believe that the rules I'm introducing here would interfere with
-the sanctity of the overall DT ABI.
-
-
-> > > > +              - google,pixel-id-070302-rev-000000  # Proto 0
-> > > > +              - google,pixel-id-070302-rev-010000  # Proto 1
-> > > > +              - google,pixel-id-070302-rev-010100  # Proto 1.1
-> > > > +              - google,pixel-id-070303-rev-010000  # EVT 1
-> > > > +              - google,pixel-id-070303-rev-010100  # EVT 1.1
-> > > > +              - google,pixel-id-070303-rev-010101  # EVT 1.1 Wingb=
-oard
-> > > > +              - google,pixel-id-070304-rev-010000  # DVT 1
-> > > > +              - google,pixel-id-070305-rev-010000  # PVT 1
-> > > > +              - google,pixel-id-070306-rev-010000  # MP 1
-> > >
-> > > Should upstream really care about anything other than MP1? I don't th=
-ink
-> > > so. Which ones are useful in 1 year, 2 years, 10 years?
-> >
-> > I suspect that nearly all of them are useful, though _possibly_ some
-> > of the early proto devices can be removed?
-> >
-> > Specifically, engineers at Google will be supporting these devices for
-> > many many years to come. Newer Pixel phones have something like an
-> > 8-year support life during which engineers will need to continue to
-> > support them. From my experience on the Pixel team, unless you can
-> > demonstrate a need for something newer it's common to get assigned EVT
-> > 1 or EVT 1.1 devices when you request hardware, even for older phones.
->
-> Okay, fair enough. I would drop anything you aren't certain you
-> need. You can always add it later. It's also only really useful if you
-> have DTs with the values *and* you run validation on them. If you do,
-> great! If you don't, then upstream is just carrying dead code.
-
-FWIW, my plan was to document all the compatible strings, but not
-necessarily add support for everything. In this series, I added
-support for just "-mp", though I'm booting the result on an EVT 1.1
-device. With the barebones device tree I've added so far there is no
-difference between EVT and MP and the bootloader is OK picking the MP
-one since it can't find the EVT one.
-
-
-> > > > +          - const: google,lga-frankel
-> > > > +          - const: google,lga
-> > >
-> > > It's not clear to me how you map boards to SoC revision? You boot up
-> > > using the SoC DTB and then select the board DTBO based on?
-> >
-> > The key here is that combining happens in the bootloader. The
-> > bootloader boots up and has its own (non-device tree ways) to handle
-> > things. It then looks at the SoC ID register, looks at the IDs that
-> > tell it what board it's running on, and picks a base DTB (representing
-> > the SoC) and an overlay (representing the board). It combines these
-> > two and passes a single unified device tree to Linux.
-> >
-> > Maybe this is a key difference between what we're doing and what
-> > you're thinking of? We're not trying to boot the main OS with just the
-> > base.
->
-> But others are and I need to worry about both. Conceivably, someone
-> might want to do both. First combine the SoC and SoM DTs, and then
-> combine that with the full board DT.
-
-Fair enough. It's something to keep in mind, but I _think_ this case
-should be handled by my current ideas.
-
-1. If the SoC, SoM, and board all need to add to the top-level
-compatible then they use my scheme. All valid combinations need to be
-enumerated in the kernel Makefile and no stable ABI is intended
-between the SoC, SoM and board.
-
-2. If the SoC and SoM together make a "complete" top-level compatible
-and the board doesn't munge with it, then we just need all
-combinations of the SoC / SoM to be enumerated in the kernel Makefile
-and the board simply falls into the existing "it's an overlay"
-scenario.
-
-
-So anything that is an "incomplete" tree (doesn't have a full
-compatible string) is marked as such. TBD exactly how. Incomplete
-trees can still be validated on their own. All valid users of
-incomplete trees must be stored together with them so they can be
-validated, and all possible combinations must be enumerated. No ABI is
-provided from an incomplete tree to an overlay that wasn't enumerated.
-
-
-> > > This all
-> > > needs to be well defined and general enough any (existing) platform
-> > > could use it. If [1] helps or doesn't work for you I'm interested in
-> > > hearing that.
-> >
-> > > [1] https://lore.kernel.org/devicetree-spec/20250911151436.2467758-1-=
-raymond.mao@linaro.org/
-> >
-> > Perhaps I don't understand the proposal, but it doesn't seem useful to
-> > me (?) or at least it's not relevant to the problem we're trying to
-> > solve here.
->
-> > If I had to guess, I'd say the problem they're trying to solve there
-> > is that they've got some external peripherals (like an i2c-connected
-> > dohickey). They want to ship their dohickey to customers and tell
-> > customers that they can attach the dohickey to any of a number of
-> > devboards. If a customer attaches their dohickey to a Raspberry Pi it
-> > should go on, let's say, i2c5. If it's on a Beagleboard they'll say it
-> > belongs on i2c3. On an stm32 it belongs on i2c11. So they distribute a
-> > bunch of "dtbo" files with their dohickey, one for each target
-> > devboard. This mechanism allows a loader to figure out which devboard
-> > is running and which overlay should be loaded. Is that right?
->
-> That would be more the connector usecase.
-
-Right. It was the only usecase I could come up with where having the
-base device tree compatible name was both necessary and sufficient for
-knowing if an overlay should be applied. :-)
-
-
-> It's more how do you know if a base DT is a valid target for an overlay
-> DT. I guess that's an orthongonal issue. You only have one base in your
-> series, but in general how do you know what base to apply the overlays
-> to? You've encoded that into the Makefile. The overlay-compatible scheme
-> moves that information into the overlay so any s/w can figure that out.
-
-I talked about this a bit in the 4th patch in this series. In my mind,
-every possible "loader" of the overlays will need different
-information, so there shouldn't be just one scheme. I explored that
-idea a bit [1] and I proposed something like this:
-
-/ {
-  loaders {
-    mkdtimg {
-      board-id =3D <0x1234>;
-      board-rev =3D <0x5678>;
-    };
-    other-loader {
-      something-else  <0xaaaa>;
-    };
-  };
-
-Then under the "loaders" node we have node names that need to match
-exactly for various loaders and then properties that they need. That's
-just a quick proposal for the syntax, so happy for that to change. We
-would definitely want to add some sort of bindings doc to let us
-validate that.
-
-Yes, clearly there could be lots of "loaders" out there, but I would
-expect this number to be fairly constrained? If nothing else, if you
-think someone's loader isn't worth supporting I guess you could deny
-their bindings...
-
-I have no idea what "loader" (other than "higher-level software or
-firmware") is intended to consume the "overlay-compatible" of the
-proposal you pointed at, but information that could go into the
-bindings doc and would actually help me understand why the base device
-tree compatible name was necessary and sufficient. :-) NOTE: if two
-loaders can both use the same information, that's certainly OK too. We
-could name the node after the loader that came first, right?
-
-
-You correctly point out that I've encoded possible combinations in the
-Makefile, but this is more in terms of enumerating possible
-combinations so they can be validated. It does nothing to help the
-loader pick the right one.
-
-
-> I think it would help if you described what you want to do more
-> generically rather than mixed in with "add a new SoC" and send that to
-> devicetree-spec and perhaps boot-architecture lists. Present the
-> problem, not just the solution.
-
-Sure, though I think the problem has been discussed at length in a
-number of situations before (mailing lists, conferences, etc). Each
-time it seems like it ends up being too complicated and folks hit dead
-ends and stop trying to upstream. Downstream just keeps doing their
-own downstream things because there are tons of people all hitting the
-same problem and there's no upstream solution.
-
-IMO we need to start moving into the realm of solutions. I understand
-that upstream doesn't want to accept some poorly-thought-out scheme
-that will cause long-term grief, but at some point it feels like we
-need to accept something that's "not too bad" so that we can at least
-iterate from there.
-
-After re-reading all the above, it feels like we're not that far from
-a solution, though perhaps you'll read it all and say that you hate it
-and that we're not as close as I thought. ;-)
-
-[1] http://lore.kernel.org/r/CAD=3DFV=3DW3CTMkWPMN5GqGg_L_bUT2Q9vLpc43p5kWA=
-f+j5HBEGA@mail.gmail.com
-
-
--Doug
 
