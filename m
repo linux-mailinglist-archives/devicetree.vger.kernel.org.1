@@ -1,83 +1,74 @@
-Return-Path: <devicetree+bounces-238436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70EE9C5B2E8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 04:43:13 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 182F1C5B3F2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 04:55:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5A1FD345E01
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 03:39:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0C6DF342C55
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 03:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACFDF24A076;
-	Fri, 14 Nov 2025 03:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF26C26ED5E;
+	Fri, 14 Nov 2025 03:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="G7YEiJQ/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G0l14hSd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DE4A221FDE;
-	Fri, 14 Nov 2025 03:39:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936A5258CF0;
+	Fri, 14 Nov 2025 03:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763091590; cv=none; b=tIm8vbU72Fzoueo5FIQdbwQzS3CL0AG07rREUeosEtar3/hU6Z4Tb2eeghm6QFcEJdPkirlB+wLSmZzlDKcFs0SwqeB/k6yFY+nbRU8ZSQaz3wTtH3um5lQoOt8jwxmdY5PSRNqyEWCZgK55t9B+RRPZ2LjrYD6tquwgDcnCoFc=
+	t=1763092394; cv=none; b=pYc+Z9termWXZaJzKGyjmm1f2pMK3s1efbBKaXSb9uOnBHxWafq2lVHi8F3X0o5sro8kYLm8LDOKg8BMnhsxmvu3xVMT0j/p2M3CLARTWnfmqctFQrAJ8WmxNMrHH2asdXcvBwFJWKUZjrmUoCdbDAzyP3ynzygXoDmKt8XicBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763091590; c=relaxed/simple;
-	bh=hvvpvFLbe9iyF9g257vYa81hXpdyyoMxY1ZKaV0ULO0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=qTAKHwUjiS0NqR/dH8eoyfuJ74nmBoLLcr7cjT+y1oP2fDr8l6Bax9uK08pAX5vs1GwfIk68tgHrUDreuaKPUaxrbrfa7EhsyRmaGKqcddTJED7fzg7KhRXmiUvTuKz2fNb/nyCUTIoEqxaEC9JNCvQ5cOSF67dnFfzfja6b5TI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=G7YEiJQ/; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1763091585;
-	bh=n7Wa5zv6kJms6DiLqqXPzKVowzYle1GvZ5G3rdIqE/s=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=G7YEiJQ/nxh6zWkZGsKi3M65JA1ugHSdZF+jmP5H0v4cN2bIrF3lkDgJhefkRuRtZ
-	 UoMGsHHBNydzEo07wb+HD8z+eObQllZZngvB6J/SAX9eMk26dBocMqPGSLL7/J4a2q
-	 CMzlTPqPSHnMgM3MevKx9yTqVLp0OAi65gj8Yn243xBowKCbx6LuJ1bbEJ9XMWgxtd
-	 Jbod5EFnS4u7ZgBBBXA5nhIf0XBr7YmDNKZQvEzyTDU3NkB82OolpnYLXfKk8BWqV+
-	 dYGrIvy1yX7VIDEIPY9CW9KxdhmqoKh/acHgEvJzNub9rpK0aBSpL8FOnPYMOE95tD
-	 6v56rZV7xlryw==
-Received: from [127.0.1.1] (unknown [180.150.112.244])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CF0CB783DF;
-	Fri, 14 Nov 2025 11:39:44 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Leo Wang <leo.jt.wang@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- george.kw.lee@fii-foxconn.com, bruce.jy.hung@fii-foxconn.com, 
- leo.jt.wang@fii-foxconn.com
-In-Reply-To: <20251021-leo-dts-add-nvme-eeprom-v1-1-33166b3665b4@gmail.com>
-References: <20251021-leo-dts-add-nvme-eeprom-v1-1-33166b3665b4@gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: clemente: Add EEPROMs for boot and
- data drive FRUs
-Message-Id: <176309158432.894995.1068506101584521049.b4-ty@codeconstruct.com.au>
-Date: Fri, 14 Nov 2025 14:09:44 +1030
+	s=arc-20240116; t=1763092394; c=relaxed/simple;
+	bh=DuBjJuFRKUpFXwJ785dS3UGxZUQ5KPJP2I7pnElYD78=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=K550eVDCpu2kA5oi8VYmlPAdU6Ec5sQp+zXmci3mNnS2kWa2dv9P4mmw5grpWGOZrifNRazlIVWh68TALnsCsGyIn0ZonQV6ZMXPvJe7ESmuBrX59sxGVJrDH3q+oOAjCxGBE7jQ0DUXlLIXkK/C/EbS+5CT7uFhQZEbdUU1I68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G0l14hSd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 128A5C4CEF1;
+	Fri, 14 Nov 2025 03:53:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763092392;
+	bh=DuBjJuFRKUpFXwJ785dS3UGxZUQ5KPJP2I7pnElYD78=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=G0l14hSdwNg85QdevSgBa7tqTSZRGuKgiigBDJF4YRYXZzT5E56mg9ld1pKWM4xwW
+	 Zjg5GQ0dFt1UKQPzsrl8tiw4AsBfgiKTlP6WeAH7z/eNNW3mJxJsn9wAhMWyl1158D
+	 vXWvBhudgMJ874wViCW6F4+7NM1lyxsE72nLF+IEjD/x/8rOqxi6DQlDdFaRXUOkh/
+	 M7Ix3k/SYAHdVS/hQDBlDlARpaneh4aZNesbN/cT7is0EXkXD6czwBITXjo4kyLE+J
+	 rQ/vufXOauZF/6ZE7UDgEGvtZ6/CzO1SMDR1cmkSZqKE0klVXQ8B3V9J/J+t/CJqdV
+	 8kF9iK72nVyrQ==
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <16c92cc14da67ec6354ee0ac4e1faef4af4d0994.1763022807.git.mazziesaccount@gmail.com>
+References: <cover.1763022807.git.mazziesaccount@gmail.com> <16c92cc14da67ec6354ee0ac4e1faef4af4d0994.1763022807.git.mazziesaccount@gmail.com>
+Subject: Re: [PATCH v4 12/16] clk: clk-bd718x7: Support BD72720 clk gate
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Matti Vaittinen <mazziesaccount@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
+To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Matti Vaittinen <matti.vaittinen@linux.dev>, Matti Vaittinen <mazziesaccount@gmail.com>
+Date: Thu, 13 Nov 2025 19:53:09 -0800
+Message-ID: <176309238996.11952.1859040027915941428@lazor>
+User-Agent: alot/0.11
 
-On Tue, 21 Oct 2025 11:15:39 +0800, Leo Wang wrote:
-> Add EEPROM devices on the I2C buses used for the boot and data NVMe
-> drives. These EEPROMs store FRU information for each drive, allowing
-> the BMC to identify.
-> 
-> 
+Quoting Matti Vaittinen (2025-11-13 00:55:05)
+> From: Matti Vaittinen <mazziesaccount@gmail.com>
+>=20
+> The BD72720 has similar simple clk gate as a few other ROHM PMICs.
+>=20
+> Add support for BD72720 clk gate.
+>=20
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>=20
+> ---
 
-Thanks, I've applied this to the BMC tree.
-
--- 
-Andrew Jeffery <andrew@codeconstruct.com.au>
-
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
