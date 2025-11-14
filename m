@@ -1,353 +1,277 @@
-Return-Path: <devicetree+bounces-238500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38413C5BCD0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:35:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B683EC5BD03
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:38:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 85BC93539DC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:35:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08E563A642F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ACDD2F5483;
-	Fri, 14 Nov 2025 07:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C47B22F6176;
+	Fri, 14 Nov 2025 07:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="iVr0SVhM"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="iHtGkl1t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010010.outbound.protection.outlook.com [40.93.198.10])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C362EDD7D;
-	Fri, 14 Nov 2025 07:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.10
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763105695; cv=fail; b=P8ndvT4DI+wgteS5GgLHL5Vi2pixKWNmTYz1iZEuXT3lJphSTUbZpRQZJCALblcNV8PfoZ/gZ/tCw2+GtdB+rzWzvy2J0Yt9kd1Mc4D/y0T1fum8t6FXEwdb663Jj2WkJ3peXxx1vWEj9aY/RNS7LeDdXhdJy8MCbchknEQvHhw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763105695; c=relaxed/simple;
-	bh=gPr18a0SN1J09XfsslTwhudOlJ91DlW5wzxVzFz0WoA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rhZ+E/rF7MhxlhkBBHjskuTY+W6LduLYU8oWPTTlESERs3ief9wjIahsfBX3+r3BUyxZVz0+SCS90yYFdQnLltXSRn+SYGcyC8nw7s/qlo9LQlpKyBvBJHtvl9L8hFsxhobaFpSXI4dSU9dx63lx/aOiDRlIkrLiwm6NU4kfHyQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=iVr0SVhM; arc=fail smtp.client-ip=40.93.198.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d4afZnDOhEDhqTVh2/Fbuk5toE0fxf6LJ+nYTWLT2IGTNVW+v1Xfln+ylT5R29IRVFkTSPJ4KqMkakAcbfiFQFCRaPuNBl8DL5ZbXCPVso7xazTzjiIzIPAddUA4dM0DQJA+hLlgY89B0NCtB3iB+dypNcqoUY1H9+8rvxTBhW2S1ZVohe8Vd+nqAMNZ5lQtYBKX42UVkKeWF2ZexrIjRXfDbBEIXjKmlY9OaeD+sJE8NyXor7VWivviRXFXqiWQLuM3nV8my5VY+9GZgGD8ckPbYd6vKTO0EQL0GenYG7f5RxdoYzYOIXUzgRON2BAuiLph1wHH/v6uxh5Bz6vaqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7o1vOZR6jJQD+rJQaZ8Pgf8htzuh3RncR1tOOYPw0Q0=;
- b=POXxdkORxZG6rSK9hzxc08uG8qqc5FetGTXJ1K0SpPVl4pN+cq19j/0f6CTzu3Tq7LdSZF0ceHx4le8L27nnh9hySnNV+PWSxMQLDW2AOdYpg/VwHW4zqBTwDPCZfbjpamU+J3IrtXpZE/cB27JvPeLHSgO2GPs/WYNci6MwZprSZrSFLnjZ4iiuLAJUx7NI2S64qbHqrj7VXJyxJm+xX6WPUoDdBv5hvEpHKsCyMWsQ0RF7ypstJGc5A3C1TM4CDH/Q3ivihQdY7HuEKqPiRM0uIJ5GSfdb4Ey4Q3TamUhE8ideFIoaCQ61fbpvd/+8UvDrawGdcxiuq1PXUNtGUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=google.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7o1vOZR6jJQD+rJQaZ8Pgf8htzuh3RncR1tOOYPw0Q0=;
- b=iVr0SVhMlGAA0SXZzz9K1lYfxzAoqgjGY/ScJ+D7xzvE2zmFgcM4YI6v/DWVb6O/S1WNwiuZnYyP9fi8AwlCSzVXW3oecU28YUE7BY/4RXLY07hRsupFMufRfqT6g4zoUqBwiuhCfiifLAx3JyHvvY1GcaDeWUdT6a3FI79O+dI=
-Received: from DS7PR03CA0290.namprd03.prod.outlook.com (2603:10b6:5:3ad::25)
- by SJ0PR10MB4749.namprd10.prod.outlook.com (2603:10b6:a03:2da::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Fri, 14 Nov
- 2025 07:34:51 +0000
-Received: from DS2PEPF0000343F.namprd02.prod.outlook.com
- (2603:10b6:5:3ad:cafe::62) by DS7PR03CA0290.outlook.office365.com
- (2603:10b6:5:3ad::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.17 via Frontend Transport; Fri,
- 14 Nov 2025 07:34:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- DS2PEPF0000343F.mail.protection.outlook.com (10.167.18.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Fri, 14 Nov 2025 07:34:49 +0000
-Received: from DFLE214.ent.ti.com (10.64.6.72) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 14 Nov
- 2025 01:34:46 -0600
-Received: from DFLE202.ent.ti.com (10.64.6.60) by DFLE214.ent.ti.com
- (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 14 Nov
- 2025 01:34:46 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE202.ent.ti.com
- (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 14 Nov 2025 01:34:46 -0600
-Received: from lelvem-mr05.itg.ti.com ([10.250.165.138])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AE7YPVM1606594;
-	Fri, 14 Nov 2025 01:34:36 -0600
-From: Baojun Xu <baojun.xu@ti.com>
-To: <broonie@kernel.org>, <tiwai@suse.de>
-CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
-	<shenghao-ding@ti.com>, <baojun.xu@ti.com>, <linux-sound@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<k-yi@ti.com>, <henry.lo@ti.com>, <robinchen@ti.com>, <will-wang@ti.com>,
-	<jim.shil@goertek.com>, <toastcheng@google.com>, <chinkaiting@google.com>
-Subject: [PATCH v2 2/2] ASoC: dt-bindings: ti,tas2781: Add TAS2568/2574/5806M/5806MD/5830 support
-Date: Fri, 14 Nov 2025 15:33:58 +0800
-Message-ID: <20251114073358.23046-2-baojun.xu@ti.com>
-X-Mailer: git-send-email 2.43.0.windows.1
-In-Reply-To: <20251114073358.23046-1-baojun.xu@ti.com>
-References: <20251114073358.23046-1-baojun.xu@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AD6D224B14;
+	Fri, 14 Nov 2025 07:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763105873; cv=none; b=So3kzwQjlw5zWPN1T1TF/bh78j1hMpOCOxgaqnxDu25W9A8lznzpYtUwZFVQD3KIRxUlvxWaVXf4T8Pf8u3W3jM2fn8M8kQarP7gaTvGGqNOk+ZweAvViumMfYlYtyWReHU7yGlVXpr7ZAj42+USWaXdCu8htdNmsS36AK+/MRw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763105873; c=relaxed/simple;
+	bh=enPaN1dMJTFLYdpII4RfRPdvr7fAva+Fa7XW5ElKwE0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=obHJlK9L56Gt0RHvPz1qAwIcDUmQ4rBwBqq57uEl6Eg5werAHMuNfujfiSYExPcf176eBPaSzhRo+trpeSXN5v6lnIO3qoaBYIm3/IMQ+dCpV8xbAQWdAKi4+SEHeuUd4LNQMcBqrUpIPf6leJFDPhX6Uy0QjkbHNO0Vys1RQbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=iHtGkl1t; arc=none smtp.client-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id; bh=XLOgeU0Epl2MTru
+	mwoIXG9fnH1GQGTrV8VoYLmCIIQs=; b=iHtGkl1tVq/rBzfvOoY8frx9vgzkU0Z
+	MLGYi4nK1gf/l882asFkrKNtwQrXlZmXc5uIj1j7TrZt7MFSbfWDOGGVkVo694Gl
+	GJLCh42jKzL5G6nGQ0RHr0imdGnP9QQKFVXneNYa1FLWxBHqMUCuFG9wHQFzs1Ko
+	lUrAs/iQwBEk=
+Received: from localhost.localdomain (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id PCgvCgAXDqUh3BZpyMCjDg--.18708S2;
+	Fri, 14 Nov 2025 15:37:07 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net
+Cc: christophe.jaillet@wanadoo.fr,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	jdelvare@suse.com,
+	krzk+dt@kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	wenliang202407@163.com
+Subject: Re: [PATCH 1/8] dt-binding:ti,ina3221:Add SQ52210
+Date: Fri, 14 Nov 2025 02:36:44 -0500
+Message-Id: <20251114073644.6813-1-wenliang202407@163.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <05cf9a44-506c-4515-ae12-39ac0bf0cc3d@roeck-us.net>
+References: <05cf9a44-506c-4515-ae12-39ac0bf0cc3d@roeck-us.net>
+X-CM-TRANSID:PCgvCgAXDqUh3BZpyMCjDg--.18708S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3XF1rCw1DKw47XrWUGw15Arb_yoWxGr4Dp3
+	y8GF48tr1xtr1xZr4vkFs5GF18Zr4Ig342yryDKa4vvan5Arnag34kGw40yryxuFn3WFs7
+	Za1ayryakanrtFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JjT-erUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/xtbCwAMf8mkW3CM5DAAA3b
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF0000343F:EE_|SJ0PR10MB4749:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9fcacde3-9741-4d9f-e70d-08de23504aff
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|7416014|82310400026|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ggZJZ2G7oyYss9U+4n/Vjdq4zHMVAXSnHTIiD4mM5yJAor9f7ijIrGvn16/3?=
- =?us-ascii?Q?fB6oCidXF4DL7u0MX/dlVHC9LqenYYNN49lMd4CDcF9vqHJc5j2tElD1OK58?=
- =?us-ascii?Q?Obh2FdabDYOUAo9LTO9h6OeY1moj64KUkNpBVUGl1IrXIqHqnKiRc4aW5HXQ?=
- =?us-ascii?Q?Jx5WKHEYYfLZrYlyfI/NfvOgLP84LTLJFetou+vpVAcaLrCetq+hcvjmY3Vp?=
- =?us-ascii?Q?9ycjKLQqaViDtgJOK1eaPwB36Aq0BwN9XmQxBnnHIIq/zmnEixXfyq/E7J1e?=
- =?us-ascii?Q?xnFnWOS+5msJzb3kiooGHT7AyoSpFqUEupNpoFkVv0XnyfdbE5LiX5nw4H4J?=
- =?us-ascii?Q?ZE2xa7UVHCAjYWY7noYn2TzyGMeJL8zPoRV8DY/giwyAcc4wtO0J7Pp4m1o0?=
- =?us-ascii?Q?NB0liYJoux13Zm1DzWKSm3tTjUedzSrLnVZmb9y9VeyJ6f9dyd2H1Ua8Uqfx?=
- =?us-ascii?Q?d/fS4jFW2I0Yyzmr2iJvyWKTX5cfTVvvZCsyTeQGMflGbRZVD78qv/4dLS0+?=
- =?us-ascii?Q?a0DniXPR3+qK2Fj19msGWqWOzcaLCnBC6fShl2q15mIOdmUZgpvl1ss5tkzu?=
- =?us-ascii?Q?ko2LktAT3eSaSqLaaghLcDqo61E+6QuDawiAsIye/3nSxys5dh/FmdDj/q72?=
- =?us-ascii?Q?toebiQ8Fbyua53tfUI4L/gERJzxtEorfjftiEqJSg/2Fv1IEUqkQRjE06T+p?=
- =?us-ascii?Q?nYArY6dm4VKBthb17w+w/ORfmFfDezSHXPeEc5Unr2J6EDU+7+E69ZfNp4EW?=
- =?us-ascii?Q?S01V9nWX79VpoFhBudl3jg5QdYOXvmlJlMFCLkztPJbFZwOGaFCoMbIWfKyz?=
- =?us-ascii?Q?9Vca8/X2I9M4Pr2v5murRZoejHQKG06cpGC18pkVrIH+Rbi74BDXirUmS78h?=
- =?us-ascii?Q?mS5NaHg8c49m6vgJ2jDw/iV1R1NgkI7AFF+tabVEZEr+60kCA6C42giz6pgj?=
- =?us-ascii?Q?ZLywmSM0gSgsLA429zlKjFzgS/BMWwC147jxfn2/1jJKjkDSFQ3bDD90ps83?=
- =?us-ascii?Q?U4RCugIm1qhoQbeDdOp979+G2x8LmRJDvQF9qnQnxCf+2QYmXwKkqhBf+9pZ?=
- =?us-ascii?Q?1TxMPDbRemOubmovDdxtUhsNCxrB1r8bwVgpcKJbbt96X2sc7vwgnOrBGdLe?=
- =?us-ascii?Q?Pw8Vc0k46u+rxJhmtA0RjZqPo+7l+b/PWurtt2O5V+dSrrNRo0dEsRrXPQkq?=
- =?us-ascii?Q?ar/4Pf2DOdJ95Bea1pkWivrvXTw6qnYMTUHl1n/yBDN/wZMvEaXwiHFvtdwO?=
- =?us-ascii?Q?RGKLbRYK4LLfjAi7udVJJUE2AlCxHQHWF/0NOpbniPM6nTgy3a4D6tFgJMPy?=
- =?us-ascii?Q?iNibc9AVN8WOYNLfKQB6P2aD50Hq4t3JaS8v8UBJrdCe11t8N/SXX893Zevg?=
- =?us-ascii?Q?YFnjBnBZKKjiQxYcguGkUVh9+LoUwGKtytnzZ9anWA7wQEpYoB5g/Gye/T1k?=
- =?us-ascii?Q?zFr/nUew7VIdt7tSs072/uuBJKpXlD9U1jPshy6PhD7fzp3aam1aXiqJ2Pgs?=
- =?us-ascii?Q?Aplu1Hp+7VgTlU+lh6FpCAhWoCvjSfLML94PgodBqwbcf5nQMuXYzh2Vsh2O?=
- =?us-ascii?Q?7OqLiVRpL695QFOb+cOXmgpHapLRgy5iHBI3b+jY?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(7416014)(82310400026)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 07:34:49.4701
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9fcacde3-9741-4d9f-e70d-08de23504aff
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS2PEPF0000343F.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4749
 
-TAS5806M, TAS5806MD and TAS5830 is in same family with TAS58XX.
-TAS2568, TAS2574 is in family with TAS257X.
+At 2025-11-14 01:16:07, "Guenter Roeck" <linux@roeck-us.net> wrote:
+>On Tue, Nov 11, 2025 at 03:05:44AM -0500, Wenliang Yan wrote:
+>>  enum ina3221_channels {
+>> @@ -293,11 +303,39 @@ static int ina3221_read_value(struct ina3221_data *ina, unsigned int reg,
+>>  	 * Shunt Voltage Sum register has 14-bit value with 1-bit shift
+>>  	 * Other Shunt Voltage registers have 12 bits with 3-bit shift
+>>  	 */
+>> -	if (reg == INA3221_SHUNT_SUM || reg == INA3221_CRIT_SUM)
+>> +	switch (reg) {
+>> +	case INA3221_SHUNT_SUM:
+>> +	case INA3221_CRIT_SUM:
+>>  		*val = sign_extend32(regval >> 1, 14);
+>> -	else
+>> +		break;
+>> +	case SQ52210_CURRENT1:
+>> +	case SQ52210_CURRENT2:
+>> +	case SQ52210_CURRENT3:
+>> +	case SQ52210_POWER1:
+>> +	case SQ52210_POWER2:
+>> +	case SQ52210_POWER3:
+>> +		*val = regval;
+>> +		break;
+>> +	case INA3221_BUS1:
+>> +	case INA3221_BUS2:
+>> +	case INA3221_BUS3:
+>> +	case INA3221_SHUNT1:
+>> +	case INA3221_SHUNT2:
+>> +	case INA3221_SHUNT3:
+>> +	case INA3221_WARN1:
+>> +	case INA3221_WARN2:
+>> +	case INA3221_WARN3:
+>> +	case INA3221_CRIT1:
+>> +	case INA3221_CRIT2:
+>> +	case INA3221_CRIT3:
+>>  		*val = sign_extend32(regval >> 3, 12);
+>> -
+>> +		break;
+>> +	case SQ52210_ALERT_LIMIT1:
+>> +	case SQ52210_ALERT_LIMIT2:
+>> +	case SQ52210_ALERT_LIMIT3:
+>> +		*val = regval >> 3;
+>> +		break;
+>> +	};
+>
+>This returns 0 if the register is not listed in the case statement while leaving
+>val unset. It would probably be better to drop this function entirely and handle the
+>conversions in the calling code.
+>
 
-Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+This call is used quite frequently, and handling it directly in the calling code
+would result in significant code redundancy. I believe adding default: *val = 0;
+return -EOPNOTSUPP; should address your concerns.
 
----
-v2:
- - Add TAS2574 support.
- - Re-organize the patch, put compatible in front.
- - Combined some chips as the reg setting is same (0x48-0x4b).
----
- .../devicetree/bindings/sound/ti,tas2781.yaml | 103 ++++++++++++------
- 1 file changed, 69 insertions(+), 34 deletions(-)
+>>  	return 0;
+>>  }
+>>  
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-index f0bb5faf55c8..224999ed6529 100644
---- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -34,15 +34,61 @@ description: |
-     https://www.ti.com/lit/gpn/tas2320
-     https://www.ti.com/lit/gpn/tas2563
-     https://www.ti.com/lit/gpn/tas2572
-+    https://www.ti.com/lit/gpn/tas2574
-     https://www.ti.com/lit/gpn/tas2781
-+    https://www.ti.com/lit/gpn/tas5806m
-+    https://www.ti.com/lit/gpn/tas5806md
-     https://www.ti.com/lit/gpn/tas5815
-     https://www.ti.com/lit/gpn/tas5822m
-     https://www.ti.com/lit/gpn/tas5825m
-     https://www.ti.com/lit/gpn/tas5827
-     https://www.ti.com/lit/gpn/tas5828m
-+    https://www.ti.com/lit/gpn/tas5830
+>> +/*
+>> + * Turns alert limit values into register values.
+>> + * Opposite of the formula in ina3221_read_value().
+>> + */
+>> +static u16 sq52210_alert_to_reg(struct ina3221_data *ina, int reg, long val)
+>> +{
+>> +	int regval;
+>> +	/*
+>> +	 * Formula to convert voltage_uv to register value:
+>> +	 *     regval = (voltage_mv / scale) << shift
+>> +	 * Results:
+>> +	 *     bus_voltage: (1 / 8mV) << 3 = 1 mV
+>> +	 */
+>> +	switch (reg) {
+>> +	case INA3221_BUS1:
+>> +	case INA3221_BUS2:
+>> +	case INA3221_BUS3:
+>> +		/* clamp voltage */
+>> +		regval = clamp_val(val, -32760, 32760);
+>> +		return regval;
+>> +	case SQ52210_CURRENT1:
+>> +	case SQ52210_CURRENT2:
+>> +	case SQ52210_CURRENT3:
+>> +		/* signed register, result in mA */
+>> +		regval = DIV_ROUND_CLOSEST(val * 8000, ina->current_lsb_uA);
+>> +		return clamp_val(regval, -32760, 32760);
+>> +	case SQ52210_POWER1:
+>> +	case SQ52210_POWER2:
+>> +	case SQ52210_POWER3:
+>> +		regval = DIV_ROUND_CLOSEST(val * 8000, ina->power_lsb_uW);
+>> +		return clamp_val(regval, 0, 65528);
+>> +	default:
+>> +		/* programmer goofed */
+>> +		WARN_ON_ONCE(1);
+>> +		return 0;
+>
+>Same as above. I know other code uses the samew approach, but this kind of
+>"validation" would be better to avoid. It would be much better to handle the
+>conversions in the calling code.
+>
+
+As per your recommendation, I will remove this function and complete the
+conversion directly within the sq52210_alert_limit_write function.
+
+>> +	}
+>> +}
+>> +
+>>  static int ina3221_read_chip(struct device *dev, u32 attr, long *val)
+>>  {
+>>  	struct ina3221_data *ina = dev_get_drvdata(dev);
+>> @@ -373,6 +461,25 @@ static int ina3221_read_in(struct device *dev, u32 attr, int channel, long *val)
+>>  	case hwmon_in_enable:
+>>  		*val = ina3221_is_enabled(ina, channel);
+>>  		return 0;
+>> +	case hwmon_in_crit:
+>> +	case hwmon_in_lcrit:
+>> +		reg = alert_limit_reg[channel];
+>> +		ret = ina3221_read_value(ina, reg, &regval);
+>> +		if (ret)
+>> +			return ret;
+>> +		/*
+>> +		 * Scale of bus voltage (mV): LSB is 8mV
+>> +		 */
+>> +		*val = regval * 8;
+>> +		return 0;
+>> +	case hwmon_in_crit_alarm:
+>> +	case hwmon_in_lcrit_alarm:
+>> +		reg = alert_flag[channel];
+>> +		ret = regmap_field_read(ina->fields[reg], &regval);
+>> +		if (ret)
+>> +			return ret;
+>> +		*val = regval;
+>> +		return 0;
+>>  	default:
+>>  		return -EOPNOTSUPP;
+>>  	}
+>> @@ -450,6 +557,58 @@ static int ina3221_read_curr(struct device *dev, u32 attr,
+>>  	}
+>>  }
+>>  
+>> +static const u32 sq52210_alert_mask[][INA3221_NUM_CHANNELS] = {
+>> +	[hwmon_curr_lcrit] = { BIT(15), BIT(14), BIT(13) },
+>> +	[hwmon_in_crit] = { BIT(12), BIT(11), BIT(10) },
+>> +	[hwmon_in_lcrit] = { BIT(9), BIT(8), BIT(7) },
+>> +	[hwmon_power_crit] = { BIT(6), BIT(5), BIT(4) },
+>
+>This does not work. hwmon_curr_xxx, hwmon_inxxx, and hwmon_power_xxx use
+>different and overlapping number spaces. Even if that was not the case,
+>the above would result in a serverely sparse array, and the callingo code
+>would have to make sure that the row is actually populated before using it.
+>
+
+Using an array here isn't quite appropriate. I'll use a switch statement in
+the next version to determine different alert flags to resolve this issue.
+
+>> +};
+>> +
+>> +static int sq52210_alert_limit_write(struct ina3221_data *ina, u32 attr, int channel, long val)
+>> +{
+>> +	struct regmap *regmap = ina->regmap;
+>> +	int ret, limit_reg, item;
+>> +	u32 alert_group;
+>> +
+>> +	if (val < 0)
+>> +		return -EINVAL;
+>> +	item = channel % INA3221_NUM_CHANNELS;
+>> +	switch (item) {
+>> +	case 0:
+>> +		alert_group = SQ52210_MASK_ALERT_CHANNEL1;
+>> +		limit_reg = SQ52210_ALERT_LIMIT1;
+>> +		break;
+>> +	case 1:
+>> +		alert_group = SQ52210_MASK_ALERT_CHANNEL2;
+>> +		limit_reg = SQ52210_ALERT_LIMIT2;
+>> +		break;
+>> +	case 2:
+>> +		alert_group = SQ52210_MASK_ALERT_CHANNEL3;
+>> +		limit_reg = SQ52210_ALERT_LIMIT3;
+>> +		break;
+>> +	default:
+>> +		break;
+>> +	}
+>> +	/*
+>> +	 * Clear all alerts first to avoid accidentally triggering ALERT pin
+>> +	 * due to register write sequence. Then, only enable the alert
+>> +	 * if the value is non-zero.
+>> +	 */
+>> +	ret = regmap_update_bits(regmap, SQ52210_ALERT_CONFIG,
+>> +				alert_group, 0);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +	ret = regmap_write(regmap, limit_reg,
+>> +			sq52210_alert_to_reg(ina, ina3221_curr_reg[attr][item], val));
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	if (val)
+>> +		return regmap_update_bits(regmap, SQ52210_ALERT_CONFIG,
+>> +					alert_group, sq52210_alert_mask[attr][item]);
+>> +	return 0;
+>> +}
+>> +
  
- properties:
-   compatible:
-+    oneOf:
-+      - enum:
-+          - ti,tas2020
-+          - ti,tas2118
-+          - ti,tas2120
-+          - ti,tas2320
-+          - ti,tas2563
-+          - ti,tas2568
-+          - ti,tas2570
-+          - ti,tas2572
-+          - ti,tas2574
-+          - ti,tas2781
-+          - ti,tas5802
-+          - ti,tas5806m
-+          - ti,tas5806md
-+          - ti,tas5815
-+          - ti,tas5822
-+          - ti,tas5825
-+          - ti,tas5827
-+          - ti,tas5828
-+          - ti,tas5830
-+      - items:
-+          - enum:
-+              - ti,tas2020
-+              - ti,tas2118
-+              - ti,tas2120
-+              - ti,tas2320
-+              - ti,tas2563
-+              - ti,tas2568
-+              - ti,tas2570
-+              - ti,tas2572
-+              - ti,tas5802
-+              - ti,tas5806m
-+              - ti,tas5806md
-+              - ti,tas5815
-+              - ti,tas5822
-+              - ti,tas5825
-+              - ti,tas5827
-+              - ti,tas5828
-+              - ti,tas5830
-+          - const: ti,tas2781
-+
-     description: |
-       ti,tas2020: 3.2-W Mono Digital Input Class-D Speaker Amp with 5.5V PVDD
-       Support.
-@@ -58,12 +104,18 @@ properties:
-       ti,tas2563: 6.1-W Boosted Class-D Audio Amplifier With Integrated
-       DSP and IV Sense, 16/20/24/32bit stereo I2S or multichannel TDM.
- 
-+      ti,tas2568: 5.3-W Digital Input Smart Amp with I/V Sense and Integrated
-+      10.75-V Class-H Boost
-+
-       ti,tas2570: 5.8-W Digital Input smart amp with I/V sense and integrated
-       11-V Class-H Boost
- 
-       ti,tas2572: 6.6-W Digital Input smart amp with I/V sense and integrated
-       13-V Class-H Boost
- 
-+      ti,tas2574: 8.5-W Digital Input smart amp with I/V sense and integrated
-+      15-V Class-H Boost
-+
-       ti,tas2781: 24-V Class-D Amplifier with Real Time Integrated Speaker
-       Protection and Audio Processing, 16/20/24/32bit stereo I2S or
-       multichannel TDM.
-@@ -72,6 +124,14 @@ properties:
-       Audio Amplifier with 96-Khz Extended Processing and Low Idle Power
-       Dissipation.
- 
-+      ti,tas5806m: 23-W, Inductor-Less, Digital Input, Stereo, Closed-Loop
-+      Class-D Audio Amplifier with Enhanced Processing and Low Power
-+      Dissipation.
-+
-+      ti,tas5806md: 23-W, Inductor-Less, Digital Input, Stereo, Closed-Loop
-+      Class-D Audio Amplifier with Enhanced Processing and DirectPath(TM)
-+      HP Driver
-+
-       ti,tas5815: 30-W, Digital Input, Stereo, Closed-loop Class-D Audio
-       Amplifier with 96 kHz Enhanced Processing
- 
-@@ -86,26 +146,9 @@ properties:
- 
-       ti,tas5828: 50-W Stereo, Digital Input, High Efficiency Closed-Loop
-       Class-D Amplifier with Hybrid-Pro Algorithm
--    oneOf:
--      - items:
--          - enum:
--              - ti,tas2020
--              - ti,tas2118
--              - ti,tas2120
--              - ti,tas2320
--              - ti,tas2563
--              - ti,tas2570
--              - ti,tas2572
--              - ti,tas5802
--              - ti,tas5815
--              - ti,tas5822
--              - ti,tas5825
--              - ti,tas5827
--              - ti,tas5828
--          - const: ti,tas2781
--      - enum:
--          - ti,tas2781
- 
-+      ti,tas5830: 65-W Stereo, Digital Input, High Efficiency Closed-Loop
-+      Class-D Amplifier with Class-H Algorithm
-   reg:
-     description:
-       I2C address, in multiple-AMP case, all the i2c address
-@@ -137,6 +180,10 @@ allOf:
-               - ti,tas2118
-               - ti,tas2120
-               - ti,tas2320
-+              - ti,tas2568
-+              - ti,tas2570
-+              - ti,tas2572
-+              - ti,tas2574
-     then:
-       properties:
-         reg:
-@@ -164,21 +211,6 @@ allOf:
-             minimum: 0x4c
-             maximum: 0x4f
- 
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - ti,tas2570
--              - ti,tas2572
--    then:
--      properties:
--        reg:
--          maxItems: 4
--          items:
--            minimum: 0x48
--            maximum: 0x4b
--
-   - if:
-       properties:
-         compatible:
-@@ -217,6 +249,8 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - ti,tas5806m
-+              - ti,tas5806md
-               - ti,tas5822
-     then:
-       properties:
-@@ -233,6 +267,7 @@ allOf:
-             enum:
-               - ti,tas5827
-               - ti,tas5828
-+              - ti,tas5830
-     then:
-       properties:
-         reg:
--- 
-2.25.1
+
+
+Thanks,
+Wenlaing Yan
 
 
