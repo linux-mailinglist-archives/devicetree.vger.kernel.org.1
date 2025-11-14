@@ -1,95 +1,101 @@
-Return-Path: <devicetree+bounces-238910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B5CC5F849
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 23:28:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD625C5F8E1
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 00:04:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 434BE3507E4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 22:28:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 61923345B66
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 23:04:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D93532A3D8;
-	Fri, 14 Nov 2025 22:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CC92F25E6;
+	Fri, 14 Nov 2025 23:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VjG3v7LW"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="uzjjlbLb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3FB12C0F96;
-	Fri, 14 Nov 2025 22:28:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702AF2D2397
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 23:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763159323; cv=none; b=fr3HM6sIsFC/h+SlRel5Ke3Ip8tn9nEgLoigxdx/u+YMT5zqcnE8nrauDuQfQLuy9t6gMR8ytFQ8DHpbmEFrovSG13I3rWxopUTFieBhEKqTzK3LiTEz5BrC98foTHYob6gvXfKCPPxmmW7xIM2jQHeVIEGdAq/GE9ximt9LRHY=
+	t=1763161466; cv=none; b=bbUV0E29aIVAYXtBZ3sDMYVLASbhsOGN2tyoV7g/wVdWrdpBjbZprDtY1f2sVq+vtJFKCrr6WQdYxMSrU2DvatBvIvisajTVsAOpeSg0S0aeNUxxuzfhwQS99BJ0etC1ptL9fnZuQkz/FcMzRls3WWLHLd0fYhtjhWFUldF/RxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763159323; c=relaxed/simple;
-	bh=7MiWo7GmoSDqrOiGq0YpKyPcFGwIoNVH5oLyt5f4I24=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IgQxvIU09NURtCZqIB4VNzE2L2E0R0jz8v+Ohgb8ndglBC6hldqgiC9TqXRX07QEF58hPkgo/YNaQIxUJ/T8/Mf/6R4zrZcO+rntkzZPt8PhDRASsRRMH/Xcr+4PybexEFjNKRrT579QH90EddNTXs+qMiQ6oYM0RqCq5LSGD2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VjG3v7LW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28D79C16AAE;
-	Fri, 14 Nov 2025 22:28:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763159322;
-	bh=7MiWo7GmoSDqrOiGq0YpKyPcFGwIoNVH5oLyt5f4I24=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VjG3v7LWMXRzOctQn8BwZZMGlrxkkQVgLxyu+6EAP4SXfLc+rQgkHGTcku2zLZ6ha
-	 +WToUrOjzFoDRgu5XcyyFnmx7x4ysT5cFs8WWfjyYvR0zW58fT5Dos6oxkKrvCcrE5
-	 kSSWjk/l0GIbzhYpECc8jiGRlrGP4gQ69bYWyEYo8GCxi9nt/DeZYK4uoUe3/oT8ua
-	 0CpvBzYIqOB1beQxl3ywhJjIMB19/W2JEOPCFxDIW6Hih0E+nkvySlre9+E0J/G/rl
-	 h+ozcCNct1UJWpRdWzMr4F4CsGAEJPZOJIWI/YRhrXCUiQPiWj3sPID1uflYqGkwvL
-	 QHpeIO0iaj41A==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas.schier@linux.dev>
-Cc: devicetree@vger.kernel.org,
-	linux-kbuild@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] kbuild: Ensure .dtbo targets are applied to a base .dtb
-Date: Fri, 14 Nov 2025 16:27:58 -0600
-Message-ID: <20251114222759.4181152-1-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1763161466; c=relaxed/simple;
+	bh=M1GYHXrtFK2i9Vantk/rSzkj7xrRb+o920fUhipoiiY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TbjZEf6uCQVR5/xnALL3DWbpvyFjFZvvRHg+ssgLHxmrmj0oElWC5bu8/3glM8VDvfUwfGSFkZxejxlQUqGGl9ykX3rtRrnAeUKqx8C5aMtLt8QN5gn/y6QfWlAjlQWqrrEBmAeXPPtaPEahEw/ddod47jrfk29SxvVMfc2f3pY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=uzjjlbLb; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=pKSiJLPUAR9HsRgDUrGDGMtk9hgHROgW9DBE1l02DWg=; b=uzjjlbLbFXvlizzyq8tBfXfVCD
+	wbKlVB2/6PiXeRAKOvcu5j0bQlSkCwg/o2xb6hc3R+rePi0ylu+YPrO4WSyl15brFYeoweQ03F849
+	wBHPrsaxUY6IIbE1cD1raSY6FRHUp+dpHC/r1zd6LIUK28CAdRtUVBtmW2Y8qP21ITGviaBt9j5AP
+	poixYaj0jNG2aLxOnCuEGwZ8cJAWekAVhmmX5D3qFm0uExLVoWUUnMwqtcx24SnhxyTFjo/AAOTUL
+	G8A6vBeI7FLb0vxt1oEw6ECYDWML8Sr+864Oro2NkciieBxcRphndWot+IqBym7OJ4ik4jmq+76Vc
+	HL1+a+gQ==;
+Received: from i53875ae8.versanet.de ([83.135.90.232] helo=phil..)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vK2pw-0008IQ-Tp; Sat, 15 Nov 2025 00:04:12 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: dri-devel@lists.freedesktop.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: Re: [PATCH v3 0/2] drm/rockchip: dw_hdmi_qp: Fixup usage of enable_gpio
+Date: Sat, 15 Nov 2025 00:04:08 +0100
+Message-ID: <176316144239.624283.9548416396481211446.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20251027222641.25066-1-laurent.pinchart@ideasonboard.com>
+References: <20251027222641.25066-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-It is a requirement that DT overlays in the kernel are applied at build
-time to a base DTB in order to validate they can be applied and to
-validate them against the DT schemas. DT overlays on their own may be
-incomplete and can't be validated.
 
-Add a kbuild check so this doesn't have to be checked and fixed
-periodically.
+On Tue, 28 Oct 2025 00:26:39 +0200, Laurent Pinchart wrote:
+> The dw_hdmi_qp driver supports a "enable-gpios" DT property that is not
+> documented in the corresponding DT bindings, and is not used in any
+> upstream device tree sources. This patch series renames the property to
+> "frl-enable-gpios" to express its purpose more clearly, and documents it
+> in the bindings.
+> 
+> In the previous these two patches were part of "[PATCH v2 0/5] arm64:
+> dts: rockchip: Add device tree for the Orange Pi CM5 Base board" ([1]).
+> I have split them from the Orange Pi CM5 Base DT and rebased them on top
+> of the drm-misc-next branch to ease integration.
+> 
+> [...]
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- scripts/Makefile.dtbs | 7 +++++++
- 1 file changed, 7 insertions(+)
+Applied, thanks!
 
-diff --git a/scripts/Makefile.dtbs b/scripts/Makefile.dtbs
-index 2d321b813600..15473edc2589 100644
---- a/scripts/Makefile.dtbs
-+++ b/scripts/Makefile.dtbs
-@@ -10,6 +10,13 @@ real-dtb-y := $(call real-search, $(dtb-y), .dtb, -dtbs)
- # Base DTB that overlay is applied onto
- base-dtb-y := $(filter %.dtb, $(call real-search, $(multi-dtb-y), .dtb, -dtbs))
- 
-+# Ensure that any .dtbo is applied to at least one base .dtb. Otherwise, it
-+# does not get validated.
-+applied-dtbo := $(filter %.dtbo, \
-+	$(call real-search, $(call multi-search, $(dtb-y) $(dtb-), .dtb, -dtbs), .dtb, -dtbs))
-+unapplied-dtbo := $(filter-out $(applied-dtbo),$(filter %.dtbo, $(dtb-y)))
-+$(if $(unapplied-dtbo), $(warning .dtbo is not applied to any base: $(unapplied-dtbo)))
-+
- dtb-y           := $(addprefix $(obj)/, $(dtb-y))
- multi-dtb-y     := $(addprefix $(obj)/, $(multi-dtb-y))
- real-dtb-y      := $(addprefix $(obj)/, $(real-dtb-y))
+[1/2] dt-bindings: display: rk3588-dw-hdmi-qp: Add frl-enable-gpios property
+      commit: ca408d8d93d33423cafe3046f40bcc81bc6ee5f3
+[2/2] drm/rockchip: dw_hdmi_qp: Fixup usage of enable_gpio member in main struct
+      commit: 53dd063bb6b342ca00d2a0c138ba58807a690417
+
+Best regards,
 -- 
-2.51.0
-
+Heiko Stuebner <heiko@sntech.de>
 
