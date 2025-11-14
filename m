@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0666C5C92A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:28:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10154C5CA14
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:40:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8D743A56A5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:26:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B5D444F48AF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C0630FC06;
-	Fri, 14 Nov 2025 10:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 873BC31282C;
+	Fri, 14 Nov 2025 10:31:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TmSAgMTQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AnoqS+MV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DC030AAAF;
-	Fri, 14 Nov 2025 10:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60994312808
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 10:31:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763116004; cv=none; b=haPYjLqtDFLXmezungGbODnQAeMmv1CSWwpQM2oQolir8TL7jBaDLaW/keapDxmY1D0kxGcSIN1TgeuEeTIHNooru4DnAjlGCd3f/iO4p0f636n1ubnfRcOHdljrWpGIDRLO55IxWw4mTIYw0pS56DcxtgoBBurq+l6xr/Sy6cY=
+	t=1763116265; cv=none; b=SeykfqywnrTB/zrYb8gQdavqZa2TW1RgqS9cIJ36F4v1kZRV3PQfrbWjY+xSyPQDKQ+5AF2mDfUwmrDqr7AJSqId9xpAJJYI+CERjqLXcRjwif3YEDFdlRiXG/p+AEBxu6FSMB7anjWq/V0Zha8IxNl8SwbhKVvfTe3OfLUDmgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763116004; c=relaxed/simple;
-	bh=4/vosIKRRzxxVi7pbrArwNo1o/fe0zKKUJJpxZBGO/A=;
+	s=arc-20240116; t=1763116265; c=relaxed/simple;
+	bh=XcLb0Pkr7Wtl1rUAEO8Toa2ADaRB8mTcjUnYhfD0PKM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NDVF87bCgigeUeEHdgthTNr/XZ8dFEwUNkKneqVblvbz1LZzAkN8TQdj3N702naoolaG/GESU1WWDVWfCkIvWVdQ7V6QLiYs1uvZ59sLuZ96d2t7SZ4abcayk0mXg0DXttDKDTdxh1KX9u276dWMmN078I4K+LamWwHJN33gyII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TmSAgMTQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D45EC113D0;
-	Fri, 14 Nov 2025 10:26:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tiXJ82fB+DjLJENpTBGnv1RsQ17Ddwqk5ziIJM1sLwThFHxDQhbc+RdBq6a4k/x5NG1vFYMV5A/StEEI8wp5hD90eSb3fwI7TPXzELaQKZSCq2Gfcgrx+1gKns04TotpqrVT9yZzTtgfVDbsHQu3kewzbywSNOPnMnlc0jSi7s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AnoqS+MV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B427CC19421;
+	Fri, 14 Nov 2025 10:31:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763116004;
-	bh=4/vosIKRRzxxVi7pbrArwNo1o/fe0zKKUJJpxZBGO/A=;
+	s=k20201202; t=1763116265;
+	bh=XcLb0Pkr7Wtl1rUAEO8Toa2ADaRB8mTcjUnYhfD0PKM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TmSAgMTQFCjvjyd9IvIJufR79iwyPHFPAKf4eMWQKNoA7C6ORnnyIrMyUKz2SSy4q
-	 qryh4N3VYZG7F6KbN0i67eZImdNRu/k+GmLKq9Jn7x588KhmVNpT0RUsK3b3kjsal8
-	 AMK0yvcDLf3CXbh7h+Mx0mdXSNuuPTNMNTmZ/KN1nmEErPhcMoaL+KsljJBNTDsfpu
-	 cEIDVgDaEmGjQllurE93GDMz2A1np9xWaF31L2eb/hDImFwcVA2NNG3CLFvCMruzlT
-	 4C0IEI6Y0347HjiOoiDxGAFmWb/iqXH0972xYCaG7NUetJstuv4ZfdsuBHZBkuuxWm
-	 U1JKCyee68ugA==
-Message-ID: <06c4e79d-8f2c-4eb0-ae2a-7ca7cfc18ef0@kernel.org>
-Date: Fri, 14 Nov 2025 11:26:40 +0100
+	b=AnoqS+MVybFD0zmVLgTfNFH2mihkg6ModeBI3XQq6CYGS0IevVKYazmYJvMN7PpYZ
+	 hHxIQDTquFiyTzItg/uzeVR2+blyJZvz964jJj4mfGxK5uDPsUwQ1Kks3yyXNc0DzZ
+	 SaG5OIZIzkf8oq001an5LamWo/TuOPBBqBjYzal8NeFU9t+SaYfFCu2tEjKs18c9ry
+	 x8meaCzixrBkpNmPrRw4xR1kMO49mxQFAGtyQ0mMSQm3ZPcwlZmVyyz1mVKTWF8sas
+	 0eEKPpjJYiSAs7vivobvOdaC0r8NtYIEc25lz0AoxrECk7KdXEm+ADTSwFmIKk4BYy
+	 AAtZrB2T6wsEA==
+Message-ID: <5b58dda8-af68-41cd-af23-ec48bfc11d79@kernel.org>
+Date: Fri, 14 Nov 2025 11:30:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: monaco-evk: Enable TPM (ST33)
-To: Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251114-enable-tpm-monaco-v1-1-4ed566838698@oss.qualcomm.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
+To: Dragan Simic <dsimic@manjaro.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, joseph.kogut@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se,
+ kever.yang@rock-chips.com, i@next.chainsx.cn, honyuenkwun@gmail.com,
+ quentin.schulz@cherry.de, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
+ jbx6244@gmail.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <A3AD69295D2E2D65+db2dc8bd-054f-4dda-9dd1-3cc0c0feed35@radxa.com>
+ <194908a1-f956-ba0a-656f-7b1e8456b51d@manjaro.org> <1942576.CQOukoFCf9@diego>
+ <21ea3b50-6000-5202-49cf-685310e6fa18@manjaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,24 +108,104 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251114-enable-tpm-monaco-v1-1-4ed566838698@oss.qualcomm.com>
+In-Reply-To: <21ea3b50-6000-5202-49cf-685310e6fa18@manjaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/11/2025 11:17, Khalid Faisal Ansari wrote:
-> Enable ST33HTPM TPM over SPI10 on the Monaco IoT EVK by adding the
-> required SPI and TPM nodes.
+On 14/11/2025 11:12, Dragan Simic wrote:
+> Hello Heiko,
 > 
-> Signed-off-by: Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
-> ---
-> Hi,
+> On Friday, November 14, 2025 11:08 CET, Heiko Stübner <heiko@sntech.de> wrote:
+>> Am Freitag, 14. November 2025, 09:32:29 Mitteleuropäische Normalzeit schrieb Dragan Simic:
+>>> On Friday, November 14, 2025 09:24 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>>> On 11/14/25 16:51, Krzysztof Kozlowski wrote:
+>>>>> On 14/11/2025 08:47, FUKAUMI Naoki wrote:
+>>>>>> On 11/14/25 16:42, Krzysztof Kozlowski wrote:
+>>>>>>> On 14/11/2025 08:37, FUKAUMI Naoki wrote:
+>>>>>>>> Hi Krzysztof,
+>>>>>>>>
+>>>>>>>> On 11/14/25 16:12, Krzysztof Kozlowski wrote:
+>>>>>>>>> On 05/11/2025 08:08, Krzysztof Kozlowski wrote:
+>>>>>>>>>> On 05/11/2025 07:57, FUKAUMI Naoki wrote:
+>>>>>>>>>>> On 11/5/25 15:43, Krzysztof Kozlowski wrote:
+>>>>>>>>>>>> On 05/11/2025 06:13, FUKAUMI Naoki wrote:
+>>>>>>>>>>>>> Add device tree binding documentation for the Radxa CM5 IO Board.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Link: https://dl.radxa.com/cm5/radxa_cm5_product_brief.pdf
+>>>>>>>>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>>>>>>>>>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+>>>>>>>>>>>>
+>>>>>>>>>>>> Wrong DCO chain.
+>>>>>>>>>>>>
+>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>      Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+>>>>>>>>>>>>
+>>>>>>>>>>>> NAK, you just stolen ownership of an already posted patch.
+>>>>>>>>>>>
+>>>>>>>>>>> Read "Changes in v6" and patches; my patches are not the same as v5.
+>>>>>>>>>>> Your reply is totally inappropriate.
+>>>>>>>>>>
+>>>>>>>>>> Inappropriate is taking authorship of someone's patch, because we all
+>>>>>>>>>> expect to preserve the original authorship. That's not only basic
+>>>>>>>>>> decency but actually a standard.
+>>>>>>>>>>
+>>>>>>>>>> Additionally, read Joseph's reply that he wants to continue the work:
+>>>>>>>>>> https://lore.kernel.org/all/CAMWSM7iHtAxewW4JkRqRsifVnccqeFviaCgeOyprKDr92FOurg@mail.gmail.com/
+>>>>>>>>>>
+>>>>>>>>>> You clearly do not understand how to continue with someone's work.
+>>>>>>>>>>
+>>>>>>>>>> It is still a NAK.
+>>>>>>>>>
+>>>>>>>>> And I still wait for justification why you took authorship of this
+>>>>>>>>> patch, because to my eye you changed here nothing.
+>>>>>>>>>
+>>>>>>>>> So what did you change HERE that you think you are the author now?
+>>>>>>>>
+>>>>>>>> Changes in v6:
+>>>>>>>> (Patch 1/3)
+>>>>>>>> - Fix description; "Radxa CM5" is the correct name
+>>>>>>>
+>>>>>>> HERE, in this patch. Don't paste me hundreds of unrelated code. Write
+>>>>>>> concise and precise answers/comments.
+>>>>>>
+>>>>>> https://lore.kernel.org/linux-rockchip/AE0735A6C797CCFF+10496d73-7c0a-4884-9561-24721305a24f@radxa.com/
+>>>>>>
+>>>>>> | By the way, at some point I switched from "continuing your work" to
+>>>>>> | "recreating a new one based on my current work." The results of my
+>>>>>> | current work(*3) have changed significantly.
+>>>>>
+>>>>> So next time I will take your patch, your code, say "I recreated it" and
+>>>>> submit under my authorship and for you it is fine?
+>>>>
+>>>> Regarding CM5 patches, I'm fine.
+>>>>
+>>>>> Please take Joseph's patch instead. Read submitting patches doc to
+>>>>> understand which one more tag has to be added when sending somoene
+>>>>> else's work.
+>>>>>
+>>>>> In the future, I sincerely suggest avoiding re-creating people's work
+>>>>> but building on top, because you just duplicate the effort.
+>>>>
+>>>> I understand that you don't understand how I made efforts to build my 
+>>>> work on top of Joseph's patches.
+>>>
+>>> Maybe a solution for this huge mess could be that Naoki submits
+>>> unmodified patches from Joseph first, using the standard procedure
+>>> for that, and then the additional patch(es) that improve Joseph's
+>>> work?  All that in the same series.
+>>
+>> There is also Co-developed-by as an option.
 > 
-> As part of TPM support enablement on Monaco EVK, the following tests were performed to verify functionality: 
-> 
+> Ah, that's what the above-described option #1 involves, but it also 
+> raises some possible concerns, described in one of my responses. [1]
 
-
-Please organize your work in patchsets so handling and reviewing it will
-be easy for us. Submitting patches explains more how to do it.
+There are no concerns to be raised. Please read DCO. The original author
+GAVE certified what is necessary, thus any person taking this work
+already can you that certification. You raised some uncertainty "I'm not
+sure how fair is it for someone to become responsible" which is just not
+right here. It is completely fair and completely correct from DCO point
+of view, because the certification was already provided. Also from
+certification point, there is no "weaker" form. Either you certify or not.
 
 Best regards,
 Krzysztof
