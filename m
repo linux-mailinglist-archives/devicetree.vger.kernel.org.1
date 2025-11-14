@@ -1,150 +1,120 @@
-Return-Path: <devicetree+bounces-238481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C0D5C5BA6B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:59:36 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E206AC5BA65
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:59:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A474B3A262F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 06:57:29 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 448B7354978
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 06:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AF52DF13E;
-	Fri, 14 Nov 2025 06:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2392E7648;
+	Fri, 14 Nov 2025 06:59:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="AF9eq+cO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FgIHQRAF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 684322D3738
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:57:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622362C21C5;
+	Fri, 14 Nov 2025 06:59:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763103445; cv=none; b=TKQKHDxZlTGTsA4FWVZCUTzc4qWr6gDSeWyDYyheDmi5lOVQlTkRK2+lPmmOl0amzxmMVib9FTI2YBiOGRDQSnZiHR954TO4VdsC35Q2t8Eme2ilp1QnxkdC+88/khjiEGY8Ttvxy3xQKL81sSIOhOUgWOVqZh+5BO2y0MNMeEU=
+	t=1763103547; cv=none; b=gUCVA0TZ7JoqjMEmSqw51QfySYSKzH1fpToGiRA4kpkv8oA1QKnd1b5g5BwSXJv/OYlsryrXK4z+J70SCbCgMF9cEQCwO8o+B1m1vn+BteAmBMZgOBq2IovXfZc8jBEswDpzxRtcqNhnAtnP8UvquE+haTFpg74TZbBNmkZHMxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763103445; c=relaxed/simple;
-	bh=TQIRRbL9dM/f1VkPgu9INKyF1KLf6LH1oqkvwVc3PzU=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=ky8w2zyH3cuplj0iEv3OapZL0YlYkUmTtt9BTmU18F21UEaDmeb5exOBi0ddTZrgunCcZjCdPMZgbrGqk/hcWi211S3x96e1sAgz2qJ+FN9nO4IKaq6TCEVZPj0G2Fau7BkHNpX7FkhtZSrISJqWYBAQihB6r2i0O6/+TOzXO0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=AF9eq+cO; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20251114065720epoutp019b10d2e080c7d1a7cc827c404838cd73~3zTzaCBrK2089620896epoutp01f
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 06:57:20 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20251114065720epoutp019b10d2e080c7d1a7cc827c404838cd73~3zTzaCBrK2089620896epoutp01f
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1763103440;
-	bh=1vkMpsltnFXkF+G2EStX6zbbbjFa3ZqX3K9ihfvO02o=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=AF9eq+cOCo27nmRd0D85k64UWmd+h8PC9krLewVBf8bPetYybViAT+7VXgYXlBUPm
-	 D8x+8PS1FCXZnGrTxgWQwl6yqAbO9GQ7ihBF/22K7G3ho8FtJ88fSiCfVxSazWviFP
-	 ZtrPDMUbSxBwgZyBDwWkpNH/oycM8oXaZ6B/h0y4=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
-	20251114065719epcas2p1e8849a097d46ed03d4a15f820d6e3459~3zTy8NAmg1323413234epcas2p1B;
-	Fri, 14 Nov 2025 06:57:19 +0000 (GMT)
-Received: from epcas2p1.samsung.com (unknown [182.195.38.211]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4d77HM3gHXz3hhTD; Fri, 14 Nov
-	2025 06:57:19 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20251114065718epcas2p1f36aa81a248e01e9c78a9064c268b72f~3zTyB67lU1559915599epcas2p1K;
-	Fri, 14 Nov 2025 06:57:18 +0000 (GMT)
-Received: from KORCO118486 (unknown [12.80.208.104]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20251114065718epsmtip16f5e401c43bd4752ad76b10649c268b8~3zTx7Nt-s0134501345epsmtip1i;
-	Fri, 14 Nov 2025 06:57:18 +0000 (GMT)
-From: "SanghoonBae" <sh86.bae@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
-	<conor+dt@kernel.org>, <vkoul@kernel.org>, <alim.akhtar@samsung.com>,
-	<kishon@kernel.org>, <m.szyprowski@samsung.com>, <jh80.chung@samsung.com>,
-	<shradha.t@samsung.com>
-Cc: <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-phy@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <ea85d388-c0c1-4b4a-96d6-d3f27622ed54@kernel.org>
-Subject: RE: [PATCH 3/4] arm64: dts: ExynosAutov920: add PCIe PHY DT nodes
-Date: Fri, 14 Nov 2025 15:57:18 +0900
-Message-ID: <001601dc5533$eb0049f0$c100ddd0$@samsung.com>
+	s=arc-20240116; t=1763103547; c=relaxed/simple;
+	bh=xFTZB7nmkE+KO4dvaal04ySKsjenV1oFXSJbgDFkRCs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F4d1N37fCqQ8RH5UNU1aVp8owqjwFQpfS/ORi7GQgu4p49UZRMD+j8Qve66guDiOtRcqBi21OMdvsyX7Hd6urS/PFFlERJezlqjjxLeDArMWaaSmiei2OpEUX5ke1/+azNn2jqXwEnoFf2Voq3gwBMLjloMDazharlpEvcEQRyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FgIHQRAF; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763103545; x=1794639545;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xFTZB7nmkE+KO4dvaal04ySKsjenV1oFXSJbgDFkRCs=;
+  b=FgIHQRAFfiOqpyNhQBp4iFndQDW+l2DYqtH7xOe2zIBlIbH1cX2ihtt1
+   7rykBaUHKN6ifMfq64unq1Egp/9gQnVy4z1e2T6gkOXrpiFo/QEEh24lL
+   ecH8psJpuazh8V/8DMelFQLlw0JqRTxyJM+k61XFpty4mrfnfO2XioMqP
+   JXYEhUchE241dyvoWghK21FpDOoF8hb3sQ4DKaegtkR2agk03n4jrCoz/
+   mxlM0o2dNcbYaj8zGWZUvlbHuLwpznku4f9BpTFHgobxB16Uamrx5T6/V
+   VGE2fZ24O4snbA1aDIr/V28Nqp8jhTS9o7Wy7I3dZP33snkZDcW1DrcCn
+   g==;
+X-CSE-ConnectionGUID: EwXAjjPlS1OJ3o+9hbdUTg==
+X-CSE-MsgGUID: is9JycfMSUuN0bG3t8VRhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="82830177"
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
+   d="scan'208";a="82830177"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2025 22:59:04 -0800
+X-CSE-ConnectionGUID: sHgC19cwQRqmP32YdA4xww==
+X-CSE-MsgGUID: QB8Mq28wStu+JhA4kq9W5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
+   d="scan'208";a="190127701"
+Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 13 Nov 2025 22:59:01 -0800
+Received: from kbuild by 7b01c990427b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vJnlq-0006H5-2o;
+	Fri, 14 Nov 2025 06:58:58 +0000
+Date: Fri, 14 Nov 2025 14:58:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: adrianhoyin.ng@altera.com, gregkh@linuxfoundation.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
+	Thinh.Nguyen@synopsys.com, devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	adrianhoyin.ng@altera.com
+Subject: Re: [PATCH 2/4] arm64: dts: intel: agilex5: Add USB3.1 support for
+ Agilex5 SoCDK
+Message-ID: <202511141429.Ae8oNWSX-lkp@intel.com>
+References: <7ec6e1787a677f6614f7f991a31a9ac58b539780.1762839776.git.adrianhoyin.ng@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQISOccZb2Ez4IvEWuwZme1oXG7+3gLz1TbfAjvUL4UCZHEM87RJTwlQ
-Content-Language: ko
-X-CMS-MailID: 20251114065718epcas2p1f36aa81a248e01e9c78a9064c268b72f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250926074021epcas2p36a8dc02c84c9ca11e2318a1a8931d68a
-References: <20250926073921.1000866-1-sh86.bae@samsung.com>
-	<CGME20250926074021epcas2p36a8dc02c84c9ca11e2318a1a8931d68a@epcas2p3.samsung.com>
-	<20250926073921.1000866-4-sh86.bae@samsung.com>
-	<ea85d388-c0c1-4b4a-96d6-d3f27622ed54@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7ec6e1787a677f6614f7f991a31a9ac58b539780.1762839776.git.adrianhoyin.ng@altera.com>
 
-> > +		pcie_2l_phy: pcie-phy2l@161c6000{
-> 
-> 
-> 
-> Node names should be generic. See also an explanation and list of examples
-> (not exhaustive) in DT specification:
-> https://protect2.fireeye.com/v1/url?k=d2bcf1f2-8d273f96-d2bd7abd-
-> 000babda0201-1fe7eb4ecd262f65&q=1&e=8522e96d-f1a1-4b6b-baa9-
-> 44344340469a&u=https%3A%2F%2Fdevicetree-
-> specification.readthedocs.io%2Fen%2Flatest%2Fchapter2-devicetree-
-> basics.html%23generic-names-recommendation
-> If you cannot find a name matching your device, please check in kernel
-> sources for similar cases or you can grow the spec (via pull request to DT
-> spec repo).
-I will rename the node referring the guideline you linked.
+Hi,
 
-> Plus style issues... missing space.
-Will add space before left brace.
+kernel test robot noticed the following build errors:
 
-> I would like to see also PCIe nodes somewhere, because I wonder if num-
-> lanes should not be moved to PCI node (phy consumer) instead.
-> Current approach feels better, but maybe it just duplicates num-lanes from
-> the PCI?
-As mentioned earlier, I plan to enable the PCIe nodes later.
-However, I can share my prototype PCIe node that I am currently using for
-PCIe driver testing:
+[auto build test ERROR on usb/usb-testing]
+[also build test ERROR on usb/usb-next usb/usb-linus robh/for-next westeri-thunderbolt/next linus/master v6.18-rc5 next-20251113]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-pcie_0: pcie@163c0000 {
-	compatible = "samsung,exynosautov920-pcie";
-	gpios = <&gph0 1 0>;	/* PERST */
-	reg = <0x163C0000 0x1000>, <0x12000000 0x20000>,
-		<0x2fffd000 0x2000>, <0x12600000 0x2000>;
-	reg-names = "elbi", "dbi", "config", "atu";
-	#address-cells = <3>;
-	#size-cells = <2>;
-	#interrupt-cells = <1>;
-	device_type = "pci";
-	interrupts = <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>;
-	interrupt-map-mask = <0 0 0 0>;
-	interrupt-map = <0 0 0 0 &gic GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>;
-	clocks = <&xtcxo>;
-	clock-names = "ref_clk";
-	num-lanes = <1>;
-	num-viewport = <3>;
-	bus-range = <0x00 0xff>;
-	phys = <&pcie_0_phy>;
-	samsung,pcie-ch = <0>;
-	ranges = <0x82000000 0 0x20000000 0x20000000 0 0x1FFFD000>;
-	status = "disabled";
-};
+url:    https://github.com/intel-lab-lkp/linux/commits/adrianhoyin-ng-altera-com/dt-bindings-usb-dwc3-altera-Add-binding-for-Altera-DWC3-wrapper/20251111-142609
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+patch link:    https://lore.kernel.org/r/7ec6e1787a677f6614f7f991a31a9ac58b539780.1762839776.git.adrianhoyin.ng%40altera.com
+patch subject: [PATCH 2/4] arm64: dts: intel: agilex5: Add USB3.1 support for Agilex5 SoCDK
+config: arm64-randconfig-002-20251113 (https://download.01.org/0day-ci/archive/20251114/202511141429.Ae8oNWSX-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 0bba1e76581bad04e7d7f09f5115ae5e2989e0d9)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251114/202511141429.Ae8oNWSX-lkp@intel.com/reproduce)
 
-As you expected, num-lanes will be defined only in the PCIe node.
-Please let me know if this composition of the DT nodes looks appropriate
-to you.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511141429.Ae8oNWSX-lkp@intel.com/
 
+All errors (new ones prefixed by >>):
+
+   also defined at arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts:111.7-113.3
+>> ERROR: Input tree has errors, aborting (use -f to force output)
+--
+>> ERROR: Input tree has errors, aborting (use -f to force output)
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
