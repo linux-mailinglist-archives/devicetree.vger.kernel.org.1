@@ -1,606 +1,210 @@
-Return-Path: <devicetree+bounces-238675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3192FC5D1B2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:28:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D722C5D25D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:40:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B078934CAC0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:22:29 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 994CA34F003
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22592322C83;
-	Fri, 14 Nov 2025 12:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 699BE1B424F;
+	Fri, 14 Nov 2025 12:33:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="R+DX+RHw"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="qo4Gp26N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013001.outbound.protection.outlook.com [40.107.201.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1281431B824
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 12:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763122757; cv=none; b=N+iu6PjhkUgqrKiQBlYwS1fQ/S7ZyonMcLmYUMppq8ILDBk/m7QTcqpZGoNzvqW6wy06Dm2Zp54SIx7IF/goPnBaG4DJ6i0AljdV0bz4OgNTrqBXhwg/ybD0+H1EnAvPsxYB8/+/4fK/1/PJFekT88EDNC2Ihkq676siKnpBrvg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763122757; c=relaxed/simple;
-	bh=eZESFWp4FVLOlj3+50fUX2v+L6Nz1IVV5h5kxPPjBVQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PkaMcY9YzM7RTq3gt1VnzVNJS4/PBdLqXfujVlEpQpjj0uKKBKoJjGT+N/gZDGB4QuaGoR2M48Q82P5RL9LW0NxrL/XSbeEn1vXu5QxN+6HsJFA27LYSqaMQYNei/Q30W9uz+7elTHcO52geNFPbTaOa5s/EfqGno5Bwbvl8DsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=R+DX+RHw; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arduino.cc
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b7277324054so253934666b.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 04:19:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arduino.cc; s=google; t=1763122752; x=1763727552; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s0QIAPlcD+WNdHd40HL90XQ4jGkgCkS8OpeRgafZ8To=;
-        b=R+DX+RHwlQ8CXG8Hu6KrB/3gD9iiHpYFsANO3UTlK1ian3F80JsnI8ZXKWbySgnmpO
-         USMWCRdRKVow3665dXeI13g03OksVmj+nyooNPNO08sJw34y1N5yoaqvFP+b1+9OwNvf
-         kKXlnezYnS1eA4exAZ3G6QL4vumi2qQ+B0+nI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763122752; x=1763727552;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=s0QIAPlcD+WNdHd40HL90XQ4jGkgCkS8OpeRgafZ8To=;
-        b=piIDFOoW3LdMQlGSBFKpdBsFZLiVJG6UgfiUfOcW1SvCNFs7uet4Hz1Fp6gpJsps0h
-         RqqNMN6obvfAQmda8GMrrSEhrC8llogn++8wrfSNCShc8ah7Jofx3KltlEB5ucyrRxHz
-         8fLG1V5wMTOaUtept7hAnFWzz2vyYgCd4L8aqdCpBajE9iJPWjU4IXzhKbFzJ7JyIYHX
-         7SYhzM6jLCqaOMvrJxykJWgFlpW4vIG/+fquKF4Dq7i9Jop83WW+ZarlT1rl8CFVY5Yj
-         q1P3wwEbYW1GF69eGpLauXikQV2twkCQ7abxA1sN/9n4iS8gilH29F6Qd36K8qyyS+FQ
-         LiFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWQjxdo8cIF4pV9eYjSrNzXVQnqys9jYXcr6SSQ96/By5zC49+d9lVpItpnzVUMDZ998i/LVkhQpAL0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1h86xPGfaeEaDNvzHf28YirFsPDTPUxrisZWgnFCucqvUY2m6
-	BGT3PxX8fA+rN75zhgBI25OI3Y2U3lVbhxOTDjTCkDTKRuCaBDLYxD0IX3sIz/OFcVA=
-X-Gm-Gg: ASbGnctiR7lkzdCfKlUuYfuZeMlpno05463jCo1L6jWRZGXUq45Np7B715ZMFqY4HUf
-	VuiQArtqCShA1nbkd4PctcvccOV41WtbiZtZVj7v9i/363/BRlxGsHiZQkkqi8fs1XvVufRBhUE
-	eLU2nDfmR+0ZmNHw5sW8qAnDN4cAm8nY3YAeM7jyvUmDW+GOpkFWfc5GpSescaK8VNZtMTYJGK1
-	8134gQWbQzptAzve0rQ8Vnhq4rKR0XaP/EL9C5mk78rhjr984hRxZKIy3L7l+0XjVUu4oOr7f4j
-	qD9bQI4TGm8ln1PhSRAR39DbRkea6yX+iFkSnQLCUNB6G6fMlUaooN5LALQcbfBDnFMq7vRI4bJ
-	dkNR+YoW0gCoJrTZzBvf5N5g5OAjppVUSUGduTRKS/0AoL1lVy93+rp2PY4IOAvVM4FgG8j/Pj+
-	hw01uJ62ZAOnQcRwUEkMopbcYGhoFy1+UeY6ArMRLVYqEtuAQlL2Ro44KADTwGaUCMFonxZQ==
-X-Google-Smtp-Source: AGHT+IHrd10LZ5t8g76QL1v7w4NtADCH/dW9OWc4jp/MknTRXDi4LURkNpFtmnIY6t7mZJert6RUXw==
-X-Received: by 2002:a17:907:7e93:b0:b70:4757:eb01 with SMTP id a640c23a62f3a-b73678f47c5mr286472366b.32.1763122752252;
-        Fri, 14 Nov 2025 04:19:12 -0800 (PST)
-Received: from riccardo-work.fritz.box (host-82-52-164-74.retail.telecomitalia.it. [82.52.164.74])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fed6315sm375295666b.64.2025.11.14.04.19.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 04:19:12 -0800 (PST)
-From: Riccardo Mereu <r.mereu.kernel@arduino.cc>
-X-Google-Original-From: Riccardo Mereu <r.mereu@arduino.cc>
-To: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	broonie@kernel.org
-Cc: linux@roeck-us.net,
-	Jonathan.Cameron@huawei.com,
-	wenswang@yeah.net,
-	naresh.solanki@9elements.com,
-	michal.simek@amd.com,
-	nuno.sa@analog.com,
-	chou.cosmo@gmail.com,
-	grantpeltier93@gmail.com,
-	eajames@linux.ibm.com,
-	farouk.bouabid@cherry.de,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	m.facchin@arduino.cc,
-	Riccardo Mereu <r.mereu@arduino.cc>
-Subject: [PATCH v2 6/6] arm64: dts: qcom: qrb2210: add dts for Arduino unoq
-Date: Fri, 14 Nov 2025 13:18:53 +0100
-Message-ID: <20251114121853.16472-7-r.mereu@arduino.cc>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251114121853.16472-1-r.mereu@arduino.cc>
-References: <20251114121853.16472-1-r.mereu@arduino.cc>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB947BA3D;
+	Fri, 14 Nov 2025 12:33:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.1
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763123622; cv=fail; b=GCAUHujWHs0ijz9j19Od8lq0T8XvLB4+L10s+wd/f5hOIqaITyAZdZOH2RImfnTkYOWU6yf506/l7Wapbzq1BMFTetaZWj1pHgXj4eXY0wcu9/zSU+FyzFhDwUWI492QedxmtfoyZUaQ+jXAmC2lHqr45diN40PL+HhOQfpDM+I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763123622; c=relaxed/simple;
+	bh=x72BhkKpekBN8PqMX1AbvY9iQte2tID2ZPgqkvxwzhM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=l3998nX73rBH0VjgA1UO0la+j/0ufMQ8PtdlxlxxW6dMZix+Ntk1jGwb1HihVDmc85Os2Jt4kITM+zr7gNwp4anB/UX08nYKw7bkxCFe+uDDRhYmH4xI+vuR5JBwu6rY30e1gUiRR8aptiLrgKCpuhSpQJrQ5OPx54VFVxGdQV8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=qo4Gp26N; arc=fail smtp.client-ip=40.107.201.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BzmY+d1yoSRwl5EVR/LMc2r8LN21KU29YVWABo1b13EuEKh2BgCzSyTan0QSyb9lTJYWk18Jq3i31yHA64/aGn8Cx4odZXWh2gcaeSgsOzhD+8cZajuQJkGAH9YdAg/kZmlbpGCeq2FIVgi1VoJAw5ld5zF0R2nh3QhoVrXmKnAzpQ2lk0+FglF/z2n2NoAB8Zezkywyy8aHS91jGSqDve8slmrRkAGMXkcVLTM4Di5ndnk1QOwWTldd+qe6SvmrLb+T91b8ptoeMBtdmmkKoxf7c9cVQp30SwS7Z9SJZXr2JQldi1jT6MPSkZQpnpUNo2lRY+L4j1HeM3VscRTXQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dGI0iYJMHbdKodYuc+InefI9A2Chk672D/5+dPTUj3w=;
+ b=gvnRw/v+etTiXO91wSVKeokHHXA8AS8k3oCV4AoM3PcQhIjBfjHshO8jsPGDSS57IN/jjrepzoHW9YQz3HgCExPJeOwRmMcgGo/LIYM+adAJ2eTRSoiM/iBJr20TkjG6yu7EJb8nGx7RvfREcfu4sXDKyG8CTafRlj1riXhexkaiuI6XQUr+yIVXjVED/iAO2ktwru9RTkxcTFxwYvmtwN7xe661JEqGmMvy2fhGWeEeHaGDfa5/vr3H8B6cLUvOhV0DKkqblvGXhBwWgEWtzufTssWFl1kEeuH1XgIDy650+XvywsM5oq+GgocWYTO8X5mA+orsclNY2GnILHKuow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dGI0iYJMHbdKodYuc+InefI9A2Chk672D/5+dPTUj3w=;
+ b=qo4Gp26Nrjep008Ji8H3vfKCmzSWCvcHveTOxPdnhfB8GURMm8GoL1vo79u0K5afx1a0yS39fdEpJSWIkQCPeTAxqos1HS39Ev7659a3fMfiomhZiE0exEkq9PU9aU50B3FrPAUhzFef4WIU5C9mnA1a7P/ggNUb3H271RaE01o=
+Received: from SJ0PR05CA0084.namprd05.prod.outlook.com (2603:10b6:a03:332::29)
+ by DS0PR12MB9039.namprd12.prod.outlook.com (2603:10b6:8:de::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.18; Fri, 14 Nov
+ 2025 12:33:34 +0000
+Received: from SJ1PEPF000026C8.namprd04.prod.outlook.com
+ (2603:10b6:a03:332:cafe::79) by SJ0PR05CA0084.outlook.office365.com
+ (2603:10b6:a03:332::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.7 via Frontend Transport; Fri,
+ 14 Nov 2025 12:33:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SJ1PEPF000026C8.mail.protection.outlook.com (10.167.244.105) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9320.13 via Frontend Transport; Fri, 14 Nov 2025 12:33:34 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
+ 2025 04:32:46 -0800
+Received: from xhdradheys41.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Fri, 14 Nov 2025 04:32:43 -0800
+From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <michal.simek@amd.com>
+CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<git@amd.com>, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Subject: [PATCH v2] dt-bindings: usb: dwc3-xilinx: Describe the reset constraint for the versal platform
+Date: Fri, 14 Nov 2025 18:02:39 +0530
+Message-ID: <20251114123239.1929255-1-radhey.shyam.pandey@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C8:EE_|DS0PR12MB9039:EE_
+X-MS-Office365-Filtering-Correlation-Id: 205f6cb2-b170-4d10-7d4d-08de237a0732
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ViCghLvOKsEFIMb5rJ6FsP4jLWP+NE6Qdmrkfj0w4til6qFbp0SG3darqy1I?=
+ =?us-ascii?Q?bWLX3FKUOTRL1uroqGGbVt/GSTudIbrNC9MaeEs6GgTQWhSNJ07yd1q4kTE+?=
+ =?us-ascii?Q?H/iA/6k53Wda62KMJKMCH1+ptG/1PKR82u4Bd4wla5MR6C8r7KbDYy6mFIxc?=
+ =?us-ascii?Q?OlQ77tY5FwRNqd+0RNdVJ0IA0v0Avt7jBWPFvLIf27iXZMC78LntORg5DvVb?=
+ =?us-ascii?Q?OuQzf+rPM0R4lcz/dFZd6opq3sCaseXUaBy2/MzkNu0idV7dcH5SGOwJIrIf?=
+ =?us-ascii?Q?BO3ocCR6wKaFlJBcyRnEv9zWECXYz3l4Y4ZUsvi1DfaAYDrCY22Rno6JQuZm?=
+ =?us-ascii?Q?kReEpickbxlL+pKekyeLik5/84L5FRVBh8QBr8v2Lnee7l5n/WoKxulCAiuu?=
+ =?us-ascii?Q?5xe8Y82/EkdHZz7PWx4DeRKO5HUrhWk+mH+P9E8Vij4ElruvOASlGLnFWCw2?=
+ =?us-ascii?Q?bcWitNmQznfoMxbrhefjxN2YfkXJpIPs+ALlgWHwdolBcNIKL6C77IwSAu7Z?=
+ =?us-ascii?Q?3OBO2NcIkpAkD/jiSebCnaYIXeHsw8JcxGCB+Z10ICjlkHnJHR8HEFeZqDWL?=
+ =?us-ascii?Q?krjaDjDGuypp5P9fjbVRG6weIPPe/8n3sQ5lr61R7LRbjWmCI/9sheJWiMwp?=
+ =?us-ascii?Q?9dImeZKIVocnNP5kaU9/bLdNxMNh/wZD47PlV0BBtCb/JkvumVY1xkzfmas4?=
+ =?us-ascii?Q?p57Qkv5fpNpP4ZeQmHdgDkdklw8QdIoCDw+yT5kR8yFcsYhfm9dMgUjAc6NE?=
+ =?us-ascii?Q?Df00p65GQemSLJCaz7mi/ye/uyVNTxm9aFviJUYNHeGmHZK+c/tcmWshroc0?=
+ =?us-ascii?Q?5z/VTpS3YiSF8R3eiJQj1IIjlbcNGgI771rqDPN8xSwzkexSUbw2gGy6S227?=
+ =?us-ascii?Q?6tW2b4Z1PbO6pou6d/my+HQ7XI/UcZZQSVv1ADiSkBk1bK9BarV+tN1EaPFc?=
+ =?us-ascii?Q?hefUKV+Zsu9Kxr5f6+8ghzIT8fymQ5WGAx/CrxzDdd8EfUyzokeZlI+cbBzv?=
+ =?us-ascii?Q?+wk6tlnpKgwAiC+W0Wugufgp0rAu8K0bGyetThShpCHuZr1iAMimzVCnK6I2?=
+ =?us-ascii?Q?P1ZudrxsJtk9hHmpc4dYhpg7+JQXI8uVsvVXMHa3Tr1P1VxgqdhhCug0KHAZ?=
+ =?us-ascii?Q?Da3w/ht62QBgkkDxSdSmoViDeK7StSc4GzgB+7ZW19/dqQkyZdmOjtaRjooH?=
+ =?us-ascii?Q?7FAHB6RvcjVOgI6TAUF4RJdLvow5YuFdysLvxvPyFFZ6qXgrkyvPYsj54zoO?=
+ =?us-ascii?Q?GsNG2uKCAfOrznDBYaAYfk1//Jjd60moxsr/TIJPdOT2UysDn7IOVXrSGjfJ?=
+ =?us-ascii?Q?Z7PYjQGIGdZNkLczdxwH6NZ0DWxM8CSU51SPkAt0vps6iV7ia/jhpNivU5zT?=
+ =?us-ascii?Q?aIKWYLqalZ26i/OGtBGbC0G73SoF4Fp6mYKO+iR7SaO2s6KI5RZKS+2zUeUa?=
+ =?us-ascii?Q?9x5vW9WL47AGUsKAsjzX4wThNQ1dfhi6/kU8fgyDP/IOwIRQ4V2dUrIDfJFM?=
+ =?us-ascii?Q?Ite6hwkc/zW4+QFf5goW1fs5P9czZpOYQwUyJmtWOxHGv0T7ST2ayLF1PCE+?=
+ =?us-ascii?Q?2bJCd/JXWxx9VwSQ/jI=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2025 12:33:34.5580
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 205f6cb2-b170-4d10-7d4d-08de237a0732
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF000026C8.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9039
 
-Arduino UnoQ is a single-board computer combining Qualcomm
-Dragonwing™ QRB2210 microprocessor with STMicroelectronics STM32U585
-microcontroller.
-Support to a simply boot to shell environment includes:
-- UART, I2C, SPI
-- onboard LEDS
-- eMMC
-- WLAN and BT
+AMD Versal platform USB 2.0 IP controller receives one reset input from
+the SoC controlled by the CRL.RST_USB [RESET] register so accordingly
+describe reset constraints.
 
-Signed-off-by: Riccardo Mereu <r.mereu@arduino.cc>
+Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 ---
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/qrb2210-arduino-imola.dts   | 456 ++++++++++++++++++
- 2 files changed, 457 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
+Changes for v2:
+- As suggested by Conor remove oneOf stuff since both platforms
+  have the same first reset.
+- In compatible else case drop maxItems as is not needed as it
+  matches the number in the list.
+---
+ .../devicetree/bindings/usb/dwc3-xilinx.yaml  | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 6f34d5ed331c..9f98a7f2cbb4 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -143,6 +143,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-arduino-imola.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb4210-rb2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-new file mode 100644
-index 000000000000..8de355a1bf6d
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
-@@ -0,0 +1,456 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (c) 2025, Arduino SRL
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include "agatti.dtsi"
-+#include "pm4125.dtsi"
-+
-+/delete-node/ &cont_splash_memory;
-+
-+/ {
-+	model = "Arduino UnoQ";
-+	compatible = "arduino,imola", "qcom,qrb2210", "qcom,qcm2290";
-+	chassis-type = "embedded";
-+
-+	aliases {
-+		serial0 = &uart4;
-+		serial1 = &uart2;
-+		serial2 = &uart3;
-+		sdhc1 = &sdhc_1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		label = "gpio-keys";
-+		pinctrl-0 = <&key_volp_n>, <&key_vold_n>;
-+		pinctrl-names = "default";
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&tlmm 96 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+
-+		key-volume-down {
-+			label = "Volume Down";
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpios = <&tlmm 36 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds: leds {
-+		compatible = "gpio-leds";
-+
-+		led-bt {
-+			label = "blue:bt";
-+			function = LED_FUNCTION_BLUETOOTH;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&tlmm 47 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "bluetooth-power";
-+			default-state = "off";
-+		};
-+
-+		led-panic {
-+			label = "red:panic";
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&tlmm 39 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "none";
-+			default-state = "off";
-+			panic-indicator;
-+		};
-+
-+		led-wlan {
-+			label = "green:wlan";
-+			function = LED_FUNCTION_WLAN;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&tlmm 40 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "phy0tx";
-+			default-state = "off";
-+		};
-+
-+		ledb: led-user-blue {
-+			gpios = <&tlmm 60 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+
-+		ledg: led-user-green {
-+			gpios = <&tlmm 42 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		ledr: led-user-red {
-+			gpios = <&tlmm 41 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+	};
-+
-+	multi-led {
-+		compatible = "leds-group-multicolor";
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_INDICATOR;
-+		leds = <&ledr>, <&ledg>, <&ledb>;
-+	};
-+
-+	/* PM4125 charger out, supplied by VBAT */
-+	vph_pwr: regulator-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&gpu_zap_shader {
-+	firmware-name = "qcom/qcm2290/a702_zap.mbn";
-+};
-+
-+&i2c0 {
-+	clock-frequency = <100000>;
-+
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+
-+	status = "okay";
-+};
-+
-+&pm4125_vbus {
-+	regulator-min-microamp = <500000>;
-+	regulator-max-microamp = <500000>;
-+
-+	status = "okay";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/qcm2290/adsp.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_mpss {
-+	firmware-name = "qcom/qcm2290/modem.mbn";
-+
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators {
-+		compatible = "qcom,rpm-pm2250-regulators";
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+		vdd_l1_l2_l3_l5_l6_l7_l8_l9_l10_l11_l12-supply = <&pm4125_s3>;
-+		vdd_l4_l17_l18_l19_l20_l21_l22-supply = <&vph_pwr>;
-+		vdd_l13_l14_l15_l16-supply = <&pm4125_s4>;
-+
-+		pm4125_s3: s3 {
-+			/* 0.4V-1.6625V -> 1.3V (Power tree requirements) */
-+			regulator-min-microvolt = <1352000>;
-+			regulator-max-microvolt = <1352000>;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_s4: s4 {
-+			/* 1.2V-2.35V -> 2.05V (Power tree requirements) */
-+			regulator-min-microvolt = <2072000>;
-+			regulator-max-microvolt = <2072000>;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l2: l2 {
-+			/* LPDDR4X VDD2 */
-+			regulator-min-microvolt = <1136000>;
-+			regulator-max-microvolt = <1136000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l3: l3 {
-+			/* LPDDR4X VDDQ */
-+			regulator-min-microvolt = <616000>;
-+			regulator-max-microvolt = <616000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l4: l4 {
-+			/* max = 3.05V -> max = 2.7 to disable 3V signaling (SDHCI2) */
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2700000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm4125_l5: l5 {
-+			/* CSI/DSI */
-+			regulator-min-microvolt = <1232000>;
-+			regulator-max-microvolt = <1232000>;
-+			regulator-allow-set-load;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l6: l6 {
-+			/* DRAM PLL */
-+			regulator-min-microvolt = <928000>;
-+			regulator-max-microvolt = <928000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l7: l7 {
-+			/* Wi-Fi CX */
-+			regulator-min-microvolt = <664000>;
-+			regulator-max-microvolt = <664000>;
-+		};
-+
-+		pm4125_l10: l10 {
-+			/* Wi-Fi RFA */
-+			regulator-min-microvolt = <1304000>;
-+			regulator-max-microvolt = <1304000>;
-+		};
-+
-+		pm4125_l11: l11 {
-+			/* ANX7625 DVDD1P0V/AVDD1P0V */
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1000000>;
-+			regulator-boot-on;
-+			regulator-always-on;
-+		};
-+
-+		pm4125_l12: l12 {
-+			/* USB PHYs */
-+			regulator-min-microvolt = <928000>;
-+			regulator-max-microvolt = <928000>;
-+			regulator-allow-set-load;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l13: l13 {
-+			/* USB/QFPROM/PLLs */
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-allow-set-load;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l14: l14 {
-+			/* SDHCI1 EMMC VCCQ */
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-allow-set-load;
-+			/* Broken hardware, never turn it off! */
-+			regulator-always-on;
-+		};
-+
-+		pm4125_l15: l15 {
-+			/* VDDIO */
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-allow-set-load;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l20: l20 {
-+			/* SDHCI1 EMMC */
-+			regulator-min-microvolt = <2400000>;
-+			regulator-max-microvolt = <3600000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm4125_l21: l21 {
-+			/* USB HS */
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <3300000>;
-+			regulator-allow-set-load;
-+			regulator-boot-on;
-+		};
-+
-+		pm4125_l22: l22 {
-+			/* Wi-Fi VDD */
-+			regulator-min-microvolt = <3312000>;
-+			regulator-max-microvolt = <3312000>;
-+		};
-+	};
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm4125_l20>;
-+	vqmmc-supply = <&pm4125_l14>;
-+	pinctrl-0 = <&sdc1_state_on>;
-+	pinctrl-1 = <&sdc1_state_off>;
-+	pinctrl-names = "default", "sleep";
-+	mmc-hs400-1_8v;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	supports-cqe;
-+	no-sdio;
-+	no-sd;
-+
-+	status = "okay";
-+};
-+
-+&spi5 {
-+	status = "okay";
-+
-+	spidev@0 {
-+		reg = <0>;
-+		compatible = "arduino,unoq-mcu";
-+		pinctrl-0 = <&spidev_cs>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&tlmm {
-+	spidev_cs: spidev-cs-state {
-+		pins = "gpio17";
-+		function = "gpio";
-+		drive-strength = <16>;
-+	};
-+
-+	jmisc_gpio18: jmisc-gpio18-state {
-+		pins = "gpio18";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	jmisc_gpio28: jmisc-gpio28-state {
-+		pins = "gpio28";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	key_vold_n: key-vold-n-state {
-+		pins = "gpio36";
-+		function = "gpio";
-+		bias-pull-up;
-+		output-disable;
-+	};
-+
-+	key_volp_n: key-volp-n-state {
-+		pins = "gpio96";
-+		function = "gpio";
-+		bias-pull-up;
-+		output-disable;
-+	};
-+
-+	jmisc_gpio98: jmisc-gpio98-state {
-+		pins = "gpio98";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	jmisc_gpio99: jmisc-gpio99-state {
-+		pins = "gpio99";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	jmisc_gpio100: jmisc-gpio100-state {
-+		pins = "gpio100";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	jmisc_gpio101: jmisc-gpio101-state {
-+		pins = "gpio101";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+/* UART connected to Bluetooth */
-+&uart3 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3988-bt";
-+
-+		vddio-supply = <&pm4125_l15>;
-+		vddxo-supply = <&pm4125_l13>;
-+		vddrf-supply = <&pm4125_l10>;
-+		vddch0-supply = <&pm4125_l22>;
-+		enable-gpios = <&tlmm 87 GPIO_ACTIVE_HIGH>;
-+		max-speed = <3000000>;
-+	};
-+};
-+
-+/* UART exposed in JCTL */
-+&uart4 {
-+	compatible = "qcom,geni-debug-uart";
-+
-+	status = "okay";
-+};
-+
-+&usb {
-+	status = "okay";
-+};
-+
-+&usb_hsphy {
-+	vdd-supply = <&pm4125_l12>;
-+	vdda-pll-supply = <&pm4125_l13>;
-+	vdda-phy-dpdm-supply = <&pm4125_l21>;
-+
-+	status = "okay";
-+};
-+
-+&usb_qmpphy {
-+	vdda-phy-supply = <&pm4125_l12>;
-+	vdda-pll-supply = <&pm4125_l13>;
-+
-+	status = "okay";
-+};
-+
-+&wifi {
-+	vdd-0.8-cx-mx-supply = <&pm4125_l7>;
-+	vdd-1.8-xo-supply = <&pm4125_l13>;
-+	vdd-1.3-rfa-supply = <&pm4125_l10>;
-+	vdd-3.3-ch0-supply = <&pm4125_l22>;
-+	qcom,ath10k-calibration-variant = "Arduino_UnoQ";
-+	firmware-name = "qcm2290";
-+
-+	status = "okay";
-+};
-+
-+&xo_board {
-+	clock-frequency = <38400000>;
-+};
+diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+index 36f5c644d959..d6823ef5f9a7 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
++++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+@@ -47,6 +47,7 @@ properties:
+       - const: ref_clk
+ 
+   resets:
++    minItems: 1
+     description:
+       A list of phandles for resets listed in reset-names.
+ 
+@@ -56,6 +57,7 @@ properties:
+       - description: USB APB reset
+ 
+   reset-names:
++    minItems: 1
+     items:
+       - const: usb_crst
+       - const: usb_hibrst
+@@ -95,6 +97,26 @@ required:
+   - resets
+   - reset-names
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - xlnx,versal-dwc3
++    then:
++      properties:
++        resets:
++          maxItems: 1
++        reset-names:
++          maxItems: 1
++    else:
++      properties:
++        resets:
++          minItems: 3
++        reset-names:
++          minItems: 3
++
+ additionalProperties: false
+ 
+ examples:
+
+base-commit: 6d7e7251d03f98f26f2ee0dfd21bb0a0480a2178
 -- 
-2.51.2
+2.34.1
 
 
