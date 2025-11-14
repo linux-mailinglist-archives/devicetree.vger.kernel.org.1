@@ -1,215 +1,131 @@
-Return-Path: <devicetree+bounces-238653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DBAC5CF83
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:58:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC74C5D1CD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 13:31:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9CEB3AAB30
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:58:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4E50835D7BA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 12:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDF6315D4D;
-	Fri, 14 Nov 2025 11:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C84225A3D;
+	Fri, 14 Nov 2025 12:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qTfB0OIH"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="bzQtLuJ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1047313E02;
-	Fri, 14 Nov 2025 11:58:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0F2917A305;
+	Fri, 14 Nov 2025 12:21:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763121525; cv=none; b=C4QfGzoJ5dVXySxH6fSPrTdip7WtCBaBCiei7IpKkKl6xQcY++KHPKokrxzacjR05mVA2C8ZkkO1OnQGok5kWawQoDID/FpVDNRUWi9h9bC2r9+dsYI8tAWY54qYCkNcbAYYRY9poMcupU9sp5eBOhi1LuWUzBTOtree4LlZy/s=
+	t=1763122917; cv=none; b=j06SsTXh9DGGtBYy9zfjv9Fd09HjhjnGxDbif+7vjHYjjS5NQKUBH22HozaqCj9B+YG3aScRhL0vVTPem6YjeWT3P5emZam0raFSVJ3xbcquhOdfx1Cu9WmhhDqFFCXs+Zp71NHOKS+FGZT9uJGIczNk4IJOwJw69AS/goe25bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763121525; c=relaxed/simple;
-	bh=yh5fJQGdhx2NySkfsWDlhR3K1wLRF17ZiRDZ47ourgE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U7cCgX7TCJk39EgUvvRyzm/CZV2wN8G8MXD0wl4OkZ2vH1eIFiINW7q0tTOS32LGRB7gNPf11RT0NXGEBpY/rakB5dgHULcAhvd3F8xjmTevopAJuvzgUr6OguZ6+VknBqZqJBVAUyjTweeh6/rC/62uLhYkD0DIgqPHPtLNB+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qTfB0OIH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B23C4CEF5;
-	Fri, 14 Nov 2025 11:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763121525;
-	bh=yh5fJQGdhx2NySkfsWDlhR3K1wLRF17ZiRDZ47ourgE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qTfB0OIHA02m4A2962eAAWs+HLfyD9Tf+frZ2F4WOGxUUnU6OHCxclpDD9vboKak4
-	 y3nUTxtqlyK9hpQhsgKup7i5DK1l9a/sL3qeonoNI0a+Ycczt/S7VDSuPozFtW0BLc
-	 LWDveKds4FzyuX2gWMFlKvUbw9KIuq5bLx4w2ewwBh1oI5GGiEUMRDTLXBlX5ez7Zq
-	 0m5ci4AVOrnY241u4Hsso6Pf1HH5h0759x1D0x3uoauogR9oVEZeWzHFtZ7XUI89yL
-	 D2FrkPRuloB7EjVED6+Bp3TYmPooTST4PjoVfwgSoW/IdHW2UWp07oyfzcuttdTXBa
-	 nzfaddh31aVYQ==
-Message-ID: <73a39371-5bf0-4a3d-a48b-9e91668b779c@kernel.org>
-Date: Fri, 14 Nov 2025 12:58:41 +0100
+	s=arc-20240116; t=1763122917; c=relaxed/simple;
+	bh=ZJfTysD1AInk3W4VMRR9yEsCe8X31yY3XoTCWXVARTk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ch4BAKLW3fyTJFH1/dOirUnK+9ZQAvNcWR0V2+BRghZPC54ybtkmCsUk/TaR81Yue0sO+Q030GBAkwe0Du8tUnZoTkNSAt8/OtuoXJvaEYFiXYN94zyRcvQOQNKvw44+6wUZ1CEhH5K/Kd4RBgX8+jIAlAyXFCyggBaYmM3ubQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=bzQtLuJ0; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AE8penB3654753;
+	Fri, 14 Nov 2025 07:21:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=LuU2sVKUX/c5ku4iRMv1s5eComd
+	YLCvDIbwKUDl/gYk=; b=bzQtLuJ0fFK1HOiw2ov5lb9zhoNIYPaIkqarLlE88zX
+	3/C+iEZ9KW8KQPkvFzOyj3syBOOZ4swuiMB4IPUitSfe86l2RYdwNGlCOrBS+H6m
+	BqDzt6zgfTrZbi4IhG8i5xHjyIzHkm/0LRBwVOjl2NMHPqmlobqxNqPTmAviIC02
+	hjaTUvIEgR37bf+rOFsoB17JgYzWwRhoshSDn7Cd0uaB2X/AHz4Hh4w6v4XzBEtY
+	2gnxWm11EEHdfXhT3iwJI/RsXQXBQfKnCTGkRnFf8oDeYncsJTBkwKIDYkNWGS0n
+	YAUgzZ3WUZIADgNSqBclsipGFn6ZmdwziPObYpzPH4A==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4adwaw1y7t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Nov 2025 07:21:52 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5AECLpmG018470
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 14 Nov 2025 07:21:51 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 14 Nov 2025 07:21:51 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 14 Nov 2025 07:21:51 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 14 Nov 2025 07:21:51 -0500
+Received: from Ubuntu.ad.analog.com ([10.66.6.193])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AECLgLo019987;
+	Fri, 14 Nov 2025 07:21:45 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 0/2] iio: frequency: adf4377: add clock provider support
+Date: Fri, 14 Nov 2025 11:59:21 +0000
+Message-ID: <20251114115923.6043-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] spi: atcspi200: Add ATCSPI200 SPI driver
-To: CL Wang <cl634@andestech.com>, broonie@kernel.org,
- linux-spi@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- tim609@andestech.com
-References: <20251112034724.1977630-1-cl634@andestech.com>
- <20251112034724.1977630-3-cl634@andestech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251112034724.1977630-3-cl634@andestech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE0MDA5OCBTYWx0ZWRfX7FPwAq8XdWJ+
+ Ktqt2KwGREY+iHbpOYXKuJCn+Dd/rBhCzJBkTa2ivPIyBmGQpStFrBuvHfy5wErdNnsJOtKZ+um
+ gK09u1l3MZgPfdPoWDV9qtrCxsOg5v77/K3zHhRYhssJBS21J4R0wVvMermNQtI/nyYOpLNXpYA
+ mMA3HSLEnKbje0RiVwU2BKGdMSGJ8+9RNaGM8UxHWLumW/7N9fDIgYZ4WBChAMLnE8eMgIAy6LY
+ bA7BfkpLeoDrCFdl9Paf/SZUbVaOyhgjAQKgAkx5OZ+kWe/SJ1x+JJAHhLg0PsmxcTizRmxVuaZ
+ adlE8T078cf/bOuS6+Hpb609/MxRwImUA3bf/S25ccGG1SwC8TLQYuV/Ko/MPjOXFmy8KCvKPdy
+ s+YA8zvo6oPsBU5+1aUgG4BwiLa9yA==
+X-Proofpoint-ORIG-GUID: C7Yefb3yBVlLwO0XDUv9ywbKAoGCy3tM
+X-Authority-Analysis: v=2.4 cv=M91A6iws c=1 sm=1 tr=0 ts=69171ee0 cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=xhyw43Vw4g2VkAmxKawA:9
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: C7Yefb3yBVlLwO0XDUv9ywbKAoGCy3tM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-14_03,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 impostorscore=0 clxscore=1015 adultscore=0
+ bulkscore=0 phishscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511140098
 
-On 12/11/2025 04:47, CL Wang wrote:
-> +
-> +static int atcspi_enable_clk(struct atcspi_dev *spi)
-> +{
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(spi->clk);
-> +	if (ret)
-> +		return dev_err_probe(spi->dev, ret,
-> +				     "Failed to enable clock\n");
-> +
-> +	spi->clk_rate = clk_get_rate(spi->clk);
-> +	if (!spi->clk_rate)
-> +		return dev_err_probe(spi->dev, -EINVAL,
-> +				     "Failed to get SPI clock rate\n");
+This series adds clock provider functionality to the ADF4377 frequency
+synthesizer driver to address user requests for controlling output
+frequencies from userspace.
 
-You miss clock enable/prepare cleanup. In other places as well.
- > +
-> +	return 0;
-> +}
-> +
-> +static void atcspi_init_controller(struct platform_device *pdev,
-> +				   struct atcspi_dev *spi,
-> +				   struct spi_controller *host,
-> +				   struct resource *mem_res)
-> +{
-> +	/* Get the physical address of the data register for DMA transfers. */
-> +	spi->dma_addr = (dma_addr_t)(mem_res->start + ATCSPI_DATA);
-> +
-> +	/* Initialize controller properties */
-> +	host->bus_num = pdev->id;
-> +	host->mode_bits = SPI_CPOL | SPI_CPHA | SPI_RX_QUAD | SPI_TX_QUAD;
-> +	host->dev.of_node = pdev->dev.of_node;
-> +	host->num_chipselect = ATCSPI_MAX_CS_NUM;
-> +	host->mem_ops = &atcspi_mem_ops;
-> +	host->max_speed_hz = spi->sclk_rate;
-> +}
-> +
-> +static int atcspi_probe(struct platform_device *pdev)
-> +{
-> +	struct spi_controller *host;
-> +	struct atcspi_dev *spi;
-> +	struct resource *mem_res;
-> +	int ret;
-> +
-> +	host = spi_alloc_host(&pdev->dev, sizeof(*spi));
-> +	if (!host)
-> +		return -ENOMEM;
-> +
-> +	spi = spi_controller_get_devdata(host);
-> +	spi->host = host;
-> +	spi->dev = &pdev->dev;
-> +	platform_set_drvdata(pdev, host);
-> +
-> +	ret = atcspi_init_resources(pdev, spi, &mem_res);
-> +	if (ret)
-> +		goto free_controller;
-> +
-> +	ret = atcspi_enable_clk(spi);
-> +	if (ret)
-> +		goto free_controller;
-> +
-> +	atcspi_init_controller(pdev, spi, host, mem_res);
-> +
-> +	ret = atcspi_setup(spi);
-> +	if (ret)
-> +		goto free_controller;
-> +
-> +	ret = devm_spi_register_controller(&pdev->dev, host);
-> +	if (ret) {
-> +		dev_err_probe(spi->dev, ret,
-> +			      "Failed to register SPI controller\n");
-> +		goto free_controller;
-> +	}
-> +
-> +	spi->use_dma = false;
-> +	if (ATCSPI_DMA_SUPPORT) {
-> +		ret = atcspi_configure_dma(spi);
-> +		if (ret)
-> +			dev_info(spi->dev,
-> +				 "Failed to init DMA, fallback to PIO mode\n");
-> +		else
-> +			spi->use_dma = true;
-> +	}
-> +	mutex_init(&spi->mutex_lock);
-> +
-> +	return 0;
-> +
-> +free_controller:
-> +	spi_controller_put(host);
+While implemented as an IIO driver, the ADF4377 is commonly used as a
+clock source. This patch series enables it to function as either:
+- A traditional IIO device (when #clock-cells is not specified)
+- A clock provider (when #clock-cells is present in device tree)
 
-Where is DMA channel release? Same for unbind path.
+The implementation provides standard clock framework integration with
+rate control, enable/disable support, and maintains backward
+compatibility with existing IIO configurations.
 
-> +	return ret;
-> +}
-> +
-> +static const struct of_device_id atcspi_of_match[] = {
-> +	{ .compatible = "andestech,qilai-spi", },
-> +	{ .compatible = "andestech,atcspi200", },
+Antoniu Miclaus (2):
+  dt-bindings: frequency: adf4377: add clk provider
+  iio: frequency: adf4377: add clk provider support
 
-Where did you document this compatible/ABI?
+ .../bindings/iio/frequency/adi,adf4377.yaml   |  20 +++
+ drivers/iio/frequency/adf4377.c               | 131 +++++++++++++++++-
+ 2 files changed, 149 insertions(+), 2 deletions(-)
 
+-- 
+2.43.0
 
-Best regards,
-Krzysztof
 
