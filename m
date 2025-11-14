@@ -1,120 +1,193 @@
-Return-Path: <devicetree+bounces-238571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC55C5C713
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 11:06:54 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91ABEC5C5AA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:46:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 43F7B4F73F6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:52:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F12A1352BB2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F6A3081D2;
-	Fri, 14 Nov 2025 09:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Bq8gdeJl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCD3306D52;
+	Fri, 14 Nov 2025 09:37:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA7FC35898;
-	Fri, 14 Nov 2025 09:51:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD003081DE
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:37:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763113918; cv=none; b=Ct/rp7PYqRqsIw1+ZTXlofHeMjuuGG1OA/S6g9qvUEulc5XhzSbC5ZAOkzvrBXizCDqtpK3TEFiERHbm8sszblptqVCsfiL0nErr6CoAfEsCqxBNGKYpeRBxWQyKnEx0hwfxVm1Y1/snD9/exCbCNMn4Bdq+lHNL0llmyBf1GTE=
+	t=1763113074; cv=none; b=GEkgMQtrHm5v46MOXUjik6ShqENwwvlFRHlRr6myzLrv1K0fprpS7dnhlSsJ2An7Mg5Y0vuYbDXAtXmkf9aZsPRtKSQmmF3TBeE+G55b4E0OK+kVqxbD7Wnp8mk3prPShbSR5/QHtfdaEYSupXrTD+5scjaLz1hJ9mx85rmCJAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763113918; c=relaxed/simple;
-	bh=o1C0X19ijn5qAxn6OTNxbSExkcUdGudqvVuyPNjsYRo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qYmNxsl9Vp/gYYEpogOavCDYVCuUl0dlGRW5BD4xCNEs1SqPGY5660LmbnO4NnFvy7eY9e08jphKlBA+rh1X6quDMDKbQlR9wVZyJOJWUnRCeVLbj/o7CMlyA0wgFgvyToCfwJ6y2T3ycvkmH943nCBbsMYq77CYXjMVQqRZM2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Bq8gdeJl; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763113917; x=1794649917;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o1C0X19ijn5qAxn6OTNxbSExkcUdGudqvVuyPNjsYRo=;
-  b=Bq8gdeJlRNYDYMDqzzclI0p+SBIxyRzan333/sNPXETpbwf7kLv0gZdk
-   qaiV2DMu/S4ZaE30GDj2N1al56SBqY1e8w+2ccTkRyupXIj57osrFfA1z
-   fi4lStHoOpylfh9d2FTUo2b4p0gWOTWrt+lpzxVydc+OvX2+cwIVk4we9
-   J3n/VhSqeM0c5y+tnp4/iqm3whB6hOwAD5RKbFmiwZTmwJtxZbrsizLjP
-   5S2MR4a+cu0DQvrk8iu8a3/ai1+Axol7caM1fio3tICkrX7w7R1lXsDVS
-   AYtyN0nVskx0AnHj+1TU2Q3/FOnWiZQE0zsVD7A2Cawv3qpWa4o6IbH50
-   Q==;
-X-CSE-ConnectionGUID: nSZeEksBSi+aD1fohnBYwQ==
-X-CSE-MsgGUID: 5TfR0ALxTfK4RAl9eLbtCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="65303904"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
-   d="scan'208";a="65303904"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2025 01:51:56 -0800
-X-CSE-ConnectionGUID: Hl2/Ky0sRDm0a3GExQt/qQ==
-X-CSE-MsgGUID: 6OIHJbSRSrKXTzecRghEyQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
-   d="scan'208";a="227092418"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orviesa001.jf.intel.com with ESMTP; 14 Nov 2025 01:51:52 -0800
-Date: Fri, 14 Nov 2025 17:37:19 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
-	Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mahesh Rao <mahesh.rao@altera.com>,
-	Ho Yin <adrian.ho.yin.ng@altera.com>,
-	Niravkumar L Rabara <nirav.rabara@altera.com>,
-	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: agilex5: add fpga-region and fpga-mgr
- nodes
-Message-ID: <aRb4T2vEhKlehJiy@yilunxu-OptiPlex-7050>
-References: <cover.1763008269.git.khairul.anuar.romli@altera.com>
- <9a4ce6b2470328b9326402a2f00ff285be1793c3.1763008269.git.khairul.anuar.romli@altera.com>
- <aRVyvjCny/I/rElC@yilunxu-OptiPlex-7050>
- <c7470b9e-5c8f-4498-a752-9c986de8aca2@kernel.org>
+	s=arc-20240116; t=1763113074; c=relaxed/simple;
+	bh=wTzVYr5CLMbxZcELo4IOLIgxiHBUFwH2iRqyR1aLWAI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZDCeONk9rykL9xtRodzSZhQ1yqC5xAY0MPYgLCukUZQvNaLcLMW2DDSWtfBlKEkhH9NokcR0/9lWYwRN6IsTLRX8SRVxQyzy+Ooime4+ivVS8al1TE3nWbAUCJ68Poy7CuczEjGz48WZpFQNy53PYhsZAi7OY9hISJrfaMiNPnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5dbd8bb36fcso1381322137.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:37:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763113072; x=1763717872;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=dAUhmj06/ScrYHjhgghrsX3axL4gTCjs2QTqxYaasK8=;
+        b=jAt1+C1rvcqHF0qyk5CrFtFBnNK+M9lZ/dg2hzK7ZjcS8jHtA6p13RZxvbVm5AYpN/
+         xeyYa3LPto+dKKTUIr/mq8ehupEBYTqE/kHY5jhoKcEgPRoxJkqb9Fxx1d2zMtE+5I8C
+         cXRjIY3W0PnLeUVKh8n7uLOZLlhN4R84nH/oSgZZMDpaZClj0VMrvqLygBsyp/YzJ/WF
+         j5jyi7xsHZ89uZmeITyL8ZB/hLrQVvWbPloZqROCuwRDFPaK1UCAV6kZu9cavObRBlu/
+         QadqIQOx0opP7Qp7Be7BQY0yqI3wGdOO4GrKUPR4/1FQ9tJFWqY+khMKEfJFfpheFNfu
+         W8Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCWth/kynHh9uCNt/EMojjlKzKFxSvMWsjCW4Es1AEUq0PdJMlBeI5rK5EemaKbRbLv8QZe3gV6AegBF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5OM7fenuKPeczcCRaBAbRAvicw5WLYUxgANNybLj2lMThHsN7
+	O5EqkzwCdZYgfhwEBkniktH8FVmTlosN0OP0cQWwLuDWiFqB94dap8QSunEwSozq
+X-Gm-Gg: ASbGncs+0fJTSJePLPsd8OsOkDUhbjJqdtTVR38QyT2sxQGnILTwxOYhCs+oXR6E54R
+	S1J9eowGNU0+Q9wjoTPM76YY+zzxeaVKnM4HZj8h+SAFnBh+FP6hW4DN66LQPrQ1FJZp7EH3R6P
+	iLuJJk8TE8lW7yNl80W2bg37lY6Z1buO/+Yd5VXgYM30bFIuaUKvBR0cBjtGKf8r5l3Q7HionBi
+	0u0h5LHeb9lG32QmFS0VuuEY4kvOSXmqK5peTOrs3CChU30y1TrA4nzwsOaXJZe/vdxqxjamOzy
+	Yzsum2sC6T/pzYUWFp0NtRWp63x8jAG/qywuUP+oEQL/PcuK6Bo1zqb6YsqMMM41stR0RRLvsXc
+	oyVZCgQzytjq2HuIdLjcOE9G6vA7ffui0qP6mbYDuiO9Ugy5vqblfQddo+m06Eph/CM7n2DTvY+
+	QeH88ub5NrXMPf4EGgkR9ZKyG5MXygf5vJ+upOmEYAU7z9N6Nk
+X-Google-Smtp-Source: AGHT+IHXSkbWGjRZEeZ1Fag+kDgQSmB9Wn1X+TM3sPg5W6ruiDMsYQ1lOJP0u0Ss3N8ZpUhn2QvMuw==
+X-Received: by 2002:a05:6102:5109:b0:5dd:a08e:5bac with SMTP id ada2fe7eead31-5dfb40ab9f8mr2879231137.6.1763113071836;
+        Fri, 14 Nov 2025 01:37:51 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-937611964f5sm1428804241.10.2025.11.14.01.37.51
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Nov 2025 01:37:51 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-9372164d768so1594843241.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:37:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUGzqwxl6VFFf87g0HMdWRGqmOzkodYW/fzbO/GPhyzjiu/zmJzO6ko8DSGEQcfBCYK6MhM0hxRmAPA@vger.kernel.org
+X-Received: by 2002:a05:6102:800d:b0:5db:f897:59f0 with SMTP id
+ ada2fe7eead31-5dfb41e268cmr2558400137.11.1763113071580; Fri, 14 Nov 2025
+ 01:37:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c7470b9e-5c8f-4498-a752-9c986de8aca2@kernel.org>
+References: <20251027123601.77216-1-herve.codina@bootlin.com> <20251027123601.77216-9-herve.codina@bootlin.com>
+In-Reply-To: <20251027123601.77216-9-herve.codina@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 14 Nov 2025 10:37:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdULa3Myv5M13mZnBfGRfpnCasRbDFSFsh-Yji+Gw3gycA@mail.gmail.com>
+X-Gm-Features: AWmQ_bllwARgosfbTXod6oIXQrjpImVz4Lng-lsiZr7z4SHhmighCo7rwlxoBpU
+Message-ID: <CAMuHMdULa3Myv5M13mZnBfGRfpnCasRbDFSFsh-Yji+Gw3gycA@mail.gmail.com>
+Subject: Re: [PATCH v6 8/8] ARM: dts: r9a06g032: Add support for GPIO interrupts
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, 
+	Serge Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Pascal Eberhard <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 13, 2025 at 08:12:24AM +0100, Krzysztof Kozlowski wrote:
-> On 13/11/2025 06:55, Xu Yilun wrote:
-> > On Thu, Nov 13, 2025 at 12:43:56PM +0800, Khairul Anuar Romli wrote:
-> >> The Intel Agilex 5 SoC contains a programmable FPGA region that requires
-> >> proper device tree description to enable FPGA manager support in the Linux
-> >> kernel. Without the 'fpga-region' and 'fpga-mgr' nodes, the kernel cannot
-> >> detect or manage the FPGA hardware correctly.
-> >>
-> >> This patch adds a 'fpga-region' node with compatible = "fpga-region", along
-> >> with appropriate #address-cells and #size-cells properties, to describe the
-> >> FPGA region layout.
-> >>
-> >> Also defines specific compatible string for Agilex5 and add Agilex string
-> >> as fallback for stratix10-soc driver initialization.
-> >>
-> >> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> > 
-> > Reviewed-by: Xu Yilun <yilun.xu@intel.com>
-> 
-> How this can be reviewed if it is completely wrong and obviously not
-> matching the bindings from this patchset?
+Hi Herv=C3=A9,
 
-I apologize. Obviously I didn't pay enough effort on DT. Thanks for
-pointing out and providing the Doc.
+On Mon, 27 Oct 2025 at 13:36, Herve Codina (Schneider Electric)
+<herve.codina@bootlin.com> wrote:
+> In the RZ/N1 SoC, the GPIO interrupts are multiplexed using the GPIO
+> Interrupt Multiplexer.
+>
+> Add the multiplexer node and connect GPIO interrupt lines to the
+> multiplexer.
+>
+> The interrupt-map available in the multiplexer node has to be updated in
+> dts files depending on the GPIO usage. Indeed, the usage of an interrupt
+> for a GPIO is board dependent.
+>
+> Up to 8 GPIOs can be used as an interrupt line (one per multiplexer
+> output interrupt).
+>
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
+m>
+> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-> 
-> Best regards,
-> Krzysztof
+Thanks for your patch!
+
+> --- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+> +++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+> @@ -534,6 +534,14 @@ gpio0a: gpio-port@0 {
+>                                 #gpio-cells =3D <2>;
+>                                 snps,nr-gpios =3D <32>;
+>                                 reg =3D <0>;
+> +
+> +                               interrupt-controller;
+> +                               interrupt-parent =3D <&gpioirqmux>;
+> +                               interrupts =3D < 0  1  2  3  4  5  6  7
+> +                                              8  9 10 11 12 13 14 15
+> +                                             16 17 18 19 20 21 22 23
+> +                                             24 25 26 27 28 29 30 31 >;
+
+I would drop the spaces after/before the angle brackets.
+
+> +                               #interrupt-cells =3D <2>;
+>                         };
+>
+>                         /* GPIO0b[0..1]   connected to pins GPIO1..2   */
+
+> @@ -620,6 +644,23 @@ gpio2b: gpio-port@1 {
+>                         };
+>                 };
+>
+> +               gpioirqmux: interrupt-controller@51000480 {
+> +                       compatible =3D "renesas,r9a06g032-gpioirqmux", "r=
+enesas,rzn1-gpioirqmux";
+> +                       reg =3D <0x51000480 0x20>;
+> +                       #interrupt-cells =3D <1>;
+> +                       #address-cells =3D <0>;
+> +                       interrupt-map-mask =3D <0x7f>;
+> +
+> +                       /*
+> +                        * Example mapping entry. Board DTs need to overw=
+rite
+> +                        * 'interrupt-map' with their specific mapping. C=
+heck
+> +                        * the irqmux binding documentation for details.
+> +                        */
+> +                       interrupt-map =3D <0 &gic GIC_SPI 103 IRQ_TYPE_LE=
+VEL_HIGH>;
+> +
+> +                       status =3D "disabled";
+
+So this is disabled by default (despite the driver being enabled by
+default), because the board has to provide the proper real interrupt-map
+anyway.  Makes sense.
+
+> +               };
+> +
+>                 can0: can@52104000 {
+>                         compatible =3D "renesas,r9a06g032-sja1000", "rene=
+sas,rzn1-sja1000";
+>                         reg =3D <0x52104000 0x800>;
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
