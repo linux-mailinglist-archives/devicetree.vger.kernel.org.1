@@ -1,147 +1,166 @@
-Return-Path: <devicetree+bounces-238562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55201C5C53E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:40:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536EEC5C505
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:38:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EC4A935D619
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:32:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C95FF3B23EC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ECC9308F30;
-	Fri, 14 Nov 2025 09:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784C3306D3F;
+	Fri, 14 Nov 2025 09:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Z9LjKBF8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hDYhXibn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E309E309DDD
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:31:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EFA23184F
+	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763112682; cv=none; b=NQpC2Uy+URr938Vg5Kb1gWyunKB37GOu/WN3hWiiDgsQSsHxQzqD//5IJbY2B2jguAAP0e97ss66NRRLTOeMvh9apJTFwxWV3u4Xa8iQ0aUseAxjpPYN5xscQUU2Ra4F4C3CScMdmDpC+jSqI1eLBWZ/MDNZL/EUXx5qF4Xrj3E=
+	t=1763112745; cv=none; b=rE5Hiuqf38ejKm7V3gdon7BJoPW6QpcMDDah2lu2uJZb40a3URIkCB3Ce3TP9R3+soMVvUkydf8VYRXGbuhK7ZEyGFPhOwEfZwtefn9E0pRvjYk+hTk0LrEOyYGDBWfJQon0VKCDQNFHJHWVUSylcSIljac6B1EMvNlhlaVZdE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763112682; c=relaxed/simple;
-	bh=yqSzDl1RCaX1HaatAeY54OvImk7Uy4nbr08LYmEejV4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i06HKYENz3k4T4/82E/cMywP1BZlGicOwUYsQJXhf/f/2uCd/0P6Cfd5l1B3SSCbFz3uT4QBNOXMCLRM8/DwA3NS27DOYrZ0uFEJOrUVR8YT82HFJd5o2C/MkaT+9vNZXke1COTksvGj6I/aIvXTpcf1ITbzrGcKlzDudBVf2Io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Z9LjKBF8; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b735e278fa1so193100666b.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:31:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1763112678; x=1763717478; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NGrlm2KDEYQBkPU0sl6vfScVs7XruSklBsX2xoEpkVM=;
-        b=Z9LjKBF8QIAttioZ4H5QqVr3Zg0mSkNjrgW7DFzeSyUmdiJQNhwmxCA26l3hwJFCPy
-         0weMZ7GoLBMoYFI/tDPSQ3nhVyp07IWhtwYlemQSnxaJ0bsBIcKITUXsxRW4kNxQzqtR
-         A1ulJyFxd3Vc7xPVBoemqK3VAgnoxvLR50EvQOWgwHOKBAs7kHZ64VlS2kZE97HqA0NB
-         SGdQXXPbEKHkKlTM0zS7xTTKumdZlHELH2rXiUyVqW5c6bqZ9fsCXX3WepYGxbIXXaPk
-         DXGdKwi7zjI4AGxULNEVg7/4NsIFLYOsOS5sMZBt1vaQk/lkYy2aXmCCDu49lZ3kcFQZ
-         BJGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763112678; x=1763717478;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NGrlm2KDEYQBkPU0sl6vfScVs7XruSklBsX2xoEpkVM=;
-        b=qQPnJzcNbcgjm7XotGUa6rih4jDLXW6jPpHvelbiw4V+KTLCaJpX8px435D8jVmVic
-         trIFxXix3SwNMS+iG3NXVZlxydK2gdAV/ZEN/fNrVFvdZ9H2JK85SgpRk8Ap057uVOCW
-         OcJxYXCKR68CcZa4rY9rj8RRsCEV0qixdl75F2hOqX2w/lq0e/NuvY0O3QfyfRukAc2Z
-         dKTR+dDS/yU+jMmyrt2b9cvkFry0+z7V6VvSi/ckBVS0lRT8Qdh0mpl4tAyJpTyv2JGI
-         9rfSSZB3m/OQQJIItpr7PjCi3hDV7dAel9RgbDKkxLvaV9AwT4Fd0Hnl2nej5n+T+BeX
-         o5vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhaY/xj0k8h6gxOrP2pX4QZskEEt17PYfs9bvGSkjH+MOFXaqVfNXFXafCEdl307Qg3AlYluofsRI4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrL34xt7qz1d17b2iaccIl7vTU7TuQrPCGQyZGKHfG7JP5v5it
-	hYfJcAe/8GKnuyquwDVTu1s/v0XRjDIAja+85NoxEivRhWjSd7vL+Ymc4JBDxk1rbVo=
-X-Gm-Gg: ASbGnculAPT1AJcfaTNpqg6tyGGWlRAh1IEb5FqYDPJc3hj3wDAw7wK/t3Eg+IGkVW2
-	xVjLX1KBbxFJ3e1Zk8C/9ROzAhWGBzSMwQ2H96XTzYf/iNgTwqtzKT4h2weRl/cWgxQU3DbQfNB
-	9BSCVb6Jb7Xkzt3VJdghiYR0U1SB5py9mbAoR21iaZwk5pa+SO4noI4w7KaMlgV5BLOvUVbgojk
-	5OGrvO97dhLTeLnhvW6w7CjH15UxYlUH/c1ITMJmbu+V0jOm3zRaWUdZo8sbOK6NxA+4jG365C+
-	3+7J5L+3YZvszJRBrs4T5mRmIv9JF+CSK8oTjNEVS320wneWaLI8Qjbi31aMlJH3HeF5RhpC3xN
-	2QdlaA1UiEVM2ImjrRsfboVujtRly7Ag64KOoN8zky9JZv3FioOu4wgJKC4rFTemd/h7XCOvwMu
-	miyzR2JxJiRV6du90Ru4uKDdVNb4NdrrHmAYh4VGDkLNbdgchQAqw7V6gu6ieTPWGjAS1swFSPK
-	TELpqcqcPXzWcRF7U5P5KWab3c/f4kGQg==
-X-Google-Smtp-Source: AGHT+IHbspNfvp0BB+3bdchp4IaaSftVO6pWYPFt2UrlG+9T2k7g+b2H48RGzhLvNurmLynv9vS/gQ==
-X-Received: by 2002:a17:907:94d5:b0:b3f:f207:b748 with SMTP id a640c23a62f3a-b7367828a3amr228193566b.10.1763112678188;
-        Fri, 14 Nov 2025 01:31:18 -0800 (PST)
-Received: from [192.168.101.179] (2001-1c04-0509-ec01-156d-fa6e-7f19-0b67.cable.dynamic.v6.ziggo.nl. [2001:1c04:509:ec01:156d:fa6e:7f19:b67])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fd80841sm352104366b.41.2025.11.14.01.31.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 01:31:17 -0800 (PST)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 14 Nov 2025 10:31:13 +0100
-Subject: [PATCH v2 5/5] arm64: dts: qcom: sm6350: Add clocks for aggre1 &
- aggre2 NoC
+	s=arc-20240116; t=1763112745; c=relaxed/simple;
+	bh=u/scQ0+n7bGyYvg+MAaJXusTFL4XMd3wUs8RkjvPm+0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qgG8wJrCTBqFRj/im+/s0VCmI9zfAlr5Tb0N8LyCY0EAu9RzsdzX3aqNC4mFXQ/KyLHC+VDvxeUVmr1RMl2YHpLWMp+oJ3wGT+UrHPyAYFGv3CtmchyuPhMqAwY8SoEhW6F+QZq4QA4LU/q6Hy846Bj8NY9CpiR3UG3mVPIiNAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hDYhXibn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D208C116D0;
+	Fri, 14 Nov 2025 09:32:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763112745;
+	bh=u/scQ0+n7bGyYvg+MAaJXusTFL4XMd3wUs8RkjvPm+0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hDYhXibnuhc9alkHK9KOZTE5ojwWsYGV7xa7m+sBW+FiatU/skPeMnf2KO9Wpoak6
+	 ea+aR1p4WiS5iIk8u0eatNMmIVCBXeqXZRoqy3JQCMlPcV+NqTiG0p1FcpsYtulohs
+	 ulUvgl4zxBCbCYlNBB9LUl/mQjXBVyIoHu9Jdf+XJnFKZJK7eJR7rkeVvJDKYXFcWp
+	 ds1nEegasfoYFJG3Va+jdpVxtBGX1yg8vKXRN0w6f6IRkLKEoNT6s6xX3XfVjV5ej8
+	 qCref6WebKBjDM7l7Z6RlHfl/RjqBp0+vIyVAiXd/1Uw1qlmdfCYQeTwyegRhPsI2g
+	 rul5SXUWDRxVg==
+Message-ID: <e9cd0bfe-e410-40c7-861f-274b1998be33@kernel.org>
+Date: Fri, 14 Nov 2025 10:32:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251114-sm6350-icc-qos-v2-5-6af348cb9c69@fairphone.com>
-References: <20251114-sm6350-icc-qos-v2-0-6af348cb9c69@fairphone.com>
-In-Reply-To: <20251114-sm6350-icc-qos-v2-0-6af348cb9c69@fairphone.com>
-To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763112672; l=1239;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=yqSzDl1RCaX1HaatAeY54OvImk7Uy4nbr08LYmEejV4=;
- b=W7BMtEgp86OWP9elRKZT2HdAsIQfo9CAk8g01x3SXHE/0H2boM9pmBZ725nJeP6VAilJKtApj
- ykB0iHKUnk5AYjrbO6ASakwvkyOqRfqLjk3NHLAxRm6WS3dDleMd7ch
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add kfr prefix
+To: Gilles BULOZ <gilles.buloz@kontron.com>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+References: <13a2c25b-9633-c06c-0c07-95157a2a9c1e@kontron.com>
+ <2e04869a-29f8-4c2e-bfe7-0a4b22369a8c@kernel.org>
+ <f47ea697-ace1-4909-eefd-7829302fff8a@kontron.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <f47ea697-ace1-4909-eefd-7829302fff8a@kontron.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-As per updated bindings, add the clocks for those two interconnects,
-which are required to set up QoS correctly.
+On 14/11/2025 10:23, Gilles BULOZ wrote:
+> Le 14/11/2025 à 09:40, Krzysztof Kozlowski a écrit :
+> 
+>> [Vous ne recevez pas souvent de courriers de krzk@kernel.org. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+>>
+>> On 14/11/2025 08:53, Gilles BULOZ wrote:
+>>> Add kfr vendor prefix for Kontron France, which is a single-board
+>>> computer (SBC) manufacturer.
+>> There is no user for this.
+> 
+> Hi Krzysztof,
+> 
+> Yes, there's no user for vendor "kfr" in kernel tree, but Kontron has
+> produced some ARM boards (VM6103,VX3106,VX6124,VX3124) on which we
+> ported uboot and added some entries in device tree for board specific
+> devices (CPLD) using vendor "kfr". We also provide a Linux BSP for these
+> boards with drivers using compatible = kfr,<cpldchip>.
+> My patch was just to reserve this vendor officially so that no other
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+You have entire commit msg to explain unusual things. Your commit msg
+must explain WHY you are doing it so we know WHY we would want to accept
+that patch. If you do not want to convince me why I want this patch
+then... I don't want that patch (please watch Greg's talk titled that way).
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 0c9dc596aa2b..c9a812bc256b 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1117,6 +1117,7 @@ aggre1_noc: interconnect@16e0000 {
- 			reg = <0x0 0x016e0000 0x0 0x15080>;
- 			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
-+			clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>;
- 		};
- 
- 		aggre2_noc: interconnect@1700000 {
-@@ -1124,6 +1125,8 @@ aggre2_noc: interconnect@1700000 {
- 			reg = <0x0 0x01700000 0x0 0x1f880>;
- 			#interconnect-cells = <2>;
- 			qcom,bcm-voters = <&apps_bcm_voter>;
-+			clocks = <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-+				 <&rpmhcc RPMH_IPA_CLK>;
- 
- 			compute_noc: interconnect-compute-noc {
- 				compatible = "qcom,sm6350-compute-noc";
+Anyway, you cannot "reserve" prefix. You must reference here the
+upstream user, if it is not obvious.
 
--- 
-2.51.2
+Plus I am pretty sure Kontron already has prefix and there is no point
+for another one. How many companies Samsung has? 10? 20? How many prefixes?
 
+
+> company will use it.
+> Am I wrong with this way to proceed ?
+> 
+> Best regards
+> 
+> Gilles
+> 
+>>
+>> <form letter>
+>> Please use scripts/get_maintainers.pl to get a list of necessary people
+>> and lists to CC (and consider --no-git-fallback argument, so you will
+>> not CC people just because they made one commit years ago). It might
+>> happen, that command when run on an older kernel, gives you outdated
+>> entries. Therefore please be sure you base your patches on recent Linux
+>> kernel.
+>>
+>> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+>> people, so fix your workflow. Tools might also fail if you work on some
+>> ancient tree (don't, instead use mainline) or work on fork of kernel
+>> (don't, instead use mainline). Just use b4 and everything should be
+>> fine, although remember about `b4 prep --auto-to-cc` if you added new
+>> patches to the patchset.
+
+And this part you ignored or accepted?
+
+Best regards,
+Krzysztof
 
