@@ -1,120 +1,148 @@
-Return-Path: <devicetree+bounces-238482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E206AC5BA65
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:59:12 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32F4C5BABF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 08:05:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 448B7354978
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 06:59:12 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A3FA834865D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 07:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2392E7648;
-	Fri, 14 Nov 2025 06:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C742652A6;
+	Fri, 14 Nov 2025 07:04:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FgIHQRAF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tP+s0mRM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622362C21C5;
-	Fri, 14 Nov 2025 06:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D21A1FF7C7;
+	Fri, 14 Nov 2025 07:04:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763103547; cv=none; b=gUCVA0TZ7JoqjMEmSqw51QfySYSKzH1fpToGiRA4kpkv8oA1QKnd1b5g5BwSXJv/OYlsryrXK4z+J70SCbCgMF9cEQCwO8o+B1m1vn+BteAmBMZgOBq2IovXfZc8jBEswDpzxRtcqNhnAtnP8UvquE+haTFpg74TZbBNmkZHMxQ=
+	t=1763103890; cv=none; b=NieWinWFeieRzk9fbWfZpd57bE7q580T6lqTZnV1atvTdM9ZaSV/P9D2t5N7e5Ai7mFHzXDL2eh7oTve+MJEw2ouTZeZcmxAlPJ5OcePPxD9fXDZglfUpFxbGVTtHCRZyp63+Ei+HYwaJbXf+ibUu+pqy2sMf2ZXwy1K/3T8eQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763103547; c=relaxed/simple;
-	bh=xFTZB7nmkE+KO4dvaal04ySKsjenV1oFXSJbgDFkRCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F4d1N37fCqQ8RH5UNU1aVp8owqjwFQpfS/ORi7GQgu4p49UZRMD+j8Qve66guDiOtRcqBi21OMdvsyX7Hd6urS/PFFlERJezlqjjxLeDArMWaaSmiei2OpEUX5ke1/+azNn2jqXwEnoFf2Voq3gwBMLjloMDazharlpEvcEQRyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FgIHQRAF; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763103545; x=1794639545;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xFTZB7nmkE+KO4dvaal04ySKsjenV1oFXSJbgDFkRCs=;
-  b=FgIHQRAFfiOqpyNhQBp4iFndQDW+l2DYqtH7xOe2zIBlIbH1cX2ihtt1
-   7rykBaUHKN6ifMfq64unq1Egp/9gQnVy4z1e2T6gkOXrpiFo/QEEh24lL
-   ecH8psJpuazh8V/8DMelFQLlw0JqRTxyJM+k61XFpty4mrfnfO2XioMqP
-   JXYEhUchE241dyvoWghK21FpDOoF8hb3sQ4DKaegtkR2agk03n4jrCoz/
-   mxlM0o2dNcbYaj8zGWZUvlbHuLwpznku4f9BpTFHgobxB16Uamrx5T6/V
-   VGE2fZ24O4snbA1aDIr/V28Nqp8jhTS9o7Wy7I3dZP33snkZDcW1DrcCn
-   g==;
-X-CSE-ConnectionGUID: EwXAjjPlS1OJ3o+9hbdUTg==
-X-CSE-MsgGUID: is9JycfMSUuN0bG3t8VRhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11612"; a="82830177"
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
-   d="scan'208";a="82830177"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2025 22:59:04 -0800
-X-CSE-ConnectionGUID: sHgC19cwQRqmP32YdA4xww==
-X-CSE-MsgGUID: QB8Mq28wStu+JhA4kq9W5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,304,1754982000"; 
-   d="scan'208";a="190127701"
-Received: from lkp-server01.sh.intel.com (HELO 7b01c990427b) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 13 Nov 2025 22:59:01 -0800
-Received: from kbuild by 7b01c990427b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vJnlq-0006H5-2o;
-	Fri, 14 Nov 2025 06:58:58 +0000
-Date: Fri, 14 Nov 2025 14:58:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: adrianhoyin.ng@altera.com, gregkh@linuxfoundation.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
-	Thinh.Nguyen@synopsys.com, devicetree@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	adrianhoyin.ng@altera.com
-Subject: Re: [PATCH 2/4] arm64: dts: intel: agilex5: Add USB3.1 support for
- Agilex5 SoCDK
-Message-ID: <202511141429.Ae8oNWSX-lkp@intel.com>
-References: <7ec6e1787a677f6614f7f991a31a9ac58b539780.1762839776.git.adrianhoyin.ng@altera.com>
+	s=arc-20240116; t=1763103890; c=relaxed/simple;
+	bh=7cU/ntRCQfgNQSo4/WCA5x+fDKHux510We3yuaH/Qok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Dq+aF7Zslb0C8RImPLQuwAQWJkPh2Hk9mUEuHIdvfRvAw1R5ie6R709Y7LndOhZ6k12dCZ/OciqXZZeXQN7J5ZA8uehRquKxNtJqF8V3SBuBtFYwDsFg3eerMLYqczq3qa6l+BziZFT0FDy/scR6LCVwgiiBh873IH1l8L50+mI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tP+s0mRM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27237C19421;
+	Fri, 14 Nov 2025 07:04:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763103890;
+	bh=7cU/ntRCQfgNQSo4/WCA5x+fDKHux510We3yuaH/Qok=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tP+s0mRMbj1qLv15IPXHdb2RUjxFhLEUV4ltyFqGZJqkzcRBGqSXIEtum/Iifmjgo
+	 BipYz+BvpkHvoi7p2GgGoFSByOAyE+9xs7tSfU7s7lO33PTbtom/r7AdgYGbMIXMDK
+	 if4GgLZ1Psjq9QxVfRN1n1/1DlnufnwU5ShZEsZJsNcdBH/QEpfEHOXnusunODy5cd
+	 PUxXE4IAxF5EeL4sKM1n0oKl8WezWmCicE/Trj716gktQGqv/E4FXNVQGrBoO3MAmc
+	 oepAAtavidPFGAat8dg8Aj5Iq19++7fJiN+91fKAufqXlzfaPKSRoSzBjhtYb3CKeA
+	 2vVVXFixWp/uQ==
+Message-ID: <c3137311-d85e-4eeb-9122-3072faa83feb@kernel.org>
+Date: Fri, 14 Nov 2025 08:04:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7ec6e1787a677f6614f7f991a31a9ac58b539780.1762839776.git.adrianhoyin.ng@altera.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: arm: imx Add FRDM-IMX91 board
+To: Joseph Guo <qijian.guo@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Justin Jiang <justin.jiang@nxp.com>
+References: <20251114-imx91_frdm-v1-0-e5763bdf9336@nxp.com>
+ <20251114-imx91_frdm-v1-2-e5763bdf9336@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251114-imx91_frdm-v1-2-e5763bdf9336@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 14/11/2025 07:55, Joseph Guo wrote:
+> Add the board FRDM-IMX91 in the binding document.
+> 
+> Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 00cdf490b0620bf537330ee9342a197f13c8c8ab..402c735bafe97236a2f4790f914ef56a4156b0f0 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1409,6 +1409,7 @@ properties:
+>          items:
+>            - enum:
+>                - fsl,imx91-11x11-evk       # i.MX91 11x11 EVK Board
+> +              - fsl,frdm-imx91            # FRDM i.MX91 Development Board
 
-kernel test robot noticed the following build errors:
+You received comments already the order of board/soc is wrong, but still
+push own version. No, read the feedback people gave you.
 
-[auto build test ERROR on usb/usb-testing]
-[also build test ERROR on usb/usb-next usb/usb-linus robh/for-next westeri-thunderbolt/next linus/master v6.18-rc5 next-20251113]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Please organize the patch documenting the compatible (DT bindings)
+before the patch using that compatible.
+See also:
+https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
 
-url:    https://github.com/intel-lab-lkp/linux/commits/adrianhoyin-ng-altera-com/dt-bindings-usb-dwc3-altera-Add-binding-for-Altera-DWC3-wrapper/20251111-142609
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-patch link:    https://lore.kernel.org/r/7ec6e1787a677f6614f7f991a31a9ac58b539780.1762839776.git.adrianhoyin.ng%40altera.com
-patch subject: [PATCH 2/4] arm64: dts: intel: agilex5: Add USB3.1 support for Agilex5 SoCDK
-config: arm64-randconfig-002-20251113 (https://download.01.org/0day-ci/archive/20251114/202511141429.Ae8oNWSX-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 0bba1e76581bad04e7d7f09f5115ae5e2989e0d9)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251114/202511141429.Ae8oNWSX-lkp@intel.com/reproduce)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511141429.Ae8oNWSX-lkp@intel.com/
+>            - const: fsl,imx91
+>  
+>        - description: i.MX93 based Boards
+> 
 
-All errors (new ones prefixed by >>):
 
-   also defined at arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts:111.7-113.3
->> ERROR: Input tree has errors, aborting (use -f to force output)
---
->> ERROR: Input tree has errors, aborting (use -f to force output)
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
