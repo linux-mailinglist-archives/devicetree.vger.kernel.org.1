@@ -1,123 +1,171 @@
-Return-Path: <devicetree+bounces-238543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC0F3C5C372
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:20:27 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C9EC5C359
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 10:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 54C9D4F98AC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:12:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 21B11342E02
+	for <lists+devicetree@lfdr.de>; Fri, 14 Nov 2025 09:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F143016FC;
-	Fri, 14 Nov 2025 09:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6583016FC;
+	Fri, 14 Nov 2025 09:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bv4YCgLt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875052FCC1E
-	for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 09:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F2830146C;
+	Fri, 14 Nov 2025 09:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763111537; cv=none; b=auJwgi+hKi4jiJIz5Kd/PILXjVbCy2NLm5TEWDk1s8z0UOtAoSqJNPL5qOHw76DmcGZMHAdlXkvMuAEtUpKrnT7a83GGiyeybo5It8TSWLaQJsYVPbOoZJwHg5MDMgVGk/NGLGkcGXfp84JLdrG+zMGzpN/sMs9lwXmJVHWJ2mY=
+	t=1763111581; cv=none; b=j1Wu03cFtQz9A/FxPEgZqlPFVpBKg/SPduf8Is+GEN7efLKZGD9ofqs8VQh5Us03tX1o1ycajO0WERI8OOb2gXTxaNRVNBztRdnq8r96SOXFV4y2OHoaXPYgphE31pbsTqMy5Uam3aCQKe9WFSBNJM6eCoGNZ2w1qpnUB7w6lrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763111537; c=relaxed/simple;
-	bh=6lZcA5s325b3JaYAV6k1Lpy8uNvHDPn6vlQjTmP5MHM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=l0DHRiwLz7yb26vyRkuKjGH9m+JMViX2YmF9sXdxLUa9VH2PrIU2Wum+JCu7ovKKqBDs4vbcF7wq5GzKy/L2fkPSSGNhugKc5Hwg9XTQUBUEcRhC96tSFv18w0G8qa3dq9BNw7ahlf/UiOBRM5kliPF6vkI+et+dDkuZ0On2aoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-937262a397eso509842241.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:12:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763111534; x=1763716334;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gv3Uev07oiPCCagTwkGrE74OxJVh/RcOn9HWVQLzIzM=;
-        b=QLj65Wil+8nVcVnGtO+WdMFWeBDPr439qb0qjLDYwMvDGVah0jn50nRT82ZZEqjDu9
-         GRbj4eR4EQ/6+Me4cEm4H3qVk6OpRkO+AsjuOcvUriMWde6kYp4splVq6vnht1hrIBBW
-         ghm8qVoKtDE6Q7C4qhAuKR8UXCxHJ13ULSUj4zMyixfn7RadNT6IopYUHwGRFKoLdFF4
-         zdgyLqXGtQe+2yJEy+QHmKl8KAeO7x2QJr4oP34gtAjgYKSqgIAj5FvPmgRxrGyHCIgr
-         LgdXYykwHrzBJ8Q/Byiihanf4VM4rlh/pd7Injd9BKbfHvWHtsp1KFO7oYgXQgTReV+E
-         D4zQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXSS4FyvqAjpqun9bWOTKA7aHpP2J/h6kGK92CLzQVx5couAA1a0TB/tXP/zhOrQ9bn4PqY3hU645fp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyFNTpfTG8Ae2BQaz7fnPOhr/UfHJz08xLIlp31OReFbotgqdo
-	5Xy4RXqzaGdWA1U8onCRsfM07quxwOZi12JCWcpKvgsqxoNZQoSjU/ZJh0cQfRi7
-X-Gm-Gg: ASbGncuDX6UfNFpsUg4sXpsd4K4D6sAxljXrt8jXko8pTzIdDj7vrZRalfVcWhkV9rV
-	uSft8GbHf8DyovQ0IQ6kbHkvP5BSH6nKbMdJgGdvVNwtdBUjoLln6iILjx6ciI0aiZexx+82NiJ
-	sy6IU+nqHxz/qUkdbSAAZIl0NKSU3+Z6RWX+h/cPGH1iNlHOOFnqjphBBB9elR8ZDEQ6nKURv6A
-	2pomlS4WYZa55DnG7aMs0Uo4ZrqjmUQuBf3AcoFO64MJlrk/PdWu5Gfrlo9NXCjpjZJJG+6VJwA
-	qY8aK6II7p+U2tDgURJYHAqDvq1uawaZAPAe0LxYyrrM06tLUFDHPcsqUMjmMzaBGMZbLD/0BQr
-	Ty9nEjl2rsKPjIRLcN5x/LBKCs1N3VIPaRV8CjTiAJzMnHwjhdHdW5QpvHyxZYN6Q/Fq5hrgNbh
-	Jz5bg1ceeHx9qqaLZpvbmvvG1ZUWsjAwKIvTvjCBgRK+m5oe7+H9LN
-X-Google-Smtp-Source: AGHT+IHA6Ow0/Z8T6V/ufAPsMBdDuOrSohDyg11VYJG3GUDblvT0Ol7EwAiuGXWfTfzvLOjNRWNT8w==
-X-Received: by 2002:a05:6102:2924:b0:5d7:dec5:b6a7 with SMTP id ada2fe7eead31-5dfc54fee8emr938580137.7.1763111533573;
-        Fri, 14 Nov 2025 01:12:13 -0800 (PST)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55b0f331034sm1497086e0c.3.2025.11.14.01.12.12
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Nov 2025 01:12:12 -0800 (PST)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5dbddd71c46so650115137.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 01:12:12 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXYlL70X8LKSHYkX3nePqrpHQlM+XaVYtYshEpV5CJzNJL7XorWg/MreDoK/nCvTxKqvQAEJ6KdXUqQ@vger.kernel.org
-X-Received: by 2002:a05:6102:2b8c:b0:5db:27b9:c20b with SMTP id
- ada2fe7eead31-5dfc5b6dee9mr1034309137.34.1763111532050; Fri, 14 Nov 2025
- 01:12:12 -0800 (PST)
+	s=arc-20240116; t=1763111581; c=relaxed/simple;
+	bh=5t1T8/AfPOA27wVfvjzgTs12WRNxgKM9EwHi3cNV28k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cidzKzl+nzm6Cr5+bNysUX34eEuhKfGK2EoY9+Lutmchaf/YozqODKoqNsAwqZePTBJeMz0VObAfecxkMJHDgafKmWIxyxxzTMpLn0eG0ihtTbmSxCAKT+pZXYpNjXeH1Jw0fXhL9pFMJ4Ydl/wMect0XECVu8Y1Wc2qECxloPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bv4YCgLt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE6DC19424;
+	Fri, 14 Nov 2025 09:12:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763111579;
+	bh=5t1T8/AfPOA27wVfvjzgTs12WRNxgKM9EwHi3cNV28k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Bv4YCgLtMsMkUgweQGH/XFb4FUNgiC1PC0S9hUHZuapclQmCIodPvLs52vAVQxa3j
+	 4zjl152RRfMF7QWrTbTMffKb/ej/eD5HrjWERvGBR/4dUELBsHIqfM3y+b1XuqztN2
+	 nWgCPnH5vrCJ0fT/e5XnUXZP2bHMtjA/HZAeIAtXXD4/im2mO5+q7b0vZzG2bIcGTp
+	 L9qBVsZRnyyM/QgyCcWWTzguhv+7AD8oIFSQCxLhs3FTnlTRSMTyeQmFsL7yflQLkz
+	 wFwgDLgaPrqzKxrjHFamYBgagRwuDcgT1viGakTxh2mNRwkseFQPIKwNX/uEO4td5f
+	 HlWfz1yIQhi8Q==
+Message-ID: <d8320e3c-17de-43e5-b3b8-b6eaf16e1b61@kernel.org>
+Date: Fri, 14 Nov 2025 10:12:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027123601.77216-1-herve.codina@bootlin.com> <20251027123601.77216-7-herve.codina@bootlin.com>
-In-Reply-To: <20251027123601.77216-7-herve.codina@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 14 Nov 2025 10:12:00 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXOC1mRU161697uzeyQhGGoSUJ78RwUQx0sux0b32e8tw@mail.gmail.com>
-X-Gm-Features: AWmQ_bnE7cyD8HOjUEBb9GnZU2_7AmUXi8_jlBj6QbgjeCbjQVJHA15hzW0yJVo
-Message-ID: <CAMuHMdXOC1mRU161697uzeyQhGGoSUJ78RwUQx0sux0b32e8tw@mail.gmail.com>
-Subject: Re: [PATCH v6 6/8] dt-bindings: soc: renesas: Add the Renesas RZ/N1
- GPIO Interrupt Multiplexer
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, 
-	Serge Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Pascal Eberhard <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] clocksource: Add Realtek systimer as tick
+ broadcast driver
+To: Hao-Wen Ting <haowen.ting@realtek.com>, daniel.lezcano@linaro.org,
+ tglx@linutronix.de
+Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
+ shawn.huang724@realtek.com, cy.huang@realtek.com, james.tai@realtek.com,
+ cylee12@realtek.com, phinex@realtek.com, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, stanley_chang@realtek.com
+References: <20251114090448.285685-1-haowen.ting@realtek.com>
+ <20251114090448.285685-3-haowen.ting@realtek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251114090448.285685-3-haowen.ting@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 27 Oct 2025 at 13:36, Herve Codina (Schneider Electric)
-<herve.codina@bootlin.com> wrote:
-> On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
-> interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
-> order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
->
-> The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
-> IRQ lines out of the 96 available to wire them to the GIC input lines.
->
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
-> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On 14/11/2025 10:04, Hao-Wen Ting wrote:
+> Add a tick broadcast timer driver for Realtek SoCs.
+> 
+> On Realtek platforms, CPUs can enter deep idle states (C-states) where
+> the local timer is stopped and powered off. Without a global tick
+> broadcast timer, one CPU must remain awake to wake up the others,
+> preventing all CPUs from entering deep idle simultaneously.
+> 
+> This driver provides a tick broadcast timer which remains active
+> during deep idle states. This allows all CPUs to enter power-cut
+> idle states simultaneously, significantly reducing overall power
+> consumption.
+> 
+> The timer operates at 1MHz and supports oneshot mode.
+> 
+> Signed-off-by: Hao-Wen Ting <haowen.ting@realtek.com>
+> ---
+>  MAINTAINERS                         |   5 +
+>  drivers/clocksource/Kconfig         |  10 ++
+>  drivers/clocksource/Makefile        |   1 +
+>  drivers/clocksource/timer-realtek.c | 172 ++++++++++++++++++++++++++++
+>  4 files changed, 188 insertions(+)
+>  create mode 100644 drivers/clocksource/timer-realtek.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c7a116b795d5..90f511bb4982 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21670,6 +21670,11 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/spi/realtek,rtl9301-snand.yaml
+>  F:	drivers/spi/spi-realtek-rtl-snand.c
+>  
+> +REALTEK SYSTIMER DRIVER
+> +M:	Hao-Wen Ting <haowen.ting@realtek.com>
+> +S:	Maintained
+> +F:	drivers/clocksource/timer-realtek.c
+> +
+>  REALTEK WIRELESS DRIVER (rtlwifi family)
+>  M:	Ping-Ke Shih <pkshih@realtek.com>
+>  L:	linux-wireless@vger.kernel.org
+> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> index ffcd23668763..0c1835b48a18 100644
+> --- a/drivers/clocksource/Kconfig
+> +++ b/drivers/clocksource/Kconfig
+> @@ -782,4 +782,14 @@ config NXP_STM_TIMER
+>            Enables the support for NXP System Timer Module found in the
+>            s32g NXP platform series.
+>  
+> +config RTK_SYSTIMER
+> +	bool "Realtek SYSTIMER support"
+> +	depends on ARM || ARM64
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Gr{oetje,eeting}s,
+No, I asked to depend on specific SoC ARCH. Not top level architecture.
+Also, each such dependency must have compile test, just look at other code.
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
