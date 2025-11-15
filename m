@@ -1,251 +1,258 @@
-Return-Path: <devicetree+bounces-239015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B08BDC60892
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 17:34:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08E51C608F7
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 18:10:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 715244E1F08
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 16:34:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B11703BB61C
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 17:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 993B72FDC20;
-	Sat, 15 Nov 2025 16:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F39298CC7;
+	Sat, 15 Nov 2025 17:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="MEEWFs0R"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="aTPez47x";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="oWmQdel/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06C6645
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 16:34:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95C5C200113;
+	Sat, 15 Nov 2025 17:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763224453; cv=none; b=NF1fKKhrbithei6UJLxb/8uqQTcPjE6spt9u3LKPo3X0DjrYAEooFrShEynbBZRJ5ZFJanbCMXYVCZNo14gA99nEiDFN7M1mYfTjN6SX3I7Za3zTmQAbKL5pQTU+WCDx40NISH67PPND+5sJ6LPzQyu9oRiN7/m+lIxSTffjIpA=
+	t=1763226636; cv=none; b=utlytrTPfJCNQQY0bouz3HMhbYeURDKdOs/LmDJJTJrKPkqL+ZFjrfAXHaQteXbZInWy5vtxSSMnkZHN5kYCdH9b1A19VJv0UltiYMgeyy4mHAnQW1CGQFxyJ2PASv1mxYuFZfyKXWMBPS+Uc7Ub5s9KCSlH4O5cKy5cfxY5Tz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763224453; c=relaxed/simple;
-	bh=LWg/HA9nD1GVScuk8vJ+8EIMbwSRlSPmFBHPoFqjsPc=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eSnFlD/WWAAoduOYM1YbxakFk0E/+ll600AwmWFjeRhTK+izGQTeu+1Gu4Uz/nPEB5DxJ0E/DH8/Mi7/vQ0+qsaAOgbSKk0gy5Z2BUQ/voE6ccIOKo0jiyHL20Ah9nKjDWDVZwN/AeJSX5s+zfgSwjF6n5tXZOdqngTGtX3biEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=MEEWFs0R; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6A8A43F2AB
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 16:28:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1763224116;
-	bh=zSRKqRGpeB1Tv9JOYJHcuja/xurT3x7lGHvQj0bUM5w=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=MEEWFs0RmlM611iOlJUj4MW5PEU+yjjrubrdWXe6ismzEebSkQpxZ2syOlXo4HFqQ
-	 BXxL/USeM8SjqIFsp0qxq/Eq2bgoc0fVM9opq2WAa+3t/FUoMX5K3qe/Obww6WxY2U
-	 C7PA7MjYu699/fMMaadCm162DCbrWvWslUEB2RUM4tvQYIfSLSJsjzO3TRePtnOxex
-	 aiRWm4dQ+FjfRo+63v7ZRmmFVYIvlQL/0CBUa2WHo0mUTUVk9/3O8dFzTeMCxkou16
-	 uqfaGFg16SUbZIob8SuPWnBZMavOU7ZQA51wOerPE5WlKXHvQ8VLDvTZXaiPsCxAQk
-	 Tk61CvmSH7c4IcSULDxwWayLviNchHUsdKZCHYFjtieEvPQHtBw/AhYDHCHH9V5V18
-	 5qIfiGUEVRr6XLP/wczaPdOcWS7s+1dpy6J1MDmzLxgUR5tmDfjRQ3ixmEM377mr3V
-	 X5f1/ZnbBzCVajw1CzcVItsit4rErvmjWFjKXHPdNwv+epFrCanrQ9oqugufc9Tpgo
-	 WMd2sRXqdKyhncFviG3l7sGnLqOnGjYSE6qoFR1SWcs6X9jrT1nJ/3r9zyNzCTbur/
-	 cCuuPz7RIwtLgwEPPVzXdBbilqeH52kU8va96NpDdSmG5S06uj07C+QLCFDglcZvxc
-	 9x7bc/Yzr75bhlnrQjs6Te1M=
-Received: by mail-ej1-f72.google.com with SMTP id a640c23a62f3a-b73586b1195so224968366b.3
-        for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 08:28:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763224114; x=1763828914;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zSRKqRGpeB1Tv9JOYJHcuja/xurT3x7lGHvQj0bUM5w=;
-        b=eHLRrQVDeJ+fTY2te93wSNHago+H2FxyMD2dEc65wGiGhfizTqLdRIDWkkrwo00eoh
-         tsJTRrObMdvEuw8WqzLwdfp4I5UGmf5E37dPavd31l3bGKAQv/uU3nUI+yBpzCnamYRc
-         PqwffGxUNgwqHsDyNclIcbotECiLzKvBjWgemtaNU+PABJpR7e3N1C+OJi/C0DVRSiqM
-         jQ5zxLduLxwfG2F+K/dGz0By1B7VEBwPk8p3FaijxLpwGh38K+XyifnlnTvIX0uht9uR
-         S02NZjniUNsgxj+VCaATliWriwEKVniRBjD3j/+pvHOe6VOg3xuJP3ZyHOJM8AKKVvLF
-         764w==
-X-Gm-Message-State: AOJu0Yyps0nDbJTPW5a10fW7EjTiQwzKY1gS8qzS7Eyev6OcaWhVtEov
-	GCksX71f9XoWtGZELYD2Te2X6Y3OcdxlMiYnF73kkk1SYua7r+ZQy1gcbI8Qclib/e1yp2cA+p9
-	Jcj+6AEGqot6Nc43VScx21kz8iLlaeWlEaNFVwZTIyJNFHa9wBGxaG0uZJds/B0TV1YyNDV7Ew3
-	Yo4Kt0JWi5yWC6zfN15NXA4vD3CgiAObJ3NjiNGfq1vWMVqPMsshkHlA==
-X-Gm-Gg: ASbGnctJ8y607ensR53AmyoxJIW70AhR75QlnPjcM4Zp/9eBhBrO7rrZBnMD+Z+hlCU
-	K/HMXjGJgEtI6MLYmJAj3JRaCM9ijfipTpjnq37s8iVpZmv5/0kJsCQoPn/WDNbNacBwEZQuGpr
-	gdaDxbOn38/rQmXsZtTECpNX4leW6x2vxoEIJ4qOHjifaYI0LmnRbjcQ==
-X-Received: by 2002:a17:907:26cc:b0:b4a:d60d:fb68 with SMTP id a640c23a62f3a-b736787e579mr742372466b.6.1763224113864;
-        Sat, 15 Nov 2025 08:28:33 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH9nDCQNY6wZNR2oRy4Ui77frqHmUp7XPyVfQ4YwWP5a1VyUOxY0yBE4UbM+Ty6IlJi1smS24M8n7p6v570aBo=
-X-Received: by 2002:a17:907:26cc:b0:b4a:d60d:fb68 with SMTP id
- a640c23a62f3a-b736787e579mr742369166b.6.1763224113387; Sat, 15 Nov 2025
- 08:28:33 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Sat, 15 Nov 2025 08:28:32 -0800
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Sat, 15 Nov 2025 08:28:32 -0800
+	s=arc-20240116; t=1763226636; c=relaxed/simple;
+	bh=IwNuIG5YEBKLEuNGHvovrNsovaVjYhFOj4M3D+26q3w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eqcchf38Q8yIprlzqBZtjvKpW3XcBMs7flvnPFdLyc6yw7Sz/juOgJeYj+rl8oA5Uq9pS9n2t4cCvDvSdBbowYNzyLSHhwoiREOmWARvUXyePpmoILgQwyoG2pb5cX6JWHsFyNmmm5jPRh9oVHiaheED0ko6CLTfY61a/ReYbAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=aTPez47x; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=oWmQdel/; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1763226481; bh=CbOeqveRkfwcyaZzIJeZEx5
+	mwEynF8eqOwV9+gdv6Zs=; b=aTPez47xFeVQjQy0MStJ+qlAnhlMDE8Nhe2FZn/TzRzv/8cfih
+	3YIRpevyJL2p8WV8M8uzadR15j4OlLDPW7+3imCgklHu4haJGWV9WYACnQLJTTK0mJM9KHiJMLY
+	LIXP1rsqTH063CIyRTQYnTFmFHnagS5G6u2lRerE2d2tDGfK9KHE6uoKDWioCOV7zH0C5TQKYwX
+	Z7c+DskMa7k7vp7/7OFwGp07EW7fzwNuPcacYpvvQ8+CpcFlBxfxOWSWsBzYH96rnlrYu2tS/hG
+	dPnu80Wzr7xjIwJNlqD9XBSEEWMIX1EmFAYCYLY5I9lbKRlHV6KiJEwAeQfI/fiNZ+Q==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1763226481; bh=CbOeqveRkfwcyaZzIJeZEx5
+	mwEynF8eqOwV9+gdv6Zs=; b=oWmQdel/58jocB4Bm5EXz0npGVoNYo/+HkoTnfePqBiyNZUD3G
+	L1141J5kZLLy9HzvzZY9G6kfvwXueb9QyOCA==;
+Message-ID: <b2d4d91f-c726-4f5a-994a-086edc9caff2@mainlining.org>
+Date: Sat, 15 Nov 2025 18:08:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <4a55301a-ef7e-4b47-8151-621cfba36ddd@freeshell.de>
-References: <20251107095530.114775-1-hal.feng@starfivetech.com>
- <CAJM55Z_rczBo4D3HsC90QW1=fp3NWgK-tsEo6LHTZNXEBHTDqA@mail.gmail.com>
- <ZQ2PR01MB13076544E2136E7E7C2EEDA1E6CD2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
- <CAJM55Z9KyNK1n4i9FxbLor4HTQKqK8WKA2svjPVvKXihw_E+sg@mail.gmail.com> <4a55301a-ef7e-4b47-8151-621cfba36ddd@freeshell.de>
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-User-Agent: alot/0.0.0
-Date: Sat, 15 Nov 2025 08:28:32 -0800
-X-Gm-Features: AWmQ_bnZh6g5E5Nmsvq88SYMPJTcp06SuprcwPyoDG2boVWgz7koXN7k-w6PH0I
-Message-ID: <CAJM55Z-bRdNmnRZ7wi3PMOkzGYrxQEGk+7F67Pdu4WXwKmTjCQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/8] Add support for StarFive VisionFive 2 Lite board
-To: Albert Ou <aou@eecs.berkeley.edu>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, E Shattow <e@freeshell.de>, 
-	Hal Feng <hal.feng@starfivetech.com>, 
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: rubikpi3: Add qcs6490-rubikpi3
+ board dts
+To: Hongyang Zhao <hongyang.zhao@thundersoft.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Roger Shimizu <rosh@debian.org>
+References: <20251115-rubikpi-next-20251114-v1-0-fc630dc5bb5d@thundersoft.com>
+ <20251115-rubikpi-next-20251114-v1-1-fc630dc5bb5d@thundersoft.com>
+Content-Language: en-US
+From: Jens Reidel <adrian@mainlining.org>
+In-Reply-To: <20251115-rubikpi-next-20251114-v1-1-fc630dc5bb5d@thundersoft.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Quoting E Shattow (2025-11-13 16:16:12)
->
->
-> On 11/13/25 02:42, Emil Renner Berthing wrote:
-> > Quoting Hal Feng (2025-11-13 04:42:05)
-> >>> On 12.11.25 21:54, Emil Renner Berthing wrote:
-> >>> Quoting Hal Feng (2025-11-07 10:55:22)
-> >>>> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S
-> >>>> industrial SoC which can run at -40~85 degrees centigrade and up to
-> >>>> 1.25GHz.
-> > [...]
-> >>> Currently the JH7110 device trees are layed out like this, with a nice separation
-> >>> between the SoC description and board descriptions:
-> >>>
-> >>> jh7110.dtsi               # JH7110 SoC description
-> >>> |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
-> >>>    |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
-> >>>    |  |- <VF2 boards>     # Final VF2 board descriptions
-> >>>    |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
-> >>>    |  |- <Mars CM boards> # Final Mars CM board descriptions
-> >>>    |- <other boards>      # Other JH7110 board descriptions
-> >>>
-> >>> With this series it moves to
-> >>>
-> >>> jh711x.dtsi
-> >>> |- jh711x-common.dtsi
-> >>>    |- jh7110-common.dtsi
-> >>>    |  |- <jh7110 boards>
-> >>>    |- jh7110s-common.dtsi
-> >>>       |- <jh7110s boards>
-> >>>
-> >>> ..which I can't even give clear labels like above. In other words when new
-> >>> patches are sent in it would not be easy to explain exactly where each change
-> >>> should go and why.
-> >>> I'm also worried that you'll find that more of the peripherals on the JH7110S
-> >>> need special handling and a new jh7110s-... compatible string. Then I guess
-> >>> they'll need to jump from jh7110x.dtsi two levels down to jh7110{,s}-
-> >>> common.dtsi which then both describe SoC and board properties.
-> >>>
-> >>> If you're serious about calling this a new SoC then I'd expect something more
-> >>> like this:
-> >>>
-> >>> jh711x.dtsi                  # Peripherals common to both SoCs
-> >>> |- jh7110.dtsi               # JH7110 SoC description
-> >>> |  |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
-> >>> |     |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
-> >>> |     |  |- <VF2 boards>     # Final VF2 board descriptions
-> >>> |     |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
-> >>> |     |  |- <Mars CM boards> # Final Mars CM board descriptions
-> >>> |     |- <other boards>      # Other JH7110 board descriptions
-> >>> |- jh7110s.dtsi              # JH7110S SoC description
-> >>>    |- jh7110s-common.dtsi    # Peripherals common to all JH7110S boards
-> >>>       |- <JH7110S boards>    # Final JH7110S board descriptions
-> >>>
-> >>> I know this will mean some duplication in jh7110{,s}-common.dtsi, but I
-> >>> would prefer that to not having a clear explanation of what each file describes.
-> >>>
-> >>> Do you think this layout could work for you?
-> >>
-> >> Yeah, it is clearer for developers and maintainers.
-> >>
-> >> Considering Conor's suggestion, what about:
-> >>
-> >> jh7110.dtsi               # JH7110 SoC description
-> >> |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
-> >>    |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
-> >>    |  |- <VF2 boards>     # Final VF2 board descriptions
-> >>    |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
-> >>    |  |- <Mars CM boards> # Final Mars CM board descriptions
-> >>    |- <other boards>      # Other JH7110 board descriptions
-> >> |- <JH7110S boards>
-> >>
->
-> JH-7110 and JH-7110I reference docs are listed (not any JH-7110S) at:
-> https://doc-en.rvspace.org/Doc_Center/datasheet_0.html
->
-> Does the JH-7110I use the OPP table for JH-7110 or JH-7110S?
->
-> >> Move the opp table from jh7110.dtsi to jh7110-common.dtsi.
-> >> Remove jh7110s-common.dtsi, because only one board uses JH7110S now.
-> >
-> > This patchset adds 2 different boards. Has this changed?
-> >
-> > Also this would mean that you're not using the starfive,jh7110s compatible or
-> > any other starfive,jh7110s-.. compatible strings, so effectively you're not
-> > treating it as a new chip, but just a board that needs a different opp table.
-> >
-> > I see now that the opp table is effectively the only difference between the two
-> > chips in this patchset, so if that's closer to reality then what you suggest is
-> > fine with me.
-> >
-> > /Emil
->
-> Are we now re-visiting Hal's suggestion then (during code review for
-> Milk-V Mars CM and Mars CM Lite) to split out the OPP tables and make
-> them per-board, as before introduction of the StarFive VisionFive 2 Lite
-> board(s) ?
->
-> Can we then do as from where we are now before this series:
->
-> - Move "the JH-7110" OPP table into jh7110-common-opp-1500.dtsi
->
-> - Each board jh7110-{deepcomputing,milkv,pine64,starfive}*.dts includes
-> said OPP dtsi file.
->
-> and for this series:
->
-> - Drop the adding of a new compatible
->
-> - Add "the JH-7110S" OPP table into jh7110-common-opp-1250.dtsi
->
-> - Use existing jh7110-* prefix for "JH-7110S" board dtsi and dts,
-> include jh7110-common.dtsi as usual, and include jh7110-common-opp-1250.dtsi
->
-> The exact filename pattern for the OPP tables I suggest here are
-> approximations, however that idea is my suggestion if we're just doing a
-> breakout of the tables and not a new compatible.
->
-> I am positive on having the 1250MHz OPP tables split out into dtsi
-> instead of stuffing them into the VisionFive 2 Lite common dtsi. That's
-> all it is?
+Hi,
 
-I think this suggestion makes sense if we're 100% sure the JH7110 and JH7110S
-will only ever differ by the opp table. If there is any chance we'll need to add
-different compatible string for some peripheral then I think Hal's suggestion
-will be easier untangle. We'll even be able to do it without touching all the
-board dts files once again.
+On 11/14/25 5:34 PM, Hongyang Zhao wrote:
+> Add DTS for Thundercomm qcs6490-rubikpi3 board which uses
+> QCS6490 SoC.
+> 
+> Works:
+> - Bluetooth (AP6256)
+> - Wi-Fi (AP6256)
+> - Ethernet (AX88179B connected to UPD720201)
+> - FAN
+> - Two USB Type-A 3.0 ports (UPD720201 connected to PCIe0)
+> - M.2 M-Key 2280 PCIe 3.0
+> - RTC
+> - USB Type-C
+> - USB Type-A 2.0 port
+> - 40PIN: I2C x1, UART x1
+> 
+> Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+> Reviewed-by: Roger Shimizu <rosh@debian.org>
+> ---
+>   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+>   .../boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts | 1415 ++++++++++++++++++++
+>   2 files changed, 1416 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 6f34d5ed331c..2433b15754fe 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -138,6 +138,7 @@ qcs6490-rb3gen2-industrial-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2
+>   
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-thundercomm-rubikpi3.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
+> new file mode 100644
+> index 000000000000..4c9016992de3
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
+> @@ -0,0 +1,1415 @@
 
-I'm interested to hear Hal's opinion on this. Hopefully they'll have
-more details
-on the two version of the JH7110.
+[snip]
 
-/Emil
+> +
+> +&pcie0 {
+> +	perst-gpios = <&tlmm 87 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 89 GPIO_ACTIVE_HIGH>;
+> +
+> +	pinctrl-0 = <&pcie0_clkreq_n>,
+> +		    <&pcie0_reset_n>,
+> +		    <&pcie0_wake_n>;
+> +	pinctrl-names = "default";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie0_phy {
+> +	vdda-phy-supply = <&vreg_l10c_0p88>;
+> +	vdda-pll-supply = <&vreg_l6b_1p2>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie1 {
+> +	/* Using traditional address mapping */
+> +	reg = <0 0x01c08000 0 0x3000>,
+> +	      <0 0x40000000 0 0xf1d>,
+> +	      <0 0x40000f20 0 0xa8>,
+> +	      <0 0x40001000 0 0x1000>,
+> +	      <0 0x40100000 0 0x100000>;
+> +
+> +	ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
+> +		 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
+
+Thanks for attempting to fix the PCIe issues. With your patch series 
+applied on top of linux-next, I'm still seeing PCIe issues:
+
+[    0.380693] Internal error: synchronous external abort: 
+0000000096000010 [#1]  SMP
+[    0.406491] Modules linked in:
+[    0.406495] CPU: 5 UID: 0 PID: 106 Comm: kworker/u32:6 Tainted: G   M 
+                6.18.0-rc5-next-20251113 #13 NONE
+[    0.406499] Tainted: [M]=MACHINE_CHECK
+[    0.406500] Hardware name: thundercomm Thundercomm RUBIK Pi 
+3/Thundercomm RUBIK Pi 3, BIOS 2025.10-rc4 10/01/2025
+[    0.406502] Workqueue: async async_run_entry_fn
+[    0.406508] pstate: 40400005 (nZcv daif +PAN -UAO -TCO -DIT -SSBS 
+BTYPE=--)
+[    0.428362] pc : __pi_memset_generic+0x16c/0x188
+[    0.428366] lr : dma_direct_alloc+0x19c/0x3d0
+[    0.428370] sp : ffff8000810e3920
+[    0.428371] x29: ffff8000810e3920 x28: ffff000080d0f810 x27: 
+ffffba4c6196ec48
+[    0.428373] x26: ffff000080d0f810 x25: ffffba4c607b31cc x24: 
+0000000000000000
+[    0.428375] x23: ffff000080d0f810 x22: ffff000000c00000 x21: 
+ffff000082858948
+[    0.428376] x20: 0000000000001000 x19: fffffdffc0030000 x18: 
+000000000000000a
+[    0.428378] x17: ffff0000823dae00 x16: 0000000000000000 x15: 
+0000000000000000
+[    0.428380] x14: 00000000ffffffff x13: 0000000000000068 x12: 
+0000000000000100
+[    0.449344] x11: 0000000000000000 x10: ffff0001fef99500 x9 : 
+0000000000000000
+[    0.449345] x8 : ffff000000c00000 x7 : 0000000000000000 x6 : 
+000000000000003f
+[    0.449347] x5 : 0000000000000040 x4 : 0000000000000000 x3 : 
+0000000000000004
+[    0.449349] x2 : 0000000000000fc0 x1 : 0000000000000000 x0 : 
+ffff000000c00000
+[    0.449350] Call trace:
+[    0.449351]  __pi_memset_generic+0x16c/0x188 (P)
+[    0.449354]  dma_alloc_attrs+0x94/0x210
+[    0.449357]  dmam_alloc_attrs+0x74/0xc0
+[    0.469967]  dw_pcie_msi_host_init+0x100/0x300
+[    0.469971]  dw_pcie_host_init+0x5e4/0x6d8
+[    0.491913]  qcom_pcie_probe+0x5a8/0x838
+[    0.491916]  platform_probe+0x64/0xc0
+[    0.491919]  really_probe+0xc8/0x3f0
+[    0.491921]  __driver_probe_device+0x88/0x170
+[    0.491922]  driver_probe_device+0x48/0x130
+[    0.491923]  __device_attach_driver+0xc4/0x190
+[    0.491925]  bus_for_each_drv+0x90/0x100
+[    0.491928]  __device_attach_async_helper+0xb8/0x120
+[    0.491929]  async_run_entry_fn+0x3c/0x1e0
+[    0.491931]  process_one_work+0x150/0x3a0
+[    0.491934]  worker_thread+0x288/0x480
+[    0.491936]  kthread+0x118/0x1e0
+[    0.491938]  ret_from_fork+0x10/0x20
+[    0.513092] Code: 91010108 54ffff4a 8b040108 cb050042 (d50b7428)
+[    0.513094] ---[ end trace 0000000000000000 ]---
+
+I can only get the device to boot by disabling both pcie0 and pcie1.
+
+> +
+> +
+> +	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 3 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-0 = <&pcie1_clkreq_n>,
+> +		    <&pcie1_reset_n>,
+> +		    <&pcie1_wake_n>;
+> +	pinctrl-names = "default";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie1_phy {
+> +	vdda-phy-supply = <&vreg_l10c_0p88>;
+> +	vdda-pll-supply = <&vreg_l6b_1p2>;
+> +
+> +	status = "okay";
+> +};
+> +
+
+[snip]
+
+> +
+> +&remoteproc_adsp {
+> +	firmware-name = "qcom/qcs6490/adsp.mbn";
+> +
+> +	status = "okay";
+> +};
+
+I'm fairly sure that this is the wrong ADSP firmware. With the firmware 
+in linux-firmware, I'm seeing charger pd crashes and the ADSP constantly 
+restarting. Using the Radxa Dragon Q6A ADSP firmware which disables the 
+charging feature in the firmware works way better and does not result in 
+crashes.
+
+> +
+> +&remoteproc_cdsp {
+> +	firmware-name = "qcom/qcs6490/cdsp.mbn";
+> +
+> +	status = "okay";
+> +};
+> +
+
+[snip]
+
+Thanks,
+Jens
+
 
