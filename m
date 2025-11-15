@@ -1,153 +1,170 @@
-Return-Path: <devicetree+bounces-238933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95FAEC5FFC4
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 05:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3317AC60042
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 06:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2F9264E5490
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 04:22:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E14AC4E2AEF
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 05:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5A62147E5;
-	Sat, 15 Nov 2025 04:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAAD41DF73C;
+	Sat, 15 Nov 2025 05:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="do7DD2R4";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="mDufRdfy"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Jdh4rJVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E8018D658
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 04:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8DE18CC13;
+	Sat, 15 Nov 2025 05:53:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763180515; cv=none; b=VqPukSPWg5tRIltIq1Fo0n4gaPkiTAcx5lWNp+jT6wntMMjzdycIer2s7pgvFurvZGuSE0I155RG/XGVZRrA/NrsAp7P1RO7r/pCOMmjMg0UWVEEGcgGr7j3g0kiNO/yaGtnQ5UHpRIurzjoTwOMmpHyPGJuc55XRlEn5693aWc=
+	t=1763186042; cv=none; b=smtSsV9vt2il/12RgPKEKGRGi8R+Qg1zr7/xNS5O/hzf9O6AQ1n4wSOG90xbTZw9QOsBtzbvFCmiNcpYODNXFT5fMCv+9DzWC6n8Y27ECp9cmbKjnEm1/esBKGDesR2AfL8XivM/rC2CVdBRmDLf2W4XvEtVPmYnTDOp7Yv5enU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763180515; c=relaxed/simple;
-	bh=W7Q6wmI9qY9hFy3y3Yc0H0YKLHAJOByL64hTBS8BJ6I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sSCPY1481yxna96gBjcpEtGd9oWQMyaVSsUwguBjZF4KGjyiV0t4rQFK6x5vY/lVBwvHvgwEPWwX/GAiIPEEonOufwT+orEsqOGHdocAvHoPVfKiT2+ankSwI5io0NcHkmW75EEeOn4PG0Nha2iktCFn63ornqv+wtlKrEi4zhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=do7DD2R4; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=mDufRdfy; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1763180512;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n/tk0v+4BBK6qP0Q9YzuiptrPfp0eR+Hy5aITCdFIu8=;
-	b=do7DD2R4DQushHA32Mt+o3G00Tr6Ydysd+0TBbS0AATy2D4VnZy5RP7KqsCO9VRHW+t7yy
-	mqz8Sld93pdBT7chFA4NLUXMm+CGBtoXFrcH2rwueP+nR28FLWUiFnKnKozQAcKW3Ti4ir
-	V8akrEz9ukjUVPjIK8ubzF25gPHbr/k=
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
- [209.85.214.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-537-N9qlSlfEPpGJhBlL0wmyTg-1; Fri, 14 Nov 2025 23:21:51 -0500
-X-MC-Unique: N9qlSlfEPpGJhBlL0wmyTg-1
-X-Mimecast-MFC-AGG-ID: N9qlSlfEPpGJhBlL0wmyTg_1763180510
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-297fbfb4e53so47321395ad.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 20:21:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1763180510; x=1763785310; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n/tk0v+4BBK6qP0Q9YzuiptrPfp0eR+Hy5aITCdFIu8=;
-        b=mDufRdfyb3+3CvLfM2VfU6skSl10O6kBApZSJZgrHfaXOmnx+j6ezg6w5+vPJngR2l
-         y1jQlCRClR7DIZF1C+bzCfjxLYqQ9/Q99I6v1/L/LgpSWYBcxZvoxIE3ulFf5dzuVzat
-         yBy+nNyQllDj7+tii4l0FcL8S9+ehpcyeyIrnj3JIGI8sJhSmhU8pBtiGgk4VnNHyX5J
-         3cAmeq9Rh2g/8KeuA+BOBJw6qCNh5mhoq6Aw0DwmsT7Zl+9vmOqY6Gpx0/hHpU+8exfh
-         nS64j0CEcnrp4jDxlZHxZX4Eme2b6LpbE8NUm7ODxpNDe+Ya0pmL4DCj9f44j171ehLV
-         YyRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763180510; x=1763785310;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=n/tk0v+4BBK6qP0Q9YzuiptrPfp0eR+Hy5aITCdFIu8=;
-        b=rUlcR33rmke05uzgweTYvqoLFEvHQr3wcodkxu8QJfr35wbInOVOv20krCOtypk37P
-         7QF8pFU6rSi6lBgw3V06s3Zp0omPEIbl8oQ/z24ZJ0rk6d1dit4j3XIhYFU8CptDzAY2
-         IhtVdeifahc+DtD51vep1wRLbF2Y3stOR1OPIvoa2EfHLikoZ/k1bJrBUfiTuVo1jh2Z
-         O7cc53t2jcF/8E2odNSfq3O6+cNm+ZTv2ScLhp5x+DJI6ZWFvxnY+2PMYOifjjjZ5ZtY
-         1Xr+go9gXVlRdhIkeQWp8ZRwagkUqH2O4wBRcSkvzVy/fIwgpD6ztLNVsWB9JwYtHYMu
-         SYBw==
-X-Forwarded-Encrypted: i=1; AJvYcCUdIPilRMBCwIGAytnYZCnyxR8a+T1khfqX1nZztN5Ii13wbxRGgAXQc3GjWWBc3HFnXBVh3loNoGI2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBk8TqFHGiJEDG+Lvulzy2Z1ByKNAnr5EYQhhNLVlki8+15bSo
-	3zOICm3YpVoanP8fevgx/2bVLRod+EGhxv7EkMa1KeiTRlHmeZ8mBjtZ4qm+mQ19JtwksN3lGGX
-	0NaToDevjuK7NQDck5OvFqehjP+fbOBIj4azPeidysQuO37IMA5KwF6LjLaQJpcMEWId/qhgWiI
-	SX4oXGInj6WkBHHLRS600Lu9kmrD0s1fcM7uAGGg==
-X-Gm-Gg: ASbGncssSMpcY31I4sGFdnM9FHu5J45KK/xqDu8vINMVV8QLdrchXABhnd7x6wn+3rp
-	fkKuowSs94abH/Qcs27CNsOG6OyKKWJaj8SlhQ6EYCq6Y1AYv0AUZIPVPv31jbfYeSUpL99aQVK
-	f0LS2Yey9D4yPV3MmULGpsY+RT82OFPwCkogj77ISV1YEKBkdqSl9UrqtW
-X-Received: by 2002:a17:903:120b:b0:295:987d:f7ef with SMTP id d9443c01a7336-2986a6b5698mr58952825ad.10.1763180510154;
-        Fri, 14 Nov 2025 20:21:50 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGpWOiKe/yoXVPzbbB8ra3b08yL+JrFximT86RMx9yWBQlaBgFV6FIkea9RBX9X7EoOn4xsE8DGGa3NwoDYNSY=
-X-Received: by 2002:a17:903:120b:b0:295:987d:f7ef with SMTP id
- d9443c01a7336-2986a6b5698mr58952445ad.10.1763180509717; Fri, 14 Nov 2025
- 20:21:49 -0800 (PST)
+	s=arc-20240116; t=1763186042; c=relaxed/simple;
+	bh=oGNpuLcmNm4SLYmLFUGFfU/kg9V/1OopHxb4g+2YNC4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GANlP/0Tv3kkCJ+ZSyqsvivKXZWaKEX1GBfn7E1rn+bdNwSX4uwmReSGfw3/XDha+bbZwXnXWlRhLZOWeAGeILFpZkbBu/qogVwrnYjkdR4lFfMNrTLBCmVyNUC7FBHyqdu8HFIl3L/WOBPx2MnfBCxWDUEQLDuxaLyZcgmKF5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Jdh4rJVU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AF4e1sW1103566;
+	Sat, 15 Nov 2025 05:53:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	aJpW5j7MocVlQ3SqpFQ/R4aiA5eLAfFTD2hyk10hb8c=; b=Jdh4rJVUtezAxl6m
+	nYzdvF2BfQolewQte7sObWllAVt/oJVg1cyoYQqaIuU3EraALk6F0s0BIV84prTN
+	p9XeDlw29poWz3yCiZeM+CGy8pNXyKj08IkWcHasQUnn6lpqkK5it68xetQ2J2wB
+	iQ/w9rCCqYhGLr71svK2PerMwARI8d3bhMlIyRZZOdyazl8CYNObANYWsHONCQnE
+	O4PmxW+HFnxe1cfg9EtUcPDvnLhnVXsIxMj3ujzbSk+oPKBGcOK3vznZqiTGGO5h
+	tIvs/PLAkX9KWoQtOB9DdEmgtB+T1LjCV/9HPEPYAZmwOb/JdxeapdFjQK8zpXUI
+	kLlTAA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aejph02w1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 15 Nov 2025 05:53:47 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5AF5rkUN010797
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 15 Nov 2025 05:53:46 GMT
+Received: from [10.216.38.157] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 14 Nov
+ 2025 21:53:39 -0800
+Message-ID: <22350774-20da-42ff-a6c2-02fab121f4b5@quicinc.com>
+Date: Sat, 15 Nov 2025 11:23:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251113214540.2623070-1-elder@riscstar.com>
-In-Reply-To: <20251113214540.2623070-1-elder@riscstar.com>
-From: Jason Montleon <jmontleo@redhat.com>
-Date: Fri, 14 Nov 2025 23:21:38 -0500
-X-Gm-Features: AWmQ_bm8Az7GW4XBfoBLWD-9SdtXqiB6zadKcTvspIsW8QHKFXbXxVXEFbaU15U
-Message-ID: <CAJD_bP+AjhNCB6kCeKdnXERjP9j8dhbCejnS1OVmFf_VShti5Q@mail.gmail.com>
-Subject: Re: [PATCH v6 0/7] Introduce SpacemiT K1 PCIe phy and host controller
-To: Alex Elder <elder@riscstar.com>
-Cc: dlan@gentoo.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	vkoul@kernel.org, kishon@kernel.org, bhelgaas@google.com, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
-	ziyao@disroot.org, aurelien@aurel32.net, johannes@erdfelt.com, 
-	mayank.rana@oss.qualcomm.com, qiang.yu@oss.qualcomm.com, 
-	shradha.t@samsung.com, inochiama@gmail.com, pjw@kernel.org, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
-	p.zabel@pengutronix.de, christian.bruel@foss.st.com, 
-	thippeswamy.havalige@amd.com, krishna.chundru@oss.qualcomm.com, 
-	guodong@riscstar.com, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: monaco-evk-camera: Add DT
+ overlay
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Vikram Sharma
+	<quic_vikramsa@quicinc.com>,
+        <bryan.odonoghue@linaro.org>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
+        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_svankada@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ravi Shankar
+	<quic_rshankar@quicinc.com>,
+        Vishal Verma <quic_vishverm@quicinc.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20251114064541.446276-1-quic_vikramsa@quicinc.com>
+ <20251114064541.446276-4-quic_vikramsa@quicinc.com>
+ <a5ae933d-c5d1-4094-b4a1-de52060e0786@oss.qualcomm.com>
+Content-Language: en-US
+From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+In-Reply-To: <a5ae933d-c5d1-4094-b4a1-de52060e0786@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE1MDA0NiBTYWx0ZWRfX5OxJQXPM193g
+ stAn1JeRwBliK55fXewzsEyJGSawrtugqFizZuDvIszIkCaQdcd8AJuww38dMMktAi2i1xfOLoi
+ XjzytoMPSaVpUy4Eq9CIzhJLMjoTFqdHhQD9dC/TUnk0ojNusnhwYuhbGqv7bejCYz8vvBf+/e4
+ vVPiU1aeSq5simOtjWpXW1Xf22BopsofaZcEgwWXA+8MHEd+v6GGU+2CFlM19cRXDyiFB3J6in8
+ Waf9XkPIptBLQI5VByYTjp5mCSeLXcKYm8vDKFByuhvwV8ffrjz8QQSdigtThAbvl2odRh4ePoG
+ ahgx7IXgKst+m8fq0NJ6QHrEBkj5YYj92zCf+7ZdRtBVAxTENTnR5ESZN7wo+Vp6E08SGIzTE3I
+ vd69MkFEcs34Y9n9rHMwAa5shtAfEA==
+X-Proofpoint-GUID: tHKamVMcx8f6uAcjWA9C5Cik_mG7iFvA
+X-Authority-Analysis: v=2.4 cv=E4vAZKdl c=1 sm=1 tr=0 ts=6918156b cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=mZF60CUetaME7T47FmQA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: tHKamVMcx8f6uAcjWA9C5Cik_mG7iFvA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-15_02,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ suspectscore=0 clxscore=1015 spamscore=0 lowpriorityscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511150046
 
-On Thu, Nov 13, 2025 at 4:45=E2=80=AFPM Alex Elder <elder@riscstar.com> wro=
-te:
->
-> This series introduces a PHY driver and a PCIe driver to support PCIe
-> on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
-> Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
-> PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
-> one PCIe lane, and the other two ports each have two lanes.  All PCIe
-> ports operate at 5 GT/second.
->
-> The PCIe PHYs must be configured using a value that can only be
-> determined using the combo PHY, operating in PCIe mode.  To allow
-> that PHY to be used for USB, the needed calibration step is performed
-> by the PHY driver automatically at probe time.  Once this step is done,
-> the PHY can be used for either PCIe or USB.
->
-> The driver supports 256 MSIs, and initially does not support PCI INTx
-> interrupts.  The hardware does not support MSI-X.
->
-> Version 6 of this series addresses a few comments from Christophe
-> Jaillet, and improves a workaround that disables ASPM L1.  The two
-> people who had reported errors on earlier versions of this code have
-> confirmed their NVMe devices now work when configured with the default
-> RISC-V kernel configuration.
 
-I successfully tested this patchset on a Banana Pi F3 and also a
-Milk-V M1 Jupiter by making the same additions to k1-milkv-jupiter.dts
-as were made to k1-bananapi-f3.dts.
-I no longer have problems with NVME devices like I did when I tried v3 and =
-v4.
 
-Tested-by: Jason Montleon <jmontleo@redhat.com>
+On 15-11-2025 03:49, Konrad Dybcio wrote:
+>> +&{/} {
+>> +	vreg_cam1_2p8: vreg-cam1-2p8 {
+> Where does this regulator lie physically? Is its presence dependent
+> on the connection of the sensor, is it part of the EVK carrier board,
+> or perhaps something else?
+vreg_cam1_2p8 is a fixed 2.8 V regulator located on the EVK carrier board. 
+It supplies the camera sensor’s AVDD rail and is enabled via GPIO 74, which is controlled by the TLMM block. 
+
+> 
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vreg_cam1_2p8";
+>> +		startup-delay-us = <10000>;
+>> +		enable-active-high;
+>> +		gpio = <&tlmm 74 GPIO_ACTIVE_HIGH>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&cam1_avdd_2v8_en_default>;
+> property-n
+> property-names
+> 
+> please
+> 
+ACK
+
+> [...]
+> 
+>> +&tlmm {
+>> +	/*
+>> +	 * gpio67, gpio68, gpio69 provide MCLK0, MCLK1, MCLK2 for
+>> +	 * CAM0, CAM1 and CAM2 respectively via the "cam_mclk" function.
+>> +	 * So, here it's MCLK1 pin for instance.
+>> +	 */
+> I don't really see the value in these comments..
+> 
+> Vladimir requested you to move the 'description' (meaning the node
+> describing the hardware, not a comment explaining the function of the
+> DT hunk in natural language) to monaco.dtsi too
+I’ve added descriptions to indicate which pins enable which camera MCLK/Regulators. If these aren’t considered useful, I can remove them.
+
+Should I need to add hardware descriptions for all GPIOs (gpio67–69 for MCLK and gpio73–75 for regulator enable), even if they are unused?
+
+I have referenced qcs6490-rb3gen2-vision-mezzanine.dtso for the MCLK pin hardware description (cam1_default).
+All TLMM GPIOs mentioned above are muxed pins. As Bryan suggested in v4, these should go into the mezzanine-specific dtso. Do I need to extend this in monaco.dtsi as well?
+
+-- 
+Regards,
+Nihal Kumar Gupta
 
 
