@@ -1,135 +1,120 @@
-Return-Path: <devicetree+bounces-238974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36170C6046C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 12:55:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69030C604BB
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 13:21:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DB3D44E1F3D
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 11:55:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BCBE3B7220
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 12:21:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8135628CF42;
-	Sat, 15 Nov 2025 11:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 811DD299AB3;
+	Sat, 15 Nov 2025 12:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LBzfn1kW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qp5p5xX7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC1C18CC13;
-	Sat, 15 Nov 2025 11:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5273427B50C;
+	Sat, 15 Nov 2025 12:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763207708; cv=none; b=BlhlZEj2scDovq9526hcadgXaAkiYbAUa7s4LsmiWf1gm4cNzWHFoQhq+gOuz8h1t08CVu0zR9EIXvG+BfM4f/dJdcLgbaToJOqEOiSmp6cC0FqBI0UrCOpQmyqSf2+7n27SpRo6+IBmrcnwW4O/7er2OxVZK9PdZOBcG3qjVqM=
+	t=1763209289; cv=none; b=k08pyhTFE55xqWNxkNBt3ImKk/U3/qoAqkw2mzbp4GkWp7BTg2GbFe3vCq1odWXv2YLmfMz2TzJeLvPrOQlhSuZTSi03OcQ2ycNcWZhEXcHFlsuI2Gln9lSmDeV4tCqx9330eK45LqJwkb00yD6Oc36iY5Hf7RrgqAzWIs1zEtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763207708; c=relaxed/simple;
-	bh=aBqfjB03ArE/5E9PTH0CuhNVX/n/7wlUMo2ZVHSb8fo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f1etPzEsiw2ofbewJzQqgWvAlSy6Xg3Dt4WoQyMAS0NTb9EH0q5S9p8ykcGDnAZu2aYtOpL8p9VmQtFqMssAy3z96ug1z5uxfOhh7f+Z+4Ev6Xb5MvI6omD13u1TqHy0So4Z/RMZu39TnHp0SPEOEN44Yy83J1ah/AOc7HREuE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LBzfn1kW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AADAC116B1;
-	Sat, 15 Nov 2025 11:55:07 +0000 (UTC)
+	s=arc-20240116; t=1763209289; c=relaxed/simple;
+	bh=CvW3RPjAQHRDOfHqugrlxCPi56fwvh2F4UBJhuXf3jY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oJBTQhEUA1QA8sJuLa1LaRmMtxVGDKb2pTfuNRiq+/Dyx8HhPV0et+DGjFQ6KSLw1pYWPcMAljHs6Eboc/LyUL7vQN/7obiz6Pv+AybhGBvmLuI+IXPg1SflasDXFpKZb6qzjsmwNdXCar/KidghOLzOPQtkc4MKHEKiB+FsH7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qp5p5xX7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 683ABC16AAE;
+	Sat, 15 Nov 2025 12:21:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763207707;
-	bh=aBqfjB03ArE/5E9PTH0CuhNVX/n/7wlUMo2ZVHSb8fo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LBzfn1kWzEcYfzMxQfY8UjnQndctUHuljnI/8FyYc3PB4zX25LgEt1mykJqgW/7hk
-	 Fu1uzI/i6eHKysiUEFPhPUbtWMqLn7dpTdAkJ2IwT9N3j8NXl9b1Vp/8ns+iwWiQ5W
-	 7gRDSc2VJkyIx3FkFKswtB6uelUlUL0bGHMSFhdtHpte7KcFEdPhoBUzqiV6+6RdHa
-	 ALaA2dbLeNX/UaublFEJBtvJcqSuPRKGRJn3k6llBORxG+EF4XQPrYmMV67n6+KyNR
-	 DppeKLVM3GYeR1M/rpFf3Hd97YdlpJHc4dS4ftwvi8lJZGCO1pgVld2HDJRDdvSVJF
-	 zgoIfLxATqXUQ==
-Date: Sat, 15 Nov 2025 12:55:05 +0100
+	s=k20201202; t=1763209289;
+	bh=CvW3RPjAQHRDOfHqugrlxCPi56fwvh2F4UBJhuXf3jY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qp5p5xX7ENbuB1mPVuIYCFnQYSYEPZ5tpWjz30Y0M31mP4b20X/sC9/9ZCzECXwMN
+	 LDbhsstItv8lHknHCJvXhUcCiRgI2oX4W0rPhrIBFQo/6FWKmqmjRUzhHStlgSZTBn
+	 NFIxnDFkB4UJsXn3jdPl/pYr3gvX/tk02FY4t8j8NiGRCvhAlWePlAG2r+NYvB7guk
+	 FzxN7BQbuBeCnKcdDQPItEO9PCTqX+o0od9GC6xr2FFu080JYl86KdwFmMl1xVpms6
+	 3+C9e4H+4hzDhu3ibGRicQ/fsSc4yLa7tEP36hiAXFcBT6bkudn2Z2RzxhBUdHLDnE
+	 OjUplpuBVEnZA==
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>
-Cc: mani@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com, 
-	bvanassche@acm.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com, quic_ahari@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V1 2/3] dt-bindings: ufs: Document bindings for SA8255P
- UFS Host Controller
-Message-ID: <20251115-polite-kakapo-of-satiation-0a0288@kuoka>
-References: <20251114145646.2291324-1-ram.dwivedi@oss.qualcomm.com>
- <20251114145646.2291324-3-ram.dwivedi@oss.qualcomm.com>
+To: Jyri Sarha <jyri.sarha@iki.fi>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Harini Katakam <harini.katakam@amd.com>,
+	Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mmc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH 1/3] dt-bindings: display/ti: Simplify dma-coherent property
+Date: Sat, 15 Nov 2025 13:21:21 +0100
+Message-ID: <20251115122120.35315-4-krzk@kernel.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251114145646.2291324-3-ram.dwivedi@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 14, 2025 at 08:26:45PM +0530, Ram Kumar Dwivedi wrote:
-> From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
->=20
-> Document the device tree bindings for UFS host controller on
-> Qualcomm SA8255P platform which integrates firmware-managed
-> resources.
->=20
-> The platform firmware implements the SCMI server and manages
-> resources such as the PHY, clocks, regulators and resets via the
-> SCMI power protocol. As a result, the OS-visible DT only describes
-> the controller=E2=80=99s MMIO, interrupt, IOMMU and power-domain interfac=
-es.
->=20
-> The generic "qcom,ufshc" and "jedec,ufs-2.0" compatible strings are
-> removed from the binding, since this firmware managed design won't
-> be compatible with the drivers doing full resource management.
->=20
-> Co-developed-by: Anjana Hari <quic_ahari@quicinc.com>
-> Signed-off-by: Anjana Hari <quic_ahari@quicinc.com>
-> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-> ---
->  .../bindings/ufs/qcom,sa8255p-ufshc.yaml      | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ufs/qcom,sa8255p-uf=
-shc.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,sa8255p-ufshc.yam=
-l b/Documentation/devicetree/bindings/ufs/qcom,sa8255p-ufshc.yaml
-> new file mode 100644
-> index 000000000000..3b31f6282feb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,sa8255p-ufshc.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ufs/qcom,sa8255p-ufshc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SA8255P UFS Host Controller
-> +
-> +maintainers:
-> +  - Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>
-> +  - Anjana Hari <quic_ahari@quicinc.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sa8255p-ufshc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  dma-coherent:
+Common boolean properties need to be only allowed in the binding
+(":true"), because their type is already defined by core DT schema.
+Simplify dma-coherent property to match common syntax.
 
-Just :true.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml | 3 +--
+ Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml | 3 +--
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
-> +    type: boolean
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+index 361e9cae6896..38fcee91211e 100644
+--- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
++++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+@@ -84,8 +84,7 @@ properties:
+     maxItems: 1
+     description: phandle to the associated power domain
+ 
+-  dma-coherent:
+-    type: boolean
++  dma-coherent: true
+ 
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+diff --git a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+index fad7cba58d39..65ae8a1c3998 100644
+--- a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
++++ b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+@@ -103,8 +103,7 @@ properties:
+     maxItems: 1
+     description: phandle to the associated power domain
+ 
+-  dma-coherent:
+-    type: boolean
++  dma-coherent: true
+ 
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+-- 
+2.48.1
 
 
