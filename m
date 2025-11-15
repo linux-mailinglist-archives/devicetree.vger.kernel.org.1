@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-238917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1099DC5FBA3
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 01:16:19 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4B4C5FBA6
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 01:16:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCB8E3BCF66
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 00:16:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EC524347614
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 00:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2543B38DD8;
-	Sat, 15 Nov 2025 00:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4AD939FD9;
+	Sat, 15 Nov 2025 00:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="X+55deDZ";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="X+55deDZ"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="JOp5wtSe";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="rvwYuWDH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 380EE22339;
-	Sat, 15 Nov 2025 00:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668A263B9;
+	Sat, 15 Nov 2025 00:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763165774; cv=none; b=Vx/utm9rdFh/RZ/wjMx8gKwGtqpZdScX807hAdtQ476J4jvlE/xRG/nErYfPoviZED+mzkT+irch7Q4ErE76739KvkjbLlUuyEM1SThd/cT8jSyqZGxGYIuMqB9S12vExTR/LV55+06vSnxDfYMsRa1QGR/Kfc9c5jSOzGV7ynQ=
+	t=1763165805; cv=none; b=LvQJcOn01nchppQts2fIaDh7DdUTz3neF7tchZ6//ND+ARjdUgAFJnmCf16OQzHFRGAT4onYuWx6WMG/iSKi3JmSEZhdyjo4a0OYEp4K8M2D9LxWeHdCGdr+QgT7qtIc1Fo6A0npxuJeM28bvJn6UnnxQL9C1C6fx5eQ/m3VWN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763165774; c=relaxed/simple;
-	bh=U3Vdu/lF1NOoptVfbcwB+PehQp1h+KtWDf1t6cJ2e+4=;
+	s=arc-20240116; t=1763165805; c=relaxed/simple;
+	bh=alGYrlAwEOwi5Ic0/WsJgHzayrg1ogR5hqg7HxgRYyI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o6ve2wxIrPa4AJe8U3NPQcqjSV7S00t27AfoFG8FPelhhN78OHthVGa3zpHcLXJstjBwJ8zlZ1XvlpKCHvIBWgf7xYbHj3NurVOgCC4E938ukQFYTxRe5FMCpbQIID1OFVCwXC6N0MURGO92FN+XV4V/18Muq7jdW1vV4JJ6IoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=X+55deDZ; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=X+55deDZ; arc=none smtp.client-ip=178.79.152.223
+	 In-Reply-To:Content-Type; b=ej1c0JXRNqP7RhLuOUWIq4yqFstyZQmY4oSZkwCtbmmmV1baOasJQM9Apw8F0+Ivijpc8GL7Fb7k0rVtqeEZKF3xKKmwwIKLOAvxmFBgfBpqzkcPkfsJgfVuaeHSTPGmSTimfWKlG4NjCxm4hmGPaU3cW+g+DsVwMZj0wuT8HtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=JOp5wtSe; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=rvwYuWDH; arc=none smtp.client-ip=178.79.152.223
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1763165765; bh=U3Vdu/lF1NOoptVfbcwB+PehQp1h+KtWDf1t6cJ2e+4=;
+	t=1763165803; bh=alGYrlAwEOwi5Ic0/WsJgHzayrg1ogR5hqg7HxgRYyI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X+55deDZLoypUbDpIedjmcAHsL/d/z7aadsLHsHez+sMSuE6u0RpPhbdnUA9jEWvk
-	 hdqcqT412weiG7qMZSCuZwbiJLgER0sqJFb9jWHyCaLdgFLByAetnKMr4BcLRMgkTB
-	 3axPu9zIi2ado43HQ2ppXo5Yt6CS/Vazq2mgNMG1crsQBGt9UMSU6gek15fCNBG2C2
-	 ZsIsAjcre0pNVHTmkv4R6AA0AAtqf3ualrrw1ddqsQnlxx9NXTosjGQhFlQLKYbkHY
-	 ijSfmZNVoNhdrYolgIJwbKfeJNc82CiKcGitRGz2GIidK5z3cpbEbhCAYK3dzbskU1
-	 wOayMIIzhN+7g==
+	b=JOp5wtSeU7fbQE8G+WlMR7b8XOeGAfjy1x3VxjOOPfzH9L0KnA2HwXVKZfPmuqLek
+	 Jk4IiWUUsOVMHO02dL5LsRBLAzZpJUGHHlYYd9tk98vhkHvrfJJKS8j8bCZ3Toqj3e
+	 nonHJ4XCMzNelUPqyckzrB8/oEa8l6+DkQmAtippx4Mx5FxH1wGghUiWna5U+rWvaC
+	 YFX/HN8JHm40/A04BzAb54eZuKzbXJcPr/lLuiMSz8dHaDofkXMaYLt9Ag6TDzy7xx
+	 XyBhZWusHngV/OngDGe8V3Q27spmMmqlJSX12JKaUOUFGl35H2jrAzHQe9yqpiXeEf
+	 gVBH66mVVX3Hg==
 Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 26F363E101C;
-	Sat, 15 Nov 2025 00:16:05 +0000 (UTC)
+	by mail.mleia.com (Postfix) with ESMTP id 008CF3E16D7;
+	Sat, 15 Nov 2025 00:16:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1763165765; bh=U3Vdu/lF1NOoptVfbcwB+PehQp1h+KtWDf1t6cJ2e+4=;
+	t=1763165802; bh=alGYrlAwEOwi5Ic0/WsJgHzayrg1ogR5hqg7HxgRYyI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X+55deDZLoypUbDpIedjmcAHsL/d/z7aadsLHsHez+sMSuE6u0RpPhbdnUA9jEWvk
-	 hdqcqT412weiG7qMZSCuZwbiJLgER0sqJFb9jWHyCaLdgFLByAetnKMr4BcLRMgkTB
-	 3axPu9zIi2ado43HQ2ppXo5Yt6CS/Vazq2mgNMG1crsQBGt9UMSU6gek15fCNBG2C2
-	 ZsIsAjcre0pNVHTmkv4R6AA0AAtqf3ualrrw1ddqsQnlxx9NXTosjGQhFlQLKYbkHY
-	 ijSfmZNVoNhdrYolgIJwbKfeJNc82CiKcGitRGz2GIidK5z3cpbEbhCAYK3dzbskU1
-	 wOayMIIzhN+7g==
+	b=rvwYuWDH3jT20GsiJvCpoqZlWTzI4ssPkzWt6Bjq2LotY51lb+sFUK4XXVkSVSGJs
+	 DmisGw34enXe0AeBzAnbWKZlaws9757XH6uKqbXyUCAf+X8aIsgOfma3DAxzhnp2Wi
+	 V0QElfxn57GbzFc2ttynAWA6ywdid5H+mnfaLuour6GnmkQaomM0dPjI9lhSa3nypX
+	 mMO69WbOCHE3bCvIs+OYdPPEeuTHR1vWuOUduM5s4WlrKDZtm3WiJPgP0+JZMbBQlx
+	 qAMywYnZ4NHLnO3ziluaz2PgKeC4FxEm52cg6YJuiNLICwFQ+0YtXE/Jc4rI3XGpfr
+	 lq/l4WiTB4vDg==
 Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id 951E83E16D7;
-	Sat, 15 Nov 2025 00:16:04 +0000 (UTC)
-Message-ID: <37edb265-90ff-43cf-bfeb-3371f12c78a8@mleia.com>
-Date: Sat, 15 Nov 2025 02:16:04 +0200
+	by mail.mleia.com (Postfix) with ESMTPSA id 6F3223E101C;
+	Sat, 15 Nov 2025 00:16:42 +0000 (UTC)
+Message-ID: <09def66c-0101-4113-b788-bf31966b9316@mleia.com>
+Date: Sat, 15 Nov 2025 02:16:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,8 +68,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] ARM: dts: lpc3250-phy3250: add at25 required
- properties
+Subject: Re: [PATCH v2 4/5] ARM: dts: lpc3250-phy3250: rename nodename at@0 to
+ eeprom@0
 To: Frank Li <Frank.Li@nxp.com>,
  Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -80,54 +80,44 @@ To: Frank Li <Frank.Li@nxp.com>,
  <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
 Cc: imx@lists.linux.dev
 References: <20251114174712.1206027-1-Frank.Li@nxp.com>
- <20251114174712.1206027-3-Frank.Li@nxp.com>
+ <20251114174712.1206027-4-Frank.Li@nxp.com>
 From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20251114174712.1206027-3-Frank.Li@nxp.com>
+In-Reply-To: <20251114174712.1206027-4-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251115_001605_176339_239D3181 
-X-CRM114-Status: GOOD (  14.20  )
-
-Hi Frank.
+X-CRM114-CacheID: sfid-20251115_001643_016385_94964797 
+X-CRM114-Status: GOOD (  14.03  )
 
 On 11/14/25 19:47, Frank Li wrote:
-> Add at25 required properties (size, address-width and pagesize), which
-> duplicate deprecated properties.
-> 
-> Fix below CHECK_DTB warning:
->    arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dtb: at25@0 (atmel,at25): 'pagesize' is a required property
->    arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dtb: at25@0 (atmel,at25): $nodename: 'anyOf' conditional failed, one must be fixed:
+> Rename nodename at@0 to eeprom@0 to fix below CHECK_DTBS warnings:
+> arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dtb: at25@0 (atmel,at25): $nodename: 'anyOf' conditional failed, one must be fixed:
+> 	'at25@0' does not match '^eeprom@[0-9a-f]{1,2}$'
+> 	'at25@0' does not match '^fram@[0-9a-f]{1,2}$'
 > 
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
 > change in v2
-> - move node name change to new patch
+> - new patch
 > ---
->   arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts | 4 ++++
->   1 file changed, 4 insertions(+)
+>   arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
-> index 21a6d0bca1e8a..732d590f6cfdf 100644
+> index 732d590f6cfdf..15463a96938cc 100644
 > --- a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
 > +++ b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
-> @@ -216,6 +216,10 @@ eeprom: at25@0 {
->   		at25,byte-len = <0x8000>;
->   		at25,addr-mode = <2>;
->   		at25,page-size = <64>;
-> +
-> +		size = <0x8000>;
-> +		address-width = <16>;
-> +		pagesize = <64>;
->   	};
->   };
+> @@ -200,7 +200,7 @@ &ssp0 {
+>   	cs-gpios = <&gpio 3 5 0>;
+>   	status = "okay";
 >   
+> -	eeprom: at25@0 {
+> +	eeprom: eeprom@0 {
+>   		compatible = "atmel,at25";
+>   		reg = <0>;
+>   		spi-max-frequency = <5000000>;
 
-I see that I was imprecise in my ask, please replace (remove) the deprecated
-properties with the new ones added. There is no reason to keep both, forward
-compatibility should not be supported.
-
-Sorry for any caused confusion.
+Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
 
 -- 
 Best wishes,
