@@ -1,120 +1,92 @@
-Return-Path: <devicetree+bounces-239009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C008C6073F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 15:19:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A989C60766
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 15:40:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5C963B9584
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 14:16:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36E7D3B6592
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 14:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06632FBE0D;
-	Sat, 15 Nov 2025 14:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE852F530A;
+	Sat, 15 Nov 2025 14:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bG3jtSVL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8/5ngWc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F4718D658
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 14:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DB128CF42
+	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 14:40:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763216191; cv=none; b=HwW/oF72+unRhvDG+pJdmQTWaYsUn9d/yTGF57a5KABg6FC9WmuSKpEpH7yQEqVEs2taqPD0rlmeHRdG17gEDs/bD9j7vGk5BjaEezSwE5P6yqdW/yxtOg2AZPDpO6+TGNii9qrTN5KVcLuFC3lPJfggq5HA0/fgRs6NM9Mt25I=
+	t=1763217642; cv=none; b=Po9SyNRHNpXvM6/4nUGPaG2BLLzrSm4mh1+jTdgg94743VUuOstN+6rINXUz7Ixvimhh6H+07MLLN5WhJv1uNitUKo5E9ykfd74KXulUnMViryxD+7LlNsAyHy/iWCjfDMH07vMAa4C5bFuFjwBQ+jsg18Xu+YQzEjsvNxWPJYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763216191; c=relaxed/simple;
-	bh=lQDMn33BZA4A6/Iz+tzzcStrq+yIE8dCfga/dGLU5pQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lxWtVmWPMBj37yLbdugttEPUqxB0ujklm/tW0h6X03Q89KMoBIwcXA0tVOyu0l05fE5u6bMtpltW+t16ONA5Gmm5nDzKARdSXZEcWRFYE9qkvHvIBu4Sl+cubW41R6tMwzzcMKAMR6q0/7K1M1c+TI4r+J9O7jP2+rftKpgVD3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bG3jtSVL; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-bc1f6dfeb3dso1623737a12.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 06:16:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763216189; x=1763820989; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=a+fpNKU67bQPKNnLnZxW1QMryMXbqH3Y66bi/S1gzo4=;
-        b=bG3jtSVLIOzCP3ri06v/F0WfTRMrhGtjp7Zmus+VjsqvPIEKUGbpT2PznRsq5rJLVB
-         wnQndURAPMksO9is7j3Q0HRrota1quKir5K6C7fKWisj97UGy/kl+IKWKQT6tb9KlUwu
-         rPBiXC47wCDh4LtU+l1d6EgBIYO/kalGcsE8ws/CPSorYiGMRiKl3MfbkwY7R8IlQMJK
-         eo3OOBZA+KvFjmIolgsdZS0DLl+RrTdWZ/AstZnMiKCJmN0J3vNBd7yGCF6Tjk2YyjK6
-         6BsEn1ybO42kdxfNSNOYdW2SM4F+TMoWBkH9QbICIt78LCPSrk0BM7jXEFWlKpSTRPmK
-         hJhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763216189; x=1763820989;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a+fpNKU67bQPKNnLnZxW1QMryMXbqH3Y66bi/S1gzo4=;
-        b=FscBPPzpu3S/fvhpEZEVMTWAff+QwMXUJfg1ztltbxK6eLecep0leDioMrYFz70ijH
-         w4Zh00pUIoRKpqCETfXDnQE2cWb4WJLD/m1wv/c0o7YRXdMxe7nWwUp00Hxxwk6eIn4Z
-         ZyYBwH0aW+vc+8TAcPxFA+3gGEGEpU0eYKXL6S/Z7yrNYKR1VXjEZApxwl9OAUy3x59a
-         3L4n78tU5ZRIo9HxW+kCUqvnpu+E6v0e076Dby9LFizHIvmxoiLX/cDQMOioCTCjzjqI
-         /SRNQ+hWSZuoN6pTgFS/9jgBIwhO5HQkVcyewShMEdgeRsUw/bx9AWENhaXaGghk9ppY
-         TqGw==
-X-Forwarded-Encrypted: i=1; AJvYcCX969z3Or+KL1kQswFaLQW6SDCbOQCKxC2QwNlLgb2K2Cjr5iwYD2dtwxwaPq1iagLakSHFIxAxpwTq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9tP1Oyl7a9ZKcNQw3XW3Gyx/2R0onWTgmPDStozoRpWMm89fa
-	FxI04odsh5FvqqLYaIEsu2r/HwDmGevn0c8lWjr7JODNE9EKYgVGl5gu
-X-Gm-Gg: ASbGnctB4s/nSxPSXgL1FvuTrlgStz5O3NpiuZovD5EnD/n6Q2iOvkGdId8yyI5Ks6a
-	KNIc/wu7c6osPjawjf3o8QnA+gbI1Mse3kvCAO48zUVCR9Kwt62ciM9RFE+K7uaCz81jCRZMw7C
-	AmUBisKokcCEnIFCWpXOqnHRPO71y4Gvevk5mcCdro/mLBrVm72RRaNNjAD7bYVAunELe2k3oEQ
-	1GvUTOU90nd0EiuLjBo0mtodgAu8QaB7TbHmYms6V/aDHWozIhKUUxrGvAfWx58/TTag00lpwzT
-	eMGNipa6BcP2rCRDCJpzYchk4LEsm8/jYKoFPL4GFKCQkGLoawXbEywHzToZGr3GnWmNiYlJNBm
-	x20MUgNqAPmffHSDnyTslsoLRsntsBRkqJDrxRe9HerstinUQJsbxiZgBHpMkV0uFWNXbWLDccH
-	f3MsZV4NuNPkGzVmfQDqjc
-X-Google-Smtp-Source: AGHT+IFt5UfNZZzCWoZkNCgT7H9T2i6L90DMNpbzvAx2Pg8fW7yyjEV9hJ62Kua4odWnEM6/XiVGpA==
-X-Received: by 2002:a05:7301:150e:b0:2a4:5a7a:3a5c with SMTP id 5a478bee46e88-2a4abdd0b97mr2113431eec.26.1763216189264;
-        Sat, 15 Nov 2025 06:16:29 -0800 (PST)
-Received: from localhost ([2804:30c:1661:8a00:578a:911c:ac25:24a6])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-2a49db102f5sm17940394eec.4.2025.11.15.06.16.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Nov 2025 06:16:28 -0800 (PST)
-Date: Sat, 15 Nov 2025 11:17:48 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] spi: axi-spi-engine: support
- SPI_MULTI_BUS_MODE_STRIPE
-Message-ID: <aRiLjGnPLteViM2K@debian-BULLSEYE-live-builder-AMD64>
-References: <20251107-spi-add-multi-bus-support-v2-0-8a92693314d9@baylibre.com>
- <20251107-spi-add-multi-bus-support-v2-4-8a92693314d9@baylibre.com>
+	s=arc-20240116; t=1763217642; c=relaxed/simple;
+	bh=Sue3DiX7aivO+CREJvjgnQK9H3Tgu+sLekJRMaXhs2A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rjYntRLXQMj9XYtSHxMKBPO0V2szJ9mIhEoNksPxmcuF2uLdfzhMszTD56xUgXJglcRfrsLNUlTDHYp4/sEBF1zDTLt6A+zbI5sLfhsjIBsUviinrD2RA0W3cpqf6PWVQ2+Jw8vQ+XVu8a6apiI3DAIm7/ILEQPzy3pivnSGse4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8/5ngWc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3963C19423
+	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 14:40:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763217641;
+	bh=Sue3DiX7aivO+CREJvjgnQK9H3Tgu+sLekJRMaXhs2A=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=j8/5ngWcMu4uR2+5U32ZtsMBluoXbq4r00xSz5DFwqXGpsDqRehYBPhU4JwhuqdfY
+	 rbVIFrFXl0tSiZAoGw3l9jYyYqA6bwRpq1DPDHpzDfun+qQbWSPHJhH5uwWnAjrWsB
+	 XsLsCQmT6BCZGBLG3EMH8TeJwriHOIpa+OSTKqdCivadSieOI412P2DW3qbVSSDdhh
+	 r1vPdMJnHak4ggiJaMEuXkxhwGd4LayTdLi12cAsnrQUhIXhK+j9ktydZdL80ClfRh
+	 Sp3WkhGUiPnVVHT9HaUeGJGEVLZPmIyM6BmSmJTCA0zgUBPBjzCLGdiKGqgagqrKU9
+	 PNPs7HXAp1YAg==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-37bac34346dso12867091fa.2
+        for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 06:40:41 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVDE9gBql5kwco50bBCEIwyKARK5IbttNRBdjVRt8219kRGG+bQ5yPLKeakww9/s9ZxkJe3EDxUtI6c@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx0KGWzTWEzfWIJjpdrj7w0UN1kfdDKv06fy2j9QmN0K4TXyFE
+	h4jyXq1s4OE1b/8q2o0njA5fsY8OIyo8VIO/91aQWHhrmaDwCbZJuSUjij8A23BEspFBCyMtBJZ
+	NiqSfzkccR+40btyo3uFq5eHSBwnCn90=
+X-Google-Smtp-Source: AGHT+IESjGE8+0xVTH/QjhjF8+obf5TP9Oc8OEClkcCl8dEd7PpJQsH5CVoNDaeGwAe6R1UChVfXuLbguHAeh3ulKxU=
+X-Received: by 2002:a05:651c:41c8:b0:37a:455e:f302 with SMTP id
+ 38308e7fff4ca-37babd5cb6cmr20120411fa.27.1763217640107; Sat, 15 Nov 2025
+ 06:40:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251107-spi-add-multi-bus-support-v2-4-8a92693314d9@baylibre.com>
+References: <20251115141347.13087-1-jernej.skrabec@gmail.com> <20251115141347.13087-3-jernej.skrabec@gmail.com>
+In-Reply-To: <20251115141347.13087-3-jernej.skrabec@gmail.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sat, 15 Nov 2025 22:40:27 +0800
+X-Gmail-Original-Message-ID: <CAGb2v654AOqwOs26SjYji5K00oM_3U54sSFU-RMGqRPwRMnqCQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bk6LAUI84UIq1LoT1dh5454sL5SZsNoWjCZBYs2iLefOyWq2c142CwfOnM
+Message-ID: <CAGb2v654AOqwOs26SjYji5K00oM_3U54sSFU-RMGqRPwRMnqCQ@mail.gmail.com>
+Subject: Re: [PATCH 2/7] drm/sun4i: vi_layer: Limit formats for DE33
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: samuel@sholland.org, mripard@kernel.org, maarten.lankhorst@linux.intel.com, 
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com, 
+	sboyd@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/07, David Lechner wrote:
-> Add support for SPI_MULTI_BUS_MODE_STRIPE to the AXI SPI engine driver.
-> 
-> The v2.0.0 version of the AXI SPI Engine IP core supports multiple
-> buses. This can be used with SPI_MULTI_BUS_MODE_STRIPE to support
-> reading from simultaneous sampling ADCs that have a separate SDO line
-> for each analog channel. This allows reading all channels at the same
-> time to increase throughput.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
-> v2 changes:
-> * Fixed off-by-one in SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK GENMASK
-> ---
-Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+On Sat, Nov 15, 2025 at 10:14=E2=80=AFPM Jernej Skrabec
+<jernej.skrabec@gmail.com> wrote:
+>
+> YUV formats need scaler support due to chroma upscaling, but that's not
+> yet supported in the driver. Remove them from supported list until
+> DE33 scaler is properly supported.
+>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+
+I assume a fixes tag isn't needed because technically DE33 support isn't
+there yet?
 
