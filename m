@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-238993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0378BC6064B
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 14:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 733D3C6064E
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 14:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6D6A835F3B2
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 13:49:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0BF0E35FC02
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 13:49:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9E12FC00D;
-	Sat, 15 Nov 2025 13:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2682FB0AE;
+	Sat, 15 Nov 2025 13:49:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="OqTAVQGt"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Lt3M7JYb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C402FB0B4
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 13:49:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C122FB968
+	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 13:49:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763214558; cv=none; b=U2Q0t4wl5CfeW5mMVdFSXW/q3mBkYgWWE24ttldNCHmL5Hxjhgyl3leGwHnZhXcp1fpKueNq3smndM+hi4OPRQIAzHO1S3YWQubxNWtwYvY050UPPWko5w7VdIY9Fx94JmDA4cRedWS/SPQqgVsv7DOm8rqaJg7eMTnM+0UzoEQ=
+	t=1763214570; cv=none; b=njG+wBK+Js77KuD2bukAZIR9g8mIa10BS6UibXFCjcnYwdd8rPUGnAqmfiwS+piQzXpmLqiqtnNeGdTXLcxUSINyTLAvmLrWAqWpLnOL+FfICLOp3xAshvRa4iJB5zTkmrryWkLU8WmDtnTGQoMGL0tVGU3CvFDn7KvL8i/83oQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763214558; c=relaxed/simple;
-	bh=5in2a1+BQQ4kLHywx8wo7VUF9UeVxlyRUQJjc5LMDhs=;
+	s=arc-20240116; t=1763214570; c=relaxed/simple;
+	bh=fmpEB35pIYZLj0gJCg7yla2LFVzXeaAL5ZdlyABTiC8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lM9tioKOz5PDUSW6ig7F5k2IaZ4kQejtswPnyyuB3h/K2a7The2aamTgJaFg5I1PR616GHO6Y7Ez/IwrkgQ8sAaq/qdF8rJIJfGu51DiWcCwitWUEoJXwMnqBHwq2ESEI7g6Eit8UQYBtUSoTIt4tZApKUDnTESTAidW5ppiWYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=OqTAVQGt; arc=none smtp.client-ip=91.218.175.178
+	 MIME-Version; b=mWGQxvVvpORo2DzIOB+DFTDW6VtbVJPmqwrDTpt6WdfIXTvh816hGZis1+pxywEzNwbua8XO3jczjYPzyO2mRgVBsCvPLu+GDgSL/gJ0SupvwTtn2MQwGvA9geg3eZw4ma1SkhCGhA5H+JiYk7hMcz8/eDVLDckuoyJqTuvewbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Lt3M7JYb; arc=none smtp.client-ip=91.218.175.189
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1763214553;
+	t=1763214564;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=TqUrIKbmF5iQpt0Si3WZ6WoYb7H/IbcxUksZIbS12do=;
-	b=OqTAVQGtYCdJqslk5woPrTyFggkVwtU4FWw6X4Mm3kiPmNPDxCGekzc7pfObWTsvWKxD19
-	b7OONUjg6WL/2W8Qd96xrhN5twtGIKHo3uv4gk0gFvfGBFIsOwWEPFxB4U3PHOlyGzzDLy
-	drIpq79Z2lP902S/w5Apg77Vr2FvHXc=
+	bh=GnCwOF+dI773dn/Glk11DJ97ct85y2yDFhHBMya8yK0=;
+	b=Lt3M7JYbY+KOk1WCou+FAAgZEsu4P1TA3aNkNvI6owDvkZ/aWYWzIza1k9yUVWnfzErRWi
+	qCJUMYDdb/GdiyLAOtcs3DOJ1hih0+CqKiTf42JFLj6YldLb25wq4eoL3Zd3Hjy4hQfVVI
+	wQYfN59H/iYWGOW9ICvCuAVBqtKyA8U=
 From: Yuntao Wang <yuntao.wang@linux.dev>
 To: Rob Herring <robh@kernel.org>,
 	Saravana Kannan <saravanak@google.com>
@@ -60,9 +60,9 @@ Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Yuntao Wang <yuntao.wang@linux.dev>
-Subject: [PATCH v3 4/8] of/fdt: Fix incorrect use of dt_root_addr_cells in early_init_dt_check_kho()
-Date: Sat, 15 Nov 2025 21:47:49 +0800
-Message-ID: <20251115134753.179931-5-yuntao.wang@linux.dev>
+Subject: [PATCH v3 5/8] of/fdt: Simplify the logic of early_init_dt_scan_memory()
+Date: Sat, 15 Nov 2025 21:47:50 +0800
+Message-ID: <20251115134753.179931-6-yuntao.wang@linux.dev>
 In-Reply-To: <20251115134753.179931-1-yuntao.wang@linux.dev>
 References: <20251115134753.179931-1-yuntao.wang@linux.dev>
 Precedence: bulk
@@ -74,54 +74,58 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-When reading the fdt_size value, the argument passed to dt_mem_next_cell()
-is dt_root_addr_cells, but it should be dt_root_size_cells.
+Use the existing helper functions to simplify the logic of
+early_init_dt_scan_memory()
 
-The same issue occurs when reading the scratch_size value.
-
-Use a helper function to simplify the code and fix these issues.
-
-Fixes: 274cdcb1c004 ("arm64: add KHO support")
 Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
 ---
- drivers/of/fdt.c | 16 ++++------------
- 1 file changed, 4 insertions(+), 12 deletions(-)
+ drivers/of/fdt.c | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index ea37ba694bcd..fdaee4906836 100644
+index fdaee4906836..d378d4b4109f 100644
 --- a/drivers/of/fdt.c
 +++ b/drivers/of/fdt.c
-@@ -922,26 +922,18 @@ static void __init early_init_dt_check_kho(void)
- {
- 	unsigned long node = chosen_node_offset;
- 	u64 fdt_start, fdt_size, scratch_start, scratch_size;
--	const __be32 *p;
--	int l;
+@@ -1033,8 +1033,8 @@ int __init early_init_dt_scan_memory(void)
  
- 	if (!IS_ENABLED(CONFIG_KEXEC_HANDOVER) || (long)node < 0)
- 		return;
+ 	fdt_for_each_subnode(node, fdt, 0) {
+ 		const char *type = of_get_flat_dt_prop(node, "device_type", NULL);
+-		const __be32 *reg, *endp;
+-		int l;
++		const __be32 *reg;
++		int i, l;
+ 		bool hotpluggable;
  
--	p = of_get_flat_dt_prop(node, "linux,kho-fdt", &l);
--	if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
-+	if (!of_flat_dt_get_addr_size(node, "linux,kho-fdt",
-+				      &fdt_start, &fdt_size))
- 		return;
+ 		/* We are scanning "memory" nodes only */
+@@ -1044,23 +1044,21 @@ int __init early_init_dt_scan_memory(void)
+ 		if (!of_fdt_device_is_available(fdt, node))
+ 			continue;
  
--	fdt_start = dt_mem_next_cell(dt_root_addr_cells, &p);
--	fdt_size = dt_mem_next_cell(dt_root_addr_cells, &p);
--
--	p = of_get_flat_dt_prop(node, "linux,kho-scratch", &l);
--	if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
-+	if (!of_flat_dt_get_addr_size(node, "linux,kho-scratch",
-+				      &scratch_start, &scratch_size))
- 		return;
+-		reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
++		reg = of_flat_dt_get_addr_size_prop(node, "linux,usable-memory", &l);
+ 		if (reg == NULL)
+-			reg = of_get_flat_dt_prop(node, "reg", &l);
++			reg = of_flat_dt_get_addr_size_prop(node, "reg", &l);
+ 		if (reg == NULL)
+ 			continue;
  
--	scratch_start = dt_mem_next_cell(dt_root_addr_cells, &p);
--	scratch_size = dt_mem_next_cell(dt_root_addr_cells, &p);
--
- 	kho_populate(fdt_start, fdt_size, scratch_start, scratch_size);
- }
+-		endp = reg + (l / sizeof(__be32));
+ 		hotpluggable = of_get_flat_dt_prop(node, "hotpluggable", NULL);
  
+-		pr_debug("memory scan node %s, reg size %d,\n",
++		pr_debug("memory scan node %s, reg {addr,size} entries %d,\n",
+ 			 fdt_get_name(fdt, node, NULL), l);
+ 
+-		while ((endp - reg) >= (dt_root_addr_cells + dt_root_size_cells)) {
++		for (i = 0; i < l; i++) {
+ 			u64 base, size;
+ 
+-			base = dt_mem_next_cell(dt_root_addr_cells, &reg);
+-			size = dt_mem_next_cell(dt_root_size_cells, &reg);
++			of_flat_dt_read_addr_size(reg, i, &base, &size);
+ 
+ 			if (size == 0)
+ 				continue;
 -- 
 2.51.0
 
