@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59203C60347
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 11:38:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEF66C6034B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 11:38:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 18F264E12AA
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 10:38:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89A463B236E
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 10:38:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA7C21ABA4;
-	Sat, 15 Nov 2025 10:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42616258ECA;
+	Sat, 15 Nov 2025 10:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B6nqQ25O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="coHj8wfu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B582541760
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 10:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D36C41760
+	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 10:38:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763203106; cv=none; b=QeC8lRlC8ouG7gtYfAV8B8qJIG2yQx4GMsbMmzcOG+2jZKmLGvtQTOV7Ds9GvMBJV7KM/OhkXZuyet2umm6hHMAcBUI32iEOl30ed0ke6/qw/h6J1HOo9xxFp5xE4VZ/1n5cMxESEN+b5fudvO+FHwkqAmn7jl2oZY1rSPwyHVc=
+	t=1763203109; cv=none; b=HOvzCasKugqOJGywg5VpS2TheZlrSJ/iCADrzcS1HZEp0FWenSBzOyp41FmJyJW/OUHd8W2OWXWYhIBH1EnNWvlalde7xfaEUKDJb2oQ/+9qsXg1KQ4Gc53IKSAKxW1M44Pj6yxwB95AkSXIb5lzShq8GgfuZhWfRtgcxcU6Z+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763203106; c=relaxed/simple;
-	bh=wjSfYYewZkWseDZM+m9SVJu0cxTPbLACBWmOP3nBi30=;
+	s=arc-20240116; t=1763203109; c=relaxed/simple;
+	bh=c/TPOuH+aIozQX4frVvUV9DudeIdNtBPhvwg7DDBl3k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WmPbB/DdbMqBWnGIqbx+3f6j/jJtKrId0Ps8cUBMdYLFZldanZcX0/7PdKXUdbd/XvEqz60jO5deb3+JC+RmrvhTSaiMV0VKsk4eSkw+u74Cx2LySjNY/1qb9N/3UGMnD2HpETIAeDU4/HOCmntzNj1qK/zD9Xv9Evh8Y47obg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B6nqQ25O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41613C4CEF5;
-	Sat, 15 Nov 2025 10:38:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sgd+K4hbtdljzCAPvgKLUI/rEAZGq7ZbP6uk1H3fJTFsf10azIl0ekYb3TNLEIZdkIxQUGdzd0l30tBpCeT1EHRD6UfaPk5N37MP0WwNl3TqUZBdYL/T6IA8rotnsWadVUesL1Ptv/pwFD5K1sN9FOMbrt7MU8mMxE0bx701hQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=coHj8wfu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8182C116B1;
+	Sat, 15 Nov 2025 10:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763203106;
-	bh=wjSfYYewZkWseDZM+m9SVJu0cxTPbLACBWmOP3nBi30=;
+	s=k20201202; t=1763203108;
+	bh=c/TPOuH+aIozQX4frVvUV9DudeIdNtBPhvwg7DDBl3k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B6nqQ25On9X0ss02C8stooiwqNKmddmJfQbLq4RjxKFnc1/0lxb2aI/8IiwXY8nDx
-	 LS1GgkVPbBCjjhE1uNH0c9aKds/iOljlmvQIRqpO7UbuVYgDuyXTp3V7tg9mg+ylXm
-	 s9KVbuLAxUUv4rV0y+IjWtBgU8HkwLM4laFpiiufFe3yLGoJbGfjuNCosiaGPebL9v
-	 FdePNavo+QNT3/Kd0a1uUQOvsQsixR72j7b0JGPyW7lp5jNFFnRbK+i/cFU8PBGUz1
-	 XWvrNUt542+F7rwpZqpQz+QUXaWsukPUPwtJnFOshSn9NBjxWehHxDlmuj2HeskAkJ
-	 uOxhA+rLBavJg==
-Message-ID: <7172af43-a548-4378-abdd-e55df7ad6a45@kernel.org>
-Date: Sat, 15 Nov 2025 11:38:20 +0100
+	b=coHj8wfudcU2TY2kgyV7F7MHLfbCUY3FiT76uiC2CxS3PLlND95cmYt/w7sn6Z1Jr
+	 R/097ZSLMR/xO/RqvJV+sIr206Gz2AcRL41NCDtHSJOm6HPpM1wshoGPJ6XEqW+lZo
+	 FXekwwYwHVLF0ru/nWRJ5pxZ9rzHMnChjHd8H2F/rkf3O/69Szyk5fNbsQeuqMfqL+
+	 zb38yguxxwqFoZ9143Qg5ijza5FTItZz/cJysel55CZXW90LGMzYLEEMG/JJOxTRUY
+	 K3qbntWpRGVCYPGTxsryyepVttfESsTdnqbaLLMFYI59HxatiZuYeZ5//kuaQcoddx
+	 Af09kIavtJf6Q==
+Message-ID: <a86179c2-5380-4c62-9972-0c2d0c94fe59@kernel.org>
+Date: Sat, 15 Nov 2025 11:38:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Raystar Optronics,
- Inc
+Subject: Re: [PATCH 2/3] dt-bindings: display: simple: Add Raystar
+ RFF500F-AWH-DNN panel
 To: Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org
 Cc: jesszhan0024@gmail.com, dri-devel@lists.freedesktop.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@nabladev.com>
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
 References: <20251115025827.3113790-1-festevam@gmail.com>
+ <20251115025827.3113790-2-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,17 +102,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251115025827.3113790-1-festevam@gmail.com>
+In-Reply-To: <20251115025827.3113790-2-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/11/2025 03:58, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@nabladev.com>
+> Add Raystar RFF500F-AWH-DNN 5.0" TFT 840x480 LVDS panel compatible string.
 > 
-> Raystar Optronics is an LCD manufacturer based in Taiwan:
-> https://www.raystar-optronics.com/
-> 
-> Add a vendor prefix for it.
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> ---
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 
