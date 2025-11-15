@@ -1,127 +1,131 @@
-Return-Path: <devicetree+bounces-239040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FAACC60CB4
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 00:28:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32065C60DD4
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 00:43:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35B713AD7F7
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 23:28:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id C18EA290A5
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 23:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5ECF24291B;
-	Sat, 15 Nov 2025 23:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC5C271A7C;
+	Sat, 15 Nov 2025 23:43:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="kPR3e9wP"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="T7W1X8/V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8372223C512;
-	Sat, 15 Nov 2025 23:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C9726ED54;
+	Sat, 15 Nov 2025 23:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763249292; cv=none; b=ftK0kTa+S6Lp/zum8DNGKRXAJhajpNF7dyjmbPDBUAqOf74mAZhBqRs4l8Wa1TekYOaTmc1298Scrwz4DBkFOkPf5EhxGPg4Ost0Li0lJSAOavYKlCLfzym/hsFKSp7hPwjXL/VJXFks+N4OC5qEIFluw1mnE1VyrxwY4Ngl/Gc=
+	t=1763250226; cv=none; b=PcH1ldwnHWyHXO1dNOpRqRdVTnBCCgV9Wpe+eEsJAZKsfzRB+QvkM75hbVzfREXlMYWAkQbFpX9U7QvTbg7JYFY9xsTG1b9Bxqal/7wCUjucvjNMb+MGwU+x9U58pHSGIrw/ghwp0ajm1nQX8PDEh+ew5PVYoDgPdp4ga3vDEoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763249292; c=relaxed/simple;
-	bh=V2Mqd7Rf1hGjVsmGfqMIWFkW20552hL4t0N1Zg5jrVM=;
+	s=arc-20240116; t=1763250226; c=relaxed/simple;
+	bh=llN6Cn3B/kgh4ulN0MEBNKdXAxOmngqsyPmwW/2bxxU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WsPl1Zqil2BNsmcw+dhBl3mT1Mdl+YkcpV+Ng2LZOvlfTgm0GewMRSePQaM14/Q2db8cfJx5kdYib1pE5mxYS9jbtrdcj+6nFZ8ddQoNOmi1QM1DzwPEQP7w3yyVUCGov0yMBhzZyKtEp+kz7r+HJliqoXcIHJiImW+wM/I+Vzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=kPR3e9wP; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=sQR5c6uVXtFdxeB1jRGMujAZsNc9/52RfzamdcsOWLukMKjUcmRyDcvh4OCLwJPcU5wmVCYuoFtCHgaqEZqMAMizGQhArCI3vn1c8PqcyNFwn5aU4FzlZ/u4eoHE6EvnuABTR720oOOcvsmvVxRS5573RixJQXFKO5g7LCulXoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=T7W1X8/V; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=l82rx51AsbqXiASt6mT5fRvFZ6R8MXZa4sonzok/Imc=; b=kPR3e9wPKNamPD854AOIQaiw7l
-	4xZAMXQlw5rAnZnUA1xYhV+d34O7688QgFE2vXy7evtO4fro+OUGIzZrB//0wFT5hdNSahDyScp1k
-	2Dtgi/V3CBdov3nX9VbfibUDul+kavFcjajuE3iif/w06k4cWaUs3nRFb9cJLsOlupJraZAEwCsgG
-	hqAyHSnhCVoSVA2Aivj25mxGAhAqjylfTMWE33/PMMIK+6J9hQgk52XNYQTiLY0MHOwsZlhmhv/CH
-	IaZzAn/EjPhn03M7HfHYiA7CAAOF3mM/0MguWXmqVH2Tv1xWb5jGEfPknhK2hP2O4yIwJr50mR33b
-	CEsbmNAg==;
-Received: from i53875bd0.versanet.de ([83.135.91.208] helo=diego.localnet)
+	bh=p2QaOkO8NjOGntm2KfoOJ04f8p6YfbVqlV+eGAe/YQo=; b=T7W1X8/VKMuVlBltXAxej69Ttz
+	RuhoComjszRwtfM2WRLudijqxYx8+iDpYVKRkjzAOeJ2+dzp/hIgsO4ouvdKVfdGyFNXNp/m6voi8
+	y712OG3Hn2bhgRTkA3m/P+ycUcJYGV3Z6f3S1VKon4otCRK35wNF7STP5wQTTx3aJETYob8/p8rOc
+	8++Wjxfe0mDHh/kpUpJd3V+HDyNTNZcB7h9xuTpi4weeY7h6j7ilSzsyEscPgANMx9D2hnoRotmfV
+	lAyrMTxiua92KOdCj7nX41M+MAE994s8pN348Eocq9pi3S48mS+rJeSjDKpbDmadqS+/+x77ZvwzF
+	5XyTT/Tw==;
+Received: from i53875bd0.versanet.de ([83.135.91.208] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1vKPgK-0001oE-GP; Sun, 16 Nov 2025 00:27:48 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
- Dragan Simic <dsimic@manjaro.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Asus Tinker Board 3 and 3S
- device tree
-Date: Sun, 16 Nov 2025 00:27:47 +0100
-Message-ID: <2455319.NG923GbCHz@diego>
-In-Reply-To: <24561990-8293-0505-5837-eca416d01bb7@manjaro.org>
-References:
- <12d6e151-dfa0-ca0a-5888-ddffb2dbdec7@manjaro.org>
- <bb74679a-ce21-4373-bcc5-1214e9bf832e@rootcommit.com>
- <24561990-8293-0505-5837-eca416d01bb7@manjaro.org>
+	id 1vKPvO-00022c-4Q; Sun, 16 Nov 2025 00:43:22 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Markus Elfring <Markus.Elfring@web.de>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Collabora Kernel Team <kernel@collabora.com>,
+	Paul Kocialkowski <paulk@sys-base.io>,
+	Alexander Shiyan <eagle.alexander923@gmail.com>,
+	Val Packett <val@packett.cool>,
+	Rob Herring <robh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Michael Riesch <michael.riesch@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Mehdi Djait <mehdi.djait@bootlin.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v15 00/14] media: rockchip: add a driver for the rockchip camera interface
+Date: Sun, 16 Nov 2025 00:43:19 +0100
+Message-ID: <176325011672.721648.2323929668705434904.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20240220-rk3568-vicap-v15-0-8f4915ee365d@collabora.com>
+References: <20240220-rk3568-vicap-v15-0-8f4915ee365d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-
-Am Samstag, 15. November 2025, 08:14:58 Mitteleurop=C3=A4ische Normalzeit s=
-chrieb Dragan Simic:
-> Hello Michael,
->=20
-> On Saturday, November 15, 2025 07:03 CET, Michael Opdenacker <michael.opd=
-enacker@rootcommit.com> wrote:
-> > On 11/15/25 01:53, Dragan Simic wrote:
-> > > Thanks for the v2!  Please, see one nitpick below.
-> > >
-> > > On Friday, November 14, 2025 16:46 CET, michael.opdenacker@rootcommit=
-=2Ecom wrote:
-> > >> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> > > I'm sorry for not mentioning it in my earlier responses, but this
-> > > line is redundant, because it duplicates the From value found in
-> > > the actual email message.
-> >=20
-> > This actually comes from my Git settings. I need this when I send=20
-> > patches to the Yocto project and OpenEmbedded. That's because their=20
-> > mailing list server which alters the address of senders ("<sender> via=
-=20
-> > lists.yoctoproject.org"), and ultimately the commit author identity in=
-=20
-> > Git. See=20
-> > https://docs.yoctoproject.org/contributor-guide/submit-changes.html#fix=
-ing-your-from-identity
-> >=20
-> > I've checked that my patches apply fine and that this "From:" line=20
-> > doesn't appear in the commits in the tree.
-> > So, can I keep this?
-
-Yes you can keep that, I don't see a problem with that additional
-=46rom header.
-
-> Actually, I forgot to mention that the From headers in your patch
-> submissions are a bit wrong by containing just the email address,
-> without the first and last name.  That issue should be fixed first,
-> regardless of the presence (or absence) of From tags.
->=20
-> Thanks for clarifying what's the reason for having the From tags
-> regardless of the actual need for having them.  Maybe setting Git's
-> "format.from" option to true at the repository level could solve
-> this nicely, while also exercising the Git-fu a bit? :)
->=20
-> BTW, my responses are currently jailed by the linux-rockchip mailing
-> list, requiring manual approval, as a result of the mail server I'm
-> using sometimes inserting some strange invisible UTF-8 characters
-> into the email subjects.  Oh well. :)
-
-I guess that mailserver needs a fix :-)
+Content-Transfer-Encoding: 8bit
 
 
-Heiko
+On Fri, 14 Nov 2025 16:20:11 +0100, Michael Riesch wrote:
+> Habidere,
+> 
+> This series introduces support for the Rockchip Camera Interface (CIF),
+> which is featured in many Rockchip SoCs in different variations.
+> The series has now been around for a while and has received many comments
+> and reviews. Thus, it should be ready for mainline by now.
+> 
+> [...]
+
+Applied, thanks!
+
+[11/14] arm64: defconfig: enable rockchip camera interface
+        commit: 60705b039f960378bb2a0a844f9378646bc0c6c8
+[12/14] arm64: dts: rockchip: add the vip node to px30
+        commit: d2da7e98c0bf7f75433809ad875c6e1ae57f0cea
+[13/14] arm64: dts: rockchip: add vicap node to rk356x
+        commit: 78f316e90906d54c8aa6029e5c19ae83e420e56a
 
 
+Not applied 
+    arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
+
+because of
+Lexical error: ../arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso:149.18-45 Unexpected 'MEDIA_PCLK_SAMPLE_DUAL_EDGE'
+FATAL ERROR: Syntax error parsing input tree
+
+This likely will only work after the next merge window.
+
+So if you can live with that please resubmit that last patch individually.
+
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
