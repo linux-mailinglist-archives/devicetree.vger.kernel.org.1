@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-239023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6AAC609DA
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 19:13:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85199C60A08
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 19:32:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CD58934F12A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 18:13:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 26634353705
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 18:32:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07113306488;
-	Sat, 15 Nov 2025 18:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9856A302CB9;
+	Sat, 15 Nov 2025 18:31:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WD6IeNS1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AvTSiWQQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE21A18EAB;
-	Sat, 15 Nov 2025 18:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B4526ACC;
+	Sat, 15 Nov 2025 18:31:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763230378; cv=none; b=DZsN1hWiPD/Qw41O8AWycVya0lppmBdRtb4vEpnhWuLm6uIuuhejvoZ8pwLB7xhi9Vs8tPXBBGAf7nO6cGtJVKU5ykSQvQrvbKUUjS5Mz8NwN6zsPHURR/lP9hgi+70U8YPIsCTtUjiDoNp7QCTtgAhsQROuCKChdjrY6tzi2DI=
+	t=1763231516; cv=none; b=JbyhLRhHyf8GMjXvCvp/8RvoYxDmspV9Fx5OdHYmIhNiS4p5I2QsbraWEYK/p1ezthLODcMNE123caHWRN5mdBvuMSiJusiWsHNaCrGz7frtPvkj6J+llDM7AvtlomQxL+6M2h8Wk7+KIb+dweMjUhHnTJVy23cMZ6vws4XSZlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763230378; c=relaxed/simple;
-	bh=3NdBHchOwzDWWETfpr+5Htap0dMMcBzCZHuWBP/Crk4=;
+	s=arc-20240116; t=1763231516; c=relaxed/simple;
+	bh=RnIGhODkE+8WWC4LDGM77KLSjjNYac87RXg8i6rBoAA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V5zoagxHLm6Vm0ADlg5pmFYwDlYNLQ4/OvXf8bp2TjRFFz3EvtyfZIE4Wdcn9hcPOU2/lCxUCEN09uKNJqjTpSo+ALbWgpytpRplorStuBH04rD3oWVZNtRKDvjNYaAWK34EWVCEYya5NKIPYxCS1NCliLaeO/dY4xAVMHHGZUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WD6IeNS1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D302C4CEF8;
-	Sat, 15 Nov 2025 18:12:56 +0000 (UTC)
+	 MIME-Version:Content-Type; b=YkNZsY11UTELcysiYja47gdcV2324ywi+vSP4o3Sk1IeuQhdfebKykTNZJCB1aiRgpIGkmGw1XcmtxuY7YAptQOhnQPy3gxFfCYGuN0ze8Z+QfQsuoKCrJj+MuV/zqm1pFo/Uyvy5ssQrYp431Mc9vn/VbIntWpOb5qxrDJXWFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AvTSiWQQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCD73C4CEF5;
+	Sat, 15 Nov 2025 18:31:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763230378;
-	bh=3NdBHchOwzDWWETfpr+5Htap0dMMcBzCZHuWBP/Crk4=;
+	s=k20201202; t=1763231515;
+	bh=RnIGhODkE+8WWC4LDGM77KLSjjNYac87RXg8i6rBoAA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WD6IeNS1dWrho8dFbjJHU3AAZ5F9Som0clzVpdwbwYEKz0aR6VNPppeHFhn+5+Otd
-	 eO4lgtc2EjneUKa4plPJFaoXSj2ifIxHg1R3thoeDvZ+y6F43wvnTsM9TpQWyMTLPm
-	 rIiQoXZRL9WPSALiPsVHvsqXSg12jqIJlEIQa/UNGOP585E/s6PzAPtBXi/4OVAQqu
-	 uPj5L1EbrCEUgLTao91S1anJck0sU6uVnbVCYif1SD6H3z5igf1vac/eguDE+U0oIn
-	 fMkMvt9q6gX/2y5XBrjY+QAJ8pZMUUzCHKdhBnADCa9+++bJVB0nVR/3RqSxS7H0Pj
-	 L2EiNF8x2ZLww==
-Date: Sat, 15 Nov 2025 18:12:54 +0000
+	b=AvTSiWQQPuyAfsz0hcIq3pHmMDJz22aoy1e6lcCL2p2Yx8TiZDIVX3O/voZhJIdj3
+	 SgoGtSUHjnhLv981vuDOQd7fVZWHamVrITo4Z5f9hLUHfaaCk3vkXZkfWVkOIXcCtw
+	 OeuHggt3/uRmc5JiRx3tKzmQRTynXEbUxgKHYeEi0OuVuyUnqk3/RysPdMtXkxtNlr
+	 sxSPZYpplbg1Y+MtYz6fkb9w2NLSQopPxVKV3xXoqIIH+A4lhFnaNvuk+E4W3vU5Eh
+	 TFh1nHlpF6+pJEbeyRXaaXAX2aMndTaJmqRmv/vdNUeJvpCfrHxT9X46gcmBCmUQLh
+	 LcSTmD0i9/EWg==
+Date: Sat, 15 Nov 2025 18:31:44 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: "robh@kernel.org" <robh@kernel.org>, "conor+dt@kernel.org"
- <conor+dt@kernel.org>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] iio: amplifiers: adl8113: add driver support
-Message-ID: <20251115181254.32b00b34@jic23-huawei>
-In-Reply-To: <CY4PR03MB33991FC450F33126532B80C19BCFA@CY4PR03MB3399.namprd03.prod.outlook.com>
-References: <20251108174357.3748-1-antoniu.miclaus@analog.com>
-	<20251108174357.3748-3-antoniu.miclaus@analog.com>
-	<20251109172213.69d35297@jic23-huawei>
-	<CY4PR03MB33991FC450F33126532B80C19BCFA@CY4PR03MB3399.namprd03.prod.outlook.com>
+To: Ajith Anandhan <ajithanandhan0406@gmail.com>
+Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add TI ADS1120 binding
+Message-ID: <20251115183144.15b3e236@jic23-huawei>
+In-Reply-To: <20251109141119.561756-2-ajithanandhan0406@gmail.com>
+References: <20251109141119.561756-1-ajithanandhan0406@gmail.com>
+	<20251109141119.561756-2-ajithanandhan0406@gmail.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,35 +63,48 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Sun,  9 Nov 2025 19:41:18 +0530
+Ajith Anandhan <ajithanandhan0406@gmail.com> wrote:
 
-> > > +
-> > > +static int adl8113_read_raw(struct iio_dev *indio_dev,
-> > > +			    struct iio_chan_spec const *chan,
-> > > +			    int *val, int *val2, long mask)
-> > > +{
-> > > +	struct adl8113_state *st = iio_priv(indio_dev);
-> > > +	int ret;
-> > > +
-> > > +	switch (mask) {
-> > > +	case IIO_CHAN_INFO_HARDWAREGAIN:
-> > > +		switch (st->current_mode) {
-> > > +		case ADL8113_INTERNAL_AMPLIFIER:
-> > > +			*val = 14;
-> > > +			*val2 = 0;
-> > > +			ret = IIO_VAL_INT_PLUS_MICRO_DB;  
-> > return ...
-> >   
-> > > +			break;
-> > > +		case ADL8113_INTERNAL_BYPASS:
-> > > +			*val = 0;
-> > > +			*val2 = 0;  
-> > gain of bypass = 1.0 rather than 0.0 which is open circuit gain.  
-> Isn't this supposed to be a dB value since I am returning IIO_VAL_INT_PLUS_MICRO_DB? Linear gain of 1 = 0dB.
+> Add device tree binding documentation for the Texas Instruments
+> ADS1120.
+> 
+> The binding defines required properties like compatible, reg, and
+> SPI configuration parameters.
+> 
+> Signed-off-by: Ajith Anandhan <ajithanandhan0406@gmail.com>
+> ---
+>  .../bindings/iio/adc/ti,ads1120.yaml          | 109 ++++++++++++++++++
+>  1 file changed, 109 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
+> new file mode 100644
+> index 000000000..2449094af
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
+>
+> +
+> +  vref-supply:
+> +    description: |
+> +      Optional external voltage reference. Can be connected to either
+> +      REFP0/REFN0 or REFP1/REFN1 pins. If not supplied, the internal
+> +      2.048V reference is used.
 
-Good point. I missed the DB type.
+How do you know which set of inputs is used?  Looks like a register
+needs to be programmed to pick between them.
 
+> +
+> +  ti,avdd-is-ref:
+> +    type: boolean
+> +    description: |
+> +      If present, indicates that the AVDD supply voltage is of sufficient
+> +      quality and stability to be used as the voltage reference instead of
+> +      the internal reference. This allows the driver to select AVDD as the
+> +      reference source for potentially better performance.
 
-Thanks,
+This one is interesting as I don't recall anyone arguing this made
+sense before.  In what way better performance?  Are their boards out
+there where this definitely makes sense to do?
 
-J
 
