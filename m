@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-238963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77C90C60353
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 11:41:05 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17001C60362
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 11:43:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C28E135716C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 10:41:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7E698349B82
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 10:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D72220F29;
-	Sat, 15 Nov 2025 10:41:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B8127990C;
+	Sat, 15 Nov 2025 10:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ufX3g/mZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JbU7cFkG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC64021ADCB;
-	Sat, 15 Nov 2025 10:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B73518CC13;
+	Sat, 15 Nov 2025 10:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763203261; cv=none; b=dnO/H4zwRIDL05v1/Fok4+pxpQSVDs4dkT19fNIHdhDOcVv5XansCR3Z6PiNDPicUmcJOgvf6yk0Wnooj/H/g/VFVZMLomFBQ2EI5hq45QGfztI+LkqRtX4mNK0eralh99038TsbmaXWIAgbZRHyuNuWgn6LJYzC3gZ230JI+TE=
+	t=1763203340; cv=none; b=mjcne8lLJ2+IjROCT5FoEtKZQCSsG9CVSY74ceRh3CCtG/HpYnfaHJaHfc1kZ/C1/sgKiok5xtBO8ighK5KCgdku6oMDXTUzxxbZk26Zi9qqUspYmw5YQPTYoEDL7Fiv8jJUV97VWHAAeDDqndwQ5JQkWVwlIXrSOeyTOYVVZpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763203261; c=relaxed/simple;
-	bh=3i8/uTjukZz9tP8XgQvL2kD776ylXDUV/LlrgdnBnfI=;
+	s=arc-20240116; t=1763203340; c=relaxed/simple;
+	bh=RYW/3G0h+0itZaHXOduCQxrS6QSmPM0hb2xb0Dt5obk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l/XH17f3HE+H46KsyHT2X0dbJDiyIasv0RmnXqf0xbzC0anrUC9PFbeFfgDseadnfA3uv1GQ46kkYnKDqsZ8WfzjWtUxQpX8AsQMJgwXSljIDHM6JOGjSw96PaUtAXNILtiwNBrR0USwLief4UFlpw6UXfj/YsiuET0Tu0KqTlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ufX3g/mZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7FD7C113D0;
-	Sat, 15 Nov 2025 10:40:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=UijaHPojpt8lopHyKeOu0PKwrKAX5dRvT1jxWd8qNJA+zELaXJePuH1a8kzio/1xfsTo9iT8t3lL0Edxe1EWyfOKwHX22Sgy44+eELR5mNX1n9MQjD2oZjrNrkhevCToWLtUFpc+8AJjL4scE6YrlTlobZYf5rPTGTXAvHRMb2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JbU7cFkG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13A22C4CEF5;
+	Sat, 15 Nov 2025 10:42:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763203260;
-	bh=3i8/uTjukZz9tP8XgQvL2kD776ylXDUV/LlrgdnBnfI=;
+	s=k20201202; t=1763203339;
+	bh=RYW/3G0h+0itZaHXOduCQxrS6QSmPM0hb2xb0Dt5obk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ufX3g/mZPenMpwjI3GvHVT1RS7TlJzx3B8HwcWV+CQeJET2eIkRLK8g1FExL/o2bP
-	 yBbEvsrhGKvezweL/AOtG5M8LGmRAsaEwSsaIkIPkw/kDhS/9b0zmaVL0xovJ0L6Pt
-	 E8oTdRZUYL3KsUquyqn526qAWa5SGg635nCG+vADD/AnNTXxiQiHlmQ0XVZvZ7imLA
-	 TvOtbZESbTaoLvzDC+iNpQ97KZQtB/qqk35FA84SZM8T+xNYUIVi+CP+9BODFDOpQi
-	 ctoRAmaSUU/li2unZavZd63NrlxF/sRaiV6X8Kcm/LdZCVwREw0QXsBvyuI491UD+K
-	 Nnz5lw2gBsXlg==
-Message-ID: <bde0d237-b27c-460d-896b-417292f8d4c6@kernel.org>
-Date: Sat, 15 Nov 2025 11:40:53 +0100
+	b=JbU7cFkGfqkVtPD0bFfmajHFnjVUQOl5+wfEXSndtnOzVdD0wCO+jODXK5RF28dR7
+	 xR47g9Lil5AZq3DMy0JjlXIuFX6QhIfnRWYwONwOoGDRPqu311wkTdZ2w+5/5kIyJ4
+	 Nxnd1BGr5jwgckGCIuTOKrAq+vXs0A2orwuWVTx+3ZkbQ5Zq2YFEGRnu+DnNBi09K4
+	 wGYKx5/e//MGiikdGjWVEXlpTPQ3xqNoAaWWZjy7h69djsaTzBKS5bay934uy/LdsA
+	 aaY9QpzgMFIVjCcKHd6Gp3oTYS9JAFSgeRgsvXIzRSixlRJOeDT0iYo+AFNbs+dL5R
+	 GkpBv4QpVZMbQ==
+Message-ID: <e2f8beed-48e5-4d5b-9bdb-1b13aa598b27@kernel.org>
+Date: Sat, 15 Nov 2025 11:42:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: bridge: lt8713sx: Add bindings
+Subject: Re: [PATCH 2/2] drm/bridge: add support for lontium lt8713sx bridge
+ driver
 To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
@@ -66,7 +67,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  qc-display-maintainer@oss.qualcomm.com,
  Prahlad Valluru <vvalluru@qti.qualcomm.com>
 References: <20251115-lt8713sx-bridge-driver-v1-0-bd5a1c1c730a@oss.qualcomm.com>
- <20251115-lt8713sx-bridge-driver-v1-1-bd5a1c1c730a@oss.qualcomm.com>
+ <20251115-lt8713sx-bridge-driver-v1-2-bd5a1c1c730a@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,91 +113,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251115-lt8713sx-bridge-driver-v1-1-bd5a1c1c730a@oss.qualcomm.com>
+In-Reply-To: <20251115-lt8713sx-bridge-driver-v1-2-bd5a1c1c730a@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/11/2025 02:03, Vishnu Saini wrote:
-> Add bindings for lt8713sx.
+> The lt8713sx is a Type-C/DP1.4 to Type-C/DP1.4/HDMI2.0 converter,
+> with three configurable DP1.4/HDMI2.0/DP++ output interfaces and
+> audio output interface.
+> 
+> Driver is required for firmware upgrade in the bridge chip.
 > 
 > Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
 > Co-developed-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
 > Signed-off-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
-
-Incomplete or incorrectly ordered DCO chain. Please read submitting
-patches so you understand what you have to certify.
-
 > ---
->  Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml | 47 +++++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 47 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml
-> new file mode 100644
-> index 000000000000..3292e149706c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/lontium,lt8713sx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lontium LT8713SX Type-C/DP1.4 to Type-C/DP1.4/HDMI2.0/DP++ bridge-hub
-> +
-> +maintainers:
-> +  - Tony <syyang@lontium.com>
-> +
-> +description: |
 
-Do not need '|' unless you need to preserve formatting.
 
-> +  The Lontium LT8713SX is a Type-C/DP1.4 to Type-C/DP1.4/HDMI2.0 converter
-> +  that integrates one DP input and up to three configurable output interfaces
-> +  (DP1.4 / HDMI2.0 / DP++), with SST/MST functionality and audio support.
+
+> +static int lt8713sx_gpio_init(struct lt8713sx *lt8713sx)
+> +{
+> +	struct device *dev = lt8713sx->dev;
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - lontium,lt8713sx
+> +	lt8713sx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(lt8713sx->reset_gpio)) {
+> +		dev_err(dev, "failed to acquire reset gpio\n");
+> +		return PTR_ERR(lt8713sx->reset_gpio);
+> +	}
 > +
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C address of the device.
+> +	/* power enable gpio */
+> +	lt8713sx->enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(lt8713sx->enable_gpio)) {
+> +		dev_err(dev, "failed to acquire enable gpio\n");
 
-Drop description, obvious thus redundant.
-
-> +
-> +  reset-gpios:
-> +    description: GPIO connected to active high RESET pin.
-> +
-
-Missing ports, supply.
-
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c0 {
-
-i2c
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        bridge@4f {
-> +            compatible = "lontium,lt8713sx";
-> +            reg = <0x4f>;
-> +            reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-> +        };
-> +    };
-> 
-
+Syntax is return dev_err_probe. In multiple other places as well. You
+need to handle deferred probe.
 
 Best regards,
 Krzysztof
