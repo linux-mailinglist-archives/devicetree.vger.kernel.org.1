@@ -1,159 +1,129 @@
-Return-Path: <devicetree+bounces-238936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414D4C60057
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 07:10:57 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13CA4C600B5
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 07:51:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE3223BA561
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 06:10:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B3E7C35D8B7
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 06:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FCC21D63F0;
-	Sat, 15 Nov 2025 06:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD22C1F1313;
+	Sat, 15 Nov 2025 06:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="diS6Mqfp"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="XYvuMB12"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bisque.elm.relay.mailchannels.net (bisque.elm.relay.mailchannels.net [23.83.212.18])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C38A8F4A;
-	Sat, 15 Nov 2025 06:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.212.18
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763187052; cv=pass; b=D0d/zgivhfocS3tOv+CBhsbsynvvu0jXjvSchqPvAWsF/6qCyMMCvsVAcr+toVZsQZ+9hCR6ybf1TucFiVEzAkmIYLODGSP9B+qLiLdgv13+EDVd9zPLHFMBXG7FJDvwHg3PiDkVORKUwDvxAhGXT5jIPgXAqS0nX7+4bGklokg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763187052; c=relaxed/simple;
-	bh=0dEdzRT3C4fC3y0H4w8RZRzSwCCncYT3gedGKM6XJCQ=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=uJEs6oUA8rAvNEixanVKaJ/94nsUOPPpZfiS+PTphMRntD/X7lt1XfSfDclqyG99/l8wh6LSw3k2ppOCODoZ3iM26LM6jU2o3sY1nBaUDIrWNeMj+grfckcFvTWiPQxQq4zy0sSlm082dwBfFCOg1tiTxNbc3zIlRolRQKNau/s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=diS6Mqfp; arc=pass smtp.client-ip=23.83.212.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 64EAA82216B;
-	Sat, 15 Nov 2025 06:03:36 +0000 (UTC)
-Received: from fr-int-smtpout30.hostinger.io (100-96-111-23.trex-nlb.outbound.svc.cluster.local [100.96.111.23])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 48FBF822130;
-	Sat, 15 Nov 2025 06:03:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1763186616;
-	b=w2Jtwj/0FnGUAqDQH3DA3adxITImHXLaqF16kOU5IXehEj5lAPdUukH3AelDbns15TNYu2
-	o1ZNIlOsW2GTQZmYBCl5G9b7thog0IAnPJiZbMR+Ox4PITinGOlXJNsd3FquQqyNqYspg7
-	QIUjXHs9dCRxgBz5mpos4mGRuuHViuOPDvTAoKEC6xFfrc6nv+YQd0QE8l9JMXRQXJ1NCY
-	tfQCWn6+q2rmodEmv8hITTwj6rQvtGOXZ+IQr8FLKV8OdrCZZ8PgoOsiB5Tg6OwYfSxWGB
-	2iL4go7zDy4eab6z4ZAj/JnxYdljTeiNE7+IOLvDDg1nplHfrFk55Lph8lAlpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1763186615;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=22V9LA5EG25ixQqAK3BaH6CZbg6omG/q5oeXsF1qKJY=;
-	b=U++NZFef/+4f7VLMGSZJkebmyrS2q5R/wt7EPslRDfoJsbMFrtxzgnrf7N9B2ZFI+BDggH
-	YzffzH+6QiSHf8gmGk4g76snONjqBybnjDXTNEu36TyuVlpeue1jfaU81sU9TcV3SgpSGP
-	UMPa4ad3PbudBdC5hRqB7ZVua2NRIWm0a02RhBkWZaHl7L6PJXfc1yoYBshqlk0j0YJc6S
-	ucjUACHA03fdP/wPlqsupaD4Z4Z8NCpBomhft21CJHQSsVBP2RYcnLrETCdtjHxJNmKMwY
-	VXQfdSc7F78UdLvdTuJLnm8wnCw1q7CUBtKrgoz+gG963euXO2+3nNgv+nxc8g==
-ARC-Authentication-Results: i=1;
-	rspamd-5664d6b969-mmzxk;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Shade-Arithmetic: 460b30fe28521824_1763186616178_192050952
-X-MC-Loop-Signature: 1763186616178:2873199001
-X-MC-Ingress-Time: 1763186616178
-Received: from fr-int-smtpout30.hostinger.io (fr-int-smtpout30.hostinger.io
- [148.222.54.7])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.96.111.23 (trex/7.1.3);
-	Sat, 15 Nov 2025 06:03:36 +0000
-Received: from [IPV6:2a04:cec0:120c:d90f:a2e1:5df1:fe6e:7680] (unknown [IPv6:2a04:cec0:120c:d90f:a2e1:5df1:fe6e:7680])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d7k2q6W7wz2xNr;
-	Sat, 15 Nov 2025 06:03:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1763186612;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=22V9LA5EG25ixQqAK3BaH6CZbg6omG/q5oeXsF1qKJY=;
-	b=diS6MqfpzNDzmvO/x1gdzL6YRZ+gXusTOuVlMNysWipMgYL7LWuCTVoE5a0gL5B+zWQGxz
-	TvG0D/5v5pEBopi+AhbrgFK07z11rcAgmgvv+ctyteNlIWA9H123MLd1PlpeU2cpdgGTa+
-	TgP600MkiIIIQoSY2RPBBPOWKr9BUAsntobvFIaMgeVr880jiSwimIp7Daz5VB64aE/8FH
-	9Awy0XnoDqwIl6Wt5w9IwNbjlf/Hef5PTrmiOoRYuXVx2x8Fg3/qSt3gTz7oJ8xfSBvI1A
-	O54mKaIrMzhALSkEknPeHo8Op2teUtIFXtWL9dhBi0PMISWyk/TwWwvVZxXRMQ==
-Message-ID: <bb74679a-ce21-4373-bcc5-1214e9bf832e@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6A31804A;
+	Sat, 15 Nov 2025 06:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763189492; cv=none; b=Bk2cQlc0rPtKw2RVlc9hY70FE2bbOsKoILJBxP8qf4Xiwki9qY5SPz/JQppr10UhZCeddgZUutJ6ZZdOrN5q/MIOtBFy8B3sdnzXDUtkgXHP5GOK+vG9sY8ce25dKUVp/KAqthZaL0O6vxVQtSOtR53S1MIve596zb0jRxGbqco=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763189492; c=relaxed/simple;
+	bh=/mw9emOFH0TJya/tnWIX5J9Imr2pwb1wRLC6N77Y+6s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gHX+Dy1MbacWO1Bk6kW9q6vi1wtSe1d2Wukm0GfSfOqtcy9z2xHuyFCl8Qr/gkZfGqVKdxgosqC/nCOC/ALsillsdAPqShDlYR8aBlPwaaXGvYGagmurZCONQaXV0N//2ZaX06SZD/StKYQJsi9Azx3HnCrLIWa3kuJ/aVvG3LQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=XYvuMB12; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=grYrd7pcBDkC3E4qk7f/jBiIkt1ZM7pRMTVhaOYRLRo=; b=XYvuMB12aC6tqf+NywxICg3FFk
+	XnyD31YUT31GFejfEDEFIRQZfY1BOT8h80AdQYX1Wo7jN7/1NnwylyFY0rHWBK9MTBl+11hA48qNW
+	L7p2sChxb8qf5m80Mzr69wumb+mKukdvrgEDpj53xDgv9xUOsNE0dyi8POfFi1gNO0RuetV2oLmak
+	DQuF734uPwfyoTAAlIuuejETBF1fukpgdbHB4XAa1f3OL3yLFi23t3Q58RewE23q+SOm+rFbHX9J9
+	DSF60YV7L57sJZ4LIVNQtfhy2FTplguo8mlZ8/9Xb5XqZlU/Yo/Tl7rBdZ2jM8HwoBrUmf4gtw2cu
+	DZlYdH3A==;
+From: Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v3 0/3] regulator: Add FP9931/JD9930
+Date: Sat, 15 Nov 2025 07:50:48 +0100
+Message-Id: <20251115-fp9931-submit-v3-0-92f5d0772b68@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Asus Tinker Board 3 and
- 3S device tree
-To: Dragan Simic <dsimic@manjaro.org>
-References: <12d6e151-dfa0-ca0a-5888-ddffb2dbdec7@manjaro.org>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Organization: Root Commit
-In-Reply-To: <12d6e151-dfa0-ca0a-5888-ddffb2dbdec7@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Date: Sat, 15 Nov 2025 06:03:31 +0000 (UTC)
-X-CM-Envelope: MS4xfBhh+tXSvsPbD5H7iNzCO9gve8ko1ClBApKZM2HN4hoCJ8bcKcs9ulpFY3KXwA9DgWbEdVzQi4K8/ejXA6+S4r51pNvjP0F4gFIHaIrzMeKTcRqSkXeU nIObt1x4r1BceyJXy49kfa/LT3jsKC/Nu/5EMiOf+t3lwaw/cDEVAU7xaHBwrc6RcXtE80nMmfEwXxhOyt/WfVzs5ViVWuwDWT9azj+od2RyJ+/g8V3tQFuO urpbnIjdPURB+xSrvul5wb0qlOtfy0RZK7VJ0HZXda0PBrRwjyNLkLfCEHvnQoMBNUfKNhg8+SVvdwojv1yKZUkzYSigIlYDGVizh/eJ8bAvtR9/4L0zFEgM ilkipZsF5J3YS5WQ3AoiLWEoV2PBFmF7FptZ0Ams0yNIjeJTPSDG1PX8BdOb3GaSfWN6OQOZpM/MIu3gTAWLf3MI1iY4lpIGlHbvsMS3qtL/O5TQUWotD8// lFM94hLv5S48jAVJ5fj6DgBBa5+xA04BohY31ZXevOhu8Ee4XJa+QK2p2YrDANBXx5nzcVAjcrvpEJKxIBd+JH1xFXzsrRfohgt6Z0fW70ef/G7wzWUOU8+O LsxZ7suvM3DfQMuPtJjOKAG3wedFse7lv4YdVdTeGhpH7ETyv4BaD0ZCtydG/uTvqy83Yvo/WK/OANZoTikFU/gU
-X-CM-Analysis: v=2.4 cv=DJTd4DNb c=1 sm=1 tr=0 ts=691817b4 a=eHakbqL08FGSeumsndRQeQ==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=iGHA9ds3AAAA:8 a=d70CFdQeAAAA:8 a=DLBR4L6yPKTlh_JyUqwA:9 a=QEXdDO2ut3YA:10 a=NXIwzYraRHkA:10 a=nM-MV4yxpKKO9kiQg6Ot:22 a=NcxpMcIZDGm-g932nG_k:22
-X-AuthUser: michael.opdenacker@rootcommit.com
+X-B4-Tracking: v=1; b=H4sIAMgiGGkC/3XMSwrCMBSF4a2UjI0k6cvryH2Igzxu7UVMS1KDU
+ rp3046k4PA/cL6ZRQyEkZ2LmQVMFGnwOcpDwWyv/R05udxMCVVLKVrejQCl5PFlnjRxoa2qwNS
+ uMYLlzxiwo/fmXW+5e4rTED4bn+S6/pOS5IJr3ZoWHGhjmssDn147PJLvBrZiSf0AstoDKgPWN
+ QAnKJWt7A5YluULM41UPe4AAAA=
+X-Change-ID: 20251107-fp9931-submit-0ac249b5d6b0
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hwmon@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-a6db3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2001; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=/mw9emOFH0TJya/tnWIX5J9Imr2pwb1wRLC6N77Y+6s=;
+ b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJkSSvcOzPGVYZz8w/Bq+cpFwZv3VFjxas3Mitqsd+LF0
+ khtK62JHaUsDGJcDLJiiiy/rBXcPqk8yw2eGmEPM4eVCWQIAxenAEwk8wzDb5bLtmcP6Kx/FBv/
+ 22zz5fkFxxbMPRJ/587yExNNlZhPhYkx/DOXk9oVdMpiUbFDmdleTaYKNZWokOhYVb//Nn6ftC7
+ FcwMA
+X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
+ fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 
-Hi Dragan,
+Add a driver for the FP9931/JD9930 regulator which provides the
+comparatively high voltages needed for electronic paper displays.
 
-Thanks one more time for the reviews, much appreciated :)
+Datasheet for the FP9931 is at
+https://www.fitipower.com/dl/file/flXa6hIchVeu0W3K
 
-On 11/15/25 01:53, Dragan Simic wrote:
-> Hello Michael,
->
-> Thanks for the v2!  Please, see one nitpick below.
->
-> On Friday, November 14, 2025 16:46 CET, michael.opdenacker@rootcommit.com wrote:
->> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> I'm sorry for not mentioning it in my earlier responses, but this
-> line is redundant, because it duplicates the From value found in
-> the actual email message.
+Although it is in English, it seems to be only downloadable
+from the Chinese part of that website. 
+For the JD9930 there can be a datasheet found at
+https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/196/JD9930_2D00_0.7_2D00_JUN_2D00_2019.pdf
 
+To simplify things, include the hwmon part directly which is only
+one register read and there are not other functions besides
+regulators in this chip.
 
-This actually comes from my Git settings. I need this when I send 
-patches to the Yocto project and OpenEmbedded. That's because their 
-mailing list server which alters the address of senders ("<sender> via 
-lists.yoctoproject.org"), and ultimately the commit author identity in 
-Git. See 
-https://docs.yoctoproject.org/contributor-guide/submit-changes.html#fixing-your-from-identity
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+Changes in v3:
+- cleanup indent in devicetree example
+- remove unnecessary checks in hwmon part
+- Link to v2: https://patch.msgid.link/20251114-fp9931-submit-v2-0-cd6998932c4c@kemnade.info
 
-I've checked that my patches apply fine and that this "From:" line 
-doesn't appear in the commits in the tree.
-So, can I keep this?
+Changes in v2:
+- vendor prefix fiti->fitipower
+- tdly in ms with enum
+- no #thermal-sensor-cells
+- regulator node names lowercase and under regulators subnode
+- s/ts-en/en-ts/
+- remove duplicate v3p3 of_match
+- remove ancient driver.owner assignmed
+- some style cleanup
+- Link to v1: https://patch.msgid.link/20251107-fp9931-submit-v1-0-aa7b79d9abb6@kemnade.info
 
-:D
-Thanks again
-Michael.
+---
+Andreas Kemnade (3):
+      dt-bindings: vendor-prefixes: Add Fitipower
+      dt-bindings: regulator: Add Fitipower FP9931/JD9930
+      regulator: Add FP9931/JD9930 driver
 
--- 
-Michael Opdenacker
-Root Commit
-Embedded Linux Training and Consulting
-https://rootcommit.com
+ .../bindings/regulator/fitipower,fp9931.yaml       | 110 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ drivers/regulator/Kconfig                          |  10 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/fp9931.c                         | 551 +++++++++++++++++++++
+ 5 files changed, 674 insertions(+)
+---
+base-commit: dcb6fa37fd7bc9c3d2b066329b0d27dedf8becaa
+change-id: 20251107-fp9931-submit-0ac249b5d6b0
+
+Best regards,
+--  
+Andreas Kemnade <andreas@kemnade.info>
 
 
