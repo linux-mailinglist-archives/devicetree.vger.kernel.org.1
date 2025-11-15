@@ -1,155 +1,153 @@
-Return-Path: <devicetree+bounces-238932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D86C5FF18
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 03:58:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95FAEC5FFC4
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 05:22:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4B1314E418A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 02:58:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2F9264E5490
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 04:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083B3221F13;
-	Sat, 15 Nov 2025 02:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5A62147E5;
+	Sat, 15 Nov 2025 04:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RP9DxNn/"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="do7DD2R4";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="mDufRdfy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84EBE63B9
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 02:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E8018D658
+	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 04:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763175520; cv=none; b=JFKJSIrmst0btcwmxzB2/htiTe0aMKIft0UsSjHY4+PtcfwL0Gln286qHcHL+MmjM1mWboWi1eOJhG6swNs+LyMlB+Bagtm++LpN2bn6NeWYrOiw2gG+nCuTI53Zlrq4yIy7rfTVU1eN7vtJ+OpaFGwlopMhObvBpSunXGmd4Ns=
+	t=1763180515; cv=none; b=VqPukSPWg5tRIltIq1Fo0n4gaPkiTAcx5lWNp+jT6wntMMjzdycIer2s7pgvFurvZGuSE0I155RG/XGVZRrA/NrsAp7P1RO7r/pCOMmjMg0UWVEEGcgGr7j3g0kiNO/yaGtnQ5UHpRIurzjoTwOMmpHyPGJuc55XRlEn5693aWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763175520; c=relaxed/simple;
-	bh=sYSxPa+HhMWu4HiS1dttsCY0o4iMeKYHERfyGSoRC38=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=GXqTtAo5CCvMBt6Ibf9PCq1W4zXoie41ASNJq5lhtl3HDXtX0pnq5jW9NXsQPpeyGA8U7Kd2sgHjwP5OfKdxzOOj2WwlW62iiMPcODL6MBK+c4quRfeA1iu7UUUhpaq9USackzzXUi3+QzZO3ieuJ0MSqdIMwNuxAHoWVxlfOH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RP9DxNn/; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-29568d93e87so23565235ad.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 18:58:39 -0800 (PST)
+	s=arc-20240116; t=1763180515; c=relaxed/simple;
+	bh=W7Q6wmI9qY9hFy3y3Yc0H0YKLHAJOByL64hTBS8BJ6I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sSCPY1481yxna96gBjcpEtGd9oWQMyaVSsUwguBjZF4KGjyiV0t4rQFK6x5vY/lVBwvHvgwEPWwX/GAiIPEEonOufwT+orEsqOGHdocAvHoPVfKiT2+ankSwI5io0NcHkmW75EEeOn4PG0Nha2iktCFn63ornqv+wtlKrEi4zhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=do7DD2R4; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=mDufRdfy; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1763180512;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n/tk0v+4BBK6qP0Q9YzuiptrPfp0eR+Hy5aITCdFIu8=;
+	b=do7DD2R4DQushHA32Mt+o3G00Tr6Ydysd+0TBbS0AATy2D4VnZy5RP7KqsCO9VRHW+t7yy
+	mqz8Sld93pdBT7chFA4NLUXMm+CGBtoXFrcH2rwueP+nR28FLWUiFnKnKozQAcKW3Ti4ir
+	V8akrEz9ukjUVPjIK8ubzF25gPHbr/k=
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
+ [209.85.214.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-537-N9qlSlfEPpGJhBlL0wmyTg-1; Fri, 14 Nov 2025 23:21:51 -0500
+X-MC-Unique: N9qlSlfEPpGJhBlL0wmyTg-1
+X-Mimecast-MFC-AGG-ID: N9qlSlfEPpGJhBlL0wmyTg_1763180510
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-297fbfb4e53so47321395ad.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 20:21:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763175519; x=1763780319; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=redhat.com; s=google; t=1763180510; x=1763785310; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AOThRS7nDmg/X3Ml/NXAcROJCvUeqBDt9QIev12itfU=;
-        b=RP9DxNn/qlDVsPSu63EkR6Y53M5wF+PUdjl9pErk5dBvLCzRAlyIsNPMVv7IxeRtC+
-         j0GjmjshlDdarmswe/YNT6n2l/Mc2Ld/rJ7K/3luC7HIVHH6LBFV1YImli+ERmO8fNUN
-         Tu1GnC2BESMMZTfeKNblNY2MkCraZmtfzF29904j3Td9xgSaOeAyy6lvdMRQTlQ7XU0g
-         BdXWYss93bJ250I7RQsdX77DZAS7MAwksB9b1MDPstiyzdMCiM655bP8koDyoUU+wZHE
-         UxNdmGKIvDp3h/TmSIjFymUGMoXE7foXgQddjNqsBHx+Vh/A/+aD0p4Y/etoEAkYr3Bx
-         hOEQ==
+        bh=n/tk0v+4BBK6qP0Q9YzuiptrPfp0eR+Hy5aITCdFIu8=;
+        b=mDufRdfyb3+3CvLfM2VfU6skSl10O6kBApZSJZgrHfaXOmnx+j6ezg6w5+vPJngR2l
+         y1jQlCRClR7DIZF1C+bzCfjxLYqQ9/Q99I6v1/L/LgpSWYBcxZvoxIE3ulFf5dzuVzat
+         yBy+nNyQllDj7+tii4l0FcL8S9+ehpcyeyIrnj3JIGI8sJhSmhU8pBtiGgk4VnNHyX5J
+         3cAmeq9Rh2g/8KeuA+BOBJw6qCNh5mhoq6Aw0DwmsT7Zl+9vmOqY6Gpx0/hHpU+8exfh
+         nS64j0CEcnrp4jDxlZHxZX4Eme2b6LpbE8NUm7ODxpNDe+Ya0pmL4DCj9f44j171ehLV
+         YyRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763175519; x=1763780319;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1763180510; x=1763785310;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=AOThRS7nDmg/X3Ml/NXAcROJCvUeqBDt9QIev12itfU=;
-        b=r/T1dcE/3YD1QzL3xieZD0P40YHvby1XgagiBbRzL+UUkUaaucVE9Wj5m7L+ZlHmL5
-         hkJfUwVuJgMV39pIxABgAkT66FOBUwLvYNOlTfMUSnoR9yOq/M6i85goAC0RmLEtZfFK
-         V16/ILPbWLeL267Qo2q8RacSuXf708z1OV1ki3IesNWad336zUVlJxFlHh+gV9yhg/35
-         nLn9FYaj0lOrGYLDQmJWHgN3lNblXh5TF7s4je5x80gGwAN9GYPWYk14Z10aLfVWL8Na
-         cQXLuCuoC8HS5ui+0QfKj5U20rfXATDi9/hDSyTi3T4uGxqEgeJsodwiyrqkq41eTRXo
-         suow==
-X-Forwarded-Encrypted: i=1; AJvYcCUpLt0ft9nUDQGO2Ru2OddGroxrJyuZHWSjdAxF8VvhPxG4ZWdnHUnEQOgo2cx3mxVpf/isu5G7SzXT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwulMqGtlKZQm2MH+TewKOySMG+wFht4tyvgNtWhwhhCsL25fSv
-	DqVLt7w+JL2Y48fGcDgMpwq4tIqa9CuqECgqXsQYOW+ar3zqFKiNjORH
-X-Gm-Gg: ASbGnctgaAxOyzVvfMrk49K9mkPV9dNUlgRNZm0MuDtXcUIo9Caw/d1wYRpZfyAKP0I
-	jrI1t41dUX4JH7OF2JV/P/fQ9BZrmrCa0lxBkG+y19bHGYWXdM62wV73Kiq1qh7KvkK7uskr/8Y
-	RgKpBh/d2mtf7WuqRZKaXEY+9DLGC/247G4s1ye1IpiYn9CZtEff6XZk9FFSmaoHKJwUy1gBKAa
-	nhiE7q63tkbp0bYMyN8WR1vDmCGN2uPM3q60lkb2lXW6qwa8pBJp+UmsrSm2hLMuZILGlxaWNSM
-	klu0HaXacy4rzZyLzh+fhhv+TWDCHfSAhF4Oj390xjZRJMoNpZAUyqD+R4VxEoN0VNXDnmPWXD0
-	NQg/p4LHhw7/tTLL/HFpdJ/41VyKv25kjTRTwrpL6mq5Ov9oR+tjLYygNsMKj/UAaPm6EiDord5
-	Tb2kuvmsuq7AnZ6vXkYBtVrGLNbmb5bRsQBDg=
-X-Google-Smtp-Source: AGHT+IFFyXPe2hbOlJuzSFnfXZ5k15j0K9Bl/h71q3aSIuF4ivVyXXfsblJRf9byE6sfCxRozD/Cog==
-X-Received: by 2002:a05:7022:69aa:b0:119:e55a:9c05 with SMTP id a92af1059eb24-11b41202e74mr2205840c88.33.1763175518654;
-        Fri, 14 Nov 2025 18:58:38 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:735a:fcf2:fc15:89cd])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11b86afe12esm4215227c88.6.2025.11.14.18.58.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 18:58:38 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: neil.armstrong@linaro.org
-Cc: jesszhan0024@gmail.com,
-	dri-devel@lists.freedesktop.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 3/3] drm/panel: simple: Add Raystar RFF500F-AWH-DNN panel entry
-Date: Fri, 14 Nov 2025 23:58:27 -0300
-Message-Id: <20251115025827.3113790-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251115025827.3113790-1-festevam@gmail.com>
-References: <20251115025827.3113790-1-festevam@gmail.com>
+        bh=n/tk0v+4BBK6qP0Q9YzuiptrPfp0eR+Hy5aITCdFIu8=;
+        b=rUlcR33rmke05uzgweTYvqoLFEvHQr3wcodkxu8QJfr35wbInOVOv20krCOtypk37P
+         7QF8pFU6rSi6lBgw3V06s3Zp0omPEIbl8oQ/z24ZJ0rk6d1dit4j3XIhYFU8CptDzAY2
+         IhtVdeifahc+DtD51vep1wRLbF2Y3stOR1OPIvoa2EfHLikoZ/k1bJrBUfiTuVo1jh2Z
+         O7cc53t2jcF/8E2odNSfq3O6+cNm+ZTv2ScLhp5x+DJI6ZWFvxnY+2PMYOifjjjZ5ZtY
+         1Xr+go9gXVlRdhIkeQWp8ZRwagkUqH2O4wBRcSkvzVy/fIwgpD6ztLNVsWB9JwYtHYMu
+         SYBw==
+X-Forwarded-Encrypted: i=1; AJvYcCUdIPilRMBCwIGAytnYZCnyxR8a+T1khfqX1nZztN5Ii13wbxRGgAXQc3GjWWBc3HFnXBVh3loNoGI2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBk8TqFHGiJEDG+Lvulzy2Z1ByKNAnr5EYQhhNLVlki8+15bSo
+	3zOICm3YpVoanP8fevgx/2bVLRod+EGhxv7EkMa1KeiTRlHmeZ8mBjtZ4qm+mQ19JtwksN3lGGX
+	0NaToDevjuK7NQDck5OvFqehjP+fbOBIj4azPeidysQuO37IMA5KwF6LjLaQJpcMEWId/qhgWiI
+	SX4oXGInj6WkBHHLRS600Lu9kmrD0s1fcM7uAGGg==
+X-Gm-Gg: ASbGncssSMpcY31I4sGFdnM9FHu5J45KK/xqDu8vINMVV8QLdrchXABhnd7x6wn+3rp
+	fkKuowSs94abH/Qcs27CNsOG6OyKKWJaj8SlhQ6EYCq6Y1AYv0AUZIPVPv31jbfYeSUpL99aQVK
+	f0LS2Yey9D4yPV3MmULGpsY+RT82OFPwCkogj77ISV1YEKBkdqSl9UrqtW
+X-Received: by 2002:a17:903:120b:b0:295:987d:f7ef with SMTP id d9443c01a7336-2986a6b5698mr58952825ad.10.1763180510154;
+        Fri, 14 Nov 2025 20:21:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGpWOiKe/yoXVPzbbB8ra3b08yL+JrFximT86RMx9yWBQlaBgFV6FIkea9RBX9X7EoOn4xsE8DGGa3NwoDYNSY=
+X-Received: by 2002:a17:903:120b:b0:295:987d:f7ef with SMTP id
+ d9443c01a7336-2986a6b5698mr58952445ad.10.1763180509717; Fri, 14 Nov 2025
+ 20:21:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251113214540.2623070-1-elder@riscstar.com>
+In-Reply-To: <20251113214540.2623070-1-elder@riscstar.com>
+From: Jason Montleon <jmontleo@redhat.com>
+Date: Fri, 14 Nov 2025 23:21:38 -0500
+X-Gm-Features: AWmQ_bm8Az7GW4XBfoBLWD-9SdtXqiB6zadKcTvspIsW8QHKFXbXxVXEFbaU15U
+Message-ID: <CAJD_bP+AjhNCB6kCeKdnXERjP9j8dhbCejnS1OVmFf_VShti5Q@mail.gmail.com>
+Subject: Re: [PATCH v6 0/7] Introduce SpacemiT K1 PCIe phy and host controller
+To: Alex Elder <elder@riscstar.com>
+Cc: dlan@gentoo.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vkoul@kernel.org, kishon@kernel.org, bhelgaas@google.com, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
+	ziyao@disroot.org, aurelien@aurel32.net, johannes@erdfelt.com, 
+	mayank.rana@oss.qualcomm.com, qiang.yu@oss.qualcomm.com, 
+	shradha.t@samsung.com, inochiama@gmail.com, pjw@kernel.org, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+	p.zabel@pengutronix.de, christian.bruel@foss.st.com, 
+	thippeswamy.havalige@amd.com, krishna.chundru@oss.qualcomm.com, 
+	guodong@riscstar.com, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-phy@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support for the Raystar RFF500F-AWH-DNN 5.0" TFT 840x480 LVDS panel.
+On Thu, Nov 13, 2025 at 4:45=E2=80=AFPM Alex Elder <elder@riscstar.com> wro=
+te:
+>
+> This series introduces a PHY driver and a PCIe driver to support PCIe
+> on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
+> Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
+> PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
+> one PCIe lane, and the other two ports each have two lanes.  All PCIe
+> ports operate at 5 GT/second.
+>
+> The PCIe PHYs must be configured using a value that can only be
+> determined using the combo PHY, operating in PCIe mode.  To allow
+> that PHY to be used for USB, the needed calibration step is performed
+> by the PHY driver automatically at probe time.  Once this step is done,
+> the PHY can be used for either PCIe or USB.
+>
+> The driver supports 256 MSIs, and initially does not support PCI INTx
+> interrupts.  The hardware does not support MSI-X.
+>
+> Version 6 of this series addresses a few comments from Christophe
+> Jaillet, and improves a workaround that disables ASPM L1.  The two
+> people who had reported errors on earlier versions of this code have
+> confirmed their NVMe devices now work when configured with the default
+> RISC-V kernel configuration.
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+I successfully tested this patchset on a Banana Pi F3 and also a
+Milk-V M1 Jupiter by making the same additions to k1-milkv-jupiter.dts
+as were made to k1-bananapi-f3.dts.
+I no longer have problems with NVME devices like I did when I tried v3 and =
+v4.
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index da6b71b70a46..57c44b016957 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -4106,6 +4106,30 @@ static const struct panel_desc qishenglong_gopher2b_lcd = {
- 	.connector_type = DRM_MODE_CONNECTOR_DPI,
- };
- 
-+static const struct display_timing raystar_rff500f_awh_dnn_timing = {
-+	.pixelclock = { 23000000, 25000000, 27000000 },
-+	.hactive = { 800, 800, 800 },
-+	.hback_porch = { 4, 8, 48 },
-+	.hfront_porch = { 4, 8, 48 },
-+	.hsync_len = { 2, 4, 8 },
-+	.vactive = { 480, 480, 480 },
-+	.vback_porch = { 4, 8, 12 },
-+	.vfront_porch = { 4, 8, 12 },
-+	.vsync_len = { 2, 4, 8 },
-+};
-+
-+static const struct panel_desc raystar_rff500f_awh_dnn = {
-+	.timings = &raystar_rff500f_awh_dnn_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 108,
-+		.height = 65,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct display_timing rocktech_rk043fn48h_timing = {
- 	.pixelclock = { 6000000, 9000000, 12000000 },
- 	.hactive = { 480, 480, 480 },
-@@ -5378,6 +5402,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "qishenglong,gopher2b-lcd",
- 		.data = &qishenglong_gopher2b_lcd,
-+	}, {
-+		.compatible = "raystar,rff500f-awh-dnn",
-+		.data = &raystar_rff500f_awh_dnn,
- 	}, {
- 		.compatible = "rocktech,rk043fn48h",
- 		.data = &rocktech_rk043fn48h,
--- 
-2.34.1
+Tested-by: Jason Montleon <jmontleo@redhat.com>
 
 
