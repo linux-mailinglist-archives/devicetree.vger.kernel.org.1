@@ -1,162 +1,139 @@
-Return-Path: <devicetree+bounces-239036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02CEBC60B63
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 22:01:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A58A8C60BCC
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 22:46:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6CA114E4AF2
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 21:00:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 25A4B357EAD
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 21:46:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 811FA30CDB0;
-	Sat, 15 Nov 2025 20:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865D71DF73C;
+	Sat, 15 Nov 2025 21:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ilgjpPSU"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="BqUkofmW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A0A25B1C7;
-	Sat, 15 Nov 2025 20:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE3675809;
+	Sat, 15 Nov 2025 21:46:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763240327; cv=none; b=QTMJM8DCBz0MrFakILxxirSafwDsgKoGKWdoXfG2bX/xsp0LMn31yjCrfen55Bh3qXY5H/VB7MDT6g7cnvIxdn8S4PdpLyG0n43AEoKC7YPsfcXKjSBi8346eKMqyh63w8wf6FVCCUPS6YAWgLGlfgg+wH6A+vUGsWKxCKl41QY=
+	t=1763243201; cv=none; b=E6wo+/TQoDQt6ECS0UVmAzTFv4lRrdMhX1TKRDgZrEW9gsbTIOBMgleNA2VzSAtmJG0gLQHy4mVv0ziTUACHjUEiuVSM5Av3b23kcICvrYWB1d/IsBIFHvComt5It5ITjopFjNv75BrKn3gr3K254YeHvQqMfINeKT24NvD3AsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763240327; c=relaxed/simple;
-	bh=l3tEWhRqP4lk80hQap0vJX2rjpGnZh5LT9KfShignVs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XhnlLVcCSQRUOFx3JKSjB2DBnYkJuA2l5hR+qOWzAQLDKJqGt/fh+OCmIcavlid4/fxC7zbpr1DP8GegYKWy/P+QfJxYI6VQAdUb8XnTpH821BiztE7hzuOMrau8qqfbFq1rbahfJxB7QRsrizEmW3ezyfKZO88ojAPk3az/ZBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ilgjpPSU; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1763240313;
-	bh=l3tEWhRqP4lk80hQap0vJX2rjpGnZh5LT9KfShignVs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=ilgjpPSUMlDtGSpNEMVv3z06Af98BhAOQ0MswiSL4weOeq+OEsNFpxJcr1BcQXAzV
-	 jcGlkhNxeuslcmqHhWBUfjNOEvlBz9un+WqLaKJlwi39zf6uBQMQ1yFpa9N7y6/982
-	 LIfqQ8EPV9nOvXdJA6r5QbJhG6CBsDwcuqXRrZkkOk/9f/ex7ghOeTbpnc4Obp3Bhi
-	 JVuwMqqvSDTvL/C1RG9KBgu54buk+6HnkGCioHGqjeXGlJooCbthCFrszSYtAffEDV
-	 quXKbGwUj0NUYVSK0y71hnH7HkMOIq2b91zM5rL71rpqy+dnFy9I9VnIVKcEy3K8rk
-	 b9SRJW/XnAFNA==
-Received: from beast.luon.net (simons.connected.by.freedominter.net [45.83.240.172])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sjoerd)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 16F1F17E13DE;
-	Sat, 15 Nov 2025 21:58:33 +0100 (CET)
-Received: by beast.luon.net (Postfix, from userid 1000)
-	id 48258110527ED; Sat, 15 Nov 2025 21:58:32 +0100 (CET)
-From: Sjoerd Simons <sjoerd@collabora.com>
-Date: Sat, 15 Nov 2025 21:58:14 +0100
-Subject: [PATCH v4 11/11] arm64: dts: mediatek: mt7981b-openwrt-one: Enable
- wifi
+	s=arc-20240116; t=1763243201; c=relaxed/simple;
+	bh=DS7jnr7LQcK8wBxZTxE00YtiWyfNkU3wGfkFfgB9S2w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eKUrWEyRtYJfgG8Tl9P797rL14kTYM0cdbJomJl0Lsa8YxIIEN4DASEeHeQOkMlA8CqQAIlHg+pPSLNbX5qSBJRM4KNxfo1HtBnje4suYIljzmQPUeUX90J39oT5BwhZFiLFFWuCHLMrQcBY3bB8EtYKzpgpXG7p9uyUiwmkNtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=BqUkofmW; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=/whuAK3kZgLzmadCmNYa4Vh8RN8Z7SP1J4SvcMcHv2Q=; b=BqUkofmWLA/5XsBL3zG6W2CG9A
+	2w8hAJDCdvu170jvmqVCh3C7wzLAfwYwGsO7TlSjv4QZyuFKHdKFjBZt+zm705bTebsUzav8cupwK
+	AUWns5itZzZxccGXPwG6PL43hFGPs/s9dw/D5mG+LY37jHakJ8jsJNv+muqE7HUbJMJw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vKO60-00E7C7-S7; Sat, 15 Nov 2025 22:46:12 +0100
+Date: Sat, 15 Nov 2025 22:46:12 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"taoren@meta.com" <taoren@meta.com>
+Subject: Re: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support
+ for AST2600
+Message-ID: <041e23a2-67e6-4ebb-aee5-14400491f99c@lunn.ch>
+References: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
+ <20251110-rgmii_delay_2600-v4-4-5cad32c766f7@aspeedtech.com>
+ <68f10ee1-d4c8-4498-88b0-90c26d606466@lunn.ch>
+ <SEYPR06MB5134EBA2235B3D4BE39B19359DCCA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <3af52caa-88a7-4b88-bd92-fd47421cc81a@lunn.ch>
+ <SEYPR06MB51342977EC2246163D14BDC19DCDA@SEYPR06MB5134.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251115-openwrt-one-network-v4-11-48cbda2969ac@collabora.com>
-References: <20251115-openwrt-one-network-v4-0-48cbda2969ac@collabora.com>
-In-Reply-To: <20251115-openwrt-one-network-v4-0-48cbda2969ac@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Ryder Lee <ryder.lee@mediatek.com>, 
- Jianjun Wang <jianjun.wang@mediatek.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Lee Jones <lee@kernel.org>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org, 
- linux-phy@lists.infradead.org, netdev@vger.kernel.org, 
- Daniel Golle <daniel@makrotopia.org>, Bryan Hinton <bryan@bryanhinton.com>, 
- Sjoerd Simons <sjoerd@collabora.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEYPR06MB51342977EC2246163D14BDC19DCDA@SEYPR06MB5134.apcprd06.prod.outlook.com>
 
-Enable Dual-band WiFI 6 functionality on the Openwrt One
+> Based on the above information, I have attempted to outline my understanding.
+> 1. 'rgmii' + MAC delay:
+> Add warming, keep MAC delay and pass "rgmii-id" to PHY driver.
 
-Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
----
-V2 -> V3: replace MTK_DRIVE_4mA with direct value
-V1 -> V2: Update eeprom node label
----
- .../boot/dts/mediatek/mt7981b-openwrt-one.dts      | 24 ++++++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt7981b.dtsi          |  2 +-
- 2 files changed, 25 insertions(+), 1 deletion(-)
+Think about that. What delays do you get as a result?
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-index 2aea899006453..3de368c73bc81 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-@@ -180,6 +180,22 @@ conf-pd {
- 			pins = "SPI2_CLK", "SPI2_MOSI", "SPI2_MISO";
- 		};
- 	};
-+
-+	wifi_dbdc_pins: wifi-dbdc-pins {
-+		mux {
-+			function = "eth";
-+			groups = "wf0_mode1";
-+		};
-+
-+		conf {
-+			pins = "WF_HB1", "WF_HB2", "WF_HB3", "WF_HB4",
-+			       "WF_HB0", "WF_HB0_B", "WF_HB5", "WF_HB6",
-+			       "WF_HB7", "WF_HB8", "WF_HB9", "WF_HB10",
-+			       "WF_TOP_CLK", "WF_TOP_DATA", "WF_XO_REQ",
-+			       "WF_CBA_RESETB", "WF_DIG_RESETB";
-+			drive-strength = <4>;
-+		};
-+	};
- };
- 
- &pwm {
-@@ -257,6 +273,14 @@ &usb_phy {
- 	status = "okay";
- };
- 
-+&wifi {
-+	nvmem-cells = <&wifi_factory_calibration>;
-+	nvmem-cell-names = "eeprom";
-+	pinctrl-names = "dbdc";
-+	pinctrl-0 = <&wifi_dbdc_pins>;
-+	status = "okay";
-+};
-+
- &xhci {
- 	phys = <&u2port0 PHY_TYPE_USB2>;
- 	vusb33-supply = <&reg_3p3v>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-index a7be3670e0059..66d89495bac52 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-@@ -490,7 +490,7 @@ wo_ccif0: syscon@151a5000 {
- 			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		wifi@18000000 {
-+		wifi: wifi@18000000 {
- 			compatible = "mediatek,mt7981-wmac";
- 			reg = <0 0x18000000 0 0x1000000>,
- 			      <0 0x10003000 0 0x1000>,
+> 2. 'rgmii-id' + MAC delay:
+> disable MAC delay and pass "rgmii-id" to PHY driver
+> 
+> 3. 'rgmii-id' + no MAC delay:
+> Keep disabling MAC delay and pass "rgmii-id" to PHY driver
+> 
+> 4. 'rgmii-txid' or 'rgmii-rxid':
+> Keep original setting
 
--- 
-2.51.0
+> I have some idea to discuss with you.
+> 1. On 'rgmii', I want to add warming and directly disable MAC delay and pass 'rgmii-id' 
+> to PHY driver.
 
+Yep.
+
+> 
+> 2. On 'rgmii-id', ignore if enabling MAC delay, all disable MAC delay and pass ' rgmii-id'
+> to PHY driver.
+> 
+> 3. On 'rgmii-txid' or 'rgmii-rxid', keep the above item 4.
+> 
+> Actually, it's difficult for the driver to determine whether the MAC delay is enabled or not.
+> Our design doesn't use a single bit to indicate the delay state. Instead, the delay setting is 
+> derived from the user's configured delay value.
+
+But you can turn it back to ps. I would say, if it is > 1000, the
+intention is it provides the 2ns delay. If it is < 1000 it is just a
+minor tuning value because of bad board design.
+
+Do you have experience from the field, what do real boards use? Are
+they all inserting the same 2ns? Or is each customer tuning their
+bootloader to configure the hardware differently per board design?
+
+You might even need a more complex solution. If the bootloader is
+adding a delay between say 200ps and 1600ps, it suggests a poorly
+designed board, and the PHY adding 2ns is not going to work. There is
+a need for rx-internal-delay-ps or tx-internal-delay-ps in DT. You can
+give a warning, and indicate what values are needed, but leave the
+hardware alone. If the bootloader is setting the delay > 1600, passing
+_RGMII_ID to the PHY, and disabling MAC delays is likely to work, so
+you just need to warn about phy-mode being wrong. If the bootloader is
+inserting < 200ps, and phy-mode is rgmii-id, that is just fine
+tuning. Maybe suggest rx-internal-delay-ps or tx-internal-delay-ps be
+added in DT, but leave it alone.
+
+Whatever you do, you need a lot of comments in the code and the commit
+message to help developers understand why they are seeing warnings and
+what they need to do.
+
+	Andrew
 
