@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-238968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300B5C603F1
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 12:31:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BEB8C60415
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 12:36:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCD4F3BBE1B
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 11:31:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 92AC94E262B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 11:36:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A8A283FCE;
-	Sat, 15 Nov 2025 11:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD562877D6;
+	Sat, 15 Nov 2025 11:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uge+fHj4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="awKbxM2u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69ED1E9B22;
-	Sat, 15 Nov 2025 11:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDCA8E571;
+	Sat, 15 Nov 2025 11:36:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763206312; cv=none; b=EP+MGAta9uu0v08l4s8iPK4ruE00NW32IwU8FQgiRhlJqkM/7VHMeof0ovLJ+AmSiLZlcGkDUuXhRptck2MyYD7auK2EdkGAlNILjvKruQHn+fMBwo434UTjtBq2shN/G6IpUZ+9+hA+/H/pl+GfhwK7XovdKrYMphQ46V8ppws=
+	t=1763206581; cv=none; b=bsLQPi0Sm8Idn8mIxZCXHeIDIcAZALijgBdebEwsI9b1Jm3QDxNujZ6rXxFat18LMLQ5GmtDcX3BJ6GToHz0oKeGaDLKa7ZGuKrn98LCNZhHCsAMmDd5ANqEJ/Jgp+paLrwwa/SM8RPATAoZkVUpTh1jKFlwkikw3A9IyX8yTc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763206312; c=relaxed/simple;
-	bh=FPZ0kQZIwnebdbDeToX/YK8Bd3hA21dxcccPr3O5ccY=;
+	s=arc-20240116; t=1763206581; c=relaxed/simple;
+	bh=8CcSefcJ7/USdqH95R2OF8imCLNtg1E6NSwIBz3mQ+c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iFrXbFUKO7NfDGFxnZC2YFrpuQCQ7RTh9FG8Kl8EGW6bpwSPe4uJrhge0G7cR2YN0FIZ4h+yNUWAhJavuc13lFnn9ansQavZYwld5VHrZ7mHLi3wX0R/twVCAq0BvwnvJN+RRmNiTWOZ6iERBi0ED1d5N2VlO1UevdBYox5KSQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uge+fHj4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9200DC116B1;
-	Sat, 15 Nov 2025 11:31:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rIcYP7KJq2HBWSs30BZzFBSpEgw44qVJI1AvnKVqHng7qtsF6bOwoJZWIuW9OqDDuURZxCh5m1yV5cTT8XeBazTYy2Mt/pFnyh/II59qePNnlUyjsdE9IoT+rqaqR62XBIoz63HyHT2zTYKRKjc8KrrnWp7HVzcqLOA2Qkx8uJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=awKbxM2u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6707C4CEF8;
+	Sat, 15 Nov 2025 11:36:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763206312;
-	bh=FPZ0kQZIwnebdbDeToX/YK8Bd3hA21dxcccPr3O5ccY=;
+	s=k20201202; t=1763206580;
+	bh=8CcSefcJ7/USdqH95R2OF8imCLNtg1E6NSwIBz3mQ+c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Uge+fHj4kRQhX5pc86U5iaOgiFqgdDil5CdrG2swUUk+N3TjlB62JemPjth32HKot
-	 l4WuxNKEZUq2a653BbiSjQ8UkzHm0pGUKXkKL5h8S8gyCwCdpGa+jZqUixOjYUZAcr
-	 YfnLBTOfBHgL7Lcl/B5L7qlvxYPwVoz4n5kEhNhXEi5xTpIFmAcKc341m2o91z9JqR
-	 pVj2PUJHMr8+SjXqBIHUHS2mnD+3M7fdYgJj3/kw/jLSCJcD5jNTeBb24ifdmFADB3
-	 hwB9tozgjFyOKqZ5x1eBXFBqRWVRv+rDiSn82Ep5Z8EA7Ns6+WUMF4OWIj8EHWn6L0
-	 NbFLU8nvdoNGQ==
-Date: Sat, 15 Nov 2025 12:31:49 +0100
+	b=awKbxM2ukkwq+RWQp3uQ3uyUfoGEYP4KK7nWOi6IvaRY8Po6CNR+/7c5aJXM69b7E
+	 kUITrO0muJst2xm/9j3IDoHXRNd75Tr0+i74dqelW+U3/k9HVDIZM3eqgF0hiDlbSS
+	 pJFyCox60nlIAC/tZZm+v3uF/YKKJhQ7aow3ookIZ7EOmuBqyGeobLRtZZYLAO1qY8
+	 CZuMHgxlteQVPxw6gT71qAXhzY8nNZ+Z2REsdM7mq27nSyIDW/YegZRfBYyw/jP2UT
+	 +/cXVu3yWqzBkDyAE8/1FIVMn7b9T7q2tF/XPIHtCBJdW01qDBqH3F/TOloHNezKYj
+	 K837iELNiSjNA==
+Date: Sat, 15 Nov 2025 12:36:17 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-Subject: Re: [PATCH v4 05/16] dt-bindings: mfd: ROHM BD72720
-Message-ID: <20251115-wolverine-of-interesting-authority-faecde@kuoka>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
- <ec2cb44d9d00f5edaed2fbe17fd9ddbed914ff37.1763022807.git.mazziesaccount@gmail.com>
+To: Riccardo Mereu <r.mereu.kernel@arduino.cc>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org, linux@roeck-us.net, 
+	Jonathan.Cameron@huawei.com, wenswang@yeah.net, naresh.solanki@9elements.com, 
+	michal.simek@amd.com, nuno.sa@analog.com, chou.cosmo@gmail.com, 
+	grantpeltier93@gmail.com, eajames@linux.ibm.com, farouk.bouabid@cherry.de, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-spi@vger.kernel.org, m.facchin@arduino.cc, Riccardo Mereu <r.mereu@arduino.cc>
+Subject: Re: [PATCH v2 1/6] dt-bindings: vendor-prefixes: Add Arduino name
+Message-ID: <20251115-spiked-hypersonic-chamois-e94fee@kuoka>
+References: <20251114121853.16472-1-r.mereu@arduino.cc>
+ <20251114121853.16472-2-r.mereu@arduino.cc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,22 +63,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ec2cb44d9d00f5edaed2fbe17fd9ddbed914ff37.1763022807.git.mazziesaccount@gmail.com>
+In-Reply-To: <20251114121853.16472-2-r.mereu@arduino.cc>
 
-On Thu, Nov 13, 2025 at 10:52:35AM +0200, Matti Vaittinen wrote:
-> From: Matti Vaittinen <mazziesaccount@gmail.com>
+On Fri, Nov 14, 2025 at 01:18:48PM +0100, Riccardo Mereu wrote:
+> Add entry for Arduino Srl (https://arduino.cc)
 > 
-> The ROHM BD72720 is a power management IC integrating regulators, GPIOs,
-> charger, LEDs, RTC and a clock gate.
-> 
-> Add dt-binding doc for ROHM BD72720.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
-> ---
-> Revision history:
+> Signed-off-by: Riccardo Mereu <r.mereu@arduino.cc>
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+You have checkpatch warnings.
 
 Best regards,
 Krzysztof
