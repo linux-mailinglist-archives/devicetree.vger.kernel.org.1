@@ -1,142 +1,238 @@
-Return-Path: <devicetree+bounces-238982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8033CC60503
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 13:27:49 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E0D9C605DC
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 14:24:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CA6DB34C4C7
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 12:27:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7A17B4E90D6
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 13:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FBD2BE03B;
-	Sat, 15 Nov 2025 12:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bToiOi1m"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D182C15AC;
+	Sat, 15 Nov 2025 13:21:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE85E29DB88
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 12:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DEE2C11FA;
+	Sat, 15 Nov 2025 13:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763209630; cv=none; b=IK/4GBk5LQOXp59LoJfPgd7LuewSoagUsKcdubrf6KHnJGcZNla5/TyGHtBRYpLbP2BStgtSLnJ36hjIR3lo/QIphP/esFFV9IIDI8w+zIkWnoUSKpZ7N8zJQXY/dY7jgYj0HbKkIdF27UBa4ZpBYD2i6UZkZ5aNlWC/u3NTYeI=
+	t=1763212861; cv=none; b=pscPb8SEcng1A5PksV6d7lkHqMWf0AeQyC7a5ltwzpYGu444wumKO3zVVQ2t7FQjrY9heFsJNlOL3WXEmXGiJz9YVqFY0gidgq2dtATyI08RJduq5Bro7fdgAhiFW5re3On65lDWfqUZnCuZ+epDvPwDqh+qaRUGpQ+2z6OB0Vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763209630; c=relaxed/simple;
-	bh=hMxhQgfaXcjxbygFGVQ0UQRlniXEiIqQUMTF9Y5i0W0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lAIGgAeNOMwETkU2CqRwmzyrdRqA/kgeED8oOtJadJ9GinmnXX4mX9F9APY+i7gn5rB0PfL/wR1xDs6GuKf6G5STX4b4+LFzowxd4/2Hj8wh81W4W1u6U2KCoWaksLxr1kckmRicYSFFYNS76sXa4CvCaC8p0VFj8snJNMRZ8KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bToiOi1m; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-641977dc00fso4250191a12.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 04:27:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763209627; x=1763814427; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yKab9SNvJsCXNznHlhOt6I7to9eB9V57yTnbxT4ngYQ=;
-        b=bToiOi1mzbLzaQ591Ik8VPd0geTcBZefygtNBbOcouJeMyT7aOWkDt+uk1DX7ODsnV
-         el4IViU8rjth/Q3/L/ZD72tBec0IAXY/KbA6gem1uiIBjj2S/9xv7V0zoaeO5lkeYnb5
-         n766w9W4pR9xuAnp0+3Y5menJQuUpCItN98h4BQNHnG2PDUokw6nV1aZQ0yJjqpqRkrC
-         NfKOI9FIsZ9S47q0FIm1vQo/EZQmHaXc6lwZ9mSPJbdfbpuveLXVM4nf/tCae2eHLlL3
-         jO/xu1phMkqTeG0L9bNPtpFB/F72CUexbBa81pZtTG8DMdUM+b8tBYIzC0AzBEKRO8zW
-         LWHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763209627; x=1763814427;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yKab9SNvJsCXNznHlhOt6I7to9eB9V57yTnbxT4ngYQ=;
-        b=IgBVmDDB8PSzS0uxKfnLVcQ7sIiCGxc4L+YgwBge+ncMqZT6dBZhAMrt5IkrP//JK7
-         W5XVmvof3C12CqxKCTtB3zMB0ioGy26nKYmLxqR+4AxPYrecFwkyDkrsGVxRjAt4bxGC
-         MUHsdAx/P7ADBi9DGCYagaWt/3byfbZydhiZa2l5gZbEJtwfw3t00fFSd+ZkEvw55xvn
-         oC419fUWBk9dGW2JuxbHACuQgELNirtExqbMfXPMsqHCtaqcJ+BT4pBuSYxAEOS+1LXC
-         Wdf1wr9/CWfQkjgAyFKBtlvGAmZ5IKcELUee7rwrhp8Nt0Qpv+AtidMQ2ha3/Wcu/4ad
-         kpjg==
-X-Forwarded-Encrypted: i=1; AJvYcCU3lGOxivT1BEVqKZUkFTzw7zXNtq8LhilFOt0Kk5K2RUEVgK2zQ4bg8D6STwt/V2o2PvHTKMCAsju2@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIIjniU7jwMr8at6XlVRYf2G1LefD+cC7hXuB713V0EkCmpAD/
-	TPuATU372sjol0vBuws8d9nCusDdjMYxh2za0jQpB0VRo7Bj5DRrdMOF
-X-Gm-Gg: ASbGnct/ElEDA07uk7/6lv+23nXm6RNxp5tcFhjXbOzsj4ldnR1z8qRSvBrewZ53ClD
-	3DKUbEj00CX2Xuu4YgCN1vYu3CkRGeIfTxKkGLK25b74lWVjJV0H9R/Fr84AmDWeGjQQBTFvAKM
-	leO+it0V4sD3Uq38S/g6/XaWGVZD5zit8g7D5c+yLKSdyPIXkd1BBVPxA+hWZ3SVIoGf/TnnpUM
-	RwG4UDs+aoGnAvyvwVR+1omZ5FbuQO3nMfSXudt2WaiS05otuQpo3ozIJ3xDR8oO2UtMabFuord
-	pcFlg5tGJ3mgNLUn+/aoRkZobyKCm1Kudk73DrZzsVQ9bglrL7VmGsJsxyaIK4HsHRLaiVSlNsR
-	565+MXqoTGvKWiAIzFgjx8GpraHQUATQwaT1xODJtYPKL3uCTPginmdyX7e+XwVuWBwm0snbGEI
-	t4OY5d
-X-Google-Smtp-Source: AGHT+IF2JwrT6FT2lVffcIHfGBSD7PWBcT95KtlFq0fWWx6rIvLpDEfQFdBcc0J++dKsEsB4yS6iyg==
-X-Received: by 2002:a05:6402:5193:b0:641:8137:e1c8 with SMTP id 4fb4d7f45d1cf-64350eb8cd8mr6145912a12.34.1763209626880;
-        Sat, 15 Nov 2025 04:27:06 -0800 (PST)
-Received: from [192.168.0.188] ([88.223.153.72])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6433a4b2155sm5627042a12.29.2025.11.15.04.27.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Nov 2025 04:27:06 -0800 (PST)
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Date: Sat, 15 Nov 2025 14:26:44 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: msm8939-asus-z00t: add hall sensor
+	s=arc-20240116; t=1763212861; c=relaxed/simple;
+	bh=4s7nVQlxdDCMUraekTHf79alBAvvx1I64y5IhZZARAg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gIPVRAtZ0iuYfPKHG9rdqq4uHvPvgpGTy4DWPEz6pOfHj7HHBVISyqnYNYY25ttdi53mPzjLhT14on0/ML2Ej7PThZX+zKjMinuIv+G9E6a6i4sC8c67iTv4nqFXeHq6d8FEIhTUiYf7qAurxYnz9fsx3sCJMTN7aOqqTGznE/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
+Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
+	by localhost (Postfix) with ESMTP id 4d7v6G0cFvz9sSy;
+	Sat, 15 Nov 2025 13:52:06 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id PGr5geNtPDyH; Sat, 15 Nov 2025 13:52:05 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4d7v6F6R1mz9sSv;
+	Sat, 15 Nov 2025 13:52:05 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id BE1708B770;
+	Sat, 15 Nov 2025 13:52:05 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+	with ESMTP id OkSLQJsfn8js; Sat, 15 Nov 2025 13:52:05 +0100 (CET)
+Received: from [192.168.235.99] (unknown [192.168.235.99])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 0FFDE8B76E;
+	Sat, 15 Nov 2025 13:52:03 +0100 (CET)
+Message-ID: <95bb5163-a9f0-4d70-b647-a069483b1168@csgroup.eu>
+Date: Sat, 15 Nov 2025 13:52:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251115-battery-hall-v1-2-1586283d17c7@gmail.com>
-References: <20251115-battery-hall-v1-0-1586283d17c7@gmail.com>
-In-Reply-To: <20251115-battery-hall-v1-0-1586283d17c7@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- Erikas Bitovtas <xerikasxx@gmail.com>
-X-Mailer: b4 0.14.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v16 01/15] dt-bindings: net: Introduce the
+ ethernet-connector description
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
+ Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
+ Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
+ Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+ Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Romain Gantois <romain.gantois@bootlin.com>,
+ Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+References: <20251113081418.180557-1-maxime.chevallier@bootlin.com>
+ <20251113081418.180557-2-maxime.chevallier@bootlin.com>
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+Content-Language: fr-FR
+In-Reply-To: <20251113081418.180557-2-maxime.chevallier@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-This device uses ANPEC APX9131 hall sensor. It is a basic GPIO hall
-sensor for which a generic "gpio-keys" device tree node configuration
-suffices.
 
-Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
----
- arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-index b58f0a04abfd..60a714a62a2c 100644
---- a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-@@ -62,6 +62,15 @@ button-volume-down {
- 			linux,code = <KEY_VOLUMEDOWN>;
- 			debounce-interval = <15>;
- 		};
-+
-+		event-hall-sensor {
-+			label = "Hall Effect Sensor";
-+			gpios = <&tlmm 108 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			linux,can-disable;
-+			debounce-interval = <150>;
-+		};
- 	};
- 
- 	reg_sd_vmmc: regulator-sdcard-vmmc {
-@@ -259,7 +268,7 @@ sd_vmmc_en_default: sd-vmmc-en-default-state {
- 	};
- 
- 	gpio_keys_default: gpio-keys-default-state {
--		pins = "gpio107", "gpio117";
-+		pins = "gpio107", "gpio108", "gpio117";
- 		function = "gpio";
- 		drive-strength = <2>;
- 		bias-pull-up;
+Le 13/11/2025 à 09:14, Maxime Chevallier a écrit :
+> The ability to describe the physical ports of Ethernet devices is useful
+> to describe multi-port devices, as well as to remove any ambiguity with
+> regard to the nature of the port.
+> 
+> Moreover, describing ports allows for a better description of features
+> that are tied to connectors, such as PoE through the PSE-PD devices.
+> 
+> Introduce a binding to allow describing the ports, for now with 2
+> attributes :
+> 
+>   - The number of pairs, which is a quite generic property that allows
+>     differentating between multiple similar technologies such as BaseT1
+>     and "regular" BaseT (which usually means BaseT4).
+> 
+>   - The media that can be used on that port, such as BaseT for Twisted
+>     Copper, BaseC for coax copper, BaseS/L for Fiber, BaseK for backplane
+>     ethernet, etc. This allows defining the nature of the port, and
+>     therefore avoids the need for vendor-specific properties such as
+>     "micrel,fiber-mode" or "ti,fiber-mode".
+> 
+> The port description lives in its own file, as it is intended in the
+> future to allow describing the ports for phy-less devices.
+> 
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
--- 
-2.51.2
+Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+
+> ---
+>   .../bindings/net/ethernet-connector.yaml      | 57 +++++++++++++++++++
+>   .../devicetree/bindings/net/ethernet-phy.yaml | 18 ++++++
+>   MAINTAINERS                                   |  1 +
+>   3 files changed, 76 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/net/ethernet-connector.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-connector.yaml b/Documentation/devicetree/bindings/net/ethernet-connector.yaml
+> new file mode 100644
+> index 000000000000..2ccac24bd8d6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/ethernet-connector.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/ethernet-connector.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic Ethernet Connector
+> +
+> +maintainers:
+> +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
+> +
+> +description:
+> +  An Ethernet Connector represents the output of a network component such as
+> +  a PHY, an Ethernet controller with no PHY, or an SFP module.
+> +
+> +properties:
+> +
+> +  pairs:
+> +    description:
+> +      Defines the number of BaseT pairs that are used on the connector.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4]
+> +
+> +  media:
+> +    description:
+> +      The mediums, as defined in 802.3, that can be used on the port.
+> +    enum:
+> +      - BaseT
+> +      - BaseK
+> +      - BaseS
+> +      - BaseC
+> +      - BaseL
+> +      - BaseD
+> +      - BaseE
+> +      - BaseF
+> +      - BaseV
+> +      - BaseMLD
+> +
+> +required:
+> +  - media
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        media:
+> +          contains:
+> +            const: BaseT
+> +    then:
+> +      required:
+> +        - pairs
+> +    else:
+> +      properties:
+> +        pairs: false
+> +
+> +additionalProperties: true
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index bb4c49fc5fd8..58634fee9fc4 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -281,6 +281,17 @@ properties:
+>   
+>       additionalProperties: false
+>   
+> +  mdi:
+> +    type: object
+> +
+> +    patternProperties:
+> +      '^connector-[0-9]+$':
+> +        $ref: /schemas/net/ethernet-connector.yaml#
+> +
+> +        unevaluatedProperties: false
+> +
+> +    additionalProperties: false
+> +
+>   required:
+>     - reg
+>   
+> @@ -317,5 +328,12 @@ examples:
+>                       default-state = "keep";
+>                   };
+>               };
+> +            /* Fast Ethernet port, with only 2 pairs wired */
+> +            mdi {
+> +                connector-0 {
+> +                    pairs = <2>;
+> +                    media = "BaseT";
+> +                };
+> +            };
+>           };
+>       };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0dc4aa37d903..92d6309a968d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9277,6 +9277,7 @@ R:	Russell King <linux@armlinux.org.uk>
+>   L:	netdev@vger.kernel.org
+>   S:	Maintained
+>   F:	Documentation/ABI/testing/sysfs-class-net-phydev
+> +F:	Documentation/devicetree/bindings/net/ethernet-connector.yaml
+>   F:	Documentation/devicetree/bindings/net/ethernet-phy.yaml
+>   F:	Documentation/devicetree/bindings/net/mdio*
+>   F:	Documentation/devicetree/bindings/net/qca,ar803x.yaml
 
 
