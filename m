@@ -1,112 +1,150 @@
-Return-Path: <devicetree+bounces-238923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D87EEC5FC76
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 01:55:29 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A734DC5FC97
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 01:58:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A367B4EBACD
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 00:53:40 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F2771357A3D
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 00:58:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4E117C220;
-	Sat, 15 Nov 2025 00:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62B119755B;
+	Sat, 15 Nov 2025 00:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="j7pniwSX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kOhzwIcJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A54E4A21;
-	Sat, 15 Nov 2025 00:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 574A143AA4
+	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 00:58:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763168004; cv=none; b=U60Pk3mLOY5GcMPFstXo4ThtT+eGshjkgeg5WeYmG0Orto+mYZPnnhtwpfCicTC1xWZLkpcFdK4ohYSIi9lqK9DYDnXFNaJCTT4DF82IJCtJZ6aacF6Y2YA1Beq8SqHkxvIKeIe3nwYcD2axvZseqM0CDdtmJIJrjjSo8xowCNo=
+	t=1763168290; cv=none; b=ZHDMoJUdLb1hpjQwqE0CCrg1EzRlmbXZouelab7YPnCCPW29t/wy7/1RdqcFDdI5cAi3fzrUsv0Os+IZhuoO0A9AC+MXoR32iIhyq1trC/BPeRmEvc7zOXiiTQhPvrJaT/DH5H8Kznw7Ov+mUv1b2lverz6SplQtUMMVCmLbC6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763168004; c=relaxed/simple;
-	bh=+7D4sdt2lDy9PSQIs9ayqJ+DcknK+Esru/4HkDRh7g0=;
-	h=From:Content-Type:Date:Cc:To:MIME-Version:Message-ID:Subject; b=cpptemibbVRYZOyMPNnjZyNJxbtQ9YszL4ylvmqbuO0RvjMIwkPXMpToXu9DHTA2JoEUeEJ3baKBwEMtUdsewuKffSEwt6MgNdUSZ++xEXmoHo19RNXqJnIYFwS0pZVZzJczmI5rnXJ4IMzE1XlDCnOR53xzuhrOpLi4SIWGx0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=j7pniwSX; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id B458140CFC;
-	Sat, 15 Nov 2025 01:53:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1763168000; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=pTTod1rI5CQ232hgj1u76/djAv0gQLeHyDWpYjiwYwQ=;
-	b=j7pniwSXR9lWzrkFPcwtfogT3myBfqLs8ynj6vtBu4Kd1BqmyzzR7oK+zIfpaUwoHlriXI
-	mPLUQHqNQWLolAVph5bkDqnkLDusZ5vdu1tBdv3+6NNloQZcsm15sSOXXrSIa0yLtFNyu7
-	N3RHOkgf7onfhsApLSMDCloBbvcUFmjqqWf8vlZn+BLNJhIJWNjMMqsnKnBt/fAWk9C8DR
-	Kw1la4bjOmcutP9FH4wwT9ETrXGGkarhRxGEmSw6F9TIMeGev02FbtVOb19Ad7QyPxY6Ms
-	OxLsaungRSe3sdBvuegxvw+dleDe24MzISvMJUs6Sraqeq3SAb3X0USVTph3Iw==
-From: "Dragan Simic" <dsimic@manjaro.org>
-Content-Type: text/plain; charset="utf-8"
-Date: Sat, 15 Nov 2025 01:53:19 +0100
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-To: michael.opdenacker@rootcommit.com
+	s=arc-20240116; t=1763168290; c=relaxed/simple;
+	bh=OhgMBzBFmABnP0/gJkc/xt26r8btIyn0XQcPsvh2ptc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HrZ6dr7Uv+xsfU1h686TsDQrouFM0XKTmzGd9bhe0ZEmr7ajiElYEvmLUcAVXwB38r6VrnZFks2V+I/l+FPmqn3E7zUkXJkyarwnNJz+sLfUzIToFrPJwPlE87aWaJUIA2USJ7Hvjs8tBfACQeG74WV4JtdrPURfaunHMQwA/oA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kOhzwIcJ; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-55b219b2242so528151e0c.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 16:58:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763168287; x=1763773087; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+mEO8hF75rBOxmwN/ro6wDW7KvehJwNDYbmq5YFbJcw=;
+        b=kOhzwIcJf2SyKsHF+ZpJ1DSg2DqwE0vc2ldPdwdjX5jkdjEMR6kk1TpF+HYU42nDMW
+         LaHNRUGm3dhsC0GiuFec0vyocTaWSzennMxMrcBpUeczZJDJuJLoNEfpowBNTr8X2YYH
+         XTCidp/OjmjRjwCJjqC47RzpaHLIIADd8T/9MO7C8MmfWQSe2OhafSg5ji6f9BfQxzk6
+         ePjRTkvTsqPvzPmydEeDzlnvLKHBawQJLPuk8fPHB5ERkaSAW+mL3DZsUKSXDeHdeiYB
+         g4EGvaAEsg3trY99cQ0f64oPf6bdPnyYmP76nlj4oBJn9zowTq5mVjqLBGZee7t04ZgY
+         0vkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763168287; x=1763773087;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=+mEO8hF75rBOxmwN/ro6wDW7KvehJwNDYbmq5YFbJcw=;
+        b=OYVYffVTeddaP/HgTHD4+CYCJrP36lzIZUrz+4Na3wtFShjKYQV+0MCRkjZ9Np5jyi
+         pErki/q/T5feaosQIql5CAfRaBHhuXj5J4dwvVvBDCAOyR3AsjnHhpvXIy2dGUEZxtPO
+         C4wqDTTYAkj2a6UHt2/GaLrt7OyrKSEceDWdkLN7e4r8tW+AFM6SJEzHteHvEgYu7EcN
+         BYBKKxBx97Qa3jyILu3voPfwBbP9LfGwoeIVckEftc3D8As5o4QOTTwnCz94MeS8jZpT
+         ywX00KCnxHvy/RvN6Ybe9rzyog5iwUrShFp5KYeFKohVaRI/VNjf0JmR2MuQzte9VIFO
+         5yYA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3/lCRcE4tIRoNQM8xByRp0yB6LaYTLLF6wKX/ev2txk4AQq4vGOkZ/7CYVCoJScYR4M89H8zMLIRN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzYwUMkCjqo7L1pAI0yUOtAdP5r7zRBbiUD3zFuViIVYv0/kSj
+	c+umePWH46U5KBHuLtyPi9m+LxgEk3NvSNpQYtNTRLmoSEBGx+oKETOZY+hX45H0z8tApEa/Shl
+	kVnOtZI5vVmoRSVab9xLQCaqcRqv1zY4=
+X-Gm-Gg: ASbGncvQcq+cHezG2FRfv+boU4jg93Yixc+tVmqxhTOn+9fMFuxUOcv/mOl/RGEvD6p
+	RyfojVjtnixsk9QGtggOv3lCRLhSf8tV/KdGbyg8dcPDGfBF0XyQauVP0/V4LoNBjgkAwqGvH/x
+	gHEdrF/7z0kGv0+nN5HRrRjTw9KpEAkANfbL6aBZrPgaTmdJQeeKaEXdVCRbDs/MsdwUXoIV96E
+	9tzG3XMEsnxkdmj5poGeVzjzrJtDz25eA4Cqe0WFUtHBNwHCTMbDdt0twHdYFhAGxeRjW8d
+X-Google-Smtp-Source: AGHT+IGn0I+Eso4Cl7gDk3Yoo5jaaOT0AQELEpomQjJxykud0vEW2B5emaAfM8xWxt/7WFzYwb97Hw1Jyv5VyD4metQ=
+X-Received: by 2002:a05:6122:370d:b0:559:14e2:9fc7 with SMTP id
+ 71dfb90a1353d-55b1bbdba89mr2374742e0c.0.1763168287188; Fri, 14 Nov 2025
+ 16:58:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <12d6e151-dfa0-ca0a-5888-ddffb2dbdec7@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v2 2/2] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= Add Asus Tinker Board 3 and 3S device tree
-User-Agent: SOGoMail 5.12.3
+References: <20251108233200.2068334-1-alex.t.tran@gmail.com> <20251109-hospitable-poised-scorpion-bdf833@kuoka>
+In-Reply-To: <20251109-hospitable-poised-scorpion-bdf833@kuoka>
+From: Alex Tran <alex.t.tran@gmail.com>
+Date: Fri, 14 Nov 2025 16:57:56 -0800
+X-Gm-Features: AWmQ_bnUGRKNx4anGJI7E15WQQM6fLUvzVkG8pZZsuzwuehenpZli6XJcrmAT94
+Message-ID: <CA+hkOd5iAwbKQoNM_qhNc1PpNHw0we3S0J1rFG=W05RnSHR3Bw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] dt-bindings: media: i2c: et8ek8: document missing
+ crc as optional property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Hans Verkuil <hverkuil+cisco@kernel.org>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
 
-Hello Michael,
+On Sun, Nov 9, 2025 at 9:18=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On Sat, Nov 08, 2025 at 03:32:00PM -0800, Alex Tran wrote:
+> > Add the optional crc property to the endpoint node for the et8ek8 senso=
+r.
+> > This property enables CRC checksums for the sensor bus and was added to
+> > match the new driver support for reading it from the device tree.
+>
+> We do not add bindings because you want this in the driver. Please
+> describe the hardware.
+>
+> >
+> > Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
+>
+> Your patchser has broken threading. There is no patch #1.
+>
+> > ---
+> >  .../devicetree/bindings/media/i2c/toshiba,et8ek8.txt        | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8=
+.txt b/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.txt
+> > index 8d8e40c56..5fd30f59b 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.txt
+> > +++ b/Documentation/devicetree/bindings/media/i2c/toshiba,et8ek8.txt
+> > @@ -30,6 +30,12 @@ Endpoint node mandatory properties
+> >  - remote-endpoint: A phandle to the bus receiver's endpoint node.
+> >
+> >
+> > +Endpoint node optional properties
+> > +---------------------------------
+> > +
+> > +- crc: Enable CRC checksums.
+>
+> Looks like SW property, so not really suitable for bindings.
+>
+> Also, no changes to TXT bindings are accepted, so first this would have
+> to be converted to DT schema.
+>
+> Best regards,
+> Krzysztof
+>
+Thanks for the review. The et8ek8 sensor has hardware support for CRC
+checksums on CCP2.
+However, the receiver must also support CRC for this to work.
+Whether CRC should be enabled depends on the specific board design and rece=
+iver.
+Regarding the conversion to a DT schema, I'll follow up with a patch
+series v2 that fixes the broken threading and converts the binding to
+a YAML format.
 
-Thanks for the v2!  Please, see one nitpick below.
-
-On Friday, November 14, 2025 16:46 CET, michael.opdenacker@rootcommit.c=
-om wrote:
-> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-
-I'm sorry for not mentioning it in my earlier responses, but this
-line is redundant, because it duplicates the From value found in
-the actual email message.
-
-> Add initial device tree support for Asus Tinker Board 3 [1] and 3S [2=
-],
-> which are SBCs based on the Rockchip 3566 SoC.
->=20
-> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
-> and a "mask ROM" DIP switch (to mask the eMMC and enter "Mask ROM"
-> mode for recovery) to the "3" version.
->=20
-> This adds support for:
-> - Debug UART (/dev/ttyS2)
-> - SD card (/dev/mmcblk1)
-> - eMMC (/dev/mmcblk0, only on Tinker Board 3S)
-> - I2C:
->   - i2c0 (internal bus with a PMIC and regulators)
->   - i2c2 (internal bus with an at24 eeprom and an RTC device)
-> - USB 2.0 ports
-> - 2 GPIO LEDS
->=20
-> [1] https://tinker-board.asus.com/series/tinker-board-3.html
-> [2] https://tinker-board.asus.com/series/tinker-board-3s.html
->=20
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
->  .../dts/rockchip/rk3566-tinker-board-3.dts    |  14 +
->  .../dts/rockchip/rk3566-tinker-board-3.dtsi   | 280 ++++++++++++++++=
-++
->  .../dts/rockchip/rk3566-tinker-board-3s.dts   |  30 ++
->  4 files changed, 326 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-tinker-board-=
-3.dts
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-tinker-board-=
-3.dtsi
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-tinker-board-=
-3s.dts
-
-[snip]
-
-
+Best,
+--
+Alex Tran
 
