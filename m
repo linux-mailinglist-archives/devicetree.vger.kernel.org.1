@@ -1,179 +1,135 @@
-Return-Path: <devicetree+bounces-238920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-238917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF686C5FBB6
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 01:21:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1099DC5FBA3
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 01:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 974004E1C53
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 00:21:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCB8E3BCF66
+	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 00:16:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 078A063B9;
-	Sat, 15 Nov 2025 00:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2543B38DD8;
+	Sat, 15 Nov 2025 00:16:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ATeRIamP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ev2RUkFQ"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="X+55deDZ";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="X+55deDZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1453208
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 00:20:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 380EE22339;
+	Sat, 15 Nov 2025 00:16:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763166060; cv=none; b=gvuXw7GeOjMXglQTidkPKrUePO9uEy9WVDMpVFE7i9itf1MODGkKLVqxy7sgd2mxfr/nuUOnGHEOyGdTuSgB2M8yjhm6xTOytwKx3AKP3+OVWZwZIX9L0HdA2lWErlIoijglLKdz62F1j7+oqhuci5SeUDuVh8hezFf7nyRIGEE=
+	t=1763165774; cv=none; b=Vx/utm9rdFh/RZ/wjMx8gKwGtqpZdScX807hAdtQ476J4jvlE/xRG/nErYfPoviZED+mzkT+irch7Q4ErE76739KvkjbLlUuyEM1SThd/cT8jSyqZGxGYIuMqB9S12vExTR/LV55+06vSnxDfYMsRa1QGR/Kfc9c5jSOzGV7ynQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763166060; c=relaxed/simple;
-	bh=qGMme8u8wX8pGfAq93SN47rRB3hlWOacyKSDU6WEoEo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fIl3v2yfKuzu+jsmC8u97V/GjiQ1B+T7HnFagylohhUyE18/TTsCGdHQOiOFOczagPp9i5g89HT0kVbCbzowgtyGZp5huc8vcXLROc99BIt7E8d3cI1kKa6yasi2o8LhQ41LDAsIwlTwpqR8+ai6VR7VJvfdbj41MCZ5+/11Okw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ATeRIamP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ev2RUkFQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AEIPtD2438546
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 00:20:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=gOgdIilgQ+nfRmYrWcdIS21m
-	8eXNtlIyO1doFbjh13A=; b=ATeRIamPfyxIrCw1BKTUKL9WLZB9gLHQEvkj2Jq/
-	/y9RFmy2GiAlw9frZjFMVR+SKc7m26geR+jstquk1rXwu9Z7/RQwhQ1gxmNarE19
-	+IVcpVnHTsuG8Y4ykhMH6YeL65hVtllkEKNzd6Saa4ItFEaoRvFk651UtALLN1EB
-	k23MCAIZSc0eJ03FSbr4e+THsgdIhTt60xUsk9tdpyFvDZBujuqsJk3JCeyrYeyQ
-	gahj5jSnnbXAcFOb0vf2oG66S66wpXkw8rkYT8A4flAl4Qubzl5GAU/nZsu8tVr+
-	uzMogE1m4tPKtlJJyUo6ymNyJmAIUeodvfcXsew6A9bowg==
-Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com [209.85.167.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ae7cv19yg-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 00:20:57 +0000 (GMT)
-Received: by mail-oi1-f197.google.com with SMTP id 5614622812f47-44da5f8ad64so6020298b6e.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Nov 2025 16:20:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763166056; x=1763770856; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gOgdIilgQ+nfRmYrWcdIS21m8eXNtlIyO1doFbjh13A=;
-        b=ev2RUkFQ/0Io0BeWHzkI/fimbwgAeNRrDDqrviQmvzOwvfVTEg9CgcGcY2h7h7XV59
-         jVDt9MdJVl8Qwn/Gy0xTRC5w8x4e+DTQXUtEvyvj84GGVNbbQFeYIIytxLybh1z+evBJ
-         BXfpK7LDXnaSqKdslMeB15oxmp6adRoev092UqApFICZsTCVoRcXY/xOOkydnT5jAn5o
-         NWTtHZi6W1hktqqzSQTnYNbIozGXMCF9AMRNmTNSGEafzm1Gtla4i0RWXNMZ8SQi22he
-         04YDEw/g0Kwq1FtMBTboHtOqh0Iwb7dwZB8ym26dJrD42/XkL4efIpfuOfoFmE4NAvTz
-         SUaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763166056; x=1763770856;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gOgdIilgQ+nfRmYrWcdIS21m8eXNtlIyO1doFbjh13A=;
-        b=OIa69uMUNlN0ydraQtBQdw21eet20TLjvt9/JRSBW33Bkhw4DUOtDBUbFbDYOPrtRz
-         q0N8y24rThiQT/SY0loT/M8VUKllOC2IP/B4AjvHwqKybOPzWSx6r4qZYHDK4+zJzB0H
-         QTXoydL2fD9+oiuHF0RndROhQYJ0nDC43d/Yf0VjXNKMxCquHPQADXiobDwImXncLKly
-         wX4/IDRh8Kj0sz06KVDEatQBqJRQrceecpHGYku20Kw5oQLwWd1Rg59QR5Fv1sQ8HUJg
-         4yIBuVpNGSKRnbWD4NnbLvm8g8YGyZL67SqrTHUP/kePK4jf2bSrKIaLvGRWRexNXQYW
-         Cq7g==
-X-Forwarded-Encrypted: i=1; AJvYcCW68VXtss7ckSfyp/qCIj5N0UFJDjGEvCm+sgQ/l7QrIQUE/kLUX5FW1pYKwYE6RwLtgC4Fb8Gaq4s/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbaBnKdS3HWCXCS2CrBF1LFSQiOCLeQ3sZ4d+m/WXqqSftCfVt
-	1he+7SnqdAvxn8jV5RRUUU+K8nu8a5wzp5KuS8YS2eAgYYjIs21lk6zD0Qjj8EaflNUFePYp24h
-	2CxwBgB3hTj4ZPiTYkDk12akEMbGVdevJ09CHEOY0u8+canCaw1m22rbME4xWIVqmZv1EXCyG+U
-	wZOSQZpPogrLaMi3rneN6i0kf8kUXSIvZixRvZ72g=
-X-Gm-Gg: ASbGnctlsID48QCthp2PuBI0OKDRuitkZEO4BQPEqCEhcuWgrMrAns0515VapCK2To1
-	GY7iCiEiXH3EkV3Ea7bAloYnXdbyXxqHftb2b2icVlgATtHkBWx24SZgdLt+42SN2mcJbFa4lUi
-	8SRePieS9qzT0l9c+dhfsxVxy/rBCwDhhPUH2dfb1wuXwTo/zkpkhUHODftJVyGoGl/CoZaLhoU
-	1KYGIedpbhZPwo=
-X-Received: by 2002:a17:902:e80a:b0:266:57f7:25f5 with SMTP id d9443c01a7336-2985a4ccc61mr111947425ad.7.1763165367415;
-        Fri, 14 Nov 2025 16:09:27 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IERwjP64XzxGXqvqAWgezsPlvLeFT/ysTVFkaeqpGhW5zC2uwvYDq9eVbUobF4wmdU8sw4YCi/rbwUMPvccWTw=
-X-Received: by 2002:a17:902:e80a:b0:266:57f7:25f5 with SMTP id
- d9443c01a7336-2985a4ccc61mr111947135ad.7.1763165366941; Fri, 14 Nov 2025
- 16:09:26 -0800 (PST)
+	s=arc-20240116; t=1763165774; c=relaxed/simple;
+	bh=U3Vdu/lF1NOoptVfbcwB+PehQp1h+KtWDf1t6cJ2e+4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o6ve2wxIrPa4AJe8U3NPQcqjSV7S00t27AfoFG8FPelhhN78OHthVGa3zpHcLXJstjBwJ8zlZ1XvlpKCHvIBWgf7xYbHj3NurVOgCC4E938ukQFYTxRe5FMCpbQIID1OFVCwXC6N0MURGO92FN+XV4V/18Muq7jdW1vV4JJ6IoQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=X+55deDZ; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=X+55deDZ; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1763165765; bh=U3Vdu/lF1NOoptVfbcwB+PehQp1h+KtWDf1t6cJ2e+4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X+55deDZLoypUbDpIedjmcAHsL/d/z7aadsLHsHez+sMSuE6u0RpPhbdnUA9jEWvk
+	 hdqcqT412weiG7qMZSCuZwbiJLgER0sqJFb9jWHyCaLdgFLByAetnKMr4BcLRMgkTB
+	 3axPu9zIi2ado43HQ2ppXo5Yt6CS/Vazq2mgNMG1crsQBGt9UMSU6gek15fCNBG2C2
+	 ZsIsAjcre0pNVHTmkv4R6AA0AAtqf3ualrrw1ddqsQnlxx9NXTosjGQhFlQLKYbkHY
+	 ijSfmZNVoNhdrYolgIJwbKfeJNc82CiKcGitRGz2GIidK5z3cpbEbhCAYK3dzbskU1
+	 wOayMIIzhN+7g==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id 26F363E101C;
+	Sat, 15 Nov 2025 00:16:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1763165765; bh=U3Vdu/lF1NOoptVfbcwB+PehQp1h+KtWDf1t6cJ2e+4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X+55deDZLoypUbDpIedjmcAHsL/d/z7aadsLHsHez+sMSuE6u0RpPhbdnUA9jEWvk
+	 hdqcqT412weiG7qMZSCuZwbiJLgER0sqJFb9jWHyCaLdgFLByAetnKMr4BcLRMgkTB
+	 3axPu9zIi2ado43HQ2ppXo5Yt6CS/Vazq2mgNMG1crsQBGt9UMSU6gek15fCNBG2C2
+	 ZsIsAjcre0pNVHTmkv4R6AA0AAtqf3ualrrw1ddqsQnlxx9NXTosjGQhFlQLKYbkHY
+	 ijSfmZNVoNhdrYolgIJwbKfeJNc82CiKcGitRGz2GIidK5z3cpbEbhCAYK3dzbskU1
+	 wOayMIIzhN+7g==
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mleia.com (Postfix) with ESMTPSA id 951E83E16D7;
+	Sat, 15 Nov 2025 00:16:04 +0000 (UTC)
+Message-ID: <37edb265-90ff-43cf-bfeb-3371f12c78a8@mleia.com>
+Date: Sat, 15 Nov 2025 02:16:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251111-db820c-pro-v1-0-6eece16c5c23@oss.qualcomm.com>
- <20251111-db820c-pro-v1-2-6eece16c5c23@oss.qualcomm.com> <02a9d6eb-e480-431b-bd4c-a35cee170516@oss.qualcomm.com>
- <wf4h2lwyvgswtv4bgdfidj4vpvykwhu2gri4crvvtd644hf6nr@cnpqi5bmpvm5> <f4fbc949-415b-489e-b333-4c846d3ce8c7@oss.qualcomm.com>
-In-Reply-To: <f4fbc949-415b-489e-b333-4c846d3ce8c7@oss.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Sat, 15 Nov 2025 02:09:15 +0200
-X-Gm-Features: AWmQ_bk9mnQo5Kc7evvML015uZK31NGNbAxtLZZH8kNPuTp0BpdfmxEUuYc37Ik
-Message-ID: <CAO9ioeWpOArPm3M5hjR5PMbu4rkV1HHxQOZjOe5LwTKK7xMWJg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: add apq8096sg-db820c, AP8096SG
- variant of DB820c
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-GUID: 3ceH6qC6zjeFjXSawsLA4ma7XQPEBEK6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE1MDAwMSBTYWx0ZWRfX7xd72BPeVIrN
- 0qKPwabG3P2BtrOTrtEei8g9hEG4LFUHraVo7CDVH/tVYJL4FqrsgkoHJIPzosnzt7CBddqAE+c
- 29t8GCe7CldAq+DyB5GAn90GSVALUhiQbi3xSCMRyYZjD9EqNQeiUnLe0K7Ri33DAKhb86gdA4r
- Q7vWqRz3LdoeKPNsjk469HPKF3ENVjlgzekAePimtt/8rfetdBcmmqlqhViUYVz93EP+oQugOeD
- 1AkLbuyD81rJAqIocUD/zFUiCavbZOzY6orLJ4v3Iq69Qt2lyiOMp/hYaf869Nd92JWys95vPSE
- yUAipjy7W6RobqHE3nFrIZ0Mwawl4y6M4QUdwH+1HvOG2QzyKO43JESgjBB2dOyq66i81FHHnqX
- UMIbTa1BUPISJKNtdrq5f3RpFbvU8g==
-X-Authority-Analysis: v=2.4 cv=Y+z1cxeN c=1 sm=1 tr=0 ts=6917c769 cx=c_pps
- a=WJcna6AvsNCxL/DJwPP1KA==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u3Kf3rDHAAAA:8 a=EUspDBNiAAAA:8
- a=w3SvXLNNHMlynSQcp30A:9 a=QEXdDO2ut3YA:10 a=_Y9Zt4tPzoBS9L09Snn2:22
- a=EGheP1PGFffiXWuNiQ4X:22
-X-Proofpoint-ORIG-GUID: 3ceH6qC6zjeFjXSawsLA4ma7XQPEBEK6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-14_07,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
- suspectscore=0 clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511150001
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] ARM: dts: lpc3250-phy3250: add at25 required
+ properties
+To: Frank Li <Frank.Li@nxp.com>,
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "moderated list:ARM/LPC32XX SOC SUPPORT"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20251114174712.1206027-1-Frank.Li@nxp.com>
+ <20251114174712.1206027-3-Frank.Li@nxp.com>
+From: Vladimir Zapolskiy <vz@mleia.com>
+In-Reply-To: <20251114174712.1206027-3-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20251115_001605_176339_239D3181 
+X-CRM114-Status: GOOD (  14.20  )
 
-On Fri, 14 Nov 2025 at 23:31, Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 11/13/25 9:32 PM, Dmitry Baryshkov wrote:
-> > On Wed, Nov 12, 2025 at 10:44:49AM +0100, Konrad Dybcio wrote:
-> >> On 11/11/25 5:02 PM, Dmitry Baryshkov wrote:
-> >>> There has been a (rare) varint of Dragonboard 820c, utilizing Pro
-> >>> version of the SoC, with the major difference being CPU and GPU clock
-> >>> tables. Add a DT file representing this version of the board.
-> >>
-> >> So is the conclusion that both flavors were used?
-> >
-> > Yes. I have had a production unit with a non-SG flavour. Bjorn's lab
-> > has a standard one too. All units in Collabora lab are Pro ones.
->
-> Pro doesn't necessarily have to == SG, this seems to be sort of
+Hi Frank.
 
-My understanding was that APQ8096SG is modem-less MSM8996Pro.
+On 11/14/25 19:47, Frank Li wrote:
+> Add at25 required properties (size, address-width and pagesize), which
+> duplicate deprecated properties.
+> 
+> Fix below CHECK_DTB warning:
+>    arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dtb: at25@0 (atmel,at25): 'pagesize' is a required property
+>    arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dtb: at25@0 (atmel,at25): $nodename: 'anyOf' conditional failed, one must be fixed:
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> change in v2
+> - move node name change to new patch
+> ---
+>   arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+> index 21a6d0bca1e8a..732d590f6cfdf 100644
+> --- a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+> +++ b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+> @@ -216,6 +216,10 @@ eeprom: at25@0 {
+>   		at25,byte-len = <0x8000>;
+>   		at25,addr-mode = <2>;
+>   		at25,page-size = <64>;
+> +
+> +		size = <0x8000>;
+> +		address-width = <16>;
+> +		pagesize = <64>;
+>   	};
+>   };
+>   
 
-> a "MSM8996Pro" and "QCM8996Pro" situation.
+I see that I was imprecise in my ask, please replace (remove) the deprecated
+properties with the new ones added. There is no reason to keep both, forward
+compatibility should not be supported.
 
-> I'm hoping that speedbin
-> fuse values don't have different meanings for mobilePro and SG
-
-At least downstream doesn't have separate bins for APQ versions.
-
->
-> >> This product brief
-> >>
-> >> https://cdn.lantronix.com/wp-content/uploads/pdf/Open-Q_820_Development_Kit_Quick_Start_Guide.pdf
-> >
-> > This is a totally different board.
->
-> Oh right sorry
->
-> Konrad
-
-
+Sorry for any caused confusion.
 
 -- 
-With best wishes
-Dmitry
+Best wishes,
+Vladimir
 
