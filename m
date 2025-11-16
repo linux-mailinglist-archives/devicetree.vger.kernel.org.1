@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-239050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4E2C60FB9
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 04:52:38 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B7DC60FC8
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 04:53:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B0993354322
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 03:52:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 467C74EB145
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 03:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD84221B9C9;
-	Sun, 16 Nov 2025 03:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B86A256C9E;
+	Sun, 16 Nov 2025 03:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="fSwfVd6n"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="HRXqVbri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FB91CD15;
-	Sun, 16 Nov 2025 03:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ECEC2441B8;
+	Sun, 16 Nov 2025 03:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763265146; cv=none; b=PJyadjJigU9eFeQCRWUqMzrlzLKWJdnFlCb72DwgP+dN+dyDdUgP6IrzavYNhGsbv1xmQnFQaBr0mzDAt6PZap7vFSzXl+CqdomswoHG46kV+s7vL2XSBE+OdqJP7kmvve3fv9K92Qw02Dt7XTar09QRKiTf23+/ALvF57oH1QE=
+	t=1763265161; cv=none; b=dNinwPH+2trN+M6XWZHcbGMIpUo/osYTSCAstaSCl6112+TbIxIvZxIr12Gt62neq6r6ws04Vkzka0QkiFva1axSBZSXf5+RbWNYgXzVuqdACiBXueMETxgGfiRL6QdADj8YflPfzvzaRKAFX/4DKQPKdTmwNCVigSBqkDWl2cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763265146; c=relaxed/simple;
-	bh=1+e/wIax49sBSPML2fl2yRdu21pXMvVd6ONyljLK7jk=;
+	s=arc-20240116; t=1763265161; c=relaxed/simple;
+	bh=elDQNfVxbieXT1jJ7mnTPTdGSw8jTRG/tSs3yo5cCRc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZrK5725otjeqltveuc/QT1JKvUtY7iWTevDYRty/wbPcDeYamDP8YVvv8/C3OKx7DJj8WSn0VcLG9B7EEqSbPysBiBAqb13NhEcfwFYvws8ayxpYD5LsLj+XrziDqHLwDP2kx0fHhdV0MMNOIxSSP8GS2amRkEhakrF0/IgZ/X0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=fSwfVd6n; arc=none smtp.client-ip=220.197.32.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=mQgTUrQBt8RpWpAv8pzzMGa0khfjxyWjNGqF1OwteXs8wujJNoRd6uku9bD/h9Y+wxP2G+MTVEd15/un9hTy86a2BFXpD78MwLIGnYJuov5a2QedZ2JkJpZxcjhyuPKHC6lrh6dekuPzA/toNRQfjkqK2s5Ezpno2R9R0e+0rkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=HRXqVbri; arc=none smtp.client-ip=1.95.21.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=95kFSsLKyE4ALNC5FIjf+7ESIXBQpMSorE7EunEryYI=;
-	b=fSwfVd6notXp0m5r0Dq8cVrJOOuYLd6b2UJZuvYz5mnJGxTELZm0MvmdjRAhv+
-	tSxORf1Qcx/0zNLFrlLusMJMG3sChZJsnf9hlvtOE9dNhdwm+cQ+MPykuBC/JcYe
-	cqGfqv/oL5Ox3jc7XmZG65g8VjnvHDbp26btXRsV7I3DI=
+	Content-Type; bh=9T2DbJXTL02gDuKqRKAHj63zBLmVwp0FHpFWKELvs6o=;
+	b=HRXqVbriK/FgeE7H6K/G1lLF9PBP9XAYmclO+P7pLfBBklJ5poTiXzOEeBqjNd
+	ilKXnYYDrlkbsjK+RHk4hJB0GyEAB6bJwJgWFc4xYNIim4N+h7WGasO+sWWeAUFK
+	NXEBdqxWqzvb02vkr9eUrlZzaKYUDdauZIVU+Z43mJCbw=
 Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDndQ2kSRlp1YYSAg--.50067S3;
-	Sun, 16 Nov 2025 11:48:55 +0800 (CST)
-Date: Sun, 16 Nov 2025 11:48:52 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgCnKou+SRlpHYgSAg--.7957S3;
+	Sun, 16 Nov 2025 11:49:21 +0800 (CST)
+Date: Sun, 16 Nov 2025 11:49:18 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
 To: Shengjiu Wang <shengjiu.wang@nxp.com>
 Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
@@ -57,11 +57,10 @@ Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
 	devicetree@vger.kernel.org, l.stach@pengutronix.de,
 	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com,
 	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v7 6/7] arm64: dts: imx8mp: Add hdmi parallel audio
- interface node
-Message-ID: <aRlJpAUV9nfl2Afv@dragon>
+Subject: Re: [PATCH v7 7/7] arm64: dts: imx8mp-evk: enable hdmi_pai device
+Message-ID: <aRlJvijH-F8pz10O@dragon>
 References: <20250923053001.2678596-1-shengjiu.wang@nxp.com>
- <20250923053001.2678596-7-shengjiu.wang@nxp.com>
+ <20250923053001.2678596-8-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,17 +69,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250923053001.2678596-7-shengjiu.wang@nxp.com>
-X-CM-TRANSID:M88vCgDndQ2kSRlp1YYSAg--.50067S3
+In-Reply-To: <20250923053001.2678596-8-shengjiu.wang@nxp.com>
+X-CM-TRANSID:M88vCgCnKou+SRlpHYgSAg--.7957S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUeXo7DUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiOAccgWkZSafRNQAA3Y
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUbWlkUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNgEjiGkZScFifQAA37
 
-On Tue, Sep 23, 2025 at 01:30:00PM +0800, Shengjiu Wang wrote:
-> The HDMI TX Parallel Audio Interface (HTX_PAI) is a bridge between the
-> Audio Subsystem to the HDMI TX Controller.
+On Tue, Sep 23, 2025 at 01:30:01PM +0800, Shengjiu Wang wrote:
+> Enable hdmi_pai device.
 > 
-> Shrink register map size of hdmi_pvi to avoid overlapped hdmi_pai device.
+> Aud2htx module, hdmi_pai and hdmi controller compose the hdmi audio
+> pipeline.
 > 
 > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 > Reviewed-by: Frank Li <Frank.Li@nxp.com>
