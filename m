@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-239063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC23DC6124B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 11:03:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E02DC61256
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 11:07:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B45C334BC46
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:02:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B672D4E3CF5
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC22521FF48;
-	Sun, 16 Nov 2025 10:02:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30209237713;
+	Sun, 16 Nov 2025 10:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="NgY/oeuO"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WIqzmsVZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E34029CE1;
-	Sun, 16 Nov 2025 10:02:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EECC723507C;
+	Sun, 16 Nov 2025 10:06:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763287347; cv=none; b=mfbKAuX4O6SdXIl3F001Z0kM8FzbNWlZaaQ5+gMkO+vcS118UoovRbgJkr57nyKWKQChXat2btBFu7xxLMANZH8v9+q9BMjKgweKd1Xwtd3MCJ1R6vsGJdSKWMk6G12K7GIZWF7K9KzFK2MibXHF4XepjowJzcxMv6ev5q0zRJU=
+	t=1763287620; cv=none; b=OlbqUdRNZ9IVu7z6ly5y/QlwIZ9viLvoKn8ztrmwtINONw9lM3j2pdoEDwvi8+KkghIdXJE2M5zOs+y6nTizfUFRxaXbZa/AM6hNcuMs4hXrzoInGdGkiGXKMmFktEaa8vhLrMmgzJGEIWXh4wQXnNBZEzQU7whT3a6QdaJydMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763287347; c=relaxed/simple;
-	bh=uAW3blsz55enleivTpN9Xw1JgjjXuVWxHWLz0MZc6+M=;
+	s=arc-20240116; t=1763287620; c=relaxed/simple;
+	bh=rUvFU4iw0o4uUI/vlsXxBCiGP7mAmX+YFRFk8QyShYU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XRdS2qAQqXkAXpuBX7qGstZbNsGRlVPun1rPAIuITp9vKblipizFcVZW1PtZPVjLq3Tegdn9hleZh6ph0NZFLqFfxS7a5A7Coe87lLTb4SZITCJ+1NoURUU45hFqHNS/lsYDYQTumCExUu5Js0evFCpqQ65XZkfnJJQd/pGJszE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=NgY/oeuO; arc=none smtp.client-ip=220.197.32.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=q1Dg6SqHF610uKZB23AliUpvb7VNoivLjWTbHscretPTFK9hb0YZ3LDDxaKwJfOIM2fc2zLCywefKjcOqtA5AWee/B3HYaIdUYFPlRqFKBQdBwTC0xEx05a9CjwOIoTE17ffo2FTAP+/Yt1RPowC1Wv+h0YX2WHATOCnhShcrGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WIqzmsVZ; arc=none smtp.client-ip=1.95.21.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=8mkFSpSXqhy3JNKuZq7z1gqffCcwGeVX1rPlpkQrCOA=;
-	b=NgY/oeuOAaDhu16In1tbHjJuD7+j7BXkEayRvDJNiO2iR/SSxD/KF8YW1DTozy
-	SDpWwwOoL/JthFdULy0EV0vCctO2xy8yHXNzAYAsbeEfZEdVBGh7SHR4l1SVGvkL
-	3G2vGkJiJLw2/K1Qhu/hS8zKySliB+JgnscPZbyyX4fy4=
+	Content-Type; bh=oSXMUQZ+cQGwThCwg/X7IsHfqb9HKFGadesoe/E5owM=;
+	b=WIqzmsVZIXzL8XMF6+jO0JEfLj3Y3Wrkk8wPgIcZaaRntdsT3bZODjcbFJ6aj0
+	FCcjE6cvnzPQ3YHeMzaU5wyDml4RlwvuPta7/6aMYSVvOacoclk7ygOfNoWCM1Q3
+	sxav9Ixie2dWVbQYMvCEpNxGdDHY7gGKX2wMwDwsyrLlY=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgBnPs4PoRlpOsYjAg--.8123S3;
-	Sun, 16 Nov 2025 18:01:52 +0800 (CST)
-Date: Sun, 16 Nov 2025 18:01:50 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD3d7AaohlplIkWAg--.7944S3;
+	Sun, 16 Nov 2025 18:06:20 +0800 (CST)
+Date: Sun, 16 Nov 2025 18:06:18 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/4] arm64: dts: freescale: imx93-var-som: Align DTS
- with hardware revision
-Message-ID: <aRmhDvdkEvD5cir2@dragon>
-References: <20251030120127.509933-1-stefano.radaelli21@gmail.com>
+	Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/19] TQMa95xxSA DT fixes and cleanup
+Message-ID: <aRmiGnQYWHF2ja2g@dragon>
+References: <20251030124936.1408152-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +61,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251030120127.509933-1-stefano.radaelli21@gmail.com>
-X-CM-TRANSID:Ms8vCgBnPs4PoRlpOsYjAg--.8123S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUO7KIDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNRANcmkZoRCEFwAA3I
+In-Reply-To: <20251030124936.1408152-1-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:M88vCgD3d7AaohlplIkWAg--.7944S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7tw18WrWUZFyrtw1xXr47urg_yoW8Gr4UpF
+	WUXrs7tr18Gr4ruF95ZaykK3yfJ34xG3Z8JrWYqrZFvryvyrW3XFZ8GFy3WrZrtrW0va4Y
+	ya1UJryDCryxXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UcqXdUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNBxQtWkZohxfMwAA3v
 
-On Thu, Oct 30, 2025 at 01:01:20PM +0100, Stefano Radaelli wrote:
-> Stefano Radaelli (4):
->   arm64: dts: freescale: imx93-var-som: Add WiFi and Bluetooth support
->   arm64: dts: freescale: imx93-var-som: Add PMIC support
->   arm64: dts: freescale: imx93-var-som: Add support for WM8904 audio
->     codec
->   arm64: dts: freescale: imx93-var-som: Add support for ADS7846
->     touchscreen
+On Thu, Oct 30, 2025 at 01:49:07PM +0100, Alexander Stein wrote:
+> Alexander Stein (14):
+>   arm64: dts: imx95-tqma9596sa: reduce maximum FlexSPI frequency to
+>     66MHz
+>   arm64: dts: imx95-tqma9596sa: increase flexspi slew rate
+>   arm64: dts: imx95-tqma9596sa: move flexcan pinctrl to SOM
+>   arm64: dts: imx95-tqma9596sa: move lpspi3 pinctrl to SOM
+>   arm64: dts: imx95-tqma9596sa: move sai config to SOM
+>   arm64: dts: imx95-tqma9596sa: move pcie config to SOM
+>   arm64: dts: imx95-tqma9596sa: update pcie config
+>   arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for flexspi
+>   arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for i2c
+>   arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for usdhci
+>   arm64: dts: imx95-tqma9596sa: add gpio bus recovery for i2c
+>   arm64: dts: imx95-tqma9596sa: whitespace fixes
+>   arm64: dts: imx95-tqma9596sa-mb-smarc-2: Add MicIn routing
+>   arm64: dts: imx95-tqma9596sa-mb-smarc-2: mark LPUART1 as reserved
+> 
+> Markus Niebel (5):
+>   arm64: dts: imx95-tqma9596sa: fix TPM5 pinctrl node name
+>   arm64: dts: imx95-tqma9596sa: move USDHC2 config to SOM
+>   arm64: dts: imx95-tqma9596sa: add EEPROM pagesize
+>   arm64: dts: imx95-tqma9596sa-mb-smarc-2: remove superfluous line
+>   arm64: dts: imx95-tqma9596sa-mb-smarc-2: add aliases for SPI
 
-Applied, thanks!
+Applied all, thanks!
 
 
