@@ -1,111 +1,102 @@
-Return-Path: <devicetree+bounces-239148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178AAC61DC9
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 22:48:07 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 909C7C61E30
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 23:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 3E63028AA9
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 21:48:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4542435C7A8
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 22:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F9D23BD06;
-	Sun, 16 Nov 2025 21:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4AD28726D;
+	Sun, 16 Nov 2025 22:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ILn1eG2G"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="oGbmp2CR";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="By79NjUl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02AFC29CF5;
-	Sun, 16 Nov 2025 21:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 325DA283FF9;
+	Sun, 16 Nov 2025 22:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763329677; cv=none; b=qibV8ullU6aKjVEmFxQ1MCwtnviQT14+6E+M3CZplvsB+NqPGBm0a9tQCDC/K8ABJORQl2CF/3EQIAW0i6KJJeCDpfP94sLp7fXKBqvb3BeDsl74OJcGIMRqynkl10e3SdlQt2uPUztO8KCtavZd9gw+JZlaaO0NccAkIO2LVoU=
+	t=1763331028; cv=none; b=ZHOYhY+985EBUKol2G2R4FevsA2KlDBUZNWdeGEzsoxj9kPklZHQMAKuzOOSYUWT2Elr9X85JweQN6KE7SPO+K/t2Av3Z5dV9D9mEnZ5WWrhJCUlGPrFn+R6pYPuItPtCvZITtTF5dTg94B6bRHum/kvJ/tJh7VZN/r9enOQKRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763329677; c=relaxed/simple;
-	bh=pWYF/le3Qm/HubEQE1Ds+oFzfoE/9PrQTt+2HHhwDxE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rOsuXV0s5bvwU4/dk9RYmm9xqrpzIkuEqK5AASTf8BZnIYXJyRxyEBJkVYvcdkKbWzlyK8Tx4DViwKTDVk74XYokEXsrpOAEQjDusnTYRwvAdfSimnR6UV8DEOxcjUgliuwB1YCywodMR2F5XJ/1GPLFIuCoEGPLiKyZ+A//Vqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ILn1eG2G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E12EC2BCB3;
-	Sun, 16 Nov 2025 21:47:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763329676;
-	bh=pWYF/le3Qm/HubEQE1Ds+oFzfoE/9PrQTt+2HHhwDxE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ILn1eG2GIfhzddilwyMY53H3eTd+v6fsSyeUw8F1O/HAxBcnkLPn0og6f4TAr82uM
-	 iUeiQm0+sMmujTVpiLZ4Ft1LrRJuiUSlnseR+KKiwnE6YFdxcuQDD3n37BXTAw8npN
-	 //7HQNGVI9qzv51Ma4nxZdN/PJnvglleQHx5eqINJDcln+RomKZXkyWDYGzc/JqXR+
-	 EavK9h4BzP7xwSO2rfYnkrHQN8OmykyNVOhkuFDtVXCeyaxhhchEr4bye3eomkR/vX
-	 K+vYNiem75+HCJ1PfUdaIUsBB6fzeMXJPcCxWW+5RWxymWXQHx+KBmBMX9EeyemBQi
-	 Fhil+lQVQsqHw==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id 0F9841ACCC98; Sun, 16 Nov 2025 21:47:53 +0000 (GMT)
-Date: Sun, 16 Nov 2025 21:47:53 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Ray Liu <ray.liu@airoha.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Andreas Gnau <andreas.gnau@iopsys.eu>
-Subject: Re: [PATCH v2 1/3] spi: airoha-snfi: en7523: workaround flash
- damaging if UART_TXD was short to GND
-Message-ID: <aRpGidWIakkclJTz@sirena.co.uk>
-References: <20251116120038.672178-1-mikhail.kshevetskiy@iopsys.eu>
- <20251116120038.672178-2-mikhail.kshevetskiy@iopsys.eu>
+	s=arc-20240116; t=1763331028; c=relaxed/simple;
+	bh=Htj0x/pRIxgZYWhOmTGjFgSiom+0IEfKTJm/dfQNywg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tZsnjpYz8j2OxXHNQAcP9wfU5g5KfCL48QoETcMGTnMMXB1ilnSRIC82PSMRwQc+wSSMuULxKV8ke5zdJcxhles6/xlDbuJzXHgcjUELZ1dA5A/0UmqO9jrYnuwrlQVLnu3Cjn+LeVMD8miAce1kEVlx70yDMnqiQAxz09Xk6ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=oGbmp2CR; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=By79NjUl; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1763331019; bh=EE4FHWEmiiR67N7/yKt1CqF
+	FuGRjZVLPc+ZKYFDwQ7w=; b=oGbmp2CRa8smt4u0ZUnkahHWmlB1QjvnpeY3vt8nuetolikRCk
+	203nLOk9sQO5q3+joa1eU3HkR8WOco8elF+fuqy9agg7v7nx/+upMY5DBQQdL3bOSTH2d3UFAMB
+	/8UQPlimL547Q7lpw9KqhkU0kQ4fWPg1g5KTBmGVZzmw9A4quIGKHYzBn0LIExzbHbfVe1lAusA
+	44cMXz7rIuPqHVgyOkE0OoCbUbHrAKk3Yq20cXiKuXoZpGPk6uNNq+FtZusIGRHLEhi0H+ELaZB
+	Tc4V+u4DsGFL1IofE8Etc8BRWoa+U4Eda8idiNmV6XKBmeSDLqLdkY/jrbaLdnoHvUQ==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1763331019; bh=EE4FHWEmiiR67N7/yKt1CqF
+	FuGRjZVLPc+ZKYFDwQ7w=; b=By79NjUl8T5cb+eFnvFimTvGCLmUGsC+0zk9HQXYBVkMReiCLb
+	pmxXLDwzfmF564Rb2LLFeWQDThYzSIinreDg==;
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH 0/4] MSM8917/MSM837: Add missing MDSS reset
+Date: Sun, 16 Nov 2025 23:10:16 +0100
+Message-Id: <20251116-mdss-resets-msm8917-msm8937-v1-0-08051386779b@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HRdJb4bqzkeBOF7F"
-Content-Disposition: inline
-In-Reply-To: <20251116120038.672178-2-mikhail.kshevetskiy@iopsys.eu>
-X-Cookie: marriage, n.:
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAMhLGmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDQ0Mz3dyU4mLdotTi1JJi3dziXAtLQ3MIbWyua5hkYZlmZJpoZJJiqgQ
+ 0oaAoNS2zAmx6dGxtLQAUrzIRbQAAAA==
+X-Change-ID: 20251116-mdss-resets-msm8917-msm8937-1b89f25a24d5
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <trabarni@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763331018; l=872;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=Htj0x/pRIxgZYWhOmTGjFgSiom+0IEfKTJm/dfQNywg=;
+ b=LnhzzXeZUSWaxIIqJkDVKYGX+hjYW22oVyP0W+uy5CdE853cal0QC/JSHnLdR9UojMdfarPED
+ uASdO4rUXDwCf4iDZM8Zbc5XmY9LrHSliRI4Ch6ihk9KPtGWUk0PPus
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
+Add missing MDSS reset can be found on MSM8917 and MSM8937.
 
---HRdJb4bqzkeBOF7F
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Barnabás Czémán (4):
+      dt-bindings: clock: gcc-msm8917: Add missing MDSS reset
+      clk: qcom: gcc-msm8917: Add missing MDSS reset
+      arm64: dts: qcom: msm8917: add reset for display subsystem
+      arm64: dts: qcom: msm8937: add reset for display subsystem
 
-On Sun, Nov 16, 2025 at 03:00:36PM +0300, Mikhail Kshevetskiy wrote:
+ arch/arm64/boot/dts/qcom/msm8917.dtsi        | 2 +-
+ arch/arm64/boot/dts/qcom/msm8937.dtsi        | 1 +
+ drivers/clk/qcom/gcc-msm8917.c               | 1 +
+ include/dt-bindings/clock/qcom,gcc-msm8917.h | 1 +
+ 4 files changed, 4 insertions(+), 1 deletion(-)
+---
+base-commit: 0f2995693867bfb26197b117cd55624ddc57582f
+change-id: 20251116-mdss-resets-msm8917-msm8937-1b89f25a24d5
 
-> +				"==================================================================\n"
-> +				"Detected booting in RESERVED mode (UART_TXD was short to GND).\n"
-> +				"This mode is known for incorrect DMA reading of some flashes.\n"
-> +				"Usage of DMA for flash operations will be disabled to prevent data\n"
-> +				"damage. Unplug your serial console and power cycle the board\n"
-> +				"to boot with full performance.\n"
-> +				"==================================================================\n");
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
 
-Multi-line prints aren't idiomatic for the kernel, we usually have just
-one line per print.  If you want multiple lines use multiple prints
-(like the trace_printk() warning).
-
---HRdJb4bqzkeBOF7F
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkaRogACgkQJNaLcl1U
-h9D9Nwf9GJmi40PrVoWCgwvdveggyr3o6bLdQm18NZ1RaW6oocbyUMtURrM3jG9W
-mUnxJSemDZyVRAkCAp9yun0ua+O+YLzIKVli6pV0TTv9Y6g6LBcIWDS6qI1KC77r
-n2WBDwxhYzG8ZtvmCzCUb73qBdLSEZPGi6QBnrdskcsSlnyWm8fJiM7voTf/0wwD
-qUqgcEvPBSK91uxNPnoTedAnKnn0SvJHOzlNbh/bEpTUeXnNQkvcz13phACo4Cb5
-/VhF2xyDMqQAJltFnpmSw6LhBx5d3OJXurxTZNhfHvY79/bU0qzIfeyjpyOxtyRP
-aI37YjjZM/CNW2oupnvUQ1P505auzw==
-=wx4p
------END PGP SIGNATURE-----
-
---HRdJb4bqzkeBOF7F--
 
