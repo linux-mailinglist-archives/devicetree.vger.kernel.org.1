@@ -1,88 +1,51 @@
-Return-Path: <devicetree+bounces-239041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32065C60DD4
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 00:43:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00AD0C60E6F
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 02:15:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id C18EA290A5
-	for <lists+devicetree@lfdr.de>; Sat, 15 Nov 2025 23:43:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 86BF0363268
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 01:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC5C271A7C;
-	Sat, 15 Nov 2025 23:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1CA61FDE01;
+	Sun, 16 Nov 2025 01:13:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="T7W1X8/V"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="eZAqF4Mu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C9726ED54;
-	Sat, 15 Nov 2025 23:43:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE891E1DE9;
+	Sun, 16 Nov 2025 01:13:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763250226; cv=none; b=PcH1ldwnHWyHXO1dNOpRqRdVTnBCCgV9Wpe+eEsJAZKsfzRB+QvkM75hbVzfREXlMYWAkQbFpX9U7QvTbg7JYFY9xsTG1b9Bxqal/7wCUjucvjNMb+MGwU+x9U58pHSGIrw/ghwp0ajm1nQX8PDEh+ew5PVYoDgPdp4ga3vDEoE=
+	t=1763255621; cv=none; b=ohRdUJOtdrFEdW72nXkDhSTOBfh3dMULAKnRVI1kPKG/wQUEUqrSyDaD406ZSj9v68mpXGe2Tbt9GZ2I5lnvmsatyeJRbUgsDCGd/38JytDlkODg024cDr1IQDSr0y0Ivpjq4U6BuQ5MHYbBohKbtt/0VTJLgKGpcKhoHqAtWX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763250226; c=relaxed/simple;
-	bh=llN6Cn3B/kgh4ulN0MEBNKdXAxOmngqsyPmwW/2bxxU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sQR5c6uVXtFdxeB1jRGMujAZsNc9/52RfzamdcsOWLukMKjUcmRyDcvh4OCLwJPcU5wmVCYuoFtCHgaqEZqMAMizGQhArCI3vn1c8PqcyNFwn5aU4FzlZ/u4eoHE6EvnuABTR720oOOcvsmvVxRS5573RixJQXFKO5g7LCulXoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=T7W1X8/V; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=p2QaOkO8NjOGntm2KfoOJ04f8p6YfbVqlV+eGAe/YQo=; b=T7W1X8/VKMuVlBltXAxej69Ttz
-	RuhoComjszRwtfM2WRLudijqxYx8+iDpYVKRkjzAOeJ2+dzp/hIgsO4ouvdKVfdGyFNXNp/m6voi8
-	y712OG3Hn2bhgRTkA3m/P+ycUcJYGV3Z6f3S1VKon4otCRK35wNF7STP5wQTTx3aJETYob8/p8rOc
-	8++Wjxfe0mDHh/kpUpJd3V+HDyNTNZcB7h9xuTpi4weeY7h6j7ilSzsyEscPgANMx9D2hnoRotmfV
-	lAyrMTxiua92KOdCj7nX41M+MAE994s8pN348Eocq9pi3S48mS+rJeSjDKpbDmadqS+/+x77ZvwzF
-	5XyTT/Tw==;
-Received: from i53875bd0.versanet.de ([83.135.91.208] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vKPvO-00022c-4Q; Sun, 16 Nov 2025 00:43:22 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Markus Elfring <Markus.Elfring@web.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>,
-	Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Michael Riesch <michael.riesch@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Mehdi Djait <mehdi.djait@bootlin.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v15 00/14] media: rockchip: add a driver for the rockchip camera interface
-Date: Sun, 16 Nov 2025 00:43:19 +0100
-Message-ID: <176325011672.721648.2323929668705434904.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20240220-rk3568-vicap-v15-0-8f4915ee365d@collabora.com>
-References: <20240220-rk3568-vicap-v15-0-8f4915ee365d@collabora.com>
+	s=arc-20240116; t=1763255621; c=relaxed/simple;
+	bh=oKjm2pBf2aAQQKHvfSrwj82kDinKyncuoesGVBSNX74=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=d45AqLFgsM6BF7rN+J5El2ifiAb3iAJWLHKdUh/7Q87KNEHUaeebsDlnaf1pMo82mKoTtROZUrHx208zyl3QirGFPFXTlmoMx1b06bz/dI/7REmkagGGElahOb9XuvC0qG7X5Fl/Ruw+lFv1Y3Jk43b4d+J0wwRVJJ45Rm5//xQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=eZAqF4Mu; arc=none smtp.client-ip=95.215.58.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1763255607;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=a4PXq7Rgx8/hRFwiVk4QQ8umfI2YEPdEWl4yazxnH7w=;
+	b=eZAqF4MuNIos9EB/3lAFcWKniOb4Wo6Po5DEtnIt+dTBhdy02/HQKQzGsqPI1f4Kiq0E3V
+	9yIeyl0oNyQrMvrYdFY9tSrabHGb99NdH9CVk/x/YBn7H6lOkxwuZNWIT8+8F9VigTz8o5
+	ryQ9mNBTAnIdb2Fhm1SEzVZZF1wWgdJ79eUAlMOz9uELktHPsGOx/XXBYNzjG7qVyuV8ss
+	Vsk9ic3TAr7blfkQdnulhv9t08k5ZFNRD6j3OSvqV7rODY4t42IuB7W/oufbsM/WmUJ4Uv
+	9Q2ailkeB7BpWOGHXtRzZHzptCfC0ztPrBdXWYRRykLcyWkur5GzyuQF10D6IQ==
+From: Alexey Minnekhanov <alexeymin@postmarketos.org>
+Subject: [PATCH v2 0/3] SDM630/660: Add missing MDSS reset
+Date: Sun, 16 Nov 2025 04:12:32 +0300
+Message-Id: <20251116-sdm660-mdss-reset-v2-0-6219bec0a97f@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,42 +53,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAlGWkC/32NTQqDMBBGryKz7pT8aJCueg9xEXXUUDQyE6RFv
+ HtTD9Dle/C97wAhDiTwKA5g2oOEuGYwtwL62a8TYRgyg1Gm0spqlGFxTuEyiCCTUEKlK186b2z
+ dVZB3G9MY3lezaTPPQVLkz3Wx65/9V9s1KtRl35XkautG89yipMXzi1KUe+QJ2vM8v8NTUbG5A
+ AAA
+X-Change-ID: 20251031-sdm660-mdss-reset-015a46a238b5
+To: Bjorn Andersson <andersson@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Alexey Minnekhanov <alexeymin@postmarketos.org>
+X-Migadu-Flow: FLOW_OUT
 
+Since kernel 6.17 display stack needs to reset the hardware properly to
+ensure that we don't run into issues with the hardware configured by the
+bootloader. MDSS reset is necessary to have working display when the
+bootloader has already initialized it for the boot splash screen.
 
-On Fri, 14 Nov 2025 16:20:11 +0100, Michael Riesch wrote:
-> Habidere,
-> 
-> This series introduces support for the Rockchip Camera Interface (CIF),
-> which is featured in many Rockchip SoCs in different variations.
-> The series has now been around for a while and has received many comments
-> and reviews. Thus, it should be ready for mainline by now.
-> 
-> [...]
+Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+---
+Changes in v2:
+- Added "Fixes" tag, pointing to commit which is the root cause for
+  exposing this "bug", which is only present since 6.17
+- Extended commit messages
+- Prepared series using correct user.email git setting
+- Link to v1: https://lore.kernel.org/r/20251031-sdm660-mdss-reset-v1-0-14cb4e6836f2@postmarketos.org
 
-Applied, thanks!
+---
+Alexey Minnekhanov (3):
+      dt-bindings: clock: mmcc-sdm660: Add missing MDSS reset
+      clk: qcom: mmcc-sdm660: Add missing MDSS reset
+      arm64: dts: qcom: sdm630: Add missing MDSS reset
 
-[11/14] arm64: defconfig: enable rockchip camera interface
-        commit: 60705b039f960378bb2a0a844f9378646bc0c6c8
-[12/14] arm64: dts: rockchip: add the vip node to px30
-        commit: d2da7e98c0bf7f75433809ad875c6e1ae57f0cea
-[13/14] arm64: dts: rockchip: add vicap node to rk356x
-        commit: 78f316e90906d54c8aa6029e5c19ae83e420e56a
-
-
-Not applied 
-    arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
-
-because of
-Lexical error: ../arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso:149.18-45 Unexpected 'MEDIA_PCLK_SAMPLE_DUAL_EDGE'
-FATAL ERROR: Syntax error parsing input tree
-
-This likely will only work after the next merge window.
-
-So if you can live with that please resubmit that last patch individually.
-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi         | 1 +
+ drivers/clk/qcom/mmcc-sdm660.c               | 1 +
+ include/dt-bindings/clock/qcom,mmcc-sdm660.h | 1 +
+ 3 files changed, 3 insertions(+)
+---
+base-commit: 1cc41c88ef00de0f3216c5f4b9cfab47de1c49d3
+change-id: 20251031-sdm660-mdss-reset-015a46a238b5
 
 Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+Alexey Minnekhanov <alexeymin@postmarketos.org>
+
 
