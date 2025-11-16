@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-239107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F1A7C6158C
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 14:22:43 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F5DC61574
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 14:20:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4CF704E6FD3
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 13:22:42 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5BB40361D0E
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 13:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD842DBF48;
-	Sun, 16 Nov 2025 13:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0A922F74D;
+	Sun, 16 Nov 2025 13:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="bMtB0Qg/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="Xgw8aqaZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CBF2D9EE7;
-	Sun, 16 Nov 2025 13:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343602080C8;
+	Sun, 16 Nov 2025 13:20:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763299359; cv=none; b=dVtm4QckH1zC/9Oo6T0xcJbW4u32o0p52dzX2ViGr07IYBQX1Put4E/i1E776o1Gf4uYFjMQPNpdbKcmGCfofgwszm8CkoVNXzlvG8jf8Z+yju2xhP5/x/rDFgoOy8bfdzyUP/CAMsPuIwccTJtFE+oYxEMwjEIglv+GFbgzuPM=
+	t=1763299253; cv=none; b=YsajaLUjMkA4ZpP/pmxDzC0RLdzNSLV7Wxa3ASqbnGNWumjzQ57+o+3NRwPQiXvZzKPwzAwr89x6Yk3ZQAhZJqPio1qwkqhMkBVNrYE/NyWdR8Z8I5lXxHhk1vdM/oLGtQ8uNVDNAI+VogZB0mIsx36zmhpnWYI65P0haWH2Cfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763299359; c=relaxed/simple;
-	bh=YyCg/ZEBdJ4y/5W/Mtx4/UJxwse5B3iGLQ0P7rxO+IU=;
+	s=arc-20240116; t=1763299253; c=relaxed/simple;
+	bh=wOWRPv/XOdIDN3owZwddcqMULZl6LaqXH/Yg6gkLps4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cZjbJI90q75f4Qq7wKXLuWTAwH2qL9psArQ+FvsFasd2FxRYeLXurncb23NVp2KpInQikeoiwElRFQTDFUaAq+5vnNvRLvkiTPHIQ5giItJR/ZVKad3ywH1lEIf6LF9uGC2ecF+xOmi6OODwwEunZL+eMa1oWHHBzFhu/FQTvAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=bMtB0Qg/; arc=none smtp.client-ip=46.242.128.95
+	 MIME-Version:Content-Type; b=WWUig/2oVDfwO22Sm/yPm8lfafpCEtxd+kXH6FSciLcI+2GXBgdmHrd4u8MHg7Ute3mqNI4UbnLdP9/JAPNqG8jlykkqS5GiUn2J5+4niv7VLLvdBwVZO98SteJ3yvD6TiAfv7yj2jINkBzRk/BwYamnTtzZfsa81Dic3gk3+r0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=Xgw8aqaZ; arc=none smtp.client-ip=46.242.128.95
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -37,18 +37,18 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
 	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ALqrvYx16IgQIglbpOnwhVRORNfwDsxM2tJC2QOGjhQ=; b=bMtB0Qg/1+SsHyMo3tyeEyYGtI
-	nf4o+cbragiw/zKK0FphHMOpRJLSRcqI8fBYHJrhQIx8uUQpO9ygpW0MiJgNsapUrni94RTM2friZ
-	eKZPqZTyySpbVNSdH4crYAkVFEpggWtlSfyH8hFwb7TAEldSnP0qGWNgG8IkROR7yyvmG7AzJdVUU
-	xnOafJHM++YT5PkOVfrAKnOHqJqooeuXUNpEH2wMxliQy/KiaAqHdjz7JkAyZAdx0dKawY/b2/Q79
-	To9wceIfxw19SgOKhIAKB8UXnGeo6HI4uDxpOUwCSPN+c6C3uSRKzgxHOvLQNE3VQecsGzGZPqhvA
-	hp9vdaCQ==;
+	bh=8V4nIdRTsVNfqeRyMcs/OXoQRXmzx7mrofUYormx1Zs=; b=Xgw8aqaZqqgN9PY9j6BC1iYFpp
+	TBtq0vO9kIDFWaSx9G6cogCY7h1MHaSbsMyIs08GJsCPaQve4pSEkAaa1/jqGWzMuzMkia4BQ1GPs
+	UWdIxZvp2l/WXeW/rwNB/v79q6KJYXFqf3+6nz9c63h2qwbzIalynifp9zu6bACFzP8h+vuobj5sl
+	rlWHri4K48za7X2Ge4NKkVa9rDQ/3bpyKRhEpofr54z6t6seYLWZiF0s+9mMN5v5/uyZbt9s6wC0F
+	RVjsHGHYHFURdrKlC5si58dMJeCyzUGOOY8UlzMuirK4KVmMP9N8DLvBDraRPshXEFMHfRit+AKLM
+	I77jXjsw==;
 Received: from [62.171.184.96] (helo=buildhost.contaboserver.net)
 	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.98.1)
 	(envelope-from <kuba@szczodrzynski.pl>)
-	id 1vKcfw-0000000FW4E-1LDX;
-	Sun, 16 Nov 2025 14:20:16 +0100
+	id 1vKcgO-0000000FW4E-1MP7;
+	Sun, 16 Nov 2025 14:20:44 +0100
 From: =?UTF-8?q?Kuba=20Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
 To: Maxime Ripard <mripard@kernel.org>,
 	Samuel Holland <samuel@sholland.org>,
@@ -70,12 +70,13 @@ Cc: David Airlie <airlied@gmail.com>,
 	dri-devel@lists.freedesktop.org,
 	parthiban@linumiz.com,
 	paulk@sys-base.io
-Subject: [PATCH v2 0/6] drm/sun4i: Support LVDS on D1s/T113 combo D-PHY
-Date: Sun, 16 Nov 2025 14:18:47 +0100
-Message-Id: <20251116131853.440863-1-kuba@szczodrzynski.pl>
+Subject: [PATCH v2 1/6] phy: allwinner: phy-sun6i-mipi-dphy: Support LVDS in combo D-PHY
+Date: Sun, 16 Nov 2025 14:18:48 +0100
+Message-Id: <20251116131853.440863-2-kuba@szczodrzynski.pl>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
+In-Reply-To: <20251116131853.440863-1-kuba@szczodrzynski.pl>
 References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
+ <20251116131853.440863-1-kuba@szczodrzynski.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,41 +88,153 @@ Content-Transfer-Encoding: 8bit
 X-Authenticated-Id: kuba@szczodrzynski.pl
 
 Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
-MIPI DSI D-PHY" which is required when using single-link LVDS0. The same
-PD0..PD9 pins are used for either DSI or LVDS.
+MIPI DSI D-PHY" which is required when using single-link LVDS0.
 
-Other than having to use the combo D-PHY, LVDS output is configured in
-the same way as on older chips.
+In this mode, the DSI peripheral is not used and the PHY is not
+configured for DSI. Instead, the COMBO_PHY_REGx registers are set to
+enable LVDS operation.
 
-This series enables the sun6i MIPI D-PHY to also work in LVDS mode. It
-is then configured by the LCD TCON, which allows connecting a
-single-link LVDS display panel.
+Enable the PHY driver to work in LVDS mode on chips with a combo D-PHY.
 
-Changes in v2:
-- Applied code formatting changes from review comments
-- Changed "dphy" to "combo-phy"
-- Made the LVDS setup/teardown functions abort early in case of error
-  (adding a proper return value would require changes in several levels
-   of caller functions; perhaps could be done in a separate patch)
-- Added the PHY properties to DT bindings
-- Renamed lvds0_pins to lcd_lvds0_pins
-- Rebased on top of drm/misc/kernel/for-linux-next
+Also change the SUN50I_COMBO_PHY_REG1 macro names to reflect the correct
+register name.
 
-Kuba Szczodrzyński (6):
-  phy: allwinner: phy-sun6i-mipi-dphy: Support LVDS in combo D-PHY
-  drm/sun4i: Support LVDS using MIPI DSI combo D-PHY
-  drm/sun4i: Enable LVDS output on sun20i D1s/T113
-  dt-bindings: display: sun4i: Add D1s/T113 combo D-PHY bindings
-  riscv: dts: allwinner: d1s-t113: Add D-PHY to TCON LCD0
-  riscv: dts: allwinner: d1s-t113: Add LVDS0 pins
+Signed-off-by: Kuba Szczodrzyński <kuba@szczodrzynski.pl>
+---
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c | 70 ++++++++++++++++++++-
+ 1 file changed, 68 insertions(+), 2 deletions(-)
 
- .../display/allwinner,sun4i-a10-tcon.yaml     |  6 ++
- .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 11 +++
- drivers/gpu/drm/sun4i/sun4i_tcon.c            | 50 +++++++++++++
- drivers/gpu/drm/sun4i/sun4i_tcon.h            |  6 ++
- drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   | 70 ++++++++++++++++++-
- 5 files changed, 141 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+index 36eab9527..57035b3a4 100644
+--- a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
++++ b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+@@ -166,8 +166,8 @@
+ #define SUN50I_COMBO_PHY_REG0_EN_CP		BIT(0)
+ 
+ #define SUN50I_COMBO_PHY_REG1		0x114
+-#define SUN50I_COMBO_PHY_REG2_REG_VREF1P6(n)	(((n) & 0x7) << 4)
+-#define SUN50I_COMBO_PHY_REG2_REG_VREF0P8(n)	((n) & 0x7)
++#define SUN50I_COMBO_PHY_REG1_REG_VREF1P6(n)	(((n) & 0x7) << 4)
++#define SUN50I_COMBO_PHY_REG1_REG_VREF0P8(n)	((n) & 0x7)
+ 
+ #define SUN50I_COMBO_PHY_REG2		0x118
+ #define SUN50I_COMBO_PHY_REG2_HS_STOP_DLY(n)	((n) & 0xff)
+@@ -181,7 +181,9 @@ struct sun6i_dphy;
+ 
+ struct sun6i_dphy_variant {
+ 	void	(*tx_power_on)(struct sun6i_dphy *dphy);
++	void	(*lvds_power_on)(struct sun6i_dphy *dphy);
+ 	bool	rx_supported;
++	bool	is_combo_dphy;
+ };
+ 
+ struct sun6i_dphy {
+@@ -222,6 +224,18 @@ static int sun6i_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
+ 	return 0;
+ }
+ 
++static int sun6i_dphy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
++{
++	struct sun6i_dphy *dphy = phy_get_drvdata(phy);
++
++	if (mode == PHY_MODE_LVDS && !dphy->variant->is_combo_dphy) {
++		/* Not a combo D-PHY: LVDS is not supported. */
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
+ static void sun6i_a31_mipi_dphy_tx_power_on(struct sun6i_dphy *dphy)
+ {
+ 	u8 lanes_mask = GENMASK(dphy->config.lanes - 1, 0);
+@@ -329,6 +343,43 @@ static void sun50i_a100_mipi_dphy_tx_power_on(struct sun6i_dphy *dphy)
+ 	udelay(1);
+ }
+ 
++static void sun50i_a100_mipi_dphy_lvds_power_on(struct sun6i_dphy *dphy)
++{
++	regmap_write(dphy->regs, SUN50I_COMBO_PHY_REG1,
++		     SUN50I_COMBO_PHY_REG1_REG_VREF1P6(4) |
++		     SUN50I_COMBO_PHY_REG1_REG_VREF0P8(3));
++
++	regmap_write(dphy->regs, SUN50I_COMBO_PHY_REG0,
++		     SUN50I_COMBO_PHY_REG0_EN_CP);
++	udelay(5);
++
++	regmap_update_bits(dphy->regs, SUN50I_COMBO_PHY_REG0,
++			   SUN50I_COMBO_PHY_REG0_EN_LVDS,
++			   SUN50I_COMBO_PHY_REG0_EN_LVDS);
++	udelay(5);
++
++	regmap_update_bits(dphy->regs, SUN50I_COMBO_PHY_REG0,
++			   SUN50I_COMBO_PHY_REG0_EN_COMBOLDO,
++			   SUN50I_COMBO_PHY_REG0_EN_COMBOLDO);
++	udelay(5);
++
++	regmap_update_bits(dphy->regs, SUN50I_COMBO_PHY_REG0,
++			   SUN50I_COMBO_PHY_REG0_EN_MIPI,
++			   SUN50I_COMBO_PHY_REG0_EN_MIPI);
++
++	regmap_write(dphy->regs, SUN6I_DPHY_ANA4_REG,
++		     SUN6I_DPHY_ANA4_REG_EN_MIPI |
++		     SUN6I_DPHY_ANA4_REG_IB(2));
++
++	regmap_write(dphy->regs, SUN6I_DPHY_ANA3_REG,
++		     SUN6I_DPHY_ANA3_EN_LDOR |
++		     SUN6I_DPHY_ANA3_EN_LDOD);
++
++	regmap_write(dphy->regs, SUN6I_DPHY_ANA2_REG, 0);
++
++	regmap_write(dphy->regs, SUN6I_DPHY_ANA1_REG, 0);
++}
++
+ static int sun6i_dphy_tx_power_on(struct sun6i_dphy *dphy)
+ {
+ 	u8 lanes_mask = GENMASK(dphy->config.lanes - 1, 0);
+@@ -492,6 +543,13 @@ static int sun6i_dphy_power_on(struct phy *phy)
+ {
+ 	struct sun6i_dphy *dphy = phy_get_drvdata(phy);
+ 
++	if (phy->attrs.mode == PHY_MODE_LVDS && dphy->variant->is_combo_dphy) {
++		if (!dphy->variant->lvds_power_on)
++			return -EINVAL;
++		dphy->variant->lvds_power_on(dphy);
++		return 0;
++	}
++
+ 	switch (dphy->direction) {
+ 	case SUN6I_DPHY_DIRECTION_TX:
+ 		return sun6i_dphy_tx_power_on(dphy);
+@@ -514,6 +572,11 @@ static int sun6i_dphy_power_off(struct phy *phy)
+ 	regmap_write(dphy->regs, SUN6I_DPHY_ANA3_REG, 0);
+ 	regmap_write(dphy->regs, SUN6I_DPHY_ANA4_REG, 0);
+ 
++	if (phy->attrs.mode == PHY_MODE_LVDS && dphy->variant->is_combo_dphy) {
++		regmap_write(dphy->regs, SUN50I_COMBO_PHY_REG1, 0);
++		regmap_write(dphy->regs, SUN50I_COMBO_PHY_REG0, 0);
++	}
++
+ 	return 0;
+ }
+ 
+@@ -533,6 +596,7 @@ static const struct phy_ops sun6i_dphy_ops = {
+ 	.configure	= sun6i_dphy_configure,
+ 	.power_on	= sun6i_dphy_power_on,
+ 	.power_off	= sun6i_dphy_power_off,
++	.set_mode	= sun6i_dphy_set_mode,
+ 	.init		= sun6i_dphy_init,
+ 	.exit		= sun6i_dphy_exit,
+ };
+@@ -619,6 +683,8 @@ static const struct sun6i_dphy_variant sun6i_a31_mipi_dphy_variant = {
+ 
+ static const struct sun6i_dphy_variant sun50i_a100_mipi_dphy_variant = {
+ 	.tx_power_on	= sun50i_a100_mipi_dphy_tx_power_on,
++	.lvds_power_on	= sun50i_a100_mipi_dphy_lvds_power_on,
++	.is_combo_dphy	= true,
+ };
+ 
+ static const struct of_device_id sun6i_dphy_of_table[] = {
 -- 
 2.25.1
 
