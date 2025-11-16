@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-239061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F54C61239
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:50:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2307C61242
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:59:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7A9584E3231
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 09:50:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 07B6C361E4C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 09:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EF023D7D4;
-	Sun, 16 Nov 2025 09:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1D351DE4CE;
+	Sun, 16 Nov 2025 09:58:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="S1m1+eEg"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="NVfGM1+N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC0F23372C;
-	Sun, 16 Nov 2025 09:50:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5D035CBA5;
+	Sun, 16 Nov 2025 09:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763286643; cv=none; b=mjPDczgw4WiWLfzvDowyoK2vxA2fn8NNfxoORPuXK4BQ2bXQekHS3d0I0lk+6yGf2zgWfqjDuCHCJoPccQ3OoZAgLS0O2CFba2PYrBo+HanhGTst9tXyCHavF8IEHKCdg3SAYQDG9rrvByfnf7tDmWNc/Ih8SdZQoFBJQyUFDfI=
+	t=1763287135; cv=none; b=pOHIyLExaNa0U8DBa8Wn1gA39dIYlUNp4se/i9gOqfD5tPxfgaxuRAu/SPzPFystNtymmqehd6mVFQ42S1B8L5xHGSEsHdcaLHnxlSiB0uIpHeSxVdmLGLLuyoGurqX6pWvg2YFfBgJeDPthf0inndW76TRpW1L6eP+TksZKfCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763286643; c=relaxed/simple;
-	bh=G7LtW3dL8esobnMzwJC+kd1MEndQRhIclgVhpATxhPU=;
+	s=arc-20240116; t=1763287135; c=relaxed/simple;
+	bh=/IodfAgsUrjjhcTtKe3TjnTr29d7GbzX8k72lEB8M4E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D2SjFaijZRhgQVB4PhmxfDbCFFAZAJFUMLIgEO7LaGeEupDHvVEzYPIWELfeW8doEIabs3+j+3SBLtMtGmvbZ+7fnaYeZTHvN+vUrpqsnPWJ7nxYvQlvxNgpfA2YOPine50jKWqOf3QpX+I9zJMv9uqs1XgPgts6gdrWkgiIy/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=S1m1+eEg; arc=none smtp.client-ip=220.197.32.18
+	 Content-Type:Content-Disposition:In-Reply-To; b=R4YaIa/UPNoY+4LR9xhTUDNV+sc1rfQAWXIjy4PnDCMjEULUD+bWz2pczVxO2GWzV0XdAXId7A2p66e7SZitPtTcCuBVZfltzzNkrNWufZJQuA2RPXiEc+aS9Tr4k4gUfu2BIwWicawcLMnGNoC5ghBUS+msuHj36OpbcC8jaCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=NVfGM1+N; arc=none smtp.client-ip=1.95.21.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=U4A5sC6vx4DwfGfQ1k1Mlreu32CFe9N+OnTRiJsS5XI=;
-	b=S1m1+eEgNtV/MtOka1ZTSFj7g7N6dqQ0meJ2NODGU7I8LFnBtJ1kLw0iAt74W8
-	NOsO3LJU8uYGjjF22TB8C4ANXw+uI9QYCnyy0nfugZ8pptDeOiU7z3XCfRRWbxhk
-	isfbNf6LRjgm2gN8BtUZIZNfloKijhgq/50FxDL8PSMng=
+	Content-Type; bh=L/q/AVGR8/RLFNl3U55Jp3zAzhPBmJRaurGlvbnRsa8=;
+	b=NVfGM1+NNXoSfCZuZfMyzw0avrtRsSfVKBEgKWreGrlavlglFXw2+vNM9twf4b
+	qQNlyF1RTwP+7PIhVnrgwXhUQbkpY4Mf0qKpXoFuHR2vSiRUKHWe/+71fQsyJ2/c
+	3c1rV0BZmZwKis3LrD3pvelAh1zAdoWPFk0Vv5lK7ElDc=
 Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgDHr4c1nhlpklwWAg--.8044S3;
-	Sun, 16 Nov 2025 17:49:43 +0800 (CST)
-Date: Sun, 16 Nov 2025 17:49:41 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAXn886oBlp3LsjAg--.8159S3;
+	Sun, 16 Nov 2025 17:58:20 +0800 (CST)
+Date: Sun, 16 Nov 2025 17:58:18 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
 To: Frank Li <Frank.Li@nxp.com>
-Cc: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: imx8qxp-mek: Add sensors under i2c1 bus
-Message-ID: <aRmeNSTudl1mBvsn@dragon>
-References: <20251029-qxp_sensor-v1-0-e97ee1de96d8@nxp.com>
- <20251029-qxp_sensor-v1-2-e97ee1de96d8@nxp.com>
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Joy Zou <joy.zou@nxp.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>, Sherry Sun <sherry.sun@nxp.com>
+Subject: Re: [PATCH 00/12] arm64: dts: imx8qxp: collect some imx8qxp-mek dts
+ patches
+Message-ID: <aRmgOiqUXLk8BIDe@dragon>
+References: <20251029-8qxp_dts-v1-0-cf61b7e5fc78@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,84 +63,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251029-qxp_sensor-v1-2-e97ee1de96d8@nxp.com>
-X-CM-TRANSID:M88vCgDHr4c1nhlpklwWAg--.8044S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF4ktrW5CrWxKF45Zr17GFg_yoW8XF4Dpr
-	97Z393Wr1SvF12k34agFs5GFZ8Cw4rGFn09FnrJayFkrsruFyDt3W7Krnxuw48XF4xXw4S
-	qF1vvr1jkrnxXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07URGQDUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIBhWu2kZnjh-mwAA3n
+In-Reply-To: <20251029-8qxp_dts-v1-0-cf61b7e5fc78@nxp.com>
+X-CM-TRANSID:Ms8vCgAXn886oBlp3LsjAg--.8159S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZryfKw13tr1fAF1kCw45Wrg_yoWDJrg_uw
+	4FkFn5C3yYyr4fA345A3Z29rW0gryFyrykWry2gwn3X3WxWFyayFy0v34fWw18GF4fWF1D
+	Aw18Xw1UXr45WjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUjOeOJUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIhzXPWkZoDzehwAA3h
 
-On Wed, Oct 29, 2025 at 03:27:19PM -0400, Frank Li wrote:
-> Add sensors under i2c1 bus.
+On Wed, Oct 29, 2025 at 03:54:36PM -0400, Frank Li wrote:
+> collect some imx8qxp-mek dts patches.
 > 
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 32 +++++++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> index 7b033744554105de6dbc4366f21e3c90f1768deb..9a96018e6f0680ac503135726f4899aca121e7f6 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> @@ -450,10 +450,36 @@ i2c@2 {
->  			#size-cells = <0>;
->  			reg = <2>;
->  
-> +			accelerometer@1e {
-> +				compatible = "nxp,fxos8700";
-> +				reg = <0x1e>;
-> +			};
-> +
-> +			gyroscope@21 {
-> +				compatible = "nxp,fxas21002c";
-> +				reg = <0x21>;
-> +			};
-> +
->  			pressure-sensor@60 {
->  				compatible = "fsl,mpl3115";
->  				reg = <0x60>;
->  			};
-> +
-> +			/* Ref SCH-54536 */
-> +			pressure-sensor@77 {
-> +				compatible = "meas,ms5611";
-> +				reg = <0x77>;
-> +			};
-> +
-> +			inertial-meter@68 {
+> Frank Li (9):
+>       arm64: dts: imx8qxp: add MAC address in ocotp
+>       arm64: dts: imx8qxp: add readonly for ocotp
 
-Keep devices sorted in slave address.
+Skip this one
 
-Shawn
+>       arm64: dts: imx8qxp: add wakeup source for power-key
+>       arm64: dts: imx8qxp-mek: add state_100mhz and state_200mhz for usdhc
+>       arm64: dts: imx8qxp-mek: update usdhc1 clock to 400Mhz
+>       arm64: dts: imx8qxp-mek: add flexspi and flash
+>       arm64: dts: imx8qxp-mek: add phandle ocotp mac-address for fec
+>       arm64: dts: imx8qxp-mek: add fec2 support
+>       arm64: dts: imx8qxp-mek: change space with tab
+> 
+> Joy Zou (1):
+>       arm64: dts: imx8: add edma error interrupt support
+> 
+> Richard Zhu (1):
+>       arm64: dts: imx8qxp-mek: Add supports-clkreq property to PCIe M.2 port
 
-> +				compatible = "invensense,icm20602";
-> +				reg = <0x68>;
-> +			};
-> +
-> +			inertial-meter@69 {
-> +				compatible = "invensense,iam20380";
-> +				reg = <0x69>;
-> +			};
->  		};
->  
->  		i2c@3 {
-> @@ -483,6 +509,12 @@ light-sensor@44 {
->  				interrupt-parent = <&lsio_gpio1>;
->  				interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
->  			};
-> +
-> +			/* Ref SCH-54536 */
-> +			light-sensort@60 {
-> +				compatible = "vishay,vcnl4035";
-> +				reg = <0x60>;
-> +			};
->  		};
->  	};
->  
+Skip this one
+
 > 
-> -- 
-> 2.34.1
-> 
+> Sherry Sun (1):
+>       arm64: dts: imx8qxp-mek: Add lpuart1 to support the M.2 PCIE9098 bluetooth
+
+Applied the rest, thanks!
 
 
