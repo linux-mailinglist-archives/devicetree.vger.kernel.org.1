@@ -1,78 +1,128 @@
-Return-Path: <devicetree+bounces-239102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6847C6156A
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 14:13:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1A7C6158C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 14:22:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 586024E3910
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 13:13:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4CF704E6FD3
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 13:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D782D8DB5;
-	Sun, 16 Nov 2025 13:13:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD842DBF48;
+	Sun, 16 Nov 2025 13:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="mq9OJ5vf"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="bMtB0Qg/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D9A27F756;
-	Sun, 16 Nov 2025 13:13:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CBF2D9EE7;
+	Sun, 16 Nov 2025 13:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763298813; cv=none; b=dZuYub8NFykL1XR87aV5WBehfbTLZyKA1y4FBpDdf5ar5+KqGvnZHUO2L/3b5zuFjUH8eAshsRiS09uIWgAHPNk6hmsorKmkUzMA+4HdDvlHgDAjk88PF6bQysO+XVfC73lKiUL1rPqA/kj9fh12EGSvSPdqg6f414kdQUV9u0s=
+	t=1763299359; cv=none; b=dVtm4QckH1zC/9Oo6T0xcJbW4u32o0p52dzX2ViGr07IYBQX1Put4E/i1E776o1Gf4uYFjMQPNpdbKcmGCfofgwszm8CkoVNXzlvG8jf8Z+yju2xhP5/x/rDFgoOy8bfdzyUP/CAMsPuIwccTJtFE+oYxEMwjEIglv+GFbgzuPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763298813; c=relaxed/simple;
-	bh=QdREia3Z8CgCG458NglnahkgQe4Yj/oQX3u3ds6+KWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HZQ4YMYnVJtWVx6c424QX98PyK7IyI4kobbLyY4+DM/UULYZew9ekBOOmFQXmoPxQYGFvRefzP817l9j+aUuYv8PBOtpChxwl7EMr25pDrSHo67AXE79+ZMihQ/DO3l6iWF8TakryvDGAtDQ/D4KTlwrNYV0fsR7kOk8YUVX74A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=mq9OJ5vf; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=+jIKbfW5/v+xlkcfxLUv/ia3vHPY9nRhWo0buFo4Dk8=;
-	b=mq9OJ5vf7Ev/HLiDkw90zW2aui2AEu6fD2uwPDtcyAq8W1m2tgq5n9Mew1G6O/
-	GgBh5hqG1YXpLuKciSK+ws4efl96uefQLGRkk+Fvy9+2zqA74dHgPi0UzF4X48es
-	Z3BAUigA54rLGN28uodTyQAArKCU3QIPOimWLxsX6RysI=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAH+7nPzRlpeBc8AQ--.7960S3;
-	Sun, 16 Nov 2025 21:12:49 +0800 (CST)
-Date: Sun, 16 Nov 2025 21:12:47 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] arm64: dts: freescale: tqma9352: Add vcc-supply for
- spi-nor
-Message-ID: <aRnNz3S5lp260-Dt@dragon>
-References: <20251114083959.1463736-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1763299359; c=relaxed/simple;
+	bh=YyCg/ZEBdJ4y/5W/Mtx4/UJxwse5B3iGLQ0P7rxO+IU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cZjbJI90q75f4Qq7wKXLuWTAwH2qL9psArQ+FvsFasd2FxRYeLXurncb23NVp2KpInQikeoiwElRFQTDFUaAq+5vnNvRLvkiTPHIQ5giItJR/ZVKad3ywH1lEIf6LF9uGC2ecF+xOmi6OODwwEunZL+eMa1oWHHBzFhu/FQTvAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=bMtB0Qg/; arc=none smtp.client-ip=46.242.128.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ALqrvYx16IgQIglbpOnwhVRORNfwDsxM2tJC2QOGjhQ=; b=bMtB0Qg/1+SsHyMo3tyeEyYGtI
+	nf4o+cbragiw/zKK0FphHMOpRJLSRcqI8fBYHJrhQIx8uUQpO9ygpW0MiJgNsapUrni94RTM2friZ
+	eKZPqZTyySpbVNSdH4crYAkVFEpggWtlSfyH8hFwb7TAEldSnP0qGWNgG8IkROR7yyvmG7AzJdVUU
+	xnOafJHM++YT5PkOVfrAKnOHqJqooeuXUNpEH2wMxliQy/KiaAqHdjz7JkAyZAdx0dKawY/b2/Q79
+	To9wceIfxw19SgOKhIAKB8UXnGeo6HI4uDxpOUwCSPN+c6C3uSRKzgxHOvLQNE3VQecsGzGZPqhvA
+	hp9vdaCQ==;
+Received: from [62.171.184.96] (helo=buildhost.contaboserver.net)
+	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <kuba@szczodrzynski.pl>)
+	id 1vKcfw-0000000FW4E-1LDX;
+	Sun, 16 Nov 2025 14:20:16 +0100
+From: =?UTF-8?q?Kuba=20Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
+To: Maxime Ripard <mripard@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	parthiban@linumiz.com,
+	paulk@sys-base.io
+Subject: [PATCH v2 0/6] drm/sun4i: Support LVDS on D1s/T113 combo D-PHY
+Date: Sun, 16 Nov 2025 14:18:47 +0100
+Message-Id: <20251116131853.440863-1-kuba@szczodrzynski.pl>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
+References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251114083959.1463736-1-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:Mc8vCgAH+7nPzRlpeBc8AQ--.7960S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUwxhlDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNBFIrWkZzdEqsQAA33
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: kuba@szczodrzynski.pl
 
-On Fri, Nov 14, 2025 at 09:39:58AM +0100, Alexander Stein wrote:
-> (Q)SPI NOR flash is supplied by 1.8V. Add the corresponding supply.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
+MIPI DSI D-PHY" which is required when using single-link LVDS0. The same
+PD0..PD9 pins are used for either DSI or LVDS.
 
-Applied, thanks!
+Other than having to use the combo D-PHY, LVDS output is configured in
+the same way as on older chips.
+
+This series enables the sun6i MIPI D-PHY to also work in LVDS mode. It
+is then configured by the LCD TCON, which allows connecting a
+single-link LVDS display panel.
+
+Changes in v2:
+- Applied code formatting changes from review comments
+- Changed "dphy" to "combo-phy"
+- Made the LVDS setup/teardown functions abort early in case of error
+  (adding a proper return value would require changes in several levels
+   of caller functions; perhaps could be done in a separate patch)
+- Added the PHY properties to DT bindings
+- Renamed lvds0_pins to lcd_lvds0_pins
+- Rebased on top of drm/misc/kernel/for-linux-next
+
+Kuba Szczodrzyński (6):
+  phy: allwinner: phy-sun6i-mipi-dphy: Support LVDS in combo D-PHY
+  drm/sun4i: Support LVDS using MIPI DSI combo D-PHY
+  drm/sun4i: Enable LVDS output on sun20i D1s/T113
+  dt-bindings: display: sun4i: Add D1s/T113 combo D-PHY bindings
+  riscv: dts: allwinner: d1s-t113: Add D-PHY to TCON LCD0
+  riscv: dts: allwinner: d1s-t113: Add LVDS0 pins
+
+ .../display/allwinner,sun4i-a10-tcon.yaml     |  6 ++
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 11 +++
+ drivers/gpu/drm/sun4i/sun4i_tcon.c            | 50 +++++++++++++
+ drivers/gpu/drm/sun4i/sun4i_tcon.h            |  6 ++
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   | 70 ++++++++++++++++++-
+ 5 files changed, 141 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
 
 
