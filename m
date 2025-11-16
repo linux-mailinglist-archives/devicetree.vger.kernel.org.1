@@ -1,66 +1,63 @@
-Return-Path: <devicetree+bounces-239051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B7DC60FC8
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 04:53:46 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91D60C60FF8
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 04:57:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 467C74EB145
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 03:53:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 61EAF34A8B1
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 03:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B86A256C9E;
-	Sun, 16 Nov 2025 03:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A143214A97;
+	Sun, 16 Nov 2025 03:57:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="HRXqVbri"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="NgJpJ+zB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ECEC2441B8;
-	Sun, 16 Nov 2025 03:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320D014884C;
+	Sun, 16 Nov 2025 03:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763265161; cv=none; b=dNinwPH+2trN+M6XWZHcbGMIpUo/osYTSCAstaSCl6112+TbIxIvZxIr12Gt62neq6r6ws04Vkzka0QkiFva1axSBZSXf5+RbWNYgXzVuqdACiBXueMETxgGfiRL6QdADj8YflPfzvzaRKAFX/4DKQPKdTmwNCVigSBqkDWl2cM=
+	t=1763265435; cv=none; b=Zrx8tX5nfNbVz9WCp8kJtuVO6HlN6MwNwCm7cTFIcSozJu/6XEnKtlytSiM0IjI3gCqan35kMsHzIP7BZxNipVOkDqxAQZfnHmnijmvMDeLcVh0FNZPCeqSD61mXJi9Pdcx8AwKwlNYu2IB1tzArvpQDcGnAfcqiXdFSIsw7Xbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763265161; c=relaxed/simple;
-	bh=elDQNfVxbieXT1jJ7mnTPTdGSw8jTRG/tSs3yo5cCRc=;
+	s=arc-20240116; t=1763265435; c=relaxed/simple;
+	bh=itfzgRv69cSdPUg7zJzc8VMFE/HpgagI2jrKcmzrjyY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mQgTUrQBt8RpWpAv8pzzMGa0khfjxyWjNGqF1OwteXs8wujJNoRd6uku9bD/h9Y+wxP2G+MTVEd15/un9hTy86a2BFXpD78MwLIGnYJuov5a2QedZ2JkJpZxcjhyuPKHC6lrh6dekuPzA/toNRQfjkqK2s5Ezpno2R9R0e+0rkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=HRXqVbri; arc=none smtp.client-ip=1.95.21.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=B/LQkEeIisc+WPqsbmQ59sVEehI/WNy3VnyKyE7yAtJfZq6ybSpGKRYn/nx3/T0bBsP7nxpMCPw2PJETIrYf3hpcCXKLy95hFdaCbRQXO+yN3QqcrKT1n7xtscdHmGPvRy1ELD8ilJ3uMmElpXuD/PCbz8uVlYIR6id0uxhH+ZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=NgJpJ+zB; arc=none smtp.client-ip=220.197.32.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=9T2DbJXTL02gDuKqRKAHj63zBLmVwp0FHpFWKELvs6o=;
-	b=HRXqVbriK/FgeE7H6K/G1lLF9PBP9XAYmclO+P7pLfBBklJ5poTiXzOEeBqjNd
-	ilKXnYYDrlkbsjK+RHk4hJB0GyEAB6bJwJgWFc4xYNIim4N+h7WGasO+sWWeAUFK
-	NXEBdqxWqzvb02vkr9eUrlZzaKYUDdauZIVU+Z43mJCbw=
+	Content-Type; bh=+d11/97yRmoOItITlX8hl7n6rNBG3cdfrFwI8I9S/Yo=;
+	b=NgJpJ+zBDX0MZ6JrWYa/UG5i1llDwj6bUNli3bHCZGvMo99R5xwOZwmYqvOgDp
+	B/IQoge6LZBZdyAytuk8P8Ma2Ff9VQPHQJ7zk4ncADLSNXHYvhyxq/0lzmz3rBRT
+	yTf36Lw6CY/ItBVsWx0NiQKC7rjGBtqEBbW6Y7z0kLpBs=
 Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgCnKou+SRlpHYgSAg--.7957S3;
-	Sun, 16 Nov 2025 11:49:21 +0800 (CST)
-Date: Sun, 16 Nov 2025 11:49:18 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDn4UNjSxlpT8UfAg--.7837S3;
+	Sun, 16 Nov 2025 11:56:21 +0800 (CST)
+Date: Sun, 16 Nov 2025 11:56:19 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org,
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, l.stach@pengutronix.de,
-	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v7 7/7] arm64: dts: imx8mp-evk: enable hdmi_pai device
-Message-ID: <aRlJvijH-F8pz10O@dragon>
-References: <20250923053001.2678596-1-shengjiu.wang@nxp.com>
- <20250923053001.2678596-8-shengjiu.wang@nxp.com>
+To: max.oss.09@gmail.com
+Cc: Max Krummenacher <max.krummenacher@toradex.com>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/5] arm64: dts: imx8-apalis: add additional
+ functionality
+Message-ID: <aRlLY_rWgeAXGEV-@dragon>
+References: <20251027093133.2344267-1-max.oss.09@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,22 +66,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250923053001.2678596-8-shengjiu.wang@nxp.com>
-X-CM-TRANSID:M88vCgCnKou+SRlpHYgSAg--.7957S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUbWlkUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNgEjiGkZScFifQAA37
+In-Reply-To: <20251027093133.2344267-1-max.oss.09@gmail.com>
+X-CM-TRANSID:Ms8vCgDn4UNjSxlpT8UfAg--.7837S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrtFWruF13KrW7Cw1DAr4Utwb_yoWxuFc_ur
+	1YkFnrWa12gF4kKw45JF4I9FWY9F409FyIq3y7W3srW34SvF1rAr48XryF9w18tr4jkrsr
+	ZFs5Zw4DXws8ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUU2jg7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQWM8WkZS2WKnwAA3G
 
-On Tue, Sep 23, 2025 at 01:30:01PM +0800, Shengjiu Wang wrote:
-> Enable hdmi_pai device.
+On Mon, Oct 27, 2025 at 10:30:06AM +0100, max.oss.09@gmail.com wrote:
+> From: Max Krummenacher <max.krummenacher@toradex.com>
 > 
-> Aud2htx module, hdmi_pai and hdmi controller compose the hdmi audio
-> pipeline.
+> Cleanup the regulator used for the Wi-Fi module.
+> Improve ADC node by specifing the used reference volatage.
+> Add thermal nodes and cooling devices for the PMIC.
+> Cleanup TODOs no longer applicable.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> 
+> Max Krummenacher (3):
+>   arm64: dts: imx8-apalis: cleanup todo
+>   arm64: dts: imx8-apalis: add thermal nodes
+>   arm64: dts: imx8-apalis: specify adc reference voltage regulator
+> 
+> Stefan Eichenberger (2):
+>   arm64: dts: imx8-apalis: rename wifi regulator
+>   arm64: dts: imx8-apalis: use startup-delay-us for wifi regulator
 
-Applied, thanks!
+Applied all, thanks!
 
 
