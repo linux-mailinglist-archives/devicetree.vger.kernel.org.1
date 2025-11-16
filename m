@@ -1,151 +1,752 @@
-Return-Path: <devicetree+bounces-239053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA28EC60FFE
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 05:01:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C991DC61004
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 05:02:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 06B0134ADB4
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 04:01:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4ED3034AAE7
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 04:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB66F226D02;
-	Sun, 16 Nov 2025 04:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731C9224B05;
+	Sun, 16 Nov 2025 04:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dGQbMKFx"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="QIJEwQwU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E094D1DED4C
-	for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 04:01:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A6A21ABDC;
+	Sun, 16 Nov 2025 04:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763265693; cv=none; b=sudi/kG+seux9U5WuTLFzddgnsku0mElzVg05j4OszYk3BISlH3GnV1pDagY7v26yNOu2sKK+d5DJR5SPuzXYyoHNCpE9DhNEmxC5pW2RbpUXDbAsgmOyX5U4Q6+52eaWocn5l4E17YiWkAOOes/s4PmnJ2UxNEUSV4CqQ81Ajw=
+	t=1763265723; cv=none; b=kDaWkKN0lLvrOHgnMU/IIK5scLyKYiO4FPxPpHy2KPEVgtYsG37w9fCf6IQ/VR1+N6IUTQsmUL66t41lXDgucWclqG/fN10znPAo2VSsFsqKBCC18c10G7b2rwBzWzCv9El7ESIs/3d+xgUgXY7fVyMhbnw6xNH0sHzYCF3dfgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763265693; c=relaxed/simple;
-	bh=ViKmEBt094e+TEyrkD/7l7Omxa8P2Y/BZpUwUU1mz/s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O1xn5fbDuHfzZqJe7ty/3vE2Re4fQKfG0qCwL1LNS9hYaH1zWG8SGZ1xaaPHHPdhi78rvwLHCupMr5ZC4oZNzMBQbUS4lXsN9cfOQHQ0KfMjb73XEB3gFW2ufeJwo/TjooS+1iNaIddIRWwoflEzFJvmEO1WmXdZ79wdzh2nuoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dGQbMKFx; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-591c9934e0cso4456052e87.0
-        for <devicetree@vger.kernel.org>; Sat, 15 Nov 2025 20:01:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763265689; x=1763870489; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vHOnnfu2WV/v2N1dBqAfZarNGYxVE6UYUn92Rk5owLE=;
-        b=dGQbMKFx3L3/JSoVq4PElnac1G88MOeTDapELS0ntHknbudBEZWUwpVA1cxV6u6HqL
-         sAJWF91hDEtdMOsQFXm3eHYlAulWbmnPK5epxa1US55MaeH4vdRqNftc1giqfknF26//
-         GdRrgFyxiOlbAFQLpsLkFvv8w08DlCLNZ3GPNaOxud2I1nwPYjsWOP7GwSg6YwNkZ8NM
-         HvDVTHFntGGu+9HCG2AQEo/5z0MvP9/a+psaUYH8kdss2qqQ6EskcO+GnsSwTaI08M3f
-         3Cr7zNNgcXd1MypKSXAAucUIhJeAzBQjklu1cTILCltb+jlhm9s1SOrZhJ1DESZhoamW
-         ugOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763265689; x=1763870489;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vHOnnfu2WV/v2N1dBqAfZarNGYxVE6UYUn92Rk5owLE=;
-        b=kVAFU3kcXzZbRVDUPHqgsU6F1jCctRPHSHzhbFU+kaoeWuv9O0Bheo4CV5E7wtKi81
-         GQ5VWIs9AlcCXUn+b0G8yUoRTYvCFioVnjZBU1WWrQl2iwMG3PHebi6a9bN0cbHNEpP+
-         EhOaKxHV3/bcx2xyC7CG+rF7o31zaPpCW4vZpfNWLcr/ahMzQasYnJo3dNnVhg6/1a/N
-         XUamLYJ3yTojgXhXXN4yLvBUvRQbfyo90E5sKmd2ZWLfR2rRToMnaETd/JBhhKy4NVO9
-         7zH5r+vgHhorfgnZTB3NXpwz8Yh5BuzqfOYgjnU1fAI2lzanqTDw9GpWrQqs4EYTthFO
-         Mw1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX5RaAKoIRENLuVkjkx+KNJLIYp331eh38SZ+pxwCyYVjC7A5ENpgwFy02AECSbLtHBptvIP+B8KAey@vger.kernel.org
-X-Gm-Message-State: AOJu0YwopWhYHYqu/Do3YieNgCJBvXBjkmeHIbd1MuERG/cjnmt7QS2P
-	SPYPCkRuMS8N1LPPXlPGfa9BNsbyLeZL8k9hbZA7ApCAxrenOAeoQ9vbcyFM3PCnQUYQgb9HnuD
-	PUsjp4YLtVMiXWj5zF53pvLsih1/Ab5BoPsovHas=
-X-Gm-Gg: ASbGnctESpB6icLAX9YR/Sg4Q3xKOt/Qfi51sGVRZKdmih4WfLlNwAW3bgLcmsVU7V2
-	D28dbO6jf3wz9FUnTwp9xlM5Sn54azra0mcHUzIMvS8OoXmLV7mubdBD20OXcJ87YD7dPry0dLa
-	tVm9MPbPNduFaGSLdA+5XqRtBhwgz7hb5/43rEmdl/9MZSfXWNN67wz9UOek9PeZuPg7dQnfLQ/
-	D/iuyc5mxn2HyGowk34C1n7q3P4HUIdnGLgfa/8wR0D4xKQ76qx70PCt1TtELNrsfiALs9M
-X-Google-Smtp-Source: AGHT+IGVtK1X6QVCCFl9oUOkghvq4uLoqfDGl5AxVVwOhFqg/9cS0AdZlrKDx+vFfKKDxtJFS1HxkFRUicMAHzHBZTM=
-X-Received: by 2002:a05:6512:108d:b0:594:2654:5e3c with SMTP id
- 2adb3069b0e04-595841f0b71mr2840106e87.33.1763265688745; Sat, 15 Nov 2025
- 20:01:28 -0800 (PST)
+	s=arc-20240116; t=1763265723; c=relaxed/simple;
+	bh=ND4KCHfiUxnV6TdIZNHhpGVtHA8PoHAKBDYSB4GEi0s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DB6xNImlegQZB7Z7+pOlgX2FdEjN3Ck8by70HXyd/U1ubpxPnD+xUKpO9h6fcv3MqRQczUMf56kToA2+QKxd/GgozkfYpJr/u1/syC4n+kIScigHhajaQXJAc9hq9VKdmqK6+1pqqIuzmEJiQhVYqfx3DsRVX0q8MB4V8d6863w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=QIJEwQwU; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=GUGusZfe145+eEbMJVj+/EtKqHE8jsKCBjwGyIRMTTA=;
+	b=QIJEwQwUirCh0324WDk3CW2YlGjZW30pyyaYzmo/2O7w72GTqq1+WPe/uPkdst
+	gd72SSYS00TMlc0X3skWrGhAbldtvWbWtw5jPikf4aNArg1deO+6Y+EeNMq7CqMd
+	zS2N2dn+WZmCL0wO6vSK5hWRz4zFBe1tAkSOZzIfLA508=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgDn6XV+TBlpo6gSAg--.7801S3;
+	Sun, 16 Nov 2025 12:01:04 +0800 (CST)
+Date: Sun, 16 Nov 2025 12:01:02 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregor Herburger <gregor.herburger@tq-group.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: Re: [PATCH v3 2/2] arm64: dts: ls1028a: Add mbls1028a and
+ mbls1028a-ind devicetrees
+Message-ID: <aRlMft4X0dZ1CxDs@dragon>
+References: <20251027110459.420857-1-alexander.stein@ew.tq-group.com>
+ <20251027110459.420857-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1762482089.git.zhoubinbin@loongson.cn>
-In-Reply-To: <cover.1762482089.git.zhoubinbin@loongson.cn>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Sun, 16 Nov 2025 12:00:51 +0800
-X-Gm-Features: AWmQ_blIhjJIi_40FrZPKnXO2gKNnDJthQwdyLwC4vAHP_LVBvLT1GG6sptkjTU
-Message-ID: <CAJhJPsX537QiQZdk-0g_4RWVYGrhFasPrOY4Np+b-aVC6j1Urg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] Watchdog: Add Loongson-2K0300 watchdog support
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251027110459.420857-2-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:M88vCgDn6XV+TBlpo6gSAg--.7801S3
+X-Coremail-Antispam: 1Uf129KBjvAXoW3tF1UZrykKr4fAr15GFWDCFg_yoW8WF18Zo
+	Wayr4vkFW5J34Iy3W7KrWxWa10yrs5Xw4YkayUXF4fGa10yrWDAw1Yva18tFWUAr1fKryk
+	Jry3Ga48Ja1Yv3s5n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUj8nYUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNADTOWkZTIBc1QAA3r
 
-For the whole series:
+On Mon, Oct 27, 2025 at 12:04:56PM +0100, Alexander Stein wrote:
+> From: Gregor Herburger <gregor.herburger@tq-group.com>
+> 
+> Add device trees for the MBLS1028A and the MBLS1028A-IND and the SoM
+> TQMLS1028A.
+> 
+> Signed-off-by: Gregor Herburger <gregor.herburger@tq-group.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Changes in v3:
+> * Fix ethernet PHY interrupt polarity
+> * Remove downstream properties
+> 
+> Changes in v2:
+> * Sort node and properties alphabetically
+> * Add clock-frequency to i2c nodes
+> * Add eMMC supplies
+> * Add comment about unused TMU
+> 
+>  arch/arm64/boot/dts/freescale/Makefile        |   2 +
+>  .../fsl-ls1028a-tqmls1028a-mbls1028a-ind.dts  |  68 ++++
+>  .../fsl-ls1028a-tqmls1028a-mbls1028a.dts      | 118 +++++++
+>  .../fsl-ls1028a-tqmls1028a-mbls1028a.dtsi     | 290 ++++++++++++++++++
+>  .../dts/freescale/fsl-ls1028a-tqmls1028a.dtsi | 124 ++++++++
+>  5 files changed, 602 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a-ind.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index ca6cf40dd00be..59d3d76a3194c 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -16,6 +16,8 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var3-ads2.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var4.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-rdb.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-tqmls1028a-mbls1028a.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-tqmls1028a-mbls1028a-ind.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-qds.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-rdb.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-tqmls1043a-mbls10xxa.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a-ind.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a-ind.dts
+> new file mode 100644
+> index 0000000000000..571b801c4f145
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a-ind.dts
+> @@ -0,0 +1,68 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+> +/*
+> + * Copyright 2019-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> + * D-82229 Seefeld, Germany.
+> + * Author: Michael Krummsdorf
+> + * Author: Matthias Schiffer
+> + * Author: Alexander Stein
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "fsl-ls1028a-tqmls1028a-mbls1028a.dtsi"
+> +
+> +/ {
+> +	model = "MBLS1028A-IND starterkit";
+> +	compatible = "tq,ls1028a-tqmls1028a-mbls1028a-ind", "tq,ls1028a-tqmls1028a", "fsl,ls1028a";
+> +};
+> +
+> +&i2c5 {
+> +	gpio_exp_3v3: gpio@71 {
+> +		compatible = "nxp,pca9538";
+> +		reg = <0x71>;
+> +		#gpio-cells = <2>;
+> +		gpio-controller;
+> +
+> +		clk-intn-hog {
+> +			gpio-hog;
+> +			gpios = <0 GPIO_ACTIVE_HIGH>;
+> +			input;
+> +			line-name = "CLK_INT#";
+> +		};
+> +
+> +		mpcie-waken-hog {
+> +			gpio-hog;
+> +			gpios = <2 GPIO_ACTIVE_HIGH>;
+> +			input;
+> +			line-name = "MPCIE_WAKE#";
+> +		};
+> +
+> +		mpcie-disn-hog {
+> +			gpio-hog;
+> +			gpios = <3 GPIO_ACTIVE_HIGH>;
+> +			output-high;
+> +			line-name = "MPCIE_DIS#";
+> +		};
+> +
+> +		mpcie-rstn-hog {
+> +			gpio-hog;
+> +			gpios = <4 GPIO_ACTIVE_HIGH>;
+> +			output-high;
+> +			line-name = "MPCIE_RST#";
+> +		};
+> +
+> +		sata-perstn-hog {
+> +			gpio-hog;
+> +			gpios = <6 GPIO_ACTIVE_HIGH>;
+> +			output-high;
+> +			line-name = "SATA_PERST#";
+> +		};
+> +
+> +		dcdc-reset-hog {
+> +			gpio-hog;
+> +			gpios = <7 GPIO_ACTIVE_HIGH>;
+> +			output-low;
+> +			line-name = "DCDC_RESET";
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dts
+> new file mode 100644
+> index 0000000000000..02563f982ff81
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dts
+> @@ -0,0 +1,118 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+> +/*
+> + * Copyright 2019-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> + * D-82229 Seefeld, Germany.
+> + * Author: Michael Krummsdorf
+> + * Author: Matthias Schiffer
+> + * Author: Alexander Stein
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include "fsl-ls1028a-tqmls1028a-mbls1028a.dtsi"
+> +
+> +/ {
+> +	model = "MBLS1028A starterkit";
+> +	compatible = "tq,ls1028a-tqmls1028a-mbls1028a", "tq,ls1028a-tqmls1028a", "fsl,ls1028a";
+> +
+> +	gpio-beeper {
+> +		compatible = "gpio-beeper";
+> +		gpios = <&gpio_exp_3v3 15 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		autorepeat;
+> +
+> +		button-0 {
+> +			label = "S4";
+> +			linux,code = <BTN_0>;
+> +			gpios = <&gpio_exp_3v3 11 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		button-1 {
+> +			label = "S5";
+> +			linux,code = <BTN_1>;
+> +			gpios = <&gpio_exp_3v3 12 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-1 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_STATUS;
+> +			function-enumerator = <1>;
+> +			gpios = <&gpio_exp_3v3 14 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "default-on";
+> +		};
+> +
+> +		led-2 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_HEARTBEAT;
+> +			gpios = <&gpio_exp_3v3 13 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +};
+> +
+> +&gpio_exp_1v8 {
+> +	dcdc-reset-hog {
+> +		gpio-hog;
+> +		gpios = <6 GPIO_ACTIVE_HIGH>;
+> +		line-name = "DCDC_RESET";
+> +		output-low;
+> +	};
+> +};
+> +
+> +&i2c5 {
+> +	gpio_exp_3v3: gpio@25 {
+> +		compatible = "nxp,pca9555";
+> +		reg = <0x25>;
+> +		#gpio-cells = <2>;
+> +		gpio-controller;
+> +		#interrupt-cells = <2>;
+> +		interrupt-controller;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <30 IRQ_TYPE_LEVEL_LOW>;
+> +		vcc-supply = <&reg_3p3v>;
+> +
+> +		clk-intn-hog {
+> +			gpio-hog;
+> +			gpios = <0 GPIO_ACTIVE_HIGH>;
+> +			input;
+> +			line-name = "CLK_INT#";
+> +		};
+> +
+> +		mpcie-waken-hog {
+> +			gpio-hog;
+> +			gpios = <2 GPIO_ACTIVE_HIGH>;
+> +			input;
+> +			line-name = "MPCIE_WAKE#";
+> +		};
+> +
+> +		mpcie-disn-hog {
+> +			gpio-hog;
+> +			gpios = <3 GPIO_ACTIVE_HIGH>;
+> +			output-high;
+> +			line-name = "MPCIE_DIS#";
+> +		};
+> +
+> +		mpcie-rstn-hog {
+> +			gpio-hog;
+> +			gpios = <4 GPIO_ACTIVE_HIGH>;
+> +			output-high;
+> +			line-name = "MPCIE_RST#";
+> +		};
+> +
+> +		sata-perstn-hog {
+> +			gpio-hog;
+> +			gpios = <6 GPIO_ACTIVE_HIGH>;
+> +			output-high;
+> +			line-name = "SATA_PERST#";
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi
+> new file mode 100644
+> index 0000000000000..8f9dc0f138a63
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi
+> @@ -0,0 +1,290 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+> +/*
+> + * Copyright 2019-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> + * D-82229 Seefeld, Germany.
+> + * Author: Michael Krummsdorf
+> + * Author: Matthias Schiffer
+> + * Author: Alexander Stein
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/net/ti-dp83867.h>
+> +#include "fsl-ls1028a-tqmls1028a.dtsi"
+> +
+> +/ {
+> +	aliases {
+> +		gpio0 = &gpio1;
+> +		gpio1 = &gpio2;
+> +		gpio2 = &gpio3;
+> +
+> +		crypto = &crypto;
+> +
 
-Reviewed-by: Keguang Zhang <keguang.zhang@gmail.com>
-Tested-by: Keguang Zhang <keguang.zhang@gmail.com> # on LS1B & LS1C
+Can we drop these newlines and keep aliases sort alphabetically?
 
-On Fri, Nov 7, 2025 at 2:01=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn>=
- wrote:
->
-> Hi all:
->
-> This patch set adds support for the Loongson-2K0300 watchdog driver.
-> It's similar to the Loongson-1, except for some different register offset=
-s.
-> Therefore, I've merged it with the Loongson-1 watchdog driver.
->
-> In addition, I've simply fixed some minor issues with the previous driver=
-.
->
-> Thanks.
->
-> -------
-> V2:
->
-> - Remove file and function renaming patch;
-> Patch 4:
->   - Update commit message.
->
-> Link to V1:
-> https://lore.kernel.org/all/20251029020847.1946295-1-zhoubinbin@loongson.=
-cn/
-> https://lore.kernel.org/all/20251029020913.1946321-1-zhoubinbin@loongson.=
-cn/
->
-> Binbin Zhou (5):
->   watchdog: loongson1: Add missing MODULE_PARM_DESC
->   watchdog: loongson1: Simplify ls1x_wdt_probe code
->   watchdog: loongson1: Drop CONFIG_OF
->   dt-bindings: watchdog: loongson,ls1x-wdt: Add ls2k0300-wdt compatible
->   watchdog: loongson1: Add Loongson-2k0300 watchdog support
->
->  .../bindings/watchdog/loongson,ls1x-wdt.yaml  |  3 +-
->  drivers/watchdog/Kconfig                      |  4 +-
->  drivers/watchdog/loongson1_wdt.c              | 89 ++++++++++++++-----
->  3 files changed, 69 insertions(+), 27 deletions(-)
->
->
-> base-commit: c64c2a50cdd487e2270c875c1770cd55705d75ff
-> --
-> 2.47.3
->
+Shawn
 
+> +		mmc0 = &esdhc; /* SD-Card */
+> +		mmc1 = &esdhc1; /* eMMC */
+> +
+> +		serial0 = &duart0;
+> +		serial1 = &duart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &duart0;
+> +	};
+> +
+> +	reg_1p8v: regulator-1p8v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_3p3v: regulator-3p3v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		/* global autoconfigured region for contiguous allocations */
+> +		linux,cma {
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +			/* 256 MiB */
+> +			size = <0 0x10000000>;
+> +			linux,cma-default;
+> +		};
+> +	};
+> +};
+> +
+> +&can0 {
+> +	status = "okay";
+> +};
+> +
+> +&can1 {
+> +	status = "okay";
+> +};
+> +
+> +&dspi2 {
+> +	bus-num = <2>;
+> +	status = "okay";
+> +};
+> +
+> +&duart0 {
+> +	status = "okay";
+> +};
+> +
+> +&duart1 {
+> +	status = "okay";
+> +};
+> +
+> +&esdhc {
+> +	cd-gpios = <&gpio1 31 GPIO_ACTIVE_LOW>;
+> +	disable-wp;
+> +	no-mmc;
+> +	no-sdio;
+> +	no-1-8-v;
+> +	bus-width = <4>;
+> +	status = "okay";
+> +};
+> +
+> +/* When switched to baseboard-internal i2c bus,
+> + * IIC5 has access to the following devices.
+> + */
+> +&i2c4 {
+> +	/* TUSB8041 only supports 100 KHz, but it is not connected */
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	/* SI5338 - set up in U-Boot */
+> +	/* clockgen@70 */
+> +};
+> +
+> +&i2c5 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	gpio_exp_1v8: gpio@70 {
+> +		compatible = "nxp,pca9538";
+> +		reg = <0x70>;
+> +		#gpio-cells = <2>;
+> +		gpio-controller;
+> +		#interrupt-cells = <2>;
+> +		interrupt-controller;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <30 IRQ_TYPE_LEVEL_LOW>;
+> +		vcc-supply = <&reg_1p8v>;
+> +
+> +		ec1-intn-hog {
+> +			gpio-hog;
+> +			gpios = <0 0>;
+> +			input;
+> +			line-name = "EC1_INT#";
+> +		};
+> +
+> +		sgmii-intn-hog {
+> +			gpio-hog;
+> +			gpios = <2 0>;
+> +			input;
+> +			line-name = "SGMII_INT#";
+> +		};
+> +
+> +		qsgmii-intn-hog {
+> +			gpio-hog;
+> +			gpios = <4 0>;
+> +			input;
+> +			line-name = "QSGMII_INT#";
+> +		};
+> +
+> +		qsgmii-rstn-hog {
+> +			gpio-hog;
+> +			gpios = <5 0>;
+> +			output-high;
+> +			line-name = "QSGMII_RESET#";
+> +		};
+> +	};
+> +};
+> +
+> +&enetc_mdio_pf3 {
+> +	mdio0_rgmii_phy00: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x00>;
+> +		reset-gpios = <&gpio_exp_1v8 1 GPIO_ACTIVE_LOW>;
+> +		reset-assert-us = <1>;
+> +		reset-deassert-us = <200>;
+> +		interrupt-parent = <&gpio_exp_1v8>;
+> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
+> +		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +	};
+> +
+> +	mdio0_sgmii_phy03: ethernet-phy@3 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x03>;
+> +		reset-gpios = <&gpio_exp_1v8 3 GPIO_ACTIVE_LOW>;
+> +		/*
+> +		 * Long reset to work around PHY incorrect strap pin sampling
+> +		 * due to external capacitors for SGMII
+> +		 */
+> +		reset-assert-us = <2500>;
+> +		reset-deassert-us = <200>;
+> +		interrupt-parent = <&gpio_exp_1v8>;
+> +		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+> +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +	};
+> +
+> +	qsgmii_phy1: ethernet-phy@1c {
+> +		reg = <0x1c>;
+> +	};
+> +
+> +	qsgmii_phy2: ethernet-phy@1d {
+> +		reg = <0x1d>;
+> +	};
+> +
+> +	qsgmii_phy3: ethernet-phy@1e {
+> +		reg = <0x1e>;
+> +	};
+> +
+> +	qsgmii_phy4: ethernet-phy@1f {
+> +		reg = <0x1f>;
+> +	};
+> +};
+> +
+> +&enetc_port0 {
+> +	phy-handle = <&mdio0_sgmii_phy03>;
+> +	phy-mode = "sgmii";
+> +	managed = "in-band-status";
+> +	status = "okay";
+> +};
+> +
+> +&enetc_port1 {
+> +	phy-handle = <&mdio0_rgmii_phy00>;
+> +	phy-mode = "rgmii-id";
+> +	status = "okay";
+> +};
+> +
+> +&enetc_port2 {
+> +	status = "okay";
+> +};
+> +
+> +&mscc_felix {
+> +	status = "okay";
+> +};
+> +
+> +/* l2switch ports */
+> +&mscc_felix_port0 {
+> +	phy-handle = <&qsgmii_phy1>;
+> +	phy-mode = "qsgmii";
+> +	status = "okay";
+> +};
+> +
+> +&mscc_felix_port1 {
+> +	phy-handle = <&qsgmii_phy2>;
+> +	phy-mode = "qsgmii";
+> +	status = "okay";
+> +};
+> +
+> +&mscc_felix_port2 {
+> +	phy-handle = <&qsgmii_phy3>;
+> +	phy-mode = "qsgmii";
+> +	status = "okay";
+> +};
+> +
+> +&mscc_felix_port3 {
+> +	phy-handle = <&qsgmii_phy4>;
+> +	phy-mode = "qsgmii";
+> +	status = "okay";
+> +};
+> +
+> +&mscc_felix_port4 {
+> +	ethernet = <&enetc_port2>;
+> +	status = "okay";
+> +};
+> +
+> +&pcie2 {
+> +	status = "okay";
+> +};
+> +
+> +&sata {
+> +	status = "okay";
+> +};
+> +
+> +&usb0 {
+> +	/* dual role is implemented, but not a full featured OTG */
+> +	hnp-disable;
+> +	srp-disable;
+> +	adp-disable;
+> +	dr_mode = "otg";
+> +	status = "okay";
+> +};
+> +
+> +&usb1 {
+> +	dr_mode = "host";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +
+> +	hub_2_0: hub@1 {
+> +		compatible = "usb451,8142";
+> +		reg = <1>;
+> +		peer-hub = <&hub_3_0>;
+> +		reset-gpios = <&gpio_exp_3v3 1 GPIO_ACTIVE_LOW>;
+> +		vdd-supply = <&reg_3p3v>;
+> +	};
+> +
+> +	hub_3_0: hub@2 {
+> +		compatible = "usb451,8140";
+> +		reg = <2>;
+> +		peer-hub = <&hub_2_0>;
+> +		reset-gpios = <&gpio_exp_3v3 1 GPIO_ACTIVE_LOW>;
+> +		vdd-supply = <&reg_3p3v>;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a.dtsi
+> new file mode 100644
+> index 0000000000000..dbf24dbc043b7
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a.dtsi
+> @@ -0,0 +1,124 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+> +/*
+> + * Copyright 2019-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
+> + * D-82229 Seefeld, Germany.
+> + * Author: Michael Krummsdorf
+> + * Author: Matthias Schiffer
+> + * Author: Alexander Stein
+> + */
+> +
+> +#include "fsl-ls1028a.dtsi"
+> +
+> +/ {
+> +	compatible = "tq,ls1028a-tqmls1028a", "fsl,ls1028a";
+> +
+> +	reg_1p8v_som: regulator-1p8v-som {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "1P8V_SOM";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_3p3v_som: regulator-3p3v-som {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "3P3V_SOM";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	thermal-zones {
+> +		/*
+> +		 * TQMLS1028A uses an external temperature sensor
+> +		 * instead of TMU
+> +		 */
+> +		/delete-node/ ddr-controller;
+> +
+> +		cluster-thermal {
+> +			thermal-sensors = <&sa56004_4c 1>;
+> +		};
+> +	};
+> +};
+> +
+> +&esdhc1 {
+> +	no-sdio;
+> +	no-sd;
+> +	non-removable;
+> +	mmc-hs200-1_8v;
+> +	mmc-hs400-1_8v;
+> +	mmc-ddr-1_8v;
+> +	bus-width = <8>;
+> +	vmmc-supply = <&reg_3p3v_som>;
+> +	vqmmc-supply = <&reg_1p8v_som>;
+> +	status = "okay";
+> +};
+> +
+> +&fspi {
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <100000000>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+> +		vcc-supply = <&reg_1p8v_som>;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	js42_18: temperature-sensor@18 {
+> +		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+> +		reg = <0x18>;
+> +	};
+> +
+> +	sa56004_4c: temperature-sensor@4c {
+> +		compatible = "nxp,sa56004";
+> +		reg = <0x4c>;
+> +		#thermal-sensor-cells = <1>;
+> +		vcc-supply = <&reg_3p3v_som>;
+> +	};
+> +
+> +	se97_50: eeprom@50 {
+> +		compatible = "nxp,se97b", "atmel,24c02";
+> +		read-only;
+> +		reg = <0x50>;
+> +		pagesize = <16>;
+> +		vcc-supply = <&reg_3p3v_som>;
+> +	};
+> +
+> +	rtc1: rtc@51 {
+> +		compatible = "nxp,pcf85063a";
+> +		reg = <0x51>;
+> +		quartz-load-femtofarads = <12500>;
+> +	};
+> +
+> +	m24c256_57: eeprom@57 {
+> +		compatible = "atmel,24c256";
+> +		reg = <0x57>;
+> +		pagesize = <32>;
+> +		vcc-supply = <&reg_3p3v_som>;
+> +	};
+> +};
+> +
+> +/*
+> + * We use a separate sensor IC to measure core temperature. Disable the TMU
+> + * as its driver can cause log spam outside of its measurement range (0-125C).
+> + *
+> + * Will have to be reevaluated if this DTS is ported to a mainline kernel,
+> + * as both sensors of the TMU are referenced by the default LS1028A
+> + * thermal-zones definitions there.
+> + */
+> +&tmu {
+> +	status = "disabled";
+> +};
+> -- 
+> 2.43.0
+> 
 
---=20
-Best regards,
-
-Keguang Zhang
 
