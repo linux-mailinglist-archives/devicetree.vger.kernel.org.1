@@ -1,132 +1,125 @@
-Return-Path: <devicetree+bounces-239130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59DE5C61821
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 17:10:37 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20368C618C6
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 17:48:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 447664E5559
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 16:10:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8C0604EC025
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 16:46:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D495D2DA759;
-	Sun, 16 Nov 2025 16:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7607730C379;
+	Sun, 16 Nov 2025 16:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mbOcgCD2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MCKMdAJs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18D019D8A8;
-	Sun, 16 Nov 2025 16:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DF72C190;
+	Sun, 16 Nov 2025 16:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763309432; cv=none; b=WbTlCbS281RlQkmMc5bUwmL0ce+jIBM9p1dapK7HQhukIxTDvxek7DLdfI8qHc8PwrXycYLdPn6soXxk9r+5ubni+M6Cz+HkA6KM/JYFh8s2V3jr/Tm/QnqTE1k2lnqYZ7I0MbeQb9/8dvxyNhTSFmLuR09VA7YYQFmhyXhutZc=
+	t=1763311614; cv=none; b=VgBhSyDbXL6ABY8PW7Ja2h/fCqQEq0AJcuJP4VPMUns3QogvNHe/nSZgokKxeVVLzrcw9MVAkSsHQAODhX+M/c8Fx6ji7XoBTUEnLRcNV1ANvRoTjgYJw9NnzAiwfQyN/g4NsqOU4MwGr99lCmIVM9V01Y13AN2dw2BVkxu2wHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763309432; c=relaxed/simple;
-	bh=zlADVKGYtLKdaZN2C+6k7dyzgFpOTlp3zF7I0SqUksg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SQzXgVjkhACJYyrQ0pbCahFOF8U9yxbKWTDO31UPgTswAJOupPcGQxGw2U2WovmTPnm+ZmoT0Vojvd0rjaKADtc3g9BI63kwy7G8DI/PLV+txXBSupmqrVj3BBKFFqmhKfSqopBlu+eqdFx7PhdYTIBgCxAVns3HlEJzzqtFKJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mbOcgCD2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D05C4CEF5;
-	Sun, 16 Nov 2025 16:10:27 +0000 (UTC)
+	s=arc-20240116; t=1763311614; c=relaxed/simple;
+	bh=IB0SHzJTCmC0aBxKNhQYokgomuvEdoiHhkLaS0VbXUo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CeqzTd9QrCqU4r65VerJ3TGhi3cSpdjiOrDTWlr6sHcxJiwro/lClCNu3jySD2ANuWVL4s6sOnBS9+9b1NGYfwevCQPxEZaRID4o7HggY9zUkMOXuouRV/tD99mhED8R3Lob26myu0g/F5ybkmiUwvFF3K0xyoRFMzPZijAe378=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MCKMdAJs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6900EC4CEF1;
+	Sun, 16 Nov 2025 16:46:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763309431;
-	bh=zlADVKGYtLKdaZN2C+6k7dyzgFpOTlp3zF7I0SqUksg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mbOcgCD2eKGFlZbKJhp2UXOO5OUOvjCoVYim4/fdmyvmnWo2z9S5+EUiGlcCqDNTr
-	 xCtYNT9yfNPLTZNufz3FGZocmBy8BU6DSfjXi5NJfY5bDPEHUvpC5EUCubroyL7xmZ
-	 BdWNQb4LnW7c02Muj5q4fQr/M/3kC1/ZwC0gzybgJ5Anr4txyJ8IwrluAZ+W2FntVT
-	 WMQinzdV5Z20CvWwuvHHmWjTmsh1zAPn2tWhGtb/CtWNZDSW3+QPH6OMoZcd0GLChS
-	 HiqZXFK93D61XtbibwOu/qDN0PS148wvH8Vcygpdh/QzAuaHfgpNorKi6oT62BfxbX
-	 KyRMtYR5viOSg==
-Date: Sun, 16 Nov 2025 16:10:23 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH 0/3] ADF41513/ADF41510 PLL frequency synthesizers
-Message-ID: <20251116161023.7a4b1b6e@jic23-huawei>
-In-Reply-To: <20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com>
-References: <20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1763311613;
+	bh=IB0SHzJTCmC0aBxKNhQYokgomuvEdoiHhkLaS0VbXUo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MCKMdAJsC75fTkPRoz5i3ni3+lV7VItE9AYnGYHAIwOB83lc7UOye68vDwD6Hle/o
+	 7Qi3xzmEFKIo9Ni8Kk3FSGu591k2Ad/6ouviQbKjtFdimS0ablAg8f8Ivxsz4Znix+
+	 gg0NX/YOneFxkKcWBnZ+oXRyuBjxTZYX/5AJmtA6+BP23zBuVQZl0mONqJMoqcT2hX
+	 WxepSd517eSbTow4vp4GXeAj7kfsYpv6DNQcRAiIo0amBxxlsiPDxEygB0trb7RJlj
+	 w7jdklwjiEodMlZ4MzNqrY9IcnZXdaJu04a5bH2BH6St/lbqGbYRK8sP7JRco1TseN
+	 pNCT8Azce01hQ==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id C31931ACCC98; Sun, 16 Nov 2025 16:46:50 +0000 (GMT)
+Date: Sun, 16 Nov 2025 16:46:50 +0000
+From: Mark Brown <broonie@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 09/20] mfd: sec: Add support for S2MPG11 PMIC via ACPM
+Message-ID: <aRn_-o-vie_QoDXD@sirena.co.uk>
+References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
+ <20251103-s2mpg1x-regulators-v3-9-b8b96b79e058@linaro.org>
+ <20251113162534.GO1949330@google.com>
+ <45ce203c03ec34631a0170baa7e4cf26c98b9cd3.camel@linaro.org>
+ <db7e95dd-2361-4579-b52c-b9556da4633a@sirena.org.uk>
+ <f1e9a9e35f7c16d8db0e39128eb184f3f42b7d02.camel@linaro.org>
+ <aRklfJtOJ_Cy7tEE@sirena.co.uk>
+ <845ca29cf8af53bd3093d1dcbea64cc3e04432f2.camel@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-
-On Mon, 10 Nov 2025 15:44:43 +0000
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-
-> This patch series adds support for the Analog Devices ADF41513 and ADF41510
-> ultralow noise PLL frequency synthesizers. These devices are designed for
-> implementing local oscillators (LOs) in high-frequency applications.
-> 
-> The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41510
-> operates from 1 GHz to 10 GHz. Both devices feature exceptional phase noise
-> performance and flexible frequency synthesis capabilities.
-> 
-> Key features supported by this driver:
-> - Integer-N and fractional-N operation modes
-> - Ultra-low phase noise (-235 dBc/Hz integer-N, -231 dBc/Hz fractional-N)
-> - High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
-> - 25-bit fixed modulus or 49-bit variable modulus fractional modes
-> - Programmable charge pump currents with 16x range
-> - Digital lock detect functionality
-> - Phase resync capability for consistent output phase
-> - Clock framework integration for system clock generation
-> 
-> The series includes:
-> 1. Core driver implementation with full register programming support
-> 2. Device tree bindings documentation
-> 3. IIO subsystem documentation with usage examples
-> 
-> The driver integrates with both the IIO subsystem (for direct hardware control)
-> and the Linux clock framework (for use as a system clock source), providing
-> flexibility for different use cases.
-
-For v2, provide a little more info on why we need both interface types
-specifically what you can do with IIO that you can't do with a clock
-driver.  Also +CC the clk driver folk and list from MAINTAINERS.
-
-We have evolved to this dual interface state drivers, but I'm not sure
-we aren't in a case 'If we were doing this again we'd never start from
-here.'
-
-Jonathan
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="TTSeFMvaEzVHYhHn"
+Content-Disposition: inline
+In-Reply-To: <845ca29cf8af53bd3093d1dcbea64cc3e04432f2.camel@linaro.org>
+X-Cookie: marriage, n.:
 
 
-> 
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> ---
-> Rodrigo Alencar (3):
->       iio: frequency: adf41513: driver implementation
->       dt-bindings: iio: frequency: add adf41513
->       docs: iio: add documentation for adf41513 driver
-> 
->  .../bindings/iio/frequency/adi,adf41513.yaml       |  268 ++++
->  Documentation/iio/adf41513.rst                     |  377 +++++
->  Documentation/iio/index.rst                        |    1 +
->  MAINTAINERS                                        |    9 +
->  drivers/iio/frequency/Kconfig                      |   11 +
->  drivers/iio/frequency/Makefile                     |    1 +
->  drivers/iio/frequency/adf41513.c                   | 1435 ++++++++++++++++++++
->  7 files changed, 2102 insertions(+)
-> ---
-> base-commit: d16d1c2553248f9b859b86c94344d8b81f0297cd
-> change-id: 20251110-adf41513-iio-driver-aaca8a7f808e
-> 
-> Best regards,
+--TTSeFMvaEzVHYhHn
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, Nov 16, 2025 at 12:49:55PM +0000, Andr=E9 Draszik wrote:
+
+> The typical use of the S2MPG10 PMIC is in combination with an S2MPG11
+> PMIC in a main/sub configuration. Bucks of one are usually used as
+> supplies for LDOs of either itself or of the other: several S2MPG10
+> LDOs are consumers of various S2MPG10 bucks & S2MPG11 bucks, and
+> several S2MPG11 LDOs are supplied by various S2MPG10 bucks & S2MPG11
+> bucks.
+
+If you're doing something to resolve such rats nesting of PMICs you
+should do something that works as standard rather than just bodging this
+one driver in a way that treats this specific device as a special
+snowflake.  That might reasonably mean going and refactoring existing
+drivers to look like this one, it is a fairly obvious approach.  We
+should really have a uniform approach that works well rather than random
+variation between devices though.
+
+We could also do this at the regulator level by arranging for the
+devices we make for the regulators to have deferrable drivers, that'd
+be a core only change.
+
+--TTSeFMvaEzVHYhHn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkZ//MACgkQJNaLcl1U
+h9Cvgwf/ZoWso6hjivCrRCtK/dN9mTbBO/SSM4Vfi3mbaE5vv+wSDFC1zw7LReGS
+UaBJ45CfoGQlbDr7zSvUKlCpKGP6oxuRAdrvQt/NwYUxBJ/68Sw9QhjLYcBwwZSZ
+6WfQgKgX4K3c/q8sPkv+8XKdZFhBnrqet0F9lL2v86eqCTR4ld/bQEz/raMDCPw9
+j65BhNErlV04HCK25epfFTNHStlsudJ3pdwtkWl5xas7gVvBwRzzdLLR1YOZWl2s
+C4G/Pqw8rctWUWB4mY89ye9ywlrmBTJIx401aZ2QroVcThwV3bjgt0TL0Dgd+0+i
+uxE8TU43AEQ5aQLly6S0lX3n1oI3/w==
+=RpUa
+-----END PGP SIGNATURE-----
+
+--TTSeFMvaEzVHYhHn--
 
