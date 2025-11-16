@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-239055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9407C6100D
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 05:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D41FEC61212
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:37:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 81C734E1471
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 04:04:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CEDCA4E2DC1
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 09:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30998224244;
-	Sun, 16 Nov 2025 04:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 774F51DDC33;
+	Sun, 16 Nov 2025 09:37:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ChXMptBt"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="IVc2HGu4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C4433993;
-	Sun, 16 Nov 2025 04:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537FE23BCFD;
+	Sun, 16 Nov 2025 09:37:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763265858; cv=none; b=aXhSOEisZe04z77hzrR86UtPe7zfnbVcWNmvbYQK27odPhZJp9eNERSO/b72d3pOalLaIzo4wzKZGBR2Iz91Fq3tsnDAHoP+dSVCZDMxRPGpnJ5sQ01F7poZu4aPGsBs4FBqwFPNDrkpwZPdp6wk/02KYf+zSyjcMjm+Tg59u7c=
+	t=1763285850; cv=none; b=IMhG/oRQ8LkXC12PtoWlSS3M/+5fLpPq/KtD9lGhRJqEL5Fxh7lTSR9WewK8jaWntzNJbxE5lKQfJIGkxChxwow3F9PDPb5EuvQvrpIuIfnYbEthYm4dCJBiTPTZlJHORMKO8OXulLW2nXzh1D7tsnO3RyXHKY635DFVTTBk0HM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763265858; c=relaxed/simple;
-	bh=Vf996jGOmPdtsYMOXI90D0Ds+Qp2izFoxJOXNHJyHjE=;
+	s=arc-20240116; t=1763285850; c=relaxed/simple;
+	bh=8RwSnANmatYjlp5vdhEYio3NFN1JUOIqrxvEBrOcSwg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HULiop8FD2ZB+7VI7k6Ag/35P/ZR2N7gbaORsyjQ0OAITq+R4kKzKYLEevXtWDnQGZXHVd4jfEg/yoAinl54sP5h9Le6Ee1PYKVM+lT7IE8SOpdxiJPnJ555rkucN6hKs6HArABpoIO59iJBnl3wy0hOludm56cAtEWNCb7ttxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ChXMptBt; arc=none smtp.client-ip=220.197.32.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=cHwXzuAafWZjVO+E+MK2ncPO9h4NcT5875V8VyYKu+NnhBoEO0HMjU1Ut7j32IbR5X2a+//fCX0wR140FJtnM1G0LPBdKlMJSn07iiMuVvOu38bShNCW3qjVc11r7xb0XMEVi5OWlpDoBLdHHrQZSk2UhQlnX5qCRaPqmQzGyZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=IVc2HGu4; arc=none smtp.client-ip=220.197.32.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=SzECtJsIWw4uXwE207Uew56sWP/Hi8jDptmOvx0q6Rc=;
-	b=ChXMptBtzotGwu9WczLRdZ1I9cBfwNwr+3Tjt932mnVvxSWKoRxCitSitQoc65
-	HjQj36I71NvU9ew6GP1w+iOj6dmnBUw2d5MyEwapujYfCbu2TNCuvOIjX5gwUPyN
-	FnLI30+SPmOKeOKYSjzOcDtQz3ViqXXZ58rfGdG0VuQ10=
+	Content-Type; bh=sEt7eA3uP6JAyccJIcFiTdXELf0PynanwGq4vjPPSgE=;
+	b=IVc2HGu4fS3G946024aDdYz4IhPJuGR4emT5yUIUPd3KmRCS2wCIc/YXfnBQqo
+	MwPOuy3Lrzpmc5sbROCW/OerDrMNJgUYJpmCHqKDN1TkRdfM8N4rj9MIs3fU++1o
+	1aukII4O0epi64l+Ii968fOJd0SMswfxZyyX2SgkZ4+6c=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDnS5gQTRlpbiE2AQ--.7844S3;
-	Sun, 16 Nov 2025 12:03:30 +0800 (CST)
-Date: Sun, 16 Nov 2025 12:03:28 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgCnAwPumhlpSzUWAg--.7823S3;
+	Sun, 16 Nov 2025 17:35:43 +0800 (CST)
+Date: Sun, 16 Nov 2025 17:35:41 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-	linux-amarula@amarulasolutions.com, Mark Brown <broonie@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Michael Trimarchi <michael@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] ARM: dts: imx28-amarula-rmm: add I2S audio
-Message-ID: <aRlNEJLVvFpEwf4o@dragon>
-References: <20251027161040.2020623-1-dario.binacchi@amarulasolutions.com>
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: Add PHYTEC
+ phyBOARD-Segin-i.MX91 board
+Message-ID: <aRma7QLJIplT_cck@dragon>
+References: <20251028043244.496662-1-primoz.fiser@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +62,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251027161040.2020623-1-dario.binacchi@amarulasolutions.com>
-X-CM-TRANSID:Mc8vCgDnS5gQTRlpbiE2AQ--.7844S3
+In-Reply-To: <20251028043244.496662-1-primoz.fiser@norik.com>
+X-CM-TRANSID:M88vCgCnAwPumhlpSzUWAg--.7823S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU7YiiDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIhL3XWkZTRJ-8wAA35
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUzSdyUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIhCD6GkZmvDOBwAA3K
 
-On Mon, Oct 27, 2025 at 05:10:23PM +0100, Dario Binacchi wrote:
-> Add support for I2S audio on Amarula rmm board. Audio codec
-> TLV320AIC3X is connected as slave to SAIF0, which provides
-> bitclock, frame and MCLK.
+On Tue, Oct 28, 2025 at 05:32:43AM +0100, Primoz Fiser wrote:
+> Add device-tree bindings for PHYTEC phyBOARD-Segin-i.MX91 board based on
+> the PHYTEC phyCORE-i.MX91 SoM (System-on-Module).
 > 
-> Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
-> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Applied both, thanks!
 
