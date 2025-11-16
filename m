@@ -1,58 +1,64 @@
-Return-Path: <devicetree+bounces-239060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B830C61233
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:48:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F54C61239
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:50:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 74D8C4E1B29
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 09:48:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7A9584E3231
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 09:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B4723B627;
-	Sun, 16 Nov 2025 09:48:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EF023D7D4;
+	Sun, 16 Nov 2025 09:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="N9/Q6SI7"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="S1m1+eEg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C574D23372C;
-	Sun, 16 Nov 2025 09:48:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC0F23372C;
+	Sun, 16 Nov 2025 09:50:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763286523; cv=none; b=ttv3x9Rl2Myv4+gduY/GySUd5Py5rHVkXxlIb8aTv/QrrpYQu/UqGneCiih3R1XJsMQyMvWnLF1yWEvLnhRJe/ZhhyW8vHa6ob/9cZqmcoU+0KXLiQscIr/YtTjQu2j/1vuP1XYRVssuF9skB8v2qp8b5QXUJyhFQnPB2YEF46E=
+	t=1763286643; cv=none; b=mjPDczgw4WiWLfzvDowyoK2vxA2fn8NNfxoORPuXK4BQ2bXQekHS3d0I0lk+6yGf2zgWfqjDuCHCJoPccQ3OoZAgLS0O2CFba2PYrBo+HanhGTst9tXyCHavF8IEHKCdg3SAYQDG9rrvByfnf7tDmWNc/Ih8SdZQoFBJQyUFDfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763286523; c=relaxed/simple;
-	bh=Hp2atl9t5xIVwy7sgsh1e8BrpkafWNjy8CjrtdyPOhI=;
+	s=arc-20240116; t=1763286643; c=relaxed/simple;
+	bh=G7LtW3dL8esobnMzwJC+kd1MEndQRhIclgVhpATxhPU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HB8l6aZi+/uJkiKzpy0dVzIrujVn84XOZcDk8vFNU3qTzWDjlKZ7WrkC2kPOGMn0bRhiMCDxnc9k3SlpR1R8QmTZXMdmK2+aFOcPaBXshpN7e5iEHftaDeijeBV9d4WRBhA1BwaAWI0icQu9oyWdPbHnZMncYAw3OP5TdlIKRzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=N9/Q6SI7; arc=none smtp.client-ip=1.95.21.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=D2SjFaijZRhgQVB4PhmxfDbCFFAZAJFUMLIgEO7LaGeEupDHvVEzYPIWELfeW8doEIabs3+j+3SBLtMtGmvbZ+7fnaYeZTHvN+vUrpqsnPWJ7nxYvQlvxNgpfA2YOPine50jKWqOf3QpX+I9zJMv9uqs1XgPgts6gdrWkgiIy/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=S1m1+eEg; arc=none smtp.client-ip=220.197.32.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=0cY+G5UJjnLAD9/H2WXsd8B/NgDerlBepu3HbT7K5Ak=;
-	b=N9/Q6SI7lq1zQ8sgGDzn0Xo/e9jlUnGFwI0ZkiFPshrDabfuEya3AaCiZzruK4
-	hH5dUCpeCgSUUpUCG05+Nsgc+9DwTDm96Q/R/npjwfFLeQSz5mWHdxCwegKBwMD4
-	RpeJ1p0q8ktGlggLd/toyq1WqJGMoqluLG8Zjh6IbowuM=
+	Content-Type; bh=U4A5sC6vx4DwfGfQ1k1Mlreu32CFe9N+OnTRiJsS5XI=;
+	b=S1m1+eEgNtV/MtOka1ZTSFj7g7N6dqQ0meJ2NODGU7I8LFnBtJ1kLw0iAt74W8
+	NOsO3LJU8uYGjjF22TB8C4ANXw+uI9QYCnyy0nfugZ8pptDeOiU7z3XCfRRWbxhk
+	isfbNf6LRjgm2gN8BtUZIZNfloKijhgq/50FxDL8PSMng=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAnzQbXnRlpa9c5AQ--.7981S3;
-	Sun, 16 Nov 2025 17:48:09 +0800 (CST)
-Date: Sun, 16 Nov 2025 17:48:07 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgDHr4c1nhlpklwWAg--.8044S3;
+	Sun, 16 Nov 2025 17:49:43 +0800 (CST)
+Date: Sun, 16 Nov 2025 17:49:41 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
 To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Cc: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Richard Zhu <hongxing.zhu@nxp.com>
-Subject: Re: [PATCH 0/8] arm64: dts: imx8qm: collect some missed qm patches
-Message-ID: <aRmd1_B5nnUr9Bu0@dragon>
-References: <20251028-b4_qm_dts-v1-0-51ba94389c1f@nxp.com>
+	Fabio Estevam <festevam@gmail.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm64: dts: imx8qxp-mek: Add sensors under i2c1 bus
+Message-ID: <aRmeNSTudl1mBvsn@dragon>
+References: <20251029-qxp_sensor-v1-0-e97ee1de96d8@nxp.com>
+ <20251029-qxp_sensor-v1-2-e97ee1de96d8@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,32 +67,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251028-b4_qm_dts-v1-0-51ba94389c1f@nxp.com>
-X-CM-TRANSID:Mc8vCgAnzQbXnRlpa9c5AQ--.7981S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW5tw1DWr15Xw4xJw18tw13urg_yoWxXwb_u3
-	9YkF1kCw43Gw4fA345A3ZF9rWjgry5Cr9Ig3s8Xw17Jw4xZF1ayFy0va4rWrykWF1fZFsr
-	A3WUXw12gr45WjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU1a9aDUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNBk+o2kZndlRiAAA3d
+In-Reply-To: <20251029-qxp_sensor-v1-2-e97ee1de96d8@nxp.com>
+X-CM-TRANSID:M88vCgDHr4c1nhlpklwWAg--.8044S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF4ktrW5CrWxKF45Zr17GFg_yoW8XF4Dpr
+	97Z393Wr1SvF12k34agFs5GFZ8Cw4rGFn09FnrJayFkrsruFyDt3W7Krnxuw48XF4xXw4S
+	qF1vvr1jkrnxXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07URGQDUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIBhWu2kZnjh-mwAA3n
 
-On Tue, Oct 28, 2025 at 04:30:41PM -0400, Frank Li wrote:
-> Frank Li (7):
->       arm64: dts: imx8qm-mek: add state_100mhz and state_200mhz for usdhc
->       arm64: dts: imx8qm-mek: assign double SD bus frequency for usdhc1
->       arm64: dts: imx8qm-mek: add lpuart1 and bluetooth node
->       arm64: dts: imx8qm: add label thermal_zones
->       arm64: dts: imx8qm-mek: add pmic thermal-zones
->       arm64: dts: imx8qm-mek: add usbotg1 and related nodes
->       arm64: dts: imx8qm-mek: replace space with tab
-
-Applied these.
-
+On Wed, Oct 29, 2025 at 03:27:19PM -0400, Frank Li wrote:
+> Add sensors under i2c1 bus.
 > 
-> Richard Zhu (1):
->       arm64: dts: imx8qm-mek: add supports-clkreq property to PCIe M.2 port
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 32 +++++++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> index 7b033744554105de6dbc4366f21e3c90f1768deb..9a96018e6f0680ac503135726f4899aca121e7f6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> @@ -450,10 +450,36 @@ i2c@2 {
+>  			#size-cells = <0>;
+>  			reg = <2>;
+>  
+> +			accelerometer@1e {
+> +				compatible = "nxp,fxos8700";
+> +				reg = <0x1e>;
+> +			};
+> +
+> +			gyroscope@21 {
+> +				compatible = "nxp,fxas21002c";
+> +				reg = <0x21>;
+> +			};
+> +
+>  			pressure-sensor@60 {
+>  				compatible = "fsl,mpl3115";
+>  				reg = <0x60>;
+>  			};
+> +
+> +			/* Ref SCH-54536 */
+> +			pressure-sensor@77 {
+> +				compatible = "meas,ms5611";
+> +				reg = <0x77>;
+> +			};
+> +
+> +			inertial-meter@68 {
 
-This had been applied as part of another series.
+Keep devices sorted in slave address.
 
 Shawn
+
+> +				compatible = "invensense,icm20602";
+> +				reg = <0x68>;
+> +			};
+> +
+> +			inertial-meter@69 {
+> +				compatible = "invensense,iam20380";
+> +				reg = <0x69>;
+> +			};
+>  		};
+>  
+>  		i2c@3 {
+> @@ -483,6 +509,12 @@ light-sensor@44 {
+>  				interrupt-parent = <&lsio_gpio1>;
+>  				interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+>  			};
+> +
+> +			/* Ref SCH-54536 */
+> +			light-sensort@60 {
+> +				compatible = "vishay,vcnl4035";
+> +				reg = <0x60>;
+> +			};
+>  		};
+>  	};
+>  
+> 
+> -- 
+> 2.34.1
+> 
 
 
