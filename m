@@ -1,213 +1,159 @@
-Return-Path: <devicetree+bounces-239132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4E5C618D5
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 17:49:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F17C61978
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 18:20:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A17723614CB
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 16:49:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B77A14EB444
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 17:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7E130C37B;
-	Sun, 16 Nov 2025 16:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70E7930F921;
+	Sun, 16 Nov 2025 17:17:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="dChcKejM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Aq5AqNd+";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JKvtkBP+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1352DC77A;
-	Sun, 16 Nov 2025 16:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C165F30EF67
+	for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 17:17:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763311750; cv=none; b=TKQeHxm6vbkeadOENMO7ps2wlVdxQPG3xHtGel9iQC5QTKTZrRtDxP2hA9kjAjDWhBETfTU9gpW8lsDT87xrW4bBxR9miQTYgMUrF+Qo711slkcMT6bZQXNSruLo5GYP54vQcsLJr507ZasH66HECGyDMqWVRQJGJ/YyGdkCUl0=
+	t=1763313446; cv=none; b=DXf+Jjpj1UqviBj6/MLib6aN1XZKDTa4L4AUvU7WVJdadFTT2G9EcuzRQQZSnVKQrmo5ji+LSKDv3d7A4bhuUADgRNizSvJTpeJwEJkQedCI2vy+VBi7iE406UmXxQFvDl6leh2nSgZBMxW60XmWDjik2kKESmqiBUK5kI4Fdd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763311750; c=relaxed/simple;
-	bh=owXMUpNCYQGxatXkYWnQ99r1Y97brCx2Ix3NXTSozF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W6OLK9SA/C2KmouK9J2DSkumZBfMst23d1PkEvfETpKHOf0NpX+3MAjFHYK4X9CIB8HEulgA9ibbVejn6Iod3fuknxUJqHqYP1EKdNLvj9IOHWrZy9PcuR8UpDHuxMExfvZqhXSKQz+gPmtsfuAyUcKf0GFMpl707LZVFN7kdZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=dChcKejM; arc=none smtp.client-ip=46.242.128.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
-	:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=3AI6JmJhcwuhEb8w2rCn481ZaFZecrvEQW0hTE6A4PI=; b=dChcKejMcVLikLUeYy13kwBPB5
-	PTrr66YW7PrOXmQ3wOMUVTv+sSTDqHxJBud6u9p8pVaZcFAjvCn3bEykUrCHl8RcQurn3r/zrCJli
-	i1i7Kmlu+amQrGvFva303/WBsmtDacT9Ze/Df4VTtHeYeHRzoPm2PaRcNyJECYbDTpZxmOWcY6uml
-	hoFZ+y17qOrCzuyGGfW8LaJF/j4k/I6j2yvDxWyCObtIM0mXdqnDGpg+GWOfVD4bKjuZr26EBrMgc
-	vW8b3iv/mDwpg9Yf7Hyh4FoLpAbS4iiOlmJdSA7+wg0rrUSWeKResozvUNnbmJnehsHhCIMhIKrXu
-	KXdM61mQ==;
-Received: from d100-116.icpnet.pl ([77.65.100.116] helo=[192.168.0.120])
-	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <kuba@szczodrzynski.pl>)
-	id 1vKfvv-0000000FgWV-3qyn;
-	Sun, 16 Nov 2025 17:48:59 +0100
-Message-ID: <cc1562aa-97de-409f-b50f-0d6a22c6946c@szczodrzynski.pl>
-Date: Sun, 16 Nov 2025 17:48:47 +0100
+	s=arc-20240116; t=1763313446; c=relaxed/simple;
+	bh=jnszFHmKNM1a9F0cXTGUxupAHwO4OuJVmszVfLbqIIc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MMeLTe2TeRiNDldO2HndygqxCUDoo4R8JC3yPMEz24BdaTI3uEvHPPInkZdi0cVLfe9iBUIrlEul1MiTUACq5tPQTLqz4PcwGzBXUZF+nK8j/l5Vq1bhDdYRXLpx3/B048UCOU/yBxU14bIRKffdjTkZbrYdCkRmvmNC+RtoAD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Aq5AqNd+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JKvtkBP+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AGFcJr91247241
+	for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 17:17:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=1jl2ispOdO9La/5OQRAP02bv6sdNxLuaFxM
+	tRQznV8w=; b=Aq5AqNd+SeupZPjpqfBrkc+yVyKJ7fHnv2qrq1sxEUlhQ+TsDtE
+	Vu2UgzW1fPeiuljtcnXgTpBQpQvAhcHZWOI/GLJ9CtiTSyqY//BIrh7rSnkxK7vQ
+	+ix5ADGgMDEh1TMn+WXAUVh+Bhdk/N1o+JzAubXCq7rtQ3sD8/8RsJRLdMeZZ1Tv
+	53pyGcnh8CrKec81SGV0RULOp3dsZelSp5w2SRRNE+d7jQgUu+3MbosuyzWNjET9
+	dHp3YUWnjsGzQtYQCM7C64F6BZCGgLeCN5ebsvcCGsHsOsyySPgjm+bJFjs+uFLH
+	LaKNgWj6YNANQe+TMzAWnTJA8SbRvplPZWA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aejmytd28-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 17:17:23 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-295952a4dd6so57485345ad.1
+        for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 09:17:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763313443; x=1763918243; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1jl2ispOdO9La/5OQRAP02bv6sdNxLuaFxMtRQznV8w=;
+        b=JKvtkBP+Mv6n2piaIw4SYiQE7scb/ahT4mGZOI7NufkJiitQP3uUfj2kS6yyBBsq3s
+         LoL4n3Y4ZcqGqwK7RL3/Bhg+BZT8NOrlbXXVHrUWRi3UYbYZZ5cE9d0AYvLSeIaO3caM
+         Hu60/126+elJioJeYXi0vOGqD6fy691yDun5ZsdoiQf2yfJ6S1ywVCWn/nu62163XWqU
+         mOhxGo4CnD87CUySrKJDLfEZasMDfB9t3pAWVcXqBS5Jn6oaL3io3S/IBekZPqZIGKSm
+         w0nnKH+yHC0ZYtsHUWcz7WGZQVbK4yZQhbHN+4TyS71wSaG8uixRrYMOxiDFLhHbLM4A
+         mSRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763313443; x=1763918243;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1jl2ispOdO9La/5OQRAP02bv6sdNxLuaFxMtRQznV8w=;
+        b=ROoWKOLWNOhtm0nmdLGVTPwQWR5T1J96JEopvdLeQYbr/5MTF8CX0OvlPn5DpHUba5
+         symc3MxIgRvMgOEWbXBGFUlZQuxaqeea3ZjDLOaxJLl+KyVCxu/RD/uSTQKmt2nI9Bsh
+         AOjluGzd4GF39EhoIYTTU/wQAs3qz7viTI3Ybo6TOk0npIbQbykLnAoSyfkWVCjaDfFg
+         8W3vD9WjC8iqLjuW4NAodl892JAbofJ1n6psgc/vmThiGRtkPGvS0qGYV3+lyt+s57tm
+         3kpishhfffDDufDkwC4LOM2rvVOyrdYyhAfXudnpTmPgrR/zxF1yEXPiOh3YrGD6yQyx
+         8Mtw==
+X-Forwarded-Encrypted: i=1; AJvYcCXtcrOf2+dOvHqdDRDvfhpxFB/SOzLpIQEH8awaA2HY42bHaf7qWvPJe/DvuBRCOhL+f4DoqiZkaC1P@vger.kernel.org
+X-Gm-Message-State: AOJu0YzG/SGFqcD2e2VORRJgctP/yP1kmEOzOPYoOgoq95Xx7MVtV0kD
+	KieF6RsN9xCjFeKlEJbkRKl7Tihr8Qo+vzt54+L5GFkqlQyMNQZ6HUQ19VAVkDRG839L2JS7LEt
+	Zq3/32ykJ+nJv1oNRDO6X6MbkBtaAnQBn59xGgOM50BshUxpIXpwnb3jWlm4jkfh0
+X-Gm-Gg: ASbGncsNV1KIB4w+cYA2I4zZYG8bsGvE46UnvfccMx/hMwphOvr2ZfYMuVLs1XICeEt
+	5H2vBUoQIFpz8nDYOjdVh905d7F7+e7+B8iyV/nx2J77v+HBlKQLBTCHocyBiT0auuk16PY+Md+
+	sYRsHICt3iO0EuumZqhcu52iC0HvxMW01cG4YT/96Oi7TyFMsujBu5loLkv2BV2gZodW9OyGiP3
+	9/ghMqX4ZRRseVi7eD3nGrc7z73A06HGgZKZyzPQaSceMdpBmwfBfIef7vHoxkaMipQAXkI7VXI
+	gGCQnJY2bY/LyrHSLmnL9Mb+t3WFYD4MlKLiKDXbhcD3yXvGDjuMAfq52lMwVSQuqxD4A8Jbpnn
+	OIb1ZU3rtswEbzD8qsO1C80lRvOvnKy2oF48=
+X-Received: by 2002:a17:903:37d0:b0:295:55fc:67a0 with SMTP id d9443c01a7336-2985a4b04admr154189975ad.2.1763313443313;
+        Sun, 16 Nov 2025 09:17:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHk8MyWeaDy5xJlFGfVzLFXZP9K3vQI78np6fV/wBn7qbFqtjl6F8oXUYRft86A2WLaOraRDA==
+X-Received: by 2002:a17:903:37d0:b0:295:55fc:67a0 with SMTP id d9443c01a7336-2985a4b04admr154189785ad.2.1763313442831;
+        Sun, 16 Nov 2025 09:17:22 -0800 (PST)
+Received: from hu-mohs-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2b1055sm114415105ad.59.2025.11.16.09.17.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Nov 2025 09:17:21 -0800 (PST)
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@oss.qualcomm.com, ajay.nandam@oss.qualcomm.com,
+        ravi.hothi@oss.qualcomm.com
+Subject: [PATCH v1 0/2] pinctrl: qcom: Add SA8775P lpass-lpi
+Date: Sun, 16 Nov 2025 22:46:54 +0530
+Message-Id: <20251116171656.3105461-1-mohammad.rafi.shaik@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] drm/sun4i: Support LVDS on D1s/T113 combo D-PHY
-To: wens@kernel.org
-Cc: Maxime Ripard <mripard@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- parthiban@linumiz.com, paulk@sys-base.io
-References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
- <20251116134609.447043-1-kuba@szczodrzynski.pl>
- <CAGb2v67V01k8zj2r+Dd+JDEsH2LX2Jtx+CP=i8aQfX_JyFtLfg@mail.gmail.com>
- <7ff30ae9-e4c0-47ae-80ad-726eaa557fd0@szczodrzynski.pl>
- <CAGb2v67iovqfErt20Oz0SrHC558zBDDFq1ZqRau83NOQ2w8AoQ@mail.gmail.com>
-Content-Language: pl
-From: =?UTF-8?Q?Kuba_Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
-Autocrypt: addr=kuba@szczodrzynski.pl; keydata=
- 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
-In-Reply-To: <CAGb2v67iovqfErt20Oz0SrHC558zBDDFq1ZqRau83NOQ2w8AoQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Id: kuba@szczodrzynski.pl
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE2MDE0MyBTYWx0ZWRfX96CQMN4I6szh
+ K/SCMmBxhxWTKqdAj8PElpeH6qfwnYF+kSbipNA4BiAkMB0WcNKSEI5CXSpm2ENTqtFAoFniLdy
+ aYBWaHLY8PlMxgQpJm1/GmNk9D6wiBbwgRraf7p1/iVXB3/Uzz+1jhijSS4WRBIfx3+QY8gwsaH
+ dmny6CSzZPXX9O8vW6roVaSalV+vfp0G+lpCa9UGkTsD7nTg9muLHr3lGDPxkQZEaYAbmnOMwf5
+ xfoKRCaSNjvch8QMQbcL/zkuyFP5OZO4H25CCVgTA/QmpUu1OwGAvIodVMRbFNs7f15AvyJia+n
+ G0OC7YCeGyVeJQ9xQjCWeKp3nC31anSVQ2yD2lNfNz+oUtn9Uxu1bUzTxQqAfVbfS9aF4rpvA5B
+ r43qgBKDOTHnVNTJc4LmPoxE2nt13Q==
+X-Authority-Analysis: v=2.4 cv=BPK+bVQG c=1 sm=1 tr=0 ts=691a0723 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=lAFZS77bQIXJJI-DYKkA:9 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: B-n-BpujSgSBUR1T7kSF5k4IzBtEh6PG
+X-Proofpoint-GUID: B-n-BpujSgSBUR1T7kSF5k4IzBtEh6PG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-16_06,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 adultscore=0 suspectscore=0 phishscore=0
+ malwarescore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511160143
 
-W dniu 2025-11-16 o 15:37:15, Chen-Yu Tsai pisze:
+Add pin control support for Low Power Audio SubSystem (LPASS)
+of Qualcomm SA8775P SoC.
 
-> On Sun, Nov 16, 2025 at 10:31 PM Kuba Szczodrzyński
-> <kuba@szczodrzynski.pl> wrote:
->> W dniu 2025-11-16 o 15:03:18, Chen-Yu Tsai pisze:
->>
->>> On Sun, Nov 16, 2025 at 9:46 PM Kuba Szczodrzyński
->>> <kuba@szczodrzynski.pl> wrote:
->>>> [replying to v1 to keep the same series on Patchwork]
->>> That is not the right way to do it.
->>>
->>> If you reply to an old series, the tooling does not pickup the new version
->>> as a separate series.
->>>
->>> ChenYu
->> Hi,
->>
->> I noticed that it indeed didn't work. However, Patchwork didn't pick up the v2 cover letter at all, so I thought replying to v2 would mess up the thread even more.
->>
->> That being said, the v3 cover letter is not visible there either.
->>
->> Should I resend this as v4 [which message to reply to?] or send a completely new series perhaps?
-> Each new version should be a completely new series.
->
-> If patchwork still didn't pick it up, then it's possible either your
-> patches didn't reach the mailing lists or the patchwork instances.
-> Please check lore to see if your patches are there.
+Mohammad Rafi Shaik (2):
+  dt-bindings: pinctrl: qcom,sa8775p-lpass-lpi-pinctrl: Add SA8775P
+    LPASS pinctrl
+  pinctrl: qcom: sa8775p-lpass-lpi: Add SA8775P LPASS pinctrl
 
-The patches are on lore, but patchwork didn't pick them up because some were sent with the wrong In-Reply-To header, and that created threading issues.
+ .../qcom,sa8775p-lpass-lpi-pinctrl.yaml       | 106 +++++++++
+ drivers/pinctrl/qcom/Kconfig                  |  10 +
+ drivers/pinctrl/qcom/Makefile                 |   1 +
+ .../pinctrl/qcom/pinctrl-sa8775p-lpass-lpi.c  | 216 ++++++++++++++++++
+ 4 files changed, 333 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sa8775p-lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sa8775p-lpass-lpi.c
 
-Assuming I understood your reply correctly, I'll send the entire series as v4 *without* the In-Reply-To header, which will create a new series on patchwork.
 
-Regards
-Kuba
+base-commit: 9823120909776bbca58a3c55ef1f27d49283c1f3
+-- 
+2.34.1
 
->
-> ChenYu
->
->> I apologize for the confusion, this is my first time doing that.
->>
->> Regards
->> Kuba
->>
->>>> Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
->>>> MIPI DSI D-PHY" which is required when using single-link LVDS0. The same
->>>> PD0..PD9 pins are used for either DSI or LVDS.
->>>>
->>>> Other than having to use the combo D-PHY, LVDS output is configured in
->>>> the same way as on older chips.
->>>>
->>>> This series enables the sun6i MIPI D-PHY to also work in LVDS mode. It
->>>> is then configured by the LCD TCON, which allows connecting a
->>>> single-link LVDS display panel.
->>>>
->>>> Changes in v2/v3:
->>>> - Applied code formatting changes from review comments
->>>> - Changed "dphy" to "combo-phy"
->>>> - Made the LVDS setup/teardown functions abort early in case of error
->>>>     (adding a proper return value would require changes in several levels
->>>>      of caller functions; perhaps could be done in a separate patch)
->>>> - Added the PHY properties to DT bindings
->>>> - Renamed lvds0_pins to lcd_lvds0_pins
->>>> - Rebased on top of drm/misc/kernel/for-linux-next
->>>> - Hopefully corrected the incomplete patch list of v2, which happened
->>>>     due to an SMTP error
->>>>
->>>> Kuba Szczodrzyński (6):
->>>>     phy: allwinner: phy-sun6i-mipi-dphy: Support LVDS in combo D-PHY
->>>>     drm/sun4i: Support LVDS using MIPI DSI combo D-PHY
->>>>     drm/sun4i: Enable LVDS output on sun20i D1s/T113
->>>>     dt-bindings: display: sun4i: Add D1s/T113 combo D-PHY bindings
->>>>     riscv: dts: allwinner: d1s-t113: Add D-PHY to TCON LCD0
->>>>     riscv: dts: allwinner: d1s-t113: Add LVDS0 pins
->>>>
->>>>    .../display/allwinner,sun4i-a10-tcon.yaml     |  6 ++
->>>>    .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 11 +++
->>>>    drivers/gpu/drm/sun4i/sun4i_tcon.c            | 50 +++++++++++++
->>>>    drivers/gpu/drm/sun4i/sun4i_tcon.h            |  6 ++
->>>>    drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   | 70 ++++++++++++++++++-
->>>>    5 files changed, 141 insertions(+), 2 deletions(-)
->>>>
->>>> --
->>>> 2.25.1
->>>>
 
