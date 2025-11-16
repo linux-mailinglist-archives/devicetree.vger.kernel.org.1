@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-239106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5725C61580
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 14:21:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A742C615A1
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 14:25:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2A3DE36259B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 13:21:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C41AF3B389A
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 13:25:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0322DA755;
-	Sun, 16 Nov 2025 13:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFAB2F60AC;
+	Sun, 16 Nov 2025 13:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="uLGN+3BG"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="oqYIW28M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EF62D9EEC;
-	Sun, 16 Nov 2025 13:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A80AB2F60A7;
+	Sun, 16 Nov 2025 13:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763299271; cv=none; b=U79wN87XzygJQZFiVxcKbdMNd2FHyb0TNm0R/tO3uDECyusYGTjxZT3kjgt6FsCUuotSYgELjX+OJC9w0zfUULjXr8X0eQ2zyRh3eBJEDZ18I8CWXWTfNIqgtQUDIhTMGW/w+BUQad0toeauncz6TJ7VMZ2ayj93xOtk8hCzqkw=
+	t=1763299522; cv=none; b=muEdWXgApfS1cisldJJTlD4Gu46wJsO0LV1SeIzd0TlAoGa2d3LvaOfca/aLhenk2EHCM+L7gJt6RZl5meLTr/KsO+Iasf4lvUKLErjAk1F7L1yo6Ri2dJ2ZB/WkXqG36P7SsXaH6tPOq1eK2pmHWiA+/v514A1pBDKOw7AaWy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763299271; c=relaxed/simple;
-	bh=3aAFcuu+7RJFQUvIoOJMZfKU7fItXvVuYOcTxGYfCe0=;
+	s=arc-20240116; t=1763299522; c=relaxed/simple;
+	bh=g47VNxOuIRVfIjJ9Gd6MyaohN5b5SV9VKZlky0fDxHc=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sCQfLzZAvu33FZK4ibxWmOPZdTXAiHlcaQGqA4AXRvZXFBXhy3czQkicpN8PeZtg4Y56aJqtzAeKtu/EDxJT/TgNT8P9YKQN2aebz4a1Th6ntJwhsabcZvu5tainVJVG46u2s1gQILQMXSp30pRbZuHCvUMFtOwxHtK6lVhWyqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=uLGN+3BG; arc=none smtp.client-ip=46.242.128.95
+	 MIME-Version:Content-Type; b=kyQEpnqFAehmwKAtXODhkcnpN3krX+EPYS5dTm0RMxHAox4dTEbBOXjUKmzAWGkCQV4xVwbg1Skl+EnfrdXTVwEuo5gVU867IfOE3fKnRuPr9mE2IVCm6OvvU+iwES9/9Yy5DgkwgarJBdaoptegH8oeBT7KF7nlLZAbkqBpAcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=oqYIW28M; arc=none smtp.client-ip=46.242.128.95
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -37,18 +37,18 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
 	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=HFF4qIvkAwehv5Tg/aWnvtUclSg9Yim0HrFAtniNGnY=; b=uLGN+3BGEu68Q6BwLAPx9ma3Pw
-	RLFQV8uLIgKsI4NtaOHnQxsKMVEGjwlrrOmjbK64KegiWERnqJh7rz2GWiBGCgmMpY0dksH6FmhlZ
-	/0UMMLo1l/DyCcs/zpaF6GIOTLaIzoQNejeKB5Q761mCEYyqvRUDz0jisCPw98MwzA6ugefwsqGTK
-	bzohRmZvMF2Uzibg5hU6s4P6WliQiDzE8z61DaJTJ/pxqH2chHCJKAw0rF3rB+nKz7qo3yunqbGLx
-	cqi0kXDU95YPTGwDFJm0Q6apEp+u3BtX+R3q8ADdQf1y1K7s3tWLwsv3HhJc4JoS66QBPY0mwHwPq
-	f3qvtMlg==;
+	bh=BPO9NrD7t7ozHNmv9SwKBa5YjnO0HgIRT0temEkfh70=; b=oqYIW28MTYchaus5P4hPdqBMcw
+	8w9RZoiGHzBso3Fy8hSBWffJ6uTQq8OC61xOZXDkdr8db5Z3qY3ZKZVVjkv9hyHc0lTpmfM9zR3I/
+	dD+Lx1poqOVYaSfouhdkmSymdGihzeTgYPajNIlem8qvtBZ7J5FN9nL1B6p1d7E5tUPxF2kUoucox
+	U9vjnQYVSGknlAKuGjUMHnlw0e4khAKvVLjhJKBDojgl3mmMQgVbTajBVPmfUeAmSt9gMnNGH0dxH
+	apBQeVCOQbM2ByyMp6Q5t2vD0DS/M8OXoZFAnZ+AfLCtD9LJt2MQSnh3O1rbQecCAzl03U+pvtNjO
+	lPlC6zwA==;
 Received: from [62.171.184.96] (helo=buildhost.contaboserver.net)
 	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.98.1)
 	(envelope-from <kuba@szczodrzynski.pl>)
-	id 1vKcgf-0000000FW4E-0Sdh;
-	Sun, 16 Nov 2025 14:21:01 +0100
+	id 1vKckk-0000000FWTF-2WDU;
+	Sun, 16 Nov 2025 14:25:14 +0100
 From: =?UTF-8?q?Kuba=20Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
 To: Maxime Ripard <mripard@kernel.org>,
 	Samuel Holland <samuel@sholland.org>,
@@ -70,13 +70,12 @@ Cc: David Airlie <airlied@gmail.com>,
 	dri-devel@lists.freedesktop.org,
 	parthiban@linumiz.com,
 	paulk@sys-base.io
-Subject: [PATCH v2 4/6] dt-bindings: display: sun4i: Add D1s/T113 combo D-PHY bindings
-Date: Sun, 16 Nov 2025 14:18:51 +0100
-Message-Id: <20251116131853.440863-5-kuba@szczodrzynski.pl>
+Subject: [PATCH v2 5/6] riscv: dts: allwinner: d1s-t113: Add D-PHY to TCON LCD0
+Date: Sun, 16 Nov 2025 14:25:02 +0100
+Message-Id: <20251116132503.441015-1-kuba@szczodrzynski.pl>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251116131853.440863-1-kuba@szczodrzynski.pl>
+In-Reply-To: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
 References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
- <20251116131853.440863-1-kuba@szczodrzynski.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,30 +89,26 @@ X-Authenticated-Id: kuba@szczodrzynski.pl
 The sun4i TCON needs a reference to the D-PHY in order to support LVDS
 on Allwinner D1s/T113.
 
-Add phys and phy-names to DT bindings.
+Add phys and phy-names to sunxi-d1s-t113 common device tree.
 
 Signed-off-by: Kuba Szczodrzyński <kuba@szczodrzynski.pl>
 ---
- .../bindings/display/allwinner,sun4i-a10-tcon.yaml          | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-index 724d93b91..52589341f 100644
---- a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-+++ b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-@@ -115,6 +115,12 @@ properties:
-           - const: edp
-           - const: lvds
+diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+index 63e252b44..78aa61607 100644
+--- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+@@ -876,6 +876,8 @@ tcon_lcd0: lcd-controller@5461000 {
+ 			resets = <&ccu RST_BUS_TCON_LCD0>,
+ 				 <&ccu RST_BUS_LVDS0>;
+ 			reset-names = "lcd", "lvds";
++			phys = <&dphy>;
++			phy-names = "combo-phy";
+ 			#clock-cells = <0>;
  
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    const: combo-phy
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
+ 			ports {
 -- 
 2.25.1
 
