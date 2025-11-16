@@ -1,99 +1,136 @@
-Return-Path: <devicetree+bounces-239064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E02DC61256
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 11:07:39 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 769FEC612D1
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 11:53:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B672D4E3CF5
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:07:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0446935B4A1
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 10:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30209237713;
-	Sun, 16 Nov 2025 10:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC21B29BDA0;
+	Sun, 16 Nov 2025 10:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WIqzmsVZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aawreOUe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EECC723507C;
-	Sun, 16 Nov 2025 10:06:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801F429ACD7;
+	Sun, 16 Nov 2025 10:52:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763287620; cv=none; b=OlbqUdRNZ9IVu7z6ly5y/QlwIZ9viLvoKn8ztrmwtINONw9lM3j2pdoEDwvi8+KkghIdXJE2M5zOs+y6nTizfUFRxaXbZa/AM6hNcuMs4hXrzoInGdGkiGXKMmFktEaa8vhLrMmgzJGEIWXh4wQXnNBZEzQU7whT3a6QdaJydMA=
+	t=1763290345; cv=none; b=ukZTWC+etWa3DqkUDGNO5EzsdjjMLc7Ubj+YA7aCicK0Q+z3wZfLw0EzQpRqbSYXIU8woSuk6kFkzhtb4szZcQh4nswlh+o290L+/Xut950EM6qVj551rCB4TiRh3lRoBIGR6oHDy+6QNARMiYEnUgDrxchMpcXE9j5KVy5gzWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763287620; c=relaxed/simple;
-	bh=rUvFU4iw0o4uUI/vlsXxBCiGP7mAmX+YFRFk8QyShYU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q1Dg6SqHF610uKZB23AliUpvb7VNoivLjWTbHscretPTFK9hb0YZ3LDDxaKwJfOIM2fc2zLCywefKjcOqtA5AWee/B3HYaIdUYFPlRqFKBQdBwTC0xEx05a9CjwOIoTE17ffo2FTAP+/Yt1RPowC1Wv+h0YX2WHATOCnhShcrGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WIqzmsVZ; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=oSXMUQZ+cQGwThCwg/X7IsHfqb9HKFGadesoe/E5owM=;
-	b=WIqzmsVZIXzL8XMF6+jO0JEfLj3Y3Wrkk8wPgIcZaaRntdsT3bZODjcbFJ6aj0
-	FCcjE6cvnzPQ3YHeMzaU5wyDml4RlwvuPta7/6aMYSVvOacoclk7ygOfNoWCM1Q3
-	sxav9Ixie2dWVbQYMvCEpNxGdDHY7gGKX2wMwDwsyrLlY=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3d7AaohlplIkWAg--.7944S3;
-	Sun, 16 Nov 2025 18:06:20 +0800 (CST)
-Date: Sun, 16 Nov 2025 18:06:18 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/19] TQMa95xxSA DT fixes and cleanup
-Message-ID: <aRmiGnQYWHF2ja2g@dragon>
-References: <20251030124936.1408152-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1763290345; c=relaxed/simple;
+	bh=OgNY0TEu2bd8MQFRjXHDBVM6Zf/pc0Mf/wDhXncFk3Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=D0fns0Fh/JJArzO+Qts+ERw2PWqb3ogg7WK2ShGzH6NElaRH7fJgUhJ1oGikp6VusLqIGpG+DzgWZ17F9CfZTVLRSAzGFdNRbZMPqxWNj0vvuuMIzqf37m/20lsOieAoelTGuMOBErBRKCRGsIYi2Dc9VTCQJzQNgjgqHYnaP0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aawreOUe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 05B97C4CEFB;
+	Sun, 16 Nov 2025 10:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763290345;
+	bh=OgNY0TEu2bd8MQFRjXHDBVM6Zf/pc0Mf/wDhXncFk3Y=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=aawreOUeyzM7eKFoQun7b1q9C3ld0LkwIxvAbQPNDT3i/vp0occ//6ywDyqm4/vUB
+	 ChB8SXHzCJZvw+X8DmkMpRgS60SSNo/9owoACmVdjaFQlT3P4qzj2UL4/D9sv5QBPv
+	 OL2um0HwD1Ku5ZxPD9b0pyGWNjYnuJhy/pu6VKsi1Hdr6n6Dh8TyY/Bssvxts6VfvL
+	 Pg3O2IeBQ8fFevmhVnp5kD5/9/VQIFKkvdmJeUoKLftR9neXWTzTCR7wFJu/MFoGsb
+	 F2qq6thKZ07TF0RxGYtfW05Qb8h2EtRhpqZMuTQsf4RGdtoK/t92OceSLyRugMoJgD
+	 4R5rLnG8lMy7A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F04F7CEBF8D;
+	Sun, 16 Nov 2025 10:52:24 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>
+Subject: [PATCH v2 0/6] arm64: dts: qcom: x1e80100-vivobook-s15: add more
+ missing features
+Date: Sun, 16 Nov 2025 11:52:05 +0100
+Message-Id: <20251116-asus_usbc_dp-v2-0-cc8f51136c9f@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251030124936.1408152-1-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:M88vCgD3d7AaohlplIkWAg--.7944S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tw18WrWUZFyrtw1xXr47urg_yoW8Gr4UpF
-	WUXrs7tr18Gr4ruF95ZaykK3yfJ34xG3Z8JrWYqrZFvryvyrW3XFZ8GFy3WrZrtrW0va4Y
-	ya1UJryDCryxXr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UcqXdUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNBxQtWkZohxfMwAA3v
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANWsGWkC/1WP3YqDMBCFX0VyvSn50TSRZel7LKXEzKQGqnETl
+ S7Fd99or/byDMx3vvMiGVPATNrqRRKuIYc4liA+KuJ6O96RBiiZCCYapnhNbV7ybcmdu8FEmWD
+ Silo4ZTQpL1NCH54H7vv6zgl/lkKd30cyYM72oLbV5w7ljEs6xyk4+uSoGWeM9jAEuirKqLTGa
+ X8u1aAujzDaFE8x3b/2ss5mpC4OQ5jbyugOdMeVxeaM2ovGmQZqo7wDlOABtBASak52rT7kOab
+ fY/TKD69Dpbj837fy4mA81NgZIxvUlz7Ogw2PU+kl123b/gBJHp0pQQEAAA==
+X-Change-ID: 20250614-asus_usbc_dp-0203a242c698
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Maud Spierings <maud_spierings@hotmail.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763290343; l=1859;
+ i=maud_spierings@hotmail.com; s=20241110; h=from:subject:message-id;
+ bh=OgNY0TEu2bd8MQFRjXHDBVM6Zf/pc0Mf/wDhXncFk3Y=;
+ b=aVNV0zq9yDJOdukxpIrRcYXhBFzEz0xnrtAB5fTCu5jAkv1ohHWcjSBhY4HwMA/Zkw4exH9e3
+ rvF41rFguQnACBrRSLvN6eW5VTgIrknj4VYyUQaKukDrdO2FXtN/YgQ
+X-Developer-Key: i=maud_spierings@hotmail.com; a=ed25519;
+ pk=CeFKVnZvRfX2QjB1DpdiAe2N+MEjwLEB9Yhx/OAcxRc=
+X-Endpoint-Received: by B4 Relay for maud_spierings@hotmail.com/20241110
+ with auth_id=273
+X-Original-From: Maud Spierings <maud_spierings@hotmail.com>
+Reply-To: maud_spierings@hotmail.com
 
-On Thu, Oct 30, 2025 at 01:49:07PM +0100, Alexander Stein wrote:
-> Alexander Stein (14):
->   arm64: dts: imx95-tqma9596sa: reduce maximum FlexSPI frequency to
->     66MHz
->   arm64: dts: imx95-tqma9596sa: increase flexspi slew rate
->   arm64: dts: imx95-tqma9596sa: move flexcan pinctrl to SOM
->   arm64: dts: imx95-tqma9596sa: move lpspi3 pinctrl to SOM
->   arm64: dts: imx95-tqma9596sa: move sai config to SOM
->   arm64: dts: imx95-tqma9596sa: move pcie config to SOM
->   arm64: dts: imx95-tqma9596sa: update pcie config
->   arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for flexspi
->   arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for i2c
->   arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for usdhci
->   arm64: dts: imx95-tqma9596sa: add gpio bus recovery for i2c
->   arm64: dts: imx95-tqma9596sa: whitespace fixes
->   arm64: dts: imx95-tqma9596sa-mb-smarc-2: Add MicIn routing
->   arm64: dts: imx95-tqma9596sa-mb-smarc-2: mark LPUART1 as reserved
-> 
-> Markus Niebel (5):
->   arm64: dts: imx95-tqma9596sa: fix TPM5 pinctrl node name
->   arm64: dts: imx95-tqma9596sa: move USDHC2 config to SOM
->   arm64: dts: imx95-tqma9596sa: add EEPROM pagesize
->   arm64: dts: imx95-tqma9596sa-mb-smarc-2: remove superfluous line
->   arm64: dts: imx95-tqma9596sa-mb-smarc-2: add aliases for SPI
+There are still many missing features on this machine, add the ps8830
+retimers for display over usb-c, the simple bridge/HDMI port and set up
+to use IRIS.
 
-Applied all, thanks!
+Currently IRIS gives a ETIMEDOUT, not sure what that is coming from.
+
+lots of these patches are very strongly based on the work of other
+maintainers of these snapdragon machines, like the HDMI part on that of
+Neil Armstrong, many thanks to those who laid the baseline for me to
+follow.
+
+Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+---
+Changes in v2:
+- Fix the place of the rtmr regs to maintain alphabetical order
+- Link to v1: https://lore.kernel.org/r/20251101-asus_usbc_dp-v1-0-9fd4eb9935e8@hotmail.com
+
+---
+Maud Spierings (6):
+      dt-bindings: display: bridge: simple: document the Parade PS185HDM DP-to-HDMI bridge
+      drm/bridge: simple: add the Parade PS185HDM DP-to-HDMI bridge
+      arm64: dts: qcom: x1e80100-vivobook-s15: enable ps8830 retimers
+      arm64: dts: qcom: x1e80100-vivobook-s15: add HDMI port
+      arm64: dts: qcom: x1e80100-vivobook-s15: add charge limit nvmem
+      arm64: dts: qcom: x1e80100-vivobook-s15: enable IRIS
+
+ .../bindings/display/bridge/simple-bridge.yaml     |   1 +
+ .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts   | 402 ++++++++++++++++++++-
+ drivers/gpu/drm/bridge/simple-bridge.c             |   5 +
+ 3 files changed, 400 insertions(+), 8 deletions(-)
+---
+base-commit: 98bd8b16ae57e8f25c95d496fcde3dfdd8223d41
+change-id: 20250614-asus_usbc_dp-0203a242c698
+prerequisite-message-id: <20251013-topic-x1e80100-hdmi-v6-0-3a9c8f7506d6@linaro.org>
+prerequisite-patch-id: 5af0a76cad087e18b0a2f771a78d030f9bf3bd68
+prerequisite-patch-id: 5b908c1f0c5a0c52da384a181a75f17c5e2d19b5
+prerequisite-patch-id: ed40af8d7e99a3f1bcb33b4c678b5f21b0618612
+
+Best regards,
+-- 
+Maud Spierings <maud_spierings@hotmail.com>
+
 
 
