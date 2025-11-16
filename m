@@ -1,125 +1,213 @@
-Return-Path: <devicetree+bounces-239131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20368C618C6
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 17:48:41 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4E5C618D5
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 17:49:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8C0604EC025
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 16:46:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A17723614CB
+	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 16:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7607730C379;
-	Sun, 16 Nov 2025 16:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7E130C37B;
+	Sun, 16 Nov 2025 16:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MCKMdAJs"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="dChcKejM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DF72C190;
-	Sun, 16 Nov 2025 16:46:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1352DC77A;
+	Sun, 16 Nov 2025 16:49:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763311614; cv=none; b=VgBhSyDbXL6ABY8PW7Ja2h/fCqQEq0AJcuJP4VPMUns3QogvNHe/nSZgokKxeVVLzrcw9MVAkSsHQAODhX+M/c8Fx6ji7XoBTUEnLRcNV1ANvRoTjgYJw9NnzAiwfQyN/g4NsqOU4MwGr99lCmIVM9V01Y13AN2dw2BVkxu2wHs=
+	t=1763311750; cv=none; b=TKQeHxm6vbkeadOENMO7ps2wlVdxQPG3xHtGel9iQC5QTKTZrRtDxP2hA9kjAjDWhBETfTU9gpW8lsDT87xrW4bBxR9miQTYgMUrF+Qo711slkcMT6bZQXNSruLo5GYP54vQcsLJr507ZasH66HECGyDMqWVRQJGJ/YyGdkCUl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763311614; c=relaxed/simple;
-	bh=IB0SHzJTCmC0aBxKNhQYokgomuvEdoiHhkLaS0VbXUo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CeqzTd9QrCqU4r65VerJ3TGhi3cSpdjiOrDTWlr6sHcxJiwro/lClCNu3jySD2ANuWVL4s6sOnBS9+9b1NGYfwevCQPxEZaRID4o7HggY9zUkMOXuouRV/tD99mhED8R3Lob26myu0g/F5ybkmiUwvFF3K0xyoRFMzPZijAe378=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MCKMdAJs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6900EC4CEF1;
-	Sun, 16 Nov 2025 16:46:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763311613;
-	bh=IB0SHzJTCmC0aBxKNhQYokgomuvEdoiHhkLaS0VbXUo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MCKMdAJsC75fTkPRoz5i3ni3+lV7VItE9AYnGYHAIwOB83lc7UOye68vDwD6Hle/o
-	 7Qi3xzmEFKIo9Ni8Kk3FSGu591k2Ad/6ouviQbKjtFdimS0ablAg8f8Ivxsz4Znix+
-	 gg0NX/YOneFxkKcWBnZ+oXRyuBjxTZYX/5AJmtA6+BP23zBuVQZl0mONqJMoqcT2hX
-	 WxepSd517eSbTow4vp4GXeAj7kfsYpv6DNQcRAiIo0amBxxlsiPDxEygB0trb7RJlj
-	 w7jdklwjiEodMlZ4MzNqrY9IcnZXdaJu04a5bH2BH6St/lbqGbYRK8sP7JRco1TseN
-	 pNCT8Azce01hQ==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id C31931ACCC98; Sun, 16 Nov 2025 16:46:50 +0000 (GMT)
-Date: Sun, 16 Nov 2025 16:46:50 +0000
-From: Mark Brown <broonie@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 09/20] mfd: sec: Add support for S2MPG11 PMIC via ACPM
-Message-ID: <aRn_-o-vie_QoDXD@sirena.co.uk>
-References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
- <20251103-s2mpg1x-regulators-v3-9-b8b96b79e058@linaro.org>
- <20251113162534.GO1949330@google.com>
- <45ce203c03ec34631a0170baa7e4cf26c98b9cd3.camel@linaro.org>
- <db7e95dd-2361-4579-b52c-b9556da4633a@sirena.org.uk>
- <f1e9a9e35f7c16d8db0e39128eb184f3f42b7d02.camel@linaro.org>
- <aRklfJtOJ_Cy7tEE@sirena.co.uk>
- <845ca29cf8af53bd3093d1dcbea64cc3e04432f2.camel@linaro.org>
+	s=arc-20240116; t=1763311750; c=relaxed/simple;
+	bh=owXMUpNCYQGxatXkYWnQ99r1Y97brCx2Ix3NXTSozF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W6OLK9SA/C2KmouK9J2DSkumZBfMst23d1PkEvfETpKHOf0NpX+3MAjFHYK4X9CIB8HEulgA9ibbVejn6Iod3fuknxUJqHqYP1EKdNLvj9IOHWrZy9PcuR8UpDHuxMExfvZqhXSKQz+gPmtsfuAyUcKf0GFMpl707LZVFN7kdZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=dChcKejM; arc=none smtp.client-ip=46.242.128.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
+	:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=3AI6JmJhcwuhEb8w2rCn481ZaFZecrvEQW0hTE6A4PI=; b=dChcKejMcVLikLUeYy13kwBPB5
+	PTrr66YW7PrOXmQ3wOMUVTv+sSTDqHxJBud6u9p8pVaZcFAjvCn3bEykUrCHl8RcQurn3r/zrCJli
+	i1i7Kmlu+amQrGvFva303/WBsmtDacT9Ze/Df4VTtHeYeHRzoPm2PaRcNyJECYbDTpZxmOWcY6uml
+	hoFZ+y17qOrCzuyGGfW8LaJF/j4k/I6j2yvDxWyCObtIM0mXdqnDGpg+GWOfVD4bKjuZr26EBrMgc
+	vW8b3iv/mDwpg9Yf7Hyh4FoLpAbS4iiOlmJdSA7+wg0rrUSWeKResozvUNnbmJnehsHhCIMhIKrXu
+	KXdM61mQ==;
+Received: from d100-116.icpnet.pl ([77.65.100.116] helo=[192.168.0.120])
+	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <kuba@szczodrzynski.pl>)
+	id 1vKfvv-0000000FgWV-3qyn;
+	Sun, 16 Nov 2025 17:48:59 +0100
+Message-ID: <cc1562aa-97de-409f-b50f-0d6a22c6946c@szczodrzynski.pl>
+Date: Sun, 16 Nov 2025 17:48:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TTSeFMvaEzVHYhHn"
-Content-Disposition: inline
-In-Reply-To: <845ca29cf8af53bd3093d1dcbea64cc3e04432f2.camel@linaro.org>
-X-Cookie: marriage, n.:
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] drm/sun4i: Support LVDS on D1s/T113 combo D-PHY
+To: wens@kernel.org
+Cc: Maxime Ripard <mripard@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ parthiban@linumiz.com, paulk@sys-base.io
+References: <20250221161751.1278049-1-kuba@szczodrzynski.pl>
+ <20251116134609.447043-1-kuba@szczodrzynski.pl>
+ <CAGb2v67V01k8zj2r+Dd+JDEsH2LX2Jtx+CP=i8aQfX_JyFtLfg@mail.gmail.com>
+ <7ff30ae9-e4c0-47ae-80ad-726eaa557fd0@szczodrzynski.pl>
+ <CAGb2v67iovqfErt20Oz0SrHC558zBDDFq1ZqRau83NOQ2w8AoQ@mail.gmail.com>
+Content-Language: pl
+From: =?UTF-8?Q?Kuba_Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
+Autocrypt: addr=kuba@szczodrzynski.pl; keydata=
+ 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
+In-Reply-To: <CAGb2v67iovqfErt20Oz0SrHC558zBDDFq1ZqRau83NOQ2w8AoQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: kuba@szczodrzynski.pl
 
+W dniu 2025-11-16 o 15:37:15, Chen-Yu Tsai pisze:
 
---TTSeFMvaEzVHYhHn
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Sun, Nov 16, 2025 at 10:31 PM Kuba Szczodrzyński
+> <kuba@szczodrzynski.pl> wrote:
+>> W dniu 2025-11-16 o 15:03:18, Chen-Yu Tsai pisze:
+>>
+>>> On Sun, Nov 16, 2025 at 9:46 PM Kuba Szczodrzyński
+>>> <kuba@szczodrzynski.pl> wrote:
+>>>> [replying to v1 to keep the same series on Patchwork]
+>>> That is not the right way to do it.
+>>>
+>>> If you reply to an old series, the tooling does not pickup the new version
+>>> as a separate series.
+>>>
+>>> ChenYu
+>> Hi,
+>>
+>> I noticed that it indeed didn't work. However, Patchwork didn't pick up the v2 cover letter at all, so I thought replying to v2 would mess up the thread even more.
+>>
+>> That being said, the v3 cover letter is not visible there either.
+>>
+>> Should I resend this as v4 [which message to reply to?] or send a completely new series perhaps?
+> Each new version should be a completely new series.
+>
+> If patchwork still didn't pick it up, then it's possible either your
+> patches didn't reach the mailing lists or the patchwork instances.
+> Please check lore to see if your patches are there.
 
-On Sun, Nov 16, 2025 at 12:49:55PM +0000, Andr=E9 Draszik wrote:
+The patches are on lore, but patchwork didn't pick them up because some were sent with the wrong In-Reply-To header, and that created threading issues.
 
-> The typical use of the S2MPG10 PMIC is in combination with an S2MPG11
-> PMIC in a main/sub configuration. Bucks of one are usually used as
-> supplies for LDOs of either itself or of the other: several S2MPG10
-> LDOs are consumers of various S2MPG10 bucks & S2MPG11 bucks, and
-> several S2MPG11 LDOs are supplied by various S2MPG10 bucks & S2MPG11
-> bucks.
+Assuming I understood your reply correctly, I'll send the entire series as v4 *without* the In-Reply-To header, which will create a new series on patchwork.
 
-If you're doing something to resolve such rats nesting of PMICs you
-should do something that works as standard rather than just bodging this
-one driver in a way that treats this specific device as a special
-snowflake.  That might reasonably mean going and refactoring existing
-drivers to look like this one, it is a fairly obvious approach.  We
-should really have a uniform approach that works well rather than random
-variation between devices though.
+Regards
+Kuba
 
-We could also do this at the regulator level by arranging for the
-devices we make for the regulators to have deferrable drivers, that'd
-be a core only change.
-
---TTSeFMvaEzVHYhHn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkZ//MACgkQJNaLcl1U
-h9Cvgwf/ZoWso6hjivCrRCtK/dN9mTbBO/SSM4Vfi3mbaE5vv+wSDFC1zw7LReGS
-UaBJ45CfoGQlbDr7zSvUKlCpKGP6oxuRAdrvQt/NwYUxBJ/68Sw9QhjLYcBwwZSZ
-6WfQgKgX4K3c/q8sPkv+8XKdZFhBnrqet0F9lL2v86eqCTR4ld/bQEz/raMDCPw9
-j65BhNErlV04HCK25epfFTNHStlsudJ3pdwtkWl5xas7gVvBwRzzdLLR1YOZWl2s
-C4G/Pqw8rctWUWB4mY89ye9ywlrmBTJIx401aZ2QroVcThwV3bjgt0TL0Dgd+0+i
-uxE8TU43AEQ5aQLly6S0lX3n1oI3/w==
-=RpUa
------END PGP SIGNATURE-----
-
---TTSeFMvaEzVHYhHn--
+>
+> ChenYu
+>
+>> I apologize for the confusion, this is my first time doing that.
+>>
+>> Regards
+>> Kuba
+>>
+>>>> Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
+>>>> MIPI DSI D-PHY" which is required when using single-link LVDS0. The same
+>>>> PD0..PD9 pins are used for either DSI or LVDS.
+>>>>
+>>>> Other than having to use the combo D-PHY, LVDS output is configured in
+>>>> the same way as on older chips.
+>>>>
+>>>> This series enables the sun6i MIPI D-PHY to also work in LVDS mode. It
+>>>> is then configured by the LCD TCON, which allows connecting a
+>>>> single-link LVDS display panel.
+>>>>
+>>>> Changes in v2/v3:
+>>>> - Applied code formatting changes from review comments
+>>>> - Changed "dphy" to "combo-phy"
+>>>> - Made the LVDS setup/teardown functions abort early in case of error
+>>>>     (adding a proper return value would require changes in several levels
+>>>>      of caller functions; perhaps could be done in a separate patch)
+>>>> - Added the PHY properties to DT bindings
+>>>> - Renamed lvds0_pins to lcd_lvds0_pins
+>>>> - Rebased on top of drm/misc/kernel/for-linux-next
+>>>> - Hopefully corrected the incomplete patch list of v2, which happened
+>>>>     due to an SMTP error
+>>>>
+>>>> Kuba Szczodrzyński (6):
+>>>>     phy: allwinner: phy-sun6i-mipi-dphy: Support LVDS in combo D-PHY
+>>>>     drm/sun4i: Support LVDS using MIPI DSI combo D-PHY
+>>>>     drm/sun4i: Enable LVDS output on sun20i D1s/T113
+>>>>     dt-bindings: display: sun4i: Add D1s/T113 combo D-PHY bindings
+>>>>     riscv: dts: allwinner: d1s-t113: Add D-PHY to TCON LCD0
+>>>>     riscv: dts: allwinner: d1s-t113: Add LVDS0 pins
+>>>>
+>>>>    .../display/allwinner,sun4i-a10-tcon.yaml     |  6 ++
+>>>>    .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 11 +++
+>>>>    drivers/gpu/drm/sun4i/sun4i_tcon.c            | 50 +++++++++++++
+>>>>    drivers/gpu/drm/sun4i/sun4i_tcon.h            |  6 ++
+>>>>    drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   | 70 ++++++++++++++++++-
+>>>>    5 files changed, 141 insertions(+), 2 deletions(-)
+>>>>
+>>>> --
+>>>> 2.25.1
+>>>>
 
