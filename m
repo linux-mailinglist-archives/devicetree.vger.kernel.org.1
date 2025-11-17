@@ -1,497 +1,1193 @@
-Return-Path: <devicetree+bounces-239295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 012E2C63A18
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:53:05 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6E45C63A21
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:53:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF3813AD668
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:53:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ABC9D348DE7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B98A30DD1C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562A42F6569;
 	Mon, 17 Nov 2025 10:53:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CBat5rVO"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="IApOE7P6";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2Pi1+nTZ";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Cc3uII+e";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="294iDYBf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E039E3090E8
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 10:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0062222D0
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 10:52:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763376781; cv=none; b=aQ045yd9KSkoWr1vVan2sjzRWafpF4sRiaM7WghzRZMXESZ1KxAu88N9KS3fhN8xWU/WdVMGVqtiTWKBf+Hm59WDKQVJV8bvpTzd3/c/YuVF1Dzf5Yyh4vk8sMxwkUCuGg9yfxgNCSduGHmE8frQhnSexkDIDg3TEginkdR0SnM=
+	t=1763376781; cv=none; b=HJizw23Mr0tXsyx07g4lqbiTooAtK97WaO1WsYD33FEq9g6zaYuwnAApyhmEnkNIcHtDpc77EXNA6gGaJhWsesUyJEz6F5VCeMest4pkpQDNbNUyBFHkR4Q0S16sV0TDjcRh1B5njKzutaMMkM+e9/IU4hEPsHPuWheplG6wd4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1763376781; c=relaxed/simple;
-	bh=UYKIgnImNQo80Zvf+BabPbxczSXoVp3FyCFL2WNeHLc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QMoQZhvtQ9TSMfavb1ik5i2XAxLhQLM1L5QJlAE+laSDP2m99s6RgUbKoEWZz6M3i7Vs+vZcllpz7bDnuTVijUpxtyEIsIg5M5UrM1sCXR1hDtwdO0JHnHOSgN4opb/mFIDt29jPEbBmuCXkHubi+idQJgK9N+i4TcZjVkCSny8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CBat5rVO; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42b38693c4dso1800002f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 02:52:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763376777; x=1763981577; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PQn0aRobZnOa0XOh5jqQ8SlM+ve8eUx93TT4zX9KLuk=;
-        b=CBat5rVOOd03rEDH+LFpkMWrkeG4knhfNYz97v0iqlxbiUyef9qIQhtU+lOAJcptzM
-         j5yw0kr1rLYqBtsxVklYusiaAi6AizENlh0dIw3hZul4G5+ERQrrzgc7ViYZ58+MSMrx
-         rdXTyPohG+QAOw17dFumeGCI6TDmuhUg1LO8+6cQtva3JM20PMgk+ZdfHHX3PfiMa8xN
-         +C5Q2lXsxBSMQZkwOLyoBOeoyFrzRubiXL8cUYjhnootCK5inROfE5KkORC2FcawmVsD
-         8WhJts0KVO0gvvnjKMeGzkkbseKgTf+cJGb1VOJkQrcG1Of/lJ4c3b/y07D9TGuWERKc
-         SnXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763376777; x=1763981577;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=PQn0aRobZnOa0XOh5jqQ8SlM+ve8eUx93TT4zX9KLuk=;
-        b=gVqwoaq20Ouh89L0sva9OuWVERHUbpDrwWIPb0FQRUQ/yJnASo/nQYZmzkS6O32L0R
-         je3Bkxo2zL80vmgpmI/l60ItpbNqyDtVVnfVdMOUTKkRaeq8h/j3UZ0OW94abN6cTgQ3
-         1RWIHeYTwVpDMM2uNMtx63YpbnIHLUP339iSn31PQ8J7l6tpdIxyGf+egBKiqcWEBvnm
-         IFHkybUJjqkfAf/WDsSJTxPVbvFdWCu7yvMNW+G6oYF5ArSQ0GMbhs6YiJ3v28MZKlM1
-         8mIH0Qf1QyKL+8QCcbmSIbs5W3VufOf29PJGXY+gvW31vHAc8WVp2YyF6MeRlo3Ui1g9
-         knOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUNaaRSDwFNu92xlbIZarK51/2vlHy4vGR2Kot86eXVK8Xp22PD3bnSAA9As8epCjq25mwrNukJKwYg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPKIFW68sEoWApEQgZiGzaMLFxwkavDmMhm4etd5SaOH+w/kkK
-	/o88qs+dvcyhngO+g9oL12QOZOueqSW7ec6mH0r7QEwoIK+crBsynnJPFxEGsOD/vEs0xmVc5JG
-	Qk7RZtJJ12jnPSWXQMImMv6G3ukBiDEc=
-X-Gm-Gg: ASbGnctfRStWeXQB8ZwCgaC8of+kmYjmiOX/liiPqA/ATBal7rRnzFqR6V6RkTDPPrN
-	A1b6+JVVLvafQf5DEZlCZSrWh9YmVle/Idlpbl8SlyZMygKbt1Ri1FP31vQ410bj1yCuNXDP1Pn
-	SMGrrmIzuLczHzt1MUxeh4zQhmN8XO1c0AQzOmZ1t3J/L/zq3+h7MJIqwosVpueynrURDoxmoHQ
-	3DJNeWD+C3DU9PLLKHZFbjGW4Ga8bUrzo59A2BDWn+a+gakbV7c32uXxJOwr9GS5FFwadJpMqzn
-	h/7CMKyKYBOxbANlkQ==
-X-Google-Smtp-Source: AGHT+IG5MhOY8TS+xPiELXdpAlR5gmKLVi2NjAFdJk7T4nvip1bJ8whwunN0SuOzHfhrJUnPZqKebNTQEampwE76/R0=
-X-Received: by 2002:a05:6000:4022:b0:429:cd3f:f43a with SMTP id
- ffacd0b85a97d-42b59345701mr11185518f8f.7.1763376777025; Mon, 17 Nov 2025
- 02:52:57 -0800 (PST)
+	bh=EqGeq/B+Jqfcx9a6mVKiJnIVTEKw3UXgzS3CH6dEFPI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b54bfqqdUxS6xn9prMxqI4BfsxvU5nxzKUmnuHGHrxmjrFOtkR+QWlhwZy37FCJtJBpROdKv2gy/yAT72RAJrmdfPzyVetkdU7Vcxan0WrUnjdmuuF5/WSabIgsY1z6N7E6ZIqLMsV0/2lq9k8F9Q2QBLOi1nOARFQHRGVp5SWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=IApOE7P6; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=2Pi1+nTZ; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Cc3uII+e; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=294iDYBf; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id F1AEC211F1;
+	Mon, 17 Nov 2025 10:52:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1763376775; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=TXInVTL2IFyjQryLN3nWlx5S5wuDnPYKjDH8M9S/VFE=;
+	b=IApOE7P6wwvv4kSyx8tWI4qEFwOhV8Yq/ZYLd+vuv0xJIxsS5ChTB916OoXzABnKvDNMjE
+	U+3cfHQ0T+1z6ZcRpAJ9HJV5j8fXPKh3RfWFQFDEyaJ9I8XV4k6mxFtMy3H4ZbxnU87W9c
+	LmmtLhKBa2WK3KvaHKh78WSvHj1LpSw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1763376775;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=TXInVTL2IFyjQryLN3nWlx5S5wuDnPYKjDH8M9S/VFE=;
+	b=2Pi1+nTZgmpvutLwF1CUM579UOEYMBb5nc3zZoLHQ9U1xWpxx+HUUv16d8PnKyVNKPuXJ1
+	e6k+a0cZXbIiIjBA==
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Cc3uII+e;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=294iDYBf
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1763376774; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=TXInVTL2IFyjQryLN3nWlx5S5wuDnPYKjDH8M9S/VFE=;
+	b=Cc3uII+e8Eb7bariwazmXx/9mSHQafRMqaDJeXEMjgoYg6Ks4+3O9u4/ZHucASfwa0vWaO
+	lzalHFo/3XVohA9rJbMB08oqMBAeQdywBproubAZ/1GVFIw2ZQt1dKoGT4GYxxbpvpcLnN
+	DHnTjOH9xIMxOc1hPf8taTa7gJzM8M0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1763376774;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=TXInVTL2IFyjQryLN3nWlx5S5wuDnPYKjDH8M9S/VFE=;
+	b=294iDYBfvBSjG/4QkKRBkwLzqGu1bqU6Go1/+q+jVbo6bmgQNNYwex4BNXuCPFVxL1XAxv
+	VlJOAQZEe5/W5kBw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9737E3EA61;
+	Mon, 17 Nov 2025 10:52:53 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id b2VyI4X+GmniXgAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Mon, 17 Nov 2025 10:52:53 +0000
+Message-ID: <01fb78e0-fc4a-4ffe-ab06-ec134bdaf669@suse.de>
+Date: Mon, 17 Nov 2025 11:52:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251028165127.991351-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251028165127.991351-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdWSB4OvS5AeWqOBQPNG2J9VMYe9YUeXAp9kPjcJEQm3+g@mail.gmail.com> <CA+V-a8sC44HeShCFdk2xwTHMdcOo+8btNh9i0hthTEUMdnhqAQ@mail.gmail.com>
-In-Reply-To: <CA+V-a8sC44HeShCFdk2xwTHMdcOo+8btNh9i0hthTEUMdnhqAQ@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 17 Nov 2025 10:52:30 +0000
-X-Gm-Features: AWmQ_bl6Ntt12tVrAzavAF23Cdjug5ihqGB5hFsf0wLS1ju6p1VJQv7yMHDp6Ek
-Message-ID: <CA+V-a8uCqSdju3TKPDgmNw8F6_Qu1An5mpBePWzMc02Z8iDUZg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] clk: renesas: r9a09g077: Add xSPI core and module clocks
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] drm: Add driver for Sitronix ST7920 LCD displays
+To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org
+References: <20251031-st7920-v4-0-35291f8076b2@gmail.com>
+ <20251031-st7920-v4-2-35291f8076b2@gmail.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20251031-st7920-v4-2-35291f8076b2@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Rspamd-Queue-Id: F1AEC211F1
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,ffwll.ch,redhat.com];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	DKIM_TRACE(0.00)[suse.de:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,base.base:url,suse.de:dkim,suse.de:mid,drm.dev:url,suse.com:url,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,hpinfotech.ro:url]
+X-Spam-Score: -3.01
 
-Hi Geert,
+Hi,
 
-On Mon, Nov 10, 2025 at 9:38=E2=80=AFPM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Geert,
->
-> Thank you for the review.
->
-> On Mon, Nov 10, 2025 at 1:48=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> >
-> > Hi Prabhakar,
-> >
-> > On Tue, 28 Oct 2025 at 17:52, Prabhakar <prabhakar.csengg@gmail.com> wr=
-ote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Add core clocks and module clock definitions required by the xSPI
-> > > (Expanded SPI) IP on the R9A09G077 SoC.
-> > >
-> > > Define the new SCKCR fields FSELXSPI0/FSELXSPI1 and DIVSEL_XSPI0/1 an=
-d
-> > > add two new core clocks XSPI_CLK0 and XSPI_CLK1. The xSPI block uses
-> > > PCLKH as its bus clock (use as module clock parent) while the operati=
-on
-> > > clock (XSPI_CLKn) is derived from PLL4. To support this arrangement
-> > > provide mux/div selectors and divider tables for the supported
-> > > XSPI operating rates.
-> > >
-> > > Add CLK_TYPE_RZT2H_FSELXSPI to implement a custom divider/mux clock
-> > > where the determine_rate() callback enforces the hardware constraint:
-> > > when the parent output is 600MHz only dividers 8 and 16 are valid,
-> > > whereas for 800MHz operation the full divider set (6,8,16,32,64) may
-> > > be used. The custom determine_rate() picks the best parent/divider pa=
-ir
-> > > to match the requested rate and programs the appropriate SCKCR fields=
-.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> > > ---
-> > > v1->v2:
-> > > - Added custom divider clock type for XSPI clocks to enforce hardware
-> > >   constraints on supported operating rates.
-> >
-> > Thanks for the update!
-> >
-> > > --- a/drivers/clk/renesas/r9a09g077-cpg.c
-> > > +++ b/drivers/clk/renesas/r9a09g077-cpg.c
-> >
-> > > @@ -54,12 +56,19 @@
-> > >  #define DIVSCI3ASYNC   CONF_PACK(SCKCR3, 12, 2)
-> > >  #define DIVSCI4ASYNC   CONF_PACK(SCKCR3, 14, 2)
-> > >
-> > > +#define FSELXSPI0      CONF_PACK(SCKCR, 0, 3)
-> > > +#define FSELXSPI1      CONF_PACK(SCKCR, 8, 3)
-> > > +#define DIVSEL_XSPI0   CONF_PACK(SCKCR, 6, 1)
-> > > +#define DIVSEL_XSPI1   CONF_PACK(SCKCR, 14, 1)
-> > >  #define SEL_PLL                CONF_PACK(SCKCR, 22, 1)
-> > >
-> > > +#define DIVSELXSPI_RATE_600MHZ         600000000UL
-> > > +#define DIVSELXSPI_RATE_800MHZ         800000000UL
-> >
-> > I find it a bit weird that the name of the define includes its value.
-> > Perhaps just use "600 * MEGA" resp. "800 * MEGA" in the code instead?
-> OK.
->
-> > But see below...
-> >
-> > > @@ -154,6 +180,15 @@ static const struct cpg_core_clk r9a09g077_core_=
-clks[] __initconst =3D {
-> > >         DEF_DIV(".sci5async", CLK_SCI5ASYNC, CLK_PLL4D1, DIVSCI5ASYNC=
-,
-> > >                 dtable_24_25_30_32),
-> > >
-> > > +       DEF_FIXED(".pll4d1_div3", CLK_PLL4D1_DIV3, CLK_PLL4D1, 3, 1),
-> > > +       DEF_FIXED(".pll4d1_div4", CLK_PLL4D1_DIV4, CLK_PLL4D1, 4, 1),
-> >
-> > Please move these two just below the existing entry for ".pll4d1".
-> >
-> Ok, I will move it below .pll4d1
->
-> > > +       DEF_MUX(".divselxspi0", CLK_DIVSELXSPI0_SCKCR, DIVSEL_XSPI0,
-> > > +               sel_clk_pll4d1_div3_div4,
-> > > +               ARRAY_SIZE(sel_clk_pll4d1_div3_div4), 0),
-> > > +       DEF_MUX(".divselxspi1", CLK_DIVSELXSPI1_SCKCR, DIVSEL_XSPI1,
-> > > +               sel_clk_pll4d1_div3_div4,
-> > > +               ARRAY_SIZE(sel_clk_pll4d1_div3_div4), 0),
-> > > +
-> > >         /* Core output clk */
-> > >         DEF_DIV("CA55C0", R9A09G077_CLK_CA55C0, CLK_SEL_CLK_PLL0, DIV=
-CA55C0,
-> > >                 dtable_1_2),
-> >
-> > > @@ -264,6 +305,116 @@ r9a09g077_cpg_mux_clk_register(struct device *d=
-ev,
-> > >         return clk_hw->clk;
-> > >  }
-> > >
-> > > +static int r9a09g077_cpg_fselxspi_determine_rate(struct clk_hw *hw,
-> > > +                                                struct clk_rate_requ=
-est *req)
-> > > +{
-> > > +       struct clk_divider *divider =3D to_clk_divider(hw);
-> > > +       unsigned long parent_rate, best =3D 0, now;
-> > > +       const struct clk_div_table *clkt;
-> > > +       unsigned long rate =3D req->rate;
-> > > +       int div =3D 0;
-> >
-> > unsigned int
-> >
-> Ok.
->
-> > > +
-> > > +       if (!rate)
-> > > +               rate =3D 1;
-> > > +
-> > > +       for (clkt =3D divider->table; clkt->div; clkt++) {
-> > > +               parent_rate =3D clk_hw_round_rate(req->best_parent_hw=
-, rate * clkt->div);
-> >
-> > I had expected the use of some *_determinate_rate_*() helper, as the
-> > parent can be changed to find a better clock rate?
-> > Perhaps you should use a composite clock for that?
-> >
-> > > +               /*
-> > > +                * DIVSELXSPIx supports 800MHz and 600MHz operation.
-> > > +                * When the parent_rate is 600MHz, only dividers of 8=
- and 16
-> > > +                * are supported otherwise dividers of 6, 8, 16, 32, =
-64 are supported.
-> > > +                * This check ensures that FSELXSPIx is set correctly=
-.
-> > > +                */
-> > > +               if (parent_rate =3D=3D DIVSELXSPI_RATE_600MHZ &&
-> >
-> > Does this actually work as expected? I doubt parent_rate is guaranteed
-> > to be exactly 600 or 800 MHz, and expect it can differ slightly due
-> > to rounding.  Hence I would look at clk_fixed_factor.div instead.
-> >
-> With below diff, Ive got the below results for the various freqs
-> requested where appropriate parent and divider clocks are picked.
->
-> @@ -317,6 +317,7 @@ static int
-> r9a09g077_cpg_fselxspi_determine_rate(struct clk_hw *hw,
->
->         for (clkt =3D divider->table; clkt->div; clkt++) {
->                 parent_rate =3D clk_hw_round_rate(req->best_parent_hw,
-> rate * clkt->div);
-> +               pr_err("parent_rate=3D%lu, req-rate=3D%lu div=3D%u\n",
-> parent_rate, rate, clkt->div);
->                 /*
->                  * DIVSELXSPIx supports 800MHz and 600MHz operation.
->                  * When the parent_rate is 600MHz, only dividers of 8 and=
- 16
->
-> Logs:
-> ---------
->
-> Case 0# assigned-clock-rates =3D <133333334>;
-> [   15.419300] parent_rate=3D800000000, req-rate=3D133333334 div=3D64
-> [   15.437698] parent_rate=3D800000000, req-rate=3D133333334 div=3D32
-> [   15.455224] parent_rate=3D800000000, req-rate=3D133333334 div=3D16
-> [   15.501291] parent_rate=3D800000000, req-rate=3D133333334 div=3D8
-> [   15.507801] parent_rate=3D800000000, req-rate=3D133333334 div=3D6
-> [   15.519221] parent_rate=3D800000000, req-rate=3D133333334 div=3D64
-> [   15.525789] parent_rate=3D800000000, req-rate=3D133333334 div=3D32
-> [   15.549625] parent_rate=3D800000000, req-rate=3D133333334 div=3D16
-> [   15.556120] parent_rate=3D800000000, req-rate=3D133333334 div=3D8
-> [   15.564110] parent_rate=3D800000000, req-rate=3D133333334 div=3D6
->
-> root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-> "xspi0" -e "XSPI_CLK0" -e "divselxspi0"
->                 .divselxspi0         1       1        0
-> 800000000   0          0     50000      Y                  deviceless
->                     no_connection_id
->                    XSPI_CLK0         1       1        0
-> 133333334   0          0     50000      Y
-> 801c0000.spi                    spi
->              xspi0                   0       1        0
-> 250000000   0          0     50000      N               deviceless
->                  of_clk_get_from_provider
-> root@rzt2h-evk:~#
->
-> Case 1# assigned-clock-rates =3D <100000000>;
-> [   15.496291] parent_rate=3D800000000, req-rate=3D100000000 div=3D64
-> [   15.510068] parent_rate=3D800000000, req-rate=3D100000000 div=3D32
-> [   15.517142] parent_rate=3D800000000, req-rate=3D100000000 div=3D16
-> [   15.524047] parent_rate=3D800000000, req-rate=3D100000000 div=3D8
-> [   15.533174] parent_rate=3D600000000, req-rate=3D100000000 div=3D6
-> [   15.540096] parent_rate=3D800000000, req-rate=3D100000000 div=3D64
-> [   15.548135] parent_rate=3D800000000, req-rate=3D100000000 div=3D32
-> [   15.555119] parent_rate=3D800000000, req-rate=3D100000000 div=3D16
-> [   15.562395] parent_rate=3D800000000, req-rate=3D100000000 div=3D8
-> [   15.573521] parent_rate=3D600000000, req-rate=3D100000000 div=3D6
->
-> root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-> "xspi0" -e "XSPI_CLK0" -e "divselxspi0"
->                 .divselxspi0         1       1        0
-> 800000000   0          0     50000      Y                  deviceless
->                     no_connection_id
->                    XSPI_CLK0         1       1        0
-> 100000000   0          0     50000      Y
-> 801c0000.spi                    spi
->              xspi0                   0       1        0
-> 250000000   0          0     50000      N               deviceless
->                  of_clk_get_from_provider
-> root@rzt2h-evk:~#
->
->
-> Case 2# assigned-clock-rates =3D <75000000>;
-> [   12.288507] parent_rate=3D800000000, req-rate=3D75000000 div=3D64
-> [   12.310528] parent_rate=3D800000000, req-rate=3D75000000 div=3D32
-> [   12.318426] parent_rate=3D800000000, req-rate=3D75000000 div=3D16
-> [   12.326361] parent_rate=3D600000000, req-rate=3D75000000 div=3D8
-> [   12.341540] parent_rate=3D0, req-rate=3D75000000 div=3D6
-> [   12.347546] parent_rate=3D800000000, req-rate=3D75000000 div=3D64
-> [   12.357593] parent_rate=3D800000000, req-rate=3D75000000 div=3D32
-> [   12.367148] parent_rate=3D800000000, req-rate=3D75000000 div=3D16
-> [   12.418871] parent_rate=3D600000000, req-rate=3D75000000 div=3D8
-> [   12.433560] parent_rate=3D0, req-rate=3D75000000 div=3D6
->
-> root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-> "xspi0" -e "XSPI_CLK0" -e "divselxspi0"
->                 .divselxspi0         1       1        0
-> 600000000   0          0     50000      Y                  deviceless
->                     no_connection_id
->                    XSPI_CLK0         1       1        0
-> 75000000    0          0     50000      Y
-> 801c0000.spi                    spi
->              xspi0                   0       1        0
-> 250000000   0          0     50000      N               deviceless
->                  of_clk_get_from_provider
-> root@rzt2h-evk:~#
->
-> Case 3# assigned-clock-rates =3D <50000000>;
-> [   15.240214] parent_rate=3D800000000, req-rate=3D50000000 div=3D64
-> [   15.253498] parent_rate=3D800000000, req-rate=3D50000000 div=3D32
-> [   15.261521] parent_rate=3D800000000, req-rate=3D50000000 div=3D16
-> [   15.272941] parent_rate=3D0, req-rate=3D50000000 div=3D8
-> [   15.280532] parent_rate=3D0, req-rate=3D50000000 div=3D6
-> [   15.289979] parent_rate=3D800000000, req-rate=3D50000000 div=3D64
-> [   15.298745] parent_rate=3D800000000, req-rate=3D50000000 div=3D32
-> [   15.309879] parent_rate=3D800000000, req-rate=3D50000000 div=3D16
-> [   15.319881] parent_rate=3D0, req-rate=3D50000000 div=3D8
-> [   15.327977] parent_rate=3D0, req-rate=3D50000000 div=3D6
->
-> root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-> "xspi0" -e "XSPI_CLK0" -e "divselxspi0"
->                 .divselxspi0         1       1        0
-> 800000000   0          0     50000      Y                  deviceless
->                     no_connection_id
->                    XSPI_CLK0         1       1        0
-> 50000000    0          0     50000      Y
-> 801c0000.spi                    spi
->              xspi0                   0       1        0
-> 250000000   0          0     50000      N               deviceless
->                  of_clk_get_from_provider
-> root@rzt2h-evk:~#
->
->
-> Case 4# assigned-clock-rates =3D <37500000>;
-> [   71.710064] parent_rate=3D800000000, req-rate=3D37500000 div=3D64
-> [   71.718567] parent_rate=3D800000000, req-rate=3D37500000 div=3D32
-> [   71.725137] parent_rate=3D600000000, req-rate=3D37500000 div=3D16
-> [   71.731550] parent_rate=3D0, req-rate=3D37500000 div=3D8
-> [   71.740622] parent_rate=3D0, req-rate=3D37500000 div=3D6
-> [   71.746376] parent_rate=3D800000000, req-rate=3D37500000 div=3D64
-> [   71.752887] parent_rate=3D800000000, req-rate=3D37500000 div=3D32
-> [   71.767422] parent_rate=3D600000000, req-rate=3D37500000 div=3D16
-> [   71.778671] parent_rate=3D0, req-rate=3D37500000 div=3D8
-> [   71.790895] parent_rate=3D0, req-rate=3D37500000 div=3D6
->
-> root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-> "xspi0" -e "XSPI_CLK0" -e "divselxspi0"
->                 .divselxspi0         1       1        0
-> 600000000   0          0     50000      Y                  deviceless
->                     no_connection_id
->                    XSPI_CLK0         1       1        0
-> 37500000    0          0     50000      Y
-> 801c0000.spi                    spi
->              xspi0                   0       1        0
-> 250000000   0          0     50000      N               deviceless
->                  of_clk_get_from_provider
-> root@rzt2h-evk:~#
->
->
-> Case 5# assigned-clock-rates =3D <25000000>;
-> [   12.411660] parent_rate=3D800000000, req-rate=3D25000000 div=3D64
-> [   12.429285] parent_rate=3D800000000, req-rate=3D25000000 div=3D32
-> [   12.436144] parent_rate=3D0, req-rate=3D25000000 div=3D16
-> [   12.448110] parent_rate=3D0, req-rate=3D25000000 div=3D8
-> [   12.458785] parent_rate=3D0, req-rate=3D25000000 div=3D6
-> [   12.465401] parent_rate=3D800000000, req-rate=3D25000000 div=3D64
-> [   12.482547] parent_rate=3D800000000, req-rate=3D25000000 div=3D32
-> [   12.497126] parent_rate=3D0, req-rate=3D25000000 div=3D16
-> [   12.509619] parent_rate=3D0, req-rate=3D25000000 div=3D8
-> [   12.518212] parent_rate=3D0, req-rate=3D25000000 div=3D6
->
-> root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-> "xspi0" -e "XSPI_CLK0" -e "divselxspi0"
->                 .divselxspi0         1       1        0
-> 800000000   0          0     50000      Y                  deviceless
->                     no_connection_id
->                    XSPI_CLK0         1       1        0
-> 25000000    0          0     50000      Y
-> 801c0000.spi                    spi
->              xspi0                   0       1        0
-> 250000000   0          0     50000      N               deviceless
->                  of_clk_get_from_provider
-> root@rzt2h-evk:~#
->
-> Case 6# assigned-clock-rates =3D <12500000>;
-> [   87.409877] parent_rate=3D800000000, req-rate=3D12500000 div=3D64
-> [   87.470663] parent_rate=3D0, req-rate=3D12500000 div=3D32
-> [   87.485940] parent_rate=3D0, req-rate=3D12500000 div=3D16
-> [   87.492760] parent_rate=3D0, req-rate=3D12500000 div=3D8
-> [   87.498313] parent_rate=3D0, req-rate=3D12500000 div=3D6
->
->
-> root@rzt2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep -e
-> "xspi0" -e "XSPI_CLK0" -e "divselxspi0"
->                 .divselxspi0         1       1        0
-> 800000000   0          0     50000      Y                  deviceless
->                     no_connection_id
->                    XSPI_CLK0         1       1        0
-> 12500000    0          0     50000      Y
-> 801c0000.spi                    spi
->              xspi0                   0       1        0
-> 250000000   0          0     50000      N               deviceless
->                  of_clk_get_from_provider
-> root@rzt2h-evk:~#
->
-> Looking at the logs I think I could optimize the code to continue when
->  parent_rate =3D=3D 0
->
-> Based on the above logs, would you prefer me to represent it as a
-> composite clock?
->
-Gentle ping.
+please see my review below. The overall driver looks good. There are 
+some points that need to be discussed.
 
-Cheers,
-Prabhakar
+Am 31.10.25 um 10:05 schrieb Iker Pedrosa:
+> Add a new DRM/KMS driver for displays using the Sitronix ST7920
+> controller connected via the SPI bus. This provides a standard
+> framebuffer interface for these common monochrome LCDs.
+>
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> ---
+>   drivers/gpu/drm/sitronix/Kconfig  |  10 +
+>   drivers/gpu/drm/sitronix/Makefile |   1 +
+>   drivers/gpu/drm/sitronix/st7920.c | 905 ++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 916 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/sitronix/Kconfig b/drivers/gpu/drm/sitronix/Kconfig
+> index 6de7d92d9b74c72746915b945869dba91f161d2b..f14115350069849b668d75188f6d504d56fa3dda 100644
+> --- a/drivers/gpu/drm/sitronix/Kconfig
+> +++ b/drivers/gpu/drm/sitronix/Kconfig
+> @@ -40,3 +40,13 @@ config DRM_ST7735R
+>   
+>   	  If M is selected the module will be called st7735r.
+>   
+> +config DRM_ST7920
+> +	tristate "DRM support for Sitronix ST7920 LCD displays"
+> +	depends on DRM && SPI && MMU
+> +	select DRM_GEM_SHMEM_HELPER
+> +	select DRM_KMS_HELPER
+> +	select REGMAP_SPI
+> +	help
+> +	  DRM driver for the ST7920 Sitronix LCD controllers.
+> +
+> +	  If M is selected the module will be called st7920.
+> diff --git a/drivers/gpu/drm/sitronix/Makefile b/drivers/gpu/drm/sitronix/Makefile
+> index bd139e5a6995fa026cc635b3c29782473d1efad7..2f064a518121bfee3cca73acd42589e8c54cd4d7 100644
+> --- a/drivers/gpu/drm/sitronix/Makefile
+> +++ b/drivers/gpu/drm/sitronix/Makefile
+> @@ -1,3 +1,4 @@
+>   obj-$(CONFIG_DRM_ST7571_I2C)		+= st7571-i2c.o
+>   obj-$(CONFIG_DRM_ST7586)		+= st7586.o
+>   obj-$(CONFIG_DRM_ST7735R)		+= st7735r.o
+> +obj-$(CONFIG_DRM_ST7920))		+= st7920.o
+> diff --git a/drivers/gpu/drm/sitronix/st7920.c b/drivers/gpu/drm/sitronix/st7920.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..15b6f99e64313cbeba474231c4ef8649e8e50f9d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/sitronix/st7920.c
+> @@ -0,0 +1,905 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * DRM driver for Sitronix ST7920 LCD displays
+> + *
+> + * Copyright 2025 Iker Pedrosa <ikerpedrosam@gmail.com>
+> + *
+> + */
+> +
+> +#include <linux/bitrev.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include <drm/drm_atomic.h>
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_client_setup.h>
+> +#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_damage_helper.h>
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_fbdev_shmem.h>
+> +#include <drm/drm_framebuffer.h>
+> +#include <drm/drm_gem_atomic_helper.h>
+> +#include <drm/drm_gem_framebuffer_helper.h>
+> +#include <drm/drm_gem_shmem_helper.h>
+> +#include <drm/drm_plane.h>
+> +#include <drm/drm_probe_helper.h>
+> +
+> +#define DRIVER_NAME	"sitronix_st7920"
+> +#define DRIVER_DESC	"DRM driver for Sitronix ST7920 LCD displays"
+> +#define DRIVER_DATE	"20250723"
+> +#define DRIVER_MAJOR	1
+> +#define DRIVER_MINOR	0
+> +
+> +/* Display organization */
+> +#define DRM_PITCH		16
+> +#define DRM_SCANLINES		64
 
-> > > +                   (clkt->div !=3D 8 && clkt->div !=3D 16))
-> > > +                       continue;
-> > > +               now =3D DIV_ROUND_UP_ULL((u64)parent_rate, clkt->div)=
-;
-> >
-> > No need to cast to u64 (DIV_ROUND_*_ULL() handle this internally).
-> >
-> > > +               if (abs(rate - now) < abs(rate - best)) {
-> > > +                       div =3D clkt->div;
-> > > +                       best =3D now;
-> > > +                       req->best_parent_rate =3D parent_rate;
-> > > +               }
-> > > +       }
-> > > +
-> > > +       if (!div) {
-> > > +               u8 maxdiv =3D 0;
-> > > +
-> > > +               req->best_parent_rate =3D clk_hw_round_rate(req->best=
-_parent_hw, 1);
-> > > +               /*
-> > > +                * If DIVSELXSPIx is set to 800MHz set the maximum di=
-vider
-> > > +                * or else fall back to divider of 16 which is a maxi=
-mum
-> > > +                * supported divider for 600MHz operation.
-> > > +                */
-> > > +               if (req->best_parent_rate =3D=3D DIVSELXSPI_RATE_800M=
-HZ) {
-> > > +                       for (clkt =3D divider->table; clkt->div; clkt=
-++) {
-> > > +                               if (clkt->div > maxdiv)
-> > > +                                       maxdiv =3D clkt->div;
-> > > +                       }
-> > > +                       div =3D maxdiv;
-> >
-> > Why not hardcode the divider, like in the else branch?
-> >
-> Agreed.
+The DRM_ prefix is only for DRM. You cannot use it. Prefixing everything 
+with ST7920_ would make sense.
+
+> +#define BYTES_IN_DISPLAY	(DRM_PITCH * DRM_SCANLINES)
+> +#define BYTES_IN_SEGMENT	2
+> +#define PIXELS_PER_SEGMENT	(BYTES_IN_SEGMENT * 8)
+> +
+> +/* Sync sequence */
+> +#define SYNC_BITS			0xF8
+> +#define RW_HIGH				0x04
+> +#define RS_HIGH				0x02
+> +
+> +/* Commands */
+> +#define SET_DISPLAY_ON			0x0C
+> +#define SET_DISPLAY_OFF			0x08
+> +#define SET_DISPLAY_CLEAR		0x01
+> +#define SET_BASIC_INSTRUCTION_SET	0x30
+> +#define SET_EXT_INSTRUCTION_SET		0x34
+> +#define SET_GRAPHICS_DISPLAY		0x36
+> +#define SET_GDRAM_ADDRESS		0x80
+> +#define SET_GDRAM_DATA			0xFF /* Driver internal command */
+> +
+> +/* Masks */
+> +#define HIGH_DATA_MASK			0xF0
+> +#define LOW_DATA_MASK			0x0F
+> +#define TOP_VERTICAL_ADDRESS		0x80
+> +#define BOTTOM_VERTICAL_ADDRESS		0x60
+> +#define TOP_HORIZONTAL_ADDRESS		0x00
+> +#define BOTTOM_HORIZONTAL_ADDRESS	0x80
+> +
+> +#define CMD_SIZE			35
+> +
+> +enum st7920_variants {
+> +	/* st7920 family */
+> +	ST7920_ID
+> +};
+> +
+> +struct spi7920_error {
+> +	int errno;
+> +};
+> +
+> +struct st7920_deviceinfo {
+> +	u32 default_dclk_div;
+> +	u32 default_dclk_frq;
+> +	u32 default_width;
+> +	u32 default_height;
+> +};
+> +
+> +struct st7920_device {
+> +	struct drm_device drm;
+
+> +	struct device *dev;
+
+Please remove this field. You can use drm.dev instead.
+
+> +	struct drm_display_mode mode;
+> +	struct drm_plane primary_plane;
+> +	struct drm_crtc crtc;
+> +	struct drm_encoder encoder;
+> +	struct drm_connector connector;
+> +	struct spi_device *spi;
+> +
+> +	struct regmap *regmap;
+> +
+> +	const struct st7920_deviceinfo *device_info;
+> +
+> +	struct gpio_desc *reset_gpio;
+> +
+> +	u32 height;
+> +	u32 width;
+> +};
+> +
+> +const struct st7920_deviceinfo st7920_variants[] = {
+> +	[ST7920_ID] = {
+> +		.default_width = 128,
+> +		.default_height = 64,
+> +	}
+> +};
+> +EXPORT_SYMBOL_NS_GPL(st7920_variants, DRM_ST7920);
+
+It's new and there are no other users in the series. Why do you export 
+this symbol?
+
+Another problem is that you hard-code constants for the display above, 
+but here you introduce display variants. Your driver should only contain 
+one of these. Either it's all hard coded or all flexible.
+
+> +
+> +struct st7920_plane_state {
+> +	struct drm_shadow_plane_state base;
+> +	/* Intermediate buffer to convert pixels from XRGB8888 to HW format */
+> +	u8 *buffer;
+> +};
+> +
+> +struct st7920_crtc_state {
+> +	struct drm_crtc_state base;
+> +	/* Buffer to store pixels in HW format and written to the panel */
+> +	u8 *data_array;
+> +};
+> +
+> +static inline struct st7920_plane_state *to_st7920_plane_state(struct drm_plane_state *state)
+> +{
+> +	return container_of(state, struct st7920_plane_state, base.base);
+> +}
+> +
+> +static inline struct st7920_crtc_state *to_st7920_crtc_state(struct drm_crtc_state *state)
+> +{
+> +	return container_of(state, struct st7920_crtc_state, base);
+> +}
+> +
+> +static inline struct st7920_device *drm_to_st7920(struct drm_device *drm)
+> +{
+> +	return container_of(drm, struct st7920_device, drm);
+> +}
+> +
+> +static int st7920_store_gdram_address(const void *data, u8 *reg)
+> +{
+> +	const u8 y_addr = *(const u8 *)data;
+> +	bool bottom_screen = (y_addr >= 32);
+> +	int i = 0;
+> +
+> +	reg[i++] = SYNC_BITS;
+> +	/* Set vertical address */
+> +	if (!bottom_screen)
+> +		reg[i++] = TOP_VERTICAL_ADDRESS + (*(uint8_t *)data & HIGH_DATA_MASK);
+> +	else
+> +		reg[i++] = BOTTOM_VERTICAL_ADDRESS + (*(uint8_t *)data & HIGH_DATA_MASK);
+> +
+> +	reg[i++] = *(uint8_t *)data << 4;
+> +	/* Set horizontal address */
+> +	reg[i++] = SET_GDRAM_ADDRESS;
+> +	if (!bottom_screen)
+> +		reg[i++] = TOP_HORIZONTAL_ADDRESS;
+> +	else
+> +		reg[i++] = BOTTOM_HORIZONTAL_ADDRESS;
+> +
+> +	return i;
+> +}
+> +
+> +static int st7920_store_gdram_data(const void *data, u8 *reg)
+> +{
+> +	const u8 *line_data = data;
+> +	int i = 0, j = 0;
+> +
+> +	reg[i++] = SYNC_BITS | RS_HIGH;
+> +
+> +	for (j = 0; j < 16; j++) {
+> +		reg[i++] = line_data[j] & 0xF0;
+> +		reg[i++] = (line_data[j] << 4) & 0xF0;
+> +	}
+> +
+> +	return i;
+> +}
+> +
+> +static int st7920_store_others(int cmd, const void *data, u8 *reg)
+> +{
+> +	int i = 0;
+> +
+> +	reg[i++] = SYNC_BITS;
+> +	reg[i++] = cmd & HIGH_DATA_MASK;
+> +	reg[i++] = (cmd & LOW_DATA_MASK) << 4;
+> +
+> +	return i;
+> +}
+> +
+> +static void st7920_spi_write(struct spi_device *spi, int cmd, const void *data,
+> +			     int delay_us, struct spi7920_error *err)
+> +{
+> +	u8 reg[CMD_SIZE] = {0};
+> +	int size = 0;
+> +	int ret;
+> +
+> +	if (err->errno)
+> +		return;
+> +
+> +	/*
+> +	 * First the sync bits are sent: 11111WS0.
+> +	 * Where W is the read/write (RW) bit and S is the register/data (RS) bit.
+> +	 * Then, every 8 bits instruction/data will be separated into 2 groups.
+> +	 * Higher 4 bits (DB7~DB4) will be placed in the first section followed by
+> +	 * 4 '0's. And lower 4 bits (DB3~DB0) will be placed in the second section
+> +	 * followed by 4 '0's.
+> +	 */
+> +	if (cmd == SET_GDRAM_ADDRESS)
+> +		size = st7920_store_gdram_address(data, reg);
+> +	else if (cmd == SET_GDRAM_DATA)
+> +		size = st7920_store_gdram_data(data, reg);
+> +	else
+> +		size = st7920_store_others(cmd, data, reg);
+> +
+> +	ret = spi_write(spi, reg, size);
+> +	if (ret) {
+> +		err->errno = ret;
+> +		return;
+> +	}
+> +
+> +	if (delay_us)
+> +		udelay(delay_us);
+> +}
+> +
+> +static const struct regmap_config st7920_spi_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +};
+> +
+> +static const struct of_device_id st7920_of_match[] = {
+> +	/* st7920 family */
+> +	{
+> +		.compatible = "sitronix,st7920",
+> +		.data = &st7920_variants[ST7920_ID],
+> +	},
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, st7920_of_match);
+> +
+> +/*
+> + * The SPI core always reports a MODALIAS uevent of the form "spi:<dev>", even
+> + * if the device was registered via OF. This means that the module will not be
+> + * auto loaded, unless it contains an alias that matches the MODALIAS reported.
+> + *
+> + * To workaround this issue, add a SPI device ID table. Even when this should
+> + * not be needed for this driver to match the registered SPI devices.
+> + */
+> +static const struct spi_device_id st7920_spi_id[] = {
+> +	/* st7920 family */
+> +	{ "st7920",  ST7920_ID },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, st7920_spi_id);
+> +
+> +static void st7920_power_on(struct st7920_device *st7920,
+> +			    struct spi7920_error *err)
+> +{
+> +	st7920_spi_write(st7920->spi, SET_DISPLAY_ON, NULL, 72, err);
+> +}
+> +
+> +static void st7920_power_off(struct st7920_device *st7920,
+> +			     struct spi7920_error *err)
+> +{
+> +	st7920_spi_write(st7920->spi, SET_DISPLAY_CLEAR, NULL, 1600, err);
+> +	st7920_spi_write(st7920->spi, SET_DISPLAY_OFF, NULL, 72, err);
+> +}
+> +
+> +static void st7920_hw_reset(struct st7920_device *st7920)
+> +{
+> +	if (!st7920->reset_gpio)
+> +		return;
+> +
+> +	gpiod_set_value_cansleep(st7920->reset_gpio, 0);
+> +	usleep_range(15, 20);
+> +	gpiod_set_value_cansleep(st7920->reset_gpio, 1);
+> +	msleep(40);
+> +}
+> +
+> +static int st7920_init(struct st7920_device *st7920)
+> +{
+> +	struct spi7920_error err = {0};
+> +
+> +	st7920_spi_write(st7920->spi, SET_BASIC_INSTRUCTION_SET, NULL, 72, &err);
+> +	st7920_power_on(st7920, &err);
+> +	st7920_spi_write(st7920->spi, SET_GRAPHICS_DISPLAY, NULL, 72, &err);
+> +	st7920_spi_write(st7920->spi, SET_DISPLAY_CLEAR, NULL, 1600, &err);
+> +
+> +	return err.errno;
+> +}
+> +
+> +static int st7920_update_rect(struct st7920_device *st7920,
+> +			       struct drm_rect *rect, u8 *buf,
+> +			       u8 *data_array)
+> +{
+> +	struct spi7920_error err;
+> +	u32 array_idx = 0;
+> +	int i, j;
+> +
+> +	/*
+> +	 * The screen is divided in 64(Y)x8(X) segments and each segment is
+> +	 * further divided in 2 bytes (D15~D0).
+> +	 *
+> +	 * Segment 0x0 is in the top-right corner, while segment 63x15 is in the
+> +	 * bottom-left. They would be displayed in the screen in the following way:
+> +	 * 0x0  0x1  0x2  ... 0x15
+> +	 * 1x0  1x1  1x2  ... 1x15
+> +	 * ...
+> +	 * 63x0 63x1 63x2 ... 63x15
+> +	 *
+> +	 * The data in each byte is big endian.
+> +	 */
+> +
+> +	for (i = 0; i < DRM_SCANLINES; i++) {
+> +		u8 *line_start = buf + (i * DRM_PITCH);
+> +		u8 line_buffer[DRM_PITCH];
+> +
+> +		for (j = 0; j < DRM_PITCH; j++) {
+> +			line_buffer[j] = bitrev8(line_start[j]);
+> +			data_array[array_idx++] = line_buffer[j];
+> +		}
+> +
+> +		st7920_spi_write(st7920->spi, SET_GDRAM_ADDRESS, &i, 72, &err);
+> +		st7920_spi_write(st7920->spi, SET_GDRAM_DATA, line_buffer, 72, &err);
+> +	}
+> +
+> +	return err.errno;
+> +}
+> +
+> +static void st7920_clear_screen(struct st7920_device *st7920, u8 *data_array)
+> +{
+> +	struct spi7920_error err;
+> +
+> +	memset(data_array, 0, BYTES_IN_DISPLAY);
+> +
+> +	st7920_spi_write(st7920->spi, SET_DISPLAY_CLEAR, NULL, 1600, &err);
+> +}
+> +
+> +static int st7920_fb_blit_rect(struct drm_framebuffer *fb,
+> +				const struct iosys_map *vmap,
+> +				struct drm_rect *rect,
+> +				u8 *buf, u8 *data_array,
+> +				struct drm_format_conv_state *fmtcnv_state)
+> +{
+> +	struct st7920_device *st7920 = drm_to_st7920(fb->dev);
+> +	struct iosys_map dst;
+> +	unsigned int dst_pitch;
+> +	int ret;
+> +
+> +	/* Align y to display page boundaries */
+> +	rect->y1 = round_down(rect->y1, PIXELS_PER_SEGMENT);
+> +	rect->y2 = min_t(unsigned int, round_up(rect->y2, PIXELS_PER_SEGMENT), st7920->height);
+> +
+> +	dst_pitch = DIV_ROUND_UP(drm_rect_width(rect), 8);
+> +
+> +	iosys_map_set_vaddr(&dst, buf);
+> +	drm_fb_xrgb8888_to_mono(&dst, &dst_pitch, vmap, fb, rect, fmtcnv_state);
+> +
+> +	ret = st7920_update_rect(st7920, rect, buf, data_array);
+> +
+> +	return ret;
+> +}
+> +
+> +static int st7920_primary_plane_atomic_check(struct drm_plane *plane,
+> +					      struct drm_atomic_state *state)
+> +{
+> +	struct drm_device *drm = plane->dev;
+> +	struct st7920_device *st7920 = drm_to_st7920(drm);
+> +	struct drm_plane_state *plane_state = drm_atomic_get_new_plane_state(state, plane);
+> +	struct st7920_plane_state *st7920_state = to_st7920_plane_state(plane_state);
+> +	struct drm_shadow_plane_state *shadow_plane_state = &st7920_state->base;
+> +	struct drm_crtc *crtc = plane_state->crtc;
+> +	struct drm_crtc_state *crtc_state = NULL;
+> +	const struct drm_format_info *fi;
+> +	unsigned int pitch;
+> +	int ret;
+> +
+> +	if (crtc)
+> +		crtc_state = drm_atomic_get_new_crtc_state(state, crtc);
+> +
+> +	ret = drm_atomic_helper_check_plane_state(plane_state, crtc_state,
+> +						  DRM_PLANE_NO_SCALING,
+> +						  DRM_PLANE_NO_SCALING,
+> +						  false, false);
+> +	if (ret)
+> +		return ret;
+> +	else if (!plane_state->visible)
+> +		return 0;
+> +
+> +	fi = drm_format_info(DRM_FORMAT_R1);
+> +	if (!fi)
+> +		return -EINVAL;
+> +
+> +	pitch = drm_format_info_min_pitch(fi, 0, st7920->width);
+> +
+> +	if (plane_state->fb->format != fi) {
+> +		void *buf;
+> +
+> +		/* format conversion necessary; reserve buffer */
+> +		buf = drm_format_conv_state_reserve(&shadow_plane_state->fmtcnv_state,
+> +						    pitch, GFP_KERNEL);
+> +		if (!buf)
+> +			return -ENOMEM;
+> +	}
+> +
+> +	st7920_state->buffer = kcalloc(pitch, st7920->height, GFP_KERNEL);
+> +	if (!st7920_state->buffer)
+> +		return -ENOMEM;
+> +
+> +	return 0;
+> +}
+> +
+> +static void st7920_primary_plane_atomic_update(struct drm_plane *plane,
+> +						struct drm_atomic_state *state)
+> +{
+> +	struct drm_plane_state *plane_state = drm_atomic_get_new_plane_state(state, plane);
+> +	struct drm_plane_state *old_plane_state = drm_atomic_get_old_plane_state(state, plane);
+> +	struct drm_shadow_plane_state *shadow_plane_state = to_drm_shadow_plane_state(plane_state);
+> +	struct drm_crtc_state *crtc_state = drm_atomic_get_new_crtc_state(state, plane_state->crtc);
+> +	struct st7920_crtc_state *st7920_crtc_state =  to_st7920_crtc_state(crtc_state);
+> +	struct st7920_plane_state *st7920_plane_state = to_st7920_plane_state(plane_state);
+> +	struct drm_framebuffer *fb = plane_state->fb;
+> +	struct drm_atomic_helper_damage_iter iter;
+> +	struct drm_device *drm = plane->dev;
+> +	struct drm_rect dst_clip;
+> +	struct drm_rect damage;
+> +	int idx;
+> +	int ret;
+> +
+> +	if (!drm_dev_enter(drm, &idx))
+> +		return;
+> +
+> +	if (drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE))
+> +		goto out_drm_dev_exit;
+
+This works, but I think it might be better to adopt the pattern used at 
+[1]. It integrates begin_cpu_access and the damage-update loop into a 
+single nice code block.  The failure returned by begin_cpu_access is 
+transitory. Not making this an error is much closer to what happens 
+here. It's also easier to follow when reading the code.
+
+[1] 
+https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next-2025-11-14-1/drivers/gpu/drm/ast/ast_mode.c?ref_type=tags#L561
+
+> +
+> +	drm_atomic_helper_damage_iter_init(&iter, old_plane_state, plane_state);
+> +	drm_atomic_for_each_plane_damage(&iter, &damage) {
+> +		dst_clip = plane_state->dst;
+> +
+> +		if (!drm_rect_intersect(&dst_clip, &damage))
+> +			continue;
+> +
+> +		ret = st7920_fb_blit_rect(fb, &shadow_plane_state->data[0], &dst_clip,
+> +				st7920_plane_state->buffer,
+> +				st7920_crtc_state->data_array,
+> +				&shadow_plane_state->fmtcnv_state);
+> +		if (ret)
+> +			drm_err_once(plane->dev, "Failed to write to device: %d.\n", ret);
+> +	}
+> +
+> +	drm_gem_fb_end_cpu_access(fb, DMA_FROM_DEVICE);
+> +
+> +out_drm_dev_exit:
+> +	drm_dev_exit(idx);
+> +}
+> +
+> +static void st7920_primary_plane_atomic_disable(struct drm_plane *plane,
+> +						 struct drm_atomic_state *state)
+> +{
+> +	struct drm_device *drm = plane->dev;
+> +	struct st7920_device *st7920 = drm_to_st7920(drm);
+> +	struct drm_plane_state *plane_state = drm_atomic_get_new_plane_state(state, plane);
+> +	struct drm_crtc_state *crtc_state;
+> +	struct st7920_crtc_state *st7920_crtc_state;
+> +	int idx;
+> +
+> +	if (!plane_state->crtc)
+> +		return;
+> +
+> +	crtc_state = drm_atomic_get_new_crtc_state(state, plane_state->crtc);
+> +	st7920_crtc_state = to_st7920_crtc_state(crtc_state);
+> +
+> +	if (!drm_dev_enter(drm, &idx))
+> +		return;
+> +
+> +	st7920_clear_screen(st7920, st7920_crtc_state->data_array);
+> +
+> +	drm_dev_exit(idx);
+> +}
+> +
+> +/* Called during init to allocate the plane's atomic state. */
+> +static void st7920_primary_plane_reset(struct drm_plane *plane)
+> +{
+> +	struct st7920_plane_state *st7920_state;
+> +
+> +	drm_WARN_ON_ONCE(plane->dev, plane->state);
+> +
+> +	st7920_state = kzalloc(sizeof(*st7920_state), GFP_KERNEL);
+> +	if (!st7920_state)
+> +		return;
+> +
+> +	__drm_gem_reset_shadow_plane(plane, &st7920_state->base);
+> +}
+> +
+> +static struct drm_plane_state *st7920_primary_plane_duplicate_state(struct drm_plane *plane)
+> +{
+> +	struct drm_shadow_plane_state *new_shadow_plane_state;
+> +	struct st7920_plane_state *old_st7920_state;
+> +	struct st7920_plane_state *st7920_state;
+> +
+> +	if (drm_WARN_ON_ONCE(plane->dev, !plane->state))
+> +		return NULL;
+> +
+> +	old_st7920_state = to_st7920_plane_state(plane->state);
+> +	st7920_state = kmemdup(old_st7920_state, sizeof(*st7920_state), GFP_KERNEL);
+> +	if (!st7920_state)
+> +		return NULL;
+
+Pleas don't use kmemdup here. The state has meaning and not all fields 
+should be copied. You even address this in the next line. The call to 
+__drm_gem_duplicate_shadow_plane_state() also relies on getting zero'd 
+memory. Rather use kzalloc() and duplicate what's needed.
+
+
+> +
+> +	/* The buffer is not duplicated and is allocated in .atomic_check */
+> +	st7920_state->buffer = NULL;
+> +
+> +	new_shadow_plane_state = &st7920_state->base;
+> +
+> +	__drm_gem_duplicate_shadow_plane_state(plane, new_shadow_plane_state);
+> +
+> +	return &new_shadow_plane_state->base;
+> +}
+> +
+> +static void st7920_primary_plane_destroy_state(struct drm_plane *plane,
+> +						struct drm_plane_state *state)
+> +{
+> +	struct st7920_plane_state *st7920_state = to_st7920_plane_state(state);
+> +
+> +	kfree(st7920_state->buffer);
+> +
+> +	__drm_gem_destroy_shadow_plane_state(&st7920_state->base);
+> +
+> +	kfree(st7920_state);
+> +}
+> +
+> +static const struct drm_plane_helper_funcs st7920_primary_plane_helper_funcs = {
+> +	DRM_GEM_SHADOW_PLANE_HELPER_FUNCS,
+> +	.atomic_check = st7920_primary_plane_atomic_check,
+> +	.atomic_update = st7920_primary_plane_atomic_update,
+> +	.atomic_disable = st7920_primary_plane_atomic_disable,
+> +};
+> +
+> +static const struct drm_plane_funcs st7920_primary_plane_funcs = {
+> +	.update_plane = drm_atomic_helper_update_plane,
+> +	.disable_plane = drm_atomic_helper_disable_plane,
+> +	.reset = st7920_primary_plane_reset,
+> +	.atomic_duplicate_state = st7920_primary_plane_duplicate_state,
+> +	.atomic_destroy_state = st7920_primary_plane_destroy_state,
+> +	.destroy = drm_plane_cleanup,
+> +};
+> +
+> +static enum drm_mode_status st7920_crtc_mode_valid(struct drm_crtc *crtc,
+> +						    const struct drm_display_mode *mode)
+> +{
+> +	struct st7920_device *st7920 = drm_to_st7920(crtc->dev);
+> +
+> +	return drm_crtc_helper_mode_valid_fixed(crtc, mode, &st7920->mode);
+> +}
+> +
+> +static int st7920_crtc_atomic_check(struct drm_crtc *crtc,
+> +				     struct drm_atomic_state *state)
+> +{
+> +	struct drm_crtc_state *crtc_state = drm_atomic_get_new_crtc_state(state, crtc);
+> +	struct st7920_crtc_state *st7920_state = to_st7920_crtc_state(crtc_state);
+> +	int ret;
+> +
+> +	ret = drm_crtc_helper_atomic_check(crtc, state);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st7920_state->data_array = kmalloc(BYTES_IN_DISPLAY, GFP_KERNEL);
+> +	if (!st7920_state->data_array)
+> +		return -ENOMEM;
+> +
+> +	return 0;
+> +}
+> +
+> +static void st7920_crtc_atomic_enable(struct drm_crtc *crtc,
+> +				      struct drm_atomic_state *state)
+> +{
+> +	struct drm_device *drm = crtc->dev;
+> +	struct st7920_device *st7920 = drm_to_st7920(drm);
+> +	int idx;
+> +	int ret;
+> +
+> +	if (!drm_dev_enter(drm, &idx))
+> +		return;
+> +
+> +	st7920_hw_reset(st7920);
+> +
+> +	ret = st7920_init(st7920);
+> +	if (ret)
+> +		dev_err(st7920->dev, "Failed to init hardware: %d\n", ret);
+> +
+> +	drm_dev_exit(idx);
+> +}
+> +
+> +static void st7920_crtc_atomic_disable(struct drm_crtc *crtc,
+> +				       struct drm_atomic_state *state)
+> +{
+> +	struct spi7920_error err = {0};
+> +	struct drm_device *drm = crtc->dev;
+> +	struct st7920_device *st7920 = drm_to_st7920(drm);
+> +	int idx;
+> +
+> +	drm_dev_enter(drm, &idx);
+> +
+> +	st7920_power_off(st7920, &err);
+> +
+> +	drm_dev_exit(idx);
+> +}
+> +
+> +/* Called during init to allocate the CRTC's atomic state. */
+> +static void st7920_crtc_reset(struct drm_crtc *crtc)
+> +{
+> +	struct st7920_crtc_state *st7920_state;
+> +
+> +	drm_WARN_ON_ONCE(crtc->dev, crtc->state);
+> +
+> +	st7920_state = kzalloc(sizeof(*st7920_state), GFP_KERNEL);
+> +	if (!st7920_state)
+> +		return;
+> +
+> +	__drm_atomic_helper_crtc_reset(crtc, &st7920_state->base);
+> +}
+> +
+> +static struct drm_crtc_state *st7920_crtc_duplicate_state(struct drm_crtc *crtc)
+> +{
+> +	struct st7920_crtc_state *old_st7920_state;
+> +	struct st7920_crtc_state *st7920_state;
+> +
+> +	if (drm_WARN_ON_ONCE(crtc->dev, !crtc->state))
+> +		return NULL;
+> +
+> +	old_st7920_state = to_st7920_crtc_state(crtc->state);
+> +	st7920_state = kmemdup(old_st7920_state, sizeof(*st7920_state), GFP_KERNEL);
+> +	if (!st7920_state)
+> +		return NULL;
+
+Same problem with kmemdup() here as outlined above. Please use kzalloc 
+instead.
+
+> +
+> +	/* The buffer is not duplicated and is allocated in .atomic_check */
+> +	st7920_state->data_array = NULL;
+> +
+> +	__drm_atomic_helper_crtc_duplicate_state(crtc, &st7920_state->base);
+> +
+> +	return &st7920_state->base;
+> +}
+> +
+> +static void st7920_crtc_destroy_state(struct drm_crtc *crtc,
+> +						struct drm_crtc_state *state)
+> +{
+> +	struct st7920_crtc_state *st7920_state = to_st7920_crtc_state(state);
+> +
+> +	kfree(st7920_state->data_array);
+> +
+> +	__drm_atomic_helper_crtc_destroy_state(state);
+> +
+> +	kfree(st7920_state);
+> +}
+> +
+> +/*
+> + * The CRTC is always enabled. Screen updates are performed by
+> + * the primary plane's atomic_update function. Disabling clears
+> + * the screen in the primary plane's atomic_disable function.
+> + */
+> +static const struct drm_crtc_helper_funcs st7920_crtc_helper_funcs = {
+> +	.mode_valid = st7920_crtc_mode_valid,
+> +	.atomic_check = st7920_crtc_atomic_check,
+> +	.atomic_enable = st7920_crtc_atomic_enable,
+> +	.atomic_disable = st7920_crtc_atomic_disable,
+> +};
+> +
+> +static const struct drm_crtc_funcs st7920_crtc_funcs = {
+> +	.reset = st7920_crtc_reset,
+> +	.destroy = drm_crtc_cleanup,
+> +	.set_config = drm_atomic_helper_set_config,
+> +	.page_flip = drm_atomic_helper_page_flip,
+> +	.atomic_duplicate_state = st7920_crtc_duplicate_state,
+> +	.atomic_destroy_state = st7920_crtc_destroy_state,
+> +};
+> +
+> +static const struct drm_encoder_funcs st7920_encoder_funcs = {
+> +	.destroy = drm_encoder_cleanup,
+> +};
+> +
+> +static int st7920_connector_get_modes(struct drm_connector *connector)
+> +{
+> +	struct st7920_device *st7920 = drm_to_st7920(connector->dev);
+> +
+> +	return drm_connector_helper_get_modes_fixed(connector, &st7920->mode);
+> +}
+> +
+> +static const struct drm_connector_helper_funcs st7920_connector_helper_funcs = {
+> +	.get_modes = st7920_connector_get_modes,
+> +};
+> +
+> +static const struct drm_connector_funcs st7920_connector_funcs = {
+> +	.reset = drm_atomic_helper_connector_reset,
+> +	.fill_modes = drm_helper_probe_single_connector_modes,
+> +	.destroy = drm_connector_cleanup,
+> +	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+> +	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+> +};
+> +
+> +static const struct drm_mode_config_funcs st7920_mode_config_funcs = {
+> +	.fb_create = drm_gem_fb_create_with_dirty,
+> +	.atomic_check = drm_atomic_helper_check,
+> +	.atomic_commit = drm_atomic_helper_commit,
+> +};
+> +
+> +static const uint32_t st7920_formats[] = {
+> +	DRM_FORMAT_XRGB8888,
+> +};
+> +
+> +DEFINE_DRM_GEM_FOPS(st7920_fops);
+> +
+> +static const struct drm_driver st7920_drm_driver = {
+> +	DRM_GEM_SHMEM_DRIVER_OPS,
+> +	DRM_FBDEV_SHMEM_DRIVER_OPS,
+> +	.name			= DRIVER_NAME,
+> +	.desc			= DRIVER_DESC,
+> +	.date			= DRIVER_DATE,
+> +	.major			= DRIVER_MAJOR,
+> +	.minor			= DRIVER_MINOR,
+> +	.driver_features = DRIVER_ATOMIC | DRIVER_GEM | DRIVER_MODESET,
+> +	.fops			= &st7920_fops,
+> +};
+> +
+> +static int st7920_init_modeset(struct st7920_device *st7920)
+> +{
+> +	struct drm_display_mode *mode = &st7920->mode;
+> +	struct device *dev = st7920->dev;
+> +	struct drm_device *drm = &st7920->drm;
+> +	unsigned long max_width, max_height;
+> +	struct drm_plane *primary_plane;
+> +	struct drm_crtc *crtc;
+> +	struct drm_encoder *encoder;
+> +	struct drm_connector *connector;
+> +	int ret;
+> +
+> +	/*
+> +	 * Modesetting
+> +	 */
+> +
+> +	ret = drmm_mode_config_init(drm);
+> +	if (ret) {
+> +		dev_err(dev, "DRM mode config init failed: %d\n", ret);
+
+It should be save to use drm_ logging here. Please do. Also below.
+
+> +		return ret;
+> +	}
+> +
+> +	mode->type = DRM_MODE_TYPE_DRIVER;
+> +	mode->clock = 1;
+
+Userspace might synchronize its output to the display frequency. 1 Hz 
+looks kinda sluggish :)  For maximum compatibility better use 60 Hz 
+here. Or some fraction/multiple that the display can realistically 
+perform. The data sheet at [2] says that a frame takes 18.3 ms (~50 Hz). 
+So a display refresh of 30 Hz should be fine.
+
+[2] https://www.hpinfotech.ro/ST7920.pdf
+
+
+> +	mode->hdisplay = st7920->device_info->default_width;
+> +	mode->htotal = st7920->device_info->default_width;
+> +	mode->hsync_start = st7920->device_info->default_width;
+> +	mode->hsync_end = st7920->device_info->default_width;
+> +	mode->vdisplay = st7920->device_info->default_height;
+> +	mode->vtotal = st7920->device_info->default_height;
+> +	mode->vsync_start = st7920->device_info->default_height;
+> +	mode->vsync_end = st7920->device_info->default_height;
+> +	mode->width_mm = 27;
+> +	mode->height_mm = 27;
+> +
+> +	max_width = max_t(unsigned long, mode->hdisplay, DRM_SHADOW_PLANE_MAX_WIDTH);
+> +	max_height = max_t(unsigned long, mode->vdisplay, DRM_SHADOW_PLANE_MAX_HEIGHT);
+> +
+> +	drm->mode_config.min_width = mode->hdisplay;
+> +	drm->mode_config.max_width = max_width;
+> +	drm->mode_config.min_height = mode->vdisplay;
+> +	drm->mode_config.max_height = max_height;
+> +	drm->mode_config.preferred_depth = 24;
+> +	drm->mode_config.funcs = &st7920_mode_config_funcs;
+> +
+> +	/* Primary plane */
+> +
+> +	primary_plane = &st7920->primary_plane;
+> +	ret = drm_universal_plane_init(drm, primary_plane, 0, &st7920_primary_plane_funcs,
+> +				    st7920_formats, ARRAY_SIZE(st7920_formats),
+> +				    NULL, DRM_PLANE_TYPE_PRIMARY, NULL);
+> +	if (ret) {
+> +		dev_err(dev, "DRM primary plane init failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	drm_plane_helper_add(primary_plane, &st7920_primary_plane_helper_funcs);
+> +
+> +	drm_plane_enable_fb_damage_clips(primary_plane);
+> +
+> +	/* CRTC */
+> +
+> +	crtc = &st7920->crtc;
+> +	ret = drm_crtc_init_with_planes(drm, crtc, primary_plane, NULL,
+> +					&st7920_crtc_funcs, NULL);
+> +	if (ret) {
+> +		dev_err(dev, "DRM crtc init failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	drm_crtc_helper_add(crtc, &st7920_crtc_helper_funcs);
+> +
+> +	/* Encoder */
+> +
+> +	encoder = &st7920->encoder;
+> +	ret = drm_encoder_init(drm, encoder, &st7920_encoder_funcs,
+> +			       DRM_MODE_ENCODER_NONE, NULL);
+> +	if (ret) {
+> +		dev_err(dev, "DRM encoder init failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	encoder->possible_crtcs = drm_crtc_mask(crtc);
+> +
+> +	/* Connector */
+> +
+> +	connector = &st7920->connector;
+> +	ret = drm_connector_init(drm, connector, &st7920_connector_funcs,
+> +				 DRM_MODE_CONNECTOR_Unknown);
+> +	if (ret) {
+> +		dev_err(dev, "DRM connector init failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	drm_connector_helper_add(connector, &st7920_connector_helper_funcs);
+> +
+> +	ret = drm_connector_attach_encoder(connector, encoder);
+> +	if (ret) {
+> +		dev_err(dev, "DRM attach connector to encoder failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	drm_mode_config_reset(drm);
+> +
+> +	return 0;
+> +}
+> +
+> +static int st7920_probe(struct spi_device *spi)
+> +{
+> +	struct st7920_device *st7920;
+> +	struct regmap *regmap;
+> +	struct device *dev = &spi->dev;
+> +	struct drm_device *drm;
+> +	int ret;
+> +
+> +	regmap = devm_regmap_init_spi(spi, &st7920_spi_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	st7920 = devm_drm_dev_alloc(dev, &st7920_drm_driver,
+> +				    struct st7920_device, drm);
+> +	if (IS_ERR(st7920))
+> +		return PTR_ERR(st7920);
+> +
+> +	drm = &st7920->drm;
+> +
+> +	st7920->dev = dev;
+> +	st7920->regmap = regmap;
+> +	st7920->spi = spi;
+> +	st7920->device_info = device_get_match_data(dev);
+> +	st7920->width = st7920->device_info->default_width;
+> +	st7920->height = st7920->device_info->default_height;
+> +
+> +	st7920->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(st7920->reset_gpio)) {
+> +		ret = PTR_ERR(st7920->reset_gpio);
+> +		dev_err(dev, "Unable to retrieve reset GPIO: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	spi_set_drvdata(spi, st7920);
+> +
+> +	ret = st7920_init_modeset(st7920);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = drm_dev_register(drm, 0);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "DRM device register failed\n");
+> +
+> +	drm_client_setup(drm, NULL);
+> +
+> +	return 0;
+> +}
+> +
+> +static void st7920_remove(struct spi_device *spi)
+> +{
+> +	struct st7920_device *st7920 = spi_get_drvdata(spi);
+> +
+> +	drm_dev_unplug(&st7920->drm);
+> +	drm_atomic_helper_shutdown(&st7920->drm);
+> +}
+> +
+> +static void st7920_shutdown(struct spi_device *spi)
+> +{
+> +	struct st7920_device *st7920 = spi_get_drvdata(spi);
+> +
+> +	drm_atomic_helper_shutdown(&st7920->drm);
+> +}
+> +
+> +static struct spi_driver st7920_spi_driver = {
+> +	.driver = {
+> +		.name = DRIVER_NAME,
+> +		.of_match_table = st7920_of_match,
+> +	},
+> +	.id_table = st7920_spi_id,
+> +	.probe = st7920_probe,
+> +	.remove = st7920_remove,
+> +	.shutdown = st7920_shutdown,
+> +};
+> +module_spi_driver(st7920_spi_driver);
+> +
+> +MODULE_DESCRIPTION(DRIVER_DESC);
+> +MODULE_AUTHOR("Iker Pedrosa <ipedrosam@gmail.com>");
+> +MODULE_LICENSE("GPL v2");
 >
-> > > +               } else {
-> > > +                       div =3D 16;
-> > > +               }
-> > > +       }
-> > > +
-> > > +       req->rate =3D DIV_ROUND_UP_ULL((u64)req->best_parent_rate, di=
-v);
-> >
-> > No need to cast to u64.
-> >
-> Ok.
->
-> Cheers,
-> Prabhakar
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
+
 
