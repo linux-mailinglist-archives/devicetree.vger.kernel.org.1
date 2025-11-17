@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-239356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D944C6428A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:48:19 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6311EC642E0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:51:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1A5664F2F68
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:43:24 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B8A8F364ED1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69F2333425;
-	Mon, 17 Nov 2025 12:39:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F93B32E6B5;
+	Mon, 17 Nov 2025 12:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="d49lZmHl"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="gvGG6mXb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980AA32ED44;
-	Mon, 17 Nov 2025 12:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E09232F761;
+	Mon, 17 Nov 2025 12:39:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763383153; cv=none; b=m0JNh+ZAQp+iTEBwitFaN/pF0aDuOrufXSgaKGGD7AoPUcY/NxD+olRZV1LzgwmnhxTYVHjXw89QlLicesAhQdl+CP1ibyfYhxB7n5Ll6mXCiChjCYmydnDD/9i+hNXwG8KwifGvFKS+fD4y+mNCJNf9i6vvxn2O6sIWU+x07ak=
+	t=1763383180; cv=none; b=cqMZwF/sPYg4LZXm8QTgffTM2z69oTwPwJ6+Fo0LhC6+QprBSeAsBf+SN0XBjeRqxBf3UbSTAuYY97Qe8Ni6kbZij0EE3P4k0567oIs/SgDafLfRV2r61bOnHy6nynsPcMxFgBjDnHI76i7wBKsyX7D9P4OPLHipczL+0jXx0hk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763383153; c=relaxed/simple;
-	bh=ierKwIIuey+KBX9hw2bltCwqXrLhrQJwTN42mjY84yI=;
+	s=arc-20240116; t=1763383180; c=relaxed/simple;
+	bh=P9DIIyED+hINuNByK4J2Qg8Q4Ih9PbTE9JwMpAdErrQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wm4El95VKebz5qtasJ+1indsVo8L5RARtRjccn3S2Hcu6kAYn9ONhb8aWx7Az+bhjSMiq01nqNAxIqU6g3f37iIoISKD3IGiN7hgAxXisgv0GufDPMHnvphWYeAX+rg2HBYhKKmd3ISF/i2oR8rKTnlvdAGBFf/GIbBtlQoeGY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d49lZmHl; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1763383149;
-	bh=ierKwIIuey+KBX9hw2bltCwqXrLhrQJwTN42mjY84yI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d49lZmHlRM17eRcwy37ucduJi/6vt5S30qFVQ1rDXMn58KPiAZu+PV3X9mnSE7m2q
-	 zzhhe/mOUDd1XpBzlvkkbT5hUeiKSvNGGuSf2dkb7XNV1pc9i0yPHFjpBsd5lKj8kX
-	 /uWx3veA3PYYRhRw2qtCWLyaqy4HVh5zPYsCw+wi3POyszvaOM2Va32XYS53IOLXuF
-	 ow9K9pRbJCse9FujAdNkqAHLGqUVmrNPUjy16cwDDdj99SN+pcUL+Eeq6QV3q6nbkB
-	 eTvC45gEekK9fC4qDarD8Xs0bF0QBFK5s619StKPVkUVfAbV+al2HXmAgGB+B2z1Oz
-	 twtyJGWTWpuJg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5C23917E1249;
-	Mon, 17 Nov 2025 13:39:09 +0100 (CET)
-Message-ID: <2dd6857c-5895-4a53-8ccf-7407e454fd1d@collabora.com>
-Date: Mon, 17 Nov 2025 13:39:08 +0100
+	 In-Reply-To:Content-Type; b=AS9E6vTPbVEcZbePRWmsnm+fkWJvvwmrwwdmdAe2OoL3FOCiN6DSdwtDPLsFEkr0PUF0gt0SWacfpbSeESqRBQ6+fJHlj+gynlwF6wY2BmOywh8RJIuoDDFDL3mHN6VLZs7x/QCBtalRAlnk1qoJRrvbdw7oEiXlIj0sbE9f8Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=gvGG6mXb; arc=none smtp.client-ip=46.242.128.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
+	:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=P9DIIyED+hINuNByK4J2Qg8Q4Ih9PbTE9JwMpAdErrQ=; b=gvGG6mXbWWqnacGdEpxLT6qodC
+	NcNZuL5sxJsvH6xqxfMIaH/qzFlkZwxI1ygMiVIV6fpk5UMGvt5IPmzTP8PA8lBrNXTC1VyNe/J36
+	YIXDsFHFIeiwMmLHRNJVHx+szj6TZ0L7Lfm9wRzEKTSUUeySq7Zst8OsFseoW8xU3GkJQtgVd7Px2
+	HBHiq52XmWe1ak6jONUe3Gl32+O4hmHT9wkPN0GqeGAE4rBlTMAMdRTBI0XZ9sELH6UbvQ1WmXCDh
+	HqoENYj7yMevYnLiAozjnNsBM7s0Ja6Xyde23GNZGS1VIR7IJ/ciOWHg2Ik9N7yuqqUabS6ciEGdP
+	kwMTUcDw==;
+Received: from d100-116.icpnet.pl ([77.65.100.116] helo=[192.168.0.120])
+	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <kuba@szczodrzynski.pl>)
+	id 1vKyW0-0000000H4xw-0X9t;
+	Mon, 17 Nov 2025 13:39:28 +0100
+Message-ID: <47f0b6b3-7cdb-4871-ad7c-d71d28679caa@szczodrzynski.pl>
+Date: Mon, 17 Nov 2025 13:39:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,52 +58,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/13] soc: mediatek: mtk-dvfsrc: Rework bandwidth
- calculations
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Henry Chen <henryc.chen@mediatek.com>,
- Georgi Djakov <djakov@kernel.org>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
-References: <20251114-mt8196-dvfsrc-v1-0-b956d4631468@collabora.com>
- <20251114-mt8196-dvfsrc-v1-10-b956d4631468@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251114-mt8196-dvfsrc-v1-10-b956d4631468@collabora.com>
+Subject: Re: [PATCH v3 4/6] dt-bindings: display: sun4i: Add D1s/T113 combo
+ D-PHY bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Maxime Ripard <mripard@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ parthiban@linumiz.com, paulk@sys-base.io
+References: <20251116134609.447043-1-kuba@szczodrzynski.pl>
+ <20251116134943.447443-1-kuba@szczodrzynski.pl>
+ <20251117-faithful-unique-millipede-d8bae5@kuoka>
+ <a0347d10-475d-4dd2-b53e-ca7905869887@szczodrzynski.pl>
+ <1cc0a6a8-2291-4eb6-8f4f-be0ded01d96f@kernel.org>
+Content-Language: pl
+From: =?UTF-8?Q?Kuba_Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
+Autocrypt: addr=kuba@szczodrzynski.pl; keydata=
+ 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
+In-Reply-To: <1cc0a6a8-2291-4eb6-8f4f-be0ded01d96f@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: kuba@szczodrzynski.pl
 
-Il 14/11/25 17:54, Nicolas Frattaroli ha scritto:
-> The code, as it is, plays fast and loose with bandwidth units. It also
-> doesn't specify its constraints in the actual maximum hardware value,
-> but as some roundabout thing that then ends up multiplied into the
-> actual hardware value constraint after some indirections. In part, this
-> is due to the use of individual members for storing each limit, instead
-> of making it possible to index them by type.
-> 
-> Rework all of this by adding const array members indexed by the
-> bandwidth type enum to the soc_data struct. This array expresses the
-> actual hardware value limitations, not a factor thereof.
-> 
-> Use the clamp function macro to clamp the values between the minimum and
-> maximum constraints after all the calculations, which also means the
-> code doesn't write nonsense to a hardware register when the math is
-> wrong, as it'll constrain after all the calculations.
-> 
-> Pass the type as the actual enum type as well, and not as an int. If
-> there's some type checking that can be extracted from the function
-> signature, then we may as well use it.
-> 
-> Don't needlessly explicitly cast return values to the return type
-> either; this is both unnecessary and makes it harder to spot type safety
-> issues.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+W dniu 2025-11-17 o 12:53:41, Krzysztof Kozlowski pisze:
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> On 17/11/2025 12:08, Kuba Szczodrzyński wrote:
+>> Will do.
+>>
+>>> You don't need names in the first place, you have only one
+>>> entry.
+>> However, phy-names was added because of how other bindings are made, such as "allwinner,sun4i-a10-musb" (single phy entry with const name).
+>
+> It looks like USB binding, not a display one, so not really applicable
+> argument. Do existing display drivers using this binding rely on names
+> of phy or not?
 
+Actually, existing display bindings that use PHY rely on their names.
+See: allwinner,sun6i-a31-mipi-dsi, allwinner,sun8i-a83t-dw-hdmi, as well as some bindings for different SoCs.
 
+> Best regards,
+> Krzysztof
 
