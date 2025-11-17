@@ -1,131 +1,135 @@
-Return-Path: <devicetree+bounces-239203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AD0CC629C6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:58:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFEEEC62A03
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id DA06C24205
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 06:58:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D7DE04E5B55
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FCDC3164A1;
-	Mon, 17 Nov 2025 06:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3A72550CC;
+	Mon, 17 Nov 2025 07:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YIGtSNMm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jH/3sOh5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5069230C621;
-	Mon, 17 Nov 2025 06:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC101FDA8E;
+	Mon, 17 Nov 2025 07:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763362686; cv=none; b=px9zeXzKuLiC4cwf/Zc1GtktPN6xPK8Gfki7qUhxtSqsDdmb/DlTu6ZB+MmceA6x38LijkzC1ey+9mzKMNi0aC1JIHNfg1+hf3sGrKiW5EHuS+47n/uF6oQ+i21bGBbAP47EM0OEitpked2eKhma4aM1o5rzNsFRUvBg0iqmZX4=
+	t=1763362830; cv=none; b=DkSnklgi4+3Sb3Pmf4V81O4cyDncSL9UdcBhwHrpYu6qzg/0W5sDLWrugWPmobmHZmUso4JuvdwuVy6MF9WCm7zIN5p7a64n2AFB15DSLOtl7PknPpttyxzZT/61HJyG+3SZfslRTVzQ/NKMED/O7cL0DAvJF4srAQEzRt61FsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763362686; c=relaxed/simple;
-	bh=wh1+yKBQuBQCRauH9O96N57TByIYGMeOYcvatPokRi8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HcrZamYT6ehD0P7TYbbaK6rwNS1dqFnwsvYjXHcRSwo7SdxTNW/7qWH52vdq0nq12BtLYJLxJw9N0gc/8OBRKGcIq69QoP7SniHgJjR/Rwj5fZY16jOmI5K0WrggvYX+ygsO80A4HBr7KW0D5IOLjYPNGqvjj6zoOT5Wgy+d/Fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YIGtSNMm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 642B1C116B1;
-	Mon, 17 Nov 2025 06:58:00 +0000 (UTC)
+	s=arc-20240116; t=1763362830; c=relaxed/simple;
+	bh=aZN7zbXZXHa7wcgVartfQ5nXipXYlMCiZfigd0SdNLg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WMqgs+XR+T6MtTY3oZ8j7O2B3gdY77ZqYrMCwaxjI+d1qlWMnR+kYBZTa2Ys0ofF1PlmrC2gUMn6XKqBHUMHhxbMCtwcgQMSLsFuNmyIe3YyaK+Xsrh0n+eYZnjfSN6NOEI5wJSqfTIAGbJ3r3wx7vStiHPr/3CqsHaQEvjKY6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jH/3sOh5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9AADC4CEF5;
+	Mon, 17 Nov 2025 07:00:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763362684;
-	bh=wh1+yKBQuBQCRauH9O96N57TByIYGMeOYcvatPokRi8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=YIGtSNMmZGvBdeRQhb2Wqh+pyfSNm8kidGFTEgv6olaTuD58xU8kC175JxoDm2sKe
-	 0C2bAF9A6GCoa2kU4aJ1jedv2+sgsVSh+7ACxiJgn4I64a+qGSQRx1G44zfqyFslIA
-	 eWV1wuVlLpkYxFAeLWphJPOI/+pG+ry6y9wsiZJLdTbzM91/PlkYnz/x2GtZi7DyYu
-	 JRVskAI1M7RHO94fb1JaOYD67itTKr0GL6UVH9D+0Jf+Nle2SK3HbtFOGdv6plbIqO
-	 OAlAXQZqDf0Xm9i/XD1FMfl1OweB2BdQ+izMwAbQMMqWma90Togyy1WSSQfkp5JaLd
-	 zVwdptBMXwMxA==
-Message-ID: <64bc3888-2121-4593-b6e2-e77b02a98e9b@kernel.org>
-Date: Mon, 17 Nov 2025 07:57:58 +0100
+	s=k20201202; t=1763362830;
+	bh=aZN7zbXZXHa7wcgVartfQ5nXipXYlMCiZfigd0SdNLg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jH/3sOh553iNuvqJzZEEhjMGtt2bcN1UWZ8gn40Kc6uvg7hZdXCj+rtc/UI10jG/R
+	 1NH+zU9IEq1KHtOdvdgYag4OyDSeZMexuBZFgX8DxXOirnnHTDblblquhFNFM1q5Yc
+	 WAa3sB3jNuGNIrljkZYU6LBEFJOQi7ufeHHq8t86n1hwIXtZ8G0Ls2nw91Y5pcQhz1
+	 nlYGmg9fKa7bn+sBBc0wKVcD9zrROHc7NQz3TRkw6ai6tOhI5az7ESfDnufa74YG0e
+	 oENNgH0A/5QCRdTy3iVXaUv/Hw65C51boqV/3RPp5Ajtfos2UI0REvlcJ8dgSAElXR
+	 WMoJGt2P6U2Jw==
+Date: Mon, 17 Nov 2025 08:00:27 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Rosin <peda@axentia.se>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 04/21] dt-bindings: reset: renesas,rzv2h-usb2phy:
+ Document VBUS_SEL mux
+Message-ID: <20251117-sturdy-resourceful-crab-c14bb8@kuoka>
+References: <cover.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+ <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Recall: [PATCH 2/3] dt-bindings: dma: xilinx: Simplify
- dma-coherent property
-To: "Katakam, Harini" <harini.katakam@amd.com>, Jyri Sarha
- <jyri.sarha@iki.fi>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- "Simek, Michal" <michal.simek@amd.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Michael Tretter <m.tretter@pengutronix.de>,
- "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
-References: <SA3PR12MB7922952E6DE5C156FED760519EC9A@SA3PR12MB7922.namprd12.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <SA3PR12MB7922952E6DE5C156FED760519EC9A@SA3PR12MB7922.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
 
-On 17/11/2025 07:47, Katakam, Harini wrote:
-> Katakam, Harini would like to recall the message, "[PATCH 2/3] dt-bindings: dma: xilinx: Simplify dma-coherent property".
+On Mon, Nov 10, 2025 at 01:08:04PM +0100, Tommaso Merciai wrote:
+> Document the 'mux-controller' child node in the Renesas RZ/V2H(P)
+> USB2PHY reset binding to support describing the USB VBUS_SEL
+> multiplexer as a mux-controller.
+> 
+> This is required to properly configure the USB PHY VBUS source on
+> RZ/V2H(P), RZ/G3E SoCs.
 
-Don't do such stuff.
+And where did you explain why this cannot be folded into parent node? If
+you do not provide context why reviewer's advice cannot be fulfilled,
+then you will get the same comment.
 
-It does not work and just creates unnecessary noise.
+> 
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> ---
+> v2->v3:
+>  - Manipulate mux-controller as an internal node.
+>  - Improved commit body.
+> 
+> v1->v2:
+>  - New patch
+> 
+>  .../bindings/reset/renesas,rzv2h-usb2phy-reset.yaml   | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
+> index c1b800a10b53..03da74ff2d08 100644
+> --- a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
+> @@ -37,6 +37,12 @@ properties:
+>    '#reset-cells':
+>      const: 0
+>  
+> +  mux-controller:
+> +    $ref: /schemas/mux/mux-controller.yaml#
+> +    description: Mux controller for USB VBUS source selection.
+> +    type: object
+> +    unevaluatedProperties: false
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -44,6 +50,7 @@ required:
+>    - resets
+>    - power-domains
+>    - '#reset-cells'
+> +  - mux-controller
+>  
+>  additionalProperties: false
+>  
+> @@ -58,4 +65,8 @@ examples:
+>          resets = <&cpg 0xaf>;
+>          power-domains = <&cpg>;
+>          #reset-cells = <0>;
+> +
+> +        mux-controller {
+> +          #mux-state-cells = <1>;
+
+Do not mix up indentation.
 
 Best regards,
 Krzysztof
+
 
