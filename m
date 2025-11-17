@@ -1,56 +1,48 @@
-Return-Path: <devicetree+bounces-239305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 261CDC63C24
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:18:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35C8CC63C45
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:20:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B58784ED23F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:16:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83C043B716C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65142330323;
-	Mon, 17 Nov 2025 11:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D183732A3C5;
+	Mon, 17 Nov 2025 11:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="NLxuGAVP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FFFBjqgZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AAEB331224;
-	Mon, 17 Nov 2025 11:08:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AD335CBA5;
+	Mon, 17 Nov 2025 11:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763377736; cv=none; b=MjL1DG1DiWzOXg9D5BKx8qKPCbFM1cacmiV4hZ6nB9ouPavhlK18F4PELlyIopoqjTK8n7dgWd+I4htsOTGExDp8zlE9HQEnXdVWrJP/Toc9WclDmVCCVj2XwH40SF6m4eH0RuTnf273DrQ0/XQsT6w4hoP8DbCFWhTQzNTSyek=
+	t=1763377851; cv=none; b=D++mk+Eocgy/YoJaKi9dInjbnkTP8gSDcraHUlB0kcHLKCDfFHH0+PDNtVOUdEu1eZ6J7nUlVG8VgZifym/BMj992EDZ8T2/Xoh4Hf5Z9Q27sVTAb2Op0wCoavfTmj/Cqf9PVz8j/GrRkWH/UuTAnc1RoyXJeWblMoK5+ouJxLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763377736; c=relaxed/simple;
-	bh=5vQb0kOt03xdg4mAHFEyfGbNg93voYMkCIDEWmXv3sI=;
+	s=arc-20240116; t=1763377851; c=relaxed/simple;
+	bh=ntFoFb1m/WoUaNLNSJ3SjFp4CbCTxDpn57kc4IpNq+s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uWWgryWSeK6pZrzjoK9m62DeIgW2e0IJTVX7AeMXfl10iR9R1uqTvbQuq8t+9XSnaRSI0HvrvQZ2zbHuSY2OmYFspuDfOAe21DnY1b4sVPhT2g8gXXlXL0gBAaxNJAxYldD2jF8oy/sgrmJ8n9fxJsyysDiuL7YT9dryn0nWJ2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=NLxuGAVP; arc=none smtp.client-ip=46.242.128.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
-	:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=5vQb0kOt03xdg4mAHFEyfGbNg93voYMkCIDEWmXv3sI=; b=NLxuGAVPYfKBLjm4HnYWIROAnw
-	vT+06H8WujBGR7lc09kFGCBepd4Dd9c3qIavE9GdezJcI2PEJEwezcKKK9+8gVcPj/joeHBsXFKlo
-	6b8yTpe9dRV7Ix1CMyGZHZ7edl2it8qDxYd+j5zy4ycaCWIw8Es9K/N9Vzd16VBMYtyOox1raf64h
-	tREEzAV2+hHOnQVp3Trjdtk1gN/rF5pjpgoTXx/3a5wzzh6IshemL0ZZSDFazANJhUYF7rzZj4fUC
-	DcIbErlQPnj5VR+V+kMPmZqDsl5mFDpPujp5Q3VDq3qzyhZMy9oiXsFY3mwPFQiVHSL9F3pdl/Hi0
-	JWLoRscg==;
-Received: from d100-116.icpnet.pl ([77.65.100.116] helo=[192.168.0.120])
-	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <kuba@szczodrzynski.pl>)
-	id 1vKx6F-0000000GvqE-1Xuy;
-	Mon, 17 Nov 2025 12:08:47 +0100
-Message-ID: <a0347d10-475d-4dd2-b53e-ca7905869887@szczodrzynski.pl>
-Date: Mon, 17 Nov 2025 12:08:32 +0100
+	 In-Reply-To:Content-Type; b=DJ+8mX8Wd4psShtOPo4YAO2lOMnTfN/djIiXMGEnH6JiUd6/o/oEgAODA/j5w5/waGjNqFmf67e2l9kiCCLFjRxyHbs+jOrxGD4rov9oeF+BWxx2wB90tXoZ+p4fmi5CR4ArIvuVatRuH4jWRgYitALPpz/4hX1emSkQR8wvXOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFFBjqgZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4962EC116B1;
+	Mon, 17 Nov 2025 11:10:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763377851;
+	bh=ntFoFb1m/WoUaNLNSJ3SjFp4CbCTxDpn57kc4IpNq+s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FFFBjqgZdbwbWew6CMr2ctN/nuOB0VjfssYddk4Ewf8M2l3tuu3e/DL2vb1xtY2rL
+	 Ig9R/gdVAaCL8Us9jfIbW2vdfu1hCheqXZc1mm3BfeD58p6ahHhOgVk9pE/otV1Hi8
+	 I1tVhi2JxPn4JXIz8dd3VHWYqsFxY9rZaEHRKvOxVd46EYYXRkd39hWHHMQv4f+Bzx
+	 4cn0xhZk2Vty4+fUCpLnJWU3h+c+rwRmuo36XAhiqu/66oq48uz1as9WAbDh7ASTQB
+	 Xn5zFBlixfV503xZ00UAFNPuUs/NW3QgYGM/a9nf+WiaD9bPP0oFtNOjpnRZ/RrikR
+	 Dyp7QHXzPt7qQ==
+Message-ID: <94198d5f-e49f-4b38-8288-3be29efd142b@kernel.org>
+Date: Mon, 17 Nov 2025 12:10:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,105 +50,199 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] dt-bindings: display: sun4i: Add D1s/T113 combo
- D-PHY bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Maxime Ripard <mripard@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- parthiban@linumiz.com, paulk@sys-base.io
-References: <20251116134609.447043-1-kuba@szczodrzynski.pl>
- <20251116134943.447443-1-kuba@szczodrzynski.pl>
- <20251117-faithful-unique-millipede-d8bae5@kuoka>
-Content-Language: pl
-From: =?UTF-8?Q?Kuba_Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
-Autocrypt: addr=kuba@szczodrzynski.pl; keydata=
- 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
-In-Reply-To: <20251117-faithful-unique-millipede-d8bae5@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
-X-Authenticated-Id: kuba@szczodrzynski.pl
+Subject: Re: [PATCH v2 2/3] dt-bindings: mfd: Add Realtek MISC system
+ controller
+To: =?UTF-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>,
+ "afaerber@suse.de" <afaerber@suse.de>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "lee@kernel.org"
+ <lee@kernel.org>, =?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?=
+ <james.tai@realtek.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-realtek-soc@lists.infradead.org"
+ <linux-realtek-soc@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>,
+ =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= <stanley_chang@realtek.com>
+References: <20251113123009.26568-1-eleanor.lin@realtek.com>
+ <20251113123009.26568-3-eleanor.lin@realtek.com>
+ <e799389ce8b4449baba83a893361bdd4@realtek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e799389ce8b4449baba83a893361bdd4@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-VyBkbml1IDIwMjUtMTEtMTcgb8KgMDg6MDU6MzMsIEtyenlzenRvZiBLb3psb3dza2kgcGlz
-emU6DQoNCj4gT24gU3VuLCBOb3YgMTYsIDIwMjUgYXQgMDI6NDk6NDNQTSArMDEwMCwgS3Vi
-YSBTemN6b2RyennFhHNraSB3cm90ZToNCj4+IFRoZSBzdW40aSBUQ09OIG5lZWRzIGEgcmVm
-ZXJlbmNlIHRvIHRoZSBELVBIWSBpbiBvcmRlciB0byBzdXBwb3J0IExWRFMNCj4+IG9uIEFs
-bHdpbm5lciBEMXMvVDExMy4NCj4+DQo+PiBBZGQgcGh5cyBhbmQgcGh5LW5hbWVzIHRvIERU
-IGJpbmRpbmdzLg0KPiBEbyBub3QgYXR0YWNoICh0aHJlYWQpIHlvdXIgcGF0Y2hzZXRzIHRv
-IHNvbWUgb3RoZXIgdGhyZWFkcyAodW5yZWxhdGVkDQo+IG9yIG9sZGVyIHZlcnNpb25zKS4g
-VGhpcyBidXJpZXMgdGhlbSBkZWVwIGluIHRoZSBtYWlsYm94IGFuZCBtaWdodA0KPiBpbnRl
-cmZlcmUgd2l0aCBhcHBseWluZyBlbnRpcmUgc2V0cy4gU2VlIGFsc286DQo+IGh0dHBzOi8v
-ZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y2LjE2LXJjMi9zb3VyY2UvRG9jdW1lbnRhdGlv
-bi9wcm9jZXNzL3N1Ym1pdHRpbmctcGF0Y2hlcy5yc3QjTDgzMA0KDQpJJ2xsIHJlc2VuZCB2
-NCBhcyBhIG5ldyBwYXRjaHNldC4NCg0KPg0KPj4gU2lnbmVkLW9mZi1ieTogS3ViYSBTemN6
-b2RyennFhHNraSA8a3ViYUBzemN6b2Ryenluc2tpLnBsPg0KPj4gLS0tDQo+PiAgIC4uLi9i
-aW5kaW5ncy9kaXNwbGF5L2FsbHdpbm5lcixzdW40aS1hMTAtdGNvbi55YW1sICAgICAgICAg
-IHwgNiArKysrKysNCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQ0KPj4N
-Cj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlz
-cGxheS9hbGx3aW5uZXIsc3VuNGktYTEwLXRjb24ueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2FsbHdpbm5lcixzdW40aS1hMTAtdGNvbi55YW1s
-DQo+PiBpbmRleCA3MjRkOTNiOTEuLjUyNTg5MzQxZiAxMDA2NDQNCj4+IC0tLSBhL0RvY3Vt
-ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2FsbHdpbm5lcixzdW40aS1h
-MTAtdGNvbi55YW1sDQo+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3MvZGlzcGxheS9hbGx3aW5uZXIsc3VuNGktYTEwLXRjb24ueWFtbA0KPj4gQEAgLTExNSw2
-ICsxMTUsMTIgQEAgcHJvcGVydGllczoNCj4+ICAgICAgICAgICAgIC0gY29uc3Q6IGVkcA0K
-Pj4gICAgICAgICAgICAgLSBjb25zdDogbHZkcw0KPj4gICANCj4+ICsgIHBoeXM6DQo+PiAr
-ICAgIG1heEl0ZW1zOiAxDQo+PiArDQo+PiArICBwaHktbmFtZXM6DQo+PiArICAgIGNvbnN0
-OiBjb21iby1waHkNCj4gRHJvcCBwaHkgc3VmZml4LiBDYW4gYSAicGh5IiBwcm9wZXJ0eSBo
-b2xkIHJlZmVyZW5jZSB0byBzb21ldGhpbmcgZWxzZQ0KPiB0aGFuIHBoeT8NCg0KV2lsbCBk
-by4NCg0KPiBZb3UgZG9uJ3QgbmVlZCBuYW1lcyBpbiB0aGUgZmlyc3QgcGxhY2UsIHlvdSBo
-YXZlIG9ubHkgb25lDQo+IGVudHJ5Lg0KDQpIb3dldmVyLCBwaHktbmFtZXMgd2FzIGFkZGVk
-IGJlY2F1c2Ugb2YgaG93IG90aGVyIGJpbmRpbmdzIGFyZSBtYWRlLCBzdWNoIGFzICJhbGx3
-aW5uZXIsc3VuNGktYTEwLW11c2IiIChzaW5nbGUgcGh5IGVudHJ5IHdpdGggY29uc3QgbmFt
-ZSkuDQoNClNvIEkgdGhpbmsgaXQgbWFrZXMgc2Vuc2UgdG8ga2VlcCBpdCwgaW4gbGluZSB3
-aXRoIG90aGVyIGRyaXZlcnMuDQoNClJlZ2FyZHMNCkt1YmENCg0KPg0KPiBCZXN0IHJlZ2Fy
-ZHMsDQo+IEtyenlzenRvZg0KPg0K
+On 17/11/2025 12:03, Yu-Chun Lin [林祐君] wrote:
+> Hi Conor and Krzysztof,
+> 
+>> Documentation/devicetree/bindings/mfd/realtek,misc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/realtek,misc.yaml
+>> b/Documentation/devicetree/bindings/mfd/realtek,misc.yaml
+>> new file mode 100644
+>> index 000000000000..4f4a9ae250be
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/realtek,misc.yaml
+>> @@ -0,0 +1,72 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/realtek,misc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Realtek MISC System Controller
+>> +
+>> +description:
+>> +  The Realtek MISC System Controller is a register area that contains
+>> +  miscellaneous system registers for the SoC and serves as a parent
+>> +node
+>> +  for other functions.
+>> +
+>> +maintainers:
+>> +  - James Tai <james.tai@realtek.com>
+>> +  - Yu-Chun Lin <eleanor.lin@realtek.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - realtek,misc
+> 
+> I apologize for the current compatible string, which was initially named
+> by referencing existing patterns like 'brcm,misc' and thus violates the
+> naming guidance against "wildcards" and general non-SoC specific names.
+> 
+> Let me explain the purpose of the device node (Realtek system controller).
+> 
+> This MISC area contains several peripheral sub-modules such as uart,
+> watchdog, rtc or i2c ..... These blocks share a unified register region
+> implemented as a single hardware module, which remains powered during
+> system suspend states (e.g., S3). These blocks share the same MMIO region
+> and appear as child nodes under the MISC syscon node. Currently, it
+
+No, you are mixing hardware with DT representation. This device cannot
+appear as child node, because there is no such concept in hardware as
+child node. You cannot use argument of DT representation when you
+justify how this is represented in DT. It is invalid.
+
+You need to start argumentation in terms of hardware.
+
+
+> includes uart.
+> 
+> Regarding the current structure, the device node is defined in a kent.dtsi
+> and is included by each SoC's DTSI.
+> 
+> I've considered two ways to write compatible string naming.
+> 
+> Option 1: Use a single SoC-specific compatible string
+> 
+> Rename "realtek,misc" to "realtek,rtd1861-misc"
+> 
+> /* kent.dtsi */
+> misc: syscon@... {
+>     compatible = "realtek,rtd1861-misc", "syscon", "simple-mfd";
+> };
+> 
+> Pros: Only one compatible string is needed, simplifying maintenance across
+> the driver and DTS.
+> 
+> Cons: Violates the "SoC-specific compatible" rule for other SoCs
+> (RTD1501, RTD1920).
+> 
+> Option 2: SoC-specific + fallback (Compliant but Verbose)
+> 
+> Define the full list in the schema, and override the compatible string in each SoC DTSI.
+> 
+> /* schema binding */
+> 
+> compatible:
+>   items:
+>     - enum:
+>         - realtek,rtd1501-misc
+>         - realtek,rtd1861-misc
+>         - realtek,rtd1920-misc
+>         # ... add new SoCs here
+>     - const: realtek,kent-misc
+>     - const: syscon
+>     - const: simple-mfd
+> 
+> 
+> /* kent.dtsi */
+> 
+> misc: syscon@... {
+>     compatible = "realtek,kent-misc", "syscon", "simple-mfd";
+> };
+> 
+> SoC-specific override (e.g. rtd1920s-smallville.dtsi):
+> 
+> &misc {
+>     compatible = "realtek,rtd1920-misc", "realtek,kent-misc", "syscon",
+>                  "simple-mfd";
+> };
+> 
+> Pros: Fully compliant with DT rules
+> 
+> Cons: Requires override in every SoC file; slight duplication.
+> 
+> Is Option 2 the expected pattern?
+> Thanks for your guidance!
+> 
+
+None of them. You need SoC specific compatibles which can be used as
+fallbacks for SoC specific compatibles. There is plenty of examples for
+this already, but anyway this does not solve the problem that you still
+did not properly describe the hardware but instead use your downstream
+as arguments.
+
+This will get you nowhere.
+
+
+Best regards,
+Krzysztof
 
