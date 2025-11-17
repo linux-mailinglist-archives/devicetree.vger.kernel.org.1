@@ -1,251 +1,155 @@
-Return-Path: <devicetree+bounces-239239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C79AC62DBC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:12:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E6AC62E34
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:27:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 4D5F4242EC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:12:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F53C3AC1A3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E981231B82B;
-	Mon, 17 Nov 2025 08:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mIM3ltO1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA0231B82B;
+	Mon, 17 Nov 2025 08:26:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF07831B824
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:12:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E24431B831
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763367128; cv=none; b=OplsCYpizapz+AzOhU4VHoa2iykwPordwbkJEQpNXFVAEMKcOMLCKbFLjt8KsqKoRZkexAdl1j+iUBvkwWBpW6hMH95ECZObvQibdA8eF3NYTj1R57uRnFZHduetsFayFE89/TitZneMix9JZXo32ypz3dX6XvXyt/kH3riUxc0=
+	t=1763368019; cv=none; b=Wdr08H40l7uzLKxa9LLNNuZhmaw2B6pI1WN4pVTKgazX2LcqtnQOuz0NKo4zvRpMgU8qtqlkaL4i6ARPj17V5H0gFk2Syvx8EgE2PKS0KbnHrAXKmdLLzgNcZ5w94Q/jxGolxKK7M/oKvfRJsrNjU/8WO/Ea6FNzYlVZbsOjJrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763367128; c=relaxed/simple;
-	bh=XHwbf6AOIUXsOmRYZriTih9VqIVu3akhJh3HAnKtjAI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BvK7n/55HcoMgpTt0QS6Pk3mlVzMnp4lqJQdxdqWlMpNHfUajgQ49f0URZlMcssacK19dncCWlJ3q8tuKiBvdjcDu1T8w8V8i6yk5T113gTBpCdVS1JCGqkHdQnCLJPVSnV0a3IMFhJqrUzkdZkAOXfIOa22BmC9zD+mlV5en4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mIM3ltO1; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5957ac0efc2so4375540e87.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 00:12:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763367125; x=1763971925; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yNezKY4OK1RUkmmO61fiaJ8SOz15t0AD4hDvMzPpJVU=;
-        b=mIM3ltO1JCXOTXPJfKEXWf2BSZG2mBHB68G8pBekQdqxWaXxcaf7dto27e8WEippb2
-         3wAfyQ8nOvqjsUPIbEglFnCA6DWI9UoQRbsKMqnHNR4QvG7Mp+UzZ0ZADADwx1XrS/t9
-         QD+h+UN7jm+heHmecqTGEKdoO1OnubPj7o6cBg7s7ghR1djfIJeZQrDVKxOkVeovEhyQ
-         HDVI/XC7kMQw2Ic00mu1TrAzhcCF2vsMVVET4usBPfv9gRuMyBQPdtbi40ScNtC9DTpq
-         J6Wjr16nWOf1E/Vm7JRy1m4TW78h5kTzA2HNsMo0Jv8hZwqUiDNuIjyhWQio0BA1o1Rq
-         69Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763367125; x=1763971925;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yNezKY4OK1RUkmmO61fiaJ8SOz15t0AD4hDvMzPpJVU=;
-        b=TEJXC1BdyqXNwMTnARhxhlizHBizOEWJjJjZkzaZW+7xZFgxWJVPrUU2+IFwOozV/u
-         gi5OZ7wPNrqdGLI4vym43uY1JZ8yOp2dfYGPvvs6wrVZcoWIFEwEUTs6/9KgrvgJRGP2
-         8sOFNJAaGeBLGMstvYONNYFOI7VVk6SI1gcQ6H7e/hCH27hOrc5kVfBpt4pU2hTYdaYz
-         sJtnopYSGXHtUoiJNEuwY9g/WPg0r5/TxiLyTZQaY+u5nUWV74ZrUFqbsjp5pjpLiIyw
-         OfpuXE5HEZWoMYh4NnsMBvXGc6m8x294Dm34XEBmUbqEyjRe7XWP49evRbPbQtlAt7Bw
-         ZEwA==
-X-Forwarded-Encrypted: i=1; AJvYcCXLouRt7MqMmB/eiRf7yWaXwTRiLxedkg+CgxaojtTdJ5/vEcl96ZcSvkD5eJGC29/JiHiwhTAXZdPG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzM2UttEjGqbRqzikvGgVR50LZz6dx0msVTbjxMcbTjP2j3C07
-	NBJwtdI5BeodyFUnH3YPo0VUeDm2eiTczIeCbOAtO//JzWcvP3jxMCOHiG0QDx6+
-X-Gm-Gg: ASbGncuCF+VVvWHe4vHeP5Czk+w6H2j/KpvEGA8jgY2Uy4Q5ZtAPbZs4KvsOQNWmjJZ
-	UTYhBp+YYLHYxhoqwBwckfzoliobDEWURvp7YcWYk803C6oNQdWR/aj+uIDIeaiGh6rpym9lOJa
-	8plL0sC1upKxvoSUuP0MHjZXdik5GigQEd+1w0JWE7jjwjKMZ0u64Hv0Q3Fq1uoV/ib+WjvVymn
-	keDEFVPS3jduZrDtW2NTRDV87k4yn1OggHcq0bweqG5z0mkL7bMsfWe7vPnCf3kYEEKAS3Kj51W
-	z0r+IC7x264rN3BqAD5HzlMoM+3HA5DxqCxgVe1dvFYBNt0cT/ycgx/vwtrCsTy8vfvQHalpfYp
-	LO7YijIDZzKE6OTAuNseIGjik6h96FaI0KlTzTEfM26z/oVVPwfwqW94XofvO+Xnvbdxi/edxzG
-	rkwqTmzo0vKBQVbLMX12bi
-X-Google-Smtp-Source: AGHT+IEluVZi6T3T+marIDimIkV/AzoU/n4XMrn+z0vTNbD0dmB4jEXr6UBisTSPipCj2YPh+iwoQw==
-X-Received: by 2002:a05:6512:2342:b0:595:8200:9f8f with SMTP id 2adb3069b0e04-595841b7044mr3304921e87.18.1763367124335;
-        Mon, 17 Nov 2025 00:12:04 -0800 (PST)
-Received: from [10.38.18.54] ([213.255.186.37])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-595803ac88bsm3067407e87.12.2025.11.17.00.12.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Nov 2025 00:12:03 -0800 (PST)
-Message-ID: <32303b95-3fd5-44c4-bb7d-e2957a6064fc@gmail.com>
-Date: Mon, 17 Nov 2025 10:12:01 +0200
+	s=arc-20240116; t=1763368019; c=relaxed/simple;
+	bh=GY2wBkebqqSxoEQo/uqelOZjoKcV/i/NkMPfIVLC34M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NE0efPlJbenJPrRfIEFqhaRD+La/xSX054WM/XVEyMkd3B0P9VmxYgOcUrCcXsPMnH4oDEZJ+hdtW1MvL5SdANWFdqeP3eKy6idKhdjffl2O7KUKooWvbOiV0NAOttr53epFAWSNqK/NfAOO13fka0YXK0SZdmNm1BGcYk28ZQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vKuZS-0000F6-FW; Mon, 17 Nov 2025 09:26:46 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vKuZS-000sZR-09;
+	Mon, 17 Nov 2025 09:26:46 +0100
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vKuZR-008G10-2z;
+	Mon, 17 Nov 2025 09:26:45 +0100
+Date: Mon, 17 Nov 2025 09:26:45 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree-spec@vger.kernel.org,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	quentin.schulz@cherry.de
+Subject: Re: SoC-specific device tree aliases?
+Message-ID: <aRrcRZvdrbAmsCm_@pengutronix.de>
+References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
+ <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 04/16] dt-bindings: power: supply: BD72720 managed
- battery
-To: Rob Herring <robh@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@linux.dev>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
- Sebastian Reichel <sre@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- linux-leds@vger.kernel.org, Pavel Machek <pavel@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rtc@vger.kernel.org, Lee Jones <lee@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
- <ac5a4e992e4fb9c7bffb1e641a7cd61f74af4cba.1763022807.git.mazziesaccount@gmail.com>
- <176303119683.3716572.16868393928566655866.robh@kernel.org>
- <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
- <20251114163954.GA3399895-robh@kernel.org>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20251114163954.GA3399895-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 14/11/2025 18:39, Rob Herring wrote:
-> On Fri, Nov 14, 2025 at 11:04:27AM +0200, Matti Vaittinen wrote:
->> On 13/11/2025 12:53, Rob Herring (Arm) wrote:
->>>
->>> On Thu, 13 Nov 2025 10:52:19 +0200, Matti Vaittinen wrote:
->>>> From: Matti Vaittinen <mazziesaccount@gmail.com>
-
-//snip
-
->>
->> So, as far as I understand, the only viable options are expanding the
->> existing battery.yaml with these properties (which I hoped to avoid, see
->> below)
->>
->>>> The right place for them is the battery node, which is described by the
->>>> generic "battery.yaml". I was not comfortable with adding these
->>>> properties to the generic battery.yaml because they are:
->>>>     - Meaningful only for those charger drivers which have the VDR
->>>>       algorithm implemented. (And even though the algorithm is not charger
->>>>       specific, AFAICS, it is currently only used by some ROHM PMIC
->>>>       drivers).
->>>>     - Technique of measuring the VDR tables for a battery is not widely
->>>>       known. AFAICS, only folks at ROHM are measuring those for some
->>>>       customer products. We do have those tables available for some of the
->>>>       products though (Kobo?).
->>
->> or, to add new compatible for the "vdr-battery".
->> AFAICS, adding new compatible would require us to wither duplicate the used
->> properties from battery.yaml here (as battery.yaml mandates the
->> "simple-battery" - compatible) - or to split the battery.yaml in two files,
->> one containing the generic properties, other containing the "simple-battery"
->> -compatible and referencing the generic one. Then the "vdr-battery" could
->> also reference the generic one.
->>
->> Any suggestions for the next path to follow?
+On Mon, Nov 17, 2025 at 08:38:48AM +0100, Krzysztof Kozlowski wrote:
+> On 13/11/2025 09:28, Ahmad Fatoum wrote:
+> > Hello,
+> > 
+> > With /chosen/bootsource now part of dt-schema, I would like to raise a
+> > related point: The need for SoC-specific device tree aliases.
+> > 
+> > For many SoCs, there is a canonical numbering for peripherals; it's used
+> > in the datasheet and BootROMs often makes use of it at runtime to report
+> > the bootsource as a pair:
+> > 
+> >   - One value to enumerate type of boot medium (e.g. mmc, spi-nor..)
+> >   - Another value that describes which instance (e.g. SDHC1, SPI3, ...)
+> > 
+> > Some examples, where this is the case, are AT91, STM32MP or i.MX.
+> > 
+> > barebox has traditionally used /aliases to translate BootROM information
+> > to a device tree node to fixup /chosen/bootsource.
+> > 
+> > This doesn't work out for many newer SoC support, because of different
+> > expectations: For upstream, aliases are relevant to a board, while
+> > barebox traditionally expected them to be SoC-specific (because they
+> > used to be on i.MX, probably).
 > 
-> Probably the latter option. You could do the former and make the new
-> properties conditional on the "vdr-battery" compatible. That's fine with
-> small differences, but gets messy as there are more properties and
-> variations.
+> Please state exactly the problem - you have aliases in DTS but
+> bootsource in DTSI? Then that's clearly mixup - you need to define them
+> in the same place. Aliases are in DTS (I see here other thread on that),
+> so stdout-path is also in DTS.
 > 
-> But is "VDR" a type of battery though? Is there a certain type/chemistry
-> of battery we should be describing where VDR is applicable?
+> Or you don't have bootsource in DTSI at all because barebox invents it
+> regardless of actual aliases? Then shouldn't this be an obvious issue?
+> You cannot have barebox as second source of aliases.
+> 
+> > 
+> > To accommodate this, barebox nowadays extends upstream device trees with
+> > /chosen/barebox,bootsource-${alias} properties, which can be used as
+> > translation table instead of aliases.
+> > 
+> > This solves the issue, but there is occasional breakage when upstream
+> > decides to remove aliases from the SoC DTSI and move them into the
+> > boards until barebox is made to add the /chosen/barebox, overrides.
+> > 
+> > As described above, I think the data sheet numbering is pretty much an
+> > aspect of the hardware and it has a place in the upstream SoC DTSI.
+> > 
+> > 
+> > So what are the thoughts on adding /soc/aliases or some other top-level
+> > node to hold this information?
+> > Or would a h"ardware-label" property or similar be more tenable?
+> 
+> So you want to map full node path to some alias, so later you can map
+> that alias back to full node path, right? This sounds like quite
+> redundant information in DTS just to avoid impact of node reshuffling
+> (like unit address changes). In DTS-source-code realm, we solved it with
+> phandles. Maybe this would help here?
 
-No. Not that I know. My understanding is that the "VDR (voltage drop 
-rate)" refers to measured voltage drop-rates under certain conditions - 
-which can be used to (more accurately) estimate the remaining capacity 
-when battery is nearly depleted. As far as I know, this is only used 
-with Lithium-ion batteries (I am not at all sure of this) - but I 
-_assume_ the technique could be applied to other type of batteries as well.
+We want aliases that map from the hardware numbers of a device as used
+in the reference manuals to the actual device nodes. One reason why we
+need it is to get the device node a SoC has booted from. Many SoCs have
+registers which describe <bootsource> <instance number>. We want to get
+the device node from that information.
 
-> I don't
-> think it scales well if we define battery compatibles for every
-> variation of charger algorithm. Honestly I don't mind just adding 1
-> property. I care more if we allow undocumented properties than
-> allowing documented but invalid for the platform properties.
+On i.MX these used to be the aliases in /aliases/. Nowadays we agree
+that the instance numbers in the aliases are board specific, hence Ahmad
+is asking for a place to store SoC specific aliases.
 
-I see. The "VDR" stuff is really tightly bound to the fuel-gauging 
-algorithm. It is measured characteristics of the battery - but those 
-values are only usable by the "VDR" algorithm. I don't really have a 
-good insight in the amount of fuel-gauging algorithm related properties 
-suggested to be added during the years - but don't think there have been 
-that many of them. So, I am not that worried about adding the 
-compatible. On the other hand, there is no technical reason (other than 
-adding properties which are unused on many platforms) why not to add the 
-vdr tables in the static-battey node without adding own compatible. And, 
-reading reply from Andreas (I'll copy it here to answer it in same mail)
+The properties do not have to contain a full device path, a phandle
+would do it as well.
 
-/// Below text is form Andreas:
- > just keep in mind, that several kobo devices have one pmic in one board
- > revision and another one in the other (e.g. Kobo Nia rev A vs rev C).
- > But probably the same battery. So if the "vdr-battery" is a compatible
- > just to allow a more properties,
- > then "simple-battery" should be allowed as fallback.
+Sascha
 
-I didn't know Kobos use multiple chargers. Thanks Andreas! So, in that 
-sense, adding the "vdr" tables in static-battery node, without new 
-compatible, would maybe be simplest solution. Then the charger(s) 
-(fuel-gauge(s)) which implement VDR algorithm, can pick the tables while 
-those chargers which don't implement the VDR will just ignore these tables.
-
-> When it
-> becomes 10, 20, 30 properties, then I might start to care. 
-
-For VDR there are only:
-
-rohm,voltage-vdr-thresh-microvolt,
-rohm,volt-drop-soc-bp,
-rohm,volt-drop-temperatures-millicelsius
-
-and
-
-patternProperties:
-   '^rohm,volt-drop-[0-9]-microvolt':
-
-So, from the binding point of view (.yaml), it's not _that_ lot. In the 
-.dts there will be quite some noise as the tables have several values.
-
-
-> If that
-> happens, either we are doing a poor job of generically describing
-> battery parameters or chargers and batteries are tightly coupled and
-> can't be described independently.
-
-I am under impression that chargers tend to be pretty flexible, and they 
-can be configured to work with many different batteries by altering the 
-charging profiles. Most of the battery properties (like and charging 
-phases [like pre, CC, CV], their limits, currents and voltages etc) are 
-very generally usable. So, large subset of charging functionality can be 
-handled with standard properties. I believe it is only the fuel-gauging 
-where things get more hairy.
-
-I did prepare a series which does the split and adds new compatible for 
-the 'rohm,vdr-battery'. (The power-supply class is not yet modified in 
-the series, but we would probably want to modify the battery-info 
-getters to also accept the 'rohm,vdr-battery' -compatible.)
-
-I wonder if I should actually prepare also a series where these 
-properties are just placed in the existing static battery node without 
-adding new compatible. That way it would be easier to see which way is 
-better.
-
-If I do that, should I only spin these bindings as RFC to avoid the 
-unnecessary noise?
-
-Oh, and a big thanks to both of you Rob and Andreas!  I feel this gained 
-more clarity after your feedback :)
-
-Yours,
-	-- Matti
-
----
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
