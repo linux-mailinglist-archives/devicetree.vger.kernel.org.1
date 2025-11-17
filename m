@@ -1,132 +1,153 @@
-Return-Path: <devicetree+bounces-239467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F054C652F1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:37:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFF7FC652FA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:37:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 308D44E7932
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:33:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 33E4B4EF51F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADB5A2C08A1;
-	Mon, 17 Nov 2025 16:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C97D2D5410;
+	Mon, 17 Nov 2025 16:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hb5vHLop"
+	dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b="FTXakxRb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E497299A8A;
-	Mon, 17 Nov 2025 16:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255852C3251
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 16:34:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763397231; cv=none; b=tncCWpRXd2btbCxv3IWeSu1CDI7hmVZuI70aBLzHU42VCq3maA/S10DWMTf3V+gumEhSR4m+w7155uB6ywVGMLaxiqJ7+wdlQXfUTeeXlUYvCnj+2g3A8isgagOivPbTsTocqRxlEqrXZaRkxaPTBAP/81ckcYLJJo5RBqf1Cf0=
+	t=1763397244; cv=none; b=bMihG99hyGCRgNYgVf34Z2dhter9yo1tON/7QWi1u4ieCbxS2gokw66sLN6n5Xgn7vbGkiq0wsh9OxkPhg2CFNuSzUC/6k/YfzdhCDIq7r3+ZOlgq1BHjTUJfvPdEXdpkbZn569az2h/c/JFtZjMcFAMzwNXZ/ncHh5fXuD6/ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763397231; c=relaxed/simple;
-	bh=1Q1SOAiDfsnXhnhehY3Ec9ikpjnQmRtfrNFIyqBG+/g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XTdRybP+MNhe2JssGBwj5VnhbC9JI0m5JT4RPXmz9sS8j9Xnyysk5OJJppJs9SQjvN8+khz+E5tEzTx15owVTgo7GkJNGq2f8ATiqJKlLlvEB/xlZwPM1JZbb4julA5jPLDLlg8kgUZXzrFmeCIsDbX+HXotPRkSfx47kxREdRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hb5vHLop; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8448EC113D0;
-	Mon, 17 Nov 2025 16:33:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763397231;
-	bh=1Q1SOAiDfsnXhnhehY3Ec9ikpjnQmRtfrNFIyqBG+/g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Hb5vHLopLkdVEg1kX2HuACgID15I4SRGl8eSMSJJ62MrnFRgLnblwV6E1kyo/zQbi
-	 5X0fGxpvyBmBBgj4Yx1cNn5Yiebe2SlubUNjhg7qvfOUY49P++hMDweBgwu1rPoWDX
-	 gw/IzLHik44jBVcIFv71tGnPwsr8Cu5Qo/ZAzToEEcPctjufczlNLLabzKLdsOmiXP
-	 Jvcg1iBked2S+ldK/g7QGcSnou/a0cpxVARlaj1AuA7ShHAK1FZukOjLqFUufTXAlQ
-	 nWZgFH79p25BQQGCh0OM/33id18uYJ9+EhjEldgOMcmKKYWyDtYmyYjsnIr2CNLeUM
-	 6Tq9smTRO0AxA==
-Message-ID: <9da933d7-0922-47fe-9e7a-f7ef2d89803a@kernel.org>
-Date: Mon, 17 Nov 2025 17:33:43 +0100
+	s=arc-20240116; t=1763397244; c=relaxed/simple;
+	bh=/CIIAQLm9NWHeGYRmQYh0cinQ0g18mXMF6pwh6lBM/Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nNVu4+p1Ulc4Zz1gtEsFSu4zf2BHwD+HpWRyVre7r++8uyL5vAv/oFiwTiYe/liVIQ3T9JdtbKn0scH2xh/ynYUHxlW4+NzVtaB0WkTfRZI2TlQ3AxMewf7BE0jeb/ct2YtP5mZE6l4ZEDlpUQqEThXL5Q0uayDYqKBwv/Hdt4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com; spf=pass smtp.mailfrom=geotab.com; dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b=FTXakxRb; arc=none smtp.client-ip=209.85.166.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geotab.com
+Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-43380a6fe8cso32877645ab.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:34:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=geotab.com; s=google; t=1763397241; x=1764002041; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yuOpnyP+Gwb7Gw6r1RkaeItm0eApSIebXmC34QluQI8=;
+        b=FTXakxRb5/NAwwAp67Io9hYMiVEF7B3vK3nil55h6wp4ifXcXWTq19qJ56jrOmXhxH
+         HJJomFzrTATOI15kUxgoh6a+sdIBNi2T4sYz9B3hgeCWW8oejs1eLST1VfUrJXRlKBOn
+         9QiS14ujoOeo1HznuLn0L1Bf9oVV4aOSMz2ny+eMo/n0zlzj7beO+s4N6EYPntnqydZU
+         Bezo4zkppjkRY2YfrpSahFXRL5LPWpXEWxecjJa5UwIP7+EL1jMuHfjydqitlsZhAymn
+         zRX5W9PlQEW+oGs97b2h+Z1T2XhqEzZ2LfWA9R8UPIHs7GMq+vNesqilBAn5YFz1o4BS
+         PJiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763397241; x=1764002041;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=yuOpnyP+Gwb7Gw6r1RkaeItm0eApSIebXmC34QluQI8=;
+        b=OifHM8YPw+wjO3ahgc/L2uTeGqtTlqW3d3BxfbMilJKjzMISaWL/d/rDsNbPTt/BUc
+         VDEJPOr/4SF//x3d2u+7AbPHpoop1MOxjRJZq8hcr74KvHU5i+51jPy/8wkEVZL72unq
+         WYjNrMASmYLuisKzPIdPGPvHTpyCE0Qhym0oK76Nv0q59OqF2QvnMHXYNZL/vJdtkLd2
+         cFHfYLGPnNHSOG0gKqX+dJVi3rqHkx+LSSMz4pj2jFiR1X5Jzgcf44nXZAGZih+RNiCq
+         rriwvK9zqjhx6zRBX+c+ReBdH4izXA5/0dJO8B2vB1n1JcydnaLXj+Lz+5hQ+OnKzP28
+         47Xw==
+X-Forwarded-Encrypted: i=1; AJvYcCVkxRc7GN4UlCjo3iWGGpDI/fZyrchxkFzgUnBZcri4X9Au5T60l6YHcyXUw0ABom4uVw/UnXxe9AAy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyop3jKV9dyHfMVlMyexNpf+X0c3Z6t6n14Qt/qSHyyMFiW0RJS
+	msiu/Q3aui2s3Yc4a9d1inDDUPSUih3M8toTaKKXCwespYY+qIP+z7no+Gs77mTNZwhOqWdwnlR
+	YXHMqE6L/h55Cm1TVRYyEaourwgdgH4F3ZDQZEyby7w==
+X-Gm-Gg: ASbGncsDFIq1ApTj0eVH6eG6HATGfzMK+r/mGzyO1ISDzZWS+fe6Kz1EKyhBTveVCEa
+	lRahsefoRWv8CRk2BesJhvKI1JDcF6VrioEDvKWwVrpkC0BznnnYmd0SZzUxes40nZq2Nfng0Ql
+	ZgeL6ByBhUEfxvwwqOZgmCx+XtnrUt23iDSPl2o5HEnLj+mYfWLxxiJ9yRl8icNzEyL0pdVhRps
+	tiH+2+9cEkfSnbtsxQysUIyr54qO0vNGTa10ytGneKjf7u1zsooW3ki8N8K1WfJ9keUHZLVh5c2
+	ikEiwg83OOHcFxaWcHA=
+X-Google-Smtp-Source: AGHT+IHbVGDrgyqiO8WRy5SXKz9IDOvAhFKETAbMJ3m1Q8vImOr6lFhqYGOC6KTBTXxerYf57XzhyUlRiLH6wUjdcUs=
+X-Received: by 2002:a05:6e02:184d:b0:433:78b8:9456 with SMTP id
+ e9e14a558f8ab-4348c88f75emr205588185ab.2.1763397241084; Mon, 17 Nov 2025
+ 08:34:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: Add tids in bindings and wsen as vendor
-To: Thomas Marangoni <Thomas.Marangoni@becom-group.com>,
- linux-hwmon@vger.kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux@roeck-us.net, corbet@lwn.net, Jonathan.Cameron@huawei.com,
- Frank.Li@nxp.com, michal.simek@amd.com, rodrigo.gobbi.7@gmail.com,
- chou.cosmo@gmail.com, wenswang@yeah.net, nuno.sa@analog.com,
- paweldembicki@gmail.com, apokusinski01@gmail.com, eajames@linux.ibm.com,
- vassilisamir@gmail.com, heiko@sntech.de, neil.armstrong@linaro.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, kever.yang@rock-chips.com,
- mani@kernel.org, dev@kael-k.io, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20251117123809.47488-1-Thomas.Marangoni@becom-group.com>
- <20251117123809.47488-4-Thomas.Marangoni@becom-group.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251117123809.47488-4-Thomas.Marangoni@becom-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250911-ubx-safeboot-v3-0-32fe6b882a3c@geotab.com>
+ <20250911-ubx-safeboot-v3-2-32fe6b882a3c@geotab.com> <aRdDyyIA9Z4e8mBz@hovoldconsulting.com>
+In-Reply-To: <aRdDyyIA9Z4e8mBz@hovoldconsulting.com>
+From: Alejandro Enrique <alejandroe1@geotab.com>
+Date: Mon, 17 Nov 2025 17:33:49 +0100
+X-Gm-Features: AWmQ_bk3aeBBque08MCWaLCWSIlEzDSTGc9TrNY34FlHXDKGfx4zkAM9pK5oWtI
+Message-ID: <CAN=L63pq6WzietQQpdfJ9K3sH2EaQsgRY4RauJsgqV7F2S8U_w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] gnss: ubx: add support for the safeboot gpio
+To: Johan Hovold <johan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 17/11/2025 13:38, Thomas Marangoni wrote:
-> This patch adds the tids driver to the bindings as trivial-devices
-> and adds the WSEN manufacturer to the vendor-prefixes.
-> ---
-
-You need to run checkpatch...
-
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-
-Also, do not reference driver. Explain here hardware, why this is a
-trivial device.
-
-Best regards,
-Krzysztof
+On Fri, Nov 14, 2025 at 3:59=E2=80=AFPM Johan Hovold <johan@kernel.org> wro=
+te:
+>
+> On Thu, Sep 11, 2025 at 02:58:29PM +0200, Alejandro Enrique via B4 Relay =
+wrote:
+> > From: Alejandro Enrique <alejandroe1@geotab.com>
+> >
+> > U-Blox 8/M8/M9 chip have a pin to start it in safeboot mode, to be
+> > used to recover from situations where the flash content has become
+> > corrupted and needs to be restored. If this pin is asserted at power
+> > up/reset, the receiver starts in safeboot mode and GNSS operation is
+> > disabled.
+> >
+> > Deassert the safeboot pin when probing this driver.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+>
+> Sorry about the late feedback on this. I had to think about how best to
+> handle this, given that we don't have an interface yet to actually
+> assert these pins.
+>
+> I guess we can go ahead and request them at probe as you're doing here
+> and add an interface for controlling them later if needed (instead of
+> not claiming them and allowing emergency control through gpiolib).
+>
+> > @@ -82,6 +83,13 @@ static int ubx_probe(struct serdev_device *serdev)
+> >
+> >       data =3D gnss_serial_get_drvdata(gserial);
+> >
+> > +     /* Deassert safeboot */
+> > +     safeboot =3D devm_gpiod_get_optional(&serdev->dev, "safeboot", GP=
+IOD_OUT_LOW);
+> > +     if (IS_ERR(safeboot)) {
+> > +             ret =3D PTR_ERR(safeboot);
+> > +             goto err_free_gserial;
+> > +     }
+> > +
+> >       data->vcc =3D devm_regulator_get(&serdev->dev, "vcc");
+>
+> Note that the driver is not enabling the supply until open() so I moved
+> the deassert to after the supplies have been requested (but before reset
+> is deasserted).
+>
+> Note however that both the RESET_N and SAFEBOOT_N pins should be
+> declared as open-drain to avoid driving them while the main supply is
+> off.
+I will keep that in mind.
+Thank you for the note and your time in reviewing this.
+>
+>
+> I added a comment about this to the commit message about this when
+> applying and will send a follow-on patch to update the binding example.
+>
+> >       if (IS_ERR(data->vcc)) {
+> >               ret =3D PTR_ERR(data->vcc);
+>
+> Johan
 
