@@ -1,253 +1,108 @@
-Return-Path: <devicetree+bounces-239533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E619C661B5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 21:25:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 557D2C6633E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:08:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id B77A929732
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 20:25:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 0EA2E299E7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 21:08:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B8C340D9D;
-	Mon, 17 Nov 2025 20:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E4A2E03EC;
+	Mon, 17 Nov 2025 21:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lZSnbNVk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="um4sNS3A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 228713431E3
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 20:25:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42280320CA7;
+	Mon, 17 Nov 2025 21:08:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763411146; cv=none; b=lDHEy+9U1mVQA6tiV+s67aQ7i73ejHWWJ/j5zbvs0IZ/CDePXbgSDJxRGWXuAXaohJyLb2tMZdoCf7qlqag1ZV5ZjF/JGycbby9CxXxRk8GB00Njxm6zTA2buCzWW5ALbKYAi/ldRimuodYtJPmlApP8VIjaH0wvzq/p4w3rPaw=
+	t=1763413687; cv=none; b=Nu04F3H43Yx7pPzp07OVic5qLTlnL6S6FHjjoesJlexfs07TolhpNt1IhdBs3JFLrv1w4Vw28kL/Ge8wUHt8d4uHT/DbvJ0u5krZEoOe319Eqec3w6jGM5B4oX8FFZdaASlawntoLI1+kmGuJ41xwMnvc/inCll4dCFaywhPAqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763411146; c=relaxed/simple;
-	bh=cpgqiL5/LaCZUbfB8G72tgBIiB5bJI06pJUi96zR1cU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AlxPEaoucCYWIwW6ClNWzOJkLqlAkprEVOOS8b6I7geNQ/UrlVQvI1GMvNOo9JYN/8qhjyn57dQurd/EmC4O8lZxXWN3ibg84RmRCca+OWoDJ/KymW7e4/v6qgxKyZYYzu77CX6S4Vz1kaSs3dU0yNrJ14/VUURBJoYcuXWm+j8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lZSnbNVk; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-477632d9326so32509125e9.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:25:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763411129; x=1764015929; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KgjjK2XbJQUpqGGoaCrQdhUPKZGbik3QiZYNr8oO2RM=;
-        b=lZSnbNVkoTUUfM/d1JAjIfjWTRFJgeRHp+L421tjgsFBm/xdvceW6KlOdF28Pps00I
-         ZXZ2ITrfdpJ0dSsUGr1BTjdfkHm4f/UY5WT+yIaNfUtcGTvrMZEAjoPZjciUpDrf2wP9
-         wo4N/K/11TbaKU5J/4WuNeJvqlNqLWwJRUAzLJeIL0AepBj5Wu3zRhihHF14Q/D6I0CY
-         bVELwCXmL8SvO7+wNOsRc28XHvOsJdG8N5LplvyOw02iBqr3FAVIzlpMlihshTBgmxJP
-         2GxWFVJ0lKKp83S0Xodf06YioZaf3rH1Dth0jyn3/F0Fo2ZeM/Ys3biLkVvEg2jAbTMX
-         vmtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763411129; x=1764015929;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=KgjjK2XbJQUpqGGoaCrQdhUPKZGbik3QiZYNr8oO2RM=;
-        b=qtJyXzNzMwpsVbtArfaT5+z4gYiX35oV/MFmj6KmlsUae3bXiz0SgqQ599dqA2rJBS
-         LhI/xLkMXptXBBDmLmzs5QggpP0tq67bBj/uV8oEm5V4Y5iud5uLDg/1PmqorOQCSHAS
-         esNNu4vOOBsjikb5ShH5b4H+B0BYNh2B7Tkr+zet6E5TH+N+toSmMA//UKk3he6pHva8
-         ntT/Hcq4p89k7WpEDN2FGVTClLKlXnFCBBYagpxMGnNN10NaW/kXXZF4s90j1gN30sdZ
-         3qhGYaKuM9Mr7XZ+y7JY/nagSfRDIHGTeMWnLY7n4KL4QDxAXByiIypecWTyxJ+WRUcf
-         7bQA==
-X-Forwarded-Encrypted: i=1; AJvYcCX67g0yHoIAa1dZ0WGIWiUuwhPr0iOuuAwI3/F82QNMmc4GtxpmClALjHFYgF4XPPlIf2aKDDwze7ik@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzqnzhghz1CJX1B6oHVQq86U9nJYodtr/wQCvs4GJwpLRG1kOHE
-	P3qxuCspo3/+TJPuR5xYEknhQDqN+Idi5gS/JR/BX35i6uMPP1FRH5AKhUpd+0Kpua1eJCiaAZm
-	MyZVpFs21nznVBkkSXQNi8iedPzGaFIg=
-X-Gm-Gg: ASbGncvPoLGcOicuLXV3AGgrcV9xfgRoxWlI9UmG2eh9qRPFzraVPtZTveT4PQ43nUg
-	dbJe8rpt6Yn+2JDf9atypBcR27rEJkfICZ/3rhQ15WLulDlRWco+/tNbSt1zRRIdA4M4hr0Gwbk
-	uc2GQhfnHw482Ag3VhGovzPZHQkGehNtoPkdshG5PKUlrs2GAfv5vmiKp86BNt04XMOVp8K+FeL
-	q9k1VQbiw9ZyrgxtApWvCiFT7/xgipseiEyUCNLvNQlLna/Mp+9DWtCkUnYn4uM0lv64EGWUuVI
-	HszmKHRmbHPmc8GZyJLN19ny66PjXIeNQzOI9BXVqL2gB4LIzGNy9UrPTykl
-X-Google-Smtp-Source: AGHT+IEG+aF2dwCSgK6oB5qEOwvTBM24ZBhpeHRDai5TxbtUYEK0l2B7md0rwDsEmyVRM67U8IFhNeR262uFVjgaGM0=
-X-Received: by 2002:a05:6000:1ace:b0:42b:41d3:daf1 with SMTP id
- ffacd0b85a97d-42b59377e6amr12836453f8f.38.1763411128508; Mon, 17 Nov 2025
- 12:25:28 -0800 (PST)
+	s=arc-20240116; t=1763413687; c=relaxed/simple;
+	bh=m5wXR+WzgIyBK//SH3KOITSdxcJXjtkopPA3gaeKiC4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=UC8OqhH1Gbjzjqb506ZcXMvTZjYpJCZczUJ+Bkzy5KUH9HodJbCjmklEP502lKmov+z8vbZdwWULrEJ8dtfPPYqFEzh89OkXYPe/VvlEik0qJ4p9sO/VhVFh77djOKo8Rn6lFntyY7qbBTM/zsPs4LdwO+He5pVPnf6UJnZf+74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=um4sNS3A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF94DC4CEF1;
+	Mon, 17 Nov 2025 21:08:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763413687;
+	bh=m5wXR+WzgIyBK//SH3KOITSdxcJXjtkopPA3gaeKiC4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=um4sNS3AR4SMtN8GCGTbXzamEq/vK6yBeTIWEKbkXnw1Xi0Q3mKaAn8Ib0v9MLbkf
+	 4E3sHqItyy8xhgty//iUXUNPPPsaIsDx53T9EWGtSHquxw7/RsXEQWm1TpWXzKBk29
+	 IpmRbG4mwyV2PI9ZljT0pudYiCCv1yHG50bFR0YOocfg+oymUKNsEualZOc6x2CfO7
+	 FPl8UA13eVutpZUpmeGFTQa7oyVw5VZCWs3JmswSBVJ26iQ0Ig++1FJd+WSoJhlDdA
+	 MFKmX+laWpREQiUnCnwImAxSM1tJXaTW89rgOCIFa7bUNzASm1/mZruk9uvmgVFHrK
+	 Fp3B+sN+N++cw==
+Date: Mon, 17 Nov 2025 15:08:05 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: hans.zhang@cixtech.com
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	mani@kernel.org, robh@kernel.org, kwilczynski@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mpillai@cadence.com,
+	fugang.duan@cixtech.com, guoyin.chen@cixtech.com,
+	peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 04/10] PCI: cadence: Add support for High Perf
+ Architecture (HPA) controller
+Message-ID: <20251117210805.GA2531096@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251028165127.991351-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251028165127.991351-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdWSB4OvS5AeWqOBQPNG2J9VMYe9YUeXAp9kPjcJEQm3+g@mail.gmail.com>
- <CA+V-a8sC44HeShCFdk2xwTHMdcOo+8btNh9i0hthTEUMdnhqAQ@mail.gmail.com> <CAMuHMdV+7cvwxGVYGUd_nV3sUZ60YWzsWr_Ec6RJToPttUfKRA@mail.gmail.com>
-In-Reply-To: <CAMuHMdV+7cvwxGVYGUd_nV3sUZ60YWzsWr_Ec6RJToPttUfKRA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 17 Nov 2025 20:25:02 +0000
-X-Gm-Features: AWmQ_bnT3iDZtN9BTK7GhNdRI2SP9L9Joge1rJBp7r_hZwF1SU7_dr9fgFWwKMc
-Message-ID: <CA+V-a8vWCV8UuKwTaYU7dY7nPwHiMr-6chz498BqvAfaFWisJw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] clk: renesas: r9a09g077: Add xSPI core and module clocks
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251108140305.1120117-5-hans.zhang@cixtech.com>
 
-Hi Geert,
+On Sat, Nov 08, 2025 at 10:02:59PM +0800, hans.zhang@cixtech.com wrote:
+> From: Manikandan K Pillai <mpillai@cadence.com>
+> 
+> Add support for Cadence PCIe RP configuration for High Performance
+> Architecture (HPA) controllers. The Cadence High Performance
+> controllers are the latest PCIe controllers that have support for DMA,
+> optional IDE and updated register set. Add register definitions for High
+> Performance Architecture (HPA) PCIe controllers.
 
-On Mon, Nov 17, 2025 at 1:32=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, 10 Nov 2025 at 22:38, Lad, Prabhakar <prabhakar.csengg@gmail.com>=
- wrote:
-> > On Mon, Nov 10, 2025 at 1:48=E2=80=AFPM Geert Uytterhoeven <geert@linux=
--m68k.org> wrote:
-> > > On Tue, 28 Oct 2025 at 17:52, Prabhakar <prabhakar.csengg@gmail.com> =
-wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Add core clocks and module clock definitions required by the xSPI
-> > > > (Expanded SPI) IP on the R9A09G077 SoC.
-> > > >
-> > > > Define the new SCKCR fields FSELXSPI0/FSELXSPI1 and DIVSEL_XSPI0/1 =
-and
-> > > > add two new core clocks XSPI_CLK0 and XSPI_CLK1. The xSPI block use=
-s
-> > > > PCLKH as its bus clock (use as module clock parent) while the opera=
-tion
-> > > > clock (XSPI_CLKn) is derived from PLL4. To support this arrangement
-> > > > provide mux/div selectors and divider tables for the supported
-> > > > XSPI operating rates.
-> > > >
-> > > > Add CLK_TYPE_RZT2H_FSELXSPI to implement a custom divider/mux clock
-> > > > where the determine_rate() callback enforces the hardware constrain=
-t:
-> > > > when the parent output is 600MHz only dividers 8 and 16 are valid,
-> > > > whereas for 800MHz operation the full divider set (6,8,16,32,64) ma=
-y
-> > > > be used. The custom determine_rate() picks the best parent/divider =
-pair
-> > > > to match the requested rate and programs the appropriate SCKCR fiel=
-ds.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
-om>
-> > > > ---
-> > > > v1->v2:
-> > > > - Added custom divider clock type for XSPI clocks to enforce hardwa=
-re
-> > > >   constraints on supported operating rates.
->
-> > > > --- a/drivers/clk/renesas/r9a09g077-cpg.c
-> > > > +++ b/drivers/clk/renesas/r9a09g077-cpg.c
->
-> > > > @@ -264,6 +305,116 @@ r9a09g077_cpg_mux_clk_register(struct device =
-*dev,
-> > > >         return clk_hw->clk;
-> > > >  }
-> > > >
-> > > > +static int r9a09g077_cpg_fselxspi_determine_rate(struct clk_hw *hw=
-,
-> > > > +                                                struct clk_rate_re=
-quest *req)
-> > > > +{
-> > > > +       struct clk_divider *divider =3D to_clk_divider(hw);
-> > > > +       unsigned long parent_rate, best =3D 0, now;
-> > > > +       const struct clk_div_table *clkt;
-> > > > +       unsigned long rate =3D req->rate;
-> > > > +       int div =3D 0;
-> > > > +
-> > > > +       if (!rate)
-> > > > +               rate =3D 1;
-> > > > +
-> > > > +       for (clkt =3D divider->table; clkt->div; clkt++) {
-> > > > +               parent_rate =3D clk_hw_round_rate(req->best_parent_=
-hw, rate * clkt->div);
-> > >
-> > > I had expected the use of some *_determinate_rate_*() helper, as the
-> > > parent can be changed to find a better clock rate?
-> > > Perhaps you should use a composite clock for that?
->
-> OK, so per your test results, the core clock code does try
-> various parents.
->
-> > >
-> > > > +               /*
-> > > > +                * DIVSELXSPIx supports 800MHz and 600MHz operation=
-.
-> > > > +                * When the parent_rate is 600MHz, only dividers of=
- 8 and 16
-> > > > +                * are supported otherwise dividers of 6, 8, 16, 32=
-, 64 are supported.
-> > > > +                * This check ensures that FSELXSPIx is set correct=
-ly.
-> > > > +                */
-> > > > +               if (parent_rate =3D=3D DIVSELXSPI_RATE_600MHZ &&
-> > >
-> > > Does this actually work as expected? I doubt parent_rate is guarantee=
-d
-> > > to be exactly 600 or 800 MHz, and expect it can differ slightly due
-> > > to rounding.  Hence I would look at clk_fixed_factor.div instead.
-> > >
-> > With below diff, Ive got the below results for the various freqs
-> > requested where appropriate parent and divider clocks are picked.
-> >
-> > @@ -317,6 +317,7 @@ static int
-> > r9a09g077_cpg_fselxspi_determine_rate(struct clk_hw *hw,
-> >
-> >         for (clkt =3D divider->table; clkt->div; clkt++) {
-> >                 parent_rate =3D clk_hw_round_rate(req->best_parent_hw,
-> > rate * clkt->div);
-> > +               pr_err("parent_rate=3D%lu, req-rate=3D%lu div=3D%u\n",
-> > parent_rate, rate, clkt->div);
-> >                 /*
-> >                  * DIVSELXSPIx supports 800MHz and 600MHz operation.
-> >                  * When the parent_rate is 600MHz, only dividers of 8 a=
-nd 16
->
-> > Case 2# assigned-clock-rates =3D <75000000>;
-> > [   12.288507] parent_rate=3D800000000, req-rate=3D75000000 div=3D64
-> > [   12.310528] parent_rate=3D800000000, req-rate=3D75000000 div=3D32
-> > [   12.318426] parent_rate=3D800000000, req-rate=3D75000000 div=3D16
-> > [   12.326361] parent_rate=3D600000000, req-rate=3D75000000 div=3D8
-> > [   12.341540] parent_rate=3D0, req-rate=3D75000000 div=3D6
-> > [   12.347546] parent_rate=3D800000000, req-rate=3D75000000 div=3D64
-> > [   12.357593] parent_rate=3D800000000, req-rate=3D75000000 div=3D32
-> > [   12.367148] parent_rate=3D800000000, req-rate=3D75000000 div=3D16
-> > [   12.418871] parent_rate=3D600000000, req-rate=3D75000000 div=3D8
-> > [   12.433560] parent_rate=3D0, req-rate=3D75000000 div=3D6
-> [...]
->
-> Thanks for checking!
->
-> > Looking at the logs I think I could optimize the code to continue when
-> >  parent_rate =3D=3D 0
->
-> Do you know why it gets called with parent_rate =3D=3D 0?
->
-When it doesnt find the best parent, parent_rate =3D=3D 0.
+>  /**
+>   * struct cdns_pcie - private data for Cadence PCIe controller drivers
+>   * @reg_base: IO mapped register base
+>   * @mem_res: start/end offsets in the physical system memory to map PCI accesses
+> + * @msg_res: Region for send message to map PCI accesses
+>   * @dev: PCIe controller
+>   * @is_rc: tell whether the PCIe controller mode is Root Complex or Endpoint.
+>   * @phy_count: number of supported PHY devices
+> @@ -45,16 +85,20 @@ struct cdns_pcie_ops {
+>   * @link: list of pointers to corresponding device link representations
+>   * @ops: Platform-specific ops to control various inputs from Cadence PCIe
+>   *       wrapper
+> + * @cdns_pcie_reg_offsets: Register bank offsets for different SoC
+>   */
+>  struct cdns_pcie {
+> -	void __iomem		*reg_base;
+> -	struct resource		*mem_res;
+> -	struct device		*dev;
+> -	bool			is_rc;
+> -	int			phy_count;
+> -	struct phy		**phy;
+> -	struct device_link	**link;
+> -	const struct cdns_pcie_ops *ops;
+> +	void __iomem		             *reg_base;
+> +	void __iomem                         *mem_base;
 
-> > Based on the above logs, would you prefer me to represent it as a
-> > composite clock?
->
-> Given the core code does try the various parent clocks, there is
-> no need to model it as a composite clock.
->
-Ok.
+  $ DIR=drivers/pci/
+  $ find $DIR -type f -name \*.[ch] | xargs scripts/kernel-doc -none 2>&1
+  Warning: drivers/pci/controller/cadence/pcie-cadence.h:101 struct member 'mem_base' not described in 'cdns_pcie'
 
-> However, I still think you should look at the parent's divider value
-> (clk_fixed_factor.div) instead of at the actual clock rate, as that
-> may not be 600 or 800 MHz exactly (e.g. when underclocking the SoC
-> on a custom board using a 24 instead of a 25 MHz crystal).
->
-Ok, I will have to iterate over the parents to determine the divider value.
-
-Cheers,
-Prabhakar
+Can you supply text for this doc?  We can amend the commit to include
+it.
 
