@@ -1,138 +1,139 @@
-Return-Path: <devicetree+bounces-239523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1D0C65DE0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 20:08:14 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BBAAC65E10
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 20:10:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A3A803491A7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 19:05:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 632F44EDDE1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 19:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0BF1A9FB5;
-	Mon, 17 Nov 2025 19:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFA2328617;
+	Mon, 17 Nov 2025 19:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bb7vhjgo"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="kcfQx2pw";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="kcfQx2pw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968BE30F81B
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 19:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D4C2207A3A;
+	Mon, 17 Nov 2025 19:05:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763406054; cv=none; b=tahMVnHvji8RYzvut8bfIiJPwP4fMWzjMdxb0Er6+f5F4JlbFTHq2EOFyVKg5+n1l99alFJ+gn69scYU+UG2VJeHHxap9Jfe7fplYzaft65136ja7bnHSvOzeLysBGuJI6hpD1NXFp9JOwj9DevhyvP4F2LN1GSfjFCNiBA26o4=
+	t=1763406361; cv=none; b=hjYHSEarp7aT4znnFyu0ETxtjQkGlQKVfRUAUGSPjawv+3VVCi8u24ySRmCie8htEqiL92AriMhaxT0TpXbO1SykTvPtXM6vnssLuuN6j3KSect/8bBulPOliGbpGzS65l40y/MK85SVnNAnFB/UuBfqqzEePMrN/Rni+RHoTC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763406054; c=relaxed/simple;
-	bh=9LwQ8cgiBx+GR9gi4Ze2NRYHzMsmpVYF+u+bBwx5cCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TFBSjh8mEy+YV7055T8gGxBuXku7D4cIBHZR1UHMpIRv2du3ZHSGxNg3AtiKIZacUVK2zmN/5jwzjKMaWMqtTydd1ZeK7i8CQKAmebCc5B8+P6MlAn+gbXJyMyv+0i77gx7odKT3GASFNfrTF47TdYEwbsnvtcSQ8KOlHNPILmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bb7vhjgo; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2980d9b7df5so48415785ad.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 11:00:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763406052; x=1764010852; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H0lS2cED24LXASEO8Kaw1E9xKUmdy8WEPj1E8PP+Wtk=;
-        b=Bb7vhjgo8i3MdNxVG4EuzsP0kY56sHhKC0hWXy3SNDE+0Ky7g2//Vfq9gp+Z3YGBG2
-         kEV2VMszuPQ4nQazsSKgdPOTiRGD1zm95jdORpTJBag6XwmEn5c2/HvrxvuQ0/2Y921F
-         UvQBWH0YZMZjhyeFp2YU/N52BH0iW//+scsr+miVtegB+9hZP+42GsqTErMJdr37zFTf
-         YF7gzWQjdjmNsm/SlxP/4ZKN6wnkOMpf8uEmxEjzhHoPjE0GreCvD45hd39nEQskXra/
-         bg/GnRKMnZp3vn2z/u0j8s3BNDcw8sZ4BbHamAFyvnzIlSksGSxQ/4P1O7k3ELztEwXd
-         9h3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763406052; x=1764010852;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=H0lS2cED24LXASEO8Kaw1E9xKUmdy8WEPj1E8PP+Wtk=;
-        b=OJcgwY1aYNWUCGuszmoLXESy85KaTrOzxqAULttM0OCacd0qGB8pfIDYUBWrNlSmXm
-         bCrQW7/+IY1nglI1JR+2RVWH6exGaQ5RF/IPnyYbxvx/msAqpTKDuhaqczHnsQhhAK1n
-         TES+1gQ4qwS93kWqcFInhBK64Qw+Dk2GilgCwKAgPRNka3oMHaeoeH7dTYuDfrMQjS4q
-         b8Qf+v7ksLNfmp2S3zq0QMOwx3aiSmlD8tMTv28eRWVYtjFCosbojwawd1Y/8/J0xtld
-         s/27PrRSc8m8YCazY8gjS6CwISQ8Cnk1VX/Fego085j127fzyD4XseVVCvo0RAuG1p9P
-         h1xw==
-X-Forwarded-Encrypted: i=1; AJvYcCU37YDd3dWqBin2VA1ngmyOumDVEsFuxtW9cIZI38O7so/Uxsp6lFaYcdUETDjblQ/HHrE7rZtiAYDa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4auWYwHqemIcigCCVJOMPVJMEWkb0a5ZIcgvp2H4QZVSnST1R
-	EX+b4VVeITRjEvdvtGfIdb2CkCqjVMcJeq8oj88Kqd+UZY7Bcx0jw+C0
-X-Gm-Gg: ASbGnctGOMBEBGtKKXVR7ZOWMRril1j3LAS+fwC/VYMIJhVJ7Kho0pdCsB85XDGF1MH
-	/qnuvk1keb5Xsz6JSLdf9YnfinVZEX3IGH+yLp8n970+l6VGxeouNq7R8RWTM44IWVtAo7GLRr0
-	QUr5p2KcoqxWGjxJx09Wc7TzpmOvH14yZpCkh2ci3cLYD1KANu3Vhqm5p3RGPFWzfWAd7hDYyqr
-	ghXnLNNfzMzRNkfukG6hBR41NH5am8J8kQfNbAr5tJYyDmqjzSYwlGJKxfYr4GTfcExSKNFQl1j
-	L/jNgNgQ/7nqtaX2cpJbz3E5573DPRscKvS5x9lxswIofaooSyhtw7YjZ3tDDuvHhCYL+K8Sh35
-	GxBgPGGRPasaKt1xHXVgg8jhT43Da3L5ooRc4ckxZLUQ18Wt6aNhbO4jZD9wmv5pNlPOpkW+Qir
-	i0N0x4Ab6c0l21rdmkm+rUE1fY+QFy5CpyC0REdOA6aFjj
-X-Google-Smtp-Source: AGHT+IGDVNZOalPoeGLRx0StV1WyF6OuSXplI/tFFH2YjaxRb6M+ZouwxCgXlyJ+r8uHMpC01NlQdg==
-X-Received: by 2002:a17:903:198d:b0:298:2af7:8d26 with SMTP id d9443c01a7336-2986a76a26dmr169206325ad.54.1763406050080;
-        Mon, 17 Nov 2025 11:00:50 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2376f6sm146281525ad.21.2025.11.17.11.00.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Nov 2025 11:00:49 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 17 Nov 2025 11:00:48 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jonathan Corbet <corbet@lwn.net>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v5 06/11] hwmon: Add Apple Silicon SMC hwmon driver
-Message-ID: <7a445358-ce9e-4180-99dd-1a771c8ffa98@roeck-us.net>
-References: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
- <20251112-macsmc-subdevs-v5-6-728e4b91fe81@gmail.com>
+	s=arc-20240116; t=1763406361; c=relaxed/simple;
+	bh=O2M42ARMh8MZeBLFMF0MGMXM/A+hOHGoaVAvWRDPJRc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hl5u0Q1/LlRzYP2bQohLN1l5zVCaKAAp63vzAelsZcRNfhyDkN2Oy4I7Ruj2Egnu8hUqUZkbDI87SDINQzovsG7AnkAI3WrubXB26LIhHWiltxgUaiXaZzWeHYh1exisCNS0/3itmLD14lj35jLKkSD76m/rYEiJD21rQC21rhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=kcfQx2pw; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=kcfQx2pw; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1763406351; bh=O2M42ARMh8MZeBLFMF0MGMXM/A+hOHGoaVAvWRDPJRc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kcfQx2pwlfwx3m/Jgbsny+J+qYam4ZMA+1WtQFJoKp+baKmWNnfbOZ3rVu+6+HpD6
+	 bqEsiqKdFXXrbMK4mjehYSVMM97OaxlSTI3y4dW2LwPFfIQj5rOle+SyETRNeqLNs/
+	 701hf+3J+Mhn5rQJXFx/7xY0kl84yr5+wXWtWZTBuYEdRAzpK7brwcbJh+0v0h6SX2
+	 GlSsJhdjlOnGUZ6AqbfwnTEMgmsmN0o7ynCLQ/sGLbq3LVACw01qAdY2jLj6PYQFuP
+	 ku6zHjyQutnoylgMPwHmCMNdncfolurAb0fDh7+dt41srLNY+JnhA6QecEG2lcyc7r
+	 pVjr1Va7xQLcA==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id D00803E1D1D;
+	Mon, 17 Nov 2025 19:05:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1763406351; bh=O2M42ARMh8MZeBLFMF0MGMXM/A+hOHGoaVAvWRDPJRc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kcfQx2pwlfwx3m/Jgbsny+J+qYam4ZMA+1WtQFJoKp+baKmWNnfbOZ3rVu+6+HpD6
+	 bqEsiqKdFXXrbMK4mjehYSVMM97OaxlSTI3y4dW2LwPFfIQj5rOle+SyETRNeqLNs/
+	 701hf+3J+Mhn5rQJXFx/7xY0kl84yr5+wXWtWZTBuYEdRAzpK7brwcbJh+0v0h6SX2
+	 GlSsJhdjlOnGUZ6AqbfwnTEMgmsmN0o7ynCLQ/sGLbq3LVACw01qAdY2jLj6PYQFuP
+	 ku6zHjyQutnoylgMPwHmCMNdncfolurAb0fDh7+dt41srLNY+JnhA6QecEG2lcyc7r
+	 pVjr1Va7xQLcA==
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mleia.com (Postfix) with ESMTPSA id 4A4423E1D02;
+	Mon, 17 Nov 2025 19:05:51 +0000 (UTC)
+Message-ID: <e0c3885d-6db6-404e-b31e-a7674d96e10a@mleia.com>
+Date: Mon, 17 Nov 2025 21:05:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251112-macsmc-subdevs-v5-6-728e4b91fe81@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] ARM: dts: lpc3250-phy3250: remove deprecated at25*
+ property
+To: Frank Li <Frank.li@nxp.com>
+Cc: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "moderated list:ARM/LPC32XX SOC SUPPORT"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ imx@lists.linux.dev
+References: <20251114174712.1206027-1-Frank.Li@nxp.com>
+ <20251114174712.1206027-5-Frank.Li@nxp.com>
+ <face044b-01ed-4077-b497-3caaccf57c98@mleia.com>
+ <aRtJdTMxFaXdVnvs@lizhi-Precision-Tower-5810>
+From: Vladimir Zapolskiy <vz@mleia.com>
+In-Reply-To: <aRtJdTMxFaXdVnvs@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20251117_190551_877347_712C5581 
+X-CRM114-Status: GOOD (  14.37  )
 
-On Wed, Nov 12, 2025 at 09:16:52PM +1000, James Calligeros wrote:
-> The System Management Controller on Apple Silicon devices is responsible
-> for integrating and exposing the data reported by the vast array of
-> hardware monitoring sensors present on these devices. It is also
-> responsible for fan control, and allows users to manually set fan
-> speeds if they so desire. Add a hwmon driver to expose current,
-> power, temperature, and voltage monitoring sensors, as well as
-> fan speed monitoring and control via the SMC on Apple Silicon devices.
+On 11/17/25 18:12, Frank Li wrote:
+> On Sat, Nov 15, 2025 at 02:23:50AM +0200, Vladimir Zapolskiy wrote:
+>> On 11/14/25 19:47, Frank Li wrote:
+>>> Remove duplicated deprecated at25* property because the same common
+>>> property already were added.
+>>>
+>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>> ---
+>>> changes in v2
+>>> - new patch
+>>> ---
+>>>    arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts | 4 ----
+>>>    1 file changed, 4 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+>>> index 15463a96938cc..0f96ea0337a1f 100644
+>>> --- a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+>>> +++ b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+>>> @@ -213,10 +213,6 @@ eeprom: eeprom@0 {
+>>>    		pl022,wait-state = <0>;
+>>>    		pl022,duplex = <0>;
+>>> -		at25,byte-len = <0x8000>;
+>>> -		at25,addr-mode = <2>;
+>>> -		at25,page-size = <64>;
+>>> -
+>>>    		size = <0x8000>;
+>>>    		address-width = <16>;
+>>>    		pagesize = <64>;
+>>
+>> Just squash this change with the 3/5 from the series, or I can do it on
+>> patch application.
 > 
-> The SMC firmware has no consistency between devices, even when they
-> share an SoC. The FourCC keys used to access sensors are almost
-> random. An M1 Mac mini will have different FourCCs for its CPU core
-> temperature sensors to an M1 MacBook Pro, for example. For this
-> reason, the valid sensors for a given device are specified in a
-> child of the SMC Devicetree node. The driver uses this information
-> to determine which sensors to make available at runtime.
+> Yes, you can squash when apply.
 > 
-> Reviewed-by: Neal Gompa <neal@gompa.dev>
-> Acked-by: Guenter Roeck <linux@roeck-us.net>
-> Co-developed-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
 
-Applied to hwmon-next.
+Good, no need to resend these changes for you, but I would skip sending
+a PR for v6.19, the patches will be targeted for v6.20.
 
-Note that I can not apply the devicetree patch (2/11), presumably since it depends
-on the first patch of the series.
+>>
+>> My ask about splitting the changes was about a separation of the 4/5 change,
+>> and it was done as expected, thank you.
 
-Guenter
+-- 
+Best wishes,
+Vladimir
 
