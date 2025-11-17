@@ -1,114 +1,151 @@
-Return-Path: <devicetree+bounces-239456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33E13C6500D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:00:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 401B9C650BB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:10:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 44E634E594E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:00:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D951A4EBC10
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:07:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA6C2BE032;
-	Mon, 17 Nov 2025 16:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288412C21DB;
+	Mon, 17 Nov 2025 16:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kwCsuJ/4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WolEC22l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C129B284669;
-	Mon, 17 Nov 2025 16:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044282C032E
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 16:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763395203; cv=none; b=GYZbJ0EDAPcHbcHOGaF5doE5Uj0p63QCN/Spg4V24/KShFA9RSYGIWMnK9EqCmSwC7MBGhxm7drvJqWqnJTiXcSmVLAuTfJFUmLsk5SWtxH4/cTW3+FAn55IAisn90RzQQpTuyD87qvA0PrCReetas3ZjBL0IQMiTbDbb7L0E10=
+	t=1763395603; cv=none; b=YGUnXb3PW8KcjOSTMZjtWm3fIjzqa1035h6atnWKBLZMzitFzViEOC8ZbQ/nvcT+yZrLzGg+ogB0ggfwyHsLODtwUV1ybkA5iZ9PD6wvCVQ+gdwcvMKjjgx2QQXVfLSVICxSI+iq2x1kKKxm/J2piOudv/vn/VdMJq9saw9AvqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763395203; c=relaxed/simple;
-	bh=4mldTrpNfDBUNb10bIu/HKmz1c+0kq9vpFRlKYSObhU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mFq04uMV6bL8p4pqBPVM7TWK+lf5+bVVgczbEH/B0Cl3qyYGiCylFfHzEWI2wlEHG3l6VaIfDz+kchwUXWDB2cWLsQW8jw+MMj+wnJ2MOEMoUrmPvpF+E+IP3zE5Okw0r8n1Tv04fQR0qgoFM0dSYz69/v6rg2K28OgRsMCS3KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kwCsuJ/4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 927C7C19425;
-	Mon, 17 Nov 2025 15:59:59 +0000 (UTC)
+	s=arc-20240116; t=1763395603; c=relaxed/simple;
+	bh=ZHV0mE7tJCp4/ka1dZaQ1bLnq3xNryKpXQpZOdPOCTM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PDxMKpISdFCCdvfjr5SFc2JnUvZrG4+sBfGt3OTLv3kg2EfxoyYfmTHKR60AWyaIz5O1Y8hbMxbunVxesSYdFIBanVFGVo+WU/WCASN7dxaGGOY+sak9CXX2yw/add3QY288j9peKWKLSseeq7eq0rYcrrVDaOnVMsWXqQi5Qi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WolEC22l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81666C113D0
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 16:06:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763395202;
-	bh=4mldTrpNfDBUNb10bIu/HKmz1c+0kq9vpFRlKYSObhU=;
-	h=From:To:Cc:Subject:Date:From;
-	b=kwCsuJ/4E81FYWxB8nhIpUh98cGRHXdkaivmeqCeFwzimnMDyucuUDCBGwnjff6nc
-	 6aMpYp939HTLPDOiKMAgSoz4Kf9VBqOxHbC/YCVXexBa5ZHUEjc6KjNDtcmHolXquj
-	 snq5mYN0o8C62kQV+JSgEW3K+C6zUDnbi0ohFiTCL9sv53J13GO3nyKJY92nTamckl
-	 ESVl0CEcvv2G6BuIsRLGUxqeGzQIzX50FfoRVZqbgkGfWkM6O85q2NiayVJvbXvzcf
-	 JktQMrF9XM9nFGDBiakDEr2E+lUWwg2UzrJWzORpQ37Q2Ht5YyZbnQdQYOAvBxyXWn
-	 G0hOwtandKaww==
-From: Conor Dooley <conor@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: conor@kernel.org,
-	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: gpio: mpfs-gpio: Add pic64gx GPIO compatibility
-Date: Mon, 17 Nov 2025 15:59:18 +0000
-Message-ID: <20251117-grumbly-oversized-2215fe887181@spud>
-X-Mailer: git-send-email 2.51.0
+	s=k20201202; t=1763395602;
+	bh=ZHV0mE7tJCp4/ka1dZaQ1bLnq3xNryKpXQpZOdPOCTM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=WolEC22lLpezRJc51FMbmDIaiYkXkUFpBcfHF/mvJvfPpkfQBt74KCxBHdUqSeqEZ
+	 Dp3W2MgMsByoqg+I9TzqaXmOQZuTHgz1yxEF+5Z/I17t1CqMp5kznuD8usFU/tNY6G
+	 d+kh5yyNvAfELDR1gU8zGjGep/+IALjNN+rfawZ4hDbD+/p5zcEPmwINZh7snCE4wx
+	 pStmG8SKScZ6dCyBzFTY/XQEiLHoxfHr/7IlU64MecqMWy1oKpcGGeBKNb3XV8qb/a
+	 rr0aZa+/apU0R3RtfSsxqXrcGQidg3v3COzpI+VcNd4O7njrk0xGEVtsrQtcr+vAlX
+	 aMXtbWSr076tg==
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b736cd741c1so496685766b.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:06:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXE8C4HKnIHarniXc3PTw7tOFNG3SPS5aw+oOF67Z4FtVYKv3T2sTQV9mrTDSIp4lA571vo3wiSg74Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmoeDrxgc4g5B0mQJThcvTFCiYzwAw19g/JWbFQ5k+I4NSg92B
+	zZN3nl1jBLwdyGXivPoqQOqdf+tNpEoGkHcsMOC9EVs7hCrJaUMg8Y9A0Qd6UtSa78xhugkktTL
+	aeZWdBprg6oL/AfFe6DVsK3VtfFavtQ==
+X-Google-Smtp-Source: AGHT+IHQF8K79mZ4P4bnbSysFknDwMV6mGUBiCbCSNF1KLvGofsqqaiTXzHgasP6+N8axEwBORn0CapAYCRec2+xv10=
+X-Received: by 2002:a17:907:8dcd:b0:b73:79e9:7d3b with SMTP id
+ a640c23a62f3a-b7379e9837cmr1043723066b.25.1763395601132; Mon, 17 Nov 2025
+ 08:06:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1368; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=vBFHITy0tUgA8hiGFkPbCnmDy5W/03hkEl85M76mBwU=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSbiHV/7SuHgz+9H7m+iV3CnfFfHtx75zaA+Vts6c4T Miq3ZpT1VHKwiDGxSArpsiSeLuvRWr9H5cdzj1vYeawMoEMYeDiFICJvOZmZPjskn6NIYEn+8ni ZPP6xD7W/w7nTTbNspuXfU1F8bMl1yKG/wkSK6Z6JJ0QODEpWeG1gF1KrtTECb29a1Zc3W0ScWX DMWYA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
+ <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org> <aRrcRZvdrbAmsCm_@pengutronix.de>
+ <8ce701c9-6c8d-4b3e-8706-760b8aba89fc@kernel.org> <aRr6JLMplFVeHcjj@pengutronix.de>
+ <e5502ec8-0c55-47ce-a9e5-62e137c9808b@kernel.org> <20251117-smooth-spiked-loon-52df28-mkl@pengutronix.de>
+ <de1739a8-4677-4cc8-b501-2568b7513467@kernel.org> <aRs2y3w854vnHAzg@pengutronix.de>
+ <576a9eae-7dba-47d0-ad66-0a81d1893271@kernel.org> <aRs-DaayhtQTtFXj@pengutronix.de>
+ <9e14fb8e-af84-4072-b0ac-9ead882782be@kernel.org>
+In-Reply-To: <9e14fb8e-af84-4072-b0ac-9ead882782be@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 17 Nov 2025 10:06:29 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+=v96eP6V+5Ehi9EQT3iKKU7=t7kvJ-WSA+1WCHDuHEA@mail.gmail.com>
+X-Gm-Features: AWmQ_bkHp09PIpomgFemmdcjbomSIaZ9lBJJMCSTwYC-dA0iLqOM8VuivQjCSgA
+Message-ID: <CAL_Jsq+=v96eP6V+5Ehi9EQT3iKKU7=t7kvJ-WSA+1WCHDuHEA@mail.gmail.com>
+Subject: Re: SoC-specific device tree aliases?
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ahmad Fatoum <a.fatoum@pengutronix.de>, devicetree-spec@vger.kernel.org, 
+	quentin.schulz@cherry.de, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+On Mon, Nov 17, 2025 at 9:44=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 17/11/2025 16:23, Sascha Hauer wrote:
+> >>
+> >> You read from registers booted device MMC 1 (out of MMC 0-2), so inste=
+ad
+> >> of relying on register value that "1" always means MMC1, not MMC0 for
+> >> example or whatever else changed in hardware, you can just sort the
+> >> nodes by unit address and choose the second device.
+> >
+> > The instance numbers do not always match the unit address sorting.
+> >
+> > For example K3 SoCs have:
+> >
+> > dts/src/arm64/ti/k3-am62-main.dtsi:548: sdhci0: mmc@fa10000 {
+> > dts/src/arm64/ti/k3-am62-main.dtsi:566: sdhci1: mmc@fa00000 {
+> > dts/src/arm64/ti/k3-am62-main.dtsi:589: sdhci2: mmc@fa20000 {
+>
+> That's label which is not yet proof that boot source registers have the
+> same... I can git grep as well, but wanted actual confirmation, because
+> people put to DTS many wonderful mistakes.
+>
+>
+> >
+> > Rockchip:
+> >
+> > dts/src/arm64/rockchip/rk356x-base.dtsi:619:    sdmmc2: mmc@fe000000 {
+> > dts/src/arm64/rockchip/rk356x-base.dtsi:994:    sdmmc0: mmc@fe2b0000 {
+> > dts/src/arm64/rockchip/rk356x-base.dtsi:1008:   sdmmc1: mmc@fe2c0000 {
+> >
+> > There are some examples for i.MX as well. To my own surprise not with
+> > the mmc nodes, but some SPI instances are not sorted by unit address.
+> >
+> >>
+> >>
+> >>>
+> >>> Also I don't get whether you are suggesting
+> >>>
+> >>> A is as fragile as B, so you could equally well do B
+> >>
+> >> Both are fragile, so I would be happy to see arguments why A is better
+> >> than B. Why? Because with B you don't need any binding because all the
+> >> information is already in DTS.
+> >
+> > What do you consider fragile with it?
+>
+> Only that you rely on a specific register values and their meaning.
+>
+> Anyway, I would just go with standard aliases, but add a schema for each
+> of such cases (SoCs or vendors), so you will define this as an ABI.
+>
+> One of the reasons why Barebox was affected by all node renames and
+> alias reshuffling was that it was never documented that anyone treats
+> this as an ABI.
+>
+> So you want it to be an ABI for barebox, sure, just make it a binding.
 
-pic64gx GPIO is compatible with mpfs-gpio controller, add it with a
-fallback.
+What do you have in mind? Other than standard names for the aliases,
+what can we check here? That a specific alias points to a specific
+path? That would be a bit too much IMO. That would be equivalent to
+specifying possible values in 'reg' for all devices.
 
-Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
+Documenting standard names was something I started but gave up on with
+the mess we had already. And that was several years ago, so it
+probably only got worse.
 
-The diff here is kinda scuffed, because for some reason this binding had
-an "items: - enum" construct to begin with.
-
-CC: Conor Dooley <conor.dooley@microchip.com>
-CC: Daire McNamara <daire.mcnamara@microchip.com>
-CC: Linus Walleij <linus.walleij@linaro.org>
-CC: Bartosz Golaszewski <brgl@bgdev.pl>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: linux-riscv@lists.infradead.org
-CC: linux-gpio@vger.kernel.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
- .../devicetree/bindings/gpio/microchip,mpfs-gpio.yaml        | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-index d78da7dd2a56..184432d24ea1 100644
---- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-@@ -11,7 +11,10 @@ maintainers:
- 
- properties:
-   compatible:
--    items:
-+    oneOf:
-+      - items:
-+          - const: microchip,pic64gx-gpio
-+          - const: microchip,mpfs-gpio
-       - enum:
-           - microchip,mpfs-gpio
-           - microchip,coregpio-rtl-v3
--- 
-2.51.0
-
+Rob
 
