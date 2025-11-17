@@ -1,138 +1,213 @@
-Return-Path: <devicetree+bounces-239427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135CEC64BAA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:55:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29E63C64BB6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:56:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4C73F4E3839
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:52:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C1B144EC4F2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:53:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595AF30EF83;
-	Mon, 17 Nov 2025 14:52:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QqwZURe7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433D832ED32;
+	Mon, 17 Nov 2025 14:53:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E36B336EDA
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 14:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970E727C842
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 14:53:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763391147; cv=none; b=fm/aSuTkTwEQESDzByyXf+D/hUCCSe8kmFwRjQNKBGiMdaj6NQOGAm628Zvg0sBIPWpfJ4IJb/xl58hIzpbhm8VNchQPsD8ZISgBGs+g189mT0cwlTzoai9mKeNEv+uws9PrnJYf3AUAPixLX60ypGA4wBpEc/F8RtVktfmOSTQ=
+	t=1763391184; cv=none; b=AVYHDftTXWfyTAWi88nKRdzl+d8Xfky3AKGpVKVcZu8hp06OqA2frIOgqDpYN2vAWA1k+CEGXGGV8r2MhmwKVrs7sOb4HnM+pvqMYBKjKHnBXHhYR95UgJPi7P+0e6yvjyKsGvlw3AWWMzgIZRBVQKI7vgedZQZJ0kVnmkfojfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763391147; c=relaxed/simple;
-	bh=MlEkZrYnj5YncvhL5E6ysRu8GQw1O8M/FI/2sDyaPv0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=la9tANU3yKUBRNoX3SxfAFjERf8yt0yhaMjcyzVuYlZwtmiIt2qjO7vfT5akv62vPUJWaKMOk18cZSya9htQYAzDuBlL6+4v1Qo5SdIYX2kbqoc0NPQiBQU/s7It4N44YP4lmsim8lGK1LcYLKBOR196ahU+vsBUIwzg9+NALmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QqwZURe7; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5958187fa55so3208057e87.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 06:52:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763391141; x=1763995941; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E2msBzv7WSueld5/KoS1mtRsvHobokM0CCxMsMp1dgo=;
-        b=QqwZURe7zhUdPAQpsY8AZ9b4R2OpvTO41QVF/LU8KnVK/CLThdR+PjFyaHtcd7WCAk
-         JschRH01N6J/aNEqKICp316KwUk6Rqy8Mg8b1s7R9AQJe5Gt9CA4vtRG2+Unl7zSNtXd
-         /GteVZOxhLBFiwg7NIYWgmJCcP6eFGuzilghSRgeYRpVWzG0tuUIkaPJIruDeyP1Ezrc
-         pIByxSgt4KNflBwQG/9h7XkAngHEm+Mab8tD0W1agDlFrguqvvfHDfOR7+Rihmwnep6u
-         /798q6x7Wu+0yTxOO6BYxMxSJN60/tJQTvgA/G8fYkOsbHFzW04dNbDXdIhulUQTwSQk
-         GOIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763391141; x=1763995941;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=E2msBzv7WSueld5/KoS1mtRsvHobokM0CCxMsMp1dgo=;
-        b=CbPGsoY9qN/WuSkD3Ddo3HIDohM7zFTzSIkuK1Q4zEa/qv3f6Z84Y/x6iSBs0/814M
-         DKxQ1ImkrldCx0optK7Z7HYaHmoJfpsf0cz1X3RfPM5Bt2uCxDmemJWH+WmTrhcbdODu
-         XHsO1y+xJEMpAIgdnpKnkX9DIPQsDNnqY3AxEYOfiBJqSLkZkk1C52WT3iwrZ5OjjgpU
-         obRorqcN6tENIp3f7j9vcVCSEMWNbnTX+lx+95iAUR8fKu2VAKSlcPbrmS1HaWk7oiOp
-         ynZjUBsnCC2uSMbklG5FWwi0wXp5gq8PhZtjmmm4LLyMPSuTlyhhQK1EyxF5NVGgfaAl
-         f3wQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWkPBxyQ5kMMdsC2cIebSnCTQPfPSoQ+bi/iF6cC/Rm+qt8xh55Yx6DGVLeWJ09AqsKw/T3PzjNHNqb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAw+UYd7Wv1okcetDgFCa8ZkyKpYIcDlsQMDYAJtA5GD75FgWx
-	oEOGBRiq/EnJEEcosj4EctU+Q1wxR6dE9DxndI+puPCYOrhziQoAz23XQOr/nqxqCfQSnVm/art
-	SViLHZp6yu2yA775Q42b85Ad2QW5p1SI=
-X-Gm-Gg: ASbGncv2j263Y+M9dXzjO4fuBv6lX/LvnP7Zrr4FSy3YbGW30ERoH8tS9TV6r7vHXUK
-	QsSbNk1ex9Nx+TevvWeNDbP2tRf50VEJ3/SWI7odRFDGNJU/uaKKIOOn2wKgdGxH9fJvgCpDEDr
-	KqQUHjVl5UOoNz7zB/0h2RL51W1gkZmB9TEe0PF8VYRzLv1GaXjQ995U1jA3q+FwQYnG6CYmNT8
-	Vh/BWB2+bsb6T/JWoZCqz0UShUPh30KkDdYF2qjbw2tn5Z2nuRB6zrmpvBRNAs2z0ekZhHcHCcj
-	ANNWZ+BrlOdoii51bLoK48ybq2w=
-X-Google-Smtp-Source: AGHT+IFWM6h2Rvtm8RkhWj2jEpDk8QuIv+uwfqZ7nxdfep6jv5iqz1/m/jBBMwF7isKVulGKioEmeomT4OdX1HrsVJQ=
-X-Received: by 2002:a05:6512:1552:10b0:595:909d:1af6 with SMTP id
- 2adb3069b0e04-595909d1dcamr1123293e87.28.1763391140693; Mon, 17 Nov 2025
- 06:52:20 -0800 (PST)
+	s=arc-20240116; t=1763391184; c=relaxed/simple;
+	bh=1K2MrHptmGtPW4J9iLN0mdSeee20PRchl36LaHviolk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eTyTvmiEGobttOywRsj4ZOx7mK+GWrslZp+fj7++CdgGR6MJfNi7gayikf7/HlvIvXd61wq0uVETpaK8aJisYrXVUcOZtOo+o6HmjIeI9yI9yoC0/Gqf4QSt/F92C56rgdkDg0DqeUKFfv9TAdvWKxafNk21/VhP7AZXccYme/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vL0bD-0008F9-Hj; Mon, 17 Nov 2025 15:52:59 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vL0bD-000veP-0q;
+	Mon, 17 Nov 2025 15:52:59 +0100
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vL0bD-008LCn-0V;
+	Mon, 17 Nov 2025 15:52:59 +0100
+Date: Mon, 17 Nov 2025 15:52:59 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Rob Herring <robh@kernel.org>, devicetree-spec@vger.kernel.org,
+	quentin.schulz@cherry.de,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: SoC-specific device tree aliases?
+Message-ID: <aRs2y3w854vnHAzg@pengutronix.de>
+References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
+ <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org>
+ <aRrcRZvdrbAmsCm_@pengutronix.de>
+ <8ce701c9-6c8d-4b3e-8706-760b8aba89fc@kernel.org>
+ <aRr6JLMplFVeHcjj@pengutronix.de>
+ <e5502ec8-0c55-47ce-a9e5-62e137c9808b@kernel.org>
+ <20251117-smooth-spiked-loon-52df28-mkl@pengutronix.de>
+ <de1739a8-4677-4cc8-b501-2568b7513467@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251117123643.711968-1-alexander.stein@ew.tq-group.com> <20251117123643.711968-4-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20251117123643.711968-4-alexander.stein@ew.tq-group.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 17 Nov 2025 11:52:09 -0300
-X-Gm-Features: AWmQ_bnEYQsdBy2VHM5TVlUlvxtXcSe8WkHYIS9A8Mb6DlSo_EpO1i8bwOVaCQo
-Message-ID: <CAOMZO5ByfNSYLAMwxFh4KfwtpPRFiFydQOtB8_avu0un8u9rMw@mail.gmail.com>
-Subject: Re: [PATCH 3/8] arm64: dts: tqma8mpql-mba8mpxl: Fix HDMI CEC pad
- control settings
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Martin Schmiedel <Martin.Schmiedel@tq-group.com>, linux@ew.tq-group.com, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <de1739a8-4677-4cc8-b501-2568b7513467@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Nov 17, 2025 at 9:37=E2=80=AFAM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> As per datasheet of the HDMI protection IC the CEC_IC pin has be
+On Mon, Nov 17, 2025 at 02:18:02PM +0100, Krzysztof Kozlowski wrote:
+> On 17/11/2025 13:56, Marc Kleine-Budde wrote:
+> > On 17.11.2025 11:41:12, Krzysztof Kozlowski wrote:
+> >> On 17/11/2025 11:34, Sascha Hauer wrote:
+> >>> On Mon, Nov 17, 2025 at 10:52:49AM +0100, Krzysztof Kozlowski wrote:
+> >>>> On 17/11/2025 09:26, Sascha Hauer wrote:
+> >>>>> On Mon, Nov 17, 2025 at 08:38:48AM +0100, Krzysztof Kozlowski wrote:
+> >>>>>> On 13/11/2025 09:28, Ahmad Fatoum wrote:
+> >>>>>>> Hello,
+> >>>>>>>
+> >>>>>>> With /chosen/bootsource now part of dt-schema, I would like to raise a
+> >>>>>>> related point: The need for SoC-specific device tree aliases.
+> >>>>>>>
+> >>>>>>> For many SoCs, there is a canonical numbering for peripherals; it's used
+> >>>>>>> in the datasheet and BootROMs often makes use of it at runtime to report
+> >>>>>>> the bootsource as a pair:
+> >>>>>>>
+> >>>>>>>   - One value to enumerate type of boot medium (e.g. mmc, spi-nor..)
+> >>>>>>>   - Another value that describes which instance (e.g. SDHC1, SPI3, ...)
+> >>>>>>>
+> >>>>>>> Some examples, where this is the case, are AT91, STM32MP or i.MX.
+> >>>>>>>
+> >>>>>>> barebox has traditionally used /aliases to translate BootROM information
+> >>>>>>> to a device tree node to fixup /chosen/bootsource.
+> >>>>>>>
+> >>>>>>> This doesn't work out for many newer SoC support, because of different
+> >>>>>>> expectations: For upstream, aliases are relevant to a board, while
+> >>>>>>> barebox traditionally expected them to be SoC-specific (because they
+> >>>>>>> used to be on i.MX, probably).
+> >>>>>>
+> >>>>>> Please state exactly the problem - you have aliases in DTS but
+> >>>>>> bootsource in DTSI? Then that's clearly mixup - you need to define them
+> >>>>>> in the same place. Aliases are in DTS (I see here other thread on that),
+> >>>>>> so stdout-path is also in DTS.
+> >>>>>>
+> >>>>>> Or you don't have bootsource in DTSI at all because barebox invents it
+> >>>>>> regardless of actual aliases? Then shouldn't this be an obvious issue?
+> >>>>>> You cannot have barebox as second source of aliases.
+> >>>>>>
+> >>>>>>>
+> >>>>>>> To accommodate this, barebox nowadays extends upstream device trees with
+> >>>>>>> /chosen/barebox,bootsource-${alias} properties, which can be used as
+> >>>>>>> translation table instead of aliases.
+> >>>>>>>
+> >>>>>>> This solves the issue, but there is occasional breakage when upstream
+> >>>>>>> decides to remove aliases from the SoC DTSI and move them into the
+> >>>>>>> boards until barebox is made to add the /chosen/barebox, overrides.
+> >>>>>>>
+> >>>>>>> As described above, I think the data sheet numbering is pretty much an
+> >>>>>>> aspect of the hardware and it has a place in the upstream SoC DTSI.
+> >>>>>>>
+> >>>>>>>
+> >>>>>>> So what are the thoughts on adding /soc/aliases or some other top-level
+> >>>>>>> node to hold this information?
+> >>>>>>> Or would a h"ardware-label" property or similar be more tenable?
+> >>>>>>
+> >>>>>> So you want to map full node path to some alias, so later you can map
+> >>>>>> that alias back to full node path, right? This sounds like quite
+> >>>>>> redundant information in DTS just to avoid impact of node reshuffling
+> >>>>>> (like unit address changes). In DTS-source-code realm, we solved it with
+> >>>>>> phandles. Maybe this would help here?
+> >>>>>
+> >>>>> We want aliases that map from the hardware numbers of a device as used
+> >>>>> in the reference manuals to the actual device nodes. One reason why we
+> >>>>> need it is to get the device node a SoC has booted from. Many SoCs have
+> >>>>> registers which describe <bootsource> <instance number>. We want to get
+> >>>>> the device node from that information.
+> >>>>
+> >>>> Ah, so you don't map from full node path but from some value in register
+> >>>> and you want to store these values as alias.
+> >>>
+> >>> Not sure if we mean the same when you say "store these values as alias".
+> >>>
+> >>> What we want to do is a SoC dtsi providing something like:
+> >>
+> >> I meant how your bootloader/barebox generates this information.
+> > 
+> > Most SoC have 1 or 2 registers where you can read the source where the
+> > system has booted from.
+> > 
+> > One register contains the information such as eMMC, NAND, USB, serial
+> 
+> I know.
+> 
+> > download, ... the other register contains the information about which
+> > instance, e.g. 0, 1, 2... The boot loader combines both pieces of
+> > information and knows the boot source of the system.
+> > 
+> > The problem we want to solve is the mapping from the SoC specific
+> > numbering of the registers to the devices in the DT.
+> 
+> You are both not replying to what I said.
+> 
+> So to recall, I said your bootloader comes with something read from
+> register values and uses this to match the alias from DT and that's as
+> fragile as doing simple unit address based arithmetic after sorting.
 
-Typo: "has be" --> "has been"
+I don't get what you mean with "simple unit address based arithmetic
+after sorting".
 
-The same typo is present on patch 7.
+Also I don't get whether you are suggesting
+
+A is as fragile as B, so you could equally well do B
+
+or
+
+A is as fragile as B, forget both of them.
 
 
-> configured as open-drain.
->
-> Fixes: 418d1d840e42 ("arm64: dts: freescale: add initial device tree for =
-TQMa8MPQL with i.MX8MP")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts =
-b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> index ff2bacf24bfd2..03b75d4cf699a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> @@ -868,7 +868,7 @@ pinctrl_hdmi: hdmigrp {
->                 fsl,pins =3D <MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL=
- 0x400001c2>,
->                            <MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA 0=
-x400001c2>,
->                            <MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD     0=
-x40000010>,
-> -                          <MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC     0=
-x40000010>;
-> +                          <MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC     0=
-x40000030>;
->         };
->
->         pinctrl_hoggpio2: hoggpio2grp {
-> --
-> 2.43.0
->
+I could imagine that you think that we want to create aliases in the
+bootloader, but we don't want to do this.
+
+We are suggesting that the (upstream-, Linux-) dtsi files get an
+optional additional set of aliases named "mmc0", mmc1",...
+
+In the bootloader we would read the boot source instance from SoC
+registers and look up the alias "mmc%d", boot_source_instance
+to get the node corresponding to a boot source.
+
+Sascha
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
