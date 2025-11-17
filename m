@@ -1,107 +1,90 @@
-Return-Path: <devicetree+bounces-239452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B762C64F41
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:49:39 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B13C64F23
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:48:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 32CD234D179
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:47:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A73D34E8900
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622EB299931;
-	Mon, 17 Nov 2025 15:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D644728CF42;
+	Mon, 17 Nov 2025 15:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZRD4iuCa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hGre4gJE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38210298CC7;
-	Mon, 17 Nov 2025 15:47:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7D17405A;
+	Mon, 17 Nov 2025 15:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763394453; cv=none; b=CnJWTPPdKKl4hH2FfxLv6UfSlV5SYV0pDlewu7+vgFoG4F6gmtSfF5gk3QKrEaspTQWQr5FEbeacmJBK81EZS5nVTaIyL8yw37rdjoV87ie9THdFTr85Tqpvke/y9hmGYJ18150lYMaI2mhvpKgwU8/nBzQV5ecwRGW4kXKVrf8=
+	t=1763394421; cv=none; b=rsg+4qpeuWKzlhWO9LisoQCS5aHAuCo6CV48sByjdFc2g0dnLaHFh3S+L+koCZ1EN1ha6zks07BnNdDrEYuKW+YyVri1w3vB+jzUvhvQWEpqxUcDxIAut90w4JRdx70ja8qsr/sY5pPedV0lECgHPmbgIeHc6lxKBlmqzZfn3DY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763394453; c=relaxed/simple;
-	bh=O7RWd2RNsJQ/yJb0uVw5IQViefyvHl39nqv+4xOuEPU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=so2pQT59Oi0QusidDHt73odPAtJQC/dCFGHNxE5US/6wHngSjmq/7qhjgBrL4MogctwJuX3lXdG2PcOGiLv1F+DPT8pEiVOP2m3bmcPQO1aCn40cAdLFPiQwq5RfPxgSOr38gpAGCNOkzEjf8/7YHGlIo6hZnI81LEv4jkQCrpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZRD4iuCa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C280BC19423;
-	Mon, 17 Nov 2025 15:47:30 +0000 (UTC)
+	s=arc-20240116; t=1763394421; c=relaxed/simple;
+	bh=v9g+IdI4PAz/7Ua9rmmO/qkJeIMbui4DhIkf9tqg18g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=npLNlo0i9f0A3b2ZGN6Y+LIJ2EYj+5Ryn/0IqbD75r81+gHjn8UkYZw79JXFQ5Ivdv99i66Y4CsRBapcFOZhnJy1tL931buQr04EVIjor3BFk40aSv6GHIdlbfVgwgc7lld3Ngdbx2C+WJmxGErrkQfWArGcnYmX0hQB/c8vY78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hGre4gJE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B75C4CEF1;
+	Mon, 17 Nov 2025 15:47:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763394452;
-	bh=O7RWd2RNsJQ/yJb0uVw5IQViefyvHl39nqv+4xOuEPU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZRD4iuCarUzxBRaBnuTC602o5vAuzZGq4hybHLLBHO/3a9tkbk/4a5jcaE0uaZma0
-	 U+0Kt0LrVMhwEoqAYB8h34XrW6jD70lSSehVBHZzt99z+rJ/z56AfG227T72tnLVQE
-	 VgiDqvzvcijJRqxTS+FpL7YDzwi34ZD/x+0W4j7G/Y8vNsK5+PjKWtRDV2ilm94JQ7
-	 026QTd/KBBuGPPFx1GRHMaW6bT6cS3JpAL67BPkM4qKeLbkZwEpGY9bJeP8uNIfCbW
-	 sCCPQRSQagXOvhTkRaBFw6d6kkFa+cEk3FDWB+CvvgQHfz2BASSXRCzUnx7kerSBB8
-	 MGcWf33AC21Gg==
-From: Conor Dooley <conor@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: conor@kernel.org,
-	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1763394421;
+	bh=v9g+IdI4PAz/7Ua9rmmO/qkJeIMbui4DhIkf9tqg18g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hGre4gJEBpnUJKYX7BD3I8qYtq145r275WSwbhMsofE0APB0V7LyZFT28HyHOWjpF
+	 vWBSUR0bZLUSNtesYaEjChk+5XlEhPrTjzfV8GZjOh1gABRWszte25/CL57ikkrUeQ
+	 6WsAOj33Xzdds5pprxhY+94wPrjFbSHZlTQ27FgvLB6IPZxTwg3YoRCKz5tPCNp8AI
+	 SrFOV8QDLnbiQbjX2jp7QdJxd1yffs9A3TCsrfyWzkcB2IMzy5CyUDYozjoY+N0oMd
+	 XzMONBNtzB7avkPj5S3mw6w4yAhxNenJE5IOlt7VYrqLFq9SLjzyX/bP45hUFHW9Cz
+	 lw9OWuX0zEI2g==
+Date: Mon, 17 Nov 2025 09:46:59 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: daniel_peng@pegatron.corp-partner.google.com
+Cc: LKML <linux-kernel@vger.kernel.org>, linux-input@vger.kernel.org,
+	Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v1 2/2] mailbox: mpfs: drop POLARFIRE from ARCH_MICROCHIP_POLARFIRE
-Date: Mon, 17 Nov 2025 15:46:56 +0000
-Message-ID: <20251117-landline-grit-284cd8d6330a@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251117-screen-appointee-837a7296ca91@spud>
-References: <20251117-screen-appointee-837a7296ca91@spud>
+Subject: Re: [PATCH v6 1/2] dt-bindings: input: i2c-hid: Introduce FocalTech
+ FT8112
+Message-ID: <176339441678.2237343.3650642092927839407.robh@kernel.org>
+References: <20251117094041.300083-1-Daniel_Peng@pegatron.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1267; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=mmmDslZJHTrotXDe/3DO8bgQq1j/1loTEphrINLp7lU=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSzrkugtn3O1bvLJDap8iTsl6x33zJB1brU6+s67eYx 9wU+hnUUcrCIMbFICumyJJ4u69Fav0flx3OPW9h5rAygQxh4OIUgIloKjD8910YM6O4LDpvxvbv O/NUT8geZ1W6/UyrzdQw3PiNpHeoJyPD+nxdycO2AnekKmdtDrDs2Hs+/H3srSyRo9PiNkacdeF iBAA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251117094041.300083-1-Daniel_Peng@pegatron.corp-partner.google.com>
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-The ARCH_MICROCHIP symbol has been defined for some time on RISCV, as a
-replacement for ARCH_MICROCHIP_POLARFIRE since there are now other
-Microchip RISC-V products. Drop the POLARFIRE from
-ARCH_MICROCHIP_POLARFIRE in the POLARFIRE_SOC_MAILBOX Kconfig entry
-since the newly added pic64gx also uses the mailbox and it is one of the
-few users of ARCH_MICROCHIP_POLARFIRE left in the tree.
+On Mon, 17 Nov 2025 17:40:40 +0800, daniel_peng@pegatron.corp-partner.google.com wrote:
+> From: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
+> 
+> Create new binding file for the FocalTech FT8112 due to
+> new touchscreen chip. Confirm its compatible, reg for the
+> device via vendor, and set the interrupt and reset gpio
+> to map for Skywalker platform.
+> FocalTech FT8112 also uses vcc33/vccio power supply.
+> 
+> Signed-off-by: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
+> ---
+> 
+> Changes in v6:
+> - Remove the commit description for the incorrect section.
+> 
+>  .../bindings/input/focaltech,ft8112.yaml      | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
+> 
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-CC: Conor Dooley <conor.dooley@microchip.com>
-CC: Daire McNamara <daire.mcnamara@microchip.com>
-CC: Jassi Brar <jassisinghbrar@gmail.com>
-CC: linux-riscv@lists.infradead.org
-CC: linux-kernel@vger.kernel.org
-
- drivers/mailbox/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index 29f16f220384..35bd402cadc9 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -199,7 +199,7 @@ config POLARFIRE_SOC_MAILBOX
- 	tristate "PolarFire SoC (MPFS) Mailbox"
- 	depends on HAS_IOMEM
- 	depends on MFD_SYSCON
--	depends on ARCH_MICROCHIP_POLARFIRE || COMPILE_TEST
-+	depends on ARCH_MICROCHIP || COMPILE_TEST
- 	help
- 	  This driver adds support for the PolarFire SoC (MPFS) mailbox controller.
- 
--- 
-2.51.0
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
