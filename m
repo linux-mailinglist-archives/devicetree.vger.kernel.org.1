@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-239184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8866C6279A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:09:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B514C627AA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:12:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 742E6354D5A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 06:09:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BD6E4356672
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 06:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49B5B30F7EF;
-	Mon, 17 Nov 2025 06:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7812230F7FB;
+	Mon, 17 Nov 2025 06:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oN1bWq2O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MpwqlqoG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1200030DECA;
-	Mon, 17 Nov 2025 06:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E02C28695;
+	Mon, 17 Nov 2025 06:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763359764; cv=none; b=ILMaZPNCd8spjB0/9gHpi14jOn7yxK9kvAB2HMWH438zk6jjeep5Pqj0ayWRZkqsV77BTlnnBjpU9nWTm9YYW+eW4TQfXS6CqvN2OIovHvADA8hP+AxyVvvVDX6UuhrtwrQnkPF6v9SRGY9bZLpVRDM9/BAyhA8tTseOp9NYG3s=
+	t=1763359916; cv=none; b=V1ugd1Pz6x/XvhpnGCN+1zYXDRFs+EkAmCqSyUTDFDe/s9jMi0XwhMjka1YyLI4ipEDvOitYTaFRRi9JGr9MvR8Flx61S7DUvY58bzcSH4FFKryPhvHptllwcIJTOitC6nw9J7vzMHlfi61ODtyyk/jWff4EW0vwnaNb0+/4vqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763359764; c=relaxed/simple;
-	bh=kbhXEelpn9JtrWYuTVvOlE9CIZBJsIqcbgqurjWTrUU=;
+	s=arc-20240116; t=1763359916; c=relaxed/simple;
+	bh=T8Acg63Mi6jxlGuIJRDSEkMK3BJhn8pvEUMur55gWlc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gbm598MPgmhMhofsNtI7BmDBob+4KGqxhiE23UEQnh/nnrEXkw+otQ3j//gkuhXJEfSdn06jXgMajO13BOzP+1w2fI3T4hItZnfpMPgmlKZIfV7OLOkSn7ZG0ZM4lXENM6Khouh3KFivX9GzaRd7QmcJ5vNxnxkAHP0OQnECZVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oN1bWq2O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74EA2C19424;
-	Mon, 17 Nov 2025 06:09:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=saIIQo1Ts9hNiQLXHhkcU0zJKJ6HYJDOA2FfnPRWJtPWkMQZcO8AGbn0kt7afSp1NC3hmC7P2rDFZHyc6TTSjBmjQKgxVhUMW5jMLt8znn2vmF/Ca6j1Z5OCld+0/U5D8ipUsz42fhXxHX1+qDMsqZK4v3HfpJ/Xw9OHcebQ75o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MpwqlqoG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3B7CC19423;
+	Mon, 17 Nov 2025 06:11:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763359763;
-	bh=kbhXEelpn9JtrWYuTVvOlE9CIZBJsIqcbgqurjWTrUU=;
+	s=k20201202; t=1763359915;
+	bh=T8Acg63Mi6jxlGuIJRDSEkMK3BJhn8pvEUMur55gWlc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oN1bWq2OLP2VFRwMO/IOJnMutlVU7uZMzL7qvJGbr5W14bAbLP2fSu6rD4fjfrFKE
-	 VmbqiZzfyulrp/LAO8Ong1r0n0GTGkZzjQd8MH/UTBiIV7fIWqaD4Eu46pxIRO/PPR
-	 yRcU30wN6l9Wqj0WHkkkpwu6Mey0T0AejKP9p5iijdt4q9gZ6Q0iHV08kSW+r6LuBh
-	 6oxkShxEyt0WEfIcmO2s5GKHgwXwXgrg55v9z1Us2FqfB8I4drBt9KnQ1BOmLxlyvL
-	 UqxwD8AIvB8rPMUdEpmKg4rAbpU/Yl5Y2ibutZNKFFlapi4s8nCA9hw6gUCbUwJNhn
-	 l/zS4EZUg4/3w==
-Message-ID: <7fcf5917-6f22-4d2b-b846-6dbb3ee017c5@kernel.org>
-Date: Mon, 17 Nov 2025 07:09:18 +0100
+	b=MpwqlqoGYSIdiOMmFfwwXNjBVCTJUwssCXXQpvKmDKMXpycpDPuiFeEZJSKZahOAh
+	 xnO8pTUrs1d4MIQn7ThYUf82i/zyb0mj0Va3RzwtxrtIFuYZ/OWvRzUAm7ywyWw5+5
+	 Avi40Fwp+FKvrcL49oGNDwnY9QBj4KbWZGjaEDHI5oMzIzpu0D4BWskoSf6SCMQpM5
+	 Rk12pFNfn23NLQoICQjhRbdR1mee6M2kkiZYzN4QnVU/HEmuocnssD5AOHBR1s3xXP
+	 nGcvEEcmLUrrcAE5DtBPu8R9KlhREd7Mhd2jfWLdIq1q7ACotp15oS7o6lIb3nFVpS
+	 RU54GBQIFV5iw==
+Message-ID: <bfe6a067-704b-45c1-919e-6a7dfb08b984@kernel.org>
+Date: Mon, 17 Nov 2025 07:11:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: pinctrl:
- qcom,sa8775p-lpass-lpi-pinctrl: Add SA8775P LPASS pinctrl
-To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@oss.qualcomm.com, ajay.nandam@oss.qualcomm.com,
- ravi.hothi@oss.qualcomm.com
-References: <20251116171656.3105461-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20251116171656.3105461-2-mohammad.rafi.shaik@oss.qualcomm.com>
- <5e48ad7f-6de3-438f-8623-8f8a9c8dedbc@kernel.org>
- <ab5cec4e-a990-460e-a4cf-605028f9ea77@oss.qualcomm.com>
+Subject: Re: [PATCH 1/3] dt-bindings: dma: arm-dma350: update DT binding docs
+To: Jun Guo <jun.guo@cixtech.com>, peter.chen@cixtech.com,
+ fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
+ schung@nuvoton.com, robin.murphy@arm.com
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20251117015943.2858-1-jun.guo@cixtech.com>
+ <20251117015943.2858-2-jun.guo@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,45 +105,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ab5cec4e-a990-460e-a4cf-605028f9ea77@oss.qualcomm.com>
+In-Reply-To: <20251117015943.2858-2-jun.guo@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/11/2025 19:09, Mohammad Rafi Shaik wrote:
-> 
-> 
-> On 11/16/2025 10:59 PM, Krzysztof Kozlowski wrote:
->> On 16/11/2025 18:16, Mohammad Rafi Shaik wrote:
->>> Add bindings for the pin controller in Low Power Audio SubSystem (LPASS)
->>> of Qualcomm SA8775P SoC.
->>
->>
->> ...
->>
->>> +
->>> +unevaluatedProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
->>> +
->>> +    lpass_tlmm: pinctrl@3440000 {
->>> +        compatible = "qcom,sa8775p-lpass-lpi-pinctrl";
->>> +        reg = <0x0 0x03440000 0x0 0x20000>;
->>
->>
->> Are you sure you tested this file? I think this should nicely fail.
->>
-> 
-> ACK,
-> 
-> You’re right — DT binding check is failing.
-> 
-> My DT binding check didn’t catch it because the schema wasn’t updated.
+On 17/11/2025 02:59, Jun Guo wrote:
+> - Add new compatible strings to the DT binding documents to support
 
-It will fail on every DT schema. Old as well, so nothing to do with
-updating it.
+This is not a list.
 
+Also, subject is completely redundant. Everything is an update. Why are
+you repeating DT binding docs?
+
+>  cix sky1 SoC.
+> 
+> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
+> ---
+You just broke all existing platforms. Please test your code properly.
 
 Best regards,
 Krzysztof
