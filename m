@@ -1,151 +1,205 @@
-Return-Path: <devicetree+bounces-239457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401B9C650BB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:10:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D62A6C650D9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D951A4EBC10
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:07:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 1D75128B17
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288412C21DB;
-	Mon, 17 Nov 2025 16:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB3C2C21E6;
+	Mon, 17 Nov 2025 16:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WolEC22l"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="M+haOUt3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013019.outbound.protection.outlook.com [40.107.162.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044282C032E
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 16:06:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763395603; cv=none; b=YGUnXb3PW8KcjOSTMZjtWm3fIjzqa1035h6atnWKBLZMzitFzViEOC8ZbQ/nvcT+yZrLzGg+ogB0ggfwyHsLODtwUV1ybkA5iZ9PD6wvCVQ+gdwcvMKjjgx2QQXVfLSVICxSI+iq2x1kKKxm/J2piOudv/vn/VdMJq9saw9AvqY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763395603; c=relaxed/simple;
-	bh=ZHV0mE7tJCp4/ka1dZaQ1bLnq3xNryKpXQpZOdPOCTM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PDxMKpISdFCCdvfjr5SFc2JnUvZrG4+sBfGt3OTLv3kg2EfxoyYfmTHKR60AWyaIz5O1Y8hbMxbunVxesSYdFIBanVFGVo+WU/WCASN7dxaGGOY+sak9CXX2yw/add3QY288j9peKWKLSseeq7eq0rYcrrVDaOnVMsWXqQi5Qi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WolEC22l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81666C113D0
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 16:06:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763395602;
-	bh=ZHV0mE7tJCp4/ka1dZaQ1bLnq3xNryKpXQpZOdPOCTM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WolEC22lLpezRJc51FMbmDIaiYkXkUFpBcfHF/mvJvfPpkfQBt74KCxBHdUqSeqEZ
-	 Dp3W2MgMsByoqg+I9TzqaXmOQZuTHgz1yxEF+5Z/I17t1CqMp5kznuD8usFU/tNY6G
-	 d+kh5yyNvAfELDR1gU8zGjGep/+IALjNN+rfawZ4hDbD+/p5zcEPmwINZh7snCE4wx
-	 pStmG8SKScZ6dCyBzFTY/XQEiLHoxfHr/7IlU64MecqMWy1oKpcGGeBKNb3XV8qb/a
-	 rr0aZa+/apU0R3RtfSsxqXrcGQidg3v3COzpI+VcNd4O7njrk0xGEVtsrQtcr+vAlX
-	 aMXtbWSr076tg==
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b736cd741c1so496685766b.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:06:42 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXE8C4HKnIHarniXc3PTw7tOFNG3SPS5aw+oOF67Z4FtVYKv3T2sTQV9mrTDSIp4lA571vo3wiSg74Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmoeDrxgc4g5B0mQJThcvTFCiYzwAw19g/JWbFQ5k+I4NSg92B
-	zZN3nl1jBLwdyGXivPoqQOqdf+tNpEoGkHcsMOC9EVs7hCrJaUMg8Y9A0Qd6UtSa78xhugkktTL
-	aeZWdBprg6oL/AfFe6DVsK3VtfFavtQ==
-X-Google-Smtp-Source: AGHT+IHQF8K79mZ4P4bnbSysFknDwMV6mGUBiCbCSNF1KLvGofsqqaiTXzHgasP6+N8axEwBORn0CapAYCRec2+xv10=
-X-Received: by 2002:a17:907:8dcd:b0:b73:79e9:7d3b with SMTP id
- a640c23a62f3a-b7379e9837cmr1043723066b.25.1763395601132; Mon, 17 Nov 2025
- 08:06:41 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D985299A8A;
+	Mon, 17 Nov 2025 16:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763395972; cv=fail; b=PwE7/u3364JJzTlea8bs16sxmQF6KUMzHourvcdwG7zkbuJY1FzpRffwjNTp6C7hMwrE+3oAxKOQFU5sA3oV8uZq0Z2PvVeyi77wSKKaOI5GaxyTn2cluQkOzIXWWnmk5tETYz7zqb1nsKy0vdkmYq1Mk9Kjxseudr9acGiyjeQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763395972; c=relaxed/simple;
+	bh=0LS+qPgat8/7AosxFof1pR4TkBNimwCcUbHkeZeSaZY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=IAXDrJNlS1TDma16mKnRKpurcSaQzR34YQ4f8Fh0PLU2qcHHgkt9ffnXDBEe9Fg3MZqVXHwIyOCcSugix/qmgWcJ3+6Z/slPIFaPIarcoIRy91LMI5QzziJgesSplkm6bIexq/mOwoSVO+Za1QdFSHzIBv2lentdxSnCap2LXtI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=M+haOUt3; arc=fail smtp.client-ip=40.107.162.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iXd9OIx7HeX5Con+wQm9xZRCug6CfxfZ8/T8EVJ7nWC9Km2cfylACO+7Fgv7FOQXQTnbGaL5X+PkWKklOK6RUKnHLjlGRdVt5vbCoU3K3vUfBa68CQ+f0pI3BFsJkCzgkEurPfudpVc7lek0m8rcAT08hl3cYfqXW4TEdmXrDoMr1VgNXUaC2SNfH1Wy5mo/h/h2LEoY0tuE5YdqEJKho7DvCcl5n+BPEWCew6FEqOUnKuFUoO8I2cpo8dEggIWeyNWJMx6ETz03+6/TUGNptDvlvhdu6/lX/Vjlw+Hd0lBTA1+F0TGL9Z3M6KwbHewZ+p5EdcajTt7bxJgYCy4lgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XMQM6LBpVQQC8+RtDd4VsIjqshBW83gDoI+P5c4/3WY=;
+ b=kwuZ0XJ90oOfGd9oIb+WszWtSuG06Zj3zR/Aj93kL2+oEdy82tdycKWXIv1yV0NmeWqY/mrCsq/SsatYK32sWn5T2UWkacyAOnKgBheMu3OCArD58MQoUEs3F8QhuXHxH166sRRXCazPs8TKwBzTpylXGC4XVWWY2CM9ETu82VJlrb5hvkrByKHfJ1nsVMPpdLH9t13394TJItoAEOb4NaiMxESp7Kji3g+pBnuD6QpE3Ls6mqXklj3+yHpBxWmPpjloy2xtr80GLTv7ZOLeRNJ6qtB6zyl3Xniz+iprcPYv9qT72Pb/PKEYCcLkgaUCYN19jREQf5bkGlAG0DhDZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XMQM6LBpVQQC8+RtDd4VsIjqshBW83gDoI+P5c4/3WY=;
+ b=M+haOUt3lG79Ya4XBH4wicbbGL+3IvJOHOqWdkVaoXnv1DZBo3pdq0UbOEIlrBq9Wi3Fqtz0DwJY9DV/xkVMxBT8u3s4Mcf6Wv85UzW4a2NSe30bqLA9zoF8KbT0citjpu/ClNgZkR64mRwd89/NH8V5dkrQik3dI4xmSktHXa1PqgWHrBc6gAr4Ds9sP/vYohVWjzjjYtfKlfgzaIMYv9DgDXHN1M1MV/ztIshPzE7Os3zfMNnPBLKGwpk8ZwSA8zI5mR/FAduWGWpU8dHTuZ7txr+sluzQTySLoL9rKjJ93kc9vEH/XgLuUfjbaldYGPMdMY3oQXR7YEjExmoKnw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by AS8PR04MB7575.eurprd04.prod.outlook.com (2603:10a6:20b:29c::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Mon, 17 Nov
+ 2025 16:12:46 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9320.018; Mon, 17 Nov 2025
+ 16:12:46 +0000
+Date: Mon, 17 Nov 2025 11:12:37 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Vladimir Zapolskiy <vz@mleia.com>
+Cc: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"moderated list:ARM/LPC32XX SOC SUPPORT" <linux-arm-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 5/5] ARM: dts: lpc3250-phy3250: remove deprecated
+ at25* property
+Message-ID: <aRtJdTMxFaXdVnvs@lizhi-Precision-Tower-5810>
+References: <20251114174712.1206027-1-Frank.Li@nxp.com>
+ <20251114174712.1206027-5-Frank.Li@nxp.com>
+ <face044b-01ed-4077-b497-3caaccf57c98@mleia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <face044b-01ed-4077-b497-3caaccf57c98@mleia.com>
+X-ClientProxiedBy: SJ0P220CA0010.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::14) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
- <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org> <aRrcRZvdrbAmsCm_@pengutronix.de>
- <8ce701c9-6c8d-4b3e-8706-760b8aba89fc@kernel.org> <aRr6JLMplFVeHcjj@pengutronix.de>
- <e5502ec8-0c55-47ce-a9e5-62e137c9808b@kernel.org> <20251117-smooth-spiked-loon-52df28-mkl@pengutronix.de>
- <de1739a8-4677-4cc8-b501-2568b7513467@kernel.org> <aRs2y3w854vnHAzg@pengutronix.de>
- <576a9eae-7dba-47d0-ad66-0a81d1893271@kernel.org> <aRs-DaayhtQTtFXj@pengutronix.de>
- <9e14fb8e-af84-4072-b0ac-9ead882782be@kernel.org>
-In-Reply-To: <9e14fb8e-af84-4072-b0ac-9ead882782be@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 17 Nov 2025 10:06:29 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+=v96eP6V+5Ehi9EQT3iKKU7=t7kvJ-WSA+1WCHDuHEA@mail.gmail.com>
-X-Gm-Features: AWmQ_bkHp09PIpomgFemmdcjbomSIaZ9lBJJMCSTwYC-dA0iLqOM8VuivQjCSgA
-Message-ID: <CAL_Jsq+=v96eP6V+5Ehi9EQT3iKKU7=t7kvJ-WSA+1WCHDuHEA@mail.gmail.com>
-Subject: Re: SoC-specific device tree aliases?
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ahmad Fatoum <a.fatoum@pengutronix.de>, devicetree-spec@vger.kernel.org, 
-	quentin.schulz@cherry.de, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|AS8PR04MB7575:EE_
+X-MS-Office365-Filtering-Correlation-Id: 536d9bdd-240e-4605-3b04-08de25f42565
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|19092799006|52116014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?d+1EkSyDg0/Y0Pc7WRPYCh9k9kmXPkwNhgN4lTu0yKnHLMZogR3tLUVO33Kh?=
+ =?us-ascii?Q?s8eq/5GwhSznzmwTbqqM3Oqaf/jscFmGHM1w04ermEHNemN/VNdgFJ6ab+zF?=
+ =?us-ascii?Q?q/sQy0vLSAPHFkixe2d4L05u6FPiWgSKMuhcrG/y0HprQ05Gj3pNsTH8arMt?=
+ =?us-ascii?Q?/7ZCc088fTK9vn3q+EoMXl9ega1g9HYwuLG+DZtTUIREE2AUUt0AbZO4Z6XW?=
+ =?us-ascii?Q?TDGLFrJa0W8LkOXtO6WxPNHx9MCRJlaCaumh6NwAJReEHwKv4Jd/oxNSeudB?=
+ =?us-ascii?Q?YTBAbC+KYeHRb3dkYNZLYOBnjIjYpno5bhy7CPb9YHrQzJhZXLZAAR5QBpmp?=
+ =?us-ascii?Q?gArbbScKqkbsF1lKJ5LXGgTsFjvyYWctYoCOc0R6KIcan62iXdgaEtjgEjPz?=
+ =?us-ascii?Q?vW9H0B/QSonIS8h0sbsapJizpGtdBsdf5w9kJDn+jdQ5z1vveaUYBGBv1U4I?=
+ =?us-ascii?Q?wOxETwXL1r/E0Bn6w8drXX/HcjKcDlFuomzOyyImXBGnBgnslnn0/mfjtSVM?=
+ =?us-ascii?Q?E5wUMtSHMw1g9dSauu/CnnF7mRxN9GgwCBIirV0cwz86LB4z2d/r9f64HHrc?=
+ =?us-ascii?Q?wWvfy8AnAn4flSvat7q8y8JxhfjG/XnclIZe5I6GJSGyJepIF815Bzr6DVZq?=
+ =?us-ascii?Q?79SVdMIFuH4PTSg04ip40NXCdaSBFRsbvKgm1VQDL1QaNSs7R3hLdTkbDyrN?=
+ =?us-ascii?Q?lZnqr4l2L2qvvaRxzgmNkPfDbDz0wSVX+02vXBmbFyi/Hy0jGhWRESx8WudW?=
+ =?us-ascii?Q?BYHx34p9DnoC49ZHqJH1mjWJN93Wq4vXFX4xuEtjZP2INe4otZjCwsposXLm?=
+ =?us-ascii?Q?f7b9zrYF24bDpV4622Q1D5fVc7Y4uOLMz0Ae//dSJhL0JJ1wiCD0mkmWiggK?=
+ =?us-ascii?Q?7B/okO3ClVeG8Ud0YlidgBJtnTCGKsAr/t5y8TSESHdUmc6P4LongZNep4wv?=
+ =?us-ascii?Q?dOOgcjRMKzdWIsfoPeZe5fPUqkWKFE3Xr5pPBfn4PdgJHm+a+5+wg3bXFm6p?=
+ =?us-ascii?Q?RRmDxVYYsz7R8n8jneRk8we9Gi2KcYC5UZmzVHZFF74yA1cNaJn+E5v+o6r7?=
+ =?us-ascii?Q?3PR1me+Bjc8fV1DI1V4P810m48n1RPiiC3A+c7VjKcbOjFhUsG+eQjHSMxoG?=
+ =?us-ascii?Q?cIngoEmnX3YkFZZRMTi8K4F82TTs6YTCAbf8B0YCh7UZFlX0xnyWTaWfnRjC?=
+ =?us-ascii?Q?Dfh9xVtnpexbmbJffY2S8dC5A+TzPSzT2DmA8jJuAt98xjNGpdRxyYFOHck4?=
+ =?us-ascii?Q?IpzFDGjNBXDGvGnkt8YCyc5o9TBTN+jAZwmzqxsZCkRRYAu/KUzgetJAGLLp?=
+ =?us-ascii?Q?FP/rifKs4MXmHjxvaOTCRlkUWa97CuRp2j4iqFz77p4DyeIy4koKuCh4mnOq?=
+ =?us-ascii?Q?EVKCX1ajKkU4NaQGtwL1QnytyjPsYKKP38l28njV4YoFv9FTwnAzhBpc9ci6?=
+ =?us-ascii?Q?dIqzNHnv7vPyMBSRvc/5/L+r375sSma04oLMoSecakNYoUMYjbL0/4mSaky7?=
+ =?us-ascii?Q?H5OkSlxcf4uHy4cc59WrAJzu0t2GCrF4AZDN?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ZJNIxtpY7sWWTsjJ2l/LrGXzA8ERQKSR1hk6QFneWn9BX6AbhEE5yI7iZ1ET?=
+ =?us-ascii?Q?K38wEJQ/Z5etIIsnUi+Dd2i+yYU/v4xwmScWwkETRnqgxNurXro2O33CTyu4?=
+ =?us-ascii?Q?r0pHt/jCHj9BySPoDCZFFP+b9gMiBq/1Igk54YbQBiyY7l0FJwGBzbkVA6uz?=
+ =?us-ascii?Q?1kl24LHFaEE3pJ/UiKdWqDq6J55+bgB7blp/ep7AgxQLunFoc5Q3UZwb0FVz?=
+ =?us-ascii?Q?otDKnCrzL12AlcdjfoQFM4G2WHMQBSkmpvDIebon2rRzGdpbZw4ZzvK+lWZD?=
+ =?us-ascii?Q?e+/+MPZFu4H2ZKo7yo3LGKpMVeyl2VO+DH9arHVHgLwHdh2dVzrhmL26oizl?=
+ =?us-ascii?Q?dhqHIFqU+soKcC1Sjh30vKQqW2Wh/xTDjsvQUj4h0/J9ZcNT5gASDF5I67w/?=
+ =?us-ascii?Q?ujbz9b77OMJXcoNbk0p0VtJaPeg17f4qqVRGfbVOk6QtfhM5QZSKRL0PkwaH?=
+ =?us-ascii?Q?bzwPU72vbE9JXyU3oYvQgNnMKqIQXvrE+wZ0cMv1DDUgZBTsaozKN1dhv8Bf?=
+ =?us-ascii?Q?eqWGJ4/1buhI8rnAqL0JZXTRS+Yj3UdINlf4bV/PvZnhp5PguPvuekAnwCoy?=
+ =?us-ascii?Q?G2M9vj7eQ8vDkjsQPNp2IcqeuYOyofchjU5n3VpeTK16E/li5Q6bt4Y7E0rk?=
+ =?us-ascii?Q?crq8vHuLOebmeGvQPXDugEOkowYm0y/nvfwa+00RD4Jop1u3QzteNXjGdI5y?=
+ =?us-ascii?Q?gLAXQDw2Z46F0z5hVCiwMCmBmVy9WKhyVuIxMMYRvLrSfwHIPlZsKL9qxCxp?=
+ =?us-ascii?Q?Jizq9YCAXqP28t7tMVgR2TK27l/vTZ/dcKsuoLNg/WbDkjeqJke9dEdi1KGu?=
+ =?us-ascii?Q?Y4ouU8rB8H2ENykgqkURcSWHeEdELihiNlVMdwvHHx99Zng2uHzY7ZEIYf1b?=
+ =?us-ascii?Q?iGlz0Ow9a1IMLKJfdrCznn6Ub91YryIB06TmtIr76Wil9qcq23E3Mq/jesMT?=
+ =?us-ascii?Q?h0kWqzWiSJ9bYWGU2OaUq15lwIjBbPsZjQ2qDbD2pD8zjsoEqPUAfi1sQ2DD?=
+ =?us-ascii?Q?FiBzM0TePtAkyqvoQcjCJCnDEuys76MxnMKNcedWHqLJMgCJwa0dXFPiGU8b?=
+ =?us-ascii?Q?FFeIPSWFmWGgwG3LyqSlhO62fJ0HFoSHSsPW4W7gBEzg+/U+X8fa94szUYYD?=
+ =?us-ascii?Q?DGkA35H2/jaiJR2ZPmq7ikJjDw4k9+44tmMfZJW/+OBf1w3XaV2w1/LzIKP+?=
+ =?us-ascii?Q?hctHxcFl2euCBvTpI3fNTWvPeRwwPOv6gUAk6xPv61mi+SKzoKjyyl94WD1B?=
+ =?us-ascii?Q?UGBIkC/hEFBa7ICA71rZBard5fcJrwQWoPGWY5bEjSNi93dMb9PjX9MdtnvE?=
+ =?us-ascii?Q?mAbEor5Zbep3AoLMncF5jqnwXBdJEENREJSTEc/u93QYk+saOD6ChV54mPR4?=
+ =?us-ascii?Q?CkyE//wIz950D3FZawPsWZU+dqBhfcc3usA+qAhZmdXaEq01mFWiSsoMLCMk?=
+ =?us-ascii?Q?O7IaSjfCbp8zj8CA7OsLA7g6dAXmk2aLgk56HYF0Yl5zdy56bsq/OD1XAoxN?=
+ =?us-ascii?Q?/E5sPlZCuSFLF5pCcvONSdUeL2bdMTRfQxQhhbZs1zT/29raLVMN2RuYQTHS?=
+ =?us-ascii?Q?AyhfSd+x4+9CqH62jkN+A+rS2p1atQTt9gPlhmZE?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 536d9bdd-240e-4605-3b04-08de25f42565
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 16:12:46.4970
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5M5sUzm5v6hWQOQPhBvFWCcuwcpZANYAXZXeh3k90WgzozntyOiH5g2mBrdCKl0/NVgaRvQS3c2QSVAURmtzKA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7575
 
-On Mon, Nov 17, 2025 at 9:44=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 17/11/2025 16:23, Sascha Hauer wrote:
-> >>
-> >> You read from registers booted device MMC 1 (out of MMC 0-2), so inste=
-ad
-> >> of relying on register value that "1" always means MMC1, not MMC0 for
-> >> example or whatever else changed in hardware, you can just sort the
-> >> nodes by unit address and choose the second device.
+On Sat, Nov 15, 2025 at 02:23:50AM +0200, Vladimir Zapolskiy wrote:
+> On 11/14/25 19:47, Frank Li wrote:
+> > Remove duplicated deprecated at25* property because the same common
+> > property already were added.
 > >
-> > The instance numbers do not always match the unit address sorting.
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > changes in v2
+> > - new patch
+> > ---
+> >   arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts | 4 ----
+> >   1 file changed, 4 deletions(-)
 > >
-> > For example K3 SoCs have:
-> >
-> > dts/src/arm64/ti/k3-am62-main.dtsi:548: sdhci0: mmc@fa10000 {
-> > dts/src/arm64/ti/k3-am62-main.dtsi:566: sdhci1: mmc@fa00000 {
-> > dts/src/arm64/ti/k3-am62-main.dtsi:589: sdhci2: mmc@fa20000 {
+> > diff --git a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+> > index 15463a96938cc..0f96ea0337a1f 100644
+> > --- a/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+> > +++ b/arch/arm/boot/dts/nxp/lpc/lpc3250-phy3250.dts
+> > @@ -213,10 +213,6 @@ eeprom: eeprom@0 {
+> >   		pl022,wait-state = <0>;
+> >   		pl022,duplex = <0>;
+> > -		at25,byte-len = <0x8000>;
+> > -		at25,addr-mode = <2>;
+> > -		at25,page-size = <64>;
+> > -
+> >   		size = <0x8000>;
+> >   		address-width = <16>;
+> >   		pagesize = <64>;
 >
-> That's label which is not yet proof that boot source registers have the
-> same... I can git grep as well, but wanted actual confirmation, because
-> people put to DTS many wonderful mistakes.
->
->
-> >
-> > Rockchip:
-> >
-> > dts/src/arm64/rockchip/rk356x-base.dtsi:619:    sdmmc2: mmc@fe000000 {
-> > dts/src/arm64/rockchip/rk356x-base.dtsi:994:    sdmmc0: mmc@fe2b0000 {
-> > dts/src/arm64/rockchip/rk356x-base.dtsi:1008:   sdmmc1: mmc@fe2c0000 {
-> >
-> > There are some examples for i.MX as well. To my own surprise not with
-> > the mmc nodes, but some SPI instances are not sorted by unit address.
-> >
-> >>
-> >>
-> >>>
-> >>> Also I don't get whether you are suggesting
-> >>>
-> >>> A is as fragile as B, so you could equally well do B
-> >>
-> >> Both are fragile, so I would be happy to see arguments why A is better
-> >> than B. Why? Because with B you don't need any binding because all the
-> >> information is already in DTS.
-> >
-> > What do you consider fragile with it?
->
-> Only that you rely on a specific register values and their meaning.
->
-> Anyway, I would just go with standard aliases, but add a schema for each
-> of such cases (SoCs or vendors), so you will define this as an ABI.
->
-> One of the reasons why Barebox was affected by all node renames and
-> alias reshuffling was that it was never documented that anyone treats
-> this as an ABI.
->
-> So you want it to be an ABI for barebox, sure, just make it a binding.
+> Just squash this change with the 3/5 from the series, or I can do it on
+> patch application.
 
-What do you have in mind? Other than standard names for the aliases,
-what can we check here? That a specific alias points to a specific
-path? That would be a bit too much IMO. That would be equivalent to
-specifying possible values in 'reg' for all devices.
+Yes, you can squash when apply.
 
-Documenting standard names was something I started but gave up on with
-the mess we had already. And that was several years ago, so it
-probably only got worse.
-
-Rob
+Frank
+>
+> My ask about splitting the changes was about a separation of the 4/5 change,
+> and it was done as expected, thank you.
+>
+> --
+> Best wishes,
+> Vladimir
 
