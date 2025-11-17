@@ -1,179 +1,151 @@
-Return-Path: <devicetree+bounces-239520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B635FC65BBF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 19:35:29 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69075C65BFE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 19:42:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 92B104E56AF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:35:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 15195353D8F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:42:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01E331B805;
-	Mon, 17 Nov 2025 18:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95425314B9A;
+	Mon, 17 Nov 2025 18:42:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="wt6YibAx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ijsTdrG2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702CE285406;
-	Mon, 17 Nov 2025 18:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664522FFF99;
+	Mon, 17 Nov 2025 18:42:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763404507; cv=none; b=mEBrO+E1uMKSNFHPHWrtmF1Hh+mTUwe2n/c3MI6YlYqJHaF9u5yZBeUJ5f9qeIIx8KIlQp5QdTFit3MvHIS6rdp6b6StozKKigUrFEEf2SihkGEIQQK1akXnKb1uktToqlIkAMNFsNeZFWOV5Joo+l0ANPtOer1WiufjLErjIkI=
+	t=1763404922; cv=none; b=Ha183aI5gbHD6RXIN3hDRHnGcFQmKxNKJs8kwevkBWr2ba5PZgemTZeK59FIq+ixY+w/oo+OYjilT/AfpFT6wjSl/X54dn73WA/fkYWXh6Bp7B50muKw5pPiMlw/pXoyfF97BZMTigAF4NMpEC5ITGNnPygJJIK2mmkpmoP8fJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763404507; c=relaxed/simple;
-	bh=klUIHIdEGJ8vZqyKVst8JE5uctAFbAvJn0+6f4Hu/yA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FKuB66H6+H/w28ervMeCW/72RRgOz+YLCU6HNtXUtIfLqxeOzH4M7xIFgVMBiOikdLJOz9h9cbXC1vU2ZuCtoNouLkWMFFYcawmxBUo9xt5U333Km2uJOMtxztS8q0BWTu5/GkmwVtxQQZFLtJkfPkU7/Y0i1dzxEFQH5S+6DuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=wt6YibAx; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 785625341045;
-	Mon, 17 Nov 2025 19:35:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1763404500;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=EI3tvPTFkOkFOiLHLMduD3MlquFdC7E7ljJZMvp14Fk=;
-	b=wt6YibAxYJbTFHww6uaSX41O6qv21cweh1bMKUUejqcifueFbsbDzsC5rH3nExTC6ZLMQ8
-	3gyzYbrq519UaP5+ZXtwfy1/sS9eAy6i68eE2gV8tyEHbJhW36/fALuA5r0rkAO3rmB6ac
-	xYOySuCjweoLIVujlbuSHfgRy11Zyhg=
-Message-ID: <f15c4ed1-5997-48a1-a0a1-1b0113645517@ixit.cz>
-Date: Mon, 17 Nov 2025 19:35:00 +0100
+	s=arc-20240116; t=1763404922; c=relaxed/simple;
+	bh=JZPvJG4H9TtURVS4KR4gxr5gf352lFKsvwgszLWc4oU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fylow0yPiEgWnogrhl8RBdd4eo31XTtBzsIzXyVf8/25syl+MMKVhFHDsPH2rAXlp2l4h1xu96dNmgBWWqsTNylawiKa0weFW9jtwCrhOpvSI9ut9rUs5MeAdhrjCRVC7iy/YEDhfkrLXlePVe0HyGW4XQjd20D7ZqGLMWQdu+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ijsTdrG2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89E5EC4CEF5;
+	Mon, 17 Nov 2025 18:41:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763404921;
+	bh=JZPvJG4H9TtURVS4KR4gxr5gf352lFKsvwgszLWc4oU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ijsTdrG2Ikg8KgFdoRtI7ulj6jVyS1KWCGCJgvBa1yf7t6CRz6FojOhQF0A6JuAPZ
+	 /mUhZNBrN4zla8f5jiM/SlJW2zNVZ4rJI4a866fH3kMqRDoX3622ehfhSyMop4LlzN
+	 q0fgLl/jeWED9IGi55wLJBFUfRRGssqloNdKiPL8TPoCwrfamcK2TdfBqfIOzM9K4m
+	 ZjFEGxVrp0cs+bIjOizIGnE8Cy1dxumxqPoi2KWO0yi9UBa5QS7qeYJJuJGRyBIKgJ
+	 j+uGT+fWugqhNwQIkOuPboYKpTSuu0IrS/h70FB1tRg+OKZVAwya6Bg/0niW6groHK
+	 K5Dx1yubgO1hg==
+Date: Mon, 17 Nov 2025 18:41:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, devicetree@vger.kernel.org,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-can@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>
+Subject: Re: [net-next v1] dt-bindings: can: mpfs: document resets
+Message-ID: <20251117-edgy-extenuate-6850a9440802@spud>
+References: <20251117-twitter-sternness-f2b3a1506a6f@spud>
+ <176340406423.422791.14985477842686606616.robh@kernel.org>
+ <20251117-example-spoiled-6b098fb9fdcc@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Add support for Pixel 3 and
- Pixel 3 XL
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, Amit Pundir <amit.pundir@linaro.org>,
- Casey Connolly <casey@connolly.tech>, Joel Selvaraj <foss@joelselvaraj.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, Vinod Koul <vkoul@kernel.org>
-References: <20251030-pixel-3-v2-0-8caddbe072c9@ixit.cz>
- <20251030-pixel-3-v2-2-8caddbe072c9@ixit.cz>
- <8d32460d-894b-472a-a262-4c6a60fbcef1@oss.qualcomm.com>
- <7f686f1b-7cc7-428d-941d-82883decee49@ixit.cz>
- <259477b9-0e14-4785-91d4-67c5a94331eb@oss.qualcomm.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <259477b9-0e14-4785-91d4-67c5a94331eb@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9jacpcMD8tGHOEF2"
+Content-Disposition: inline
+In-Reply-To: <20251117-example-spoiled-6b098fb9fdcc@spud>
 
-On 30/10/2025 13:10, Konrad Dybcio wrote:
-> On 10/30/25 1:03 PM, David Heidelberg wrote:
->> On 30/10/2025 12:32, Konrad Dybcio wrote:
->>> On 10/30/25 8:24 AM, David Heidelberg via B4 Relay wrote:
->>>> From: David Heidelberg <david@ixit.cz>
-> 
-> [...]
-> 
->>>> +    battery: battery {
->>>> +        compatible = "simple-battery";
->>>> +
->>>> +        status = "disabled";
->>>
->>> You added support for both non-proto boards based on this platform,
->>> there is no usecase for you to disable the battery, remove this line
->>
->> Should I keep the status = "okay" in the board files or drop it too?
-> 
-> Drop it, nodes are enabled unless they're explicitly disabled
-> 
-> [...]
-> 
->>>> +&tlmm {
->>>> +    gpio-reserved-ranges = <0 4>, <81 4>;
->>>
->>> Could you add a comment (like in x1-crd.dtsi) mentioning what these
->>> pins correspond to? Usually it's a fingerprint scanner or things like
->>> that
->>
->> Sure, I looked into it, but I haven't found (so far) information about the assigned blocks. In next revision it'll be addressed :)>
-> 
-> Thanks, you can usually correlate them to a QUP instance based on the pinctrl
 
-For now I verified that 0 - 4 is SPI (Intel MNH Pixel Visual Core), but 
-81 - 84 is at best educated guess SPI (Fingerprint Cards FPC1075).
+--9jacpcMD8tGHOEF2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The information about 81 - 84 are generally nowhere to be found.
+On Mon, Nov 17, 2025 at 06:29:55PM +0000, Conor Dooley wrote:
+> On Mon, Nov 17, 2025 at 12:27:44PM -0600, Rob Herring (Arm) wrote:
+> >=20
+> > On Mon, 17 Nov 2025 16:38:18 +0000, Conor Dooley wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > >=20
+> > > The CAN cores on Polarfire SoC both have a reset. The platform firmwa=
+re
+> > > brings both cores out of reset, but the linux driver must use them
+> > > during normal operation. The resets should have been made required, b=
+ut
+> > > this is one of the things that can happen when the binding is written
+> > > without driver support.
+> > >=20
+> > > Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN c=
+ontroller")
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > > This is the second mistake in this binding, both spotted because of t=
+he
+> > > driver being written (although this one sat downstream for a while for
+> > > w/e reason). I wish I could say that I'd send the driver soon, but I =
+am
+> > > busy upstreaming things I wrote and therefore understand at the momen=
+t,
+> > > so a driver that I'd have to go understand and review before sending =
+is
+> > > low priority, sorry!
+> > >=20
+> > > CC: Conor Dooley <conor.dooley@microchip.com>
+> > > CC: Daire McNamara <daire.mcnamara@microchip.com>
+> > > CC: Marc Kleine-Budde <mkl@pengutronix.de>
+> > > CC: Vincent Mailhol <mailhol@kernel.org>
+> > > CC: Rob Herring <robh@kernel.org>
+> > > CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> > > CC: linux-riscv@lists.infradead.org
+> > > CC: linux-can@vger.kernel.org
+> > > CC: devicetree@vger.kernel.org
+> > > CC: linux-kernel@vger.kernel.org
+> > > ---
+> > >  .../devicetree/bindings/net/can/microchip,mpfs-can.yaml       | 4 ++=
+++
+> > >  1 file changed, 4 insertions(+)
+> > >=20
+> >=20
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >=20
+> > yamllint warnings/errors:
+> >=20
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/net/can/microchip,mpfs-can.example.dtb: can@2010c000 (microchip,mpfs-can):=
+ 'resets' is a required property
+> > 	from schema $id: http://devicetree.org/schemas/net/can/microchip,mpfs-=
+can.yaml
+>=20
+> Two issues in the same branch now, there's something weird going on with
+> my test script. /sigh guess that's my evening gone.
 
-The downstream device-tree
+I can spend my evening playing poe after all, I am pretty sure this was
+caused by running my test script and then immediately switching windows
+back and doing a rebase... I'll send a v2 tomorrow or w/e.
+pw-bot: changes-requested
 
-qupv3_se15_spi: spi@a9c000
+--9jacpcMD8tGHOEF2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-thou it's disabled, so I assume there is external properietary 
-user-space driver handling all of this.
+-----BEGIN PGP SIGNATURE-----
 
-I could fill the guess, if that's good enough.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRtsdAAKCRB4tDGHoIJi
+0l5hAQCJe0ZHxyl8cOcnZUgbfN4pt45YDPzZtSMoGnQ2vaE2hAD6AuUA/GHPm7hf
+J04T840JoYUU8iCQaeqglW7vXrmShAs=
+=e8ps
+-----END PGP SIGNATURE-----
 
-David
-
-> 
-> Konrad
-
--- 
-David Heidelberg
-
+--9jacpcMD8tGHOEF2--
 
