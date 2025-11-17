@@ -1,99 +1,79 @@
-Return-Path: <devicetree+bounces-239556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725A6C66603
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:59:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A142C6667E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:07:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 426504E1951
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 21:59:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id A31DE296CF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1A19324B22;
-	Mon, 17 Nov 2025 21:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27CA34BA4E;
+	Mon, 17 Nov 2025 22:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="JOPgBi/G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bKLWwRAF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E4F321421;
-	Mon, 17 Nov 2025 21:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7821D309F09;
+	Mon, 17 Nov 2025 22:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763416783; cv=none; b=YJufcjjpMUgOFnLTqlLQ9NtWrhu1nbDOA+N2txMxpCY7mCIxGSEczj3Z7/r0wsTnDR0BgXBML66oBtaNkpaWg+nN41Jqr8GUO6R6P8hEPSQUaMru8RtxfURi2m7f3qUPAwpmsAWC3UebrMfFRvRIlqYV/zOpur2hHQqnnkz7X5s=
+	t=1763417223; cv=none; b=L33+O4NY5Dy2VTPRipdovT2ChcckZHwpTKi055yLL0mlkllJaIK7YvuV3GzbTSAIHzGdpsvVLoNtgCfHABXI5/Kd+ul1hhE3+IL93vVFbm1SMJ8s2kpoihUGGlRkC/H+rfz4alK4NH8+Nx5J+W81XxhcR2eSzxyZXrdxgfjC73M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763416783; c=relaxed/simple;
-	bh=fpIYJXMhuIaexmWWG8Kky84C5zjTQ38PZxxGTMsqOm4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O7Yz/tdlRuhBCuoXHj6WZRDxnWLuPc1qGpOdWeBEsz3eduDvaLmModQqXpbXwW/vCjnIAXoUFduH01ieCxghhGHG/ov+Mxl5D6kbBvo8bF6jaNgf7+c4w/XMe2zKKTRLLiDdU7EEx8l6s2NpQaOk7qARJ3HSEKnByfD+f1JHfio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=JOPgBi/G; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=jQoqXyszkPiSBiq+rU2orebDLuZROYRw4j6EhNzg7rM=; b=JOPgBi/GEewTXo2hRxi6cycLfR
-	zTKaPBBvqlGCHGgFcKD+s3r5y7pPj9gEEmOjeeRIi3KMEPXHr9tWJkPFkEtJ8BJf8KkhbimYGeyQs
-	m/KvIMXiJWBB3OxFW6OGYmhAFZe28YdcN8DcRvWmnvoio8OnpZY4kgUWcQbRT2rNNrIbOF3jWeqkG
-	hr/4G7EpeGcvgMB65Hqx9QG/A4aTnLF59gLF0odGPgBQxYbAxQy3uHXjGtrPoHINZ6fUN9d7PgjCA
-	hWjf7rKn4Y+0mxtweIMTIEL7QxW1dDVrNGVfxwaymqaMxV1X2nWenOx2cinwpV6nZMNOws9PCMixE
-	2bhR+AQQ==;
-Received: from [31.12.4.86] (helo=phil.schlosswilhelminenberg.local)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vL7Fb-00018K-3L; Mon, 17 Nov 2025 22:59:07 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	quentin.schulz@cherry.de,
-	andy.yan@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	cn.liweihao@gmail.com
-Subject: Re: (subset) [PATCH v2 0/9] General RK3368 HDMI support and 2 outputs for RK3368-Lion
-Date: Mon, 17 Nov 2025 22:59:04 +0100
-Message-ID: <176341673264.751370.3773925290539740879.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251021074254.87065-1-heiko@sntech.de>
-References: <20251021074254.87065-1-heiko@sntech.de>
+	s=arc-20240116; t=1763417223; c=relaxed/simple;
+	bh=/rwLjEJrq5xh81nSd6zHZcteNgx1DtiJlrIi/MwXBk8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WzWcUInKkSVSMErdYBWmtAIOllNmx9ajqKSQ9sjw9xUHD6km8aUGxHU6fCaNQm6roFmxRU9kQg69m5myXNJEvPfhuqtbwkzzWOLznWODnpQwuY/GA70EN2srPVT9kQ9NoHANhNXRItvJpkiwh95MoT4OJCjnM2T4if9kuJsyw00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKLWwRAF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15404C4AF0C;
+	Mon, 17 Nov 2025 22:07:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763417221;
+	bh=/rwLjEJrq5xh81nSd6zHZcteNgx1DtiJlrIi/MwXBk8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bKLWwRAFVmZjOd0q+7anlRlVUfGcGVWQ8HgzqxKk18ux2korH2ONGhexM5HtqWAQZ
+	 mY9rKFTMI97Kp10F/F+jVsH/NiA86PFuct16Q6yaQcx3Y4OchRRQ9/3F+7uOIXXSIX
+	 lSxYq5O6roloXU779M64lg2hnP1T3P6+mQEZV4t2TXlcJStbTOCz38aJOGvUQX07U6
+	 Uw0sq9g2LShXdKts0BrGfgNxkHkKNQiz5hZtymY9CeTBG+Vn7tA9aMw+M3c53oei+d
+	 xXQaPKi/VKD8uht6kS485Ep5YRw6PcSYw/+KbIGDmCr/GSQeczeFxYAxfiz3TbBx6x
+	 COweWDwjujNOQ==
+Date: Mon, 17 Nov 2025 16:06:59 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc: nicolas.ferre@microchip.com, conor+dt@kernel.org,
+	romain.sioen@microchip.com, linux-kernel@vger.kernel.org,
+	wsa+renesas@sang-engineering.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org,
+	claudiu.beznea@tuxon.dev
+Subject: Re: [PATCH 1/2] dt-bindings: arm: at91: add lan966 pcb8385 board
+Message-ID: <176341721849.806024.3609760961005351120.robh@kernel.org>
+References: <20251117125709.102013-1-horatiu.vultur@microchip.com>
+ <20251117125709.102013-2-horatiu.vultur@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251117125709.102013-2-horatiu.vultur@microchip.com>
 
 
-On Tue, 21 Oct 2025 09:42:45 +0200, Heiko Stuebner wrote:
-> This series adds the necessary bits for HDMI output on RK3368 and enables
-> this on RK3368-Lion. At the same time, use the recently added DSI support
-> to enable the generic Video-Demo-adapter as an overlay on Lion as well.
+On Mon, 17 Nov 2025 13:57:08 +0100, Horatiu Vultur wrote:
+> Add documentation for Microchip LAN9668 PCB8385
 > 
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> The reason I'm shaving this Yak is that the recently added DSI support
-> created DTC warnings about a single endpoint with an address.
-> 
-> [...]
 
-Applied, thanks!
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-[3/9] soc: rockchip: grf: Add select correct PWM implementation on RK3368
-      commit: 048213a38e7ac1591f725e370c152cc80dd84105
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
 
