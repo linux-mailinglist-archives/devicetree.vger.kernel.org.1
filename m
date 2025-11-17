@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-239385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F1CC644E8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:14:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6664DC643F5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:02:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B939F368741
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:02:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 9C11A28EE8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C3232D444;
-	Mon, 17 Nov 2025 13:02:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0901F32D7DE;
+	Mon, 17 Nov 2025 13:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="QztuZrCB"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="CS0+bK8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8776D1A7;
-	Mon, 17 Nov 2025 13:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459F9324B07;
+	Mon, 17 Nov 2025 13:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763384531; cv=none; b=NuLI8yLGn1PmI6sBNbQQMPwvl32UPFbj5qobfwFjQ10Qe7B0O2a0KqCJJ10FpuoOxu/f1xxXuy2Rt1p/3cMWJYfqJGiIb+Mcsw7y82gNSVhVaVXEWfYj4zhmg+hzcmFNv4ByP2YUB+fmIqG5lQtXGr7i59X1UpfVJ7fYnWW9eBE=
+	t=1763384548; cv=none; b=lGUPERz2Gy6Yv4Mge7dCoBpYuya1ep5EdGrD//9y7L2Z4Aa7iOK1gC7AvvnnpvW8GbJMKjAvTJuRxLu/V004/tbaJhdepEfJawAPs8uCiLmCHiLAYsKRN47cwXsuhdTWoEfHA2+wx3qbv1XKGsl/7cyRBAaK/g7cEQQHo8wEuQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763384531; c=relaxed/simple;
-	bh=iyt5FrNViiDTxs8hANwrQy+GhySDoTf5XEItkyhr++U=;
+	s=arc-20240116; t=1763384548; c=relaxed/simple;
+	bh=phJaGN0B3TW6ZX73sC8DfFHe9nW+vI1qq2P0NKYL3vY=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bsMqtJJP5Ttzo7jYlLIsN/y2nKxz8yua7XuXmCUKGaOqe6Uxsn0Mar2Qvb51nQWOzi989JGIwSTyGIGqKcFBKm0QOLJnd+/2ZKR6ca/JLhq1aDzuRWQOwS5W29BvhncPxx8xCp/+y+/SgrQnTncIMf2tmvOl/50bo/b58plDCiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=QztuZrCB; arc=none smtp.client-ip=68.232.154.123
+	 MIME-Version:Content-Type; b=Qyv3/kFF773nYNyRpe2Ks97T8+sBdkQuA27Do7HnjwCUJoT7sBD6dcgHgspVWahriNHlVDTI7R7Vjs+nTIoC3yGb23KPZ09zeweLu5IOZZcf/gw3UFRXWNW9zTphDWblckpo6MBZyKevE/489pEavMUydI0I+kIucOMBgIgGNrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=CS0+bK8U; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1763384529; x=1794920529;
+  t=1763384547; x=1794920547;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=iyt5FrNViiDTxs8hANwrQy+GhySDoTf5XEItkyhr++U=;
-  b=QztuZrCB9T3o06M+/Gd9jm7Ek2sIIq2+OQLMzft9DjGzwfP3Qk7EX8Y6
-   KU0nEIckAUwzTI3KqA0NWlnpnGfhqmI1CRTBquUFM8uCfSJHUmRY+PCjn
-   xhxfIiTgghdKebldLGml3GZH4d0xF4uyvOk5ojHT6tEtaQusSBHhPznft
-   PKwTZOcSDqp0uZVo6YuevDOYAj0S7xpYV7Bhor26qRFKD+FUOFVU+P9dG
-   SS8Ey1fvcdXcDJU1IrNgLXm9ngqevNLV3sepoIMHSlxYqpFjFZwgrCd3F
-   VAMgUfLib8mtCpPJXqrEGpBYxAUVVuwcUTXtxgiR4gzahsmxC0TXh46wS
-   Q==;
-X-CSE-ConnectionGUID: 7lVwW72ASwODMHoO4OS9jA==
-X-CSE-MsgGUID: HGJKc3lcQp+KwA73g7oDJA==
+  bh=phJaGN0B3TW6ZX73sC8DfFHe9nW+vI1qq2P0NKYL3vY=;
+  b=CS0+bK8U+vp+JTy/G/dUmlyGuxN1O69qdlTqSeQSKfpd7eX9Yliz++PV
+   37EMpC/SHbLfHsgnx2SPH8k/qjbjWirBexLIK+3+Ugl7TjywrSN7kT5Lk
+   B+HLOl4jmRmWZNCjPC2rQ2b3jVV9cvBDAHRbplDnQVDdSGoFyWjqF8/eA
+   yWw0yenxeRAiuk38rs5kq3jhU9SAfGc4MlJlgyUzx1/ojmU59U0nINRTN
+   an29TtIrkLRndJrMQA328ZwX3YlkXrHJJR45u7yrBH53ZEN32RBwCTO0c
+   YCOahIJaCE5yA0ACHxYczxfnEg2RTbvckPs7VECPq9EgjpZ+FEIdewnmi
+   A==;
+X-CSE-ConnectionGUID: fQvJhT7FQjyAY8OnJotrnQ==
+X-CSE-MsgGUID: 7pgeYI2oQz60jOZrvw7TsQ==
 X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; 
-   d="scan'208";a="48599210"
+   d="scan'208";a="280606607"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2025 06:02:08 -0700
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2025 06:02:19 -0700
 Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
+ chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Mon, 17 Nov 2025 06:01:45 -0700
+ 15.2.2562.29; Mon, 17 Nov 2025 06:01:48 -0700
 Received: from DEN-DL-M31836.microchip.com (10.10.85.11) by
  chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Mon, 17 Nov 2025 06:01:43 -0700
+ 15.1.2507.58 via Frontend Transport; Mon, 17 Nov 2025 06:01:46 -0700
 From: Horatiu Vultur <horatiu.vultur@microchip.com>
 To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
 	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
@@ -65,9 +65,9 @@ To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
 	<romain.sioen@microchip.com>
 CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH 1/2] dt-bindings: arm: at91: add lan966 pcb8385 board
-Date: Mon, 17 Nov 2025 13:57:08 +0100
-Message-ID: <20251117125709.102013-2-horatiu.vultur@microchip.com>
+Subject: [PATCH 2/2] ARM: dts: Add support for pcb8385
+Date: Mon, 17 Nov 2025 13:57:09 +0100
+Message-ID: <20251117125709.102013-3-horatiu.vultur@microchip.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251117125709.102013-1-horatiu.vultur@microchip.com>
 References: <20251117125709.102013-1-horatiu.vultur@microchip.com>
@@ -80,31 +80,173 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Add documentation for Microchip LAN9668 PCB8385
+Add basic support for pcb8385 [1]. It is a modular board which allows
+to add different daughter cards on which there are different PHYs.
+This adds support for UART, LEDs and I2C.
+
+[1] https://www.microchip.com/en-us/development-tool/ev83e85a
 
 Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 ---
- Documentation/devicetree/bindings/arm/atmel-at91.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/microchip/Makefile          |   3 +-
+ .../boot/dts/microchip/lan966x-pcb8385.dts    | 137 ++++++++++++++++++
+ 2 files changed, 139 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/microchip/lan966x-pcb8385.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-index 3a34b7a2e8d4e..68d306d17c2a1 100644
---- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-+++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-@@ -235,9 +235,11 @@ properties:
-           - const: microchip,lan9662
-           - const: microchip,lan966
- 
--      - description: Microchip LAN9668 PCB8290 Evaluation Board.
-+      - description: Microchip LAN9668 Evaluation Board.
-         items:
--          - const: microchip,lan9668-pcb8290
-+          - enum:
-+              - microchip,lan9668-pcb8290
-+              - microchip,lan9668-pcb8385
-           - const: microchip,lan9668
-           - const: microchip,lan966
- 
+diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
+index 79cd38fdc7dab..08986c24a4700 100644
+--- a/arch/arm/boot/dts/microchip/Makefile
++++ b/arch/arm/boot/dts/microchip/Makefile
+@@ -102,4 +102,5 @@ dtb-$(CONFIG_SOC_LAN966) += \
+ 	lan966x-kontron-kswitch-d10-mmt-8g.dtb \
+ 	lan966x-pcb8290.dtb \
+ 	lan966x-pcb8291.dtb \
+-	lan966x-pcb8309.dtb
++	lan966x-pcb8309.dtb \
++	lan966x-pcb8385.dtb
+diff --git a/arch/arm/boot/dts/microchip/lan966x-pcb8385.dts b/arch/arm/boot/dts/microchip/lan966x-pcb8385.dts
+new file mode 100644
+index 0000000000000..f4817cee93436
+--- /dev/null
++++ b/arch/arm/boot/dts/microchip/lan966x-pcb8385.dts
+@@ -0,0 +1,137 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * lan966x-pcb8385.dts - Device Tree file for PCB8385
++ */
++/dts-v1/;
++
++#include "lan966x.dtsi"
++#include "dt-bindings/phy/phy-lan966x-serdes.h"
++
++/ {
++	model = "Microchip EVB - LAN9668";
++	compatible = "microchip,lan9668-pcb8385", "microchip,lan9668", "microchip,lan966";
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	aliases {
++		serial0 = &usart3;
++	};
++
++	gpio-restart {
++		compatible = "gpio-restart";
++		gpios = <&gpio 59 GPIO_ACTIVE_LOW>;
++		open-source;
++		priority = <200>;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-p1-green {
++			label = "cu0:green";
++			gpios = <&sgpio_out 2 0 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++			linux,default-trigger = "e200413c.mdio-mii:01:link";
++		};
++
++		led-p1-yellow {
++			label = "cu0:yellow";
++			gpios = <&sgpio_out 2 1 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++		};
++
++		led-p2-green {
++			label = "cu1:green";
++			gpios = <&sgpio_out 3 0 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++			linux,default-trigger = "e200413c.mdio-mii:02:link";
++		};
++
++		led-p2-yellow {
++			label = "cu1:yellow";
++			gpios = <&sgpio_out 3 1 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++		};
++	};
++};
++
++&aes {
++	status = "disabled"; /* Reserved by secure OS */
++};
++
++&gpio {
++	fc0_b_pins: fc0-b-pins {
++		/* SCL, SDA */
++		pins = "GPIO_25", "GPIO_26";
++		function = "fc0_b";
++	};
++
++	fc3_b_pins: fc3-b-pins {
++		/* RX, TX */
++		pins = "GPIO_52", "GPIO_53";
++		function = "fc3_b";
++	};
++
++	sgpio_a_pins: sgpio-a-pins {
++		/* SCK, D0, D1, LD */
++		pins = "GPIO_32", "GPIO_33", "GPIO_34", "GPIO_35";
++		function = "sgpio_a";
++	};
++};
++
++&flx0 {
++	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
++	status = "okay";
++
++	i2c0: i2c@600 {
++		pinctrl-0 = <&fc0_b_pins>;
++		pinctrl-names = "default";
++		dmas = <0>, <0>;
++		i2c-analog-filter;
++		i2c-digital-filter;
++		i2c-digital-filter-width-ns = <35>;
++		i2c-sda-hold-time-ns = <1500>;
++		status = "okay";
++	};
++};
++
++&flx3 {
++	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
++	status = "okay";
++
++	usart3: serial@200 {
++		pinctrl-0 = <&fc3_b_pins>;
++		pinctrl-names = "default";
++		status = "okay";
++	};
++};
++
++&i2c0 {
++	eeprom@54 {
++		compatible = "atmel,24c01";
++		reg = <0x54>;
++		status = "okay";
++	};
++
++	eeprom@55 {
++		compatible = "atmel,24c01";
++		reg = <0x55>;
++		status = "okay";
++	};
++};
++
++&sgpio {
++	pinctrl-0 = <&sgpio_a_pins>;
++	pinctrl-names = "default";
++	microchip,sgpio-port-ranges = <0 3>;
++	status = "okay";
++
++	gpio@0 {
++		ngpios = <64>;
++	};
++	gpio@1 {
++		ngpios = <64>;
++	};
++};
 -- 
 2.34.1
 
