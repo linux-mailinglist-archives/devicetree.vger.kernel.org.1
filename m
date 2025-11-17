@@ -1,106 +1,204 @@
-Return-Path: <devicetree+bounces-239418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2471C64A1C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:24:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7584AC64A65
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id A21C828B80
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:24:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 233CB28B24
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023B8333737;
-	Mon, 17 Nov 2025 14:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F13830F934;
+	Mon, 17 Nov 2025 14:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Di+l2jkC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s5JNskPz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE85F333727;
-	Mon, 17 Nov 2025 14:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530552AD3D;
+	Mon, 17 Nov 2025 14:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763389483; cv=none; b=GLANglG5+A90vxW/3Kn/XTBTfP/X/eMH3ksflEiu2fNr92roY1GzsxdizaIV0vUemsHfME8EsFP0GZZQajmVZsYpBgAYzKI0ZoNUgeEfVkHQDG/txTRdk7i3BF/yyiAmdw5Jk/yTTG44T9/EyI7vfc5lsf3i37fq+u6VeP4Y5YU=
+	t=1763389941; cv=none; b=nyUcBxChc6j2W80AtLUK57fQn7bRl6D/S5Q7Kpz2iEAX9lH+hotooRlHe5sakPhLnsHmUjq2POPhGCJTuNAZclhO4xBdEQBlcap04ECDJZXzACJZGfFry7NVVVZZbgUBcAjfWKD+WBXGBul4Q/rWjuSUq0Eh3ezS3SDJM0W/iC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763389483; c=relaxed/simple;
-	bh=BDKG7XUa8rnXnpXGUzZd9vrLZaSbarLWWRV5Gl7xd0k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=foByNw4jYW4/hEoSIXGOKhaybEJTLJ3bp6Dzv/vPwNwyDfLy/YnG4SMEldoD1zsT75zySR+ZQoErUJnLbTu85EkOmbdZ91Vbzc0R3xWrEhQHgkm1YD/s9K4lQ3V40yjQbs/GG6+8Y+AYpI3GS3XAOLuIHRjhIwnG0cg6RTfkuTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Di+l2jkC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 347AAC116B1;
-	Mon, 17 Nov 2025 14:24:41 +0000 (UTC)
+	s=arc-20240116; t=1763389941; c=relaxed/simple;
+	bh=LANXfRVYnfSHPCIqoyNMaF8FfXE0qCI6jJc8n7Rhjpc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=grYdzjaFYTSUD5eaIaxbO7dsl0amTAliWYP2uKmeHbYcD+fvW0qafh1MwwTouUU0SvyIJocqq+ZxthHS9FwnYTygPuQn3pkNSnYbAnalg3BWyP8OzoG96mP00KPTkBmz9lLDdAfRW4NXgtKzdao8m//TI0hbYy5aJ8i3Oxiu4o4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s5JNskPz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 369CCC4CEF1;
+	Mon, 17 Nov 2025 14:32:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763389483;
-	bh=BDKG7XUa8rnXnpXGUzZd9vrLZaSbarLWWRV5Gl7xd0k=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Di+l2jkCHPmhuWmywggLQnHetuBxRMnf14nf7l7MMwEJH7G0QGy0Ce80g0jq9hQog
-	 tIY59KpG0T0mrYhGTmqXeM8PB1TKvOkDIQ/bTrIXw77Nkv6rn3HS7I+UZZ0osSb4PO
-	 IxA/A4MCglkJmKIpv9STMXel1vr87VWCO8veWM1ZhHPnkev5kj84CE2j+EaHO+l+/7
-	 tp/As5Sgqa2C76PCkfHL3RWq1wkGCgyVgJjXQMGNomeIKhP8Ijdcm/bIyAZYag9c+/
-	 yyZJOQOTdRPihh/iMHzeEGRTaAnNQLT8DJixrtqpsrtlIpnjbuBU6JLSIqlGmuVDVY
-	 lJNc8jjWwLcFg==
+	s=k20201202; t=1763389940;
+	bh=LANXfRVYnfSHPCIqoyNMaF8FfXE0qCI6jJc8n7Rhjpc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s5JNskPza16XUIobhUjVCNqVUwedvBuQ4CtXaVdnkElJzCstUrXgkdICzz3hNvWlG
+	 RGrpNZJreelsJ37VKEVP/k3ev0TuhEoDOAzTl6AvHODRsxkv1xM9rf0VOH4U5DNKwJ
+	 y2p6VwCVaCcyqCRYMjgqU1UTLgZEsEymmNuRSvb4tVeccXZhy9juNJiQ46mzBXGiim
+	 slfZPO3l8/88p68AjP9qudjB0oADLPX0dIE0RCzZ3y4a7V9oqJWgH/SNSVftVOLGFb
+	 3mZueqawfRjJRRkNGwVQsMIw4EeJ2qsRQDQBpxSCp1ENMdcX4ibcPi5fGRQKeIg16f
+	 dylemcPKpaIrQ==
+Date: Mon, 17 Nov 2025 14:32:16 +0000
 From: Conor Dooley <conor@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: conor@kernel.org,
-	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
+To: "Romli, Khairul Anuar" <khairul.anuar.romli@altera.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v1] dt-bindings: cache: sifive,ccache0: add a pic64gx compatible
-Date: Mon, 17 Nov 2025 14:24:37 +0000
-Message-ID: <20251117-colt-carnival-8aab0a900816@spud>
-X-Mailer: git-send-email 2.51.0
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rao, Mahesh" <mahesh.rao@altera.com>,
+	"Ng, Adrian Ho Yin" <adrian.ho.yin.ng@altera.com>,
+	"Rabara, Niravkumar Laxmidas" <nirav.rabara@altera.com>,
+	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: fpga: stratix10: add support for
+ Agilex5
+Message-ID: <20251117-imprison-upstream-5c80b3a55169@spud>
+References: <cover.1763100984.git.khairul.anuar.romli@altera.com>
+ <c614925ffdc98b1faace3ec9bd7124161b0b60ca.1763100984.git.khairul.anuar.romli@altera.com>
+ <20251114-countless-vantage-6e18528d2e31@spud>
+ <56a3a993-9e54-4468-8774-5ed350948ab5@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1336; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=xVC4naZvJqIKQsdgFTu1CkfEm/T81TARj47gE0EvuZw=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSBqoiD6qv9mknuldP/a5W1aaW8cf68HT7CIdPCeo2K Qdaes06SlkYxLgYZMUUWRJv97VIrf/jssO55y3MHFYmkCEMXJwCMJGanwz/M63zJwp077leVNhy 0DT/0nQX4enO+tMrPq/7rPSWIcSAk5HhTPRf86tJ9ffXX5q11Fd44RWOa0H8p970FWUYv/ypl6b PBwA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vWSTtIgt5V1L6ShY"
+Content-Disposition: inline
+In-Reply-To: <56a3a993-9e54-4468-8774-5ed350948ab5@altera.com>
 
-From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-The pic64gx use the same IP than mpfs, therefore add compatibility with
-mpfs as fallback.
+--vWSTtIgt5V1L6ShY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-CC: Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Paul Walmsley <pjw@kernel.org>
-CC: Samuel Holland <samuel.holland@sifive.com>
-CC: devicetree@vger.kernel.org
-CC: linux-riscv@lists.infradead.org
-CC: linux-kernel@vger.kernel.org
- Documentation/devicetree/bindings/cache/sifive,ccache0.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+On Mon, Nov 17, 2025 at 03:02:11AM +0000, Romli, Khairul Anuar wrote:
+> On 15/11/2025 1:59 am, Conor Dooley wrote:
+> > On Fri, Nov 14, 2025 at 02:27:41PM +0800, Khairul Anuar Romli wrote:
+> >> Agilex5 introduces changes in how reserved memory is mapped and access=
+ed
+> >> compared to previous SoC generations. Agilex5 compatible allows strati=
+x10-
+> >> FPGA manager driver to handle these changes.
+> >>
+> >> Fallback is added for driver probe and init that rely on matching of t=
+able
+> >> and DT node.
+> >>
+> >> Reviewed-by: Xu Yilun <yilun.xu@intel.com>
+> >> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+> >> ---
+> >> Changes in v3:
+> >> 	- Add description for Agilex5 Device
+> >> 	- Add and define fallback to "intel,agilex-soc-fpga-mgr"
+> >> 	- Validate against Agilex and Stratix10 (non-fallback) and Agilex5
+> >> 	  (fallback)
+> >> Changes in v2:
+> >> 	- No changes in this patch
+> >> ---
+> >>   .../fpga/intel,stratix10-soc-fpga-mgr.yaml         | 14 +++++++++++-=
+--
+> >>   1 file changed, 11 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/fpga/intel,stratix10-so=
+c-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/intel,stratix10-so=
+c-fpga-mgr.yaml
+> >> index 6e536d6b28a9..8eb414163d08 100644
+> >> --- a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-=
+mgr.yaml
+> >> +++ b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-=
+mgr.yaml
+> >> @@ -20,9 +20,17 @@ description:
+> >>  =20
+> >>   properties:
+> >>     compatible:
+> >> -    enum:
+> >> -      - intel,stratix10-soc-fpga-mgr
+> >> -      - intel,agilex-soc-fpga-mgr
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - enum:
+> >=20
+> > This construct is redundant, "items: - enum" is the same as just having
+> > "enum".
+> > pw-bot: changes-requested
+> >=20
+> I've tried to look for some of the already merged bindings i.e=20
+> arm/qcom.yaml (although all the properties has enum - constant=20
+> combination), it is using items with enum. I tried to keep the enum witho=
+ut
+> items but I keep getting error while validating the changes.
 
-diff --git a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-index 579bacb66f34..c0e5ebb1fa4c 100644
---- a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-+++ b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-@@ -48,6 +48,11 @@ properties:
-           - const: microchip,mpfs-ccache
-           - const: sifive,fu540-c000-ccache
-           - const: cache
-+      - items:
-+          - const: microchip,pic64gx-ccache
-+          - const: microchip,mpfs-ccache
-+          - const: sifive,fu540-c000-ccache
-+          - const: cache
- 
-   cache-block-size:
-     const: 64
--- 
-2.51.0
+I literally told you what to change, so I don't know why you didn't just
+do that. Replacing "items: - enum" with "enum" is what you need to do.
+You didn't even include the error you got, so I cannot help you with
+that at all, nor even if you did what I told you to do.
 
+> Another option that I've validated is using the following changes.
+>=20
+> -    enum:
+> -      - intel,stratix10-soc-fpga-mgr
+> -      - intel,agilex-soc-fpga-mgr
+> +    oneOf:
+> +      - description: Intel Stratix10 Devices
+> +        items:
+> +          - const: intel,stratix10-soc-fpga-mgr
+
+These just have the same problem as your original patch.
+"items: - const" is just the same as "const".
+Since item "items" properties do not do anything other than bloat the
+schema.
+
+> +      - description: Intel Agilex Devices
+> +        items:
+> +          - const: intel,agilex-soc-fpga-mgr
+> +      - description: Intel Agilex5 Devices
+> +        items:
+> +          - const: intel,agilex5-soc-fpga-mgr
+> +          - const: intel,agilex-soc-fpga-mgr
+>=20
+> The drawback of this is we will need to implement enum instead of=20
+> constant for first element if we need to add new devices under "Intel=20
+> Agilex5 Devices" in the future.
+>=20
+> Thanks.
+>=20
+> Best Regards,
+> Khairul
+>=20
+> >> +              - intel,stratix10-soc-fpga-mgr
+> >> +              - intel,agilex-soc-fpga-mgr
+> >> +
+> >> +      - description: Agilex5 Device
+> >> +        items:
+> >> +          - enum:
+> >> +              - intel,agilex5-soc-fpga-mgr
+> >> +          - const: intel,agilex-soc-fpga-mgr
+> >>  =20
+> >>   required:
+> >>     - compatible
+> >> --=20
+> >> 2.43.7
+> >>
+>=20
+
+--vWSTtIgt5V1L6ShY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRsx8AAKCRB4tDGHoIJi
+0o/fAQC96syge6k9COKhf2Lgn18Htaorsawx/aZAzKUlhSm1rAEAjKBPMYcMLogL
+QQrz9erbEsoQzQZXvtZ6OuDlw5nP8Ac=
+=fCSq
+-----END PGP SIGNATURE-----
+
+--vWSTtIgt5V1L6ShY--
 
