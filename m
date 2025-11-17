@@ -1,166 +1,234 @@
-Return-Path: <devicetree+bounces-239400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05552C64847
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:58:53 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB845C648AC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:04:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18AF23B0C8E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:54:51 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CD9CB348080
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:55:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8317334C05;
-	Mon, 17 Nov 2025 13:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B94334C10;
+	Mon, 17 Nov 2025 13:50:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PX/4W7hA";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HsYVMytP"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SbwR21Qj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A553346B2
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 13:50:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44566333437;
+	Mon, 17 Nov 2025 13:50:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763387434; cv=none; b=qDuEZgRVSMO9syi07qASUP0Qm7ZcuWQbJxgMHiCXKGvewRac1TPrkKvCRBCmtuvC3u+E9jQlvh0WdzLfibjDWJ1qWDc16oyW+w3dcTFRBY5gHyZbyztpBdy9j1LZlH0tFRPaN8pWzu8EiPSMWtOVUZODNob43L4jW3BFEAwsBrU=
+	t=1763387447; cv=none; b=OXB+BMLngMkPApdNFYQYOP4TXs5GQOHWxcpP7xAamJvxSi1Z4ayIdsKJ3sZU7SErdOJSanZ1XwZkFyvEuV8Wx6CWNiLFA7wFHGe/Tgwpr6yQM//GUt7mOlTq8nbFs0n1eByjmODWGNAJSBL/JOLNZLS626YMUR8IQynUelmTgOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763387434; c=relaxed/simple;
-	bh=HMlQVCG+R/tnnr+eT5WRAPtdgzvwu0W9zCEs98XyUEg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q0VRhxczRsF4L4EXItWMQDInoZHZ/mPg50zNUGfOurtFR7LiV8BPK9iaruWagc7D+NSCaZqoMWIhSgX8pOpxBVhqP8JvQ8RKYEKOnyJApL41e9f1150z7Znh4GhERimwS60S6cBxceeuUeMscIhP/I0nj9/IuEds8g0gmiBaHow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PX/4W7hA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HsYVMytP; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AHB2TfM3916549
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 13:50:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lvFEnQh6WsbJ0vLH7CsfSNA/lxJzrUa4BNt4cTrgzrI=; b=PX/4W7hAtb+NmP/D
-	DuKug9m3Hm2yU5s33kJxoCkoHR+wh4b2+g2xeel9Vp8mSn/tnzO08ay1ox7AWX4b
-	op5msKi8sACXc04FaBX+et7RscbNqkUsgc0kVoPv4xm4F3j955+UI2g9ys5qiJrz
-	i6HpXnza7//Q2ljkAQmMI1GaEaBbAwOyFly4a+J9C9FTwLzLypcnGPKwQqltp/Zh
-	vHlMW/OOdAdpdIdMxW0KraDuuaOAuVvwoZnMDG5mX1gC/0GWhYh7CA7hLzr9YEIa
-	kZBEDZzoqPzNJBaoUVT5XEBU0wacRjkDwv+VCLO34LVUq9ZYEph1iyfSMttbHNRb
-	2mLvcQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ag2fx8ev1-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 13:50:31 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ee07f794fcso6431821cf.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 05:50:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763387431; x=1763992231; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lvFEnQh6WsbJ0vLH7CsfSNA/lxJzrUa4BNt4cTrgzrI=;
-        b=HsYVMytPbDWU7NJABX1L3R3/n+232vzkVn3pPOmSTBkPvYr8+jZ91cZLNZSI5CiDwB
-         L7401l/ZQnDRN0+dWw3kCgQ6NhqgXR0lOmsTJ0IWTZo/OjWNohjxCrFYSUuUVY5dfy/t
-         08yzUgl7xy1JcquZolg7oh2HawWGOJ3w4bye7ewysXLJp9nV/jdl319+TQD/T4YZ+KYR
-         g+JrSRJIDv+UohqMMWBvYq/0hwCZFTPGz2IRHanEt1I/g6eP89UoZ/WZseu6nINX6TI3
-         18buLb4HBw6nsY2CUlU8JJgl8Jq3dXqmYysG7NFA3ZSpY2ZKNEynGznkiBilL5bgBKX0
-         3u6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763387431; x=1763992231;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lvFEnQh6WsbJ0vLH7CsfSNA/lxJzrUa4BNt4cTrgzrI=;
-        b=frQtV9//Lx4vL6qz6+DsG7Lh+gpzXnY6gMbqGF84Bpyn+ETWaAMQ5TojUU9g8ysISn
-         y+Eq18fLv3ndgJEYKBI6UNJo8UAFX3UgLab2ZsGVUcLzXmi0eFTRJBG8mwwtnAS4XfH9
-         GScuSptfbC7XASMTo0eyMVg2HxxFGnj7a5aMqFqO/Vc83Wo73CYLSWfVbnrQf7H/hvoa
-         WQkx/bwOLBoPUccJkge1FZBL7uUosTvpSAmWNgT6cnxM0PLe+dJHaokrgvhmxnedsVs2
-         EZ6CxOUa2KqsYgnoUG4Hbl/ixFhmJKc/6ZPNDUQyj/SER0dnxt2uT8EzCf+qJvXclMpP
-         GQxA==
-X-Forwarded-Encrypted: i=1; AJvYcCWFRy0+wmv7tXSDKQrH/jyBMp9628IjkVF3NRKbkGYFPobmInjrrGenVk8PfVJo/qc4HtyzflI3GlGp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyvQbAkH48Ru3LQYFji686UeG4s8D7qeIeE/e2p6abDDTMvOKA
-	KMwveGHuVbSJKO0i1K0kZJRh6GHXQ20bPeqnxBqw097inNY/9Ori/xMrRdr2VNX2TfMUCrdFtLI
-	2vRPdTX9OxdDNlPeRdI1lPwr1L9+/DlN+cYYAhubndfDb9xi8MwlQMIcZXac5fS1G
-X-Gm-Gg: ASbGncuD/rpGnzFtmEg8fGPGzuoWScW9OpkvWALYw+y5450WjqAFgo+WDvXOfw12Wo5
-	FIrRYmLSHgLOyYCk4WpMsG/eTCYdGsk+IdfJ/FIfXXWjPYZPp4ZUbnhS/J+R+a14aPbAZwxbZbo
-	AHZaJOvp6NVqqh5a+3s/5UpnA0ijRHA4GLXwLKEqoye7HWr7L2E5oxYdSa22vRSJD/cNSVSMLd6
-	GRyPEB5MLXClKU+KFHFEYFe1cQtLLQM21Z0+vy6mLUhkFm54ztr2cPgBVZdT8aLG3bcwf6pC+NW
-	+WnUAWIN7ulqK9mOBmxm6lv4c5pY8WEmIGtFlwR7Y0C3jo0jKlB9TTKJtDKcPtqfXha+KWV5/Eu
-	lgPIznGxdJcU6Y1MardkmbOXl6EKUalrPMNuEBU97lWpRvCwwU1N4owpJ
-X-Received: by 2002:a05:622a:649:b0:4ee:2bff:2d5b with SMTP id d75a77b69052e-4ee2bff3fa9mr6241241cf.5.1763387431324;
-        Mon, 17 Nov 2025 05:50:31 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGjWmYBibGGO4VVkCRYHGaDX2kTPI8sZqYMgUjVxzQ8jb1+nJYy1qhnAgJV28u9l3nhMUCv5g==
-X-Received: by 2002:a05:622a:649:b0:4ee:2bff:2d5b with SMTP id d75a77b69052e-4ee2bff3fa9mr6240961cf.5.1763387430883;
-        Mon, 17 Nov 2025 05:50:30 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6433a2d746bsm10153800a12.0.2025.11.17.05.50.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Nov 2025 05:50:30 -0800 (PST)
-Message-ID: <8e3c5d46-1d59-4636-87ad-e3d39e66bd9d@oss.qualcomm.com>
-Date: Mon, 17 Nov 2025 14:50:27 +0100
+	s=arc-20240116; t=1763387447; c=relaxed/simple;
+	bh=kZPqi0k0MGFfxWKAZ65XVPpcfPk/d6isOabL0EwpwQ4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=mq0CArjxMLl2zp3lkgl+LSSipQTB6fFng08zkmPP0hp0e79y1xOrEiyZEEyQ1Wk6+/6DbFEEDnwT+yEavd/Xv5qyki2LcJVpnE+PyX5jJ58okZeZ0VTtz4sZHnh01CDC2lihJXE/6IXdhJRJw+ftt4vtjSlFf0A7yZ2aCCUGijE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SbwR21Qj; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763387443;
+	bh=kZPqi0k0MGFfxWKAZ65XVPpcfPk/d6isOabL0EwpwQ4=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=SbwR21QjXr8ute5gjB2cDaqhN10GkLocN2bq79QQB4J+4F7t5MZBMsla1cGbpoyFn
+	 mBm1CgzzNt9q31pO6dBSPVFqapt0WE+RORWAdXQ9jWTu/9175UIgFvjoSN6eWFCmUT
+	 yU1Iqj7YXdp7ZRbJ01NNfNHBw1wj+ReVwu70rYDqU2lcHz5ZAydXio+zZvuRQ8L5Wz
+	 zRtQyadV1BcOwEplo2DdO3ipILoGztiOtBle1sV7oGOU6Tcg2yNP0jSbZCYPdNHNMT
+	 oEGHmJCWHSGgXNUxroxZqB1UEfaugSnOM/MPE4hDzSR34YHk/oHbzZj5X+xogvengs
+	 NtwFtq5zehe4w==
+Received: from [IPv6:2606:6d00:17:7b4b::5ac] (unknown [IPv6:2606:6d00:17:7b4b::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CDE9C17E0B85;
+	Mon, 17 Nov 2025 14:50:40 +0100 (CET)
+Message-ID: <511f43bd76f48730900207403b90566d7e6c4f07.camel@collabora.com>
+Subject: Re: [PATCH v5 5/8] media: mediatek: vcodec: fix vp9 4096x2176 fail
+ for profile2
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu =?UTF-8?Q?=28=E5=90=B4=E6=99=97=29?= <Kyrie.Wu@mediatek.com>, 
+ "linux-kernel@vger.kernel.org"	 <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org"	 <linux-mediatek@lists.infradead.org>,
+ George Sun =?UTF-8?Q?=28=E5=AD=99=E6=9E=97=29?=	 <George.Sun@mediatek.com>,
+ Tiffany Lin =?UTF-8?Q?=28=E6=9E=97=E6=85=A7=E7=8F=8A=29?=	
+ <tiffany.lin@mediatek.com>, "nhebert@chromium.org" <nhebert@chromium.org>, 
+ "linux-media@vger.kernel.org"	 <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org"	 <devicetree@vger.kernel.org>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,  "hverkuil@xs4all.nl"	
+ <hverkuil@xs4all.nl>, Yunfei Dong
+ =?UTF-8?Q?=28=E8=91=A3=E4=BA=91=E9=A3=9E=29?=	 <Yunfei.Dong@mediatek.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,  Irui Wang
+ =?UTF-8?Q?=28=E7=8E=8B=E7=91=9E=29?=	 <Irui.Wang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>, 
+ "linux-arm-kernel@lists.infradead.org"	
+ <linux-arm-kernel@lists.infradead.org>, Yilong Zhou
+ =?UTF-8?Q?=28=E5=91=A8=E6=98=93=E9=BE=99=29?=	 <Yilong.Zhou@mediatek.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,  "krzk+dt@kernel.org"	
+ <krzk+dt@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>, Andrew-CT Chen
+ =?UTF-8?Q?=28=E9=99=B3=E6=99=BA=E8=BF=AA=29?=	
+ <Andrew-CT.Chen@mediatek.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>
+Cc: "andrzejtp2010@gmail.com" <andrzejtp2010@gmail.com>, 
+ "neil.armstrong@linaro.org"
+	 <neil.armstrong@linaro.org>
+Date: Mon, 17 Nov 2025 08:50:39 -0500
+In-Reply-To: <dea9519e6b72c12ea15760fc3bd7c7746dbfd5de.camel@mediatek.com>
+References: <20251106061323.2193-1-kyrie.wu@mediatek.com>
+		 <20251106061323.2193-6-kyrie.wu@mediatek.com>
+		 <bd2f63265df829ec9bb3498c83126827415c2ebf.camel@collabora.com>
+	 <dea9519e6b72c12ea15760fc3bd7c7746dbfd5de.camel@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-6tSADsOpIKtvYSE7Vx5O"
+User-Agent: Evolution 3.58.1 (3.58.1-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: hamoa-iot-evk: enable pwm rg leds
-To: Tingguo Cheng <tingguoc@hu-tingguoc-lv.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>, kernel@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
-        Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-References: <20251114-add-rgb-led-for-hamoa-iot-evk-v3-1-5df1fcd68374@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251114-add-rgb-led-for-hamoa-iot-evk-v3-1-5df1fcd68374@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+
+
+--=-6tSADsOpIKtvYSE7Vx5O
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+
+Hi Kyrie,
+
+make sure to reply in plain text, I know the mailing list may drop messaged=
+ in HTML form.
+
+Le lundi 17 novembre 2025 =C3=A0 07:36 +0000, Kyrie Wu (=E5=90=B4=E6=99=97)=
+ a =C3=A9crit=C2=A0:
+>=20
+> On Thu, 2025-11-06 at 10:17 -0500, Nicolas Dufresne wrote:
+> > Hi,
+> >=20
+> > Le jeudi 06 novembre 2025 =C3=A0 14:13 +0800, Kyrie Wu a =C3=A9crit :
+> > > The dram addr of vp9 decoder tile number, which use dram mode
+> > > to set tile information, may reach to 36bits for 4096x2176.
+> > > It needs to get the highest 4bit of tile buffer address to
+> > > set tile buffer address.
+> >=20
+> > An after thought, I don't see any call to
+> > vb2_dma_contig_set_max_seg_size() or
+> > dma_set_coherent_mask() with DMA_BIT_MASK(32)/DMA_BIT_MASK(36) in
+> > this driver.
+> > How do you control this ?
+> >=20
+> > Nicolas
+>=20
+> Dear Nicolas,
+>=20
+> The tile buffer is handled in VCP, not in kernel driver. We only
+> get the full correct address in kernel.
+
+Thank you, I could not figure-out otherwise.
+
+Nicolas
+
+>=20
+> Thanks.
+>=20
+> Regards,
+> Kyrie
+> >=20
+> > >=20
+> > > Fixes: 5d418351ca8f1 ("media: mediatek: vcodec: support stateless
+> > > VP9
+> > > decoding")
+> > >=20
+> > > Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> > > Reviewed-by: AngeloGioacchino Del Regno
+> > > <angelogioacchino.delregno@collabora.com>
+> > > ---
+> > > =C2=A0.../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c       | =
+5
+> > > ++++-
+> > > =C2=A01 file changed, 4 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git
+> > > a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
+> > > lat_if.c
+> > > b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
+> > > lat_if.c
+> > > index d966914db4b9..91c563c049bd 100644
+> > > ---
+> > > a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
+> > > lat_if.c
+> > > +++
+> > > b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
+> > > lat_if.c
+> > > @@ -1156,7 +1156,10 @@ static int
+> > > vdec_vp9_slice_setup_tile_buffer(struct
+> > > vdec_vp9_slice_instance *inst
+> > > =C2=A0tiles->size[i][j] =3D size;
+> > > =C2=A0if (tiles->mi_rows[i]) {
+> > > =C2=A0*tb++ =3D (size << 3) + ((offset << 3) &
+> > > 0x7f);
+> > > -*tb++ =3D pa & ~0xf;
+> > > +*tb =3D pa & ~0xf;
+> > > +if
+> > > (IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT))
+> > > +*tb |=3D (pa >> 32) & 0xf;
+> > > +tb++;
+> > > =C2=A0*tb++ =3D (pa << 3) & 0x7f;
+> > > =C2=A0mi_row =3D (tiles->mi_rows[i] - 1) &
+> > > 0x1ff;
+> > > =C2=A0mi_col =3D (tiles->mi_cols[j] - 1) &
+> > > 0x3f;
+>=20
+> ************* MEDIATEK Confidentiality Notice
+> =C2=A0********************
+> The information contained in this e-mail message (including any=20
+> attachments) may be confidential, proprietary, privileged, or otherwise
+> exempt from disclosure under applicable laws. It is intended to be=20
+> conveyed only to the designated recipient(s). Any use, dissemination,=20
+> distribution, printing, retaining or copying of this e-mail (including it=
+s=20
+> attachments) by unintended recipient(s) is strictly prohibited and may=
+=20
+> be unlawful. If you are not an intended recipient of this e-mail, or beli=
+eve
+> =C2=A0
+> that you have received this e-mail in error, please notify the sender=20
+> immediately (by replying to this e-mail), delete any and all copies of=
+=20
+> this e-mail (including any attachments) from your system, and do not
+> disclose the content of this e-mail to any other person. Thank you!
+
+--=-6tSADsOpIKtvYSE7Vx5O
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 1RJLMNbsN6W1A0gMOeYYOWvN6lkLlVF_
-X-Authority-Analysis: v=2.4 cv=EIELElZC c=1 sm=1 tr=0 ts=691b2827 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=4KYP6g0EmVGi8g6oHDgA:9
- a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: 1RJLMNbsN6W1A0gMOeYYOWvN6lkLlVF_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE3MDExNyBTYWx0ZWRfX4/o5Zbgb5LCQ
- 1rV1w7wtGFcrJKIjqeiu6cylnCVeYQopU4Hq0743eWtYFmeaBgYM8zNACgLZdZ2XnJXgYJ4Ncwh
- 676cO7LIWuvFZzUFJj4ZTmCnrLRD89N9xdfaUXDtfBmBosj6xTKqxMYfiqAfg/TfPQ2P66wZwxD
- jDZPP7e6D5Wl9SfSo4ReQH2YKOLmGiik6+p0+aU16kehreN3BGbNJ3prrSu3cq3fTplyGYD8alk
- 7pnNxLVe1lk+ORayvPSLwLnvEAHyIDgADz7zR6pRqYTdExQpqL8ejldMw1hjjK4uQIXkVRS5AkD
- KaOtT42vC+1bFKkJ1n4mQAnH/Yl/rR27s+1gKim0segDzQUgxR4KxzNDPxVYpkgs6yYtcYGnZ4O
- tlKJdBpexSdX7DiYuweXZUC11+UHrA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-17_03,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 spamscore=0 bulkscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 impostorscore=0 adultscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511170117
 
-On 11/14/25 9:13 AM, 'Tingguo Cheng' via kernel wrote:
-> From: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
-> 
-> Add RED and GREEN LED channels for the RGB device connected to PMC8380C
-> PWM-LED pins. Omit BLUE channel to match default hardware setup where
-> it's tied to EDL indicator.
-> 
-> Signed-off-by: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
-> ---
-> Changes in v3:
-> - Rebased on next-20251113.
-> - Validated the function based on the patch "[PATCH] leds: rgb: leds-qcom-lpg: Allow LED_COLOR_ID_MULTI".
+-----BEGIN PGP SIGNATURE-----
 
-I sent the patch now, thanks
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaRsoLwAKCRDZQZRRKWBy
+9FEEAP0QmN9fJMwFd/HLagqwIalTR2GPmwLUWA8dX94WrKm9ewEAypyL1RO/CPwW
+/H199X9i5A2iH2yPuMNCmEkyJtON5AQ=
+=1SZz
+-----END PGP SIGNATURE-----
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+--=-6tSADsOpIKtvYSE7Vx5O--
 
