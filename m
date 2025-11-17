@@ -1,259 +1,178 @@
-Return-Path: <devicetree+bounces-239157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B793C62033
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 02:39:27 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98E47C620A1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 02:59:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C638A3AF53F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 01:39:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 428934E5321
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 01:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30AE23D28C;
-	Mon, 17 Nov 2025 01:39:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="M0Whx/IN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D02236A73;
+	Mon, 17 Nov 2025 01:59:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973174.qiye.163.com (mail-m1973174.qiye.163.com [220.197.31.74])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022097.outbound.protection.outlook.com [52.101.126.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620801E4AB;
-	Mon, 17 Nov 2025 01:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.74
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763343562; cv=none; b=UhSRX51lTEI6O2V/K81ydd3/RKRnz9uUrysHgkrs6jhm1fr9OOxgJr8QGaqYQyXkJe25cSXu3wx9l7ich9Y92YFT+fpeAUufFUbHv78PKA+YlfrHef0dN2/QfOb9E7WCavn553alFvlFaHgRzQBAFyBfQbmw74qaZxFEHf/d3mk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763343562; c=relaxed/simple;
-	bh=zM0A38nTuhzZLgRcTavee+tBcGhwLywXAPDLdT9sMh4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n801OWo8nXP1vo0kBFPFN7hJCgU7ge7sEa7edlFGgnKTO5ROgTMubnTKWaqfCZNrvF0V8UWJWh7iSuHU/59dnARx9zk8ibQTHVa4eAFqjs1CZJTPtXwejkSs+bucHrgcahymIS7vRFNh3dwfYTPstYS/QWXyBHpc74JeMY+Dk/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=M0Whx/IN; arc=none smtp.client-ip=220.197.31.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 29c3ce0df;
-	Mon, 17 Nov 2025 09:33:59 +0800 (GMT+08:00)
-Message-ID: <2ebace6f-d3c4-4516-b6cb-4951de06b6c8@rock-chips.com>
-Date: Mon, 17 Nov 2025 09:33:55 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC2F1FA272;
+	Mon, 17 Nov 2025 01:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763344792; cv=fail; b=nmHptXz1cAM9iztiPQwlwKOLpRbjnh7HTDeu827iH1k2CVdg7WYjFTma800uI0U/wqY4tgh4oMclicB5RfHMe3EgY7Lrj55CXYCG7a20WQ5nAZNKkRobSXsidFa5BUZBVOxmYAqCyns/l5+7vxErqAYSShGjOlLLJh+Vw4lBi5A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763344792; c=relaxed/simple;
+	bh=4iJmhO9rtjxtaVbnlKp6CC6mizQyz2vmxFeOXwolYLw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=YHNvd3oY9ZeUk4cVKvDMsWmrJ0v4xeIctMzv4IGuhLu0L7T/Fy1zSsiN9cn0+iI+arQAT6V0QrF03YKXKXCO6WzWFup55P8+RLjwqZ4xB1P0/ENax8cYyd/Na97NO91g3e4rUEihN0VIeVYeYFo3y3MfqU7zARMThE6uHbztIMc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PC989Sh1wnnGbw2sExVDAL7GO6vEkxJQhF9UK1AwMiq/7q5ZJohRTMVs1X2yMdffN39Z04bSs/hDh9qNIpH0OCsajcpnxoaDdGDL1kN63YAwCE23ukRXNdWHZMhVnIjnj6Nne0K576h3B6ibJeNaB4K9NJKnUw2ZJEJ7guglCJXZdg07pQKqVmZHuHYPkS/IfWAPMiDzoBsjXmhzKkwNKM5SXMF0f9Zc390z3Y1dYDe64WWLnEuXzVvP/VRNXTqdqS57YfGfq8WVHTgPKlusmTefePs+QdSq0/+wOOR3nisoG0nL7H3wzdMyCCbotU+txJhJrIltMZqFzIiODkaFlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=k0Jnp8Tew0Wm2+7Bj11kGT0P+edv2iluYdvTgz7Jr88=;
+ b=mV8ixYfs/y8b6d2XMLaJvrtc3707HTIeE3X9fJan4kASomx+u7fPaC6W81AMnXB8PY8Ly3CynRiwENfqR2liiWG6OZzlXNGeV0Q/uoSSFU4NQ5NEDX4P15X7fuU1kBXx24FP8sgPZpk+AyLByqvQb9LnJpGwjl72hNU3qIHeNqWFxqMOSccseQoBOxuLNtQwFEJOM30i6FjdUHOuh1G+DOXaIzCDkm9d+Qw58laPlNIJ3hVidFRSZRQleEhyauJ51ZjQmapaYDxOuZtxEU86pzmAfpaDJW1xmqeaWFwyHp/yAkNoL/H4py1znqwg4kal1WcTuFee91E43Mv9Ft3V1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI1PR02CA0052.apcprd02.prod.outlook.com (2603:1096:4:1f5::20)
+ by TYSPR06MB6469.apcprd06.prod.outlook.com (2603:1096:400:482::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.21; Mon, 17 Nov
+ 2025 01:59:45 +0000
+Received: from SG2PEPF000B66CD.apcprd03.prod.outlook.com
+ (2603:1096:4:1f5:cafe::55) by SI1PR02CA0052.outlook.office365.com
+ (2603:1096:4:1f5::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.21 via Frontend Transport; Mon,
+ 17 Nov 2025 01:59:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66CD.mail.protection.outlook.com (10.167.240.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.9 via Frontend Transport; Mon, 17 Nov 2025 01:59:44 +0000
+Received: from guoo-System-Product-Name.. (unknown [172.20.64.188])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id CDA9B41C0143;
+	Mon, 17 Nov 2025 09:59:43 +0800 (CST)
+From: Jun Guo <jun.guo@cixtech.com>
+To: peter.chen@cixtech.com,
+	fugang.duan@cixtech.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	vkoul@kernel.org,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	robin.murphy@arm.com
+Cc: dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	linux-arm-kernel@lists.infradead.org,
+	Jun Guo <jun.guo@cixtech.com>
+Subject: [PATCH 0/3] dmaengine: arm-dma350: add support for shared interrupt mode
+Date: Mon, 17 Nov 2025 09:59:40 +0800
+Message-Id: <20251117015943.2858-1-jun.guo@cixtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 08/10] drm/rockchip: cdn-dp: Add multiple bridges to
- support PHY port selection
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Chaoyi Chen
- <kernel@airkyi.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20251111105040.94-1-kernel@airkyi.com>
- <20251111105040.94-9-kernel@airkyi.com>
- <DE5YP3AVGOG3.OHP68Z0F6KBU@bootlin.com>
- <b1a339e7-a011-4b4b-8988-2e3768753c85@rock-chips.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <b1a339e7-a011-4b4b-8988-2e3768753c85@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9a8f728a9203abkunm7f35530083703a
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGktOGlYYQ04fHUlKSkhNGEhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=M0Whx/IN7vzwWpGNPYw1m+tNCPRjv3SM+gdWc+WtuhKETcY7rThZlrCaxI2fAlhI3391csTS8ehibRh6ex51cQ/r+4YXK3tXX6w3wypz7DSxUZKNiakt6+eBek5O66Hvb28jfRZ1ZP/4biJPialEUbDiHj1QrwZ1mtTGsdG5MX8=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=OCoPxWh+b3eSvtYMRsNlQyefUpu6kD2yKDCWJQ7xR74=;
-	h=date:mime-version:subject:message-id:from;
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CD:EE_|TYSPR06MB6469:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: c4f4b3e9-adf2-4a11-fb8a-08de257cfaf2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|7416014|36860700013|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ZFIYyULzhceYqGp1GSTscazmrRxb0KfxYqw8bMCO/5timJpJGNW3412qRm+b?=
+ =?us-ascii?Q?I/N1KhY3bjY4u83uyGGJfb++DEKfgD3qs0Xbh6wmSa0/UpfswsYAz+vrGIpf?=
+ =?us-ascii?Q?TNl3ShnNfYYC7mUUOIKXawI8BLVONN+8zmKctH9vVf+D0VyCcuztKIa3GdRi?=
+ =?us-ascii?Q?JQFY4lVk8Uk83ZAqBmVOGS+0EW1LBYkepaZxDyvh2wdVLGXD8mJjCPv1CcZX?=
+ =?us-ascii?Q?WYj/3ti86u1Jbhqv1z8KEBTP5gEl3SIXgYOljmp0si473RxSDOklnjwcpwXV?=
+ =?us-ascii?Q?Mr+xaYIeIVzJccs54s+CeIL4h/pdBNNzRwJD5FH8ZJDF0b9v81LBBW4qU6kq?=
+ =?us-ascii?Q?H3D68iDnYkcgnGvWoAgQT0NxAhTwVM2gdmFtf5urf6hRUdL7L2Mv8wMyA9Nd?=
+ =?us-ascii?Q?k1nfCFxRGJBq3rdfa87Zzx+4KblEzOFkNIuReKDin7lwmw+o6N4pbjkCb++e?=
+ =?us-ascii?Q?rIhGjGBOhjS6zVFMNwF0qS8cqynAO/f5LjWQ2JaT4igjBdHNda0lyjZ5Ir07?=
+ =?us-ascii?Q?CmAJXQqV/i20fLCrRGZ401DYVDF/a4oZc+8OpTmTUYnxfo/NEHfFTZKCIXP7?=
+ =?us-ascii?Q?xKS6375ks8+FVAK9I95Z8jl3U908SldvOkMQBBGhm0DT4RWWD9PBS1DCDvU3?=
+ =?us-ascii?Q?6i/lcra0TopzcM/nogtiioh3rInaGR5H276XYksNLXoUZGmT5wjjVxvxHweM?=
+ =?us-ascii?Q?MSaaBEOASym7Fm63o0hzdrZRpB+FHL1SsZ9GDaflGmdo7yHZMuJ+wz2OYLHZ?=
+ =?us-ascii?Q?wygh90yF7OpbLZZR6B9iAyjPaQ5/fEUghjKMEjpU2suF3jNObIF7/2sO4d+X?=
+ =?us-ascii?Q?ap7UhEnHTC6OnsuLl8Eyj5y069hEFRHr1Z45Qy+w9dSmizgcBfv30TovJD+G?=
+ =?us-ascii?Q?f9IAV3nxwCgv2bTYWJhS8SSsC0LHHXIaf4MTbFsnGP2QLlX+mSeCjjEc8Ky0?=
+ =?us-ascii?Q?7xWQbfIDqOsu9qoqB55QN4SoaUM7rhvMZEqy106XCp6d3EY6Dl80xmeC0giF?=
+ =?us-ascii?Q?7PtaWOHspvn/qbLI/DKhNsbC8yvPj8SWpRep+wx9SZFpbYh8oJ3YIsFUHyse?=
+ =?us-ascii?Q?XUATg5A1QDQGm85BepyBQKsO8onW2Hv6z4o5ReD1AhI8Re9iObAnMP1xVGqL?=
+ =?us-ascii?Q?A14m5oSHvB5bDNH6ra2ZuU44F3kbBzDKdwyiwD0ZNmsZ4qhMNpv9kvLyITtX?=
+ =?us-ascii?Q?/pioWuYtX/macCUA1lzeJLzh90lKk5n2c2U3IDA29YVY4gBLYe5TfiiaWrlW?=
+ =?us-ascii?Q?D3YHLSqJght6hMIVeeKJgv3DaxdU4v5tVbRknFETsveGbvBt5nvyz8dstWs4?=
+ =?us-ascii?Q?4TY1YUUz94wyIL+Ua6edITHcZIHmhAHgOOdhEsgVV6/6Jb3Wc2ZAvuReUFwb?=
+ =?us-ascii?Q?Tx9JE+YljT5QDas32PLhZCmwfGEwxDolmfkvx06YhUN+oFHMJSJpEdz20nl2?=
+ =?us-ascii?Q?eQzRvBSbvlDClbQh/cKr2Xjj7IyhRz8YbAEj4j6wDFpNdG8j+hIYUyA6snyB?=
+ =?us-ascii?Q?Mqe8Qq0xLfeqcURayTfyP/vGYB6RmHGPs+bwJ/FBoPJFv2qTXqREOnvFdA7S?=
+ =?us-ascii?Q?Ultjct+tJFqo3p399u0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 01:59:44.7934
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4f4b3e9-adf2-4a11-fb8a-08de257cfaf2
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CD.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6469
 
-Hi Luca,
+The arm dma350 controller's hardware implementation varies: some
+designs dedicate a separate interrupt line for each channel, while
+others have all channels sharing a single interrupt.This patch adds
+support for the hardware design where all DMA channels share a
+single interrupt.
 
-On 11/12/2025 9:37 AM, Chaoyi Chen wrote:
-> Hello Luca,
->
-> On 11/11/2025 11:14 PM, Luca Ceresoli wrote:
->> Hello Chaoyi,
->>
->> On Tue Nov 11, 2025 at 11:50 AM CET, Chaoyi Chen wrote:
->>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>>
->>> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
->>> the CDN-DP can be switched to output to one of the PHYs. If both ports
->>> are plugged into DP, DP will select the first port for output.
->>>
->>> This patch adds support for multiple bridges, enabling users to flexibly
->>> select the output port. For each PHY port, a separate encoder and bridge
->>> are registered.
->>>
->>> The change is based on the DRM AUX HPD bridge, rather than the
->>> extcon approach. This requires the DT to correctly describe the
->>> connections between the first bridge in bridge chain and DP
->>> controller. For example, the bridge chain may be like this:
->>>
->>> PHY aux birdge -> fsa4480 analog audio switch bridge ->
->>> onnn,nb7vpq904m USB reminder bridge -> USB-C controller AUX HPD bridge
->>>
->>> In this case, the connection relationships among the PHY aux bridge
->>> and the DP contorller need to be described in DT.
->>>
->>> In addition, the cdn_dp_parse_next_bridge_dt() will parses it and
->>> determines whether to register one or two bridges.
->>>
->>> Since there is only one DP controller, only one of the PHY ports can
->>> output at a time. The key is how to switch between different PHYs,
->>> which is handled by cdn_dp_switch_port() and cdn_dp_enable().
->>>
->>> There are two cases:
->>>
->>> 1. Neither bridge is enabled. In this case, both bridges can
->>> independently read the EDID, and the PHY port may switch before
->>> reading the EDID.
->>>
->>> 2. One bridge is already enabled. In this case, other bridges are not
->>> allowed to read the EDID. So we will try to return the cached EDID.
->>>
->>> Since the scenario of two ports plug in at the same time is rare,
->>> I don't have a board which support two TypeC connector to test this.
->>> Therefore, I tested forced switching on a single PHY port, as well as
->>> output using a fake PHY port alongside a real PHY port.
->>>
->>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->> [...]
->>
->>> @@ -966,28 +1084,16 @@ static int cdn_dp_pd_event(struct notifier_block *nb,
->>>       return NOTIFY_DONE;
->>>   }
->>>
->>> -static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
->>> +static int cdn_bridge_add(struct device *dev,
->>> +              struct drm_bridge *bridge,
->>> +              struct drm_bridge *next_bridge,
->>> +              struct drm_encoder *encoder)
->>>   {
->>>       struct cdn_dp_device *dp = dev_get_drvdata(dev);
->>> -    struct drm_encoder *encoder;
->>> +    struct drm_device *drm_dev = dp->drm_dev;
->>> +    struct drm_bridge *last_bridge = NULL;
->>>       struct drm_connector *connector;
->>> -    struct cdn_dp_port *port;
->>> -    struct drm_device *drm_dev = data;
->>> -    int ret, i;
->> [...]
->>
->>> +    if (next_bridge) {
->>> +        ret = drm_bridge_attach(encoder, next_bridge, bridge,
->>> +                    DRM_BRIDGE_ATTACH_NO_CONNECTOR);
->>> +        if (ret)
->>> +            return ret;
->>> +
->>> +        last_bridge = next_bridge;
->>> +        while (drm_bridge_get_next_bridge(last_bridge))
->>> +            last_bridge = drm_bridge_get_next_bridge(last_bridge);
->> DRM bridges are now refcounted, and you are not calling drm_bridge_get()
->> and drm_bridge_put() here. But here you can use
->> drm_bridge_chain_get_last_bridge() which will simplify your job.
->>
->> Don't forget to call drm_bridge_put() on the returned bridge when the
->> bridge is not referenced anymore. This should be as easy as adding a
->> cleanup action on the variable declaration above:
->>
->> -    struct drm_bridge *last_bridge = NULL;
->> +    struct drm_bridge *last_bridge __free(drm_bridge_put) = NULL;
->
-> Ah, I have seen your patch about this. Thank you for the reminder, I will fix this in v10.
->
->>
->>> @@ -1029,8 +1147,102 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
->>>           return ret;
->>>       }
->>>
->>> +    if (last_bridge)
->>> +        connector->fwnode = fwnode_handle_get(of_fwnode_handle(last_bridge->of_node));
->>> +
->>>       drm_connector_attach_encoder(connector, encoder);
->>>
->>> +    return 0;
->>> +}
->>> +
->>> +static int cdn_dp_parse_next_bridge_dt(struct cdn_dp_device *dp)
->>> +{
->>> +    struct device_node *np = dp->dev->of_node;
->>> +    struct device_node *port __free(device_node) = of_graph_get_port_by_id(np, 1);
->>> +    struct drm_bridge *bridge;
->>> +    int count = 0;
->>> +    int ret = 0;
->>> +    int i;
->>> +
->>> +    /* If device use extcon, do not use hpd bridge */
->>> +    for (i = 0; i < dp->ports; i++) {
->>> +        if (dp->port[i]->extcon) {
->>> +            dp->bridge_count = 1;
->>> +            return 0;
->>> +        }
->>> +    }
->>> +
->>> +
->>> +    /* One endpoint may correspond to one next bridge. */
->>> +    for_each_of_graph_port_endpoint(port, dp_ep) {
->>> +        struct device_node *next_bridge_node __free(device_node) =
->>> +            of_graph_get_remote_port_parent(dp_ep);
->>> +
->>> +        bridge = of_drm_find_bridge(next_bridge_node);
->>> +        if (!bridge) {
->>> +            ret = -EPROBE_DEFER;
->>> +            goto out;
->>> +        }
->>> +
->>> +        dp->next_bridge_valid = true;
->>> +        dp->next_bridge_list[count].bridge = bridge;
->> You are storing a reference to a drm_bridge, so have to increment the
->> refcount:
->>
->>         dp->next_bridge_list[count].bridge = drm_bridge_get(bridge);
->>                                              ^^^^^^^^^^^^^^
->>
->> FYI there is a plan to replace of_drm_find_bridge() with a function that
->> increases the bridge refcount before returning the bridge, but it's not
->> there yet. When that will happen, the explicit drm_bridge_get() won't be
->> needed anymore and this code can be updated accordingly.
+This series introduces the following enhancements for arm dma350
+controller support on arm64 platforms:
 
-Out of curiosity, I checked the callers of of_drm_find_bridge(), and it seems that the vast majority of them do not pay attention to the increase or decrease of reference counts. Does this mean that even if we add reference counting in of_drm_find_bridge(), we still need to modify the corresponding functions of their callers and decrease the reference count at the appropriate time? Thank you.
+Patch 1: Add a compatible string "cix,sky1-dma-350" for the cix
+sky1 SoC.
+Patch 2: Implement support for the shared interrupt design of the DMA
+controller.
+Patch 3: add DT nodes for DMA.
 
+The patches have been tested on CIX SKY1 platform, the test steps are
+as follows:
+    % echo 2000 > /sys/module/dmatest/parameters/timeout
+    % echo 1 > /sys/module/dmatest/parameters/iterations
+    % echo " " > /sys/module/dmatest/parameters/channel
+    % echo 1 > /sys/module/dmatest/parameters/run
 
->>
->> Also you have to call drm_bridge_put() to release that reference when the
->> pointer goes away. I guess that should happen in cdn_dp_unbind().
->
-> You're right, this is indeed a pitfall. I will fix it in v10.
->
->
+Jun Guo (3):
+  dt-bindings: dma: arm-dma350: update DT binding docs
+  dma: arm-dma350: add support for shared interrupt mode
+  arm64: dts: cix: add DT nodes for DMA
+
+ .../devicetree/bindings/dma/arm,dma-350.yaml  |   6 +-
+ arch/arm64/boot/dts/cix/sky1.dtsi             |   7 ++
+ drivers/dma/arm-dma350.c                      | 115 ++++++++++++++++--
+ 3 files changed, 117 insertions(+), 11 deletions(-)
+
 -- 
-Best,
-Chaoyi
+2.34.1
 
 
