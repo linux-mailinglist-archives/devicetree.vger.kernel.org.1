@@ -1,104 +1,129 @@
-Return-Path: <devicetree+bounces-239174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3925AC6248C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 04:57:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CE22C62539
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 05:33:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5AEBE349C88
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 03:57:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D9613AB481
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 04:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4303530C622;
-	Mon, 17 Nov 2025 03:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD28430B519;
+	Mon, 17 Nov 2025 04:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ReNdiVpe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eS8uyNUd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E09EC22FE11;
-	Mon, 17 Nov 2025 03:57:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CA32EC56E;
+	Mon, 17 Nov 2025 04:32:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763351839; cv=none; b=MCINf/VHnuJIYQ7oD6QsXbRjw+e6mqa5RX/X+wUUS/OVfozzsdtQus7O3Rk9C+RB1xS7DIKfhQBEq1ETUbTRQ4qxtYT9z58nf4aUmsHK9dWltUED+Fi/OkEVk1jASzVhjfX+HFwmO5WKsxE8fyPxOVKvZ+WlmMQMqAntNysFhLQ=
+	t=1763353947; cv=none; b=bJ+F/iOA9ONz0zx3srgWkYYvLPNstKH8VPdzkETR+dNqSJb0JNK5bGpBpv/ShLQMqZAKG3JdWHf//pHXCvJpza8rwGG9LqAmbrgcbrhQLzQjNlJTymRM+IhOi4xGcPJWG6sRwNhoho2rZ7aXEgcSV7fd5xk2fPHjm/nutyXLU1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763351839; c=relaxed/simple;
-	bh=7GAsV4shDMmM/4Cr5HBvJqE82KAZ+Ys+ssRT6rBZE7o=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=DTO/K2bzS1azUhT4cTVD9PUam+CtlAHDAdjm4J1StZtA+Q7c5VRxhjR0LmoyEJLSgp/027uM2qsIioI0ug3U/+Nwngu0Pdf4HbRz7j+wtplZPRoYxNQtLz8+UTi4/itM4dyoa1i6l/t9CYo9bjD95MgUXzPn2JAq7YXwJ5d8ryA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ReNdiVpe; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 8855841196;
-	Mon, 17 Nov 2025 04:57:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1763351834; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=BT04am3Kehc9aOs97jW5wTodqgxSkKf04K5hJUaJPzg=;
-	b=ReNdiVpeKrbgcSVmskmDotomCmwdsUx3+lrrU0N+K8oOwEV3dkiVyZQcohUTzaGNKRKgtk
-	hYQeg1FoGF3ALHk6FnHSjPCylwzuNmoOROB/sIR2JgkwXRLPXXJyUkt5FtZYGs+l++rLVv
-	j27F0p/AQ+LZm5JvqnMmp5we99oF8L1vBwyYj3OerttrRhPqqNq28yIBRY7ClbHIy/yamE
-	lR4bThz0szV2dhvXjmty4JyC/IAItlWzSNa3kC+Md03xB4Z+TEZSUL5NgqEoLHZzudlAPP
-	3yKvBIVIkDFCwAh8mhmlshQ5zUoBjFMjc8AkyMspHhP18woVqWhU4LspaHFCRQ==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <8f3cc1c1-7bf7-4610-b7ce-79ebd6f05a6e@rock-chips.com>
+	s=arc-20240116; t=1763353947; c=relaxed/simple;
+	bh=HL6MeUGnbH+gyiyOSqBbks00vNfOL44P0gMp+dpGVxk=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=K0VndwGIaHGkHnsPAtxjl6Ec1P5RCiudDsl//uceuL6at37dJieFaG/NkCl/fyx81VKUnqr7qYrS0WVi1FP+ZTVj4Hax6yRQe9Eu7O2RT6SwJegMF4gUyjnUtUhBpxaKtIPwBkTWw1oXWq30CK3BjJfnIZwXAaPET2dhwZZ9woM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eS8uyNUd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C383C4CEF5;
+	Mon, 17 Nov 2025 04:32:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763353947;
+	bh=HL6MeUGnbH+gyiyOSqBbks00vNfOL44P0gMp+dpGVxk=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=eS8uyNUdvX+Eb9FUkupN5W9tMTE4VtZXmnOBnD1FAxPktA7J8tjfmrRa18EQr7Axr
+	 M0qb9yn8mZicfgAEbhaLP2G92N8qKf3jqHVbV2G3hHlJFfjvVamIc/QUBiiSVv3n19
+	 rfjWTmGsyv4p/SyiZ5L2PBF7iBjgHG/HkxvThyRBeTaLa41N+6cmR7kSo6qHbZkKtB
+	 CGECLvha9J0avRzEC1UU1+Oy+R9KHcUVW+kywJsXcDYXJeQZkYFHzwx3wDDnmE5eTc
+	 dggKcVI/FJj8MKL3ut5dYjx6m0QJ6805S2oJHpNeV/HXuN1W6f9GO8E1LDZ42j9TU2
+	 zHfv9Zrirsbyw==
+Date: Sun, 16 Nov 2025 22:32:25 -0600
 Content-Type: text/plain; charset="utf-8"
-References: <cover.1763197368.git.geraldogabriel@gmail.com> <8f3cc1c1-7bf7-4610-b7ce-79ebd6f05a6e@rock-chips.com>
-Date: Mon, 17 Nov 2025 04:57:11 +0100
-Cc: "Geraldo Nascimento" <geraldogabriel@gmail.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan Sadhasivam" <mani@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Johan Jonker" <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org
-To: "Shawn Lin" <shawn.lin@rock-chips.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <257951b7-c22e-9707-6aba-3dc5794306bb@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH 0/3] =?utf-8?q?PCI=3A?==?utf-8?q?_rockchip=3A?=
- =?utf-8?q?_5=2E0?= GT/s speed may be dangerous
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: openbmc@lists.ozlabs.org, andi.shyti@kernel.org, 
+ andriy.shevchenko@linux.intel.com, bmc-sw@aspeedtech.com, 
+ jk@codeconstruct.com.au, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, joel@jms.id.au, 
+ andrew@codeconstruct.com.au, p.zabel@pengutronix.de, conor+dt@kernel.org, 
+ naresh.solanki@9elements.com, krzk+dt@kernel.org, benh@kernel.crashing.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+In-Reply-To: <20251117025040.3622984-2-ryan_chen@aspeedtech.com>
+References: <20251117025040.3622984-1-ryan_chen@aspeedtech.com>
+ <20251117025040.3622984-2-ryan_chen@aspeedtech.com>
+Message-Id: <176335394552.766711.17435291607317271489.robh@kernel.org>
+Subject: Re: [PATCH v23 1/4] dt-bindings: i2c: Split AST2600 binding into a
+ new YAML
 
-Hello Shawn and Geraldo,
 
-On Monday, November 17, 2025 04:42 CET, Shawn Lin <shawn.lin@rock-chips=
-.com> wrote:
-> =E5=9C=A8 2025/11/15 =E6=98=9F=E6=9C=9F=E5=85=AD 17:10, Geraldo Nasci=
-mento =E5=86=99=E9=81=93:
-> > In recent interactions with Shawn Lin from Rockchip it came to my
-> > attention there's an unknown errata regarding 5.0 GT/s operational
-> > speed of their PCIe core. According to Shawn there's grave danger
-> > even if the odds are low. To contain any damage, let's cover the
-> > remaining corner-cases where the default would lead to 5.0 GT/s
-> > operation as well as add a comment to Root Complex driver core,
-> > documenting this danger.
->=20
-> I'm not sure just adding a warn would be a good choice. Could we tota=
-lly
-> force to use gen1 and add a warn if trying to use Gen2.
+On Mon, 17 Nov 2025 10:50:37 +0800, Ryan Chen wrote:
+> The AST2600 I2C controller introduces a completely new register
+> map and Separate control/target register sets, unlike the mixed
+> layout used in AST2400/AST2500.
+> 
+> In addition, at new AST2600 configuration registers and transfer
+> modes require new DT properties, which are incompatible with
+> existing bindings. Therefore, this creates a dedicated binding
+> file for AST2600 to properly describe these new hardware
+> capabilities.
+> 
+> A subsequent change will modify this new binding to properly
+> describe the AST2600 hardware.
+> 
+> The example section updated to reflect the actual AST2600 SoC
+> register layout and interrupt configuration.
+> Reference: aspeed-g6.dtsi (lines 885-897)
+> 
+> -I2C bus and buffer register offsets
+>  - AST2600 I2C controller register base starts from 0x80, and the
+>    buffer region is located at 0xc00, as defined in AST2600 SOC
+>    register map.
+> 
+> -Interrupt configuration
+>  - AST2600 I2C controller are connected to ARM GIC interrupt
+>    controller rather than the legacy internal interrupt controller.
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  .../bindings/i2c/aspeed,ast2600-i2c.yaml      | 66 +++++++++++++++++++
+>  .../devicetree/bindings/i2c/aspeed,i2c.yaml   |  3 +-
+>  2 files changed, 67 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
+> 
 
-I think that forcing 2.5 GT/s with an appropriate warning message
-is a good idea.  That would be like some quirk that gets applied
-automatically, to prevent data corruption, while warning people
-who attempt to "overclock" the PCIe interface.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> Meanwhile amend the commit message to add a reference
-> of RK3399 official datesheet[1] which says PCIe on RK3399 should only
-> support 2.5GT/s?
->=20
-> [1]https://opensource.rock-chips.com/images/d/d7/Rockchip=5FRK3399=5F=
-Datasheet=5FV2.1-20200323.pdf
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml:25:1: [warning] too many blank lines (2 > 1) (empty-lines)
 
-Also, rewording the patch summary as follows below may be good,
-because that would provide more details:
+dtschema/dtc warnings/errors:
 
-  PCI: rockchip: Warn about Gen2 5.0 GT/s on RK3399 being unsafe
+doc reference errors (make refcheckdocs):
 
-Or, if we'll go with the automatic downgrading, like this:
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251117025040.3622984-2-ryan_chen@aspeedtech.com
 
-  PCI: rockchip: Limit RK3399 to Gen1 2.5 GT/s to prevent breakage
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
