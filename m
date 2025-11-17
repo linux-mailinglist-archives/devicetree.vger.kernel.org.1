@@ -1,354 +1,198 @@
-Return-Path: <devicetree+bounces-239164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A92BC620D2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 03:01:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE459C62170
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 03:36:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2301835DB6D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 02:01:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A09373AD4EB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 02:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698C223ABB0;
-	Mon, 17 Nov 2025 02:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FA51F875A;
+	Mon, 17 Nov 2025 02:36:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YuSLJsFd";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TFgvzOQU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A738F1DA0E1;
-	Mon, 17 Nov 2025 02:00:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2D120322
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 02:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763344860; cv=none; b=JuLqik7t3EXTa6QQop0z4/jSzj34SRzLxNPJeXIUbnX8RYvFAjXl1tXTUbaY4zVt/TEWmC6tJgnksQsk7iF58yph91TcFurkdBlvySKBV0kXJJLh+19b20jq8H6LpxI6TgI6VxEMW6xUEeaIVnjVE2pCsxQk6ieWLQP/DOn/YMA=
+	t=1763347012; cv=none; b=sU/lELS5J++qJUtEvVsTLigUIp0WPdCdz2L9NUbgkhqOv7i2AjZGeLY+CENx/VHDDiug/r4p2lwjX4ScrgNQ2DJfq63eDbI3FGQ7YQI+ZNJVnnFqwGGQiw48zHkOOR5qX7KCOmsFntBnHTnbQJctj1vriiHCMTP9umqGekRki0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763344860; c=relaxed/simple;
-	bh=IWvb0i+ssFD4m+4AsJJdxGAYAExiZjQ5qAN41PUi4B0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=u0B/37rMa09Cp+8ZaKgTICswAXD1qsMOIgQS5Y0ZLCuEJTDblCfNFvoT6FExywhmrNwLTAlBrUJRCoBuI8L9gnU9aGXIq3vFs2ifj/2Z0DNk1kJDv7nwcQEHmPUSN6YD1jbQcMr3Vs3x24yyXs1yuWYhzc2Vp+euBd/WMZv/LI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4d8rYq2dNtz9tKq;
-	Mon, 17 Nov 2025 03:00:47 +0100 (CET)
-From: Lukas Timmermann <linux@timmermann.space>
-To: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@timmermann.space
-Subject: [PATCH v10 2/2] leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
-Date: Mon, 17 Nov 2025 03:00:08 +0100
-Message-ID: <20251117020008.316648-3-linux@timmermann.space>
-In-Reply-To: <20251117020008.316648-1-linux@timmermann.space>
-References: <20251117020008.316648-1-linux@timmermann.space>
+	s=arc-20240116; t=1763347012; c=relaxed/simple;
+	bh=tw6Ajn/FDHb+1nEhaIG1ILZ9sF2BneSZ7D4tEaBnBj0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LJfAVAI9+Kp3vVb3atyK3eK7D79wrXMQHjhyQKpedBrKy+E4gGV68vwSPnBLQyJP8Kxye8kS4m2qbVoqVPPn+dY3taDHNXqHcTb4/u/Vq2sM1Nxil1HQHiivwuTebwivZ7lCRM1lADT+LmtuLvcqOs46qg2+tsoznTXRJlVWIfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YuSLJsFd; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TFgvzOQU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AGNh9Sl2266855
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 02:36:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	39pbJS3KgdysbLKFSIpTFsRIixBoour3yJy497186+I=; b=YuSLJsFdOr3BcJNh
+	Gj5MugWKswwVd+rbaw1i6qWOK1Bl3HgyKx7UJC4Y8M3tE/xEwX0o5UqFsawE+xc1
+	vzFwgTtgDvDYUBd6FChY4pX/Gli7EGaQQlbWgr4RTj7E36Focd+p/d/b4HvXKdrr
+	DbUyIh4hq551V4XfpJonhVmQT/LTX6WdmsIgrRncEC/66enyz7mbvtoH4OjTk5kP
+	pdV5+dVBMaeB10vGXG1vaozmzZ9XBCD/+md0nWwIHhiXqndxmA5TMSlCnxC/KQbz
+	uofUdCsg7rE1GKP5Es17kQW1613Jk2hjbIYFvMPmT0rEsA0ZaRE+SNLXp+C6DpKq
+	yb03Vg==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aejgcb3bb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 02:36:48 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-29846a9efa5so104694375ad.0
+        for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 18:36:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763347007; x=1763951807; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=39pbJS3KgdysbLKFSIpTFsRIixBoour3yJy497186+I=;
+        b=TFgvzOQUACrP9CY1YEi+R+s4/p9lU112DnKoJ7f8BNlsVpn8Uk2jVqvVeKzAgfmWU0
+         hsyRRSzmvgDzNdr7nXsT03Qs/2SMwH96DSlot99VbyreFLZ2GLYuIkSzoBG6jsu5GVbX
+         r+eVdNbaYtUosepaFG3MPhZXKmpWnRE196WUdhuhdPwTKV47ZGasBo13ykgV4QCl6lud
+         zeYj8f8tQvtnCOZrra+Pcdmjh+EXUDFDrZGKfQ1vpWNVZqA8rQu/JX1eVIQ6VujEO670
+         cr2OfFr82MMeU7ZCxwa8UWb9WZxOzAzFxvVniabtAkKvzHiPzlFv+b04TNA4FVSs2m/p
+         A/Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763347007; x=1763951807;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=39pbJS3KgdysbLKFSIpTFsRIixBoour3yJy497186+I=;
+        b=ToiMPncn6PtHUjGRtvMG+KY1jmo/URWkVBoHvf3uUaj43xl+OJakw3qtUC0bSiCFeX
+         A6Mj+97FFAubzKUBRxZ2+C0YV3mWVQeFwbRhDFduFecTUUD4Apumx1aEuSLW2nnRWjXL
+         Na48Re4E7BOEjsvd0bBND47NOKviWl0teO6Ntpnu445moB3ZNdk/Nwf7jkMQm/pQ9Q5y
+         G1xp78pWUH+5ZBfJH9P5gRMWd5YjyxsDh1HMis+DT+RsOmwM6hIYclYwn73fRg3NMhSk
+         JaZw190LA58poUU9sZJt09UU4LnzjNhlcVkz/rEaCPkrDqVIagtdz09YTUkwhqiNfIER
+         eczg==
+X-Forwarded-Encrypted: i=1; AJvYcCXpgCGGlJ9Yf7bhCK/ezT9f/GYeLBh85stZQxG5dwkLrC9v9uDm1+YeybQ5GT3FDZBTVmv5mv6D0r5d@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGOC2YBNIDwsmYyznskx5nHopExNIBqei3+FPUh2x5Wb0SGFkI
+	VtXvfrLXuy8I6GEvFublA6WS55taLBdaCm1MZZyvo/j0VR9ka2LgA9kw4fC9AuOV3ubR+o6CYjH
+	5aYF0QGeAOwI+i36/GZzrB+fXMDCzcHCp4Zu0BFH4fEiDc+YcFiHshKb+lOni5w/pBpu6/rBh
+X-Gm-Gg: ASbGncsTt7KvCGvh+4P3etVWYSyOafHxfO60euLNLmqm+D0VnJXO4ptaWt1hO7peODw
+	60pl9MTRFyKly2eUWfoCtb1ZoKph+V2SoTr0ABsFPJG1rWvQCak9JWzvb2u31bULHIJV5aW3b+9
+	2O9YNzLxPXPDi1IqFkPz4etwXzrkO7jkD9YyIYOCuII/sYur1HqpJle7XZZLA+NSEcA1QgtpYAP
+	kEJhTYfOgpDKhfdTx+Im/fhyyAoiBvzZ2pHNG3StYBCNCga6t9yhU5rPi2Oi6kxgFCJFvHpNu0n
+	WJoEI3c6H84i+yiSG3T7hw/Ap/oUXl6OprQgEWq3G6j0XAggjcUeBotEvRhJrDH6xnGPqkB5Cg4
+	XhSaR08tthZ5khDhPzfD/3Uz1tKjcL0ucL6q4jqZ3M3+5ZK5aFN9O+s6OPTeKRUFAZmn97IcC
+X-Received: by 2002:a17:902:ec83:b0:297:fec4:1557 with SMTP id d9443c01a7336-2986a7598abmr116773905ad.60.1763347007465;
+        Sun, 16 Nov 2025 18:36:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF8W+0BgPJEYbjw4FrKmofDfdMKM3fYG9H5M16t+BNUAdPhrbs9j8JpXvNtQsZA+wy9bjNFIg==
+X-Received: by 2002:a17:902:ec83:b0:297:fec4:1557 with SMTP id d9443c01a7336-2986a7598abmr116773605ad.60.1763347006931;
+        Sun, 16 Nov 2025 18:36:46 -0800 (PST)
+Received: from [10.133.33.104] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2bf11asm121402975ad.90.2025.11.16.18.36.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Nov 2025 18:36:46 -0800 (PST)
+Message-ID: <2fd84ab2-2e3e-4d05-add5-17930a35fedf@oss.qualcomm.com>
+Date: Mon, 17 Nov 2025 10:36:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] wifi: ath: Use static calibration variant table for
+ devicetree platforms
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Johannes Berg
+ <johannes@sipsolutions.net>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+        devicetree@vger.kernel.org, ath12k@lists.infradead.org,
+        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
+From: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: -lAgmozcc8mJoLNkudqPiUnUclQSdBPv
+X-Proofpoint-GUID: -lAgmozcc8mJoLNkudqPiUnUclQSdBPv
+X-Authority-Analysis: v=2.4 cv=PJECOPqC c=1 sm=1 tr=0 ts=691a8a40 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=oboMlcojp0BuSSWQvFAA:9
+ a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22 a=HhbK4dLum7pmb74im6QT:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE3MDAyMCBTYWx0ZWRfXz+CEAO4OaFON
+ mB/hpaSPeVwD3cwaFHmYZzdWdVwZJz9QiFjlhMosK/gAndnSPkLYvLft+ku0D8ecLVYb9tEXZG9
+ zAktI2DmgjbKcPcqNSA5uMaJN5S/61xKuyBSZIiMW1NrXqWoCglGcV1prfwSzVyWwPTT4c1x5E6
+ HuFYePDjFLgZ5o/0rth5VhoP0hHMORc3cStng6pAiRz4Z2UiRZNNED/uPaUROvAWxfHqEAk0rpv
+ ker6z9MRiBaC9kbqJz7E2ereMmTPrUzn9L/mpiLn88+jSCzqYKTt1F2EInm93/Td1euXPCTFAU3
+ z7fdT7zYjAX+2HT8jp03vaZeWysP0QYve4Tdlcq+FpoxGsJhFSP42m7mfsAnbBooANUnLV+Cg4/
+ kIXbGR3dF7kbzbb4ligEvAg+O4lZLw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-17_01,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 lowpriorityscore=0 clxscore=1011 spamscore=0 phishscore=0
+ bulkscore=0 impostorscore=0 suspectscore=0 priorityscore=1501 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511170020
 
-Since there were no existing drivers for the AS3668 or related devices,
-a new driver was introduced in a separate file. Similar devices were
-reviewed, but none shared enough characteristics to justify code reuse.
-As a result, this driver is written specifically for the AS3668.
 
-Signed-off-by: Lukas Timmermann <linux@timmermann.space>
----
- MAINTAINERS                |   1 +
- drivers/leds/Kconfig       |  13 +++
- drivers/leds/Makefile      |   1 +
- drivers/leds/leds-as3668.c | 222 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 237 insertions(+)
- create mode 100644 drivers/leds/leds-as3668.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 091206c54c63..945d78fef380 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
-+F:	drivers/leds/leds-as3668.c
- 
- ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
- M:	Tianshu Qiu <tian.shu.qiu@intel.com>
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index a104cbb0a001..ec37d55ac14e 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -100,6 +100,19 @@ config LEDS_ARIEL
- 
- 	  Say Y to if your machine is a Dell Wyse 3020 thin client.
- 
-+config LEDS_OSRAM_AMS_AS3668
-+	tristate "LED support for Osram AMS AS3668"
-+	depends on LEDS_CLASS
-+	depends on I2C
-+	help
-+	  This option enables support for the Osram AMS AS3668 LED controller.
-+	  The AS3668 provides up to four LED channels and is controlled via
-+	  the I2C bus. This driver offers basic brightness control for each
-+	  channel, without support for blinking or other advanced features.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-as3668.
-+
- config LEDS_AW200XX
- 	tristate "LED support for Awinic AW20036/AW20054/AW20072/AW20108"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 2f170d69dcbf..983811384fec 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_LEDS_ADP5520)		+= leds-adp5520.o
- obj-$(CONFIG_LEDS_AN30259A)		+= leds-an30259a.o
- obj-$(CONFIG_LEDS_APU)			+= leds-apu.o
- obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
-+obj-$(CONFIG_LEDS_AS3668)		+= leds-as3668.o
- obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
- obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
- obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
-diff --git a/drivers/leds/leds-as3668.c b/drivers/leds/leds-as3668.c
-new file mode 100644
-index 000000000000..8c43429f2856
---- /dev/null
-+++ b/drivers/leds/leds-as3668.c
-@@ -0,0 +1,222 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ *  Osram AMS AS3668 LED Driver IC
-+ *
-+ *  Copyright (C) 2025 Lukas Timmermann <linux@timmermann.space>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/i2c.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/uleds.h>
-+
-+#define AS3668_MAX_LEDS			4
-+
-+/* Chip Ident */
-+
-+#define AS3668_CHIP_ID1_REG		0x3e
-+#define AS3668_CHIP_ID			0xa5
-+
-+/* Current Control */
-+
-+#define AS3668_CURR_MODE_REG		0x01
-+#define AS3668_CURR_MODE_OFF		0x0
-+#define AS3668_CURR_MODE_ON		0x1
-+#define AS3668_CURR1_MODE_MASK		GENMASK(1, 0)
-+#define AS3668_CURR2_MODE_MASK		GENMASK(3, 2)
-+#define AS3668_CURR3_MODE_MASK		GENMASK(5, 4)
-+#define AS3668_CURR4_MODE_MASK		GENMASK(7, 6)
-+#define AS3668_CURR1_REG		0x02
-+#define AS3668_CURR2_REG		0x03
-+#define AS3668_CURR3_REG		0x04
-+#define AS3668_CURR4_REG		0x05
-+
-+struct as3668_led {
-+	struct led_classdev cdev;
-+	struct as3668 *chip;
-+	struct fwnode_handle *fwnode;
-+	int led_id;
-+};
-+
-+struct as3668 {
-+	struct i2c_client *client;
-+	struct as3668_led leds[AS3668_MAX_LEDS];
-+};
-+
-+static void as3668_channel_mode_set(struct as3668 *as3668, int led_id, u8 mode)
-+{
-+	int err;
-+	u8 reg;
-+
-+	reg = i2c_smbus_read_byte_data(as3668->client, AS3668_CURR_MODE_REG);
-+	if (reg < 0) {
-+		dev_err(&as3668->client->dev, "failed to read channel modes\n");
-+		return;
-+	}
-+
-+	switch (led_id) {
-+	case 0:
-+		reg &= ~AS3668_CURR1_MODE_MASK;
-+		reg |= FIELD_PREP(AS3668_CURR1_MODE_MASK, mode);
-+		break;
-+	case 1:
-+		reg &= ~AS3668_CURR2_MODE_MASK;
-+		reg |= FIELD_PREP(AS3668_CURR2_MODE_MASK, mode);
-+		break;
-+	case 2:
-+		reg &= ~AS3668_CURR3_MODE_MASK;
-+		reg |= FIELD_PREP(AS3668_CURR3_MODE_MASK, mode);
-+		break;
-+	case 3:
-+		reg &= ~AS3668_CURR4_MODE_MASK;
-+		reg |= FIELD_PREP(AS3668_CURR4_MODE_MASK, mode);
-+		break;
-+	default:
-+		return;
-+	}
-+
-+	err = i2c_smbus_write_byte_data(as3668->client, AS3668_CURR_MODE_REG, reg);
-+	if (err)
-+		dev_err(&as3668->client->dev, "failed to set channel modes\n");
-+}
-+
-+static enum led_brightness as3668_brightness_get(struct led_classdev *cdev)
-+{
-+	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-+
-+	return i2c_smbus_read_byte_data(led->chip->client, AS3668_CURR1_REG + led->led_id);
-+}
-+
-+static void as3668_brightness_set(struct led_classdev *cdev, enum led_brightness brightness)
-+{
-+	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-+	int err;
-+
-+	if (brightness == 0)
-+		as3668_channel_mode_set(led->chip, led->led_id, AS3668_CURR_MODE_OFF);
-+	else
-+		as3668_channel_mode_set(led->chip, led->led_id, AS3668_CURR_MODE_ON);
-+
-+	err = i2c_smbus_write_byte_data(led->chip->client,
-+					AS3668_CURR1_REG + led->led_id,
-+					brightness);
-+
-+	if (err)
-+		dev_err(&led->chip->client->dev, "failed to set brightness: %d\n", err);
-+}
-+
-+static int as3668_dt_init(struct as3668 *as3668)
-+{
-+	struct device *dev = &as3668->client->dev;
-+	struct as3668_led *led;
-+	struct led_init_data init_data = {};
-+	int err;
-+	u32 reg;
-+
-+	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
-+		err = of_property_read_u32(child, "reg", &reg);
-+		if (err)
-+			return dev_err_probe(dev, err, "failed to read 'reg' property");
-+
-+		if (reg < 0 || reg > AS3668_MAX_LEDS)
-+			return dev_err_probe(dev, -EOPNOTSUPP,
-+					     "unsupported LED: %d\n", reg);
-+
-+		led = &as3668->leds[reg];
-+		led->fwnode = of_fwnode_handle(child);
-+
-+		led->led_id = reg;
-+		led->chip = as3668;
-+
-+		led->cdev.max_brightness = U8_MAX;
-+		led->cdev.brightness_get = as3668_brightness_get;
-+		led->cdev.brightness_set = as3668_brightness_set;
-+
-+		init_data.fwnode = led->fwnode;
-+		init_data.default_label = ":";
-+
-+		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
-+		if (err)
-+			return dev_err_probe(dev, err, "failed to register LED %d\n", reg);
-+	}
-+
-+	return 0;
-+}
-+
-+static int as3668_probe(struct i2c_client *client)
-+{
-+	struct as3668 *as3668;
-+	int err;
-+	u8 chip_id;
-+
-+	chip_id = i2c_smbus_read_byte_data(client, AS3668_CHIP_ID1_REG);
-+	if (chip_id != AS3668_CHIP_ID)
-+		return dev_err_probe(&client->dev, -ENODEV,
-+				     "expected chip ID 0x%02x, got 0x%02x\n",
-+				     AS3668_CHIP_ID, chip_id);
-+
-+	as3668 = devm_kzalloc(&client->dev, sizeof(*as3668), GFP_KERNEL);
-+	if (!as3668)
-+		return -ENOMEM;
-+
-+	as3668->client = client;
-+
-+	err = as3668_dt_init(as3668);
-+	if (err)
-+		return err;
-+
-+	/* Set all four channel modes to 'off' */
-+	err = i2c_smbus_write_byte_data(client, AS3668_CURR_MODE_REG,
-+					FIELD_PREP(AS3668_CURR1_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR2_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR3_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR4_MODE_MASK, AS3668_CURR_MODE_OFF));
-+
-+	/* Set initial currents to 0mA */
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR1_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR2_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR3_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR4_REG, 0);
-+
-+	if (err)
-+		return dev_err_probe(&client->dev, -EIO, "failed to write to the device\n");
-+
-+	return 0;
-+}
-+
-+static void as3668_remove(struct i2c_client *client)
-+{
-+	int err;
-+
-+	err = i2c_smbus_write_byte_data(client, AS3668_CURR_MODE_REG, 0);
-+	if (err)
-+		dev_err(&client->dev, "failed to turn off the LEDs\n");
-+}
-+
-+static const struct i2c_device_id as3668_idtable[] = {
-+	{ "as3668" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, as3668_idtable);
-+
-+static const struct of_device_id as3668_match_table[] = {
-+	{ .compatible = "ams,as3668" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, as3668_match_table);
-+
-+static struct i2c_driver as3668_driver = {
-+	.driver = {
-+		.name = "leds_as3668",
-+		.of_match_table = as3668_match_table,
-+	},
-+	.probe = as3668_probe,
-+	.remove = as3668_remove,
-+	.id_table = as3668_idtable,
-+};
-+module_i2c_driver(as3668_driver);
-+
-+MODULE_AUTHOR("Lukas Timmermann <linux@timmermann.space>");
-+MODULE_DESCRIPTION("AS3668 LED driver");
-+MODULE_LICENSE("GPL");
--- 
-2.51.2
+On 11/14/2025 6:22 PM, Manivannan Sadhasivam wrote:
+> Hi,
+> 
+> This series aims to deprecate the usage of "qcom,*calibration-variant"
+> devicetree property to select the calibration variant for the WLAN devices. This
+> is necessary for WLAN devices connected using PCI bus, as hardcoding the device
+> specific information in PCI devicetree node causes the node to be updated every
+> time when a new device variant is attached to the PCI slot. This approach is not
+> scalable and causes bad user experience.
+
+I am not very clear about the problem here: is calibration variant device/module specific,
+or platform specific? If it is module specific, why the lookup is based on the machine
+'model' property? While if it is platform specific, why do we need to update devicetree
+node whenever a new device is attached?
+
+> 
+> So to avoid relying on the "qcom,*calibration-variant" property, this series
+> introduces a new static calibration variant table based lookup. The newly
+> introduced helper, ath_get_calib_variant() will parse the model name from
+> devicetree and use it to do the variant lookup during runtime. The
+> ath_calib_variant_table[] will hold all the model and calibration variant
+> entries for the supported devices.
+> 
+> Going forward, new entries will be added to this table to support calibration
+> variants.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+> Manivannan Sadhasivam (2):
+>       wifi: ath: Use static calibration variant table for devicetree platforms
+>       dt-bindings: wireless: ath: Deprecate 'qcom,calibration-variant' property
+> 
+>  .../bindings/net/wireless/qcom,ath10k.yaml         |  1 +
+>  .../bindings/net/wireless/qcom,ath11k-pci.yaml     |  3 +-
+>  .../bindings/net/wireless/qcom,ath11k.yaml         |  1 +
+>  .../bindings/net/wireless/qcom,ath12k-wsi.yaml     |  6 +-
+>  .../bindings/net/wireless/qcom,ipq5332-wifi.yaml   |  2 +-
+>  drivers/net/wireless/ath/ath.h                     | 98 ++++++++++++++++++++++
+>  drivers/net/wireless/ath/ath10k/core.c             |  5 ++
+>  drivers/net/wireless/ath/ath11k/core.c             |  7 ++
+>  8 files changed, 115 insertions(+), 8 deletions(-)
+> ---
+> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+> change-id: 20251114-ath-variant-tbl-22865456a527
+> 
+> Best regards,
 
 
