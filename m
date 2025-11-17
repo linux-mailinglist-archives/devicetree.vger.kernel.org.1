@@ -1,74 +1,71 @@
-Return-Path: <devicetree+bounces-239438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5536C64DE2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:27:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 734A2C64DC4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:24:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8704A34A95C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:23:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0234D4E9A15
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:24:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A173933B6CD;
-	Mon, 17 Nov 2025 15:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VVMyXElu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3776033B6E1;
+	Mon, 17 Nov 2025 15:24:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641CD337BBC;
-	Mon, 17 Nov 2025 15:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A99FA3385B1
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 15:24:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763393024; cv=none; b=XI5/w0HExpgH2SIS77J3dl4JPNJ4UyiD0UZClnsVu+V3VtQX4k6aNNVwCnHUmrkunIksBX73k2Amw8mvEF1Wm7GXr5WodSb6oiEGXOMYyKQCicNaL2Gf6n7mY5iCnIBJO7Epk/kruBtK8n0PdbmJtUVlp5pM9l6+UGCivLEgiT0=
+	t=1763393045; cv=none; b=Ahwus/sOMQaYWeHnuKoNkpb7MFNtXloEgTuMV3Ifb6XkqZ4OS8rAP4QsN/cOeFB128gUkZK6uhZ+qTU646qeuliu6r/2ssKSN9YYV9Fsn3/unanwhPaQ6lXXuvE7rZJpinYoFdrexqSX0tqPvcCx2fF0iiX2q2h6tfW1SI61VOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763393024; c=relaxed/simple;
-	bh=D0uHEF+8TZ+GciPjEn9il1CGydZ3mO5pAE9l/oJDips=;
+	s=arc-20240116; t=1763393045; c=relaxed/simple;
+	bh=UH8nMcJmd8pwt9N8sXuofJ1S0SLAJOPzUMZL37lKUiI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t6ad+2aIYk/yWXAAX5nS9xNgeclwj7YnENJgSwmC5kl1hMSVu/8j6w4ZYDl5sQ4t0BdhQvf8kU6U1OHYMEnijQtH+JVLYfJ1RLgnYvUp/D9QdPHz5eSPHmbAv6h4JcSckO2TYLJZfCR2Hhwe+dc/tK4Tb1ICNPyKCldQopiIM3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VVMyXElu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 869F8C19423;
-	Mon, 17 Nov 2025 15:23:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763393023;
-	bh=D0uHEF+8TZ+GciPjEn9il1CGydZ3mO5pAE9l/oJDips=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VVMyXEluUuY3fVAbZu5As/b3oLYYW1eM17pQU0tqvz8Dl91tztRJVHX2h56r73VGF
-	 6AFl7MqcTl7siDIzjU+QrZHbfmAPbqlsEj7e64oQeSyC5yWpjSllRHBuRIy79O/p3l
-	 fiAxH+8NOq2BQlHxISI6HA2oT+YvQpRfmfrpbdozZt2cRStk4Soe+aztUqUkGQj+bb
-	 Gvb4SclKUIISLGd/IB4mzbeX8xeP6WV7BRaUDCkQThQh5QceCpkzZMFOnprVW8GQNc
-	 IPFUo8Hwv9D6/HY8+3SP9d27jcrliTR63ZUtPe1DwIOq2pZu6bXwdAnKW0NfyHRnQr
-	 zt72M3bvIEcGg==
-Date: Mon, 17 Nov 2025 09:23:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@linux.dev>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-kernel@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-clk@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	linux-leds@vger.kernel.org, Pavel Machek <pavel@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-gpio@vger.kernel.org,
-	linux-pm@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-rtc@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v4 04/16] dt-bindings: power: supply: BD72720 managed
- battery
-Message-ID: <20251117152341.GA1944698-robh@kernel.org>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
- <ac5a4e992e4fb9c7bffb1e641a7cd61f74af4cba.1763022807.git.mazziesaccount@gmail.com>
- <176303119683.3716572.16868393928566655866.robh@kernel.org>
- <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
- <20251114163954.GA3399895-robh@kernel.org>
- <32303b95-3fd5-44c4-bb7d-e2957a6064fc@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MqIHQ0c7Kx9ktlyqiopY6Bjg0O6sm4izpq5cHHA4BjQKxOOwkbijwhgdfpap/+kZ0cVjP2kRIci+RVdnwpK4HxOM00afiLDRtlVmgmQ26ZQ6EqrWCAxd+mXMkbbErsFMVBwOkfIIkgzjvX6qtXzI/1lKOJp3uFTQEC0n0Hv0dOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vL15C-0004MK-Bu; Mon, 17 Nov 2025 16:23:58 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vL15C-000w51-0B;
+	Mon, 17 Nov 2025 16:23:58 +0100
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vL15B-008M0i-35;
+	Mon, 17 Nov 2025 16:23:57 +0100
+Date: Mon, 17 Nov 2025 16:23:57 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Rob Herring <robh@kernel.org>, devicetree-spec@vger.kernel.org,
+	quentin.schulz@cherry.de, Marc Kleine-Budde <mkl@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: SoC-specific device tree aliases?
+Message-ID: <aRs-DaayhtQTtFXj@pengutronix.de>
+References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
+ <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org>
+ <aRrcRZvdrbAmsCm_@pengutronix.de>
+ <8ce701c9-6c8d-4b3e-8706-760b8aba89fc@kernel.org>
+ <aRr6JLMplFVeHcjj@pengutronix.de>
+ <e5502ec8-0c55-47ce-a9e5-62e137c9808b@kernel.org>
+ <20251117-smooth-spiked-loon-52df28-mkl@pengutronix.de>
+ <de1739a8-4677-4cc8-b501-2568b7513467@kernel.org>
+ <aRs2y3w854vnHAzg@pengutronix.de>
+ <576a9eae-7dba-47d0-ad66-0a81d1893271@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,147 +74,158 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <32303b95-3fd5-44c4-bb7d-e2957a6064fc@gmail.com>
+In-Reply-To: <576a9eae-7dba-47d0-ad66-0a81d1893271@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Nov 17, 2025 at 10:12:01AM +0200, Matti Vaittinen wrote:
-> On 14/11/2025 18:39, Rob Herring wrote:
-> > On Fri, Nov 14, 2025 at 11:04:27AM +0200, Matti Vaittinen wrote:
-> > > On 13/11/2025 12:53, Rob Herring (Arm) wrote:
-> > > > 
-> > > > On Thu, 13 Nov 2025 10:52:19 +0200, Matti Vaittinen wrote:
-> > > > > From: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
-> //snip
-> 
-> > > 
-> > > So, as far as I understand, the only viable options are expanding the
-> > > existing battery.yaml with these properties (which I hoped to avoid, see
-> > > below)
-> > > 
-> > > > > The right place for them is the battery node, which is described by the
-> > > > > generic "battery.yaml". I was not comfortable with adding these
-> > > > > properties to the generic battery.yaml because they are:
-> > > > >     - Meaningful only for those charger drivers which have the VDR
-> > > > >       algorithm implemented. (And even though the algorithm is not charger
-> > > > >       specific, AFAICS, it is currently only used by some ROHM PMIC
-> > > > >       drivers).
-> > > > >     - Technique of measuring the VDR tables for a battery is not widely
-> > > > >       known. AFAICS, only folks at ROHM are measuring those for some
-> > > > >       customer products. We do have those tables available for some of the
-> > > > >       products though (Kobo?).
-> > > 
-> > > or, to add new compatible for the "vdr-battery".
-> > > AFAICS, adding new compatible would require us to wither duplicate the used
-> > > properties from battery.yaml here (as battery.yaml mandates the
-> > > "simple-battery" - compatible) - or to split the battery.yaml in two files,
-> > > one containing the generic properties, other containing the "simple-battery"
-> > > -compatible and referencing the generic one. Then the "vdr-battery" could
-> > > also reference the generic one.
-> > > 
-> > > Any suggestions for the next path to follow?
+On Mon, Nov 17, 2025 at 03:57:19PM +0100, Krzysztof Kozlowski wrote:
+> On 17/11/2025 15:52, Sascha Hauer wrote:
+> > On Mon, Nov 17, 2025 at 02:18:02PM +0100, Krzysztof Kozlowski wrote:
+> >> On 17/11/2025 13:56, Marc Kleine-Budde wrote:
+> >>> On 17.11.2025 11:41:12, Krzysztof Kozlowski wrote:
+> >>>> On 17/11/2025 11:34, Sascha Hauer wrote:
+> >>>>> On Mon, Nov 17, 2025 at 10:52:49AM +0100, Krzysztof Kozlowski wrote:
+> >>>>>> On 17/11/2025 09:26, Sascha Hauer wrote:
+> >>>>>>> On Mon, Nov 17, 2025 at 08:38:48AM +0100, Krzysztof Kozlowski wrote:
+> >>>>>>>> On 13/11/2025 09:28, Ahmad Fatoum wrote:
+> >>>>>>>>> Hello,
+> >>>>>>>>>
+> >>>>>>>>> With /chosen/bootsource now part of dt-schema, I would like to raise a
+> >>>>>>>>> related point: The need for SoC-specific device tree aliases.
+> >>>>>>>>>
+> >>>>>>>>> For many SoCs, there is a canonical numbering for peripherals; it's used
+> >>>>>>>>> in the datasheet and BootROMs often makes use of it at runtime to report
+> >>>>>>>>> the bootsource as a pair:
+> >>>>>>>>>
+> >>>>>>>>>   - One value to enumerate type of boot medium (e.g. mmc, spi-nor..)
+> >>>>>>>>>   - Another value that describes which instance (e.g. SDHC1, SPI3, ...)
+> >>>>>>>>>
+> >>>>>>>>> Some examples, where this is the case, are AT91, STM32MP or i.MX.
+> >>>>>>>>>
+> >>>>>>>>> barebox has traditionally used /aliases to translate BootROM information
+> >>>>>>>>> to a device tree node to fixup /chosen/bootsource.
+> >>>>>>>>>
+> >>>>>>>>> This doesn't work out for many newer SoC support, because of different
+> >>>>>>>>> expectations: For upstream, aliases are relevant to a board, while
+> >>>>>>>>> barebox traditionally expected them to be SoC-specific (because they
+> >>>>>>>>> used to be on i.MX, probably).
+> >>>>>>>>
+> >>>>>>>> Please state exactly the problem - you have aliases in DTS but
+> >>>>>>>> bootsource in DTSI? Then that's clearly mixup - you need to define them
+> >>>>>>>> in the same place. Aliases are in DTS (I see here other thread on that),
+> >>>>>>>> so stdout-path is also in DTS.
+> >>>>>>>>
+> >>>>>>>> Or you don't have bootsource in DTSI at all because barebox invents it
+> >>>>>>>> regardless of actual aliases? Then shouldn't this be an obvious issue?
+> >>>>>>>> You cannot have barebox as second source of aliases.
+> >>>>>>>>
+> >>>>>>>>>
+> >>>>>>>>> To accommodate this, barebox nowadays extends upstream device trees with
+> >>>>>>>>> /chosen/barebox,bootsource-${alias} properties, which can be used as
+> >>>>>>>>> translation table instead of aliases.
+> >>>>>>>>>
+> >>>>>>>>> This solves the issue, but there is occasional breakage when upstream
+> >>>>>>>>> decides to remove aliases from the SoC DTSI and move them into the
+> >>>>>>>>> boards until barebox is made to add the /chosen/barebox, overrides.
+> >>>>>>>>>
+> >>>>>>>>> As described above, I think the data sheet numbering is pretty much an
+> >>>>>>>>> aspect of the hardware and it has a place in the upstream SoC DTSI.
+> >>>>>>>>>
+> >>>>>>>>>
+> >>>>>>>>> So what are the thoughts on adding /soc/aliases or some other top-level
+> >>>>>>>>> node to hold this information?
+> >>>>>>>>> Or would a h"ardware-label" property or similar be more tenable?
+> >>>>>>>>
+> >>>>>>>> So you want to map full node path to some alias, so later you can map
+> >>>>>>>> that alias back to full node path, right? This sounds like quite
+> >>>>>>>> redundant information in DTS just to avoid impact of node reshuffling
+> >>>>>>>> (like unit address changes). In DTS-source-code realm, we solved it with
+> >>>>>>>> phandles. Maybe this would help here?
+> >>>>>>>
+> >>>>>>> We want aliases that map from the hardware numbers of a device as used
+> >>>>>>> in the reference manuals to the actual device nodes. One reason why we
+> >>>>>>> need it is to get the device node a SoC has booted from. Many SoCs have
+> >>>>>>> registers which describe <bootsource> <instance number>. We want to get
+> >>>>>>> the device node from that information.
+> >>>>>>
+> >>>>>> Ah, so you don't map from full node path but from some value in register
+> >>>>>> and you want to store these values as alias.
+> >>>>>
+> >>>>> Not sure if we mean the same when you say "store these values as alias".
+> >>>>>
+> >>>>> What we want to do is a SoC dtsi providing something like:
+> >>>>
+> >>>> I meant how your bootloader/barebox generates this information.
+> >>>
+> >>> Most SoC have 1 or 2 registers where you can read the source where the
+> >>> system has booted from.
+> >>>
+> >>> One register contains the information such as eMMC, NAND, USB, serial
+> >>
+> >> I know.
+> >>
+> >>> download, ... the other register contains the information about which
+> >>> instance, e.g. 0, 1, 2... The boot loader combines both pieces of
+> >>> information and knows the boot source of the system.
+> >>>
+> >>> The problem we want to solve is the mapping from the SoC specific
+> >>> numbering of the registers to the devices in the DT.
+> >>
+> >> You are both not replying to what I said.
+> >>
+> >> So to recall, I said your bootloader comes with something read from
+> >> register values and uses this to match the alias from DT and that's as
+> >> fragile as doing simple unit address based arithmetic after sorting.
 > > 
-> > Probably the latter option. You could do the former and make the new
-> > properties conditional on the "vdr-battery" compatible. That's fine with
-> > small differences, but gets messy as there are more properties and
-> > variations.
+> > I don't get what you mean with "simple unit address based arithmetic
+> > after sorting".
+> 
+> You read from registers booted device MMC 1 (out of MMC 0-2), so instead
+> of relying on register value that "1" always means MMC1, not MMC0 for
+> example or whatever else changed in hardware, you can just sort the
+> nodes by unit address and choose the second device.
+
+The instance numbers do not always match the unit address sorting.
+
+For example K3 SoCs have:
+
+dts/src/arm64/ti/k3-am62-main.dtsi:548: sdhci0: mmc@fa10000 {
+dts/src/arm64/ti/k3-am62-main.dtsi:566: sdhci1: mmc@fa00000 {
+dts/src/arm64/ti/k3-am62-main.dtsi:589: sdhci2: mmc@fa20000 {
+
+Rockchip:
+
+dts/src/arm64/rockchip/rk356x-base.dtsi:619:    sdmmc2: mmc@fe000000 {
+dts/src/arm64/rockchip/rk356x-base.dtsi:994:    sdmmc0: mmc@fe2b0000 {
+dts/src/arm64/rockchip/rk356x-base.dtsi:1008:   sdmmc1: mmc@fe2c0000 {
+
+There are some examples for i.MX as well. To my own surprise not with
+the mmc nodes, but some SPI instances are not sorted by unit address.
+
+> 
+> 
 > > 
-> > But is "VDR" a type of battery though? Is there a certain type/chemistry
-> > of battery we should be describing where VDR is applicable?
+> > Also I don't get whether you are suggesting
+> > 
+> > A is as fragile as B, so you could equally well do B
 > 
-> No. Not that I know. My understanding is that the "VDR (voltage drop rate)"
-> refers to measured voltage drop-rates under certain conditions - which can
-> be used to (more accurately) estimate the remaining capacity when battery is
-> nearly depleted. As far as I know, this is only used with Lithium-ion
-> batteries (I am not at all sure of this) - but I _assume_ the technique
-> could be applied to other type of batteries as well.
-> 
-> > I don't
-> > think it scales well if we define battery compatibles for every
-> > variation of charger algorithm. Honestly I don't mind just adding 1
-> > property. I care more if we allow undocumented properties than
-> > allowing documented but invalid for the platform properties.
-> 
-> I see. The "VDR" stuff is really tightly bound to the fuel-gauging
-> algorithm. It is measured characteristics of the battery - but those values
-> are only usable by the "VDR" algorithm. I don't really have a good insight
-> in the amount of fuel-gauging algorithm related properties suggested to be
-> added during the years - but don't think there have been that many of them.
-> So, I am not that worried about adding the compatible. On the other hand,
-> there is no technical reason (other than adding properties which are unused
-> on many platforms) why not to add the vdr tables in the static-battey node
-> without adding own compatible. And, reading reply from Andreas (I'll copy it
-> here to answer it in same mail)
-> 
-> /// Below text is form Andreas:
-> > just keep in mind, that several kobo devices have one pmic in one board
-> > revision and another one in the other (e.g. Kobo Nia rev A vs rev C).
-> > But probably the same battery. So if the "vdr-battery" is a compatible
-> > just to allow a more properties,
-> > then "simple-battery" should be allowed as fallback.
-> 
-> I didn't know Kobos use multiple chargers. Thanks Andreas! So, in that
-> sense, adding the "vdr" tables in static-battery node, without new
-> compatible, would maybe be simplest solution. Then the charger(s)
-> (fuel-gauge(s)) which implement VDR algorithm, can pick the tables while
-> those chargers which don't implement the VDR will just ignore these tables.
-> 
-> > When it
-> > becomes 10, 20, 30 properties, then I might start to care.
-> 
-> For VDR there are only:
-> 
-> rohm,voltage-vdr-thresh-microvolt,
+> Both are fragile, so I would be happy to see arguments why A is better
+> than B. Why? Because with B you don't need any binding because all the
+> information is already in DTS.
 
-So "voltage voltage drop rate"? And '-microvolt' says this is voltage 
-too. :)
+What do you consider fragile with it?
 
-> rohm,volt-drop-soc-bp,
-> rohm,volt-drop-temperatures-millicelsius
-> 
-> and
-> 
-> patternProperties:
->   '^rohm,volt-drop-[0-9]-microvolt':
-> 
-> So, from the binding point of view (.yaml), it's not _that_ lot. In the .dts
-> there will be quite some noise as the tables have several values.
-> 
-> 
-> > If that
-> > happens, either we are doing a poor job of generically describing
-> > battery parameters or chargers and batteries are tightly coupled and
-> > can't be described independently.
-> 
-> I am under impression that chargers tend to be pretty flexible, and they can
-> be configured to work with many different batteries by altering the charging
-> profiles. Most of the battery properties (like and charging phases [like
-> pre, CC, CV], their limits, currents and voltages etc) are very generally
-> usable. So, large subset of charging functionality can be handled with
-> standard properties. I believe it is only the fuel-gauging where things get
-> more hairy.
-> 
-> I did prepare a series which does the split and adds new compatible for the
-> 'rohm,vdr-battery'. (The power-supply class is not yet modified in the
-> series, but we would probably want to modify the battery-info getters to
-> also accept the 'rohm,vdr-battery' -compatible.)
+Sascha
 
-I don't think that's the right direction. It's not a Rohm battery.
-
-> I wonder if I should actually prepare also a series where these properties
-> are just placed in the existing static battery node without adding new
-> compatible. That way it would be easier to see which way is better.
-
-That seems like the right thing to do here. 
-
-The main question for me is whether these should even be Rohm specific? 
-That would probably require a 2nd user to answer for sure. 
-
-
-> If I do that, should I only spin these bindings as RFC to avoid the
-> unnecessary noise?
-
-Only if you think something is not complete and/or the patches should 
-not be applied.
-
-Rob
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
