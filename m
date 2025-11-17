@@ -1,138 +1,110 @@
-Return-Path: <devicetree+bounces-239498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A03BC6572F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:22:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80EBBC65717
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:21:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 557012C1C4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:20:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 8773E28D5F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6AD130C62A;
-	Mon, 17 Nov 2025 17:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B589331A52;
+	Mon, 17 Nov 2025 17:18:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="WxHV3RI3"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="a42LTJ0U";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="m4R/RIDc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A730308F39;
-	Mon, 17 Nov 2025 17:17:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08865330B35;
+	Mon, 17 Nov 2025 17:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763399865; cv=none; b=VQa2BQkrdbGj3HpJIwTgl2Hgz06M9d7vO6jLndaYEVCxWJa8jygIgZwPiNO2N9/f585lua06crO+HCziA903tnfz8KCpPK95GIrtEYOWp5YGAhzr6CHftiEJZwvfmf8i+Vx54G4BY6q2QmX7hFQBSDnRw0a4JmZobar6Jm5eDOw=
+	t=1763399900; cv=none; b=HtpLDcXrxf78ZAWHWKj+gdaAiLsxNBuS5t8/dwdAQYcwj1ZyIVwCXK8ozBc8jNBOImR7yn8wd9t+Us893c0G2eAVnGmmhhhdVO9HlTcVghhaBUt8hI7LspwAmhYu0WsXQxwP1rIHZmHWAJLmzvR+Eq8prvAcFh1RbuBd6xPfTpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763399865; c=relaxed/simple;
-	bh=Rjs2OOyF6SYECcdH0ADxnHYKMjotvNyhStyzl9wulrw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KiIIbL0H1haI1qTRgCxEcfPAsTInAlJDZsx4ANfPPpiP5Ssg/XFST84q5YiYxaXLaj0bgmGLOkkwV33OsWSHhPZuUvbaylnQ9trSMOx1peFPT2b027gcWM98U2JHuRKKRkGuWPRBFdDvFU49vN/j1ts6R4KDkD1djlhIyg0zP1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=WxHV3RI3; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1763399863; x=1794935863;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Rjs2OOyF6SYECcdH0ADxnHYKMjotvNyhStyzl9wulrw=;
-  b=WxHV3RI3QgShRTEgH1DzPImfGGb9dTwy7FC3F/Hmq9zK8QqgB7xyfyEL
-   iwo44nA5WcM9li+uhsHobiAOLk4teNxpUHFMnkV/YgWE75mKm2w7P+A+/
-   fa5YAwdeRfxU7TRQUuVNZ3Q2UMat+5jEukFAxTvewr0rKu5pSMfsQIu+7
-   kM/a6kUbPD0rCZx2brLJcVedlJGf7JTPk0HKCD7I3lPuzp0KjXFgSnGwi
-   SsdnbsA1SBFLw0+UiDkPUqYzj7Re76eACpl9qOQP0HJTKFjvSe9S+oB/P
-   4mQJz032deFPQxUjk9ynkafCtmHZfmCXuwENM3XS18cNDOD7H1W2rIwmC
-   A==;
-X-CSE-ConnectionGUID: COIhNW6VSiuOuR1c6xAlwQ==
-X-CSE-MsgGUID: 31W8C5cmQZqT6akm8Ar6YA==
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; 
-   d="scan'208";a="48617166"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Nov 2025 10:17:41 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Mon, 17 Nov 2025 10:17:02 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Mon, 17 Nov 2025 10:16:59 -0700
-Message-ID: <c352ba06-05b8-47d1-ba0b-6972a06e9d29@microchip.com>
-Date: Mon, 17 Nov 2025 18:16:58 +0100
+	s=arc-20240116; t=1763399900; c=relaxed/simple;
+	bh=nNBrrYmctHskZOLRwlBwYGrHjUCDPM9U0EIRpLoj3Rc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pGK603U6Lfl15iJ1sAdL9nM9PYbbXC5Nv87B/DDpZFHu5bUK94uhpI76PfgbE29CgwaaNXKuOUMylw03orgYa9Puk4epHqT2gjScf/q+gRATbPQ0eMQFaXi1GaKaIlrodkrLBvy/QYK+Z8Bwl+gHrpaTcptvM0K0KMfWNwraQbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=a42LTJ0U; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=m4R/RIDc; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1763399875; bh=6snJ3KAWKEtGwUFI68wsXES
+	OH28NRYQqBiEgOf9xSU8=; b=a42LTJ0UOYmKKJsCQ9WD8XrqKZhiIZttiyXImobxveHkzJlfgD
+	TC+YuTbWCVnyEPQUx7YBxaWWFgfOMBeYhBUEJOEnz1IHPHowCCxI5vRzGVPMvEtlMleDfCkNIhA
+	Bl/HFl78tm6xfFmbysnyTaxpUrpy4U+pZ5qaEYO/D8HYk8x6DgJLTnyKU7CHDnZrz1Qp6GqQH05
+	6BYGqhOlnder8c0t8cCn3eyEtFFPeniOuGDFEtr8501v81yv6lx4ml+WpIVPnjWsQI9efd+0zcg
+	zpTXK8BNvFRV4X3Czaal4194Dly1G/qmvjgpmn76dagV6mGspRBc84U6ckbHi4xfq/g==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1763399875; bh=6snJ3KAWKEtGwUFI68wsXES
+	OH28NRYQqBiEgOf9xSU8=; b=m4R/RIDcO1T+wzDUXBHpQtYVV6wDS/dG/D8QoiZf+qmHKyLmsf
+	ikWs2/B9JgqOvDKeXApwaFz5ox+bSaRf69Bg==;
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v2 0/4] MSM8917/MSM837: Add missing MDSS reset
+Date: Mon, 17 Nov 2025 18:17:51 +0100
+Message-Id: <20251117-mdss-resets-msm8917-msm8937-v2-0-a7e9bbdaac96@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next] dt-bindings: net: cdns,macb: Add pic64gx compatibility
-To: Conor Dooley <conor@kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>, Conor Dooley
-	<conor.dooley@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20251117-easter-machine-37851f20aaf3@spud>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <20251117-easter-machine-37851f20aaf3@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAL9YG2kC/42NQQ6CMBBFr2JmbU2nWFpceQ/DAmSASWwxHUI0h
+ Ltb8QKuft5fvLeCUGISuBxWSLSw8BQzmOMB7mMTB1LcZQajjUXEUoVORCUSmkUFCb5C99vCKWx
+ 91RvbmHNnIRueiXp+7fZbnXlkmaf03mMLft//vAsqrbTXFgtfOle119BwfHDkOJymNEC9bdsHp
+ nDCM8sAAAA=
+X-Change-ID: 20251116-mdss-resets-msm8917-msm8937-1b89f25a24d5
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Taniya Das <taniya.das@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763399874; l=1070;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=nNBrrYmctHskZOLRwlBwYGrHjUCDPM9U0EIRpLoj3Rc=;
+ b=ZwsY3gsJynFWhDD/esMemjm0aUAfIhGHAHrgils1Fe0M0VEVQS+s7Tvns/fi4QTp7drJt92xA
+ 5CYP9fJp0SzBVekQjzg84S9HkSADDmtaDz6q5XD4y3ruahK+a2DkEwr
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-On 17/11/2025 at 17:24, Conor Dooley wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-> 
-> The pic64gx uses an identical integration of the macb IP to mpfs.
-> 
-> Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Add missing MDSS reset can be found on MSM8917 and MSM8937.
 
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-Thanks, regards,
-   Nicolas
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Changes in v2:
+- Reword the commits.
+- gcc-msm8917: correct the author mail.
+- Link to v1: https://lore.kernel.org/r/20251116-mdss-resets-msm8917-msm8937-v1-0-08051386779b@mainlining.org
 
-> ---
-> CC: Andrew Lunn <andrew+netdev@lunn.ch>
-> CC: David S. Miller <davem@davemloft.net>
-> CC: Eric Dumazet <edumazet@google.com>
-> CC: Jakub Kicinski <kuba@kernel.org>
-> CC: Paolo Abeni <pabeni@redhat.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Nicolas Ferre <nicolas.ferre@microchip.com>
-> CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-> CC: netdev@vger.kernel.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
->   Documentation/devicetree/bindings/net/cdns,macb.yaml | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> index 1029786a855c..07ede706a8c6 100644
-> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> @@ -38,7 +38,10 @@ properties:
->                 - cdns,sam9x60-macb     # Microchip sam9x60 SoC
->                 - microchip,mpfs-macb   # Microchip PolarFire SoC
->             - const: cdns,macb          # Generic
-> -
-> +      - items:
-> +          - const: microchip,pic64gx-macb # Microchip PIC64GX SoC
-> +          - const: microchip,mpfs-macb    # Microchip PolarFire SoC
-> +          - const: cdns,macb              # Generic
->         - items:
->             - enum:
->                 - atmel,sama5d3-macb    # 10/100Mbit IP on Atmel sama5d3 SoCs
-> --
-> 2.51.0
-> 
+---
+Barnabás Czémán (4):
+      dt-bindings: clock: gcc-msm8917: Add missing MDSS reset
+      clk: qcom: gcc-msm8917: Add missing MDSS reset
+      arm64: dts: qcom: msm8917: add reset for display subsystem
+      arm64: dts: qcom: msm8937: add reset for display subsystem
+
+ arch/arm64/boot/dts/qcom/msm8917.dtsi        | 2 +-
+ arch/arm64/boot/dts/qcom/msm8937.dtsi        | 1 +
+ drivers/clk/qcom/gcc-msm8917.c               | 1 +
+ include/dt-bindings/clock/qcom,gcc-msm8917.h | 1 +
+ 4 files changed, 4 insertions(+), 1 deletion(-)
+---
+base-commit: 0f2995693867bfb26197b117cd55624ddc57582f
+change-id: 20251116-mdss-resets-msm8917-msm8937-1b89f25a24d5
+
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
 
 
