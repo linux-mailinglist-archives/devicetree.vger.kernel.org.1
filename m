@@ -1,57 +1,60 @@
-Return-Path: <devicetree+bounces-239566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 969EAC667B4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:52:05 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F211C667AE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:51:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D770D35D7CB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:50:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 6149E2A8A3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:50:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5772F39AB;
-	Mon, 17 Nov 2025 22:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33C13176F2;
+	Mon, 17 Nov 2025 22:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYSUCP8g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EM/VMzVx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2546CBA3D;
-	Mon, 17 Nov 2025 22:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9167239E7D;
+	Mon, 17 Nov 2025 22:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763419718; cv=none; b=mLn7wsrkLFywYf8KihSeGhteH4cQPRCs+VHjVd7f+zHoFLHSX8IXx+jeEgveSHvhf1Cx5JpLBx0vSFIilZdP1IuX4nUDZIAMo2Pl49p4Fe3epC3pb8jiJhN3PlQ6/ZgwLz/+1ntwseFqw24dmaITqwzZBJVWu1Nj+j1AveMpUhE=
+	t=1763419791; cv=none; b=gJWXFyYC0lHy2Nt9euPYkWdl87SP4yjtR1etXYFRldM811AQMCmavP16dsXrYFXmfTe2/yraVZMslYKR4GJBEJGiH13R4bO2vuJxjFCrDAkNSgPDX9+lv9hrEKdH2Anf9Y+EUz7MDFbv7nUaSIoUdpyB4b/SFcxxt+dOsm/0lt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763419718; c=relaxed/simple;
-	bh=v6+KaDJ8aMGcLNagNjtxH7djVTSZxKMTFEwO8QFpy+Y=;
+	s=arc-20240116; t=1763419791; c=relaxed/simple;
+	bh=c+NaU0TriAs8ICepbzbf9oSBIbi8FE5b3ihXcNJEAqI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nvpSg8jBKviVmkUxSkKiM8A53qr0b4vS3+AsixF54WmilqOqSVwrwxDq0eM2t/8gwRaweqn22VWyQE4cL3K8i52tGoiQyl9GlM7wv7HlMaj6XNvu4w0J1baJEv+ZGsV5QZ2XRZRWs0roZaH2vGYVEju7/UDFuRi+rSi6Z8R4eJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYSUCP8g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27672C19424;
-	Mon, 17 Nov 2025 22:48:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=u9QpieRau8KRIkLQ54pVdQAah02vVh/7FbEunJc4OWghXkyEaaCiERmZMGSdsjnbtjfDMHqytYBXd1ZiDGGbxBdWXNFAV8x9YbrmruTUoYUjAc3zs2Db8ft8i0Z3UsWm9cVlzwuEDLx9YC3N9BHbxUO9ghQL4o4gPU2or3Hy0DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EM/VMzVx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8140FC2BCB3;
+	Mon, 17 Nov 2025 22:49:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763419717;
-	bh=v6+KaDJ8aMGcLNagNjtxH7djVTSZxKMTFEwO8QFpy+Y=;
+	s=k20201202; t=1763419791;
+	bh=c+NaU0TriAs8ICepbzbf9oSBIbi8FE5b3ihXcNJEAqI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lYSUCP8gDQfRP/vBltZLMqzKli+eGo4GDiQccJemqFb8bkGdL2GRcPpJg89bH2YpK
-	 l7WVpta6nBNVc4q7RCNN74psm3a5VBY7hUc+03wP8MSLIL/WAZs6IpthDw8MocQgyM
-	 pb9hGrFYXMPunFcpW/q9elGb9kb9L65lG02PVMSyyWyxHKEbVx3s3YuaKGiS6NtGjf
-	 +/x/XemnNRwelI6tBQnjq1n9AgGfAx/6/Xc1OMoqWaKHgyI2tO0tjlEfihbygNPxFs
-	 9B5nZ/a5JMlrFv9aQuBgYvjrOKQ05rKm2sekzIi1m0iOalA5Qdv3MbAn6ToURnxzoe
-	 jSWuskhiyHzJw==
-Date: Mon, 17 Nov 2025 16:48:35 -0600
+	b=EM/VMzVxSdpPvUXGhQKI5DnvOcrVqnxSdHsdS2c2EkaX92mDRnOiKE4UHyinqY6iu
+	 YhUtXo/0f5zcQwOIv0UxLHrIr+g8zE9yBS+/ewzdaI0hF/liUoS3tj60ktDIpUZrBl
+	 ul48+y18WJ3hL64orexIK+QyiUsgQ1XE1l5D8GxgW9geQZ1MllVIXvXxgAujRLbD4n
+	 h3HNeZyhHc/9Wqh2IMJFUS2ZwdA9dagjsGogOi+0N9C49kDg/gsfwUCMBKLFark7Gc
+	 SAcjVn7HKU9BmG/T/wTy4kYasaKxCdU2VoZiK/aG/CwkGiYmgS+LRbYH8MczX+D2Cd
+	 RRWqgEz+tvDqw==
+Date: Mon, 17 Nov 2025 16:49:48 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
-Cc: Robin Gong <yibin.gong@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: pca9540: add debounce
- timer configuration
-Message-ID: <176341971477.860979.15549912879191395292.robh@kernel.org>
-References: <20251117202215.1936139-1-martijn.de.gouw@prodrive-technologies.com>
+	Samuel Holland <samuel.holland@sifive.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
+	Paul Walmsley <pjw@kernel.org>
+Subject: Re: [PATCH v1] dt-bindings: cache: sifive,ccache0: add a pic64gx
+ compatible
+Message-ID: <176341978797.862829.13625647277395076899.robh@kernel.org>
+References: <20251117-colt-carnival-8aab0a900816@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,20 +63,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251117202215.1936139-1-martijn.de.gouw@prodrive-technologies.com>
+In-Reply-To: <20251117-colt-carnival-8aab0a900816@spud>
 
 
-On Mon, 17 Nov 2025 21:22:13 +0100, Martijn de Gouw wrote:
-> Make the different debounce timers configurable from the devicetree.
-> Depending on the board design, these have to be set different than the
-> default register values.
+On Mon, 17 Nov 2025 14:24:37 +0000, Conor Dooley wrote:
+> From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 > 
-> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+> The pic64gx use the same IP than mpfs, therefore add compatibility with
+> mpfs as fallback.
+> 
+> Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../regulator/nxp,pca9450-regulator.yaml      | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
+> CC: Conor Dooley <conor@kernel.org>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> CC: Paul Walmsley <pjw@kernel.org>
+> CC: Samuel Holland <samuel.holland@sifive.com>
+> CC: devicetree@vger.kernel.org
+> CC: linux-riscv@lists.infradead.org
+> CC: linux-kernel@vger.kernel.org
+>  Documentation/devicetree/bindings/cache/sifive,ccache0.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
