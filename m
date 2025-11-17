@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-239562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEA08C66748
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:46:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83566C6675A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:46:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7A84035B085
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:46:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 002024E2857
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7328199252;
-	Mon, 17 Nov 2025 22:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2A430FC13;
+	Mon, 17 Nov 2025 22:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8ehKzTd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+zOmGtp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8265464D;
-	Mon, 17 Nov 2025 22:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9215C199252;
+	Mon, 17 Nov 2025 22:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763419561; cv=none; b=ah4ocCo07FZ2AsiTbxUWWH2n0MZ0/hx30VW4tHcF7MRyw2i3UGraRerbkMYmwd7oI7tY8sH7Tg4aRtJ53X2hbCEUnUd1QYd7yy5eDzv2eeL2ybYpBkzZZuSMv1qrdQLOKHGsxBz4+O9EE4cvpQT8f0rQVGE895y8VqerHIzyBlM=
+	t=1763419581; cv=none; b=uxpy5Ac+QRGoLc46MlIMXVYiB3IdL7ckVDoRefhJ/zsc1roudxOUIg5IBmrsAw41sQ6gU8vgieoXCYjKGx/YLezOFjgXXlyW5Uc3hOK1oeFZ/bhlp2fqZ/lwzDbyiMckX8xeSGa23Us1gntkmWR9339/YhxLYg+CSYte0G+yf9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763419561; c=relaxed/simple;
-	bh=lkWDRMjVGIhRXjYODF4NGeavO5+MliWUeaJhzdHGjpE=;
+	s=arc-20240116; t=1763419581; c=relaxed/simple;
+	bh=M8X10Tcz5LzdsBPhMIGBoWyGzcuB3L0lskpp6XvSMEs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fn/RaaVrvY4XtJj6Ne4CbCGsoC3eN2KtAWOHqYOQczzftbM9qE+iWLIW5TDv8XSm46BITNKfd5Uk3j6D8Egyzf6u+AGsgn+/MAd+6r7026l1CNXGfBMoBxR/+UpIW5jlnbngIWrFqmUmQvx/dm7Spp74jSYVv/J6ok2psJYuXOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o8ehKzTd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD5ADC2BCAF;
-	Mon, 17 Nov 2025 22:46:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gz+Nf30zMZh+E2A1KluwGuNMYzFnWGupzzsDiEHbSSHNo+I+j4OVkTDP2to2TzoxQ1OyQBr7OR7jP92ro5A+Z0Vdbj25GREnwD//UpiKKqekOmhQ0Q0J/ohwBFBrA5akovT2r4lRea0J2mANMrEZDBZ0QDv6ZiOYxYAvpOhMm50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E+zOmGtp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9136C2BCB1;
+	Mon, 17 Nov 2025 22:46:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763419561;
-	bh=lkWDRMjVGIhRXjYODF4NGeavO5+MliWUeaJhzdHGjpE=;
+	s=k20201202; t=1763419581;
+	bh=M8X10Tcz5LzdsBPhMIGBoWyGzcuB3L0lskpp6XvSMEs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o8ehKzTdEOposLsvgoWshvL/XdFjL4Xkh7uAxoW3kr+1C2Uys/U6eggblcIeLjU1N
-	 AGeS7br0F8s7KGmBDqQA/VNZ0Xmn7exZmDD6Qkq/sLnY0fAja0OjHd7Hp7ObTLdfMq
-	 vMY0EV6NLm0dw32r6u84XJ/bs+9p35DZE8MkkEOcYFka7Lf+Fyza0JBWxNXUn4vH0y
-	 OE7uhfofHxQkMSWY8/DVI4lfUTF2nIK5AsDXx0n+ZEjJn2ANVMMPjm/uVbmg3v+dvH
-	 NFMi0F5Ogapns/98f51SFH2tYbq3zvBVGVNSt0lQGmUdqpjtohUVpadjzAFQtg1ZPZ
-	 8Faj19KonXhkg==
-Date: Mon, 17 Nov 2025 16:45:58 -0600
+	b=E+zOmGtpyYsQ760KHlDFRVgAZNsxpX9bpp6RWXtdDFGrmSEbAgIa2kXVhTSNMJ4tv
+	 KWXlm3QwgHQ1Z/vM9vpE8r4aXQlIifgbTvtoUtuG7Pk9B7wU9BsvtoFWTMhWNjgv5o
+	 ZmwegQM5LuIvkggM6gCAOdN3Ta41NW1VuvR7U3NvK0kCAKIBZixmtZm+M/gGib1Wo9
+	 a04Acj0zCLcfqzw4OhlFKdQILn9rUqGSEgWhsmTtsMSPqyvS0d9gYMU6jOno+ZWz2h
+	 zwQ5g1JjbO13T4ffv/h8n+5rCfXPPYH3qeDUp9TGrn0di2b/oZlnpboSFUjdTaVm7l
+	 3E05OMS91nztg==
+Date: Mon, 17 Nov 2025 16:46:19 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: mfd: document syscons falling back to
- atmel,sama5d2-sfrbu
-Message-ID: <176341955828.856915.4185012775143891739.robh@kernel.org>
-References: <20251117-aeration-smock-5e7ac06e2942@spud>
- <20251117-marlin-mustang-5ffda4d211c7@spud>
+	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	Jakub Kicinski <kuba@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Eric Dumazet <edumazet@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [net-next] dt-bindings: net: cdns,macb: Add pic64gx compatibility
+Message-ID: <176341957857.857483.4274673350400117057.robh@kernel.org>
+References: <20251117-easter-machine-37851f20aaf3@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,34 +67,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251117-marlin-mustang-5ffda4d211c7@spud>
+In-Reply-To: <20251117-easter-machine-37851f20aaf3@spud>
 
 
-On Mon, 17 Nov 2025 16:29:31 +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Mon, 17 Nov 2025 16:24:33 +0000, Conor Dooley wrote:
+> From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 > 
-> The sfrbu on both sama7g5 and sama6d65 both fall back to sama5d2 in
-> devicetrees, but the former two compatibles were undocumented. Now that
-> syscon.yaml has easy support for multiple soc-specific compatibles, add
-> both of these undocumented devices.
+> The pic64gx uses an identical integration of the macb IP to mpfs.
 > 
+> Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
-> CC: Nicolas Ferre <nicolas.ferre@microchip.com>
-> CC: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-> CC: Lee Jones <lee@kernel.org>
+> CC: Andrew Lunn <andrew+netdev@lunn.ch>
+> CC: David S. Miller <davem@davemloft.net>
+> CC: Eric Dumazet <edumazet@google.com>
+> CC: Jakub Kicinski <kuba@kernel.org>
+> CC: Paolo Abeni <pabeni@redhat.com>
 > CC: Rob Herring <robh@kernel.org>
 > CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
 > CC: Conor Dooley <conor+dt@kernel.org>
+> CC: Nicolas Ferre <nicolas.ferre@microchip.com>
+> CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> CC: netdev@vger.kernel.org
 > CC: devicetree@vger.kernel.org
 > CC: linux-kernel@vger.kernel.org
-> CC: linux-arm-kernel@lists.infradead.org
-> CC: linux-mediatek@lists.infradead.org
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/net/cdns,macb.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
