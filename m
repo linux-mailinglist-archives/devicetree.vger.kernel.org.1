@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-239450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B13C64F23
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:48:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A459C64F56
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:50:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A73D34E8900
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:47:05 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0315334F5EA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D644728CF42;
-	Mon, 17 Nov 2025 15:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D3A292B4B;
+	Mon, 17 Nov 2025 15:47:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hGre4gJE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KStYFiRE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7D17405A;
-	Mon, 17 Nov 2025 15:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B97728FA91;
+	Mon, 17 Nov 2025 15:47:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763394421; cv=none; b=rsg+4qpeuWKzlhWO9LisoQCS5aHAuCo6CV48sByjdFc2g0dnLaHFh3S+L+koCZ1EN1ha6zks07BnNdDrEYuKW+YyVri1w3vB+jzUvhvQWEpqxUcDxIAut90w4JRdx70ja8qsr/sY5pPedV0lECgHPmbgIeHc6lxKBlmqzZfn3DY=
+	t=1763394473; cv=none; b=PdsbHLTkip67ZlqlA3wsjyIV0uOsS59kRCEiZT1nRli5n/LfifCjr03zeiat8FFAJHD4U/u89WmLU/UFGIP27NM5yDRs3Ml9oYGeB/kER5wDoNuKcdII3y7imliZRwaRmYjNOe53uG5EzAbo0oWo1Oe4qzBnBD7q4hH4Tm1POmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763394421; c=relaxed/simple;
-	bh=v9g+IdI4PAz/7Ua9rmmO/qkJeIMbui4DhIkf9tqg18g=;
+	s=arc-20240116; t=1763394473; c=relaxed/simple;
+	bh=srMzZ9zZ5j8aRKUeiPt6hC/KIPQNg1B7h2t1KNbGbcY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=npLNlo0i9f0A3b2ZGN6Y+LIJ2EYj+5Ryn/0IqbD75r81+gHjn8UkYZw79JXFQ5Ivdv99i66Y4CsRBapcFOZhnJy1tL931buQr04EVIjor3BFk40aSv6GHIdlbfVgwgc7lld3Ngdbx2C+WJmxGErrkQfWArGcnYmX0hQB/c8vY78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hGre4gJE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B75C4CEF1;
-	Mon, 17 Nov 2025 15:47:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jCf8IHPnuW17vQlgvwiqWu9rOd5etidb8aa+ep2LKHBgq1zgsTYFLGV8XB8Ql1VaxNOOiGreN6P31ASD/WvdXKFyAE8A7lREbokAE5LLq/ya3sl4q3LFZV9bp/unvw0N6yBQdLh9b7inLDr/BhNCsQ1QVRX3riOzJr4ejJ2T00w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KStYFiRE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3170C116B1;
+	Mon, 17 Nov 2025 15:47:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763394421;
-	bh=v9g+IdI4PAz/7Ua9rmmO/qkJeIMbui4DhIkf9tqg18g=;
+	s=k20201202; t=1763394473;
+	bh=srMzZ9zZ5j8aRKUeiPt6hC/KIPQNg1B7h2t1KNbGbcY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hGre4gJEBpnUJKYX7BD3I8qYtq145r275WSwbhMsofE0APB0V7LyZFT28HyHOWjpF
-	 vWBSUR0bZLUSNtesYaEjChk+5XlEhPrTjzfV8GZjOh1gABRWszte25/CL57ikkrUeQ
-	 6WsAOj33Xzdds5pprxhY+94wPrjFbSHZlTQ27FgvLB6IPZxTwg3YoRCKz5tPCNp8AI
-	 SrFOV8QDLnbiQbjX2jp7QdJxd1yffs9A3TCsrfyWzkcB2IMzy5CyUDYozjoY+N0oMd
-	 XzMONBNtzB7avkPj5S3mw6w4yAhxNenJE5IOlt7VYrqLFq9SLjzyX/bP45hUFHW9Cz
-	 lw9OWuX0zEI2g==
-Date: Mon, 17 Nov 2025 09:46:59 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: daniel_peng@pegatron.corp-partner.google.com
-Cc: LKML <linux-kernel@vger.kernel.org>, linux-input@vger.kernel.org,
-	Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	b=KStYFiRE5RWPG5qpQ+QbW8ibeSLHKNGV85p3VTlT9Pxhst1gsFHiQjHlZpu88ez16
+	 +v7uqlvYkcqujE8T24ekuHKytGacZK7Y4A9jSvc4cCfQrSEJrSH5BzmjZ+5iL6vtmy
+	 FKGE1hgb3fRjW5neZxVhvep7YJR0TLhgPBRgNoWtZeHOfexcyrMhBm6H4oE9/Itp1b
+	 8znLopYK9ZfsIaTVWlpx6zQClseP/KrzA1WT2KpdCb+UNJ+0CJfRuaelwtjmb0aMGO
+	 8uM3CH1Q2SXJWEsKid2NVXk9nyJmY48TSbYgcxEFcKuW+wwgLaIqt1eoycd+MTMUXe
+	 y9akAGGe1RAQQ==
+Date: Mon, 17 Nov 2025 09:47:51 -0600
+From: Rob Herring <robh@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: input: i2c-hid: Introduce FocalTech
- FT8112
-Message-ID: <176339441678.2237343.3650642092927839407.robh@kernel.org>
-References: <20251117094041.300083-1-Daniel_Peng@pegatron.corp-partner.google.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clock: sprd,sc9860-clk: Allow "reg" for
+ gate clocks
+Message-ID: <20251117154751.GA2238642-robh@kernel.org>
+References: <20251029155615.1167903-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,29 +64,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251117094041.300083-1-Daniel_Peng@pegatron.corp-partner.google.com>
+In-Reply-To: <20251029155615.1167903-1-robh@kernel.org>
 
-
-On Mon, 17 Nov 2025 17:40:40 +0800, daniel_peng@pegatron.corp-partner.google.com wrote:
-> From: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
+On Wed, Oct 29, 2025 at 10:56:13AM -0500, Rob Herring (Arm) wrote:
+> The gate bindings have an artificial split between a "syscon" and clock
+> provider node. Allow "reg" properties so this split can be removed.
 > 
-> Create new binding file for the FocalTech FT8112 due to
-> new touchscreen chip. Confirm its compatible, reg for the
-> device via vendor, and set the interrupt and reset gpio
-> to map for Skywalker platform.
-> FocalTech FT8112 also uses vcc33/vccio power supply.
-> 
-> Signed-off-by: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
-> 
-> Changes in v6:
-> - Remove the commit description for the incorrect section.
-> 
->  .../bindings/input/focaltech,ft8112.yaml      | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
-> 
+>  .../bindings/clock/sprd,sc9860-clk.yaml       | 26 -------------------
+>  1 file changed, 26 deletions(-)
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Ping!
 
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
+> index 502cd723511f..b131390207d6 100644
+> --- a/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/sprd,sc9860-clk.yaml
+> @@ -114,25 +114,6 @@ allOf:
+>          - reg
+>        properties:
+>          sprd,syscon: false
+> -  - if:
+> -      properties:
+> -        compatible:
+> -          contains:
+> -            enum:
+> -              - sprd,sc9860-agcp-gate
+> -              - sprd,sc9860-aon-gate
+> -              - sprd,sc9860-apahb-gate
+> -              - sprd,sc9860-apapb-gate
+> -              - sprd,sc9860-cam-gate
+> -              - sprd,sc9860-disp-gate
+> -              - sprd,sc9860-pll
+> -              - sprd,sc9860-pmu-gate
+> -              - sprd,sc9860-vsp-gate
+> -    then:
+> -      required:
+> -        - sprd,syscon
+> -      properties:
+> -        reg: false
+>  
+>  additionalProperties: false
+>  
+> @@ -142,13 +123,6 @@ examples:
+>        #address-cells = <2>;
+>        #size-cells = <2>;
+>  
+> -      pmu-gate {
+> -        compatible = "sprd,sc9860-pmu-gate";
+> -        clocks = <&ext_26m>;
+> -        #clock-cells = <1>;
+> -        sprd,syscon = <&pmu_regs>;
+> -      };
+> -
+>        clock-controller@20000000 {
+>          compatible = "sprd,sc9860-ap-clk";
+>          reg = <0 0x20000000 0 0x400>;
+> -- 
+> 2.51.0
+> 
 
