@@ -1,184 +1,245 @@
-Return-Path: <devicetree+bounces-239181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A427C62726
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 06:45:25 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2950C6274C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 06:52:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D1AFB35DE9A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 05:45:24 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 35A99357DCD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 05:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8463730DECA;
-	Mon, 17 Nov 2025 05:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9372820D1;
+	Mon, 17 Nov 2025 05:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b="lEQ/owiu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LlV1tFZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012021.outbound.protection.outlook.com [52.101.66.21])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010034.outbound.protection.outlook.com [52.101.61.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C5C1DE4F1;
-	Mon, 17 Nov 2025 05:45:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08832571C5;
+	Mon, 17 Nov 2025 05:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.34
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763358321; cv=fail; b=PCaKclBmPQfD96fpU58o00dW22ePVLL+TjqRtIu+NhmLnH07ZBE0sqSUwbITIoAM7DFW/LQnSGKVh4jY4ETG13g9Ol0iij0iYX7gOEcFvqGChLmICld+9ZKk5uCV1xQFj7WW5d3B/9WeGWAFhdWrbag1W6H7I/N1d4TIX7C9wls=
+	t=1763358724; cv=fail; b=I9VhwJm/kEB+DN+PNfYDU7kPBW50zqLyNPpFl9Wx9EoeD9pTszVf/SW7oWYnY4wLtbYvKNf4H02CPvRrRtMTZlND3d7OXifvZp6rqxd971Xtutnyt6Y8ZfbCXi5Wa2gU0NI0c464Fx9ac7LHR0Zmt8GVXEqdlcDUHpKXQzjQVyE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763358321; c=relaxed/simple;
-	bh=vACgHrfeFmVNItDW9lxdY/QI5yMLWjWZGAGbAyUC7C0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N3XKabwCufV8XxUpJPLeyXFN4VnrWfS315ZmKemv0ZMUUiixgo5BamW17tvwcPcbVpX46kmT+2ol/SnFNnj32YS2HrkaO8V5I+SPvWnjJEvCQ7avGdrlfBjMmoDjna32iFzdrkuKbpOAfBniDNmDakLb/wIZQfTuuQ6IIZ2MI0Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn; spf=fail smtp.mailfrom=leica-geosystems.com.cn; dkim=pass (1024-bit key) header.d=leica-geosystems.com.cn header.i=@leica-geosystems.com.cn header.b=lEQ/owiu; arc=fail smtp.client-ip=52.101.66.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com.cn
+	s=arc-20240116; t=1763358724; c=relaxed/simple;
+	bh=fRx0UgBD/CtCEVYpmI7xzHhN4a1MsD/AeX+8zzzBvEg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=s5l6fkmWr8rP8OWbYPXyfit0ZlavyTnSgzAyOiEkPJxz+JiGujbhUnz7v2U9spcTgRrHhmBZvLm0u7Yx5lS72SkaAPn2dNf6pU7tKOEEjee7JU3AqOdO+Cv1Mv+/byNXVVv1V49KJzyhxGnJIdWuMrD3Woet/vGVnVPJkXdXBzI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LlV1tFZM; arc=fail smtp.client-ip=52.101.61.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GkvHm0HZcXGxA3ZcmHK6sNoHTGtw3OiLJLfMjaHDZGvE1xosL5fWacnS3ovWKFEsZLtk9bHwpMfsE2PMWVhkjStuZXWCGq+794hWAmOSWQMTu+mfBcMSNHerOcZ+Xv+z0mwN/XrOpU6fvLAF0sH4QAszRSXxTvBFVCj38Q006oV1LBCH9StaZycoo4IYgqd6pJdMH6Z4/LCyUTxPuhxnvrkGKUqChiYzpk/k2KcMDcF1ROe06QXJ/mdP7Eg7o35/ghnJZnaDiuUbtDIgNrK6kLrtFbRKAt+dkpvWhDSJjU2QkeEEb4sPbq6GsTri28RJlu2Hur78nliDFaJdSLkCqw==
+ b=ZB212fxDdokYtJHVqifl5iQxglfQ8d+nn2HS5/sfz36QT4cfycGLty7++3QiN4aumRcbCDo3DqtNVwjegDi2Gf4WDI6cbt7uouAX3nVOAyDGNbRvbVz9R/HiF8tNgGLhN5XasOAYXnBo/hOpOvjLWd0qftKL/AVkBf9JzIU5BWvhMRUBZejX7cSBCCE1Wwsdyn8JExparWdGXdiRNL8o7pQEptpPcfD/DCemuQ7xSDByOetGvWIePG9y5ETUGFheBHm1SmzJsRD1m8F0VGzi8o6ORYrjnHwdG43PAKXgu0xKidz2IUUeu4KajQ+per23deM054auSi/05rXOLQsPsA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QZ/XR+f4VqNKi+VmcZlZaojbumXQIUwEtZaxu0XAUWM=;
- b=BLlLoh7A7ufnSxmp/wSeBK99jNORcYkm1k7uRMx4lzXtGY4IlQS2z6g4kp7iZ8SS1EkiXGrIcn0bkgYcTdgt/Gys7mgRuIj4wOEtxnukDQyLqP981BUhkfRc6IPHGuiUM8ujNO0VKVmynkioFmf7+tqixQqdMndu7bn0FPj8G9xHO8wANGQDL3mONl5Kf53mXDe2FTrqcy7YbH21tmeXRU7/A2tqWY8UMGnTOYUNMb0OGtlRULaIAa7yM2cyJRXxDbbdr/NfnvbxM+vdnAO2yzIIKxTrbiqXFiZ3EP2PltU6LYh8QT76WhZGjiPwKKUppanPJiuD89yXDEwhmIsJjA==
+ bh=EFSLuxk70v7cXjU3BmvXfsUer+9dCIvh5mkDJyDVcnk=;
+ b=KlnPy/4yU4oNWm2ygDCIfFGdmkaA71aqGAPdVs+I+lmd4mg8Cv3l8ID/GxaiqvdMTZNDJo7bXRCO5A3OWpfBMil1gjws4Feb4W3yoxRrChWWXDFHBHw/m8jN+lfzyo/ixwhAEK1dj6av0HP5oKFNhzLYWxygtmd7RJwe61+jj7/7agqriFGHwoJEhsTu31KtAdAPTRsALxjBoBBKKlSLvyleS/gXpJOevSchVbSb9xZzKpoVFgwk7pi1fgtkcAJOZg2vEkndHQJFH2vnUzBYwJ3gs+AqMQ/0fcHXJdbCviOnNaw7WA4t7MH3I1RFHMDWJfViCwMAR9/lA/E95QXGGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.8.40.99) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass (p=reject sp=reject
- pct=100) action=none header.from=leica-geosystems.com.cn; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=leica-geosystems.com.cn; s=selector1;
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QZ/XR+f4VqNKi+VmcZlZaojbumXQIUwEtZaxu0XAUWM=;
- b=lEQ/owiuJWJi7qm6KtJJy5GrMMVBAg0dguZV/EVTcAF8OGCn3/Cd0J7tDv5dHKC5KNQUq5wcQbztSj3Rr2MGuozItTXD+gl1TusXGelprJnGYyB28K/tUCCvo/UwrFxjKv0uDK4F7bizJ/Yuc9r/dom0w8/HfA6XICpcgZW6Ez0=
-Received: from DUZPR01CA0046.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:469::14) by AM9PR06MB8145.eurprd06.prod.outlook.com
- (2603:10a6:20b:3ad::16) with Microsoft SMTP Server (version=TLS1_2,
+ bh=EFSLuxk70v7cXjU3BmvXfsUer+9dCIvh5mkDJyDVcnk=;
+ b=LlV1tFZMQ+ytqL0rs/PT1tcTAiWc1uDcgw0Y0Ja9a/4e6vPj5CiHJ0cbbL5m8BejDfuzHKrZ2iL+DxFmKp4pQMZiQjanQD2JiJhlif43Iu/CRn+d4hXo7g9x5sQuxsq8L31mPjEjMpQHmIaYqam/6tY5fsLG7W/VNhNwHlVcTpc=
+Received: from BL6PEPF00016419.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:22e:400:0:1004:0:8) by SJ0PR10MB4526.namprd10.prod.outlook.com
+ (2603:10b6:a03:2d6::11) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.21; Mon, 17 Nov
- 2025 05:45:15 +0000
-Received: from DB1PEPF000509F9.eurprd02.prod.outlook.com
- (2603:10a6:10:469:cafe::30) by DUZPR01CA0046.outlook.office365.com
- (2603:10a6:10:469::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.22 via Frontend Transport; Mon,
- 17 Nov 2025 05:45:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.99)
- smtp.mailfrom=leica-geosystems.com.cn; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=leica-geosystems.com.cn;
-Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com.cn
- designates 193.8.40.99 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.8.40.99; helo=hexagon.com; pr=C
-Received: from hexagon.com (193.8.40.99) by
- DB1PEPF000509F9.mail.protection.outlook.com (10.167.242.155) with Microsoft
+ 2025 05:51:59 +0000
+Received: from BL02EPF0001A100.namprd03.prod.outlook.com
+ (2a01:111:f403:f900::2) by BL6PEPF00016419.outlook.office365.com
+ (2603:1036:903:4::a) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.21 via Frontend Transport; Mon,
+ 17 Nov 2025 05:51:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BL02EPF0001A100.mail.protection.outlook.com (10.167.242.107) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.9 via Frontend Transport; Mon, 17 Nov 2025 05:45:15 +0000
-Received: from aherlnxbspsrv01.lgs-net.com ([10.61.228.61]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
-	 Mon, 17 Nov 2025 06:45:14 +0100
-From: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-To: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Qing-wu.Li@leica-geosystems.com.cn,
-	liqind@163.com
-Subject: [PATCH V10 3/3] leds: pwm: Reorder include files to alphabetic order
-Date: Mon, 17 Nov 2025 05:45:10 +0000
-Message-ID: <20251117054511.730246-3-Qing-wu.Li@leica-geosystems.com.cn>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251117054511.730246-1-Qing-wu.Li@leica-geosystems.com.cn>
-References: <20251117054511.730246-1-Qing-wu.Li@leica-geosystems.com.cn>
+ 15.20.9343.9 via Frontend Transport; Mon, 17 Nov 2025 05:51:57 +0000
+Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 16 Nov
+ 2025 23:51:52 -0600
+Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 16 Nov
+ 2025 23:51:52 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE214.ent.ti.com
+ (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Sun, 16 Nov 2025 23:51:52 -0600
+Received: from [10.24.68.198] (abhilash-hp.dhcp.ti.com [10.24.68.198])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AH5pmR21915863;
+	Sun, 16 Nov 2025 23:51:49 -0600
+Message-ID: <a6cc80aa-fbb4-4698-82fc-b5ccb8928f09@ti.com>
+Date: Mon, 17 Nov 2025 11:21:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 17 Nov 2025 05:45:14.0053 (UTC) FILETIME=[5873E750:01DC5785]
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V5 0/4] Add support for TI VIP
+To: <hverkuil+cisco@kernel.org>, <mchehab@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <sakari.ailus@linux.intel.com>, <bparrot@ti.com>,
+	<jai.luthra@ideasonboard.com>, <dale@farnsworth.org>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+References: <20251024094452.549186-1-y-abhilashchandra@ti.com>
+ <27b5eef1-f59f-4556-897c-f0cec7689d14@kernel.org>
+Content-Language: en-US
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <27b5eef1-f59f-4556-897c-f0cec7689d14@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509F9:EE_|AM9PR06MB8145:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: b5fc64aa-c7e8-464b-2c72-08de259c7bd1
-X-SET-LOWER-SCL-SCANNER: YES
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A100:EE_|SJ0PR10MB4526:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5cec1f3-ce80-4bd8-6e76-08de259d6b8e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700013;
+	BCL:0;ARA:13230040|7416014|376014|36860700013|1800799024|82310400026;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?hhC7m15OwPUZJ60Fnw/+iphO5f0Z7N3R1WP5iyfCXzP+WNh80mtPwAL/cCP2?=
- =?us-ascii?Q?blWri/iN/kL+Yr2DQggTpdnDnK5W8QbHcAPP5X0HTxKurPLprMCXt8t3yci3?=
- =?us-ascii?Q?RR0SFfMOFzXn7WeXgVw+Xrh2EHs+NWlzJ1E2rALo6LetxqcQlolYhEtWpz7Z?=
- =?us-ascii?Q?mceXY1Vi+vhnoLUNxbUjUpZeeO5sdWQM/5TDfTxqkAIJ3OjNNje/7yEVN/rs?=
- =?us-ascii?Q?9flJSaUrhWf0Y1CpEDy1jxwLX5End4jjVrRZfYC4tvUJUlS/jbYVMMAGrVQD?=
- =?us-ascii?Q?0iH3e9LUgb4kEgoMFSTkpQ1D4EOAEMNsr90NUaaq8F9YnmSY+gm5YTmstByL?=
- =?us-ascii?Q?GhVUM+LjGg0WRobzkdMLBfkbkjdLZ5h7utew1P1TuHMdYQ27Fa4r/b8x3Oqv?=
- =?us-ascii?Q?z54LKODKov5aF9lxMoMXcEvNDiciTvgmfxRQ6ssVboaKFWNwzn4Np1ApvAns?=
- =?us-ascii?Q?iY29yhX/rUB3TXHpV++K0USpwsDUQO8WvxpnSL+FxGwvdN3JaLf0hrkgdQnk?=
- =?us-ascii?Q?bDreQO/VRuTGTe4dhz4gZgW+DLpuzWIRQKBvF/QTizj7cYy8XD51vCOYcgy9?=
- =?us-ascii?Q?KJifZaNYE7qNxUWB0QLcRw3/LBBItNXr7RX2jgx2uryfvrhzxX8NwYRakNTx?=
- =?us-ascii?Q?9dbqnsWvmUOxiDCLp8xg7sCA2+mwUTj8vCTI/fVk45FJUt3spY3FFch7qOOh?=
- =?us-ascii?Q?nuXMwiHLPnKiZm0nwAvcGM/ou6u7/gSfxFzfKwFySlOhpL3hIw//FJry0dBf?=
- =?us-ascii?Q?F+u9gIh2+c87w8D928KzZ2xYXyLF/GCGo9Q5HOChp90u3ikHBSnIr2cuBHe8?=
- =?us-ascii?Q?4ZUGGh87DLuN0nbtPomeFgcSWlxGfPZxhgt1RKuxteYHIhC+NEuiV0wqKTxZ?=
- =?us-ascii?Q?3Q5ZF18mwwZAPee4lGXka5NlejPQFg7fqVUbUTyzwTlE8adY8KU/+O1S0roU?=
- =?us-ascii?Q?8GmAMvR5eh6vfvy9e3/C0CR01CtWG2fGILJLT8CDZjUR0uDI+4FVJicz2i5I?=
- =?us-ascii?Q?ElyIWJ2yddAMLIUT1xC+iJlHQjWEMlc0ofOmhOwixalden8be/wYAPP2mVj1?=
- =?us-ascii?Q?AlxZtwJWJPCItgEUpUiF0Xcrhx4td2xgkkCDDLbLbacHEH3w2KWz1VaYlzUq?=
- =?us-ascii?Q?GT55+sR05NnrhtpogQGtT1LFEcLJqmXGo/Spfk3xapmx5KKxERY6uK9ZAbky?=
- =?us-ascii?Q?vSRfUarlNDv0lJCBvx3MnBIEWfgkty00VCsOTCzanGtoCWc6OzZpwOXd+dk6?=
- =?us-ascii?Q?ze4CuvQXNyQ81AKDYSZHyInNjVg+Lh+YuZv+maVvpKSpkK2PoW1MAI1RL7av?=
- =?us-ascii?Q?yyu+Ivv6dW7fZya3UMvGydBSbFWsKtcHVpT7zffLi7UVGgnzOzHHsKD6ZbkH?=
- =?us-ascii?Q?r3m8dJN5KuGZLLRusOQcDlxHtaxEAmFnOorIV+uhhDKS3htkBeWrTqp+5Cc4?=
- =?us-ascii?Q?jz8zcIALNYgkXKwua0iIJsCuyoyLeQVNtxTuy/XwX9KU2+BGhhJRtxeWaTQF?=
- =?us-ascii?Q?a9YF3CjzmwmHrhFncbfNx2h6wYUsXy9mxSoniyFA69bTdzcdcrLJhyQmK4Pf?=
- =?us-ascii?Q?ckPsoVBKcN1LRG/tTsA=3D?=
+	=?utf-8?B?cjE3QWpUR1VsZlE1b3gxVmQxdHpkVithcXhudW5uNHJZbm5WaEI2L0hCa1JR?=
+ =?utf-8?B?b0l1Rk5NaUt3bHFpS2dwWWxPTjBBOHIwRXBiZ2V3OHZKWERHb1BoUGllQ3NQ?=
+ =?utf-8?B?WDIyWnhCQ2hkSk9TRDZFOWc0Qzd0MGF5T0NZWGwvcGF2NWVxZUxzUHFHN1R2?=
+ =?utf-8?B?OWRqbGpwd1JYNTVueXhTQlNnd0psS3czSFdIUFd6NmZ6RXVWejlDa05WcVVT?=
+ =?utf-8?B?SXEreGtHZlRHam0rT3VOVHF3R2hLK2IrSGtqQmEwdlI3bXhQMXhmbGVnODE2?=
+ =?utf-8?B?elhsaVYwL2ZpcWRVa2pUV2hlYytpR3lpdCt5RkhTUG5ZRXJ3c3RTUEc1Q2JI?=
+ =?utf-8?B?dDVuWkdBQW1SZlZrRXpsZkgyS1JEMjBoaTZGdmxISzM5TkVkZC9vK1dKa0Zj?=
+ =?utf-8?B?UlZ5M2lQUnluQm5lQXkzaUJ3dE1lTm1JVGlEWjd4NXQzdUlCczltbzVyTjlq?=
+ =?utf-8?B?RHFCSVpwZS9heTMvUUpwTmVHcTliUk9xZ3UzK2x2bE9nRzFOMHZUZmY4bjg0?=
+ =?utf-8?B?VlVxTHM1SnBZR0lFd3lDUWNTZmhUcHVXQlFtdnFpZHBZZnQrS0ZvRWYxRzI3?=
+ =?utf-8?B?NHNSVmdpNzJMQTFFMVdQdGtpM1FmZnZIck4yc3owNzB4ZEF5SGF2VHA5aGFG?=
+ =?utf-8?B?VnI0NDZoa2dOK0Z4NEM4bU5WNnhPVU1tS05uUVMwcllPUUpxWGxSVmNPR0Nh?=
+ =?utf-8?B?ZkdBT1I5Vk5nSXYzcjlOVzBGd3VWS1A4T2ZtSXJSZGNBVkdWZUd0RXk5dEV3?=
+ =?utf-8?B?VGpnV20va01ZSnRzMEFlUFVkWVl0SFNDVUY1R0U1WXp5MDluNXQyVVVxZVN2?=
+ =?utf-8?B?d1JtVGJzYVFBY3BtQytPL2wvbUpnS3pDWTlTb2VTbTRNQ0dGMDhZRVcrenl4?=
+ =?utf-8?B?VHErVXlkalFPYVlYTlhyZkZzcnJ3cktNNVlaL1VXdGJ1UTUreitJMXJRSGJz?=
+ =?utf-8?B?cHp0RGo0TDF3OWtLdFFseDlTZlg5cTRaWjJuOFAra1JiMW9GWnhqSXdkeHc0?=
+ =?utf-8?B?WGtyYlcxZWc4ZDJhT0pPTHRkR2E4QUMrK2c1RytaMWxOc0dVTFJibzZ3MSto?=
+ =?utf-8?B?dUZpNGVQamJUbDFCVVpudmFMYzdsM2FSUFpoNXJKOTJkR0xwVEU0MzZlMHVt?=
+ =?utf-8?B?OVBrOTFMNmhXcitxWGVzVHV5YmlOY3BjcFZsN2xVNlZPbE5RWVFObXAzNHZ6?=
+ =?utf-8?B?c0ZLSlNaOEgrRDZKQ1J5TVBmNGRvZ1dyNlZFK2h3RXVhVHEwMUVZZStlN1By?=
+ =?utf-8?B?YVpYbk1pbTErZHR4U0dSMXlhMGluSUo1cnl1QUlpQ1NTM3psUFZWaGNud3M1?=
+ =?utf-8?B?bnhCWHE0ZjMxc2Rnb3lvTU90SFhzWkgzSHhvaW9jbHdNOUkwUVkwNXk1L0VC?=
+ =?utf-8?B?TXhPWHgwVlk1MVZVcXpFbG13dEt0Z2I4UGZqYkdpSDFlQ0JqRTlJdzFUdlA5?=
+ =?utf-8?B?SjVtN0lnSFVKamJBaGxzZFBuYS81UHkvaXlJaHZZdDFzakkzYVA5akY5WDZJ?=
+ =?utf-8?B?SURRbC85YWtpM0hWNzI1T2dXY2swR3ArdVR2VGowemszTXlGNU1NcTN1QVl1?=
+ =?utf-8?B?S0dyQmJZM1Y3b3NMTFRLV0lSL3BkQ0RDWDU5UmFqd3JRMWxJcTQxMVltRnlv?=
+ =?utf-8?B?VVRYY1dwMHgxV3crcHRpS3hjY0lSeGJ4SnZ4Rk1OOWlXd0NHSUcwRkRtTEx3?=
+ =?utf-8?B?Mi9QNXVNeC9xQy9Zc2RWSnZFL1prZkZqa1VBNnJrVjZuc3QxWWgxWTlsRU13?=
+ =?utf-8?B?eXUrRXpRb1JsK2lTZ0l2Y3R2dHJjcnI3emVUd0tmaFg1Vk1odEdWUExPVlk0?=
+ =?utf-8?B?Q2lNdGZVNHlTbzZSVFZjekJIVVU1R1pkT1hXS0JEU1R2UkRoRmlnTi9tdmZy?=
+ =?utf-8?B?UzRwREVMc3BCWHpZc29qeXpxcmlPWmtENlZzeXBxbWs3cG5hRGRKUEErYnkx?=
+ =?utf-8?B?dTRRQzBSQUtZVG93KzNaOTgyUW4rRCtiNy9reStrK0Y0QjNLVCtwUGoyTmt1?=
+ =?utf-8?Q?CXvjwy1mC4mTZ+8tWdHaQOFds9Odr8=3D?=
 X-Forefront-Antispam-Report:
-	CIP:193.8.40.99;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom51.leica-geosystems.com;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: leica-geosystems.com.cn
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 05:45:15.4198
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 05:51:57.6525
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5fc64aa-c7e8-464b-2c72-08de259c7bd1
-X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.99];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5cec1f3-ce80-4bd8-6e76-08de259d6b8e
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509F9.eurprd02.prod.outlook.com
+	BL02EPF0001A100.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR06MB8145
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4526
 
-Reorder include files to alphabetic order to simplify maintenance
+Hi Hans,
+Thanks for the review.
 
-No functional change.
+On 03/11/25 17:11, hverkuil+cisco@kernel.org wrote:
+> On 24/10/2025 11:44, Yemike Abhilash Chandra wrote:
+>> This patch series adds support for the TI VIP. VIP stands for Video
+>> Input Port, it can be found on devices such as DRA7xx and provides
+>> a parallel interface to a video source such as a sensor or TV decoder.
+>>
+>> Each VIP can support two inputs (slices) and a SoC can be configured
+>> with a variable number of VIP's. Each slice can support two ports
+>> each connected to its own sub-device.
+>>
+>> Changelog:
+>> Changes in v5:
+>> Krzysztof:
+>> - Drop VIP node's label from the example in DT bindings
+>> - Fix indentation of the example in DT bindings
+>> - Get the phandle args directly through syscon call using syscon_regmap_lookup_by_phandle_args()
+>> - Use devm_platform_ioremap_resource() instead of platform_get_resource() and devm_ioremap_resource()
+>> - Drop struct resource *res from vip shared structure since it is now unused
+>>
+>> v4l2-compliance output: https://gist.github.com/Yemike-Abhilash-Chandra/8d68342247da38d6ac59625f8eaf41c2
+> 
+> v4l2-compliance is too old:
+> 
+> v4l2-compliance 1.28.1-5233, 32 bits, 32-bit time_t
+> v4l2-compliance SHA: fc15e229d9d3 2024-07-23 19:22:15
+> 
+> It's always best to compile v4l-utils from scratch using the git repo: https://git.linuxtv.org/v4l-utils.git/
+> 
+> v4l2-compliance is continually improved, and also kept in sync with the latest media
+> git repo (https://gitlab.freedesktop.org/linux-media/media-committers.git), 'next' branch.
+> 
 
-Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
----
- drivers/leds/leds-pwm.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Understood. I will re-compile my v4l-utils.
 
-diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
-index dac96d91e6bf..6c1f2f50ff85 100644
---- a/drivers/leds/leds-pwm.c
-+++ b/drivers/leds/leds-pwm.c
-@@ -9,13 +9,13 @@
-  * based on leds-gpio.c by Raphael Assenat <raph@8d.com>
-  */
- 
-+#include <linux/err.h>
- #include <linux/gpio/consumer.h>
--#include <linux/module.h>
- #include <linux/kernel.h>
--#include <linux/platform_device.h>
--#include <linux/of.h>
- #include <linux/leds.h>
--#include <linux/err.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- #include <linux/pwm.h>
- #include <linux/slab.h>
- 
--- 
-2.43.0
+Thanks and Regards
+Yemike Abhilash Chandra
+
+> Since there are kernel messages interleaved with the v4l2-compliance output I
+> recommend to write the output to a file and show that.
+> 
+> There is one failure for 'test Cropping'. If that still occurs with the latest version
+> from git, then that needs to be addressed.
+> 
+> Regards,
+> 
+> 	Hans
+> 
+>> v4l2-compliance output with -s: https://gist.github.com/Yemike-Abhilash-Chandra/1dfa740a34e0e3d77a315b245e61b9ec
+>> Test logs: https://gist.github.com/Yemike-Abhilash-Chandra/e44c4504d596f24e7c93a4c0b59f5316
+>> DT binding check results: https://gist.github.com/Yemike-Abhilash-Chandra/a7eb1308df2d4a167baeec62bc744335
+>> (No errors related to ti,vip.yaml)
+>>
+>> Link for v4: https://lore.kernel.org/linux-media/20251015054010.3594423-1-y-abhilashchandra@ti.com/#t
+>>
+>> Dale Farnsworth (2):
+>>    dt-bindings: media: ti: vpe: Add support for Video Input Port
+>>    media: ti: vpe: Add the VIP driver
+>>
+>> Yemike Abhilash Chandra (2):
+>>    media: ti: vpe: Re-introduce multi-instance and multi-client support
+>>    media: ti: vpe: Export vpdma_load_firmware() function
+>>
+>>   .../devicetree/bindings/media/ti,vip.yaml     |  152 +
+>>   MAINTAINERS                                   |    1 +
+>>   drivers/media/platform/ti/Kconfig             |   13 +
+>>   drivers/media/platform/ti/vpe/Makefile        |    2 +
+>>   drivers/media/platform/ti/vpe/vip.c           | 3731 +++++++++++++++++
+>>   drivers/media/platform/ti/vpe/vip.h           |  717 ++++
+>>   drivers/media/platform/ti/vpe/vpdma.c         |   51 +-
+>>   drivers/media/platform/ti/vpe/vpdma.h         |    6 +
+>>   8 files changed, 4672 insertions(+), 1 deletion(-)
+>>   create mode 100644 Documentation/devicetree/bindings/media/ti,vip.yaml
+>>   create mode 100644 drivers/media/platform/ti/vpe/vip.c
+>>   create mode 100644 drivers/media/platform/ti/vpe/vip.h
+>>
+> 
 
 
