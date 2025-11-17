@@ -1,272 +1,229 @@
-Return-Path: <devicetree+bounces-239320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3EA6C64051
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:19:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B764C64078
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02C493A6784
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:18:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAA4A3A6801
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156B432C929;
-	Mon, 17 Nov 2025 12:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF91832B99E;
+	Mon, 17 Nov 2025 12:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mNmnYYMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F0632B9A0
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18B0328B68;
+	Mon, 17 Nov 2025 12:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763381916; cv=none; b=gHO6tFV0MQVzRc3ExSepD3ENSABEsTdsF+Q54DHavfxv2H4jWTYHQD83dEBennt3M5wF+7khhaMgLth0L3a9sVC4FEvFWK+TCM42hcK/JFulIF2mopwa9KDMID8ZqFKrwXR3bs2EBp5vR8FkYO7Fmnx35D/eLeEOTRQCjx1Ydwo=
+	t=1763382470; cv=none; b=MG+YXUaQ457rUrGLLAWJhcZFroKGYmjdvXNKjnmmA4THDmuXD7T4E4Iphr7/Gayqw7US6wl0rLh9Fpl/PabYaTlHl1y9UVlWqG/PpXjDdeMaZNuUbAwqg3oiL6quP9fc9mP++URYcoyQq3jyLhBt+x3Bk57y2Xcg3vppFwb2dxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763381916; c=relaxed/simple;
-	bh=67T+4uBdJ6G54kF4A3sVxn69446l+Y9BVvmZeUDbxtw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kkg3C7PTvThT9AVT6f6FfZw+57qKOtepfb25ZsmR4fHs5NAoMhgWXHMC9Om/0ohYBCRj4VK8KxoVBt+7Lb2B0Z0YWlkPgPBywqs8FyyJP9ycv9HmTKP5216ibeMXElnNFqNrN6vAPua5kxyIE5GjDGXDuKNB4VOnmbI8JsETbic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vKyBd-0004oU-KH; Mon, 17 Nov 2025 13:18:25 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vKyBc-000uSM-2A;
-	Mon, 17 Nov 2025 13:18:24 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vKyBc-008Jeh-1o;
-	Mon, 17 Nov 2025 13:18:24 +0100
-Date: Mon, 17 Nov 2025 13:18:24 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Jander <david@protonic.nl>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>
-Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS131M0x ADC driver
-Message-ID: <aRsSkGLO2ELzgca_@pengutronix.de>
-References: <20251114092000.4058978-1-o.rempel@pengutronix.de>
- <20251114092000.4058978-3-o.rempel@pengutronix.de>
- <CAHp75Vcjv=XerYsunKO7h_e_jBMQuaKvkvRAuPLAXLqevM4jMw@mail.gmail.com>
+	s=arc-20240116; t=1763382470; c=relaxed/simple;
+	bh=1jU9pIXNhiEJFLTKDk6T+gxsSuk78osiAp0uPSBUW2I=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=HfHr+vfagIon1zzA2kOAN4B1Oq6Y0KHhl7hPNk1yxOsCxKE4zYqpvxle58GsqTtuLcN18DP4rHGzM28PGfpLXufz+nBldTsJv6yuXFyDathA6JdtfXsQaW7NQ5hYOqI//eXWKD7CS+w8MIf/Vq6Oega4wSstqG3AkWC5+SDItxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mNmnYYMS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 79082C4CEFB;
+	Mon, 17 Nov 2025 12:27:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763382470;
+	bh=1jU9pIXNhiEJFLTKDk6T+gxsSuk78osiAp0uPSBUW2I=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=mNmnYYMSTWopMkrqv68TvLkeaFxxpg3EjwZ7096SMMBRN6LlzfQ2NWqEToFbdmvao
+	 pMcqRfrgu8K1+SnjnXsAzpEudWuLUZkj1v+i9oT/BrXy2idDD0EZDzM/rQL2QyTD8c
+	 mFBtYQnnHxXXD9qQX7TQ48W7z5PkFLJYzvPlPwVt3mjdFxju5udiObZ+4g2sl+KGyK
+	 KT3e/kadJ8DvlLYaQDmwafV7AGlaFswH9HhRM0jvLdmBHdEr2Dqx0EDt0g+OQ/qGxW
+	 vbdyQXuHrB++WQdpBnyYuze9VQgJb+9RCIRMzxOcU1dAEgy8l8zv7hWHwpO2rc03OW
+	 LZ3Lyf9T6C5xw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7158ACEBF61;
+	Mon, 17 Nov 2025 12:27:50 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Mon, 17 Nov 2025 13:27:38 +0100
+Subject: [PATCH RFC] arm64: dts: qcom: sdm845: add framebuffer reserved
+ memory
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75Vcjv=XerYsunKO7h_e_jBMQuaKvkvRAuPLAXLqevM4jMw@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251117-commonize-framebuffer-v1-1-e4c099b383c9@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIALkUG2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDQ0Nz3eT83Nz8vMyqVN20osTc1KTStLTUIl0LkzSTtNTERMM080QloN6
+ CotS0zAqwudFKQW7OSrG1tQC7Z+0lbAAAAA==
+X-Change-ID: 20251117-commonize-framebuffer-84f4feaa1f7a
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Casey Connolly <casey.connolly@linaro.org>, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4741; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=7XaWbvZV9YeWSaUBD4OPJXj85DubDK8OTImKrGrmPag=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpGxTCX3LvhCdmoDKU/4F+lkYNrt1/AEY5VQuJs
+ tRpBfl5+/yJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaRsUwgAKCRBgAj/E00kg
+ ctTnEACQq0QyLybhZx2CfAxPHEmjW2FE5U9LcB2+4FE/G2rA51IcpXBJ0r57qFQNINv7qXPHtsS
+ XcppCkkg2y24ArzJNEgx/5SjVjGlZsn0Iqecy5E+CAXvexVArizh6kfBHWLuxkCjBvaXdFox3UC
+ K+AnmHnMYaK4DDXnjiHC5JeNCnjFaE23eF89qcKy/I1E1M8flHvGzOkqj90jXMeABRTVVq2zyWV
+ MDRja5rOXG/uFzGGFYxZ5LaQtr7GAyb/gRlYEXcAlkfJZh36WiHY/Xx12yNPQL9SPyYKtjDRzBu
+ 8tQCFkWJ9p1mEidqCmNHmQdEzkMUMtOZ8iHqxuYZsgqt9ZAWEoFIpSDpc8KQQqQKC/fbJ7Po12l
+ +wvDzABqX4ubrQbiVOn2gnAs+5GU8NY7o+/+hH9MnzIDXAvoiE8rAduu9ge/c18HQx4ZU/8W2qU
+ hj1Dikd7aX4F57zzpY26gAdJNvJ8l2/ybhv2jqw2uQkwCJrujtoBIUbvl2jd7cLqiaYY5JGjEtH
+ H9itqwIfJ3zh1E5Frob8IeWg63DJ48WUpaPnNUsHsbcdltGArJkkZ3yDVt1v8rdm/b/+ymkc7Ci
+ J9a9p2gMrl2UA1sek0lCTysguV1cSYQ5DBIhWw62BbxURZLurKy7fQ1mPMLvzZVs1c/zkRWNgdI
+ 4WQ6SbPhF2CKuRg==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-On Fri, Nov 14, 2025 at 08:24:23PM +0200, Andy Shevchenko wrote:
-> On Fri, Nov 14, 2025 at 11:20 AM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> > +config TI_ADS131M02
-> > +       tristate "Texas Instruments ADS131M02"
-> > +       depends on SPI && COMMON_CLK && REGULATOR
-> 
-> Hmm... The COMMON_CLK looks strange here. Why?
+From: Casey Connolly <casey.connolly@linaro.org>
 
-I can drop it, but the driver will fail without proper clock
-configuration anyways.
+Stick it with the other default reserved regions, all sdm845 devices
+use this address except for cheza.
 
-> > +       select CRC_ITU_T
-> 
-> Btw, why does it not use regmap?
+Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+What do you think about this proposed change?
 
-I already answered it here:
-https://lore.kernel.org/all/aQ3J_rJV-hB2nh91@pengutronix.de/
+I assume QCOM recommends or by default use the default memory region,
+but as can be seen on cheza or sdm850, it seems that vendor can customize
+the region, thus it's not guranteed to have it always on the same address.
 
-> > +#include <linux/array_size.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/bitops.h>
-> > +#include <linux/cleanup.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/crc-itu-t.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/dev_printk.h>
-> 
-> > +#include <linux/device.h>
-> 
-> Is it used? I haven't found what API or data structure is required from here.
-> 
-> > +#include <linux/device/devres.h>
-> > +#include <linux/err.h>
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/lockdep.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/regulator/consumer.h>
-> > +#include <linux/spi/spi.h>
-> > +#include <linux/string.h>
-> > +#include <linux/types.h>
-> > +#include <linux/unaligned.h>
-> 
-> ...
-> 
-> > +#define ADS131M_CMD_RREG_OP            0xa000
-> > +#define ADS131M_CMD_WREG_OP            0x6000
-> 
-> These two have bit 13 always set. What is the meaning of that bit?
+There are two approaches I see:
+1. keep as is defined in each device-tree frambuffer node
+2. commonize frambuffer node to sdm845.dtsi and in case of exception
+   remove the node and definite it in device-tree.
 
-Dokumentation do not provides this information.
+I would love to hear your opinions.
 
-> 
-> > +#define ADS131M_CMD_RREG(a, n) \
-> > +       (ADS131M_CMD_RREG_OP | \
-> > +        FIELD_PREP(ADS131M_CMD_ADDR_MASK, a) | \
-> > +        FIELD_PREP(ADS131M_CMD_NUM_MASK, n))
-> > +#define ADS131M_CMD_WREG(a, n) \
-> > +       (ADS131M_CMD_WREG_OP | \
-> > +        FIELD_PREP(ADS131M_CMD_ADDR_MASK, a) | \
-> > +        FIELD_PREP(ADS131M_CMD_NUM_MASK, n))
-> 
-> ...
-> 
-> > +/**
-> > + * ads131m_tx_frame_unlocked - Sends a command frame with Input CRC
-> > + * @priv: Device private data structure.
-> > + * @command: The 16-bit command to send (e.g., NULL, RREG, RESET).
-> > + *
-> > + * This function sends a command in Word 0, and its calculated 16-bit
-> > + * CRC in Word 1, as required when Input CRC is enabled.
-> > + *
-> > + * Return: 0 on success, or a negative error code from spi_sync.
-> 
-> spi_sync()
-> 
-> But I would drop it as it makes dependency on the code changes and it
-> will deviate easily if code grows and something else becomes a call
-> that returns an error, also this simply doesn't scale: are you going
-> to list whole bunch of APIs in the kernel doc? (rhetorical Q) Ditto
-> for other similar cases.
+Thank you!
+David
+---
+ arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts      | 5 -----
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts            | 5 -----
+ arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi        | 6 ------
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 6 ------
+ arch/arm64/boot/dts/qcom/sdm845.dtsi                         | 5 +++++
+ arch/arm64/boot/dts/qcom/sdm850.dtsi                         | 2 ++
+ 6 files changed, 7 insertions(+), 22 deletions(-)
 
-ack
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+index 5d41a92cfebff..26f3081fb92aa 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+@@ -109,11 +109,6 @@ vreg_s4a_1p8: pm8998-smps4 {
+ 	};
+ 
+ 	reserved-memory {
+-		memory@9d400000 {
+-			reg = <0x0 0x9d400000 0x0 0x02400000>;
+-			no-map;
+-		};
+-
+ 		memory@a1300000 {
+ 			compatible = "ramoops";
+ 			reg = <0x0 0xa1300000 0x0 0x100000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index ddc2b3ca3bc57..9adf0d76e3ae3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -62,11 +62,6 @@ key-vol-up {
+ 	};
+ 
+ 	reserved-memory {
+-		framebuffer@9d400000 {
+-			reg = <0x0 0x9d400000 0x0 (1080 * 2160 * 4)>;
+-			no-map;
+-		};
+-
+ 		ramoops: ramoops@b0000000 {
+ 			compatible = "ramoops";
+ 			reg = <0 0xb0000000 0 0x00400000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+index 7dc9349eedfd9..f2d5585122590 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+@@ -119,12 +119,6 @@ vreg_s4a_1p8: pm8998-smps4 {
+ 	};
+ 
+ 	reserved-memory {
+-		/* SONY was cool and didn't diverge from MTP this time, yay! */
+-		cont_splash_mem: memory@9d400000 {
+-			reg = <0x0 0x9d400000 0x0 0x2400000>;
+-			no-map;
+-		};
+-
+ 		ramoops@ffc00000 {
+ 			compatible = "ramoops";
+ 			reg = <0x0 0xffc00000 0x0 0x100000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index 785006a15e979..7e46e54dcf38c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -100,12 +100,6 @@ spss_mem: memory@97f00000 {
+ 			no-map;
+ 		};
+ 
+-		/* Cont splash region set up by the bootloader */
+-		cont_splash_mem: framebuffer@9d400000 {
+-			reg = <0 0x9d400000 0 0x2400000>;
+-			no-map;
+-		};
+-
+ 		rmtfs_mem: memory@f6301000 {
+ 			compatible = "qcom,rmtfs-mem";
+ 			reg = <0 0xf6301000 0 0x200000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index bf2f9c04adba7..7841959a43ca2 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -890,6 +890,11 @@ mdata_mem: mpss-metadata {
+ 			no-map;
+ 		};
+ 
++		cont_splash_mem: framebuffer@9d400000 {
++			reg = <0 0x9d400000 0 0x2400000>;
++			no-map;
++		};
++
+ 		fastrpc_mem: fastrpc {
+ 			compatible = "shared-dma-pool";
+ 			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm850.dtsi b/arch/arm64/boot/dts/qcom/sdm850.dtsi
+index da9f6fbe32f6c..b787575c77a5d 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm850.dtsi
+@@ -7,6 +7,8 @@
+ 
+ #include "sdm845.dtsi"
+ 
++/delete-node/ &cont_splash_mem;
++
+ &cpu4_opp_table {
+ 	cpu4_opp33: opp-2841600000 {
+ 		opp-hz = /bits/ 64 <2841600000>;
 
-> > +static int ads131m_hw_reset(struct ads131m_priv *priv)
-> > +       ret = gpiod_set_value_cansleep(priv->reset_gpio, 0);
-> > +       if (ret < 0)
-> > +               return dev_err_probe(dev, ret, "Failed to deassert reset GPIO\n");
-> > +
-> > +       /* Wait t_REGACQ (5us) for registers to be accessible */
-> > +       fsleep(ADS131M_RESET_DELAY_US);
-> > +
-> > +       return 0;
-> > +}
-> 
-> Can you use the reset-gpio driver instead of a custom approach?
+---
+base-commit: 0c1c7a6a83feaf2cf182c52983ffe330ffb50280
+change-id: 20251117-commonize-framebuffer-84f4feaa1f7a
 
-I do not have strong option about this right now.
-
-> ...
-> 
-> > +       /*
-> > +        * Get the optional external reference. This schedules regulator_put()
-> > +        * automatically.
-> > +        */
-> > +       priv->refin_supply = devm_regulator_get_optional(dev, "refin");
-> > +       ret = PTR_ERR_OR_ZERO(priv->refin_supply);
-> > +       if (ret == -ENODEV)
-> > +               priv->refin_supply = NULL;
-> > +       else if (ret < 0)
-> > +               return dev_err_probe(dev, ret, "failed to get refin regulator\n");
-> 
-> So, will the refin_supply be ever an error pointer? I think no, hence
-> why IS_ERR_OR_NULL() in the user somewhere above in the code?
-
-Looks like error pointer:
-https://elixir.bootlin.com/linux/v6.18-rc5/source/include/linux/regulator/consumer.h#L351
-
-> > +static int ads131m_parse_clock(struct ads131m_priv *priv, bool *is_xtal)
-> > +{
-> > +       struct device *dev = &priv->spi->dev;
-> > +       int ret;
-> > +
-> > +       priv->clk = devm_clk_get_enabled(dev, NULL);
-> > +       if (IS_ERR(priv->clk))
-> > +               return dev_err_probe(dev, PTR_ERR(priv->clk), "clk get enabled failed\n");
-> > +
-> > +       ret = device_property_match_string(dev, "clock-names", "xtal");
-> > +       if (ret == 0) {
-> > +               if (!priv->config->supports_xtal)
-> > +                       return dev_err_probe(dev, -EINVAL,
-> > +                                            "'xtal' clock not supported on this device");
-> 
-> > +               *is_xtal = true;
-> > +
-> > +               return 0;
-> 
-> This...
-> 
-> > +       } else if (ret > 0) {
-> > +               return dev_err_probe(dev, -EINVAL, "'xtal' must be the only or first clock name");
-> 
-> > +       } else if (ret == -ENODATA) {
-> > +               *is_xtal = false;
-> > +
-> > +               return 0;
-> > +       }
-> > +
-> > +       return dev_err_probe(dev, ret, "failed to read 'clock-names' property");
-> 
-> ...and this can be deduplicated, so the first one becomes just a check
-> for !supports_xtal.
-> 
->   if (ret == 0) && !supports_xtal)
->     return dev_err_probe(...);
->   else if (ret > 0)
->     return dev_err_probe(...);
-> 
-> This one will be modified to
-> 
->   else if (ret != -ENODATA)
->     return dev_err_probe(...);
-> 
->   *is_xtal = !ret;
->   return ret;
-
-ok.
-
-> > +}
-> 
-> ...
-> 
-> > +       config = spi_get_device_match_data(spi);
-> 
-> > +       if (!config)
-> > +               return dev_err_probe(dev, -EINVAL, "No device configuration data found\n");
-> 
-> Without this code will crash, right? So, I consider this check is
-> redundant because any support of any new chip requires this, and if
-> one didn't add the driver data, means it wasn't tested (which is a
-> good trap on itself during code review).
-
-ok.
-
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+David Heidelberg <david@ixit.cz>
+
+
 
