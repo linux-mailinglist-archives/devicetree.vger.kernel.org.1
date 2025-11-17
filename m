@@ -1,103 +1,138 @@
-Return-Path: <devicetree+bounces-239499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C07C657E0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:30:13 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B9FC658C7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:38:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 88B854F6A1B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:20:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B8DFE35C297
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03229327212;
-	Mon, 17 Nov 2025 17:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45256290D81;
+	Mon, 17 Nov 2025 17:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="GqUz6BT/";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="IdqUIJ9J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4SpzHry"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A18B32548D;
-	Mon, 17 Nov 2025 17:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132731DF27D;
+	Mon, 17 Nov 2025 17:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763399882; cv=none; b=M8kYYEsqDNsFK+3meRS/DWd4zVrmsY5pttS2mVMkV7wgwL5x3ctXTpZWjI/LAvrKndwBROZJe2DmzxWuyS4U7mN/sR0f3ePJ7IEQ+XH/mE3xBj0KLxpsGTptVpQPxSvdy/JT2vfzWEWDBmxLcyfzWEJ4wgzodep5ALSwG93FXXc=
+	t=1763400362; cv=none; b=jska19r/48zEFrKmaXyq0PoicpVCgsaZqG0nswAUjy/knayP86vc8o3e6IN98S8K/JV8hBctJAnoNMWYEDlRlwTYQ+7bsmLUgZKxYQLRyXFC14Bi1QVhEmnW4Z75jthGaqmC4Yu7I8MiqZXdtjjVOJd5KI3GI9X8NljEnhlTz/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763399882; c=relaxed/simple;
-	bh=luxMh6nSPe4a4WQfUhnTlp8BlrYVOLeHoOixQvBd5wo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=infqv2BWSEubsLX16AfbuOc2Us66hn69OM9JRhVxOOpnfl9AcVxG4DiS5fVCmItOeTOUBXbRhvpRhx4gSW/+xhCe5K7tZAACsJbufjHlY3lO/8lb2LX9M0L2168fBt9PW6oqXTxHhTyfGss2qKkB8fPg0V+TxVg6i9BaNVieRGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=GqUz6BT/; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=IdqUIJ9J; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=To:Message-Id:Subject:Date:From; t=1763399878; bh=wscdxgqJFP079dwx6QgJV44
-	ViczuO6mV5R4gurjE0ng=; b=GqUz6BT/00NFKRYO8d5CKoLnPuEtBiVpFIqbZtXomSbydm0dpf
-	pPkZQ4vhofj0HKzTGHAARXl/nhA7+Fsnyb+HYVZayDFEauLsaXkWUmeCjuEoNzcX6b2r1CssrTy
-	0kYZbw5g7niqIJXqItpqP1nEcoYeF74gZqn8pESu/VizMP+ZGD4Sci4ANS824W8/w4OoIWmId2f
-	i7NkzyXN58MyDbGWQvxuwFmGrYd7LNYPdkKtZlPOyUWEMGiDBgEvNwMCPvXr4cKfoP9woAVTD85
-	f1ZWDz6HR3XW1hu9N+u3AijqCT9S980x9jo/NP2asXYL07J+x1FYb8Uk5w6tYCFzS+A==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=To:Message-Id:Subject:Date:From; t=1763399878; bh=wscdxgqJFP079dwx6QgJV44
-	ViczuO6mV5R4gurjE0ng=; b=IdqUIJ9Jq9DnsRlVlCI+Ar5ytxw45K64h+soOZ8K6+AcDaLt9S
-	gPX6g60GD4LrhUDOFVarJ2a4EIXTxbthQACA==;
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Mon, 17 Nov 2025 18:17:55 +0100
-Subject: [PATCH v2 4/4] arm64: dts: qcom: msm8937: add reset for display
- subsystem
+	s=arc-20240116; t=1763400362; c=relaxed/simple;
+	bh=yKuOcA1E6JYLWEtbHHE6NrpR/zqdElFzEm6ItyaPGGo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LeojmJN6wCTHZ1LpbJgHTHzuQwRopDs/9qU8T1lnDrEy8cXIGqsKv1v6zw427ga0bqfIkCio4Cg0smOH6N9GRO7HAx0p4JOCeQz6T9whPmrVkZGSxf7RQ0CvRvSGh81fOKXTPtyPdMSds2+1IHfAYSHiVFC8txmcc0L1y65UKIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4SpzHry; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07559C2BCB3;
+	Mon, 17 Nov 2025 17:25:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763400359;
+	bh=yKuOcA1E6JYLWEtbHHE6NrpR/zqdElFzEm6ItyaPGGo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P4SpzHryZiMx3688QfU+siCjFVkFAEXdYqon6LXmIkdT3zsRi0txqCbzoQeYsN16D
+	 C0kUZ1Ixmb/l85+Zz6Y/vUs8QSuwog9vbMMPPBesMuIbvthyTIBbtQpkyJORRsF+lb
+	 VPKc26BqXvzieshaQ0HlGMW76CIBF4HLMqSYF3icQHmD/9QmeWFpfUfliYCigVCeku
+	 zUgOkga2daiCwo42Sq4JpE/HrrnIS22zqOXUzYRZcEOjctdoasyjI2fTyxMxUp5M/x
+	 aMtCjW4rLte0x5aq24yGkgnj0go4mmNx2ccqeV/tn1VX3QbntUi5LKSWzo1nU12lXV
+	 mRmxo8hh7Thgg==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 5CDA01ACCCAA; Mon, 17 Nov 2025 17:25:55 +0000 (GMT)
+Date: Mon, 17 Nov 2025 17:25:55 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Haibo Chen <haibo.chen@nxp.com>
+Cc: Han Xu <han.xu@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-spi@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] spi: add driver for NXP XSPI controller
+Message-ID: <aRtao9FoPug78T93@sirena.co.uk>
+References: <20251117-xspi-v2-0-e651323993fe@nxp.com>
+ <20251117-xspi-v2-2-e651323993fe@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251117-mdss-resets-msm8917-msm8937-v2-4-a7e9bbdaac96@mainlining.org>
-References: <20251117-mdss-resets-msm8917-msm8937-v2-0-a7e9bbdaac96@mainlining.org>
-In-Reply-To: <20251117-mdss-resets-msm8917-msm8937-v2-0-a7e9bbdaac96@mainlining.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763399874; l=731;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=luxMh6nSPe4a4WQfUhnTlp8BlrYVOLeHoOixQvBd5wo=;
- b=ufw4U8QdV82PJejJ/TKL/XeTGnA2lIAtLtccGnwgMO/Jhv038BbX6SAWvKAj5V2A5gSKsHEVh
- kI/mDA2N8sqCZpyG+t8194347ExDRG3NbyiL+Umi5cCryb+KvizjWqU
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rwvwRa94OgcAe6fn"
+Content-Disposition: inline
+In-Reply-To: <20251117-xspi-v2-2-e651323993fe@nxp.com>
+X-Cookie: marriage, n.:
 
-Add reset for display subsystem.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
- arch/arm64/boot/dts/qcom/msm8937.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+--rwvwRa94OgcAe6fn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8937.dtsi b/arch/arm64/boot/dts/qcom/msm8937.dtsi
-index b93621080989..c94eb14e31bd 100644
---- a/arch/arm64/boot/dts/qcom/msm8937.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8937.dtsi
-@@ -1044,6 +1044,7 @@ mdss: display-subsystem@1a00000 {
- 			clock-names = "iface",
- 				      "bus",
- 				      "vsync";
-+			resets = <&gcc GCC_MDSS_BCR>;
- 			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
- 
- 			interrupt-controller;
+On Mon, Nov 17, 2025 at 07:04:25PM +0800, Haibo Chen wrote:
 
--- 
-2.51.2
+> Add driver support for NXP XSPI controller.
+>=20
+> XSPI is a flexsible SPI host controller which supports up to
+> 2 external devices (2 CS). It support Single/Dual/Quad/Octal
+> mode data transfer.
 
+This looks pretty good, a couple of small points:
+
+> +static irqreturn_t nxp_xspi_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct nxp_xspi *xspi =3D dev_id;
+> +	u32 reg;
+> +
+> +	/* Clear interrupt */
+> +	reg =3D readl(xspi->iobase + XSPI_FR);
+> +	writel(XSPI_FR_TFF, xspi->iobase + XSPI_FR);
+> +
+> +	if (reg & XSPI_FR_TFF)
+> +		complete(&xspi->c);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+This just unconditionally acks interrupts without checking if there was
+actually anything there - that means that if some design shares the
+interrupt or it spuriously fires then the interrupt core won't handle
+things properly.  The driver should really return IRQ_NONE if there is
+no interrupt pending.
+
+> +		WARN_ON(!(reg & XSPI_FR_TBFF));
+> +		if (i =3D=3D ALIGN_DOWN(op->data.nbytes, 4)) {
+> +			/* Use 0xFF for extra bytes */
+> +			left =3D 0xFFFFFFFF;
+> +			/* The last 1 to 3 bytes */
+> +			memcpy((u8 *)&left, buf + i, op->data.nbytes - i);
+> +			writel(left, base + XSPI_TBDR);
+> +		} else
+> +			writel(*(u32 *)(buf + i), base + XSPI_TBDR);
+
+If one side of the if has { } they both should.
+
+--rwvwRa94OgcAe6fn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkbWqIACgkQJNaLcl1U
+h9Cj1Qf/R8qxjz0qsI4C3BoN6FDOe28ICoQTHqVmPLMIpfom3TcZClQiO7IVXRUk
+W8dFn7GPJqSo5ZhFrPceTTFMUVUXqXu+/QQwChY52k+7kIGfnVIUDBDZH0nQ+P7n
+W1LRdzEW0cVyHFWE7M2KZXLV4Ff3b3DugtyEklo1sWSCB9VHzqJMU+gInqxQPkBX
+6LWXKffPhTbOiXK2zbIr2GIECTRj16EI9K8OxKVI1Nn7t9rMHX4bxAu/D3CJ4CcS
+LAjvJFFnFvOFrG4OcXhK5ed2EV1bTilll1Wzbg+H11QmcfFeVmkz6EmDAvaskaYH
+q841AnbKzH5h/s6mjO7Ts88s1OYEWg==
+=7syi
+-----END PGP SIGNATURE-----
+
+--rwvwRa94OgcAe6fn--
 
