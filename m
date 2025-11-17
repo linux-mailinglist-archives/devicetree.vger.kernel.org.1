@@ -1,146 +1,114 @@
-Return-Path: <devicetree+bounces-239455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AC34C65019
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:00:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E13C6500D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:00:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 16D4935892C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:59:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 44E634E594E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF8829D27D;
-	Mon, 17 Nov 2025 15:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA6C2BE032;
+	Mon, 17 Nov 2025 16:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="C/KqexO6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kwCsuJ/4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075C529CB4C;
-	Mon, 17 Nov 2025 15:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C129B284669;
+	Mon, 17 Nov 2025 16:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763395154; cv=none; b=CpYBy/ftzh3tg+NLJr4EUfhwNmEII2NERwdfWc7IDtnn53RucVvVgNTv/WjkvXXBa52fniWE0aWCZm24wHryfKOJNzLCF/akbVrUGx9kiP9VvHs8hXBH/r0mZ75uJxe2RGNuCB5MmnoD7JrVmm4b9o5rjyrI0V82JfYQp4pVQtM=
+	t=1763395203; cv=none; b=GYZbJ0EDAPcHbcHOGaF5doE5Uj0p63QCN/Spg4V24/KShFA9RSYGIWMnK9EqCmSwC7MBGhxm7drvJqWqnJTiXcSmVLAuTfJFUmLsk5SWtxH4/cTW3+FAn55IAisn90RzQQpTuyD87qvA0PrCReetas3ZjBL0IQMiTbDbb7L0E10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763395154; c=relaxed/simple;
-	bh=AzUm5SyQnN+H3BhkLDc4TI3blmZP45mMPd046i1WLic=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=q079XAt5eOWEge3fSghxC+vJXEqZ/S21myG9vjPxj6WWsjZCMH1FToKj01oZgvHs0eni7fo6Q9rke780X7lbhycrTQB/N08iNINrc5s5vJdMcaLDKC9wp0BOU074HjEMHI4qhyO2NnmPfQkUSsgTU8QUmLboPEdp+engxvtomnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=C/KqexO6; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id D540841095;
-	Mon, 17 Nov 2025 16:59:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1763395149; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Zkn44FjR+pCfEjpttwFCzM+vdwVOm3Tq+gRyYYZrqaw=;
-	b=C/KqexO6h7lCq322ARNRT5+LGtjamGKURkllK3HzjYPHOKO9anlQ9NZ7A6nMfVY0JJmEr6
-	AUcCqnVVFSWbcP1G6B2+XD6fpN3hpt3UMc3HkCbS/itsh2YIWPbChNvUNF6kB4Wr4pg524
-	xncW8KuE0cfGMsYpvmDrGcGTWB94CziDsnu/UdoBqFNVDe0mZphVfLrqHes/XibvRfT4kQ
-	A355rmGB9ABLCSljkVTlTOkGCSXo7EByB/NmHg5T6VrgaghIGlHn4ixJomMtGonqWEZTnl
-	5tdONmWdhYwJtUasEUF/pLGlkPryYIH+QkXvy0btaKmwHxax6los3e4QVCvtVQ==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <aRrIhA1uv_aIneOc@geday>
-Content-Type: text/plain; charset="utf-8"
-References: <cover.1763197368.git.geraldogabriel@gmail.com>
- <8f3cc1c1-7bf7-4610-b7ce-79ebd6f05a6e@rock-chips.com>
- <257951b7-c22e-9707-6aba-3dc5794306bb@manjaro.org> <aRrIhA1uv_aIneOc@geday>
-Date: Mon, 17 Nov 2025 16:59:05 +0100
-Cc: "Shawn Lin" <shawn.lin@rock-chips.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan Sadhasivam" <mani@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Johan Jonker" <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org
-To: "Geraldo Nascimento" <geraldogabriel@gmail.com>
+	s=arc-20240116; t=1763395203; c=relaxed/simple;
+	bh=4mldTrpNfDBUNb10bIu/HKmz1c+0kq9vpFRlKYSObhU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mFq04uMV6bL8p4pqBPVM7TWK+lf5+bVVgczbEH/B0Cl3qyYGiCylFfHzEWI2wlEHG3l6VaIfDz+kchwUXWDB2cWLsQW8jw+MMj+wnJ2MOEMoUrmPvpF+E+IP3zE5Okw0r8n1Tv04fQR0qgoFM0dSYz69/v6rg2K28OgRsMCS3KE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kwCsuJ/4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 927C7C19425;
+	Mon, 17 Nov 2025 15:59:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763395202;
+	bh=4mldTrpNfDBUNb10bIu/HKmz1c+0kq9vpFRlKYSObhU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kwCsuJ/4E81FYWxB8nhIpUh98cGRHXdkaivmeqCeFwzimnMDyucuUDCBGwnjff6nc
+	 6aMpYp939HTLPDOiKMAgSoz4Kf9VBqOxHbC/YCVXexBa5ZHUEjc6KjNDtcmHolXquj
+	 snq5mYN0o8C62kQV+JSgEW3K+C6zUDnbi0ohFiTCL9sv53J13GO3nyKJY92nTamckl
+	 ESVl0CEcvv2G6BuIsRLGUxqeGzQIzX50FfoRVZqbgkGfWkM6O85q2NiayVJvbXvzcf
+	 JktQMrF9XM9nFGDBiakDEr2E+lUWwg2UzrJWzORpQ37Q2Ht5YyZbnQdQYOAvBxyXWn
+	 G0hOwtandKaww==
+From: Conor Dooley <conor@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: conor@kernel.org,
+	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: gpio: mpfs-gpio: Add pic64gx GPIO compatibility
+Date: Mon, 17 Nov 2025 15:59:18 +0000
+Message-ID: <20251117-grumbly-oversized-2215fe887181@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <4afa0534-5458-ac0c-6c92-38ed52aea00b@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH 0/3] =?utf-8?q?PCI=3A?==?utf-8?q?_rockchip=3A?=
- =?utf-8?q?_5=2E0?= GT/s speed may be dangerous
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1368; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=vBFHITy0tUgA8hiGFkPbCnmDy5W/03hkEl85M76mBwU=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSbiHV/7SuHgz+9H7m+iV3CnfFfHtx75zaA+Vts6c4T Miq3ZpT1VHKwiDGxSArpsiSeLuvRWr9H5cdzj1vYeawMoEMYeDiFICJvOZmZPjskn6NIYEn+8ni ZPP6xD7W/w7nTTbNspuXfU1F8bMl1yKG/wkSK6Z6JJ0QODEpWeG1gF1KrtTECb29a1Zc3W0ScWX DMWYA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Hello Geraldo,
+From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-On Monday, November 17, 2025 08:02 CET, Geraldo Nascimento <geraldogabr=
-iel@gmail.com> wrote:
-> On Mon, Nov 17, 2025 at 04:57:11AM +0100, Dragan Simic wrote:
-> > On Monday, November 17, 2025 04:42 CET, Shawn Lin <shawn.lin@rock-c=
-hips.com> wrote:
-> > > =E5=9C=A8 2025/11/15 =E6=98=9F=E6=9C=9F=E5=85=AD 17:10, Geraldo N=
-ascimento =E5=86=99=E9=81=93:
-> > > > In recent interactions with Shawn Lin from Rockchip it came to =
-my
-> > > > attention there's an unknown errata regarding 5.0 GT/s operatio=
-nal
-> > > > speed of their PCIe core. According to Shawn there's grave dang=
-er
-> > > > even if the odds are low. To contain any damage, let's cover th=
-e
-> > > > remaining corner-cases where the default would lead to 5.0 GT/s
-> > > > operation as well as add a comment to Root Complex driver core,
-> > > > documenting this danger.
-> > >=20
-> > > I'm not sure just adding a warn would be a good choice. Could we =
-totally
-> > > force to use gen1 and add a warn if trying to use Gen2.
-> >=20
-> > I think that forcing 2.5 GT/s with an appropriate warning message
-> > is a good idea.  That would be like some quirk that gets applied
-> > automatically, to prevent data corruption, while warning people
-> > who attempt to "overclock" the PCIe interface.
->=20
-> Alright, I'll send v2 with this suggestion in mind. So that driving t=
-he
-> core at 5.0 GT/s will require patching and compiling own kernel.
->=20
-> > > Meanwhile amend the commit message to add a reference
-> > > of RK3399 official datesheet[1] which says PCIe on RK3399 should =
-only
-> > > support 2.5GT/s?
-> > >=20
-> > > [1]https://opensource.rock-chips.com/images/d/d7/Rockchip=5FRK339=
-9=5FDatasheet=5FV2.1-20200323.pdf
-> >=20
->=20
-> Shawn, URLs have the bad habit of changing or simply disappearing, so=
- I
-> don't think it's a good idea to put URL in the commit message.
+pic64gx GPIO is compatible with mpfs-gpio controller, add it with a
+fallback.
 
-Ah, it's actually perfectly fine, there's always Wayback Machibe
-to rescue references/URLs that may disappear over time.  Wikipedia
-relies heavily on exactly that mechanism, for example.
+Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
 
-[2] https://web.archive.org/
+The diff here is kinda scuffed, because for some reason this binding had
+an "items: - enum" construct to begin with.
 
-> Also, the datasheet just mentions that RK3399 supports only 2.5 GT/s,
-> it does not mention possible damage from driving the core at 5.0 GT/s=
-.
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Linus Walleij <linus.walleij@linaro.org>
+CC: Bartosz Golaszewski <brgl@bgdev.pl>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: linux-riscv@lists.infradead.org
+CC: linux-gpio@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+ .../devicetree/bindings/gpio/microchip,mpfs-gpio.yaml        | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-True, but having an additional reference doesn't hurt, especially
-because the revision history mentions, albeit vaguely, an update
-to the PCIe specification in version 1.1.of the datasheet.  Though,
-if we had the version 1.0 publicly available for comparison, that
-would've been much better. :)
-
-> > Also, rewording the patch summary as follows below may be good,
-> > because that would provide more details:
-> >=20
-> >   PCI: rockchip: Warn about Gen2 5.0 GT/s on RK3399 being unsafe
-> >=20
-> > Or, if we'll go with the automatic downgrading, like this:
-> >=20
-> >   PCI: rockchip: Limit RK3399 to Gen1 2.5 GT/s to prevent breakage
->=20
-> Dragan, these are good ones, thanks. Though I think I'll omit Gen1/Ge=
-n2
-> wording since I know how much Bjorn dislikes those terms.
-
-I'm glad that you like those, and I also thought about not including
-the GenX parts, because they're basically a bit redundant. :)
+diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+index d78da7dd2a56..184432d24ea1 100644
+--- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+@@ -11,7 +11,10 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    items:
++    oneOf:
++      - items:
++          - const: microchip,pic64gx-gpio
++          - const: microchip,mpfs-gpio
+       - enum:
+           - microchip,mpfs-gpio
+           - microchip,coregpio-rtl-v3
+-- 
+2.51.0
 
 
