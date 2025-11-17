@@ -1,251 +1,285 @@
-Return-Path: <devicetree+bounces-239424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E82C64B5F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:51:18 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40888C64B21
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:47:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B5D2936620D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:46:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 6D93A28C1E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CBD132BF31;
-	Mon, 17 Nov 2025 14:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="ikxHgt8S"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076C0334C01;
+	Mon, 17 Nov 2025 14:47:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5644721A459
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 14:46:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1432749DF
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 14:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763390790; cv=none; b=WgjthxNhDngCD/M09gVYdlasr2rmz/apKqgvQa7HbvgGv4/xB8QsOyogezryXWAfwHuCN6UkZ6dksCG3GsnHy7EhSNYnJthH2PxsLCdRPPLjLgigq0X2Y01bYYSkI12aMykhw35S3JFfjMY4rVFvawAXPCGNvrm6mze/hCmYaGM=
+	t=1763390850; cv=none; b=jl3wZ6XWPzA3iIi9GXjGKqbD/oD7eKI7Xr06xYoy8ycMznzUPORyyxelcuA9bLV3os+iaowpatZj0hfSZLmPrbYguodnoBSZmjAxLQfdfjLFvwWtorpAtMbKVN8+qap9o/YAmJiWMgT0TkbiKnY3AZh2vTWw1l81z3/O+XiFmPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763390790; c=relaxed/simple;
-	bh=dIEAZCn/f/uXKnc80ED+dgtffIeec60Xdvoqm0iDJE0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CYtiUGj9TDbxKlLyy1LHEPZLJ135GMS84Jc37JU+a37+3llob5eqjMLHh4TV7Od4Sz6yyvIz4hcR06je4PUhnMtpgbNzsBzBr7Xhc9a3nlqPvq6bd7WDmu9YWmhWxBr4u/bVFOPUAg0yRBm/iTNilm0Mz9HZOk6u1YKRaIzKfM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=ikxHgt8S; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5942b58ac81so3298294e87.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 06:46:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1763390785; x=1763995585; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eCcSe7R+64nbva6E6LjL1vdtPtAEecqd0S9GP3XCvKM=;
-        b=ikxHgt8SgE/Zswyp7GAUO8C5kjWjFcI4AILqFIMnFK05cLw036RNmTToEk56DI7xx7
-         9ugNw52wxpN5w+VVUzVE6r6P0OlNKRMLtt3VjcYj+p/2IrtWXL6PiL8PtHbDFqZrYZjr
-         UE2abxXnFLBiadfWxU4BBFSSbjcQdaFa+wErH42af+wViX3K21FRXm2g9OblBzhe8bNf
-         GPZ8WaAY0GLa2YkuKt23HINjfIZMT1VLNOFSZ4jcAuJDGM1qwHjs/BWzPJJ+1ERN1zjO
-         zgts9DKkZlt3tOm/p287VKbQfOip1UkxZNTmLm4KuabOGIdrUwyX+eCs6VASGf7+HVui
-         pEFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763390785; x=1763995585;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=eCcSe7R+64nbva6E6LjL1vdtPtAEecqd0S9GP3XCvKM=;
-        b=XPtd6Buokre1/iViFAk5ZcHcBFPKziseKmUvbF6xZ5OSdKhuw9YH7upqSMeRoYyrL2
-         alUV/l+x7IABvoFSKWrS3n/ofXRDUaoQ8qZeKkZ5wrRsatJ5OZmh/LX2mbmIIZp6bXuC
-         tkOp6FevRssuRMqUZxKsfqxADU0Fb2O726VpVFLYbyGlVKaxuSlkXvnOeRCVKVS+aeLh
-         D48NS1Fxu1cqVp4vUhoBD6YlF7zVoz595ru1nvG7c9LZAnZ4XHVYH1F+YfnLzc3R2+oa
-         GYKQmBvdKgh/xFDyy9+HutJBOsQe0OJrUMDDSCNmWe5S29buJwmkUt1zDZ0v6sGVp4AL
-         dhbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUFmTmbTKuuwWFnAoGYc4K65HAVvjIsqxdlvzJL0EaxJ7O9ViyMGw0ek9k9oYxwEkX4F9k7CPo+hWZa@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVnRq4vihXbtb1PclUG0QPM/n5O5n+Ixr0bkaEsNvDC18Ydu9d
-	/e2F/Fp/Mq1VL1y4q1361bCo/dFjvWvzzSb7nd87oAa4BsVnWx+hQ7F3XnAmX7PVkUKTZCWkSuD
-	lv8DMlT1RAftp+xWv+M74BAtGsOG4MLtBQsZlfybGBg==
-X-Gm-Gg: ASbGncvDUZ/kRRFQ1ZfdQEUdSNbv2YCne6BYyoyyH4J9zfofeOXdkIfJt2Ual1gErf2
-	cliCGMNixBFWPQJFu5nbBV6YJhHjLFwltcOaJOyDsQVoKbXo8r1IUltTRCOEYis1PPKSl6MKTFi
-	mlfPtePVpz1YtGn/bbwkstwT9QLt993YlY+DVhsBGwBA/fOdRMEUsMRJtpbrzBomQbtawByZPk9
-	s0aCZ0PCTQ2mZ7yevAdXmWrDR0j07SlOGdnx5uMcyALlnwcq3loSXZKwPcSngmiSMeiCcH9U7W/
-	yBrZ6Yc6/wePiiBx+RJaoCShaZOUStKW+9iP0A==
-X-Google-Smtp-Source: AGHT+IG4Z8Ljfkw4Jp6KHwmST2wZE0056r4cCHRcfdCuGrfTDeJPgYapHY6n6hmODd7tfxLFQNi/vGZigUjBXe+3OSE=
-X-Received: by 2002:a05:6512:224f:b0:595:7e96:a709 with SMTP id
- 2adb3069b0e04-595841df4d7mr4385918e87.10.1763390785347; Mon, 17 Nov 2025
- 06:46:25 -0800 (PST)
+	s=arc-20240116; t=1763390850; c=relaxed/simple;
+	bh=VteQ0CNGSmS9oLebBawgVVtNiU+d9ySAjJvAV4UaTUM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sJTo3ARMswLfUAjLOZCsftTVHfXq2hx+sYiKCiVLAY7ZV/TSD78+LO9GsMBIZykHqIf9AMmQdzvmLWuH/AGT8WHdOj7/q0mkIbVlHQdFESFIaDH/6wsd0I152U2dAlekBKO8HM9udRlVdiXpo38z1cbHxSZwMtrCzpe4vGjwqgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vL0Vb-0007Me-CO; Mon, 17 Nov 2025 15:47:11 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vL0Va-000vdp-2P;
+	Mon, 17 Nov 2025 15:47:10 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 6C0A74A1634;
+	Mon, 17 Nov 2025 14:47:10 +0000 (UTC)
+Date: Mon, 17 Nov 2025 15:47:10 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Haibo Chen <haibo.chen@nxp.com>
+Cc: Han Xu <han.xu@nxp.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] spi: add driver for NXP XSPI controller
+Message-ID: <20251117-curvy-sincere-muskox-8960cf-mkl@pengutronix.de>
+References: <20251117-xspi-v2-0-e651323993fe@nxp.com>
+ <20251117-xspi-v2-2-e651323993fe@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251117091427.3624-1-antoniu.miclaus@analog.com> <20251117091427.3624-3-antoniu.miclaus@analog.com>
-In-Reply-To: <20251117091427.3624-3-antoniu.miclaus@analog.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 17 Nov 2025 15:46:12 +0100
-X-Gm-Features: AWmQ_blqVDqjvJieyjvOaBOEmnt4FQHFmqiiVNIdk24BThfcdnwbaxStvtdgdtE
-Message-ID: <CAMRc=McdS1b+kL6869-REF2+ddrZNsZ1kvnQuNkwUQx7YWOCgA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] gpio: adg1712: add driver support
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pfxpr3flx5wcz4sf"
+Content-Disposition: inline
+In-Reply-To: <20251117-xspi-v2-2-e651323993fe@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+
+--pfxpr3flx5wcz4sf
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/2] spi: add driver for NXP XSPI controller
+MIME-Version: 1.0
 
-On Mon, Nov 17, 2025 at 10:15=E2=80=AFAM Antoniu Miclaus
-<antoniu.miclaus@analog.com> wrote:
+On 17.11.2025 19:04:25, Haibo Chen wrote:
+> Add driver support for NXP XSPI controller.
 >
-> Add driver support for the ADG1712, which contains four independent
-> single-pole/single-throw (SPST) switches and operates with a
-> low-voltage single supply range from +1.08V to +5.5V or a low-voltage
-> dual supply range from =C2=B11.08V to =C2=B12.75V.
+> XSPI is a flexsible SPI host controller which supports up to
+                ^
+typo: flexible
+
+> 2 external devices (2 CS). It support Single/Dual/Quad/Octal
+> mode data transfer.
 >
-> The driver configures switches once at probe time based on device tree
-> properties and does not expose any userspace interface for runtime contro=
-l.
+> The difference between XSPI and Flexspi:
+> 1.the register layout is total different.
+> 2.XSPI support multiple independent execution environments
+> (EENVs) for HW virtualization with some limitations. Each EENV
+> has its own interrupt and its own set of programming registers
+> that exists in a specific offset range in the XSPI memory map.
+> The main environment (EENV0) address space contains all of the
+> registers for controlling EENV0 plus all of the general XSPI
+> control and programming registers. The register mnemonics for
+> the user environments (EENV1 to EENV4) have "_SUB_n" appended
+> to the mnemonic for the corresponding main-environment register.
 >
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Current driver based on EENV0, which means system already give
+> EENV0 right to linux.
+>
+> This driver use SPI memory interface of the SPI framework to issue
+> flash memory operations. Tested this driver with mtd_debug and
+> UBIFS on NXP i.MX943 EVK board which has one MT35XU512ABA spi nor
+> flash. NOw this driver has the following key features:
+> - Support up to OCT DDR mode
+> - Support AHB read
+> - Support IP read and IP write
+> - Support two CS
+>
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 > ---
-> Changes in v3:
-> - Remove GPIO controller interface
-> - Configure switches from device tree at probe time only
-> - Add 'switch-states' property parsing
-> - Change from GPIOD_ASIS to GPIOD_OUT_LOW
-> ---
->  drivers/gpio/Kconfig        |  9 ++++
->  drivers/gpio/Makefile       |  1 +
->  drivers/gpio/gpio-adg1712.c | 87 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 97 insertions(+)
->  create mode 100644 drivers/gpio/gpio-adg1712.c
+>  MAINTAINERS                |    1 +
+>  drivers/spi/Kconfig        |   10 +
+>  drivers/spi/Makefile       |    1 +
+>  drivers/spi/spi-nxp-xspi.c | 1365 ++++++++++++++++++++++++++++++++++++++=
+++++++
+>  4 files changed, 1377 insertions(+)
 >
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index 7ee3afbc2b05..3fac05823eae 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -157,6 +157,15 @@ config GPIO_74XX_MMIO
->             8 bits:     74244 (Input), 74273 (Output)
->             16 bits:    741624 (Input), 7416374 (Output)
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8a6ce2fdd6e46e94f8a1631cd0bf8b12980a64ed..bd54eb903a71db2fb4c6f7980=
+79cb04bbd9eb7bc 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18708,6 +18708,7 @@ L:	linux-spi@vger.kernel.org
+>  L:	imx@lists.linux.dev
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/spi/nxp,imx94-xspi.yaml
+> +F:	drivers/spi/spi-nxp-xspi.c
 >
-> +config GPIO_ADG1712
-> +       tristate "Analog Devices ADG1712 quad SPST switch GPIO driver"
-> +       depends on GPIOLIB
-> +       help
-> +         GPIO driver for Analog Devices ADG1712 quad single-pole,
-> +         single-throw (SPST) switch. The driver provides a GPIO controll=
-er
-> +         interface where each GPIO line controls one of the four indepen=
-dent
-> +         analog switches on the ADG1712.
+>  NXP FXAS21002C DRIVER
+>  M:	Rui Miguel Silva <rmfrfs@gmail.com>
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index 592d46c9998bbb8bef2b25d828b7f25c5c0ce180..db3dd4f0fb60142477799a169=
+8387ae7dced638c 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -481,6 +481,16 @@ config SPI_NXP_FLEXSPI
+>  	  This controller does not support generic SPI messages and only
+>  	  supports the high-level SPI memory interface.
+>
+> +config SPI_NXP_XSPI
+> +        tristate "NXP xSPI controller"
+> +	depends on ARCH_MXC || COMPILE_TEST
+> +	depends on HAS_IOMEM
+> +	help
+> +	  This enables support for the xSPI controller. Up to two devices
+> +	  can be connected to one host.
+> +	  This controller does not support generic SPI messages and only
+> +	  supports the high-level SPI memory interface.
 > +
-
-I'm finding it hard to understand how this is a GPIO driver. It's a
-GPIO consumer but does it really belong under drivers/gpio/?
-
->  config GPIO_ALTERA
->         tristate "Altera GPIO"
->         select GPIOLIB_IRQCHIP
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index ec296fa14bfd..9043d2d07a15 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -28,6 +28,7 @@ obj-$(CONFIG_GPIO_104_IDI_48)         +=3D gpio-104-idi=
--48.o
->  obj-$(CONFIG_GPIO_104_IDIO_16)         +=3D gpio-104-idio-16.o
->  obj-$(CONFIG_GPIO_74X164)              +=3D gpio-74x164.o
->  obj-$(CONFIG_GPIO_74XX_MMIO)           +=3D gpio-74xx-mmio.o
-> +obj-$(CONFIG_GPIO_ADG1712)             +=3D gpio-adg1712.o
->  obj-$(CONFIG_GPIO_ADNP)                        +=3D gpio-adnp.o
->  obj-$(CONFIG_GPIO_ADP5520)             +=3D gpio-adp5520.o
->  obj-$(CONFIG_GPIO_ADP5585)             +=3D gpio-adp5585.o
-> diff --git a/drivers/gpio/gpio-adg1712.c b/drivers/gpio/gpio-adg1712.c
+>  config SPI_GPIO
+>  	tristate "GPIO-based bitbanging SPI Master"
+>  	depends on GPIOLIB || COMPILE_TEST
+> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+> index 8ff74a13faaa88399723f9e944f9198076c3e543..9323ba633780daadcce2b04f5=
+492ae0647259211 100644
+> --- a/drivers/spi/Makefile
+> +++ b/drivers/spi/Makefile
+> @@ -101,6 +101,7 @@ obj-$(CONFIG_SPI_WPCM_FIU)		+=3D spi-wpcm-fiu.o
+>  obj-$(CONFIG_SPI_NPCM_FIU)		+=3D spi-npcm-fiu.o
+>  obj-$(CONFIG_SPI_NPCM_PSPI)		+=3D spi-npcm-pspi.o
+>  obj-$(CONFIG_SPI_NXP_FLEXSPI)		+=3D spi-nxp-fspi.o
+> +obj-$(CONFIG_SPI_NXP_XSPI)		+=3D spi-nxp-xspi.o
+>  obj-$(CONFIG_SPI_OC_TINY)		+=3D spi-oc-tiny.o
+>  spi-octeon-objs				:=3D spi-cavium.o spi-cavium-octeon.o
+>  obj-$(CONFIG_SPI_OCTEON)		+=3D spi-octeon.o
+> diff --git a/drivers/spi/spi-nxp-xspi.c b/drivers/spi/spi-nxp-xspi.c
 > new file mode 100644
-> index 000000000000..86f8645cf2ad
+> index 0000000000000000000000000000000000000000..a7352e5e27b76d23c24ea766b=
+9a616d8293bceac
 > --- /dev/null
-> +++ b/drivers/gpio/gpio-adg1712.c
-> @@ -0,0 +1,87 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/drivers/spi/spi-nxp-xspi.c
+> @@ -0,0 +1,1365 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +
 > +/*
-> + * Analog Devices ADG1712 quad SPST switch driver
+> + * NXP xSPI controller driver.
 > + *
-> + * Copyright 2025 Analog Devices Inc.
+> + * Copyright 2025 NXP
 > + *
-> + * Author: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> + * xSPI is a flexsible SPI host controller which supports single
+                    ^
+
+typo: flexible
+
+> + * external devices. This device can have up to eight bidirectional
+> + * data lines, this means xSPI support Single/Dual/Quad/Octal mode
+> + * data transfer (1/2/4/8 bidirectional data lines).
+> + *
+> + * xSPI controller is driven by the LUT(Look-up Table) registers
+> + * LUT registers are a look-up-table for sequences of instructions.
+> + * A valid sequence consists of five LUT registers.
+> + * Maximum 16 LUT sequences can be programmed simultaneously.
+> + *
+> + * LUTs are being created at run-time based on the commands passed
+> + * from the spi-mem framework, thus using single LUT index.
+> + *
+> + * Software triggered Flash read/write access by IP Bus.
+> + *
+> + * Memory mapped read access by AHB Bus.
+> + *
+> + * Based on SPI MEM interface and spi-nxp-fspi.c driver.
+> + *
+> + * Author:
+> + *     Haibo Chen <haibo.chen@nxp.com>
+> + * Co-author:
+> + *     Han Xu <han.xu@nxp.com>
 > + */
 > +
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +
-> +#define ADG1712_NUM_SWITCHES   4
-> +
-> +struct adg1712 {
-> +       struct gpio_descs *switch_gpios;
-> +};
-> +
-> +static int adg1712_probe(struct platform_device *pdev)
+
+[...]
+
+> +static int nxp_xspi_exec_op(struct spi_mem *mem, const struct spi_mem_op=
+ *op)
 > +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct adg1712 *adg1712;
-> +       u32 switch_states[ADG1712_NUM_SWITCHES] =3D {0}; /* Default all s=
-witches off */
-> +       int ret, i;
+> +	struct nxp_xspi *xspi =3D spi_controller_get_devdata(mem->spi->controll=
+er);
+> +	void __iomem *base =3D xspi->iobase;
+> +	u32 reg;
+> +	int err;
 > +
-> +       adg1712 =3D devm_kzalloc(dev, sizeof(*adg1712), GFP_KERNEL);
-> +       if (!adg1712)
-> +               return -ENOMEM;
+> +	guard(mutex)(&xspi->lock);
 > +
-> +       adg1712->switch_gpios =3D devm_gpiod_get_array(dev, "switch", GPI=
-OD_OUT_LOW);
-> +       if (IS_ERR(adg1712->switch_gpios))
-> +               return dev_err_probe(dev, PTR_ERR(adg1712->switch_gpios),
-> +                                    "failed to get switch gpios\n");
+> +	err =3D pm_runtime_get_sync(xspi->dev);
+> +	if (err < 0) {
+> +		dev_err(xspi->dev, "Failed to enable clock %d\n", __LINE__);
+> +		return err;
+> +	}
 > +
-> +       if (adg1712->switch_gpios->ndescs !=3D ADG1712_NUM_SWITCHES)
-> +               return dev_err_probe(dev, -EINVAL,
-> +                                    "expected %d gpios, got %d\n",
-> +                                    ADG1712_NUM_SWITCHES,
-> +                                    adg1712->switch_gpios->ndescs);
+> +	/* Wait for controller being ready. */
+> +	err =3D readl_poll_timeout(base + XSPI_SR, reg,
+> +			      !(reg & XSPI_SR_BUSY), 1, POLL_TOUT);
+> +	if (err) {
+> +		dev_err(xspi->dev, "SR keeps in BUSY!");
+> +		return err;
+> +	}
 > +
-> +       ret =3D device_property_read_u32_array(dev, "switch-states", swit=
-ch_states,
-> +                                            ADG1712_NUM_SWITCHES);
-> +       if (ret && ret !=3D -EINVAL)
-> +               return dev_err_probe(dev, ret, "failed to read switch-sta=
-tes\n");
+> +	nxp_xspi_select_mem(xspi, mem->spi, op);
 > +
-> +       for (i =3D 0; i < ADG1712_NUM_SWITCHES; i++) {
-> +               if (switch_states[i] > 1) {
-> +                       dev_warn(dev, "invalid switch state %u for switch=
- %d, using 0\n",
-> +                                switch_states[i], i);
-> +                       switch_states[i] =3D 0;
-> +               }
+> +	nxp_xspi_prepare_lut(xspi, op);
 > +
-> +               ret =3D gpiod_set_value_cansleep(adg1712->switch_gpios->d=
-esc[i],
-> +                                              switch_states[i]);
+> +	/*
+> +	 * For read:
+> +	 *     the address in AHB mapped range will use AHB read.
+> +	 *     the address out of AHB maped range will use IP read.
+                                      ^^^^^
 
-I don't see anything here that cannot be achieved with gpio hogs in
-device-tree. Do we really need a separate driver for it? If we really
-really need it, you don't really need to implement a new driver, you
-could literally just extend gpio-virtuser with a real compatible and
-it would request the GPIOs for you.
+typo: mapped
 
-> +               if (ret)
-> +                       return dev_err_probe(dev, ret, "failed to set swi=
-tch %d\n", i);
-> +       }
-> +
-> +       platform_set_drvdata(pdev, adg1712);
+regards,
+Marc
 
-Where is the corresponding platform_get_drvdata()?
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-> +
-> +       dev_info(dev, "ADG1712 switch controller configured\n");
+--pfxpr3flx5wcz4sf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Please remove this, no need to be noisy.
+-----BEGIN PGP SIGNATURE-----
 
-Bart
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmkbNWoACgkQDHRl3/mQ
+kZysCwf/brA1yOA1hG8+FFScnwrH/OCitXTM/muL9nM2LYHDL+VMD4JZxbpUPAms
+Y+nR49TM1KEfRyGFmLDZBja6Mlu+UeT4UuyFrPS4UKptsDQqycAVAdpDU/qQhGhK
+5Wfg3uBX+lCzAUkqM5g1P6+PX7QQ3w4C+XhFagj5Y9ELvJaws/px+EX1Cg5OKSuq
+oTI9jnb1IE4J/RpZom3a9LiFCWDvqkmnLJetnm7EUYe1gDbWbmaQDy/XWiqenL2a
+m1JvgXW4S4S9JmYEg/5BNiIbcuFUDc9FLqOJHbW4LP8V8QIvw1FijHL6HANVCHqE
+nmYdlASORqt4c4IJXVebhmifgD3AFA==
+=eyBW
+-----END PGP SIGNATURE-----
+
+--pfxpr3flx5wcz4sf--
 
