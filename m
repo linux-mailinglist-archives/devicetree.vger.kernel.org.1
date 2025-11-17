@@ -1,217 +1,146 @@
-Return-Path: <devicetree+bounces-239454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8B9DC64F2F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:49:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC34C65019
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:00:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id A7EB828AC2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:48:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 16D4935892C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7225299959;
-	Mon, 17 Nov 2025 15:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF8829D27D;
+	Mon, 17 Nov 2025 15:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="COEwFccW"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="C/KqexO6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971C0292B4B
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 15:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075C529CB4C;
+	Mon, 17 Nov 2025 15:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763394496; cv=none; b=SJdyjY1/YCU04eCfdPH+hHJbJRQAP5ecn/zT3sqb81qBF4P1sDPvEP3Z1zAaRHpT7tsWCaPbxtRvr6UY3dCoX8inF10jm8ek50Ucxidva+w4Lejt5IL4Hxk7TtYr47BBjYGvCNCextEJVhQzETvXbqp3cGV3XgDIML4eer9BMns=
+	t=1763395154; cv=none; b=CpYBy/ftzh3tg+NLJr4EUfhwNmEII2NERwdfWc7IDtnn53RucVvVgNTv/WjkvXXBa52fniWE0aWCZm24wHryfKOJNzLCF/akbVrUGx9kiP9VvHs8hXBH/r0mZ75uJxe2RGNuCB5MmnoD7JrVmm4b9o5rjyrI0V82JfYQp4pVQtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763394496; c=relaxed/simple;
-	bh=ROYTcX0lToNnERFrzzVSCpniaTAJj6i4Bcg2Nx6hBo0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=blqQYQkctJffhzDt/peiHr5EkwzgddbuFmM+/psR9MP7t7gJyC0eF+EtLdxJ5yPDUu3F2YsIPIHXNLivNMT1Di2g/oK8SazIbLkZVsQ6jwn03Lgez5P46dFBaQE8gcal3hPxcpzuMjiu8329hJsWVr3fythbEdUcg0gTpZOP/xA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=COEwFccW; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-378e8d10494so57892711fa.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 07:48:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763394491; x=1763999291; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c/DUma0uZd8iCNzJFNlwxYelZvsQPcM9gT0Fu/UGP5Y=;
-        b=COEwFccWnTSZZhfIMmxf9dxlSNeit2WGTrtffdB+zcsa5PeFEl+Ewx6wVLeYeTJf7I
-         R8HNcH3LTQuaCYbIPHINb4jbHhK2d0Lcb/JGCjDkDm1BmoizG3cJf3PeJ5p0sVX8o3c/
-         SdmOXYZIs6WAWS8jFVnPko0njBkg5sMY96DOL8ZuMirBrs+iBCYzkPva2BvkAfDsbBa5
-         F6Dk2ClIzu1W0nE52d2rVOi6odN60iWsoii10RtMvpyJ00k3LKJMRQ7Sgrsh2XnV2EDV
-         iSoqf0pODs+pklwWmxVhw1oaLenrRALUGhvA8jwUxZb5v3L87wZ+ZsH3DvSv01DFZW80
-         koiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763394491; x=1763999291;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c/DUma0uZd8iCNzJFNlwxYelZvsQPcM9gT0Fu/UGP5Y=;
-        b=ghfifPjZsHngJWr0CLZbRq3cPLtSU6zrz682BLzELJcPGJU1HZIurUzpchI/WdsVxV
-         HaA8CA4jWrqQy+P8Gl92oGXXTzpLRLzkR6j2wbi4PXZlVGK5mwBI2ZZEEbWpo6wh7XeW
-         ++kl2nAW0hs7ZFKGfRXNurT9jp5c8PzYAYiSptdbPvhjBx7ej8I4u/kkAaSmXPTzPrbS
-         04Kge+KgzVrLyoYfRYegHmBTVO+VPchflQfaU+oWq9kgccE1hHUMmnUCDJaoL2D56SA2
-         OjT1i/7qaLknONrOQVL7mNKjpO4EXq4fI+3PDtKCtA+xWOdUMg2tDs+Hm2E1ef4IZlQG
-         VktQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWXZ8sHo1Yixfr7THyJ9YUmoutsvcEcUf9jcbcjhqNt6bkyxpKXy42LaKWxRGFyo8PmZ1GFEqMqglLU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkdF6QHk7hfVrcSKs9fABOGguIffTrHBcIUVQ1EjZNCLIqyTn1
-	Vw4iCo0GPbcod/nnSz/gtZr0jm0WJ50UtOyPSMdIma8wpzk6aA3QlHCd
-X-Gm-Gg: ASbGncsOY4NabJAokNFDGcgECrDCRLBQq59lDIK4rfzc2XwcvPQqp3rdRZH/kvyM5ja
-	VRhjlev03Qrl2AVDzPzNwznCL4NxOXlO5VwBgcsG9pf/BesctUdE9MkQi7X4t6iEIb09NPtdO+G
-	i3AXFT1a3o4WsrgH58oLGPRPkry5ZWwpKVdPSHZWGWLjeUTxpv7Z8kfeuH36rdRDzZKDqw0713I
-	KFDibMwH32CD1SFx2TNr5Vluzq3idM8NHq4NEJ2884I4zNYT/zg99Zt3i82xGIqW5T6shZwMnVU
-	QbIRUpCKuUwJwXWgpPWnBGt2jSYOo1wJ/K9EO53QPmnhZztgotSYmstBFKvdrjyDC2Zd3seRjOI
-	qbA7gMV8gEdMqTi5tjCbi0pfwgQciSg0QgVKEahWGCbz8X5Y9HMdAIBvMI/6q06W1ZP5sRT6Uai
-	zAJpTvMJuqMJptuuMKzQ6kax4Ptu1PoFeVyDzjyBX2solhUqPWTRZHiGbpvw==
-X-Google-Smtp-Source: AGHT+IEz1qxf+9MTduFUs5dbOjZ/dHS2S6pFFr0IgbhUuNlZhrUTtDy15iSqTT9lE0arzv+pzqRA9A==
-X-Received: by 2002:a2e:b052:0:b0:37a:75c6:b44 with SMTP id 38308e7fff4ca-37babb47988mr26872821fa.3.1763394490823;
-        Mon, 17 Nov 2025 07:48:10 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37b9ce25408sm28328821fa.20.2025.11.17.07.48.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Nov 2025 07:48:10 -0800 (PST)
-Message-ID: <52b99bf7-bfea-4cee-aa57-4c13e87eaa0d@gmail.com>
-Date: Mon, 17 Nov 2025 17:48:08 +0200
+	s=arc-20240116; t=1763395154; c=relaxed/simple;
+	bh=AzUm5SyQnN+H3BhkLDc4TI3blmZP45mMPd046i1WLic=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=q079XAt5eOWEge3fSghxC+vJXEqZ/S21myG9vjPxj6WWsjZCMH1FToKj01oZgvHs0eni7fo6Q9rke780X7lbhycrTQB/N08iNINrc5s5vJdMcaLDKC9wp0BOU074HjEMHI4qhyO2NnmPfQkUSsgTU8QUmLboPEdp+engxvtomnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=C/KqexO6; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id D540841095;
+	Mon, 17 Nov 2025 16:59:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1763395149; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Zkn44FjR+pCfEjpttwFCzM+vdwVOm3Tq+gRyYYZrqaw=;
+	b=C/KqexO6h7lCq322ARNRT5+LGtjamGKURkllK3HzjYPHOKO9anlQ9NZ7A6nMfVY0JJmEr6
+	AUcCqnVVFSWbcP1G6B2+XD6fpN3hpt3UMc3HkCbS/itsh2YIWPbChNvUNF6kB4Wr4pg524
+	xncW8KuE0cfGMsYpvmDrGcGTWB94CziDsnu/UdoBqFNVDe0mZphVfLrqHes/XibvRfT4kQ
+	A355rmGB9ABLCSljkVTlTOkGCSXo7EByB/NmHg5T6VrgaghIGlHn4ixJomMtGonqWEZTnl
+	5tdONmWdhYwJtUasEUF/pLGlkPryYIH+QkXvy0btaKmwHxax6los3e4QVCvtVQ==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <aRrIhA1uv_aIneOc@geday>
+Content-Type: text/plain; charset="utf-8"
+References: <cover.1763197368.git.geraldogabriel@gmail.com>
+ <8f3cc1c1-7bf7-4610-b7ce-79ebd6f05a6e@rock-chips.com>
+ <257951b7-c22e-9707-6aba-3dc5794306bb@manjaro.org> <aRrIhA1uv_aIneOc@geday>
+Date: Mon, 17 Nov 2025 16:59:05 +0100
+Cc: "Shawn Lin" <shawn.lin@rock-chips.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan Sadhasivam" <mani@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Johan Jonker" <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org
+To: "Geraldo Nascimento" <geraldogabriel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 04/16] dt-bindings: power: supply: BD72720 managed
- battery
-To: Rob Herring <robh@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@linux.dev>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
- Sebastian Reichel <sre@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- linux-leds@vger.kernel.org, Pavel Machek <pavel@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rtc@vger.kernel.org, Lee Jones <lee@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>
-References: <cover.1763022807.git.mazziesaccount@gmail.com>
- <ac5a4e992e4fb9c7bffb1e641a7cd61f74af4cba.1763022807.git.mazziesaccount@gmail.com>
- <176303119683.3716572.16868393928566655866.robh@kernel.org>
- <ee36d7d1-ef47-4a35-9aff-baa6ed32105a@gmail.com>
- <20251114163954.GA3399895-robh@kernel.org>
- <32303b95-3fd5-44c4-bb7d-e2957a6064fc@gmail.com>
- <20251117152341.GA1944698-robh@kernel.org>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20251117152341.GA1944698-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Message-ID: <4afa0534-5458-ac0c-6c92-38ed52aea00b@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH 0/3] =?utf-8?q?PCI=3A?==?utf-8?q?_rockchip=3A?=
+ =?utf-8?q?_5=2E0?= GT/s speed may be dangerous
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-On 17/11/2025 17:23, Rob Herring wrote:
-> On Mon, Nov 17, 2025 at 10:12:01AM +0200, Matti Vaittinen wrote:
->> On 14/11/2025 18:39, Rob Herring wrote:
->>> On Fri, Nov 14, 2025 at 11:04:27AM +0200, Matti Vaittinen wrote:
->>>> On 13/11/2025 12:53, Rob Herring (Arm) wrote:
->>>>>
->>>>> On Thu, 13 Nov 2025 10:52:19 +0200, Matti Vaittinen wrote:
->>>>>> From: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> //snip
->>
->>>>
+Hello Geraldo,
 
->> For VDR there are only:
->>
->> rohm,voltage-vdr-thresh-microvolt,
-> 
-> So "voltage voltage drop rate"? And '-microvolt' says this is voltage
-> too. :)
+On Monday, November 17, 2025 08:02 CET, Geraldo Nascimento <geraldogabr=
+iel@gmail.com> wrote:
+> On Mon, Nov 17, 2025 at 04:57:11AM +0100, Dragan Simic wrote:
+> > On Monday, November 17, 2025 04:42 CET, Shawn Lin <shawn.lin@rock-c=
+hips.com> wrote:
+> > > =E5=9C=A8 2025/11/15 =E6=98=9F=E6=9C=9F=E5=85=AD 17:10, Geraldo N=
+ascimento =E5=86=99=E9=81=93:
+> > > > In recent interactions with Shawn Lin from Rockchip it came to =
+my
+> > > > attention there's an unknown errata regarding 5.0 GT/s operatio=
+nal
+> > > > speed of their PCIe core. According to Shawn there's grave dang=
+er
+> > > > even if the odds are low. To contain any damage, let's cover th=
+e
+> > > > remaining corner-cases where the default would lead to 5.0 GT/s
+> > > > operation as well as add a comment to Root Complex driver core,
+> > > > documenting this danger.
+> > >=20
+> > > I'm not sure just adding a warn would be a good choice. Could we =
+totally
+> > > force to use gen1 and add a warn if trying to use Gen2.
+> >=20
+> > I think that forcing 2.5 GT/s with an appropriate warning message
+> > is a good idea.  That would be like some quirk that gets applied
+> > automatically, to prevent data corruption, while warning people
+> > who attempt to "overclock" the PCIe interface.
+>=20
+> Alright, I'll send v2 with this suggestion in mind. So that driving t=
+he
+> core at 5.0 GT/s will require patching and compiling own kernel.
+>=20
+> > > Meanwhile amend the commit message to add a reference
+> > > of RK3399 official datesheet[1] which says PCIe on RK3399 should =
+only
+> > > support 2.5GT/s?
+> > >=20
+> > > [1]https://opensource.rock-chips.com/images/d/d7/Rockchip=5FRK339=
+9=5FDatasheet=5FV2.1-20200323.pdf
+> >=20
+>=20
+> Shawn, URLs have the bad habit of changing or simply disappearing, so=
+ I
+> don't think it's a good idea to put URL in the commit message.
 
-Hm. Yes. This is a threshold voltage for applying the "zero-correction" 
-algorithm, which uses these "VDR" (a.k.a voltage drop rate) tables. Eg, 
-the algorithm should only used for the correction when battery voltage 
-drops below this threshold. AFAICS, this is usually designed to be 
-slightly higher than the voltage where the system stays still operable. 
-I suppose this could also be "zero-correction-threshold", but this would 
-introduce another "buzzword".
+Ah, it's actually perfectly fine, there's always Wayback Machibe
+to rescue references/URLs that may disappear over time.  Wikipedia
+relies heavily on exactly that mechanism, for example.
 
->> rohm,volt-drop-soc-bp,
->> rohm,volt-drop-temperatures-millicelsius
->>
->> and
->>
->> patternProperties:
->>    '^rohm,volt-drop-[0-9]-microvolt':
->>
->> So, from the binding point of view (.yaml), it's not _that_ lot. In the .dts
->> there will be quite some noise as the tables have several values.
->>
->>
->>> If that
->>> happens, either we are doing a poor job of generically describing
->>> battery parameters or chargers and batteries are tightly coupled and
->>> can't be described independently.
->>
->> I am under impression that chargers tend to be pretty flexible, and they can
->> be configured to work with many different batteries by altering the charging
->> profiles. Most of the battery properties (like and charging phases [like
->> pre, CC, CV], their limits, currents and voltages etc) are very generally
->> usable. So, large subset of charging functionality can be handled with
->> standard properties. I believe it is only the fuel-gauging where things get
->> more hairy.
->>
->> I did prepare a series which does the split and adds new compatible for the
->> 'rohm,vdr-battery'. (The power-supply class is not yet modified in the
->> series, but we would probably want to modify the battery-info getters to
->> also accept the 'rohm,vdr-battery' -compatible.)
-> 
-> I don't think that's the right direction. It's not a Rohm battery.
-> 
->> I wonder if I should actually prepare also a series where these properties
->> are just placed in the existing static battery node without adding new
->> compatible. That way it would be easier to see which way is better.
-> 
-> That seems like the right thing to do here.
-> 
-> The main question for me is whether these should even be Rohm specific?
-> That would probably require a 2nd user to answer for sure.
-> 
+[2] https://web.archive.org/
 
-This is a question Linus W asked as well :)
-I believe this technique could be applied to other batteries. I, 
-however, am not aware of any other than ROHM charger drivers which 
-implement the algorithm. Furthermore, I was told that the mechanism to 
-measure these "VDR-tables" for batteries is one of those things which 
-should be "kept under your hat". I think ROHM has also patented some 
-stuff related to that. Hence I prefixed these tables by "rohm,".
+> Also, the datasheet just mentions that RK3399 supports only 2.5 GT/s,
+> it does not mention possible damage from driving the core at 5.0 GT/s=
+.
 
-I have no strong objections to dropping the "rohm," though - but I doubt 
-these tables will be heavily used by any other but ROHM chargers.
+True, but having an additional reference doesn't hurt, especially
+because the revision history mentions, albeit vaguely, an update
+to the PCIe specification in version 1.1.of the datasheet.  Though,
+if we had the version 1.0 publicly available for comparison, that
+would've been much better. :)
 
->> If I do that, should I only spin these bindings as RFC to avoid the
->> unnecessary noise?
-> 
-> Only if you think something is not complete and/or the patches should
-> not be applied.
+> > Also, rewording the patch summary as follows below may be good,
+> > because that would provide more details:
+> >=20
+> >   PCI: rockchip: Warn about Gen2 5.0 GT/s on RK3399 being unsafe
+> >=20
+> > Or, if we'll go with the automatic downgrading, like this:
+> >=20
+> >   PCI: rockchip: Limit RK3399 to Gen1 2.5 GT/s to prevent breakage
+>=20
+> Dragan, these are good ones, thanks. Though I think I'll omit Gen1/Ge=
+n2
+> wording since I know how much Bjorn dislikes those terms.
 
-Oh, Ok. Then I will send only one of the approaches - probably the one 
-where properties are added to the simple-battery.
+I'm glad that you like those, and I also thought about not including
+the GenX parts, because they're basically a bit redundant. :)
 
-Thanks for all the support!
-
-Yours,
-	-- Matti
-
----
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
 
