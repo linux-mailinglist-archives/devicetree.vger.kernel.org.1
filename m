@@ -1,45 +1,46 @@
-Return-Path: <devicetree+bounces-239462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F288C65243
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:30:00 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66B4C652CA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:35:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 29A5028AD3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:29:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B6E234F2489
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF2F2C11CD;
-	Mon, 17 Nov 2025 16:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69852C3251;
+	Mon, 17 Nov 2025 16:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bMV/850B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8OhFVgT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678AB248869;
-	Mon, 17 Nov 2025 16:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECB5248869;
+	Mon, 17 Nov 2025 16:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763396986; cv=none; b=VrpXN8qcK7DN2TST8PBGTO9h9ACmtqOmPJGe2J6gL63gfflHnlmg3uTtjaAImzI0gPNXedccrOJXeLHIDS0uafHh/TlZ84vXNbhDV0C94vlAGVAhKzQRJNO2FmLvQHWDfRci0Sxiabe8GP1zpWn9OhnjHdeHW14SHG4dPpeYUbY=
+	t=1763396997; cv=none; b=RSetsG5FkhTtG3ZZvMCXBf3tTqTpjKWpjfETXgSp55qX7mSy9/sCwEuavOnaxyMU6VZWykC/QTD4YosZXmSeJDOM6fs6JKYBP8DojoTmzboa4ZeZUmZX4+v7kQOmWWwuWUtWE6Niceho6umDPHj7p7zq1/S9UJ2eWpI7HT7kLq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763396986; c=relaxed/simple;
-	bh=0k5mR40qmeCxrKeXa+VfhKq6tty412bsrbm9w0g98Cw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bbAiOa3I0bgblyf+MzMutFg3e65ftJZoD0CuBMM40woIBXVdXPOK3h8qsEFfpYulfnAU0fUxrTQuSGon/tZyqTauefjtm3rfHrxLSjDFHfjCwQ0TWspLMlRYfynHLB9bN4Zi7T6IAwcMzLyOQeQKXingaCsGdV1xnbnHCC6+lHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bMV/850B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76B97C113D0;
-	Mon, 17 Nov 2025 16:29:43 +0000 (UTC)
+	s=arc-20240116; t=1763396997; c=relaxed/simple;
+	bh=shKUSuameh3muiG58RfWSoS4te9QniHU0E6tvBpOmy4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=WlALkp9wywYU69zR3fzTK9iITKn2hltdAu6liWYmXaxSIm+RfWbUIuO1Jlk+qa6ogHigOe4TrUvAio3h9fFbZWNpTRQW+VNYkCqXBgEbyBwWAdcMNXvOCBIJznDcv8vwKm3ESzFfTereoY7ZUZXjdJzxfKaiYnNxBVP0iYZZYc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8OhFVgT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C715DC113D0;
+	Mon, 17 Nov 2025 16:29:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763396986;
-	bh=0k5mR40qmeCxrKeXa+VfhKq6tty412bsrbm9w0g98Cw=;
-	h=From:To:Cc:Subject:Date:From;
-	b=bMV/850B7PPh9ft0sYYM8BHDWHuUMsdalXTPEt/+javid34XRFEWVe6NGEi333dgc
-	 0JNMz1iw2l7qM0zQQFD9UYbtPQls62f489+4yrEkYaAMllE4CXghQ4V03HZMV5w221
-	 XMadMCenWGM2s+UA22EbHazv+6FkajZQe/CWPusY+WUDzdSC5yx2MAh8E1Uv3wdTTL
-	 y0LWX9ZCOtj9bHfxgMz5+HOnJfiivwbI6bu/5PxgkJNeI9S591Hl5hYYMD1EQ4UDN6
-	 ImCyr3twIyvGYqUNP2EfeAOH+yodxM4ORX6leIBpUOv7zXmFc8v06zZ0rmV3yQ+4gZ
-	 NIG5QWHiNrLjA==
+	s=k20201202; t=1763396997;
+	bh=shKUSuameh3muiG58RfWSoS4te9QniHU0E6tvBpOmy4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=n8OhFVgTQbXQGWiK/eFE+B9CIFBxX9reOAUaY4QyzmxVw6HarFqfgbcNZxIFq8sry
+	 F/bo5eJVc0/UJUI7mEMYPZgmBUs7cGh6YIsc50M8yOs/D7GB3kBozMtS6v2OQLT9J6
+	 rr/BtwMvgePFIRE4vJcNG2P17VujqLhCR6FLAiILOadUFNyhvXZ5+T57JuR1aM0s9y
+	 naWQyyYa7w9meyX2KZxbg8K58gVzuVlRGm/Fv0QUnUJ/bCeDvGXrMBmC6FS9f88kd5
+	 Sehs9Fpnu9uRiSW0gVICYfy6ZkhaV44B3JrFZTt/9xtD+Hm1PehE2a8K5Toc3faJ+j
+	 CZJvU8yjUdYsw==
 From: Conor Dooley <conor@kernel.org>
 To: linux-kernel@vger.kernel.org
 Cc: conor@kernel.org,
@@ -54,30 +55,31 @@ Cc: conor@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH 1/2] dt-bindings: mfd: document control-scb and sysreg-scb on pic64gx
-Date: Mon, 17 Nov 2025 16:29:29 +0000
-Message-ID: <20251117-aeration-smock-5e7ac06e2942@spud>
+Subject: [PATCH 2/2] dt-bindings: mfd: document syscons falling back to atmel,sama5d2-sfrbu
+Date: Mon, 17 Nov 2025 16:29:31 +0000
+Message-ID: <20251117-marlin-mustang-5ffda4d211c7@spud>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251117-aeration-smock-5e7ac06e2942@spud>
+References: <20251117-aeration-smock-5e7ac06e2942@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9655; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=ChDTUZ9MY24jy5W4apv1nC1KHi7HZfRF9Amxe1XkbGQ=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSvukSWzbM7V2nPWOS2JfVsg8X+y+tevFvk2Bv676nD 7S4b7J3dJSyMIhxMciKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAi5ncZ/tluihKd3rt/zzLr niyP4yvne/+c5Tgz90mdvMGniP7arfWMDPtTSrznsBRv/C7e0aodc+Epb8WFQ2/XBX/+qRhrEqX WwQAA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1597; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=jLzb0xlUC6jw2ZwWlMmejU8czQGd9N0/QrEHHV0k8/c=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSvhnLTUXOhxjVq2S6rUx292j2fMCiPUe+1mEX92cdJ tmNV+Z3lLIwiHExyIopsiTe7muRWv/HZYdzz1uYOaxMIEMYuDgFYCLarIwMXTIi6dkxC2b8+N8z vZxHmF+KwyXB4TzvjIUPHAz2x306ysjwv4JxyQbG7c197Se9XvyaV3dU8suvqzPSX8+yrpgep/e KDQA=
 X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-On pic64gx these syscons are identical to those on mpfs, and should use
-a fallback. Add support for multiple fallback compatibles to syscon.yaml
-with these as the first two users.
+The sfrbu on both sama7g5 and sama6d65 both fall back to sama5d2 in
+devicetrees, but the former two compatibles were undocumented. Now that
+syscon.yaml has easy support for multiple soc-specific compatibles, add
+both of these undocumented devices.
 
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-Awful diff, sorry!
-
 CC: Nicolas Ferre <nicolas.ferre@microchip.com>
 CC: Alexandre Belloni <alexandre.belloni@bootlin.com>
 CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
@@ -89,241 +91,26 @@ CC: devicetree@vger.kernel.org
 CC: linux-kernel@vger.kernel.org
 CC: linux-arm-kernel@lists.infradead.org
 CC: linux-mediatek@lists.infradead.org
-
----
- .../devicetree/bindings/mfd/syscon.yaml       | 219 +++++++++---------
- 1 file changed, 114 insertions(+), 105 deletions(-)
+ Documentation/devicetree/bindings/mfd/syscon.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index 657c38175fba..50f0012f4ebe 100644
+index 50f0012f4ebe..64829ecbb0b0 100644
 --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
 +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -133,111 +133,120 @@ select:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - airoha,en7581-pbus-csr
--          - al,alpine-sysfabric-service
--          - allwinner,sun8i-a83t-system-controller
--          - allwinner,sun8i-h3-system-controller
--          - allwinner,sun8i-v3s-system-controller
--          - allwinner,sun50i-a64-system-controller
--          - altr,l3regs
--          - altr,sdr-ctl
--          - amd,pensando-elba-syscon
--          - amlogic,meson-mx-assist
--          - amlogic,meson-mx-bootrom
--          - amlogic,meson8-analog-top
--          - amlogic,meson8b-analog-top
--          - amlogic,meson8-pmu
--          - amlogic,meson8b-pmu
--          - apm,merlin-poweroff-mailbox
--          - apm,mustang-poweroff-mailbox
--          - apm,xgene-csw
--          - apm,xgene-efuse
--          - apm,xgene-mcb
--          - apm,xgene-rb
--          - apm,xgene-scu
--          - atmel,sama5d2-sfrbu
--          - atmel,sama5d3-nfc-io
--          - atmel,sama5d3-sfrbu
--          - atmel,sama5d4-sfrbu
--          - axis,artpec6-syscon
--          - brcm,cru-clkset
--          - brcm,sr-cdru
--          - brcm,sr-mhb
--          - cirrus,ep7209-syscon1
--          - cirrus,ep7209-syscon2
--          - cirrus,ep7209-syscon3
--          - cnxt,cx92755-uc
--          - freecom,fsg-cs2-system-controller
--          - fsl,imx93-aonmix-ns-syscfg
--          - fsl,imx93-wakeupmix-syscfg
--          - fsl,ls1088a-reset
--          - fsl,vf610-anatop
--          - fsl,vf610-mscm-cpucfg
--          - hisilicon,dsa-subctrl
--          - hisilicon,hi6220-sramctrl
--          - hisilicon,hip04-ppe
--          - hisilicon,pcie-sas-subctrl
--          - hisilicon,peri-subctrl
--          - hpe,gxp-sysreg
--          - loongson,ls1b-syscon
--          - loongson,ls1c-syscon
--          - lsi,axxia-syscon
--          - marvell,armada-3700-cpu-misc
--          - marvell,armada-3700-nb-pm
--          - marvell,armada-3700-avs
--          - marvell,armada-3700-usb2-host-device-misc
--          - marvell,armada-3700-usb2-host-misc
--          - marvell,dove-global-config
--          - mediatek,mt2701-pctl-a-syscfg
--          - mediatek,mt2712-pctl-a-syscfg
--          - mediatek,mt6397-pctl-pmic-syscfg
--          - mediatek,mt7988-topmisc
--          - mediatek,mt8135-pctl-a-syscfg
--          - mediatek,mt8135-pctl-b-syscfg
--          - mediatek,mt8173-pctl-a-syscfg
--          - mediatek,mt8365-infracfg-nao
--          - mediatek,mt8365-syscfg
--          - microchip,lan966x-cpu-syscon
--          - microchip,mpfs-control-scb
--          - microchip,mpfs-sysreg-scb
--          - microchip,sam9x60-sfr
--          - microchip,sama7d65-ddr3phy
--          - microchip,sama7d65-sfrbu
--          - microchip,sama7g5-ddr3phy
--          - mscc,ocelot-cpu-syscon
--          - mstar,msc313-pmsleep
--          - nuvoton,ma35d1-sys
--          - nuvoton,wpcm450-shm
--          - qcom,apq8064-mmss-sfpb
--          - qcom,apq8064-sps-sic
--          - rockchip,px30-qos
--          - rockchip,rk3036-qos
--          - rockchip,rk3066-qos
--          - rockchip,rk3128-qos
--          - rockchip,rk3228-qos
--          - rockchip,rk3288-qos
--          - rockchip,rk3368-qos
--          - rockchip,rk3399-qos
--          - rockchip,rk3528-qos
--          - rockchip,rk3562-qos
--          - rockchip,rk3568-qos
--          - rockchip,rk3576-qos
--          - rockchip,rk3588-qos
--          - rockchip,rv1126-qos
--          - st,spear1340-misc
--          - stericsson,nomadik-pmu
--          - starfive,jh7100-sysmain
--          - ti,am62-opp-efuse-table
--          - ti,am62-usb-phy-ctrl
--          - ti,am625-dss-oldi-io-ctrl
--          - ti,am62p-cpsw-mac-efuse
--          - ti,am654-dss-oldi-io-ctrl
--          - ti,j784s4-acspcie-proxy-ctrl
--          - ti,j784s4-pcie-ctrl
--          - ti,keystone-pllctrl
--      - const: syscon
-+    oneOf:
+@@ -239,6 +239,12 @@ properties:
+               - ti,j784s4-pcie-ctrl
+               - ti,keystone-pllctrl
+           - const: syscon
 +      - items:
 +          - enum:
-+              - airoha,en7581-pbus-csr
-+              - al,alpine-sysfabric-service
-+              - allwinner,sun8i-a83t-system-controller
-+              - allwinner,sun8i-h3-system-controller
-+              - allwinner,sun8i-v3s-system-controller
-+              - allwinner,sun50i-a64-system-controller
-+              - altr,l3regs
-+              - altr,sdr-ctl
-+              - amd,pensando-elba-syscon
-+              - amlogic,meson-mx-assist
-+              - amlogic,meson-mx-bootrom
-+              - amlogic,meson8-analog-top
-+              - amlogic,meson8b-analog-top
-+              - amlogic,meson8-pmu
-+              - amlogic,meson8b-pmu
-+              - apm,merlin-poweroff-mailbox
-+              - apm,mustang-poweroff-mailbox
-+              - apm,xgene-csw
-+              - apm,xgene-efuse
-+              - apm,xgene-mcb
-+              - apm,xgene-rb
-+              - apm,xgene-scu
-+              - atmel,sama5d2-sfrbu
-+              - atmel,sama5d3-nfc-io
-+              - atmel,sama5d3-sfrbu
-+              - atmel,sama5d4-sfrbu
-+              - axis,artpec6-syscon
-+              - brcm,cru-clkset
-+              - brcm,sr-cdru
-+              - brcm,sr-mhb
-+              - cirrus,ep7209-syscon1
-+              - cirrus,ep7209-syscon2
-+              - cirrus,ep7209-syscon3
-+              - cnxt,cx92755-uc
-+              - freecom,fsg-cs2-system-controller
-+              - fsl,imx93-aonmix-ns-syscfg
-+              - fsl,imx93-wakeupmix-syscfg
-+              - fsl,ls1088a-reset
-+              - fsl,vf610-anatop
-+              - fsl,vf610-mscm-cpucfg
-+              - hisilicon,dsa-subctrl
-+              - hisilicon,hi6220-sramctrl
-+              - hisilicon,hip04-ppe
-+              - hisilicon,pcie-sas-subctrl
-+              - hisilicon,peri-subctrl
-+              - hpe,gxp-sysreg
-+              - loongson,ls1b-syscon
-+              - loongson,ls1c-syscon
-+              - lsi,axxia-syscon
-+              - marvell,armada-3700-cpu-misc
-+              - marvell,armada-3700-nb-pm
-+              - marvell,armada-3700-avs
-+              - marvell,armada-3700-usb2-host-device-misc
-+              - marvell,armada-3700-usb2-host-misc
-+              - marvell,dove-global-config
-+              - mediatek,mt2701-pctl-a-syscfg
-+              - mediatek,mt2712-pctl-a-syscfg
-+              - mediatek,mt6397-pctl-pmic-syscfg
-+              - mediatek,mt7988-topmisc
-+              - mediatek,mt8135-pctl-a-syscfg
-+              - mediatek,mt8135-pctl-b-syscfg
-+              - mediatek,mt8173-pctl-a-syscfg
-+              - mediatek,mt8365-infracfg-nao
-+              - mediatek,mt8365-syscfg
-+              - microchip,lan966x-cpu-syscon
-+              - microchip,mpfs-control-scb
-+              - microchip,mpfs-sysreg-scb
-+              - microchip,sam9x60-sfr
-+              - microchip,sama7d65-ddr3phy
++              - microchip,sama7g5-sfrbu
 +              - microchip,sama7d65-sfrbu
-+              - microchip,sama7g5-ddr3phy
-+              - mscc,ocelot-cpu-syscon
-+              - mstar,msc313-pmsleep
-+              - nuvoton,ma35d1-sys
-+              - nuvoton,wpcm450-shm
-+              - qcom,apq8064-mmss-sfpb
-+              - qcom,apq8064-sps-sic
-+              - rockchip,px30-qos
-+              - rockchip,rk3036-qos
-+              - rockchip,rk3066-qos
-+              - rockchip,rk3128-qos
-+              - rockchip,rk3228-qos
-+              - rockchip,rk3288-qos
-+              - rockchip,rk3368-qos
-+              - rockchip,rk3399-qos
-+              - rockchip,rk3528-qos
-+              - rockchip,rk3562-qos
-+              - rockchip,rk3568-qos
-+              - rockchip,rk3576-qos
-+              - rockchip,rk3588-qos
-+              - rockchip,rv1126-qos
-+              - st,spear1340-misc
-+              - stericsson,nomadik-pmu
-+              - starfive,jh7100-sysmain
-+              - ti,am62-opp-efuse-table
-+              - ti,am62-usb-phy-ctrl
-+              - ti,am625-dss-oldi-io-ctrl
-+              - ti,am62p-cpsw-mac-efuse
-+              - ti,am654-dss-oldi-io-ctrl
-+              - ti,j784s4-acspcie-proxy-ctrl
-+              - ti,j784s4-pcie-ctrl
-+              - ti,keystone-pllctrl
++          - const: atmel,sama5d2-sfrbu
 +          - const: syscon
-+      - items:
-+          - const: microchip,pic64gx-control-scb
-+          - const: microchip,mpfs-control-scb
-+          - const: syscon
-+      - items:
-+          - const: microchip,pic64gx-sysreg-scb
-+          - const: microchip,mpfs-sysreg-scb
-+          - const: syscon
- 
-   reg:
-     maxItems: 1
+       - items:
+           - const: microchip,pic64gx-control-scb
+           - const: microchip,mpfs-control-scb
 -- 
 2.51.0
 
