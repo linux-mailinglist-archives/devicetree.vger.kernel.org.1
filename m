@@ -1,314 +1,126 @@
-Return-Path: <devicetree+bounces-239517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87F9C65A76
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 19:04:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BED1CC65B71
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 19:27:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B34254E1824
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:04:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8B7064E1917
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94B12D6E6A;
-	Mon, 17 Nov 2025 18:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9ED62D46DD;
+	Mon, 17 Nov 2025 18:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCZmu/Ks"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t4JNfmpC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18282BEC42;
-	Mon, 17 Nov 2025 18:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE99268C42;
+	Mon, 17 Nov 2025 18:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763402678; cv=none; b=CoVbHicbof8+y4RTP9le7SWqi9pAiq5gJHNk5G0Q6DlenAKkHF0jnZz6DqmTfu8PSFczxuti3FjneHDPeNAovLSKPpshPOgJnkvoQFTFTm/x74tyDwMD2N3pHyyv2SfghIVtWNcIHNH7jMeaW+kNtdAcWD1odDhlHo7LLojcjmg=
+	t=1763404067; cv=none; b=OZhNoZQcocVI/ruFFHRFJKpnSN4rGG8rvekznX7Ws6mXRz/78GKhOzmQ7qYOK+EGKgpPXJehqpvX4Z5DpuriJ8/PT4iTX47Qp79MLZjg+eZ/xazXyV5VmNqK0yAKCIDX2IVP7Qo9ooc9JqUS6qB+4KO0coEfhJWy1CbeVKRZygU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763402678; c=relaxed/simple;
-	bh=uOLDv+dSnQNXJ5E+kO0jdhKf9QkgzMOADxH96GUUYoY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M+OhZWyAlklArcBZP6DEve6OeMDCGCNX+GLG8FCPkuXvSXvb+sYYZITez3iXp6G6vdbuF3oqktg/Ggj74PrCtaAWbCk/TU9AjvNN8d6+//eesOjuzapYBxBOVYi91VZwALxuQxtyC089lO4Rsrozkw0aLmhpB5Mz8ylJrSrSbBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCZmu/Ks; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C56BEC19421;
-	Mon, 17 Nov 2025 18:04:37 +0000 (UTC)
+	s=arc-20240116; t=1763404067; c=relaxed/simple;
+	bh=KgWGDtm7Lix+RRL3J6skSv7OaO3bi5ZBiY3XQ0yIU/s=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=jY+PGbfJufhDRIqSKO1sHM4Qw66pzFlcpEoUp9yz/F1jlrgn2HSgMx6uovnYDZlz6elzls59djRaF7wsWzBnvRCpbRzs5xig9cyihHtWIi+Yjmc1BUh4mlIYM0zobDJnevtXPbQ3yYKwc2sxPf/1gUxZBGzzuRyqJAj2itpBlvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t4JNfmpC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F8BC2BCB1;
+	Mon, 17 Nov 2025 18:27:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763402678;
-	bh=uOLDv+dSnQNXJ5E+kO0jdhKf9QkgzMOADxH96GUUYoY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bCZmu/KsnVf4tH7RgAw+uwcfmuYi/blFAAjX3XEJcgPNRpFT74xy6UcDhtHdUXVPi
-	 /9Ory8kRuDP7sg9yW3nEad7sEzuxg1O3lRqUvv7f66KbsoiQPjG3FXrR6n3p4JgaEG
-	 GM+yHraqqhutywBPom5VqStw9kVOt6itgqh6YkaDViPNkl3PVZ6iA+VfK5VdrNvmMY
-	 CH8Bb6FipeiU2GklCcHZTSbRUzze5QQhdEAgK8uV2NH7vMPFTjj8bVfeMElNps7PyC
-	 P84pzBuZDAW/VNsyobhEw2Gob6C3lDzE0+YIenrfUz0J4ViTHeClG1cELJXjxpW7iO
-	 AwuZLa+Zyw+dg==
-Date: Mon, 17 Nov 2025 12:04:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org
-Subject: Re: [PATCH 1/3] of: reserved_mem: Support multiple 'reg' entries for
- memory-region
-Message-ID: <20251117180435.GB225586-robh@kernel.org>
-References: <20251117-mtd-memregion-v1-0-7b35611c79a6@bootlin.com>
- <20251117-mtd-memregion-v1-1-7b35611c79a6@bootlin.com>
+	s=k20201202; t=1763404067;
+	bh=KgWGDtm7Lix+RRL3J6skSv7OaO3bi5ZBiY3XQ0yIU/s=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=t4JNfmpCwKuVCmYdu9cVztWn9iyvXZS9loTn2vM3pB1nQgTmPISqZGejupmoyD+cO
+	 MrVmKcRm/aarV0ejHW5T3vhKw65MvtdIEyDYCaJi/Or9xAVFkyiRTraUQvckhDVwVS
+	 Nn1xCcXwAY4Z3p207Eo0p7XwkvotHG9vu3f5gHg+Kf3ha5sqqjqr8Kc6CYI5AcYWNK
+	 JnV+LyZg85LiDnxpmMX8CT/zM0iaWzCuBaA3tfmWxfHWEgDdn6pIn+GWdzNQn6CXpy
+	 x+JyeoTqqP35At36EHG4mwplB3ULvKFNCJOS3loNb3V4wFElgWZ7YbclJgwCH5n0FW
+	 uKSTFmjPE7Neg==
+Date: Mon, 17 Nov 2025 12:27:44 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251117-mtd-memregion-v1-1-7b35611c79a6@bootlin.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, devicetree@vger.kernel.org, 
+ Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Vincent Mailhol <mailhol@kernel.org>, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-can@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Daire McNamara <daire.mcnamara@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+In-Reply-To: <20251117-twitter-sternness-f2b3a1506a6f@spud>
+References: <20251117-twitter-sternness-f2b3a1506a6f@spud>
+Message-Id: <176340406423.422791.14985477842686606616.robh@kernel.org>
+Subject: Re: [net-next v1] dt-bindings: can: mpfs: document resets
 
-On Mon, Nov 17, 2025 at 06:00:14PM +0100, Gregory CLEMENT wrote:
-> The Device Tree specification allows a "memory-region" node to have
-> multiple 'reg' entries, but the current kernel implementation only
-> processes the first entry. This can lead to drivers not being able to
-> access all the reserved memory regions specified in the Device Tree.
+
+On Mon, 17 Nov 2025 16:38:18 +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> This patch extends the reserved memory handling to support multiple
-> 'reg' entries for a single "memory-region" node. The existing exported
-> functions remain unchanged for backward compatibility, but new APIs
-> are introduced to allow drivers to access all reserved memory regions.
+> The CAN cores on Polarfire SoC both have a reset. The platform firmware
+> brings both cores out of reset, but the linux driver must use them
+> during normal operation. The resets should have been made required, but
+> this is one of the things that can happen when the binding is written
+> without driver support.
 > 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN controller")
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  drivers/of/of_reserved_mem.c    | 141 ++++++++++++++++++++++++++++++++++++----
->  include/linux/of_reserved_mem.h |   4 ++
->  2 files changed, 133 insertions(+), 12 deletions(-)
+> This is the second mistake in this binding, both spotted because of the
+> driver being written (although this one sat downstream for a while for
+> w/e reason). I wish I could say that I'd send the driver soon, but I am
+> busy upstreaming things I wrote and therefore understand at the moment,
+> so a driver that I'd have to go understand and review before sending is
+> low priority, sorry!
 > 
-> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> index 2e9ea751ed2df..2477933883903 100644
-> --- a/drivers/of/of_reserved_mem.c
-> +++ b/drivers/of/of_reserved_mem.c
-> @@ -159,6 +159,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
->  	int len;
->  	const __be32 *prop;
->  	bool nomap;
-> +	int count = 0;
->  
->  	prop = of_get_flat_dt_prop(node, "reg", &len);
->  	if (!prop)
-> @@ -183,6 +184,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
->  				dma_contiguous_early_fixup(base, size);
->  			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
->  				uname, &base, (unsigned long)(size / SZ_1M));
-> +			count++;
->  		} else {
->  			pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
->  			       uname, &base, (unsigned long)(size / SZ_1M));
-> @@ -190,7 +192,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
->  
->  		len -= t_len;
->  	}
-> -	return 0;
-> +	return count;
->  }
->  
->  /*
-> @@ -235,7 +237,7 @@ void __init fdt_scan_reserved_mem_reg_nodes(void)
->  	phys_addr_t base, size;
->  	const __be32 *prop;
->  	int node, child;
-> -	int len;
-> +	int len, i;
->  
->  	if (!fdt)
->  		return;
-> @@ -273,12 +275,12 @@ void __init fdt_scan_reserved_mem_reg_nodes(void)
->  		if (len > t_len)
->  			pr_warn("%s() ignores %d regions in node '%s'\n",
->  				__func__, len / t_len - 1, uname);
-> -
-> -		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
-> -		size = dt_mem_next_cell(dt_root_size_cells, &prop);
+> CC: Conor Dooley <conor.dooley@microchip.com>
+> CC: Daire McNamara <daire.mcnamara@microchip.com>
+> CC: Marc Kleine-Budde <mkl@pengutronix.de>
+> CC: Vincent Mailhol <mailhol@kernel.org>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> CC: linux-riscv@lists.infradead.org
+> CC: linux-can@vger.kernel.org
+> CC: devicetree@vger.kernel.org
+> CC: linux-kernel@vger.kernel.org
+> ---
+>  .../devicetree/bindings/net/can/microchip,mpfs-can.yaml       | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-FYI, there's some changes around this code in flight.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> -
-> -		if (size)
-> -			fdt_reserved_mem_save_node(child, uname, base, size);
-> +		for (i = 0; i < len; i += t_len) {
-> +			base = dt_mem_next_cell(dt_root_addr_cells, &prop);
-> +			size = dt_mem_next_cell(dt_root_size_cells, &prop);
-> +			if (size)
-> +				fdt_reserved_mem_save_node(child, uname, base, size);
-> +		}
->  	}
->  
->  	/* check for overlapping reserved regions */
-> @@ -308,16 +310,16 @@ int __init fdt_scan_reserved_mem(void)
->  
->  	fdt_for_each_subnode(child, fdt, node) {
->  		const char *uname;
-> -		int err;
-> +		int err, ret;
->  
->  		if (!of_fdt_device_is_available(fdt, child))
->  			continue;
->  
->  		uname = fdt_get_name(fdt, child, NULL);
->  
-> -		err = __reserved_mem_reserve_reg(child, uname);
-> -		if (!err)
-> -			count++;
-> +		ret = __reserved_mem_reserve_reg(child, uname);
-> +		if (ret > 0)
-> +			count += ret;
->  		/*
->  		 * Save the nodes for the dynamically-placed regions
->  		 * into an array which will be used for allocation right
-> @@ -750,6 +752,37 @@ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
->  }
->  EXPORT_SYMBOL_GPL(of_reserved_mem_lookup);
->  
-> +/**
-> + * of_reserved_mem_array_lookup() - acquire reserved_mem array from a device node
-> + * @np:		node pointer of the desired reserved-memory region
-> + * @rmrm:	pointer to the first elemennt of the reserved_mem struct of the memory region
-> + *
-> + * This function allows drivers to acquire a reference to the array of the
-> + *  reserved_mem struct based on a device node handle.
-> + *
-> + * Returns the number reserved_mem elements
-> + */
-> +int of_reserved_mem_array_lookup(struct device_node *np,
-> +				 struct reserved_mem **rmem)
-> +{
-> +	const char *name;
-> +	int i, count = 0;
-> +
-> +	if (!np->full_name)
-> +		return 0;
-> +
-> +	name = kbasename(np->full_name);
-> +	for (i = 0; i < reserved_mem_count; i++)
-> +		if (!strcmp(reserved_mem[i].name, name)) {
-> +			if (!count)
-> +				*rmem = &reserved_mem[i];
-> +			count++;
-> +		}
-> +
-> +	return count;
-> +}
-> +EXPORT_SYMBOL_GPL(of_reserved_mem_array_lookup);
+yamllint warnings/errors:
 
-Do you need this function? I'm trying to do away with drivers using 
-struct reserved_mem in favor of the resource functions.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.example.dtb: can@2010c000 (microchip,mpfs-can): 'resets' is a required property
+	from schema $id: http://devicetree.org/schemas/net/can/microchip,mpfs-can.yaml
 
-> +
->  /**
->   * of_reserved_mem_region_to_resource() - Get a reserved memory region as a resource
->   * @np:		node containing 'memory-region' property
-> @@ -785,6 +818,49 @@ int of_reserved_mem_region_to_resource(const struct device_node *np,
->  }
->  EXPORT_SYMBOL_GPL(of_reserved_mem_region_to_resource);
->  
-> +/**
-> + * of_reserved_mem_region_to_resource_array() - Get a reserved memory region as a resources
-> + * @dev:	device associated to the node
-> + * @np:		node containing 'memory-region' property
-> + * @idx:	index of 'memory-region' property to lookup
-> + * @res:	Pointer to an array of struct resource pointers to fill in with reserved regions
-> + *
-> + * This function allows drivers to lookup a node's 'memory-region' property
-> + * entries by index and fill an array of struct resource pointers for the entries.
-> + *
-> + * Returns the number of resources filled in @res on success.
-> + * Returns -ENODEV if 'memory-region' is missing or unavailable,
-> + * -EINVAL for any other error.
-> + */
-> +int of_reserved_mem_region_to_resource_array(struct device *dev, const struct device_node *np,
-> +					     unsigned int idx, struct resource **res)
-> +{
-> +	struct reserved_mem *rmem;
-> +	int count, i;
-> +	struct resource *r;
-> +
-> +	if (!np)
-> +		return -EINVAL;
-> +
-> +	struct device_node __free(device_node) *target = of_parse_phandle(np, "memory-region", idx);
-> +	if (!target || !of_device_is_available(target))
-> +		return -ENODEV;
-> +
-> +	count = of_reserved_mem_array_lookup(target, &rmem);
-> +	if (count <= 0)
-> +		return -EINVAL;
-> +
-> +	*res = devm_kzalloc(dev, count * sizeof(struct resource), GFP_KERNEL);
-> +	r = res[0];
-> +	for (i = 0; i < count; i++) {
-> +		resource_set_range(&r[i], rmem[i].base, rmem[i].size);
-> +		r[i].flags = IORESOURCE_MEM;
-> +		r[i].name = rmem[i].name;
-> +	}
-> +	return count;
-> +}
-> +EXPORT_SYMBOL_GPL(of_reserved_mem_region_to_resource_array);
-> +
->  /**
->   * of_reserved_mem_region_to_resource_byname() - Get a reserved memory region as a resource
->   * @np:		node containing 'memory-region' property
-> @@ -829,3 +905,44 @@ int of_reserved_mem_region_count(const struct device_node *np)
->  	return of_count_phandle_with_args(np, "memory-region", NULL);
->  }
->  EXPORT_SYMBOL_GPL(of_reserved_mem_region_count);
-> +
-> +/**
-> + * of_reserved_mem_region_count() - Return the total number of reserved memory regions
-> + * @np:		node containing 'memory-region' property
-> + *
-> + * This function counts the total number of reserved memory regions referenced
-> + * by a node's 'memory-region' property. It iterates over each phandle and sums
-> + * the number of regions found in each referenced reserved memory node.
-> + *
-> + * Returns the total number of reserved memory regions on success.
-> + * This function allows drivers to retrieve the number of entries for a node's
-> + * 'memory-region' property.
-> + *
-> + * Returns total number of reserved memory regions on success, or negative error
-> + * code on a malformed property.
-> + */
-> +int of_reserved_mem_region_total_count(const struct device_node *np)
-> +{
-> +	int nregion = of_count_phandle_with_args(np, "memory-region", NULL);
-> +	struct device_node *target;
-> +	int i, nregs = 0;
-> +
-> +	for (i = 0; i < nregion; i++) {
-> +		struct reserved_mem *rmem;
-> +
-> +		target = of_parse_phandle(np, "memory-region", i);
-> +		if (!target)
-> +			return -ENODEV;
-> +
-> +		if (!of_device_is_available(target)) {
-> +			of_node_put(target);
-> +			return 0;
-> +		}
-> +
-> +		nregs += of_reserved_mem_array_lookup(target, &rmem);
-> +
-> +		of_node_put(target);
-> +	};
-> +	return nregs;
-> +}
-> +EXPORT_SYMBOL_GPL(of_reserved_mem_region_total_count);
+doc reference errors (make refcheckdocs):
 
-Do you have a user?
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251117-twitter-sternness-f2b3a1506a6f@spud
 
-Rob
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
