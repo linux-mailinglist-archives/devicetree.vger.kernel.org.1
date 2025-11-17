@@ -1,48 +1,40 @@
-Return-Path: <devicetree+bounces-239306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C8CC63C45
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:20:16 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4911FC63D9B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:38:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83C043B716C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:16:42 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9602A364131
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D183732A3C5;
-	Mon, 17 Nov 2025 11:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FFFBjqgZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CBAE329E75;
+	Mon, 17 Nov 2025 11:32:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AD335CBA5;
-	Mon, 17 Nov 2025 11:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06B1329C79;
+	Mon, 17 Nov 2025 11:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763377851; cv=none; b=D++mk+Eocgy/YoJaKi9dInjbnkTP8gSDcraHUlB0kcHLKCDfFHH0+PDNtVOUdEu1eZ6J7nUlVG8VgZifym/BMj992EDZ8T2/Xoh4Hf5Z9Q27sVTAb2Op0wCoavfTmj/Cqf9PVz8j/GrRkWH/UuTAnc1RoyXJeWblMoK5+ouJxLU=
+	t=1763379131; cv=none; b=HIn3xRkqX+2crnZvuboFoa2AFSJ2eFQn8WBZBIkUIo52s/IRXYPbvK3UKJWESMWRKIPmi8w9AmqMci9zvxtae8qGNzQAonWEDwFvVz9HpFIj+AzQAUYVh/D/gS4S2ILdej+CizpWHWOeGBeFHtCrijrrt4bnt6kZafohc8meKVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763377851; c=relaxed/simple;
-	bh=ntFoFb1m/WoUaNLNSJ3SjFp4CbCTxDpn57kc4IpNq+s=;
+	s=arc-20240116; t=1763379131; c=relaxed/simple;
+	bh=QH2Fo9dLXt8sRn5L1yATW93sCRKOzk+W4ZxHrddgHWw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DJ+8mX8Wd4psShtOPo4YAO2lOMnTfN/djIiXMGEnH6JiUd6/o/oEgAODA/j5w5/waGjNqFmf67e2l9kiCCLFjRxyHbs+jOrxGD4rov9oeF+BWxx2wB90tXoZ+p4fmi5CR4ArIvuVatRuH4jWRgYitALPpz/4hX1emSkQR8wvXOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFFBjqgZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4962EC116B1;
-	Mon, 17 Nov 2025 11:10:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763377851;
-	bh=ntFoFb1m/WoUaNLNSJ3SjFp4CbCTxDpn57kc4IpNq+s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FFFBjqgZdbwbWew6CMr2ctN/nuOB0VjfssYddk4Ewf8M2l3tuu3e/DL2vb1xtY2rL
-	 Ig9R/gdVAaCL8Us9jfIbW2vdfu1hCheqXZc1mm3BfeD58p6ahHhOgVk9pE/otV1Hi8
-	 I1tVhi2JxPn4JXIz8dd3VHWYqsFxY9rZaEHRKvOxVd46EYYXRkd39hWHHMQv4f+Bzx
-	 4cn0xhZk2Vty4+fUCpLnJWU3h+c+rwRmuo36XAhiqu/66oq48uz1as9WAbDh7ASTQB
-	 Xn5zFBlixfV503xZ00UAFNPuUs/NW3QgYGM/a9nf+WiaD9bPP0oFtNOjpnRZ/RrikR
-	 Dyp7QHXzPt7qQ==
-Message-ID: <94198d5f-e49f-4b38-8288-3be29efd142b@kernel.org>
-Date: Mon, 17 Nov 2025 12:10:46 +0100
+	 In-Reply-To:Content-Type; b=aHuO+7CVXCU0VbQd4vKMQC88TEPyeLhaUo1YEcBiU4cyJGUosfyGtiJdNzbN9v4rKW759ZMACTdPyJHqZxEEQfytOyDpzp+y6XoL/bYD8mqyENdZ7lfszQlCkvuzw913svQjBeH1J5SkWreQRiy2wPdExH4135VLn/ExN8wiE0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3063DFEC;
+	Mon, 17 Nov 2025 03:32:00 -0800 (PST)
+Received: from [10.57.87.92] (unknown [10.57.87.92])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 72FA03F66E;
+	Mon, 17 Nov 2025 03:32:05 -0800 (PST)
+Message-ID: <00586912-661e-4092-a69d-87defe26db59@arm.com>
+Date: Mon, 17 Nov 2025 11:32:03 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,199 +42,231 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: mfd: Add Realtek MISC system
- controller
-To: =?UTF-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>,
- "afaerber@suse.de" <afaerber@suse.de>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "lee@kernel.org"
- <lee@kernel.org>, =?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?=
- <james.tai@realtek.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-realtek-soc@lists.infradead.org"
- <linux-realtek-soc@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- =?UTF-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>,
- =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= <stanley_chang@realtek.com>
-References: <20251113123009.26568-1-eleanor.lin@realtek.com>
- <20251113123009.26568-3-eleanor.lin@realtek.com>
- <e799389ce8b4449baba83a893361bdd4@realtek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e799389ce8b4449baba83a893361bdd4@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/3] dma: arm-dma350: add support for shared interrupt
+ mode
+To: Jun Guo <jun.guo@cixtech.com>, peter.chen@cixtech.com,
+ fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
+ schung@nuvoton.com
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20251117015943.2858-1-jun.guo@cixtech.com>
+ <20251117015943.2858-3-jun.guo@cixtech.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20251117015943.2858-3-jun.guo@cixtech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 17/11/2025 12:03, Yu-Chun Lin [林祐君] wrote:
-> Hi Conor and Krzysztof,
-> 
->> Documentation/devicetree/bindings/mfd/realtek,misc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/realtek,misc.yaml
->> b/Documentation/devicetree/bindings/mfd/realtek,misc.yaml
->> new file mode 100644
->> index 000000000000..4f4a9ae250be
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/realtek,misc.yaml
->> @@ -0,0 +1,72 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/realtek,misc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Realtek MISC System Controller
->> +
->> +description:
->> +  The Realtek MISC System Controller is a register area that contains
->> +  miscellaneous system registers for the SoC and serves as a parent
->> +node
->> +  for other functions.
->> +
->> +maintainers:
->> +  - James Tai <james.tai@realtek.com>
->> +  - Yu-Chun Lin <eleanor.lin@realtek.com>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - realtek,misc
-> 
-> I apologize for the current compatible string, which was initially named
-> by referencing existing patterns like 'brcm,misc' and thus violates the
-> naming guidance against "wildcards" and general non-SoC specific names.
-> 
-> Let me explain the purpose of the device node (Realtek system controller).
-> 
-> This MISC area contains several peripheral sub-modules such as uart,
-> watchdog, rtc or i2c ..... These blocks share a unified register region
-> implemented as a single hardware module, which remains powered during
-> system suspend states (e.g., S3). These blocks share the same MMIO region
-> and appear as child nodes under the MISC syscon node. Currently, it
+On 2025-11-17 1:59 am, Jun Guo wrote:
+> - The arm dma350 controller's hardware implementation varies: some
+>   designs dedicate a separate interrupt line for each channel, while
+>   others have all channels sharing a single interrupt.This patch adds
+>   support for the hardware design where all DMA channels share a
+>   single interrupt.
 
-No, you are mixing hardware with DT representation. This device cannot
-appear as child node, because there is no such concept in hardware as
-child node. You cannot use argument of DT representation when you
-justify how this is represented in DT. It is invalid.
+We already request the channel interrupts as shared, precisely because 
+they could well end up muxed to the same physical interrupt line. I 
+missed that the dedicated combined interrupt output had its own separate 
+enable, but for that we may as well just set INTREN_ANYCHINTR_EN 
+unconditionally - the rest of this seems pointless.
 
-You need to start argumentation in terms of hardware.
+Thanks,
+Robin.
 
-
-> includes uart.
+> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
+> ---
+>   drivers/dma/arm-dma350.c | 115 +++++++++++++++++++++++++++++++++++----
+>   1 file changed, 105 insertions(+), 10 deletions(-)
 > 
-> Regarding the current structure, the device node is defined in a kent.dtsi
-> and is included by each SoC's DTSI.
-> 
-> I've considered two ways to write compatible string naming.
-> 
-> Option 1: Use a single SoC-specific compatible string
-> 
-> Rename "realtek,misc" to "realtek,rtd1861-misc"
-> 
-> /* kent.dtsi */
-> misc: syscon@... {
->     compatible = "realtek,rtd1861-misc", "syscon", "simple-mfd";
-> };
-> 
-> Pros: Only one compatible string is needed, simplifying maintenance across
-> the driver and DTS.
-> 
-> Cons: Violates the "SoC-specific compatible" rule for other SoCs
-> (RTD1501, RTD1920).
-> 
-> Option 2: SoC-specific + fallback (Compliant but Verbose)
-> 
-> Define the full list in the schema, and override the compatible string in each SoC DTSI.
-> 
-> /* schema binding */
-> 
-> compatible:
->   items:
->     - enum:
->         - realtek,rtd1501-misc
->         - realtek,rtd1861-misc
->         - realtek,rtd1920-misc
->         # ... add new SoCs here
->     - const: realtek,kent-misc
->     - const: syscon
->     - const: simple-mfd
-> 
-> 
-> /* kent.dtsi */
-> 
-> misc: syscon@... {
->     compatible = "realtek,kent-misc", "syscon", "simple-mfd";
-> };
-> 
-> SoC-specific override (e.g. rtd1920s-smallville.dtsi):
-> 
-> &misc {
->     compatible = "realtek,rtd1920-misc", "realtek,kent-misc", "syscon",
->                  "simple-mfd";
-> };
-> 
-> Pros: Fully compliant with DT rules
-> 
-> Cons: Requires override in every SoC file; slight duplication.
-> 
-> Is Option 2 the expected pattern?
-> Thanks for your guidance!
-> 
-
-None of them. You need SoC specific compatibles which can be used as
-fallbacks for SoC specific compatibles. There is plenty of examples for
-this already, but anyway this does not solve the problem that you still
-did not properly describe the hardware but instead use your downstream
-as arguments.
-
-This will get you nowhere.
-
-
-Best regards,
-Krzysztof
+> diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
+> index 9efe2ca7d5ec..cb1907be18d0 100644
+> --- a/drivers/dma/arm-dma350.c
+> +++ b/drivers/dma/arm-dma350.c
+> @@ -14,6 +14,7 @@
+>   #include "virt-dma.h"
+>   
+>   #define DMAINFO			0x0f00
+> +#define DRIVER_NAME		"arm-dma350"
+>   
+>   #define DMA_BUILDCFG0		0xb0
+>   #define DMA_CFG_DATA_WIDTH	GENMASK(18, 16)
+> @@ -142,6 +143,9 @@
+>   #define LINK_LINKADDR		BIT(30)
+>   #define LINK_LINKADDRHI		BIT(31)
+>   
+> +/* DMA NONSECURE CONTROL REGISTER */
+> +#define DMANSECCTRL		0x20c
+> +#define INTREN_ANYCHINTR_EN	BIT(0)
+>   
+>   enum ch_ctrl_donetype {
+>   	CH_CTRL_DONETYPE_NONE = 0,
+> @@ -192,6 +196,7 @@ struct d350_chan {
+>   
+>   struct d350 {
+>   	struct dma_device dma;
+> +	void __iomem *base;
+>   	int nchan;
+>   	int nreq;
+>   	struct d350_chan channels[] __counted_by(nchan);
+> @@ -461,7 +466,61 @@ static void d350_issue_pending(struct dma_chan *chan)
+>   	spin_unlock_irqrestore(&dch->vc.lock, flags);
+>   }
+>   
+> -static irqreturn_t d350_irq(int irq, void *data)
+> +static irqreturn_t d350_global_irq(int irq, void *data)
+> +{
+> +	struct d350 *dmac = (struct d350 *)data;
+> +	struct device *dev = dmac->dma.dev;
+> +	irqreturn_t ret = IRQ_NONE;
+> +	int i;
+> +
+> +	for (i = 0; i < dmac->nchan; i++) {
+> +		struct d350_chan *dch = &dmac->channels[i];
+> +		u32 ch_status;
+> +
+> +		ch_status = readl(dch->base + CH_STATUS);
+> +		if (!ch_status)
+> +			continue;
+> +
+> +		ret = IRQ_HANDLED;
+> +
+> +		if (ch_status & CH_STAT_INTR_ERR) {
+> +			struct virt_dma_desc *vd = &dch->desc->vd;
+> +			u32 errinfo = readl_relaxed(dch->base + CH_ERRINFO);
+> +
+> +			if (errinfo &
+> +			    (CH_ERRINFO_AXIRDPOISERR | CH_ERRINFO_AXIRDRESPERR))
+> +				vd->tx_result.result = DMA_TRANS_READ_FAILED;
+> +			else if (errinfo & CH_ERRINFO_AXIWRRESPERR)
+> +				vd->tx_result.result = DMA_TRANS_WRITE_FAILED;
+> +			else
+> +				vd->tx_result.result = DMA_TRANS_ABORTED;
+> +
+> +			vd->tx_result.residue = d350_get_residue(dch);
+> +		} else if (!(ch_status & CH_STAT_INTR_DONE)) {
+> +			dev_warn(dev, "Channel %d unexpected IRQ: 0x%08x\n", i,
+> +				 ch_status);
+> +		}
+> +
+> +		writel_relaxed(ch_status, dch->base + CH_STATUS);
+> +
+> +		spin_lock(&dch->vc.lock);
+> +		if (ch_status & CH_STAT_INTR_DONE) {
+> +			vchan_cookie_complete(&dch->desc->vd);
+> +			dch->status = DMA_COMPLETE;
+> +			dch->residue = 0;
+> +			d350_start_next(dch);
+> +		} else if (ch_status & CH_STAT_INTR_ERR) {
+> +			vchan_cookie_complete(&dch->desc->vd);
+> +			dch->status = DMA_ERROR;
+> +			dch->residue = dch->desc->vd.tx_result.residue;
+> +		}
+> +		spin_unlock(&dch->vc.lock);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static irqreturn_t d350_channel_irq(int irq, void *data)
+>   {
+>   	struct d350_chan *dch = data;
+>   	struct device *dev = dch->vc.chan.device->dev;
+> @@ -506,10 +565,18 @@ static irqreturn_t d350_irq(int irq, void *data)
+>   static int d350_alloc_chan_resources(struct dma_chan *chan)
+>   {
+>   	struct d350_chan *dch = to_d350_chan(chan);
+> -	int ret = request_irq(dch->irq, d350_irq, IRQF_SHARED,
+> -			      dev_name(&dch->vc.chan.dev->device), dch);
+> -	if (!ret)
+> -		writel_relaxed(CH_INTREN_DONE | CH_INTREN_ERR, dch->base + CH_INTREN);
+> +	int ret = 0;
+> +
+> +	if (dch->irq) {
+> +		ret = request_irq(dch->irq, d350_channel_irq, IRQF_SHARED,
+> +				  dev_name(&dch->vc.chan.dev->device), dch);
+> +		if (ret) {
+> +			dev_err(chan->device->dev, "Failed to request IRQ %d\n", dch->irq);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	writel_relaxed(CH_INTREN_DONE | CH_INTREN_ERR, dch->base + CH_INTREN);
+>   
+>   	return ret;
+>   }
+> @@ -526,7 +593,7 @@ static void d350_free_chan_resources(struct dma_chan *chan)
+>   static int d350_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> -	struct d350 *dmac;
+> +	struct d350 *dmac = NULL;
+>   	void __iomem *base;
+>   	u32 reg;
+>   	int ret, nchan, dw, aw, r, p;
+> @@ -556,6 +623,7 @@ static int d350_probe(struct platform_device *pdev)
+>   		return -ENOMEM;
+>   
+>   	dmac->nchan = nchan;
+> +	dmac->base = base;
+>   
+>   	reg = readl_relaxed(base + DMAINFO + DMA_BUILDCFG1);
+>   	dmac->nreq = FIELD_GET(DMA_CFG_NUM_TRIGGER_IN, reg);
+> @@ -582,6 +650,26 @@ static int d350_probe(struct platform_device *pdev)
+>   	dmac->dma.device_issue_pending = d350_issue_pending;
+>   	INIT_LIST_HEAD(&dmac->dma.channels);
+>   
+> +	/* Cix Sky1 has a common host IRQ for all its channels. */
+> +	if (of_device_is_compatible(pdev->dev.of_node, "cix,sky1-dma-350")) {
+> +		int host_irq = platform_get_irq(pdev, 0);
+> +
+> +		if (host_irq < 0)
+> +			return dev_err_probe(dev, host_irq,
+> +					     "Failed to get IRQ\n");
+> +
+> +		ret = devm_request_irq(&pdev->dev, host_irq, d350_global_irq,
+> +				       IRQF_SHARED, DRIVER_NAME, dmac);
+> +		if (ret)
+> +			return dev_err_probe(
+> +				dev, ret,
+> +				"Failed to request the combined IRQ %d\n",
+> +				host_irq);
+> +
+> +		/* Combined Non-Secure Channel Interrupt Enable */
+> +		writel_relaxed(INTREN_ANYCHINTR_EN, dmac->base + DMANSECCTRL);
+> +	}
+> +
+>   	/* Would be nice to have per-channel caps for this... */
+>   	memset = true;
+>   	for (int i = 0; i < nchan; i++) {
+> @@ -595,10 +683,16 @@ static int d350_probe(struct platform_device *pdev)
+>   			dev_warn(dev, "No command link support on channel %d\n", i);
+>   			continue;
+>   		}
+> -		dch->irq = platform_get_irq(pdev, i);
+> -		if (dch->irq < 0)
+> -			return dev_err_probe(dev, dch->irq,
+> -					     "Failed to get IRQ for channel %d\n", i);
+> +
+> +		if (!of_device_is_compatible(pdev->dev.of_node,
+> +					     "cix,sky1-dma-350")) {
+> +			dch->irq = platform_get_irq(pdev, i);
+> +			if (dch->irq < 0)
+> +				return dev_err_probe(
+> +					dev, dch->irq,
+> +					"Failed to get IRQ for channel %d\n",
+> +					i);
+> +		}
+>   
+>   		dch->has_wrap = FIELD_GET(CH_CFG_HAS_WRAP, reg);
+>   		dch->has_trig = FIELD_GET(CH_CFG_HAS_TRIGIN, reg) &
+> @@ -640,6 +734,7 @@ static void d350_remove(struct platform_device *pdev)
+>   }
+>   
+>   static const struct of_device_id d350_of_match[] __maybe_unused = {
+> +	{ .compatible = "cix,sky1-dma-350" },
+>   	{ .compatible = "arm,dma-350" },
+>   	{}
+>   };
 
