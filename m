@@ -1,192 +1,187 @@
-Return-Path: <devicetree+bounces-239274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id B29BCC6357D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:50:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 967CAC635BF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:53:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CB417365253
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:43:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EFDE3A7363
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:53:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9345032ABFE;
-	Mon, 17 Nov 2025 09:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A9D25F79A;
+	Mon, 17 Nov 2025 09:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pegatron-corp-partner-google-com.20230601.gappssmtp.com header.i=@pegatron-corp-partner-google-com.20230601.gappssmtp.com header.b="wWBhIMQT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MXvihJj2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA2092FF664
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 09:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7831FDA8E;
+	Mon, 17 Nov 2025 09:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763372452; cv=none; b=s8ha1ulUsBuVMp+2urnHZdAWx/nE8wYRqvvJwTJXHl0hxj1ztC4CMsndrMOJ2wGtfu0NPRF+rEd9+d0cbf0lSNtEOuge284cowKBokqKNjOlsZCaHDv0ZiDo4ex+gb02cGPK7iC1Ujl5pB9jgSxr8OZ4WMJt/ruQPxjbJj/AaX4=
+	t=1763373173; cv=none; b=IQJHyqxS6vbmZt9lOrQM+0GmXWSNcU1BeHKnz20gHq1SZQO+fowVv13eSXravsRsPe8HqF/WRkmhsTLDvx+FWs1HhpF5FUYzYBLZYZTlpdjjV9XyyqOgUxvHjzyfiBLTtRM7WCEchuc+yoiiSHLNkDhUXqh2eryW2VH5jbM40M4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763372452; c=relaxed/simple;
-	bh=0uRA3fp2t/Y8f/4SnhskMOoR8H6ms6VaEKgrS143ZBM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HmUkD+c6TxuHa51z048jqhH1etC0SXLvz34Cwp3ExMnCSEDfn+YKFT87Qkya0Q/EU0o2KYE9t/euUMaytNexCWPuDweqvcZ49w+1kAXlhi3XBPpjklxvbujA/Rovl3pFcmv8bSelZYSnwi4mCP2HXo1dX9Tplvnn2/UM66QLrSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pegatron.corp-partner.google.com; spf=pass smtp.mailfrom=pegatron.corp-partner.google.com; dkim=pass (2048-bit key) header.d=pegatron-corp-partner-google-com.20230601.gappssmtp.com header.i=@pegatron-corp-partner-google-com.20230601.gappssmtp.com header.b=wWBhIMQT; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pegatron.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pegatron.corp-partner.google.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7ba49f92362so2824079b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 01:40:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pegatron-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1763372449; x=1763977249; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tvj18FuIz0t2FkyZpu6/3sZk/6oMLpGNjr6BxbnNu90=;
-        b=wWBhIMQTp55f41WSlSYx0broloqO+0wNe4CZr8xwE2PlFAhYPkK1ti3/Ek+iDiX+8n
-         2qdPIptSw575zntlrzHNlBqTj8DzRjlyiuQevgWmqLnCGKTNXtaq8Jsm0enXpKEqfY5q
-         QG+TZ0mTal1Uv01QQpDnXBEBd76golABJMPzrE+WVc/uf1lQLbFf7QJyzNnUskH25Vzn
-         ZxK9ESgxHlDFDI1lzuyWqRO8YmcaGjxEYmei0BdFyBN7jIC6NAwG0otqVONtz/Tgx0tY
-         y8UnYM+3Thidp/0eOggVKheikyklUHfKTVxvtHuGTzz4AmQPcfxHn0bUjNRnRWrJh+Lm
-         uPJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763372449; x=1763977249;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tvj18FuIz0t2FkyZpu6/3sZk/6oMLpGNjr6BxbnNu90=;
-        b=kVgojl4dOk+ztOV+t+fJojxys+Dh5NFTUuEejfPIqvrc7cxq4IadlOK23ac2F8MQRQ
-         bAUEsTBe7+q31exFtFlSmirQJ9p17KhrocG/hk+iu7FJ0AXmluL3VHQIxsH1cxbXV83l
-         kU0L+L5QPu+sMld7W4LyZzpzMD8XC8uYcT6gPFP86pmcZw8KNo9qZHucAFkfMrs3dv3G
-         ID75VcpWcNUU15+II8YTLk7+5dOlv9Gj0r/il7Df0OxR9RReZSdWieHucVSuhTDRQSPM
-         tSb+DvouCIuMklUlplgMY/u555du3f26WRe8gqcnYcZEfp0h982ekZORAcZRKBI/ssf/
-         yS/w==
-X-Forwarded-Encrypted: i=1; AJvYcCUP1GMpeFqGgqY+PFCmFkQocKsm6pNTKJTDhpFBqgKJffmyqbF9Q7iQE0iwr0JEb6htJqDqRHywpIlU@vger.kernel.org
-X-Gm-Message-State: AOJu0YznZPUwWGl9+jsXLC372itpMoBfkvLt6Su/NMzwswDfRqLuJyjw
-	JgLStvrIgDDuqNYRvMsrk3WQRdtfVFACIhibwUhUBVYP+brbnMmDJOFpIWqUjS/8vg==
-X-Gm-Gg: ASbGncvenw1wrxy2wRijaA/rfKWcPQa3YDPcK02vnGeMT3JQcYn/wUqfB8WW4BYPBeY
-	lw2ZOg6zOXCRqo43AgoTgzkHK20qxOQ2kYqtI/bOp11S6shBp0slThkvsDiuRjlyifmrU4iJ8eH
-	cvAvKn90lSL+p4e7sprKPliHfeVTVXrwYxnOBNVoJP3Cvjzmp6mJBkODZHdld+my/7cnQWzeeo9
-	aitK8X2rk3q8lw3Z6n0aAhAKxuRNrwS+nwBQsV5WjkdlvdUGT4mo5hNHsjFwXww+n4PVEm47rCh
-	XqckoJ9pU/q3o7zmBsjd/IcWqHeOWsnfUG7cQ/X5kbcwmPNfu0GsPmvWW0MJgggcCYCh6pz45RZ
-	5QbZ5TyXWD0Ekr8qzvEzMusNDrNW6iXas4vDRuLOmY+3MAUO0okdPugm2whh3Wxzdw0BFwh7K5p
-	KWyyLdZ0NRh/aFuE7E2QDQjhNTQ0wj5dZS0SbcKtQGH9jjCOvKYIdn63CVocwDGThmo/Y7r+9Wn
-	IqmH4ViI3tv6eOKsVp0nbXDGVieRual49btVvPndHDGjK4emMWDoDlEhi0P8fEzceXfogPqRzRd
-	VDtbsuKIByDC2tKn
-X-Google-Smtp-Source: AGHT+IH37Ti2rPCcU4pAOmYWgMQd1s8YDoVHPGcyxMts6z75uOU6H3LDQVOqcNsZLR1JdSnNfXIVMQ==
-X-Received: by 2002:a05:6a00:2ea6:b0:7ad:1907:5756 with SMTP id d2e1a72fcca58-7ba34972361mr13110293b3a.12.1763372449220;
-        Mon, 17 Nov 2025 01:40:49 -0800 (PST)
-Received: from sw-TUF-Gaming-FX505GU-FX505GU.. (2001-b400-e2ac-65d6-eb05-e285-77fd-2924.emome-ip6.hinet.net. [2001:b400:e2ac:65d6:eb05:e285:77fd:2924])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b92782d390sm12606095b3a.60.2025.11.17.01.40.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Nov 2025 01:40:48 -0800 (PST)
-From: daniel_peng@pegatron.corp-partner.google.com
-X-Google-Original-From: Daniel_Peng@pegatron.corp-partner.google.com
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	linux-input@vger.kernel.org
-Cc: LKML <linux-kernel@vger.kernel.org>,
-	Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v6 1/2] dt-bindings: input: i2c-hid: Introduce FocalTech FT8112
-Date: Mon, 17 Nov 2025 17:40:40 +0800
-Message-Id: <20251117094041.300083-1-Daniel_Peng@pegatron.corp-partner.google.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1763373173; c=relaxed/simple;
+	bh=vfKA8awuSaJf9Y4Pc/4FK/YOKeoaYwjiDn0OnWEPFn0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FPc3S9mzL4vDBqVY+y8bviwtLck/srjCxX68XI10meUPHwCIJ2ULZfFhfj7fnW78T3lgKdF6gY6Feu2WK8T0T66ue3MyqypWE/Hrc+jzEbe67JH5R9nqpqQD3RQFkQIssQe+r3JFm/MDGd4ecvMW0uinwam1WbpRUb8sC2K545M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MXvihJj2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FA39C4CEF5;
+	Mon, 17 Nov 2025 09:52:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763373173;
+	bh=vfKA8awuSaJf9Y4Pc/4FK/YOKeoaYwjiDn0OnWEPFn0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MXvihJj2PGL+TolzxM0UqnD41Kf1k8k6zg1GZUPt1/e77gBhzZYNEYexHRggWY4px
+	 0i5dhYHU/VS7Yqm9NcDYmoJbMNiR4WyA/nfkc59h79ZRUrvn1bqDhABg328zk16Cy1
+	 r1iza74qxOVZwvoJa3Dr2S4hOkhKyPzb+rw4U/CINkojrHeLrwu9pSNmsjvu1sGXrD
+	 KAqGyu3D/MPk/51lwCtIQGhGUDO/2RHwVrtx4NOX73ehGwWQoHg9n/8TJJrkGNt346
+	 UPfx5OZjHInahQ9jFJFecvjs0OJNl0yyZ/FWwOovpj5ZRUgc42vy8rxXtvMDpF1/F6
+	 h7UqOYA++zgtw==
+Message-ID: <8ce701c9-6c8d-4b3e-8706-760b8aba89fc@kernel.org>
+Date: Mon, 17 Nov 2025 10:52:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: SoC-specific device tree aliases?
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree-spec@vger.kernel.org,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>, quentin.schulz@cherry.de
+References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
+ <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org>
+ <aRrcRZvdrbAmsCm_@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aRrcRZvdrbAmsCm_@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
+On 17/11/2025 09:26, Sascha Hauer wrote:
+> On Mon, Nov 17, 2025 at 08:38:48AM +0100, Krzysztof Kozlowski wrote:
+>> On 13/11/2025 09:28, Ahmad Fatoum wrote:
+>>> Hello,
+>>>
+>>> With /chosen/bootsource now part of dt-schema, I would like to raise a
+>>> related point: The need for SoC-specific device tree aliases.
+>>>
+>>> For many SoCs, there is a canonical numbering for peripherals; it's used
+>>> in the datasheet and BootROMs often makes use of it at runtime to report
+>>> the bootsource as a pair:
+>>>
+>>>   - One value to enumerate type of boot medium (e.g. mmc, spi-nor..)
+>>>   - Another value that describes which instance (e.g. SDHC1, SPI3, ...)
+>>>
+>>> Some examples, where this is the case, are AT91, STM32MP or i.MX.
+>>>
+>>> barebox has traditionally used /aliases to translate BootROM information
+>>> to a device tree node to fixup /chosen/bootsource.
+>>>
+>>> This doesn't work out for many newer SoC support, because of different
+>>> expectations: For upstream, aliases are relevant to a board, while
+>>> barebox traditionally expected them to be SoC-specific (because they
+>>> used to be on i.MX, probably).
+>>
+>> Please state exactly the problem - you have aliases in DTS but
+>> bootsource in DTSI? Then that's clearly mixup - you need to define them
+>> in the same place. Aliases are in DTS (I see here other thread on that),
+>> so stdout-path is also in DTS.
+>>
+>> Or you don't have bootsource in DTSI at all because barebox invents it
+>> regardless of actual aliases? Then shouldn't this be an obvious issue?
+>> You cannot have barebox as second source of aliases.
+>>
+>>>
+>>> To accommodate this, barebox nowadays extends upstream device trees with
+>>> /chosen/barebox,bootsource-${alias} properties, which can be used as
+>>> translation table instead of aliases.
+>>>
+>>> This solves the issue, but there is occasional breakage when upstream
+>>> decides to remove aliases from the SoC DTSI and move them into the
+>>> boards until barebox is made to add the /chosen/barebox, overrides.
+>>>
+>>> As described above, I think the data sheet numbering is pretty much an
+>>> aspect of the hardware and it has a place in the upstream SoC DTSI.
+>>>
+>>>
+>>> So what are the thoughts on adding /soc/aliases or some other top-level
+>>> node to hold this information?
+>>> Or would a h"ardware-label" property or similar be more tenable?
+>>
+>> So you want to map full node path to some alias, so later you can map
+>> that alias back to full node path, right? This sounds like quite
+>> redundant information in DTS just to avoid impact of node reshuffling
+>> (like unit address changes). In DTS-source-code realm, we solved it with
+>> phandles. Maybe this would help here?
+> 
+> We want aliases that map from the hardware numbers of a device as used
+> in the reference manuals to the actual device nodes. One reason why we
+> need it is to get the device node a SoC has booted from. Many SoCs have
+> registers which describe <bootsource> <instance number>. We want to get
+> the device node from that information.
 
-Create new binding file for the FocalTech FT8112 due to
-new touchscreen chip. Confirm its compatible, reg for the
-device via vendor, and set the interrupt and reset gpio
-to map for Skywalker platform.
-FocalTech FT8112 also uses vcc33/vccio power supply.
+Ah, so you don't map from full node path but from some value in register
+and you want to store these values as alias. I see i.MX gives here such
+information but that might be the only user. Samsung AFAIK only gives
+the order of boot device choices, not which one was chosen, for Qcom I
+could not find at all.
 
-Signed-off-by: Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
----
+Aliases could be solution here but it is as fragile as simple arithmetic
+of sorting MMC nodes by unit address...
 
-Changes in v6:
-- Remove the commit description for the incorrect section.
 
- .../bindings/input/focaltech,ft8112.yaml      | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/focaltech,ft8112.yaml b/Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
-new file mode 100644
-index 000000000000..197f30b14d45
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/focaltech,ft8112.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/focaltech,ft8112.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: FocalTech FT8112 touchscreen controller
-+
-+maintainers:
-+  - Daniel Peng <Daniel_Peng@pegatron.corp-partner.google.com>
-+
-+description:
-+  Supports the FocalTech FT8112 touchscreen controller.
-+  This touchscreen controller uses the i2c-hid protocol with a reset GPIO.
-+
-+allOf:
-+  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - focaltech,ft8112
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  panel: true
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  vcc33-supply: true
-+
-+  vccio-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - vcc33-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      touchscreen@38 {
-+        compatible = "focaltech,ft8112";
-+        reg = <0x38>;
-+
-+        interrupt-parent = <&pio>;
-+        interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
-+
-+        reset-gpios = <&pio 126 GPIO_ACTIVE_LOW>;
-+        vcc33-supply = <&pp3300_tchscr_x>;
-+      };
-+    };
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
