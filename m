@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-239230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32704C62C96
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:45:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70ED1C62CB3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:48:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F3FB64ECB1A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:42:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9417B3A8CAE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:48:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3EDA31986D;
-	Mon, 17 Nov 2025 07:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF5930EF68;
+	Mon, 17 Nov 2025 07:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g2Vt8Uhf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ztb4/PcX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94992459E5;
-	Mon, 17 Nov 2025 07:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F9374BE1;
+	Mon, 17 Nov 2025 07:48:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763365373; cv=none; b=DWJD4MIYiT1C4yO6TvP+j4/z7Bo+pmH/KiqQTxukR2WzmqnmOLXme7FeJjb02Onkwfqp7d5K+t2HeN0gzUZwmdYFkGuxpvGf8kHEavXUtfwUgMwEoJJwAEys6e9pBT3MP8MZR9OMG0PDakXQXjqT4GnYT7QA69Qmvx1kN0y9Fc0=
+	t=1763365699; cv=none; b=SxjYCbV68hGrMGuiUJ0giDmGwUkW1QkXPbyyIoNtE0d/NM2WLg2N1C/SZZJpxzPXx2Ajez1mgDK+vfGrQc2HHrvJsul2yjCMGFSm6PzHZz4Ip2ACytymR3rrHef+dnOeIhuLI1qyHHxwjRsfWNHR1o6HtFxzct15klRgWHV2ufk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763365373; c=relaxed/simple;
-	bh=f9t3LVDkIkBAKYVlcfAeHwZdANPqGJoy2WMRQ34XQXU=;
+	s=arc-20240116; t=1763365699; c=relaxed/simple;
+	bh=8Gnzf34GugnrnJDwOXJR9a33UMXiR8b/56uE7imixgw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fA+RS6cIpYL99uSC2lYI8KQOjGmqTsEwYzbVfuiQWclrvZYdkg2PMCsfcXfxeEPYwj/qlG2aeld25lA3ffr0ju3UnBH59MJbsevGuIA1XTnozDnF8jRJPgVY3zABuQHUhEH/tI0e96kQGvVopDg1/YSamcrnOcTBOmD8iv2zogE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g2Vt8Uhf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92942C19425;
-	Mon, 17 Nov 2025 07:42:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OwSQXBvug7qFqagSerBxyggXrBXMR6OSI/eXRXVAlYiaUd0SkyvNMsPQB6VfIv3hAE0cB2HtBwERsN4p1SdMeRnDdMgqhzhLKS8GwYRW9muO2NAip8HocMyjZiw5QqSI/2Qrwc57fKtEsnlQnZc/zmyZVmd9NYg5imPoYSO5egI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ztb4/PcX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD15CC4CEF1;
+	Mon, 17 Nov 2025 07:48:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763365373;
-	bh=f9t3LVDkIkBAKYVlcfAeHwZdANPqGJoy2WMRQ34XQXU=;
+	s=k20201202; t=1763365698;
+	bh=8Gnzf34GugnrnJDwOXJR9a33UMXiR8b/56uE7imixgw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g2Vt8Uhf02ye5NIwHpnJKhaGPim6bDC6EtmjZAY8SFtp15c7sIT0E4j4sS0/lRRXy
-	 lShpp24r+ZU29Lt7V3BH4OegFC25HyDnOYJw7EueduEuRWuaNO6PZZ3pJ9eUAELUWC
-	 LxTP8CeIePISgL90LZPVJnxLCRi6YK0gsRtFeMSP4paaFd41/oYCHgfwDiLrUJYMd5
-	 4sRfv9ZpjmIm7Fya4VF7U88RPK0AGimV9vm6ou1T4l60b7rLFBW8yvB3V9YWmyWE+F
-	 gccwdptybniLiTVj2VGrEWg9yvin1gtD3LEBTbn/T8q867Z19QwKVTSpptty6vLOQX
-	 u3l50BG/UQ9/g==
-Message-ID: <e6167ae5-196b-47a2-922e-e821927dae84@kernel.org>
-Date: Mon, 17 Nov 2025 08:42:48 +0100
+	b=Ztb4/PcXMEKuIJFU9NUp3ZX2rC0V9zLjD3lvlRkbP5EGi3RSFDco6C5w/hJGv+OWV
+	 YsWr+RhEnSJl+7irFaUnaQbQTgwxr7HvjIAP/QNoc8/3vTrRLwVXQs9nmRPosPQ/cq
+	 xGGlyVFJ4uVxWfkggX3ylUZKkSa9JF7gaHR531M4yDHNYvOze8TpD8+MbculaWtox7
+	 6Qws+KiTF09Zr8a1/1btplaVmmZP6askJrdKgztFHzdh3HmIUQgI8aRhc69IMUhyDA
+	 haKlfYZny91D0atktE8QAjaxrfo1NyzGIJehdHY7k8QV6zQrsyG29pr0t4BfBvb46/
+	 lGedAe1U844NQ==
+Message-ID: <285a5651-b621-44ba-a06a-523f94e949b3@kernel.org>
+Date: Mon, 17 Nov 2025 08:48:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: timer: Add Realtek SYSTIMER
-To: Hao-Wen Ting <haowen.ting@realtek.com>, daniel.lezcano@linaro.org,
- tglx@linutronix.de
-Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
- shawn.huang724@realtek.com, cy.huang@realtek.com, james.tai@realtek.com,
- cylee12@realtek.com, phinex@realtek.com, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, stanley_chang@realtek.com
-References: <20251117073408.428190-1-haowen.ting@realtek.com>
- <20251117073408.428190-2-haowen.ting@realtek.com>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: moduline-display: fix
+ compatible
+To: Maud Spierings <maudspierings@gocontroll.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20251114-disp_fix-v1-0-49cbe826afc2@gocontroll.com>
+ <20251114-disp_fix-v1-1-49cbe826afc2@gocontroll.com>
+ <20251115-liberal-lori-of-youth-a9c3fd@kuoka>
+ <03a64900-8ef3-40b9-94bf-c953de824902@gocontroll.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,25 +109,61 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251117073408.428190-2-haowen.ting@realtek.com>
+In-Reply-To: <03a64900-8ef3-40b9-94bf-c953de824902@gocontroll.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/11/2025 08:34, Hao-Wen Ting wrote:
-> +
-> +  The SYSTIMER hardware for both RTD1625 and RTD1635 SoCs has identical register
-> +  layout and IRQ configuration. The driver therefore matches both compatibles
-> +  without special handling.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - realtek,rtd1625-systimer
-> +          - realtek,rtd1635-systimer
-> +      - const: realtek,rtd1625-systimer
+On 17/11/2025 08:33, Maud Spierings wrote:
+> Hi Krzysztof,
+> 
+> Thanks for the review.
+> 
+> On 11/15/25 12:53, Krzysztof Kozlowski wrote:
+>> On Fri, Nov 14, 2025 at 03:11:49PM +0100, Maud Spierings wrote:
+>>> The compatibles should include the SoM compatible, this board is based
+>>> on the Ka-Ro TX8P-ML81 SoM, so add it. Also add the hardware revision to
+>>> the board compatible.
+>>>
+>>> This is a breaking change, but it is early enough that it can be
+>>> corrected without causing any issues.
+>>>
+>>> Fixes: 24e67d28ef95 ("dt-bindings: arm: fsl: Add GOcontroll Moduline Display")
+>>> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/arm/fsl.yaml | 7 ++++++-
+>>>   1 file changed, 6 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> index 21b7168d61f5..8949a98acd87 100644
+>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> @@ -1105,7 +1105,6 @@ properties:
+>>>                 - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
+>>>                 - gateworks,imx8mp-gw75xx-2x # i.MX8MP Gateworks Board
+>>>                 - gateworks,imx8mp-gw82xx-2x # i.MX8MP Gateworks Board
+>>> -              - gocontroll,moduline-display # GOcontroll Moduline Display controller
+>>>                 - prt,prt8ml             # Protonic PRT8ML
+>>>                 - skov,imx8mp-skov-basic # SKOV i.MX8MP baseboard without frontplate
+>>>                 - skov,imx8mp-skov-revb-hdmi # SKOV i.MX8MP climate control without panel
+>>> @@ -1163,6 +1162,12 @@ properties:
+>>>             - const: engicam,icore-mx8mp             # i.MX8MP Engicam i.Core MX8M Plus SoM
+>>>             - const: fsl,imx8mp
+>>>   
+>>> +      - description: Ka-Ro TX8P-ML81 SoM based boards
+>>> +        items:
+>>> +          - const: gocontroll,moduline-display-106
+>>
+>> You need old compatible here as well, you cannot drop it.
+> 
+> The old compatible should stay in the above section then right? Because 
+> the old compatible never matched the pattern with the SoM compatible. 
+> Should/can I add some deprecated tag to it then?
 
-Test your DTS first please...
+You could deprecate old list but there is little benefit of it, but the
+point is that your final (new) list must include old compatible because
+otherwise it is a potential ABI break.
+
+
 
 Best regards,
 Krzysztof
