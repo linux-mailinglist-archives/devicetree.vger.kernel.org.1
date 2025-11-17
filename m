@@ -1,403 +1,246 @@
-Return-Path: <devicetree+bounces-239373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82324C643C5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:00:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A37CC643D1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1C7444F4ADA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:54:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9AD4E4EEF68
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3542B33032A;
-	Mon, 17 Nov 2025 12:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD476333457;
+	Mon, 17 Nov 2025 12:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="OyLpptOX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="b5Zq0zE+";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MprJxYtp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11020098.outbound.protection.outlook.com [52.101.84.98])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46AA32F75B;
-	Mon, 17 Nov 2025 12:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.98
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763383536; cv=fail; b=Y8wiIJrc1nUvTOwSggzZKrvbfjOdzTUh/rKEbG4fN3W/6iy2xhjeJHrj/KuoF08kp+5zEQbyU4zg+YsM+Qe4xryA4fJe5KN/Rld92t1oYOFCzhqnxgrbzt/9clmhES6xR6uVA6xb7Mo6QjXtgNoE5Devh3YG8s2hXQ/XvTMxERo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763383536; c=relaxed/simple;
-	bh=++VRDaKoYxZKIJ2LtR2cdCO3ZSvGnJA36v8W5wsg6LE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gm6CpEjOxugKGp5rMML/HtDPUbu8GJFQwHaw+MKaRXbfp7ysb6/QFVgs0oF6OXdL9sEOIWKdQCQ73RUwIufWbrWf1h7BGYHaNieg4hIKJ09mCpUqOAqMgKA16dMRPHTPQQiA3aSjpWF+jGXSgvw7iQaLLhfDkhEXY+/Po4QF6V4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=OyLpptOX; arc=fail smtp.client-ip=52.101.84.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TSEGsY19wHLgsirlGduFFwrI6Eyl9z2xvTHsgtxCyW4HqDDi3Z8ZJaHqdNuGlBhmHZKrRktntoUvpiiS3Kp4sRMd+HmK+AaazFFcKHX1TQ3etLkIoV7zhxOGtDSzDYBsuVDi5hd065id8aT42pvPJLgXq9Ph1uP5RuQmFjXRLmZQpXIod3s6OjSvDBMG1TbTbnxsA4Cl/0Yx0e8g0tdfC1cwRo6iH8tylhgmBwusrVen5aXPhzIJ1CxIAmT1uW5tB7Kw3Ls46GMBjZgvbvQmjG5J6xFJU5YJ8ffkO78DNAAlbfcTkvKYMiJ+jIS6O4Q2qThI3SWszCS0waYVKVrQEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yaAmxrRzEp4qfDn12QiOBYLssJHAG7Z/rbKUTiRH9yI=;
- b=OSTybAOpkd2mtsCdI7YfVI5fDxgxzsw+a7410XPD6VAnAIYic6U6OqB7khVBiove7heiqkMz6MuhY5yRr3JNjU9JODaLT9n6enD2WajdH7GY99SJYS7ENzWwghr9HqQnv4n2CZJYPh/TxP8GRHbOm+UfjB70pL3EznmYNEDjMZ5tQZjBqsjeG4D7QNVpCNIG12il+PkDfjTJND3C6lYKBqmKr4fwnHRazMnzGyIBbo0OTyP+0L9EqVSj0Dk/iXN1a59mj2HyJ52UzRTQbBsllqWmz9RHyjtYUfHf/C4eKav7LytuEwY2pD0pL8QSBWBRgpdiq63zoSwZU/hui3ggrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
- dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=phytec.de; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yaAmxrRzEp4qfDn12QiOBYLssJHAG7Z/rbKUTiRH9yI=;
- b=OyLpptOXDUmoOf8WZxLCcjeffUluJRwxHK4lsaipID8KkpxR7eN39u9EBhajKkYaRScqxalOE040TV0GcizaaLDnlJO5IMO8okNOUcIkR9upjB49yEK8xjs6CWdKadBlegj/VGAxp/UiiG+Tq4DyyCsxFDjfx6Qw4YoxtExN9lO8LUq3FuEOUVvJj8PAYg+2bffiIYMfY3I2k7fvRtE3Ubk3SeoYhZJEUomwlG5FV9Gj7Wus3YGkWrboirdsf48s6MrZVqnXO38Ll+ga/CzJnzZLDMNdQO0IgXEiGNVNEuiHtI7zSyHbN22ssxhDBNDG2cfWqjf4PJcUWowfCjHTIg==
-Received: from DU6P191CA0052.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:53e::12)
- by AMBP195MB3197.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:6f7::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.15; Mon, 17 Nov
- 2025 12:45:27 +0000
-Received: from DU2PEPF00028D0A.eurprd03.prod.outlook.com
- (2603:10a6:10:53e:cafe::b9) by DU6P191CA0052.outlook.office365.com
- (2603:10a6:10:53e::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.21 via Frontend Transport; Mon,
- 17 Nov 2025 12:45:21 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Postix.phytec.de (91.26.50.189) by
- DU2PEPF00028D0A.mail.protection.outlook.com (10.167.242.170) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.9 via Frontend Transport; Mon, 17 Nov 2025 12:45:27 +0000
-Received: from llp-varakala.phytec.de (172.25.39.183) by Postix.phytec.de
- (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Mon, 17 Nov
- 2025 13:45:26 +0100
-From: Yashwanth Varakala <y.varakala@phytec.de>
-To: <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
-	<festevam@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<upstream@lists.phytec.de>, <peng.fan@nxp.com>, <y.varakala@phytec.de>
-Subject: [PATCH v2 2/2] arm64: dts: imx8mp libra: add peb-av-10 expansion board overlay
-Date: Mon, 17 Nov 2025 13:45:15 +0100
-Message-ID: <20251117124515.26675-3-y.varakala@phytec.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251117124515.26675-1-y.varakala@phytec.de>
-References: <20251117124515.26675-1-y.varakala@phytec.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E73B2330B3D
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:45:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763383535; cv=none; b=mnstLSw+R+weJrhM3ozk2YTjA+knvX+YDZQCDBgRlnZJHwoCsOd8Y7Ueqa/xRh9nQOgGWfoiryQ6OGLsYKjXHLqyJJB62mE9dQmz+yZvM0wqVuKk5pVeImNu+zl5WKlKU9nnI0ZQaLat3KNyaDg9qAD2yBTa3Ly8RnFuIh9e2D8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763383535; c=relaxed/simple;
+	bh=G94pcIU/bfNxMCPXXtJANALXKsfA+IFTkS5khTVBYEQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AatLhfhmgtHstUiF2Mu7LMNgMIC2kv3m2r0NrEi48ovFyc4nFPg2g3RrylOU3oaUy0WnOSuHYttqVNCjoSURLmFEtUEpeXJ3lA8/yuXGq5YVw7o2TUYo3EUDRyeIrLGMu9IaMci6SoJewplw+7ly6BFUlKsQYD6x5LssM976zEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=b5Zq0zE+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MprJxYtp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AHBj1Q13040289
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:45:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	t2GIxjzEPgQtngG3qU0WnH6UZPnhzUOgfRwXYNTAgcQ=; b=b5Zq0zE+HoTRx7U8
+	Ga+WXsu9BEEPjmBusOHFWVBmLXW3BSW2uw44nr843afrfN0mxsII8nzAxMSHI8oj
+	ehx9lkwRw9jkh76b6Rwv//xgQ2mUlKwv9QOyBGpjujC11LtgBxZGaU1cSa8y4tsu
+	1KNilYP/9ar1T6dWQGjrJzCQxD0FtYLLFtP6gH636kKbOse+v75RgmngtrxDBBIQ
+	ROu72b34H5K26MWZqPnsauXscNBxnU57ApIF+EQWZRFkAmee94RhzsFbfizJT/zB
+	ItN0d2Zlc7VVbgDpaVY7Y+lB5vkrAkIqL5gMl81YrkjTouxvRyHqOST27MCpjjIm
+	hqlIMA==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aejh04r1p-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:45:32 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7b873532cc8so4932495b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 04:45:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763383532; x=1763988332; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=t2GIxjzEPgQtngG3qU0WnH6UZPnhzUOgfRwXYNTAgcQ=;
+        b=MprJxYtpjEpe6TdxxeYTz0jUxiJbyFRr0Libu19K9fG/mVMNY//lUDlIajuvNGRbXG
+         b5Qs/fNaxagDgJJ9AtWSmqwJC+kpbOS42Fnuq0erEezHdSEpVdKHpfuAVtfVjtacZOLr
+         nwirSmEADqzvqr+COu1OjgI4Mh0mTxQa8cn3odGRP2bPODlDdqOMtlzPbyuMcBTCUKbl
+         frb/2r34w1ZR6GjSO/RNFNVwPgIAy3NvUD/1z//QOVWhx2w2MGc5+/uhZhp6fg5rQ/rO
+         nX9TQiEM/HcGaTjFZ0XCBd0nBHH1FtskY6AlhqYH1qQhWACOKOo+ZFlf/VLS20RZ0djh
+         B1Jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763383532; x=1763988332;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t2GIxjzEPgQtngG3qU0WnH6UZPnhzUOgfRwXYNTAgcQ=;
+        b=RVrni2p4CVt81z8MS2eoyWjIJ7tX9/Zau2kLp71x3g5tnDsabiSbUtvBbVywTc/gsI
+         jnaRUsUK+zAbyYUbge2ul20xAie4UVTeMavacbyOlL+CIHvBRqceoLZ85OULlHcpSJnb
+         IztHEJYASmiempG9+dFp46yFJnn/XFnOysb8/MH/kjOg4YSjh+OqiyxEbJ9cUGLD2Yyu
+         7kj579qQHHFtICWZv57tCAH1SEuGhDEASoOMZNGkpTdPg/MT+8/2pLO1qrPrK/wRdVc0
+         WmkthFN3kbuQPvlfw9V3r/RNRe5Tnos+vZkV4kc0mPQ/h3VGjZdh5tas1yCIP2J4tgIb
+         ItHA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbRUnAX5IpqOxndfgtD/71N7tu9C7iNA0TiKbohqYEwsaxnuiwkhMs1tqrnLmhFdS5um2yaoR2kSAH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+ziTnhOJYDWCWDjXoGTzmikV+CPQLn2Yc4vIBxuqtRZ3BVGAM
+	Tdwj9QtJW7ej55JYNvMpelVT8Hn/rfeCBXQ7xXjsb6EP0Hdho4nseumFEP1jllN3sFZUbTI6qEC
+	XgMtPT9lhtoskMDe37hKfrkLqa0vkdJL+VdRbhRxjupzaWB90zVBa9wDUj5ZU8AxE
+X-Gm-Gg: ASbGncs/2UQ5giu0rRDOPZ8IjbJSqw9I6rdXKbqtS7s427CLQcfmpIEGTXTRf1TJgpC
+	ZjlltqfLBV8Q4yhC+yIZi2aULIgo5MtpA8Xg6IK2ZUdoS4R39Pnt6ZCRrOMR2KvpHJJQXN6LFKD
+	0LRGvapxwofRSXGQvoQwWX2kOhNU19sxgCbpaoq4zfpJOUyvYzo0CdaI2PbAeb3dY7dH4Nghb0T
+	H6XjtOkSzLYLyLfihZczet2mMb75HAhRqB8+AOugfJpNriz+rh7eIXUqEmKtr7WeUkXLybDShXG
+	c/2SR+q2KAgB/L4iQO+IMniaOIHF4fQKS6qKChUddp/XNhZvFUx42htSdnQ4NhidsvjEuT9TUjM
+	Gbyr3ZzGifh/B
+X-Received: by 2002:a05:6a00:148a:b0:7a9:7887:f0fa with SMTP id d2e1a72fcca58-7ba323d6167mr15472543b3a.1.1763383531504;
+        Mon, 17 Nov 2025 04:45:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGDJbvN6jOsObid0beCDZHvRVXCcF/Syx9OjNHftPL31GJDCaNOSy040plNENpYw9lQsUyY0w==
+X-Received: by 2002:a05:6a00:148a:b0:7a9:7887:f0fa with SMTP id d2e1a72fcca58-7ba323d6167mr15472502b3a.1.1763383531025;
+        Mon, 17 Nov 2025 04:45:31 -0800 (PST)
+Received: from work ([120.60.57.34])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b927c23103sm12814553b3a.65.2025.11.17.04.45.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Nov 2025 04:45:30 -0800 (PST)
+Date: Mon, 17 Nov 2025 18:15:20 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+To: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
+Cc: Jeff Johnson <jjohnson@kernel.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ath10k@lists.infradead.org,
+        ath11k@lists.infradead.org, devicetree@vger.kernel.org,
+        ath12k@lists.infradead.org,
+        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+Subject: Re: [PATCH 0/2] wifi: ath: Use static calibration variant table for
+ devicetree platforms
+Message-ID: <exfmj52dqu3uctwsb2gopcjg7744vq5avlkahtmgfw4opw4mfl@t2svrln72u53>
+References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
+ <2fd84ab2-2e3e-4d05-add5-17930a35fedf@oss.qualcomm.com>
+ <jnggqxqv3rjzhyevovnnxzplfhl3t6auhhvmoz7wxmsf6awgdx@dusdgxwsxvts>
+ <b8277024-f9d4-4f17-946f-c2c390669067@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
- (172.25.0.11)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PEPF00028D0A:EE_|AMBP195MB3197:EE_
-X-MS-Office365-Filtering-Correlation-Id: a153c4dc-105e-4fc3-e191-08de25d72f7c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?m0Wi++3ZD+iXBoorAz+YwwXXqvyqenJKxx3sOXB8WOemp/IkvhRD0ckcllrN?=
- =?us-ascii?Q?gAnYcXFf32ZiBAcAfLPL1JeAVB3Euqjk0NykS+ye0KqDUCr/IVyjPHlfzzXP?=
- =?us-ascii?Q?GshkPYbUgNgcNOyXt/LfK7zpJLies3YNC06OYXEFS/83ld63Bu/womWrHVjh?=
- =?us-ascii?Q?uUIe3ilAS+r4v6/T08XvUqosUGouKRIh0/qrpMf6dpCUokumRdwRoZyczx2s?=
- =?us-ascii?Q?qa3asnrqppsmAoGxNWChj+v0nd8o5E3UT7/6hH7TZReoV23pn+gZj530biPH?=
- =?us-ascii?Q?H6HMt0h3XzZzk0kT+6YFbB0WMLC57nlAm8kPgsOvC3Nt9TRqsF7weSEj1Eep?=
- =?us-ascii?Q?MRA7kmQtLK41zEf2MmYr9ALn0dEkfhQ282CVewCmgrh4j5+/kYpEPpc0+Est?=
- =?us-ascii?Q?v3N4TS9Rre5O9m0GTAEO8lH+x7ydBvafJIth03wNGwAfCA08Q2dTtNXJuKWA?=
- =?us-ascii?Q?I4YkzgIcDKAnBsUZenXMiTaxr+8pDfMKSJi7yIrLxRATpZf3RAXDo8Du7ro8?=
- =?us-ascii?Q?4z59hoENEAd1vN5SFcywch9nqShbRdg2et+bsNfbxdfVXxa31ppN/TWihz6b?=
- =?us-ascii?Q?4qDyknYuAOvQf3X0ON69BhenY566mR9S/W3wLARs4gW+zSnG/PdiHoUrjb7g?=
- =?us-ascii?Q?XqZY5R4Y0VNhkR7SKPTzE3VUU9bkvIAsRkDkLMW2T6C/IpHBIftn53vVEqXF?=
- =?us-ascii?Q?PSH4h2IAe72WSbKToIuTDSpqvPVC5TglUbW6c9uR8zGsfqosNc6vA7jhHXuU?=
- =?us-ascii?Q?SqHQx2nAn6wOmNROm+676Klx7WWmV11l3/GzFsxRmotPVJs3iR8QWf8a1PlR?=
- =?us-ascii?Q?qoaaC0B6WYktCHo857CxsEaEHoE4QEbmRmc07WOY5FBic3Z/s4AJYp0M4dNl?=
- =?us-ascii?Q?Oo4SU7nNcDKf8h44MOlkVM12zArZsrPkz+qdaDKh3XB6AidTQ6GQvCeBM/mn?=
- =?us-ascii?Q?14Xux0f4RCBh/zQnsbgUyzL8Qksew1oC9wlY1EpjFT9onlVyy+L2ZDMvKZfw?=
- =?us-ascii?Q?LTL6uqgWYs87NmVYDHpuxzVF8DLTXcp15B8kpkG1De1QEjmA1Xtlk8Hok0uH?=
- =?us-ascii?Q?dX2PxtlLU350Qq+hn4PpTI5WH0lXFU0GAzZiD2AJVvuvBanXpf72JTsVbAbO?=
- =?us-ascii?Q?VTaAwyoNvucrYF1e0Vq8tZbNM0s5Rm41xPIfCzlm+f8nkPrfazPv0QS3LN6P?=
- =?us-ascii?Q?fOwb1Odei/uPpcwDNLZb69FchPUVUm48toBmjmYiQ+pG+cVmJk5M17pIVW/3?=
- =?us-ascii?Q?7W+c3YOnquzJQ9m7Jjcn6erab29l3Eytgo1XxWkoTiLC7uV/nGoRpJT9MsIj?=
- =?us-ascii?Q?mfskda/3QX5OR8CpCwUUEjNx4+r6Zl1zt1N5tkfjRco3gBZjSa859zrmgk87?=
- =?us-ascii?Q?B3hTzYHfmsU9IsUr4RlxX1dkKx/ThyjzQZ2LKtiPbhlijdKRRofLx+vuXuD9?=
- =?us-ascii?Q?d4/PavNJLUTV3KajJJksroJDsEXh7do5lJL+cNyWNnwQ6VYNmwK99P0cCwy9?=
- =?us-ascii?Q?wvA4ed+f8PcJfpcMT/jcoygRGkro8khLOv2RKfIshjbjJtPslks/vGdvSWCK?=
- =?us-ascii?Q?rrrgggtvzJa+F2eSkss=3D?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 12:45:27.7348
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a153c4dc-105e-4fc3-e191-08de25d72f7c
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU2PEPF00028D0A.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBP195MB3197
+In-Reply-To: <b8277024-f9d4-4f17-946f-c2c390669067@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=W9U1lBWk c=1 sm=1 tr=0 ts=691b18ec cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=SvArCPxluHhT4bP621h3eQ==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=W1PEZSGAYdG1hK9pKucA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+ a=HhbK4dLum7pmb74im6QT:22
+X-Proofpoint-GUID: Sb8UTyHfI78XgJmtEiDclEKfRcWWhZvE
+X-Proofpoint-ORIG-GUID: Sb8UTyHfI78XgJmtEiDclEKfRcWWhZvE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE3MDEwNyBTYWx0ZWRfXydWdM0ix2oGl
+ sW6keiDazD49hJETSEJjDaTKgWAUL8SCH7qeCgnFUeqqdIuX1CujTTNFSiE5Tt+5nwmak3QDyQt
+ B1xBiTNObAmeTAh2pERB5cinRyNFlC2/tSHknufbLinw2SzunQvi1gLRc3rB7SAnjSD47a9MIQj
+ SxrI92RjLiM+6wyYToxkAAMcvCMy/+KKukGEB8SctYvl0Dj1iElbOqV4+zxVTXTZkBdiktDVjHH
+ WPi6F0Lb+Xj124JxmC5MPXy2AAKIuA5Mj3TcdaEuSVtBuOtTBg5Y/I+PZhQo0rDNbuHBfaq0G6m
+ KtSCeQh1C3pK99wxxWCTiK7+TLKIbRTHDVzPlOKDHhIRCGJgefvHUfhk8nrgu0YmzupDXeuW6f9
+ oS7/P6qP5wK+B99qNdnhDxXZyNe4ng==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-17_03,2025-11-13_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 adultscore=0 malwarescore=0
+ spamscore=0 clxscore=1015 phishscore=0 priorityscore=1501 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511170107
 
-Add an overlay of expansion board (PEB-AV-10) that supports multimedia
-interfaces, 3.5mm headphone jack, a USB-A port and LVDS, backlight
-connectors can be connected to the imx8mp libra. Audio works when no
-display is connected to expansion board.
+On Mon, Nov 17, 2025 at 05:40:06PM +0800, Baochen Qiang wrote:
+> 
+> 
+> On 11/17/2025 5:00 PM, Manivannan Sadhasivam wrote:
+> > On Mon, Nov 17, 2025 at 10:36:39AM +0800, Baochen Qiang wrote:
+> >>
+> >>
+> >> On 11/14/2025 6:22 PM, Manivannan Sadhasivam wrote:
+> >>> Hi,
+> >>>
+> >>> This series aims to deprecate the usage of "qcom,*calibration-variant"
+> >>> devicetree property to select the calibration variant for the WLAN devices. This
+> >>> is necessary for WLAN devices connected using PCI bus, as hardcoding the device
+> >>> specific information in PCI devicetree node causes the node to be updated every
+> >>> time when a new device variant is attached to the PCI slot. This approach is not
+> >>> scalable and causes bad user experience.
+> >>
+> >> I am not very clear about the problem here: is calibration variant device/module specific,
+> >> or platform specific? If it is module specific, why the lookup is based on the machine
+> >> 'model' property? While if it is platform specific, why do we need to update devicetree
+> >> node whenever a new device is attached?
+> >>
+> > 
+> > I think I mixed the usecase of the 'firmware-name' property in the above
+> > description.
+> > 
+> > But nevertheless, the calibration info platform specific, and hardcoding the DT
+> > property fixes the location of the WLAN card with a specific slot. For instance,
+> > if the board has a couple of M.2 slots, users should be free to plug the WLAN in
+> > any slot, not just a single slot where the property was defined in DT.
+> > 
+> > Also, if the users plug-in the WLAN card of another vendor, not Qcom, this
+> > property is irrelevant/wrong.
+> > 
+> > PCIe slots should be plug and play i.e., users should plug-in any M.2 card and
+> > expect it to work.
+> > 
+> 
+> correct
+> 
+> > However, as I learned from Jeff, calibration variant property is also going to
+> > be required in cases like router boards where each slot is dedicated to a fixed
+> > band and the calibration variant is going to be different for each band for the
+> > platform. So unlike I thought, this DT property cannot be deprecated. But going
+> > forward, I'd like it to be used only in these special usecases. Most of the
+> > upstream DTS have a single calibration variant for the platform and for those
+> > generic usecases, this static table should be used.
+> 
+> If that property is not going to be deprecated, should it take precedence?
+> 
 
-A separate overlay for Powertip display, based on peb-av-10.dtsi and
-intended for use with PEB-AV-10 expansion board, will be added
-later as display support is not yet available.
+If you mean 'it' by this static table, yes, it is going to take precedence as it
+should cover the generic usecases. For special cases like the multi-band
+routers, existing DT node fallback will cover.
 
-Signed-off-by: Yashwanth Varakala <y.varakala@phytec.de>
----
-Changes in v2:
- - Change codec node name to audio-codec in peb-av-10.dtsi
+- Mani
 
- arch/arm64/boot/dts/freescale/Makefile        |   3 +
- .../imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtsi | 196 ++++++++++++++++++
- .../imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtso |   9 +
- 3 files changed, 208 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtso
+> > 
+> > - Mani
+> > 
+> >>>
+> >>> So to avoid relying on the "qcom,*calibration-variant" property, this series
+> >>> introduces a new static calibration variant table based lookup. The newly
+> >>> introduced helper, ath_get_calib_variant() will parse the model name from
+> >>> devicetree and use it to do the variant lookup during runtime. The
+> >>> ath_calib_variant_table[] will hold all the model and calibration variant
+> >>> entries for the supported devices.
+> >>>
+> >>> Going forward, new entries will be added to this table to support calibration
+> >>> variants.
+> >>>
+> >>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> >>> ---
+> >>> Manivannan Sadhasivam (2):
+> >>>       wifi: ath: Use static calibration variant table for devicetree platforms
+> >>>       dt-bindings: wireless: ath: Deprecate 'qcom,calibration-variant' property
+> >>>
+> >>>  .../bindings/net/wireless/qcom,ath10k.yaml         |  1 +
+> >>>  .../bindings/net/wireless/qcom,ath11k-pci.yaml     |  3 +-
+> >>>  .../bindings/net/wireless/qcom,ath11k.yaml         |  1 +
+> >>>  .../bindings/net/wireless/qcom,ath12k-wsi.yaml     |  6 +-
+> >>>  .../bindings/net/wireless/qcom,ipq5332-wifi.yaml   |  2 +-
+> >>>  drivers/net/wireless/ath/ath.h                     | 98 ++++++++++++++++++++++
+> >>>  drivers/net/wireless/ath/ath10k/core.c             |  5 ++
+> >>>  drivers/net/wireless/ath/ath11k/core.c             |  7 ++
+> >>>  8 files changed, 115 insertions(+), 8 deletions(-)
+> >>> ---
+> >>> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+> >>> change-id: 20251114-ath-variant-tbl-22865456a527
+> >>>
+> >>> Best regards,
+> >>
+> > 
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index eb38dcc76b84..0d2bd8d1d3b6 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -223,8 +223,11 @@ imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra-dtbs += imx8mp-libra-rdk-fpsc.dtb \
- 	imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtbo
- imx8mp-libra-rdk-fpsc-lvds-ph128800t006-zhc01-dtbs += imx8mp-libra-rdk-fpsc.dtb \
- 	imx8mp-libra-rdk-fpsc-lvds-ph128800t006-zhc01.dtbo
-+imx8mp-libra-rdk-fpsc-lvds-peb-av-10-dtbs += imx8mp-libra-rdk-fpsc.dtb \
-+	imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-libra-rdk-fpsc-lvds-ph128800t006-zhc01.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-navqp.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-nitrogen-enc-carrier-board.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtsi
-new file mode 100644
-index 000000000000..57bbbdd734e7
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtsi
-@@ -0,0 +1,196 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/clock/imx8mp-clock.h>
-+#include "imx8mp-pinfunc.h"
-+
-+&{/} {
-+
-+	backlight_lvds1: backlight-lvds1 {
-+		compatible = "pwm-backlight";
-+		pinctrl-0 = <&pinctrl_lvds1>;
-+		pinctrl-names = "default";
-+		power-supply = <&reg_vcc_12v>;
-+		status = "disabled";
-+	};
-+
-+	panel_lvds1: panel-lvds1 {
-+		backlight = <&backlight_lvds1>;
-+		power-supply = <&reg_vdd_3v3>;
-+		status = "disabled";
-+
-+		port {
-+			panel1_in: endpoint {
-+				remote-endpoint = <&ldb_lvds_ch1>;
-+			};
-+		};
-+	};
-+
-+	reg_vcc_12v: regulator-12v {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-name = "VCC_12V";
-+	};
-+
-+	reg_vcc_1v8_audio: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "VCC_1V8_Audio";
-+	};
-+
-+	reg_vcc_3v3_analog: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "VCC_3V3_Analog";
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "snd-peb-av-10";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,frame-master = <&dailink_master>;
-+		simple-audio-card,mclk-fs = <32>;
-+		simple-audio-card,widgets =
-+			"Line", "Line In",
-+			"Speaker", "Speaker",
-+			"Microphone", "Microphone Jack",
-+			"Headphone", "Headphone Jack";
-+		simple-audio-card,routing =
-+			"Speaker", "SPOP",
-+			"Speaker", "SPOM",
-+			"Headphone Jack", "HPLOUT",
-+			"Headphone Jack", "HPROUT",
-+			"LINE1L", "Line In",
-+			"LINE1R", "Line In",
-+			"MIC3R", "Microphone Jack",
-+			"Microphone Jack", "Mic Bias";
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&codec>;
-+		};
-+
-+		dailink_master: simple-audio-card,cpu {
-+			sound-dai = <&sai5>;
-+		};
-+	};
-+};
-+
-+&i2c5 {
-+	clock-frequency = <400000>;
-+	pinctrl-0 = <&pinctrl_i2c5>;
-+	pinctrl-1 = <&pinctrl_i2c5_gpio>;
-+	pinctrl-names = "default", "gpio";
-+	scl-gpios = <&gpio3 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	codec: audio-codec@18 {
-+		compatible = "ti,tlv320aic3007";
-+		reg = <0x18>;
-+		pinctrl-0 = <&pinctrl_tlv320>;
-+		pinctrl-names = "default";
-+		#sound-dai-cells = <0>;
-+		ai3x-gpio-func = <0xd 0x0>;
-+		ai3x-micbias-vg = <2>;
-+		AVDD-supply = <&reg_vcc_3v3_analog>;
-+		DRVDD-supply = <&reg_vcc_3v3_analog>;
-+		DVDD-supply = <&reg_vcc_1v8_audio>;
-+		IOVDD-supply = <&reg_vdd_3v3>;
-+	};
-+
-+	eeprom@57 {
-+		compatible = "atmel,24c32";
-+		reg = <0x57>;
-+		pagesize = <32>;
-+		vcc-supply = <&reg_vdd_3v3>;
-+	};
-+};
-+
-+&ldb_lvds_ch1 {
-+	remote-endpoint = <&panel1_in>;
-+};
-+
-+&pwm2 {
-+	pinctrl-0 = <&pinctrl_pwm2>;
-+	pinctrl-names = "default";
-+};
-+
-+&sai5 {
-+	pinctrl-0 = <&pinctrl_sai5>;
-+	pinctrl-names = "default";
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI5>;
-+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <12288000>;
-+	clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI5_IPG>,
-+		 <&clk IMX8MP_CLK_DUMMY>,
-+		 <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI5_MCLK1>,
-+		 <&clk IMX8MP_CLK_DUMMY>,
-+		 <&clk IMX8MP_CLK_DUMMY>,
-+		 <&clk IMX8MP_AUDIO_PLL1_OUT>,
-+		 <&clk IMX8MP_AUDIO_PLL2_OUT>;
-+	clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k",
-+		      "pll11k";
-+	#sound-dai-cells = <0>;
-+	fsl,sai-mclk-direction-output;
-+	fsl,sai-synchronous-rx;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_i2c5: i2c5grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI5_RXD0__I2C5_SCL	0x400001c2
-+			MX8MP_IOMUXC_SPDIF_RX__I2C5_SDA		0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c5_gpio: i2c5gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21	0x1e2
-+			MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04	0x1e2
-+		>;
-+	};
-+
-+	pinctrl_lvds1: lvds1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28	0x12
-+		>;
-+	};
-+
-+	pinctrl_pwm2: pwm2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO09__PWM2_OUT	0x12
-+		>;
-+	};
-+
-+	pinctrl_sai5: sai5grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_RXD0__AUDIOMIX_SAI5_TX_DATA00 0xd6
-+			MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI5_RX_DATA00	0xd6
-+			MX8MP_IOMUXC_SAI5_MCLK__AUDIOMIX_SAI5_MCLK	0xd6
-+			MX8MP_IOMUXC_SAI5_RXD1__AUDIOMIX_SAI5_TX_SYNC	0xd6
-+			MX8MP_IOMUXC_SAI5_RXD2__AUDIOMIX_SAI5_TX_BCLK	0xd6
-+		>;
-+	};
-+
-+	pinctrl_tlv320: tlv320grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI3_RXC__GPIO4_IO29	0x16
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtso b/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtso
-new file mode 100644
-index 000000000000..803a199dffa3
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtso
-@@ -0,0 +1,9 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtsi"
---
-2.34.1
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
