@@ -1,52 +1,53 @@
-Return-Path: <devicetree+bounces-239223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14FAC62BC6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:35:15 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1997AC62BCF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:35:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3CEFA35BBFC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:34:39 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 14EB435C617
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA43A3191BF;
-	Mon, 17 Nov 2025 07:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D3E31A07B;
+	Mon, 17 Nov 2025 07:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="n/ebQqN0"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="Yy8VG1YH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4032319860;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F4231985D;
 	Mon, 17 Nov 2025 07:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763364870; cv=none; b=kG1AVSfqLMJFnO4DpznOuJrR6Jmc6MLDX4iLZj1iIRHAabqH3GtVSTqFWpA6WUbg3FasK9n8RlZh8ImI15NHtpNYxYdz9eRUB53pGZgE6RCsy8HTvOM1QeuPm6XlNaRqHtvSMcLBw67IUjQ82ovLMxxeZ4LL7ykTK9mSMvP4vS4=
+	t=1763364871; cv=none; b=ejva8uL9+WAkuLlFlgQr4EsP3rEoU/yI9HVVw7k4c7B2uvofSVbG7ZgfckJEDsIhIBtSY+EB5L5MoZVDE+FNQLRU3V37WMiickJQWSxlutxoKArzQ5hy7H/DDECtBIrXnqiGkhlYvbFmGkVLiol9gCvVG5Qef0iLurLZlxnXx4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763364870; c=relaxed/simple;
-	bh=0iuOGBnrhDMM94jDGCDMuxnsr/Vi1o6oMJi3lzdHWaA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JNs6OaN8EjGLqQvsO91q7YCQZ6gq7ccET7998tGvAbhIa7nTB0pWmp+74Q/dDY4ZAeeHbvE/TP0yJCDJcusFXi/oLxfl/ZJz+R8UqWuibwWYv3vjcGLLISA8DiBjLBhbv8vKDBHZGARfKsGCTX6TIG00Mc2cthVFF3WTgjhCBQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=n/ebQqN0; arc=none smtp.client-ip=211.75.126.72
+	s=arc-20240116; t=1763364871; c=relaxed/simple;
+	bh=lL2vNpa6zogxX7l2zS6c0Tymvf6AAeaBmPha5X/VwX4=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EzXv5y8vg6SVPY65S9616iQsoljTMS99Ji9hPwNDeS2TJ8SfW//AVWxtUganurwtyo/BSByRDKBgLofleMz2JOtXN0VpBHmVKWgVuMG32tUHF0krdNGdEgz6Oz9dUELnKiNnILIL+zue5CdkZQNYZRj4yPabycD6x/XWETbGkoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=Yy8VG1YH; arc=none smtp.client-ip=211.75.126.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AH7Y7Lf83177069, This message is accepted by code: ctloc85258
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AH7Y7Uq83177071, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1763364847; bh=uwH3XQgRU9KTTuzr9vEL/W+BG1nvurEK+OlNGkahY+0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
-	 Content-Transfer-Encoding:Content-Type;
-	b=n/ebQqN0P8om+QumlWjbk/7hswfOBiohICoI4CnpCKPpc5Dc/P63BYG47fcRuKd5+
-	 uG6aVPHYHcd2eTI7tdlFnErV6uWNPi9xXi+/EYSJCiez0pTHyckOh2HsdS1Po9Ed/S
-	 d10UKeautFMqE5As2DLnyjeOPTIwH+C7LfqtchCrqL6VN6hnToWQGtygYS5dtJi+px
-	 hePtmFvAi1mlMjwJqmurgGnsdU/HiZJ/fr+MFjrbXaPigtnZ3oQaR0YzB0GTH6l+vE
-	 NdOQlQZo1hZjTGuLUjNI809pI2vSOXxH4GVGiUwV8/V4npJXsF6eDP2jtrF33qdS7/
-	 V4xo2AWGyqa2w==
-Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AH7Y7Lf83177069
+	t=1763364847; bh=Ail2e5Saxzk8nyPgK4vKstD7/0z5qzW9duafptRS0AA=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:Content-Type;
+	b=Yy8VG1YHd8c7nCQko58zY1w7jtCxVI4sYPRFZU0GFfVxUV403dH/Ay2ZjZSmACPV0
+	 GmgYX2yW9+QJu0vrzYoHLEc/ODz9iDJKBcU2J7GXVi02GB0YBTcsy5Jf9WN1PfMyuD
+	 UOVNC0a8qfIDI8eMsYY0ETeeK9ObAqQjtiaEY5b0ZickCcB/SLYuC7LILHMInWdYxw
+	 VSpjNxbuYkCCHpKD30++ifS41Mckvk5+m0MULyTebi/EHiqp0BSfeJOI6+Ln1F7WGt
+	 c0PMvVy/Yjnfi7FwmabD0Xn3R8A3me9AxCMHrGMRowx6MMqmSCU72YBt0V+zKsMFPu
+	 BO+JnQDAzFCSg==
+Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AH7Y7Uq83177071
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Mon, 17 Nov 2025 15:34:07 +0800
 Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
+ RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.1544.27; Mon, 17 Nov 2025 15:34:08 +0800
 Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
@@ -64,10 +65,12 @@ CC: <jinn.cheng@realtek.com>, <edwardwu@realtek.com>, <phelic@realtek.com>,
         <phinex@realtek.com>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
         <robh@kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <stanley_chang@realtek.com>
-Subject: [PATCH v3 0/2] Add Realtek System Timer driver
-Date: Mon, 17 Nov 2025 15:34:06 +0800
-Message-ID: <20251117073408.428190-1-haowen.ting@realtek.com>
+Subject: [PATCH v3 1/2] dt-bindings: timer: Add Realtek SYSTIMER
+Date: Mon, 17 Nov 2025 15:34:07 +0800
+Message-ID: <20251117073408.428190-2-haowen.ting@realtek.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251117073408.428190-1-haowen.ting@realtek.com>
+References: <20251117073408.428190-1-haowen.ting@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,80 +80,83 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Changes v3:
-PATCH 1/2
-- Rename binding documentation to match compatible string
-- Drop redundant "binding" from commit subject
-- Add example node and description for realtek,rtd1635-systimer
+Add device tree binding documentation for the Realtek SYSTIMER, a 64-bit
+timer that can be used as a tick broadcast timer on multi-core Realtek
+SoCs.
 
-PATCH 2/2
-- Add Kconfig dependency: ARCH_REALTEK || COMPILE_TEST
----
-
-Changes v2:
-PATCH 1/2
-- Add full name 'system timer' to description
-- Remove redundant commit messages
-- Clarify compatible strings for specific verified SoCs
-- Remove redundant reg and interrupts description sentences
-- Use generic node name in example
-
-PATCH 2/2
-- Correct MAINTAINERS to alphabetical order
-- Update Kconfig: switch dependency to ARM/ARM64
-- Remove redundant pr_info output
----
-
-This patch series adds support for the Realtek SYSTIMER, a 64-bit timer
-that serves as a tick broadcast timer on Realtek SoCs.
-
-On Realtek platforms, CPUs can enter deep idle states (C-states) where
-local timers are stopped and powered off. Without a global tick broadcast
-timer, one CPU must remain awake to wake up the others, preventing all CPUs
-from entering deep idle simultaneously and limiting power savings.
-
-The Realtek SYSTIMER remains active during deep idle states, allowing all
-CPUs to enter power-cut idle states simultaneously. This significantly
-reduces overall power consumption while maintaining proper tick broadcast
+The SYSTIMER remains active during deep CPU idle states where local
+timers are powered off, allowing all CPUs to enter power-cut idle states
+simultaneously for improved power efficiency. The timer operates at a
+fixed 1MHz frequency and supports oneshot mode for tick broadcast
 functionality.
 
-The systimer hardware for both RTD1625 and RTD1635 SoCs has identical register
-layout and IRQ configuration. The driver therefore matches both compatibles
-without special handling and has been tested on both platforms.
-
-Technical details:
-- 64-bit timer operating at 1MHz fixed frequency
-- Supports oneshot mode for tick broadcast
-- Uses standard TIMER_OF framework and Device Tree integration
-- Remains active during CPU power-down states
-
-Testing:
-- Verify the functionality of tick broadcast timer on both RTD1625 and RTD1635
-SoCs.
-- Verify the power consumption reduction on RTD1625 Soc in deep idle scenarios
-
-Patch organization:
-Patch 1/2: Device Tree binding documentation
-Patch 2/2: Clocksource driver implementation
-
-Best regards,
-Hao-Wen Ting
-
-Hao-Wen Ting (2):
-  dt-bindings: timer: Add Realtek SYSTIMER
-  clocksource: Add Realtek systimer as tick broadcast driver
-
- .../timer/realtek,rtd1625-systimer.yaml       |  55 ++++++
- MAINTAINERS                                   |   5 +
- drivers/clocksource/Kconfig                   |  11 ++
- drivers/clocksource/Makefile                  |   1 +
- drivers/clocksource/timer-realtek.c           | 172 ++++++++++++++++++
- 5 files changed, 244 insertions(+)
+Signed-off-by: Hao-Wen Ting <haowen.ting@realtek.com>
+---
+ .../timer/realtek,rtd1625-systimer.yaml       | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/timer/realtek,rtd1625-systimer.yaml
- create mode 100644 drivers/clocksource/timer-realtek.c
 
-
-base-commit: 948b99877bf5a1cd58bee930e455b7574daba5c3
+diff --git a/Documentation/devicetree/bindings/timer/realtek,rtd1625-systimer.yaml b/Documentation/devicetree/bindings/timer/realtek,rtd1625-systimer.yaml
+new file mode 100644
+index 000000000000..b7702ba52437
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/realtek,rtd1625-systimer.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/realtek,rtd1625-systimer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Realtek System Timer
++
++maintainers:
++  - Hao-Wen Ting <haowen.ting@realtek.com>
++
++description: |
++  The Realtek SYSTIMER (System Timer) is a 64-bit timer that can be used as
++  a tick broadcast timer on multi-core Realtek SoCs. It remains active during
++  deep CPU idle states where local timers are powered off, allowing all CPUs
++  to enter power-cut idle states simultaneously for better power efficiency.
++
++  The timer operates at a fixed 1MHz frequency and supports oneshot mode
++  for tick broadcast functionality.
++
++  The SYSTIMER hardware for both RTD1625 and RTD1635 SoCs has identical register
++  layout and IRQ configuration. The driver therefore matches both compatibles
++  without special handling.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - realtek,rtd1625-systimer
++          - realtek,rtd1635-systimer
++      - const: realtek,rtd1625-systimer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    timer@89420 {
++        compatible = "realtek,rtd1635-systimer",
++                     "realtek,rtd1625-systimer";
++        reg = <0x89420 0x18>;
++        interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
++    };
 -- 
 2.34.1
 
