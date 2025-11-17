@@ -1,193 +1,330 @@
-Return-Path: <devicetree+bounces-239461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249E9C652A9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:34:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F288C65243
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:30:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B71854F0FE8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:28:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 29A5028AD3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDCD12C3278;
-	Mon, 17 Nov 2025 16:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF2F2C11CD;
+	Mon, 17 Nov 2025 16:29:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lvHfauPI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bMV/850B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26EE12BEC3A
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 16:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678AB248869;
+	Mon, 17 Nov 2025 16:29:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763396867; cv=none; b=Y8jIesWgO0c9mDtRaYhefb8P1fA7ixLDihWqbUSKz4J77SpnSeNHCg7pm29jAJPUW1qy7UTop7OkfiZlwzfMznPmqCaAsfKiK0fGNwrfFUM3umB6VdwQLwlydyGzbBTXiHSHN12J4WMseWgFySw8JCrSgJ2LKfpD3f4YJxUlc0w=
+	t=1763396986; cv=none; b=VrpXN8qcK7DN2TST8PBGTO9h9ACmtqOmPJGe2J6gL63gfflHnlmg3uTtjaAImzI0gPNXedccrOJXeLHIDS0uafHh/TlZ84vXNbhDV0C94vlAGVAhKzQRJNO2FmLvQHWDfRci0Sxiabe8GP1zpWn9OhnjHdeHW14SHG4dPpeYUbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763396867; c=relaxed/simple;
-	bh=+Tri3+Y75EFKL4gc7BucYZKcTlL+uMjzyQqIuhRwO0w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dx/oodZRrrdJeSnTqbBa4Sp96NDRzJUUgzEoAphF4+G/67G3OLSmU9POFAGqGjt3hlLLQYV/c3OWwn1uy28nCDIlp4G0DHSUNDctI/UnKnQZyUOnUIdiG826d/AH7MNvbvtTlTuIukaoZqjoFj5kBvgg+//xf9XbYu59UQ+CP04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lvHfauPI; arc=none smtp.client-ip=209.85.216.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3434700be69so6024829a91.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:27:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763396865; x=1764001665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=g9bXO5ksyx851MCyyDIbfVy53xQYO9Txx5ddxxITMLs=;
-        b=lvHfauPI14kTvuFK1px0MsWz+5rdDx0ib2X7AKuQnM+5XRw+N08lmFALoGJ5RgZrTm
-         j/Rx6RvXI39lgjso1eEIWNTANm5kPtDzNe4O+gc4d72RK66Ok7cggH83W0qoAE2H5woR
-         EGjY6neoJzNs3jk1Ptv78bUaY7iQM7Q6WJ5kHGjQMc3f4kgbPHDeAqv98xQnUIxt3mXq
-         Ggpe7/hC0YI1rBLKkq/sl2P0hC7aBcQS6MZ534iPCLwEnsCqVJC9ZxcMW3zMbzcplf7M
-         ZZEvh2qnNqlyCJS+PVEZ5xen5wIrNbi3S+8VkD9PzYdFZSftAAGSofyIXkA/S8U1XtQI
-         ygkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763396865; x=1764001665;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g9bXO5ksyx851MCyyDIbfVy53xQYO9Txx5ddxxITMLs=;
-        b=ra+xnnWqXhuW7CEHme9TEMxhPIwZ9zbUIVBvek82dnDto9AuAT3dO79xV4sjhYghiA
-         woTqZ2omek3Mzc3FRljn18zkx/m6EWkGx+x/x1WdftCJXSTLQInP1DUI3bVWVPuM+CjP
-         7KC3X9vxMomspBoCy93SapB741yCFzEVcNUKWf5xuSGPHUau4RyDVc128uFN+JE1Svxg
-         bC3BNf1b6P8dAaqMaQhVcN1QSJQUt5Qs/2uicao/BQ5V6CefsmTCGiKT7/3IWGw6Hqyw
-         nRXqbsG74p0EqBzmPQv0st0Toa4vFAimoYlUp4HBoqYVhIuCKT5sVyVNIhumJXj0N6OL
-         DHTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUE36Q9JNFMgicnfLiVmleGZ8VcWX+VFpC2yvQbuTCGQ3UwfkxTk4qvuBQanNFAxqPZrplPnwH3pZxK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7v0uW6gBRaIyvrZES8OoBf2xBDmgODrDczQpaAsQUFGqqNMIy
-	Cdy67/vGFX3Di9+3lkvhVP0TaPyXlwTYhKDAXWKgQBhsuczdwTAaZ19M
-X-Gm-Gg: ASbGncvMj5E0RcnzwU+C7hEHfarwSuhy+sjohok+xuwnGPT1nGPxBq82Xc/WxD92M+8
-	ph8Vl3yUgHA1UMa6vTCQhij1l5FGCHvFwNA1zgYNENrefpkeE/GCHQRFEiTHLYU0KEuBC3x1XOh
-	oajCOkBw6Mwa6Yax/gVSC158tNsXHdIVVI+gcEq4fDtn8+sXeKSteOHBGXSkH4gAGl5Ql0wrZif
-	mGptY091LkLLkTaB8RVcWMdUvY+0sZSDiqw0Nj1i4xIVSmh5XvwNAFFve80rtfgMbbXEo2cb+3l
-	KW9Y5MIa4UObCxAWj8AuUYhnpoOTynsnPH8WqPlrKSacVlkLol5mvFo/SCfUMqbWeb2I74l6fLi
-	+VkeuZFK23+4+JQS8Rfh15moUk4/lBCAGn7P/Bd5UwoRRMTN6Vc/wKexLWKj17ZgTt8GgJAPKK6
-	8ZZhSzbsFdlguhgYBw2jxseQYhIiUegdN5yJitRlBJpOZZuQ2PhD0vbqcmxLC0JlzKI5vlfVuxB
-	IfUDcm+
-X-Google-Smtp-Source: AGHT+IHzLJJ5Y3QBnuwz3zctFFWMcGjBrgknfml8ngA07+MHeXbweTwUzUs3p/Rw21AlWCRbdW2vOw==
-X-Received: by 2002:a17:90b:4a4f:b0:33b:ba55:f5eb with SMTP id 98e67ed59e1d1-343f9d91d06mr12418122a91.1.1763396865313;
-        Mon, 17 Nov 2025 08:27:45 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-343eacc6c37sm5827402a91.14.2025.11.17.08.27.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Nov 2025 08:27:44 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <89beb0aa-57f5-4baa-b59e-0beaca6f002f@roeck-us.net>
-Date: Mon, 17 Nov 2025 08:27:42 -0800
+	s=arc-20240116; t=1763396986; c=relaxed/simple;
+	bh=0k5mR40qmeCxrKeXa+VfhKq6tty412bsrbm9w0g98Cw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bbAiOa3I0bgblyf+MzMutFg3e65ftJZoD0CuBMM40woIBXVdXPOK3h8qsEFfpYulfnAU0fUxrTQuSGon/tZyqTauefjtm3rfHrxLSjDFHfjCwQ0TWspLMlRYfynHLB9bN4Zi7T6IAwcMzLyOQeQKXingaCsGdV1xnbnHCC6+lHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bMV/850B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76B97C113D0;
+	Mon, 17 Nov 2025 16:29:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763396986;
+	bh=0k5mR40qmeCxrKeXa+VfhKq6tty412bsrbm9w0g98Cw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=bMV/850B7PPh9ft0sYYM8BHDWHuUMsdalXTPEt/+javid34XRFEWVe6NGEi333dgc
+	 0JNMz1iw2l7qM0zQQFD9UYbtPQls62f489+4yrEkYaAMllE4CXghQ4V03HZMV5w221
+	 XMadMCenWGM2s+UA22EbHazv+6FkajZQe/CWPusY+WUDzdSC5yx2MAh8E1Uv3wdTTL
+	 y0LWX9ZCOtj9bHfxgMz5+HOnJfiivwbI6bu/5PxgkJNeI9S591Hl5hYYMD1EQ4UDN6
+	 ImCyr3twIyvGYqUNP2EfeAOH+yodxM4ORX6leIBpUOv7zXmFc8v06zZ0rmV3yQ+4gZ
+	 NIG5QWHiNrLjA==
+From: Conor Dooley <conor@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH 1/2] dt-bindings: mfd: document control-scb and sysreg-scb on pic64gx
+Date: Mon, 17 Nov 2025 16:29:29 +0000
+Message-ID: <20251117-aeration-smock-5e7ac06e2942@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: Add tids in bindings and wsen as vendor
-To: Thomas Marangoni <Thomas.Marangoni@becom-group.com>,
- linux-hwmon@vger.kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
- Jonathan.Cameron@huawei.com, Frank.Li@nxp.com, michal.simek@amd.com,
- rodrigo.gobbi.7@gmail.com, chou.cosmo@gmail.com, wenswang@yeah.net,
- nuno.sa@analog.com, paweldembicki@gmail.com, apokusinski01@gmail.com,
- eajames@linux.ibm.com, vassilisamir@gmail.com, heiko@sntech.de,
- neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- kever.yang@rock-chips.com, mani@kernel.org, dev@kael-k.io,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20251117123809.47488-1-Thomas.Marangoni@becom-group.com>
- <20251117123809.47488-4-Thomas.Marangoni@becom-group.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251117123809.47488-4-Thomas.Marangoni@becom-group.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9655; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=ChDTUZ9MY24jy5W4apv1nC1KHi7HZfRF9Amxe1XkbGQ=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSvukSWzbM7V2nPWOS2JfVsg8X+y+tevFvk2Bv676nD 7S4b7J3dJSyMIhxMciKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAi5ncZ/tluihKd3rt/zzLr niyP4yvne/+c5Tgz90mdvMGniP7arfWMDPtTSrznsBRv/C7e0aodc+Epb8WFQ2/XBX/+qRhrEqX WwQAA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 
-On 11/17/25 04:38, Thomas Marangoni wrote:
-> This patch adds the tids driver to the bindings as trivial-devices
-> and adds the WSEN manufacturer to the vendor-prefixes.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-This patch should be the first patch in the series.
+On pic64gx these syscons are identical to those on mpfs, and should use
+a fallback. Add support for multiple fallback compatibles to syscon.yaml
+with these as the first two users.
 
-> ---
->   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->   2 files changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 2eff6f274302..e120767ce119 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -488,6 +488,8 @@ properties:
->             - ti,tsc2003
->               # Winbond/Nuvoton H/W Monitor
->             - winbond,w83793
-> +            # Temperature sensor with i2c interface
-> +          - wsen,tids-2521020222501
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Awful diff, sorry!
 
-I think this should just be "wsen,tids".
+CC: Nicolas Ferre <nicolas.ferre@microchip.com>
+CC: Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC: Lee Jones <lee@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-arm-kernel@lists.infradead.org
+CC: linux-mediatek@lists.infradead.org
 
->   
->   required:
->     - compatible
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 42d2bc0ce027..2cf753fdf5a7 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1823,6 +1823,8 @@ patternProperties:
->       description: Wobo
->     "^wolfvision,.*":
->       description: WolfVision GmbH
-> +  "^wsen,.*":
-> +    description: Würth Elektronik eiSos GmbH & Co. KG
->     "^x-powers,.*":
->       description: X-Powers
->     "^xen,.*":
+---
+ .../devicetree/bindings/mfd/syscon.yaml       | 219 +++++++++---------
+ 1 file changed, 114 insertions(+), 105 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index 657c38175fba..50f0012f4ebe 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -133,111 +133,120 @@ select:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - airoha,en7581-pbus-csr
+-          - al,alpine-sysfabric-service
+-          - allwinner,sun8i-a83t-system-controller
+-          - allwinner,sun8i-h3-system-controller
+-          - allwinner,sun8i-v3s-system-controller
+-          - allwinner,sun50i-a64-system-controller
+-          - altr,l3regs
+-          - altr,sdr-ctl
+-          - amd,pensando-elba-syscon
+-          - amlogic,meson-mx-assist
+-          - amlogic,meson-mx-bootrom
+-          - amlogic,meson8-analog-top
+-          - amlogic,meson8b-analog-top
+-          - amlogic,meson8-pmu
+-          - amlogic,meson8b-pmu
+-          - apm,merlin-poweroff-mailbox
+-          - apm,mustang-poweroff-mailbox
+-          - apm,xgene-csw
+-          - apm,xgene-efuse
+-          - apm,xgene-mcb
+-          - apm,xgene-rb
+-          - apm,xgene-scu
+-          - atmel,sama5d2-sfrbu
+-          - atmel,sama5d3-nfc-io
+-          - atmel,sama5d3-sfrbu
+-          - atmel,sama5d4-sfrbu
+-          - axis,artpec6-syscon
+-          - brcm,cru-clkset
+-          - brcm,sr-cdru
+-          - brcm,sr-mhb
+-          - cirrus,ep7209-syscon1
+-          - cirrus,ep7209-syscon2
+-          - cirrus,ep7209-syscon3
+-          - cnxt,cx92755-uc
+-          - freecom,fsg-cs2-system-controller
+-          - fsl,imx93-aonmix-ns-syscfg
+-          - fsl,imx93-wakeupmix-syscfg
+-          - fsl,ls1088a-reset
+-          - fsl,vf610-anatop
+-          - fsl,vf610-mscm-cpucfg
+-          - hisilicon,dsa-subctrl
+-          - hisilicon,hi6220-sramctrl
+-          - hisilicon,hip04-ppe
+-          - hisilicon,pcie-sas-subctrl
+-          - hisilicon,peri-subctrl
+-          - hpe,gxp-sysreg
+-          - loongson,ls1b-syscon
+-          - loongson,ls1c-syscon
+-          - lsi,axxia-syscon
+-          - marvell,armada-3700-cpu-misc
+-          - marvell,armada-3700-nb-pm
+-          - marvell,armada-3700-avs
+-          - marvell,armada-3700-usb2-host-device-misc
+-          - marvell,armada-3700-usb2-host-misc
+-          - marvell,dove-global-config
+-          - mediatek,mt2701-pctl-a-syscfg
+-          - mediatek,mt2712-pctl-a-syscfg
+-          - mediatek,mt6397-pctl-pmic-syscfg
+-          - mediatek,mt7988-topmisc
+-          - mediatek,mt8135-pctl-a-syscfg
+-          - mediatek,mt8135-pctl-b-syscfg
+-          - mediatek,mt8173-pctl-a-syscfg
+-          - mediatek,mt8365-infracfg-nao
+-          - mediatek,mt8365-syscfg
+-          - microchip,lan966x-cpu-syscon
+-          - microchip,mpfs-control-scb
+-          - microchip,mpfs-sysreg-scb
+-          - microchip,sam9x60-sfr
+-          - microchip,sama7d65-ddr3phy
+-          - microchip,sama7d65-sfrbu
+-          - microchip,sama7g5-ddr3phy
+-          - mscc,ocelot-cpu-syscon
+-          - mstar,msc313-pmsleep
+-          - nuvoton,ma35d1-sys
+-          - nuvoton,wpcm450-shm
+-          - qcom,apq8064-mmss-sfpb
+-          - qcom,apq8064-sps-sic
+-          - rockchip,px30-qos
+-          - rockchip,rk3036-qos
+-          - rockchip,rk3066-qos
+-          - rockchip,rk3128-qos
+-          - rockchip,rk3228-qos
+-          - rockchip,rk3288-qos
+-          - rockchip,rk3368-qos
+-          - rockchip,rk3399-qos
+-          - rockchip,rk3528-qos
+-          - rockchip,rk3562-qos
+-          - rockchip,rk3568-qos
+-          - rockchip,rk3576-qos
+-          - rockchip,rk3588-qos
+-          - rockchip,rv1126-qos
+-          - st,spear1340-misc
+-          - stericsson,nomadik-pmu
+-          - starfive,jh7100-sysmain
+-          - ti,am62-opp-efuse-table
+-          - ti,am62-usb-phy-ctrl
+-          - ti,am625-dss-oldi-io-ctrl
+-          - ti,am62p-cpsw-mac-efuse
+-          - ti,am654-dss-oldi-io-ctrl
+-          - ti,j784s4-acspcie-proxy-ctrl
+-          - ti,j784s4-pcie-ctrl
+-          - ti,keystone-pllctrl
+-      - const: syscon
++    oneOf:
++      - items:
++          - enum:
++              - airoha,en7581-pbus-csr
++              - al,alpine-sysfabric-service
++              - allwinner,sun8i-a83t-system-controller
++              - allwinner,sun8i-h3-system-controller
++              - allwinner,sun8i-v3s-system-controller
++              - allwinner,sun50i-a64-system-controller
++              - altr,l3regs
++              - altr,sdr-ctl
++              - amd,pensando-elba-syscon
++              - amlogic,meson-mx-assist
++              - amlogic,meson-mx-bootrom
++              - amlogic,meson8-analog-top
++              - amlogic,meson8b-analog-top
++              - amlogic,meson8-pmu
++              - amlogic,meson8b-pmu
++              - apm,merlin-poweroff-mailbox
++              - apm,mustang-poweroff-mailbox
++              - apm,xgene-csw
++              - apm,xgene-efuse
++              - apm,xgene-mcb
++              - apm,xgene-rb
++              - apm,xgene-scu
++              - atmel,sama5d2-sfrbu
++              - atmel,sama5d3-nfc-io
++              - atmel,sama5d3-sfrbu
++              - atmel,sama5d4-sfrbu
++              - axis,artpec6-syscon
++              - brcm,cru-clkset
++              - brcm,sr-cdru
++              - brcm,sr-mhb
++              - cirrus,ep7209-syscon1
++              - cirrus,ep7209-syscon2
++              - cirrus,ep7209-syscon3
++              - cnxt,cx92755-uc
++              - freecom,fsg-cs2-system-controller
++              - fsl,imx93-aonmix-ns-syscfg
++              - fsl,imx93-wakeupmix-syscfg
++              - fsl,ls1088a-reset
++              - fsl,vf610-anatop
++              - fsl,vf610-mscm-cpucfg
++              - hisilicon,dsa-subctrl
++              - hisilicon,hi6220-sramctrl
++              - hisilicon,hip04-ppe
++              - hisilicon,pcie-sas-subctrl
++              - hisilicon,peri-subctrl
++              - hpe,gxp-sysreg
++              - loongson,ls1b-syscon
++              - loongson,ls1c-syscon
++              - lsi,axxia-syscon
++              - marvell,armada-3700-cpu-misc
++              - marvell,armada-3700-nb-pm
++              - marvell,armada-3700-avs
++              - marvell,armada-3700-usb2-host-device-misc
++              - marvell,armada-3700-usb2-host-misc
++              - marvell,dove-global-config
++              - mediatek,mt2701-pctl-a-syscfg
++              - mediatek,mt2712-pctl-a-syscfg
++              - mediatek,mt6397-pctl-pmic-syscfg
++              - mediatek,mt7988-topmisc
++              - mediatek,mt8135-pctl-a-syscfg
++              - mediatek,mt8135-pctl-b-syscfg
++              - mediatek,mt8173-pctl-a-syscfg
++              - mediatek,mt8365-infracfg-nao
++              - mediatek,mt8365-syscfg
++              - microchip,lan966x-cpu-syscon
++              - microchip,mpfs-control-scb
++              - microchip,mpfs-sysreg-scb
++              - microchip,sam9x60-sfr
++              - microchip,sama7d65-ddr3phy
++              - microchip,sama7d65-sfrbu
++              - microchip,sama7g5-ddr3phy
++              - mscc,ocelot-cpu-syscon
++              - mstar,msc313-pmsleep
++              - nuvoton,ma35d1-sys
++              - nuvoton,wpcm450-shm
++              - qcom,apq8064-mmss-sfpb
++              - qcom,apq8064-sps-sic
++              - rockchip,px30-qos
++              - rockchip,rk3036-qos
++              - rockchip,rk3066-qos
++              - rockchip,rk3128-qos
++              - rockchip,rk3228-qos
++              - rockchip,rk3288-qos
++              - rockchip,rk3368-qos
++              - rockchip,rk3399-qos
++              - rockchip,rk3528-qos
++              - rockchip,rk3562-qos
++              - rockchip,rk3568-qos
++              - rockchip,rk3576-qos
++              - rockchip,rk3588-qos
++              - rockchip,rv1126-qos
++              - st,spear1340-misc
++              - stericsson,nomadik-pmu
++              - starfive,jh7100-sysmain
++              - ti,am62-opp-efuse-table
++              - ti,am62-usb-phy-ctrl
++              - ti,am625-dss-oldi-io-ctrl
++              - ti,am62p-cpsw-mac-efuse
++              - ti,am654-dss-oldi-io-ctrl
++              - ti,j784s4-acspcie-proxy-ctrl
++              - ti,j784s4-pcie-ctrl
++              - ti,keystone-pllctrl
++          - const: syscon
++      - items:
++          - const: microchip,pic64gx-control-scb
++          - const: microchip,mpfs-control-scb
++          - const: syscon
++      - items:
++          - const: microchip,pic64gx-sysreg-scb
++          - const: microchip,mpfs-sysreg-scb
++          - const: syscon
+ 
+   reg:
+     maxItems: 1
+-- 
+2.51.0
 
 
