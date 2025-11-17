@@ -1,62 +1,99 @@
-Return-Path: <devicetree+bounces-239205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD98CC62A0C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:02:16 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F4FC62A2D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:04:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D7553A5AFF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:02:05 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 90A93350C3B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:02:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9514525F7A5;
-	Mon, 17 Nov 2025 07:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256E230C636;
+	Mon, 17 Nov 2025 07:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SHqlBoNu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ADrSGRUJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDC9239E81;
-	Mon, 17 Nov 2025 07:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A19E7FBF6
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 07:02:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763362922; cv=none; b=qrp5Iuz+ZnUglVYQwKbyCz/vj3IgUqPs8VlDc4Wkf4Mhc9t34sWkV9wkV+xEDPIUf/gx5J000AouxqzKWVs+afz52Rg/PyAq3fGCmgE+4EtDpceW2JSLA5jx/0x2e59ihPCSS81+kdwudm2zjgTEBAcFJOTuiE+3TRa7KKqDIFs=
+	t=1763362963; cv=none; b=WRMTApoRdXsQnBC/P/2r+FNmpxvePyERyjQinw53Yw+mi7ebjbADCGzIK3719YY49wqcjtbnLj1Z5HTkKml3BStvaYwZK/hb/yyS9sdTwgS84L95bp3ZDkqr2NzXNdhMLTbdXM4gHE2BmE2e6p13CwvypRMNgF418vpXvZMsVMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763362922; c=relaxed/simple;
-	bh=DPXRRBWGFrZM5Dr8fzmrocXenQwKS06dtRI9ceknvc0=;
+	s=arc-20240116; t=1763362963; c=relaxed/simple;
+	bh=pp9UOtcFxPjx8S/BV3HDsxkdaIllQ3lDh4Dw4F4JpiI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YgIG218v4b7ilXT3dgYyZfODTJzLT4G4Q7fvVUIfXS5SIRcpkaOAzVuY3MrbmjTEgDlBOFKGLK62vQ8sbRVPf33J2D1V2rtsfR/GuZR6+G/c9Jas5Yq1pMu1FwVVhTioqasXrxDa8ulNBqPp6RG9BOWqqNNWnqj9YmOZ4+Qfl48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SHqlBoNu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66BE7C116B1;
-	Mon, 17 Nov 2025 07:02:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763362922;
-	bh=DPXRRBWGFrZM5Dr8fzmrocXenQwKS06dtRI9ceknvc0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SHqlBoNuaJX5K+18FodgV1+Di38t2mtfnNWUt4TkDloCKbxZppVVc/Q9O+PcVcNUo
-	 XrkmUiXpxtP/5gb/9fWNarjdFw80forDBTbXhGz68Agr3bcwE3cQlhMnXcYhCxUPK0
-	 4q5nrVLeV0t8+o6mgLr6wE4+vWp4TfcpHml83KpkV5guAc0S6geDi4BUhU6q8HaKSP
-	 ONJsuVVaKBiiWayc0MGJc8PO3HmOTn3l7X1qfAzaZGTfbxNRFm4L2qjBVECCxbIgxe
-	 F6V5UhAe0QDDSTBeHyPK7rEZSQPpoKtJpWYV0t/L57hQr6RvpUqHamV5irepO4TBoT
-	 4u87ydgYSe9iA==
-Date: Mon, 17 Nov 2025 08:01:59 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yuntao Wang <yuntao.wang@linux.dev>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Catalin Marinas <catalin.marinas@arm.com>, 
-	James Morse <james.morse@arm.com>, Baoquan He <bhe@redhat.com>, 
-	Zhen Lei <thunder.leizhen@huawei.com>, Ard Biesheuvel <ardb@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Geoff Levand <geoff@infradead.org>, 
-	Andrew Morton <akpm@linux-foundation.org>, Changyuan Lyu <changyuanl@google.com>, 
-	Alexander Graf <graf@amazon.com>, "Mike Rapoport (Microsoft)" <rppt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/8] of/fdt: Consolidate duplicate code into helper
- functions
-Message-ID: <20251117-tasteful-peccary-of-sympathy-a4f9cb@kuoka>
-References: <20251115134753.179931-1-yuntao.wang@linux.dev>
- <20251115134753.179931-2-yuntao.wang@linux.dev>
+	 Content-Type:Content-Disposition:In-Reply-To; b=F8hSWo7TCtsHrPXpq2YBc0l4VVwCBCa2sszolnmEB5hVqPtMBpeARaHwNrd81N8o4RoUfc4070QgkgdxRNoHDmqpNslFDluQiOXF1m3wY1jvje7dFjK+mk2bJ/9KdXAopyehV2RamILSD+ltAUNUXxMgLMTTSkz2EhruACezMS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ADrSGRUJ; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7aa9be9f03aso3312918b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 23:02:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763362961; x=1763967761; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fASXZCo6zuX2fyCl4lSygWMZOBjiZpryb8F1RE8Zsso=;
+        b=ADrSGRUJmEJE3HR0cpwzQ26Wka10LYrpZVJcRQjpaig3mY1025/fOi0I7kbz5Ej/cl
+         j0xTZwwO9BfpAbcHuZHLgGpocSP4JM4Nym/7zQJSFEmVVMgFo+fCF4Bwg8Hh/rWI08K3
+         lXBvXgHymHn9stY8ufdvk5sSBaVFrTN6qOPU8V2DPCDdqGMIlmewgyrZXR2EWJuOJFpY
+         qfB/KnV2DfNK8FrAuLm8mlJp8FDabWgq3dn81X4heDXOK1EJu7rojmlYmrTiKsMBw7r3
+         U0Xk4vlZw/iQ/cKthNqqIz1c1EDXDsCLI8/5x/09Ukv2Z97Kc+mpvkFe9bSsAP5pJhTF
+         7CYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763362961; x=1763967761;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fASXZCo6zuX2fyCl4lSygWMZOBjiZpryb8F1RE8Zsso=;
+        b=EJG6fRByd+HTifCMiwaSeBrOpGApHdTOQyW59omJZaJ2YniApE/jyYbLeOpp1TA7H7
+         1OFhALCK74bbVO1Vu98M8sS5vaAIeou1lqMUnSkKYICtLtyi44QGsKcE/G2mH/dldTBQ
+         c4A98K8vvQCbNuo27JSolpiuezMaQlGsfyPCp+gnXcb+q31OkXzBlX2QXhuNveLjhtBe
+         +Gkx8XMN2HyAvXdgVKjy55gRszgtFZMygAkXfS5vb1qaZslruyKQkBte6cDEnVF/OHTu
+         6i8139V/lj16Uh/iOhpvDB2liAjPPDPbTYOCxihFiUo/XxVDs6+UAMUezBzVf90u8i2b
+         LXKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVCXseeP3MDCEUtEMpaLnyh0Y0ObhyMPaNNZt9f1HrQAEB2rPccS7vbfpn3jH9MnGUGXYtMbLb8X5bI@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywf4lLfk6JLXRkg/sb2vdBGzs0gyl6GIUsXxo+PCqjP/eJdLvq1
+	+eIZPpJ/5IuS1c/e0HJ6mjMMGpyfpHBY3m8I6vQushfC81vqCrnc//uC
+X-Gm-Gg: ASbGnctYGtXPnH607LX1gOTEbZsH1yTN0IZOWjaxJcKSgCP4n2kTuye+wsRZbHe0+DZ
+	CaSqcurSEVU316YRkWMGadTC0/DIigFZAy464G+QQNUJxMSyyExR6EK0muv1jStn7qS+fYHogMA
+	9wly5WpoQKJp6OWi5iDEinNJ5ea+I5sbP691k8guEUbZi2YjUOa/g5twxQYCF2XBUE67qgwIzV0
+	wALwWg0FXNW2ljhHP4V0gyS0wft2zfDdGmDNbXMxT83+ZcQrvskiVEiTHZ5yAcqvVp9Havd4cSl
+	SohE69zQoA5graNVu/LsPZ1mRCCdQ8SoLUQo2N8cyTo1XhcZYyWFa+muObFI/AtQCaZONSq03iy
+	KW1CkmMTJQuff1m7DXbXvyOUOGv1rn+d4NzhLu3dkoPruyerQ4zIM3oUcvPs5KVlPQKUyyTLB4J
+	dVMPSw9ZTA
+X-Google-Smtp-Source: AGHT+IHfnm3IzWza8gHcE5HGBty9zF9EvqIvnvTqildA2ZM0zlu5AsSzDpAQGo3gcaH0YBBS76BNfQ==
+X-Received: by 2002:a05:701b:2412:b0:11b:9386:825b with SMTP id a92af1059eb24-11b938684dfmr2055518c88.48.1763362960827;
+        Sun, 16 Nov 2025 23:02:40 -0800 (PST)
+Received: from geday ([2804:7f2:800b:a807::dead:c001])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11b060885e3sm44795481c88.0.2025.11.16.23.02.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Nov 2025 23:02:40 -0800 (PST)
+Date: Mon, 17 Nov 2025 04:02:28 -0300
+From: Geraldo Nascimento <geraldogabriel@gmail.com>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Shawn Lin <shawn.lin@rock-chips.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Johan Jonker <jbx6244@gmail.com>,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 0/3] PCI: rockchip: 5.0 GT/s speed may be dangerous
+Message-ID: <aRrIhA1uv_aIneOc@geday>
+References: <cover.1763197368.git.geraldogabriel@gmail.com>
+ <8f3cc1c1-7bf7-4610-b7ce-79ebd6f05a6e@rock-chips.com>
+ <257951b7-c22e-9707-6aba-3dc5794306bb@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,16 +102,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251115134753.179931-2-yuntao.wang@linux.dev>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <257951b7-c22e-9707-6aba-3dc5794306bb@manjaro.org>
 
-On Sat, Nov 15, 2025 at 09:47:46PM +0800, Yuntao Wang wrote:
-> Currently, there are many pieces of nearly identical code scattered across
-> different places. Consolidate the duplicate code into helper functions to
-> improve maintainability and reduce the likelihood of errors.
+On Mon, Nov 17, 2025 at 04:57:11AM +0100, Dragan Simic wrote:
+> Hello Shawn and Geraldo,
+> 
+> On Monday, November 17, 2025 04:42 CET, Shawn Lin <shawn.lin@rock-chips.com> wrote:
+> > 在 2025/11/15 星期六 17:10, Geraldo Nascimento 写道:
+> > > In recent interactions with Shawn Lin from Rockchip it came to my
+> > > attention there's an unknown errata regarding 5.0 GT/s operational
+> > > speed of their PCIe core. According to Shawn there's grave danger
+> > > even if the odds are low. To contain any damage, let's cover the
+> > > remaining corner-cases where the default would lead to 5.0 GT/s
+> > > operation as well as add a comment to Root Complex driver core,
+> > > documenting this danger.
+> > 
+> > I'm not sure just adding a warn would be a good choice. Could we totally
+> > force to use gen1 and add a warn if trying to use Gen2.
+> 
+> I think that forcing 2.5 GT/s with an appropriate warning message
+> is a good idea.  That would be like some quirk that gets applied
+> automatically, to prevent data corruption, while warning people
+> who attempt to "overclock" the PCIe interface.
 
-Not much improved. Please go to previous version and read the comments.
+Hi Shawn and Dragan,
 
-Best regards,
-Krzysztof
+Alright, I'll send v2 with this suggestion in mind. So that driving the
+core at 5.0 GT/s will require patching and compiling own kernel.
 
+> 
+> > Meanwhile amend the commit message to add a reference
+> > of RK3399 official datesheet[1] which says PCIe on RK3399 should only
+> > support 2.5GT/s?
+> > 
+> > [1]https://opensource.rock-chips.com/images/d/d7/Rockchip_RK3399_Datasheet_V2.1-20200323.pdf
+> 
+
+Shawn, URLs have the bad habit of changing or simply disappearing, so I
+don't think it's a good idea to put URL in the commit message.
+
+Also, the datasheet just mentions that RK3399 supports only 2.5 GT/s,
+it does not mention possible damage from driving the core at 5.0 GT/s.
+
+> Also, rewording the patch summary as follows below may be good,
+> because that would provide more details:
+> 
+>   PCI: rockchip: Warn about Gen2 5.0 GT/s on RK3399 being unsafe
+> 
+> Or, if we'll go with the automatic downgrading, like this:
+> 
+>   PCI: rockchip: Limit RK3399 to Gen1 2.5 GT/s to prevent breakage
+> 
+
+Dragan, these are good ones, thanks. Though I think I'll omit Gen1/Gen2
+wording since I know how much Bjorn dislikes those terms.
+
+Thanks,
+Geraldo Nascimento
 
