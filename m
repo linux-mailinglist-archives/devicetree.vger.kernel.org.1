@@ -1,205 +1,181 @@
-Return-Path: <devicetree+bounces-239300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76A0C63A6F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:58:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98384C63A60
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:57:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 5A85D28ABE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:58:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4811F3A94F2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827E730E837;
-	Mon, 17 Nov 2025 10:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C3D30F523;
+	Mon, 17 Nov 2025 10:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="COX4WNgH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cw+BPFDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49251DC985;
-	Mon, 17 Nov 2025 10:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0EA30C343;
+	Mon, 17 Nov 2025 10:57:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763377129; cv=none; b=Q39ddZy99E8XdBxxv2Z0ECeYU1vgewg4WqbHAuRTCA6EPsC5T600KKkuPN8oI6uc1Oxk2h276CERRPhHq8am71Mn5pJA6X3i38YD+778Ob2Lm9RtFokQrtxGLl+fF4Y35V3380W3Dx2QVLb/cSic1GQscRPxOAcD1cCJysWg7Cc=
+	t=1763377055; cv=none; b=FgdQIN1P00LQt/gvE37hBOX40OsgVNUoKRRWCCXOz9Lv10pDxtS3Q0sJ9U7QhoqBB7UvZ1iZzZtMegNAFJ5VtWYc2T02l6sDoaSAAVOSxFsM/9AFGzYZAhJzbaNnB3QEJ+ci82IbP+mfNXokSfskQprnCgFd4CDWUqnZoZfhwRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763377129; c=relaxed/simple;
-	bh=hUIBnGTka6MWAFgLDZm+Yb9QyWef8l+NVsIbZANEvYg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ufojt51UWesGFd0G78Sh/eysUOxeaa6j13ZidZOPYb1Pc5PElZ5funooSyonDxl1mrXJOy1DjOVgYAV69eHzcjjxv6BHeJYcsJErmX1du6zLKscJf8WyZHP2xPWTT7Bz5Zyw91dk4DDuGZ/3je+jzCfGdYZgmhQPn+47jEekfNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=COX4WNgH; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AHAthamF3462592, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1763376943; bh=/2xVl9GtYDKziiIkptsRgm8RTLyYPV0xJz1nP0LWBYs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=COX4WNgH+/v8wdJ1B1b4fetKPl+lji2q0miDHYVP4bUr8ja6PfPYuW5c+2Qhr2G72
-	 G22oNH2B6supn5JexMxJIcOkVdKRwNy1ySh5iomj7kEKgDpYkpBk2cPjPmAqU7XrMH
-	 h38MtVz+BkqC6uTmN+qiTx0MAF3X7Q3wP86AEh42pvjBAL7GpXLHjKtsfByalGtU7P
-	 nvL+O60aj29GdKw1sNTKbIy7Fqkn5e0ToaWNdm/TIz7kQcDGrw084h94T7R4wpVmvc
-	 W4WmV5m6bJ1BkyS48JpKYbi4jysBdZefAk0HwQo6FqYxDcIwo9ufA8xFA3OWp40R1A
-	 M6qKkGNS1kzPQ==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AHAthamF3462592
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 17 Nov 2025 18:55:43 +0800
-Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.27; Mon, 17 Nov 2025 18:55:43 +0800
-Received: from RTKEXHMBS03.realtek.com.tw (10.21.1.53) by
- RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.27; Mon, 17 Nov 2025 18:55:42 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS03.realtek.com.tw
- (10.21.1.53) with Microsoft SMTP Server id 15.2.1544.27 via Frontend
- Transport; Mon, 17 Nov 2025 18:55:42 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <conor@kernel.org>
-CC: <afaerber@suse.de>, <conor+dt@kernel.org>, <cy.huang@realtek.com>,
-        <devicetree@vger.kernel.org>, <eleanor.lin@realtek.com>,
-        <james.tai@realtek.com>, <krzk+dt@kernel.org>, <lee@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-realtek-soc@lists.infradead.org>, <robh@kernel.org>,
-        <stanley_chang@realtek.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: realtek: Add Kent Soc family compatibles
-Date: Mon, 17 Nov 2025 18:55:42 +0800
-Message-ID: <20251117105542.14789-1-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251113-preorder-task-4e5ba09580d8@spud>
-References: <20251113-preorder-task-4e5ba09580d8@spud>
+	s=arc-20240116; t=1763377055; c=relaxed/simple;
+	bh=3RsdR1HaRwt736EY0czV1I955a+QQs/ZdNqAwtZD+Yc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t+KQ54Iq23aprPY8JrJOk/4Y/sBgKOul533Hdw0E2PNbHnK4U4DNWKax+WJXM8Z4UjSzoa2vUqDcfw+cTu3aT36NcIhtu8p6ooEPtTtDueJcmtuzM+OfGCacq8tsUqDxkA5o9yoNxlXY4BJOIT1uXmDyNohfp8ls/ehAgnUyXQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cw+BPFDh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA245C4CEF5;
+	Mon, 17 Nov 2025 10:57:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763377054;
+	bh=3RsdR1HaRwt736EY0czV1I955a+QQs/ZdNqAwtZD+Yc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cw+BPFDhJYxVn9GaECyrEd/0EgSlgZkEJcvY8PRKxy3oTvik5t11eJNF1B9iaLHLM
+	 aMg7jTm/Su2cMonMGCgW+jYvPorViczo3ZbJzzaLWMzaKM2oXBNtcN5Hf9VuVi1++U
+	 WToiL0W9BgtbAl0PnHkrh85xSQO6JPHFz9+jXVPj95foFZsnqT+Zsg5WxlwrFqbYp/
+	 qA5VHT/9t4rdOyigws/B+PCDBhmWwv6dyLZAN6YQolhnZdcDyr1nJxSGHsR61yPqyU
+	 32aU3gUIioOiLQc59rZ0Uvg9yxXK0DlX58f9BFU66e3TYH/GaIUxm9JOoCeM0Omots
+	 tVOFh6VIuDT3w==
+Message-ID: <50a4b4a9-afd4-42a3-9740-5e48de312f1d@kernel.org>
+Date: Mon, 17 Nov 2025 11:57:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] drm: Add driver for Sitronix ST7920 LCD displays
+To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Javier Martinez Canillas <javierm@redhat.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org
+References: <20251031-st7920-v4-0-35291f8076b2@gmail.com>
+ <20251031-st7920-v4-2-35291f8076b2@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251031-st7920-v4-2-35291f8076b2@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 13, 2025 at 08:30:07PM +0800, Yu-Chun Lin wrote:
-> > Define compatible strings for Realtek RTD1501s, RTD1861b and RTD1920s.
-> > 
-> > Additionally, convert legacy DTS-style comments to YAML description 
-> > properties, following the pattern from the ARM bindings conversion 
-> > series [1].
->
-> "Additionally" is often a sign that it should be in a different patch.
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> pw-bot: not-applicable
+On 31/10/2025 10:05, Iker Pedrosa wrote:
+> +
+> +static void st7920_hw_reset(struct st7920_device *st7920)
+> +{
+> +	if (!st7920->reset_gpio)
+> +		return;
+> +
+> +	gpiod_set_value_cansleep(st7920->reset_gpio, 0);
+> +	usleep_range(15, 20);
+> +	gpiod_set_value_cansleep(st7920->reset_gpio, 1);
 
-Hi Conor,
+This is odd. Why are you keeping device in reset state?
 
-I'm planning to split the changes into two separate patches:
+I don't think you tested your driver with DTS.
 
-1. One patch to convert realtek.yaml to match the DTS-style comments,
-following the pattern from the ARM bindings conversion series.
-2. Another patch to define the compatible strings for Realtek RTD1501s,
-RTD1861b, and RTD1920s.
+> +	msleep(40);
+> +}
+> +
 
-Could you confirm if both patches should include your Acked-by tag, or is
-it only applicable to one of them?
+> +
+> +	regmap = devm_regmap_init_spi(spi, &st7920_spi_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	st7920 = devm_drm_dev_alloc(dev, &st7920_drm_driver,
+> +				    struct st7920_device, drm);
+> +	if (IS_ERR(st7920))
+> +		return PTR_ERR(st7920);
+> +
+> +	drm = &st7920->drm;
+> +
+> +	st7920->dev = dev;
+> +	st7920->regmap = regmap;
+> +	st7920->spi = spi;
+> +	st7920->device_info = device_get_match_data(dev);
+> +	st7920->width = st7920->device_info->default_width;
+> +	st7920->height = st7920->device_info->default_height;
+> +
+> +	st7920->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
 
-Best regards 
-Yu-Chun
+So you keep device in reset state, then why do you toggle it in
+st7920_hw_reset()? Remember that this is the logical, not line level.
 
-> > 
-> > [1] 
-> > https://lore.kernel.org/lkml/20200622125527.24207-2-afaerber@suse.de/
-> > 
-> > Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> > ---
-> >  .../devicetree/bindings/arm/realtek.yaml      | 42 +++++++++++++------
-> >  1 file changed, 30 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/realtek.yaml 
-> > b/Documentation/devicetree/bindings/arm/realtek.yaml
-> > index ddd9a85099e9..be529490640c 100644
-> > --- a/Documentation/devicetree/bindings/arm/realtek.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/realtek.yaml
-> > @@ -14,21 +14,21 @@ properties:
-> >      const: '/'
-> >    compatible:
-> >      oneOf:
-> > -      # RTD1195 SoC based boards
-> > -      - items:
-> > +      - description: RTD1195 SoC based boards
-> > +        items:
-> >            - enum:
-> >                - mele,x1000 # MeLE X1000
-> >                - realtek,horseradish # Realtek Horseradish EVB
-> >            - const: realtek,rtd1195
-> >  
-> > -      # RTD1293 SoC based boards
-> > -      - items:
-> > +      - description: RTD1293 SoC based boards
-> > +        items:
-> >            - enum:
-> >                - synology,ds418j # Synology DiskStation DS418j
-> >            - const: realtek,rtd1293
-> >  
-> > -      # RTD1295 SoC based boards
-> > -      - items:
-> > +      - description: RTD1295 SoC based boards
-> > +        items:
-> >            - enum:
-> >                - mele,v9 # MeLE V9
-> >                - probox2,ava # ProBox2 AVA @@ -36,25 +36,43 @@ 
-> > properties:
-> >                - zidoo,x9s # Zidoo X9S
-> >            - const: realtek,rtd1295
-> >  
-> > -      # RTD1296 SoC based boards
-> > -      - items:
-> > +      - description: RTD1296 SoC based boards
-> > +        items:
-> >            - enum:
-> >                - synology,ds418 # Synology DiskStation DS418
-> >            - const: realtek,rtd1296
-> >  
-> > -      # RTD1395 SoC based boards
-> > -      - items:
-> > +      - description: RTD1395 SoC based boards
-> > +        items:
-> >            - enum:
-> >                - bananapi,bpi-m4 # Banana Pi BPI-M4
-> >                - realtek,lion-skin # Realtek Lion Skin EVB
-> >            - const: realtek,rtd1395
-> >  
-> > -      # RTD1619 SoC based boards
-> > -      - items:
-> > +      - description: RTD1501s SoC based boards
-> > +        items:
-> > +          - enum:
-> > +              - realtek,phantom # Realtek Phantom EVB (8GB)
-> > +          - const: realtek,rtd1501s
-> > +
-> > +      - description: RTD1619 SoC based boards
-> > +        items:
-> >            - enum:
-> >                - realtek,mjolnir # Realtek Mjolnir EVB
-> >            - const: realtek,rtd1619
-> >  
-> > +      - description: RTD1861b SoC based boards
-> > +        items:
-> > +          - enum:
-> > +              - realtek,krypton # Realtek Krypton EVB (8GB)
-> > +          - const: realtek,rtd1861b
-> > +
-> > +      - description: RTD1920s SoC based boards
-> > +        items:
-> > +          - enum:
-> > +              - realtek,smallville # Realtek Smallville EVB (4GB)
-> > +          - const: realtek,rtd1920s
-> > +
-> >  additionalProperties: true
-> >  
-> >  ...
-> > --
-> > 2.34.1
-> > 
+> +	if (IS_ERR(st7920->reset_gpio)) {
+> +		ret = PTR_ERR(st7920->reset_gpio);
+> +		dev_err(dev, "Unable to retrieve reset GPIO: %d\n", ret);
 
+return dev_err_probe, didn't you get comment on that?
+
+> +		return ret;
+> +	}
+> +
+> +	spi_set_drvdata(spi, st7920);
+> +
+> +	ret = st7920_init_modeset(st7920);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = drm_dev_register(drm, 0);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "DRM device register failed\n");
+> +
+> +	drm_client_setup(drm, NULL);
+> +
+
+Best regards,
+Krzysztof
 
