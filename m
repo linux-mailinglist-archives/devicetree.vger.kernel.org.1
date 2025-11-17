@@ -1,83 +1,79 @@
-Return-Path: <devicetree+bounces-239565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0E04C6677B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:48:55 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969EAC667B4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:52:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 4F5B829A45
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:48:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D770D35D7CB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8744934C816;
-	Mon, 17 Nov 2025 22:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5772F39AB;
+	Mon, 17 Nov 2025 22:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lELBF3A4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYSUCP8g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5870C2F39A0;
-	Mon, 17 Nov 2025 22:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2546CBA3D;
+	Mon, 17 Nov 2025 22:48:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763419637; cv=none; b=AY7HbkTIMMQnBfDmEV0ZDpb78+6zGNgQy4x8hHLlTFgMP6lLF+mOKb8aGAqS6IQ/CHbrtzSVNyK754aBMqRqMn+ofVfG7pdMtPQlem7BqpcEeZIIHm1Ij/vabelscj1V0ug9pRddnALl0+05Jp8FpJYyYd/cXV6frAHqyNWs7HE=
+	t=1763419718; cv=none; b=mLn7wsrkLFywYf8KihSeGhteH4cQPRCs+VHjVd7f+zHoFLHSX8IXx+jeEgveSHvhf1Cx5JpLBx0vSFIilZdP1IuX4nUDZIAMo2Pl49p4Fe3epC3pb8jiJhN3PlQ6/ZgwLz/+1ntwseFqw24dmaITqwzZBJVWu1Nj+j1AveMpUhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763419637; c=relaxed/simple;
-	bh=mrbT0WxcJdbaGoPgzlHFge9VwUjoU+46O2Py3f1iM1k=;
+	s=arc-20240116; t=1763419718; c=relaxed/simple;
+	bh=v6+KaDJ8aMGcLNagNjtxH7djVTSZxKMTFEwO8QFpy+Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lK09z9YVvLN3M/JHYprhMXSb/mNrowG0enZBuyklKg3RHmP55JNaSgBn6Y5V12nmag3Pt52ab9WZGChVK5mlEvDSF3zyxfjK8qi18Hvb/o19J9E3zPqJ/TxOLExVLNBtzzyoEPQN+uqxIPP2XBVbkU4mqNXxaKaB8m5Nz8vPGKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lELBF3A4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E50CC19424;
-	Mon, 17 Nov 2025 22:47:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nvpSg8jBKviVmkUxSkKiM8A53qr0b4vS3+AsixF54WmilqOqSVwrwxDq0eM2t/8gwRaweqn22VWyQE4cL3K8i52tGoiQyl9GlM7wv7HlMaj6XNvu4w0J1baJEv+ZGsV5QZ2XRZRWs0roZaH2vGYVEju7/UDFuRi+rSi6Z8R4eJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYSUCP8g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27672C19424;
+	Mon, 17 Nov 2025 22:48:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763419636;
-	bh=mrbT0WxcJdbaGoPgzlHFge9VwUjoU+46O2Py3f1iM1k=;
+	s=k20201202; t=1763419717;
+	bh=v6+KaDJ8aMGcLNagNjtxH7djVTSZxKMTFEwO8QFpy+Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lELBF3A4C0/3jSe/fOIj2o3tS12m9+KBPZWeu6kd19O2cj96UO5EAs1zGuAu+m6SR
-	 VComBBT8t5sxObV/Hbh4baA32Sgk5WGSvaSPe6ohEyzBHiBXtV3EwaP1s8sn+SakVt
-	 /6cDLeHfVxiN1CCrPE1k6WfErzg7uNvkcsjL21s8JsHg3gSWRR+pHQUwKqPswrrScy
-	 rMXnRa1wVcmH0yk4wudMIS3aDofXE3WGRx7KncJbLlfD2ZVrqjHslTJ+BNEgpMoFAP
-	 W0s87Hb9TscgrZqZFbJxQA6YjXYBjKeoLM3HrAq71N7fFWYx5DpRrjMt9IgZJ/0mBH
-	 F3GBqy/Z4v9hA==
-Date: Mon, 17 Nov 2025 16:47:14 -0600
+	b=lYSUCP8gDQfRP/vBltZLMqzKli+eGo4GDiQccJemqFb8bkGdL2GRcPpJg89bH2YpK
+	 l7WVpta6nBNVc4q7RCNN74psm3a5VBY7hUc+03wP8MSLIL/WAZs6IpthDw8MocQgyM
+	 pb9hGrFYXMPunFcpW/q9elGb9kb9L65lG02PVMSyyWyxHKEbVx3s3YuaKGiS6NtGjf
+	 +/x/XemnNRwelI6tBQnjq1n9AgGfAx/6/Xc1OMoqWaKHgyI2tO0tjlEfihbygNPxFs
+	 9B5nZ/a5JMlrFv9aQuBgYvjrOKQ05rKm2sekzIi1m0iOalA5Qdv3MbAn6ToURnxzoe
+	 jSWuskhiyHzJw==
+Date: Mon, 17 Nov 2025 16:48:35 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: gcc-msm8917: Add missing MDSS
- reset
-Message-ID: <176341963429.859152.11740860069143116254.robh@kernel.org>
-References: <20251117-mdss-resets-msm8917-msm8937-v2-0-a7e9bbdaac96@mainlining.org>
- <20251117-mdss-resets-msm8917-msm8937-v2-1-a7e9bbdaac96@mainlining.org>
+To: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+Cc: Robin Gong <yibin.gong@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
+	devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: pca9540: add debounce
+ timer configuration
+Message-ID: <176341971477.860979.15549912879191395292.robh@kernel.org>
+References: <20251117202215.1936139-1-martijn.de.gouw@prodrive-technologies.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251117-mdss-resets-msm8917-msm8937-v2-1-a7e9bbdaac96@mainlining.org>
+In-Reply-To: <20251117202215.1936139-1-martijn.de.gouw@prodrive-technologies.com>
 
 
-On Mon, 17 Nov 2025 18:17:52 +0100, Barnabás Czémán wrote:
-> Add definition for MDSS reset can be found on MSM8917 and MSM8937.
+On Mon, 17 Nov 2025 21:22:13 +0100, Martijn de Gouw wrote:
+> Make the different debounce timers configurable from the devicetree.
+> Depending on the board design, these have to be set different than the
+> default register values.
 > 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
 > ---
->  include/dt-bindings/clock/qcom,gcc-msm8917.h | 1 +
->  1 file changed, 1 insertion(+)
+>  .../regulator/nxp,pca9450-regulator.yaml      | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
