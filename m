@@ -1,185 +1,272 @@
-Return-Path: <devicetree+bounces-239319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4708C64039
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:18:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3EA6C64051
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0D4EA341B2E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:18:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02C493A6784
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7107527EFE3;
-	Mon, 17 Nov 2025 12:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UPNavtyC";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Pz3tcILG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156B432C929;
+	Mon, 17 Nov 2025 12:18:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E869338DEC
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:17:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F0632B9A0
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763381875; cv=none; b=NYlwie2NturYLeun0CM8fLBDCMof8APaUZ++xVD3RAZcVy6ZQZL5prtEwhLkNImoVlueo0EUwMpsKrppLSRBjl/7l/Rd2SHaIAFCFwZZaUAQaz/2MhG6BjMUkItwCQ9ZD6h4K06c6i9J0YdY5cW6lJiYPRwAfI1Owf2bjmJfAuM=
+	t=1763381916; cv=none; b=gHO6tFV0MQVzRc3ExSepD3ENSABEsTdsF+Q54DHavfxv2H4jWTYHQD83dEBennt3M5wF+7khhaMgLth0L3a9sVC4FEvFWK+TCM42hcK/JFulIF2mopwa9KDMID8ZqFKrwXR3bs2EBp5vR8FkYO7Fmnx35D/eLeEOTRQCjx1Ydwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763381875; c=relaxed/simple;
-	bh=IrgtLqlGGVjEzW+WJHI2/2f6uAkIPVkL0cGzY+IXApk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AELj1+g3x4MqQjr0/Pekppgy5iZahDV8JL2590WiGic+BM2oRrYtfA9r9o14LMwMDuKzLJDUN1J3yGLhDrXhb7AbG6r/lG/lJd1L2qcNTtACfARtgprx0skAdW+yby7oXvwpEnTxFaPDVd5wZ1LeepH+SFdGICKwWOa3rIOWaB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UPNavtyC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Pz3tcILG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AHBOInZ3318413
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:17:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kOssYp9IR5bSzooHWmQsQCCHXQc/n4leNi0bBhT2X2A=; b=UPNavtyCkoBmfG8Y
-	kV8DGkfb3EHZhHlLswDD+U5E8DWfq4IuPenvQ3eNyIS4xAwNkMyC0csy3d99wthY
-	G8fiOXqKCNbCQ8X2sfZEL89ImxymQLCUAiRdJgi44PaePSvzZz+/fBJLDz+d7Fe/
-	Zen8bPlK184ahZdvk7VCQD1WmWxg8X8nhRqNFJHtGVqAbbW5zZHuNT4OXcI2Hqcg
-	LJsAPe8l40xCFn2u2YxenRkNmAfFfYtwTP7QNrByTw5XoXUXI3aEyWwNz1dm5DqI
-	fAMHVMWStbY91geTwyPNsB4xxvf+i4zj71+1k6FqnAXHC3AHPkTCn6tAelcXximS
-	6FPAvQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aejm5cngm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:17:52 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed6a906c52so10842181cf.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 04:17:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763381872; x=1763986672; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kOssYp9IR5bSzooHWmQsQCCHXQc/n4leNi0bBhT2X2A=;
-        b=Pz3tcILGiT4ss1GW96UtEIhP2ML2U+XLSo8n8UnJ7rvSGYdc/eB/m6eXJ1nmVX7+fw
-         PD3+PAnGLqPHjvWOUW3lF+dacYQUJ5VEaDpZL/m8K5OFl1EaBG3B/RMoOFo7XFJGqRQX
-         IbWzxbGyiCWLJqfegebNDlLpAkP15v4Owuh+GgUkfjWW7GbMHXZ+ID5GZ3lB55CVlMNT
-         H6vmAIiBpgLEjyLnZdTWGkkZDa3S36V4u5VBF4ggD4riM06Gv3lHsRQjFLNmRaVYlouU
-         EjS1Oj1I8vrC6yGuzQC2mLdBe6mWNGxehrklCktf9y/HbY9FvAogrxiyP8tYHuavlTqK
-         Fqrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763381872; x=1763986672;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kOssYp9IR5bSzooHWmQsQCCHXQc/n4leNi0bBhT2X2A=;
-        b=n0yhGt1sPUAVgJvwigw1x0uylrzlANhec6qnTbBhVJRrNnYPJv9lH6P2adErn9hs8V
-         lMQzSoAZ5xDsO3jBDAh2MZ3CT88+QU9gCI2m1BIwTBX0kjnORuPSBLPXgdzj319Ygpe/
-         48TwzTnQQeqoJjr2TDW71RGWRmQaebFoJXMmjIRk+kbQpZ/args2IfrbasKfNZSKi7W5
-         aKocDXhA4y2BKgdHLuQPBqVRR22cK7f31O0wLOkiBiwzT+hnD8GjelGw5oKOSLgDOAok
-         hkvNxAwXlQePXSYkSpfQaDtyygbYhD7q8wVoNwLXnHMTn6gAf4nJcOwrx7ZM22yN1mra
-         gEMw==
-X-Forwarded-Encrypted: i=1; AJvYcCWYj9DW1lyixUiTw6X5REOV00ugC4dfv4I2sRCuYBW2H+WbHCcDtfV6vkfoYYpo5baE6bPObCY2Kywn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuvXSZPt9AKD+3IgTTphfV+RBWxXa0czFX2l6nrKtBDURhLXWw
-	4lPTYDAGI/kytYRenRv7ajgke/e76CITdpZ5vmHAWNFYGeytYcfRFLgnRyLDg01Irq++VS7GT4a
-	hN8ldXZTOXWFAXsDRo9S6MnW+sZ9UKt6/JsLGxtgd/Cs6TVthB8KPxRCJRHbNqWAZ
-X-Gm-Gg: ASbGncvSpqKQWxwCxNZw3UnEyJK9dhtJTvTRH3rlfftR+QBa5dt0mmeJzk1D2C0GH+A
-	WY/zq2r2CgepZXoFBX5wILhyBhi7AdYxjO4PA7jIvKrCXXO+nHIlvYZ5YREcpd0aWSh3ApozYuy
-	4dy/mkAv4rUX44IuEDlwtrqE8cuc14zowvbwl+ewG5GgOQ3UGEERp5Y0q1cz3vz0v2Uwt08zsQ3
-	grDiev7yULNxTd0lYHjodNX2qvdE7S03pOjNlGxoGLLVEuGZeGKR9YCGmk7y072IoNnbKfpSQFz
-	CZ7xArqhzbmCvkx6T7RUqsAp6f4R07itwolxR1sTozGRxvzZGa4J3DRJXkbwinRqbE+kf/KIE2K
-	FdEw/b7xg4pDNQ+5JRfb8LTRNZfrRhRubCHaIKdGSBNZtSlvcjSEgYkTV
-X-Received: by 2002:a05:622a:7892:b0:4ee:1367:8836 with SMTP id d75a77b69052e-4ee13678a9emr46875561cf.5.1763381872245;
-        Mon, 17 Nov 2025 04:17:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHOHsMBY+vmfDDv0UFrDPhqHGh/pmvHwB4CxFSVYk9Ucz8EIShxdHNzm13AJ1olvUMCVmZ4pg==
-X-Received: by 2002:a05:622a:7892:b0:4ee:1367:8836 with SMTP id d75a77b69052e-4ee13678a9emr46875401cf.5.1763381871805;
-        Mon, 17 Nov 2025 04:17:51 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6433a3d8294sm10047574a12.3.2025.11.17.04.17.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Nov 2025 04:17:51 -0800 (PST)
-Message-ID: <8faa0c8e-6f21-4025-bbdf-d4ec18eb7628@oss.qualcomm.com>
-Date: Mon, 17 Nov 2025 13:17:48 +0100
+	s=arc-20240116; t=1763381916; c=relaxed/simple;
+	bh=67T+4uBdJ6G54kF4A3sVxn69446l+Y9BVvmZeUDbxtw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kkg3C7PTvThT9AVT6f6FfZw+57qKOtepfb25ZsmR4fHs5NAoMhgWXHMC9Om/0ohYBCRj4VK8KxoVBt+7Lb2B0Z0YWlkPgPBywqs8FyyJP9ycv9HmTKP5216ibeMXElnNFqNrN6vAPua5kxyIE5GjDGXDuKNB4VOnmbI8JsETbic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vKyBd-0004oU-KH; Mon, 17 Nov 2025 13:18:25 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vKyBc-000uSM-2A;
+	Mon, 17 Nov 2025 13:18:24 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vKyBc-008Jeh-1o;
+	Mon, 17 Nov 2025 13:18:24 +0100
+Date: Mon, 17 Nov 2025 13:18:24 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Jander <david@protonic.nl>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v3 2/2] iio: adc: Add TI ADS131M0x ADC driver
+Message-ID: <aRsSkGLO2ELzgca_@pengutronix.de>
+References: <20251114092000.4058978-1-o.rempel@pengutronix.de>
+ <20251114092000.4058978-3-o.rempel@pengutronix.de>
+ <CAHp75Vcjv=XerYsunKO7h_e_jBMQuaKvkvRAuPLAXLqevM4jMw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] clk: qcom: gcc: Add support for Global Clock
- controller found on MSM8940
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Adam Skladowski <a_skl39@protonmail.com>,
-        Sireesh Kodali <sireeshkodali@protonmail.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lanik <daniilt971@gmail.com>
-References: <20251116-gcc-msm8940-sdm439-v1-0-7c0dc89c922c@mainlining.org>
- <20251116-gcc-msm8940-sdm439-v1-2-7c0dc89c922c@mainlining.org>
- <793d5039-0506-4104-b4ce-64bfa3cc00eb@oss.qualcomm.com>
- <5C7A10CF-910E-448A-8BFD-F2A46782D3B9@mainlining.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <5C7A10CF-910E-448A-8BFD-F2A46782D3B9@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE3MDEwNCBTYWx0ZWRfXy2X5RoWl9kiI
- 02dXCNeJBex/9KhQXLTT4cUVB88loX/t4epdvX9m+/HC2Ofqpm+yqyM29NXfuP5UyS+utOBFI31
- yFHxSXbgA5F0UsYRKz56xhn0TiTGomxSCpaNwHqc/2Vd7KKpAXI4nR1nB47dNhtR+S6KcXaYG4v
- vz345EP5QIfEZmefapDRrBjDVg2mAA0UFq7U12h/9sQyVfBGr1Kw/lE8FDKKfOaHTQUeGdz4LCl
- +jfcuLOHu5y9b1FhNxvIyelQig6KCjR8fxjX8IavrUaZ49UxxvtE34N1dvL2MxsPicqK2awqYR1
- vWv9OXnKDEFEt4+6MZWuNYgnkCrqHtSWkHDYHp6rqP9m2PQxNJ5WRIptdeOxbqCTzw+ScbGJXVM
- iOoDnHtoiMUdWXqyYAf2xyf6SUpKgw==
-X-Proofpoint-GUID: F7XJ1QfGBlJVczmGw7DgOx3NTLyq1QT_
-X-Proofpoint-ORIG-GUID: F7XJ1QfGBlJVczmGw7DgOx3NTLyq1QT_
-X-Authority-Analysis: v=2.4 cv=Pb7yRyhd c=1 sm=1 tr=0 ts=691b1270 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=nxAZbQHxNLXoYmXW_74A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-17_03,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015
- priorityscore=1501 suspectscore=0 bulkscore=0 impostorscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511170104
+In-Reply-To: <CAHp75Vcjv=XerYsunKO7h_e_jBMQuaKvkvRAuPLAXLqevM4jMw@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 11/17/25 9:51 AM, Barnabás Czémán wrote:
+On Fri, Nov 14, 2025 at 08:24:23PM +0200, Andy Shevchenko wrote:
+> On Fri, Nov 14, 2025 at 11:20 AM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> > +config TI_ADS131M02
+> > +       tristate "Texas Instruments ADS131M02"
+> > +       depends on SPI && COMMON_CLK && REGULATOR
 > 
+> Hmm... The COMMON_CLK looks strange here. Why?
+
+I can drop it, but the driver will fail without proper clock
+configuration anyways.
+
+> > +       select CRC_ITU_T
 > 
-> On 17 November 2025 09:03:53 CET, Taniya Das <taniya.das@oss.qualcomm.com> wrote:
->>
->>
->> On 11/17/2025 3:05 AM, Barnabás Czémán wrote:
->>>  
->>> +static struct clk_branch gcc_ipa_tbu_clk = {
->>> +	.halt_reg = 0x120a0,
->>> +	.halt_check = BRANCH_VOTED,
->>> +	.clkr = {
->>> +		.enable_reg = 0x4500c,
->>> +		.enable_mask = BIT(16),
->>> +		.hw.init = &(struct clk_init_data){
->>> +			.name = "gcc_ipa_tbu_clk",
->>> +			.ops = &clk_branch2_ops,
->>> +		},
->>> +	},
->>> +};
->>> +
->>
->> Is the TBU clock used on 8940 by a SMMU driver?
-> As far as I know no MSM8940 is using same smmu driver and bindings like MSM8937.
+> Btw, why does it not use regmap?
 
-On msm8939, the clock needed to be turned on for the GPU SMMU
+I already answered it here:
+https://lore.kernel.org/all/aQ3J_rJV-hB2nh91@pengutronix.de/
 
-See 5bc1cf1466f6 ("iommu/qcom: add optional 'tbu' clock for TLB invalidate")
+> > +#include <linux/array_size.h>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/bitops.h>
+> > +#include <linux/cleanup.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/crc-itu-t.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/dev_printk.h>
+> 
+> > +#include <linux/device.h>
+> 
+> Is it used? I haven't found what API or data structure is required from here.
+> 
+> > +#include <linux/device/devres.h>
+> > +#include <linux/err.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/lockdep.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/spi/spi.h>
+> > +#include <linux/string.h>
+> > +#include <linux/types.h>
+> > +#include <linux/unaligned.h>
+> 
+> ...
+> 
+> > +#define ADS131M_CMD_RREG_OP            0xa000
+> > +#define ADS131M_CMD_WREG_OP            0x6000
+> 
+> These two have bit 13 always set. What is the meaning of that bit?
 
-Konrad
+Dokumentation do not provides this information.
+
+> 
+> > +#define ADS131M_CMD_RREG(a, n) \
+> > +       (ADS131M_CMD_RREG_OP | \
+> > +        FIELD_PREP(ADS131M_CMD_ADDR_MASK, a) | \
+> > +        FIELD_PREP(ADS131M_CMD_NUM_MASK, n))
+> > +#define ADS131M_CMD_WREG(a, n) \
+> > +       (ADS131M_CMD_WREG_OP | \
+> > +        FIELD_PREP(ADS131M_CMD_ADDR_MASK, a) | \
+> > +        FIELD_PREP(ADS131M_CMD_NUM_MASK, n))
+> 
+> ...
+> 
+> > +/**
+> > + * ads131m_tx_frame_unlocked - Sends a command frame with Input CRC
+> > + * @priv: Device private data structure.
+> > + * @command: The 16-bit command to send (e.g., NULL, RREG, RESET).
+> > + *
+> > + * This function sends a command in Word 0, and its calculated 16-bit
+> > + * CRC in Word 1, as required when Input CRC is enabled.
+> > + *
+> > + * Return: 0 on success, or a negative error code from spi_sync.
+> 
+> spi_sync()
+> 
+> But I would drop it as it makes dependency on the code changes and it
+> will deviate easily if code grows and something else becomes a call
+> that returns an error, also this simply doesn't scale: are you going
+> to list whole bunch of APIs in the kernel doc? (rhetorical Q) Ditto
+> for other similar cases.
+
+ack
+
+> > +static int ads131m_hw_reset(struct ads131m_priv *priv)
+> > +       ret = gpiod_set_value_cansleep(priv->reset_gpio, 0);
+> > +       if (ret < 0)
+> > +               return dev_err_probe(dev, ret, "Failed to deassert reset GPIO\n");
+> > +
+> > +       /* Wait t_REGACQ (5us) for registers to be accessible */
+> > +       fsleep(ADS131M_RESET_DELAY_US);
+> > +
+> > +       return 0;
+> > +}
+> 
+> Can you use the reset-gpio driver instead of a custom approach?
+
+I do not have strong option about this right now.
+
+> ...
+> 
+> > +       /*
+> > +        * Get the optional external reference. This schedules regulator_put()
+> > +        * automatically.
+> > +        */
+> > +       priv->refin_supply = devm_regulator_get_optional(dev, "refin");
+> > +       ret = PTR_ERR_OR_ZERO(priv->refin_supply);
+> > +       if (ret == -ENODEV)
+> > +               priv->refin_supply = NULL;
+> > +       else if (ret < 0)
+> > +               return dev_err_probe(dev, ret, "failed to get refin regulator\n");
+> 
+> So, will the refin_supply be ever an error pointer? I think no, hence
+> why IS_ERR_OR_NULL() in the user somewhere above in the code?
+
+Looks like error pointer:
+https://elixir.bootlin.com/linux/v6.18-rc5/source/include/linux/regulator/consumer.h#L351
+
+> > +static int ads131m_parse_clock(struct ads131m_priv *priv, bool *is_xtal)
+> > +{
+> > +       struct device *dev = &priv->spi->dev;
+> > +       int ret;
+> > +
+> > +       priv->clk = devm_clk_get_enabled(dev, NULL);
+> > +       if (IS_ERR(priv->clk))
+> > +               return dev_err_probe(dev, PTR_ERR(priv->clk), "clk get enabled failed\n");
+> > +
+> > +       ret = device_property_match_string(dev, "clock-names", "xtal");
+> > +       if (ret == 0) {
+> > +               if (!priv->config->supports_xtal)
+> > +                       return dev_err_probe(dev, -EINVAL,
+> > +                                            "'xtal' clock not supported on this device");
+> 
+> > +               *is_xtal = true;
+> > +
+> > +               return 0;
+> 
+> This...
+> 
+> > +       } else if (ret > 0) {
+> > +               return dev_err_probe(dev, -EINVAL, "'xtal' must be the only or first clock name");
+> 
+> > +       } else if (ret == -ENODATA) {
+> > +               *is_xtal = false;
+> > +
+> > +               return 0;
+> > +       }
+> > +
+> > +       return dev_err_probe(dev, ret, "failed to read 'clock-names' property");
+> 
+> ...and this can be deduplicated, so the first one becomes just a check
+> for !supports_xtal.
+> 
+>   if (ret == 0) && !supports_xtal)
+>     return dev_err_probe(...);
+>   else if (ret > 0)
+>     return dev_err_probe(...);
+> 
+> This one will be modified to
+> 
+>   else if (ret != -ENODATA)
+>     return dev_err_probe(...);
+> 
+>   *is_xtal = !ret;
+>   return ret;
+
+ok.
+
+> > +}
+> 
+> ...
+> 
+> > +       config = spi_get_device_match_data(spi);
+> 
+> > +       if (!config)
+> > +               return dev_err_probe(dev, -EINVAL, "No device configuration data found\n");
+> 
+> Without this code will crash, right? So, I consider this check is
+> redundant because any support of any new chip requires this, and if
+> one didn't add the driver data, means it wasn't tested (which is a
+> good trap on itself during code review).
+
+ok.
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
