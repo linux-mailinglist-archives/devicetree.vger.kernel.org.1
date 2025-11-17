@@ -1,267 +1,165 @@
-Return-Path: <devicetree+bounces-239266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0BEC631AF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:16:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F060DC631FC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:19:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9452B3A9C46
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:16:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55D123A92E3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB226326951;
-	Mon, 17 Nov 2025 09:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373FC324B3A;
+	Mon, 17 Nov 2025 09:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="DhJ0r+eo"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ibGneCOc";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ZkFBDSDu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277B732693F;
-	Mon, 17 Nov 2025 09:15:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F3A6324B3E;
+	Mon, 17 Nov 2025 09:16:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763370953; cv=none; b=F3zWDKVPQKbcVvqr+RSE87ZQUY88+a1l8YSENDILxaeIRILn13xfvTFKGoLWNFZiJ7FcFCYdT+e3uRaLt9L2Nd6nbkO1rwsRMYYKXI4yJjGdVfkHDNV6Atz0TBP2YucFdaUzpwJcUsD9L9udKY4y6AoYhJ4i0//G5My95xk7Lh0=
+	t=1763371004; cv=none; b=gcTZx+7aE7hK+IR1XpcH6aLU5VVOdnkdjTPQeJwsyM3ikW/5TF+/LT4KKkLzzkKGHsVM62Kq5H5LqtYZ2W4IAlpg95lMUq9ctCoNwrGFmHE7lO3Lx1uatE52tE5UD2aytoOlAq2svJHmpgTpENGNVE086rENsBAUMWkzrYEJOlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763370953; c=relaxed/simple;
-	bh=D5+H7f4uBte+hiuEhbTEUv5x+AR2ARk/b2f644vJkss=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ToW1oQqmJmyf+dhXPhUDvab6YQ39l7hNAVJEsgnf08MVk+UDnwhWmT2/nFCGpiyv421aibAGOrc6AEOGfpyct0je8ZxAqxND9CpTfNg/SQxEJNByYv8b3A+hPiRzu6Irw/blNIC1zpXfaM4C8O8D4Neg46vWuHYeQ2cjzpacmIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=DhJ0r+eo; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AH87mdN2052307;
-	Mon, 17 Nov 2025 04:15:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=IuYns
-	lDuYkzWlpe48q57o2TLUosAJYFqqBgwehB93Os=; b=DhJ0r+eopCIwz/p/Llr5G
-	yPrNHriECB5jRuKQGxIa6/1dQTOErHoRuEAJTXqXhrMqF6P37d38F6WjusqOofpa
-	yGWistKyIO91xm8V4k0hrXyTAKccxxPbP1eF/m9c9vM8zn6QWkicNDKSqSkI+HjQ
-	l66uvSSpDumBco/SQjkieZ8Xc7NE4swaOsrCQ16MePC9de8YnqHTuxG+kHjD7Gt1
-	fuji4RowPSXl9x6jH1K4p088crAwPPEV0SOc09WB4bOub8QYimQrdvY2tFqzTCRX
-	atXEihMvQBHn3IDMl7HEPHYZ7WBgVqvx3eCEb1AT/dHOqUq1FAvQUkd+ToVrcEzq
-	Q==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4afehdkgrs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Nov 2025 04:15:48 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5AH9Flut034273
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 17 Nov 2025 04:15:47 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 17 Nov 2025 04:15:47 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 17 Nov 2025 04:15:46 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 17 Nov 2025 04:15:46 -0500
-Received: from Ubuntu.ad.analog.com ([10.66.6.193])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AH9FE4F003532;
-	Mon, 17 Nov 2025 04:15:42 -0500
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Antoniu Miclaus
-	<antoniu.miclaus@analog.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>
-Subject: [PATCH v3 2/2] gpio: adg1712: add driver support
-Date: Mon, 17 Nov 2025 09:13:23 +0000
-Message-ID: <20251117091427.3624-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251117091427.3624-1-antoniu.miclaus@analog.com>
-References: <20251117091427.3624-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1763371004; c=relaxed/simple;
+	bh=gDVq5kG+0ZUTFK34RkqjdUHH3wg2xP0Yc1mxJyx7FN4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=QRZ3IWZCkvgWBk3+Ril73yXuGsMHjKjwbcBza7zRCjcfcZ2jxGP066o4lIcPvzrpQhSXNZbugHWAcRfO2GdedhVKZmko7pjyK1EEK4U9iSDvroH1DCXoPrCMtCMW/ittiqUnbZ3fyLfONk2d8Dc6pRTUtJvsb/Eg2Ezdsj0Crac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ibGneCOc; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ZkFBDSDu; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1763371000;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=i6fdPv9UJz7OWefZ82+++hXICXoBPCRf3MToQXAlL6o=;
+	b=ibGneCOc4R6fo87nX/T506YugbHqDw1jB0BWCbKtfhd3Iye+ZrZqd1y5zKj8fLmanVxXPD
+	IVrexiL9vjj2GyQdgNwuHbpMGhT5rcRg2HgkailAEJbN4f2m4+M6wgmir7d9Kuvv22neHr
+	5mAEqhiPp3JPBpVtk7K3u2fLhRZZBpjKAvHOh1e3XuoW4afuHSfbmLN/d3nAeRq03ZBpd/
+	IlTwO3qKSy/sB4iq5tO25y511FNOrgyVIK0Zv2FkkjRqEcQWEGMQBl/Fvqqd1W1r76AQR2
+	i5qIDub6hrUyAksqpNtQS9Eq7NR6BGx6dxxBDGM4FGhNEaxhN7Kz4uXvqrEKmQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1763371000;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=i6fdPv9UJz7OWefZ82+++hXICXoBPCRf3MToQXAlL6o=;
+	b=ZkFBDSDuoYl/asAelbHJSce2GiwFqTWwu+DrR9wI/3pj9ClxshmVuEPw6BylQ+Y1NXW6WK
+	D7maZ/2fDm/PP/Bw==
+To: Hao-Wen Ting <haowen.ting@realtek.com>, daniel.lezcano@linaro.org
+Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
+ shawn.huang724@realtek.com, haowen.ting@realtek.com, cy.huang@realtek.com,
+ james.tai@realtek.com, cylee12@realtek.com, phinex@realtek.com,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ stanley_chang@realtek.com
+Subject: Re: [PATCH v3 2/2] clocksource: Add Realtek systimer as tick
+ broadcast driver
+In-Reply-To: <20251117073408.428190-3-haowen.ting@realtek.com>
+References: <20251117073408.428190-1-haowen.ting@realtek.com>
+ <20251117073408.428190-3-haowen.ting@realtek.com>
+Date: Mon, 17 Nov 2025 10:16:39 +0100
+Message-ID: <875xb981e0.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: Ya8jVkzTGbejgvTWivOYcZx5maYVhh9N
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE3MDA3NyBTYWx0ZWRfX+jTaPdobFUyO
- yhSv29la9/9U7YrwXXk4g/IjxkZ05Pp7DPCko/v8GjP9bB1HTkqPSkrWKZBAx/COW3+nOxFrFoC
- 24t5tTKqQTJejr01KwZl5PE7Mi5FVWwt+JCXpgX1bQjeuXQ39OnyVcO69rBH+u3NODUbKlrbBpH
- BJ8vd4wjBeTu0wA1LsrvnJGK+SdMUY/+uzUo726aMLFixpC6uzanb6hCh9D9GuDkbDt2LdJPzLT
- 5cCO4L1JChXjWmVPZiwgoBjk8HOCDHb7HVE0n4Tcb5hNB/z8JAftXXozHu2UoqfYXYWOxTe+JQl
- RPoP/6Rsxy4d/mnvIAebOiXN7hujqDwzSFadnTbLuSbC16gNPXIrNyF7Y3YtK6/JymxVFBGIKOn
- H1XyFkpXozFwKi5NgdJtLXKnRkertQ==
-X-Authority-Analysis: v=2.4 cv=LJ9rgZW9 c=1 sm=1 tr=0 ts=691ae7c4 cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=gAnH3GRIAAAA:8 a=1zQR8qqtwd6sJicix08A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-GUID: Ya8jVkzTGbejgvTWivOYcZx5maYVhh9N
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-17_02,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 suspectscore=0 adultscore=0 bulkscore=0
- priorityscore=1501 impostorscore=0 spamscore=0 phishscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511170077
+Content-Type: text/plain
 
-Add driver support for the ADG1712, which contains four independent
-single-pole/single-throw (SPST) switches and operates with a
-low-voltage single supply range from +1.08V to +5.5V or a low-voltage
-dual supply range from ±1.08V to ±2.75V.
+On Mon, Nov 17 2025 at 15:34, Hao-Wen Ting wrote:
+> +static u64 rtk_ts64_read(void)
+> +{
+> +	u64 ts;
+> +	u32 low, high;
 
-The driver configures switches once at probe time based on device tree
-properties and does not expose any userspace interface for runtime control.
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-Changes in v3:
-- Remove GPIO controller interface
-- Configure switches from device tree at probe time only
-- Add 'switch-states' property parsing
-- Change from GPIOD_ASIS to GPIOD_OUT_LOW
----
- drivers/gpio/Kconfig        |  9 ++++
- drivers/gpio/Makefile       |  1 +
- drivers/gpio/gpio-adg1712.c | 87 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 97 insertions(+)
- create mode 100644 drivers/gpio/gpio-adg1712.c
+> +	/* Caution: Read LSB word (TS_LW_OFST) first then MSB (TS_HW_OFST) */
+> +	low = readl(systimer_base + TS_LW_OFST);
+> +	high = readl(systimer_base + TS_HW_OFST);
+> +
+> +	pr_debug("64bit-TS:HW=0x%08x,LW=0x%08x\n", high, low);
 
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index 7ee3afbc2b05..3fac05823eae 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -157,6 +157,15 @@ config GPIO_74XX_MMIO
- 	    8 bits:	74244 (Input), 74273 (Output)
- 	    16 bits:	741624 (Input), 7416374 (Output)
- 
-+config GPIO_ADG1712
-+	tristate "Analog Devices ADG1712 quad SPST switch GPIO driver"
-+	depends on GPIOLIB
-+	help
-+	  GPIO driver for Analog Devices ADG1712 quad single-pole,
-+	  single-throw (SPST) switch. The driver provides a GPIO controller
-+	  interface where each GPIO line controls one of the four independent
-+	  analog switches on the ADG1712.
-+
- config GPIO_ALTERA
- 	tristate "Altera GPIO"
- 	select GPIOLIB_IRQCHIP
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index ec296fa14bfd..9043d2d07a15 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -28,6 +28,7 @@ obj-$(CONFIG_GPIO_104_IDI_48)		+= gpio-104-idi-48.o
- obj-$(CONFIG_GPIO_104_IDIO_16)		+= gpio-104-idio-16.o
- obj-$(CONFIG_GPIO_74X164)		+= gpio-74x164.o
- obj-$(CONFIG_GPIO_74XX_MMIO)		+= gpio-74xx-mmio.o
-+obj-$(CONFIG_GPIO_ADG1712)		+= gpio-adg1712.o
- obj-$(CONFIG_GPIO_ADNP)			+= gpio-adnp.o
- obj-$(CONFIG_GPIO_ADP5520)		+= gpio-adp5520.o
- obj-$(CONFIG_GPIO_ADP5585)		+= gpio-adp5585.o
-diff --git a/drivers/gpio/gpio-adg1712.c b/drivers/gpio/gpio-adg1712.c
-new file mode 100644
-index 000000000000..86f8645cf2ad
---- /dev/null
-+++ b/drivers/gpio/gpio-adg1712.c
-@@ -0,0 +1,87 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Analog Devices ADG1712 quad SPST switch driver
-+ *
-+ * Copyright 2025 Analog Devices Inc.
-+ *
-+ * Author: Antoniu Miclaus <antoniu.miclaus@analog.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+
-+#define ADG1712_NUM_SWITCHES	4
-+
-+struct adg1712 {
-+	struct gpio_descs *switch_gpios;
-+};
-+
-+static int adg1712_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct adg1712 *adg1712;
-+	u32 switch_states[ADG1712_NUM_SWITCHES] = {0}; /* Default all switches off */
-+	int ret, i;
-+
-+	adg1712 = devm_kzalloc(dev, sizeof(*adg1712), GFP_KERNEL);
-+	if (!adg1712)
-+		return -ENOMEM;
-+
-+	adg1712->switch_gpios = devm_gpiod_get_array(dev, "switch", GPIOD_OUT_LOW);
-+	if (IS_ERR(adg1712->switch_gpios))
-+		return dev_err_probe(dev, PTR_ERR(adg1712->switch_gpios),
-+				     "failed to get switch gpios\n");
-+
-+	if (adg1712->switch_gpios->ndescs != ADG1712_NUM_SWITCHES)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "expected %d gpios, got %d\n",
-+				     ADG1712_NUM_SWITCHES,
-+				     adg1712->switch_gpios->ndescs);
-+
-+	ret = device_property_read_u32_array(dev, "switch-states", switch_states,
-+					     ADG1712_NUM_SWITCHES);
-+	if (ret && ret != -EINVAL)
-+		return dev_err_probe(dev, ret, "failed to read switch-states\n");
-+
-+	for (i = 0; i < ADG1712_NUM_SWITCHES; i++) {
-+		if (switch_states[i] > 1) {
-+			dev_warn(dev, "invalid switch state %u for switch %d, using 0\n",
-+				 switch_states[i], i);
-+			switch_states[i] = 0;
-+		}
-+
-+		ret = gpiod_set_value_cansleep(adg1712->switch_gpios->desc[i],
-+					       switch_states[i]);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "failed to set switch %d\n", i);
-+	}
-+
-+	platform_set_drvdata(pdev, adg1712);
-+
-+	dev_info(dev, "ADG1712 switch controller configured\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id adg1712_dt_ids[] = {
-+	{ .compatible = "adi,adg1712", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, adg1712_dt_ids);
-+
-+static struct platform_driver adg1712_driver = {
-+	.driver = {
-+		.name = "adg1712",
-+		.of_match_table = adg1712_dt_ids,
-+	},
-+	.probe = adg1712_probe,
-+};
-+module_platform_driver(adg1712_driver);
-+
-+MODULE_DESCRIPTION("Analog Devices ADG1712 quad SPST switch driver");
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+Please get rid of these debug prints.
 
+> +	ts = ((u64)high << 32) | low;
+> +
+> +	return ts;
+> +}
+> +
+> +
+> +static int rtk_syst_clkevt_next_ktime(ktime_t expires,
+> +				      struct clock_event_device *clkevt)
+
+Pointless line break. You have 100 characters
+
+> +{
+> +	u64 cmp_val;
+> +	unsigned long flags;
+> +	ktime_t now = ktime_get();
+> +	s64 delta_ns = ktime_to_ns(ktime_sub(expires, now));
+> +	u64 delta_us = delta_ns / 1000;
+> +
+> +	pr_debug("delta_ns = %lld, clkevt.min_delta_ns = %llu\n",
+> +		 delta_ns, clkevt->min_delta_ns);
+> +
+> +	if (delta_ns <= (s64)clkevt->min_delta_ns) {
+> +		delta_ns = clkevt->min_delta_ns;
+> +		delta_us = delta_ns / 1000;
+> +		pr_debug("Clamping delta_ns to min_delta_ns\n");
+> +	}
+
+Why are you using the set_next_ktime() callback instead of set_next(),
+where the core code does the conversion _and_ the clamping?
+
+> +	rtk_cmp_en_write(DSBL);
+> +	local_irq_save(flags);
+
+Pointless exercise. set_next*() is always invoked with interrupts disabled.
+
+> +	cmp_val = rtk_ts64_read();
+> +
+> +	/* Set CMP value to current timestamp plus delta_us */
+> +	rtk_cmp_value_write(cmp_val + delta_us);
+> +	rtk_cmp_en_write(ENBL);
+> +	local_irq_restore(flags);
+> +	return 0;
+> +}
+
+> +static struct timer_of _to = {
+
+What's wrong with a proper variable name instead of this made up '_to'?
+
+> +	.flags = TIMER_OF_IRQ | TIMER_OF_BASE,
+> +
+> +	.clkevt = {
+> +		.name = "rtk-clkevt",
+> +		.rating = 300,
+> +		.cpumask = cpu_possible_mask,
+> +		.features = CLOCK_EVT_FEAT_DYNIRQ |
+> +			    CLOCK_EVT_FEAT_ONESHOT |
+> +			    CLOCK_EVT_FEAT_KTIME,
+> +		.set_next_ktime = rtk_syst_clkevt_next_ktime,
+> +		.set_state_oneshot = rtk_syst_shutdown,
+> +		.set_state_shutdown = rtk_syst_shutdown
+> +	},
+> +
+> +	.of_irq = {
+> +		.flags = IRQF_TIMER | IRQF_IRQPOLL,
+> +		.handler = rtk_ts_match_intr_handler
+> +	},
+
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
+
+Thanks,
+
+        tglx
 
