@@ -1,153 +1,124 @@
-Return-Path: <devicetree+bounces-239468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFF7FC652FA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:37:33 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 404B8C6532A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:40:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 33E4B4EF51F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:34:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 844444ECB82
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C97D2D5410;
-	Mon, 17 Nov 2025 16:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126FD2D543D;
+	Mon, 17 Nov 2025 16:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b="FTXakxRb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="shfyhP/n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255852C3251
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 16:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D681729B200;
+	Mon, 17 Nov 2025 16:38:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763397244; cv=none; b=bMihG99hyGCRgNYgVf34Z2dhter9yo1tON/7QWi1u4ieCbxS2gokw66sLN6n5Xgn7vbGkiq0wsh9OxkPhg2CFNuSzUC/6k/YfzdhCDIq7r3+ZOlgq1BHjTUJfvPdEXdpkbZn569az2h/c/JFtZjMcFAMzwNXZ/ncHh5fXuD6/ls=
+	t=1763397520; cv=none; b=ZJq07zaHsr93feppamjcPcBfu1r2TCj7OlPNdwdlRQH/yeBWt+o1ubyN6njec5gZJ85RHHlWc6cPb8JEhgDczpPA+vH6c0nYXu7JFp8lKQBS/eXHnOodKq+5GaBA737bXk+wo2NTT2x6QEOGA1GdQzmka/4liTVsz8Pzc8ZD3vM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763397244; c=relaxed/simple;
-	bh=/CIIAQLm9NWHeGYRmQYh0cinQ0g18mXMF6pwh6lBM/Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nNVu4+p1Ulc4Zz1gtEsFSu4zf2BHwD+HpWRyVre7r++8uyL5vAv/oFiwTiYe/liVIQ3T9JdtbKn0scH2xh/ynYUHxlW4+NzVtaB0WkTfRZI2TlQ3AxMewf7BE0jeb/ct2YtP5mZE6l4ZEDlpUQqEThXL5Q0uayDYqKBwv/Hdt4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com; spf=pass smtp.mailfrom=geotab.com; dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b=FTXakxRb; arc=none smtp.client-ip=209.85.166.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geotab.com
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-43380a6fe8cso32877645ab.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:34:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=geotab.com; s=google; t=1763397241; x=1764002041; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yuOpnyP+Gwb7Gw6r1RkaeItm0eApSIebXmC34QluQI8=;
-        b=FTXakxRb5/NAwwAp67Io9hYMiVEF7B3vK3nil55h6wp4ifXcXWTq19qJ56jrOmXhxH
-         HJJomFzrTATOI15kUxgoh6a+sdIBNi2T4sYz9B3hgeCWW8oejs1eLST1VfUrJXRlKBOn
-         9QiS14ujoOeo1HznuLn0L1Bf9oVV4aOSMz2ny+eMo/n0zlzj7beO+s4N6EYPntnqydZU
-         Bezo4zkppjkRY2YfrpSahFXRL5LPWpXEWxecjJa5UwIP7+EL1jMuHfjydqitlsZhAymn
-         zRX5W9PlQEW+oGs97b2h+Z1T2XhqEzZ2LfWA9R8UPIHs7GMq+vNesqilBAn5YFz1o4BS
-         PJiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763397241; x=1764002041;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=yuOpnyP+Gwb7Gw6r1RkaeItm0eApSIebXmC34QluQI8=;
-        b=OifHM8YPw+wjO3ahgc/L2uTeGqtTlqW3d3BxfbMilJKjzMISaWL/d/rDsNbPTt/BUc
-         VDEJPOr/4SF//x3d2u+7AbPHpoop1MOxjRJZq8hcr74KvHU5i+51jPy/8wkEVZL72unq
-         WYjNrMASmYLuisKzPIdPGPvHTpyCE0Qhym0oK76Nv0q59OqF2QvnMHXYNZL/vJdtkLd2
-         cFHfYLGPnNHSOG0gKqX+dJVi3rqHkx+LSSMz4pj2jFiR1X5Jzgcf44nXZAGZih+RNiCq
-         rriwvK9zqjhx6zRBX+c+ReBdH4izXA5/0dJO8B2vB1n1JcydnaLXj+Lz+5hQ+OnKzP28
-         47Xw==
-X-Forwarded-Encrypted: i=1; AJvYcCVkxRc7GN4UlCjo3iWGGpDI/fZyrchxkFzgUnBZcri4X9Au5T60l6YHcyXUw0ABom4uVw/UnXxe9AAy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyop3jKV9dyHfMVlMyexNpf+X0c3Z6t6n14Qt/qSHyyMFiW0RJS
-	msiu/Q3aui2s3Yc4a9d1inDDUPSUih3M8toTaKKXCwespYY+qIP+z7no+Gs77mTNZwhOqWdwnlR
-	YXHMqE6L/h55Cm1TVRYyEaourwgdgH4F3ZDQZEyby7w==
-X-Gm-Gg: ASbGncsDFIq1ApTj0eVH6eG6HATGfzMK+r/mGzyO1ISDzZWS+fe6Kz1EKyhBTveVCEa
-	lRahsefoRWv8CRk2BesJhvKI1JDcF6VrioEDvKWwVrpkC0BznnnYmd0SZzUxes40nZq2Nfng0Ql
-	ZgeL6ByBhUEfxvwwqOZgmCx+XtnrUt23iDSPl2o5HEnLj+mYfWLxxiJ9yRl8icNzEyL0pdVhRps
-	tiH+2+9cEkfSnbtsxQysUIyr54qO0vNGTa10ytGneKjf7u1zsooW3ki8N8K1WfJ9keUHZLVh5c2
-	ikEiwg83OOHcFxaWcHA=
-X-Google-Smtp-Source: AGHT+IHbVGDrgyqiO8WRy5SXKz9IDOvAhFKETAbMJ3m1Q8vImOr6lFhqYGOC6KTBTXxerYf57XzhyUlRiLH6wUjdcUs=
-X-Received: by 2002:a05:6e02:184d:b0:433:78b8:9456 with SMTP id
- e9e14a558f8ab-4348c88f75emr205588185ab.2.1763397241084; Mon, 17 Nov 2025
- 08:34:01 -0800 (PST)
+	s=arc-20240116; t=1763397520; c=relaxed/simple;
+	bh=ggY0CM1uMMAhQmcHdo4hDKorWC1gmId184WwoW3Rkko=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QsZOyyjsXvRzlXLUjQr+hKHa0+KymLf3XX+V0vHb3eoTDOTvtvtILPB/oatBsc7OZbXF0aEFi5pL/HrV6LOL3QJc3jnYiMY/L6OEsa08k7A62VZ1rdOuHJj4qSk4tndeG/S0I+TI8mbC8HrhY2bC2a2ENb175jKKN+u2RGc+mOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=shfyhP/n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16D64C116B1;
+	Mon, 17 Nov 2025 16:38:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763397519;
+	bh=ggY0CM1uMMAhQmcHdo4hDKorWC1gmId184WwoW3Rkko=;
+	h=From:To:Cc:Subject:Date:From;
+	b=shfyhP/n9j/AUTeyS3ba/BIKKGqjwXhLWBuJTvepk2GnW821mRWcUIUy1rE7gAiJJ
+	 fqa0fqLM5v94yI49iNnRKYn3Lf6BEF7dqiKZ0zQAaAOOEr3Fp1KSJyQ9M/hOpIe3KR
+	 Xwig9B1W79hAzqT/Q6My9c2ap9GWDqjOcNZA1ASx7+kgQpaBEnX1ESxF9wVZTPVnEV
+	 StHpPIIYgF5kLKrHUawOmZULcbcFg1ue2tAZv+o+CUXaz56rpufj0Al+x780cZcEVd
+	 TxYZNKNFUSYo3WC2oBisT9sbCR5U2LMh4ftJn0VHfGUzRguF+TlfLzTLX8vuyF+qhr
+	 12/zC4gQvt41Q==
+From: Conor Dooley <conor@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [net-next v1] dt-bindings: can: mpfs: document resets
+Date: Mon, 17 Nov 2025 16:38:18 +0000
+Message-ID: <20251117-twitter-sternness-f2b3a1506a6f@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250911-ubx-safeboot-v3-0-32fe6b882a3c@geotab.com>
- <20250911-ubx-safeboot-v3-2-32fe6b882a3c@geotab.com> <aRdDyyIA9Z4e8mBz@hovoldconsulting.com>
-In-Reply-To: <aRdDyyIA9Z4e8mBz@hovoldconsulting.com>
-From: Alejandro Enrique <alejandroe1@geotab.com>
-Date: Mon, 17 Nov 2025 17:33:49 +0100
-X-Gm-Features: AWmQ_bk3aeBBque08MCWaLCWSIlEzDSTGc9TrNY34FlHXDKGfx4zkAM9pK5oWtI
-Message-ID: <CAN=L63pq6WzietQQpdfJ9K3sH2EaQsgRY4RauJsgqV7F2S8U_w@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] gnss: ubx: add support for the safeboot gpio
-To: Johan Hovold <johan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1974; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=o0IWfGy7dLFMHxxCcDJkwRXrJajdOduLEpHVlJIjoLc=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnS/hU3S0LTBUTVNjAcP3/uq9YBrjRusf8SQsHL7F6U+ ZjHV7zvKGVhEONikBVTZEm83dcitf6Pyw7nnrcwc1iZQIYwcHEKwETu8DD84Xm+6NAC3pP7TSX0 9jQF1Z197jrV+1yc7/uqv8p7865sEmVkuL/NY8vNvlkJIcd+mfwvm/Spn7WWJXW3zt8uY5ZFjtY LmQE=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 14, 2025 at 3:59=E2=80=AFPM Johan Hovold <johan@kernel.org> wro=
-te:
->
-> On Thu, Sep 11, 2025 at 02:58:29PM +0200, Alejandro Enrique via B4 Relay =
-wrote:
-> > From: Alejandro Enrique <alejandroe1@geotab.com>
-> >
-> > U-Blox 8/M8/M9 chip have a pin to start it in safeboot mode, to be
-> > used to recover from situations where the flash content has become
-> > corrupted and needs to be restored. If this pin is asserted at power
-> > up/reset, the receiver starts in safeboot mode and GNSS operation is
-> > disabled.
-> >
-> > Deassert the safeboot pin when probing this driver.
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
->
-> Sorry about the late feedback on this. I had to think about how best to
-> handle this, given that we don't have an interface yet to actually
-> assert these pins.
->
-> I guess we can go ahead and request them at probe as you're doing here
-> and add an interface for controlling them later if needed (instead of
-> not claiming them and allowing emergency control through gpiolib).
->
-> > @@ -82,6 +83,13 @@ static int ubx_probe(struct serdev_device *serdev)
-> >
-> >       data =3D gnss_serial_get_drvdata(gserial);
-> >
-> > +     /* Deassert safeboot */
-> > +     safeboot =3D devm_gpiod_get_optional(&serdev->dev, "safeboot", GP=
-IOD_OUT_LOW);
-> > +     if (IS_ERR(safeboot)) {
-> > +             ret =3D PTR_ERR(safeboot);
-> > +             goto err_free_gserial;
-> > +     }
-> > +
-> >       data->vcc =3D devm_regulator_get(&serdev->dev, "vcc");
->
-> Note that the driver is not enabling the supply until open() so I moved
-> the deassert to after the supplies have been requested (but before reset
-> is deasserted).
->
-> Note however that both the RESET_N and SAFEBOOT_N pins should be
-> declared as open-drain to avoid driving them while the main supply is
-> off.
-I will keep that in mind.
-Thank you for the note and your time in reviewing this.
->
->
-> I added a comment about this to the commit message about this when
-> applying and will send a follow-on patch to update the binding example.
->
-> >       if (IS_ERR(data->vcc)) {
-> >               ret =3D PTR_ERR(data->vcc);
->
-> Johan
+From: Conor Dooley <conor.dooley@microchip.com>
+
+The CAN cores on Polarfire SoC both have a reset. The platform firmware
+brings both cores out of reset, but the linux driver must use them
+during normal operation. The resets should have been made required, but
+this is one of the things that can happen when the binding is written
+without driver support.
+
+Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN controller")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+This is the second mistake in this binding, both spotted because of the
+driver being written (although this one sat downstream for a while for
+w/e reason). I wish I could say that I'd send the driver soon, but I am
+busy upstreaming things I wrote and therefore understand at the moment,
+so a driver that I'd have to go understand and review before sending is
+low priority, sorry!
+
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Marc Kleine-Budde <mkl@pengutronix.de>
+CC: Vincent Mailhol <mailhol@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: linux-riscv@lists.infradead.org
+CC: linux-can@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+---
+ .../devicetree/bindings/net/can/microchip,mpfs-can.yaml       | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml b/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
+index 1219c5cb601f..d2a378064c50 100644
+--- a/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
++++ b/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
+@@ -32,11 +32,15 @@ properties:
+       - description: AHB peripheral clock
+       - description: CAN bus clock
+ 
++  resets:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+   - clocks
++  - resets
+ 
+ additionalProperties: false
+ 
+-- 
+2.51.0
+
 
