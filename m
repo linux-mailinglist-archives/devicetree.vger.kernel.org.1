@@ -1,219 +1,205 @@
-Return-Path: <devicetree+bounces-239297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF74C63A30
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:54:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C76A0C63A6F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:58:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E274E4E19CB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:53:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 5A85D28ABE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69D930C343;
-	Mon, 17 Nov 2025 10:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827E730E837;
+	Mon, 17 Nov 2025 10:58:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="IS2to+ks";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="yn9t+YYw";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="IS2to+ks";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="yn9t+YYw"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="COX4WNgH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007DA2222D0
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 10:53:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49251DC985;
+	Mon, 17 Nov 2025 10:58:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763376835; cv=none; b=an5Bfxjlg78uTtuFwmot7FzsjBm07ssptqleTGJv/5D2qhrdvvA0kXpLhTGa7U4k5JQgrb/P2QC7flSQ7sRjUZe5OTULTsJ3yzGB3myLNFAD3vI0o4S6FLz/RZ+9rxhsmFkNFM5dAeBQaz86pK87ZWboC6h9ABQ90cPDrsFrZcM=
+	t=1763377129; cv=none; b=Q39ddZy99E8XdBxxv2Z0ECeYU1vgewg4WqbHAuRTCA6EPsC5T600KKkuPN8oI6uc1Oxk2h276CERRPhHq8am71Mn5pJA6X3i38YD+778Ob2Lm9RtFokQrtxGLl+fF4Y35V3380W3Dx2QVLb/cSic1GQscRPxOAcD1cCJysWg7Cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763376835; c=relaxed/simple;
-	bh=2ViZA6pSWUMniF+LRdWCe3tea3G0EIHKPrYznc0KaZA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PWcMtNGEjd8CVHgkqxgsXNOEHUYq0l9OxTaPT2mDXa4vNBoCi3wbBuBNf/fyOGg59ncExMH8gNC40diJhL4TFKxkGgqyn3rvLL6I2SG8t/KftHyAgPQHZ/9Q4nv9x00vBxUvrTLxkNCYQhko6tJ8bGO6b53zrJDomD5WnEgSzxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=IS2to+ks; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=yn9t+YYw; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=IS2to+ks; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=yn9t+YYw; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 285B11F445;
-	Mon, 17 Nov 2025 10:53:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1763376832; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=/VPRIfhrXkdu6L4uNvdvKdrrEPZa/b7Bdx5Uc5FdReE=;
-	b=IS2to+ksllQ3aVSFtkebzPgZZMKaQAX6eVJbgpvicWbkj4pWqwFHgKdMJaAW+V1tq+VdKN
-	UpfmnO4jKW0z5ZFhYd3sDKMXL86nnktcld2pQ5vXbJz9XlZUH22yMyohKCtc4hJ+SzGRpf
-	mRkwo0Zrc8vEJ5eBQe+ws11N5N0fSkM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1763376832;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=/VPRIfhrXkdu6L4uNvdvKdrrEPZa/b7Bdx5Uc5FdReE=;
-	b=yn9t+YYwg+DIIQ0VA97s2DVizQgKe/v1rg0UcFxTm5BdlaJLYfUqcaIu1yyTg4brRIgjKB
-	na1eW0Kiub7WOmAA==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=IS2to+ks;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=yn9t+YYw
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1763376832; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=/VPRIfhrXkdu6L4uNvdvKdrrEPZa/b7Bdx5Uc5FdReE=;
-	b=IS2to+ksllQ3aVSFtkebzPgZZMKaQAX6eVJbgpvicWbkj4pWqwFHgKdMJaAW+V1tq+VdKN
-	UpfmnO4jKW0z5ZFhYd3sDKMXL86nnktcld2pQ5vXbJz9XlZUH22yMyohKCtc4hJ+SzGRpf
-	mRkwo0Zrc8vEJ5eBQe+ws11N5N0fSkM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1763376832;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=/VPRIfhrXkdu6L4uNvdvKdrrEPZa/b7Bdx5Uc5FdReE=;
-	b=yn9t+YYwg+DIIQ0VA97s2DVizQgKe/v1rg0UcFxTm5BdlaJLYfUqcaIu1yyTg4brRIgjKB
-	na1eW0Kiub7WOmAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C9A353EA61;
-	Mon, 17 Nov 2025 10:53:51 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id BIibLr/+GmmjXwAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Mon, 17 Nov 2025 10:53:51 +0000
-Message-ID: <38316518-d55c-45ce-98bf-a6ac188e4ffb@suse.de>
-Date: Mon, 17 Nov 2025 11:53:51 +0100
+	s=arc-20240116; t=1763377129; c=relaxed/simple;
+	bh=hUIBnGTka6MWAFgLDZm+Yb9QyWef8l+NVsIbZANEvYg=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ufojt51UWesGFd0G78Sh/eysUOxeaa6j13ZidZOPYb1Pc5PElZ5funooSyonDxl1mrXJOy1DjOVgYAV69eHzcjjxv6BHeJYcsJErmX1du6zLKscJf8WyZHP2xPWTT7Bz5Zyw91dk4DDuGZ/3je+jzCfGdYZgmhQPn+47jEekfNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=COX4WNgH; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AHAthamF3462592, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1763376943; bh=/2xVl9GtYDKziiIkptsRgm8RTLyYPV0xJz1nP0LWBYs=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:Content-Type;
+	b=COX4WNgH+/v8wdJ1B1b4fetKPl+lji2q0miDHYVP4bUr8ja6PfPYuW5c+2Qhr2G72
+	 G22oNH2B6supn5JexMxJIcOkVdKRwNy1ySh5iomj7kEKgDpYkpBk2cPjPmAqU7XrMH
+	 h38MtVz+BkqC6uTmN+qiTx0MAF3X7Q3wP86AEh42pvjBAL7GpXLHjKtsfByalGtU7P
+	 nvL+O60aj29GdKw1sNTKbIy7Fqkn5e0ToaWNdm/TIz7kQcDGrw084h94T7R4wpVmvc
+	 W4WmV5m6bJ1BkyS48JpKYbi4jysBdZefAk0HwQo6FqYxDcIwo9ufA8xFA3OWp40R1A
+	 M6qKkGNS1kzPQ==
+Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AHAthamF3462592
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 17 Nov 2025 18:55:43 +0800
+Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
+ RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Mon, 17 Nov 2025 18:55:43 +0800
+Received: from RTKEXHMBS03.realtek.com.tw (10.21.1.53) by
+ RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Mon, 17 Nov 2025 18:55:42 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS03.realtek.com.tw
+ (10.21.1.53) with Microsoft SMTP Server id 15.2.1544.27 via Frontend
+ Transport; Mon, 17 Nov 2025 18:55:42 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <conor@kernel.org>
+CC: <afaerber@suse.de>, <conor+dt@kernel.org>, <cy.huang@realtek.com>,
+        <devicetree@vger.kernel.org>, <eleanor.lin@realtek.com>,
+        <james.tai@realtek.com>, <krzk+dt@kernel.org>, <lee@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-realtek-soc@lists.infradead.org>, <robh@kernel.org>,
+        <stanley_chang@realtek.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: realtek: Add Kent Soc family compatibles
+Date: Mon, 17 Nov 2025 18:55:42 +0800
+Message-ID: <20251117105542.14789-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20251113-preorder-task-4e5ba09580d8@spud>
+References: <20251113-preorder-task-4e5ba09580d8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-References: <20251031-st7920-v4-0-35291f8076b2@gmail.com>
- <20251031-st7920-v4-3-35291f8076b2@gmail.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20251031-st7920-v4-3-35291f8076b2@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: 285B11F445
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,ffwll.ch,redhat.com];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	MIME_TRACE(0.00)[0:+];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email,gitlab.freedesktop.org:url,suse.com:url]
-X-Spam-Score: -3.01
+Content-Type: text/plain
 
-
-
-Am 31.10.25 um 10:05 schrieb Iker Pedrosa:
-> Add Iker as ST7920 driver maintainer.
+On Thu, Nov 13, 2025 at 08:30:07PM +0800, Yu-Chun Lin wrote:
+> > Define compatible strings for Realtek RTD1501s, RTD1861b and RTD1920s.
+> > 
+> > Additionally, convert legacy DTS-style comments to YAML description 
+> > properties, following the pattern from the ARM bindings conversion 
+> > series [1].
 >
-> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> "Additionally" is often a sign that it should be in a different patch.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> pw-bot: not-applicable
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+Hi Conor,
 
-> ---
->   MAINTAINERS | 7 +++++++
->   1 file changed, 7 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5ddf37f0acc960039422ef988cadfa7176972fc5..79b8a277e38b55ebcff05450d6c565c0d87c6b51 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7861,6 +7861,13 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
->   F:	Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
->   F:	drivers/gpu/drm/sitronix/st7735r.c
->   
-> +DRM DRIVER FOR SITRONIX ST7920 LCD DISPLAYS
-> +M:	Iker Pedrosa <ikerpedrosam@gmail.com>
-> +S:	Maintained
-> +T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-> +F:	Documentation/devicetree/bindings/display/sitronix,st7920.yaml
-> +F:	drivers/gpu/drm/sitronix/st7920.c
-> +
->   DRM DRIVER FOR SOLOMON SSD130X OLED DISPLAYS
->   M:	Javier Martinez Canillas <javierm@redhat.com>
->   S:	Maintained
->
+I'm planning to split the changes into two separate patches:
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+1. One patch to convert realtek.yaml to match the DTS-style comments,
+following the pattern from the ARM bindings conversion series.
+2. Another patch to define the compatible strings for Realtek RTD1501s,
+RTD1861b, and RTD1920s.
 
+Could you confirm if both patches should include your Acked-by tag, or is
+it only applicable to one of them?
+
+Best regards 
+Yu-Chun
+
+> > 
+> > [1] 
+> > https://lore.kernel.org/lkml/20200622125527.24207-2-afaerber@suse.de/
+> > 
+> > Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> > ---
+> >  .../devicetree/bindings/arm/realtek.yaml      | 42 +++++++++++++------
+> >  1 file changed, 30 insertions(+), 12 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/realtek.yaml 
+> > b/Documentation/devicetree/bindings/arm/realtek.yaml
+> > index ddd9a85099e9..be529490640c 100644
+> > --- a/Documentation/devicetree/bindings/arm/realtek.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/realtek.yaml
+> > @@ -14,21 +14,21 @@ properties:
+> >      const: '/'
+> >    compatible:
+> >      oneOf:
+> > -      # RTD1195 SoC based boards
+> > -      - items:
+> > +      - description: RTD1195 SoC based boards
+> > +        items:
+> >            - enum:
+> >                - mele,x1000 # MeLE X1000
+> >                - realtek,horseradish # Realtek Horseradish EVB
+> >            - const: realtek,rtd1195
+> >  
+> > -      # RTD1293 SoC based boards
+> > -      - items:
+> > +      - description: RTD1293 SoC based boards
+> > +        items:
+> >            - enum:
+> >                - synology,ds418j # Synology DiskStation DS418j
+> >            - const: realtek,rtd1293
+> >  
+> > -      # RTD1295 SoC based boards
+> > -      - items:
+> > +      - description: RTD1295 SoC based boards
+> > +        items:
+> >            - enum:
+> >                - mele,v9 # MeLE V9
+> >                - probox2,ava # ProBox2 AVA @@ -36,25 +36,43 @@ 
+> > properties:
+> >                - zidoo,x9s # Zidoo X9S
+> >            - const: realtek,rtd1295
+> >  
+> > -      # RTD1296 SoC based boards
+> > -      - items:
+> > +      - description: RTD1296 SoC based boards
+> > +        items:
+> >            - enum:
+> >                - synology,ds418 # Synology DiskStation DS418
+> >            - const: realtek,rtd1296
+> >  
+> > -      # RTD1395 SoC based boards
+> > -      - items:
+> > +      - description: RTD1395 SoC based boards
+> > +        items:
+> >            - enum:
+> >                - bananapi,bpi-m4 # Banana Pi BPI-M4
+> >                - realtek,lion-skin # Realtek Lion Skin EVB
+> >            - const: realtek,rtd1395
+> >  
+> > -      # RTD1619 SoC based boards
+> > -      - items:
+> > +      - description: RTD1501s SoC based boards
+> > +        items:
+> > +          - enum:
+> > +              - realtek,phantom # Realtek Phantom EVB (8GB)
+> > +          - const: realtek,rtd1501s
+> > +
+> > +      - description: RTD1619 SoC based boards
+> > +        items:
+> >            - enum:
+> >                - realtek,mjolnir # Realtek Mjolnir EVB
+> >            - const: realtek,rtd1619
+> >  
+> > +      - description: RTD1861b SoC based boards
+> > +        items:
+> > +          - enum:
+> > +              - realtek,krypton # Realtek Krypton EVB (8GB)
+> > +          - const: realtek,rtd1861b
+> > +
+> > +      - description: RTD1920s SoC based boards
+> > +        items:
+> > +          - enum:
+> > +              - realtek,smallville # Realtek Smallville EVB (4GB)
+> > +          - const: realtek,rtd1920s
+> > +
+> >  additionalProperties: true
+> >  
+> >  ...
+> > --
+> > 2.34.1
+> > 
 
 
