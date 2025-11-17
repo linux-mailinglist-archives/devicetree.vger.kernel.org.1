@@ -1,45 +1,46 @@
-Return-Path: <devicetree+bounces-239473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E640C6546E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:57:10 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64F17C654E4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:04:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 27DBA4EE457
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:55:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E6A58351810
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1FF2FFDE6;
-	Mon, 17 Nov 2025 16:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B04A2FFF88;
+	Mon, 17 Nov 2025 16:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CFfOQCL0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qMR3Nkwz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746DC2F3C3D;
-	Mon, 17 Nov 2025 16:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B152FFFB7;
+	Mon, 17 Nov 2025 16:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763398412; cv=none; b=nVEpuaxhbVAGz66Gq+MJUrnqsdKqnatIAUTHNjMQfJ2bUXJ5Ijk58vmmKoHywzk9eURy0Ole3vUUwVBbWtuYpgQPPg0VAlsuzPTgi5FAtYeW74juxF1moXe8xKSy6BAje8ZiuUtQGxDvZx04rJeKviLvMWEyNSABDPlMGcRvSPQ=
+	t=1763398417; cv=none; b=U9LXy9QRAp6LqZySKKPDYeR36b05DZQAi5Mt9ZtWcd0r8/gN+Y5Hty5mPlIl9Ry627ggzgfEJBJLQESnkt43QFuLbH258ir7W47fvNB+QqLf94GVG16H3hE07GhhTgY9zcnkNt0K+vrKKF6nvfJmiur8szDbIrXnSOS8lr9+sxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763398412; c=relaxed/simple;
-	bh=jirAepMGk643XDOW71/E/gpSvFkccHqAf75JsWUDiac=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SfFtVhaRdITEhtzv3eGP6S1QPuyKjR5CnWdZoK2fTcfiu78HmPoV+jtJwssD2xLiJOCUWLWIAVjA7/1VAi9XEDs9lAm0XODeV7dQ67q7pqzncC17HLptJh+TwFFZ1HA1H0LR0eJvzqJMU7/l0OS1L2K9tHR5dygLua7+JGWEpHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CFfOQCL0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34ECFC19421;
-	Mon, 17 Nov 2025 16:53:30 +0000 (UTC)
+	s=arc-20240116; t=1763398417; c=relaxed/simple;
+	bh=VfwwYyZqWowOItggqYS9MBc9xN4rjuwUcGHHtUNGlOw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=g/mgcGWHYzEb2nQ98TlhnyPdzc7rKeiWtImADe+M22n0jcg8rxcfRBu6e8MyJltYNezz+LBdu6gfCzZEv/69J24KfYYCVr0KYHvoZy/IrAt89dXmt4l0ZOJQjaf34yYSitDl9V+jxLIfO3woNCQILeU1J4nzo/1LVjF6Up1n6QE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qMR3Nkwz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14A06C116B1;
+	Mon, 17 Nov 2025 16:53:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763398411;
-	bh=jirAepMGk643XDOW71/E/gpSvFkccHqAf75JsWUDiac=;
-	h=From:To:Cc:Subject:Date:From;
-	b=CFfOQCL0ZDcspG5JmJEPOLVtzFV1InfM+3qpaLc7ctTfsqsL+32Y0gQaip6AUruGu
-	 rwsMlciHbWX8oVdn/N5ceXKpT1q5HaatAHyS5AtLk35yIcujVuPs5Apm9a4sUZI5hR
-	 sdzqUMl6ILpZzz6BOWqPq+cTpQm5m7h+ZGzHIgs61ZBBTxwF5QvKu+Xe1nm+qit6A+
-	 c1pXsiqJ3YFRLJ8qYQ0eRdGxPd5cVU0HNzvl+2BubvtjFHZumf5hiPGvHRVuipBts2
-	 F4Z519Xa4mwpDjwMqFab0E/TWFOpDaDXHeB0xAJz7cUR1sQVCII3ICc0M17nsePPS9
-	 TX1TJksIu5PSA==
+	s=k20201202; t=1763398416;
+	bh=VfwwYyZqWowOItggqYS9MBc9xN4rjuwUcGHHtUNGlOw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=qMR3NkwzgSb9fU3mW152kvulZSjapOke7BJ0tzKOHx8ZiIc/yMcin8wnjfkVizUbs
+	 cdiEHsm9p3K18D9h4BLEpgI0KvvEQYJoeRDh2vfqWhtVtHwnjxtjm9vIHOkS/a+YqB
+	 ZcoazKMhp2eYqGrahM4I4vbKQEOE5wBdxDSqsBVCnCkfi1aAtkErbbGfv4Cvv/Fxal
+	 19PMVR8P+D9Xy6FB0zydlXoend/WOC2loR6KEEG5guvgk8XRWVEZ2xY8ICz4ZMlN8B
+	 fIOrfH+S2YU16oo/Sl8lF7EIKbA0l1fUL3aYjD/sxWSUrL7tonbDMqoZELcu0+zfvV
+	 6oN+h2373fMrA==
 From: Conor Dooley <conor@kernel.org>
 To: linux-kernel@vger.kernel.org
 Cc: conor@kernel.org,
@@ -48,59 +49,67 @@ Cc: conor@kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 0/3] Add support for Microchip PIC64GX Curiosity Kit
-Date: Mon, 17 Nov 2025 16:53:21 +0000
-Message-ID: <20251117-paprika-tipping-e7bb3e211d6f@spud>
+	devicetree@vger.kernel.org,
+	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+Subject: [PATCH v3 1/3] dt-bindings: riscv: microchip: document the PIC64GX curiosity kit
+Date: Mon, 17 Nov 2025 16:53:22 +0000
+Message-ID: <20251117-gliding-sixties-6d06ed7412d7@spud>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251117-paprika-tipping-e7bb3e211d6f@spud>
+References: <20251117-paprika-tipping-e7bb3e211d6f@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1789; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=pwCT9CaX9KdSL1R9EJYAgsxDoGAzi1p14elOWIrNg0E=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSQf83aKnZGr7cMfesi7CDwPT2PbmGi2ou3N8z6z/vz 3XHvxw53VHKwiDGxSArpsiSeLuvRWr9H5cdzj1vYeawMoEMYeDiFICJvDvHyND4hIWveYLtH8s3 Xksdtp9+cpo5e8vTg4Gx+50YzYN7i1cyMlyxUIhP5Ntrsqzuy2Px7lK3eyu4t0reUS/9zv5Y6OZ Bd1YA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1482; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=ZSsBrvk2J+QWcy8FOSQPmxvkpcXnkkWM7WXrz+b5m0g=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnSQf9djzQc2TRD+64R34QJrzqNbE6sap/89k7v7B+71 ReK3oh+0VHKwiDGxSArpsiSeLuvRWr9H5cdzj1vYeawMoEMYeDiFICJiIQzMuwQEn2aW7lgu+nR jtzlz7LNVqgebNvzd6pqrPwGsY7Le9cwMjyeqMtS3v1pZs7vCWX/GqxUdnvbX6n5POfFiV6jmzv z/rICAA==
 X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 
-From: Conor Dooley <conor.dooley@microchip.com>
+From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-v3 of Pierre-Henry's stuff from over a year ago:
-https://lore.kernel.org/all/20240930095449.1813195-1-pierre-henry.moussay@microchip.com/
-In it he said "This will be fix in a V3 coming in due time", and I guess
-that due time was ~14 months.
+Update devicetree bindings document with PIC64GX Curiosity Kit, known
+by its "Curiosity-GX1000" product code.
 
-I've cut out all the binding patches, to hopefully make their
-application process more obvious to subsystem maintainers.
-The only real difference in these patches is that I went off and implemented
-the clock rework that I was asked for on v3, because it ended up being a
-requirement for hwmon and pinctrl work on the platform, as well as
-blocking this series (although it was obviously not a technical problem
-with the v2 of this series).
+Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/riscv/microchip.yaml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-CC: Conor Dooley <conor.dooley@microchip.com>
-CC: Daire McNamara <daire.mcnamara@microchip.com>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: linux-riscv@lists.infradead.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
-
-Pierre-Henry Moussay (3):
-  dt-bindings: riscv: microchip: document the PIC64GX curiosity kit
-  riscv: dts: microchip: add pic64gx and its curiosity kit
-  riscv: dts: microchip: remove POLARFIRE mention in Makefile
-
- .../devicetree/bindings/riscv/microchip.yaml  |   7 +-
- arch/riscv/boot/dts/microchip/Makefile        |  17 +-
- .../dts/microchip/pic64gx-curiosity-kit.dts   | 165 +++++
- .../boot/dts/microchip/pic64gx-pinctrl.dtsi   | 178 +++++
- arch/riscv/boot/dts/microchip/pic64gx.dtsi    | 630 ++++++++++++++++++
- 5 files changed, 987 insertions(+), 10 deletions(-)
- create mode 100644 arch/riscv/boot/dts/microchip/pic64gx-curiosity-kit.dts
- create mode 100644 arch/riscv/boot/dts/microchip/pic64gx-pinctrl.dtsi
- create mode 100644 arch/riscv/boot/dts/microchip/pic64gx.dtsi
-
+diff --git a/Documentation/devicetree/bindings/riscv/microchip.yaml b/Documentation/devicetree/bindings/riscv/microchip.yaml
+index 381d6eb6672e..137a6f413430 100644
+--- a/Documentation/devicetree/bindings/riscv/microchip.yaml
++++ b/Documentation/devicetree/bindings/riscv/microchip.yaml
+@@ -4,14 +4,14 @@
+ $id: http://devicetree.org/schemas/riscv/microchip.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Microchip PolarFire SoC-based boards
++title: Microchip SoC-based boards
+ 
+ maintainers:
+   - Conor Dooley <conor.dooley@microchip.com>
+   - Daire McNamara <daire.mcnamara@microchip.com>
+ 
+ description:
+-  Microchip PolarFire SoC-based boards
++  Microchip SoC-based boards
+ 
+ properties:
+   $nodename:
+@@ -46,6 +46,9 @@ properties:
+               - microchip,mpfs-sev-kit
+               - sundance,polarberry
+           - const: microchip,mpfs
++      - items:
++          - const: microchip,pic64gx-curiosity-kit
++          - const: microchip,pic64gx
+ 
+ additionalProperties: true
+ 
 -- 
 2.51.0
 
