@@ -1,142 +1,88 @@
-Return-Path: <devicetree+bounces-239155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46092C61E84
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 23:24:21 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF13C61FB6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 02:17:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7574B34A63E
-	for <lists+devicetree@lfdr.de>; Sun, 16 Nov 2025 22:23:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 90D8D356841
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 01:17:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257192E0B58;
-	Sun, 16 Nov 2025 22:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A3E11E008B;
+	Mon, 17 Nov 2025 01:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="nQOrvtOg"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="PoYARTso"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-189.mta1.migadu.com (out-189.mta1.migadu.com [95.215.58.189])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D54802C2353
-	for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 22:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.189
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAF5D84039;
+	Mon, 17 Nov 2025 01:17:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763331804; cv=none; b=drvPQYNGk6YcQDBhQCflhUIDFLJRjmeCHAjLNjMo98obHWMD/ORFx/VRbLDWCTO5faRLmFvxshrZWxOzbMHzkqtVbRVSvIpIZUaWPtaOg934uKxsQ2nPcbKclE7KtF3eF09S8u1TdZyMaK17qCt+3+Xbmn69QvCnVw6OQtCs4+U=
+	t=1763342245; cv=none; b=odXfPXbJnbnimQFEVd3f/WY0pfMjvP5BxMLqEcFPQrCfo4rr5yFnWUd1W8AsCBo4EYe5XR125gvKP0n1ILUojyl7woIo+umpo8H5T0JGXo+9msFqwAOFWrFNuMqywQQ4jHZC7aPDAEmFzoZXYp4TIJ/MKh/J57j1rMkqiUBv2Bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763331804; c=relaxed/simple;
-	bh=8qVC0rvDvC/plw8QQ8re0AK5rxG5WzVeail7TmfnX2s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ta20sCQq2WNXbGpy98OtIUB1dF3XfmfJZOnYrydJ0NqDL52UgfHF087/YuF0pXFKESNgx+A716FrAJ8eP06n31XMg9DS7f8t6No2UNATq2tWfnLIBHmbdoMUyMMx0kTjqT0pMUnsIo0fCSgPvfhsiDMjO3dsgVMNe0Yp1Mw/yyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=nQOrvtOg; arc=none smtp.client-ip=95.215.58.189
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Message-ID: <1edebab7-8f04-49bc-96e0-9f40728ffeca@packett.cool>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1763331798;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1RPQzCESMicD27pSXilgJRtOsgM+qs8MHHctXz7PEXM=;
-	b=nQOrvtOgrXoqGIlZOgRD3Qiopfhd+I5wlP6HUKEwM9EEuBY7OvXbJ7WCyWgG+zk1+PstmU
-	F8niEJn/ED2gR9cToT4g677mXDVbGsr4mPV53QnAscq3vCYhJugevsaabwRfCPTG1hFlof
-	etLWTWQlra5qybXpZDAENPFfRJag6Dm3lMF1GLqwu61Yuwq27h+Yi1pl8P015tCDPaFjKT
-	87CkW4aia3FhGLJlxUUAeVLev2cj/okDCjz+RJ+eGgZlxTufWFbynSDGncv4YMJu21X41a
-	rTL6x9Nj2k4sR57qHwiy/SIGNuLfZTb4yIAtr90eK7SkxQ48FkV5A7UTImjHPA==
-Date: Sun, 16 Nov 2025 19:23:01 -0300
+	s=arc-20240116; t=1763342245; c=relaxed/simple;
+	bh=gR8tM1GdWNJTIXHdhwGhG4VDj+IddGGnu1o64KxUA/A=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=dmKJj9IPjIp+Mke4AfQzOrMBiB0ArGzi44jXvWYhFXLzLYyLb7XdaQ5x8Pq9+DyGBwW2+b7y86deKsSAgnAIN6VrqEwNhbG+/gaOTMdeuc7QvhHGvGld0U5qvdxB3iwmTGidFyUxjTJpqPrqfhJuxm98IaeIPukxKG83/YPTbVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=PoYARTso; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 768CA4118B;
+	Mon, 17 Nov 2025 02:17:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1763342234; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=ayCI78s0sFTeRE+mYXvPdg5dHDi/jDMZJzVBaBaUiuk=;
+	b=PoYARTsooGdjq3wnQNA8x72KudChF71ko5NH0iTGj3hnqKcMmltTC6ZR9Cuz9PBqHMGZE1
+	uRu4zviJiEzSLqKiMUVKma1gnBCt9QndRT7yeON+ZP2/83raE6ljp9fixSgtdSFnqW9J47
+	kq5HNoKeylpEjrpiV/VneuW2gQQjg8sAPcpGFGZxj1FZIYpUuPpTaqjWlUtGhh2ao2YYdx
+	NHK5Yn9TgQM/pCnSAPY85vppSbRWkbKW37LdgqQpp9tHEWiisRRwWwcBsSeiv2DP6X6YtV
+	mDlqNdaqq/UhIqN3ydZyZc0G0jFr4hsDIh66e4b7HZeDnO8m2/5W3unvYQxeDA==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <2455319.NG923GbCHz@diego>
+Content-Type: text/plain; charset="utf-8"
+References: <12d6e151-dfa0-ca0a-5888-ddffb2dbdec7@manjaro.org>
+ <bb74679a-ce21-4373-bcc5-1214e9bf832e@rootcommit.com>
+ <24561990-8293-0505-5837-eca416d01bb7@manjaro.org> <2455319.NG923GbCHz@diego>
+Date: Mon, 17 Nov 2025 02:17:12 +0100
+Cc: "Michael Opdenacker" <michael.opdenacker@rootcommit.com>, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: Add crypto engine
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250221-x1e80100-crypto-v2-1-413ecf68dcd7@linaro.org>
- <Z7yJt4ARAM39F9b6@linaro.org>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-In-Reply-To: <Z7yJt4ARAM39F9b6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Message-ID: <a5e7824d-03c7-fa0a-473f-193e172420d2@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2 2/2] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= Add Asus Tinker Board 3 and 3S device tree
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-On 2/24/25 12:01 PM, Stephan Gerhold wrote:
+Hello Heiko,
 
-> On Fri, Feb 21, 2025 at 03:07:03PM +0200, Abel Vesa wrote:
->> On X Elite, there is a crypto engine IP block similar to ones found on
->> SM8x50 platforms.
->>
->> Describe the crypto engine and its BAM.
->>
->> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->> ---
->> The dt-binding schema update for the x1e80100 compatible is here
->> (already picked up):
->>
->> https://lore.kernel.org/all/20250213-dt-bindings-qcom-qce-x1e80100-v1-1-d17ef73a1c12@linaro.org/
->> ---
->> [..]
-> iommus = <&apps_smmu 0x480 0x1> seems to work fine for me, can you try
-> again? Not sure if this is related, but make sure to apply
->
-> https://lore.kernel.org/linux-arm-msm/20250208223112.142567-1-caleb.connolly@linaro.org/
->
-> since that can easily cause crashes for bam_dma. I added this diff for
-> testing and it's working fine so far:
->
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index afb8bd3b6a94..bac3d6a38055 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -3732,8 +3732,7 @@ cryptobam: dma-controller@1dc4000 {
->   
->   			#dma-cells = <1>;
->   
-> -			iommus = <&apps_smmu 0x480 0>,
-> -				 <&apps_smmu 0x481 0>;
-> +			iommus = <&apps_smmu 0x480 0x1>;
->   
->   			qcom,ee = <0>;
->   			qcom,num-ees = <4>;
-> @@ -3752,8 +3751,7 @@ crypto: crypto@1dfa000 {
->   			dmas = <&cryptobam 4>, <&cryptobam 5>;
->   			dma-names = "rx", "tx";
->   
-> -			iommus = <&apps_smmu 0x480 0>,
-> -				 <&apps_smmu 0x481 0>;
-> +			iommus = <&apps_smmu 0x480 0x1>;
->   		};
->   
->   		tcsr_mutex: hwlock@1f40000 {
+On Sunday, November 16, 2025 00:27 CET, Heiko St=C3=BCbner <heiko@sntec=
+h.de> wrote:
+> Am Samstag, 15. November 2025, 08:14:58 Mitteleurop=C3=A4ische Normal=
+zeit schrieb Dragan Simic:
+> > BTW, my responses are currently jailed by the linux-rockchip mailin=
+g
+> > list, requiring manual approval, as a result of the mail server I'm
+> > using sometimes inserting some strange invisible UTF-8 characters
+> > into the email subjects.  Oh well. :)
+>=20
+> I guess that mailserver needs a fix :-)
 
-Hi, looks like this has been sort of lost to time but I went to test 
-this since the runtime PM patch was for the crypto engine got posted 
-recently[1] and I wanted to see if making sure this block goes to sleep 
-(vs. whatever state UEFI leaves it in) helps with power consumption 
-(can't say it did really..) So,
+Indeed, something is, unfortunately, really messed up there, :/
+to the point that even one of my "unjailed" responses in this
+thread ended up in a separate lore thread. [1]
 
-- iommus = <&apps_smmu 0x480 0x1> does NOT work, breaks the boot 
-process, display doesn't initialize etc.;
-- the original iommus = <&apps_smmu 0x480 0>, <&apps_smmu 0x481 0> DOES 
-attach fine:
-
-[    0.207614] platform 1dfa000.crypto: Adding to iommu group 3
-
-
-[1]: 
-https://lore.kernel.org/all/20251115084851.2750446-1-quic_utiwari@quicinc.com/
-
-Thanks,
-~val
+[1] https://lore.kernel.org/linux-rockchip/e4cd11d0-463c-e707-5110-6b92=
+899b1ba3@manjaro.org/T/#u
 
 
