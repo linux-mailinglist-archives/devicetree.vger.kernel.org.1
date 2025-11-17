@@ -1,93 +1,95 @@
-Return-Path: <devicetree+bounces-239242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96DCCC62E72
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8287C62EBA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:38:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 144F8357856
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:34:33 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B13FB35A2AD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:37:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBA231B831;
-	Mon, 17 Nov 2025 08:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D890B31D72B;
+	Mon, 17 Nov 2025 08:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Untafpcb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k8F73YWr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E99B1946DF
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43AB31D393
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763368466; cv=none; b=nq1fMWcnAGChXhESuvMWXPhUoxuUwAPzY8urWB+1RTTM9shtgG0cPsGh9k4QA80NO2C7C2GdgrGhQi20B+em0BcQaong5osrWWO929Yl+5imDq5+GQ77rv5jkEFXYHXqpc+rWI3rEKyICLl1v+MX9jfGEfLusj/IVvB7aYvTJ8o=
+	t=1763368621; cv=none; b=U4gIaSbzyddyopnocEn9tHlvSGWSQtDT5tCPsECGIGt+ABEFkctjP5mnUl1/QknFNRRHXwGurj0Q101FQbvTKnCPTzLCf45IBKbBbPrYHuN4DKAMwCKKoG0PgPzVm0DYFee58o+gBFagdd2VvHkg2vrkewtDVlXdLjkikr5hKaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763368466; c=relaxed/simple;
-	bh=/w8+cOPPoQCGSAG/Bsdo816ahLwOpNRu9TtyqYsIsBw=;
+	s=arc-20240116; t=1763368621; c=relaxed/simple;
+	bh=jEs+PHPYbJw7U8D6uJYIzwCTNaKJLPOsD13HrSyQVcM=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=iiS07+64pZnZ5uK/s7Dq50AsjLvpYfzsJs7PE7BlQx94w3E1Rzlm7anz7OqbFWw7+NwmCsWOW8XOuOMCcPgtX5mTr1sUv+3BuVaz7QxVJCPBY8twuD10Re4ZUlkrt7g7soiJs0d+NYYzfIJVdjkh6pzWLn3yMffaiVkFgvwdHi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Untafpcb; arc=none smtp.client-ip=209.85.128.54
+	 Content-Type:MIME-Version; b=EL/j+J3DMiSs89SNV1e7hYhC17Pk41zkUZxvc7HutrZlgJrM1i1/7Yfh7ptYbAI5xZMbF9ipypkQ2/wGY+0bd00HAxcOL2bNDhPQQ2ar4HUIVF6FLEDHSYGj0VON/13rKY7e058eSQb4Z5ZZsLRr7FIkAtxSbaEkYTIDBSPWk9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k8F73YWr; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4774f41628bso25927905e9.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 00:34:24 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-477632d45c9so29068375e9.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 00:36:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763368463; x=1763973263; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1763368618; x=1763973418; darn=vger.kernel.org;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=bPqgK8cy9cCPRdd19hJcNNNEYGuuQbqc8vWqHqOTZkk=;
-        b=UntafpcbeRfDn6U/xt6rO/r+TgrcWw13BZoGD4ixhRtK09N/MOX9tlR/Eg1xmT0Jdq
-         vdCG3qHV+Zbi8qGR118XLVnNRJsgCtU2thpapis/4QQM3Nq3E4p1hjX6dkxnuKd2lEEa
-         jMQ+zyC0Z3PjaMf2L7TLj0HChI/aAPV5JGswYchoYZ16PVuVZQBO0hB1R8Pk2f53JLj0
-         +Jp67Mj8ICmj3OtIJx+aLULwqqLQXoJ/CbYGUHxg8TcGs+/A8COIsyvXWM2DYMb3TMGq
-         edxRB1UQ/1mRzLdHdZscaUShUhlC7pOuraH79bLE5kL82ex7u1p7LTmf/TuVuI5Ii5FW
-         FHJA==
+        bh=jEs+PHPYbJw7U8D6uJYIzwCTNaKJLPOsD13HrSyQVcM=;
+        b=k8F73YWrhIGHL0elago5POwDwQZn+mUaiid5y3j2qijqDAbM5qLv++swCI+hJo+RRw
+         jq/A6KY6gSSDYO8rTi4D5nZ22wRfKjr2JMlDm8WSTFwsJ6/3g9G6RdyKcyfSI11xk284
+         UsTzAqZejnX96XIKOvu/mCPvy8t/Znm0nXcLUtlp1W3GeoxXndSEJsFv5+wi/GKI7sVW
+         dsp8ajXuNgpu7VwNapN7G5DJ47OLj4Ueg0DojdXygVeyM51YYZd3uJOoh8B5XdPYdycA
+         NGLMWt8Zo1jaItdRnxIHNNELxJ1x7Gx5Cbc/aMIDAKdOsUFWeFIQNKvj9PENFC11o15/
+         T3sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763368463; x=1763973263;
+        d=1e100.net; s=20230601; t=1763368618; x=1763973418;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bPqgK8cy9cCPRdd19hJcNNNEYGuuQbqc8vWqHqOTZkk=;
-        b=v4id4QPJk7T9eYSlXgoATVJS+RzBUJf/zMfGqfTYkwMNM1ocRiqYm1SM2X15P/TIG5
-         JpYeWqI3ix+AWDcfDG2R3MTOnchHHzH6Im+Q28RASycraD2e8h/SgjHlF7GDcLGT7b0v
-         pOZSehCz11RGm7ekWWUTzSO8iDE+FXLBEUMuOiUe2sWwbwwicR1X9OOvUB1V5Bm8261r
-         niDWEVdILSzE4EmXHUVPprN3WZjbIe3P6YpsHIr70wCvGNFaW9dLfCEBZOB/FDb3ZF2D
-         r147TVVud7bTizOYd078JEH3I8JH+0/3RU5m4ne39OZSRywT7ddO/hiA8xlvpU4garpX
-         9P0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVHlSizYhTG3CrUjkfI8wLJxFEA4TcfllQjUEXBJt17HZqZLaQwrRKb797vELuQd3sA1bggAuHcLZ1M@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywc5ph28CmGIkNM0Fj9vI2XxoFc65FUtxeQM1cFPX/cINsRlXG/
-	hvP4ogju2T+THaZ6HfsYJzVonL0KdggwgB4eHku5uSrjdXc7cyTglsjh
-X-Gm-Gg: ASbGncuN2RiuB2FYZqPSQ6nV7tpv3QSuZoOZlAhjgnQ8kSK9O3lKu79oIoc4CW3VNgn
-	mikYf3CE+3SIdB4mvPayiIKkMsZSefY0CVyToMZ85e8aVIN89DQ5WywvihjlnBRl32Ti98HQW8g
-	JC8EvsalVIqByCvvhrSRrUWpDIkocR9ZW+7PF08WNvqtwJ3y3GDgf43WmOYGY13m80DO3eevQOl
-	sTeFilbU4AYPsImyUYX3mZR2JUzVcOSkl/egxbBiBW7KyxKmONrz85zbZ4X+9Mo343/omuF7S8q
-	T0b+q3jhqeCYy8IJzamhKY8OujvTMlyQjMWHczexJ/NLkOzdnZuktnn15Y1dOVkxZ12C8Teqsot
-	K5NhQAzYaUiIY/8YxvipoTXCfPHm7nxiwbZZlzgAahMDLPEoDeNDVTwj6FQy3ncdIcV0I/x8phy
-	5uFY1yJtwWaZ4zWYW8h86pfMTaeUD4VD8IzMTBjlgjZI6Kmeo08bUzpE356Z8=
-X-Google-Smtp-Source: AGHT+IHntRTwsme03+6WMxIwVdcfrJhadXkeJJU2b3wpprfCD5Jds7oFoJy6WDNSAMQdfKqDWAF/RQ==
-X-Received: by 2002:a05:6000:200c:b0:426:fb27:974a with SMTP id ffacd0b85a97d-42b52844e62mr14456258f8f.27.1763368462599;
-        Mon, 17 Nov 2025 00:34:22 -0800 (PST)
+        bh=jEs+PHPYbJw7U8D6uJYIzwCTNaKJLPOsD13HrSyQVcM=;
+        b=uFbCQAccwDbrGkkhPHPct1uNBJGe/+S0hjM0Ca572Bj6umU4yzJucrSXcaFMR+1uLH
+         mfCSVmD5qsR3Op13GNaiv6glzecah31LNUWYsGcZyWEFrNOLsHx4CQp8E92SPMrnA1hN
+         0sZOhEYiCpjLU1vx9k9N3ixf2J7pxScajE0ZGASYwzwx9n9QP72YMlHPBJa+W4Y5O3JM
+         oXdNxGn2n8vWxHaq8AV/qyI0jfVQwsDWIVXa9k8nOPY7oZbKsELwJRJr8/s7N127tvtq
+         ud1PsyEFCUMkNYuUkFdmqInPn71qBNcJcKGsq8yvPlxiRVMExczCqjLee4iu+xIfNhyh
+         wJ8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUj19rMksNawn/HCmK8MC/dVqeKEf8UCOzYVR01vzZ4AC7Sy7E140wxKvYxipLe/NIr9nBPJHbibzNJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDFx025tHlWd75wNUdFhkQIRA9+RU7phol0IOg9IFhHbWeD3sw
+	OsiLV0/xZ9MSNksRg8pkxDQzPqFx3+epGdca2WWCPeiFfmdKEhcicxQR
+X-Gm-Gg: ASbGnctujnmCf/NKC4oHkK96TjB/tcx0tJtzUjI+fdusJ0UMBCneGehJGKZ+Dsxl0Ui
+	SHASm0bsNAGxAcvEl84sWFxbndBe2Dis8GazSSwixyF3nKYuGHFVqkHMKfoYwhCo7MTzhHl01ow
+	u/FyKBux/NuluN8V0hbbqBG2wtW48OfCHut+vY5l9zqv1u6AI5uiFKUMP+/XmOmZz5CQnWJpWEb
+	J5SXve/4zcKTdRwyNK0uyT7uKs+jkfGv29Z8cUVkON7CFMyNXIUbjJJwvJLs5L/pR15/sk8cQxR
+	GL4Wq0JkyZj/lNBUWKOw7Ne5TxGZeMraP+d/a5FjhL0e8bXJEup4kqszZ3jvBCZ2dgggtK8aCF2
+	JV94xbLgJzJWYQYEFjpG0G7vaeUbcXvK58169bUUpqCcglwtXeg75YV6i0W1NXz5+MXr3mq1VcE
+	zJcAn0nJ+CtGrdLNNy43c7dYI1bTaBkCBTpw5soHJg4dAcskcM
+X-Google-Smtp-Source: AGHT+IFqvqIxI3ITQD5zAT/7ZzMljZHFUVUN0MqCI6bwlrhpUcItCKNOlBNAb+KExRAYyeuF5CjMag==
+X-Received: by 2002:a05:600c:450f:b0:477:76bf:e1fb with SMTP id 5b1f17b1804b1-4778fe4a05emr117954545e9.16.1763368617743;
+        Mon, 17 Nov 2025 00:36:57 -0800 (PST)
 Received: from ?IPv6:2001:818:ea56:d000:94c4:fb0e:28f:2a8d? ([2001:818:ea56:d000:94c4:fb0e:28f:2a8d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f19aa0sm24961371f8f.37.2025.11.17.00.34.21
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4779527235esm154459915e9.8.2025.11.17.00.36.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Nov 2025 00:34:22 -0800 (PST)
-Message-ID: <691267ecaa66a0f6a07ec79000b80de502d9b367.camel@gmail.com>
-Subject: Re: [PATCH 2/2] iio: frequency: adf4377: add clk provider support
+        Mon, 17 Nov 2025 00:36:57 -0800 (PST)
+Message-ID: <8c81552eefe30cf191d1d422ab9a5d949284e7ac.camel@gmail.com>
+Subject: Re: [PATCH 0/3] ADF41513/ADF41510 PLL frequency synthesizers
 From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Antoniu Miclaus
-	 <antoniu.miclaus@analog.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>
-Date: Mon, 17 Nov 2025 08:35:23 +0000
-In-Reply-To: <20251115172407.2c00d58c@jic23-huawei>
-References: <20251114120908.6502-1-antoniu.miclaus@analog.com>
-		<20251114120908.6502-3-antoniu.miclaus@analog.com>
-	 <20251115172407.2c00d58c@jic23-huawei>
+To: Jonathan Cameron <jic23@kernel.org>, Rodrigo Alencar via B4 Relay
+	 <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org,  David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet	 <corbet@lwn.net>
+Date: Mon, 17 Nov 2025 08:37:58 +0000
+In-Reply-To: <20251116161023.7a4b1b6e@jic23-huawei>
+References: <20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com>
+	 <20251116161023.7a4b1b6e@jic23-huawei>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
@@ -98,241 +100,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Sat, 2025-11-15 at 17:24 +0000, Jonathan Cameron wrote:
-> On Fri, 14 Nov 2025 12:09:08 +0000
-> Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On Sun, 2025-11-16 at 16:10 +0000, Jonathan Cameron wrote:
+> On Mon, 10 Nov 2025 15:44:43 +0000
+> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.o=
+rg> wrote:
 >=20
-> > Add clk provider feature for the adf4377.
+> > This patch series adds support for the Analog Devices ADF41513 and ADF4=
+1510
+> > ultralow noise PLL frequency synthesizers. These devices are designed f=
+or
+> > implementing local oscillators (LOs) in high-frequency applications.
 > >=20
-> > Even though the driver was sent as an IIO driver in most cases the
-> > device is actually seen as a clock provider.
+> > The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41=
+510
+> > operates from 1 GHz to 10 GHz. Both devices feature exceptional phase n=
+oise
+> > performance and flexible frequency synthesis capabilities.
 > >=20
-> > This patch aims to cover actual usecases requested by users in order to
-> > completely control the output frequencies from userspace.
+> > Key features supported by this driver:
+> > - Integer-N and fractional-N operation modes
+> > - Ultra-low phase noise (-235 dBc/Hz integer-N, -231 dBc/Hz fractional-=
+N)
+> > - High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
+> > - 25-bit fixed modulus or 49-bit variable modulus fractional modes
+> > - Programmable charge pump currents with 16x range
+> > - Digital lock detect functionality
+> > - Phase resync capability for consistent output phase
+> > - Clock framework integration for system clock generation
 > >=20
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
->=20
-> Given this new code is basically a clock driver, I'd expect to see some
-> relevant folk +CC.
->=20
-> Added Michael, Stephen and linux-clk.
->=20
-> One question from me right at the end around whether it makes sense
-> to register an IIO device with no channels.=C2=A0 I left the rest so it w=
-as
-> easy for the people added to the thread to see all the code.
->=20
-> Thanks,
->=20
-> Jonathan
->=20
->=20
-> > ---
-> > =C2=A0drivers/iio/frequency/adf4377.c | 131 +++++++++++++++++++++++++++=
-++++-
-> > =C2=A01 file changed, 129 insertions(+), 2 deletions(-)
+> > The series includes:
+> > 1. Core driver implementation with full register programming support
+> > 2. Device tree bindings documentation
+> > 3. IIO subsystem documentation with usage examples
 > >=20
-> > diff --git a/drivers/iio/frequency/adf4377.c b/drivers/iio/frequency/ad=
-f4377.c
-> > index 08833b7035e4..08dc2110cf8c 100644
-> > --- a/drivers/iio/frequency/adf4377.c
-> > +++ b/drivers/iio/frequency/adf4377.c
-> > @@ -8,6 +8,7 @@
-> > =C2=A0#include <linux/bitfield.h>
-> > =C2=A0#include <linux/bits.h>
-> > =C2=A0#include <linux/clk.h>
-> > +#include <linux/clk-provider.h>
-> > =C2=A0#include <linux/clkdev.h>
-> > =C2=A0#include <linux/delay.h>
-> > =C2=A0#include <linux/device.h>
-> > @@ -435,9 +436,14 @@ struct adf4377_state {
-> > =C2=A0	struct gpio_desc	*gpio_ce;
-> > =C2=A0	struct gpio_desc	*gpio_enclk1;
-> > =C2=A0	struct gpio_desc	*gpio_enclk2;
-> > +	struct clk		*clk;
-> > +	struct clk		*clkout;
-> > +	struct clk_hw		hw;
-> > =C2=A0	u8			buf[2] __aligned(IIO_DMA_MINALIGN);
-> > =C2=A0};
-> > =C2=A0
-> > +#define to_adf4377_state(h)	container_of(h, struct adf4377_state, hw)
-> > +
-> > =C2=A0static const char * const adf4377_muxout_modes[] =3D {
-> > =C2=A0	[ADF4377_MUXOUT_HIGH_Z] =3D "high_z",
-> > =C2=A0	[ADF4377_MUXOUT_LKDET] =3D "lock_detect",
-> > @@ -929,6 +935,120 @@ static int adf4377_freq_change(struct notifier_bl=
-ock *nb,
-> > unsigned long action,
-> > =C2=A0	return NOTIFY_OK;
-> > =C2=A0}
-> > =C2=A0
-> > +static void adf4377_clk_del_provider(void *data)
-> > +{
-> > +	struct adf4377_state *st =3D data;
-> > +
-> > +	of_clk_del_provider(st->spi->dev.of_node);
-> > +}
-> > +
-> > +static unsigned long adf4377_clk_recalc_rate(struct clk_hw *hw,
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long parent_rate)
-> > +{
-> > +	struct adf4377_state *st =3D to_adf4377_state(hw);
-> > +	u64 freq;
-> > +	int ret;
-> > +
-> > +	ret =3D adf4377_get_freq(st, &freq);
-> > +	if (ret)
-> > +		return 0;
-> > +
-> > +	return freq;
-> > +}
-> > +
-> > +static int adf4377_clk_set_rate(struct clk_hw *hw,
-> > +				unsigned long rate,
-> > +				unsigned long parent_rate)
-> > +{
-> > +	struct adf4377_state *st =3D to_adf4377_state(hw);
-> > +
-> > +	return adf4377_set_freq(st, rate);
-> > +}
-> > +
-> > +static int adf4377_clk_prepare(struct clk_hw *hw)
-> > +{
-> > +	struct adf4377_state *st =3D to_adf4377_state(hw);
-> > +
-> > +	return regmap_update_bits(st->regmap, 0x1a, ADF4377_001A_PD_CLKOUT1_M=
-SK
-> > |
-> > +				=C2=A0 ADF4377_001A_PD_CLKOUT2_MSK,
-> > +				=C2=A0 FIELD_PREP(ADF4377_001A_PD_CLKOUT1_MSK, 0) |
-> > +				=C2=A0 FIELD_PREP(ADF4377_001A_PD_CLKOUT2_MSK, 0));
-> > +}
-> > +
-> > +static void adf4377_clk_unprepare(struct clk_hw *hw)
-> > +{
-> > +	struct adf4377_state *st =3D to_adf4377_state(hw);
-> > +
-> > +	regmap_update_bits(st->regmap, 0x1a, ADF4377_001A_PD_CLKOUT1_MSK |
-> > +			=C2=A0=C2=A0 ADF4377_001A_PD_CLKOUT2_MSK,
-> > +			=C2=A0=C2=A0 FIELD_PREP(ADF4377_001A_PD_CLKOUT1_MSK, 1) |
-> > +			=C2=A0=C2=A0 FIELD_PREP(ADF4377_001A_PD_CLKOUT2_MSK, 1));
-> > +}
-> > +
-> > +static int adf4377_clk_is_enabled(struct clk_hw *hw)
-> > +{
-> > +	struct adf4377_state *st =3D to_adf4377_state(hw);
-> > +	unsigned int readval;
-> > +	int ret;
-> > +
-> > +	ret =3D regmap_read(st->regmap, 0x1a, &readval);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return !(readval & (ADF4377_001A_PD_CLKOUT1_MSK |
-> > ADF4377_001A_PD_CLKOUT2_MSK));
-> > +}
-> > +
-> > +static const struct clk_ops adf4377_clk_ops =3D {
-> > +	.recalc_rate =3D adf4377_clk_recalc_rate,
-> > +	.set_rate =3D adf4377_clk_set_rate,
-> > +	.prepare =3D adf4377_clk_prepare,
-> > +	.unprepare =3D adf4377_clk_unprepare,
-> > +	.is_enabled =3D adf4377_clk_is_enabled,
-> > +};
-> > +
-> > +static int adf4377_clk_register(struct adf4377_state *st)
-> > +{
-> > +	struct spi_device *spi =3D st->spi;
-> > +	struct clk_init_data init;
-> > +	struct clk *clk;
-> > +	const char *parent_name;
-> > +	int ret;
-> > +
-> > +	if (!device_property_present(&spi->dev, "#clock-cells"))
-> > +		return 0;
-> > +
-> > +	if (device_property_read_string(&spi->dev, "clock-output-names",
-> > &init.name)) {
-> > +		init.name =3D devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
-> > +					=C2=A0=C2=A0 fwnode_get_name(dev_fwnode(&spi-
-> > >dev)));
-> > +		if (!init.name)
-> > +			return -ENOMEM;
-> > +	}
-> > +
-> > +	parent_name =3D of_clk_get_parent_name(spi->dev.of_node, 0);
-> > +	if (!parent_name)
-> > +		return -EINVAL;
-> > +
-> > +	init.ops =3D &adf4377_clk_ops;
-> > +	init.parent_names =3D &parent_name;
-> > +	init.num_parents =3D 1;
-> > +	init.flags =3D CLK_SET_RATE_PARENT;
-> > +
-> > +	st->hw.init =3D &init;
-> > +	clk =3D devm_clk_register(&spi->dev, &st->hw);
-> > +	if (IS_ERR(clk))
-> > +		return PTR_ERR(clk);
-> > +
-> > +	st->clk =3D clk;
-> > +
-> > +	ret =3D of_clk_add_provider(spi->dev.of_node, of_clk_src_simple_get, =
-clk);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	st->clkout =3D clk;
-> > +
-> > +	return devm_add_action_or_reset(&spi->dev, adf4377_clk_del_provider,
-> > st);
-> > +}
-> > +
-> > =C2=A0static const struct adf4377_chip_info adf4377_chip_info =3D {
-> > =C2=A0	.name =3D "adf4377",
-> > =C2=A0	.has_gpio_enclk2 =3D true,
-> > @@ -958,8 +1078,6 @@ static int adf4377_probe(struct spi_device *spi)
-> > =C2=A0
-> > =C2=A0	indio_dev->info =3D &adf4377_info;
-> > =C2=A0	indio_dev->name =3D "adf4377";
-> > -	indio_dev->channels =3D adf4377_channels;
-> > -	indio_dev->num_channels =3D ARRAY_SIZE(adf4377_channels);
-> > =C2=A0
-> > =C2=A0	st->regmap =3D regmap;
-> > =C2=A0	st->spi =3D spi;
-> > @@ -979,6 +1097,15 @@ static int adf4377_probe(struct spi_device *spi)
-> > =C2=A0	if (ret)
-> > =C2=A0		return ret;
-> > =C2=A0
-> > +	ret =3D adf4377_clk_register(st);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (!st->clkout) {
-> > +		indio_dev->channels =3D adf4377_channels;
-> > +		indio_dev->num_channels =3D ARRAY_SIZE(adf4377_channels);
+> > The driver integrates with both the IIO subsystem (for direct hardware =
+control)
+> > and the Linux clock framework (for use as a system clock source), provi=
+ding
+> > flexibility for different use cases.
 >=20
-> Why register a channel free iio device? Probably better to just not regis=
-ter
-> it at all in this path.
+> For v2, provide a little more info on why we need both interface types
+> specifically what you can do with IIO that you can't do with a clock
+> driver.=C2=A0 Also +CC the clk driver folk and list from MAINTAINERS.
+>=20
+> We have evolved to this dual interface state drivers, but I'm not sure
+> we aren't in a case 'If we were doing this again we'd never start from
+> here.'
 
-Maybe a sneaky way of making use of the IIO debug direct access :). But I a=
-lready
-asked myself the somehow related question if we should still allow IIO acce=
-ss even if
-the clock provider is registered. I mean, for sure we would need a more "fi=
-ne"
-grained access but we could only forbid IIO/userspace control in case an ac=
-tual
-consumer of the clock asks for it.
-
-Or maybe not worth the trouble :)
+Yeah, in some devices I do think that we should likely only have the clock =
+driver
+(for devices where we only control the channel frequency). For others, we d=
+o have
+offer more control through IIO which adds some value.
 
 - Nuno S=C3=A1
 
 >=20
-> > +	}
-> > +
-> > =C2=A0	return devm_iio_device_register(&spi->dev, indio_dev);
-> > =C2=A0}
-> > =C2=A0
+> Jonathan
+>=20
+>=20
+> >=20
+> > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > ---
+> > Rodrigo Alencar (3):
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio: frequency: adf41513: driver impleme=
+ntation
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: iio: frequency: add adf4151=
+3
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 docs: iio: add documentation for adf4151=
+3 driver
+> >=20
+> > =C2=A0.../bindings/iio/frequency/adi,adf41513.yaml=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 268 ++++
+> > =C2=A0Documentation/iio/adf41513.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 377 +++++
+> > =C2=A0Documentation/iio/index.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
+> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 9 +
+> > =C2=A0drivers/iio/frequency/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 11 +
+> > =C2=A0drivers/iio/frequency/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
+> > =C2=A0drivers/iio/frequency/adf41513.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 1435 ++++++++++++++++++++
+> > =C2=A07 files changed, 2102 insertions(+)
+> > ---
+> > base-commit: d16d1c2553248f9b859b86c94344d8b81f0297cd
+> > change-id: 20251110-adf41513-iio-driver-aaca8a7f808e
+> >=20
+> > Best regards,
 
