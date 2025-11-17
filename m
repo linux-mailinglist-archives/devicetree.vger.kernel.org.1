@@ -1,187 +1,138 @@
-Return-Path: <devicetree+bounces-239275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967CAC635BF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:53:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33198C63692
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:06:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EFDE3A7363
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:53:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 552A54E9BC9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 10:01:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A9D25F79A;
-	Mon, 17 Nov 2025 09:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F07274652;
+	Mon, 17 Nov 2025 10:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MXvihJj2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EgUVulQS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7831FDA8E;
-	Mon, 17 Nov 2025 09:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4356D26F2A7;
+	Mon, 17 Nov 2025 10:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763373173; cv=none; b=IQJHyqxS6vbmZt9lOrQM+0GmXWSNcU1BeHKnz20gHq1SZQO+fowVv13eSXravsRsPe8HqF/WRkmhsTLDvx+FWs1HhpF5FUYzYBLZYZTlpdjjV9XyyqOgUxvHjzyfiBLTtRM7WCEchuc+yoiiSHLNkDhUXqh2eryW2VH5jbM40M4=
+	t=1763373687; cv=none; b=PQTDP44fEjDjaH76zA7zzvLPmbmf8OI8CD0+sJWeb/dNv9wpyAtVtGgyW1Xj4+wyCwYiRhRN32q+FSdwHexz3huPm3c0CR93rLpmGruyqL+u/yP8E9XbjRhQF0+uvWozs1FnK4x+RkUh1+qPUMNmRWREBPKRU6ylR+YGfMRggPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763373173; c=relaxed/simple;
-	bh=vfKA8awuSaJf9Y4Pc/4FK/YOKeoaYwjiDn0OnWEPFn0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FPc3S9mzL4vDBqVY+y8bviwtLck/srjCxX68XI10meUPHwCIJ2ULZfFhfj7fnW78T3lgKdF6gY6Feu2WK8T0T66ue3MyqypWE/Hrc+jzEbe67JH5R9nqpqQD3RQFkQIssQe+r3JFm/MDGd4ecvMW0uinwam1WbpRUb8sC2K545M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MXvihJj2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FA39C4CEF5;
-	Mon, 17 Nov 2025 09:52:50 +0000 (UTC)
+	s=arc-20240116; t=1763373687; c=relaxed/simple;
+	bh=U7vRmfMxxu2hnBi8KL4uNoUJ2y6rwaX3sY9jqWizYHI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BdKL5kak+S27NAUEKIqTSEsjMZsg7DcazdaQZ9JOgeRKzhBK9xra7Su1ZQfjavBBHAr854ZEA0jaQ6qDk+DYRGNj1Z6lcLo+lkCPyWrGMryE42S6TtQFrXVKI5MqH1CTsK769FGbnFWKi1CtTowfDJmitw3sm7PHVjPHj3g3Z40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EgUVulQS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0C4A3C19422;
+	Mon, 17 Nov 2025 10:01:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763373173;
-	bh=vfKA8awuSaJf9Y4Pc/4FK/YOKeoaYwjiDn0OnWEPFn0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MXvihJj2PGL+TolzxM0UqnD41Kf1k8k6zg1GZUPt1/e77gBhzZYNEYexHRggWY4px
-	 0i5dhYHU/VS7Yqm9NcDYmoJbMNiR4WyA/nfkc59h79ZRUrvn1bqDhABg328zk16Cy1
-	 r1iza74qxOVZwvoJa3Dr2S4hOkhKyPzb+rw4U/CINkojrHeLrwu9pSNmsjvu1sGXrD
-	 KAqGyu3D/MPk/51lwCtIQGhGUDO/2RHwVrtx4NOX73ehGwWQoHg9n/8TJJrkGNt346
-	 UPfx5OZjHInahQ9jFJFecvjs0OJNl0yyZ/FWwOovpj5ZRUgc42vy8rxXtvMDpF1/F6
-	 h7UqOYA++zgtw==
-Message-ID: <8ce701c9-6c8d-4b3e-8706-760b8aba89fc@kernel.org>
-Date: Mon, 17 Nov 2025 10:52:49 +0100
+	s=k20201202; t=1763373687;
+	bh=U7vRmfMxxu2hnBi8KL4uNoUJ2y6rwaX3sY9jqWizYHI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=EgUVulQSk6IrjR49E250Z5eogUcv3NROnQ7dvGB4iEL+L79B5G2nXvNcmwlEZohY6
+	 rwfdAbtDo6+QFJL5/xmd0rPC3ap3ebl3rhE7AY2+MpafC+6yUIjNjp3NJHLi5LxRFP
+	 dP15sdMdHuhCI4EAfm7mK+BY27xcYtVyGUrZR2unuEbyzq+gBP6Pp5qiKdJHVGwLyV
+	 12l+yNFJVV/Or6G09EnaMR1cC0nkGYcLbJpdtGrpFsnSTQftLatiZmDTV5IgAoyBj1
+	 GpSMIOwc7OoSgknlBQIYHtmT5Jg9V5N20Pw8VgfsYU1rVM7i5lV34Sc74+S54l0Ydl
+	 O/0HUUdDF58rA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EED66CEBF61;
+	Mon, 17 Nov 2025 10:01:26 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH 0/3] media: rockchip: add driver for the rockchip mipi
+ csi-2 receiver
+Date: Mon, 17 Nov 2025 11:01:08 +0100
+Message-Id: <20251114-rockchip-mipi-receiver-v1-0-d13086e810dd@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: SoC-specific device tree aliases?
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree-spec@vger.kernel.org,
- "kernel@pengutronix.de" <kernel@pengutronix.de>, quentin.schulz@cherry.de
-References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
- <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org>
- <aRrcRZvdrbAmsCm_@pengutronix.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aRrcRZvdrbAmsCm_@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGTyGmkC/x2NwQrCMBAFf6Xs2YUmRFB/RTwk66tZrGnY0CKU/
+ rvB4wwMs1ODKRrdhp0MmzZdSgd3GkhyLC+wPjuTH/3ZORfYFnlL1sofrcoGgW4wHlOcfAhylQu
+ oxyk2cLJYJPe8rPPcZTVM+v3f7o/j+AFfc3NQfQAAAA==
+To: Michael Riesch <michael.riesch@collabora.com>, 
+ Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Hans Verkuil <hverkuil@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Bryan O'Donoghue <bod@kernel.org>, 
+ Michael Riesch <michael.riesch@collabora.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763373685; l=1863;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=U7vRmfMxxu2hnBi8KL4uNoUJ2y6rwaX3sY9jqWizYHI=;
+ b=V2eiFY6j5uhsHH4Fimug2DOFegD7zyJEBXg52CjTfy6OV7afZRNtTi0htq66yNivE1qw1k2Cy
+ VQwX9b1QOYrCH9yKNBffKHvefIt+KQX5yb7MHPqcjq8VRZeUAQyHwHs
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
 
-On 17/11/2025 09:26, Sascha Hauer wrote:
-> On Mon, Nov 17, 2025 at 08:38:48AM +0100, Krzysztof Kozlowski wrote:
->> On 13/11/2025 09:28, Ahmad Fatoum wrote:
->>> Hello,
->>>
->>> With /chosen/bootsource now part of dt-schema, I would like to raise a
->>> related point: The need for SoC-specific device tree aliases.
->>>
->>> For many SoCs, there is a canonical numbering for peripherals; it's used
->>> in the datasheet and BootROMs often makes use of it at runtime to report
->>> the bootsource as a pair:
->>>
->>>   - One value to enumerate type of boot medium (e.g. mmc, spi-nor..)
->>>   - Another value that describes which instance (e.g. SDHC1, SPI3, ...)
->>>
->>> Some examples, where this is the case, are AT91, STM32MP or i.MX.
->>>
->>> barebox has traditionally used /aliases to translate BootROM information
->>> to a device tree node to fixup /chosen/bootsource.
->>>
->>> This doesn't work out for many newer SoC support, because of different
->>> expectations: For upstream, aliases are relevant to a board, while
->>> barebox traditionally expected them to be SoC-specific (because they
->>> used to be on i.MX, probably).
->>
->> Please state exactly the problem - you have aliases in DTS but
->> bootsource in DTSI? Then that's clearly mixup - you need to define them
->> in the same place. Aliases are in DTS (I see here other thread on that),
->> so stdout-path is also in DTS.
->>
->> Or you don't have bootsource in DTSI at all because barebox invents it
->> regardless of actual aliases? Then shouldn't this be an obvious issue?
->> You cannot have barebox as second source of aliases.
->>
->>>
->>> To accommodate this, barebox nowadays extends upstream device trees with
->>> /chosen/barebox,bootsource-${alias} properties, which can be used as
->>> translation table instead of aliases.
->>>
->>> This solves the issue, but there is occasional breakage when upstream
->>> decides to remove aliases from the SoC DTSI and move them into the
->>> boards until barebox is made to add the /chosen/barebox, overrides.
->>>
->>> As described above, I think the data sheet numbering is pretty much an
->>> aspect of the hardware and it has a place in the upstream SoC DTSI.
->>>
->>>
->>> So what are the thoughts on adding /soc/aliases or some other top-level
->>> node to hold this information?
->>> Or would a h"ardware-label" property or similar be more tenable?
->>
->> So you want to map full node path to some alias, so later you can map
->> that alias back to full node path, right? This sounds like quite
->> redundant information in DTS just to avoid impact of node reshuffling
->> (like unit address changes). In DTS-source-code realm, we solved it with
->> phandles. Maybe this would help here?
-> 
-> We want aliases that map from the hardware numbers of a device as used
-> in the reference manuals to the actual device nodes. One reason why we
-> need it is to get the device node a SoC has booted from. Many SoCs have
-> registers which describe <bootsource> <instance number>. We want to get
-> the device node from that information.
+Habidere,
 
-Ah, so you don't map from full node path but from some value in register
-and you want to store these values as alias. I see i.MX gives here such
-information but that might be the only user. Samsung AFAIK only gives
-the order of boot device choices, not which one was chosen, for Qcom I
-could not find at all.
+This series adds support for the Rockchip MIPI CSI-2 Receiver that is
+integrated into recent Rockchip SoCs, such as the RK3568 and the RK3588.
 
-Aliases could be solution here but it is as fragile as simple arithmetic
-of sorting MMC nodes by unit address...
+These changes have been discussed and reviewed thoroughly (see [0] and
+predecessors). As has been discussed in [0], it would be beneficial to
+add support for the split mode (a feature of the Rockchip CSI-2 DPHY)
+before integrating the MIPI CSI-2 Receiver into the respective SoC
+device tree includes. However, we can readily add the DT binding and
+the driver as I am positive they will not need to be changed when this
+feature is introduced.
 
+This constitutes a small step towards mainline video capture and camera
+support on the Rockchip RK3588.
+
+Looking forward to your comments!
+
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+
+[0] https://lore.kernel.org/r/20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com
+
+---
+Michael Riesch (3):
+      media: dt-bindings: add rockchip mipi csi-2 receiver
+      media: rockchip: add driver for the rockchip mipi csi-2 receiver
+      arm64: defconfig: enable rockchip mipi csi-2 receiver
+
+ .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 146 ++++
+ MAINTAINERS                                        |   7 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/media/platform/rockchip/Kconfig            |   1 +
+ drivers/media/platform/rockchip/Makefile           |   1 +
+ drivers/media/platform/rockchip/rkcsi/Kconfig      |  16 +
+ drivers/media/platform/rockchip/rkcsi/Makefile     |   3 +
+ drivers/media/platform/rockchip/rkcsi/rkcsi.c      | 742 +++++++++++++++++++++
+ 8 files changed, 917 insertions(+)
+---
+base-commit: 1f2353f5a1af995efbf7bea44341aa0d03460b28
+change-id: 20251114-rockchip-mipi-receiver-0baf244c9c8e
 
 Best regards,
-Krzysztof
+-- 
+Michael Riesch <michael.riesch@collabora.com>
+
+
 
