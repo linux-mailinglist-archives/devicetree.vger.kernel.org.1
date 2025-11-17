@@ -1,242 +1,107 @@
-Return-Path: <devicetree+bounces-239252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C84C62FD3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:54:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9FB5C62F9A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A572F34C79E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:52:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3D9734E7425
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A125C319864;
-	Mon, 17 Nov 2025 08:52:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE7E320CD3;
+	Mon, 17 Nov 2025 08:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="TxAbeCZF"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="iKOxWvtp";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="etMC2cu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973176.qiye.163.com (mail-m1973176.qiye.163.com [220.197.31.76])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BF2E241691;
-	Mon, 17 Nov 2025 08:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0E4320CB8;
+	Mon, 17 Nov 2025 08:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763369569; cv=none; b=HS+HvfX3mv8pGcEn2NbaizOMpTV5QC1mTmSwtkm6HO8eDOrgxilH7OJN2SbK5OOzT6OiG8E7+YWVSWlr/kRhl7UDe22vXV6XGjgm/66jrWBJsjxfryLNFGgmcYe5MGSj3LP6mc4capkZImZSx11XTiXOGXB3SZKBw/qw9ggyKIQ=
+	t=1763369480; cv=none; b=kt8FeonCjUqhIfY4Rk0SECf2EGXXQEBUJa0Lmdye6GlCvh5HW6PqUfkeEx6oV1z952UxMttji6uE1zHZeK0RWMupTQAQbipauJbeCXPFC+b2bSO8D9qP4ovSaqpuU6ef9cCAM2o7t3pmS2e2SQkEzKrFvQfY+CcGUz16zhFyFYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763369569; c=relaxed/simple;
-	bh=9M/PZ3geKQeaYE500yl7cwRVd4tkyeyO+eowp0ec8rI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IqcsedyqAwqziIRnv3Z8NbCZfg20lrhM/6aiMb6X6mMBeON8eJrkgw/gtiXYY3xTmBgLjDWjbzTI960WooBSvuEL2byMoUd7f/Kov7lrqqvtWNojq3ptkDv2xox2IyAlwr4TIPkGnA5FQWFmrbRpVgMmdqLlK7Y9i9aiSXonTj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=TxAbeCZF; arc=none smtp.client-ip=220.197.31.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 29d4759ae;
-	Mon, 17 Nov 2025 16:47:26 +0800 (GMT+08:00)
-Message-ID: <140cd555-d512-4712-9d71-2d7f188a74fb@rock-chips.com>
-Date: Mon, 17 Nov 2025 16:47:25 +0800
+	s=arc-20240116; t=1763369480; c=relaxed/simple;
+	bh=lS4K1Fmtb4eTNMGZuYrTNAmeKTUJGJJMfMTIlLms4Pg=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=rA3qTeLyq91VUF1TZMf/ZJipwSeMtv1jqm9D0t/s3awJIJUqGL0KlJn57Q6bNjQy26ADWT5/GRgdW/HmKUPgLShNil7O/q0qqeoO/Ao1FszuCJw1hqHYfW0sN+b6ebYgJV7YTPVasDwUVdrNoYtHagmdw4Hxoi1F1FdJsdr44B0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=iKOxWvtp; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=etMC2cu5; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1763369465; bh=fCdqfPfS0t2/ZuG+/0nxkcA
+	pZDIQ9xBoXBAben50NYE=; b=iKOxWvtpn5wGY0tZgAIORy21jBYEMtO566435ZBvwX2k/sW5lG
+	7qMedEbmidCiCsqgqtxEWdrTLAdFFf9ZHrB0014UkmfcDspUn2TxbpzapnSb65imLtLDvDjimzs
+	coNVXaphIo61mxEn4cwM8+4dCaFO/7HzmaKu90DWPjRCWxAaeveeyFh5STLKrsSNwHjZAQvG8aL
+	niT8aioGWti/jIXJS0KRPqIdhmMbke9yyMp7VQdpGTtTs/P9FGtdQ10xH0K+obBbu0T4VSIc7fU
+	YWdynQe/8gB88xzenCYF3Ajk7SSuHn96bImQWaS3ZlI9AhbT5rbrh0VO0qICWrB0fNA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1763369465; bh=fCdqfPfS0t2/ZuG+/0nxkcA
+	pZDIQ9xBoXBAben50NYE=; b=etMC2cu5a1Vjm2bd1FaSz1AWMPw7MAEIUlqszFilL/98KULxZv
+	/E5wrWEBWsB7Zo5SbEAFIpNKsr0zlKF0mfBg==;
+Date: Mon, 17 Nov 2025 09:51:04 +0100
+From: =?ISO-8859-1?Q?Barnab=E1s_Cz=E9m=E1n?= <barnabas.czeman@mainlining.org>
+To: Taniya Das <taniya.das@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Adam Skladowski <a_skl39@protonmail.com>,
+ Sireesh Kodali <sireeshkodali@protonmail.com>
+CC: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Lanik <daniilt971@gmail.com>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_2/4=5D_clk=3A_qcom=3A_gcc=3A_Add_support_?=
+ =?US-ASCII?Q?for_Global_Clock_controller_found_on_MSM8940?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <793d5039-0506-4104-b4ce-64bfa3cc00eb@oss.qualcomm.com>
+References: <20251116-gcc-msm8940-sdm439-v1-0-7c0dc89c922c@mainlining.org> <20251116-gcc-msm8940-sdm439-v1-2-7c0dc89c922c@mainlining.org> <793d5039-0506-4104-b4ce-64bfa3cc00eb@oss.qualcomm.com>
+Message-ID: <5C7A10CF-910E-448A-8BFD-F2A46782D3B9@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 03/10] drm/bridge: Implement generic USB Type-C DP HPD
- bridge
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Chaoyi Chen <kernel@airkyi.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20251111105040.94-1-kernel@airkyi.com>
- <20251111105040.94-4-kernel@airkyi.com> <aRrffpTP5KyAFVnx@kuha.fi.intel.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <aRrffpTP5KyAFVnx@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9a90ff5e3f03abkunm2a6b77ad8f27ca
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkpPQ1ZCHR0ZSE4ZGEkaS0tWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=TxAbeCZFY7eqkjxpcivUMqwOH8QFtRL/B2e4tf+GteqsvSZy467ZXu17S6C/ZqVYLBEPPxecTuUo+uZ16WS5iY68xy9ealSCVZp0U6FKLSNqzRNh1vr58YTSeVBSum2ZFTjltiUSSyEJsWu6PKSkNbO0JitC3s7a642vFVxtj4U=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=/VyBu/i0fSLSIZpB/cn2Lo04jmSlwZbXvvGuWwLCrig=;
-	h=date:mime-version:subject:message-id:from;
-
-On 11/17/2025 4:40 PM, Heikki Krogerus wrote:
-
-> Tue, Nov 11, 2025 at 06:50:33PM +0800, Chaoyi Chen kirjoitti:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> The HPD function of Type-C DP is implemented through
->> drm_connector_oob_hotplug_event(). For embedded DP, it is required
->> that the DRM connector fwnode corresponds to the Type-C port fwnode.
->>
->> To describe the relationship between the DP controller and the Type-C
->> port device, we usually using drm_bridge to build a bridge chain.
->>
->> Now several USB-C controller drivers have already implemented the DP
->> HPD bridge function provided by aux-hpd-bridge.c, it will build a DP
->> HPD bridge on USB-C connector port device.
->>
->> But this requires the USB-C controller driver to manually register the
->> HPD bridge. If the driver does not implement this feature, the bridge
->> will not be create.
->>
->> So this patch implements a generic DP HPD bridge based on
->> aux-hpd-bridge.c. It will monitor Type-C bus events, and when a
->> Type-C port device containing the DP svid is registered, it will
->> create an HPD bridge for it without the need for the USB-C controller
->> driver to implement it.
->>
->> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> Normally there is no "help" section for hidden config options. I
-> guess it can not cause any harm? It is a bit confusing, though. But
-> FWIW:
-
-The hidden options "DRM_AUX_BRIDGE" and "DRM_AUX_HPD_BRIDGE" also have a help section.
-
-I think this is just for comment purposes :)
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
+
+On 17 November 2025 09:03:53 CET, Taniya Das <taniya=2Edas@oss=2Equalcomm=
+=2Ecom> wrote:
 >
-> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 >
->> ---
->>
->> Changes in v9:
->> - Remove the exposed DRM_AUX_HPD_BRIDGE option, and select
->> DRM_AUX_HPD_TYPEC_BRIDGE when it is available.
->> - Add more commit comment about problem background.
->>
->> Changes in v8:
->> - Merge generic DP HPD bridge into one module.
->>
->>   drivers/gpu/drm/bridge/Kconfig                | 10 ++++
->>   drivers/gpu/drm/bridge/Makefile               |  1 +
->>   .../gpu/drm/bridge/aux-hpd-typec-dp-bridge.c  | 50 +++++++++++++++++++
->>   3 files changed, 61 insertions(+)
->>   create mode 100644 drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
->>
->> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
->> index a250afd8d662..559487aa09a9 100644
->> --- a/drivers/gpu/drm/bridge/Kconfig
->> +++ b/drivers/gpu/drm/bridge/Kconfig
->> @@ -30,6 +30,16 @@ config DRM_AUX_HPD_BRIDGE
->>   	  Simple bridge that terminates the bridge chain and provides HPD
->>   	  support.
->>   
->> +if DRM_AUX_HPD_BRIDGE
->> +config DRM_AUX_HPD_TYPEC_BRIDGE
->> +	tristate
->> +	depends on TYPEC || !TYPEC
->> +	default TYPEC
->> +	help
->> +	  Simple bridge that terminates the bridge chain and provides HPD
->> +	  support. It build bridge on each USB-C connector device node.
->> +endif
->> +
->>   menu "Display Interface Bridges"
->>   	depends on DRM && DRM_BRIDGE
->>   
->> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
->> index c7dc03182e59..a3a0393d2e72 100644
->> --- a/drivers/gpu/drm/bridge/Makefile
->> +++ b/drivers/gpu/drm/bridge/Makefile
->> @@ -1,6 +1,7 @@
->>   # SPDX-License-Identifier: GPL-2.0
->>   obj-$(CONFIG_DRM_AUX_BRIDGE) += aux-bridge.o
->>   obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += aux-hpd-bridge.o
->> +obj-$(CONFIG_DRM_AUX_HPD_TYPEC_BRIDGE) += aux-hpd-typec-dp-bridge.o
->>   obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
->>   obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
->>   obj-$(CONFIG_DRM_CROS_EC_ANX7688) += cros-ec-anx7688.o
->> diff --git a/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
->> new file mode 100644
->> index 000000000000..9cb6a0cb0f0a
->> --- /dev/null
->> +++ b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
->> @@ -0,0 +1,50 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +#include <linux/of.h>
->> +#include <linux/usb/typec_altmode.h>
->> +#include <linux/usb/typec_dp.h>
->> +
->> +#include <drm/bridge/aux-bridge.h>
->> +
->> +static int drm_typec_bus_event(struct notifier_block *nb,
->> +			       unsigned long action, void *data)
->> +{
->> +	struct typec_altmode *alt = (struct typec_altmode *)data;
->> +
->> +	if (action != TYPEC_ALTMODE_REGISTERED)
->> +		goto done;
->> +
->> +	if (is_typec_partner(&alt->dev) || alt->svid != USB_TYPEC_DP_SID)
->> +		goto done;
->> +
->> +	/*
->> +	 * alt->dev.parent->parent : USB-C controller device
->> +	 * alt->dev.parent         : USB-C connector device
->> +	 */
->> +	drm_dp_hpd_bridge_register(alt->dev.parent->parent,
->> +				   to_of_node(alt->dev.parent->fwnode));
->> +
->> +done:
->> +	return NOTIFY_OK;
->> +}
->> +
->> +static struct notifier_block drm_typec_event_nb = {
->> +	.notifier_call = drm_typec_bus_event,
+>On 11/17/2025 3:05 AM, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wrote:
+>> =20
+>> +static struct clk_branch gcc_ipa_tbu_clk =3D {
+>> +	=2Ehalt_reg =3D 0x120a0,
+>> +	=2Ehalt_check =3D BRANCH_VOTED,
+>> +	=2Eclkr =3D {
+>> +		=2Eenable_reg =3D 0x4500c,
+>> +		=2Eenable_mask =3D BIT(16),
+>> +		=2Ehw=2Einit =3D &(struct clk_init_data){
+>> +			=2Ename =3D "gcc_ipa_tbu_clk",
+>> +			=2Eops =3D &clk_branch2_ops,
+>> +		},
+>> +	},
 >> +};
 >> +
->> +static void drm_aux_hpd_typec_dp_bridge_module_exit(void)
->> +{
->> +	typec_altmode_unregister_notify(&drm_typec_event_nb);
->> +}
->> +
->> +static int __init drm_aux_hpd_typec_dp_bridge_module_init(void)
->> +{
->> +	typec_altmode_register_notify(&drm_typec_event_nb);
->> +
->> +	return 0;
->> +}
->> +
->> +module_init(drm_aux_hpd_typec_dp_bridge_module_init);
->> +module_exit(drm_aux_hpd_typec_dp_bridge_module_exit);
->> +
->> +MODULE_DESCRIPTION("DRM TYPEC DP HPD BRIDGE");
->> +MODULE_LICENSE("GPL");
->> -- 
->> 2.51.1
-
--- 
-Best,
-Chaoyi
-
+>
+>Is the TBU clock used on 8940 by a SMMU driver?
+As far as I know no MSM8940 is using same smmu driver and bindings like MS=
+M8937=2E
+>
+>>  static struct gdsc venus_gdsc =3D {
+>>  	=2Egdscr =3D 0x4c018,
+>>  	=2Ecxcs =3D (unsigned int []){ 0x4c024, 0x4c01c },
+>> @@ -3764,6 +3798,189 @@ static struct clk_regmap *gcc_msm8937_clocks[] =
+=3D {
+>>  	[GCC_VFE_TBU_CLK] =3D &gcc_vfe_tbu_clk=2Eclkr,
+>>  };
+>
 
