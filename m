@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-239216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0E4FC62AE7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:13:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A84C62B14
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:16:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 14AA5356335
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:13:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 603D34E89A9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E88316910;
-	Mon, 17 Nov 2025 07:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988B9317709;
+	Mon, 17 Nov 2025 07:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OzjQRk4f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QASV4izt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C675A1A9F9F;
-	Mon, 17 Nov 2025 07:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69F34310624;
+	Mon, 17 Nov 2025 07:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763363593; cv=none; b=RosBuzo8l1rZ2lShKv62+a1Ue451x3Hb3TEodh9obG3UvIgyhmgdLwZF5ejYX5LRY9U39CYxZXTZLqR9xOwveVfHFAgajTetZLBikk/Isq4Lv3X+0JXlwJ7KJw3X8mFrSxpZn3GR8RUFt3Yo/FAyXJZaxSULXv9zXqLKGt1KYAo=
+	t=1763363671; cv=none; b=f6qitbQH88aDoYuAxSaPQaAlrVfC5JRicAloQfo3IdMkBNxaUVXRh1lyyFypulbKIQMSeehyioglmDCBvXVl29y4P72pKcu5w6oZNHLuT5Oh7Ks1ZBemM1Lukdq8G+I5wd8QL0h0ULNcWpLGrqM1dqRlfzdYndcLTK/BPXOtV6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763363593; c=relaxed/simple;
-	bh=gQAL1HVQqIDXQAwO5/2yL98G+63SyAz5plbmwfWpIeI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=rE/Plz+A2uQAit+M9Q4jkZ0rvl+yE5jXIh1TzLefD9YxD8V0GqgWsXKNqBazBTrh5sMqX6V7vwrCSIPkBHlOHMJr63ygYl0BCC8lmKznwjNJj0ju+a1o8X9xcUtOTEAd2Qse8hlr3qinQFmW9tXefo1b8fU1yoKRwuzbE1QhrOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OzjQRk4f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 186DDC19423;
-	Mon, 17 Nov 2025 07:13:09 +0000 (UTC)
+	s=arc-20240116; t=1763363671; c=relaxed/simple;
+	bh=Zq6BlmUeG9nns6MHMXCjRv381BTpEdS9SMYVjg1bRII=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K6I/Km5CcBnIh1RlJlm/JAsR5puE1NE/oc+/yHaArcRNAmXYUTFRTkIHRMNcHOT8+N/NRWySOaYPR4nIpP6e+XEsequRR5CuEwkmIjKdh6j8CgRn3FOXubRYAX0emOT6nu3Oupk5I4HUnoL7NjaCI230VouDDCKvJ+A5m0GxmhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QASV4izt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C3E1C4CEF5;
+	Mon, 17 Nov 2025 07:14:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763363593;
-	bh=gQAL1HVQqIDXQAwO5/2yL98G+63SyAz5plbmwfWpIeI=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=OzjQRk4fswXooFc7fP5wQOD4SnMr0vbHO9ORgeYWQGxSfmAhZRGXQFWVfccBIztvV
-	 O0P7z6KJwhg588GdQWuQRHzbk5CZ2/it7HfvdEwH1k2uYrF8u17f8Xle7co5+fZwa2
-	 60+sNLG1oik52MINpwHoiMOExz7Q+DoE31fJGDY/PXBKnHudlSUCme7qMeyaUJIqzb
-	 ikByORU4kLM0qoyakco2a+TqWnGNB8Q10M/QmJLyu0AX2MZJPj8Iw94IA0uVoMoGst
-	 +atL1sEnBTUEtUnCpH1YOsiJzGIrgXPtboHMyr1mx8S9ip8szSdCkJAxPqsIH4xkQX
-	 G7+BZQRZ+hPGg==
-Message-ID: <62b59d52-7107-4426-b922-812d343195db@kernel.org>
-Date: Mon, 17 Nov 2025 08:13:08 +0100
+	s=k20201202; t=1763363671;
+	bh=Zq6BlmUeG9nns6MHMXCjRv381BTpEdS9SMYVjg1bRII=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QASV4iztnsKBZJQxHHhax7O2m97m05Yc8/FMQfFjN/LbqVlpu4gQWD1r0zHqmeKjl
+	 1lcpXDxDSX+eaOCR8whTfgwyobVHZO7xD2zCQBlp31dPMHvcgq4A8AbadOqY73Vf//
+	 ytI+zZcHEO4AKXf+IgH5AGUV89PpByZI1MeaxkzzvIrMofrI0xSXzxeRLkk/5kZOKV
+	 UtI4EnoF3AgYGRvMR6uS+A/DCoSTT6Ly/uUt8XxPcISswyTEvB8KrxB3x56Fdiw5EE
+	 5yXcuGj8V1klm05ieLoEPIweTT5351SuawBuuR95Ylhf/Ns+hGb6Rd3vGAnzow8OB8
+	 8cqWJi0TUz05g==
+Message-ID: <d1723975-d6f7-42a9-a12d-0b1c0b26c151@kernel.org>
+Date: Mon, 17 Nov 2025 08:14:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: dma: arm-dma350: update DT binding docs
+Subject: Re: [PATCH v2] dt-bindings: usb: dwc3-xilinx: Describe the reset
+ constraint for the versal platform
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, michal.simek@amd.com
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ git@amd.com
+References: <20251114123239.1929255-1-radhey.shyam.pandey@amd.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jun Guo <jun.guo@cixtech.com>, peter.chen@cixtech.com,
- fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
- schung@nuvoton.com, robin.murphy@arm.com
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
- linux-arm-kernel@lists.infradead.org
-References: <20251117015943.2858-1-jun.guo@cixtech.com>
- <20251117015943.2858-2-jun.guo@cixtech.com>
- <bfe6a067-704b-45c1-919e-6a7dfb08b984@kernel.org>
- <aea1429d-b67e-4c42-ad19-88d04f69467b@cixtech.com>
- <024eb64f-74bd-4170-a6c1-09c4af647926@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -108,41 +104,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <024eb64f-74bd-4170-a6c1-09c4af647926@kernel.org>
+In-Reply-To: <20251114123239.1929255-1-radhey.shyam.pandey@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/11/2025 08:11, Krzysztof Kozlowski wrote:
-> On 17/11/2025 08:07, Jun Guo wrote:
->>
->> On 11/17/2025 2:11 PM, Krzysztof Kozlowski wrote:
->>> On 17/11/2025 02:59, Jun Guo wrote:
->>>> - Add new compatible strings to the DT binding documents to support
->>> This is not a list.
->>>
->>> Also, subject is completely redundant. Everything is an update. Why are
->>> you repeating DT binding docs?
->>>
->> Thank you. I will incorporate your feedback in the next version.>>   cix 
->> sky1 SoC.
->>>>
->>>> Signed-off-by: Jun Guo<jun.guo@cixtech.com>
->>>> ---
->>> You just broke all existing platforms. Please test your code properly.
->> The patch includes proper checks. Since this platform is the first user 
+On 14/11/2025 13:32, Radhey Shyam Pandey wrote:
+> AMD Versal platform USB 2.0 IP controller receives one reset input from
+> the SoC controlled by the CRL.RST_USB [RESET] register so accordingly
+> describe reset constraints.
 > 
-> Nah, tests are here incomplete - look at the binding and DTS users...
-> nothing there, so you cannot test it.
-> 
->> of the driver in the current codebase, the change won't affect other 
->> platforms.
-> 
-> NAK, and you keep pushing... I just told you it will break everyone,
-> which is obvious from the diff.
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> ---
 
-But if that was intentional change of ABI, then could be fine, but you
-must provide in commit msg proper detailed rationale WHY you are
-changing ABI and WHAT is the ABI impact of that change.
+
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
