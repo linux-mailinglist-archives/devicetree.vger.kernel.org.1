@@ -1,48 +1,83 @@
-Return-Path: <devicetree+bounces-239463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C310C652C1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4587C652D9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:36:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0AC1F4EA23D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:30:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3029E4EB3B1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119282C3259;
-	Mon, 17 Nov 2025 16:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463F8299A8E;
+	Mon, 17 Nov 2025 16:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWBGIMv2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N67PNVrv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6C82C026C;
-	Mon, 17 Nov 2025 16:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFD325782A
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 16:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763396987; cv=none; b=OWVjJoV10QGXEbwAlL47V/FrseeSGz1UE0JwZXbuym/Qwr0eyPHjma7tn4CKXAOcZohJMWyyfmLZZBIMZSjl5i3D/Ubmq5DVQVUNpjZ7B8M6R8J72fGYqVIhPG/VOw5YWbJqh7H5i6lpYn2dzlg+i0L4xlDQ+7AlXPNNYOuQb/Y=
+	t=1763397097; cv=none; b=WJ2pqiNGKVpEt/07u8tGE+JJXfNQcPiOhrMBogAvOtVOlYEvI8qIHZxDvnGkM1JCvVjDvAti15+V1V6XGh3U8NDTHLQIWfOP9ywdWRnRZPTZiNfD4vDxqVGanEPCO3XtZ7Kqiwwuc1s9D92argCtOOjahiZPlGbG+Qc/pNLiHII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763396987; c=relaxed/simple;
-	bh=xgBu2oSRFLieRp9WmCYV/Um+xGFfCkzTRf2alrPbdS4=;
+	s=arc-20240116; t=1763397097; c=relaxed/simple;
+	bh=Znq+/Z8nJmMpZxFT0nLC9bWacA9xI7ZdyEOSDmaPHB8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F+gseLT3TfnsXSzhZLjsU56kCwB3i2F7DGZZJKWoV9/+ai2eu6AyvcXZV+tC0LU1MFiFWVSXXDo7LUnVbGN5G/BZwmlfuDavhhByPVmhLjHUSTCQiymFFO5FfWzCZXKblYK+L1u+jEKyfh4u+lPr8z5ym0PqvZptgbCE8vwB4VU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QWBGIMv2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 657F8C19422;
-	Mon, 17 Nov 2025 16:29:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763396987;
-	bh=xgBu2oSRFLieRp9WmCYV/Um+xGFfCkzTRf2alrPbdS4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QWBGIMv2xLPXXYkxod979hRRcjssaGVk55jM6JtsAlg6HcRjdm7lLTLttulVADyPZ
-	 cOeEh+k67Udlgl8cU8XiUNpB95Tnzgevknq7ae5T+QBb+8MzAUr14htbIzb7KknHw+
-	 VettzeV/Ccx84EAdtv9I25xWbAN5044/cJZaOVUsTGUVNR8G6MmNUww355pyPPW2xN
-	 0MN06tH3kq4twEAhMhTRULvR3MCdat6cSQFBvSqFU8DI7eZtybnrfMCvKxdBd90BgV
-	 3XFxGjx3I1A8DhsGZ8CFF8c4mAFzeae3609jweuIUX7OWJtuUiUHhUM80LOhmsK6D6
-	 dC88PfOVwW20Q==
-Message-ID: <07ee3540-d0c1-436e-9e1d-db1952f609a6@kernel.org>
-Date: Mon, 17 Nov 2025 17:29:43 +0100
+	 In-Reply-To:Content-Type; b=A9KUOVj4xhKeKIYoJY+PysXKYdaVqGy8A4RLw0wQSUfU5M5LjupNA+IBuJtv3Gv2JywZtKF1/7TR6F796Oc2Jjws7CT2Wcsk+TBULLiMmv0/N2tZ/MtAzGuh6W/zWN7gsVsurs6X2gRtGhTYsRXt0gHFkNmreMBtnP5VVzBTCuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N67PNVrv; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7ba49f92362so3293785b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:31:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763397095; x=1764001895; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=oQb9o9kIvZYvCgg7VsyLSOUu+m0XVkdwUoPP5wNrJvo=;
+        b=N67PNVrv6fZnOszEItCvXdGnoun9/u9HV5YWbEIEHXg3ce+ZQ5DE/9mR3isdChxC6P
+         XNqzhcStzyG4Wsd6XuHCbyqh7L9mCbKhVWvynzGwawwtaFc/UXB4xIq+Uwl4oyW6q+an
+         nKnZI+63Ozme5EngCCPmTDi//06Im2qroaYIUlDksFEISausLlJWe4C69HZzYscc+zsF
+         CU8rJKVD2OHhUcr4bnlKGPY+eOFQZrs+JAP1xnZNrgnJDC4AgNGxb26GpMlgOgcP02Dx
+         WwoKF2GsJRvMaZd9dC3O9MUOY+D7QpDaLYqUq754OUQyb4uJVuJTu+4Xl53GCY23vDkV
+         TfMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763397095; x=1764001895;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oQb9o9kIvZYvCgg7VsyLSOUu+m0XVkdwUoPP5wNrJvo=;
+        b=spQB/VkI4Sqjxa/So5PAzgpjQJX3kT4exffA4/mXT0KmIQP+OWYYfjYu6qnbc9ndCX
+         a33ebG+226Ns26yFcVjRqOItFbD/txBJZ0x2B3/x+tRTgPHeGFIp99gX0+Q7Su+D1s2T
+         k922/UAf1j3O0TPYb2UtyjhnkWBWSH62r56Ke+J8rfUxpDWntsKAm7l2OEZpu6mcdNzt
+         +mDdyoROKSHTNQ4dICdpIGL2cH+i1aLxJaPYQrrGx5ghMuBgHLTeE3NBxwOF84/kqpEt
+         3kkC73onjbgnjzho7YA336RHqyn/yFk7YYLqfRfFEZ38eJ96IvEUXViLYu2ejBxx4ljr
+         8cLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJTuJ9eY1cRqcN2R+MCmNA5G6goW1KviEBDHyi9qmkooQF1K+zODt60RDe29YCghXkllFmsvi8MKL/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY9wVQvxRwLtcme92ez5FUJFJ4xZmhzAmPvK2Jq12L6bv88Yn8
+	5yiMy/cM9wQbY8wdrc738ZCqbHXgxfO2gFW7ZjR/ZkpRfgGFHkrWdkBr
+X-Gm-Gg: ASbGnctcWxO/vsLX7xVdYKcNrvJl3IeR1xe11eDHJwHyyVN5cqaNbjQkqROBtu8yWi5
+	0sepdJ0EcCQMbBq6trRc8aa/GkHAD45xsp+wno3gXqjoONWm+T++ul/X3XVPARdpWqae1OJ0Cej
+	kdqkp+sv9K4UIz7hNkTP4utJbsVtmofnEN+H3FbijjnPcfzrdU6sQdVeh19mC1Vyek7drmckagc
+	YvzO6WYRLTEXAXEGmQjy3drnJrduU6IuRiuN4sEPd766AmybokvDw7Y3bgE9dokUmbjIcBaHBos
+	5Wh90bK6Gdg8OvxFTt9Xyoi+mi1o3Y1k9lLXQFNL+fynrgvR2bH/zYX0VB7FPbl7KU1L93f8mvF
+	LGFFOX0t7otM/H+NBQqX6DMgbYQh4O8fjpzjxfTvBxDhVzyo1BVqi6n4fGKrwghLkAGpbVZU+jq
+	0BcerCf6KxiGKh7YiQfAzCwmuRb31UKf2bwxhsGShAQGwVllhr
+X-Google-Smtp-Source: AGHT+IHpJ4uDX4lpjeUvZTRjQRuO+qDaoDfLEprlbIpsQTNE4U11y2mfk8cVtEQcIR3O0NkkEfOikw==
+X-Received: by 2002:a05:6a20:3d0e:b0:341:2c7b:ed13 with SMTP id adf61e73a8af0-35b9ff89fe5mr14987202637.5.1763397094920;
+        Mon, 17 Nov 2025 08:31:34 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b927c22b1bsm13550393b3a.66.2025.11.17.08.31.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Nov 2025 08:31:34 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <ca5b7d80-895b-4562-a066-48f7d708d488@roeck-us.net>
+Date: Mon, 17 Nov 2025 08:31:32 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,116 +85,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: SoC-specific device tree aliases?
-To: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ahmad Fatoum <a.fatoum@pengutronix.de>,
- devicetree-spec@vger.kernel.org, quentin.schulz@cherry.de,
- Marc Kleine-Budde <mkl@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
- <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org>
- <aRrcRZvdrbAmsCm_@pengutronix.de>
- <8ce701c9-6c8d-4b3e-8706-760b8aba89fc@kernel.org>
- <aRr6JLMplFVeHcjj@pengutronix.de>
- <e5502ec8-0c55-47ce-a9e5-62e137c9808b@kernel.org>
- <20251117-smooth-spiked-loon-52df28-mkl@pengutronix.de>
- <de1739a8-4677-4cc8-b501-2568b7513467@kernel.org>
- <aRs2y3w854vnHAzg@pengutronix.de>
- <576a9eae-7dba-47d0-ad66-0a81d1893271@kernel.org>
- <aRs-DaayhtQTtFXj@pengutronix.de>
- <9e14fb8e-af84-4072-b0ac-9ead882782be@kernel.org>
- <CAL_Jsq+=v96eP6V+5Ehi9EQT3iKKU7=t7kvJ-WSA+1WCHDuHEA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/4] hwmon: documentation: add tids
+To: Thomas Marangoni <Thomas.Marangoni@becom-group.com>,
+ linux-hwmon@vger.kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+ Jonathan.Cameron@huawei.com, Frank.Li@nxp.com, michal.simek@amd.com,
+ rodrigo.gobbi.7@gmail.com, chou.cosmo@gmail.com, wenswang@yeah.net,
+ nuno.sa@analog.com, paweldembicki@gmail.com, apokusinski01@gmail.com,
+ eajames@linux.ibm.com, vassilisamir@gmail.com, heiko@sntech.de,
+ neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
+ kever.yang@rock-chips.com, mani@kernel.org, dev@kael-k.io,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20251117123809.47488-1-Thomas.Marangoni@becom-group.com>
+ <20251117123809.47488-3-Thomas.Marangoni@becom-group.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAL_Jsq+=v96eP6V+5Ehi9EQT3iKKU7=t7kvJ-WSA+1WCHDuHEA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251117123809.47488-3-Thomas.Marangoni@becom-group.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 17/11/2025 17:06, Rob Herring wrote:
->>>>
->>>>>
->>>>> Also I don't get whether you are suggesting
->>>>>
->>>>> A is as fragile as B, so you could equally well do B
->>>>
->>>> Both are fragile, so I would be happy to see arguments why A is better
->>>> than B. Why? Because with B you don't need any binding because all the
->>>> information is already in DTS.
->>>
->>> What do you consider fragile with it?
->>
->> Only that you rely on a specific register values and their meaning.
->>
->> Anyway, I would just go with standard aliases, but add a schema for each
->> of such cases (SoCs or vendors), so you will define this as an ABI.
->>
->> One of the reasons why Barebox was affected by all node renames and
->> alias reshuffling was that it was never documented that anyone treats
->> this as an ABI.
->>
->> So you want it to be an ABI for barebox, sure, just make it a binding.
+On 11/17/25 04:38, Thomas Marangoni wrote:
+> Add tids driver documentation
+> ---
+>   Documentation/hwmon/tids.rst | 61 ++++++++++++++++++++++++++++++++++++
+>   1 file changed, 61 insertions(+)
+>   create mode 100644 Documentation/hwmon/tids.rst
 > 
-> What do you have in mind? Other than standard names for the aliases,
-> what can we check here? That a specific alias points to a specific
-> path? That would be a bit too much IMO. That would be equivalent to
-> specifying possible values in 'reg' for all devices.
+> diff --git a/Documentation/hwmon/tids.rst b/Documentation/hwmon/tids.rst
+> new file mode 100644
+> index 000000000000..f3fea4e416ea
+> --- /dev/null
+> +++ b/Documentation/hwmon/tids.rst
+> @@ -0,0 +1,61 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver tids
+> +===================
+> +
+> +Supported Chips:
+> +
+> +  * WSEN TIDS
+> +
+> +    Prefix: 'tids'
+> +
+> +    Addresses scanned: None
+> +
+> +    Datasheet:
+> +
+> +      English: https://www.we-online.com/components/products/manual/Manual-um-wsen-tids-2521020222501%20(rev1.2).pdf
+> +
+> +Author: Thomas Marangoni <Thomas.Marangoni@becom-group.com>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements support for the WSEN TIDS chip, a temperature
+> +sensor. Temperature is measured in degree celsius. In sysfs interface,
+> +all values are scaled by 1000, i.e. the value for 31.5 degrees celsius is 31500.
+> +
+> +Usage Notes
+> +-----------
+> +
+> +The device communicates with the I2C protocol. Sensors can have the I2C
+> +address 0x38 or 0x3F. See Documentation/i2c/instantiating-devices.rst for methods
+> +to instantiate the device.
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +=============== ============================================
+> +temp1_input     Measured temperature in millidegrees Celsius
+> +update_interval The interval for polling the sensor, in
+> +                milliseconds. Writable. Must be 5, 10, 20
+> +                or 40.
 
-Binding with pattern or list of needed alias names, referenced by given
-soc-platform top-level schema.
+As mentioned in the driver feedback, this should be more generous and say
+something like "Supported values are 5, 10, 20, or 40".
 
-One of the points is to make it explicit and obvious (e.g. to Arnd or to
-me if I forget, because I follow the same logic of aliases per board)
-that these aliases are used outside of kernel.
+> +temp1_max_hyst  The temperature in millidegrees Celsius, that
+> +                is triggering the temp1_max_alarm. Writable.
+> +                The lowest possible value is -39680 and the
 
-Just because ufs/mmc/spi can be used that way, does not mean we should
-accept any possible alias into soc.dtsi.
+As above, s/possible/supported/. We don't usually expect users to know
+supported value ranges for update intervals or temperature limits.
 
-Best regards,
-Krzysztof
+> +                highest possible value is 122880. Values are
+> +                saved in steps of 640.
+> +temp1_min_hyst  The temperature in millidegrees Celsius, that
+> +                is triggering the temp1_min_alarm. Writable.
+> +                The lowest possible value is -39680 and the
+> +                highest possible value is 122880. Values are
+> +                saved in steps of 640.
+
+As mentioned in the driver feedback, I think those should be temp1_max
+and temp1_min. I see no evidence that those are hysteresis values,
+and the description here and in the datasheet confirms this.
+
+> +temp1_max_alarm The alarm will be triggered when the level
+> +                reaches the value specified in
+> +                temp1_max_hyst. It will reset automatically
+> +                once it has been read.
+> +temp1_min_alarm The alarm will be triggered when the level
+> +                reaches the value specified in
+> +                temp1_min_hyst. It will reset automatically
+> +                once it has been read.
+> +=============== ============================================
+
 
