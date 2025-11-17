@@ -1,116 +1,172 @@
-Return-Path: <devicetree+bounces-239209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6006CC62A51
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:05:41 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778B9C62A93
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:08:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E13D3A7EA0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:05:40 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CF9803544F3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E144E25F7A5;
-	Mon, 17 Nov 2025 07:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zmf+GQm0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D1F316910;
+	Mon, 17 Nov 2025 07:07:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022101.outbound.protection.outlook.com [52.101.126.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D1833993;
-	Mon, 17 Nov 2025 07:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763363136; cv=none; b=gIZFZrQQaDlUiMx79h4BmFGJJ3p+1hiJ9jedvtf+CksyTqYJ7KoM6Di5Yfi5DbpEr4fO8PlDLF2xdpypQgFu+aErc1Tm/QArvPzqoLzXJ1NIV611CDt7ABDIPTfMquRiAopATeG0FfcmgmG6CfQloviR58IYQJq/9jj5xmXJaVE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763363136; c=relaxed/simple;
-	bh=iU8ROMk83jPncCljG0G/Fsoi2HDIAUbVt2VmcnD6plU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o4rahBHUbjJhqwZJiKOMuwV/fFIVTnaSCQJa8rzDk3yUligOzdL0gNxHr6G7OP6ptUl/j/EJYc8IZXOGbA4FkUr93c/DRBIV1d2+6f2g6p8jYcosVXqRzd1731qnn6RqMy4QNzBBCWf68pohDoOLImlORrMzBJ5FCNMvsr6cchU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zmf+GQm0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 765EBC4CEF5;
-	Mon, 17 Nov 2025 07:05:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763363136;
-	bh=iU8ROMk83jPncCljG0G/Fsoi2HDIAUbVt2VmcnD6plU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zmf+GQm0pAZ6z6C3arkzoxE5KbyOToef7Sp5DndQnxXr8JmQ3033UwODfZZpK7eMG
-	 hNH2jlwIuNUC5NnJDZINgZJkjsQJmjVDQrUIWEvPazC8bT+gOyaYKNFP8Uis24UXEt
-	 mU5oJ0PrmJNp25ZaImcMpp9pIDc8xskK7aEelL5VGWSuUeOnhVqU2YCiwbVsYM36cB
-	 +17Rqg5eybYkDTX3XKBekgImKsuhhWCgQs0k0isOYITGYUfeEsHwvLyJGwVn6IGefN
-	 4doh0ptX0oiLvP/wADeR//qwwzH01kT6exkg/8xtX7yON6lMV/FrtXhlnhvW0RUQWm
-	 qytLrxDJMjTIQ==
-Date: Mon, 17 Nov 2025 08:05:33 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kuba =?utf-8?Q?Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
-Cc: Maxime Ripard <mripard@kernel.org>, 
-	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, parthiban@linumiz.com, paulk@sys-base.io
-Subject: Re: [PATCH v3 4/6] dt-bindings: display: sun4i: Add D1s/T113 combo
- D-PHY bindings
-Message-ID: <20251117-faithful-unique-millipede-d8bae5@kuoka>
-References: <20251116134609.447043-1-kuba@szczodrzynski.pl>
- <20251116134943.447443-1-kuba@szczodrzynski.pl>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79757310624;
+	Mon, 17 Nov 2025 07:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.101
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763363244; cv=fail; b=sVRU1XTLV9UIMkz6FXKo5kxU55HcCl0VCpoiSRYMRS0z3kCDZKl+B3xZ5X0riAJkpDpAb3shN7qJv356f94sgec/l0yG40AdAgCHFoE4UnxliSov2dz2t3POr9c3n4N/8xkf62cYmpC0DuycUu1kB86PJHaoMU+GYCd8YwyxRJU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763363244; c=relaxed/simple;
+	bh=Z12mn2+MY4P1eS9ON6H8kbib2PdObQBy+Hi5c+lf/QE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PW6Ihe7971/ESIBrinaeCDHrovEap/krWHK0mo/lurOyw5CNO6g09aOq5h1m568rk5MivjvKdUhtigEKmf8A92/tNvfpmETbMu5SXIxzDnmSdSs/JThy41qs3EeHvQKq7geCMAhzc3YZIHCFBeoDXaYyafk0ilKxu0Ka115hkFo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c/kkll9h/0QMfjThQOv+J0DvPeFoOG4jZOL4XzvUuO+JpbsXpJq2vTbNp+s0mCUjZRgLM/NIk60IgVYMk+/LBIE/c9BFbszLfMMRya1MNYt06Jd2xAIHpJPEsuCcj0YcjsZDKb1r9v+MjzjqIQbHTlOHXCfT5qgtviMj3gOjR7t8u8BZ3X2eiAZo4/H9naIinDw+2GDNrLdFZaYQNymyV1URbk0oOz9SW+D+Vu4LvtWKlNpWoAkd54muBvhJQmK/KPK5j+qL0QjwyHR83lqP5wqPUXvcmqcbAqkUj1RjnHOoSFsAXnWZeZ8kvDHnxBVLD1mXs1v9z5u8frbhDi69vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PKoqGkgXQOGIwY96TSfnuDzwQEgOxVm7Ju9LZGKdOjo=;
+ b=rtszudMKm4k9QJJmAgXdVi80uUm/1lSZCnGImtDL/SAGWmD3YDLvF9bNnwE5ny+1xb1e4q+Qj6+B0pUBfJDjJepjh8eo3QKLThzNjWnLZJr5ed4o8S1GyZuXZ8OBwWL+o54Qdwlj+3yQxyh9S7fM/iJmtfw5oakTzabLobf0+rxKJkDGGyZOeXJY+SwVpzM7yTTPgmrub5yXt0zHNmy/yctu9+3UDIplpriLyniPOKmnEGbHif21Y5gtG9O3a1Yh3AY7L7WH0uIBCQ9/wpf3dUhAFTdRihNzRtCItgAWZojb1Sb9AOZr/qzEJ/58XspgB4nguA0W9vVdtPt+v3Xpvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PS2PR02CA0057.apcprd02.prod.outlook.com (2603:1096:300:5a::21)
+ by SEZPR06MB7024.apcprd06.prod.outlook.com (2603:1096:101:1f1::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Mon, 17 Nov
+ 2025 07:07:18 +0000
+Received: from TY2PEPF0000AB87.apcprd03.prod.outlook.com
+ (2603:1096:300:5a:cafe::1a) by PS2PR02CA0057.outlook.office365.com
+ (2603:1096:300:5a::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.21 via Frontend Transport; Mon,
+ 17 Nov 2025 07:07:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB87.mail.protection.outlook.com (10.167.253.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.9 via Frontend Transport; Mon, 17 Nov 2025 07:07:17 +0000
+Received: from [172.20.96.43] (unknown [172.20.96.43])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 4B0064126FFD;
+	Mon, 17 Nov 2025 15:07:16 +0800 (CST)
+Message-ID: <aea1429d-b67e-4c42-ad19-88d04f69467b@cixtech.com>
+Date: Mon, 17 Nov 2025 15:07:15 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251116134943.447443-1-kuba@szczodrzynski.pl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: dma: arm-dma350: update DT binding docs
+To: Krzysztof Kozlowski <krzk@kernel.org>, peter.chen@cixtech.com,
+ fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
+ schung@nuvoton.com, robin.murphy@arm.com
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20251117015943.2858-1-jun.guo@cixtech.com>
+ <20251117015943.2858-2-jun.guo@cixtech.com>
+ <bfe6a067-704b-45c1-919e-6a7dfb08b984@kernel.org>
+Content-Language: en-US
+From: Jun Guo <jun.guo@cixtech.com>
+In-Reply-To: <bfe6a067-704b-45c1-919e-6a7dfb08b984@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB87:EE_|SEZPR06MB7024:EE_
+X-MS-Office365-Filtering-Correlation-Id: adcb29b7-f6b3-493d-9bba-08de25a7f1b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?L3E3RUx2dk5nN2ZCd3hyYW4vdnJ1WE8zZnc3aHpXRGhXZ0p5Vk9RSkFRN083?=
+ =?utf-8?B?RGRzV2RVY3FqZjJCbzd0dlF4M25RdmU5bWdYWFdwWUdrQ2hZajJJcXdlSGx1?=
+ =?utf-8?B?UllIN0FzQXMySit5VG5UcmRVd1dlVDJBckNOelZVdTFVMmkrUXpXR0FuellN?=
+ =?utf-8?B?TjVncFJtcTdDQ2ppbEgzTWtScDdsc3M3eCtQUTV1dDdxbGxMS3hsN3Z2dXZ0?=
+ =?utf-8?B?U0RDM0x6RFVyWW9DMnBlaEFHTG1DVzNFZjQ3MlIwSVdYRlRGWCsxcWY1dHB5?=
+ =?utf-8?B?Wm5RUTVWcmpuYmFQQ3JvTFlqOGd2TEh0anZ5TzhQNEk5T0lJbDJRNW5VSFlH?=
+ =?utf-8?B?djIzeEFOTmQ4RmJocjV4K2tRM1BqM3hUL05rN0tJckxDOTVmSVJCZFVaQ2FJ?=
+ =?utf-8?B?TTI1OVdsci80S3JuQTlSNE1BTzdkS0RjanFja29xY2hOcWF2b2hPVWYxaklH?=
+ =?utf-8?B?TkFEZXpDR3NCeTlBbTBtSkF4bm5uL01hWm9mTVdOVTlYNVpydFZqWmhKQmZQ?=
+ =?utf-8?B?cTBlamFJOFlIenFya09FNHZJek5hU2tkK0luZWNwT3VBU3ZlaGZBajlPQk54?=
+ =?utf-8?B?Rys4SGIrenF4TS9xQkdkZnd2M1hsc2VNcHNLREU1WUhPeEMyMUZJc3VRRFUy?=
+ =?utf-8?B?ZFlXTTFOcFVHQVNSSXI5SXBIQitUb21YSmhPVFl6UUJMZHpNL1lMZFdSZnQr?=
+ =?utf-8?B?eVAxMDZiQVJrK1NjVW5yM05BWEc4WHhEUGEvaXVGazk2WDZzSkVIa3ErYWEz?=
+ =?utf-8?B?dmlnL2FzTlhLQlhRSUVxVitIQUZqcVdmbXF3MUxHNWMwaUVibmRKRHhSVkpB?=
+ =?utf-8?B?eFd4aStVQkh0SXBseWNOMzFvTllZUEo0dkhOZHhnNnBra3BvSUFOcEQwRlVi?=
+ =?utf-8?B?WjA3M3lUcVhYbzNSTjJ5SDhscnJsOWh6L3R6VEVCQjZvTlFRU2xTc1VEUFRv?=
+ =?utf-8?B?NnRiTTRMNEoxSXYvZ2NyY3UwWmZTOHE4eEx6TkhSZlJ0NGROMkswYjVxZy9J?=
+ =?utf-8?B?TkRmUTlyUW8rc2p5dGlHdnZHekVzeVBSWWQ5TytBMU5jZmZTclFWTEx6NzVo?=
+ =?utf-8?B?dEsxQmFDaXNJcTJEM2E3REdFMkVxK2FMYitzWU9sL2hVbUJoRWpzSGVwRnN1?=
+ =?utf-8?B?UmNNejNtK2xPMW5QYnJBbGlzdFA4Zk4rZHhyM0RwQzlINVN6RVNBVzdGTlAr?=
+ =?utf-8?B?bnlubEVLWXZGUzFtZHVjckM3VVgxMU5ybUdyTy96TEt0OEZjU3Y1M01ERWlW?=
+ =?utf-8?B?bG9nZTlTc3ZhekIrMEdlVDd6S0RDSTdXY2pXWktDcVFQSjFvSnlGMnVmWmpD?=
+ =?utf-8?B?WkY5Qkt4d09hODBpWCtwVUdyRHdqQ1I2QzNObGlLRDlGUDBQTnhWTjlmVjZk?=
+ =?utf-8?B?RkR4VUNsTXRxWjFGQWNDMm1GM0xnelRkcDJMc0dJSW93eHJrcElCdERnKzFZ?=
+ =?utf-8?B?YzU1QXVKTVl4UVZ4N25wRWdHb2NhRDg0Q1AvcGlyVGpZVGZxbDJybllENDVM?=
+ =?utf-8?B?N3NOOUVjQ1dkUjNscnFFeXFoWUVWRTZRNHZHV1VaMHpNRUtqZ0RaaDdHNDc4?=
+ =?utf-8?B?M1BnRzV1WEtNdzBIbjFWNzRFcjNoTW5vNEtCR3lwaG9pL2JHby8wZzNLN1gx?=
+ =?utf-8?B?dlRvN3p0aXJHTnhlUjI1M0xWN2NteWpYTnZxSm10Z2x0cUVndTdJWkRTclln?=
+ =?utf-8?B?ZWMzS3djOWFEbkc4UzJHT3ZXV25zVGVVTjBvVzBBWnNpY2VHbEF5S3FjUHRw?=
+ =?utf-8?B?L2JUd0ozcVE0dkpKdnN1bnlGdkJCcDFoczhBRDRhNlhUTkZibXQ1c29wU3k3?=
+ =?utf-8?B?VTFpL3o2amZ4cVRHVzlUVjM3RDl4RW1KbWZucFp2ZU1yY0xiU3F1cUNrbThL?=
+ =?utf-8?B?RWRxV1RyQ3B4OXd2elM5SzdIWWtzRUdZd3NFVjZiTE1aTExzVjRRSG80MGNJ?=
+ =?utf-8?B?S2JkWlBWV1RHeTdOemp4ZmptY3dnSnQ4aDNVYThGQXROd1cyTXZMbURMYllC?=
+ =?utf-8?B?dTJmT2JuRUEvTUpuNGU1bVBVdHJLNVIyc1RiM040RUh2bWxYVE9BQm80ZmIw?=
+ =?utf-8?B?bmsvZlRJRkE3akVBelBGS2dQUlJneGZJK29kQXVNaEY0NmdVZ3FYTkhlNTRB?=
+ =?utf-8?Q?1SR5/WaFwUh2dim7KGvUiiNNr?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024)(7416014)(921020);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 07:07:17.6072
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: adcb29b7-f6b3-493d-9bba-08de25a7f1b7
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB87.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7024
 
-On Sun, Nov 16, 2025 at 02:49:43PM +0100, Kuba Szczodrzy=C5=84ski wrote:
-> The sun4i TCON needs a reference to the D-PHY in order to support LVDS
-> on Allwinner D1s/T113.
->=20
-> Add phys and phy-names to DT bindings.
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets. See also:
-https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/sub=
-mitting-patches.rst#L830
+On 11/17/2025 2:11 PM, Krzysztof Kozlowski wrote:
+> On 17/11/2025 02:59, Jun Guo wrote:
+>> - Add new compatible strings to the DT binding documents to support
+> This is not a list.
+> 
+> Also, subject is completely redundant. Everything is an update. Why are
+> you repeating DT binding docs?
+> 
+Thank you. I will incorporate your feedback in the next version.>>   cix 
+sky1 SoC.
+>>
+>> Signed-off-by: Jun Guo<jun.guo@cixtech.com>
+>> ---
+> You just broke all existing platforms. Please test your code properly.
+The patch includes proper checks. Since this platform is the first user 
+of the driver in the current codebase, the change won't affect other 
+platforms.
 
-
->=20
-> Signed-off-by: Kuba Szczodrzy=C5=84ski <kuba@szczodrzynski.pl>
-> ---
->  .../bindings/display/allwinner,sun4i-a10-tcon.yaml          | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/allwinner,sun4i-a1=
-0-tcon.yaml b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10=
--tcon.yaml
-> index 724d93b91..52589341f 100644
-> --- a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.=
-yaml
-> +++ b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.=
-yaml
-> @@ -115,6 +115,12 @@ properties:
->            - const: edp
->            - const: lvds
-> =20
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    const: combo-phy
-
-Drop phy suffix. Can a "phy" property hold reference to something else
-than phy? You don't need names in the first place, you have only one
-entry.
 
 Best regards,
-Krzysztof
-
+Jun
 
