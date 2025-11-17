@@ -1,85 +1,125 @@
-Return-Path: <devicetree+bounces-239220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296D5C62B3F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:19:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC03C62B81
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EE0D04E9E8F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:18:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5C48E3514FF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12086319609;
-	Mon, 17 Nov 2025 07:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NpDdK7xo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D2D2DFA3A;
+	Mon, 17 Nov 2025 07:30:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CD730F55E;
-	Mon, 17 Nov 2025 07:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF7C2581;
+	Mon, 17 Nov 2025 07:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763363907; cv=none; b=AXRbH61poWgsrV/E1Gj+aoO0E/Lf712b51pTn9u3xfZ9kmWabtoHDfcpTkZW7+g61aEBeoMHAkUWibUqIlB84yYJT+MFU4sqASuGFyg4LrVhE4Pl4moICRmSgT4mn6mqbsklFsu0hG0EpoZFjISjA6XlT4Tr0VnS4kDhpS6fQL0=
+	t=1763364624; cv=none; b=ZoTiZbFx5i+zZgfWQkbaiPuxtJRb/uWwpFObatBhhhEzLhjjhRe+DTx6DoanGmGhpgmhLK2r9olA29Sro6zyBxkbAobyZr9Lv8MFQ5I9TBvUz5ikMiTAYdiuK2gtYFJOGiep0KQGoDKXqnmQZhZJMjB47Xw761lLcmdByH5XNyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763363907; c=relaxed/simple;
-	bh=RvqVYrKXNRDbBgSHjt7RkZPzI9eCZ43Lcxz15Yz1XkA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tgLbXUcciFx09lU+34Z83yCiHzFD+0iMTRVvQLz4GwPNdUb4q03XK5ySTyPturhPf7KqSf+bipid4nEJdJ6AE3fP0PiaI3HfvDlW6rF5UkwuUP0G4PZjz8xRqz4jqecfhoyF0NiOpreUirUH3Mt2Ws2YYd3W8JhenfK6C8tz6PU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NpDdK7xo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D40DDC19422;
-	Mon, 17 Nov 2025 07:18:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763363907;
-	bh=RvqVYrKXNRDbBgSHjt7RkZPzI9eCZ43Lcxz15Yz1XkA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NpDdK7xoGAPIGyay9dreHFKHiK3kF+AQYAwDPbdVlxdFiVtmSdwon03ZJKA7M+eVL
-	 Mwwe+YdLCW19hX/v5DtQKtkqWj9RV0x9nq0TySQraYbua05TbJ4Yd+MxrymF0fu3mq
-	 40JNciJcDgr6IeffEb1oPViJ8LOdmG361abghEqALWG1HSJoUSnFubTYsF6DM85qsn
-	 ceiJscVwrIwTJea2uUiSS1crYalmiUl3ggba3BL4nlQzwOKG/Xm6rIqiTSUWLntst0
-	 /m2qgehIAB+MW5gxUaMcOUEmnAwwsRuTnFgTp4rnmJMYe7sQGqus1ljvSfuni6Rcw6
-	 B5v9TjFScrQlg==
-Date: Mon, 17 Nov 2025 08:18:24 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Adam Skladowski <a_skl39@protonmail.com>, Sireesh Kodali <sireeshkodali@protonmail.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: clock: qcom: Add SDM439 Global Clock
- Controller
-Message-ID: <20251117-opalescent-obedient-groundhog-8cbef8@kuoka>
-References: <20251116-gcc-msm8940-sdm439-v1-0-7c0dc89c922c@mainlining.org>
- <20251116-gcc-msm8940-sdm439-v1-3-7c0dc89c922c@mainlining.org>
+	s=arc-20240116; t=1763364624; c=relaxed/simple;
+	bh=Mj81EjxdRx03SMF1BDIPz2LcJycE1MUESozyiljFuRA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=VsS0Le+/O3bCExp97w6i/vxUnUeUB0CCSo0Dldsdejhru3LS7B+QEOkLrvn9nrXn/DW0C4YKSKnFJI4XxOKB+dpzGTP3g5qi0XtsJ+FWWZIbLmAJYfw9vLVac8q1zczBJpdD+vrT1deyn4aHtGk7lrR0DG2lvaVwfwSwg7SWqLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 17 Nov
+ 2025 15:30:19 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 17 Nov 2025 15:30:19 +0800
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+Date: Mon, 17 Nov 2025 15:30:18 +0800
+Subject: [PATCH net-next] dt-bindings: net: aspeed: add AST2700 MDIO
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251116-gcc-msm8940-sdm439-v1-3-7c0dc89c922c@mainlining.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20251117-aspeed_mdio_ast2700-v1-1-8ecb0032f554@aspeedtech.com>
+X-B4-Tracking: v=1; b=H4sIAAnPGmkC/x3MQQrCMBBG4auUWRuYhEjUq4iUofmrszAtmVAKp
+ Xc3uPwW7x1kqAqjx3BQxaamS+nwl4Gmj5Q3nOZuChyu3vvkxFYgj9+syyjWQmJ2Iny7T3HmmCL
+ 1cq2Ydf9fn1TQXMHe6HWePwe0PEVvAAAA
+X-Change-ID: 20251117-aspeed_mdio_ast2700-aa089c4f0474
+To: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>
+CC: Andrew Jeffery <andrew@aj.id.au>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>, Jacky Chou
+	<jacky_chou@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763364619; l=1811;
+ i=jacky_chou@aspeedtech.com; s=20251031; h=from:subject:message-id;
+ bh=Mj81EjxdRx03SMF1BDIPz2LcJycE1MUESozyiljFuRA=;
+ b=w1pnZrswHVUrLtVnSbCd+/kYz2W6un9gP9YIqrCt17cyhGIyuTN64gvRCKimRyU5NtSUScT/z
+ AFYvOFYRWI/AaJbK6RY9ErunXmDpLSkNe1srNsJn009Mm3M63KvZK/6
+X-Developer-Key: i=jacky_chou@aspeedtech.com; a=ed25519;
+ pk=8XBx7KFM1drEsfCXTH9QC2lbMlGU4XwJTA6Jt9Mabdo=
 
-On Sun, Nov 16, 2025 at 10:35:58PM +0100, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
-ote:
-> Add devicetree bindings for the global clock controller on Qualcomm
-> SDM439 platform.
->=20
-> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
-=2Eorg>
-> ---
->  Documentation/devicetree/bindings/clock/qcom,gcc-msm8953.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+Add "aspeed,ast2700-mdio" compatible to the binding schema with a fallback
+to "aspeed,ast2600-mdio".
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Although the MDIO controller on AST2700 is functionally the same as the
+one on AST2600, it's good practice to add a SoC-specific compatible for
+new silicon. This allows future driver updates to handle any 2700-specific
+integration issues without requiring devicetree changes or complex
+runtime detection logic.
+
+For now, the driver continues to bind via the existing
+"aspeed,ast2600-mdio" compatible, so no driver changes are needed.
+
+Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+---
+ Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+index d6ef468495c5..1c90e7c15a44 100644
+--- a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
++++ b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+@@ -13,13 +13,19 @@ description: |+
+   The ASPEED AST2600 MDIO controller is the third iteration of ASPEED's MDIO
+   bus register interface, this time also separating out the controller from the
+   MAC.
++  The ASPEED AST2700 MDIO controller is similar to the AST2600's.
+ 
+ allOf:
+   - $ref: mdio.yaml#
+ 
+ properties:
+   compatible:
+-    const: aspeed,ast2600-mdio
++    oneOf:
++      - const: aspeed,ast2600-mdio
++      - items:
++          - enum:
++              - aspeed,ast2700-mdio
++          - const: aspeed,ast2600-mdio
+ 
+   reg:
+     maxItems: 1
+
+---
+base-commit: c9dfb92de0738eb7fe6a591ad1642333793e8b6e
+change-id: 20251117-aspeed_mdio_ast2700-aa089c4f0474
 
 Best regards,
-Krzysztof
+-- 
+Jacky Chou <jacky_chou@aspeedtech.com>
 
 
