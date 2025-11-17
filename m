@@ -1,262 +1,230 @@
-Return-Path: <devicetree+bounces-239422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 091AAC64AF9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:44:56 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E41F3C64B41
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:50:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E9D464E1143
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:44:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 012E936037B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:45:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E0A3299A90;
-	Mon, 17 Nov 2025 14:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2513132E150;
+	Mon, 17 Nov 2025 14:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="lpwTuH7X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ilgPcbIh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011037.outbound.protection.outlook.com [40.107.74.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E19D25F98A;
-	Mon, 17 Nov 2025 14:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763390691; cv=fail; b=Cy17JjGu6PehVPoy9Vwvp/mgUtcl6gjvc1qiKGavm3zZaN9jFZrBvBvNA4DXcCZgC6H41M+v33zxzwFw2Z5OEJtBsCQU3RZqlGVGFNhJiKj5fH/tT/lzFKn7QBZiBUc1Bgex2Gq6dsbcNNIwaYyXBr2pk2Di3gbPgiVU75nlMXs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763390691; c=relaxed/simple;
-	bh=YG0zN7hKOTwnuLg+FgZSQy6npkF7t3wQq89yQJ7awSI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=evqLaMKXQ7Hdqy9adFXkF1v1XARC2928lyvLJdMFfD2gOUSwDmCXEHm8V6uH9rdp3dUWe+NV5OdQEHViNQ6lz0PIdEEbk6G7mkJQqIzQ+ukSCid2yKd76SWvUW4PGvI6Yd8Igte0JwSne/v68TTUY5y9X2LtLW0rFfY9vZzpalo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=lpwTuH7X; arc=fail smtp.client-ip=40.107.74.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WhD8sj9l/ZlqU4jcRrq4ZjUuwO6wXYckRaWH2jgK+MFs9t9SL0LxzdltIK2ZHP2VtSOW57ZMUoJnu1mIlrO9b6f9qfLNhxO4k82nr1k/iKc2qiiWw5SUL5g7ZvLpBo9PIlP0DCKpzvrpSnffRKbhyO5Jo4PtuPUty2abndXyP9mEUSF2A4JvMrOGfxbe0TDiPID7VuIldyH45+/4EXFCRSHU0J1nvY9G3fSNULr2DkHgfY3CjCOhAH6TL09CQf33WkVmELTXTh8Gc3vBgDZTlmmku5J/rFMMYzf929QOMsmhIDpx6LV09uJyvOI3jIQgxAeglv3VndiwlwaYeFwrAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rsd8/XLJiAQ8bDnYGWK3aww9U6smpqs/Qj/2JlJ+hUg=;
- b=QH60GPeSeDu1eOSIuYf0j1L+j4rm6iNLngLny3PdRHrAJS0nRBeh0PanJkHQU+z8W+RAkn3GHAyw3JvN5Na1NS7gLZw6drwdLOz06ro3bL37P+7z0jyI817/ijZJakSJOTtzQK9C8TQWq+zhwTJ+Ca5e8zgbmMPJZ6TCYP7AmpGQMSQSKud5KEUYG9U24CBnhhmY9bbQmXRYVzNlDV3UyMZmEVKyvBFSl+m192XvwKk2ekbhwJcnqZGSvu0Oi1V1QIcVaESzdRoCm3axHdf9j6Hy8nQExmtwK/AehujjCKDeWjl3WZOywH+xrNUn7d6J1nL1XMsy9PVDOnEjePYP2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rsd8/XLJiAQ8bDnYGWK3aww9U6smpqs/Qj/2JlJ+hUg=;
- b=lpwTuH7Xvd5YgKR0slbzTDmtzpvKIJjLPXQoyIdrm2SIrdnXw7FLzJUIjj+p49Y3KXgarW9xAYYu/odnD3GgvsVpC37zCS8uMLISv6vXt12kpo6Dj1naiyh3ZrZsnsxL06AXaOZu0AOtLzbG7YJaAUedXCsRQZ+cwOz4qu8L9v4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
- by TYYPR01MB16483.jpnprd01.prod.outlook.com (2603:1096:405:2df::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.8; Mon, 17 Nov
- 2025 14:44:43 +0000
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9343.009; Mon, 17 Nov 2025
- 14:44:43 +0000
-Date: Mon, 17 Nov 2025 15:44:30 +0100
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Rosin <peda@axentia.se>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/21] dt-bindings: reset: renesas,rzv2h-usb2phy:
- Document VBUS_SEL mux
-Message-ID: <aRs0zpiOPO5nKLml@tom-desktop>
-References: <cover.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
- <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
- <20251117-sturdy-resourceful-crab-c14bb8@kuoka>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251117-sturdy-resourceful-crab-c14bb8@kuoka>
-X-ClientProxiedBy: FR4P281CA0438.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c6::16) To TYCPR01MB11947.jpnprd01.prod.outlook.com
- (2603:1096:400:3e1::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF707082D
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 14:45:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763390737; cv=none; b=AM+CZenZUbrOcjDULPCNd959QsP8WtBbuCp+qgaBge5iFGgE4vG+VPbkicuXukINZDfKyQbVS9qMiCFqq/3+ECKU1M5GYMFw27mVIKIlt4r467TwUgcggZ5EhiBc40QkdMHRS9EFH0ac/dN1CBPm3I8XdsOQQnTqW1PAV7U5qZY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763390737; c=relaxed/simple;
+	bh=Q6zm4hF/iuyshuI8ZTVRPYLVS9bhIMvZAtEoGBwphH8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=FUvggTyPh8jR8TuiCLt7NKulUYB38fOqc1RdLdUeM4IENAFAk14LTu9J6XCGWApnQqMzeUqCPv12UkJgs5ECPESI7GscAUqJGYhZYaIHWaAb6yyM4di4I4ebN19zduyXih5g2AMpiJg1E59/d59fcjJLQ1T6GshJzYFbdWyfsxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ilgPcbIh; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4775638d819so25327655e9.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 06:45:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763390733; x=1763995533; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Tk1rjAouZOijY60x5awEeFZKndj7NK9f5IbkSRl7Hig=;
+        b=ilgPcbIhX64PZXxn2qgIjAK8KupZkkjeaBdC6GnUi9CDSeTkOFM+VL63LkVDzmzQOF
+         HfR0lXyqfRZcRv+hM9OkgVfZ5kpyeSJglbL+5X2hlKO4znxkZv0AYiOWyFGIULeU/UH6
+         is/BoMcuP+5Ja+/5On3a/KGXiff3Fi6iLjYYUUZUbS7S8QjZUcG+N8D5BPN0K20DUFTR
+         c99Oqyc/jWpA+6i2brxgZ6PvXeMaHs2/4DgQtlwrQEZlxtqYy1YwO7+VKedqWBiCY79u
+         onCPY3LcDjM6rB7zW5bxdMiELWCdD8oFHGDjDOG906yThOE+ftsqWw0ZPA2MR3ddN2qD
+         HIcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763390733; x=1763995533;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Tk1rjAouZOijY60x5awEeFZKndj7NK9f5IbkSRl7Hig=;
+        b=S9mHjLIEJlmCF+vIX2q2yEcL/sLTzP6lXykTJWzu8vLfdmfG5K/rtobGCFu4KnsHC/
+         CRrUQx8fSJn6FPNxjt2RTxNArh1hSNyHkk5H1MLXRNLV4ZGMTUYjpDxI1xfx+oTAatSb
+         JqUcnMTz5JUKJyk5oRA+rrMdGOy/2bc3sml1U8txx+stH9piyp6u+LZEFIsib5nmXp9O
+         VuMM/nNcJHHObgucWMFnhwBV+2rP+v/AiczwSGnAAlmIrqdX/0++w26rQhi99IPmdhkI
+         mzRHdj78EaK+mjYGsExvulwzjEZvUs2vdthQ6x1oCusWwfsAg3bt3oiY/4Aw1gGt2yPo
+         Uy3w==
+X-Forwarded-Encrypted: i=1; AJvYcCXH+1W789wQ69T46B0+9gWoA93PYGR93Mv3UY29dsbjGWoqmf6agNmKy05UQdgeiu0kdyvBMW8sgjq4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcXNpJNDR4IctiMho3BoIXm+yzdPLc2UjVhALHWzDijdnrk8lZ
+	ThFXrAiEKiiGl+fA2UHwGSWf6vDZh/h57cZAQd6KXanBb/x2GxDob6YuZh7R7gR3WG4=
+X-Gm-Gg: ASbGncth2Cxy7T2bbWfRxru4a6j6UBP0za/WwMaV9Kazzg7d7S2fvt3/f22XzVUvn4s
+	azNXhnVEKD6MvOWxVsmy3oZ5c9LKXSaK2/WJIBkI/tgL04L+y1kuLVjXxZmP/21kzSAcvSl25n6
+	5L6xX4JmG138LjwL89uIqr5xOSVa3OHmPMT5j83hdCY/HMCAEmaLj/TudgJKUhTAVG0tZLeanbx
+	eAD9fhaHGanY0dtLuzNM/BKvxC1pGt5QmdUvnN61O1mECmab9KBjfeQ3sah3mQxyEUL7SpwFr/8
+	nsuNZHf6JOViFmihKgWhJfZDj3F00rZoqduqHXpje/3kuiTd5NOM/vI7TzF06F23qhbeDngwYZv
+	bfsetPpXOBFHApa+kJ1D3lspUSCaW32uaY9hN55OIM1TrllplQqNv1mOmc2NbfyycNisqXdMGox
+	8DD4+7hnHParv/1uVK4VsxPNv0OYWRHms5zxGXsDAWa8JAT0TL7p/dxm+5896FGn8=
+X-Google-Smtp-Source: AGHT+IGlg72HMQBd44oB2inZGPtEY6S/5RoSqJOOvYSdU1XD8940TN5ihG3EtEkhqdXoOuWUP9+0Hw==
+X-Received: by 2002:a05:600c:c177:b0:46f:d682:3c3d with SMTP id 5b1f17b1804b1-4778fe683d6mr111222665e9.13.1763390733101;
+        Mon, 17 Nov 2025 06:45:33 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080:d631:aa74:9313:e9f3? ([2a01:e0a:3d9:2080:d631:aa74:9313:e9f3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4779920f2cdsm154148925e9.10.2025.11.17.06.45.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Nov 2025 06:45:32 -0800 (PST)
+Message-ID: <168374f9-cf03-481b-b4b2-ed51787a3def@linaro.org>
+Date: Mon, 17 Nov 2025 15:45:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TYYPR01MB16483:EE_
-X-MS-Office365-Filtering-Correlation-Id: 378f2328-22c9-4a5a-8aa0-08de25e7d850
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|366016|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?8naYzz7FW1dSH0bNOhTil/S0d/HMOXQcHPh333+VeaxUJABTnunBJU1m0ejC?=
- =?us-ascii?Q?EPaWep/YBcIOx1bP85EamfOU/3NwpdK9vtDJ4XIK54mYH0idwe9pJ8K8bAZq?=
- =?us-ascii?Q?bodERdA27FLtO99IYjBa3UJU95YLsTDfJxlOVGrW20ap1XgP4mvazl9Owi/B?=
- =?us-ascii?Q?Pem0N/r7f8ya89GmOP9BZZ0kcTnBs3qSZB17IxBRoMSr3UxBWuAD5JdrsD2V?=
- =?us-ascii?Q?i0TWseC/GEHBE08xXkbGkZUuF1k6kqKrDWD2qJ4kj4JjnZb9wyaUD1oYwf/u?=
- =?us-ascii?Q?UeSNy0C8oIasY5k7vfw4R7xM6WNYh5CHlf69dKwodaybMtuVrHxlyy8G9ZPv?=
- =?us-ascii?Q?8wjAet1YIqTnJ9ryGd7K3ZNHDiLNM1jVwWF148x4oICq1s/DAZeQn+hSOo9G?=
- =?us-ascii?Q?WUe86DLIAA8EJRYxeofdDpCdswKKnf0ahBPAj9ZK6PgXz2sl9ZokXDIdZLVd?=
- =?us-ascii?Q?HyK7kwx86oyMUXsKBKxOgVoHggXp37qoKtYPcIEWk+Z9rk98ZyneRI4r1QyD?=
- =?us-ascii?Q?UNe+VoFRvzNjwyUk06HHFo5a7bg7iQFGIhOWLRTMeTZG5/4eMfsJh5KVajLK?=
- =?us-ascii?Q?Ih583JuxcABOUmxhg/ZsP+B1UyRTiR5rDxsz+WqwT4zhGTCaOwEQUPqTbSpK?=
- =?us-ascii?Q?SltH2vMbOWIx0d2zQWoIDmJrqC1TgVWslaZcN/wOVLxH/nR71xYxWhCjLpt3?=
- =?us-ascii?Q?pjqK/YQS+WrSQ6tkPhCPcQM9H8/WIsxSNFN6F/LNb3Nx3GjpL69hE/K8MRIT?=
- =?us-ascii?Q?6eSl8s/NhVCR7ieaImDijFrdqyrmJ8NrOCkE+SRjTyeVIHQj/HUpohuf1/4W?=
- =?us-ascii?Q?x7L4wz8cQdQQLDSR2eq2DMq+pDi4rgKZPbo5MEyVsGS11XVgfHETbAtu3ql5?=
- =?us-ascii?Q?LJd08GFalUDiknRZ+coHd7xXjy6FsRToRyBrW1afiYQXs84p8FnLcD7CoaUP?=
- =?us-ascii?Q?tQOzarmwYT19/Mh98/fBsZZglbX6z1BQJhYyNyykbVff2gSlv+n/cFwlR1Pv?=
- =?us-ascii?Q?8/uB7lnJRTEAjBWTS0n0TJ8dEX29FE/9DrX+LoG8PKFwJV6rSLNT7rtlsTXg?=
- =?us-ascii?Q?8JlNujwmSLl6vznuOUBcxItwalt7PAMghexTR62gEHb0x65Fc855pwRBGCJZ?=
- =?us-ascii?Q?t2e9pJwZpBuB8HvRs1yM5BbMJ3ttITncmMGXjMTIjHu3EsJWHgK+Bcn4zxQM?=
- =?us-ascii?Q?FaC94hP8NSg1iCiuIeJsg4NbKOcJ1RqKFdo4r7KFs8fSsvQ3TeiCcc2PUWgD?=
- =?us-ascii?Q?AN488qeo6c+KMuYrv7RDAc9kda95Pf/WJfXzSwjHln2bwgVL2N+TZ8cYAt1f?=
- =?us-ascii?Q?UMPoik62SEHjlEVnR1hwuXf1FJq30r78qOmIINBxQkVrTkWuVpRrfCCVDkS8?=
- =?us-ascii?Q?qsg/4tKXp3DJexrwd1t4ES+1c0ceoP6889d4b74ee3h9kuRb6Y6G3b9y1f9V?=
- =?us-ascii?Q?tTyCMsnkkdlVyosqJsq+35LYdbLbdaCtwS7BXT3TEjHm95gstRo4ImwkuZGk?=
- =?us-ascii?Q?eZfaHZQHnBMvwlNtrZYfqLowZTKteIfyPkKt?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?MCIxhJOVoGVdKUHJ1GlhgngjdG5rrf3JNDCVXOVI4nyIw+VD0zNhq3uzHM7F?=
- =?us-ascii?Q?nqjQWrEU4SSp0pqi2u6N2fJSkLmfOLfNe9rO4/2gPo4HBscRSyvGuHsMn03k?=
- =?us-ascii?Q?2P4/fakwuWJLXWmIvhMNcW4IATNsYRzSo12fILAaMsmvTSQ4a3Zan9QGQtJb?=
- =?us-ascii?Q?K9TJ3YLswk5oCATtyZDxuCuIYIESSRrN1qq6wwjJZwOQHLksTi2scKO5ACko?=
- =?us-ascii?Q?MdwdczLv5iMcbiPOvoD06MO6zdGVZ10dshWsVFf7ItmNqwue4yZSM5MQdGME?=
- =?us-ascii?Q?LlH8P4k8sArUOiSujnNr8Pnluh2BQQpkkYvmfPFj0wq/oMnpsMaiZCBmjTN+?=
- =?us-ascii?Q?Lafo1CfKhZuHSsM2kHvNpIxpJ7YnkKT9rWBWdotsWAIEkZhdXmuGFaggfDnf?=
- =?us-ascii?Q?60mGSNGNkpeF4bkeUBUEvvvJSVHzUGfQaRDvcO+lOpf8X1pSelWw47LG7EbC?=
- =?us-ascii?Q?OdtgpAcBjZ7jbTF6fuXTfVoeZcHQM62RVXcSQJ94VR1aBu3UvviCwHkNojlp?=
- =?us-ascii?Q?swDKQDOrbA9o4LirwcsNUbNTUAUvO2Pn0raynQp22HYVveIWH1EN4sgI4naV?=
- =?us-ascii?Q?7SVjXA9FPkoPN89Sli9b36Orly0eDm2mWdD7crbPF/VHtuXgzND001wOISfW?=
- =?us-ascii?Q?px/oGC9QH7MTAKBKMqNa+BzecNG6f7tXDw3mh5PJbalkujdXYOWwIgzHlH8S?=
- =?us-ascii?Q?Og1C8DP8YL+HL0CB4fdRvyuutBAMX3qRknq1lfeu+rgEw6vPZ74jC5P+Ecdi?=
- =?us-ascii?Q?k/Or+7lisrHQ5f4/UibeJebrVSHuSQYkDw6wUmc6bfF/Stu3s6RYIRhVmT9B?=
- =?us-ascii?Q?KAUMK2odNiBl98cQvOOKuKJL4rj3eI0z9e6ksiCPo7E2VV8p5YzbX1XVTnL+?=
- =?us-ascii?Q?Q5LFV2yRpweNBNtEULWyurRNZf7nRb4C4u2DJuZ4SLWVIEcKA/KgN1yiuG9j?=
- =?us-ascii?Q?f+6XBQif339cEfozOEX+ycgq/pf+AY50W9fPJLKLrWX9Y8Oi0owc3I1aJSMl?=
- =?us-ascii?Q?ILu38azykUcEPXDN3lbA1cOFbcOhIYxCfCn7hc2z4Gz+EKJPliSB8t2bch7r?=
- =?us-ascii?Q?4eLu7+Y7O8oxz8LALMDQwuE1BJhXUaOG/T7J0kqSAYgzeI590CqoAGGX3iwH?=
- =?us-ascii?Q?4iBqI+fBW/c6284keTYAPnPttcYwBkRIOzsh6kVLG+n99sUw6g4ehDxXjrl6?=
- =?us-ascii?Q?GNHLh7BsSRutt7SlHs90mPkLY44vMW160LOGZVjxN3SBxB/OwJv4fI0cg69t?=
- =?us-ascii?Q?DzI8WKvYzg7kx7reJoLTMhI00K8Onst5BMYNMhMdIqInR0VquPRqlZ1NeL7e?=
- =?us-ascii?Q?aU9RHQp5noIqlYWUNTjvTj3sJFnQZNLfUWqyhFB3iBMFvU6IrNzLBcw+SSFc?=
- =?us-ascii?Q?gefZv9Ox9XlAH9/U+F+zOJIopVLC8I9E3zxwqbTGnhnRAVQfv9/bmOGcG8j0?=
- =?us-ascii?Q?TnnmH2s9UjhjuAyWELMlwqaGwYh2VfGokTkpKtXG+jukVD9PFuGc53ZwYpzB?=
- =?us-ascii?Q?6tf/KsAgWQaic2vND7P6xhT887Z5swMd+iqV++F02eVKy9nVCag8oGL0m0di?=
- =?us-ascii?Q?2YQ4PSiZMyhZmo2CibPJA54/f4PwNFG5YcWgPeIDLBpanDP2r3N+xNZU360p?=
- =?us-ascii?Q?Tz98AHb2MnqEKlwyVyMpA5E=3D?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 378f2328-22c9-4a5a-8aa0-08de25e7d850
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 14:44:43.1039
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AACothaOXj0OVDhWipEdrVA2aKUVe57ZZW+0b+3mf+VckWuEwsaTzXiY/W9wqb4YrB9X2jLNxTyPlBA7Jj5CSzCJyQSPNdZ9c13Ni7fpRWw2qrDHpMgaKOx88Y2qNy4d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB16483
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v7 0/2] Add support for Gunyah Watchdog
+To: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20251114-gunyah_watchdog-v7-0-f5c155b941d5@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20251114-gunyah_watchdog-v7-0-f5c155b941d5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
-Thanks for your review!
-
-
-On Mon, Nov 17, 2025 at 08:00:27AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Nov 10, 2025 at 01:08:04PM +0100, Tommaso Merciai wrote:
-> > Document the 'mux-controller' child node in the Renesas RZ/V2H(P)
-> > USB2PHY reset binding to support describing the USB VBUS_SEL
-> > multiplexer as a mux-controller.
-> > 
-> > This is required to properly configure the USB PHY VBUS source on
-> > RZ/V2H(P), RZ/G3E SoCs.
+On 11/14/25 08:57, Hrishabh Rajput via B4 Relay wrote:
+> Gunyah is a Type-I hypervisor which was introduced in the patch series
+> [1]. It is an open source hypervisor. The source repo is available at
+> [2].
 > 
-> And where did you explain why this cannot be folded into parent node? If
-> you do not provide context why reviewer's advice cannot be fulfilled,
-> then you will get the same comment.
-
-Ouch, thanks.
-
-The mux-controller cannot be folded into the parent USB2PHY node because
-the VBUS source selector is not part of the USB2PHY block itself.
-
-I will add that in v4.
-
+> The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+> access the MMIO watchdog. It either provides the fully emulated MMIO
+> based watchdog interface or the SMC-based watchdog interface depending
+> on the hypervisor configuration.
+> The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+> version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
 > 
-> > 
-> > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> > ---
-> > v2->v3:
-> >  - Manipulate mux-controller as an internal node.
-> >  - Improved commit body.
-> > 
-> > v1->v2:
-> >  - New patch
-> > 
-> >  .../bindings/reset/renesas,rzv2h-usb2phy-reset.yaml   | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-> > index c1b800a10b53..03da74ff2d08 100644
-> > --- a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-> > +++ b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-> > @@ -37,6 +37,12 @@ properties:
-> >    '#reset-cells':
-> >      const: 0
-> >  
-> > +  mux-controller:
-> > +    $ref: /schemas/mux/mux-controller.yaml#
-> > +    description: Mux controller for USB VBUS source selection.
-> > +    type: object
-> > +    unevaluatedProperties: false
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -44,6 +50,7 @@ required:
-> >    - resets
-> >    - power-domains
-> >    - '#reset-cells'
-> > +  - mux-controller
-> >  
-> >  additionalProperties: false
-> >  
-> > @@ -58,4 +65,8 @@ examples:
-> >          resets = <&cpg 0xaf>;
-> >          power-domains = <&cpg>;
-> >          #reset-cells = <0>;
-> > +
-> > +        mux-controller {
-> > +          #mux-state-cells = <1>;
+> This patch series adds support for the SMC-based watchdog interface
+> provided by the Gunyah Hypervisor.
 > 
-> Do not mix up indentation.
-
-Ack, thank you.
-
-
+> This series is tested on SM8750 platform.
+> 
+> [1]
+> https://lore.kernel.org/all/20240222-gunyah-v17-0-1e9da6763d38@quicinc.com/
+> 
+> [2]
+> https://github.com/quic/gunyah-hypervisor
+> 
+> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+> ---
+> Changes in v7:
+> - Convert local `const` arrays to `static const` to optimize
+>    initialization and stack allocation.
+> - Link to v6: https://lore.kernel.org/r/20251112-gunyah_watchdog-v6-0-38ad01f8dac0@oss.qualcomm.com
+> 
+> Changes in v6:
+> - Fix build issues reported by the kernel test robot on PowerPC and RISC-V
+>    architectures by adding IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY) check
+>    before calling arm_smccc_hypervisor_has_uuid().
+> - Link to v5: https://lore.kernel.org/r/20251107-gunyah_watchdog-v5-0-4c6e3fb6eb17@oss.qualcomm.com
+> 
+> Changes in v5:
+> - Move the gunyah_wdt device registration from the SMEM driver to the
+>    SCM driver. Add additional logic to check if we're running under the
+>    Gunyah Hypervisor.
+> - Implement .remove() for gunyah_wdt driver to make it not persistent.
+> - Link to v4: https://lore.kernel.org/r/20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com
+> 
+> Changes in v4:
+> - Move the contents of gunyah_wdt_init() to qcom_smem_probe() to make
+>    sure we're registering the watchdog only on the Qualcomm devices.
+> - Link to v3: https://lore.kernel.org/r/20251028-gunyah_watchdog-v3-1-e6d1ea438b1d@oss.qualcomm.com
+> 
+> Changes in v3:
+> - Move back to platform driver model. In module init, determine if we're
+>    running on a Qualcomm device and there is no supported memory-mapped
+>    watchdog present. Then proceed to register platform device and driver
+>    for SMC-based Gunyah watchdog.
+> - To determine if we're running on a Qualcomm device we're checking the
+>    presence of "qcom,smem" compatible devicetree node. As an alternative,
+>    we also tried using socinfo for the same purpose. When both
+>    gunyah_wdt and socinfo drivers were made built-in, it couldn't be
+>    ensured that the socinfo driver probed successfully before gunyah_wdt
+>    init was called. Hence, we resorted to the devicetree node approach.
+> - Limit the errors listed in gunyah_error to the ones that can be
+>    produced by the driver.
+> - Link to v2: https://lore.kernel.org/r/20251006-gunyah_watchdog-v2-1-b99d41d45450@oss.qualcomm.com
+> 
+> Changes in v2:
+> - Move away from platform driver model since the devicetree overlay does
+>    not happen by default.
+>    See https://lore.kernel.org/all/91002189-9d9e-48a2-8424-c42705fed3f8@quicinc.com/
+> - Only when MMIO-based watchdog device is absent in the devicetree,
+>    proceed to detect SMC-based watchdog using GUNYAH_WDT_STATUS SMC and
+>    initialize if SMC returns success.
+> - Implement pm notifiers as gunyah_wdt is no longer a platform driver so
+>    dev_pm_ops cannot be used.
+> - Pretimeout IRQ is no longer supported.
+> - Remove struct gunyah_wdt since it is not required.
+> - Move the contents of gunyah_errno.h to gunyah_wdt.c.
+> - Link to v1: https://lore.kernel.org/r/20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com
+> 
+> ---
+> Hrishabh Rajput (2):
+>        firmware: qcom: scm: Register gunyah watchdog device
+>        watchdog: Add driver for Gunyah Watchdog
+> 
+>   MAINTAINERS                      |   1 +
+>   drivers/firmware/qcom/qcom_scm.c |  53 ++++++++
+>   drivers/watchdog/Kconfig         |  13 ++
+>   drivers/watchdog/Makefile        |   1 +
+>   drivers/watchdog/gunyah_wdt.c    | 260 +++++++++++++++++++++++++++++++++++++++
+>   5 files changed, 328 insertions(+)
+> ---
+> base-commit: e9a6fb0bcdd7609be6969112f3fbfcce3b1d4a7c
+> change-id: 20250903-gunyah_watchdog-2d2649438e29
 > 
 > Best regards,
-> Krzysztof
-> 
 
-Regards,
-Tommaso
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-HDK
 
-
-
+Thanks,
+Neil
 
