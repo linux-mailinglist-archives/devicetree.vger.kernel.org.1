@@ -1,161 +1,145 @@
-Return-Path: <devicetree+bounces-239495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B36C65689
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:16:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E956AC6576F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:25:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 68EF02C710
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:13:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BD4B24F27B1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319103431E3;
-	Mon, 17 Nov 2025 17:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC66A32E696;
+	Mon, 17 Nov 2025 17:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i4r5D3aR"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="SrXRGYrZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9BC340298;
-	Mon, 17 Nov 2025 17:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E77D832E12B
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 17:12:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763399054; cv=none; b=EaCBbAXuwatyXZM/FD1f+nHAxbuvP1yQSoDz9D3X2nhGTqjAmYa4df35fL87lykXWUh9bSUnC0tKa2smOovDhU65zBELt7rsLpkuQEfjhwPHALR3oeFJHDTgFdSWxbf3EOcNOlRAycifVSsNmYP5NOriei5GZWAn5rDMbae0gf4=
+	t=1763399568; cv=none; b=IYnVCapj28FLC5ZwxaFlwH+xGuGT5h1CCthgmhK27xQfIRpRmzlSdZeOhZWmXXiw+BLdt0LlqyybSv08WjqnuOYT2ATWc3hzdSbIbbYLIwjYmW4KeOBAFkq6UCw3xEoBc8XWfRFu8IaqxL72t5Hx8OnJiQFGD4YtReYYxBbv/1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763399054; c=relaxed/simple;
-	bh=bf6T0fhOw4XHjcwb9k8rbX5w18M9RMmSiJbS2bAV1QA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PpOPn9vobC+6tlbtFMT7YhIMRciwemoT7p+GVCBjVRn+TWl55iIMc4FJLsSF9zDggJLhtwyTvd95yidYtIv6M4IvLKPpOMqXrTDpMWCI/6wTwqYx7yQuvAEpcquebYNnBLvA9K0ahpsJeUrzgHdmsymHuIu7cy0+V5Sg0HbP+QM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i4r5D3aR; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763399051; x=1794935051;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=bf6T0fhOw4XHjcwb9k8rbX5w18M9RMmSiJbS2bAV1QA=;
-  b=i4r5D3aRRsAP0ph2PG/Aurw/0QCevjkYngS2Bat+Rqe8R4MSUfN+ifKb
-   a1c1bIJJ2bZmrl9+HvC21d4H0SmwsCXZMETdGZTVHmUVoyBvAO0NoK5iE
-   d7rO3WrgUm6PzxgvjnRm/2XZi7Hza1zo58im/MR+YGr8uaTb/cBvI/+YR
-   t07oVXN3QAGFiB1ZydN/GX8ujPQ0bstFJZqRh3NDSxFdE+d49Abqn/Qck
-   dNla+CNRmcUunkXw5c/To/rBRdW0cskMy7w+3YgHcYmoJmUGFPx9wGXWj
-   B5aSIusPcZ8ghoDyMDPoKt7eeOJ3Zt8clnb+4Lis1oqF+Ji7nnZYFap/4
-   Q==;
-X-CSE-ConnectionGUID: nF2q8AgcQuKkKEmRXVcSpA==
-X-CSE-MsgGUID: JMu5l8e4Rr2p4rQjbnEgBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11616"; a="69253679"
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; 
-   d="scan'208";a="69253679"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2025 09:04:03 -0800
-X-CSE-ConnectionGUID: OxyMCbJER6OSTQFsU+DbzA==
-X-CSE-MsgGUID: 5iLUmNrMTxGJsbZSGFxAtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,312,1754982000"; 
-   d="scan'208";a="195445206"
-Received: from unknown (HELO [172.25.112.21]) ([172.25.112.21])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2025 09:04:02 -0800
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Date: Mon, 17 Nov 2025 09:02:55 -0800
-Subject: [PATCH v7 9/9] x86/hyperv/vtl: Use the wakeup mailbox to boot
- secondary CPUs
+	s=arc-20240116; t=1763399568; c=relaxed/simple;
+	bh=nmhM4LSVMsUor5QeIBHpH3224iyADx1BLXHEi4pE9A8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pHsa6uNu0mIM68Xa0cHKXWwh2iWXd1DLnazTzjCDJIcbTTikiRj0tHtgP5jnJgjLonYqH+XLyeqe9dQDKaiSapaB082nD7u3eJ9+SVfqvzzjHdwDntJYkGLE72b84ROERMZfp9zP8k7c6Qetzyjox5o71GP6QAIa09moUjxhV7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=SrXRGYrZ; arc=none smtp.client-ip=209.85.166.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-4349044be0eso20346785ab.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 09:12:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1763399565; x=1764004365; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UVyQ1lgChGCDzR3SsqjIRgL3e2y5+BZfD9Zpt6v7tGs=;
+        b=SrXRGYrZXXbnrJRWeIKeGeL/8WDjcUC4s6ncilqvNzfFQD/U4xbwiJuaqK/NOh0DA0
+         o0IxFFtF7eOHVHyCoJ05YXoNPJem7yxHTwjLj1ZI5MBT3kY+8D/zMX7cxTBDZmBUudWE
+         hazUieVJvXz5FjNrYYLZKjnhiDuUHWr+BLsG8QQs9CkQfOdbwD61XhlqQ/Ni8WtnWrFv
+         TR/kiv62OEFZChU1LGT25IGmMqI+r1PVBLur1MP+nDlDbA9q5THVc/EAa4rpqO19EgNL
+         632NrtfRprRL4oSMqhBYS5Tu92z2zMExnCUnWr1aYxTJS0EB8W9WvmCdpfY8SkA85RyQ
+         woDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763399565; x=1764004365;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UVyQ1lgChGCDzR3SsqjIRgL3e2y5+BZfD9Zpt6v7tGs=;
+        b=YvgQTpu1XFZAATLIk+ZyKwrkiSBJ/7xDah2SSbepWSWG+DbXC46hmg4Dzu8a7DhJDf
+         WrtC6phBj/qjvAm/UnAcWdl6LOZGgY+BzVRLKb39YbR1oUpv3i9Vzt+Ck4f3UmrXTUAM
+         dCSg3QllWOfHaxKpqodlp8R8N3PsvRhNAyTY2a/98/FWgE4MwiFA3NvsiYGwV7/eChYO
+         dsVvXtZZTtxFul2WQYTy3vLPikB96P452+MxR9lXKjDFbBsUuBAtZkjNMD5sEIoYsVMz
+         VzbWQfdOMg6NUER1u+iKFq5Auk4YhdsgtQpt1+bSi45eOl7dCZyS3AMVOsfy5mCBuQgI
+         jn2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUB0/9YMaP1GPXLj2kP3k/3f1MqAhVB27FvXzgrLfoKpQ78uN7WWQ8I7YQcp2dQyD4jY+vM6ML1pdd4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjfXWR2tYomSpz0qOTZ5Xpkigqq5PpNMFca+txKTGt1ZBkVCO7
+	SBwUSrh4O5he8CJZyjI69j28TB0p12Kx14mJFpZLVNdbppXdLQPRyV9lxDn0/z7D2Lg=
+X-Gm-Gg: ASbGncs9tJTbV+PCZU4ISY5REH+MCwv2hrsPMlKO5v/hhKd9Ib/Lponvnfz1NDWPTLC
+	jAcTL0K6QeqKbIb7RYeETvJNsyB7cjMG5JJVe5LRP6ogfrjtaQTQaLDrdLoMTHMDH2tIzNWInpC
+	NlyZeY6Qeh1e5EmPmKsZjnrCxgLXeG/yCjOfR7wHKxEu8NF3i6h0qHP7EIRma/tXOIFnMBlKT9G
+	WaRQgSvm+Jb3Vrf5eV6lZLFYiqP7bfn7/aRnSEYD4FOcZIeBTop34m6nVFn6Ua2kprVbU5jcnE2
+	dcB93XAIiPxcLRc3TqfMm0WZ0YPJ66lrAvDSPIwpcSF9BIwdvAHQmG2ctKhsBqfKZ98o4Wh0blp
+	38/ebiVN7QJFxmyCCY+kco7pf9ycJ0+1xPVb169hD/uPDhGHM5/IHn7yg21lV2AIc5cMHuGGIsO
+	66QXE5xgW+Qnzm1pW9HdfaIeH13mF7Of5yzyyq/5Wj2zBaa2XU852znOUPyUIA
+X-Google-Smtp-Source: AGHT+IFGKqdRJLV9RQOyvs5MvCac0JQUqvPl4j+mCywXmiQhs/UBqawUJsZSrZzGsMyRTHumxUBE2g==
+X-Received: by 2002:a05:6638:4b8b:b0:5b7:1ebd:4d11 with SMTP id 8926c6da1cb9f-5b7c9c45d2bmr9122365173.3.1763399564687;
+        Mon, 17 Nov 2025 09:12:44 -0800 (PST)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5b7bd24d5e9sm4708226173.3.2025.11.17.09.12.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Nov 2025 09:12:44 -0800 (PST)
+Message-ID: <b9769b9f-cbc4-459f-911e-f29f848b6ce7@riscstar.com>
+Date: Mon, 17 Nov 2025 11:12:41 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251117-rneri-wakeup-mailbox-v7-9-4a8b82ab7c2c@linux.intel.com>
-References: <20251117-rneri-wakeup-mailbox-v7-0-4a8b82ab7c2c@linux.intel.com>
-In-Reply-To: <20251117-rneri-wakeup-mailbox-v7-0-4a8b82ab7c2c@linux.intel.com>
-To: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
- "K. Y. Srinivasan" <kys@microsoft.com>, 
- Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
- Dexuan Cui <decui@microsoft.com>, Michael Kelley <mhklinux@outlook.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Saurabh Sengar <ssengar@linux.microsoft.com>, 
- Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>, 
- linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Ricardo Neri <ricardo.neri@intel.com>, 
- Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763398999; l=2005;
- i=ricardo.neri-calderon@linux.intel.com; s=20250602;
- h=from:subject:message-id; bh=bf6T0fhOw4XHjcwb9k8rbX5w18M9RMmSiJbS2bAV1QA=;
- b=kRyEvBJR2Vzl6/jihLmGUV2JKi2Su99AgObs1zV1rqoeh3e5TGl9RJSj7Xks4gOgIpVsZazyX
- 8OO6X+KgrElDAEY5WzNepJR7rj6coyiBwdIvvfjX2CfN6DR9nCHZVqL
-X-Developer-Key: i=ricardo.neri-calderon@linux.intel.com; a=ed25519;
- pk=NfZw5SyQ2lxVfmNMaMR6KUj3+0OhcwDPyRzFDH9gY2w=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/7] Introduce SpacemiT K1 PCIe phy and host controller
+To: Jason Montleon <jmontleo@redhat.com>
+Cc: dlan@gentoo.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, ziyao@disroot.org, aurelien@aurel32.net,
+ johannes@erdfelt.com, mayank.rana@oss.qualcomm.com,
+ qiang.yu@oss.qualcomm.com, shradha.t@samsung.com, inochiama@gmail.com,
+ pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ p.zabel@pengutronix.de, christian.bruel@foss.st.com,
+ thippeswamy.havalige@amd.com, krishna.chundru@oss.qualcomm.com,
+ guodong@riscstar.com, devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251113214540.2623070-1-elder@riscstar.com>
+ <CAJD_bP+AjhNCB6kCeKdnXERjP9j8dhbCejnS1OVmFf_VShti5Q@mail.gmail.com>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <CAJD_bP+AjhNCB6kCeKdnXERjP9j8dhbCejnS1OVmFf_VShti5Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The hypervisor is an untrusted entity for TDX guests. It cannot be used
-to boot secondary CPUs. The function hv_vtl_wakeup_secondary_cpu() cannot
-be used.
+On 11/14/25 10:21 PM, Jason Montleon wrote:
+> On Thu, Nov 13, 2025 at 4:45 PM Alex Elder <elder@riscstar.com> wrote:
+>>
+>> This series introduces a PHY driver and a PCIe driver to support PCIe
+>> on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
+>> Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
+>> PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
+>> one PCIe lane, and the other two ports each have two lanes.  All PCIe
+>> ports operate at 5 GT/second.
+>>
+>> The PCIe PHYs must be configured using a value that can only be
+>> determined using the combo PHY, operating in PCIe mode.  To allow
+>> that PHY to be used for USB, the needed calibration step is performed
+>> by the PHY driver automatically at probe time.  Once this step is done,
+>> the PHY can be used for either PCIe or USB.
+>>
+>> The driver supports 256 MSIs, and initially does not support PCI INTx
+>> interrupts.  The hardware does not support MSI-X.
+>>
+>> Version 6 of this series addresses a few comments from Christophe
+>> Jaillet, and improves a workaround that disables ASPM L1.  The two
+>> people who had reported errors on earlier versions of this code have
+>> confirmed their NVMe devices now work when configured with the default
+>> RISC-V kernel configuration.
+> 
+> I successfully tested this patchset on a Banana Pi F3 and also a
+> Milk-V M1 Jupiter by making the same additions to k1-milkv-jupiter.dts
+> as were made to k1-bananapi-f3.dts.
+> I no longer have problems with NVME devices like I did when I tried v3 and v4.
+> 
+> Tested-by: Jason Montleon <jmontleo@redhat.com>
 
-Instead, the virtual firmware boots the secondary CPUs and places them in
-a state to transfer control to the kernel using the wakeup mailbox. The
-firmware enumerates the mailbox via either an ACPI table or a DeviceTree
-node.
+Thank you very much for testing this.  Your Tested-by is included
+in Mani's commit.
 
-If the wakeup mailbox is present, the kernel updates the APIC callback
-wakeup_secondary_cpu_64() to use it.
-
-Reviewed-by: Dexuan Cui <decui@microsoft.com>
-Reviewed-by: Michael Kelley <mhklinux@outlook.com>
-Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
----
-Changes in v7:
- - None
-
-Changes in v6:
- - Added Reviewed-by tag from Dexuan. Thanks!
-
-Changes in v5:
- - None
-
-Changes in v4:
- - Added Reviewed-by tag from Michael. Thanks!
-
-Changes in v3:
- - Unconditionally use the wakeup mailbox in a TDX confidential VM.
-   (Michael).
- - Edited the commit message for clarity.
-
-Changes in v2:
- - None
----
- arch/x86/hyperv/hv_vtl.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
-
-diff --git a/arch/x86/hyperv/hv_vtl.c b/arch/x86/hyperv/hv_vtl.c
-index 812d8a434966..431218ad6624 100644
---- a/arch/x86/hyperv/hv_vtl.c
-+++ b/arch/x86/hyperv/hv_vtl.c
-@@ -265,7 +265,15 @@ int __init hv_vtl_early_init(void)
- 		panic("XSAVE has to be disabled as it is not supported by this module.\n"
- 			  "Please add 'noxsave' to the kernel command line.\n");
- 
--	apic_update_callback(wakeup_secondary_cpu_64, hv_vtl_wakeup_secondary_cpu);
-+	/*
-+	 * TDX confidential VMs do not trust the hypervisor and cannot use it to
-+	 * boot secondary CPUs. Instead, they will be booted using the wakeup
-+	 * mailbox if detected during boot. See setup_arch().
-+	 *
-+	 * There is no paravisor present if we are here.
-+	 */
-+	if (!hv_isolation_type_tdx())
-+		apic_update_callback(wakeup_secondary_cpu_64, hv_vtl_wakeup_secondary_cpu);
- 
- 	return 0;
- }
-
--- 
-2.43.0
-
+					-Alex
 
