@@ -1,817 +1,122 @@
-Return-Path: <devicetree+bounces-239436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 454D6C64CCB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:07:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24981C64D16
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 16:13:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9A2BF3533A2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:02:15 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9BC16365412
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051F8337BAC;
-	Mon, 17 Nov 2025 15:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CA732BF31;
+	Mon, 17 Nov 2025 15:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JaLUG54X"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BKRVZYxQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC84F337111;
-	Mon, 17 Nov 2025 15:02:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C0C31CA6A
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 15:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763391720; cv=none; b=pjX/bbjPn2z4UN9PVYSvsiJOYmOJUMlz+Ijl3N1kTDgdw2Xo7GpaaJE7Bd0cIFQQfd9B6q9KQlBLu1qTJ/3v/goiuriNsV8a6BxOF/0b+684CNK9KOi1iW3u7PpSox0X/lYkm3QNLwuW/4cOe3zbOwomPnKtze4OrFuQDQ94Uro=
+	t=1763391931; cv=none; b=M/7WHja7WfuZSMkbyk6iwdinkglH39LwVeylhtAqQrWTq/pcd6qCHQIHkb8sM/XXUPwURAsKER+IMbb01sI9M3oLNj5RBXgafmw/RZ0lZmV9fun9r0iAdo3DXx2dbFD/mxCqUXR/iulaoaD2hwfDiTbeGFWHXGEaB77p/AG/36c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763391720; c=relaxed/simple;
-	bh=minQr+a6cRWeN6PsUMqyWVvwNc6hgJRB6yCB23gZlKE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Nb1mec0HZ90+9OT4hSTfLrq37ljXNziUhGHGmO74WjQuSz64DNVlS8lZl2md3en6T2xYIvm1j8SvP9C07bN+Mean/+kVtPeo77S7mykq6zXhDN1bSQFDFX1Kc8/VZZqnEbUcrmn3fyJ/GSOfJqWOksdrcoZeDFEDjs9h8EJjhM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JaLUG54X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 10DC3C2BC87;
-	Mon, 17 Nov 2025 15:02:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763391720;
-	bh=minQr+a6cRWeN6PsUMqyWVvwNc6hgJRB6yCB23gZlKE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=JaLUG54XBd6ZwNYAF+XAZnRm7DlYXvOcehA06YSzG4//3zK5wq3P/r3DQu6Vn3whE
-	 9+bCwbY+wsaKd5hUKQD62pNKNKVMIBj5kvhsjbtRWkHKpPzA1UfA+y1rPIbNOFO3NQ
-	 3SfCnvcRqwF5AxN331Sn/WOqf8xbM4C26IUsHX/+SDDkijJGom8BvhVFX83lW7cO3q
-	 ICXa/ym3KTj207R+h2J8OnuYIDka1ufT4psPf5taXJwI5Os8wOGa6gTupH7sqMQ+GE
-	 7jxV7S9Bt5hJnz/xNeDzYEDwTfl1001pkEQVg8tQ4MoDHOIoehzk9lsqqKNphNrLAQ
-	 +0HjVQZM3fPNQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F00F3CEBF97;
-	Mon, 17 Nov 2025 15:01:59 +0000 (UTC)
-From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
-Date: Mon, 17 Nov 2025 16:01:30 +0100
-Subject: [PATCH v4 5/5] arm64: dts: freescale: Add the GOcontroll Moduline
- Mini
+	s=arc-20240116; t=1763391931; c=relaxed/simple;
+	bh=6zdwiZcIJTl0BMh1iKgjr5OpfvW+ddcDpuHgtUdJsZg=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=n8fyr7V2QAnpzo6Mj1cIWDccxJo13/ftDadz36lktqaQhuTl3J9VeVwpowKk200HuEez30WD8yHDxTbGCtS5UnnWwXEF8XyFJHwEwZzARQzBLpIuJJ8m4wyhRd5rAPTK0zCgHaSfE04M36qrhvQ3lGSeJs5zPInQ+YgZL+vUyXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BKRVZYxQ; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-42b427cda88so3137604f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 07:05:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763391928; x=1763996728; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6zdwiZcIJTl0BMh1iKgjr5OpfvW+ddcDpuHgtUdJsZg=;
+        b=BKRVZYxQg6CcKR6+2nMX7ukT2b6G8aMF+JZpsY8qP7P/vlXsvxuW3C2p8OVU7Wlicf
+         6LJxylADB2fkaha9WFvlBP3hFNQJyCVrNEGVhweNUdnJVngDHGqqRzMjRsc8tpZfEnMU
+         qxMePr9I510qwCxWX7yBeUROC32mfL6xQApqu6SyN7nI6Ul7I6EZWhFLG6eiBcx9m+EE
+         UUXlKYO7IaSBV4W+64PtLYnl76XHdnxOAvdSI66Hqvamwg6VT7OPLwsmxnaKe7CBsXmp
+         Etweno7SnjaTYfGXaZma6khCqqfMreB+dkNRc1bW+Skdm9zCyy40J5pyIRYyj0I1OyWp
+         xA2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763391928; x=1763996728;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6zdwiZcIJTl0BMh1iKgjr5OpfvW+ddcDpuHgtUdJsZg=;
+        b=XKmQ5+5/4OIfq4Ke+cKJCpFT4nIzD0l1noJxIe3HP7Iur694ay4C1OOg4HamiXMloi
+         apdKOCa98Re00AFFMpB3HJ/FQEyVglyN43f0+KRzDpiNGi626++zULexrCvImJd2wTQv
+         G+x98+gASdhf1OlB47K3Syj54fqAvTalC4wBqfrbz6ZPz1yNCM6Zxbh6nWnyMRxuLg09
+         ZVkHkLzLDHw+EW2pgmLkqFY/FxY6Ia8IHY4DpzQnMC0qW2tM/jK6zosqkS8ieKp9oE27
+         b7W/Ph2DpjRtyV6ahgo1UpcBgI+TSEpbwAWznI18bRbRnCQqc5Y5guflMgDRn+FY/jpO
+         DJPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWM1cINja6+XRy6DycFYGVlfWkGvBQOrjrnoV2piKWvePm+hn+DG8IA30AB5WFO30QQARpo2X4yViEa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxq5Xn7VOxdbiS7jJVyr9+BaTH8MXAk7tbeSyW6i1YTX9gco0hV
+	aK8fYvh0enuj/E6WpFL0qnHWgCI0IIxtOmY2IkMbSuGK7LatTbR8M/Rt
+X-Gm-Gg: ASbGnct3s/eUTm/2qlsG+MlroGPB6KxTHV+R+vbNfP4Uq6hmKVujQ4hUdPpL5Qedyfh
+	hhtMjxJF+kafBwjNAvUDAB9LCMrJpr/8UXXm/Gvw1wI+fRMR9xhh+d+Xj+1WiZPjPuutjOoqwx+
+	YI24N1kvAlvGVzMZ475FjAeDxGLTzA5ywmrr6ram+wr+c1zBSWCFxumYzp32pYk8P6x9itOq/yu
+	vzUYqAX4YAnegLgbEBgBM1rR/ivpV/1VD+k67adGdvbEMpdwLHdu8nlM1868q/UDuXMcqnt2uko
+	wOzbGfLEmD+nypWspvb+c2DmDUTSxr38B5tFv5uuxLn8gS06O7j6eKnfW3fb+mwCQU2tXGQBPoO
+	+MTToLUgFgrbUkBVNQE3bfOkFUGKcOBpPe1oQzQBKFA6RSQR+LNbRK6G4oy+hZ7FPAOmbGrKWL3
+	QGWquBpRF4bYpZhG4f/JrqXMJBMQfC2w==
+X-Google-Smtp-Source: AGHT+IF+Nv2fjRa+it7pPP3JQTCtKKUra7Ae4MjMo1b9/S+hlGKYkkmE3YuoJeFBe/kGOzoR1OsKkQ==
+X-Received: by 2002:a5d:5f42:0:b0:42b:3e19:b650 with SMTP id ffacd0b85a97d-42b59338fefmr12362619f8f.17.1763391927576;
+        Mon, 17 Nov 2025 07:05:27 -0800 (PST)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f203afsm26967807f8f.39.2025.11.17.07.05.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Nov 2025 07:05:27 -0800 (PST)
+Message-ID: <65d4096a193abb7e5c103936606172005af99860.camel@gmail.com>
+Subject: Re: [PATCH v3 0/2] Add ADG1712 SPST switch controller support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij	 <linus.walleij@linaro.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-gpio@vger.kernel.org
+Date: Mon, 17 Nov 2025 15:06:04 +0000
+In-Reply-To: <20251117091427.3624-1-antoniu.miclaus@analog.com>
+References: <20251117091427.3624-1-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251117-mini_iv-v4-5-5aa63832f51a@gocontroll.com>
-References: <20251117-mini_iv-v4-0-5aa63832f51a@gocontroll.com>
-In-Reply-To: <20251117-mini_iv-v4-0-5aa63832f51a@gocontroll.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Matti Vaittinen <mazziesaccount@gmail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Maud Spierings <maudspierings@gocontroll.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763391718; l=18227;
- i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
- bh=r0U8BUTwC6StzcNp0ud7M872gxBPkaELFjtrjKncykY=;
- b=3+KVD57go0+Bh9D5RF1V5acq9D134EU98Weq19qmpZ7UwX6OlG7zKygF3CfUBVpqAJmvuc0Zq
- x/ZunqpX/52B54GHbVJs60OJBUWlEA9khOu0D0pV8D0avzwk/bkmCR/
-X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
- pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
-X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
- with auth_id=341
-X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
-Reply-To: maudspierings@gocontroll.com
 
-From: Maud Spierings <maudspierings@gocontroll.com>
+On Mon, 2025-11-17 at 09:13 +0000, Antoniu Miclaus wrote:
+> This series adds support for the Analog Devices ADG1712 quad single-pole,
+> single-throw (SPST) switch controller.
+>=20
+> The ADG1712 contains four independent analog switches, each controlled by
+> a dedicated GPIO input pin. This implementation configures the switches
+> once at probe time based on device tree properties.
+>=20
+> Changes in v3:
+> - Moved device tree bindings from gpio/ to switch/ subsystem
+> - Completely redesigned driver architecture: removed GPIO controller inte=
+rface
+> - Added 'switch-states' device tree property for configuring initial swit=
+ch states
 
-The Moduline Mini is a part of the wider GOcontroll Moduline ecosystem. These
-are embedded controllers that focus on modularity with their swappable IO
-modules.
+Hmm but if we are going that direction, I wonder if this should be in drive=
+rs/gpio at
+all?
 
-Features:
-- up to 4 Moduline IO modules
-- 2 CAN busses
-- 1 Ethernet
-- 4 RGB leds
-- 1 3D accelerometer
-- optional Wi-Fi/Bluetooth
-- optional 4G/GPS
+We have drivers/mux/gpio.c. While this is a switch (and not a mux) I guess =
+it would still
+be more appropriate in there and probably works out of the box?
 
-Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
----
- arch/arm64/boot/dts/freescale/Makefile             |   1 +
- .../imx8mm-tx8m-1610-moduline-mini-111.dts         | 688 +++++++++++++++++++++
- 2 files changed, 689 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index b2fef44e0a37..0a84c7dc89e3 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -125,6 +125,7 @@ imx8mm-evkb-pcie-ep-dtbs += imx8mm-evkb.dtb imx-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk-pcie-ep.dtb imx8mm-evkb-pcie-ep.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-tx8m-1610-moduline-iv-306-d.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-tx8m-1610-moduline-mini-111.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610-moduline-mini-111.dts b/arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610-moduline-mini-111.dts
-new file mode 100644
-index 000000000000..0091196a27d2
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610-moduline-mini-111.dts
-@@ -0,0 +1,688 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Maud Spierings <maudspierings@gocontroll.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-tx8m-1610.dtsi"
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	chassis-type = "embedded";
-+	compatible = "gocontroll,moduline-mini-111", "karo,imx8mm-tx8m-1610", "fsl,imx8mm";
-+	hardware = "Moduline Mini V1.11";
-+	model = "GOcontroll Moduline Mini";
-+
-+	aliases {
-+		usb-host = &usbotg2;
-+		usbotg = &usbotg1;
-+		spi0 = &ecspi2; /* spidev number compatibility */
-+		spi1 = &ecspi3; /* spidev number compatibility */
-+		spi2 = &ecspi1; /* spidev number compatibility */
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	mcp_clock: mcp-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <20000000>;
-+	};
-+
-+	reg_3v3_comm: regulator-3v3-communication {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&pinctrl_reg_comm>;
-+		pinctrl-names = "default";
-+		power-supply = <&reg_6v4>;
-+		/* also powers the cellular modem which can't vote on the regulator */
-+		regulator-always-on;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "3v3_comm";
-+	};
-+
-+	reg_5v0: regulator-5v0 {
-+		compatible = "regulator-fixed";
-+		power-supply = <&reg_6v4>;
-+		regulator-always-on;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "5v0";
-+	};
-+
-+	reg_6v4: regulator-6v4 {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-max-microvolt = <6400000>;
-+		regulator-min-microvolt = <6400000>;
-+		regulator-name = "6v4";
-+	};
-+
-+	reg_can1_stby: regulator-can1-stby {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&pinctrl_can1_reg>;
-+		pinctrl-names = "default";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "can1-stby";
-+	};
-+
-+	reg_can2_stby: regulator-can2-stby {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio3 15 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&pinctrl_can2_reg>;
-+		pinctrl-names = "default";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "can2-stby";
-+	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-0 = <&pinctrl_wl_reg>;
-+		pinctrl-names = "default";
-+		post-power-on-delay-ms = <100>;
-+		power-off-delay-us = <500000>;
-+		reset-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&ecspi1 {
-+	cs-gpios = <&gpio4 27 GPIO_ACTIVE_LOW>,
-+		   <&gpio3 23 GPIO_ACTIVE_LOW>,
-+		   <&gpio3 1 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	connector@0 {
-+		compatible = "gocontroll,moduline-module-slot";
-+		reg = <0>;
-+		i2c-bus = <&i2c2>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpio4 28 GPIO_ACTIVE_LOW>;
-+		slot-number = <3>;
-+		spi-max-frequency = <54000000>;
-+		sync-gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		vddhpp-supply = <&reg_6v4>;
-+		vddp-supply = <&reg_5v0>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+	};
-+
-+	connector@1 {
-+		compatible = "gocontroll,moduline-module-slot";
-+		reg = <1>;
-+		i2c-bus = <&i2c2>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <19 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpio3 21 GPIO_ACTIVE_LOW>;
-+		slot-number = <4>;
-+		spi-max-frequency = <54000000>;
-+		sync-gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		vddhpp-supply = <&reg_6v4>;
-+		vddp-supply = <&reg_5v0>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+	};
-+
-+	adc@2 {
-+		compatible = "microchip,mcp3004";
-+		reg = <2>;
-+		spi-max-frequency = <2300000>;
-+		vref-supply = <&reg_vdd_3v3>;
-+	};
-+};
-+
-+&ecspi2 {
-+	cs-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>,
-+		   <&gpio3 9 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&pinctrl_ecspi2>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	can@0 {
-+		compatible = "microchip,mcp25625";
-+		reg = <0>;
-+		clocks = <&mcp_clock>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&pinctrl_can1>;
-+		pinctrl-names = "default";
-+		spi-max-frequency = <10000000>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+		xceiver-supply = <&reg_can1_stby>;
-+	};
-+
-+	can@1 {
-+		compatible = "microchip,mcp25625";
-+		reg = <1>;
-+		clocks = <&mcp_clock>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&pinctrl_can2>;
-+		pinctrl-names = "default";
-+		spi-max-frequency = <10000000>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+		xceiver-supply = <&reg_can2_stby>;
-+	};
-+};
-+
-+&ecspi3 {
-+	cs-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>,
-+		   <&gpio1 2 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&pinctrl_ecspi3>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	connector@0 {
-+		compatible = "gocontroll,moduline-module-slot";
-+		reg = <0>;
-+		i2c-bus = <&i2c2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
-+		slot-number = <1>;
-+		spi-max-frequency = <54000000>;
-+		sync-gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		vddhpp-supply = <&reg_6v4>;
-+		vddp-supply = <&reg_5v0>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+	};
-+
-+	connector@1 {
-+		compatible = "gocontroll,moduline-module-slot";
-+		reg = <1>;
-+		i2c-bus = <&i2c2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
-+		slot-number = <2>;
-+		spi-max-frequency = <54000000>;
-+		sync-gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		vddhpp-supply = <&reg_6v4>;
-+		vddp-supply = <&reg_5v0>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+	};
-+};
-+
-+&gpu_2d {
-+	status = "disabled";
-+};
-+
-+&gpu_3d {
-+	status = "disabled";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	pinctrl-names = "default", "gpio";
-+	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-+	pinctrl-names = "default", "gpio";
-+	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	lp5012@14 {
-+		compatible = "ti,lp5012";
-+		reg = <0x14>;
-+		vled-supply = <&reg_6v4>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		multi-led@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+			color = <LED_COLOR_ID_RGB>;
-+			label = "case-led1";
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
-+
-+			led@2 {
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
-+		};
-+
-+		multi-led@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+			color = <LED_COLOR_ID_RGB>;
-+			label = "case-led2";
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
-+
-+			led@2 {
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
-+		};
-+
-+		multi-led@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+			color = <LED_COLOR_ID_RGB>;
-+			label = "case-led3";
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
-+
-+			led@2 {
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
-+		};
-+
-+		multi-led@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+			color = <LED_COLOR_ID_RGB>;
-+			label = "case-led4";
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
-+
-+			led@2 {
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
-+		};
-+	};
-+
-+	accelerometer@18 {
-+		compatible = "st,lis2dw12";
-+		reg = <0x18>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <3 IRQ_TYPE_EDGE_RISING>, <5 IRQ_TYPE_EDGE_RISING>;
-+		pinctrl-0 = <&pinctrl_lis_int>;
-+		pinctrl-names = "default";
-+		vddio-supply = <&reg_vdd_3v3>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+	};
-+
-+	humidity-sensor@5f {
-+		compatible = "st,hts221";
-+		reg = <0x5f>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <10 IRQ_TYPE_EDGE_RISING>;
-+		pinctrl-0 = <&pinctrl_hts_int>;
-+		pinctrl-names = "default";
-+		vdd-supply = <&reg_vdd_3v3>;
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_bt: btgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO01_GPIO1_IO1
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_SAI5_MCLK_GPIO3_IO25
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE | MX8MM_HYS_SCHMITT)
-+			MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13
-+				MX8MM_DSE_X1
-+		>;
-+	};
-+
-+	pinctrl_can1: can1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI2_TXC_GPIO4_IO25
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_SAI5_RXD1_GPIO3_IO22
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE | MX8MM_HYS_SCHMITT)
-+		>;
-+	};
-+
-+	pinctrl_can1_reg: can1reggrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12
-+				(MX8MM_DSE_X2 | MX8MM_FSEL_FAST | MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+		>;
-+	};
-+
-+	pinctrl_can2: can2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_CLE_GPIO3_IO5
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_NAND_DATA00_GPIO3_IO6
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE | MX8MM_HYS_SCHMITT)
-+		>;
-+	};
-+
-+	pinctrl_can2_reg: can2reggrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_RE_B_GPIO3_IO15
-+				(MX8MM_DSE_X2 | MX8MM_FSEL_FAST | MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+		>;
-+	};
-+
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI
-+				MX8MM_DSE_X4
-+			MX8MM_IOMUXC_ECSPI1_MISO_ECSPI1_MISO
-+				(MX8MM_DSE_X4 | MX8MM_HYS_SCHMITT)
-+			MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK
-+				MX8MM_DSE_X4
-+			MX8MM_IOMUXC_SAI2_MCLK_GPIO4_IO27
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_SAI5_RXD2_GPIO3_IO23
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1
-+				MX8MM_DSE_X1
-+		>;
-+	};
-+
-+	pinctrl_ecspi2: ecspi2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI
-+				MX8MM_DSE_X4
-+			MX8MM_IOMUXC_ECSPI2_MISO_ECSPI2_MISO
-+				(MX8MM_DSE_X4 | MX8MM_HYS_SCHMITT)
-+			MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK
-+				MX8MM_DSE_X4
-+			MX8MM_IOMUXC_SAI5_RXD3_GPIO3_IO24
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_NAND_DATA03_GPIO3_IO9
-+				MX8MM_DSE_X1
-+		>;
-+	};
-+
-+	pinctrl_ecspi3: ecspi3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART1_TXD_ECSPI3_MOSI
-+				MX8MM_DSE_X4
-+			MX8MM_IOMUXC_UART2_RXD_ECSPI3_MISO
-+				(MX8MM_DSE_X4 | MX8MM_HYS_SCHMITT)
-+			MX8MM_IOMUXC_UART1_RXD_ECSPI3_SCLK
-+				MX8MM_DSE_X4
-+			MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_GPIO1_IO02_GPIO1_IO2
-+				MX8MM_DSE_X1
-+		>;
-+	};
-+
-+	pinctrl_hts_int: htsintgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_DATA04_GPIO3_IO10
-+				(MX8MM_PULL_ENABLE | MX8MM_HYS_SCHMITT)
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL
-+				MX8MM_I2C_DEFAULT
-+			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA
-+				MX8MM_I2C_DEFAULT
-+		>;
-+	};
-+
-+	pinctrl_i2c2_gpio: i2c2-gpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_GPIO5_IO16
-+				MX8MM_I2C_DEFAULT
-+			MX8MM_IOMUXC_I2C2_SDA_GPIO5_IO17
-+				MX8MM_I2C_DEFAULT
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL
-+				MX8MM_I2C_DEFAULT
-+			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA
-+				MX8MM_I2C_DEFAULT
-+		>;
-+	};
-+
-+	pinctrl_i2c3_gpio: i2c3-gpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C3_SCL_GPIO5_IO18
-+				MX8MM_I2C_DEFAULT
-+			MX8MM_IOMUXC_I2C3_SDA_GPIO5_IO19
-+				MX8MM_I2C_DEFAULT
-+		>;
-+	};
-+
-+	pinctrl_lis_int: lisintgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SPDIF_TX_GPIO5_IO3
-+				(MX8MM_PULL_ENABLE | MX8MM_HYS_SCHMITT)
-+			MX8MM_IOMUXC_SPDIF_EXT_CLK_GPIO5_IO5
-+				(MX8MM_PULL_ENABLE | MX8MM_HYS_SCHMITT)
-+		>;
-+	};
-+
-+	pinctrl_reg_comm: reg_commgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO11_GPIO1_IO11
-+				MX8MM_DSE_X1
-+		>;
-+	};
-+
-+	pinctrl_sysfs_gpios: sysfsgpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO07_GPIO1_IO7
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_I2C4_SDA_GPIO5_IO21
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_SAI5_RXD0_GPIO3_IO21
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_SD2_WP_GPIO2_IO20
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_GPIO1_IO00_GPIO1_IO0
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_GPIO1_IO04_GPIO1_IO4
-+				MX8MM_DSE_X1
-+			MX8MM_IOMUXC_GPIO1_IO06_GPIO1_IO6
-+				MX8MM_DSE_X1
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI2_RXC_UART1_DCE_RX
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_SAI2_RXFS_UART1_DCE_TX
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_SAI2_RXD0_UART1_DCE_RTS_B
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_SAI2_TXFS_UART1_DCE_CTS_B
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_SAI3_TXC_UART2_DCE_TX
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_SAI3_RXD_UART2_DCE_RTS_B
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_SAI3_RXC_UART2_DCE_CTS_B
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART3_RXD_UART3_DCE_RX
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_UART3_TXD_UART3_DCE_TX
-+				(MX8MM_PULL_UP | MX8MM_PULL_ENABLE)
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: pinctrlusdhc2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK
-+				(MX8MM_DSE_X2 | MX8MM_FSEL_FAST | MX8MM_PULL_ENABLE)
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD
-+				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0
-+				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1
-+				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2
-+				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3
-+				(MX8MM_DSE_X2 | MX8MM_USDHC_DATA_DEFAULT)
-+		>;
-+	};
-+
-+	pinctrl_wl_int: wlintgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20
-+				(MX8MM_PULL_UP | MX8MM_HYS_SCHMITT | MX8MM_PULL_ENABLE)
-+		>;
-+	};
-+
-+	pinctrl_wl_reg: wlreggrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART4_RXD_GPIO5_IO28
-+				MX8MM_DSE_X1
-+		>;
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "infineon,cyw43439-bt", "brcm,bcm4329-bt";
-+		device-wakeup-gpios = <&gpio5 13 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wakeup";
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-+		max-speed = <921600>;
-+		pinctrl-0 = <&pinctrl_bt>;
-+		pinctrl-names = "default";
-+		shutdown-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+		vbat-supply = <&reg_3v3_comm>;
-+		vddio-supply = <&reg_3v3_comm>;
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	disable-over-current;
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	disable-over-current;
-+	dr_mode = "host";
-+	vbus-supply = <&reg_5v0>;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	cap-power-off-card;
-+	keep-power-in-suspend;
-+	max-frequency = <50000000>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	non-removable;
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	pinctrl-names = "default";
-+	sd-uhs-sdr25;
-+	vmmc-supply = <&reg_3v3_comm>;
-+	status = "okay";
-+
-+	wifi@1 {
-+		compatible = "infineon,cyw43439-fmac", "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		pinctrl-0 = <&pinctrl_wl_int>;
-+		pinctrl-names = "default";
-+		interrupt-names = "host-wake";
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <20 IRQ_TYPE_LEVEL_LOW>;
-+		brcm,board-type = "GOcontroll,moduline";
-+	};
-+};
-+
-+&vpu_blk_ctrl {
-+	status = "disabled";
-+};
-+
-+&vpu_g1 {
-+	status = "disabled";
-+};
-+
-+&vpu_g2 {
-+	status = "disabled";
-+};
-+
-+&wdog1 {
-+	status = "okay";
-+};
-
--- 
-2.51.2
-
-
+- Nuno S=C3=A1
 
