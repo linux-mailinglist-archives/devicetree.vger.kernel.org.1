@@ -1,175 +1,140 @@
-Return-Path: <devicetree+bounces-239537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95CA6C663E3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:16:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D49C66534
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:47:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 409FD350A86
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 21:16:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 7E24A299FE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 21:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EA02459E5;
-	Mon, 17 Nov 2025 21:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25DD2D1319;
+	Mon, 17 Nov 2025 21:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vIyEQWSw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BMdApfBo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B218523A;
-	Mon, 17 Nov 2025 21:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1692427C162
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 21:46:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763414172; cv=none; b=PwLxjnVwiFULC+hm7lCqRRqGiS2QbOPc/ifAS+eDJsCwBHLyvOPG1e5+DBEUsfli+tUkcNCrcIR7k66z60gg2n86TXaA+rxYHQQ4MP8MSmYpio9Nxy4E5kDu55FqbhyGr9waO4NP0yYUfTpNusaPFJqWWzIc+wve1SBWn7h8q1A=
+	t=1763416020; cv=none; b=TfWv2WpT6wBXw0gAr9IXMhEp/gub+wfmmL/RiXlBwrmKwcdzJeob+CQsjlQBS32HZUYSWh5FoxOLfbKw1LbbaUJJb8cIYKw8FEfQuzH9rFkzBXfVUdTU8Zrj4vmEw5KSIhhe3iEUoqROKaDa02o6qHzsKE479Hi2NnYtwtFsk2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763414172; c=relaxed/simple;
-	bh=Rny+jZeDLyUoMgfhLA3ZQW7WfCvb0CV4WmGd6tU/eWc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BbLGEZQbPzluJp4gW1tfptpwB+0RvU8x99uKAEwun3n/v2Wq9dvsk7ODd2gq2eK7s7dhEb4NioQ0tacQzbwdHD3GzBiyLzlW3nZGQCqm4ec7a4phD8Hpz7Qrhzqjz9maMnFK1YH3bs7GNxkQxgqAB3ZVnfyzBqggfKgcaMqorxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vIyEQWSw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D717C2BCAF;
-	Mon, 17 Nov 2025 21:16:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763414171;
-	bh=Rny+jZeDLyUoMgfhLA3ZQW7WfCvb0CV4WmGd6tU/eWc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=vIyEQWSwl0kz9lDIVLfMERzm2Wj3SjqPrxVg9KzGw//lkhCq1sZfv8E+vz1Ophr0E
-	 0M9xuuVCaTzBOQbe3oyUzcP8kVqwvcWuQMUleuOlwk4g1ySQLbh646j4PI0hQn3dDA
-	 l/oa8ezD12vjrVCKjI/5zkjeKEOU4Vv6tqpBs7AOg9XibEs4eCF8xS9HVDP0stZwVv
-	 7FXEejjl8hH7TSxIJ1lkrtl9b4eyGy1iQBUUtlTAoTpMYFoV05S6zGeziv8d10vsdP
-	 4Xks8WvLIF03Ht1tGic10617YiwquTbu7TKlPRhlBT/pMRaZqy9W+COROHtRVqyN8N
-	 ovM5+//+3NIwg==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
+	s=arc-20240116; t=1763416020; c=relaxed/simple;
+	bh=rZZYh0Z6hazqOpK0tIYhzdwEKCoh5DJAeS1csO74I8c=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=ZA56fQW8bUlRii6CNFIqhCCc97N8jS7KolSlaJZ0DDZBy5rRRkKoww7ucneKD1SgJmihGjyVekN+g3jz301ogCWchw4/cSg8kWARBfubmhF6HlukdBTatrdvV44yHMYvI+AnTo/z8zapoHc+DZOupTKe7pIY1FYkA8l00CcXodg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BMdApfBo; arc=none smtp.client-ip=209.85.210.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7c7533dbd87so1620617a34.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 13:46:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763416018; x=1764020818; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ztw2S/9TdbV5pr9Z6JYx0AXFtBg6AP2dg0jB76kE09I=;
+        b=BMdApfBorMFn0dwjbjj3T0CkwROmR+Q0pLMTuSkvigWKGnfaR72GUIEcFVfX3pdwPh
+         MWg8rFIdQFOJdNl5BtxJDblz9ykrphr9EfyGUMlWKk06aAO/vdgtXJUBKThUx2QR6HTD
+         Dt64sdW2YretMFiJYKOo5QqwPViff+AFbLxvyWouB5G5ZbgJ013KjrCWLRaefwOEtULg
+         6S1xJURAC2ENWJljlN1BA7CR9q3+5P6F8wy5dRP+MV2DNZdlGQRtDAjK0b9AlPINV5k0
+         ZbPIzyBRS1TfhrBu8T5YRKJoGpOdWsiZBYsv2+LYYjU3hMfRJDKaRFhRYJjaRs+1MkRw
+         9v+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763416018; x=1764020818;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ztw2S/9TdbV5pr9Z6JYx0AXFtBg6AP2dg0jB76kE09I=;
+        b=lBb/k8JFR1/EY0ud2oDa8sU6+p4LuOZO8x0Q0BNU9sreRY/sS8hiRzNR4wgwdeU3xR
+         xLNbzlwDOpZmArscku57AhINJre4HqimXCGGPeBoKgxtp+WBQ/VbJz72Uo+YB642dB3E
+         Smc7lZtdQekOGTRTyVYq+W346uf5o3CFzDBTppqFhJFR80IxU5b9D1K/+OQJM0wJu45S
+         wAjn+snMcHYGAn5iNa/CLp9NF5//g5ClEYH19qXGoJ7TNtEe9EU0FAVF6jroqDGPysn+
+         MpVRk4T+XzPLy0zBZ4+WClDf+xu/EVb6MQTyPYBJD40C2qzcElbkn71zpxbt9Un5HLxG
+         V/ug==
+X-Forwarded-Encrypted: i=1; AJvYcCV5JqvN51BeSdDGieI1Ep3xO8lmHnSt8HA16dSn29oSDvVCRV9OYd7WRVc0jUKOluXMvKbHKOr+rIUW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1gpFkm0Y2D1PrA9GZAqgLct0NkrWRK1SC0P1Z/H3dD1SDTkd2
+	CzYmblDAxtnLIh9fd5LUcO/iGJLH4KU4gTgwYGpQ4vlcasbcEbs2r11m
+X-Gm-Gg: ASbGncuirFopAzoFJ9BGN6ykHQxeAFIw9jzVW8lWC7LKj5ibpeMr0zV3oAQINH7Ux4u
+	T1G1iROkPvwi1szYjjZ/Ge8rgFjg+iLEwfCrwcXufqzBcGfprNoch5PYLNuCR6YbyGIhm2ZdCkD
+	TyDLui2GyKf6BTnG7bU2YTbhC+7nMnx1bhq0ebRkbHAUupu3n9llLbPAWjaSmAqD4TXoKY43LTU
+	XmW7Mb0bnEbH1vpGpXJ7z8fzYXDYkvQdHcCYdGLOOaWyhpjZxAJqTCvSYfx9S6sbteLqqgI5iAQ
+	285JLs62KW8EdmV8ZREPdiUKVJvqgWB/Fwa5hh0eYfrIOhWTfbyHryoo691iDA5U9mSZ3rVFPhG
+	HBRP3/datJrvg4c3X1tqo0jW9U8Ex2XC8Cl6Zto83mGZOhBwzn9uYJFDxf9GLQ+3uwYbm7QdL6s
+	B5OFrkvY68mqw4jOkMtg8=
+X-Google-Smtp-Source: AGHT+IE2vvEkzYPE2YeNk5ikw8gx+yWVLzAS4i95En/N092Es//XEtJ9aw1jpXdrlGJlPu0ojIqUyQ==
+X-Received: by 2002:a05:6808:1b14:b0:441:8f74:fd3 with SMTP id 5614622812f47-45097637992mr6914942b6e.64.1763416018072;
+        Mon, 17 Nov 2025 13:46:58 -0800 (PST)
+Received: from geday ([2804:7f2:800b:a807::dead:c001])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4508a6df248sm4594480b6e.22.2025.11.17.13.46.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Nov 2025 13:46:57 -0800 (PST)
+Date: Mon, 17 Nov 2025 18:46:43 -0300
+From: Geraldo Nascimento <geraldogabriel@gmail.com>
+To: Shawn Lin <shawn.lin@rock-chips.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RFC PATCH] arm64: broadcom: bcm2712: Rework rp1 overlay handling
-Date: Mon, 17 Nov 2025 15:15:02 -0600
-Message-ID: <20251117211503.728354-2-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	Johan Jonker <jbx6244@gmail.com>,
+	Geraldo Nascimento <geraldogabriel@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>
+Cc: linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/4] PCI: rockchip: 5.0 GT/s speed may be dangerous
+Message-ID: <cover.1763415705.git.geraldogabriel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-It's a requirement that DT overlays be applied at build time in order to
-validate them as overlays are not validated on their own.
+Dragan Simic already had warned me of potential issues with 5.0 GT/s
+speed operation in Rockchip PCIe. However, in recent interactions
+with Shawn Lin from Rockchip it came to my attention there's grave
+danger in the unknown errata regarding 5.0 GT/s operational speed
+of their PCIe core. Even if the odds are low, to contain any damage,
+let's cover the remaining corner-cases where the default would lead
+to 5.0 GT/s operation as well as add a comment to Root Complex driver
+core, documenting this danger. Furthermore, remove redundant
+declaration of max-link-speed from rk3399-nanopi-r4s.dtsi
 
-Simply adding a build time target is possible, but it's also not desirable
-to have targets which include the overlay contents and apply the same
-overlay.
+Signed-off-by: Geraldo Nascimento <geraldogabriel@gmail.com>
 
-Rework the targets such that there are 2 overlays: the existing RP1 overlay
-and the board specific configuration of the RP1 (bcm2712-rpi-5-b.dtso).
-
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
-The missing applying of rp1.dtbo will soon be a warning[1].
 
-The comment in bcm2712-rpi-5-b.dts(o) needs updating or removing. The RP1
-driver or userspace handling of the overlay probably needs updating to
-handle the 2 overlays. IIRC, I think we can apply overlays to overlays
-which may be useful here. If not, adding that to the tools should be
-possible.
+Changes in v2:
+- hard limit to 2.5 GT/s, not just warn
+- add Reported-by: and Reviewed-by: Dragan Simic
+- remove redundant declaration of max-link-speed from helios64 dts
+- fix Link: of helios64 patch
+- simplify RC mode comment
+- Link to v1: https://lore.kernel.org/all/aRhR79u5BPtRRFw3@geday/
 
-[1] https://lore.kernel.org/all/20251114222759.4181152-1-robh@kernel.org/
----
- arch/arm64/boot/dts/broadcom/Makefile                 | 10 ++++++++--
- ...m2712-d-rpi-5-b.dts => bcm2712-d-rpi-5-b-base.dts} |  2 +-
- .../{bcm2712-rpi-5-b.dts => bcm2712-rpi-5-b.dtso}     | 11 +++++------
- 3 files changed, 14 insertions(+), 9 deletions(-)
- rename arch/arm64/boot/dts/broadcom/{bcm2712-d-rpi-5-b.dts => bcm2712-d-rpi-5-b-base.dts} (95%)
- rename arch/arm64/boot/dts/broadcom/{bcm2712-rpi-5-b.dts => bcm2712-rpi-5-b.dtso} (92%)
+Geraldo Nascimento (4):
+  PCI: rockchip: limit RK3399 to 2.5 GT/s to prevent damage
+  PCI: rockchip-host: comment danger of 5.0 GT/s speed
+  arm64: dts: rockchip: remove dangerous max-link-speed from helios64
+  arm64: dts: rockchip: remove redundant max-link-speed from nanopi-r4s
 
-diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
-index 83d45afc6588..4957edec9d9f 100644
---- a/arch/arm64/boot/dts/broadcom/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/Makefile
-@@ -6,9 +6,9 @@ DTC_FLAGS := -@
- dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
- 			      bcm2711-rpi-4-b.dtb \
- 			      bcm2711-rpi-cm4-io.dtb \
--			      bcm2712-rpi-5-b.dtb \
-+			      bcm2712-rpi-5-b.dtbo \
- 			      bcm2712-rpi-5-b-ovl-rp1.dtb \
--			      bcm2712-d-rpi-5-b.dtb \
-+			      bcm2712-d-rpi-5-b-base.dtb \
- 			      bcm2837-rpi-2-b.dtb \
- 			      bcm2837-rpi-3-a-plus.dtb \
- 			      bcm2837-rpi-3-b.dtb \
-@@ -17,6 +17,12 @@ dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
- 			      bcm2837-rpi-zero-2-w.dtb \
- 			      rp1.dtbo
- 
-+bcm2712-rpi-5-b-dtbs := bcm2712-rpi-5-b-ovl-rp1.dtb rp1.dtbo bcm2712-rpi-5-b.dtbo
-+dtb-$(CONFIG_ARCH_BCM2835) += bcm2712-rpi-5-b.dtb
-+
-+bcm2712-d-rpi-5-b-dtbs := bcm2712-d-rpi-5-b-base.dtb rp1.dtbo bcm2712-rpi-5-b.dtbo
-+dtb-$(CONFIG_ARCH_BCM2835) += bcm2712-d-rpi-5-b.dtb
-+
- subdir-y	+= bcmbca
- subdir-y	+= northstar2
- subdir-y	+= stingray
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b-base.dts
-similarity index 95%
-rename from arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dts
-rename to arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b-base.dts
-index 7de24d60bcd1..48a0ae118839 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b-base.dts
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: (GPL-2.0 OR MIT)
- /dts-v1/;
- 
--#include "bcm2712-rpi-5-b.dts"
-+#include "bcm2712-rpi-5-b-ovl-rp1.dts"
- 
- &gio_aon {
- 	brcm,gpio-bank-widths = <15 6>;
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtso
-similarity index 92%
-rename from arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-rename to arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtso
-index b8f256545022..89d099c00035 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtso
-@@ -15,19 +15,18 @@
-  */
- 
- /dts-v1/;
-+/plugin/;
- 
--#include "bcm2712-rpi-5-b-ovl-rp1.dts"
--
--&pcie2 {
--	#include "rp1-nexus.dtsi"
--};
-+#include <dt-bindings/gpio/gpio.h>
- 
- &rp1_eth {
- 	status = "okay";
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&phy1>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
- 
--	mdio {
-+	mdio@1 {
- 		reg = <0x1>;
- 		reset-gpios = <&rp1_gpio 32 GPIO_ACTIVE_LOW>;
- 		reset-delay-us = <5000>;
+ arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts |  1 -
+ arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtsi    |  1 -
+ drivers/pci/controller/pcie-rockchip-host.c            |  3 +++
+ drivers/pci/controller/pcie-rockchip.c                 | 10 ++++++++--
+ 4 files changed, 11 insertions(+), 4 deletions(-)
+
 -- 
-2.51.0
+2.49.0
 
 
