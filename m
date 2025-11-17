@@ -1,200 +1,250 @@
-Return-Path: <devicetree+bounces-239243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8287C62EBA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:38:16 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6EBC62ED2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 09:40:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B13FB35A2AD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:37:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 138AB4E520A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:40:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D890B31D72B;
-	Mon, 17 Nov 2025 08:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAD331B80B;
+	Mon, 17 Nov 2025 08:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k8F73YWr"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Nvc/dKLs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43AB31D393
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 08:36:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111AC2EA15C;
+	Mon, 17 Nov 2025 08:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763368621; cv=none; b=U4gIaSbzyddyopnocEn9tHlvSGWSQtDT5tCPsECGIGt+ABEFkctjP5mnUl1/QknFNRRHXwGurj0Q101FQbvTKnCPTzLCf45IBKbBbPrYHuN4DKAMwCKKoG0PgPzVm0DYFee58o+gBFagdd2VvHkg2vrkewtDVlXdLjkikr5hKaI=
+	t=1763368846; cv=none; b=UG/cmaqSueRIAmYWzQXtMJLz4ja9PPp/jrvbH4h6q+doq3ZihOQaVigGF23pXLHTAMTYdIHZb3P1AuiGWoS5cdBiusp982l2XTLtVrAUDAAKIKzdYxvCcn+y/l2wmG3IMNbnzUWutWcOjAYcqGrqUkeCyXmEK7fJAtkkMeT55o4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763368621; c=relaxed/simple;
-	bh=jEs+PHPYbJw7U8D6uJYIzwCTNaKJLPOsD13HrSyQVcM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EL/j+J3DMiSs89SNV1e7hYhC17Pk41zkUZxvc7HutrZlgJrM1i1/7Yfh7ptYbAI5xZMbF9ipypkQ2/wGY+0bd00HAxcOL2bNDhPQQ2ar4HUIVF6FLEDHSYGj0VON/13rKY7e058eSQb4Z5ZZsLRr7FIkAtxSbaEkYTIDBSPWk9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k8F73YWr; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-477632d45c9so29068375e9.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 00:36:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763368618; x=1763973418; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=jEs+PHPYbJw7U8D6uJYIzwCTNaKJLPOsD13HrSyQVcM=;
-        b=k8F73YWrhIGHL0elago5POwDwQZn+mUaiid5y3j2qijqDAbM5qLv++swCI+hJo+RRw
-         jq/A6KY6gSSDYO8rTi4D5nZ22wRfKjr2JMlDm8WSTFwsJ6/3g9G6RdyKcyfSI11xk284
-         UsTzAqZejnX96XIKOvu/mCPvy8t/Znm0nXcLUtlp1W3GeoxXndSEJsFv5+wi/GKI7sVW
-         dsp8ajXuNgpu7VwNapN7G5DJ47OLj4Ueg0DojdXygVeyM51YYZd3uJOoh8B5XdPYdycA
-         NGLMWt8Zo1jaItdRnxIHNNELxJ1x7Gx5Cbc/aMIDAKdOsUFWeFIQNKvj9PENFC11o15/
-         T3sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763368618; x=1763973418;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jEs+PHPYbJw7U8D6uJYIzwCTNaKJLPOsD13HrSyQVcM=;
-        b=uFbCQAccwDbrGkkhPHPct1uNBJGe/+S0hjM0Ca572Bj6umU4yzJucrSXcaFMR+1uLH
-         mfCSVmD5qsR3Op13GNaiv6glzecah31LNUWYsGcZyWEFrNOLsHx4CQp8E92SPMrnA1hN
-         0sZOhEYiCpjLU1vx9k9N3ixf2J7pxScajE0ZGASYwzwx9n9QP72YMlHPBJa+W4Y5O3JM
-         oXdNxGn2n8vWxHaq8AV/qyI0jfVQwsDWIVXa9k8nOPY7oZbKsELwJRJr8/s7N127tvtq
-         ud1PsyEFCUMkNYuUkFdmqInPn71qBNcJcKGsq8yvPlxiRVMExczCqjLee4iu+xIfNhyh
-         wJ8A==
-X-Forwarded-Encrypted: i=1; AJvYcCUj19rMksNawn/HCmK8MC/dVqeKEf8UCOzYVR01vzZ4AC7Sy7E140wxKvYxipLe/NIr9nBPJHbibzNJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDFx025tHlWd75wNUdFhkQIRA9+RU7phol0IOg9IFhHbWeD3sw
-	OsiLV0/xZ9MSNksRg8pkxDQzPqFx3+epGdca2WWCPeiFfmdKEhcicxQR
-X-Gm-Gg: ASbGnctujnmCf/NKC4oHkK96TjB/tcx0tJtzUjI+fdusJ0UMBCneGehJGKZ+Dsxl0Ui
-	SHASm0bsNAGxAcvEl84sWFxbndBe2Dis8GazSSwixyF3nKYuGHFVqkHMKfoYwhCo7MTzhHl01ow
-	u/FyKBux/NuluN8V0hbbqBG2wtW48OfCHut+vY5l9zqv1u6AI5uiFKUMP+/XmOmZz5CQnWJpWEb
-	J5SXve/4zcKTdRwyNK0uyT7uKs+jkfGv29Z8cUVkON7CFMyNXIUbjJJwvJLs5L/pR15/sk8cQxR
-	GL4Wq0JkyZj/lNBUWKOw7Ne5TxGZeMraP+d/a5FjhL0e8bXJEup4kqszZ3jvBCZ2dgggtK8aCF2
-	JV94xbLgJzJWYQYEFjpG0G7vaeUbcXvK58169bUUpqCcglwtXeg75YV6i0W1NXz5+MXr3mq1VcE
-	zJcAn0nJ+CtGrdLNNy43c7dYI1bTaBkCBTpw5soHJg4dAcskcM
-X-Google-Smtp-Source: AGHT+IFqvqIxI3ITQD5zAT/7ZzMljZHFUVUN0MqCI6bwlrhpUcItCKNOlBNAb+KExRAYyeuF5CjMag==
-X-Received: by 2002:a05:600c:450f:b0:477:76bf:e1fb with SMTP id 5b1f17b1804b1-4778fe4a05emr117954545e9.16.1763368617743;
-        Mon, 17 Nov 2025 00:36:57 -0800 (PST)
-Received: from ?IPv6:2001:818:ea56:d000:94c4:fb0e:28f:2a8d? ([2001:818:ea56:d000:94c4:fb0e:28f:2a8d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4779527235esm154459915e9.8.2025.11.17.00.36.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Nov 2025 00:36:57 -0800 (PST)
-Message-ID: <8c81552eefe30cf191d1d422ab9a5d949284e7ac.camel@gmail.com>
-Subject: Re: [PATCH 0/3] ADF41513/ADF41510 PLL frequency synthesizers
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Rodrigo Alencar via B4 Relay
-	 <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org,  David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet	 <corbet@lwn.net>
-Date: Mon, 17 Nov 2025 08:37:58 +0000
-In-Reply-To: <20251116161023.7a4b1b6e@jic23-huawei>
-References: <20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com>
-	 <20251116161023.7a4b1b6e@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1763368846; c=relaxed/simple;
+	bh=gkncn3MOxKMpS7fFx8b0bIjvCegdIq2/X6RbhxiwYLI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U/S4V6nJKDYnQ50ur4/kuzT8uL2+yj49o1xhu9iRoJRaIn6T+WMz3yPFhODM73+4th2QlFNFYdSjFXf+vQEwMN6bQJXffDLuyNHIL/iuC4t03d+7+IhvXG5pwGXoVRc87Ox6imco1TJ2Mt/WmmHtq2asymEe0oZQihGJrk7sXjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Nvc/dKLs; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763368845; x=1794904845;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gkncn3MOxKMpS7fFx8b0bIjvCegdIq2/X6RbhxiwYLI=;
+  b=Nvc/dKLsbYvDwhqWuUcL7eNNQK6IkogI1Aim9fMsSgqiHkCvbwlnp48p
+   Z78F5Uspj6Qy6Jiw2gsiwTtzT230u+q/IearnsdCpElucNWIYx5cg8IjY
+   qal/i9qaTYLpIET0kOhtjPpIKT+f3WEJxFJ65oFpUCfMO+RQnGAHtvagR
+   lPMIMjXk8rQo/nslpxymClCjMHKE1BpjB1736CMUAwCu43m8+ckQ9kLrm
+   DEihF2uGUcHzff1zYKpygCkLtHNwxsirFJYJeD7vqtCjr3AjGqojkHnbq
+   k2A1odDRM3tW3lK/V8CssPuE6ICZfNgBNf34HVuh9mGTxbPdWDqtTjVUd
+   g==;
+X-CSE-ConnectionGUID: M0jDvNJDRIODb+ufzQNsIA==
+X-CSE-MsgGUID: e3dptxINTQuAkFP5hm/xSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11615"; a="52930419"
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; 
+   d="scan'208";a="52930419"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2025 00:40:44 -0800
+X-CSE-ConnectionGUID: +E6Bi6sGSmS+xsZI5u+9Xw==
+X-CSE-MsgGUID: u/K5zt9SSo2D8r6X/N8XtQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,311,1754982000"; 
+   d="scan'208";a="213794754"
+Received: from mgoodin-mobl3.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.220.176])
+  by fmviesa002.fm.intel.com with SMTP; 17 Nov 2025 00:40:33 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 17 Nov 2025 10:40:30 +0200
+Date: Mon, 17 Nov 2025 10:40:30 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Chaoyi Chen <kernel@airkyi.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Peter Chen <hzpeterchen@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Yubing Zhang <yubing.zhang@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Amit Sunil Dhamne <amitsd@google.com>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v9 03/10] drm/bridge: Implement generic USB Type-C DP HPD
+ bridge
+Message-ID: <aRrffpTP5KyAFVnx@kuha.fi.intel.com>
+References: <20251111105040.94-1-kernel@airkyi.com>
+ <20251111105040.94-4-kernel@airkyi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251111105040.94-4-kernel@airkyi.com>
 
-On Sun, 2025-11-16 at 16:10 +0000, Jonathan Cameron wrote:
-> On Mon, 10 Nov 2025 15:44:43 +0000
-> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.o=
-rg> wrote:
->=20
-> > This patch series adds support for the Analog Devices ADF41513 and ADF4=
-1510
-> > ultralow noise PLL frequency synthesizers. These devices are designed f=
-or
-> > implementing local oscillators (LOs) in high-frequency applications.
-> >=20
-> > The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41=
-510
-> > operates from 1 GHz to 10 GHz. Both devices feature exceptional phase n=
-oise
-> > performance and flexible frequency synthesis capabilities.
-> >=20
-> > Key features supported by this driver:
-> > - Integer-N and fractional-N operation modes
-> > - Ultra-low phase noise (-235 dBc/Hz integer-N, -231 dBc/Hz fractional-=
-N)
-> > - High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
-> > - 25-bit fixed modulus or 49-bit variable modulus fractional modes
-> > - Programmable charge pump currents with 16x range
-> > - Digital lock detect functionality
-> > - Phase resync capability for consistent output phase
-> > - Clock framework integration for system clock generation
-> >=20
-> > The series includes:
-> > 1. Core driver implementation with full register programming support
-> > 2. Device tree bindings documentation
-> > 3. IIO subsystem documentation with usage examples
-> >=20
-> > The driver integrates with both the IIO subsystem (for direct hardware =
-control)
-> > and the Linux clock framework (for use as a system clock source), provi=
-ding
-> > flexibility for different use cases.
->=20
-> For v2, provide a little more info on why we need both interface types
-> specifically what you can do with IIO that you can't do with a clock
-> driver.=C2=A0 Also +CC the clk driver folk and list from MAINTAINERS.
->=20
-> We have evolved to this dual interface state drivers, but I'm not sure
-> we aren't in a case 'If we were doing this again we'd never start from
-> here.'
+Tue, Nov 11, 2025 at 06:50:33PM +0800, Chaoyi Chen kirjoitti:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> 
+> The HPD function of Type-C DP is implemented through
+> drm_connector_oob_hotplug_event(). For embedded DP, it is required
+> that the DRM connector fwnode corresponds to the Type-C port fwnode.
+> 
+> To describe the relationship between the DP controller and the Type-C
+> port device, we usually using drm_bridge to build a bridge chain.
+> 
+> Now several USB-C controller drivers have already implemented the DP
+> HPD bridge function provided by aux-hpd-bridge.c, it will build a DP
+> HPD bridge on USB-C connector port device.
+> 
+> But this requires the USB-C controller driver to manually register the
+> HPD bridge. If the driver does not implement this feature, the bridge
+> will not be create.
+> 
+> So this patch implements a generic DP HPD bridge based on
+> aux-hpd-bridge.c. It will monitor Type-C bus events, and when a
+> Type-C port device containing the DP svid is registered, it will
+> create an HPD bridge for it without the need for the USB-C controller
+> driver to implement it.
+> 
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-Yeah, in some devices I do think that we should likely only have the clock =
-driver
-(for devices where we only control the channel frequency). For others, we d=
-o have
-offer more control through IIO which adds some value.
+Normally there is no "help" section for hidden config options. I
+guess it can not cause any harm? It is a bit confusing, though. But
+FWIW:
 
-- Nuno S=C3=A1
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
->=20
-> Jonathan
->=20
->=20
-> >=20
-> > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > ---
-> > Rodrigo Alencar (3):
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio: frequency: adf41513: driver impleme=
-ntation
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: iio: frequency: add adf4151=
-3
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 docs: iio: add documentation for adf4151=
-3 driver
-> >=20
-> > =C2=A0.../bindings/iio/frequency/adi,adf41513.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 268 ++++
-> > =C2=A0Documentation/iio/adf41513.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 377 +++++
-> > =C2=A0Documentation/iio/index.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
-> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 9 +
-> > =C2=A0drivers/iio/frequency/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 11 +
-> > =C2=A0drivers/iio/frequency/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
-> > =C2=A0drivers/iio/frequency/adf41513.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 1435 ++++++++++++++++++++
-> > =C2=A07 files changed, 2102 insertions(+)
-> > ---
-> > base-commit: d16d1c2553248f9b859b86c94344d8b81f0297cd
-> > change-id: 20251110-adf41513-iio-driver-aaca8a7f808e
-> >=20
-> > Best regards,
+> ---
+> 
+> Changes in v9:
+> - Remove the exposed DRM_AUX_HPD_BRIDGE option, and select
+> DRM_AUX_HPD_TYPEC_BRIDGE when it is available.
+> - Add more commit comment about problem background.
+> 
+> Changes in v8:
+> - Merge generic DP HPD bridge into one module.
+> 
+>  drivers/gpu/drm/bridge/Kconfig                | 10 ++++
+>  drivers/gpu/drm/bridge/Makefile               |  1 +
+>  .../gpu/drm/bridge/aux-hpd-typec-dp-bridge.c  | 50 +++++++++++++++++++
+>  3 files changed, 61 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> 
+> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> index a250afd8d662..559487aa09a9 100644
+> --- a/drivers/gpu/drm/bridge/Kconfig
+> +++ b/drivers/gpu/drm/bridge/Kconfig
+> @@ -30,6 +30,16 @@ config DRM_AUX_HPD_BRIDGE
+>  	  Simple bridge that terminates the bridge chain and provides HPD
+>  	  support.
+>  
+> +if DRM_AUX_HPD_BRIDGE
+> +config DRM_AUX_HPD_TYPEC_BRIDGE
+> +	tristate
+> +	depends on TYPEC || !TYPEC
+> +	default TYPEC
+> +	help
+> +	  Simple bridge that terminates the bridge chain and provides HPD
+> +	  support. It build bridge on each USB-C connector device node.
+> +endif
+> +
+>  menu "Display Interface Bridges"
+>  	depends on DRM && DRM_BRIDGE
+>  
+> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
+> index c7dc03182e59..a3a0393d2e72 100644
+> --- a/drivers/gpu/drm/bridge/Makefile
+> +++ b/drivers/gpu/drm/bridge/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_DRM_AUX_BRIDGE) += aux-bridge.o
+>  obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += aux-hpd-bridge.o
+> +obj-$(CONFIG_DRM_AUX_HPD_TYPEC_BRIDGE) += aux-hpd-typec-dp-bridge.o
+>  obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
+>  obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
+>  obj-$(CONFIG_DRM_CROS_EC_ANX7688) += cros-ec-anx7688.o
+> diff --git a/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> new file mode 100644
+> index 000000000000..9cb6a0cb0f0a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> @@ -0,0 +1,50 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +#include <linux/of.h>
+> +#include <linux/usb/typec_altmode.h>
+> +#include <linux/usb/typec_dp.h>
+> +
+> +#include <drm/bridge/aux-bridge.h>
+> +
+> +static int drm_typec_bus_event(struct notifier_block *nb,
+> +			       unsigned long action, void *data)
+> +{
+> +	struct typec_altmode *alt = (struct typec_altmode *)data;
+> +
+> +	if (action != TYPEC_ALTMODE_REGISTERED)
+> +		goto done;
+> +
+> +	if (is_typec_partner(&alt->dev) || alt->svid != USB_TYPEC_DP_SID)
+> +		goto done;
+> +
+> +	/*
+> +	 * alt->dev.parent->parent : USB-C controller device
+> +	 * alt->dev.parent         : USB-C connector device
+> +	 */
+> +	drm_dp_hpd_bridge_register(alt->dev.parent->parent,
+> +				   to_of_node(alt->dev.parent->fwnode));
+> +
+> +done:
+> +	return NOTIFY_OK;
+> +}
+> +
+> +static struct notifier_block drm_typec_event_nb = {
+> +	.notifier_call = drm_typec_bus_event,
+> +};
+> +
+> +static void drm_aux_hpd_typec_dp_bridge_module_exit(void)
+> +{
+> +	typec_altmode_unregister_notify(&drm_typec_event_nb);
+> +}
+> +
+> +static int __init drm_aux_hpd_typec_dp_bridge_module_init(void)
+> +{
+> +	typec_altmode_register_notify(&drm_typec_event_nb);
+> +
+> +	return 0;
+> +}
+> +
+> +module_init(drm_aux_hpd_typec_dp_bridge_module_init);
+> +module_exit(drm_aux_hpd_typec_dp_bridge_module_exit);
+> +
+> +MODULE_DESCRIPTION("DRM TYPEC DP HPD BRIDGE");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.51.1
+
+-- 
+heikki
 
