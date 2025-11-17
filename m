@@ -1,68 +1,60 @@
-Return-Path: <devicetree+bounces-239420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4836C64A9F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:37:20 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20BDEC64A93
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:36:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B80B035A5FC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:34:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 013D74E179F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:36:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A1D32E150;
-	Mon, 17 Nov 2025 14:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D125A325705;
+	Mon, 17 Nov 2025 14:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u/43iYsJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJjCL/VI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89EE330FF37;
-	Mon, 17 Nov 2025 14:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71C41D31B9;
+	Mon, 17 Nov 2025 14:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763390051; cv=none; b=O8vn87FJKgcoh0ljSLdtJQkC+BZP6KTdz8Bp8MT+nJkTXSxmjBUlATdmg7y447aUuSaLKuIRtGcbSS16Ubm6lj3BU88JoXKTv1fmtpS7P00caeO8K62GR4IjovSeIrLspGNNt+qJX4J2bGmGKdYyHWzZBGAdUzTvZo1i1NK/53s=
+	t=1763390188; cv=none; b=KxJVEs9Z8qBopqrcZztypLs4T8zRBkzqCXlHR+/lggK/gMO61AwNJOTxqNZe7y0xF6uaCFZHeIuKKQMT6Lz5bFvt0v2lgsZIBSQqADMPXgHbUK8NM/4zhBBpDgd2dHaXw7P4V9JBkagrvzmqR6Hgl6MAmS1p08ICVDofeO/9Pb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763390051; c=relaxed/simple;
-	bh=BXhc7ixW86ro/ZJjEn/CSD3jHeIMDbw9HLUl8qtuo4k=;
+	s=arc-20240116; t=1763390188; c=relaxed/simple;
+	bh=jpHTq2VyCK6MMaE3F5zeDQdp65AE4LebUx2/HG6St10=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mgXtuXuRBYuFDyzxh+TL+H1GnbfiHT2KlHrPJ2GzZ73nXaSYyA9S6Ctl9kReDfXx++5fRwdfgsCmdPjayLh7GmO0uz4a7ZhLdeMMbXLjix9days65Gl+BRvgdnxhOe3VWor6EKsCcPJql1KEW9vSPGHOuZZKMbXZNzi9qHr2GgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u/43iYsJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A77DC4CEF1;
-	Mon, 17 Nov 2025 14:34:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VU11BLXxw6iJwWmyuXM0QQJfAerztrBsWbiHRJCTs2ELbPzkaRKxVj0xEQzqoCJcw3EW99iLoD2KGzBWyQk36eKsOScYgSdr3k7vjP9FBT9GdqEj4JaMR9/wmYsfsOTogWHDXfAEk/cXhN4hp2g5yYMwIEO80C2MOj+zo+85u7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJjCL/VI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C79D4C2BC9E;
+	Mon, 17 Nov 2025 14:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763390051;
-	bh=BXhc7ixW86ro/ZJjEn/CSD3jHeIMDbw9HLUl8qtuo4k=;
+	s=k20201202; t=1763390188;
+	bh=jpHTq2VyCK6MMaE3F5zeDQdp65AE4LebUx2/HG6St10=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u/43iYsJLHNxc+uAT00uCGEpMeKOXPb1/Tt34s0Ry1TPbFZIucKCznwnumI7fcQPh
-	 e8U1QEewMilbDRMcmPquzKHtiTV/iwggHWo0vYyhx1jCYkt9iTuidXbbzZmUCk4YZg
-	 T2DXlclxZp1lENhwjftprII/3TZTJcnJHHxYWDEbKMFWeZ+vigX0M84jkV0pRGfdMA
-	 fsgIR1dGMaH1up1s4rr+2QpvcOwDG0k2NhdrBPRSyUaRpQZHqRzxGk0uZKjkU5NMHm
-	 gbKXqct0FZ//wR7HgtkIOKEAuyr7wm+xynAa0UdBqgeuZ2y8EdCb3mWkVV3QHnAvWT
-	 MwDHfnQc34gDg==
-Date: Mon, 17 Nov 2025 14:34:06 +0000
+	b=cJjCL/VI3p/vrR/vPKvxut/drD5K9cmyQK/eoY+DNjQCqeG5MpMd0cwEAM2AsxBoq
+	 0LV5PiUCf5VdmmokrAfZF6EGsXEqDpR1WTxjc/0fMOkDmmv9gBCI7Vj1uJyYFGW1A1
+	 x0P+6npHsrBcuf+Pq5PshLcygzwYWJA1bgCaoKa5pZ77cbNqgKpl2wUA9fTZYT1S1P
+	 4ExSbuO9PlNp9THY3kR6Sc81NF9RmgKdR+QJi8SieOlKraNRaONlMPwto+XwG0Tb8O
+	 0qS2z/l1Ft9m8VKK9l1E+iqIKBBkD9EnSHcXBhPweQU9508Yui3dbjevURCMRTX6rC
+	 vRY+Rn8LtQ90Q==
+Date: Mon, 17 Nov 2025 14:36:23 +0000
 From: Conor Dooley <conor@kernel.org>
-To: "Romli, Khairul Anuar" <khairul.anuar.romli@altera.com>
-Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rao, Mahesh" <mahesh.rao@altera.com>,
-	"Ng, Adrian Ho Yin" <adrian.ho.yin.ng@altera.com>,
-	"Rabara, Niravkumar Laxmidas" <nirav.rabara@altera.com>,
-	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: fpga: stratix10: add support for
- Agilex5
-Message-ID: <20251117-empty-skipping-a2c0c9aec1c7@spud>
-References: <cover.1763100984.git.khairul.anuar.romli@altera.com>
- <c614925ffdc98b1faace3ec9bd7124161b0b60ca.1763100984.git.khairul.anuar.romli@altera.com>
- <20251114-countless-vantage-6e18528d2e31@spud>
- <56a3a993-9e54-4468-8774-5ed350948ab5@altera.com>
- <20251117-imprison-upstream-5c80b3a55169@spud>
+To: Yu-Chun Lin <eleanor.lin@realtek.com>
+Cc: afaerber@suse.de, conor+dt@kernel.org, cy.huang@realtek.com,
+	devicetree@vger.kernel.org, james.tai@realtek.com,
+	krzk+dt@kernel.org, lee@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-realtek-soc@lists.infradead.org, robh@kernel.org,
+	stanley_chang@realtek.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: realtek: Add Kent Soc family
+ compatibles
+Message-ID: <20251117-platonic-settle-8c4f4b64aeb8@spud>
+References: <20251113-preorder-task-4e5ba09580d8@spud>
+ <20251117105542.14789-1-eleanor.lin@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,144 +62,55 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WXFMmdlZ+8JG5dL+"
+	protocol="application/pgp-signature"; boundary="WGyk7a5/LFEGj+tF"
 Content-Disposition: inline
-In-Reply-To: <20251117-imprison-upstream-5c80b3a55169@spud>
+In-Reply-To: <20251117105542.14789-1-eleanor.lin@realtek.com>
 
 
---WXFMmdlZ+8JG5dL+
+--WGyk7a5/LFEGj+tF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 17, 2025 at 02:32:16PM +0000, Conor Dooley wrote:
-> On Mon, Nov 17, 2025 at 03:02:11AM +0000, Romli, Khairul Anuar wrote:
-> > On 15/11/2025 1:59 am, Conor Dooley wrote:
-> > > On Fri, Nov 14, 2025 at 02:27:41PM +0800, Khairul Anuar Romli wrote:
-> > >> Agilex5 introduces changes in how reserved memory is mapped and acce=
-ssed
-> > >> compared to previous SoC generations. Agilex5 compatible allows stra=
-tix10-
-> > >> FPGA manager driver to handle these changes.
-> > >>
-> > >> Fallback is added for driver probe and init that rely on matching of=
- table
-> > >> and DT node.
-> > >>
-> > >> Reviewed-by: Xu Yilun <yilun.xu@intel.com>
-> > >> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> > >> ---
-> > >> Changes in v3:
-> > >> 	- Add description for Agilex5 Device
-> > >> 	- Add and define fallback to "intel,agilex-soc-fpga-mgr"
-> > >> 	- Validate against Agilex and Stratix10 (non-fallback) and Agilex5
-> > >> 	  (fallback)
-> > >> Changes in v2:
-> > >> 	- No changes in this patch
-> > >> ---
-> > >>   .../fpga/intel,stratix10-soc-fpga-mgr.yaml         | 14 ++++++++++=
-+---
-> > >>   1 file changed, 11 insertions(+), 3 deletions(-)
-> > >>
-> > >> diff --git a/Documentation/devicetree/bindings/fpga/intel,stratix10-=
-soc-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/intel,stratix10-=
-soc-fpga-mgr.yaml
-> > >> index 6e536d6b28a9..8eb414163d08 100644
-> > >> --- a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpg=
-a-mgr.yaml
-> > >> +++ b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpg=
-a-mgr.yaml
-> > >> @@ -20,9 +20,17 @@ description:
-> > >>  =20
-> > >>   properties:
-> > >>     compatible:
-> > >> -    enum:
-> > >> -      - intel,stratix10-soc-fpga-mgr
-> > >> -      - intel,agilex-soc-fpga-mgr
-> > >> +    oneOf:
-> > >> +      - items:
-> > >> +          - enum:
+On Mon, Nov 17, 2025 at 06:55:42PM +0800, Yu-Chun Lin wrote:
+> On Thu, Nov 13, 2025 at 08:30:07PM +0800, Yu-Chun Lin wrote:
+> > > Define compatible strings for Realtek RTD1501s, RTD1861b and RTD1920s.
 > > >=20
-> > > This construct is redundant, "items: - enum" is the same as just havi=
-ng
-> > > "enum".
-> > > pw-bot: changes-requested
-> > >=20
-> > I've tried to look for some of the already merged bindings i.e=20
-> > arm/qcom.yaml (although all the properties has enum - constant=20
-> > combination), it is using items with enum. I tried to keep the enum wit=
-hout
-> > items but I keep getting error while validating the changes.
->=20
-> I literally told you what to change, so I don't know why you didn't just
-> do that. Replacing "items: - enum" with "enum" is what you need to do.
-> You didn't even include the error you got, so I cannot help you with
-> that at all, nor even if you did what I told you to do.
-
-nor even know if you did*
-
->=20
-> > Another option that I've validated is using the following changes.
-> >=20
-> > -    enum:
-> > -      - intel,stratix10-soc-fpga-mgr
-> > -      - intel,agilex-soc-fpga-mgr
-> > +    oneOf:
-> > +      - description: Intel Stratix10 Devices
-> > +        items:
-> > +          - const: intel,stratix10-soc-fpga-mgr
->=20
-> These just have the same problem as your original patch.
-> "items: - const" is just the same as "const".
-> Since item "items" properties do not do anything other than bloat the
-> schema.
->=20
-> > +      - description: Intel Agilex Devices
-> > +        items:
-> > +          - const: intel,agilex-soc-fpga-mgr
-> > +      - description: Intel Agilex5 Devices
-> > +        items:
-> > +          - const: intel,agilex5-soc-fpga-mgr
-> > +          - const: intel,agilex-soc-fpga-mgr
-> >=20
-> > The drawback of this is we will need to implement enum instead of=20
-> > constant for first element if we need to add new devices under "Intel=
+> > > Additionally, convert legacy DTS-style comments to YAML description=
 =20
-> > Agilex5 Devices" in the future.
-> >=20
-> > Thanks.
-> >=20
-> > Best Regards,
-> > Khairul
-> >=20
-> > >> +              - intel,stratix10-soc-fpga-mgr
-> > >> +              - intel,agilex-soc-fpga-mgr
-> > >> +
-> > >> +      - description: Agilex5 Device
-> > >> +        items:
-> > >> +          - enum:
-> > >> +              - intel,agilex5-soc-fpga-mgr
-> > >> +          - const: intel,agilex-soc-fpga-mgr
-> > >>  =20
-> > >>   required:
-> > >>     - compatible
-> > >> --=20
-> > >> 2.43.7
-> > >>
-> >=20
+> > > properties, following the pattern from the ARM bindings conversion=20
+> > > series [1].
+> >
+> > "Additionally" is often a sign that it should be in a different patch.
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > pw-bot: not-applicable
+>=20
+> Hi Conor,
+>=20
+> I'm planning to split the changes into two separate patches:
+>=20
+> 1. One patch to convert realtek.yaml to match the DTS-style comments,
+> following the pattern from the ARM bindings conversion series.
+> 2. Another patch to define the compatible strings for Realtek RTD1501s,
+> RTD1861b, and RTD1920s.
+>=20
+> Could you confirm if both patches should include your Acked-by tag, or is
+> it only applicable to one of them?
 
+I acked it to go together, because I didn't think it was worth a
+resubmission for that alone. You can keep the ack I think, I'll take a
+look regardless.
 
-
---WXFMmdlZ+8JG5dL+
+--WGyk7a5/LFEGj+tF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRsyXQAKCRB4tDGHoIJi
-0rCyAP4utqQstWaCTP7+RBEHhitP90gFghDlw7UX7crpjV0zkQD9FeKC/peO/p8a
-Av5AbloFAjSQqemalUIqPLkewQBwbAA=
-=rrU3
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRsy5wAKCRB4tDGHoIJi
+0nUKAP9tTYo/6WSr9wWOGgqtt4RhqY3eqn9PXtJSwkDJpcToHAD/dJCPZT1NB/EO
+N9IliGRj0I7irxugG7qs1qXuIBKcfAQ=
+=a7ys
 -----END PGP SIGNATURE-----
 
---WXFMmdlZ+8JG5dL+--
+--WGyk7a5/LFEGj+tF--
 
