@@ -1,194 +1,96 @@
-Return-Path: <devicetree+bounces-239413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67255C649FE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:22:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC43C649E6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 15:21:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DC0BA357440
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:17:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A4493A7709
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 14:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798E7333441;
-	Mon, 17 Nov 2025 14:17:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08466324B2E;
+	Mon, 17 Nov 2025 14:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Df9AxnG6";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="K1VgBz/s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CKB/K+QG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8C6332ED3
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 14:17:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67CE2367DC;
+	Mon, 17 Nov 2025 14:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763389031; cv=none; b=B6dqyiHuwfprOw1Kn9XhebTqFIc4weolui1cR+8ptmZtEfCuuaD37hz3vCSBc12ogXrkJLOWXRXwuOyFrRTca5IBZjEX2XZzDGYh5qn/2et3btRPAmamtNBtItZKdAHWMCNL4VaOuXf6TrNnQ3F6xwa8EJZTc4bjQDw29OlTHfI=
+	t=1763389293; cv=none; b=DOK9UKys3kdNlmJAis/73DnTSMiqXpl7UWSJojHadjJvbZnhU8/3s4/THdVm8u1alWqqAvAh0OJPw8O/3X2XlApMBpky/mSMLv/PV+fmEt8jZqlDlIGCWEgJijHHW0ELxEnr9ZLw9WfZjB8H02+DiW1D5uGhsG6KcIqKuzfvnTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763389031; c=relaxed/simple;
-	bh=LVZusJLdrZ552ACuRCrV4kkE+GCDGhsWXPBDhH/Ag9Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dettzBBX2ui+Mhhf46vZRH57Fexv/l9aLg0Oa/2u3pl0IeQhRlEF4Qv7Kmq+GEh31cClJUhMTzXEkD1bgE2MkDwMeFIR2X8Vik67SjRdxzz8/ln4fPtonBpnNh5J7fUtVFQw7YhTzTjXvWsR4a2504J32NuvAX9QKBtsL04/9Us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Df9AxnG6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=K1VgBz/s; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AHAC2VN3571472
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 14:17:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LVZusJLdrZ552ACuRCrV4kkE+GCDGhsWXPBDhH/Ag9Q=; b=Df9AxnG6p6gKQ2cS
-	3KebPaAxXVph3KakdELHfHWZn5bLh6LKYTu/lpxz8HDPIPNe3sUSzUkQX3HRqiUw
-	zVn0hrSMV3a4tLPikSzsps5IjC24d+GzZdM6gyoWPUpFK5bJG5Yj8Fxw+j+YcukX
-	sOC4leGXCe3lA9mMZiQW0qyFcp+2B47fzagtFmVRZ3+YfcJElcnufgJsbPrpQzfl
-	zvksFd3muRogOCZO7xmRNHOIbDP/bpmzcLLYYBqwddV8iHpquV+al8LPHnZRejL/
-	8mIMcIiO6dHlDU6ws33N1iVMByhIX45lVqDn7v85dC6MMXOWYHyepwKb3riOtElI
-	v5zTjg==
-Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ag1rbrnpa-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 14:17:08 +0000 (GMT)
-Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-5e167b739d8so268252137.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 06:17:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763389028; x=1763993828; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LVZusJLdrZ552ACuRCrV4kkE+GCDGhsWXPBDhH/Ag9Q=;
-        b=K1VgBz/sOp8BHlfenV/UzZmzuIWgMwgjjvk7pRt+XorpVMbq3kQ4+fb1qPLjbMZ6go
-         9KcjRLRCeGpSD8DoQQUCC0443KkaB3HXqtHGh27H6nqXDxLAVa9dZmX0rFyZTtn71HtZ
-         8/ZBcoWPwAiw0hbrOhvq+IVsTyCSRltKoiwtlxG1WjiQfBvN2ahivzfWqAEYa82RvWgS
-         +kvQYf1Ub9m+dYwbtaU1ZinIRVgUveVmYu3Q49hccekM5aLUcDyx6giW3zXI9s9aZz/C
-         MGwopZaZKwYsKK8iVBfcM/+cukabO3MX0V3dpULmAakoeBCWF++sVRaBBFPeaCaazkX6
-         KQbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763389028; x=1763993828;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LVZusJLdrZ552ACuRCrV4kkE+GCDGhsWXPBDhH/Ag9Q=;
-        b=gNxyTa9ion1qH2VKxAQTc6fchMz0SdGnRlbICD7PTfE5oxLAlF7qZthmLjiGbnw729
-         b/eaDYvMiYWgJwWfkvRY3Wta4eJiLFxjoUkMXgbTUprjdIh1iAEb5BaFS4Ey0cn6SzvV
-         TOYmQSRufDrGWjgXtsHB7nvIYrgloKJPq0W2hJgau14vvGXxS3O5DE5cTltUxeHTBZB5
-         WPWSBS5VlVjIqycs/5HGMM/NC+zhkYWrNXEozAArv2sgCGC5ifNFD0tu5VdwG991KR90
-         MF3e00A4G2d+g4WQcdwy9/tWc1V1cqF+gIEaYvzxi3wqavP/+HoBxI7rPoW8nMA0YJC/
-         CWzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX2N2KwTOfkG84Vsj4Rr2DFXRDRCF4XcuPoSSZbWFy670PmdWd0yq85D2RTvRKqxoqfAqieWn3Rnyo+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuFaPPs/aMPUuQ6ZTKdt87SIabTu6LwQn6KQLColZkgayfaqCK
-	EWrBXk9FFc4k7mFprp28wVfpsczyONSFADG0GSxem7lVUl7QIGJ6Y//spXXYNHLAIo4EimQL/8D
-	Mk6AyUCcRagT1j7MGcLQN1+qgcVrLKmxAKDGPCplCe5OOEkZJI6lOs3Sg7pvsHwCs
-X-Gm-Gg: ASbGncsX3LlzGzSJpU1IL9xNn7NekdQpgt2SLg0V21tbj1ZfODnHcVfeMO1b0y1mgcS
-	daYQUQuJ64rcl/kWgkTwMMX/j+ZO2WMg0/QOSVbg4gUNIt5aE62F1sR9ko9jAjWazyPmcxSgjwb
-	7BvzdwOS0+JPCzLMJYRhPbvVb/Z/DcX5rVrL12QjjPjxvBEgXKWVk44NLtl+n3s7j+j/MGJktMe
-	7AtDo12SDBBF/sBIVMouo6090ZBRpHmlYPagRnwWbWbH07/qKwluZn7WjorYtKKV+MblGyjLiyX
-	Eu86b+0USw48C3OLwbSf6TdmOuU/RmT9pIlZGE3CsHZWYkXryNEOvTdgbL9PS3uT7wpr9pfOEEV
-	7Aq9gb5Ubqy/OSsX5dAHNrT4Sr3b/BOawvnMaQ5MvQKwLxUhiqlYf4zfR
-X-Received: by 2002:a05:6102:509f:b0:5db:d7a5:ba2e with SMTP id ada2fe7eead31-5dfc5b95e2dmr2146692137.8.1763389027936;
-        Mon, 17 Nov 2025 06:17:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEnHQ2pTUpIqXgwhIDGJLeBfApSQspfnNAKAssZ9B4ZXxU2WBgY34QQwbBf2kb+Hir5x8goLw==
-X-Received: by 2002:a05:6102:509f:b0:5db:d7a5:ba2e with SMTP id ada2fe7eead31-5dfc5b95e2dmr2146667137.8.1763389027473;
-        Mon, 17 Nov 2025 06:17:07 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fd80841sm1098302866b.41.2025.11.17.06.17.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Nov 2025 06:17:06 -0800 (PST)
-Message-ID: <2220aea0-6139-4534-8c42-1331a642ab62@oss.qualcomm.com>
-Date: Mon, 17 Nov 2025 15:17:05 +0100
+	s=arc-20240116; t=1763389293; c=relaxed/simple;
+	bh=AmI6IljA9+P3I17TSYilirLOxEtpVOIbeLKzrLuc13g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VVSj93PPL0FYGosyxbt959PX1rM2gD2wYuiz/vAXkRDfuoJEs/ogZlbMfYV2ZoXzvEs3E7+je7OB2nspyMYpH/zyn9lKxEYRB4EuBgmTY1fhNev3qxLmEkRyFd5bmbmH+eVlo4WhZiaguGtXozHvH2WcWRO0VVeanvSCXuf7v9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CKB/K+QG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91C9CC113D0;
+	Mon, 17 Nov 2025 14:21:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763389293;
+	bh=AmI6IljA9+P3I17TSYilirLOxEtpVOIbeLKzrLuc13g=;
+	h=From:To:Cc:Subject:Date:From;
+	b=CKB/K+QG84jt1fsMM1a7f7FTIaZga0+0X5YUN7TOMmWCUeCgugd5k8oJFZkGS/Jh2
+	 KPiKRuvVwwd/yRF7RTnZQElmkkt9wJQL5sPtz7Z6GTJ+nLcBpdlqaPX5MsOvO3lJyR
+	 AH/RWvbuMZ8labZ5EjKRtDK3AznI0ourJM+C2Dw1x5C6yzmQNvf2oNM0NEPsdFrkH/
+	 kDTyxO2tf3dgC0AuDsD21EdVJNmPQ8jXClgqyLj2Ddc/TDVQ8G2IdQkCD6lCdJaRoo
+	 vJVF11yrTNaNq0RWIHQYqEmcOo3rEZl2ONDpOA6Inl0vNGh+gHHYrw0/39ZXO6OrM4
+	 U1oUGwz7rAQ0Q==
+From: Conor Dooley <conor@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v1 0/3] pic64gx soc driver/binding changes
+Date: Mon, 17 Nov 2025 14:21:19 +0000
+Message-ID: <20251117-mashing-cursor-6e965a77ce6a@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] clk: qcom: gcc: Add support for Global Clock
- controller found on MSM8940
-To: barnabas.czeman@mainlining.org
-Cc: Taniya Das <taniya.das@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Adam Skladowski <a_skl39@protonmail.com>,
-        Sireesh Kodali <sireeshkodali@protonmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lanik <daniilt971@gmail.com>
-References: <20251116-gcc-msm8940-sdm439-v1-0-7c0dc89c922c@mainlining.org>
- <20251116-gcc-msm8940-sdm439-v1-2-7c0dc89c922c@mainlining.org>
- <793d5039-0506-4104-b4ce-64bfa3cc00eb@oss.qualcomm.com>
- <5C7A10CF-910E-448A-8BFD-F2A46782D3B9@mainlining.org>
- <8faa0c8e-6f21-4025-bbdf-d4ec18eb7628@oss.qualcomm.com>
- <869028d628bad9e1c37c3d9ea8346ba0@mainlining.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <869028d628bad9e1c37c3d9ea8346ba0@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=897; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=/pke3GKZ8uFIcCycTH1DCjROHWMVePhJQeiAe5cDM9E=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnS+rEG66alnzt7mUvdpWqrktWeS+yPCvSfCmSUOO1ze tnuMM+/o5SFQYyLQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABP5/IKRYZL4lNM/ikU8fv/Y /bt7cnS6cbibb4e8kepN/0/qBxakP2BkWGb0YJlXzIUZe+rDk+X4neo/pPx4tTvj7aIF/+/+cl4 gwQYA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: HaFGWiMzEnGdf7ONRv3O5gWSuw5lRym8
-X-Proofpoint-ORIG-GUID: HaFGWiMzEnGdf7ONRv3O5gWSuw5lRym8
-X-Authority-Analysis: v=2.4 cv=FPAWBuos c=1 sm=1 tr=0 ts=691b2e65 cx=c_pps
- a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=OuZLqq7tAAAA:8 a=EUspDBNiAAAA:8
- a=aXj3mySSvwvPpzEV93AA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=-aSRE8QhW-JAV6biHavz:22 a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE3MDEyMSBTYWx0ZWRfX+HD2VrgqT20D
- 0dAPt/9p3uqhuRii1QZlfQ7cy4wHYOel9wXi7OTNkEJI2PXyUYtKCj0mB36Dm0ZkZXuzSRMKX78
- fZNZfVoNxR/5CNFUlDl4lcDhKQh957UmQxgoB9RkoLJbep0QZiDGJMrBMTUqVP8RpjjOac342O8
- yTt7qni2POFfzOfrczaWmEWFfEKeYVEb95/Bp6HMnAA/gOORViwRJH9uLFIzjO5Dv1rpgK1pxFK
- nr6CHs/9SNSRElBRg9g/8MODRX3e6SmOKAo3sMD/v2Njfu4RcwdjdjICyd9dQ1ftSZq1GYVOKVI
- QP+LAQOMW2QcA/cUkA2ToJK3dO7jWFk8KlqzY4IoC2xWIGBXonLqXFDS7aF3kyda/WaWGnkfKmn
- hbTC9vWfALEnZbMPbasjyswj29Js/g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-17_03,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
- priorityscore=1501 malwarescore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511170121
 
-On 11/17/25 3:02 PM, barnabas.czeman@mainlining.org wrote:
-> On 2025-11-17 13:17, Konrad Dybcio wrote:
->> On 11/17/25 9:51 AM, Barnabás Czémán wrote:
->>>
->>>
->>> On 17 November 2025 09:03:53 CET, Taniya Das <taniya.das@oss.qualcomm.com> wrote:
->>>>
->>>>
->>>> On 11/17/2025 3:05 AM, Barnabás Czémán wrote:
->>>>>
->>>>> +static struct clk_branch gcc_ipa_tbu_clk = {
->>>>> +    .halt_reg = 0x120a0,
->>>>> +    .halt_check = BRANCH_VOTED,
->>>>> +    .clkr = {
->>>>> +        .enable_reg = 0x4500c,
->>>>> +        .enable_mask = BIT(16),
->>>>> +        .hw.init = &(struct clk_init_data){
->>>>> +            .name = "gcc_ipa_tbu_clk",
->>>>> +            .ops = &clk_branch2_ops,
->>>>> +        },
->>>>> +    },
->>>>> +};
->>>>> +
->>>>
->>>> Is the TBU clock used on 8940 by a SMMU driver?
->>> As far as I know no MSM8940 is using same smmu driver and bindings like MSM8937.
->>
->> On msm8939, the clock needed to be turned on for the GPU SMMU
-> I have not got any qcom-iommu issues on 8940 but i think it could come when i try to add ipa2 driver
-> for the SoC until i do not know where to check it.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-I can't find a definitive answer, but it's most certainly going to be
-necessary to turn it on
+Mostly this is stuff that PH did last year, but rebased on top of
+current work.
 
-Konrad
+CC: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+
+Conor Dooley (1):
+  dt-bindings: soc: microchip: add compatible for the mss-top-sysreg on
+    pic64gx
+
+Pierre-Henry Moussay (2):
+  dt-bindings: soc: microchip: mpfs-sys-controller: Add pic64gx
+    compatibility
+  soc: microchip: mpfs-sys-controller: add support for pic64gx
+
+ .../microchip,mpfs-mss-top-sysreg.yaml        | 14 +++-
+ .../microchip,mpfs-sys-controller.yaml        |  4 +-
+ drivers/soc/microchip/mpfs-sys-controller.c   | 74 ++++++++++++++-----
+ 3 files changed, 67 insertions(+), 25 deletions(-)
+
+-- 
+2.51.0
+
 
