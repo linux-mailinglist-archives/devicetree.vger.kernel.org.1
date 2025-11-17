@@ -1,98 +1,81 @@
-Return-Path: <devicetree+bounces-239563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83566C6675A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:46:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0E04C6677B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 23:48:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 002024E2857
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:46:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 4F5B829A45
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 22:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2A430FC13;
-	Mon, 17 Nov 2025 22:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8744934C816;
+	Mon, 17 Nov 2025 22:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+zOmGtp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lELBF3A4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9215C199252;
-	Mon, 17 Nov 2025 22:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5870C2F39A0;
+	Mon, 17 Nov 2025 22:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763419581; cv=none; b=uxpy5Ac+QRGoLc46MlIMXVYiB3IdL7ckVDoRefhJ/zsc1roudxOUIg5IBmrsAw41sQ6gU8vgieoXCYjKGx/YLezOFjgXXlyW5Uc3hOK1oeFZ/bhlp2fqZ/lwzDbyiMckX8xeSGa23Us1gntkmWR9339/YhxLYg+CSYte0G+yf9o=
+	t=1763419637; cv=none; b=AY7HbkTIMMQnBfDmEV0ZDpb78+6zGNgQy4x8hHLlTFgMP6lLF+mOKb8aGAqS6IQ/CHbrtzSVNyK754aBMqRqMn+ofVfG7pdMtPQlem7BqpcEeZIIHm1Ij/vabelscj1V0ug9pRddnALl0+05Jp8FpJYyYd/cXV6frAHqyNWs7HE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763419581; c=relaxed/simple;
-	bh=M8X10Tcz5LzdsBPhMIGBoWyGzcuB3L0lskpp6XvSMEs=;
+	s=arc-20240116; t=1763419637; c=relaxed/simple;
+	bh=mrbT0WxcJdbaGoPgzlHFge9VwUjoU+46O2Py3f1iM1k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gz+Nf30zMZh+E2A1KluwGuNMYzFnWGupzzsDiEHbSSHNo+I+j4OVkTDP2to2TzoxQ1OyQBr7OR7jP92ro5A+Z0Vdbj25GREnwD//UpiKKqekOmhQ0Q0J/ohwBFBrA5akovT2r4lRea0J2mANMrEZDBZ0QDv6ZiOYxYAvpOhMm50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E+zOmGtp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9136C2BCB1;
-	Mon, 17 Nov 2025 22:46:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lK09z9YVvLN3M/JHYprhMXSb/mNrowG0enZBuyklKg3RHmP55JNaSgBn6Y5V12nmag3Pt52ab9WZGChVK5mlEvDSF3zyxfjK8qi18Hvb/o19J9E3zPqJ/TxOLExVLNBtzzyoEPQN+uqxIPP2XBVbkU4mqNXxaKaB8m5Nz8vPGKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lELBF3A4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E50CC19424;
+	Mon, 17 Nov 2025 22:47:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763419581;
-	bh=M8X10Tcz5LzdsBPhMIGBoWyGzcuB3L0lskpp6XvSMEs=;
+	s=k20201202; t=1763419636;
+	bh=mrbT0WxcJdbaGoPgzlHFge9VwUjoU+46O2Py3f1iM1k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E+zOmGtpyYsQ760KHlDFRVgAZNsxpX9bpp6RWXtdDFGrmSEbAgIa2kXVhTSNMJ4tv
-	 KWXlm3QwgHQ1Z/vM9vpE8r4aXQlIifgbTvtoUtuG7Pk9B7wU9BsvtoFWTMhWNjgv5o
-	 ZmwegQM5LuIvkggM6gCAOdN3Ta41NW1VuvR7U3NvK0kCAKIBZixmtZm+M/gGib1Wo9
-	 a04Acj0zCLcfqzw4OhlFKdQILn9rUqGSEgWhsmTtsMSPqyvS0d9gYMU6jOno+ZWz2h
-	 zwQ5g1JjbO13T4ffv/h8n+5rCfXPPYH3qeDUp9TGrn0di2b/oZlnpboSFUjdTaVm7l
-	 3E05OMS91nztg==
-Date: Mon, 17 Nov 2025 16:46:19 -0600
+	b=lELBF3A4C0/3jSe/fOIj2o3tS12m9+KBPZWeu6kd19O2cj96UO5EAs1zGuAu+m6SR
+	 VComBBT8t5sxObV/Hbh4baA32Sgk5WGSvaSPe6ohEyzBHiBXtV3EwaP1s8sn+SakVt
+	 /6cDLeHfVxiN1CCrPE1k6WfErzg7uNvkcsjL21s8JsHg3gSWRR+pHQUwKqPswrrScy
+	 rMXnRa1wVcmH0yk4wudMIS3aDofXE3WGRx7KncJbLlfD2ZVrqjHslTJ+BNEgpMoFAP
+	 W0s87Hb9TscgrZqZFbJxQA6YjXYBjKeoLM3HrAq71N7fFWYx5DpRrjMt9IgZJ/0mBH
+	 F3GBqy/Z4v9hA==
+Date: Mon, 17 Nov 2025 16:47:14 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	Jakub Kicinski <kuba@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Eric Dumazet <edumazet@google.com>,
-	"David S. Miller" <davem@davemloft.net>,
+To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
 	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [net-next] dt-bindings: net: cdns,macb: Add pic64gx compatibility
-Message-ID: <176341957857.857483.4274673350400117057.robh@kernel.org>
-References: <20251117-easter-machine-37851f20aaf3@spud>
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: gcc-msm8917: Add missing MDSS
+ reset
+Message-ID: <176341963429.859152.11740860069143116254.robh@kernel.org>
+References: <20251117-mdss-resets-msm8917-msm8937-v2-0-a7e9bbdaac96@mainlining.org>
+ <20251117-mdss-resets-msm8917-msm8937-v2-1-a7e9bbdaac96@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20251117-easter-machine-37851f20aaf3@spud>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251117-mdss-resets-msm8917-msm8937-v2-1-a7e9bbdaac96@mainlining.org>
 
 
-On Mon, 17 Nov 2025 16:24:33 +0000, Conor Dooley wrote:
-> From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+On Mon, 17 Nov 2025 18:17:52 +0100, Barnabás Czémán wrote:
+> Add definition for MDSS reset can be found on MSM8917 and MSM8937.
 > 
-> The pic64gx uses an identical integration of the macb IP to mpfs.
-> 
-> Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 > ---
-> CC: Andrew Lunn <andrew+netdev@lunn.ch>
-> CC: David S. Miller <davem@davemloft.net>
-> CC: Eric Dumazet <edumazet@google.com>
-> CC: Jakub Kicinski <kuba@kernel.org>
-> CC: Paolo Abeni <pabeni@redhat.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Nicolas Ferre <nicolas.ferre@microchip.com>
-> CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-> CC: netdev@vger.kernel.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
->  Documentation/devicetree/bindings/net/cdns,macb.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  include/dt-bindings/clock/qcom,gcc-msm8917.h | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
