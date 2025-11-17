@@ -1,171 +1,171 @@
-Return-Path: <devicetree+bounces-239316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF73C63F48
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:57:25 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B1BC63F8D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:59:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D6673A5939
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:57:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C80E44E67CE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 11:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8866730F939;
-	Mon, 17 Nov 2025 11:57:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="TpbHxFtd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E84732B9A9;
+	Mon, 17 Nov 2025 11:57:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022131.outbound.protection.outlook.com [52.101.126.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DDE126C02;
-	Mon, 17 Nov 2025 11:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763380627; cv=none; b=ffSOpW/vg6q0wwP31KKgxPUXeXeP/E7rtdRY1Mz6oRHbJZG/1Qik1lDpT44rHaudVw3FgInoMe0UbvCkh6CORd3t/66UEjaFhNDkesoBbSgVYfYQWz5U3gBLnmi9BFg8M5PmGuEHVRN31UMfoMjYFd1RSTJLR3UJGUjZXn39f/U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763380627; c=relaxed/simple;
-	bh=GhgHchNZ7/ADzWp7sikBZ44pFHOrJLv/mFZXdK/C2uI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RD9kSvmcvN5RlHWExtZXuuOVYvLpqGPZtXt/bRi62bD4xs0eh+Nx/LLMuRcE/+9n8/E+0t4j2bTyP5Uutu9C++1yiK3eaaFXPb0pkS3sbTW3XkbbRqWFUgVVC8hLhBeWEQw5GxJahaZiRiVyZiHiNwDXiiX24XiUq9vMcHmcn2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=TpbHxFtd; arc=none smtp.client-ip=95.215.58.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1763380622;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wWvzyzaNYcBQSNbJaSovb4vMUrMEvpKW9Fa946m9hD4=;
-	b=TpbHxFtdXpW8bgUnjNpqbgulpuX9ZWGVSFxjyleyAj1P7Sf2xJ4OduDfH53xZFLQ4vKktK
-	NMBQt371B6TthN/udOxgnC49NdatdphTP+tyKK1rmB/97l61iK1MpNJ3OCx6U3f5RfeRSZ
-	a82gMl6y5e1pxdjBbcGyoIomvJ9Sba0=
-From: Yuntao Wang <yuntao.wang@linux.dev>
-To: krzk@kernel.org
-Cc: akpm@linux-foundation.org,
-	ardb@kernel.org,
-	bhe@redhat.com,
-	catalin.marinas@arm.com,
-	changyuanl@google.com,
-	devicetree@vger.kernel.org,
-	geert+renesas@glider.be,
-	geoff@infradead.org,
-	graf@amazon.com,
-	james.morse@arm.com,
-	linux-kernel@vger.kernel.org,
-	mark.rutland@arm.com,
-	robh@kernel.org,
-	rppt@kernel.org,
-	saravanak@google.com,
-	thunder.leizhen@huawei.com,
-	yuntao.wang@linux.dev
-Subject: Re: [PATCH v3 1/8] of/fdt: Consolidate duplicate code into helper functions
-Date: Mon, 17 Nov 2025 19:56:20 +0800
-Message-ID: <20251117115621.7537-1-yuntao.wang@linux.dev>
-In-Reply-To: <20251117-tasteful-peccary-of-sympathy-a4f9cb@kuoka>
-References: <20251117-tasteful-peccary-of-sympathy-a4f9cb@kuoka>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3752332C312;
+	Mon, 17 Nov 2025 11:57:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763380675; cv=fail; b=iEyMwy7x/vSDwW3vH/Uu+uVlVfcA5LXtJ24iHVgNPww6OWiLqIj/zFclRpfxdDHy142/b379/5NCsonGSWn4CVSuipmsMu+dpkOAXnM1ZqQRIHn7/QUABReKdNBmUhO9JUgfNlNuY71rRc7DOeo9sq9e0VFQy+YOtIVtgaH4okA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763380675; c=relaxed/simple;
+	bh=i3pLgTOdlz+EPcCbNJWgiMz1NxbTAyjCwsg/17UGTUc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GU38kQ3UXmXonk7F8a0dTPwk1WDT7CmRv51rJULI8ipHQsnlQfuCK4pZjgtZCP5SBEDL3CfQVBzs5qTI2i1Nhn2ehu2ph6YwQ7fXtXx+SjRj8uupIUxocFziXJ+VX+VS2n0bAvjXVj8GMfcb7UVYQX1ES+P/b0VXfWTHeJlO5rA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KJzXvnWwWzpLhlUgTDGejc7YBBi6Rex/IDx7/YJ+nb9xCZvA6vvNMOTiU3zDdA2EfS5ImCzV2pXTkyNlV33aq0B5gaiKyvL4swZ04HJfSQsSOvmU01IS+s8yANrG6jqCHe/Ro6JN+UmQm5OQAmnS476iqLL6IWiBDUu5aqaSiBwiXyOP9CuTVou5svGBJCwKwq73ilHs1Nx7iQUukRzdpxWKnL/FrPSmrabk5d2s9ouLV2K1XT8QeaxTJHuo76gvIUqQqmS9ML+RKw5S1ElIrEU0ulMfNENx7dfsOCxtwfZ9NG2/0Ri3DVJLWeaM4384z2iJI1vcm7fsTdhYuXCTjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hgligFAqVr4izT5/vilAqi1h82s3ni0bJNuUGYlgtgA=;
+ b=ov6YW7+SM5LpeKBmNqe6R40c6RUEGRX2YmDVL7vZzNp/FGONzWzSeh+NQQL8LRBcr7fQzsn59ye+ABgVDo9hNVVZpZyqcsxRN0RKAodk4YcNFKOFKK4jQLqanGORSIddD1nx4BE5w29oHz9+0XHdo0G9c35QkKRUt6Zv7BtK3F+6PYnkwGOYnYQ76Q5lAZTHxAkaFAWMpyCdOWcOENakNIhhS8NfBeOfRen+CwHPZT4LZRfQ9EeiALAxyyMnsVyV0XrFdgmVQpOg0+/nQe13l7Cf7L04QulAbdEA1E2/tHAgKu/ZrFN+A1PKb1Jkf4xW6RPYE86dfWp1gbFS95at4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2P153CA0009.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::18) by
+ TYPPR06MB8036.apcprd06.prod.outlook.com (2603:1096:405:313::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9320.16; Mon, 17 Nov 2025 11:57:49 +0000
+Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
+ (2603:1096:4:140:cafe::96) by SI2P153CA0009.outlook.office365.com
+ (2603:1096:4:140::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.2 via Frontend Transport; Mon,
+ 17 Nov 2025 11:57:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.9 via Frontend Transport; Mon, 17 Nov 2025 11:57:48 +0000
+Received: from [172.20.96.43] (unknown [172.20.96.43])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 032A841C0143;
+	Mon, 17 Nov 2025 19:57:46 +0800 (CST)
+Message-ID: <9b3bc85f-aa32-46e3-9e95-81490ddacaa0@cixtech.com>
+Date: Mon, 17 Nov 2025 19:57:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dma: arm-dma350: add support for shared interrupt
+ mode
+To: Robin Murphy <robin.murphy@arm.com>, peter.chen@cixtech.com,
+ fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
+ schung@nuvoton.com
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20251117015943.2858-1-jun.guo@cixtech.com>
+ <20251117015943.2858-3-jun.guo@cixtech.com>
+ <00586912-661e-4092-a69d-87defe26db59@arm.com>
+Content-Language: en-US
+From: Jun Guo <jun.guo@cixtech.com>
+In-Reply-To: <00586912-661e-4092-a69d-87defe26db59@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|TYPPR06MB8036:EE_
+X-MS-Office365-Filtering-Correlation-Id: 826445de-564c-484c-7ce3-08de25d0873d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|82310400026|1800799024|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SVh2d056WThaRXBxc1ZtTW9TSW9OOS9kc0M5WE1jNStGcGFZYnFqU2V2SVI2?=
+ =?utf-8?B?UnlVTjVnTWRvVytpZlBaVDA2ckVZcXNUdWE1SnpEalpyYWhYaGpCeG5jcnZ0?=
+ =?utf-8?B?MWNZWnQ3U0g1R3JyTlUrQlpjaG1mTkViYXUwdDUzWVVpOUp4L1Bhb3U2Wk1T?=
+ =?utf-8?B?Rm9LODRkUjJ2VTNjbmlWNzgyT2loNktTR3R1MDgxNEhLMXovanRwRU1Ea05B?=
+ =?utf-8?B?alpQajFiNUpSdVlSVWthelB2cGV4WlFKZ0JVcHVTVndnZ2Z1ZDNoL2RGRnpq?=
+ =?utf-8?B?eXhtZlBHRGRjclBLUkRFT3BvMk9HRWpZRUJCNFFWVWp3M3ppbkdiRWwrVkh1?=
+ =?utf-8?B?b3kyZEVXSm93Znp5M1I0U2g3OERCS2dqckg0Vnhza0ZrdXFzTGlGYlhDQjcr?=
+ =?utf-8?B?aGVXbjNncmlEaVdMYTFxMjRJd2U4Y2g2Yk1uRStmTVlMY3RWejZBcmJpSnhL?=
+ =?utf-8?B?bHpIRUNGTXYxYmltNk44SVNON1N2RjNqM3htQjN1ZjNLK3ZHTzBmaW9XLzJj?=
+ =?utf-8?B?eitZWmxMdVNxYWNWU2dqV21xclUyQVp6SlR2UkFnTVVhMjZQTFFMczVVVm95?=
+ =?utf-8?B?ZW05ZXIwbk1PNGw3UFptZklIMlhYSUhPUCtMV0Yvb09hYTNwNmRhUDBMaGd5?=
+ =?utf-8?B?RThJaXgxT0lrb3k2dDNsTG9XVDBHZDhTU0FqNkQrb0g0ODA2eS94V2t4VHZO?=
+ =?utf-8?B?bk50MDdoWWtvcU5iK3lWdlBFbXlxcnhyWEZTZkhnRmZnOFphK1I0NEhlVE1N?=
+ =?utf-8?B?Unl2NVp4SXhabjhKa0RCVy95U09SeVBCZzRJcmpvR0VyNE9mUnBSWjFOam5r?=
+ =?utf-8?B?Z0VIanBUR2MwRy9Ca3FhOENlSldXL1pLNEZ2SzNRa2dKSUlUcTF5a0doaWdF?=
+ =?utf-8?B?TEEwV1JYWEgzSlhpalB1K041cUlJTFNsUS81NEUxSFkrVlppdE1JaUJVdnIv?=
+ =?utf-8?B?Y1lId1c1aUJzajFyMFhGOWE4WWtuN3pFWXFPclFCbVdRaEhJNjBZM1Y4UE85?=
+ =?utf-8?B?bTJiVzJsd1RiNzlwdTRLNk0wczJ0NVJ6UEdGR1pKdGNXdXJqRDBxcmJPVjVX?=
+ =?utf-8?B?YlRCcU1rUTltZ3FuK1lVU29FR1pvRkpYbTVaeU1xYXZBOUdwR2lGVm0xQ1Jy?=
+ =?utf-8?B?eHArR2xjeE5aa0EwRzcwTnRLbTNMZzJiQy94YXp0NDRmYXoxMEljMys0cXkz?=
+ =?utf-8?B?QnJ0RWdadUNWWENsK3NJTFJTdGw1d0d4VWVNVDJiS1E3ZGwzSHB5VnJTcGN4?=
+ =?utf-8?B?M1l5Vm1FMGVzUExrd21HaVlLbDBpczkvenNOOWlnR01JSTNTZWlHcGFTNGk3?=
+ =?utf-8?B?TUgzWEVGczFTNERmZWFpMzVQVDlTYXhvL3BmM1A0WFZpZjNRMkl1ZUpETitj?=
+ =?utf-8?B?RVVLSlpJcGRmenJYVWpIbU54TmZTdy90NlNqdjdWb1dnckVFdzl6VWt1Q29s?=
+ =?utf-8?B?MmViVzhYbGFUZW9PSEt6L1JnR0JjcnpySDJLTEVNU1lIMGFINlQ1UVBIZ3hH?=
+ =?utf-8?B?ZmxOUmExMlJMOEpOSnFtOWxvZlNUaks5ekxKZ0dyeENwRGRVQytNQ0s1SEp4?=
+ =?utf-8?B?WUlLcVJmemZEdmdUM3JoVzFDRTBoOUl1Y1RZSm5oelBNOTVvMlpnd0U2TENu?=
+ =?utf-8?B?YjZpdTlnMFdIWTQ0MXNNUktiY0g3Wmg5MWFId1IzQ3ZKVHU1clEvVWpQSlJt?=
+ =?utf-8?B?SlEveThFajhyUjRXMndPbjhUaEUvc3N1RFFzRFlsWXF6SGN0ZnJyeXJLVVV5?=
+ =?utf-8?B?SDk0VXg0UCtBQzVRbXJtTGxjeEFCZkdGMlc2SWFVWEdMbFFVT3J3cHpucm9T?=
+ =?utf-8?B?TUIyKzdlakhueEEzSEROYjdMT0lKZyttTk9waGp2UWVpWUdPVnhiUmJMYlY1?=
+ =?utf-8?B?bXN0OHJ0SllyUVd1aHRUOHhOSE9nVUp5ZGp0eTZmeExwd25MWUpWay90ZEpN?=
+ =?utf-8?B?TFhnWVJFdzZDcDZkd0E3bk1HOGNtSDFxS1AvemhvclMvMUxvelUxeXlXakRC?=
+ =?utf-8?B?QmZmWGdTVnlhT1V5TjROUWNGaUFMbEFlRldUZGE0RlJhblVxQlNjMExIUEgy?=
+ =?utf-8?B?RHJ0STBWcjVkTTM4YUZPZGY1UU5HQllMZzFaQlRCZWFoazE2WEsxV3YxOGxT?=
+ =?utf-8?Q?WE2E=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2025 11:57:48.3845
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 826445de-564c-484c-7ce3-08de25d0873d
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CC.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYPPR06MB8036
 
-On Mon, 17 Nov 2025 08:01:59 +0100, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> On Sat, Nov 15, 2025 at 09:47:46PM +0800, Yuntao Wang wrote:
-> > Currently, there are many pieces of nearly identical code scattered across
-> > different places. Consolidate the duplicate code into helper functions to
-> > improve maintainability and reduce the likelihood of errors.
->
-> Not much improved. Please go to previous version and read the comments.
->
-> Best regards,
-> Krzysztof
+On 11/17/2025 7:32 PM, Robin Murphy wrote:
+> On 2025-11-17 1:59 am, Jun Guo wrote:
+>> - The arm dma350 controller's hardware implementation varies: some
+>>   designs dedicate a separate interrupt line for each channel, while
+>>   others have all channels sharing a single interrupt.This patch adds
+>>   support for the hardware design where all DMA channels share a
+>>   single interrupt.
+> 
+> We already request the channel interrupts as shared, precisely because
+> they could well end up muxed to the same physical interrupt line. I
+> missed that the dedicated combined interrupt output had its own separate
+> enable, but for that we may as well just set INTREN_ANYCHINTR_EN
+> unconditionally - the rest of this seems pointless.
+I'm not entirely sure if enabling the INTREN_ANYCHINTR_EN bit to 1 would 
+affect the current default scenario where each channel is assigned its 
+own interrupt. The hardware design of the chip I'm currently working 
+with does not support testing the scenario of individual interrupts per 
+channel. If it doesn't cause any issues, I will change it to an 
+unconditional configuration.
 
-Hi Krzysztof,
-
-scripts/checkpatch.pl indeed still reports some warnings. I noticed them,
-but I intentionally didn't fix them.
-
-Below is a list of all the warnings, along with my reasons for leaving
-them unaddressed.
-
-1. WARNING: Missing a blank line after declarations
-   #60: FILE: drivers/of/fdt.c:663:
-   +	int entry_cells = dt_root_addr_cells + dt_root_size_cells;
-   +	prop += entry_cells * entry_index;
-
-The function that triggers this warning is:
-
-void __init of_flat_dt_read_addr_size(const __be32 *prop, int entry_index,
-				      u64 *addr, u64 *size)
-{
-	int entry_cells = dt_root_addr_cells + dt_root_size_cells;
-	prop += entry_cells * entry_index;
-
-	*addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
-	*size = dt_mem_next_cell(dt_root_size_cells, &prop);
-}
-
-The warning suggests adding a blank line before
-
-	prop += entry_cells * entry_index;
-
-I didn't add it because, logically,
-
-	int entry_cells = dt_root_addr_cells + dt_root_size_cells;
-	prop += entry_cells * entry_index;
-
-forms a single block, just like
-
-	*addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
-	*size = dt_mem_next_cell(dt_root_size_cells, &prop);
-
-I think the code is more readable without the blank line.
-
-In fact, I initially combined these two lines
-
-	int entry_cells = dt_root_addr_cells + dt_root_size_cells;
-	prop += entry_cells * entry_index;
-
-into a single line:
-
-	prop += (dt_root_addr_cells + dt_root_size_cells) * entry_index;
-
-I added the entry_cells local variable specifically to improve readability.
-
-2. CHECK: extern prototypes should be avoided in .h files
-   #78: FILE: include/linux/of_fdt.h:59:
-   +extern const __be32 *of_flat_dt_get_addr_size_prop(unsigned long node,
-
-This is another warning reported by `scripts/checkpatch.pl --strict`.
-
-This warning says that `extern` should be removed.
-
-The reason I didn't remove it was to maintain consistency with the existing
-function declarations.
-
-In include/linux/of_fdt.h, all function declarations use the `extern` keyword.
-
-Yes, the Linux kernel coding style document
-
-	https://docs.kernel.org/process/coding-style.html#function-prototypes
-
-emphasizes
-
-	Do not use the extern keyword with function declarations as this makes lines longer and isn’t strictly necessary.
-
-I agree with this.
-
-However, if extern needs to be removed, I think it should be done in a
-separate patch that removes all instances of extern.
-
-Thanks,
-Yuntao
 
