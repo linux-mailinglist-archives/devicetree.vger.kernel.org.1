@@ -1,135 +1,408 @@
-Return-Path: <devicetree+bounces-239204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFEEEC62A03
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:00:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D636C62A15
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 08:03:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D7DE04E5B55
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:00:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 015D14E9250
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 07:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3A72550CC;
-	Mon, 17 Nov 2025 07:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26AC731691C;
+	Mon, 17 Nov 2025 07:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jH/3sOh5"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CINUOkGP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC101FDA8E;
-	Mon, 17 Nov 2025 07:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9AD30FF20
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 07:02:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763362830; cv=none; b=DkSnklgi4+3Sb3Pmf4V81O4cyDncSL9UdcBhwHrpYu6qzg/0W5sDLWrugWPmobmHZmUso4JuvdwuVy6MF9WCm7zIN5p7a64n2AFB15DSLOtl7PknPpttyxzZT/61HJyG+3SZfslRTVzQ/NKMED/O7cL0DAvJF4srAQEzRt61FsE=
+	t=1763362926; cv=none; b=JrGSVLWNUDIVtFR9QonuCTs/Am66WreUobUeDVjcYH/EJErXhLI10rrE6Sj8UENv9P2EColtE+F5desGt0OALL2va39eNORg0HfFWvQ6V1lU6XOtETeV/lkehDBdqd42yqc3YIZLqHcGuGnxwt2MVe8e0FUCE9zqaRbjjHLaX0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763362830; c=relaxed/simple;
-	bh=aZN7zbXZXHa7wcgVartfQ5nXipXYlMCiZfigd0SdNLg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WMqgs+XR+T6MtTY3oZ8j7O2B3gdY77ZqYrMCwaxjI+d1qlWMnR+kYBZTa2Ys0ofF1PlmrC2gUMn6XKqBHUMHhxbMCtwcgQMSLsFuNmyIe3YyaK+Xsrh0n+eYZnjfSN6NOEI5wJSqfTIAGbJ3r3wx7vStiHPr/3CqsHaQEvjKY6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jH/3sOh5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9AADC4CEF5;
-	Mon, 17 Nov 2025 07:00:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763362830;
-	bh=aZN7zbXZXHa7wcgVartfQ5nXipXYlMCiZfigd0SdNLg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jH/3sOh553iNuvqJzZEEhjMGtt2bcN1UWZ8gn40Kc6uvg7hZdXCj+rtc/UI10jG/R
-	 1NH+zU9IEq1KHtOdvdgYag4OyDSeZMexuBZFgX8DxXOirnnHTDblblquhFNFM1q5Yc
-	 WAa3sB3jNuGNIrljkZYU6LBEFJOQi7ufeHHq8t86n1hwIXtZ8G0Ls2nw91Y5pcQhz1
-	 nlYGmg9fKa7bn+sBBc0wKVcD9zrROHc7NQz3TRkw6ai6tOhI5az7ESfDnufa74YG0e
-	 oENNgH0A/5QCRdTy3iVXaUv/Hw65C51boqV/3RPp5Ajtfos2UI0REvlcJ8dgSAElXR
-	 WMoJGt2P6U2Jw==
-Date: Mon, 17 Nov 2025 08:00:27 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	biju.das.jz@bp.renesas.com, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Peter Rosin <peda@axentia.se>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/21] dt-bindings: reset: renesas,rzv2h-usb2phy:
- Document VBUS_SEL mux
-Message-ID: <20251117-sturdy-resourceful-crab-c14bb8@kuoka>
-References: <cover.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
- <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+	s=arc-20240116; t=1763362926; c=relaxed/simple;
+	bh=EDpznTLDG+eOmuiyc6ETf0Io8s2a1iBtEmnfJB2QR7M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KK/muiBgBPIjdI4B0B4KwX76aTDg+fEFlTPWUxmtwemYPlsWmgdgU14qwFMB8tN6Z26w8Gabqxw5G0bekwQRz1PZ2HeyQIJ3xtqx4Jzi/89wiPOvQCEoml/pmy0LAiPYKP9fn9PXVEFLI9uM0QSQh89EDoimwwYkcqTZ+htVNZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CINUOkGP; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-59447ca49afso4996451e87.1
+        for <devicetree@vger.kernel.org>; Sun, 16 Nov 2025 23:02:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1763362919; x=1763967719; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iI7nA787yREp7SF+ZgPv2IF22WeDdIHHgGC9t9xZSFo=;
+        b=CINUOkGP8E4tnI5LpRUrcD8OeB1lVAvp6aGveOmwU/lamCMCwwAkWJVx/AfksNlOBW
+         wEDSp8//L4PZC9q9xTqbXuCeN/13fnU0UMSh9gi4+2glsSP//iXBFJ7b73XzCGh/1Dd1
+         4VVbzR7Hljui7nQSuMW8nWhL11UDH3AsTLJWA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763362919; x=1763967719;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=iI7nA787yREp7SF+ZgPv2IF22WeDdIHHgGC9t9xZSFo=;
+        b=kkxmucF89Xefg/s0qrZmV/r+Y0fZMEmFAJF/7E7hwzyyNY77wE/QnXM7y5oqLYEt3n
+         z/UjjFpez/Z8mIQLS3XiFCK+fZr2J0FOoRVnhfqlAmVgiQaRM0y/ljNBYVGoTgvUl3I8
+         gt2Z6IAZ+R7AZQV90dQGsZ8th95XZdhB18q82iVmtXTga9tJGGq2WDytFN3ZWYLj/NEm
+         GugXAV/4Eh9sFXhzhEonv6YFjK00F12ZM2oGLzCd97ui/1oysjqRL7Ye2okMLIu5fcIg
+         dHjbkWw9gTjenp3ATiJLjBKew8tKX9eeqS1W/fjxcWqlhrpqITSKo08piR8JX/JFTv12
+         Xfzw==
+X-Forwarded-Encrypted: i=1; AJvYcCWIcTRgx+Ba5g+0fP9ERT+SjlyeWuOMm4YJhseJLQNgU5bGcLP20FMzPltWx/dfP9v6e5BY1Dcz/fsg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWrfPjLgrRp8j5uEFzOHR8IKxMRVkbBAyIW1Mff0eIy+mPlJe2
+	1ibL96nh465Tm2LeOLpqkRwYbIXkYyVo40fVrZCaBUTnfUObFaD6GLpYr3/rWCoFrpDaSkIwl8c
+	22ExUuVUuOLHijrbQWecFcEcPRQKzjYMLISGp+ZSb
+X-Gm-Gg: ASbGnctMObwbnY1nqQG9HRRDS4AvAzKWziT3B82ZJWuWRDCcWS6xK50UL5bDtfs7uoC
+	+u4FITOg8tfgCn+yef8ESGSuWpd1Vm3gBoSumrRDIRYPgwdLO5tz/pAv6Mm1jlrV+UbDfzH2hRA
+	USI/8xc4oWlXvbrm23EACc7SZcxNpahIznhcJCGOvz9YNd1UvWEXWbwhZjCj1D9zLfILo0ImnLj
+	MAMf2Q/8X+C94iSHCxSVvqTj5WPIGdmmYcTKhyF5T50PSqPSlBROLgi2dn+gvThlqrqaWw17RUW
+	4U8mCDZ7kgBZ2II=
+X-Google-Smtp-Source: AGHT+IERsUCpfw0ba2ZiCnoMPSwz482Iwmvh9l4yNvx3DiJpyztXvkPfAcsqYFZhO50s2/2D2hz7qLUeVGcO3KFp+QU=
+X-Received: by 2002:a05:6512:3b09:b0:595:7d95:eab8 with SMTP id
+ 2adb3069b0e04-59584200406mr3411850e87.23.1763362918712; Sun, 16 Nov 2025
+ 23:01:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <8fba0b7235bd398d41329fd087d68f7e98bbbaca.1762773720.git.tommaso.merciai.xr@bp.renesas.com>
+References: <20251111192422.4180216-1-dianders@chromium.org>
+ <20251111112158.4.I5032910018cdd7d6be7aea78870d04c0dc381d6e@changeid>
+ <40e67c6d-2430-483b-b4b1-0220ffbd6418@kernel.org> <CAGXv+5Gx+skrUR3PXt=RSL8YyKZYeQCkJ-3qW9wtrHrr9aqWAg@mail.gmail.com>
+ <312ca473-77a6-4b95-b558-bb121294fbc9@kernel.org> <CAGXv+5EdkibBaB1-AyyfYO-STtmZzvTh1t-p+QW3jGb8cHY5wg@mail.gmail.com>
+ <5180555c-b9c2-498b-af53-dff9ddc7f676@kernel.org>
+In-Reply-To: <5180555c-b9c2-498b-af53-dff9ddc7f676@kernel.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 17 Nov 2025 15:01:47 +0800
+X-Gm-Features: AWmQ_bniIy-SMvSeqjFnpBYxeAVpBsmuGvcRUbYHegTmYwGCe-auKL5oxLqakP0
+Message-ID: <CAGXv+5FmgzPcjQ2qAc6Na2m+_FsCszd5PEPWqPOxkNP-f4c9Bg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: google: Add initial dts for frankel,
+ blazer, and mustang
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Douglas Anderson <dianders@chromium.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-samsung-soc@vger.kernel.org, 
+	Roy Luo <royluo@google.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Julius Werner <jwerner@chromium.org>, 
+	William McVicker <willmcvicker@google.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 10, 2025 at 01:08:04PM +0100, Tommaso Merciai wrote:
-> Document the 'mux-controller' child node in the Renesas RZ/V2H(P)
-> USB2PHY reset binding to support describing the USB VBUS_SEL
-> multiplexer as a mux-controller.
-> 
-> This is required to properly configure the USB PHY VBUS source on
-> RZ/V2H(P), RZ/G3E SoCs.
+On Mon, Nov 17, 2025 at 2:55=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 17/11/2025 07:43, Chen-Yu Tsai wrote:
+> > On Wed, Nov 12, 2025 at 5:49=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> >>
+> >> On 12/11/2025 10:35, Chen-Yu Tsai wrote:
+> >>> On Wed, Nov 12, 2025 at 4:14=E2=80=AFPM Krzysztof Kozlowski <krzk@ker=
+nel.org> wrote:
+> >>>>
+> >>>> On 11/11/2025 20:22, Douglas Anderson wrote:
+> >>>>> Add barebones device trees for frankel (Pixel 10), blazer (Pixel 10
+> >>>>> Pro), and mustang (Pixel 10 Pro XL). These device trees are enough =
+to
+> >>>>> boot to a serial prompt using an initramfs.
+> >>>>>
+> >>>>> Many things can be noted about these device trees:
+> >>>>>
+> >>>>> 1. They are organized as "dts" files for the main SoC and "dtso"
+> >>>>>    overlays for the boards. There is discussion about this in the
+> >>>>>    bindings patch ("dt-bindings: arm: google: Add bindings for
+> >>>>>    frankel/blazer/mustang").
+> >>>>> 2. They won't boot with the currently shipping bootloader. The curr=
+ent
+> >>>>>    bootloader hardcodes several paths to nodes that it wants to upd=
+ate
+> >>>>>    and considers it a fatal error if it can't find these nodes.
+> >>>>>    Interested parties will need to wait for fixes to land and a new
+> >>>>>    bootloader to be rolled out before attempting to use these.
+> >>>>> 3. They only add one revision (MP1) of each of frankel, blazer, and
+> >>>>>    mustang. With this simple barebones device tree, there doesn't
+> >>>>>    appear to be any difference between the revisions. More revision=
+s
+> >>>>>    will be added as needed in the future. The heuristics in the
+> >>>>>    bootloader will pick the MP1 device tree if there are not any
+> >>>>>    better matches.
+> >>>>> 4. They only add the dts for the B0 SoC for now. The A0 SoC support
+> >>>>>    can be added later if we find the need.
+> >>>>> 5. Even newer versions of the bootloader will still error out if th=
+ey
+> >>>>>    don't find a UFS node to add calibration data to. Until UFS is
+> >>>>>    supported, we provide a bogus UFS node for the bootloader. While
+> >>>>>    the bootloader could be changed, there is no long-term benefit
+> >>>>>    since eventually the device tree will have a UFS node.
+> >>>>> 6. They purposely choose to use the full 64-bit address and size ce=
+lls
+> >>>>>    for the root node and the `soc@0` node. Although I haven't teste=
+d
+> >>>>>    the need for this, I presume the arguments made in commit
+> >>>>>    bede7d2dc8f3 ("arm64: dts: qcom: sdm845: Increase address and si=
+ze
+> >>>>>    cells for soc") would apply here.
+> >>>>> 7. Though it looks as if the UART is never enabled, the bootloader
+> >>>>>    knows to enable the UART when the console is turned on. Baud rat=
+e
+> >>>>>    is configurable in the bootloader so is never hardcoded in the
+> >>>>>    device tree.
+> >>>>>
+> >>>>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> >>>>> ---
+> >>>>> To avoid fragmenting the discussion, IMO:
+> >>>>> * Let's have the discussion about using the "dts" for SoC and the
+> >>>>>   "dtso" for the boards in response to the bindings (patch #1).
+> >>>>
+> >>>> That's discussion here, bindings are irrelevant to this.
+> >>>>
+> >>>>> * If we want to have a discussion about putting "board-id" and
+> >>>>>   "model-id" at the root of the board overlays, we can have it
+> >>>>>   here. I'll preemptively note that the "board-id" and "model-id"
+> >>>>>   won't show up in the final combined device tree and they are just
+> >>>>>   used by the tool (mkdtimg). We could change mkdtimg to parse the
+> >>>>>   "compatible" strings of the overlays files (since I've put the ID=
+s
+> >>>>>   there too), but official the docs [1] seem to indicate that
+> >>>>>   top-level properties like this are OK.
+> >>>>>
+> >>>>> In order for these device trees to pass validation without warnings=
+,
+> >>>>> it's assumed you have my dtc patches:
+> >>>>> * https://lore.kernel.org/r/20251110204529.2838248-1-dianders@chrom=
+ium.org
+> >>>>> * https://lore.kernel.org/r/20251110204529.2838248-2-dianders@chrom=
+ium.org
+> >>>>>
+> >>>>> [1] https://git.kernel.org/pub/scm/utils/dtc/dtc.git/tree/Documenta=
+tion/dt-object-internal.txt?h=3Dmain
+> >>>>>
+> >>>>>  arch/arm64/boot/dts/google/Makefile           |   9 +
+> >>>>>  arch/arm64/boot/dts/google/lga-b0.dts         | 391 ++++++++++++++=
+++++
+> >>>>>  .../arm64/boot/dts/google/lga-blazer-mp1.dtso |  22 +
+> >>>>>  .../boot/dts/google/lga-frankel-mp1.dtso      |  22 +
+> >>>>>  .../boot/dts/google/lga-mustang-mp1.dtso      |  22 +
+> >>>>>  .../boot/dts/google/lga-muzel-common.dtsi     |  17 +
+> >>>>>  6 files changed, 483 insertions(+)
+> >>>>>  create mode 100644 arch/arm64/boot/dts/google/lga-b0.dts
+> >>>>>  create mode 100644 arch/arm64/boot/dts/google/lga-blazer-mp1.dtso
+> >>>>>  create mode 100644 arch/arm64/boot/dts/google/lga-frankel-mp1.dtso
+> >>>>>  create mode 100644 arch/arm64/boot/dts/google/lga-mustang-mp1.dtso
+> >>>>>  create mode 100644 arch/arm64/boot/dts/google/lga-muzel-common.dts=
+i
+> >>>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/google/Makefile b/arch/arm64/boot/=
+dts/google/Makefile
+> >>>>> index a6b187e2d631..276001e91632 100644
+> >>>>> --- a/arch/arm64/boot/dts/google/Makefile
+> >>>>> +++ b/arch/arm64/boot/dts/google/Makefile
+> >>>>> @@ -1 +1,10 @@
+> >>>>>  # SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> >>>>> +
+> >>>>> +dtb-$(CONFIG_ARCH_GOOGLE) +=3D \
+> >>>>> +     lga-blazer-mp1.dtb \
+> >>>>> +     lga-frankel-mp1.dtb \
+> >>>>> +     lga-mustang-mp1.dtb
+> >>>>> +
+> >>>>> +lga-blazer-mp1-dtbs          :=3D lga-b0.dtb lga-blazer-mp1.dtbo
+> >>>>> +lga-frankel-mp1-dtbs         :=3D lga-b0.dtb lga-frankel-mp1.dtbo
+> >>>>> +lga-mustang-mp1-dtbs         :=3D lga-b0.dtb lga-mustang-mp1.dtbo
+> >>>>> diff --git a/arch/arm64/boot/dts/google/lga-b0.dts b/arch/arm64/boo=
+t/dts/google/lga-b0.dts
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..83c2db4f20ef
+> >>>>> --- /dev/null
+> >>>>> +++ b/arch/arm64/boot/dts/google/lga-b0.dts
+> >>>>> @@ -0,0 +1,391 @@
+> >>>>> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+> >>>>> +/*
+> >>>>> + * Google Tensor G5 (laguna) SoC rev B0
+> >>>>> + *
+> >>>>> + * Copyright 2024-2025 Google LLC.
+> >>>>> + */
+> >>>>> +
+> >>>>> +/dts-v1/;
+> >>>>> +
+> >>>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> >>>>> +#include <dt-bindings/interrupt-controller/irq.h>
+> >>>>> +
+> >>>>> +/ {
+> >>>>> +     model =3D "Google Tensor G5 rev B0";
+> >>>>> +     compatible =3D "google,soc-id-0005-rev-10", "google,lga";
+> >>>>
+> >>>> So that's SoC, thus must not be a DTS file, but DTSI.
+> >>>>
+> >>>> ...
+> >>>>
+> >>>>
+> >>>> ...
+> >>>>
+> >>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/google/lga-frankel-mp1.dtso b/arch=
+/arm64/boot/dts/google/lga-frankel-mp1.dtso
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..133494de7a9b
+> >>>>> --- /dev/null
+> >>>>> +++ b/arch/arm64/boot/dts/google/lga-frankel-mp1.dtso
+> >>>>
+> >>>> And that's a board, so DTS.
+> >>>>
+> >>>>> @@ -0,0 +1,22 @@
+> >>>>> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+> >>>>> +/*
+> >>>>> + * Google Pixel 10 (frankel) MP 1
+> >>>>> + *
+> >>>>> + * Copyright 2024-2025 Google LLC.
+> >>>>> + */
+> >>>>> +
+> >>>>> +/dts-v1/;
+> >>>>> +/plugin/;
+> >>>>> +
+> >>>>> +#include "lga-muzel-common.dtsi"
+> >>>>> +
+> >>>>> +/ {
+> >>>>> +     board-id =3D <0x070306>;
+> >>>>> +     board-rev =3D <0x010000>;
+> >>>>
+> >>>> Undocumented ABI, which you cannot document because these properties=
+ are
+> >>>> not allowed. You cannot have them.
+> >>>
+> >>> This is part of the discussion I want to have at Plumbers. But I supp=
+ose
+> >>> we can start here.
+> >>
+> >> Then the patch should be called RFC as not yet ready for merging. :)
+> >>
+> >>>
+> >>> The Android DTB partition format uses six 32-bit integers for matchin=
+g,
+> >>> as opposed to a compatible string used in FIT images. Two of the inte=
+gers
+> >>> are the "id" and "rev" numbers in the example above. The remaining fo=
+ur
+> >>> are custom and left up to the (vendor) bootloader implementation.
+> >>>
+> >>> The values for these fields need to be stored somewhere with the .dts=
+.
+> >>> The compiled DTB is useless if the user cannot build a proper image f=
+or
+> >>> the bootloader to consume, and that involves putting in the right num=
+bers
+> >>> in these fields. The android "mkdtimg" tool can either take the value=
+s
+> >>> from some known properties within the DTB, or have them fed to it
+> >>> externally.
+> >>>
+> >>> So if we don't want these numbers in the dts itself, then we should c=
+ome
+> >>> up with some format to store them beside the dts files.
+> >>
+> >> Re-iterating comment from Rob long time ago: adding such new propertie=
+s
+> >> is fine, but they must come for more than one user and be universal
+> >> across these users.
+> >
+> > Is Android universal enough? As mentioned above, Android defines some
+> > fields that it wants in its DTBO partition header. I am doubtful we
+> > could generalize further, since each bootloader scheme wants different
+> > things.
+>
+> There is no such user of these bindings as "Android".
 
-And where did you explain why this cannot be folded into parent node? If
-you do not provide context why reviewer's advice cannot be fulfilled,
-then you will get the same comment.
+Sure, since many vendors for Android-based devices don't bother to
+upstream their device trees.
 
-> 
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> ---
-> v2->v3:
->  - Manipulate mux-controller as an internal node.
->  - Improved commit body.
-> 
-> v1->v2:
->  - New patch
-> 
->  .../bindings/reset/renesas,rzv2h-usb2phy-reset.yaml   | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-> index c1b800a10b53..03da74ff2d08 100644
-> --- a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-> @@ -37,6 +37,12 @@ properties:
->    '#reset-cells':
->      const: 0
->  
-> +  mux-controller:
-> +    $ref: /schemas/mux/mux-controller.yaml#
-> +    description: Mux controller for USB VBUS source selection.
-> +    type: object
-> +    unevaluatedProperties: false
-> +
->  required:
->    - compatible
->    - reg
-> @@ -44,6 +50,7 @@ required:
->    - resets
->    - power-domains
->    - '#reset-cells'
-> +  - mux-controller
->  
->  additionalProperties: false
->  
-> @@ -58,4 +65,8 @@ examples:
->          resets = <&cpg 0xaf>;
->          power-domains = <&cpg>;
->          #reset-cells = <0>;
-> +
-> +        mux-controller {
-> +          #mux-state-cells = <1>;
+> >
+> >> And of course the ABI needs to be documented which did not happen here=
+.
+> >>
+> >> I indeed said incorrectly that "properties are not allowed". The
+> >> properties could be allowed if we document them according to above Rob=
+'s
+> >> comment, but that did not happen.
+> >>
+> >> Adding these properties per one SoC vendor is not really allowed, like
+> >> qcom,board-id and qcom,msm-id, but maybe you intend to make it generic=
+.
+> >
+> > That is indeed not great. I believe this part predates the DTBO partiti=
+on
+> > format, and is also related to how vendors split their base DTB and
+> > overlays, such as the scheme Doug presented.
+> >
+> > Maybe the new Android Generic Boot Loader (GBL) work will provide
+> > unification. I will reach out to them to see what's happening in that s=
+pace.
+> >
+> >>> On a similar note, we would have a similar problem with FIT images an=
+d
+> >>> overlays. The FIT image format maps a (series of) compatible string(s=
+)
+> >>> to one DTB and any number of overlays. If overlays are involved, then
+> >>> the compatible string cannot come from the DTB itself, and the mappin=
+g
+> >>> must be stored somewhere.
+> >>
+> >> I recall, although cannot find now references to, a email talk on the
+> >> list saying that such overlays should have their own compatible, thus
+> >> solving this mapping problem.
+> >
+> > Rob provided it in the other thread. The per-overlay compatible allows
+> > identifying the overlay instead of using the filename, which I think
+> > is much appreciated. But we still need a mapping of what a final device
+> > compatible breaks down to.
+>
+> Who is "we"? Linux does not care about that mapping. For user-space
+> "google,yoda-sku0" should be good enough.
 
-Do not mix up indentation.
+"We" as in the Chromebook team, but more broadly, any user or developer
+that wants to build a generic kernel image based off of base DTBs and
+overlays.
 
-Best regards,
-Krzysztof
+> >
+> > For example, say we have the the following:
+> >
+> > - product common base "google,yoda" (DTB)
+> > - codec option one "google,yoda-codec-rt5682i" (DTBO)
+> > - codec option two "google,yoda-codec-rt5682s" (DTBO)
+> > - WWAN module and SAR sensor option "google,yoda,wwan" (DTBO)
+> >
+> > We then have different SKUs that are a combination of the above:
+> >
+> > - product SKU "google,yoda-sku0"
+> >   combine "google,yoda", "google,yoda-codec-rt5682s", and "google,yoda,=
+wwan"
+> >
+> > - product SKU "google,yoda-sku4"
+> >   combine "google,yoda", "google,yoda-codec-rt5682i", and "google,yoda,=
+wwan"
+> >
+> > - product SKU "google,yoda-sku16"
+> >   combine "google,yoda" and "google,yoda-codec-rt5682s"
+> >
+> > This is the mapping we have to put _somewhere_. The bootloader only
+> > knows about "google,yoda-skuXYZ" and "google,yoda", as described in
+> > the Chromebook boot flow document [1].
+> >
+>
+> The entire pathset is about Google Pixel so I really do not get how
+> Chromebook boot flow got here.
 
+My apologies, I should have forked the thread to make it clear my stuff
+was about Chromebooks, but the discussion on overlays seemed relevant.
+
+I'll try to work out an example and RFC patchset based on existing
+ChromeOS device trees to further discuss things.
+
+
+ChenYu
 
