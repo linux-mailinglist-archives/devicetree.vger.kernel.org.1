@@ -1,138 +1,109 @@
-Return-Path: <devicetree+bounces-239504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0B9FC658C7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:38:26 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C5FC65846
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 18:33:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B8DFE35C297
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:26:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1E0ED4EB2FE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 17:27:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45256290D81;
-	Mon, 17 Nov 2025 17:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D507229DB88;
+	Mon, 17 Nov 2025 17:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4SpzHry"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gPH3yPqB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132731DF27D;
-	Mon, 17 Nov 2025 17:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4FE231A23;
+	Mon, 17 Nov 2025 17:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763400362; cv=none; b=jska19r/48zEFrKmaXyq0PoicpVCgsaZqG0nswAUjy/knayP86vc8o3e6IN98S8K/JV8hBctJAnoNMWYEDlRlwTYQ+7bsmLUgZKxYQLRyXFC14Bi1QVhEmnW4Z75jthGaqmC4Yu7I8MiqZXdtjjVOJd5KI3GI9X8NljEnhlTz/I=
+	t=1763400457; cv=none; b=QQWsVYoq4dou7BPuun6c1xl2uatKp79n2yoV8g9Xoiu8E8ID0zyzMqyOQw0XBXMqIa3MFprdEqVwsvHoa3DOPrmif0ldHQ8DTpd7j+TQfd5eYXCj/KRoV9C0E2k/xVzAUK4KPSY6m9x1mWGyRVXIQM2jVllW7vL2XKW9cW7Xy7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763400362; c=relaxed/simple;
-	bh=yKuOcA1E6JYLWEtbHHE6NrpR/zqdElFzEm6ItyaPGGo=;
+	s=arc-20240116; t=1763400457; c=relaxed/simple;
+	bh=iCm9xytzmhMo1N6RgIryyvnjLZcDw4seYMUdhKpnvBQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LeojmJN6wCTHZ1LpbJgHTHzuQwRopDs/9qU8T1lnDrEy8cXIGqsKv1v6zw427ga0bqfIkCio4Cg0smOH6N9GRO7HAx0p4JOCeQz6T9whPmrVkZGSxf7RQ0CvRvSGh81fOKXTPtyPdMSds2+1IHfAYSHiVFC8txmcc0L1y65UKIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4SpzHry; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07559C2BCB3;
-	Mon, 17 Nov 2025 17:25:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sfWcq30DeiUjPh/zKK9UPJ+UXsPrIcWj/8Zvk4MoL7ODf3La5Y3aO7g6DTJFtJdu5A61r0ZG1X3tm8Juvkbaw2LYyAoKjravF5/hDYGgH1kUfEgVYx0SjCYQdO5BDloJOOtVAPwvAGV34P0qXpEhjKaAAPI2LxOyR90BWs12dLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gPH3yPqB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9936EC19421;
+	Mon, 17 Nov 2025 17:27:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763400359;
-	bh=yKuOcA1E6JYLWEtbHHE6NrpR/zqdElFzEm6ItyaPGGo=;
+	s=k20201202; t=1763400457;
+	bh=iCm9xytzmhMo1N6RgIryyvnjLZcDw4seYMUdhKpnvBQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P4SpzHryZiMx3688QfU+siCjFVkFAEXdYqon6LXmIkdT3zsRi0txqCbzoQeYsN16D
-	 C0kUZ1Ixmb/l85+Zz6Y/vUs8QSuwog9vbMMPPBesMuIbvthyTIBbtQpkyJORRsF+lb
-	 VPKc26BqXvzieshaQ0HlGMW76CIBF4HLMqSYF3icQHmD/9QmeWFpfUfliYCigVCeku
-	 zUgOkga2daiCwo42Sq4JpE/HrrnIS22zqOXUzYRZcEOjctdoasyjI2fTyxMxUp5M/x
-	 aMtCjW4rLte0x5aq24yGkgnj0go4mmNx2ccqeV/tn1VX3QbntUi5LKSWzo1nU12lXV
-	 mRmxo8hh7Thgg==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id 5CDA01ACCCAA; Mon, 17 Nov 2025 17:25:55 +0000 (GMT)
-Date: Mon, 17 Nov 2025 17:25:55 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Haibo Chen <haibo.chen@nxp.com>
-Cc: Han Xu <han.xu@nxp.com>, Rob Herring <robh@kernel.org>,
+	b=gPH3yPqBCFFrJj+DxeIyAcIuKYr7xs6Hhxj/DdNZl2OmCfcOqariBP1zUaBRw3dsA
+	 Fj3JccpYehugqYXSMXwbTh0yK14vwWbf3cEJFVyWOmA97VQ+OIHrL8vnoHj+Vh40yh
+	 D4wi3bPsL53YblXCOoZ2g6OKctk4BTqtYB629lgu+1z0j6IzSSpei3EedPtFwGJgOZ
+	 DoWMHpEeN6Cuq87ouZx1TldUP0yWC8JmEkviCDZdbUYC+7vik8e6PEYRFvu9Ku2cZ8
+	 uQw6dSXYwWsyVKCpCQQr+GKQEA3JTygjMTW4DiAcWfhoVS1MqkW6NYaeUIR0N+StrK
+	 Z0fUygPce7HtQ==
+Date: Mon, 17 Nov 2025 11:27:34 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Magnus Damm <magnus.damm@gmail.com>,
+	linux-riscv@lists.infradead.org, Paul Walmsley <pjw@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-spi@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] spi: add driver for NXP XSPI controller
-Message-ID: <aRtao9FoPug78T93@sirena.co.uk>
-References: <20251117-xspi-v2-0-e651323993fe@nxp.com>
- <20251117-xspi-v2-2-e651323993fe@nxp.com>
+	Marc Zyngier <maz@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Saravana Kannan <saravanak@google.com>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] of/irq: Ignore interrupt parent for nodes without
+ interrupts
+Message-ID: <176340045355.193991.3890050582277813670.robh@kernel.org>
+References: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rwvwRa94OgcAe6fn"
-Content-Disposition: inline
-In-Reply-To: <20251117-xspi-v2-2-e651323993fe@nxp.com>
-X-Cookie: marriage, n.:
-
-
---rwvwRa94OgcAe6fn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
 
-On Mon, Nov 17, 2025 at 07:04:25PM +0800, Haibo Chen wrote:
 
-> Add driver support for NXP XSPI controller.
->=20
-> XSPI is a flexsible SPI host controller which supports up to
-> 2 external devices (2 CS). It support Single/Dual/Quad/Octal
-> mode data transfer.
+On Fri, 14 Nov 2025 11:47:54 +0100, Geert Uytterhoeven wrote:
+> The Devicetree Specification states:
+> 
+>     The root of the interrupt tree is determined when traversal of the
+>     interrupt tree reaches an interrupt controller node without an
+>     interrupts property and thus no explicit interrupt parent.
+> 
+> However, of_irq_init() gratuitously assumes that a node without
+> interrupts has an actual interrupt parent if it finds an
+> interrupt-parent property higher up in the device tree.  Hence when such
+> a property is present (e.g. in the root node), the root interrupt
+> controller may not be detected as such, causing a panic:
+> 
+>     OF: of_irq_init: children remain, but no parents
+>     Kernel panic - not syncing: No interrupt controller found.
+> 
+> Commit e91033621d56e055 ("of/irq: Use interrupts-extended to find
+> parent") already fixed a first part, by checking for the presence of an
+> interrupts-extended property.  Fix the second part by only calling
+> of_irq_find_parent() when an interrupts property is present.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>   - Split off from series "[PATCH/RFC 0/2] of/irq: Fix root interrupt
+>     controller handling"[1] to relax dependencies,
+>   - Drop RFC.
+> 
+> [1] https://lore.kernel.org/all/cover.1759485668.git.geert+renesas@glider.be
+> ---
+>  drivers/of/irq.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-This looks pretty good, a couple of small points:
+Applied, thanks!
 
-> +static irqreturn_t nxp_xspi_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct nxp_xspi *xspi =3D dev_id;
-> +	u32 reg;
-> +
-> +	/* Clear interrupt */
-> +	reg =3D readl(xspi->iobase + XSPI_FR);
-> +	writel(XSPI_FR_TFF, xspi->iobase + XSPI_FR);
-> +
-> +	if (reg & XSPI_FR_TFF)
-> +		complete(&xspi->c);
-> +
-> +	return IRQ_HANDLED;
-> +}
-
-This just unconditionally acks interrupts without checking if there was
-actually anything there - that means that if some design shares the
-interrupt or it spuriously fires then the interrupt core won't handle
-things properly.  The driver should really return IRQ_NONE if there is
-no interrupt pending.
-
-> +		WARN_ON(!(reg & XSPI_FR_TBFF));
-> +		if (i =3D=3D ALIGN_DOWN(op->data.nbytes, 4)) {
-> +			/* Use 0xFF for extra bytes */
-> +			left =3D 0xFFFFFFFF;
-> +			/* The last 1 to 3 bytes */
-> +			memcpy((u8 *)&left, buf + i, op->data.nbytes - i);
-> +			writel(left, base + XSPI_TBDR);
-> +		} else
-> +			writel(*(u32 *)(buf + i), base + XSPI_TBDR);
-
-If one side of the if has { } they both should.
-
---rwvwRa94OgcAe6fn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkbWqIACgkQJNaLcl1U
-h9Cj1Qf/R8qxjz0qsI4C3BoN6FDOe28ICoQTHqVmPLMIpfom3TcZClQiO7IVXRUk
-W8dFn7GPJqSo5ZhFrPceTTFMUVUXqXu+/QQwChY52k+7kIGfnVIUDBDZH0nQ+P7n
-W1LRdzEW0cVyHFWE7M2KZXLV4Ff3b3DugtyEklo1sWSCB9VHzqJMU+gInqxQPkBX
-6LWXKffPhTbOiXK2zbIr2GIECTRj16EI9K8OxKVI1Nn7t9rMHX4bxAu/D3CJ4CcS
-LAjvJFFnFvOFrG4OcXhK5ed2EV1bTilll1Wzbg+H11QmcfFeVmkz6EmDAvaskaYH
-q841AnbKzH5h/s6mjO7Ts88s1OYEWg==
-=7syi
------END PGP SIGNATURE-----
-
---rwvwRa94OgcAe6fn--
 
