@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-239338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CB3C6417B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:38:02 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D225AC641C9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 13:40:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7FBBF360CFC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:37:39 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5AE9F364A0F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Nov 2025 12:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAD932C93D;
-	Mon, 17 Nov 2025 12:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D41132D0D1;
+	Mon, 17 Nov 2025 12:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="LATzudmN"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="rtLMefH9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay49-hz3.antispameurope.com (mx-relay49-hz3.antispameurope.com [94.100.134.238])
+Received: from mx-relay54-hz1.antispameurope.com (mx-relay54-hz1.antispameurope.com [94.100.133.227])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F294A30E84F
-	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.238
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E81F32D431
+	for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 12:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.133.227
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763383051; cv=pass; b=CNooD+ozlwir7JWmzm0n4fqzD4bv8CldpF/ZdljxXdlejOooSCpzLufubylzZk9i4hr1nL1gFl1NwHxOKh8US+9JIalHLGenK0c0LE3KL62zEytYqeJeVCg8DeEYuoqkbB71JWTzxyliKhmPuBoRmfPdSsJDzNpL4foMCT9MgqI=
+	t=1763383085; cv=pass; b=VdQ4i2Olv7DmUibgK6zeGXx6vtR5yxclT2L6zLPvFRBa53Ct28YabLXgpuL6kzBUFUVdnLS2AqbMLhwuelt/zu+kVcLcHgwshCPAeVqcQswcABqN+FhMPjLTdMCwFTX+gsyXHVMAOmw73Ku/5dvC4wFfBd6W5ok9lh/TcT1W+/0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763383051; c=relaxed/simple;
-	bh=6eQxmAaacP/aBW8Y3d+Wuo10K5fyUcZaZ5CsJYaQI1E=;
+	s=arc-20240116; t=1763383085; c=relaxed/simple;
+	bh=1xuEALpj68pXNIymWLxa7LLNzXjOVAd6uISM8nvgMAM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gsMcHUU0D+jKXC8YvWSPD7hKCHgOHGVOouYsZ2VQa6+yKlZ6xW6r6Z6FiH2zZC/1IxGaZWv9klcbaX3dZX3Hz5YNnXzDzYMytDc8W720v0NVosgxODTuY7fb15YVHtRzxYYsaMlmUPp6KI6g5QWJr685YS/JXJFl3rKkK2op26E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=LATzudmN; arc=pass smtp.client-ip=94.100.134.238
+	 MIME-Version; b=some3fyUDleEUxmoKEUsmKCb1C7atHCPi0b0bLeS6MBCxAkMqm0OFF+Ch5aP4Ia2mfy3Un3nbYQpd1NGyL1+M/Mv8kv7N5JxQmdD69YrTXP8xoV/PW2UcwLiw/5UTAHb6rDkwWwogERYjpHqPQphzgZMYpioU7KyBajxEvSk4qw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=rtLMefH9; arc=pass smtp.client-ip=94.100.133.227
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate49-hz3.hornetsecurity.com 1; spf=pass
+ARC-Authentication-Results: i=1; mx-gate54-hz1.hornetsecurity.com 1; spf=pass
  reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com
  smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
  header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=Nsa/tANqoPEYu2tcmKDNOq4Q7cxzL4+lOwJznVO+Sak=; c=relaxed/relaxed;
+ bh=DetMJ+MPA+Wq5fNrwEPDOsXLnfF8QeGVFeKlIfLk49s=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1763383025;
- b=cFvrv5a21UpWiHdDNrbuDDXtcHFQx2yc8cJSmtKh5g9TiSzKBjraC7GTqE/S2E9iFZ3To/+u
- ph0YNMywFIdyWJgZPq/RRy+ym+IsTOXhqS42BzwzY1LrIuY/HeYU20QHuw3igP51sM7nIqEFrQZ
- yqF6yI+zQYAta4gVc9cWjFbXsDQt+VePZqsTiZEp797Xy5ObEzLYxe0GJ0TMLympY+xKooGAKQ1
- d/r3wZZMyyvjlPZcfp+6BQLOBNDNvFC3v70cYutAhr8Od3HijW4affUXQtp6H/3JIvQjLLcJ8AT
- UhIlgR/h2E3ypDeFxkJLVX4cWtzx/YiP3pjAJNvHY5Aug==
+ t=1763383028;
+ b=esl8/FgHTaEDMOnVNBc96yQrGSyHoudzNsqi4fUCQ+AwjPotwdRF036ZH3p4ARYDSGKpbCUd
+ PlRTeO/Te0mj7XIYuM/Qm1JTgoTfvK72ei0VNErg/UUsQEwFu2BoTDEziqmzKjucoLwaTL5QFJG
+ RQDrmDULQZ6KX9bRIQBgBn6z38f8MoApBD2c25egMny/5TQLPwNy/wIelZP5J8IWWHwW27xm8qf
+ 2KSJt2clsx6xJShz7muDul20EJCI1w9bm2r+qGTq9dN+GTPxAsy+xc4T6URfN74MQ4LPJRMrWzX
+ dF61Cj8sy/a7t/VGBNvuNs7I1qFNgyLVkvLtU0DAxN1xQ==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1763383025;
- b=Y9MYxXzA31lZUqz0tWssY3LO+XITvDWfh/nRP+O3w/3EMGorgakL0/k/9qKElqnpi3yF7CkX
- LET4G7cANELutpA2UBvI035wEyTWtDd6a2/yrBpRv1ddTAhP8PECx7NrnbTt2uknXr+toFeJnMB
- Pid8lmqMUiOp+jmj7Uq9U7UntuF+CRML5Z6WnFdN/Zw22MHjVnWFRpVknNwY8baxLnqpHwAM1ZP
- 7RNt+FrSE689uQzoQWtgiW8EqmsO74lmmNFW38gyprktjQPzaxTqRlz0h+03zP7cneiMyK9jgTa
- eB5CpzaGdz+c73eNY/zEUsZ48KBFG8TpyAwwfYvsvgVMg==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay49-hz3.antispameurope.com;
- Mon, 17 Nov 2025 13:37:05 +0100
+ t=1763383028;
+ b=GTPHezzHlWw92N81Lss8w/Sz4uduVEHyEEWEL61Hghhkw3RIwAfRg7Nzk0r7qMZn9Quiu5OQ
+ 5e6LStxmNBzhS2g+w0MCbVVIY0kIXbVk7nd3Ga3ejrKZGllU9N+z5ArKxvhIgIbzrGyHEm+8ttK
+ 71aLbpNkYCw5+vbkn+LobCcDDcWHyEGcczhFyBJEU56RPSoMqegznq+0nDsF4zz+DoihsKw2e1O
+ DWVde4oX+lfWcxsG7zz1IknDDiGml7bkVuew4IOR9A1DrZ2OtUcq6zcf0AsmkdlSPcMJixJua6N
+ 1DpUBIjzfgA2+DP0+PbtSUxvrrm3LfmPHsqP5NUu/7WWQ==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay54-hz1.antispameurope.com;
+ Mon, 17 Nov 2025 13:37:07 +0100
 Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id BC3B4CC0E8D;
-	Mon, 17 Nov 2025 13:36:57 +0100 (CET)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 6AC7ECC0E92;
+	Mon, 17 Nov 2025 13:36:59 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -73,9 +73,9 @@ Cc: linux@ew.tq-group.com,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 6/8] arm64: dts: tqma8mpql-mba8mp-ras314: Fix Ethernet PHY IRQ support
-Date: Mon, 17 Nov 2025 13:36:33 +0100
-Message-ID: <20251117123643.711968-7-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 7/8] arm64: dts: tqma8mpql-mba8mp-ras314: Fix HDMI CEC pad control settings
+Date: Mon, 17 Nov 2025 13:36:34 +0100
+Message-ID: <20251117123643.711968-8-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251117123643.711968-1-alexander.stein@ew.tq-group.com>
 References: <20251117123643.711968-1-alexander.stein@ew.tq-group.com>
@@ -92,51 +92,43 @@ X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay49-hz3.antispameurope.com with 4d96gt3Qwzz3ybvM
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay54-hz1.antispameurope.com with 4d96gw0g4Cz1l5kV
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:67e9f8e008322bf58113478606af1b75
-X-cloud-security:scantime:1.840
+X-cloud-security-Digest:8bc22d3d12689751e329df603757331c
+X-cloud-security:scantime:2.731
 DKIM-Signature: a=rsa-sha256;
- bh=Nsa/tANqoPEYu2tcmKDNOq4Q7cxzL4+lOwJznVO+Sak=; c=relaxed/relaxed;
+ bh=DetMJ+MPA+Wq5fNrwEPDOsXLnfF8QeGVFeKlIfLk49s=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1763383024; v=1;
- b=LATzudmNndgqdw/lZ0WW0f+KL1OC5POmo+ym75a1isuEoKw91FMnz+Bfvo1mXRI4a+ZUUCqI
- q/Lp4VJYtqrEGTLWkLXWTETSAxTco7rvSd4Eusu0Wef8VPR6bwAsAiPMCWW5LaMxRcbMhcTIvV+
- V2rLIf9QNztSL57WMG64Zf+rntZ7S46xUGdNvZhjfbUdvfoZYKzo/+wk7ucoPzFHBGca7u/bljR
- LghzFJZMK4aiskykF/SPjxihK8l684UbCq8kHrEfztO0gcxl5Ohc/N0Xe5QEa2BO/wt9r5FekbR
- WMDLazXiWd7EEFpvNi5GmtQVNLyyDPiLqacJgPXYiqywg==
+ t=1763383027; v=1;
+ b=rtLMefH9+CVGT7+TU08CTUdpF27H9cgQlehnNRl4cuVEu2KcItDI19llKCv4Pz+JO9s4+zcU
+ K0JV9gAWJv2m6FKDSNvrVrJh6B2oRXg2Sn9GUqaCDVOh89b6EqkrVFLloEAF0fWQTAdrzmHy95L
+ /X6Z3TYulXZ59sMLJcIA/Oyra7DBkxJX4FC7NWplCnMtDxwrMlDdE9heZMqMS/II/MpcEBk6jCd
+ zURX3kkMN1+HfhabcLpSZ6pHXpT7DBD7iV7iho/T/26El9JHV8Go52q2Iuohq/yXKCe3J7rDzfj
+ q+iUh1+XERSOTHIEu+43w+8wxYIoansnljuBIEGoyurBQ==
 
-Ethernet PHY interrupt mode is level triggered. Adjust the mode
-accordingly.
+As per datasheet of the HDMI protection IC the CEC_IC pin has be
+configured as open-drain.
 
+Fixes: ddabb3ce3f90 ("arm64: dts: freescale: add TQMa8MPQL on MBa8MP-RAS314")
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts     | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts
-index f7346b3d35fe5..67fe1f63fd93c 100644
+index 67fe1f63fd93c..30f0e81c4be00 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts
 +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts
-@@ -190,7 +190,7 @@ ethphy3: ethernet-phy@3 {
- 			reset-deassert-us = <50000>;
- 			enet-phy-lane-no-swap;
- 			interrupt-parent = <&gpio4>;
--			interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-+			interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
- 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
- 			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-@@ -222,7 +222,7 @@ ethphy0: ethernet-phy@0 {
- 			reset-deassert-us = <50000>;
- 			enet-phy-lane-no-swap;
- 			interrupt-parent = <&gpio4>;
--			interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-+			interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
- 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
- 			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+@@ -704,7 +704,7 @@ pinctrl_hdmi: hdmigrp {
+ 		fsl,pins = <MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x400001c2>,
+ 			   <MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x400001c2>,
+ 			   <MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD	0x40000010>,
+-			   <MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC	0x40000154>;
++			   <MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC	0x40000030>;
+ 	};
+ 
+ 	pinctrl_gpt1: gpt1grp {
 -- 
 2.43.0
 
