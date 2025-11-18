@@ -1,284 +1,100 @@
-Return-Path: <devicetree+bounces-239692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ECF9C686EC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:09:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE769C6870B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:12:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 531874E3201
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:08:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 5FB3B2A5A4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6893016FB;
-	Tue, 18 Nov 2025 09:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pGVI7TSr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171AC3090C2;
+	Tue, 18 Nov 2025 09:12:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F782F656A
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 09:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7717E3043B9;
+	Tue, 18 Nov 2025 09:12:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763456895; cv=none; b=cZMNCqYfV29qNMXYjUCIHUN3lZ5Ai/ES8NzVEFmVQ+HQpZldPbiAEuLNkxJSB7IvfF/dBZLz492ICCmw6Olh4njpxr2z3lHH/aRVes7GMpAkeFpB17TpNFyjvWyFpKPXLoLUgMBjYf+RQ56NQVrHR7xi71am4ih6Rj/BLFX8J5o=
+	t=1763457124; cv=none; b=XjJdjHPwrs4JBtPBiyET5543OayPQpBgRr4UbJJvuY74knE6chCeKMYmrbYNJJZPUS/YEjmrCODDBReACekDad8Rieq901FzhRH+7BAQYsxi8rK59AkJGyHb59/IrydOztPOjWnyr7jmExadoRm6Ylo11hc3lvAbkn0ttTwI4jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763456895; c=relaxed/simple;
-	bh=kFlNIN+gR01G+eV5ulgKp1aOfF3zt2Lu4Fx+jo8b8dU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=G/eFx88WMhspqenGUL2P+yLmv1pdEiKGu4kPFOGEQWpBxcHvBHeOpSgfBR7IsIytI83S+gOFFYXWQRtxVM67AQKC7w379sD/AVBw0rOFLP8g/Es7qsCKasrmTriOKyi+yF+VnmAI3cjqcWJ8kIX+rnf7EGRH9/rLrWSN85YnZy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pGVI7TSr; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso31623405e9.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 01:08:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763456892; x=1764061692; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c8ojmwZvyIUVTGQLirWUPhk95m2/9IA4Sz9hLtWscRI=;
-        b=pGVI7TSriLTZypdkRLa+3b9rzWRFjtNVxHi5N/99+r3X1j8ismzsScjBGcc92QF+H+
-         iuGqKoRNsoVVZk9Ujkd45B3OND2cd2Dnnyvbil9MkDKO/PtqRox5787YCy5Bb3f1xBbJ
-         XXEeJegzbMQ/TEYX42hzQt6cQXKFDa2R5B9FsFEYyru3SRiWUiF4Iw+nOhn0AN4GL2aw
-         63w5X0eGLB88gY/mh0V+YZPpzVzMV4hw3owSTVCWTi1tqgnFZ2m9gRXJdb50qO8Aw46o
-         u5v2osd/Gve1Z9BVIO/PRRtsbL0sCjmmRBKekMRZbUz2N9O5dmiCCptLUnZoeGZQLSGc
-         n59A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763456892; x=1764061692;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c8ojmwZvyIUVTGQLirWUPhk95m2/9IA4Sz9hLtWscRI=;
-        b=SP2xNkwexqGXReo/DH2LcEu3WCs8eR/VVO9ttoFv7EnlHazyMS2Dl4B72NlS1yTuU/
-         z9H3OJGHdbJOTbJWuKmSgcHwSGBSg0BtgCk3JUaXSZvQMipXe+9dnGR49eS/9vU6HDZl
-         Ca6bnvgA4DE2if8OYqsi8xIulWf9g5ZyOWQVewk/vSiUGZbScB7RqZ5gKPaohg4BQ8S5
-         JRyl9FSKNqCs3r14HkkM1Fb6ONWUjmxvxR//6VPxisWfz14uT8/rC/3K4aJ6RV5SD1IL
-         lGTunIRevWHcpOruBFRhoeW11DuoKkum2YGN8AGyx18qXV0FhbgdbZhdchdrg13KOEP7
-         uKnw==
-X-Forwarded-Encrypted: i=1; AJvYcCXonlrkG7DjUJjloPt97no8HKFJ1Y2Ui5lOna1iSS0e8pm+pqOKDhBj1Y7sfCbIPxwJadwNxWRE04G3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyk+IGfLLcIX1y40rU1K8BWBZttrLgQHRdXolFUIBWPkNwZT0vw
-	u6HJ0MtpON9PMdHllJ4qHW2RqbXHgP1064+SeOk7VAy0/tqAnNUjw0McSFzQ14BtbFk=
-X-Gm-Gg: ASbGnctQhGVfy4w3Vt5pAVtIvfIBjHkDVe8dT/kN9M3l30H7kswBdugget0oBfd+46k
-	Ct8TH7ELjHe6FGt1EIyLaz4mqNJgrozZ7mUn7Ry2mJF44ylCcO3pke039PauFqqAt5iuYUk1SFL
-	S7y3DPsVtcszEXJHLoSNUWNvQgNcjtocqjFlwknAmFk0DNznaGP0iqos8Ai7Avp9rFLALZVnzwO
-	PaBrigBcd3yru9rkSo5Gy7Ng4NroCGQ70HVLx69ZscYJrlLD1sYjw6qYFX4Xn+buxTdMZJrsRLC
-	tlPBuqS/I5j5A7w3hhbnzlMpnj/zwt/YSInVoKofdl5fd5n2oW3rSyzuVLP2hQHR8/75XGFjsRS
-	6FQN6ikdM5TmjheeDSDR2gDEPH3NzBQ7GhMEwWllz3qJGeFK4ZXe+a4piQDST7wfIABDe7ZO1XZ
-	ZRczBFQNlaSv/GfoAr0G0wM8a2pKwsKuok2In0Hz8+ocsmesGTqc/c6eOHXebPaJ4=
-X-Google-Smtp-Source: AGHT+IG6gLgCwxhtQm3Z8HznXw2PJ389guvo2P4OhOD1SCc8LUBuHyTff2qepHeal9ABmF52l4Ec4Q==
-X-Received: by 2002:a05:600c:3e8e:b0:477:abea:901c with SMTP id 5b1f17b1804b1-477abea924dmr8401245e9.11.1763456891500;
-        Tue, 18 Nov 2025 01:08:11 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:366e:5264:fffe:1c49? ([2a01:e0a:3d9:2080:366e:5264:fffe:1c49])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f2084dsm31563471f8f.42.2025.11.18.01.08.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Nov 2025 01:08:11 -0800 (PST)
-Message-ID: <7ca46d0d-d235-421e-95cb-901efb856b0c@linaro.org>
-Date: Tue, 18 Nov 2025 10:08:09 +0100
+	s=arc-20240116; t=1763457124; c=relaxed/simple;
+	bh=eInYEJN6YIiUk3jMYad5Xh4rxav6UXQDFOgidbnXMpI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=SUVa/HCQAcbJAjXV589rDCJljmmaJtxV3HT/OQmqn/Lvk9x61BImCEDzUiE9JAye789nAAc76WPhjYxeGR2C3zUoxYH6XOB0VPJzcwpc1IgTLm+BAQfJVf38J+wWvP+l+jDH8XYx60ukHW88P+Nq+W0h1nSjBdzHCTOVg/MJwVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 18 Nov
+ 2025 17:11:54 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 18 Nov 2025 17:11:54 +0800
+From: Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: [PATCH v2 0/2] Add "aspeed,ast2700-pwm-tach" compatible string
+Date: Tue, 18 Nov 2025 17:11:52 +0800
+Message-ID: <20251118-upstream_pwm_tach-v2-0-4d9bc13d34f9@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v9 06/10] phy: rockchip: phy-rockchip-typec: Add DRM AUX
- bridge
-To: Chaoyi Chen <kernel@airkyi.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>,
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20251111105040.94-1-kernel@airkyi.com>
- <20251111105040.94-7-kernel@airkyi.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20251111105040.94-7-kernel@airkyi.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFg4HGkC/02MSw6DIBQAr2LeuhggWrQr79E0BvFZXiJCgP5iv
+ HtJV11NZjGzQ8JImOBS7RDxSYn8VkSeKjBWb3dkNBcHyWUrhOjYI6QcUbsxvNyYtbGsVcukleo
+ Ndg2ULkRc6P17Xm/Fl+gdy7ZEfyfe8LZA1vKset4pJthE6/oZc9I06BQQ54zG1sY7OI4v6PorT
+ qgAAAA=
+X-Change-ID: 20251118-upstream_pwm_tach-57fba779ce84
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Billy Tsai <billy_tsai@aspeedtech.com>
+CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, <BMC-SW@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763457114; l=987;
+ i=billy_tsai@aspeedtech.com; s=20251118; h=from:subject:message-id;
+ bh=eInYEJN6YIiUk3jMYad5Xh4rxav6UXQDFOgidbnXMpI=;
+ b=unNyKr7Id/LId888XbVFwSETVvp0CHpyaGf11gFBnuhsLV/Q0QHUqz6GoeUsvEEO9sLUSUCAF
+ 54Y9pN4dJW1DmLI9d/DlWFji1uprzAypbZPxsUzRChf8DIkD2godHo2
+X-Developer-Key: i=billy_tsai@aspeedtech.com; a=ed25519;
+ pk=/A8qvgZ6CPfnwKgT6/+k+nvXOkN477MshEGJvVdzeeQ=
 
-On 11/11/25 11:50, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> 
-> Using the DRM_AUX_BRIDGE helper to create the transparent DRM bridge
-> device.
-> 
-> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> ---
-> 
-> (no changes since v7)
-> 
-> Changes in v6:
-> - Fix depend in Kconfig.
-> 
->   drivers/phy/rockchip/Kconfig              |  2 +
->   drivers/phy/rockchip/phy-rockchip-typec.c | 52 +++++++++++++++++++++++
->   2 files changed, 54 insertions(+)
-> 
-> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
-> index db4adc7c53da..bcb5476222fc 100644
-> --- a/drivers/phy/rockchip/Kconfig
-> +++ b/drivers/phy/rockchip/Kconfig
-> @@ -120,6 +120,8 @@ config PHY_ROCKCHIP_TYPEC
->   	tristate "Rockchip TYPEC PHY Driver"
->   	depends on OF && (ARCH_ROCKCHIP || COMPILE_TEST)
->   	depends on TYPEC || TYPEC=n
-> +	depends on DRM || DRM=n
-> +	select DRM_AUX_BRIDGE if DRM_BRIDGE
->   	select EXTCON
->   	select GENERIC_PHY
->   	select RESET_CONTROLLER
-> diff --git a/drivers/phy/rockchip/phy-rockchip-typec.c b/drivers/phy/rockchip/phy-rockchip-typec.c
-> index 1f5b4142cbe4..748a6eb8ad95 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-typec.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-typec.c
-> @@ -36,6 +36,7 @@
->    * orientation, false is normal orientation.
->    */
->   
-> +#include <linux/auxiliary_bus.h>
->   #include <linux/clk.h>
->   #include <linux/clk-provider.h>
->   #include <linux/delay.h>
-> @@ -56,6 +57,7 @@
->   #include <linux/phy/phy.h>
->   #include <linux/usb/typec_dp.h>
->   #include <linux/usb/typec_mux.h>
-> +#include <drm/bridge/aux-bridge.h>
->   
->   #define CMN_SSM_BANDGAP			(0x21 << 2)
->   #define CMN_SSM_BIAS			(0x22 << 2)
-> @@ -415,6 +417,7 @@ struct rockchip_usb3phy_port_cfg {
->   
->   struct rockchip_typec_phy {
->   	struct device *dev;
-> +	struct auxiliary_device dp_port_dev;
->   	void __iomem *base;
->   	struct extcon_dev *extcon;
->   	struct typec_mux_dev *mux;
-> @@ -1299,6 +1302,51 @@ static void tcphy_typec_mux_unregister(void *data)
->   	typec_mux_unregister(tcphy->mux);
->   }
->   
-> +static void tcphy_dp_port_dev_release(struct device *dev)
-> +{
-> +	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-> +
-> +	of_node_put(adev->dev.of_node);
-> +}
-> +
-> +static void tcphy_dp_port_unregister_adev(void *_adev)
-> +{
-> +	struct auxiliary_device *adev = _adev;
-> +
-> +	auxiliary_device_delete(adev);
-> +	auxiliary_device_uninit(adev);
-> +}
-> +
-> +static int tcphy_aux_bridge_register(struct rockchip_typec_phy *tcphy, struct device_node *np)
-> +{
-> +	struct auxiliary_device *adev = &tcphy->dp_port_dev;
-> +	int ret;
-> +
-> +	adev->name = "dp_port";
-> +	adev->dev.parent = tcphy->dev;
-> +	adev->dev.of_node = of_node_get(np);
-> +	adev->dev.release = tcphy_dp_port_dev_release;
-> +
-> +	ret = auxiliary_device_init(adev);
-> +
+Adds the "aspeed,ast2700-pwm-tach" compatible string, which provides
+fallback support for the previous version of the hardware design, to
+the PWM/TACH dt-binding and driver.
 
-Drop this empty line.
+---
+Changes in v2:
+- Reworked the binding to use a two-level compatible list with
+  "aspeed,ast2600-pwm-tach" as the fallback.
+- Link to v1: https://lore.kernel.org/r/20251104055112.2679087-1-billy_tsai@aspeedtech.com
+---
 
-> +	if (ret) {
-> +		of_node_put(adev->dev.of_node);
-> +		return ret;
-> +	}
-> +
-> +	ret = auxiliary_device_add(adev);
-> +	if (ret) {
-> +		auxiliary_device_uninit(adev);
-> +		return ret;
-> +	}
-> +
-> +	devm_add_action_or_reset(tcphy->dev, tcphy_dp_port_unregister_adev, adev);
-> +
-> +	ret = drm_aux_bridge_register(&adev->dev);
+Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
 
-Adding an aux device to an aux device looks quite overengineered to me !
+---
+Billy Tsai (2):
+      dt-bindings: hwmon: Add AST2700 compatible
+      hwmon: (aspeed-g6-pwm-tach): Add AST2700 compatible string
 
-If it's a matter of using the proper of_node, you may instead create a separate
-drm_aux_bridge_register() like drm_aux_bridge_register_from_node() instead.
+ .../devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml          | 10 +++++++---
+ drivers/hwmon/aspeed-g6-pwm-tach.c                             |  3 +++
+ 2 files changed, 10 insertions(+), 3 deletions(-)
+---
+base-commit: e7c375b181600caf135cfd03eadbc45eb530f2cb
+change-id: 20251118-upstream_pwm_tach-57fba779ce84
 
-Neil
-
-> +
-> +	return 0;
-> +}
-> +
->   static int tcphy_setup_typec_mux(struct rockchip_typec_phy *tcphy)
->   {
->   	struct typec_mux_desc mux_desc = {};
-> @@ -1312,6 +1360,10 @@ static int tcphy_setup_typec_mux(struct rockchip_typec_phy *tcphy)
->   	if (!of_property_read_bool(np, "mode-switch"))
->   		goto put_np;
->   
-> +	ret = tcphy_aux_bridge_register(tcphy, np);
-> +	if (ret)
-> +		goto put_np;
-> +
->   	mux_desc.drvdata = tcphy;
->   	mux_desc.fwnode = device_get_named_child_node(tcphy->dev, "dp-port");
->   	mux_desc.set = tcphy_typec_mux_set;
+Best regards,
+-- 
+Billy Tsai <billy_tsai@aspeedtech.com>
 
 
