@@ -1,102 +1,54 @@
-Return-Path: <devicetree+bounces-239816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC01C69959
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:24:24 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BDAC699BF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:31:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 8B0522B08D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:24:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id E9F992AD13
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:31:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B06334EEE7;
-	Tue, 18 Nov 2025 13:24:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10FA1347BA3;
+	Tue, 18 Nov 2025 13:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VzmbQNtA";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="O/e6L2Xk"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="Ui9e2rg4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97AE72D3ECA
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 13:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C143313E36;
+	Tue, 18 Nov 2025 13:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763472255; cv=none; b=FVOuya0ttjoPSMt3NyFdLE35seV7neVjSFc7hJ708abNlpiPJ6E0vHcs5ddUrgYhDzzzP5wPaWt3InFtf4xw6H+OjzGkAuGLLxcqarGOGQX6VRWfQTUCRjT6ia9/F7vA0weNuBqd2ziMmY2PGFaRL7T5I7S9Gr9+QB2rduR2MEU=
+	t=1763472680; cv=none; b=HyfNl1wzmythdhgiuQ5UdAIyKIjfXCaWN9o5M8TC5N8Uegzu0WUMLG2Us4heImVGalMMPs7KTDCzUMcP5+JY8/zI+oQONPFkx2cFswSUnshQ3jzx9JFBYP63v51tXboBGH00yk8wJRGFEe603NDcmJfi86ecDKVlBk6bQ7RjsrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763472255; c=relaxed/simple;
-	bh=YRPcOuCWyS3IkB/8T5kzemqn4zA4eRE3UPKIfdMgAGg=;
+	s=arc-20240116; t=1763472680; c=relaxed/simple;
+	bh=9ugQIvvJz7zikbAFPH6IUMIqsSAchpy+YXvO5z6zCtQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KA4bTLZab0A4dwp9Hsctg9NJhQKDDXltUPeIHop7EO5Lq5V2GM5QAJ0xrS5QDp40M/7EnNed3/+joU2g1GV7AWr2CnjEvCLw0smwLasZ+tiBSVjlDD0os7ffz3dUjKZA70cECkB6iHd8QSPabIFB4yjSThAi7qIpHTQEKaV2+H8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VzmbQNtA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=O/e6L2Xk; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AI6dCmc384945
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 13:24:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mT3BS7HYX0OjxoOUzW62R+wISMMOs6OD7mkkhojAy3U=; b=VzmbQNtA4hDbL9no
-	AJzSYpKX10KwzUrif06jiE/nsLfhDNC2rUzeyJsTjdGhvpt3duUHBzNcm0eZiFx7
-	KKLCxIbrdDlnynq4ahc+n8+2e6FjqbUaTTwaduw0STkDTNcFlCJZ77CLbZlP1dVr
-	I/nPTCXSJjQuxpHkEFDcgCXAYfyzJCJm7OCeIjovfdMf/+yPV1ZoO/fp4BQ4x9q8
-	1EjHVfNhVgAjI35jYwutdCdlQbbMXsvTOKK1inOoqn2lXMCxh8y1qQiK+WX9vd85
-	WS2OF6Qjw8PQ96lL9ZWWuPw8s4G8W5Z7ftUOdnw+C0/2UcgP2P0YMwq1091l9kTS
-	2VgPKg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agag8jjka-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 13:24:12 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-882414eeb90so16518496d6.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 05:24:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763472251; x=1764077051; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mT3BS7HYX0OjxoOUzW62R+wISMMOs6OD7mkkhojAy3U=;
-        b=O/e6L2XkXHEYZnCVs3PkIgJX19nilcpRWhiP24NKwR1CeW/POG7MBkRWp1iMchvcGv
-         TKMXoqBkkDO4hf49TkBXbybkyzZG6LOtAdAacxsKKyosdkNj+jcTQLB7FSxeCqjQwTtD
-         EaLtRZ/G5rLPxrf1dEwi8cvwdDtQIg7x8BoGa/ZwcEeZUZ2z7eniVY9auirjIiqkHEFh
-         Tnw3tIeqzyMBOLQDQO+7yHIcZfM6yc8ubXpGVC3FNEtfGmkyqK27+UD+3EPOdFAAO19V
-         lkBheUwvaAX4QqsM2QPYBSPXO8SNaG87NxXWPD39a7FPbN2mCROGHDqnONWMPN/+SCOP
-         P/Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763472251; x=1764077051;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mT3BS7HYX0OjxoOUzW62R+wISMMOs6OD7mkkhojAy3U=;
-        b=ec5M5yl4EJAuEUMiKmxmHPoBEYTbMM6WbSgFiZjmzZasfDwgXfWG0NfpMJN1//GzSZ
-         ZvjykPv2g0bvfyA5aDY/G4axlWkaTFC2Bc5yKocCIDnfYDv6WzKGfAqYMEhRHt0kE0qo
-         /nYyRUmz1XLabuhjxyQvrZ1uUnyHbjhe1teRjexG/I91dkjvdx4zGX7Mbn2nTDeCkhs9
-         0lTpRbjYrCyNylppTCDYSLosBJwyS+D13I+XhE/n5mc5/xH4HI9XaUc7kSkMXgnrMeNs
-         2hxc3/Dpd7h5vAA0QnIm2D8Ibe/Qeix0sng86pLwnlNcqAvU6WuYa8yInYMRBR+UCxKg
-         Zpng==
-X-Forwarded-Encrypted: i=1; AJvYcCWYGvKnEpBwye8CHPrHL1mZyhkILVvqKTnPoB3bFkluJlXDimH8qokZguQO70M9dqeQxcZbChAnXyJ/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQd+zqtqlLw6Cz/0e208Z9C+/7dYYUsWoRUg6HP361cQ9koomY
-	5onB3/X1qVMSWN58UiHBn3PLZsxpnTtZG4sMgzbXII7U138R6DA9NOxBxla5MwWF9eviSBX95We
-	UGhk50GoDExEU+Dcb38DqzW4eIEzWTNvawDyRyxvo8FAgqssRqx/200kg5vGhOGM8
-X-Gm-Gg: ASbGncsQTdgiVugSLGZiwg6qnOgWwKEjRDzg5TIzCZ5kZVZxUzra6EwAD0//+cqC7cF
-	ktNFjMXry83HM9pZQoLvP6OamkBoNfkZypMPcYB8IbXa/K0TZfEv57dVefYCHw0awf8XOUajTo2
-	HfVq3qmL4yDow+Rdk9kEM02aNDiIwRqhNnB2taHI+TTJSBjRVt7jYhdJxfX1p1HNcfPQRv8vdE5
-	XxY8VeFOdLQwleMyM1LAODnFjKDzjiC7U2I1eStgbCVEfcAcRF8hSzSwphSq4LXrbIJJvzKV0au
-	DjrTCVcmn87oQM63e/MMZqWvdrvQu/n4OomdaDEsqF+fwiGAcyY2auq7PXx8J9f+qFeoFJl2dDO
-	/n6nBZNG7a/GMmazrRctEODxPyM6Trdg6BOhPu7+5WrGOARAaeM1Eizrt+c8Nxa4fAgMftA==
-X-Received: by 2002:a0c:bf42:0:b0:883:7783:9a with SMTP id 6a1803df08f44-88377832e51mr89995696d6.0.1763472251585;
-        Tue, 18 Nov 2025 05:24:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGRqlXLxm47/RUttNlD6ATYs2pNgJfsISYFm460SZi5po+LnzWhSuIw5Ny6ZU54jqrLTKE3LQ==
-X-Received: by 2002:a0c:bf42:0:b0:883:7783:9a with SMTP id 6a1803df08f44-88377832e51mr89995376d6.0.1763472251012;
-        Tue, 18 Nov 2025 05:24:11 -0800 (PST)
-Received: from [10.111.165.185] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-882865bdc76sm113493986d6.55.2025.11.18.05.24.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Nov 2025 05:24:10 -0800 (PST)
-Message-ID: <cef25c09-0ecb-42ea-b781-a4e0d3c61542@oss.qualcomm.com>
-Date: Tue, 18 Nov 2025 21:24:05 +0800
+	 In-Reply-To:Content-Type; b=gXF4kl6Plt3jVHTIjZz87Kj4AFLbwoOGl5Ou6wcITdyv2ICKTXbQXtbAWYo1IlRMiSVsRl6zc4/QE3DvXxYJR7EmbfU9I3dg7qxk9F4MAQmnAYW06/tq852ZNriwVE6nkNhJH0knT6dO3MdMtnoXVLnBfPJKSogfmcGL3W9DybY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=Ui9e2rg4; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 43F0A534146A;
+	Tue, 18 Nov 2025 14:31:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1763472672;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=w0PqZr/fldf/EvmdNDcZnMhCxCGAlnzGVmppfsica5Q=;
+	b=Ui9e2rg4oSC3Gmhvv7nOWuvFSKScX+hqI38VhddPR1TphYTHl/wmG4/uZYsyhhpeYxgR4G
+	kbnnqO1cOuspW0XQq2NGH0MeRjIGNMZt/24fmbZk1/7eFgYMZWn6jrDPy9I0bX8BU+y9o5
+	d7VUqzUCl1dJG0espP2pFaCQG7mTJoY=
+Message-ID: <d9c91625-a829-474f-9fda-5e39342bb4af@ixit.cz>
+Date: Tue, 18 Nov 2025 14:31:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,140 +56,237 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: monaco-evk: Enable Bluetooth support
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        quic_jiaymao@quicinc.com, Konrad Dybcio <konradybcio@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        cheng.jiang@oss.qualcomm.com, devicetree@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>, quic_shuaz@quicinc.com,
-        quic_chezhou@quicinc.com
-References: <20251113130519.2647081-1-wei.deng@oss.qualcomm.com>
- <176313578860.3262114.17056319042303889483.robh@kernel.org>
- <CAL_JsqJX3doLFv-Nc6o+L1W_o8VjtvGp9dqdpsotuyG17zU7Lw@mail.gmail.com>
- <ca6b02d8-07cc-4bc9-ac99-e75d8e3548fe@oss.qualcomm.com>
- <0428a5a5-fd4e-4309-9b28-f94664177692@kernel.org>
+Subject: Re: [PATCH v3 8/8] arm64: dts: qcom: Add support for Pixel 3 and
+ Pixel 3 XL
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Casey Connolly <casey.connolly@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>,
+ Joel Selvaraj <foss@joelselvaraj.com>, Vinod Koul <vkoul@kernel.org>
+References: <20251118-pixel-3-v3-0-317a2b400d8a@ixit.cz>
+ <20251118-pixel-3-v3-8-317a2b400d8a@ixit.cz>
+ <d81b0e70-5e3f-4e33-a268-e8b903904e9b@oss.qualcomm.com>
 Content-Language: en-US
-From: Wei Deng <wei.deng@oss.qualcomm.com>
-In-Reply-To: <0428a5a5-fd4e-4309-9b28-f94664177692@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: _s-AT-3dGY0zyuFBao_M0mE1oV8UUUEa
-X-Proofpoint-ORIG-GUID: _s-AT-3dGY0zyuFBao_M0mE1oV8UUUEa
-X-Authority-Analysis: v=2.4 cv=G6sR0tk5 c=1 sm=1 tr=0 ts=691c737c cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=tldeaCnzwUXVKdrmyTgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDEwNiBTYWx0ZWRfXz9P1SGpXnhZu
- YJA+l0Sw2MBXqEw+iWRggyi110DaBhSYGsiLBR8WvbWrUQYVck61uoQ1JaIC9sRrPq/zywslB1K
- CutNydcXInR10eRo4WJcRRl0SYk8lm/9N4iX7Wj+SDTnxHypCyYdfbMNfCPVQpgW9eQcBSnpI5d
- szAPxoI3YX9rx3teDx9qPiQjdTB/ImoxlJgPmRR/bp1LwO7WkvYIaWMwgbyxZUcR1MKmxze2lWr
- m9RnyCB4vMU/9blEdu7CekMGx4OZkRq5tFyZ/dZbXLaIBFzBw8PBmREvf1tZXdzHamUKuAglCz3
- 14184LvliFtdu5W9RtZ4Ajq0IcSzvbhSaaez5fO7kVOAOSGqeI+BZMJ1Z6fIaSt80mgqeuunNmV
- xl4AVHrpwBpTb4UnDzEI5hWSkYAIXA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-17_04,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 malwarescore=0 adultscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511180106
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ xsFNBF5v1x4BEADS3EddwsNsvVAI1XF8uQKbdYPY/GhjaSLziwVnbwv5BGwqB1tfXoHnccoA
+ 9kTgKAbiXG/CiZFhD6l4WCIskQDKzyQN3JhCUIxh16Xyw0lECI7iqoW9LmMoN1dNKcUmCO9g
+ lZxQaOl+1bY/7ttd7DapLh9rmBXJ2lKiMEaIpUwb/Nw0d7Enp4Jy2TpkhPywIpUn8CoJCv3/
+ 61qbvI9y5utB/UhfMAUXsaAgwEJyGPAqHlC0YZjaTwOu+YQUE3AFzhCbksq95CwDz4U4gdls
+ dmv9tkATfu2OmzERZQ6vJTehK0Pu4l5KmCAzYg42I9Dy4E6b17x6NncKbcByQFOXMtG0qVUk
+ F1yeeOQUHwu+8t3ZDMBUhCkRL/juuoqLmyDWKMc0hKNNeZ9BNXgB8fXkRLWEUfgDXsFyEkKp
+ NxUy5bDRlivf6XfExnikk5kj9l2gGlNQwqROti/46bfbmlmc/a2GM4k8ZyalHNEAdwtXYSpP
+ 8JJmlbQ7hNTLkc3HQLRsIocN5th/ur7pPMz1Beyp0gbE9GcOceqmdZQB80vJ01XDyCAihf6l
+ AMnzwpXZsjqIqH9r7T7tM6tVEVbPSwPt4eZYXSoJijEBC/43TBbmxDX+5+3txRaSCRQrG9dY
+ k3mMGM3xJLCps2KnaqMcgUnvb1KdTgEFUZQaItw7HyRd6RppewARAQABzSBEYXZpZCBIZWlk
+ ZWxiZXJnIDxkYXZpZEBpeGl0LmN6PsLBlAQTAQgAPgIbAwULCQgHAgYVCgkICwIEFgIDAQIe
+ AQIXgBYhBNd6Cc/u3Cu9U6cEdGACP8TTSSByBQJl+KksBQkPDaAOAAoJEGACP8TTSSBy6IAQ
+ AMqFqVi9LLxCEcUWBn82ssQGiVSDniKpFE/tp7lMXflwhjD5xoftoWOmMYkiWE86t5x5Fsp7
+ afALx7SEDz599F1K1bLnaga+budu55JEAYGudD2WwpLJ0kPzRhqBwGFIx8k6F+goZJzxPDsf
+ loAtXQE62UvEKa4KRRcZmF0GGoRsgA7vE7OnV8LMeocdD3eb2CuXLzauHAfdvqF50IfPH/sE
+ jbzROiAZU+WgrwU946aOzrN8jVU+Cy8XAccGAZxsmPBfhTY5f2VN1IqvfaRdkKKlmWVJWGw+
+ ycFpAEJKFRdfcc5PSjUJcALn5C+hxzL2hBpIZJdfdfStn+DWHXNgBeRDiZj1x6vvyaC43RAb
+ VXvRzOQfG4EaMVMIOvBjBA/FtIpb1gtXA42ewhvPnd5RVCqD9YYUxsVpJ9d+XsAy7uib3BsV
+ W2idAEsPtoqhVhq8bCUs/G4sC2DdyGZK8MRFDJqciJSUbqA+5z1ZCuE8UOPDpZKiW6H/OuOM
+ zDcjh0lOzr4p+/1TSg1PbUh7fQ+nbMuiT044sC1lLtJK0+Zyn0GwhR82oNM4fldNsaHRW42w
+ QGD35+eNo5Pvb3We5XRMlBdhFnj7Siggp4J8/PJ6MJvRyC+RIJPGtbdMB2/RxWunFLn87e5w
+ UgwR9jPMHAstuTR1yR23c4SIYoQ2fzkrRzuazsFNBF5v1x4BEADnlrbta2WL87BlEOotZUh0
+ zXANMrNV15WxexsirLetfqbs0AGCaTRNj+uWlTUDJRXOVIwzmF76Us3I2796+Od2ocNpLheZ
+ 7EIkq8budtLVd1c06qJ+GMraz51zfgSIazVInNMPk9T6fz0lembji5yEcNPNNBA4sHiFmXfo
+ IhepHFOBApjS0CiOPqowYxSTPe/DLcJ/LDwWpTi37doKPhBwlHev1BwVCbrLEIFjY0MLM0aT
+ jiBBlyLJaTqvE48gblonu2SGaNmGtkC3VoQUQFcVYDXtlL9CVbNo7BAt5gwPcNqEqkUL60Jh
+ FtvVSKyQh6gn7HHsyMtgltjZ3NKjv8S3yQd7zxvCn79tCKwoeNevsvoMq/bzlKxc9QiKaRPO
+ aDj3FtW7R/3XoKJBY8Hckyug6uc2qYWRpnuXc0as6S0wfek6gauExUttBKrtSbPPHiuTeNHt
+ NsT4+dyvaJtQKPBTbPHkXpTO8e1+YAg7kPj3aKFToE/dakIh8iqUHLNxywDAamRVn8Ha67WO
+ AEAA3iklJ49QQk2ZyS1RJ2Ul28ePFDZ3QSr9LoJiOBZv9XkbhXS164iRB7rBZk6ZRVgCz3V6
+ hhhjkipYvpJ/fpjXNsVL8jvel1mYNf0a46T4QQDQx4KQj0zXJbC2fFikAtu1AULktF4iEXEI
+ rSjFoqhd4euZ+QARAQABwsF8BBgBCAAmAhsMFiEE13oJz+7cK71TpwR0YAI/xNNJIHIFAmX4
+ qVAFCQ8NoDIACgkQYAI/xNNJIHKN4A/+Ine2Ii7JiuGITjJkcV6pgKlfwYdEs4eFD1pTRb/K
+ 5dprUz3QSLP41u9OJQ23HnESMvn31UENk9ffebNoW7WxZ/8cTQY0JY/cgTTrlNXtyAlGbR3/
+ 3Q/VBJptf04Er7I6TaKAmqWzdVeKTw33LljpkHp02vrbOdylb4JQG/SginLV9purGAFptYRO
+ 8JNa2J4FAQtQTrfOUjulOWMxy7XRkqK3QqLcPW79/CFn7q1yxamPkpoXUJq9/fVjlhk7P+da
+ NYQpe4WQQnktBY29SkFnvfIAwqIVU8ix5Oz8rghuCcAdR7lEJ7hCX9bR0EE05FOXdZy5FWL9
+ GHvFa/Opkq3DPmFl/0nt4HJqq1Nwrr+WR6d0414oo1n2hPEllge/6iD3ZYwptTvOFKEw/v0A
+ yqOoYSiKX9F7Ko7QO+VnYeVDsDDevKic2T/4GDpcSVd9ipiKxCQvUAzKUH7RUpqDTa+rYurm
+ zRKcgRumz2Tc1ouHj6qINlzEe3a5ldctIn/dvR1l2Ko7GBTG+VGp9U5NOAEkGpxHG9yg6eeY
+ fFYnMme51H/HKiyUlFiE3yd5LSmv8Dhbf+vsI4x6BOOOq4Iyop/Exavj1owGxW0hpdUGcCl1
+ ovlwVPO/6l/XLAmSGwdnGqok5eGZQzSst0tj9RC9O0dXO1TZocOsf0tJ8dR2egX4kxM=
+In-Reply-To: <d81b0e70-5e3f-4e33-a268-e8b903904e9b@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
-
-Thanks for your comments.
-
-On 11/18/2025 3:19 PM, Krzysztof Kozlowski wrote:
-> On 18/11/2025 08:07, Wei Deng wrote:
->> Hi Rob,
+On 18/11/2025 13:32, Konrad Dybcio wrote:
+> On 11/18/25 12:30 PM, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
 >>
->> Thanks for your comments.
+>> This adds initial device tree support for the following phones:
 >>
->> On 11/15/2025 12:18 AM, Rob Herring wrote:
->>> On Fri, Nov 14, 2025 at 10:06 AM Rob Herring (Arm) <robh@kernel.org> wrote:
->>>>
->>>>
->>>> On Thu, 13 Nov 2025 18:35:19 +0530, Wei Deng wrote:
->>>>> There's a WCN6855 WiFi/Bluetooth module on an M.2 card. To make
->>>>> Bluetooth work, we need to define the necessary device tree nodes,
->>>>> including UART configuration and power supplies.
->>>>>
->>>>> Since there is no standard M.2 binding in the device tree at present,
->>>>> the PMU is described using dedicated PMU nodes to represent the
->>>>> internal regulators required by the module.
->>>>>
->>>>> The module provides a 3.3V supply, which originates from the
->>>>> main board’s 12V rail. To represent this power hierarchy in the device
->>>>> tree, add a fixed 12V regulator node as the DC-IN source and link it
->>>>> to the 3.3V regulator node.
->>>>>
->>>>> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
->>>>> ---
->>>>>  arch/arm64/boot/dts/qcom/monaco-evk.dts | 99 +++++++++++++++++++++++++
->>>>>  1 file changed, 99 insertions(+)
->>>>>
->>>>
->>>>
->>>> My bot found new DTB warnings on the .dts files added or changed in this
->>>> series.
->>>>
->>>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->>>> are fixed by another series. Ultimately, it is up to the platform
->>>> maintainer whether these warnings are acceptable or not. No need to reply
->>>> unless the platform maintainer has comments.
->>>>
->>>> If you already ran DT checks and didn't see these error(s), then
->>>> make sure dt-schema is up to date:
->>>>
->>>>   pip3 install dtschema --upgrade
->>>>
->>>>
->>>> This patch series was applied (using b4) to base:
->>>>  Base: attempting to guess base-commit...
->>>>  Base: tags/next-20251112 (exact match)
->>>>  Base: tags/next-20251112 (use --merge-base to override)
->>>>
->>>> If this is not the correct base, please add 'base-commit' tag
->>>> (or use b4 which does this automatically)
->>>>
->>>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251113130519.2647081-1-wei.deng@oss.qualcomm.com:
->>>>
->>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcielp3-supply', 'vddpcielp9-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
->>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
->>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p3-supply' is a required property
->>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
->>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p9-supply' is a required property
->>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
->>>
->>> This is the 3rd report of your typos. Is there some reason you are
->>> ignoring the reports?
->>>
+>>   - Google Pixel 3 (blueline)
+>>   - Google Pixel 3 XL (crosshatch)
 >>
->> Sorry for the delayed response. These warnings are worth addressing 
->> and will be resolved in the next patch.
->>
+>> Both phone boards use the same identifiers and differ only slightly
+>> in their connected peripherals.
 > 
+> [...]
 > 
-> Three of your patchsets have bugs easily pointed out by tools, so please
-> answer - are you ignoring the reports? Are you doing any tests before
-> sending?
+>> +&cont_splash_mem {
+>> +	reg = <0 0x9d400000 0 0x02400000>;
+>> +};
+> 
+> You override it to the same value on both devices, keep it in common
+
+Done.
+
+> 
+>> +
+>> +&framebuffer0 {
+>> +	width = <1080>;
+>> +	height = <2160>;
+>> +	stride = <(1080 * 4)>;
+>> +	format = "a8r8g8b8";
+> 
+> The format is mandated by the UEFI specification and won't change too
 > 
 
-Testing was completed on the local hardware platform with successful 
-compilation and normal functionality, so the tests in this section 
-were omitted. Prior to the next submission, a dt-binding constraint 
-check will be performed.
+Done.
 
-> Best regards,
-> Krzysztof
+> [...]
+> 
+>> +&tlmm {
+>> +	panel_te_pin: panel-te-state {
+>> +		pins = "gpio12";
+>> +		function = "mdp_vsync";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>> +
+>> +	panel_reset_pins: panel-active-state {
+>> +		pins = "gpio6";
+> 
+> Pin entries would be best sorted by the GPIO index:
+> 
+> https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-nodes
+> 
+> 
+
+Done.
+
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	panel_suspend: panel-suspend-state {
+>> +		pins = "gpio6";
+>> +		function = "gpio";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>> +
+>> +};
+> 
+> Stray \n above
+> 
+> [...]
+> 
+>> +&adsp_pas {
+>> +	firmware-name = "qcom/sdm845/Google/blueline/adsp.mbn";
+> 
+> Sorry if I asked this before, but are the binaries identical for
+> both devices?
+
+Yes, there is only one firmware, which crosshatch has different, but all 
+listed in the initial bringup are used for both.
+
+To add, crosshatch was somehow not that popular device, so as I've been 
+suggested in u-boot discussion, I would love to keep blueline everywhere.
+
+One exception is LineageOS kernels, where they go by name crosshatch, 
+but again for the both phones.
+
+> 
+> [...]
+> 
+> 
+>> +		vreg_l14a_1p88: ldo14 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +			regulator-boot-on;
+>> +			/*
+>> +			 * We can't properly bring the panel back if it gets turned off
+>> +			 * so keep it's regulators always on for now.
+>> +			 */
+>> +			regulator-always-on;
+> 
+> Is that still the case with your fixes to the panel driver?
+> 
+> [...]
+
+Sadly yes, but I think Petr Hodina has idea what needs to be addressed, 
+so likely before 6.19 this will get addressed.
+
+> 
+>> +
+>> +		vreg_l28a_3p0: ldo28 {
+>> +			regulator-min-microvolt = <2856000>;
+>> +			regulator-max-microvolt = <3008000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+>> +			regulator-boot-on;
+>> +			/*
+>> +			 * We can't properly bring the panel back if it gets turned off
+>> +			 * so keep it's regulators always on for now.
+>> +			 */
+>> +			regulator-always-on;
+> 
+> ditto
+> 
+> [...]
+> 
+>> +	regulators-1 {
+>> +		compatible = "qcom,pmi8998-rpmh-regulators";
+>> +		qcom,pmic-id = "b";
+>> +
+>> +		vdd-bob-supply = <&vph_pwr>;
+>> +
+>> +		vreg_bob: bob {
+>> +			regulator-min-microvolt = <3312000>;
+>> +			regulator-max-microvolt = <3600000>;
+> 
+> This is a very broad range, what voltage does it need to be?
+
+I think it's possible, I just randomly picked bob regs, and f.e. 
+qcs6490-radxa-dragon-q6a.dts has even greater range.
+
+Downstream set it also this way on blueline/crosshatch.
+
+> 
+> [...]
+> 
+> [...]
+> 
+>> +&tlmm {
+>> +	gpio-reserved-ranges = < 0 4>, /* SPI (Intel MNH Pixel Visual Core) */
+> 
+> stray space before '0'
+
+done
+
+> 
+> Konrad
 
 -- 
-Best Regards,
-Wei Deng
+David Heidelberg
 
 
