@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-239651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61130C6815E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:58:44 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13601C681AF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:04:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A541A4E1AA2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:58:42 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1CE1435D68F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9F22FBE15;
-	Tue, 18 Nov 2025 07:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E286303A32;
+	Tue, 18 Nov 2025 07:58:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FOv6E8zs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xoCBZY8B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2022A157480
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 07:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642F025B69F
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 07:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763452713; cv=none; b=drTsOpL75vIABo2bX3eNXMYgdqVZmH9hdEBa4mhbQ89Smj6K8ES6RV7SoeaEJbaiLWrr6hQPmAoqQjcOwDnrQY/RfM8pcQGFbzUcvFwYnouRzwPXToVU+Z8N/2xF1WFxAo4KCgeAeYMpVcmLOyLzMd4zJBnAkcizjd6vMAJnqJ4=
+	t=1763452721; cv=none; b=jbIs2Vuowoa6z8sKZbXDVUqqNUTldn8XKn/J5daUf+aYtkTZUFp4IHTomgQsXUjm+iEafMNF9b8JO7RBxRLVvIeYJOdSwOstYuDPLejEeoWLfKONO15nNEjYNncxhJSq53biFmBVKMkMTvHqgMrH05gAaD5KKqTXcj2cxjSAPlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763452713; c=relaxed/simple;
-	bh=MY88Ecze3jhCKh22IVbhfwf7NPO3m1fHmiYDxkL6Tuw=;
+	s=arc-20240116; t=1763452721; c=relaxed/simple;
+	bh=vBqOXd94l12wj0qBqk/n0ENk8COc4RIj7BGv9RcJwkU=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=BixU2sTK9n35yRJpT2VsZsUUvXjWbSOIaIH6Rd6g4UkiHHpyvDR1YukGdHyYf+GI5JSNAEUU5u8nbv3+Ivvz+ASU3j6kDVDVM5U7Jj6Z0+gmjRPOcF7WwIi05LAMPjBLpKaa/h3vXOel6g2aJRvWVJjw+h9OUwFDNFKeE8ApIBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FOv6E8zs; arc=none smtp.client-ip=209.85.128.53
+	 In-Reply-To:Content-Type; b=ugUTyT1MavvWZSNfPlw+4yl0NevSWVf093SIw8sCWVksxxYHQhoe34HYJf+9zGL9NBKKAByQt5Yd+oy4ayEbugPKFrdvJ+htslVXGibhyxBp8EmaoEO28MiXeOtwfoPZ2iWYV8E2VQJxMklrmZsjVmRxiyIsu8zdcyWS/fPjFCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xoCBZY8B; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-477632d45c9so37836415e9.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 23:58:30 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4775ae77516so56976575e9.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 23:58:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763452709; x=1764057509; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1763452718; x=1764057518; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tbhzIE6mT3+z2/Fp9/EGeV+eaFRKjkaE4801Pc2ClA4=;
-        b=FOv6E8zs1Yt6P5wyQzhWRpjLY8cLPDOkadPECP1ArvsCWQeDPvHsFupuUieAGej+/S
-         0I7h+F4Ljdi4hLTokN4W3KIteMnvVZbvcW8b2Gf5NXLFCmZQ1ufmguTTS4pK9zyGiuAu
-         GWgzPsMeLHSi/HcZ+IrgrmqxHX0ySdvVSA78GIgW0qQAw5i3hLXruvr19BIcaANOSHIu
-         uNHnHcPr4t4iiWFCFkGm7HpSDMKbcs0lrhmDaEf/uK1Jl6lbYwePLBrALNg7fHjFVi5q
-         eFt06LDG1n0mo0WpUU0/K1nIplvJYlYfRuwOAS8VguPxfvkL/9bRY/fvbI1PYRvdn3FJ
-         xyVw==
+        bh=bX/rwpSeSV2xaHQKCSrS8dfq2AEp8R4hePQzRfPkN5c=;
+        b=xoCBZY8B8LNTYcRr2qZ07kR6IXjY1UOQ1wpOTem/cvrbai3kMVDcQzXtwmcIXCGqLM
+         HkSZhmjLBEv98pTElSAoz3YThk09pzYNzv74u3pfPK8PDn8hNWiYzMWaq0+WTQFfQkzo
+         RBAypdUgGedhcYhLu+iyvBJQ0sE9GUsPX27JeWgp7Q93g9sRued1AI1OD1AkI3q3EKkA
+         kPpMAoahVsLOpa4/tmHOGQldNxzJPGbBDJ6k0FHr/T47gb9OpxysYUJ1KXAqARh41uF6
+         tKk9CS0LhYuLp9zEXVmh4i0IcmJQB7W6zNpI00hyZ6gNH9Rzia4a+d2xQCF3EiLqLdjs
+         uIIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763452709; x=1764057509;
+        d=1e100.net; s=20230601; t=1763452718; x=1764057518;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tbhzIE6mT3+z2/Fp9/EGeV+eaFRKjkaE4801Pc2ClA4=;
-        b=X6f9H5yjGvkxX90moNW4/SQmMRCev0zS03zmerkYwOJz7slynnAr6GV8JaG8dSZTU8
-         klPzqi8xR0LlJE7wfHssL0/CLYT8lvOTHy8D7fVcq7zi3Gf1qz805WOQBPAdrSftv/4g
-         moMgBTXBaVLGBHBxIy+/U+8ACHiSJwv/f7rYYjajkIGuzLYiYGGpXf9cKE7aYM6EpLMY
-         W+rq8bKHNjvSUI/yGipy7k8vArfOuYBXo1iKe7/vpqJuBz95INVd8hYpKYLjFt5R4amw
-         rqObrX/Irb1ZZ3E7uZrdt8aDZh0BncMlpveAwbDumYcTPYFHzuDdfWJDH6mA3TEU41jC
-         /6eg==
-X-Gm-Message-State: AOJu0YyZFfMfC0L4L/zx3CffZBUdM59LX/Yiw3/ZhIMuzods9BGBvZpW
-	GnXpPtz0GPN3hMXih2tbV5MXzhwQXNhQ+Db7qHC0Lgv07Du7WPy5563dENcJb0TVRtxUPaaAXmm
-	6lNkO
-X-Gm-Gg: ASbGncu3FPA8X1YaBKiNx3r5gD2S//JZH6E8CWKc5q7LJWKctMADDim+iMTM/PlW/mV
-	lQUswMttbAlJlDycSuZGtcgEtN245acfkNezEs+OWm+EEdvCKd/QJWCP9YP1HCZ5al7XhgYSnA4
-	bAvX6JJDs82sQS5mpjUdcwTeTSbbb3EKQeA6tJH2AWXZRuJRJXCaDD82wqlr7MjXsOoTNz7NPOW
-	uxzqNsAo46EW7mAbMsIDgeZ9EcwuHvBIC+2FKgyc7S9tI2OlaJFyL9ncGLmWU8Lgn4MKhGPb6wv
-	FgUrJO7upqkbM//b/W05LpuJuky1iwGKUww4FNythOH9AZU3cpckxqKZMLkrIRlj2B4hnwfEcT/
-	SPSXDfYep8XEvsC+4xMhjzeXdwdTwJYGzON7aojIdCNn1/mISzyJev62JwIehfP7xFHN010DXJc
-	ELNk1ynqaXAon74vQMrfHNrQcjWodz0b0IIH0Kb1SbNozs8HnI7g8UuPsEdJrcvNo=
-X-Google-Smtp-Source: AGHT+IF8yNm6Tl8TKmDRXIx00wKQcMShzXyDr9a1aecp0kHrvYtVJapIlNTmZaqc/TLKXMOeh6x51w==
-X-Received: by 2002:a05:600c:8b4b:b0:477:1af2:f40a with SMTP id 5b1f17b1804b1-4778fe504abmr149301945e9.17.1763452709245;
-        Mon, 17 Nov 2025 23:58:29 -0800 (PST)
+        bh=bX/rwpSeSV2xaHQKCSrS8dfq2AEp8R4hePQzRfPkN5c=;
+        b=cW9WcXftT+hPwo0gfIlsp/laU/Pk+o+ecWfnksm76N510KE/mFfHhb0vHGP414m6qL
+         HKKM9SDvVQLMjdhryJPZE7n2uXUtn6OI2AnsVUGEupGecMthRvhP1Eg4WMd4Qkr6k8E1
+         qi62PbS+0tPrhRlmVrRapz5BkohEyZu7fmyE/Nm+F0xHN4Auyp2DU1719fjGUP2CIz0h
+         ogxBpU8HAc5JnkNy5iIYzkqz0awGCyluEnGCC/t+61Q8PPUm8fIqlV31w61jRzCS8gSu
+         yUnKzA9lfWdYWNIDZZLQUaswI0DZmOqd31hTsxFNbMro7q34v0XXcyR2lZguRMbmp9K+
+         8h4w==
+X-Gm-Message-State: AOJu0Ywdb58xEAwq2t60riuzLEGfJ6ccnHMMqiejzJ8UCOVjC3tddMOU
+	i11+T1jUaG3IcT6UhtAGIayKxG+mqGbiBd6F0PSM0Fc5M3YzwaKiOnHUfrzj0xr09ycdSfQ6HcF
+	DWS2D
+X-Gm-Gg: ASbGncu294ymM0+KyTY2ViBcOwGvC5rFyRCQ09UoiI9YCCJGFcUnVCQwVWZ9QRwXEpw
+	eXoYYstaVCBRgmthnGqQMJrOzIt+fpSRIDionBV09Zx9QIxEfq6zoKSWKQ6s75B/Tu2be1Qapdv
+	2rv7hAxNu8wF33aqNDOgNSGceyi01cVusYAStmnp/k1hX9NyCJrTpxGbn4Q6ZkJlTeXqJLzAR4O
+	j8QPsGquxatQGdv9+nNkBcUnnYtsViEyz16qqLkvoBincf2uL722FPJP2dYaXbBVKmkNocSrVLc
+	9Lf3IOD8jAWDvbj8asfkQH42Xp1Vl6lkuVeFi697KRjL3YAU8xdWD+UpOZaJM99T8kHmGF3JI9v
+	l13MJ4jpK3+EWhBXDLej4SpK+36MFyZCay24tslWNyvqrmPLKRHWxW5SDbDaAJo0SOM9h7ac0k0
+	sATKiwsxOJ+GHSdBZQxp5LuO9vRpzjsNuhkV63zn9grXe8ZnGtsd0SPb+2Crxs3rubpQHYQtmUQ
+	Q==
+X-Google-Smtp-Source: AGHT+IGGMGuWR5iFvUAotvIf2624yfKAl5P4i/kOrg7Ysa5w1iKe5V5T2MxUIaMHspzvFrmXKuRKxQ==
+X-Received: by 2002:a05:600c:3550:b0:477:76fb:ef18 with SMTP id 5b1f17b1804b1-4778fe9a5demr136227835e9.25.1763452717637;
+        Mon, 17 Nov 2025 23:58:37 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:3d9:2080:366e:5264:fffe:1c49? ([2a01:e0a:3d9:2080:366e:5264:fffe:1c49])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477a96a58c5sm12524925e9.0.2025.11.17.23.58.27
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47787daab3fsm377307365e9.0.2025.11.17.23.58.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Nov 2025 23:58:28 -0800 (PST)
-Message-ID: <91b11869-d8d8-4640-99e9-fb18d82960b3@linaro.org>
-Date: Tue, 18 Nov 2025 08:58:27 +0100
+        Mon, 17 Nov 2025 23:58:37 -0800 (PST)
+Message-ID: <d3f0e883-b580-4c75-8eb7-70a019fb5062@linaro.org>
+Date: Tue, 18 Nov 2025 08:58:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +88,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/5] soc: amlogic: meson-gx-socinfo: add new SoCs id
+Subject: Re: [PATCH v2 3/5] arm64: dts: amlogic: s6: add ao secure node
 To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
@@ -96,7 +97,7 @@ To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20251118-soc-info-s6-s7-s7d-v2-0-38e2b31a88d1@amlogic.com>
- <20251118-soc-info-s6-s7-s7d-v2-2-38e2b31a88d1@amlogic.com>
+ <20251118-soc-info-s6-s7-s7d-v2-3-38e2b31a88d1@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -123,44 +124,40 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20251118-soc-info-s6-s7-s7d-v2-2-38e2b31a88d1@amlogic.com>
+In-Reply-To: <20251118-soc-info-s6-s7-s7d-v2-3-38e2b31a88d1@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 11/18/25 06:59, Xianwei Zhao via B4 Relay wrote:
 > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Add new definition for Amlogi SoCs, include S6, S7, S7D.
+> Add node for board info registers, which allows getting SoC family and
+> board revision.
 > 
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->   drivers/soc/amlogic/meson-gx-socinfo.c | 6 ++++++
->   1 file changed, 6 insertions(+)
+>   arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 > 
-> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-> index 7549f1644e5e..2a54ca43cd13 100644
-> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
-> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-> @@ -46,6 +46,9 @@ static const struct meson_gx_soc_id {
->   	{ "A5", 0x3c },
->   	{ "C3", 0x3d },
->   	{ "A4", 0x40 },
-> +	{ "S7", 0x46 },
-> +	{ "S7D", 0x47 },
-> +	{ "S6", 0x48 },
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
+> index 0dca64a2ef9e..da3e607aea85 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
+> @@ -199,6 +199,14 @@ gpiocc: gpio@300 {
+>   					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_CC<<8) 2>;
+>   				};
+>   			};
+> +
+> +			ao-secure@10220 {
+> +				compatible = "amlogic,s6-ao-secure",
+> +					     "amlogic,meson-gx-ao-secure",
+> +					     "syscon";
+> +				reg = <0x0 0x10220 0x0 0x140>;
+> +				amlogic,has-chip-id;
+> +			};
+>   		};
+>   	};
 >   };
->   
->   static const struct meson_gx_package_id {
-> @@ -86,6 +89,9 @@ static const struct meson_gx_package_id {
->   	{ "A311D2", 0x36, 0x1, 0xf },
->   	{ "A113X2", 0x3c, 0x1, 0xf },
->   	{ "A113L2", 0x40, 0x1, 0xf },
-> +	{ "S805X3", 0x46, 0x3, 0xf },
-> +	{ "S905X5M", 0x47, 0x1, 0xf },
-> +	{ "S905X5", 0x48, 0x1, 0xf },
->   };
->   
->   static inline unsigned int socinfo_to_major(u32 socinfo)
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
