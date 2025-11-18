@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-239903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C880C6A83D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 17:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2516DC6A84F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 17:10:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8B8DD4E2B1E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 16:03:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DD1C04F7DC5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 16:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0215A36B04B;
-	Tue, 18 Nov 2025 16:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392DD36C58C;
+	Tue, 18 Nov 2025 16:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MGdNlAIH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zWX4zB/1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAD736B04C
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 16:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24FB636B05F
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 16:02:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763481771; cv=none; b=dmW1rVFwxImfX+WrU5nA+uLP97ATrQdfh4SvEEmG+pOwS2EM4y8YvSJm2ifI+hvrJy2uhgDJcejTN5SD5YrTnARLTr3IrHFx15UCt4/36gvySXKA8F4IaR5NUsXJ3x3wVRnVUbRGCcB8kp0cstsw87Iq8COIlYu29nA1xaCkFtk=
+	t=1763481777; cv=none; b=mcQB43p0u8azbDZoQES6GvsExrhuZ2QNH0i1eYTNJ/zWbE3aFmT9rLqujddbZEFdS2ZnOML+sZ4hlX8o+sGP4pflWaBGSoG01KYA9HRvYnkLJt+mWkdwmnqXCs6rrrvQwDZtPUZD4tYKpjjrw7gfyruWN1/0hhqVNsbLZktDMQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763481771; c=relaxed/simple;
-	bh=gdhjhWdICuQVp55O/pWQj35TDTisalZ3FdFeGppf0jQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g1YvVixDDIRBgxvcR/5deDbJaoNCj1cfHVYzuDsHvstUkI0qtxalxixXGTjnI+K+N1/kGPX5M9wJQphq63+/lvQwEBByuQkDknSQWHw94Q8rl5QEvuTRuCbRDUsZ0S12Aacny1eDZp7zqVzSeizjEJ+4jU3OUjUuKtQlOlQVUEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MGdNlAIH; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1763481777; c=relaxed/simple;
+	bh=jYvQElvsgNDRjssWl/7N9i2M5c/4dLl+Leh5yhSj/xI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=OAy2XRBt0ul6d3eH2Ws2gCR6Sa4c4sF2yyPXmCsNIh7X73fxC7s88ffJfXoxciNwOGGZYr0MXJeY+m7O3vxbMbhghaEf5HR2xmU6zAiIHe1SQ4sBoiOn+qlkHJuugrxT4NoZ+kaTQIGq+INaecHEcyQodUr1eOWLqKUTjCM7w8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zWX4zB/1; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso36924355e9.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 08:02:49 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47755de027eso39363475e9.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 08:02:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763481768; x=1764086568; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZolYxKyR2TKNDHC7G73SjkM6m/AelgK287SOoaUodeI=;
-        b=MGdNlAIHRiGvF4vmKV9jKxd0oHzWqYg0OCD1ZRPAbRfPw/Unebhy8FfEiZQHJn4gjc
-         Ch1IAPYB69NryyLV8cPgJ7W2DHKtkUpOZJ/Zp5iApzlwzIFKXdJ059CxR3P3oudRKCyw
-         TPRxdq9NFNGn7p6uuBpPABi9tpOn4rlm/uAiJqqZax9Dc/YwoCHFb5yH1zKKAwwTUZAn
-         ig/q7EK18w3SzmqpOChDoE1PY2Tmw7JKvyYEuUKovqICPoO7P5PQstq58lhAH+P46BqU
-         EcTnYb2dWQNeNphbS2dq5hwdIVVVPEHRHlBSYSLxShQgJIjpZrIKjzhXPD1kNvbal+AR
-         Uy8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763481768; x=1764086568;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1763481772; x=1764086572; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZolYxKyR2TKNDHC7G73SjkM6m/AelgK287SOoaUodeI=;
-        b=aYv8x3WnQ8qRWk+wFyCU/+yX4AtziQ+ZNVNPIkXq7XoceRQrBZCmBUsn+a6agRh9bD
-         vWyPq+REUkj4b/Fj1gZ97eF4fJlGtU54dF92wPJy4DD2WlQ/5CQ1YF1+idhX/gQUgWwC
-         TvWHkZiDX+aC/jOAdAAIHZIkn95ITQICDY8jQPRwHUlEaP6sNKmqxJkDoQeTOnU9hqvN
-         eYkk/5ph3DJ4nGi7SO+SQW/7L2IByT+qMzN6dRRvwZFGyGJf5xwiGU9q9tSscFXIN2S0
-         Foh+kX4o+Gzle+AOBB9vrJjfhA3qmzof3PYB0kqOLLx6cP2whkWhqp3GLN4xjO5t95HW
-         FHPA==
-X-Forwarded-Encrypted: i=1; AJvYcCUcBrdP85qk3rE0EFEHIhBu2PwopVcrD4zkDI5U9XDfIK9E9xg2OmUhYkQ9xdADD+i2NwzQNR4HHEDR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD3190jmotaOCzwj6+MCl70O8QF3imMD/tzOtoiCGRBQryTFBc
-	FcdRYgXiWsbcnrhVNHBFFYQ5Bos7n5htzqQHFrhneHwPajFWw01PgJKHo3H7dN4CzJA=
-X-Gm-Gg: ASbGncuMdDotCgL3y0FXCCSgiAHaY6MuG5BTo5KtbLUv45oWxjSM41zg4E65QKcWaIt
-	/obYg9zekoFLgQDgvjH+NYoO0nZxmaQt2Ox7A6Jp8T4abYiCxwGVo647/C/DIldveevpo3ZXiXF
-	ICnHuRDJE2eWTyXMT9uShBG06BpPjiWpEJrxzHvJyv/tAubpkwVmab1m1r/llK0azvzxQ5V94rb
-	bRmfq0kZJ54RKx6RqFieR62eCSSqWroJAeEV/MxKJ/AqOW4I7nRdJxzEPtDKbVi2nnPI/oTVWB3
-	XzmnYyxIQujNCvaNyBfK8R1xnilHJ4qMSG/bYy6reSbxSz6tcXnM7MDMiaYomEGI4VGINOzWSgS
-	mkd9yS0uOZmRPslkZqtPU1Fre+k2rGAJ1l289MKzhr9LzXX+gRgvkt/XOk8BS9mrMZnhZ7DHBFI
-	gTW+NjL+GOl8yLg2fLvMw=
-X-Google-Smtp-Source: AGHT+IHU3f+2VnZb17HyfN3q7vH0maabvSkwzyf6Chngf7ZnCh4C8B1MIKZ3LBGCUAyWOLacnrXL3g==
-X-Received: by 2002:a05:600c:4505:b0:477:7a87:48d1 with SMTP id 5b1f17b1804b1-4778fea8810mr178621825e9.30.1763481768019;
-        Tue, 18 Nov 2025 08:02:48 -0800 (PST)
+        bh=p8rPc1Q7Ab5RULv9WRwCkjVSvPd0FRyIZ5xigzgSXKw=;
+        b=zWX4zB/19qQsKEhqkeFCGIYdBncr9/SAgOQnlopgGEatBAo+rG+EBepfwQD1yMDLLE
+         EUmtNkSUVEPRrhqCW68ufSn3zRWK19aX9cI1kQWuNOVqESKCJysEBLpkJcseFwCilD5f
+         Cw4qjyyWiJWeC+7l1NGLQhKclQuzupVAJXPIsa+a400QFAzkL9iYHeX/R/FHBNh4jFV1
+         txXvVoxieQhXSj3nUvPLS7Jy2U6hJZLwC0T0qHtJZxDq/NdiHxKmrnhMsH+yfXxM9B0C
+         oC7C354Yj+XGWYuV9ejBJyTFSQfY8+7ks3sd22pI7nD/fai6liiAyhWLOhKdSU/ziHwO
+         LhvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763481772; x=1764086572;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=p8rPc1Q7Ab5RULv9WRwCkjVSvPd0FRyIZ5xigzgSXKw=;
+        b=F2JtNpl8JyvrulfEq0KqDPoT7B8/4eWHhSqnn3ie2jaESFht6LJ7KYV2cGWjC1mpT9
+         XjcyVzV1ga05Z4j15mtU7+05gNnvgGL482i6qMd3gPYM+fyDq6RCrdPPA1ZcgdCF36FY
+         Jy6wTuXEXwGwoDoiTPJd9sSTx38zqBJgkUjjSLsj/WPz8CvZuD5DTHicMqHrQngPwvct
+         Dbzh6cd9AEtxFR7IrfPseRCqOcYrZHjT9QPFwFglqwpFEeFvL856qG1I2qqPGU6raJjc
+         /FSP3P1+VnvizcymR0uiMWpChgQivAMztsQOCOKbnIauP3gnu0dyBiZZrmvSfK++ip+A
+         IFog==
+X-Forwarded-Encrypted: i=1; AJvYcCXT6j7Ny7WupvweVmi7EfodkjDD2cN9xnyuAees2SbuHKseSdh6hdX82EqPlGORb97NMtXd7w9wBbWA@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQStS7VNIw2gIE6veDIWlfU4b7i8LBZy99WIMe5LoetUt5jTGG
+	V5y6IS7/PWpNsy3HwbEOMV+MN/KeauHMmXFjGlQu/2KMP8IpTMy0rJnuz2ab4wLpWqk=
+X-Gm-Gg: ASbGncumjed/ellNQ7VJzMkUcWt1rI4VJLw+puVADMffmgYlVct5h5SI2tSonVnQ1/t
+	UENFA4hS7hB/cnrafGmzju9/mnqYlsKPfHpiLQgYddONlcAtADpSQhc8+UZgnrO3EFtypgzRNlX
+	NET2WnRwovR0x1AEfnKYS2EXvYY/DDdpp+o1eI2510Rz8xJfz3mtX51B/SqzAkfCADUneJm0p+9
+	vgqM+2D4nOTXmBmdc2XxUUPERFNGeB+ro0/wM3zpX3ACBEG6TQPmieFHA7F5X9XORe7Pu1oo5lb
+	equ/O3GuIoa5v4nAfCuZPwZP32be7FfYCktEBYREURzUuSjK1bni27lp4oVEXgRVJFbMNm3LXsk
+	rZ1Fpxe1C+iD40N18724dc93FG4HmEEJe6REZ/60N5giDmntm5goMA4ZGOaZRakCd7F6H/8Idwc
+	GAVfRfL8wHiDqjd/gkZPV2pABWh6sVtw==
+X-Google-Smtp-Source: AGHT+IGyFoEL3zw1qZUaHUanPoDmy73Ha3AJCkV4FBXZ7E2g6BEcYZMSw2TPVNtzaY+tvbRM02dGsQ==
+X-Received: by 2002:a05:600c:3593:b0:477:557b:6917 with SMTP id 5b1f17b1804b1-4778fe4fdecmr170047065e9.18.1763481772373;
+        Tue, 18 Nov 2025 08:02:52 -0800 (PST)
 Received: from vingu-cube.. ([2a01:e0a:f:6020:76db:cf5c:2806:ec0b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4779fc42f25sm171954575e9.6.2025.11.18.08.02.44
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4779fc42f25sm171954575e9.6.2025.11.18.08.02.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Nov 2025 08:02:45 -0800 (PST)
+        Tue, 18 Nov 2025 08:02:48 -0800 (PST)
 From: Vincent Guittot <vincent.guittot@linaro.org>
 To: chester62515@gmail.com,
 	mbrugger@suse.com,
@@ -97,10 +99,12 @@ To: chester62515@gmail.com,
 	linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev
 Cc: cassel@kernel.org
-Subject: [PATCH 0/4 v5] PCI: s32g: Add support for PCIe controller
-Date: Tue, 18 Nov 2025 17:02:34 +0100
-Message-ID: <20251118160238.26265-1-vincent.guittot@linaro.org>
+Subject: [PATCH 1/4 v5] dt-bindings: PCI: s32g: Add NXP PCIe controller
+Date: Tue, 18 Nov 2025 17:02:35 +0100
+Message-ID: <20251118160238.26265-2-vincent.guittot@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251118160238.26265-1-vincent.guittot@linaro.org>
+References: <20251118160238.26265-1-vincent.guittot@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,93 +113,162 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The S32G SoC family has 2 PCIe controllers based on Designware IP.
+Describe the PCIe host controller available on the S32G platforms.
 
-Add the support for Host mode.
-
-Change since v4:
-
-- Moved allof position and added interrupt-names' restriction in yaml file
-- Removed PCIE_S32G_PE0_LINK_DBG_2 and instead use PCIE_PORT_DEBUG0|1
-  after receiving confirmation that they are the same.
-
-Change since v3:
-
-- Added Root Port node and reorder irq in binding
-- Added Root Port management in driver 
-- Fix Kconfig PCIE_NXP_S32G position
-- Use default pme_turn_off method
-- Use ops->init() to simplify init and suspend/resume sequence
-- Fix some typos.
-- Removed MPS and ERROR config. Let core code configs them.
-- Removed s32g_pcie_disable_equalization() from internal team request
-- Removed dw_pcie_link_up() from suspend/resume functions with [1]
-
-- I'm still waiting feedback from internal team before removing
-.get_ltssm() and .link_up() functions.
-
-[1] https://lore.kernel.org/all/20251107044319.8356-1-manivannan.sadhasivam@oss.qualcomm.com/
-
-Change since v2:
-
-- More cleanup on DT binding to comply with schemas/pci/snps,dw-pcie.yaml
-- Added new reg and bit fields in pcie-designware.h 
-- Rename Kconfig PCIE_NXP_S32G and files to use pcie-nxp-s32g prefix
-- Prefixed s32G registers with PCIE_S32G_ and use generic regs otherwise
-- Use memblock_start_of_DRAM to set coherency boundary and add comments
-- Fixed suspend/resume sequence by adding missing pme_turn_off function
-- Added .probe_type = PROBE_PREFER_ASYNCHRONOUS to speedup probe
-- Added pm_runtime_no_callbacks() as device doesn't have runtime ops
-- Use writel/readl in ctrl function instead of dw_pcie_write/read
-- Move Maintainer section in a dedicated entry
-
-Change since v1:
-
-- Cleanup DT binding
-  - Removed useless description and fixed typo, naming and indentation.
-  - Removed nxp,phy-mode binding until we agreed on a generic binding.
-    Default (crnss) mode is used for now. Generic binding wil be discussed
-    in a separate patch.
-  - Removed max-link-speed and num-lanes which are coming from
-    snps,dw-pcie-common.yaml. They are needed only if to restrict from the
-    the default hw config.
-  - Added unevaluatedProperties: false
-  - Keep Phys in host node until dw support Root Port node.
-
-- Removed nxp-s32g-pcie-phy-submode.h until there is a generic clock and
-  spectrum binding.
-
-- Rename files to start with pcie-s32g instead of pci-s32g
-
-- Cleanup pcie-s32-reg.h and use dw_pcie_find_capability()
-
-- cleanup and rename in s32g-pcie.c in addtion to remove useless check or
-  duplicate code.
-
-- dw_pcie_suspend/resume_noirq() doesn't woork, need to set child device
-  to reach lowest state.
-
-- Added L: imx@lists.linux.dev in MAINTAINERS
-
-
-Vincent Guittot (4):
-  dt-bindings: PCI: s32g: Add NXP PCIe controller
-  PCI: dw: Add more registers and bitfield definition
-  PCI: s32g: Add initial PCIe support (RC)
-  MAINTAINERS: Add MAINTAINER for NXP S32G PCIe driver
-
- .../bindings/pci/nxp,s32g-pcie.yaml           | 130 ++++++
- MAINTAINERS                                   |   9 +
- drivers/pci/controller/dwc/Kconfig            |  10 +
- drivers/pci/controller/dwc/Makefile           |   1 +
- drivers/pci/controller/dwc/pcie-designware.h  |   8 +
- .../pci/controller/dwc/pcie-nxp-s32g-regs.h   |  21 +
- drivers/pci/controller/dwc/pcie-nxp-s32g.c    | 391 ++++++++++++++++++
- 7 files changed, 570 insertions(+)
+Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
+Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+---
+ .../bindings/pci/nxp,s32g-pcie.yaml           | 130 ++++++++++++++++++
+ 1 file changed, 130 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
- create mode 100644 drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
- create mode 100644 drivers/pci/controller/dwc/pcie-nxp-s32g.c
 
+diff --git a/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
+new file mode 100644
+index 000000000000..da3106dfcf58
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
+@@ -0,0 +1,130 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/nxp,s32g-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP S32G2xxx/S32G3xxx PCIe Root Complex controller
++
++maintainers:
++  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
++  - Ionut Vicovan <ionut.vicovan@nxp.com>
++
++description:
++  This PCIe controller is based on the Synopsys DesignWare PCIe IP.
++  The S32G SoC family has two PCIe controllers, which can be configured as
++  either Root Complex or Endpoint.
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - nxp,s32g2-pcie
++      - items:
++          - const: nxp,s32g3-pcie
++          - const: nxp,s32g2-pcie
++
++  reg:
++    maxItems: 6
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: dbi2
++      - const: atu
++      - const: dma
++      - const: ctrl
++      - const: config
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++
++  interrupt-names:
++    items:
++      - const: msi
++      - const: dma
++    minItems: 1
++
++  pcie@0:
++    description:
++      Describe the S32G Root Port.
++    type: object
++    $ref: /schemas/pci/pci-pci-bridge.yaml#
++
++    properties:
++      reg:
++        maxItems: 1
++
++      phys:
++        maxItems: 1
++
++    required:
++      - reg
++      - phys
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++  - ranges
++  - pcie@0
++
++allOf:
++  - $ref: /schemas/pci/snps,dw-pcie.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/phy/phy.h>
++
++    bus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie@40400000 {
++            compatible = "nxp,s32g3-pcie", "nxp,s32g2-pcie";
++            reg = <0x00 0x40400000 0x0 0x00001000>,   /* dbi registers */
++                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 registers */
++                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers */
++                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers */
++                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl registers */
++                  <0x5f 0xffffe000 0x0 0x00002000>;   /* config space */
++            reg-names = "dbi", "dbi2", "atu", "dma", "ctrl", "config";
++            dma-coherent;
++            #address-cells = <3>;
++            #size-cells = <2>;
++            device_type = "pci";
++            ranges =
++                     <0x81000000 0x0 0x00000000 0x5f 0xfffe0000 0x0 0x00010000>,
++                     <0x82000000 0x0 0x00000000 0x58 0x00000000 0x0 0x80000000>,
++                     <0x82000000 0x1 0x00000000 0x59 0x00000000 0x6 0xfffe0000>;
++
++            bus-range = <0x0 0xff>;
++            interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "msi", "dma";
++            #interrupt-cells = <1>;
++            interrupt-map-mask = <0 0 0 0x7>;
++            interrupt-map = <0 0 0 1 &gic 0 0 GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
++                            <0 0 0 2 &gic 0 0 GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>,
++                            <0 0 0 3 &gic 0 0 GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
++                            <0 0 0 4 &gic 0 0 GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
++
++            pcie@0 {
++                reg = <0x0 0x0 0x0 0x0 0x0>;
++                #address-cells = <3>;
++                #size-cells = <2>;
++                ranges;
++
++                device_type = "pci";
++                phys = <&serdes0 PHY_TYPE_PCIE 0 0>;
++            };
++        };
++    };
 -- 
 2.43.0
 
