@@ -1,229 +1,123 @@
-Return-Path: <devicetree+bounces-239957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5F0C6B444
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 19:45:34 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91DE1C6B520
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 20:00:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B516F4E03CC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:45:33 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2419035F99D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:59:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B78279DAD;
-	Tue, 18 Nov 2025 18:45:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41BAC2E1730;
+	Tue, 18 Nov 2025 18:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="olkFA1QK"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qdjIFpj9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BB520C48A;
-	Tue, 18 Nov 2025 18:45:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246FA2E1C57;
+	Tue, 18 Nov 2025 18:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763491530; cv=none; b=ZtToJLGKRaGWSJD7pmUnf9EWcIdIYAjrQMavVXIe3VN3VawKyBKrSodn4JncYea2huSzkf6KxTO7XyHogS7VYv9gZB8zzBH6sSB68Dd0aeNia8Gc6J/OIIV0Jt5FT94wVvGWVhpdwTnUQXCjL6DfNRyJONN4ckxT5i1/ZkltXGY=
+	t=1763492361; cv=none; b=qozG49kGiM5NFCbVdzDb1xjnY/Ka0W9krcQY+qXQcl5pTzYl9pquUkz0L1MW+nxdIKCRY+6ZvAoASp6Vzk8CAHRXyD9op5c3JTwYRoSxIzrzl7xFv7jMA9MAfqwJkNa3tmZwiXTUuQQ0cB3Ik4Fiyw19hzuH5Ql6PRwXaJtrTKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763491530; c=relaxed/simple;
-	bh=6f58PRvKFkPh7LpJwZK27THW4/eyjaxEvpsou4a3DUg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=MyCL/w8nxBAIbOBkSwbqVZT29lVlJ2oFpAHUC5YL8bz7mugGjDfRLRrilqYhmuWPVNl1Z+w/VkE8vDyMqvZd7P8zf48wHsvIM5vnwedhgBYeUnMDcFmLzpMzd1b852f+nAtZE50ir9T5/lWjnkOv0B3s+kPhkOpdIy9KudOtCfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=olkFA1QK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D67F4C2BCB4;
-	Tue, 18 Nov 2025 18:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763491528;
-	bh=6f58PRvKFkPh7LpJwZK27THW4/eyjaxEvpsou4a3DUg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=olkFA1QKiEIh54DeHw/MOZ/H3l+sy0QX7HyWDXfdbKT/kaGlM3jXV2FIuKZgHnXtl
-	 lAMKO0msifxm+HUaTZqfmdOhlG72ti8GM1/00Tn34+h4NpZYxMYx8knYHsIZeeObfe
-	 W/KOwikIqx4vNEnYM08zyOkAtKqB7ManqociEuZd7+2sqPdvDDyP8ecED2vfxa6IPB
-	 BFyYWfULA1Tu8c075zX0q1xyIsR6O84zzZ/iBJePyZFODcGNWbhgojY4PoXbdhZ04m
-	 CPjP/AO96vjL+91E4697K7oIrfjSm5AT6b9ElT3XVUC2m6/SpPY6E9isFnb8axyoKr
-	 uUTUWVEVXwoKw==
-Date: Tue, 18 Nov 2025 12:45:25 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v9 0/7] PCI: Enable Power and configure the TC9563 PCIe
- switch
-Message-ID: <20251118184525.GA2583175@bhelgaas>
+	s=arc-20240116; t=1763492361; c=relaxed/simple;
+	bh=zJNUrRj587FQsGyE0czCnjJ6PtuOY81WP+YvMy5Ka1E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z8GTfiuEcU7oy/iM7hnmBJna2VyoTCucuw+wkWrEYHvnhWcToz4Odt4AvJ77jfFNqq6B0U3v9ceae4DwnkxBWnRfR35d0Sq9RLVnO0NTXeEgt3LiQXG8L1Q+X74nm3djTigNQLO3bp0TBGv/ZnTDtJnPQaTmAKb0hura36dbgTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qdjIFpj9; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763492355;
+	bh=zJNUrRj587FQsGyE0czCnjJ6PtuOY81WP+YvMy5Ka1E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qdjIFpj9XfKyHjeibzt+NBM1a2vqzFfX4V3QdUbParRXtar/U765arJQycLvPXCVz
+	 pdknpJnXYbqYoMsnkVQw78Fdt07QKs13NmgXRe7B0pZqNI1qo1UKCAEq+EdCjBBFxW
+	 gIucdl8H02k9UBV3kFDur6ccv5FMWCvRQ0GLFEjw/tavAHeJ34EY/WbR5fdxJawwOV
+	 HKu+zspSn5oqfoWg04OxZH5FqXS/laOaFeYSLU/q/2VXk03GXG7jHmYeZuuYm+F0gq
+	 JoZEgCfwNy3D7kf2Syu61p0oczWw9FdRQNIpDT/QiFDCZAan/4xqrxUZdh+RjXOiDC
+	 es6QJjaF9ERkQ==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id DCD8E17E0117;
+	Tue, 18 Nov 2025 19:59:14 +0100 (CET)
+Message-ID: <554971e1-6fde-4b2c-a2de-fe178358a4e3@collabora.com>
+Date: Tue, 18 Nov 2025 19:59:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251101-tc9563-v9-0-de3429f7787a@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] media: rockchip: add driver for the rockchip mipi
+ csi-2 receiver
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans Verkuil <hverkuil@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251114-rockchip-mipi-receiver-v2-0-eb9b43377fc4@collabora.com>
+ <20251114-rockchip-mipi-receiver-v2-2-eb9b43377fc4@collabora.com>
+ <aRyplYZOrGsSxSlp@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <aRyplYZOrGsSxSlp@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Nov 01, 2025 at 09:29:31AM +0530, Krishna Chaitanya Chundru wrote:
-> TC9563 is the PCIe switch which has one upstream and three downstream
-> ports. To one of the downstream ports ethernet MAC is connected as endpoint
-> device. Other two downstream ports are supposed to connect to external
-> device. One Host can connect to TC956x by upstream port.
-> 
-> TC9563 switch power is controlled by the GPIO's. After powering on
-> the switch will immediately participate in the link training. if the
-> host is also ready by that time PCIe link will established. 
-> 
-> The TC9563 needs to configured certain parameters like de-emphasis,
-> disable unused port etc before link is established.
-> 
-> As the controller starts link training before the probe of pwrctl driver,
-> the PCIe link may come up as soon as we power on the switch. Due to this
-> configuring the switch itself through i2c will not have any effect as
-> this configuration needs to done before link training. To avoid this
-> introduce assert_perst() which asserts & de-asserts the PERST# which helps
-> to stop switch from participating from the link training.
-> 
-> Note: The QPS615 PCIe switch is rebranded version of Toshiba switch TC9563 series.
-> There is no difference between both the switches, both has two open downstream ports
-> and one embedded downstream port to which Ethernet MAC is connected. As QPS615 is the
-> rebranded version of Toshiba switch rename qps615 with tc9563 so that this driver
-> can be leveraged by all who are using Toshiba switch.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
-> Changes in v9:
-> - Change driver to align with dt properties (Bjorn).
-> - Link to v8: https://lore.kernel.org/r/20251031-tc9563-v8-0-3eba55300061@oss.qualcomm.com
-> 
-> Changes in v8:
-> - Rebase on the pci branch (Bjorn)
-> - Change order of the patch (Dmitry)
-> - Couple of nits pointed by (Ilpo)
-> - Change reset-gpios to resx-gpios (Mani)
-> - Link to v7: https://lore.kernel.org/r/20251029-qps615_v4_1-v7-0-68426de5844a@oss.qualcomm.com
-> 
-> Changes in v7:
-> - Rename stop_link() & start_link() to asser_perst() and change all
->   occurances  (Bjorn).
-> - Remove PCIe link is active check & relevent patch,  assume this driver will
->   be for the swicth connected directly to the root port, if it is
->   connected in the DSP of another switch we can't control the link so driver will not have any impact
->   we need make them as fixed regulators for now.
-> - Link to v6: https://lore.kernel.org/r/20250828-qps615_v4_1-v6-0-985f90a7dd03@oss.qualcomm.com
-> 
-> Changes in v6:
-> - Took v10 patch  https://lore.kernel.org/all/1822371399.1670864.1756212520886.JavaMail.zimbra@raptorengineeringinc.com/
->   to my series as my change is dependent on it.
-> - Add Reviewed-by tag by Rob on dt-binding patch.
-> - Add Reviewed-by tag by Dmitry on devicetree.
-> - Fixed compilation errors.
-> - Fixed n-fts issue point by (Bjorn Helgaas).
-> - Fixed couple of nits by (Bjorn Helgas).
-> - Link to v5: https://lore.kernel.org/r/20250412-qps615_v4_1-v5-0-5b6a06132fec@oss.qualcomm.com
-> Changes from v4:
-> - Rename tc956x to tc9563, instead of using x which represents overlay board one
->   use actual name (Konrad & Krzysztof).
-> - Remove the patches 9 & 10 from the series and this will be added by mani
-> - Couple of nits by Konrad
-> - Have defconfig change for TC956X by Dmitry
-> - Change the function name pcie_is_link_active to pcie_link_is_active
->   replace all call sites of pciehp_check_link_active() with a call
->   to the new function. return bool instead of int (Lukas)
-> - Add pincntrl property for reset gpio (Dmitry)
-> - Follow the example-schema order, remove ref for the
->   tx-amplitude-microvolt, change the vendor prefix (Krzysztof)
-> - for USP node refer pci-bus-common.yaml and for remaining refer
->   pci-pci-bridge.yaml(Mani)
-> - rebase to latest code and change pci dev retrieval logic due code
->   changes in the latest tip.
-> - Link to v4: https://lore.kernel.org/r/20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com
-> changes from v3:
-> - move common properties like l0s-delay, l1-delay and nfts to pci-host-common.yaml (bjorn H)
-> - remove axi-clk-frequency property (Krzysztof)
-> - Update the pattern properties (Rob)
-> - use pci-pci-bridge as the reference (Rob)
-> - change tx-amplitude-millivolt to tx-amplitude-microvolt  (Krzysztof)
-> - rename qps615_pwrctl_power_on to qps615_pwrctl_bring_up (Bart)
-> - move the checks for l0s_delay, l1_delay etc to helper functon to
->   reduce a level of indentation (Bjorn H)
-> - move platform_set_drvdata to end after there is no error return (bjorn H)
-> - Replace GPIOD_ASIS to GPIOD_OUT_HIGH (Mani)
-> - Create a common api to check if link is up or not and use that to call
->   stop_link() and start_link().
-> - couple of nits in comments, names etc from everyone
-> Link to v3: https://lore.kernel.org/all/20241112-qps615_pwr-v3-3-29a1e98aa2b0@quicinc.com/T/
-> Changes from v2:
-> - As per offline discussions with rob i2c-parent is best suitable to
->   use i2c client device. So use i2c-parent as suggested and remove i2c
->   client node reference from the dt-bindings & devicetree.
-> - Remove "PCI: Change the parent to correctly represent pcie hierarchy"
->   as this requires seperate discussions.
-> - Remove bdf logic to identify the dsp's and usp's to make it generic
->   by using the logic that downstream devices will always child of
->   upstream node and dsp1, dsp2 will always in same order (Dmitry)
-> - Remove recursive function for parsing devicetree instead parse
->   only for required devicetree nodes (Dmitry)
-> - Fix the issue in be & le conversion (Dmitry).
-> - Call put_device for i2c device once done with the usage (Dmitry)
-> - Use $defs to describe common properties between upstream port and
->   downstream properties. and remove unneccessary if then. (Krzysztof)
-> - Place the qcom,qps615 compatibility in dt-binding document in alphabatic order (Krzysztof)
-> - Rename qcom,no-dfe to describe it as hardware capability and change
->   qcom,nfts description to reflect hardware details (Krzysztof)
-> - Fix the indentation in the example in dt binding (Dmitry)
-> - Add more description to qcom,nfts (Dmitry)
-> - Remove nanosec from the property description (Dmitry)
-> - Link to v2: https://lore.kernel.org/r/linux-arm-msm/20240803-qps615-v2-0-9560b7c71369@quicinc.com/T/
-> Changes from v1:
-> - Instead of referencing whole i2c-bus add i2c-client node and reference it (Dmitry)
-> - Change the regulator's as per the schematics as per offline review
-> (Bjorn Andresson)
-> - Remove additional host check in bus.c (Bart)
-> - For stop_link op change return type from int to void (Bart)
-> - Remove firmware based approach for configuring sequence as suggested
-> by multiple reviewers.
-> - Introduce new dt-properties for the switch to configure the switch
-> as we are replacing the firmware based approach.
-> - The downstream ports add properties in the child nodes which will
-> represented in PCIe hierarchy format.
-> - Removed D3cold D0 sequence in suspend resume for now as it needs
-> separate discussion.
-> - Link to v1: https://lore.kernel.org/linux-pci/20240626-qps615-v1-4-2ade7bd91e02@quicinc.com/T/
-> 
-> ---
-> Krishna Chaitanya Chundru (7):
->       dt-bindings: PCI: Add binding for Toshiba TC9563 PCIe switch
->       PCI: Add assert_perst() operation to control PCIe PERST#
->       PCI: dwc: Add assert_perst() hook for dwc glue drivers
->       PCI: dwc: Implement .assert_perst() hook
->       PCI: qcom: Add support for assert_perst()
->       PCI: pwrctrl: Add power control driver for TC9563
->       arm64: dts: qcom: qcs6490-rb3gen2: Add TC9563 PCIe switch node
-> 
->  .../devicetree/bindings/pci/toshiba,tc9563.yaml    | 179 ++++++
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       | 128 ++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               |   2 +-
->  drivers/pci/controller/dwc/pcie-designware-host.c  |   9 +
->  drivers/pci/controller/dwc/pcie-designware.h       |   9 +
->  drivers/pci/controller/dwc/pcie-qcom.c             |  13 +
->  drivers/pci/pwrctrl/Kconfig                        |  14 +
->  drivers/pci/pwrctrl/Makefile                       |   2 +
->  drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c           | 648 +++++++++++++++++++++
->  include/linux/pci.h                                |   1 +
->  10 files changed, 1004 insertions(+), 1 deletion(-)
+Hi Frank,
 
-Applied to pci/pwrctrl-tc9563 for v6.19, except for the
-arch/arm64/boot/dts/qcom/ patch, which I assume will be handled
-elsewhare (note the apparent typo in that patch pointed out by
-Konrad).
+On 11/18/25 18:15, Frank Li wrote:
+> On Tue, Nov 18, 2025 at 12:12:26PM +0100, Michael Riesch via B4 Relay wrote:
+>> From: Michael Riesch <michael.riesch@collabora.com>
+>>
+>>[...]
+>> +#define CSI2HOST_N_LANES     0x04
+>> +#define CSI2HOST_CSI2_RESETN 0x10
+>> +#define CSI2HOST_PHY_STATE   0x14
+>> +#define CSI2HOST_ERR1	     0x20
+>> +#define CSI2HOST_ERR2	     0x24
+>> +#define CSI2HOST_MSK1	     0x28
+>> +#define CSI2HOST_MSK2	     0x2c
+>> +#define CSI2HOST_CONTROL     0x40
+> 
+> Look like that is designware CSI2 controller, can we build common library
+> for all dwc csi2 controller, instead of every vendor create individual one.
+> 
+> First try at
+> https://lore.kernel.org/linux-media/20250821-95_cam-v3-21-c9286fbb34b9@nxp.com/
+> 
+> Toshiba have similar patch
+> https://lore.kernel.org/linux-media/aPZd39riAxqfw3mT@lizhi-Precision-Tower-5810/
+> 
+> Frank
+
+This has been discussed already a while ago:
+https://lore.kernel.org/all/20250507083837.GA11152@pendragon.ideasonboard.com/
+
+Bottom line from Laurent:
+
+"Let's keep this driver Rockchip-specific then. Thanks for checking."
+
+>  [...]
+Best regards,
+Michael
 
