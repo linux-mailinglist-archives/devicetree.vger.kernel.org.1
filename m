@@ -1,211 +1,159 @@
-Return-Path: <devicetree+bounces-239831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F2C2C69CE0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:05:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B68EEC69DA3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:13:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1501E4F68ED
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:01:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id D7D672E185
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3769735CB76;
-	Tue, 18 Nov 2025 13:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1353D30F529;
+	Tue, 18 Nov 2025 14:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GC/MRswZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AolraFiu";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dv3f7mji"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 455DD35C1B4
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 13:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D03262FFF
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763474266; cv=none; b=SeW3v962j3yOXAbvwE18aBAhhaMbiMJoQv7BCABgfI4e53BRdR73NM5eUxJpLDvMkiW4xMrzIPYTq7nAXp1sBpikY0qHZVoTvcN+RwGsbK9OKWnUvaHInBZf4Foa2bHe0anb3wJMBhKP8mTJkrg4YVP4m9tlKWG4XcNacSJS4qU=
+	t=1763474658; cv=none; b=OBzDKFtFIN0d/zR/1lW7JdrqqwCyW1vn/O+timUypT07E+E7meUnlSECtIda4HObsSFBe5kjQkUbnQcXurfZ3OzuelYV5k+REYAqsgKlDhMTkydEpVusoZwdjyxR0epDgHzrlTN/V+JAZuxjLHDxcIzuGN6NA3JKs30JgdQLYJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763474266; c=relaxed/simple;
-	bh=mfMgEPem+bHdCW32SziEJw133LN6fYuGSmC870ikt8I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nottOQQp8UGbQ/smetCAdyIO9MnYWFjOFcstBlTj9+CF2tQ3bHYFiSoRWpMwoS8DmAomquSLZcb2yk/Qo4MxzPlwkGldD6+VFd7xh46wYKRRdgJmQaYAd1N8tuXZkcFQPuQcTmqNXc9koLnN/duyukSusXrZ5yqSNgcfLV7qhEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GC/MRswZ; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47795f6f5c0so24570375e9.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 05:57:43 -0800 (PST)
+	s=arc-20240116; t=1763474658; c=relaxed/simple;
+	bh=eivKH+bThhHIx+nrmAYaplfsILqcdjKBqOGsG4tirSo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UqmKCiqP5fJYnAA2jrULXIuuRNVlDPRkxlwaPPaAkEptzGI83goOm8pjtpLQDVBNtPwoMK5inSsePj/Tx5Cd4JOwvPocj5gZcNQAocHU73nfVBvRNvGit5tCqO67jYoIzauPhEdLRP5wTr/pHjA/PX0QLPXXNbA/BfpDS4WvMsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AolraFiu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dv3f7mji; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AI8Vgu32250590
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:04:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=uHYxjskzaDZ3AQkqslYYhIoAw46gvy8EwCz
+	PW9HpHgs=; b=AolraFiuPA7eUxSVtzIAj4acCUraUB6bbMifssolfSyqkH0oTxt
+	TtDca6p3ZHoUOI2Svj1XcBaMx41Qy5Q0bpFZIxL4StPEE2VXg7xaS7GkfaAnObPB
+	JAce0/UlUT+4K+i4I9zaQz61UT+AgqIRjedSbCJWr+2QuVAkxmbNbiaZQMTj0/jI
+	S1jGPfl+msABvW9zt0/eAJuXFY72Gq1EHFdw5i/ua4TkBvxfsWLMT+/7ibsK3Trs
+	JVSvadurBPlW0ZiISgbn1rZD8SRoQg2S1JSziF+KYgClKbO0Eo6WfH3XVHs3P27W
+	3e9LThnqaLcqWcbjEnZWUuIABkoBWFjlWyg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agnc5gws6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:04:14 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-297df5c10ffso23654985ad.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 06:04:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763474262; x=1764079062; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SUDZ4lylaMkBQy9BPqNgegQrO9kWuZYea7qf7A3b2LY=;
-        b=GC/MRswZcBaqLBUZI42NmlIMRt8m1+kqjMzSYRp/vGIwLdk4VT9YAhhFki3sgYhm+W
-         7MQVjmuUJQ1ez34bK5mLygiDm7A8dwn+hVGnbO2YjIAcFPlU7+W8xgQFPW7rjaMDaNkU
-         r+Sk6lzg/k1I4q9jygJNZWo20NQvvNK/bhMHPNMg5KjBCzBUzinQnzlrmTHOluMtAiPh
-         NOmzC/oRCgpT/56bJ7zDSDFpOMUaU2Ix2yn0C6+2pV70QGS+pFT7biLv+lICiEgdDAnT
-         DTD4scazP+3d/b181e4SikN9AQAfjJpSQPTKLLLDqR6hEppqFZxJheA851yByUyrYQwz
-         soAQ==
+        d=oss.qualcomm.com; s=google; t=1763474654; x=1764079454; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uHYxjskzaDZ3AQkqslYYhIoAw46gvy8EwCzPW9HpHgs=;
+        b=dv3f7mjiXVN8XtrgBNO93r15znCXik49/uSZd1/WdHS7bBo/zY70a7eQzKFeUbg28N
+         r2ll3tY+fRVQj31bDMsbNLogicuYagS/D+mX0cJBbtzNUa3LG9yLRZEESj9s3U+niVUs
+         iVCSpJ8DdTo+aux7eGEs6Nx1VEj7liDXt9DGgdMrXedU7W1VsdZE12Ecxq53AxdnICPV
+         qCYSh4Z9gWEEW7KqkuumJNYtPAFtbFGj8rTtpKAM7eBszVnXD/o5gdR6+cjJjauXtqaL
+         zkyZ7lL90WoOwV79XQNoq7aeSiMxoyv7KrgjD8iQQwqiFo0mh1gkCiwST/8R8/qqfYkx
+         eLAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763474262; x=1764079062;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SUDZ4lylaMkBQy9BPqNgegQrO9kWuZYea7qf7A3b2LY=;
-        b=TQgx+aQz0Q/y7Pbg3w/kATVSwOwszrYK+3LZ6xW4EE3SP6CG3Ag8ERKuSDxV2W6mYa
-         M3ZR8fmeTJqIKCo8iBBJ4LDbnSNH+PrmHvLl0EVjo/mJoY+sfC7DyinPPNCPwmYs+Nw+
-         5o7SdlHxjmRfFWIDSU3Jjj79xxvWyYiakpz7AZWih1+/l4M3XBFklfnWOFN6Kb/Oj/kP
-         u74+ifwbQ3WFpll7jqCgAn9h3tFwq7Im7Ucee6alj/Cf6PGvsrm7lwDMquPcPEEZpOHx
-         JaULnSyYzh28S81at00zQZRfsa3KApYv7PmHYdsmbbO3IzsP4Yq0FuzF5Lu3pNE2QkFo
-         2xbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUH4Gz0nUv6bsetq0RmF/EUPnrOtfdW1o5TYVlh39Sd9u0Z1lSl+qFEk+DWwDHHaWVW98NFSxAR4Kgc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpVTu0r9HAGJdcJfuuAfVE368/RAroz6l+JEjLcRSCAPnJiY+o
-	LWED7r6WfrN72msjGvzjrmgxEi6tniaxZxJp6RH/2sAnC3uk7xuigGG62wR8FAGi7no=
-X-Gm-Gg: ASbGncugJHhXQXGsVLgeQt0h4eh3rNSkdj234iR7uf+Cbx1kqTe5ZtIqn7x7OK9qWCx
-	w7ERrvuqFkVk1WMDmyR2H1K6zDS+/NeDzknPk5LiVLI+bQhPF84UiNLKLD+TudVsIaNKfd+Tjp6
-	MHeiGU6tj6GDYiozPC9Fa8cy47ArhRJVuGhPuWUW4dGTLIHOy3dnEan+x/aSlKk2ceq3/PJCWOM
-	saQi5kytsoFpnvEpAcEO1BZFb26GCDWFdsoRTIbzxxkOysjQa9MfaVOQAifreK83L6FVg7MtqUx
-	eE+xi1GouOOCHAwKL2NiVc6wBLajRVD0XI8mPW9/2xtXk5cet6ZV8N9mLb/IAqz2nrkIkcr/3eT
-	PXoOnr+uBPqArpL/WcJv8FBYv05b/cqgAOkjrkmWGYgXv4/9ves8VZLqtVU+ckbQ0LYvbkKm28d
-	k6VDS1GahORVvvgCCE5eG6BAS+511g+MgiY0vqm23yYiJcfO8G4kFOa+ZpMoWECf938w==
-X-Google-Smtp-Source: AGHT+IG9vP9ywNhwcCVn9uZYhtMtnoVY99ke6nSnOYKsVre1wo2fJQ2gXlVy6Kn/osQqy7PyWirVeQ==
-X-Received: by 2002:a05:600c:4585:b0:477:63dc:be00 with SMTP id 5b1f17b1804b1-4778feaa7f5mr130859165e9.25.1763474262494;
-        Tue, 18 Nov 2025 05:57:42 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:3006:e9fd:4de4:66f6? ([2a05:6e02:1041:c10:3006:e9fd:4de4:66f6])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47787e36ca3sm393988575e9.5.2025.11.18.05.57.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Nov 2025 05:57:42 -0800 (PST)
-Message-ID: <bb985484-dc67-42ba-bbc4-94bab89f72b1@linaro.org>
-Date: Tue, 18 Nov 2025 14:57:41 +0100
+        d=1e100.net; s=20230601; t=1763474654; x=1764079454;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uHYxjskzaDZ3AQkqslYYhIoAw46gvy8EwCzPW9HpHgs=;
+        b=g56zoUhRQzKqhiH/0Q5mplCjKr8j228p/hjv6gEOMiMgTBINlKba7ugnrkSu1Ii08p
+         Fy6jto11L54UlIsTWNSfV/SRTC51gZQR0XJ0Bn2j5hn89yYaC+YITCkgl/Kxu1eTxhHZ
+         78DHaM0EWdg3IYP0m7uk5mOfBwPJDtvXMz1YnMSjPLVUemECeeijglxmL0oTa0Tj1JgO
+         RIFsVAek0GvRcSsSDgDkLiP+s71bSHx1RmJsLUcCAOebopHTqXGhImq6B5COFBw5m+Ek
+         nLkacMl7wFGvlegNMbf0QmSVGpThVEcM/gKC75AXmhfJ9GkuyurJd4rElQrcERdKb1hk
+         V9Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCW0mE7L/SgOB7Y2v3MfUL+YZqGZt4EkbT1C2C52/3paapB0drLKBylgHNuJdVr09xqnQQAU7lCdXReP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHpMLnXyHC1ZhtkQ0V3AsVdLWVF5NBwq4DXqg2zTi4Jj1uBSP0
+	sD6ZVINbzUAvLcGiBjYy3l63o7loXyjN/igDWlkGcnvwK/t2SMx/Xzc7oXdj5LJMer2Itmp/JSd
+	SuO9aXLyQNWw8FKq97uV+9TpYq7zE84KxrNhu5H4hQHQxqCyb2zJlAF1BHo+oHGll
+X-Gm-Gg: ASbGncuLx3X7AHvpDr4kxEgXHo+1Iky7LoYdEi1Et0WobSZ6fg83+0fVLihZ/BQ4Ld9
+	MJJHqWSMA8X1lH1IY2xANXAqeB+B3zG6UFVVusGA6Ox78+YwzYzVuhLx+XYAMB64q7DOidvjEPN
+	TxrxNj2sEkS6dvYY8T/2iG7OnGOFsGFaKqKOfCClMDQywMwX96QSThPw5Lfvytf1llu45Nb7qFh
+	AnblJ33V4of/1OTPyo7WDVUtgl19XZGNq3F2KVHmpyBCsQ/UK3oKsYtBzDKwhaErtZx3sVj019P
+	Pm9rsUwPneh5InVCHMqER2GP4p7x1yj/5XsfvFufBov3U8+H2Hez+gGkSCGwgYlRUpMju7erYnB
+	Ki5CtScJmBHv2UYajFQiMluv3h3lmU87z
+X-Received: by 2002:a17:902:c404:b0:298:5eb6:8998 with SMTP id d9443c01a7336-299f655aa90mr19058065ad.3.1763474653885;
+        Tue, 18 Nov 2025 06:04:13 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFMG1GyA9Vp3dG2icF2IS9EZgNfW2wZwVLWZrzxeSFWMbHaFtQD3m0nI6ncFpQuuS5iZ4Yw7Q==
+X-Received: by 2002:a17:902:c404:b0:298:5eb6:8998 with SMTP id d9443c01a7336-299f655aa90mr19057645ad.3.1763474653120;
+        Tue, 18 Nov 2025 06:04:13 -0800 (PST)
+Received: from hu-weiden-sha.qualcomm.com ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2986a60b116sm142957695ad.79.2025.11.18.06.04.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Nov 2025 06:04:12 -0800 (PST)
+From: Wei Deng <wei.deng@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        cheng.jiang@oss.qualcomm.com, quic_jiaymao@quicinc.com,
+        quic_chezhou@quicinc.com, quic_shuaz@quicinc.com
+Subject: [PATCH V2 0/1] arm64: dts: qcom: qcs8300-ride: Enable Bluetooth support
+Date: Tue, 18 Nov 2025 19:34:05 +0530
+Message-Id: <20251118140406.1551669-1-wei.deng@oss.qualcomm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com, Vinod Koul <vinod.koul@linaro.org>
-References: <20251017164238.1908585-1-daniel.lezcano@linaro.org>
- <20251017164238.1908585-3-daniel.lezcano@linaro.org>
- <aPP0uVZu1T7tTQGo@ashevche-desk.local>
- <050f96d5-e60c-4b33-b6d2-24fb3925e378@linaro.org>
- <aQMvqHGN7r6babgw@smile.fi.intel.com>
- <c4c14051-2ba2-4d80-a22d-4deb3709f727@linaro.org>
- <aQSvZT73NBWZFVfk@smile.fi.intel.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <aQSvZT73NBWZFVfk@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: tatau955JR5VGgMQX36keHjoTtJHV5GW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDExMyBTYWx0ZWRfX8gMu/YXRY5+1
+ K284nemoBHjz/WRaHLFHiWRVHJyZHe6u0C5w/HSWND+9KtP1ijGDMTtdpbixZfrIA67dT7gQitd
+ c7Y04vACDJdAawEpxMYQgAb2cgEUU+sHX4z/SdFKGXQ/IRG6P3d9Oi3L4J3u/cCCYYHgaPjfyDi
+ 0whOvMMkYPRFU0rjB9ddke/UWHvZ8LN+kPpjWsb93MZz/dCUV6JLsAJmOOo3dbKusL2uHGysIFs
+ Khidlu+UNeGBfQcLl69u2QJ++WoVgggw1wJH4jhu1NDi6Pa1y/QHrJ+vuOguJrxoEh31RMw98Im
+ 7Itvn0Tmby0lE7nxYy40gXAgKWEzm/U4KO+YezzdcmypaBS+41WfRA/xuX59Mrs+yApnorsbcCQ
+ SQB1tu52NPXxQj0FIvynoW+gEjgBcA==
+X-Authority-Analysis: v=2.4 cv=BYTVE7t2 c=1 sm=1 tr=0 ts=691c7cdf cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=R7mCYRQwjcki8tQcZRYA:9
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: tatau955JR5VGgMQX36keHjoTtJHV5GW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-18_01,2025-11-18_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 suspectscore=0 phishscore=0 impostorscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511180113
+
+Changes for v2
+- Update commit message, add firmware name detail
+- Reorganize patchset
+- V1 link
+  https://lore.kernel.org/all/20251113130942.2661069-1-wei.deng@oss.qualcomm.com/
+
+Wei Deng (1):
+  arm64: dts: qcom: qcs8300-ride: Enable Bluetooth support
+
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 28 +++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
 
-Hi Andy,
-
-On 10/31/25 13:45, Andy Shevchenko wrote:
-> On Fri, Oct 31, 2025 at 12:32:03PM +0100, Daniel Lezcano wrote:
->> On 10/30/25 10:28, Andy Shevchenko wrote:
->>> On Thu, Oct 30, 2025 at 09:27:21AM +0100, Daniel Lezcano wrote:
->>>> On 10/18/25 22:12, Andy Shevchenko wrote:
->>>>> On Fri, Oct 17, 2025 at 06:42:38PM +0200, Daniel Lezcano wrote:
-> 
-> [ ... ]
-> 
->>>>>> +	dma_samples = (u32 *)dma_buf->buf;
->>>>>
->>>>> Is it aligned properly for this type of casting?
->>>>
->>>> TBH, I don't know the answer :/
->>>>
->>>> How can I check that ?
->>>
->>> Is buf defined as a pointer to u32 / int or bigger? or is it just byte buffer?
->>> If the latter, how does the address of it being formed? Does it come from a heap
->>> (memory allocator)? If yes, we are fine, as this is usually the case for all
->>> (k)malloc'ed memory.
->>
->> buf is a byte buffer allocated with dmam_alloc_coherent(..., GFP_KERNEL)
-> 
-> We are fine :-)
-> 
-> ...
-> 
->>>>>> +	dmaengine_tx_status(info->dma_chan, info->cookie, &state);
->>>>>
->>>>> No return value check?
->>>>
->>>> The return value is not necessary here because the caller of the callback
->>>> will check with dma_submit_error() in case of error which covers the
->>>> DMA_ERROR case and the other cases are not useful because the residue is
->>>> taken into account right after.
->>>
->>> In some cases it might return DMA_PAUSE (and actually this is the correct way
->>> to get residue, one needs to pause the channel to read it, otherwise it will
->>> give outdated / incorrect information).
->>
->> But if the residue is checked in the callback routine without checking
->> DMA_PAUSED, the result is the same no ?
-> 
-> DMA in some corner cases might have already be charged for the next transfer.
-> Do you have a synchronisation between DMA start and residue check?
-> 
-> I.o.w. this may work for your case, but in general it's not guaranteed. The proper
-> read of residue is to: pause DMA --> read residue --> resume DMA.
-
-I discussed with Vinod about this change and he suggested to use the 
-callback_result() to get the residue as a parameter so the 
-dmaengine_txstatus() call won't be needed anymore.
-
-Unfortunately, it does not work. I had a look in the DMA driver and the 
-internals but my knowledge is limited in this area so I was unable to 
-find out what is going on. Moreover there are no so many driver using 
-this API I can use as an example. The best I was able to do was 
-propagating the residue to the result in the vchan_complete() but it 
-does not work.
-
-Then I stepped back by not using the callback_result() and used 
-dmaengine_pause(), read the residue, dmaengine_resume() but there are no 
-result after these calls. I don't know why.
-
-The issue you are mentioning above should be handled in other drivers 
-doing the same kind of acquisition but the routine is similar to the one 
-proposed here (eg. stm32).
-
-The NXP SAR acquisition routine is running since several years in 
-production AFAICT.
-
-I investigated the different solutions without success, while I can run 
-the acquisition routine without problem here with my hardware. A signal 
-generator captured by the ADC, plotted and compared with the 
-oscilloscope display.
-
-The circ buffer is working well here and no bug was spotted with the 
-current routine. I think I did my best to make the driver better from 
-its initial submission. The best is the enemy of the good, and I would 
-like to make some progress here in the driver acceptance. Changing the 
-entire driver for the sake of replacing the circ_buffer by the kfifo and 
-change the code for a scenario which is not happening is not really 
-worth. Especially that the DMA engine is being modified to take into the 
-cyclic DMA in its API, thus the circ_buffer and the routine will go away 
-once the driver is changed to take into account this new API.
-
-IOW, can we keep this routine as it is for now as it works fine and go 
-forward for a v6 ?
-
-
-
-
-
+base-commit: e7c375b181600caf135cfd03eadbc45eb530f2cb
+prerequisite-patch-id: babbcf9dd8722e19d91b01eb45756f58e58ba6ac
+prerequisite-patch-id: e641f09d4139ac77c34757bd08af2db746de3963
+prerequisite-patch-id: f5dd3ee9979e2a049badfb51cfab184da4501870
+prerequisite-patch-id: 40187dae2c9518a10866104b9fcd5a481ac67d51
+prerequisite-patch-id: b9a2e071f5ddcc70dbd6addcbf738afdc9283cdc
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.25.1
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
