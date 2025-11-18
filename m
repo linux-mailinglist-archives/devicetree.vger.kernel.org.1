@@ -1,191 +1,210 @@
-Return-Path: <devicetree+bounces-239690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F25C68658
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:00:43 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8251DC686D9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:08:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9302F4F0D32
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:59:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8D244343DFC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A05233032F;
-	Tue, 18 Nov 2025 08:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD74A3016FB;
+	Tue, 18 Nov 2025 09:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XSJrKjwo";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hY8clKCC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RJYfUWwv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC41032F75B
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 08:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C07207A3A;
+	Tue, 18 Nov 2025 09:06:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763456051; cv=none; b=Z70hHYHsWB2niXCHdjml2tKGnAR2t5ShMUpVp0M0vtuJbwFTn/z4SAmRacj1hXB4tHl8+Nvn7ElF8l0QrGlIAYQnmC7Ky65LcEk7UF9hbU1LD7UmbwvSsW202CaeI7lvtT5A7xfOD/ASax5tU7HD8NnCNFajsC4TJ0QdQ1XTMRY=
+	t=1763456790; cv=none; b=mNswsja0BBTL7oKkORcRMcO0PH5SEAB27fLmXa1aH2lwzBfnjwlI/BXEinVEpZg6/AJ60iY95svtVYDU7l6cYtJg/To5nXO0mZqkPVf0qPNUgYbfH/ajSsFl5ymmVs/OFYyVmzNVpx3ySjyzZ8B+gGZLoxI52ETw5mUWfxZrcN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763456051; c=relaxed/simple;
-	bh=wceYkLyUbkNoE/pP8sWa3zSzsulvkqlQyOrCItWxr1g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p1KGQ1I+TUl/XizkWMhQOVe43Fgcrs2By8eVPYSwX0XoRHb8czKINc61u/q1eTp/7UCSmO8DtzEePoJXtjjqCtOXw/K5qpePjrFauGI7EqeHJS1p0szD/cQlXTaAe2Jy4yCxElrExLs8VK0ZZI0Sn390Ez5aEtTvu9/Xbf+30mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XSJrKjwo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hY8clKCC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AI2wbK1027433
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 08:54:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PrV6w/KNsg/+0gK7/2DObzlG/RNC5GFYtRF+8U90aj0=; b=XSJrKjwoVjc3E6RO
-	PWDEeilTCueTASJKgSjrC3dJJBhl95aZ2GbxaMRERmW+cCH1EctTbG8YufS0NXS1
-	elUEnVsHJfJqhC5O4e42Z3QfZsGtwJln1BhAzfla/PJE1oPmmGonbgBGJnSbG4S7
-	uhsahzWLq29xyCVLAbR0KcDYFFgLR9PyT2/jElEqq9NmUl2UuMkvr9rGk13Xkm64
-	jH+s/yuVabDyI8WYgBkIoNj+SQKARX4lmFL5hC2p8ZncvDbO7gXJ6XMvkfFdnf+G
-	Q3gDpCgL2p23bFgPTwaXy804y7cUFKerC4U7LKdcxk40VWYDK7UWhQN5HiRg1zx5
-	Z8Fmag==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ag77t2er1-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 08:54:08 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2955555f73dso60590885ad.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 00:54:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763456048; x=1764060848; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PrV6w/KNsg/+0gK7/2DObzlG/RNC5GFYtRF+8U90aj0=;
-        b=hY8clKCCUaJMGPfsx6IzRHJmILX9FL8V8rNUfbJQ1WHEqHfiIkvIVRtsb1ZBJxvkZr
-         dyUfWtlyPxEBVt3V/ESOAlwuud3xE9a/Zf3hQLpzpbMWNhntA7CAEMq5+Vw88qZN+xIS
-         taQB34P6Gj8+mTukM1IueL7Mn02yaXGHmn9rbBiuyFPLluMWwAxo9+U8sfJtaqa2E/yh
-         hjlqsy+pR5pkz782voSaF8Yt+cG9UmvRMayOtfO9d6r5T9j2zwqshrDYh6BHTcVcgicO
-         Ve8AN/d4wFkmS8A42KBzxVys+NDUdrgKVJakmZYxsd03taINEj0h8gzjWFr8orSEfxOq
-         UVcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763456048; x=1764060848;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PrV6w/KNsg/+0gK7/2DObzlG/RNC5GFYtRF+8U90aj0=;
-        b=v84QZ2n8hYRvxmlWDxG7ukx7Sn3QSaDIBVOpfo7KkZca+1dIEWagyM4N3LYXctDqtt
-         Bva74Wjy12R4L30mzXfflV5qW6p/GN/LA66SPf8IeofBasJEd5+X1VHK+y08pCOZ5ZKc
-         ll01cy4LQ2SBL4ya5E2o1BN1PTl+wmZMi5RYRbYrVaBU8/5w8WQ9cvjSepTs2FLRmIl/
-         XTC7uedUy1wVnHaqH7SKtPe4jD22hzuQeSnzg7Iis0e/l/gZefgIRBWxKylt1F9Isqvb
-         9vobozZvoN2Wl2N2S+QzyU0+V/rh8UtpkvO3QrsNT5y/F0cAW59Dk60NTUIxd/IL6xu6
-         LTcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVTIyQn/1CLTTGIJkenJbNIgxyFaRiolcRXuQYeuECSpIDhDpbpCpLUllgEB4cQkXLkbtgtw+2fg/ue@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqlYxrHnOrtJqE5v6/dM5/RZE76rWo+D0SVe0MYPFqnBLUS6s8
-	xBJcv3l1ufKSNqmQSf8AAVRdoENRZXFej0B7rTtCRgNoNfny88g4nKJSF8zFOZp/yir/vv4a/Fu
-	Hgos0ic0Y/d2IfteHXQAdDeB73VJsfLQNi2Q2+yj3Kky1+tXfeI7+EnCdebZWio25
-X-Gm-Gg: ASbGnctjKNza0PqWQ4BPy+G/QLjug4TtATBDBQursuVVWAEk0iYVHLvY/Ns9NlYQBE/
-	DcwQLBwBkp1IUh6m6LuCpMsa0Vb/urXj2Va46yWPltDn8p116I5ccLw5cV/ECi2LnLNFM73KsFk
-	yus2zvZG8qtEOebqiRI7Qjiz1MU+k20dFHqx1h76BGJfmn9yRoo2m/HfHiObzEK6+j7RewliCpx
-	tjCMIf9yJTi1RSzXvd69c7EKZ7Aig1coke7fyhcRzeMNVu/cuHVyWOkTqGdP8nc4JLuyOuo6GHG
-	5CeDBLuOPIUX1DS1UnhF16Th56AAxHzRebJQoYSFEl+0yzo1qlzYOeOQyT5CHGkJC1l0IhZ2YBH
-	MaSsRctDaGEGy7ktM+xnaDD0=
-X-Received: by 2002:a17:903:2b10:b0:295:915d:1eed with SMTP id d9443c01a7336-2986a752d2dmr184978105ad.47.1763456048192;
-        Tue, 18 Nov 2025 00:54:08 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGVjIlIvPTSiLdTNwr5hmoMfFZEBIQrZl3YPil3Ox+0tEXFjgQlXvbvrH6me3SXOyh31lsTdA==
-X-Received: by 2002:a17:903:2b10:b0:295:915d:1eed with SMTP id d9443c01a7336-2986a752d2dmr184977645ad.47.1763456047717;
-        Tue, 18 Nov 2025 00:54:07 -0800 (PST)
-Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2568c1sm162910695ad.47.2025.11.18.00.54.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Nov 2025 00:54:07 -0800 (PST)
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Date: Tue, 18 Nov 2025 14:20:49 +0530
-Subject: [PATCH v4 22/22] drm/msm/a8xx: Add UBWC v6 support
+	s=arc-20240116; t=1763456790; c=relaxed/simple;
+	bh=DHQzKWh6oHuXIueNb9XjYUNjZqvdGxJwdXVrZB2F6Xk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V5vZnagEOYtPx7yDhqbiCATJYylesjIpAnP1M9THr2W6kjTmUeLg/szSi3QJJA251YT6tPRhLGNuh01mBVvyNYtCTjvF7EKvdzEx9O0uzn648bDgH3o3Io2nx0iIrPHfHVsLOK0gJMdvfrtkIwQXZrMc2d+Jd8ufviWyvoFwZ48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RJYfUWwv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDCA2C19422;
+	Tue, 18 Nov 2025 09:06:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763456789;
+	bh=DHQzKWh6oHuXIueNb9XjYUNjZqvdGxJwdXVrZB2F6Xk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RJYfUWwvFbi8xVUFLdbZ8UDqB2hSifG53imgfOb6kTFoCAGB4qUXtHmIfFJdv7DVQ
+	 mvr7i/cYdT3h+z7UB3urpj5wvfIkUbfJpOOZMNqDnF6N945hzg8qcKLFeqFGzoPuOW
+	 9mV4J5oBm/qO8keoKIpko7MlfjZRAxtskNFOG7i77JNjCnvN0CKhqeSMOiSD/rPg6d
+	 YMd1gvjpr5yPYp2OlUnkT3hlRI724SpSsbZMHKPJDb6wMzrLqCCW2HH802qya/WR/X
+	 /VUhW1YfdY/0Ti3Lv7TdogOrBk3Gpf/UOFRm01d5z8tyBrrDzWxpPQPC8jnutCrbst
+	 ijCBYajIIhtZg==
+Message-ID: <e4bd468f-6d66-4658-b69f-0dacf006d1a8@kernel.org>
+Date: Tue, 18 Nov 2025 10:06:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 13/13] serial: sh-sci: Add support for RZ/G3E RSCI SCI
+To: Biju <biju.das.au@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20251114105201.107406-1-biju.das.jz@bp.renesas.com>
+ <20251114105201.107406-14-biju.das.jz@bp.renesas.com>
+Content-Language: en-US
+From: Jiri Slaby <jirislaby@kernel.org>
+Autocrypt: addr=jirislaby@kernel.org; keydata=
+ xsFNBE6S54YBEACzzjLwDUbU5elY4GTg/NdotjA0jyyJtYI86wdKraekbNE0bC4zV+ryvH4j
+ rrcDwGs6tFVrAHvdHeIdI07s1iIx5R/ndcHwt4fvI8CL5PzPmn5J+h0WERR5rFprRh6axhOk
+ rSD5CwQl19fm4AJCS6A9GJtOoiLpWn2/IbogPc71jQVrupZYYx51rAaHZ0D2KYK/uhfc6neJ
+ i0WqPlbtIlIrpvWxckucNu6ZwXjFY0f3qIRg3Vqh5QxPkojGsq9tXVFVLEkSVz6FoqCHrUTx
+ wr+aw6qqQVgvT/McQtsI0S66uIkQjzPUrgAEtWUv76rM4ekqL9stHyvTGw0Fjsualwb0Gwdx
+ ReTZzMgheAyoy/umIOKrSEpWouVoBt5FFSZUyjuDdlPPYyPav+hpI6ggmCTld3u2hyiHji2H
+ cDpcLM2LMhlHBipu80s9anNeZhCANDhbC5E+NZmuwgzHBcan8WC7xsPXPaiZSIm7TKaVoOcL
+ 9tE5aN3jQmIlrT7ZUX52Ff/hSdx/JKDP3YMNtt4B0cH6ejIjtqTd+Ge8sSttsnNM0CQUkXps
+ w98jwz+Lxw/bKMr3NSnnFpUZaxwji3BC9vYyxKMAwNelBCHEgS/OAa3EJoTfuYOK6wT6nadm
+ YqYjwYbZE5V/SwzMbpWu7Jwlvuwyfo5mh7w5iMfnZE+vHFwp/wARAQABzSFKaXJpIFNsYWJ5
+ IDxqaXJpc2xhYnlAa2VybmVsLm9yZz7CwXcEEwEIACEFAlW3RUwCGwMFCwkIBwIGFQgJCgsC
+ BBYCAwECHgECF4AACgkQvSWxBAa0cEnVTg//TQpdIAr8Tn0VAeUjdVIH9XCFw+cPSU+zMSCH
+ eCZoA/N6gitEcnvHoFVVM7b3hK2HgoFUNbmYC0RdcSc80pOF5gCnACSP9XWHGWzeKCARRcQR
+ 4s5YD8I4VV5hqXcKo2DFAtIOVbHDW+0okOzcecdasCakUTr7s2fXz97uuoc2gIBB7bmHUGAH
+ XQXHvdnCLjDjR+eJN+zrtbqZKYSfj89s/ZHn5Slug6w8qOPT1sVNGG+eWPlc5s7XYhT9z66E
+ l5C0rG35JE4PhC+tl7BaE5IwjJlBMHf/cMJxNHAYoQ1hWQCKOfMDQ6bsEr++kGUCbHkrEFwD
+ UVA72iLnnnlZCMevwE4hc0zVhseWhPc/KMYObU1sDGqaCesRLkE3tiE7X2cikmj/qH0CoMWe
+ gjnwnQ2qVJcaPSzJ4QITvchEQ+tbuVAyvn9H+9MkdT7b7b2OaqYsUP8rn/2k1Td5zknUz7iF
+ oJ0Z9wPTl6tDfF8phaMIPISYrhceVOIoL+rWfaikhBulZTIT5ihieY9nQOw6vhOfWkYvv0Dl
+ o4GRnb2ybPQpfEs7WtetOsUgiUbfljTgILFw3CsPW8JESOGQc0Pv8ieznIighqPPFz9g+zSu
+ Ss/rpcsqag5n9rQp/H3WW5zKUpeYcKGaPDp/vSUovMcjp8USIhzBBrmI7UWAtuedG9prjqfO
+ wU0ETpLnhgEQAM+cDWLL+Wvc9cLhA2OXZ/gMmu7NbYKjfth1UyOuBd5emIO+d4RfFM02XFTI
+ t4MxwhAryhsKQQcA4iQNldkbyeviYrPKWjLTjRXT5cD2lpWzr+Jx7mX7InV5JOz1Qq+P+nJW
+ YIBjUKhI03ux89p58CYil24Zpyn2F5cX7U+inY8lJIBwLPBnc9Z0An/DVnUOD+0wIcYVnZAK
+ DiIXODkGqTg3fhZwbbi+KAhtHPFM2fGw2VTUf62IHzV+eBSnamzPOBc1XsJYKRo3FHNeLuS8
+ f4wUe7bWb9O66PPFK/RkeqNX6akkFBf9VfrZ1rTEKAyJ2uqf1EI1olYnENk4+00IBa+BavGQ
+ 8UW9dGW3nbPrfuOV5UUvbnsSQwj67pSdrBQqilr5N/5H9z7VCDQ0dhuJNtvDSlTf2iUFBqgk
+ 3smln31PUYiVPrMP0V4ja0i9qtO/TB01rTfTyXTRtqz53qO5dGsYiliJO5aUmh8swVpotgK4
+ /57h3zGsaXO9PGgnnAdqeKVITaFTLY1ISg+Ptb4KoliiOjrBMmQUSJVtkUXMrCMCeuPDGHo7
+ 39Xc75lcHlGuM3yEB//htKjyprbLeLf1y4xPyTeeF5zg/0ztRZNKZicgEmxyUNBHHnBKHQxz
+ 1j+mzH0HjZZtXjGu2KLJ18G07q0fpz2ZPk2D53Ww39VNI/J9ABEBAAHCwV8EGAECAAkFAk6S
+ 54YCGwwACgkQvSWxBAa0cEk3tRAAgO+DFpbyIa4RlnfpcW17AfnpZi9VR5+zr496n2jH/1ld
+ wRO/S+QNSA8qdABqMb9WI4BNaoANgcg0AS429Mq0taaWKkAjkkGAT7mD1Q5PiLr06Y/+Kzdr
+ 90eUVneqM2TUQQbK+Kh7JwmGVrRGNqQrDk+gRNvKnGwFNeTkTKtJ0P8jYd7P1gZb9Fwj9YLx
+ jhn/sVIhNmEBLBoI7PL+9fbILqJPHgAwW35rpnq4f/EYTykbk1sa13Tav6btJ+4QOgbcezWI
+ wZ5w/JVfEJW9JXp3BFAVzRQ5nVrrLDAJZ8Y5ioWcm99JtSIIxXxt9FJaGc1Bgsi5K/+dyTKL
+ wLMJgiBzbVx8G+fCJJ9YtlNOPWhbKPlrQ8+AY52Aagi9WNhe6XfJdh5g6ptiOILm330mkR4g
+ W6nEgZVyIyTq3ekOuruftWL99qpP5zi+eNrMmLRQx9iecDNgFr342R9bTDlb1TLuRb+/tJ98
+ f/bIWIr0cqQmqQ33FgRhrG1+Xml6UXyJ2jExmlO8JljuOGeXYh6ZkIEyzqzffzBLXZCujlYQ
+ DFXpyMNVJ2ZwPmX2mWEoYuaBU0JN7wM+/zWgOf2zRwhEuD3A2cO2PxoiIfyUEfB9SSmffaK/
+ S4xXoB6wvGENZ85Hg37C7WDNdaAt6Xh2uQIly5grkgvWppkNy4ZHxE+jeNsU7tg=
+In-Reply-To: <20251114105201.107406-14-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251118-kaana-gpu-support-v4-22-86eeb8e93fb6@oss.qualcomm.com>
-References: <20251118-kaana-gpu-support-v4-0-86eeb8e93fb6@oss.qualcomm.com>
-In-Reply-To: <20251118-kaana-gpu-support-v4-0-86eeb8e93fb6@oss.qualcomm.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Connor Abbott <cwabbott0@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, Akhil P Oommen <akhilpo@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763455868; l=712;
- i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=wceYkLyUbkNoE/pP8sWa3zSzsulvkqlQyOrCItWxr1g=;
- b=ab9CsH8NF32fs2MhCaQYzdCr2lNXGHBIXRiN2OcE/b/eGPfTzV94cxPkR/EkNz+ftEVQXOWXR
- YhM7yhyZPncD+Uqsl3lAE5hf7Myb66BTpP+CS3Bd1dT6SCaSlLLFKhI
-X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
- pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDA2OSBTYWx0ZWRfX6NMoU+Y5oVM5
- AVKe1pwSqzG0GLGQ5RWQbNkm3M67MLMuPgvYGxpvHw0T8p8eace/FMBmFsTouuM7gzsbC1Nl2ta
- C80Enqdn7wn7P/Z5L2+AJgx9GOyeLhtndzGUcEwz4QN/W35dp4GYWph/3vUzoBvGLd8JlYnpakP
- 352xFHCy3kUNjx6ZlVdrIlDCWp31HKS71MRzTZXA1arBO8qoWwehSpbNGJLkC5+oytTolXVTCc3
- lfHOuqzAnOSMxMAZK2GqkN10eVkkRUZquvQSXLfYyIwXo/jmOeesr18961TEv4lUjl/zCw/GfOo
- 8o81K/5hY9veTuQPk7i/9e3XKF9An7QZcFIoHA3Es7E0P5kM1ZlmM+QNavnO1DoCDzmjURtHozM
- ISB0MCDrz6XyQfdKBhBjGz6sHeR8ow==
-X-Authority-Analysis: v=2.4 cv=EPoLElZC c=1 sm=1 tr=0 ts=691c3430 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=LUS0w5LV-g8XRIoliPwA:9
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-ORIG-GUID: 4-ebHfSpvLlPdexpbo_N0rVoySjKiuc2
-X-Proofpoint-GUID: 4-ebHfSpvLlPdexpbo_N0rVoySjKiuc2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-17_04,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 spamscore=0 clxscore=1015
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511180069
 
-Adreno 840 GPU supports UBWC v6. Add support for this.
+Hi,
 
-Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
----
- drivers/gpu/drm/msm/adreno/a8xx_gpu.c | 4 ++++
- 1 file changed, 4 insertions(+)
+On 14. 11. 25, 11:51, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+> 
+> Add support for RZ/G3E RSCI SCI(a.k.a non FIFO mode).
 
-diff --git a/drivers/gpu/drm/msm/adreno/a8xx_gpu.c b/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
-index 30de078e9dfd..5a320f5bde41 100644
---- a/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
-@@ -276,6 +276,10 @@ static void a8xx_set_ubwc_config(struct msm_gpu *gpu)
- 	u8 uavflagprd_inv = 2;
- 
- 	switch (ubwc_version) {
-+	case UBWC_6_0:
-+		yuvnotcomptofc = true;
-+		mode = 5;
-+		break;
- 	case UBWC_5_0:
- 		amsbc = true;
- 		rgb565_predicator = true;
+"a.k.a. non-FIFO"
 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+...
+> @@ -496,34 +521,40 @@ static void rsci_receive_chars(struct uart_port *port)
+>   		if (count == 0)
+>   			break;
+>   
+> -		for (i = 0; i < count; i++) {
+> -			char c;
+> -
+> -			rdat = rsci_serial_in(port, RDR);
+> -			/* 9-bits data is not supported yet */
+> -			c = rdat & RDR_RDAT_MSK;
+> -
+> -			if (uart_handle_sysrq_char(port, c)) {
+> -				count--;
+> -				i--;
+> -				continue;
+> -			}
+> -
+> -			/*
+> -			 * Store data and status.
+> -			 * Non FIFO mode is not supported
+> -			 */
+> -			if (rdat & RDR_FFER) {
+> -				flag = TTY_FRAME;
+> -				port->icount.frame++;
+> -			} else if (rdat & RDR_FPER) {
+> -				flag = TTY_PARITY;
+> -				port->icount.parity++;
+> -			} else {
+> -				flag = TTY_NORMAL;
+> +		if (s->type == RSCI_PORT_SCI) {
+> +			char c = rsci_serial_in(port, RDR) & RDR_RDAT_MSK;
+> +
+> +			if (uart_handle_sysrq_char(port, c))
+> +				count = 0;
+> +			else
+> +				tty_insert_flip_char(tport, c, TTY_NORMAL);
+> +		} else {
+> +			for (i = 0; i < count; i++) {
+> +				char c;
+> +
+> +				rdat = rsci_serial_in(port, RDR);
+> +				/* 9-bits data is not supported yet */
+> +				c = rdat & RDR_RDAT_MSK;
+> +
+> +				if (uart_handle_sysrq_char(port, c)) {
+> +					count--;
+> +					i--;
+> +					continue;
+> +				}
+> +
+> +				/* Store data and status */
+> +				if (rdat & RDR_FFER) {
+> +					flag = TTY_FRAME;
+> +					port->icount.frame++;
+> +				} else if (rdat & RDR_FPER) {
+> +					flag = TTY_PARITY;
+> +					port->icount.parity++;
+> +				} else {
+> +					flag = TTY_NORMAL;
+> +				}
+> +
+> +				tty_insert_flip_char(tport, c, flag);
+>   			}
+
+Instead of this shuffle and introducing the 'if', can't you just set 
+count to 1 and introduce a mask like:
+
+if (SCI) {
+   count = 1;
+   read_mask = RDR_RDAT_MSK;
+} else  {
+   read_mask = ~0U;
+}
+
+for (...) {
+   ...
+   rdat = rsci_serial_in(port, RDR) & read_mask;
+}
+and that's it?
+
+thanks,
 -- 
-2.51.0
-
+js
+suse labs
 
