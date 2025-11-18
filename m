@@ -1,102 +1,48 @@
-Return-Path: <devicetree+bounces-239731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14318C68DDA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 11:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 440B9C68E0A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 11:42:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5B023357AEA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:32:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ECEB8348F31
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2C5347FFE;
-	Tue, 18 Nov 2025 10:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65165311954;
+	Tue, 18 Nov 2025 10:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NyTfH/mX";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XmMbQ+Tk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n3EaYcsj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A808B2571A0
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 10:32:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E392F1FC8;
+	Tue, 18 Nov 2025 10:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763461922; cv=none; b=S37DthHmPO1vPtWBEDJefliINReZo9VPZ12RL+1VgVUwY8cSbwtVDEg+PZUDDCi1zuolho1yqR8ncNZG0N0hUFzicyJcjknWGwczl2tEiS7Z2aIg438QiMhJ0EwppALytDMwx4p6NjzLo/Lt46CLwF8nVbskPpqfHIehJkKt8xs=
+	t=1763462331; cv=none; b=iEHQZjfmxYcDuAM11PD703oAkL/HCpBZEE0YQaaR8TQU72UAGe8sei1JINPOJMi4Lic925+KoX2YEsCwnzhpoRJRgNqaX7kcdvcCDvers9NSxU+0rnErhnYq/2fsrH1lgLPDg+bDpTRLWxVQMkkQjCx8DqlXoIJHNegxLaYFPKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763461922; c=relaxed/simple;
-	bh=RfZm9aKl1NjMxKyOCQg+4SEjvwVpRMYv2mrcH4ZNFDM=;
+	s=arc-20240116; t=1763462331; c=relaxed/simple;
+	bh=i0psKtgYo14zrou8MdVu+ZT0F4wPW2IGkdT2aFkjUtE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bk04p7Rf3qdiyTEUZLVTf8c6vP0iRU4ZPmmif8tbSreWMAN8Ffor6otO4XTRq8NTninus8uRD4Id9Pu3cwxV6RfP4gAb8pAr7LeTBSqdkEEDy8vKO3S12wx505t/bfZQSKs5aNJMyPwaWTYzXjc7FA36Dwp55oRBMdrGr/rACPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NyTfH/mX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XmMbQ+Tk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AI8l9SH2755434
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 10:31:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fR7x0kFz0S+JBP4vbyeBal4hny3WSPiyeEcYELp4NhM=; b=NyTfH/mXnnzRlUpW
-	/8EaVfq2RmAGxcf9s0qkoKmjM6ILtC60bPNjradasrc4K2wfRHi5qi2GKC8FUUv7
-	nxpXN8WyX2NY0u8SVyIGebNFg2QFtEFdpdittsjjDl0KH85hn76n49TRtHCeThis
-	ZO6a56ekneI+J28CyLnqX80coK98h4s2I+gNuDOlquGI5W5QtCJOqr4/ri/5w1ng
-	YHmBobxjgx0FtJDPz4tp8TYHbf1uJq009wk32chcO89l4OYzgY7awOunVORoYh5H
-	h8sClrJCNqb758q3VmtDc+HNw0ZuhQjp+L0feY83ualA16aDYZQkIaog8DqoMV8k
-	LxnTcQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agnkj0b04-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 10:31:59 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2982b47ce35so61904465ad.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 02:31:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763461918; x=1764066718; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fR7x0kFz0S+JBP4vbyeBal4hny3WSPiyeEcYELp4NhM=;
-        b=XmMbQ+TkdjSg7ftZ3xxejMO+y46e4/wLokz2PQnRONy+DJeMP3RpTgYj2fNanZNK3u
-         T7UJeRZaQD6C9WLwiRSyTQZNEsfMpFZ7f7O05TUnDqB4r8aD9I4kf79I6flLk6HKi6Sm
-         lfVjXqTWVtkrMDrWCv78FSOHW/7OGGQAKE1xfmX3Mbo2iEPuYCpbTibiSGI2QVRfGt7s
-         zm0HWbiyJI5zsZOANtb0MEWMmxLMOpQYxF5i2+xDpH2nWsxY3qpR+q134PF5SpGCRhdv
-         Apcv44flWniIYsv56okaM6PYuxyPuWVpGsq/mP9dpT00YrzrX2Gt/0LsBUYBxMFSQbtI
-         Wm5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763461918; x=1764066718;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fR7x0kFz0S+JBP4vbyeBal4hny3WSPiyeEcYELp4NhM=;
-        b=w8NGPshm97mkfBnHyuYuDaoIpmBE5IuSQQaJUPNuEnTKID+WCvMVepkYIN7/TVEnN3
-         WliUIXNwFL8bJSthHMgtYFmhKHkCcenpP9ThhSnf+AwwfqL6kFaMf+e3qbwlYXpAo4+l
-         cD3vVudtxwE9Nwu+1NH39uqVwvoD3ZBgFumCivCW4AgTlMjN+YYBhbUnOuTJ55gW4tiq
-         a2KgqY4ByGRz9ts8uobWOmZxPL9qcxpPS5ZOi2td1zozBAfs8tvF72phkjpoUcNCqkIc
-         VUtjVO7p/eY5DF2QiaZSi2Jjn8utSMjH7lDpxlE1fX1zvUbHTjLwCsyFgdiIJgT173UO
-         /GrA==
-X-Forwarded-Encrypted: i=1; AJvYcCVlm9m/u11StkEdoFaFBgtEdsyvKsdpx1Zmi62bv9BT8/qHWiLPgAUFI/mvoIrJr2VMmpn7El0AwXId@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuahCD5C/vXGlSvYMC4L6oSwFKORPHxYff/QyFZjpkpW2YMJXw
-	JsWfsL3mhuMvs8MfoeAZeSQdG/rMHJCBxe/crT7M7X9XdHJbfcofM3NPnt7uYU/3siPL9CEBV3h
-	3I9T7K6dD7YjuNuVq+acgPeWVjeF/C/y/TcMoriHac/Jy8mtdsAtATQEJdYmcjLxr
-X-Gm-Gg: ASbGncthw/sSr7PEEiy4JqSZJc2oqlJEFcMRI6/PxS7Xhf95ES4C4PrUtChW2RNAyYQ
-	d9m9kdDG2gPNxgHxChRByItil3ZPh76Liiu6Djol/O7TeSzdG5Lg5ld9O4pnS1MMTWnYz0ZiJpy
-	pMxMqmInlyKXxfwadPfjzDsvnXb8yICcmHxU6Gf3qxkJaeQ+2VGvxfltWz/qkFZN5RyEia0Ow9L
-	6+64XXbDT9wu6aQ4CknKf6q4isV8ntVH9ZfuUZwv9TkUZ4fXdWxIzCbGRPiGYolRrMBcvHyOz7x
-	2wSo7sdvx+9RkqwmosYAVZtQmfEGNa2Mf7YoEvEtWV6ROFa2mXgiZUG7tH8LT+5qan8/Iuomhg5
-	wCF2qwWHHeliES/eDuumKOYYt4A==
-X-Received: by 2002:a17:902:d4cd:b0:299:dd98:fac2 with SMTP id d9443c01a7336-299dd98fe08mr99139185ad.54.1763461918309;
-        Tue, 18 Nov 2025 02:31:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEzq8B2MXbl1pPxPLemh3fklf2/A5DSGVm1kKDAvo8dNVVqRFeNS/BF0AI+yuhX93bBja4Saw==
-X-Received: by 2002:a17:902:d4cd:b0:299:dd98:fac2 with SMTP id d9443c01a7336-299dd98fe08mr99138905ad.54.1763461917819;
-        Tue, 18 Nov 2025 02:31:57 -0800 (PST)
-Received: from [10.218.33.29] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2b0d91sm170294015ad.63.2025.11.18.02.31.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Nov 2025 02:31:57 -0800 (PST)
-Message-ID: <6fe09872-368a-4bab-96c3-c34492255599@oss.qualcomm.com>
-Date: Tue, 18 Nov 2025 16:01:52 +0530
+	 In-Reply-To:Content-Type; b=fTTKvkCR2836xossv1KxbimaAoHvkMgJOYRsTcKVVrK3YB7dQdNcLriNFtxxHOTZcjZmy6Dij7gfjc1s7cKqQhXn2F0vNNJ7eKC3sBsEsJJkwHzYKDgdszujvENG6e6CmHMg3KilF8j9qnw/NZw4nkrzVV8qfEiP76DyNkCV0v4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n3EaYcsj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C688DC2BCB7;
+	Tue, 18 Nov 2025 10:38:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763462328;
+	bh=i0psKtgYo14zrou8MdVu+ZT0F4wPW2IGkdT2aFkjUtE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n3EaYcsjpyIBctupVrJhfqkyYCr76qvy3vGXvTKOInwPOujtAgYfcCjjZcw843lAR
+	 KBXum1jo/LgI5+Hz9Uz+YRvBXdwPv3wX+FTgo3MU/IaPxOT51vcFJSuMXk+1eT4tG9
+	 xAmpQi3JGsGlT5g9Xn6j4RgMSRDQrYyu9zf/h0FXsRGBP3lK0ORHfXpn1jpRgk47G6
+	 xItBMS/9OQA2GGc0GX9emUT0wDpyaOWWCbZk/VH4M6yCBfZgA9O2IX2m9a9pUw6tB9
+	 a9dX1y4mEwW4JYzyA7JqKwU8TEap77rN/LWaUgdOOvUJkbI+ahyLTDPyJ/K8dysZ2X
+	 ifbvErxkVogoQ==
+Message-ID: <e39fcaeb-b516-41f1-89a4-fa3328c07deb@kernel.org>
+Date: Tue, 18 Nov 2025 11:38:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,69 +50,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] clk: qcom: branch: Extend invert logic for branch2
- mem clocks
-To: Taniya Das <taniya.das@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
-References: <20251118-sm8750-videocc-v2-v4-0-049882a70c9f@oss.qualcomm.com>
- <20251118-sm8750-videocc-v2-v4-3-049882a70c9f@oss.qualcomm.com>
+Subject: Re: [PATCH 1/2] dt-bindings: tegra: pmc: Update aotag as an optional
+ aperture
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Prathamesh Shete <pshete@nvidia.com>
+References: <20251114161711.2655355-1-jonathanh@nvidia.com>
+ <20251115-accurate-fair-salmon-64eca9@kuoka>
+ <77b9e0cd-2597-4d52-a352-dd029ccb6a42@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Imran Shaik <imran.shaik@oss.qualcomm.com>
-In-Reply-To: <20251118-sm8750-videocc-v2-v4-3-049882a70c9f@oss.qualcomm.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <77b9e0cd-2597-4d52-a352-dd029ccb6a42@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ctKJLdRFJ4P9o0yvMMevnyQaIOCPwyAb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDA4MyBTYWx0ZWRfXxDnMfi5WZCXY
- U66Y/GRZQ1H/McKznDajPWsivNcwFWWmBw3L2Z+zs5z+lUBIqBmxV9BwHf2+H+4c1DZph3TmBTC
- tnOAQimLPzODpXAMTepocZr1hIVQjhdDw0oa0sEhANNKxwCOFUdn8n636pltt8hzZWGFSbvJxVm
- dLt0w6EL/8++WUJ4HxPzO2XPoVJyfhuB3ySVhFztCTpWuR3DwXEaLloAq2p7BCvUQFrMtQzGKoD
- 81ja2ngrPOmUFzyueyBz1BbMJt+ZmdQEu1KpDpLsV6pqHXjE23CRYVmyPd+U6RXpn1FZSiFTVP+
- wiiHZg4zBbW9Tro1dK6uR/WnUSD5Qim1/i++EjNuzTEEsk0EAZH8o8gwiu/GgFeJfkyrbMzoncu
- O2QCv44OU7wsLkNfawKN/7iSKXGJJg==
-X-Authority-Analysis: v=2.4 cv=cs+WUl4i c=1 sm=1 tr=0 ts=691c4b1f cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=8EbF_sMYILjvT3iq7EYA:9
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-ORIG-GUID: ctKJLdRFJ4P9o0yvMMevnyQaIOCPwyAb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-17_04,2025-11-13_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 phishscore=0 malwarescore=0 priorityscore=1501
- bulkscore=0 adultscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511180083
 
-
-
-On 11/18/2025 12:47 PM, Taniya Das wrote:
-> Some clock branches require inverted logic for memory gating, where
-> disabling the memory involves setting a bit and enabling it involves
-> clearing the same bit. This behavior differs from the standard approach
-> memory branch clocks ops where enabling typically sets the bit.
+On 18/11/2025 11:08, Jon Hunter wrote:
 > 
-> The mem_enable_invert to allow conditional handling of these sequences
-> of the inverted control logic for memory operations required on those
-> memory clock branches.
+> On 15/11/2025 12:25, Krzysztof Kozlowski wrote:
+>> On Fri, Nov 14, 2025 at 04:17:10PM +0000, Jon Hunter wrote:
+>>> Not all Tegra SoCs or all versions of a particular Tegra SoC may include
+>>> the AOTAG aperture. This change makes "aotag" as an optional aperture for
+>>> Tegra234 and Tegra264.
+>>>
+>>> Co-developed-by: Prathamesh Shete <pshete@nvidia.com>
+>>> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+>>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>>> ---
+>>> Admittedly I don't know if there is a better way to handle this,
+>>> but if there is please let me know!
+>>>
+>>>   .../arm/tegra/nvidia,tegra186-pmc.yaml        | 57 ++++++++++++-------
+>>>   1 file changed, 38 insertions(+), 19 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
+>>> index be70819020c5..defd9000eed2 100644
+>>> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
+>>> @@ -19,17 +19,12 @@ properties:
+>>>         - nvidia,tegra264-pmc
+>>>   
+>>>     reg:
+>>> -    minItems: 4
+>>> +    minItems: 3
+>>>       maxItems: 5
+>>>   
+>>>     reg-names:
+>>> -    minItems: 4
+>>> -    items:
+>>> -      - const: pmc
+>>> -      - const: wake
+>>> -      - const: aotag
+>>> -      - enum: [ scratch, misc ]
+>>> -      - const: misc
+>>> +    minItems: 3
+>>> +    maxItems: 5
+>>
+>>    minItems: 3
+>>    items:
+>>      - const: pmc
+>>      - const: wake
+>>      - enum: [ aotag, cratch, misc ]
+>>      - enum: [ scratch, misc ]
+>>      - const: misc
+>>
+>> Should work, no?
 > 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> ---
->  drivers/clk/qcom/clk-branch.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+> I was thinking about that, but with the above, and if I am understanding 
+> you correctly, it would permit someone to make the following mistake ...
 > 
+>   reg-names = "pmc", "wake", "scratch", "scratch", "misc";
+> 
+> Hence, I thought that I need to be more explicit and list out all the 
+> combinations that are supported for a given device. Let me know if I am 
+> misunderstanding you here.
 
-Reviewed-by: Imran Shaik <imran.shaik@oss.qualcomm.com>
+It won't be allowed, test it.
 
-Thanks,
-Imran
+
+Best regards,
+Krzysztof
 
