@@ -1,217 +1,253 @@
-Return-Path: <devicetree+bounces-239840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8BBFC69E2B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:18:21 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C10FC69E8E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 72E38352421
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:14:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D01BD348F1A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E097B35A936;
-	Tue, 18 Nov 2025 14:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E3593590BA;
+	Tue, 18 Nov 2025 14:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tb7PoZoW"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OHxDk9NT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01A935A121;
-	Tue, 18 Nov 2025 14:12:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9997735A947
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:16:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763475138; cv=none; b=t1iD6l4KRNFJDpHzq67R++Z88A4TdtKNB4ix+vo8Rt06BBjLdBpVb5A7arvv+PuvsyUMxDK7wBt4ZjZgUwEb4tPgPcsMyIPy/lmfk3/u2qzbuQLCV5KHat/QpT88iin3/ZEGo2LMZCIrB9LM5JW2RlqjW5G+gnPV48DIOWlOgG0=
+	t=1763475375; cv=none; b=KpMpstbxPLxJF7MMnYXD6TLSyI+zm7UbYgPiS4MWHRcP7JiGsu92aGV4W5Xz3sQ46w/oS9Lzzp/R/96c7BhjTMH37O4/a0jGpxm1i3fVdhFo2fwZU+6PI4q3I5HbRqTHwS0uhyNMWyK7jwxqjEksL7L04wodvEZiBHmmOu+nh18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763475138; c=relaxed/simple;
-	bh=erS/B6QVBTWTsxbcksB+HGTRTJvgyN9RWKcpAhjnNec=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K1KFbSOIXX0vVQ0V3SP2Wf8NSS4xs33DDrBBygDmFjjnNXNQQlYgko0RTHRw9s69J5b91T65krSFDztGOC5CkG5musRR7vxxNd/rq8to0AlNJD/HkeZiYi4XFcjxfR66BUMOPIV5R7BrdpXkRlLBHXx6jNAaCrcDGXqOmon98Qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tb7PoZoW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F286C19421;
-	Tue, 18 Nov 2025 14:12:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763475138;
-	bh=erS/B6QVBTWTsxbcksB+HGTRTJvgyN9RWKcpAhjnNec=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tb7PoZoWmMWvcgZY9xfJch1UHX2xW+EfYmGmdrHZSaz1NEi/adtT/X1UEytoMVdpR
-	 BjGVroPxDIHY6tSrONTw6WdzwXDjHn74NlacWkmoNcHn1jrl83Xeh9JxmzfZay//md
-	 dCP9CFADXxBDdGEVevo0AP89RLTnpE1tqIyXmZ04JZb5Rv1ibHtozWvvwj57PXYU9m
-	 xO7kHRGDq6M57njwE5vvcdKma6gBnIqBaYyOlv4dEJ/ZEe6tXvjAzcgKuqZkE4NPwH
-	 s2zBR8U1n9Tt1US+jJU1OBN2ZzRPJlkzFJuA68fM6PbSS64m1ulm3Vb8O5wybpNqA2
-	 LTD/fNRzAhkNw==
-Message-ID: <eb34be74-6c9f-4bc8-b67e-31e387f7a850@kernel.org>
-Date: Tue, 18 Nov 2025 15:12:12 +0100
+	s=arc-20240116; t=1763475375; c=relaxed/simple;
+	bh=v1BjaGnO3wUcuKkYpuBBjpi9hyHpXdtauVM+k17ipiY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=MNqTemWGDjhXPsnee8fAbX0vZdEd0YOv0Z59QrYp0nA77QsPebnJxs/2yjCX/gaSUqJAUjHCpENV1df/9KU68BJLmUnmEMys7DOauOtixvuC1/A04fswaaxaYoTl331FflznZS9zW7+iNbV/tNhM64z8Xvw/wKCg7E7br9uDRLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OHxDk9NT; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4779a637712so21888485e9.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 06:16:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763475371; x=1764080171; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9+31Milj8nYVrvJ8nC3Pg+VcuZ0i1JhaSqz3VlPj1A0=;
+        b=OHxDk9NTYyTxEobEpRogsKg81huZhAaQ8tYIboSk0wrZw6KVPTg2cUwncRBwUJkuPT
+         Gju8L2xReC4LTcDyAu8SrKY81pf2HHz/k+fVVdqpmKfaRihPlG7fedHj1qwcx3L3kcp0
+         B4lwF7dqQyn0hFTo7jRO6O3MxdzEnQsZMPrGcp+pJwSky0T3WlntcbaCyAwmQEXou+jb
+         Ou3HMF2WyZqM9/1slqiGdSFnz14uldPRedwmoqhy5Xba/O5n3jc1SXKQSL+Hgz4gXSSD
+         csk4rJ0YWZ4YyiVAoeban0OkNcNdbAIglfq+ZaD4hqeI53zUPMB8oFJ8g/JVWwb7zwBG
+         RZ2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763475371; x=1764080171;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9+31Milj8nYVrvJ8nC3Pg+VcuZ0i1JhaSqz3VlPj1A0=;
+        b=DuGv2dts8LQcLbMQEUoO/enZRfJ5Puq+BniqDf+4Oun8zcuOIh/6wtxwLZVyADG4nH
+         HDlN8mqVfeh2kVcZ1dGQlA3wXtQT+sx1afDa0V7BsNmOPkKmWaVt+WQLHQwaPZHt4Ddq
+         0sTA5CxhPGpd56/UxeuimDZyVmh7p3Y3G10xJPEaiY/eOZ14XBkvtc6leMbsZXRWQ1Jf
+         SyILQPcHLjdI9wvTJOEkfTbffRwH/9RPgXET9tIrmf2Fta8MfIeQLSM1fZjRN2vja4/e
+         QDDmtJo/HdP6rQjUu3JldX48A+Ecs+aKbpo4/SnaBpZenJBABTNcW5a00821+kS0nVjF
+         9Vkg==
+X-Forwarded-Encrypted: i=1; AJvYcCXbx9VVYwkzE3J3I5iQoC5VM2HMVDhhCKpE+hWuJtFdRAuJZTWvBd1rHHuZejHRciL3KWfRXSMOs4TK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOkDNwiNfbaUtPhlV4NFtaiaoMrVJp9i1lrIwuAw6pMv8Sxv4n
+	nNXoZ2Fx/cD2AsVHnJtuPGiqpRA9kaw6zL5rkpGFT7AglnYf9ht4Q1u1r4RhU1WXE40=
+X-Gm-Gg: ASbGncssyuT3Dw+YfnY6PesyZfFDZjSxXJNSdR2ak/f3TLU0qQzJrpgy0qQ/HYNmcOF
+	TAuP8ZoG1nPYM10mcRXuLDx78mg6QirsExyKCSGHhGiSdvrjAE0AuwonqcDR2LRoBfgImVoSTlM
+	JtWtRHU0j74FT7RGXROzNtT2rLehgSqAYmNAFEDOGR5TZvf/VuFPxJRCed5H9ebYsdwVyntdVDV
+	txa/ESmLeEpoWaFpJOVocmBhaBtSzPH6l7UPuJLCzfIDBBehQSNNwkw9EpVZ5Cezxsr3VS1F+9B
+	BilX1aK02B77HskrlHducg9gaW8LTswnYuM/3PvBuUjhIIsoVRdCvFiwWGrNHdFLxKnhiWT7Yd/
+	Isd8oFdcdVMFZnV99StNAzPKvSeUksmPS0Ilz7hFdBzDQpO3LHN7b3LRmQRutx/ix7agjKGgkEw
+	TyyQf8
+X-Google-Smtp-Source: AGHT+IGg0i6a2B3te9LDxvEgp3QrhqP/Q1WTFXitfKeGMGPC0YklWmvswc4gwg37W4RFfYtxkzp3bg==
+X-Received: by 2002:a05:600c:4753:b0:477:333a:f71f with SMTP id 5b1f17b1804b1-4778fe60658mr164479575e9.17.1763475370874;
+        Tue, 18 Nov 2025 06:16:10 -0800 (PST)
+Received: from localhost ([62.246.248.122])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47787e8e6a1sm356351435e9.11.2025.11.18.06.16.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Nov 2025 06:16:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: monaco-evk: Enable Bluetooth support
-To: Wei Deng <wei.deng@oss.qualcomm.com>, Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- quic_jiaymao@quicinc.com, Konrad Dybcio <konradybcio@kernel.org>,
- linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- cheng.jiang@oss.qualcomm.com, devicetree@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>, quic_shuaz@quicinc.com,
- quic_chezhou@quicinc.com
-References: <20251113130519.2647081-1-wei.deng@oss.qualcomm.com>
- <176313578860.3262114.17056319042303889483.robh@kernel.org>
- <CAL_JsqJX3doLFv-Nc6o+L1W_o8VjtvGp9dqdpsotuyG17zU7Lw@mail.gmail.com>
- <ca6b02d8-07cc-4bc9-ac99-e75d8e3548fe@oss.qualcomm.com>
- <0428a5a5-fd4e-4309-9b28-f94664177692@kernel.org>
- <cef25c09-0ecb-42ea-b781-a4e0d3c61542@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <cef25c09-0ecb-42ea-b781-a4e0d3c61542@oss.qualcomm.com>
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=aa063a6c377d27e792288f5a4381ff30b0ef12a8fb75f7bd390f2ba44b77;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 18 Nov 2025 15:16:04 +0100
+Message-Id: <DEBVUEKJ6R6G.33Y7W087DCFBT@baylibre.com>
+Cc: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Vishal Mahaveer" <vishalm@ti.com>, "Kevin
+ Hilman" <khilman@baylibre.com>, "Dhruva Gole" <d-gole@ti.com>, "Sebin
+ Francis" <sebin.francis@ti.com>, "Akashdeep Kaur" <a-kaur@ti.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: ti: k3-am62a7-sk: Set wakeup-source
+ system-states
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+To: "Kendall Willis" <k-willis@ti.com>, "Markus Schneider-Pargmann (TI.com)"
+ <msp@baylibre.com>, "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra"
+ <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20251103-topic-am62-dt-partialio-v6-15-v5-0-b8d9ff5f2742@baylibre.com> <20251103-topic-am62-dt-partialio-v6-15-v5-5-b8d9ff5f2742@baylibre.com> <fafe395e-b8d2-4a46-9884-7241b24d3b06@ti.com>
+In-Reply-To: <fafe395e-b8d2-4a46-9884-7241b24d3b06@ti.com>
+
+--aa063a6c377d27e792288f5a4381ff30b0ef12a8fb75f7bd390f2ba44b77
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-On 18/11/2025 14:24, Wei Deng wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your comments.
-> 
-> On 11/18/2025 3:19 PM, Krzysztof Kozlowski wrote:
->> On 18/11/2025 08:07, Wei Deng wrote:
->>> Hi Rob,
->>>
->>> Thanks for your comments.
->>>
->>> On 11/15/2025 12:18 AM, Rob Herring wrote:
->>>> On Fri, Nov 14, 2025 at 10:06 AM Rob Herring (Arm) <robh@kernel.org> wrote:
->>>>>
->>>>>
->>>>> On Thu, 13 Nov 2025 18:35:19 +0530, Wei Deng wrote:
->>>>>> There's a WCN6855 WiFi/Bluetooth module on an M.2 card. To make
->>>>>> Bluetooth work, we need to define the necessary device tree nodes,
->>>>>> including UART configuration and power supplies.
->>>>>>
->>>>>> Since there is no standard M.2 binding in the device tree at present,
->>>>>> the PMU is described using dedicated PMU nodes to represent the
->>>>>> internal regulators required by the module.
->>>>>>
->>>>>> The module provides a 3.3V supply, which originates from the
->>>>>> main board’s 12V rail. To represent this power hierarchy in the device
->>>>>> tree, add a fixed 12V regulator node as the DC-IN source and link it
->>>>>> to the 3.3V regulator node.
->>>>>>
->>>>>> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
->>>>>> ---
->>>>>>  arch/arm64/boot/dts/qcom/monaco-evk.dts | 99 +++++++++++++++++++++++++
->>>>>>  1 file changed, 99 insertions(+)
->>>>>>
->>>>>
->>>>>
->>>>> My bot found new DTB warnings on the .dts files added or changed in this
->>>>> series.
->>>>>
->>>>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->>>>> are fixed by another series. Ultimately, it is up to the platform
->>>>> maintainer whether these warnings are acceptable or not. No need to reply
->>>>> unless the platform maintainer has comments.
->>>>>
->>>>> If you already ran DT checks and didn't see these error(s), then
->>>>> make sure dt-schema is up to date:
->>>>>
->>>>>   pip3 install dtschema --upgrade
->>>>>
->>>>>
->>>>> This patch series was applied (using b4) to base:
->>>>>  Base: attempting to guess base-commit...
->>>>>  Base: tags/next-20251112 (exact match)
->>>>>  Base: tags/next-20251112 (use --merge-base to override)
->>>>>
->>>>> If this is not the correct base, please add 'base-commit' tag
->>>>> (or use b4 which does this automatically)
->>>>>
->>>>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251113130519.2647081-1-wei.deng@oss.qualcomm.com:
->>>>>
->>>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcielp3-supply', 'vddpcielp9-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
->>>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
->>>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p3-supply' is a required property
->>>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
->>>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p9-supply' is a required property
->>>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
->>>>
->>>> This is the 3rd report of your typos. Is there some reason you are
->>>> ignoring the reports?
->>>>
->>>
->>> Sorry for the delayed response. These warnings are worth addressing 
->>> and will be resolved in the next patch.
->>>
->>
->>
->> Three of your patchsets have bugs easily pointed out by tools, so please
->> answer - are you ignoring the reports? Are you doing any tests before
->> sending?
->>
-> 
-> Testing was completed on the local hardware platform with successful 
-> compilation and normal functionality, so the tests in this section 
+Hi Kendall,
 
-Which is not enough.
+On Tue Nov 11, 2025 at 9:57 PM CET, Kendall Willis wrote:
+> On 11/3/25 06:39, Markus Schneider-Pargmann (TI.com) wrote:
+>> The CANUART pins of mcu_mcan0, mcu_mcan1, mcu_uart0 and wkup_uart0 are
+>> powered during Partial-IO and I/O Only + DDR and are capable of waking
+>> up the system in these states. Specify the states in which these units
+>> can do a wakeup on this board.
+>>=20
+>> Note that the UARTs are not capable of wakeup in Partial-IO because of
+>> of a UART mux on the board not being powered during Partial-IO.
+>>=20
+>> Add pincontrol definitions for mcu_mcan0 and mcu_mcan1 for wakeup from
+>> Partial-IO. Add these as wakeup pinctrl entries for both devices.
+>>=20
+>> Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 69 +++++++++++++++++++++++++=
+++++++++
+>>   1 file changed, 69 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/d=
+ts/ti/k3-am62a7-sk.dts
+>> index af591fe6ae4f0a91991d2904a9a61905a0eeb614..b61370db6986308ec97983f7=
+96b993a26debcabc 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>> @@ -233,6 +233,10 @@ AM62AX_MCU_IOPAD(0x0030, PIN_OUTPUT, 0) /* (C8) WKU=
+P_UART0_RTSn */
+>>   &wkup_uart0 {
+>>   	pinctrl-names =3D "default";
+>>   	pinctrl-0 =3D <&wkup_uart0_pins_default>;
+>> +	wakeup-source =3D <&system_io_ddr>,
+>> +			<&system_deep_sleep>,
+>> +			<&system_mcu_only>,
+>> +			<&system_standby>;
+>>   	status =3D "reserved";
+>>   };
+>>  =20
+>> @@ -426,6 +430,42 @@ pmic_irq_pins_default: pmic-irq-default-pins {
+>>   			AM62AX_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (E11) MCU_GPIO0_0 */
+>>   		>;
+>>   	};
+>> +
+>> +	mcu_mcan0_tx_pins_default: mcu-mcan0-tx-default-pins {
+>> +		pinctrl-single,pins =3D <
+>> +			AM62AX_MCU_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
+>> +		>;
+>> +	};
+>> +
+>> +	mcu_mcan0_rx_pins_default: mcu-mcan0-rx-default-pins {
+>> +		pinctrl-single,pins =3D <
+>> +			AM62AX_MCU_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
+>> +		>;
+>> +	};
+>> +
+>> +	mcu_mcan0_rx_pins_wakeup: mcu-mcan0-rx-wakeup-pins {
+>> +		pinctrl-single,pins =3D <
+>> +			AM62AX_MCU_IOPAD(0x038, PIN_INPUT | PIN_WKUP_EN, 0) /* (B3) MCU_MCAN=
+0_RX */
+>> +		>;
+>> +	};
+>> +
+>> +	mcu_mcan1_tx_pins_default: mcu-mcan1-tx-default-pins {
+>> +		pinctrl-single,pins =3D <
+>> +			AM62AX_MCU_IOPAD(0x03c, PIN_OUTPUT, 0) /* (E5) MCU_MCAN1_TX */
+>> +		>;
+>> +	};
+>> +
+>> +	mcu_mcan1_rx_pins_default: mcu-mcan1-rx-default-pins {
+>> +		pinctrl-single,pins =3D <
+>> +			AM62AX_MCU_IOPAD(0x040, PIN_INPUT, 0) /* (D4) MCU_MCAN1_RX */
+>> +		>;
+>> +	};
+>> +
+>> +	mcu_mcan1_rx_pins_wakeup: mcu-mcan1-rx-wakeup-pins {
+>> +		pinctrl-single,pins =3D <
+>> +			AM62AX_MCU_IOPAD(0x040, PIN_INPUT | PIN_WKUP_EN, 0) /* (D4) MCU_MCAN=
+1_RX */
+>> +		>;
+>> +	};
+>>   };
+>>  =20
+>>   &mcu_gpio0 {
+>> @@ -852,4 +892,33 @@ AM62AX_IOPAD(0x008, PIN_INPUT, 0) /* (J24) OSPI0_DQ=
+S */
+>>   	};
+>>   };
+>>  =20
+>> +&mcu_mcan0 {
+>> +	pinctrl-names =3D "default", "wakeup";
+>> +	pinctrl-0 =3D <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_defaul=
+t>;
+>> +	pinctrl-1 =3D <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup=
+>;
+>> +	wakeup-source =3D <&system_partial_io>,
+>> +			<&system_io_ddr>,
+>> +			<&system_deep_sleep>,
+>> +			<&system_mcu_only>,
+>> +			<&system_standby>;
+>> +};
+>> +
+>> +&mcu_mcan1 {
+>> +	pinctrl-names =3D "default", "wakeup";
+>> +	pinctrl-0 =3D <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_defaul=
+t>;
+>> +	pinctrl-1 =3D <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_wakeup=
+>;
+>> +	wakeup-source =3D <&system_partial_io>,
+>> +			<&system_io_ddr>,
+>> +			<&system_deep_sleep>,
+>> +			<&system_mcu_only>,
+>> +			<&system_standby>;
+>> +};
+>
+> Did you mean to set the status =3D "okay" for mcu_mcan0 and mcu_mcan1? Th=
+e=20
+> nodes would still be disabled without it since in k3-am62a-mcu.dtsi the=
+=20
+> status is set to "disabled". Same goes for the patch you sent for AM62P.
 
-Did you read kernel writing-schema guide? Or any other guide like your
-own internal guideline which asks you explicitly for other tests?
+Thanks for your reviews. Yes, I removed it after I got his feedback from
+Vignesh:
 
+  MCU peripherals are under control of MCU R5 which would be running a
+  safety application on AM62A class of SoC. So these peripherals should
+  not be enabled by default here.
 
-> were omitted. Prior to the next submission, a dt-binding constraint 
-> check will be performed.
+https://lore.kernel.org/lkml/32b13258-19dd-4ba7-a13b-daaf3804a7c8@ti.com/
 
-You need to read internal guideline go/upstream before you post next
-patches.
+Best
+Markus
 
-How many other tests you did not run?
+--aa063a6c377d27e792288f5a4381ff30b0ef12a8fb75f7bd390f2ba44b77
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
+
+iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaRx/pBsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlPG
+NwEA9FjeunL7yBrOX00iogrZ0GZ2oU+OVEh3bv7p4qvQO3gBAIfYc1DnBsioZXJv
+MaO1A9L2xjuJbAJEeyn4hbazJtgF
+=oSTG
+-----END PGP SIGNATURE-----
+
+--aa063a6c377d27e792288f5a4381ff30b0ef12a8fb75f7bd390f2ba44b77--
 
