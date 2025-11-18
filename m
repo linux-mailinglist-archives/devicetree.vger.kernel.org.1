@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-239959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EFB1C6B580
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 20:05:57 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE61C6B5DA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 20:12:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F203A35C8BD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 19:05:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 31D374F17FB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 19:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D2A82DE6E9;
-	Tue, 18 Nov 2025 19:05:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0221D36922B;
+	Tue, 18 Nov 2025 19:06:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VOYKzFZK"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CW7rPD8T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013015.outbound.protection.outlook.com [40.107.159.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7678E27B4E1;
-	Tue, 18 Nov 2025 19:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94610368284;
+	Tue, 18 Nov 2025 19:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.15
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763492753; cv=fail; b=Fy93aYHANJDvvHTEpBdQ9ld69VWIeWzqhBQRp57JAYYLn1vn30HlyGa8flwi+mUNyGkdxoxlz0d2JOiCQ83Uv3DIAUzJs/ZPQ16//6c2Fg3SVoTITnq0rX8ErYBGRJEBEhRba+QitC0C6sAHVUs+ZFRuXEnWKY1YU+5/IilWvis=
+	t=1763492772; cv=fail; b=oMcPwCLO4FM2bivlBch1t0UfhHv6Azj/JBQ6+HJ8vuYxN1Np5XM4wf9hjWcSASPxpn+AdjrMS7LhyKqIrBc227qVNsNIyC9c9yhsx7+QDbh1Uak+6/FVgDlbdIYUFaSlIsiDbNgqihI8c4gggd1nhgL58Jj4Qc9WddaxxRxL3CA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763492753; c=relaxed/simple;
-	bh=TqICrTgn5xI4xJSoHrkTSoOE01tel/kozpIusZoFcZE=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=CL7IrLIm7cUgS0EUVBWPAUK6HHyr7oxx+gYfyuOIAqbxmk8dN44qX5wdHSoYDgOmGEUxMaPVooGUvMWIGMp/KfdwuWpx95MgOnJxw2FxhghX3WH6t1DCPmL5ZHY0cFtmuEPrnZ1lQr4AJXhk18NT+h94jQvJP6Oa2pC5LpK1I+M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VOYKzFZK; arc=fail smtp.client-ip=40.107.159.15
+	s=arc-20240116; t=1763492772; c=relaxed/simple;
+	bh=yY0ymqON3QzhNB38qEXrOyfbegpqlNs7d/GSEZ57fh0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=UIB7s0zg9LQkaeEK3wauHWhYXlS1woCyTZXeDYO+JP2YQ8dpihL+TAFtzb9F8tvbEeTOTnIBYQ+Hloh26MsmbzapvjCNcopdjCubACI4/tpLbRN6uKq8jn5DplGL/LXarcP1Llt+bBJv4i4//gV8Hmeil4LyEgvIsbOlzf881Ng=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CW7rPD8T; arc=fail smtp.client-ip=40.107.159.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O2jUbiaOCGJnF0eIiPQrJUPo2QMBVpRMVsWAqFDb5OBarRfQ0zxZUc0/LiEFWsSG9Qow9k8C7LrWMa+DqViLWpIONvCCrrsxBAbV+9wDi4MzXpHjyqQhzI3+5SB7F9sPlXJ5EFOZGYYbrls/Lj9Atvd4TQJxkR1PYbYFw64wlsvrtnpjFoo+dTm1+TPFhQaevZ3n2dGISzuEV9s23dkaj1i6+EWkBxv+iGOsjS/FnLEtz2E3ZVX4UzIXslXWeGq3LHSsJgAprVQWr69DAyUKwLFoHGofV4E6tMWajsDtG9OlnE79nMmeL9Zp/V9sje2EGl3KJjdZD0kZpJ+taTCOXA==
+ b=W3uKn8lhrU3tsxXYP5gDSwkTWEF65gBkwWFP4jCiaHbVIz6AnJKKyK+SPqAZIflWQvtqCZTzcQtQRuliLnsjeIOmBEBbYqK0RlsajH4pK8I1LLAaj2Nq9WF+TJ4LAIvwfvFEKqBG/Wo5mpd0sg/oXB6a9WsWZy0wc6f6nD6tcgEsFsg0EAUmD24O64ePrRxQTu1ts/Y1QjN4fMO8gy+knguJsyTDyGOqbaz0A/GGf53rTVJBbruHZp9OrQDai87ckTYdEjDO7sacxzvWbKs/EF+r7RPxgNQBVh3VNn6QGe0YRl7GNri/M7t+ApQW6UpOkSsIujZIk0CuUwGeURPcFQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xzBSrKHJgTX3iBCjJsNyOyiLusjjQgb3k1mVYj/ievo=;
- b=c7xhj7N0Vy8yjpf7PeNY755z40lrLgX4YT1wXJIorjy2quRdQYwV6ueL36vLs9l6kBj1acjqmxCnwIm/l87NmhQAtUKflqquhM8K1fh7CvcUPQm2ei8y6oUFGycu6Hu4dInB/1N833YIEvG1GVfl4YxM6qYLbFu02HGfZfkMMbrTY2jQjIgBJdBXK1/qNMB9yVfeOY91tZmbKzqknhTEkh8/emvARKZqilONm5LICNuQvX5m3fhXH7EoZYzdnAP/fgnfODEp2ZQOymwT2r7v+sKMlIgmt1FxMlsltqbBXJE1KkhEHgep/1OpNQeposTqIppPMlGZLZXFhoLY2vNgBw==
+ bh=FwwPzrcLMCRiN2tBB53pbaih3/XiM604PNiC35Pn5e8=;
+ b=LRLgSQzdXQVua1jAtSsXGk+4koOUU+jGObpExi8zagd1D11U0kA0E17fo7603cSDXUjvzTKb0uuO2jXXk4RRBIw95b9cTbCJl+Q9WTc0XQ1u34q4YdPRmoQk9aSRRxm2XA8tjL14stgJC2/CmrB03pI2CkfsgVWUfuRVRNwJAQeWduRiAUnQ2qyxVIS+MCw/ece5LRNdsE3jBDBe3UB6Fv0ulTSjZg8sOujm4QnyfZg95TNPDNHqsHReP9MCtDx3F1Vn/qo2MP/tkKpyO8T7DPWf1CjGKSNO+hb3JN5ArzVnLOTm7P7VhQoZZwQsPOhqBMk5GfCc7EqedUeP7Yop7Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xzBSrKHJgTX3iBCjJsNyOyiLusjjQgb3k1mVYj/ievo=;
- b=VOYKzFZK7daStuFKaKzrSF5KRPHXQgWGreV9LZI4jauPGfp5STsPqOUi2ZotLFCjV/lVHQABUJI1TyoS9WeuUFI6EJZWVumHVmxuX1x9s8VumvHBaD1bZZxebCqeQt51A50CT+1YkNuwIyTAINj5lGIhoF+pYG2mLwnYi2JlJfDb2bVyCRYWRwxk3hQAFWDTTOIqxFDzPrNmEj5PqBtdgR3SB0aat0UGi6Udx4VBXb9EpQpcEZPcyE878flnlt2DKfDKRhqAe3ZWbCIAGHH3aj1LiWLQg9Ukz9Hf9lmTzzmPRBBMFRgGPZ0KJeG0PbaVrwyuxPp+rYtZ14jVeRXFGQ==
+ bh=FwwPzrcLMCRiN2tBB53pbaih3/XiM604PNiC35Pn5e8=;
+ b=CW7rPD8TPtrQAXcz0xwdA4HHVQ25/6THXELmulRj3sOY3T4Tll6MK72kObVu9NMRW+4FpZagkqqvDOZHwu96tfogfZM6XjkY1V8efgorE5YMs0Fmy9q7VgHEZaeCdw+zrTfDXx7N3V/KDA0xzmhVRNO96dc0aLYK1S9VABYg/EfDZwUte5nqV78zpTQrn+TwOlqGj24aBfVG43qPgctCJyAgN0tSliWXxGfU+CqoiuX+4zkbT77xFSYBVLjWOf8X1DeBY2Dw80S37MSaDKXsLltfM1v63oY3VxrSpQtxdtntWTjBF2sDkmC1offJ/4n34PNjPEavwzHcX5qwUds7ew==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from DBBPR04MB7497.eurprd04.prod.outlook.com (2603:10a6:10:204::9)
  by PA4PR04MB7695.eurprd04.prod.outlook.com (2603:10a6:102:e3::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Tue, 18 Nov
- 2025 19:05:47 +0000
+ 2025 19:06:01 +0000
 Received: from DBBPR04MB7497.eurprd04.prod.outlook.com
  ([fe80::503f:b388:6d07:adff]) by DBBPR04MB7497.eurprd04.prod.outlook.com
  ([fe80::503f:b388:6d07:adff%4]) with mapi id 15.20.9343.009; Tue, 18 Nov 2025
- 19:05:47 +0000
+ 19:06:01 +0000
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 To: netdev@vger.kernel.org
 Cc: Andrew Lunn <andrew@lunn.ch>,
@@ -65,22 +66,18 @@ Cc: Andrew Lunn <andrew@lunn.ch>,
 	Jakub Kicinski <kuba@kernel.org>,
 	Paolo Abeni <pabeni@redhat.com>,
 	linux-kernel@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Lee Jones <lee@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH net-next 00/15] Probe SJA1105 DSA children using MFD and dynamic OF nodes
-Date: Tue, 18 Nov 2025 21:05:15 +0200
-Message-Id: <20251118190530.580267-1-vladimir.oltean@nxp.com>
+Subject: [PATCH net-next 12/15] dt-bindings: net: dsa: sja1105: document the PCS nodes
+Date: Tue, 18 Nov 2025 21:05:27 +0200
+Message-Id: <20251118190530.580267-13-vladimir.oltean@nxp.com>
 X-Mailer: git-send-email 2.34.1
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20251118190530.580267-1-vladimir.oltean@nxp.com>
+References: <20251118190530.580267-1-vladimir.oltean@nxp.com>
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-ClientProxiedBy: AM0P190CA0022.EURP190.PROD.OUTLOOK.COM
  (2603:10a6:208:190::32) To DBBPR04MB7497.eurprd04.prod.outlook.com
  (2603:10a6:10:204::9)
@@ -92,213 +89,174 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DBBPR04MB7497:EE_|PA4PR04MB7695:EE_
-X-MS-Office365-Filtering-Correlation-Id: 863040f1-3049-4298-79f0-08de26d57b69
+X-MS-Office365-Filtering-Correlation-Id: 4946a91e-f4b4-4ad8-1a1a-08de26d5839c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
 	BCL:0;ARA:13230040|1800799024|10070799003|366016|7416014|376014|52116014|19092799006;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?OGdtemhIcDRvdUkyTUI3Zlo2czZmRFprWjVzallmYkFsamdYZDdHU3ZUaktu?=
- =?utf-8?B?ZmNmN0hGeUZzT0l0VVc5T3gzQUp0aGRJbWJPMityMWJ4eVQ2bHlaejZkY1Fy?=
- =?utf-8?B?U05zMFZjOWNUS2tTNWpxTVlpUW90S01aMGgzQVUzVVkvYWJkMjA1NFArU2lk?=
- =?utf-8?B?b2MxVjF4bXpLbHljRUFkTU40T3FEajRheFA2OHRJTEtLVGdQMktuL1U4RlJC?=
- =?utf-8?B?bVJvM3BrRGlZdjYzZkxBK2srK0NmUDhadWlJR1N0TzhUbE05alhFUzRUUUFB?=
- =?utf-8?B?bXY0OXVaTUZINitUKzdIZDUva0lsQ3Raa3dLR3hienAzS3RjTmdUSE9KMW53?=
- =?utf-8?B?cjY0b2lZQ055YlRMM3AyejVVb1N2UFdFSDZxT3F6ZVBVbXhsRDBydTlWSHJJ?=
- =?utf-8?B?bEx3aGRxOEY1YmFHclNlYkwwdVhJUCtZb2hIUmtTb0JTQnNnU0c5Mk81d3E3?=
- =?utf-8?B?Y3kxdkwxV3FRQkpiaUk1VFRqbTRzK1RoNlExNDRuM0RsTEZocHhXREwxNnIw?=
- =?utf-8?B?dWJ4YlllY3gwN3g4RzBobU9BMmIrTFFZbnNFYnl1aEtRTlJOeUpoQ1Qwdjdn?=
- =?utf-8?B?SzdwZXdMc1Y1dWdGVk1rdmtGQzkxRGMyeW5VWDZVckRGV0RuK25NMzVua041?=
- =?utf-8?B?STlXRnRjMFJoWnM3ZWl6WEpjaDMxeTF1QnZXTEs3UkJUaWZqNnVwVWVMVFFZ?=
- =?utf-8?B?N2oyc1JhclBYZjVvZXVRKzNtQTRCQ0NTRXBoWUZnNElXcS9NOWttWXFyMnNo?=
- =?utf-8?B?THNGS0w2dGtNRnVBTEJmOUlhbElqUFhTelBhQ3oweFFiVE1xUEdyVHJXQ3pH?=
- =?utf-8?B?RXplbzVia1J2RjFIbXBHdGZyT3o1T1duZ2JkUXVCbjJqTnBSTHNOcytCRXBk?=
- =?utf-8?B?cys0U0s4ZytQelFLMXRra21sNTFvN2xmWWhSRk56T1RRVTI4aC9VYnNwTFJS?=
- =?utf-8?B?S0ZhNm9BNTZieko1STNOVWY4SHZmaTR1TzJoeDZYYll4RHBSQWdHQkJvWFJa?=
- =?utf-8?B?SlBNNndxTXc1aTF3UlZFUExlSlk1SHVLSTdzbnRiSkFVaEZvNWZneVZuMktu?=
- =?utf-8?B?a0VqUHpLazd3Q2VoTndpQTdjSXp1aXF3VENOMTJaZHArcVBINFlHVHpJVFBQ?=
- =?utf-8?B?MGhLYXhva09EdDNxc0hwR3Q4WXpsR2orL3NycnFsbG5wUlZPZ0xkYzJDOTlh?=
- =?utf-8?B?VmlFODREcWd0K0ZpQkhnN044WWw0aVdFUEJrcWdsQ09JVFgxcVUzQVJTUWlv?=
- =?utf-8?B?eWw5bCtYYXZQWnI1NjZNMExhWGJnWjRwTEh2SWRMYUY5enRDa3dJby9NOERj?=
- =?utf-8?B?RCtYY1M0eHV4K2kwWnVqUTdneEphSCs3Mk9ZL00ySEw2RGlWNFhadXRVYW40?=
- =?utf-8?B?MSsxTStvZVhKQTRWSVd4WVlnYUYyYW14Q1RQL0c0UVNtRkZ5UDNRdkFlQ3RM?=
- =?utf-8?B?cVFiS0tTS3BQRG1lNnJTMzBrNHpzdkNMZDdXeVZRNjJZVENFbTRlNHNWUzdE?=
- =?utf-8?B?OFBGcmVzVXVHbE13RUZrMTlrN09OR0FRS0JEck54dTNKZk5FNjljeStON0Yx?=
- =?utf-8?B?VnZERDRRbE4wWnM2dTFRNjVhbnZQeVQ5WWlaK2FmTTYrNXV1V2pYLzc3RUNH?=
- =?utf-8?B?ZHlraGluS082YkcyK2tBeGNZVUNtem9neHR1NTRBQXRwRHNEQXFPd0liakhY?=
- =?utf-8?B?NXpacHBVcG1hWDF1cWdYNFBOdEpHbnZVR3ZRR0FDbi9tTm4zWFFPeE1TSXc0?=
- =?utf-8?B?c3R3SndlelBPUzFzMWNiYXVPSkJMQSs5UWtGNURZUnFrSGJJbmM2dUF5RUMx?=
- =?utf-8?B?akt1cXJMTHhwaG9hbFFiYXgzSkhlcDBOcFZoSFBWN1R6eDk3RGptb2ljdzk5?=
- =?utf-8?B?elJhWlhkMWppNjhaYWJkWHl6NzA5RTZHYUFHcUV5ank2ZmZka05zTXdPajhX?=
- =?utf-8?Q?o3ywwL9YQRzfNwo4mkI0HRadl+yZCd1W?=
+	=?us-ascii?Q?E8vD8awvGpFB8IharH34YmgqDmt6FcqLvu8/4omtZ/idGcp784QLXgu3PgOJ?=
+ =?us-ascii?Q?hRO4QHIsjV++6Ibt3wUekZ9fw3cW2Zk/TEyUk50oAdVWV+nkQ3sjheCZ6pFg?=
+ =?us-ascii?Q?+ThenzycZCtLhlpn1l7FSTma+Io8OcUWlJMUHQr9IbjX9mEsweFg9dTKs3/0?=
+ =?us-ascii?Q?VofWrbsJY4gwE9EMbp4Yw43vF7oqP8lwPqgYZYvX1rhdWEcuESQBGA4g27rp?=
+ =?us-ascii?Q?r/K68QmSzLKCN+KCGSm+BgeKXmnbSf1eEY80SVSAHGAyPieAV1DP6DC8fYJB?=
+ =?us-ascii?Q?ZGWTz+KWo/k24VWsOLLuOhoYyUNt4uczDB4oJeP0lPRbryMhvcRVR4QazV50?=
+ =?us-ascii?Q?HXE2wlPChZXkOD7gJ/SDVTnQF3y8UxwzSUD4S/tEiYuvwzN3+KE+s4YficcG?=
+ =?us-ascii?Q?33KtXS3urZGNtNfkcYojCG39ll9+4I6T589AadcE6rnh+1CNAXCciNWIl7HJ?=
+ =?us-ascii?Q?MaT0KJBXJP74gj0lif4IYXto5S5rKbjVZg7Cl5IszUan07Qq2d/IK6AWLS78?=
+ =?us-ascii?Q?c9PBbA7oHYK+vH3Gr673WFsOx8FOjGruDdKd7LrLxSzoOFk3X07XxE99kZUQ?=
+ =?us-ascii?Q?GRnU7xLEvZoAbNI/eSZUrWPsuHxS3KZ+m5oSaVup9Bz7tSu1J151SHXSlBya?=
+ =?us-ascii?Q?ELSw2ixtPE7YV5LO7L3i6aZHfgvmWRtjXV+AO8FYrEFjUQ18GJLJnT/5YDTL?=
+ =?us-ascii?Q?hoclAVssqtdykUP8k+fKF33BzagEeJZD/kIl67+PN6yUZR+XosDLFCzb/S0I?=
+ =?us-ascii?Q?9lZ4rn6L9cbImkMPml9lsIph3qoTSuTLv+cOtYOq9IeXkcNxtxmb9suGQjml?=
+ =?us-ascii?Q?4+ksxu0IMcMA75qIanLVQ9oTCBO13jiRHG52s8Xn8XGC2+O/2vR+CRbw6rJr?=
+ =?us-ascii?Q?KIyNLXewbhgriuIld1c6vPADiQAz/Z+Tp4p0E3noI6QOjRFHPMegphhJqcgK?=
+ =?us-ascii?Q?xoGoZ5dva4aQHqENV2XcWIiG7vdopZcm/pbisJviqug/7MJ38DZb+XGl7wYA?=
+ =?us-ascii?Q?GJzC3uWwJantDbxXx7174hLEjuLfoNDXfTEmsacCKPhaLI15GfNMPh0whA7h?=
+ =?us-ascii?Q?x8b28b9woEPCo7B5ZYKKjL679EA0uJ42b+UrHjr+x13186Npqt/85Vr90+fT?=
+ =?us-ascii?Q?ZdDGO/MbtXj4VavZD/ebxTNO9UhGkWMNWLB0+U9JLf/erS3FNk+M8DFbPaK5?=
+ =?us-ascii?Q?ElZDFuYl7kaBHW9zhQPY57MmJ/9Dm7sRJyGkHONXNZcA3uKk3DndjHHJfz5z?=
+ =?us-ascii?Q?IYKVW/oJ7uZEwTmqbkN9gwcExJjBaGPUeNDladBbAvYYglpEo3USsp33KbuA?=
+ =?us-ascii?Q?RbqU6h/aYJ/mT81wwey5Ji+T1w9sT662tWRQUZpqs8OMua2IY3z4xTclqgrq?=
+ =?us-ascii?Q?a8aYx6zVs0aMPQ1mss7HGPR2k5LBi0ShW2JAaghdhuUb/cw6PVRLAYlrdeS5?=
+ =?us-ascii?Q?C8clpDevibecdlDxST2o0kzIPdhLiFh0?=
 X-Forefront-Antispam-Report:
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7497.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(366016)(7416014)(376014)(52116014)(19092799006);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MVd3cmFTRm5FRlpMQVkrYXJqWWFEcFlyQ2xJMERPelIzRmNDYXJSTmRIeHYy?=
- =?utf-8?B?ekVGZC83QlNLWWRjeFEreWZzYnlIMllXeC9nV0lIc0xYV0FHOWhaclFNRUhK?=
- =?utf-8?B?d1BYakxLdUNnSW5NSTRyYStJb25NUHdDSkRDLzVCelFjUGtuVXpYVzBrRGN4?=
- =?utf-8?B?VFRXZ2YyMUIvbFN5TEN6enM2bnQvRUFMZkRkdEFnV2RSenlXRGlWSmV1OWRN?=
- =?utf-8?B?eDVFMHc3UkhzdGZhUUlrTDNNTk5ZcGtQTmFPdzZaU0tjeXhWZmlWeklSak14?=
- =?utf-8?B?V0VRdmFFR0RRZHBSbUIvdXhTSXhzS1IrcnpsWi9hYWdsQUoxdDRESmtWMGxG?=
- =?utf-8?B?RWcrWW4vZ3BqWEhVdE1HaDlqbFdoS24xdlQ5NFI1bTJPZG4xYS9JRlg5S3Bo?=
- =?utf-8?B?WDZTL1pPNHpsV2tOZk0xL3JMMTJadWpVUnJQY1pSN24vUzNYeHBiSkc0ZndS?=
- =?utf-8?B?WVdOWWZhVGM0c0pMSmFQZ3pETitmVmpMOUc2SVBZVmYyL3ZHSVJvV2cyMGs2?=
- =?utf-8?B?dXRWZ1ZhWDZ5RjVPdTNuZ2hFNkNSS2k5L0xrZHFWQ0U5bkdUeVIxRzBEc3BO?=
- =?utf-8?B?d3pBbmwzSmJONTl2WWpFUVBxTmtxaE9YTStHQlJrckttaHJsQ1BpSGlhcDA1?=
- =?utf-8?B?R0hUM1pMdDI0VjlzWW40cmMybzhOMWpJd1NhVVdQNUxZKzNxcWdQb1Y5WUMr?=
- =?utf-8?B?WTJRWDlheXlybHBvaWZOOTVoQ1Y1QktxbXBCWUJzK2U4Rk9NK3JYWDV2Y2sw?=
- =?utf-8?B?Mk1uR3RJNm81eGJSU0ttZWZiejJNZXNQY1RPOUk5M0FSMG9BRFVvOVJKQnRj?=
- =?utf-8?B?V0F6b29UMWdEblZQVTBjQ2lzdFdOc1I1NFQwRm1IL0VvTEVyYURxQXVRb1NG?=
- =?utf-8?B?NTlXQTNuR1FSb1lrdXVlZGthNmI5UHZINGFvQmZXQzlwRTZyTERKYVJrdGNm?=
- =?utf-8?B?ZThZU3hFT3YzTVFVUWsxZjBuQjNrVlJXUUVVUHVPbmQ1Y2NnNGc0SnFzTmwy?=
- =?utf-8?B?TGMwNnQxY05ybmo0SmgyczFDMlVWak1PT3l2VGR3WU1OekNncHZUcGNTYkp4?=
- =?utf-8?B?MXBicStPVmc3K2RPV1VUM3BPQTFoSjVFQy9zNmdDRFoySlkxVXNKUllDQjlI?=
- =?utf-8?B?YkdFVFpzaDVlTjlFRVE2Nmd3UTdpMXErSkJ4aGMxUWZ6dDM5eWl2elhRS0p6?=
- =?utf-8?B?Q3MvS08wTVljVExlS0tIZ3dDQktQZEhHLzQyQVRWYnR0K0VWdXM2ZTNxR0E3?=
- =?utf-8?B?N3dDalh2K0NLUncyclZHVWExWE9ZZTJzSVFKV29JUmhFdU5zK0dJUDZhWWlB?=
- =?utf-8?B?b0VocFlmQUZXZ3R0SFdlK2Rwd0hud095QVJSTDJsVm9EeElSQXgwOEwyd01v?=
- =?utf-8?B?Q0ZRczRTbStZb1BOV3J6NXdZc1liVTllTzVmNVYwUW9YTHFUbzRIeWhxdzV2?=
- =?utf-8?B?blp3V0tkWmg1ZHA3Q3N2QmZvM2FQNkNENnBVdmpydUt2Y0MwZFdFZDJsZzJS?=
- =?utf-8?B?djRXVzlEcHBqSEo3SGQ1L1B4SlNuZHNybFU1SUxibU9jeGRZMk1GNGJKS3RR?=
- =?utf-8?B?QVBHK0FHalFCcm8wNFpmcXB2dUp2RzJzRHZCdVJrVXF5SjQ5MHFpZGtpd2JI?=
- =?utf-8?B?OC9nbmJTc0RFTk5RVFhlc2lMenFpR2tnTW4vVzhFdjM3V25NVldHMlBidnda?=
- =?utf-8?B?cks0eWxIYWZxR1JiYUdCN3QwbUpXK3lEeXVYZjN5emlwcVVIYmpZWjRtUFRt?=
- =?utf-8?B?VEo4SWZMOVR3VHpTWWtNZ2Q1UHI5Y2tDN2JEOHRQcG5vWWZ1MWNZNTg3Zy9M?=
- =?utf-8?B?c2ZOVjgydmd1V1J3YkplSTBDL1MyZFNQM1Q4YThvWWJMdk9RZkFRT1d4TXNw?=
- =?utf-8?B?K1hGMWhYL29xOUhWdXFUdEg0WndxU3kwWVo0K2NGNDkwTjZ6WVVjVWdzOTdh?=
- =?utf-8?B?U3p1MWtHQmJHNWJsZWRWZ3h0SGxzK1FEN2h6TGtoMGlVN210SlRVekJvZkVr?=
- =?utf-8?B?U0NrSEZyUG1aV1Vtbmx3STJnZFRuaU5wSC9Qd3hiZ3Jvc256SWdobUVGa2JK?=
- =?utf-8?B?N1huZnhXSDZZMGs2Y1JoSHQrMjJYM2RmbDJzWGNLWWw1OHRpdWs1VjhHdWdh?=
- =?utf-8?B?WlFUaTRtWnZWWkJaVzdJK29FdTFHRUxCSXF1amh0aUZGWkdlaUVFZGUvNGRw?=
- =?utf-8?Q?YrflgIMBMdEv/fm+LOMF/hI=3D?=
+	=?us-ascii?Q?vUL4D72AFTp5rI7Jqpmu5OOzV9AqhbPZud81NNDJRJ4sHWFS4ungThme6lMn?=
+ =?us-ascii?Q?vY+ZKsL/1RZdLTw+NOtAVaoc90Fo57idy7au7tfMZFIOVqdNuT22Wa4HqYcB?=
+ =?us-ascii?Q?aHzxyDAFC9W4jtbOn3zmPhsSiHdmxYPpM+X7jMX5hJO6Q1Xs+eocws2jmBOt?=
+ =?us-ascii?Q?ierCVTXYinaFZO3vaQF3nM8UyRnF9LD8l6vyB0DIYnsSBZCFW4DeWO1C2l5n?=
+ =?us-ascii?Q?8slJQ5091j8qe3fAnMtf8WRwYAm6WYFgLPRiyfTiVw3iYyM6y4/+f47Xn3GQ?=
+ =?us-ascii?Q?X0Jui9ZCYg4w5qZDGtQv+EHCQNN30gO8F8+vCgSPkMHOA3ZYjvXI8IBq5yQJ?=
+ =?us-ascii?Q?3Ko3Shp4szjVpT7XkTiDoLp9JWkGIaZD0hIh900m9Re5r6O9KfnmIY14mnIV?=
+ =?us-ascii?Q?XKacI+ijygw47VI4XWkqJSLvm6fW9W4D7dSHZbBbJUXXbuFyMc8JQF4x9rAf?=
+ =?us-ascii?Q?RmxIRYZ/18uKmV46MBGjTzloKb4HFeyvzwqFidheitfYxQecv2QgG3+58rg/?=
+ =?us-ascii?Q?mknym6/TfJT7Z7fNDq37lXP8eXit6ocy0ssuEInxkcO/PwP3tHbujgoYdE4P?=
+ =?us-ascii?Q?c7yZGBzlsr0956Al3vyN4wNQy5Kb5NACO1H6yx0EdAAe0kGC3UeM7ujFky/b?=
+ =?us-ascii?Q?fHIeVGBR8skbA3wU/3iFZNdrglynDNxKovzxhicg8cZpXictCBDf4oi5PO8J?=
+ =?us-ascii?Q?2PuVeQ0LNN9wP5nxsx9b7KxvdznHQu2icpvJVAMPjCbFL3avVoYfaQBBsygU?=
+ =?us-ascii?Q?2J5gKBXXjvrJ3lUn++1ezGNV5hwSMsXtJconfgEnFIiSODvYgdgm98htzHar?=
+ =?us-ascii?Q?auVTqd0wdydOC+N4eW/Ll1xkLSr6C7txV4Fl/UuBhAnGTW3cgOIK47OdIoiv?=
+ =?us-ascii?Q?xApZ+N1K51eIDkvwNXPpVrnfQ1gW4o9T7LquBf9YuhCwy/58ZBAdcLz/KzF9?=
+ =?us-ascii?Q?RuzQexpguP+uRNXOfADINbyRupItwv4WNFP5XZyH3t0tQe87cD4WuMiwvxBq?=
+ =?us-ascii?Q?bHkPjwJMwrEYiAffBOYFLylKXydmz+B4+NvvEiw4AVT2evv6nSbsZcRbhyFE?=
+ =?us-ascii?Q?vkpgIB1q+dJes4keCk0K4X4C+DdJGVddqQ73WMC/Vm/9h6llquKZ6KRxJDW7?=
+ =?us-ascii?Q?v8yPx+K+wOVwj4/c8ROsVV2YUh3Wdt1Q/gkm5+McKJYCQF9d/XPNVDYu/s61?=
+ =?us-ascii?Q?inE54X4i1VRQ6c7pFPzaOOE6ZmdhU5PmUkpaBsgbV0Gxx1995Ib4c0BZ0CIW?=
+ =?us-ascii?Q?31cG7baS4FA0TPpH3qahEdivxdxtcIMLaPZK+6HSzJJKoxAb5EVTEzHEEROv?=
+ =?us-ascii?Q?h9qpTwTkztqaviW1xcKujiK0WNj/qb6/LAWBTTWvZTP2x0DL1Ex+w72V/F23?=
+ =?us-ascii?Q?pnMvVzb5/g1Wll0I4AmAlRkd4/C68V0SDDaXx+y4QiA+AUB+AuDH2fngf+9U?=
+ =?us-ascii?Q?+B4wTOgwDizZBbmJ4PdKiCKXZEh77VNRbToShrfimUc26umiTKRhDlIgT6qG?=
+ =?us-ascii?Q?VROOXsDXtWnQk7NVQRdWj4ptM0TMOshGiJWGjsY6rA9aQfgZxLKi0y5bgtXQ?=
+ =?us-ascii?Q?BKpz/memCe09KZN/h7xlMq2j200MyCRDWHXVkH6Zyp3Y94xHdLDnAu7gOX/U?=
+ =?us-ascii?Q?65DE81S8y3YOdX511jnk0eI=3D?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 863040f1-3049-4298-79f0-08de26d57b69
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4946a91e-f4b4-4ad8-1a1a-08de26d5839c
 X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7497.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 19:05:47.5394
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 19:06:01.2515
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ni5H9/9vYa25KPm+ZDpyAkrOJXbJFHGGdbiErSD84mXrA7BiL+yUA6MRdJTi6j9gkiN7P/edobXb5XM57/guGg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: KzAcs1H44P7YlHAkoM7KBxfDTl/pjFOUU5VDsT9SgjNSUnT/QZzHfq7fGJSvWjvaw9RFgtldRQW2OwV4MiCsIg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7695
 
-This series prepares the SJA1105 driver for a goal covered in upcoming
-patches: customize the XPCS with extra device tree properties for board
-specific settings (specifically lane polarity).
+The XPCS blocks in NXP SJA1105 and SJA1110 may be described in the
+device tree, and they follow the same bindings as the other instances
+which are memory-mapped using an APB3 or MCI interface.
 
-The XPCS handles conversion of internal parallel Ethernet MAC data onto
-a SGMII serial interface. This block can be memory-mapped or it can be
-accessed over MDIO. Its driver (drivers/net/pcs/pcs-xpcs.c) always
-expects it to be on an MDIO bus, so if memory-mapped, the code creates a
-fake MDIO bus whose reads and writes go to the memory addresses. Note
-that in the case of the SPI-controlled SJA1105 switches, memory-mapped
-means accessible through the same device-specific SPI transfer protocol
-that reads and writes any other switch register.
+Document their compatible string, positioning in the switch's "regs"
+subnode, and the pcs-handle to them.
 
-The status at present date in this DSA driver is that the XPCS is
-implicitly created and used by the driver despite not described in the
-device tree at all. The code which creates a fake MDIO bus for the XPCS
-is itself a subset of the more general logic implemented in
-drivers/net/pcs/pcs-xpcs-plat.c, and the latter already has DT bindings.
+The "type: object" addition in the ethernet-port node is to suppress
+a dt_binding_check warning that states "node schemas must have a type
+or $ref". This is fine, but I don't completely understand why it started
+being required just now (apparently, the presence of "properties" under
+the port node affects this).
 
-So we have to modify SJA1105's DT schema to allow XPCS children, and
-modify the XPCS schema to allow SJA1105 compatibles (patch 12/15).
-
-To retain compatibility with XPCS not being described in the device, we
-use the dynamic OF API to create implicit XPCS nodes based on resources
-hardcoded in the driver, when those nodes are missing (patch 13/15).
-
-To probe the XPCS platform driver using its standard bindings but
-adapted to sitting behind a SPI bus, the former needs to be converted
-to regmap, as done in patch 11/15, and also needs to be aware of its
-specific compatible string (patch 10/15). The SJA1105 also has to
-provide a regmap for its child, in patch 05/15.
-
-We use the MFD framework to probe the XPCS children. Actually, the XPCS
-bindings want "reg" to denote the base address in the switch address
-space, and the DSA ethernet-switch root node is not structured to be
-able to provide that (other children need #address-cells = <0>). So we
-create an intermediary "regs" node between the top-level ethernet-switch
-node and the new ethernet-pcs node. This solves the device tree
-hierarchy issue but results in the need for patch 07/15.
-
-To use the MFD framework for XPCS, the SJA1105 driver must be decoupled
-with it, interacting only through standard interfaces rather than
-accessing it directly. Patch 01/15 replaces sja1105_static_config_reload()
-interaction with generic phylink helpers for replaying link events after
-a reset. Patch 10/15 and 15/15 obtain a simple phylink_pcs reference in
-the SJA1105 driver based on the standard 'pcs-handle' device tree
-property (phandle).
-
-The work to use MFD for XPCS triggered a chain reaction where the other
-MDIO buses implemented in the SJA1105 driver were also migrated to
-standalone drivers and probed using MFD. This is the topic of patches
-03/15, 04/15 and 08/15. This helps increase the separation of concerns
-and makes the SJA1105 DSA driver more focused on switching stuff.
-
-The rest (patches 02/15, 06/15, 09/15) are minor "glue" changes.
-
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Herve Codina <herve.codina@bootlin.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Serge Semin <fancer.lancer@gmail.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>
 Cc: Rob Herring <robh@kernel.org>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
 Cc: Conor Dooley <conor+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+---
+ .../bindings/net/dsa/nxp,sja1105.yaml         | 28 +++++++++++++++++++
+ .../bindings/net/pcs/snps,dw-xpcs.yaml        |  8 ++++++
+ 2 files changed, 36 insertions(+)
 
-Vladimir Oltean (15):
-  net: dsa: sja1105: let phylink help with the replay of link callbacks
-  net: mdio-regmap: permit working with non-MMIO regmaps
-  net: mdio: add driver for NXP SJA1110 100BASE-T1 embedded PHYs
-  net: mdio: add generic driver for NXP SJA1110 100BASE-TX embedded PHYs
-  net: dsa: sja1105: prepare regmap for passing to child devices
-  net: dsa: sja1105: include spi.h from sja1105.h
-  mfd: core: add ability for cells to probe on a custom parent OF node
-  net: dsa: sja1105: transition OF-based MDIO drivers to standalone
-  net: dsa: sja1105: remove sja1105_mdio_private
-  net: pcs: xpcs: introduce xpcs_create_pcs_fwnode()
-  net: pcs: xpcs-plat: convert to regmap
-  dt-bindings: net: dsa: sja1105: document the PCS nodes
-  net: pcs: xpcs-plat: add NXP SJA1105/SJA1110 support
-  net: dsa: sja1105: replace mdiobus-pcs with xpcs-plat driver
-  net: dsa: sja1105: permit finding the XPCS via pcs-handle
-
- .../bindings/net/dsa/nxp,sja1105.yaml         |  28 +
- .../bindings/net/pcs/snps,dw-xpcs.yaml        |   8 +
- MAINTAINERS                                   |   2 +
- drivers/mfd/mfd-core.c                        |  11 +-
- drivers/net/dsa/sja1105/Kconfig               |   2 +
- drivers/net/dsa/sja1105/Makefile              |   2 +-
- drivers/net/dsa/sja1105/sja1105.h             |  42 +-
- drivers/net/dsa/sja1105/sja1105_main.c        | 169 +++---
- drivers/net/dsa/sja1105/sja1105_mdio.c        | 507 ------------------
- drivers/net/dsa/sja1105/sja1105_mfd.c         | 293 ++++++++++
- drivers/net/dsa/sja1105/sja1105_mfd.h         |  11 +
- drivers/net/dsa/sja1105/sja1105_spi.c         | 113 +++-
- drivers/net/mdio/Kconfig                      |  21 +-
- drivers/net/mdio/Makefile                     |   2 +
- drivers/net/mdio/mdio-regmap-simple.c         |  77 +++
- drivers/net/mdio/mdio-regmap.c                |   7 +-
- drivers/net/mdio/mdio-sja1110-cbt1.c          | 173 ++++++
- drivers/net/pcs/pcs-xpcs-plat.c               | 146 +++--
- drivers/net/pcs/pcs-xpcs.c                    |  12 +
- drivers/net/phy/phylink.c                     |  75 ++-
- include/linux/mdio/mdio-regmap.h              |   2 +
- include/linux/mfd/core.h                      |   7 +
- include/linux/pcs/pcs-xpcs.h                  |   1 +
- include/linux/phylink.h                       |   5 +
- 24 files changed, 1033 insertions(+), 683 deletions(-)
- delete mode 100644 drivers/net/dsa/sja1105/sja1105_mdio.c
- create mode 100644 drivers/net/dsa/sja1105/sja1105_mfd.c
- create mode 100644 drivers/net/dsa/sja1105/sja1105_mfd.h
- create mode 100644 drivers/net/mdio/mdio-regmap-simple.c
- create mode 100644 drivers/net/mdio/mdio-sja1110-cbt1.c
-
+diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+index 607b7fe8d28e..ee1a95d6b032 100644
+--- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+@@ -85,11 +85,31 @@ properties:
+           - compatible
+           - reg
+ 
++  regs:
++    type: object
++    description:
++      Optional container node for peripherals in the switch address space other
++      than the switching IP itself. This node and its children only need to be
++      described if board-specific properties need to be specified, like SerDes
++      lane polarity inversion. If absent, default descriptions are used.
++    additionalProperties: false
++
++    properties:
++      '#address-cells':
++        const: 1
++      '#size-cells':
++        const: 1
++
++    patternProperties:
++      "^ethernet-pcs@[0-9a-f]+$":
++        $ref: /schemas/net/pcs/snps,dw-xpcs.yaml#
++
+ patternProperties:
+   "^(ethernet-)?ports$":
+     additionalProperties: true
+     patternProperties:
+       "^(ethernet-)?port@[0-9]$":
++        type: object
+         allOf:
+           - if:
+               properties:
+@@ -107,6 +127,14 @@ patternProperties:
+                 tx-internal-delay-ps:
+                   $ref: "#/$defs/internal-delay-ps"
+ 
++        properties:
++          pcs-handle:
++            $ref: /schemas/types.yaml#/definitions/phandle
++            description:
++              Phandle to a PCS device node from the "regs" container.
++              Can be skipped if the PCS description is missing - in that case,
++              the connection is implicit.
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/net/pcs/snps,dw-xpcs.yaml b/Documentation/devicetree/bindings/net/pcs/snps,dw-xpcs.yaml
+index e77eec9ac9ee..46e4f611f714 100644
+--- a/Documentation/devicetree/bindings/net/pcs/snps,dw-xpcs.yaml
++++ b/Documentation/devicetree/bindings/net/pcs/snps,dw-xpcs.yaml
+@@ -25,6 +25,14 @@ description:
+ properties:
+   compatible:
+     oneOf:
++      - description:
++          Synopsys DesignWare XPCS in NXP SJA1105 switch (direct APB3 access
++          via SPI) with custom PMA
++        const: nxp,sja1105-pcs
++      - description:
++          Synopsys DesignWare XPCS in NXP SJA1110 switch (indirect APB3 access
++          via SPI) with custom PMA
++        const: nxp,sja1110-pcs
+       - description: Synopsys DesignWare XPCS with none or unknown PMA
+         const: snps,dw-xpcs
+       - description: Synopsys DesignWare XPCS with Consumer Gen1 3G PMA
 -- 
 2.34.1
 
