@@ -1,125 +1,191 @@
-Return-Path: <devicetree+bounces-239636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73B21C67E4B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:21:31 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6A7AC67E9F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:23:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8AE874F2D34
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:18:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6AE1238055B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80C1301007;
-	Tue, 18 Nov 2025 07:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0102FD7B9;
+	Tue, 18 Nov 2025 07:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NGMh+znm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TO/mWiOt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE5F3009CA
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 07:17:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A16E2FD1AD;
+	Tue, 18 Nov 2025 07:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763450254; cv=none; b=l3mmuISjTb2KgkBUKtSwktf4br3+P4dQo+dCD+38YByYK++S71nHfL6dDgCmNqaOuxziNIglPUb6NMruvfl+4Utopvvrjs3keIzF+0juE+KY/RxlNswL94aEwpLbTrE0RkCZzQ6yEs4q8QjtHHZ15j+ypZ6bqz/RqCb5OqqiiDk=
+	t=1763450391; cv=none; b=YHEW7sa6bxt42iOmV1N68l2hmeYWmkRTC43ytQZUyN9c1ti2U3oIoh0IMw0MwDtGH9y1H2XMO17q2DI+9yWL6SSpg8ituzHBBt5hExFQIE2hFD8LkkXK5n3O9SKr96yiLTCN+drLaIddF2qAp9JcbRauZBxk/uhnChQx9Jj2V4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763450254; c=relaxed/simple;
-	bh=7L8uQUhYhVxy3DBDUcYwUUGjQQ/0CkZ24E4lZ1HLg3Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ArB12ntf2pIto4yoEHee2v+kKeWl2QY80i64N40LXv1pPllRVvwPsyXHo9RtA5sn4/iIswcAXz3T116CyiOQ/VNLu5KBq2qlonfzxWwT4Im9EFBu1aOybB4PVBKsH2cy9XBFKGNLKYjm+zdWoQn5cLZl8t/L4ysEi98IvyYrgCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NGMh+znm; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-bbbc58451a3so3665452a12.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 23:17:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763450252; x=1764055052; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1h/LtINK8q4zriSv56jSMYuYj4wBO4XsX7/xajbaKQg=;
-        b=NGMh+znmLr3n4cPnKdjY7aGkdy6HbRT1IMFoVe517upwdAb3g+f7xTn9SmkeIimAf9
-         FYNjA0gHB4PzsyiqvH10ghy7nf2XnJf+i5/XzJs/o4llG4LoE/9xNYbZIf5M/8siHclR
-         HuJM6Ffq4tY7Yj/Pc1hdcvzAp1Xc0eG5HEUiMOnvU5Yxj9zcUiMAYalhRQGWbDOW8RcA
-         Hxp9kjQ7Qave3QxQCp9+Z92dSTargq1TjpaYr88jbJbPgA4dqC/pZf/Rm+IHU2JGuI3n
-         8Ne+8ooPDWJ0HxcxzGojYRUMhuRbSdI5b4L5RZ3j/YjxOATm8NdRkXXq7Cj7mDCWZ1kJ
-         J0Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763450252; x=1764055052;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1h/LtINK8q4zriSv56jSMYuYj4wBO4XsX7/xajbaKQg=;
-        b=aw23R5wFqKZjZ5AtU9uWll67ahyoh+scV48cXE7TJII4m8ZWfp97NKByqlkiYozeVh
-         Mv655BtHWydBCmJkntlvHLgV52Te6Mgpl8Xp4JC6dP5ViUve8VDdLCDiHRqmypOlAAVF
-         Zd5EKAlUt5UNehDe1HyJtKF3jlUK0fdzD4da6Z6diEocnbaA4tqiloZpRtPj87DKX1zD
-         CZvUCzMS/HaD3y63WqPbl+rpTC+ZaMhVM8GDQHni9U3qGYIeS/WHpHy0pvOHwmcfItyE
-         M12g8XCP8CekHhwtubpNkbxr2WweEvoi1id0WYnD6mmAgC6X4+lpOcc0V6ogE513Thsn
-         NMgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVLYUSxFOfwk5PqkOMPE8ArrVjjY7DBkOSXDvJVoEHm/suGGpf2ahRMT6BPoFSEHbvSrKlTXTmDCwBe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxyir/+zOMAAlo2ne45kB5JRzlb2hSyFuFa5HuNs9qzt5u+YeU6
-	x06N8GgRZI0VygRnV9hJD85s4Qs92figOCYOCoqkPZ6QyIDRkktXzt76
-X-Gm-Gg: ASbGncuFcdSQqO282NlZ34AGUep+Jlr7HDCZZxc3OmA3eyMfhp7ZQNvbOFbTGw6MJaE
-	LW467JKIxNyQB14G6hxoxY1zwLl2erncEXMB8oetkuKjRD5piV30x4U/CUQBcrUbFhjpewAlSAF
-	tqZTUig/UYxw4XjVi4nDrPzpRk5EAhW+s69gcFv4zNsf/2dCbsCJXG4J27xTjDA3JrQIvvVJWR+
-	yWqPcipNKNj999sGa3oSJm8RYfo8wdiVXVxdObp97LtkKjRaDem4PIsiO6pD2UBtYqq8wgwhQwQ
-	TI++T7LVKk6iyyJQ2v0eZNdbjKinOcmJSqBtsVDi03xh1Nh91Ut6p1wb58VYYeeTOxqFFUfC76p
-	44AR2AUxtFX5+VkQjuwLzRdyro1OefZJYvySN5Li4OGlA8RDZUIeqHjvqBlHFeF+eOdcSEf9Fyg
-	==
-X-Google-Smtp-Source: AGHT+IF7vM7dWQA7a8j5a3/LMB+ij9tgBYk+NU42Vt0dswOO93rmrv5IDEUmNpYrednFhDvN1YDVVQ==
-X-Received: by 2002:a05:7300:ce8e:b0:2a4:3593:6453 with SMTP id 5a478bee46e88-2a4ab88119cmr5119698eec.3.1763450252407;
-        Mon, 17 Nov 2025 23:17:32 -0800 (PST)
-Received: from geday ([2804:7f2:800b:b822::dead:c001])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2a49db7a753sm54420555eec.6.2025.11.17.23.17.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Nov 2025 23:17:31 -0800 (PST)
-Date: Tue, 18 Nov 2025 04:17:25 -0300
-From: Geraldo Nascimento <geraldogabriel@gmail.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Shawn Lin <shawn.lin@rock-chips.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Johan Jonker <jbx6244@gmail.com>,
-	linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] PCI: rockchip: 5.0 GT/s speed may be dangerous
-Message-ID: <aRwdhbt0AcLQ1LgF@geday>
-References: <e5d5c0dc-81d6-ae0e-7552-c2e4fb39bb0a@manjaro.org>
+	s=arc-20240116; t=1763450391; c=relaxed/simple;
+	bh=ED27CMwNHU5TWXJaOSp3hBelRHeBOw08OxVZ+KML8VM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o8TT8kKIsp+brX42b2YyXK+zmLE7AMNUnXe6IQ+ong5jdMI+vpDsEGcHEXPaf5rLzwT/rWtU97zWyxel9IO3CtKsg4wlIRkQMKNEqNNGFbzhVUgsocNhsqP6tmbFvd+UnCNaOv4mwpwOdE3grpqWC1mqSOCx6kvwPVsEdEP//oA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TO/mWiOt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFD96C4CEF1;
+	Tue, 18 Nov 2025 07:19:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763450390;
+	bh=ED27CMwNHU5TWXJaOSp3hBelRHeBOw08OxVZ+KML8VM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TO/mWiOthigSwC4OfjnyKN/r1MCvZLZSrSJHlkapjDQmXyz3bp32UQP3DG/J2Dxs9
+	 z13ffMeafD15i1LmhYP9x+zpcaCkI8B9oBSdbG/MSdSg0a2UDY9ZO+pJwwLDdNi2Ck
+	 mYTriBJXqniEjI5ifZlCx627ZRGbAyXsIh/IY8B6ShwowoG7yj3cW4TbjMOK2dO1iY
+	 HEHwNyUcd8SUVMseSiEX4rtZ7wlSty8AbrUoVnZUGdHChC/7mDj/Oeyz2+r2ydBEoR
+	 XcsGYEm/CUNhkhkxHZloZmjeTdnOK9cSmQZwl3TqmC2M7VALCV/bZGq6z663JTCFg7
+	 cL7ZJUtevPjpQ==
+Message-ID: <0428a5a5-fd4e-4309-9b28-f94664177692@kernel.org>
+Date: Tue, 18 Nov 2025 08:19:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e5d5c0dc-81d6-ae0e-7552-c2e4fb39bb0a@manjaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: monaco-evk: Enable Bluetooth support
+To: Wei Deng <wei.deng@oss.qualcomm.com>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ quic_jiaymao@quicinc.com, Konrad Dybcio <konradybcio@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ cheng.jiang@oss.qualcomm.com, devicetree@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>, quic_shuaz@quicinc.com,
+ quic_chezhou@quicinc.com
+References: <20251113130519.2647081-1-wei.deng@oss.qualcomm.com>
+ <176313578860.3262114.17056319042303889483.robh@kernel.org>
+ <CAL_JsqJX3doLFv-Nc6o+L1W_o8VjtvGp9dqdpsotuyG17zU7Lw@mail.gmail.com>
+ <ca6b02d8-07cc-4bc9-ac99-e75d8e3548fe@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <ca6b02d8-07cc-4bc9-ac99-e75d8e3548fe@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 18, 2025 at 07:45:45AM +0100, Dragan Simic wrote:
-> Technically, you shouldn't have included my Reviewed-by tags in some
-> of the patches in the v2 of this series, because the patches were
-> either modified significantly since I gave my Reviewed-by for them
-> in the v1, or they were actually introduced in the v2.
+On 18/11/2025 08:07, Wei Deng wrote:
+> Hi Rob,
 > 
-> However, I checked all four patches in the v2 again and everything
-> is still fine, so just to make sure, please feel free to include for
-> the entire series:
+> Thanks for your comments.
 > 
-> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+> On 11/15/2025 12:18 AM, Rob Herring wrote:
+>> On Fri, Nov 14, 2025 at 10:06 AM Rob Herring (Arm) <robh@kernel.org> wrote:
+>>>
+>>>
+>>> On Thu, 13 Nov 2025 18:35:19 +0530, Wei Deng wrote:
+>>>> There's a WCN6855 WiFi/Bluetooth module on an M.2 card. To make
+>>>> Bluetooth work, we need to define the necessary device tree nodes,
+>>>> including UART configuration and power supplies.
+>>>>
+>>>> Since there is no standard M.2 binding in the device tree at present,
+>>>> the PMU is described using dedicated PMU nodes to represent the
+>>>> internal regulators required by the module.
+>>>>
+>>>> The module provides a 3.3V supply, which originates from the
+>>>> main board’s 12V rail. To represent this power hierarchy in the device
+>>>> tree, add a fixed 12V regulator node as the DC-IN source and link it
+>>>> to the 3.3V regulator node.
+>>>>
+>>>> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/monaco-evk.dts | 99 +++++++++++++++++++++++++
+>>>>  1 file changed, 99 insertions(+)
+>>>>
+>>>
+>>>
+>>> My bot found new DTB warnings on the .dts files added or changed in this
+>>> series.
+>>>
+>>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+>>> are fixed by another series. Ultimately, it is up to the platform
+>>> maintainer whether these warnings are acceptable or not. No need to reply
+>>> unless the platform maintainer has comments.
+>>>
+>>> If you already ran DT checks and didn't see these error(s), then
+>>> make sure dt-schema is up to date:
+>>>
+>>>   pip3 install dtschema --upgrade
+>>>
+>>>
+>>> This patch series was applied (using b4) to base:
+>>>  Base: attempting to guess base-commit...
+>>>  Base: tags/next-20251112 (exact match)
+>>>  Base: tags/next-20251112 (use --merge-base to override)
+>>>
+>>> If this is not the correct base, please add 'base-commit' tag
+>>> (or use b4 which does this automatically)
+>>>
+>>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251113130519.2647081-1-wei.deng@oss.qualcomm.com:
+>>>
+>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcielp3-supply', 'vddpcielp9-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
+>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p3-supply' is a required property
+>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
+>>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p9-supply' is a required property
+>>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
+>>
+>> This is the 3rd report of your typos. Is there some reason you are
+>> ignoring the reports?
+>>
+> 
+> Sorry for the delayed response. These warnings are worth addressing 
+> and will be resolved in the next patch.
+>
 
-Hi Dragan,
 
-Oops, sorry about that, and thanks for calling me out on this matter.
-I'll definitely bear this in mind for future submissions.
+Three of your patchsets have bugs easily pointed out by tools, so please
+answer - are you ignoring the reports? Are you doing any tests before
+sending?
 
-Glad it worked out in the end.
-
-Regards,
-Geraldo Nascimento
+Best regards,
+Krzysztof
 
