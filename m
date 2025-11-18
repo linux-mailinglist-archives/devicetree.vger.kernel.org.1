@@ -1,208 +1,97 @@
-Return-Path: <devicetree+bounces-239788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2969AC6943D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBFAC6959A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:23:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id DDEB72AA62
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 12:08:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id B9C022AA5B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 12:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74846358D39;
-	Tue, 18 Nov 2025 12:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D47A2FFDCE;
+	Tue, 18 Nov 2025 12:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QwuI/du4"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="h4TgurKp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail-m1973194.qiye.163.com (mail-m1973194.qiye.163.com [220.197.31.94])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6E93559E3;
-	Tue, 18 Nov 2025 12:04:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6FB42D641C;
+	Tue, 18 Nov 2025 12:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.94
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763467495; cv=none; b=BVSG+ig5NcuQxEEU9ISu+HylkWqDaXzekEUpJhA5Hhq2tWsTcewjKalEtiP4A0KH+yEs8orBtVoOtO4/Jb6hnTQspzQQ27lW73kz3NGNBp0jXNDOp6SYXNJuOWWQAhsJjbWNhZd+0qTxPHJhRWSphiQqjpDvZl5N20xBCEuDq5U=
+	t=1763468597; cv=none; b=tI8JV1JZMF380K2xMpMN1nCu8embS/XJrUPrk44/K4kZddSlS3oKKFb431oRx0EfkLe6bTTidEV/C9u3rssFWqVY+aNyKamo67jxek5GxtRiQEljmcxYTn3gckRC3XmAj7luh6N0slM2lasr2HQnkJcM+kBmFpxsxgnin/wHVlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763467495; c=relaxed/simple;
-	bh=DpkWuYfncaRWDOJhDgPhlnJ5he9guBR6UviCskUoiR4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=l+Hf+gA3k7DcqOeytCJXmEC35W61tN7Z2wPnanPqdKxTPS3kBs0JyovlBLwcRa4fIF1Yz0vRSS1oQ9/X7XdTkemzJO3rihg/pkFDFbHC+nUh99Yz2ELzEKAzS2lJ5m/nM0d2P756Ig/4FF00x+HdaLoXOon3iQLLsDpevKhEIdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QwuI/du4; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c66:4b0d:7040:4d69:4c7c:d231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F21B71FE4;
-	Tue, 18 Nov 2025 13:02:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1763467364;
-	bh=DpkWuYfncaRWDOJhDgPhlnJ5he9guBR6UviCskUoiR4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=QwuI/du4Y4KGUJr1AOwwDoDKsDUSEPyAh1EhWqqkOAFUgQ+CWufRO+YHIYQGgmfvL
-	 MTwcsV2TAYEWtXR83l8GRRzpjB/amAa9nNfEBV/oj5DDCLZmL6hpMMBq5Acx4cyyPo
-	 Yf4ASKXIGWjVjtkJ4B9eaiov0XyAxzy6aUJmLHAE=
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Date: Tue, 18 Nov 2025 17:33:09 +0530
-Subject: [PATCH v2 16/16] media: i2c: ov5647: Add V4L2_CID_LINK_FREQUENCY
- control
+	s=arc-20240116; t=1763468597; c=relaxed/simple;
+	bh=BrZuvvYA0b9KF8OlJAzSmpDRZqvwzMPeeVcZqKTNrlA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Niz/OvS4fh908v1EMMU9sVWJ6DwfkYAdp6hDw+ROGyAfbLG+DFZ2tl/Nh7rLAOKIZRzi3Zp8ndR3sAB8kl4crEU3adkVmL+MtRwiu+uqTWV+O85dPnIgNTytD6ZObvdClwji7zEP0L4fk1u72oAnwUmup/a6t3Cikju3F89yxlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=h4TgurKp; arc=none smtp.client-ip=220.197.31.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from albert-OptiPlex-7080.. (unknown [112.65.126.162])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 29ffcdd1d;
+	Tue, 18 Nov 2025 20:07:45 +0800 (GMT+08:00)
+From: Albert Yang <yangzh0906@thundersoft.com>
+To: arnd@arndb.de
+Cc: yangzh0906@thundersoft.com,
+	catalin.marinas@arm.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	krzk@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	soc@lists.linux.dev,
+	ulf.hansson@linaro.org,
+	will@kernel.org
+Subject: Re: [PATCH v5 0/6] arm64: introduce Black Sesame Technologies C1200 SoC and CDCU1.0 board
+Date: Tue, 18 Nov 2025 20:07:45 +0800
+Message-ID: <20251118120745.2480682-1-yangzh0906@thundersoft.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251031045253.789621-1-yangzh0906@thundersoft.com>
+References: <20251031045253.789621-1-yangzh0906@thundersoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251118-b4-rpi-ov5647-v2-16-5e78e7cb7f9b@ideasonboard.com>
-References: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
-In-Reply-To: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Jacopo Mondi <jacopo@jmondi.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Naushir Patuck <naush@raspberrypi.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- David Plowman <david.plowman@raspberrypi.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Peter Robinson <pbrobinson@gmail.com>, Stefan Wahren <wahrenst@gmx.net>, 
- "Ivan T. Ivanov" <iivanov@suse.de>, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Jai Luthra <jai.luthra@ideasonboard.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3628;
- i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
- bh=T1d9Hy1J4BXcVdPBAf0njg5hJALA68gH9mII9MKw4KY=;
- b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBpHGCJMpN5i9euon65piigJ4n86ZUUGguRBoi0r
- 97PVr64yx6JAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCaRxgiQAKCRBD3pH5JJpx
- RYriD/oCtozvC3aZ94C3UYAo5HMNMiKMABMquC6EyiFQAqBTDdxYoiA0gK9NriiU6iS0aho6B9f
- IzJ2ZtC/CpFdCgJxeiJcb79M8j0nYMe0vfoXxegeorvN5OiA9gB6HRQNGUk6s0R1mW/7kfhmtyq
- BKgBEoajIvoERDrXA2iex8pepcDL2UWeQhBAPZri5tbHeIkPqxal+orP8d3vAce282XjrhzHoen
- mQL/X02RBujXmkIkUIQGteswzTSWPywy0GHN5YuH5Iy57YJkiO39wG/D4DLZV8ggF94dpXXAAp8
- rjVrxHfISnvkUPuwIUbJ1/5yMWJzWFNNXo0cOWE5N9XwE2rveYAzeieT9zYjaZWb+Gh3hDQK9Pm
- XCHboJ3AelAHDProMiyctYRwEyZTrNdd5ZKO7jEAsg/RZkNazYu/SeMRixG8OpWhALr6pB38Cca
- jkvxxPoOZtdxm3N0lQmYfQEseTiiWsP/3rGMPzXuxcDF738sbkbNWHMGHIstUYpgt+0UWwacGx8
- EoZ1XtoA1yfF2mUuzkJfjUENlQ7329b9U9Hjp99jBuBqehMlnaINIUOjP0Oribt7NRtwMtRK+gm
- 2OeUT2SbRqTffc8mucPp6YebLgOjGc7y8Buf0Vj1KhebCJMsrQH06IDHUFBH+FOc6RWoq4T59lB
- wbXVWqBKCWDgZqw==
-X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a96dd212909cckunm5c4ae9aec236f
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZHxpPVhgaTk9CHUNDGk4ZT1YVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKSklVTU5VSklNVUpNSVlXWRYaDxIVHRRZQVlPS0hVSktJT09PSFVKS0
+	tVSkJLS1kG
+DKIM-Signature: a=rsa-sha256;
+	b=h4TgurKpjh0+KCb9/AYKYVSLvcM6f0LbHBzBTmLGhX90ZoCGqOO1OmT197YUkCyCnNEE9b0AKgdhWkZjBDzgrqNnCtzvuHCozeE34wzR7I0U2SYixGWhmT9etr683/pLSPZN5f5XP6z+BqWurh2A6bAR16bjpI7IOm6Tkaq/Vas=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=R0UK7D7hfRYPA6PYQUa2Dx0DF8D82pW5mt2sd7BW4nU=;
+	h=date:mime-version:subject:message-id:from;
 
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Hi Arnd,
 
-The link frequency can vary between modes, so add it as a
-control.
+Gentle ping on this series. I sent a follow-up two weeks ago [1] but 
+haven't heard back yet.
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
----
- drivers/media/i2c/ov5647.c | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+The v5 series has the necessary dt-bindings reviews (Rob's Acked-by 
+and Krzysztof's Reviewed-by). Based on your earlier feedback [2], I 
+understand this should be queued for 6.19 after 6.18-rc1 is released.
 
-diff --git a/drivers/media/i2c/ov5647.c b/drivers/media/i2c/ov5647.c
-index 71107d74f2900b39233a52b29a229282bd087963..de27e76b487957bfa0a072359f28194425950eaf 100644
---- a/drivers/media/i2c/ov5647.c
-+++ b/drivers/media/i2c/ov5647.c
-@@ -97,6 +97,13 @@ static const char * const ov5647_supply_names[] = {
- 
- #define OV5647_NUM_SUPPLIES ARRAY_SIZE(ov5647_supply_names)
- 
-+#define FREQ_INDEX_FULL		0
-+#define FREQ_INDEX_VGA		1
-+static const s64 ov5647_link_freqs[] = {
-+	[FREQ_INDEX_FULL]	= 218750000,
-+	[FREQ_INDEX_VGA]	= 208333000,
-+};
-+
- struct regval_list {
- 	u16 addr;
- 	u8 data;
-@@ -106,6 +113,7 @@ struct ov5647_mode {
- 	struct v4l2_mbus_framefmt	format;
- 	struct v4l2_rect		crop;
- 	u64				pixel_rate;
-+	unsigned int			link_freq_index;
- 	int				hts;
- 	int				vts;
- 	const struct regval_list	*reg_list;
-@@ -128,6 +136,7 @@ struct ov5647 {
- 	struct v4l2_ctrl		*exposure;
- 	struct v4l2_ctrl		*hflip;
- 	struct v4l2_ctrl		*vflip;
-+	struct v4l2_ctrl		*link_freq;
- };
- 
- static inline struct ov5647 *to_sensor(struct v4l2_subdev *sd)
-@@ -376,6 +385,7 @@ static const struct ov5647_mode ov5647_modes[] = {
- 			.height		= 1944
- 		},
- 		.pixel_rate	= 87500000,
-+		.link_freq_index = FREQ_INDEX_FULL,
- 		.hts		= 2844,
- 		.vts		= 0x7b0,
- 		.reg_list	= ov5647_2592x1944_10bpp,
-@@ -397,6 +407,7 @@ static const struct ov5647_mode ov5647_modes[] = {
- 			.height		= 1080,
- 		},
- 		.pixel_rate	= 87500000,
-+		.link_freq_index = FREQ_INDEX_FULL,
- 		.hts		= 2416,
- 		.vts		= 0x450,
- 		.reg_list	= ov5647_1080p30_10bpp,
-@@ -418,6 +429,7 @@ static const struct ov5647_mode ov5647_modes[] = {
- 			.height		= 1944,
- 		},
- 		.pixel_rate	= 87500000,
-+		.link_freq_index = FREQ_INDEX_FULL,
- 		.hts		= 1896,
- 		.vts		= 0x59b,
- 		.reg_list	= ov5647_2x2binned_10bpp,
-@@ -439,6 +451,7 @@ static const struct ov5647_mode ov5647_modes[] = {
- 			.height		= 1920,
- 		},
- 		.pixel_rate	= 55000000,
-+		.link_freq_index = FREQ_INDEX_VGA,
- 		.hts		= 1852,
- 		.vts		= 0x1f8,
- 		.reg_list	= ov5647_640x480_10bpp,
-@@ -927,6 +940,8 @@ static int ov5647_set_pad_fmt(struct v4l2_subdev *sd,
- 					 sensor->exposure->minimum,
- 					 exposure_max, sensor->exposure->step,
- 					 exposure_def);
-+
-+		__v4l2_ctrl_s_ctrl(sensor->link_freq, mode->link_freq_index);
- 	}
- 	*fmt = mode->format;
- 	/* The code we pass back must reflect the current h/vflips. */
-@@ -1236,7 +1251,7 @@ static int ov5647_init_controls(struct ov5647 *sensor)
- 	int hblank, exposure_max, exposure_def;
- 	struct device *dev = &client->dev;
- 
--	v4l2_ctrl_handler_init(&sensor->ctrls, 13);
-+	v4l2_ctrl_handler_init(&sensor->ctrls, 14);
- 
- 	v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
- 			  V4L2_CID_AUTOGAIN, 0, 1, 1, 0);
-@@ -1292,6 +1307,13 @@ static int ov5647_init_controls(struct ov5647 *sensor)
- 	sensor->vflip = v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
- 					  V4L2_CID_VFLIP, 0, 1, 1, 0);
- 
-+	sensor->link_freq =
-+		v4l2_ctrl_new_int_menu(&sensor->ctrls, NULL, V4L2_CID_LINK_FREQ,
-+				       ARRAY_SIZE(ov5647_link_freqs) - 1, 0,
-+				       ov5647_link_freqs);
-+	if (sensor->link_freq)
-+		sensor->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-+
- 	v4l2_fwnode_device_parse(dev, &props);
- 
- 	v4l2_ctrl_new_fwnode_properties(&sensor->ctrls, &ov5647_ctrl_ops,
+Is there anything blocking this series, or any changes needed? I'm 
+happy to address any concerns or rebase/resend if that would be helpful.
 
--- 
-2.51.1
+If you're busy with other priorities, please let me know if there's a 
+better time to follow up or if I should take a different approach.
 
+Original series: https://lore.kernel.org/lkml/20251016120558.2390960-1-yangzh0906@thundersoft.com/
+
+[1] https://lore.kernel.org/lkml/20251031045253.789621-1-yangzh0906@thundersoft.com/
+[2] https://lore.kernel.org/lkml/09b1318e-21dc-4354-8733-866b70696295@app.fastmail.com/
+
+Thanks for your time,
+Albert
 
