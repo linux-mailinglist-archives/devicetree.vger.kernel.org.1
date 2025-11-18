@@ -1,204 +1,203 @@
-Return-Path: <devicetree+bounces-239885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C96BC6A437
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 16:16:49 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF972C6A4DD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 16:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D053036101E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:16:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id D2E3C2B02D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E800035A936;
-	Tue, 18 Nov 2025 15:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5820D364030;
+	Tue, 18 Nov 2025 15:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jroZHKaD"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="G5f9l7J1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013035.outbound.protection.outlook.com [40.107.162.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8ED035A930;
-	Tue, 18 Nov 2025 15:16:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763478983; cv=none; b=oJuyuuogYAxbDx8ORoV3CtT6qbZmuqMi7gpRHcNjzmzji1CnIoXHyodOznGMbC5H7KkgkKrgT8yNzaxH6MayzJv2mk07XP1Fsnm8f5/fy/7SJqzDOjZZDIXUKId2wlx6W7O6WPkZuba8WDN3HUH29j40kXTj1unYCnqIhD7eE9A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763478983; c=relaxed/simple;
-	bh=mfYKMxuO9gX2vOamABwmiJX7LC6XjJnPMwHU30/EDUo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SLui3MbH2ogos1fYq6CzEcwvLVLfLjAIwEe77LM91B//2UbZYeI5vJ+8uqfeGqHgVFmw9uBGBmkR4rnsCcxtPtHZopwH+u3CfunNU2wrM4LvfxpBIwJA7+fSnkmVLMIQE5Iv+A0jr5eaMyQtcu8q29Z4r8E7liGdOPHQwhb11Z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jroZHKaD; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id F2B5F4E41751;
-	Tue, 18 Nov 2025 15:16:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B11B0606FE;
-	Tue, 18 Nov 2025 15:16:16 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E897710371DF0;
-	Tue, 18 Nov 2025 16:16:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763478976; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=0SRSinwLefSg9+bDKGDMzZgFh7nU8j1QTFAMExgzYzU=;
-	b=jroZHKaDVnf4f5/351kGAeYDpxy99Yhg/6qfAtTLM1oC7IZ8F4ZGJ3/qQ/M430Nu3XbGtN
-	RA+yhp+W2pE2gyet9fzE6CCPGMDdHJ3r8GFBk97KrzxYQu2Km3SNWr6+skghmB20nn7HEa
-	fLgPcIpTcwJlkrru1BI9Fbs8yi/iPYe6EHfp8UaOLiKRhcTFAcmEKzw2uSOtZiFwByP1ry
-	s4TU63ygFA+4uocx9oqecCdsaJ71dK3EKb1KfM6RdqPa8kerybQ8HiO0Mf1FlJxv++rpcf
-	EiRdGcPnJry1n3jJgIBk24vPzQFOWGO3Ite4QqOC4TK1nbA8Q+sRZejRM6v9/Q==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] iio: add processed write API
-Date: Tue, 18 Nov 2025 16:16:11 +0100
-Message-ID: <2330439.iZASKD2KPV@fw-rgant>
-In-Reply-To: <aQzHtqFEIA5E0ikO@smile.fi.intel.com>
-References:
- <20251106-ltm8054-driver-v3-0-fd1feae0f65a@bootlin.com>
- <20251106-ltm8054-driver-v3-2-fd1feae0f65a@bootlin.com>
- <aQzHtqFEIA5E0ikO@smile.fi.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6713364033
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 15:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.35
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763479716; cv=fail; b=o/p2dIsZqX8+zxaDovnrG4fmM6UsZwynXDYgRIeWLw8ne9xA4vCtWTEIR8vl1mPWvoZsV2stjoflF5WREKq2+uPbcCWLy0xgvJEAXg7SozHREJVRVD18/5A4b7rMMjJF2VgYwI6quL7lKgpunpNK4geRv4VX/rkFIDFIwEC1wt0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763479716; c=relaxed/simple;
+	bh=5O1mkJ22Vohlw756rOgbsRhn5K65A1iHMcJk9TQpiQM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=nJl1l5Osw7mqPHyu2vj4IO4QC4kPa4F3g3eVCqS0Lk55OtCIrqW9mFk+uhGx78XSE60a5fv3s37ms/tBoPF7A89W1EYwW1obfXn4w8VkB4gGy4Nasl7EgLnNq/Xn6xdSYHPXtXiLTxhd+M85Ex5Ky8Qbz0rCwzOYGQIdlUN3PrY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=G5f9l7J1; arc=fail smtp.client-ip=40.107.162.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QguYBYRPvtuSupeSJ2d6sM9kg9jppBu4WevU2ZBHdTAb/vX9nq4yPwLqOtEQbua4GkPf+x0KK2tAKcpuD+bhFUtw8iD23pR9dGyNdYFeOxPdX/Vh3zPcGBXrh0WBwjauR8PlMFNTdIK03T1VYdMYIfofuobohXJCCK10ntub0N+UX9buhFzxcs75iQG409fnrVis+LJQTIY7wp66/2HrfcbTzkTIZTOyIiPAftDoCrq7pYOXj3OM/XHLTWk1SutvLaYIca406dhLKn5LI5oE465D2wlfRqV0lAlJ76+LcL14IgOvmMlyJvmpwa2ZFmukh1iYdkcxUotOzK+IFgresg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=76rwl0ex5vM5BpDavEDUnBUNTWO3o0/XftCvz1D5+Ts=;
+ b=aDus5kZt1kYSRGVgvKIIW6duAQS/2M71EBJg+hUwhbHCqwz3FiWzAN7NWRJZIZbQkQBW4nvp/xdRwad4fpuqPt4G5Z/UKM4/5wuDUia+Lz0sW/czoD+RiybBJ/6fYh2IqZ/kV4t/gnyP8IYWkDAqFElLcd6HxwaiM51iI60h+cfwWAXyXXQsrJBA1Tvli62G0zrqFVH12MM2uGsUhueJmzz+zYW/hlcFeRT564wapI5L+a+ieadI98jwyksgi+Sv/3LbkbzNMQGQFdIrxB+B7ZGy3zr2u+xoPhIuWtV5ph+HwkaZGuWXfbquM2T8Dw5XAqRrBmHfpakrR9tKNWQF4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=76rwl0ex5vM5BpDavEDUnBUNTWO3o0/XftCvz1D5+Ts=;
+ b=G5f9l7J1wxDkzt9fSmEBfYSnTJqp9I0sZIbgBHqmPza6pnLxSJx3yIkGUTipMMmpSyW1H7PIvFh+upne2/tke36GXCteY3RQjpRNYUEUodsVJGayuEdQ6MB2gjeIIcax599U2kKiXryVhWIOHxKiBgwlNv3jMutONYSltW2P8+h1ShxQ+KgFHQiABNUU3AlDraswZs1nDS6ydf1SiLs7gNhceg50+muJQCYagD8P7eyYo0g8srYKXAF2NZc7W62823pLNxT03yuXrJo6ALzf8YfnmM42PMsSmie013T7kiabRz0WiIQmjHLMpPT167nE9WryPavIgG6WnK6uV7jYSw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by AM0PR04MB12052.eurprd04.prod.outlook.com (2603:10a6:20b:745::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Tue, 18 Nov
+ 2025 15:28:30 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9320.021; Tue, 18 Nov 2025
+ 15:28:30 +0000
+Date: Tue, 18 Nov 2025 10:28:19 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: ldb: Document
+ nxp,termination-resistor
+Message-ID: <aRyQkxNEZ/XkItXm@lizhi-Precision-Tower-5810>
+References: <20251118132208.143315-1-festevam@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251118132208.143315-1-festevam@gmail.com>
+X-ClientProxiedBy: SJ0PR05CA0150.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::35) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2021660.PYKUYFuaPT";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|AM0PR04MB12052:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6f1edfc7-5769-4311-a85f-08de26b7205b
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|52116014|19092799006|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?bbEGR9Z90xy+F41M/pTY424wBYs/dqqrH4o5af3dhNiLVIjMu8zB02Ti6+mG?=
+ =?us-ascii?Q?0ARerhBE49ZrgHND+XBsRbOFZ79Vz4SWMlaRXt0a1Qd9Y37IEkxIHEcDsC+S?=
+ =?us-ascii?Q?0ci8Hi+ApCxWOON8/ULgrt7AZV4JVTDHX6pbxTNeNYcb7ws7UkdYiqbM1DcV?=
+ =?us-ascii?Q?iT5msxhL+LgkYCeF/IRmAOZ2CzXbYxr9Inu5qsJ3z+ulcoXB9xhrZZ19zpxm?=
+ =?us-ascii?Q?Ddn4QQLbEMff3RxbhA3npdeT3kV19fnRk+OtIVTAk18h6uGFUUVydhjqooeS?=
+ =?us-ascii?Q?8+SMZyi7QY5gPvvxuLk5A2oEof2QUEErmI68fiJe9rJI2R6mVd6mLMwa+PsX?=
+ =?us-ascii?Q?TFQSn7xzrk0WikoKCaiTDfB+vxhL4hJBYNo1bmJMbs/GAHVdXNIXosYdaEih?=
+ =?us-ascii?Q?Dn7m+xpYTsNgewQ07CF3UcQMzE8+JdKt0N0BEm4RAlSY7B2HZJTlok6RWXrY?=
+ =?us-ascii?Q?GtuEZecGpxM0seikdCQfZjHichzI1g1gbtGjshC69O1wYV404xZBDe+0vJ9F?=
+ =?us-ascii?Q?tYVP81Ub9NAGUVzKbfD4eeTyfGOmh6/cTIlIx4AYE+WMpDdkMbBWjEiuoSNl?=
+ =?us-ascii?Q?mqZD+gBALMwX6Ly96ytcwtUpKgsyWWPnIiYMPoF5rfUj2yW4vbbGFiQ/LXya?=
+ =?us-ascii?Q?9cCOfMzpa5JXS8U/vdvzuSkeT8Es/tSWjxcZatOpI6nkm7In6eQFeHhwbKgI?=
+ =?us-ascii?Q?sRR48+B0UvX9oHjYKo0RthfnA3lh8+x4GK2c5+AT92J+sVehI6k06ibK79kH?=
+ =?us-ascii?Q?BHppRdXG1S5U/hBTkojqALyt4iquTVoAcUgtVW0HW4epW/baB2OVx0kYTBcX?=
+ =?us-ascii?Q?a759oZOfGXEw9FIjtCVdlKFT4bdIpPpcwlzHmZKEJkf7KJL+FZBGXaVEONi9?=
+ =?us-ascii?Q?k3U8nR443HE+hBTuR3Wao5JSCohcNTyi8cBHHW0Jc1xiYQYieiA0tKGG9pZL?=
+ =?us-ascii?Q?xXblL95hMU8e+aNnz2ItWas9SmD84de3OenQ2m4RQ1V+7GQmOc02yi6C8KaF?=
+ =?us-ascii?Q?zbYVo1X68NDw+ldpGBjbvia+mKrcsFCGSooeTlQBd7ElKz2NgV4VT+0cWchn?=
+ =?us-ascii?Q?x+2E+63xOU+3U6JBlHGyVEVkznl6eA50SyGefSaHi8GQg/9gFjmA+0TLNZe/?=
+ =?us-ascii?Q?XAW9hpQ9ppgcJj5DjW/E7WGwyez5XtZckgv4LAs26bd1XnXb/oMSnX2O1kRS?=
+ =?us-ascii?Q?eVbu1ERGNsiQaad1gZjqGzpglfmpaTrTRQ+ArJf/YP9erEhNOwP28VAfo75S?=
+ =?us-ascii?Q?3/+/8Jaoqh8PVNnVXxUWQn+nXY4jhPvdqZuD0weZmhzxxAXvBOHK/LshzPTG?=
+ =?us-ascii?Q?qVtuBRuK2THLzryc8ga2KvTt+7I/BodoXEEu6pq7RBKbV/WQCIcnFAeRbdAD?=
+ =?us-ascii?Q?ahUS9ykN/H3xsxNivnRVAHYCFZFgI5Afxp9m/40P0s37ey6RhAS6YCcQksLA?=
+ =?us-ascii?Q?ToeYsu1CAGfhoPS2aii1brj7jhXISzKBbmD6AAUydrn9KyKvwheMjmcSqmwV?=
+ =?us-ascii?Q?eop3oyBYVK8vqrj0O1AsMcAEIsTXZS6uvAns?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?hlc5BXbO1eWvu1xySalPo8VHW7I1PERMlx753JjhIw4fLbOg4Nd/Xe38E8Mk?=
+ =?us-ascii?Q?wrmbIMTQy5KyIU27IHZby60sTgkDvZCscGiy4WTnDUQV0VxJg3yZHwmsNH+9?=
+ =?us-ascii?Q?ME2EmWac3b6sj18ICAkF/dIDAo5Iysvv5psYpg8cIpMQslAJM87/T9zlhM/2?=
+ =?us-ascii?Q?mMfvVLjiPiaOjALB3ATcvagLyMUL8NFyLwjoecVlLpJOZik/OlqInAfAW2Zr?=
+ =?us-ascii?Q?GuezJ5daIo+ATeSCLNMUjqzyPzVtAs34TdVvbiL9J2S/GJh5IrNYZDRSIqNr?=
+ =?us-ascii?Q?mNwXC8oYH2igtBX2AINhKQTjOx37iMJMiihuN0XTElv1iKFVqdbZUbBxqIHc?=
+ =?us-ascii?Q?S6tRXeqDubatIdZP/pIBubsXBYVvWp5L5hI9A/1ssCYyVTqc/mDaqEkTzWUv?=
+ =?us-ascii?Q?T8tJp1EMvfNuvMReItgpK/17LAJqNsthNDBV0jVDwJuseiObCtOC57atken6?=
+ =?us-ascii?Q?ND6W/B674yf3bl33RoP7Lv0dXkgD0ETR6kIYfc6tCx74jA8d+cWv6t2Dwx47?=
+ =?us-ascii?Q?l9V475PSfahriEVSupFkH4BxQH8MhNvibPWbnfY6vgU+78zlE/ofeO6iv0Bz?=
+ =?us-ascii?Q?RXe6Hz1LFUrDDP+qw4LPH4dvljg5Ipqb7KXRJnXHDNpvwLuN4vvEhqrZTRlv?=
+ =?us-ascii?Q?Pf8ilLErKfNqYDJLUTYqQLsoBEVrF7svy21S2S2/TnV0xV+Edh4pstdqdQ2A?=
+ =?us-ascii?Q?KcLF2Hj6w6Y5WVMIQ47VIotK1QR3p2lhfMQabsWYMUERZQX90DSZctLNot32?=
+ =?us-ascii?Q?t7rAxryPQX5OYPDT3RMiHcXcOV2fIUIiv7EBFKrOx17NQty4tL8s3WDNld/R?=
+ =?us-ascii?Q?kOy6o/OXZfcvMaJHLY5waobM4ktTYy3ydOJqPfyKmxInC6zrobqeCXB3tEy1?=
+ =?us-ascii?Q?hEke/CxVETLnnKDx7jV8B6TP/z4UFIz4JTLqtlD9eJqD/diL3sHhBVSRy6W0?=
+ =?us-ascii?Q?sWmFCOUWiH/PYVObmO/3aKBKbje8BjHy9nxCtYZ/TSdGEvlUBYUfjlsp1b+q?=
+ =?us-ascii?Q?E6EHleqxfsmsJaOkQlbC3IMts4EPNd/3VQzBIXBmpeZhWY7AO45nvQdDKnEa?=
+ =?us-ascii?Q?KLDPM3zfEKoC9SIVAi8tmkK4bdus2/RHUq70pJnk6ZYyvBnyGCLN/0qwNYDX?=
+ =?us-ascii?Q?MX0+TgLdmioN9olOl3Wnsnw3PjXsHZqo8/FnBDGgi3ktvl5akhaUhnBjLrp6?=
+ =?us-ascii?Q?AIKjgw80fef7AJG5JuHxYynNz7gDQpTgRCedq8suKx/Ut56MZ20y/ZAi9XBr?=
+ =?us-ascii?Q?OR05We2Pc39RuBDoRBKnh6Oau+O+pgVNMGXGgzWRGw2U/hZLYZCWYn8R15GV?=
+ =?us-ascii?Q?45qYsU+q2iJCgEem3MpVVkpGyLqDn5ykJTkaHehnJv4XVoBpKxQsMK6nQobx?=
+ =?us-ascii?Q?cydg8Sgn608MAneWulRfD7ZK+/05gfrc2B+BhDpKqw0RdzSDLKatPMGk8dI5?=
+ =?us-ascii?Q?HVISnNeSU0xP/8H88zgYHi+qIftz6R1MgRMYgZx9G9egmYbgrEoW/JpzRHL3?=
+ =?us-ascii?Q?b/lxz0Ttue0s2EwQJbQbWiFSdly1BSd1uqPsL8SkfX61+17209dXhIOBgY5L?=
+ =?us-ascii?Q?LH8sVVbTnaRkkAuFYgeSv5rn/KZ4hjQ0AN7BaxVC?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f1edfc7-5769-4311-a85f-08de26b7205b
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 15:28:29.9380
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4Y6+qTqJF/uaPpx0p1xO9HH7te0YiTB/DZV/4wQP92Jzh33NNCj3dw23zm6kt56lhrQBUZT2d298lQ59yp0m6Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB12052
 
---nextPart2021660.PYKUYFuaPT
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Subject: Re: [PATCH v3 2/5] iio: add processed write API
-Date: Tue, 18 Nov 2025 16:16:11 +0100
-Message-ID: <2330439.iZASKD2KPV@fw-rgant>
-In-Reply-To: <aQzHtqFEIA5E0ikO@smile.fi.intel.com>
-MIME-Version: 1.0
+On Tue, Nov 18, 2025 at 10:22:07AM -0300, Fabio Estevam wrote:
+> Document the optional nxp,termination-resistor property for the
+> i.MX LVDS display bridge.
+>
+> This boolean property indicates that the built-in 100 Ohm termination
+> resistor on the LVDS output is enabled. It is controlled via the HS_EN
+> bit in the LVDS_CTRL register. Enabling the resistor can improve LVDS
+> signal quality and may prevent visual artifacts on some boards, but
+> increases the power consumption.
+>
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> ---
+>  .../devicetree/bindings/display/bridge/fsl,ldb.yaml      | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+> index 07388bf2b90d..6bc786204e65 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+> @@ -35,6 +35,15 @@ properties:
+>        - const: ldb
+>        - const: lvds
+>
+> +  nxp,termination-resistor:
 
-Hello Andy,
+the name looks like resistor value, how about nxp,term-resistor-en?
 
-On Thursday, 6 November 2025 17:07:18 CET Andy Shevchenko wrote:
-> On Thu, Nov 06, 2025 at 03:11:47PM +0100, Romain Gantois wrote:
-> > Add a function to allow IIO consumers to write a processed value to a
-> > channel.
-> 
-> ...
-> 
-> > +int iio_divide_by_value(int *result, s64 numerator,
-> > +			unsigned int type, int val, int val2)
-> > +{
-> > +	s64 tmp_num, tmp_den;
-> > +
-> > +	switch (type) {
-> > +	case IIO_VAL_INT:
-> > +		tmp_num = numerator;
-> > +		tmp_den = val;
-> > +		break;
-> > +	case IIO_VAL_INT_PLUS_MICRO:
-> > +	case IIO_VAL_INT_PLUS_NANO:
-> > +		switch (type) {
-> > +		case IIO_VAL_INT_PLUS_MICRO:
-> > +			tmp_num = MICRO;
-> > +			tmp_den = MICRO;
-> > +			break;
-> > +
-> > +		case IIO_VAL_INT_PLUS_NANO:
-> > +			tmp_num = NANO;
-> > +			tmp_den = NANO;
-> > +			break;
-> > +		}
-> > 
-> > +		tmp_num *= numerator;
-> > +		tmp_den = (s64)abs(val) * tmp_den + (s64)abs(val2);
-> 
-> Here is a subtle bug. The problematic piece is abs(). See
-> https://lore.kernel.org/r/20251106152051.2361551-1-andriy.shevchenko@linux.i
-> ntel.com for the answer.
+Frank
 
-Oh wow, that's a nasty one indeed.
-
-> > +EXPORT_SYMBOL_GPL(iio_write_channel_processed_scale);
-> 
-> Can we start using namespaced exports?
-> 
-
-Sounds good, but won't it look strange to have only 
-iio_write_channel_processed_scale() use a namespaced export?
-
-...
-> > +/**
-> > + * iio_write_channel_processed_scale() - scale and write processed value
-> > to a given channel + * @chan:		The channel being queried.
-> > + * @val:		Value to write.
-> > + * @scale:		Processed value is divided by this scale factor 
-during the
-> > conversion. + *
-> > + * This function writes a processed value to a channel. A processed value
-> > means + * that this value will have the correct unit and not some device
-> > internal + * representation. If the device does not support writing a
-> > processed value, the + * function will query the channel's scale and
-> > offset and write an appropriately + * transformed raw value.
-> > 
-> > + * Context: May sleep.
-> 
-> The above kernel-doc doesn't have this!
-> 
-> > + * Return: an error code or 0.
-> 
-> Be consistent with the existing code, and even in your own change.
-> 
-> ("Return" section name, "Context" section presence, etc.)
-
-I'll match the "Return" section with what I used for iio_divide_by_value() 
-then, since the format used for iio_read_channel_label() is broken.
-
-> 
-> Use Perl (original) kernel-doc for now, the Python has a significant
-> regression (the fix is pending to go to Linus' branch).
-
-Thanks for the heads up.
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart2021660.PYKUYFuaPT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmkcjbsACgkQKCYAIARz
-eA4fXQ//QGqz4H4ENFNq72qkhITnSHxMsfBoWU9KFy/lCTcNjVfXuNc6E3pHe44i
-KZBZUjb7XejpuBM44tGA5x2rTUE225ox1Ikz0ODonv+qE5olH8DqQoGpry60Y1lc
-rfwJDkrV2mitZsnIGGnJI7OCRN7gW0FXufRtG/aq3EeMKbLpgriRbXvLv7D91bkf
-aEdyTUuQP+1ffigvegflOH9hfs/BVg4AhVXPymJXe/vcc7pB/uwXY2ahmh5SlM3q
-tV9XRGWYTXZvFRVpTIDqQYUFN8IW+/DfuuEU40hej1U0h4Y16uR4Ffmzp7bnLbHs
-N9j4OwOCiA0WCMsr2B/bGpUXAEPHyQo2dZ+PUHYeyXOZkXIpGsj2cAD+b6EDdE21
-ZXsbiU/BtgMDi4OML/ATVkVYGG9nwbiuYB8ug+VsgnqTqsPYdtGm8aczgiJjRySp
-TxV1So3jAEvQ5WJD9PajGFJl/wN4cTxqU4BNNHsljxn8f4Kn11JxFZG8oCmiORpT
-rjwhqxsg24rTGrXtuRbrfa6KA7DY0FW8/P0OdsdO1QR/AhIl0G37I6G4TYT6fWk8
-KvH7deUJIzjiV3PILGi9KebRkPdSWC+Df4oyulCx0C1EXWKT6C9J5DduRQjBZz38
-aVwrUT8r9dxO/lvarxVZVILCuGvYsAX5Qp26N/zdWK1t4+qMoiQ=
-=/z3o
------END PGP SIGNATURE-----
-
---nextPart2021660.PYKUYFuaPT--
-
-
-
+> +    type: boolean
+> +    description:
+> +      Indicates that the built-in 100 Ohm termination resistor on the LVDS
+> +      output is enabled. This property is optional and controlled via the
+> +      HS_EN bit in the LVDS_CTRL register. Enabling it can improve signal
+> +      quality and prevent visual artifacts on some boards, but increases
+> +      power consumption.
+> +
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>
+> --
+> 2.34.1
+>
 
