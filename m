@@ -1,155 +1,150 @@
-Return-Path: <devicetree+bounces-239964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6796C6B61F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 20:16:33 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A763EC6B698
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 20:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 867314EC04C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 19:13:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DF7EF4E2EDF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 19:22:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F9A3A9BFA;
-	Tue, 18 Nov 2025 19:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C422E0926;
+	Tue, 18 Nov 2025 19:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CzKLY5L7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KqsnLQCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741983612E7;
-	Tue, 18 Nov 2025 19:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79712298CC0
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 19:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763492875; cv=none; b=V9GR4OiO2xd9zZUVzbHYA4NmT+eJu5Qhni5TVD95L4nNVaUSFvnPg1G44EPqss3hkfQ7r5oY4E1l39/q2F+YeXVBCiGBLwyrY86yQ8gorAkmLwqiXs2LPLNW0i8RvG1eAlfKpjtgAhE/NYepMbh46ZD5iyAFmWruh3CfwN4AEeY=
+	t=1763493759; cv=none; b=mUAXibL8j3dprzUUuHZsltPbIBhbAc7z0Z/MBeoefrE3w35YYWK8OrYQhPLdbM/5YbYZDzPjw1pXZI2VDi1hpUMW03FNyGzbu1QdVChCqmOVWAgWp2R76L6RkMuQ5AvF+kB1KPfD5gfKBy7h6Y7BYAIf5lVa5/tRByV5InUcctM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763492875; c=relaxed/simple;
-	bh=NBjFNlLcfeQTe5Bj0HCiTCUSf4jF7V5yae3gpojHyOQ=;
+	s=arc-20240116; t=1763493759; c=relaxed/simple;
+	bh=675Zk50Y3LTZEsvLuNfGMou8wqdkQy66ind05TlVNkE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uUZg7n9YTW3on5Z8zTt2ByOunN5Q8X6wTtrI99T2N2Gzx0/TqylmbN382n5eLSqGNu+b4AHEEQaopEjN5LL+5b6VkzXjoTDeHzAwYJl0Ad9cH+rjKuNkJiDdVQcWsRdDX+/WTxs8bCwTuCWl7C7dEVid6OkLT3vuCkAKLSdtaDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CzKLY5L7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19570C2BCB1;
-	Tue, 18 Nov 2025 19:07:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763492875;
-	bh=NBjFNlLcfeQTe5Bj0HCiTCUSf4jF7V5yae3gpojHyOQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CzKLY5L75nFtUMTrBkf9d2kV5zr55IUJsE36XDv2I9XOk4iDwBpO24NslvdITfxLN
-	 +PtPzchb1pipSlG1SYpgeelGKuRVgZBGTzZC/MISYmNXvazWE9togQOIXslsNrgYM1
-	 XuXerSZhZgBem+XDTgUJfF+cFf2UKd7Ax/wf6XT/ZYqvPoi1NJavt1qbKfeUhAOt7T
-	 1v1jlG25LGZ1lDKh6XdwOUk3VTrOv4sTHD2wIWzA5qWg1dLW1rNK2oL7ljjGPpPTIp
-	 w2O7cbHED9x65T/318XKiLMsggwaTTajDwNofN9E5frHPEvfvWs1TV/e2gtTEkIfiL
-	 LVw7ii75ZxPOw==
-Date: Tue, 18 Nov 2025 19:07:48 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mahesh Rao <mahesh.rao@altera.com>,
-	Ho Yin <adrian.ho.yin.ng@altera.com>,
-	Niravkumar L Rabara <nirav.rabara@altera.com>,
-	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: fpga: stratix10: add support for
- Agilex5
-Message-ID: <20251118-crescent-fritter-9411297ed6eb@spud>
-References: <cover.1763427266.git.khairul.anuar.romli@altera.com>
- <79a58f075488733cced8eadd566b0b740a59094f.1763427266.git.khairul.anuar.romli@altera.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qANPPrHyJGX6ZweUXIsrkogxJbLIiOgYnRVUAt3sjV1zrtliFZ3Pje2WxsXMW4QKsnjdXXTHaQ6JwcZsO4FXR4FalO/TnftPzqdRmA1yfkIRMIixHDugZ72naD6kHRhqKHJZmeC3b6davIbrDy6eNbjalZndYJRSYvYoM3pRaHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KqsnLQCs; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-3436a97f092so7520903a91.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 11:22:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763493757; x=1764098557; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gvEa0jnc5aqBUZoWbfiQtt/7FtL9NO49WZyr4JCqvhE=;
+        b=KqsnLQCsk/6+QFOLHlPzcoRCV0D139J0OfKNF8/ZTp1Cd7BptFKp/mK8C0XEuJK/IH
+         g+XOYWEBruT8cMlRyNMcQba9QU5HR+dZck/ShM+noPlQHjxsldApCwnUnBloxkcvM1ty
+         TPlVTpsf06cAYK8SIIqYwqkrFj0XyrF1SLnRSBw33Y3K3keZUmZh2IEM1Yuz19S3YeWn
+         YMmFSyp6rcSL43YTHc6LYJofukxulqqVisC4yieZAu/Ntpran2Zk1CXvXjNNMTrz6isF
+         EJUmUOuRVm5nhDK1VtfcQCINyDYn77UdZqSrCebTExWhLGp1acaW3IRz9mpoYOnUBCPP
+         lGdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763493757; x=1764098557;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gvEa0jnc5aqBUZoWbfiQtt/7FtL9NO49WZyr4JCqvhE=;
+        b=Vv5juC45qex4sULBcZEi3HBodAP69K89Yh4ZkzvOIFEhz+f01kyS42fWm2KU+g9Q+K
+         J/tSWvb15/PovxnMmpCqGfWoVng0lmnbyLxmAHf3Ttvp52ViZpT1EUG1IHRbV+pZX4qe
+         iRv4RiR939xRKvuXJWLZWP32euua9UcWBVpZ+RaGZodaShl60qv5pU/YFGH4DtMWtff7
+         oG8ddeoZnHpfhxEJ7WF4lfKtq4Yt182q7M9Q+9X7BAuqzRlsZkehRzEgH/a/o7y19Lgy
+         4OicHJCWH+iVscwUvNOXspfyYCFy5amhplxEHThYcY/tPp6YhSl+unNF9njDiTdnBlLc
+         Di/A==
+X-Forwarded-Encrypted: i=1; AJvYcCWWsAvPcEX/ZfvNR+66mOo9VBMDTtRaIdRtMOhEf+PUgd0PT9e2pBJ4M3AYHCEom46ivJ/QxNWYtfJq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDVKB/nfl//er5sXy/j1i5xpuO0wHniSgwL7q3k0XrU0y0vCUV
+	MbjqglwAFlSCN7RZyErOwQK8drkq8wImySkjcNABYi5UcS1z3AHV8LkB
+X-Gm-Gg: ASbGncuNAPSHX3q55jXRa8wyXqEjW3Ie0/hFlaV6oIUaQX6j6Y8+s0tlabhYLGnfumY
+	Y2QbYawCZ8qPEhVkeLpRFUtcUTy893osRy80bAJvxuyaA1r1F61HImIRIidt58xSTCO+SM6bKFt
+	SkKmtvKH2suRm5bD0tkk3nj5fmY7Ori5xvPgD5+SDIFbuwan6UfIZkGvoTQGjkxajbpsJZjT6+o
+	564K2gjdk7wiwv85iHGSSlKweI2fE64739D4jyiH+hZkkFtBwfBKmD5Y4XrLwD9uniaS02nF/HL
+	mFkTCY6AEsmd1Jf2kDFpQQpr/uk5SghD1JYmrsJ8n03SDtHc8Y998oz/6M04XiflJTa/uW5FW6d
+	yMr4sY7yuZNc811k8xXrnOjWyDvtKzvs6BlZMlXPacOFwl+4cURgF99b5SdFIiA9ilOEP7oX5V9
+	ZmdzeAvE6RqqoJUdYKiTUsNbS8fmgdR2WL9D4cNvy3ujOvB3s6AtNXIbC/o/z/XvxFh2zQKt2Cl
+	w==
+X-Google-Smtp-Source: AGHT+IELEZhYWlXzd98KtP04N9FRevtbbB+qIzdu2jhq6XqeRQcPW3sY3BwS8IiZhjDpaOtgcw6rPw==
+X-Received: by 2002:a05:7022:43a6:b0:11a:49bd:be28 with SMTP id a92af1059eb24-11b40e846demr7788674c88.4.1763493756655;
+        Tue, 18 Nov 2025 11:22:36 -0800 (PST)
+Received: from google.com ([2a00:79e0:2ebe:8:a011:6b85:c55d:d1f5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11b06088625sm64635016c88.8.2025.11.18.11.22.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Nov 2025 11:22:36 -0800 (PST)
+Date: Tue, 18 Nov 2025 11:22:32 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jon Nettleton <jon@solid-run.com>, Mikhail Anikin <mikhail.anikin@solid-run.com>, 
+	Yazan Shhady <yazan.shhady@solid-run.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 04/11] Input: ilitek_ts_i2c: fix warning with gpio
+ controllers that sleep
+Message-ID: <rifyic7w2zyjupbmzwcewcslryqiyexxdvbgcuxtkw3trmtulw@y4otarfyvgm7>
+References: <20251117-imx8mp-hb-iiot-v3-0-bf1a4cf5fa8e@solid-run.com>
+ <20251117-imx8mp-hb-iiot-v3-4-bf1a4cf5fa8e@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4zyPdB29WAkW2yzy"
-Content-Disposition: inline
-In-Reply-To: <79a58f075488733cced8eadd566b0b740a59094f.1763427266.git.khairul.anuar.romli@altera.com>
-
-
---4zyPdB29WAkW2yzy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251117-imx8mp-hb-iiot-v3-4-bf1a4cf5fa8e@solid-run.com>
 
-On Tue, Nov 18, 2025 at 09:11:42AM +0800, Khairul Anuar Romli wrote:
-> Agilex5 introduces changes in how reserved memory is mapped and accessed
-> compared to previous SoC generations. Agilex5 compatible allows stratix10-
-> FPGA manager driver to handle these changes.
->=20
-> Fallback is added for driver probe and init that rely on matching of table
-> and DT node.
->=20
-> Reviewed-by: Xu Yilun <yilun.xu@intel.com>
-> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Hi Josua,
+
+On Mon, Nov 17, 2025 at 01:28:46PM +0100, Josua Mayer wrote:
+> The ilitek touchscreen driver uses the non-sleeping gpiod_set_value
+> function for reset.
+> 
+> Switch to using gpiod_set_value_cansleep() when controlling reset_gpio to
+> support GPIO providers that may sleep, such as I2C GPIO expanders.
+> 
+> This fixes noisy complaints in kernel log for gpio providers that do
+> sleep.
+> 
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 > ---
-> Changes in v4:
-> 	- Remove redundant "items - enum" as suggested in v3.
-> 	- Simplify compatible property to use contains instead of oneOf.
-> 	- Validate fallback and non-fallback DT. Also validate binding with
->           dt_binding_check.
+>  drivers/input/touchscreen/ilitek_ts_i2c.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/input/touchscreen/ilitek_ts_i2c.c b/drivers/input/touchscreen/ilitek_ts_i2c.c
+> index 0dd632724a003..8c5a54b336816 100644
+> --- a/drivers/input/touchscreen/ilitek_ts_i2c.c
+> +++ b/drivers/input/touchscreen/ilitek_ts_i2c.c
+> @@ -396,9 +396,9 @@ static const struct ilitek_protocol_map ptl_func_map[] = {
+>  static void ilitek_reset(struct ilitek_ts_data *ts, int delay)
+>  {
+>  	if (ts->reset_gpio) {
+> -		gpiod_set_value(ts->reset_gpio, 1);
+> +		gpiod_set_value_cansleep(ts->reset_gpio, 1);
+>  		mdelay(10);
 
-What are you doing?? You've been told several times exactly what to do
-and yet you keep conjuring up completely random different things.
-Using contains instead of the oneOf construct that was being done before
-is *not* a simplification, it is functionally different.
+This (and below) should be usleep_range/msleep/fsleep.
 
-NAK. Go do what you were told to do.
+> -		gpiod_set_value(ts->reset_gpio, 0);
+> +		gpiod_set_value_cansleep(ts->reset_gpio, 0);
+>  		mdelay(delay);
+>  	}
+>  }
+> 
 
-pw-bot: changes-requested
+Thanks.
 
-> Changes in v3:
-> 	- Add description for Agilex5 Device
-> 	- Add and define fallback to "intel,agilex-soc-fpga-mgr"
-> 	- Validate against Agilex and Stratix10 (non-fallback) and Agilex5
-> 	  (fallback)
-> Changes in v2:
-> 	- No changes in this patch
-> ---
->  .../bindings/fpga/intel,stratix10-soc-fpga-mgr.yaml       | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-f=
-pga-mgr.yaml b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-f=
-pga-mgr.yaml
-> index 6e536d6b28a9..65c737a4734c 100644
-> --- a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-mgr=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-mgr=
-=2Eyaml
-> @@ -20,9 +20,11 @@ description:
-> =20
->  properties:
->    compatible:
-> -    enum:
-> -      - intel,stratix10-soc-fpga-mgr
-> -      - intel,agilex-soc-fpga-mgr
-> +    contains:
-> +      enum:
-> +        - intel,stratix10-soc-fpga-mgr
-> +        - intel,agilex-soc-fpga-mgr
-> +        - intel,agilex5-soc-fpga-mgr
-> =20
->  required:
->    - compatible
-> --=20
-> 2.43.7
->=20
-
---4zyPdB29WAkW2yzy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRzEAAAKCRB4tDGHoIJi
-0hcxAQDE5Bp/63IJDGLDqNeBTsxoUY6Z3y8GzWSZlgIu07CSjwEA/CdYjIJBaC1A
-Fk7imBsSmMoKST1noCPIAxJzkSHOJgw=
-=m+AM
------END PGP SIGNATURE-----
-
---4zyPdB29WAkW2yzy--
+-- 
+Dmitry
 
