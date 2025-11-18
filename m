@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-239791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1D1C694F4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:15:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF26C694FE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:15:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id D7DDE2AAAF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 12:15:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id ED1322B3B8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 12:15:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F322FB09C;
-	Tue, 18 Nov 2025 12:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB4534F486;
+	Tue, 18 Nov 2025 12:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="bQEsztg6"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="GAPhR+cn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E82303A10;
-	Tue, 18 Nov 2025 12:15:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACE0324703;
+	Tue, 18 Nov 2025 12:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763468140; cv=none; b=BelVrkBtw5SP0ISkavKcXbxF0xNySnkKDwNwZiTbuqA3oNex4chH4CY19WhVNlJC0SRVDMTboIyd/cRiXtD2xpLSgGCzB3G+NWdLH8kDUuCdyjF1kE8lqHxXc/Z1cLN9M7eRn2j2hcm+uhFbD8tM2lde6kQuzdPm6Y4idZ5Ez9E=
+	t=1763468140; cv=none; b=HJ5A0Y9vQjdwNFUSsShBRTt9qPp1NiqQ7Hc4oYTD73hmz9y57xzyzz1KpMKtn2Q3tsi3mZl7Kr4S+GR9wd+aF+pC4cUzkTBqeuXvWLPUqetBH0Zd8db4Vj96brTkOd/nIuRfoFv2de1HfjUBX62pDDSCnWmci2plakxfrkFo7ds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1763468140; c=relaxed/simple;
-	bh=Y32RvbFr/af/pdHIXN823cFtUFTcv8dp2NjgtWyB0Zg=;
+	bh=xD5eO8zZTZ5QE7DIc4F5CtzX3FE0EsI+0LhUmv5CJ3Q=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g0J1qfVQvSJAtGk+84EH0xqalgpMammr7Wn0QK/GBb+sMRquyAtYXhyE8TghO8UgEXMlQC2juEhKDpSgQhj6BHknWXDeaouZ4a1/g98M2bTGLKjR1gwLmKL7NLVerrTRpBUCOOMYKjsyZy8K1dhMn/XYu1aC32imbONBXPdU33U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=bQEsztg6; arc=none smtp.client-ip=178.251.229.89
+	 MIME-Version; b=jhbXSNYRnP8yw9yD0EHAsmtm45auOo+aIUZAH7W/vP/t5K2wusCq/w+jhzY5hbxPfz6JzTOXk/7GUbV6+k0pQV+UP4R2wg7IQ+GuQJHoLIO5PDHxPnnBBpkE8h/qYv5EjDa4L2mRCCYKw1lEv0yDixIQKlKg0v4FPpUx7bJNEdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=GAPhR+cn; arc=none smtp.client-ip=178.251.229.89
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 691AF10A4DE;
-	Tue, 18 Nov 2025 13:15:34 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4487710A4A8;
+	Tue, 18 Nov 2025 13:15:35 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
 	s=dkim; t=1763468135; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=smDkM+qnkx77goobsmgyagOx751WJE7WAfknYflgUnY=;
-	b=bQEsztg6GSwWEDqVmlDRAkMDvjkPSlFK7ey9Pm6WyC+bsVg4RUVKQa+Ur2DsC0QKZpzwtH
-	9aOSj2eRBysrii3G2iVp7ONqM8nNwzXJL9khqLdwQZvHsvAGSRqwrsRJfzb1MHUTKl/4CA
-	OdrvS3ymoOhTdnWjZPMpqnh3RVyvAfmAYJdeRTMLwZFh1BKPHLco1jOAR0PMF0PTjp2KqA
-	iEakO/XKc2Qiw9HFxcmNOX4o+bbAvz+DgRfLZp5L39Ow7UmwHp/UYBxpgsgQLf6vWew5Zx
-	BeB+CQ1NFsFDWGY2qBcbiKAYM9oiCgPSIZnlSki/Z/RNdEN1IkKCUab1LhKQLw==
+	bh=szk5tryMXW3LyEBOZGcjXu0tgh4kIq7mJsookjBWBB0=;
+	b=GAPhR+cnAScOKWqNQNSvf0IS/OUKbsOdpskhLSgFLmqYdQa/ulxuS39Dpr0j9oc7UwBFyD
+	npR4lzWHD9Gj/i4cq7i9nBwCGq8sEXN0AsuHa2xbA07ExD+OFv74isa3DMkNAM3KB/Mb/0
+	87U9MV4TSekdDuZE24Aav08AHoemnFzI3AfcR0kvdi96rJuIUwRRbucXwjaKdG8R1eEO4H
+	jEGfSRxnLqi6BbNITR7SDeMpyahJNO5RhawcrpSyeJrBNsIV0mxrCGf51uWfqjPyKJ7Naj
+	QLsKrWw3GoaDJkt0QBzhix58BlW64w/pCtWtVf8iNXt8Q8if9MnyZaJPbVBgwg==
 From: Marek Vasut <marex@nabladev.com>
 To: linux-arm-kernel@lists.infradead.org
 Cc: Marek Vasut <marex@nabladev.com>,
@@ -56,9 +56,9 @@ Cc: Marek Vasut <marex@nabladev.com>,
 	devicetree@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/4] dt-bindings: vendor-prefixes: Document ifm electronic gmbh
-Date: Tue, 18 Nov 2025 13:13:11 +0100
-Message-ID: <20251118121513.88352-2-marex@nabladev.com>
+Subject: [PATCH 3/4] dt-bindings: arm: fsl: Document ifm VHIP4 EvalBoard v1 and v2
+Date: Tue, 18 Nov 2025 13:13:12 +0100
+Message-ID: <20251118121513.88352-3-marex@nabladev.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251118121513.88352-1-marex@nabladev.com>
 References: <20251118121513.88352-1-marex@nabladev.com>
@@ -71,9 +71,12 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-ifm is a manufacturer of industrial sensors, control technology and
-automation solutions. Document their vendor prefix, which is already
-used for ifm,ac14xx and other powerpc devices.
+Document ifm i.MX8MN VHIP4 EvalBoard v1 and v2 reference design binding.
+This system exists in two generations, v1 and v2, which share a lot of
+commonality. The boards come with either single gigabit ethernet or an
+KSZ8794 fast-ethernet switch, boot from eMMC, and offer CAN interfaces
+via Microchip MCP25xx SPI CAN controllers, UART, and USB host. The GPU
+is not available in the SoC populated on these devices.
 
 Signed-off-by: Marek Vasut <marex@nabladev.com>
 ---
@@ -90,22 +93,29 @@ Cc: imx@lists.linux.dev
 Cc: linux-arm-kernel@lists.infradead.org
 Cc: linux-kernel@vger.kernel.org
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 42d2bc0ce0272..375682063f53a 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -749,6 +749,8 @@ patternProperties:
-     description: IEI Integration Corp.
-   "^ifi,.*":
-     description: Ingenieurburo Fur Ic-Technologie (I/F/I)
-+  "^ifm,.*":
-+    description: ifm electronic gmbh
-   "^ilitek,.*":
-     description: ILI Technology Corporation (ILITEK)
-   "^imagis,.*":
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 68a2d5fecc43b..4d0aee780bcb2 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1071,6 +1071,15 @@ properties:
+               - gw,imx8mn-gw7902          # i.MX8MM Gateworks Board
+           - const: fsl,imx8mn
+ 
++      - description: ifm i.MX8MN VHIP4 based boards
++        items:
++          - enum:
++              - ifm,imx8mn-vhip4-evalboard-v1
++              - ifm,imx8mn-vhip4-evalboard-v2
++          - const: ifm,imx8mn-vhip4-evalboard
++          - const: ifm,imx8mn-vhip4
++          - const: fsl,imx8mn
++
+       - description: Variscite VAR-SOM-MX8MN based boards
+         items:
+           - enum:
 -- 
 2.51.0
 
