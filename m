@@ -1,82 +1,84 @@
-Return-Path: <devicetree+bounces-239875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93CC2C6A3BF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 16:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D18BC6A3C2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 16:10:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EAF923835AD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:09:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 97A1D348F21
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:09:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD658364E81;
-	Tue, 18 Nov 2025 15:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A761364E92;
+	Tue, 18 Nov 2025 15:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XsU9HEUP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sv9ZFkD1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D7E357719
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 15:08:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CDDD36405E
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 15:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763478539; cv=none; b=adwTQ7R3YBDvrrrCTqQZg4lgu4QD4cvPPUFeAg9SKUc0+4PElQWEB3PoPhDJpdJmAsqhZilrsscjDa5fEWJmIGErLzlAZNMm8F86h0oR+8KuseCJu67qVYyKJVeJbRYw3IStyu5uoWdfS1/E4gI3JlEuJVaz+kZ/e9FioTLq7Qc=
+	t=1763478541; cv=none; b=E6fe8S2u8ZOb9mR+p+JHODzsOiMBiMW5+1i0SYzk4tURXUIjTn555uTWVruPqv95rH3kjthl9VOOyecW8gBLqcuOhWovak7XeBAbeV61gRM7MYHwQnMUnaGRAYbgpEtKhevfxPKtyfeb2o4P7s04j4Jtm4QysqvMOMPEvXcajQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763478539; c=relaxed/simple;
-	bh=j404RXFCjfpGOevkkPY/EcJ8Zbu+jTiLAdexv35SvpM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aE/Xw/7O7GYmeWqRUXGvil0CYdLzXiHgvpQ2pPEk4aaGA0dqJYQksyZJ/CzlAGFBcHrNDeEDYXTAwgshoDNK91y7WvSxz0kJF2uDnC3CKRXcQxX2Yjfr6p2el9zHQcDgSoMSV+x9n3rMCitOHhY0yFjXRm4KfTPfRn8HCXBcIo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XsU9HEUP; arc=none smtp.client-ip=209.85.128.52
+	s=arc-20240116; t=1763478541; c=relaxed/simple;
+	bh=b9s039R3AyfTKrLW4QJkKiEj3I6mgg+anQzaMjLPC7s=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=pJtEENctIw5yCa0PZtrGdMk2fSDIGhl4LuDJ+PsCV0dBbCBgfd/xyT18MknBCZA7HaFC4ET5eLROwbofvI3Ln/H25c/OWaDJsLxKWJXu7I8NdPYXAtdZ4hX7+gPhLD3/i8CD2D6oeJBIav0Z7wBsSqpwzUdQ/YjIzll53nsxsj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sv9ZFkD1; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4779a4fc95aso20288485e9.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 07:08:57 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47775fb6cb4so40391745e9.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 07:08:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763478536; x=1764083336; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6WPvFi51hSTGug9x4SN8j0sL2LdGeBDK68HLUzdBwf0=;
-        b=XsU9HEUPdYwbM/Nkl7KJ8OlHrMY95BEivqyv031cpGr5gk2ot52IUD8eGXHqhmXE8c
-         h/CJqfn3ZlRQyNyhimG26jRXvMqno471mB1DXo0yN7r80TJOmZl1I2E5uYnFxpA0EBIh
-         w6w2/lP8MSn6kvOjzGqH3jmU8msH4+mAMLNixTuQRcvm9Gm1mt70oBk9Aa4KnU70h0BL
-         F7gKOQ+y54oEWmDHH0E9nUK2HBhBYCfPVbIrApzCAeSOHM8qvcSAzf9ObEUKRkqrHgqf
-         Bey9HXMdscHemdEcu8qMEcytwxEbX1gAoft7j4LcY2i74C1RlxN5ZlBgq2kDgRwOsAa/
-         O2HQ==
+        d=gmail.com; s=20230601; t=1763478537; x=1764083337; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HinfaPqd1yRAzxd+xjJYcXYd+xWyrMsS3t+eI3gtPdU=;
+        b=Sv9ZFkD1PB5umszGHUg2g3ho+YsOAKfbC+B3lNWoO+6BWbWi+MsMzvqNRFbmdAzafV
+         9e/qLtZC0xVGFi8R3z9ZJA8hEuDRiqsPYQcCWqlLR+jHy+otXY5Sesq1MjV/QpYrC5L3
+         dr6HB71wMVpsklWtw3LBUAgX+qyGhVoe696aKTi7D8pPeI4nR9O31DwJ7hxmQE/27NTJ
+         c64gbdfke4rpgfjamaRk0miLe1+pwlWCnjiphxBnjUoOBLKpVJiHVGtOfIPlCipjfyXs
+         9nkBz9Ru6ow8l569aiIHBR/Zx2KAZw50T7s6U7BoL4CPHg6cj3/aMUmDe5F52FdQ8hG4
+         4PjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763478536; x=1764083336;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6WPvFi51hSTGug9x4SN8j0sL2LdGeBDK68HLUzdBwf0=;
-        b=TxV8QyKrhAfCSW5Oufx0bn4xN9zU0GRXiZ31VKH6F5Ub6tlALatwzItw6GsD/R6PxW
-         Fw0T/17YavlBnVPJtMLK3uHDauM7zVcvatFooUTGVhRSAKUmcva9BAWD8hcBP3EEheh3
-         IYPACjqpAeEDdY9t+ucRfdYstdvozpVE+ot/wjA/SyQkLZNSDoHzPlF1/1HVIsOZRzos
-         kF1fjNTmbXx72lx3XzjgwwYBnjR4mhW/War64CQ6f7E5g8juc/LEBBAJ2JHfQPMTVRS8
-         2q7jebHCeBeeBImqw+OQHZ8/tX5jXZstEQDNl0RLeVGNvcDiRRhugt+h2x7tnU+8jyQH
-         Fd5g==
-X-Forwarded-Encrypted: i=1; AJvYcCUk0W960kEWnl2nnYwuIXuPii/KrN5R6eoYDX2u7Bf7hyiAT4hMwBJaMxn1fimwj++ue45ojkXm8y5J@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH6fkZaul5ME8eO+RgYlWgZp6h9N5XDk/5J/wsdONOaHWhRAXm
-	Qtg9LXHoAcRInznFOIyaSGrQ4+Up0dqp8eWhaTaZ3vUHcN7YZyMW5w/1
-X-Gm-Gg: ASbGncvnk2j6uXQ31gHuFpAUzbiR88Kbdx1MtRR/VDJv5zu9cqlCd62cdbcqCcF2DhF
-	wcv3/uZ18kC0tC4jIepP6OhF//raTYmwKAl/+cI3WikjcW/wtTQqu33lFTgHlO3CtZlpL1o9d1Z
-	aCwf32UewUcJvLyebg3fkVilWEXC7fKRXYOjQigRH1YEP0i5C6qyD9up1QFBAufReA51Po42jCk
-	WnFKTqlLJfbHoW4pGU0sy0hj+wOGkp2jMbL1wb2EPdN7piMPzs/I+FrsjXZ8FuJCdsA3XD6f1R6
-	kcwuyhlv8PevB9U/Tz645rrYhBh/5Fe0dhut7Iw7nodaqvo2MReFYRlVLxc2KdkrRs62w46rdq4
-	MpIg/VCBfbR3avfLLDYGo6UVgsiHzag2utO/EwdRQVV7Osw8mnanXCTB5gGKiDU1khydJPbhcv+
-	emav2MvGaa3CxMso2cxQyiUTz3Gl3Kh3PpOua6VeYKy2Fkh8K722N099CxB2ne6znFxqE=
-X-Google-Smtp-Source: AGHT+IF/6kXbFEjAEd63GYihy5Q8u6mMF1GK/dF5UenuZ7Kz2Ra3089BukNPLHYwu6f1QH+eFEoqTg==
-X-Received: by 2002:a05:600c:4592:b0:46e:3b58:1b40 with SMTP id 5b1f17b1804b1-477a94acde4mr37754535e9.4.1763478535789;
-        Tue, 18 Nov 2025 07:08:55 -0800 (PST)
+        d=1e100.net; s=20230601; t=1763478537; x=1764083337;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HinfaPqd1yRAzxd+xjJYcXYd+xWyrMsS3t+eI3gtPdU=;
+        b=et86cP0093s3X+OyWURhaiBK/TrNykHTwrHRn0fkmaXdjp74yAg1hXUoJGk00MLi4H
+         eLYA038E2rZdf+y3h6vUXBgBr6Sjpr7mwY3l40BmfusMzfUZ0nz8bKWAkJ/phzNaFRgX
+         0ulQ9vnVQEapN9z8ZDddnnXUxPIPROmsp7HWN899aqOk5dbgV8osatxFELQg4Ieea0xy
+         7yTUJAlCIGr75Wyk+GGz9/P/rTDgN59aIoE0r2vhgIK2u9DITw48Z9Vy5aGhUavdDLmi
+         8N2OMhfcrgH91iyb2oyMC7H/xcuCzy53dlZCuqEElqj1yjkzdUQnYPr8TrR8817A6FaG
+         Hhnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWBVq4Kbu27Yqlnvp83Rcxzn8ZqCg7Dcv1GvZzyU+nuchXCZMWiPzhae6DDH19wmS+h3JOFxeLaDVug@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQEP8ZWdFcBLJ6ZOhA007Ne0M2DriQu7xPPguPZUaNaRtGAQWQ
+	nECi82FuDVyU79kZKEOvx+c2TBxDyRz5o272jltnmBV/w2dS8dzfQSKj
+X-Gm-Gg: ASbGncsZquMcqkYzoYnEBUBY2ENEHmkHjdQnXEEFSrnhw7jfthWZHiY/VgsADuFQx2t
+	Y0GcGWKsA2qw78EryRJEE6SNufbw3VbNMJSN6GB/mDsktdUdFItAorg2NZFgQKosBLVmPkV7Ct4
+	/Wt5mLGakuzbdITRx4FgRC6UnbGFgLPUwozvjOmCVUyf8Pi1u08fhXFp+QSRf+DEy1sGtbJqGxT
+	pK1vYvqdDVPkM19X/OwM5J+e4t0Uzs83MxaJ1UhHLvsEt2QG7bMvqxMFu78ER0MlGHU6U4C5604
+	Vek18lbcWEpwtoSIdBjh7pAyVAgQFI3PCtEIN7bHJnIDtgzRLOFJ8OuAPU61MQzQKO5FggrH4w9
+	jpvTtiuXU6yj03f5XhAnPBjQdpdinRXarJgjrIDzqN5AjoB6NQ+pc+q2t7aJk04Ji2Z7pDpAtNz
+	ZH6kgezhKaiuTvkTsabgx2iAGwrieqmDt3GW/ModeXHsxOgWKUwI8qmhapZN3685t+aZl7xqZoV
+	lgouBZdL1piXkbw
+X-Google-Smtp-Source: AGHT+IHv1whfW/Gt4BR/61l0viGTeaPUBKraWX/Mr+1w9f4M9OK/6wicCkkZeRbs80bygRAnGOgpxw==
+X-Received: by 2002:a05:600c:c4ab:b0:477:8b2e:aa7d with SMTP id 5b1f17b1804b1-4778feaf8e6mr180161735e9.30.1763478536873;
+        Tue, 18 Nov 2025 07:08:56 -0800 (PST)
 Received: from localhost (2a02-842a-9b20-0d01-432b-0dab-f195-2b25.rev.sfr.net. [2a02:842a:9b20:d01:432b:dab:f195:2b25])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477a97213b8sm19970405e9.1.2025.11.18.07.08.54
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47787e36ca3sm397339915e9.5.2025.11.18.07.08.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Nov 2025 07:08:55 -0800 (PST)
+        Tue, 18 Nov 2025 07:08:56 -0800 (PST)
 From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
-Subject: [PATCH v9 0/7] Add DDR4 memory-controller bindings and factorise
- LPDDR and DDR bindings
-Date: Tue, 18 Nov 2025 16:07:56 +0100
-Message-Id: <20251118-b4-ddr-bindings-v9-0-a033ac5144da@gmail.com>
+Date: Tue, 18 Nov 2025 16:07:57 +0100
+Subject: [PATCH v9 1/7] dt-bindings: memory: factorise LPDDR props into
+ SDRAM props
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,11 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAMyLHGkC/3WNywqDMBBFf0WybsoYjY+u+h+li8QZdaDGkpTQI
- v57oyuhdHkunHMXEcgzBXHJFuEpcuDZJWhPmehG4waSjImFAqWhVUraUiJ6adkhuyHIOq9yKgh
- MryuRrKennt978XZPPHJ4zf6zH8R6W/+3Yi1B2gJRAekSbXUdJsOPczdPYmvF5uAX8Os3ye+px
- KaDXBsNR39d1y8IwXSa7gAAAA==
-X-Change-ID: 20250922-b4-ddr-bindings-7161e3e0af56
+Message-Id: <20251118-b4-ddr-bindings-v9-1-a033ac5144da@gmail.com>
+References: <20251118-b4-ddr-bindings-v9-0-a033ac5144da@gmail.com>
+In-Reply-To: <20251118-b4-ddr-bindings-v9-0-a033ac5144da@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Julius Werner <jwerner@chromium.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -103,67 +103,265 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.15-dev-86b30
 
-Introduce DDR4 bindings, which is the first DDR type to be added.
-As the DDR and LPDDR use the same properties, factorise them in a
-sdram-props bindings file and rename lpddr-channel into sdram-channel.
+From: Clément Le Goffic <clement.legoffic@foss.st.com>
 
-Changes in v9:
-- In the ddr4 compatible pattern :
-    s/ddrX-YYYY,AAAA...,ZZ/ddrX-YYYY,AAAA...-ZZ/
-    The comma before the "ZZ" part has been replaced with a minus.
-- Add information about how the compatible is constructed in the patch 2:
-  "dt-bindings: memory: introduce DDR4"
-- Add Krzysztof Kozlowski's trailer on patch 1
-- Link to v8: https://lore.kernel.org/r/20250930-b4-ddr-bindings-v8-0-fe4d8c015a50@gmail.com
+LPDDR and DDR bindings are SDRAM types and are likely to share the same
+properties (at least for density, io-width and reg).
+To avoid bindings duplication, factorise the properties.
 
-Changes in v8:
-- Globally fix typo/grammar in SDRAM props bindings:
-  - DDR4 bindings compatible description:
-    - s/lpddrX,YY,ZZZZ/lpddrX-YY,ZZZZ/
-    - s/in lower case/lowercase/
-    - s/statis/static/
-    - s/~/-/
-  - Add an "s" where a plural form is used (e.g. registers) in the DDR4
-    binding revision-id description
-- Fix the number of chars that an SPD can contain in the part number
-  field.
-- Link to v7: https://lore.kernel.org/r/20250922-b4-ddr-bindings-v7-0-b3dd20e54db6@gmail.com
+The compatible description has been updated because the MR (Mode
+registers) used to get manufacturer ID and revision ID are not present
+in case of DDR.
+Those information should be in a SPD (Serial Presence Detect) EEPROM in
+case of DIMM module or are known in case of soldered memory chips as
+they are in the datasheet of the memory chips.
 
-The v7 is a subset of the v6 and other prior versions, split to simplify
-the review and merging process.
-
-Changes in v7:
-- None
-- Link to v6: https://lore.kernel.org/all/20250909-b4-ddrperfm-upstream-v6-5-ce082cc801b5@gmail.com/
-
+Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
 ---
-Clément Le Goffic (7):
-      dt-bindings: memory: factorise LPDDR props into SDRAM props
-      dt-bindings: memory: introduce DDR4
-      dt-bindings: memory: factorise LPDDR channel binding into SDRAM channel
-      dt-binding: memory: add DDR4 channel compatible
-      dt-bindings: memory: SDRAM channel: standardise node name
-      arm64: dts: st: add LPDDR channel to stm32mp257f-dk board
-      arm64: dts: st: add DDR channel to stm32mp257f-ev1 board
-
- .../memory-controllers/ddr/jedec,ddr4.yaml         | 34 ++++++++
  .../memory-controllers/ddr/jedec,lpddr-props.yaml  | 74 -----------------
  .../memory-controllers/ddr/jedec,lpddr2.yaml       |  2 +-
  .../memory-controllers/ddr/jedec,lpddr3.yaml       |  2 +-
  .../memory-controllers/ddr/jedec,lpddr4.yaml       |  2 +-
  .../memory-controllers/ddr/jedec,lpddr5.yaml       |  2 +-
- ...lpddr-channel.yaml => jedec,sdram-channel.yaml} | 40 ++++++---
  .../memory-controllers/ddr/jedec,sdram-props.yaml  | 94 ++++++++++++++++++++++
- arch/arm64/boot/dts/st/stm32mp257f-dk.dts          |  7 ++
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         |  7 ++
- 10 files changed, 173 insertions(+), 91 deletions(-)
----
-base-commit: e7c375b181600caf135cfd03eadbc45eb530f2cb
-change-id: 20250922-b4-ddr-bindings-7161e3e0af56
+ 6 files changed, 98 insertions(+), 78 deletions(-)
 
-Best regards,
---  
-Clément Le Goffic <legoffic.clement@gmail.com>
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
+deleted file mode 100644
+index 30267ce70124..000000000000
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
++++ /dev/null
+@@ -1,74 +0,0 @@
+-# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+-%YAML 1.2
+----
+-$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr-props.yaml#
+-$schema: http://devicetree.org/meta-schemas/core.yaml#
+-
+-title: Common properties for LPDDR types
+-
+-description:
+-  Different LPDDR types generally use the same properties and only differ in the
+-  range of legal values for each. This file defines the common parts that can be
+-  reused for each type. Nodes using this schema should generally be nested under
+-  an LPDDR channel node.
+-
+-maintainers:
+-  - Krzysztof Kozlowski <krzk@kernel.org>
+-
+-properties:
+-  compatible:
+-    description:
+-      Compatible strings can be either explicit vendor names and part numbers
+-      (e.g. elpida,ECB240ABACN), or generated strings of the form
+-      lpddrX-YY,ZZZZ where X is the LPDDR version, YY is the manufacturer ID
+-      (from MR5) and ZZZZ is the revision ID (from MR6 and MR7). Both IDs are
+-      formatted in lower case hexadecimal representation with leading zeroes.
+-      The latter form can be useful when LPDDR nodes are created at runtime by
+-      boot firmware that doesn't have access to static part number information.
+-
+-  reg:
+-    description:
+-      The rank number of this LPDDR rank when used as a subnode to an LPDDR
+-      channel.
+-    minimum: 0
+-    maximum: 3
+-
+-  revision-id:
+-    $ref: /schemas/types.yaml#/definitions/uint32-array
+-    description:
+-      Revision IDs read from Mode Register 6 and 7. One byte per uint32 cell (i.e. <MR6 MR7>).
+-    maxItems: 2
+-    items:
+-      minimum: 0
+-      maximum: 255
+-
+-  density:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description:
+-      Density in megabits of SDRAM chip. Decoded from Mode Register 8.
+-    enum:
+-      - 64
+-      - 128
+-      - 256
+-      - 512
+-      - 1024
+-      - 2048
+-      - 3072
+-      - 4096
+-      - 6144
+-      - 8192
+-      - 12288
+-      - 16384
+-      - 24576
+-      - 32768
+-
+-  io-width:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description:
+-      IO bus width in bits of SDRAM chip. Decoded from Mode Register 8.
+-    enum:
+-      - 8
+-      - 16
+-      - 32
+-
+-additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+index a237bc259273..704bbc562528 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
+ 
+ allOf:
+-  - $ref: jedec,lpddr-props.yaml#
++  - $ref: jedec,sdram-props.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
+index e328a1195ba6..0d28df3d2bfa 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
+ 
+ allOf:
+-  - $ref: jedec,lpddr-props.yaml#
++  - $ref: jedec,sdram-props.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
+index a078892fecee..65aa07861453 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
+ 
+ allOf:
+-  - $ref: jedec,lpddr-props.yaml#
++  - $ref: jedec,sdram-props.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
+index e441dac5f154..cf5d5a8e94b3 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
+ 
+ allOf:
+-  - $ref: jedec,lpddr-props.yaml#
++  - $ref: jedec,sdram-props.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-props.yaml
+new file mode 100644
+index 000000000000..fedd66eeb9d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-props.yaml
+@@ -0,0 +1,94 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,sdram-props.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common properties for SDRAM types
++
++description:
++  Different SDRAM types generally use the same properties and only differ in the
++  range of legal values for each. This file defines the common parts that can be
++  reused for each type. Nodes using this schema should generally be nested under
++  a SDRAM channel node.
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++properties:
++  compatible:
++    description: |
++      Compatible strings can be either explicit vendor names and part numbers
++      (e.g. elpida,ECB240ABACN), or generated strings of the form
++      lpddrX-YY,ZZZZ or ddrX-YYYY,AAAA...-ZZ where X, Y, and Z are lowercase
++      hexadecimal with leading zeroes, and A is lowercase ASCII.
++      For LPDDR and DDR SDRAM, X is the SDRAM version (2, 3, 4, etc.).
++      For LPDDR SDRAM:
++        - YY is the manufacturer ID (from MR5), 1 byte
++        - ZZZZ is the revision ID (from MR6 and MR7), 2 bytes
++      For DDR4 SDRAM with SPD, according to JEDEC SPD4.1.2.L-6:
++        - YYYY is the manufacturer ID, 2 bytes, from bytes 320 and 321
++        - AAAA... is the part number, 20 bytes (20 chars) from bytes 329 to 348
++          without trailing spaces
++        - ZZ is the revision ID, 1 byte, from byte 349
++      The former form is useful when the SDRAM vendor and part number are
++      known, for example, when memory is soldered on the board. The latter
++      form is useful when SDRAM nodes are created at runtime by boot firmware
++      that doesn't have access to static part number information.
++
++  reg:
++    description:
++      The rank number of this memory rank when used as a subnode to an memory
++      channel.
++    minimum: 0
++    maximum: 3
++
++  revision-id:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++      SDRAM revision ID:
++        - LPDDR SDRAM, decoded from Mode Registers 6 and 7, always 2 bytes.
++        - DDR4 SDRAM, decoded from the SPD from byte 349 according to
++          JEDEC SPD4.1.2.L-6, always 1 byte.
++      One byte per uint32 cell (e.g., <MR6 MR7>).
++    maxItems: 2
++    items:
++      minimum: 0
++      maximum: 255
++
++  density:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Density of the SDRAM chip in megabits:
++        - LPDDR SDRAM, decoded from Mode Register 8.
++        - DDR4 SDRAM, decoded from the SPD from bits 3-0 of byte 4 according to
++          JEDEC SPD4.1.2.L-6.
++    enum:
++      - 64
++      - 128
++      - 256
++      - 512
++      - 1024
++      - 2048
++      - 3072
++      - 4096
++      - 6144
++      - 8192
++      - 12288
++      - 16384
++      - 24576
++      - 32768
++
++  io-width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      I/O bus width in bits of the SDRAM chip:
++        - LPDDR SDRAM, decoded from Mode Register 8.
++        - DDR4 SDRAM, decoded from the SPD from bits 2-0 of byte 12 according to
++          JEDEC SPD4.1.2.L-6.
++    enum:
++      - 8
++      - 16
++      - 32
++
++additionalProperties: true
+
+-- 
+2.43.0
 
 
