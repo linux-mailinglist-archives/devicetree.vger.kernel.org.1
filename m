@@ -1,131 +1,134 @@
-Return-Path: <devicetree+bounces-240003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68A70C6BE64
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 23:54:39 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F66C6BEC3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 00:01:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3E2424E04EC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 22:54:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 70A4535DCDB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 23:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B40B2EA46B;
-	Tue, 18 Nov 2025 22:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3852E2264C9;
+	Tue, 18 Nov 2025 23:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PisXwAbO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d6YyfYQG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798DE2BE62E
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 22:54:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D328370304;
+	Tue, 18 Nov 2025 23:01:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763506473; cv=none; b=q0XGiQhxeiBioI6p/P2LLrW9jB5fLLJEETxXouUO9+X9+vpxmxh4fRuLr7KsvdsuFY03SMtam0WqHnqsgcVlSR/p4eXAG0DYK1fjrzvO07MKpU+BXaUMs1A4B32g2sMruQsfzS4t003BAd0fMNYbg31pyVBjJbucAyZqeOKhd14=
+	t=1763506901; cv=none; b=csrg/bThfmkJq+Z4P/Os+rcWMuNV15vXq2OISiWGL50196alGZrpKpuAvQ0fYDHcZfTF3JLUTwqaBiPUobRSKZtxQphen5QOG2c+AYTpY34rcK5JX/hQSbyhN1mh61mMMFpD4lcC/DE1Kua1JZlJNR2HqOixS3AxUciALelf+Bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763506473; c=relaxed/simple;
-	bh=LLhZvi0meCVMeQgXAgRdSPpGwpb/EWiwKMWyk95NYMI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Yw83b1KDc+SAZCF4x9kBo4P+NjeZOJgfKxkXn6c0R2kTwwmcfNXVKfMqWbhaoJmSg7vfTWDNQP4ChoZBpW9UZ7o8ztkfZExBFUGbFQ8SWzNQ33S8jkOCtBkLuegDWDnUkDOJ7vsl6f7AdkbBFSZvUoAkpqSVeqxjOCZbkftbqEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PisXwAbO; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-594270ec7f9so5568919e87.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:54:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763506469; x=1764111269; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mFEslnX5OR/tQTPRQKyOAUirMOoHygQmu7S/WruwlpE=;
-        b=PisXwAbOhg+H8X/crJgkyMEVl6oGFTJNJZDrOnYfG0S9XVT8iQNS8cjJnO+MfcWyj3
-         KhBbi7CrHMVLLwtPijCU26V/C4oo6cPPCxlFVe1pl9YTPvLAW/rDu8oZxFvOxMEjHYxK
-         fCgUCdTuCecfccKjrQQR8Q4zTszhdcWAvkM5JfUtP/L0+fMKeUl24NvNA+dd6DyyPpb/
-         59W4BLX/zFD8wVzAXygbb4w7JPBMiM0ksVa5YDfl8ZKLqguYzpqRLC6HL1/C7dyu17E1
-         eNhVEYgSlV0tw2EVM56wTwFldeKcqajkO+NcX379lgvjxWEOZXRDXQ38bPEiafXERlRi
-         dXGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763506469; x=1764111269;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=mFEslnX5OR/tQTPRQKyOAUirMOoHygQmu7S/WruwlpE=;
-        b=l1B6TBBpwiLBvTNZDbCHHOfXEOgljAKVlcd/Bb4EIwzLSyaTi6VXTF3OjesVHFmSqN
-         Tvik0nvdAuk1uJT2nArCAgWF0RR2bh7eG930ygnG4ira1sTYndvtF1p0w2/OIOLgZ7aC
-         XIm6+AABJW6VSy0cni2YgBZuhfYv9iGRkuil7qBHDjT0Qf7VgoBI+DFm1taKZnfjEtn6
-         yneB6jTrMEucrfhQrJw6iI1BKYm9sIF29Skn36v4wDl9b7bmd4cvxB2Oe28lQN1qRzDI
-         mjslQW1WY2PE9br9atNKJviNGQt0a8bqpCiZ/vFUrB1OzVDqbnfWbvWfdW1BusDPpyjQ
-         bBuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXuhFDic/zrfwamvtQT62tS03zz/aA+Rz7t3jun0Y2n26cGitP63CI8R54oM4Wj1XZu/X7OU1ANTpHO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMj3h4EC8zKtolkJMe/coaTtnzwDXAvblEUVQJ3DDSdFlguZYb
-	zKh70flrzzbzxx1cJmnSrl7s0U7dBlgKCaz3tCBdtUdFx+ki86W5e4lC9iXQJBQjs5ueafilrQY
-	dqIkpC43xNLaFKNUfnvBm+dLw0VvXom0tCDQ5r9emuw==
-X-Gm-Gg: ASbGncuzuTp9viCbC0PNDvJr7o/iNGt4rL/2hOkYXeBAt2ADcnGhPiiMSPgf8UQqaPG
-	yc4MBbxmGQPbtQmPk1jOgZdlgkgMDhPXJ7+n4hpW5JowILzzz8401JAEoSpBZ2PxtIext3QZvVJ
-	Ez7hgi7fHh5RyhZUoeEJ9IfKx8ONuqs0C/cLSNntfMWbyg8SXI7qkFhMYK18ryPLur/s9T+ZfzF
-	yoNkkT2FbHvDW5z1VbkgV5MG9Ac9mmPSpLS3+eSPwohe08dmrQ/xjqqhvWvilh4clQukRI=
-X-Google-Smtp-Source: AGHT+IE9ROGV9vhyVbxmTa2vMAt23JCQD7kyieRaGBhmqhaspo5Oa//PQBSMVno9CBAFwv1ioBpLtLzQtaaKar+Clxc=
-X-Received: by 2002:a05:6512:33c9:b0:595:8198:51ce with SMTP id
- 2adb3069b0e04-5958419e6ccmr5957940e87.15.1763506469496; Tue, 18 Nov 2025
- 14:54:29 -0800 (PST)
+	s=arc-20240116; t=1763506901; c=relaxed/simple;
+	bh=S9XI8UppMlcHCp0zUVycM2ruN5zrzwfAKCsCCcTN/9w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JRoqEeGNosbOPfI3AXX7mxGDP6I6Cc/bzRa5dKb4+R3Wqr/20/Uop3n/GIMBYhbe5ikkQEz3onAA5/37J2fxYlE+Xw+SD6XjT73Scn3sThZ+uiFekTcCqmsUDEdeG/i+Qgdsz7N2AeM9WUgb6qByPt6hvbig6QYll5MAjVAr/k0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d6YyfYQG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92107C116D0;
+	Tue, 18 Nov 2025 23:01:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763506900;
+	bh=S9XI8UppMlcHCp0zUVycM2ruN5zrzwfAKCsCCcTN/9w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=d6YyfYQGO/aXeRhM8Gjq98E47hNErrhHOd7HFhi71zqqTnwvi/0oxI03sKqPVKhG4
+	 qdQhbqlWkbEQZHwCKpjyVJ6yVw11Qahgn+sEOKXkFhyHB89nvTTvaWebinccxQJwpp
+	 fU9AyouOOaqUDTYg0cy49r403oY3QYQQI2p23jEb5UD0ahls8buTK+kDEeTEL1AcYn
+	 Zfc08buc7y82JIM7irPvc5QSOgCdEqzAZY28SlyheBUx2EpH5mAwYpiYyWiR3RgVj5
+	 buT0ROKUKWFck3KRA+mV/pLu0RsI4c3rum14ewd0je2zShSWPLm+iSPXcqU/0/P/C+
+	 TiTJ/PZnGFMGA==
+Date: Tue, 18 Nov 2025 23:01:33 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
+	Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mahesh Rao <mahesh.rao@altera.com>,
+	Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: fpga: stratix10: add support for
+ Agilex5
+Message-ID: <20251118-saint-flashbulb-995844e01ec1@spud>
+References: <cover.1763427266.git.khairul.anuar.romli@altera.com>
+ <79a58f075488733cced8eadd566b0b740a59094f.1763427266.git.khairul.anuar.romli@altera.com>
+ <20251118-crescent-fritter-9411297ed6eb@spud>
+ <a4d58001-4914-4ce2-8116-c07451acd566@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251031160710.13343-1-antoniu.miclaus@analog.com>
- <20251031160710.13343-3-antoniu.miclaus@analog.com> <CACRpkdYdtcnxyP4xVsqVK+geurEOEURqZO5eLC96YMqh1sE5Sw@mail.gmail.com>
- <3ead5d7aa5e6be2b6df3bb91b35fec37e23353f3.camel@gmail.com>
- <CACRpkdZf9D2PH5AR46Pwi8UoyfwumKS4P3ncJ=RN4iu_cJzZ5w@mail.gmail.com> <0cd7cf10d47683f22a4358635f243a2dfb6be564.camel@gmail.com>
-In-Reply-To: <0cd7cf10d47683f22a4358635f243a2dfb6be564.camel@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 18 Nov 2025 23:54:17 +0100
-X-Gm-Features: AWmQ_bkcaZItZJt2y-mj9N0PnO4kP_ftuxcc-DBEyiPgOFYDOGAP2KTLLB6hcp0
-Message-ID: <CACRpkdbZgxWaf7B7vwD3n-OSbt8h8vGKQ_CmB_SNjDG6aXHayA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] gpio: adg1712: add driver support
-To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="AocIK6Ay3niFbFPG"
+Content-Disposition: inline
+In-Reply-To: <a4d58001-4914-4ce2-8116-c07451acd566@kernel.org>
+
+
+--AocIK6Ay3niFbFPG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 11, 2025 at 5:01=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com=
-> wrote:
+On Tue, Nov 18, 2025 at 08:28:46PM +0100, Krzysztof Kozlowski wrote:
+> On 18/11/2025 20:07, Conor Dooley wrote:
+> > On Tue, Nov 18, 2025 at 09:11:42AM +0800, Khairul Anuar Romli wrote:
+> >> Agilex5 introduces changes in how reserved memory is mapped and access=
+ed
+> >> compared to previous SoC generations. Agilex5 compatible allows strati=
+x10-
+> >> FPGA manager driver to handle these changes.
+> >>
+> >> Fallback is added for driver probe and init that rely on matching of t=
+able
+> >> and DT node.
+> >>
+> >> Reviewed-by: Xu Yilun <yilun.xu@intel.com>
+> >> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+> >> ---
+> >> Changes in v4:
+> >> 	- Remove redundant "items - enum" as suggested in v3.
+> >> 	- Simplify compatible property to use contains instead of oneOf.
+> >> 	- Validate fallback and non-fallback DT. Also validate binding with
+> >>           dt_binding_check.
+> >=20
+> > What are you doing?? You've been told several times exactly what to do
+> > and yet you keep conjuring up completely random different things.
+> > Using contains instead of the oneOf construct that was being done before
+> > is *not* a simplification, it is functionally different.
+> >=20
+> > NAK. Go do what you were told to do.
+>=20
+> There is no single file with that syntax, so I really do not understand
+> why completely different syntax is reasonable for the author :/
 
-[Me]
->> - Implement .set_config() and implement the generic pin
->>   control property PIN_CONFIG_OUTPUT_ENABLE as 1
->>   to switch "on" and 0 for switch "off".
->>   See include/linux/pinctrl/pinconf-generic.h
+There are actually a handful of bindings that do it (14). Some are
+probably wrong, others are the generic portions of snps etc IP schemas.
+Run this if you wanna quickly see what's what:
 
-> The above makes sense to me. I'll let Antoniu take it from here and check=
- if
-> the above fits the usecases he is aware of. Not sure if it makes sense fo=
-r a piece
-> of HW like this but if the usecase is for userspace to control the on/off=
- states,
-> then I guess we would need .get() and .set(). Or some kind of "frontend" =
-driver
-> making use of the consumer helpers.
+rg --multiline "^properties:\n.*compatible:\n.*contains" --context=3D5
 
-There is already GPIO_V2_LINE_SET_CONFIG_IOCTL
-in <uapi/linux/gpio.h> so setting configs from userspace is no issue,
-just use the character device.
+I'd say that about half of them should be enums or const.
 
-You will need to add I think two new config flags for userspace:
-GPIO_V2_LINE_FLAG_OUTPUT_ENABLE
-GPIO_V2_LINE_FLAG_OUTPUT_DISABLE
+--AocIK6Ay3niFbFPG
+Content-Type: application/pgp-signature; name="signature.asc"
 
-And update gpio_v2_line_config_flags_to_desc_flags() in
-drivers/gpio/gpiolib-cdev.c accordingly.
+-----BEGIN PGP SIGNATURE-----
 
-Then you probably want some tests or examples in libgpiod to make
-sure userspace is fine. Bartosz knows all about how to do this.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRz6zQAKCRB4tDGHoIJi
+0s8+AP9W0Vq1+uKIC/CAjJUvP7YxSjdE3DC7HhvMQHZ12TEDmwEA266l8vP8Giin
+3eTWsXljj3iWpEK6NlZ+rOXZnE57qgc=
+=ZUpm
+-----END PGP SIGNATURE-----
 
-Yours,
-Linus Walleij
+--AocIK6Ay3niFbFPG--
 
