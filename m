@@ -1,177 +1,192 @@
-Return-Path: <devicetree+bounces-239732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 440B9C68E0A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 11:42:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DF8C68E3B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 11:45:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ECEB8348F31
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:38:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC41B4E4E2C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65165311954;
-	Tue, 18 Nov 2025 10:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B8334E743;
+	Tue, 18 Nov 2025 10:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n3EaYcsj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r0J5oQbX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E392F1FC8;
-	Tue, 18 Nov 2025 10:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05CD634DCC0;
+	Tue, 18 Nov 2025 10:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763462331; cv=none; b=iEHQZjfmxYcDuAM11PD703oAkL/HCpBZEE0YQaaR8TQU72UAGe8sei1JINPOJMi4Lic925+KoX2YEsCwnzhpoRJRgNqaX7kcdvcCDvers9NSxU+0rnErhnYq/2fsrH1lgLPDg+bDpTRLWxVQMkkQjCx8DqlXoIJHNegxLaYFPKQ=
+	t=1763462689; cv=none; b=K2qh7cZ4L3P6hbWsfOgS9JP6Wyjr7b41kDeTUe7elWPoOnieoVcMZCzHDO69q9PWH86TQItFJAh3ogs07UKJqsdBtg/jerFEB9UT55+l2iPDh9zlkT04EF5LNTAA9f/ZQCvszwzLfHI+oMKwCS7+toYQOsjfyNGesr7psc+eHyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763462331; c=relaxed/simple;
-	bh=i0psKtgYo14zrou8MdVu+ZT0F4wPW2IGkdT2aFkjUtE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fTTKvkCR2836xossv1KxbimaAoHvkMgJOYRsTcKVVrK3YB7dQdNcLriNFtxxHOTZcjZmy6Dij7gfjc1s7cKqQhXn2F0vNNJ7eKC3sBsEsJJkwHzYKDgdszujvENG6e6CmHMg3KilF8j9qnw/NZw4nkrzVV8qfEiP76DyNkCV0v4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n3EaYcsj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C688DC2BCB7;
-	Tue, 18 Nov 2025 10:38:45 +0000 (UTC)
+	s=arc-20240116; t=1763462689; c=relaxed/simple;
+	bh=87/vpDwlH+YaZKfQww7cWIuqIUCKN9obYeSsNRg1vIg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MG/7Q3y2ApuPIFKjpV+pLIX7maAYXnyJ7Bxo+fCgVrE7lOkI9sFCb8hyg22LMufXwrah1p4WpZ0ICuJAILxujubbjZj7OXdpymBdu47i9IY+yO6E5QiEcoUn6zI2B9W4sMwmSgG1Mi147NvK/sTsSohpmNMIqn+fWQ/31GmzEPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r0J5oQbX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 39D23C116B1;
+	Tue, 18 Nov 2025 10:44:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763462328;
-	bh=i0psKtgYo14zrou8MdVu+ZT0F4wPW2IGkdT2aFkjUtE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n3EaYcsjpyIBctupVrJhfqkyYCr76qvy3vGXvTKOInwPOujtAgYfcCjjZcw843lAR
-	 KBXum1jo/LgI5+Hz9Uz+YRvBXdwPv3wX+FTgo3MU/IaPxOT51vcFJSuMXk+1eT4tG9
-	 xAmpQi3JGsGlT5g9Xn6j4RgMSRDQrYyu9zf/h0FXsRGBP3lK0ORHfXpn1jpRgk47G6
-	 xItBMS/9OQA2GGc0GX9emUT0wDpyaOWWCbZk/VH4M6yCBfZgA9O2IX2m9a9pUw6tB9
-	 a9dX1y4mEwW4JYzyA7JqKwU8TEap77rN/LWaUgdOOvUJkbI+ahyLTDPyJ/K8dysZ2X
-	 ifbvErxkVogoQ==
-Message-ID: <e39fcaeb-b516-41f1-89a4-fa3328c07deb@kernel.org>
-Date: Tue, 18 Nov 2025 11:38:43 +0100
+	s=k20201202; t=1763462687;
+	bh=87/vpDwlH+YaZKfQww7cWIuqIUCKN9obYeSsNRg1vIg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=r0J5oQbXeC9fvQCJWLvyRNFzsxVjIIDOZKo+0k1umc+Wd+qXJipgIn48tEm8ZWGT4
+	 /YxJFYmMVNPoWFmnF4k0AompyN/5Y3zValZH79Ofzw2zxMSRmX5ZapggwarAZdBcvK
+	 kFTSTbC48HQI97xzYZimufUWiZEdA1dEmPWsyrp0HjxZTU/+LsXjUz8ra3TR4dfwMq
+	 Dy7cV2ybbEW0Qbtg/Rsz4nsUv8jxa+GN2nvqU//9/xBkcpIR+Gc4dcSpPwttEnTmpc
+	 jJZvReR5GKu7AMZE/McMRclA6qCGcwlVU3e0CRSPfAWNO/p3d+niv27i9ND3QwYEQy
+	 /vRHXyGHQzK0g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 956DBCED255;
+	Tue, 18 Nov 2025 10:44:46 +0000 (UTC)
+From: Hrishabh Rajput via B4 Relay <devnull+hrishabh.rajput.oss.qualcomm.com@kernel.org>
+Subject: [PATCH v8 0/2] Add support for Gunyah Watchdog
+Date: Tue, 18 Nov 2025 10:40:55 +0000
+Message-Id: <20251118-gunyah_watchdog-v8-0-e5de12e2eef5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: tegra: pmc: Update aotag as an optional
- aperture
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, Prathamesh Shete <pshete@nvidia.com>
-References: <20251114161711.2655355-1-jonathanh@nvidia.com>
- <20251115-accurate-fair-salmon-64eca9@kuoka>
- <77b9e0cd-2597-4d52-a352-dd029ccb6a42@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <77b9e0cd-2597-4d52-a352-dd029ccb6a42@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADdNHGkC/3XQS2rDMBQF0K0Ejaugp5+tjLqPUoo+z7agsVsrc
+ RuC9145g9agaiK4Ah1x750knCMmcjrcyYxLTHEac2ifDsQPduyRxpAz4YwrZpig/XW82eHty17
+ 8EKae8sC1NFK0yA3Jrz5m7OL3Q3x5zXmI6TLNt8cHC2y3dWsByqiwqA1TgqF0z1NKx8+rfffT+
+ XzMB9nIhf8ywJguGU6BOmOChCCVVKzCiB3D25IRmUEdAG2u5yBUGLljBJSMzKUa6xwgAghQFUb
+ 9McCaklGZkV6j6JxGB02F0TsGeMnobeLWBgZdG6yvbdPsGVkyTWY65UEpZ/LM/5Va1/UHin+gX
+ F8CAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>, 
+ Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763462685; l=4630;
+ i=hrishabh.rajput@oss.qualcomm.com; s=20250903; h=from:subject:message-id;
+ bh=87/vpDwlH+YaZKfQww7cWIuqIUCKN9obYeSsNRg1vIg=;
+ b=aNHdsxZoKjqIJUy5c8NUUwOmO0Qneij1cL1fy2O0hMhYdsVRqYDXzbP9C+lnwgSK2W6NXwLhM
+ wm1pig/f1WgBQTJ/sm8z71rRmZ5g8Jpu/rPrUsUXK2z16Ndhh3PDMyy
+X-Developer-Key: i=hrishabh.rajput@oss.qualcomm.com; a=ed25519;
+ pk=syafMitrjr3b/OYAtA2Im06AUb3fxZY2vJ/t4iCPmgw=
+X-Endpoint-Received: by B4 Relay for
+ hrishabh.rajput@oss.qualcomm.com/20250903 with auth_id=509
+X-Original-From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+Reply-To: hrishabh.rajput@oss.qualcomm.com
 
-On 18/11/2025 11:08, Jon Hunter wrote:
-> 
-> On 15/11/2025 12:25, Krzysztof Kozlowski wrote:
->> On Fri, Nov 14, 2025 at 04:17:10PM +0000, Jon Hunter wrote:
->>> Not all Tegra SoCs or all versions of a particular Tegra SoC may include
->>> the AOTAG aperture. This change makes "aotag" as an optional aperture for
->>> Tegra234 and Tegra264.
->>>
->>> Co-developed-by: Prathamesh Shete <pshete@nvidia.com>
->>> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
->>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->>> ---
->>> Admittedly I don't know if there is a better way to handle this,
->>> but if there is please let me know!
->>>
->>>   .../arm/tegra/nvidia,tegra186-pmc.yaml        | 57 ++++++++++++-------
->>>   1 file changed, 38 insertions(+), 19 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
->>> index be70819020c5..defd9000eed2 100644
->>> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
->>> @@ -19,17 +19,12 @@ properties:
->>>         - nvidia,tegra264-pmc
->>>   
->>>     reg:
->>> -    minItems: 4
->>> +    minItems: 3
->>>       maxItems: 5
->>>   
->>>     reg-names:
->>> -    minItems: 4
->>> -    items:
->>> -      - const: pmc
->>> -      - const: wake
->>> -      - const: aotag
->>> -      - enum: [ scratch, misc ]
->>> -      - const: misc
->>> +    minItems: 3
->>> +    maxItems: 5
->>
->>    minItems: 3
->>    items:
->>      - const: pmc
->>      - const: wake
->>      - enum: [ aotag, cratch, misc ]
->>      - enum: [ scratch, misc ]
->>      - const: misc
->>
->> Should work, no?
-> 
-> I was thinking about that, but with the above, and if I am understanding 
-> you correctly, it would permit someone to make the following mistake ...
-> 
->   reg-names = "pmc", "wake", "scratch", "scratch", "misc";
-> 
-> Hence, I thought that I need to be more explicit and list out all the 
-> combinations that are supported for a given device. Let me know if I am 
-> misunderstanding you here.
+Gunyah is a Type-I hypervisor which was introduced in the patch series
+[1]. It is an open source hypervisor. The source repo is available at
+[2].
 
-It won't be allowed, test it.
+The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+access the MMIO watchdog. It either provides the fully emulated MMIO
+based watchdog interface or the SMC-based watchdog interface depending
+on the hypervisor configuration.
+The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
 
+This patch series adds support for the SMC-based watchdog interface
+provided by the Gunyah Hypervisor.
+
+This series is tested on SM8750 platform.
+
+[1]
+https://lore.kernel.org/all/20240222-gunyah-v17-0-1e9da6763d38@quicinc.com/
+
+[2]
+https://github.com/quic/gunyah-hypervisor
+
+Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+---
+Changes in v8:
+- Fix error handling in gunyah_wdt_probe() to fail silently with -ENODEV
+  if WDT_STATUS call returns -EOPNOTSUPP, indicating support for Gunyah
+  watchdog is not present. Fail with logs for other errors.
+- Link to v7: https://lore.kernel.org/r/20251114-gunyah_watchdog-v7-0-f5c155b941d5@oss.qualcomm.com
+
+Changes in v7:
+- Convert local `const` arrays to `static const` to optimize
+  initialization and stack allocation.
+- Link to v6: https://lore.kernel.org/r/20251112-gunyah_watchdog-v6-0-38ad01f8dac0@oss.qualcomm.com
+
+Changes in v6:
+- Fix build issues reported by the kernel test robot on PowerPC and RISC-V
+  architectures by adding IS_ENABLED(CONFIG_HAVE_ARM_SMCCC_DISCOVERY) check
+  before calling arm_smccc_hypervisor_has_uuid().
+- Link to v5: https://lore.kernel.org/r/20251107-gunyah_watchdog-v5-0-4c6e3fb6eb17@oss.qualcomm.com
+
+Changes in v5:
+- Move the gunyah_wdt device registration from the SMEM driver to the
+  SCM driver. Add additional logic to check if we're running under the
+  Gunyah Hypervisor.
+- Implement .remove() for gunyah_wdt driver to make it not persistent.
+- Link to v4: https://lore.kernel.org/r/20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com
+
+Changes in v4:
+- Move the contents of gunyah_wdt_init() to qcom_smem_probe() to make
+  sure we're registering the watchdog only on the Qualcomm devices.
+- Link to v3: https://lore.kernel.org/r/20251028-gunyah_watchdog-v3-1-e6d1ea438b1d@oss.qualcomm.com
+
+Changes in v3:
+- Move back to platform driver model. In module init, determine if we're
+  running on a Qualcomm device and there is no supported memory-mapped
+  watchdog present. Then proceed to register platform device and driver
+  for SMC-based Gunyah watchdog.
+- To determine if we're running on a Qualcomm device we're checking the
+  presence of "qcom,smem" compatible devicetree node. As an alternative,
+  we also tried using socinfo for the same purpose. When both
+  gunyah_wdt and socinfo drivers were made built-in, it couldn't be
+  ensured that the socinfo driver probed successfully before gunyah_wdt
+  init was called. Hence, we resorted to the devicetree node approach.
+- Limit the errors listed in gunyah_error to the ones that can be
+  produced by the driver.
+- Link to v2: https://lore.kernel.org/r/20251006-gunyah_watchdog-v2-1-b99d41d45450@oss.qualcomm.com
+
+Changes in v2:
+- Move away from platform driver model since the devicetree overlay does
+  not happen by default.
+  See https://lore.kernel.org/all/91002189-9d9e-48a2-8424-c42705fed3f8@quicinc.com/
+- Only when MMIO-based watchdog device is absent in the devicetree,
+  proceed to detect SMC-based watchdog using GUNYAH_WDT_STATUS SMC and
+  initialize if SMC returns success.
+- Implement pm notifiers as gunyah_wdt is no longer a platform driver so
+  dev_pm_ops cannot be used.
+- Pretimeout IRQ is no longer supported.
+- Remove struct gunyah_wdt since it is not required.
+- Move the contents of gunyah_errno.h to gunyah_wdt.c.
+- Link to v1: https://lore.kernel.org/r/20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com
+
+---
+Hrishabh Rajput (2):
+      firmware: qcom: scm: Register gunyah watchdog device
+      watchdog: Add driver for Gunyah Watchdog
+
+ MAINTAINERS                      |   1 +
+ drivers/firmware/qcom/qcom_scm.c |  53 ++++++++
+ drivers/watchdog/Kconfig         |  13 ++
+ drivers/watchdog/Makefile        |   1 +
+ drivers/watchdog/gunyah_wdt.c    | 261 +++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 329 insertions(+)
+---
+base-commit: 6a23ae0a96a600d1d12557add110e0bb6e32730c
+change-id: 20250903-gunyah_watchdog-2d2649438e29
 
 Best regards,
-Krzysztof
+-- 
+Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+
+
 
