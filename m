@@ -1,137 +1,368 @@
-Return-Path: <devicetree+bounces-239951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E03B0C6B1C2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 19:09:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8EFC6B1B0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 19:08:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2971D4E88D2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:07:56 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6D330344B35
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75C1339B20;
-	Tue, 18 Nov 2025 18:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7922D7DE5;
+	Tue, 18 Nov 2025 18:08:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i/ayGtqK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Lj259Shn";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Uky/50hJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9072877E9
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 18:07:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4432246770
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 18:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763489269; cv=none; b=JXxvNxUxX03u/d4CZ4XE6/nNXj/sV1oM6oDmgyfhOSoxtfNxNSSMycJSMIkyFTGnkJ04Y973atkd1eQWhMp+d+7JiLJD9NLPwX+cW2KdZObBWfDjpCcVegRK0Pbp4KAmlWARmMv+JlFHoEO7tsEK7lWyzqhqz2pI9jAVWfpTTiw=
+	t=1763489313; cv=none; b=kOaKQvQgksfbsCbIH066xlbsiBWOcPaNnlGYRKSCN5WRN1YCkc0mGRzXI+3VGaQ15A9etiK3D/yhEOSOOXaOnXmbLT0qVdidL+1C2QV64Fv9SgZiK00dvULY9gTe8LzF5XT5K71pe4MZgBs04mF9EvLM0GVubzOGnh1iS2dkk2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763489269; c=relaxed/simple;
-	bh=El2h874yprF5L8lfJm+Xu9NQI0aJHjJbVyMuzWMPmDs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m157KncYe0Itim5OS26E3SNYQp/O3M4gtiLe6QiVAT/rAffXJf1K6nZvNo/ORGBJ/35ZjqAQ4Tdk4GqPVuqX4NPdL0MKakYAdNMBiwnn0ANtdUfEFrGlxaMrSJ5tyW0oEXY288d1JerRgZ4uaB3oPl/I6bT1DMRUlGEUWXK0Kz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i/ayGtqK; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4775e891b5eso30818475e9.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 10:07:46 -0800 (PST)
+	s=arc-20240116; t=1763489313; c=relaxed/simple;
+	bh=JyiwRD5PXU2JTaLEBqBqRY2AF/v56wcsy/a20WnD3iY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o1EAf7g30oQX1yk/nhfe3MKBCX9YZjIMEjAwQPtvAr14PQy3HldSVlwnv718j8PEBZ1hkDJN4xmaQEpsUsp1e7JMjMlQgqhW7+04f4epS51cTQ3zrWb9vLmnUswMM4jINDsij/QcU0LrEgOZMgN4RwWiNgFD01MgTCdLpH61Cns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Lj259Shn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Uky/50hJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AIGUI982755312
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 18:08:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dIc8zOzG0s/exhiJHOzjLrkPn+My1alB6NYtozrxKNg=; b=Lj259Shn7cSockzn
+	GRQsKJG7JZ5KEYM8G4HoAGrEBE/rBBrd0M7iqY75cz95XUoZ19AWgN87ItGXEu5O
+	jGJhiIxo2jQJ/YuDWxj9fS5EuE5CyV4A4En+ak2rdDmjSEnOevjGMpm7uXB1lFhn
+	OcFpizFiu2Nu5O06mjDp4U8ukb6u96ocoglJiJpl4jC+bnEJR4C4lR2POEQmGvf8
+	eISNeuKZzLcXLZx1bcuwO0CaoDISy2qLLx8FS95dw/PeRyOD5CelqVm2ytDo4TOq
+	dnuFBFDuPGwYqKt49QeSN2HwKyQ808ze0DIoLnbNQzRb/PAzAeV3VChZin2InFfg
+	LZ3Wqw==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agnkj1p0a-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 18:08:30 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-88236bcdfc4so162569586d6.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 10:08:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763489265; x=1764094065; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=R/M1YJyRKnlzVlZ9Q7GR17zCRQfIeFWmJQjOozU2zL4=;
-        b=i/ayGtqKvkchWgZo25VqSgwnW6LoMeZML8mlMHrmC0Noqt9jarWC6Wu77lmNQLdwzq
-         A3Av5ugWOw3aZDVTxiFaCxbeuYYUK3l3efr6NubHfDDTTudkMPD813gB2g8EE0fSstpz
-         Bch59p0uQeCo0R3ftD71mv3EMXp9MBdirtbCYzbdSGT1roK7HnqLyiNVuoHFCfh7orYB
-         caZamByQ9zwQZp0smzbrNDFtViUJxnnL1CIDo5bu0/PTtcCiC0oVCNngXmh3hU+VOgzx
-         LkAthYQl0KVddQvY5Z1MMM8YCGxi9s3ez+MVUs4YAfn3wvlrJruICUMJWv4eh+Z8W3Sr
-         WRjA==
+        d=oss.qualcomm.com; s=google; t=1763489310; x=1764094110; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dIc8zOzG0s/exhiJHOzjLrkPn+My1alB6NYtozrxKNg=;
+        b=Uky/50hJ03WbbzaR0Fh3lo/f2TI/iG2lk+FxzTn/RLAeCEPgsRX6iFOoHGLgSR74Kq
+         7sYUIRAM+2vjZ6Go3jO2y6PmYLQg6n7bfcvjIEpXcjr6M/x5ajsvIw5S0cLzs0nzXTFk
+         Musziey44W4CYZ7nUJqywHy9K36JyurcppEsyCpdsAFrzoRdMjomRy5u+58vNCy51b/E
+         S7qgUiZoaT5G+UffAiQ5OfweZy6ox2Ms4fc6BVZizriIItK2tOR40YeQhoQs5fX4mV2X
+         WYO5OnUaVbfEjOXvoq3Esj/WfF1wuk52j3JPlJ+aW1ZkdL/X5Vvo59AdGjxoRwxBIPMg
+         30pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763489265; x=1764094065;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R/M1YJyRKnlzVlZ9Q7GR17zCRQfIeFWmJQjOozU2zL4=;
-        b=sUUzyyw4/c19oVyJjbd2o1UTjSGDmRQ4aGxhaOOuT6njK2jTZ04sZXhEUYNKzDG6OH
-         8SQOljgn//ZL3mH38rrmV2/b1rUKIYa+4xSpwCUazhqe4hZb5r9AMVtpTa8r7rDLKphU
-         XAlppfq7tvt+cvY/KZUTInjUeBBAErDwQOGyGLT86wLGyp9T6bExGMWUTK6iZZo3V2DC
-         D8aBgIqEM4G8hkPCl4Euqe4Wkf0R2BVgI/2E6IyeAdv44ySZXH776qHw2jeG9d+OkysF
-         N+tY5NQlCCdJIGseu7eKoD12H/V8BZlDA+4/wZuN4sREL+g1/q7AL+gGq5fQuONasYDk
-         +mrg==
-X-Gm-Message-State: AOJu0Yz+M04tN5dKf9K0LVFSU8Gm/+G60PAUCXT4ViKB4puwWK8Lu9mg
-	6UAZq/3HTFnAokGIwVGIkkA10bhXF07mXohq0E+tArZ5x/j9/2UHNz2i
-X-Gm-Gg: ASbGncvqOMxtq6zWDD9RTy98FMncV+RfiV8K2AhG1e1/AVH7QHONWi10nPSf6Gr8qFN
-	IvoOtiXx3mICchHg6pavdmymLri6RrfvNaBuhRf2T8u1lepy6ilirMqSoQ5yKIDfRq8mdCbNe9t
-	/9054vE8Tw5sANgP1uoKQ7Mubo3CykOuU8bhlIvCsSzw8yTla8FBV8fLIqqkPnnyEZF3QfgUm4B
-	YaRhQeuLXrnyFyJNe0/3XsdbRF8fgmByK9o+WX4kzAagkqWFvkQyw0xt9kal8Z+UHyWM3E/hbYc
-	liKKdwqX7MpMOov96t8CZcGHqza4wxJJiKIbn7XKUJC3F1zQLVnO79ZrW1AD3wSUCE63RDwt4lw
-	968qb/58Qb9mg+7i3pBFFsusDs3fGBLpslWFToOImXnNsuClo50S9eHybmRiwzi2dLBfJCFuGQ0
-	LZFzmXK4nj73ipz6BCwZMSeCT57Wdyq5GeC9c=
-X-Google-Smtp-Source: AGHT+IEh3sirWGP1AlsXkj1eQIWJOzKDxVDaDjqASMoIHo7Hap8krokdr+e8M1r5XqRdGdNKwyMiTQ==
-X-Received: by 2002:a05:600c:a06:b0:477:7c7d:d9b7 with SMTP id 5b1f17b1804b1-4778fea6cebmr194830125e9.33.1763489265043;
-        Tue, 18 Nov 2025 10:07:45 -0800 (PST)
-Received: from iku.Home ([2a06:5906:61b:2d00:af61:3b49:841c:d9e5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f0b894sm34832452f8f.26.2025.11.18.10.07.44
+        d=1e100.net; s=20230601; t=1763489310; x=1764094110;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dIc8zOzG0s/exhiJHOzjLrkPn+My1alB6NYtozrxKNg=;
+        b=Fe+lyqO6QH0ZHihj+mauf0r0fLUYmjXQeYxNMZXP+o/9NsTk4m0NM7ADlPcfHetiMW
+         pdpQ2IWJXG9sKtmxeAlscJZWUKm6b6RvLGOtG2DuqONfB8K+FDFS7jvffVBEA6VrJyvh
+         PvUJs4Vfhal5DpYfktf4oAeUnbwwOJzRpZUJqnzpypfwyPMcvhg060VdseIDhuH4eatq
+         bnJ58P7EBC8FKpQIrmvHt9pwCx+WAaQzlpx0LF52lxmc4NUgHY8XZYrP78PIsbz40v0V
+         WvGqra6k3iJMtWJ3VBuALSjDlNgckcYK7pBk2Jjpc+ztIOB6Fb07CoLuGvFnMk4yUNb8
+         5UEg==
+X-Forwarded-Encrypted: i=1; AJvYcCWTBM61zqmqKFPtFt2iO6MuscHwv6pHdnwmlSDMo8dwtFjCLlpPliPK7/9L+qLh6vxiYaz2KDYxg5xn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHU/em8rwTBnhDJh+fsZwVqeVSLhs0T6nQ3VRsRINXBiRGMHt5
+	TKL+An9v0eTsjrhP5Jvc3GBkk89HtP+REfzGxa2e8KXntCnmk1CfnJhchxz0EPx0zpMf9tEf4vG
+	K0Puqyf7Mn5yzkYnG6/EBnAOPpqgAauuZYIbcIX1NvWuMRX8+DTCVNPudoQYRQdhc
+X-Gm-Gg: ASbGncuxnhe5ETqNtBk8LUOkZV4H/yLFO5FB3hyZ5FxKznegFI2/tLaz2OPU5JPYYgg
+	r3okspNRiFN2TCFWwYorUJTcAZFrk175lTsFJMEduBkJjKpPSisOaPXteGUfPxuNLZiHXhCZCQ+
+	dOyWd6Rfm8aIHA9hmmB4O2rlgbGMpFaL8u4gxQ3bqTlXKG/SL2SBoHi3ez8w5Vs3GJjRQWkcqvK
+	YKuL7UTPMkPwe+FB1ubd5b+QW+AXWGQPPYY5wmuuDhaP17CyBv2I6b0rkBOxE1AU0NyjTdWTZMT
+	dqia3Kj7ooPV5KpN30imCW5VpNn5WYLZg2TT7Aj2cHdgcwMhFAO2hI5dqTnJbiirPMCBRrrJXgw
+	RtYYBdAIy1R8s0orUk3tn2Lr/X6naYQHTVvKWMRYZuK8a2FYGyU50JYQ8e0A2dzV5s2n0ykw1OI
+	dejx29g3KNES5PHHHIscfpm8w=
+X-Received: by 2002:a05:622a:493:b0:4ee:168a:9ebe with SMTP id d75a77b69052e-4ee168aa0bbmr161495011cf.45.1763489309771;
+        Tue, 18 Nov 2025 10:08:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEq0z6syR3TwYsiIIv64UoZ0ESiGvYw9oY00pbh8SjV1wuGk6ThpJs6qViY/voGF/hA1LTsFA==
+X-Received: by 2002:a05:622a:493:b0:4ee:168a:9ebe with SMTP id d75a77b69052e-4ee168aa0bbmr161493881cf.45.1763489308820;
+        Tue, 18 Nov 2025 10:08:28 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-595803b30c4sm4124761e87.31.2025.11.18.10.08.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Nov 2025 10:07:44 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-phy@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] dt-bindings: phy: renesas,rzg3e-usb3-phy: Add RZ/V2H(P) and RZ/V2N support
-Date: Tue, 18 Nov 2025 18:07:12 +0000
-Message-ID: <20251118180712.4191384-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.51.2
+        Tue, 18 Nov 2025 10:08:27 -0800 (PST)
+Date: Tue, 18 Nov 2025 20:08:26 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Roger Shimizu <rosh@debian.org>
+Cc: Jens Reidel <adrian@mainlining.org>,
+        Hongyang Zhao <hongyang.zhao@thundersoft.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: rubikpi3: Add qcs6490-rubikpi3
+ board dts
+Message-ID: <2iv3hsxcwlgfnpq75h4tfnbilurs5jelslig6gzknpb6lsupvk@xfxdofqw7b3v>
+References: <20251115-rubikpi-next-20251114-v1-0-fc630dc5bb5d@thundersoft.com>
+ <20251115-rubikpi-next-20251114-v1-1-fc630dc5bb5d@thundersoft.com>
+ <b2d4d91f-c726-4f5a-994a-086edc9caff2@mainlining.org>
+ <CAEQ9gE=ztgQ+pGJVxKgk5dVWDSSfOG7r=s1cDa_x0_Zsf2eyYA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAEQ9gE=ztgQ+pGJVxKgk5dVWDSSfOG7r=s1cDa_x0_Zsf2eyYA@mail.gmail.com>
+X-Proofpoint-GUID: D8p0N-x8IU3RC3_jH8_kKnhyxzsu1CZK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDE0NSBTYWx0ZWRfX2PTiSWfBCsU+
+ 9dDT9F5WyXrdF7PFKRKh2DE8sB0MeghjTJ8/MdEq2OMhFE1qFkLiuAANpL5ZX+s9ZeuFlXDnEVL
+ v61afeTE7FiTwvOz4KkdHqIQuEWAm6ZI7ymkrMD+Tdm2RuCxi2aD4l9q0/qS5vShTDw01aFQcEh
+ NjbD2sBR7jrbMSZ/brmlllwDHff57+07o7SCXg6Njhla3fMePlYgjRXaBeT+YsIKoJXfP0SlYEO
+ /UiPSz4tWeWm0q24aUJ3Ojvk4GQzQEY4L4C2bpkM1G038A/84QSnxg5SgbWfOfCSDm5k+i4VNY2
+ DeFx9vEmRhI6rHxkRpx/qmOf+b8HGpoYYiSQBzIgkiqjTynzOpn9yOwwvq3Wbn7jJhKm4Z0cQN9
+ dbYI0wvg89/beaxWX+kAOAPS0O9NnQ==
+X-Authority-Analysis: v=2.4 cv=cs+WUl4i c=1 sm=1 tr=0 ts=691cb61e cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=fxJcL_dCAAAA:8 a=OuZLqq7tAAAA:8 a=Wdb1h0LgAAAA:8 a=xNf9USuDAAAA:8
+ a=JFP3Wp4Tb7VmlQpwFN0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22 a=AKGiAy9iJ-JzxKVHQNES:22 a=j5gyrzqu0rbr1vhfHjzO:22
+ a=HhbK4dLum7pmb74im6QT:22
+X-Proofpoint-ORIG-GUID: D8p0N-x8IU3RC3_jH8_kKnhyxzsu1CZK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-18_02,2025-11-18_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 phishscore=0 malwarescore=0 priorityscore=1501
+ bulkscore=0 adultscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511180145
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Sun, Nov 16, 2025 at 11:36:13PM -0800, Roger Shimizu wrote:
+> Thanks Jens, and Dmitry for the review!
+> 
+> On Sat, Nov 15, 2025 at 9:25 AM Jens Reidel <adrian@mainlining.org> wrote:
+> >
+> > Hi,
+> >
+> > On 11/14/25 5:34 PM, Hongyang Zhao wrote:
+> > > Add DTS for Thundercomm qcs6490-rubikpi3 board which uses
+> > > QCS6490 SoC.
+> > >
+> > > Works:
+> > > - Bluetooth (AP6256)
+> > > - Wi-Fi (AP6256)
+> > > - Ethernet (AX88179B connected to UPD720201)
+> > > - FAN
+> > > - Two USB Type-A 3.0 ports (UPD720201 connected to PCIe0)
+> > > - M.2 M-Key 2280 PCIe 3.0
+> > > - RTC
+> > > - USB Type-C
+> > > - USB Type-A 2.0 port
+> > > - 40PIN: I2C x1, UART x1
+> > >
+> > > Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+> > > Reviewed-by: Roger Shimizu <rosh@debian.org>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+> > >   .../boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts | 1415 ++++++++++++++++++++
+> > >   2 files changed, 1416 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > > index 6f34d5ed331c..2433b15754fe 100644
+> > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > @@ -138,6 +138,7 @@ qcs6490-rb3gen2-industrial-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2
+> > >
+> > >   dtb-$(CONFIG_ARCH_QCOM)     += qcs6490-rb3gen2-industrial-mezzanine.dtb
+> > >   dtb-$(CONFIG_ARCH_QCOM)     += qcs6490-rb3gen2-vision-mezzanine.dtb
+> > > +dtb-$(CONFIG_ARCH_QCOM)      += qcs6490-thundercomm-rubikpi3.dtb
+> > >   dtb-$(CONFIG_ARCH_QCOM)     += qcs8300-ride.dtb
+> > >   dtb-$(CONFIG_ARCH_QCOM)     += qcs8550-aim300-aiot.dtb
+> > >   dtb-$(CONFIG_ARCH_QCOM)     += qcs9100-ride.dtb
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
+> > > new file mode 100644
+> > > index 000000000000..4c9016992de3
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
+> > > @@ -0,0 +1,1415 @@
+> >
+> > [snip]
+> >
+> > > +
+> > > +&pcie0 {
+> > > +     perst-gpios = <&tlmm 87 GPIO_ACTIVE_LOW>;
+> > > +     wake-gpios = <&tlmm 89 GPIO_ACTIVE_HIGH>;
+> > > +
+> > > +     pinctrl-0 = <&pcie0_clkreq_n>,
+> > > +                 <&pcie0_reset_n>,
+> > > +                 <&pcie0_wake_n>;
+> > > +     pinctrl-names = "default";
+> > > +
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&pcie0_phy {
+> > > +     vdda-phy-supply = <&vreg_l10c_0p88>;
+> > > +     vdda-pll-supply = <&vreg_l6b_1p2>;
+> > > +
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&pcie1 {
+> > > +     /* Using traditional address mapping */
+> > > +     reg = <0 0x01c08000 0 0x3000>,
+> > > +           <0 0x40000000 0 0xf1d>,
+> > > +           <0 0x40000f20 0 0xa8>,
+> > > +           <0 0x40001000 0 0x1000>,
+> > > +           <0 0x40100000 0 0x100000>;
+> > > +
+> > > +     ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
+> > > +              <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
+> >
+> > Thanks for attempting to fix the PCIe issues. With your patch series
+> > applied on top of linux-next, I'm still seeing PCIe issues:
+> >
+> > [    0.380693] Internal error: synchronous external abort:
+> > 0000000096000010 [#1]  SMP
+> > [    0.406491] Modules linked in:
+> > [    0.406495] CPU: 5 UID: 0 PID: 106 Comm: kworker/u32:6 Tainted: G   M
+> >                 6.18.0-rc5-next-20251113 #13 NONE
+> > [    0.406499] Tainted: [M]=MACHINE_CHECK
+> > [    0.406500] Hardware name: thundercomm Thundercomm RUBIK Pi
+> > 3/Thundercomm RUBIK Pi 3, BIOS 2025.10-rc4 10/01/2025
+> > [    0.406502] Workqueue: async async_run_entry_fn
+> > [    0.406508] pstate: 40400005 (nZcv daif +PAN -UAO -TCO -DIT -SSBS
+> > BTYPE=--)
+> > [    0.428362] pc : __pi_memset_generic+0x16c/0x188
+> > [    0.428366] lr : dma_direct_alloc+0x19c/0x3d0
+> > [    0.428370] sp : ffff8000810e3920
+> > [    0.428371] x29: ffff8000810e3920 x28: ffff000080d0f810 x27:
+> > ffffba4c6196ec48
+> > [    0.428373] x26: ffff000080d0f810 x25: ffffba4c607b31cc x24:
+> > 0000000000000000
+> > [    0.428375] x23: ffff000080d0f810 x22: ffff000000c00000 x21:
+> > ffff000082858948
+> > [    0.428376] x20: 0000000000001000 x19: fffffdffc0030000 x18:
+> > 000000000000000a
+> > [    0.428378] x17: ffff0000823dae00 x16: 0000000000000000 x15:
+> > 0000000000000000
+> > [    0.428380] x14: 00000000ffffffff x13: 0000000000000068 x12:
+> > 0000000000000100
+> > [    0.449344] x11: 0000000000000000 x10: ffff0001fef99500 x9 :
+> > 0000000000000000
+> > [    0.449345] x8 : ffff000000c00000 x7 : 0000000000000000 x6 :
+> > 000000000000003f
+> > [    0.449347] x5 : 0000000000000040 x4 : 0000000000000000 x3 :
+> > 0000000000000004
+> > [    0.449349] x2 : 0000000000000fc0 x1 : 0000000000000000 x0 :
+> > ffff000000c00000
+> > [    0.449350] Call trace:
+> > [    0.449351]  __pi_memset_generic+0x16c/0x188 (P)
+> > [    0.449354]  dma_alloc_attrs+0x94/0x210
+> > [    0.449357]  dmam_alloc_attrs+0x74/0xc0
+> > [    0.469967]  dw_pcie_msi_host_init+0x100/0x300
+> > [    0.469971]  dw_pcie_host_init+0x5e4/0x6d8
+> > [    0.491913]  qcom_pcie_probe+0x5a8/0x838
+> > [    0.491916]  platform_probe+0x64/0xc0
+> > [    0.491919]  really_probe+0xc8/0x3f0
+> > [    0.491921]  __driver_probe_device+0x88/0x170
+> > [    0.491922]  driver_probe_device+0x48/0x130
+> > [    0.491923]  __device_attach_driver+0xc4/0x190
+> > [    0.491925]  bus_for_each_drv+0x90/0x100
+> > [    0.491928]  __device_attach_async_helper+0xb8/0x120
+> > [    0.491929]  async_run_entry_fn+0x3c/0x1e0
+> > [    0.491931]  process_one_work+0x150/0x3a0
+> > [    0.491934]  worker_thread+0x288/0x480
+> > [    0.491936]  kthread+0x118/0x1e0
+> > [    0.491938]  ret_from_fork+0x10/0x20
+> > [    0.513092] Code: 91010108 54ffff4a 8b040108 cb050042 (d50b7428)
+> > [    0.513094] ---[ end trace 0000000000000000 ]---
+> >
+> > I can only get the device to boot by disabling both pcie0 and pcie1.
+> 
+> I think there're some regressions in "next-20251114".
+> After some time to "git bisect", I found after running 2 revert
+> commands below, it can boot for both RUBIK Pi 3 and RB3 Gen2.
+> 
+> $ git revert b15ce3c0882c9cd2fbe4f87047874ad087b583ff -m 1
+> $ git revert 03e928442d469f7d8dafc549638730647202d9ce
+> 
+> > > +
+> > > +
+> > > +     perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+> > > +     wake-gpios = <&tlmm 3 GPIO_ACTIVE_LOW>;
+> > > +
+> > > +     pinctrl-0 = <&pcie1_clkreq_n>,
+> > > +                 <&pcie1_reset_n>,
+> > > +                 <&pcie1_wake_n>;
+> > > +     pinctrl-names = "default";
+> > > +
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&pcie1_phy {
+> > > +     vdda-phy-supply = <&vreg_l10c_0p88>;
+> > > +     vdda-pll-supply = <&vreg_l6b_1p2>;
+> > > +
+> > > +     status = "okay";
+> > > +};
+> > > +
+> >
+> > [snip]
+> >
+> > > +
+> > > +&remoteproc_adsp {
+> > > +     firmware-name = "qcom/qcs6490/adsp.mbn";
+> > > +
+> > > +     status = "okay";
+> > > +};
+> >
+> > I'm fairly sure that this is the wrong ADSP firmware. With the firmware
+> > in linux-firmware, I'm seeing charger pd crashes and the ADSP constantly
+> > restarting. Using the Radxa Dragon Q6A ADSP firmware which disables the
+> > charging feature in the firmware works way better and does not result in
+> > crashes.
+> 
+> I run the Ubuntu 24.04 base system:
+> * https://ubuntu.com/download/qualcomm-iot#rubikpi3
+> 
+> Currently it boots well with adsp fw from RB3 Gen2 (from deb pkg:
+> firmware-qcom-hlosfw) without crash.
+> But I heard from next release, adsp will be customized, so Hongyang
+> will make another patch to upstream the adsp for RUBIK Pi 3.
 
-Add compatibles for the USB3.0 PHY used in the RZ/V2H(P) and RZ/V2N SoCs.
-These SoCs integrate the same USB3 PHY IP block as the RZ/G3E, so the
-RZ/G3E compatible is used as a fallback for both.
+Then it would be nice to include the new path for ADSP firmware from the
+day 0 (you can do this even before it is sent to linux-firmware).
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- .../devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml  | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml
-index b86dc7a291a4..6d97e038a927 100644
---- a/Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml
-@@ -11,7 +11,14 @@ maintainers:
- 
- properties:
-   compatible:
--    const: renesas,r9a09g047-usb3-phy
-+    oneOf:
-+      - const: renesas,r9a09g047-usb3-phy # RZ/G3E
-+
-+      - items:
-+          - enum:
-+              - renesas,r9a09g056-usb3-phy # RZ/V2N
-+              - renesas,r9a09g057-usb3-phy # RZ/V2H(P)
-+          - const: renesas,r9a09g047-usb3-phy
- 
-   reg:
-     maxItems: 1
+> 
+> Cheers,
+> Roger
+> 
+> > > +
+> > > +&remoteproc_cdsp {
+> > > +     firmware-name = "qcom/qcs6490/cdsp.mbn";
+> > > +
+> > > +     status = "okay";
+> > > +};
+> > > +
+> >
+> > [snip]
+> >
+> > Thanks,
+> > Jens
+
 -- 
-2.51.2
-
+With best wishes
+Dmitry
 
