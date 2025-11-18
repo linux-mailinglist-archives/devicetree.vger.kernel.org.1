@@ -1,48 +1,98 @@
-Return-Path: <devicetree+bounces-239969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 356E7C6B800
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 20:55:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1EE4C6B89F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 21:13:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CD0784E4008
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 19:55:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3264B354F26
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 20:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B652EA482;
-	Tue, 18 Nov 2025 19:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB0E2F39B7;
+	Tue, 18 Nov 2025 20:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iw8eqyog"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="U1uD4D7k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bumble.maple.relay.mailchannels.net (bumble.maple.relay.mailchannels.net [23.83.214.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87EB528371;
-	Tue, 18 Nov 2025 19:55:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763495722; cv=none; b=F7PPK7BRNRiOa5XT4mYO3ABcM/Mg/c1wS+4KTuB6O0eJyOtS4Wh5n/cEblSgGZHCoNO8qC9NURx1DJtzQKobaQTQVsUmBeXWTOpgBNWuTU52WJBGyVu2o+JYV2kXpkeZrDEEihDjdA5d1jKH5VmhVX6VpJ+5K0fU2e80ighxk8Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763495722; c=relaxed/simple;
-	bh=6DjHmoHBbwPs/79b07LTu4yVrCTPsQTtMWj2MGsHj4A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ktu3tf7phMjL69iUexUnXJ+uvLLNpXOUWmN8NBEvNg2Fsv3zgP82M9/qqR2KfeZBxQwDTXLGNZhOE0bQfRj2tlCgFYCxjlNDNZ6SKG47oYwryLixoRi0oYF2HKO7q9pR9oOlOCXqT/foP0oCSggO+rnCG9L2PckLiv5l+Iqa0Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iw8eqyog; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC35C4CEFB;
-	Tue, 18 Nov 2025 19:55:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763495722;
-	bh=6DjHmoHBbwPs/79b07LTu4yVrCTPsQTtMWj2MGsHj4A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iw8eqyogo287QLQGRoA4Vb6+uqnvKoouUAJAwPxnJaWiHT3cM1Q+x13Knij8yMHWk
-	 gttMWK7ji6tdEmYymLAtR4kuDtsyn19etKXutDvpIc+sOAjgGwzATvs51JUq/L68cB
-	 EgxPcioj45VXPZyo2nK0M5v0rOTiMQCN13fKmNwEREJcfk9xCVKMj/QqOl+5PjKjA4
-	 p1xRtlt6U4PE2pNKETQcLxJHtLjHnKZ5srZQPZO11u7sJfyqaZH20sDYKuFLjY/L6+
-	 yLmSPh6Hc1PKiHkgA9eJ7IFyfqcSZqzHnE/EMOrxTmBlyIrxTCHZfLvNUaLW/tdbef
-	 VbaUY6z5No/Yw==
-Message-ID: <1a4d2276-75e1-4aa0-8ff2-c932ce5d6edc@kernel.org>
-Date: Tue, 18 Nov 2025 20:55:14 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976FA2F5335;
+	Tue, 18 Nov 2025 20:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.214.25
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763496802; cv=pass; b=m2r1IPBLOZviT396c+diHepKIraRf+ps0i57F+U3jD6bCP/meAjL4J3xAAMdF8FUrV0ivTu77AjmuqLmzeFgMyYvHPT+DvnQSDs6BvOxNoBDcAqXYXxz/6El6arKWbXEJCPlJUsGnE4PVjJXGpF196aZExkJxWY9IJczKbGsXBg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763496802; c=relaxed/simple;
+	bh=p9+bKI98JVT7q7HxWC1pZ1MjZAp9cIcyRBA41ifxMT0=;
+	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
+	 Content-Type:Date; b=HR9u+UOMvGwCVcm/Qi3AxqAZKyGXJsjgM6zvazvT6L6GW6ZKil2wbNqT9ZVZUTz/AXLdP17jH++pDAHNszbQv6iSc6KZNiD5s71H7x90wEa4p+ZHBTROfSA26c4tXeLr+yTQRPEkwtQGRsRm2Wn86CXQeeCKIZvu6/uPR/C2cbU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=U1uD4D7k; arc=pass smtp.client-ip=23.83.214.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 61771822718;
+	Tue, 18 Nov 2025 19:57:28 +0000 (UTC)
+Received: from fr-int-smtpout26.hostinger.io (100-96-77-176.trex-nlb.outbound.svc.cluster.local [100.96.77.176])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id E36F9822723;
+	Tue, 18 Nov 2025 19:57:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
+	t=1763495848;
+	b=CZeiHv7XXFXKuHBPuBB4OSbkJIH9QTFhUs8SrbpW3DeU+cVjhsvfwzfMpTkUO/NzVCJr8B
+	YtXxVlVMw/+9detR32tEzZb96PZI+a81Misiv+zwMMfUL1N00oa61ZfQ29Dl5jbTroKLGd
+	4ONz4kVFcJIW1ZW3LolR7yDVyanXTswtWgXyMM6vc3H1SKAGVGnA37LNcXRV+kIqbE0eU6
+	AzlzRF3sV25yF/8HzgeO3M9yzuPsiAeHfP7R/XCTP4H3lFCI+e3BOVcLS4BuxxVLALAx0G
+	MLJEg+FZW7cWZaBoOvXLRQf4TSwyWGawRqxTHotFi+2r6Hyt44XPXJCD3gw6IQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1763495847;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=BbcOD3VD6adCsQK5uLNPbk3zQ4lGeD4EBSzw6F4p+ao=;
+	b=i05GSgUos3YFpwmTiVmcb2cgzAnuukAdPA3SaIgsyB/IvvMRyNUYUehug4jRTAVTSwqMUe
+	wba5WLGnGc2xrukmgIkaVi/cmjJtOBznpaA1k/V19kVoP48DoWcplc1HCmiYGOG9oNNQbh
+	f4Tkk2dxuAnrMl7uorpD+8P9nmtyeq4KMvHJ+oTChlyssgWm2zM24odcXgGzATDJcaexng
+	DNVQpzF1dj/uiExsom31PHhDmHMZboKtSEJpoL2Kc3R7HmloCooSLCCceXWuRHY+/kwC49
+	3Lc+4Wt1TfoXqf0Jj81qQZu2D0Yo5ZwCR5WlJL17hiRMAZHyN9V7QWqOcKD5kA==
+ARC-Authentication-Results: i=1;
+	rspamd-55b59744f-bdkvm;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Society-Reign: 134a57947117443e_1763495848172_292490701
+X-MC-Loop-Signature: 1763495848172:1169941706
+X-MC-Ingress-Time: 1763495848172
+Received: from fr-int-smtpout26.hostinger.io (fr-int-smtpout26.hostinger.io
+ [148.222.54.11])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.96.77.176 (trex/7.1.3);
+	Tue, 18 Nov 2025 19:57:28 +0000
+Received: from [IPV6:2001:861:4450:d360:cf0c:923e:c2e1:c25a] (unknown [IPv6:2001:861:4450:d360:cf0c:923e:c2e1:c25a])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d9wPb4nG5z1xyp;
+	Tue, 18 Nov 2025 19:57:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1763495844;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BbcOD3VD6adCsQK5uLNPbk3zQ4lGeD4EBSzw6F4p+ao=;
+	b=U1uD4D7kpTyuGqaAmQHJGfeC/p6SjJD1pzeLGaLGpUmnGoPzigMZjHTU+8waAUX33OE85W
+	Hko74hd3tocL+CPQq10EnheWNH3lwAdqFvOfso8BKw0QDqUzjagtTsOaNFIH/zmnvDfHME
+	zrxmFYc9wX4gBKp6UWIzSEalOwS1lBWpXC7KtqF2Iyfs092Cu64g5ufMc6txEBL2wmH9mM
+	PfOUP71Mv/k+5511S4XgXHd7pI0rgwmHsMc0W/O0NQQhfO664FWV3lYcY9qMqDgwbpFyyj
+	GkftKxXEnKyqQMoX4KThfoLNc/Esj56huT6FvQzDE57UN00xlrJCB2fsUVOxWw==
+Message-ID: <4e7bb5f5-30bb-4ed5-bb32-3008caa1826a@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,101 +100,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] of/irq: Ignore interrupt parent for nodes without
- interrupts
-To: Mark Brown <broonie@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+Cc: michael.opdenacker@rootcommit.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: rockchip: Add Asus Tinker Board
+ 3/3S
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel@sholland.org>,
- Marc Zyngier <maz@kernel.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>
-References: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
- <b037f67a-b241-4689-9914-57ff578c1454@sirena.org.uk>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <b037f67a-b241-4689-9914-57ff578c1454@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+References: <20251118-tinker3-v3-0-2903693f2ebb@rootcommit.com>
+ <20251118-tinker3-v3-1-2903693f2ebb@rootcommit.com>
+ <e134902e-e298-45d0-b94f-77748bb948c4@kernel.org>
+Content-Language: en-US, fr
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Organization: Root Commit
+In-Reply-To: <e134902e-e298-45d0-b94f-77748bb948c4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Date: Tue, 18 Nov 2025 19:57:23 +0000 (UTC)
+X-CM-Envelope: MS4xfDr4wJCM3Z+k7peG/DjGFXbeSgYqjNqYCqeYhgVwqFEEqi28ZdJjanfR9dCSva3D+4rkCDt1ifEpJ8lLihRwMlJmXJQnvxvLIDrU8WJbDnSxnUDwRuQc f0T1yzS9q/s1vsElD0oMQDQ79KOxdmV7aeIcR9UwU7l/nhJTXhFBn4ShqCk7CNZtob0QE5VaxSHYY8GWCR1QhZQQMgiNue45McwHlBp8xkIyMZ7GOLUz6mo5 3IAHrij8CcockAeScy32YEElUa+tx3LugEvx4R4I1QqBrBYKDPF6TeezeL7QXtSYKZnYGOD6bgnJSTlhRIKyRRStrJt3L9TRYdH4CfgfVmH3pMkuZrJ1oxcr 0Y3VqLd1aa1D2yDVOcEOYmK7yu2asyp5z0ox8g/PC61FCCzUrQIiwsEVOeOh+JKW9OKR9fXLFnavYbsN/Mr9H8M+1ObuBgURguvVLgWrTM0/3SWezHJ7czb+ O9vUtNJy4WqdfLCvgPHeHXIjwbKqrRYViK9te53C/Dm1zc1qV6+6VUYKG/p5E0g0StU5+pEvSPRlBqc6tO+Qoowo87WbLi5z7qrjc9Lqckay24BZH1IRy6nW 3qGb2sr1enklqd8KX/GHam6uCDU5tNWTCtcSisxvuwl59WHWtKx/6qIFasIEVpwBXBDPNdoVJeRbAcy0a30rdFQhKLIDASvMB6HkWj/GrpZXHw==
+X-CM-Analysis: v=2.4 cv=DJTd4DNb c=1 sm=1 tr=0 ts=691ccfa4 a=IE4TgdwzI+KwY9PEtNToqw==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=-Yt9tNsTAAAA:8 a=d70CFdQeAAAA:8 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=GGi3-jLaLKOeRkm_cG8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=qPQde0g9OtMA:10 a=HTceBwxjnJgA:10 a=NcxpMcIZDGm-g932nG_k:22 a=cvBusfyB2V15izCimMoJ:22
+X-AuthUser: michael.opdenacker@rootcommit.com
 
-On 18/11/2025 20:34, Mark Brown wrote:
-> On Fri, Nov 14, 2025 at 11:47:54AM +0100, Geert Uytterhoeven wrote:
->> The Devicetree Specification states:
+Hi Krzysztof
+
+Thanks for the new review!
+
+On 11/18/25 17:31, Krzysztof Kozlowski wrote:
+> On 18/11/2025 16:56, Michael Opdenacker wrote:
+>> Document the compatible strings for Asus Tinker Board 3 [1] and 3S [2],
+>> which are SBCs based on the Rockchip 3566 SoC.
 >>
->>     The root of the interrupt tree is determined when traversal of the
->>     interrupt tree reaches an interrupt controller node without an
->>     interrupts property and thus no explicit interrupt parent.
+>> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
+>> and a "mask ROM" DIP switch to the "3" version.
 >>
->> However, of_irq_init() gratuitously assumes that a node without
->> interrupts has an actual interrupt parent if it finds an
->> interrupt-parent property higher up in the device tree.  Hence when such
->> a property is present (e.g. in the root node), the root interrupt
->> controller may not be detected as such, causing a panic:
-> 
-> I'm seeing a boot regression on the TI x15 platform in -next which
-> bisects to this patch in -next, unfortunately even with earlycon (though
-> just earlycon, I don't know the platform specific runes) the board just
-> dies with no output:
-> 
->   https://validation.linaro.org/scheduler/job/4252918#L409
-> 
-> It does seem like a plausible patch for this sort of issue though, and
-> the bisect converges smoothly:
+>> [1] https://tinker-board.asus.com/series/tinker-board-3.html
+>> [2] https://tinker-board.asus.com/series/tinker-board-3s.html
+>>
+>> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+>>
+>> ---
+>>
+>> Changes in V3:
+>>
+>> - Remove this Acked-by as the binding code changed substantially:
+>>    Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Above commit msg and DTS suggests they are pretty compatible with each
+> other, so I don't quite get why this changed. Your changelog says
+> "unexpectedly turns out to be compatible with 3 but not 3S.", but is
+> this real or are you just guessing? I think you were tricked to change
+> correct code into this.
 
+I was just guessing.  The likelihood that something working on 3 doesn't 
+work on 3s looks very small indeed, but I'm not the manufacturer to 
+completely rule this out.
+>
+> Anyway, however odd this is, I don't care enough to stop this patchset, so:
+>
+> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-All Samsung platforms fail as well. I was waiting with bisection but
-Marek was as usually very fast:
+Thanks again!
+Cheers
+Michael.
 
-https://lore.kernel.org/all/20251118115037.1866871-1-m.szyprowski@samsung.com/
+-- 
+Michael Opdenacker
+Root Commit
+Yocto Project and OpenEmbedded Training course - Learn by doing:
+https://rootcommit.com/training/yocto/
 
-Best regards,
-Krzysztof
 
