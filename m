@@ -1,172 +1,183 @@
-Return-Path: <devicetree+bounces-239767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE794C69266
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 12:42:41 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2F4C69326
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 12:53:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F343F382474
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 11:38:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 70E7F4E9FE6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 11:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7F934FF5B;
-	Tue, 18 Nov 2025 11:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3AB3502A3;
+	Tue, 18 Nov 2025 11:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IW81UfnC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qPgFpH/T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF2A286A7;
-	Tue, 18 Nov 2025 11:34:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5192BDC09;
+	Tue, 18 Nov 2025 11:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763465697; cv=none; b=Mk/5dMk42NZ4Eop9D5G4hAEY1sebHpw34J7a5gkP6Hpp8fpSE65ScIGqTFIP4vHA46SiXpS0adox0T2wPIBWaqn/5Ybf3QB+5N2oznhbxOftMORmWHgyL8REIaL9/Hzs0lfZW/481iVFlhntAaq4ICo8sj6BcdhCj8wMVUSpFwk=
+	t=1763466380; cv=none; b=oc6XO7DTHYPTHkbB8W7VZSCbHTFNmCd7MQtaJFcgCA7AaKFB6euYaN4zihwRD+kWVpEntIT7e94aS453oFS5bFl2nAD3JvZzpC60dHmAJPDDtHlHaEfY6LJOsg+hOzjWt3vMxaUlySqpiyYk29YZBi+JZTPKx/cFEezwS4mKN2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763465697; c=relaxed/simple;
-	bh=+2p9uMj81sZ4SNJ0Savmil44h/Mgting5RoOZ1EjUqc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pKJvTCeZ7oZQ6CI2c0WIY2eLJcdEtBG4khw7sF8tKeWfxMftgn7Ry1FZeC9zGWP1eGEscw9SahwJAbGTaD4L5eLjW+UPExN/Df6KlYyYcGKXMtCw0Yh9dodf2ZVR3oX8HSmiw4eYL/AiyWGS/jaXTv/bDCSNaVvdO1xzWMYMnTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IW81UfnC; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (82-203-165-222.bb.dnainternet.fi [82.203.165.222])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id A06411E33;
-	Tue, 18 Nov 2025 12:32:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1763465568;
-	bh=+2p9uMj81sZ4SNJ0Savmil44h/Mgting5RoOZ1EjUqc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IW81UfnC+d2P/PJJVptKnQzn0GSdB/U/FJrpoT3HfmFeIN8Oo2P7T1nQUXjQZ/LSh
-	 cVE+Yp+ZiH3F0NjrtaiU6WxE7rWPmwnIGBujP2pdbd5nMpgCsd2cTygX5A5f/BtAcv
-	 QRhmRBUnIFaelKIQTyjkiXte8N2mS4luhfCd7iK8=
-Date: Tue, 18 Nov 2025 13:34:34 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v11 0/7] Add support for DU/DSI clocks and DSI driver
- support for the Renesas RZ/V2H(P) SoC
-Message-ID: <20251118113434.GA22495@pendragon.ideasonboard.com>
-References: <20251015192611.241920-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdW1B7Yk1hUU9MSJsiL8wSmjAUGN7Qd_wgBHv8Ct=-wi4Q@mail.gmail.com>
- <CA+V-a8uY11uWoQ_en5QC=W4HPHRwT6rKQQJ-knT8Gi-+czm05w@mail.gmail.com>
- <20251021184502.GD19043@pendragon.ideasonboard.com>
- <CAMuHMdVrfVP1XZbQVNwEEP8L69mVzNN2yLSjNyHO7o2zqBuY0w@mail.gmail.com>
- <CA+V-a8vLXg-whqwpE3pLF5JP3kK9on9Hu3iyLXEvrWbR9XmF5w@mail.gmail.com>
+	s=arc-20240116; t=1763466380; c=relaxed/simple;
+	bh=W/JkQ4U0diGESZkOi7amWyGqbWa3KCEdmeCe0IkPCXU=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=j67dQO/q+xfnIifSgJL3rOI+krJCcj1YdCZ14Ly+Cj0HQzi/isrBeyrFdL5cR1CEg/JKePyQFZvGoVukuAoXjMb+jhsmSnUG2r8Uf0tPrYiuzNsTgLs/aExyAUz6GuJ9mLRIUWriaJMDbcFajzasvPjzc8xY5FKVC1vCMdXRyyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qPgFpH/T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB967C4CEFB;
+	Tue, 18 Nov 2025 11:46:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763466378;
+	bh=W/JkQ4U0diGESZkOi7amWyGqbWa3KCEdmeCe0IkPCXU=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=qPgFpH/T5wVLQFRc/P3GWh9cu7skFIGpVGfvKdvCDqDz4V8zEUoqtu4+XO5OHwr3o
+	 Wmko2YNu1UVd0gLpmxWhZnaxlfyJJEOL1ETtNRAui8qUd3jQXwh1pKWLuxAf3X1VB8
+	 kXHmr/Kn4MGe24UcuJllNtxWBXQzDNmO1YWFB0Rl87Yl16h9pVFsf7+1H9BTiLY2Ab
+	 6tEJGxv7lARGeutg4EwQwcDZBJQvAKqlVWi2eMEevS4nMpt8Oh208L2qCqKraXjh9h
+	 9if48VtzhGakO1MKUygIozNVU+L2Rt14WTF0nrvA+XpArJfB9mcpitYwokktQIL3m4
+	 NV76wO41dzbWw==
+Message-ID: <5377db69-13d2-4ee2-b5d4-d9d4ae681848@kernel.org>
+Date: Tue, 18 Nov 2025 12:46:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8vLXg-whqwpE3pLF5JP3kK9on9Hu3iyLXEvrWbR9XmF5w@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/2] firmware: qcom: scm: Register gunyah watchdog
+ device
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+ hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+References: <20251118-gunyah_watchdog-v8-0-e5de12e2eef5@oss.qualcomm.com>
+ <20251118-gunyah_watchdog-v8-1-e5de12e2eef5@oss.qualcomm.com>
+ <88e538ee-9e70-4249-bee5-5127d344edad@oss.qualcomm.com>
+ <a2e5220a-3ff6-4f59-8db7-820d21dfe204@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <a2e5220a-3ff6-4f59-8db7-820d21dfe204@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Prabhakar,
-
-On Tue, Nov 18, 2025 at 11:21:12AM +0000, Lad, Prabhakar wrote:
-> On Mon, Oct 27, 2025 at 11:23 AM Geert Uytterhoeven wrote:
-> > On Tue, 21 Oct 2025 at 20:45, Laurent Pinchart wrote:
-> > > On Tue, Oct 21, 2025 at 07:26:49PM +0100, Lad, Prabhakar wrote:
-> > > > On Tue, Oct 21, 2025 at 11:26 AM Geert Uytterhoeven wrote:
-> > > > > On Wed, 15 Oct 2025 at 21:26, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > > > > This patch series adds DU/DSI clocks and provides support for the
-> > > > > > MIPI DSI interface on the RZ/V2H(P) SoC.
-> > > > > >
-> > > > > > v10->v11:
-> > > > > > - Split CPG_PLL_CLK1_K/M/PDIV macro change into separate patch
-> > > > > > - Updated rzv2h_cpg_plldsi_div_determine_rate()
-> > > > > >   while iterating over the divider table
-> > > > > > - Added Acked-by tag from Tomi for patch 2/7 and 3/7
-> > > > > > - Added Reviewed-by tag from Geert for patch 2/7 and 3/7
-> > > > >
-> > > > > I think this series is ready for merging.
-> > > >
-> > > > \o/
-> > > >
-> > > > > > Lad Prabhakar (7):
-> > > > > >   clk: renesas: rzv2h-cpg: Add instance field to struct pll
-> > > > > >   clk: renesas: rzv2h-cpg: Use GENMASK for PLL fields
-> > > > > >   clk: renesas: rzv2h-cpg: Add support for DSI clocks
-> > > > > >   clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
-> > > > > >   dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and
-> > > > > >     RZ/V2N
-> > > > > >   drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
-> > > > > >   drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
-> > > > >
-> > > > > As this touches both clk and drm, let's discuss the merge strategy.
-> > > > > My proposal:
-> > > > >   1. I queue patches 1-3 in an immutable branch with a signed tag,
-> > > > >      to be used as a base for the remaining patches,
-> >
-> > Done:
-> >
-> > The following changes since commit 3a8660878839faadb4f1a6dd72c3179c1df56787:
-> >
-> >   Linux 6.18-rc1 (2025-10-12 13:42:36 -0700)
-> >
-> > are available in the Git repository at:
-> >
-> >   git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
-> > tags/clk-renesas-rzv2h-plldsi-tag
-> >
-> > for you to fetch changes up to f864e4b721e386be132cc973eadefe5d52cdfd94:
-> >
-> >   clk: renesas: rzv2h: Add support for DSI clocks (2025-10-27 11:58:03 +0100)
-> >
-> > ----------------------------------------------------------------
-> > clk: renesas: rzv2h: Add support for DSI clocks
-> >
-> > RZ/V2H Clock Pulse Generator PLLDSI API, shared by clock and MIPI DSI
-> > driver source files.
-> >
-> > ----------------------------------------------------------------
-> > Lad Prabhakar (3):
-> >       clk: renesas: rzv2h: Add instance field to struct pll
-> >       clk: renesas: rzv2h: Use GENMASK for PLL fields
-> >       clk: renesas: rzv2h: Add support for DSI clocks
-> >
-> >  drivers/clk/renesas/rzv2h-cpg.c | 512 +++++++++++++++++++++++++++++++++++++++-
-> >  drivers/clk/renesas/rzv2h-cpg.h |  26 +-
-> >  include/linux/clk/renesas.h     | 145 ++++++++++++
-> >  3 files changed, 672 insertions(+), 11 deletions(-)
-> >
-> > > > >   2. I queue patch 4 on top of 1 in renesas-clk for v6.19,
-> >
-> > Done.
+On 18/11/2025 12:32, Krzysztof Kozlowski wrote:
+> On 18/11/2025 12:18, Kathiravan Thirumoorthy wrote:
+>>
+>> On 11/18/2025 4:10 PM, Hrishabh Rajput via B4 Relay wrote:
+>>> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>>>
+>>> To restrict Gunyah watchdog initialization to Qualcomm platforms running
+>>> under the Gunyah Hypervisor, register the watchdog device in the QCOM
+>>> SCM driver.
+>>>
+>>> When Gunyah is not present or Gunyah emulates MMIO-based watchdog, we
+>>> expect Qualcomm watchdog or ARM SBSA watchdog device to be present in
+>>> the devicetree. First, we make sure we're running under the Gunyah
+>>> Hypervisor. Then we move to check if any of the above mentioned
+>>> watchdog device nodes are present, if not then we proceed to register
+>>> the SMC-based Gunyah watchdog device.
+>>>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>> Tested-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+>>> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>>> ---
+>>>   drivers/firmware/qcom/qcom_scm.c | 53 ++++++++++++++++++++++++++++++++++++++++
+>>>   1 file changed, 53 insertions(+)
+>>>
+>>> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
+>>> index e777b7cb9b12..14d0663316e6 100644
+>>> --- a/drivers/firmware/qcom/qcom_scm.c
+>>> +++ b/drivers/firmware/qcom/qcom_scm.c
+>>> @@ -2182,6 +2182,56 @@ int qcom_scm_qtee_callback_response(phys_addr_t buf, size_t buf_size,
+>>>   }
+>>>   EXPORT_SYMBOL(qcom_scm_qtee_callback_response);
+>>>   
+>>> +static void qcom_scm_gunyah_wdt_free(void *data)
+>>> +{
+>>> +	struct platform_device *gunyah_wdt_dev = data;
+>>> +
+>>> +	platform_device_unregister(gunyah_wdt_dev);
+>>> +}
+>>> +
+>>> +static void qcom_scm_gunyah_wdt_init(struct qcom_scm *scm)
+>>> +{
+>>> +	struct platform_device *gunyah_wdt_dev;
+>>> +	struct device_node *np;
+>>
+>> nit: Can we use the __cleanup() attribute for device_node like below and 
+>> drop the explicit of_node_put()?
+>>
+>> struct device_node *np __free(device_node) = NULL;
 > 
-> Can you please pick up the DSI patches.
+> Please don't. It is not desired style, error prone and not helping.
+> 
+> Don't use cleanup.h if you are not accustomed to its specific style.
 
-We can't, this has to be done by a drm-misc maintainer as it involves
-merging a non-fast forward branch instead of pushing commit directly on
-top of drm-misc-next.
+Good that you linked here your patches, so I can NAK everything. That's
+very poor idea. Simple, readable code you transform into buggy,
+error-prone discouraged style.
 
--- 
-Regards,
+In all your patches the code was left like this ON PURPOSE.
 
-Laurent Pinchart
+
+Best regards,
+Krzysztof
 
