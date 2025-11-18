@@ -1,177 +1,115 @@
-Return-Path: <devicetree+bounces-239615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C9CFC6794E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 06:38:17 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BBC7C67A1F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:00:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 39B7A4F2CFC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 05:33:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 245EC4F3F59
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 05:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC4E228A705;
-	Tue, 18 Nov 2025 05:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AE42D979B;
+	Tue, 18 Nov 2025 05:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="gILU6ZmT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9YcQUDC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fly.ash.relay.mailchannels.net (fly.ash.relay.mailchannels.net [23.83.222.61])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F35B24DCEB;
-	Tue, 18 Nov 2025 05:33:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.222.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763444004; cv=pass; b=S9G6poPE9wOHRP8wOuTOgc1FsdECI3AEUMPMw3I6H0zFwzvPmYWMGaVdCE0vtFc6bFW9o/3presxiZjywwUTsSJdNvnQ8Tb0vl04H60np6lhQMQV90B2RHaJGLMQ8ahMak70NBtVFSkyQpSxLYy7NEwCztnv6gHHcLe1ojvp/BU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763444004; c=relaxed/simple;
-	bh=YCLxSaIuq3xQjBUGgyM1k5WxYJITR8WmHAhcy2fUu/M=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=RxIEN0/OvDnrlUw0Qry2Sz6zUE+XnO3DBIgMxpTQStX/PbftzDgUOwhz5yV7nCRWU08sTSt8kHcKkGdUrEGqVdKcWIfipJTntD8v/ArNJSgzzeokhcg45tNq9zbx9MXinpo0RWbk0l0XsPdQVuzcJwGhS4V7mgoGd0DAhth1L5g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=gILU6ZmT; arc=pass smtp.client-ip=23.83.222.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 549CC161D2D;
-	Tue, 18 Nov 2025 05:27:23 +0000 (UTC)
-Received: from de-fra-smtpout10.hostinger.io (trex-green-0.trex.outbound.svc.cluster.local [100.98.178.132])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 0DAC316270B;
-	Tue, 18 Nov 2025 05:27:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1763443642;
-	b=d8NiZckuUTmtENzUS9A7/G97h6snHeV9d0r5N6QE3uII6cabCnRR5A1SpE5hqSeOG/2jH4
-	oPU8yA5fq9QusXNHZ3Mc+SL6TmtEGqjXnep/e1naRcsSnUtMotJ1AvJGJuqJirXAw6L0TW
-	+s/FUDBfzTniu+5wmFcPjyjrC1E7mW9RmYqAhASlDhCm666zj0gabk/mj6LjN+MdiRtDOQ
-	b4g0a52todUYiSKlKJtxqhBcjms90WQOAUU69/0+6sdYOt0ZguYWOWcl7zHKsRs7S9K9B0
-	kOFNQUc5MZ/ZHkeT3osPiN+pLLyHZiL5kfp4yl0ah0wluRJl9yfBsnNmnTGPNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1763443642;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=79QY2zbPjct8a5PYToQ8bQ7v7KXz4YmkpWIvFX2JDyw=;
-	b=PXzcnj90+OZ0C4nz04bqKplEPDe2JhtZOLQ92mY5WMSUfbMeE6DUUUUw0ra/gSCRSWN+Od
-	SJPQOLqfllPpM1awadzeweZqebsYnisu13TFmgzdyyCpaUj+8VbTO5WCZ9NA9QvmWBxfxW
-	CcuapYRcbYCOakp4aJjzACXxVG/RoKUvDFeRsMgpYkLdfWAv3F+dSRE6r5trHDMPnWGHxy
-	MMop6RYViNqNQOlUNrk8pjas5n+4pl8HchwMqld6H242qnEsY8CuzO9XX9zdqTBkv9uUAL
-	ULt/QBIccUAbiUi2h5gdAJUJEyqZSuG2rW1vRHdN5YTSKdzViq9znLsiVGRnog==
-ARC-Authentication-Results: i=1;
-	rspamd-5ffd6989c9-rtptl;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Attack-White: 2d7b2b2964c91d28_1763443643081_3621785217
-X-MC-Loop-Signature: 1763443643081:4046718970
-X-MC-Ingress-Time: 1763443643081
-Received: from de-fra-smtpout10.hostinger.io (de-fra-smtpout10.hostinger.io
- [148.222.55.9])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.98.178.132 (trex/7.1.3);
-	Tue, 18 Nov 2025 05:27:23 +0000
-Received: from [IPV6:2001:861:4450:d360:58d4:4bb6:ecd1:1918] (unknown [IPv6:2001:861:4450:d360:58d4:4bb6:ecd1:1918])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4d9Y5b6Rc0z418m;
-	Tue, 18 Nov 2025 05:27:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1763443636;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=79QY2zbPjct8a5PYToQ8bQ7v7KXz4YmkpWIvFX2JDyw=;
-	b=gILU6ZmT+LlDjvY6kAog4t0qNPWKuzZ+NdqRvWHtPOF0m0AzJOMw1gYv4dD7L4Fcw5knum
-	19mlN1XfMjCKfIlixM+gM3P0OBgvLUytkDbPTritxuIEulCo13cZHlRWsDh7UBuFNYlE1V
-	dh5nL1XcA5cyxP4mcv+gE4W7OXP+8I1TentKuWCcaE+Zvj4tMdZ6ODdllpFWme7LlQ5Hc3
-	/hHfqQ2RHo9aMBGzYQ6xMlWGdi6c9Oc5/MEd+MKFcGitMpYLgzufPUFDPUwekCZ7juY0/E
-	1gx/QyNhvsfjuMJtN899j0QdPZr66+NcxSfO4UEIA2PeWhjIESsod2ZmzRvcfA==
-Message-ID: <0c224662-b3c2-4075-8b68-c0ae27421ba8@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BB282D8779;
+	Tue, 18 Nov 2025 05:59:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763445545; cv=none; b=nvAr5EyYHwarCTKhoEbI0D+bN6HFXUoOmWUdoCQHMJ+0T5soFlrcV2pS0CS4Z0UcME9am5uISbiANX8XmOa2jxDGar9dF1ejHhM3ozANSziPV9TjehXO39e85znTLf3PmDddsnlvB6lMhXmJ7JGkMUakk3KDEBsTjkGYVSE4wZg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763445545; c=relaxed/simple;
+	bh=1QM0t5Ua7sLNTgCR2HCyFI0Jnd2kpNqkgXu1GjfNhHY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jXDIuq8az/5M3u0Werr21YNs2Foz4UwYyYqAe6ytzP7hPqIlQ12CoYNtONfkJrC4F4O2LZf0Xx6ojETWHsHuUgn0aRE9jW4TDO30cAuJbZ0uhaA9/mDZI3e2om5rUzM0piuUnfISXV0bw4hhrxWYVo1NYC9G0PzP0yfFccoTsa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9YcQUDC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4E765C2BCB7;
+	Tue, 18 Nov 2025 05:59:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763445543;
+	bh=1QM0t5Ua7sLNTgCR2HCyFI0Jnd2kpNqkgXu1GjfNhHY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=E9YcQUDCSPZ1s7ElomysnOqhC5nBV15S334tuOosNWPvrCLnJDUJ1m1K0CGehwpiU
+	 Xlndy8n3uljPzF/1NVk/+oQUMRPcpDuhxDRcSCAPH//R3FfUKifLqzgWEObe4BA6zj
+	 PzeZlOi9TFj9e+BJ6A2CzokL16qXoqe19B4U1wXbDwYyF9PeIhTDIQSmj/8Eqjwnml
+	 OV0v5nINQkkkaiO0kRZ0VVb0ut8YkXGWE3BAL+ZN7mZWD+Gx1BFrBbCHvbP41RFVPl
+	 uYjK064FPsdMb7lP7O6n4JbVeju7cey418FE9S0YACRSGEODY9oZdldnOMVoxwegqw
+	 H79SW0HHucHjA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17DF9CEBF97;
+	Tue, 18 Nov 2025 05:59:03 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/5] soc: amlogic: Add new Amlogic SoCs info defines
+Date: Tue, 18 Nov 2025 13:58:59 +0800
+Message-Id: <20251118-soc-info-s6-s7-s7d-v2-0-38e2b31a88d1@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: Add Asus Tinker Board
- 3 and 3S
-To: Dragan Simic <dsimic@manjaro.org>
-References: <e4cd11d0-463c-e707-5110-6b92899b1ba3@manjaro.org>
-Content-Language: en-US, fr
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Organization: Root Commit
-In-Reply-To: <e4cd11d0-463c-e707-5110-6b92899b1ba3@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Date: Tue, 18 Nov 2025 05:27:15 +0000 (UTC)
-X-CM-Envelope: MS4xfJLqo7/gRzsBM5gglqfBElMacoghunKCV7PiG5Q9KaWvdsmLLHWorQ2d9kWzZGsbDOU9m1P9AFVxV9VEIUi1iqL9dCaeyrAUZGAhTrTctD1GtA67LiRd jxpaDXYYYBiJvyPWDmwScz5KeIigzW1FBNT8q3VnRbqjuQ6KS8iCVTfTfgkneZLUXaV+GQ2FMJd/QD7Zs9cjO810THpJpK5t3KQJCy8sfYQfo1BRitTYjxJO msA8awJ16SzOZ+T/9YaznJtC9p5fWtEprqYBDFwLzAoCeCAPkMwEOx85WPCLonQx1s3/mIqcXjD5P+62YO31fo15cW821alZ5N1MQBtfMn2p1xQJN5E3yOCz n3DAJSzg27Ob/yZ+DiZmzMkLY+z45e6aboGSRZWrZdMjFsqPyheQrScEOWTR57xVon9FVOcRw3S9zGw1SnWAy/qzKBgxAqQ/Fm5nwWnt1PS6xe0sZvZMVPj/ 8krMIKj9jjvI7Gp+JmJlnr4lY9Oqy5mgmKyEdxA1rPYvxBp+JP33LTPkxdp1PWy9OLNnO6uPP1lSh/M6qspDnpNngDAOKki/eUGS7YNUmQkz1a76S7S1oq7/ EGubvqZvUWMZIlMSQ7zntiYvTPW1X7AD0oeyJm9iT9iRfhA5F4/H0WfXNko75EM30U4=
-X-CM-Analysis: v=2.4 cv=Ceda56rl c=1 sm=1 tr=0 ts=691c03b4 a=RES+y31bSy/BcHStaSTKQg==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=lefHfciQTmdIgl6NApMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=NcxpMcIZDGm-g932nG_k:22
-X-AuthUser: michael.opdenacker@rootcommit.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACMLHGkC/22NzQrCMBCEX6Xs2ZVs1P548j2kh3Sbtgu2KVkpS
+ um7GwvehLl8A/PNCuqjeIVrtkL0i6iEKYE9ZMCDm3qP0iYGa+yFiCxqYJSpC6g5apHSoiEu84q
+ I7bmCNJyj7+S1S+914kH0GeJ7/1jo2/50xT/dQmgwd03pXGNOLfubGx+hFz5yGKHetu0D1mZ4E
+ LYAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763445540; l=1206;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=1QM0t5Ua7sLNTgCR2HCyFI0Jnd2kpNqkgXu1GjfNhHY=;
+ b=6aaN2cau58FDKag+CaRCY9OtdEKI+wgC9kmXaJRppovgKuLz5yFuPf3aqOJpLRo4zWGkyj+PD
+ R0NlVfv75jSBPv4plZ5B2cpA89fs99xDjoRI2rznjksDCqkur0j8a7q
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi Dragan
+Add more Amlogic SoCs info defines, include S6, S7, S7D.
 
-On 11/15/25 01:52, Dragan Simic wrote:
-> I'm sorry again for not mentioning it in my earlier responses,
-> but shouldn't this addition be specified like below:
->
->       - description: Asus Tinker Board 3/3S
->         items:
->           - enum:
-> 	   - asus,rk3566-tinker-board-3
->             - asus,rk3566-tinker-board-3s
->           - const: rockchip,rk3566
->
-> ... because the introduced .dts files define the actual board DTs,
-> by descending from the common .dtsi file, while they're compatible
-> in the sense of the 3S board variant extending the 3 variant.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v2:
+- Restore the previous accidental deletion of A4.
+- Link to v1: https://lore.kernel.org/r/20251117-soc-info-s6-s7-s7d-v1-0-6ab8aab03dce@amlogic.com
 
-Actually, "make dtbs_check" fails if rk3566-tinker-board-3s.dts has:
-compatible = "asus,rk3566-tinker-board-3s", 
-"asus,rk3566-tinker-board-3", "rockchip,rk3566";
+---
+Xianwei Zhao (5):
+      dt-bindings: arm: amlogic: meson-gx-ao-secure: support more SoCs
+      soc: amlogic: meson-gx-socinfo: add new SoCs id
+      arm64: dts: amlogic: s6: add ao secure node
+      arm64: dts: amlogic: s7: add ao secure node
+      arm64: dts: amlogic: s7d: add ao secure node
 
-The failure is:
-arch/arm64/boot/dts/rockchip/rk3566-tinker-board-3s.dtb: / 
-(asus,rk3566-tinker-board-3s): compatible: 'oneOf' conditional failed, 
-one must be fixed:
-     ['asus,rk3566-tinker-board-3s', 'asus,rk3566-tinker-board-3', 
-'rockchip,rk3566'] is too long
-     ['asus,rk3566-tinker-board-3s', 'asus,rk3566-tinker-board-3', 
-'rockchip,rk3566'] is too short
+ .../bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml          | 3 +++
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi                       | 8 ++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi                       | 8 ++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi                      | 8 ++++++++
+ drivers/soc/amlogic/meson-gx-socinfo.c                            | 6 ++++++
+ 5 files changed, 33 insertions(+)
+---
+base-commit: 8d5b965a53bf6a4e2a2a028b75b2c7067cde5397
+change-id: 20251112-soc-info-s6-s7-s7d-01c86911c249
 
-If I understand correctly, to keep the rk3566-tinker-board-3s.dts file 
-as it is, you need Asus Tinker Board 3 and 3S to have two different 
-descriptions as in V2:
-
-- description: Asus Tinker Board 3 items: - const: 
-asus,rk3566-tinker-board-3 - const: rockchip,rk3566 - description: Asus 
-Tinker Board 3S items: - const: asus,rk3566-tinker-board-3s - const: 
-asus,rk3566-tinker-board-3 - const: rockchip,rk3566
-
-The other solution is to remove the "asus,rk3566-tinker-board-3" 
-compatible from rk3566-tinker-board-3s.dts, which is not a big deal in 
-my opinion. In addition, if some code turns out to work only on 3 but 
-not on 3S, though that's not expected if 3S is indeed a superset of 3, 
-we won't be stuck.
-
-I can submit a V3 along these lines.
-Cheers
-Michael.
-
+Best regards,
 -- 
-Michael Opdenacker
-Root Commit
-Yocto Project and OpenEmbedded Training course - Learn by doing:
-https://rootcommit.com/training/yocto/
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
