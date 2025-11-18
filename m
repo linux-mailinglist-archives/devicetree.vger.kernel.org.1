@@ -1,224 +1,221 @@
-Return-Path: <devicetree+bounces-239627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D68C67C96
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D6CC67D51
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:07:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id E18BD29669
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 06:53:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 529022A1C7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55612EBB8F;
-	Tue, 18 Nov 2025 06:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8C452F9DAF;
+	Tue, 18 Nov 2025 07:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="htY29goY";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BdMPJghJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hS6TJsmE";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gf17vfT7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A13C29B796
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 06:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1462A2F9C37
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 07:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763448815; cv=none; b=FApQj+p/uTsK1Q4N4cCABpk7moF+INrQm9WxXlONx75XsPNrt3mF8meSNvxCmzsFTkNf6DU/1aRI/gOv47APmjcgi6mOFIJc3vEOh4FUoW+g44cFBE7Go7bPII3uNt0qyIH/R1y9rFwTFZ6V3WKQAnwLXIAYnsZvs51CElBE8cQ=
+	t=1763449643; cv=none; b=XM8R1r5rJoKqApP7KVxkr2qtNm/lwaOnmXbS27LVe/Jq14VA4EZm21TTJcHENjlEJjx3JyTIL5LtAjwlbWNN8kkgizOOhWFvTe9cVb1gkpWOiXIjcp8fS5hWwMYdGGCI6wnf7HUWQcRlPGwWSw1mFyFGvt9Xc8NzHl6GnScuWr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763448815; c=relaxed/simple;
-	bh=o7h4PjVNyyYPBJgWSlovxPdj6S7AkOcOj0nH43WmiBk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VQNieGLagwHs+U7yvLub4mMJa6pV8TqjlJ4YtkKlTbYwfC3UCGGjDHd01yN/ElEFHsbBnnc1xPdCwX17w8ART/5W3NAiJxNvilFnZq6a2R0o+K8H9Z66SoHc3l6DFE92vFOsW145ZJpYqKVIrFx7KZRl6nLdfmvKn7QpjhF0BC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=htY29goY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BdMPJghJ; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1763449643; c=relaxed/simple;
+	bh=sOeaUXxsrFJtN9a9NiKmF84gRMiymY8YXaaOeKHVjHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gYPE4FnYq0XYJcfypYgWMODqrplImzeE0RGQ20I96gKLEV4gP7UHP0EmwVemce344wvL79TXJmCegJEGX0SXYxDgmPci7pKp9LWj3i2qNESxjQLnrT34CQDipiqiyR5kDfsxkOGLHo4PT/vrMpOy87u6arxPD5nv9VJGTMy9ra8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hS6TJsmE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gf17vfT7; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AI3CJ26376011
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 06:53:33 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AI5eUwD3671224
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 07:07:21 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DX+0M+0mWy/BPLyBS36f3e9yT2ekaLn5n3Ig+Sg3x3Y=; b=htY29goY3toDJbWU
-	0z5wnuM+bTc6MZbOrVPEAW6XsBSUOHMS9nOr4D7Tl5kBIk/Q87p2UhE1xsRJuxLM
-	OPdnWbnxes4VxBSz86UlyCN8VZHbtUAUQqfBYjaZG84XAwn1pCRiYx/2WcBOF5Iz
-	X57R4jlyleztfKlQYesTgnuIjkJ/nhM8AobhyneA4Y5sHbgdIAM5MhTmYc3dmYw/
-	6ZpJxfgnbUHK5lka6SBuCD32TJcK1K8m8V9iQL85JJSR9jk9oGV37Bkq4/Z35knE
-	mjRRu6f2rkKslgON7L1chth/Pjpvtwjf6wIKzCMMOyC03rJlfVdG98j5efcKzXnM
-	jRtsFQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ag76nj4km-1
+	B/tZKMyVLNtLQWWg+Bp8Zes15L6VB/BxyRP9zm1Ku9s=; b=hS6TJsmEzcfsHRAp
+	qNFbzYKbDiZAlCo36TcXLt+yLqAQysBHG7kMNzcAYkCJYOyal92BR7X3EAbXZJ0j
+	/NMwJXpBXhiwiNaE2kWaZq211j976wElOs1T/jjzzvzpICSa0UrGQKS7DchZaLQb
+	6nfCF/gzBNuj8DYzb1+wtupYxdVJpD6k9kav6Skii6bCjbTIZ8CVkZS0RVMCrNT1
+	rvEoNWeplL0lfqgFQ9KHRq4u/7zFXM9/9i8ndhK62FhyMbofgMvjBYsyhLcOm5+6
+	G/zcWcnnaltFSTkvQtds0Rs7hkp5aT3ZYlmx1xd0INm7BTe0xa3/bzDEdDXgXjW6
+	Rj0D0Q==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ag2g5b38v-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 06:53:32 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-295fbc7d4abso66228825ad.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 22:53:32 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 07:07:21 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b1be0fdfe1so232442385a.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 23:07:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763448812; x=1764053612; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=DX+0M+0mWy/BPLyBS36f3e9yT2ekaLn5n3Ig+Sg3x3Y=;
-        b=BdMPJghJABfR0ZMxT3BqDx89hhe34V25SZkFd/dJ2GwdjyoGCG6lQ2RqNMWmSfc7Ei
-         WvoVrD8T/0PH6K0E9CK2eynyvKWsdLmsWp+YoNzx3d5vUGnmCTYpr6xMDqMm81/9Czv3
-         2iTE94FiI+PQWsCSVFpKXg0raQGxjO2XAgHuMen/R6zzyGaYBWkexS53pNI4hOFGXAJM
-         skVQlEA7rIkAZYOuFU6S7NUFuR7R5ynzSZyQDhqid9KWN/pNMnnwZBQS8+Jy0Mkf+CBS
-         U+PCqjUITUnWqAagBT/IIuY1EwvQKI9Y24wX8Hi+1aCEsAl7CBubdqrBJ8n3D3cgtGcZ
-         fJ6Q==
+        d=oss.qualcomm.com; s=google; t=1763449640; x=1764054440; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B/tZKMyVLNtLQWWg+Bp8Zes15L6VB/BxyRP9zm1Ku9s=;
+        b=gf17vfT7J5AQCwBxbS0+DkTSpjZyXOr8licUFtIUXVs6MiIg3B81ftVWnZ0ZfRb4L+
+         HpketBwrLfpesyr78Sx2JJYODSxYD7ntgAEz1HpH468S2gBr8+BZrLa5uvFPI9E3O15L
+         8H1TTNuf2h/+P9OqfMaYTc/NeCoXKgxnPu3nGB3wNwfvJ7vC1hpKsO1xiFGM9p7cnVEP
+         +sLFdQ0NU0I6Qh/zaqoF7p2g6EsuW2wrrZJ+379pFcNDao5SEtnMhtQx0pfpADhUm1dB
+         52yqpjbdyj6lt1RYyIsqrC4BWgCnG9r6/sjnUptW8yrIyYT7CxYirxKc3LK0raa8x3+C
+         Ufnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763448812; x=1764053612;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DX+0M+0mWy/BPLyBS36f3e9yT2ekaLn5n3Ig+Sg3x3Y=;
-        b=ah09PaTgWwIG/THeupLqFZUG/JZbgLY6iG1NOpNX5G5JtbMlZNnW+3WL+qG/i3DzvE
-         /sVnYdKivgikBSt/zw4c+t65+zhXRF6xt2/yixK97NDLROUsWfHPpVHt3easkLIU9JUS
-         WPLgsgfRXfSw88o9StK2wbt700Y50ebdtBxtD8lHEVsCRlXrif5OwyB4HXWBPicjp3RB
-         h2EonAJxZ3r5FwCD/jqgTErW4nqQ8PA+ON986xbv330IiS6NNi+8XEmKQJqOkXI3CAN0
-         J3XLxAkFUI/BY2uEj1JJvKTdAkaX/4DN04wNQxPUOOB8Eg5cedZCRL42fc3YBme08dKE
-         iFXA==
-X-Forwarded-Encrypted: i=1; AJvYcCVdsbd2Hlz9xwGJQiDPiWX1/EbezQWgHv88UAOainyhvhHnRnTOaDfL865oGiqBRL9NWc6HxUTDVeAj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzn2WPW2OXsSJ85R1qP75OmEzgkOTxlIz3etNKcdYcP8ISC+G/d
-	PJlw35SSP5lbVSoP/zQaYlxVFB6WGAlXAZbjCd1DMOipmjb8+x5yW6XS7srzrmXL3ZxJkIAPa5t
-	VEFk0pxFcvXo96PBB9HyOOord+0LLGVoEL9c7KP7MYQdnk0sfgySjDqmIbIqymbfZ
-X-Gm-Gg: ASbGncsZjz975ytMuwdg+pGd3Mop5G5d2Dl0rrp9f1lb4jHyauWjqGHL/VaJNS65dFQ
-	Ea/wAzfJ5Ze0C20wWFC0DatP2CgyH5qOrtOlcPkF4+0VFrZYmXJJ+6H5jUbtqEfet+gGoRDsXTz
-	VY8nMysT9VLytD+EUcNeGpDZfzSsv+QhX7AIReDLyRmqvEKak4Xoc4JhUu64samlqipUoC4qy6Q
-	dSCYR7q1SaTIok2eA9dBqBUubRIrmZm4JBWhYP8F8rDehOFoYBjwwgk4ComiAMLuXvH9FKlNXv4
-	dO0VNjlVThRXj+5tvPTsXzG52hCH1CwyZ1uj5x9ngrNM0oADtHc5aYWsJHUn9P+XjQ7bbdsxrcC
-	mOIrbvR0eWBGAZw==
-X-Received: by 2002:a17:902:e84c:b0:297:ebb2:f4a1 with SMTP id d9443c01a7336-2986a73bb6amr162660795ad.38.1763448811928;
-        Mon, 17 Nov 2025 22:53:31 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEwLzQEHhETj6zRkHw+TFy4NsmE2cQhY/5PkFmJnlUFOaaGzYA6d6q2qBji1rRTv2fZXXmQCQ==
-X-Received: by 2002:a17:902:e84c:b0:297:ebb2:f4a1 with SMTP id d9443c01a7336-2986a73bb6amr162660405ad.38.1763448811396;
-        Mon, 17 Nov 2025 22:53:31 -0800 (PST)
-Received: from work ([120.60.70.176])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c245da0sm160489625ad.26.2025.11.17.22.53.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Nov 2025 22:53:30 -0800 (PST)
-Date: Tue, 18 Nov 2025 12:23:20 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ath10k@lists.infradead.org,
-        ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-        ath12k@lists.infradead.org,
-        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-Subject: Re: [PATCH 0/2] wifi: ath: Use static calibration variant table for
- devicetree platforms
-Message-ID: <trr5j57vwk2dhoibdgdxnlkftnmfcmjkwmicsiltmhybxanjaf@tzaeeqcyz56l>
-References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
- <2fd84ab2-2e3e-4d05-add5-17930a35fedf@oss.qualcomm.com>
- <jnggqxqv3rjzhyevovnnxzplfhl3t6auhhvmoz7wxmsf6awgdx@dusdgxwsxvts>
- <b8277024-f9d4-4f17-946f-c2c390669067@oss.qualcomm.com>
- <exfmj52dqu3uctwsb2gopcjg7744vq5avlkahtmgfw4opw4mfl@t2svrln72u53>
- <f853d9b2-47f8-47b5-a02d-6aa8f12a4283@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1763449640; x=1764054440;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B/tZKMyVLNtLQWWg+Bp8Zes15L6VB/BxyRP9zm1Ku9s=;
+        b=VZemT3URbC85wTh+go47vRYcDXXkQ8zEdJj1C+LAhzlN/2FiHc8nBi5bbw40gn/YLa
+         16sSixgFoxXaeONs2msC0jpco5j70NAZ26SLnRvV5eBgCpXIYtS1u+Kx3VRLIUd7GRPx
+         JH4MqeIibL04l9yn6sUWrOhBcapH+GI87zZH0t1h7A6MS9PLSWxAxlU6kLGDENM8quFZ
+         offJwNQMbLwYF0DUhVc+dru2vEC+GKxeASt9YjORp8mekBKj+gS+sOUSWgpWSoBX7MKo
+         pMcT+NnQMMllms2QhFlGdma3zch7MA4K1pW1SrOZ7MhEzj8Na5oPgeWRpSsRn9iMvBgX
+         U00Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX4tIza58YKmeKUXUFfQptKEr0xF51vDGUBKl/KO6nCbK0D4xrE4RyZDXI5JN/AxyJXwO0T5kdSVeWx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAKephFTYDi0BD/CmKnQXn6FGPUmS4pQrCBrQW1UldugqTq2If
+	kod9HslBSjvvQrC7u/b+OzX+eYw/NhnSDMhjtLrOSo6lzG/R6+Lb9xpZmMpCKkUMcY2NGcNytE5
+	RNVjShhxdoDyEHaxOwThupq7fgYfDeUutQPJH9Jp7Kg+MAM0TZshipmYL3PAS9yFb
+X-Gm-Gg: ASbGncumi8IaDBS/eznU6vbKg94xMOA0nbaMuUONoYh1OERem6dlFCwG1ObQemzfnuF
+	3qTie0H7WL8I+vP4Plw4jXMV13LxF8hsU2XuSUmGCX1GCETYbp0UQFRGOL01Pru7TGEh7WCrghC
+	oC36ak4LpJNHjxsN7Tr+UOpEu5kIyeabI/YaecJHATDEc/1WAt4UlwTgaOUE49Q+tlGuhR10eK8
+	m7td+qyM6Ed5kY4aO4Wj51Q6L4+6ASMhR5TmfCYOQDmeuDwIt901vm/eodv6JJ826TVb97aGYm5
+	760/JyLAR4OZh+Dp3HAupM2OHQUaTe8cRWEAPqP6krONi5GB6iAAwBurkD+Au8zKAHfqtkahT7o
+	KjhV1D6LI0wHRYyyChe9Px8cQTYbH/RMAW7BX0toHcQ++Fo7NUsfXqV993U3/Rt0lpzBNEw==
+X-Received: by 2002:a05:620a:45a0:b0:8b2:5af3:7fce with SMTP id af79cd13be357-8b305fc0905mr124389085a.7.1763449640224;
+        Mon, 17 Nov 2025 23:07:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEu9v9TyfDRsZKBlpOt5+qQcXV8hKGBopNDzp4XI6skrUBSqx0E5xT27h6J34ZbY1SNdkrBQQ==
+X-Received: by 2002:a05:620a:45a0:b0:8b2:5af3:7fce with SMTP id af79cd13be357-8b305fc0905mr124386885a.7.1763449639804;
+        Mon, 17 Nov 2025 23:07:19 -0800 (PST)
+Received: from [10.111.165.185] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8b2aeeaf78bsm1142044685a.15.2025.11.17.23.07.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Nov 2025 23:07:19 -0800 (PST)
+Message-ID: <ca6b02d8-07cc-4bc9-ac99-e75d8e3548fe@oss.qualcomm.com>
+Date: Tue, 18 Nov 2025 15:07:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: monaco-evk: Enable Bluetooth support
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        quic_jiaymao@quicinc.com, Konrad Dybcio <konradybcio@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        cheng.jiang@oss.qualcomm.com, devicetree@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>, quic_shuaz@quicinc.com,
+        quic_chezhou@quicinc.com
+References: <20251113130519.2647081-1-wei.deng@oss.qualcomm.com>
+ <176313578860.3262114.17056319042303889483.robh@kernel.org>
+ <CAL_JsqJX3doLFv-Nc6o+L1W_o8VjtvGp9dqdpsotuyG17zU7Lw@mail.gmail.com>
+Content-Language: en-US
+From: Wei Deng <wei.deng@oss.qualcomm.com>
+In-Reply-To: <CAL_JsqJX3doLFv-Nc6o+L1W_o8VjtvGp9dqdpsotuyG17zU7Lw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f853d9b2-47f8-47b5-a02d-6aa8f12a4283@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDA1MyBTYWx0ZWRfX8PZmwUPSzWyX
- //W2MHJ6t92Nupnd+xCL46kmKHQYkI8FSBuDDQX9O9jcURX3AiMvOMtFBXuPvCMhVlV2nrKZRKL
- PAz0GA5F+FffSdalWwJ9jkaAqrjpsjdrRy5/4Up5vFGb7oBB2viegYQ5CVpgmP5DPlAG0fxfZ8t
- 7BkdeuCy+xcAlo+PpbSMRFo9zEhqxYmr6C4xImf8Zf05TyzER41Ljo09YTG/lGp6lfRfW8v7HJw
- p9NRPaVh9cUc2PkXl+zJtEujkKwtMcvJvLuksNy9oeR/cjm3BLeyY330MNeIhMv08pf3thwqkqI
- y0HsqDHPEgJ1f0fwWw7FpBgVUOOYlkIITFUt7ecyQEadj/orBu/EWiDYAt6iV0Eee6NLjp+coub
- /aTu7IAQNv1zl9UOkkLe33dgS/zFiw==
-X-Proofpoint-GUID: fXaE3NHqWJop3fmV12jdFxeXwW5m4T78
-X-Proofpoint-ORIG-GUID: fXaE3NHqWJop3fmV12jdFxeXwW5m4T78
-X-Authority-Analysis: v=2.4 cv=a4I9NESF c=1 sm=1 tr=0 ts=691c17ec cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=0K+2RuW+WQ0nQqINzVEGqg==:17
+X-Authority-Analysis: v=2.4 cv=F7Vat6hN c=1 sm=1 tr=0 ts=691c1b29 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
  a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=XiUpprS5y50ibpukT4MA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22 a=HhbK4dLum7pmb74im6QT:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=iVCT6-G-MG_SWDpW4E0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-GUID: ZXK4hB4A6BrfYCIbNfEreghbLAL47kZ_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDA1NSBTYWx0ZWRfX4PvNB3z21c4q
+ ce0lihS9ueWZTOzpQyo0Lhbg3QNbBIqQunU0WYt/n/u39mdiKL3aBYMC7rIDfD3lnyUq8NucSKd
+ yqgCrTlQug8Y2kMhbj/YX4CM1zNSI59VLHWCSpGzgDl565e8Fr5h/JXCfY/247b8GcofC7S/l7Z
+ yV+WTO4ODJXCp21e3dHseaAccqEDR7LoFuBCj/x8UFVc63cWKQEMytVZq7AxaiikVxcdolPmOvf
+ fqIHrEkFtDHggACPUqPQeBzLQEt6AKkNbeCbfLB1YCTrdIvKMZkYFlwurPh7Eo6T9iqb6Capdc2
+ 3r4uPgnr4ierlhnEydLFNoizIi3kV1eiW3PxbRsRcQcciKF3fo/LPeSOyyfc50K/yC6roRfCB/i
+ HshuaEEvnqj47avNP7yrbAb+Ya49aw==
+X-Proofpoint-ORIG-GUID: ZXK4hB4A6BrfYCIbNfEreghbLAL47kZ_
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-17_04,2025-11-13_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 spamscore=0 clxscore=1015 bulkscore=0
- adultscore=0 malwarescore=0 priorityscore=1501 impostorscore=0 phishscore=0
+ priorityscore=1501 clxscore=1015 spamscore=0 bulkscore=0 adultscore=0
+ lowpriorityscore=0 phishscore=0 suspectscore=0 malwarescore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511180053
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511180055
 
-On Mon, Nov 17, 2025 at 09:13:04AM -0800, Jeff Johnson wrote:
-> On 11/17/2025 4:45 AM, Manivannan Sadhasivam wrote:
-> > On Mon, Nov 17, 2025 at 05:40:06PM +0800, Baochen Qiang wrote:
-> >> On 11/17/2025 5:00 PM, Manivannan Sadhasivam wrote:
-> >>> On Mon, Nov 17, 2025 at 10:36:39AM +0800, Baochen Qiang wrote:
-> >>>> On 11/14/2025 6:22 PM, Manivannan Sadhasivam wrote:
-> >>>>> Hi,
-> >>>>>
-> >>>>> This series aims to deprecate the usage of "qcom,*calibration-variant"
-> >>>>> devicetree property to select the calibration variant for the WLAN devices. This
-> >>>>> is necessary for WLAN devices connected using PCI bus, as hardcoding the device
-> >>>>> specific information in PCI devicetree node causes the node to be updated every
-> >>>>> time when a new device variant is attached to the PCI slot. This approach is not
-> >>>>> scalable and causes bad user experience.
-> >>>>
-> >>>> I am not very clear about the problem here: is calibration variant device/module specific,
-> >>>> or platform specific? If it is module specific, why the lookup is based on the machine
-> >>>> 'model' property? While if it is platform specific, why do we need to update devicetree
-> >>>> node whenever a new device is attached?
-> >>>>
-> >>>
-> >>> I think I mixed the usecase of the 'firmware-name' property in the above
-> >>> description.
-> >>>
-> >>> But nevertheless, the calibration info platform specific, and hardcoding the DT
-> >>> property fixes the location of the WLAN card with a specific slot. For instance,
-> >>> if the board has a couple of M.2 slots, users should be free to plug the WLAN in
-> >>> any slot, not just a single slot where the property was defined in DT.
-> >>>
-> >>> Also, if the users plug-in the WLAN card of another vendor, not Qcom, this
-> >>> property is irrelevant/wrong.
-> >>>
-> >>> PCIe slots should be plug and play i.e., users should plug-in any M.2 card and
-> >>> expect it to work.
-> >>>
-> >>
-> >> correct
-> >>
-> >>> However, as I learned from Jeff, calibration variant property is also going to
-> >>> be required in cases like router boards where each slot is dedicated to a fixed
-> >>> band and the calibration variant is going to be different for each band for the
-> >>> platform. So unlike I thought, this DT property cannot be deprecated. But going
-> >>> forward, I'd like it to be used only in these special usecases. Most of the
-> >>> upstream DTS have a single calibration variant for the platform and for those
-> >>> generic usecases, this static table should be used.
-> >>
-> >> If that property is not going to be deprecated, should it take precedence?
-> >>
-> > 
-> > If you mean 'it' by this static table, yes, it is going to take precedence as it
-> > should cover the generic usecases. For special cases like the multi-band
-> > routers, existing DT node fallback will cover.
-> Does there need to be a PCI Vendor ID & Device ID as part of this lookup?
+Hi Rob,
+
+Thanks for your comments.
+
+On 11/15/2025 12:18 AM, Rob Herring wrote:
+> On Fri, Nov 14, 2025 at 10:06 AM Rob Herring (Arm) <robh@kernel.org> wrote:
+>>
+>>
+>> On Thu, 13 Nov 2025 18:35:19 +0530, Wei Deng wrote:
+>>> There's a WCN6855 WiFi/Bluetooth module on an M.2 card. To make
+>>> Bluetooth work, we need to define the necessary device tree nodes,
+>>> including UART configuration and power supplies.
+>>>
+>>> Since there is no standard M.2 binding in the device tree at present,
+>>> the PMU is described using dedicated PMU nodes to represent the
+>>> internal regulators required by the module.
+>>>
+>>> The module provides a 3.3V supply, which originates from the
+>>> main board’s 12V rail. To represent this power hierarchy in the device
+>>> tree, add a fixed 12V regulator node as the DC-IN source and link it
+>>> to the 3.3V regulator node.
+>>>
+>>> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/monaco-evk.dts | 99 +++++++++++++++++++++++++
+>>>  1 file changed, 99 insertions(+)
+>>>
+>>
+>>
+>> My bot found new DTB warnings on the .dts files added or changed in this
+>> series.
+>>
+>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+>> are fixed by another series. Ultimately, it is up to the platform
+>> maintainer whether these warnings are acceptable or not. No need to reply
+>> unless the platform maintainer has comments.
+>>
+>> If you already ran DT checks and didn't see these error(s), then
+>> make sure dt-schema is up to date:
+>>
+>>   pip3 install dtschema --upgrade
+>>
+>>
+>> This patch series was applied (using b4) to base:
+>>  Base: attempting to guess base-commit...
+>>  Base: tags/next-20251112 (exact match)
+>>  Base: tags/next-20251112 (use --merge-base to override)
+>>
+>> If this is not the correct base, please add 'base-commit' tag
+>> (or use b4 which does this automatically)
+>>
+>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251113130519.2647081-1-wei.deng@oss.qualcomm.com:
+>>
+>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcielp3-supply', 'vddpcielp9-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
+>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p3-supply' is a required property
+>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
+>> arch/arm64/boot/dts/qcom/monaco-evk.dtb: wcn6855-pmu (qcom,wcn6855-pmu): 'vddpcie1p9-supply' is a required property
+>>         from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml
+> 
+> This is the 3rd report of your typos. Is there some reason you are
+> ignoring the reports?
 > 
 
-I don't think so.
+Sorry for the delayed response. These warnings are worth addressing 
+and will be resolved in the next patch.
 
-> For example, start with a device that has an ath11k chipset with calibration
-> data for that chipset. If the end user replaces that chipset with an ath12k
-> chipset then with the current proposal the same calibration variant will
-> attempt to be used. But there will not be any calibration data with that
-> variant for that chipset.
-> 
-
-ath12k doesn't seem to require a calibration variant. But even if the user
-replaces ath11k chipset with ath10k one, the calibration variant should be the
-same as it is platform specific except for WSI.
-
-- Mani
+> Rob
 
 -- 
-மணிவண்ணன் சதாசிவம்
+Best Regards,
+Wei Deng
+
 
