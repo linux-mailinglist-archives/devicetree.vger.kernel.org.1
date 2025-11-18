@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-239645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D31C680D4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:47:53 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A195C6806E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:43:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5B3F1360223
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:35:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 832A14EF5DD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 07:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C11A3002C5;
-	Tue, 18 Nov 2025 07:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 881992EFD9B;
+	Tue, 18 Nov 2025 07:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ajnUTxq1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJSSdMOA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D7B2FFF91;
-	Tue, 18 Nov 2025 07:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D91D2FF15E;
+	Tue, 18 Nov 2025 07:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763451259; cv=none; b=qXI6lefjTDnN3Cv9sb1QU36I36QJufK1+aeTO3Y0B9LwKdlOt+rvbTUhMR482+my7c33qSxjFJ2Q3wLzQRFO2NlDasVgvGqLzRWG3DbqbQTUIu7bMhm0vmdxNM9RL7YYyDPs6d2JfQxzgayWO/hZCQTgKTArzFTzX64ThPFoY64=
+	t=1763451452; cv=none; b=WAI6FeqpBKc/qHaHXC/hUCMl80FB4fgHi7E623di6kbDAaxYm//Veu/SWaCeFApL893gq9f0W1xbSlQ3bhnDKxRu1Z7KCyXHnOrzcEbT4Z5lturyUY2uEkUBGza45BxGxi9A+YcViDTZNgl6JGIv19VfTo2QtJV57BJsjcIzKZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763451259; c=relaxed/simple;
-	bh=fpJXCfPrsPOcdHpmVkcO8MBSpXAfMKWc7s9w8Q2Cvj4=;
+	s=arc-20240116; t=1763451452; c=relaxed/simple;
+	bh=q8Fza9xwjqkdneMT8IawDbUHHmPPiYj486b7I3nIOlc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AX9RnWrxjz2H6KFDs/FqQTvBFOuzd7znS8qcvL0/ZOc/Zv91UzvjOPD8iHVfU4TcLee5y5wlUtHCX/Q5Egb1TKlspXHCxferVolXplRALR0vjr9ppIQSQNkrQej67OrgLBSDbWp2vPZ2sx9Z3PKNPcwfNxX+avQJ74GCwg3pZYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ajnUTxq1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BED0C4CEF5;
-	Tue, 18 Nov 2025 07:34:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TJ5ZNMh4jF73L09QdNjoQ29EwC30xEKZWCmgs5cB0/sMeN8F1XDo22YzpEAla2NjbdkAEW575w2XeBoXWOyY3bLTXW9aWA6ATeAPEpAYZxZ7K/P/SJoGUFZ0FWwQ3hQ1CobdSYfn8ShyuDCMcWJYtzzc3qAli/H2kk0KCVAO9QI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJSSdMOA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CAA8C19422;
+	Tue, 18 Nov 2025 07:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763451257;
-	bh=fpJXCfPrsPOcdHpmVkcO8MBSpXAfMKWc7s9w8Q2Cvj4=;
+	s=k20201202; t=1763451450;
+	bh=q8Fza9xwjqkdneMT8IawDbUHHmPPiYj486b7I3nIOlc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ajnUTxq1ftN3YlWPMRYlRrJIrHEt8kx3RFuSJF0O3CMgwVlW0ImxXCnVWYoYj97JA
-	 6qnJuoy9//zAa/55f4Xess9X5dfzK1YOfAWlvwO+OVaHyFpYR04vykF/tjNmtm3IeX
-	 JVhpzIZsTt8E26Z/UhyXVnZZNkFVbSgX4fZr4N3tmJf0WLUi6Z2YCrUfyC4IuAyWby
-	 8d+7nbaB5nTCi2Tnh/B8ApG/nSgfsx2pDEWV0dknVzzfnPgdBcpHee2waJbUWt0Xco
-	 CZKnRgY4CkFrg8nlvWyqU/hygsfxdy1oM+OY04JUkPe87L4ZhqRJ/XXFJE5yZrSu4M
-	 kGzqjdNcNYfUw==
-Message-ID: <daf71bb4-a1d4-4d63-851a-6cb17608eccf@kernel.org>
-Date: Tue, 18 Nov 2025 08:34:09 +0100
+	b=qJSSdMOAqQdsy+tb+I3NgiZ20BJgrOCgKHzMmIQm753K/Di8mRppzv0UtVaszwvu3
+	 QQ2uch4WtaScDRKYw7hOZjuONyAwlFwyWRchwjjwzn7sEvjSmbCMiNACDzBUCzd6rU
+	 8whHM38yJReDQEhSRooJS8bI6SQ9WZbI4U78zvyD8N8hgTnzn/+YCh0MGio80e6kRP
+	 Z0zIZ5MedE1BTEjvGLlad5YuOXUXCrmztcFm8igWPWsrx8cht2QM2lW2DJa3ukD85K
+	 UmGF+rJuOSPwr0Gmy4IvkbqREftZyvilsr8SEefDGoDx8ZpJ4HEIHkMNw7DIqqtfP7
+	 Pdiezp4QvDG+Q==
+Message-ID: <c931853e-faa6-41ae-89a8-d22544a9da9c@kernel.org>
+Date: Tue, 18 Nov 2025 08:37:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: bridge: lt8713sx: Add bindings
+Subject: Re: [PATCH v2 2/2] drm/bridge: add support for lontium lt8713sx
+ bridge driver
 To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
@@ -65,7 +66,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, prahlad.valluru@oss.qualcomm.com,
  Prahlad Valluru <vvalluru@qti.qualcomm.com>
 References: <20251118-lt8713sx-bridge-driver-v2-0-25ad49280a11@oss.qualcomm.com>
- <20251118-lt8713sx-bridge-driver-v2-1-25ad49280a11@oss.qualcomm.com>
+ <20251118-lt8713sx-bridge-driver-v2-2-25ad49280a11@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,31 +112,134 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251118-lt8713sx-bridge-driver-v2-1-25ad49280a11@oss.qualcomm.com>
+In-Reply-To: <20251118-lt8713sx-bridge-driver-v2-2-25ad49280a11@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/11/2025 05:37, Vishnu Saini wrote:
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - lontium,lt8713sx
+> +static void lt8713sx_reset(struct lt8713sx *lt8713sx)
+> +{
+> +	pr_debug("reset bridge.\n");
+> +	gpiod_set_value_cansleep(lt8713sx->reset_gpio, 1);
+> +	msleep(20);
 > +
-> +  reg:
-> +    maxItems: 1
+> +	gpiod_set_value_cansleep(lt8713sx->reset_gpio, 0);
+> +	msleep(20);
 > +
+> +	gpiod_set_value_cansleep(lt8713sx->reset_gpio, 1);
+> +	msleep(20);
+> +	pr_debug("reset done.\n");
 
-<form letter>
-This is a friendly reminder during the review process.
+No, it is not done, because you kept the device in the reset. 1 is
+reset. Don't mix up line and logical signals.
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
+> +}
+> +
+> +static int lt8713sx_regulator_init(struct lt8713sx *lt8713sx)
+> +{
+> +	int ret;
+> +
+> +	lt8713sx->supplies[0].supply = "vdd";
+> +	lt8713sx->supplies[1].supply = "vcc";
+> +
+> +	ret = devm_regulator_bulk_get(lt8713sx->dev, 2, lt8713sx->supplies);
+> +	if (ret < 0)
+> +		return dev_err_probe(lt8713sx->dev, ret, "failed to get regulators\n");
+> +
+> +	ret = regulator_set_load(lt8713sx->supplies[0].consumer, 200000);
+> +	if (ret < 0)
+> +		return dev_err_probe(lt8713sx->dev, ret, "failed to set regulator load\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int lt8713sx_regulator_enable(struct lt8713sx *lt8713sx)
+> +{
+> +	int ret;
+> +
+> +	ret = regulator_enable(lt8713sx->supplies[0].consumer);
+> +	if (ret < 0)
+> +		return dev_err_probe(lt8713sx->dev, ret, "failed to enable vdd regulator\n");
+> +
+> +	usleep_range(1000, 10000);
+> +
+> +	ret = regulator_enable(lt8713sx->supplies[1].consumer);
+> +	if (ret < 0) {
+> +		regulator_disable(lt8713sx->supplies[0].consumer);
+> +		return dev_err_probe(lt8713sx->dev, ret, "failed to enable vcc regulator\n");
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int lt8713sx_gpio_init(struct lt8713sx *lt8713sx)
+> +{
+> +	struct device *dev = lt8713sx->dev;
+> +
+> +	lt8713sx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(lt8713sx->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(lt8713sx->reset_gpio),
+> +				     "failed to acquire reset gpio\n");
+> +
+> +	/* power enable gpio */
+> +	lt8713sx->enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(lt8713sx->enable_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(lt8713sx->enable_gpio),
+> +				     "failed to acquire enable gpio\n");
+> +	return 0;
+> +}
+> +
+> +static ssize_t lt8713sx_firmware_store(struct device *dev,
+> +				       struct device_attribute *attr,
+> +				       const char *buf, size_t len)
+> +{
+> +	struct lt8713sx *lt8713sx = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = lt8713sx_firmware_update(lt8713sx);
+> +	if (ret < 0)
+> +		return ret;
+> +	return len;
+> +}
+> +
+> +static DEVICE_ATTR_WO(lt8713sx_firmware);
+> +
+> +static struct attribute *lt8713sx_attrs[] = {
+> +	&dev_attr_lt8713sx_firmware.attr,
+> +	NULL,
+> +};
+> +
+> +static const struct attribute_group lt8713sx_attr_group = {
+> +	.attrs = lt8713sx_attrs,
+> +};
+> +
+> +static const struct attribute_group *lt8713sx_attr_groups[] = {
+> +	&lt8713sx_attr_group,
+> +	NULL,
+> +};
+> +
+> +static int lt8713sx_probe(struct i2c_client *client)
+> +{
+> +	struct lt8713sx *lt8713sx;
+> +	struct device *dev = &client->dev;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+> +		return dev_err_probe(dev, -ENODEV, "device doesn't support I2C\n");
+> +
+> +	lt8713sx = devm_kzalloc(dev, sizeof(*lt8713sx), GFP_KERNEL);
+> +	if (!lt8713sx)
+> +		return dev_err_probe(dev, -ENOMEM, "failed to allocate lt8713sx struct\n");
+> +
+I did not ask for dev_err_probe here. Do you see such pattern anywhere?
+No, because there are never error messages on memory allocation (see
+coccinelle). Drop.
 
-Thank you.
-</form letter>
-
+Please run standard kernel tools for static analysis, like coccinelle,
+smatch and sparse, and fix reported warnings. Also please check for
+warnings when building with W=1 for gcc and clang. Most of these
+commands (checks or W=1 build) can build specific targets, like some
+directory, to narrow the scope to only your code. The code here looks
+like it needs a fix. Feel free to get in touch if the warning is not clear.
 
 Best regards,
 Krzysztof
