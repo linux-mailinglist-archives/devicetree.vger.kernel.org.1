@@ -1,236 +1,204 @@
-Return-Path: <devicetree+bounces-239658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 883CEC682C7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:19:16 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C12BAC68363
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:32:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AC6884E4910
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:17:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A36604E16F7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:29:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E3430EF92;
-	Tue, 18 Nov 2025 08:17:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AD928507B;
+	Tue, 18 Nov 2025 08:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L2ysF9a/"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="W33KYdGn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013021.outbound.protection.outlook.com [40.107.162.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C0B22E004
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 08:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763453831; cv=none; b=mgghb2V5YN8YCbelwBDIow2rKcwKuY4l7dCBes82wFYg/gtC9/3xcKUfuvA5BxeHSqLj4OMDk3TxuAi4rn/YChNpoG/C70drhCxLu1JIpT4pQNcUcOvYkr5nKSbc1rLK9maPYLpZOFDudOJvlyRdI+lWWUfDEfszqwBeIyxWtF8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763453831; c=relaxed/simple;
-	bh=nrNETb7FnlD8KOyyIYYnpMxqeeX5j6XkCSs+SnDvF5U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f3SmTn0HX8NKI/8RlPa4qoNuWoHakW5GcPKKwGkvFEbHKj8k2j5RHYEmeWjEvpH5f46woINI+H1RzBs0D1BW0uHrfp+G752yDl8NnLUpK3RMB4Ec/mw1uHkhE1qaSiblOWyAVYWUNPWKU2kjC+7FYl+GGofTKlOnId2wql4VWNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L2ysF9a/; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-3e37ad3d95aso3093580fac.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 00:17:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763453828; x=1764058628; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VoMiIW3QGWFlhk8MIsWxVubR6fxSt8dbm0U8xNqOKso=;
-        b=L2ysF9a/uKgonkOGhYuUNJ5mvR14XpyF8zDtlwjw6gnnwusbRrxjqTa/zF7ZbFz8t2
-         wPCvWYpD2sEzAdCssQetTMaadY8Jc3DMcDxGRfy+F2L5GcMH5ty8k04zHEpK3YxSz94I
-         1jw0bZ5D/txG+28PczrVn1S7LhVrHjhrel8xVhrn9hFTQI8p82g1pIx69DUGYouOCyx/
-         PRSxHhDGMQxN/dVkdJRq8HR0ykHj0Jj7f4aLxhcsMiLBaBp8XDbAHRqURhmuaAagfA//
-         pJHkzWXoTs5NKLz3dcRshCoEVXOs/4TH2otLES8EVZ8d8A8pCmIYvvSEMeOD4rKNCxR0
-         /fdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763453828; x=1764058628;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VoMiIW3QGWFlhk8MIsWxVubR6fxSt8dbm0U8xNqOKso=;
-        b=Cj08E1on2zORm7RYjsWnXT6//VLodcJZtQ0ldX4V9xc1F7uQNqt+jDrswN819b7AN1
-         0dfTyDZqbThU+1d3EeKfhlzpFG8/TRCOu/mrPtErTw5wD9KiLqFijM+5upKdmc7KPyaG
-         Stgxm+pgmvAm1ZP0v3ur15yfK+BJ6Njdq7/dY3lXm9HlXejL++UlcAgF5KjOsJN0YJLJ
-         XiVmmeVI6wWfo5Rf9sWigOBIPZBXJHXLGVgQRjQT9wQI6frZ44MLB8ASA+sHCcKLO8kL
-         5Gy1L88rxTfYHuCudAO/a4MJrK8y6EFlrDBNYAGgR1Eg5CbTIOOfFDKvYS5fdfaDzeo+
-         RIyA==
-X-Forwarded-Encrypted: i=1; AJvYcCXTvsVvLJbcVwWyR3FMwc1jukLTAqQjlTdEMaIqS5rJTtb62fYDHDSujxK4VggT5WwLA/IjKrILedQ6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yycib5C3CVwkqcVuOx0vvOUcBHVNu9SGoePLE/Gjhzsfyvoza2e
-	AJ5Pbu3BqyW2zZb9G/PaQCnQbGQ98I3ETc4inhATU45Y1Go+gxcziSgrAL4pLVeB9O0+VeWcuUW
-	pLUr77AzsCplPvhfPbXBt7GLQFYrR/Os=
-X-Gm-Gg: ASbGncuB1CinbLt6odTVMAgcqpVj2FxNKv41O6dxZBadEfUKqvLHWA8kqvqSvVlgqKw
-	oKXHwkzWocVUSriwFbKXwc0wmN67lIGM+dHE5Hs1PGD+TQan2e3i/6oXNeo4wkodg6oUz3Q9lZJ
-	zRlCJPovSIPNHFi2jV9h3KgUGpMqIHWccjoRbz5WzdC/KHHsCMRUxbWPwSOoB8AaF9zErqEEV0S
-	TNEZoxWdGCtFnnMuxC4OUA8dOKg+XEDmCUSV1aatKAvzSk2Owt+nVMhXMp4NMoin/G95UYKkANg
-	7AgGByxnuVbp2ldyP/dyiiVA
-X-Google-Smtp-Source: AGHT+IGJVcqmC4kf999U78KR7Z+Carm82VZu3TBqJ/efc58ObEBqzZW6zVk9sdknUB16hhvBH9dnfceG+BbpGDOEGZw=
-X-Received: by 2002:a05:6870:8193:b0:3ec:3949:8a20 with SMTP id
- 586e51a60fabf-3ec39498c48mr3471777fac.29.1763453828009; Tue, 18 Nov 2025
- 00:17:08 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA972BDC3D;
+	Tue, 18 Nov 2025 08:29:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.21
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763454580; cv=fail; b=txdoo5uPM3TX+2+NCuhLoN6GyXkOvrq3E7OgC2gHHe5BQQr7XmnEtAuGO6E1Rr9WD9Ztt54gxsl3lEPsQ4CScgNm09rpPdGc0/IREZANuGC3ehgQpN17gWqfqFUM5pT0MHI7oLVFQtJmiSJ1Bk/RpMbjwkKx+rPJaohOEopt3W4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763454580; c=relaxed/simple;
+	bh=HAkzd6H2SFbJ8vwhhF4KOZS5qSJqQwiOgqa7CLDA85c=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=uM7ywpRgUK7o7HO93ggbLbEP5Qg3QAa4QSafIv3+IHi0UZfX01kI1ln+Hedi9R7urciBOLNdXxR2pUgUdMqlndRTodu3pqBg3ASuY69mmG1Y3wEmAolAdeITHMmch7Uk9Idhc03kFLZ1NUU/znu4tRgFARK0uxVqpXCjuE+lS0M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=W33KYdGn; arc=fail smtp.client-ip=40.107.162.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UDn/UiH+4EyMxhMstT2lBG+H3C0y0LX47JzW3uHcRxv+6A+UOPr5nI1UbRH4zljGYx5oSbGDJs9cijXoBsb5eeNZh/icXItMMbadhYa5Uoq2s/T29BJQC1jn0KAx1F8AaZrIdoVzVzboSwivubzKmICohjata0v851vkFnanWrvuWHz+WsdpMEnkFoBVOgJJxk7UNzOBnyQaaFEQUFmvNFBJv7J8k2rJdFsvtWOLWwfflH157q6be+bxPafHooJrGQfIilOPInZm8OQLk2UUZJydYqbXbsW8kyLrQ0zl7fENyfVEhjeuJ3raLhARp6zORFllhW/E8LLMwfi9IKjYnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZXl+u5N17FlADSLj+Rw7FoQcLX8DS9DFaTHPdN9Qq+I=;
+ b=F1e48W2Zkvgy9xa9VK8peE7rBEDqe3tOztdtk4s7NT5uLZw8WUnfTtEZrUwybJFVjm4m107GNiif3lom7hktLnS4yzZaz2um04oJ8lNbPrMZ+2ICl/HiZG37DKftG9E56VgDVrmiKe+EQOKXEcmU7p7jeAOlok4BMPDOiIBMeV6LSh6+6giymiGaflphQlF4S4k1m5Vjrq++8ltb7qP/0O+G2+OCwbs5PCnF6s65B7qvDu03S6KVmB35SZ38yTIs7Fy4wjOJflxXFL9AZcXoIwwRN4z8Fpj2lZaBpixr8bg0zi4CiR6Cez3oGedIWOX+20EYAvsI3kQrQ/jUjZYAfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZXl+u5N17FlADSLj+Rw7FoQcLX8DS9DFaTHPdN9Qq+I=;
+ b=W33KYdGn4GTtNmklStFTnnBHqbUfyXtfSDwp69J/IT983nCWtLLml3IupW+fffeVFqcMbEznKTPeP4DqYwB5xmYWckh+r3FDgVnGBn+YmD/ROG20GU/x8N8Hv4eyKkb9ZRPDH9uGNofG1V9U2YfHXdwiykrTccfou8XxCjjZ7ehFLqjjMl+q5pZ5KAk/Ih69W6jsjEb8kooStAFFsTLTmx1oGPO1YocAejpiPdHzjGPHXGxrWKDXUgiEVeY5hM2oC/7bQvFEGuaA1yYZfujnGw9TrYtMDCJ3k7asEolkdnu3n3tl855lJFSBDGVkTxhZDTetBXqZeC97s543swOmuA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU0PR04MB9496.eurprd04.prod.outlook.com (2603:10a6:10:32d::19)
+ by AM9PR04MB8970.eurprd04.prod.outlook.com (2603:10a6:20b:409::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Tue, 18 Nov
+ 2025 08:29:35 +0000
+Received: from DU0PR04MB9496.eurprd04.prod.outlook.com
+ ([fe80::868b:3935:5e0f:6a33]) by DU0PR04MB9496.eurprd04.prod.outlook.com
+ ([fe80::868b:3935:5e0f:6a33%6]) with mapi id 15.20.9320.021; Tue, 18 Nov 2025
+ 08:29:34 +0000
+From: Haibo Chen <haibo.chen@nxp.com>
+Subject: [PATCH 0/2] two small fixes for imx8qm-mek board
+Date: Tue, 18 Nov 2025 16:30:16 +0800
+Message-Id: <20251118-dts-imx8qm-v1-0-63e226ffe512@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJguHGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDQ0ML3ZSSYt3M3AqLwlxd86TEtERjC3NDi9REJaCGgqLUtMwKsGHRsbW
+ 1AGIo1fVcAAAA
+X-Change-ID: 20251118-dts-imx8qm-7bafa38718ea
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Haibo Chen <haibo.chen@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763454631; l=480;
+ i=haibo.chen@nxp.com; s=20250421; h=from:subject:message-id;
+ bh=HAkzd6H2SFbJ8vwhhF4KOZS5qSJqQwiOgqa7CLDA85c=;
+ b=9hA+XQbI0Id1zOVuI4aHnfHAniFBMKInt8Ya/iZPCTNZx+3hCr+bT1hCZZfcfgSPbgXeZOGcu
+ U2Le6wsDm+dCOECEUuO68PmRbjc0orA5d9D3WHMryv7NK7rZxJmObFp
+X-Developer-Key: i=haibo.chen@nxp.com; a=ed25519;
+ pk=HR9LLTuVOg3BUNeAf4/FNOIkMaZvuwVJdNrGpvKDKaI=
+X-ClientProxiedBy: MAXPR01CA0096.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:5d::14) To DU0PR04MB9496.eurprd04.prod.outlook.com
+ (2603:10a6:10:32d::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251113072806.795029-1-zhangchunyan@iscas.ac.cn>
-In-Reply-To: <20251113072806.795029-1-zhangchunyan@iscas.ac.cn>
-From: Chunyan Zhang <zhang.lyra@gmail.com>
-Date: Tue, 18 Nov 2025 16:16:30 +0800
-X-Gm-Features: AWmQ_bmir1nIDPRCoXTSJbPR1qsg3o-M-aBGdrWbEh4IhEqrSXiExjOsSzb9Kb8
-Message-ID: <CAAfSe-v6+Gc8ujv3m3LdBPk+rGSqmz44RheoNqGJcXjOq3vU9A@mail.gmail.com>
-Subject: Re: [PATCH V15 0/6] mm: Add soft-dirty and uffd-wp support for RISC-V
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Alexander Viro <viro@zeniv.linux.org.uk>, linux-mm@kvack.org, Peter Xu <peterx@redhat.com>, 
-	Arnd Bergmann <arnd@arndb.de>, David Hildenbrand <david@redhat.com>, 
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, "Liam R . Howlett" <Liam.Howlett@oracle.com>, 
-	Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, 
-	Michal Hocko <mhocko@suse.com>, Axel Rasmussen <axelrasmussen@google.com>, 
-	Yuanchu Xie <yuanchu@google.com>, linux-riscv@lists.infradead.org, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org, 
-	Conor Dooley <conor@kernel.org>, Deepak Gupta <debug@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>, 
-	linux-fsdevel@vger.kernel.org, Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
-	linux-kernel@vger.kernel.org, Chunyan Zhang <zhangchunyan@iscas.ac.cn>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9496:EE_|AM9PR04MB8970:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1d5829a-71f7-4725-80be-08de267c9a4a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?L1JXYjc0ZDRSRzBlZ2owM1JHbVd5dTltcFE2NXBiL3BrclZzZGppVGFkRkVI?=
+ =?utf-8?B?aE55L0R6SUU2UHhjWkxsUVU1WG9ublNlQmZUNi9MSTR4d0dZa0N0cEtWdFdU?=
+ =?utf-8?B?bytaS1ZVU2MxTEhMekJrYlNrYzRWeFBpZVFtZFJ3T3Zoa3VhMEJlUzdMcmZ0?=
+ =?utf-8?B?ajJUa0ZZQ0VDNEJWRXlGUUZYbFpBa0hHM1E5a05VTk0zZnBGWk14aGRCZHdJ?=
+ =?utf-8?B?eXM3ZnJZSFFGdzR5QmtyL2pCK21FTE1iMFpvYk12b25DYlFQTEpWelVIZS9X?=
+ =?utf-8?B?dHhzQ1VBOEFOOHI4KzREUndEQ2VMazJDQVk1KytpZEVlMEdDUWZzV29CQ2VL?=
+ =?utf-8?B?U2JCVmNEeXdYMVJPdEo1MmFRSDZNS3JVMW9xWGE3Y0dMU2c4TzNXd0V2dlJz?=
+ =?utf-8?B?QXYvajd5UTYxcDhFUHhjbEdQOVhMTDU2VE51RUhRSS9QQUdXSmdkaTBPY0J2?=
+ =?utf-8?B?blhBMVV1M3AzZkR6bm4vM3VCNTQxY1VLU0MvY1F1S3Z0MXdzSHl4VGFWVUxa?=
+ =?utf-8?B?WE5pRmRobVhTNFdld3Y2U3A3WjBzNWhoeWF1U0YxendpV2MyRDFxZTFWMndB?=
+ =?utf-8?B?bkxaNXAwRURMNVFZcjA3aFBNV0pjVm9tV1FDZWJuSGVxQlN3UWc0VVc2ZE81?=
+ =?utf-8?B?WTZkUEF5djAwem9VU0czRXBxbUN4V1NZcE1rZTFReGRkekR1K3Y3ZFp4SnZs?=
+ =?utf-8?B?Z3I2bk1HWnN2dzhnd3N5UkJzRlIwTW1jSWdQTUd0QjJMY1pNendoSVBYRVJO?=
+ =?utf-8?B?SkVCZjQ2b3dKdlBvcy9MT08rVTJaQnVwT3FSN3ZYbkNUOW5KbmlISCs2Z29r?=
+ =?utf-8?B?VjRQRGpyRzBhZzhBTDd6Yy9SRzRwbHNRZmFlZGFyWnpOMW84MlQrQjFJTHAx?=
+ =?utf-8?B?SGxQeTJkSmpMZnVLS29KaS9PcXBCVlVOVjFpZmZ5NUxLNzFWdHNsK0x6WVc2?=
+ =?utf-8?B?S1N4bDRDd3g2dkprZW5JSDBZcSs1UWZ3SnZlZnRvdm4rcUJYNVRTVStXMy9n?=
+ =?utf-8?B?ZmlKeGJnMWptZW4rdlhwa3EyL0ZMYTZnVmlKd1RPcjJBMWswZnhCYXhTaDBG?=
+ =?utf-8?B?QVRKUjdEYzFkZGN3bHlOOU0zWXpWQ3Ixd29YN3JPVnY3bzc0UmZQRjFVSVFZ?=
+ =?utf-8?B?cUtmY3ZwT0JRdmhIb1pZT0ZmcFU1RWx6VjdxclJlSndPUWUxQlNvaDgvNlZn?=
+ =?utf-8?B?VFlZL2NGVU5DS2dxeXBDMlFrL1B2d3hJdFVIVktmcmk0NTJKNzRQWFFzT1k3?=
+ =?utf-8?B?ZFNMWnlwZG9uQkRDa3JZS3RnUk1rSzk4WFBhTjJobWMrZkdiLy9MdSt6MmZy?=
+ =?utf-8?B?dFl3MnNtc0ZvRUdFUWxEQTVqbkFwZFZHV0xvQlYzOWhPbUtEZFhrdFBhSktV?=
+ =?utf-8?B?TGtrTHhLaXZjRlgyaEpRL1cwckk4a1R0QmdBTVZmMHF1akIzQ2VHZTdBcGpu?=
+ =?utf-8?B?TUR6Z2FmZzNlWFJSWWRqaURsaHd2K2xNQmExOVBMZ0JaQ0t2d0FOUXNGZkE0?=
+ =?utf-8?B?ZU1DWG1DMVNTTjU5RWtzcUFYaXdRQ2g4WUY0RDZDZkkzRS9VU1ZyMzlHVTZJ?=
+ =?utf-8?B?aEZGZWxGaW5XcjJXZzlyaXRKaXBIdGIzeDFkNnd6SFdGazdXNU9ZMWZsc2Ft?=
+ =?utf-8?B?dmRjZHpHSDF5cGZEb2loMStRK01RakpzVzdZRk9idGJhRGVXNkptK3drWjlH?=
+ =?utf-8?B?ZVkrdy9mVlZSZFV4eUtpL0VJSWRBWTIrN2FtK2hiVC9SbXh1YTh0L3VnTWt4?=
+ =?utf-8?B?M1VtaDJjaXVrUHF0M2lITWFteFZ1U1ZkcEVHWExJWDEvTkdmakkxZC8rWXlI?=
+ =?utf-8?B?U01TaHJHNURIUDVJSXVSN1pjSXRzOS9GdldnTmtEN2ZwaVpBdE40REIyU1Fr?=
+ =?utf-8?B?VmUxRTdNNStyeEhSNU4wNmRnVUE5dzkxTEI1UlVFeFBQalNHZzkvcXhsQmF1?=
+ =?utf-8?B?NkV0ZE5BanFPV0FTSzRGTSt3ckZLOGNzdkhNYVNMWFJuTFBUWlZrVHc3UXk2?=
+ =?utf-8?B?M2ZmZHhCM2VmQkoyYVhRMHRSa09KUExMZjFIZGRHM2NlVlJWcjZvbnJZREFT?=
+ =?utf-8?Q?oZfhS8?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9496.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?N1E3Z3FhZmhndHVvZEdoTkZOWXZDQ281ci82cjExQ0FUb2c0akk3UE1zSzZD?=
+ =?utf-8?B?bTd0VW1JcTJDWU9iZ0FsTlpJMzhNU3ZvOEozWjFUb0ZjaklrR0FSMkpHb0c2?=
+ =?utf-8?B?T3ZHMzZVOUk5N0YvWTR2RWdQUjJ6UFJwNjJBZnFaak1IbXVlam5lanhodHRF?=
+ =?utf-8?B?Mk81dTB0VWI1c2pDNDdLb2VrcithdmxqR1l5RlNiRS9aQ202MWwxTU5BMnFY?=
+ =?utf-8?B?L1pkdHhJVW5pbUFsbkNLMUdvRkNyZGN2WmlEWHhnNjY1ZTNBdFl3S3BlQXlL?=
+ =?utf-8?B?SjIxeW56RGpzVGVsV1E4bXZqb2JENlF4UjRySVlKL0RwL0FPV0VXM094cFkz?=
+ =?utf-8?B?bktYbHJWM212K3cvNEEyckpiZ28yOGFEVHNrZlgzQWxVejhkdjFkWGRrckY5?=
+ =?utf-8?B?THRPUytBRUs4TWhReEtPQUgyWGxrb015WG1NYmpzUnJ2SElPYlBXMzAyeS9Z?=
+ =?utf-8?B?Wm9nS29udUJpc2FUOHY0TU4zOXNpZUFLRFpLYVpETTlXNTZJckNFTCsvNHlJ?=
+ =?utf-8?B?ZzF0STVBMjZETVFleHlDd3h3VjJaSXhGekZQM2FZamQ5M1RBZ2pCWi93WFFK?=
+ =?utf-8?B?ZHp3VWFJTERKSzRhUEI0M1d5S3RhWmF3OGNaQkxzK0FVVlFMbjdONWlrczJr?=
+ =?utf-8?B?M2ZBNER0Nm0xcWl1MTVQUEd4YWRqQVFXTHhhcTlZQTFoMXk2YUUwRXR1VmVp?=
+ =?utf-8?B?WHNHY2hObUZTdkhRTGh4TCs5a1JaMnNOQ3ZIcGh3dTVJa0tJbWx1dmRTZEs4?=
+ =?utf-8?B?Y05oeENUZG83MGlmdVFYL2EyS2FFdmlVQWtDUTJXZHZUUjRiZnBad0drUEJp?=
+ =?utf-8?B?TVorY1ZkaW9vMnJBZkpZNTlYNDFla3ZoQXRLYWdTcFZHNkZ5NGZVb3FaMzNB?=
+ =?utf-8?B?TmZncnNRK2VpbjA1SmM5Q0V1eDJ5SVZUaXFHVnRIR3pDVmRWbFYyaDhQbmZE?=
+ =?utf-8?B?S0Z0WG5aZTJoZDYrUUR1ZFRFZGlob2syNFBuY3ozVFJ5VmZnU2J6aFl3L2VQ?=
+ =?utf-8?B?MFNQTkg5OU1Candob0FpN0h5Q24rWkhkcmRZUEw4MDg2d0NOY2kxNVNiUWN0?=
+ =?utf-8?B?K3RYZS9zMkFQTEgxVDZVcXVNOXpETm9pMzdrSktVMUQ0NHphZVpVSzlLSVZN?=
+ =?utf-8?B?OC9CY0puMlAyZXZRZjZpSHhvcCtlVTRVeU5TUVRnNGNtOE5RZCs1V1hTRkxY?=
+ =?utf-8?B?V2Q0b1pPM0N5alhJWjJ2ejIxWENUbXpRQXpLSzZubEhnb2tVZmZRand2ck1G?=
+ =?utf-8?B?eW5SUHpJYzhzVFpwaVkzL21QSjdkbHp6bjBqb0dvcHprdkFJdWpOdm1xamcw?=
+ =?utf-8?B?UHBWc3Yyb0MwT0F0QzJQc1hWN0dEWmd2cEs0ckkwYzhJSTNSb1gza3F6Q1VJ?=
+ =?utf-8?B?Z0luQW9yZitzdG1kR2NQR0IxQS9ON0x1VUptc3RWd2tqTE5hVnJSOUVPQ3hm?=
+ =?utf-8?B?bjNpa3I1S1hZN2V5L1F6NXdNSFo3aU5LOEJtTHNFRis3NXpIb2s2dkFFZ3RV?=
+ =?utf-8?B?SjJwRkowRFRvODdqTzlZRmxJRW5GL1JwZ09meFcyeUxHK3ZMTXRGRXc4WWZq?=
+ =?utf-8?B?WXRyYmcxRmRNSGR6RFNSeTVHRnJqdjVUNkQ1M0ROZk9UWWxFTjBDeGNhcnJP?=
+ =?utf-8?B?WGFYTysvdGdmamloU1c4TGgwSUV1TjRETHdzMzVqV2tISW9hU3dvdlRoWDMz?=
+ =?utf-8?B?NlhZVmlhWElZcTVMLzBVZmZ2Mklvc3lwUWhZZGFDbmVWTXp3MUdHSmJ6VXZH?=
+ =?utf-8?B?amllUENqLzRQRnFnQTFaWk9Bd05uYzVPRm1uNWt4RkV3VklIajZGNjZBaG1X?=
+ =?utf-8?B?YmNYRTU0QWxKTis0U3dPRHZFbTZ1UlYxM0RXRjFKalJtVjdPS29Pcks0R2Ux?=
+ =?utf-8?B?SGN5MVpXek9UL1Q4SXZRRXZDaU1WOGUzSlZ6R3BMZ1JxQmwzZDNiTXNIMUJr?=
+ =?utf-8?B?NlFvZUxEb09TWmF5UndMSHMxU2ExQ1pEVTlYV0hMVXNRS2xKN1I1VDRaZE1u?=
+ =?utf-8?B?eDlFS2Q5N3JKK05WR3V0Y05OZmtmak1jL0xhMTh3Y2dxbm8zTnJFcUJidlpR?=
+ =?utf-8?B?OXBPVElCUkdTZlQvQ2Q5UkxFbFY0ODdaNG8yRE41bExzMjFRMVVoU1diQlNU?=
+ =?utf-8?Q?JYWV5fzDMxHjZYwNWBtAIZkmE?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1d5829a-71f7-4725-80be-08de267c9a4a
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9496.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 08:29:34.5342
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: igFVE3Q+8t/9dLonIC+jre7k8S1/+I93X4/VjmkdJEitQnA5xbWQdn+HOwzRxEQ3u+ty+SgtOgBovT05fj3Bmw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8970
 
-Hi Andrew,
+Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+---
+Haibo Chen (2):
+      arm64: dts: imx8qm-mek: correct the light sensor interrupt type to low level
+      arm64: dts: add off-on-delay-us for usdhc2 regulator
 
-On Thu, 13 Nov 2025 at 15:28, Chunyan Zhang <zhangchunyan@iscas.ac.cn> wrote:
->
-> This patchset adds support for Svrsw60t59b [1] extension which is ratified now,
-> also add soft dirty and userfaultfd write protect tracking for RISC-V.
->
-> The patches 1 and 2 add macros to allow architectures to define their own checks
-> if the soft-dirty / uffd_wp PTE bits are available, in other words for RISC-V,
-> the Svrsw60t59b extension is supported on which device the kernel is running.
-> Also patch1-2 are removing "ifdef CONFIG_MEM_SOFT_DIRTY"
-> "ifdef CONFIG_HAVE_ARCH_USERFAULTFD_WP" and
-> "ifdef CONFIG_PTE_MARKER_UFFD_WP" in favor of checks which if not overridden by
-> the architecture, no change in behavior is expected.
->
-> This patchset has been tested with kselftest mm suite in which soft-dirty,
-> madv_populate, test_unmerge_uffd_wp, and uffd-unit-tests run and pass,
-> and no regressions are observed in any of the other tests.
->
-> This patchset applies on the mm/mm-new branch commit ea53cb52f919
-> ("mm/vmalloc: cleanup gfp flag use in new_vmap_block()")
->
-> [1] https://github.com/riscv-non-isa/riscv-iommu/pull/543
->
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+---
+base-commit: 187dac290bfd0741b9d7d5490af825c33fd9baa4
+change-id: 20251118-dts-imx8qm-7bafa38718ea
 
-Can this patchset go through the mm tree if there's no more comments?
+Best regards,
+-- 
+Haibo Chen <haibo.chen@nxp.com>
 
-Thanks,
-Chunyan
-
-> V15:
-> - Rebased on to the latest mm-new branch;
-> - Removed a redundant space;
-> - Added Conor's Acked-by.
->
-> V14: https://lore.kernel.org/all/20250918083731.1820327-1-zhangchunyan@iscas.ac.cn/
-> - Fix indent inssues in userfaultfd_k.h;
-> - Some descriptions and comments minor changes.
->
-> V13: https://lore.kernel.org/all/20250917033703.1695933-1-zhangchunyan@iscas.ac.cn/
-> - Rebase on mm-new branch;
-> - Fixed build errors;
-> - Add more exactly descriptions in commit message in patch 1-2;
-> - Replace '__always_inline' with 'inline' for uffd_supports_wp_marker();
-> - Add Svrsw60t59b description to the extensions dt-binding in patch 6.
->
-> V12: https://lore.kernel.org/all/20250915101343.1449546-1-zhangchunyan@iscas.ac.cn/
-> - Rename the macro API to pgtable_supports_soft_dirty/uffd_wp();
-> - Add changes for setting VM_SOFTDIRTY flags conditionally;
-> - Drop changes to show_smap_vma_flags();
-> - Drop CONFIG_MEM_SOFT_DIRTY compile condition of clear_soft_dirty() and clear_soft_dirty_pmd();
-> - Fix typos;
-> - Add uffd_supports_wp_marker() and drop some ifdef CONFIG_PTE_MARKER_UFFD_WP.
->
-> V11: https://lore.kernel.org/all/20250911095602.1130290-1-zhangchunyan@iscas.ac.cn/
-> - Rename the macro API to pgtable_*_supported() since we also have PMD support;
-> - Change the default implementations of two macros, make CONFIG_MEM_SOFT_DIRTY or
->   CONFIG_HAVE_ARCH_USERFAULTFD_WP part of the macros;
-> - Correct the order of insertion of RISCV_ISA_EXT_SVRSW60T59B;
-> - Rephrase some comments.
->
-> V10: https://lore.kernel.org/all/20250909095611.803898-1-zhangchunyan@iscas.ac.cn/
-> - Fixed the issue reported by kernel test irobot <lkp@intel.com>.
->
-> V9: https://lore.kernel.org/all/20250905103651.489197-1-zhangchunyan@iscas.ac.cn/
-> - Add pte_soft_dirty/uffd_wp_available() API to allow dynamically checking
->   if the PTE bit is available for the platform on which the kernel is running.
->
-> V8: https://lore.kernel.org/all/20250619065232.1786470-1-zhangchunyan@iscas.ac.cn/)
-> - Rebase on v6.16-rc1;
-> - Add dependencies to MMU && 64BIT for RISCV_ISA_SVRSW60T59B;
-> - Use 'Svrsw60t59b' instead of 'SVRSW60T59B' in Kconfig help paragraph;
-> - Add Alex's Reviewed-by tag in patch 1.
->
-> V7: https://lore.kernel.org/all/20250409095320.224100-1-zhangchunyan@iscas.ac.cn/
-> - Add Svrsw60t59b [1] extension support;
-> - Have soft-dirty and uffd-wp depending on the Svrsw60t59b extension to
->   avoid crashes for the hardware which don't have this extension.
->
-> V6: https://lore.kernel.org/all/20250408084301.68186-1-zhangchunyan@iscas.ac.cn/
-> - Changes to use bits 59-60 which are supported by extension Svrsw60t59b
->   for soft dirty and userfaultfd write protect tracking.
->
-> V5: https://lore.kernel.org/all/20241113095833.1805746-1-zhangchunyan@iscas.ac.cn/
-> - Fixed typos and corrected some words in Kconfig and commit message;
-> - Removed pte_wrprotect() from pte_swp_mkuffd_wp(), this is a copy-paste
->   error;
-> - Added Alex's Reviewed-by tag in patch 2.
->
-> V4: https://lore.kernel.org/all/20240830011101.3189522-1-zhangchunyan@iscas.ac.cn/
-> - Added bit(4) descriptions into "Format of swap PTE".
->
-> V3: https://lore.kernel.org/all/20240805095243.44809-1-zhangchunyan@iscas.ac.cn/
-> - Fixed the issue reported by kernel test irobot <lkp@intel.com>.
->
-> V2: https://lore.kernel.org/all/20240731040444.3384790-1-zhangchunyan@iscas.ac.cn/
-> - Add uffd-wp supported;
-> - Make soft-dirty uffd-wp and devmap mutually exclusive which all use
->   the same PTE bit;
-> - Add test results of CRIU in the cover-letter.
->
-> Chunyan Zhang (6):
->   mm: softdirty: Add pgtable_supports_soft_dirty()
->   mm: userfaultfd: Add pgtable_supports_uffd_wp()
->   riscv: Add RISC-V Svrsw60t59b extension support
->   riscv: mm: Add soft-dirty page tracking support
->   riscv: mm: Add userfaultfd write-protect support
->   dt-bindings: riscv: Add Svrsw60t59b extension description
->
->  .../devicetree/bindings/riscv/extensions.yaml |   6 +
->  arch/riscv/Kconfig                            |  16 ++
->  arch/riscv/include/asm/hwcap.h                |   1 +
->  arch/riscv/include/asm/pgtable-bits.h         |  37 +++++
->  arch/riscv/include/asm/pgtable.h              | 143 +++++++++++++++++-
->  arch/riscv/kernel/cpufeature.c                |   1 +
->  fs/proc/task_mmu.c                            |  15 +-
->  fs/userfaultfd.c                              |  22 +--
->  include/asm-generic/pgtable_uffd.h            |  17 +++
->  include/linux/mm.h                            |   3 +
->  include/linux/mm_inline.h                     |   8 +-
->  include/linux/pgtable.h                       |  12 ++
->  include/linux/userfaultfd_k.h                 |  69 +++++----
->  mm/debug_vm_pgtable.c                         |  10 +-
->  mm/huge_memory.c                              |  13 +-
->  mm/internal.h                                 |   2 +-
->  mm/memory.c                                   |   6 +-
->  mm/mmap.c                                     |   6 +-
->  mm/mremap.c                                   |  13 +-
->  mm/userfaultfd.c                              |  10 +-
->  mm/vma.c                                      |   6 +-
->  mm/vma_exec.c                                 |   5 +-
->  22 files changed, 337 insertions(+), 84 deletions(-)
->
-> --
-> 2.34.1
->
 
