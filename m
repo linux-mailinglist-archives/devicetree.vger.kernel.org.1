@@ -1,194 +1,135 @@
-Return-Path: <devicetree+bounces-239992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E52EC6BD79
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 23:20:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14665C6BDAF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 23:25:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 189B24E1CB0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 22:20:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0E2844E560F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 22:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738332F6180;
-	Tue, 18 Nov 2025 22:20:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82186310655;
+	Tue, 18 Nov 2025 22:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="MpLiCr1P"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="O7Hdl9mB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011029.outbound.protection.outlook.com [40.107.74.29])
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162402EA743;
-	Tue, 18 Nov 2025 22:20:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.29
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763504417; cv=fail; b=cAqCD3LDHLchsi3SP0oAzMamVaCasiIZVJtIsGnlmce1/21NlSdvh2FMmkeMqt089n5RxH+xFJMc/EfuWJQ0OL3hOUIJK32Cril217VCXTeyVLf4iVJaPiuCOuag6zk6LTYM0HTf8u0BIV4rN2t9SBgzYnGrGG5xhLKVYPlMwVM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763504417; c=relaxed/simple;
-	bh=1gnlPnoFc5UFb+b6dhVoymnItpdjxSw4QrUA0zHPWao=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Kcz96wWBexWrRWHdnz1Zlu3cgKS2puDrd+DPIoHA/qHodv0UnMLiOgGAdMBpNSs3Qb/aByu1XSjR9Or3OEZKkYFnGAw8fmlvyPxNbO6Ti1/kPRUCH1+2EsodyEFZODpyKzKseCPHJkNHkyu10WFsb0ObiD7bC+E6wrIKVFC5jRg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=MpLiCr1P; arc=fail smtp.client-ip=40.107.74.29
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gYajprXoxCRHfu16LiKD+lPhHi5sxzvBRhaC4AByXVbS2mbeGrRB1uHeSQVPm5M7UmcIa6U1Oy6WVVM6pFKLGmuQL7astixuD7dgto8BWdZUdUBv3qRjntnLkqxMbU27BPi0wdv32dvv67fKcg5pJts3D/46ucdDnoq5QveTc2rc7lOmcL4gnGXWLF7qSD9zHaYXfknk5S8VzlVe7TD9uD8YrETA5VhYZdzFwFhEQRafGKdJ0Eqac7zD4F4Q2V2nSqYvy1yVHeBFMxW6Zxl+OD2AAXhcjyJzffYj2KvTgpdHf80JPYGbp8JwD/OXn4VUsUDWDKjEMpwHOe0Mj9d4aA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iK8EbGayc9VD5bjvp8UT3aMbhqigQFSRTIZADn/E7B0=;
- b=YTTBMtRWQ9sMSks29G8h8wySWB1er4mznpSCRiUfijYYnPQ9QP5KowSR/19xUcMv3rTlvrtgAHCLbkqAfD4yfOGPdkYfE0iVTiaCXH6yFeGIQ/7PnwEMHDHFkqR8W8a3ASqvBnkKmmRT4gabRU98xtUt9pd3mV/PtsHvhA9GuEeJoE1+WnNAR5oqjelVOYw1mkf4FYO9Io9MB40luX0/f0lzrfppnbb7ggKxAu4Gdrlk/Nnm/xPOyZoii4z6bjk8ItxxMAP8nxePEqZkkm25aOxdlwvcnW9KUoJcYS9PHj3K8EwgUX5KZpbRi57uqdDJFDVujvuVjU+dvP/M7vYIxQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iK8EbGayc9VD5bjvp8UT3aMbhqigQFSRTIZADn/E7B0=;
- b=MpLiCr1Pgh/tLWiE6hOpkUwo8Ggk0qv4uEDgM+hEeQJd2wxZp5JEpXhrOVfdtjSjK8gEK1Xm7d11gW6tcp0lFcAHTEBF2QDzIGPc4WOjZ8LzPtu6Litlfl1tJNCOZMRF+jSRPdBg2dsGNpNq7PNcfMwmbp83c5sx2XX1u7y4KRo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
- by OSZPR01MB7132.jpnprd01.prod.outlook.com (2603:1096:604:11a::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Tue, 18 Nov
- 2025 22:20:09 +0000
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9343.009; Tue, 18 Nov 2025
- 22:20:09 +0000
-Date: Tue, 18 Nov 2025 23:19:53 +0100
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: rzg3e-smarc-som: Add I3C support
-Message-ID: <aRzxCY-Z59tMKro2@tom-desktop>
-References: <cover.1763475830.git.tommaso.merciai.xr@bp.renesas.com>
- <96c503737c4e913dd3a934fdbbb4545e44455a68.1763475830.git.tommaso.merciai.xr@bp.renesas.com>
- <aRyf_4U9DGRmssWd@shikoro>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aRyf_4U9DGRmssWd@shikoro>
-X-ClientProxiedBy: FR0P281CA0208.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ad::16) To TYCPR01MB11947.jpnprd01.prod.outlook.com
- (2603:1096:400:3e1::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E4930F7FE
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 22:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763504646; cv=none; b=jbJxUI76vNpKoGJO4trVqnvuQwxGKddy4hjERb4hJu8p6Ux3QuNwpj/jECkyzGnHj5jrtGpJiNyDKYTSnAeb9IEkLn5pzgl1S8GxwJ2Mq9S1xX3Uvn6xdQZI1oPMNm3lrERSD1tntx1gOWNypXj2/85ZV+lRwB+8qT3Y9ivYkfY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763504646; c=relaxed/simple;
+	bh=svpK52mxw2R/BGvQibMTyc4I8dCzRhhBHywfqdbMC2M=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=S80xknGNxA5a3ZXBtg1lmv8Q5DVOVvm9beh1jAb/aeDM4RyPiRgVZ0gDYccIceIuQvNuHkoFGDI06mxykaakn4K2Wiw+7bBHvAWnHlY97VdDuZWaIAaz1dA2ZDd5TK/8bAiJWiMbDVBrIsMNSpzM2rFpZ3Ui+gA94udnY165ySE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=O7Hdl9mB; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from [IPv6:2a02:1812:110a:5400:17f3:a8ff:d314:780e] (2a02-1812-110a-5400-17f3-a8ff-d314-780e.ip6.access.telenet.be [IPv6:2a02:1812:110a:5400:17f3:a8ff:d314:780e])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id 90C996A158E;
+	Tue, 18 Nov 2025 23:24:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1763504641;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=svpK52mxw2R/BGvQibMTyc4I8dCzRhhBHywfqdbMC2M=;
+	b=O7Hdl9mBz/1QBSmYAGWqwwsxVsMNMmczdNYv77u01hwqGKSWy3QBCPpg5mSBT90M8194xH
+	R7BiLtAirzVOio42wiV+iEc7aKWRZje50b7LOVRNwhVLbDvIQHng193c4nK/gJwUPtxgGP
+	IvrERB2g/+VYC7f3cdOzvnNlu7XXHWphjTUbHJNNB6wTNWzTkSgFVCyLs9cdecx/sewLNN
+	wQFDf62Ba/OF1KIl8kU/dXU0A74N0WYQ/wffjpE+YKUPrH6NerooLxLoDwVAYhEfIGfP6O
+	wFK1CbV6ozekQgOg7R3mGd88dEW+UOW1IdoSfn8+mNd8vMohE4i8iVsSHL+U5A==
+Message-ID: <0aadc274251ac1627c4b10e96cdc21bbbbe1bb57.camel@svanheule.net>
+Subject: Re: [PATCH v7 4/6] pinctrl: Add RTL8231 pin control and GPIO support
+From: Sander Vanheule <sander@svanheule.net>
+To: kernel test robot <lkp@intel.com>, Lee Jones <lee@kernel.org>, Pavel
+ Machek	 <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus
+ Walleij	 <linus.walleij@linaro.org>, Michael Walle <mwalle@kernel.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: oe-kbuild-all@lists.linux.dev, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Date: Tue, 18 Nov 2025 23:24:01 +0100
+In-Reply-To: <202511190436.9oQLbI8A-lkp@intel.com>
+References: <20251117215138.4353-5-sander@svanheule.net>
+	 <202511190436.9oQLbI8A-lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|OSZPR01MB7132:EE_
-X-MS-Office365-Filtering-Correlation-Id: ae09e9bc-8bf4-4404-962e-08de26f0a27a
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?0EvMru+5PRiHfKa4n+bjXrd3OrkS066DjBb2yaebW7iBNT/AZM+N22Z+fwXW?=
- =?us-ascii?Q?XuCe+uXPPSOy4QceLYv8oW3BdkROQZLSlknIrPYI9U7VpVadHtDubstDYINB?=
- =?us-ascii?Q?uz0TAL0ulf2BYvF6OKTfLZ4LFLga2/Z1/cOyEFPcafyz7q5cdmI0UyoVILRq?=
- =?us-ascii?Q?evAAEy4GJrqI6uVlaJb3ZXfml8zDgzfustHJYwx6uSHWG1+3CQQcPdUk/4YV?=
- =?us-ascii?Q?ygLbKQ4rPIv22uG1ydp0jXG8XC9K3x0HzxKvhvWEyi1OM1VI/j0CKnnGN9mL?=
- =?us-ascii?Q?sIzBLgIQWzFMzT1Do15fceUoe8qZaq6eSne5X9zauB4EAly0yD5Ci6U8SSll?=
- =?us-ascii?Q?4k4nodMFo+gmLGEeu04zlEnekiCRFDpf0R7yqSFuR/j65P0Ig3lH4nZ34KU/?=
- =?us-ascii?Q?m3wRA2UxiCBmw1RSk7P/koia7iK2w7g5U6KcCeFNKo7I9xTNFLbevvYupctv?=
- =?us-ascii?Q?IRUVRS9o3/rY5Ju+J6YtWLybcgh9l2f/y6wzC38USpfB1o7MS1955bx0a8wp?=
- =?us-ascii?Q?37Q8GnFsxN/nSZSD1Y64lQYlMxyK+8AL2Ja8SGYBZZb94w2M7Pqca1jSGIEI?=
- =?us-ascii?Q?ydvLpkJHoh94P+LkPXZPNZMlDUkExtesdcc82Hvmfk9jSxTovwprTQW/EDtB?=
- =?us-ascii?Q?pK/wstcK90zk6YQkuPZdtPXI2ng4W7g3GpMrIblo3faHLRnEgGAZYD2B4W2m?=
- =?us-ascii?Q?lJLM71T2CsUqzKbTqNMyO64iL7bL8K7S028u+jmOVFdsk//htcwDYhruip5S?=
- =?us-ascii?Q?O/jK3vfjo7ueOp4w+FeA5twGHIZU7xmAU9FdVhQCBV+MGXxO5uuYV1DQjcjF?=
- =?us-ascii?Q?6spL9NMEwr80fPX8THEVJGFvbl9MuSuhqaN/ZMpnMbnzkIr/gQbH3YmOPkNt?=
- =?us-ascii?Q?qTTRU6iW9PyN52jzSpl5Api0woFSEXm6t/cJiDwaedQ1sKg44rIA0e4DqJq2?=
- =?us-ascii?Q?8VNHQCcKYZQcWk7Y71kP+vnk8wiKHatOAne4F6oYhP6YgigASEhhgXsBS7YU?=
- =?us-ascii?Q?6Rb93Sg0+zlcT3Elu99puJNkXIkhZHQyxLAVOQQkx0d+NAbml2oXmcSjtAM0?=
- =?us-ascii?Q?jn3chG4m0XdgsiGiW0Xr677ezsm7ULJWkgOrUin7O6b8gFdER6aM00HkaeYj?=
- =?us-ascii?Q?IEGHMd5+t68UgQPD1WLOfUslqJf8mafHXbzAesM8cIatMnUF6HAQ+xPPaOh8?=
- =?us-ascii?Q?LjzSeDrBetT63vtyJYQc9pPP/Dzw4pYTka55oMP4+TRAZ6EXBD+NWKKg9lv1?=
- =?us-ascii?Q?H6YFHqIAjvbSZRxmoeHZQDAX1GXASPo7g7y0+yYpTv24GjJD6gIeQ/Q/ZsSA?=
- =?us-ascii?Q?99/NOS3V39GhSG13UGkZGAf1KrZjMBGWXuVzsJvqdjyOS/neY5u+auJCTBZh?=
- =?us-ascii?Q?1plqLOdndw4ZsWxVTPfVhSYSMo8E/MQ7VkJqfgrhMgE+i322JUbNRJBrsey4?=
- =?us-ascii?Q?TH1fOcIe/WdcJ9qXd3bbes2jIWbRvqyxHtTo3T2jyYDiEPUaXEJpQ7YtUtg3?=
- =?us-ascii?Q?BjT6xJKQulfK548uKHgGLd4+ZipUeaE9BVoq?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?stFpBqNoosysW+x5RhAbceCtUF11mU8Lsqsd3f0Pjmc7ZAplWJe+4GuN5J1P?=
- =?us-ascii?Q?NPTbJ1zknqKM/zekmBmj0L4l+BHOpaOKG8JBNOdqWSrv4pqg9DvH02l6H22h?=
- =?us-ascii?Q?obK5yhneF1rISxmjNw4BSvR/7RO3vRzH6Z7edwz2gHAGtQYlKA0gin7Kguui?=
- =?us-ascii?Q?GGpjS1SS6XXEJ5FX6tuP3K26kdZ+mqdosnYXLDGkmpW2DueVnitlbtr4O8L+?=
- =?us-ascii?Q?BskCbOXhLhsikqEr0SBJBdvzwR3zNQkpxwSTkuA78poDcNwOCC7G9Sw/w0OA?=
- =?us-ascii?Q?R1yMtjbhmRtd6hOYYRffqDi8mZhWJDowgJDJw9ER90mjLYG7cNbaxmbI1N3/?=
- =?us-ascii?Q?5xTxPIoHJG38AZtpyPj/gtfSA4Zv+JjnWARY3JBl4c43N4yhpMqGpe/9cexj?=
- =?us-ascii?Q?EUk1jJCcFEbPNwZ2/LJ4U7bNdO87q8K6WQDnMFkTxHdE5FguqflZXvlOleK9?=
- =?us-ascii?Q?MC79gJ0PDppYRzk+YXAXZZ63WtqQSDjgoinUvmM7YtJQs7Ga48uTyx6R53Ar?=
- =?us-ascii?Q?V8FqF/PQXd8rjJ3k3qtqw8R4alnHaqMWSIYFgZMDbo3x/xA3Qeg4DabC/KRg?=
- =?us-ascii?Q?pInJxOXfFrU837l3vwxEycf1xb6JsOuadOPzrIc14rSb7nFYfa0iqTxXuSrw?=
- =?us-ascii?Q?+pOvDD5/eFibs4l9W7KZevOpixQqN3YqPN5EPrPZqTW4fB85KwMXAeVYLR9V?=
- =?us-ascii?Q?NCT8o7H1Bj8hYHxdcmH4RFGCDm523Pb/m6WWmYux24kLgd9onuf1JQoNhNbn?=
- =?us-ascii?Q?0ODY5ZfrIQnoBe7KBeoxedihNdfx60SrRiCWshFVj5AEvwDNMlhzVWTsimQ6?=
- =?us-ascii?Q?mqUvAR1XSB8+Mh2lbAikC0RcJ5EDRdPfH6VZ3TXVsxC+p9AgEe4P5YLUWudL?=
- =?us-ascii?Q?09mbef+7DO2uzqls49Gg8gnIP4HiNhyyvoMKnm/m1A+6XOzHr/icbZfQTc8B?=
- =?us-ascii?Q?TRs/SCaP0pPxtjcTLBgP1KEzPmzc56te+FTxVR9sHBWcBl7tB8SZsWkTk4w6?=
- =?us-ascii?Q?gA19nLEjB6s6xnZeqa+eWtSwfMOnA0UPdZUNa/+hm06h+hoY4Fvbd2UZPQjv?=
- =?us-ascii?Q?9Goj/ywHNBokiSydo50w/1B+XcIX7VgRvsbyvRBzXhm8Jc+A9CyjsiJo96AQ?=
- =?us-ascii?Q?GNhAyUbJ9G9jECgSGLX85GYeWXrtFH6BKDj1hjH4eGx4SoU0Wh4nhX8pmu+L?=
- =?us-ascii?Q?SV546tjlLdcmZj7V570rofDY4t3P32iQMT8sLjdsTvah3QeEInI9NlzhNaat?=
- =?us-ascii?Q?w2wGkvl+tZqaJLqZ3ccAiRhEf/ACZuu8Ev6J2Tr/ntooccCGQ2V/YLTC/efI?=
- =?us-ascii?Q?F/ZaBcmnCymX6WTBim8HR0aUrut0yBULBzbVpvb6aEDiqnpgijhKVAaHbBkk?=
- =?us-ascii?Q?3Sd0+Ibgmh/85iiEHg7yq512fCX2BjMyZnxKvpfRgkDte7OtK8h9GK1qFzre?=
- =?us-ascii?Q?JV1IFVzss57zmRd9bIDtM68Z522rdLtWaGtTXcjGBmfrGYttVEnnQL+/HTqI?=
- =?us-ascii?Q?ezEKFr8quA/NkSqUS0TU00vKh1/4pFrp+hM4fOz870pwP6zsy6VH/nIe8GVh?=
- =?us-ascii?Q?SG9MLi+EbIzPslkWS8xCmK9wb5Klo+2j3QYbmcdpXLFdwumvA4AB67eoMPN9?=
- =?us-ascii?Q?fXJ/YFFHktikCx/04qfpkrY=3D?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae09e9bc-8bf4-4404-962e-08de26f0a27a
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 22:20:09.4432
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: abmijuCrtE81cjtMKS8MtatsbLN1TzW3CM+51U9clKTqiB7YLbC0NGrgXcGVJPL6BqSwxrhOVbM/KbeAoxi2N7eCsDJMk7I80clT8s421w5O7jt3GIY05EMnv6ARzOVW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB7132
 
-Hi Wolfram,
-Thank you for your review!
+On Wed, 2025-11-19 at 05:19 +0800, kernel test robot wrote:
+> Hi Sander,
+>=20
+> kernel test robot noticed the following build errors:
+>=20
+> [auto build test ERROR on lee-mfd/for-mfd-next]
+> [also build test ERROR on lee-mfd/for-mfd-fixes lee-leds/for-leds-next li=
+nusw-
+> pinctrl/devel linusw-pinctrl/for-next linus/master v6.18-rc6 next-2025111=
+8]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>=20
+> url:=C2=A0=C2=A0=C2=A0
+> https://github.com/intel-lab-lkp/linux/commits/Sander-Vanheule/dt-binding=
+s-leds-Binding-for-RTL8231-scan-matrix/20251118-055707
+> base:=C2=A0=C2=A0 https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd=
+.git=C2=A0for-mfd-next
+> patch link:=C2=A0=C2=A0=C2=A0 https://lore.kernel.org/r/20251117215138.43=
+53-5-sander%40svanheule.net
+> patch subject: [PATCH v7 4/6] pinctrl: Add RTL8231 pin control and GPIO s=
+upport
+> config: nios2-allmodconfig
+> (https://download.01.org/0day-ci/archive/20251119/202511190436.9oQLbI8A-l=
+kp@intel.com/co
+> nfig)
+> compiler: nios2-linux-gcc (GCC) 11.5.0
+> reproduce (this is a W=3D1 build):
+> (https://download.01.org/0day-ci/archive/20251119/202511190436.9oQLbI8A-l=
+kp@intel.com/re
+> produce)
+>=20
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> > Reported-by: kernel test robot <lkp@intel.com>
+> > Closes: https://lore.kernel.org/oe-kbuild-all/202511190436.9oQLbI8A-lkp=
+@intel.com/
+>=20
+> All error/warnings (new ones prefixed by >>):
+>=20
+> > > drivers/pinctrl/pinctrl-rtl8231.c:28:27: error: expected identifier o=
+r '(' before
+> > > ':' token
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 28 | enum rtl8231_pin_function : uintptr_t=
+ {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
 
-On Tue, Nov 18, 2025 at 05:34:07PM +0100, Wolfram Sang wrote:
-> Hi Tommaso,
-> 
-> > @@ -29,6 +29,7 @@ aliases {
-> >  		ethernet0 = &eth0;
-> >  		ethernet1 = &eth1;
-> >  		i2c2 = &i2c2;
-> > +		i2c9 = &i3c;
-> 
-> Hmmm, I am quite sure the i3c bus is not named i2c9 in the datasheets?
-> I'd suggest to drop this line.
-> 
-> Rest LGTM.
+This isn't supported yet pre-C23 and before GCC 13. I will look to ensure t=
+he a properly
+sized integer is stored into the pinfunction's data pointer.
 
-Ack. Will drop this in v2.
-
-> 
-> Happy hacking,
-> 
->    Wolfram
-> 
-
-Thanks & Regards,
-Tommaso
-
+Best,
+Sander
 
