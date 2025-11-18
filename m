@@ -1,101 +1,103 @@
-Return-Path: <devicetree+bounces-239609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB676C67484
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 05:40:57 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F67C67481
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 05:39:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E4E62359BCA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 04:38:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 86CED4F0B1D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 04:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 464AA2BD015;
-	Tue, 18 Nov 2025 04:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF2D32BD030;
+	Tue, 18 Nov 2025 04:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Bk+D9Xp9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BxybZjqr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YSFMwG4X";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="e+4SKRGb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC7E296BBB
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 04:37:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8C628C014
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 04:37:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763440672; cv=none; b=llqmnVWo/LyH12jhYkxjON+iVI7gcnKI0+4R/KJ9JTHZnYAsDV8nfO+vLUiRskry1e/L5hKDiT5U/DTmSvRJJP1c5YgW49ztGJ4Wbifn64z/pht/VPAbE4StB+7Gqm9+TrlGm7Llxuxdj7eFMQLq5cQU91LHo64UJ5hIIxWc0zU=
+	t=1763440677; cv=none; b=Nod+XSGUvNoZn8ROmf32FkPk/2kS/W3KTb8W6EzZg8c77UbPQzdHNqInhc7p0Dmt1vaqnJFQMTUWCrewIP+L4ms6J+UAu49HhQi0m3i9H/fxYdJv9dyj2JtN5XUIDNABVJSNsUhleCytH+zLVva2K+O93vctn4reT9i3IgXSluE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763440672; c=relaxed/simple;
-	bh=eYntB9cM32oNKNfNcv7GAaypc4YEZOINwwB69UtDnnQ=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JkUVnMx+qUJJXkg/toQBbIehwtrgwvOtMBE3Wvxu3qagX7zhi/pQt5QDAb3kiZzQMTvrKDb855FWQBQ4zyPnrmnBf6Kh02sCuPsf/bNA1nrF2U32R7rVtoX/5qajQWjGEobFQzhjH2wc/ehrnyP5FzMI7f3Te4lSoUjX6O2EySg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Bk+D9Xp9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BxybZjqr; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1763440677; c=relaxed/simple;
+	bh=qz4Xz5Ldc9/otglui7guw4sFZjWQzTzl5rBch2+0xBw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=K5gcSj805oFGOFdIwx0XQrkgnyJplCAMv18eR2iUhXP75hLyBG5CQBNSOKRUY+WV13TCUbdC+NfA35WpA9QF9Y5OHIFdwEqC5gs1OGND4svCdQ4nCgOGBIodisYIV7lH9Rah56g3ruzaB2UbGHMaLiClUiqFZ27DPUDqk33LPMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YSFMwG4X; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=e+4SKRGb; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AI1MPpB375295
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 04:37:49 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AHJbhme4107434
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 04:37:55 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=a7tOSam0QBGfSIMY8ZveQl
-	A06s6WFVjc+TTPafZavTk=; b=Bk+D9Xp9q2qUfR7aTyhzCJTPHx3DXXZH2jVNHC
-	7MyzcjGeQelLxnOARwbY4vltJgnfsWdGp0DG7FJZNOuIKEMcbr2TKB3aoL6xmXjt
-	fG+OKA9Xyl/Gl2PSO23YVe77V+2K4WTymmACLdS6SfepAKZ3ggAT8pbpXfQS8g6h
-	eerfNz0Audj5UgXyacszkVhpEtV7LVWCU/qv4eLvoMyYt+WzIfJ4jmZo7hd1qlln
-	qhh0qM0Tgb8+V5STk5PayKkGf0BahWz0b/K4LX80DaGhMcJ7s5s45Pfj6OZPDaKu
-	5vy7qNsdCDbOjhlW/upC86HxHvsnTdIW3Bzz4nUdSoe+9jwQ==
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6zDYrYdR+iycJ0sYRVFXMBXVR05ePvLN9oUY6h+GbOs=; b=YSFMwG4XQp7sdhPQ
+	EO90LHMxcIs8FVq4UYUJdX0kDJbJaH+m84VQew4F5LxnBMv7zXzryzNqg1HQKuZE
+	tQDjzHx8lBhDn3Oro81tKyEYn1651kcWf7IcjzYDjY8MoeZWfLl2Y2txMPhKU1pW
+	rU+RS+uttR3YKO7r7oaStLWCqIVjMBVjzJrc8D9pldwG6UAmwtPrlpmXQCRABmFr
+	LT37bOZCNKg5xypTzZILs2IGrX61EC0XZa94XQ2CPdvx6KnPqHw6DZNorfxQpzmY
+	aCfPAwBVNUqyUTQMC0+Jw39VCJf8kV7HPrPtlLTF3N0s3dLuBejk8pva8gRI/saf
+	6RxGVw==
 Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ag599a5ru-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ag2hpaqgp-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 04:37:49 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-297fc324999so17918125ad.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 20:37:49 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 04:37:55 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2957babd7aeso18222645ad.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 20:37:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763440668; x=1764045468; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=a7tOSam0QBGfSIMY8ZveQlA06s6WFVjc+TTPafZavTk=;
-        b=BxybZjqrg0S/C2MbqZZ04fUYGn3+Ch18tpi4ZGjtOcUc55QSaIwn1hR4G0t+KOF1p9
-         JC80uivoDBDAc+aLWlyNuMALzZ3VouYaJgcckoy0994CQ+hy0YqXJKIvz2Tu0rijkXXR
-         voFjoSvb8u/L4FqAjaKNRtq03mT1Hr/EaGdtAsjkanAwOnOGDsBFa9lC0UMnzLGt+SVy
-         TDRIWVmPcRhdXOf2kzbNZS3P1SrJPj8TBO+SNHMfyR/MnIkbtvhWdS7pCcok5v3RAv1E
-         +zzRId15xRjbNP3W38RFycLpdpubqyRPsD4T2geldXVKcU95a7Uur++RB0/fhzVVqp/n
-         naXQ==
+        d=oss.qualcomm.com; s=google; t=1763440674; x=1764045474; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6zDYrYdR+iycJ0sYRVFXMBXVR05ePvLN9oUY6h+GbOs=;
+        b=e+4SKRGbHVCTUPz1OV+SQr1n9UlAUEcPOHodi/Hvlm3sJBa9M0K6omBsyP4RLDOls2
+         wW8AGq+fHNnFzLCFCeeEWALaP8OSMlRhN0jN8tGJkIDWD1lUOhMtJa/4UDCOmO/Yi2wW
+         1r9ZCN6df3j5KySuMVebc9O3KHl0roYTD+J7sKxyHDwrey0kQouD2hnpWogaxP6IF/r0
+         w3oKKgfqyK9grN725SZXWGISVrZmnTYuNeZUgbc49cn91JibqLorZZg3Tv/Ya8WCOMm0
+         EUchGynPBzSR9tBZ1NQ6IJOyG7449XIsjpwt69DbiJPvgeqLjwDkWwaTAtWWjhxFK3QD
+         rUCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763440668; x=1764045468;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a7tOSam0QBGfSIMY8ZveQlA06s6WFVjc+TTPafZavTk=;
-        b=Ys/yvQIIqWWHafZOqe8TlGMk+09KGlKFPEL0M+z9eGo28Io7A+T8WzeArP2X2O4wjr
-         EtHspL7BZrY8hzDTFBjRswR5TYHe1X1VtwBbZPZY5zRT8d4ZkvqbC6wK9cnkkqvRD6h3
-         fbYoQUt+vSJtzdsa2VrY5P/dD61B2ozaWJ4UZ5sof0SEfTE8KYVjXdkthFU0ZfyTuYF9
-         ClEyrjIC3tw8aTUeIPewCoNkAAboS+4LzVKfS3I51OPYJoTZXyKwtsZT8UC6FiL8cdWo
-         fWTJqPCyuT7lEKBaTuywfV6AzT0ox/WFcjHreIwej4FCmwFkfqhpDnV/M1dMk3eVqK1F
-         G38g==
-X-Forwarded-Encrypted: i=1; AJvYcCXih9m9MSIApojPigeebQAbctGgO2gL6uohJ3SuLmDb9eOAq1aD0r6fzMUWIFavP0YE7trKt2pU4uSh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzNzX/elQiPnZLYqN8j1mpBnFJd01qvuto1hm/8sTM6p6GrEwf
-	TpdrNQm2B33Gg6nfGkOKA+JbkoXshO0FbmSLze9Oz7KCHdRzqXislqJ2uAjB56qSST6zA+3dF8v
-	mVt9ZgghbK7Sf8p0JbC9aDO7k9AXRgygPXKV9den3kI04ozdDYmclQ9MpBkU5ZdSA
-X-Gm-Gg: ASbGnctggjSkbx+4azsPofGc9G9ngB/Y9fjJbF+DNO/LJcP1WxQFMV/mQjRzLcDOHsu
-	uCTYNxVPjtr20sEFuF9nnKFvlr6B2cF6YpaXl50JI0o9ojNdI23kiOzzmNmZRpmlor2RuZqxfUc
-	K+JMrQ0An/1G2hSMjdA0VYtM0hFyj7NI43dV6E2YBtyjYHOlQS7HAmw9NtTeAAqpkEIH5Yee/AN
-	HZoiBjReuqJeJazMrqXgVnYexDoJrLFc3uWY/Q5ZvNDs7Rmm7oZVm1EqwWuZaZ8cHtb5MEWxLZD
-	Rl8FT8RttmntM/3QZcHOqt9FxEG4X94PPAGVJFVqnwMKFilYcpYKc9LbZXpFtSBsh+2E8NO3dBX
-	TX3TIt99kUj1sX8MIVpv0RwnWYISuxjryA0d+xnRVbBH713ccNEncfuFPH/OqMOl+HsCa0UO1rp
-	wt+bfwqK9fDfMBcaEwil0=
-X-Received: by 2002:a17:903:182:b0:298:371:94f1 with SMTP id d9443c01a7336-299f651e44fmr12145205ad.1.1763440668424;
-        Mon, 17 Nov 2025 20:37:48 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEtTY88As4AoB7Z5UtIz0zKfIxsT+larl9yVkjoVYdRp4bW+u5rnIYlZnwgfh4sdMsAXv8wvQ==
-X-Received: by 2002:a17:903:182:b0:298:371:94f1 with SMTP id d9443c01a7336-299f651e44fmr12144895ad.1.1763440667963;
-        Mon, 17 Nov 2025 20:37:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1763440674; x=1764045474;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6zDYrYdR+iycJ0sYRVFXMBXVR05ePvLN9oUY6h+GbOs=;
+        b=HddwyOapGSE7VFwP5L2fYB5oPfXJolB5dRo/ge90mtD/SnWmF3tc0aX53gN9CUDmYM
+         cDBex6UF1tlLSx3kS9jPtBXFoQ4vBeDs1ABCOM6mnqipBflCNr/gC+2KSwjwhV2C8I4N
+         oTCm6+P81j+bqGDF5zg0XLhIbKMbYFymfXZXbOJUysnVtKpSFcw418AEryhzgxXQmZy6
+         FRvXxZBaqQTwx78YgWj0XzjMniGtVNqfxWOu0K4eajfuxvIcDvBd/j+cttQhi2rv5AM+
+         Jgu3nMGxovxkWAWTDCaOIZOGSUYpHyxHPV/GXCzQmA0ia3d/I8Oa4Vg+6b08wcBK9m42
+         SG4w==
+X-Forwarded-Encrypted: i=1; AJvYcCUC0b7HFAMk+AtjanVeCPqHqLgyKcTEhMIPzR44dyG+wGjAZSj9cVJevrESDc+vQNzfK6zwpVLHD2f2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3BuWLy2Om9GU8IRk3Y6fJpOW6yp0EczMjyakrKcjxauNtOQL0
+	l5oUnTKqVha+q6mOqjhLOb5l6WWx1Dv5djX26ShJtoBWA9YgOrRBc0JZwjzn2e47KsKXFL7s+8d
+	+/2DyxOyNdseWslbmLTcKtOrWgbg8SqBE1kGaImfx62TXJPe+QZuIP6bhU6nMg+b4
+X-Gm-Gg: ASbGncukB8rdY3cgi/r3brTTGzwfZQf0Peq0jj4whqRWkllgAhEVT2Y8mZool+Y2hPF
+	vk8go9vZPKs2ouJB1FkxBSsjP5VxuOFWgEexidxo2xzer2Pe8yrVQKY1gwxOPF2O0WX5BGOXXok
+	+l/xHy5PFk9T+oK7FzCnFKgWhLQpR0Eqzd9YX/QZPrqQLbOpkGtP5y5FZqmUhmcZmFwfTI67ZV8
+	js7dt4PhNGDI3Ku0n7iEY7Ok5qzefaXEwc3UYiB/mtkTF00CHjK7QK/4scrttWWZUX8jAXQTYl8
+	hvAkQDUI9f6/gBEA51QZZiFW67Zv4fzkrfELUVTRHS93CL4Cv5QHS87TLNc3UmiCQ3va2mNL9W7
+	tmKkmIrZjh2nwYLoT56gYEcbjXbZDuVy08oS4Tcg2BGGOBF/RSOg+tl0F3aEDclqANQcpUPGxAh
+	9KD7gtrl1AOgsiDD9QAww=
+X-Received: by 2002:a17:903:38c8:b0:299:e041:ecd6 with SMTP id d9443c01a7336-299f65b6d93mr10616125ad.8.1763440674041;
+        Mon, 17 Nov 2025 20:37:54 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF0IvWP+z6wJPIorOdhkrTefI+9g5lpBqNUGn5qAJvKMh8WBTovxSfMz+uG47qChzgT+Aj74w==
+X-Received: by 2002:a17:903:38c8:b0:299:e041:ecd6 with SMTP id d9443c01a7336-299f65b6d93mr10615955ad.8.1763440673537;
+        Mon, 17 Nov 2025 20:37:53 -0800 (PST)
 Received: from hu-vishsain-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2ccafesm157426315ad.97.2025.11.17.20.37.42
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2ccafesm157426315ad.97.2025.11.17.20.37.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Nov 2025 20:37:47 -0800 (PST)
+        Mon, 17 Nov 2025 20:37:53 -0800 (PST)
 From: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
-Subject: [PATCH v2 0/2] Add lontium lt8713sx bridge driver
-Date: Tue, 18 Nov 2025 10:07:07 +0530
-Message-Id: <20251118-lt8713sx-bridge-driver-v2-0-25ad49280a11@oss.qualcomm.com>
+Date: Tue, 18 Nov 2025 10:07:08 +0530
+Subject: [PATCH v2 1/2] dt-bindings: bridge: lt8713sx: Add bindings
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,11 +106,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAPP3G2kC/4WNQQ6CMBREr0L+2pL+QoO68h6GRWmr/AQo9mODI
- dzdygXcTPJmMjMbsI/kGa7FBtEnYgpTBnUqwPZmenpBLjMoqTQiajEs5wYrXkUXyeXYRUo+iko
- 1sq617uzFQC7P0T9oPYbvbeaeeAnxc/wk/Ll/JxMKKTqnDVq0TSXNLTCXr7cZbBjHMgu0+75/A
- WYb17DDAAAA
-X-Change-ID: 20251115-lt8713sx-bridge-driver-32704455bc9a
+Message-Id: <20251118-lt8713sx-bridge-driver-v2-1-25ad49280a11@oss.qualcomm.com>
+References: <20251118-lt8713sx-bridge-driver-v2-0-25ad49280a11@oss.qualcomm.com>
+In-Reply-To: <20251118-lt8713sx-bridge-driver-v2-0-25ad49280a11@oss.qualcomm.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
         Neil Armstrong <neil.armstrong@linaro.org>,
         Robert Foss <rfoss@kernel.org>,
@@ -128,69 +128,106 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         prahlad.valluru@oss.qualcomm.com,
         Prahlad Valluru <vvalluru@qti.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763440662; l=1372;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763440662; l=2011;
  i=vishnu.saini@oss.qualcomm.com; s=20251113; h=from:subject:message-id;
- bh=eYntB9cM32oNKNfNcv7GAaypc4YEZOINwwB69UtDnnQ=;
- b=6pYSAo8NfEQZpa5Z8fUuLDD92Fs2piN4uS8PQECz56RTN80+33ThWxd1E6ckC9AZyZiEKqimJ
- QSdhrb48OT5CmWJ/NFcdWIbHx5GgM67TrmLxf2Y6m5DSDQJDUtBkvYK
+ bh=qz4Xz5Ldc9/otglui7guw4sFZjWQzTzl5rBch2+0xBw=;
+ b=zqsKdI0DfPPtTVM0wc2TE1ThgxYOwQljX5vANAFuXAW/JUpgZoQvCGXMaguDjdTySskvt1xew
+ xCdlSxzBDaXAPbHqltM6gpMY502FChFM3NpwYj+1SaOtp6XoaVYzI7I
 X-Developer-Key: i=vishnu.saini@oss.qualcomm.com; a=ed25519;
  pk=8hlXlF8j/3GeOaDK3w2LYhkv9FanCQru0c7kRH/It7k=
-X-Proofpoint-GUID: HQacQdtI9qO9RUlg9rL3pUz3eVtVuLmb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDAzMyBTYWx0ZWRfX2FBzjL6+qGd0
- s4L54gq3CyYMoojKWHHpUxudxR90drXz8c9vlPdhlT2hWuDrPYuHneWQ7yc09cSLyUVaTf0NnCC
- TPiGEtNODlRxm+iwGxwINrp+HcaRR5M1Pq3oK5GOpf/92r3ja6xJ7Gy0Xp6UpIvu+++vciI1jwk
- FD0/GBBmnuxBSNj0x+xQ1K7kg80Hk1LAVGwJodmCklqnVtvPtk4H3kgtPPXrR8USQBToBh57Cq/
- niCd/OHRXD+tUE6y+ePxAjxtN/XXa1NHWduyTq/Q7Lxyc/yVKwZs8+/Jih3HzxtAAnGi3LJ3DpQ
- c136pvJHWrNC/nhahtlCa3K+q2LtnvAYMPAQ08+UWQScIaivwcqZqQFxy5PZ2TIIZ/vI2mBHrv5
- sTSuk5rUKgzAPmjVrSGbAMir/8WbSw==
-X-Authority-Analysis: v=2.4 cv=HaMZjyE8 c=1 sm=1 tr=0 ts=691bf81d cx=c_pps
+X-Proofpoint-GUID: Oy2SRv75rQjFOtadYsiJS9gtFbrkGGoL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDAzMyBTYWx0ZWRfXxyL5TzyKliTV
+ mfiZVeeHeyc3JauBfMmjbzsR4fz0fnW74exu/ja6sKuSm09n8Ox5tIqq0jD4KvCEqWnoJ565SME
+ rkKQj8UPyxAIFr16Sp/vhQH8KntTs6Y2I3OC4RyLR/EMGbhT9WD66rJSSnaTz7Y4fQG9cjPzp7E
+ CPqjJ7ZwsMs6Bq7ye+jO2vgOeaHRtpBamYnnbrkYzUrl81G6GC+TMTnUpuGwcB6vmWDtmSpl6FU
+ /RRPAO+L1pFw4JDuNBU0zuL104ej/hhTdham87oTb+RQ3JNCGpO+l3PlYhT1HNUW8X2FUxIUZED
+ om0Wko6oTjkjcQkMhrctt7b8b5HSPu99/aoWQewCDH3BkggkNktH720zO6IK0GpzJvgsi+U9LSQ
+ S0NXyc6A2maRCtB6MTJ3XBODS4L24w==
+X-Proofpoint-ORIG-GUID: Oy2SRv75rQjFOtadYsiJS9gtFbrkGGoL
+X-Authority-Analysis: v=2.4 cv=Y5L1cxeN c=1 sm=1 tr=0 ts=691bf823 cx=c_pps
  a=JL+w9abYAAE89/QcEU+0QA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
  a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=QxBZ9i5KDo26hP1ghMIA:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-ORIG-GUID: HQacQdtI9qO9RUlg9rL3pUz3eVtVuLmb
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=Kz8-B0t5AAAA:8
+ a=0rundtbkkiGdurUZRnIA:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+ a=sptkURWiP4Gy88Gu7hUp:22 a=RuZk68QooNbwfxovefhk:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-17_04,2025-11-13_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 malwarescore=0
- clxscore=1015 phishscore=0 bulkscore=0 impostorscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511180033
+ suspectscore=0 spamscore=0 bulkscore=0 phishscore=0 priorityscore=1501
+ malwarescore=0 impostorscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511180033
 
-The lt8713sx is a Type-C/DP1.4 to Type-C/DP1.4/HDMI2.0 converter,
-with three configurable DP1.4/HDMI2.0/DP++ output interfaces and
-audio output interface.
+Add bindings for lt8713sx.
 
-This series provides bridge driver and dt bindings for lt8713sx.
-The driver is required for firmware upgrade in the bridge chip.
-
+Co-developed-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+Signed-off-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
 Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
 ---
-Changes in v2:
-- Addressed review comments from V1, majorly:
-- Fixed DCO chain.
-- Added supply in bindings.
-- Handeled deferred probe in lt8713sx driver probe.
-- Link to v1: https://lore.kernel.org/r/20251115-lt8713sx-bridge-driver-v1-0-bd5a1c1c730a@oss.qualcomm.com
+ Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml | 52 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
 
----
-Vishnu Saini (2):
-      dt-bindings: bridge: lt8713sx: Add bindings
-      drm/bridge: add support for lontium lt8713sx bridge driver
+diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml
+new file mode 100644
+index 000000000000..3fb7e042c688
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/lontium,lt8713sx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lontium LT8713SX Type-C/DP1.4 to Type-C/DP1.4/HDMI2.0/DP++ bridge-hub
++
++maintainers:
++  - Tony <syyang@lontium.com>
++
++description:
++  The Lontium LT8713SX is a Type-C/DP1.4 to Type-C/DP1.4/HDMI2.0 converter
++  that integrates one DP input and up to three configurable output interfaces
++  (DP1.4 / HDMI2.0 / DP++), with SST/MST functionality and audio support.
++
++properties:
++  compatible:
++    enum:
++      - lontium,lt8713sx
++
++  reg:
++    maxItems: 1
++
++  vcc-supply:
++    description: Regulator for 3.3V vcc.
++
++  vdd-supply:
++    description: Regulator for 1.1V vdd.
++
++  reset-gpios:
++    description: GPIO connected to active high RESET pin.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        bridge@4f {
++            compatible = "lontium,lt8713sx";
++            reg = <0x4f>;
++            reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
++        };
++    };
 
- Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml |  52 ++++
- drivers/gpu/drm/bridge/Kconfig                                         |  10 +
- drivers/gpu/drm/bridge/Makefile                                        |   1 +
- drivers/gpu/drm/bridge/lontium-lt8713sx.c                              | 713 +++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 776 insertions(+)
----
-base-commit: de0d6e19d2ef33ba34be2467ffdf3595da5f5326
-change-id: 20251115-lt8713sx-bridge-driver-32704455bc9a
-
-Best regards,
 -- 
-Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+2.34.1
 
 
